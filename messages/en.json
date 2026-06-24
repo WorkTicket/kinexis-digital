@@ -33,8 +33,7 @@
     "resourceLinks": {
       "groups": {
         "guides": "KINEXIS Guides",
-        "comparisons": "Comparisons",
-        "pricing": "Pricing Guides"
+        "comparisons": "Comparisons"
       },
       "localSeoChecklist": "Local SEO Checklist",
       "seoAuditFramework": "SEO Audit Framework",
@@ -44,9 +43,6 @@
       "seoVsPpc": "SEO vs PPC",
       "localSeoVsGoogleAds": "Local SEO vs Google Ads",
       "wordpressVsWebflow": "WordPress vs Webflow",
-      "seoPricing": "SEO Pricing Guide",
-      "googleAdsPricing": "Google Ads Pricing",
-      "webDesignPricing": "Web Design Pricing",
       "toolkitTitle": "Marketing Toolkit",
       "toolkitDesc": "17 tools we use daily, grouped by channel."
     },

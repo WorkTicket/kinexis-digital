@@ -68,14 +68,6 @@ export const resourceNavGroups = [
       { href: "/wordpress-vs-webflow", key: "wordpressVsWebflow" as const },
     ],
   },
-  {
-    key: "pricing" as const,
-    links: [
-      { href: "/pricing/seo", key: "seoPricing" as const },
-      { href: "/pricing/google-ads", key: "googleAdsPricing" as const },
-      { href: "/pricing/web-design", key: "webDesignPricing" as const },
-    ],
-  },
 ] as const;
 
 export const footerServiceLinks = serviceNavLinks.slice(0, 5);

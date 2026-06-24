@@ -42,7 +42,6 @@ export default function Navigation({
   const isResourcesActive =
     pathname === "/resources" ||
     pathname.startsWith("/resources/") ||
-    pathname.startsWith("/pricing/") ||
     pathname.startsWith("/google-ads-vs-seo") ||
     pathname.startsWith("/seo-vs-ppc") ||
     pathname.startsWith("/local-seo-vs-google-ads") ||
