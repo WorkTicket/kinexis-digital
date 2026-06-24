@@ -29,6 +29,24 @@ export async function POST(request: Request) {
       );
     }
 
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!EMAIL_RE.test(String(email))) {
+      return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    }
+
+    if (String(name).length > 200) {
+      return NextResponse.json({ error: "Name is too long." }, { status: 400 });
+    }
+    if (company && String(company).length > 200) {
+      return NextResponse.json({ error: "Company name is too long." }, { status: 400 });
+    }
+    if (phone && String(phone).length > 50) {
+      return NextResponse.json({ error: "Phone number is too long." }, { status: 400 });
+    }
+    if (message && String(message).length > 5000) {
+      return NextResponse.json({ error: "Message is too long (max 5000 characters)." }, { status: 400 });
+    }
+
     const creds = getEmailCredentials();
     const isDev = process.env.NODE_ENV === "development";
 

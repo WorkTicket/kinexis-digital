@@ -8,7 +8,9 @@ Sentry.init({
   enabled: Boolean(SENTRY_DSN),
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
-  integrations: [Sentry.replayIntegration()],
+  // Only register the Replay integration when a DSN is present — the SDK
+  // still initialises DOM listeners even when `enabled: false` otherwise.
+  integrations: SENTRY_DSN ? [Sentry.replayIntegration()] : [],
 });
 
 export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;

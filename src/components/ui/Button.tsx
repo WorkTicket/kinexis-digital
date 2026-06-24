@@ -2,18 +2,25 @@
 
 import { cn } from "@/lib/utils";
 import { Link } from "@/i18n/navigation";
+import type { ComponentPropsWithoutRef } from "react";
 
 type ButtonSize = "default" | "sm" | "icon" | "fab";
 
-type ButtonProps = {
+type BaseProps = {
   variant?: "primary" | "secondary" | "ghost";
   size?: ButtonSize;
-  href?: string;
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
   fullWidthMobile?: boolean;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+};
+
+type ButtonAsButton = BaseProps &
+  Omit<ComponentPropsWithoutRef<"button">, keyof BaseProps> & { href?: undefined };
+
+type ButtonAsLink = BaseProps &
+  Omit<ComponentPropsWithoutRef<typeof Link>, keyof BaseProps> & { href: string };
+
+type ButtonProps = ButtonAsButton | ButtonAsLink;
 
 export default function Button({
   variant = "primary",
@@ -21,7 +28,6 @@ export default function Button({
   href,
   children,
   className,
-  onClick,
   fullWidthMobile = false,
   ...props
 }: ButtonProps) {
@@ -38,7 +44,7 @@ export default function Button({
   const variants = {
     primary: "bg-gradient text-white sm:hover:shadow-glow",
     secondary:
-      "text-white/70 border border-surface hover:text-[#05060a] hover:bg-neon-cyan hover:border-neon-cyan hover:shadow-glow-sm",
+      "text-white/70 border border-surface hover:text-bg hover:bg-neon-cyan hover:border-neon-cyan hover:shadow-glow-sm",
     ghost: "text-muted hover:text-white transition-colors duration-200 ease-out",
   };
 
@@ -51,16 +57,17 @@ export default function Button({
     className
   );
 
-  if (href) {
+  if (href !== undefined) {
+    const { onClick, ...linkProps } = props as ButtonAsLink;
     return (
-      <Link href={href} className={classes} onClick={onClick}>
+      <Link href={href} className={classes} onClick={onClick} {...linkProps}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classes} onClick={onClick} {...props}>
+    <button className={classes} {...(props as ButtonAsButton)}>
       {children}
     </button>
   );

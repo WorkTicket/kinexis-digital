@@ -102,9 +102,10 @@ const nextConfig = {
 const intlConfig = withNextIntl(nextConfig);
 
 // Sentry wraps the config to inject instrumentation.
-// All options are opt-in; the build works without a DSN set.
+// Set SENTRY_ORG, SENTRY_PROJECT, and NEXT_PUBLIC_SENTRY_DSN in .env.local or CI
+// to enable error monitoring. The build works fine without them — Sentry stays
+// disabled (see instrumentation.ts and instrumentation-client.ts).
 export default withSentryConfig(intlConfig, {
-  // TODO: Set SENTRY_ORG and SENTRY_PROJECT in .env.local or CI
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
   // Suppress build-time CLI output when org/project are not set

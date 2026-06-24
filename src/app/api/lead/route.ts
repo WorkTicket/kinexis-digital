@@ -25,6 +25,21 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
     }
 
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!EMAIL_RE.test(String(email))) {
+      return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    }
+
+    if (String(name).length > 200) {
+      return NextResponse.json({ error: "Name is too long." }, { status: 400 });
+    }
+    if (service && String(service).length > 200) {
+      return NextResponse.json({ error: "Service value is too long." }, { status: 400 });
+    }
+    if (goal && String(goal).length > 1000) {
+      return NextResponse.json({ error: "Goal is too long." }, { status: 400 });
+    }
+
     const safeName = String(name);
     const safeEmail = String(email);
     const leadData = {

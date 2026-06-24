@@ -8,6 +8,8 @@ import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import type { ChatMessage } from "@/types";
 
+type ChatMessageWithId = ChatMessage & { id: string };
+
 const steps = ["service", "business", "revenue", "goal"] as const;
 type Step = (typeof steps)[number];
 
@@ -17,7 +19,7 @@ export default function ChatBot() {
   const locale = useLocale();
 
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessageWithId[]>([]);
   const [input, setInput] = useState("");
   const [step, setStep] = useState(0);
   const [leadData, setLeadData] = useState<Record<string, string>>({});
@@ -32,7 +34,7 @@ export default function ChatBot() {
   const quickReplyOptions = [serviceOptions, businessOptions, revenueOptions, goalOptions][step] ?? [];
 
   useEffect(() => {
-    setMessages([{ role: "assistant", content: t("initialMessage") }]);
+    setMessages([{ id: "init", role: "assistant", content: t("initialMessage") }]);
     setStep(0);
     setLeadData({});
     setQualified(false);
@@ -44,7 +46,10 @@ export default function ChatBot() {
   }, [messages]);
 
   const addMessage = (role: "user" | "assistant", content: string) => {
-    setMessages((prev) => [...prev, { role, content }]);
+    setMessages((prev) => [
+      ...prev,
+      { id: `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`, role, content },
+    ]);
   };
 
   const handleQuickReply = (reply: string) => {
@@ -92,7 +97,7 @@ export default function ChatBot() {
           open && "pointer-events-none opacity-0"
         )}
         aria-label={t("openChat")}
-        aria-hidden={open}
+        aria-hidden={open ? true : undefined}
       >
         <MessageCircle className="h-5 w-5" />
       </Button>
@@ -125,8 +130,8 @@ export default function ChatBot() {
             </div>
 
             <div className="h-[380px] overflow-y-auto p-4 space-y-3 bg-bg">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+              {messages.map((msg) => (
+                <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div
                     className={`max-w-[85%] rounded-lg px-4 py-2.5 text-sm leading-relaxed ${
                       msg.role === "user" ? "bg-neon-cyan text-bg" : "glass text-white"

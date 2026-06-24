@@ -1,14 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useLocale } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { ArrowRight, Home, Layers, Phone } from "lucide-react";
 
 export default function NotFound() {
-  const locale = useLocale();
-  const prefix = locale === "es" ? "/es" : "/en";
-
-  const isEs = locale === "es";
+  const t = useTranslations("notFound");
 
   return (
     <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 py-24 text-center">
@@ -25,51 +22,49 @@ export default function NotFound() {
         </span>
 
         <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-          {isEs ? "Página no encontrada" : "Page not found"}
+          {t("title")}
         </h1>
 
         <p className="mt-4 text-base leading-relaxed text-white/50">
-          {isEs
-            ? "La página que buscas no existe o fue movida. Aquí hay algunos lugares para continuar."
-            : "The page you're looking for doesn't exist or has been moved. Here are a few places to continue."}
+          {t("body")}
         </p>
 
         {/* Quick links */}
         <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
-            href={`${prefix}`}
+            href="/"
             className="flex min-h-[44px] items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white"
           >
             <Home className="h-4 w-4 shrink-0 text-neon-cyan" />
-            {isEs ? "Inicio" : "Homepage"}
+            {t("home")}
           </Link>
           <Link
-            href={`${prefix}/services`}
+            href="/services"
             className="flex min-h-[44px] items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white"
           >
             <Layers className="h-4 w-4 shrink-0 text-neon-cyan" />
-            {isEs ? "Servicios" : "Services"}
+            {t("services")}
           </Link>
           <Link
-            href={`${prefix}/contact`}
+            href="/contact"
             className="flex min-h-[44px] items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white"
           >
             <Phone className="h-4 w-4 shrink-0 text-neon-cyan" />
-            {isEs ? "Contacto" : "Contact"}
+            {t("contact")}
           </Link>
         </div>
 
         {/* Primary CTA */}
         <div className="mt-8">
           <Link
-            href={`${prefix}/contact`}
+            href="/contact"
             className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neon-cyan px-6 py-3 text-sm font-semibold text-bg transition-opacity duration-200 hover:opacity-90"
           >
-            {isEs ? "Agendar llamada de estrategia" : "Book a strategy call"}
+            {t("cta")}
             <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
           <p className="mt-2 text-xs text-white/30">
-            {isEs ? "Sin contratos a largo plazo. Mes a mes." : "No long-term contracts. Month to month."}
+            {t("footnote")}
           </p>
         </div>
       </div>

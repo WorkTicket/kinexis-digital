@@ -277,5 +277,14 @@
     "privacyLink": "Privacy Policy",
     "accept": "Accept analytics",
     "reject": "Reject non-essential"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "The page you're looking for doesn't exist or has been moved. Here are a few places to continue.",
+    "home": "Homepage",
+    "services": "Services",
+    "contact": "Contact",
+    "cta": "Book a strategy call",
+    "footnote": "No long-term contracts. Month to month."
   }
 }

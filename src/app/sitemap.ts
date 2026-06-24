@@ -16,10 +16,14 @@ import {
   authorSlugs,
 } from "@/content/registry/site-routes";
 
+// Static build-time date prevents search engines being told every page changed
+// on every request. Update this when doing a major content deployment.
+const SITEMAP_DATE = new Date("2025-01-01");
+
 function localeUrls(path: string, priority = 0.7): MetadataRoute.Sitemap {
   return locales.flatMap((locale) => ({
     url: `${getSiteUrl()}${buildLocalePath(locale, path)}`,
-    lastModified: new Date(),
+    lastModified: SITEMAP_DATE,
     changeFrequency: "weekly" as const,
     priority,
   }));

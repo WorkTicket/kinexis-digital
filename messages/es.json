@@ -277,5 +277,14 @@
     "privacyLink": "Política de Privacidad",
     "accept": "Aceptar analítica",
     "reject": "Rechazar no esenciales"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "La página que buscas no existe o fue movida. Aquí hay algunos lugares para continuar.",
+    "home": "Inicio",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "cta": "Agendar llamada de estrategia",
+    "footnote": "Sin contratos a largo plazo. Mes a mes."
   }
 }

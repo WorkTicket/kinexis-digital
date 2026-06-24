@@ -33,6 +33,12 @@ export type PageMetadataInput = {
   noIndex?: boolean;
 };
 
+/** Strip pipe characters that are used as visual line-break separators in hero
+ *  subtitles but must not appear raw in meta description / OG tags. */
+function cleanDescription(raw: string): string {
+  return raw.replace(/\|/g, " ").replace(/\s{2,}/g, " ").trim();
+}
+
 export function buildPageMetadata({
   locale,
   path,
@@ -41,6 +47,7 @@ export function buildPageMetadata({
   ogImage,
   noIndex,
 }: PageMetadataInput): Metadata {
+  const safeDescription = cleanDescription(description);
   const url = buildAbsoluteUrl(locale, path);
   const imageUrl = ogImage ?? getDefaultOgImageUrl();
   const languages: Record<string, string> = {
@@ -52,7 +59,7 @@ export function buildPageMetadata({
 
   return {
     title,
-    description,
+    description: safeDescription,
     ...(noIndex && { robots: { index: false, follow: false } }),
     alternates: {
       canonical: url,
@@ -60,7 +67,7 @@ export function buildPageMetadata({
     },
     openGraph: {
       title,
-      description,
+      description: safeDescription,
       url,
       type: "website",
       siteName: "KINEXIS Digital",
@@ -69,7 +76,7 @@ export function buildPageMetadata({
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: safeDescription,
       images: [imageUrl],
     },
   };

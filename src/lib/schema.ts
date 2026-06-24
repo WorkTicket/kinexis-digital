@@ -13,13 +13,11 @@ export function organizationSchema() {
       "Digital marketing agency specializing in SEO, paid media, web design, CRO, and analytics for local businesses, SaaS companies, and enterprise organizations.",
     sameAs: [
       "https://www.linkedin.com/company/kinexisdigital",
-      // "https://www.google.com/maps?cid=YOUR_GBP_CID", // TODO: Add Google Business Profile CID once verified
-      // "https://clutch.co/profile/kinexis-digital",    // TODO: Add once Clutch listing is live
     ],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
-      availableLanguage: ["English", "Spanish", "French", "German"],
+      availableLanguage: ["English", "Spanish"],
     },
   };
 }

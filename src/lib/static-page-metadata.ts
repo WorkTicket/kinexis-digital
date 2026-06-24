@@ -44,7 +44,7 @@ export function getBlogPostsMetadata(locale: Locale): Metadata {
     locale,
     path: "/blog/posts",
     title: `${c.postsHeroTitleLine1} ${c.postsHeroTitleGradient} | KINEXIS Digital`,
-    description: c.postsHeroSubtitle.replace("|", " "),
+    description: c.postsHeroSubtitle,
   });
 }
 
