@@ -26,6 +26,7 @@ export default function IndustriesHubClient({ content: c }: Props) {
           </>
         }
         subtitle={c.hero.subtitle}
+        subtitleLineClassName="hero-industries-subtitle-line"
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
         secondaryCtaLabel="See how we work"

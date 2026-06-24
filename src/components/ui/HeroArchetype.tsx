@@ -18,6 +18,7 @@ type Props = {
   label?: string;
   headline: React.ReactNode;
   subtitle?: string;
+  subtitleLineClassName?: string;
   outcome?: string;
   ctaLabel?: string;
   ctaHref?: string;
@@ -65,6 +66,7 @@ export default function HeroArchetype({
   label,
   headline,
   subtitle,
+  subtitleLineClassName,
   outcome,
   ctaLabel,
   ctaHref = "/contact",
@@ -121,7 +123,7 @@ export default function HeroArchetype({
 
   const subtitleEl = subtitle && (
     <motion.p variants={fadeUp} className={cn(archetype === "showcase" ? "hero__subtitle" : "section-intro-lg mt-8", archetype !== "showcase" && "section-intro-lg--center")}>
-      <TwoLineText text={subtitle} variant="body" />
+      <TwoLineText text={subtitle} variant="body" className={subtitleLineClassName} />
     </motion.p>
   );
 

@@ -1188,6 +1188,21 @@ summary::-webkit-details-marker {
     }
   }
 
+  .hero-industries-subtitle-line {
+    text-wrap: pretty;
+  }
+
+  .hero__subtitle:has(.hero-industries-subtitle-line) {
+    max-width: 56rem;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-industries-subtitle-line {
+      white-space: nowrap;
+      text-wrap: normal;
+    }
+  }
+
   .hero--split .hero__subtitle {
     margin-top: var(--space-heading-subheading);
     font-size: clamp(1rem, 0.4vw + 0.95rem, 1.2rem);
