@@ -24,8 +24,8 @@ export default function AboutPageClient({ content: c }: Props) {
         label={c.heroTag}
         headline={
           <>
-            <span className="type-hero-line">{c.heroTitle}</span>
-            <span className="type-hero-line gradient-text">{c.heroTitleHighlight}</span>
+            <span className="type-hero-line hero-intentional-hero-line">{c.heroTitle}</span>
+            <span className="type-hero-line hero-intentional-hero-line gradient-text">{c.heroTitleHighlight}</span>
           </>
         }
         subtitle={c.heroSubtitleLine2 ? `${c.heroSubtitleLine1}|${c.heroSubtitleLine2}` : c.heroSubtitleLine1}

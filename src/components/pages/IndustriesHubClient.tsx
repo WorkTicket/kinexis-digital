@@ -21,8 +21,8 @@ export default function IndustriesHubClient({ content: c }: Props) {
         label={c.hero.label}
         headline={
           <>
-            <span className="type-hero-line">{c.hero.headlineLine1}</span>
-            <span className="type-hero-line">{c.hero.headlineLine2}</span>
+            <span className="type-hero-line hero-intentional-hero-line">{c.hero.headlineLine1}</span>
+            <span className="type-hero-line hero-intentional-hero-line">{c.hero.headlineLine2}</span>
           </>
         }
         subtitle={c.hero.subtitle}

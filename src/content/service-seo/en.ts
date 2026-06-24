@@ -791,7 +791,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Websites that look good",
       line2: "and actually convert.",
       subtitle:
-        "Custom builds where every page, button, and form is designed to turn visitors into booked calls. Not another template with your logo dropped in.",
+        "Custom builds where every page, button, and form is designed to turn visitors into booked calls.|Not another template with your logo dropped in.",
     },
     answerBlock:
       "Web design includes discovery, UX strategy, custom design, responsive development, CMS setup, basic SEO structure, and conversion-focused layouts. Projects run $8,000 for focused sites to $35,000+ for larger builds. Typical delivery is 6 to 10 weeks from kickoff to launch.",
@@ -1051,7 +1051,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Email that moves",
       line2: "prospects toward a yes.",
       subtitle:
-        "Sequences and campaigns tied to where someone is in your pipeline. Not another monthly newsletter nobody reads.",
+        "Sequences and campaigns tied to where someone is in your pipeline.|Not another monthly newsletter nobody reads.",
     },
     answerBlock:
       "Email marketing services include list strategy, automation workflows, campaign creation, segmentation, A/B testing, and deliverability monitoring. Retainers start at $2,000 to $5,000 per month depending on list size and automation complexity. Welcome sequences typically launch within 2 to 3 weeks.",
@@ -1181,7 +1181,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Content that answers",
       line2: "what buyers search before they call.",
       subtitle:
-        "Blog posts, guides, and case studies mapped to keywords and buying stages. Written to rank, build trust, and send people to your offer.",
+        "Blog posts, guides, and case studies mapped to keywords and buying stages.|Written to rank, build trust, and send people to your offer.",
     },
     answerBlock:
       "Content marketing services include content strategy, keyword-driven topic planning, blog posts, guides, case studies, and distribution across search and social. Retainers start at $2,500 to $6,000 per month for 4 to 8 pieces monthly. First published content typically goes live within 3 to 4 weeks of kickoff.",
@@ -1311,7 +1311,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Social that supports",
       line2: "the rest of your marketing.",
       subtitle:
-        "Consistent posting, on-brand creative, and community replies that drive people to your site. Not random promotional posts with no tie to revenue.",
+        "Consistent posting, on-brand creative, and community replies that drive people to your site.|Not random promotional posts with no tie to revenue.",
     },
     answerBlock:
       "Social media marketing includes platform strategy, content creation, posting schedules, community management, and performance reporting for LinkedIn, Instagram, Facebook, and X. Management starts at $1,500 to $4,000 per month depending on platforms and posting frequency. Content calendars are live within 2 weeks of kickoff.",
@@ -1441,7 +1441,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Video built for",
       line2: "where it actually runs.",
       subtitle:
-        "Ads, social, and website clips with one clear message per piece. Script through edit, formatted for each platform you use.",
+        "Ads, social, and website clips with one clear message per piece.|Script through edit, formatted for each platform you use.",
     },
     answerBlock:
       "Video marketing services include concept development, scripting, production coordination, editing, and distribution planning for ads, social, and web. Project pricing starts at $3,000 for short-form packages. Monthly retainers from $2,500 cover ongoing video content. Typical turnaround is 2 to 4 weeks per project.",
@@ -1701,7 +1701,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Reports that tell you",
       line2: "where to spend next.",
       subtitle:
-        "GA4, CRM ties, and dashboards built around leads and revenue. Not another export full of impressions nobody acts on.",
+        "GA4, CRM ties, and dashboards built around leads and revenue.|Not another export full of impressions nobody acts on.",
     },
     answerBlock:
       "Marketing analytics services include GA4 setup, conversion tracking, CRM integration, custom dashboards, and monthly reporting across SEO, paid ads, email, and social. Retainers start at $1,500 to $3,500 per month. Dashboard builds typically go live within 2 to 3 weeks.",
@@ -1831,7 +1831,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Figure out what to do",
       line2: "before you spend another dollar.",
       subtitle:
-        "Marketing audit, channel priorities, and a roadmap with budgets and KPIs your team or ours can execute.",
+        "Marketing audit, channel priorities, and a roadmap with budgets and KPIs|your team or ours can execute.",
     },
     answerBlock:
       "Growth consulting includes marketing audits, competitive analysis, channel strategy, budget planning, and quarterly roadmaps. Engagements start at $3,000 to $6,000 per month for advisory or $5,000 to $15,000 for project-based strategy deliverables. Initial audit and roadmap delivery takes 3 to 4 weeks.",

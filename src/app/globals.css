@@ -1203,6 +1203,14 @@ summary::-webkit-details-marker {
     }
   }
 
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-subtitle-line,
+    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-hero-line {
+      white-space: normal;
+      text-wrap: pretty;
+    }
+  }
+
   .hero-intentional-hero-line {
     text-wrap: pretty;
   }
@@ -1211,6 +1219,18 @@ summary::-webkit-details-marker {
     .hero--split .hero-intentional-hero-line {
       white-space: nowrap;
       text-wrap: normal;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-subtitle-line,
+    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-hero-line {
+      white-space: nowrap;
+      text-wrap: normal;
+    }
+
+    .hero--split:has(.hero__viz-inner--service-page) .hero__subtitle:has(.hero-intentional-subtitle-line) {
+      max-width: 100%;
     }
   }
 
