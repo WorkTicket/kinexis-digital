@@ -58,7 +58,7 @@ export default function Button({
   );
 
   if (href !== undefined) {
-    const { onClick, ...linkProps } = props as ButtonAsLink;
+    const { onClick, ...linkProps } = props as Omit<ButtonAsLink, "href">;
     return (
       <Link href={href} className={classes} onClick={onClick} {...linkProps}>
         {children}
