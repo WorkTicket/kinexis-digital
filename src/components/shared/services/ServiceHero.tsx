@@ -23,6 +23,7 @@ export default function ServiceHero({
   return (
     <HeroArchetype
       archetype="showcase"
+      className="hero--service-page"
       theme={getServiceHeroTheme(slug)}
       label={label}
       headline={

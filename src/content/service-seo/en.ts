@@ -10,7 +10,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Rank for the searches",
       line2: "that actually convert.",
       subtitle:
-        "Organic search for service businesses. We target the keywords your buyers type right before they pick up the phone.",
+        "Organic search for service businesses.|We target keywords your buyers type right before they pick up the phone.",
     },
     answerBlock:
       "Our SEO work covers technical audits, keyword research, on-page fixes, content, and links. Most clients invest $2,500 to $8,000 per month depending on competition and scope. Ranking movement usually shows up in 60 to 90 days. Lead growth follows around months four to six.",
@@ -140,7 +140,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Show up in maps",
       line2: "when locals actually search.",
       subtitle:
-        "Google Business Profile, citations, reviews, and location pages for businesses that win work within a few miles of their door.",
+        "Google Business Profile, citations, reviews, and location pages|for businesses that win work within a few miles of their door.",
     },
     answerBlock:
       "Local SEO services include Google Business Profile optimization, citation building, review strategy, location page development, and local link acquisition. Retainers typically start at $2,000 to $5,000 per month for single-location businesses and scale for multi-location brands. Map pack movement often appears within 30 to 60 days.",
@@ -270,7 +270,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "One team running",
       line2: "every channel you pay for.",
       subtitle:
-        "Google, Meta, LinkedIn, and Microsoft managed together so budget follows cost per qualified lead,|not whoever pitched loudest.",
+        "Google, Meta, LinkedIn, and Microsoft — managed together.|Budget follows cost per qualified lead, not whoever pitched loudest.",
     },
     answerBlock:
       "PPC management covers strategy, campaign setup, bid optimization, creative coordination, and conversion tracking across Google, Meta, LinkedIn, and Microsoft Ads. Fees are typically 15% of ad spend with a $2,500 monthly minimum, or a flat retainer for larger accounts. Most accounts reach stable CPL within 45 to 60 days of launch.",
@@ -400,7 +400,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Google Ads that protect",
       line2: "your margin, not Google's.",
       subtitle:
-        "Search, Shopping, and PMax campaigns built for qualified leads.|We fix the account structure and tracking problems that inflate cost per lead.",
+        "Search, Shopping, and PMax built for qualified leads.|We fix account structure and tracking that inflate cost per lead.",
     },
     answerBlock:
       "Google Ads management covers account audit, campaign structure, keywords, ad copy, bids, Quality Score, and conversion tracking for Search, Shopping, and PMax. Management starts at $1,500 per month plus ad spend. Most accounts see CPL stabilize within 30 to 45 days.",
@@ -530,7 +530,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Meta Ads that keep",
       line2: "working after launch week.",
       subtitle:
-        "Prospecting and retargeting on Facebook and Instagram with a creative testing rhythm that fights fatigue before CPM climbs.",
+        "Prospecting and retargeting on Facebook and Instagram.|Creative testing that fights fatigue before CPM climbs.",
     },
     answerBlock:
       "Meta Ads management covers audience research, campaign structure, creative testing, retargeting funnels, and pixel-based tracking on Facebook and Instagram. Management starts at $1,500 per month. Most accounts need $3,000 to $15,000 in monthly ad spend and two to four weeks of creative testing to find stable ROAS.",
@@ -660,7 +660,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Paid media that starts",
       line2: "with the right channel.",
       subtitle:
-        "For businesses launching or scaling ads.|We pick where your buyers are, build campaigns that convert, and track what a qualified lead actually costs.",
+        "For businesses launching or scaling ads.|We pick channels, build converting campaigns, and track qualified lead cost.",
     },
     answerBlock:
       "Paid ads services cover channel selection, campaign strategy, ad creation, landing page alignment, conversion tracking, and ongoing optimization across Google, Meta, and LinkedIn. Combined ad spend and management typically starts at $3,000 to $10,000 per month. Most clients see their first qualified leads within 7 to 14 days of launch.",
@@ -791,7 +791,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Websites that look good",
       line2: "and actually convert.",
       subtitle:
-        "Custom builds where every page, button, and form is designed to turn visitors into booked calls.|Not another template with your logo dropped in.",
+        "Custom builds where every page and form drives booked calls.|Not another template with your logo dropped in.",
     },
     answerBlock:
       "Web design includes discovery, UX strategy, custom design, responsive development, CMS setup, basic SEO structure, and conversion-focused layouts. Projects run $8,000 for focused sites to $35,000+ for larger builds. Typical delivery is 6 to 10 weeks from kickoff to launch.",
@@ -921,7 +921,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "More leads from",
       line2: "traffic you already have.",
       subtitle:
-        "We find where visitors drop off on your site and landing pages, then test fixes so you convert more without raising ad spend.",
+        "We find where visitors drop off on your site and landing pages,|then test fixes so you convert more without raising ad spend.",
     },
     answerBlock:
       "CRO services include conversion audits, heatmap and session analysis, hypothesis development, A/B testing, and UX improvements on high-traffic pages. Retainers start at $2,500 per month or project-based for single-page optimization. Most tests reach statistical significance within 2 to 4 weeks.",
@@ -1568,10 +1568,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Brand positioning, visual identity, and messaging for B2B companies. Strategy and design packages from $8,000 to $25,000.",
     hero: {
       label: "Branding Services",
-      line1: "A brand people recognize",
-      line2: "before they read the fine print.",
+      line1: "A brand buyers recognize",
+      line2: "before they read fine print.",
       subtitle:
-        "Positioning, visual identity, and messaging documented so your website, ads, and sales materials all sound like the same company.",
+        "Positioning, visual identity, and messaging — documented.|So your website, ads, and sales materials sound like one company.",
     },
     answerBlock:
       "Branding services include market positioning, brand strategy, logo design, visual identity systems, messaging frameworks, and brand guidelines. Projects range from $8,000 for focused identity refreshes to $25,000+ for full brand strategy and design. Typical delivery is 6 to 10 weeks.",
@@ -1828,8 +1828,8 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Marketing strategy before execution. Channel audits, roadmaps, and quarterly planning from $3,000/mo for businesses that need a plan first.",
     hero: {
       label: "Growth Consulting Services",
-      line1: "Figure out what to do",
-      line2: "before you spend another dollar.",
+      line1: "Know what to do",
+      line2: "before you spend again.",
       subtitle:
         "Marketing audit, channel priorities, and a roadmap with budgets and KPIs|your team or ours can execute.",
     },
@@ -1958,10 +1958,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Funnels and conversion optimization in one system. Landing pages, email automation, A/B testing, and UX fixes. Projects from $5,000; programs from $2,500/mo.",
     hero: {
       label: "Funnels & Conversion Rate Optimization",
-      line1: "Capture leads, nurture them,",
+      line1: "Capture and nurture leads",
       line2: "then keep testing what converts.",
       subtitle:
-        "Landing pages, email automation, retargeting, and A/B tests as one system from first click to booked call.",
+        "Landing pages, email automation, retargeting, and A/B tests|as one system from first click to booked call.",
     },
     answerBlock:
       "Funnels & CRO services include funnel strategy, landing page design, lead magnet creation, email automation, retargeting, heatmap analysis, and structured A/B testing. Funnel builds start at $5,000 to $15,000; ongoing CRO programs from $2,500 per month. Most systems launch in 4 to 8 weeks with optimization continuing after go-live.",

@@ -78,6 +78,7 @@
   --section-gap: var(--space-section-lg);
   --container-max: 1280px;
   --inner-padding: clamp(1.25rem, 4vw, 2.5rem);
+  --service-hero-text-max: min(100%, 34rem);
   --font-display: var(--font-ubuntu);
   --font-body: var(--font-ubuntu);
   --text-h1: clamp(2.5rem, 5vw, 4rem);
@@ -1152,14 +1153,49 @@ summary::-webkit-details-marker {
     letter-spacing: -0.02em;
   }
 
-  /* Individual service pages — headline stays in text column, wraps when needed */
+  /* Individual service pages — keep copy in the text column, never under the viz */
+  .hero--service-page.hero--split .hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .hero--service-page.hero--split .hero__content {
+      max-width: var(--service-hero-text-max);
+    }
+  }
+
+  .hero--service-page.hero--split .type-hero--split {
+    font-size: clamp(2rem, 2.65vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .hero--service-page.hero--split .type-hero--split,
+  .hero--service-page.hero--split .hero__subtitle {
+    max-width: 100%;
+  }
+
+  .hero--service-page .hero-intentional-hero-line,
+  .hero--service-page .hero-intentional-subtitle-line {
+    white-space: normal;
+    text-wrap: pretty;
+    overflow-wrap: break-word;
+  }
+
+  .hero--service-page .hero__subtitle:has(.hero-intentional-subtitle-line) {
+    max-width: 100%;
+  }
+
   .hero--split:has(.hero__viz-inner--service-page) .hero__content {
     max-width: var(--service-hero-text-max);
   }
 
   .hero--split:has(.hero__viz-inner--service-page) .type-hero--split,
   .hero--split:has(.hero__viz-inner--service-page) .hero__subtitle {
-    max-width: var(--service-hero-text-max);
+    max-width: 100%;
   }
 
   .hero--split:has(.hero__viz-inner--service-page) .type-hero-line {
@@ -1201,11 +1237,17 @@ summary::-webkit-details-marker {
       white-space: nowrap;
       text-wrap: normal;
     }
+
+    .hero--service-page .hero-intentional-subtitle-line,
+    .hero--service-page .hero-intentional-hero-line {
+      white-space: normal;
+      text-wrap: pretty;
+    }
   }
 
   @media (min-width: 1024px) and (max-width: 1279px) {
-    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-subtitle-line,
-    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-hero-line {
+    .hero--split:has(.hero__viz-inner--service-page):not(.hero--service-page) .hero-intentional-subtitle-line,
+    .hero--split:has(.hero__viz-inner--service-page):not(.hero--service-page) .hero-intentional-hero-line {
       white-space: normal;
       text-wrap: pretty;
     }
@@ -1216,20 +1258,20 @@ summary::-webkit-details-marker {
   }
 
   @media (min-width: 1024px) {
-    .hero--split .hero-intentional-hero-line {
+    .hero--split:not(.hero--service-page) .hero-intentional-hero-line {
       white-space: nowrap;
       text-wrap: normal;
     }
   }
 
   @media (min-width: 1280px) {
-    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-subtitle-line,
-    .hero--split:has(.hero__viz-inner--service-page) .hero-intentional-hero-line {
+    .hero--split:has(.hero__viz-inner--service-page):not(.hero--service-page) .hero-intentional-subtitle-line,
+    .hero--split:has(.hero__viz-inner--service-page):not(.hero--service-page) .hero-intentional-hero-line {
       white-space: nowrap;
       text-wrap: normal;
     }
 
-    .hero--split:has(.hero__viz-inner--service-page) .hero__subtitle:has(.hero-intentional-subtitle-line) {
+    .hero--split:has(.hero__viz-inner--service-page):not(.hero--service-page) .hero__subtitle:has(.hero-intentional-subtitle-line) {
       max-width: 100%;
     }
   }
@@ -1300,7 +1342,7 @@ summary::-webkit-details-marker {
   }
 
   .hero--split:has(.hero__viz-inner--service-page) .hero__viz {
-    @apply overflow-visible lg:pl-4;
+    @apply overflow-hidden lg:pl-2;
   }
 
   .hero--split .hero__viz-inner {
@@ -1360,19 +1402,19 @@ summary::-webkit-details-marker {
   @media (min-width: 1024px) {
     .hero--split .hero__viz-inner--service-page {
       width: 320px;
-      transform: scale(1.05) translateX(0.75rem);
+      transform: scale(1) translateX(0);
     }
   }
 
   @media (min-width: 1280px) {
     .hero--split .hero__viz-inner--service-page {
-      transform: scale(1.1) translateX(1.25rem);
+      transform: scale(1.02) translateX(0.5rem);
     }
   }
 
   @media (min-width: 1536px) {
     .hero--split .hero__viz-inner--service-page {
-      transform: scale(1.15) translateX(2rem);
+      transform: scale(1.05) translateX(0.75rem);
     }
   }
 
