@@ -50,7 +50,13 @@ export default function ServicePage({ slug }: Props) {
     if (CORE_SECTIONS.includes(name as CoreSectionId)) {
       switch (name as CoreSectionId) {
         case "ServiceOverview":
-          return <ServiceOverview {...data.overview} surfaceIndex={index} />;
+          return (
+            <ServiceOverview
+              {...data.overview}
+              surfaceIndex={index}
+              visualization={getServiceHeroVisualization(slug, locale)}
+            />
+          );
         case "WhyKinexus":
           return <WhyKinexusSection {...data.whyKinexus} surfaceIndex={index} />;
         case "Process":
@@ -124,12 +130,7 @@ export default function ServicePage({ slug }: Props) {
 
   return (
     <>
-      <ServiceHero
-        slug={slug}
-        breadcrumbs={breadcrumbs}
-        visualization={getServiceHeroVisualization(slug, locale)}
-        {...data.hero}
-      />
+      <ServiceHero slug={slug} breadcrumbs={breadcrumbs} {...data.hero} />
 
       {orderedSections}
       {faqSection}

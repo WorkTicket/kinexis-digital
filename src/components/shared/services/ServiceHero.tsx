@@ -17,7 +17,6 @@ export default function ServiceHero({
   line2,
   subtitle,
   ctaLabel,
-  visualization,
   breadcrumbs,
 }: Props) {
   return (
@@ -37,8 +36,6 @@ export default function ServiceHero({
       ctaLabel={ctaLabel}
       ctaHref="/contact"
       breadcrumbs={breadcrumbs}
-      visualizationClassName="hero__viz-inner--service-page"
-      visualization={visualization}
     />
   );
 }
