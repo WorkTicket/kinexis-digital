@@ -91,7 +91,9 @@ docs/                    Brand guidelines and site map reference
 
 ## Deployment
 
-**Live:** [https://www.kinexisdigital.com](https://www.kinexisdigital.com) — hosted on **Cloudflare Workers** via OpenNext (not static Cloudflare Pages).
+**Live:** [https://www.kinexisdigital.com](https://www.kinexisdigital.com) — hosted on **Cloudflare Workers** (Paid plan) via OpenNext.
+
+> **Workers Paid required.** This app uses OpenNext with SSR and API routes; the free plan’s 10 ms CPU limit causes Error 1102. Paid plan + `limits.cpu_ms` in `wrangler.jsonc` are configured for production.
 
 ### One-time setup
 
