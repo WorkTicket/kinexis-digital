@@ -29,6 +29,7 @@ export default function AboutPageClient({ content: c }: Props) {
           </>
         }
         subtitle={c.heroSubtitleLine2 ? `${c.heroSubtitleLine1}|${c.heroSubtitleLine2}` : c.heroSubtitleLine1}
+        subtitleLineClassName="hero-intentional-subtitle-line"
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
       />

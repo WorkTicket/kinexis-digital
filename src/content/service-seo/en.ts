@@ -270,7 +270,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "One team running",
       line2: "every channel you pay for.",
       subtitle:
-        "Google, Meta, LinkedIn, and Microsoft managed together so budget follows cost per qualified lead, not whoever pitched loudest.",
+        "Google, Meta, LinkedIn, and Microsoft managed together so budget follows cost per qualified lead,|not whoever pitched loudest.",
     },
     answerBlock:
       "PPC management covers strategy, campaign setup, bid optimization, creative coordination, and conversion tracking across Google, Meta, LinkedIn, and Microsoft Ads. Fees are typically 15% of ad spend with a $2,500 monthly minimum, or a flat retainer for larger accounts. Most accounts reach stable CPL within 45 to 60 days of launch.",
@@ -400,7 +400,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Google Ads that protect",
       line2: "your margin, not Google's.",
       subtitle:
-        "Search, Shopping, and PMax campaigns built for qualified leads. We fix the account structure and tracking problems that inflate cost per lead.",
+        "Search, Shopping, and PMax campaigns built for qualified leads.|We fix the account structure and tracking problems that inflate cost per lead.",
     },
     answerBlock:
       "Google Ads management covers account audit, campaign structure, keywords, ad copy, bids, Quality Score, and conversion tracking for Search, Shopping, and PMax. Management starts at $1,500 per month plus ad spend. Most accounts see CPL stabilize within 30 to 45 days.",
@@ -660,7 +660,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Paid media that starts",
       line2: "with the right channel.",
       subtitle:
-        "For businesses launching or scaling ads. We pick where your buyers are, build campaigns that convert, and track what a qualified lead actually costs.",
+        "For businesses launching or scaling ads.|We pick where your buyers are, build campaigns that convert, and track what a qualified lead actually costs.",
     },
     answerBlock:
       "Paid ads services cover channel selection, campaign strategy, ad creation, landing page alignment, conversion tracking, and ongoing optimization across Google, Meta, and LinkedIn. Combined ad spend and management typically starts at $3,000 to $10,000 per month. Most clients see their first qualified leads within 7 to 14 days of launch.",

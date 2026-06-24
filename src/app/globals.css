@@ -1188,16 +1188,27 @@ summary::-webkit-details-marker {
     }
   }
 
-  .hero-industries-subtitle-line {
+  .hero-intentional-subtitle-line {
     text-wrap: pretty;
   }
 
-  .hero__subtitle:has(.hero-industries-subtitle-line) {
+  .hero__subtitle:has(.hero-intentional-subtitle-line) {
     max-width: 56rem;
   }
 
   @media (min-width: 1024px) {
-    .hero-industries-subtitle-line {
+    .hero-intentional-subtitle-line {
+      white-space: nowrap;
+      text-wrap: normal;
+    }
+  }
+
+  .hero-intentional-hero-line {
+    text-wrap: pretty;
+  }
+
+  @media (min-width: 1024px) {
+    .hero--split .hero-intentional-hero-line {
       white-space: nowrap;
       text-wrap: normal;
     }

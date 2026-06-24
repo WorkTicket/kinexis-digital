@@ -27,11 +27,12 @@ export default function ServiceHero({
       label={label}
       headline={
         <>
-          <span className="type-hero-line">{line1}</span>
-          <span className="type-hero-line">{line2}</span>
+          <span className="type-hero-line hero-intentional-hero-line">{line1}</span>
+          <span className="type-hero-line hero-intentional-hero-line">{line2}</span>
         </>
       }
       subtitle={subtitle}
+      subtitleLineClassName="hero-intentional-subtitle-line"
       ctaLabel={ctaLabel}
       ctaHref="/contact"
       breadcrumbs={breadcrumbs}
