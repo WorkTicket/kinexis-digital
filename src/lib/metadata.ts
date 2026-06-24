@@ -60,7 +60,9 @@ export function buildPageMetadata({
   return {
     title,
     description: safeDescription,
-    ...(noIndex && { robots: { index: false, follow: false } }),
+    robots: noIndex
+      ? { index: false, follow: false }
+      : { index: true, follow: true, googleBot: { index: true, follow: true } },
     alternates: {
       canonical: url,
       languages,
@@ -75,6 +77,7 @@ export function buildPageMetadata({
     },
     twitter: {
       card: "summary_large_image",
+      site: "@kinexisdigital",
       title,
       description: safeDescription,
       images: [imageUrl],

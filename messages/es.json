@@ -13,6 +13,7 @@
     "about": "Nosotros",
     "blog": "Blog",
     "pricing": "Precios",
+    "locations": "Ubicaciones",
     "resources": "Recursos",
     "contact": "Contacto",
     "toggleMenu": "Abrir menú",
@@ -33,7 +34,8 @@
     "resourceLinks": {
       "groups": {
         "guides": "Guías KINEXIS",
-        "comparisons": "Comparativas"
+        "comparisons": "Comparativas",
+        "solutions": "Soluciones"
       },
       "localSeoChecklist": "Checklist SEO Local",
       "seoAuditFramework": "Marco de Auditoría SEO",
@@ -43,6 +45,7 @@
       "seoVsPpc": "SEO vs PPC",
       "localSeoVsGoogleAds": "SEO Local vs Google Ads",
       "wordpressVsWebflow": "WordPress vs Webflow",
+      "viewAllSolutions": "Todas las Soluciones",
       "toolkitTitle": "Kit de Marketing",
       "toolkitDesc": "17 herramientas que usamos a diario, por canal."
     },
@@ -80,13 +83,15 @@
     "missionTitle": "Trabajamos con 8–10 clientes a la vez.",
     "missionBody": "Compromisos enfocados. Resultados reales. Sin playbooks genéricos.",
     "privacy": "Política de Privacidad",
-    "terms": "Términos de Servicio"
+    "terms": "Términos de Servicio",
+    "locations": "Ubicaciones"
   },
   "common": {
     "bookStrategyCall": "Reservar una Llamada Estratégica",
     "scheduleStrategyCall": "Agendar una Llamada Estratégica",
     "learnAboutUs": "Conócenos",
     "viewAllServices": "Ver Todos los Servicios",
+    "viewOurWork": "Ver Nuestro Trabajo",
     "viewCaseStudy": "Ver Caso de Éxito",
     "viewAllCaseStudies": "Ver Todos los Casos de Éxito",
     "outcomeComparison": "Comparación de resultados",
@@ -104,7 +109,7 @@
     "line2": "LEADS.",
     "line3": "CONSTRUIMOS",
     "line3Highlight": "DOMINIO DE MERCADO.",
-    "subtitle": "Construimos la infraestructura de marketing que convierte tráfico calificado en ingresos predecibles.|SEO, paid media, diseño web y sistemas de conversión que trabajan juntos — no en silos."
+    "subtitle": "Construimos la infraestructura de marketing que convierte tráfico calificado en ingresos predecibles.|SEO, paid media, diseño web y sistemas de conversión que trabajan juntos, no en silos."
   },
   "revenueEngine": {
     "label": "El Marco KINEXIS",
@@ -224,13 +229,13 @@
       "Correos que tardan días y actualizaciones vagas. Los problemas urgentes esperan a la próxima llamada mientras el gasto publicitario sigue quemándose.",
       "Un PDF trimestral, si tienes suerte. Sin visibilidad de qué funciona, qué se desperdicia o qué cambió la semana pasada.",
       "Facturación opaca y alcance poco claro. Nunca sabes quién hace el trabajo ni a dónde va realmente tu presupuesto.",
-      "Celebran impresiones y clics mientras tu pipeline se estanca. La actividad parece alta — los ingresos no se mueven.",
+      "Celebran impresiones y clics mientras tu pipeline se estanca. La actividad parece alta. Los ingresos no se mueven.",
       "Cada trimestre alguien nuevo gestiona tu cuenta. Se pierde el contexto y vuelves a explicar tu negocio desde cero."
     ],
     "afterItemDetails": [
       "Cada lunes: gasto, leads, CPL y pipeline en un solo informe. Siempre sabes dónde estás y qué se optimiza.",
-      "Acordamos objetivos desde el inicio — ingresos, costo por lead, tasa de conversión — y reportamos cada semana.",
-      "Un estratega senior es dueño de tu cuenta de punta a punta. Conoce tu negocio, mercado y números — sin traspasos.",
+      "Acordamos objetivos desde el inicio: ingresos, costo por lead, tasa de conversión. Reportamos cada semana.",
+      "Un estratega senior es dueño de tu cuenta de punta a punta. Conoce tu negocio, mercado y números. Sin traspasos.",
       "Medimos lo que impacta tu P&L: leads calificados, tasa de cierre, ROAS y LTV. Las métricas de vanidad son contexto, no el titular.",
       "Sin colas de tickets. Cuando algo importa, hablas con quienes pueden tomar decisiones y cambiar el rumbo rápido."
     ]

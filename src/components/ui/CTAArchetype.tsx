@@ -30,7 +30,7 @@ export default function CTAArchetype({
   secondaryCtaHref,
   className,
 }: Props) {
-  const { fadeUp, stagger } = useMotionVariants();
+  const { fadeUp, blurFadeUp, popUp, stagger } = useMotionVariants();
   const t = useTranslations("cta");
 
   if (archetype === "tool") {
@@ -40,30 +40,35 @@ export default function CTAArchetype({
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-32 bg-gradient blur-[100px] opacity-10" />
         </div>
         <motion.div
-          className="container-site text-center relative section-header"
+          className="container-site text-center relative"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.h2 variants={fadeUp} className="section-title text-balance mt-0">
-            <TwoLineText text={headline} variant="section" />
-          </motion.h2>
-          {subtitle && (
-            <motion.p variants={fadeUp} className="section-subtitle">
-              <TwoLineText text={subtitle} variant="body" />
-            </motion.p>
-          )}
-          <motion.div variants={fadeUp} className="cta-stack" style={{ marginTop: "var(--space-subheading-cta)" }}>
-            <Button href={ctaHref} variant="primary" fullWidthMobile>
-              {ctaLabel}
-            </Button>
-            {secondaryCtaLabel && secondaryCtaHref && (
-              <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
-                {secondaryCtaLabel}
-              </Button>
+          <div className="section-header mx-auto">
+            <motion.h2 variants={blurFadeUp} className="section-title text-balance mt-0">
+              <TwoLineText text={headline} variant="section" />
+            </motion.h2>
+            {subtitle && (
+              <motion.p variants={fadeUp} className="section-subtitle">
+                <TwoLineText text={subtitle} variant="body" />
+              </motion.p>
             )}
-          </motion.div>
+            <motion.div
+              variants={fadeUp}
+              className="cta-stack mt-[var(--space-subheading-cta)]"
+            >
+              <Button href={ctaHref} variant="primary" fullWidthMobile>
+                {ctaLabel}
+              </Button>
+              {secondaryCtaLabel && secondaryCtaHref && (
+                <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
+                  {secondaryCtaLabel}
+                </Button>
+              )}
+            </motion.div>
+          </div>
         </motion.div>
       </section>
     );
@@ -76,33 +81,38 @@ export default function CTAArchetype({
           <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-neon-cyan/[0.02] blur-[120px]" />
         </div>
         <motion.div
-          className="container-site text-center relative section-header"
+          className="container-site text-center relative"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
         >
-          <motion.span variants={fadeUp} className="section-label">
-            {t("label")}
-          </motion.span>
-          <motion.h2 variants={fadeUp} className="section-title text-balance">
-            <TwoLineText text={headline} variant="section" />
-          </motion.h2>
-          {subtitle && (
-            <motion.p variants={fadeUp} className="section-subtitle">
-              <TwoLineText text={subtitle} variant="body" />
-            </motion.p>
-          )}
-          <motion.div variants={fadeUp} className="cta-stack" style={{ marginTop: "var(--space-subheading-cta)" }}>
-            <Button href={ctaHref} variant="primary" fullWidthMobile>
-              {ctaLabel}
-            </Button>
-            {secondaryCtaLabel && secondaryCtaHref && (
-              <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
-                {secondaryCtaLabel}
-              </Button>
+          <div className="section-header mx-auto">
+            <motion.span variants={popUp} className="section-label">
+              {t("label")}
+            </motion.span>
+            <motion.h2 variants={blurFadeUp} className="section-title text-balance">
+              <TwoLineText text={headline} variant="section" />
+            </motion.h2>
+            {subtitle && (
+              <motion.p variants={fadeUp} className="section-subtitle">
+                <TwoLineText text={subtitle} variant="body" />
+              </motion.p>
             )}
-          </motion.div>
+            <motion.div
+              variants={fadeUp}
+              className="cta-stack mt-[var(--space-subheading-cta)]"
+            >
+              <Button href={ctaHref} variant="primary" fullWidthMobile>
+                {ctaLabel}
+              </Button>
+              {secondaryCtaLabel && secondaryCtaHref && (
+                <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
+                  {secondaryCtaLabel}
+                </Button>
+              )}
+            </motion.div>
+          </div>
         </motion.div>
       </section>
     );
@@ -113,13 +123,13 @@ export default function CTAArchetype({
       <section className={cn("section-padding relative overflow-hidden bg-gradient-glow", className)}>
         <div className="container-site">
           <motion.div
-            className="section-header"
+            className="section-header mx-auto"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <motion.h2 variants={fadeUp} className="section-title mt-0">
+            <motion.h2 variants={blurFadeUp} className="section-title mt-0">
               <TwoLineText text={headline} variant="section" />
             </motion.h2>
             {subtitle && (
@@ -127,7 +137,10 @@ export default function CTAArchetype({
                 <TwoLineText text={subtitle} variant="body" />
               </motion.p>
             )}
-            <motion.div variants={fadeUp} className="flex justify-center" style={{ marginTop: "var(--space-subheading-cta)" }}>
+            <motion.div
+              variants={fadeUp}
+              className="flex justify-center mt-[var(--space-subheading-cta)]"
+            >
               <Button href={ctaHref} variant="primary" fullWidthMobile>
                 {ctaLabel}
               </Button>
@@ -176,33 +189,38 @@ export default function CTAArchetype({
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl h-32 bg-gradient blur-[100px] opacity-10" />
       </div>
       <motion.div
-        className="container-site text-center relative section-header"
+        className="container-site text-center relative"
         variants={stagger}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
       >
-        <motion.span variants={fadeUp} className="section-label">
-          {t("label")}
-        </motion.span>
-        <motion.h2 variants={fadeUp} className="section-title text-balance">
-          <TwoLineText text={headline} variant="section" />
-        </motion.h2>
-        {subtitle && (
-          <motion.p variants={fadeUp} className="section-subtitle">
-            <TwoLineText text={subtitle} variant="body" />
-          </motion.p>
-        )}
-        <motion.div variants={fadeUp} className="cta-stack" style={{ marginTop: "var(--space-subheading-cta)" }}>
-          <Button href={ctaHref} variant="primary" fullWidthMobile>
-            {ctaLabel}
-          </Button>
-          {secondaryCtaLabel && secondaryCtaHref && (
-            <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
-              {secondaryCtaLabel}
-            </Button>
+        <div className="section-header mx-auto">
+          <motion.span variants={popUp} className="section-label">
+            {t("label")}
+          </motion.span>
+          <motion.h2 variants={blurFadeUp} className="section-title text-balance">
+            <TwoLineText text={headline} variant="section" />
+          </motion.h2>
+          {subtitle && (
+            <motion.p variants={fadeUp} className="section-subtitle">
+              <TwoLineText text={subtitle} variant="body" />
+            </motion.p>
           )}
-        </motion.div>
+          <motion.div
+            variants={fadeUp}
+            className="cta-stack mt-[var(--space-subheading-cta)]"
+          >
+            <Button href={ctaHref} variant="primary" fullWidthMobile>
+              {ctaLabel}
+            </Button>
+            {secondaryCtaLabel && secondaryCtaHref && (
+              <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
+                {secondaryCtaLabel}
+              </Button>
+            )}
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

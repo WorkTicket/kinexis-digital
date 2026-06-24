@@ -92,7 +92,11 @@ export type ServicesPageContent = {
 
 const enServices: ServiceCardContent[] = [
   { id: "seo", label: "SEO", description: "Technical foundations, authority content, and link building that keeps paying off over time.", stat: "+340% traffic · Landscaping Co." },
+  { id: "localSeo", label: "Local SEO", description: "Geo-targeted rankings, Google Business Profile optimization, and map pack placements for businesses that compete locally.", stat: "Top 3 map pack · avg. by month 4" },
   { id: "paidAds", label: "Paid Ads", description: "Google and Meta campaigns built for ROAS, not vanity metrics.", stat: "+340% patients · Dental Practice" },
+  { id: "googleAds", label: "Google Ads", description: "Search, Shopping, and Performance Max campaigns built to capture buyers at the exact moment they're ready to act.", stat: "120% conv. lift · landing page alignment" },
+  { id: "metaAds", label: "Meta Ads", description: "Facebook and Instagram campaigns that prospect cold audiences, retarget warm visitors, and rotate creative before it goes stale.", stat: "3.8x ROAS · e-commerce client" },
+  { id: "ppcManagement", label: "PPC Management", description: "Full paid media management across Google, Meta, LinkedIn, and Microsoft. One budget, one strategy, one set of revenue targets.", stat: "45% CPL reduction · paid campaigns" },
   { id: "webDesign", label: "Web Design", description: "Custom, conversion-optimized sites built to turn visitors into qualified leads.", stat: "+425% conv. · client rebuild" },
   { id: "funnels", label: "Funnels & CRO", description: "Full conversion systems: funnel architecture, landing pages, nurture automation, and A/B testing that compounds revenue.", stat: "1.8% → 6.3% conv. · E-Commerce" },
   { id: "email", label: "Email Marketing", description: "Automated nurture sequences that turn one-time buyers into repeat revenue.", stat: "42% open rate · lifecycle flows" },
@@ -187,20 +191,20 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
     hero: {
       label: "Digital Marketing Services",
       headlineLine1: "One system.",
-      headlineLine2: "Twelve channels.",
-      subtitle: "SEO, paid media, web design, and conversion systems,|built to work together as one connected program, not a disconnected list of tactics.",
+      headlineLine2: "Fifteen channels.",
+      subtitle: "Fifteen channels. One integrated growth program. You don't have to run all of them at once, but the ones you do run should work together.",
       ctaLabel: "Book a Strategy Call",
       secondaryCtaLabel: "Explore Services",
     },
     capabilities: {
       title: "Full-service capabilities.",
-      subtitle: "Every channel your business needs to acquire, convert,|and retain customers, managed under one growth strategy.",
+      subtitle: "The full channel stack: owned, earned, and paid. Managed with one set of goals and one reporting framework.",
       services: enServices,
     },
     pathways: {
       sectionLabel: "Deep Dives",
       title: "Each service is a system.",
-      subtitle: "Not a tactic. Not a menu item.|Each pathway has its own strategy, its own metrics, and its own lasting effect.",
+      subtitle: "Every service on this page is a standalone program with its own strategy, its own reporting, and its own compounding effect over time.",
       items: enPathways,
       seoVisual: {
         nodes: [
@@ -220,14 +224,14 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
     },
     integration: {
       title: "How services work together.",
-      subtitle: "Premium agencies explain systems. Cheap agencies explain services.|This is how the pieces connect to drive revenue together.",
+      subtitle: "When the channels work together, traffic quality improves, conversion rates go up, and cost per lead drops over time. Not because of any one channel. Because of how they reinforce each other.",
       phases: enIntegrationPhases,
       footnote: "SEO drives qualified traffic. That traffic lands on high-converting pages. Ads amplify the best performers. Leads flow into the CRM. Email turns one-time buyers into repeat revenue. Every piece feeds the next.",
     },
     industries: {
       sectionLabel: "Industry Solutions",
       title: "Built for your market.",
-      subtitle: "Select your industry to see the recommended services,|strategy, and typical outcomes.",
+      subtitle: "Select your industry to see the exact service mix we'd recommend, the strategy behind it, and the results we've delivered for similar businesses.",
       panelServices: "Services",
       panelStrategy: "Strategy",
       panelOutcomes: "Outcomes",
@@ -236,7 +240,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
     },
     cta: {
       title: "Not sure which service fits?",
-      subtitle: "We'll diagnose your growth bottlenecks and recommend the exact|starting point for your business.",
+      subtitle: "We'll review your marketing, find where you're losing qualified traffic and leads, and recommend a starting point based on what your business actually needs right now.",
       button: "Book a Free Strategy Call",
     },
   },
@@ -244,7 +248,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
     hero: {
       label: "Servicios de Marketing Digital",
       headlineLine1: "Un sistema.",
-      headlineLine2: "Doce canales.",
+      headlineLine2: "Quince canales.",
       subtitle: "SEO, medios pagados, diseño web y sistemas de conversión,|diseñados para funcionar juntos como un motor de ingresos, no como una lista desconectada de tácticas.",
       ctaLabel: "Reservar una Llamada Estratégica",
       secondaryCtaLabel: "Explorar Servicios",
@@ -254,7 +258,11 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
       subtitle: "Todos los canales que tu negocio necesita para adquirir,|convertir y retener clientes, gestionados bajo una sola estrategia de crecimiento.",
       services: [
         { id: "seo", label: "SEO", description: "Fundamentos técnicos, contenido de autoridad y construcción de enlaces que siguen dando resultados con el tiempo.", stat: "340% aumento promedio de tráfico" },
+        { id: "localSeo", label: "SEO Local", description: "Rankings geolocalizados, optimización del Perfil de Google Business y posiciones en el mapa para negocios que compiten localmente.", stat: "Top 3 en mapa local · promedio mes 4" },
         { id: "paidAds", label: "Anuncios Pagados", description: "Campañas en Google y Meta hechas para ROAS, no para métricas de vanidad.", stat: "4.5x ROAS promedio" },
+        { id: "googleAds", label: "Google Ads", description: "Campañas de Search, Shopping y Performance Max para capturar compradores en el momento exacto en que están listos para actuar.", stat: "120% aumento en conversión · alineación de landing pages" },
+        { id: "metaAds", label: "Meta Ads", description: "Campañas en Facebook e Instagram que prospectan audiencias frías, hacen retargeting a visitantes tibios y rotan creativos antes de que se agoten.", stat: "3.8x ROAS · cliente e-commerce" },
+        { id: "ppcManagement", label: "Gestión de PPC", description: "Gestión completa de medios pagados en Google, Meta, LinkedIn y Microsoft. Un presupuesto, una estrategia, un conjunto de objetivos de ingresos.", stat: "45% reducción de CPL · campañas pagadas" },
         { id: "webDesign", label: "Diseño Web", description: "Sitios personalizados y optimizados para conversión que convierten visitantes en leads calificados.", stat: "425% aumento en conversión" },
         { id: "funnels", label: "Embudos y CRO", description: "Sistemas de conversión completos: arquitectura de embudo, landing pages, automatización de nutrición y pruebas A/B que acumulan ingresos.", stat: "1.8% → 6.3% conv. · E-Commerce" },
         { id: "email", label: "Email Marketing", description: "Secuencias automatizadas de nutrición que convierten compradores únicos en ingresos recurrentes.", stat: "42% tasa de apertura promedio" },

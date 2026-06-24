@@ -322,8 +322,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualVariant: "mockup",
     visualizationSection: "UxAudit",
     sectionOrder: [
+      "ServiceOverview", "WhyKinexus",
       "UxAudit", "DeviceMockups", "ConversionOptimization", "Speed",
-      "ServiceOverview", "WhyKinexus", "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
+      "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
     ],
     serviceSectionKeys: ["UxAudit", "DeviceMockups", "ConversionOptimization", "Speed"],
     whyKinexus: why(
@@ -568,8 +569,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualVariant: "mockup",
     visualizationSection: "VideoProduction",
     sectionOrder: [
+      "ServiceOverview", "WhyKinexus",
       "VideoProduction", "VideoDistribution", "VideoStrategy",
-      "ServiceOverview", "WhyKinexus", "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
+      "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
     ],
     serviceSectionKeys: ["VideoProduction", "VideoDistribution", "VideoStrategy"],
     whyKinexus: why(
@@ -616,8 +618,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualVariant: "mockup",
     visualizationSection: "VisualSystem",
     sectionOrder: [
+      "ServiceOverview", "WhyKinexus",
       "BrandIdentity", "VisualSystem", "BrandGuidelines",
-      "ServiceOverview", "WhyKinexus", "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
+      "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
     ],
     serviceSectionKeys: ["BrandIdentity", "VisualSystem", "BrandGuidelines"],
     whyKinexus: why(

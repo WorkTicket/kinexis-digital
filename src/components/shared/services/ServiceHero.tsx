@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import type { ServiceHeroData, ServiceSeoSlug } from "@/content/services/architecture/types";
 import type { BreadcrumbItem } from "@/lib/schema";
@@ -19,6 +20,8 @@ export default function ServiceHero({
   ctaLabel,
   breadcrumbs,
 }: Props) {
+  const tCommon = useTranslations("common");
+
   return (
     <HeroArchetype
       archetype="showcase"
@@ -35,6 +38,8 @@ export default function ServiceHero({
       subtitleLineClassName="hero-intentional-subtitle-line"
       ctaLabel={ctaLabel}
       ctaHref="/contact"
+      secondaryCtaLabel={tCommon("viewOurWork")}
+      secondaryCtaHref="/case-studies"
       breadcrumbs={breadcrumbs}
     />
   );

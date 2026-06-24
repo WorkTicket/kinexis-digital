@@ -1,10 +1,12 @@
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import JsonLd from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/routing";
 import { privacyContent } from "@/content/legal/privacy";
 import { getLocalizedContent } from "@/lib/get-localized-content";
-import { buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
+import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 const LegalPageClient = dynamic(() => import("@/components/pages/LegalPageClient"));
 
@@ -26,5 +28,18 @@ export default async function PrivacyPage({ params }: Props) {
   setRequestLocale(locale);
   const content = getLocalizedContent(privacyContent, locale);
 
-  return <LegalPageClient content={content} />;
+  return (
+    <>
+      <JsonLd
+        data={[
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: "Home", url: buildAbsoluteUrl(locale, "/") },
+            { name: "Privacy Policy" },
+          ]),
+        ]}
+      />
+      <LegalPageClient content={content} />
+    </>
+  );
 }

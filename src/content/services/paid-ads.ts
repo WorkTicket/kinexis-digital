@@ -88,7 +88,7 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
     ],
     roasDashboard: {
       title: "ROAS Dashboard",
-      subtitle: "Real-time performance metrics across every channel.|Every number is live and actionable.",
+      subtitle: "A live view of performance across every channel: spend, ROAS, and conversion rate, all updated in real time so decisions get made on current data, not last week's report.",
       headerChannel: "Channel",
       headerSpend: "Spend %",
       headerRoas: "ROAS",
@@ -97,7 +97,7 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
     budget: {
       title: "Budget follows performance.|Not habit.",
       subtitle:
-        "We allocate budget based on channel performance, not convention.|High-ROAS channels get more fuel. Underperformers get fixed or cut.",
+        "We allocate spend based on what each channel is actually returning, not what felt right last quarter. High-ROAS channels get more fuel, underperformers get restructured or cut, and every reallocation is documented with a clear rationale.",
       sources: [
         { source: "Search (High Intent)" },
         { source: "Shopping (Product)" },
@@ -135,7 +135,7 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
     phases: {
       title: "The 5-phase ad system.",
       subtitle:
-        "We don't launch and hope.|Every campaign follows a proven optimization cycle that improves results over time.",
+        "Every campaign follows a structured optimization cycle, from initial audit through scaling, so performance compounds over time rather than stalling after the launch week.",
       items: [
         {
           title: "Audit & Structure",
@@ -222,7 +222,7 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
     roasDashboard: {
       title: "Panel de ROAS",
       subtitle:
-        "Métricas de rendimiento en tiempo real en cada canal.|Cada número es en vivo y accionable.",
+        "Una vista en tiempo real del rendimiento en cada canal: gasto, ROAS y tasa de conversión, actualizados al instante para que las decisiones se tomen con datos de hoy, no del informe de la semana pasada.",
       headerChannel: "Canal",
       headerSpend: "Gasto %",
       headerRoas: "ROAS",
@@ -231,7 +231,7 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
     budget: {
       title: "La asignación de presupuesto es una estrategia. No un detalle menor.",
       subtitle:
-        "Asignamos presupuesto según el rendimiento del canal, no por convención.|Los canales con alto ROAS reciben más combustible. Los que rinden menos se corrigen o se eliminan.",
+        "Asignamos gasto según lo que cada canal está devolviendo realmente, no según lo que funcionó el trimestre pasado. Los canales con alto ROAS reciben más presupuesto, los de bajo rendimiento se reestructuran o se eliminan, y cada reasignación se documenta con una justificación clara.",
       sources: [
         { source: "Búsqueda (Alta Intención)" },
         { source: "Shopping (Producto)" },
@@ -269,7 +269,7 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
     phases: {
       title: "El sistema de anuncios en 5 fases.",
       subtitle:
-        "No lanzamos y rezamos.|Cada campaña sigue un ciclo de optimización probado que acumula resultados con el tiempo.",
+        "Cada campaña sigue un ciclo de optimización estructurado, desde la auditoría inicial hasta el escalado, para que el rendimiento se acumule con el tiempo en lugar de estancarse tras la semana de lanzamiento.",
       items: [
         {
           title: "Auditoría y Estructura",

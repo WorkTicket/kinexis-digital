@@ -270,7 +270,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Un solo equipo en",
       line2: "cada canal que pagas.",
       subtitle:
-        "Google, Meta, LinkedIn y Microsoft — gestionados juntos.|El presupuesto sigue al costo por lead calificado, no al que más vendió.",
+        "Google, Meta, LinkedIn y Microsoft, gestionados juntos.|El presupuesto sigue al costo por lead calificado, no al que más vendió.",
     },
     answerBlock:
       "La gestión PPC cubre estrategia, configuración de campañas, optimización de pujas, coordinación creativa y tracking de conversiones en Google, Meta, LinkedIn y Microsoft Ads. Las tarifas suelen ser 15% del ad spend con mínimo mensual de $2,500, o retainer fijo para cuentas grandes. La mayoría de cuentas estabiliza CPL en 45 a 60 días desde el lanzamiento.",
@@ -1571,7 +1571,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Una marca que reconocen",
       line2: "antes de leer la letra chica.",
       subtitle:
-        "Posicionamiento, identidad visual y mensaje — documentados.|Para que sitio, anuncios y ventas suenen como una sola empresa.",
+        "Posicionamiento, identidad visual y mensaje, documentados.|Para que sitio, anuncios y ventas suenen como una sola empresa.",
     },
     answerBlock:
       "Los servicios de branding incluyen posicionamiento de mercado, estrategia de marca, diseño de logo, sistemas de identidad visual, marcos de mensaje y guías de marca. Proyectos van de $8,000 para refrescos de identidad enfocados a $25,000+ para estrategia y diseño de marca completa. Entrega típica: 6 a 10 semanas.",

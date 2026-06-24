@@ -72,7 +72,7 @@ export const growthConsultingContent: Record<Locale, GrowthConsultingContent> = 
     },
     frameworkSection: {
       title: "Revenue Growth Framework",
-      subtitle: "Growth works best in layers.|Each one supports the next, so improvements stick.",
+      subtitle: "Sustainable growth is built in layers: traffic that converts, conversion systems that retain, and retention strategies that multiply revenue. Each layer reinforces the others, which is why improvements compound instead of fading after the first quarter.",
       layers: [
         { id: "traffic", layer: "Traffic", channels: "SEO, Paid Ads, Social, Referral", status: "Audited" },
         { id: "conversion", layer: "Conversion", channels: "Funnels, CRO, Landing Pages", status: "Optimized" },
@@ -176,7 +176,7 @@ export const growthConsultingContent: Record<Locale, GrowthConsultingContent> = 
     },
     frameworkSection: {
       title: "Framework de Crecimiento de Ingresos",
-      subtitle: "El crecimiento funciona mejor en capas.|Cada una sostiene la siguiente para que las mejoras perduren.",
+      subtitle: "El crecimiento sostenible se construye en capas: tráfico que convierte, sistemas de conversión que retienen y estrategias de retención que multiplican ingresos. Cada capa refuerza a las demás, por eso las mejoras se acumulan en lugar de desvanecerse tras el primer trimestre.",
       layers: [
         { id: "traffic", layer: "Tráfico", channels: "SEO, Paid Ads, Social, Referidos", status: "Auditado" },
         { id: "conversion", layer: "Conversión", channels: "Funnels, CRO, Landing Pages", status: "Optimizado" },

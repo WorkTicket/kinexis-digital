@@ -25,9 +25,9 @@ function MotionWrap({ children, className, delay = 0.5, initial, animate, transi
   return (
     <motion.div
       className={className}
-      initial={initial ?? { opacity: 0, y: 20 }}
-      animate={animate ?? { opacity: 1, y: 0 }}
-      transition={transition ?? { duration: 0.5, delay }}
+      initial={initial ?? { opacity: 0, y: 16, filter: "blur(6px)" }}
+      animate={animate ?? { opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={transition ?? { duration: 0.65, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
     </motion.div>

@@ -24,6 +24,10 @@
   ],
   "routes": [
     {
+      "pattern": "kinexisdigital.com",
+      "custom_domain": true
+    },
+    {
       "pattern": "www.kinexisdigital.com",
       "custom_domain": true
     }

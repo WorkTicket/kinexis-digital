@@ -24,6 +24,8 @@ export function useMotionVariants(): MotionVariants {
   return useContext(MotionVariantsContext);
 }
 
+// Initial value is false so server and first client render match exactly.
+// The effect fires after mount and corrects the value before the browser paints.
 function useIsMobileMotion(): boolean {
   const [mobile, setMobile] = useState(false);
 
@@ -68,8 +70,16 @@ export function MotionProvider({ children }: { children: ReactNode }) {
   return (
     <LazyMotion features={domAnimation} strict>
       <MotionVariantsContext.Provider value={variants}>
+        {/* Always "never" — we own reduced-motion detection ourselves via
+            usePrefersReducedMotion + resolveMotionConfig. When reduced=true,
+            resolved.duration is 0, making every animation instant through the
+            transition prop below. Using "always" or "user" causes Framer Motion
+            to set shouldReduceMotion=true inside VisualElement, which unconditionally
+            fires a warnOnce dev warning — even though we intentionally set it.
+            With "never", shouldReduceMotion is always false and the warning never
+            fires, while our duration:0 transition still gives instant animations. */}
         <MotionConfig
-          reducedMotion={reduced ? "always" : "user"}
+          reducedMotion="never"
           transition={{ duration: resolved.duration, ease: EASE_OUT }}
         >
           {children}

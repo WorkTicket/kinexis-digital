@@ -26,7 +26,7 @@ export const testimonialsContent: Record<Locale, TestimonialsContent> = {
     items: [
       {
         quote:
-          "We went from barely visible on Google to ranking in the top three for every core keyword in our market. Revenue doubled in under a year. KINEXIS didn't just do SEO — they rebuilt how our business shows up online.",
+          "We went from barely visible on Google to ranking in the top three for every core keyword in our market. Revenue doubled in under a year. KINEXIS didn't just do SEO. They rebuilt how our business shows up online.",
         name: "Marcus T.",
         title: "Owner",
         company: "Local Landscaping Business",

@@ -78,13 +78,13 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       headlineLine1: "Growth marketing",
       headlineLine2: "for every stage of scale.",
       subtitle:
-        "Performance marketing for local search dominance and scalable SaaS acquisition.|One team, one integrated system, and outcomes you can measure.",
+        "One team that runs the whole program: search, paid, web, and conversion. Your channels work as a system instead of a stack of separate vendors.",
       ctaLabel: "Book a Strategy Call",
     },
     positioning: {
       title: "Not a local agency.|Not a Silicon Valley playbook. Both.",
       subtitle:
-        "Most agencies force you into a box: local lead gen or enterprise demand gen.|KINEXIS works across the full spectrum because modern growth needs depth and range.",
+        "The agencies that specialize narrowly tend to apply their one playbook regardless of fit. We don't have a default playbook. We design around how your business actually sells.",
       pillars: [
         {
           title: "Local Business Growth",
@@ -120,13 +120,13 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
     },
     capabilities: {
       title: "Every channel. One growth engine.",
-      subtitle: "Our services compound over time. SEO feeds content, content feeds funnels, funnels feed email.|Analytics ties it all back to revenue.",
+      subtitle: "Run them separately and they perform like separate services. Build them as one program and each one amplifies the rest. Analytics ties every channel back to revenue.",
       items: enCapabilities,
       viewAllLabel: "View all services",
     },
     audiences: {
       title: "Markets we know inside out",
-      subtitle: "From the local roofer seeking leads|to the venture-backed SaaS company seeking scalable growth.",
+      subtitle: "We work with business owners who need reliable local leads, operators who need multi-location consistency, and founders who need an acquisition engine that keeps up with product growth.",
       viewAllLabel: "Explore all industries",
       segments: [
         {
@@ -153,7 +153,7 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
     },
     process: {
       title: "How we work",
-      subtitle: "A deliberate process that starts with revenue goals|and works backward to channel strategy.",
+      subtitle: "Revenue targets first, then channel selection. We never start with tactics.",
       viewAllLabel: "Learn About Us",
       steps: [
         {
@@ -187,8 +187,8 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       ],
     },
     proof: {
-      title: "Numbers from real client work.",
-      subtitle: "Same methodology. Different industries. Every metric ties to a verified case study.",
+      title: "What we've actually delivered.",
+      subtitle: "Everything here is documented. Ask for the strategy, the execution timeline, and the revenue outcome behind any number on this page.",
       viewAllLabel: "View all case studies",
       metrics: [
         { value: "+340%", label: "organic traffic · Landscaping Co., 8 mo" },
@@ -207,12 +207,12 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
     outro: {
       title: "One team. Every growth model.",
       paragraphs: [
-        "Whether you are launching a SaaS product, scaling across national markets, or filling your local appointment book, we build around how your business actually sells. We do not force you into a local agency playbook or a Silicon Valley template. We design the program your revenue model needs, then execute it as one coordinated effort.",
+        "You might be launching a SaaS product, scaling across national markets, or filling your local appointment book. The approach is the same: we build around how your business actually sells. We do not force you into a local agency playbook or a Silicon Valley template. We design the program your revenue model needs, then execute it as one coordinated effort.",
       ],
     },
     cta: {
       headline: "Ready to build a program|that scales?",
-      subtitle: "Book a strategy call. No pitch deck, no pressure.|Just an honest conversation about what you need and whether we can help.",
+      subtitle: "No slide deck. Just tell us where your growth has stalled and we'll tell you honestly if we can fix it.",
       ctaLabel: "Book a Strategy Call",
     },
   },
@@ -295,7 +295,7 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       ],
     },
     proof: {
-      title: "Números de trabajo real con clientes.",
+      title: "Lo que realmente hemos entregado.",
       subtitle: "Misma metodología. Distintas industrias. Cada métrica ligada a un caso verificado.",
       viewAllLabel: "Ver todos los casos de éxito",
       metrics: [

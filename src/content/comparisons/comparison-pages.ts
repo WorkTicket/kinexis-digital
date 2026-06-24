@@ -22,7 +22,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     en: {
       metaTitle: "Google Ads vs SEO | Which Channel Wins for Your Business?",
       metaDescription: "Compare Google Ads and SEO for lead generation. Timeline, cost, and when to use each channel based on real client data.",
-      hero: { label: "Google Ads vs SEO", line1: "Google Ads vs SEO:", line2: "Which Fits Your Business?", subtitle: "Both channels work. The right mix depends on your timeline, budget, and how competitive your market is." },
+      hero: { label: "Google Ads vs SEO", line1: "Google Ads vs SEO:", line2: "Which Fits Your Business?", subtitle: "Both work. The question is which one fits your timeline, and whether your business needs to run them together." },
       answerBlock: "Google Ads delivers traffic within days but stops when you stop paying. SEO takes 3 to 6 months to build momentum but compounds over time. Most service businesses run both: Ads for immediate leads while SEO builds long-term visibility. Average Google Ads CPL for home services clients we manage runs $35 to $85. SEO cost per lead often drops below $20 by month 8 once rankings hold.",
       sections: [
         { title: "When Google Ads makes more sense", body: "You need leads this month. You are launching a new service or entering a new market. Your organic visibility is zero and you cannot wait 6 months. You have a proven offer and landing page ready to convert paid traffic." },
@@ -70,7 +70,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     en: {
       metaTitle: "SEO vs PPC | Paid vs Organic for B2B Lead Generation",
       metaDescription: "SEO vs PPC compared for B2B and service businesses. Cost, timeline, and channel mix recommendations.",
-      hero: { label: "SEO vs PPC", line1: "SEO vs PPC:", line2: "Paid or Organic?", subtitle: "The question is not either/or. It is how much of each, and in what order." },
+      hero: { label: "SEO vs PPC", line1: "SEO vs PPC:", line2: "Paid or Organic?", subtitle: "Not a competition. The real question is sequencing: which channel fills the gap while the other one builds." },
       answerBlock: "PPC (pay-per-click) covers Google Ads, Meta Ads, and other paid channels. SEO builds organic rankings. PPC gives instant visibility at a per-click cost. SEO requires upfront work but lowers acquisition cost over time. For B2B services with 30 to 90 day sales cycles, we typically weight SEO toward bottom-funnel terms and use PPC for high-intent branded and competitor terms.",
       sections: [
         { title: "PPC strengths", body: "Instant testing of offers and landing pages. Precise budget control. Easy to scale up or down by season." },
@@ -106,7 +106,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     en: {
       metaTitle: "WordPress vs Webflow | Which Platform for Your Business Site?",
       metaDescription: "WordPress vs Webflow compared for business websites. Speed, maintenance, SEO, and when we recommend each.",
-      hero: { label: "WordPress vs Webflow", line1: "WordPress vs Webflow:", line2: "Pick the Right Stack.", subtitle: "Both can work. The wrong choice costs you speed, security headaches, or editing flexibility." },
+      hero: { label: "WordPress vs Webflow", line1: "WordPress vs Webflow:", line2: "Pick the Right Stack.", subtitle: "The right platform depends on who owns your site and what they need to do with it. Choose wrong and you're dealing with plugin debt or a CMS your team can't use." },
       answerBlock: "WordPress powers about 43% of the web and fits teams that need plugins, custom PHP, or complex content workflows. Webflow suits marketing-led teams that want visual control, fast hosting, and clean code without plugin bloat. We build in both, plus Next.js for apps and high-performance marketing sites. Typical Webflow business sites launch in 6 to 8 weeks. WordPress rebuilds often take 8 to 12 weeks when migrating legacy plugin stacks.",
       sections: [
         { title: "Choose WordPress when", body: "You need specific plugins (membership, LMS, complex e-commerce). Your team already knows WordPress admin. You have custom backend integrations that rely on the WP ecosystem." },
@@ -143,7 +143,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     en: {
       metaTitle: "Local SEO vs Google Ads | Map Pack or Paid Search?",
       metaDescription: "Local SEO vs Google Ads for service businesses. When to invest in map pack rankings vs paid local search.",
-      hero: { label: "Local SEO vs Google Ads", line1: "Local SEO vs Google Ads:", line2: "Maps or Search Ads?", subtitle: "Local businesses often win by showing up in both places. Here is how to split budget." },
+      hero: { label: "Local SEO vs Google Ads", line1: "Local SEO vs Google Ads:", line2: "Maps or Search Ads?", subtitle: "Most service businesses that dominate their local market show up in both. The map pack earns free clicks once you rank. Ads get you calls while you build that visibility." },
       answerBlock: "Local SEO targets Google Business Profile, map pack rankings, and local organic results. Google Ads puts you at the top of search with pay-per-click. Map pack clicks are free once you rank. Local service ads cost $25 to $75 per click in competitive trades markets. Most contractors we work with run Local Services Ads or Search Ads while building GBP and citations for long-term map pack presence.",
       sections: [
         { title: "Invest in local SEO when", body: "You serve a defined area and want free clicks from map pack and local organic. Reviews and reputation are strong or improvable. You can wait 60 to 90 days for map pack movement." },

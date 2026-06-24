@@ -11,12 +11,14 @@ type ConsentState = "pending" | "accepted" | "rejected";
 
 type CookieConsentContextValue = {
   consent: ConsentState;
+  ready: boolean;
   accept: () => void;
   reject: () => void;
 };
 
 const CookieConsentContext = createContext<CookieConsentContextValue>({
   consent: "pending",
+  ready: false,
   accept: () => {},
   reject: () => {},
 });
@@ -48,7 +50,7 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
   }, []);
 
   return (
-    <CookieConsentContext.Provider value={{ consent: ready ? consent : "pending", accept, reject }}>
+    <CookieConsentContext.Provider value={{ consent: ready ? consent : "pending", ready, accept, reject }}>
       {children}
       {ready && consent === "pending" && <CookieBanner onAccept={accept} onReject={reject} />}
     </CookieConsentContext.Provider>

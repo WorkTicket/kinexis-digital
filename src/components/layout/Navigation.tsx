@@ -42,6 +42,7 @@ export default function Navigation({
   const isResourcesActive =
     pathname === "/resources" ||
     pathname.startsWith("/resources/") ||
+    pathname.startsWith("/solutions") ||
     pathname.startsWith("/google-ads-vs-seo") ||
     pathname.startsWith("/seo-vs-ppc") ||
     pathname.startsWith("/local-seo-vs-google-ads") ||
@@ -93,6 +94,10 @@ export default function Navigation({
                       </span>
                       <Link href="/services" className="nav-dropdown-view-all">
                         {tNav("viewAllServices")}
+                        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                      </Link>
+                      <Link href="/pricing/seo" className="nav-dropdown-view-all ml-4">
+                        {tNav("pricing")}
                         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                       </Link>
                     </div>

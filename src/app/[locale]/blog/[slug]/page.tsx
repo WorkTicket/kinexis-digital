@@ -9,6 +9,9 @@ import { routing, type Locale } from "@/i18n/routing";
 import { getLocalizedContent } from "@/lib/get-localized-content";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
+import { Link } from "@/i18n/navigation";
+import { getAuthor } from "@/content/authors";
+import { getBlogAuthorSlug } from "@/lib/blog-authors";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -65,6 +68,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const c = getLocalizedContent(blogContent, locale);
   const tNav = await getTranslations({ locale, namespace: "nav" });
   const tCommon = await getTranslations({ locale, namespace: "common" });
+  const authorSlug = getBlogAuthorSlug(post.category);
+  const author = getAuthor(authorSlug, locale);
 
   return (
     <article>
@@ -76,8 +81,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             description,
             url: buildAbsoluteUrl(locale, `/blog/${slug}`),
             datePublished: post.publishedAt,
-            authorName: "Maria Rodriguez",
-            authorUrl: buildAbsoluteUrl(locale, "/team/maria-rodriguez"),
+            authorName: author?.name,
+            authorUrl: buildAbsoluteUrl(locale, `/team/${authorSlug}`),
           }),
           breadcrumbSchema([
             { name: tNav("home"), url: buildAbsoluteUrl(locale, "/") },
@@ -99,6 +104,15 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           { name: post.title },
         ]}
       />
+
+      {author && (
+        <div className="container-site -mt-8 mb-4 text-center text-sm text-muted">
+          <Link href={`/team/${authorSlug}`} className="text-neon-cyan/80 hover:text-neon-cyan no-underline transition-colors">
+            {author.name}
+          </Link>
+          <span className="text-muted/50"> · {author.jobTitle}</span>
+        </div>
+      )}
 
       <AnimatedWrapper className="section-padding">
         <div className="container-site">

@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { Mail, MapPin } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import SiteLogo from "@/components/ui/SiteLogo";
 import Button from "@/components/ui/Button";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { mainNavLinks, footerServiceLinks } from "@/lib/site-nav";
+import { mainNavLinks, footerServiceLinks, footerLocationLinks } from "@/lib/site-nav";
 
 export default async function Footer() {
   const tNav = await getTranslations("nav");
@@ -39,35 +39,27 @@ export default async function Footer() {
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-10">
 
           {/* ── Brand column ── */}
-          <div className="col-span-2 flex flex-col lg:col-span-1">
+          <div className="col-span-2 flex flex-col items-center lg:col-span-1 lg:pr-10">
             <Link href="/" className="inline-block no-underline">
               <SiteLogo
                 src="/assets/logos/KINEXIS_icon_logo.webp"
                 alt="KINEXIS Digital"
                 width={280}
                 height={188}
-                className="h-20 w-auto"
+                className="h-36 w-36 !object-cover !object-center overflow-hidden"
               />
             </Link>
-            <p className="mt-2 text-sm font-bold tracking-wide text-white/70">
-              KINEXIS Digital
+            <p className="mt-3 text-xl font-bold tracking-wide text-white/70 text-center">
+              KINEXIS Digital Marketing
             </p>
             <div className="mt-4 flex flex-col gap-2.5">
               <a
                 href="mailto:hello@kinexisdigital.com"
-                className="group flex items-center gap-2 text-[13px] text-muted/50 no-underline transition-colors duration-300 hover:text-white"
+                className="group flex items-center gap-2 text-[15px] text-muted/50 no-underline transition-colors duration-300 hover:text-white"
               >
-                <Mail className="h-3.5 w-3.5 shrink-0 text-neon-cyan/40 transition-colors duration-300 group-hover:text-neon-cyan/80" />
+                <Mail className="h-4 w-4 shrink-0 text-neon-cyan/40 transition-colors duration-300 group-hover:text-neon-cyan/80" />
                 hello@kinexisdigital.com
               </a>
-              <p className="flex items-start gap-2 text-[12px] text-muted/40 leading-snug">
-                <MapPin className="h-3.5 w-3.5 shrink-0 text-neon-cyan/30 mt-0.5" />
-                <span>
-                  Dallas · Austin · Toronto
-                  <br />
-                  Bogotá · Worldwide
-                </span>
-              </p>
             </div>
           </div>
 
@@ -137,7 +129,25 @@ export default async function Footer() {
 
       {/* ── Bottom bar ── */}
       <div className="relative z-10 border-t border-white/[0.04]">
-        <div className="container-site flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
+        <div className="container-site py-6">
+          <div className="mb-5 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-[12px] text-muted/40">
+            <span className="mr-2 text-[9px] font-bold uppercase tracking-[0.24em] text-white/25">
+              {tFooter("locations")}
+            </span>
+            {footerLocationLinks.map((loc, i) => (
+              <span key={loc.href} className="inline-flex items-center">
+                {i > 0 && <span className="mx-1.5 text-white/10">·</span>}
+                <Link
+                  href={loc.href}
+                  className="text-muted/45 no-underline transition-colors hover:text-white/70"
+                >
+                  {loc.city}
+                </Link>
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="container-site flex flex-col items-center justify-between gap-3 border-t border-white/[0.04] py-6 sm:flex-row">
           <div className="flex flex-col items-center gap-2 sm:items-start">
             <p className="text-[11px] tracking-wide text-muted/30">
               &copy; {new Date().getFullYear()} {tFooter("copyright")}

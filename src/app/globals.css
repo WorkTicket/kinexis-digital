@@ -73,8 +73,14 @@
   --readable-width: 42rem;
   --intro-width: 65ch;
   --subtitle-width: 48rem;
-  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(0, 212, 255, 0.1);
-  --duration-interaction: 200ms;
+  --shadow-card-hover:
+    0 18px 52px rgba(0, 0, 0, 0.52),
+    0 0 32px rgba(0, 212, 255, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --shadow-btn-hover: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 14px rgba(0, 212, 255, 0.08);
+  --duration-interaction-fast: 110ms;
+  --duration-interaction: 260ms;
+  --duration-interaction-slow: 380ms;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --heading-h1-max: 16em;
   --heading-h2-max: 13em;
@@ -539,6 +545,39 @@ summary::-webkit-details-marker {
     padding-bottom: var(--space-section-sm);
   }
 
+  /* ── Content Width System ──────────────────────────────────────────────────
+     Standardized width tokens for every content type across the site.
+     Use these instead of arbitrary max-width values so text widths are
+     predictable and consistent regardless of which page you're on.
+
+     hero-text-width  → hero headline/subtitle block (service page split hero)
+     section-text-width → section intro header block (badge + h2 + description)
+     content-width    → full-width editorial and card grid containers
+     cta-width        → CTA section copy block
+
+     Each maps to an existing CSS variable so changing the variable
+     updates every width usage automatically.
+  ────────────────────────────────────────────────────────────────────────── */
+  .hero-text-width {
+    max-width: var(--service-hero-text-max);   /* min(100%, 34rem) */
+  }
+
+  .section-text-width {
+    max-width: var(--section-header-max);      /* 42rem */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .content-width {
+    max-width: var(--container-max);           /* 1280px */
+  }
+
+  .cta-width {
+    max-width: var(--subtitle-width);          /* 48rem */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   /* Readable prose — 60–75 characters per line */
   .prose-readable {
     max-width: var(--readable-width);
@@ -662,13 +701,14 @@ summary::-webkit-details-marker {
     transition:
       transform var(--duration-interaction) var(--ease-out),
       border-color var(--duration-interaction) var(--ease-out),
-      box-shadow var(--duration-interaction) var(--ease-out);
+      box-shadow var(--duration-interaction-slow) var(--ease-out);
+    will-change: transform;
   }
 
   @media (hover: hover) {
     .motion-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--neon-cyan);
+      transform: translateY(-6px);
+      border-color: rgba(0, 212, 255, 0.28);
       box-shadow: var(--shadow-card-hover);
     }
   }
@@ -689,19 +729,24 @@ summary::-webkit-details-marker {
   .motion-btn {
     transition:
       transform var(--duration-interaction) var(--ease-out),
-      box-shadow var(--duration-interaction) var(--ease-out),
+      box-shadow var(--duration-interaction-slow) var(--ease-out),
       background-color var(--duration-interaction) var(--ease-out),
       border-color var(--duration-interaction) var(--ease-out),
       color var(--duration-interaction) var(--ease-out);
+    will-change: transform;
   }
 
   @media (hover: hover) {
     .motion-btn:hover {
       transform: translateY(-2px);
+      box-shadow: var(--shadow-btn-hover);
     }
 
+    /* Press-down: slight push into the surface, then springs back on release */
     .motion-btn:active {
-      transform: translateY(0);
+      transform: translateY(1px) scale(0.982);
+      box-shadow: none;
+      transition-duration: var(--duration-interaction-fast);
     }
   }
 
@@ -1000,6 +1045,27 @@ summary::-webkit-details-marker {
     mask-image: radial-gradient(ellipse at 50% 50%, black 25%, transparent 75%);
   }
 
+  /* ── Non-homepage hero animated gradient background ── */
+  .hero-gradient-animated {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-gradient-animated__orb {
+    position: absolute;
+    inset: -15%;
+    background:
+      radial-gradient(ellipse 65% 52% at 40% 34%, rgba(0, 212, 255, 0.042) 0%, transparent 56%),
+      radial-gradient(ellipse 48% 40% at 68% 64%, rgba(0, 153, 204, 0.026) 0%, transparent 52%),
+      radial-gradient(ellipse 32% 30% at 18% 76%, rgba(0, 212, 255, 0.012) 0%, transparent 50%);
+    animation: heroGradientDrift 22s ease-in-out infinite;
+    will-change: transform, opacity;
+    opacity: 0.82;
+  }
+
   /* KINEXIS Typography Scale — mobile-first
      Hero: mobile 34–42px | tablet 48–56px | desktop 60–72px+
      Section: mobile 28–34px | tablet 32–40px | desktop 40–48px+
@@ -1025,7 +1091,7 @@ summary::-webkit-details-marker {
   .hero--page .hero__subtitle:has(> .type-body-line),
   .hero .hero__subtitle:has(> .type-body-line),
   .hero .section-intro-lg:has(> .type-body-line) {
-    @apply line-clamp-none;
+    @apply line-clamp-none text-pretty;
   }
 
   .type-section-line,
@@ -1034,7 +1100,7 @@ summary::-webkit-details-marker {
   }
 
   .type-body-line {
-    @apply block text-balance;
+    @apply inline;
   }
 
   .type-hero--article {
@@ -1152,20 +1218,12 @@ summary::-webkit-details-marker {
   .hero--service-page.hero--split .hero__content {
     position: relative;
     z-index: 2;
-    max-width: min(100%, 52rem);
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .hero--service-page.hero--split .hero__breadcrumbs ol {
-    justify-content: center;
   }
 
   .hero--service-page.hero--split .type-hero--split {
     font-size: clamp(2.25rem, 4vw, 3.75rem);
     line-height: 1.05;
     letter-spacing: -0.02em;
-    margin-inline: auto;
   }
 
   html[lang^="es"] .hero--service-page.hero--split .type-hero--split {
@@ -1180,7 +1238,6 @@ summary::-webkit-details-marker {
   .hero--service-page.hero--split .type-hero--split,
   .hero--service-page.hero--split .hero__subtitle {
     max-width: min(100%, 46rem);
-    margin-inline: auto;
   }
 
   .hero--service-page .hero__subtitle {
@@ -1199,12 +1256,11 @@ summary::-webkit-details-marker {
   }
 
   .hero--service-page.hero--split .hero__cta.cta-stack {
-    @apply sm:justify-center;
+    @apply sm:justify-start;
   }
 
   @media (min-width: 1024px) {
-    .hero--service-page .hero-intentional-hero-line,
-    .hero--service-page .hero-intentional-subtitle-line {
+    .hero--service-page .hero-intentional-hero-line {
       white-space: nowrap;
       text-wrap: normal;
     }
@@ -1255,8 +1311,7 @@ summary::-webkit-details-marker {
 
   @media (min-width: 1024px) {
     .hero-intentional-subtitle-line {
-      white-space: nowrap;
-      text-wrap: normal;
+      text-wrap: pretty;
     }
   }
 
@@ -1341,8 +1396,10 @@ summary::-webkit-details-marker {
   }
 
   .service-section-subtitle {
-    @apply mt-5 w-full type-body text-balance leading-snug line-clamp-2;
-    max-width: none;
+    @apply mt-5 type-body leading-snug;
+    max-width: var(--subtitle-width);
+    margin-left: auto;
+    margin-right: auto;
     color: rgba(255, 255, 255, 0.5);
   }
 
@@ -1618,6 +1675,12 @@ summary::-webkit-details-marker {
     margin-top: var(--space-eyebrow-heading);
   }
 
+  /* Larger variant for hero-scale section headings */
+  .section-title--lg {
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+  }
+
   .section-title--left {
     @apply mx-0;
   }
@@ -1627,10 +1690,18 @@ summary::-webkit-details-marker {
     background: var(--gradient);
   }
 
+  /* Section subtitle — full paragraph width, no truncation.
+     Supports 50–90 word cohesive descriptions per design system spec.
+     Use section-subtitle--clamp for intentional 2-line short-text variants. */
   .section-subtitle {
-    @apply section-intro section-intro--center line-clamp-2;
+    @apply section-intro section-intro--center;
     margin-top: var(--space-heading-subheading);
     max-width: var(--subtitle-width);
+  }
+
+  /* Preserved for existing components that display intentional 2-line subtitles */
+  .section-subtitle--clamp {
+    @apply section-subtitle line-clamp-2;
   }
 
   .section-subtitle--left {
@@ -1683,13 +1754,14 @@ summary::-webkit-details-marker {
     transition:
       transform var(--duration-interaction) var(--ease-out),
       border-color var(--duration-interaction) var(--ease-out),
-      box-shadow var(--duration-interaction) var(--ease-out);
+      box-shadow var(--duration-interaction-slow) var(--ease-out);
+    will-change: transform;
   }
 
   @media (hover: hover) {
     .glass-hover:hover {
-      transform: translateY(-4px);
-      border-color: var(--neon-cyan);
+      transform: translateY(-6px);
+      border-color: rgba(0, 212, 255, 0.28);
       box-shadow: var(--shadow-card-hover);
     }
   }
@@ -1699,15 +1771,27 @@ summary::-webkit-details-marker {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    background-size: 200% 100%;
+    animation: gradient-text-drift 5s ease-in-out infinite;
+  }
+
+  @keyframes gradient-text-drift {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
   }
 
   .neon-border {
     border: 1px solid rgba(255, 255, 255, 0.08);
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .neon-border:hover {
-    border-color: rgba(0, 212, 255, 0.25);
+  @media (hover: hover) {
+    .neon-border:hover {
+      border-color: rgba(0, 212, 255, 0.22);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.06);
+    }
   }
 
   .glass-dropdown {
@@ -2073,6 +2157,21 @@ summary::-webkit-details-marker {
   }
 }
 
+@keyframes heroGradientDrift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.75;
+  }
+  30% {
+    transform: translate(2.5%, -2%) scale(1.05);
+    opacity: 1;
+  }
+  65% {
+    transform: translate(-1.5%, -1%) scale(1.03);
+    opacity: 0.88;
+  }
+}
+
 @keyframes meshFloat {
   0% {
     transform: scale(1.12) translateX(0) translateY(0);
@@ -2161,10 +2260,16 @@ summary::-webkit-details-marker {
 
   .page-enter {
     animation: none !important;
+    filter: none !important;
   }
 
   .site-header__logo {
     transition: opacity 300ms ease-out !important;
+  }
+
+  .hero-gradient-animated__orb {
+    animation: none !important;
+    opacity: 0.9;
   }
 
   .mesh-layer {
@@ -2196,9 +2301,15 @@ summary::-webkit-details-marker {
     animation: none !important;
   }
 
+  .gradient-text {
+    animation: none !important;
+    background-position: 0% center !important;
+  }
+
   .motion-logo {
     animation: none !important;
     opacity: 1 !important;
+    filter: none !important;
   }
 
   .motion-image__target {
@@ -2208,8 +2319,10 @@ summary::-webkit-details-marker {
   }
 
   .motion-card:hover,
-  .motion-btn:hover {
+  .motion-btn:hover,
+  .motion-btn:active {
     transform: none !important;
+    box-shadow: none !important;
   }
 }
 
@@ -2246,7 +2359,7 @@ summary::-webkit-details-marker {
   }
 
   [data-motion="reduce-mobile"] .page-enter {
-    animation-duration: 0.25s;
+    animation-duration: 0.3s;
   }
 
   [data-motion="reduce-mobile"] .motion-card,
@@ -2303,11 +2416,11 @@ summary::-webkit-details-marker {
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
+  animation: gradient-shift 5s ease infinite;
 }
 
 .page-enter {
-  animation: page-enter 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: page-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 /* Marketing imagery — opacity load fade, max 1.03 hover scale */
@@ -2332,26 +2445,32 @@ summary::-webkit-details-marker {
 }
 
 .motion-logo {
-  animation: motion-logo-in 0.5s var(--ease-out) both;
+  animation: motion-logo-in 0.65s var(--ease-out) both;
 }
 
 @keyframes motion-logo-in {
   from {
     opacity: 0;
+    transform: translateY(-4px);
+    filter: blur(3px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
   }
 }
 
 @keyframes page-enter {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(18px);
+    filter: blur(4px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
+    filter: blur(0px);
   }
 }
 
@@ -2369,6 +2488,54 @@ footer a:active,
 footer a:focus {
   text-decoration: none !important;
   text-decoration-line: none !important;
+}
+
+/* ── Render performance ────────────────────────────────────────────────────── */
+
+/*
+  content-visibility: auto tells the browser it can skip layout and paint for
+  elements that are far off-screen. Pairing with contain-intrinsic-size keeps the
+  scrollbar stable by giving the browser an estimated size to reserve.
+  Footer is always below the fold; apply conservatively to avoid conflicts with
+  Framer Motion whileInView observers on interactive sections.
+*/
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 480px;
+}
+
+/*
+  The header backdrop uses backdrop-filter which is GPU-composited. Explicitly
+  telling the browser to promote it avoids repaints when the CSS custom properties
+  (--header-progress etc.) change on scroll.
+*/
+.site-header__backdrop {
+  will-change: backdrop-filter, background-color;
+}
+
+/*
+  Decorative mesh layers are positioned-absolute and never reflowed by JS.
+  Layout/style containment means changes inside them can't affect the rest of the
+  page, reducing the scope of any browser recalculations.
+*/
+.mesh-background {
+  contain: layout style paint;
+}
+
+/* Respect the OS-level preference — kills CSS animations that bypass Framer Motion */
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .motion-logo,
+  .animate-gradient {
+    animation: none !important;
+  }
+
+  .motion-image__target,
+  .motion-card,
+  .motion-btn,
+  .glass-hover {
+    transition: none !important;
+  }
 }
 
 

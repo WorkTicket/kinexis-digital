@@ -14,8 +14,7 @@ import {
 import type { ArchitectureNode } from "@/content/about";
 import { cn } from "@/lib/utils";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-
-const EASE = [0.16, 1, 0.3, 1] as const;
+import { EASE_OUT as EASE } from "@/lib/motion-config";
 
 type ConnectionData = {
   feeds: string[];

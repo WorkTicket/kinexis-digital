@@ -3,6 +3,7 @@ export const mainNavLinks = [
   { href: "/services", key: "services" as const, dropdown: "services" as const },
   { href: "/case-studies", key: "caseStudies" as const },
   { href: "/industries", key: "industries" as const, dropdown: "industries" as const },
+  { href: "/locations", key: "locations" as const },
   { href: "/about", key: "about" as const },
   { href: "/blog", key: "blog" as const },
   { href: "/resources", key: "resources" as const, dropdown: "resources" as const },
@@ -68,6 +69,27 @@ export const resourceNavGroups = [
       { href: "/wordpress-vs-webflow", key: "wordpressVsWebflow" as const },
     ],
   },
+  {
+    key: "solutions" as const,
+    links: [
+      { href: "/solutions", key: "viewAllSolutions" as const },
+    ],
+  },
 ] as const;
 
-export const footerServiceLinks = serviceNavLinks.slice(0, 5);
+export const footerServiceLinks = [
+  { href: "/pricing/seo", key: "pricing" as const },
+  ...serviceNavLinks.slice(0, 5),
+];
+
+/** Featured markets linked from the footer for local SEO equity. */
+export const footerLocationLinks = [
+  { href: "/locations/dallas", city: "Dallas" },
+  { href: "/locations/austin", city: "Austin" },
+  { href: "/locations/toronto", city: "Toronto" },
+  { href: "/locations/bogota", city: "Bogotá" },
+  { href: "/locations/cedar-falls", city: "Cedar Falls" },
+  { href: "/locations/cedar-rapids", city: "Cedar Rapids" },
+  { href: "/locations/des-moines", city: "Des Moines" },
+  { href: "/locations/waterloo", city: "Waterloo" },
+] as const;

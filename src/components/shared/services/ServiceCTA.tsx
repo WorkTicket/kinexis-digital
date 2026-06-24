@@ -11,7 +11,7 @@ import { pageSectionClasses } from "@/lib/page-section-surface";
 export default function ServiceCTA() {
   const t = useTranslations("cta");
   const tCommon = useTranslations("common");
-  const { fadeUp, stagger } = useMotionVariants();
+  const { fadeUp, blurFadeUp, popUp, stagger } = useMotionVariants();
   const headline = `${t("title")} ${t("titleHighlight")}`;
 
   return (
@@ -31,16 +31,16 @@ export default function ServiceCTA() {
         whileInView="visible"
         viewport={{ once: true, margin: "-80px" }}
       >
-        <motion.span variants={fadeUp} className="section-label">
+        <motion.span variants={popUp} className="section-label">
           {t("label")}
         </motion.span>
-        <motion.h2 id="cta-heading" variants={fadeUp} className="section-title text-balance">
+        <motion.h2 id="cta-heading" variants={blurFadeUp} className="section-title text-balance">
           <TwoLineText text={headline} variant="section" />
         </motion.h2>
         <motion.p variants={fadeUp} className="section-subtitle">
           <TwoLineText text={t("subtitle")} variant="body" />
         </motion.p>
-        <motion.div variants={fadeUp} className="flex flex-col items-center gap-2" style={{ marginTop: "var(--space-subheading-cta)" }}>
+        <motion.div variants={fadeUp} className="flex flex-col items-center gap-2 mt-[var(--space-subheading-cta)]">
           <div className="cta-stack w-full justify-center">
             <Button href="/contact" variant="primary" fullWidthMobile>
               {tCommon("bookStrategyCall")}

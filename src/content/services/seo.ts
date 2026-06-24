@@ -5,6 +5,7 @@ import type { FAQItem } from "@/components/sections/FAQSection";
 export type SeoKeywordRow = {
   keyword: string;
   type: string;
+  desc: string;
 };
 
 export type SeoEcosystemNode = {
@@ -75,24 +76,24 @@ export const seoContent: Record<Locale, SeoContent> = {
     heroCtaLabel: "Get Your SEO Roadmap",
     keywordMatrixTitle: "Keyword Opportunity Matrix",
     keywordMatrixSubtitle:
-      "We prioritize keywords by business impact. High volume + low competition = immediate wins.|Identify gaps your competitors are leaving open.",
+      "We prioritize keywords by business impact, not just search volume. The focus stays on terms that signal buying intent and rank within reach. The goal is to identify what your competitors are ignoring and build authority in the spaces where winning is realistic.",
     keywordColKeyword: "Keyword",
     keywordColVolume: "Volume",
     keywordColDiff: "Diff.",
     keywordColType: "Type",
     keywordMatrix: [
-      { keyword: "local seo services", type: "Commercial" },
-      { keyword: "seo for landscapers", type: "Local" },
-      { keyword: "seo agency pricing", type: "Commercial" },
-      { keyword: "google business optimization", type: "Local" },
-      { keyword: "technical seo audit", type: "Informational" },
-      { keyword: "content writing seo", type: "Commercial" },
-      { keyword: "ecommerce seo strategy", type: "Commercial" },
-      { keyword: "voice search optimization", type: "Informational" },
+      { keyword: "local seo services", type: "Commercial", desc: "Buyers actively looking for agency help. Not researching, deciding." },
+      { keyword: "seo for landscapers", type: "Local", desc: "Niche vertical, low competition, clear commercial intent" },
+      { keyword: "seo agency pricing", type: "Commercial", desc: "Decision-stage query from business owners comparing their options" },
+      { keyword: "google business optimization", type: "Local", desc: "Direct map pack signal that drives local calls and clicks" },
+      { keyword: "technical seo audit", type: "Informational", desc: "Research-stage query with downstream commercial conversion potential" },
+      { keyword: "content writing seo", type: "Commercial", desc: "Service-adjacent query from businesses ready to invest in content" },
+      { keyword: "ecommerce seo strategy", type: "Commercial", desc: "High-intent query from store owners looking for a growth path" },
+      { keyword: "voice search optimization", type: "Informational", desc: "Emerging local search behavior with low current competition" },
     ],
     ecosystemTitle: "The Search Ecosystem",
     ecosystemSubtitle:
-      "Rankings are a byproduct of four interconnected systems working together.|Neglect any one and performance suffers.",
+      "Strong rankings emerge when four systems work in sync: technical health, content authority, link equity, and user experience. Most sites underinvest in at least one of them. That gap is precisely where sustainable growth opportunities live.",
     ecosystemLayerPrefix: "Layer",
     ecosystemNodes: [
       { label: "Technical Foundation", desc: "Site speed, mobile, crawlability", viz: "crawl" },
@@ -157,7 +158,7 @@ export const seoContent: Record<Locale, SeoContent> = {
     ],
     serpTitle: "Search results keep changing.",
     serpSubtitle:
-      "AI overviews, featured snippets, local packs, video carousels.|Winning search is no longer just about position one. You need visibility across every SERP feature.",
+      "Modern results include AI overviews, featured snippets, local packs, and video carousels. Each is a distinct entry point for your business. Winning means earning visibility across all of them, not just ranking somewhere on page one.",
     serpFeatures: [
       {
         label: "Featured Snippets",
@@ -173,6 +174,11 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "AI Overviews",
         desc: "Google's AI-generated answers. Changes the game for informational queries.",
         share: "Growing rapidly",
+      },
+      {
+        label: "Video Carousels",
+        desc: "Short-form and long-form video surfaced directly in results. YouTube and Shorts both feed it.",
+        share: "62% of SERPs on mobile",
       },
     ],
     ctaHeadline: "Ready to own search?",
@@ -204,24 +210,24 @@ export const seoContent: Record<Locale, SeoContent> = {
     heroCtaLabel: "Obtén Tu Hoja de Ruta SEO",
     keywordMatrixTitle: "Matriz de Oportunidad de Palabras Clave",
     keywordMatrixSubtitle:
-      "Priorizamos palabras clave por impacto en el negocio. Alto volumen + baja competencia = victorias inmediatas.|Identifica brechas que tus competidores están dejando abiertas.",
+      "Priorizamos palabras clave por impacto en el negocio, no solo por volumen de búsqueda, enfocándonos en términos que señalan intención de compra y que pueden posicionarse de forma realista. El objetivo es identificar lo que tus competidores están ignorando y construir autoridad donde ganar sea alcanzable.",
     keywordColKeyword: "Palabra Clave",
     keywordColVolume: "Volumen",
     keywordColDiff: "Dif.",
     keywordColType: "Tipo",
     keywordMatrix: [
-      { keyword: "local seo services", type: "Comercial" },
-      { keyword: "seo for landscapers", type: "Local" },
-      { keyword: "seo agency pricing", type: "Comercial" },
-      { keyword: "google business optimization", type: "Local" },
-      { keyword: "technical seo audit", type: "Informativo" },
-      { keyword: "content writing seo", type: "Comercial" },
-      { keyword: "ecommerce seo strategy", type: "Comercial" },
-      { keyword: "voice search optimization", type: "Informativo" },
+      { keyword: "local seo services", type: "Comercial", desc: "Compradores que buscan agencia activamente. No investigan, ya deciden." },
+      { keyword: "seo for landscapers", type: "Local", desc: "Nicho vertical con poca competencia e intención comercial clara" },
+      { keyword: "seo agency pricing", type: "Comercial", desc: "Consulta en fase de decisión de dueños comparando sus opciones" },
+      { keyword: "google business optimization", type: "Local", desc: "Señal directa del map pack que genera llamadas y clics locales" },
+      { keyword: "technical seo audit", type: "Informativo", desc: "Consulta de investigación con alto potencial de conversión posterior" },
+      { keyword: "content writing seo", type: "Comercial", desc: "Consulta adyacente de negocios listos para invertir en contenido" },
+      { keyword: "ecommerce seo strategy", type: "Comercial", desc: "Alta intención de tiendas buscando una ruta de crecimiento" },
+      { keyword: "voice search optimization", type: "Informativo", desc: "Comportamiento de búsqueda local emergente con poca competencia actual" },
     ],
     ecosystemTitle: "El Ecosistema de Búsqueda",
     ecosystemSubtitle:
-      "Los rankings son un subproducto de cuatro sistemas interconectados que trabajan juntos.|Descuidar cualquiera de ellos afecta el rendimiento.",
+      "Los rankings sólidos surgen cuando cuatro sistemas trabajan en sincronía: salud técnica, autoridad de contenido, equidad de enlaces y experiencia de usuario. La mayoría de los sitios invierten poco en al menos uno. Esa brecha es exactamente donde viven las oportunidades de crecimiento sostenible.",
     ecosystemLayerPrefix: "Capa",
     ecosystemNodes: [
       { label: "Fundamento Técnico", desc: "Velocidad del sitio, móvil, rastreabilidad", viz: "crawl" },
@@ -286,7 +292,7 @@ export const seoContent: Record<Locale, SeoContent> = {
     ],
     serpTitle: "Los resultados de búsqueda siguen cambiando.",
     serpSubtitle:
-      "Resúmenes de IA, fragmentos destacados, paquetes locales, carruseles de video.|Ganar en búsqueda ya no es solo la posición uno. Necesitas visibilidad en cada función del SERP.",
+      "Los resultados modernos incluyen resúmenes de IA, fragmentos destacados, paquetes locales y carruseles de video, cada uno un punto de entrada distinto para tu negocio. Ganar significa obtener visibilidad en todos ellos, no solo posicionarse en algún lugar de la primera página.",
     serpFeatures: [
       {
         label: "Fragmentos Destacados",
@@ -302,6 +308,11 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Resúmenes de IA",
         desc: "Respuestas generadas por IA de Google. Cambia las reglas para consultas informativas.",
         share: "Creciendo rápidamente",
+      },
+      {
+        label: "Carruseles de Video",
+        desc: "Videos cortos y largos mostrados directamente en los resultados. YouTube y Shorts los alimentan.",
+        share: "62% de SERPs en móvil",
       },
     ],
     ctaHeadline: "¿Listo para dominar la búsqueda?",

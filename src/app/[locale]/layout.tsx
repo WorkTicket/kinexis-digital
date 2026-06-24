@@ -6,13 +6,11 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import JsonLd from "@/components/seo/JsonLd";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import DeferredWidgets from "@/components/providers/DeferredWidgets";
 import { CookieConsentProvider } from "@/components/analytics/CookieConsent";
 import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
-import { getDefaultOgImageUrl } from "@/lib/metadata";
-import { organizationSchema } from "@/lib/schema";
+import { buildPageMetadata } from "@/lib/metadata";
 import { routing, type Locale } from "@/i18n/routing";
 import { getHtmlLang } from "@/i18n/locale-tags";
 
@@ -43,23 +41,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
 
-  const ogImage = getDefaultOgImageUrl();
-
-  return {
+  return buildPageMetadata({
+    locale: locale as Locale,
+    path: "/",
     title: t("title"),
     description: t("description"),
-    openGraph: {
-      title: t("title"),
-      description: t("ogDescription"),
-      images: [{ url: ogImage, alt: "KINEXIS Digital" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("ogDescription"),
-      images: [ogImage],
-    },
-  };
+  });
 }
 
 export default async function LocaleLayout({
@@ -80,8 +67,14 @@ export default async function LocaleLayout({
 
   return (
     <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable}`}>
+      <head>
+        {/* Early connection hints — reduces RTT for consent-gated analytics */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://region1.google-analytics.com" />
+      </head>
       <body className="font-ubuntu bg-bg text-white antialiased">
-        <JsonLd data={organizationSchema()} />
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionProvider>

@@ -99,7 +99,7 @@ export const croContent: Record<Locale, CROContent> = {
     ],
     methodSection: {
       title: "The scientific method applied to conversion.",
-      subtitle: "We don't guess what works.|We test, measure, and validate every change against real data.",
+      subtitle: "Every change we make starts with a hypothesis grounded in real user data, not assumptions. We run controlled experiments, wait for statistical significance, and implement only the variations that hold up under scrutiny.",
       steps: [
         {
           id: "collect",
@@ -130,7 +130,7 @@ export const croContent: Record<Locale, CROContent> = {
     },
     metricsSection: {
       title: "Small wins add up.",
-      subtitle: "Each winning test feeds the next.|Small lifts add up to real revenue over time.",
+      subtitle: "Compounding improvements is how CRO creates durable revenue growth. A 15% lift applied to a refined funnel, then tested again, produces results that outpace any single redesign or campaign launch.",
       metrics: [
         { label: "Conversion Lift per Test", value: 15, prefix: "+", suffix: "%", desc: "Average across all tests" },
         { label: "Simultaneous Tests", value: 4, desc: "Running at any given time" },
@@ -214,7 +214,7 @@ export const croContent: Record<Locale, CROContent> = {
     ],
     methodSection: {
       title: "El método científico aplicado a conversión.",
-      subtitle: "No adivinamos qué funciona.|Probamos, medimos y validamos cada cambio con datos reales.",
+      subtitle: "Cada cambio que hacemos comienza con una hipótesis fundamentada en datos reales de usuario, no en suposiciones. Ejecutamos experimentos controlados, esperamos la significancia estadística e implementamos solo las variaciones que resisten el escrutinio.",
       steps: [
         {
           id: "collect",
@@ -245,7 +245,7 @@ export const croContent: Record<Locale, CROContent> = {
     },
     metricsSection: {
       title: "Las pequeñas victorias suman.",
-      subtitle: "Cada test ganador alimenta el siguiente.|Pequeños aumentos suman ingresos reales con el tiempo.",
+      subtitle: "Las mejoras que se acumulan son cómo la CRO genera crecimiento de ingresos duradero. Un aumento del 15% aplicado a un embudo refinado, luego probado de nuevo, produce resultados que superan cualquier rediseño o lanzamiento de campaña único.",
       metrics: [
         { label: "Aumento de Conversión por Test", value: 15, prefix: "+", suffix: "%", desc: "Promedio en todos los tests" },
         { label: "Tests Simultáneos", value: 4, desc: "Activos en cualquier momento" },

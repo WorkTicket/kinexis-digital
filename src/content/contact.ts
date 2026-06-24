@@ -65,13 +65,13 @@ export const contactContent: Record<Locale, ContactContent> = {
       "We keep things simple. No long waits, no pressure.",
     step1Title: "We review your message",
     step1Desc:
-      "A senior strategist reads every submission — not a bot. You'll hear from us within one business day.",
+      "A senior strategist reads every submission, not a bot. You'll hear from us within one business day.",
     step2Title: "We schedule a call",
     step2Desc:
       "If there's a fit, we'll book a 30-minute discovery call to dig into your goals and challenges.",
     step3Title: "You get a clear proposal",
     step3Desc:
-      "A custom strategy and scope tailored to your business — with pricing that makes sense.",
+      "A custom strategy and scope tailored to your business, with pricing that makes sense.",
     trustLabel1: "< 24hr response",
     trustLabel2: "No lock-in contracts",
     trustLabel3: "Free initial consultation",
@@ -82,7 +82,7 @@ export const contactContent: Record<Locale, ContactContent> = {
       "Cuéntanos qué no está funcionando en tu marketing. Responderemos en un día hábil con una evaluación honesta sobre si podemos ayudarte.",
     formTitle: "Inicia la Conversación",
     formSubtitle:
-      "Comparte en qué estás trabajando y te responderemos con un plan claro — sin promesas vagas, sin tiempo perdido.",
+      "Comparte en qué estás trabajando y te responderemos con un plan claro. Sin promesas vagas, sin tiempo perdido.",
     successTitle: "Estás en buenas manos.",
     successSubtitle:
       "Recibimos tu mensaje y nos pondremos en contacto en un día hábil. Revisa tu bandeja de entrada.",
@@ -105,13 +105,13 @@ export const contactContent: Record<Locale, ContactContent> = {
     sidebarSubtitle: "Lo mantenemos simple. Sin largas esperas, sin presión.",
     step1Title: "Revisamos tu mensaje",
     step1Desc:
-      "Un estratega senior lee cada envío — no un bot. Tendrás respuesta en un día hábil.",
+      "Un estratega senior lee cada envío, no un bot. Tendrás respuesta en un día hábil.",
     step2Title: "Agendamos una llamada",
     step2Desc:
       "Si hay compatibilidad, programamos una llamada de 30 minutos para explorar tus objetivos.",
     step3Title: "Recibes una propuesta clara",
     step3Desc:
-      "Una estrategia personalizada adaptada a tu negocio — con precios que tienen sentido.",
+      "Una estrategia personalizada adaptada a tu negocio, con precios que tienen sentido.",
     trustLabel1: "Respuesta < 24hrs",
     trustLabel2: "Sin contratos forzados",
     trustLabel3: "Consulta inicial gratuita",

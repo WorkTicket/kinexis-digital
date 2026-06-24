@@ -102,6 +102,10 @@ export const sitemapServiceSlugs = serviceSlugs.filter(
 export const pricingSlugs = serviceSlugs;
 export type PricingSlug = ServiceSlug;
 
+export const sitemapPricingSlugs = pricingSlugs.filter(
+  (slug) => !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug),
+);
+
 export const pricingRoutes = Object.fromEntries(
   serviceSlugs.map((slug) => [slug, `/pricing/${slug}`]),
 ) as Record<PricingSlug, string>;

@@ -153,7 +153,7 @@ export function buildIndustryDetailContent(industry: IndustryEntry, _locale: Loc
       paragraphs: [
         `We don't apply generic agency playbooks to ${industry.label.toLowerCase()} businesses. Every strategy starts with how your buyers search, evaluate, and decide, then works backward to channel mix, content architecture, and conversion paths.`,
         `For ${industry.label.toLowerCase()} companies, that means ${industry.primaryServices.map((s) => serviceLabels[s as ServiceSlug]?.toLowerCase() || s).join(", ")} working as one integrated system, not disconnected tactics managed by separate vendors.`,
-        `Whether you're competing locally or scaling nationally, we build marketing that compounds: rankings that stick, campaigns that improve with data, and conversion paths that turn traffic into revenue.`,
+        `Competing locally or scaling nationally, the fundamentals are the same: rankings that stick, campaigns that improve with data, and conversion paths that turn traffic into revenue.`,
       ],
     },
     services: {

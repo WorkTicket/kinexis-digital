@@ -2,14 +2,11 @@
 
 import type { ReactNode } from "react";
 import { m as motion } from "@/lib/framer";
-import { BarChart3, Target, Sparkles, Shield } from "lucide-react";
 import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SectionIntroWithVisualization from "@/components/shared/services/SectionIntroWithVisualization";
 import type { WhyKinexusData } from "@/content/services/architecture/types";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
-
-const icons = [BarChart3, Target, Sparkles, Shield];
 
 type Props = WhyKinexusData & {
   surfaceIndex: number;
@@ -19,6 +16,13 @@ type Props = WhyKinexusData & {
 export default function WhyKinexusSection({ headline, points, surfaceIndex, visualization }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
 
+  // Problem-framed sections ("Why Most X Fails...") use red issue labels.
+  // Positive-framed sections ("The Kinexus Framework...") drop the label so the copy isn't contradicted.
+  const isProblemFramed = /^why\b/i.test(headline.trim());
+  const subtitle = isProblemFramed
+    ? "What most agencies get wrong — and how we approach it differently."
+    : "How we approach this work, and why it produces results most agencies don't.";
+
   return (
     <Section id="why-kinexus" variant="editorial" surfaceIndex={surfaceIndex}>
       <div className="container-site" style={{ maxWidth: "var(--container-max)", paddingInline: "var(--inner-padding)" }}>
@@ -27,44 +31,67 @@ export default function WhyKinexusSection({ headline, points, surfaceIndex, visu
             <SectionHeader
               pattern="B"
               title={headline}
-              subtitle="How we work, and why it is different from a typical agency retainer."
+              subtitle={subtitle}
             />
           }
           visualization={visualization}
         />
 
         <motion.div
-          className="relative mx-auto mt-16 max-w-4xl"
+          className="mt-14 grid gap-4 sm:grid-cols-2"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-80px" }}
         >
-          <div className="absolute left-7 top-0 hidden h-full w-px bg-gradient-to-b from-white/10 via-white/5 to-transparent max-md:hidden" aria-hidden />
-
-          {points.map((point, i) => {
-            const Icon = icons[i % icons.length];
-            return (
-              <motion.div key={point.title} variants={fadeUp} className="group relative flex gap-8 pb-16 last:pb-0">
-                <div className="relative z-10 hidden flex-col items-center max-md:hidden">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-bg transition-all duration-200 group-hover:border-neon-cyan/40 group-hover:shadow-lg group-hover:shadow-neon-cyan/10">
-                    <Icon className="h-6 w-6 text-white/40 transition-colors duration-200 group-hover:text-neon-cyan" />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <div className="mb-2 flex items-center gap-3 md:hidden">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10">
-                      <Icon className="h-5 w-5 text-neon-cyan" />
-                    </div>
-                  </div>
-                  <h3 className="font-bold" style={{ fontSize: "var(--text-h3)" }}>
-                    {point.title}
-                  </h3>
-                  <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-base">{point.description}</p>
-                </div>
-              </motion.div>
-            );
-          })}
+          {points.map((point, i) => (
+            <motion.div
+              key={point.title}
+              variants={fadeUp}
+              className={`group relative overflow-hidden rounded-2xl border p-6 pl-8 transition-all duration-200 md:p-8 md:pl-10 ${
+                isProblemFramed
+                  ? "border-white/[0.07] bg-white/[0.025] hover:border-red-500/20 hover:bg-white/[0.04]"
+                  : "border-white/[0.07] bg-white/[0.025] hover:border-neon-cyan/20 hover:bg-white/[0.04]"
+              }`}
+            >
+              {/* Left accent bar — red for problems, cyan for strengths */}
+              <div
+                className={`absolute inset-y-0 left-0 w-[3px] rounded-l-2xl bg-gradient-to-b ${
+                  isProblemFramed
+                    ? "from-red-500/70 via-red-500/30 to-transparent"
+                    : "from-neon-cyan/50 via-neon-cyan/20 to-transparent"
+                }`}
+                aria-hidden
+              />
+              {/* Faded background numeral */}
+              <span
+                className="pointer-events-none absolute right-3 top-1 select-none font-black tabular-nums text-white/[0.04]"
+                style={{ fontSize: "5.5rem", lineHeight: 1 }}
+                aria-hidden
+              >
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div className="relative">
+                {isProblemFramed && (
+                  <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-red-400/70">
+                    Issue {String(i + 1).padStart(2, "0")}
+                  </p>
+                )}
+                <h3 className="mb-2 font-bold leading-snug" style={{ fontSize: "var(--text-h3)" }}>
+                  {point.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-muted md:text-base">{point.description}</p>
+              </div>
+              <div
+                className={`pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${
+                  isProblemFramed
+                    ? "from-red-500/40 via-red-500/10 to-transparent"
+                    : "from-neon-cyan/30 via-neon-cyan/10 to-transparent"
+                }`}
+                aria-hidden
+              />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </Section>

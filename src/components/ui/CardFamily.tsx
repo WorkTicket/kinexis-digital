@@ -3,6 +3,7 @@
 import { m as motion } from "@/lib/framer";
 import { cn } from "@/lib/utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { SPRING_SNAPPY } from "@/lib/motion-config";
 
 type Family = "glass" | "editorial" | "dashboard" | "showcase" | "interactive";
 
@@ -38,6 +39,8 @@ export default function CardFamily({ family, children, className, hover = true }
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
+      // Spring press: satisfying push-down and spring-back on click
+      whileTap={hover ? { scale: 0.982, transition: SPRING_SNAPPY } : undefined}
     >
       {children}
     </motion.div>

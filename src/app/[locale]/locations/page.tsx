@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     path: "/locations",
     title: "Local Digital Marketing | Markets We Serve | KINEXIS",
-    description: "Location-specific digital marketing for Cedar Falls, Cedar Rapids, Des Moines, Waterloo, and expanding markets. Unique local content, not duplicate city templates.",
+    description: "Location-specific digital marketing for Dallas, Austin, Toronto, Bogotá, Cedar Falls, Cedar Rapids, Des Moines, and Waterloo. Unique local content for each market, not duplicate city templates.",
   });
 }
 

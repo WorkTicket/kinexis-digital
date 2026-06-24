@@ -76,7 +76,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
     heroTitleLine1: "Real growth.",
     heroTitleGradient: "Real numbers.",
     heroSubtitle:
-      "Every case study is a verified before-and-after story.|Strategy, execution, and real numbers. No vanity metrics. Just revenue.",
+      "Six verified client studies. Each one includes the strategy we used, the execution timeline, and the actual revenue outcome. We don't publish projections.",
     featuredCaseStudyLabel: "Featured Case Study",
     beforeVsAfterLabel: "Before vs After",
     timelineLabel: "Timeline",
@@ -84,7 +84,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
     clientResultsLabel: "Client Results",
     clientResultsTitle: "Proven results.",
     clientResultsDescription:
-      "Filter by industry to find results relevant to your business. Every study includes strategy, execution, and verified outcomes.",
+      "Filter by industry. Every study shows the strategy behind the result, not just the headline number.",
     noCaseStudiesMessage: "No case studies in this industry yet. Check back soon.",
     trafficLabel: "Traffic",
     leadsLabel: "Leads",
@@ -93,9 +93,9 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
     whatDataShowsLabel: "What the Data Shows",
     whatDataShowsTitle: "Combined services beat single tactics.",
     whatDataShowsDescription:
-      "The best results come when two or more services work together. Single-tactic approaches hit a ceiling. Connected systems keep building on each other.",
+      "Single-tactic approaches tend to plateau. When two or more services run as one program, each one lifts the performance of the others. The data below shows the typical gap.",
     ctaTitle: "Ready to become our next case study?",
-    ctaSubtitle: "Every client gets the same system, strategy,|and commitment to measurable results.",
+    ctaSubtitle: "Every engagement starts the same way: we audit, we plan, we execute, we measure. The strategy changes. The standard doesn't.",
     ctaButton: "Start Your Growth Story",
     industries: ["All", "Home Services", "Healthcare", "Retail", "SaaS", "B2B"],
     caseStudies: [
@@ -125,7 +125,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           implementation:
             "Week 1–3: Full technical audit and new site architecture. Week 4–6: New site built in Next.js with service-area landing pages for each target neighborhood. Google Business Profile optimized with 35 new photos, full service descriptions, and weekly posts. Citation cleanup across 42 directories. Months 3–8: Content production (2 posts/month), review generation campaign targeting 5 new reviews/month, and a local link-building outreach targeting home improvement publications.",
           outcome:
-            "By month 8, the business ranked in the local pack for 38 of 47 target keywords. Monthly organic sessions grew from 320 to 4,700. Lead conversion rate improved from 1.2% to 8.4% after the site rebuild. Monthly revenue reached $11,500 — a 475% increase from the $2,000 baseline. The national franchise captured the paid search space; KINEXIS captured the organic one.",
+            "By month 8, the business ranked in the local pack for 38 of 47 target keywords. Monthly organic sessions grew from 320 to 4,700. Lead conversion rate improved from 1.2% to 8.4% after the site rebuild. Monthly revenue reached $11,500. That's a 475% increase from the $2,000 baseline. The national franchise captured the paid search space; KINEXIS captured the organic one.",
         },
       },
       {
@@ -152,7 +152,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           strategy:
             "Before touching ad spend, we needed to know what was actually converting. The 30-day pre-engagement audit revealed that 68% of their budget was going to broad match terms that generated calls from existing patients rescheduling, not new patient inquiries. The strategy: conversion tracking first, then restructure campaigns around high-intent new-patient keywords, and run local SEO in parallel to capture organic demand.",
           implementation:
-            "Month 1: Google Tag Manager setup with call tracking, form tracking, and distinct conversion events for new-patient versus existing-patient actions. Ad account restructure: eliminated broad match, built tightly-themed ad groups around services (Invisalign, implants, emergency dental). Claimed and fully optimized all 3 GBPs. Month 2–3: Review generation campaign — automated follow-up sequence to patients post-appointment requesting reviews. Month 4–6: Added local SEO content targeting each location's service area, and expanded the Google Ads structure to include PMax campaigns for remarketing.",
+            "Month 1: Google Tag Manager setup with call tracking, form tracking, and distinct conversion events for new-patient versus existing-patient actions. Ad account restructure: eliminated broad match, built tightly-themed ad groups around services (Invisalign, implants, emergency dental). Claimed and fully optimized all 3 GBPs. Month 2–3: Review generation campaign, an automated follow-up sequence to patients post-appointment requesting reviews. Month 4–6: Added local SEO content targeting each location's service area, and expanded the Google Ads structure to include PMax campaigns for remarketing.",
           outcome:
             "New patient volume grew from 45 to 198/month over 6 months. Phone leads attributable to new patient intent reached 89/month. The review generation campaign added 26 new Google reviews across the 3 locations. Average cost per new-patient acquisition dropped from an estimated $100 (untracked) to a confirmed $22.60 per booked appointment. Monthly revenue increased by approximately $8,200 net of management fees.",
         },
@@ -177,13 +177,13 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         ],
         narrative: {
           challenge:
-            "A direct-to-consumer home goods brand was generating $12,000/month on Shopify but had hit a ceiling. Their average order value was $85 — commodity pricing for products that deserved premium positioning. The brand identity was inconsistent across product pages, social, and packaging. The site converted at 1.8%, below the 3-4% industry benchmark for a store at their traffic volume.",
+            "A direct-to-consumer home goods brand was generating $12,000/month on Shopify but had hit a ceiling. Their average order value was $85, commodity pricing for products that deserved premium positioning. The brand identity was inconsistent across product pages, social, and packaging. The site converted at 1.8%, below the 3-4% industry benchmark for a store at their traffic volume.",
           strategy:
             "The core problem was brand perception, not traffic volume. The products were genuinely high quality but priced and presented like mid-market alternatives. The strategy: reposition the brand at the premium tier through visual identity work, new site architecture built around storytelling over catalog browsing, and a pricing structure that reflected the product's actual quality.",
           implementation:
-            "Month 1–3: Brand audit and identity work — new typography system, photography direction, and visual language guide. Product photography restyled with lifestyle imagery instead of white-background catalog shots. Month 4–6: New Shopify site built around the updated identity. Product page redesign with expanded copy, ingredients/materials provenance story, and social proof integration. AOV optimization: product bundling structure, complementary add-ons, and a gift-with-purchase threshold. Month 7–9: CRO testing sprint — 6 A/B tests across hero image, product page headline, and checkout flow. Email sequence rebuilt for post-purchase LTV.",
+            "Month 1–3: Brand audit and identity work: new typography system, photography direction, and visual language guide. Product photography restyled with lifestyle imagery instead of white-background catalog shots. Month 4–6: New Shopify site built around the updated identity. Product page redesign with expanded copy, ingredients/materials provenance story, and social proof integration. AOV optimization: product bundling structure, complementary add-ons, and a gift-with-purchase threshold. Month 7–9: CRO testing sprint, 6 A/B tests across hero image, product page headline, and checkout flow. Email sequence rebuilt for post-purchase LTV.",
           outcome:
-            "Average order value grew from $85 to $238 as customers engaged with bundles and the positioning justified premium pricing. Conversion rate improved from 1.8% to 6.3% — a 250% improvement on the same traffic. Monthly revenue reached $45,000 without a significant increase in ad spend. The brand repositioning also improved paid social ROAS from 1.4× to 3.2× as creative finally matched the new identity.",
+            "Average order value grew from $85 to $238 as customers engaged with bundles and the positioning justified premium pricing. Conversion rate improved from 1.8% to 6.3%, a 250% improvement on the same traffic. Monthly revenue reached $45,000 without a significant increase in ad spend. The brand repositioning also improved paid social ROAS from 1.4× to 3.2× as creative finally matched the new identity.",
         },
       },
       {
@@ -206,13 +206,13 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         ],
         narrative: {
           challenge:
-            "A B2B analytics SaaS at $15K MRR was generating 80 trial signups/month through word-of-mouth and a small Google Ads budget. Trial-to-paid conversion was 8% — well below the 15-20% SaaS benchmark. The product solved a real problem for e-commerce operators but the website described features, not outcomes. The content strategy was nonexistent.",
+            "A B2B analytics SaaS at $15K MRR was generating 80 trial signups/month through word-of-mouth and a small Google Ads budget. Trial-to-paid conversion was 8%, well below the 15-20% SaaS benchmark. The product solved a real problem for e-commerce operators but the website described features, not outcomes. The content strategy was nonexistent.",
           strategy:
-            "Two parallel tracks. Track 1: Fix trial conversion by rebuilding the onboarding email sequence and the in-trial activation flow — the product was good but new users weren't reaching the 'aha moment' before the trial expired. Track 2: Build a content engine targeting bottom-of-funnel keywords where the ICP was searching for solutions, not awareness content.",
+            "Two parallel tracks. Track 1: Fix trial conversion by rebuilding the onboarding email sequence and the in-trial activation flow. The product was good but new users weren't reaching the 'aha moment' before the trial expired. Track 2: Build a content engine targeting bottom-of-funnel keywords where the ICP was searching for solutions, not awareness content.",
           implementation:
-            "Month 1–2: Onboarding email sequence rebuilt with behavior-triggered emails based on in-product actions. Trial activation checklist added to the dashboard. Google Ads restructured around high-intent competitor comparison and feature-specific keywords. Month 3–4: Content sprint — 8 long-form articles targeting 'best [tool] for [use case]' keywords with 2,000+ word treatment. Each article ended with a structured comparison table showing the product's advantages on the specific use case. Month 5–6: Landing page CRO testing — 3 A/B tests on the homepage headline, pricing page, and trial CTA copy.",
+            "Month 1–2: Onboarding email sequence rebuilt with behavior-triggered emails based on in-product actions. Trial activation checklist added to the dashboard. Google Ads restructured around high-intent competitor comparison and feature-specific keywords. Month 3–4: Content sprint: 8 long-form articles targeting 'best [tool] for [use case]' keywords with 2,000+ word treatment. Each article ended with a structured comparison table showing the product's advantages on the specific use case. Month 5–6: Landing page CRO testing: 3 A/B tests on the homepage headline, pricing page, and trial CTA copy.",
           outcome:
-            "Trial signups grew from 80 to 420/month as organic and paid traffic scaled. Trial-to-paid conversion improved from 8% to 22% following the onboarding rebuild. MRR reached $60,000 — 4× the starting point — within 6 months. The content engine contributed 58% of new trial signups by month 6, reducing paid acquisition dependency.",
+            "Trial signups grew from 80 to 420/month as organic and paid traffic scaled. Trial-to-paid conversion improved from 8% to 22% following the onboarding rebuild. MRR reached $60,000, 4× the starting point, within 6 months. The content engine contributed 58% of new trial signups by month 6, reducing paid acquisition dependency.",
         },
       },
       {
@@ -239,7 +239,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           strategy:
             "Reduce the free tier from 90 days to 14 days and shift the conversion pressure earlier in the user lifecycle. Support the shorter trial with a nurture email sequence that demonstrated value in the first 72 hours. Restructure the Meta Ads creative to target users who had already expressed intent to pay for financial tools, not general financial wellness audiences.",
           implementation:
-            "Month 1–2: Trial length reduced to 14 days with a 7-day email nurture sequence built around specific financial wins users could achieve using the product. Feature gate restructured so the most compelling features required the paid plan. Month 3–4: Meta Ads creative audit — killed 6 underperforming ad sets, rebuilt 4 new creative concepts targeting financial anxiety triggers. Retargeting campaign for trial users who reached day 10 without upgrading. Month 5–7: CRO testing on the paywall screen — 3 test variants focusing on pricing frame, social proof, and urgency cues.",
+            "Month 1–2: Trial length reduced to 14 days with a 7-day email nurture sequence built around specific financial wins users could achieve using the product. Feature gate restructured so the most compelling features required the paid plan. Month 3–4: Meta Ads creative audit: killed 6 underperforming ad sets, rebuilt 4 new creative concepts targeting financial anxiety triggers. Retargeting campaign for trial users who reached day 10 without upgrading. Month 5–7: CRO testing on the paywall screen: 3 test variants focusing on pricing frame, social proof, and urgency cues.",
           outcome:
             "Premium trial conversions grew from 120 to 372/month. CAC dropped from $48 to $22 as audience quality improved and creative performance increased. MRR reached $23,000 by month 7. The shorter trial cycle and improved nurture sequence increased the 14-day paid conversion rate from an estimated 4% to 11%.",
         },
@@ -266,11 +266,11 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           challenge:
             "A 12-person management consulting firm serving mid-market operations clients had $400K in active pipeline generated almost entirely through partner referrals. The founding partners were recognised experts in their field but had no digital presence. The website had not been updated in 3 years and ranked for zero commercial terms. Referral velocity was slowing as the partner network matured.",
           strategy:
-            "B2B consulting buyers research extensively before reaching out. The strategy: build an authority content engine on LinkedIn — the platform where their target buyers (VP Operations, COO, CFO) spent professional time — and support it with a website that converted that earned attention into pipeline. LinkedIn Ads would amplify the best-performing organic content to defined company size and title targeting.",
+            "B2B consulting buyers research extensively before reaching out. The strategy: build an authority content engine on LinkedIn, the platform where their target buyers (VP Operations, COO, CFO) spent professional time, and support it with a website that converted that earned attention into pipeline. LinkedIn Ads would amplify the best-performing organic content to defined company size and title targeting.",
           implementation:
-            "Month 1–2: Website rebuild with a case-study-forward architecture. Each case study structured as a specific problem solved with quantified outcomes. LinkedIn profiles for the two founding partners rebuilt from scratch — headline, about section, and featured content all optimised for buyer search intent. Month 3–5: Content engine launched — 3 posts/week per founder covering operations insight, decision frameworks, and case study breakdowns. No sales content in the first 8 weeks. Month 6–9: LinkedIn Ads launched targeting VP/C-suite at 200-2000 employee companies in the firm's sector verticals. Campaign focused on long-form content clicks, not lead gen forms. CRM integration to track which content influenced deals.",
+            "Month 1–2: Website rebuild with a case-study-forward architecture. Each case study structured as a specific problem solved with quantified outcomes. LinkedIn profiles for the two founding partners rebuilt from scratch, covering the headline, about section, and featured content, all optimised for buyer search intent. Month 3–5: Content engine launched: 3 posts/week per founder covering operations insight, decision frameworks, and case study breakdowns. No sales content in the first 8 weeks. Month 6–9: LinkedIn Ads launched targeting VP/C-suite at 200-2000 employee companies in the firm's sector verticals. Campaign focused on long-form content clicks, not lead gen forms. CRM integration to track which content influenced deals.",
           outcome:
-            "Pipeline grew from $400K to $2.4M over 9 months. Qualified inbound leads increased from 4 to 12/month. Close rate improved from 18% to 34% — a direct result of prospects arriving pre-educated on the firm's approach. The LinkedIn content engine generated 310% more profile views and 40+ direct inquiries in the first 6 months. Two of the largest deals closed in month 9 cited LinkedIn content as the primary reason they reached out.",
+            "Pipeline grew from $400K to $2.4M over 9 months. Qualified inbound leads increased from 4 to 12/month. Close rate improved from 18% to 34%, a direct result of prospects arriving pre-educated on the firm's approach. The LinkedIn content engine generated 310% more profile views and 40+ direct inquiries in the first 6 months. Two of the largest deals closed in month 9 cited LinkedIn content as the primary reason they reached out.",
         },
       },
     ],

@@ -28,7 +28,7 @@ export default async function AboutPage({ params }: Props) {
           ]),
         ]}
       />
-      <AboutPageClient content={content} />
+      <AboutPageClient content={content} locale={locale} />
     </>
   );
 }

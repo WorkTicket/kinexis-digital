@@ -33,7 +33,7 @@ export default function ServiceOverview({
         />
 
         <motion.ul
-          className="section-content mx-auto mt-10 max-w-3xl space-y-4"
+          className="section-content mx-auto mt-10 max-w-2xl space-y-4"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -47,8 +47,8 @@ export default function ServiceOverview({
           ))}
         </motion.ul>
 
-        <div className="section-content mx-auto mt-16 max-w-3xl rounded-2xl border border-neon-cyan/15 bg-neon-cyan/[0.04] p-8 md:p-10">
-          <h3 id="overview-solution-heading" className="text-xl font-bold md:text-2xl" style={{ fontSize: "var(--text-h3)" }}>
+        <div className="section-content mx-auto mt-16 max-w-2xl rounded-2xl border border-neon-cyan/15 bg-neon-cyan/[0.04] p-8 md:p-10">
+          <h3 id="overview-solution-heading" className="text-center text-xl font-bold md:text-2xl" style={{ fontSize: "var(--text-h3)" }}>
             {solution}
           </h3>
           <motion.ul

@@ -6,6 +6,7 @@ import { locations, locationServiceSlugs } from "@/content/registry/locations";
 import { solutions } from "@/content/registry/solutions";
 import {
   sitemapServiceSlugs,
+  sitemapPricingSlugs,
   serviceRoutes,
   staticPageRoutes,
   blogSlugs,
@@ -16,9 +17,10 @@ import {
   authorSlugs,
 } from "@/content/registry/site-routes";
 
-// Static build-time date prevents search engines being told every page changed
-// on every request. Update this when doing a major content deployment.
-const SITEMAP_DATE = new Date("2025-01-01");
+const SITEMAP_DATE = new Date();
+
+/** Routes indexed in sitemap — lead-magnet is paid-traffic only (noIndex). */
+const sitemapStaticRoutes = staticPageRoutes.filter((path) => path !== "/lead-magnet");
 
 function localeUrls(path: string, priority = 0.7): MetadataRoute.Sitemap {
   return locales.flatMap((locale) => ({
@@ -32,7 +34,7 @@ function localeUrls(path: string, priority = 0.7): MetadataRoute.Sitemap {
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  for (const path of staticPageRoutes) {
+  for (const path of sitemapStaticRoutes) {
     entries.push(...localeUrls(path, path === "/" ? 1 : 0.8));
   }
 
@@ -68,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.push(...localeUrls(`/case-studies/${slug}`, 0.7));
   }
 
-  for (const slug of sitemapServiceSlugs) {
+  for (const slug of sitemapPricingSlugs) {
     entries.push(...localeUrls(pricingRoutes[slug], 0.85));
   }
 

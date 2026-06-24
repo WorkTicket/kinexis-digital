@@ -22,6 +22,16 @@ export function organizationSchema() {
   };
 }
 
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "KINEXIS Digital",
+    url: getSiteUrl(),
+    publisher: { "@type": "Organization", name: "KINEXIS Digital", url: getSiteUrl() },
+  };
+}
+
 export function localBusinessSchema(city?: string, region?: string) {
   return {
     "@context": "https://schema.org",

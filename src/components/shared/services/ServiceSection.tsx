@@ -46,7 +46,7 @@ function VariantLayout({
     return <div className={cn("section-content grid gap-6", mockupCols, className)}>{children}</div>;
   }
   if (variant === "split") {
-    return <div className={cn("section-content max-w-3xl space-y-4", className)}>{children}</div>;
+    return <div className={cn("section-content mx-auto max-w-3xl space-y-4", className)}>{children}</div>;
   }
   return <div className={cn("section-content", className)}>{children}</div>;
 }
@@ -123,10 +123,18 @@ export default function ServiceSection({ id, headline, subheadline, visualVarian
           )}
 
           {visualVariant === "mockup" && points && points.map((point) => (
-            <motion.div key={point.title} variants={fadeUp} className="flex h-full flex-col rounded-2xl border border-white/[0.06] bg-bg-dark p-6">
-              <h3 className="font-bold">{point.title}</h3>
+            <motion.div
+              key={point.title}
+              variants={fadeUp}
+              className="group flex h-full flex-col rounded-2xl border border-white/[0.06] bg-white/[0.025] p-6 transition-colors duration-300 hover:border-white/[0.1] hover:bg-white/[0.04]"
+            >
+              <h3 className="font-bold leading-snug">{point.title}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{point.description}</p>
-              {point.metric && <p className="mt-4 type-metric text-neon-cyan">{point.metric}</p>}
+              {point.metric && (
+                <p className="mt-5 border-t border-white/[0.06] pt-4 type-metric text-neon-cyan">
+                  {point.metric}
+                </p>
+              )}
             </motion.div>
           ))}
 

@@ -79,7 +79,7 @@ export const contentMarketingContent: Record<Locale, ContentMarketingContent> = 
       label: "Content That Works",
       headlineLine1: "Content that earns trust",
       headlineLine2: "and drives revenue.",
-      subtitle: "Content that builds trust: blogs, lead magnets, email sequences,|and repurposing that attracts the right people and converts them.",
+      subtitle: "We create and distribute content that moves buyers through every stage of the funnel, from first search to booked call. Blogs, lead magnets, email sequences, and repurposed assets, all built around what your audience actually needs to hear.",
       ctaLabel: "Build Your Content Engine",
     },
     funnel: {
@@ -117,7 +117,7 @@ export const contentMarketingContent: Record<Locale, ContentMarketingContent> = 
       label: "Contenido que Funciona",
       headlineLine1: "Contenido que convierte",
       headlineLine2: "con confianza e ingresos.",
-      subtitle: "Contenido que genera confianza: blogs, lead magnets,|secuencias de email y reutilización que atrae a las personas correctas y las convierte.",
+      subtitle: "Creamos y distribuimos contenido que mueve a los compradores por cada etapa del embudo, desde la primera búsqueda hasta la llamada agendada. Blogs, lead magnets, secuencias de email y activos reutilizados, todo construido alrededor de lo que tu audiencia realmente necesita escuchar.",
       ctaLabel: "Construye Tu Motor de Contenido",
     },
     funnel: {

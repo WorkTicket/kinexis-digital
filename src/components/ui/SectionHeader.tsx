@@ -5,9 +5,39 @@ import { cn } from "@/lib/utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import TwoLineText from "@/components/ui/TwoLineText";
 
+// ─── Unified API ────────────────────────────────────────────────────────────
+// Every section in the site should consume SectionHeader for consistent
+// badge → title → description hierarchy. The legacy pattern A–E API is
+// preserved for backward compatibility but all new sections should use
+// the primary props API.
+//
+// Usage:
+//   <SectionHeader
+//     badge="Our Process"
+//     title="How We Generate Growth"
+//     description="We combine search intent research, competitor analysis,
+//                  and ongoing optimization to build campaigns designed for
+//                  sustainable long-term growth."
+//   />
+
+type Align = "center" | "left";
+type Size = "default" | "lg";
 type Pattern = "A" | "B" | "C" | "D" | "E";
 
-type Props = {
+// Primary props — use these for all new sections
+type PrimaryProps = {
+  pattern?: never;
+  badge?: string;
+  title: string;
+  description?: string;
+  align?: Align;
+  size?: Size;
+  children?: React.ReactNode;
+  className?: string;
+};
+
+// Legacy pattern props — preserved for backward compatibility
+type LegacyProps = {
   pattern: Pattern;
   statement?: string;
   title?: string;
@@ -15,9 +45,70 @@ type Props = {
   backgroundWord?: string;
   content?: React.ReactNode;
   className?: string;
+  // These are no-ops in legacy mode but kept for type safety
+  badge?: never;
+  description?: never;
+  align?: never;
+  size?: never;
+  children?: never;
 };
 
-export default function SectionHeader({
+type Props = PrimaryProps | LegacyProps;
+
+// ─── Primary SectionHeader ───────────────────────────────────────────────────
+function PrimaryHeader({
+  badge,
+  title,
+  description,
+  align = "center",
+  size = "default",
+  children,
+  className,
+}: PrimaryProps) {
+  const { fadeUp, blurFadeUp, popUp, stagger } = useMotionVariants();
+  const isCenter = align === "center";
+
+  return (
+    <motion.div
+      className={cn(
+        "section-header",
+        isCenter ? "mx-auto" : "mr-auto",
+        className
+      )}
+      variants={stagger}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+    >
+      {/* Badge pops in first — quick, compact, sets the context */}
+      {badge && (
+        <motion.span variants={popUp} className="section-label">
+          {badge}
+        </motion.span>
+      )}
+      {/* Title blurs in — the focus-coming-into-view effect reads as premium */}
+      <motion.h2
+        variants={blurFadeUp}
+        className={cn(
+          "section-title text-balance",
+          size === "lg" && "section-title--lg",
+          badge ? "" : "mt-0"
+        )}
+      >
+        <TwoLineText text={title} variant="section" />
+      </motion.h2>
+      {description && (
+        <motion.p variants={fadeUp} className="section-subtitle">
+          {description}
+        </motion.p>
+      )}
+      {children}
+    </motion.div>
+  );
+}
+
+// ─── Legacy Patterns ─────────────────────────────────────────────────────────
+function LegacyHeader({
   pattern,
   statement,
   title,
@@ -25,7 +116,7 @@ export default function SectionHeader({
   backgroundWord,
   content,
   className,
-}: Props) {
+}: LegacyProps) {
   const { fadeUp, stagger } = useMotionVariants();
 
   switch (pattern) {
@@ -49,7 +140,7 @@ export default function SectionHeader({
     case "B":
       return (
         <motion.div
-          className={cn("service-section-header max-w-6xl", className)}
+          className={cn("service-section-header mx-auto max-w-3xl text-center", className)}
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -71,7 +162,7 @@ export default function SectionHeader({
     case "C":
       return (
         <motion.div
-          className={cn("service-section-header max-w-6xl", className)}
+          className={cn("service-section-header mx-auto max-w-3xl text-center", className)}
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -145,4 +236,12 @@ export default function SectionHeader({
     default:
       return null;
   }
+}
+
+// ─── Export ───────────────────────────────────────────────────────────────────
+export default function SectionHeader(props: Props) {
+  if (props.pattern !== undefined) {
+    return <LegacyHeader {...(props as LegacyProps)} />;
+  }
+  return <PrimaryHeader {...(props as PrimaryProps)} />;
 }

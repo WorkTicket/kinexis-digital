@@ -4,12 +4,32 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-DNS-Prefetch-Control: on
 
+# Static assets — 1-year immutable cache
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+/assets/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+/assets/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
 
 /logo.png
   Cache-Control: public, max-age=31536000, immutable
 
+# Next.js hashed static bundles — safe to cache forever
 /_next/static/*
-  Cache-Control: public,max-age=31536000,immutable
+  Cache-Control: public, max-age=31536000, immutable
+
+# Next.js image optimizer output
+/_next/image*
+  Cache-Control: public, max-age=31536000, immutable
+  Vary: Accept
+
+# Fonts are self-hosted by next/font — content-hashed filenames
+/_next/static/media/*
+  Cache-Control: public, max-age=31536000, immutable

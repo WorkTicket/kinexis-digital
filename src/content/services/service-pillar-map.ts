@@ -394,7 +394,7 @@ export const videoMarketingPillarContent: ServicePillarContent = {
     paragraphs: [
       "Video is the highest-engagement format across every platform, but most brand video is too long, too vague, and never tested against a conversion goal. A brand film that wins awards but doesn't generate leads is a creative expense, not a marketing asset.",
       "KINEXIS produces video with performance in mind. Ads that drive clicks. Explainer videos that shorten the sales cycle. Testimonials that convert hesitant buyers. Every piece is built around a specific audience, placement, and outcome.",
-      "We handle strategy, scripting, production, post-production, and distribution. Whether you need YouTube pre-roll, paid social video, or a website hero, we build content that works across the funnel.",
+      "We handle strategy, scripting, production, post-production, and distribution. YouTube pre-roll, paid social video, website hero. Each piece built around what it needs to accomplish.",
     ],
   },
   deliverables: {

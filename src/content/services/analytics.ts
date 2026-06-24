@@ -71,7 +71,7 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
     dataWallSection: {
       title: "Live Data Wall",
       subtitle:
-        "Every metric that matters, visible at a glance.|No digging through endless reports to find what matters.",
+        "All the metrics that drive decisions: traffic sources, conversion events, attribution, and revenue. Organized into a single, always-current view so your team can act without wading through disconnected reports.",
     },
     dataLayers: [
       { id: "traffic", label: "Traffic Sources", metric: "All channels tracked" },
@@ -82,7 +82,7 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
     stackSection: {
       title: "The analytics stack.",
       subtitle:
-        "A full setup to track, organize,|and show the interactions that actually matter.",
+        "A complete implementation covering tracking, dashboards, and attribution. Every meaningful interaction is captured, reported clearly, and tied back to revenue rather than activity.",
       items: [
         {
           id: "ga4",
@@ -169,7 +169,7 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
     dataWallSection: {
       title: "Muro de Datos en Vivo",
       subtitle:
-        "Cada métrica que importa, visible de un vistazo.|Sin buscar en reportes interminables.",
+        "Todas las métricas que impulsan decisiones: fuentes de tráfico, eventos de conversión, atribución e ingresos. Organizadas en una vista siempre actualizada para que tu equipo pueda actuar sin navegar por reportes desconectados.",
     },
     dataLayers: [
       { id: "traffic", label: "Fuentes de Tráfico", metric: "Todos los canales rastreados" },
@@ -180,7 +180,7 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
     stackSection: {
       title: "El stack de analytics.",
       subtitle:
-        "Una configuración completa para rastrear,|organizar y mostrar las interacciones que realmente importan.",
+        "Una implementación completa que cubre tracking, dashboards y atribución. Cada interacción significativa se captura, se reporta con claridad y se vincula a ingresos en lugar de actividad.",
       items: [
         {
           id: "ga4",

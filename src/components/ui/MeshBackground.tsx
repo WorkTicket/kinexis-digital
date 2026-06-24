@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -16,11 +14,17 @@ const VARIANT_CLASS = {
 
 export default function MeshBackground({
   variant = "hero",
+  showNodes = false,
   className,
 }: Props) {
   return (
     <div
-      className={cn("mesh-background", `mesh-background--${variant}`, className)}
+      className={cn(
+        "mesh-background",
+        `mesh-background--${variant}`,
+        showNodes && "mesh-background--nodes",
+        className
+      )}
       aria-hidden="true"
     >
       <div className={cn("mesh-layer", VARIANT_CLASS[variant])} />

@@ -34,14 +34,16 @@ export default function AnimatedCounter({
             return;
           }
 
-          const duration = 700;
+          // 950ms quartic ease-out: faster initial rise, dramatic deceleration
+          // at the end for a satisfying "settlement" effect.
+          const duration = 950;
           const startTime = performance.now();
           const diff = to - from;
 
           function animate(now: number) {
             const elapsed = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
+            const eased = 1 - Math.pow(1 - progress, 4);
             setCount(from + diff * eased);
             if (progress < 1) {
               requestAnimationFrame(animate);

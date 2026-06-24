@@ -1,10 +1,12 @@
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import JsonLd from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/routing";
 import { termsContent } from "@/content/legal/terms";
 import { getLocalizedContent } from "@/lib/get-localized-content";
-import { buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
+import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 const LegalPageClient = dynamic(() => import("@/components/pages/LegalPageClient"));
 
@@ -26,5 +28,18 @@ export default async function TermsPage({ params }: Props) {
   setRequestLocale(locale);
   const content = getLocalizedContent(termsContent, locale);
 
-  return <LegalPageClient content={content} />;
+  return (
+    <>
+      <JsonLd
+        data={[
+          organizationSchema(),
+          breadcrumbSchema([
+            { name: "Home", url: buildAbsoluteUrl(locale, "/") },
+            { name: "Terms of Service" },
+          ]),
+        ]}
+      />
+      <LegalPageClient content={content} />
+    </>
+  );
 }

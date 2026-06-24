@@ -13,6 +13,7 @@
     "about": "About",
     "blog": "Blog",
     "pricing": "Pricing",
+    "locations": "Locations",
     "resources": "Resources",
     "contact": "Contact",
     "toggleMenu": "Toggle menu",
@@ -33,7 +34,8 @@
     "resourceLinks": {
       "groups": {
         "guides": "KINEXIS Guides",
-        "comparisons": "Comparisons"
+        "comparisons": "Comparisons",
+        "solutions": "Solutions"
       },
       "localSeoChecklist": "Local SEO Checklist",
       "seoAuditFramework": "SEO Audit Framework",
@@ -43,6 +45,7 @@
       "seoVsPpc": "SEO vs PPC",
       "localSeoVsGoogleAds": "Local SEO vs Google Ads",
       "wordpressVsWebflow": "WordPress vs Webflow",
+      "viewAllSolutions": "All Solutions",
       "toolkitTitle": "Marketing Toolkit",
       "toolkitDesc": "17 tools we use daily, grouped by channel."
     },
@@ -80,13 +83,15 @@
     "missionTitle": "We take on 8–10 clients at a time.",
     "missionBody": "Focused engagements. Real results. No cookie-cutter playbooks.",
     "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "terms": "Terms of Service",
+    "locations": "Locations"
   },
   "common": {
     "bookStrategyCall": "Book a Strategy Call",
     "scheduleStrategyCall": "Schedule a Strategy Call",
     "learnAboutUs": "Learn About Us",
     "viewAllServices": "View All Services",
+    "viewOurWork": "View Our Work",
     "viewCaseStudy": "View Case Study",
     "viewAllCaseStudies": "View All Case Studies",
     "outcomeComparison": "Outcome comparison",
@@ -104,12 +109,12 @@
     "line2": "GENERATE LEADS.",
     "line3": "WE BUILD",
     "line3Highlight": "MARKET DOMINANCE.",
-    "subtitle": "We build the marketing infrastructure that turns qualified traffic into predictable revenue.|SEO, paid media, web design, and conversion systems that work together, not in silos."
+    "subtitle": "The infrastructure that moves qualified traffic toward revenue: technical, creative, and strategic, built as one coordinated program.|Not a list of services. A system."
   },
   "revenueEngine": {
     "label": "The KINEXIS Framework",
     "title": "Visibility → Traffic → Leads → Revenue",
-    "subtitle": "A clear path from visibility to revenue. Each stage builds on the last.",
+    "subtitle": "Four stages. Each one depends on the last. Skip one and the whole thing leaks.",
     "liveTrajectory": "Live trajectory",
     "stage": "Stage",
     "trajectoryPeriod": "7-month trajectory",
@@ -162,12 +167,12 @@
   "servicesEcosystem": {
     "label": "Connected Services",
     "title": "Services that work together.",
-    "subtitle": "SEO feeds content. Content feeds funnels. Funnels feed email.|Each channel makes the next one work harder."
+    "subtitle": "SEO feeds content. Content feeds funnels. Funnels feed email. Run them separately and they perform like separate services. Build them as one program and each one amplifies the rest."
   },
   "featuredResults": {
     "label": "Proven Results",
     "title": "Outcomes, not opinions.",
-    "subtitle": "Real trajectories from real client work.|This is how we measure success.",
+    "subtitle": "Six verified client results. Strategy, execution timeline, and real revenue numbers. Documented and available on request.",
     "cases": {
       "landscaping": {
         "category": "Home Services",
@@ -192,7 +197,7 @@
   "philosophy": {
     "label": "Why Clients Switch To KINEXIS",
     "title": "You've been here before.",
-    "subtitle": "Another agency. Another promise.|Another dashboard full of numbers that don't connect to revenue.",
+    "subtitle": "Another agency. Another promise. Another quarterly report full of impressions that don't touch your pipeline.",
     "before": "Before",
     "after": "After",
     "agencyA": "Agency A",
@@ -239,12 +244,12 @@
     "label": "Let's Talk",
     "title": "Ready to Build a",
     "titleHighlight": "Revenue System?",
-    "subtitle": "No rehearsed pitch. No pressure to sign anything.|Just a straightforward conversation about what real growth could look like for your business."
+    "subtitle": "No deck. No rehearsed presentation. Bring your actual situation: what's not working, what you've already tried, what you're hoping to fix. We'll have an honest conversation about whether we can help."
   },
   "midCta": {
     "label": "Next Step",
     "title": "See what's possible|for your business",
-    "subtitle": "Book a strategy call or request a free audit.|We'll show you where your growth engine is leaking and how to fix it.",
+    "subtitle": "Book a call. We'll show you exactly where your marketing is leaking and what a real fix would cost.",
     "secondaryCta": "Get Free Audit"
   },
   "chatbot": {

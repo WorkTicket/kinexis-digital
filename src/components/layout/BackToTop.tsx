@@ -27,6 +27,7 @@ export default function BackToTop() {
 
   return (
     <button
+      type="button"
       onClick={() =>
         window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" })
       }

@@ -60,8 +60,8 @@ export const aboutContent: Record<Locale, AboutContent> = {
     heroTag: "About KINEXIS",
     heroTitle: "Growth isn't random.",
     heroTitleHighlight: "It's engineered.",
-    heroSubtitleLine1: "We turn inconsistent traffic into predictable revenue systems. Not through guesswork.",
-    heroSubtitleLine2: "Through a repeatable, data-driven methodology that treats your business like an investment, not a campaign.",
+    heroSubtitleLine1: "There's a difference between having marketing and having a marketing system. We build the latter.",
+    heroSubtitleLine2: "Every channel connects. Every decision traces back to revenue. That's not a philosophy. It's how the work is structured from day one.",
     whyWeExistTag: "Why We Exist",
     whyWeExistAside: "The agency model is broken.|We built the alternative.",
     whyParagraph1:
@@ -100,7 +100,7 @@ export const aboutContent: Record<Locale, AboutContent> = {
     ],
     architectureTag: "Architecture",
     architectureTitle: "Inside the system.",
-    architectureSubtitle: "Every service connects. Every channel feeds another.|This is how the pieces fit together.",
+    architectureSubtitle: "When you see the diagram, you understand why it works. Nothing is standalone. Every channel you add makes the others more effective.",
     architectureNodes: [
       { label: "SEO" },
       { label: "Paid Ads" },
@@ -181,7 +181,7 @@ export const aboutContent: Record<Locale, AboutContent> = {
       },
     ],
     ctaTitle: "Let's build something that lasts.",
-    ctaSubtitle: "We only take on a handful of new clients each quarter.|Spots fill up fast.",
+    ctaSubtitle: "We cap our client roster at 8 to 10 at any given time. Real results take real attention. That's how we protect both.",
     ctaButton: "Start the Conversation",
   },
   es: {

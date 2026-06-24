@@ -4,8 +4,8 @@ import { m as motion } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { EASE_OUT } from "@/lib/motion-config";
 import Button from "@/components/ui/Button";
-import MeshBackground from "@/components/ui/MeshBackground";
 import HeroBackdrop, { type HeroTheme } from "@/components/ui/HeroBackdrop";
 import TwoLineText from "@/components/ui/TwoLineText";
 import ProofMetric from "@/components/ui/ProofMetric";
@@ -35,16 +35,16 @@ type Props = {
 };
 
 function HeroBreadcrumbs({ items }: { items: BreadcrumbItem[] }) {
-  const { fadeUp } = useMotionVariants();
+  const { popUp } = useMotionVariants();
   if (items.length <= 1) return null;
 
   return (
-    <motion.nav aria-label="Breadcrumb" variants={fadeUp} className="hero__breadcrumbs">
+    <motion.nav aria-label="Breadcrumb" variants={popUp} className="hero__breadcrumbs">
       <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-medium uppercase tracking-[0.14em] text-muted/70">
         {items.map((crumb, i) => {
           const isLast = i === items.length - 1;
           return (
-            <li key={`${crumb.name}-${i}`} className="flex items-center gap-2">
+            <li key={crumb.url ?? crumb.name} className="flex items-center gap-2">
               {i > 0 && <span className="text-white/15" aria-hidden>/</span>}
               {isLast || !crumb.url ? (
                 <span className={isLast ? "text-neon-cyan/80" : ""}>{crumb.name}</span>
@@ -81,28 +81,30 @@ export default function HeroArchetype({
   className,
   compact = false,
 }: Props) {
-  const { fadeUp, stagger } = useMotionVariants();
+  const { fadeUp, blurFadeUp, popUp, stagger } = useMotionVariants();
   const baseSection = cn(
     "hero",
     compact ? "hero--compact" : "hero--page",
     theme !== "default" && `hero--theme-${theme}`
   );
 
-  const meshBg = (
-    <MeshBackground variant="hero" showNodes={theme === "default"} />
+  const gradientBg = (
+    <div className="hero-gradient-animated" aria-hidden="true">
+      <div className="hero-gradient-animated__orb" />
+    </div>
   );
 
   const backdrop = <HeroBackdrop theme={theme} />;
 
   const bgGlow = (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,42rem)] h-72 rounded-full bg-[#00D4FF]/[0.022] blur-[140px]" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1F2937]/25 via-transparent to-[#111827]/50" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,42rem)] h-72 rounded-full bg-neon-cyan/[0.022] blur-[140px]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-gray/25 via-transparent to-charcoal/50" />
     </div>
   );
 
   const labelEl = label && (
-    <motion.span variants={fadeUp} className="hero-label">
+    <motion.span variants={popUp} className="hero-label">
       {label}
     </motion.span>
   );
@@ -115,7 +117,7 @@ export default function HeroArchetype({
         "type-hero",
         "font-bold tracking-tight text-balance"
       )}
-      variants={fadeUp}
+      variants={blurFadeUp}
     >
       {headline}
     </motion.h1>
@@ -156,7 +158,7 @@ export default function HeroArchetype({
 
     return (
       <section className={cn(baseSection, className)}>
-        {meshBg}
+        {gradientBg}
         {backdrop}
         {bgGlow}
         <div className="container-site hero__container relative z-10">
@@ -188,7 +190,7 @@ export default function HeroArchetype({
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.5, delay: 0.45, ease: EASE_OUT }}
               className="mt-12 md:mt-16"
             >
               <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 md:p-8 backdrop-blur-xl max-w-3xl">
@@ -215,7 +217,7 @@ export default function HeroArchetype({
   if (archetype === "diagram") {
     return (
       <section className={cn(baseSection, "hero--centered", className)}>
-        {meshBg}
+        {gradientBg}
         {backdrop}
         {bgGlow}
         <div className="container-site hero__container relative z-10">
@@ -249,7 +251,7 @@ export default function HeroArchetype({
 
     return (
       <section className={cn(baseSection, "hero--split overflow-x-clip", className)}>
-        {meshBg}
+        {gradientBg}
         {backdrop}
         {bgGlow}
         <div className="container-site hero__container relative z-10">
@@ -293,10 +295,10 @@ export default function HeroArchetype({
   if (archetype === "story") {
     return (
       <section className={cn(baseSection, "hero--centered", className)}>
-        {meshBg}
+        {gradientBg}
         {backdrop}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,36rem)] h-64 rounded-full bg-[#00D4FF]/[0.018] blur-[160px]" />
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,36rem)] h-64 rounded-full bg-neon-cyan/[0.018] blur-[160px]" />
         </div>
         <div className="container-site hero__container relative z-10">
           <motion.div
@@ -321,7 +323,7 @@ export default function HeroArchetype({
   if (archetype === "article") {
     return (
       <section className={cn(baseSection, "hero--centered", className)}>
-        {meshBg}
+        {gradientBg}
         {backdrop}
         {bgGlow}
         <div className="container-site hero__container relative z-10">
@@ -356,7 +358,7 @@ export default function HeroArchetype({
   if (archetype === "conversion") {
     return (
       <section className={cn(baseSection, "hero--centered", className)}>
-        {meshBg}
+        {gradientBg}
         {backdrop}
         {bgGlow}
         <div className="container-site hero__container relative z-10">

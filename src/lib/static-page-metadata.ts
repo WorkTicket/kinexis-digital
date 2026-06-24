@@ -65,6 +65,7 @@ export function getLeadMagnetMetadata(locale: Locale): Metadata {
     path: "/lead-magnet",
     title: `${c.heroTitlePrefix} ${c.heroTitleAccent} | KINEXIS Digital`,
     description: c.heroSubtitle,
+    noIndex: true,
   });
 }
 

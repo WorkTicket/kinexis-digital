@@ -63,11 +63,11 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
         "seo-audit",
         isEn ? "Technical SEO Audit" : "Auditoría SEO Técnica",
         isEn ? "Find what's blocking your highest-value pages from ranking." : "Encuentra qué bloquea tus páginas de mayor valor.",
-        "chart",
+        "dashboard",
         [
-          { title: "Crawl & Indexation", description: isEn ? "Orphan pages, redirect chains, index bloat" : "Páginas huérfanas y redirecciones", metric: "Week 1" },
-          { title: "Core Web Vitals", description: isEn ? "LCP, CLS, mobile usability" : "LCP, CLS, usabilidad móvil", metric: "Priority" },
-          { title: "Schema & Structure", description: isEn ? "Structured data on revenue pages" : "Datos estructurados", metric: "High" },
+          { title: "Crawl & Indexation", description: isEn ? "Orphan pages, redirect chains, index bloat" : "Páginas huérfanas, cadenas de redirección e inflación de índice", metric: "Week 1" },
+          { title: "Core Web Vitals", description: isEn ? "LCP, CLS, mobile usability" : "LCP, CLS y usabilidad móvil", metric: "Week 1" },
+          { title: "Schema & Structure", description: isEn ? "Structured data on revenue pages" : "Datos estructurados en páginas de ingresos", metric: "Week 1" },
         ],
       ),
       RankingStrategy: section(
@@ -75,7 +75,7 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
         isEn ? "Ranking Strategy" : "Estrategia de Posicionamiento",
         seoContent[locale].keywordMatrixSubtitle,
         "chart",
-        seoContent[locale].keywordMatrix.slice(0, 4).map((k) => ({ title: k.keyword, description: k.type, metric: "High" })),
+        seoContent[locale].keywordMatrix.slice(0, 4).map((k) => ({ title: k.keyword, description: k.desc, metric: k.type })),
       ),
       ContentStrategy: section(
         "content-strategy",
@@ -88,7 +88,7 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
         "technical-seo",
         isEn ? "Technical SEO" : "SEO Técnico",
         seoContent[locale].serpSubtitle,
-        "chart",
+        "mockup",
         seoContent[locale].serpFeatures.map((f) => ({ title: f.label, description: f.desc, metric: f.share })),
       ),
     };
@@ -176,7 +176,7 @@ function buildExtendedSections(slug: ServiceSeoSlug, locale: Locale, seo: Servic
       const c = localSeoContent[locale];
       return {
         LocalGbp: section("local-gbp", isEn ? "Google Business Profile" : "Perfil de Google Business", isEn ? "Map pack visibility starts here." : "La visibilidad en map pack empieza aquí.", "split", c.phases.slice(0, 2).map((p) => ({ title: p.title, description: p.desc, metric: p.metric }))),
-        LocalCitations: section("local-citations", isEn ? "Citations & NAP" : "Citas y NAP", isEn ? "Consistent location signals." : "Señales de ubicación consistentes.", "chart", [{ title: isEn ? "Directory Audit" : "Auditoría directorios", description: isEn ? "45+ directories checked" : "45+ directorios", metric: "Week 2" }, { title: "NAP Cleanup", description: isEn ? "Fix inconsistent data" : "Corregir inconsistencias", metric: "Done" }]),
+        LocalCitations: section("local-citations", isEn ? "Citations & NAP" : "Citas y NAP", isEn ? "Consistent location signals." : "Señales de ubicación consistentes.", "chart", [{ title: isEn ? "Directory Audit" : "Auditoría directorios", description: isEn ? "45+ directories checked" : "45+ directorios", metric: isEn ? "Delivered by week 2" : "Entregado en semana 2" }, { title: isEn ? "NAP Cleanup" : "Limpieza NAP", description: isEn ? "Fix inconsistent data" : "Corregir inconsistencias", metric: isEn ? "All listings corrected" : "Todos los listados corregidos" }]),
         LocalPages: section(
           "local-pages",
           isEn ? "Location Pages" : "Páginas de Ubicación",
@@ -195,7 +195,7 @@ function buildExtendedSections(slug: ServiceSeoSlug, locale: Locale, seo: Servic
             },
           ],
         ),
-        LocalReviews: section("local-reviews", isEn ? "Review Strategy" : "Estrategia de Reseñas", isEn ? "Sustainable review generation." : "Generación sostenible de reseñas.", "comparison", [{ title: isEn ? "Review velocity" : "Velocidad reseñas", description: isEn ? "Map pack ranking factor" : "Factor de ranking map pack", metric: "+280%" }, { title: isEn ? "Reporting" : "Informes", description: c.phases[4]?.desc ?? "", metric: c.phases[4]?.metric }]),
+        LocalReviews: section("local-reviews", isEn ? "Review Strategy" : "Estrategia de Reseñas", isEn ? "Sustainable review generation." : "Generación sostenible de reseñas.", "dashboard", [{ title: isEn ? "Review velocity" : "Velocidad reseñas", description: isEn ? "Map pack ranking factor" : "Factor de ranking map pack", metric: "+280%" }, { title: isEn ? "Reporting" : "Informes", description: c.phases[4]?.desc ?? "", metric: c.phases[4]?.metric }]),
       };
     }
     case "ppc-management":

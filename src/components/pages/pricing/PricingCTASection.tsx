@@ -43,8 +43,7 @@ export default function PricingCTASection({ headline, subtitle, ctaLabel }: Prop
         </motion.p>
         <motion.div
           variants={fadeUp}
-          className="flex flex-col items-center gap-2"
-          style={{ marginTop: "var(--space-subheading-cta)" }}
+          className="flex flex-col items-center gap-2 mt-[var(--space-subheading-cta)]"
         >
           <div className="cta-stack w-full justify-center">
             <Button href="/contact" variant="primary" fullWidthMobile>

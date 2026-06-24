@@ -6,9 +6,11 @@ import ProofMetric from "@/components/ui/ProofMetric";
 import AnimatedWrapper from "@/components/ui/AnimatedWrapper";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import HeroArchetype from "@/components/ui/HeroArchetype";
+import JsonLd from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/routing";
 import { getCaseStudyDetail, getCaseStudyStaticParams } from "@/content/case-study-details";
-import { buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
+import { breadcrumbSchema, caseStudySchema, organizationSchema } from "@/lib/schema";
 
 type Params = Promise<{ locale: Locale; slug: string }>;
 
@@ -38,6 +40,22 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
 
   return (
     <article>
+      <JsonLd
+        data={[
+          organizationSchema(),
+          caseStudySchema({
+            title: cs.title,
+            description: cs.results.slice(0, 155),
+            url: buildAbsoluteUrl(locale, `/case-studies/${slug}`),
+            industry: cs.industry,
+          }),
+          breadcrumbSchema([
+            { name: cs.breadcrumbs.home, url: buildAbsoluteUrl(locale, "/") },
+            { name: cs.breadcrumbs.caseStudies, url: buildAbsoluteUrl(locale, "/case-studies") },
+            { name: cs.title },
+          ]),
+        ]}
+      />
       <HeroArchetype
         archetype="article"
         label={cs.industry}

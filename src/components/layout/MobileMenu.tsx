@@ -279,6 +279,7 @@ export default function MobileMenu({
                 className={cn(
                   "flex w-full min-h-touch items-center rounded-xl px-4 py-4 transition-colors touch-manipulation",
                   pathname.startsWith("/resources") ||
+                    pathname.startsWith("/solutions") ||
                     pathname.includes("-vs-")
                     ? "bg-white/[0.08] text-white"
                     : "hover:bg-white/[0.04] text-white/90"

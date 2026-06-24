@@ -1,6 +1,7 @@
 import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import bundleAnalyzer from "@next/bundle-analyzer";
 
 initOpenNextCloudflareForDev();
 
@@ -31,7 +32,7 @@ const securityHeaders = [
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
       "font-src 'self' data:",
-      "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms",
+      "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://www.clarity.ms https://*.clarity.ms",
       "frame-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",
@@ -43,18 +44,53 @@ const securityHeaders = [
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
+  compress: true,
+  reactStrictMode: true,
+
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 640, 768, 1024, 1280, 1536],
     imageSizes: [32, 64, 96, 128, 180, 256, 280, 360],
+    minimumCacheTTL: 31536000,
     remotePatterns: [],
   },
-  webpack(config, { dev }) {
-    // The default webpack filesystem cache races with Windows file locking and
-    // spams "ENOENT ... rename 0.pack.gz_" warnings in dev. Use in-memory cache.
+
+  experimental: {
+    // Tree-shake these large packages at the module graph level so only
+    // the specific named exports used per-page are included in each chunk.
+    optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs"],
+  },
+
+  webpack(config, { dev, isServer }) {
+    // Dev: avoid Windows file-locking races with the filesystem cache.
     if (dev) {
       config.cache = { type: "memory" };
     }
+
+    // Production client bundles: split vendor chunks more granularly so
+    // per-page JS payloads stay smaller and shared code is cached longer.
+    if (!dev && !isServer) {
+      config.optimization.splitChunks = {
+        ...config.optimization.splitChunks,
+        cacheGroups: {
+          ...(config.optimization.splitChunks?.cacheGroups ?? {}),
+          framerMotion: {
+            name: "vendor-framer-motion",
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            chunks: "all",
+            priority: 30,
+          },
+          lucide: {
+            name: "vendor-lucide",
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            chunks: "all",
+            priority: 30,
+          },
+        },
+      };
+    }
+
     return config;
   },
   async redirects() {
@@ -95,9 +131,20 @@ const nextConfig = {
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],
       },
+      {
+        source: "/_next/image(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Vary", value: "Accept" },
+        ],
+      },
     ];
   },
 };
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
 const intlConfig = withNextIntl(nextConfig);
 
@@ -105,16 +152,18 @@ const intlConfig = withNextIntl(nextConfig);
 // Set SENTRY_ORG, SENTRY_PROJECT, and NEXT_PUBLIC_SENTRY_DSN in .env.local or CI
 // to enable error monitoring. The build works fine without them — Sentry stays
 // disabled (see instrumentation.ts and instrumentation-client.ts).
-export default withSentryConfig(intlConfig, {
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
-  // Suppress build-time CLI output when org/project are not set
-  silent: !process.env.SENTRY_ORG,
-  // Disable source map uploads until DSN is configured
-  sourcemaps: { disable: !process.env.SENTRY_ORG },
-  // Disable automatic release creation when not configured
-  webpack: {
-    autoInstrumentServerFunctions: false,
-    autoInstrumentMiddleware: false,
-  },
-});
+export default withBundleAnalyzer(
+  withSentryConfig(intlConfig, {
+    org: process.env.SENTRY_ORG,
+    project: process.env.SENTRY_PROJECT,
+    // Suppress build-time CLI output when org/project are not set
+    silent: !process.env.SENTRY_ORG,
+    // Disable source map uploads until DSN is configured
+    sourcemaps: { disable: !process.env.SENTRY_ORG },
+    // Disable automatic release creation when not configured
+    webpack: {
+      autoInstrumentServerFunctions: false,
+      autoInstrumentMiddleware: false,
+    },
+  })
+);

@@ -29,7 +29,7 @@ export const termsContent: Record<Locale, LegalPageContent> = {
       {
         title: "No Professional Guarantee",
         paragraphs: [
-          "Content on this site—including blog posts, case studies, pricing guides, and marketing examples—is for general information only. Past results described in case studies are not guarantees of future performance. Marketing outcomes depend on market conditions, budget, competition, and client execution.",
+          "Content on this site, including blog posts, case studies, pricing guides, and marketing examples, is for general information only. Past results described in case studies are not guarantees of future performance. Marketing outcomes depend on market conditions, budget, competition, and client execution.",
         ],
       },
       {
@@ -107,7 +107,7 @@ export const termsContent: Record<Locale, LegalPageContent> = {
       {
         title: "Sin Garantía Profesional",
         paragraphs: [
-          "El contenido del sitio —incluyendo artículos, casos de estudio y guías de precios— es solo informativo. Los resultados pasados descritos no garantizan rendimiento futuro. Los resultados de marketing dependen del mercado, presupuesto, competencia y ejecución del cliente.",
+          "El contenido del sitio, incluyendo artículos, casos de estudio y guías de precios, es solo informativo. Los resultados pasados descritos no garantizan rendimiento futuro. Los resultados de marketing dependen del mercado, presupuesto, competencia y ejecución del cliente.",
         ],
       },
       {
