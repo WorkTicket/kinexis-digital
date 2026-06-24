@@ -13,7 +13,7 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(self), interest-cohort=()",
+    value: "camera=(), microphone=(), geolocation=(self)",
   },
   {
     key: "Strict-Transport-Security",
@@ -24,11 +24,12 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms",
+      "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com",
+      "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
       "font-src 'self' data:",
-      "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms",
+      "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.clarity.ms https://*.clarity.ms https://cloudflareinsights.com",
       "frame-src 'self'",
       "object-src 'none'",
       "base-uri 'self'",
