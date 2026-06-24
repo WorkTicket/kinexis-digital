@@ -1,0 +1,285 @@
+{
+  "metadata": {
+    "title": "KINEXIS Digital - Convierte el Tráfico en Ingresos",
+    "description": "Somos una agencia de marketing digital que construye sistemas de ventas reales, no folletos bonitos. Nos especializamos en SEO, anuncios pagados, diseño web y embudos de conversión, todo diseñado para que tu teléfono suene con clientes potenciales calificados.",
+    "ogDescription": "Construimos sistemas de ventas reales para empresas que buscan crecimiento predecible, no solo sitios web bonitos."
+  },
+  "nav": {
+    "home": "Inicio",
+    "agency": "Agencia",
+    "services": "Servicios",
+    "industries": "Sectores",
+    "caseStudies": "Casos",
+    "about": "Nosotros",
+    "blog": "Blog",
+    "pricing": "Precios",
+    "resources": "Recursos",
+    "contact": "Contacto",
+    "toggleMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú",
+    "menu": "Menú",
+    "servicesOverview": "Resumen de Servicios",
+    "viewAllServices": "Ver Todos los Servicios",
+    "industriesOverview": "Resumen de Sectores",
+    "viewAllIndustries": "Ver Todos los Sectores",
+    "resourcesOverview": "Centro de Recursos",
+    "viewAllResources": "Ver Todos los Recursos",
+    "explore": "Explorar",
+    "serviceGroups": {
+      "searchAndAds": "Búsqueda y Pagado",
+      "webAndConversion": "Web y Conversión",
+      "brandAndContent": "Marca y Contenido"
+    },
+    "resourceLinks": {
+      "groups": {
+        "guides": "Guías KINEXIS",
+        "comparisons": "Comparativas",
+        "pricing": "Guías de Precios"
+      },
+      "localSeoChecklist": "Checklist SEO Local",
+      "seoAuditFramework": "Marco de Auditoría SEO",
+      "landingPageBestPractices": "Mejores Prácticas de Landing",
+      "abTestingFramework": "Marco de Pruebas A/B",
+      "googleAdsVsSeo": "Google Ads vs SEO",
+      "seoVsPpc": "SEO vs PPC",
+      "localSeoVsGoogleAds": "SEO Local vs Google Ads",
+      "wordpressVsWebflow": "WordPress vs Webflow",
+      "seoPricing": "Guía de Precios SEO",
+      "googleAdsPricing": "Precios Google Ads",
+      "webDesignPricing": "Precios Diseño Web",
+      "toolkitTitle": "Kit de Marketing",
+      "toolkitDesc": "17 herramientas que usamos a diario, por canal."
+    },
+    "bookCall": "Agendar Llamada",
+    "bookCallShort": "Agendar"
+  },
+  "services": {
+    "webDesign": "Diseño Web",
+    "seo": "SEO",
+    "localSeo": "SEO Local",
+    "paidAds": "Anuncios Pagados",
+    "ppcManagement": "Gestión PPC",
+    "googleAds": "Google Ads",
+    "metaAds": "Meta Ads",
+    "funnels": "Embudos y Optimización de Conversión",
+    "branding": "Branding",
+    "contentMarketing": "Marketing de Contenidos",
+    "emailMarketing": "Email Marketing y Automatización",
+    "socialMedia": "Gestión de Redes Sociales",
+    "videoMarketing": "Marketing de Video",
+    "analytics": "Analítica e Informes",
+    "cro": "Optimización de Conversión",
+    "growthConsulting": "Estrategia y Consultoría de Crecimiento",
+    "content": "Contenido",
+    "webDesignShort": "Diseño Web",
+    "funnelsShort": "Embudos y CRO"
+  },
+  "footer": {
+    "tagline": "Convertimos el tráfico inconsistente en sistemas de ingresos predecibles.",
+    "navigation": "Navegación",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "copyright": "KINEXIS Digital. Todos los derechos reservados.",
+    "builtWith": "Construido con estrategia, no con plantillas.",
+    "missionTitle": "Trabajamos con 8–10 clientes a la vez.",
+    "missionBody": "Compromisos enfocados. Resultados reales. Sin playbooks genéricos.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio"
+  },
+  "common": {
+    "bookStrategyCall": "Reservar una Llamada Estratégica",
+    "scheduleStrategyCall": "Agendar una Llamada Estratégica",
+    "learnAboutUs": "Conócenos",
+    "viewAllServices": "Ver Todos los Servicios",
+    "viewCaseStudy": "Ver Caso de Éxito",
+    "viewAllCaseStudies": "Ver Todos los Casos de Éxito",
+    "outcomeComparison": "Comparación de resultados",
+    "getFreeAudit": "Auditoría Gratuita",
+    "requestProposal": "Solicitar Propuesta",
+    "atAGlance": "En Resumen"
+  },
+  "language": {
+    "label": "Idioma",
+    "en": "English",
+    "es": "Español (LATAM)"
+  },
+  "hero": {
+    "line1": "NO GENERAMOS",
+    "line2": "LEADS.",
+    "line3": "CONSTRUIMOS",
+    "line3Highlight": "DOMINIO DE MERCADO.",
+    "subtitle": "Construimos la infraestructura de marketing que convierte tráfico calificado en ingresos predecibles.|SEO, paid media, diseño web y sistemas de conversión que trabajan juntos — no en silos."
+  },
+  "revenueEngine": {
+    "label": "El Marco KINEXIS",
+    "title": "Visibilidad → Tráfico → Leads → Ingresos",
+    "subtitle": "Un camino claro de visibilidad a ingresos. Cada etapa suma a la siguiente.",
+    "liveTrajectory": "Trayectoria en vivo",
+    "stage": "Etapa",
+    "trajectoryPeriod": "Trayectoria de 7 meses",
+    "metricStart": "Inicio",
+    "metricCurrent": "Actual",
+    "chartStart": "Inicio",
+    "chartEnd": "Ahora",
+    "stages": {
+      "visibility": {
+        "label": "Visibilidad",
+        "description": "Visitantes calificados desde búsqueda, redes sociales y canales pagados",
+        "tags": [
+          "SEO",
+          "Anuncios Pagados",
+          "Social"
+        ]
+      },
+      "traffic": {
+        "label": "Tráfico",
+        "description": "Páginas hechas para convertir, donde sea que te encuentren",
+        "tags": [
+          "Landing Pages",
+          "Lead Magnets"
+        ]
+      },
+      "leads": {
+        "label": "Leads",
+        "description": "Captura sin fricción y conversaciones de ventas estratégicas",
+        "tags": [
+          "Formularios",
+          "Llamadas de Descubrimiento"
+        ]
+      },
+      "revenue": {
+        "label": "Ingresos",
+        "description": "Crecimiento predecible en ingresos recurrentes y valor de vida del cliente",
+        "tags": [
+          "MRR",
+          "LTV"
+        ]
+      }
+    },
+    "chartUnits": {
+      "visibility": "impresiones (K)",
+      "traffic": "sesiones (K)",
+      "leads": "leads/mes",
+      "revenue": "$K MRR"
+    }
+  },
+  "servicesEcosystem": {
+    "label": "Servicios Conectados",
+    "title": "Servicios que trabajan en conjunto.",
+    "subtitle": "El SEO alimenta el contenido. El contenido alimenta los embudos.|Los embudos alimentan el email. Cada canal hace que el siguiente rinda más."
+  },
+  "featuredResults": {
+    "label": "Resultados Comprobados",
+    "title": "Resultados, no opiniones.",
+    "subtitle": "Trayectorias reales de trabajo real con clientes.|Así medimos el éxito.",
+    "cases": {
+      "landscaping": {
+        "category": "Servicios para el Hogar",
+        "title": "Empresa de Jardinería",
+        "headline": "Crecimiento de Ingresos 5X",
+        "summary": "Una reconstrucción completa del sitio web y una campaña de SEO local le dieron la vuelta a este negocio. Los ingresos pasaron de $2,000/mes a $11,500/mes en 8 meses."
+      },
+      "dental": {
+        "category": "Salud",
+        "title": "Clínica Dental",
+        "headline": "340% Más Pacientes",
+        "summary": "Clínica dental con múltiples ubicaciones. Reestructuración de SEO local y anuncios impulsó las reservas de nuevos pacientes de 45 a 198 por mes."
+      },
+      "ecommerce": {
+        "category": "Retail",
+        "title": "Marca E-Commerce Premium",
+        "headline": "Ingresos Mensuales 4X",
+        "summary": "Reposicionamiento de marca y reconstrucción del sitio elevó el AOV de $85 a $238 y los ingresos de $12K a $45K por mes."
+      }
+    }
+  },
+  "philosophy": {
+    "label": "Por Qué los Clientes Cambian a KINEXIS",
+    "title": "Ya has estado aquí antes.",
+    "subtitle": "Otra agencia. Otra promesa.|Otro panel lleno de números que no se conectan con los ingresos.",
+    "before": "Antes",
+    "after": "Después",
+    "agencyA": "Agencia A",
+    "beforeItems": [
+      "Comunicación lenta",
+      "Sin informes",
+      "Sin transparencia",
+      "Métricas de vanidad",
+      "Gerentes de cuenta rotativos"
+    ],
+    "afterItems": [
+      "Informes semanales",
+      "KPIs claros",
+      "Estratega dedicado",
+      "Métricas enfocadas en ingresos",
+      "Acceso directo al liderazgo"
+    ],
+    "statusBefore": "Desconectado",
+    "statusAfter": "Alineado con ingresos",
+    "dashboardBefore": "Panel Q4",
+    "dashboardAfter": "Panel KPI en vivo",
+    "pipelineLabel": "Valor del pipeline",
+    "pipelineBefore": "↓ 22%",
+    "pipelineAfter": "↑ 3.2×",
+    "statImpressions": "Impresiones",
+    "statEngagement": "Interacción",
+    "statRevenue": "Ingresos",
+    "beforeItemDetails": [
+      "Correos que tardan días y actualizaciones vagas. Los problemas urgentes esperan a la próxima llamada mientras el gasto publicitario sigue quemándose.",
+      "Un PDF trimestral, si tienes suerte. Sin visibilidad de qué funciona, qué se desperdicia o qué cambió la semana pasada.",
+      "Facturación opaca y alcance poco claro. Nunca sabes quién hace el trabajo ni a dónde va realmente tu presupuesto.",
+      "Celebran impresiones y clics mientras tu pipeline se estanca. La actividad parece alta — los ingresos no se mueven.",
+      "Cada trimestre alguien nuevo gestiona tu cuenta. Se pierde el contexto y vuelves a explicar tu negocio desde cero."
+    ],
+    "afterItemDetails": [
+      "Cada lunes: gasto, leads, CPL y pipeline en un solo informe. Siempre sabes dónde estás y qué se optimiza.",
+      "Acordamos objetivos desde el inicio — ingresos, costo por lead, tasa de conversión — y reportamos cada semana.",
+      "Un estratega senior es dueño de tu cuenta de punta a punta. Conoce tu negocio, mercado y números — sin traspasos.",
+      "Medimos lo que impacta tu P&L: leads calificados, tasa de cierre, ROAS y LTV. Las métricas de vanidad son contexto, no el titular.",
+      "Sin colas de tickets. Cuando algo importa, hablas con quienes pueden tomar decisiones y cambiar el rumbo rápido."
+    ]
+  },
+  "cta": {
+    "label": "Hablemos",
+    "title": "¿Listo para Construir un",
+    "titleHighlight": "Sistema de Ingresos?",
+    "subtitle": "Sin discurso ensayado. Sin presión para firmar nada.|Solo una conversación directa sobre cómo podría verse el crecimiento real para tu negocio."
+  },
+  "midCta": {
+    "label": "Siguiente paso",
+    "title": "Descubre lo que es posible para tu negocio",
+    "subtitle": "Reserva una llamada estratégica o solicita una auditoría gratuita.|Te mostraremos dónde está fallando tu motor de crecimiento y cómo solucionarlo.",
+    "secondaryCta": "Auditoría gratuita"
+  },
+  "chatbot": {
+    "openChat": "Abrir chat",
+    "closeChat": "Cerrar chat",
+    "chatMessage": "Mensaje del chat",
+    "sendMessage": "Enviar mensaje",
+    "assistantName": "KINEXIS AI",
+    "assistantRole": "Asistente comercial",
+    "placeholder": "Escribe tu respuesta...",
+    "initialMessage": "¡Hola! Soy el asistente de IA de KINEXIS Digital. ¿Qué servicio estás buscando?",
+    "questions": {
+      "service": "¿Qué servicio necesitas? (SEO, Anuncios Pagados, Diseño Web, Embudos, Branding)",
+      "business": "¿Qué tipo de negocio tienes?",
+      "revenue": "¿Cuál es tu rango de ingresos mensuales?",
+      "goal": "¿Cuál es tu objetivo principal? (leads, ventas, crecimiento de marca)"
+    },
+    "quickReplies": {
+      "services": ["SEO", "Anuncios Pagados", "Diseño Web", "Embudos", "Branding"],
+      "businessTypes": ["E-Commerce", "Servicio Local", "SaaS", "Servicios Profesionales"],
+      "revenue": ["Menos de $10k/mes", "$10k-$50k/mes", "$50k-$100k/mes", "$100k+/mes"],
+      "goals": ["Más leads", "Más ventas", "Reconocimiento de marca", "Todo lo anterior"]
+    },
+    "highIntentResponse": "¡Suenas como un buen fit! Agendemos tu llamada estratégica. 👇",
+    "lowIntentResponse": "¡Gracias! Empieza con nuestra auditoría de crecimiento gratuita. Te dará una imagen clara de dónde enfocarte. 👇"
+  },
+  "cookies": {
+    "title": "Usamos cookies",
+    "description": "Usamos cookies esenciales para operar este sitio y, con tu consentimiento, cookies de analítica para entender cómo los visitantes usan kinexisdigital.com. Consulta nuestra",
+    "privacyLink": "Política de Privacidad",
+    "accept": "Aceptar analítica",
+    "reject": "Rechazar no esenciales"
+  }
+}

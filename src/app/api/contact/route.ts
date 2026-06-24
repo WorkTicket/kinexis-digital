@@ -1,0 +1,92 @@
+import { NextResponse } from "next/server";
+import { getClientIp, isRateLimited } from "@/lib/rate-limit";
+import {
+  createMailTransporter,
+  emailMessageRow,
+  emailRow,
+  getEmailCredentials,
+  wrapKinexisEmailHtml,
+} from "@/lib/email";
+import { escapeHtml } from "@/lib/sanitize";
+
+export async function POST(request: Request) {
+  try {
+    const ip = getClientIp(request);
+    if (isRateLimited(`contact:${ip}`)) {
+      return NextResponse.json(
+        { error: "Too many requests. Please try again later." },
+        { status: 429 },
+      );
+    }
+
+    const body = await request.json();
+    const { name, email, company, phone, service, message } = body;
+
+    if (!name || !email) {
+      return NextResponse.json(
+        { error: "Name and email are required." },
+        { status: 400 },
+      );
+    }
+
+    const creds = getEmailCredentials();
+    const isDev = process.env.NODE_ENV === "development";
+
+    if (!creds) {
+      if (!isDev) {
+        console.error("Contact form: email credentials not configured");
+        return NextResponse.json(
+          { error: "Server configuration error. Please try again later." },
+          { status: 500 },
+        );
+      }
+      console.log("\n📬 [DEV] Contact form submission (no email sent):", { name, email });
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
+
+    const safeName = String(name);
+    const safeEmail = String(email);
+    const rows = [
+      emailRow("Name", safeName),
+      emailRow("Email", safeEmail, true),
+      company ? emailRow("Company", String(company)) : "",
+      phone ? emailRow("Phone", String(phone)) : "",
+      service ? emailRow("Service", String(service)) : "",
+      message ? emailMessageRow(String(message)) : "",
+    ].join("");
+
+    const transporter = createMailTransporter(creds);
+
+    await transporter.sendMail({
+      from: `"KINEXIS Digital Contact" <${creds.gmailUser}>`,
+      to: creds.toEmail,
+      replyTo: safeEmail,
+      subject: `New Inquiry from ${safeName}${company ? ` — ${company}` : ""}`,
+      html: wrapKinexisEmailHtml(
+        "New Contact Form Submission",
+        rows,
+        `Reply directly to this email to respond to <strong style="color:#fff;">${escapeHtml(safeName)}</strong>.`,
+      ),
+      text: [
+        "New Contact Form Submission — KINEXIS Digital",
+        "",
+        `Name: ${safeName}`,
+        `Email: ${safeEmail}`,
+        company ? `Company: ${company}` : "",
+        phone ? `Phone: ${phone}` : "",
+        service ? `Service Interest: ${service}` : "",
+        message ? `\nMessage:\n${message}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n"),
+    });
+
+    return NextResponse.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error("Contact form error:", error);
+    return NextResponse.json(
+      { error: "Failed to send message. Please try again." },
+      { status: 500 },
+    );
+  }
+}

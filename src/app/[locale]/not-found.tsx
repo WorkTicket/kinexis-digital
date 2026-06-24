@@ -1,0 +1,78 @@
+"use client";
+
+import Link from "next/link";
+import { useLocale } from "next-intl";
+import { ArrowRight, Home, Layers, Phone } from "lucide-react";
+
+export default function NotFound() {
+  const locale = useLocale();
+  const prefix = locale === "es" ? "/es" : "/en";
+
+  const isEs = locale === "es";
+
+  return (
+    <div className="flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center px-6 py-24 text-center">
+      {/* Ambient glow */}
+      <div
+        className="pointer-events-none absolute left-1/2 top-1/3 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon-cyan/[0.04] blur-[140px]"
+        aria-hidden
+      />
+
+      <div className="relative mx-auto max-w-2xl">
+        {/* 404 label */}
+        <span className="mb-6 inline-block rounded-full border border-neon-cyan/20 bg-neon-cyan/[0.06] px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-neon-cyan">
+          404
+        </span>
+
+        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          {isEs ? "Página no encontrada" : "Page not found"}
+        </h1>
+
+        <p className="mt-4 text-base leading-relaxed text-white/50">
+          {isEs
+            ? "La página que buscas no existe o fue movida. Aquí hay algunos lugares para continuar."
+            : "The page you're looking for doesn't exist or has been moved. Here are a few places to continue."}
+        </p>
+
+        {/* Quick links */}
+        <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <Link
+            href={`${prefix}`}
+            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white"
+          >
+            <Home className="h-4 w-4 shrink-0 text-neon-cyan" />
+            {isEs ? "Inicio" : "Homepage"}
+          </Link>
+          <Link
+            href={`${prefix}/services`}
+            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white"
+          >
+            <Layers className="h-4 w-4 shrink-0 text-neon-cyan" />
+            {isEs ? "Servicios" : "Services"}
+          </Link>
+          <Link
+            href={`${prefix}/contact`}
+            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-white/[0.08] bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white/80 transition-colors duration-200 hover:bg-white/[0.08] hover:text-white"
+          >
+            <Phone className="h-4 w-4 shrink-0 text-neon-cyan" />
+            {isEs ? "Contacto" : "Contact"}
+          </Link>
+        </div>
+
+        {/* Primary CTA */}
+        <div className="mt-8">
+          <Link
+            href={`${prefix}/contact`}
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-xl bg-neon-cyan px-6 py-3 text-sm font-semibold text-bg transition-opacity duration-200 hover:opacity-90"
+          >
+            {isEs ? "Agendar llamada de estrategia" : "Book a strategy call"}
+            <ArrowRight className="h-4 w-4 shrink-0" />
+          </Link>
+          <p className="mt-2 text-xs text-white/30">
+            {isEs ? "Sin contratos a largo plazo. Mes a mes." : "No long-term contracts. Month to month."}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}

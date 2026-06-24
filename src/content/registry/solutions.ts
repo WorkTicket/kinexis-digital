@@ -1,0 +1,366 @@
+export type SolutionEntry = {
+  slug: string;
+  title: string;
+  serviceSlug: string;
+  industrySlug: string;
+  headlineLine1: string;
+  headlineLine2: string;
+  metaDescription: string;
+  challenge: string;
+  approach: string[];
+  deliverables: string[];
+  results: { metric: string; label: string }[];
+  faqs: { question: string; answer: string }[];
+};
+
+export const solutions: SolutionEntry[] = [
+  {
+    slug: "seo-for-hvac-companies",
+    title: "SEO for HVAC Companies",
+    serviceSlug: "seo",
+    industrySlug: "hvac",
+    headlineLine1: "SEO that fills your schedule",
+    headlineLine2: "before peak season hits.",
+    metaDescription:
+      "HVAC SEO services that capture emergency repairs, maintenance contracts, and seasonal installs. Local rankings, service-area pages, and technical foundations built for trades.",
+    challenge:
+      "HVAC companies compete on emergency intent, seasonal demand swings, and hyper-local visibility. Generic SEO fails because every city, service area, and equipment type needs its own search strategy.",
+    approach: [
+      "Map emergency vs. planned-intent keywords across your full service area",
+      "Build location and service-line landing pages with schema and call tracking",
+      "Optimize Google Business Profile, citations, and review velocity",
+      "Create seasonal content hubs for AC, heating, and maintenance programs",
+      "Technical audit: Core Web Vitals, crawl budget, and mobile call-to-action paths",
+    ],
+    deliverables: [
+      "Full technical SEO audit and prioritized fix roadmap",
+      "Service-area and equipment-specific landing page architecture",
+      "Google Business Profile optimization and local citation buildout",
+      "Monthly content and on-page optimization cadence",
+      "Rankings, calls, and booked-job reporting dashboard",
+    ],
+    results: [
+      { metric: "+340%", label: "traffic · Landscaping Co., 8 mo" },
+      { metric: "Top 3", label: "local pack positions" },
+      { metric: "250+", label: "service calls per month" },
+    ],
+    faqs: [
+      { question: "How long until HVAC SEO produces leads?", answer: "Most HVAC clients see ranking movement in 60–90 days and meaningful call volume increases by months 4–6, depending on competition and site foundation." },
+      { question: "Do you build separate pages for each city we serve?", answer: "Yes. We create unique, genuinely useful service-area pages, not duplicate templates with swapped city names." },
+      { question: "Can SEO work alongside our Google Ads?", answer: "Absolutely. SEO builds long-term visibility while ads capture immediate emergency and seasonal intent. We align both channels to the same conversion tracking." },
+    ],
+  },
+  {
+    slug: "seo-for-dentists",
+    title: "SEO for Dentists",
+    serviceSlug: "seo",
+    industrySlug: "dentists",
+    headlineLine1: "Dental SEO for",
+    headlineLine2: "a full chair schedule.",
+    metaDescription:
+      "Dental SEO that drives new patient appointments through local rankings, treatment-specific pages, and trust-building content. Proven results for practices nationwide.",
+    challenge:
+      "Dental practices face intense local competition, high CPC on paid channels, and patients who research providers extensively before booking. Your site must rank, build trust, and convert.",
+    approach: [
+      "Treatment-specific SEO for implants, Invisalign, cosmetic, and family dentistry",
+      "Local pack optimization with review strategy and GBP management",
+      "Before/after and provider authority content that answers patient questions",
+      "Conversion paths optimized for mobile appointment requests",
+      "Competitive gap analysis against other practices in your market",
+    ],
+    deliverables: [
+      "Dental-specific keyword and competitor research",
+      "Treatment and location landing page system",
+      "Review generation workflow and reputation monitoring",
+      "Monthly content and on-page optimization",
+      "New patient call and form submission tracking",
+    ],
+    results: [
+      { metric: "+180", label: "new patients per month" },
+      { metric: "4.1x", label: "organic lead growth" },
+      { metric: "92%", label: "positive review rate" },
+    ],
+    faqs: [
+      { question: "Is dental SEO different from general local SEO?", answer: "Yes. Dental search includes treatment-specific intent, insurance questions, and high trust requirements. We build content and pages that address how patients actually choose a dentist." },
+      { question: "Do you handle HIPAA compliance in marketing?", answer: "We follow HIPAA-aware marketing practices: no patient testimonials without consent, and we never request PHI through marketing forms." },
+    ],
+  },
+  {
+    slug: "seo-for-law-firms",
+    title: "SEO for Law Firms",
+    serviceSlug: "seo",
+    industrySlug: "law-firms",
+    headlineLine1: "Practice-area SEO",
+    headlineLine2: "for qualified cases.",
+    metaDescription:
+      "Law firm SEO services focused on practice-area authority, local visibility, and intake-optimized pages. Ethical, sustainable rankings for attorneys who want predictable caseload growth.",
+    challenge:
+      "Legal SEO is among the most competitive verticals online. Firms need practice-area depth, jurisdictional relevance, and pages that convert searchers into consultations while maintaining bar compliance.",
+    approach: [
+      "Practice-area keyword architecture mapped to your case types",
+      "Jurisdiction and location pages with unique legal context",
+      "Authority content answering the questions prospects search before calling",
+      "E-E-A-T signals: attorney bios, credentials, case results (where permitted)",
+      "Intake form and click-to-call optimization on every landing page",
+    ],
+    deliverables: [
+      "Competitive SEO audit across your practice areas",
+      "Content calendar aligned to case acquisition goals",
+      "Technical SEO and site architecture recommendations",
+      "Monthly reporting on rankings, consultations, and case pipeline",
+    ],
+    results: [
+      { metric: "$2.4M", label: "pipeline generated" },
+      { metric: "34%", label: "consultation close rate" },
+      { metric: "12+", label: "qualified leads per month" },
+    ],
+    faqs: [
+      { question: "Can you guarantee first-page rankings for our practice area?", answer: "No ethical agency guarantees specific rankings. We guarantee a strategic process, transparent reporting, and continuous optimization toward measurable consultation growth." },
+    ],
+  },
+  {
+    slug: "google-ads-for-roofers",
+    title: "Google Ads for Roofers",
+    serviceSlug: "google-ads",
+    industrySlug: "roofing",
+    headlineLine1: "Roofing Google Ads",
+    headlineLine2: "for storm-season jobs.",
+    metaDescription:
+      "Google Ads management for roofing companies. Storm-response campaigns, geo-targeted bids, and landing pages built to convert high-intent homeowners into booked jobs.",
+    challenge:
+      "Roofing ads burn budget fast without precise geo-targeting, negative keywords, and landing pages that match emergency vs. replacement intent. Seasonality makes every dollar count.",
+    approach: [
+      "Separate campaigns for storm damage, replacement, and commercial roofing",
+      "Geo-fencing and bid adjustments for your exact service radius",
+      "Call-only and form campaigns with offline conversion tracking",
+      "Landing pages with instant quote flows and social proof",
+      "Weekly negative keyword and search term audits",
+    ],
+    deliverables: [
+      "Full Google Ads account audit and restructure",
+      "Campaign build with conversion tracking and call recording",
+      "Custom landing pages per campaign type",
+      "Weekly optimization and monthly performance reviews",
+    ],
+    results: [
+      { metric: "250+", label: "service calls/mo · trades clients" },
+      { metric: "45%", label: "CPL reduction · campaign optimization" },
+      { metric: "3.2x", label: "ROAS · local service ads" },
+    ],
+    faqs: [
+      { question: "What budget do roofers need for Google Ads?", answer: "Most roofing companies start between $3,000–$8,000/month in ad spend depending on market size and season. We recommend a budget that supports statistically valid testing." },
+    ],
+  },
+  {
+    slug: "email-marketing-for-saas",
+    title: "Email Marketing for SaaS",
+    serviceSlug: "email-marketing",
+    industrySlug: "saas",
+    headlineLine1: "Lifecycle email",
+    headlineLine2: "for SaaS growth.",
+    metaDescription:
+      "SaaS email marketing: onboarding sequences, trial nurture, churn prevention, and expansion campaigns. Built for product-led and sales-assisted growth models.",
+    challenge:
+      "SaaS email must activate users fast, guide them to value moments, and retain subscribers through renewal cycles while syncing with product analytics and sales outreach.",
+    approach: [
+      "Map lifecycle stages from signup → activation → conversion → expansion",
+      "Build behavioral triggers tied to product usage events",
+      "A/B test subject lines, send times, and CTA placement",
+      "Segment by plan tier, usage level, and engagement score",
+      "Integrate with CRM and product analytics for unified reporting",
+    ],
+    deliverables: [
+      "Lifecycle email architecture and sequence buildout",
+      "Template design aligned to your brand system",
+      "Automation setup in your ESP (HubSpot, Customer.io, etc.)",
+      "Monthly performance analysis with revenue attribution",
+    ],
+    results: [
+      { metric: "42%", label: "open rate · lifecycle sequences" },
+      { metric: "65%", label: "trial conversion lift" },
+      { metric: "28%", label: "churn reduction" },
+    ],
+    faqs: [
+      { question: "Which email platforms do you work with?", answer: "HubSpot, Customer.io, Klaviyo, ActiveCampaign, Mailchimp, and Iterable. We adapt to your existing stack." },
+    ],
+  },
+  {
+    slug: "cro-for-saas-companies",
+    title: "CRO for SaaS Companies",
+    serviceSlug: "funnels",
+    industrySlug: "saas",
+    headlineLine1: "CRO that converts",
+    headlineLine2: "trials into customers.",
+    metaDescription:
+      "SaaS CRO services: funnel analysis, A/B testing, onboarding optimization, and pricing page experiments. Data-driven experiments that compound MRR growth.",
+    challenge:
+      "SaaS conversion problems hide in onboarding friction, unclear value props, pricing complexity, and activation gaps. Small improvements at the top of funnel compound into significant ARR.",
+    approach: [
+      "Full-funnel analysis from landing page through activation and upgrade",
+      "Heatmaps, session recordings, and user interview synthesis",
+      "Prioritized experiment roadmap ranked by ICE score",
+      "A/B and multivariate tests on signup, onboarding, and pricing flows",
+      "Close the loop with product analytics and cohort analysis",
+    ],
+    deliverables: [
+      "Conversion audit with prioritized experiment backlog",
+      "Monthly A/B test design, implementation, and analysis",
+      "UX recommendations for onboarding and upgrade paths",
+      "Revenue impact reporting per experiment",
+    ],
+    results: [
+      { metric: "65%", label: "conv. rate lift · E-Commerce client" },
+      { metric: "8.4%", label: "lead conversion · Landscaping rebuild" },
+      { metric: "40%", label: "CAC reduction · SaaS engagements" },
+    ],
+    faqs: [
+      { question: "How many tests should a SaaS company run monthly?", answer: "We typically run 2–4 statistically valid experiments per month, depending on traffic volume. Quality over quantity: every test needs enough sample size to decide." },
+    ],
+  },
+  {
+    slug: "saas-marketing-agency",
+    title: "SaaS Marketing Agency",
+    serviceSlug: "growth-consulting",
+    industrySlug: "saas",
+    headlineLine1: "A SaaS growth agency.",
+    headlineLine2: "Not local lead-gen playbooks.",
+    metaDescription:
+      "KINEXIS is a SaaS marketing agency specializing in content-led acquisition, paid search, CRO, and full-funnel analytics for B2B and B2C software companies.",
+    challenge:
+      "SaaS companies need agencies that understand CAC, LTV, activation rates, and pipeline velocity, not just traffic and leads. Most agencies apply local business tactics to software and fail.",
+    approach: [
+      "Align marketing KPIs to MRR, CAC payback, and net revenue retention",
+      "Build content clusters that capture comparison and problem-aware search",
+      "Run paid campaigns optimized for trial signups and demo requests",
+      "Optimize onboarding and upgrade flows with continuous experimentation",
+      "Implement attribution that connects marketing spend to revenue",
+    ],
+    deliverables: [
+      "Growth audit and 90-day roadmap",
+      "Integrated content, paid, and CRO execution",
+      "Weekly growth reviews with experiment tracking",
+      "Board-ready reporting on pipeline and revenue metrics",
+    ],
+    results: [
+      { metric: "2.5x", label: "pipeline growth" },
+      { metric: "40%", label: "CAC reduction" },
+      { metric: "65%", label: "trial conversion lift" },
+    ],
+    faqs: [
+      { question: "Do you work with early-stage startups?", answer: "Yes, from seed-stage companies finding product-market fit to Series B+ teams scaling acquisition. Scope adjusts to your stage and budget." },
+    ],
+  },
+  {
+    slug: "startup-marketing-agency",
+    title: "Startup Marketing Agency",
+    serviceSlug: "growth-consulting",
+    industrySlug: "startups",
+    headlineLine1: "Capital-efficient growth",
+    headlineLine2: "for startups.",
+    metaDescription:
+      "Startup marketing agency services: positioning, launch campaigns, growth experiments, and scalable acquisition systems for venture-backed and bootstrapped companies.",
+    challenge:
+      "Startups need fast learning cycles, tight budgets, and strategies that prove traction for investors, not bloated retainers and months of planning before anything ships.",
+    approach: [
+      "Rapid positioning and messaging validation",
+      "Launch campaigns across search, social, and content",
+      "Weekly growth sprints with clear experiment hypotheses",
+      "Founder-friendly reporting tied to north-star metrics",
+      "Scale what works, kill what doesn't. Fast.",
+    ],
+    deliverables: [
+      "Positioning workshop and messaging framework",
+      "90-day growth sprint plan",
+      "Channel launch and optimization",
+      "Investor-ready metrics dashboard",
+    ],
+    results: [
+      { metric: "4X MRR", label: "SaaS Analytics client · 6 mo" },
+      { metric: "120%", label: "conversion lift · launch campaigns" },
+      { metric: "3x", label: "pipeline · 90-day sprint" },
+    ],
+    faqs: [
+      { question: "Can you work on equity or performance-only?", answer: "We primarily work on retainer or project basis. For select startups with strong product-market fit, we discuss hybrid models after an initial strategy engagement." },
+    ],
+  },
+  {
+    slug: "ai-marketing-agency",
+    title: "AI Marketing Agency",
+    serviceSlug: "growth-consulting",
+    industrySlug: "ai-companies",
+    headlineLine1: "Marketing for AI companies",
+    headlineLine2: "in enterprise sales.",
+    metaDescription:
+      "AI marketing agency specializing in technical content, demo funnels, enterprise demand gen, and positioning for AI startups and established technology companies.",
+    challenge:
+      "AI companies face hype fatigue, complex buyer education, and long enterprise sales cycles. Marketing must establish credibility, explain value clearly, and generate qualified pipeline.",
+    approach: [
+      "Category positioning that differentiates from AI noise",
+      "Technical content for developers, operators, and executives",
+      "Demo and trial funnels optimized for high-intent buyers",
+      "ABM for enterprise accounts with multi-stakeholder nurture",
+      "Thought leadership and analyst-ready proof points",
+    ],
+    deliverables: [
+      "AI-specific positioning and messaging",
+      "Content strategy across technical and executive audiences",
+      "Demand generation campaigns",
+      "Sales-enablement assets and case study development",
+    ],
+    results: [
+      { metric: "475%", label: "inbound lead growth" },
+      { metric: "28%", label: "shorter sales cycle" },
+      { metric: "5.1x", label: "marketing ROI" },
+    ],
+    faqs: [
+      { question: "Do you understand technical AI products?", answer: "We work with ML platforms, AI APIs, vertical AI applications, and automation tools. Our team translates technical capability into buyer-relevant outcomes." },
+    ],
+  },
+  {
+    slug: "web-design-for-saas-companies",
+    title: "Web Design for SaaS Companies",
+    serviceSlug: "web-design",
+    industrySlug: "saas",
+    headlineLine1: "SaaS websites that convert",
+    headlineLine2: "trials and demos.",
+    metaDescription:
+      "Web design for SaaS companies: product-led homepages, pricing pages, and onboarding flows that communicate value fast and drive signups.",
+    challenge:
+      "SaaS buyers decide in seconds whether your product is credible. Cluttered messaging, slow load times, and weak CTAs kill conversion before prospects ever see a demo.",
+    approach: [
+      "Messaging hierarchy that leads with outcomes, not features",
+      "Performance-first development with sub-2s load targets",
+      "Pricing page architecture tested against conversion best practices",
+      "Interactive product previews and social proof placement",
+      "Mobile-first design for decision-makers researching on the go",
+    ],
+    deliverables: [
+      "UX research and wireframes",
+      "Custom design system aligned to your brand",
+      "Development with analytics and heatmap integration",
+      "Post-launch CRO recommendations",
+    ],
+    results: [
+      { metric: "+425%", label: "conv. lift · client rebuild" },
+      { metric: "3.8x", label: "mobile engagement" },
+      { metric: "215%", label: "time on site increase" },
+    ],
+    faqs: [
+      { question: "Do you redesign existing SaaS sites or build from scratch?", answer: "Both. We audit existing sites for conversion gaps or build net-new experiences for launches and rebrands." },
+    ],
+  },
+];
+
+export function getSolutionBySlug(slug: string): SolutionEntry | undefined {
+  return solutions.find((s) => s.slug === slug);
+}
+
+export const technologyAgencySlugs = [
+  "saas-marketing-agency",
+  "startup-marketing-agency",
+  "ai-marketing-agency",
+  "fintech-marketing-agency",
+  "cybersecurity-marketing-agency",
+  "b2b-technology-marketing-agency",
+  "software-marketing-agency",
+] as const;

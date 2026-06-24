@@ -1,0 +1,42 @@
+"use client";
+
+import HeroArchetype from "@/components/ui/HeroArchetype";
+import type { ServiceHeroData, ServiceSeoSlug } from "@/content/services/architecture/types";
+import type { BreadcrumbItem } from "@/lib/schema";
+import { getServiceHeroTheme } from "@/lib/service-hero";
+
+type Props = ServiceHeroData & {
+  slug: ServiceSeoSlug;
+  breadcrumbs: BreadcrumbItem[];
+};
+
+export default function ServiceHero({
+  slug,
+  label,
+  line1,
+  line2,
+  subtitle,
+  ctaLabel,
+  visualization,
+  breadcrumbs,
+}: Props) {
+  return (
+    <HeroArchetype
+      archetype="showcase"
+      theme={getServiceHeroTheme(slug)}
+      label={label}
+      headline={
+        <>
+          <span className="type-hero-line">{line1}</span>
+          <span className="type-hero-line">{line2}</span>
+        </>
+      }
+      subtitle={subtitle}
+      ctaLabel={ctaLabel}
+      ctaHref="/contact"
+      breadcrumbs={breadcrumbs}
+      visualizationClassName="hero__viz-inner--service-page"
+      visualization={visualization}
+    />
+  );
+}

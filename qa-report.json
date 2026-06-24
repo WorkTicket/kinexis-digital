@@ -1,0 +1,186 @@
+{
+  "base": "http://localhost:3099",
+  "timestamp": "2026-06-23T16:08:38.873Z",
+  "robots": {
+    "status": 200,
+    "body": "User-Agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: https://kinexisdigital.com/sitemap.xml"
+  },
+  "sitemap": {
+    "status": 200,
+    "urlCount": 290
+  },
+  "pages": [
+    {
+      "path": "/en",
+      "label": "Home",
+      "status": 200,
+      "schemas": [
+        "Organization",
+        "ContactPoint"
+      ],
+      "checks": {
+        "canonical": "https://kinexisdigital.com/en",
+        "ogTitle": "KINEXIS Digital - Turn Traffic Into Revenue",
+        "ogDescription": "We&#x27;re a digital marketing agency that builds real sales systems, not fancy brochures. We specialize in SEO, paid ads, web design, and conversion funnels - all designed to get your phone ringing with qualified leads.",
+        "ogUrl": "https://kinexisdigital.com/en",
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "description": "We&#x27;re a digital marketing agency that builds real sales systems, not fancy brochures. We specialize in SEO, paid ads, web design, and conversion funnels - all designed to get your phone ringing with qualified leads.",
+        "hasOrganization": true,
+        "hasBreadcrumb": false
+      }
+    },
+    {
+      "path": "/en/contact",
+      "label": "Contact",
+      "status": 200,
+      "schemas": [
+        "Organization",
+        "ContactPoint",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "checks": {
+        "canonical": "https://kinexisdigital.com/en/contact",
+        "ogTitle": "Contact KINEXIS Digital | Start with a conversation, not a pitch deck.",
+        "ogDescription": "Tell us what&#x27;s not working in your marketing. We&#x27;ll respond within one business day with an honest read on whether we can help.",
+        "ogUrl": "https://kinexisdigital.com/en/contact",
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "description": "Tell us what&#x27;s not working in your marketing. We&#x27;ll respond within one business day with an honest read on whether we can help.",
+        "hasOrganization": true,
+        "hasBreadcrumb": true
+      }
+    },
+    {
+      "path": "/en/services/seo",
+      "label": "SEO Service",
+      "status": 200,
+      "schemas": [
+        "Organization",
+        "ContactPoint",
+        "Service",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "checks": {
+        "canonical": "https://kinexisdigital.com/en/services/seo",
+        "ogTitle": "SEO Services | KINEXIS Digital",
+        "ogDescription": "SEO built to grow with your business.|Solid technical work, strong content, and links that actually move the needle.",
+        "ogUrl": "https://kinexisdigital.com/en/services/seo",
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "description": "SEO built to grow with your business.|Solid technical work, strong content, and links that actually move the needle.",
+        "hasOrganization": true,
+        "hasBreadcrumb": true
+      }
+    },
+    {
+      "path": "/en/case-studies",
+      "label": "Case Studies",
+      "status": 200,
+      "schemas": [
+        "Organization",
+        "ContactPoint",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "checks": {
+        "canonical": "https://kinexisdigital.com/en/case-studies",
+        "ogTitle": "Case Studies | Real growth. Real numbers. | KINEXIS",
+        "ogDescription": "Every case study is a verified before-and-after story.|Strategy, execution, and real numbers. No vanity metrics. Just revenue.",
+        "ogUrl": "https://kinexisdigital.com/en/case-studies",
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "description": "Every case study is a verified before-and-after story.|Strategy, execution, and real numbers. No vanity metrics. Just revenue.",
+        "hasOrganization": true,
+        "hasBreadcrumb": true
+      }
+    },
+    {
+      "path": "/en/locations/des-moines",
+      "label": "Location",
+      "status": 200,
+      "schemas": [
+        "Organization",
+        "ContactPoint",
+        "LocalBusiness",
+        "City",
+        "State",
+        "FAQPage",
+        "Question",
+        "Answer",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "checks": {
+        "canonical": "https://kinexisdigital.com/en/locations/des-moines",
+        "ogTitle": "Digital Marketing Agency Des Moines | KINEXIS Digital",
+        "ogDescription": "Full-service digital marketing for Des Moines businesses scaling beyond word-of-mouth: SaaS startups, professional firms, and regional brands competing statewide.",
+        "ogUrl": "https://kinexisdigital.com/en/locations/des-moines",
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "description": "Full-service digital marketing for Des Moines businesses scaling beyond word-of-mouth: SaaS startups, professional firms, and regional brands competing statewide.",
+        "hasOrganization": true,
+        "hasBreadcrumb": true
+      }
+    },
+    {
+      "path": "/en/blog/local-seo-strategy-2026",
+      "label": "Blog Post",
+      "status": 200,
+      "schemas": [
+        "Organization",
+        "ContactPoint",
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "checks": {
+        "canonical": "https://kinexisdigital.com/en/blog/local-seo-strategy-2026",
+        "ogTitle": "Local SEO Strategy for 2026: What&#x27;s Changed and What Still Works | KINEXIS Digital",
+        "ogDescription": "Google&#x27;s local search algorithm has gone through some serious updates over the past year. If you&#x27;ve been doing local SEO the same way you did in 2024, there&#x27;s a",
+        "ogUrl": "https://kinexisdigital.com/en/blog/local-seo-strategy-2026",
+        "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
+        "description": "Google&#x27;s local search algorithm has gone through some serious updates over the past year. If you&#x27;ve been doing local SEO the same way you did in 2024, there&#x27;s a",
+        "hasOrganization": true,
+        "hasBreadcrumb": true
+      }
+    }
+  ],
+  "mobileChecks": [
+    {
+      "width": 375,
+      "status": 200,
+      "hasViewport": true,
+      "hasSafeArea": true
+    },
+    {
+      "width": 390,
+      "status": 200,
+      "hasViewport": true,
+      "hasSafeArea": true
+    },
+    {
+      "width": 430,
+      "status": 200,
+      "hasViewport": true,
+      "hasSafeArea": true
+    }
+  ],
+  "issues": [],
+  "passes": [
+    "robots.txt: valid with sitemap reference",
+    "sitemap.xml: 290 URLs indexed",
+    "Home: canonical present",
+    "Contact: canonical present",
+    "SEO Service: canonical present",
+    "Case Studies: canonical present",
+    "Location: canonical present",
+    "Blog Post: canonical present",
+    "Mobile 375px: viewport meta OK (server render)",
+    "Mobile 390px: viewport meta OK (server render)",
+    "Mobile 430px: viewport meta OK (server render)",
+    "Home: chat widget markup present",
+    "Home: CTA links present",
+    "Analytics: Google Analytics script detected",
+    "API /api/contact: reachable (status 400)",
+    "API /api/chat: reachable (status 400)",
+    "API /api/lead: reachable (status 400)"
+  ]
+}
