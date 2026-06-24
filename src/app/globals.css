@@ -4,21 +4,28 @@
 
 :root {
   --grain-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  --bg: #05060a;
-  --bg-dark: #030408;
-  --bg-secondary: #0a0b12;
+  /* Color tokens — values live in tailwind.config.ts (BRAND constants).
+     These vars are kept in sync via theme() references so there is
+     one source of truth: change a BRAND constant and both the Tailwind
+     utilities AND these CSS vars update together. */
+  --bg: theme('colors.bg');
+  --bg-dark: theme('colors.bg-dark');
+  --bg-secondary: theme('colors.bg-secondary');
+  --charcoal: theme('colors.charcoal');
+  --dark-gray: theme('colors.dark-gray');
+  --neon-cyan: theme('colors.neon-cyan');
+  --neon-blue: theme('colors.neon-blue');
+  --accent: theme('colors.accent');
   --panel: rgba(255, 255, 255, 0.06);
   --text: #ffffff;
   --muted: rgba(255, 255, 255, 0.7);
-  --neon-cyan: #00d4ff;
-  --neon-blue: #0099cc;
-  --accent: #00d4ff;
   --accent-hover: #33ddff;
   --accent-glow: rgba(0, 212, 255, 0.5);
   --accent-glow-soft: rgba(0, 212, 255, 0.15);
   --accent-shadow: rgba(0, 153, 204, 0.3);
-  --charcoal: #111827;
-  --dark-gray: #1f2937;
+  /* One-off tooltip backgrounds — dark tinted panel colors */
+  --tooltip-bg-before: #120808;
+  --tooltip-bg-after: #061018;
   --light-gray: #9ca3af;
   --white: #f9fafb;
   --border-subtle: rgba(255, 255, 255, 0.04);
@@ -27,7 +34,7 @@
   --border: var(--border-strong);
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.5);
-  --gradient: linear-gradient(90deg, #0099cc, #00d4ff);
+  --gradient: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
   --shadow-card: 0 0 20px rgba(0, 212, 255, 0.08), 0 0 60px rgba(0, 153, 204, 0.04);
   --shadow-panel: 0 24px 80px -12px rgba(0, 0, 0, 0.55);
   --shadow-panel-lg: 0 32px 100px -20px rgba(0, 0, 0, 0.65);
@@ -761,21 +768,8 @@ summary::-webkit-details-marker {
     @apply border-t border-surface bg-gradient-glow relative overflow-hidden;
   }
 
-  /* Legacy semantic hooks used by some section layouts */
-  .section--data {
-    /* tone handled by .page-section */
-  }
-
-  .section--editorial {
-    /* tone handled by .page-section */
-  }
-
   .section--visual {
     @apply overflow-hidden relative;
-  }
-
-  .section--proof {
-    /* tone handled by .page-section */
   }
 
   .section-content {
@@ -1747,14 +1741,6 @@ summary::-webkit-details-marker {
     background-color: var(--accent);
   }
 
-  .bg-accent\/10 {
-    background-color: rgba(0, 212, 255, 0.1);
-  }
-
-  .bg-accent\/30 {
-    background-color: rgba(0, 212, 255, 0.3);
-  }
-
   .text-accent {
     color: var(--accent);
   }
@@ -1810,7 +1796,6 @@ summary::-webkit-details-marker {
     opacity: 0.4;
     transform: scale(1.1);
     filter: grayscale(0.78) saturate(0.22) brightness(0.5) contrast(1.18) blur(8px);
-    will-change: transform;
   }
 
   @media (min-width: 768px) {
@@ -1833,6 +1818,7 @@ summary::-webkit-details-marker {
   @media (min-width: 1024px) {
     .mesh-layer {
       animation: meshFloat 22s ease-in-out infinite;
+      will-change: transform;
     }
   }
 
@@ -1847,7 +1833,6 @@ summary::-webkit-details-marker {
     opacity: 0.13;
     filter: grayscale(1) brightness(1.6) contrast(1.4);
     mix-blend-mode: screen;
-    will-change: transform;
     pointer-events: none;
   }
 
@@ -2368,6 +2353,11 @@ summary::-webkit-details-marker {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* Footer — no link underlines */

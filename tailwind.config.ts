@@ -1,5 +1,17 @@
 import type { Config } from "tailwindcss";
 
+// Brand color constants — single source of truth for all color values.
+// CSS vars in globals.css reference these via theme().
+const BRAND = {
+  BG: "#05060a",
+  BG_DARK: "#030408",
+  BG_SECONDARY: "#0a0b12",
+  CHARCOAL: "#111827",
+  DARK_GRAY: "#1f2937",
+  NEON_CYAN: "#00d4ff",
+  NEON_BLUE: "#0099cc",
+} as const;
+
 const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
@@ -13,14 +25,16 @@ const config: Config = {
     },
     extend: {
       colors: {
-        bg: "#05060a",
-        "bg-dark": "#030408",
-        "bg-secondary": "#0a0b12",
+        bg: BRAND.BG,
+        "bg-dark": BRAND.BG_DARK,
+        "bg-secondary": BRAND.BG_SECONDARY,
+        charcoal: BRAND.CHARCOAL,
+        "dark-gray": BRAND.DARK_GRAY,
         panel: "rgba(255,255,255,0.06)",
         muted: "rgba(255,255,255,0.7)",
-        "neon-cyan": "#00d4ff",
-        "neon-blue": "#0099cc",
-        accent: "#00d4ff",
+        "neon-cyan": BRAND.NEON_CYAN,
+        "neon-blue": BRAND.NEON_BLUE,
+        accent: BRAND.NEON_CYAN,
         border: "rgba(255,255,255,0.08)",
         "text-secondary": "rgba(255,255,255,0.7)",
         "text-muted": "rgba(255,255,255,0.5)",
@@ -39,7 +53,7 @@ const config: Config = {
         subtitle: "48rem",
       },
       backgroundImage: {
-        gradient: "linear-gradient(90deg, #0099cc, #00d4ff)",
+        gradient: `linear-gradient(90deg, ${BRAND.NEON_BLUE}, ${BRAND.NEON_CYAN})`,
       },
       fontSize: {
         hero: ["clamp(2.125rem, 6vw, 4.5rem)", { lineHeight: "1.0", letterSpacing: "-0.02em" }],
