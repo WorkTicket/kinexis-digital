@@ -7,10 +7,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Contrata una agencia SEO enfocada en leads calificados, no en posiciones vacías. Auditorías técnicas, estrategia de contenido y link building ligados a ingresos. Planes desde $2,500/mes.",
     hero: {
       label: "Servicios SEO",
-      line1: "Agencia SEO para",
-      line2: "Negocios que Necesitan Leads.",
+      line1: "Posiciona en búsquedas",
+      line2: "que realmente convierten.",
       subtitle:
-        "Construimos programas de búsqueda orgánica que posicionan keywords con intención de compra y convierten tráfico en llamadas agendadas, solicitudes de demo y ventas.",
+        "SEO orgánico para negocios de servicios.|Atacamos las keywords que tus compradores buscan antes de llamar.",
     },
     answerBlock:
       "Nuestros servicios SEO incluyen auditorías técnicas, investigación de keywords, optimización on-page, producción de contenido y adquisición de enlaces ligados a metas de ingresos. La mayoría de clientes invierte entre $2,500 y $8,000 al mes según competencia y alcance. Normalmente ves movimiento en posiciones en 60 a 90 días, con crecimiento real de leads entre el mes 4 y el 6.",
@@ -137,10 +137,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Agencia SEO local para negocios que necesitan visibilidad en Google Maps, crecimiento de reseñas y posiciones en el local pack. Optimización de GBP, citaciones y páginas de ubicación desde $2,000/mes.",
     hero: {
       label: "Servicios SEO Local",
-      line1: "Agencia SEO Local para",
-      line2: "Negocios que Necesitan Llamadas.",
+      line1: "Aparece en el mapa",
+      line2: "cuando buscan cerca.",
       subtitle:
-        "Ayudamos a marcas locales y multi-ubicación a posicionarse en el map pack, dominar búsquedas por ciudad y convertir búsquedas cercanas en llamadas y trabajos agendados.",
+        "Perfil de Google, citas, reseñas y páginas locales|para negocios que ganan trabajo a pocos kilómetros.",
     },
     answerBlock:
       "Los servicios SEO local incluyen optimización de Google Business Profile, construcción de citaciones, estrategia de reseñas, desarrollo de páginas de ubicación y adquisición de enlaces locales. Los retainers suelen partir en $2,000 a $5,000 al mes para negocios de una ubicación y escalan para marcas multi-ubicación. El movimiento en el map pack suele aparecer en 30 a 60 días.",
@@ -267,10 +267,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Gestión PPC completa en Google, Meta, LinkedIn y Microsoft Ads. Un solo equipo, presupuestos unificados y reportes ROAS. Gestión desde 15% del ad spend o mínimo $2,500/mes.",
     hero: {
       label: "Gestión PPC",
-      line1: "Gestión PPC",
-      line2: "para Programas Multi-Canal.",
+      line1: "Un solo equipo en",
+      line2: "cada canal que pagas.",
       subtitle:
-        "Gestionamos paid search y paid social como un programa coordinado para mover presupuesto hacia los canales con menor costo por lead calificado.",
+        "Google, Meta, LinkedIn y Microsoft — gestionados juntos.|El presupuesto sigue al costo por lead calificado, no al que más vendió.",
     },
     answerBlock:
       "La gestión PPC cubre estrategia, configuración de campañas, optimización de pujas, coordinación creativa y tracking de conversiones en Google, Meta, LinkedIn y Microsoft Ads. Las tarifas suelen ser 15% del ad spend con mínimo mensual de $2,500, o retainer fijo para cuentas grandes. La mayoría de cuentas estabiliza CPL en 45 a 60 días desde el lanzamiento.",
@@ -397,10 +397,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Gestión Google Ads para Search, Shopping y Performance Max. Optimización de Quality Score, tracking de conversiones y campañas enfocadas en ROAS. Desde $1,500/mes de gestión.",
     hero: {
       label: "Gestión Google Ads",
-      line1: "Agencia Google Ads para",
-      line2: "Campañas Search que Convierten.",
+      line1: "Google Ads que protegen",
+      line2: "tu margen, no el de Google.",
       subtitle:
-        "Construimos y optimizamos campañas Google Search, Shopping y Performance Max enfocadas en leads calificados e ingresos, no en volumen de clics.",
+        "Search, Shopping y PMax para leads calificados.|Corregimos estructura de cuenta y tracking que inflan el costo por lead.",
     },
     answerBlock:
       "La gestión Google Ads incluye auditoría de cuenta, estructura de campañas, estrategia de keywords, copy de anuncios, gestión de pujas, mejora de Quality Score y tracking de conversiones para Search, Shopping y Performance Max. Las tarifas de gestión parten en $1,500 al mes más ad spend. La mayoría de cuentas estabiliza CPL en 30 a 45 días.",
@@ -527,10 +527,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Gestión Meta Ads para Facebook e Instagram. Prospección, retargeting y pruebas creativas construidas para ROAS. Gestión desde $1,500/mes más ad spend.",
     hero: {
       label: "Gestión Meta Ads",
-      line1: "Agencia Meta Ads para",
-      line2: "ROAS en Facebook e Instagram.",
+      line1: "Meta Ads que siguen",
+      line2: "funcionando tras el lanzamiento.",
       subtitle:
-        "Operamos campañas de prospección y retargeting en Meta con ciclos de prueba creativa que encuentran anuncios ganadores rápido y escalan lo que convierte.",
+        "Prospección y retargeting en Facebook e Instagram.|Pruebas creativas que combaten la fatiga antes de que suba el CPM.",
     },
     answerBlock:
       "La gestión Meta Ads cubre investigación de audiencias, estructura de campañas, pruebas de creativos, embudos de retargeting y tracking de conversiones basado en píxel en Facebook e Instagram. La gestión parte en $1,500 al mes. La mayoría de cuentas necesita $3,000 a $15,000 de ad spend mensual y 2 a 4 semanas de pruebas creativas para encontrar ROAS estable.",
@@ -657,10 +657,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Agencia de anuncios pagados para negocios listos para invertir en Google, Meta y LinkedIn. Estrategia, setup y gestión enfocados en leads calificados. Programas desde $3,000/mes.",
     hero: {
       label: "Servicios de Anuncios Pagados",
-      line1: "Agencia de Anuncios Pagados para",
-      line2: "Negocios Listos para Escalar.",
+      line1: "Paid media que empieza",
+      line2: "en el canal correcto.",
       subtitle:
-        "Te ayudamos a elegir los canales pagados correctos, construir campañas que convierten y escalar inversión según costo por lead calificado, no métricas vanidosas.",
+        "Para negocios que lanzan o escalan anuncios.|Elegimos canales, construimos campañas que convierten y medimos costo por lead.",
     },
     answerBlock:
       "Los servicios de anuncios pagados cubren selección de canal, estrategia de campañas, creación de anuncios, alineación de landing pages, tracking de conversiones y optimización continua en Google, Meta y LinkedIn. Ad spend y gestión combinados suelen partir en $3,000 a $10,000 al mes. La mayoría de clientes ve sus primeros leads calificados en 7 a 14 días desde el lanzamiento.",
@@ -788,10 +788,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Diseño web a medida construido para convertir visitantes en leads. Estrategia, UX, desarrollo y CRO incluidos. Proyectos web desde $8,000 a $35,000, entregados en 6 a 10 semanas.",
     hero: {
       label: "Servicios de Diseño Web",
-      line1: "Agencia de Diseño Web para",
-      line2: "Sitios que Generan Leads.",
+      line1: "Sitios que se ven bien",
+      line2: "y realmente convierten.",
       subtitle:
-        "Diseñamos y construimos sitios web a medida donde cada página, botón y formulario está estructurado para convertir visitantes en leads calificados y llamadas agendadas.",
+        "Diseños a medida donde cada página y formulario genera llamadas.|No otra plantilla con tu logo encima.",
     },
     answerBlock:
       "Los servicios de diseño web incluyen discovery, estrategia UX, diseño custom, desarrollo responsive, setup de CMS, estructura SEO básica y layouts enfocados en conversión. Los proyectos van de $8,000 para sitios enfocados a $35,000+ para sitios empresariales multi-página. La entrega típica es 6 a 10 semanas desde kickoff hasta lanzamiento.",
@@ -918,10 +918,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Agencia CRO que aumenta leads y ventas desde tu tráfico actual. Auditorías, pruebas A/B y correcciones UX con lift medible. Programas desde $2,500/mes o por proyecto.",
     hero: {
       label: "Optimización de Conversión",
-      line1: "Agencia CRO para",
-      line2: "Más Leads con el Mismo Tráfico.",
+      line1: "Más leads del",
+      line2: "tráfico que ya tienes.",
       subtitle:
-        "Encontramos y corregimos puntos de fricción en tu sitio web y landing pages para que más visitantes se conviertan en leads, llamadas y clientes sin gastar más en anuncios.",
+        "Encontramos dónde abandonan los visitantes en tu sitio y landings,|y probamos arreglos para convertir más sin subir gasto en anuncios.",
     },
     answerBlock:
       "Los servicios CRO incluyen auditorías de conversión, análisis de heatmaps y sesiones, desarrollo de hipótesis, pruebas A/B y mejoras UX en páginas de alto tráfico. Retainers parten en $2,500 al mes o por proyecto para optimización de una sola página. La mayoría de pruebas alcanza significancia estadística en 2 a 4 semanas.",
@@ -1048,10 +1048,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Email marketing y automatización que nutre leads hasta convertirlos en clientes. Secuencias, campañas y crecimiento de lista ligados a pipeline. Programas desde $2,000/mes.",
     hero: {
       label: "Servicios Email Marketing",
-      line1: "Agencia Email Marketing para",
-      line2: "Leads que Necesitan Nutrición.",
+      line1: "Email que mueve",
+      line2: "prospectos hacia el sí.",
       subtitle:
-        "Construimos secuencias y campañas de email que mantienen tu marca presente, mueven prospectos por tu pipeline y reactivan leads que se enfriaron.",
+        "Secuencias y campañas ligadas a dónde está cada lead en tu pipeline.|No otro newsletter mensual que nadie lee.",
     },
     answerBlock:
       "Los servicios email marketing incluyen estrategia de lista, flujos de automatización, creación de campañas, segmentación, pruebas A/B y monitoreo de deliverability. Retainers parten en $2,000 a $5,000 al mes según tamaño de lista y complejidad de automatización. Secuencias de bienvenida suelen lanzarse en 2 a 3 semanas.",
@@ -1178,10 +1178,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Marketing de contenidos que posiciona en búsqueda y genera confianza con compradores. Estrategia, artículos, guías y distribución desde $2,500/mes. Primer contenido live en 3 a 4 semanas.",
     hero: {
       label: "Servicios Marketing de Contenidos",
-      line1: "Agencia Marketing de Contenidos para",
-      line2: "Negocios que Necesitan Autoridad.",
+      line1: "Contenido que responde",
+      line2: "lo que buscan antes de llamar.",
       subtitle:
-        "Creamos contenido que responde las preguntas de tus compradores, posiciona en búsqueda y acerca prospectos a una decisión de compra.",
+        "Posts, guías y casos mapeados a keywords y etapas de compra.|Escritos para posicionar, generar confianza y llevar a tu oferta.",
     },
     answerBlock:
       "Los servicios de marketing de contenidos incluyen estrategia de contenido, planificación de temas basada en keywords, artículos de blog, guías, casos de estudio y distribución en búsqueda y social. Retainers parten en $2,500 a $6,000 al mes para 4 a 8 piezas mensuales. El primer contenido publicado suele salir live en 3 a 4 semanas desde kickoff.",
@@ -1308,10 +1308,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Gestión de redes sociales que construye visibilidad de marca e impulsa tráfico al sitio web. Creación de contenido, publicación y community management desde $1,500/mes.",
     hero: {
       label: "Marketing en Redes Sociales",
-      line1: "Agencia de Redes Sociales para",
-      line2: "Marcas que Necesitan Visibilidad.",
+      line1: "Social que apoya",
+      line2: "el resto de tu marketing.",
       subtitle:
-        "Gestionamos tu presencia social con contenido que genera confianza, lleva tráfico a tu sitio y apoya tu programa más amplio de generación de leads.",
+        "Publicación constante, creativos on-brand y respuestas en comunidad.|No posts promocionales aleatorios sin conexión con ingresos.",
     },
     answerBlock:
       "El marketing en redes sociales incluye estrategia de plataforma, creación de contenido, calendarios de publicación, community management y reportes de rendimiento para LinkedIn, Instagram, Facebook y X. La gestión parte en $1,500 a $4,000 al mes según plataformas y frecuencia de publicación. Calendarios de contenido quedan live en 2 semanas desde kickoff.",
@@ -1438,10 +1438,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Marketing de video para anuncios, social y conversión web. Guion, producción y edición desde $3,000 por proyecto o retainer $2,500/mes.",
     hero: {
       label: "Servicios Marketing de Video",
-      line1: "Agencia Marketing de Video para",
-      line2: "Marcas que Necesitan Destacar.",
+      line1: "Video hecho para",
+      line2: "donde realmente se publica.",
       subtitle:
-        "Planificamos, producimos y editamos contenido de video para anuncios, redes sociales y tu sitio web que genera confianza e impulsa acción.",
+        "Anuncios, redes y web con un mensaje claro por pieza.|De guión a edición, formateado para cada plataforma.",
     },
     answerBlock:
       "Los servicios de video marketing incluyen desarrollo de concepto, guion, coordinación de producción, edición y planificación de distribución para anuncios, social y web. Proyectos parten en $3,000 para paquetes short-form. Retainers mensuales desde $2,500 cubren contenido de video continuo. Entrega típica: 2 a 4 semanas por proyecto.",
@@ -1568,10 +1568,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Servicios de branding incluyendo posicionamiento, identidad visual y mensaje para empresas B2B. Estrategia de marca y diseño desde $8,000 a $25,000.",
     hero: {
       label: "Servicios de Branding",
-      line1: "Agencia de Branding para",
-      line2: "Empresas que Necesitan Claridad.",
+      line1: "Una marca que reconocen",
+      line2: "antes de leer la letra chica.",
       subtitle:
-        "Definimos tu posicionamiento, identidad visual y mensaje para que cada touchpoint, desde tu sitio web hasta tus anuncios, comunique quién eres y por qué los compradores deberían confiar en ti.",
+        "Posicionamiento, identidad visual y mensaje — documentados.|Para que sitio, anuncios y ventas suenen como una sola empresa.",
     },
     answerBlock:
       "Los servicios de branding incluyen posicionamiento de mercado, estrategia de marca, diseño de logo, sistemas de identidad visual, marcos de mensaje y guías de marca. Proyectos van de $8,000 para refrescos de identidad enfocados a $25,000+ para estrategia y diseño de marca completa. Entrega típica: 6 a 10 semanas.",
@@ -1698,10 +1698,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Analítica y reportes de marketing que conectan campañas con ingresos. Setup GA4, dashboards y atribución desde $1,500/mes.",
     hero: {
       label: "Servicios Analítica de Marketing",
-      line1: "Agencia Analítica de Marketing para",
-      line2: "Equipos que Necesitan Datos Claros.",
+      line1: "Reportes que te dicen",
+      line2: "dónde invertir después.",
       subtitle:
-        "Configuramos tracking, construimos dashboards y reportamos las métricas que importan: leads, costo por adquisición e ingresos, no números vanidosos.",
+        "GA4, CRM y dashboards centrados en leads e ingresos.|No otro export lleno de impresiones que nadie usa.",
     },
     answerBlock:
       "Los servicios de analítica de marketing incluyen setup GA4, tracking de conversiones, integración CRM, dashboards custom y reportes mensuales en SEO, anuncios pagados, email y social. Retainers parten en $1,500 a $3,500 al mes. Dashboards suelen quedar live en 2 a 3 semanas.",
@@ -1828,10 +1828,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Consultoría de crecimiento para negocios que necesitan estrategia de marketing antes de ejecutar. Auditorías de canal, roadmaps y planificación trimestral desde $3,000/mes.",
     hero: {
       label: "Servicios Consultoría de Crecimiento",
-      line1: "Consultoría de Crecimiento para",
-      line2: "Negocios que Necesitan un Plan.",
+      line1: "Sabe qué hacer",
+      line2: "antes de volver a gastar.",
       subtitle:
-        "Auditamos tu marketing actual, identificamos oportunidades de mayor impacto y construimos un roadmap de crecimiento que tu equipo o nuestro equipo de ejecución puede seguir.",
+        "Auditoría de marketing, prioridades por canal y roadmap con presupuesto y KPIs|que tu equipo o el nuestro puede ejecutar.",
     },
     answerBlock:
       "La consultoría de crecimiento incluye auditorías de marketing, análisis competitivo, estrategia de canal, planificación de presupuesto y roadmaps trimestrales. Engagements parten en $3,000 a $6,000 al mes en modalidad advisory o $5,000 a $15,000 por entregables de estrategia por proyecto. Auditoría inicial y roadmap se entregan en 3 a 4 semanas.",
@@ -1958,10 +1958,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       "Embudos y optimización de conversión en un solo sistema de ingresos. Landing pages, automatización email, pruebas A/B y UX. Proyectos desde $5,000; programas desde $2,500/mes.",
     hero: {
       label: "Embudos y Optimización de Conversión",
-      line1: "Construye Embudos que Convierten.",
-      line2: "Optimiza Cada Etapa.",
+      line1: "Capta y nutre leads",
+      line2: "y sigue probando qué convierte.",
       subtitle:
-        "Diseñamos sistemas de conversión completos: landing pages, automatización de nutrición y pruebas A/B,|para que cada visitante tenga un camino claro desde el primer clic hasta la reserva o compra.",
+        "Landing pages, automatización de email, retargeting y tests A/B|como un sistema desde el primer clic hasta la reserva.",
     },
     answerBlock:
       "Servicios de embudos y CRO incluyen estrategia de embudo, diseño de landing pages, imanes de leads, automatización email, retargeting, análisis de heatmaps y pruebas A/B estructuradas. Builds desde $5,000 a $15,000; programas CRO desde $2,500 al mes. La mayoría de sistemas lanzan en 4 a 8 semanas con optimización continua.",

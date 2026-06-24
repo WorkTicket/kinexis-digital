@@ -1173,6 +1173,15 @@ summary::-webkit-details-marker {
     letter-spacing: -0.02em;
   }
 
+  html[lang^="es"] .hero--service-page.hero--split .type-hero--split {
+    font-size: clamp(1.875rem, 2.35vw, 2.875rem);
+    line-height: 1.08;
+  }
+
+  html[lang^="es"] .hero--service-page .hero__subtitle {
+    font-size: clamp(0.95rem, 0.35vw + 0.9rem, 1.125rem);
+  }
+
   .hero--service-page.hero--split .type-hero--split,
   .hero--service-page.hero--split .hero__subtitle {
     max-width: 100%;
