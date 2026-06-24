@@ -1,5 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
+  "account_id": "6972c532d902c84b1793316ed3497124",
   "name": "kinexis-digital",
   "main": ".open-next/worker.js",
   "workers_dev": true,
