@@ -12,6 +12,7 @@ Built with Next.js 15, TypeScript, and Tailwind CSS. Fully bilingual (English / 
 - **Forms & API:** Nodemailer (contact, lead magnet), rate limiting, sanitization
 - **Analytics:** Google Analytics, Microsoft Clarity (cookie-consent gated)
 - **Monitoring:** Sentry (optional)
+- **Deployment:** Cloudflare Workers via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare)
 - **CMS schemas:** Sanity schema definitions in `sanity/` (content is file-based in `src/content/`)
 
 ## Features
@@ -37,6 +38,13 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+For a production-like local test in the Workers runtime:
+
+```bash
+cp .env.example .dev.vars   # fill in secrets (gitignored)
+npm run preview             # http://localhost:8787
+```
+
 ### Environment variables
 
 Copy `.env.example` to `.env.local` and fill in:
@@ -50,12 +58,17 @@ Copy `.env.example` to `.env.local` and fill in:
 | `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity (optional) |
 | `SENTRY_*` | Error monitoring (optional) |
 
+For local Workers preview, copy the same values into `.dev.vars` (see `.env.example`).
+
 ## Scripts
 
 | Command | Description |
 |---|---|
-| `npm run dev` | Local development server |
+| `npm run dev` | Local development server (Next.js) |
 | `npm run build` | Production build (395 static pages) |
+| `npm run preview` | Build + serve in Cloudflare Workers runtime locally |
+| `npm run deploy` | Build + deploy to Cloudflare Workers |
+| `npm run upload` | Build + upload a new Worker version (no traffic switch) |
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
 | `npm run optimize-images` | Compress images in `public/assets/` |
@@ -78,12 +91,40 @@ docs/                    Brand guidelines and site map reference
 
 ## Deployment
 
-Target host: **Cloudflare Pages** (see `.env.example` for variable setup).
+**Live:** [https://www.kinexisdigital.com](https://www.kinexisdigital.com) — hosted on **Cloudflare Workers** via OpenNext (not static Cloudflare Pages).
 
-- **Build command:** `npm run build`
-- **Adapter:** Use `@cloudflare/next-on-pages` or OpenNext so API routes (`/api/contact`, `/api/lead`, `/api/chat`) work on the edge
-- Set all environment variables in Workers & Pages → Settings → Environment variables
-- Point `NEXT_PUBLIC_SITE_URL` at your production domain (www preferred)
+### One-time setup
+
+```bash
+npx wrangler login
+npx wrangler secret bulk .dev.vars   # upload production secrets
+npm run deploy
+```
+
+Custom domain and routes are configured in [`wrangler.jsonc`](wrangler.jsonc).
+
+### Environment variables (Cloudflare)
+
+| Variable | Where to set |
+|---|---|
+| `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL` | Worker **Variables and Secrets** (runtime) |
+| `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CLARITY_ID` | **Build Variables and secrets** + runtime |
+| `SENTRY_*` | Optional — build + runtime |
+
+`GMAIL_APP_PASSWORD` must be a **Secret**. `NEXT_PUBLIC_*` vars must be present at build time or OG URLs, sitemap, and analytics will break.
+
+### CI/CD (GitHub Actions)
+
+Pushes to `main` deploy via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Add these repository secrets:
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+- `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL`
+
+### DNS
+
+- **www** → custom domain on the Worker (configured in `wrangler.jsonc`)
+- **apex** → add a Redirect Rule: `kinexisdigital.com/*` → `https://www.kinexisdigital.com/$1` (301)
 
 The repo includes a committed `.next/` production build so `npm start` works immediately after `npm install` without rebuilding.
 

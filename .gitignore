@@ -11,6 +11,7 @@
 # misc
 .DS_Store
 *.pem
+.cursor/
 
 # debug
 npm-debug.log*
@@ -20,6 +21,13 @@ yarn-error.log*
 # local env files
 .env
 .env*.local
+.dev.vars
+
+# opennext build output
+.open-next
+
+# wrangler local state
+.wrangler
 
 # vercel
 .vercel
