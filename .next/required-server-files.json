@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "5428d70559e01479ff6e51ec824a6456231ac4fe"
+      "_sentryRelease": "a6488cdb0c22f416af9aa36f0fda5540b4fcfd72"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -93,7 +93,6 @@
     "compiler": {},
     "expireTime": 31536000,
     "staticPageGenerationTimeout": 60,
-    "output": "standalone",
     "modularizeImports": {
       "@mui/icons-material": {
         "transform": "@mui/icons-material/{{member}}"
