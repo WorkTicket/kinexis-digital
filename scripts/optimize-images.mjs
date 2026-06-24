@@ -4,6 +4,7 @@ import path from "node:path";
 
 const publicDir = path.join(process.cwd(), "public");
 const assetsDir = path.join(publicDir, "assets");
+const imagesDir = path.join(assetsDir, "images");
 const logosDir = path.join(assetsDir, "logos");
 
 async function fileExists(filePath) {
@@ -50,8 +51,10 @@ async function optimize() {
       .toFile(path.join(publicDir, "logo.png"));
   }
 
+  await mkdir(imagesDir, { recursive: true });
+
   // Responsive hero background variants (kinexis_hero.jpg → optimized webp)
-  const heroSrc = path.join(assetsDir, "kinexis_hero.jpg");
+  const heroSrc = path.join(imagesDir, "kinexis_hero.jpg");
   if (await fileExists(heroSrc)) {
     for (const [name, width] of [
       ["kinexis-hero-mobile", 640],
@@ -61,12 +64,12 @@ async function optimize() {
       await sharp(heroSrc)
         .resize(width, null, { withoutEnlargement: true })
         .webp({ quality: 75, effort: 6 })
-        .toFile(path.join(assetsDir, `${name}.webp`));
+        .toFile(path.join(imagesDir, `${name}.webp`));
     }
   }
 
   // Responsive polygonal net overlay (Polygonal_Net.jpg → optimized webp)
-  const polyNetSrc = path.join(assetsDir, "Polygonal_Net.jpg");
+  const polyNetSrc = path.join(imagesDir, "Polygonal_Net.jpg");
   if (await fileExists(polyNetSrc)) {
     for (const [name, width] of [
       ["polygonal-net-mobile", 640],
@@ -76,7 +79,7 @@ async function optimize() {
       await sharp(polyNetSrc)
         .resize(width, null, { withoutEnlargement: true })
         .webp({ quality: 80, effort: 6 })
-        .toFile(path.join(assetsDir, `${name}.webp`));
+        .toFile(path.join(imagesDir, `${name}.webp`));
     }
   }
 
