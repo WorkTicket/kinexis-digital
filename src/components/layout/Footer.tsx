@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Mail, MapPin, Linkedin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import SiteLogo from "@/components/ui/SiteLogo";
 import Button from "@/components/ui/Button";
@@ -62,21 +62,12 @@ export default async function Footer() {
               </a>
               <p className="flex items-start gap-2 text-[12px] text-muted/40 leading-snug">
                 <MapPin className="h-3.5 w-3.5 shrink-0 text-neon-cyan/30 mt-0.5" />
-                Dallas · Austin · Toronto · Bogotá · Worldwide
+                <span>
+                  Dallas · Austin · Toronto
+                  <br />
+                  Bogotá · Worldwide
+                </span>
               </p>
-            </div>
-
-            {/* Social links */}
-            <div className="mt-4 flex items-center gap-3">
-              <a
-                href="https://www.linkedin.com/company/kinexisdigital"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="KINEXIS Digital on LinkedIn"
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.03] text-muted/40 transition-colors duration-200 hover:border-neon-cyan/20 hover:bg-neon-cyan/[0.06] hover:text-neon-cyan/80"
-              >
-                <Linkedin className="h-3.5 w-3.5" />
-              </a>
             </div>
           </div>
 
