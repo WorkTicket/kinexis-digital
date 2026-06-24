@@ -1,11 +1,12 @@
 "use client";
 
-import type { ReactNode } from "react";
 import { m as motion } from "@/lib/framer";
 import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionIntroWithVisualization from "@/components/shared/services/SectionIntroWithVisualization";
 import type { ServiceOverviewData } from "@/content/services/architecture/types";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import type { ReactNode } from "react";
 
 type Props = ServiceOverviewData & {
   surfaceIndex: number;
@@ -26,22 +27,10 @@ export default function ServiceOverview({
   return (
     <Section id="overview" variant="dark" surfaceIndex={surfaceIndex}>
       <div className="container-site" style={{ maxWidth: "var(--container-max)", paddingInline: "var(--inner-padding)" }}>
-        <div className="service-overview-intro grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] lg:gap-12 xl:gap-16">
-          <SectionHeader pattern="B" title={headline} subtitle={problem} />
-          {visualization ? (
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-              className="service-overview-viz mx-auto w-full max-w-[360px] lg:mx-0 lg:justify-self-end"
-            >
-              <div className="hero__viz-inner hero__viz-inner--service-page hero__viz-inner--overview">
-                <div className="hero__viz-content">{visualization}</div>
-              </div>
-            </motion.div>
-          ) : null}
-        </div>
+        <SectionIntroWithVisualization
+          header={<SectionHeader pattern="B" title={headline} subtitle={problem} />}
+          visualization={visualization}
+        />
 
         <motion.ul
           className="section-content mx-auto mt-10 max-w-3xl space-y-4"

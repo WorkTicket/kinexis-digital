@@ -120,6 +120,7 @@ export type ServicePageData = {
   slug: ServiceSeoSlug;
   locale: Locale;
   visualVariant: VisualVariant;
+  visualizationSection: string;
   hero: ServiceHeroData;
   sectionOrder: string[];
   overview: ServiceOverviewData;

@@ -1,13 +1,18 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { m as motion } from "@/lib/framer";
 import { cn } from "@/lib/utils";
 import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionIntroWithVisualization from "@/components/shared/services/SectionIntroWithVisualization";
 import type { ServiceSectionData, VisualVariant } from "@/content/services/architecture/types";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 
-type Props = ServiceSectionData & { surfaceIndex: number };
+type Props = ServiceSectionData & {
+  surfaceIndex: number;
+  visualization?: ReactNode;
+};
 
 function statusBadgeClass(value: string) {
   const v = value.toLowerCase();
@@ -46,13 +51,16 @@ function VariantLayout({
   return <div className={cn("section-content", className)}>{children}</div>;
 }
 
-export default function ServiceSection({ id, headline, subheadline, visualVariant, points, body, surfaceIndex }: Props) {
+export default function ServiceSection({ id, headline, subheadline, visualVariant, points, body, surfaceIndex, visualization }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
 
   return (
     <Section id={id} variant={visualVariant === "chart" ? "data" : visualVariant === "mockup" ? "visual" : "editorial"} surfaceIndex={surfaceIndex}>
       <div className="container-site" style={{ maxWidth: "var(--container-max)", paddingInline: "var(--inner-padding)" }}>
-        <SectionHeader pattern="B" title={headline} subtitle={subheadline} />
+        <SectionIntroWithVisualization
+          header={<SectionHeader pattern="B" title={headline} subtitle={subheadline} />}
+          visualization={visualization}
+        />
         {body && <p className="section-content mx-auto max-w-3xl text-center text-muted">{body}</p>}
 
         <VariantLayout variant={visualVariant} pointCount={points?.length}>

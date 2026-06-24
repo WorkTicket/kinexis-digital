@@ -4,6 +4,8 @@ import type { ProofData, VisualVariant, WhyKinexusData } from "./types";
 
 export type ServiceArchitectureConfig = {
   visualVariant: VisualVariant;
+  /** Section id (from sectionOrder) where the page graphic belongs */
+  visualizationSection: string;
   sectionOrder: string[];
   whyKinexus: Record<Locale, WhyKinexusData>;
   proof?: Record<Locale, ProofData>;
@@ -19,6 +21,7 @@ const why = (
 export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectureConfig> = {
   seo: {
     visualVariant: "chart",
+    visualizationSection: "WhyKinexus",
     sectionOrder: [
       "ServiceOverview", "Proof", "WhyKinexus",
       "SeoAudit", "RankingStrategy", "ContentStrategy", "TechnicalSeo",
@@ -72,6 +75,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "local-seo": {
     visualVariant: "chart",
+    visualizationSection: "LocalGbp",
     sectionOrder: [
       "ServiceOverview", "Proof", "WhyKinexus",
       "LocalGbp", "LocalCitations", "LocalPages", "LocalReviews",
@@ -120,6 +124,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "google-ads": {
     visualVariant: "dashboard",
+    visualizationSection: "CampaignArchitecture",
     sectionOrder: [
       "ServiceOverview", "WhyKinexus",
       "CampaignArchitecture", "KeywordResearch", "LandingPages", "ConversionTracking",
@@ -168,6 +173,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "ppc-management": {
     visualVariant: "dashboard",
+    visualizationSection: "ChannelMix",
     sectionOrder: [
       "ServiceOverview", "WhyKinexus",
       "CampaignStructure", "BudgetStrategy", "ChannelMix", "ConversionTracking",
@@ -216,6 +222,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "meta-ads": {
     visualVariant: "comparison",
+    visualizationSection: "LeadGenFunnel",
     sectionOrder: [
       "Results", "ServiceOverview", "WhyKinexus",
       "CreativeTesting", "AudienceTargeting", "LeadGenFunnel", "Retargeting",
@@ -264,6 +271,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "paid-ads": {
     visualVariant: "dashboard",
+    visualizationSection: "ChannelStrategy",
     sectionOrder: [
       "ServiceOverview", "WhyKinexus",
       "ChannelStrategy", "CampaignStructure", "CreativeTesting", "Attribution",
@@ -312,6 +320,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "web-design": {
     visualVariant: "mockup",
+    visualizationSection: "UxAudit",
     sectionOrder: [
       "UxAudit", "DeviceMockups", "ConversionOptimization", "Speed",
       "ServiceOverview", "WhyKinexus", "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
@@ -361,6 +370,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   cro: {
     visualVariant: "comparison",
+    visualizationSection: "AbTesting",
     sectionOrder: [
       "Results", "ServiceOverview", "WhyKinexus",
       "AbTesting", "Heatmaps", "UXResearch",
@@ -409,6 +419,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "email-marketing": {
     visualVariant: "dashboard",
+    visualizationSection: "EmailSequences",
     sectionOrder: [
       "ServiceOverview", "WhyKinexus",
       "EmailSequences", "Automation", "ListGrowth",
@@ -457,6 +468,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "content-marketing": {
     visualVariant: "split",
+    visualizationSection: "Production",
     sectionOrder: [
       "ServiceOverview", "Proof", "WhyKinexus",
       "ContentFunnel", "Production", "Distribution",
@@ -505,6 +517,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "social-media": {
     visualVariant: "dashboard",
+    visualizationSection: "PlatformStrategy",
     sectionOrder: [
       "Results", "ServiceOverview", "WhyKinexus",
       "PlatformStrategy", "ContentPillars", "Community",
@@ -553,6 +566,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "video-marketing": {
     visualVariant: "mockup",
+    visualizationSection: "VideoProduction",
     sectionOrder: [
       "VideoProduction", "VideoDistribution", "VideoStrategy",
       "ServiceOverview", "WhyKinexus", "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
@@ -600,6 +614,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   branding: {
     visualVariant: "mockup",
+    visualizationSection: "VisualSystem",
     sectionOrder: [
       "BrandIdentity", "VisualSystem", "BrandGuidelines",
       "ServiceOverview", "WhyKinexus", "Process", "Deliverables", "Proof", "Results", "PricingTeaser",
@@ -647,6 +662,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   analytics: {
     visualVariant: "dashboard",
+    visualizationSection: "Dashboards",
     sectionOrder: [
       "Results", "ServiceOverview", "WhyKinexus",
       "DataStack", "Dashboards", "Attribution",
@@ -695,6 +711,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   "growth-consulting": {
     visualVariant: "split",
+    visualizationSection: "Roadmap",
     sectionOrder: [
       "ServiceOverview", "WhyKinexus",
       "GrowthAudit", "ChannelMix", "Roadmap",
@@ -743,6 +760,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
 
   funnels: {
     visualVariant: "chart",
+    visualizationSection: "FunnelMapping",
     sectionOrder: [
       "ServiceOverview", "Proof", "WhyKinexus",
       "FunnelMapping", "Automation", "ConversionPaths",

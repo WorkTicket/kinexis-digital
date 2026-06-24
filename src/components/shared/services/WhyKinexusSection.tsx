@@ -1,23 +1,37 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { m as motion } from "@/lib/framer";
 import { BarChart3, Target, Sparkles, Shield } from "lucide-react";
 import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
+import SectionIntroWithVisualization from "@/components/shared/services/SectionIntroWithVisualization";
 import type { WhyKinexusData } from "@/content/services/architecture/types";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 
 const icons = [BarChart3, Target, Sparkles, Shield];
 
-type Props = WhyKinexusData & { surfaceIndex: number };
+type Props = WhyKinexusData & {
+  surfaceIndex: number;
+  visualization?: ReactNode;
+};
 
-export default function WhyKinexusSection({ headline, points, surfaceIndex }: Props) {
+export default function WhyKinexusSection({ headline, points, surfaceIndex, visualization }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
 
   return (
     <Section id="why-kinexus" variant="editorial" surfaceIndex={surfaceIndex}>
       <div className="container-site" style={{ maxWidth: "var(--container-max)", paddingInline: "var(--inner-padding)" }}>
-        <SectionHeader pattern="B" title={headline} subtitle="How we work, and why it is different from a typical agency retainer." />
+        <SectionIntroWithVisualization
+          header={
+            <SectionHeader
+              pattern="B"
+              title={headline}
+              subtitle="How we work, and why it is different from a typical agency retainer."
+            />
+          }
+          visualization={visualization}
+        />
 
         <motion.div
           className="relative mx-auto mt-16 max-w-4xl"

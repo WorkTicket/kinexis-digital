@@ -1438,8 +1438,9 @@ summary::-webkit-details-marker {
     }
   }
 
-  /* Service overview — graphic moved out of hero */
-  .service-overview-viz .hero__viz-inner--overview {
+  /* Service sections — graphic beside section header */
+  .service-overview-viz .hero__viz-inner--overview,
+  .service-section-viz .hero__viz-inner--overview {
     width: 100%;
     margin-left: 0;
     transform: none !important;
@@ -1447,19 +1448,22 @@ summary::-webkit-details-marker {
   }
 
   @media (min-width: 1024px) {
-    .service-overview-viz .hero__viz-inner--overview {
+    .service-overview-viz .hero__viz-inner--overview,
+    .service-section-viz .hero__viz-inner--overview {
       transform: none !important;
     }
   }
 
-  .service-overview-viz .hero__viz-inner--service-page .hero__viz-content {
+  .service-overview-viz .hero__viz-inner--service-page .hero__viz-content,
+  .service-section-viz .hero__viz-inner--service-page .hero__viz-content {
     min-width: 260px;
     max-width: 360px;
     min-height: 12rem;
   }
 
   @media (min-width: 1024px) {
-    .service-overview-viz .hero__viz-inner--service-page .hero__viz-content {
+    .service-overview-viz .hero__viz-inner--service-page .hero__viz-content,
+    .service-section-viz .hero__viz-inner--service-page .hero__viz-content {
       min-width: 300px;
       max-width: 360px;
       min-height: 13rem;

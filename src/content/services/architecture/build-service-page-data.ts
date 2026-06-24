@@ -156,6 +156,7 @@ export function buildServicePageData(slug: ServiceSeoSlug, locale: Locale): Omit
     slug,
     locale,
     visualVariant: config.visualVariant,
+    visualizationSection: config.visualizationSection,
     hero: {
       label: seo.hero.label,
       line1: seo.hero.line1,

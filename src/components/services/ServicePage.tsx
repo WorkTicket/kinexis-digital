@@ -43,8 +43,13 @@ export default function ServicePage({ slug }: Props) {
   const locale = useLocale() as Locale;
   const data = buildServicePageData(slug, locale);
   const { breadcrumbs } = useServicePageSeo(slug);
+  const pageVisualization = getServiceHeroVisualization(slug, locale);
 
   let surfaceIndex = 0;
+
+  function visualizationFor(sectionName: string) {
+    return data.visualizationSection === sectionName ? pageVisualization : undefined;
+  }
 
   function renderSection(name: string, index: number) {
     if (CORE_SECTIONS.includes(name as CoreSectionId)) {
@@ -54,11 +59,17 @@ export default function ServicePage({ slug }: Props) {
             <ServiceOverview
               {...data.overview}
               surfaceIndex={index}
-              visualization={getServiceHeroVisualization(slug, locale)}
+              visualization={visualizationFor("ServiceOverview")}
             />
           );
         case "WhyKinexus":
-          return <WhyKinexusSection {...data.whyKinexus} surfaceIndex={index} />;
+          return (
+            <WhyKinexusSection
+              {...data.whyKinexus}
+              surfaceIndex={index}
+              visualization={visualizationFor("WhyKinexus")}
+            />
+          );
         case "Process":
           return (
             <ProcessSection
@@ -105,7 +116,13 @@ export default function ServicePage({ slug }: Props) {
 
     const serviceSection = data.serviceSections[name];
     if (serviceSection) {
-      return <ServiceSection {...serviceSection} surfaceIndex={index} />;
+      return (
+        <ServiceSection
+          {...serviceSection}
+          surfaceIndex={index}
+          visualization={visualizationFor(name)}
+        />
+      );
     }
 
     return null;
