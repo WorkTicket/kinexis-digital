@@ -14,8 +14,7 @@ import {
 import Button from "@/components/ui/Button";
 
 const mobilePrimaryLinks = mainNavLinks.filter(
-  (link) =>
-    !("dropdown" in link && link.dropdown) && link.key !== "locations"
+  (link) => !("dropdown" in link && link.dropdown)
 );
 
 type Props = {
