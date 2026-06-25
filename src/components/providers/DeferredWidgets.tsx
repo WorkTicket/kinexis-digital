@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { useEffect, useState, Suspense } from "react";
 
 const BackToTop = dynamic(() => import("@/components/layout/BackToTop"), { ssr: false });
-const ChatBot = dynamic(() => import("@/components/features/ChatBot"), { ssr: false });
 
 export default function DeferredWidgets() {
   const [mounted, setMounted] = useState(false);
@@ -26,7 +25,6 @@ export default function DeferredWidgets() {
   return (
     <Suspense>
       <BackToTop />
-      <ChatBot />
     </Suspense>
   );
 }
