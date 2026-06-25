@@ -1,11 +1,14 @@
 "use client";
 
 import Script from "next/script";
-import { useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
+const GTAG_RETRY_MS = 100;
+const GTAG_MAX_ATTEMPTS = 50;
 
 declare global {
   interface Window {
@@ -15,22 +18,31 @@ declare global {
   }
 }
 
-function updateAnalyticsConsent(granted: boolean) {
-  if (!window.gtag) return;
+function runWhenGtagReady(fn: () => void) {
+  let attempts = 0;
 
-  window.gtag("consent", "update", {
+  const tick = () => {
+    if (typeof window.gtag === "function") {
+      fn();
+      return;
+    }
+
+    attempts += 1;
+    if (attempts < GTAG_MAX_ATTEMPTS) {
+      window.setTimeout(tick, GTAG_RETRY_MS);
+    }
+  };
+
+  tick();
+}
+
+function setAnalyticsConsent(granted: boolean) {
+  window.gtag!("consent", "update", {
     analytics_storage: granted ? "granted" : "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
-
-  if (granted) {
-    window.gtag("event", "page_view", {
-      page_location: window.location.href,
-      page_title: document.title,
-    });
-  }
 }
 
 function loadClarity() {
@@ -44,21 +56,43 @@ function loadClarity() {
 }
 
 export default function AnalyticsScripts() {
+  const pathname = usePathname();
   const { consent, ready } = useCookieConsent();
+  const lastTrackedUrl = useRef<string | null>(null);
+
+  const trackPageView = () => {
+    const pageLocation = window.location.href;
+    if (lastTrackedUrl.current === pageLocation) return;
+
+    lastTrackedUrl.current = pageLocation;
+    window.gtag!("event", "page_view", {
+      page_location: pageLocation,
+      page_title: document.title,
+    });
+  };
 
   useEffect(() => {
     if (!ready) return;
 
     if (consent === "accepted") {
-      updateAnalyticsConsent(true);
+      runWhenGtagReady(() => {
+        setAnalyticsConsent(true);
+        trackPageView();
+      });
       loadClarity();
       return;
     }
 
     if (consent === "rejected") {
-      updateAnalyticsConsent(false);
+      runWhenGtagReady(() => setAnalyticsConsent(false));
     }
   }, [consent, ready]);
+
+  useEffect(() => {
+    if (!ready || consent !== "accepted") return;
+
+    runWhenGtagReady(trackPageView);
+  }, [pathname, consent, ready]);
 
   if (!GA_ID) return null;
 
