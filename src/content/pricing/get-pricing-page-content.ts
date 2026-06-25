@@ -14,6 +14,10 @@ const INVESTMENT_LABELS = ["starting investment", "monthly investment", "project
 const BEST_FOR_LABELS = ["best for", "ideal para"];
 
 function pricingShortName(label: string) {
+  const SHORT: Record<string, string> = {
+    "Funnels & Conversion Rate Optimization": "Funnels and CRO",
+  };
+  if (SHORT[label]) return SHORT[label];
   return label.replace(/ Services$/, "").replace(/ Management$/, "");
 }
 
@@ -178,7 +182,7 @@ function buildGeneratedPricingContent(slug: PricingSlug, locale: Locale): Pricin
 
   return enrichPricingContent(
     {
-      metaTitle: `${pricingLabel} | Transparent Plans | KINEXIS Digital`,
+      metaTitle: `${shortName} Pricing | KINEXIS`,
       metaDescription: `Transparent ${shortName.toLowerCase()} pricing with clear tiers and deliverables. No hidden fees. No vague retainers.`,
       hero: {
         label: pricingLabel,

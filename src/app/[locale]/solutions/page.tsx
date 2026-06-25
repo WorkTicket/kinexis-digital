@@ -17,8 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path: "/solutions",
-    title: "Marketing Solutions by Industry & Service | KINEXIS",
-    description: "Tailored marketing solutions combining services and industries: SEO for HVAC, Google Ads for roofers, SaaS marketing agency, and more.",
+    title: "Marketing Solutions | KINEXIS Digital",
+    description:
+      "Tailored marketing solutions by industry and service: SEO for HVAC, Google Ads for roofers, SaaS marketing, and more.",
   });
 }
 

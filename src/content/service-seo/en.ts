@@ -132,7 +132,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   "local-seo": {
-    metaTitle: "Local SEO for Map Pack Rankings & Calls | KINEXIS Digital",
+    metaTitle: "Local SEO for Map Pack Rankings | KINEXIS",
     metaDescription:
       "Local SEO for Google Maps, reviews, citations, and location pages. Win the map pack and turn nearby searches into calls. Plans from $2,000/mo.",
     hero: {
@@ -262,7 +262,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   "ppc-management": {
-    metaTitle: "Multi-Channel PPC Management | Google, Meta & More | KINEXIS",
+    metaTitle: "Multi-Channel PPC Management | KINEXIS",
     metaDescription:
       "One team managing Google, Meta, LinkedIn, and Microsoft Ads. Shared tracking, weekly budget shifts, and ROAS you can trust. From 15% of spend or $2,500/mo min.",
     hero: {
@@ -392,7 +392,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   "google-ads": {
-    metaTitle: "Google Ads Management Agency | Search & PMax | KINEXIS Digital",
+    metaTitle: "Google Ads Management Agency | KINEXIS",
     metaDescription:
       "Google Ads management for Search, Shopping, and Performance Max. Conversion tracking, Quality Score work, and ROAS-focused campaigns. From $1,500/mo management.",
     hero: {
@@ -522,7 +522,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   "meta-ads": {
-    metaTitle: "Meta Ads Management Agency | Facebook & Instagram | KINEXIS Digital",
+    metaTitle: "Meta Ads Management Agency | KINEXIS",
     metaDescription:
       "Meta Ads management for Facebook and Instagram. Creative testing, audience segmentation, and ROAS-focused campaigns. Management from $1,500/mo plus ad spend.",
     hero: {
@@ -1693,7 +1693,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   analytics: {
-    metaTitle: "Marketing Analytics & Revenue Reporting | KINEXIS Digital",
+    metaTitle: "Marketing Analytics and Reporting | KINEXIS",
     metaDescription:
       "Marketing analytics that connects campaigns to revenue. GA4 setup, dashboards, and attribution from $1,500/mo.",
     hero: {
@@ -1953,7 +1953,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   funnels: {
-    metaTitle: "Funnels & CRO for Lead Conversion | KINEXIS Digital",
+    metaTitle: "Funnels and CRO | KINEXIS",
     metaDescription:
       "Funnels and conversion optimization in one system. Landing pages, email automation, A/B testing, and UX fixes. Projects from $5,000; programs from $2,500/mo.",
     hero: {

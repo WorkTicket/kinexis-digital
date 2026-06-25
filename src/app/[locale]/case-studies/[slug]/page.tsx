@@ -9,7 +9,7 @@ import HeroArchetype from "@/components/ui/HeroArchetype";
 import JsonLd from "@/components/seo/JsonLd";
 import type { Locale } from "@/i18n/routing";
 import { getCaseStudyDetail, getCaseStudyStaticParams } from "@/content/case-study-details";
-import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { breadcrumbSchema, caseStudySchema, organizationSchema } from "@/lib/schema";
 
 type Params = Promise<{ locale: Locale; slug: string }>;
@@ -26,8 +26,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return buildPageMetadata({
     locale,
     path: `/case-studies/${slug}`,
-    title: `${cs.title} Case Study | ${cs.headline} | KINEXIS Digital`,
-    description: cs.results.slice(0, 155),
+    title: `${cs.title} Case Study | KINEXIS`,
+    description: normalizeMetaDescription(cs.results),
   });
 }
 
@@ -45,7 +45,7 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
           organizationSchema(),
           caseStudySchema({
             title: cs.title,
-            description: cs.results.slice(0, 155),
+            description: normalizeMetaDescription(cs.results),
             url: buildAbsoluteUrl(locale, `/case-studies/${slug}`),
             industry: cs.industry,
           }),

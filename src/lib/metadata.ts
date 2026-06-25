@@ -6,6 +6,46 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinexisdigita
 
 export const DEFAULT_OG_IMAGE_PATH = "/assets/images/kinexis_OG_image.png";
 
+/** Google typically truncates titles around 60 characters in SERPs. */
+export const META_TITLE_MAX = 60;
+
+/** Google typically truncates descriptions around 155–160 characters. */
+export const META_DESCRIPTION_MAX = 155;
+
+export const META_DESCRIPTION_MIN = 50;
+
+const BRAND_SUFFIXES = [" | KINEXIS Digital", " | KINEXIS", " - KINEXIS Digital", " - KINEXIS"] as const;
+
+/** Approximate length once Next.js HTML-encodes common characters in meta tags. */
+function encodedMetaLength(text: string): number {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#x27;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .length;
+}
+
+function truncateToEncodedLength(text: string, maxEncodedLength: number): string {
+  const trimmed = collapseWhitespace(text);
+  if (encodedMetaLength(trimmed) <= maxEncodedLength) return trimmed;
+
+  let low = 0;
+  let high = trimmed.length;
+  while (low < high) {
+    const mid = Math.ceil((low + high) / 2);
+    const candidate = truncateAtWord(trimmed, mid);
+    if (encodedMetaLength(candidate) <= maxEncodedLength) {
+      low = mid;
+    } else {
+      high = mid - 1;
+    }
+  }
+
+  return truncateAtWord(trimmed, Math.max(1, low));
+}
+
 export function getSiteUrl() {
   return SITE_URL;
 }
@@ -33,10 +73,50 @@ export type PageMetadataInput = {
   noIndex?: boolean;
 };
 
+function collapseWhitespace(raw: string): string {
+  return raw.replace(/\s{2,}/g, " ").trim();
+}
+
 /** Strip pipe characters that are used as visual line-break separators in hero
  *  subtitles but must not appear raw in meta description / OG tags. */
 function cleanDescription(raw: string): string {
-  return raw.replace(/\|/g, " ").replace(/\s{2,}/g, " ").trim();
+  return collapseWhitespace(raw.replace(/\|/g, " "));
+}
+
+function truncateAtWord(text: string, maxLength: number): string {
+  const trimmed = collapseWhitespace(text);
+  if (trimmed.length <= maxLength) return trimmed;
+
+  const slice = trimmed.slice(0, maxLength);
+  const lastSpace = slice.lastIndexOf(" ");
+  if (lastSpace > Math.floor(maxLength * 0.55)) {
+    return `${slice.slice(0, lastSpace).trimEnd()}…`;
+  }
+
+  return `${slice.trimEnd()}…`;
+}
+
+/** Normalize page titles for search snippets while preserving brand suffixes when possible. */
+export function normalizeMetaTitle(title: string, maxLength = META_TITLE_MAX): string {
+  const cleaned = collapseWhitespace(title);
+  if (encodedMetaLength(cleaned) <= maxLength) return cleaned;
+
+  for (const suffix of BRAND_SUFFIXES) {
+    if (!cleaned.endsWith(suffix)) continue;
+
+    const main = cleaned.slice(0, -suffix.length);
+    const maxMain = maxLength - encodedMetaLength(suffix);
+    if (maxMain >= 12) {
+      return `${truncateToEncodedLength(main, maxMain)}${suffix}`;
+    }
+  }
+
+  return truncateToEncodedLength(cleaned, maxLength);
+}
+
+/** Normalize meta descriptions to a SERP-friendly length with word-boundary ellipsis. */
+export function normalizeMetaDescription(description: string, maxLength = META_DESCRIPTION_MAX): string {
+  return truncateToEncodedLength(cleanDescription(description), maxLength);
 }
 
 export function buildPageMetadata({
@@ -47,7 +127,8 @@ export function buildPageMetadata({
   ogImage,
   noIndex,
 }: PageMetadataInput): Metadata {
-  const safeDescription = cleanDescription(description);
+  const safeTitle = normalizeMetaTitle(title);
+  const safeDescription = normalizeMetaDescription(description);
   const url = buildAbsoluteUrl(locale, path);
   const imageUrl = ogImage ?? getDefaultOgImageUrl();
   const languages: Record<string, string> = {
@@ -58,7 +139,7 @@ export function buildPageMetadata({
   }
 
   return {
-    title,
+    title: safeTitle,
     description: safeDescription,
     robots: noIndex
       ? { index: false, follow: false }
@@ -68,7 +149,7 @@ export function buildPageMetadata({
       languages,
     },
     openGraph: {
-      title,
+      title: safeTitle,
       description: safeDescription,
       url,
       type: "website",
@@ -78,7 +159,7 @@ export function buildPageMetadata({
     twitter: {
       card: "summary_large_image",
       site: "@kinexisdigital",
-      title,
+      title: safeTitle,
       description: safeDescription,
       images: [imageUrl],
     },

@@ -14,12 +14,22 @@ type Props = { params: Promise<{ locale: Locale }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const c = termsContent[locale];
+  const termsMeta: Record<Locale, { title: string; description: string }> = {
+    en: {
+      title: "Terms of Service | KINEXIS",
+      description: "Terms governing your use of the KINEXIS Digital website and marketing services.",
+    },
+    es: {
+      title: "Términos de Servicio | KINEXIS",
+      description: "Términos que rigen el uso del sitio web y los servicios de marketing de KINEXIS Digital.",
+    },
+  };
+  const meta = termsMeta[locale];
   return buildPageMetadata({
     locale,
     path: "/terms",
-    title: `${c.title} | KINEXIS Digital`,
-    description: c.intro.slice(0, 155),
+    title: meta.title,
+    description: meta.description,
   });
 }
 

@@ -69,9 +69,9 @@ const enCapabilities = [
 export const agencyHubContent: Record<Locale, AgencyHubContent> = {
   en: {
     meta: {
-      title: "Digital Marketing Agency | Full-Service Growth Partner | KINEXIS",
+      title: "Digital Marketing Agency | KINEXIS Digital",
       description:
-        "KINEXIS is a full-service digital marketing agency and growth marketing partner for local businesses, SaaS companies, startups, and enterprise organizations. SEO, paid media, web design, CRO, and analytics integrated as one revenue system.",
+        "Full-service digital marketing for local businesses, SaaS, and startups. SEO, paid media, web design, CRO, and analytics as one revenue system.",
     },
     hero: {
       label: "Full-Service Digital Marketing Agency",
@@ -218,9 +218,9 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
   },
   es: {
     meta: {
-      title: "Agencia de Marketing Digital | Socio de Crecimiento Integral | KINEXIS",
+      title: "Agencia de Marketing Digital | KINEXIS Digital",
       description:
-        "KINEXIS es una agencia de marketing digital de servicio completo para negocios locales, empresas SaaS, startups y organizaciones enterprise.",
+        "Agencia de marketing digital de servicio completo para negocios locales, SaaS y startups. SEO, medios pagados, diseño web, CRO y analítica integrados.",
     },
     hero: {
       label: "Agencia de Marketing Digital de Servicio Completo",
