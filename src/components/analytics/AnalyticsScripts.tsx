@@ -74,25 +74,23 @@ export default function AnalyticsScripts() {
   useEffect(() => {
     if (!ready) return;
 
-    if (consent === "accepted") {
-      runWhenGtagReady(() => {
+    runWhenGtagReady(() => {
+      if (consent === "accepted") {
         setAnalyticsConsent(true);
         trackPageView();
-      });
-      loadClarity();
-      return;
-    }
-
-    if (consent === "rejected") {
-      runWhenGtagReady(() => setAnalyticsConsent(false));
-    }
+        loadClarity();
+      } else if (consent === "rejected") {
+        setAnalyticsConsent(false);
+      }
+    });
   }, [consent, ready]);
 
+  // Consent Mode v2: page views fire even when analytics_storage is denied.
+  // Google records cookieless pings until the visitor accepts cookies.
   useEffect(() => {
-    if (!ready || consent !== "accepted") return;
-
+    if (!ready) return;
     runWhenGtagReady(trackPageView);
-  }, [pathname, consent, ready]);
+  }, [pathname, ready]);
 
   if (!GA_ID) return null;
 

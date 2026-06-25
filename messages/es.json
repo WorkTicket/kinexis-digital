@@ -53,6 +53,7 @@
     "bookCallShort": "Agendar"
   },
   "services": {
+    "pricing": "Precios",
     "webDesign": "Diseño Web",
     "seo": "SEO",
     "localSeo": "SEO Local",

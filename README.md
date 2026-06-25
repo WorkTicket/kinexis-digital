@@ -54,8 +54,9 @@ Copy `.env.example` to `.env.local` and fill in:
 | `GMAIL_USER` / `GMAIL_APP_PASSWORD` | SMTP for contact and lead forms |
 | `CONTACT_TO_EMAIL` | Inbox for form submissions |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL (e.g. `https://www.kinexisdigital.com`) |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics (loaded after consent) |
-| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity (optional) |
+| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (Consent Mode v2) |
+| `NEXT_PUBLIC_GSC_VERIFICATION` | Google Search Console HTML tag verification token |
+| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity (optional, loads after consent) |
 | `SENTRY_*` | Error monitoring (optional) |
 
 For local Workers preview, copy the same values into `.dev.vars` (see `.env.example`).
@@ -110,10 +111,22 @@ Custom domain and routes are configured in [`wrangler.jsonc`](wrangler.jsonc).
 | Variable | Where to set |
 |---|---|
 | `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL` | Worker **Variables and Secrets** (runtime) |
-| `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_CLARITY_ID` | **Build Variables and secrets** + runtime |
+| `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GSC_VERIFICATION`, `NEXT_PUBLIC_CLARITY_ID` | **Build Variables and secrets** + runtime |
 | `SENTRY_*` | Optional — build + runtime |
 
 `GMAIL_APP_PASSWORD` must be a **Secret**. `NEXT_PUBLIC_*` vars must be present at build time or OG URLs, sitemap, and analytics will break.
+
+### Google Analytics & Search Console
+
+**Analytics (GA4):** Set `NEXT_PUBLIC_GA_ID=G-Z8245BRX2L` in build env, redeploy, then in GA4 go to **Admin → Data streams → your web stream → Enhanced measurement** and confirm it is on. Real-time data appears even before cookie accept (Consent Mode cookieless pings); full session data requires accepting the cookie banner. Disable ad blockers when testing.
+
+**Search Console:** Add a **URL prefix** property for `https://www.kinexisdigital.com` (not the bare apex). Verification uses the meta tag from `NEXT_PUBLIC_GSC_VERIFICATION` (already in `src/app/layout.tsx`). After verifying:
+
+1. **Sitemaps** → submit `https://www.kinexisdigital.com/sitemap.xml` (378 URLs)
+2. **URL inspection** → test `https://www.kinexisdigital.com/en` → **Request indexing**
+3. Allow 3–14 days for first pages to appear; a new domain is normal to show zero indexed URLs at first
+
+If you use a **Domain** property (`kinexisdigital.com`), verify via DNS TXT in Cloudflare instead of the HTML tag.
 
 ### CI/CD (GitHub Actions)
 
