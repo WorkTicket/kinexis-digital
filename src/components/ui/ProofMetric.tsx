@@ -4,7 +4,7 @@ type Props = {
   value: React.ReactNode;
   label?: React.ReactNode;
   description?: React.ReactNode;
-  size?: "default" | "lg";
+  size?: "sm" | "default" | "lg";
   labelVariant?: "default" | "stat";
   align?: "left" | "center" | "right";
   labelFirst?: boolean;
@@ -42,7 +42,14 @@ export default function ProofMetric({
       )}
     >
       {labelFirst && labelEl}
-      <div className={cn(size === "lg" ? "type-metric-lg" : "type-metric", valueClassName)}>
+      <div
+        className={cn(
+          size === "lg" && "type-metric-lg",
+          size === "sm" && "type-metric-sm",
+          size === "default" && "type-metric",
+          valueClassName
+        )}
+      >
         {value}
       </div>
       {!labelFirst && labelEl}

@@ -116,6 +116,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           { label: "Monthly Revenue", from: 2000, to: 11500, prefix: "$", suffix: "/mo" },
           { label: "Lead Conversion", from: 1.2, to: 8.4, suffix: "%", decimals: 1 },
           { label: "Organic Traffic", from: 320, to: 4700, suffix: "/mo" },
+          { label: "GBP Impressions", from: 1200, to: 28000, suffix: "/mo" },
         ],
         narrative: {
           challenge:
@@ -332,6 +333,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           { label: "Ingresos Mensuales", from: 2000, to: 11500, prefix: "$", suffix: "/mes" },
           { label: "Conversión de Leads", from: 1.2, to: 8.4, suffix: "%", decimals: 1 },
           { label: "Tráfico Orgánico", from: 320, to: 4700, suffix: "/mes" },
+          { label: "Impresiones GBP", from: 1200, to: 28000, suffix: "/mes" },
         ],
       },
       {

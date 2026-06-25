@@ -1,12 +1,11 @@
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
-import ProofMetric from "@/components/ui/ProofMetric";
 import AnimatedWrapper from "@/components/ui/AnimatedWrapper";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import JsonLd from "@/components/seo/JsonLd";
+import CaseStudyResultsMetrics from "@/components/case-studies/CaseStudyResultsMetrics";
 import type { Locale } from "@/i18n/routing";
 import { getCaseStudyDetail, getCaseStudyStaticParams } from "@/content/case-study-details";
 import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
@@ -77,33 +76,11 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
 
       <AnimatedWrapper className="section-padding">
         <div className="container-site">
-          <div className="mx-auto max-w-3xl space-y-20">
-            <div className="grid gap-grid-sm sm:grid-cols-2 lg:grid-cols-4">
-              {cs.resultsList.map((r) => (
-                <div key={r.label} className="proof-metric-card">
-                  <ProofMetric
-                    value={
-                      <AnimatedCounter
-                        from={r.before}
-                        to={r.after}
-                        prefix={r.prefix}
-                        suffix={r.suffix}
-                        decimals={r.decimals}
-                      />
-                    }
-                    label={r.label}
-                    description={
-                      <span className="inline-flex items-center justify-center gap-1.5">
-                        <span>{r.prefix}{r.before}{r.suffix}</span>
-                        <span className="text-accent">&rarr;</span>
-                        <span className="text-white font-semibold">{r.prefix}{r.after}{r.suffix}</span>
-                      </span>
-                    }
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="mx-auto max-w-4xl">
+            <CaseStudyResultsMetrics results={cs.resultsList} />
+          </div>
 
+          <div className="mx-auto mt-20 max-w-3xl space-y-20">
             <AnimatedWrapper>
               <h2 className="text-2xl font-bold">
                 <span className="text-accent">{cs.challengeHeading}</span>

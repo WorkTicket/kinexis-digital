@@ -1666,8 +1666,66 @@ summary::-webkit-details-marker {
     @apply mt-1 text-xs text-muted/50;
   }
 
+  .type-metric-sm {
+    @apply font-bold tabular-nums gradient-text;
+    font-size: clamp(1.125rem, 2.8vw, 1.5rem);
+    line-height: 1.15;
+  }
+
   .proof-metric-card {
     @apply rounded-2xl border border-white/[0.06] bg-white/[0.03] card-pad text-center;
+  }
+
+  /* Case study metric cards — shared across listing + detail pages */
+  .case-study-results-grid {
+    @apply grid grid-cols-2 gap-3 sm:gap-4;
+  }
+
+  .case-study-metric-card {
+    @apply min-w-0 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4 text-center sm:p-5;
+  }
+
+  .case-study-metric-card__label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-muted/70 text-balance;
+  }
+
+  .case-study-metric-card__value {
+    @apply mt-2;
+  }
+
+  .case-study-metric-card__delta {
+    @apply mt-2.5 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 border-t border-white/[0.06] pt-2.5 text-[11px] tabular-nums leading-snug;
+  }
+
+  .case-study-metric-card__before {
+    @apply text-muted/55;
+  }
+
+  .case-study-metric-card__arrow {
+    @apply shrink-0 text-neon-cyan/70;
+  }
+
+  .case-study-metric-card__after {
+    @apply font-semibold text-white;
+  }
+
+  /* Compact lift row on case study listing cards */
+  .case-study-lift-row {
+    container-type: inline-size;
+    @apply grid min-w-0 grid-cols-3 gap-2 border-t border-white/[0.06] pt-5;
+  }
+
+  .case-study-lift-row__item {
+    @apply flex min-w-0 flex-col items-center px-0.5 text-center;
+  }
+
+  .case-study-lift-row__value {
+    font-size: clamp(0.6875rem, 9cqi, 0.875rem);
+    @apply font-bold tabular-nums leading-tight;
+  }
+
+  .case-study-lift-row__label {
+    @apply mt-1 text-[10px] leading-tight text-muted;
   }
 
   .section-title {
