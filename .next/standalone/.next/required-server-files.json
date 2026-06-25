@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "cf762b3a11a0ad0b78eea8c6238018f5e29005d3"
+      "_sentryRelease": "4ed3454bc1858d97c6d207e317056d7ed2e85be4"
     },
     "eslint": {
       "ignoreDuringBuilds": false

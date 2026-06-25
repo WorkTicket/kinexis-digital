@@ -11,18 +11,10 @@
       "static/chunks/1646.a93085a0445ba909.js"
     ]
   },
-  "components\\providers\\DeferredWidgets.tsx -> @/components/features/ChatBot": {
-    "id": 28756,
-    "files": [
-      "static/chunks/vendor-framer-motion-1c37c14dfe441c2c.js",
-      "static/chunks/vendor-lucide-5358d4affacc2c6e.js",
-      "static/chunks/8756.8fbd30409761cf25.js"
-    ]
-  },
   "components\\providers\\DeferredWidgets.tsx -> @/components/layout/BackToTop": {
     "id": 6317,
     "files": [
-      "static/chunks/vendor-lucide-5358d4affacc2c6e.js",
+      "static/chunks/vendor-lucide-37b3ed90e95354c1.js",
       "static/chunks/6317.820725f5cdc08847.js"
     ]
   },
