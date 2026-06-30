@@ -13,14 +13,15 @@ import { Link } from "@/i18n/navigation";
 import { getAuthor } from "@/content/authors";
 import { getBlogAuthorSlug } from "@/lib/blog-authors";
 import HeroArchetype from "@/components/ui/HeroArchetype";
-import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
 import type { Metadata } from "next";
 
 function getPostExcerpt(slug: string, locale: Locale, body: string): string {
   const listing = getLocalizedContent(blogContent, locale).posts.find((p) => p.slug === slug);
-  if (listing?.excerpt) return listing.excerpt;
-  return body.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().slice(0, 160);
+  if (listing?.excerpt) return normalizeMetaDescription(listing.excerpt);
+  const stripped = body.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+  return normalizeMetaDescription(stripped);
 }
 
 function resolvePost(slug: string, locale: Locale) {
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return buildPageMetadata({
     locale,
     path: `/blog/${slug}`,
-    title: `${post.title} | KINEXIS Digital`,
+    title: `${post.title} | KINEXIS`,
     description,
   });
 }

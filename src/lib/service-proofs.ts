@@ -17,7 +17,7 @@ export const SERVICE_PROOFS: Record<string, ServiceProof> = {
     href: "/case-studies/premium-ecommerce-brand",
   },
   "web-design": {
-    result: "5× Revenue Growth",
+    result: "5.9× Revenue Growth",
     client: "Landscaping Company",
     href: "/case-studies/landscaping-company-growth",
   },

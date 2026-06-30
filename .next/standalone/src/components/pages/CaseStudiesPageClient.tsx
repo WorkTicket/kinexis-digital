@@ -3,12 +3,14 @@
 import { useState } from "react";
 import { m as motion, AnimatePresence } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
+import CaseStudyMetricCard from "@/components/case-studies/CaseStudyMetricCard";
+import CaseStudyLiftRow from "@/components/case-studies/CaseStudyLiftRow";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import TextLink from "@/components/ui/TextLink";
 import HeroArchetype from "@/components/ui/HeroArchetype";
-import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import ProofMetric from "@/components/ui/ProofMetric";
 import type { CaseStudiesContent } from "@/content/case-studies";
+import { formatMetricValue } from "@/lib/format-metric";
 import TwoLineText from "@/components/ui/TwoLineText";
 import {
   ArrowUpRight,
@@ -22,18 +24,6 @@ import {
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 
 const metricWallIcons = [DollarSign, TrendingUp, Users, MousePointerClick];
-
-function formatMetricValue(
-  value: number,
-  options: { prefix?: string; suffix?: string; decimals?: number } = {}
-) {
-  const { prefix = "", suffix = "", decimals = 0 } = options;
-  const formatted = value.toLocaleString(undefined, {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals,
-  });
-  return `${prefix}${formatted}${suffix}`;
-}
 
 type Props = { content: CaseStudiesContent };
 
@@ -118,23 +108,18 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                   {featuredCS.summary}
                 </p>
 
-                <div className="mt-8 grid grid-cols-1 gap-4 min-[480px]:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 [&>*]:min-w-0">
+                <div className="mt-8 case-study-results-grid">
                   {featuredCS.metrics.map((m) => (
-                    <ProofMetric
+                    <CaseStudyMetricCard
                       key={m.label}
-                      size="default"
-                      align="left"
-                      value={
-                        <AnimatedCounter
-                          from={m.from}
-                          to={m.to}
-                          prefix={m.prefix}
-                          suffix={m.suffix}
-                          decimals={m.decimals}
-                        />
-                      }
-                      label={m.label}
-                      valueClassName="whitespace-nowrap leading-snug"
+                      metric={{
+                        label: m.label,
+                        before: m.from,
+                        after: m.to,
+                        prefix: m.prefix,
+                        suffix: m.suffix,
+                        decimals: m.decimals,
+                      }}
                     />
                   ))}
                 </div>
@@ -250,7 +235,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
               {filtered.map((cs, i) => (
                 <motion.article
                   key={cs.slug}
-                  className="group motion-card flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden"
+                  className="group motion-card flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
@@ -267,20 +252,14 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                     <p className="mt-1 text-base font-semibold">{cs.title}</p>
                     <p className="mt-3 text-sm leading-relaxed text-muted flex-1">{cs.summary}</p>
 
-                    <div className="mt-6 grid grid-cols-1 gap-4 xs:grid-cols-3 xs:gap-3 pt-5 border-t border-white/[0.06]">
-                      <div>
-                        <div className="text-sm font-bold text-emerald-400">{cs.trafficLift}</div>
-                        <div className="text-[10px] text-muted mt-0.5">{c.trafficLabel}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm font-bold text-neon-cyan">{cs.leadLift}</div>
-                        <div className="text-[10px] text-muted mt-0.5">{c.leadsLabel}</div>
-                      </div>
-                      <div>
-                        <div className="text-sm font-bold gradient-text">{cs.revenueLift}</div>
-                        <div className="text-[10px] text-muted mt-0.5">{c.revenueLabel}</div>
-                      </div>
-                    </div>
+                    <CaseStudyLiftRow
+                      className="mt-6"
+                      items={[
+                        { value: cs.trafficLift, label: c.trafficLabel, tone: "traffic" },
+                        { value: cs.leadLift, label: c.leadsLabel, tone: "leads" },
+                        { value: cs.revenueLift, label: c.revenueLabel, tone: "revenue" },
+                      ]}
+                    />
 
                     <div className="mt-5 flex flex-wrap gap-1.5">
                       {cs.services.map((s) => (

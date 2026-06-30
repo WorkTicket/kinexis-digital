@@ -51,7 +51,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     ],
     caseStudies: [
       { href: "/case-studies/landscaping-company-growth", label: "+340% Traffic · Landscaping Co." },
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
     ],
     blog: [
       { href: "/blog/quality-score-guide", label: "Quality Score Guide" },
@@ -80,8 +80,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("meta-ads"),
     ],
     caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
-      { href: "/case-studies/fintech-app-startup", label: "210% Trial Lift · Fintech App" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
+      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
     ],
     blog: [
       { href: "/blog/landing-page-best-practices", label: "Landing Page Best Practices" },
@@ -95,7 +95,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("web-design"),
     ],
     caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
       { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
     ],
     blog: [
@@ -110,8 +110,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("cro"),
     ],
     caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
-      { href: "/case-studies/fintech-app-startup", label: "210% Trial Lift · Fintech App" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
+      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
     ],
     blog: [
       { href: "/blog/ab-testing-framework", label: "A/B Testing Framework" },
@@ -155,8 +155,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("social-media"),
     ],
     caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
-      { href: "/case-studies/fintech-app-startup", label: "210% Trial Lift · Fintech App" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
+      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
     ],
     blog: [
       { href: "/blog/local-business-growth-playbook", label: "Local Business Growth Playbook" },
@@ -169,7 +169,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("video-marketing"),
     ],
     caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
     ],
     blog: [],
   },
@@ -180,7 +180,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("branding"),
     ],
     caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "4X Revenue · E-Commerce" },
+      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
     ],
     blog: [],
   },
@@ -220,7 +220,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     ],
     caseStudies: [
       { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-      { href: "/case-studies/fintech-app-startup", label: "210% Trial Lift · Fintech App" },
+      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
     ],
     blog: [
       { href: "/blog/lifecycle-marketing", label: "Lifecycle Marketing" },

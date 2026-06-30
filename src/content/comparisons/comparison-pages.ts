@@ -92,7 +92,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     },
     es: {
       metaTitle: "SEO vs PPC | Orgánico vs Pagado",
-      metaDescription: "Comparación SEO vs PPC para negocios B2B.",
+      metaDescription: "Comparación SEO vs PPC para negocios B2B y de servicios. Costos, plazos y recomendaciones de mezcla de canales.",
       hero: { label: "SEO vs PPC", line1: "SEO vs PPC:", line2: "¿Pagado u Orgánico?", subtitle: "La pregunta es cuánto de cada uno y en qué orden." },
       answerBlock: "PPC cubre Google Ads, Meta Ads y otros canales pagados. SEO construye rankings orgánicos.",
       sections: [{ title: "Fortalezas PPC", body: "Pruebas instantáneas y control de presupuesto." }],

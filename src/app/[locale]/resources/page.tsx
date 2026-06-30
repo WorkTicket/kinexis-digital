@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path: "/resources",
-    title: `${content.meta.heroTitle} ${content.meta.heroTitleHighlight} | KINEXIS Digital`,
+    title: `${content.meta.heroTitle} | KINEXIS Digital`,
     description: content.meta.heroSubtitle,
   });
 }

@@ -109,7 +109,24 @@ function industryOutcomes(industry: IndustryEntry): { value: string; label: stri
   ];
 }
 
-export function buildIndustryDetailContent(industry: IndustryEntry, _locale: Locale): IndustryDetailContent {
+function buildIndustryMeta(industry: IndustryEntry, locale: Locale): { title: string; description: string } {
+  const label = industry.label;
+  const labelLower = label.toLowerCase();
+
+  if (locale === "es") {
+    return {
+      title: `Agencia de Marketing ${label} | KINEXIS`,
+      description: `Marketing digital para empresas de ${labelLower}. SEO, medios pagados, diseño web y CRO orientados a ingresos con KINEXIS.`,
+    };
+  }
+
+  return {
+    title: `${label} Marketing Agency | KINEXIS`,
+    description: `Digital marketing for ${labelLower} companies. SEO, paid media, web design, and CRO built for revenue with KINEXIS.`,
+  };
+}
+
+export function buildIndustryDetailContent(industry: IndustryEntry, locale: Locale): IndustryDetailContent {
   const category = getCategoryById(industry.categoryId);
   const categoryLabel = category?.label || industry.categoryId;
 
@@ -133,10 +150,7 @@ export function buildIndustryDetailContent(industry: IndustryEntry, _locale: Loc
   };
 
   return {
-    meta: {
-      title: `${industry.label} Marketing Agency | Digital Growth for ${industry.label} | KINEXIS`,
-      description: `KINEXIS provides digital marketing for ${industry.label.toLowerCase()} companies. ${industry.shortDescription} Full-service SEO, paid media, web design, and CRO.`,
-    },
+    meta: buildIndustryMeta(industry, locale),
     answerBlock: `KINEXIS provides ${industry.label.toLowerCase()} marketing including ${industry.primaryServices.slice(0, 3).map((s) => serviceLabels[s as ServiceSlug]?.toLowerCase() || s).join(", ")}. We build strategies around how ${industry.label.toLowerCase()} buyers search and decide, not generic agency templates. Most engagements combine SEO and paid media with conversion-focused landing pages. Timelines vary by channel: paid media produces data within days, SEO typically needs 60 to 90 days for meaningful movement.`,
     hero: {
       label: `${categoryLabel} · ${industry.label}`,
@@ -185,8 +199,9 @@ export function buildIndustryDetailContent(industry: IndustryEntry, _locale: Loc
 export const industriesHubContent: Record<Locale, { meta: { title: string; description: string }; hero: { label: string; headlineLine1: string; headlineLine2: string; subtitle: string }; intro: { title: string; paragraphs: string[]; ctaLabel: string } }> = {
   en: {
     meta: {
-      title: "Industries We Serve | Digital Marketing by Vertical | KINEXIS",
-      description: "KINEXIS serves home services, healthcare, professional services, technology, e-commerce, hospitality, manufacturing, and financial services with tailored growth marketing.",
+      title: "Industries We Serve | KINEXIS Digital",
+      description:
+        "Growth marketing for home services, healthcare, professional services, technology, e-commerce, and more. Strategies built for how your industry buys.",
     },
     hero: {
       label: "Industries",
@@ -205,7 +220,11 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
     },
   },
   es: {
-    meta: { title: "Industrias que Servimos | Marketing Digital por Vertical | KINEXIS", description: "Marketing digital para servicios del hogar, salud, tecnología, e-commerce y más." },
+    meta: {
+      title: "Industrias que Servimos | KINEXIS Digital",
+      description:
+        "Marketing de crecimiento para servicios del hogar, salud, servicios profesionales, tecnología, e-commerce y más. Estrategias a medida por vertical.",
+    },
     hero: { label: "Industrias", headlineLine1: "Capacidad enterprise", headlineLine2: "en cada vertical.", subtitle: "Desde contratistas locales hasta plataformas SaaS,|con sistemas de crecimiento a medida." },
     intro: {
       title: "Diseñado para cómo compra tu industria.",

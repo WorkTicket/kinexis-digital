@@ -3,7 +3,6 @@ export const mainNavLinks = [
   { href: "/services", key: "services" as const, dropdown: "services" as const },
   { href: "/case-studies", key: "caseStudies" as const },
   { href: "/industries", key: "industries" as const, dropdown: "industries" as const },
-  { href: "/locations", key: "locations" as const },
   { href: "/about", key: "about" as const },
   { href: "/blog", key: "blog" as const },
   { href: "/resources", key: "resources" as const, dropdown: "resources" as const },

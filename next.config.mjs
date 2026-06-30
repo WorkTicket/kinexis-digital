@@ -99,6 +99,11 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/security.txt",
+        destination: "/.well-known/security.txt",
+        permanent: true,
+      },
+      {
         source: "/:locale(en|es)/services/cro",
         destination: "/:locale/services/funnels",
         permanent: true,
@@ -139,6 +144,13 @@ const nextConfig = {
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
           { key: "Vary", value: "Accept" },
+        ],
+      },
+      {
+        source: "/.well-known/security.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "Cache-Control", value: "public, max-age=86400" },
         ],
       },
     ];

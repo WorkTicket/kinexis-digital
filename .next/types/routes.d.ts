@@ -5,7 +5,7 @@ type AppRoutes = "/[locale]" | "/[locale]/about" | "/[locale]/blog" | "/[locale]
 type AppRouteHandlerRoutes = "/api/contact" | "/api/lead"
 type PageRoutes = never
 type LayoutRoutes = "/" | "/[locale]" | "/[locale]/about" | "/[locale]/blog" | "/[locale]/case-studies" | "/[locale]/contact" | "/[locale]/lead-magnet" | "/[locale]/services" | "/[locale]/services/analytics" | "/[locale]/services/branding" | "/[locale]/services/content-marketing" | "/[locale]/services/cro" | "/[locale]/services/email-marketing" | "/[locale]/services/funnels" | "/[locale]/services/growth-consulting" | "/[locale]/services/local-seo" | "/[locale]/services/paid-ads" | "/[locale]/services/seo" | "/[locale]/services/social-media" | "/[locale]/services/video-marketing" | "/[locale]/services/web-design"
-type RedirectRoutes = never
+type RedirectRoutes = "/security.txt"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes | AppRouteHandlerRoutes
 
@@ -58,6 +58,7 @@ interface ParamMap {
   "/[locale]/wordpress-vs-webflow": { "locale": string; }
   "/api/contact": {}
   "/api/lead": {}
+  "/security.txt": {}
 }
 
 

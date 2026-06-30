@@ -172,8 +172,8 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
           label: "New Patient Growth",
           headline: "Ads tied to booked appointments",
           description:
-            "Dental Practice case study: new patient bookings grew from 45 to 198 per month after local SEO and ad restructure.",
-          metric: "+340% patients",
+            "Dental Practice case study: new patient bookings grew from 47 to 193 per month after local SEO and ad restructure.",
+          metric: "+311% patients",
         },
         {
           label: "Cost Per Lead",

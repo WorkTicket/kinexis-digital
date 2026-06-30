@@ -17,8 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path: "/locations",
-    title: "Local Digital Marketing | Markets We Serve | KINEXIS",
-    description: "Location-specific digital marketing for Dallas, Austin, Toronto, Bogotá, Cedar Falls, Cedar Rapids, Des Moines, and Waterloo. Unique local content for each market, not duplicate city templates.",
+    title: "Local Digital Marketing | KINEXIS Digital",
+    description:
+      "Location-specific digital marketing for Dallas, Austin, Toronto, Bogotá, and Iowa markets. Unique local strategy for each city we serve.",
   });
 }
 

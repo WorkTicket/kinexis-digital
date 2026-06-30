@@ -14,12 +14,22 @@ type Props = { params: Promise<{ locale: Locale }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
-  const c = privacyContent[locale];
+  const privacyMeta: Record<Locale, { title: string; description: string }> = {
+    en: {
+      title: "Privacy Policy | KINEXIS",
+      description: "How KINEXIS Digital collects, uses, and protects your personal information on our website and services.",
+    },
+    es: {
+      title: "Política de Privacidad | KINEXIS",
+      description: "Cómo KINEXIS Digital recopila, usa y protege tu información personal en nuestro sitio web y servicios.",
+    },
+  };
+  const meta = privacyMeta[locale];
   return buildPageMetadata({
     locale,
     path: "/privacy",
-    title: `${c.title} | KINEXIS Digital`,
-    description: c.intro.slice(0, 155),
+    title: meta.title,
+    description: meta.description,
   });
 }
 

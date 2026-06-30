@@ -109,8 +109,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Organic Traffic",
         headline: "Steady growth, not spikes",
         description:
-          "Landscaping Company case study: organic traffic grew from 320 to 4,700 visits per month over 8 months after a site rebuild and local SEO campaign.",
-        metric: "+340%",
+          "Landscaping Company case study: organic traffic grew from 320 to 4,380 visits per month over 8 months after a site rebuild and local SEO campaign.",
+        metric: "+327%",
       },
       {
         label: "Keyword Rankings",
@@ -122,7 +122,7 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Lead Conversion",
         headline: "Traffic that converts",
         description:
-          "Better-intent traffic converts at higher rates. Landscaping client: lead conversion went from 1.2% to 8.4% after the rebuild.",
+          "Better-intent traffic converts at higher rates. Landscaping client: lead conversion went from 1.2% to 7.9% after the rebuild.",
         metric: "+180%",
       },
     ],

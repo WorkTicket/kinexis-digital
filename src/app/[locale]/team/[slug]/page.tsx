@@ -5,7 +5,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { getAuthor } from "@/content/authors";
 import { authorSlugs } from "@/content/registry/site-routes";
 import { routing, type Locale } from "@/i18n/routing";
-import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema, personSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ locale: Locale; slug: string }> };
@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: Props) {
   return buildPageMetadata({
     locale,
     path: `/team/${slug}`,
-    title: `${author.name} | ${author.jobTitle} | KINEXIS Digital`,
-    description: author.bio.slice(0, 155),
+    title: `${author.name} | KINEXIS Digital`,
+    description: normalizeMetaDescription(author.bio),
   });
 }
 

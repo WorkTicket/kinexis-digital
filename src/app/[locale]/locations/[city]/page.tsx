@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path: `/locations/${city}`,
-    title: `${title} | KINEXIS Digital`,
+    title: `${title} | KINEXIS`,
     description: location.description,
   });
 }

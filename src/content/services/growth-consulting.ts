@@ -115,7 +115,7 @@ export const growthConsultingContent: Record<Locale, GrowthConsultingContent> = 
       title: "Proven outcomes.",
       subtitle: "Outcomes from recent consulting engagements,|reported against baselines set at kickoff.",
       metrics: [
-        { label: "Funnel Improvement", value: 180, prefix: "+", suffix: "%", desc: "E-Commerce client: conversion rate 1.8% to 6.3%" },
+        { label: "Funnel Improvement", value: 228, prefix: "+", suffix: "%", desc: "E-Commerce client: conversion rate 1.8% to 5.9%" },
         { label: "Engagement Length", value: 9, suffix: " months", desc: "Typical partnership length" },
         { label: "Retention Rate", value: 94, suffix: "%", desc: "Clients who renew year-over-year" },
       ],

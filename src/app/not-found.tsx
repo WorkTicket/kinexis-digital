@@ -1,4 +1,11 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | KINEXIS Digital",
+  description: "This page does not exist. Return to the KINEXIS Digital homepage or contact us to find what you need.",
+  robots: { index: false, follow: false },
+};
 
 export default function RootNotFound() {
   return (
