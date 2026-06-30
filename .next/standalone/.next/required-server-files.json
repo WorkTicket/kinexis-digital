@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "4a2b4ac54123bb09ca625cd207e4c2f46b04305a"
+      "_sentryRelease": "bc112979ac466a00569dafa56ea421ffa85a4dd2"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -325,6 +325,11 @@
       "root": "C:\\Users\\Slay3r\\Downloads\\kinexisdigital.com"
     },
     "_originalRedirects": [
+      {
+        "source": "/security.txt",
+        "destination": "/.well-known/security.txt",
+        "permanent": true
+      },
       {
         "source": "/:locale(en|es)/services/cro",
         "destination": "/:locale/services/funnels",

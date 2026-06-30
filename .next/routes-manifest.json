@@ -12,6 +12,12 @@
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
     },
     {
+      "source": "/security.txt",
+      "destination": "/.well-known/security.txt",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/security\\.txt(?:/)?$"
+    },
+    {
       "source": "/:locale(en|es)/services/cro",
       "destination": "/:locale/services/funnels",
       "statusCode": 308,
@@ -102,6 +108,20 @@
         }
       ],
       "regex": "^/_next/image(.*)(?:/)?$"
+    },
+    {
+      "source": "/.well-known/security.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ],
+      "regex": "^/\\.well-known/security\\.txt(?:/)?$"
     }
   ],
   "rewrites": {

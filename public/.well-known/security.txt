@@ -1,0 +1,6 @@
+Contact: mailto:hello@kinexisdigital.com
+Expires: 2027-06-26T23:59:59.000Z
+Preferred-Languages: en, es
+Canonical: https://kinexisdigital.com/.well-known/security.txt
+Policy: https://kinexisdigital.com/en/privacy
+Acknowledgments: https://kinexisdigital.com/en/contact
