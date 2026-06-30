@@ -69,7 +69,7 @@ export const locationDetails: Record<string, LocationDetailContent> = {
     localFaqs: [
       { question: "Do you work with Cedar Falls businesses in person?", answer: "We serve Cedar Falls and the broader Cedar Valley with the same team that handles our Iowa case studies, including the landscaping company that saw +340% organic traffic growth." },
       { question: "How much does marketing cost in Cedar Falls?", answer: "SEO typically starts at $2,000 per month for Iowa markets. Google Ads management runs $2,000 to $4,000 plus ad spend. Costs are lower than national averages because competition is moderate." },
-      { question: "What results have you seen in Iowa?", answer: "Our landscaping client went from 320 to 4,700 monthly organic visits in 8 months. Dental and home services clients across Iowa see similar patterns when local SEO and GBP work are done together." },
+      { question: "What results have you seen in Iowa?", answer: "Our landscaping client went from 320 to 4,380 monthly organic visits in 8 months. Dental and home services clients across Iowa see similar patterns when local SEO and GBP work are done together." },
     ],
   },
   "cedar-rapids": {

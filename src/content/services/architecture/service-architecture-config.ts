@@ -53,7 +53,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Landscaping Company",
           challenge: "Five years of generic SEO. Rankings on paper, empty calendar in practice. Most traffic came from DIY gardeners, not homeowners ready to hire.",
-          outcome: "Organic traffic up 340%. Lead conversion went from 1.2% to 8.4% in nine months after we rebuilt around buyer-intent keywords.",
+          outcome: "Organic traffic up 327%. Lead conversion went from 1.2% to 7.9% in eight months after we rebuilt around buyer-intent keywords.",
           href: "/case-studies/landscaping-company-growth",
         },
         testimonial: {
@@ -66,7 +66,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Empresa de Jardinería",
           challenge: "El tráfico orgánico estaba plano a pesar de años de SEO genérico.",
-          outcome: "+340% tráfico orgánico y conversión de leads de 1.2% a 8.4% en 9 meses.",
+          outcome: "+327% tráfico orgánico y conversión de leads de 1.2% a 7.9% en 8 meses.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -205,7 +205,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "Multi-channel spend with no unified attribution. ROAS looked good on Meta, bad on Google.",
-          outcome: "3.8× revenue after account restructure and cross-channel budget reallocation.",
+          outcome: "3.6× revenue after account restructure and cross-channel budget reallocation.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -213,7 +213,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Gasto multicanal sin atribución unificada.",
-          outcome: "3.8× ingresos tras reestructuración de cuentas.",
+          outcome: "3.6× ingresos tras reestructuración de cuentas.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -254,7 +254,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "Creative fatigue after launch week. CPM climbed while ROAS dropped.",
-          outcome: "3.8× revenue with structured creative testing and clean audience separation.",
+          outcome: "3.6× revenue with structured creative testing and clean audience separation.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -262,7 +262,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Fatiga creativa tras la semana de lanzamiento.",
-          outcome: "3.8× ingresos con pruebas creativas estructuradas.",
+          outcome: "3.6× ingresos con pruebas creativas estructuradas.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -303,7 +303,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "Multi-platform spend with misaligned landing pages and no unified tracking.",
-          outcome: "3.8× revenue after channel restructure and conversion tracking overhaul.",
+          outcome: "3.6× revenue after channel restructure and conversion tracking overhaul.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -311,7 +311,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Gasto multiplataforma con landing pages desalineadas.",
-          outcome: "3.8× ingresos tras reestructuración de canales.",
+          outcome: "3.6× ingresos tras reestructuración de canales.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -353,7 +353,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Landscaping Company",
           challenge: "Template site with 45% bounce rate and no clear CTA above the fold.",
-          outcome: "5× revenue growth after custom rebuild with Lighthouse 94 score.",
+          outcome: "5.9× revenue growth after custom rebuild with Lighthouse 94 score.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -362,7 +362,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Empresa de Jardinería",
           challenge: "Sitio plantilla con 45% de rebote.",
-          outcome: "5× crecimiento de ingresos tras rebuild personalizado.",
+          outcome: "5.9× crecimiento de ingresos tras rebuild personalizado.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -403,7 +403,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "High traffic, low conversion. Previous tests changed colors without moving revenue.",
-          outcome: "4× revenue after structured A/B testing on checkout and product pages.",
+          outcome: "3.6× revenue after structured A/B testing on checkout and product pages.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -411,7 +411,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Alto tráfico, baja conversión.",
-          outcome: "4× ingresos tras A/B testing estructurado.",
+          outcome: "3.6× ingresos tras A/B testing estructurado.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -599,7 +599,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "Product videos looked polished but didn't drive add-to-cart or ROAS.",
-          outcome: "4× revenue after UGC-style video ads integrated with Meta retargeting.",
+          outcome: "3.6× revenue after UGC-style video ads integrated with Meta retargeting.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -607,7 +607,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Videos de producto no impulsaban add-to-cart ni ROAS.",
-          outcome: "4× ingresos tras videos UGC integrados con retargeting Meta.",
+          outcome: "3.6× ingresos tras videos UGC integrados con retargeting Meta.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -648,7 +648,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "Rebrand looked premium but conversion rate dropped after launch.",
-          outcome: "4× revenue after brand system applied to site, ads, and email simultaneously.",
+          outcome: "3.6× revenue after brand system applied to site, ads, and email simultaneously.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -656,7 +656,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Rebrand se veía premium pero conversión bajó tras lanzamiento.",
-          outcome: "4× ingresos tras aplicar sistema de marca en web, ads y email.",
+          outcome: "3.6× ingresos tras aplicar sistema de marca en web, ads y email.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -796,7 +796,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Premium E-Commerce Brand",
           challenge: "High traffic and a leaky funnel. Previous tests changed colors without moving revenue or booking rates.",
-          outcome: "4× revenue after funnel rebuild and structured A/B testing on checkout and nurture flows.",
+          outcome: "3.6× revenue after funnel rebuild and structured A/B testing on checkout and nurture flows.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
@@ -804,7 +804,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Marca E-Commerce Premium",
           challenge: "Alto tráfico y embudo con fugas. Tests anteriores no movieron ingresos ni reservas.",
-          outcome: "4× ingresos tras rebuild de embudo y A/B testing estructurado.",
+          outcome: "3.6× ingresos tras rebuild de embudo y A/B testing estructurado.",
           href: "/case-studies/premium-ecommerce-brand",
         },
       },
