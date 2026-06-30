@@ -53,29 +53,29 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
         visualization={
-          <div className="grid grid-cols-2 gap-4">
-            {c.metricWall.map((m, i) => {
-              const Icon = metricWallIcons[i];
-              return (
-                <div
-                  key={m.label}
-                  className="proof-metric-card backdrop-blur-sm text-left"
-                >
-                  <ProofMetric
-                    value={m.value}
-                    label={
-                      <span className="inline-flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-neon-cyan shrink-0" />
-                        {m.label}
-                      </span>
-                    }
-                    align="left"
-                    labelVariant="stat"
-                    labelFirst
-                  />
-                </div>
-              );
-            })}
+          <div className="flex justify-center w-full">
+            <div className="relative inline-flex">
+              <div className="absolute -inset-4 bg-gradient-to-br from-neon-cyan/[0.04] via-transparent to-transparent blur-2xl pointer-events-none" />
+              <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 xs:gap-4 sm:gap-5">
+                {c.metricWall.map((m, i) => {
+                  const Icon = metricWallIcons[i];
+                  return (
+                    <div
+                      key={m.label}
+                      className="proof-metric-card backdrop-blur-sm text-left p-4 xs:p-3.5 sm:p-4"
+                    >
+                      <div className="flex flex-col gap-1.5">
+                        <span className="type-metric-label-stat inline-flex items-start gap-2 mt-0">
+                          <Icon className="h-4 w-4 text-neon-cyan shrink-0 mt-0.5" />
+                          <span>{m.label}</span>
+                        </span>
+                        <span className="type-metric">{m.value}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         }
         visualizationClassName="hero__viz-inner--service"

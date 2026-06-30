@@ -261,7 +261,7 @@ export default function HeroArchetype({
               hasVisualization &&
                 (isServicePageViz
                   ? "md:grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)] xl:gap-x-14"
-                  : "md:grid-cols-1 lg:grid-cols-[minmax(0,1.25fr)_minmax(280px,0.75fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1.3fr)_minmax(320px,0.7fr)] xl:gap-x-16")
+                  : "md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,1fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_minmax(360px,1.1fr)] xl:gap-x-16")
             )}
             variants={stagger}
             initial="hidden"
