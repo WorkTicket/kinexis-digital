@@ -104,6 +104,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/services/cro",
+        destination: "/en/services/funnels",
+        permanent: true,
+      },
+      {
+        source: "/pricing/cro",
+        destination: "/en/pricing/funnels",
+        permanent: true,
+      },
+      {
         source: "/:locale(en|es)/services/cro",
         destination: "/:locale/services/funnels",
         permanent: true,

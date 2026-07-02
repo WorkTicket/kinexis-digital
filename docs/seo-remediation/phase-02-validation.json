@@ -1,0 +1,151 @@
+{
+  "timestamp": "2026-07-02T21:53:19.136Z",
+  "base": "http://localhost:3000",
+  "redirectProbes": [
+    {
+      "path": "/services/cro",
+      "ok": true,
+      "hops": 1,
+      "maxHops": 1,
+      "finalUrl": "http://localhost:3000/en/services/funnels",
+      "finalStatus": 200,
+      "chain": [
+        {
+          "url": "http://localhost:3000/services/cro",
+          "status": 308
+        },
+        {
+          "url": "http://localhost:3000/en/services/funnels",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/en/services/cro",
+      "ok": true,
+      "hops": 1,
+      "maxHops": 1,
+      "finalUrl": "http://localhost:3000/en/services/funnels",
+      "finalStatus": 200,
+      "chain": [
+        {
+          "url": "http://localhost:3000/en/services/cro",
+          "status": 308
+        },
+        {
+          "url": "http://localhost:3000/en/services/funnels",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/es/services/cro",
+      "ok": true,
+      "hops": 1,
+      "maxHops": 1,
+      "finalUrl": "http://localhost:3000/es/services/funnels",
+      "finalStatus": 200,
+      "chain": [
+        {
+          "url": "http://localhost:3000/es/services/cro",
+          "status": 308
+        },
+        {
+          "url": "http://localhost:3000/es/services/funnels",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "path": "/pricing/cro",
+      "ok": true,
+      "hops": 1,
+      "maxHops": 1,
+      "finalUrl": "http://localhost:3000/en/pricing/funnels",
+      "finalStatus": 200,
+      "chain": [
+        {
+          "url": "http://localhost:3000/pricing/cro",
+          "status": 308
+        },
+        {
+          "url": "http://localhost:3000/en/pricing/funnels",
+          "status": 200
+        }
+      ]
+    }
+  ],
+  "blogLinkChecks": [
+    {
+      "path": "/en/blog/technical-seo-guide",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/es/blog/technical-seo-guide",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/en/blog/local-seo-checklist",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/es/blog/local-seo-checklist",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/en/blog/landing-page-best-practices",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/es/blog/landing-page-best-practices",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/en/blog/seo-audit-framework",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    },
+    {
+      "path": "/es/blog/seo-audit-framework",
+      "status": 200,
+      "unprefixedServiceLinks": false,
+      "hasLocalePrefixedServiceLinks": true,
+      "internalLinksToRedirect": [],
+      "ok": true
+    }
+  ],
+  "summary": {
+    "redirectProbesPass": 4,
+    "redirectProbesFail": 0,
+    "blogChecksPass": 8,
+    "blogChecksFail": 0,
+    "phase2Pass": true
+  }
+}

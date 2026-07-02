@@ -13,6 +13,7 @@ import { Link } from "@/i18n/navigation";
 import { getAuthor } from "@/content/authors";
 import { getBlogAuthorSlug } from "@/lib/blog-authors";
 import HeroArchetype from "@/components/ui/HeroArchetype";
+import { localizeInternalLinks } from "@/lib/locale-path";
 import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
 import type { Metadata } from "next";
@@ -125,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             [&_h3]:text-xl [&_h3]:mt-6 [&_h3]:mb-2
             [&_p]:mb-4
             [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2"
-            dangerouslySetInnerHTML={{ __html: post.body }} />
+            dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }} />
         </div>
       </AnimatedWrapper>
 
