@@ -1,29 +1,28 @@
 "use client";
 
-import { useLocale } from "next-intl";
-import AnswerBlock from "@/components/sections/seo/AnswerBlock";
-import ComparisonTable from "@/components/sections/seo/ComparisonTable";
+import dynamic from "next/dynamic";
 import DeliverablesSection from "@/components/shared/services/DeliverablesSection";
 import ProcessSection from "@/components/shared/services/ProcessSection";
-import ProofSection from "@/components/shared/services/ProofSection";
-import ResultsSection from "@/components/shared/services/ResultsSection";
-import ServiceCTA from "@/components/shared/services/ServiceCTA";
-import ServiceFAQSection from "@/components/shared/services/ServiceFAQSection";
 import ServiceHero from "@/components/shared/services/ServiceHero";
 import ServiceOverview from "@/components/shared/services/ServiceOverview";
 import ServicePricingTeaser from "@/components/shared/services/ServicePricingTeaser";
 import ServiceSection from "@/components/shared/services/ServiceSection";
-import WebDesignDeviceMockupsSection from "@/components/services/WebDesignDeviceMockupsSection";
 import WhyKinexusSection from "@/components/shared/services/WhyKinexusSection";
 import { getServiceHeroVisualization } from "@/components/services/service-hero-visualizations";
-import { useServicePageSeo } from "@/components/services/useServicePageSeo";
-import { buildServicePageData } from "@/content/services/architecture/build-service-page-data";
-import type { ServiceSeoSlug } from "@/content/service-seo/types";
-import type { Locale } from "@/i18n/routing";
+import type { ServicePageServerProps } from "@/lib/service-page-props";
 
-type Props = {
-  slug: ServiceSeoSlug;
-};
+const AnswerBlock = dynamic(() => import("@/components/sections/seo/AnswerBlock"));
+const ComparisonTable = dynamic(() => import("@/components/sections/seo/ComparisonTable"));
+const ProofSection = dynamic(() => import("@/components/shared/services/ProofSection"));
+const ResultsSection = dynamic(() => import("@/components/shared/services/ResultsSection"));
+const ServiceCTA = dynamic(() => import("@/components/shared/services/ServiceCTA"));
+const ServiceFAQSection = dynamic(() => import("@/components/shared/services/ServiceFAQSection"));
+const RelatedLinks = dynamic(() => import("@/components/sections/RelatedLinks"));
+const WebDesignDeviceMockupsSection = dynamic(
+  () => import("@/components/services/WebDesignDeviceMockupsSection")
+);
+
+type Props = ServicePageServerProps;
 
 const CORE_SECTIONS = [
   "ServiceOverview",
@@ -39,10 +38,14 @@ const CORE_SECTIONS = [
 
 type CoreSectionId = (typeof CORE_SECTIONS)[number];
 
-export default function ServicePage({ slug }: Props) {
-  const locale = useLocale() as Locale;
-  const data = buildServicePageData(slug, locale);
-  const { breadcrumbs } = useServicePageSeo(slug);
+export default function ServicePage({
+  slug,
+  locale,
+  data,
+  breadcrumbs,
+  relatedLinks,
+  locationLinks,
+}: Props) {
   const pageVisualization = getServiceHeroVisualization(slug, locale);
 
   let surfaceIndex = 0;
@@ -151,6 +154,14 @@ export default function ServicePage({ slug }: Props) {
 
       {orderedSections}
       {faqSection}
+      <RelatedLinks
+        agencyHub
+        serviceLinks={relatedLinks.services}
+        solutionLinks={relatedLinks.solutions.length > 0 ? relatedLinks.solutions : undefined}
+        locationLinks={locationLinks.length > 0 ? locationLinks : undefined}
+        caseStudyLinks={relatedLinks.caseStudies}
+        blogLinks={relatedLinks.blog}
+      />
       <ServiceCTA />
     </>
   );

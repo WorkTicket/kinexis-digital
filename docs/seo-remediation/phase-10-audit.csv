@@ -1,0 +1,33 @@
+template,url,strategy,performance_score,lcp_ms,lcp_display,inp_ms,inp_display,cls,cls_display,ttfb_ms,ttfb_display,fcp_ms,speed_index_ms,tbt_ms,cwv_pass,cwv_issues,psi_elapsed_ms
+homepage,https://www.kinexisdigital.com/en,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+service,https://www.kinexisdigital.com/en/services/seo,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/services/seo: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+location_city,https://www.kinexisdigital.com/en/locations/toronto,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/locations/toronto: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+location_service,https://www.kinexisdigital.com/en/locations/toronto/seo,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/locations/toronto/seo: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+industry_detail,https://www.kinexisdigital.com/en/industries/technology/startups,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/industries/technology/startups: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+blog_post,https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+solution,https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+contact,https://www.kinexisdigital.com/en/contact,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/contact: HTTP 429 — {
+  ""error"": {
+    ""code"": 429,
+    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",

@@ -5,7 +5,7 @@ import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import { serviceLabels, serviceRoutes } from "@/content/registry/site-routes";
 import type { Locale } from "@/i18n/routing";
 import { getServicePageMetadata } from "@/lib/service-metadata";
-import { buildServicePageData } from "@/content/services/architecture/build-service-page-data";
+import { buildServicePageServerProps } from "@/lib/service-page-props";
 import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from "@/lib/schema";
 import { buildAbsoluteUrl } from "@/lib/metadata";
 
@@ -23,7 +23,7 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
       typeof meta.description === "string"
         ? meta.description
         : `Professional ${name.toLowerCase()} from KINEXIS Digital.`;
-    const data = buildServicePageData(slug, locale);
+    const data = buildServicePageServerProps(slug, locale);
 
     return (
       <>
@@ -31,7 +31,7 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
           data={[
             organizationSchema(),
             serviceSchema(name, description, buildAbsoluteUrl(locale, path)),
-            faqSchema(data.faq),
+            faqSchema(data.data.faq),
             breadcrumbSchema([
               { name: "Home", url: buildAbsoluteUrl(locale, "/") },
               { name: "Services", url: buildAbsoluteUrl(locale, "/services") },
@@ -39,7 +39,7 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
             ]),
           ]}
         />
-        <ServicePage slug={slug} />
+        <ServicePage {...data} />
       </>
     );
   };
