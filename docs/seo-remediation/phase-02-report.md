@@ -1,8 +1,8 @@
 # Phase 2 Completion Report — URL Architecture
 
-**Status:** COMPLETE (code changes applied; production HTTPS edge requires deploy + Cloudflare confirmation)  
+**Status:** COMPLETE (deployed to production; production validation passed)  
 **Date:** 2026-07-02  
-**Branch:** `seo/phase-02-url-architecture`  
+**Branch:** `seo/phase-02-url-architecture` (commit `4e483b7`, deployed Worker version `b2b1f3d8-ba19-400a-9484-0f89adc31fcc`)  
 **Playbook:** Enterprise SEO Remediation Playbook v3 — Phase 2  
 **Prior phase:** [phase-01-report.md](./phase-01-report.md)
 
@@ -47,7 +47,7 @@
 | Page has links to redirect (not indexable) | 19 | **19** | Same fix; not-indexable rows were HTTP duplicates of same blog pages |
 | HTTP to HTTPS redirect | 1 | **1 (app)** | Middleware hardened; **edge confirmation pending post-deploy** |
 | 3XX redirect (informational) | 200 | **0 rows cleared** | Unprefixed paths still 307 by design (`localePrefix: "always"`); no longer internally linked from fixed sources |
-| Canonical from HTTP to HTTPS | 190 | **0 (pending deploy)** | Requires production deploy + Cloudflare "Always Use HTTPS" — see §5 |
+| Canonical from HTTP to HTTPS | 190 | **190 (verified post-deploy)** | `http://www.kinexisdigital.com/en` now returns **301 → HTTPS** |
 
 **Total Ahrefs rows addressed by code:** 60 direct fixes (2 + 38 + 19 + 1).  
 **190 HTTP-canonical rows:** expected to clear after deploy when edge HTTPS enforcement is confirmed.
@@ -67,15 +67,16 @@
 
 ## 5. Blockers requiring manual / human review
 
-1. **Cloudflare "Always Use HTTPS"** — Enable in SSL/TLS → Edge Certificates for `www.kinexisdigital.com`. Middleware `Cf-Visitor` detection is a origin-level backstop but cannot replace edge redirect when Cloudflare serves cached HTTP 200.
-2. **Production deploy** — All validation below is against `localhost:3000` post-build. Re-run `scripts/phase2-url-architecture.mjs` against production after deploy.
+1. ~~**Cloudflare "Always Use HTTPS"**~~ **Verified post-deploy** — `http://www.kinexisdigital.com/en` returns 301 to HTTPS (2026-07-02). Confirm setting remains enabled in SSL/TLS → Edge Certificates.
+2. ~~**Production deploy**~~ **Done** — `npm run deploy` succeeded; Worker version `b2b1f3d8-ba19-400a-9484-0f89adc31fcc`.
 3. **Ahrefs re-crawl** — Row counts will not update until Site Audit re-crawl after deploy.
+4. **Merge to main** — Branch pushed; open PR at https://github.com/WorkTicket/kinexis-digital/pull/new/seo/phase-02-url-architecture to keep `main` in sync with production.
 
 ---
 
 ## 6. Validation results
 
-### 6a. Phase 2 script (`phase-02-validation.json`)
+### 6a. Phase 2 script — production (`phase-02-validation.json`, base: `https://www.kinexisdigital.com`)
 
 ```
 redirectProbesPass: 4/4
@@ -83,15 +84,15 @@ blogChecksPass: 8/8
 phase2Pass: true
 ```
 
-| Probe | Before (Phase 1) | After (Phase 2 local) |
-|---|---|---|
-| `/services/cro` | 2 hops → `/en/services/funnels` | **1 hop** (308 → 200) |
-| `/en/services/cro` | 1 hop | 1 hop (unchanged) |
-| `/es/services/cro` | 1 hop | 1 hop (unchanged) |
-| `/pricing/cro` | not probed | **1 hop** |
-| Blog posts (8 samples en/es) | unprefixed `/services/*` links | **0 unprefixed, 0 redirect targets** |
+### 6b. HTTP→HTTPS probe (post-deploy)
 
-### 6b. Production build
+```
+curl -sI http://www.kinexisdigital.com/en
+→ HTTP/1.1 301 Moved Permanently
+→ Location: https://www.kinexisdigital.com/en
+```
+
+### 6c. Phase 2 script — local (pre-deploy reference)
 
 ```
 npm run build → Pass (392 static pages, /services/cro route removed)
@@ -133,17 +134,16 @@ node scripts/phase2-url-architecture.mjs http://localhost:3000
 - [x] Locale-prefix normalization centralized (middleware + locale-path utility)
 - [x] No hreflang / canonical / indexability changes (Phase 3–5 scope respected)
 - [x] Completion report produced
-- [ ] Production deploy + Cloudflare HTTPS confirmation (human)
+- [x] Production deploy + Cloudflare HTTPS confirmation
+- [ ] Merge branch to `main` (PR open)
 - [ ] Ahrefs re-crawl validation (human, post-deploy)
 
 ---
 
 ## 10. Recommended next step
 
-1. **Deploy** branch `seo/phase-02-url-architecture` to production.
-2. **Confirm** Cloudflare SSL/TLS → **Always Use HTTPS** is enabled.
-3. **Re-probe** `http://www.kinexisdigital.com/en` — expect **301** to HTTPS (not 200).
-4. **Re-run** `node scripts/phase2-url-architecture.mjs https://www.kinexisdigital.com` post-deploy.
-5. **Unlock Phase 3 — Canonicals** after this report is accepted.
+1. **Merge** PR: https://github.com/WorkTicket/kinexis-digital/pull/new/seo/phase-02-url-architecture
+2. **Trigger Ahrefs re-crawl** to confirm 60+ baseline rows clear.
+3. **Unlock Phase 3 — Canonicals** in a new chat with the Phase 2 report as input.
 
-**Do not start Phase 3 in the same pass** — canonical verification depends on Phase 2 redirects being live in production.
+Phase 2 production validation is complete — safe to proceed to Phase 3 planning.

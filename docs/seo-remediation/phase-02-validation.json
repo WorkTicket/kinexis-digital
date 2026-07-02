@@ -1,21 +1,21 @@
 {
-  "timestamp": "2026-07-02T21:53:19.136Z",
-  "base": "http://localhost:3000",
+  "timestamp": "2026-07-02T21:58:34.259Z",
+  "base": "https://www.kinexisdigital.com",
   "redirectProbes": [
     {
       "path": "/services/cro",
       "ok": true,
       "hops": 1,
       "maxHops": 1,
-      "finalUrl": "http://localhost:3000/en/services/funnels",
+      "finalUrl": "https://www.kinexisdigital.com/en/services/funnels",
       "finalStatus": 200,
       "chain": [
         {
-          "url": "http://localhost:3000/services/cro",
+          "url": "https://www.kinexisdigital.com/services/cro",
           "status": 308
         },
         {
-          "url": "http://localhost:3000/en/services/funnels",
+          "url": "https://www.kinexisdigital.com/en/services/funnels",
           "status": 200
         }
       ]
@@ -25,15 +25,15 @@
       "ok": true,
       "hops": 1,
       "maxHops": 1,
-      "finalUrl": "http://localhost:3000/en/services/funnels",
+      "finalUrl": "https://www.kinexisdigital.com/en/services/funnels",
       "finalStatus": 200,
       "chain": [
         {
-          "url": "http://localhost:3000/en/services/cro",
+          "url": "https://www.kinexisdigital.com/en/services/cro",
           "status": 308
         },
         {
-          "url": "http://localhost:3000/en/services/funnels",
+          "url": "https://www.kinexisdigital.com/en/services/funnels",
           "status": 200
         }
       ]
@@ -43,15 +43,15 @@
       "ok": true,
       "hops": 1,
       "maxHops": 1,
-      "finalUrl": "http://localhost:3000/es/services/funnels",
+      "finalUrl": "https://www.kinexisdigital.com/es/services/funnels",
       "finalStatus": 200,
       "chain": [
         {
-          "url": "http://localhost:3000/es/services/cro",
+          "url": "https://www.kinexisdigital.com/es/services/cro",
           "status": 308
         },
         {
-          "url": "http://localhost:3000/es/services/funnels",
+          "url": "https://www.kinexisdigital.com/es/services/funnels",
           "status": 200
         }
       ]
@@ -61,15 +61,15 @@
       "ok": true,
       "hops": 1,
       "maxHops": 1,
-      "finalUrl": "http://localhost:3000/en/pricing/funnels",
+      "finalUrl": "https://www.kinexisdigital.com/en/pricing/funnels",
       "finalStatus": 200,
       "chain": [
         {
-          "url": "http://localhost:3000/pricing/cro",
+          "url": "https://www.kinexisdigital.com/pricing/cro",
           "status": 308
         },
         {
-          "url": "http://localhost:3000/en/pricing/funnels",
+          "url": "https://www.kinexisdigital.com/en/pricing/funnels",
           "status": 200
         }
       ]
