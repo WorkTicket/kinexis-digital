@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import DeliverablesSection from "@/components/shared/services/DeliverablesSection";
 import ProcessSection from "@/components/shared/services/ProcessSection";
-import ServiceHero from "@/components/shared/services/ServiceHero";
 import ServiceOverview from "@/components/shared/services/ServiceOverview";
 import ServicePricingTeaser from "@/components/shared/services/ServicePricingTeaser";
 import ServiceSection from "@/components/shared/services/ServiceSection";
@@ -42,7 +41,7 @@ export default function ServicePage({
   slug,
   locale,
   data,
-  breadcrumbs,
+  breadcrumbs: _breadcrumbs,
   relatedLinks,
   locationLinks,
 }: Props) {
@@ -150,8 +149,6 @@ export default function ServicePage({
 
   return (
     <>
-      <ServiceHero slug={slug} breadcrumbs={breadcrumbs} {...data.hero} />
-
       {orderedSections}
       {faqSection}
       <RelatedLinks

@@ -5,7 +5,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { agencyHubContent } from "@/content/agency-hub";
 import { getLocalizedContent } from "@/lib/get-localized-content";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
-import { organizationSchema, faqSchema, breadcrumbSchema, localBusinessSchema } from "@/lib/schema";
+import { organizationSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 import type { Locale } from "@/i18n/routing";
 
 const AgencyHubPageClient = dynamic(() => import("@/components/pages/AgencyHubPageClient"));
@@ -33,7 +33,6 @@ export default async function DigitalMarketingAgencyPage({ params }: Props) {
       <JsonLd
         data={[
           organizationSchema(),
-          localBusinessSchema(),
           faqSchema(c.faqs),
           breadcrumbSchema([
             { name: "Home", url: buildAbsoluteUrl(locale, "/") },

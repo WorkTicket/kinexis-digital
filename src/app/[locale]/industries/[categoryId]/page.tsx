@@ -9,6 +9,7 @@ import {
   getCategoryById,
   getIndustriesByCategory,
   industryCategories,
+  industryCategoryMetaDescriptions,
   type IndustryCategoryId,
 } from "@/content/registry/industries";
 import { routing, type Locale } from "@/i18n/routing";
@@ -27,11 +28,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, categoryId } = await params;
   const category = getCategoryById(categoryId as IndustryCategoryId);
   if (!category) return {};
+  const metaCopy = industryCategoryMetaDescriptions[category.id];
   return buildPageMetadata({
     locale,
     path: `/industries/${categoryId}`,
     title: `${category.label} Marketing | KINEXIS`,
-    description: category.description,
+    description: locale === "es" ? metaCopy.es : metaCopy.en,
   });
 }
 

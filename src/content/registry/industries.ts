@@ -141,6 +141,42 @@ export function getCategoryById(id: IndustryCategoryId): IndustryCategory | unde
   return industryCategories.find((c) => c.id === id);
 }
 
+/** SERP meta descriptions per category — 120–155 chars; separate from hero subtitle copy. */
+export const industryCategoryMetaDescriptions: Record<IndustryCategoryId, { en: string; es: string }> = {
+  technology: {
+    en: "Scalable acquisition, product-led growth, and demand generation for SaaS, fintech, and software companies. Campaigns built for trial conversion and pipeline growth.",
+    es: "Adquisición escalable, crecimiento product-led y generación de demanda para empresas SaaS, fintech y software. Campañas orientadas a conversión de prueba y crecimiento de pipeline.",
+  },
+  ecommerce: {
+    en: "Revenue-focused shopping campaigns, retention email flows, and conversion optimization for Shopify, DTC, and online retail brands. ROAS and LTV, not vanity traffic.",
+    es: "Campañas de shopping orientadas a ingresos, flujos de retención por email y optimización de conversión para marcas Shopify, DTC y retail online. ROAS y LTV, no tráfico vacío.",
+  },
+  "financial-services": {
+    en: "Trust-first positioning, compliant funnels, and high-intent lead capture for advisors, insurance, mortgage, and banking brands. Marketing that respects regulatory constraints.",
+    es: "Posicionamiento basado en confianza, embudos conformes y captura de leads de alta intención para asesores, seguros, hipotecas y banca. Marketing que respeta restricciones regulatorias.",
+  },
+  "professional-services": {
+    en: "Authority-building content, trust signals, and demand generation for law firms, dentists, consultants, and high-value client acquisition. Built for long research cycles.",
+    es: "Contenido de autoridad, señales de confianza y generación de demanda para bufetes, dentistas, consultores y adquisición de clientes de alto valor. Diseñado para ciclos largos.",
+  },
+  healthcare: {
+    en: "Compliant patient acquisition, trust-building content, and measurable growth for medical, dental, wellness, and care providers. HIPAA-aware campaigns that still convert.",
+    es: "Adquisición de pacientes conforme, contenido que genera confianza y crecimiento medible para proveedores médicos, dentales y de bienestar. Campañas conscientes de cumplimiento normativo.",
+  },
+  manufacturing: {
+    en: "B2B demand generation, technical content, and account-based marketing for industrial, automotive, and packaging buyers. Long sales cycles need industry-specific nurture.",
+    es: "Generación de demanda B2B, contenido técnico y marketing basado en cuentas para compradores industriales, automotrices y de empaque. Ciclos largos requieren nutrición específica.",
+  },
+  hospitality: {
+    en: "Direct booking optimization, seasonal campaigns, and brand experiences for hotels, restaurants, and event venues. Fill tables and rooms without over-reliance on OTAs.",
+    es: "Optimización de reservas directas, campañas estacionales y experiencias de marca para hoteles, restaurantes y venues. Llena mesas y habitaciones sin depender solo de OTAs.",
+  },
+  "home-services": {
+    en: "Local lead generation, service-area SEO, and paid campaigns for HVAC, roofing, plumbing, and trades. Built for emergency-intent searches and map pack dominance.",
+    es: "Generación de leads locales, SEO por zona de servicio y campañas pagadas para HVAC, techado, plomería y oficios. Diseñado para búsquedas de urgencia y dominio del mapa local.",
+  },
+};
+
 export function getIndustriesByCategory(categoryId: IndustryCategoryId): IndustryEntry[] {
   return allIndustries.filter((i) => i.categoryId === categoryId);
 }

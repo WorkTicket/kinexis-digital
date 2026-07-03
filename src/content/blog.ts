@@ -269,7 +269,7 @@ export const blogContent: Record<Locale, BlogContent> = {
         title: "GA4 Reporting for Marketing Teams",
         category: "Analytics",
         excerpt:
-          "Explorations, funnels, and path analysis in GA4. The reports we actually use now that Universal Analytics is gone.",
+          "Explorations, funnels, and path analysis in GA4. The reports we actually use now that Universal Analytics is gone, plus how to tie events to leads and revenue.",
         publishedAt: "March 4, 2026",
         featured: false,
         metric: null,
@@ -607,7 +607,7 @@ export const blogContent: Record<Locale, BlogContent> = {
         title: "Reportes GA4 para Equipos de Marketing",
         category: "Analítica",
         excerpt:
-          "Exploraciones, embudos y análisis de rutas en GA4. Los reportes que realmente usamos ahora que Universal Analytics ya no está.",
+          "Exploraciones, embudos y análisis de rutas en GA4. Los reportes que usamos ahora que Universal Analytics desapareció, y cómo vincular eventos con leads e ingresos.",
         publishedAt: "4 de marzo de 2026",
         featured: false,
         metric: null,

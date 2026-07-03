@@ -12,8 +12,10 @@ import {
   type LocationServiceSlug,
 } from "@/content/registry/locations";
 import { routing, type Locale } from "@/i18n/routing";
+import { getLocationServiceMetaDescription } from "@/lib/location-service-meta";
+import { getLocationServiceFaqs } from "@/lib/location-faqs";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema, faqSchema, localBusinessSchema, organizationSchema, serviceSchema } from "@/lib/schema";
+import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ locale: Locale; city: string; service: string }> };
 
@@ -31,9 +33,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, city, service } = await params;
   const location = getLocationBySlug(city);
   if (!location || !locationServiceSlugs.includes(service as LocationServiceSlug)) return {};
-  const title = getLocationServiceLabel(service as LocationServiceSlug, location.city);
-  const description = `KINEXIS provides ${service.replace(/-/g, " ")} for ${location.city}, ${location.state}. Local strategy and measurable results.`;
-  return buildPageMetadata({ locale, path: `/locations/${city}/${service}`, title: `${title} | KINEXIS`, description });
+  const label = getLocationServiceLabel(service as LocationServiceSlug, location.city);
+  const serviceSlug = service as Exclude<LocationServiceSlug, "digital-marketing-agency">;
+  const metaDescription = getLocationServiceMetaDescription(locale, location, serviceSlug);
+  if (locale === "es") {
+    const esLabels: Record<string, string> = { seo: "SEO", "web-design": "Diseño Web", "google-ads": "Google Ads", "ppc-management": "Gestión de PPC" };
+    const esLabel = `${esLabels[service] || service.replace(/-/g, " ")} en ${location.city}`;
+    return buildPageMetadata({ locale, path: `/locations/${city}/${service}`, title: `${esLabel} | KINEXIS`, description: metaDescription });
+  }
+  return buildPageMetadata({ locale, path: `/locations/${city}/${service}`, title: `${label} | KINEXIS`, description: metaDescription });
 }
 
 export default async function LocationServicePage({ params }: Props) {
@@ -48,19 +56,18 @@ export default async function LocationServicePage({ params }: Props) {
   const pageTitle = getLocationServiceLabel(service as LocationServiceSlug, location.city);
   const pageDescription = `KINEXIS provides ${service.replace(/-/g, " ")} for ${location.city}, ${location.state} businesses. Local campaigns built for the ${location.region}, not generic national playbooks.`;
   const path = `/locations/${city}/${service}`;
-
-  const localFaqs = [
-    { question: `Do you offer ${service.replace(/-/g, " ")} in ${location.city}?`, answer: `Yes. We build ${service.replace(/-/g, " ")} campaigns specifically for the ${location.region} market.` },
-    { question: "How is local content different?", answer: "We include local market context, competition analysis, and geo-specific strategy. We never use duplicate templates." },
-  ];
+  const pageUrl = buildAbsoluteUrl(locale, path);
+  const localFaqs = getLocationServiceFaqs(location, service);
 
   return (
     <>
       <JsonLd
         data={[
           organizationSchema(),
-          localBusinessSchema(location.city, location.state),
-          serviceSchema(pageTitle, pageDescription, buildAbsoluteUrl(locale, path)),
+          serviceSchema(pageTitle, pageDescription, pageUrl, {
+            city: location.city,
+            region: location.state,
+          }),
           faqSchema(localFaqs),
           breadcrumbSchema([
             { name: "Home", url: buildAbsoluteUrl(locale, "/") },
@@ -78,7 +85,13 @@ export default async function LocationServicePage({ params }: Props) {
           { name: pageTitle },
         ]}
       />
-      <LocationPageClient location={location} serviceSlug={service} pageTitle={pageTitle} pageDescription={pageDescription} />
+      <LocationPageClient
+        location={location}
+        serviceSlug={service}
+        pageTitle={pageTitle}
+        pageDescription={pageDescription}
+        localFaqs={localFaqs}
+      />
     </>
   );
 }

@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import type { Locale } from "@/i18n/routing";
-import { buildPageMetadata } from "@/lib/metadata";
+import type { Metadata } from "next";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
 import JsonLd from "@/components/seo/JsonLd";
-import Hero from "@/components/sections/Hero";
+import HeroShell from "@/components/sections/HeroShell";
+import { buildPageMetadata } from "@/lib/metadata";
+import type { Locale } from "@/i18n/routing";
 
 const RevenueEngine = dynamic(() => import("@/components/sections/RevenueEngine"));
 const ServicesEcosystem = dynamic(() => import("@/components/sections/ServicesEcosystem"));
@@ -23,6 +22,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
+
   return buildPageMetadata({
     locale: locale as Locale,
     path: "/",
@@ -46,7 +46,7 @@ export default async function HomePage({
           websiteSchema(),
         ]}
       />
-      <Hero />
+      <HeroShell />
       <Suspense>
         <RevenueEngine />
       </Suspense>

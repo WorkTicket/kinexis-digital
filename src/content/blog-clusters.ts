@@ -11,6 +11,7 @@ export type ClusterPost = {
   publishedAt: string;
   parentServicePath: string;
   body: string;
+  excerpt?: string;
 };
 
 const clusterPostsEnMeta = [
@@ -139,6 +140,8 @@ const clusterPostsEnMeta = [
     category: "Analytics",
     publishedAt: "March 4, 2026",
     parentServicePath: "/services/analytics",
+    excerpt:
+      "Explorations, funnels, and path analysis in GA4. The reports we actually use now that Universal Analytics is gone, plus how to tie events to leads and revenue.",
   },
   {
     slug: "marketing-dashboards",
@@ -280,6 +283,8 @@ const clusterPostsEsMeta = [
     category: "Analítica",
     publishedAt: "4 de marzo de 2026",
     parentServicePath: "/services/analytics",
+    excerpt:
+      "Exploraciones, embudos y análisis de rutas en GA4. Los reportes que usamos ahora que Universal Analytics desapareció, y cómo vincular eventos con leads e ingresos.",
   },
   {
     slug: "marketing-dashboards",

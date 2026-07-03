@@ -3,8 +3,8 @@ import type { ServiceSeoSlug, ServiceSeoContent } from "./types";
 export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   seo: {
     metaTitle: "SEO Agency for Lead Generation | KINEXIS Digital",
-    metaDescription:
-      "SEO focused on keywords that book calls, not vanity rankings. Technical audits, content, and links tied to revenue. Plans from $2,500/mo.",
+      metaDescription:
+        "SEO focused on keywords that book calls, not vanity rankings. Technical audits, content strategy, and link building all tied to revenue and lead generation. Plans from $2,500/mo.",
     hero: {
       label: "SEO Services",
       line1: "Rank for the searches",
@@ -1045,7 +1045,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   "email-marketing": {
     metaTitle: "Email Marketing & Automation for B2B | KINEXIS Digital",
     metaDescription:
-      "Email sequences and campaigns that nurture leads into customers. Automation, segmentation, and deliverability tied to pipeline. From $2,000/mo.",
+      "Email sequences and automated campaigns that nurture leads into customers with smart segmentation and deliverability monitoring. Multi-step workflows tied directly to pipeline revenue. From $2,000/mo.",
     hero: {
       label: "Email Marketing Services",
       line1: "Email that moves",
@@ -1305,7 +1305,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   "social-media": {
     metaTitle: "Social Media Management for B2B Brands | KINEXIS Digital",
     metaDescription:
-      "Social media that builds visibility and sends people to your site. Content, posting, and community management from $1,500/mo.",
+      "Social media management that builds brand visibility and drives qualified traffic to your website. Content creation, scheduling, and community engagement from $1,500/mo.",
     hero: {
       label: "Social Media Marketing",
       line1: "Social that supports",
@@ -1435,7 +1435,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   "video-marketing": {
     metaTitle: "Video Marketing for Ads, Social & Web | KINEXIS Digital",
     metaDescription:
-      "Video for ads, social, and website conversion. Scripting, production, and editing from $3,000 per project or $2,500/mo retainer.",
+      "Video marketing for paid ads, social media, and website conversion. Professional scripting, production, and multi-format editing from $3,000 per project or $2,500/mo retainer.",
     hero: {
       label: "Video Marketing Services",
       line1: "Video built for",
@@ -1565,7 +1565,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   branding: {
     metaTitle: "Branding & Identity for B2B Companies | KINEXIS Digital",
     metaDescription:
-      "Brand positioning, visual identity, and messaging for B2B companies. Strategy and design packages from $8,000 to $25,000.",
+      "Brand positioning, visual identity, and messaging strategy for B2B companies that need a consistent, recognizable presence. Full strategy and design packages from $8,000 to $25,000.",
     hero: {
       label: "Branding Services",
       line1: "A brand buyers recognize",
@@ -1695,7 +1695,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   analytics: {
     metaTitle: "Marketing Analytics and Reporting | KINEXIS",
     metaDescription:
-      "Marketing analytics that connects campaigns to revenue. GA4 setup, dashboards, and attribution from $1,500/mo.",
+      "Marketing analytics services that connect campaigns to revenue with proper GA4 setup, custom dashboards, and multi-channel attribution. Turn data into budget decisions from $1,500/mo.",
     hero: {
       label: "Marketing Analytics Services",
       line1: "Reports that tell you",
@@ -1825,7 +1825,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   "growth-consulting": {
     metaTitle: "Growth Consulting & Marketing Strategy | KINEXIS Digital",
     metaDescription:
-      "Marketing strategy before execution. Channel audits, roadmaps, and quarterly planning from $3,000/mo for businesses that need a plan first.",
+      "Growth consulting with marketing strategy before execution. Channel audits, competitive analysis, quarterly roadmaps, and budget planning from $3,000/mo for businesses that need a clear plan.",
     hero: {
       label: "Growth Consulting Services",
       line1: "Know what to do",

@@ -1,4 +1,4 @@
-import { getSiteUrl } from "@/lib/metadata";
+import { getDefaultOgImageUrl, getSiteUrl } from "@/lib/metadata";
 
 export type BreadcrumbItem = { name: string; url?: string };
 
@@ -6,9 +6,10 @@ export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${getSiteUrl()}/#organization`,
     name: "KINEXIS Digital",
     url: getSiteUrl(),
-    logo: `${getSiteUrl()}/logo.png`,
+    logo: getDefaultOgImageUrl(),
     description:
       "Digital marketing agency specializing in SEO, paid media, web design, CRO, and analytics for local businesses, SaaS companies, and enterprise organizations.",
     sameAs: [
@@ -17,6 +18,7 @@ export function organizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
+      email: "hello@kinexisdigital.com",
       availableLanguage: ["English", "Spanish"],
     },
   };
@@ -26,32 +28,41 @@ export function websiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${getSiteUrl()}/#website`,
     name: "KINEXIS Digital",
     url: getSiteUrl(),
-    publisher: { "@type": "Organization", name: "KINEXIS Digital", url: getSiteUrl() },
+    publisher: { "@id": `${getSiteUrl()}/#organization` },
   };
 }
 
-export function localBusinessSchema(city?: string, region?: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: city ? `KINEXIS Digital | ${city}` : "KINEXIS Digital",
-    url: getSiteUrl(),
-    description: "Digital marketing agency delivering SEO, paid media, web design, and conversion optimization.",
-    ...(city && { areaServed: { "@type": "City", name: city, ...(region && { containedInPlace: { "@type": "State", name: region } }) } }),
-  };
-}
+type AreaServedInput = {
+  city: string;
+  region?: string;
+};
 
-export function serviceSchema(name: string, description: string, url: string) {
+export function serviceSchema(
+  name: string,
+  description: string,
+  url: string,
+  areaServed?: AreaServedInput
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${url}#service`,
     name,
     description,
-    provider: { "@type": "Organization", name: "KINEXIS Digital", url: getSiteUrl() },
+    provider: { "@id": `${getSiteUrl()}/#organization` },
     url,
-    areaServed: "Worldwide",
+    areaServed: areaServed
+      ? {
+          "@type": "City",
+          name: areaServed.city,
+          ...(areaServed.region && {
+            containedInPlace: { "@type": "State", name: areaServed.region },
+          }),
+        }
+      : { "@type": "Country", name: "Worldwide" },
   };
 }
 
@@ -92,6 +103,7 @@ export function personSchema(person: PersonSchemaInput) {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${person.url}#person`,
     name: person.name,
     jobTitle: person.jobTitle,
     description: person.description,
@@ -122,19 +134,22 @@ export function articleSchema({
 }) {
   const author = authorName
     ? { "@type": "Person" as const, name: authorName, ...(authorUrl && { url: authorUrl }) }
-    : { "@type": "Organization" as const, name: "KINEXIS Digital" };
+    : { "@type": "Organization" as const, "@id": `${getSiteUrl()}/#organization`, name: "KINEXIS Digital" };
 
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    "@id": `${url}#article`,
     headline: title,
     description,
     url,
     datePublished,
     dateModified: dateModified || datePublished,
     author,
+    image: `${getDefaultOgImageUrl()}`,
     ...(reviewedBy && { editor: { "@type": "Person", name: reviewedBy } }),
-    publisher: { "@type": "Organization", name: "KINEXIS Digital", url: getSiteUrl() },
+    publisher: { "@id": `${getSiteUrl()}/#organization` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }
 
@@ -143,21 +158,26 @@ export function caseStudySchema({
   description,
   url,
   industry,
+  datePublished,
 }: {
   title: string;
   description: string;
   url: string;
   industry: string;
+  datePublished: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
-    "@id": url,
+    "@id": `${url}#article`,
     headline: title,
     description,
     url,
     articleSection: industry,
-    author: { "@type": "Organization", name: "KINEXIS Digital" },
-    publisher: { "@type": "Organization", name: "KINEXIS Digital" },
+    datePublished,
+    author: { "@id": `${getSiteUrl()}/#organization` },
+    image: `${getDefaultOgImageUrl()}`,
+    publisher: { "@id": `${getSiteUrl()}/#organization` },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };
 }

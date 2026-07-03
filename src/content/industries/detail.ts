@@ -115,14 +115,14 @@ function buildIndustryMeta(industry: IndustryEntry, locale: Locale): { title: st
 
   if (locale === "es") {
     return {
-      title: `Agencia de Marketing ${label} | KINEXIS`,
-      description: `Marketing digital para empresas de ${labelLower}. SEO, medios pagados, diseño web y CRO orientados a ingresos con KINEXIS.`,
+      title: `Marketing para Empresas de ${label} | KINEXIS`,
+      description: `Marketing digital para empresas de ${labelLower}. SEO, anuncios pagados, diseño web y CRO orientados a generar ingresos, leads calificados y citas agendadas con KINEXIS.`,
     };
   }
 
   return {
-    title: `${label} Marketing Agency | KINEXIS`,
-    description: `Digital marketing for ${labelLower} companies. SEO, paid media, web design, and CRO built for revenue with KINEXIS.`,
+    title: `Marketing for ${label} Companies | KINEXIS`,
+      description: `Digital marketing for ${labelLower} companies. SEO, paid media, web design, and conversion optimization built to generate qualified leads, appointments, and revenue with KINEXIS.`,
   };
 }
 
@@ -201,7 +201,7 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
     meta: {
       title: "Industries We Serve | KINEXIS Digital",
       description:
-        "Growth marketing for home services, healthcare, professional services, technology, e-commerce, and more. Strategies built for how your industry buys.",
+        "Growth marketing for home services, healthcare, professional services, technology, e-commerce, and more. Strategies built for how your industry searches and buys.",
     },
     hero: {
       label: "Industries",
@@ -223,7 +223,7 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
     meta: {
       title: "Industrias que Servimos | KINEXIS Digital",
       description:
-        "Marketing de crecimiento para servicios del hogar, salud, servicios profesionales, tecnología, e-commerce y más. Estrategias a medida por vertical.",
+        "Marketing de crecimiento para servicios del hogar, salud, servicios profesionales, tecnología, e-commerce y más. Estrategias a medida por vertical con KINEXIS.",
     },
     hero: { label: "Industrias", headlineLine1: "Capacidad enterprise", headlineLine2: "en cada vertical.", subtitle: "Desde contratistas locales hasta plataformas SaaS,|con sistemas de crecimiento a medida." },
     intro: {

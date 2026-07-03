@@ -10,6 +10,7 @@ import RelatedLinks from "@/components/sections/RelatedLinks";
 import type { SolutionEntry } from "@/content/registry/solutions";
 import { serviceRoutes, serviceLabels, type ServiceSlug } from "@/content/registry/site-routes";
 import { getIndustryBySlug } from "@/content/registry/industries";
+import { getSolutionRelatedLinks } from "@/lib/solution-related-links";
 
 type Props = { solution: SolutionEntry };
 
@@ -17,6 +18,7 @@ export default function SolutionPageClient({ solution }: Props) {
   const industry = getIndustryBySlug(solution.industrySlug);
   const serviceHref = serviceRoutes[solution.serviceSlug as ServiceSlug] || `/services/${solution.serviceSlug}`;
   const serviceLabel = serviceLabels[solution.serviceSlug as ServiceSlug] || solution.serviceSlug;
+  const solutionLinks = getSolutionRelatedLinks(solution.slug);
 
   return (
     <>
@@ -86,6 +88,7 @@ export default function SolutionPageClient({ solution }: Props) {
       <RelatedLinks
         agencyHub
         serviceLinks={[{ href: serviceHref, label: serviceLabel }]}
+        solutionLinks={solutionLinks.length > 0 ? solutionLinks : undefined}
         industryLinks={
           industry
             ? [{ href: `/industries/${industry.categoryId}/${industry.slug}`, label: `${industry.label} Marketing` }]

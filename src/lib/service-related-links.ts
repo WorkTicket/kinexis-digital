@@ -7,6 +7,14 @@ type RelatedLinkGroup = {
   blog: { href: string; label: string }[];
 };
 
+const extraSolutionLinks: Partial<Record<ServiceSeoSlug, { href: string; label: string }[]>> = {
+  "google-ads": [{ href: "/solutions/google-ads-for-roofers", label: "Google Ads for Roofers" }],
+  seo: [
+    { href: "/solutions/seo-for-hvac-companies", label: "SEO for HVAC Companies" },
+    { href: "/solutions/seo-for-dentists", label: "SEO for Dentists" },
+  ],
+};
+
 function servicePricingLink(slug: ServiceSeoSlug) {
   const label = serviceLabels[slug].replace(/ Services$/, "").replace(/ Management$/, "");
   return { href: pricingRoutes[slug], label: `${label} Pricing` };
@@ -107,7 +115,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     services: [
       { href: "/services/web-design", label: "Web Design Services" },
       { href: "/services/funnels", label: "Funnels & CRO" },
-      servicePricingLink("cro"),
+      { href: "/pricing/funnels", label: "Funnels & CRO Pricing" },
     ],
     caseStudies: [
       { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
@@ -224,6 +232,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     ],
     blog: [
       { href: "/blog/lifecycle-marketing", label: "Lifecycle Marketing" },
+      { href: "/blog/heatmap-analysis", label: "Heatmap Analysis" },
+      { href: "/blog/ab-testing-framework", label: "A/B Testing Framework" },
     ],
   },
   "paid-ads": {
@@ -242,6 +252,10 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   },
 };
 
-export function getServiceRelatedLinks(slug: ServiceSeoSlug): RelatedLinkGroup {
-  return baseLinks[slug] ?? { services: [], caseStudies: [], blog: [] };
+export function getServiceRelatedLinks(slug: ServiceSeoSlug): RelatedLinkGroup & { solutions: { href: string; label: string }[] } {
+  const group = baseLinks[slug] ?? { services: [], caseStudies: [], blog: [] };
+  return {
+    ...group,
+    solutions: extraSolutionLinks[slug] ?? [],
+  };
 }

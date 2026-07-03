@@ -21,7 +21,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
   "google-ads-vs-seo": {
     en: {
       metaTitle: "Google Ads vs SEO | Which Channel Wins for Your Business?",
-      metaDescription: "Compare Google Ads and SEO for lead generation. Timeline, cost, and when to use each channel based on real client data.",
+      metaDescription: "Compare Google Ads and SEO for lead generation. Timeline, cost, and when to use each channel based on real client data. Most service businesses run both for maximum pipeline coverage.",
       hero: { label: "Google Ads vs SEO", line1: "Google Ads vs SEO:", line2: "Which Fits Your Business?", subtitle: "Both work. The question is which one fits your timeline, and whether your business needs to run them together." },
       answerBlock: "Google Ads delivers traffic within days but stops when you stop paying. SEO takes 3 to 6 months to build momentum but compounds over time. Most service businesses run both: Ads for immediate leads while SEO builds long-term visibility. Average Google Ads CPL for home services clients we manage runs $35 to $85. SEO cost per lead often drops below $20 by month 8 once rankings hold.",
       sections: [
@@ -56,7 +56,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     },
     es: {
       metaTitle: "Google Ads vs SEO | ¿Qué Canal Conviene?",
-      metaDescription: "Compara Google Ads y SEO para generación de leads.",
+      metaDescription: "Compara Google Ads y SEO para generación de leads en tu negocio. Análisis de plazos, costos y recomendaciones sobre cuándo usar cada canal según tu mercado y objetivos.",
       hero: { label: "Google Ads vs SEO", line1: "Google Ads vs SEO:", line2: "¿Cuál Encaja Contigo?", subtitle: "Ambos funcionan. La mezcla correcta depende de tu timeline y presupuesto." },
       answerBlock: "Google Ads entrega tráfico en días pero se detiene cuando dejas de pagar. SEO toma 3 a 6 meses pero se acumula con el tiempo.",
       sections: [{ title: "Cuándo conviene Google Ads", body: "Necesitas leads este mes o estás lanzando un servicio nuevo." }],
@@ -69,7 +69,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
   "seo-vs-ppc": {
     en: {
       metaTitle: "SEO vs PPC | Paid vs Organic for B2B Lead Generation",
-      metaDescription: "SEO vs PPC compared for B2B and service businesses. Cost, timeline, and channel mix recommendations.",
+      metaDescription: "SEO vs PPC compared for B2B and service businesses. Cost, timeline, and channel mix recommendations. Learn when paid search wins and when organic compounding delivers better ROI over time.",
       hero: { label: "SEO vs PPC", line1: "SEO vs PPC:", line2: "Paid or Organic?", subtitle: "Not a competition. The real question is sequencing: which channel fills the gap while the other one builds." },
       answerBlock: "PPC (pay-per-click) covers Google Ads, Meta Ads, and other paid channels. SEO builds organic rankings. PPC gives instant visibility at a per-click cost. SEO requires upfront work but lowers acquisition cost over time. For B2B services with 30 to 90 day sales cycles, we typically weight SEO toward bottom-funnel terms and use PPC for high-intent branded and competitor terms.",
       sections: [
@@ -92,7 +92,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     },
     es: {
       metaTitle: "SEO vs PPC | Orgánico vs Pagado",
-      metaDescription: "Comparación SEO vs PPC para negocios B2B y de servicios. Costos, plazos y recomendaciones de mezcla de canales.",
+      metaDescription: "Comparación SEO vs PPC para negocios B2B y de servicios. Costos, plazos y recomendaciones de mezcla de canales para maximizar tu generación de leads con presupuestos optimizados.",
       hero: { label: "SEO vs PPC", line1: "SEO vs PPC:", line2: "¿Pagado u Orgánico?", subtitle: "La pregunta es cuánto de cada uno y en qué orden." },
       answerBlock: "PPC cubre Google Ads, Meta Ads y otros canales pagados. SEO construye rankings orgánicos.",
       sections: [{ title: "Fortalezas PPC", body: "Pruebas instantáneas y control de presupuesto." }],
@@ -105,7 +105,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
   "wordpress-vs-webflow": {
     en: {
       metaTitle: "WordPress vs Webflow | Which Platform for Your Business Site?",
-      metaDescription: "WordPress vs Webflow compared for business websites. Speed, maintenance, SEO, and when we recommend each.",
+      metaDescription: "WordPress vs Webflow compared for business websites. Speed, maintenance, SEO flexibility, and when we recommend each platform based on your team's needs, budget, and growth goals.",
       hero: { label: "WordPress vs Webflow", line1: "WordPress vs Webflow:", line2: "Pick the Right Stack.", subtitle: "The right platform depends on who owns your site and what they need to do with it. Choose wrong and you're dealing with plugin debt or a CMS your team can't use." },
       answerBlock: "WordPress powers about 43% of the web and fits teams that need plugins, custom PHP, or complex content workflows. Webflow suits marketing-led teams that want visual control, fast hosting, and clean code without plugin bloat. We build in both, plus Next.js for apps and high-performance marketing sites. Typical Webflow business sites launch in 6 to 8 weeks. WordPress rebuilds often take 8 to 12 weeks when migrating legacy plugin stacks.",
       sections: [
@@ -129,7 +129,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     },
     es: {
       metaTitle: "WordPress vs Webflow | ¿Qué Plataforma Elegir?",
-      metaDescription: "Comparación WordPress vs Webflow para sitios empresariales.",
+      metaDescription: "Comparación WordPress vs Webflow para sitios web empresariales. Analizamos velocidad, mantenimiento, SEO y cuándo recomendamos cada plataforma según las necesidades de tu equipo y presupuesto.",
       hero: { label: "WordPress vs Webflow", line1: "WordPress vs Webflow:", line2: "El Stack Correcto.", subtitle: "Ambos funcionan. La elección equivocada cuesta velocidad o flexibilidad." },
       answerBlock: "WordPress encaja con equipos que necesitan plugins y flujos complejos. Webflow encaja con equipos de marketing que quieren control visual y código limpio.",
       sections: [{ title: "Elige WordPress cuando", body: "Necesitas plugins específicos o tu equipo ya conoce WordPress." }],
@@ -142,7 +142,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
   "local-seo-vs-google-ads": {
     en: {
       metaTitle: "Local SEO vs Google Ads | Map Pack or Paid Search?",
-      metaDescription: "Local SEO vs Google Ads for service businesses. When to invest in map pack rankings vs paid local search.",
+      metaDescription: "Local SEO vs Google Ads for service businesses. When to invest in map pack rankings vs paid local search. Most successful local clients use both for sustainable lead generation.",
       hero: { label: "Local SEO vs Google Ads", line1: "Local SEO vs Google Ads:", line2: "Maps or Search Ads?", subtitle: "Most service businesses that dominate their local market show up in both. The map pack earns free clicks once you rank. Ads get you calls while you build that visibility." },
       answerBlock: "Local SEO targets Google Business Profile, map pack rankings, and local organic results. Google Ads puts you at the top of search with pay-per-click. Map pack clicks are free once you rank. Local service ads cost $25 to $75 per click in competitive trades markets. Most contractors we work with run Local Services Ads or Search Ads while building GBP and citations for long-term map pack presence.",
       sections: [
@@ -165,7 +165,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
     },
     es: {
       metaTitle: "SEO Local vs Google Ads | ¿Mapa o Anuncios?",
-      metaDescription: "SEO local vs Google Ads para negocios de servicios.",
+      metaDescription: "SEO local vs Google Ads para negocios de servicios. Descubre cuándo invertir en posicionamiento de mapa local vs búsqueda pagada. La mayoría de negocios locales exitosos usan ambos canales.",
       hero: { label: "SEO Local vs Google Ads", line1: "SEO Local vs Google Ads:", line2: "¿Mapa o Anuncios?", subtitle: "Los negocios locales ganan apareciendo en ambos lugares." },
       answerBlock: "SEO local apunta al Perfil de Google Business y resultados orgánicos locales. Google Ads te pone arriba pagando por clic.",
       sections: [{ title: "Invierte en SEO local cuando", body: "Tienes área definida y quieres clics gratis del mapa." }],

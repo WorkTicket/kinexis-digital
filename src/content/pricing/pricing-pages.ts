@@ -97,7 +97,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
     },
     es: {
       metaTitle: "Precios SEO | Planes desde $2,500/mes | KINEXIS Digital",
-      metaDescription: "Precios SEO transparentes para negocios que necesitan leads. Planes claros con entregables definidos.",
+      metaDescription: "Precios SEO transparentes para negocios que necesitan leads calificados. Planes Starter, Growth y Scale con entregables definidos y sin cargos ocultos. Desde $2,500/mes.",
       hero: { label: "Precios SEO", line1: "Precios SEO que", line2: "Encajan con Tu Mercado.", subtitle: "Sin cargos ocultos. Ves exactamente qué incluye cada nivel antes de firmar." },
       answerBlock: "Los planes SEO de KINEXIS empiezan en $2,500 al mes para negocios de una ubicación y escalan a $8,000+ para mercados competitivos. Cada plan incluye SEO técnico, estrategia de palabras clave, contenido y link building.",
       tiers: [
@@ -132,7 +132,8 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
   "google-ads": {
     en: {
       metaTitle: "Google Ads Pricing | Management from $2,500/mo | KINEXIS",
-      metaDescription: "Google Ads management pricing with transparent tiers. Management fees separate from ad spend. Search, Shopping, and PMax campaigns.",
+      metaDescription:
+        "Google Ads management pricing with transparent Starter, Growth, and Scale tiers. Management fees separate from ad spend. Search, Shopping, and PMax campaigns with weekly optimization.",
       hero: { label: "Google Ads Pricing", line1: "Google Ads pricing", line2: "without the guesswork.", subtitle: "Management fees are separate from ad spend. You always know what you pay us and what goes to Google." },
       answerBlock: "Google Ads management at KINEXIS starts at $2,500 per month for single-channel Search campaigns with up to $5,000 in ad spend. Growth plans at $5,000 per month cover multi-campaign accounts up to $25,000 in spend. You pay Google directly for clicks. Most accounts need two to four weeks of data before optimization shows clear ROAS improvement.",
       tiers: [
@@ -169,7 +170,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
     },
     es: {
       metaTitle: "Precios Google Ads | Gestión desde $2,500/mes | KINEXIS",
-      metaDescription: "Precios transparentes de gestión Google Ads. Tarifas separadas del gasto publicitario.",
+      metaDescription: "Precios transparentes de gestión Google Ads con campañas Search, Shopping y PMax. Tarifas de gestión separadas del gasto publicitario. Planes desde $2,500/mes para impulsar tu ROAS.",
       hero: { label: "Precios Google Ads", line1: "Precios Google Ads", line2: "Sin Sorpresas.", subtitle: "Las tarifas de gestión son separadas del gasto en anuncios." },
       answerBlock: "La gestión de Google Ads en KINEXIS empieza en $2,500 al mes para campañas Search con hasta $5,000 de gasto publicitario.",
       tiers: [
@@ -194,7 +195,8 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
   "web-design": {
     en: {
       metaTitle: "Web Design Pricing | Sites from $8,000 | KINEXIS Digital",
-      metaDescription: "Web design pricing for conversion-focused business websites. Project-based and retainer options with clear deliverables.",
+      metaDescription:
+        "Web design pricing for conversion-focused business websites. Landing pages from $3,500, business sites $8K to $35K with Core Web Vitals, CMS setup, and analytics included.",
       hero: { label: "Web Design Pricing", line1: "Website pricing", line2: "built for conversions.", subtitle: "Quotes based on scope, not page count alone. Every build includes mobile optimization and analytics setup." },
       answerBlock: "Business websites at KINEXIS typically range from $8,000 to $35,000 for a full custom build depending on pages, integrations, and e-commerce needs. Smaller landing page projects start around $3,500. Timeline is usually 6 to 10 weeks from kickoff to launch. Ongoing maintenance and CRO retainers are available separately.",
       tiers: [
@@ -231,7 +233,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
     },
     es: {
       metaTitle: "Precios Diseño Web | Sitios desde $8,000 | KINEXIS",
-      metaDescription: "Precios de diseño web enfocados en conversión. Cotizaciones claras por alcance.",
+      metaDescription: "Precios de diseño web enfocados en conversión con cotizaciones claras por alcance. Landing pages desde $3,500, sitios empresariales de $8K a $35K con optimización SEO y CRO incluida.",
       hero: { label: "Precios Web", line1: "Precios de Sitio Web", line2: "Hechos para Convertir.", subtitle: "Cotizaciones basadas en alcance, no solo en número de páginas." },
       answerBlock: "Los sitios web empresariales en KINEXIS suelen costar entre $8,000 y $35,000 según páginas, integraciones y e-commerce.",
       tiers: [
@@ -309,7 +311,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
     },
     es: {
       metaTitle: "Precios Meta Ads | Gestión desde $1,500/mes | KINEXIS",
-      metaDescription: "Precios transparentes de gestión Meta Ads. Tarifas separadas del gasto publicitario.",
+      metaDescription: "Precios transparentes de gestión Meta Ads para Facebook e Instagram con pruebas creativas quincenales y segmentación avanzada de audiencias. Tarifas separadas del gasto publicitario. Desde $1,500/mes.",
       hero: { label: "Precios Meta Ads", line1: "Precios Meta Ads", line2: "Ligados al Rendimiento.", subtitle: "Las tarifas de gestión son separadas del gasto en anuncios." },
       answerBlock: "La gestión de Meta Ads en KINEXIS empieza en $1,500 al mes para campañas en Facebook e Instagram.",
       tiers: [

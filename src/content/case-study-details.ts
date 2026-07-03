@@ -12,6 +12,7 @@ export type CaseStudyResult = {
 
 export type CaseStudyDetail = {
   title: string;
+  datePublished: string;
   client: string;
   industry: string;
   headline: string;
@@ -32,6 +33,7 @@ export type CaseStudyDetail = {
 const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> = {
   "landscaping-company-growth": {
     title: "Landscaping Company",
+    datePublished: "2024-06-15",
     client: "Local Landscaping Business",
     industry: "Home Services",
     headline: "5.9X Revenue Growth",
@@ -58,6 +60,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
   },
   "dental-practice-local-seo": {
     title: "Dental Practice",
+    datePublished: "2024-03-20",
     client: "Multi-Location Dental Group",
     industry: "Healthcare",
     headline: "311% More Patients",
@@ -84,6 +87,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
   },
   "premium-ecommerce-brand": {
     title: "Premium E-Commerce Brand",
+    datePublished: "2024-09-10",
     client: "Direct-to-Consumer Home Goods Brand",
     industry: "Retail",
     headline: "3.6X Monthly Revenue",
@@ -110,6 +114,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
   },
   "saas-analytics-platform": {
     title: "SaaS Analytics Platform",
+    datePublished: "2024-11-01",
     client: "B2B Analytics Startup",
     industry: "Tech / SaaS",
     headline: "3.8X MRR Growth",
@@ -136,6 +141,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
   },
   "fintech-app-startup": {
     title: "Fintech Startup",
+    datePublished: "2025-02-15",
     client: "Personal Finance App",
     industry: "Tech / Fintech",
     headline: "195% Trial Conversion Lift",
@@ -162,6 +168,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
   },
   "b2b-consulting-firm": {
     title: "B2B Consulting Firm",
+    datePublished: "2025-05-01",
     client: "Management Consulting Practice",
     industry: "Professional Services",
     headline: "$2.28M Pipeline Built",

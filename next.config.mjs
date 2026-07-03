@@ -99,21 +99,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/security.txt",
-        destination: "/.well-known/security.txt",
-        permanent: true,
-      },
-      {
-        source: "/services/cro",
-        destination: "/en/services/funnels",
-        permanent: true,
-      },
-      {
-        source: "/pricing/cro",
-        destination: "/en/pricing/funnels",
-        permanent: true,
-      },
-      {
         source: "/:locale(en|es)/services/cro",
         destination: "/:locale/services/funnels",
         permanent: true,
@@ -130,6 +115,15 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/:locale(en|es)/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
       {
         source: "/assets/:path*",
@@ -158,6 +152,13 @@ const nextConfig = {
       },
       {
         source: "/.well-known/security.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "Cache-Control", value: "public, max-age=86400" },
+        ],
+      },
+      {
+        source: "/security.txt",
         headers: [
           { key: "Content-Type", value: "text/plain; charset=utf-8" },
           { key: "Cache-Control", value: "public, max-age=86400" },

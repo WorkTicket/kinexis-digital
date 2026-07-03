@@ -47,6 +47,7 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
             description: normalizeMetaDescription(cs.results),
             url: buildAbsoluteUrl(locale, `/case-studies/${slug}`),
             industry: cs.industry,
+            datePublished: cs.datePublished,
           }),
           breadcrumbSchema([
             { name: cs.breadcrumbs.home, url: buildAbsoluteUrl(locale, "/") },

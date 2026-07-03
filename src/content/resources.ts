@@ -201,9 +201,13 @@ export const resourcesPageMeta = {
   ctaSubtitle:
     "Tools only matter if they're wired into how you run campaigns.|We help you build that.",
   ctaLabel: "Book a Strategy Call",
+  metaDescription:
+    "Platforms we run campaigns on every day, grouped by SEO, ads, analytics, and CRO. No sponsored links — just the tools we use with clients and recommend without affiliate bias.",
 };
 
-export type ResourcesPageMeta = typeof resourcesPageMeta;
+export type ResourcesPageMeta = typeof resourcesPageMeta & {
+  metaDescription: string;
+};
 
 export type KinexisGuide = {
   title: string;
@@ -433,6 +437,8 @@ const resourcesPageMetaEs: ResourcesPageMeta = {
   ctaSubtitle:
     "Las herramientas solo importan si están conectadas a cómo gestionas campañas.|Te ayudamos a construir eso.",
   ctaLabel: "Reservar una Llamada Estratégica",
+  metaDescription:
+    "Plataformas con las que trabajamos cada día en SEO, anuncios, analítica y CRO. Sin enlaces patrocinados — solo herramientas que usamos con clientes y recomendamos sin afiliados.",
 };
 
 const resourcesContentEs: ResourcesContent = {

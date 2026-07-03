@@ -12,7 +12,8 @@ import {
 import { getLocationDetail } from "@/content/locations/location-details";
 import { routing, type Locale } from "@/i18n/routing";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema, faqSchema, localBusinessSchema, organizationSchema } from "@/lib/schema";
+import { getLocationCityFaqs } from "@/lib/location-faqs";
+import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from "@/lib/schema";
 
 type Props = { params: Promise<{ locale: Locale; city: string }> };
 
@@ -26,12 +27,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, city } = await params;
   const location = getLocationBySlug(city);
   if (!location) return {};
-  const title = getLocationServiceLabel("digital-marketing-agency", location.city);
+  const cityLabel = getLocationServiceLabel("digital-marketing-agency", location.city);
+  const metaTitle = locale === "es"
+    ? `Agencia de Marketing Digital en ${location.city} | KINEXIS`
+    : `${cityLabel} | KINEXIS`;
+  const metaDescription = locale === "es"
+    ? `Agencia de marketing digital en ${location.city}, ${location.state}. SEO, Google Ads y diseño web para empresas que buscan resultados medibles.`
+    : location.description;
   return buildPageMetadata({
     locale,
     path: `/locations/${city}`,
-    title: `${title} | KINEXIS`,
-    description: location.description,
+    title: metaTitle,
+    description: metaDescription,
   });
 }
 
@@ -44,16 +51,19 @@ export default async function LocationCityPage({ params }: Props) {
 
   const pageTitle = getLocationServiceLabel("digital-marketing-agency", location.city);
   const detail = getLocationDetail(city);
-  const localFaqs = detail?.localFaqs ?? [
-    { question: `Do you work with businesses in ${location.city}?`, answer: `Yes. We serve the ${location.region} and surrounding areas.` },
-  ];
+  const pagePath = `/locations/${city}`;
+  const pageUrl = buildAbsoluteUrl(locale, pagePath);
+  const localFaqs = getLocationCityFaqs(location, detail);
 
   return (
     <>
       <JsonLd
         data={[
           organizationSchema(),
-          localBusinessSchema(location.city, location.state),
+          serviceSchema(pageTitle, location.description, pageUrl, {
+            city: location.city,
+            region: location.state,
+          }),
           faqSchema(localFaqs),
           breadcrumbSchema([
             { name: "Home", url: buildAbsoluteUrl(locale, "/") },
@@ -63,7 +73,13 @@ export default async function LocationCityPage({ params }: Props) {
         ]}
       />
       <Breadcrumbs items={[{ name: "Home", url: "/" }, { name: "Locations", url: "/locations" }, { name: location.city }]} />
-      <LocationPageClient location={location} pageTitle={pageTitle} pageDescription={location.description} detail={detail} />
+      <LocationPageClient
+        location={location}
+        pageTitle={pageTitle}
+        pageDescription={location.description}
+        detail={detail}
+        localFaqs={localFaqs}
+      />
     </>
   );
 }

@@ -1,33 +1,21 @@
 template,url,strategy,performance_score,lcp_ms,lcp_display,inp_ms,inp_display,cls,cls_display,ttfb_ms,ttfb_display,fcp_ms,speed_index_ms,tbt_ms,cwv_pass,cwv_issues,psi_elapsed_ms
-homepage,https://www.kinexisdigital.com/en,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-service,https://www.kinexisdigital.com/en/services/seo,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/services/seo: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-location_city,https://www.kinexisdigital.com/en/locations/toronto,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/locations/toronto: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-location_service,https://www.kinexisdigital.com/en/locations/toronto/seo,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/locations/toronto/seo: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-industry_detail,https://www.kinexisdigital.com/en/industries/technology/startups,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/industries/technology/startups: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-blog_post,https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-solution,https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
-contact,https://www.kinexisdigital.com/en/contact,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/contact: HTTP 429 — {
-  ""error"": {
-    ""code"": 429,
-    ""message"": ""Quota exceeded for quota metric 'Queries' and limit 'Queries per day' of service 'pagespeedonline.googleapis.com' for consumer 'project_number:583797351",
+homepage,https://www.kinexisdigital.com/en,mobile,0.79,3901,3.9 s,,,0.150,0.15,4,Root document took 0 ms,1351,3352,139,false,lcp_3901ms;cls_0.150,17429
+homepage,https://www.kinexisdigital.com/en,desktop,0.81,1270,1.3 s,,,0.050,0.05,4,Root document took 0 ms,322,2406,261,true,,39994
+service,https://www.kinexisdigital.com/en/services/seo,mobile,0.86,3901,3.9 s,,,0.000,0,4,Root document took 0 ms,1951,3332,19,false,lcp_3901ms,12826
+service,https://www.kinexisdigital.com/en/services/seo,desktop,0.96,863,0.9 s,,,0.000,0,7,Root document took 10 ms,322,949,154,true,,25144
+service_heavy,https://www.kinexisdigital.com/en/services/ppc-management,mobile,0.86,3751,3.8 s,,,0.000,0,4,Root document took 0 ms,1351,3105,153,false,lcp_3751ms,15810
+service_heavy,https://www.kinexisdigital.com/en/services/ppc-management,desktop,0.97,849,0.8 s,,,0.000,0,5,Root document took 10 ms,299,814,135,true,,21830
+location_city,https://www.kinexisdigital.com/en/locations/toronto,mobile,0.81,4277,4.3 s,,,0.000,0,3,Root document took 0 ms,1952,4580,93,false,lcp_4277ms,14287
+location_city,https://www.kinexisdigital.com/en/locations/toronto,desktop,0.94,1245,1.2 s,,,0.000,0,3,Root document took 0 ms,321,860,152,true,,23254
+location_service,https://www.kinexisdigital.com/en/locations/toronto/seo,mobile,0.55,4015,4.0 s,,,0.000,0,4,Root document took 0 ms,1351,5343,2052,false,lcp_4015ms,51639
+location_service,https://www.kinexisdigital.com/en/locations/toronto/seo,desktop,0.98,1034,1.0 s,,,0.000,0,3,Root document took 0 ms,322,1124,45,true,,20966
+industry_detail,https://www.kinexisdigital.com/en/industries/technology/startups,mobile,0.88,3376,3.4 s,,,0.000,0,3,Root document took 0 ms,1351,2910,195,false,lcp_3376ms,34937
+industry_detail,https://www.kinexisdigital.com/en/industries/technology/startups,desktop,1,722,0.7 s,,,0.000,0,3,Root document took 0 ms,322,762,31,true,,18490
+blog_post,https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals,mobile,0.86,3676,3.7 s,,,0.000,0,4,Root document took 0 ms,1351,2713,184,false,lcp_3676ms,14633
+blog_post,https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals,desktop,1,727,0.7 s,,,0.001,0.001,4,Root document took 0 ms,322,666,48,true,,13215
+solution,https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies,mobile,0.95,2927,2.9 s,,,0.000,0,4,Root document took 0 ms,1202,1202,25,false,lcp_2927ms,10560
+solution,https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies,desktop,0.97,876,0.9 s,,,0.000,0,4,Root document took 0 ms,321,1334,96,true,,20530
+contact,https://www.kinexisdigital.com/en/contact,mobile,0.68,5097,5.1 s,,,0.000,0,6,Root document took 10 ms,2746,5084,260,false,lcp_5097ms,16514
+contact,https://www.kinexisdigital.com/en/contact,desktop,0.97,839,0.8 s,,,0.001,0.001,4,Root document took 0 ms,283,740,124,true,,18413
+pricing,https://www.kinexisdigital.com/en/pricing/seo,mobile,0.96,2701,2.7 s,,,0.000,0,4,Root document took 0 ms,1201,1412,99,false,lcp_2701ms,135533
+pricing,https://www.kinexisdigital.com/en/pricing/seo,desktop,0.97,1134,1.1 s,,,0.000,0,5,Root document took 10 ms,322,841,85,true,,20084

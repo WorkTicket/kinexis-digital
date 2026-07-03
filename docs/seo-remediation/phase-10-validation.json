@@ -1,10 +1,8 @@
 {
   "summary": {
-    "timestamp": "2026-07-02T23:55:40.974Z",
-    "finished": "2026-07-03T00:05:00.000Z",
+    "timestamp": "2026-07-03T00:52:40.187Z",
+    "finished": "2026-07-03T01:02:18.417Z",
     "base": "https://www.kinexisdigital.com",
-    "deploy_version": "8bf140cc-6da8-4782-80bb-59807079cefb",
-    "prior_deploy_version": "605f4249-499f-423c-88e7-e4ad5808d11b",
     "psi_samples": 10,
     "psi_runs": 20,
     "cwv_thresholds": {
@@ -22,68 +20,683 @@
       "solution",
       "contact"
     ],
-    "psi_quota_exceeded": true,
-    "lighthouse_cli_available": true,
-    "phase9_regression": true,
-    "bundle_service_first_load_js_kb": 295,
-    "bundle_service_before_kb": 437,
-    "ttfb_post_deploy": {
-      "homepage_ms": 336,
-      "service_ms": 155,
-      "service_heavy_ms": 142,
-      "location_city_ms": 151,
-      "location_service_ms": 148,
-      "industry_detail_ms": 128,
-      "blog_post_ms": 185,
-      "solution_ms": 149,
-      "contact_ms": 129,
-      "pricing_ms": 152,
-      "ahrefs_threshold_ms": 1000,
-      "pass": true
-    },
-    "http_dupe_redirects": {
-      "sampled": 4,
-      "pass": 4,
-      "expected": "301 to https://www.kinexisdigital.com/*",
-      "note": "14 Ahrefs HTTP rows should clear on re-crawl"
-    },
-    "lighthouse_lab_mobile": {
-      "service_seo_lcp_ms": 3693,
-      "service_seo_cls": 0.000034,
-      "homepage_lcp_ms": 4705,
-      "homepage_cls": 0.018,
-      "source": "docs/seo-remediation/phase-10-lighthouse/*-v2.json"
-    },
-    "priority_cwv_failures": 2,
-    "mobile_priority_failures": 2,
+    "priority_cwv_failures": 8,
+    "mobile_priority_failures": 8,
     "desktop_priority_failures": 0,
     "ahrefs_slow_page_total": 34,
     "ahrefs_slow_https_www": 20,
     "ahrefs_slow_http_dupes": 14,
+    "ahrefs_by_template": {
+      "location_city": 2,
+      "industry_detail": 7,
+      "homepage": 1,
+      "service": 5,
+      "contact": 1,
+      "comparison": 1,
+      "location_service": 6,
+      "blog_post": 5,
+      "solution": 2,
+      "industry_category": 1,
+      "pricing": 1,
+      "solutions_hub": 1,
+      "case_study": 1
+    },
+    "psi_quota_exceeded": false,
+    "psi_cwv_confirmed": true,
+    "psi_api_key_configured": true,
+    "deploy_version": "6f342678-6461-4944-b2e0-dceac1778f03",
+    "phase10CodeComplete": true,
     "phase10Pass": false,
-    "phase10PassReason": "PSI quota exceeded; Lighthouse lab mobile LCP >2.5s on homepage and service samples. TTFB and bundle targets met."
+    "psi_mobile_summary": {
+      "pass": 0,
+      "fail": 8,
+      "worst": { "template": "contact", "lcp_ms": 5097 },
+      "best": { "template": "solution", "lcp_ms": 2927 },
+      "homepage": { "lcp_ms": 3901, "cls": 0.15, "issues": ["lcp", "cls"] }
+    },
+    "psi_desktop_summary": { "pass": 8, "fail": 0 },
+    "phase10CloseNote": "PSI confirmed: desktop CWV pass all priority templates; mobile LCP fails all 8 (JS/render). Ahrefs re-crawl human. Phase 11 can proceed with documented mobile LCP residual."
   },
-  "nextSteps": [
-    "Re-run PSI with GOOGLE_PSI_API_KEY after quota reset",
-    "Ahrefs re-crawl slow-page export",
-    "If mobile LCP still fails in PSI: server-render hero shell without client hydration gate"
-  ],
   "failures": [
     {
-      "gate": "psi_api",
-      "issues": ["HTTP 429 daily quota on unauthenticated endpoint"]
-    },
-    {
-      "gate": "lighthouse_lab_mobile_lcp",
-      "template": "service",
-      "lcp_ms": 3693,
-      "threshold_ms": 2500
-    },
-    {
-      "gate": "lighthouse_lab_mobile_lcp",
       "template": "homepage",
-      "lcp_ms": 4705,
-      "threshold_ms": 2500
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en",
+      "issues": [
+        "lcp_3901ms",
+        "cls_0.150"
+      ]
+    },
+    {
+      "template": "service",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/services/seo",
+      "issues": [
+        "lcp_3901ms"
+      ]
+    },
+    {
+      "template": "service_heavy",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/services/ppc-management",
+      "issues": [
+        "lcp_3751ms"
+      ]
+    },
+    {
+      "template": "location_city",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/locations/toronto",
+      "issues": [
+        "lcp_4277ms"
+      ]
+    },
+    {
+      "template": "location_service",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/locations/toronto/seo",
+      "issues": [
+        "lcp_4015ms"
+      ]
+    },
+    {
+      "template": "industry_detail",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/industries/technology/startups",
+      "issues": [
+        "lcp_3376ms"
+      ]
+    },
+    {
+      "template": "blog_post",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals",
+      "issues": [
+        "lcp_3676ms"
+      ]
+    },
+    {
+      "template": "solution",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies",
+      "issues": [
+        "lcp_2927ms"
+      ]
+    },
+    {
+      "template": "contact",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/contact",
+      "issues": [
+        "lcp_5097ms"
+      ]
+    },
+    {
+      "template": "pricing",
+      "strategy": "mobile",
+      "url": "https://www.kinexisdigital.com/en/pricing/seo",
+      "issues": [
+        "lcp_2701ms"
+      ]
+    }
+  ],
+  "ahrefsSlowPage": {
+    "export": "kinexisdigital_01-jul-2026_slow-page_2026-07-02_16-46-51.csv",
+    "httpsRows": [
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/dallas",
+        "ttfb": 1213
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/industries/technology/startups",
+        "ttfb": 1193
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/industries/hospitality/resorts",
+        "ttfb": 1013
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en",
+        "ttfb": 1099
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/industries/healthcare/physical-therapy",
+        "ttfb": 1091
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/industries/home-services/electrical",
+        "ttfb": 1296
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/services/ppc-management",
+        "ttfb": 1471
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/industries/ecommerce/shopify-brands",
+        "ttfb": 1216
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/services/video-marketing",
+        "ttfb": 24218
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/services/local-seo",
+        "ttfb": 1013
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/services/meta-ads",
+        "ttfb": 1746
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/contact",
+        "ttfb": 1874
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/services/meta-ads",
+        "ttfb": 1021
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/local-seo-vs-google-ads",
+        "ttfb": 1040
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/des-moines/seo",
+        "ttfb": 1086
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/blog/attribution-models",
+        "ttfb": 1057
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/solutions/cro-for-saas-companies",
+        "ttfb": 1154
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/blog/internal-linking-guide",
+        "ttfb": 1024
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/waterloo/google-ads",
+        "ttfb": 1810
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/locations/waterloo/seo",
+        "ttfb": 1005
+      }
+    ],
+    "httpDupeRows": [
+      {
+        "url": "http://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+        "ttfb": 1118,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/locations/des-moines",
+        "ttfb": 1000,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/industries/hospitality/bars-nightlife",
+        "ttfb": 1049,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/blog/ab-testing-framework",
+        "ttfb": 1099,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/industries/financial-services",
+        "ttfb": 1026,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/pricing/seo",
+        "ttfb": 22689,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/solutions",
+        "ttfb": 1088,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/case-studies/dental-practice-local-seo",
+        "ttfb": 1007,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/blog/landing-page-optimization",
+        "ttfb": 1118,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/blog/google-business-profile-tips",
+        "ttfb": 1040,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/locations/dallas/web-design",
+        "ttfb": 1006,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/locations/bogota/web-design",
+        "ttfb": 1149,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/locations/austin/ppc-management",
+        "ttfb": 1016,
+        "note": "expect_clear_on_recrawl"
+      },
+      {
+        "url": "http://www.kinexisdigital.com/en/solutions/startup-marketing-agency",
+        "ttfb": 1091,
+        "note": "expect_clear_on_recrawl"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "template": "homepage",
+      "url": "https://www.kinexisdigital.com/en",
+      "strategy": "mobile",
+      "performance_score": 0.79,
+      "lcp_ms": 3901,
+      "lcp_display": "3.9 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.150",
+      "cls_display": "0.15",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1351,
+      "speed_index_ms": 3352,
+      "tbt_ms": 139,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_3901ms;cls_0.150",
+      "psi_elapsed_ms": 17429
+    },
+    {
+      "template": "homepage",
+      "url": "https://www.kinexisdigital.com/en",
+      "strategy": "desktop",
+      "performance_score": 0.81,
+      "lcp_ms": 1270,
+      "lcp_display": "1.3 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.050",
+      "cls_display": "0.05",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 322,
+      "speed_index_ms": 2406,
+      "tbt_ms": 261,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 39994
+    },
+    {
+      "template": "service",
+      "url": "https://www.kinexisdigital.com/en/services/seo",
+      "strategy": "mobile",
+      "performance_score": 0.86,
+      "lcp_ms": 3901,
+      "lcp_display": "3.9 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1951,
+      "speed_index_ms": 3332,
+      "tbt_ms": 19,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_3901ms",
+      "psi_elapsed_ms": 12826
+    },
+    {
+      "template": "service",
+      "url": "https://www.kinexisdigital.com/en/services/seo",
+      "strategy": "desktop",
+      "performance_score": 0.96,
+      "lcp_ms": 863,
+      "lcp_display": "0.9 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 7,
+      "ttfb_display": "Root document took 10 ms",
+      "fcp_ms": 322,
+      "speed_index_ms": 949,
+      "tbt_ms": 154,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 25144
+    },
+    {
+      "template": "service_heavy",
+      "url": "https://www.kinexisdigital.com/en/services/ppc-management",
+      "strategy": "mobile",
+      "performance_score": 0.86,
+      "lcp_ms": 3751,
+      "lcp_display": "3.8 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1351,
+      "speed_index_ms": 3105,
+      "tbt_ms": 153,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_3751ms",
+      "psi_elapsed_ms": 15810
+    },
+    {
+      "template": "service_heavy",
+      "url": "https://www.kinexisdigital.com/en/services/ppc-management",
+      "strategy": "desktop",
+      "performance_score": 0.97,
+      "lcp_ms": 849,
+      "lcp_display": "0.8 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 5,
+      "ttfb_display": "Root document took 10 ms",
+      "fcp_ms": 299,
+      "speed_index_ms": 814,
+      "tbt_ms": 135,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 21830
+    },
+    {
+      "template": "location_city",
+      "url": "https://www.kinexisdigital.com/en/locations/toronto",
+      "strategy": "mobile",
+      "performance_score": 0.81,
+      "lcp_ms": 4277,
+      "lcp_display": "4.3 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 3,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1952,
+      "speed_index_ms": 4580,
+      "tbt_ms": 93,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_4277ms",
+      "psi_elapsed_ms": 14287
+    },
+    {
+      "template": "location_city",
+      "url": "https://www.kinexisdigital.com/en/locations/toronto",
+      "strategy": "desktop",
+      "performance_score": 0.94,
+      "lcp_ms": 1245,
+      "lcp_display": "1.2 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 3,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 321,
+      "speed_index_ms": 860,
+      "tbt_ms": 152,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 23254
+    },
+    {
+      "template": "location_service",
+      "url": "https://www.kinexisdigital.com/en/locations/toronto/seo",
+      "strategy": "mobile",
+      "performance_score": 0.55,
+      "lcp_ms": 4015,
+      "lcp_display": "4.0 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1351,
+      "speed_index_ms": 5343,
+      "tbt_ms": 2052,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_4015ms",
+      "psi_elapsed_ms": 51639
+    },
+    {
+      "template": "location_service",
+      "url": "https://www.kinexisdigital.com/en/locations/toronto/seo",
+      "strategy": "desktop",
+      "performance_score": 0.98,
+      "lcp_ms": 1034,
+      "lcp_display": "1.0 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 3,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 322,
+      "speed_index_ms": 1124,
+      "tbt_ms": 45,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 20966
+    },
+    {
+      "template": "industry_detail",
+      "url": "https://www.kinexisdigital.com/en/industries/technology/startups",
+      "strategy": "mobile",
+      "performance_score": 0.88,
+      "lcp_ms": 3376,
+      "lcp_display": "3.4 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 3,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1351,
+      "speed_index_ms": 2910,
+      "tbt_ms": 195,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_3376ms",
+      "psi_elapsed_ms": 34937
+    },
+    {
+      "template": "industry_detail",
+      "url": "https://www.kinexisdigital.com/en/industries/technology/startups",
+      "strategy": "desktop",
+      "performance_score": 1,
+      "lcp_ms": 722,
+      "lcp_display": "0.7 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 3,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 322,
+      "speed_index_ms": 762,
+      "tbt_ms": 31,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 18490
+    },
+    {
+      "template": "blog_post",
+      "url": "https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals",
+      "strategy": "mobile",
+      "performance_score": 0.86,
+      "lcp_ms": 3676,
+      "lcp_display": "3.7 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1351,
+      "speed_index_ms": 2713,
+      "tbt_ms": 184,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_3676ms",
+      "psi_elapsed_ms": 14633
+    },
+    {
+      "template": "blog_post",
+      "url": "https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals",
+      "strategy": "desktop",
+      "performance_score": 1,
+      "lcp_ms": 727,
+      "lcp_display": "0.7 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.001",
+      "cls_display": "0.001",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 322,
+      "speed_index_ms": 666,
+      "tbt_ms": 48,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 13215
+    },
+    {
+      "template": "solution",
+      "url": "https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies",
+      "strategy": "mobile",
+      "performance_score": 0.95,
+      "lcp_ms": 2927,
+      "lcp_display": "2.9 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1202,
+      "speed_index_ms": 1202,
+      "tbt_ms": 25,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_2927ms",
+      "psi_elapsed_ms": 10560
+    },
+    {
+      "template": "solution",
+      "url": "https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies",
+      "strategy": "desktop",
+      "performance_score": 0.97,
+      "lcp_ms": 876,
+      "lcp_display": "0.9 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 321,
+      "speed_index_ms": 1334,
+      "tbt_ms": 96,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 20530
+    },
+    {
+      "template": "contact",
+      "url": "https://www.kinexisdigital.com/en/contact",
+      "strategy": "mobile",
+      "performance_score": 0.68,
+      "lcp_ms": 5097,
+      "lcp_display": "5.1 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 6,
+      "ttfb_display": "Root document took 10 ms",
+      "fcp_ms": 2746,
+      "speed_index_ms": 5084,
+      "tbt_ms": 260,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_5097ms",
+      "psi_elapsed_ms": 16514
+    },
+    {
+      "template": "contact",
+      "url": "https://www.kinexisdigital.com/en/contact",
+      "strategy": "desktop",
+      "performance_score": 0.97,
+      "lcp_ms": 839,
+      "lcp_display": "0.8 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.001",
+      "cls_display": "0.001",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 283,
+      "speed_index_ms": 740,
+      "tbt_ms": 124,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 18413
+    },
+    {
+      "template": "pricing",
+      "url": "https://www.kinexisdigital.com/en/pricing/seo",
+      "strategy": "mobile",
+      "performance_score": 0.96,
+      "lcp_ms": 2701,
+      "lcp_display": "2.7 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 4,
+      "ttfb_display": "Root document took 0 ms",
+      "fcp_ms": 1201,
+      "speed_index_ms": 1412,
+      "tbt_ms": 99,
+      "cwv_pass": false,
+      "cwv_issues": "lcp_2701ms",
+      "psi_elapsed_ms": 135533
+    },
+    {
+      "template": "pricing",
+      "url": "https://www.kinexisdigital.com/en/pricing/seo",
+      "strategy": "desktop",
+      "performance_score": 0.97,
+      "lcp_ms": 1134,
+      "lcp_display": "1.1 s",
+      "inp_ms": "",
+      "inp_display": "",
+      "cls": "0.000",
+      "cls_display": "0",
+      "ttfb_ms": 5,
+      "ttfb_display": "Root document took 10 ms",
+      "fcp_ms": 322,
+      "speed_index_ms": 841,
+      "tbt_ms": 85,
+      "cwv_pass": true,
+      "cwv_issues": "",
+      "psi_elapsed_ms": 20084
     }
   ]
 }

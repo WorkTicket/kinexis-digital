@@ -7,11 +7,20 @@ const intlMiddleware = createMiddleware(routing);
 const WWW_HOST = "www.kinexisdigital.com";
 const APEX_HOST = "kinexisdigital.com";
 
+/** Crawler discovery files — canonical host only (Phase 9). */
+const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt"]);
+
 /** Unprefixed legacy URLs → final locale-prefixed 200 destination (single hop). */
 const UNPREFIXED_LEGACY: Record<string, string> = {
   "/services/cro": "/en/services/funnels",
   "/pricing/cro": "/en/pricing/funnels",
 };
+
+const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;
+
+function hasLocalePrefix(pathname: string): boolean {
+  return LOCALE_PREFIX_RE.test(pathname);
+}
 
 function isInsecureRequest(request: NextRequest): boolean {
   const cfVisitor = request.headers.get("cf-visitor");
@@ -39,13 +48,21 @@ function detectLocale(request: NextRequest): Locale {
 function buildRedirect(
   request: NextRequest,
   pathname: string,
-  { forceHttps, forceWww }: { forceHttps: boolean; forceWww: boolean }
+  { forceHttps, forceWww }: { forceHttps: boolean; forceWww: boolean },
 ): NextResponse {
   const url = request.nextUrl.clone();
   url.pathname = pathname;
   if (forceHttps) url.protocol = "https:";
   if (forceWww) url.host = WWW_HOST;
   return NextResponse.redirect(url, 301);
+}
+
+/** Map unprefixed paths to locale-prefixed canonical paths. */
+function localePrefixedPath(pathname: string, request: NextRequest): string {
+  if (hasLocalePrefix(pathname)) return pathname;
+  const locale = detectLocale(request);
+  if (pathname === "/" || pathname === "") return `/${locale}`;
+  return `/${locale}${pathname}`;
 }
 
 export default function middleware(request: NextRequest) {
@@ -55,23 +72,40 @@ export default function middleware(request: NextRequest) {
   const needsWww = host === APEX_HOST;
   const needsHttps = !isLocalHost && isInsecureRequest(request);
 
+  if (CRAWLER_PATHS.has(pathname) && !isLocalHost && (needsWww || needsHttps)) {
+    return buildRedirect(request, pathname, { forceHttps: true, forceWww: needsWww });
+  }
+
+  if (CRAWLER_PATHS.has(pathname)) {
+    return NextResponse.next();
+  }
+
   const legacyTarget = UNPREFIXED_LEGACY[pathname];
   if (legacyTarget) {
     return buildRedirect(request, legacyTarget, { forceHttps: needsHttps, forceWww: needsWww });
   }
 
-  if (needsWww || needsHttps) {
-    let targetPath = pathname;
-    // Collapse apex root redirect chain: apex → www/en in one hop (not apex → www → /en).
-    if (needsWww && (pathname === "/" || pathname === "")) {
-      targetPath = `/${detectLocale(request)}`;
+  // Serve locale home at `/` with 200 (rewrite) — avoids Ahrefs 3XX on www root.
+  if (!isLocalHost && pathname === "/" && !needsWww && !needsHttps) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${detectLocale(request)}`;
+    return NextResponse.rewrite(url);
+  }
+
+  if (!isLocalHost) {
+    const targetPath = localePrefixedPath(pathname, request);
+    const pathChanged = targetPath !== pathname;
+    if (needsWww || needsHttps || pathChanged) {
+      return buildRedirect(request, targetPath, {
+        forceHttps: needsHttps,
+        forceWww: needsWww,
+      });
     }
-    return buildRedirect(request, targetPath, { forceHttps: needsHttps, forceWww: needsWww });
   }
 
   return intlMiddleware(request);
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/sitemap.xml", "/robots.txt", "/((?!api|_next|_vercel|.*\\..*).*)"],
 };

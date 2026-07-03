@@ -1,5 +1,6 @@
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
+import ServiceHeroShell from "@/components/shared/services/ServiceHeroShell";
 import ServicePage from "@/components/services/ServicePage";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import { serviceLabels, serviceRoutes } from "@/content/registry/site-routes";
@@ -24,6 +25,7 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
         ? meta.description
         : `Professional ${name.toLowerCase()} from KINEXIS Digital.`;
     const data = buildServicePageServerProps(slug, locale);
+    const tCommon = await getTranslations("common");
 
     return (
       <>
@@ -38,6 +40,12 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
               { name },
             ]),
           ]}
+        />
+        <ServiceHeroShell
+          slug={slug}
+          breadcrumbs={data.breadcrumbs}
+          secondaryCtaLabel={tCommon("viewOurWork")}
+          {...data.data.hero}
         />
         <ServicePage {...data} />
       </>

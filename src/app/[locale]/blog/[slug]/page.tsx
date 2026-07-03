@@ -14,6 +14,8 @@ import { getAuthor } from "@/content/authors";
 import { getBlogAuthorSlug } from "@/lib/blog-authors";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import { localizeInternalLinks } from "@/lib/locale-path";
+import { getBlogRelatedLinks } from "@/lib/blog-related-links";
+import RelatedLinks from "@/components/sections/RelatedLinks";
 import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
 import type { Metadata } from "next";
@@ -21,6 +23,8 @@ import type { Metadata } from "next";
 function getPostExcerpt(slug: string, locale: Locale, body: string): string {
   const listing = getLocalizedContent(blogContent, locale).posts.find((p) => p.slug === slug);
   if (listing?.excerpt) return normalizeMetaDescription(listing.excerpt);
+  const cluster = getClusterPost(slug, locale);
+  if (cluster?.excerpt) return normalizeMetaDescription(cluster.excerpt);
   const stripped = body.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
   return normalizeMetaDescription(stripped);
 }
@@ -72,6 +76,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const authorSlug = getBlogAuthorSlug(post.category);
   const author = getAuthor(authorSlug, locale);
+  const related = getBlogRelatedLinks(slug, locale);
 
   return (
     <article>
@@ -129,6 +134,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }} />
         </div>
       </AnimatedWrapper>
+
+      {(related.serviceLinks.length > 0 || related.blogLinks.length > 0) && (
+        <RelatedLinks
+          serviceLinks={related.serviceLinks}
+          blogLinks={related.blogLinks}
+          agencyHub
+        />
+      )}
 
       <CTAArchetype
         headline={c.postDetailCtaHeadline}

@@ -43,7 +43,7 @@ export const serviceRoutes: Record<ServiceSlug, string> = {
   "google-ads": "/services/google-ads",
   "meta-ads": "/services/meta-ads",
   "web-design": "/services/web-design",
-  cro: "/services/cro",
+  cro: "/services/funnels",
   "email-marketing": "/services/email-marketing",
   "content-marketing": "/services/content-marketing",
   "social-media": "/services/social-media",

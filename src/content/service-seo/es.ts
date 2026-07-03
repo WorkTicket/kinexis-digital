@@ -1695,7 +1695,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
   analytics: {
     metaTitle: "Agencia Analítica de Marketing para Equipos B2B | KINEXIS Digital",
     metaDescription:
-      "Analítica y reportes de marketing que conectan campañas con ingresos. Setup GA4, dashboards y atribución desde $1,500/mes.",
+      "Analítica y reportes de marketing que conectan tus campañas con ingresos reales. Setup de GA4, dashboards personalizados y atribución multicanal para decisiones de presupuesto informadas desde $1,500/mes.",
     hero: {
       label: "Servicios Analítica de Marketing",
       line1: "Reportes que te dicen",

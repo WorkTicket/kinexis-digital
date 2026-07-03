@@ -183,7 +183,7 @@ function buildGeneratedPricingContent(slug: PricingSlug, locale: Locale): Pricin
   return enrichPricingContent(
     {
       metaTitle: `${shortName} Pricing | KINEXIS`,
-      metaDescription: `Transparent ${shortName.toLowerCase()} pricing with clear tiers and deliverables. No hidden fees. No vague retainers.`,
+      metaDescription: `Transparent ${shortName.toLowerCase()} pricing with clear Starter, Growth, and Scale tiers. Defined deliverables at every level, no hidden fees, no vague retainers, and no long-term contracts required.`,
       hero: {
         label: pricingLabel,
         line1: pricingLabel,

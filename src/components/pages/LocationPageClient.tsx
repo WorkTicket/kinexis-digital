@@ -10,8 +10,14 @@ import FAQSection from "@/components/sections/FAQSection";
 import RelatedLinks from "@/components/sections/RelatedLinks";
 import type { LocationEntry } from "@/content/registry/locations";
 import type { LocationDetailContent } from "@/content/locations/location-details";
-import { getLocationHeroLines, getLocationServiceLabel, locationServiceSlugs } from "@/content/registry/locations";
+import { getLocationHeroLines, getLocationServiceLabel, locationServiceSlugs, type LocationServiceSlug } from "@/content/registry/locations";
 import { serviceRoutes, type ServiceSlug } from "@/content/registry/site-routes";
+import {
+  getLocationCrossLinks,
+  getLocationHubLinks,
+  getLocationPricingLink,
+} from "@/lib/location-related-links";
+import type { FaqItem } from "@/lib/location-faqs";
 
 type Props = {
   location: LocationEntry;
@@ -19,23 +25,33 @@ type Props = {
   pageTitle: string;
   pageDescription: string;
   detail?: LocationDetailContent;
+  localFaqs: FaqItem[];
 };
 
-export default function LocationPageClient({ location, serviceSlug, pageTitle: _pageTitle, pageDescription, detail }: Props) {
+export default function LocationPageClient({
+  location,
+  serviceSlug,
+  pageTitle: _pageTitle,
+  pageDescription,
+  detail,
+  localFaqs,
+}: Props) {
   const isAgencyPage = !serviceSlug || serviceSlug === "digital-marketing-agency";
   const resolvedService = (serviceSlug ?? "digital-marketing-agency") as Parameters<typeof getLocationHeroLines>[0];
   const heroLines = getLocationHeroLines(resolvedService, location.city);
-
-  const localFaqs = detail?.localFaqs ?? [
-    {
-      question: `Do you work with businesses in ${location.city}, ${location.state}?`,
-      answer: `Yes. We serve businesses across ${location.city}, the ${location.region}, and surrounding areas with SEO, paid media, web design, and conversion optimization.`,
-    },
-    {
-      question: "Is your content unique for each city?",
-      answer: "Yes. Every location page includes local context, market-specific strategy, and relevant case studies. We do not publish city-name swap templates.",
-    },
-  ];
+  const locationService = serviceSlug as LocationServiceSlug | undefined;
+  const crossCityLinks =
+    locationService && locationService !== "digital-marketing-agency"
+      ? getLocationCrossLinks(location.slug, locationService)
+      : [];
+  const hubLinks =
+    locationService && locationService !== "digital-marketing-agency"
+      ? getLocationHubLinks(location.slug, location.city)
+      : [{ href: "/locations", label: "All Locations" }];
+  const pricingLink =
+    locationService && locationService !== "digital-marketing-agency"
+      ? getLocationPricingLink(locationService)
+      : null;
 
   return (
     <>
@@ -114,12 +130,16 @@ export default function LocationPageClient({ location, serviceSlug, pageTitle: _
         agencyHub
         serviceLinks={
           serviceSlug && serviceSlug !== "digital-marketing-agency"
-            ? [{ href: serviceRoutes[serviceSlug as ServiceSlug], label: `National ${serviceSlug} Services` }]
+            ? [
+                { href: serviceRoutes[serviceSlug as ServiceSlug], label: `National ${serviceSlug} Services` },
+                ...(pricingLink ? [pricingLink] : []),
+              ]
             : location.services.slice(0, 4).map((s) => ({
                 href: serviceRoutes[s as ServiceSlug] || `/services/${s}`,
                 label: s,
               }))
         }
+        locationLinks={[...hubLinks, ...crossCityLinks]}
         caseStudyLinks={
           location.relatedCaseStudySlugs?.map((slug) => ({
             href: `/case-studies/${slug}`,

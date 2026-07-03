@@ -14,12 +14,13 @@ type Props = { params: Promise<{ locale: Locale }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
+  const meta = locale === "es"
+    ? { title: "Soluciones de Marketing | KINEXIS Digital", description: "Soluciones de marketing adaptadas por industria y servicio: SEO para HVAC, Google Ads para contratistas, marketing SaaS y más. Encuentra la combinación correcta para tu vertical." }
+    : { title: "Marketing Solutions | KINEXIS Digital", description: "Tailored marketing solutions by industry and service: SEO for HVAC, Google Ads for roofers, SaaS marketing, and more. Find the right channel mix for your vertical." };
   return buildPageMetadata({
     locale,
     path: "/solutions",
-    title: "Marketing Solutions | KINEXIS Digital",
-    description:
-      "Tailored marketing solutions by industry and service: SEO for HVAC, Google Ads for roofers, SaaS marketing, and more.",
+    ...meta,
   });
 }
 

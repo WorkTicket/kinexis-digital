@@ -8,6 +8,7 @@ import PricingCTASection from "@/components/pages/pricing/PricingCTASection";
 import PricingHero from "@/components/pages/pricing/PricingHero";
 import PricingIncludedSection from "@/components/pages/pricing/PricingIncludedSection";
 import { getServiceRelatedLinks } from "@/lib/service-related-links";
+import { getPricingRelatedLinks } from "@/lib/pricing-related-links";
 import type { PricingSlug } from "@/content/registry/site-routes";
 import type { Locale } from "@/i18n/routing";
 import type { PricingPageContent } from "@/content/pricing/pricing-pages";
@@ -31,6 +32,7 @@ export default function PricingPageClient({
   breadcrumbs,
 }: Props) {
   const relatedLinks = getServiceRelatedLinks(slug);
+  const pricingLinks = getPricingRelatedLinks(slug);
   const tiersSection = c.tiersSection!;
   const includedSection = c.includedSection!;
   const packages = c.comparison;
@@ -78,6 +80,7 @@ export default function PricingPageClient({
           { href: serviceHref, label: serviceLabel },
           ...relatedLinks.services.filter((link) => link.href !== serviceHref).slice(0, 2),
         ]}
+        pricingLinks={pricingLinks}
         caseStudyLinks={relatedLinks.caseStudies.slice(0, 2)}
         blogLinks={relatedLinks.blog.slice(0, 2)}
       />

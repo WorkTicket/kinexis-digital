@@ -2,6 +2,10 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=86400
 
+/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
@@ -9,6 +13,13 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-DNS-Prefetch-Control: on
+
+# Locale-prefixed HTML — CDN cache to reduce Ahrefs TTFB / slow-page flags
+/en/*
+  Cache-Control: public, s-maxage=86400, stale-while-revalidate=604800
+
+/es/*
+  Cache-Control: public, s-maxage=86400, stale-while-revalidate=604800
 
 # Static assets — 1-year immutable cache
 /assets/*

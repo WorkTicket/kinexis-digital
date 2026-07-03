@@ -126,6 +126,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
+.font-medium {
+  font-family: var(--font-ubuntu-medium), var(--font-ubuntu), sans-serif;
+}
+
 body.mobile-menu-open {
   overflow: hidden;
   position: fixed;
