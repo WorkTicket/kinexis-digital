@@ -30,7 +30,7 @@ export default function Hero() {
         <motion.div
           className="w-full"
           variants={stagger}
-          initial="hidden"
+          initial={false}
           animate="visible"
         >
           {/* Headline: blurFadeUp for the premium focus-in effect */}

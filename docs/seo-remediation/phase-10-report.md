@@ -1,8 +1,9 @@
 # Phase 10 Report — Performance & Core Web Vitals
 
-**Status:** IN PROGRESS — code complete, deploy + production PSI validation pending  
+**Status:** DEPLOYED — CWV pending PSI confirmation; TTFB/bundle targets met  
 **Prepared:** 2026-07-02  
-**Prior phase:** [phase-09-report.md](./phase-09-report.md) (COMPLETE)  
+**Deployed:** 2026-07-03 — version `8bf140cc-6da8-4782-80bb-59807079cefb` (LCP hero fix)  
+**Prior deploy:** `605f4249-499f-423c-88e7-e4ad5808d11b` (Phase 10 bundle split)  
 **Branch:** `seo/phase-02-url-architecture` (continue here or `seo/phase-10-performance`)
 
 ---
@@ -99,6 +100,39 @@ Removed unused dead wrappers: `SeoPageClient`, `GoogleAdsPageClient`, `MetaAdsPa
 
 ---
 
+### 7. LCP hero fix (second deploy)
+
+| File | Change |
+|---|---|
+| `src/components/sections/Hero.tsx` | `initial={false}` on hero stagger — headline/subtitle visible without fade-in delay |
+| `src/components/ui/HeroArchetype.tsx` | Same for all page hero archetypes |
+
+**Lighthouse lab mobile (post second deploy):**
+
+| URL | LCP | CLS | Pass |
+|---|---:|---:|---|
+| `/en/services/seo` | 3.7 s | 0.000 | LCP fail |
+| `/en` | 4.7 s | 0.018 | LCP fail |
+
+LCP element remains `p.hero__subtitle` — client hydration still gates paint (~150 ms TTFB + ~3.5 s JS). Further pass likely needs server-rendered hero HTML (Phase 10 follow-up if PSI confirms).
+
+---
+
+## Post-deploy validation (2026-07-03)
+
+| Check | Result |
+|---|---|
+| Deploy version | `8bf140cc-6da8-4782-80bb-59807079cefb` |
+| `npm run audit:phase9` | **phase9Pass: true** (378/378) |
+| Service First Load JS | **295 kB** (was 437 kB) |
+| TTFB (fetch, 10 templates) | **128–336 ms** (Ahrefs threshold ~1000 ms) |
+| HTTP www dupes (sample 4/14) | **301 → HTTPS www** |
+| PSI API | **429 quota exceeded** |
+| Lighthouse lab mobile LCP | **Still >2.5 s** on homepage + service |
+| `phase10Pass` | **false** — CWV not confirmed; TTFB/bundle pass |
+
+---
+
 ## Regression check
 
 | Audit | Result |
@@ -158,9 +192,10 @@ node scripts/phase10-performance-audit.mjs --save-json
 
 ## Definition of done (remaining)
 
-- [ ] Deploy Phase 10 code to production
-- [ ] `phase10Pass: true` — CWV green mobile + desktop on 8 priority templates
-- [ ] Before/after CWV table in this report (from `phase-10-audit.csv`)
+- [x] Deploy Phase 10 code to production
+- [ ] `phase10Pass: true` — CWV green mobile + desktop on 8 priority templates (blocked: PSI quota; lab LCP still high)
+- [x] Before/after bundle table (437 → 295 kB service pages)
+- [x] TTFB post-deploy table (128–336 ms)
 - [ ] Ahrefs slow-page re-export documented
 
-**Stop condition met when CWV pass — no further perf scope creep.**
+**To close Phase 10:** Set `GOOGLE_PSI_API_KEY` and run `node scripts/phase10-performance-audit.mjs --save-json`, or manual PSI on priority URLs. If mobile LCP still fails, server-render hero shell without client hydration gate.
