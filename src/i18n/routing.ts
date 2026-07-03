@@ -8,4 +8,8 @@ export const routing = defineRouting({
   defaultLocale: "en",
   localePrefix: "always",
   localeDetection: true,
+  // Hreflang lives in Next.js metadata (buildPageMetadata). next-intl's Link
+  // header alternates omit the locale prefix on x-default with localePrefix:
+  // "always", which Ahrefs reads as duplicate/broken hreflang clusters.
+  alternateLinks: false,
 });
