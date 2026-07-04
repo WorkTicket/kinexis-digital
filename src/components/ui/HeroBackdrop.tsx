@@ -1,5 +1,3 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 
 export type HeroTheme = "seo" | "ppc" | "web-design" | "automation" | "branding" | "default";

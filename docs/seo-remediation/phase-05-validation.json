@@ -1,0 +1,186 @@
+{
+  "summary": {
+    "timestamp": "2026-07-04T17:48:14.339Z",
+    "finished": "2026-07-04T17:48:21.720Z",
+    "base": "https://www.kinexisdigital.com",
+    "sitemap_url_count": 378,
+    "urls_crawled": 380,
+    "sitemap_indexable_pass": 378,
+    "sitemap_indexable_fail": 0,
+    "sitemap_pass": 378,
+    "sitemap_fail": 0,
+    "accidental_noindex_on_sitemap": 0,
+    "unexpected_noindex_count": 0,
+    "intentional_noindex_pages": 2,
+    "intentional_noindex_pass": 2,
+    "lead_magnet_hreflang_present": 2,
+    "lead_magnet_outgoing_nofollow": [
+      {
+        "url": "https://www.kinexisdigital.com/en/lead-magnet",
+        "internal_links_nofollow": 0,
+        "internal_links_total": 120
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/lead-magnet",
+        "internal_links_nofollow": 0,
+        "internal_links_total": 120
+      }
+    ],
+    "indexability_breakdown": {
+      "indexable": 378,
+      "noindex": 2
+    },
+    "issue_breakdown": {},
+    "robots_txt": {
+      "status": 200,
+      "disallow_rules": [
+        "/api/",
+        "/lead-magnet",
+        "/en/lead-magnet",
+        "/es/lead-magnet"
+      ],
+      "content_disallows": [
+        "/lead-magnet",
+        "/en/lead-magnet",
+        "/es/lead-magnet"
+      ],
+      "has_sitemap_directive": true,
+      "issues": "robots_blocks_content",
+      "pass": false
+    },
+    "http_lead_magnet_probe": {
+      "http_url": "http://www.kinexisdigital.com/en/lead-magnet",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/lead-magnet",
+      "redirect_target": "https://www.kinexisdigital.com/en/lead-magnet",
+      "https_robots_meta": "noindex, follow",
+      "issues": "",
+      "pass": true
+    },
+    "ahrefs_exports": {
+      "noindex_page": {
+        "url_count": 3,
+        "urls": [
+          "https://www.kinexisdigital.com/es/lead-magnet",
+          "http://www.kinexisdigital.com/en/lead-magnet",
+          "https://www.kinexisdigital.com/en/lead-magnet"
+        ]
+      },
+      "noindex_and_nofollow": {
+        "url_count": 3,
+        "urls": [
+          "https://www.kinexisdigital.com/es/lead-magnet",
+          "http://www.kinexisdigital.com/en/lead-magnet",
+          "https://www.kinexisdigital.com/en/lead-magnet"
+        ]
+      },
+      "nofollow_page": {
+        "url_count": 3,
+        "urls": [
+          "https://www.kinexisdigital.com/es/lead-magnet",
+          "http://www.kinexisdigital.com/en/lead-magnet",
+          "https://www.kinexisdigital.com/en/lead-magnet"
+        ]
+      },
+      "page_has_nofollow_outgoing": {
+        "url_count": 3,
+        "urls": [
+          "https://www.kinexisdigital.com/es/lead-magnet",
+          "http://www.kinexisdigital.com/en/lead-magnet",
+          "https://www.kinexisdigital.com/en/lead-magnet"
+        ]
+      }
+    },
+    "ahrefs_unique_urls": 3,
+    "ahrefs_live_matches_intent": 2,
+    "ahrefs_stale_http_rows": 1,
+    "phase5Pass": false
+  },
+  "ahrefsComparison": [
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/lead-magnet",
+      "is_http_duplicate": false,
+      "is_lead_magnet": true,
+      "intentional": true,
+      "live_found": true,
+      "live_indexability": "noindex",
+      "live_robots_meta": "noindex, follow",
+      "live_index_directive": "noindex",
+      "live_follow_directive": "follow",
+      "ahrefs_expected": "noindex,follow (intentional)",
+      "live_matches_intent": true,
+      "stale_http_row": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/lead-magnet",
+      "is_http_duplicate": true,
+      "is_lead_magnet": true,
+      "intentional": true,
+      "live_found": false,
+      "live_indexability": null,
+      "live_robots_meta": "",
+      "live_index_directive": "",
+      "live_follow_directive": "",
+      "ahrefs_expected": "noindex,follow (intentional)",
+      "live_matches_intent": null,
+      "stale_http_row": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/lead-magnet",
+      "is_http_duplicate": false,
+      "is_lead_magnet": true,
+      "intentional": true,
+      "live_found": true,
+      "live_indexability": "noindex",
+      "live_robots_meta": "noindex, follow",
+      "live_index_directive": "noindex",
+      "live_follow_directive": "follow",
+      "ahrefs_expected": "noindex,follow (intentional)",
+      "live_matches_intent": true,
+      "stale_http_row": false
+    }
+  ],
+  "leadMagnetRows": [
+    {
+      "url": "https://www.kinexisdigital.com/en/lead-magnet",
+      "final_url": "https://www.kinexisdigital.com/en/lead-magnet",
+      "http_status": 200,
+      "in_sitemap": "no",
+      "indexability": "noindex",
+      "robots_meta": "noindex, follow",
+      "x_robots_tag": "",
+      "index_directive": "noindex",
+      "follow_directive": "follow",
+      "intentional_noindex": "yes",
+      "hreflang_count": 3,
+      "internal_links_total": 120,
+      "internal_links_nofollow": 0,
+      "page_level_nofollow_cascade": "no",
+      "issues": "",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "url": "https://www.kinexisdigital.com/es/lead-magnet",
+      "final_url": "https://www.kinexisdigital.com/es/lead-magnet",
+      "http_status": 200,
+      "in_sitemap": "no",
+      "indexability": "noindex",
+      "robots_meta": "noindex, follow",
+      "x_robots_tag": "",
+      "index_directive": "noindex",
+      "follow_directive": "follow",
+      "intentional_noindex": "yes",
+      "hreflang_count": 3,
+      "internal_links_total": 120,
+      "internal_links_nofollow": 0,
+      "page_level_nofollow_cascade": "no",
+      "issues": "",
+      "pass": true,
+      "error": ""
+    }
+  ],
+  "unexpectedNoindex": [],
+  "sitemapFailures": [],
+  "failures": []
+}

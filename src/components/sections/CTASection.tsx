@@ -46,7 +46,7 @@ export default function CTASection() {
                 {tCommon("viewOurWork")}
               </Button>
             </div>
-            <p className="text-xs text-white/30">No long-term contracts. Month to month.</p>
+            <p className="text-xs text-text-muted">No long-term contracts. Month to month.</p>
           </motion.div>
         </div>
       </motion.div>

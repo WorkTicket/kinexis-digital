@@ -24,6 +24,7 @@ export default function ServicePageFooter({ slug, locale, existingFaqs = [] }: P
       <RelatedLinks
         agencyHub
         serviceLinks={links.services}
+        solutionLinks={links.solutions.length > 0 ? links.solutions : undefined}
         caseStudyLinks={links.caseStudies}
         blogLinks={links.blog}
       />

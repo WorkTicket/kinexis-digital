@@ -90,7 +90,7 @@ export default function LanguageSwitcher({
                 "text-xs transition-colors duration-200",
                 locale === loc
                   ? "text-white font-medium"
-                  : "text-muted/50 hover:text-white"
+                  : "text-muted/70 hover:text-white"
               )}
               aria-current={locale === loc ? "true" : undefined}
             >

@@ -5,7 +5,7 @@ import type { Locale } from "@/i18n/routing";
 import { aboutContent } from "@/content/about";
 import { getLocalizedContent } from "@/lib/get-localized-content";
 import { buildAbsoluteUrl } from "@/lib/metadata";
-import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
+import { breadcrumbSchema, organizationSchema, localBusinessSchema } from "@/lib/schema";
 
 const AboutPageClient = dynamic(() => import("@/components/pages/AboutPageClient"));
 
@@ -22,6 +22,7 @@ export default async function AboutPage({ params }: Props) {
       <JsonLd
         data={[
           organizationSchema(),
+          localBusinessSchema(buildAbsoluteUrl(locale, "/about")),
           breadcrumbSchema([
             { name: "Home", url: buildAbsoluteUrl(locale, "/") },
             { name: "About", url: buildAbsoluteUrl(locale, "/about") },

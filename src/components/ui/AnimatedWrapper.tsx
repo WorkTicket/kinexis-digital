@@ -2,6 +2,7 @@
 
 import { m as motion } from "@/lib/framer";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { useDeferMotion } from "@/hooks/useDeferMotion";
 import type { MotionVariants } from "@/lib/motion-config";
 
 type VariantKey = keyof MotionVariants;
@@ -21,8 +22,13 @@ export default function AnimatedWrapper({
   variant = "fadeUp",
   margin = "-50px",
 }: Props) {
+  const defer = useDeferMotion();
   const variants = useMotionVariants();
   const chosen = variants[variant] ?? variants.fadeUp;
+
+  if (defer) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div

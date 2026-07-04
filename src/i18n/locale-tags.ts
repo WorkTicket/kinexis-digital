@@ -1,10 +1,11 @@
 import type { Locale } from "./routing";
 
-/** BCP 47 tags for HTML lang and hreflang (Spanish targets Latin America). */
+/** ISO 639-1 language code for HTML lang (Ahrefs / Google require valid codes only). */
 export function getHtmlLang(locale: Locale): string {
-  return locale === "es" ? "es-419" : locale;
+  return locale;
 }
 
+/** ISO 639-1 language code for hreflang alternates (must match HTML lang). */
 export function getHrefLang(locale: Locale): string {
-  return getHtmlLang(locale);
+  return locale;
 }

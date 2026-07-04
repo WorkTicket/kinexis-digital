@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
-import { locales, type Locale } from "@/i18n/routing";
+import { locales, routing, type Locale } from "@/i18n/routing";
 import { getHrefLang } from "@/i18n/locale-tags";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinexisdigital.com").replace(/\/$/, "");
 
 export const DEFAULT_OG_IMAGE_PATH = "/assets/images/kinexis_OG_image.png";
+
+/** Square brand mark for Organization/LocalBusiness logo rich results (not the wide OG card). */
+export const ORGANIZATION_LOGO_PATH = "/assets/logos/KINEXIS_icon_logo.webp";
 
 /** Google typically truncates titles around 60 characters in SERPs. */
 export const META_TITLE_MAX = 60;
@@ -52,6 +55,10 @@ export function getSiteUrl() {
 
 export function getDefaultOgImageUrl() {
   return `${getSiteUrl()}${DEFAULT_OG_IMAGE_PATH}`;
+}
+
+export function getOrganizationLogoUrl() {
+  return `${getSiteUrl()}${ORGANIZATION_LOGO_PATH}`;
 }
 
 export function buildLocalePath(locale: Locale, path: string) {
@@ -131,18 +138,17 @@ export function buildPageMetadata({
   const safeDescription = normalizeMetaDescription(description);
   const url = buildAbsoluteUrl(locale, path);
   const imageUrl = ogImage ?? getDefaultOgImageUrl();
-  const languages: Record<string, string> = {
-    "x-default": buildAbsoluteUrl("en", path),
-  };
+  const languages: Record<string, string> = {};
   for (const l of locales) {
     languages[getHrefLang(l)] = buildAbsoluteUrl(l, path);
   }
+  languages["x-default"] = buildAbsoluteUrl(routing.defaultLocale, path);
 
   return {
     title: safeTitle,
     description: safeDescription,
     robots: noIndex
-      ? { index: false, follow: false }
+      ? { index: false, follow: true }
       : { index: true, follow: true, googleBot: { index: true, follow: true } },
     alternates: {
       canonical: url,

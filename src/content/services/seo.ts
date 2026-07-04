@@ -109,8 +109,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Organic Traffic",
         headline: "Steady growth, not spikes",
         description:
-          "Landscaping Company case study: organic traffic grew from 320 to 4,380 visits per month over 8 months after a site rebuild and local SEO campaign.",
-        metric: "+327%",
+          "Landscaping Company case study: organic traffic grew from 420 to 5,840 visits per month over 10 months after a site rebuild and local SEO campaign.",
+        metric: "+1,290%",
       },
       {
         label: "Keyword Rankings",
@@ -122,8 +122,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Lead Conversion",
         headline: "Traffic that converts",
         description:
-          "Better-intent traffic converts at higher rates. Landscaping client: lead conversion went from 1.2% to 7.9% after the rebuild.",
-        metric: "+180%",
+          "Better-intent traffic converts at higher rates. Landscaping client: lead conversion went from 1.8% to 8.4% after the rebuild.",
+        metric: "+367%",
       },
     ],
     phasesTitle: "How we grow search traffic",
@@ -243,8 +243,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Tráfico Orgánico",
         headline: "Crecimiento constante, no picos",
         description:
-          "Caso Landscaping Company: el tráfico orgánico pasó de 320 a 4.700 visitas al mes en 8 meses tras rebuild y SEO local.",
-        metric: "+340%",
+          "Caso Landscaping Company: el tráfico orgánico pasó de 420 a 5.840 visitas al mes en 10 meses tras rebuild y SEO local.",
+        metric: "+1,290%",
       },
       {
         label: "Posiciones de Palabras Clave",
@@ -257,7 +257,7 @@ export const seoContent: Record<Locale, SeoContent> = {
         headline: "Tráfico que convierte",
         description:
           "Tráfico con mejor intención convierte más. Cliente Landscaping: conversión de leads de 1,2% a 8,4% tras el rebuild.",
-        metric: "+180%",
+        metric: "+367%",
       },
     ],
     phasesTitle: "Cómo hacemos crecer tu tráfico orgánico",

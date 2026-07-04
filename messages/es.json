@@ -4,6 +4,9 @@
     "description": "Agencia de marketing digital que construye sistemas de ventas reales. SEO, anuncios pagados, diseño web y embudos de conversión para generar clientes calificados.",
     "ogDescription": "Construimos sistemas de ventas reales para empresas que buscan crecimiento predecible, no solo sitios web bonitos."
   },
+  "a11y": {
+    "skipToMain": "Saltar al contenido principal"
+  },
   "nav": {
     "home": "Inicio",
     "agency": "Agencia",
@@ -178,20 +181,20 @@
       "landscaping": {
         "category": "Servicios para el Hogar",
         "title": "Empresa de Jardinería",
-        "headline": "Crecimiento de Ingresos 5X",
-        "summary": "Una reconstrucción completa del sitio web y una campaña de SEO local le dieron la vuelta a este negocio. Los ingresos pasaron de $2,000/mes a $11,500/mes en 8 meses."
+        "headline": "Crecimiento de Leads 4.8X",
+        "summary": "SEO local y reconstrucción del sitio. Los leads calificados pasaron de 10 a 48 por mes, tráfico orgánico aumentó 1,290% y conversión del 1.8% al 8.4%."
       },
-      "dental": {
-        "category": "Salud",
-        "title": "Clínica Dental",
-        "headline": "340% Más Pacientes",
-        "summary": "Clínica dental con múltiples ubicaciones. Reestructuración de SEO local y anuncios impulsó las reservas de nuevos pacientes de 45 a 198 por mes."
+      "plumbing": {
+        "category": "Servicios para el Hogar",
+        "title": "Empresa de Plomería",
+        "headline": "327% Más Llamadas de Emergencia",
+        "summary": "Plomero familiar superó la dependencia de anuncios. Llamadas de emergencia de 22 a 94 por mes, gasto en anuncios reducido 65% y dominio del pack local."
       },
-      "ecommerce": {
-        "category": "Retail",
-        "title": "Marca E-Commerce Premium",
-        "headline": "Ingresos Mensuales 4X",
-        "summary": "Reposicionamiento de marca y reconstrucción del sitio elevó el AOV de $85 a $238 y los ingresos de $12K a $45K por mes."
+      "saas": {
+        "category": "Tecnología",
+        "title": "Plataforma SaaS",
+        "headline": "5.9X Más Demos",
+        "summary": "SaaS B2B escaló solicitudes de demo de 32 a 189 por mes con marketing de contenido y SEO técnico. MRR creció de $8.5K a $33K en 8 meses."
       }
     }
   },

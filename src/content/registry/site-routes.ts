@@ -43,7 +43,7 @@ export const serviceRoutes: Record<ServiceSlug, string> = {
   "google-ads": "/services/google-ads",
   "meta-ads": "/services/meta-ads",
   "web-design": "/services/web-design",
-  cro: "/services/cro",
+  cro: "/services/funnels",
   "email-marketing": "/services/email-marketing",
   "content-marketing": "/services/content-marketing",
   "social-media": "/services/social-media",
@@ -86,7 +86,6 @@ export const staticPageRoutes = [
   "/digital-marketing-agency",
   "/industries",
   "/solutions",
-  "/locations",
   "/resources",
   "/privacy",
   "/terms",
@@ -159,9 +158,6 @@ export const blogSlugs = [
 
 export const caseStudySlugs = [
   "landscaping-company-growth",
-  "dental-practice-local-seo",
-  "premium-ecommerce-brand",
-  "saas-analytics-platform",
-  "fintech-app-startup",
-  "b2b-consulting-firm",
+  "plumbing-company-growth",
+  "saas-platform-growth",
 ] as const;

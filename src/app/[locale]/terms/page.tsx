@@ -17,11 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const termsMeta: Record<Locale, { title: string; description: string }> = {
     en: {
       title: "Terms of Service | KINEXIS",
-      description: "Terms governing your use of the KINEXIS Digital website and marketing services.",
+      description:
+        "Terms governing your use of the KINEXIS Digital website, marketing services, and client engagements. Read our policies on data, billing, and intellectual property.",
     },
     es: {
       title: "Términos de Servicio | KINEXIS",
-      description: "Términos que rigen el uso del sitio web y los servicios de marketing de KINEXIS Digital.",
+      description:
+        "Términos que rigen el uso del sitio web, servicios de marketing y compromisos con clientes de KINEXIS Digital. Políticas sobre datos, facturación y propiedad intelectual.",
     },
   };
   const meta = termsMeta[locale];

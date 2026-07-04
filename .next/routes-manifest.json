@@ -12,12 +12,6 @@
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
     },
     {
-      "source": "/security.txt",
-      "destination": "/.well-known/security.txt",
-      "statusCode": 308,
-      "regex": "^(?!/_next)/security\\.txt(?:/)?$"
-    },
-    {
       "source": "/:locale(en|es)/services/cro",
       "destination": "/:locale/services/funnels",
       "statusCode": 308,
@@ -28,6 +22,120 @@
       "destination": "/:locale/pricing/funnels",
       "statusCode": 308,
       "regex": "^(?!/_next)(?:/(en|es))/pricing/cro(?:/)?$"
+    },
+    {
+      "source": "/:locale(en|es)/locations",
+      "destination": "/:locale/digital-marketing-agency",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/(en|es))/locations(?:/)?$"
+    },
+    {
+      "source": "/:locale(en|es)/locations/:path*",
+      "destination": "/:locale/digital-marketing-agency",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/(en|es))/locations(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    },
+    {
+      "source": "/locations",
+      "destination": "/en/digital-marketing-agency",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/locations(?:/)?$"
+    },
+    {
+      "source": "/locations/:path*",
+      "destination": "/en/digital-marketing-agency",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/locations(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    },
+    {
+      "source": "/en/case-studies/dental-practice-local-seo",
+      "destination": "/en/case-studies/plumbing-company-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/en/case-studies/dental-practice-local-seo(?:/)?$"
+    },
+    {
+      "source": "/es/case-studies/dental-practice-local-seo",
+      "destination": "/es/case-studies/plumbing-company-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/es/case-studies/dental-practice-local-seo(?:/)?$"
+    },
+    {
+      "source": "/case-studies/dental-practice-local-seo",
+      "destination": "/en/case-studies/plumbing-company-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/case-studies/dental-practice-local-seo(?:/)?$"
+    },
+    {
+      "source": "/en/case-studies/saas-analytics-platform",
+      "destination": "/en/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/en/case-studies/saas-analytics-platform(?:/)?$"
+    },
+    {
+      "source": "/es/case-studies/saas-analytics-platform",
+      "destination": "/es/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/es/case-studies/saas-analytics-platform(?:/)?$"
+    },
+    {
+      "source": "/case-studies/saas-analytics-platform",
+      "destination": "/en/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/case-studies/saas-analytics-platform(?:/)?$"
+    },
+    {
+      "source": "/en/case-studies/fintech-app-startup",
+      "destination": "/en/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/en/case-studies/fintech-app-startup(?:/)?$"
+    },
+    {
+      "source": "/es/case-studies/fintech-app-startup",
+      "destination": "/es/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/es/case-studies/fintech-app-startup(?:/)?$"
+    },
+    {
+      "source": "/case-studies/fintech-app-startup",
+      "destination": "/en/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/case-studies/fintech-app-startup(?:/)?$"
+    },
+    {
+      "source": "/en/case-studies/b2b-consulting-firm",
+      "destination": "/en/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/en/case-studies/b2b-consulting-firm(?:/)?$"
+    },
+    {
+      "source": "/es/case-studies/b2b-consulting-firm",
+      "destination": "/es/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/es/case-studies/b2b-consulting-firm(?:/)?$"
+    },
+    {
+      "source": "/case-studies/b2b-consulting-firm",
+      "destination": "/en/case-studies/saas-platform-growth",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/case-studies/b2b-consulting-firm(?:/)?$"
+    },
+    {
+      "source": "/en/case-studies/premium-ecommerce-brand",
+      "destination": "/en/case-studies",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/en/case-studies/premium-ecommerce-brand(?:/)?$"
+    },
+    {
+      "source": "/es/case-studies/premium-ecommerce-brand",
+      "destination": "/es/case-studies",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/es/case-studies/premium-ecommerce-brand(?:/)?$"
+    },
+    {
+      "source": "/case-studies/premium-ecommerce-brand",
+      "destination": "/en/case-studies",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/case-studies/premium-ecommerce-brand(?:/)?$"
     }
   ],
   "headers": [
@@ -64,6 +172,16 @@
         }
       ],
       "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
+    },
+    {
+      "source": "/:locale(en|es)/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ],
+      "regex": "^(?:/(en|es))(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))?(?:/)?$"
     },
     {
       "source": "/assets/:path*",
@@ -122,6 +240,20 @@
         }
       ],
       "regex": "^/\\.well-known/security\\.txt(?:/)?$"
+    },
+    {
+      "source": "/security.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ],
+      "regex": "^/security\\.txt(?:/)?$"
     }
   ],
   "rewrites": {
@@ -256,33 +388,6 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/local\\-seo\\-vs\\-google\\-ads(?:/)?$"
     },
     {
-      "page": "/[locale]/locations",
-      "regex": "^/([^/]+?)/locations(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/locations(?:/)?$"
-    },
-    {
-      "page": "/[locale]/locations/[city]",
-      "regex": "^/([^/]+?)/locations/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale",
-        "nxtPcity": "nxtPcity"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/locations/(?<nxtPcity>[^/]+?)(?:/)?$"
-    },
-    {
-      "page": "/[locale]/locations/[city]/[service]",
-      "regex": "^/([^/]+?)/locations/([^/]+?)/([^/]+?)(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale",
-        "nxtPcity": "nxtPcity",
-        "nxtPservice": "nxtPservice"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/locations/(?<nxtPcity>[^/]+?)/(?<nxtPservice>[^/]+?)(?:/)?$"
-    },
-    {
       "page": "/[locale]/pricing/[slug]",
       "regex": "^/([^/]+?)/pricing/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -346,14 +451,6 @@
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/content\\-marketing(?:/)?$"
-    },
-    {
-      "page": "/[locale]/services/cro",
-      "regex": "^/([^/]+?)/services/cro(?:/)?$",
-      "routeKeys": {
-        "nxtPlocale": "nxtPlocale"
-      },
-      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/cro(?:/)?$"
     },
     {
       "page": "/[locale]/services/email-marketing",
@@ -518,6 +615,12 @@
       "regex": "^/icon\\.png(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/icon\\.png(?:/)?$"
+    },
+    {
+      "page": "/manifest.webmanifest",
+      "regex": "^/manifest\\.webmanifest(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/manifest\\.webmanifest(?:/)?$"
     },
     {
       "page": "/robots.txt",

@@ -2,6 +2,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
 
 initOpenNextCloudflareForDev();
 
@@ -99,11 +100,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/security.txt",
-        destination: "/.well-known/security.txt",
-        permanent: true,
-      },
-      {
         source: "/:locale(en|es)/services/cro",
         destination: "/:locale/services/funnels",
         permanent: true,
@@ -113,13 +109,35 @@ const nextConfig = {
         destination: "/:locale/pricing/funnels",
         permanent: true,
       },
+      ...getLegacyRedirects(),
     ];
   },
   async headers() {
     return [
       {
+        source: "/sitemap.xml",
+        headers: [
+          { key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          { key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      {
         source: "/:path*",
         headers: securityHeaders,
+      },
+      {
+        source: "/:locale(en|es)/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, s-maxage=86400, stale-while-revalidate=604800",
+          },
+        ],
       },
       {
         source: "/assets/:path*",
@@ -148,6 +166,13 @@ const nextConfig = {
       },
       {
         source: "/.well-known/security.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          { key: "Cache-Control", value: "public, max-age=86400" },
+        ],
+      },
+      {
+        source: "/security.txt",
         headers: [
           { key: "Content-Type", value: "text/plain; charset=utf-8" },
           { key: "Cache-Control", value: "public, max-age=86400" },

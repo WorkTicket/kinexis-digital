@@ -37,7 +37,7 @@ const config: Config = {
         accent: BRAND.NEON_CYAN,
         border: "rgba(255,255,255,0.08)",
         "text-secondary": "rgba(255,255,255,0.7)",
-        "text-muted": "rgba(255,255,255,0.5)",
+        "text-muted": "rgba(255,255,255,0.6)",
       },
       fontFamily: {
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],

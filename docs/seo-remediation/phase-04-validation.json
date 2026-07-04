@@ -1,0 +1,185 @@
+{
+  "summary": {
+    "timestamp": "2026-07-04T01:08:24.300Z",
+    "finished": "2026-07-04T01:08:46.484Z",
+    "base": "https://www.kinexisdigital.com",
+    "sitemap_url_count": 378,
+    "urls_crawled": 380,
+    "sitemap_pass": 378,
+    "sitemap_fail": 0,
+    "link_header_hreflang": 0,
+    "duplicate_hreflang": 0,
+    "duplicate_href_url_only": 0,
+    "unprefixed_alternate": 0,
+    "alternate_redirects": 0,
+    "alternate_non_200": 0,
+    "missing_hreflang": 0,
+    "html_lang_invalid": 0,
+    "html_lang_mismatch": 0,
+    "reciprocity_failures": 0,
+    "lead_magnet_rows": 2,
+    "lead_magnet_pass": 2,
+    "hreflang_count_distribution": {
+      "3": 380
+    },
+    "issue_breakdown": {},
+    "ahrefs_jul1_export_stale_evidence": {
+      "sample_size": 12,
+      "live_clean_count": 8,
+      "live_avg_hreflang_count": 3,
+      "jul1_expected_count": 5,
+      "live_expected_count": 3
+    },
+    "phase4Pass": true
+  },
+  "reciprocityFailures": [],
+  "ahrefsComparison": [
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/industries/financial-services/insurance",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/industries/financial-services/insurance",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/industries/financial-services/insurance",
+      "live_found": false,
+      "live_hreflang_count": null,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": null
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-rapids",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-rapids",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/locations/cedar-rapids",
+      "live_found": false,
+      "live_hreflang_count": null,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": null
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/industries/healthcare/dental",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/industries/healthcare/dental",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/industries/healthcare/dental",
+      "live_found": false,
+      "live_hreflang_count": null,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": null
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/services/web-design",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/services/web-design",
+      "live_found": true,
+      "live_hreflang_count": 3,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": true
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/services/web-design",
+      "live_found": false,
+      "live_hreflang_count": null,
+      "live_issues": "",
+      "ahrefs_jul1_pattern": "5 tags (en×2, es×2, unprefixed 307)",
+      "live_clean": null
+    }
+  ],
+  "leadMagnetRows": [
+    {
+      "url": "https://www.kinexisdigital.com/en/lead-magnet",
+      "final_url": "https://www.kinexisdigital.com/en/lead-magnet",
+      "http_status": 200,
+      "page_locale": "en",
+      "content_path": "/lead-magnet",
+      "html_lang": "en",
+      "html_hreflang_count": 3,
+      "link_header_hreflang_count": 0,
+      "hreflang_count": 3,
+      "hreflang_unique_langs": 3,
+      "hreflang_unique_urls": 2,
+      "hreflang_set": "en:https://www.kinexisdigital.com/en/lead-magnet | es:https://www.kinexisdigital.com/es/lead-magnet | x-default:https://www.kinexisdigital.com/en/lead-magnet",
+      "has_x_default": true,
+      "x_default_href": "https://www.kinexisdigital.com/en/lead-magnet",
+      "expected_en": "https://www.kinexisdigital.com/en/lead-magnet",
+      "expected_es": "https://www.kinexisdigital.com/es/lead-magnet",
+      "has_en_alternate": true,
+      "has_es_alternate": true,
+      "robots_meta": "noindex, follow",
+      "issues": "",
+      "pass": true,
+      "error": ""
+    },
+    {
+      "url": "https://www.kinexisdigital.com/es/lead-magnet",
+      "final_url": "https://www.kinexisdigital.com/es/lead-magnet",
+      "http_status": 200,
+      "page_locale": "es",
+      "content_path": "/lead-magnet",
+      "html_lang": "es",
+      "html_hreflang_count": 3,
+      "link_header_hreflang_count": 0,
+      "hreflang_count": 3,
+      "hreflang_unique_langs": 3,
+      "hreflang_unique_urls": 2,
+      "hreflang_set": "en:https://www.kinexisdigital.com/en/lead-magnet | es:https://www.kinexisdigital.com/es/lead-magnet | x-default:https://www.kinexisdigital.com/en/lead-magnet",
+      "has_x_default": true,
+      "x_default_href": "https://www.kinexisdigital.com/en/lead-magnet",
+      "expected_en": "https://www.kinexisdigital.com/en/lead-magnet",
+      "expected_es": "https://www.kinexisdigital.com/es/lead-magnet",
+      "has_en_alternate": true,
+      "has_es_alternate": true,
+      "robots_meta": "noindex, follow",
+      "issues": "",
+      "pass": true,
+      "error": ""
+    }
+  ],
+  "failures": []
+}

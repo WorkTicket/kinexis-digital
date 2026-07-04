@@ -23,17 +23,17 @@ const staticPageMeta: Record<
     contact: {
       title: "Contact KINEXIS Digital | Book a Strategy Call",
       description:
-        "Book a strategy call with KINEXIS. Share your goals and we'll outline a practical growth plan for SEO, ads, and conversion.",
+        "Book a strategy call with KINEXIS, a digital marketing agency that builds real revenue systems. Share your goals and we'll outline a practical growth plan for SEO, ads, web design, and conversion optimization.",
     },
     blog: {
       title: "Digital Marketing Blog | KINEXIS Digital",
       description:
-        "Practical guides on SEO, paid ads, web design, and conversion from the KINEXIS team. No fluff, just what works for service businesses.",
+        "Practical guides on SEO, paid ads, web design, and conversion from the KINEXIS team. No fluff — just strategies that work for service businesses and B2B brands.",
     },
     blogPosts: {
       title: "All Blog Posts | KINEXIS Digital",
       description:
-        "Browse every KINEXIS article on SEO, PPC, funnels, and growth marketing for B2B and service businesses.",
+        "Browse every KINEXIS article on SEO, PPC, funnels, and growth marketing. Filter by topic or read the full archive for B2B and service business playbooks.",
     },
     caseStudies: {
       title: "Case Studies | KINEXIS Digital",
@@ -43,7 +43,7 @@ const staticPageMeta: Record<
     leadMagnet: {
       title: "Free Growth Audit | KINEXIS Digital",
       description:
-        "Get a free marketing audit from KINEXIS. We review your site, ads, and funnel, then send a prioritized action plan.",
+        "Get a free marketing audit from KINEXIS Digital. We review your website, ads, and conversion funnel, then deliver a prioritized action plan to grow leads and revenue.",
     },
     servicesHub: {
       title: "Digital Marketing Services | KINEXIS Digital",
@@ -60,17 +60,17 @@ const staticPageMeta: Record<
     contact: {
       title: "Contacto KINEXIS Digital | Reserva una Llamada",
       description:
-        "Reserva una llamada estratégica con KINEXIS. Cuéntanos tus objetivos y trazaremos un plan de crecimiento para SEO, anuncios y conversión.",
+        "Reserva una llamada estratégica con KINEXIS, una agencia de marketing digital que construye sistemas de ingresos reales. Comparte tus objetivos y crearemos un plan de crecimiento para SEO, anuncios y optimización de conversión.",
     },
     blog: {
       title: "Blog de Marketing Digital | KINEXIS Digital",
       description:
-        "Guías prácticas sobre SEO, anuncios pagados, diseño web y conversión del equipo KINEXIS para negocios de servicios.",
+        "Guías prácticas sobre SEO, anuncios pagados, diseño web y conversión del equipo KINEXIS. Estrategias probadas para negocios de servicios y marcas B2B, sin relleno.",
     },
     blogPosts: {
       title: "Todos los Artículos | KINEXIS Digital",
       description:
-        "Explora todos los artículos de KINEXIS sobre SEO, PPC, embudos y marketing de crecimiento para negocios B2B y de servicios.",
+        "Explora todos los artículos de KINEXIS sobre SEO, PPC, embudos y marketing de crecimiento. Filtra por tema o lee el archivo completo de playbooks B2B.",
     },
     caseStudies: {
       title: "Casos de Éxito | KINEXIS Digital",
@@ -80,7 +80,7 @@ const staticPageMeta: Record<
     leadMagnet: {
       title: "Auditoría Gratis | KINEXIS Digital",
       description:
-        "Recibe una auditoría de marketing gratis de KINEXIS. Revisamos tu sitio, anuncios y embudo, y enviamos un plan de acción priorizado.",
+        "Recibe una auditoría de marketing digital gratuita de KINEXIS. Revisamos tu sitio web, anuncios y embudo de conversión, y te enviamos un plan de acción priorizado para generar más leads e ingresos.",
     },
     servicesHub: {
       title: "Servicios de Marketing Digital | KINEXIS Digital",

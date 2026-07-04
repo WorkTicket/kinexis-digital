@@ -168,7 +168,7 @@ export default function HeroArchetype({
               hasVisualization && "md:grid-cols-1 lg:grid-cols-2"
             )}
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
           >
             <div className="min-w-0">
@@ -224,7 +224,7 @@ export default function HeroArchetype({
           <motion.div
             className="text-center"
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
           >
             {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}
@@ -264,7 +264,7 @@ export default function HeroArchetype({
                   : "md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,1fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_minmax(360px,1.1fr)] xl:gap-x-16")
             )}
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
           >
             <div className={cn("hero__content min-w-0", isServicePageViz ? "relative lg:pr-4" : "relative z-10 lg:pr-2 xl:pr-6")}>
@@ -304,7 +304,7 @@ export default function HeroArchetype({
           <motion.div
             className="section-header"
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
           >
             {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}
@@ -330,7 +330,7 @@ export default function HeroArchetype({
           <motion.div
             className="section-header"
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
           >
             {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}
@@ -365,7 +365,7 @@ export default function HeroArchetype({
           <motion.div
             className="section-header"
             variants={stagger}
-            initial="hidden"
+            initial={false}
             animate="visible"
           >
             {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}

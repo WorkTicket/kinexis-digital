@@ -1,0 +1,23 @@
+{
+  "base": "https://www.kinexisdigital.com",
+  "started": "2026-07-02T22:06:07.392Z",
+  "finished": "2026-07-02T22:07:09.250Z",
+  "sitemap_url_count": 378,
+  "urls_crawled": 385,
+  "status_breakdown": {
+    "200": 385
+  },
+  "indexability_breakdown": {
+    "indexable": 382,
+    "noindex": 3
+  },
+  "redirect_urls": 5,
+  "redirect_chains_over_1": 0,
+  "missing_canonical_200": 0,
+  "missing_hreflang_200": 0,
+  "noindex_pages": 3,
+  "not_in_sitemap_200": 3,
+  "hreflang_invalid_signals": 0,
+  "canonical_http": 0,
+  "html_lang_invalid": 0
+}

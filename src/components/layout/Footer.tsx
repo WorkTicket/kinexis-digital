@@ -2,9 +2,9 @@ import { getTranslations } from "next-intl/server";
 import { Mail } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import SiteLogo from "@/components/ui/SiteLogo";
-import Button from "@/components/ui/Button";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { mainNavLinks, footerServiceLinks, footerLocationLinks } from "@/lib/site-nav";
+import { mainNavLinks, footerServiceLinks } from "@/lib/site-nav";
+import { cn } from "@/lib/utils";
 
 export default async function Footer() {
   const tNav = await getTranslations("nav");
@@ -55,7 +55,7 @@ export default async function Footer() {
             <div className="mt-4 flex flex-col gap-2.5">
               <a
                 href="mailto:hello@kinexisdigital.com"
-                className="group flex items-center gap-2 text-[15px] text-muted/50 no-underline transition-colors duration-300 hover:text-white"
+                className="group flex items-center gap-2 text-[15px] text-muted/75 no-underline transition-colors duration-300 hover:text-white"
               >
                 <Mail className="h-4 w-4 shrink-0 text-neon-cyan/40 transition-colors duration-300 group-hover:text-neon-cyan/80" />
                 hello@kinexisdigital.com
@@ -75,7 +75,7 @@ export default async function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted/50 no-underline transition-colors duration-200 hover:text-white"
+                    className="text-sm text-muted/75 no-underline transition-colors duration-200 hover:text-white"
                   >
                     {tNav(link.key)}
                   </Link>
@@ -96,7 +96,7 @@ export default async function Footer() {
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-sm text-muted/50 no-underline transition-colors duration-200 hover:text-white"
+                    className="text-sm text-muted/75 no-underline transition-colors duration-200 hover:text-white"
                   >
                     {tServices(service.key)}
                   </Link>
@@ -111,16 +111,18 @@ export default async function Footer() {
               <p className="text-sm font-semibold leading-snug text-white/80">
                 {tFooter("missionTitle")}
               </p>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-muted/50">
+              <p className="mt-1.5 text-[13px] leading-relaxed text-muted/75">
                 {tFooter("missionBody")}
               </p>
-              <Button
+              <Link
                 href="/contact"
-                variant="primary"
-                className="mt-4 w-full text-sm min-h-touch px-4 py-3 sm:w-auto"
+                className={cn(
+                  "mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient px-4 py-3 text-sm font-semibold tracking-wide text-white sm:w-auto",
+                  "min-h-touch min-w-touch-lg sm:hover:shadow-glow"
+                )}
               >
                 {tCommon("bookStrategyCall")}
-              </Button>
+              </Link>
             </div>
           </div>
 
@@ -129,25 +131,7 @@ export default async function Footer() {
 
       {/* ── Bottom bar ── */}
       <div className="relative z-10 border-t border-white/[0.04]">
-        <div className="container-site py-6">
-          <div className="mb-5 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-[12px] text-muted/40">
-            <span className="mr-2 text-[9px] font-bold uppercase tracking-[0.24em] text-white/25">
-              {tFooter("locations")}
-            </span>
-            {footerLocationLinks.map((loc, i) => (
-              <span key={loc.href} className="inline-flex items-center">
-                {i > 0 && <span className="mx-1.5 text-white/10">·</span>}
-                <Link
-                  href={loc.href}
-                  className="text-muted/45 no-underline transition-colors hover:text-white/70"
-                >
-                  {loc.city}
-                </Link>
-              </span>
-            ))}
-          </div>
-        </div>
-        <div className="container-site flex flex-col items-center justify-between gap-3 border-t border-white/[0.04] py-6 sm:flex-row">
+        <div className="container-site flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
           <div className="flex flex-col items-center gap-2 sm:items-start">
             <p className="text-[11px] tracking-wide text-muted/30">
               &copy; {new Date().getFullYear()} {tFooter("copyright")}

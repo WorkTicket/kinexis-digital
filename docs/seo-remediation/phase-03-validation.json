@@ -1,0 +1,194 @@
+{
+  "summary": {
+    "timestamp": "2026-07-04T17:47:02.455Z",
+    "finished": "2026-07-04T17:47:17.180Z",
+    "base": "https://www.kinexisdigital.com",
+    "sitemap_url_count": 378,
+    "sitemap_crawled": 378,
+    "sitemap_pass": 378,
+    "sitemap_fail": 0,
+    "missing_canonical": 0,
+    "multiple_canonicals": 0,
+    "canonical_http_scheme": 0,
+    "cross_locale_canonical": 0,
+    "not_self_referencing": 0,
+    "canonical_target_non_200": 0,
+    "issue_breakdown": {},
+    "ahrefs_http_rows_in_export": 190,
+    "http_probes_total": 21,
+    "http_probes_pass": 21,
+    "http_probes_fail": 0,
+    "phase3Pass": true
+  },
+  "httpProbes": [
+    {
+      "http_url": "http://www.kinexisdigital.com/en",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en",
+      "redirect_target": "https://www.kinexisdigital.com/en",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/services/ppc-management",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/services/ppc-management",
+      "redirect_target": "https://www.kinexisdigital.com/en/services/ppc-management",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/services/local-seo",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/services/local-seo",
+      "redirect_target": "https://www.kinexisdigital.com/en/services/local-seo",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/manufacturing/aerospace",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/manufacturing/aerospace",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/manufacturing/aerospace",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/locations/bogota",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/locations/bogota",
+      "redirect_target": "https://www.kinexisdigital.com/en/locations/bogota",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/locations/des-moines",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/locations/des-moines",
+      "redirect_target": "https://www.kinexisdigital.com/en/locations/des-moines",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/home-services/hvac",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/home-services/hvac",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/home-services/hvac",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/manufacturing/b2b-manufacturing",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/manufacturing/b2b-manufacturing",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/manufacturing/b2b-manufacturing",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/local-seo-vs-google-ads",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/local-seo-vs-google-ads",
+      "redirect_target": "https://www.kinexisdigital.com/en/local-seo-vs-google-ads",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/ecommerce/online-retailers",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/ecommerce/online-retailers",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/ecommerce/online-retailers",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/hospitality/bars-nightlife",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/hospitality/bars-nightlife",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/hospitality/bars-nightlife",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/financial-services/wealth-management",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/financial-services/wealth-management",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/financial-services/wealth-management",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/case-studies",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/case-studies",
+      "redirect_target": "https://www.kinexisdigital.com/en/case-studies",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/digital-marketing-agency",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/digital-marketing-agency",
+      "redirect_target": "https://www.kinexisdigital.com/en/digital-marketing-agency",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/services/content-marketing",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/services/content-marketing",
+      "redirect_target": "https://www.kinexisdigital.com/en/services/content-marketing",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/hospitality/resorts",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/hospitality/resorts",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/hospitality/resorts",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/blog/landing-page-best-practices",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/blog/landing-page-best-practices",
+      "redirect_target": "https://www.kinexisdigital.com/en/blog/landing-page-best-practices",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/ecommerce/subscription-boxes",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/ecommerce/subscription-boxes",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/ecommerce/subscription-boxes",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/healthcare",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/healthcare",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/healthcare",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "http_url": "http://www.kinexisdigital.com/en/industries/professional-services/real-estate",
+      "status": 301,
+      "location": "https://www.kinexisdigital.com/en/industries/professional-services/real-estate",
+      "redirect_target": "https://www.kinexisdigital.com/en/industries/professional-services/real-estate",
+      "issues": "",
+      "pass": true
+    }
+  ],
+  "failures": []
+}

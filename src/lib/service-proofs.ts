@@ -1,3 +1,5 @@
+import { CASE_STUDIES } from "@/content/case-study-crossrefs";
+
 /** Verified outcomes mapped to service pages — sourced from case-studies content */
 export type ServiceProof = {
   result: string;
@@ -6,20 +8,60 @@ export type ServiceProof = {
 };
 
 export const SERVICE_PROOFS: Record<string, ServiceProof> = {
+  seo: {
+    result: CASE_STUDIES.landscaping.heroMetric,
+    client: CASE_STUDIES.landscaping.clientFull,
+    href: CASE_STUDIES.landscaping.href,
+  },
+  "local-seo": {
+    result: CASE_STUDIES.plumbing.heroMetric,
+    client: CASE_STUDIES.plumbing.clientFull,
+    href: CASE_STUDIES.plumbing.href,
+  },
+  "google-ads": {
+    result: CASE_STUDIES.plumbing.heroMetric,
+    client: CASE_STUDIES.plumbing.clientFull,
+    href: CASE_STUDIES.plumbing.href,
+  },
   "paid-ads": {
-    result: "3.8× Revenue",
-    client: "Premium Ecommerce Brand",
-    href: "/case-studies/premium-ecommerce-brand",
+    result: CASE_STUDIES.plumbing.heroMetric,
+    client: CASE_STUDIES.plumbing.clientFull,
+    href: CASE_STUDIES.plumbing.href,
   },
   ppc: {
-    result: "3.8× Revenue",
-    client: "Premium Ecommerce Brand",
-    href: "/case-studies/premium-ecommerce-brand",
+    result: CASE_STUDIES.plumbing.heroMetric,
+    client: CASE_STUDIES.plumbing.clientFull,
+    href: CASE_STUDIES.plumbing.href,
+  },
+  "ppc-management": {
+    result: CASE_STUDIES.plumbing.heroMetric,
+    client: CASE_STUDIES.plumbing.clientFull,
+    href: CASE_STUDIES.plumbing.href,
   },
   "web-design": {
-    result: "5.9× Revenue Growth",
-    client: "Landscaping Company",
-    href: "/case-studies/landscaping-company-growth",
+    result: CASE_STUDIES.landscaping.heroMetric,
+    client: CASE_STUDIES.landscaping.clientFull,
+    href: CASE_STUDIES.landscaping.href,
+  },
+  cro: {
+    result: CASE_STUDIES.saas.heroMetric,
+    client: CASE_STUDIES.saas.clientFull,
+    href: CASE_STUDIES.saas.href,
+  },
+  funnels: {
+    result: CASE_STUDIES.saas.heroMetric,
+    client: CASE_STUDIES.saas.clientFull,
+    href: CASE_STUDIES.saas.href,
+  },
+  "content-marketing": {
+    result: CASE_STUDIES.saas.heroMetric,
+    client: CASE_STUDIES.saas.clientFull,
+    href: CASE_STUDIES.saas.href,
+  },
+  analytics: {
+    result: CASE_STUDIES.saas.heroMetric,
+    client: CASE_STUDIES.saas.clientFull,
+    href: CASE_STUDIES.saas.href,
   },
 };
 

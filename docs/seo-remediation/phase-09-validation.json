@@ -1,0 +1,86 @@
+{
+  "summary": {
+    "timestamp": "2026-07-04T18:02:55.744Z",
+    "finished": "2026-07-04T18:03:02.186Z",
+    "base": "https://www.kinexisdigital.com",
+    "expected_sitemap_url_count": 290,
+    "sitemap_url_count": 290,
+    "sitemap_unique_count": 290,
+    "sitemap_duplicate_locs": 0,
+    "sitemap_issues": [],
+    "robots_sitemap_directive": "https://www.kinexisdigital.com/sitemap.xml",
+    "robots_issues": [],
+    "non_canonical_redirect_checks": 6,
+    "non_canonical_redirect_failures": 0,
+    "indexable_page_failures": 0,
+    "indexnow_configured": true,
+    "indexnow_key_reachable": true,
+    "ahrefs_multiple_sitemaps_baseline": 378,
+    "registry_expected_count": 290,
+    "registry_missing_from_sitemap": 0,
+    "registry_extra_in_sitemap": 0,
+    "registry_diff_available": true,
+    "phase9Pass": true
+  },
+  "redirectChecks": [
+    {
+      "url": "http://kinexisdigital.com/sitemap.xml",
+      "expected_target": "https://www.kinexisdigital.com/sitemap.xml",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/sitemap.xml",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "http://www.kinexisdigital.com/sitemap.xml",
+      "expected_target": "https://www.kinexisdigital.com/sitemap.xml",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/sitemap.xml",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "https://kinexisdigital.com/sitemap.xml",
+      "expected_target": "https://www.kinexisdigital.com/sitemap.xml",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/sitemap.xml",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "http://kinexisdigital.com/robots.txt",
+      "expected_target": "https://www.kinexisdigital.com/robots.txt",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/robots.txt",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "http://www.kinexisdigital.com/robots.txt",
+      "expected_target": "https://www.kinexisdigital.com/robots.txt",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/robots.txt",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "https://kinexisdigital.com/robots.txt",
+      "expected_target": "https://www.kinexisdigital.com/robots.txt",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/robots.txt",
+      "issues": "",
+      "pass": true
+    }
+  ],
+  "redirectFailures": [],
+  "pageFailures": [],
+  "registryDiff": {
+    "missingFromSitemap": [],
+    "extraInSitemap": []
+  },
+  "gsc_manual_checklist": {
+    "action": "Google Search Console → Sitemaps → submit https://www.kinexisdigital.com/sitemap.xml",
+    "owner": "human",
+    "confirm": "Status Success, discovered URLs ≈ 290"
+  }
+}

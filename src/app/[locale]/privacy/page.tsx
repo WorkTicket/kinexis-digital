@@ -17,11 +17,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const privacyMeta: Record<Locale, { title: string; description: string }> = {
     en: {
       title: "Privacy Policy | KINEXIS",
-      description: "How KINEXIS Digital collects, uses, and protects your personal information on our website and services.",
+      description:
+        "How KINEXIS Digital collects, uses, stores, and protects your personal information on our website, forms, and marketing services.",
     },
     es: {
       title: "Política de Privacidad | KINEXIS",
-      description: "Cómo KINEXIS Digital recopila, usa y protege tu información personal en nuestro sitio web y servicios.",
+      description:
+        "Cómo KINEXIS Digital recopila, usa, almacena y protege tu información personal en nuestro sitio web, formularios y servicios de marketing.",
     },
   };
   const meta = privacyMeta[locale];

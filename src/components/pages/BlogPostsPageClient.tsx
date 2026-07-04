@@ -5,6 +5,7 @@ import { m as motion, AnimatePresence } from "@/lib/framer";
 import { useTranslations } from "next-intl";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import BlogPostFeed from "@/components/blog/BlogPostFeed";
+import RelatedLinks from "@/components/sections/RelatedLinks";
 import type { BlogContent } from "@/content/blog";
 import { sortPostsByRecency } from "@/lib/blog-utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
@@ -21,6 +22,14 @@ export default function BlogPostsPageClient({ content: c }: Props) {
     activeCategory === c.categories[0]
       ? nonFeaturedPosts
       : nonFeaturedPosts.filter((post) => post.category === activeCategory);
+
+  const clusterLinks = [
+    { href: "/blog", label: "Blog Home" },
+    { href: "/blog/technical-seo-guide", label: "Technical SEO Guide" },
+    { href: "/blog/local-seo-checklist", label: "Local SEO Checklist" },
+    { href: "/blog/quality-score-guide", label: "Google Ads Quality Score" },
+    { href: "/blog/email-segmentation", label: "Email Segmentation" },
+  ];
 
   return (
     <>
@@ -83,6 +92,11 @@ export default function BlogPostsPageClient({ content: c }: Props) {
           </AnimatePresence>
         </div>
       </section>
+
+      <RelatedLinks
+        blogLinks={clusterLinks}
+        agencyHub
+      />
     </>
   );
 }

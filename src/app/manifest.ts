@@ -1,0 +1,44 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    id: "/",
+    name: "KINEXIS Digital",
+    short_name: "KINEXIS",
+    description:
+      "SEO, paid media, and web design for businesses that need measurable growth — not another agency pitch deck.",
+    start_url: "/en",
+    scope: "/",
+    display: "standalone",
+    orientation: "portrait-primary",
+    lang: "en",
+    background_color: "#05060a",
+    theme_color: "#00d4ff",
+    categories: ["business", "marketing"],
+    icons: [
+      {
+        src: "/icon.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        src: "/icon.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/icon.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/apple-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+        purpose: "any",
+      },
+    ],
+  };
+}

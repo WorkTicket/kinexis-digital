@@ -42,3 +42,9 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://www.kinexisdigital.com
           NEXT_PUBLIC_GA_ID: G-Z8245BRX2L
           NEXT_PUBLIC_GSC_VERIFICATION: 7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q
+
+      - name: Submit URLs to IndexNow
+        if: success()
+        run: npm run submit:indexnow
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}

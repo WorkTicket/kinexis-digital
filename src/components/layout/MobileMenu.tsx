@@ -12,6 +12,7 @@ import {
   serviceNavGroups,
 } from "@/lib/site-nav";
 import Button from "@/components/ui/Button";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 const mobilePrimaryLinks = mainNavLinks.filter(
   (link) => !("dropdown" in link && link.dropdown)
@@ -46,21 +47,14 @@ export default function MobileMenu({
   const tResources = useTranslations("nav.resourceLinks");
   const panelRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(dialogRef, open, onClose);
 
   useEffect(() => {
     if (!open) return;
-
     closeButtonRef.current?.focus();
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [open, onClose]);
+  }, [open]);
 
   if (!open) {
     return null;
@@ -68,6 +62,7 @@ export default function MobileMenu({
 
   return (
     <div
+      ref={dialogRef}
       id="mobile-site-nav"
       className="fixed inset-0 z-[100] lg:hidden"
       role="dialog"
@@ -156,7 +151,7 @@ export default function MobileMenu({
                     </Link>
                     {serviceNavGroups.map((group) => (
                       <div key={group.key} className="border-t border-white/[0.06] pt-3">
-                        <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                        <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted/90">
                           {tNav(`serviceGroups.${group.key}`)}
                         </p>
                         <ul className="mt-2 space-y-0.5">
@@ -321,7 +316,7 @@ export default function MobileMenu({
                     </Link>
                     {resourceNavGroups.map((group) => (
                       <div key={group.key} className="border-t border-white/[0.06] pt-3">
-                        <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/35">
+                        <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted/90">
                           {tResources(`groups.${group.key}`)}
                         </p>
                         <ul className="mt-2 space-y-0.5">

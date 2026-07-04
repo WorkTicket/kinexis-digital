@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import AnimatedWrapper from "@/components/ui/AnimatedWrapper";
 import CTAArchetype from "@/components/ui/CTAArchetype";
+import ArticleHeroShell from "@/components/shared/ArticleHeroShell";
 import { getBlogArticle } from "@/content/blog-articles";
 import { getClusterPost } from "@/content/blog-clusters";
 import { blogContent } from "@/content/blog";
@@ -12,7 +13,9 @@ import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/navigation";
 import { getAuthor } from "@/content/authors";
 import { getBlogAuthorSlug } from "@/lib/blog-authors";
-import HeroArchetype from "@/components/ui/HeroArchetype";
+import { localizeInternalLinks } from "@/lib/locale-path";
+import { getBlogRelatedLinks } from "@/lib/blog-related-links";
+import RelatedLinks from "@/components/sections/RelatedLinks";
 import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
 import type { Metadata } from "next";
@@ -20,6 +23,8 @@ import type { Metadata } from "next";
 function getPostExcerpt(slug: string, locale: Locale, body: string): string {
   const listing = getLocalizedContent(blogContent, locale).posts.find((p) => p.slug === slug);
   if (listing?.excerpt) return normalizeMetaDescription(listing.excerpt);
+  const cluster = getClusterPost(slug, locale);
+  if (cluster?.excerpt) return normalizeMetaDescription(cluster.excerpt);
   const stripped = body.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
   return normalizeMetaDescription(stripped);
 }
@@ -71,6 +76,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   const tCommon = await getTranslations({ locale, namespace: "common" });
   const authorSlug = getBlogAuthorSlug(post.category);
   const author = getAuthor(authorSlug, locale);
+  const related = getBlogRelatedLinks(slug, locale);
 
   return (
     <article>
@@ -92,8 +98,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           ]),
         ]}
       />
-      <HeroArchetype
-        archetype="article"
+      <ArticleHeroShell
         label={post.category}
         headline={post.title}
         subtitle={post.publishedAt}
@@ -125,9 +130,17 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             [&_h3]:text-xl [&_h3]:mt-6 [&_h3]:mb-2
             [&_p]:mb-4
             [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2"
-            dangerouslySetInnerHTML={{ __html: post.body }} />
+            dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }} />
         </div>
       </AnimatedWrapper>
+
+      {(related.serviceLinks.length > 0 || related.blogLinks.length > 0) && (
+        <RelatedLinks
+          serviceLinks={related.serviceLinks}
+          blogLinks={related.blogLinks}
+          agencyHub
+        />
+      )}
 
       <CTAArchetype
         headline={c.postDetailCtaHeadline}

@@ -60,9 +60,9 @@ export const ppcPillarContent: ServicePillarContent = {
     title: "Results framework",
     subtitle: "How we measure PPC success.",
     metrics: [
-      { metric: "+340%", label: "patients · Dental Practice, 6 mo" },
-      { metric: "45%", label: "CPL reduction · paid campaigns" },
-      { metric: "120%", label: "conv. lift · landing page alignment" },
+      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "65%", label: "ad spend cut · same client" },
+      { metric: "Top 3", label: "local pack · 48 keywords" },
     ],
   },
 };

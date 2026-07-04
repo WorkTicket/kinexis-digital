@@ -47,7 +47,7 @@ export default function SeoHeroViz({ labels }: Props) {
           </div>
         </BrowserFrame>
 
-        <FloatingBadge label="Landscaping Co." value="+340%" accent="emerald" />
+        <FloatingBadge label="Landscaping Co." value="4.8X" accent="emerald" />
       </HeroVizStage>
     </HeroVizShell>
   );

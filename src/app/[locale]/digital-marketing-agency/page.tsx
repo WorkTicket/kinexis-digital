@@ -33,7 +33,7 @@ export default async function DigitalMarketingAgencyPage({ params }: Props) {
       <JsonLd
         data={[
           organizationSchema(),
-          localBusinessSchema(),
+          localBusinessSchema(buildAbsoluteUrl(locale, "/digital-marketing-agency")),
           faqSchema(c.faqs),
           breadcrumbSchema([
             { name: "Home", url: buildAbsoluteUrl(locale, "/") },

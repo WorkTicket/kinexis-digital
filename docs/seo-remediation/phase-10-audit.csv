@@ -1,0 +1,29 @@
+template,url,strategy,performance_score,lcp_ms,lcp_display,inp_ms,inp_display,cls,cls_display,ttfb_ms,ttfb_display,fcp_ms,speed_index_ms,tbt_ms,cwv_pass,cwv_issues,psi_elapsed_ms
+homepage,http://localhost:3000/en,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+service,http://localhost:3000/en/services/seo,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/services/seo: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+agency_hub,http://localhost:3000/en/digital-marketing-agency,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/digital-marketing-agency: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+industry_detail,http://localhost:3000/en/industries/technology/startups,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/industries/technology/startups: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+blog_post,http://localhost:3000/en/blog/technical-seo-fundamentals,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/blog/technical-seo-fundamentals: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+solution,http://localhost:3000/en/solutions/seo-for-hvac-companies,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/solutions/seo-for-hvac-companies: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+contact,http://localhost:3000/en/contact,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/contact: HTTP 400 — {
+  ""error"": {
+    ""code"": 400,
+    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",

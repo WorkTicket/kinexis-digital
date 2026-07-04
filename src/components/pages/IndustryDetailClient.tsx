@@ -1,6 +1,5 @@
 "use client";
 
-import HeroArchetype from "@/components/ui/HeroArchetype";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ProofMetric from "@/components/ui/ProofMetric";
 import CTAArchetype from "@/components/ui/CTAArchetype";
@@ -10,7 +9,6 @@ import RelatedLinks from "@/components/sections/RelatedLinks";
 import TextLink from "@/components/ui/TextLink";
 import { getServiceExploreLabel } from "@/lib/service-explore-labels";
 import type { IndustryDetailContent } from "@/content/industries/detail";
-import type { BreadcrumbItem } from "@/lib/schema";
 import { Link } from "@/i18n/navigation";
 
 type Props = {
@@ -18,8 +16,6 @@ type Props = {
   categoryLabel: string;
   industryLabel: string;
   categoryId: string;
-  industrySlug: string;
-  breadcrumbs: BreadcrumbItem[];
 };
 
 export default function IndustryDetailClient({
@@ -27,25 +23,9 @@ export default function IndustryDetailClient({
   categoryLabel,
   industryLabel,
   categoryId,
-  breadcrumbs,
 }: Props) {
   return (
     <>
-      <HeroArchetype
-        archetype="showcase"
-        label={content.hero.label}
-        headline={
-          <>
-            <span className="type-hero-line">{content.hero.headlineLine1}</span>
-            <span className="type-hero-line">{content.hero.headlineLine2}</span>
-          </>
-        }
-        subtitle={content.hero.subtitle}
-        ctaLabel="Book a Strategy Call"
-        ctaHref="/contact"
-        breadcrumbs={breadcrumbs}
-      />
-
       <AnswerBlock text={content.answerBlock} />
 
       <section className="section-padding bg-bg-dark">

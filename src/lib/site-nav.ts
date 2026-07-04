@@ -80,15 +80,3 @@ export const footerServiceLinks = [
   { href: "/pricing/seo", key: "pricing" as const },
   ...serviceNavLinks.slice(0, 5),
 ];
-
-/** Featured markets linked from the footer for local SEO equity. */
-export const footerLocationLinks = [
-  { href: "/locations/dallas", city: "Dallas" },
-  { href: "/locations/austin", city: "Austin" },
-  { href: "/locations/toronto", city: "Toronto" },
-  { href: "/locations/bogota", city: "Bogotá" },
-  { href: "/locations/cedar-falls", city: "Cedar Falls" },
-  { href: "/locations/cedar-rapids", city: "Cedar Rapids" },
-  { href: "/locations/des-moines", city: "Des Moines" },
-  { href: "/locations/waterloo", city: "Waterloo" },
-] as const;

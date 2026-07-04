@@ -87,14 +87,24 @@ function industryChallenges(industry: IndustryEntry): string[] {
 function industryOutcomes(industry: IndustryEntry): { value: string; label: string }[] {
   const map: Record<string, { value: string; label: string }[]> = {
     saas: [
-      { value: "65%", label: "trial conversion lift" },
-      { value: "40%", label: "CAC reduction" },
-      { value: "2.5x", label: "pipeline growth" },
+      { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { value: "43%", label: "CAC reduction · organic channels" },
+      { value: "$33K", label: "MRR · marketing-attributed" },
     ],
     hvac: [
-      { value: "250+", label: "service calls per month" },
-      { value: "3.2x", label: "ROAS on local ads" },
-      { value: "Top 3", label: "local pack rankings" },
+      { value: "94", label: "emergency calls per month · Plumbing Co." },
+      { value: "327%", label: "call growth · 8 mo" },
+      { value: "Top 3", label: "local pack · 48 keywords" },
+    ],
+    landscaping: [
+      { value: "4.8X", label: "qualified lead growth · 10 mo" },
+      { value: "+1,290%", label: "organic traffic · same client" },
+      { value: "8.4%", label: "lead conversion rate · post-rebuild" },
+    ],
+    plumbing: [
+      { value: "327%", label: "emergency call growth · 8 mo" },
+      { value: "65%", label: "ad spend reduction · same client" },
+      { value: "94", label: "emergency calls per month" },
     ],
     dentists: [
       { value: "180+", label: "new patients per month" },
@@ -103,9 +113,9 @@ function industryOutcomes(industry: IndustryEntry): { value: string; label: stri
     ],
   };
   return map[industry.slug] || [
-    { value: "+340%", label: "traffic · Landscaping Co., 8 mo" },
-    { value: "4X", label: "revenue · E-Commerce client, 9 mo" },
-    { value: "+340%", label: "patients · Dental Practice, 6 mo" },
+    { value: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
+    { value: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
+    { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
   ];
 }
 
@@ -115,14 +125,14 @@ function buildIndustryMeta(industry: IndustryEntry, locale: Locale): { title: st
 
   if (locale === "es") {
     return {
-      title: `Agencia de Marketing ${label} | KINEXIS`,
-      description: `Marketing digital para empresas de ${labelLower}. SEO, medios pagados, diseño web y CRO orientados a ingresos con KINEXIS.`,
+      title: `Marketing para Empresas de ${label} | KINEXIS`,
+      description: `Marketing digital para empresas de ${labelLower}. SEO, anuncios pagados, diseño web y CRO orientados a generar ingresos, leads calificados y citas agendadas con KINEXIS.`,
     };
   }
 
   return {
-    title: `${label} Marketing Agency | KINEXIS`,
-    description: `Digital marketing for ${labelLower} companies. SEO, paid media, web design, and CRO built for revenue with KINEXIS.`,
+    title: `Marketing for ${label} Companies | KINEXIS`,
+      description: `Digital marketing for ${labelLower} companies. SEO, paid media, web design, and conversion optimization built to generate qualified leads, appointments, and revenue with KINEXIS.`,
   };
 }
 
@@ -201,7 +211,7 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
     meta: {
       title: "Industries We Serve | KINEXIS Digital",
       description:
-        "Growth marketing for home services, healthcare, professional services, technology, e-commerce, and more. Strategies built for how your industry buys.",
+        "Growth marketing for home services, healthcare, professional services, technology, e-commerce, and more. Strategies built for how your industry searches and buys.",
     },
     hero: {
       label: "Industries",
@@ -223,7 +233,7 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
     meta: {
       title: "Industrias que Servimos | KINEXIS Digital",
       description:
-        "Marketing de crecimiento para servicios del hogar, salud, servicios profesionales, tecnología, e-commerce y más. Estrategias a medida por vertical.",
+        "Marketing de crecimiento para servicios del hogar, salud, servicios profesionales, tecnología, e-commerce y más. Estrategias a medida por vertical con KINEXIS.",
     },
     hero: { label: "Industrias", headlineLine1: "Capacidad enterprise", headlineLine2: "en cada vertical.", subtitle: "Desde contratistas locales hasta plataformas SaaS,|con sistemas de crecimiento a medida." },
     intro: {

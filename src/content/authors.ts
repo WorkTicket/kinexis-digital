@@ -18,7 +18,7 @@ export const authorsContent: Record<Locale, { authors: Author[] }> = {
         name: "Sarah Mitchell",
         jobTitle: "Founder & Head of Strategy",
         credentials: "12 years in SEO and paid media for B2B and local service brands",
-        bio: "Sarah started KINEXIS after running growth at two agencies that prioritized pitch decks over results. She leads client strategy, channel mix decisions, and the audits that kick off every engagement. Her work shows up in the landscaping and dental case studies on this site.",
+        bio: "Sarah started KINEXIS after running growth at two agencies that prioritized pitch decks over results. She leads client strategy, channel mix decisions, and the audits that kick off every engagement. Her work shows up in the landscaping and plumbing case studies on this site.",
         expertise: ["SEO strategy", "Channel mix planning", "Local market audits", "Client reporting"],
         linkedin: "https://www.linkedin.com/in/sarah-mitchell-kinexis/",
       },

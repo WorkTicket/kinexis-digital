@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/i18n/routing";
 import { buildLocalePath, getSiteUrl } from "@/lib/metadata";
+import { getPathLastModified } from "@/lib/sitemap-last-modified";
 import { allIndustries, industryCategories } from "@/content/registry/industries";
-import { locations, locationServiceSlugs } from "@/content/registry/locations";
 import { solutions } from "@/content/registry/solutions";
 import {
   sitemapServiceSlugs,
@@ -17,15 +17,14 @@ import {
   authorSlugs,
 } from "@/content/registry/site-routes";
 
-const SITEMAP_DATE = new Date();
-
 /** Routes indexed in sitemap — lead-magnet is paid-traffic only (noIndex). */
 const sitemapStaticRoutes = staticPageRoutes.filter((path) => path !== "/lead-magnet");
 
 function localeUrls(path: string, priority = 0.7): MetadataRoute.Sitemap {
+  const lastModified = getPathLastModified(path);
   return locales.flatMap((locale) => ({
     url: `${getSiteUrl()}${buildLocalePath(locale, path)}`,
-    lastModified: SITEMAP_DATE,
+    lastModified,
     changeFrequency: "weekly" as const,
     priority,
   }));
@@ -52,14 +51,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const solution of solutions) {
     entries.push(...localeUrls(`/solutions/${solution.slug}`, 0.85));
-  }
-
-  for (const location of locations) {
-    entries.push(...localeUrls(`/locations/${location.slug}`, 0.8));
-    for (const service of locationServiceSlugs) {
-      if (service === "digital-marketing-agency") continue;
-      entries.push(...localeUrls(`/locations/${location.slug}/${service}`, 0.75));
-    }
   }
 
   for (const slug of blogSlugs) {

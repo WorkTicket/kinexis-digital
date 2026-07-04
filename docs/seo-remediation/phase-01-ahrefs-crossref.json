@@ -1,0 +1,438 @@
+{
+  "generated": "2026-07-02T21:48:00.408Z",
+  "export_files": 26,
+  "issue_summaries": [
+    {
+      "file": "kinexisdigital_01-jul-2026_3xx-redirect_2026-07-02_16-42-20.csv",
+      "issue": "3XX redirect",
+      "row_count": 200,
+      "unique_url_count": 200,
+      "playbook_baseline": 200,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 200,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/services/analytics",
+        "https://www.kinexisdigital.com/services/seo",
+        "https://www.kinexisdigital.com/services/funnels",
+        "https://www.kinexisdigital.com/industries/financial-services/credit-unions",
+        "https://www.kinexisdigital.com/blog/local-seo-checklist"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_canonical-from-htt_2026-07-02_16-41-05.csv",
+      "issue": "Canonical from HTTP to HTTPS",
+      "row_count": 190,
+      "unique_url_count": 190,
+      "playbook_baseline": 190,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 190,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/services/ppc-management",
+        "http://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+        "http://www.kinexisdigital.com/en/services/local-seo",
+        "http://www.kinexisdigital.com/en/industries/manufacturing/aerospace",
+        "http://www.kinexisdigital.com/en/locations/bogota"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_hreflang-annotatio_2026-07-02_16-43-19.csv",
+      "issue": "Hreflang annotation invalid",
+      "row_count": 380,
+      "unique_url_count": 380,
+      "playbook_baseline": 380,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 378,
+      "urls_missing_from_phase1_audit": 2,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_hreflang-to-redire_2026-07-02_16-43-26.csv",
+      "issue": "Hreflang to redirect or broken page",
+      "row_count": 380,
+      "unique_url_count": 380,
+      "playbook_baseline": 380,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 378,
+      "urls_missing_from_phase1_audit": 2,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_html-lang-attribut_2026-07-02_16-43-55.csv",
+      "issue": "HTML lang attribute invalid",
+      "row_count": 190,
+      "unique_url_count": 190,
+      "playbook_baseline": 190,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 189,
+      "urls_missing_from_phase1_audit": 1,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_http-to-https-redi_2026-07-02_16-42-47.csv",
+      "issue": "HTTP to HTTPS redirect",
+      "row_count": 1,
+      "unique_url_count": 1,
+      "playbook_baseline": 1,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 1,
+      "sample_missing_urls": [
+        "http://kinexisdigital.com"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_meta-description-t_2026-07-02_16-42-54.csv",
+      "issue": "Meta description too short (not indexable)",
+      "row_count": 90,
+      "unique_url_count": 90,
+      "playbook_baseline": 42,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 90,
+      "urls_missing_from_phase1_audit": 0,
+      "sample_missing_urls": []
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_meta-description-t_2026-07-02_16-43-03.csv",
+      "issue": "Meta description too short",
+      "row_count": 42,
+      "unique_url_count": 42,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 42,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/industries/healthcare",
+        "http://www.kinexisdigital.com/en/industries/home-services",
+        "http://www.kinexisdigital.com/en/industries/manufacturing",
+        "http://www.kinexisdigital.com/en/industries/financial-services",
+        "http://www.kinexisdigital.com/en/industries/professional-services"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_meta-description-t_2026-07-02_16-43-12.csv",
+      "issue": "Meta description too short (indexable)",
+      "row_count": 42,
+      "unique_url_count": 42,
+      "playbook_baseline": 90,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 42,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/industries/healthcare",
+        "http://www.kinexisdigital.com/en/industries/home-services",
+        "http://www.kinexisdigital.com/en/industries/manufacturing",
+        "http://www.kinexisdigital.com/en/industries/financial-services",
+        "http://www.kinexisdigital.com/en/industries/professional-services"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_more-than-one-page_2026-07-02_16-43-38.csv",
+      "issue": "More than one page for same language in hreflang",
+      "row_count": 380,
+      "unique_url_count": 380,
+      "playbook_baseline": 380,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 378,
+      "urls_missing_from_phase1_audit": 2,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_nofollow-page_2026-07-02_16-40-53.csv",
+      "issue": "Nofollow page",
+      "row_count": 3,
+      "unique_url_count": 3,
+      "playbook_baseline": 3,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 3,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "http://www.kinexisdigital.com/en/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_noindex-and-nofoll_2026-07-02_16-41-11.csv",
+      "issue": "Noindex and nofollow page",
+      "row_count": 3,
+      "unique_url_count": 3,
+      "playbook_baseline": 3,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 3,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "http://www.kinexisdigital.com/en/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_noindex-page_2026-07-02_16-40-59.csv",
+      "issue": "Noindex page",
+      "row_count": 3,
+      "unique_url_count": 3,
+      "playbook_baseline": 3,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 3,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "http://www.kinexisdigital.com/en/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-links-to_2026-07-02_16-41-17.csv",
+      "issue": "kinexisdigital_01-jul-2026_page-has-links-to_2026-07-02_16-41-17.csv",
+      "row_count": 38,
+      "unique_url_count": 38,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 38,
+      "urls_missing_from_phase1_audit": 0,
+      "sample_missing_urls": []
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-links-to_2026-07-02_16-42-07.csv",
+      "issue": "kinexisdigital_01-jul-2026_page-has-links-to_2026-07-02_16-42-07.csv",
+      "row_count": 19,
+      "unique_url_count": 19,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 19,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/blog/landing-page-best-practices",
+        "http://www.kinexisdigital.com/en/blog/seo-audit-framework",
+        "http://www.kinexisdigital.com/en/blog/local-seo-checklist",
+        "http://www.kinexisdigital.com/en/blog/ab-testing-framework",
+        "http://www.kinexisdigital.com/en/blog/landing-page-optimization"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-nofollow_2026-07-02_16-41-24.csv",
+      "issue": "kinexisdigital_01-jul-2026_page-has-nofollow_2026-07-02_16-41-24.csv",
+      "row_count": 200,
+      "unique_url_count": 200,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 200,
+      "urls_missing_from_phase1_audit": 0,
+      "sample_missing_urls": []
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-nofollow_2026-07-02_16-41-43.csv",
+      "issue": "Page has nofollow and dofollow incoming internal links (not indexable)",
+      "row_count": 100,
+      "unique_url_count": 100,
+      "playbook_baseline": 100,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 100,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/services/ppc-management",
+        "http://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+        "http://www.kinexisdigital.com/en/services/local-seo",
+        "http://www.kinexisdigital.com/en/industries/manufacturing/aerospace",
+        "http://www.kinexisdigital.com/en/locations/bogota"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-nofollow_2026-07-02_16-42-14.csv",
+      "issue": "kinexisdigital_01-jul-2026_page-has-nofollow_2026-07-02_16-42-14.csv",
+      "row_count": 3,
+      "unique_url_count": 3,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 3,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "http://www.kinexisdigital.com/en/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-only-one_2026-07-02_16-41-30.csv",
+      "issue": "kinexisdigital_01-jul-2026_page-has-only-one_2026-07-02_16-41-30.csv",
+      "row_count": 102,
+      "unique_url_count": 102,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 102,
+      "urls_missing_from_phase1_audit": 0,
+      "sample_missing_urls": []
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-has-only-one_2026-07-02_16-41-49.csv",
+      "issue": "kinexisdigital_01-jul-2026_page-has-only-one_2026-07-02_16-41-49.csv",
+      "row_count": 53,
+      "unique_url_count": 53,
+      "playbook_baseline": null,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 53,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/locations/des-moines/web-design",
+        "http://www.kinexisdigital.com/en/pricing/content-marketing",
+        "http://www.kinexisdigital.com/en/pricing/social-media",
+        "http://www.kinexisdigital.com/en/pricing/email-marketing",
+        "http://www.kinexisdigital.com/en/locations/austin/seo"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-in-multiple-s_2026-07-02_16-47-04.csv",
+      "issue": "Page in multiple sitemaps",
+      "row_count": 378,
+      "unique_url_count": 378,
+      "playbook_baseline": 378,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 378,
+      "urls_missing_from_phase1_audit": 0,
+      "sample_missing_urls": []
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_page-referenced-fo_2026-07-02_16-43-47.csv",
+      "issue": "Page referenced for more than one language in hreflang",
+      "row_count": 380,
+      "unique_url_count": 380,
+      "playbook_baseline": 380,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 378,
+      "urls_missing_from_phase1_audit": 2,
+      "sample_missing_urls": [
+        "https://www.kinexisdigital.com/es/lead-magnet",
+        "https://www.kinexisdigital.com/en/lead-magnet"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_pages-to-submit-to_2026-07-02_16-47-12.csv",
+      "issue": "Pages to submit to IndexNow",
+      "row_count": 0,
+      "unique_url_count": 0,
+      "playbook_baseline": 378,
+      "count_matches_baseline": false,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 0,
+      "sample_missing_urls": []
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_redirect-chain_2026-07-02_16-42-40.csv",
+      "issue": "Redirect chain",
+      "row_count": 2,
+      "unique_url_count": 2,
+      "playbook_baseline": 2,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 0,
+      "urls_missing_from_phase1_audit": 2,
+      "sample_missing_urls": [
+        "http://kinexisdigital.com",
+        "https://kinexisdigital.com"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_slow-page_2026-07-02_16-46-51.csv",
+      "issue": "Slow page",
+      "row_count": 34,
+      "unique_url_count": 34,
+      "playbook_baseline": 34,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 20,
+      "urls_missing_from_phase1_audit": 14,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+        "http://www.kinexisdigital.com/en/locations/des-moines",
+        "http://www.kinexisdigital.com/en/industries/hospitality/bars-nightlife",
+        "http://www.kinexisdigital.com/en/blog/ab-testing-framework",
+        "http://www.kinexisdigital.com/en/industries/financial-services"
+      ]
+    },
+    {
+      "file": "kinexisdigital_01-jul-2026_structured-data-ha_2026-07-02_16-47-20.csv",
+      "issue": "Structured data has Google rich results validation error",
+      "row_count": 123,
+      "unique_url_count": 123,
+      "playbook_baseline": 123,
+      "count_matches_baseline": true,
+      "urls_in_phase1_audit": 82,
+      "urls_missing_from_phase1_audit": 41,
+      "sample_missing_urls": [
+        "http://www.kinexisdigital.com/en/locations/bogota",
+        "http://www.kinexisdigital.com/en/locations/des-moines",
+        "http://www.kinexisdigital.com/en/digital-marketing-agency",
+        "http://www.kinexisdigital.com/en/locations/waterloo",
+        "http://www.kinexisdigital.com/en/locations/austin"
+      ]
+    }
+  ],
+  "root_cause_analysis": {
+    "http_www_canonical_rows": 190,
+    "hreflang_rows": 380,
+    "unprefixed_3xx_rows": 200,
+    "hypothesis": "Ahrefs data confirms duplicate hreflang entries (same en/es URL listed twice per page) and 190 HTTP www URLs served as 200 with HTTPS canonical. Unprefixed locale-less URLs (307) account for 200 redirect rows. One templating/metadata fix plus HTTPS enforcement may clear multiple issue types.",
+    "hreflang_samples": [
+      {
+        "url": "https://www.kinexisdigital.com/en/industries/financial-services/insurance",
+        "hreflang_links": "https://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttp",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "5927611169620563282"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/cedar-rapids",
+        "hreflang_links": "https://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/locations/cedar-rapids",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "10067364075189767332"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/industries/financial-services/insurance",
+        "hreflang_links": "https://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttp",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "5927611169620563282"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/cedar-rapids",
+        "hreflang_links": "https://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/locations/cedar-rapids",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "10067364075189767332"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/industries/financial-services/insurance",
+        "hreflang_links": "https://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttp",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "5927611169620563282"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/cedar-rapids",
+        "hreflang_links": "https://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/locations/cedar-rapids",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "10067364075189767332"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/en/industries/financial-services/insurance",
+        "hreflang_links": "https://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/en/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttps://www.kinexisdigital.com/es/industries/financial-services/insurance\nhttp",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "5927611169620563282"
+      },
+      {
+        "url": "https://www.kinexisdigital.com/es/locations/cedar-rapids",
+        "hreflang_links": "https://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/en/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/es/locations/cedar-rapids\nhttps://www.kinexisdigital.com/locations/cedar-rapids",
+        "hreflang_issues": "Incorrect value\nOne page is linked for more than one language\nMore than one page is linked for the same language\nSome pages are not returning 200 status code",
+        "group_id": "10067364075189767332"
+      }
+    ]
+  },
+  "phase1_blocker_resolved": true
+}

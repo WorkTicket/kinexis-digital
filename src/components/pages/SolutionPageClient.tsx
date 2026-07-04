@@ -1,6 +1,5 @@
 "use client";
 
-import HeroArchetype from "@/components/ui/HeroArchetype";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
 import ProofMetric from "@/components/ui/ProofMetric";
@@ -10,6 +9,7 @@ import RelatedLinks from "@/components/sections/RelatedLinks";
 import type { SolutionEntry } from "@/content/registry/solutions";
 import { serviceRoutes, serviceLabels, type ServiceSlug } from "@/content/registry/site-routes";
 import { getIndustryBySlug } from "@/content/registry/industries";
+import { getSolutionRelatedLinks } from "@/lib/solution-related-links";
 
 type Props = { solution: SolutionEntry };
 
@@ -17,23 +17,10 @@ export default function SolutionPageClient({ solution }: Props) {
   const industry = getIndustryBySlug(solution.industrySlug);
   const serviceHref = serviceRoutes[solution.serviceSlug as ServiceSlug] || `/services/${solution.serviceSlug}`;
   const serviceLabel = serviceLabels[solution.serviceSlug as ServiceSlug] || solution.serviceSlug;
+  const solutionLinks = getSolutionRelatedLinks(solution.slug);
 
   return (
     <>
-      <HeroArchetype
-        archetype="showcase"
-        label={solution.title}
-        headline={
-          <>
-            <span className="type-hero-line">{solution.headlineLine1}</span>
-            <span className="type-hero-line">{solution.headlineLine2}</span>
-          </>
-        }
-        subtitle={solution.challenge}
-        ctaLabel="Book a Strategy Call"
-        ctaHref="/contact"
-      />
-
       <section className="section-padding bg-bg-dark">
         <div className="container-site max-w-3xl">
           <SectionHeader pattern="B" title="The challenge" />
@@ -86,6 +73,7 @@ export default function SolutionPageClient({ solution }: Props) {
       <RelatedLinks
         agencyHub
         serviceLinks={[{ href: serviceHref, label: serviceLabel }]}
+        solutionLinks={solutionLinks.length > 0 ? solutionLinks : undefined}
         industryLinks={
           industry
             ? [{ href: `/industries/${industry.categoryId}/${industry.slug}`, label: `${industry.label} Marketing` }]

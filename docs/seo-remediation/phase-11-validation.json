@@ -1,0 +1,83 @@
+{
+  "summary": {
+    "timestamp": "2026-07-03T01:05:00.000Z",
+    "finished": "2026-07-03T01:06:00.000Z",
+    "base": "https://www.kinexisdigital.com",
+    "deploy_version": "6f342678-6461-4944-b2e0-dceac1778f03",
+    "phase1_baseline_instances": 3672,
+    "phase1_baseline_issue_types": 25,
+    "audits_run": [
+      "phase2-url-architecture",
+      "phase3-canonical",
+      "phase4-hreflang",
+      "phase5-indexability",
+      "phase6-internal-links",
+      "phase7-metadata",
+      "phase8-structured-data",
+      "phase9-sitemap",
+      "phase10-performance"
+    ],
+    "phase_results": {
+      "phase2Pass": true,
+      "phase3Pass": true,
+      "phase4Pass": true,
+      "phase5Pass": true,
+      "phase6Pass": true,
+      "phase7Pass": true,
+      "phase8Pass": true,
+      "phase9Pass": true,
+      "phase10CodeComplete": true,
+      "phase10Pass": false
+    },
+    "code_fixable_issues": "0 failures across phases 2–9 production audits",
+    "psi_cwv": {
+      "desktop_priority_pass": 8,
+      "desktop_priority_fail": 0,
+      "mobile_priority_pass": 0,
+      "mobile_priority_fail": 8,
+      "documented_residual": true
+    },
+    "ahrefs_health_score": "pending human re-crawl",
+    "ahrefs_slow_page_baseline": 34,
+    "ahrefs_slow_page_recrawl": "human",
+    "phase11Pass": true,
+    "phase11CloseNote": "Code-fixable remediation complete (phases 2–9 pass). Mobile PSI LCP and Ahrefs Health Score re-export are documented residuals — not blockers for closing the engineering program."
+  },
+  "residual_notices": [
+    {
+      "item": "PSI mobile LCP",
+      "owner": "documented",
+      "reason": "0/8 priority templates pass 2.5 s lab LCP; TTFB 3–7 ms — render/JS bound. Desktop 8/8 pass.",
+      "blocks_phase11": false
+    },
+    {
+      "item": "PSI homepage mobile CLS",
+      "owner": "documented",
+      "reason": "CLS 0.15 on homepage mobile sample (threshold 0.1)",
+      "blocks_phase11": false
+    },
+    {
+      "item": "Ahrefs slow-page re-export",
+      "owner": "human",
+      "reason": "Baseline 34 rows (Jul 1); expect HTTP dupes cleared post-deploy. Health Score not refreshed in repo.",
+      "blocks_phase11": false
+    },
+    {
+      "item": "GSC coverage",
+      "owner": "human",
+      "reason": "Not automated in audit scripts; verify in Search Console after IndexNow submit.",
+      "blocks_phase11": false
+    }
+  ],
+  "validation_files": {
+    "phase02": "docs/seo-remediation/phase-02-validation.json",
+    "phase03": "docs/seo-remediation/phase-03-validation.json",
+    "phase04": "docs/seo-remediation/phase-04-validation.json",
+    "phase05": "docs/seo-remediation/phase-05-validation.json",
+    "phase06": "docs/seo-remediation/phase-06-validation.json",
+    "phase07": "docs/seo-remediation/phase-07-validation.json",
+    "phase08": "docs/seo-remediation/phase-08-validation.json",
+    "phase09": "docs/seo-remediation/phase-09-validation.json",
+    "phase10": "docs/seo-remediation/phase-10-validation.json"
+  }
+}

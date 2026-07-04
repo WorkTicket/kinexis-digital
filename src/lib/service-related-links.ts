@@ -1,10 +1,19 @@
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
+import { caseStudyLinks } from "@/content/case-study-crossrefs";
 import { pricingRoutes, serviceLabels } from "@/content/registry/site-routes";
 
 type RelatedLinkGroup = {
   services: { href: string; label: string }[];
   caseStudies: { href: string; label: string }[];
   blog: { href: string; label: string }[];
+};
+
+const extraSolutionLinks: Partial<Record<ServiceSeoSlug, { href: string; label: string }[]>> = {
+  "google-ads": [{ href: "/solutions/google-ads-for-roofers", label: "Google Ads for Roofers" }],
+  seo: [
+    { href: "/solutions/seo-for-hvac-companies", label: "SEO for HVAC Companies" },
+    { href: "/solutions/seo-for-dentists", label: "SEO for Dentists" },
+  ],
 };
 
 function servicePricingLink(slug: ServiceSeoSlug) {
@@ -19,10 +28,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       servicePricingLink("seo"),
       { href: "/services/content-marketing", label: "Content Marketing" },
     ],
-    caseStudies: [
-      { href: "/case-studies/landscaping-company-growth", label: "+340% Traffic · Landscaping Co." },
-      { href: "/case-studies/dental-practice-local-seo", label: "+340% Patients · Dental Practice" },
-    ],
+    caseStudies: caseStudyLinks("landscaping", "plumbing"),
     blog: [
       { href: "/blog/local-seo-checklist", label: "Local SEO Checklist" },
       { href: "/blog/seo-audit-framework", label: "SEO Audit Framework" },
@@ -34,10 +40,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/google-ads", label: "Google Ads Management" },
       servicePricingLink("local-seo"),
     ],
-    caseStudies: [
-      { href: "/case-studies/dental-practice-local-seo", label: "+340% Patients · Dental Practice" },
-      { href: "/case-studies/landscaping-company-growth", label: "+340% Traffic · Landscaping Co." },
-    ],
+    caseStudies: caseStudyLinks("plumbing", "landscaping"),
     blog: [
       { href: "/blog/google-business-profile-tips", label: "Google Business Profile Tips" },
       { href: "/blog/local-seo-strategy-2026", label: "Local SEO Strategy Guide" },
@@ -49,10 +52,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/meta-ads", label: "Meta Ads Management" },
       servicePricingLink("ppc-management"),
     ],
-    caseStudies: [
-      { href: "/case-studies/landscaping-company-growth", label: "+340% Traffic · Landscaping Co." },
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-    ],
+    caseStudies: caseStudyLinks("plumbing", "saas"),
     blog: [
       { href: "/blog/quality-score-guide", label: "Quality Score Guide" },
       { href: "/blog/roas-calculations", label: "ROAS Calculations" },
@@ -64,10 +64,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/seo", label: "SEO Services" },
       servicePricingLink("google-ads"),
     ],
-    caseStudies: [
-      { href: "/case-studies/dental-practice-local-seo", label: "+340% Patients · Dental Practice" },
-      { href: "/case-studies/landscaping-company-growth", label: "+340% Traffic · Landscaping Co." },
-    ],
+    caseStudies: caseStudyLinks("plumbing", "landscaping"),
     blog: [
       { href: "/blog/negative-keywords-guide", label: "Negative Keywords Guide" },
       { href: "/blog/seo-vs-google-ads", label: "SEO vs Google Ads" },
@@ -79,10 +76,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/social-media", label: "Social Media Marketing" },
       servicePricingLink("meta-ads"),
     ],
-    caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
-    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
     blog: [
       { href: "/blog/landing-page-best-practices", label: "Landing Page Best Practices" },
       { href: "/blog/conversion-psychology", label: "Conversion Psychology" },
@@ -94,10 +88,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/seo", label: "SEO Services" },
       servicePricingLink("web-design"),
     ],
-    caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-      { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-    ],
+    caseStudies: caseStudyLinks("landscaping", "saas"),
     blog: [
       { href: "/blog/website-conversion-optimization", label: "Website Conversion Optimization" },
       { href: "/blog/landing-page-optimization", label: "Landing Page Optimization" },
@@ -107,12 +98,9 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     services: [
       { href: "/services/web-design", label: "Web Design Services" },
       { href: "/services/funnels", label: "Funnels & CRO" },
-      servicePricingLink("cro"),
+      { href: "/pricing/funnels", label: "Funnels & CRO Pricing" },
     ],
-    caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
-    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
     blog: [
       { href: "/blog/ab-testing-framework", label: "A/B Testing Framework" },
       { href: "/blog/heatmap-analysis", label: "Heatmap Analysis" },
@@ -124,10 +112,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/content-marketing", label: "Content Marketing" },
       servicePricingLink("email-marketing"),
     ],
-    caseStudies: [
-      { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-      { href: "/case-studies/b2b-consulting-firm", label: "Pipeline Growth · B2B Consulting" },
-    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
     blog: [
       { href: "/blog/email-nurture-sequences-that-book-calls", label: "Email Nurture Sequences" },
       { href: "/blog/automated-nurture-sequences", label: "Automated Nurture Sequences" },
@@ -139,10 +124,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/social-media", label: "Social Media Marketing" },
       servicePricingLink("content-marketing"),
     ],
-    caseStudies: [
-      { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-      { href: "/case-studies/b2b-consulting-firm", label: "Pipeline Growth · B2B Consulting" },
-    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
     blog: [
       { href: "/blog/internal-linking-guide", label: "Internal Linking Guide" },
       { href: "/blog/link-building-strategies", label: "Link Building Strategies" },
@@ -154,10 +136,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/content-marketing", label: "Content Marketing" },
       servicePricingLink("social-media"),
     ],
-    caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
-    ],
+    caseStudies: caseStudyLinks("landscaping", "saas"),
     blog: [
       { href: "/blog/local-business-growth-playbook", label: "Local Business Growth Playbook" },
     ],
@@ -168,9 +147,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/social-media", label: "Social Media Marketing" },
       servicePricingLink("video-marketing"),
     ],
-    caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-    ],
+    caseStudies: caseStudyLinks("landscaping", "saas"),
     blog: [],
   },
   branding: {
@@ -179,9 +156,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/content-marketing", label: "Content Marketing" },
       servicePricingLink("branding"),
     ],
-    caseStudies: [
-      { href: "/case-studies/premium-ecommerce-brand", label: "3.6X Revenue · E-Commerce" },
-    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
     blog: [],
   },
   analytics: {
@@ -190,9 +165,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/ppc-management", label: "PPC Management" },
       servicePricingLink("analytics"),
     ],
-    caseStudies: [
-      { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-    ],
+    caseStudies: caseStudyLinks("saas", "plumbing"),
     blog: [
       { href: "/blog/ga4-reporting", label: "GA4 Reporting Guide" },
       { href: "/blog/attribution-models", label: "Attribution Models" },
@@ -204,10 +177,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/seo", label: "SEO Services" },
       servicePricingLink("growth-consulting"),
     ],
-    caseStudies: [
-      { href: "/case-studies/b2b-consulting-firm", label: "Pipeline Growth · B2B Consulting" },
-      { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-    ],
+    caseStudies: caseStudyLinks("saas", "plumbing"),
     blog: [
       { href: "/blog/marketing-dashboards", label: "Marketing Dashboards" },
     ],
@@ -218,12 +188,11 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/email-marketing", label: "Email Marketing" },
       servicePricingLink("funnels"),
     ],
-    caseStudies: [
-      { href: "/case-studies/saas-analytics-platform", label: "4X MRR · SaaS Platform" },
-      { href: "/case-studies/fintech-app-startup", label: "195% Trial Lift · Fintech App" },
-    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
     blog: [
       { href: "/blog/lifecycle-marketing", label: "Lifecycle Marketing" },
+      { href: "/blog/heatmap-analysis", label: "Heatmap Analysis" },
+      { href: "/blog/ab-testing-framework", label: "A/B Testing Framework" },
     ],
   },
   "paid-ads": {
@@ -232,16 +201,17 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
       { href: "/services/google-ads", label: "Google Ads Management" },
       servicePricingLink("paid-ads"),
     ],
-    caseStudies: [
-      { href: "/case-studies/landscaping-company-growth", label: "+340% Traffic · Landscaping Co." },
-      { href: "/case-studies/dental-practice-local-seo", label: "+340% Patients · Dental Practice" },
-    ],
+    caseStudies: caseStudyLinks("plumbing", "saas"),
     blog: [
       { href: "/blog/seo-vs-google-ads", label: "SEO vs Google Ads" },
     ],
   },
 };
 
-export function getServiceRelatedLinks(slug: ServiceSeoSlug): RelatedLinkGroup {
-  return baseLinks[slug] ?? { services: [], caseStudies: [], blog: [] };
+export function getServiceRelatedLinks(slug: ServiceSeoSlug): RelatedLinkGroup & { solutions: { href: string; label: string }[] } {
+  const group = baseLinks[slug] ?? { services: [], caseStudies: [], blog: [] };
+  return {
+    ...group,
+    solutions: extraSolutionLinks[slug] ?? [],
+  };
 }

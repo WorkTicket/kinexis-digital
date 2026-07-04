@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     path: "/resources",
     title: `${content.meta.heroTitle} | KINEXIS Digital`,
-    description: content.meta.heroSubtitle,
+    description: content.meta.metaDescription,
   });
 }
 

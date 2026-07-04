@@ -153,7 +153,16 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
                 <Button type="submit" variant="primary" fullWidthMobile disabled={submitting}>
                   {submitting ? "Submitting..." : c.submitButton}
                 </Button>
-                {error ? <p className="text-xs text-center text-red-400">{error}</p> : null}
+                {error ? (
+                  <p
+                    role="alert"
+                    aria-live="assertive"
+                    aria-atomic="true"
+                    className="text-xs text-center text-red-400"
+                  >
+                    {error}
+                  </p>
+                ) : null}
                 <p className="text-xs text-center text-text-muted">{c.noSpam}</p>
               </form>
             )}

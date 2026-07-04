@@ -96,7 +96,7 @@ export default function AnalyticsScripts() {
 
   return (
     <>
-      <Script id="gtag-consent-default" strategy="afterInteractive">
+      <Script id="gtag-consent-default" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -113,9 +113,9 @@ export default function AnalyticsScripts() {
       <Script
         id="gtag-js"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        strategy="afterInteractive"
+        strategy="lazyOnload"
       />
-      <Script id="gtag-config" strategy="afterInteractive">
+      <Script id="gtag-config" strategy="lazyOnload">
         {`
           gtag('js', new Date());
           gtag('config', '${GA_ID}', { send_page_view: false });

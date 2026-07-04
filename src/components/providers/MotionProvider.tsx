@@ -14,11 +14,15 @@ import {
   defaultMotionVariants,
   EASE_OUT,
   resolveMotionConfig,
+  type MotionEnvironment,
   type MotionVariants,
 } from "@/lib/motion-config";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const MotionVariantsContext = createContext<MotionVariants>(defaultMotionVariants);
+
+const defaultMotionEnvironment: MotionEnvironment = { reduced: false, mobile: false };
+export const MotionEnvironmentContext = createContext<MotionEnvironment>(defaultMotionEnvironment);
 
 export function useMotionVariants(): MotionVariants {
   return useContext(MotionVariantsContext);
@@ -67,8 +71,14 @@ export function MotionProvider({ children }: { children: ReactNode }) {
     }
   }, [mobile, reduced]);
 
+  const environment = useMemo(
+    () => ({ reduced, mobile }),
+    [reduced, mobile]
+  );
+
   return (
     <LazyMotion features={domAnimation} strict>
+      <MotionEnvironmentContext.Provider value={environment}>
       <MotionVariantsContext.Provider value={variants}>
         {/* Always "never" — we own reduced-motion detection ourselves via
             usePrefersReducedMotion + resolveMotionConfig. When reduced=true,
@@ -85,6 +95,7 @@ export function MotionProvider({ children }: { children: ReactNode }) {
           {children}
         </MotionConfig>
       </MotionVariantsContext.Provider>
+      </MotionEnvironmentContext.Provider>
     </LazyMotion>
   );
 }

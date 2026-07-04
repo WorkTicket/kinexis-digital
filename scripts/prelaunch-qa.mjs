@@ -10,7 +10,7 @@ const pages = [
   { path: "/en/contact", label: "Contact" },
   { path: "/en/services/seo", label: "SEO Service" },
   { path: "/en/case-studies", label: "Case Studies" },
-  { path: "/en/locations/des-moines", label: "Location" },
+  { path: "/en/digital-marketing-agency", label: "Agency Hub" },
   { path: "/en/blog/local-seo-strategy-2026", label: "Blog Post" },
 ];
 

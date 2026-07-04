@@ -48,9 +48,9 @@ export const seoPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Real outcomes from recent client programs.",
     metrics: [
-      { metric: "+340%", label: "organic leads · professional services, 9 mo" },
-      { metric: "4.2x", label: "traffic growth · SaaS platform, 12 mo" },
-      { metric: "Top 3", label: "rankings for primary buyer keywords, avg. month 5" },
+      { metric: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
+      { metric: "+1,290%", label: "organic traffic · same client" },
+      { metric: "Top 3", label: "rankings for 42 local keywords" },
     ],
   },
 };
@@ -103,9 +103,9 @@ export const localSeoPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Outcomes from recent local SEO programs.",
     metrics: [
-      { metric: "+340%", label: "new patient bookings · dental group, 6 mo" },
-      { metric: "+280%", label: "GBP direction requests · home services" },
-      { metric: "Top 3", label: "map pack placements · avg. by month 4" },
+      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "+2,371%", label: "GBP interactions · same client" },
+      { metric: "Top 3", label: "map pack · 48 of 60 keywords" },
     ],
   },
 };
@@ -158,9 +158,9 @@ export const webDesignPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Measurable outcomes from recent web projects.",
     metrics: [
-      { metric: "2.3x", label: "lead volume increase · post-launch avg." },
-      { metric: "2.8s", label: "avg. load time · across recent builds" },
-      { metric: "+68%", label: "conversion rate lift · landing page redesigns" },
+      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. rebuild" },
+      { metric: "4.8X", label: "qualified lead growth · same client, 10 mo" },
+      { metric: "Lighthouse 94", label: "performance score · post-launch" },
     ],
   },
 };
@@ -213,9 +213,9 @@ export const croPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Conversion outcomes from recent programs.",
     metrics: [
-      { metric: "+120%", label: "conversion rate lift · landing page optimization" },
-      { metric: "35%", label: "bounce rate reduction · page redesigns" },
-      { metric: "2.4x", label: "lead volume · same ad spend, post-CRO" },
+      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. CRO" },
+      { metric: "43%", label: "CAC reduction · SaaS Platform" },
     ],
   },
 };
@@ -323,9 +323,9 @@ export const contentMarketingPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Content outcomes from recent programs.",
     metrics: [
-      { metric: "+280%", label: "organic traffic growth · 12-month program" },
-      { metric: "50+", label: "page-one rankings · mid-competition market" },
-      { metric: "3.4x", label: "lead growth from organic content" },
+      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "+482%", label: "organic traffic · same client" },
+      { metric: "62%", label: "of demos from content engine · month 8" },
     ],
   },
 };
@@ -653,9 +653,9 @@ export const funnelsPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Funnel and CRO outcomes from recent programs.",
     metrics: [
-      { metric: "+120%", label: "conversion rate lift · landing page optimization" },
-      { metric: "2.7x", label: "lead conversion rate improvement · funnel builds" },
-      { metric: "+320%", label: "booked calls · 90-day funnel + CRO program" },
+      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. funnel" },
+      { metric: "43%", label: "CAC reduction · SaaS Platform" },
     ],
   },
 };
@@ -708,9 +708,9 @@ export const paidAdsPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Paid media outcomes from recent client programs.",
     metrics: [
-      { metric: "4.1x", label: "avg. blended ROAS across channels" },
-      { metric: "45%", label: "CPL reduction · account restructure" },
-      { metric: "+120%", label: "conv. lift · landing page + ad alignment" },
+      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "65%", label: "ad spend cut · same client" },
+      { metric: "Top 3", label: "local pack · 48 of 60 keywords" },
     ],
   },
 };
