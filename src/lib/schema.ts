@@ -1,26 +1,67 @@
-import { getDefaultOgImageUrl, getSiteUrl } from "@/lib/metadata";
+import { businessProfile } from "@/lib/business";
+import { getDefaultOgImageUrl, getOrganizationLogoUrl, getSiteUrl } from "@/lib/metadata";
 
 export type BreadcrumbItem = { name: string; url?: string };
+
+function organizationLogoObject() {
+  return {
+    "@type": "ImageObject" as const,
+    url: getOrganizationLogoUrl(),
+    width: 512,
+    height: 512,
+  };
+}
 
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${getSiteUrl()}/#organization`,
-    name: "KINEXIS Digital",
+    name: businessProfile.name,
     url: getSiteUrl(),
-    logo: getDefaultOgImageUrl(),
-    description:
-      "Digital marketing agency specializing in SEO, paid media, web design, CRO, and analytics for local businesses, SaaS companies, and enterprise organizations.",
-    sameAs: [
-      "https://www.linkedin.com/company/kinexisdigital",
-    ],
+    logo: organizationLogoObject(),
+    description: businessProfile.description,
+    sameAs: [businessProfile.linkedIn],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "hello@kinexisdigital.com",
-      availableLanguage: ["English", "Spanish"],
+      email: businessProfile.email,
+      availableLanguage: [...businessProfile.languages],
     },
+  };
+}
+
+/**
+ * Agency hub schema — ProfessionalService (subtype of LocalBusiness) with service-area
+ * address only. No fabricated street address or phone; email matches footer + contact page.
+ */
+export function localBusinessSchema(pageUrl?: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": ["ProfessionalService", "MarketingAgency"],
+    "@id": `${getSiteUrl()}/#localbusiness`,
+    name: businessProfile.name,
+    url: pageUrl ?? getSiteUrl(),
+    image: getOrganizationLogoUrl(),
+    logo: organizationLogoObject(),
+    description: businessProfile.description,
+    email: businessProfile.email,
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: businessProfile.addressCountry,
+    },
+    areaServed: businessProfile.areaServed.map((name) => ({
+      "@type": "Country",
+      name,
+    })),
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: businessProfile.email,
+      availableLanguage: [...businessProfile.languages],
+    },
+    sameAs: [businessProfile.linkedIn],
+    parentOrganization: { "@id": `${getSiteUrl()}/#organization` },
   };
 }
 
@@ -29,7 +70,7 @@ export function websiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${getSiteUrl()}/#website`,
-    name: "KINEXIS Digital",
+    name: businessProfile.name,
     url: getSiteUrl(),
     publisher: { "@id": `${getSiteUrl()}/#organization` },
   };
@@ -108,7 +149,7 @@ export function personSchema(person: PersonSchemaInput) {
     jobTitle: person.jobTitle,
     description: person.description,
     url: person.url,
-    worksFor: { "@type": "Organization", name: "KINEXIS Digital", url: getSiteUrl() },
+    worksFor: { "@type": "Organization", name: businessProfile.name, url: getSiteUrl() },
     ...(person.image && { image: person.image }),
   };
 }
@@ -134,7 +175,7 @@ export function articleSchema({
 }) {
   const author = authorName
     ? { "@type": "Person" as const, name: authorName, ...(authorUrl && { url: authorUrl }) }
-    : { "@type": "Organization" as const, "@id": `${getSiteUrl()}/#organization`, name: "KINEXIS Digital" };
+    : { "@type": "Organization" as const, "@id": `${getSiteUrl()}/#organization`, name: businessProfile.name };
 
   return {
     "@context": "https://schema.org",

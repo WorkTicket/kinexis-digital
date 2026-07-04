@@ -35,6 +35,9 @@ yarn-error.log*
 # debug artifacts — root-level HTML dumps
 /*.html
 
+# accidental large binaries in audit exports
+docs/seo-remediation/ahrefs-export/*.exe
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

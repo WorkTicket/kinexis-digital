@@ -1,0 +1,236 @@
+{
+  "summary": {
+    "timestamp": "2026-07-04T17:48:06.603Z",
+    "finished": "2026-07-04T17:48:14.301Z",
+    "base": "https://www.kinexisdigital.com",
+    "sitemap_url_count": 378,
+    "urls_crawled": 380,
+    "min_dofollow_inlinks_target": 3,
+    "sitemap_pass": 378,
+    "sitemap_fail": 0,
+    "thin_dofollow_inlinks": 0,
+    "thin_dofollow_inlinks_urls": [],
+    "mixed_inlinks_count": 0,
+    "lead_magnet_nofollow_pattern_count": 0,
+    "outlinks_to_redirect_pages": 0,
+    "outlinks_to_redirect_total": 0,
+    "orphan_count": 0,
+    "orphan_urls": [],
+    "src_has_rel_nofollow_on_internal": true,
+    "ahrefs_still_applies": {
+      "links_to_redirect": 0,
+      "one_dofollow_inlink": 0,
+      "mixed_inlinks_unexplained": 0
+    },
+    "ahrefs_resolved": {
+      "links_to_redirect": 0,
+      "one_dofollow_inlink": 0
+    },
+    "phase6Pass": false
+  },
+  "ahrefsComparison": [
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/landing-page-optimization",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/ga4-reporting",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/technical-seo-guide",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/email-segmentation",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/link-building-strategies",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/heatmap-analysis",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/negative-keywords-guide",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/attribution-models",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/roas-calculations",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/internal-linking-guide",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/lifecycle-marketing",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/automated-nurture-sequences",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/marketing-dashboards",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/quality-score-guide",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "links_to_redirect",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/blog/conversion-psychology",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "outgoing_nofollow",
+      "ahrefs_url": "https://www.kinexisdigital.com/es/lead-magnet",
+      "live_found": true,
+      "live_dofollow_inlinks": 0,
+      "live_nofollow_inlinks": 1,
+      "live_outlinks_to_3xx": 0,
+      "live_lead_magnet_pattern": "no",
+      "ahrefs_still_applies": true,
+      "live_issues": ""
+    },
+    {
+      "export": "outgoing_nofollow",
+      "ahrefs_url": "http://www.kinexisdigital.com/en/lead-magnet",
+      "live_found": false,
+      "live_dofollow_inlinks": null,
+      "live_nofollow_inlinks": null,
+      "live_outlinks_to_3xx": null,
+      "live_lead_magnet_pattern": null,
+      "ahrefs_still_applies": null,
+      "live_issues": ""
+    },
+    {
+      "export": "outgoing_nofollow",
+      "ahrefs_url": "https://www.kinexisdigital.com/en/lead-magnet",
+      "live_found": true,
+      "live_dofollow_inlinks": 0,
+      "live_nofollow_inlinks": 1,
+      "live_outlinks_to_3xx": 0,
+      "live_lead_magnet_pattern": "no",
+      "ahrefs_still_applies": true,
+      "live_issues": ""
+    }
+  ],
+  "redirectOutlinks": [],
+  "thinInlink": [],
+  "mixedInlinks": [],
+  "leadMagnetPatternCount": 0,
+  "failures": []
+}

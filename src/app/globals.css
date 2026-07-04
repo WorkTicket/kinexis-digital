@@ -33,7 +33,7 @@
   --border-strong: rgba(255, 255, 255, 0.1);
   --border: var(--border-strong);
   --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-muted: rgba(255, 255, 255, 0.6);
   --gradient: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
   --shadow-card: 0 0 20px rgba(0, 212, 255, 0.08), 0 0 60px rgba(0, 153, 204, 0.04);
   --shadow-panel: 0 24px 80px -12px rgba(0, 0, 0, 0.55);
@@ -1663,11 +1663,11 @@ summary::-webkit-details-marker {
   }
 
   .type-metric-label-stat {
-    @apply mt-2 text-[10px] font-bold uppercase tracking-[0.12em] text-muted/50;
+    @apply mt-2 text-[10px] font-bold uppercase tracking-[0.12em] text-muted/70;
   }
 
   .type-metric-desc {
-    @apply mt-1 text-xs text-muted/50;
+    @apply mt-1 text-xs text-muted/70;
   }
 
   .type-metric-sm {
@@ -1724,7 +1724,7 @@ summary::-webkit-details-marker {
   }
 
   .case-study-metric-card__before {
-    @apply text-muted/55;
+    @apply text-muted/70;
   }
 
   .case-study-metric-card__arrow {
@@ -1923,6 +1923,36 @@ summary::-webkit-details-marker {
 
   .text-text-muted {
     color: var(--text-muted);
+  }
+
+  .skip-to-main {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    z-index: 10000;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .skip-to-main:focus {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-control);
+    border: 1px solid rgba(0, 212, 255, 0.45);
+    background: var(--bg-secondary);
+    color: var(--text);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: var(--shadow-glow-sm);
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 2px;
   }
 
   .grain-overlay {
@@ -2443,7 +2473,10 @@ summary::-webkit-details-marker {
   }
 
   [data-motion="reduce-mobile"] .page-enter {
-    animation-duration: 0.3s;
+    animation: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   [data-motion="reduce-mobile"] .motion-card,
@@ -2505,6 +2538,26 @@ summary::-webkit-details-marker {
 
 .page-enter {
   animation: page-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* SSR hero shells — LCP text is in HTML; skip entrance animations that shift layout */
+.hero--ssr .hero-label,
+.hero--ssr .type-hero,
+.hero--ssr .hero__subtitle,
+.hero--ssr .section-intro-lg,
+.hero--ssr .hero__cta {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (max-width: 1023px) {
+  .page-enter {
+    animation: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Marketing imagery — opacity load fade, max 1.03 hover scale */
@@ -2583,10 +2636,11 @@ footer a:focus {
   Footer is always below the fold; apply conservatively to avoid conflicts with
   Framer Motion whileInView observers on interactive sections.
 */
-footer {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 480px;
-}
+/*
+  Footer must paint at full size on first layout — content-visibility:auto with a
+  low contain-intrinsic-size caused ~0.15 CLS on the homepage when the real footer
+  replaced the 480px placeholder (PSI Jul 2026).
+*/
 
 /*
   The header backdrop uses backdrop-filter which is GPU-composited. Explicitly

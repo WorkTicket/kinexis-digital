@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import IndustryDetailClient from "@/components/pages/IndustryDetailClient";
+import ShowcaseHeroShell from "@/components/shared/ShowcaseHeroShell";
 import JsonLd from "@/components/seo/JsonLd";
 import { buildIndustryDetailContent } from "@/content/industries/detail";
 import {
@@ -69,18 +70,25 @@ export default async function IndustryDetailPage({ params }: Props) {
           ]),
         ]}
       />
-      <IndustryDetailClient
-        content={content}
-        categoryLabel={category?.label || categoryId}
-        industryLabel={industry.label}
-        categoryId={categoryId}
-        industrySlug={slug}
+      <ShowcaseHeroShell
+        label={content.hero.label}
+        line1={content.hero.headlineLine1}
+        line2={content.hero.headlineLine2}
+        subtitle={content.hero.subtitle}
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },
           { name: category?.label || categoryId, url: `/industries/${categoryId}` },
           { name: industry.label },
         ]}
+        ctaLabel="Book a Strategy Call"
+        ctaHref="/contact"
+      />
+      <IndustryDetailClient
+        content={content}
+        categoryLabel={category?.label || categoryId}
+        industryLabel={industry.label}
+        categoryId={categoryId}
       />
     </>
   );

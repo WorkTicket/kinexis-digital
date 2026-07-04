@@ -1,6 +1,5 @@
 "use client";
 
-import HeroArchetype from "@/components/ui/HeroArchetype";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
 import ProofMetric from "@/components/ui/ProofMetric";
@@ -22,20 +21,6 @@ export default function SolutionPageClient({ solution }: Props) {
 
   return (
     <>
-      <HeroArchetype
-        archetype="showcase"
-        label={solution.title}
-        headline={
-          <>
-            <span className="type-hero-line">{solution.headlineLine1}</span>
-            <span className="type-hero-line">{solution.headlineLine2}</span>
-          </>
-        }
-        subtitle={solution.challenge}
-        ctaLabel="Book a Strategy Call"
-        ctaHref="/contact"
-      />
-
       <section className="section-padding bg-bg-dark">
         <div className="container-site max-w-3xl">
           <SectionHeader pattern="B" title="The challenge" />

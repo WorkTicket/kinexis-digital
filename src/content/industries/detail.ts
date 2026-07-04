@@ -87,14 +87,24 @@ function industryChallenges(industry: IndustryEntry): string[] {
 function industryOutcomes(industry: IndustryEntry): { value: string; label: string }[] {
   const map: Record<string, { value: string; label: string }[]> = {
     saas: [
-      { value: "65%", label: "trial conversion lift" },
-      { value: "40%", label: "CAC reduction" },
-      { value: "2.5x", label: "pipeline growth" },
+      { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { value: "43%", label: "CAC reduction · organic channels" },
+      { value: "$33K", label: "MRR · marketing-attributed" },
     ],
     hvac: [
-      { value: "250+", label: "service calls per month" },
-      { value: "3.2x", label: "ROAS on local ads" },
-      { value: "Top 3", label: "local pack rankings" },
+      { value: "94", label: "emergency calls per month · Plumbing Co." },
+      { value: "327%", label: "call growth · 8 mo" },
+      { value: "Top 3", label: "local pack · 48 keywords" },
+    ],
+    landscaping: [
+      { value: "4.8X", label: "qualified lead growth · 10 mo" },
+      { value: "+1,290%", label: "organic traffic · same client" },
+      { value: "8.4%", label: "lead conversion rate · post-rebuild" },
+    ],
+    plumbing: [
+      { value: "327%", label: "emergency call growth · 8 mo" },
+      { value: "65%", label: "ad spend reduction · same client" },
+      { value: "94", label: "emergency calls per month" },
     ],
     dentists: [
       { value: "180+", label: "new patients per month" },
@@ -103,9 +113,9 @@ function industryOutcomes(industry: IndustryEntry): { value: string; label: stri
     ],
   };
   return map[industry.slug] || [
-    { value: "+340%", label: "traffic · Landscaping Co., 8 mo" },
-    { value: "4X", label: "revenue · E-Commerce client, 9 mo" },
-    { value: "+340%", label: "patients · Dental Practice, 6 mo" },
+    { value: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
+    { value: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
+    { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
   ];
 }
 

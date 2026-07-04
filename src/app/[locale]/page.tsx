@@ -2,10 +2,10 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import type { Metadata } from "next";
-import { organizationSchema, websiteSchema } from "@/lib/schema";
+import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/schema";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroShell from "@/components/sections/HeroShell";
-import { buildPageMetadata } from "@/lib/metadata";
+import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import type { Locale } from "@/i18n/routing";
 
 const RevenueEngine = dynamic(() => import("@/components/sections/RevenueEngine"));
@@ -43,6 +43,7 @@ export default async function HomePage({
       <JsonLd
         data={[
           organizationSchema(),
+          localBusinessSchema(buildAbsoluteUrl(locale as Locale, "/")),
           websiteSchema(),
         ]}
       />

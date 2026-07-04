@@ -7,7 +7,6 @@ import { pageSectionClasses } from "@/lib/page-section-surface";
 type RelatedLinksProps = {
   agencyHub?: boolean;
   serviceLinks?: { href: string; label: string }[];
-  locationLinks?: { href: string; label: string }[];
   pricingLinks?: { href: string; label: string }[];
   industryLinks?: { href: string; label: string }[];
   solutionLinks?: { href: string; label: string }[];
@@ -19,7 +18,6 @@ type RelatedLinksProps = {
 export default function RelatedLinks({
   agencyHub,
   serviceLinks,
-  locationLinks,
   pricingLinks,
   industryLinks,
   solutionLinks,
@@ -33,7 +31,6 @@ export default function RelatedLinks({
       links: [{ href: "/digital-marketing-agency", label: "Full-Service Digital Marketing Agency" }],
     },
     serviceLinks?.length && { title: "Services", links: serviceLinks },
-    locationLinks?.length && { title: "Locations", links: locationLinks },
     pricingLinks?.length && { title: "Pricing", links: pricingLinks },
     industryLinks?.length && { title: "Industries", links: industryLinks },
     solutionLinks?.length && { title: "Solutions", links: solutionLinks },

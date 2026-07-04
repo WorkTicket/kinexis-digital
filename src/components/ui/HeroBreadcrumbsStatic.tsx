@@ -13,7 +13,12 @@ export default function HeroBreadcrumbsStatic({ items }: { items: BreadcrumbItem
             <li key={crumb.url ?? crumb.name} className="flex items-center gap-2">
               {i > 0 && <span className="text-white/15" aria-hidden>/</span>}
               {isLast || !crumb.url ? (
-                <span className={isLast ? "text-neon-cyan/80" : ""}>{crumb.name}</span>
+                <span
+                  {...(isLast ? { "aria-current": "page" as const } : {})}
+                  className={isLast ? "text-neon-cyan/80" : ""}
+                >
+                  {crumb.name}
+                </span>
               ) : (
                 <Link href={crumb.url} className="hover:text-white transition-colors duration-500">
                   {crumb.name}

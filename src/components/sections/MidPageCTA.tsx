@@ -35,11 +35,11 @@ export default function MidPageCTA() {
               <Button href="/contact" variant="primary" fullWidthMobile>
                 {tCommon("bookStrategyCall")}
               </Button>
-              <Button href="/lead-magnet" variant="secondary" fullWidthMobile>
+              <Button href="/lead-magnet" rel="nofollow" variant="secondary" fullWidthMobile>
                 {t("secondaryCta")}
               </Button>
             </div>
-            <p className="text-xs text-white/30">No long-term contracts. Month to month.</p>
+            <p className="text-xs text-text-muted">No long-term contracts. Month to month.</p>
           </motion.div>
         </div>
       </motion.div>

@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "bc112979ac466a00569dafa56ea421ffa85a4dd2"
+      "_sentryRelease": "4d44dd2e6fa0a3cc80a844e1877efd31611af3dc"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -93,7 +93,6 @@
     "compiler": {},
     "expireTime": 31536000,
     "staticPageGenerationTimeout": 60,
-    "output": "standalone",
     "modularizeImports": {
       "@mui/icons-material": {
         "transform": "@mui/icons-material/{{member}}"
@@ -326,11 +325,6 @@
     },
     "_originalRedirects": [
       {
-        "source": "/security.txt",
-        "destination": "/.well-known/security.txt",
-        "permanent": true
-      },
-      {
         "source": "/:locale(en|es)/services/cro",
         "destination": "/:locale/services/funnels",
         "permanent": true
@@ -338,6 +332,101 @@
       {
         "source": "/:locale(en|es)/pricing/cro",
         "destination": "/:locale/pricing/funnels",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/locations",
+        "destination": "/:locale/digital-marketing-agency",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/locations/:path*",
+        "destination": "/:locale/digital-marketing-agency",
+        "permanent": true
+      },
+      {
+        "source": "/locations",
+        "destination": "/en/digital-marketing-agency",
+        "permanent": true
+      },
+      {
+        "source": "/locations/:path*",
+        "destination": "/en/digital-marketing-agency",
+        "permanent": true
+      },
+      {
+        "source": "/en/case-studies/dental-practice-local-seo",
+        "destination": "/en/case-studies/plumbing-company-growth",
+        "permanent": true
+      },
+      {
+        "source": "/es/case-studies/dental-practice-local-seo",
+        "destination": "/es/case-studies/plumbing-company-growth",
+        "permanent": true
+      },
+      {
+        "source": "/case-studies/dental-practice-local-seo",
+        "destination": "/en/case-studies/plumbing-company-growth",
+        "permanent": true
+      },
+      {
+        "source": "/en/case-studies/saas-analytics-platform",
+        "destination": "/en/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/es/case-studies/saas-analytics-platform",
+        "destination": "/es/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/case-studies/saas-analytics-platform",
+        "destination": "/en/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/en/case-studies/fintech-app-startup",
+        "destination": "/en/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/es/case-studies/fintech-app-startup",
+        "destination": "/es/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/case-studies/fintech-app-startup",
+        "destination": "/en/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/en/case-studies/b2b-consulting-firm",
+        "destination": "/en/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/es/case-studies/b2b-consulting-firm",
+        "destination": "/es/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/case-studies/b2b-consulting-firm",
+        "destination": "/en/case-studies/saas-platform-growth",
+        "permanent": true
+      },
+      {
+        "source": "/en/case-studies/premium-ecommerce-brand",
+        "destination": "/en/case-studies",
+        "permanent": true
+      },
+      {
+        "source": "/es/case-studies/premium-ecommerce-brand",
+        "destination": "/es/case-studies",
+        "permanent": true
+      },
+      {
+        "source": "/case-studies/premium-ecommerce-brand",
+        "destination": "/en/case-studies",
         "permanent": true
       }
     ]

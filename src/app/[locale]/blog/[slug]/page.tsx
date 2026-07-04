@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import AnimatedWrapper from "@/components/ui/AnimatedWrapper";
 import CTAArchetype from "@/components/ui/CTAArchetype";
+import ArticleHeroShell from "@/components/shared/ArticleHeroShell";
 import { getBlogArticle } from "@/content/blog-articles";
 import { getClusterPost } from "@/content/blog-clusters";
 import { blogContent } from "@/content/blog";
@@ -12,7 +13,6 @@ import JsonLd from "@/components/seo/JsonLd";
 import { Link } from "@/i18n/navigation";
 import { getAuthor } from "@/content/authors";
 import { getBlogAuthorSlug } from "@/lib/blog-authors";
-import HeroArchetype from "@/components/ui/HeroArchetype";
 import { localizeInternalLinks } from "@/lib/locale-path";
 import { getBlogRelatedLinks } from "@/lib/blog-related-links";
 import RelatedLinks from "@/components/sections/RelatedLinks";
@@ -98,8 +98,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           ]),
         ]}
       />
-      <HeroArchetype
-        archetype="article"
+      <ArticleHeroShell
         label={post.category}
         headline={post.title}
         subtitle={post.publishedAt}

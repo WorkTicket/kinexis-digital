@@ -38,8 +38,7 @@ const TEMPLATE_SAMPLES = [
   { template: "homepage", url: `${base}/en` },
   { template: "service", url: `${base}/en/services/seo` },
   { template: "service_heavy", url: `${base}/en/services/ppc-management` },
-  { template: "location_city", url: `${base}/en/locations/toronto` },
-  { template: "location_service", url: `${base}/en/locations/toronto/seo` },
+  { template: "agency_hub", url: `${base}/en/digital-marketing-agency` },
   { template: "industry_detail", url: `${base}/en/industries/technology/startups` },
   { template: "blog_post", url: `${base}/en/blog/technical-seo-fundamentals` },
   { template: "solution", url: `${base}/en/solutions/seo-for-hvac-companies` },
@@ -50,8 +49,7 @@ const TEMPLATE_SAMPLES = [
 const PRIORITY_TEMPLATES = [
   "homepage",
   "service",
-  "location_city",
-  "location_service",
+  "agency_hub",
   "industry_detail",
   "blog_post",
   "solution",
@@ -111,8 +109,7 @@ function inferTemplateFromPath(pathname) {
   const p = pathname.replace(/^\/(en|es)/, "") || "/";
   if (p === "/") return "homepage";
   if (p.startsWith("/services/")) return "service";
-  if (/\/locations\/[^/]+\/[^/]+/.test(p)) return "location_service";
-  if (p.startsWith("/locations/")) return "location_city";
+  if (p.startsWith("/digital-marketing-agency")) return "agency_hub";
   if (/\/industries\/[^/]+\/[^/]+/.test(p)) return "industry_detail";
   if (p.startsWith("/industries/")) return "industry_category";
   if (p.startsWith("/blog/")) return "blog_post";

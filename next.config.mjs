@@ -2,6 +2,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
 
 initOpenNextCloudflareForDev();
 
@@ -108,6 +109,7 @@ const nextConfig = {
         destination: "/:locale/pricing/funnels",
         permanent: true,
       },
+      ...getLegacyRedirects(),
     ];
   },
   async headers() {

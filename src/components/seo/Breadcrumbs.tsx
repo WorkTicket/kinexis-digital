@@ -20,7 +20,12 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
             <li key={`${item.name}-${i}`} className="flex items-center gap-1">
               {i > 0 && <ChevronRight className="h-3 w-3 text-white/20" />}
               {isLast || !item.url ? (
-                <span className={isLast ? "text-white/70" : ""}>{item.name}</span>
+                <span
+                  {...(isLast ? { "aria-current": "page" as const } : {})}
+                  className={isLast ? "text-white/70" : ""}
+                >
+                  {item.name}
+                </span>
               ) : (
                 <Link href={item.url} className="hover:text-white transition-colors">
                   {item.name}

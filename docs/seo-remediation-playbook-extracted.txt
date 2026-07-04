@@ -1,0 +1,545 @@
+Enterprise SEO Remediation Playbook
+Version 3 — rebuilt against the site's full Ahrefs Site Audit issue export
+Source data: kinexisdigital hreflang-annotation export (380 rows / 190 groups) + full Ahrefs Site Audit issue list (25 issue types, 3,672 flagged instances) supplied by the client
+How To Use This Document
+This playbook is written to be executed by an autonomous coding agent, one phase at a time, with a human reviewing the completion report before the next phase is unlocked. Each phase includes: (1) the specific Ahrefs issue categories it resolves, (2) a task list, (3) a definition of done, and (4) a mandatory completion report. The agent should not skip ahead, batch phases together, or 'fix' issues not named in the current phase.
+Reality check on "100 health score, zero issues": Ahrefs Site Audit's Health Score is a weighted composite across dozens of checks, and a small number of them depend on things outside application code — third-party embeds, external backlinks pointing at old URLs, DNS/CDN/TLS configuration, or issues Ahrefs flags on pages the business intentionally excludes from indexing. The realistic, honestly-achievable target is: 0 Errors, 0 Warnings on everything within the codebase's control, and a documented, reviewed justification for any Notice-level item that cannot be fixed in code. Treat "100" as the aspirational ceiling, not a pass/fail gate the agent should silently force by, e.g., deleting pages or blocking Ahrefs' crawler.
+Environment & Access — complete before Phase 1
+The agent cannot safely execute this playbook without the following. Fill in before starting:
+Repository: [repo URL / path, default branch, PR or direct-commit policy]
+Stack: [CMS / framework / static site generator / templating engine used to render <link rel="alternate" hreflang> tags]
+Environments: [staging URL, production URL, how to deploy to staging, who approves prod deploys]
+Locale routing: [how /en/ and /es/ prefixes are generated — routes, middleware, or CMS locale field]
+Ahrefs access: [API key for re-crawling, or manual re-export cadence and who performs it]
+Other validators: [Google Search Console property, Screaming Frog license/config, Lighthouse CI setup]
+Rollback: [how to revert a deploy; backup strategy for content/redirect config]
+Global Rules
+Work one phase at a time. Do not start Phase N+1 until Phase N's completion report is reviewed and accepted.
+Validate before proceeding — re-run the relevant tool (Ahrefs, Screaming Frog, GSC, Lighthouse) after each phase, not just at the end.
+No unrelated changes — a phase touching hreflang tags must not also touch canonical tags, copy, or styling.
+Back up / branch before modifying — every phase's changes live in their own commit or PR, never mixed with another phase.
+Never silently suppress an issue (noindex-ing a page, blocking a crawler, disabling a check) to make a health score look better. Suppression is only acceptable when it is the correct SEO fix and must be called out explicitly in the completion report.
+When a fix requires a business decision (e.g., which URL should be canonical, whether a locale-root page should exist at all), stop and flag for human review rather than guessing.
+Confirmed Issue Inventory — Baseline
+This is the full, current Ahrefs Site Audit issue list for the site, supplied directly by the client (not a sample). 3,672 flagged issue instances across 25 issue types. Some pages appear in more than one row (e.g. a page can be both "not indexable" and have "links to redirect"), so this is not a unique-page count — treat it as the checklist the agent clears phase by phase. Every row's target is 0.
+Category
+Confirmed issue
+Pages affected
+Indexability
+Nofollow page
+3
+Indexability
+Noindex page
+3
+Indexability
+Canonical from HTTP to HTTPS
+190
+Indexability
+Noindex and nofollow page
+3
+Links (indexable pages)
+Page has links to redirect
+38
+Links (indexable pages)
+Page has nofollow and dofollow incoming internal links
+200
+Links (indexable pages)
+Page has only one dofollow incoming internal link
+102
+Links (not indexable pages)
+Page has nofollow and dofollow incoming internal links
+100
+Links (not indexable pages)
+Page has only one dofollow incoming internal link
+53
+Links (not indexable pages)
+Page has links to redirect
+19
+Links (not indexable pages)
+Page has nofollow outgoing internal links
+3
+Redirects
+3XX redirect
+200
+Redirects
+Redirect chain
+2
+Redirects
+HTTP to HTTPS redirect
+1
+Content (indexable pages)
+Meta description too short
+90
+Content (not indexable pages)
+Meta description too short
+42
+Localization
+Hreflang annotation invalid
+380
+Localization
+Hreflang to redirect or broken page
+380
+Localization
+More than one page for same language in hreflang
+380
+Localization
+Page referenced for more than one language in hreflang
+380
+Localization
+HTML lang attribute invalid
+190
+Usability & performance
+Slow page
+34
+Sitemaps
+Page in multiple sitemaps
+378
+Other
+Pages to submit to IndexNow
+378
+Other
+Structured data has Google rich results validation error
+123
+TOTAL
+3672
+Three counts line up with the Phase 4 hreflang findings and are worth investigating together rather than as isolated fixes: "Canonical from HTTP to HTTPS" (190), "HTML lang attribute invalid" (190), and "Page in multiple sitemaps" (378, close to the 380 hreflang-affected URLs). These all match the same 190-group / 380-URL locale pattern as the hreflang defect. Before fixing each independently, the agent should check whether the same templating bug (duplicate render loop, and the unprefixed-URL/redirect confusion described in Phase 4) is the common root cause — one fix may resolve several of these rows at once. Confirm with evidence in the completion report either way.
+Phase 1 — Audit
+Objective: establish a single, current inventory of the site's URLs and their technical SEO state before any code changes. No fixes happen in this phase.
+Tasks
+Full crawl inventory: URL, HTTP status, indexability, canonical target, hreflang set, robots directives, sitemap presence, internal inlink count.
+Cross-reference the current Ahrefs Site Audit export against a fresh Screaming Frog crawl — flag any discrepancies for manual review before trusting either dataset.
+Produce one row per URL in a shared audit sheet; do not summarize away individual broken URLs.
+Do not change code in this phase.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 2 — URL Architecture
+Objective: every internal path resolves in one hop to a 200 page.
+Ahrefs Issue (Errors / Warnings / Notices)
+Severity
+Playbook Action
+4XX page
+Error
+Fix or remove the broken link/route; confirm intended destination
+Redirect chain / loop
+Error
+Collapse to a single redirect straight to the final 200 URL
+Internal link to a redirect
+Warning
+Repoint the link to the final destination URL
+HTTP page linked from HTTPS page
+Warning
+Update the link to HTTPS
+Inconsistent trailing slash / case
+Notice
+Normalize via one redirect rule + template fix so new links are correct at the source
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Links (indexable pages)
+Page has links to redirect
+38
+Links (not indexable pages)
+Page has links to redirect
+19
+Redirects
+3XX redirect
+200
+Redirects
+Redirect chain
+2
+Redirects
+HTTP to HTTPS redirect
+1
+Tasks
+Redirect chain (2 pages): collapse each chain to a single redirect straight to the final 200 URL.
+3XX redirect (200 pages, informational): confirm none of these 200 redirecting URLs are linked internally, canonicalized to, listed in a sitemap, or used as a hreflang target — those are separate rows below/elsewhere and must point at the final URL instead.
+Page has links to redirect (38 indexable + 19 not-indexable = 57 pages): update every internal link found on these pages to point directly at the final 200 destination instead of the redirect.
+HTTP to HTTPS redirect (1 page): verify this is an expected scheme-upgrade redirect, not a broken/legacy link; fix the source link to HTTPS directly if it's internal.
+Normalize trailing slash and locale-prefix handling in the routing layer, not per-page — this must be fixed once, centrally.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 3 — Canonicals
+Objective: every indexable page declares exactly one, correct, self- or cross-referencing canonical that resolves 200.
+Ahrefs Issue (Errors / Warnings / Notices)
+Severity
+Playbook Action
+Canonical points to a redirect
+Error
+Point canonical directly at the final 200 URL
+Canonical points to 4XX/5XX
+Error
+Fix the canonical target or the target page
+Missing canonical
+Warning
+Add a self-referencing canonical
+Multiple conflicting canonicals
+Warning
+Remove duplicates; keep one canonical tag per page
+Cross-language canonical
+Error
+Each locale must canonicalize to itself, never to another language version
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Indexability
+Canonical from HTTP to HTTPS
+190
+Tasks
+Canonical from HTTP to HTTPS (190 pages): the canonical tag currently points at an http:// URL while the page itself is served over https:// (or vice versa) — update the canonical to match the site's enforced scheme (https://) exactly. Check whether these 190 pages are the same 190 pages behind the Phase 4 hreflang defect and the Phase 7 HTML lang defect before treating as unrelated (see baseline note above).
+Every indexable page gets one self-referencing canonical (unless it is an intentional duplicate, in which case canonical points to the preferred version — flag these for review).
+Never canonicalize /es/ to /en/ or vice versa — that is a hreflang job, not a canonical job.
+Verify canonical targets return 200 after the Phase 2 redirect cleanup.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 4 — Hreflang — confirmed findings from crawl export
+Objective: fix the two systemic hreflang defects confirmed across 100% of the exported groups, then verify.
+This phase is pre-scoped from real data, not generic guidance. The hreflang-annotation export (380 rows) shows every single one of the 190 language groups on the site has the identical pair of defects below. This is a templating bug, not 190 separate content problems — fix it once in the template/component that emits hreflang tags, then re-crawl to confirm all 190 groups clear at once.
+Confirmed volume (current Ahrefs Site Audit export)
+Category
+Confirmed issue
+Pages affected
+Localization
+Hreflang annotation invalid
+380
+Localization
+Hreflang to redirect or broken page
+380
+Localization
+More than one page for same language in hreflang
+380
+Localization
+Page referenced for more than one language in hreflang
+380
+Localization
+HTML lang attribute invalid
+190
+The four Localization rows above (each 380) map directly to Findings 1 and 2 below. "HTML lang attribute invalid" (190) affects the same population size as the hreflang groups — confirm during the fix whether the same unprefixed/duplicate-template defect is setting the wrong or missing <html lang> value, since that would let one fix close both this row and Phase 7's lang-attribute task together.
+Finding 1 — Duplicate hreflang annotations (190/190 groups, 100%)
+Every hreflang group emits each alternate-language link twice in a row (5 total link entries where 2–3 unique URLs are expected). Example (group id 5927611169620563282):
+en URL — emitted twice
+es URL — emitted twice
+unprefixed URL — emitted once, returning 307 (see Finding 2)
+This is what triggers both "One page is linked for more than one language" and "More than one page is linked for the same language" on every affected URL.
+Fix: locate the component/partial that renders <link rel="alternate" hreflang="..."> tags and remove the duplicate emission — it is almost certainly looping over the locale list twice (e.g., once for the tags and once for an og:locale:alternate or JSON-LD block using the same loop, or a partial being included twice in <head>).
+Finding 2 — Unprefixed root URL included as a hreflang alternate, resolving 307 (190/190 groups, 100%)
+Every group's hreflang set includes a third URL with no /en/ or /es/ prefix (e.g. www.kinexisdigital.com/industries/financial-services/insurance), and that URL returns HTTP 307 rather than 200. This is what triggers "Some pages are not returning 200 status code" and contributes to "Incorrect value" on every group.
+This unprefixed URL is almost certainly a locale-detection redirect (mid-dleware sends the visitor to /en/ or /es/ based on browser language) that is being mistakenly included in the hreflang tag set instead of being excluded from it.
+Fix — requires one decision from the business/SEO owner, flag for review:
+Option A (usually correct): remove the unprefixed URL from hreflang annotations entirely. Hreflang should only ever point at pages that return 200 directly — never at a redirector. The /en/ and /es/ URLs remain reciprocal alternates of each other.
+Option B: if the unprefixed URL is meant to serve as the x-default target for visitors with no matching locale, it must itself return 200 with real content (not a redirect), and be explicitly tagged hreflang="x-default" rather than being silently folded into the en/es set.
+Note: this export does not capture the literal hreflang language-code attribute values (only URLs and their status codes), so the agent must inspect actual page source to confirm current x-default usage before choosing between Option A and B.
+Tasks
+1. Inspect the hreflang-rendering template/component; identify why each alternate is emitted twice; remove the duplicate render path.
+2. Get a decision (Option A or B above) on the unprefixed URL from the SEO/business owner; implement accordingly.
+3. Confirm reciprocity: /en/X must list /es/X as an alternate and vice versa, exactly once each.
+4. Re-crawl (Ahrefs re-crawl or fresh export) and confirm all 190 groups now show 2 unique links (en+es) or 3 with a correctly-implemented 200 x-default — zero groups with duplicate or non-200 entries.
+5. Spot-check the two non-indexable pages found in the export (/en/lead-magnet, /es/lead-magnet) — confirm whether they should be indexable or should be excluded from hreflang entirely.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 5 — Indexability
+Objective: every page intended to rank is index,follow; nothing else leaks into the index.
+Ahrefs Issue (Errors / Warnings / Notices)
+Severity
+Playbook Action
+Noindex page that should be indexable
+Error
+Remove accidental noindex (meta robots or X-Robots-Tag header)
+Nofollow on internal links
+Warning
+Remove unless deliberately sculpting crawl budget — document if kept
+robots.txt blocks an indexable page
+Error
+Update robots.txt disallow rules
+Indexable page missing from sitemap
+Warning
+Add to sitemap in Phase 9
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Indexability
+Nofollow page
+3
+Indexability
+Noindex page
+3
+Indexability
+Noindex and nofollow page
+3
+Tasks
+Nofollow page (3), Noindex page (3), Noindex and nofollow page (3): these are small, specific sets — pull the exact URLs from the Ahrefs export (not re-derived) and check each individually. Do not batch-remove; confirm per URL whether the directive is accidental (fix) or intentional, e.g. a thank-you or internal utility page (keep, and document why).
+Diff current meta robots / X-Robots-Tag against the intended state per URL from Phase 1's audit sheet.
+Confirm robots.txt isn't blocking any URL that should be indexable.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 6 — Internal Linking
+Objective: every important page is reachable and reasonably well-linked internally.
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Links (indexable pages)
+Page has nofollow and dofollow incoming internal links
+200
+Links (indexable pages)
+Page has only one dofollow incoming internal link
+102
+Links (not indexable pages)
+Page has nofollow and dofollow incoming internal links
+100
+Links (not indexable pages)
+Page has only one dofollow incoming internal link
+53
+Links (not indexable pages)
+Page has nofollow outgoing internal links
+3
+Tasks
+Page has only one dofollow incoming internal link (102 indexable + 53 not-indexable = 155 pages): add contextual internal links from related pages so each reaches at least 3 dofollow incoming links. Prioritize the 102 indexable pages first — these are the ones that need internal link equity to rank.
+Page has nofollow and dofollow incoming internal links (200 indexable + 100 not-indexable = 300 pages): audit why some inlinks to these pages are nofollow — if there's no deliberate crawl-budget reason, change them to dofollow for consistency.
+Page has nofollow outgoing internal links (3, not-indexable pages only): remove nofollow from internal links on these 3 pages unless there is a documented reason to sculpt crawl budget away from their targets.
+Remove rel=nofollow from internal links generally (external/sponsored/UGC links are out of scope here).
+Identify and fix orphan pages (0 internal inlinks) from the Phase 1 inventory — not explicitly counted in the Ahrefs export above, so cross-check against the Phase 1 audit sheet.
+Ensure 3–10 contextual incoming links to priority pages (define "priority" using the URL list the business supplies, not a guess).
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 7 — Metadata & HTML
+Objective: titles, meta descriptions, H1s, and the lang attribute are correct and unique.
+Ahrefs Issue (Errors / Warnings / Notices)
+Severity
+Playbook Action
+Duplicate title tag
+Warning
+Rewrite so each indexable page has a unique, descriptive title
+Duplicate meta description
+Warning
+Rewrite per page; do not template identical copy across pages
+Missing/multiple H1
+Warning
+Exactly one H1 per page, matching page intent
+Incorrect HTML lang attribute
+Warning
+<html lang="en"> on /en/ pages, lang="es" on /es/ pages
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Localization
+HTML lang attribute invalid
+190
+Note: "Meta description too short" doesn't appear in the table above because it's filed under Content in the Ahrefs export, not Metadata — listed separately below.
+Category
+Confirmed issue
+Pages affected
+Content (indexable pages)
+Meta description too short
+90
+Content (not indexable pages)
+Meta description too short
+42
+Tasks
+Meta description too short (90 indexable + 42 not-indexable = 132 pages): rewrite each to a genuinely descriptive 120–155 character summary of that specific page — do not pad a short description with filler just to hit a character count. Prioritize the 90 indexable pages.
+HTML lang attribute invalid (190 pages, shared with Phase 4): set <html lang="en"> on /en/ pages and lang="es" on /es/ pages. Fix in the same pass as the Phase 4 template fix if the root cause is shared — see the Phase 4 note.
+Fix duplicate title tags, duplicate meta descriptions, and missing/multiple H1s per the issue table above.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 8 — Structured Data
+Objective: all structured data validates and reflects on-page content.
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Other
+Structured data has Google rich results validation error
+123
+Tasks
+Structured data has Google rich results validation error (123 pages): pull the specific error type per template from the Ahrefs export or Rich Results Test, fix at the schema/template level — 123 pages sharing a template-level bug is far more likely than 123 unrelated hand-authored errors.
+Run Google Rich Results Test / schema.org validator across templates (not every URL individually — fix at the template level).
+Fix errors first, then warnings; confirm structured data values match visible page content (no mismatched or fabricated fields).
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 9 — XML Sitemaps & Search Engine Notification
+Objective: sitemaps contain exactly the set of canonical, 200, indexable URLs — nothing else — and are actively pushed to search engines.
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Sitemaps
+Page in multiple sitemaps
+378
+Other
+Pages to submit to IndexNow
+378
+Tasks
+Page in multiple sitemaps (378 pages): identify why — most likely each locale is being written into more than one sitemap file (e.g. a combined sitemap plus a per-locale sitemap, or the same duplicate-loop bug from Phase 4). Each URL should appear in exactly one sitemap. This count (378) is close enough to the 380 hreflang-affected URLs that it should be checked against the same root cause before treating as separate.
+Exclude redirects, 4XX/5XX, and noindex pages from all sitemaps.
+Include every indexable 200 canonical URL, especially any added back in Phase 5.
+Confirm sitemap is referenced in robots.txt and submitted in Google Search Console.
+Pages to submit to IndexNow (378 pages): once the sitemap is corrected (task above), submit the finalized, deduplicated URL list to IndexNow so Bing/other participating engines pick up the fixes quickly. Do this after, not before, the sitemap and URL fixes land — submitting a URL list that still contains the duplicate/incorrect entries wastes the notification.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 10 — Performance
+Objective: Core Web Vitals pass on mobile and desktop for priority templates.
+Confirmed volume (current export)
+Category
+Confirmed issue
+Pages affected
+Usability & performance
+Slow page
+34
+Tasks
+Slow page (34 pages): pull the exact 34 URLs from the Ahrefs export and check whether they share a template — fix at that level first before treating any as one-off outliers.
+Run Lighthouse/PageSpeed Insights on one URL per template type (not every URL) to find template-level issues.
+Address the largest-impact items first: image sizing/formats, render-blocking resources, unused JS/CSS, caching headers.
+Re-test after each significant change; performance work has diminishing returns — stop once Core Web Vitals pass, don't over-optimize at the expense of Phase scope.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Phase 11 — Final Validation
+Objective: confirm the cumulative effect of Phases 1–10 across every tool, and produce an honest final report.
+Tasks
+Full re-crawl: Ahrefs Site Audit, Screaming Frog, Google Search Console coverage report, Lighthouse, Rich Results Test, W3C HTML validator.
+Target: every row in the Confirmed Issue Inventory baseline (3,672 flagged instances across 25 issue types) at 0, and 0 Errors/Warnings on any new issue types Ahrefs surfaces on re-crawl.
+For any remaining Notice-level item or any item outside code's control (third-party scripts, external backlinks, infrastructure/DNS/CDN, business-decision exclusions), list it explicitly with the reason it's out of scope — do not hide it.
+Report the final Ahrefs Health Score alongside the itemized list above so the number is understood in context, not treated as the only signal of success.
+STOP HERE — Do not begin the next phase until this phase is complete
+Produce a completion report containing:
+Files modified (full paths, diff summary)
+Rules implemented (reference the numbered tasks above)
+Number of issues fixed, broken down by Ahrefs issue name
+Remaining issues, if any, with the reason they remain open
+Validation results proving the phase is complete (tool output, not a claim)
+Any blockers requiring manual/human review
+Tests performed and their results
+Exact commands executed
+Confirmation that no files outside this phase's scope were modified
+Appendix A — Hreflang Audit Data Summary
+Source file: kinexisdigital_01-jul-2026_hreflang-annotation export, 380 rows.
+Unique affected URLs: 380 (190 en/es page pairs)
+Hreflang groups analyzed: 190 — 100% show both Finding 1 and Finding 2 from Phase 4
+Every group's hreflang set: 5 link entries / 3 unique URLs (en ×2, es ×2, unprefixed ×1)
+The unprefixed URL in every group returns HTTP 307
+2 URLs flagged non-indexable within the affected set: /en/lead-magnet and /es/lead-magnet — confirm intended state in Phase 4/5
+Because the defect is identical across all 190 groups, the agent should treat this as one template-level fix (Phase 4, Findings 1–2) rather than 190 individual page edits. Re-exporting the Ahrefs hreflang report after the fix should show the count drop from 380 affected rows to 0 in a single pass.
+Appendix B — Ahrefs Issue Taxonomy → Phase Map
+Use this to translate a raw Ahrefs Site Audit issue name into which phase owns fixing it. Not exhaustive — treat any issue not listed here as belonging to the phase whose objective most closely matches it, and flag genuinely new categories for human triage.
+Ahrefs Issue
+Owning Phase
+4XX page / broken link
+Phase 2
+Redirect chain / redirect loop
+Phase 2
+Page has only one internal link / orphan page
+Phase 6
+Canonical points to redirect or non-indexable page
+Phase 3
+Missing canonical / multiple canonicals
+Phase 3
+Hreflang: incorrect value / missing return link / no 200
+Phase 4
+Hreflang: missing x-default
+Phase 4
+Page has noindex / blocked by robots.txt
+Phase 5
+Nofollow internal links
+Phase 6
+Duplicate title / meta description / missing H1
+Phase 7
+Incorrect HTML lang attribute
+Phase 7
+Structured data errors/warnings
+Phase 8
+Sitemap contains non-canonical/noindex/redirect URLs
+Phase 9
+Slow page / poor Core Web Vitals
+Phase 10

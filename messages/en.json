@@ -4,6 +4,9 @@
     "description": "Digital marketing agency building real sales systems. SEO, paid ads, web design, and conversion funnels designed to drive qualified leads.",
     "ogDescription": "We build real sales systems for businesses that want predictable growth - not just pretty websites."
   },
+  "a11y": {
+    "skipToMain": "Skip to main content"
+  },
   "nav": {
     "home": "Home",
     "agency": "Agency",
@@ -173,25 +176,25 @@
   "featuredResults": {
     "label": "Proven Results",
     "title": "Outcomes, not opinions.",
-    "subtitle": "Six verified client results. Strategy, execution timeline, and real revenue numbers. Documented and available on request.",
+    "subtitle": "Three verified client results across home services and technology. Strategy, execution timeline, and real revenue numbers.",
     "cases": {
       "landscaping": {
         "category": "Home Services",
         "title": "Landscaping Company",
-        "headline": "5X Revenue Growth",
-        "summary": "A complete website rebuild and local SEO campaign turned this business around. Revenue went from $2,000/mo to $11,500/mo in 8 months."
+        "headline": "4.8X Qualified Lead Growth",
+        "summary": "A complete SEO and site rebuild. Qualified leads went from 10 to 48 per month, organic traffic up 1,290%, and conversion rate from 1.8% to 8.4%."
       },
-      "dental": {
-        "category": "Healthcare",
-        "title": "Dental Practice",
-        "headline": "340% More Patients",
-        "summary": "Multi-location dental practice. Local SEO overhaul and ad restructure drove new patient bookings from 45 to 198 per month."
+      "plumbing": {
+        "category": "Home Services",
+        "title": "Plumbing Company",
+        "headline": "327% More Emergency Calls",
+        "summary": "Family-owned plumber escaped paid ad dependency. Emergency calls went from 22 to 94 per month, ad spend cut by 65%, and local pack dominance achieved."
       },
-      "ecommerce": {
-        "category": "Retail",
-        "title": "Premium E-Commerce Brand",
-        "headline": "4X Monthly Revenue",
-        "summary": "Brand repositioning and site rebuild lifted AOV from $85 to $238 and revenue from $12K to $45K per month."
+      "saas": {
+        "category": "Technology",
+        "title": "SaaS Platform",
+        "headline": "5.9X More Demos",
+        "summary": "B2B SaaS scaled demo requests from 32 to 189 per month through content marketing and technical SEO. MRR grew from $8.5K to $33K in 8 months."
       }
     }
   },

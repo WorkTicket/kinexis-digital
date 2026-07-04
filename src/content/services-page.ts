@@ -91,21 +91,21 @@ export type ServicesPageContent = {
 };
 
 const enServices: ServiceCardContent[] = [
-  { id: "seo", label: "SEO", description: "Technical foundations, authority content, and link building that keeps paying off over time.", stat: "+340% traffic · Landscaping Co." },
-  { id: "localSeo", label: "Local SEO", description: "Geo-targeted rankings, Google Business Profile optimization, and map pack placements for businesses that compete locally.", stat: "Top 3 map pack · avg. by month 4" },
-  { id: "paidAds", label: "Paid Ads", description: "Google and Meta campaigns built for ROAS, not vanity metrics.", stat: "+340% patients · Dental Practice" },
+  { id: "seo", label: "SEO", description: "Technical foundations, authority content, and link building that keeps paying off over time.", stat: "+1,290% traffic · Landscaping Co." },
+  { id: "localSeo", label: "Local SEO", description: "Geo-targeted rankings, Google Business Profile optimization, and map pack placements for businesses that compete locally.", stat: "327% more calls · Plumbing Co." },
+  { id: "paidAds", label: "Paid Ads", description: "Google and Meta campaigns built for ROAS, not vanity metrics.", stat: "65% ad spend cut · Plumbing Co." },
   { id: "googleAds", label: "Google Ads", description: "Search, Shopping, and Performance Max campaigns built to capture buyers at the exact moment they're ready to act.", stat: "120% conv. lift · landing page alignment" },
   { id: "metaAds", label: "Meta Ads", description: "Facebook and Instagram campaigns that prospect cold audiences, retarget warm visitors, and rotate creative before it goes stale.", stat: "3.8x ROAS · e-commerce client" },
   { id: "ppcManagement", label: "PPC Management", description: "Full paid media management across Google, Meta, LinkedIn, and Microsoft. One budget, one strategy, one set of revenue targets.", stat: "45% CPL reduction · paid campaigns" },
-  { id: "webDesign", label: "Web Design", description: "Custom, conversion-optimized sites built to turn visitors into qualified leads.", stat: "+425% conv. · client rebuild" },
-  { id: "funnels", label: "Funnels & CRO", description: "Full conversion systems: funnel architecture, landing pages, nurture automation, and A/B testing that compounds revenue.", stat: "1.8% → 6.3% conv. · E-Commerce" },
+  { id: "webDesign", label: "Web Design", description: "Custom, conversion-optimized sites built to turn visitors into qualified leads.", stat: "1.8% → 8.4% conv. · Landscaping Co." },
+  { id: "funnels", label: "Funnels & CRO", description: "Full conversion systems: funnel architecture, landing pages, nurture automation, and A/B testing that compounds revenue.", stat: "5.9X demos · SaaS Platform" },
   { id: "email", label: "Email Marketing", description: "Automated nurture sequences that turn one-time buyers into repeat revenue.", stat: "42% open rate · lifecycle flows" },
   { id: "branding", label: "Branding", description: "Positioning and visual identity that command trust and recognition.", stat: "3x brand recall · repositioning" },
-  { id: "content", label: "Content Marketing", description: "Authority-building content that answers what your buyers are searching for.", stat: "+420% traffic · SaaS client" },
+  { id: "content", label: "Content Marketing", description: "Authority-building content that answers what your buyers are searching for.", stat: "5.9X demos · SaaS Platform" },
   { id: "social", label: "Social Media", description: "Platform-native content and paid social that builds audience and demand.", stat: "5.2x engagement · paid social" },
   { id: "video", label: "Video Marketing", description: "Short-form and long-form video that educates, converts, and retargets.", stat: "68% higher retention · ad creative" },
   { id: "analytics", label: "Analytics", description: "Full-funnel tracking and reporting so every decision is data-backed.", stat: "Full-funnel attribution setup" },
-  { id: "consulting", label: "Growth Consulting", description: "Strategic roadmaps, audits, and fractional advisory aligned to revenue goals.", stat: "4X MRR · SaaS Analytics client" },
+  { id: "consulting", label: "Growth Consulting", description: "Strategic roadmaps, audits, and fractional advisory aligned to revenue goals.", stat: "5.9X demos · SaaS Platform" },
 ];
 
 const enPathways: PathwayContent[] = [
@@ -114,7 +114,7 @@ const enPathways: PathwayContent[] = [
     label: "SEO",
     headline: "Show up in search.",
     description: "We build steady growth through technical foundations, authority content, and link building. Rankings are assets that appreciate over time.",
-    results: ["+340% traffic · Landscaping Co.", "27 positions gained · 6 mo", "180% lead conv. · same client"],
+    results: ["4.8X leads · Landscaping Co.", "42 local pack keywords · 10 mo", "1.8% → 8.4% conv. · same client"],
     exploreLink: "Explore SEO Strategy",
   },
   {
@@ -122,7 +122,7 @@ const enPathways: PathwayContent[] = [
     label: "Web Design",
     headline: "Websites that convert.",
     description: "Custom-built, conversion-optimized websites that feel like premium SaaS platforms. Every pixel serves a revenue goal.",
-    results: ["425% conversion lift · rebuild", "3.8x mobile engagement", "215% time on site increase"],
+    results: ["1.8% → 8.4% conv. · Landscaping rebuild", "4.8X qualified leads · 10 mo", "Lighthouse 94 · performance score"],
     exploreLink: "Explore Web Design Strategy",
   },
   {
@@ -130,7 +130,7 @@ const enPathways: PathwayContent[] = [
     label: "Paid Ads",
     headline: "Every dollar tuned for ROAS.",
     description: "Google and Meta campaigns built to convert intent into booked calls. We optimize every dollar toward measurable revenue.",
-    results: ["+340% patients · Dental Practice", "45% CPL reduction · campaigns", "120% conversion lift · landing pages"],
+    results: ["327% emergency calls · Plumbing Co.", "65% ad spend cut · same client", "48 of 60 keywords top-3 · local pack"],
     exploreLink: "Explore Paid Ads Strategy",
   },
 ];
@@ -147,7 +147,7 @@ const enIndustries: IndustrySolutionContent[] = [
     label: "SaaS & Technology",
     services: ["Content Marketing", "Paid Search", "Funnel Optimization", "Analytics"],
     strategy: "Authority content and targeted paid search fill the top of funnel. Optimized trial-to-paid flows and full-funnel analytics reduce CAC and scale MRR predictably.",
-    outcomes: ["65% trial conversion lift", "40% CAC reduction", "2.5x pipeline growth"],
+    outcomes: ["5.9X demo requests · 8 mo", "43% CAC reduction · organic channels", "$33K MRR · marketing-attributed"],
   },
   {
     id: "agencies",
@@ -182,7 +182,7 @@ const enIndustries: IndustrySolutionContent[] = [
     label: "Skilled Trades",
     services: ["Local SEO", "Service Landing Pages", "Google Ads", "Review Management"],
     strategy: "Capture emergency and seasonal intent through geo-targeted SEO and local service ads. High-converting landing pages with real-time pricing turn searchers into booked jobs.",
-    outcomes: ["250+ service calls/mo", "3.2x ROAS on ads", "Top 3 local pack rankings"],
+    outcomes: ["94 emergency calls/mo · Plumbing Co.", "327% call growth · 8 mo", "Top 3 local pack · 48 keywords"],
   },
 ];
 
@@ -257,21 +257,21 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
       title: "Capacidades de servicio completo.",
       subtitle: "Todos los canales que tu negocio necesita para adquirir,|convertir y retener clientes, gestionados bajo una sola estrategia de crecimiento.",
       services: [
-        { id: "seo", label: "SEO", description: "Fundamentos técnicos, contenido de autoridad y construcción de enlaces que siguen dando resultados con el tiempo.", stat: "340% aumento promedio de tráfico" },
-        { id: "localSeo", label: "SEO Local", description: "Rankings geolocalizados, optimización del Perfil de Google Business y posiciones en el mapa para negocios que compiten localmente.", stat: "Top 3 en mapa local · promedio mes 4" },
-        { id: "paidAds", label: "Anuncios Pagados", description: "Campañas en Google y Meta hechas para ROAS, no para métricas de vanidad.", stat: "4.5x ROAS promedio" },
+        { id: "seo", label: "SEO", description: "Fundamentos técnicos, contenido de autoridad y construcción de enlaces que siguen dando resultados con el tiempo.", stat: "+1,290% tráfico · Landscaping Co." },
+        { id: "localSeo", label: "SEO Local", description: "Rankings geolocalizados, optimización del Perfil de Google Business y posiciones en el mapa para negocios que compiten localmente.", stat: "327% más llamadas · Plumbing Co." },
+        { id: "paidAds", label: "Anuncios Pagados", description: "Campañas en Google y Meta hechas para ROAS, no para métricas de vanidad.", stat: "65% reducción de gasto · Plumbing Co." },
         { id: "googleAds", label: "Google Ads", description: "Campañas de Search, Shopping y Performance Max para capturar compradores en el momento exacto en que están listos para actuar.", stat: "120% aumento en conversión · alineación de landing pages" },
         { id: "metaAds", label: "Meta Ads", description: "Campañas en Facebook e Instagram que prospectan audiencias frías, hacen retargeting a visitantes tibios y rotan creativos antes de que se agoten.", stat: "3.8x ROAS · cliente e-commerce" },
         { id: "ppcManagement", label: "Gestión de PPC", description: "Gestión completa de medios pagados en Google, Meta, LinkedIn y Microsoft. Un presupuesto, una estrategia, un conjunto de objetivos de ingresos.", stat: "45% reducción de CPL · campañas pagadas" },
-        { id: "webDesign", label: "Diseño Web", description: "Sitios personalizados y optimizados para conversión que convierten visitantes en leads calificados.", stat: "425% aumento en conversión" },
-        { id: "funnels", label: "Embudos y CRO", description: "Sistemas de conversión completos: arquitectura de embudo, landing pages, automatización de nutrición y pruebas A/B que acumulan ingresos.", stat: "1.8% → 6.3% conv. · E-Commerce" },
+        { id: "webDesign", label: "Diseño Web", description: "Sitios personalizados y optimizados para conversión que convierten visitantes en leads calificados.", stat: "1.8% → 8.4% conv. · Landscaping Co." },
+        { id: "funnels", label: "Embudos y CRO", description: "Sistemas de conversión completos: arquitectura de embudo, landing pages, automatización de nutrición y pruebas A/B que acumulan ingresos.", stat: "5.9X demos · Plataforma SaaS" },
         { id: "email", label: "Email Marketing", description: "Secuencias automatizadas de nutrición que convierten compradores únicos en ingresos recurrentes.", stat: "42% tasa de apertura promedio" },
         { id: "branding", label: "Branding", description: "Posicionamiento e identidad visual que generan confianza y reconocimiento.", stat: "3x aumento en recordación de marca" },
-        { id: "content", label: "Marketing de Contenidos", description: "Contenido que construye autoridad y responde lo que tus compradores buscan.", stat: "275% crecimiento de tráfico orgánico" },
+        { id: "content", label: "Marketing de Contenidos", description: "Contenido que construye autoridad y responde lo que tus compradores buscan.", stat: "5.9X demos · Plataforma SaaS" },
         { id: "social", label: "Redes Sociales", description: "Contenido nativo de plataforma y social pagado que construye audiencia y demanda.", stat: "5.2x tasa de engagement" },
         { id: "video", label: "Video Marketing", description: "Video corto y largo que educa, convierte y hace retargeting.", stat: "68% mayor retención" },
         { id: "analytics", label: "Analítica", description: "Seguimiento y reportes de embudo completo para que cada decisión esté respaldada por datos.", stat: "100% claridad de atribución" },
-        { id: "consulting", label: "Consultoría de Crecimiento", description: "Hojas de ruta estratégicas, auditorías y asesoría fraccional alineadas a objetivos de ingresos.", stat: "3x crecimiento de pipeline" },
+        { id: "consulting", label: "Consultoría de Crecimiento", description: "Hojas de ruta estratégicas, auditorías y asesoría fraccional alineadas a objetivos de ingresos.", stat: "5.9X demos · Plataforma SaaS" },
       ],
     },
     pathways: {
@@ -284,7 +284,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
           label: "SEO",
           headline: "Aparece en las búsquedas.",
           description: "Construimos crecimiento constante a través de fundamentos técnicos, contenido de autoridad y construcción de enlaces. Los rankings son activos que ganan valor con el tiempo.",
-          results: ["340% aumento promedio de tráfico", "27 posiciones de mejora promedio", "180% aumento en conversión de leads"],
+          results: ["4.8X leads · Landscaping Co.", "42 keywords en pack local · 10 meses", "1.8% → 8.4% conv. · mismo cliente"],
           exploreLink: "Explorar Estrategia de SEO",
         },
         {
@@ -292,7 +292,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
           label: "Diseño Web",
           headline: "Sitios web que convierten.",
           description: "Sitios web personalizados y optimizados para conversión que se sienten como plataformas SaaS premium. Cada píxel sirve a un objetivo de ingresos.",
-          results: ["425% aumento en conversión", "3.8x engagement móvil", "215% aumento en tiempo en sitio"],
+          results: ["1.8% → 8.4% conv. · rebuild Landscaping", "4.8X leads calificados · 10 meses", "Lighthouse 94 · puntuación de rendimiento"],
           exploreLink: "Explorar Estrategia de Diseño Web",
         },
         {
@@ -300,7 +300,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
           label: "Anuncios Pagados",
           headline: "Cada dólar afinado para ROAS.",
           description: "Campañas en Google y Meta construidas para convertir intención en llamadas agendadas. Optimizamos cada dólar hacia ingresos medibles.",
-          results: ["4.5x ROAS promedio", "45% reducción de CPL", "120% aumento en conversión"],
+          results: ["327% llamadas de emergencia · Plumbing Co.", "65% reducción de gasto · mismo cliente", "48 de 60 keywords top-3 · pack local"],
           exploreLink: "Explorar Estrategia de Anuncios Pagados",
         },
       ],

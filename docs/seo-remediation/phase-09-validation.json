@@ -1,0 +1,146 @@
+{
+  "summary": {
+    "timestamp": "2026-07-04T17:45:43.538Z",
+    "finished": "2026-07-04T17:45:52.235Z",
+    "base": "https://www.kinexisdigital.com",
+    "expected_sitemap_url_count": 378,
+    "sitemap_url_count": 378,
+    "sitemap_unique_count": 378,
+    "sitemap_duplicate_locs": 0,
+    "sitemap_issues": [
+      "missing_from_sitemap_4",
+      "extra_in_sitemap_92",
+      "registry_count_290_not_378"
+    ],
+    "robots_sitemap_directive": "https://www.kinexisdigital.com/sitemap.xml",
+    "robots_issues": [],
+    "non_canonical_redirect_checks": 6,
+    "non_canonical_redirect_failures": 0,
+    "indexable_page_failures": 0,
+    "indexnow_configured": true,
+    "indexnow_key_reachable": true,
+    "ahrefs_multiple_sitemaps_baseline": 378,
+    "registry_expected_count": 290,
+    "registry_missing_from_sitemap": 4,
+    "registry_extra_in_sitemap": 92,
+    "registry_diff_available": true,
+    "phase9Pass": false
+  },
+  "redirectChecks": [
+    {
+      "url": "http://kinexisdigital.com/sitemap.xml",
+      "expected_target": "https://www.kinexisdigital.com/sitemap.xml",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/sitemap.xml",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "http://www.kinexisdigital.com/sitemap.xml",
+      "expected_target": "https://www.kinexisdigital.com/sitemap.xml",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/sitemap.xml",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "https://kinexisdigital.com/sitemap.xml",
+      "expected_target": "https://www.kinexisdigital.com/sitemap.xml",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/sitemap.xml",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "http://kinexisdigital.com/robots.txt",
+      "expected_target": "https://www.kinexisdigital.com/robots.txt",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/robots.txt",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "http://www.kinexisdigital.com/robots.txt",
+      "expected_target": "https://www.kinexisdigital.com/robots.txt",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/robots.txt",
+      "issues": "",
+      "pass": true
+    },
+    {
+      "url": "https://kinexisdigital.com/robots.txt",
+      "expected_target": "https://www.kinexisdigital.com/robots.txt",
+      "http_status": 301,
+      "location": "https://www.kinexisdigital.com/robots.txt",
+      "issues": "",
+      "pass": true
+    }
+  ],
+  "redirectFailures": [],
+  "pageFailures": [],
+  "registryDiff": {
+    "missingFromSitemap": [
+      "https://www.kinexisdigital.com/en/case-studies/plumbing-company-growth",
+      "https://www.kinexisdigital.com/es/case-studies/plumbing-company-growth",
+      "https://www.kinexisdigital.com/en/case-studies/saas-platform-growth",
+      "https://www.kinexisdigital.com/es/case-studies/saas-platform-growth"
+    ],
+    "extraInSitemap": [
+      "https://www.kinexisdigital.com/en/locations",
+      "https://www.kinexisdigital.com/es/locations",
+      "https://www.kinexisdigital.com/en/locations/toronto",
+      "https://www.kinexisdigital.com/es/locations/toronto",
+      "https://www.kinexisdigital.com/en/locations/toronto/seo",
+      "https://www.kinexisdigital.com/es/locations/toronto/seo",
+      "https://www.kinexisdigital.com/en/locations/toronto/web-design",
+      "https://www.kinexisdigital.com/es/locations/toronto/web-design",
+      "https://www.kinexisdigital.com/en/locations/toronto/google-ads",
+      "https://www.kinexisdigital.com/es/locations/toronto/google-ads",
+      "https://www.kinexisdigital.com/en/locations/toronto/ppc-management",
+      "https://www.kinexisdigital.com/es/locations/toronto/ppc-management",
+      "https://www.kinexisdigital.com/en/locations/dallas",
+      "https://www.kinexisdigital.com/es/locations/dallas",
+      "https://www.kinexisdigital.com/en/locations/dallas/seo",
+      "https://www.kinexisdigital.com/es/locations/dallas/seo",
+      "https://www.kinexisdigital.com/en/locations/dallas/web-design",
+      "https://www.kinexisdigital.com/es/locations/dallas/web-design",
+      "https://www.kinexisdigital.com/en/locations/dallas/google-ads",
+      "https://www.kinexisdigital.com/es/locations/dallas/google-ads",
+      "https://www.kinexisdigital.com/en/locations/dallas/ppc-management",
+      "https://www.kinexisdigital.com/es/locations/dallas/ppc-management",
+      "https://www.kinexisdigital.com/en/locations/austin",
+      "https://www.kinexisdigital.com/es/locations/austin",
+      "https://www.kinexisdigital.com/en/locations/austin/seo",
+      "https://www.kinexisdigital.com/es/locations/austin/seo",
+      "https://www.kinexisdigital.com/en/locations/austin/web-design",
+      "https://www.kinexisdigital.com/es/locations/austin/web-design",
+      "https://www.kinexisdigital.com/en/locations/austin/google-ads",
+      "https://www.kinexisdigital.com/es/locations/austin/google-ads",
+      "https://www.kinexisdigital.com/en/locations/austin/ppc-management",
+      "https://www.kinexisdigital.com/es/locations/austin/ppc-management",
+      "https://www.kinexisdigital.com/en/locations/bogota",
+      "https://www.kinexisdigital.com/es/locations/bogota",
+      "https://www.kinexisdigital.com/en/locations/bogota/seo",
+      "https://www.kinexisdigital.com/es/locations/bogota/seo",
+      "https://www.kinexisdigital.com/en/locations/bogota/web-design",
+      "https://www.kinexisdigital.com/es/locations/bogota/web-design",
+      "https://www.kinexisdigital.com/en/locations/bogota/google-ads",
+      "https://www.kinexisdigital.com/es/locations/bogota/google-ads",
+      "https://www.kinexisdigital.com/en/locations/bogota/ppc-management",
+      "https://www.kinexisdigital.com/es/locations/bogota/ppc-management",
+      "https://www.kinexisdigital.com/en/locations/cedar-falls",
+      "https://www.kinexisdigital.com/es/locations/cedar-falls",
+      "https://www.kinexisdigital.com/en/locations/cedar-falls/seo",
+      "https://www.kinexisdigital.com/es/locations/cedar-falls/seo",
+      "https://www.kinexisdigital.com/en/locations/cedar-falls/web-design",
+      "https://www.kinexisdigital.com/es/locations/cedar-falls/web-design",
+      "https://www.kinexisdigital.com/en/locations/cedar-falls/google-ads",
+      "https://www.kinexisdigital.com/es/locations/cedar-falls/google-ads"
+    ]
+  },
+  "gsc_manual_checklist": {
+    "action": "Google Search Console → Sitemaps → submit https://www.kinexisdigital.com/sitemap.xml",
+    "owner": "human",
+    "confirm": "Status Success, discovered URLs ≈ 378"
+  }
+}

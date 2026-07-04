@@ -2,7 +2,6 @@ import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import { buildServicePageData } from "@/content/services/architecture/build-service-page-data";
 import { serviceLabels } from "@/content/registry/site-routes";
 import type { Locale } from "@/i18n/routing";
-import { getServiceLocationLinks } from "@/lib/location-related-links";
 import { getServiceRelatedLinks } from "@/lib/service-related-links";
 import type { BreadcrumbItem } from "@/lib/schema";
 
@@ -12,7 +11,6 @@ export type ServicePageServerProps = {
   data: ReturnType<typeof buildServicePageData>;
   breadcrumbs: BreadcrumbItem[];
   relatedLinks: ReturnType<typeof getServiceRelatedLinks>;
-  locationLinks: ReturnType<typeof getServiceLocationLinks>;
 };
 
 export function buildServicePageServerProps(
@@ -29,6 +27,5 @@ export function buildServicePageServerProps(
       { name: serviceLabels[slug] },
     ],
     relatedLinks: getServiceRelatedLinks(slug),
-    locationLinks: getServiceLocationLinks(slug),
   };
 }

@@ -43,7 +43,6 @@ export default function ServicePage({
   data,
   breadcrumbs: _breadcrumbs,
   relatedLinks,
-  locationLinks,
 }: Props) {
   const pageVisualization = getServiceHeroVisualization(slug, locale);
 
@@ -155,7 +154,6 @@ export default function ServicePage({
         agencyHub
         serviceLinks={relatedLinks.services}
         solutionLinks={relatedLinks.solutions.length > 0 ? relatedLinks.solutions : undefined}
-        locationLinks={locationLinks.length > 0 ? locationLinks : undefined}
         caseStudyLinks={relatedLinks.caseStudies}
         blogLinks={relatedLinks.blog}
       />

@@ -53,7 +53,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Landscaping Company",
           challenge: "Five years of generic SEO. Rankings on paper, empty calendar in practice. Most traffic came from DIY gardeners, not homeowners ready to hire.",
-          outcome: "Organic traffic up 327%. Lead conversion went from 1.2% to 7.9% in eight months after we rebuilt around buyer-intent keywords.",
+          outcome: "Qualified leads grew 4.8× in 10 months. Organic traffic up 1,290%. Lead conversion went from 1.8% to 8.4% after site rebuild and local SEO.",
           href: "/case-studies/landscaping-company-growth",
         },
         testimonial: {
@@ -66,7 +66,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         caseStudy: {
           client: "Empresa de Jardinería",
           challenge: "El tráfico orgánico estaba plano a pesar de años de SEO genérico.",
-          outcome: "+327% tráfico orgánico y conversión de leads de 1.2% a 7.9% en 8 meses.",
+          outcome: "Leads calificados 4.8× en 10 meses. Tráfico orgánico +1,290%. Conversión de leads del 1.8% al 8.4%.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -105,18 +105,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Dental Practice",
-          challenge: "Map pack visibility swung week to week. A competitor with fewer reviews and worse photos kept outranking them in two of three locations.",
-          outcome: "New patient bookings up 340% in six months after GBP overhaul, citation cleanup, and review velocity work.",
-          href: "/case-studies/dental-practice-local-seo",
+          client: "Plumbing Company",
+          challenge: "Map pack was invisible for emergency plumbing searches. A competitor with a newer GBP and active review profile dominated the local 3-pack across all service areas.",
+          outcome: "Emergency calls up 327% in eight months after GBP overhaul, citation cleanup, and review velocity work.",
+          href: "/case-studies/plumbing-company-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Clínica Dental",
-          challenge: "La visibilidad en el map pack era inconsistente.",
-          outcome: "+340% reservas de pacientes nuevos en 6 meses.",
-          href: "/case-studies/dental-practice-local-seo",
+          client: "Empresa de Plomería",
+          challenge: "El map pack era invisible para búsquedas de plomería de emergencia.",
+          outcome: "+327% llamadas de emergencia en 8 meses.",
+          href: "/case-studies/plumbing-company-growth",
         },
       },
     },
@@ -154,18 +154,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Dental Practice",
-          challenge: "The last agency counted page views as conversions. Cost per lead kept climbing while the front desk stayed quiet.",
-          outcome: "New patient bookings up 340%. CPL down 45% in six months after we rebuilt tracking and campaign structure.",
-          href: "/case-studies/dental-practice-local-seo",
+          client: "Plumbing Company",
+          challenge: "The previous agency counted form submissions as conversions while ignoring phone calls — the primary conversion channel for emergency services.",
+          outcome: "Emergency calls up 327%. CPL down 65% after we rebuilt tracking and campaign structure around call conversions.",
+          href: "/case-studies/plumbing-company-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Clínica Dental",
-          challenge: "La agencia anterior contaba vistas de página como conversiones.",
-          outcome: "+340% pacientes nuevos con 45% reducción de CPL.",
-          href: "/case-studies/dental-practice-local-seo",
+          client: "Empresa de Plomería",
+          challenge: "La agencia anterior ignoraba las llamadas como conversiones.",
+          outcome: "+327% llamadas de emergencia con 65% reducción de CPL.",
+          href: "/case-studies/plumbing-company-growth",
         },
       },
     },
@@ -203,18 +203,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "Multi-channel spend with no unified attribution. ROAS looked good on Meta, bad on Google.",
-          outcome: "3.6× revenue after account restructure and cross-channel budget reallocation.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "Multi-channel spend with no unified attribution. ROAS looked good on Meta, bad on Google — neither tied to actual MRR.",
+          outcome: "5.9× demo request growth after account restructure and cross-channel budget reallocation toward content and organic.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Gasto multicanal sin atribución unificada.",
-          outcome: "3.6× ingresos tras reestructuración de cuentas.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Gasto multicanal sin atribución unificada a MRR.",
+          outcome: "5.9× crecimiento en solicitudes de demo.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -252,18 +252,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "Creative fatigue after launch week. CPM climbed while ROAS dropped.",
-          outcome: "3.6× revenue with structured creative testing and clean audience separation.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "Meta ads drove awareness but not demos. Creative fatigue hit after three weeks with no structured testing cycle.",
+          outcome: "5.9× demo growth after shifting budget to content-led strategy with clean audience separation.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Fatiga creativa tras la semana de lanzamiento.",
-          outcome: "3.6× ingresos con pruebas creativas estructuradas.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Anuncios en Meta generaban alcance pero no demos.",
+          outcome: "5.9× crecimiento en demos tras estrategia liderada por contenido.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -301,18 +301,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "Multi-platform spend with misaligned landing pages and no unified tracking.",
-          outcome: "3.6× revenue after channel restructure and conversion tracking overhaul.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "Multi-platform ad spend with landing pages that described features instead of outcomes, and no unified conversion tracking.",
+          outcome: "5.9× demo growth after channel restructure and landing page conversion overhaul.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Gasto multiplataforma con landing pages desalineadas.",
-          outcome: "3.6× ingresos tras reestructuración de canales.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Gasto multiplataforma con landing pages desalineadas de objetivos.",
+          outcome: "5.9× crecimiento en demos tras reestructuración.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -349,20 +349,20 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     ),
     proof: {
       en: {
-        beforeAfter: { beforeLabel: "Before", afterLabel: "After", beforeValue: "1.2%", afterValue: "6.3%", metric: "Conversion Rate" },
+        beforeAfter: { beforeLabel: "Before", afterLabel: "After", beforeValue: "1.8%", afterValue: "8.4%", metric: "Conversion Rate" },
         caseStudy: {
           client: "Landscaping Company",
           challenge: "Template site with 45% bounce rate and no clear CTA above the fold.",
-          outcome: "5.9× revenue growth after custom rebuild with Lighthouse 94 score.",
+          outcome: "4.8× lead growth after custom rebuild. Conversion rate went from 1.8% to 8.4% with Lighthouse 94 score.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
       es: {
-        beforeAfter: { beforeLabel: "Antes", afterLabel: "Después", beforeValue: "1.2%", afterValue: "6.3%", metric: "Tasa de Conversión" },
+        beforeAfter: { beforeLabel: "Antes", afterLabel: "Después", beforeValue: "1.8%", afterValue: "8.4%", metric: "Tasa de Conversión" },
         caseStudy: {
           client: "Empresa de Jardinería",
           challenge: "Sitio plantilla con 45% de rebote.",
-          outcome: "5.9× crecimiento de ingresos tras rebuild personalizado.",
+          outcome: "Crecimiento de leads 4.8× tras rebuild. Conversión del 1.8% al 8.4%.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -401,18 +401,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "High traffic, low conversion. Previous tests changed colors without moving revenue.",
-          outcome: "3.6× revenue after structured A/B testing on checkout and product pages.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "High organic traffic, low demo conversion. Previous A/B tests focused on button colors without moving pipeline.",
+          outcome: "5.9× demo growth after structured CRO on pricing page, demo booking flow, and landing page copy.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Alto tráfico, baja conversión.",
-          outcome: "3.6× ingresos tras A/B testing estructurado.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Alto tráfico orgánico, baja conversión a demo.",
+          outcome: "5.9× crecimiento en demos tras CRO estructurado.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -450,18 +450,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "SaaS Analytics Platform",
-          challenge: "Trial signups weren't converting to paid. Nurture was generic and untracked.",
-          outcome: "4× MRR after behavioral trigger sequences and onboarding automation.",
-          href: "/case-studies/saas-analytics-platform",
+          client: "SaaS Platform",
+          challenge: "Demo requests were flat. Email nurture was generic and not tied to content engagement behavior.",
+          outcome: "5.9× demo growth after behavioral trigger sequences and landing page optimization.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Plataforma SaaS Analytics",
-          challenge: "Trials no convertían a pagado.",
-          outcome: "4× MRR tras secuencias de triggers comportamentales.",
-          href: "/case-studies/saas-analytics-platform",
+          client: "Plataforma SaaS",
+          challenge: "Solicitudes de demo estancadas y nurture genérico.",
+          outcome: "5.9× crecimiento en demos tras secuencias comportamentales.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -499,18 +499,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "B2B Consulting Firm",
-          challenge: "Thought leadership content generated traffic but zero qualified pipeline.",
-          outcome: "Pipeline growth after content funnel mapping and lead magnet integration.",
-          href: "/case-studies/b2b-consulting-firm",
+          client: "SaaS Platform",
+          challenge: "Blog content generated traffic but zero demo requests. No content-to-lead conversion path existed.",
+          outcome: "5.9× demo growth after content funnel mapping and bottom-of-funnel guide strategy.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Firma de Consultoría B2B",
-          challenge: "Contenido generaba tráfico pero cero pipeline calificado.",
-          outcome: "Crecimiento de pipeline tras mapeo de embudo de contenido.",
-          href: "/case-studies/b2b-consulting-firm",
+          client: "Plataforma SaaS",
+          challenge: "Contenido generaba tráfico pero cero solicitudes de demo.",
+          outcome: "5.9× crecimiento en demos tras mapeo de embudo de contenido.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -548,18 +548,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Fintech App Startup",
-          challenge: "Social following grew but trial signups stayed flat.",
-          outcome: "210% trial lift after content pillar strategy and paid retargeting integration.",
-          href: "/case-studies/fintech-app-startup",
+          client: "SaaS Platform",
+          challenge: "LinkedIn organic reach grew but demo pipeline stayed flat. No conversion path from social to demo booking.",
+          outcome: "5.9× demo growth after content pillar strategy and SEO-led organic integration.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Startup Fintech",
-          challenge: "Seguidores crecían pero trials se mantenían planos.",
-          outcome: "210% lift en trials tras estrategia de pilares y retargeting.",
-          href: "/case-studies/fintech-app-startup",
+          client: "Plataforma SaaS",
+          challenge: "Alcance orgánico crecía pero demos se mantenían planas.",
+          outcome: "5.9× crecimiento en demos tras estrategia de pilares y SEO.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -597,18 +597,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "Product videos looked polished but didn't drive add-to-cart or ROAS.",
-          outcome: "3.6× revenue after UGC-style video ads integrated with Meta retargeting.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "Product demo videos looked polished but didn't drive demo bookings or pipeline influence.",
+          outcome: "5.9× demo growth after shifting video strategy to customer story format with clear CTA.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Videos de producto no impulsaban add-to-cart ni ROAS.",
-          outcome: "3.6× ingresos tras videos UGC integrados con retargeting Meta.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Videos de demo no impulsaban reservas de demo ni pipeline.",
+          outcome: "5.9× crecimiento en demos tras videos de casos de cliente.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -646,18 +646,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "Rebrand looked premium but conversion rate dropped after launch.",
-          outcome: "3.6× revenue after brand system applied to site, ads, and email simultaneously.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "Brand messaging was inconsistent across site, ads, and content — prospects saw three different companies.",
+          outcome: "5.9× demo growth after unified messaging applied across site, content, and demo flow.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Rebrand se veía premium pero conversión bajó tras lanzamiento.",
-          outcome: "3.6× ingresos tras aplicar sistema de marca en web, ads y email.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Mensajes de marca inconsistentes entre web, ads y contenido.",
+          outcome: "5.9× crecimiento en demos tras mensajería unificada.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -695,18 +695,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "SaaS Analytics Platform",
-          challenge: "Marketing team couldn't prove which channels drove MRR growth.",
-          outcome: "4× MRR visibility after multi-touch attribution and CRM integration.",
-          href: "/case-studies/saas-analytics-platform",
+          client: "SaaS Platform",
+          challenge: "Marketing team reported traffic and leads but couldn't connect any channel to demo pipeline or MRR.",
+          outcome: "5.9× demo growth after multi-touch attribution, CRM integration, and content-led channel strategy.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Plataforma SaaS Analytics",
-          challenge: "Marketing no podía probar qué canales impulsaban MRR.",
-          outcome: "4× visibilidad MRR tras atribución multitoque e integración CRM.",
-          href: "/case-studies/saas-analytics-platform",
+          client: "Plataforma SaaS",
+          challenge: "Marketing reportaba tráfico pero no podía conectar canales a pipeline.",
+          outcome: "5.9× crecimiento en demos tras atribución multitoque y estrategia de contenido.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -744,18 +744,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "B2B Consulting Firm",
-          challenge: "Scattered marketing spend with no clear growth lever identified.",
-          outcome: "Pipeline growth after channel audit and 90-day execution roadmap.",
-          href: "/case-studies/b2b-consulting-firm",
+          client: "SaaS Platform",
+          challenge: "Scattered marketing spend with no clear growth lever. Content, paid, and SEO operated in silos without a unified strategy.",
+          outcome: "5.9× demo growth after channel audit and 90-day content-led execution roadmap.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Firma de Consultoría B2B",
-          challenge: "Gasto de marketing disperso sin palanca de crecimiento clara.",
-          outcome: "Crecimiento de pipeline tras auditoría y roadmap de 90 días.",
-          href: "/case-studies/b2b-consulting-firm",
+          client: "Plataforma SaaS",
+          challenge: "Gasto disperso sin palanca de crecimiento clara ni estrategia unificada.",
+          outcome: "5.9× crecimiento en demos tras auditoría y roadmap de contenido.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },
@@ -794,18 +794,18 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     proof: {
       en: {
         caseStudy: {
-          client: "Premium E-Commerce Brand",
-          challenge: "High traffic and a leaky funnel. Previous tests changed colors without moving revenue or booking rates.",
-          outcome: "3.6× revenue after funnel rebuild and structured A/B testing on checkout and nurture flows.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "SaaS Platform",
+          challenge: "High organic traffic but a leaky demo funnel. Previous tests changed button colors without moving demo booking rates.",
+          outcome: "5.9× demo growth after funnel rebuild and structured A/B testing on pricing, demo flow, and nurture sequences.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
       es: {
         caseStudy: {
-          client: "Marca E-Commerce Premium",
-          challenge: "Alto tráfico y embudo con fugas. Tests anteriores no movieron ingresos ni reservas.",
-          outcome: "3.6× ingresos tras rebuild de embudo y A/B testing estructurado.",
-          href: "/case-studies/premium-ecommerce-brand",
+          client: "Plataforma SaaS",
+          challenge: "Alto tráfico orgánico pero embudo de demo con fugas.",
+          outcome: "5.9× crecimiento en demos tras rebuild de embudo y A/B testing.",
+          href: "/case-studies/saas-platform-growth",
         },
       },
     },

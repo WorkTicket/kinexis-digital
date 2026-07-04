@@ -1,6 +1,7 @@
 import createMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
 import { routing, type Locale } from "./i18n/routing";
+import { matchUnprefixedLegacyRedirect } from "./lib/legacy-redirects.mjs";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -80,7 +81,8 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const legacyTarget = UNPREFIXED_LEGACY[pathname];
+  const legacyTarget =
+    UNPREFIXED_LEGACY[pathname] ?? matchUnprefixedLegacyRedirect(pathname);
   if (legacyTarget) {
     return buildRedirect(request, legacyTarget, { forceHttps: needsHttps, forceWww: needsWww });
   }

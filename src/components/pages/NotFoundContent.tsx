@@ -59,7 +59,7 @@ export default function NotFoundContent() {
             {t("cta")}
             <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
-          <p className="mt-2 text-xs text-white/30">
+          <p className="mt-2 text-xs text-text-muted">
             {t("footnote")}
           </p>
         </div>

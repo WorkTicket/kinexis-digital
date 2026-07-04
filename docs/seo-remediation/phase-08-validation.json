@@ -1,0 +1,1075 @@
+{
+  "summary": {
+    "timestamp": "2026-07-02T22:48:42.895Z",
+    "finished": "2026-07-02T22:48:43.018Z",
+    "base": "http://localhost:3000",
+    "audit_mode": "static_build",
+    "static_app_dir": "C:\\Users\\Slay3r\\Downloads\\kinexisdigital.com\\.next\\server\\app",
+    "sitemap_url_count": 378,
+    "urls_crawled": 378,
+    "indexable_sitemap_count": 378,
+    "schema_issue_pages": 0,
+    "localbusiness_pages": 0,
+    "fabricated_telephone_pages": 0,
+    "invalid_logo_path_pages": 0,
+    "broken_schema_image_pages": 0,
+    "json_ld_parse_errors": 0,
+    "ahrefs_baseline_rows": 123,
+    "ahrefs_still_applies": 0,
+    "ahrefs_resolved": 123,
+    "template_summary": {
+      "homepage": {
+        "total": 2,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en"
+      },
+      "other": {
+        "total": 148,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/about"
+      },
+      "blog_post": {
+        "total": 54,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/blog/posts"
+      },
+      "agency_hub": {
+        "total": 2,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/digital-marketing-agency"
+      },
+      "service": {
+        "total": 30,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/services/seo"
+      },
+      "solution": {
+        "total": 20,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/solutions/seo-for-hvac-companies"
+      },
+      "location_city": {
+        "total": 16,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/locations/toronto"
+      },
+      "location_service": {
+        "total": 64,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/locations/toronto/seo"
+      },
+      "case_study": {
+        "total": 12,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/case-studies/landscaping-company-growth"
+      },
+      "pricing": {
+        "total": 30,
+        "with_issues": 0,
+        "sample_url": "http://localhost:3000/en/pricing/seo"
+      }
+    },
+    "phase8Pass": true
+  },
+  "schemaIssueRows": [],
+  "localBusinessRows": [],
+  "templateSamples": {
+    "homepage": "http://localhost:3000/en",
+    "other": "http://localhost:3000/en/about",
+    "blog_post": "http://localhost:3000/en/blog/posts",
+    "agency_hub": "http://localhost:3000/en/digital-marketing-agency",
+    "service": "http://localhost:3000/en/services/seo",
+    "solution": "http://localhost:3000/en/solutions/seo-for-hvac-companies",
+    "location_city": "http://localhost:3000/en/locations/toronto",
+    "location_service": "http://localhost:3000/en/locations/toronto/seo",
+    "case_study": "http://localhost:3000/en/case-studies/landscaping-company-growth",
+    "pricing": "http://localhost:3000/en/pricing/seo"
+  },
+  "ahrefsComparison": [
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-rapids",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/dallas",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/dallas",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-falls",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/toronto",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-rapids",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/digital-marketing-agency",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;ContactPoint;FAQPage;ListItem;Organization;Question",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/digital-marketing-agency",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;ContactPoint;FAQPage;ListItem;Organization;Question",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/bogota",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/des-moines",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/austin",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-falls",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/bogota",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/toronto",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/waterloo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/austin",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/waterloo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/des-moines",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/des-moines/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/bogota/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/dallas/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/dallas/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/toronto/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/waterloo/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-falls/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-rapids/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/toronto/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/toronto/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/austin/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/waterloo/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/des-moines/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/toronto/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-falls/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/austin/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/des-moines/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-rapids/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/des-moines/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/toronto/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-rapids/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-rapids/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/austin/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/toronto/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/bogota/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-rapids/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/dallas/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-falls/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/des-moines/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-falls/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/dallas/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/bogota/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/waterloo/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/austin/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/dallas/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/austin/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-rapids/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-falls/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/dallas/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/des-moines/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-rapids/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/toronto/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-rapids/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/bogota/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/dallas/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/bogota/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/austin/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/des-moines/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/cedar-falls/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/waterloo/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/austin/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/toronto/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-falls/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/cedar-falls/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/bogota/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/waterloo/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/des-moines/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/dallas/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/bogota/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/austin/web-design",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/waterloo/ppc-management",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/waterloo/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/es/locations/bogota/google-ads",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "https://www.kinexisdigital.com/en/locations/waterloo/seo",
+      "is_http_duplicate": false,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/bogota",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/des-moines",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/digital-marketing-agency",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;ContactPoint;FAQPage;ListItem;Organization;Question",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/waterloo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/austin",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-rapids",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/toronto",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-falls",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/dallas",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/des-moines/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/austin/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/toronto/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/toronto/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/des-moines/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-rapids/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/bogota/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/dallas/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/dallas/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/waterloo/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-falls/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/des-moines/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-rapids/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/austin/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/toronto/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-falls/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/toronto/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/dallas/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-rapids/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/bogota/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/bogota/web-design",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/dallas/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/des-moines/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-falls/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/austin/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/austin/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/waterloo/seo",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/waterloo/google-ads",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-falls/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/cedar-rapids/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/bogota/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    },
+    {
+      "ahrefs_url": "http://www.kinexisdigital.com/en/locations/waterloo/ppc-management",
+      "is_http_duplicate": true,
+      "live_found": true,
+      "live_schema_types": "Answer;BreadcrumbList;City;ContactPoint;FAQPage;ListItem;Organization;Question;Service;State",
+      "live_issues": "",
+      "ahrefs_still_applies": false
+    }
+  ],
+  "failures": []
+}

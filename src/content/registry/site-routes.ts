@@ -86,7 +86,6 @@ export const staticPageRoutes = [
   "/digital-marketing-agency",
   "/industries",
   "/solutions",
-  "/locations",
   "/resources",
   "/privacy",
   "/terms",
@@ -159,9 +158,6 @@ export const blogSlugs = [
 
 export const caseStudySlugs = [
   "landscaping-company-growth",
-  "dental-practice-local-seo",
-  "premium-ecommerce-brand",
-  "saas-analytics-platform",
-  "fintech-app-startup",
-  "b2b-consulting-firm",
+  "plumbing-company-growth",
+  "saas-platform-growth",
 ] as const;

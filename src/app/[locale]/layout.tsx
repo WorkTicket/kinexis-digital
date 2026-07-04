@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import SkipToMain from "@/components/layout/SkipToMain";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import DeferredWidgets from "@/components/providers/DeferredWidgets";
 import { CookieConsentProvider } from "@/components/analytics/CookieConsent";
@@ -67,9 +68,12 @@ export default async function LocaleLayout({
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionProvider>
+              <SkipToMain />
               <div className="grain-overlay" />
               <Header />
-              <main className="page-enter overflow-x-clip">{children}</main>
+              <main id="main-content" tabIndex={-1} className="page-enter overflow-x-clip">
+                {children}
+              </main>
               <DeferredWidgets />
               <Footer />
             </MotionProvider>
