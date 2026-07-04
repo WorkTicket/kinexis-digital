@@ -23,11 +23,10 @@ const USER_AGENT = "KinexisPhase8StructuredData/1.0";
 const CONCURRENCY = 8;
 const FABRICATED_PHONE = "+1-888-888-8888";
 const INTENTIONAL_NOINDEX_PATHS = new Set(["/en/lead-magnet", "/es/lead-magnet"]);
-const LOCAL_BUSINESS_TYPES = new Set([
-  "LocalBusiness",
-  "ProfessionalService",
-  "MarketingAgency",
-]);
+const LOCAL_BUSINESS_TYPES = new Set(["LocalBusiness", "ProfessionalService"]);
+
+/** Types not in the schema.org core vocabulary — Ahrefs schema.org validator flags these. */
+const INVALID_SCHEMA_ORG_TYPES = new Set(["MarketingAgency"]);
 
 const AHREFS_EXPORT = path.join(
   __dirname,
@@ -162,6 +161,21 @@ function detectSchemaIssues(nodes) {
   for (const node of nodes) {
     const type = node["@type"];
     const types = typeof type === "string" ? [type] : Array.isArray(type) ? type : [];
+
+    for (const t of types) {
+      if (INVALID_SCHEMA_ORG_TYPES.has(t)) {
+        issues.push(`invalid_schema_type_${t.toLowerCase()}`);
+      }
+    }
+
+    if (
+      (types.includes("Article") || types.includes("BlogPosting")) &&
+      typeof node.datePublished === "string" &&
+      !/^\d{4}-\d{2}-\d{2}/.test(node.datePublished)
+    ) {
+      issues.push("article_date_not_iso");
+    }
+
     const isLocalBusinessType = types.some((t) => LOCAL_BUSINESS_TYPES.has(t));
 
     if (isLocalBusinessType) {

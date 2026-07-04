@@ -163,7 +163,7 @@ export default function ChatBot() {
                   <Button href="/contact" variant="primary" className="w-full justify-center" fullWidthMobile>
                     {tCommon("bookStrategyCall")}
                   </Button>
-                  <Button href="/lead-magnet" rel="nofollow" variant="secondary" className="w-full justify-center" fullWidthMobile>
+                  <Button href="/lead-magnet" variant="secondary" className="w-full justify-center" fullWidthMobile>
                     {tCommon("getFreeAudit")}
                   </Button>
                 </div>

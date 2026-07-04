@@ -1,5 +1,6 @@
 import { businessProfile } from "@/lib/business";
 import { getDefaultOgImageUrl, getOrganizationLogoUrl, getSiteUrl } from "@/lib/metadata";
+import { parseContentDate } from "@/lib/sitemap-last-modified";
 
 export type BreadcrumbItem = { name: string; url?: string };
 
@@ -9,6 +10,20 @@ function organizationLogoObject() {
     url: getOrganizationLogoUrl(),
     width: 512,
     height: 512,
+  };
+}
+
+/** schema.org Date values must be ISO 8601 — not display strings like "June 15, 2026". */
+function toSchemaDate(value: string): string {
+  const parsed = parseContentDate(value);
+  if (parsed) return parsed.toISOString().slice(0, 10);
+  return value;
+}
+
+function defaultOgImageObject() {
+  return {
+    "@type": "ImageObject" as const,
+    url: getDefaultOgImageUrl(),
   };
 }
 
@@ -38,7 +53,7 @@ export function organizationSchema() {
 export function localBusinessSchema(pageUrl?: string) {
   return {
     "@context": "https://schema.org",
-    "@type": ["ProfessionalService", "MarketingAgency"],
+    "@type": "ProfessionalService",
     "@id": `${getSiteUrl()}/#localbusiness`,
     name: businessProfile.name,
     url: pageUrl ?? getSiteUrl(),
@@ -184,10 +199,10 @@ export function articleSchema({
     headline: title,
     description,
     url,
-    datePublished,
-    dateModified: dateModified || datePublished,
+    datePublished: toSchemaDate(datePublished),
+    dateModified: toSchemaDate(dateModified || datePublished),
     author,
-    image: `${getDefaultOgImageUrl()}`,
+    image: defaultOgImageObject(),
     ...(reviewedBy && { editor: { "@type": "Person", name: reviewedBy } }),
     publisher: { "@id": `${getSiteUrl()}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
@@ -215,9 +230,9 @@ export function caseStudySchema({
     description,
     url,
     articleSection: industry,
-    datePublished,
+    datePublished: toSchemaDate(datePublished),
     author: { "@id": `${getSiteUrl()}/#organization` },
-    image: `${getDefaultOgImageUrl()}`,
+    image: defaultOgImageObject(),
     publisher: { "@id": `${getSiteUrl()}/#organization` },
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
   };

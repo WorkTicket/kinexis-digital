@@ -35,7 +35,7 @@ export default function MidPageCTA() {
               <Button href="/contact" variant="primary" fullWidthMobile>
                 {tCommon("bookStrategyCall")}
               </Button>
-              <Button href="/lead-magnet" rel="nofollow" variant="secondary" fullWidthMobile>
+              <Button href="/lead-magnet" variant="secondary" fullWidthMobile>
                 {t("secondaryCta")}
               </Button>
             </div>
