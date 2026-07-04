@@ -18,7 +18,7 @@ const base = (process.argv[2] || "https://www.kinexisdigital.com").replace(/\/$/
 const USER_AGENT = "KinexisPhase9Sitemap/1.0";
 const CONCURRENCY = 8;
 const CANONICAL_HOST = "www.kinexisdigital.com";
-const EXPECTED_SITEMAP_COUNT = 378;
+const EXPECTED_SITEMAP_COUNT = 290;
 
 const AHREFS_EXPORT = path.join(
   root,
@@ -315,7 +315,7 @@ async function main() {
         gsc_manual_checklist: {
           action: "Google Search Console → Sitemaps → submit https://www.kinexisdigital.com/sitemap.xml",
           owner: "human",
-          confirm: "Status Success, discovered URLs ≈ 378",
+          confirm: "Status Success, discovered URLs ≈ 290",
         },
       },
       null,
