@@ -20,7 +20,6 @@ const mobilePrimaryLinks = mainNavLinks.filter(
 
 type Props = {
   open: boolean;
-  scrolled: boolean;
   servicesOpen: boolean;
   industriesOpen: boolean;
   resourcesOpen: boolean;
@@ -32,7 +31,6 @@ type Props = {
 
 export default function MobileMenu({
   open,
-  scrolled,
   servicesOpen,
   industriesOpen,
   resourcesOpen,
@@ -64,23 +62,16 @@ export default function MobileMenu({
     <div
       ref={dialogRef}
       id="mobile-site-nav"
-      className="fixed inset-0 z-[100] lg:hidden"
+      className="fixed inset-0 z-[100] bg-bg/90 backdrop-blur-2xl lg:hidden"
       role="dialog"
       aria-modal="true"
       aria-label={tNav("menu")}
+      onClick={onClose}
     >
       <div
-        className="absolute inset-0 bg-bg/90 backdrop-blur-2xl"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-
-      <div
         ref={panelRef}
-        className={cn(
-          "absolute inset-x-0 bottom-0 z-10 flex flex-col",
-          scrolled ? "top-14 md:top-16" : "top-16 md:top-[72px]"
-        )}
+        className="absolute inset-x-0 bottom-0 top-[var(--site-header-height,4rem)] z-10 flex flex-col"
+        onClick={(event) => event.stopPropagation()}
       >
         <div className="flex shrink-0 items-center justify-between px-5 pb-3 pt-4">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">

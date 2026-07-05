@@ -143,15 +143,23 @@ body {
   font-family: var(--font-ubuntu-medium), var(--font-ubuntu), sans-serif;
 }
 
+html.mobile-menu-open {
+  overflow: hidden;
+  scrollbar-gutter: auto;
+}
+
 body.mobile-menu-open {
   overflow: hidden;
   position: fixed;
   inset: 0;
-  width: 100%;
 }
 
 body.mobile-menu-open header[class*="fixed"] {
   padding-right: var(--scrollbar-compensation, 0px);
+}
+
+html.mobile-menu-open #mobile-site-nav {
+  right: calc(-1 * var(--scrollbar-compensation, 0px));
 }
 
 input, textarea, select, details, summary {
@@ -1848,7 +1856,11 @@ summary::-webkit-details-marker {
   }
 
   .faq-chevron {
-    @apply text-neon-cyan/70 text-sm font-extralight leading-none transition-transform duration-200 flex-shrink-0 group-open:rotate-90;
+    @apply text-neon-cyan/70 text-sm font-extralight leading-none transition-transform duration-200 flex-shrink-0;
+  }
+
+  details[open] .faq-chevron {
+    transform: rotate(90deg);
   }
 
   /* Premium transition timing — deliberate, not rushed */

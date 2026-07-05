@@ -1,7 +1,6 @@
 "use client";
 
-import { m as motion } from "@/lib/framer";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
+import FAQSection from "@/components/sections/FAQSection";
 
 const faq = [
   {
@@ -47,36 +46,9 @@ const faq = [
 ];
 
 export default function FAQ() {
-  const { fadeUp, stagger } = useMotionVariants();
-
   return (
-    <section className="section-padding border-t border-white/[0.06]">
-      <div className="container-site">
-        <div className="section-header">
-          <span className="section-label">Common Questions</span>
-          <h2 className="section-title">FAQ</h2>
-          <div className="section-divider" />
-        </div>
-        <motion.div
-          className="section-content max-w-2xl mx-auto space-y-3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {faq.map((item) => (
-            <motion.div key={item.q} variants={fadeUp}>
-              <details className="group border-b border-white/[0.06] pb-4">
-                <summary className="cursor-pointer font-semibold list-none flex items-center justify-between">
-                  <span className="text-sm">{item.q}</span>
-                  <span className="faq-chevron ml-4" aria-hidden="true">&gt;</span>
-                </summary>
-                <p className="mt-3 text-sm leading-relaxed text-muted">{item.a}</p>
-              </details>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+    <FAQSection
+      items={faq.map((item) => ({ question: item.q, answer: item.a }))}
+    />
   );
 }

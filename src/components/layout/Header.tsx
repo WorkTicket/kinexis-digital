@@ -18,7 +18,6 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useBodyScrollLock(menuOpen);
 
@@ -42,12 +41,15 @@ export default function Header() {
         : Math.min(1, Math.max(0, window.scrollY / SHRINK_DISTANCE));
 
       header.style.setProperty("--header-progress", progress.toFixed(4));
+      document.documentElement.style.setProperty(
+        "--site-header-height",
+        `${header.offsetHeight}px`
+      );
 
       const nextScrolled = progress > 0.35;
       if (nextScrolled !== isScrolled) {
         isScrolled = nextScrolled;
         header.classList.toggle("site-header--scrolled", isScrolled);
-        setScrolled(isScrolled);
       }
 
       ticking = false;
@@ -62,7 +64,12 @@ export default function Header() {
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      document.documentElement.style.removeProperty("--site-header-height");
+    };
   }, []);
 
   const closeMenu = () => {
@@ -158,16 +165,16 @@ export default function Header() {
               <button
                 ref={menuButtonRef}
                 type="button"
-                className="header-icon-btn h-8 w-8"
+                className="header-icon-btn h-10 w-10"
                 onClick={toggleMenu}
                 aria-label={menuOpen ? tNav("closeMenu") : tNav("toggleMenu")}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-site-nav"
               >
                 {menuOpen ? (
-                  <X className="h-4 w-4" />
+                  <X className="h-5 w-5" />
                 ) : (
-                  <Menu className="h-4 w-4" />
+                  <Menu className="h-5 w-5" />
                 )}
               </button>
             </div>
@@ -177,7 +184,6 @@ export default function Header() {
 
       <MobileMenu
         open={menuOpen}
-        scrolled={scrolled}
         servicesOpen={servicesOpen}
         industriesOpen={industriesOpen}
         resourcesOpen={resourcesOpen}
