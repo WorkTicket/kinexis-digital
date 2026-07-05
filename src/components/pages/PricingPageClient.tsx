@@ -7,6 +7,8 @@ import ServiceFAQSection from "@/components/shared/services/ServiceFAQSection";
 import PricingCTASection from "@/components/pages/pricing/PricingCTASection";
 import PricingHero from "@/components/pages/pricing/PricingHero";
 import PricingIncludedSection from "@/components/pages/pricing/PricingIncludedSection";
+import PricingTierProof from "@/components/pages/pricing/PricingTierProof";
+import PricingTrustStrip from "@/components/pages/pricing/PricingTrustStrip";
 import { getServiceRelatedLinks } from "@/lib/service-related-links";
 import { getPricingRelatedLinks } from "@/lib/pricing-related-links";
 import type { PricingSlug } from "@/content/registry/site-routes";
@@ -55,6 +57,13 @@ export default function PricingPageClient({
 
       <AnswerBlock text={c.answerBlock} surfaceIndex={surfaceIndex++} />
 
+      <section className="pb-0 pt-2">
+        <div className="container-site">
+          <PricingTrustStrip locale={_locale} />
+          {c.tierProof && <PricingTierProof proof={c.tierProof} />}
+        </div>
+      </section>
+
       <ComparisonTable
         title={packages.title}
         subtitle={packages.subtitle}
@@ -85,7 +94,18 @@ export default function PricingPageClient({
         blogLinks={relatedLinks.blog.slice(0, 2)}
       />
 
-      <PricingCTASection headline={c.ctaHeadline} subtitle={c.ctaSubtitle} ctaLabel={c.ctaLabel} />
+      <PricingCTASection
+        headline={c.ctaHeadline}
+        subtitle={c.ctaSubtitle}
+        ctaLabel={c.ctaLabel}
+        secondaryCtaLabel={
+          _locale === "es" ? `Ver alcance de ${serviceLabel}` : `See ${serviceLabel} scope`
+        }
+        secondaryCtaHref={serviceHref}
+        contractNote={
+          _locale === "es" ? "Sin contratos largos. Mes a mes." : "No long-term contracts. Month to month."
+        }
+      />
     </>
   );
 }

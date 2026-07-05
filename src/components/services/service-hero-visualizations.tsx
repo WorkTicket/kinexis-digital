@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import type { ReactNode } from "react";
-import DeferredHeroViz from "@/components/services/DeferredHeroViz";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import type { Locale } from "@/i18n/routing";
 
@@ -39,42 +38,39 @@ const FunnelsHeroVizLazy = dynamic(
   () => import("@/components/services/hero-viz/lazy/FunnelsHeroVizLazy")
 );
 
-function wrapViz(node: ReactNode) {
-  return <DeferredHeroViz>{node}</DeferredHeroViz>;
-}
-
+/** In-page section graphics — always render (hero deferral would show an empty shell on mobile). */
 export function getServiceHeroVisualization(slug: ServiceSeoSlug, locale: Locale): ReactNode {
   switch (slug) {
     case "seo":
-      return wrapViz(<SeoHeroVizLazy locale={locale} variant="seo" />);
+      return <SeoHeroVizLazy locale={locale} variant="seo" />;
     case "local-seo":
-      return wrapViz(<SeoHeroVizLazy locale={locale} variant="local-seo" />);
+      return <SeoHeroVizLazy locale={locale} variant="local-seo" />;
     case "google-ads":
     case "meta-ads":
     case "ppc-management":
     case "paid-ads":
-      return wrapViz(<PaidAdsHeroVizLazy locale={locale} slug={slug} />);
+      return <PaidAdsHeroVizLazy locale={locale} slug={slug} />;
     case "web-design":
-      return wrapViz(<WebDesignHeroVizLazy />);
+      return <WebDesignHeroVizLazy />;
     case "cro":
-      return wrapViz(<CroHeroVizLazy locale={locale} />);
+      return <CroHeroVizLazy locale={locale} />;
     case "email-marketing":
-      return wrapViz(<EmailMarketingHeroVizLazy locale={locale} />);
+      return <EmailMarketingHeroVizLazy locale={locale} />;
     case "content-marketing":
-      return wrapViz(<ContentMarketingHeroVizLazy locale={locale} />);
+      return <ContentMarketingHeroVizLazy locale={locale} />;
     case "social-media":
-      return wrapViz(<SocialMediaHeroVizLazy locale={locale} />);
+      return <SocialMediaHeroVizLazy locale={locale} />;
     case "video-marketing":
-      return wrapViz(<VideoMarketingHeroVizLazy locale={locale} />);
+      return <VideoMarketingHeroVizLazy locale={locale} />;
     case "branding":
-      return wrapViz(<BrandingHeroVizLazy />);
+      return <BrandingHeroVizLazy />;
     case "analytics":
-      return wrapViz(<AnalyticsHeroVizLazy locale={locale} />);
+      return <AnalyticsHeroVizLazy locale={locale} />;
     case "growth-consulting":
-      return wrapViz(<GrowthConsultingHeroVizLazy locale={locale} />);
+      return <GrowthConsultingHeroVizLazy locale={locale} />;
     case "funnels":
-      return wrapViz(<FunnelsHeroVizLazy locale={locale} />);
+      return <FunnelsHeroVizLazy locale={locale} />;
     default:
-      return wrapViz(<WebDesignHeroVizLazy />);
+      return <WebDesignHeroVizLazy />;
   }
 }

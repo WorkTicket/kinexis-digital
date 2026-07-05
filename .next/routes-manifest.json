@@ -24,6 +24,30 @@
       "regex": "^(?!/_next)(?:/(en|es))/pricing/cro(?:/)?$"
     },
     {
+      "source": "/:locale(en|es)/pricing/google-ads",
+      "destination": "/:locale/pricing/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/(en|es))/pricing/google-ads(?:/)?$"
+    },
+    {
+      "source": "/:locale(en|es)/pricing/paid-ads",
+      "destination": "/:locale/pricing/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/(en|es))/pricing/paid-ads(?:/)?$"
+    },
+    {
+      "source": "/pricing/google-ads",
+      "destination": "/en/pricing/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/pricing/google-ads(?:/)?$"
+    },
+    {
+      "source": "/pricing/paid-ads",
+      "destination": "/en/pricing/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/pricing/paid-ads(?:/)?$"
+    },
+    {
       "source": "/:locale(en|es)/locations",
       "destination": "/:locale/digital-marketing-agency",
       "statusCode": 308,
@@ -139,6 +163,26 @@
     }
   ],
   "headers": [
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ],
+      "regex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, s-maxage=3600, stale-while-revalidate=86400"
+        }
+      ],
+      "regex": "^/robots\\.txt(?:/)?$"
+    },
     {
       "source": "/:path*",
       "headers": [

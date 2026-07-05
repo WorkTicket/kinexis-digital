@@ -1,6 +1,6 @@
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import { caseStudyLinks } from "@/content/case-study-crossrefs";
-import { pricingRoutes, serviceLabels } from "@/content/registry/site-routes";
+import { pricingRoutes, serviceLabels, resolvePricingSlug } from "@/content/registry/site-routes";
 
 type RelatedLinkGroup = {
   services: { href: string; label: string }[];
@@ -17,8 +17,9 @@ const extraSolutionLinks: Partial<Record<ServiceSeoSlug, { href: string; label: 
 };
 
 function servicePricingLink(slug: ServiceSeoSlug) {
-  const label = serviceLabels[slug].replace(/ Services$/, "").replace(/ Management$/, "");
-  return { href: pricingRoutes[slug], label: `${label} Pricing` };
+  const canonical = resolvePricingSlug(slug);
+  const label = serviceLabels[canonical].replace(/ Services$/, "").replace(/ Management$/, "");
+  return { href: pricingRoutes[canonical], label: `${label} Pricing` };
 }
 
 const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
@@ -37,7 +38,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   "local-seo": {
     services: [
       { href: "/services/seo", label: "SEO Services" },
-      { href: "/services/google-ads", label: "Google Ads Management" },
+      { href: "/pricing/seo", label: "SEO Pricing" },
+      { href: "/pricing/content-marketing", label: "Content Marketing Pricing" },
       servicePricingLink("local-seo"),
     ],
     caseStudies: caseStudyLinks("plumbing", "landscaping"),
@@ -72,7 +74,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   },
   "meta-ads": {
     services: [
-      { href: "/services/google-ads", label: "Google Ads Management" },
+      { href: "/services/ppc-management", label: "PPC Management" },
       { href: "/services/social-media", label: "Social Media Marketing" },
       servicePricingLink("meta-ads"),
     ],
@@ -121,7 +123,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   "content-marketing": {
     services: [
       { href: "/services/seo", label: "SEO Services" },
-      { href: "/services/social-media", label: "Social Media Marketing" },
+      { href: "/pricing/seo", label: "SEO Pricing" },
+      { href: "/pricing/local-seo", label: "Local SEO Pricing" },
       servicePricingLink("content-marketing"),
     ],
     caseStudies: caseStudyLinks("saas", "landscaping"),

@@ -69,7 +69,7 @@ export default function FAQ() {
               <details className="group border-b border-white/[0.06] pb-4">
                 <summary className="cursor-pointer font-semibold list-none flex items-center justify-between">
                   <span className="text-sm">{item.q}</span>
-                  <span className="text-neon-cyan text-lg transition-transform duration-200 flex-shrink-0 ml-4 group-open:rotate-45">+</span>
+                  <span className="faq-chevron ml-4" aria-hidden="true">&gt;</span>
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-muted">{item.a}</p>
               </details>

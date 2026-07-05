@@ -41,7 +41,7 @@ export default function FAQSection({
               <details className="group border-b border-white/[0.06]">
                 <summary className="faq-summary">
                   <span>{item.question}</span>
-                  <span className="text-neon-cyan text-xl transition-transform duration-200 flex-shrink-0 group-open:rotate-45">+</span>
+                  <span className="faq-chevron" aria-hidden="true">&gt;</span>
                 </summary>
                 <p className="faq-answer">{item.answer}</p>
               </details>

@@ -641,7 +641,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "¿En qué se diferencia la gestión Meta Ads de la gestión PPC?",
         answer:
-          "Gestión PPC cubre Google, Meta, LinkedIn y Microsoft como un programa cross-channel. Gestión Meta Ads es dedicada solo a Facebook e Instagram, con pruebas creativas y trabajo de audiencias más profundo específico de Meta.",
+          "PPC Management cubre Google Search, Shopping y Performance Max bajo una tarifa de gestión. Meta Ads es dedicado a Facebook e Instagram con pruebas creativas, audiencias y catalog ads específicos de Meta.",
       },
       {
         question: "¿Cuánto tarda Meta Ads en volverse rentable?",
@@ -654,7 +654,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
   "paid-ads": {
     metaTitle: "Agencia de Anuncios Pagados para Generación de Leads | KINEXIS Digital",
     metaDescription:
-      "Agencia de anuncios pagados para negocios listos para invertir en Google, Meta y LinkedIn. Estrategia, setup y gestión enfocados en leads calificados. Programas desde $3,000/mes.",
+      "Estrategia de anuncios pagados en Google, Meta y LinkedIn con landing pages y tracking ligado a leads calificados. Precios de gestión Google Search en nuestra página PPC Management.",
     hero: {
       label: "Servicios de Anuncios Pagados",
       line1: "Paid media que empieza",
@@ -663,7 +663,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
         "Para negocios que lanzan o escalan anuncios.|Elegimos canales, construimos campañas que convierten y medimos costo por lead.",
     },
     answerBlock:
-      "Los servicios de anuncios pagados cubren selección de canal, estrategia de campañas, creación de anuncios, alineación de landing pages, tracking de conversiones y optimización continua en Google, Meta y LinkedIn. Ad spend y gestión combinados suelen partir en $3,000 a $10,000 al mes. La mayoría de clientes ve sus primeros leads calificados en 7 a 14 días desde el lanzamiento.",
+      "Los servicios de anuncios pagados cubren selección de canal, estrategia de campañas, creación de anuncios, alineación de landing pages, tracking de conversiones y optimización continua en Google, Meta y LinkedIn. La gestión de Google Search, Shopping y Performance Max se cotiza en nuestra página PPC Management (desde $2,500/mes de gestión, gasto en ads aparte). Meta Ads tiene su propia página de precios. La mayoría de clientes ve sus primeros leads calificados en 7 a 14 días desde el lanzamiento.",
     problem: {
       title: "Por Qué los Negocios Desperdician Dinero en Publicidad Pagada",
       intro:
@@ -754,7 +754,7 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
         },
         {
           label: "Inversión inicial",
-          values: ["$500 a $1,500/mes", "$3,000 a $10,000/mes", "$5,000 a $100,000+/mes de ad spend"],
+          values: ["$500 a $1,500/mes", "$3,000 a $10,000/mes", "Ver precios PPC Management"],
         },
       ],
     },
@@ -767,12 +767,12 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "¿En qué se diferencian anuncios pagados de gestión PPC?",
         answer:
-          "Anuncios pagados es nuestro programa para negocios que lanzan o escalan paid media con estrategia de canal y ejecución de campañas. Gestión PPC es nuestro servicio multi-canal avanzado para cuentas que invierten $5,000+ al mes en Google, Meta, LinkedIn y Microsoft con optimización unificada.",
+          "Anuncios pagados es nuestra vista general para negocios que aún eligen canales y construyen sus primeras campañas en Google, Meta o LinkedIn. PPC Management es la página de precios dedicada para gestión continua de Google Search, Shopping y Performance Max con niveles fijos desde $2,500/mes. Meta Ads tiene página de precios separada.",
       },
       {
         question: "¿Cuál es el presupuesto mínimo para anuncios pagados?",
         answer:
-          "Recomendamos al menos $3,000 al mes combinando ad spend y tarifas de gestión. Por debajo de eso no hay datos suficientes para optimizar bien. Programas solo Google pueden empezar más bajo si usas directamente nuestro servicio de gestión Google Ads.",
+          "Recomendamos al menos $3,000 al mes en gasto publicitario para reunir datos suficientes para optimizar bien. La gestión Google Search empieza en $2,500/mes en nuestra página PPC Management, con gasto en ads facturado aparte a Google.",
       },
       {
         question: "¿Construyen landing pages para campañas pagadas?",
@@ -1409,6 +1409,11 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       ],
     },
     extraFaqs: [
+      {
+        question: "¿Cuánto cuesta la gestión de redes sociales?",
+        answer:
+          "La gestión empieza en $1,500 al mes para dos plataformas con doce publicaciones e informes mensuales. Growth a $3,000 al mes cubre tres a cuatro plataformas con amplificación pagada y community management. Scale es $5,500+ para programas multi-plataforma con producción de video y analytics avanzados. El gasto en boost y campañas pagadas es separado de las tarifas de gestión.",
+      },
       {
         question: "¿Qué plataformas de redes sociales gestionan?",
         answer:

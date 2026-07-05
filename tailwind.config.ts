@@ -1,13 +1,8 @@
 import type { Config } from "tailwindcss";
 
-// Brand color constants — single source of truth for all color values.
-// CSS vars in globals.css reference these via theme().
+// Brand accent constants — backgrounds/text use CSS vars in globals.css
+// so light/dark mode follows the OS prefers-color-scheme setting.
 const BRAND = {
-  BG: "#05060a",
-  BG_DARK: "#030408",
-  BG_SECONDARY: "#0a0b12",
-  CHARCOAL: "#111827",
-  DARK_GRAY: "#1f2937",
   NEON_CYAN: "#00d4ff",
   NEON_BLUE: "#0099cc",
 } as const;
@@ -25,19 +20,20 @@ const config: Config = {
     },
     extend: {
       colors: {
-        bg: BRAND.BG,
-        "bg-dark": BRAND.BG_DARK,
-        "bg-secondary": BRAND.BG_SECONDARY,
-        charcoal: BRAND.CHARCOAL,
-        "dark-gray": BRAND.DARK_GRAY,
-        panel: "rgba(255,255,255,0.06)",
-        muted: "rgba(255,255,255,0.7)",
+        bg: "var(--bg)",
+        "bg-dark": "var(--bg-dark)",
+        "bg-secondary": "var(--bg-secondary)",
+        charcoal: "var(--charcoal)",
+        "dark-gray": "var(--dark-gray)",
+        panel: "var(--panel)",
+        muted: "rgb(var(--muted-rgb) / <alpha-value>)",
+        foreground: "var(--text)",
         "neon-cyan": BRAND.NEON_CYAN,
         "neon-blue": BRAND.NEON_BLUE,
         accent: BRAND.NEON_CYAN,
-        border: "rgba(255,255,255,0.08)",
-        "text-secondary": "rgba(255,255,255,0.7)",
-        "text-muted": "rgba(255,255,255,0.6)",
+        border: "var(--border)",
+        "text-secondary": "var(--text-secondary)",
+        "text-muted": "var(--text-muted)",
       },
       fontFamily: {
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],

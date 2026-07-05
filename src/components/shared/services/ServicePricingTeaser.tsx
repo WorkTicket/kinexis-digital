@@ -3,7 +3,7 @@
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 import type { PricingSlug } from "@/content/registry/site-routes";
-import { pricingRoutes } from "@/content/registry/site-routes";
+import { pricingRoutes, resolvePricingSlug } from "@/content/registry/site-routes";
 
 type Props = {
   slug: PricingSlug;
@@ -11,7 +11,8 @@ type Props = {
 
 /** Optional pre-FAQ pricing link — same layout on every service page. */
 export default function ServicePricingTeaser({ slug }: Props) {
-  const pricingHref = pricingRoutes[slug];
+  const pricingSlug = resolvePricingSlug(slug);
+  const pricingHref = pricingRoutes[pricingSlug];
 
   return (
     <div className="section-padding border-t border-white/[0.06] bg-bg-dark">

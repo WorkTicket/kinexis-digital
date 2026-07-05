@@ -75,7 +75,7 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
     },
     dataLayers: [
       { id: "traffic", label: "Traffic Sources", metric: "All channels tracked" },
-      { id: "behavior", label: "User Behavior", metric: "Session recordings + heatmaps" },
+      { id: "behavior", label: "User Behavior", metric: "Events + funnel stages tracked" },
       { id: "conversions", label: "Conversions", metric: "Goal completions tracked" },
       { id: "attribution", label: "Attribution", metric: "Multi-touch models active" },
     ],

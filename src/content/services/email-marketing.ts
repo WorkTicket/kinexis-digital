@@ -118,8 +118,8 @@ export const emailMarketingContent: Record<Locale, EmailMarketingContent> = {
       },
       {
         id: "abandoned",
-        label: "Abandoned Cart",
-        desc: "Recovery flows that bring back visitors who left before converting",
+        label: "Abandoned Lead Flows",
+        desc: "Recovery flows for partial form fills, unbooked calls, and nurture exits",
       },
       {
         id: "lifecycle",

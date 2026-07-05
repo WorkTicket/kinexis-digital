@@ -1,12 +1,12 @@
 {
   "summary": {
-    "timestamp": "2026-07-04T17:48:06.603Z",
-    "finished": "2026-07-04T17:48:14.301Z",
+    "timestamp": "2026-07-04T18:25:51.298Z",
+    "finished": "2026-07-04T18:26:01.250Z",
     "base": "https://www.kinexisdigital.com",
-    "sitemap_url_count": 378,
-    "urls_crawled": 380,
+    "sitemap_url_count": 290,
+    "urls_crawled": 292,
     "min_dofollow_inlinks_target": 3,
-    "sitemap_pass": 378,
+    "sitemap_pass": 290,
     "sitemap_fail": 0,
     "thin_dofollow_inlinks": 0,
     "thin_dofollow_inlinks_urls": [],

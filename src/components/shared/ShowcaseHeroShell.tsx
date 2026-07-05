@@ -39,12 +39,12 @@ export default function ShowcaseHeroShell({
             <span className="hero-label">{label}</span>
             <h1
               className="type-hero type-hero--split font-bold tracking-tight text-balance"
-              {...({ fetchpriority: "high" } as Record<string, string>)}
+              {...({ fetchPriority: "high" } as Record<string, string>)}
             >
               <span className="type-hero-line">{line1}</span>
               <span className="type-hero-line">{line2}</span>
             </h1>
-            <p className="hero__subtitle" {...({ fetchpriority: "high" } as Record<string, string>)}>
+            <p className="hero__subtitle" {...({ fetchPriority: "high" } as Record<string, string>)}>
               <TwoLineText text={subtitle} variant="body" />
             </p>
             {(ctaLabel || secondaryCtaLabel) && (

@@ -94,7 +94,7 @@ export const croContent: Record<Locale, CROContent> = {
     testResults: [
       { test: "Form Fields", winner: "4 fields vs. 7 fields", lift: "+42%", significance: "99%", runs: "1,800" },
       { test: "Social Proof Block", winner: "Reviews above fold vs. below form", lift: "+31%", significance: "97%", runs: "2,900" },
-      { test: "CTA Button Color", winner: "Neon cyan vs. white", lift: "+23%", significance: "99%", runs: "2,400" },
+      { test: "CTA Button Copy", winner: "Book a free estimate vs. Contact us", lift: "+23%", significance: "99%", runs: "2,400" },
       { test: "Headline A/B", winner: "Benefit-driven vs. feature", lift: "+18%", significance: "95%", runs: "3,100" },
     ],
     methodSection: {
@@ -209,7 +209,7 @@ export const croContent: Record<Locale, CROContent> = {
     testResults: [
       { test: "Campos de Formulario", winner: "4 campos vs. 7 campos", lift: "+42%", significance: "99%", runs: "1,800" },
       { test: "Bloque de Prueba Social", winner: "Reseñas arriba vs. abajo del formulario", lift: "+31%", significance: "97%", runs: "2,900" },
-      { test: "Color Botón CTA", winner: "Cian neón vs. blanco", lift: "+23%", significance: "99%", runs: "2,400" },
+      { test: "Texto Botón CTA", winner: "Reserva estimación gratis vs. Contáctanos", lift: "+23%", significance: "99%", runs: "2,400" },
       { test: "Titular A/B", winner: "Beneficio vs. característica", lift: "+18%", significance: "95%", runs: "3,100" },
     ],
     methodSection: {

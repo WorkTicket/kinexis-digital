@@ -2,6 +2,8 @@
 
 import * as Sentry from "@sentry/nextjs";
 import { useEffect } from "react";
+import "./globals.css";
+import "../styles/light-mode-overrides.css";
 
 export default function GlobalError({
   error,
@@ -15,12 +17,11 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html lang="en">
+    <html lang="en" style={{ colorScheme: "light dark" }}>
       <body
+        className="bg-bg text-foreground"
         style={{
           margin: 0,
-          background: "#05060a",
-          color: "#fff",
           fontFamily: "system-ui, sans-serif",
           display: "flex",
           minHeight: "100vh",
@@ -35,7 +36,7 @@ export default function GlobalError({
         <h1 style={{ fontSize: "1.5rem", fontWeight: 700, margin: 0 }}>
           Something went wrong
         </h1>
-        <p style={{ color: "rgba(255,255,255,0.5)", maxWidth: "420px", lineHeight: 1.7, margin: 0 }}>
+        <p className="text-muted" style={{ maxWidth: "420px", lineHeight: 1.7, margin: 0 }}>
           An unexpected error occurred. We&apos;ve been notified and will look into it.
         </p>
         <button

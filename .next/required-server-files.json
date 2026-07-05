@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "4d44dd2e6fa0a3cc80a844e1877efd31611af3dc"
+      "_sentryRelease": "2487adb3b6d1828e67c8bc63fdb614d64d0cff1b"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -332,6 +332,26 @@
       {
         "source": "/:locale(en|es)/pricing/cro",
         "destination": "/:locale/pricing/funnels",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/pricing/google-ads",
+        "destination": "/:locale/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/pricing/paid-ads",
+        "destination": "/:locale/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/pricing/google-ads",
+        "destination": "/en/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/pricing/paid-ads",
+        "destination": "/en/pricing/ppc-management",
         "permanent": true
       },
       {

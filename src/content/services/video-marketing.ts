@@ -176,7 +176,7 @@ export const videoMarketingContent: Record<Locale, VideoMarketingContent> = {
       {
         title: "Distribution & Analysis",
         desc: "Assets delivered in all formats. Track view-through, engagement, and conversion attribution.",
-        metric: "4.2x avg. view-through rate",
+        metric: "65% avg. video completion rate",
       },
     ],
     cta: {

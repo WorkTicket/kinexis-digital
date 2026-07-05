@@ -92,12 +92,8 @@ export default function Navigation({
                       <span className="nav-dropdown-eyebrow">
                         {tNav("servicesOverview")}
                       </span>
-                      <Link href="/services" className="nav-dropdown-view-all">
+                      <Link href="/services" className="nav-dropdown-view-all ml-auto">
                         {tNav("viewAllServices")}
-                        <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-                      </Link>
-                      <Link href="/pricing/seo" className="nav-dropdown-view-all ml-4">
-                        {tNav("pricing")}
                         <ArrowRight className="h-3.5 w-3.5" aria-hidden />
                       </Link>
                     </div>

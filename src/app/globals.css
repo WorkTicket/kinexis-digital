@@ -4,47 +4,57 @@
 
 :root {
   --grain-url: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  /* Color tokens — values live in tailwind.config.ts (BRAND constants).
-     These vars are kept in sync via theme() references so there is
-     one source of truth: change a BRAND constant and both the Tailwind
-     utilities AND these CSS vars update together. */
-  --bg: theme('colors.bg');
-  --bg-dark: theme('colors.bg-dark');
-  --bg-secondary: theme('colors.bg-secondary');
-  --charcoal: theme('colors.charcoal');
-  --dark-gray: theme('colors.dark-gray');
-  --neon-cyan: theme('colors.neon-cyan');
-  --neon-blue: theme('colors.neon-blue');
-  --accent: theme('colors.accent');
-  --panel: rgba(255, 255, 255, 0.06);
-  --text: #ffffff;
-  --muted: rgba(255, 255, 255, 0.7);
+  /* Semantic tokens — light-dark() follows OS prefers-color-scheme */
+  --bg: light-dark(#f8fafc, #05060a);
+  --bg-dark: light-dark(#f1f5f9, #030408);
+  --bg-secondary: light-dark(#ffffff, #0a0b12);
+  --charcoal: light-dark(#e2e8f0, #111827);
+  --dark-gray: light-dark(#cbd5e1, #1f2937);
+  --neon-cyan: #00d4ff;
+  --neon-blue: #0099cc;
+  --accent: var(--neon-cyan);
+  --panel: light-dark(rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 0.06));
+  --text: light-dark(#111827, #ffffff);
+  --muted: light-dark(rgba(17, 24, 39, 0.65), rgba(255, 255, 255, 0.7));
+  --muted-rgb: light-dark(17 24 39, 255 255 255);
   --accent-hover: #33ddff;
   --accent-glow: rgba(0, 212, 255, 0.5);
   --accent-glow-soft: rgba(0, 212, 255, 0.15);
   --accent-shadow: rgba(0, 153, 204, 0.3);
-  /* One-off tooltip backgrounds — dark tinted panel colors */
-  --tooltip-bg-before: #120808;
-  --tooltip-bg-after: #061018;
+  --tooltip-bg-before: light-dark(#f1f5f9, #120808);
+  --tooltip-bg-after: light-dark(#e2e8f0, #061018);
   --light-gray: #9ca3af;
-  --white: #f9fafb;
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --border-default: rgba(255, 255, 255, 0.06);
-  --border-strong: rgba(255, 255, 255, 0.1);
+  --white: light-dark(#111827, #f9fafb);
+  --border-subtle: light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.04));
+  --border-default: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.06));
+  --border-strong: light-dark(rgba(0, 0, 0, 0.12), rgba(255, 255, 255, 0.1));
   --border: var(--border-strong);
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.6);
+  --text-secondary: light-dark(rgba(17, 24, 39, 0.7), rgba(255, 255, 255, 0.7));
+  --text-muted: light-dark(rgba(17, 24, 39, 0.55), rgba(255, 255, 255, 0.6));
+  --surface-hover: light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.05));
+  --surface-active: light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, 0.08));
+  --nav-link-color: light-dark(rgba(17, 24, 39, 0.55), rgba(255, 255, 255, 0.52));
+  --nav-link-hover: light-dark(rgba(17, 24, 39, 0.88), rgba(255, 255, 255, 0.88));
+  --header-surface: light-dark(rgba(248, 250, 252, 0.92), rgba(5, 6, 10, 0.92));
+  --dropdown-surface-from: light-dark(rgba(255, 255, 255, 0.98), rgba(14, 16, 26, 0.98));
+  --dropdown-surface-to: light-dark(rgba(248, 250, 252, 0.98), rgba(5, 6, 10, 0.98));
   --gradient: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
   --shadow-card: 0 0 20px rgba(0, 212, 255, 0.08), 0 0 60px rgba(0, 153, 204, 0.04);
-  --shadow-panel: 0 24px 80px -12px rgba(0, 0, 0, 0.55);
-  --shadow-panel-lg: 0 32px 100px -20px rgba(0, 0, 0, 0.65);
+  --shadow-panel: light-dark(
+    0 24px 80px -12px rgba(0, 0, 0, 0.12),
+    0 24px 80px -12px rgba(0, 0, 0, 0.55)
+  );
+  --shadow-panel-lg: light-dark(
+    0 32px 100px -20px rgba(0, 0, 0, 0.14),
+    0 32px 100px -20px rgba(0, 0, 0, 0.65)
+  );
   --shadow-glow: 0 0 30px var(--accent-glow), 0 0 70px var(--accent-shadow), 0 0 140px rgba(0, 153, 204, 0.12);
   --shadow-glow-sm: 0 0 12px var(--accent-glow-soft);
   --radius-control: 0.75rem;
   --radius-card: 1rem;
   --radius-panel: 1.5rem;
   --font-ubuntu: "Ubuntu", sans-serif;
-  --mesh-overlay: rgba(17, 24, 39, 0.72);
+  --mesh-overlay: light-dark(rgba(248, 250, 252, 0.72), rgba(17, 24, 39, 0.72));
 
   /* Spacing scale — mobile 72px | tablet 96px | desktop 120px */
   --space-section: 4.5rem;
@@ -74,10 +84,12 @@
   --intro-width: 65ch;
   --subtitle-width: 48rem;
   --shadow-card-hover:
-    0 18px 52px rgba(0, 0, 0, 0.52),
+    0 18px 52px light-dark(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.52)),
     0 0 32px rgba(0, 212, 255, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
-  --shadow-btn-hover: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 14px rgba(0, 212, 255, 0.08);
+    inset 0 1px 0 light-dark(rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 0.07));
+  --shadow-btn-hover:
+    0 4px 20px light-dark(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.4)),
+    0 0 14px rgba(0, 212, 255, 0.08);
   --duration-interaction-fast: 110ms;
   --duration-interaction: 260ms;
   --duration-interaction-slow: 380ms;
@@ -100,7 +112,7 @@
   --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --text-body: 1rem;
   --btn-primary-bg: var(--neon-cyan);
-  --btn-primary-text: var(--bg);
+  --btn-primary-text: #05060a;
   --btn-radius: var(--radius-control);
   --btn-padding: 0.875rem 1.75rem;
 }
@@ -110,6 +122,7 @@
 }
 
 html {
+  color-scheme: light dark;
   background-color: var(--bg);
   scroll-behavior: smooth;
   overflow-x: clip;
@@ -152,8 +165,8 @@ summary::-webkit-details-marker {
 }
 
 ::selection {
-  background: rgba(0, 212, 255, 0.3);
-  color: #fff;
+  background: rgba(0, 212, 255, 0.25);
+  color: light-dark(#111827, #fff);
 }
 
 @layer components {
@@ -168,11 +181,11 @@ summary::-webkit-details-marker {
   /* Header nav — premium pill affordance */
   .nav-link {
     @apply relative block whitespace-nowrap rounded-lg px-2.5 py-1.5 text-[12.5px] font-medium tracking-[0.03em] transition-[color,background-color,box-shadow] duration-300 ease-out lg:px-3 lg:text-[13px];
-    color: rgba(255, 255, 255, 0.52);
+    color: var(--nav-link-color);
   }
 
   .nav-link:hover:not(.nav-link--active) {
-    color: rgba(255, 255, 255, 0.88);
+    color: var(--nav-link-hover);
   }
 
   .nav-link:focus-visible {
@@ -180,9 +193,9 @@ summary::-webkit-details-marker {
   }
 
   .nav-link--active {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    color: var(--text);
+    background: var(--surface-active);
+    box-shadow: inset 0 1px 0 light-dark(rgba(0, 0, 0, 0.06), rgba(255, 255, 255, 0.1));
   }
 
   .site-header {
@@ -200,7 +213,7 @@ summary::-webkit-details-marker {
     height: var(--header-h);
     isolation: isolate;
     overflow: visible;
-    border-bottom: 1px solid rgba(255, 255, 255, var(--header-border-opacity));
+    border-bottom: 1px solid light-dark(rgba(0, 0, 0, 0.08), rgba(255, 255, 255, var(--header-border-opacity)));
     box-shadow: 0 var(--header-shadow-y) var(--header-shadow-blur) rgba(0, 0, 0, var(--header-shadow-alpha));
   }
 
@@ -214,7 +227,10 @@ summary::-webkit-details-marker {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: rgba(5, 6, 10, var(--header-surface-opacity));
+    background: light-dark(
+      rgba(248, 250, 252, var(--header-surface-opacity)),
+      rgba(5, 6, 10, var(--header-surface-opacity))
+    );
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     transform: translateZ(0);
@@ -304,10 +320,10 @@ summary::-webkit-details-marker {
     @apply relative w-max overflow-hidden rounded-2xl p-6;
     background: linear-gradient(
       165deg,
-      rgba(14, 16, 26, 0.98) 0%,
-      rgba(5, 6, 10, 0.98) 100%
+      var(--dropdown-surface-from) 0%,
+      var(--dropdown-surface-to) 100%
     );
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-strong);
     box-shadow:
       var(--shadow-panel),
       0 0 0 1px rgba(0, 212, 255, 0.04),
@@ -339,7 +355,7 @@ summary::-webkit-details-marker {
 
   .nav-dropdown-group__title {
     @apply mb-2.5 text-[10px] font-semibold uppercase tracking-[0.2em];
-    color: rgba(255, 255, 255, 0.32);
+    color: light-dark(rgba(17, 24, 39, 0.4), rgba(255, 255, 255, 0.32));
   }
 
   .nav-dropdown-group__title--link {
@@ -347,7 +363,7 @@ summary::-webkit-details-marker {
   }
 
   .nav-dropdown-group__title--link:hover {
-    color: rgba(255, 255, 255, 0.55);
+    color: light-dark(rgba(17, 24, 39, 0.65), rgba(255, 255, 255, 0.55));
   }
 
   .nav-dropdown-group__title--active {
@@ -364,18 +380,18 @@ summary::-webkit-details-marker {
   }
 
   .nav-resources-featured {
-    @apply mt-4 flex items-center gap-2.5 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2.5 transition-all duration-200;
+    @apply mt-4 flex items-center gap-2.5 rounded-lg border border-surface bg-white/[0.03] px-3 py-2.5 transition-all duration-200;
   }
 
   .nav-resources-featured:hover {
     border-color: rgba(0, 212, 255, 0.22);
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--surface-hover);
   }
 
   .nav-resources-featured--active {
     border-color: rgba(0, 212, 255, 0.22);
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    background: var(--surface-active);
+    box-shadow: inset 0 1px 0 light-dark(rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 0.06));
   }
 
   .nav-resources-featured__icon {
@@ -385,12 +401,13 @@ summary::-webkit-details-marker {
   }
 
   .nav-resources-featured__title {
-    @apply block text-[13px] font-medium text-white;
+    @apply block text-[13px] font-medium;
+    color: var(--text);
   }
 
   .nav-resources-featured__desc {
     @apply mt-0.5 block text-[11px] leading-snug;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--text-muted);
   }
 
   .nav-dropdown-panel::before {
@@ -423,12 +440,12 @@ summary::-webkit-details-marker {
   }
 
   .nav-dropdown-header {
-    @apply mb-5 flex items-center justify-between gap-4 border-b border-white/[0.06] pb-4;
+    @apply mb-5 flex items-center justify-between gap-4 border-b border-surface pb-4;
   }
 
   .nav-dropdown-eyebrow {
     @apply text-[10px] font-semibold uppercase tracking-[0.22em];
-    color: rgba(255, 255, 255, 0.35);
+    color: var(--text-muted);
   }
 
   .nav-dropdown-view-all {
@@ -438,7 +455,7 @@ summary::-webkit-details-marker {
 
   .nav-dropdown-link {
     @apply block rounded-lg px-2.5 py-2 text-[13px] transition-all duration-200;
-    color: rgba(255, 255, 255, 0.58);
+    color: var(--nav-link-color);
   }
 
   .nav-dropdown-link--compact {
@@ -446,14 +463,14 @@ summary::-webkit-details-marker {
   }
 
   .nav-dropdown-link:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    background: var(--surface-hover);
   }
 
   .nav-dropdown-link--active {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.07);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    color: var(--text);
+    background: var(--surface-active);
+    box-shadow: inset 0 1px 0 light-dark(rgba(0, 0, 0, 0.04), rgba(255, 255, 255, 0.05));
   }
 
   .header-cta {
@@ -475,13 +492,18 @@ summary::-webkit-details-marker {
   }
 
   .header-icon-btn {
-    @apply flex shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] text-white/70 transition-all duration-200 touch-manipulation hover:border-white/[0.14] hover:bg-white/[0.06] hover:text-white;
+    @apply flex shrink-0 items-center justify-center rounded-lg border border-surface bg-white/[0.03] text-muted transition-all duration-200 touch-manipulation hover:border-surface-strong hover:bg-white/[0.06];
+    color: var(--text-secondary);
+  }
+
+  .header-icon-btn:hover {
+    color: var(--text);
   }
 
   .header-lang-btn {
     @apply inline-flex shrink-0 items-center gap-1.5 rounded-lg px-2.5 font-medium leading-none tracking-wide;
     height: var(--header-control-h);
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--nav-link-color);
     transition:
       color 300ms ease-out,
       background-color 300ms ease-out,
@@ -503,22 +525,22 @@ summary::-webkit-details-marker {
   .header-lang-menu__panel {
     background: linear-gradient(
       165deg,
-      rgba(14, 16, 26, 0.98) 0%,
-      rgba(5, 6, 10, 0.98) 100%
+      var(--dropdown-surface-from) 0%,
+      var(--dropdown-surface-to) 100%
     );
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-strong);
     box-shadow: var(--shadow-panel);
   }
 
   .header-lang-btn:hover {
-    color: rgba(255, 255, 255, 0.92);
-    background: rgba(255, 255, 255, 0.045);
+    color: var(--nav-link-hover);
+    background: var(--surface-hover);
   }
 
   .header-lang-btn--open {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.06);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    background: var(--surface-active);
+    box-shadow: inset 0 1px 0 light-dark(rgba(0, 0, 0, 0.05), rgba(255, 255, 255, 0.08));
   }
 
   .header-actions-divider {
@@ -636,11 +658,13 @@ summary::-webkit-details-marker {
 
   /* Touch-friendly form system */
   .form-label {
-    @apply block text-sm font-medium text-white mb-2;
+    @apply block text-sm font-medium mb-2;
+    color: var(--text);
   }
 
   .form-input {
-    @apply block w-full min-h-touch-lg rounded-xl border border-border bg-bg-dark px-4 py-3.5 text-base text-white;
+    @apply block w-full min-h-touch-lg rounded-xl border border-border bg-bg-dark px-4 py-3.5 text-base;
+    color: var(--text);
     @apply focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent;
     @apply placeholder:text-text-muted;
     touch-action: manipulation;
@@ -806,7 +830,7 @@ summary::-webkit-details-marker {
 
   /* Page section rhythm — matches home page: border-t dividers + alternating bg shifts */
   .page-section {
-    @apply section-padding border-t border-white/[0.06];
+    @apply section-padding border-t border-surface;
   }
 
   .page-section--elevated {
@@ -948,7 +972,8 @@ summary::-webkit-details-marker {
   }
 
   .hero__outcome {
-    @apply mt-4 text-sm font-medium tracking-wide text-white/50 md:mt-5;
+    @apply mt-4 text-sm font-medium tracking-wide md:mt-5;
+    color: var(--text-muted);
   }
 
   .hero--split .hero__outcome {
@@ -1353,7 +1378,7 @@ summary::-webkit-details-marker {
   .hero--split .hero__subtitle {
     margin-top: var(--space-heading-subheading);
     font-size: clamp(1rem, 0.4vw + 0.95rem, 1.2rem);
-    color: rgba(255, 255, 255, 0.55);
+    color: var(--text-muted);
   }
 
   @media (min-width: 1024px) {
@@ -1404,7 +1429,7 @@ summary::-webkit-details-marker {
     max-width: var(--subtitle-width);
     margin-left: auto;
     margin-right: auto;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--text-muted);
   }
 
   @media (min-width: 1024px) {
@@ -1677,7 +1702,7 @@ summary::-webkit-details-marker {
   }
 
   .proof-metric-card {
-    @apply rounded-2xl border border-white/[0.06] bg-white/[0.03] card-pad text-center;
+    @apply rounded-2xl border border-surface bg-white/[0.03] card-pad text-center;
   }
 
   /* Case studies hero — fill available column width */
@@ -1708,7 +1733,7 @@ summary::-webkit-details-marker {
   }
 
   .case-study-metric-card {
-    @apply min-w-0 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-4 text-center sm:p-5;
+    @apply min-w-0 rounded-2xl border border-surface bg-white/[0.03] p-4 text-center sm:p-5;
   }
 
   .case-study-metric-card__label {
@@ -1720,7 +1745,7 @@ summary::-webkit-details-marker {
   }
 
   .case-study-metric-card__delta {
-    @apply mt-2.5 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 border-t border-white/[0.06] pt-2.5 text-[11px] tabular-nums leading-snug;
+    @apply mt-2.5 flex flex-wrap items-center justify-center gap-x-1.5 gap-y-0.5 border-t border-surface pt-2.5 text-[11px] tabular-nums leading-snug;
   }
 
   .case-study-metric-card__before {
@@ -1732,13 +1757,14 @@ summary::-webkit-details-marker {
   }
 
   .case-study-metric-card__after {
-    @apply font-semibold text-white;
+    @apply font-semibold;
+    color: var(--text);
   }
 
   /* Compact lift row on case study listing cards */
   .case-study-lift-row {
     container-type: inline-size;
-    @apply grid min-w-0 grid-cols-3 gap-2 border-t border-white/[0.06] pt-5;
+    @apply grid min-w-0 grid-cols-3 gap-2 border-t border-surface pt-5;
   }
 
   .case-study-lift-row__item {
@@ -1821,6 +1847,10 @@ summary::-webkit-details-marker {
     @apply mt-2 pb-4 type-body text-muted prose-readable;
   }
 
+  .faq-chevron {
+    @apply text-neon-cyan/70 text-sm font-extralight leading-none transition-transform duration-200 flex-shrink-0 group-open:rotate-90;
+  }
+
   /* Premium transition timing — deliberate, not rushed */
   .transition-premium {
     transition-duration: 600ms;
@@ -1831,7 +1861,7 @@ summary::-webkit-details-marker {
     background: var(--panel);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-default);
   }
 
   .glass-hover {
@@ -1865,7 +1895,7 @@ summary::-webkit-details-marker {
   }
 
   .neon-border {
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-default);
     transition:
       border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
       box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -1879,10 +1909,10 @@ summary::-webkit-details-marker {
   }
 
   .glass-dropdown {
-    background: #05060a;
+    background: var(--bg);
     backdrop-filter: blur(48px);
     -webkit-backdrop-filter: blur(48px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid var(--border-strong);
   }
 
   .card {
@@ -2676,5 +2706,50 @@ footer a:focus {
   }
 }
 
+/* Light mode — hero mesh & decorative backgrounds */
+@media (prefers-color-scheme: light) {
+  .mesh-layer {
+    opacity: 0.12;
+    filter: grayscale(0.35) saturate(0.4) brightness(1.15) contrast(1.05) blur(10px);
+  }
 
+  .mesh-poly-layer {
+    opacity: 0.08;
+    filter: grayscale(1) brightness(0.85) contrast(1.2);
+    mix-blend-mode: multiply;
+  }
+
+  .mesh-contrast {
+    background: linear-gradient(
+      180deg,
+      rgba(248, 250, 252, 0.35) 0%,
+      rgba(226, 232, 240, 0.55) 100%
+    );
+  }
+
+  .mesh-vignette {
+    background:
+      radial-gradient(ellipse 65% 55% at 50% 42%, transparent 0%, rgba(248, 250, 252, 0.25) 52%, rgba(226, 232, 240, 0.65) 100%),
+      radial-gradient(ellipse at center, rgba(0, 212, 255, 0.02) 0%, transparent 42%);
+  }
+
+  .mesh-glass {
+    opacity: 0.45;
+    mix-blend-mode: overlay;
+  }
+
+  .bg-gradient-glow {
+    background:
+      radial-gradient(ellipse 75% 55% at 42% 28%, rgba(0, 212, 255, 0.05) 0%, transparent 58%),
+      radial-gradient(ellipse at 80% 100%, rgba(0, 153, 204, 0.03) 0%, transparent 50%),
+      linear-gradient(180deg, var(--charcoal) 0%, var(--bg) 100%);
+  }
+}
+
+@layer utilities {
+  /* Base muted text — opacity variants (text-muted/75) use the rgb token in tailwind.config */
+  .text-muted {
+    color: var(--text-muted);
+  }
+}
 

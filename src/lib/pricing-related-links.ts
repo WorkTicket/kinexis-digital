@@ -2,7 +2,7 @@ import { pricingRoutes, serviceLabels, type PricingSlug } from "@/content/regist
 
 const pricingGroups: PricingSlug[][] = [
   ["seo", "local-seo", "content-marketing"],
-  ["ppc-management", "google-ads", "meta-ads", "paid-ads"],
+  ["ppc-management", "meta-ads"],
   ["web-design", "funnels", "branding"],
   ["email-marketing", "social-media", "video-marketing"],
   ["analytics", "growth-consulting"],

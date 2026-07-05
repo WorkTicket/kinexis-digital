@@ -119,11 +119,11 @@ export const seoContent: Record<Locale, SeoContent> = {
         metric: "27 positions gained",
       },
       {
-        label: "Lead Conversion",
-        headline: "Traffic that converts",
+        label: "Qualified Lead Growth",
+        headline: "Organic traffic that books",
         description:
-          "Better-intent traffic converts at higher rates. Landscaping client: lead conversion went from 1.8% to 8.4% after the rebuild.",
-        metric: "+367%",
+          "Landscaping client: qualified leads grew from 10 to 48 per month over 10 months as commercial-intent keywords moved into page one.",
+        metric: "4.8X leads",
       },
     ],
     phasesTitle: "How we grow search traffic",
@@ -253,11 +253,11 @@ export const seoContent: Record<Locale, SeoContent> = {
         metric: "27 posiciones ganadas",
       },
       {
-        label: "Conversión de Leads",
-        headline: "Tráfico que convierte",
+        label: "Crecimiento de Leads Calificados",
+        headline: "Tráfico orgánico que reserva",
         description:
-          "Tráfico con mejor intención convierte más. Cliente Landscaping: conversión de leads de 1,2% a 8,4% tras el rebuild.",
-        metric: "+367%",
+          "Cliente Landscaping: leads calificados de 10 a 48 por mes en 10 meses a medida que keywords de intención comercial entraron a página uno.",
+        metric: "4.8X leads",
       },
     ],
     phasesTitle: "Cómo hacemos crecer tu tráfico orgánico",

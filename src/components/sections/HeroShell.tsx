@@ -16,8 +16,8 @@ export default async function HeroShell() {
 
       <div className="container-site hero__container relative z-10">
         <div className="w-full">
-          {/* fetchpriority hints LCP text for the parser (lowercase DOM attr) */}
-          <h1 className="type-hero" {...({ fetchpriority: "high" } as Record<string, string>)}>
+          {/* fetchPriority hints LCP text for the parser (lowercase DOM attr) */}
+          <h1 className="type-hero" {...({ fetchPriority: "high" } as Record<string, string>)}>
             <span className="type-hero-line">{t("line1")}</span>
             <span className="type-hero-line text-white/25">{t("line2")}</span>
             <span className="type-hero-line">
@@ -26,7 +26,7 @@ export default async function HeroShell() {
             </span>
           </h1>
 
-          <p className="section-intro-lg" {...({ fetchpriority: "high" } as Record<string, string>)}>
+          <p className="section-intro-lg" {...({ fetchPriority: "high" } as Record<string, string>)}>
             <TwoLineText text={t("subtitle")} variant="body" className="hero-home-subtitle-line" />
           </p>
 

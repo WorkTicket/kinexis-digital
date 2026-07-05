@@ -31,12 +31,12 @@ export default function ArticleHeroShell({
           <span className="hero-label">{label}</span>
           <h1
             className="mt-4 type-hero type-hero--center type-hero--article text-balance"
-            {...({ fetchpriority: "high" } as Record<string, string>)}
+            {...({ fetchPriority: "high" } as Record<string, string>)}
           >
             {headline}
           </h1>
           {subtitle && (
-            <p className="mt-3 text-sm text-muted" {...({ fetchpriority: "high" } as Record<string, string>)}>
+            <p className="mt-3 text-sm text-muted" {...({ fetchPriority: "high" } as Record<string, string>)}>
               {subtitle}
             </p>
           )}

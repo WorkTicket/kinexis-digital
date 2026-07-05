@@ -4,6 +4,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../globals.css";
+import "../../styles/light-mode-overrides.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SkipToMain from "@/components/layout/SkipToMain";
@@ -44,6 +45,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  colorScheme: "light dark",
 };
 
 export default async function LocaleLayout({
@@ -64,7 +66,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable} ${ubuntuMedium.variable}`}>
-      <body className="font-ubuntu bg-bg text-white antialiased">
+      <body className="font-ubuntu bg-bg text-foreground antialiased">
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionProvider>

@@ -2,7 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
 import PricingPageClient from "@/components/pages/PricingPageClient";
 import { getPricingPageContent } from "@/content/pricing/get-pricing-page-content";
-import { pricingRoutes, pricingSlugs, serviceLabels, serviceRoutes, type PricingSlug } from "@/content/registry/site-routes";
+import { pricingRoutes, serviceLabels, serviceRoutes, type PricingSlug } from "@/content/registry/site-routes";
 import type { Locale } from "@/i18n/routing";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from "@/lib/schema";
@@ -61,4 +61,4 @@ export function createPricingMetadata(slug: PricingSlug) {
   };
 }
 
-export { pricingSlugs };
+export { activePricingSlugs as pricingSlugs } from "@/content/registry/site-routes";

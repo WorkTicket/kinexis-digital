@@ -26,14 +26,14 @@ export const ppcPillarContent: ServicePillarContent = {
   },
   deliverables: {
     title: "What's included",
-    subtitle: "Full-funnel PPC management from audit through|ongoing optimization.",
+    subtitle: "Google Search, Shopping, and PMax management from audit|through ongoing optimization.",
     items: [
-      { title: "Account Audit & Restructure", description: "Deep review of campaigns, ad groups, keywords, audiences, and conversion tracking." },
-      { title: "Campaign Architecture", description: "Intent-based campaign structure with proper segmentation by service, location, or funnel stage." },
-      { title: "Landing Page Alignment", description: "Recommendations or builds for pages that match ad intent and maximize Quality Score." },
-      { title: "Conversion Tracking", description: "GA4, GTM, call tracking, and offline conversion import for accurate ROAS reporting." },
-      { title: "Weekly Optimization", description: "Bid adjustments, negative keywords, audience refinements, and creative testing." },
-      { title: "Monthly Reporting", description: "Executive-ready dashboards with actionable insights, not data dumps." },
+      { title: "Search Campaign Architecture", description: "Intent-segmented campaigns with tight keyword themes and ad group structure." },
+      { title: "Shopping & PMax", description: "Product feed optimization and Performance Max for e-commerce and local inventory." },
+      { title: "Quality Score Optimization", description: "Ad relevance, landing page experience, and expected CTR improvements." },
+      { title: "Negative Keyword Management", description: "Continuous search term audits to eliminate wasted spend." },
+      { title: "Conversion Tracking Setup", description: "Enhanced conversions, offline import, and call tracking integration." },
+      { title: "Channel Selection & Platform Strategy", description: "Platform audit and recommendation when you have not picked a channel yet, or when to add Microsoft Ads and programmatic reach." },
     ],
   },
   timeline: {
@@ -47,8 +47,8 @@ export const ppcPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Transparent pricing based on scope and ad spend.",
+    title: "Google Ads management vs. in-house",
+    subtitle: "What you get when you hire a dedicated paid search team instead of building one internally.",
     tiers: [
       { name: "Starter", range: "$2,500/mo", description: "Single-channel management for local businesses with up to $5K ad spend." },
       { name: "Growth", range: "$5,000/mo", description: "Multi-channel PPC for growing brands with $5K–$25K monthly ad spend." },
@@ -57,12 +57,12 @@ export const ppcPillarContent: ServicePillarContent = {
     note: "Management fees are separate from ad spend. We provide a detailed proposal after your strategy call.",
   },
   results: {
-    title: "Results framework",
-    subtitle: "How we measure PPC success.",
+    title: "Results we track",
+    subtitle: "Cross-channel paid media outcomes from recent programs.",
     metrics: [
       { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-      { metric: "65%", label: "ad spend cut · same client" },
-      { metric: "Top 3", label: "local pack · 48 keywords" },
+      { metric: "65%", label: "wasted spend cut · same client" },
+      { metric: "38%", label: "CPL reduction · budget reallocation" },
     ],
   },
 };
@@ -86,6 +86,15 @@ export const googleAdsPillarContent: ServicePillarContent = {
       { title: "Negative Keyword Management", description: "Continuous search term audits to eliminate wasted spend." },
       { title: "Conversion Tracking Setup", description: "Enhanced conversions, offline import, and call tracking integration." },
       { title: "Bid Strategy Management", description: "Smart bidding calibrated to your conversion data and margin targets." },
+    ],
+  },
+  results: {
+    title: "Results we track",
+    subtitle: "Google Ads outcomes from recent client programs.",
+    metrics: [
+      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "65%", label: "CPL reduction · same client" },
+      { metric: "4.2x", label: "ROAS on high-intent Search campaigns" },
     ],
   },
 };
@@ -122,6 +131,21 @@ export const metaAdsPillarContent: ServicePillarContent = {
   },
 };
 
-export function getPaidServiceFaqs(_variant: PaidServiceVariant, _locale: Locale): FAQItem[] {
-  return sharedFaqs;
+export function getPaidServiceFaqs(variant: PaidServiceVariant, _locale: Locale): FAQItem[] {
+  const googleExtras: FAQItem[] = [
+    { question: "Do you manage Performance Max campaigns?", answer: "Yes. We build and optimize PMax with proper asset groups, audience signals, and feed data. We also monitor search term insights to prevent PMax from cannibalizing branded Search traffic." },
+    { question: "Will I own my Google Ads account?", answer: "Always. We work inside your account with full admin access. If you leave, you keep every campaign, keyword list, and conversion setup we built." },
+  ];
+  const metaExtras: FAQItem[] = [
+    { question: "How much should I spend on Meta Ads?", answer: "We recommend $3,000 to $15,000 per month in ad spend for most B2B and e-commerce accounts. Management fees start at $1,500 per month on top of ad spend." },
+    { question: "Do you create ad creative for Meta campaigns?", answer: "Yes. We write ad copy and coordinate image and video creative as part of management. Full video production goes through our video marketing service." },
+  ];
+  const ppcExtras: FAQItem[] = [
+    { question: "What platforms do you manage under PPC management?", answer: "Google Ads, Meta, LinkedIn Ads, and Microsoft Ads. We coordinate budgets and reporting across all four with one unified attribution framework." },
+    { question: "How is PPC management different from single-channel management?", answer: "PPC management is a cross-channel program: shared KPIs, weekly budget reallocation, and one dashboard. Single-channel services go deeper on Google or Meta only." },
+  ];
+
+  if (variant === "google-ads") return [...sharedFaqs.slice(0, 4), ...googleExtras, ...sharedFaqs.slice(4)];
+  if (variant === "meta-ads") return [...sharedFaqs.slice(0, 4), ...metaExtras, ...sharedFaqs.slice(4)];
+  return [...sharedFaqs.slice(0, 4), ...ppcExtras, ...sharedFaqs.slice(4)];
 }

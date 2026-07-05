@@ -13,26 +13,19 @@ type Props = WhyKinexusData & {
   visualization?: ReactNode;
 };
 
-export default function WhyKinexusSection({ headline, points, surfaceIndex, visualization }: Props) {
+export default function WhyKinexusSection({ headline, subtitle, points, surfaceIndex, visualization }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
 
   // Problem-framed sections ("Why Most X Fails...") use red issue labels.
   // Positive-framed sections ("The Kinexus Framework...") drop the label so the copy isn't contradicted.
   const isProblemFramed = /^why\b/i.test(headline.trim());
-  const subtitle = isProblemFramed
-    ? "What most agencies get wrong — and how we approach it differently."
-    : "How we approach this work, and why it produces results most agencies don't.";
 
   return (
     <Section id="why-kinexus" variant="editorial" surfaceIndex={surfaceIndex}>
       <div className="container-site" style={{ maxWidth: "var(--container-max)", paddingInline: "var(--inner-padding)" }}>
         <SectionIntroWithVisualization
           header={
-            <SectionHeader
-              pattern="B"
-              title={headline}
-              subtitle={subtitle}
-            />
+            <SectionHeader pattern="B" title={headline} subtitle={subtitle} />
           }
           visualization={visualization}
         />

@@ -125,7 +125,7 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
           col3: isEn ? "Result" : "Resultado",
         },
       ),
-      ConversionTracking: section("conversion-tracking", c.roasDashboard.title, c.roasDashboard.subtitle, "dashboard", c.channels.map((x) => ({ title: x.channel, description: x.status, metric: "4.2x" })), channelHeaders),
+      ConversionTracking: section("conversion-tracking", c.roasDashboard.title, c.roasDashboard.subtitle, "dashboard", c.channels.map((x) => ({ title: x.channel, description: x.status, metric: x.status === "scaling" ? "4.2x ROAS" : x.status === "optimizing" ? "On target" : "Testing" })), channelHeaders),
     };
   }
 
@@ -153,7 +153,12 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
         { title: "Lookalikes", description: isEn ? "CRM purchaser seeds" : "Semillas de compradores CRM", metric: "2.1x" },
         { title: "Interest Stacks", description: isEn ? "Layered with exclusions" : "Capas con exclusiones", metric: "Active" },
       ]),
-      LeadGenFunnel: section("lead-gen-funnel", isEn ? "Lead Gen Funnel" : "Embudo de Leads", isEn ? "Ad promise matches landing." : "Promesa coincide con landing.", "chart", c.conversion.cards.map((x) => ({ title: x.label, description: x.desc, metric: x.metric }))),
+      LeadGenFunnel: section("lead-gen-funnel", isEn ? "Lead Gen Funnel" : "Embudo de Leads", isEn ? "Ad promise matches landing page and form." : "Promesa coincide con landing y formulario.", "chart", [
+        { title: isEn ? "Hook rate" : "Tasa de hook", description: isEn ? "First 3 seconds stop the scroll" : "Primeros 3 segundos detienen el scroll", metric: "28%" },
+        { title: isEn ? "Landing match" : "Coherencia landing", description: isEn ? "Headline and offer aligned to ad creative" : "Titular y oferta alineados al creativo", metric: "+34% CTR" },
+        { title: isEn ? "Form completion" : "Completado formulario", description: isEn ? "Short forms on mobile-first layouts" : "Formularios cortos en layouts mobile-first", metric: "3.2x" },
+        { title: isEn ? "CPL by audience" : "CPL por audiencia", description: isEn ? "Cold vs warm pools tracked separately" : "Pools fríos vs cálidos rastreados por separado", metric: "$47 avg." },
+      ]),
       Retargeting: section("retargeting", isEn ? "Retargeting Sequences" : "Secuencias Retargeting", isEn ? "Stage-specific creative." : "Creativos por etapa.", "chart", [
         { title: isEn ? "Site Visitors" : "Visitantes", description: isEn ? "7-day and 30-day pools" : "Pools 7 y 30 días", metric: "4.5x" },
         { title: isEn ? "Engagers" : "Engagers", description: isEn ? "Video viewers and page engagers" : "Viewers de video e interacciones", metric: "3.2x" },
@@ -217,7 +222,7 @@ function buildExtendedSections(slug: ServiceSeoSlug, locale: Locale, seo: Servic
         ChannelStrategy: section("channel-strategy", isEn ? "Channel Strategy" : "Estrategia de Canal", c.budget.title, "dashboard", c.channels.map((x) => ({ title: x.channel, description: x.status, metric: "4.2x" })), channelHeaders),
         CreativeTesting: section("creative-testing", isEn ? "Creative Testing" : "Pruebas Creativas", c.conversion.subtitle, "comparison", c.conversion.cards.slice(0, 2).map((x) => ({ title: x.label, description: x.desc, metric: x.metric }))),
         Attribution: section("attribution", isEn ? "Attribution & Tracking" : "Atribución y Tracking", c.roasDashboard.title, "chart", [{ title: "GA4 + GTM", description: isEn ? "Full conversion tracking" : "Tracking completo", metric: "Week 1" }, { title: "CRM Sync", description: isEn ? "Offline conversion import" : "Import offline", metric: "Live" }]),
-        ConversionTracking: section("conversion-tracking", c.roasDashboard.title, c.roasDashboard.subtitle, "dashboard", c.channels.map((x) => ({ title: x.channel, description: x.status, metric: "4.2x" })), channelHeaders),
+        ConversionTracking: section("conversion-tracking", c.roasDashboard.title, c.roasDashboard.subtitle, "dashboard", c.channels.map((x) => ({ title: x.channel, description: x.status, metric: x.status === "scaling" ? "4.2x ROAS" : x.status === "optimizing" ? "On target" : "Testing" })), channelHeaders),
       };
     }
     case "cro": {

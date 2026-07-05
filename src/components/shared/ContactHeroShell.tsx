@@ -19,13 +19,13 @@ export default function ContactHeroShell({ label, headline, subtitle }: Props) {
           <span className="hero-label">{label}</span>
           <h1
             className="mt-6 type-hero type-hero--center text-balance"
-            {...({ fetchpriority: "high" } as Record<string, string>)}
+            {...({ fetchPriority: "high" } as Record<string, string>)}
           >
             {headline}
           </h1>
           <p
             className="section-intro-lg section-intro-lg--center"
-            {...({ fetchpriority: "high" } as Record<string, string>)}
+            {...({ fetchPriority: "high" } as Record<string, string>)}
           >
             <TwoLineText text={subtitle} variant="body" />
           </p>

@@ -127,7 +127,7 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
     perfMetrics: [
       { label: "Load Time", sub: "P75 across all projects" },
       { label: "Lighthouse Score", sub: "Mobile + Desktop average" },
-      { label: "Core Web Vitals", sub: "LCP, FID, CLS all green" },
+      { label: "Core Web Vitals", sub: "LCP, INP, CLS all green" },
       { label: "Accessibility", sub: "WCAG 2.1 compliant" },
     ],
     buildProcessTitle: "The build process.",

@@ -8,7 +8,7 @@ export type ServicePhaseContent = {
 };
 
 export type PlatformRowContent = {
-  id: "linkedin" | "instagram" | "twitter";
+  id: "linkedin" | "instagram" | "facebook" | "twitter";
   platform: string;
   audience: string;
   freq: string;
@@ -81,7 +81,7 @@ export const socialMediaContent: Record<Locale, SocialMediaContent> = {
       headlineLine1: "Social that drives",
       headlineLine2: "demand, not just likes.",
       subtitle:
-        "Platform-specific content, community management,|and paid social for LinkedIn, Instagram, and X.",
+        "Platform-specific content, community management,|and organic strategy for LinkedIn, Instagram, Facebook, and X.",
       ctaLabel: "Start Your Social Strategy",
     },
     platformSection: {
@@ -112,6 +112,15 @@ export const socialMediaContent: Record<Locale, SocialMediaContent> = {
         format: "Reels, stories, carousels",
         eng: "3.8%",
         shortLabel: "Instagram",
+      },
+      {
+        id: "facebook",
+        platform: "Facebook",
+        audience: "Local service buyers",
+        freq: "3x/week",
+        format: "Posts, reels, community updates",
+        eng: "2.4%",
+        shortLabel: "Facebook",
       },
       {
         id: "twitter",

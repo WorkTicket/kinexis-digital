@@ -5,7 +5,7 @@ type AppRoutes = "/[locale]" | "/[locale]/about" | "/[locale]/blog" | "/[locale]
 type AppRouteHandlerRoutes = "/api/contact" | "/api/lead"
 type PageRoutes = never
 type LayoutRoutes = "/" | "/[locale]" | "/[locale]/about" | "/[locale]/blog" | "/[locale]/case-studies" | "/[locale]/contact" | "/[locale]/lead-magnet" | "/[locale]/services" | "/[locale]/services/analytics" | "/[locale]/services/branding" | "/[locale]/services/content-marketing" | "/[locale]/services/email-marketing" | "/[locale]/services/funnels" | "/[locale]/services/growth-consulting" | "/[locale]/services/local-seo" | "/[locale]/services/paid-ads" | "/[locale]/services/seo" | "/[locale]/services/social-media" | "/[locale]/services/video-marketing" | "/[locale]/services/web-design"
-type RedirectRoutes = "/case-studies/b2b-consulting-firm" | "/case-studies/dental-practice-local-seo" | "/case-studies/fintech-app-startup" | "/case-studies/premium-ecommerce-brand" | "/case-studies/saas-analytics-platform" | "/en/case-studies/b2b-consulting-firm" | "/en/case-studies/dental-practice-local-seo" | "/en/case-studies/fintech-app-startup" | "/en/case-studies/premium-ecommerce-brand" | "/en/case-studies/saas-analytics-platform" | "/es/case-studies/b2b-consulting-firm" | "/es/case-studies/dental-practice-local-seo" | "/es/case-studies/fintech-app-startup" | "/es/case-studies/premium-ecommerce-brand" | "/es/case-studies/saas-analytics-platform" | "/locations" | "/locations/[[...path]]"
+type RedirectRoutes = "/case-studies/b2b-consulting-firm" | "/case-studies/dental-practice-local-seo" | "/case-studies/fintech-app-startup" | "/case-studies/premium-ecommerce-brand" | "/case-studies/saas-analytics-platform" | "/en/case-studies/b2b-consulting-firm" | "/en/case-studies/dental-practice-local-seo" | "/en/case-studies/fintech-app-startup" | "/en/case-studies/premium-ecommerce-brand" | "/en/case-studies/saas-analytics-platform" | "/es/case-studies/b2b-consulting-firm" | "/es/case-studies/dental-practice-local-seo" | "/es/case-studies/fintech-app-startup" | "/es/case-studies/premium-ecommerce-brand" | "/es/case-studies/saas-analytics-platform" | "/locations" | "/locations/[[...path]]" | "/pricing/google-ads" | "/pricing/paid-ads"
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes | AppRouteHandlerRoutes
 
@@ -71,6 +71,8 @@ interface ParamMap {
   "/es/case-studies/saas-analytics-platform": {}
   "/locations": {}
   "/locations/[[...path]]": { "path"?: string[]; }
+  "/pricing/google-ads": {}
+  "/pricing/paid-ads": {}
 }
 
 

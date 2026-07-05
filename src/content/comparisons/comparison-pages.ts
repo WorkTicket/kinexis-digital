@@ -48,7 +48,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
       relatedLinks: [
         { href: "/services/google-ads", label: "Google Ads Management" },
         { href: "/services/seo", label: "SEO Services" },
-        { href: "/pricing/google-ads", label: "Google Ads Pricing" },
+        { href: "/pricing/ppc-management", label: "PPC Management Pricing" },
       ],
       ctaHeadline: "Not sure which channel to start with?",
       ctaSubtitle: "We will look at your market and recommend a realistic mix.|No pitch deck. Just a clear plan.",

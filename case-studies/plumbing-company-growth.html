@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Plumbing Company | KINEXIS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05060a;
+    --bg-dark:#030408;
+    --bg-secondary:#0a0b12;
+    --charcoal:#111827;
+    --dark-gray:#1f2937;
+    --neon-cyan:#00d4ff;
+    --neon-blue:#0099cc;
+    --accent:var(--neon-cyan);
+    --panel:rgba(255,255,255,0.06);
+    --text:#ffffff;
+    --muted:rgba(255,255,255,0.7);
+    --text-muted:rgba(255,255,255,0.6);
+    --text-secondary:rgba(255,255,255,0.7);
+    --line:rgba(255,255,255,0.06);
+    --line-strong:rgba(255,255,255,0.1);
+    --signal:var(--neon-cyan);
+    --teal:var(--neon-cyan);
+    --paper:var(--bg);
+    --paper-raised:rgba(255,255,255,0.03);
+    --gradient:linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Ubuntu', sans-serif;
+    --serif: 'Ubuntu', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; background:var(--bg);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--signal); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .topbar{
+    border-bottom:1px solid var(--line);
+    padding:20px 0;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .topbar a{text-decoration:none; color:var(--muted);}
+  .topbar a:hover{color:var(--signal);}
+  .topbar .doc-id{color:var(--text-muted);}
+  .topbar .home-link{color:var(--muted);}
+
+  section.block{padding:64px 0; border-bottom:1px solid var(--line);}
+  .block-head{margin-bottom:32px; max-width:640px;}
+  .block-head .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--signal);
+    margin-bottom:10px;
+    display:block;
+  }
+  .block-head h2{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(24px,3vw,34px);
+    letter-spacing:-.01em;
+  }
+
+  .hero{padding:52px 0 0; border-bottom:1px solid var(--line);}
+  .hero .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--signal);
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .hero .eyebrow::before{
+    content:"";
+    width:8px; height:8px;
+    background:var(--signal);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(34px, 5.2vw, 60px);
+    line-height:1.03;
+    letter-spacing:-.01em;
+    max-width:15ch;
+    margin-bottom:36px;
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .headline-stats{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  @media (max-width:800px){ .headline-stats{grid-template-columns:repeat(2, 1fr);} }
+  .headline-stats .stat{
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:26px 24px 24px;
+  }
+  .headline-stats .stat .label{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .headline-stats .stat .track{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+  }
+  .headline-stats .stat .from{
+    font-size:15px;
+    color:var(--text-muted);
+    text-decoration:line-through;
+    text-decoration-color:var(--text-muted);
+  }
+  .headline-stats .stat .arrow{color:var(--text-muted); font-size:13px;}
+  .headline-stats .stat .to{
+    font-size:clamp(26px,2.6vw,32px);
+    font-weight:600;
+    color:var(--teal);
+    display:block;
+    width:100%;
+    margin-top:2px;
+  }
+  .headline-stats .stat .delta{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--signal);
+    font-weight:600;
+    margin-top:10px;
+  }
+
+  .hero-jump{
+    display:flex; justify-content:flex-end;
+    padding:18px 0 44px;
+  }
+  .hero-jump a{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    text-decoration:none;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:2px;
+  }
+  .hero-jump a:hover{color:var(--signal); border-color:var(--signal);}
+
+  .overview-strip{
+    background:var(--paper-raised);
+    border-bottom:1px solid var(--line);
+    padding:28px 0;
+  }
+  .overview-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:0;
+  }
+  @media (max-width:900px){ .overview-grid{grid-template-columns:repeat(3, 1fr); row-gap:20px;} }
+  @media (max-width:520px){ .overview-grid{grid-template-columns:repeat(2, 1fr);} }
+  .overview-grid .cell{
+    padding:0 20px;
+    border-left:1px solid var(--line);
+  }
+  .overview-grid .cell:first-child{border-left:none; padding-left:0;}
+  .overview-grid dt{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .overview-grid dd{font-size:14.5px; font-weight:600;}
+
+  .summary p{font-size:18px; line-height:1.75; color:var(--text); max-width:70ch;}
+  .summary p + p{margin-top:18px;}
+
+  .diagnostic{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:8px;
+  }
+  @media (max-width:800px){ .diagnostic{grid-template-columns:1fr;} }
+  .diagnostic .col{background:var(--bg); padding:28px 26px;}
+  .diagnostic .col h3{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:700;
+    margin-bottom:16px;
+    color:var(--neon-cyan);
+  }
+  .diagnostic .col ul{list-style:none;}
+  .diagnostic .col li{
+    font-size:14.5px;
+    color:var(--muted);
+    padding:9px 0;
+    border-top:1px solid var(--line);
+    display:flex;
+    gap:10px;
+  }
+  .diagnostic .col li:first-of-type{border-top:none;}
+  .diagnostic .col li::before{content:"–"; color:var(--text-muted); flex-shrink:0;}
+
+  .flow{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0;
+    margin-bottom:40px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .flow .node{
+    border:1px solid var(--line-strong);
+    padding:10px 16px;
+    color:var(--text);
+    background:var(--paper-raised);
+  }
+  .flow .arrow{
+    color:var(--text-muted);
+    padding:0 10px;
+    font-size:14px;
+  }
+  @media (max-width:700px){
+    .flow{flex-direction:column; align-items:flex-start;}
+    .flow .arrow{transform:rotate(90deg); padding:6px 0 6px 18px;}
+  }
+
+  .approach-cards{display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:800px){ .approach-cards{grid-template-columns:1fr;} }
+  .approach-card{background:var(--bg); padding:26px;}
+  .approach-card .num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--signal);
+    margin-bottom:10px;
+  }
+  .approach-card h3{font-family:var(--serif); font-size:19px; font-weight:700; margin-bottom:12px;}
+  .approach-card .field{margin-bottom:10px;}
+  .approach-card .field-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    margin-bottom:3px;
+  }
+  .approach-card .field-value{font-size:14.5px; color:var(--text); line-height:1.55;}
+  .approach-card .field:last-child .field-value{color:var(--teal); font-weight:600;}
+
+  .progression{margin-bottom:44px;}
+  .progression .track-row{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    align-items:center;
+    gap:18px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .progression .track-row:last-child{border-bottom:1px solid var(--line);}
+  .progression .month-tag{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+  }
+  .progression .bar-wrap{position:relative; height:26px; background:var(--paper-raised); border:1px solid var(--line);}
+  .progression .bar-fill{
+    position:absolute; top:0; left:0; bottom:0;
+    background:var(--gradient);
+  }
+  .progression .bar-value{
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    font-family:var(--mono); font-size:12px; font-weight:600; color:var(--text);
+  }
+  .progression .bar-value.outside{ color:var(--muted); right:auto; left:calc(var(--fill, 20%) + 10px); }
+
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:900px){ .kpi-grid{grid-template-columns:repeat(2, 1fr);} }
+  @media (max-width:520px){ .kpi-grid{grid-template-columns:1fr;} }
+  .kpi-card{background:var(--bg); padding:24px 22px;}
+  .kpi-card .label{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .kpi-card .values{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; font-family:var(--mono);}
+  .kpi-card .before{font-size:14px; color:var(--text-muted); text-decoration:line-through;}
+  .kpi-card .after{font-size:24px; font-weight:600; color:var(--neon-cyan);}
+  .kpi-card .delta{font-family:var(--mono); font-size:12px; color:var(--signal); font-weight:600; margin-top:10px;}
+
+  .deliverables-tech{display:grid; grid-template-columns:1.3fr 1fr; gap:56px;}
+  @media (max-width:900px){ .deliverables-tech{grid-template-columns:1fr;} }
+  .deliverables-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:480px){ .deliverables-grid{grid-template-columns:1fr;} }
+  .deliverable-cell{background:var(--bg); padding:18px 20px;}
+  .deliverable-cell .count{font-family:var(--serif); font-size:30px; font-weight:700; color:var(--neon-cyan); line-height:1;}
+  .deliverable-cell .label{font-size:13px; color:var(--muted); margin-top:8px;}
+
+  .tech-panel h3, .deliverables-col h3{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .tech-grid{display:flex; flex-wrap:wrap; gap:8px;}
+  .tech-grid .chip{
+    font-family:var(--mono);
+    font-size:12.5px;
+    border:1px solid var(--line);
+    padding:8px 14px;
+    background:var(--paper-raised);
+    color:var(--muted);
+  }
+
+  .takeaway-flow{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:0;
+  }
+  .takeaway-flow .node{
+    border:1px solid var(--line-strong);
+    padding:12px 18px;
+    background:var(--paper-raised);
+  }
+  .takeaway-flow .arrow{color:var(--text-muted); padding:0 12px; font-size:14px;}
+  @media (max-width:700px){
+    .takeaway-flow{flex-direction:column; align-items:flex-start;}
+    .takeaway-flow .arrow{transform:rotate(90deg); padding:8px 0 8px 20px;}
+  }
+
+  .faq{margin-top:8px;}
+  .faq details{border-top:1px solid var(--line); padding:18px 0;}
+  .faq details:last-child{border-bottom:1px solid var(--line);}
+  .faq summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    font-size:16px;
+    font-weight:600;
+    font-family:var(--sans);
+    color:var(--text);
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";
+    font-family:var(--mono);
+    font-size:20px;
+    color:var(--signal);
+    flex-shrink:0;
+    transition:transform .15s ease;
+  }
+  .faq details[open] summary::after{content:"–";}
+  .faq .a{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--muted);
+    margin-top:12px;
+    max-width:68ch;
+  }
+
+  .final-cta{padding:80px 0;}
+  .final-cta h2{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    max-width:18ch;
+    margin-bottom:18px;
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .final-cta p{
+    font-size:16px;
+    color:var(--muted);
+    max-width:60ch;
+    line-height:1.7;
+    margin-bottom:28px;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--neon-cyan);
+    color:var(--bg);
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:16px 26px;
+    text-decoration:none;
+    border:1px solid var(--neon-cyan);
+    font-weight:600;
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn-primary:hover{background:var(--neon-blue); border-color:var(--neon-blue);}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="home-link"><a href="/">Home</a> / <a href="/case-studies">Case Studies</a> / Home Services</span>
+      <span class="doc-id">FILE NO. 002</span>
+    </div>
+  </div>
+
+  <!-- ============ 1. HERO / DASHBOARD ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Case Study · Home Services</span>
+      <h1>327% more emergency calls in 8 months.</h1>
+    </div>
+
+    <div class="wrap" style="padding:0 32px;">
+      <div class="headline-stats">
+        <div class="stat">
+          <div class="label">Emergency Calls</div>
+          <div class="track">
+            <span class="from">22</span>
+            <span class="arrow">→</span>
+            <span class="to">94/mo</span>
+          </div>
+          <div class="delta">+327%</div>
+        </div>
+        <div class="stat">
+          <div class="label">Booked Jobs</div>
+          <div class="track">
+            <span class="from">18</span>
+            <span class="arrow">→</span>
+            <span class="to">67/mo</span>
+          </div>
+          <div class="delta">+272%</div>
+        </div>
+        <div class="stat">
+          <div class="label">Monthly Ad Spend</div>
+          <div class="track">
+            <span class="from">$6,800</span>
+            <span class="arrow">→</span>
+            <span class="to">$2,400</span>
+          </div>
+          <div class="delta">-65%</div>
+        </div>
+        <div class="stat">
+          <div class="label">GBP Interactions</div>
+          <div class="track">
+            <span class="from">340</span>
+            <span class="arrow">→</span>
+            <span class="to">8,400/mo</span>
+          </div>
+          <div class="delta">+2,371%</div>
+        </div>
+      </div>
+      <div class="hero-jump"><a href="#overview">Project Overview ↓</a></div>
+    </div>
+  </header>
+
+  <!-- ============ 2. PROJECT OVERVIEW ============ -->
+  <section class="overview-strip" id="overview">
+    <div class="wrap">
+      <dl class="overview-grid">
+        <div class="cell">
+          <dt>Industry</dt>
+          <dd>Home Services</dd>
+        </div>
+        <div class="cell">
+          <dt>Business Size</dt>
+          <dd>Family-owned / 15 yrs</dd>
+        </div>
+        <div class="cell">
+          <dt>Engagement</dt>
+          <dd>8 Months</dd>
+        </div>
+        <div class="cell">
+          <dt>Primary Goal</dt>
+          <dd>Reduce ad dependency</dd>
+        </div>
+        <div class="cell">
+          <dt>Services</dt>
+          <dd>Local SEO, Web, CRO</dd>
+        </div>
+        <div class="cell">
+          <dt>Market</dt>
+          <dd>Regional U.S.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ 3. EXECUTIVE SUMMARY ============ -->
+  <section class="block summary">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Overview</span>
+        <h2>What happened, in three sentences</h2>
+      </div>
+      <p>
+        A family-owned plumbing company with 15 years of history was generating 70% of new business through Google Ads with monthly spend climbing to $6,800. Over 8 months we rebuilt the website around emergency service, fully optimized their Google Business Profile, and executed a local SEO campaign targeting 60+ high-intent keywords.
+      </p>
+      <p>
+        Emergency service calls grew from 22 to 94 per month — a 327% increase — while ad spend was cut by 65% as organic calls replaced paid leads. Monthly ad spend dropped from $6,800 to $2,400.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 4. BEFORE WE STARTED ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Before We Started</span>
+        <h2>Where things stood at kickoff</h2>
+      </div>
+      <div class="diagnostic">
+        <div class="col">
+          <h3>Business</h3>
+          <ul>
+            <li>70% of revenue dependent on paid ads</li>
+            <li>Monthly ad spend at $6,800 with diminishing returns</li>
+            <li>Emergency calls — highest-margin work — lost to competitors</li>
+            <li>No repeat customer infrastructure</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Marketing</h3>
+          <ul>
+            <li>GBP unclaimed — only 4 reviews total</li>
+            <li>No local search presence for emergency keywords</li>
+            <li>No review generation or reputation management</li>
+            <li>No content marketing or brand building</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Website</h3>
+          <ul>
+            <li>Basic template — confusing navigation</li>
+            <li>No mobile optimization</li>
+            <li>No trust signals (license numbers, availability)</li>
+            <li>No call tracking or lead source attribution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. APPROACH (STRATEGY + PROCESS) ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Growth Strategy</span>
+        <h2>Five moves, run in sequence</h2>
+      </div>
+
+      <div class="flow">
+        <span class="node">Website</span><span class="arrow">→</span>
+        <span class="node">GBP</span><span class="arrow">→</span>
+        <span class="node">SEO</span><span class="arrow">→</span>
+        <span class="node">Reviews</span><span class="arrow">→</span>
+        <span class="node">Conversion</span>
+      </div>
+
+      <div class="approach-cards">
+        <div class="approach-card">
+          <div class="num">01</div>
+          <h3>Website Rebuild</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Dominate emergency service search traffic</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Rebuilt in Next.js with dedicated emergency landing page, click-to-call buttons, service-area pages, license numbers, and real-time availability badges</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">Clear conversion path for emergency callers</div>
+          </div>
+        </div>
+        <div class="approach-card">
+          <div class="num">02</div>
+          <h3>Google Business Profile</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Win the local map pack for emergency plumbing</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Claimed and fully optimized GBP with complete service menu, 50+ photos, 3 posts per week, Q&A management</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">GBP interactions grew from 340 to 8,400/mo</div>
+          </div>
+        </div>
+        <div class="approach-card">
+          <div class="num">03</div>
+          <h3>Local SEO</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Rank for 60+ high-intent plumbing keywords</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Citation cleanup across 38 directories, 12 service-area pages, content targeting emergency, repair, and seasonal plumbing terms</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">Top-3 local pack for 48 of 60 target keywords</div>
+          </div>
+        </div>
+        <div class="approach-card">
+          <div class="num">04</div>
+          <h3>Conversion Optimization</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Turn organic traffic into booked jobs</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Call tracking integration, CTA placement testing, mobile tap-to-call optimization, automated post-service review follow-up</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">Booked jobs rose from 18 to 67 per month</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RESULTS (PROGRESSION + KPI CARDS) ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">The Results</span>
+        <h2>Emergency calls, month by month</h2>
+      </div>
+
+      <div class="progression">
+        <div class="track-row">
+          <span class="month-tag">Month 1</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:23%;"></div><span class="bar-value outside" style="--fill:23%;">22 calls</span></div>
+        </div>
+        <div class="track-row">
+          <span class="month-tag">Month 3</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:45%;"></div><span class="bar-value outside" style="--fill:45%;">42 calls</span></div>
+        </div>
+        <div class="track-row">
+          <span class="month-tag">Month 6</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:77%;"></div><span class="bar-value outside" style="--fill:77%;">72 calls</span></div>
+        </div>
+        <div class="track-row">
+          <span class="month-tag">Month 8</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%;"></div><span class="bar-value">94 calls</span></div>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="label">Emergency Calls</div>
+          <div class="values"><span class="before">22</span><span class="after">94/mo</span></div>
+          <div class="delta">+327%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Booked Jobs</div>
+          <div class="values"><span class="before">18</span><span class="after">67/mo</span></div>
+          <div class="delta">+272%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Organic Traffic</div>
+          <div class="values"><span class="before">200</span><span class="after">1,020/mo</span></div>
+          <div class="delta">+410%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">GBP Interactions</div>
+          <div class="values"><span class="before">340</span><span class="after">8,400/mo</span></div>
+          <div class="delta">+2,371%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. DELIVERABLES + TECH STACK ============ -->
+  <section class="block">
+    <div class="wrap deliverables-tech">
+      <div class="deliverables-col">
+        <div class="block-head" style="margin-bottom:20px;">
+          <span class="tag">Deliverables</span>
+          <h2>What was built</h2>
+        </div>
+        <div class="deliverables-grid">
+          <div class="deliverable-cell"><div class="count">14</div><div class="label">Website Pages</div></div>
+          <div class="deliverable-cell"><div class="count">12</div><div class="label">SEO Landing Pages</div></div>
+          <div class="deliverable-cell"><div class="count">36</div><div class="label">GBP Posts</div></div>
+          <div class="deliverable-cell"><div class="count">24</div><div class="label">Content Articles</div></div>
+          <div class="deliverable-cell"><div class="count">38</div><div class="label">Directory Citations</div></div>
+          <div class="deliverable-cell"><div class="count">5</div><div class="label">Automations</div></div>
+        </div>
+      </div>
+      <div class="tech-panel">
+        <h3>Tools & Platforms</h3>
+        <div class="tech-grid">
+          <span class="chip">Next.js</span>
+          <span class="chip">Cloudflare Workers</span>
+          <span class="chip">Google Analytics</span>
+          <span class="chip">Search Console</span>
+          <span class="chip">Structured Data</span>
+          <span class="chip">Call Tracking</span>
+          <span class="chip">CRM Integration</span>
+          <span class="chip">Google Business Profile</span>
+          <span class="chip">Ahrefs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. KEY TAKEAWAYS + FAQ + FINAL CTA ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Key Takeaways</span>
+        <h2>Why it compounded</h2>
+      </div>
+      <div class="takeaway-flow">
+        <span class="node">Emergency Website</span><span class="arrow">→</span>
+        <span class="node">GBP Dominance</span><span class="arrow">→</span>
+        <span class="node">Organic Calls</span><span class="arrow">→</span>
+        <span class="node">Lower Ad Spend</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>How long did this project take?</summary>
+          <p class="a">The full engagement ran 8 months, from the initial GBP claim and website rebuild through the final CRO optimization phase.</p>
+        </details>
+        <details>
+          <summary>How long before emergency call volume increased?</summary>
+          <p class="a">First noticeable increases appeared around month 3 after the website rebuild and GBP optimization. The largest gains came between months 4 and 6 as the SEO campaign matured.</p>
+        </details>
+        <details>
+          <summary>How did you reduce ad spend while growing leads?</summary>
+          <p class="a">Organic traffic and GBP visibility replaced paid channels as the primary lead source. As local rankings improved for emergency keywords, ad spend was scaled back from $6,800 to $2,400 per month without losing volume.</p>
+        </details>
+        <details>
+          <summary>Which tactic moved fastest?</summary>
+          <p class="a">The GBP optimization and website rebuild produced the fastest results — emergency call routing and click-to-call CTAs started converting within weeks of launch.</p>
+        </details>
+        <details>
+          <summary>What tools were used?</summary>
+          <p class="a">See the Tools & Platforms section above. Call tracking was integrated throughout the site to attribute every inbound call to a specific source.</p>
+        </details>
+        <details>
+          <summary>How were results measured?</summary>
+          <p class="a">Every inbound call was tracked through the call tracking system and matched to its source (organic, GBP, paid). Revenue data came from the client's CRM, and ranking data from Search Console and Ahrefs.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>See what's possible for your business</h2>
+      <p>
+        Every business starts from a different position. Book a strategy session and we'll identify the highest-impact opportunities to increase traffic, improve conversion rates, and generate measurable growth.
+      </p>
+      <a href="/contact" class="btn-primary">Book a Strategy Session →</a>
+    </div>
+  </section>
+
+</body>
+</html>

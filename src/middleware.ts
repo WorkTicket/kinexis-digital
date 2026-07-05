@@ -15,6 +15,8 @@ const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt"]);
 const UNPREFIXED_LEGACY: Record<string, string> = {
   "/services/cro": "/en/services/funnels",
   "/pricing/cro": "/en/pricing/funnels",
+  "/pricing/google-ads": "/en/pricing/ppc-management",
+  "/pricing/paid-ads": "/en/pricing/ppc-management",
 };
 
 const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;

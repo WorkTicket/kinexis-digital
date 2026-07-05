@@ -143,7 +143,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
         "Local visibility for businesses that live and die by proximity. Map pack rankings, Google Business Profile, citations, reviews, and location pages. All working together so nearby searches become calls.",
     },
     answerBlock:
-      "Local SEO services include Google Business Profile optimization, citation building, review strategy, location page development, and local link acquisition. Retainers typically start at $2,000 to $5,000 per month for single-location businesses and scale for multi-location brands. Map pack movement often appears within 30 to 60 days.",
+      "Local SEO services include Google Business Profile optimization, citation building, review strategy, location page development, and local link acquisition. Retainers start at $1,500 per month for single-location businesses and scale to $5,000+ for multi-location brands. Full-site SEO is priced separately. Map pack movement often appears within 30 to 60 days.",
     problem: {
       title: "You can be five minutes away and still invisible on Google Maps",
       intro:
@@ -246,12 +246,17 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "How much does local SEO cost?",
         answer:
-          "Single-location businesses usually run $2,000 to $5,000 per month. Multi-location brands scale from $3,500 to $10,000+ based on how many markets you cover and how tight the competition is. We quote after looking at your locations and current visibility.",
+          "Single-location businesses start at $1,500 per month. Multi-location brands scale from $3,000 to $5,000+ based on how many markets you cover and how tight the competition is. We quote after looking at your locations and current visibility.",
       },
       {
         question: "How many Google reviews do I need?",
         answer:
           "There is no magic number. In competitive markets, staying in the top three map spots often means 50 to 100+ reviews. We focus on steady monthly volume and thoughtful responses, not a one-time push that fades.",
+      },
+      {
+        question: "Do I need Local SEO or full SEO?",
+        answer:
+          "Start with Local SEO ($1,500/mo entry) if map pack visibility and Google Business Profile are your main gaps. Choose full SEO ($2,500/mo entry) if you need technical site work, content, and link building for broader organic growth. Many local service businesses run both. We recommend the mix on a strategy call.",
       },
       {
         question: "Can you manage multiple Google Business Profiles?",
@@ -384,9 +389,9 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           "We work best when total spend across channels is $5,000 to $100,000+ per month. Below $5,000, a single-channel program is usually more efficient.",
       },
       {
-        question: "How is PPC management different from your paid ads service?",
+        question: "How is PPC management different from Google Ads-only management?",
         answer:
-          "Paid ads is the starting point for businesses exploring paid media. PPC management is the full multi-channel program: cross-platform strategy, unified tracking, and ongoing optimization across Google, Meta, LinkedIn, and Microsoft.",
+          "This pricing page covers Google Search, Shopping, and Performance Max management. Our Google Ads service page goes deeper on Search-specific strategy. Meta Ads is a separate program with dedicated creative testing. Multi-channel coordination across Google, Meta, LinkedIn, and Microsoft is scoped on Growth and Scale tiers.",
       },
     ],
   },
@@ -641,7 +646,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "How is Meta Ads management different from PPC management?",
         answer:
-          "PPC management covers Google, Meta, LinkedIn, and Microsoft as one cross-channel program. Meta Ads management is dedicated to Facebook and Instagram only, with deeper creative testing and audience work specific to the Meta platform.",
+          "PPC management covers Google Search, Shopping, and Performance Max under one management fee. Meta Ads management is dedicated to Facebook and Instagram with deeper creative testing, audience work, and catalog ads specific to the Meta platform.",
       },
       {
         question: "How long until Meta Ads become profitable?",
@@ -654,7 +659,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   "paid-ads": {
     metaTitle: "Paid Ads for Lead Generation | KINEXIS Digital",
     metaDescription:
-      "Paid ads on Google, Meta, and LinkedIn with strategy, landing pages, and tracking tied to qualified leads. Programs from $3,000/mo combined spend and management.",
+      "Paid ads strategy across Google, Meta, and LinkedIn with landing pages and tracking tied to qualified leads. Google Search management pricing lives on our PPC Management page.",
     hero: {
       label: "Paid Ads Services",
       line1: "Paid media that starts",
@@ -663,7 +668,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
         "Channel selection, campaign builds, and lead cost tracking for businesses getting serious about paid media. We pick the right platforms for your offer, build campaigns that convert, and measure what actually matters.",
     },
     answerBlock:
-      "Paid ads services cover channel selection, campaign strategy, ad creation, landing page alignment, conversion tracking, and ongoing optimization across Google, Meta, and LinkedIn. Combined ad spend and management typically starts at $3,000 to $10,000 per month. Most clients see their first qualified leads within 7 to 14 days of launch.",
+      "Paid ads services cover channel selection, campaign strategy, ad creation, landing page alignment, conversion tracking, and ongoing optimization across Google, Meta, and LinkedIn. Google Search, Shopping, and Performance Max management is priced on our PPC Management page (from $2,500/mo management, ad spend separate). Meta Ads has its own pricing page. Most clients see their first qualified leads within 7 to 14 days of launch.",
     problem: {
       title: "Most paid ad spend disappears before it reaches sales",
       intro:
@@ -754,7 +759,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
         },
         {
           label: "Starting investment",
-          values: ["$500 to $1,500/mo", "$3,000 to $10,000/mo", "$5,000 to $100,000+/mo ad spend"],
+          values: ["$500 to $1,500/mo", "$3,000 to $10,000/mo", "See PPC Management pricing"],
         },
       ],
     },
@@ -767,12 +772,12 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "How is paid ads different from PPC management?",
         answer:
-          "Paid ads is for launching or scaling with channel strategy and campaign execution. PPC management is for accounts spending $5,000+ per month across Google, Meta, LinkedIn, and Microsoft with unified optimization.",
+          "Paid ads is our service overview for businesses still choosing channels and building their first campaigns across Google, Meta, or LinkedIn. PPC Management is the dedicated pricing page for ongoing Google Search, Shopping, and Performance Max management with fixed tiers from $2,500/mo. Meta Ads has a separate pricing page.",
       },
       {
         question: "What is the minimum budget for paid ads?",
         answer:
-          "We recommend at least $3,000 per month combined between ad spend and management. Below that, there is rarely enough data to optimize well. Google-only programs can start lower through our Google Ads service.",
+          "We generally recommend at least $3,000 per month in ad spend to gather enough data for smart optimization. Google Search management starts at $2,500/mo on our PPC Management pricing page, with ad spend billed separately to Google.",
       },
       {
         question: "Do you build landing pages for paid campaigns?",
@@ -1280,6 +1285,16 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     extraFaqs: [
       {
+        question: "How much does content marketing cost?",
+        answer:
+          "Retainers start at $2,000 per month for 4 to 6 pieces and scale to $8,000+ for 20+ pieces with editorial leadership. This covers production and strategy only — not full technical SEO or link building. If you need the complete organic program, SEO pricing starts at $2,500 per month with content included.",
+      },
+      {
+        question: "How is a content retainer different from SEO?",
+        answer:
+          "Content marketing is standalone production for teams that already handle SEO in-house or with another partner. SEO plans include technical audits, on-page work, content, and link building as one program. If you are not sure which you need, we scope it on a strategy call.",
+      },
+      {
         question: "How many content pieces do you produce per month?",
         answer:
           "Most retainers include 4 to 8 pieces per month depending on length and type. A typical mix is 3 to 4 blog posts plus one guide or case study. Volume adjusts to your goals and budget.",
@@ -1410,6 +1425,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     extraFaqs: [
       {
+        question: "How much does social media management cost?",
+        answer:
+          "Management starts at $1,500 per month for two platforms with twelve posts and monthly reporting. Growth plans at $3,000 per month cover three to four platforms with paid amplification and community engagement. Scale is $5,500+ for multi-platform programs with video production and advanced analytics. Paid boost and campaign ad spend is separate from management fees.",
+      },
+      {
         question: "Which social media platforms do you manage?",
         answer:
           "LinkedIn, Instagram, Facebook, and X. We usually recommend 2 to 3 platforms where your buyers are active instead of spreading thin everywhere.",
@@ -1427,7 +1447,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "Can social media actually generate leads for B2B?",
         answer:
-          "Social is rarely a direct lead channel for B2B, but it builds trust and sends people to your content, offers, and site. We track click-throughs and attribute leads that started from social touchpoints.",
+          "Social is rarely a standalone lead channel for B2B, but it builds trust, warms prospects, and sends qualified traffic to your content, offers, and site. We track click-throughs and attribute leads that started from social touchpoints.",
       },
     ],
   },

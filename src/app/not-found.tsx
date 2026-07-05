@@ -1,5 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import "./globals.css";
+import "../styles/light-mode-overrides.css";
 
 export const metadata: Metadata = {
   title: "Page Not Found | KINEXIS Digital",
@@ -9,12 +11,10 @@ export const metadata: Metadata = {
 
 export default function RootNotFound() {
   return (
-    <html lang="en">
+    <html lang="en" style={{ colorScheme: "light dark" }}>
       <body
+        className="bg-bg text-foreground"
         style={{
-          margin: 0,
-          background: "#05060a",
-          color: "#fff",
           fontFamily: "system-ui, sans-serif",
           display: "flex",
           minHeight: "100vh",
@@ -46,7 +46,7 @@ export default function RootNotFound() {
         <h1 style={{ fontSize: "2.5rem", fontWeight: 700, margin: "0 0 1rem" }}>
           Page not found
         </h1>
-        <p style={{ color: "rgba(255,255,255,0.5)", maxWidth: "480px", lineHeight: 1.7 }}>
+        <p className="text-muted" style={{ maxWidth: "480px", lineHeight: 1.7 }}>
           The page you&apos;re looking for doesn&apos;t exist. Head back to the homepage to find
           what you need.
         </p>

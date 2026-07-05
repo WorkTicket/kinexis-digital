@@ -33,7 +33,7 @@ import {
   videoMarketingPillarContent,
   webDesignPillarContent,
 } from "@/content/services/service-pillar-map";
-import { googleAdsPillarContent, metaAdsPillarContent, getPaidServiceFaqs } from "@/content/services/paid-service-pillar";
+import { googleAdsPillarContent, metaAdsPillarContent, ppcPillarContent, getPaidServiceFaqs } from "@/content/services/paid-service-pillar";
 import { serviceArchitectureConfig } from "./service-architecture-config";
 import { buildServiceSections } from "./service-section-builders";
 import type { ServicePageData } from "./types";
@@ -43,7 +43,7 @@ export const servicePillarBySlug: Record<ServiceSeoSlug, ServicePillarContent> =
   "local-seo": localSeoPillarContent,
   "google-ads": googleAdsPillarContent,
   "meta-ads": metaAdsPillarContent,
-  "ppc-management": googleAdsPillarContent,
+  "ppc-management": ppcPillarContent,
   "paid-ads": paidAdsPillarContent,
   "web-design": webDesignPillarContent,
   cro: croPillarContent,
@@ -65,6 +65,10 @@ function timelineToPhases(pillar: ServicePillarContent): ServicePhase[] {
   }));
 }
 
+function isEnProcess(locale: Locale): boolean {
+  return locale === "en";
+}
+
 function getProcess(slug: ServiceSeoSlug, locale: Locale, pillar: ServicePillarContent) {
   switch (slug) {
     case "seo":
@@ -74,8 +78,41 @@ function getProcess(slug: ServiceSeoSlug, locale: Locale, pillar: ServicePillarC
     case "local-seo":
       return { title: localSeoContent[locale].phasesTitle, subtitle: localSeoContent[locale].phasesSubtitle, steps: localSeoContent[locale].phases };
     case "google-ads":
+      return {
+        title: paidAdsContent[locale].phases.title,
+        subtitle: paidAdsContent[locale].phases.subtitle,
+        steps: [
+          { title: isEnProcess(locale) ? "Account Audit & Restructure" : "Auditoría y Reestructuración", desc: isEnProcess(locale) ? "Campaign, keyword, match type, and conversion action review with rebuild plan." : "Revisión de campañas, keywords y conversiones con plan de rebuild.", metric: isEnProcess(locale) ? "Full audit in week 1" : "Auditoría completa en semana 1" },
+          { title: isEnProcess(locale) ? "Keyword & Negative Build" : "Keywords y Negativas", desc: isEnProcess(locale) ? "High-intent keyword targets plus negative lists to block irrelevant searches." : "Objetivos de alta intención y listas negativas.", metric: isEnProcess(locale) ? "240+ terms reviewed weekly" : "240+ términos revisados semanalmente" },
+          { title: isEnProcess(locale) ? "Ad & Landing Alignment" : "Alineación Anuncio-Landing", desc: isEnProcess(locale) ? "Responsive search ads, extensions, and landing pages matched to search intent." : "Anuncios responsivos, extensiones y landing pages alineadas.", metric: isEnProcess(locale) ? "8.2 avg Quality Score" : "8.2 Quality Score prom." },
+          { title: isEnProcess(locale) ? "Tracking & Launch" : "Tracking y Lanzamiento", desc: isEnProcess(locale) ? "GA4, enhanced conversions, call tracking, and CRM import verified before spend scales." : "GA4, conversiones mejoradas y tracking de llamadas verificados.", metric: isEnProcess(locale) ? "Live within 14 days" : "Activo en 14 días" },
+          { title: isEnProcess(locale) ? "Weekly Optimization" : "Optimización Semanal", desc: isEnProcess(locale) ? "Search term mining, bid adjustments, and budget pacing tied to qualified leads." : "Minería de términos, pujas y pacing ligados a leads calificados.", metric: isEnProcess(locale) ? "ROAS reported weekly" : "ROAS reportado semanalmente" },
+        ],
+      };
     case "meta-ads":
+      return {
+        title: paidAdsContent[locale].phases.title,
+        subtitle: paidAdsContent[locale].phases.subtitle,
+        steps: [
+          { title: isEnProcess(locale) ? "Pixel & CAPI Audit" : "Auditoría Pixel y CAPI", desc: isEnProcess(locale) ? "Business Manager review, event mapping, and attribution gaps fixed before spend." : "Revisión de Business Manager y mapeo de eventos.", metric: isEnProcess(locale) ? "Tracking fixed in week 1" : "Tracking corregido en semana 1" },
+          { title: isEnProcess(locale) ? "Audience Architecture" : "Arquitectura de Audiencias", desc: isEnProcess(locale) ? "Prospecting, warm engagers, and retargeting pools built with clean exclusions." : "Prospección, engagers y retargeting con exclusiones limpias.", metric: isEnProcess(locale) ? "3 audience layers" : "3 capas de audiencia" },
+          { title: isEnProcess(locale) ? "Creative Sprint Launch" : "Lanzamiento Sprint Creativo", desc: isEnProcess(locale) ? "3 to 5 ad variations per sprint across static, video, and carousel formats." : "3 a 5 variaciones por sprint en estático, video y carrusel.", metric: isEnProcess(locale) ? "New creative every 2 weeks" : "Creativo nuevo cada 2 semanas" },
+          { title: isEnProcess(locale) ? "Funnel-Stage Budgeting" : "Presupuesto por Etapa", desc: isEnProcess(locale) ? "Prospecting and retargeting budgets shift based on blended ROAS, not gut feel." : "Presupuestos de prospección y retargeting por ROAS combinado.", metric: isEnProcess(locale) ? "Weekly budget reviews" : "Revisiones semanales" },
+          { title: isEnProcess(locale) ? "Scale & Refresh" : "Escalar y Refrescar", desc: isEnProcess(locale) ? "Winning ads scaled, fatigued creative retired, and landing pages kept in sync." : "Anuncios ganadores escalados y creativos fatigados retirados.", metric: isEnProcess(locale) ? "CPM monitored biweekly" : "CPM monitoreado quincenalmente" },
+        ],
+      };
     case "ppc-management":
+      return {
+        title: paidAdsContent[locale].phases.title,
+        subtitle: paidAdsContent[locale].phases.subtitle,
+        steps: [
+          { title: isEnProcess(locale) ? "Cross-Channel Audit" : "Auditoría Multicanal", desc: isEnProcess(locale) ? "Google, Meta, LinkedIn, and Microsoft accounts reviewed with unified KPI baseline." : "Cuentas de Google, Meta, LinkedIn y Microsoft con baseline unificado.", metric: isEnProcess(locale) ? "Unified audit in week 1" : "Auditoría unificada en semana 1" },
+          { title: isEnProcess(locale) ? "Tracking & Attribution" : "Tracking y Atribución", desc: isEnProcess(locale) ? "One conversion framework across platforms with CRM-backed lead quality." : "Un marco de conversión con calidad de leads respaldada por CRM.", metric: isEnProcess(locale) ? "CRM sync live week 2" : "Sync CRM activo semana 2" },
+          { title: isEnProcess(locale) ? "Budget Allocation Plan" : "Plan de Asignación", desc: isEnProcess(locale) ? "Channel mix and monthly budget split based on cost per qualified lead." : "Mix de canales y presupuesto por costo por lead calificado.", metric: isEnProcess(locale) ? "Weekly reallocation cadence" : "Reasignación semanal" },
+          { title: isEnProcess(locale) ? "Creative Coordination" : "Coordinación Creativa", desc: isEnProcess(locale) ? "Messaging and landing pages stay consistent across search and social campaigns." : "Mensajes y landing pages consistentes entre search y social.", metric: isEnProcess(locale) ? "Biweekly creative tests" : "Tests creativos quincenales" },
+          { title: isEnProcess(locale) ? "Optimize & Report" : "Optimizar e Informar", desc: isEnProcess(locale) ? "Cross-channel ROAS dashboard with weekly bid, budget, and audience adjustments." : "Dashboard ROAS multicanal con ajustes semanales.", metric: isEnProcess(locale) ? "One dashboard, all channels" : "Un dashboard, todos los canales" },
+        ],
+      };
     case "paid-ads":
       return { title: paidAdsContent[locale].phases.title, subtitle: paidAdsContent[locale].phases.subtitle, steps: paidAdsContent[locale].phases.items };
     case "cro":

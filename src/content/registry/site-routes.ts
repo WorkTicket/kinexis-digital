@@ -94,6 +94,9 @@ export const staticPageRoutes = [
 /** Legacy slug — redirects to funnels; excluded from sitemap. */
 export const sitemapExcludedServiceSlugs = ["cro"] as const;
 
+/** Retired pricing slugs — 301 to ppc-management; excluded from sitemap. */
+export const sitemapExcludedPricingSlugs = ["google-ads", "paid-ads"] as const;
+
 export const sitemapServiceSlugs = serviceSlugs.filter(
   (slug) => !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug),
 );
@@ -101,9 +104,24 @@ export const sitemapServiceSlugs = serviceSlugs.filter(
 export const pricingSlugs = serviceSlugs;
 export type PricingSlug = ServiceSlug;
 
+/** Canonical pricing page when a slug has been retired or merged. */
+export const pricingSlugCanonical: Partial<Record<PricingSlug, PricingSlug>> = {
+  "google-ads": "ppc-management",
+  "paid-ads": "ppc-management",
+};
+
+export function resolvePricingSlug(slug: PricingSlug): PricingSlug {
+  return pricingSlugCanonical[slug] ?? slug;
+}
+
 export const sitemapPricingSlugs = pricingSlugs.filter(
-  (slug) => !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug),
+  (slug) =>
+    !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug) &&
+    !(sitemapExcludedPricingSlugs as readonly string[]).includes(slug),
 );
+
+/** Active pricing pages indexed and statically generated (excludes retired slugs). */
+export const activePricingSlugs = sitemapPricingSlugs;
 
 export const pricingRoutes = Object.fromEntries(
   serviceSlugs.map((slug) => [slug, `/pricing/${slug}`]),

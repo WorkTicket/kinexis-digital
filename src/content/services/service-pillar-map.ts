@@ -48,9 +48,9 @@ export const seoPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Real outcomes from recent client programs.",
     metrics: [
-      { metric: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
-      { metric: "+1,290%", label: "organic traffic · same client" },
-      { metric: "Top 3", label: "rankings for 42 local keywords" },
+      { metric: "+1,290%", label: "organic traffic · Landscaping Co." },
+      { metric: "4.8X", label: "qualified leads · same client, 10 mo" },
+      { metric: "340+", label: "commercial keywords mapped per engagement" },
     ],
   },
 };
@@ -90,14 +90,14 @@ export const localSeoPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on market size and number of locations.",
+    title: "Local SEO vs. DIY map pack work",
+    subtitle: "What changes when someone owns GBP, citations, and reviews every week.",
     tiers: [
       { name: "Starter", range: "$1,500/mo", description: "Single-location local SEO for service businesses in mid-competition markets." },
       { name: "Growth", range: "$3,000/mo", description: "Multi-location or competitive market local SEO with full citation and content management." },
       { name: "Scale", range: "$5,000+/mo", description: "Franchise or high-competition local SEO across multiple cities and service categories." },
     ],
-    note: "Pricing covers strategy and optimization. One-time citation cleanup is quoted based on current status.",
+    note: "Pricing covers map pack strategy and optimization. One-time citation cleanup is quoted based on current status. Full-site SEO with content and links is priced separately — see SEO pricing.",
   },
   results: {
     title: "Results we track",
@@ -148,7 +148,7 @@ export const webDesignPillarContent: ServicePillarContent = {
     title: "Investment guidance",
     subtitle: "Pricing based on scope, pages, and complexity.",
     tiers: [
-      { name: "Starter", range: "$5,000", description: "5–8 page marketing site with standard CMS, mobile-responsive design, and analytics setup." },
+      { name: "Starter", range: "$8,000", description: "5–8 page marketing site with standard CMS, mobile-responsive design, and analytics setup." },
       { name: "Growth", range: "$12,000", description: "10–20 page custom site with conversion architecture, copywriting, and full tracking stack." },
       { name: "Scale", range: "$25,000+", description: "Enterprise web presence with custom functionality, multi-location, or advanced integrations." },
     ],
@@ -203,7 +203,7 @@ export const croPillarContent: ServicePillarContent = {
     title: "Investment guidance",
     subtitle: "Pricing based on traffic volume and test complexity.",
     tiers: [
-      { name: "Starter", range: "$2,000/mo", description: "Monthly CRO for sites with 5,000+ monthly sessions. Focused on 1–2 key conversion pages." },
+      { name: "Starter", range: "$2,000/mo", description: "Monthly CRO for sites with 1,000+ monthly sessions on priority pages. Focused on 1–2 key conversion pages." },
       { name: "Growth", range: "$4,000/mo", description: "Multi-page testing program for growing brands with 20,000+ monthly sessions." },
       { name: "Scale", range: "$7,000+/mo", description: "Enterprise CRO with full funnel testing, personalization, and advanced attribution." },
     ],
@@ -213,9 +213,9 @@ export const croPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Conversion outcomes from recent programs.",
     metrics: [
-      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
-      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. CRO" },
-      { metric: "43%", label: "CAC reduction · SaaS Platform" },
+      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co." },
+      { metric: "+42%", label: "form completion lift · A/B test winner" },
+      { metric: "15–45%", label: "typical page lift · first 90 days" },
     ],
   },
 };
@@ -255,10 +255,10 @@ export const emailMarketingPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on list size, volume, and automation complexity.",
+    title: "Newsletter blasts vs. revenue automation",
+    subtitle: "What changes when sequences, segmentation, and deliverability are managed every week.",
     tiers: [
-      { name: "Starter", range: "$1,500/mo", description: "Monthly campaigns and basic automation for lists up to 10,000 contacts." },
+      { name: "Starter", range: "$2,000/mo", description: "Monthly campaigns and basic automation for lists up to 10,000 contacts." },
       { name: "Growth", range: "$3,000/mo", description: "Full automation suite, advanced segmentation, and weekly campaigns for lists up to 50,000." },
       { name: "Scale", range: "$5,000+/mo", description: "Enterprise email with behavioral triggers, CRM integration, and revenue attribution." },
     ],
@@ -268,7 +268,7 @@ export const emailMarketingPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Email outcomes from recent client programs.",
     metrics: [
-      { metric: "42%", label: "avg. open rate · optimized sequences" },
+      { metric: "38%", label: "avg. open rate · optimized sequences" },
       { metric: "8x", label: "ROAS on email vs. paid channels" },
       { metric: "+180%", label: "revenue from automated flows · 90 days" },
     ],
@@ -282,9 +282,9 @@ export const contentMarketingPillarContent: ServicePillarContent = {
   overview: {
     title: "Content that earns traffic and converts readers into buyers.",
     paragraphs: [
-      "Content marketing generates compounding returns, but only when built on keyword intent, not topic hunches. Most content programs publish consistently and grow traffic without ever generating qualified leads, because the content targets informational queries that attract researchers, not buyers.",
+      "This retainer is for teams that need production volume without a full SEO program. You may already have an in-house SEO lead, an agency handling technical work, or a site that ranks and just needs consistent publishing.",
       "KINEXIS builds content programs around the searches your buyers run during active evaluation. Service comparison content, solution-focused articles, and conversion-optimized landing pages that turn organic traffic into pipeline.",
-      "We handle strategy, production, and optimization. Every piece is planned against a keyword target, written to demonstrate authority, and structured to keep readers moving toward a conversion action.",
+      "We handle strategy, production, and optimization. Every piece is planned against a keyword target, written to demonstrate authority, and structured to keep readers moving toward a conversion action. Need technical SEO and link building too? See SEO pricing instead.",
     ],
   },
   deliverables: {
@@ -310,14 +310,14 @@ export const contentMarketingPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on publishing volume and content type.",
+    title: "Content retainer vs. full SEO program",
+    subtitle: "When you need production volume but already have SEO covered elsewhere.",
     tiers: [
       { name: "Starter", range: "$2,000/mo", description: "4–6 pieces per month with keyword strategy and basic on-page optimization." },
       { name: "Growth", range: "$4,500/mo", description: "8–12 pieces per month with pillar page strategy, link building, and conversion optimization." },
       { name: "Scale", range: "$8,000+/mo", description: "20+ pieces per month with editorial leadership, digital PR, and full SEO integration." },
     ],
-    note: "Per-piece pricing available for project-based content needs outside of retainer.",
+    note: "Standalone content production and strategy. Full SEO programs include content at every tier — see SEO pricing if you need technical work and link building too. Per-piece pricing available for project-based needs.",
   },
   results: {
     title: "Results we track",
@@ -365,8 +365,8 @@ export const socialMediaPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on platforms, posting volume, and paid management.",
+    title: "Inconsistent posting vs. managed social pipeline",
+    subtitle: "What you get when content, community, and reporting connect to leads — not vanity metrics.",
     tiers: [
       { name: "Starter", range: "$1,500/mo", description: "2 platforms, 12 posts/month, and monthly reporting. Ideal for building a consistent presence." },
       { name: "Growth", range: "$3,000/mo", description: "3–4 platforms, 20+ posts/month, paid amplification management, and community engagement." },
@@ -378,9 +378,9 @@ export const socialMediaPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Social media outcomes from recent client programs.",
     metrics: [
-      { metric: "+380%", label: "follower growth · B2B brand, 6 mo" },
-      { metric: "4.8%", label: "avg. engagement rate · above industry avg." },
-      { metric: "2.1x", label: "inbound leads from social traffic" },
+      { metric: "+15%/mo", label: "organic follower growth · B2B brand" },
+      { metric: "3.8%", label: "avg. engagement rate · above industry avg." },
+      { metric: "+25%", label: "leads attributed from social traffic" },
     ],
   },
 };
@@ -420,8 +420,8 @@ export const videoMarketingPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on production complexity and volume.",
+    title: "Phone footage vs. conversion-focused production",
+    subtitle: "Fixed project fees for scripts, production, and platform-ready cuts built to perform.",
     tiers: [
       { name: "Starter", range: "$3,000", description: "Single video asset: 60–90 second explainer or testimonial, fully produced and delivered." },
       { name: "Growth", range: "$7,500", description: "3–5 video asset package with brand film, ad cuts, and social format variants." },
@@ -433,9 +433,9 @@ export const videoMarketingPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Video performance from recent productions.",
     metrics: [
-      { metric: "3.2x", label: "higher engagement vs. static ads" },
       { metric: "65%", label: "avg. video completion rate · optimized cuts" },
-      { metric: "+140%", label: "conversion rate · video vs. text landing pages" },
+      { metric: "3.2x", label: "higher engagement vs. static ads" },
+      { metric: "+45%", label: "conversion lift · video vs. text landing pages" },
     ],
   },
 };
@@ -475,10 +475,10 @@ export const brandingPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on scope and deliverable set.",
+    title: "Logo shop deliverable vs. full identity system",
+    subtitle: "Fixed-fee projects that include positioning, messaging, and production-ready guidelines.",
     tiers: [
-      { name: "Starter", range: "$4,000", description: "Logo system, color palette, typography, and one-page brand guidelines for early-stage businesses." },
+      { name: "Starter", range: "$8,000", description: "Logo system, color palette, typography, and brand guidelines for growth-stage businesses." },
       { name: "Growth", range: "$8,000", description: "Full visual identity, messaging framework, brand guidelines, and core collateral package." },
       { name: "Scale", range: "$15,000+", description: "Complete brand system with positioning strategy, full guidelines, and collateral suite." },
     ],
@@ -488,9 +488,9 @@ export const brandingPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Brand outcomes from recent identity projects.",
     metrics: [
-      { metric: "2.1x", label: "conversion lift post-rebrand · SaaS company" },
+      { metric: "2.1x", label: "conversion lift post-rebrand · Landscaping Co." },
       { metric: "+55%", label: "sales close rate improvement · professional services" },
-      { metric: "100%", label: "brand consistency across channels" },
+      { metric: "40+", label: "production-ready brand assets delivered" },
     ],
   },
 };
@@ -530,11 +530,11 @@ export const analyticsPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on stack complexity and reporting needs.",
+    title: "Broken tracking vs. revenue-ready attribution",
+    subtitle: "What you get when GA4, GTM, and dashboards are built to answer revenue questions.",
     tiers: [
-      { name: "Starter", range: "$2,000", description: "GA4 + GTM setup, 3 conversion goals, and a single Looker Studio dashboard. One-time project." },
-      { name: "Growth", range: "$4,000/mo", description: "Full tracking stack, multi-channel attribution, CRM integration, and monthly reporting." },
+      { name: "Starter", range: "$3,000 /project", description: "GA4 + GTM setup, 3 conversion goals, and a single Looker Studio dashboard. One-time project." },
+      { name: "Growth", range: "$3,500/mo", description: "Full tracking stack, multi-channel attribution, CRM integration, and monthly reporting." },
       { name: "Scale", range: "$6,500+/mo", description: "Enterprise analytics with custom attribution models, data warehouse, and exec reporting suite." },
     ],
     note: "Setup projects are billed separately from ongoing reporting retainers.",
@@ -585,8 +585,8 @@ export const growthConsultingPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on engagement scope and advisory cadence.",
+    title: "Agency menu shopping vs. fractional CMO alignment",
+    subtitle: "Strategic advisory tied to your unit economics, not a list of services to buy.",
     tiers: [
       { name: "Starter", range: "$3,000/mo", description: "Monthly advisory for early-stage businesses. Growth model, channel strategy, and bi-weekly calls." },
       { name: "Growth", range: "$6,000/mo", description: "Embedded fractional CMO engagement with full strategy development and execution oversight." },
@@ -640,10 +640,10 @@ export const funnelsPillarContent: ServicePillarContent = {
     ],
   },
   pricing: {
-    title: "Investment guidance",
-    subtitle: "Pricing based on funnel complexity, traffic volume, and test scope.",
+    title: "DIY landing pages vs. managed funnel and CRO",
+    subtitle: "What changes when build, automation, and testing live in one program.",
     tiers: [
-      { name: "Starter", range: "$3,000", description: "Single funnel build with landing page, 5-email nurture sequence, and conversion tracking setup." },
+      { name: "Starter", range: "$5,000 /project", description: "Single funnel build with landing page, 5-email nurture sequence, and conversion tracking setup." },
       { name: "Growth", range: "$6,500/mo", description: "Full funnel system with automation, monthly A/B testing, and ongoing CRO on key conversion pages." },
       { name: "Scale", range: "$12,000+/mo", description: "Multi-funnel revenue system with advanced segmentation, personalization, and continuous experimentation." },
     ],
@@ -653,9 +653,9 @@ export const funnelsPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Funnel and CRO outcomes from recent programs.",
     metrics: [
-      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
       { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. funnel" },
-      { metric: "43%", label: "CAC reduction · SaaS Platform" },
+      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "+35%", label: "nurture-to-booking rate · post-automation" },
     ],
   },
 };
@@ -709,8 +709,8 @@ export const paidAdsPillarContent: ServicePillarContent = {
     subtitle: "Paid media outcomes from recent client programs.",
     metrics: [
       { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-      { metric: "65%", label: "ad spend cut · same client" },
-      { metric: "Top 3", label: "local pack · 48 of 60 keywords" },
+      { metric: "65%", label: "wasted spend eliminated · same client" },
+      { metric: "$47", label: "avg. cost per lead · after optimization" },
     ],
   },
 };

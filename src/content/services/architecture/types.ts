@@ -57,6 +57,8 @@ export type ServiceOverviewData = {
 
 export type WhyKinexusData = {
   headline: string;
+  /** Service-specific intro line — avoids generic copy on every page */
+  subtitle: string;
   points: { title: string; description: string }[];
 };
 

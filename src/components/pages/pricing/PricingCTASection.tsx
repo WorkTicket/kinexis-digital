@@ -1,18 +1,28 @@
 "use client";
 
-import { m as motion } from "@/lib/framer";
 import Button from "@/components/ui/Button";
 import TwoLineText from "@/components/ui/TwoLineText";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { pageSectionClasses } from "@/lib/page-section-surface";
+import { m as motion } from "@/lib/framer";
 
 type Props = {
   headline: string;
   subtitle: string;
   ctaLabel: string;
+  secondaryCtaLabel?: string;
+  secondaryCtaHref?: string;
+  contractNote?: string;
 };
 
-export default function PricingCTASection({ headline, subtitle, ctaLabel }: Props) {
+export default function PricingCTASection({
+  headline,
+  subtitle,
+  ctaLabel,
+  secondaryCtaLabel,
+  secondaryCtaHref,
+  contractNote = "No long-term contracts. Month to month.",
+}: Props) {
   const { fadeUp, stagger } = useMotionVariants();
 
   return (
@@ -49,8 +59,13 @@ export default function PricingCTASection({ headline, subtitle, ctaLabel }: Prop
             <Button href="/contact" variant="primary" fullWidthMobile>
               {ctaLabel}
             </Button>
+            {secondaryCtaLabel && secondaryCtaHref && (
+              <Button href={secondaryCtaHref} variant="secondary" fullWidthMobile>
+                {secondaryCtaLabel}
+              </Button>
+            )}
           </div>
-          <p className="text-xs text-text-muted">No long-term contracts. Month to month.</p>
+          <p className="text-xs text-text-muted">{contractNote}</p>
         </motion.div>
       </motion.div>
     </section>

@@ -11,7 +11,8 @@ import HeroArchetype from "@/components/ui/HeroArchetype";
 import ProofMetric from "@/components/ui/ProofMetric";
 import type { CaseStudiesContent } from "@/content/case-studies";
 import { formatMetricValue } from "@/lib/format-metric";
-import TwoLineText from "@/components/ui/TwoLineText";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { pageSectionClasses } from "@/lib/page-section-surface";
 import {
   ArrowUpRight,
   TrendingUp,
@@ -21,14 +22,12 @@ import {
   BarChart3,
   Layers,
 } from "lucide-react";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
 
 const metricWallIcons = [DollarSign, TrendingUp, Users, MousePointerClick];
 
 type Props = { content: CaseStudiesContent };
 
 export default function CaseStudiesPageClient({ content: c }: Props) {
-  const { fadeUp, stagger } = useMotionVariants();
   const [activeIndustry, setActiveIndustry] = useState(c.industries[0]);
 
   const filtered =
@@ -37,6 +36,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
       : c.caseStudies.filter((cs) => cs.industry === activeIndustry);
 
   const featuredCS = c.caseStudies.find((cs) => cs.featured)!;
+  let surfaceIndex = 0;
 
   return (
     <>
@@ -83,7 +83,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
       />
 
       {/* Featured spotlight */}
-      <section className="section-padding border-t border-white/[0.06]">
+      <section className={pageSectionClasses(surfaceIndex++)}>
         <div className="container-site">
           <motion.div
             className="rounded-3xl border border-white/[0.06] bg-white/[0.02]"
@@ -193,19 +193,14 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
       </section>
 
       {/* Case study grid */}
-      <section className="section-padding bg-bg-dark">
+      <section className={pageSectionClasses(surfaceIndex++)}>
         <div className="container-site">
-          <motion.div className="section-header section-header--left" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              {c.clientResultsLabel}
-            </motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-4">
-              <TwoLineText text={c.clientResultsTitle} variant="section" />
-            </motion.h2>
-            <motion.p variants={fadeUp} className="section-subtitle section-subtitle--left mt-4">
-              <TwoLineText text={c.clientResultsDescription} variant="body" />
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            badge={c.clientResultsLabel}
+            title={c.clientResultsTitle}
+            description={c.clientResultsDescription}
+            align="left"
+          />
 
           <div className="section-content flex flex-wrap gap-2">
             {c.industries.map((ind) => (
@@ -287,19 +282,13 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
       </section>
 
       {/* Growth patterns */}
-      <section className="section-padding border-t border-white/[0.06]">
+      <section className={pageSectionClasses(surfaceIndex++)}>
         <div className="container-site">
-          <motion.div className="section-header" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              {c.whatDataShowsLabel}
-            </motion.span>
-            <motion.h2 variants={fadeUp} className="section-title mt-4">
-              <TwoLineText text={c.whatDataShowsTitle} variant="section" />
-            </motion.h2>
-            <motion.p variants={fadeUp} className="section-subtitle mt-4">
-              <TwoLineText text={c.whatDataShowsDescription} variant="body" />
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            badge={c.whatDataShowsLabel}
+            title={c.whatDataShowsTitle}
+            description={c.whatDataShowsDescription}
+          />
 
           <div className="section-content grid gap-grid-sm sm:grid-cols-2 lg:grid-cols-4">
             {c.growthPatterns.map((p, i) => (

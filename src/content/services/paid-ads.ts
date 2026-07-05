@@ -112,12 +112,12 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
       cards: [
         {
           label: "Audience targeting",
-          desc: "First-party data and lookalikes reach people already searching for what you sell.",
-          metric: "94% audience match",
+          desc: "First-party data and lookalikes reach buyers with demonstrated intent for your offer.",
+          metric: "Lookalike + CRM seeds",
         },
         {
           label: "Message match",
-          desc: "Landing pages echo the ad headline so Quality Score and conversion rate both improve.",
+          desc: "Landing pages echo the ad headline so conversion rate improves on both Search and social.",
           metric: "8.2 avg Quality Score",
         },
         {
@@ -169,11 +169,11 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
       subtitle: "Predictable, scalable revenue from paid channels,|not clicks and traffic for their own sake.",
       panels: [
         {
-          label: "New Patient Growth",
-          headline: "Ads tied to booked appointments",
+          label: "Emergency Call Growth",
+          headline: "Paid traffic tied to booked jobs",
           description:
-            "Dental Practice case study: new patient bookings grew from 47 to 193 per month after local SEO and ad restructure.",
-          metric: "+311% patients",
+            "Plumbing Company case study: emergency calls grew from 22 to 94 per month after Google Search restructure, dedicated landing pages, and call tracking rebuilt.",
+          metric: "+327% calls",
         },
         {
           label: "Cost Per Lead",
@@ -246,8 +246,8 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
       cards: [
         {
           label: "Segmentación de audiencia",
-          desc: "Datos de primera parte y lookalikes llegan a personas que ya buscan lo que vendes.",
-          metric: "94% coincidencia",
+          desc: "Datos de primera parte y lookalikes llegan a compradores con intención demostrada.",
+          metric: "Lookalikes + CRM",
         },
         {
           label: "Coherencia de mensaje",
@@ -303,11 +303,11 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
       subtitle: "No solo clics. No solo tráfico.|Ingresos predecibles y escalables desde canales pagados.",
       panels: [
         {
-          label: "Retorno de Inversión Publicitaria",
-          headline: "Cada dólar trabajando más",
+          label: "Crecimiento de Llamadas",
+          headline: "Tráfico pagado ligado a trabajos reservados",
           description:
-            "Estructura de campaña, precisión de audiencia y alineación de landing page se combinan en un ROAS que escala.",
-          metric: "4.5x ROAS prom.",
+            "Empresa de Plomería: llamadas de emergencia de 22 a 94 por mes tras reestructuración de Google Search, landing pages dedicadas y tracking de llamadas.",
+          metric: "+327% llamadas",
         },
         {
           label: "Costo por Lead",

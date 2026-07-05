@@ -109,6 +109,26 @@ const nextConfig = {
         destination: "/:locale/pricing/funnels",
         permanent: true,
       },
+      {
+        source: "/:locale(en|es)/pricing/google-ads",
+        destination: "/:locale/pricing/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|es)/pricing/paid-ads",
+        destination: "/:locale/pricing/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/pricing/google-ads",
+        destination: "/en/pricing/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/pricing/paid-ads",
+        destination: "/en/pricing/ppc-management",
+        permanent: true,
+      },
       ...getLegacyRedirects(),
     ];
   },
