@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     }
 
     const ip = getClientIp(request);
-    if (isRateLimited(`contact:${ip}`)) {
+    if (await isRateLimited(`contact:${ip}`)) {
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 },
