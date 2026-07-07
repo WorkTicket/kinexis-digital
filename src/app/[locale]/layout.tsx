@@ -1,6 +1,5 @@
 import type { Viewport } from "next";
 import Script from "next/script";
-import { headers } from "next/headers";
 import { Ubuntu } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -65,14 +64,11 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
-  const nonce = (await headers()).get("x-csp-nonce") ?? "";
 
   return (
     <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable} ${ubuntuMedium.variable}`}>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
-        <Script id="cookie-consent-preflight" strategy="beforeInteractive" nonce={nonce}>
-          {`(function(){try{var c=localStorage.getItem("kinexis-cookie-consent");if(!c)document.documentElement.classList.add("cookie-pending")}catch(e){}})();`}
-        </Script>
+        <Script src="/cookie-preflight.js" strategy="beforeInteractive" />
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionProvider>
@@ -85,7 +81,7 @@ export default async function LocaleLayout({
               <DeferredWidgets />
               <Footer />
             </MotionProvider>
-            <AnalyticsScripts nonce={nonce} />
+            <AnalyticsScripts />
           </CookieConsentProvider>
         </NextIntlClientProvider>
       </body>

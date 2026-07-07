@@ -19,50 +19,6 @@ const UNPREFIXED_LEGACY: Record<string, string> = {
 
 const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;
 
-const isDev = process.env.NODE_ENV === "development";
-
-const CSP_REPORT_URI = "https://kinexisdigital.report-uri.com/r/d/csp/enforce";
-
-function generateNonce(): string {
-  return Buffer.from(crypto.randomUUID()).toString("base64");
-}
-
-function buildCsp(nonce: string): string {
-  const evalSrc = isDev ? " 'unsafe-eval'" : "";
-  const scriptHosts = [
-    "https://www.googletagmanager.com",
-    "https://www.google-analytics.com",
-    "https://www.clarity.ms",
-    "https://static.cloudflareinsights.com",
-  ].join(" ");
-  const connectHosts = [
-    "https://www.google-analytics.com",
-    "https://region1.google-analytics.com",
-    "https://*.google-analytics.com",
-    "https://www.googletagmanager.com",
-    "https://analytics.google.com",
-    "https://www.clarity.ms",
-    "https://*.clarity.ms",
-    "https://cloudflareinsights.com",
-  ].join(" ");
-
-  return [
-    "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}'${evalSrc} ${scriptHosts}`,
-    `script-src-elem 'self' 'nonce-${nonce}'${evalSrc} ${scriptHosts}`,
-    "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
-    "font-src 'self' data:",
-    `connect-src 'self' ${connectHosts}`,
-    "frame-src 'self'",
-    "object-src 'none'",
-    "base-uri 'self'",
-    "form-action 'self'",
-    "frame-ancestors 'self'",
-    `report-uri ${CSP_REPORT_URI}`,
-  ].join("; ");
-}
-
 function hasLocalePrefix(pathname: string): boolean {
   return LOCALE_PREFIX_RE.test(pathname);
 }
@@ -130,15 +86,10 @@ export default function middleware(request: NextRequest) {
     return buildRedirect(request, legacyTarget, { forceHttps: needsHttps, forceWww: needsWww });
   }
 
-  const nonce = generateNonce();
-  request.headers.set("x-csp-nonce", nonce);
-
   if (!isLocalHost && pathname === "/" && !needsWww && !needsHttps) {
     const url = request.nextUrl.clone();
     url.pathname = `/${detectLocale(request)}`;
-    const response = NextResponse.rewrite(url);
-    response.headers.set("Content-Security-Policy", buildCsp(nonce));
-    return response;
+    return NextResponse.rewrite(url);
   }
 
   if (!isLocalHost) {
@@ -152,11 +103,7 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  const response = intlMiddleware(request);
-  if (response.status >= 200 && response.status < 300) {
-    response.headers.set("Content-Security-Policy", buildCsp(nonce));
-  }
-  return response;
+  return intlMiddleware(request);
 }
 
 export const config = {

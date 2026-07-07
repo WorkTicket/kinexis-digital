@@ -87,7 +87,7 @@ function loadClarity() {
   document.head.appendChild(script);
 }
 
-export default function AnalyticsScripts({ nonce }: { nonce?: string }) {
+export default function AnalyticsScripts() {
   const pathname = usePathname();
   const { consent, ready } = useCookieConsent();
   const lastTrackedUrl = useRef<string | null>(null);
@@ -137,7 +137,7 @@ export default function AnalyticsScripts({ nonce }: { nonce?: string }) {
 
   return (
     <>
-      <Script id="gtag-consent-default" strategy="lazyOnload" nonce={nonce}>
+      <Script id="gtag-consent-default" strategy="lazyOnload">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -152,7 +152,7 @@ export default function AnalyticsScripts({ nonce }: { nonce?: string }) {
         `}
       </Script>
       {gtagLoaded && (
-        <Script id="gtag-config-after-consent" strategy="lazyOnload" nonce={nonce}>
+        <Script id="gtag-config-after-consent" strategy="lazyOnload">
           {`
             gtag('js', new Date());
             gtag('config', '${GA_ID}', { send_page_view: false });
