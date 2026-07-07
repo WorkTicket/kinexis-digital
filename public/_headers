@@ -6,11 +6,14 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=86400
 
-# Crawler discovery files — short CDN cache for faster bot fetches
 /sitemap.xml
   Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400
 
 /robots.txt
+  Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
   Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400
 
 /*
@@ -20,15 +23,14 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(self)
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-DNS-Prefetch-Control: on
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com; script-src-elem 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://www.clarity.ms https://*.clarity.ms https://cloudflareinsights.com; frame-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; report-uri https://kinexisdigital.report-uri.com/r/d/csp/enforce
 
-# Locale-prefixed HTML — CDN cache to reduce Ahrefs TTFB / slow-page flags
 /en/*
   Cache-Control: public, s-maxage=86400, stale-while-revalidate=604800
 
 /es/*
   Cache-Control: public, s-maxage=86400, stale-while-revalidate=604800
 
-# Static assets — 1-year immutable cache
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
@@ -43,15 +45,12 @@
 /logo.png
   Cache-Control: public, max-age=31536000, immutable
 
-# Next.js hashed static bundles — safe to cache forever
 /_next/static/*
   Cache-Control: public, max-age=31536000, immutable
 
-# Next.js image optimizer output
 /_next/image*
   Cache-Control: public, max-age=31536000, immutable
   Vary: Accept
 
-# Fonts are self-hosted by next/font — content-hashed filenames
 /_next/static/media/*
   Cache-Control: public, max-age=31536000, immutable

@@ -46,10 +46,8 @@ export default function Hero() {
                 {line.text}
               </span>
             ))}
-            <span className="type-hero-line">
-              {t("line3")}{" "}
-              <span className="gradient-text sm:whitespace-nowrap">{t("line3Highlight")}</span>
-            </span>
+            <span className="type-hero-line">{t("line3")}</span>
+            <span className="type-hero-line gradient-text">{t("line3Highlight")}</span>
           </motion.h1>
 
           {/* Subtitle: standard fadeUp — supporting role, clean and fast */}

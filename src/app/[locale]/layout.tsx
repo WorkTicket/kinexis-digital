@@ -1,4 +1,6 @@
 import type { Viewport } from "next";
+import Script from "next/script";
+import { headers } from "next/headers";
 import { Ubuntu } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -19,7 +21,7 @@ const ubuntu = Ubuntu({
   subsets: ["latin"],
   weight: ["400", "700"],
   variable: "--font-ubuntu",
-  display: "swap",
+  display: "optional",
   preload: true,
   adjustFontFallback: true,
 });
@@ -63,23 +65,27 @@ export default async function LocaleLayout({
 
   setRequestLocale(locale);
   const messages = await getMessages();
+  const nonce = (await headers()).get("x-csp-nonce") ?? "";
 
   return (
     <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable} ${ubuntuMedium.variable}`}>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
+        <Script id="cookie-consent-preflight" strategy="beforeInteractive" nonce={nonce}>
+          {`(function(){try{var c=localStorage.getItem("kinexis-cookie-consent");if(!c)document.documentElement.classList.add("cookie-pending")}catch(e){}})();`}
+        </Script>
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionProvider>
               <SkipToMain />
               <div className="grain-overlay" />
               <Header />
-              <main id="main-content" tabIndex={-1} className="page-enter overflow-x-clip">
+              <main id="main-content" tabIndex={-1} className="overflow-x-clip">
                 {children}
               </main>
               <DeferredWidgets />
               <Footer />
             </MotionProvider>
-            <AnalyticsScripts />
+            <AnalyticsScripts nonce={nonce} />
           </CookieConsentProvider>
         </NextIntlClientProvider>
       </body>

@@ -77,6 +77,7 @@ export type PageMetadataInput = {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: "website" | "article";
   noIndex?: boolean;
 };
 
@@ -132,6 +133,7 @@ export function buildPageMetadata({
   title,
   description,
   ogImage,
+  ogType,
   noIndex,
 }: PageMetadataInput): Metadata {
   const safeTitle = normalizeMetaTitle(title);
@@ -158,16 +160,16 @@ export function buildPageMetadata({
       title: safeTitle,
       description: safeDescription,
       url,
-      type: "website",
+      type: ogType ?? "website",
       siteName: "KINEXIS Digital",
-      images: [{ url: imageUrl, alt: "KINEXIS Digital" }],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: "KINEXIS Digital" }],
     },
     twitter: {
       card: "summary_large_image",
       site: "@kinexisdigital",
       title: safeTitle,
       description: safeDescription,
-      images: [imageUrl],
+      images: [{ url: imageUrl, alt: "KINEXIS Digital" }],
     },
   };
 }

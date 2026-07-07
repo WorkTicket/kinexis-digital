@@ -2,41 +2,73 @@
 
 import Script from "next/script";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
-const GTAG_RETRY_MS = 100;
-const GTAG_MAX_ATTEMPTS = 50;
+const GTAG_LOAD_TIMEOUT_MS = 8000;
 
 declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     __kinexisClarityLoaded?: boolean;
+    __kinexisGtagScriptInjected?: boolean;
   }
 }
 
-function runWhenGtagReady(fn: () => void) {
-  let attempts = 0;
-
-  const tick = () => {
+function injectGtagScript(): Promise<void> {
+  return new Promise((resolve, reject) => {
     if (typeof window.gtag === "function") {
-      fn();
+      resolve();
       return;
     }
 
-    attempts += 1;
-    if (attempts < GTAG_MAX_ATTEMPTS) {
-      window.setTimeout(tick, GTAG_RETRY_MS);
+    if (window.__kinexisGtagScriptInjected) {
+      const checkReady = () => {
+        if (typeof window.gtag === "function") {
+          resolve();
+        } else {
+          setTimeout(checkReady, 100);
+        }
+      };
+      checkReady();
+      return;
     }
-  };
 
-  tick();
+    window.__kinexisGtagScriptInjected = true;
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    script.onload = () => resolve();
+    script.onerror = () => {
+      window.__kinexisGtagScriptInjected = false;
+      reject(new Error("gtag script failed to load"));
+    };
+    document.head.appendChild(script);
+
+    const timeout = setTimeout(() => {
+      if (typeof window.gtag !== "function") {
+        reject(new Error("gtag load timeout"));
+      }
+    }, GTAG_LOAD_TIMEOUT_MS);
+
+    const checkReady = () => {
+      if (typeof window.gtag === "function") {
+        clearTimeout(timeout);
+        resolve();
+      } else {
+        setTimeout(checkReady, 100);
+      }
+    };
+    checkReady();
+  });
 }
 
 function setAnalyticsConsent(granted: boolean) {
+  if (typeof window.gtag !== "function") return;
   window.gtag!("consent", "update", {
     analytics_storage: granted ? "granted" : "denied",
     ad_storage: "denied",
@@ -55,12 +87,14 @@ function loadClarity() {
   document.head.appendChild(script);
 }
 
-export default function AnalyticsScripts() {
+export default function AnalyticsScripts({ nonce }: { nonce?: string }) {
   const pathname = usePathname();
   const { consent, ready } = useCookieConsent();
   const lastTrackedUrl = useRef<string | null>(null);
+  const [gtagLoaded, setGtagLoaded] = useState(false);
 
   const trackPageView = () => {
+    if (typeof window.gtag !== "function") return;
     const pageLocation = window.location.href;
     if (lastTrackedUrl.current === pageLocation) return;
 
@@ -74,29 +108,36 @@ export default function AnalyticsScripts() {
   useEffect(() => {
     if (!ready) return;
 
-    runWhenGtagReady(() => {
-      if (consent === "accepted") {
-        setAnalyticsConsent(true);
-        trackPageView();
-        loadClarity();
-      } else if (consent === "rejected") {
-        setAnalyticsConsent(false);
-      }
-    });
+    if (consent === "accepted") {
+      injectGtagScript()
+        .then(() => {
+          setGtagLoaded(true);
+          window.gtag!("js", new Date());
+          window.gtag!("config", GA_ID, { send_page_view: false });
+          setAnalyticsConsent(true);
+          trackPageView();
+          loadClarity();
+        })
+        .catch(() => {
+          setGtagLoaded(false);
+        });
+    } else if (consent === "rejected") {
+      setGtagLoaded(false);
+    }
   }, [consent, ready]);
 
-  // Consent Mode v2: page views fire even when analytics_storage is denied.
-  // Google records cookieless pings until the visitor accepts cookies.
   useEffect(() => {
     if (!ready) return;
-    runWhenGtagReady(trackPageView);
+    if (typeof window.gtag === "function") {
+      trackPageView();
+    }
   }, [pathname, ready]);
 
   if (!GA_ID) return null;
 
   return (
     <>
-      <Script id="gtag-consent-default" strategy="lazyOnload">
+      <Script id="gtag-consent-default" strategy="lazyOnload" nonce={nonce}>
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
@@ -110,17 +151,14 @@ export default function AnalyticsScripts() {
           });
         `}
       </Script>
-      <Script
-        id="gtag-js"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-        strategy="lazyOnload"
-      />
-      <Script id="gtag-config" strategy="lazyOnload">
-        {`
-          gtag('js', new Date());
-          gtag('config', '${GA_ID}', { send_page_view: false });
-        `}
-      </Script>
+      {gtagLoaded && (
+        <Script id="gtag-config-after-consent" strategy="lazyOnload" nonce={nonce}>
+          {`
+            gtag('js', new Date());
+            gtag('config', '${GA_ID}', { send_page_view: false });
+          `}
+        </Script>
+      )}
     </>
   );
 }

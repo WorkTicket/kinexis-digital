@@ -1,31 +1,39 @@
-/**
- * IMPORTANT — SERVERLESS LIMITATION:
- * This module-level Map is reset on every cold start. In Cloudflare Workers (via
- * opennextjs-cloudflare), each isolate shares state within a single request batch
- * but a new isolate (cold start) starts with an empty Map. This means rate limiting
- * is best-effort: it catches rapid-fire abuse within the same warm isolate but does
- * NOT enforce limits across cold starts or across multiple edge nodes.
- *
- * For production-grade rate limiting, replace with Cloudflare KV:
- *   const count = await env.RATE_LIMIT_KV.get(key);
- *   await env.RATE_LIMIT_KV.put(key, String(newCount), { expirationTtl: WINDOW_S });
- * and bind a KV namespace named RATE_LIMIT_KV in wrangler.toml.
- */
+const buckets = new Map<string, { count: number; resetAt: number }>();
 
-type Bucket = { count: number; resetAt: number };
-
-const buckets = new Map<string, Bucket>();
-
-const WINDOW_MS = 15 * 60 * 1000; // 15 minutes
+const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 8;
+const CLEANUP_INTERVAL_MS = 60 * 60 * 1000;
+
+let lastCleanup = Date.now();
+
+function cleanup() {
+  const now = Date.now();
+  if (now - lastCleanup < CLEANUP_INTERVAL_MS) return;
+  lastCleanup = now;
+
+  for (const [key, bucket] of buckets) {
+    if (now > bucket.resetAt) {
+      buckets.delete(key);
+    }
+  }
+}
 
 export function getClientIp(request: Request): string {
+  const cfIp = request.headers.get("cf-connecting-ip");
+  if (cfIp) return cfIp;
+
   const forwarded = request.headers.get("x-forwarded-for");
-  if (forwarded) return forwarded.split(",")[0]?.trim() || "unknown";
-  return request.headers.get("cf-connecting-ip") ?? "unknown";
+  if (forwarded) {
+    const first = forwarded.split(",")[0]?.trim();
+    if (first) return first;
+  }
+
+  return "unknown";
 }
 
 export function isRateLimited(key: string): boolean {
+  cleanup();
+
   const now = Date.now();
   const bucket = buckets.get(key);
 

@@ -46,10 +46,10 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
 };
 
 const SERVICE_LAST_MODIFIED = "2026-06-15";
-const PRICING_LAST_MODIFIED = "2026-06-15";
+const PRICING_LAST_MODIFIED = "2026-06-10";
 const COMPARISON_LAST_MODIFIED = "2026-06-01";
-const INDUSTRY_LAST_MODIFIED = "2026-06-01";
-const SOLUTION_LAST_MODIFIED = "2026-06-01";
+const INDUSTRY_LAST_MODIFIED = "2026-05-20";
+const SOLUTION_LAST_MODIFIED = "2026-05-25";
 const TEAM_LAST_MODIFIED = "2026-05-01";
 
 export function parseContentDate(value: string): Date | null {

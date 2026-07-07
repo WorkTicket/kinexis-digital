@@ -19,11 +19,9 @@ export default async function HeroShell() {
           {/* fetchPriority hints LCP text for the parser (lowercase DOM attr) */}
           <h1 className="type-hero" {...({ fetchPriority: "high" } as Record<string, string>)}>
             <span className="type-hero-line">{t("line1")}</span>
-            <span className="type-hero-line text-white/25">{t("line2")}</span>
-            <span className="type-hero-line">
-              {t("line3")}{" "}
-              <span className="gradient-text sm:whitespace-nowrap">{t("line3Highlight")}</span>
-            </span>
+            <span className="type-hero-line text-white/40" aria-hidden="true">{t("line2")}</span>
+            <span className="type-hero-line">{t("line3")}</span>
+            <span className="type-hero-line gradient-text">{t("line3Highlight")}</span>
           </h1>
 
           <p className="section-intro-lg" {...({ fetchPriority: "high" } as Record<string, string>)}>

@@ -7,9 +7,17 @@ import {
   wrapKinexisEmailHtml,
 } from "@/lib/email";
 import { escapeHtml } from "@/lib/sanitize";
+import { validateOrigin } from "@/lib/csrf";
 
 export async function POST(request: Request) {
   try {
+    if (!validateOrigin(request)) {
+      return NextResponse.json(
+        { error: "Invalid origin." },
+        { status: 403 },
+      );
+    }
+
     const ip = getClientIp(request);
     if (isRateLimited(`lead:${ip}`)) {
       return NextResponse.json(
@@ -36,8 +44,23 @@ export async function POST(request: Request) {
     if (service && String(service).length > 200) {
       return NextResponse.json({ error: "Service value is too long." }, { status: 400 });
     }
+    if (revenue && String(revenue).length > 50) {
+      return NextResponse.json({ error: "Revenue value is too long." }, { status: 400 });
+    }
+    if (budget && String(budget).length > 50) {
+      return NextResponse.json({ error: "Budget value is too long." }, { status: 400 });
+    }
     if (goal && String(goal).length > 1000) {
       return NextResponse.json({ error: "Goal is too long." }, { status: 400 });
+    }
+    if (score && !/^\d{1,3}$/.test(String(score))) {
+      return NextResponse.json({ error: "Invalid score value." }, { status: 400 });
+    }
+    if (source && !["website", "lead-magnet", "landing-page", "referral", "other"].includes(String(source))) {
+      return NextResponse.json({ error: "Invalid source value." }, { status: 400 });
+    }
+    if (auditType && String(auditType).length > 100) {
+      return NextResponse.json({ error: "Audit type value is too long." }, { status: 400 });
     }
 
     const safeName = String(name);
@@ -86,13 +109,13 @@ export async function POST(request: Request) {
       from: `"KINEXIS Digital Leads" <${creds.gmailUser}>`,
       to: creds.toEmail,
       replyTo: leadData.email,
-      subject: `New Lead: ${leadData.name}${leadData.service !== "Not specified" ? ` — ${leadData.service}` : ""} (Score: ${leadData.score})`,
+      subject: `New Lead: ${leadData.name}${leadData.service !== "Not specified" ? ` \u2014 ${leadData.service}` : ""} (Score: ${leadData.score})`,
       html: wrapKinexisEmailHtml(
         "New Lead Captured",
         rows,
         `Reply directly to this email to contact <strong style="color:#fff;">${escapeHtml(leadData.name)}</strong> at <a href="mailto:${escapeHtml(leadData.email)}" style="color:#00d4ff;">${escapeHtml(leadData.email)}</a>.`,
       ),
-      text: `New Lead — KINEXIS Digital\n\nName: ${leadData.name}\nEmail: ${leadData.email}\nService: ${leadData.service}\nRevenue: ${leadData.revenue}\nBudget: ${leadData.budget}\nGoal: ${leadData.goal}\nScore: ${leadData.score}\nSource: ${leadData.source}\nCaptured: ${leadData.capturedAt}`,
+      text: `New Lead \u2014 KINEXIS Digital\n\nName: ${leadData.name}\nEmail: ${leadData.email}\nService: ${leadData.service}\nRevenue: ${leadData.revenue}\nBudget: ${leadData.budget}\nGoal: ${leadData.goal}\nScore: ${leadData.score}\nSource: ${leadData.source}\nCaptured: ${leadData.capturedAt}`,
     });
 
     return NextResponse.json({ success: true, message: "Lead captured successfully" }, { status: 200 });

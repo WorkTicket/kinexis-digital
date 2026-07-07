@@ -8,10 +8,8 @@ const intlMiddleware = createMiddleware(routing);
 const WWW_HOST = "www.kinexisdigital.com";
 const APEX_HOST = "kinexisdigital.com";
 
-/** Crawler discovery files — canonical host only (Phase 9). */
-const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt"]);
+const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt", "/llms.txt"]);
 
-/** Unprefixed legacy URLs → final locale-prefixed 200 destination (single hop). */
 const UNPREFIXED_LEGACY: Record<string, string> = {
   "/services/cro": "/en/services/funnels",
   "/pricing/cro": "/en/pricing/funnels",
@@ -20,6 +18,50 @@ const UNPREFIXED_LEGACY: Record<string, string> = {
 };
 
 const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;
+
+const isDev = process.env.NODE_ENV === "development";
+
+const CSP_REPORT_URI = "https://kinexisdigital.report-uri.com/r/d/csp/enforce";
+
+function generateNonce(): string {
+  return Buffer.from(crypto.randomUUID()).toString("base64");
+}
+
+function buildCsp(nonce: string): string {
+  const evalSrc = isDev ? " 'unsafe-eval'" : "";
+  const scriptHosts = [
+    "https://www.googletagmanager.com",
+    "https://www.google-analytics.com",
+    "https://www.clarity.ms",
+    "https://static.cloudflareinsights.com",
+  ].join(" ");
+  const connectHosts = [
+    "https://www.google-analytics.com",
+    "https://region1.google-analytics.com",
+    "https://*.google-analytics.com",
+    "https://www.googletagmanager.com",
+    "https://analytics.google.com",
+    "https://www.clarity.ms",
+    "https://*.clarity.ms",
+    "https://cloudflareinsights.com",
+  ].join(" ");
+
+  return [
+    "default-src 'self'",
+    `script-src 'self' 'nonce-${nonce}'${evalSrc} ${scriptHosts}`,
+    `script-src-elem 'self' 'nonce-${nonce}'${evalSrc} ${scriptHosts}`,
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
+    "font-src 'self' data:",
+    `connect-src 'self' ${connectHosts}`,
+    "frame-src 'self'",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'self'",
+    `report-uri ${CSP_REPORT_URI}`,
+  ].join("; ");
+}
 
 function hasLocalePrefix(pathname: string): boolean {
   return LOCALE_PREFIX_RE.test(pathname);
@@ -60,7 +102,6 @@ function buildRedirect(
   return NextResponse.redirect(url, 301);
 }
 
-/** Map unprefixed paths to locale-prefixed canonical paths. */
 function localePrefixedPath(pathname: string, request: NextRequest): string {
   if (hasLocalePrefix(pathname)) return pathname;
   const locale = detectLocale(request);
@@ -89,11 +130,15 @@ export default function middleware(request: NextRequest) {
     return buildRedirect(request, legacyTarget, { forceHttps: needsHttps, forceWww: needsWww });
   }
 
-  // Serve locale home at `/` with 200 (rewrite) — avoids Ahrefs 3XX on www root.
+  const nonce = generateNonce();
+  request.headers.set("x-csp-nonce", nonce);
+
   if (!isLocalHost && pathname === "/" && !needsWww && !needsHttps) {
     const url = request.nextUrl.clone();
     url.pathname = `/${detectLocale(request)}`;
-    return NextResponse.rewrite(url);
+    const response = NextResponse.rewrite(url);
+    response.headers.set("Content-Security-Policy", buildCsp(nonce));
+    return response;
   }
 
   if (!isLocalHost) {
@@ -107,7 +152,11 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  return intlMiddleware(request);
+  const response = intlMiddleware(request);
+  if (response.status >= 200 && response.status < 300) {
+    response.headers.set("Content-Security-Policy", buildCsp(nonce));
+  }
+  return response;
 }
 
 export const config = {

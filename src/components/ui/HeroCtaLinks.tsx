@@ -20,16 +20,17 @@ export default function HeroCtaLinks({ primary, secondary }: Props) {
   return (
     <div className="hero__cta cta-stack">
       {primary && (
-        <Link href={primary.href} className={cn(base, "bg-gradient text-white sm:hover:shadow-glow")}>
+        <Link href={primary.href} aria-label={primary.label} className={cn(base, "bg-gradient text-white sm:hover:shadow-glow")}>
           {primary.label}
         </Link>
       )}
       {secondary && (
         <Link
           href={secondary.href}
+          aria-label={secondary.label}
           className={cn(
             base,
-            "text-white/70 border border-surface hover:text-bg hover:bg-neon-cyan hover:border-neon-cyan hover:shadow-glow-sm"
+            "text-white/85 border border-surface hover:text-bg hover:bg-neon-cyan hover:border-neon-cyan hover:shadow-glow-sm"
           )}
         >
           {secondary.label}

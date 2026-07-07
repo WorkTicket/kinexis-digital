@@ -35,17 +35,20 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "accepted" || stored === "rejected") {
       setConsent(stored);
+      document.documentElement.classList.remove("cookie-pending");
     }
     setReady(true);
   }, []);
 
   const accept = useCallback(() => {
     localStorage.setItem(STORAGE_KEY, "accepted");
+    document.documentElement.classList.remove("cookie-pending");
     setConsent("accepted");
   }, []);
 
   const reject = useCallback(() => {
     localStorage.setItem(STORAGE_KEY, "rejected");
+    document.documentElement.classList.remove("cookie-pending");
     setConsent("rejected");
   }, []);
 
@@ -78,7 +81,7 @@ function CookieBanner({
           <p id="cookie-consent-title" className="text-sm font-semibold text-white">
             {t("title")}
           </p>
-          <p id="cookie-consent-desc" className="mt-1.5 text-sm text-muted leading-relaxed">
+          <p id="cookie-consent-desc" className="mt-1.5 text-sm text-white/70 leading-relaxed">
             {t("description")}{" "}
             <Link href="/privacy" className="text-neon-cyan underline underline-offset-2">
               {t("privacyLink")}

@@ -13,7 +13,11 @@ export default function GlobalError({
   reset: () => void;
 }) {
   useEffect(() => {
-    Sentry.captureException(error);
+    try {
+      Sentry.captureException(error);
+    } catch {
+      console.error("[KINEXIS] Global error:", error);
+    }
   }, [error]);
 
   return (

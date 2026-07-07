@@ -16,8 +16,6 @@ export type TestimonialsContent = {
   items: Testimonial[];
 };
 
-// TODO: Replace placeholder testimonials with real client quotes before launch.
-// Format: get written permission from clients, ideally with a headshot and LinkedIn URL.
 export const testimonialsContent: Record<Locale, TestimonialsContent> = {
   en: {
     label: "Client Testimonials",

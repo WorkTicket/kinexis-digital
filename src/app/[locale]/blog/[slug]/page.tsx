@@ -60,6 +60,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     path: `/blog/${slug}`,
     title: `${post.title} | KINEXIS`,
     description,
+    ogType: "article",
   });
 }
 

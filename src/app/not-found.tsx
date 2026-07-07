@@ -53,7 +53,7 @@ export default function RootNotFound() {
 
         <div style={{ marginTop: "2.5rem", display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
           <Link
-            href="/"
+            href="/en"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -71,7 +71,7 @@ export default function RootNotFound() {
             Homepage
           </Link>
           <Link
-            href="/"
+            href="/en/contact"
             style={{
               display: "inline-flex",
               alignItems: "center",

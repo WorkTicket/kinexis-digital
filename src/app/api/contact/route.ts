@@ -8,9 +8,17 @@ import {
   wrapKinexisEmailHtml,
 } from "@/lib/email";
 import { escapeHtml } from "@/lib/sanitize";
+import { validateOrigin } from "@/lib/csrf";
 
 export async function POST(request: Request) {
   try {
+    if (!validateOrigin(request)) {
+      return NextResponse.json(
+        { error: "Invalid origin." },
+        { status: 403 },
+      );
+    }
+
     const ip = getClientIp(request);
     if (isRateLimited(`contact:${ip}`)) {
       return NextResponse.json(
@@ -43,6 +51,9 @@ export async function POST(request: Request) {
     if (phone && String(phone).length > 50) {
       return NextResponse.json({ error: "Phone number is too long." }, { status: 400 });
     }
+    if (service && String(service).length > 200) {
+      return NextResponse.json({ error: "Service value is too long." }, { status: 400 });
+    }
     if (message && String(message).length > 5000) {
       return NextResponse.json({ error: "Message is too long (max 5000 characters)." }, { status: 400 });
     }
@@ -58,7 +69,7 @@ export async function POST(request: Request) {
           { status: 500 },
         );
       }
-      console.log("\n📬 [DEV] Contact form submission (no email sent):", { name, email });
+      console.log("\n[DEV] Contact form submission (no email sent):", { name, email });
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
@@ -79,14 +90,14 @@ export async function POST(request: Request) {
       from: `"KINEXIS Digital Contact" <${creds.gmailUser}>`,
       to: creds.toEmail,
       replyTo: safeEmail,
-      subject: `New Inquiry from ${safeName}${company ? ` — ${company}` : ""}`,
+      subject: `New Inquiry from ${safeName}${company ? ` \u2014 ${company}` : ""}`,
       html: wrapKinexisEmailHtml(
         "New Contact Form Submission",
         rows,
         `Reply directly to this email to respond to <strong style="color:#fff;">${escapeHtml(safeName)}</strong>.`,
       ),
       text: [
-        "New Contact Form Submission — KINEXIS Digital",
+        "New Contact Form Submission \u2014 KINEXIS Digital",
         "",
         `Name: ${safeName}`,
         `Email: ${safeEmail}`,

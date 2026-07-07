@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { locales, type Locale } from "@/i18n/routing";
 import { ChevronDown, X } from "lucide-react";
 import { industryCategories } from "@/content/registry/industries";
 import {
@@ -40,6 +41,8 @@ export default function MobileMenu({
   onToggleResources,
 }: Props) {
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale() as Locale;
   const tNav = useTranslations("nav");
   const tServices = useTranslations("services");
   const tResources = useTranslations("nav.resourceLinks");
@@ -361,6 +364,28 @@ export default function MobileMenu({
         </nav>
 
         <div className="shrink-0 border-t border-white/10 bg-bg/80 px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+          <div className="mb-4 flex items-center justify-center gap-2">
+            {locales.map((loc) => (
+              <button
+                key={loc}
+                type="button"
+                onClick={() => {
+                  if (loc === locale) return;
+                  router.push(pathname, { locale: loc });
+                  router.refresh();
+                }}
+                className={cn(
+                  "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
+                  locale === loc
+                    ? "bg-white/10 text-white"
+                    : "text-white/40 hover:bg-white/[0.04] hover:text-white/70"
+                )}
+                aria-current={locale === loc ? "true" : undefined}
+              >
+                {loc === "en" ? "English" : "Español"}
+              </button>
+            ))}
+          </div>
           <Button
             href="/contact"
             variant="primary"

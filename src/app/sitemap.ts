@@ -20,21 +20,26 @@ import {
 /** Routes indexed in sitemap — lead-magnet is paid-traffic only (noIndex). */
 const sitemapStaticRoutes = staticPageRoutes.filter((path) => path !== "/lead-magnet");
 
-function localeUrls(path: string, priority = 0.7): MetadataRoute.Sitemap {
+function localeUrls(path: string, priority = 0.7, changeFrequency: "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never" = "weekly"): MetadataRoute.Sitemap {
   const lastModified = getPathLastModified(path);
   return locales.flatMap((locale) => ({
     url: `${getSiteUrl()}${buildLocalePath(locale, path)}`,
     lastModified,
-    changeFrequency: "weekly" as const,
+    changeFrequency,
     priority,
   }));
+}
+
+function localeUrlsWithFreq(path: string, freq: "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never", priority = 0.7) {
+  return localeUrls(path, priority, freq);
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
   for (const path of sitemapStaticRoutes) {
-    entries.push(...localeUrls(path, path === "/" ? 1 : 0.8));
+    const isLegal = path === "/privacy" || path === "/terms";
+    entries.push(...localeUrlsWithFreq(path, isLegal ? "monthly" : "weekly", path === "/" ? 1 : 0.8));
   }
 
   for (const slug of sitemapServiceSlugs) {
@@ -54,11 +59,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const slug of blogSlugs) {
-    entries.push(...localeUrls(`/blog/${slug}`, 0.6));
+    entries.push(...localeUrlsWithFreq(`/blog/${slug}`, "monthly", 0.6));
   }
 
   for (const slug of caseStudySlugs) {
-    entries.push(...localeUrls(`/case-studies/${slug}`, 0.7));
+    entries.push(...localeUrlsWithFreq(`/case-studies/${slug}`, "monthly", 0.7));
   }
 
   for (const slug of sitemapPricingSlugs) {
@@ -70,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const slug of authorSlugs) {
-    entries.push(...localeUrls(`/team/${slug}`, 0.6));
+    entries.push(...localeUrlsWithFreq(`/team/${slug}`, "monthly", 0.6));
   }
 
   return entries;

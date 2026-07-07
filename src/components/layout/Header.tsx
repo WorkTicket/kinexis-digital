@@ -109,16 +109,17 @@ export default function Header() {
           <div className="site-header__bar flex h-full w-full items-center justify-between lg:justify-normal">
             <Link
               href="/"
+              aria-label="Kinexis Digital home"
               className="site-header__brand relative z-10 flex shrink-0 items-center group touch-manipulation"
             >
               <span className="site-header__logo-wrap">
                 <SiteLogo
                   src="/assets/logos/KINEXIS_logo_full.webp"
-                  alt="Kinexis Digital"
+                  alt=""
                   width={180}
                   height={32}
                   priority
-                  className="site-header__logo motion-logo group-hover:opacity-80"
+                  className="site-header__logo group-hover:opacity-80"
                 />
               </span>
             </Link>
@@ -143,6 +144,7 @@ export default function Header() {
               <div className="header-actions-divider" aria-hidden />
               <Link
                 href="/contact"
+                aria-label={tNav("bookCall")}
                 className="header-cta group whitespace-nowrap rounded-lg px-3 text-[11px] xl:px-3.5 xl:text-xs"
               >
                 <span className="xl:hidden">{tNav("bookCallShort")}</span>
@@ -157,6 +159,7 @@ export default function Header() {
             <div className="relative z-10 flex shrink-0 items-center gap-2 lg:hidden">
               <Link
                 href="/contact"
+                aria-label={tNav("bookCall")}
                 className="header-cta shrink-0 h-7 whitespace-nowrap rounded-lg px-2.5 text-[10px] sm:px-3 sm:text-[11px]"
               >
                 {tNav("bookCallShort")}

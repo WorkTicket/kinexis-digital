@@ -1893,6 +1893,7 @@ summary::-webkit-details-marker {
   }
 
   .gradient-text {
+    color: var(--neon-cyan);
     background: var(--gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -2038,6 +2039,16 @@ summary::-webkit-details-marker {
     filter: grayscale(0.78) saturate(0.22) brightness(0.5) contrast(1.18) blur(8px);
   }
 
+  /* Mobile/tablet homepage hero — gradient-only shell so headline text is LCP */
+  @media (max-width: 1023px) {
+    .mesh-background--hero .mesh-layer {
+      background-image: none;
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+
   @media (min-width: 768px) {
     .mesh-layer {
       background-image: url("/assets/images/kinexis-hero-tablet.webp");
@@ -2066,25 +2077,30 @@ summary::-webkit-details-marker {
   .mesh-poly-layer {
     position: absolute;
     inset: -4%;
-    background-image: url("/assets/images/polygonal-net-mobile.webp");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+
+  .mesh-poly-layer--active {
+    background-image: url("/assets/images/polygonal-net-mobile.webp");
     opacity: 0.13;
     filter: grayscale(1) brightness(1.6) contrast(1.4);
     mix-blend-mode: screen;
-    pointer-events: none;
   }
 
   @media (min-width: 768px) {
-    .mesh-poly-layer {
+    .mesh-poly-layer--active {
       background-image: url("/assets/images/polygonal-net-tablet.webp");
       opacity: 0.14;
     }
   }
 
   @media (min-width: 1280px) {
-    .mesh-poly-layer {
+    .mesh-poly-layer--active {
       background-image: url("/assets/images/polygonal-net-desktop.webp");
       opacity: 0.15;
       filter: grayscale(1) brightness(1.5) contrast(1.45);
@@ -2579,7 +2595,15 @@ summary::-webkit-details-marker {
 }
 
 .page-enter {
-  animation: page-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Entrance animation removed — caused LCP/CLS regressions on desktop */
+  animation: none;
+}
+
+.motion-logo {
+  /* Static logo — blur fade-in hid LCP candidates and caused CLS */
+  animation: none;
+  opacity: 1;
+  filter: none;
 }
 
 /* SSR hero shells — LCP text is in HTML; skip entrance animations that shift layout */
@@ -2621,10 +2645,6 @@ summary::-webkit-details-marker {
   .motion-image:hover .motion-image__target {
     transform: scale(1.03);
   }
-}
-
-.motion-logo {
-  animation: motion-logo-in 0.65s var(--ease-out) both;
 }
 
 @keyframes motion-logo-in {
@@ -2725,7 +2745,7 @@ footer a:focus {
     filter: grayscale(0.35) saturate(0.4) brightness(1.15) contrast(1.05) blur(10px);
   }
 
-  .mesh-poly-layer {
+  .mesh-poly-layer--active {
     opacity: 0.08;
     filter: grayscale(1) brightness(0.85) contrast(1.2);
     mix-blend-mode: multiply;
@@ -2762,6 +2782,17 @@ footer a:focus {
   /* Base muted text — opacity variants (text-muted/75) use the rgb token in tailwind.config */
   .text-muted {
     color: var(--text-muted);
+  }
+}
+
+/* Reserve space before the cookie banner hydrates to prevent layout shift */
+html.cookie-pending body {
+  padding-bottom: 6.5rem;
+}
+
+@media (min-width: 640px) {
+  html.cookie-pending body {
+    padding-bottom: 5.5rem;
   }
 }
 

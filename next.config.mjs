@@ -10,7 +10,6 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const isDev = process.env.NODE_ENV === "development";
 
-const cloudflareInsightsScript = "https://static.cloudflareinsights.com";
 const cloudflareInsightsConnect = "https://cloudflareinsights.com";
 
 // Security headers applied to every route (mirrored in public/_headers for Cloudflare Pages static assets).
@@ -31,8 +30,8 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms ${cloudflareInsightsScript}`,
-      `script-src-elem 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms ${cloudflareInsightsScript}`,
+      "script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com",
+      "script-src-elem 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com",
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
       "font-src 'self' data:",
@@ -42,6 +41,7 @@ const securityHeaders = [
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'self'",
+      "report-uri https://kinexisdigital.report-uri.com/r/d/csp/enforce",
     ].join("; "),
   },
 ];
@@ -143,6 +143,13 @@ const nextConfig = {
       {
         source: "/robots.txt",
         headers: [
+          { key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      {
+        source: "/llms.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
           { key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" },
         ],
       },
