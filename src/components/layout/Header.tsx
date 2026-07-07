@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
-import Navigation from "./Navigation";
-import MobileMenu from "./MobileMenu";
 import SiteLogo from "@/components/ui/SiteLogo";
-import LanguageSwitcher from "./LanguageSwitcher";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+
+const Navigation = dynamic(() => import("./Navigation"));
+const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
+const LanguageSwitcher = dynamic(() => import("./LanguageSwitcher"));
 
 export default function Header() {
   const tNav = useTranslations("nav");
@@ -185,28 +187,30 @@ export default function Header() {
         </div>
       </header>
 
-      <MobileMenu
-        open={menuOpen}
-        servicesOpen={servicesOpen}
-        industriesOpen={industriesOpen}
-        resourcesOpen={resourcesOpen}
-        onClose={closeMenu}
-        onToggleServices={() => {
-          setIndustriesOpen(false);
-          setResourcesOpen(false);
-          setServicesOpen((prev) => !prev);
-        }}
-        onToggleIndustries={() => {
-          setServicesOpen(false);
-          setResourcesOpen(false);
-          setIndustriesOpen((prev) => !prev);
-        }}
-        onToggleResources={() => {
-          setServicesOpen(false);
-          setIndustriesOpen(false);
-          setResourcesOpen((prev) => !prev);
-        }}
-      />
+      {menuOpen ? (
+        <MobileMenu
+          open={menuOpen}
+          servicesOpen={servicesOpen}
+          industriesOpen={industriesOpen}
+          resourcesOpen={resourcesOpen}
+          onClose={closeMenu}
+          onToggleServices={() => {
+            setIndustriesOpen(false);
+            setResourcesOpen(false);
+            setServicesOpen((prev) => !prev);
+          }}
+          onToggleIndustries={() => {
+            setServicesOpen(false);
+            setResourcesOpen(false);
+            setIndustriesOpen((prev) => !prev);
+          }}
+          onToggleResources={() => {
+            setServicesOpen(false);
+            setIndustriesOpen(false);
+            setResourcesOpen((prev) => !prev);
+          }}
+        />
+      ) : null}
     </>
   );
 }

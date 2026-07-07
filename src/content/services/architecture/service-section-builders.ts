@@ -143,7 +143,6 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
   }
 
   if (slug === "meta-ads") {
-    const c = paidAdsContent[locale];
     return {
       CreativeTesting: section("creative-testing", isEn ? "Creative Testing Program" : "Programa de Pruebas Creativas", isEn ? "New ads every two weeks. Fatigue is predictable. We stay ahead of it." : "Variaciones cada dos semanas.", "comparison", [
         { title: isEn ? "Static & Video" : "Estático y Video", description: isEn ? "UGC, carousel, short-form" : "UGC, carrusel, corto", metric: "3-5/2wk" },

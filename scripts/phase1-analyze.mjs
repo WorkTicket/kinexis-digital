@@ -87,12 +87,6 @@ for (const url of probes) {
   probeResults.push({ url, status: res.status, location: res.headers.get("location") ?? "" });
 }
 
-const shortDescriptions = rows.filter((r) => {
-  if (r.http_status !== "200") return false;
-  const descMatch = false; // filled from full-site-audit if available
-  return descMatch;
-});
-
 const ahrefsBaseline = {
   "Hreflang annotation invalid": 380,
   "Hreflang to redirect or broken page": 380,

@@ -239,7 +239,6 @@ function auditRow(pageUrl, fetchResult, inSitemap) {
   const robotsMeta = extractRobotsMeta(fetchResult.html);
   const indexability = deriveIndexability(fetchResult.status, robotsMeta, fetchResult.xRobotsTag);
   const directives = parseRobotsDirectives(robotsMeta, fetchResult.xRobotsTag);
-  const path = normalizePathname(fetchResult.finalUrl);
   const intentional = isIntentionalNoindex(fetchResult.finalUrl);
   const hreflangCount = extractHreflangCount(fetchResult.html);
   const linkStats =

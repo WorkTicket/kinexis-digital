@@ -1,5 +1,6 @@
 import HeroBackdrop, { type HeroTheme } from "@/components/ui/HeroBackdrop";
 import { cn } from "@/lib/utils";
+import "@/styles/components/hero-decorative.css";
 
 export function HeroGradientBg() {
   return (

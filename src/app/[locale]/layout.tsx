@@ -1,5 +1,4 @@
 import type { Viewport } from "next";
-import Script from "next/script";
 import { Ubuntu } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
@@ -8,12 +7,15 @@ import "../globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SkipToMain from "@/components/layout/SkipToMain";
-import { MotionProvider } from "@/components/providers/MotionProvider";
+import SitePreloader from "@/components/layout/SitePreloader";
+import { MotionFlagsProvider } from "@/components/providers/MotionFlagsProvider";
+import FramerMotionShell from "@/components/providers/FramerMotionShell";
 import DeferredWidgets from "@/components/providers/DeferredWidgets";
 import { CookieConsentProvider } from "@/components/analytics/CookieConsent";
 import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
 import { routing, type Locale } from "@/i18n/routing";
 import { getHtmlLang } from "@/i18n/locale-tags";
+import { SITE_BOOT_SCRIPT } from "@/lib/site-boot-script";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -66,20 +68,25 @@ export default async function LocaleLayout({
 
   return (
     <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable} ${ubuntuMedium.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SITE_BOOT_SCRIPT }} />
+      </head>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
-        <Script src="/cookie-preflight.js" strategy="beforeInteractive" />
+        <SitePreloader />
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
-            <MotionProvider>
+            <MotionFlagsProvider>
               <SkipToMain />
               <div className="grain-overlay" />
               <Header />
-              <main id="main-content" tabIndex={-1} className="overflow-x-clip">
-                {children}
-              </main>
-              <DeferredWidgets />
+              <FramerMotionShell>
+                <main id="main-content" tabIndex={-1} className="overflow-x-clip">
+                  {children}
+                </main>
+                <DeferredWidgets />
+              </FramerMotionShell>
               <Footer />
-            </MotionProvider>
+            </MotionFlagsProvider>
             <AnalyticsScripts />
           </CookieConsentProvider>
         </NextIntlClientProvider>

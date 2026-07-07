@@ -456,10 +456,6 @@ async function main() {
   const redirectLinkPages = sitemapRows.filter((r) => r.outlinks_to_3xx > 0);
   const orphans = sitemapRows.filter((r) => r.issues.includes("orphan_no_inlinks"));
 
-  const relNofollowInSrc = fs.existsSync(path.join(__dirname, "..", "src"))
-    ? [...fs.readFileSync(path.join(__dirname, "..", "package.json"), "utf8")]
-    : [];
-
   let srcHasRelNofollow = false;
   const srcDir = path.join(__dirname, "..", "src");
   if (fs.existsSync(srcDir)) {

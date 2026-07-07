@@ -26,15 +26,6 @@ const AHREFS_HREFLANG_CSV = path.join(
   "kinexisdigital_01-jul-2026_hreflang-annotatio_2026-07-02_16-43-19.csv"
 );
 
-const AHREFS_HTML_LANG_CSV = path.join(
-  __dirname,
-  "..",
-  "docs",
-  "seo-remediation",
-  "ahrefs-export",
-  "kinexisdigital_01-jul-2026_html-lang-attribut_2026-07-02_16-43-55.csv"
-);
-
 const VALID_HTML_LANG = /^(en|es)$/;
 
 function csvEscape(value) {

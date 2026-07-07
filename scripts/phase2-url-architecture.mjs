@@ -20,7 +20,6 @@ const BLOG_SLUGS = [
   "seo-audit-framework",
 ];
 
-const UNPREFIXED_LINK = /href=["']https?:\/\/[^"']*\/services\/[^"']*["']/i;
 const UNPREFIXED_REL = /href=["']\/services\//i;
 const LOCALE_PREFIXED = /href=["']\/en\/services\/|href=["']\/es\/services\//;
 

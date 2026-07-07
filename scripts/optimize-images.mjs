@@ -25,7 +25,7 @@ async function optimize() {
   if (await fileExists(logoFullPng)) {
     await sharp(logoFullPng)
       .resize(360, 60, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 90, effort: 6 })
+      .webp({ quality: 80, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_logo_full.webp"));
 
     await sharp(logoFullPng)
@@ -37,7 +37,7 @@ async function optimize() {
   if (await fileExists(logoIconPng)) {
     await sharp(logoIconPng)
       .resize(280, 280, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 90, effort: 6 })
+      .webp({ quality: 80, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_icon_logo.webp"));
 
     await sharp(logoIconPng)

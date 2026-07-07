@@ -17,8 +17,9 @@ export default function SiteLogo({
   priority = false,
   className,
 }: SiteLogoProps) {
-  return (
-    // Native img avoids next/image SSR/client markup differences that cause hydration errors.
+  const avifSrc = src.endsWith(".webp") ? src.replace(/\.webp$/, ".avif") : null;
+
+  const img = (
     // eslint-disable-next-line @next/next/no-img-element
     <img
       src={src}
@@ -27,8 +28,17 @@ export default function SiteLogo({
       height={height}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
-      fetchPriority={priority ? "high" : "auto"}
+      fetchPriority="auto"
       className={cn("block max-w-full object-contain object-left", className)}
     />
+  );
+
+  if (!avifSrc) return img;
+
+  return (
+    <picture>
+      <source srcSet={avifSrc} type="image/avif" />
+      {img}
+    </picture>
   );
 }

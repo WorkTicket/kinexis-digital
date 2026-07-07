@@ -32,9 +32,8 @@ export function resolveMotionConfig({ reduced, mobile }: MotionEnvironment): Res
     scaleInDuration: reduced ? 0 : mobile ? 0.25 : 0.5,
     staggerChildren: reduced ? 0 : mobile ? 0.05 : 0.09,
     delayChildren: reduced ? 0 : mobile ? 0.02 : 0.06,
-    // Blur is skipped on reduced motion. Mobile gets same blur — it's GPU-composited
-    // so it's lightweight, and the visual effect is worth keeping on modern phones.
-    blurAmount: reduced ? 0 : 7,
+    // Blur filter is non-composited and hurts mobile Lighthouse scores — skip on mobile.
+    blurAmount: reduced || mobile ? 0 : 7,
     instant: reduced,
   };
 }

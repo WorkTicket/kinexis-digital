@@ -20,8 +20,13 @@
     "audit:phase10": "node scripts/phase10-performance-audit.mjs --save-json",
     "submit:indexnow": "node scripts/submit-indexnow.mjs"
   },
+  "browserslist": [
+    "chrome >= 90",
+    "firefox >= 90",
+    "safari >= 15",
+    "edge >= 90"
+  ],
   "dependencies": {
-    "@next/third-parties": "^15.3.4",
     "@opennextjs/cloudflare": "^1.19.11",
     "@sentry/nextjs": "^10.60.0",
     "clsx": "^2.1.1",

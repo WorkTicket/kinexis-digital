@@ -7,6 +7,7 @@ import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { EASE_OUT } from "@/lib/motion-config";
 import Button from "@/components/ui/Button";
 import HeroBackdrop, { type HeroTheme } from "@/components/ui/HeroBackdrop";
+import "@/styles/components/hero-decorative.css";
 import TwoLineText from "@/components/ui/TwoLineText";
 import ProofMetric from "@/components/ui/ProofMetric";
 import type { BreadcrumbItem } from "@/lib/schema";

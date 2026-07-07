@@ -132,24 +132,6 @@ function getSchemaTypes(nodes) {
   return [...types].sort();
 }
 
-function collectUrlFields(node, urls = new Set()) {
-  if (node == null) return urls;
-  if (Array.isArray(node)) {
-    for (const item of node) collectUrlFields(item, urls);
-    return urls;
-  }
-  if (typeof node !== "object") return urls;
-
-  for (const [key, value] of Object.entries(node)) {
-    if (typeof value === "string" && (IMAGE_URL_FIELDS.includes(key) || key === "url")) {
-      if (value.startsWith("http")) urls.add(value);
-    } else if (value && typeof value === "object") {
-      collectUrlFields(value, urls);
-    }
-  }
-  return urls;
-}
-
 function detectSchemaIssues(nodes) {
   const issues = [];
 
@@ -322,7 +304,7 @@ async function auditPage(fetchResult, inSitemap, urlStatusCache) {
   for (let i = 0; i < rawBlocks.length; i++) {
     try {
       parsedBlocks.push(JSON.parse(rawBlocks[i]));
-    } catch (e) {
+    } catch (_e) {
       parseErrors.push(`block_${i + 1}_parse_error`);
     }
   }

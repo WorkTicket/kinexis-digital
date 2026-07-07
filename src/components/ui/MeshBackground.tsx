@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import DeferredMeshPoly from "@/components/ui/DeferredMeshPoly";
+import "@/styles/components/mesh.css";
 
 type Props = {
   variant?: "hero" | "section" | "footer";

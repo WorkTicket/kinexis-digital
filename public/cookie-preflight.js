@@ -4,7 +4,7 @@
     if (!consent) {
       document.documentElement.classList.add("cookie-pending");
     }
-  } catch (e) {
+  } catch (_e) {
     /* ignore private browsing */
   }
 })();
