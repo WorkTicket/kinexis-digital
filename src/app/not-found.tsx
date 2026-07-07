@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import "./globals.css";
-import "../styles/light-mode-overrides.css";
 
 export const metadata: Metadata = {
   title: "Page Not Found | KINEXIS Digital",
@@ -11,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function RootNotFound() {
   return (
-    <html lang="en" style={{ colorScheme: "light dark" }}>
+    <html lang="en" style={{ colorScheme: "dark" }}>
       <body
         className="bg-bg text-foreground"
         style={{

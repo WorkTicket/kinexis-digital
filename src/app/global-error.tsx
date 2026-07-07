@@ -3,7 +3,6 @@
 import * as Sentry from "@sentry/nextjs";
 import { useEffect } from "react";
 import "./globals.css";
-import "../styles/light-mode-overrides.css";
 
 export default function GlobalError({
   error,
@@ -21,7 +20,7 @@ export default function GlobalError({
   }, [error]);
 
   return (
-    <html lang="en" style={{ colorScheme: "light dark" }}>
+    <html lang="en" style={{ colorScheme: "dark" }}>
       <body
         className="bg-bg text-foreground"
         style={{

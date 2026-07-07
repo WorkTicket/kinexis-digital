@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
 
-// Brand accent constants — backgrounds/text use CSS vars in globals.css
-// so light/dark mode follows the OS prefers-color-scheme setting.
+// Brand accent constants — backgrounds/text use CSS vars in globals.css (dark mode only).
 const BRAND = {
   NEON_CYAN: "#00d4ff",
   NEON_BLUE: "#0099cc",
