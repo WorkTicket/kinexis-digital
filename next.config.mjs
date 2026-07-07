@@ -2,7 +2,11 @@ import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 initOpenNextCloudflareForDev();
 
@@ -72,6 +76,17 @@ const nextConfig = {
     // Dev: avoid Windows file-locking races with the filesystem cache.
     if (dev) {
       config.cache = { type: "memory" };
+    }
+
+    // Modern browsers only — drop Next.js Baseline polyfills (~24 KiB legacy JS).
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "next/dist/build/polyfills/polyfill-module": path.join(
+          __dirname,
+          "src/lib/empty-polyfills.ts"
+        ),
+      };
     }
 
     // Production client bundles: split vendor chunks more granularly so

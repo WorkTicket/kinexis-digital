@@ -7,7 +7,7 @@ import "../globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SkipToMain from "@/components/layout/SkipToMain";
-import SitePreloader from "@/components/layout/SitePreloader";
+import SitePreloaderClient from "@/components/layout/SitePreloaderClient";
 import { MotionFlagsProvider } from "@/components/providers/MotionFlagsProvider";
 import FramerMotionShell from "@/components/providers/FramerMotionShell";
 import DeferredWidgets from "@/components/providers/DeferredWidgets";
@@ -15,24 +15,14 @@ import { CookieConsentProvider } from "@/components/analytics/CookieConsent";
 import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
 import { routing, type Locale } from "@/i18n/routing";
 import { getHtmlLang } from "@/i18n/locale-tags";
-import { SITE_BOOT_SCRIPT, PRELOADER_BOOT_SCRIPT } from "@/lib/site-boot-script";
+import { COOKIE_PREFLIGHT_SCRIPT, COOKIE_PENDING_CRITICAL_CSS } from "@/lib/site-boot-script";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-ubuntu",
   display: "optional",
   preload: true,
-  adjustFontFallback: true,
-});
-
-/** Weight 500 deferred — not needed for hero LCP (400/700 only above fold). */
-const ubuntuMedium = Ubuntu({
-  subsets: ["latin"],
-  weight: "500",
-  variable: "--font-ubuntu-medium",
-  display: "swap",
-  preload: false,
   adjustFontFallback: true,
 });
 
@@ -67,13 +57,17 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable} ${ubuntuMedium.variable}`}>
+    <html
+      lang={getHtmlLang(locale as Locale)}
+      className={`${ubuntu.variable} cookie-pending`}
+      suppressHydrationWarning
+    >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: SITE_BOOT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: COOKIE_PREFLIGHT_SCRIPT }} />
+        <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
       </head>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
-        <SitePreloader />
-        <script dangerouslySetInnerHTML={{ __html: PRELOADER_BOOT_SCRIPT }} />
+        <SitePreloaderClient />
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionFlagsProvider>

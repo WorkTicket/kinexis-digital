@@ -136,7 +136,8 @@ body {
 }
 
 .font-medium {
-  font-family: var(--font-ubuntu-medium), var(--font-ubuntu), sans-serif;
+  font-family: var(--font-ubuntu), sans-serif;
+  font-weight: 500;
 }
 
 html.mobile-menu-open {
@@ -1560,98 +1561,6 @@ summary::-webkit-details-marker {
     outline-offset: 2px;
   }
 
-  html.preloader-active body {
-    overflow: hidden;
-  }
-
-  .site-preloader {
-    position: fixed;
-    inset: 0;
-    z-index: 10050;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--bg);
-    background-image:
-      radial-gradient(ellipse 70% 50% at 50% 42%, rgba(0, 212, 255, 0.04) 0%, transparent 62%),
-      linear-gradient(180deg, var(--bg-dark) 0%, var(--bg) 100%);
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity 0.18s var(--ease-out);
-    will-change: opacity;
-  }
-
-  .site-preloader--done {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .site-preloader__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .site-preloader__brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: min(72vw, 11.25rem);
-    gap: 1.1rem;
-  }
-
-  .site-preloader__logo {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 2rem;
-    object-fit: contain;
-    object-position: center;
-  }
-
-  @media (prefers-reduced-motion: no-preference) {
-    .site-preloader__logo {
-      animation: preloader-logo-pulse 1.75s ease-in-out infinite;
-    }
-  }
-
-  .site-preloader__track {
-    width: 100%;
-    height: 2px;
-    overflow: hidden;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .site-preloader__bar {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: inherit;
-    background: var(--gradient);
-    transform-origin: left center;
-    transform: scaleX(0);
-    will-change: transform;
-  }
-
-  @keyframes preloader-logo-pulse {
-    0%,
-    100% {
-      opacity: 0.7;
-    }
-
-    50% {
-      opacity: 1;
-    }
-  }
-
-  @media (scripting: none) {
-    .site-preloader {
-      display: none;
-    }
-  }
-
   .grain-overlay {
     position: fixed;
     inset: 0;
@@ -2295,14 +2204,8 @@ footer a:focus {
 @media (prefers-reduced-motion: reduce) {
   .page-enter,
   .motion-logo,
-  .animate-gradient,
-  .site-preloader__logo,
-  .site-preloader__bar {
+  .animate-gradient {
     animation: none !important;
-  }
-
-  .site-preloader {
-    transition-duration: 0.01ms !important;
   }
 
   .motion-image__target,
@@ -2317,17 +2220,6 @@ footer a:focus {
   /* Base muted text — opacity variants (text-muted/75) use the rgb token in tailwind.config */
   .text-muted {
     color: var(--text-muted);
-  }
-}
-
-/* Reserve space before the cookie banner hydrates to prevent layout shift */
-html.cookie-pending body {
-  padding-bottom: 6.5rem;
-}
-
-@media (min-width: 640px) {
-  html.cookie-pending body {
-    padding-bottom: 5.5rem;
   }
 }
 

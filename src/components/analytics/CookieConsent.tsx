@@ -36,6 +36,8 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
     if (stored === "accepted" || stored === "rejected") {
       setConsent(stored);
       document.documentElement.classList.remove("cookie-pending");
+    } else {
+      document.documentElement.classList.add("cookie-pending");
     }
     setReady(true);
   }, []);

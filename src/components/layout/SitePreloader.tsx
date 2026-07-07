@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import "@/styles/site-preloader.css";
 
 const LOGO_SRC = "/assets/logos/KINEXIS_logo_preloader.webp";
 const MIN_MS_DESKTOP = 0;
@@ -13,12 +14,6 @@ const COMPLETE_MS = 200;
 const PROGRESS_CAP = 0.9;
 
 type PreloaderPhase = "visible" | "hiding" | "gone";
-
-declare global {
-  interface Window {
-    __kinexisPreloaderDone?: number;
-  }
-}
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -39,11 +34,6 @@ export default function SitePreloader() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (window.__kinexisPreloaderDone) {
-      setPhase("gone");
-      return;
-    }
-
     const root = document.documentElement;
     const reduced = prefersReducedMotion();
     const mobile = isMobileViewport();

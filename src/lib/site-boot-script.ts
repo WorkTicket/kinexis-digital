@@ -1,5 +1,6 @@
-/** Inline cookie preflight — runs before paint, no extra network request. */
-export const SITE_BOOT_SCRIPT = `(function(){try{var c=localStorage.getItem("kinexis-cookie-consent");if(!c)document.documentElement.classList.add("cookie-pending")}catch(e){}})();`;
+/** Sync cookie preflight — runs before paint; pairs with server `cookie-pending` on `<html>`. */
+export const COOKIE_PREFLIGHT_SCRIPT = `(function(){try{var c=localStorage.getItem("kinexis-cookie-consent");if(c)document.documentElement.classList.remove("cookie-pending")}catch(e){}})();`;
 
-/** Dismiss preloader on DOMContentLoaded — before React hydrates. */
-export const PRELOADER_BOOT_SCRIPT = `(function(){function d(){var r=document.documentElement,e=document.getElementById("site-preloader");window.__kinexisPreloaderDone=1;r.classList.remove("preloader-active");r.removeAttribute("aria-busy");if(e){e.classList.add("site-preloader--done");setTimeout(function(){e.remove()},200)}}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",d,{once:true});else d()})();`;
+/** Inlined in layout head — keeps cookie-banner space reserved without a render-blocking stylesheet. */
+export const COOKIE_PENDING_CRITICAL_CSS =
+  "html.cookie-pending body{padding-bottom:6.5rem}@media(min-width:640px){html.cookie-pending body{padding-bottom:5.5rem}}";
