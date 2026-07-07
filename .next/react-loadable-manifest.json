@@ -19,168 +19,227 @@
     "id": 87134,
     "files": [
       "static/chunks/2132-b70bc4aa6a52a18b.js",
-      "static/chunks/7134.80fdfa9827061fe1.js"
+      "static/chunks/7134.d3f8829321db5ab4.js"
     ]
   },
   "components\\layout\\Header.tsx -> ./Navigation": {
     "id": 34956,
     "files": [
-      "static/chunks/vendor-lucide-9b3381af57d5e1fe.js",
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
       "static/chunks/2132-b70bc4aa6a52a18b.js",
-      "static/chunks/4956.e83fef506041f214.js"
+      "static/chunks/4956.1b613d92c481d355.js"
     ]
   },
   "components\\providers\\DeferredWidgets.tsx -> @/components/layout/BackToTop": {
     "id": 6317,
     "files": [
-      "static/chunks/vendor-lucide-9b3381af57d5e1fe.js",
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
       "static/chunks/6317.820725f5cdc08847.js"
     ]
   },
   "components\\providers\\FramerMotionShell.tsx -> @/components/providers/FramerMotionProvider": {
     "id": 30810,
     "files": [
-      "static/chunks/vendor-framer-motion-464044375250a965.js",
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
       "static/chunks/1037-0d3335371de01d20.js",
-      "static/chunks/508.93c72d17c3039d3c.js"
+      "static/chunks/8127.de17241cfb9117d6.js"
     ]
   },
   "components\\sections\\FeaturedResults.tsx -> @/components/ui/DataViz/OutcomeComparison": {
     "id": 6699,
     "files": [
-      "static/chunks/6699.c1d7ccc45e2899fd.js"
+      "static/chunks/6699.2f27fa08e66e7147.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/providers/FramerMotionProvider": {
+    "id": 30810,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/1037-0d3335371de01d20.js",
+      "static/chunks/508.22051d0da6bcebc0.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/sections/CTASection": {
+    "id": 36847,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/4909-1f5c586e3e84e0a5.js",
+      "static/chunks/3638.e08b54da40b5f8aa.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/sections/FeaturedResults": {
+    "id": 54108,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/4909-1f5c586e3e84e0a5.js",
+      "static/chunks/1791.fd040c1fccd20076.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/sections/MidPageCTA": {
+    "id": 82515,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/4909-1f5c586e3e84e0a5.js",
+      "static/chunks/9778.d80940c99ee4f79b.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/sections/Philosophy": {
+    "id": 84265,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
+      "static/chunks/4909-1f5c586e3e84e0a5.js",
+      "static/chunks/3884.063b42f02895435a.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/sections/RevenueEngine": {
+    "id": 2978,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
+      "static/chunks/4909-1f5c586e3e84e0a5.js",
+      "static/chunks/9558.b8ad651bf2d725b6.js"
+    ]
+  },
+  "components\\sections\\HomeDeferredSections.tsx -> @/components/sections/ServicesEcosystem": {
+    "id": 67720,
+    "files": [
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
+      "static/chunks/4909-1f5c586e3e84e0a5.js",
+      "static/chunks/3315.c20e8c515b667361.js"
     ]
   },
   "components\\sections\\RevenueEngine.tsx -> @/components/ui/DataViz/ResultsTrajectoryChart": {
     "id": 45387,
     "files": [
-      "static/chunks/5387.314eee0583546357.js"
+      "static/chunks/5387.bbf7bb76115b5a2d.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/sections/RelatedLinks": {
     "id": 18060,
     "files": [
-      "static/chunks/8060.1d8b7eb278a4d856.js"
+      "static/chunks/8060.8675f7db98984ee1.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/sections/seo/AnswerBlock": {
     "id": 81763,
     "files": [
-      "static/chunks/vendor-framer-motion-464044375250a965.js",
+      "static/chunks/vendor-framer-motion-6bca20fcc41926a1.js",
       "static/chunks/1037-0d3335371de01d20.js",
-      "static/chunks/1763.89850e6769c0b562.js"
+      "static/chunks/1763.ff0a0c34a97e8875.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/sections/seo/ComparisonTable": {
     "id": 87973,
     "files": [
-      "static/chunks/vendor-lucide-9b3381af57d5e1fe.js",
-      "static/chunks/7973-c390299dfad58cde.js"
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
+      "static/chunks/7973-b20e0e5ba2449375.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/services/WebDesignDeviceMockupsSection": {
     "id": 95901,
     "files": [
-      "static/chunks/5901.d8a81de3ebe0954f.js"
+      "static/chunks/5901.bbb3a3ee7306c76e.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/shared/services/ProofSection": {
     "id": 50715,
     "files": [
-      "static/chunks/vendor-lucide-9b3381af57d5e1fe.js",
+      "static/chunks/vendor-lucide-856f9cc1b64d29f6.js",
       "static/chunks/5239.85b3074d7f478354.js",
-      "static/chunks/715.799302598d2b5b83.js"
+      "static/chunks/715.5138a26b1a03b2c7.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/shared/services/ResultsSection": {
     "id": 3015,
     "files": [
-      "static/chunks/3015.2d9699fba03090da.js"
+      "static/chunks/3015.59cb5760a9b76586.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/shared/services/ServiceCTA": {
     "id": 73921,
     "files": [
-      "static/chunks/3921.910fcf4a3394f729.js"
+      "static/chunks/3921.ce278aee9c6c5f88.js"
     ]
   },
   "components\\services\\ServicePage.tsx -> @/components/shared/services/ServiceFAQSection": {
     "id": 66172,
     "files": [
-      "static/chunks/6172.e2110fffae472127.js"
+      "static/chunks/6172.9e83b99f51db6948.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/AnalyticsHeroVizLazy": {
     "id": 72875,
     "files": [
-      "static/chunks/2875.28e11a812bd2564a.js"
+      "static/chunks/2875.4ec399741555c33c.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/BrandingHeroVizLazy": {
     "id": 10586,
     "files": [
-      "static/chunks/586.ca3364c7571ea1dc.js"
+      "static/chunks/586.8a5500076176673b.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/ContentMarketingHeroVizLazy": {
     "id": 83337,
     "files": [
-      "static/chunks/3337.b32af55574ce3607.js"
+      "static/chunks/3337.9d6c4c79d8472981.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/CroHeroVizLazy": {
     "id": 63296,
     "files": [
-      "static/chunks/3296.1649cea04f559054.js"
+      "static/chunks/3296.b9e44a7aabdfff3c.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/EmailMarketingHeroVizLazy": {
     "id": 35731,
     "files": [
-      "static/chunks/5731.4c68706e235647b7.js"
+      "static/chunks/5731.0525cc601f5ffc62.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/FunnelsHeroVizLazy": {
     "id": 39040,
     "files": [
-      "static/chunks/9040.b5c27c2cc127a693.js"
+      "static/chunks/9040.58bca92bb3302861.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/GrowthConsultingHeroVizLazy": {
     "id": 11974,
     "files": [
-      "static/chunks/1974.7a73855867531408.js"
+      "static/chunks/1974.5a1a898de71affa3.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/PaidAdsHeroVizLazy": {
     "id": 61399,
     "files": [
-      "static/chunks/5567-f65d413cd6156307.js",
-      "static/chunks/1399.ac2d8013eef02f29.js"
+      "static/chunks/5567-68705e4394a4767f.js",
+      "static/chunks/1399.455f73bfb94da15f.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/SeoHeroVizLazy": {
     "id": 90671,
     "files": [
-      "static/chunks/671.7d167d6c908ba889.js"
+      "static/chunks/671.2df5535eb308510f.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/SocialMediaHeroVizLazy": {
     "id": 44115,
     "files": [
-      "static/chunks/4115.bc42eb338bdb7565.js"
+      "static/chunks/4115.776ad3cc49864584.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/VideoMarketingHeroVizLazy": {
     "id": 75953,
     "files": [
-      "static/chunks/5953.c865b5e4481e2b66.js"
+      "static/chunks/5953.79a2cb9b5cdbfa01.js"
     ]
   },
   "components\\services\\service-hero-visualizations.tsx -> @/components/services/hero-viz/lazy/WebDesignHeroVizLazy": {
     "id": 99469,
     "files": [
-      "static/chunks/9469.3172027c81cbdea2.js"
+      "static/chunks/9469.5df858d635f47f58.js"
     ]
   }
 }

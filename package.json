@@ -21,10 +21,10 @@
     "submit:indexnow": "node scripts/submit-indexnow.mjs"
   },
   "browserslist": [
-    "chrome >= 90",
-    "firefox >= 90",
-    "safari >= 15",
-    "edge >= 90"
+    "chrome >= 111",
+    "firefox >= 111",
+    "safari >= 16.4",
+    "edge >= 111"
   ],
   "dependencies": {
     "@opennextjs/cloudflare": "^1.19.11",
@@ -46,6 +46,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.0",
+    "critters": "^0.0.23",
     "eslint": "^9.0.0",
     "eslint-config-next": "^15.0.0",
     "postcss": "^8.4.0",

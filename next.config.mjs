@@ -61,6 +61,8 @@ const nextConfig = {
   },
 
   experimental: {
+    // Inline above-the-fold CSS; defer the rest to cut render-blocking stylesheets.
+    optimizeCss: true,
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
     optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs"],

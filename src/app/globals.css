@@ -1,3 +1,5 @@
+@import "../styles/components/mesh.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -1574,16 +1576,13 @@ summary::-webkit-details-marker {
       radial-gradient(ellipse 70% 50% at 50% 42%, rgba(0, 212, 255, 0.04) 0%, transparent 62%),
       linear-gradient(180deg, var(--bg-dark) 0%, var(--bg) 100%);
     opacity: 1;
-    visibility: visible;
-    transition:
-      opacity 0.42s var(--ease-out),
-      visibility 0.42s var(--ease-out);
+    pointer-events: auto;
+    transition: opacity 0.18s var(--ease-out);
     will-change: opacity;
   }
 
   .site-preloader--done {
     opacity: 0;
-    visibility: hidden;
     pointer-events: none;
   }
 
@@ -2010,7 +2009,6 @@ summary::-webkit-details-marker {
   .mesh-layer {
     animation: none !important;
     transform: scale(1.1);
-    background-position: center center;
   }
 
   .mesh-glow {

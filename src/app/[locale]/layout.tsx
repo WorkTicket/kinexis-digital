@@ -15,7 +15,7 @@ import { CookieConsentProvider } from "@/components/analytics/CookieConsent";
 import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
 import { routing, type Locale } from "@/i18n/routing";
 import { getHtmlLang } from "@/i18n/locale-tags";
-import { SITE_BOOT_SCRIPT } from "@/lib/site-boot-script";
+import { SITE_BOOT_SCRIPT, PRELOADER_BOOT_SCRIPT } from "@/lib/site-boot-script";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
@@ -73,6 +73,7 @@ export default async function LocaleLayout({
       </head>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
         <SitePreloader />
+        <script dangerouslySetInnerHTML={{ __html: PRELOADER_BOOT_SCRIPT }} />
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
           <CookieConsentProvider>
             <MotionFlagsProvider>
@@ -83,8 +84,8 @@ export default async function LocaleLayout({
                 <main id="main-content" tabIndex={-1} className="overflow-x-clip">
                   {children}
                 </main>
-                <DeferredWidgets />
               </FramerMotionShell>
+              <DeferredWidgets />
               <Footer />
             </MotionFlagsProvider>
             <AnalyticsScripts />

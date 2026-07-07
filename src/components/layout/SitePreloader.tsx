@@ -2,17 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const LOGO_SRC = "/assets/logos/KINEXIS_logo_full.webp";
-const MIN_MS_DESKTOP = 360;
-const MIN_MS_MOBILE = 120;
-const MAX_MS_DESKTOP = 2400;
-const MAX_MS_MOBILE = 1400;
-const FADE_MS = 480;
+const LOGO_SRC = "/assets/logos/KINEXIS_logo_preloader.webp";
+const MIN_MS_DESKTOP = 0;
+const MIN_MS_MOBILE = 0;
+const MAX_MS_DESKTOP = 600;
+const MAX_MS_MOBILE = 400;
+const FADE_MS = 180;
 const FADE_MS_REDUCED = 40;
 const COMPLETE_MS = 200;
 const PROGRESS_CAP = 0.9;
 
 type PreloaderPhase = "visible" | "hiding" | "gone";
+
+declare global {
+  interface Window {
+    __kinexisPreloaderDone?: number;
+  }
+}
 
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -33,6 +39,11 @@ export default function SitePreloader() {
   const trackRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.__kinexisPreloaderDone) {
+      setPhase("gone");
+      return;
+    }
+
     const root = document.documentElement;
     const reduced = prefersReducedMotion();
     const mobile = isMobileViewport();
@@ -160,9 +171,8 @@ export default function SitePreloader() {
             src={LOGO_SRC}
             alt=""
             width={180}
-            height={32}
+            height={30}
             decoding="async"
-            fetchPriority="high"
             className="site-preloader__logo"
           />
           <div

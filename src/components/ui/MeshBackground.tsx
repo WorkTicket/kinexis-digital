@@ -1,6 +1,4 @@
 import { cn } from "@/lib/utils";
-import DeferredMeshPoly from "@/components/ui/DeferredMeshPoly";
-import "@/styles/components/mesh.css";
 
 type Props = {
   variant?: "hero" | "section" | "footer";
@@ -30,7 +28,7 @@ export default function MeshBackground({
       aria-hidden="true"
     >
       <div className={cn("mesh-layer", VARIANT_CLASS[variant])} />
-      <DeferredMeshPoly />
+      {variant === "hero" && <div className="mesh-poly-layer" aria-hidden />}
       <div className="mesh-grade" />
       <div className="mesh-contrast" />
       <div className="mesh-glow" />

@@ -55,34 +55,31 @@
     }
   }
 
-  /* ── Polygonal Net Overlay — greyscale mesh pattern over hero ── */
+  /* ── Polygonal Net Overlay — desktop/tablet only, SSR'd with hero ── */
   .mesh-poly-layer {
-    position: absolute;
-    inset: -4%;
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+    display: none;
   }
 
-  .mesh-poly-layer--active {
-    background-image: url("/assets/images/polygonal-net-mobile.webp");
-    opacity: 0.13;
-    filter: grayscale(1) brightness(1.6) contrast(1.4);
-    mix-blend-mode: screen;
-  }
-
-  @media (min-width: 768px) {
-    .mesh-poly-layer--active {
+  @media (min-width: 1024px) {
+    .mesh-poly-layer {
+      display: block;
+      position: absolute;
+      inset: -4%;
       background-image: url("/assets/images/polygonal-net-tablet.webp");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
       opacity: 0.14;
+      pointer-events: none;
+      filter: grayscale(1) brightness(1.6) contrast(1.4);
+      mix-blend-mode: screen;
+      will-change: transform;
+      contain: strict;
     }
   }
 
   @media (min-width: 1280px) {
-    .mesh-poly-layer--active {
+    .mesh-poly-layer {
       background-image: url("/assets/images/polygonal-net-desktop.webp");
       opacity: 0.15;
       filter: grayscale(1) brightness(1.5) contrast(1.45);
@@ -312,20 +309,16 @@
 
 @keyframes meshFloat {
   0% {
-    transform: scale(1.12) translateX(0) translateY(0);
-    background-position: center center;
+    transform: scale(1.12) translate(0, 0);
   }
   33% {
-    transform: scale(1.15) translateX(-32px) translateY(-14px);
-    background-position: 46% 44%;
+    transform: scale(1.15) translate(-32px, -14px);
   }
   66% {
-    transform: scale(1.13) translateX(18px) translateY(-10px);
-    background-position: 52% 47%;
+    transform: scale(1.13) translate(18px, -10px);
   }
   100% {
-    transform: scale(1.12) translateX(0) translateY(0);
-    background-position: center center;
+    transform: scale(1.12) translate(0, 0);
   }
 }
 

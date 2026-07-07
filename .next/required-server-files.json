@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "559b9569c72656ec4fc7cb24eab5541373f6d2e9"
+      "_sentryRelease": "11052450938fa51290ac13af4c352d5082dcc946"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -169,7 +169,7 @@
       "imgOptSkipMetadata": null,
       "isrFlushToDisk": true,
       "workerThreads": false,
-      "optimizeCss": false,
+      "optimizeCss": true,
       "nextScriptWorkers": false,
       "scrollRestoration": false,
       "externalDir": false,
@@ -471,7 +471,11 @@
     ".next\\BUILD_ID",
     ".next\\server\\next-font-manifest.js",
     ".next\\server\\next-font-manifest.json",
-    ".next\\required-server-files.json"
+    ".next\\required-server-files.json",
+    ".next\\static\\css\\0ba576beb94a46f7.css",
+    ".next\\static\\css\\0ba7fc9a89e6718c.css",
+    ".next\\static\\css\\2db94581d4172e33.css",
+    ".next\\static\\css\\d67fc45e4a86c8f6.css"
   ],
   "ignore": [
     "node_modules\\next\\dist\\compiled\\@ampproject\\toolbox-optimizer\\**\\*"
