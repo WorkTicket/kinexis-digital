@@ -67,8 +67,8 @@ export default async function LocaleLayout({
         <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
       </head>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
-        <SitePreloaderClient />
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
+          <SitePreloaderClient />
           <CookieConsentProvider>
             <MotionFlagsProvider>
               <SkipToMain />

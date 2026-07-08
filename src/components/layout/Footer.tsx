@@ -11,6 +11,7 @@ export default async function Footer() {
   const tServices = await getTranslations("services");
   const tFooter = await getTranslations("footer");
   const tCommon = await getTranslations("common");
+  const tA11y = await getTranslations("a11y");
 
   return (
     <footer className="relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
@@ -40,10 +41,10 @@ export default async function Footer() {
 
           {/* ── Brand column ── */}
           <div className="col-span-2 flex flex-col items-center lg:col-span-1 lg:pr-10">
-            <Link href="/" className="inline-block no-underline" aria-label="Kinexis Digital home">
+            <Link href="/" className="inline-block no-underline">
               <SiteLogo
                 src="/assets/logos/KINEXIS_icon_logo.webp"
-                alt=""
+                alt={tA11y("logoAlt")}
                 width={280}
                 height={188}
                 className="h-36 w-36 !object-cover !object-center overflow-hidden"
@@ -144,6 +145,9 @@ export default async function Footer() {
               <Link href="/terms" className="text-white/55 no-underline transition-colors hover:text-white/80">
                 {tFooter("terms")}
               </Link>
+              <a href="/llms.txt" className="text-white/55 no-underline transition-colors hover:text-white/80">
+                {tFooter("llmsIndex")}
+              </a>
             </div>
           </div>
           <p className="order-3 text-[11px] italic tracking-wide text-white/50 sm:order-2">

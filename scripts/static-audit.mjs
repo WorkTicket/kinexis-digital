@@ -16,12 +16,11 @@ async function audit(path) {
   else passes.push(`${path}: html lang present`);
 
   if (!html.includes('name="viewport"')) issues.push(`${path}: missing viewport`);
-  if (html.includes('alt=""') && !html.includes('alt="" aria-hidden')) {
-    /* decorative empty alts are ok */
-  }
 
   const imgsWithoutAlt = (html.match(/<img(?![^>]*alt=)[^>]*>/gi) || []).length;
-  if (imgsWithoutAlt > 0) issues.push(`${path}: ${imgsWithoutAlt} img(s) missing alt`);
+  const imgsEmptyAlt = (html.match(/<img[^>]*alt=""[^>]*>/gi) || []).length;
+  if (imgsWithoutAlt > 0) issues.push(`${path}: ${imgsWithoutAlt} img(s) missing alt attribute`);
+  if (imgsEmptyAlt > 0) issues.push(`${path}: ${imgsEmptyAlt} img(s) with empty alt text`);
 
   const h1Count = (html.match(/<h1[\s>]/gi) || []).length;
   if (h1Count !== 1) issues.push(`${path}: expected 1 h1, found ${h1Count}`);

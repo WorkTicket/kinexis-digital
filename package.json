@@ -18,6 +18,7 @@
     "setup:indexnow": "node scripts/setup-indexnow.mjs",
     "audit:phase9": "node scripts/phase9-sitemap-audit.mjs",
     "audit:phase10": "node scripts/phase10-performance-audit.mjs --save-json",
+    "audit:alt-text": "node scripts/phase-alt-text-audit.mjs",
     "submit:indexnow": "node scripts/submit-indexnow.mjs"
   },
   "browserslist": [

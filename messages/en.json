@@ -5,7 +5,10 @@
     "ogDescription": "We build real sales systems for businesses that want predictable growth - not just pretty websites."
   },
   "a11y": {
-    "skipToMain": "Skip to main content"
+    "skipToMain": "Skip to main content",
+    "logoAlt": "KINEXIS Digital home",
+    "preloaderLogoAlt": "KINEXIS Digital logo",
+    "loadingSite": "Loading KINEXIS Digital"
   },
   "nav": {
     "home": "Home",
@@ -88,6 +91,7 @@
     "missionBody": "Focused engagements. Real results. No cookie-cutter playbooks.",
     "privacy": "Privacy Policy",
     "terms": "Terms of Service",
+    "llmsIndex": "AI site index",
     "locations": "Locations"
   },
   "common": {

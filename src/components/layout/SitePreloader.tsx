@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import "@/styles/site-preloader.css";
 
 const LOGO_SRC = "/assets/logos/KINEXIS_logo_preloader.webp";
@@ -29,6 +30,7 @@ function easeOut(progress: number) {
 
 /** Site-wide first-paint shell — React-controlled to avoid hydration conflicts. */
 export default function SitePreloader() {
+  const tA11y = useTranslations("a11y");
   const [phase, setPhase] = useState<PreloaderPhase>("visible");
   const barRef = useRef<HTMLSpanElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -152,14 +154,14 @@ export default function SitePreloader() {
       aria-live="polite"
       aria-busy={!isHiding}
       aria-hidden={isHiding}
-      aria-label="Loading Kinexis Digital"
+      aria-label={tA11y("loadingSite")}
     >
       <div className="site-preloader__inner">
         <div className="site-preloader__brand">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={LOGO_SRC}
-            alt=""
+            alt={tA11y("preloaderLogoAlt")}
             width={180}
             height={30}
             decoding="async"

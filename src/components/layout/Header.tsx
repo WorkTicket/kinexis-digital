@@ -14,6 +14,7 @@ const LanguageSwitcher = dynamic(() => import("./LanguageSwitcher"));
 
 export default function Header() {
   const tNav = useTranslations("nav");
+  const tA11y = useTranslations("a11y");
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -111,13 +112,12 @@ export default function Header() {
           <div className="site-header__bar flex h-full w-full items-center justify-between lg:justify-normal">
             <Link
               href="/"
-              aria-label="Kinexis Digital home"
               className="site-header__brand relative z-10 flex shrink-0 items-center group touch-manipulation"
             >
               <span className="site-header__logo-wrap">
                 <SiteLogo
                   src="/assets/logos/KINEXIS_logo_full.webp"
-                  alt=""
+                  alt={tA11y("logoAlt")}
                   width={180}
                   height={32}
                   priority

@@ -5,7 +5,10 @@
     "ogDescription": "Construimos sistemas de ventas reales para empresas que buscan crecimiento predecible, no solo sitios web bonitos."
   },
   "a11y": {
-    "skipToMain": "Saltar al contenido principal"
+    "skipToMain": "Saltar al contenido principal",
+    "logoAlt": "Inicio de KINEXIS Digital",
+    "preloaderLogoAlt": "Logo de KINEXIS Digital",
+    "loadingSite": "Cargando KINEXIS Digital"
   },
   "nav": {
     "home": "Inicio",
@@ -88,6 +91,7 @@
     "missionBody": "Compromisos enfocados. Resultados reales. Sin playbooks genéricos.",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
+    "llmsIndex": "Índice del sitio para IA",
     "locations": "Ubicaciones"
   },
   "common": {
