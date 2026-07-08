@@ -87,6 +87,7 @@ export const staticPageRoutes = [
   "/industries",
   "/solutions",
   "/resources",
+  "/pricing",
   "/privacy",
   "/terms",
 ] as const;

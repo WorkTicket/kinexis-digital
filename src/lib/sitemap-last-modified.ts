@@ -41,6 +41,7 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/industries": "2026-06-01",
   "/solutions": "2026-06-01",
   "/resources": "2026-05-15",
+  "/pricing": "2026-07-07",
   "/privacy": "2026-03-01",
   "/terms": "2026-03-01",
 };

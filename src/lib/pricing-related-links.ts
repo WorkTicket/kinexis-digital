@@ -1,12 +1,16 @@
-import { pricingRoutes, serviceLabels, type PricingSlug } from "@/content/registry/site-routes";
+import { activePricingSlugs, pricingRoutes, serviceLabels, type PricingSlug } from "@/content/registry/site-routes";
 
-const pricingGroups: PricingSlug[][] = [
-  ["seo", "local-seo", "content-marketing"],
-  ["ppc-management", "meta-ads"],
-  ["web-design", "funnels", "branding"],
-  ["email-marketing", "social-media", "video-marketing"],
-  ["analytics", "growth-consulting"],
-];
+export const pricingHubGroups = [
+  { key: "searchAndOrganic", slugs: ["seo", "local-seo", "content-marketing"] as const satisfies readonly PricingSlug[] },
+  { key: "paidMedia", slugs: ["ppc-management", "meta-ads"] as const satisfies readonly PricingSlug[] },
+  { key: "webAndConversion", slugs: ["web-design", "funnels", "branding"] as const satisfies readonly PricingSlug[] },
+  { key: "marketingChannels", slugs: ["email-marketing", "social-media", "video-marketing"] as const satisfies readonly PricingSlug[] },
+  { key: "strategyAndAnalytics", slugs: ["analytics", "growth-consulting"] as const satisfies readonly PricingSlug[] },
+] as const;
+
+export type PricingHubGroupKey = (typeof pricingHubGroups)[number]["key"];
+
+const pricingGroups: PricingSlug[][] = pricingHubGroups.map((group) => [...group.slugs]);
 
 export function getPricingRelatedLinks(
   slug: PricingSlug,
@@ -23,10 +27,8 @@ export function getPricingRelatedLinks(
 }
 
 export function getAllPricingLinks(): { href: string; label: string }[] {
-  return (Object.keys(pricingRoutes) as PricingSlug[])
-    .filter((slug) => slug !== "cro")
-    .map((slug) => ({
-      href: pricingRoutes[slug],
-      label: `${serviceLabels[slug].replace(/ Services$/, "").replace(/ Management$/, "")} Pricing`,
-    }));
+  return activePricingSlugs.map((slug) => ({
+    href: pricingRoutes[slug],
+    label: `${serviceLabels[slug].replace(/ Services$/, "").replace(/ Management$/, "")} Pricing`,
+  }));
 }

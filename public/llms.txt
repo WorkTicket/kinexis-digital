@@ -10,6 +10,10 @@
 - [Web Design](https://www.kinexisdigital.com/en/services/web-design): Conversion-focused websites and landing pages with fast performance.
 - [Local SEO](https://www.kinexisdigital.com/en/services/local-seo): Local visibility for service businesses that depend on nearby customers.
 
+## Pricing
+
+- [Pricing Overview](https://www.kinexisdigital.com/en/pricing): Hub page linking to transparent pricing for SEO, paid media, web design, and every other KINEXIS service.
+
 ## Company
 
 - [About Kinexis Digital](https://www.kinexisdigital.com/en/about): Agency background, team, and how we work with clients.

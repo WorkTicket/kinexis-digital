@@ -15,8 +15,7 @@ export function createPricingPage(slug: PricingSlug) {
     const path = pricingRoutes[slug];
     const breadcrumbs = [
       { name: "Home", url: "/" },
-      { name: "Services", url: "/services" },
-      { name: serviceLabels[slug], url: serviceRoutes[slug] },
+      { name: "Pricing", url: "/pricing" },
       { name: content.hero.label },
     ];
 

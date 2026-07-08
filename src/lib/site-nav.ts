@@ -77,6 +77,7 @@ export const resourceNavGroups = [
 ] as const;
 
 export const footerServiceLinks = [
-  { href: "/pricing/seo", key: "pricing" as const },
+  { href: "/services/web-design", key: "webDesign" as const },
   ...serviceNavLinks.slice(0, 5),
+  { href: "/pricing", key: "pricing" as const },
 ];
