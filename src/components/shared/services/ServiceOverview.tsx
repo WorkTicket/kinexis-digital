@@ -2,7 +2,7 @@ import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import SectionIntroWithVisualization from "@/components/shared/services/SectionIntroWithVisualization";
 import type { ServiceOverviewData } from "@/content/services/architecture/types";
-import { cardClasses } from "@/lib/card-styles";
+import { cardClasses, featureCardGridClass } from "@/lib/card-styles";
 import type { ReactNode } from "react";
 
 type Props = ServiceOverviewData & {
@@ -29,7 +29,7 @@ export default function ServiceOverview({
         />
 
         <div className="section-content grid gap-grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
-          <ul className="grid gap-grid-sm sm:grid-cols-2">
+          <ul className={featureCardGridClass(problemPoints.length, "gap-grid-sm")}>
             {problemPoints.map((point) => (
               <li
                 key={point}

@@ -2216,7 +2216,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with our YouTube program",
-      subtitle: "Six deliverables. One measurable video advertising system.",
+      subtitle: "Twelve deliverables. One measurable video advertising system.",
       items: [
         {
           title: "Campaign & Placement Strategy",
@@ -2229,6 +2229,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Custom segments from customer lists, search intent, competitor viewers, and website retargeting pools.",
         },
         {
+          title: "Budget & Bid Architecture",
+          description:
+            "Daily budgets and bid strategies split by placement so spend scales where CPA holds.",
+        },
+        {
           title: "Creative Direction & Hook Testing",
           description:
             "Scripts and edits built around the first five seconds, with multiple hooks tested against the skip button.",
@@ -2239,6 +2244,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Post-click pages matched to the ad promise so the traffic you pay for has somewhere to convert.",
         },
         {
+          title: "Thumbnail & Format Testing",
+          description:
+            "Thumbnail, length, and format variants tested on a schedule with clear scale and kill rules.",
+        },
+        {
           title: "Conversion Tracking Setup",
           description:
             "GA4, enhanced conversions, and view-through attribution so video spend maps to leads and revenue.",
@@ -2247,6 +2257,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Weekly Optimization & Reporting",
           description:
             "Bid, audience, and creative adjustments each week with reporting on view rate, CPA, and conversions.",
+        },
+        {
+          title: "Placement Performance Review",
+          description:
+            "Monthly read on which placements, audiences, and hooks earn budget and which get cut.",
+        },
+        {
+          title: "Competitor Creative Benchmarking",
+          description:
+            "Monthly review of competitor ads, hooks, and offers so your creative stays ahead of category fatigue.",
+        },
+        {
+          title: "Brand Safety & Exclusions",
+          description:
+            "Placement lists, content exclusions, and frequency caps so ads run where your brand belongs.",
+        },
+        {
+          title: "Quarterly Channel Strategy Reset",
+          description:
+            "Budget reallocation, new audience tests, and format experiments planned against pipeline goals.",
         },
       ],
     },
@@ -2349,7 +2379,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with our landing page work",
-      subtitle: "Six deliverables. From wireframe to a page that keeps improving.",
+      subtitle: "Twelve deliverables. From wireframe to a page that keeps improving.",
       items: [
         {
           title: "Conversion Strategy & Wireframe",
@@ -2362,6 +2392,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "On-brand, mobile-first design with a clear visual hierarchy that leads to a single primary action.",
         },
         {
+          title: "Message Match & Objection Mapping",
+          description:
+            "Ad-to-page alignment and proof placement mapped to the objections your visitor walked in with.",
+        },
+        {
           title: "Development & Build",
           description:
             "Fast, responsive build on your CMS or a landing page platform, tested across devices and browsers.",
@@ -2372,6 +2407,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Headlines, subheads, and CTA copy written to qualify visitors and answer objections in order.",
         },
         {
+          title: "Speed & Cross-Device QA",
+          description:
+            "Core Web Vitals check and device testing so the page loads fast before anyone reads the headline.",
+        },
+        {
           title: "Tracking & Form Setup",
           description:
             "GA4, form and call tracking, and thank-you flows so every conversion is captured and attributed.",
@@ -2380,6 +2420,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "A/B Testing & Iteration",
           description:
             "Structured tests on headlines, layout, and forms with significance gates and a record of what won.",
+        },
+        {
+          title: "Conversion Baseline & Reporting",
+          description:
+            "Launch baseline captured with a dashboard for conversion rate and cost per lead after go-live.",
+        },
+        {
+          title: "Heatmap & Scroll Analysis",
+          description:
+            "Post-launch behavior read on where visitors stall, scroll, and abandon before the CTA.",
+        },
+        {
+          title: "Campaign Integration Handoff",
+          description:
+            "UTM structure, ad-to-page mapping, and QA so paid traffic lands on the right variant every time.",
+        },
+        {
+          title: "Post-Launch Optimization Sprint",
+          description:
+            "A focused 30-day window to test headlines, proof, and form length against the launch baseline.",
         },
       ],
     },
@@ -2482,7 +2542,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with a care plan",
-      subtitle: "Six areas covered. One site you stop worrying about.",
+      subtitle: "Twelve areas covered. One site you stop worrying about.",
       items: [
         {
           title: "Core, Theme & Plugin Updates",
@@ -2495,6 +2555,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Automated off-site backups with tested restore points, so a bad update is a quick fix, not a crisis.",
         },
         {
+          title: "Staging Environment Setup",
+          description:
+            "A safe copy of your site where updates and changes get tested before they touch production.",
+        },
+        {
           title: "Security & Malware Monitoring",
           description:
             "Firewall management, malware scanning, and hardening to keep your site off blocklists and out of trouble.",
@@ -2505,6 +2570,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Round-the-clock uptime checks with alerts, so downtime is addressed before customers notice.",
         },
         {
+          title: "SSL & Access Hardening",
+          description:
+            "Certificate checks, login protection, and permission audits to close common entry points.",
+        },
+        {
           title: "Content & Support Requests",
           description:
             "A monthly block of hands-on time for edits, new sections, and small fixes handled by a real developer.",
@@ -2513,6 +2583,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Monthly Health Report",
           description:
             "A clear report on updates applied, threats blocked, uptime, and performance so you know the site is handled.",
+        },
+        {
+          title: "Emergency Response Playbook",
+          description:
+            "Documented steps for outages, hacks, and failed updates so recovery is fast when something breaks.",
+        },
+        {
+          title: "Plugin & Dependency Audit",
+          description:
+            "Quarterly review of plugins, themes, and third-party scripts to cut bloat and security risk.",
+        },
+        {
+          title: "Performance Monitoring",
+          description:
+            "Monthly speed and Core Web Vitals check so regressions get caught before they hurt rankings.",
+        },
+        {
+          title: "Priority Support Queue",
+          description:
+            "Urgent fixes routed ahead of routine requests so downtime and broken forms get handled first.",
         },
       ],
     },
@@ -2615,7 +2705,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with a speed overhaul",
-      subtitle: "Six areas of work. One measurably faster site.",
+      subtitle: "Twelve areas of work. One measurably faster site.",
       items: [
         {
           title: "Performance Audit",
@@ -2628,6 +2718,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Compression, next-gen formats, correct sizing, and lazy loading to cut the heaviest page weight first.",
         },
         {
+          title: "Critical Path Analysis",
+          description:
+            "Render-blocking resources and layout shifts mapped to the pages that drive the most traffic.",
+        },
+        {
           title: "Code & Script Cleanup",
           description:
             "Render-blocking CSS and JavaScript deferred or removed, unused code eliminated, third-party scripts audited.",
@@ -2638,6 +2733,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Page and browser caching, a CDN, and compression configured for fast repeat loads and global delivery.",
         },
         {
+          title: "Third-Party Script Audit",
+          description:
+            "Tags and widgets reviewed for load impact, with slow or redundant scripts removed or deferred.",
+        },
+        {
           title: "Server & Core Web Vitals Tuning",
           description:
             "Server response time, LCP, CLS, and INP addressed so the site passes on mobile and desktop.",
@@ -2646,6 +2746,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Before & After Reporting",
           description:
             "Documented Lighthouse and Core Web Vitals scores before and after, so the gain is measurable.",
+        },
+        {
+          title: "Ongoing Monitoring Setup",
+          description:
+            "Alerts and a baseline dashboard so performance regressions get caught before traffic drops.",
+        },
+        {
+          title: "Font & Asset Loading Strategy",
+          description:
+            "Web fonts, icons, and critical CSS tuned so above-the-fold content paints without layout shift.",
+        },
+        {
+          title: "Mobile-First Pass",
+          description:
+            "A dedicated mobile audit and fix cycle because most traffic and Core Web Vitals failures start there.",
+        },
+        {
+          title: "Maintenance Recommendations",
+          description:
+            "A short playbook for your team on what to avoid adding so speed gains hold after launch.",
         },
       ],
     },
@@ -2748,7 +2868,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with Microsoft Ads management",
-      subtitle: "A channel run on its own merits, with reporting you can act on.",
+      subtitle: "Twelve deliverables. A channel run on its own merits, with reporting you can act on.",
       items: [
         {
           title: "Account Setup & Structure",
@@ -2761,6 +2881,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Search terms and audiences mapped to buyer intent, with negative keyword lists to protect budget.",
         },
         {
+          title: "Import Strategy & Cleanup",
+          description:
+            "Google imports reviewed and rebuilt so bids, match types, and negatives fit the Microsoft auction.",
+        },
+        {
           title: "LinkedIn-Profile Targeting",
           description:
             "Targeting layers by company, industry, and job function to reach the right decision-makers.",
@@ -2771,6 +2896,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Headlines, descriptions, and extensions written and split-tested for the Microsoft audience.",
         },
         {
+          title: "Audience Exclusion Lists",
+          description:
+            "Exclusions and remarketing pools set up so prospecting budget does not chase existing customers.",
+        },
+        {
           title: "Conversion Tracking",
           description:
             "UET tags, call tracking, and goal setup so leads and sales are attributed to the right campaigns.",
@@ -2779,6 +2909,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Ongoing Optimization & Reporting",
           description:
             "Bid, budget, and creative adjustments each month with reporting tied to leads, not just clicks.",
+        },
+        {
+          title: "Monthly Channel Performance Review",
+          description:
+            "A read on Microsoft-specific CPA and lead volume compared to your other paid channels.",
+        },
+        {
+          title: "Search Partner Network Controls",
+          description:
+            "Partner network bids and exclusions managed so budget stays on high-intent search.",
+        },
+        {
+          title: "Seasonal Budget Playbook",
+          description:
+            "Planned bid and budget shifts for peak periods so the channel scales without waste.",
+        },
+        {
+          title: "Cross-Channel Attribution Notes",
+          description:
+            "How Microsoft leads show up in your CRM and analytics compared to Google and Meta.",
         },
       ],
     },
@@ -2881,7 +3031,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with copywriting",
-      subtitle: "A consistent voice and copy written to move the reader, not fill space.",
+      subtitle: "Twelve deliverables. A consistent voice and copy written to move the reader, not fill space.",
       items: [
         {
           title: "Messaging & Brand Voice",
@@ -2894,6 +3044,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Home, service, and landing page copy structured around the reader's problem and one clear action.",
         },
         {
+          title: "Objection & Proof Library",
+          description:
+            "Reusable answers to the hesitations your sales team hears, mapped to where they show up on the page.",
+        },
+        {
           title: "Email & Nurture Copy",
           description:
             "Welcome, nurture, and campaign emails written to build trust and book the next step.",
@@ -2904,6 +3059,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Headlines, ad variations, and captions matched to the offer and the platform.",
         },
         {
+          title: "Sales Enablement Copy",
+          description:
+            "One-pagers, talk tracks, and follow-up templates aligned to the same voice and offer.",
+        },
+        {
           title: "Long-Form & SEO Content",
           description:
             "Articles and guides written for search intent with internal links and a conversion path.",
@@ -2912,6 +3072,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Editing & Consistency Pass",
           description:
             "A review layer that keeps tone, terminology, and calls to action consistent across everything.",
+        },
+        {
+          title: "Content Refresh & Rewrites",
+          description:
+            "Existing pages sharpened for clarity, conversion, and search without starting from a blank page.",
+        },
+        {
+          title: "Headline & CTA Variants",
+          description:
+            "Multiple tested angles for key pages and ads so you are not locked into one first draft.",
+        },
+        {
+          title: "Channel-Specific Adaptations",
+          description:
+            "The same offer rewritten for email subject lines, ad hooks, and on-page proof blocks.",
+        },
+        {
+          title: "Monthly Copy Calendar",
+          description:
+            "A rolling plan for what gets written, refreshed, and tested across your active channels.",
         },
       ],
     },
@@ -3014,7 +3194,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with a marketing audit",
-      subtitle: "A documented, prioritized read on your marketing, backed by your own numbers.",
+      subtitle: "Twelve deliverables. A documented, prioritized read on your marketing, backed by your own numbers.",
       items: [
         {
           title: "Analytics & Tracking Review",
@@ -3027,6 +3207,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Paid, organic, email, and social reviewed on cost per qualified lead and return, not clicks.",
         },
         {
+          title: "Tech Stack & Tag Audit",
+          description:
+            "Pixels, tags, and integrations checked for duplication, gaps, and data that never reaches the CRM.",
+        },
+        {
           title: "Funnel & Conversion Review",
           description:
             "Drop-off mapped from first touch to closed deal, with the biggest leaks identified.",
@@ -3037,6 +3222,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Where the money goes, what it returns, and where it is being wasted.",
         },
         {
+          title: "Landing Page & Offer Review",
+          description:
+            "Key pages checked for message match, friction, and conversion paths that stall qualified visitors.",
+        },
+        {
           title: "Competitor & Market Context",
           description:
             "How your visibility and positioning compare to the competitors you actually lose to.",
@@ -3045,6 +3235,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Prioritized Action Plan",
           description:
             "A ranked roadmap of fixes and opportunities, ordered by impact on revenue.",
+        },
+        {
+          title: "Findings Walkthrough Session",
+          description:
+            "A live review of the audit so your team leaves knowing what to fix first and why.",
+        },
+        {
+          title: "Tracking Fix Recommendations",
+          description:
+            "Specific GA4, GTM, and CRM fixes ranked so clean data comes before channel changes.",
+        },
+        {
+          title: "Quick-Win Implementation List",
+          description:
+            "Changes your team can ship in the next 30 days without a full rebuild.",
+        },
+        {
+          title: "Audit Credit Toward Execution",
+          description:
+            "Fee applied to ongoing work when you hire us to implement the prioritized plan.",
         },
       ],
     },
@@ -3147,7 +3357,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with automation and CRM consulting",
-      subtitle: "A connected stack, working workflows, and reporting you can act on.",
+      subtitle: "Twelve deliverables. A connected stack, working workflows, and reporting you can act on.",
       items: [
         {
           title: "Platform Audit & Selection",
@@ -3160,6 +3370,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Behavioral workflows and multi-step sequences that fire on real triggers, not guesswork.",
         },
         {
+          title: "Data Hygiene & Field Mapping",
+          description:
+            "Lead and deal fields standardized so automations and reports pull from clean, consistent data.",
+        },
+        {
           title: "Lead Scoring & Sales Handoff",
           description:
             "Scoring rules and routing so sales-ready leads reach the right rep at the right moment.",
@@ -3170,6 +3385,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Forms, ads, and tools connected so leads move automatically with source tags intact.",
         },
         {
+          title: "Lifecycle Stage Definitions",
+          description:
+            "Clear stages from subscriber to customer so nurture and sales know when to act.",
+        },
+        {
           title: "Pipeline & Reporting Setup",
           description:
             "Deal stages and dashboards that tie marketing activity to closed revenue.",
@@ -3178,6 +3398,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Documentation & Training",
           description:
             "Clear documentation and a walkthrough so your team can run and trust the system.",
+        },
+        {
+          title: "Automation QA & Testing",
+          description:
+            "Every trigger and handoff tested with real leads before your team depends on it.",
+        },
+        {
+          title: "Re-Engagement & Win-Back Flows",
+          description:
+            "Sequences for cold leads and stalled deals so pipeline does not sit untouched.",
+        },
+        {
+          title: "Sales-Marketing SLA",
+          description:
+            "Documented response times and follow-up rules so handoffs do not fall through.",
+        },
+        {
+          title: "Monthly System Health Check",
+          description:
+            "A recurring review of broken triggers, duplicate records, and reporting gaps.",
         },
       ],
     },
@@ -3280,7 +3520,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with a fractional CMO",
-      subtitle: "Senior leadership embedded in your business, accountable for the numbers.",
+      subtitle: "Twelve deliverables. Senior leadership embedded in your business, accountable for the numbers.",
       items: [
         {
           title: "Marketing Strategy & Roadmap",
@@ -3293,6 +3533,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Allocation and reallocation of spend based on performance, with clear ROI tracking.",
         },
         {
+          title: "KPI & Target Framework",
+          description:
+            "Pipeline, cost per lead, and channel targets defined so every tactic ties to a number.",
+        },
+        {
           title: "Team & Vendor Management",
           description:
             "Direction and accountability for your internal team, agencies, and freelancers.",
@@ -3303,6 +3548,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Senior review of every channel so the mix stays aligned to the plan.",
         },
         {
+          title: "Executive Stakeholder Updates",
+          description:
+            "Regular leadership briefings on pipeline, spend, and what changed since last month.",
+        },
+        {
           title: "Reporting & Leadership Alignment",
           description:
             "Regular reporting to founders or the board on pipeline, cost per lead, and return.",
@@ -3311,6 +3561,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Hiring & Process Guidance",
           description:
             "Help building the right team and processes as marketing scales past the fractional stage.",
+        },
+        {
+          title: "Quarterly Plan Refresh",
+          description:
+            "A rolling review of what worked, what didn't, and where budget shifts next quarter.",
+        },
+        {
+          title: "Board-Ready Reporting Pack",
+          description:
+            "Pipeline, CAC, and channel performance formatted for leadership and investor reviews.",
+        },
+        {
+          title: "Experimentation Priorities",
+          description:
+            "A short list of tests and channel bets ranked by upside and effort each quarter.",
+        },
+        {
+          title: "Risk & Compliance Review",
+          description:
+            "A periodic check on claims, tracking, and vendor contracts that affect marketing liability.",
         },
       ],
     },
@@ -3413,7 +3683,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     deliverables: {
       title: "What you get with training and workshops",
-      subtitle: "Practical skills, reusable assets, and a team that can run the work.",
+      subtitle: "Twelve deliverables. Practical skills, reusable assets, and a team that can run the work.",
       items: [
         {
           title: "Custom Curriculum",
@@ -3426,6 +3696,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "Live training on your own accounts and data, so the team practices on real work.",
         },
         {
+          title: "Skills Gap Assessment",
+          description:
+            "A baseline read on what your team knows and where the gaps are before training starts.",
+        },
+        {
           title: "Templates & Playbooks",
           description:
             "Checklists, templates, and processes your team keeps and reuses after training.",
@@ -3436,6 +3711,11 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
             "SEO, paid ads, analytics, content, email, and strategy, focused where you need it most.",
         },
         {
+          title: "Live Q&A & Troubleshooting",
+          description:
+            "Real questions answered on your accounts during the session, not after everyone has left.",
+        },
+        {
           title: "Recorded Sessions",
           description:
             "Recordings and materials so new hires can get up to speed later.",
@@ -3444,6 +3724,26 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           title: "Follow-Up Support",
           description:
             "A window of support after the session so questions get answered and skills stick.",
+        },
+        {
+          title: "Team Certification Checklist",
+          description:
+            "A short competency list so you know who can run each task without outside help.",
+        },
+        {
+          title: "Office Hours Window",
+          description:
+            "Scheduled time after training for questions on live campaigns and real blockers.",
+        },
+        {
+          title: "Role-Based Learning Paths",
+          description:
+            "Separate tracks for owners, marketers, and sales so each person gets relevant depth.",
+        },
+        {
+          title: "Implementation Assignments",
+          description:
+            "Homework on your accounts between sessions so skills transfer before the next workshop.",
         },
       ],
     },

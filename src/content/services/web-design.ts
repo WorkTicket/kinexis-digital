@@ -127,7 +127,7 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
     surfacesTitle: "Every surface matters.",
     surfacesSubtitle:
       "Your website lives across devices, viewports, and contexts.|We design and test every experience to ensure consistency at every size.",
-    devices: [{ name: "Desktop" }, { name: "Tablet" }, { name: "Mobile" }],
+    devices: [{ name: "Desktop" }, { name: "Laptop" }, { name: "Tablet" }, { name: "Mobile" }],
     performanceTitle: "Built for performance.",
     performanceSubtitle:
       "A beautiful site that loads slowly is a broken site.|We obsess over every byte, every request, and every render.",
@@ -256,7 +256,7 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
     surfacesTitle: "Cada superficie importa.",
     surfacesSubtitle:
       "Tu sitio web vive en dispositivos, viewports y contextos.|Diseñamos y probamos cada experiencia para garantizar consistencia en cada tamaño.",
-    devices: [{ name: "Escritorio" }, { name: "Tablet" }, { name: "Móvil" }],
+    devices: [{ name: "Escritorio" }, { name: "Portátil" }, { name: "Tablet" }, { name: "Móvil" }],
     performanceTitle: "Construido para el rendimiento.",
     performanceSubtitle:
       "Un sitio hermoso que carga lento es un sitio roto.|Nos obsesionamos con cada byte, cada solicitud y cada renderizado.",

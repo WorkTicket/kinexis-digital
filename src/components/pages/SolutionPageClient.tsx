@@ -9,6 +9,7 @@ import { serviceRoutes, serviceLabels, type ServiceSlug } from "@/content/regist
 import { getIndustryBySlug } from "@/content/registry/industries";
 import { getSolutionRelatedLinks } from "@/lib/solution-related-links";
 import Section from "@/components/shared/services/Section";
+import { featureCardGridClass } from "@/lib/card-styles";
 type Props = { solution: SolutionEntry };
 
 export default function SolutionPageClient({ solution }: Props) {
@@ -44,7 +45,7 @@ export default function SolutionPageClient({ solution }: Props) {
       <Section id="deliverables" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader title="Deliverables" />
-          <div className="mt-8 grid gap-grid-sm md:grid-cols-2 items-stretch">
+          <div className={featureCardGridClass(solution.deliverables.length, "mt-8 items-stretch")}>
             {solution.deliverables.map((d) => (
               <CardFamily key={d} family="editorial" className="h-full flex flex-col">
                 <p className="text-sm text-muted flex-1">{d}</p>
@@ -57,7 +58,7 @@ export default function SolutionPageClient({ solution }: Props) {
       <Section id="results" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader title="Results framework" />
-          <div className="section-content grid gap-grid-sm md:grid-cols-3">
+          <div className={featureCardGridClass(solution.results.length, "section-content")}>
             {solution.results.map((r) => (
               <MetricCard key={r.label} value={r.metric} label={r.label} />
             ))}

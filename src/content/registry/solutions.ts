@@ -43,6 +43,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "+1,290%", label: "organic traffic · Landscaping Co., 10 mo" },
       { metric: "Top 3", label: "local pack positions · 42 keywords" },
       { metric: "94", label: "emergency calls/mo · Plumbing Co." },
+      { metric: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
     ],
     faqs: [
       { question: "How long until HVAC SEO produces leads?", answer: "Most HVAC clients see ranking movement in 60–90 days and meaningful call volume increases by months 4–6, depending on competition and site foundation." },
@@ -79,6 +80,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "+180", label: "new patients per month" },
       { metric: "4.1x", label: "organic lead growth" },
       { metric: "92%", label: "positive review rate" },
+      { metric: "+127", label: "organic keywords in top 10" },
     ],
     faqs: [
       { question: "Is dental SEO different from general local SEO?", answer: "Yes. Dental search includes treatment-specific intent, insurance questions, and high trust requirements. We build content and pages that address how patients actually choose a dentist." },
@@ -113,6 +115,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "$2.4M", label: "pipeline generated" },
       { metric: "34%", label: "consultation close rate" },
       { metric: "12+", label: "qualified leads per month" },
+      { metric: "3.2x", label: "ROI on content-led acquisition" },
     ],
     faqs: [
       { question: "Can you guarantee first-page rankings for our practice area?", answer: "No ethical agency guarantees specific rankings. We guarantee a strategic process, transparent reporting, and continuous optimization toward measurable consultation growth." },
@@ -146,6 +149,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "250+", label: "service calls/mo · trades clients" },
       { metric: "45%", label: "CPL reduction · campaign optimization" },
       { metric: "3.2x", label: "ROAS · local service ads" },
+      { metric: "+68%", label: "consultation requests · law firm client" },
     ],
     faqs: [
       { question: "What budget do roofers need for Google Ads?", answer: "Most roofing companies start between $3,000–$8,000/month in ad spend depending on market size and season. We recommend a budget that supports statistically valid testing." },
@@ -179,6 +183,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "42%", label: "open rate · lifecycle sequences" },
       { metric: "65%", label: "trial conversion lift" },
       { metric: "28%", label: "churn reduction" },
+      { metric: "$38", label: "avg. cost per lead · paid search" },
     ],
     faqs: [
       { question: "Which email platforms do you work with?", answer: "HubSpot, Customer.io, Klaviyo, ActiveCampaign, Mailchimp, and Iterable. We adapt to your existing stack." },
@@ -212,6 +217,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "65%", label: "conv. rate lift · E-Commerce client" },
       { metric: "8.4%", label: "lead conversion · Landscaping rebuild" },
       { metric: "40%", label: "CAC reduction · SaaS engagements" },
+      { metric: "+210%", label: "organic revenue · e-commerce client" },
     ],
     faqs: [
       { question: "How many tests should a SaaS company run monthly?", answer: "We typically run 2–4 statistically valid experiments per month, depending on traffic volume. Quality over quantity: every test needs enough sample size to decide." },
@@ -245,6 +251,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "2.5x", label: "pipeline growth" },
       { metric: "40%", label: "CAC reduction" },
       { metric: "65%", label: "trial conversion lift" },
+      { metric: "2.4x", label: "email revenue vs. prior year" },
     ],
     faqs: [
       { question: "Do you work with early-stage startups?", answer: "Yes, from seed-stage companies finding product-market fit to Series B+ teams scaling acquisition. Scope adjusts to your stage and budget." },
@@ -278,6 +285,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "4X MRR", label: "SaaS Analytics client · 6 mo" },
       { metric: "120%", label: "conversion lift · launch campaigns" },
       { metric: "3x", label: "pipeline · 90-day sprint" },
+      { metric: "+44%", label: "demo-to-close rate improvement" },
     ],
     faqs: [
       { question: "Can you work on equity or performance-only?", answer: "We primarily work on retainer or project basis. For select startups with strong product-market fit, we discuss hybrid models after an initial strategy engagement." },
@@ -311,6 +319,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "475%", label: "inbound lead growth" },
       { metric: "28%", label: "shorter sales cycle" },
       { metric: "5.1x", label: "marketing ROI" },
+      { metric: "Top 5", label: "local pack · 36 priority keywords" },
     ],
     faqs: [
       { question: "Do you understand technical AI products?", answer: "We work with ML platforms, AI APIs, vertical AI applications, and automation tools. Our team translates technical capability into buyer-relevant outcomes." },
@@ -344,6 +353,7 @@ export const solutions: SolutionEntry[] = [
       { metric: "+425%", label: "conv. lift · client rebuild" },
       { metric: "3.8x", label: "mobile engagement" },
       { metric: "215%", label: "time on site increase" },
+      { metric: "18%", label: "conversion lift · landing page test" },
     ],
     faqs: [
       { question: "Do you redesign existing SaaS sites or build from scratch?", answer: "Both. We audit existing sites for conversion gaps or build net-new experiences for launches and rebrands." },

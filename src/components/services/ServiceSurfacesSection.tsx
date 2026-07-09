@@ -7,6 +7,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ServiceSurfacesViz from "@/components/services/hero-viz/ServiceSurfacesViz";
 import { serviceSurfacesContent } from "@/content/services/service-surfaces";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { featureCardGridClass } from "@/lib/card-styles";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import type { Locale } from "@/i18n/routing";
 
@@ -28,7 +29,7 @@ export default function ServiceSurfacesSection({ slug, surfaceIndex }: Props) {
         <SectionHeader title={content.title} description={content.subtitle} />
 
         <motion.div
-          className="section-content grid gap-10 md:grid-cols-3 md:gap-8"
+          className={featureCardGridClass(content.surfaces.length, "section-content gap-10 md:gap-8")}
           variants={stagger}
           initial="hidden"
           whileInView="visible"

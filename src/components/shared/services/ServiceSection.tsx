@@ -19,7 +19,7 @@ export default function ServiceSection({
   points,
   tableHeaders,
   body,
-  maxCards = 3,
+  maxCards = 4,
   surfaceIndex,
   visualization,
 }: Props) {
@@ -42,7 +42,7 @@ export default function ServiceSection({
           visualization={visualization}
         />
         {body ? (
-          <p className="section-content mx-auto max-w-3xl text-base leading-relaxed text-muted md:text-lg">{body}</p>
+          <p className="section-content mx-auto max-w-3xl text-center text-base leading-relaxed text-muted md:text-lg">{body}</p>
         ) : null}
         {displayPoints && displayPoints.length > 0 ? (
           <div className="section-content mx-auto max-w-5xl">

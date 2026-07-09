@@ -8,10 +8,11 @@ import WebDesignDeviceMockupsViz, {
 } from "@/components/services/hero-viz/WebDesignDeviceMockupsViz";
 import { webDesignContent } from "@/content/services/web-design";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { featureCardGridClass } from "@/lib/card-styles";
 import { useLocale } from "next-intl";
 import type { Locale } from "@/i18n/routing";
 
-const DEVICE_VARIANTS: DeviceMockupVariant[] = ["desktop", "tablet", "mobile"];
+const DEVICE_VARIANTS: DeviceMockupVariant[] = ["desktop", "laptop", "tablet", "mobile"];
 
 type Props = {
   surfaceIndex: number;
@@ -30,7 +31,7 @@ export default function WebDesignDeviceMockupsSection({ surfaceIndex }: Props) {
         <SectionHeader title={content.surfacesTitle} description={content.surfacesSubtitle} />
 
         <motion.div
-          className="section-content grid gap-10 md:grid-cols-3 md:gap-8"
+          className={featureCardGridClass(content.devices.length, "section-content gap-10 md:gap-8")}
           variants={stagger}
           initial="hidden"
           whileInView="visible"

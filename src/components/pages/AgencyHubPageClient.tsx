@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
+import { featureCardGridClass } from "@/lib/card-styles";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import AgencyPositioningSection from "@/components/sections/AgencyPositioningSection";
 import AgencyProcessSection from "@/components/sections/AgencyProcessSection";
@@ -27,7 +28,7 @@ export default function AgencyHubPageClient({ content: c }: Props) {
       <Section id="audiences" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader title={c.audiences.title} description={c.audiences.subtitle} headingId="audiences-heading" />
-          <div className="section-content grid gap-grid-sm md:grid-cols-2">
+          <div className={featureCardGridClass(c.audiences.segments.length, "section-content")}>
             {c.audiences.segments.map((seg) => (
               <CardFamily key={seg.label} family="dashboard">
                 <h3 className="card-heading">{seg.label}</h3>
@@ -51,8 +52,8 @@ export default function AgencyHubPageClient({ content: c }: Props) {
       <Section id="capabilities" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader title={c.capabilities.title} description={c.capabilities.subtitle} />
-          <div className="section-content grid gap-grid-sm md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
-            {c.capabilities.items.slice(0, 6).map((item) => (
+          <div className={featureCardGridClass(c.capabilities.items.slice(0, 4).length, "section-content auto-rows-fr")}>
+            {c.capabilities.items.slice(0, 4).map((item) => (
               <Link key={item.href} href={item.href} className="group block h-full">
                 <Card className="h-full flex flex-col hover:border-neon-cyan/30">
                   <h3 className="card-heading group-hover:text-neon-cyan transition-colors">{item.label}</h3>

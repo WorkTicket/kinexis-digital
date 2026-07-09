@@ -15,7 +15,7 @@ export type ServiceSurfacesContent = {
 };
 
 /**
- * Per-service "where the work shows up" showcase, three tailored surfaces each,
+ * Per-service "where the work shows up" showcase, four tailored surfaces each,
  * mirroring the web-design device section. Slugs left out (web-design, google-ads)
  * either own a bespoke section or redirect elsewhere.
  */
@@ -31,6 +31,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "serp", name: "Search Results", description: "Ranked for the terms your buyers actually type" },
         { variant: "doc", name: "Content Hubs", description: "Topic clusters that earn real authority" },
         { variant: "chart", name: "Rank Tracking", description: "Weekly movement tied to booked calls" },
+        { variant: "flow", name: "Internal Links", description: "Authority routed to pages that convert" },
       ],
     },
     es: {
@@ -41,6 +42,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "serp", name: "Resultados de Búsqueda", description: "Posicionado para los términos que tus compradores escriben" },
         { variant: "doc", name: "Hubs de Contenido", description: "Clusters temáticos que ganan autoridad real" },
         { variant: "chart", name: "Seguimiento de Rankings", description: "Movimiento semanal ligado a llamadas reservadas" },
+        { variant: "flow", name: "Enlaces Internos", description: "Autoridad dirigida a páginas que convierten" },
       ],
     },
   },
@@ -54,6 +56,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "map", name: "Map Pack", description: "Top three in local results" },
         { variant: "stars", name: "Reviews", description: "A steady stream of real ratings" },
         { variant: "mobile", name: "Near-Me Search", description: "Found the moment someone needs you" },
+        { variant: "stars", name: "GBP Posts", description: "Weekly updates that keep the profile active" },
       ],
     },
     es: {
@@ -64,6 +67,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "map", name: "Map Pack", description: "Top tres en resultados locales" },
         { variant: "stars", name: "Reseñas", description: "Un flujo constante de calificaciones reales" },
         { variant: "mobile", name: "Búsqueda Cercana", description: "Encontrado justo cuando te necesitan" },
+        { variant: "stars", name: "Publicaciones GBP", description: "Actualizaciones semanales que mantienen el perfil activo" },
       ],
     },
   },
@@ -77,6 +81,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "adslot", name: "Search Ads", description: "Top of Google for high intent" },
         { variant: "cart", name: "Shopping", description: "Products in front of ready buyers" },
         { variant: "chart", name: "ROAS Tracking", description: "Budget follows what actually closes" },
+        { variant: "funnel", name: "Remarketing", description: "Warm traffic brought back to convert" },
       ],
     },
     es: {
@@ -87,6 +92,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "adslot", name: "Anuncios de Búsqueda", description: "Tope de Google para alta intención" },
         { variant: "cart", name: "Shopping", description: "Productos frente a compradores listos" },
         { variant: "chart", name: "Seguimiento de ROAS", description: "El presupuesto sigue lo que cierra" },
+        { variant: "funnel", name: "Remarketing", description: "Tráfico cálido traído de vuelta para convertir" },
       ],
     },
   },
@@ -100,6 +106,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "social", name: "Feed Ads", description: "Native inside the scroll" },
         { variant: "video", name: "Reels & Stories", description: "Short-form that stops thumbs" },
         { variant: "funnel", name: "Retargeting", description: "Warm audiences down the funnel" },
+        { variant: "video", name: "Extensiones de Video", description: "Formatos que ganan atención en el feed" },
       ],
     },
     es: {
@@ -110,6 +117,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "social", name: "Anuncios en Feed", description: "Nativo dentro del scroll" },
         { variant: "video", name: "Reels e Historias", description: "Formato corto que detiene el dedo" },
         { variant: "funnel", name: "Retargeting", description: "Audiencias cálidas por el embudo" },
+        { variant: "chart", name: "ROAS por Canal", description: "Inversión ponderada a lo que cierra" },
       ],
     },
   },
@@ -123,6 +131,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "adslot", name: "Search", description: "Intent-driven clicks from Google" },
         { variant: "social", name: "Social", description: "Demand where attention already lives" },
         { variant: "bars", name: "Budget Split", description: "Weighted to the channels with real ROAS" },
+        { variant: "video", name: "Video Extensions", description: "Formats that earn attention in feed" },
       ],
     },
     es: {
@@ -133,6 +142,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "adslot", name: "Búsqueda", description: "Clics por intención desde Google" },
         { variant: "social", name: "Social", description: "Demanda donde ya está la atención" },
         { variant: "bars", name: "Distribución", description: "Ponderada hacia los canales con ROAS real" },
+        { variant: "cursor", name: "Match de Landing", description: "Páginas post-clic hechas para el anuncio" },
       ],
     },
   },
@@ -146,6 +156,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "video", name: "In-Stream", description: "Skippable and bumper placements" },
         { variant: "mobile", name: "Mobile Views", description: "Where most watch time happens" },
         { variant: "chart", name: "View-Through", description: "Attention measured, not assumed" },
+        { variant: "chart", name: "Channel ROAS", description: "Spend weighted to what closes" },
       ],
     },
     es: {
@@ -156,6 +167,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "video", name: "In-Stream", description: "Ubicaciones saltables y bumper" },
         { variant: "mobile", name: "Vistas Móviles", description: "Donde ocurre la mayor parte del tiempo de visualización" },
         { variant: "chart", name: "View-Through", description: "Atención medida, no supuesta" },
+        { variant: "shield", name: "Seguridad de Marca", description: "Ubicaciones y exclusiones gestionadas" },
       ],
     },
   },
@@ -169,6 +181,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "adslot", name: "Bing Search", description: "Ads most competitors ignore" },
         { variant: "browser", name: "Edge & Partners", description: "Reach beyond the Google box" },
         { variant: "bars", name: "Lower CPC", description: "Cheaper clicks, the same buyer intent" },
+        { variant: "gauge", name: "Rendimiento", description: "Velocidad y vitals en verde" },
       ],
     },
     es: {
@@ -179,6 +192,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "adslot", name: "Búsqueda Bing", description: "Anuncios que la mayoría ignora" },
         { variant: "browser", name: "Edge y Socios", description: "Alcance más allá de Google" },
         { variant: "bars", name: "CPC más Bajo", description: "Clics más baratos, la misma intención" },
+        { variant: "calendar", name: "Calendario Editorial", description: "Publicación ligada a metas de pipeline" },
       ],
     },
   },
@@ -192,6 +206,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "browser", name: "Landing Pages", description: "Tested layouts, not opinions" },
         { variant: "funnel", name: "Checkout Flow", description: "Fewer steps, more finishes" },
         { variant: "bars", name: "Test Results", description: "Winners shipped, losers cut" },
+        { variant: "social", name: "Prueba Social", description: "Reseñas y menciones en el sitio" },
       ],
     },
     es: {
@@ -202,6 +217,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "browser", name: "Landing Pages", description: "Diseños probados, no opiniones" },
         { variant: "funnel", name: "Flujo de Checkout", description: "Menos pasos, más finalizaciones" },
         { variant: "bars", name: "Resultados de Pruebas", description: "Ganadores lanzados, perdedores cortados" },
+        { variant: "email", name: "Email de Ciclo", description: "Nurture que sigue al clic" },
       ],
     },
   },
@@ -215,6 +231,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "email", name: "The Inbox", description: "Built to get opened, not ignored" },
         { variant: "flow", name: "Automations", description: "Sequences that run without you" },
         { variant: "mobile", name: "Mobile Read", description: "Where most opens really happen" },
+        { variant: "cursor", name: "Landing Match", description: "Post-click pages built for the ad" },
       ],
     },
     es: {
@@ -225,6 +242,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "email", name: "El Inbox", description: "Hecho para abrirse, no ignorarse" },
         { variant: "flow", name: "Automatizaciones", description: "Secuencias que corren solas" },
         { variant: "mobile", name: "Lectura Móvil", description: "Donde ocurren la mayoría de las aperturas" },
+        { variant: "doc", name: "Casos de Estudio", description: "Prueba que responde objeciones" },
       ],
     },
   },
@@ -238,6 +256,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "doc", name: "Articles", description: "Written to rank and to convert" },
         { variant: "video", name: "Video & Media", description: "Repurposed across channels" },
         { variant: "chart", name: "Distribution", description: "Reach measured back to pipeline" },
+        { variant: "shield", name: "Brand Safety", description: "Placements and exclusions managed" },
       ],
     },
     es: {
@@ -248,6 +267,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "doc", name: "Artículos", description: "Escritos para posicionar y convertir" },
         { variant: "video", name: "Video y Medios", description: "Reutilizado entre canales" },
         { variant: "chart", name: "Distribución", description: "Alcance medido de vuelta al pipeline" },
+        { variant: "palette", name: "Activos de Marca", description: "Plantillas que tu equipo reutiliza" },
       ],
     },
   },
@@ -261,6 +281,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "doc", name: "Web Copy", description: "Pages that make the case" },
         { variant: "email", name: "Emails", description: "Subject lines people open" },
         { variant: "adslot", name: "Ad Copy", description: "Hooks that earn the click" },
+        { variant: "bars", name: "Mix de Presupuesto", description: "Canales ordenados por ingreso cerrado" },
       ],
     },
     es: {
@@ -271,6 +292,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "doc", name: "Copy Web", description: "Páginas que argumentan la venta" },
         { variant: "email", name: "Emails", description: "Asuntos que la gente abre" },
         { variant: "adslot", name: "Copy de Anuncios", description: "Hooks que ganan el clic" },
+        { variant: "browser", name: "Páginas de Servicio", description: "Páginas hechas para intención local" },
       ],
     },
   },
@@ -284,6 +306,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "social", name: "The Feed", description: "Posts built per platform" },
         { variant: "video", name: "Reels", description: "Short-form made to travel" },
         { variant: "calendar", name: "Content Calendar", description: "Consistent, planned, on-brand" },
+        { variant: "gauge", name: "Performance", description: "Speed and vitals held green" },
       ],
     },
     es: {
@@ -294,6 +317,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "social", name: "El Feed", description: "Posts hechos por plataforma" },
         { variant: "video", name: "Reels", description: "Formato corto hecho para viajar" },
         { variant: "calendar", name: "Calendario de Contenido", description: "Constante, planeado, en marca" },
+        { variant: "map", name: "Áreas de Servicio", description: "Cobertura mapeada a demanda de búsqueda" },
       ],
     },
   },
@@ -307,6 +331,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "video", name: "Long-Form", description: "YouTube and on-site features" },
         { variant: "mobile", name: "Short-Form", description: "Vertical clips for social" },
         { variant: "chart", name: "Performance", description: "Watch time tied to goals" },
+        { variant: "calendar", name: "Editorial Calendar", description: "Publishing tied to pipeline goals" },
       ],
     },
     es: {
@@ -317,6 +342,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "video", name: "Formato Largo", description: "YouTube y features en el sitio" },
         { variant: "mobile", name: "Formato Corto", description: "Clips verticales para social" },
         { variant: "chart", name: "Rendimiento", description: "Tiempo de visualización ligado a metas" },
+        { variant: "adslot", name: "Términos de Búsqueda", description: "Palabras clave ligadas a intención de compra" },
       ],
     },
   },
@@ -330,6 +356,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "palette", name: "Visual Identity", description: "Color, type, and logo system" },
         { variant: "browser", name: "Website", description: "The brand carried across the site" },
         { variant: "social", name: "Social Presence", description: "Consistent everywhere you post" },
+        { variant: "social", name: "Social Proof", description: "Reviews and mentions surfaced on-site" },
       ],
     },
     es: {
@@ -340,6 +367,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "palette", name: "Identidad Visual", description: "Sistema de color, tipografía y logo" },
         { variant: "browser", name: "Sitio Web", description: "La marca llevada por todo el sitio" },
         { variant: "social", name: "Presencia Social", description: "Consistente donde publiques" },
+        { variant: "email", name: "Lifecycle Email", description: "Nurture that follows the click" },
       ],
     },
   },
@@ -353,6 +381,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "chart", name: "Dashboards", description: "The numbers that matter, live" },
         { variant: "bars", name: "Attribution", description: "Which channels actually pay" },
         { variant: "flow", name: "Tracking Setup", description: "Clean data from click to close" },
+        { variant: "doc", name: "Case Studies", description: "Proof that answers buyer objections" },
       ],
     },
     es: {
@@ -363,6 +392,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "chart", name: "Dashboards", description: "Los números que importan, en vivo" },
         { variant: "bars", name: "Atribución", description: "Qué canales realmente pagan" },
         { variant: "flow", name: "Configuración de Tracking", description: "Datos limpios del clic al cierre" },
+        { variant: "palette", name: "Brand Assets", description: "Templates your team can reuse" },
       ],
     },
   },
@@ -376,6 +406,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "bars", name: "Growth Audit", description: "Where the real leaks are" },
         { variant: "chart", name: "Roadmap", description: "Quarter-by-quarter priorities" },
         { variant: "flow", name: "Channel Mix", description: "Budget aimed at what scales" },
+        { variant: "mobile", name: "UX Móvil", description: "Rutas cómodas al pulgar para convertir" },
       ],
     },
     es: {
@@ -386,6 +417,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "bars", name: "Auditoría de Crecimiento", description: "Dónde están las fugas reales" },
         { variant: "chart", name: "Roadmap", description: "Prioridades trimestre a trimestre" },
         { variant: "flow", name: "Mix de Canales", description: "Presupuesto dirigido a lo que escala" },
+        { variant: "flow", name: "Enlaces Internos", description: "Autoridad dirigida a páginas que convierten" },
       ],
     },
   },
@@ -399,6 +431,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "funnel", name: "Funnel Map", description: "Every step to the sale" },
         { variant: "flow", name: "Automation", description: "Follow-up that never sleeps" },
         { variant: "browser", name: "Landing Pages", description: "Built to move visitors forward" },
+        { variant: "stars", name: "Publicaciones GBP", description: "Actualizaciones semanales que mantienen el perfil activo" },
       ],
     },
     es: {
@@ -409,6 +442,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "funnel", name: "Mapa del Embudo", description: "Cada paso hacia la venta" },
         { variant: "flow", name: "Automatización", description: "Seguimiento que nunca duerme" },
         { variant: "browser", name: "Landing Pages", description: "Hechas para hacer avanzar al visitante" },
+        { variant: "funnel", name: "Remarketing", description: "Tráfico cálido traído de vuelta para convertir" },
       ],
     },
   },
@@ -422,6 +456,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "browser", name: "Above the Fold", description: "One goal, no distractions" },
         { variant: "mobile", name: "Mobile", description: "Fast, thumb-friendly, focused" },
         { variant: "cursor", name: "The CTA", description: "One clear action to take" },
+        { variant: "video", name: "Extensiones de Video", description: "Formatos que ganan atención en el feed" },
       ],
     },
     es: {
@@ -432,6 +467,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "browser", name: "Above the Fold", description: "Un objetivo, sin distracciones" },
         { variant: "mobile", name: "Móvil", description: "Rápida, cómoda al pulgar, enfocada" },
         { variant: "cursor", name: "El CTA", description: "Una acción clara para tomar" },
+        { variant: "chart", name: "ROAS por Canal", description: "Inversión ponderada a lo que cierra" },
       ],
     },
   },
@@ -445,6 +481,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "shield", name: "Security", description: "Patched, scanned, protected" },
         { variant: "gauge", name: "Uptime", description: "Monitored around the clock" },
         { variant: "browser", name: "Content Updates", description: "Changes handled fast" },
+        { variant: "bars", name: "Budget Mix", description: "Channels ranked by closed revenue" },
       ],
     },
     es: {
@@ -455,6 +492,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "shield", name: "Seguridad", description: "Parchado, escaneado, protegido" },
         { variant: "gauge", name: "Uptime", description: "Monitoreado las 24 horas" },
         { variant: "browser", name: "Actualizaciones", description: "Cambios resueltos rápido" },
+        { variant: "cursor", name: "Match de Landing", description: "Páginas post-clic hechas para el anuncio" },
       ],
     },
   },
@@ -468,6 +506,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "gauge", name: "Core Web Vitals", description: "Green scores that hold" },
         { variant: "mobile", name: "Mobile Speed", description: "Where slow hurts most" },
         { variant: "chart", name: "Load Time", description: "Seconds shaved, bounce cut" },
+        { variant: "shield", name: "Seguridad de Marca", description: "Ubicaciones y exclusiones gestionadas" },
       ],
     },
     es: {
@@ -478,6 +517,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "gauge", name: "Core Web Vitals", description: "Puntajes verdes que se sostienen" },
         { variant: "mobile", name: "Velocidad Móvil", description: "Donde lo lento más duele" },
         { variant: "chart", name: "Tiempo de Carga", description: "Segundos recortados, rebote reducido" },
+        { variant: "gauge", name: "Rendimiento", description: "Velocidad y vitals en verde" },
       ],
     },
   },
@@ -491,6 +531,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "bars", name: "Scorecard", description: "Every channel graded" },
         { variant: "doc", name: "Findings", description: "Prioritized, not a data dump" },
         { variant: "chart", name: "Opportunities", description: "Ranked by likely impact" },
+        { variant: "calendar", name: "Calendario Editorial", description: "Publicación ligada a metas de pipeline" },
       ],
     },
     es: {
@@ -501,6 +542,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "bars", name: "Scorecard", description: "Cada canal calificado" },
         { variant: "doc", name: "Hallazgos", description: "Priorizados, no un volcado de datos" },
         { variant: "chart", name: "Oportunidades", description: "Ordenadas por impacto probable" },
+        { variant: "social", name: "Prueba Social", description: "Reseñas y menciones en el sitio" },
       ],
     },
   },
@@ -514,6 +556,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "flow", name: "Workflows", description: "Triggers that route every lead" },
         { variant: "email", name: "Nurture", description: "Right message at the right moment" },
         { variant: "funnel", name: "Pipeline", description: "CRM synced to real revenue" },
+        { variant: "email", name: "Email de Ciclo", description: "Nurture que sigue al clic" },
       ],
     },
     es: {
@@ -524,6 +567,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "flow", name: "Workflows", description: "Triggers que enrutan cada lead" },
         { variant: "email", name: "Nurture", description: "El mensaje correcto en el momento correcto" },
         { variant: "funnel", name: "Pipeline", description: "CRM sincronizado con ingresos reales" },
+        { variant: "doc", name: "Casos de Estudio", description: "Prueba que responde objeciones" },
       ],
     },
   },
@@ -537,6 +581,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "bars", name: "Strategy", description: "One plan across every channel" },
         { variant: "chart", name: "KPIs", description: "Numbers leadership can trust" },
         { variant: "flow", name: "Team & Vendors", description: "Direction for everyone executing" },
+        { variant: "palette", name: "Activos de Marca", description: "Plantillas que tu equipo reutiliza" },
       ],
     },
     es: {
@@ -547,6 +592,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "bars", name: "Estrategia", description: "Un plan en cada canal" },
         { variant: "chart", name: "KPIs", description: "Números en los que confiar" },
         { variant: "flow", name: "Equipo y Proveedores", description: "Dirección para todos los que ejecutan" },
+        { variant: "bars", name: "Mix de Presupuesto", description: "Canales ordenados por ingreso cerrado" },
       ],
     },
   },
@@ -560,6 +606,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "doc", name: "Curriculum", description: "Built around your real stack" },
         { variant: "browser", name: "Live Workshops", description: "Hands-on, not theory" },
         { variant: "chart", name: "Progress", description: "Skills that stick after" },
+        { variant: "browser", name: "Service Pages", description: "Pages built for local intent" },
       ],
     },
     es: {
@@ -570,6 +617,7 @@ export const serviceSurfacesContent: Partial<
         { variant: "doc", name: "Currículum", description: "Construido sobre tu stack real" },
         { variant: "browser", name: "Talleres en Vivo", description: "Práctica, no teoría" },
         { variant: "chart", name: "Progreso", description: "Habilidades que perduran" },
+        { variant: "browser", name: "Páginas de Servicio", description: "Páginas hechas para intención local" },
       ],
     },
   },

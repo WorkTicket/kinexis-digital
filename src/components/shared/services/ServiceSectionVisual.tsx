@@ -3,7 +3,7 @@
 import { m as motion } from "@/lib/framer";
 import CardFamily from "@/components/ui/CardFamily";
 import StepIcon from "@/components/ui/StepIcon";
-import { cardClasses } from "@/lib/card-styles";
+import { cardClasses, featureCardGridClass } from "@/lib/card-styles";
 import { cn } from "@/lib/utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import type { ServiceSectionTableHeaders, VisualVariant } from "@/content/services/architecture/types";
@@ -59,17 +59,8 @@ function CapabilityCard({ point, icon: Icon, index }: { point: Point; icon: Luci
 }
 
 function ContentGrid({ points }: { points: Point[] }) {
-  const centered = points.length === 2;
   return (
-    <div
-      className={cn(
-        "grid gap-grid-sm",
-        centered
-          ? "mx-auto max-w-3xl sm:grid-cols-2"
-          : "md:grid-cols-2 lg:grid-cols-3",
-        points.length === 4 && "lg:grid-cols-2",
-      )}
-    >
+    <div className={featureCardGridClass(points.length)}>
       {points.map((point, i) => (
         <CapabilityCard key={point.title} point={point} icon={contentIcons[i % contentIcons.length]} index={i} />
       ))}
@@ -104,7 +95,7 @@ function DashboardTable({ points, headers }: { points: Point[]; headers: Service
 
 function ChartGrid({ points }: { points: Point[] }) {
   return (
-    <div className="grid gap-grid-sm sm:grid-cols-2">
+    <div className={featureCardGridClass(points.length)}>
       {points.map((point, i) => (
         <motion.div
           key={point.title}
@@ -134,7 +125,7 @@ function ChartGrid({ points }: { points: Point[] }) {
 
 function ComparisonGrid({ points }: { points: Point[] }) {
   return (
-    <div className="grid gap-grid-sm md:grid-cols-2">
+    <div className={featureCardGridClass(points.length)}>
       {points.map((point, i) => (
         <motion.div
           key={point.title}
@@ -164,7 +155,7 @@ function SplitGrid({ points }: { points: Point[] }) {
   const { fadeUp, stagger } = useMotionVariants();
 
   return (
-    <motion.div className="grid gap-grid-sm sm:grid-cols-2 lg:grid-cols-3" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
+    <motion.div className={featureCardGridClass(points.length)} variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
       {points.map((point, i) => {
         const Icon = contentIcons[i % contentIcons.length];
         return (
@@ -186,7 +177,7 @@ function SplitGrid({ points }: { points: Point[] }) {
 
 function MockupGrid({ points }: { points: Point[] }) {
   return (
-    <div className="grid gap-grid md:grid-cols-2 lg:grid-cols-3">
+    <div className={featureCardGridClass(points.length)}>
       {points.map((point, i) => (
         <motion.div
           key={point.title}

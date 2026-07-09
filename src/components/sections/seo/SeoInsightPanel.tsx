@@ -4,7 +4,7 @@ import { m as motion } from "@/lib/framer";
 import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { cn } from "@/lib/utils";
-import { cardClasses } from "@/lib/card-styles";
+import { cardClasses, featureCardGridClass } from "@/lib/card-styles";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import {
   AlertTriangle,
@@ -97,7 +97,7 @@ export default function SeoInsightPanel({ variant, title, intro, points, surface
           </motion.div>
 
           <motion.ul
-            className="grid gap-grid-sm sm:grid-cols-2"
+            className={featureCardGridClass(points.length, "gap-grid-sm")}
             variants={stagger}
             initial="hidden"
             whileInView="visible"

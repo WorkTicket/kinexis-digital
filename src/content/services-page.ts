@@ -224,7 +224,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
         chartTitle: "Organic Traffic Growth",
       },
       webDesignVisual: {
-        devices: [{ label: "Desktop" }, { label: "Tablet" }, { label: "Mobile" }],
+        devices: [{ label: "Desktop" }, { label: "Laptop" }, { label: "Tablet" }, { label: "Mobile" }],
       },
       paidAdsVisual: {
         channels: [{ ch: "Google Search" }, { ch: "Google PMax" }, { ch: "Meta Ads" }],
@@ -331,7 +331,7 @@ export const servicesPageContent: Record<Locale, ServicesPageContent> = {
         chartTitle: "Crecimiento de Tráfico Orgánico",
       },
       webDesignVisual: {
-        devices: [{ label: "Escritorio" }, { label: "Tablet" }, { label: "Móvil" }],
+        devices: [{ label: "Escritorio" }, { label: "Portátil" }, { label: "Tablet" }, { label: "Móvil" }],
       },
       paidAdsVisual: {
         channels: [{ ch: "Google Search" }, { ch: "Google PMax" }, { ch: "Meta Ads" }],

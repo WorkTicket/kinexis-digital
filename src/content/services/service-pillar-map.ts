@@ -51,6 +51,7 @@ export const seoPillarContent: ServicePillarContent = {
       { metric: "+1,290%", label: "organic traffic · Landscaping Co." },
       { metric: "4.8X", label: "qualified leads · same client, 10 mo" },
       { metric: "340+", label: "commercial keywords mapped per engagement" },
+      { metric: "60–90 days", label: "typical time to ranking movement" },
     ],
   },
 };
@@ -106,6 +107,7 @@ export const localSeoPillarContent: ServicePillarContent = {
       { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
       { metric: "+2,371%", label: "GBP interactions · same client" },
       { metric: "Top 3", label: "map pack · 48 of 60 keywords" },
+      { metric: "+41%", label: "call volume from GBP · avg. client" },
     ],
   },
 };
@@ -161,6 +163,7 @@ export const webDesignPillarContent: ServicePillarContent = {
       { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. rebuild" },
       { metric: "4.8X", label: "qualified lead growth · same client, 10 mo" },
       { metric: "Lighthouse 94", label: "performance score · post-launch" },
+      { metric: "< 3s", label: "median load time · post-launch" },
     ],
   },
 };
@@ -216,6 +219,7 @@ export const croPillarContent: ServicePillarContent = {
       { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co." },
       { metric: "+42%", label: "form completion lift · A/B test winner" },
       { metric: "15–45%", label: "typical page lift · first 90 days" },
+      { metric: "12+", label: "tests run per quarter · avg. program" },
     ],
   },
 };
@@ -271,6 +275,7 @@ export const emailMarketingPillarContent: ServicePillarContent = {
       { metric: "38%", label: "avg. open rate · optimized sequences" },
       { metric: "8x", label: "ROAS on email vs. paid channels" },
       { metric: "+180%", label: "revenue from automated flows · 90 days" },
+      { metric: "+22%", label: "click-to-open on segmented sends" },
     ],
   },
 };
@@ -326,6 +331,7 @@ export const contentMarketingPillarContent: ServicePillarContent = {
       { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
       { metric: "+482%", label: "organic traffic · same client" },
       { metric: "62%", label: "of demos from content engine · month 8" },
+      { metric: "62%", label: "of demos from content · month 8" },
     ],
   },
 };
@@ -381,6 +387,7 @@ export const socialMediaPillarContent: ServicePillarContent = {
       { metric: "+15%/mo", label: "organic follower growth · B2B brand" },
       { metric: "3.8%", label: "avg. engagement rate · above industry avg." },
       { metric: "+25%", label: "leads attributed from social traffic" },
+      { metric: "+25%", label: "leads from social traffic" },
     ],
   },
 };
@@ -436,6 +443,7 @@ export const videoMarketingPillarContent: ServicePillarContent = {
       { metric: "65%", label: "avg. video completion rate · optimized cuts" },
       { metric: "3.2x", label: "higher engagement vs. static ads" },
       { metric: "+45%", label: "conversion lift · video vs. text landing pages" },
+      { metric: "65%", label: "avg. video completion rate" },
     ],
   },
 };
@@ -491,6 +499,7 @@ export const brandingPillarContent: ServicePillarContent = {
       { metric: "2.1x", label: "conversion lift post-rebrand · Landscaping Co." },
       { metric: "+55%", label: "sales close rate improvement · professional services" },
       { metric: "40+", label: "production-ready brand assets delivered" },
+      { metric: "2.1x", label: "conversion lift post-rebrand" },
     ],
   },
 };
@@ -546,6 +555,7 @@ export const analyticsPillarContent: ServicePillarContent = {
       { metric: "40%", label: "reduction in wasted ad spend · after attribution setup" },
       { metric: "100%", label: "conversion visibility across channels" },
       { metric: "2.8x", label: "ROAS improvement · with proper attribution" },
+      { metric: "2.8x", label: "ROAS after attribution setup" },
     ],
   },
 };
@@ -600,6 +610,7 @@ export const growthConsultingPillarContent: ServicePillarContent = {
     metrics: [
       { metric: "2.8x", label: "avg. revenue growth · 12-month engagements" },
       { metric: "45%", label: "reduction in blended CPL · channel reallocation" },
+      { metric: "3.1x", label: "pipeline growth · strategic alignment" },
       { metric: "3.1x", label: "pipeline growth · strategic alignment" },
     ],
   },
@@ -656,6 +667,7 @@ export const funnelsPillarContent: ServicePillarContent = {
       { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. funnel" },
       { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
       { metric: "+35%", label: "nurture-to-booking rate · post-automation" },
+      { metric: "+35%", label: "nurture-to-booking rate" },
     ],
   },
 };
@@ -710,6 +722,7 @@ export const paidAdsPillarContent: ServicePillarContent = {
     metrics: [
       { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
       { metric: "65%", label: "wasted spend eliminated · same client" },
+      { metric: "$47", label: "avg. cost per lead · after optimization" },
       { metric: "$47", label: "avg. cost per lead · after optimization" },
     ],
   },
@@ -766,6 +779,7 @@ export const youtubeAdsPillarContent: ServicePillarContent = {
       { metric: "48%", label: "avg. view rate · optimized in-stream" },
       { metric: "-31%", label: "CPA vs. first-month benchmark" },
       { metric: "3.1x", label: "return on ad spend · retargeting layer" },
+      { metric: "3.1x", label: "ROAS · retargeting layer" },
     ],
   },
 };
@@ -821,6 +835,7 @@ export const landingPagesPillarContent: ServicePillarContent = {
       { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co." },
       { metric: "+42%", label: "form completion · A/B test winner" },
       { metric: "Lighthouse 94", label: "performance · post-build" },
+      { metric: "+42%", label: "form completion · A/B winner" },
     ],
   },
 };
@@ -876,6 +891,7 @@ export const websiteMaintenancePillarContent: ServicePillarContent = {
       { metric: "99.9%", label: "uptime target · monitored 24/7" },
       { metric: "Daily", label: "off-site backups · tested restores" },
       { metric: "< 1 biz day", label: "response on support requests" },
+      { metric: "< 1 biz day", label: "support response time" },
     ],
   },
 };
@@ -931,6 +947,7 @@ export const websiteSpeedPillarContent: ServicePillarContent = {
       { metric: "Lighthouse 94", label: "performance · post-optimization" },
       { metric: "-58%", label: "load time · median across pages" },
       { metric: "Core Web Vitals", label: "passing on mobile and desktop" },
+      { metric: "-58%", label: "load time · median pages" },
     ],
   },
 };
@@ -986,6 +1003,7 @@ export const microsoftAdsPillarContent: ServicePillarContent = {
       { metric: "20–35%", label: "lower CPC vs. comparable Google campaigns" },
       { metric: "B2B reach", label: "via LinkedIn profile targeting" },
       { metric: "Side by side", label: "CPL reported against Google spend" },
+      { metric: "20–35%", label: "lower CPC vs. Google" },
     ],
   },
 };
@@ -1041,6 +1059,7 @@ export const copywritingPillarContent: ServicePillarContent = {
       { metric: "One voice", label: "consistent across every channel" },
       { metric: "Faster", label: "turnaround than an in-house hire" },
       { metric: "Written to convert", label: "not just to fill the page" },
+      { metric: "Faster", label: "turnaround than in-house hire" },
     ],
   },
 };
@@ -1096,6 +1115,7 @@ export const marketingAuditsPillarContent: ServicePillarContent = {
       { metric: "Ranked", label: "findings by impact and effort" },
       { metric: "90-day plan", label: "you can act on immediately" },
       { metric: "Fee credited", label: "toward ongoing work" },
+      { metric: "90-day plan", label: "prioritized from audit findings" },
     ],
   },
 };
@@ -1151,6 +1171,7 @@ export const marketingAutomationCrmPillarContent: ServicePillarContent = {
       { metric: "One source", label: "of truth for marketing and sales" },
       { metric: "Automated", label: "follow-up and lead routing" },
       { metric: "Traceable", label: "revenue back to its campaign" },
+      { metric: "Traceable", label: "revenue back to campaign" },
     ],
   },
 };
@@ -1205,6 +1226,7 @@ export const fractionalCmoPillarContent: ServicePillarContent = {
     metrics: [
       { metric: "A fraction", label: "of a full-time CMO salary" },
       { metric: "Owned", label: "strategy, team, and budget" },
+      { metric: "Accountable", label: "to revenue, not activity" },
       { metric: "Accountable", label: "to revenue, not activity" },
     ],
   },
@@ -1261,6 +1283,7 @@ export const trainingWorkshopsPillarContent: ServicePillarContent = {
       { metric: "In-house", label: "skill that stays after we leave" },
       { metric: "Your accounts", label: "not generic examples" },
       { metric: "Templates", label: "and recordings to keep" },
+      { metric: "Templates", label: "and recordings your team keeps" },
     ],
   },
 };
