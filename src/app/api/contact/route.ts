@@ -9,6 +9,7 @@ import {
 } from "@/lib/email";
 import { escapeHtml } from "@/lib/sanitize";
 import { validateOrigin } from "@/lib/csrf";
+import { validateHoneypot } from "@/lib/honeypot";
 
 export async function POST(request: Request) {
   try {
@@ -28,7 +29,15 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, company, phone, service, message } = body;
+    const { name, email, company, phone, service, message, _hp, _ts } = body;
+
+    const honeypot = validateHoneypot(
+      { _hp },
+      typeof _ts === "number" ? _ts : undefined,
+    );
+    if (honeypot.blocked) {
+      return NextResponse.json({ error: "Invalid submission." }, { status: 400 });
+    }
 
     if (!name || !email) {
       return NextResponse.json(
@@ -69,7 +78,9 @@ export async function POST(request: Request) {
           { status: 500 },
         );
       }
-      console.log("\n[DEV] Contact form submission (no email sent):", { name, email });
+      if (process.env.ENABLE_DEV_FORM_LOGGING === "1") {
+        console.log("\n[DEV] Contact form submission (no email sent):", { name, email });
+      }
       return NextResponse.json({ success: true }, { status: 200 });
     }
 

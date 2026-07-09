@@ -16,7 +16,7 @@ export default function PhaseInitial({ letter, size = "md", className }: Props) 
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] font-bold uppercase tracking-tight text-white/80",
+        "flex shrink-0 items-center justify-center rounded-lg border border-strong bg-surface-glass font-bold uppercase tracking-tight text-white/80",
         sizes[size],
         className
       )}

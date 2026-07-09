@@ -1,8 +1,6 @@
-"use client";
-
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
-import ProofMetric from "@/components/ui/ProofMetric";
+import MetricCard from "@/components/ui/MetricCard";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import FAQSection from "@/components/sections/FAQSection";
 import RelatedLinks from "@/components/sections/RelatedLinks";
@@ -10,7 +8,7 @@ import type { SolutionEntry } from "@/content/registry/solutions";
 import { serviceRoutes, serviceLabels, type ServiceSlug } from "@/content/registry/site-routes";
 import { getIndustryBySlug } from "@/content/registry/industries";
 import { getSolutionRelatedLinks } from "@/lib/solution-related-links";
-
+import Section from "@/components/shared/services/Section";
 type Props = { solution: SolutionEntry };
 
 export default function SolutionPageClient({ solution }: Props) {
@@ -18,19 +16,20 @@ export default function SolutionPageClient({ solution }: Props) {
   const serviceHref = serviceRoutes[solution.serviceSlug as ServiceSlug] || `/services/${solution.serviceSlug}`;
   const serviceLabel = serviceLabels[solution.serviceSlug as ServiceSlug] || solution.serviceSlug;
   const solutionLinks = getSolutionRelatedLinks(solution.slug);
+  let surfaceIndex = 0;
 
   return (
     <>
-      <section className="section-padding bg-bg-dark">
+      <Section id="challenge" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
-          <SectionHeader pattern="B" title="The challenge" />
+          <SectionHeader title="The challenge" headingId="challenge-heading" />
           <p className="mt-6 text-muted leading-relaxed">{solution.challenge}</p>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding">
+      <Section id="approach" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title="Our approach" subtitle="A tailored strategy, not a template with your industry name swapped in." />
+          <SectionHeader title="Our approach" description="A tailored strategy, not a template with your industry name swapped in." headingId="approach-heading" />
           <ol className="mt-8 space-y-4 max-w-3xl">
             {solution.approach.map((step, i) => (
               <li key={step} className="flex gap-4">
@@ -40,11 +39,11 @@ export default function SolutionPageClient({ solution }: Props) {
             ))}
           </ol>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding section--data">
+      <Section id="deliverables" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title="Deliverables" />
+          <SectionHeader title="Deliverables" />
           <div className="mt-8 grid gap-grid-sm md:grid-cols-2 items-stretch">
             {solution.deliverables.map((d) => (
               <CardFamily key={d} family="editorial" className="h-full flex flex-col">
@@ -53,24 +52,23 @@ export default function SolutionPageClient({ solution }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding">
+      <Section id="results" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="B" title="Results framework" />
-          <div className="mt-8 grid gap-grid-sm md:grid-cols-3">
+          <SectionHeader title="Results framework" />
+          <div className="section-content grid gap-grid-sm md:grid-cols-3">
             {solution.results.map((r) => (
-              <div key={r.label} className="proof-metric-card">
-                <ProofMetric value={r.metric} label={r.label} />
-              </div>
+              <MetricCard key={r.label} value={r.metric} label={r.label} />
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      <FAQSection items={solution.faqs} />
+      <FAQSection items={solution.faqs} surfaceIndex={surfaceIndex++} />
 
       <RelatedLinks
+        surfaceIndex={surfaceIndex++}
         agencyHub
         serviceLinks={[{ href: serviceHref, label: serviceLabel }]}
         solutionLinks={solutionLinks.length > 0 ? solutionLinks : undefined}

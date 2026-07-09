@@ -21,10 +21,10 @@ export default function TierComparison({ columns, rows }: ComparisonProps) {
       />
 
       <div
-        className="grid gap-px border-b border-white/[0.06] bg-white/[0.06]"
+        className="grid gap-px border-b border-surface bg-surface-hover"
         style={{ gridTemplateColumns }}
       >
-        <div className="flex items-end border-r border-white/[0.06] bg-bg-dark px-6 py-6">
+        <div className="flex items-end border-r border-surface bg-bg-dark px-6 py-6">
           <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/35">Included</span>
         </div>
         {columns.map((col) => (
@@ -56,7 +56,7 @@ export default function TierComparison({ columns, rows }: ComparisonProps) {
       </div>
 
       <motion.div
-        className="divide-y divide-white/[0.06]"
+        className="divide-y divide-surface"
         variants={stagger}
         initial="hidden"
         whileInView="visible"
@@ -69,7 +69,7 @@ export default function TierComparison({ columns, rows }: ComparisonProps) {
             className="grid"
             style={{ gridTemplateColumns }}
           >
-            <div className="flex items-center border-r border-white/[0.06] bg-bg px-6 py-5">
+            <div className="flex items-center border-r border-surface bg-bg px-6 py-5">
               <span className="text-sm font-semibold text-white/75">{row.label}</span>
             </div>
             {row.values.slice(0, colCount).map((value, colIndex) => {

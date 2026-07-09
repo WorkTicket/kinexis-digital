@@ -45,8 +45,6 @@ export type BlogContent = {
   archiveTitle: string;
   archiveDescription: string;
   articlesPublishedLabel: string;
-  knowledgeGraphTitle: string;
-  knowledgeGraphDescription: string;
   ctaTitle: string;
   ctaSubtitle: string;
   ctaButton: string;
@@ -87,9 +85,6 @@ export const blogContent: Record<Locale, BlogContent> = {
     archiveDescription:
       "Browse our complete collection of research, case studies,|and strategic guides.",
     articlesPublishedLabel: "articles published",
-    knowledgeGraphTitle: "Knowledge graph coming soon.",
-    knowledgeGraphDescription:
-      "We're building an interactive knowledge graph that maps every article, case study, and insight, connected by topic, tactic, and strategy. Stay tuned.",
     ctaTitle: "Want growth tips in your inbox?",
     ctaSubtitle:
       "Our best research, strategies, and experiments, delivered monthly.|No fluff, just useful stuff.",
@@ -425,9 +420,6 @@ export const blogContent: Record<Locale, BlogContent> = {
     archiveDescription:
       "Explora nuestra colección completa de investigación, casos de estudio|y guías estratégicas.",
     articlesPublishedLabel: "artículos publicados",
-    knowledgeGraphTitle: "Grafo de conocimiento próximamente.",
-    knowledgeGraphDescription:
-      "Estamos construyendo un grafo de conocimiento interactivo que mapea cada artículo, caso de estudio e idea, conectados por tema, táctica y estrategia. Mantente atento.",
     ctaTitle: "¿Quieres ideas de crecimiento en tu bandeja de entrada?",
     ctaSubtitle:
       "Nuestra mejor investigación, estrategias y experimentos, entregados mensualmente.|Sin relleno, solo contenido útil.",

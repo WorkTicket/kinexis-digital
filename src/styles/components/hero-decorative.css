@@ -108,9 +108,16 @@
       radial-gradient(ellipse 65% 52% at 40% 34%, rgba(0, 212, 255, 0.042) 0%, transparent 56%),
       radial-gradient(ellipse 48% 40% at 68% 64%, rgba(0, 153, 204, 0.026) 0%, transparent 52%),
       radial-gradient(ellipse 32% 30% at 18% 76%, rgba(0, 212, 255, 0.012) 0%, transparent 50%);
-    animation: heroGradientDrift 22s ease-in-out infinite;
-    will-change: transform, opacity;
     opacity: 0.82;
+  }
+
+  /* Desktop only — a continuous above-the-fold animation inflates Speed Index
+     and keeps a compositor layer promoted. Mobile/tablet render it static. */
+  @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+    .hero-gradient-animated__orb {
+      animation: heroGradientDrift 22s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
   }
 
 @keyframes heroGradientDrift {
@@ -125,5 +132,22 @@
   65% {
     transform: translate(-1.5%, -1%) scale(1.03);
     opacity: 0.88;
+  }
+}
+
+/* ── Mobile hero paint budget (≤1023px) ──
+   Desktop keeps the full stacked decorative treatment. On mobile, drop every
+   absolutely-positioned decorative child — the section's own bg-gradient-glow
+   (on .hero--page / .hero--home) is enough depth and costs one paint pass.
+   Text/layout are untouched → no CLS. */
+@media (max-width: 1023px) {
+  .hero-gradient-animated,
+  .hero-backdrop {
+    display: none;
+  }
+
+  /* HeroBgGlow wrapper (blur orb + gradient overlay) */
+  .hero > .absolute.inset-0.overflow-hidden.pointer-events-none {
+    display: none;
   }
 }

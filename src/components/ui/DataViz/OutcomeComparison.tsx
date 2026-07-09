@@ -60,7 +60,7 @@ export default function OutcomeComparison({
           <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-red-400/60">
             {beforeLabel}
           </span>
-          <p className="mt-3 text-2xl font-bold text-red-300/80 md:text-3xl">
+          <p className="type-metric mt-3 text-red-300/80">
             {formatMetric(before, unit)}
           </p>
           <p className="mt-1 text-[10px] uppercase tracking-wider text-red-400/40">{unitLabel}</p>
@@ -110,7 +110,7 @@ export default function OutcomeComparison({
           <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-neon-cyan/70">
             {afterLabel}
           </span>
-          <p className="mt-3 text-2xl font-bold text-white md:text-3xl">
+          <p className="type-metric mt-3 text-white">
             {formatMetric(after, unit)}
           </p>
           <p className="mt-1 text-[10px] uppercase tracking-wider text-neon-cyan/50">{unitLabel}</p>
@@ -131,7 +131,7 @@ export default function OutcomeComparison({
               <span>{beforeLabel}</span>
               <span>{formatMetric(before, unit)}</span>
             </div>
-            <div className="h-2 overflow-hidden rounded-full bg-white/[0.04]">
+            <div className="h-2 overflow-hidden rounded-full bg-surface-glass">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-red-500/40 to-red-400/20"
                 initial={{ width: 0 }}
@@ -147,7 +147,7 @@ export default function OutcomeComparison({
               <span>{afterLabel}</span>
               <span>{formatMetric(after, unit)}</span>
             </div>
-            <div className="h-2.5 overflow-hidden rounded-full bg-white/[0.04]">
+            <div className="h-2.5 overflow-hidden rounded-full bg-surface-glass">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-neon-cyan to-blue-500/60"
                 initial={{ width: 0 }}

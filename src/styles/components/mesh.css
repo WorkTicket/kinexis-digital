@@ -349,3 +349,12 @@
     transform: scale(1.15);
   }
 }
+
+/* ── Mobile homepage hero paint budget (≤1023px) ──
+   Drop the entire mesh stack on mobile — .hero--home already carries
+   bg-gradient-glow. Desktop mesh treatment is unchanged. */
+@media (max-width: 1023px) {
+  .mesh-background--hero {
+    display: none;
+  }
+}

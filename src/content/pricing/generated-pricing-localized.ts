@@ -162,6 +162,193 @@ const EN_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
     ctaSubtitle: "Tell us your stage, channels, and bottlenecks.|We will scope advisory vs embedded engagement.",
     ctaLabel: "Get Growth Consulting Pricing",
   },
+  "youtube-ads": {
+    metaTitle: "YouTube Ads Pricing | From $2,000/mo | KINEXIS",
+    metaDescription:
+      "YouTube ads management pricing from $2,000/mo. Targeting, creative direction, and tracking at fixed scope. Ad spend separate. Month to month.",
+    hero: {
+      label: "YouTube Ads Pricing",
+      line1: "YouTube ad pricing",
+      line2: "tied to conversions, not views.",
+      subtitle:
+        "Targeting, hook testing, and conversion tracking at fixed monthly scope. Management fees are separate from your ad spend.",
+    },
+    answerBlock:
+      "YouTube ads management starts at $2,000 per month for single-market campaigns with up to $5K in ad spend and scales to $6,000+ for full video programs with multi-market targeting and advanced attribution. Every plan covers campaign strategy, targeting, creative direction, and tracking tied to leads. Ad spend bills directly to Google and is separate from management. Video production is quoted separately. We work month to month.",
+    ctaHeadline: "Want a YouTube ads quote?",
+    ctaSubtitle: "Tell us your goals, market, and monthly budget.|We will recommend the right tier and channel mix.",
+    ctaLabel: "Get YouTube Ads Pricing",
+  },
+  "landing-pages": {
+    metaTitle: "Landing Page Design Pricing | Pages from $2,500 | KINEXIS",
+    metaDescription:
+      "Landing page design and optimization pricing. Single pages from $2,500, campaign sets from $6,000, testing retainers from $3,000/mo. Fixed scope, tracking included.",
+    hero: {
+      label: "Landing Page Pricing",
+      line1: "Landing page pricing",
+      line2: "built for pages that convert.",
+      subtitle:
+        "Design, build, and testing at fixed scope. One page, a campaign set, or an ongoing testing retainer, priced clearly.",
+    },
+    answerBlock:
+      "Landing page design starts at $2,500 for a single conversion-focused page with copy, design, build, and tracking. A campaign set of three to five pages runs about $6,000. Ongoing design and A/B testing retainers start at $3,000 per month. Single pages and sets are fixed project fees; the retainer is monthly. Most pages launch in two to three weeks. Ad spend and platform fees are separate.",
+    ctaHeadline: "Want a landing page quote?",
+    ctaSubtitle: "Tell us your campaign, offer, and audiences.|We will scope a single page, a set, or a retainer.",
+    ctaLabel: "Get Landing Page Pricing",
+  },
+  "website-maintenance": {
+    metaTitle: "Website Maintenance Pricing | Plans from $250/mo | KINEXIS",
+    metaDescription:
+      "Website maintenance and support pricing from $250/mo. Updates, daily backups, security, uptime monitoring, and support at fixed monthly scope. Month to month.",
+    hero: {
+      label: "Website Maintenance Pricing",
+      line1: "Care plan pricing",
+      line2: "instead of surprise invoices.",
+      subtitle:
+        "Updates, backups, security, monitoring, and support time at a predictable monthly rate. Hosting and licenses are separate.",
+    },
+    answerBlock:
+      "Website maintenance plans start at $250 per month for updates, daily backups, and security and uptime monitoring on a standard business site. Growth plans at $600 per month add staging, priority support, and a monthly block of edit time. Priority plans at $1,200+ cover larger or e-commerce sites with faster response times. Hosting and third-party licenses are billed separately. Plans are month to month.",
+    ctaHeadline: "Want a maintenance quote?",
+    ctaSubtitle: "Tell us your platform, site size, and support needs.|We will recommend the right care plan.",
+    ctaLabel: "Get Maintenance Pricing",
+  },
+  "website-speed": {
+    metaTitle: "Website Speed Optimization Pricing | From $1,500 | KINEXIS",
+    metaDescription:
+      "Website speed and Core Web Vitals optimization pricing. Audit from $1,500, full overhaul from $3,500, monitoring from $1,000/mo. Before-and-after results included.",
+    hero: {
+      label: "Website Speed Pricing",
+      line1: "Speed optimization pricing",
+      line2: "with results you can measure.",
+      subtitle:
+        "Audit, full overhaul, or ongoing monitoring at fixed scope. Every engagement documents before-and-after Core Web Vitals.",
+    },
+    answerBlock:
+      "Website speed optimization starts at $1,500 for a standalone audit with a prioritized fix plan and quick wins. A full Core Web Vitals overhaul across images, code, caching, and server runs $3,500. Ongoing monitoring and tuning is $1,000 per month. Audit and overhaul are fixed project fees; monitoring is a monthly retainer. Most projects wrap in three to four weeks with documented results. Hosting upgrades, if needed, are quoted separately.",
+    ctaHeadline: "Want a speed optimization quote?",
+    ctaSubtitle: "Share your platform and current scores.|We will scope an audit, a full overhaul, or monitoring.",
+    ctaLabel: "Get Speed Optimization Pricing",
+  },
+  cro: {
+    metaTitle: "CRO Pricing | Optimization Retainers from $2,500/mo | KINEXIS",
+    metaDescription:
+      "Conversion rate optimization pricing with audit-driven test programs. Retainers from $2,500/mo for A/B testing, UX analysis, and conversion lift reporting. Month to month.",
+    hero: {
+      label: "CRO Pricing",
+      line1: "CRO pricing for",
+      line2: "more leads from the same traffic.",
+      subtitle:
+        "Conversion audits, hypothesis-driven testing, and UX fixes at fixed monthly scope. Every test result is measured and documented.",
+    },
+    answerBlock:
+      "CRO retainers start at $2,500 per month for audit-driven testing on high-traffic pages and scale to $5,000+ for multi-page programs with heatmap analysis, session recordings, and multivariate testing. Every retainer covers audit, hypothesis development, A/B testing, UX fixes, and monthly lift reporting. Most tests reach statistical significance within two to four weeks. Single-page optimization projects are available at fixed project fees. We work month to month.",
+    ctaHeadline: "Want a CRO quote?",
+    ctaSubtitle: "Share your traffic, pages, and conversion goals.|We will scope the right testing program.",
+    ctaLabel: "Get CRO Pricing",
+  },
+  copywriting: {
+    metaTitle: "Copywriting Pricing | Retainers from $400/mo | KINEXIS",
+    metaDescription:
+      "Conversion copywriting pricing from $400/mo for single-channel retainers. Website, email, ad, and sales copy at fixed monthly scope. Month to month, no long-term contracts.",
+    hero: {
+      label: "Copywriting Pricing",
+      line1: "Copywriting retainers",
+      line2: "for a voice that stays consistent.",
+      subtitle:
+        "Website, email, ad, and sales copy at fixed monthly output. One writer who learns your brand instead of restarting every project.",
+    },
+    answerBlock:
+      "Copywriting retainers start at $400 per month for single-channel writing such as blog posts, email sequences, or ongoing web updates and scale to $2,000+ for multi-channel programs with dedicated editorial support across web, ads, email, and sales content. Every retainer includes a voice and messaging guide and predictable monthly output. Per-project pricing is available for one-off pieces like a full site rewrite. First deliverables land within one to two weeks. We work month to month.",
+    ctaHeadline: "Want a copywriting quote?",
+    ctaSubtitle: "Tell us your channels, volume needs, and voice goals.|We will scope the right retainer tier.",
+    ctaLabel: "Get Copywriting Pricing",
+  },
+  "microsoft-ads": {
+    metaTitle: "Microsoft Ads Pricing | Management from $500/mo | KINEXIS",
+    metaDescription:
+      "Microsoft Ads (Bing Ads) management pricing from $500/mo. Search and audience campaigns with LinkedIn targeting at fixed scope. Management separate from ad spend. Month to month.",
+    hero: {
+      label: "Microsoft Ads Pricing",
+      line1: "Microsoft Ads pricing",
+      line2: "for the audience Google misses.",
+      subtitle:
+        "Bing Search and Microsoft audience campaigns at fixed monthly scope. Lower CPCs and LinkedIn-based targeting built into every tier.",
+    },
+    answerBlock:
+      "Microsoft Ads management starts at $500 per month for single-market Bing Search campaigns with up to $3,000 in ad spend and scales to $2,500+ for full Microsoft network programs with LinkedIn audience targeting and advanced attribution. Every plan covers campaign strategy, keyword research, ad copy, bid management, and conversion tracking. Ad spend bills directly to Microsoft and is separate from management fees. Most accounts see a 20 to 35% lower CPC compared to Google. We work month to month.",
+    ctaHeadline: "Want a Microsoft Ads quote?",
+    ctaSubtitle: "Tell us your market, goals, and monthly ad budget.|We will recommend the right tier and targeting mix.",
+    ctaLabel: "Get Microsoft Ads Pricing",
+  },
+  "marketing-audits": {
+    metaTitle: "Marketing Audit Pricing | From $500 | KINEXIS",
+    metaDescription:
+      "Marketing audit pricing from $500. Channel, tracking, funnel, and spend review with prioritized fix list. Fixed project fees. Audit credit applied to ongoing engagements.",
+    hero: {
+      label: "Marketing Audit Pricing",
+      line1: "Audit pricing for",
+      line2: "a clear picture of what's working.",
+      subtitle:
+        "Fixed-fee diagnostic across tracking, channels, funnel, and spend. You get a prioritized fix list backed by your own data, not a 60-page PDF.",
+    },
+    answerBlock:
+      "Marketing audits start at $500 for a focused single-channel or tracking review with prioritized findings and quick wins. A full multi-channel audit with funnel analysis and competitor benchmarking runs $1,000. Deep operational reviews across every channel, with detailed execution roadmaps, are $2,500+. All audits are fixed-fee projects. The audit fee is credited toward your first month if you move into an ongoing engagement. Typical delivery is one to three weeks from access to walkthrough.",
+    ctaHeadline: "Want a marketing audit quote?",
+    ctaSubtitle: "Tell us what channels or gaps you want us to review.|We will scope the right audit level.",
+    ctaLabel: "Get Audit Pricing",
+  },
+  "marketing-automation-crm": {
+    metaTitle: "Marketing Automation & CRM Pricing | From $1,000 | KINEXIS",
+    metaDescription:
+      "Marketing automation and CRM setup pricing from $1,000. HubSpot, Salesforce, GoHighLevel and more. Workflow builds, lead scoring, and integrations at fixed project fees.",
+    hero: {
+      label: "Marketing Automation & CRM Pricing",
+      line1: "Automation and CRM pricing",
+      line2: "for tools that actually talk to each other.",
+      subtitle:
+        "Platform setup, workflow builds, lead scoring, and integrations at fixed project fees. Your stack connected so nothing slips through.",
+    },
+    answerBlock:
+      "Marketing automation and CRM projects start at $1,000 for a focused build such as a single workflow, lead scoring setup, or two-tool integration. Full platform setups with multiple workflows and CRM configuration run $2,500. Complex multi-tool systems with advanced automation, custom objects, and reporting are $5,000+. All projects are fixed-fee. Typical delivery runs two to six weeks depending on scope. Platform subscription fees are separate.",
+    ctaHeadline: "Want an automation and CRM quote?",
+    ctaSubtitle: "Tell us your current stack, tools, and what is breaking.|We will scope the right project level.",
+    ctaLabel: "Get Automation & CRM Pricing",
+  },
+  "fractional-cmo": {
+    metaTitle: "Fractional CMO Pricing | From $3,000/mo | KINEXIS",
+    metaDescription:
+      "Fractional CMO pricing from $3,000/mo. Senior marketing leadership part-time for strategy, budget, vendor management, and board reporting. Month to month.",
+    hero: {
+      label: "Fractional CMO Pricing",
+      line1: "Fractional CMO pricing",
+      line2: "for leadership without a full hire.",
+      subtitle:
+        "Senior marketing leadership part-time. Strategy, budget, vendor accountability, and board-ready reporting at fixed monthly scope.",
+    },
+    answerBlock:
+      "Fractional CMO engagements start at $3,000 per month for advisory with bi-weekly strategy calls, budget oversight, and quarterly board updates and scale to $10,000+ for embedded leadership with weekly team management, vendor accountability, and monthly board reporting. Every engagement includes a growth model, marketing strategy, and 90-day roadmap delivered in the first four to six weeks. Execution services such as SEO, paid ads, and web are scoped and priced separately. We work month to month.",
+    ctaHeadline: "Want a fractional CMO quote?",
+    ctaSubtitle: "Tell us your team size, stage, and what marketing leadership you are missing.|We will scope an advisory or embedded role.",
+    ctaLabel: "Get Fractional CMO Pricing",
+  },
+  "training-workshops": {
+    metaTitle: "Training & Workshop Pricing | From $500 | KINEXIS",
+    metaDescription:
+      "Training and workshop pricing from $500 per session. Hands-on SEO, ads, analytics, and strategy training on your own accounts. Custom curriculum, reusable templates included.",
+    hero: {
+      label: "Training & Workshop Pricing",
+      line1: "Training pricing",
+      line2: "for skills your team keeps using.",
+      subtitle:
+        "Hands-on sessions on your own accounts with reusable templates and follow-up support. Not a recorded course. Real work on real tools.",
+    },
+    answerBlock:
+      "Training and workshops start at $500 for a focused single-topic session and scale to $1,500 for a full-day workshop with hands-on work on your accounts. Multi-day programs and ongoing team training are quoted custom based on team size, topics, and format. Every session includes a custom curriculum built around your tools and goals, reusable templates and playbooks, recorded sessions, and follow-up support. Topics include SEO, Google and Meta ads, analytics and GA4, content, email marketing, and strategy. Sessions run remotely by default. On-site workshops available for larger groups.",
+    ctaHeadline: "Want a training quote?",
+    ctaSubtitle: "Tell us your team size, topics, and goals.|We will build a custom curriculum and quote.",
+    ctaLabel: "Get Training Pricing",
+  },
 };
 
 const ES_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
@@ -317,6 +504,193 @@ const ES_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
     ctaHeadline: "¿Quieres cotización de growth consulting?",
     ctaSubtitle: "Cuéntanos tu etapa, canales y cuellos de botella.|Definiremos advisory vs engagement embebido.",
     ctaLabel: "Obtén Precios Growth Consulting",
+  },
+  "youtube-ads": {
+    metaTitle: "Precios YouTube Ads | Desde $2,000/mes | KINEXIS",
+    metaDescription:
+      "Precios de gestión de YouTube Ads desde $2,000/mes. Segmentación, dirección creativa y tracking con alcance fijo. Gasto en ads aparte. Mes a mes.",
+    hero: {
+      label: "Precios YouTube Ads",
+      line1: "Precios de YouTube",
+      line2: "ligados a conversiones, no a vistas.",
+      subtitle:
+        "Segmentación, pruebas de hook y tracking de conversiones con alcance mensual fijo. Las tarifas de gestión son aparte del gasto en ads.",
+    },
+    answerBlock:
+      "La gestión de YouTube Ads empieza en $2,000 al mes para campañas de un mercado con hasta $5K de gasto y escala a $6,000+ por programas de video con segmentación multi-mercado y atribución avanzada. Cada plan cubre estrategia, segmentación, dirección creativa y tracking ligado a leads. El gasto en ads va directo a Google y es aparte de la gestión. La producción de video se cotiza aparte. Trabajamos mes a mes.",
+    ctaHeadline: "¿Quieres cotización de YouTube Ads?",
+    ctaSubtitle: "Cuéntanos tus metas, mercado y presupuesto mensual.|Recomendaremos el nivel y la mezcla de canales.",
+    ctaLabel: "Obtén Precios YouTube Ads",
+  },
+  "landing-pages": {
+    metaTitle: "Precios Landing Pages | Páginas desde $2,500 | KINEXIS",
+    metaDescription:
+      "Precios de diseño y optimización de landing pages. Páginas individuales desde $2,500, sets desde $6,000, retainers de testing desde $3,000/mes. Tracking incluido.",
+    hero: {
+      label: "Precios Landing Pages",
+      line1: "Precios de landing pages",
+      line2: "hechas para convertir.",
+      subtitle:
+        "Diseño, build y testing con alcance fijo. Una página, un set de campaña o un retainer de testing continuo, con precio claro.",
+    },
+    answerBlock:
+      "El diseño de landing pages empieza en $2,500 por una página enfocada en conversión con copy, diseño, build y tracking. Un set de tres a cinco páginas ronda los $6,000. Los retainers de diseño y A/B testing continuo empiezan en $3,000 al mes. Las páginas y sets son tarifas fijas de proyecto; el retainer es mensual. La mayoría lanza en dos a tres semanas. El gasto en ads y las tarifas de plataforma son aparte.",
+    ctaHeadline: "¿Quieres cotización de landing pages?",
+    ctaSubtitle: "Cuéntanos tu campaña, oferta y audiencias.|Definiremos una página, un set o un retainer.",
+    ctaLabel: "Obtén Precios Landing Pages",
+  },
+  "website-maintenance": {
+    metaTitle: "Precios Mantenimiento Web | Planes desde $250/mes | KINEXIS",
+    metaDescription:
+      "Precios de mantenimiento y soporte web desde $250/mes. Actualizaciones, respaldos diarios, seguridad, monitoreo de uptime y soporte con alcance fijo. Mes a mes.",
+    hero: {
+      label: "Precios Mantenimiento Web",
+      line1: "Precios de plan de cuidado",
+      line2: "en vez de facturas sorpresa.",
+      subtitle:
+        "Actualizaciones, respaldos, seguridad, monitoreo y tiempo de soporte a una tarifa mensual predecible. Hosting y licencias aparte.",
+    },
+    answerBlock:
+      "Los planes de mantenimiento web empiezan en $250 al mes por actualizaciones, respaldos diarios y monitoreo de seguridad y uptime en un sitio de negocio estándar. Los planes Growth a $600 al mes agregan staging, soporte prioritario y un bloque mensual de tiempo de edición. Los planes Priority a $1,200+ cubren sitios más grandes o e-commerce con respuesta más rápida. Hosting y licencias de terceros se facturan aparte. Los planes son mes a mes.",
+    ctaHeadline: "¿Quieres cotización de mantenimiento?",
+    ctaSubtitle: "Cuéntanos tu plataforma, tamaño y necesidades de soporte.|Recomendaremos el plan de cuidado correcto.",
+    ctaLabel: "Obtén Precios Mantenimiento",
+  },
+  "website-speed": {
+    metaTitle: "Precios Optimización de Velocidad Web | Desde $1,500 | KINEXIS",
+    metaDescription:
+      "Precios de optimización de velocidad y Core Web Vitals. Auditoría desde $1,500, revisión completa desde $3,500, monitoreo desde $1,000/mes. Resultados de antes y después.",
+    hero: {
+      label: "Precios Velocidad Web",
+      line1: "Precios de optimización",
+      line2: "con resultados que puedes medir.",
+      subtitle:
+        "Auditoría, revisión completa o monitoreo continuo con alcance fijo. Cada proyecto documenta los Core Web Vitals de antes y después.",
+    },
+    answerBlock:
+      "La optimización de velocidad web empieza en $1,500 por una auditoría independiente con plan de fixes priorizado y quick wins. Una revisión completa de Core Web Vitals en imágenes, código, caché y servidor corre $3,500. El monitoreo y tuning continuo es $1,000 al mes. Auditoría y revisión son tarifas fijas de proyecto; el monitoreo es retainer mensual. La mayoría de proyectos cierran en tres a cuatro semanas con resultados documentados. Mejoras de hosting, si se necesitan, se cotizan aparte.",
+    ctaHeadline: "¿Quieres cotización de velocidad web?",
+    ctaSubtitle: "Comparte tu plataforma y puntajes actuales.|Definiremos auditoría, revisión completa o monitoreo.",
+    ctaLabel: "Obtén Precios Velocidad Web",
+  },
+  cro: {
+    metaTitle: "Precios CRO | Retainers de Optimización desde $2,500/mes | KINEXIS",
+    metaDescription:
+      "Precios de conversion rate optimization con programas de testing basados en auditoría. Retainers desde $2,500/mes con A/B testing, análisis UX y reportes de mejora. Mes a mes.",
+    hero: {
+      label: "Precios CRO",
+      line1: "Precios CRO para",
+      line2: "más leads del mismo tráfico.",
+      subtitle:
+        "Auditorías de conversión, testing basado en hipótesis y arreglos UX con alcance mensual fijo. Cada resultado de test se mide y documenta.",
+    },
+    answerBlock:
+      "Los retainers de CRO empiezan en $2,500 al mes para testing guiado por auditoría en páginas de alto tráfico y escalan a $5,000+ para programas multi-página con análisis de heatmaps, grabaciones de sesión y testing multivariante. Cada retainer cubre auditoría, desarrollo de hipótesis, A/B testing, arreglos UX y reportes mensuales de mejora. La mayoría de tests alcanzan significancia estadística en dos a cuatro semanas. Proyectos de optimización de una sola página están disponibles con tarifa fija. Trabajamos mes a mes.",
+    ctaHeadline: "¿Quieres cotización de CRO?",
+    ctaSubtitle: "Comparte tu tráfico, páginas y metas de conversión.|Definiremos el programa de testing adecuado.",
+    ctaLabel: "Obtén Precios CRO",
+  },
+  copywriting: {
+    metaTitle: "Precios Copywriting | Retainers desde $400/mes | KINEXIS",
+    metaDescription:
+      "Precios de copywriting de conversión desde $400/mes para retainers de un canal. Copy para web, email, anuncios y ventas con alcance mensual fijo. Mes a mes, sin contratos largos.",
+    hero: {
+      label: "Precios Copywriting",
+      line1: "Retainers de copywriting",
+      line2: "para una voz que se mantiene consistente.",
+      subtitle:
+        "Copy para web, email, anuncios y ventas con salida mensual fija. Un redactor que aprende tu marca en vez de reiniciar cada proyecto.",
+    },
+    answerBlock:
+      "Los retainers de copywriting empiezan en $400 al mes para redacción de un solo canal como blog, secuencias de email o actualizaciones web y escalan a $2,000+ para programas multicanal con soporte editorial dedicado en web, anuncios, email y contenido de ventas. Cada retainer incluye una guía de voz y mensajes y salida mensual predecible. Precio por proyecto disponible para piezas únicas como reescritura completa de sitio. Las primeras entregas llegan en una a dos semanas. Trabajamos mes a mes.",
+    ctaHeadline: "¿Quieres cotización de copywriting?",
+    ctaSubtitle: "Cuéntanos tus canales, volumen y metas de voz.|Definiremos el nivel de retainer adecuado.",
+    ctaLabel: "Obtén Precios Copywriting",
+  },
+  "microsoft-ads": {
+    metaTitle: "Precios Microsoft Ads | Gestión desde $500/mes | KINEXIS",
+    metaDescription:
+      "Precios de gestión Microsoft Ads (Bing Ads) desde $500/mes. Campañas Search y de audiencia con segmentación LinkedIn. Gestión separada del gasto en ads. Mes a mes.",
+    hero: {
+      label: "Precios Microsoft Ads",
+      line1: "Precios Microsoft Ads",
+      line2: "para la audiencia que Google no ve.",
+      subtitle:
+        "Campañas Bing Search y de audiencia Microsoft con alcance mensual fijo. CPCs más bajos y segmentación basada en LinkedIn en cada nivel.",
+    },
+    answerBlock:
+      "La gestión de Microsoft Ads empieza en $500 al mes para campañas Bing Search de un mercado con hasta $3,000 de gasto en ads y escala a $2,500+ para programas completos en la red Microsoft con segmentación de audiencia LinkedIn y atribución avanzada. Cada plan cubre estrategia de campaña, investigación de keywords, copy de anuncios, gestión de pujas y tracking de conversiones. El gasto en ads va directo a Microsoft y es aparte de las tarifas de gestión. La mayoría de cuentas ven un CPC 20 a 35% menor comparado con Google. Trabajamos mes a mes.",
+    ctaHeadline: "¿Quieres cotización de Microsoft Ads?",
+    ctaSubtitle: "Cuéntanos tu mercado, metas y presupuesto mensual.|Recomendaremos el nivel y la mezcla de segmentación.",
+    ctaLabel: "Obtén Precios Microsoft Ads",
+  },
+  "marketing-audits": {
+    metaTitle: "Precios Auditoría de Marketing | Desde $500 | KINEXIS",
+    metaDescription:
+      "Precios de auditoría de marketing desde $500. Revisión de canales, tracking, funnel y gasto con plan de acción priorizado. Tarifas fijas de proyecto. Crédito aplicable a engagements continuos.",
+    hero: {
+      label: "Precios Auditoría de Marketing",
+      line1: "Precios de auditoría para",
+      line2: "saber exactamente qué funciona.",
+      subtitle:
+        "Diagnóstico a tarifa fija de tracking, canales, funnel y gasto. Recibes una lista priorizada respaldada por tus propios datos, no un PDF de 60 páginas.",
+    },
+    answerBlock:
+      "Las auditorías de marketing empiezan en $500 por una revisión enfocada en un solo canal o tracking con hallazgos priorizados y quick wins. Una auditoría multicanal completa con análisis de funnel y benchmarking competitivo corre $1,000. Revisiones operativas profundas en cada canal, con roadmap detallado de ejecución, son $2,500+. Todas las auditorías son proyectos a tarifa fija. La tarifa de auditoría se acredita a tu primer mes si avanzas a un engagement continuo. Entrega típica de una a tres semanas desde acceso hasta sesión de revisión.",
+    ctaHeadline: "¿Quieres cotización de auditoría?",
+    ctaSubtitle: "Cuéntanos qué canales o brechas quieres que revisemos.|Definiremos el nivel de auditoría.",
+    ctaLabel: "Obtén Precios de Auditoría",
+  },
+  "marketing-automation-crm": {
+    metaTitle: "Precios Automatización de Marketing y CRM | Desde $1,000 | KINEXIS",
+    metaDescription:
+      "Precios de setup de automatización de marketing y CRM desde $1,000. HubSpot, Salesforce, GoHighLevel y más. Workflows, lead scoring e integraciones a tarifa fija.",
+    hero: {
+      label: "Precios Automatización y CRM",
+      line1: "Precios de automatización y CRM",
+      line2: "para herramientas que se hablan de verdad.",
+      subtitle:
+        "Setup de plataforma, construcción de workflows, lead scoring e integraciones a tarifa fija. Tu stack conectado para que nada se escape.",
+    },
+    answerBlock:
+      "Los proyectos de automatización de marketing y CRM empiezan en $1,000 por un build enfocado como un solo workflow, setup de lead scoring o integración de dos herramientas. Setups completos de plataforma con múltiples workflows y configuración de CRM corren $2,500. Sistemas complejos multi-herramienta con automatización avanzada, objetos custom y reportes son $5,000+. Todos los proyectos son tarifa fija. Entrega típica de dos a seis semanas según alcance. Las suscripciones de plataforma son aparte.",
+    ctaHeadline: "¿Quieres cotización de automatización y CRM?",
+    ctaSubtitle: "Cuéntanos tu stack actual, herramientas y qué está fallando.|Definiremos el nivel de proyecto.",
+    ctaLabel: "Obtén Precios Automatización y CRM",
+  },
+  "fractional-cmo": {
+    metaTitle: "Precios CMO Fractional | Desde $3,000/mes | KINEXIS",
+    metaDescription:
+      "Precios de CMO fractional desde $3,000/mes. Liderazgo senior de marketing a tiempo parcial para estrategia, presupuesto, gestión de proveedores y reportes para el board. Mes a mes.",
+    hero: {
+      label: "Precios CMO Fractional",
+      line1: "Precios CMO fractional para",
+      line2: "liderazgo sin una contratación completa.",
+      subtitle:
+        "Liderazgo senior de marketing a tiempo parcial. Estrategia, presupuesto, accountability de proveedores y reportes listos para el board con alcance mensual fijo.",
+    },
+    answerBlock:
+      "Los engagements de CMO fractional empiezan en $3,000 al mes para advisory con llamadas estratégicas quincenales, supervisión de presupuesto y actualizaciones trimestrales para el board y escalan a $10,000+ para liderazgo embebido con gestión semanal de equipo, accountability de proveedores y reportes mensuales para el board. Cada engagement incluye un modelo de crecimiento, estrategia de marketing y roadmap de 90 días entregado en las primeras cuatro a seis semanas. Servicios de ejecución como SEO, paid ads y web se definen y cotizan aparte. Trabajamos mes a mes.",
+    ctaHeadline: "¿Quieres cotización de CMO fractional?",
+    ctaSubtitle: "Cuéntanos el tamaño de tu equipo, etapa y qué liderazgo de marketing te falta.|Definiremos un rol advisory o embebido.",
+    ctaLabel: "Obtén Precios CMO Fractional",
+  },
+  "training-workshops": {
+    metaTitle: "Precios Capacitación y Workshops | Desde $500 | KINEXIS",
+    metaDescription:
+      "Precios de capacitación y workshops desde $500 por sesión. Entrenamiento práctico en SEO, ads, analytics y estrategia sobre tus propias cuentas. Currículo custom, plantillas reutilizables incluidas.",
+    hero: {
+      label: "Precios Capacitación y Workshops",
+      line1: "Precios de capacitación",
+      line2: "para habilidades que tu equipo sigue usando.",
+      subtitle:
+        "Sesiones prácticas sobre tus propias cuentas con plantillas reutilizables y soporte de seguimiento. No es un curso grabado. Trabajo real con herramientas reales.",
+    },
+    answerBlock:
+      "Las capacitaciones y workshops empiezan en $500 por una sesión enfocada en un solo tema y escalan a $1,500 por un taller de día completo con trabajo práctico sobre tus cuentas. Programas de varios días y capacitación continua de equipos se cotizan a medida según tamaño del equipo, temas y formato. Cada sesión incluye un currículo custom construido alrededor de tus herramientas y objetivos, plantillas y playbooks reutilizables, sesiones grabadas y soporte de seguimiento. Los temas incluyen SEO, Google y Meta ads, analytics y GA4, contenido, email marketing y estrategia. Las sesiones corren de forma remota por defecto. Workshops presenciales disponibles para grupos más grandes.",
+    ctaHeadline: "¿Quieres cotización de capacitación?",
+    ctaSubtitle: "Cuéntanos el tamaño de tu equipo, temas y objetivos.|Construiremos un currículo custom y cotización.",
+    ctaLabel: "Obtén Precios de Capacitación",
   },
 };
 

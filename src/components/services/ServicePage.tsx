@@ -1,19 +1,20 @@
-"use client";
-
 import dynamic from "next/dynamic";
-import DeliverablesSection from "@/components/shared/services/DeliverablesSection";
 import ProcessSection from "@/components/shared/services/ProcessSection";
-import ServiceOverview from "@/components/shared/services/ServiceOverview";
 import ServicePricingTeaser from "@/components/shared/services/ServicePricingTeaser";
-import ServiceSection from "@/components/shared/services/ServiceSection";
+import ServiceOverview from "@/components/shared/services/ServiceOverview";
+import EditorialSection from "@/components/shared/services/EditorialSection";
 import WhyKinexusSection from "@/components/shared/services/WhyKinexusSection";
+import DeliverablesSection from "@/components/shared/services/DeliverablesSection";
+import ServiceSection from "@/components/shared/services/ServiceSection";
+import ProofSection from "@/components/shared/services/ProofSection";
+import ResultsSection from "@/components/shared/services/ResultsSection";
+import ServiceInlineCTA from "@/components/shared/services/ServiceInlineCTA";
 import { getServiceHeroVisualization } from "@/components/services/service-hero-visualizations";
 import type { ServicePageServerProps } from "@/lib/service-page-props";
 
+// Interactive/client-only leaves — kept as lazy client islands.
 const AnswerBlock = dynamic(() => import("@/components/sections/seo/AnswerBlock"));
 const ComparisonTable = dynamic(() => import("@/components/sections/seo/ComparisonTable"));
-const ProofSection = dynamic(() => import("@/components/shared/services/ProofSection"));
-const ResultsSection = dynamic(() => import("@/components/shared/services/ResultsSection"));
 const ServiceCTA = dynamic(() => import("@/components/shared/services/ServiceCTA"));
 const ServiceFAQSection = dynamic(() => import("@/components/shared/services/ServiceFAQSection"));
 const RelatedLinks = dynamic(() => import("@/components/sections/RelatedLinks"));
@@ -25,6 +26,7 @@ type Props = ServicePageServerProps;
 
 const CORE_SECTIONS = [
   "ServiceOverview",
+  "EditorialOverview",
   "WhyKinexus",
   "Process",
   "Deliverables",
@@ -33,6 +35,7 @@ const CORE_SECTIONS = [
   "AnswerBlock",
   "Comparison",
   "PricingTeaser",
+  "ServiceInlineCTA",
 ] as const;
 
 type CoreSectionId = (typeof CORE_SECTIONS)[number];
@@ -63,6 +66,14 @@ export default function ServicePage({
               visualization={visualizationFor("ServiceOverview")}
             />
           );
+        case "EditorialOverview":
+          return data.editorial ? (
+            <EditorialSection
+              {...data.editorial}
+              surfaceIndex={index}
+              visualization={visualizationFor("EditorialOverview")}
+            />
+          ) : null;
         case "WhyKinexus":
           return (
             <WhyKinexusSection
@@ -76,6 +87,7 @@ export default function ServicePage({
             <ProcessSection
               title={data.process.title}
               subtitle={data.process.subtitle}
+              intro={data.process.intro}
               steps={data.process.steps}
               surfaceIndex={index}
             />
@@ -106,6 +118,14 @@ export default function ServicePage({
           return data.comparison ? <ComparisonTable {...data.comparison} surfaceIndex={index} /> : null;
         case "PricingTeaser":
           return <ServicePricingTeaser slug={slug} />;
+        case "ServiceInlineCTA":
+          return data.cta?.inlineLabel ? (
+            <ServiceInlineCTA
+              label={data.cta.inlineLabel}
+              subtitle={data.cta.inlineSubtitle}
+              surfaceIndex={index}
+            />
+          ) : null;
         default:
           return null;
       }
@@ -129,7 +149,28 @@ export default function ServicePage({
     return null;
   }
 
-  const orderedSections = data.sectionOrder
+  const effectiveOrder = [...data.sectionOrder];
+
+  // Legacy pages: insert AnswerBlock after overview when not already in order.
+  if (
+    data.answerBlock &&
+    !effectiveOrder.includes("AnswerBlock") &&
+    effectiveOrder.includes("ServiceOverview")
+  ) {
+    const overviewIndex = effectiveOrder.indexOf("ServiceOverview");
+    if (overviewIndex !== -1) {
+      effectiveOrder.splice(overviewIndex + 1, 0, "AnswerBlock");
+    }
+  }
+
+  if (data.comparison && !effectiveOrder.includes("Comparison")) {
+    const pricingIndex = effectiveOrder.indexOf("PricingTeaser");
+    if (pricingIndex !== -1) {
+      effectiveOrder.splice(pricingIndex, 0, "Comparison");
+    }
+  }
+
+  const orderedSections = effectiveOrder
     .map((name) => {
       const section = renderSection(name, surfaceIndex);
       if (!section) return null;
@@ -157,7 +198,7 @@ export default function ServicePage({
         caseStudyLinks={relatedLinks.caseStudies}
         blogLinks={relatedLinks.blog}
       />
-      <ServiceCTA />
+      <ServiceCTA cta={data.cta} />
     </>
   );
 }

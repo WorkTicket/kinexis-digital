@@ -1,9 +1,11 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
-import ServiceHeroShell from "@/components/shared/services/ServiceHeroShell";
+import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import ServicePage from "@/components/services/ServicePage";
+import TrustStrip from "@/components/shared/services/TrustStrip";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import { serviceLabels, serviceRoutes } from "@/content/registry/site-routes";
+import { trustStripContent } from "@/content/trust-strip";
 import type { Locale } from "@/i18n/routing";
 import { getServicePageMetadata } from "@/lib/service-metadata";
 import { buildServicePageServerProps } from "@/lib/service-page-props";
@@ -41,12 +43,14 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
             ]),
           ]}
         />
-        <ServiceHeroShell
+        <StaticHeroShell
+          variant="service"
           slug={slug}
           breadcrumbs={data.breadcrumbs}
           secondaryCtaLabel={tCommon("viewOurWork")}
           {...data.data.hero}
         />
+        <TrustStrip items={trustStripContent[locale].items} />
         <ServicePage {...data} />
       </>
     );

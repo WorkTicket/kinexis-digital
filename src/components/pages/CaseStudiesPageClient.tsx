@@ -9,10 +9,11 @@ import CTAArchetype from "@/components/ui/CTAArchetype";
 import TextLink from "@/components/ui/TextLink";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import ProofMetric from "@/components/ui/ProofMetric";
+import { cardClasses } from "@/lib/card-styles";
 import type { CaseStudiesContent } from "@/content/case-studies";
 import { formatMetricValue } from "@/lib/format-metric";
 import SectionHeader from "@/components/ui/SectionHeader";
-import { pageSectionClasses } from "@/lib/page-section-surface";
+import Section from "@/components/shared/services/Section";
 import {
   ArrowUpRight,
   TrendingUp,
@@ -62,7 +63,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                   return (
                     <div
                       key={m.label}
-                      className="proof-metric-card backdrop-blur-sm text-left p-4 xs:p-3.5 sm:p-4"
+                      className={cardClasses({ hover: false, className: "backdrop-blur-sm text-left !p-4 xs:!p-3.5 sm:!p-4" })}
                     >
                       <div className="flex flex-col gap-1.5">
                         <span className="type-metric-label-stat inline-flex items-start gap-2 mt-0">
@@ -83,10 +84,10 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
       />
 
       {/* Featured spotlight */}
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="featured-spotlight" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <motion.div
-            className="rounded-3xl border border-white/[0.06] bg-white/[0.02]"
+            className={cardClasses({ surface: "elevated", hover: false, className: "rounded-3xl !p-0 overflow-hidden" })}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -100,10 +101,10 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                 <span className="mt-6 inline-block text-xs font-semibold uppercase tracking-wider text-muted">
                   {featuredCS.industry}
                 </span>
-                <h2 className="section-title section-title--left mt-3 gradient-text">
+                <h2 className="card-heading mt-3 gradient-text">
                   {featuredCS.headline}
                 </h2>
-                <h3 className="mt-2 text-xl font-bold">{featuredCS.title}</h3>
+                <h3 className="card-heading mt-2">{featuredCS.title}</h3>
                 <p className="mt-4 section-intro section-intro--left">
                   {featuredCS.summary}
                 </p>
@@ -126,7 +127,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
 
                 <div className="mt-8 flex flex-wrap gap-2">
                   {featuredCS.services.map((s) => (
-                    <span key={s} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1 text-xs text-muted">
+                    <span key={s} className="rounded-full border border-strong bg-surface-raised px-3 py-1 text-xs text-muted">
                       {s}
                     </span>
                   ))}
@@ -139,7 +140,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                 </div>
               </div>
 
-              <div className="bg-bg-dark p-8 md:p-12 lg:p-14 border-t lg:border-t-0 lg:border-l border-white/[0.06]">
+              <div className="bg-bg-dark p-8 md:p-12 lg:p-14 border-t lg:border-t-0 lg:border-l border-surface">
                 <div className="flex items-center gap-2 mb-8">
                   <BarChart3 className="h-4 w-4 text-neon-cyan" />
                   <span className="text-xs font-bold uppercase tracking-wider text-neon-cyan">{c.beforeVsAfterLabel}</span>
@@ -161,7 +162,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                             </span>
                           </span>
                         </div>
-                        <div className="relative h-2.5 w-full rounded-full bg-white/[0.04] overflow-hidden">
+                        <div className="relative h-2.5 w-full rounded-full bg-surface-glass overflow-hidden">
                           <motion.div
                             className="absolute left-0 top-0 h-full bg-white/15 rounded-full"
                             initial={{ width: 0 }}
@@ -182,7 +183,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                     );
                   })}
                 </div>
-                <div className="mt-10 pt-6 border-t border-white/[0.06] flex items-center justify-between text-sm">
+                <div className="mt-10 pt-6 border-t border-surface flex items-center justify-between text-sm">
                   <span className="text-muted">{c.timelineLabel}</span>
                   <span className="font-semibold">{featuredCS.timeline}</span>
                 </div>
@@ -190,16 +191,16 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
             </div>
           </motion.div>
         </div>
-      </section>
+      </Section>
 
       {/* Case study grid */}
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="case-study-grid" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader
             badge={c.clientResultsLabel}
             title={c.clientResultsTitle}
             description={c.clientResultsDescription}
-            align="left"
+            headingId="case-study-grid-heading"
           />
 
           <div className="section-content flex flex-wrap gap-2">
@@ -210,7 +211,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                 className={`min-h-touch px-5 py-3 rounded-full text-sm font-bold transition-all duration-300 touch-manipulation ${
                   activeIndustry === ind
                     ? "bg-neon-cyan text-bg-dark shadow-lg shadow-neon-cyan/20"
-                    : "border border-white/[0.08] text-muted hover:border-white/20 hover:text-white"
+                    : "border border-strong text-muted hover:border-white/20 hover:text-white"
                 }`}
               >
                 {ind}
@@ -230,20 +231,20 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
               {filtered.map((cs, i) => (
                 <motion.article
                   key={cs.slug}
-                  className="group motion-card flex flex-col rounded-2xl border border-white/[0.06] bg-white/[0.02]"
+                  className={cardClasses({ surface: "elevated", className: "group flex flex-col !p-0 overflow-hidden" })}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
                 >
                   <div className="p-6 md:p-8 flex-1 flex flex-col">
                     <div className="flex items-center justify-between gap-3">
-                      <span className="inline-block rounded-full border border-white/[0.08] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted">
+                      <span className="inline-block rounded-full border border-strong px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted">
                         {cs.industry}
                       </span>
                       <span className="text-xs text-muted">{cs.timeline}</span>
                     </div>
 
-                    <h3 className="mt-5 text-2xl font-bold gradient-text">{cs.headline}</h3>
+                    <h3 className="type-subheader mt-5 gradient-text">{cs.headline}</h3>
                     <p className="mt-1 text-base font-semibold">{cs.title}</p>
                     <p className="mt-3 text-sm leading-relaxed text-muted flex-1">{cs.summary}</p>
 
@@ -265,7 +266,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
 
                   <Link
                     href={`/case-studies/${cs.slug}`}
-                    className="flex items-center justify-between gap-2 border-t border-white/[0.06] px-6 md:px-8 py-4 text-sm font-semibold text-neon-cyan group-hover:bg-neon-cyan/[0.03] transition-colors"
+                    className="flex items-center justify-between gap-2 border-t border-surface px-6 md:px-8 py-4 text-sm font-semibold text-neon-cyan group-hover:bg-neon-cyan/[0.03] transition-colors"
                   >
                     {c.viewCaseStudy}
                     <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -279,10 +280,9 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
             <p className="section-cta-row text-muted">{c.noCaseStudiesMessage}</p>
           )}
         </div>
-      </section>
+      </Section>
 
-      {/* Growth patterns */}
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="growth-patterns" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader
             badge={c.whatDataShowsLabel}
@@ -294,7 +294,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
             {c.growthPatterns.map((p, i) => (
               <motion.div
                 key={p.combo}
-                className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 text-center hover:border-neon-cyan/15 transition-colors duration-300"
+                className={cardClasses({ className: "text-center hover:border-neon-cyan/15 transition-colors duration-300" })}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
@@ -308,7 +308,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       <CTAArchetype
         headline={c.ctaTitle}

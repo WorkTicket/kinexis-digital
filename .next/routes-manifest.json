@@ -36,10 +36,34 @@
       "regex": "^(?!/_next)(?:/(en|es))/pricing/paid-ads(?:/)?$"
     },
     {
+      "source": "/:locale(en|es)/services/google-ads",
+      "destination": "/:locale/services/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/(en|es))/services/google-ads(?:/)?$"
+    },
+    {
+      "source": "/:locale(en|es)/services/paid-ads",
+      "destination": "/:locale/services/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)(?:/(en|es))/services/paid-ads(?:/)?$"
+    },
+    {
       "source": "/pricing/google-ads",
       "destination": "/en/pricing/ppc-management",
       "statusCode": 308,
       "regex": "^(?!/_next)/pricing/google-ads(?:/)?$"
+    },
+    {
+      "source": "/services/google-ads",
+      "destination": "/en/services/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/services/google-ads(?:/)?$"
+    },
+    {
+      "source": "/services/paid-ads",
+      "destination": "/en/services/ppc-management",
+      "statusCode": 308,
+      "regex": "^(?!/_next)/services/paid-ads(?:/)?$"
     },
     {
       "source": "/pricing/paid-ads",
@@ -466,6 +490,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/local\\-seo\\-vs\\-google\\-ads(?:/)?$"
     },
     {
+      "page": "/[locale]/pricing",
+      "regex": "^/([^/]+?)/pricing(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/pricing(?:/)?$"
+    },
+    {
       "page": "/[locale]/pricing/[slug]",
       "regex": "^/([^/]+?)/pricing/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -531,12 +563,36 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/content\\-marketing(?:/)?$"
     },
     {
+      "page": "/[locale]/services/copywriting",
+      "regex": "^/([^/]+?)/services/copywriting(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/copywriting(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/cro",
+      "regex": "^/([^/]+?)/services/cro(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/cro(?:/)?$"
+    },
+    {
       "page": "/[locale]/services/email-marketing",
       "regex": "^/([^/]+?)/services/email\\-marketing(?:/)?$",
       "routeKeys": {
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/email\\-marketing(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/fractional-cmo",
+      "regex": "^/([^/]+?)/services/fractional\\-cmo(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/fractional\\-cmo(?:/)?$"
     },
     {
       "page": "/[locale]/services/funnels",
@@ -563,6 +619,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/growth\\-consulting(?:/)?$"
     },
     {
+      "page": "/[locale]/services/landing-pages",
+      "regex": "^/([^/]+?)/services/landing\\-pages(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/landing\\-pages(?:/)?$"
+    },
+    {
       "page": "/[locale]/services/local-seo",
       "regex": "^/([^/]+?)/services/local\\-seo(?:/)?$",
       "routeKeys": {
@@ -571,12 +635,36 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/local\\-seo(?:/)?$"
     },
     {
+      "page": "/[locale]/services/marketing-audits",
+      "regex": "^/([^/]+?)/services/marketing\\-audits(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/marketing\\-audits(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/marketing-automation-crm",
+      "regex": "^/([^/]+?)/services/marketing\\-automation\\-crm(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/marketing\\-automation\\-crm(?:/)?$"
+    },
+    {
       "page": "/[locale]/services/meta-ads",
       "regex": "^/([^/]+?)/services/meta\\-ads(?:/)?$",
       "routeKeys": {
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/meta\\-ads(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/microsoft-ads",
+      "regex": "^/([^/]+?)/services/microsoft\\-ads(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/microsoft\\-ads(?:/)?$"
     },
     {
       "page": "/[locale]/services/paid-ads",
@@ -611,6 +699,14 @@
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/social\\-media(?:/)?$"
     },
     {
+      "page": "/[locale]/services/training-workshops",
+      "regex": "^/([^/]+?)/services/training\\-workshops(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/training\\-workshops(?:/)?$"
+    },
+    {
       "page": "/[locale]/services/video-marketing",
       "regex": "^/([^/]+?)/services/video\\-marketing(?:/)?$",
       "routeKeys": {
@@ -625,6 +721,30 @@
         "nxtPlocale": "nxtPlocale"
       },
       "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/web\\-design(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/website-maintenance",
+      "regex": "^/([^/]+?)/services/website\\-maintenance(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/website\\-maintenance(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/website-speed",
+      "regex": "^/([^/]+?)/services/website\\-speed(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/website\\-speed(?:/)?$"
+    },
+    {
+      "page": "/[locale]/services/youtube-ads",
+      "regex": "^/([^/]+?)/services/youtube\\-ads(?:/)?$",
+      "routeKeys": {
+        "nxtPlocale": "nxtPlocale"
+      },
+      "namedRegex": "^/(?<nxtPlocale>[^/]+?)/services/youtube\\-ads(?:/)?$"
     },
     {
       "page": "/[locale]/solutions",

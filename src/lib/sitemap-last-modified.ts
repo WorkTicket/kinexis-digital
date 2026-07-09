@@ -33,7 +33,7 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/": "2026-07-03",
   "/about": "2026-06-01",
   "/contact": "2026-07-03",
-  "/services": "2026-06-15",
+  "/services": "2026-07-07",
   "/blog": "2026-06-20",
   "/blog/posts": "2026-06-20",
   "/case-studies": "2026-06-01",
@@ -46,8 +46,8 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/terms": "2026-03-01",
 };
 
-const SERVICE_LAST_MODIFIED = "2026-06-15";
-const PRICING_LAST_MODIFIED = "2026-06-10";
+const SERVICE_LAST_MODIFIED = "2026-07-07";
+const PRICING_LAST_MODIFIED = "2026-07-07";
 const COMPARISON_LAST_MODIFIED = "2026-06-01";
 const INDUSTRY_LAST_MODIFIED = "2026-05-20";
 const SOLUTION_LAST_MODIFIED = "2026-05-25";

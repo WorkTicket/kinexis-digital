@@ -14,17 +14,20 @@ export const serviceNavGroups = [
     links: [
       { href: "/services/seo", key: "seo" as const },
       { href: "/services/local-seo", key: "localSeo" as const },
-      { href: "/services/google-ads", key: "googleAds" as const },
-      { href: "/services/meta-ads", key: "metaAds" as const },
       { href: "/services/ppc-management", key: "ppcManagement" as const },
-      { href: "/services/paid-ads", key: "paidAds" as const },
+      { href: "/services/meta-ads", key: "metaAds" as const },
+      { href: "/services/youtube-ads", key: "youtubeAds" as const },
+      { href: "/services/microsoft-ads", key: "microsoftAds" as const },
     ],
   },
   {
     key: "webAndConversion" as const,
     links: [
       { href: "/services/web-design", key: "webDesign" as const },
-      { href: "/services/funnels", key: "funnels" as const },
+      { href: "/services/landing-pages", key: "landingPages" as const },
+      { href: "/services/cro", key: "cro" as const },
+      { href: "/services/website-maintenance", key: "websiteMaintenance" as const },
+      { href: "/services/website-speed", key: "websiteSpeed" as const },
       { href: "/services/analytics", key: "analytics" as const },
     ],
   },
@@ -36,7 +39,18 @@ export const serviceNavGroups = [
       { href: "/services/email-marketing", key: "emailMarketing" as const },
       { href: "/services/social-media", key: "socialMedia" as const },
       { href: "/services/video-marketing", key: "videoMarketing" as const },
+      { href: "/services/copywriting", key: "copywriting" as const },
+    ],
+  },
+  {
+    key: "growthAndStrategy" as const,
+    links: [
       { href: "/services/growth-consulting", key: "growthConsulting" as const },
+      { href: "/services/marketing-audits", key: "marketingAudits" as const },
+      { href: "/services/funnels", key: "funnels" as const },
+      { href: "/services/marketing-automation-crm", key: "marketingAutomation" as const },
+      { href: "/services/fractional-cmo", key: "fractionalCmo" as const },
+      { href: "/services/training-workshops", key: "trainingWorkshops" as const },
     ],
   },
 ] as const;
@@ -47,6 +61,7 @@ export const serviceNavLinks: readonly ServiceNavLink[] = [
   ...serviceNavGroups[0].links,
   ...serviceNavGroups[1].links,
   ...serviceNavGroups[2].links,
+  ...serviceNavGroups[3].links,
 ];
 
 export const resourceNavGroups = [
@@ -77,7 +92,11 @@ export const resourceNavGroups = [
 ] as const;
 
 export const footerServiceLinks = [
-  { href: "/services/web-design", key: "webDesign" as const },
-  ...serviceNavLinks.slice(0, 5),
+  { href: "/services/web-design", key: "webDesignShort" as const },
+  { href: "/services/seo", key: "seo" as const },
+  { href: "/services/local-seo", key: "localSeo" as const },
+  { href: "/services/ppc-management", key: "ppcManagementPricing" as const },
+  { href: "/services/meta-ads", key: "metaAdsPricing" as const },
+  { href: "/services/youtube-ads", key: "youtubeAds" as const },
   { href: "/pricing", key: "pricing" as const },
 ];

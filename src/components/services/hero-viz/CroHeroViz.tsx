@@ -17,13 +17,13 @@ export default function CroHeroViz({ variantLabel }: Props) {
           <MiniPanel label={`${variantLabel} A`} value="1.2%" delay={0.5}>
             <SkeletonLine width="lg" />
             <SkeletonLine width="md" />
-            <div className="mt-2 flex h-7 items-center justify-center rounded-lg border border-dashed border-white/[0.08] bg-white/[0.02]">
+            <div className="mt-2 flex h-7 items-center justify-center rounded-lg border border-dashed border-strong bg-white/[0.02]">
               <span className="text-[6px] text-muted/40">Checkout</span>
             </div>
           </MiniPanel>
 
           <motion.div
-            className="flex h-7 w-7 shrink-0 flex-col items-center justify-center rounded-full border-2 border-white/[0.1] bg-[#0d1117] shadow-lg"
+            className="flex h-7 w-7 shrink-0 flex-col items-center justify-center rounded-full border-2 border-strong bg-[#0d1117] shadow-lg"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.65, type: "spring" }}
@@ -41,7 +41,7 @@ export default function CroHeroViz({ variantLabel }: Props) {
         </div>
 
         <motion.div
-          className="flex items-center justify-between rounded-xl border-2 border-white/[0.08] bg-[#0d1117] px-3 py-2 shadow-lg"
+          className="flex items-center justify-between rounded-xl border-2 border-strong bg-[#0d1117] px-3 py-2 shadow-lg"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95 }}

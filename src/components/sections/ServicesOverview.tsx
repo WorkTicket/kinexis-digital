@@ -6,7 +6,10 @@ import { Link } from "@/i18n/navigation";
 import { Search, BarChart3, Monitor, Filter, Palette, FileText } from "lucide-react";
 import { getServiceExploreLabel } from "@/lib/service-explore-labels";
 import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import Section from "@/components/shared/services/Section";
 
 const services = [
   {
@@ -25,7 +28,7 @@ const services = [
     icon: BarChart3,
     title: "Paid Ads",
     description: "Every dollar gets optimized toward booked calls with qualified buyers. We engineer every ad, audience, and bid strategy to maximize ROAS and fill your pipeline with real conversations, not just clicks.",
-    href: "/services/paid-ads",
+    href: "/services/ppc-management",
   },
   {
     icon: Filter,
@@ -52,16 +55,14 @@ export default function ServicesOverview() {
   const tCommon = useTranslations("common");
 
   return (
-    <section className="section-padding border-t border-white/[0.06]">
+    <Section id="services-overview" surfaceIndex={0}>
       <div className="container-site">
-        <div className="section-header">
-          <span className="section-label">Connected Services</span>
-          <h2 className="section-title">What we build for clients</h2>
-          <div className="section-divider" />
-          <p className="section-subtitle">
-            Every service gets measured against one question: does this actually move the revenue needle? If the answer is no, we do not do it.
-          </p>
-        </div>
+        <SectionHeader
+          badge="Connected Services"
+          title="What we build for clients"
+          description="Every service gets measured against one question: does this actually move the revenue needle? If the answer is no, we do not do it."
+          headingId="services-overview-heading"
+        />
 
         <motion.div
           className="section-content grid-tablet-services"
@@ -73,25 +74,25 @@ export default function ServicesOverview() {
           {services.map((service) => (
             <motion.div key={service.title} variants={fadeUp}>
               <Link href={service.href} className="group block h-full touch-manipulation">
-                <div className="service-card motion-card h-full flex flex-col">
+                <Card className="h-full flex flex-col">
                   <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 group-hover:bg-white/10 transition-all duration-300">
                     <service.icon className="h-6 w-6 text-neon-cyan" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="service-card__title group-hover:text-neon-cyan transition-colors duration-200">
+                    <h3 className="card-heading group-hover:text-neon-cyan transition-colors duration-200">
                       {service.title}
                     </h3>
                     <p className="mt-3 type-body text-muted">
                       {service.description}
                     </p>
                   </div>
-                  <div className="mt-8 pt-5 border-t border-white/10">
+                  <div className="mt-8 pt-5 border-t border-strong">
                     <span className="text-base font-semibold text-neon-cyan inline-flex items-center gap-2 min-h-touch">
                       {getServiceExploreLabel(service.href)}
                       <span className="transition-transform duration-200">&rarr;</span>
                     </span>
                   </div>
-                </div>
+                </Card>
               </Link>
             </motion.div>
           ))}
@@ -108,6 +109,6 @@ export default function ServicesOverview() {
           </Button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

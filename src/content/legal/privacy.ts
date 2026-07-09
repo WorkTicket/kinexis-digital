@@ -25,7 +25,7 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
       {
         title: "Information We Collect",
         paragraphs: [
-          "We collect information you provide directly, such as your name, email address, company name, phone number, service interests, and message content when you use our contact form, lead magnet, or chat widget.",
+          "We collect information you provide directly, such as your name, email address, company name, phone number, service interests, and message content when you use our contact form or lead magnet.",
           "We automatically collect certain technical data when you visit our site, including IP address, browser type, device information, pages viewed, referring URLs, and approximate location derived from IP. We use cookies and similar technologies as described below.",
         ],
       },
@@ -108,7 +108,7 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
       {
         title: "Información que Recopilamos",
         paragraphs: [
-          "Recopilamos la información que proporcionas directamente, como nombre, correo electrónico, empresa, teléfono, servicios de interés y mensajes cuando usas nuestro formulario de contacto, lead magnet o chat.",
+          "Recopilamos la información que proporcionas directamente, como nombre, correo electrónico, empresa, teléfono, servicios de interés y mensajes cuando usas nuestro formulario de contacto o lead magnet.",
           "Recopilamos automáticamente datos técnicos cuando visitas el sitio, incluyendo dirección IP, tipo de navegador, dispositivo, páginas vistas, URL de referencia y ubicación aproximada derivada de la IP.",
         ],
       },

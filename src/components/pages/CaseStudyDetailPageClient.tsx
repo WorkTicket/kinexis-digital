@@ -3,14 +3,15 @@
 import { m as motion } from "@/lib/framer";
 import CaseStudyResultsMetrics from "@/components/case-studies/CaseStudyResultsMetrics";
 import FAQSection from "@/components/sections/FAQSection";
-import ArticleHeroShell from "@/components/shared/ArticleHeroShell";
+import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import CTAArchetype from "@/components/ui/CTAArchetype";
-import ProofMetric from "@/components/ui/ProofMetric";
+import MetricCard from "@/components/ui/MetricCard";
 import SectionHeader from "@/components/ui/SectionHeader";
 import ServicePhaseList from "@/components/ui/ServicePhaseList";
 import type { CaseStudyDetail } from "@/content/case-study-details";
 import type { CaseStudySlugMeta } from "@/content/case-study-slug-meta";
-import { pageSectionClasses } from "@/lib/page-section-surface";
+import Section from "@/components/shared/services/Section";
+import { cardClasses } from "@/lib/card-styles";
 import type { BreadcrumbItem } from "@/lib/schema";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 
@@ -25,7 +26,7 @@ function FlowPills({ steps, align = "center" }: { steps: string[]; align?: "left
     <div className={align === "center" ? "flex flex-wrap items-center justify-center gap-2" : "flex flex-wrap gap-2"}>
       {steps.map((step, i) => (
         <span key={step} className="inline-flex items-center gap-2">
-          <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-xs font-semibold text-muted">
+          <span className="rounded-full border border-strong bg-surface-raised px-3.5 py-1.5 text-xs font-semibold text-muted">
             {step}
           </span>
           {i < steps.length - 1 && (
@@ -43,7 +44,7 @@ function ProgressionChart({ meta }: { meta: CaseStudySlugMeta }) {
   const max = Math.max(...meta.progressionPoints.map((p) => p.value));
 
   return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-8">
+    <div className={cardClasses({ surface: "elevated", hover: false, className: "!p-6 md:!p-8" })}>
       <div className="space-y-6">
         {meta.progressionPoints.map((pt) => {
           const pct = (pt.value / max) * 100;
@@ -57,7 +58,7 @@ function ProgressionChart({ meta }: { meta: CaseStudySlugMeta }) {
                 <span className="text-xs font-semibold uppercase tracking-wider text-muted">{pt.label}</span>
                 <span className="text-sm font-bold tabular-nums text-neon-cyan">{val}</span>
               </div>
-              <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-white/[0.04]">
+              <div className="relative h-2.5 w-full overflow-hidden rounded-full bg-surface-glass">
                 <motion.div
                   className="absolute left-0 top-0 h-full rounded-full bg-gradient"
                   initial={{ width: 0 }}
@@ -95,7 +96,8 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
 
   return (
     <article>
-      <ArticleHeroShell
+      <StaticHeroShell
+        variant="article"
         label={cs.industry}
         headline={cs.headline}
         subtitle={`${cs.title} · ${cs.client} · ${meta.timeline}`}
@@ -104,16 +106,16 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
         breadcrumbs={breadcrumbs}
       />
 
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="results-metrics" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <CaseStudyResultsMetrics results={cs.resultsList} />
         </div>
-      </section>
+      </Section>
 
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="overview-meta" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <motion.div
-            className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-8"
+            className={cardClasses({ surface: "elevated", hover: false, className: "!p-6 md:!p-8" })}
             variants={fadeUp}
             initial="hidden"
             whileInView="visible"
@@ -129,14 +131,15 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
             </dl>
           </motion.div>
         </div>
-      </section>
+      </Section>
 
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="overview" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
           <SectionHeader
             badge="Overview"
             title="What happened, in three sentences"
             align="left"
+            headingId="overview-heading"
           />
           <motion.div
             className="section-content space-y-4"
@@ -153,12 +156,12 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
             </motion.p>
           </motion.div>
         </div>
-      </section>
+      </Section>
 
       {cs.problems.length > 0 && (
-        <section className={pageSectionClasses(surfaceIndex++)}>
+        <Section id="kickoff-problems" surfaceIndex={surfaceIndex++}>
           <div className="container-site">
-            <SectionHeader badge={cs.beforeHeading} title="Where things stood at kickoff" align="left" />
+            <SectionHeader badge={cs.beforeHeading} title="Where things stood at kickoff" align="left" headingId="kickoff-problems-heading" />
             <motion.div
               className="section-content grid gap-grid-sm sm:grid-cols-2 xl:grid-cols-4"
               variants={stagger}
@@ -170,7 +173,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
                 <motion.div
                   key={group.category}
                   variants={fadeUp}
-                  className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 md:p-8"
+                  className={cardClasses({ surface: "elevated", hover: false, className: "!p-6 md:!p-8" })}
                 >
                   <h3 className="text-lg font-bold text-neon-cyan">{group.category}</h3>
                   <ul className="mt-4 space-y-3">
@@ -185,13 +188,13 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
               ))}
             </motion.div>
           </div>
-        </section>
+        </Section>
       )}
 
       {cs.strategyPhases.length > 0 && (
-        <section className={pageSectionClasses(surfaceIndex++)}>
+        <Section id="strategy-phases" surfaceIndex={surfaceIndex++}>
           <div className="container-site">
-            <SectionHeader badge={cs.strategyHeading} title="Five moves, run in sequence" align="left" />
+            <SectionHeader badge={cs.strategyHeading} title="Five moves, run in sequence" align="left" headingId="strategy-phases-heading" />
             <motion.div
               className="section-content space-y-8"
               variants={fadeUp}
@@ -205,10 +208,10 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
               <ServicePhaseList phases={strategyPhases} />
             </motion.div>
           </div>
-        </section>
+        </Section>
       )}
 
-      <section className={pageSectionClasses(surfaceIndex++, { className: "section--data" })}>
+      <Section id="growth-results" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <SectionHeader
             badge={cs.resultsHeading}
@@ -220,9 +223,9 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
             <CaseStudyResultsMetrics results={cs.resultsList} className="mx-auto max-w-2xl" />
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="deliverables" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <div className="grid gap-10 md:grid-cols-[1.3fr_1fr] md:gap-14">
             <div>
@@ -235,8 +238,8 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
                 viewport={{ once: true, margin: "-60px" }}
               >
                 {meta.deliverables.map((d) => (
-                  <motion.div key={d.label} variants={fadeUp} className="proof-metric-card text-center">
-                    <ProofMetric value={d.count} label={d.label} labelVariant="stat" />
+                  <motion.div key={d.label} variants={fadeUp}>
+                    <MetricCard value={d.count} label={d.label} labelVariant="stat" />
                   </motion.div>
                 ))}
               </motion.div>
@@ -253,7 +256,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
                 {cs.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-xs font-medium text-muted"
+                    className="rounded-full border border-strong bg-surface-raised px-3.5 py-1.5 text-xs font-medium text-muted"
                   >
                     {tech}
                   </span>
@@ -262,11 +265,11 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className={pageSectionClasses(surfaceIndex++)}>
+      <Section id="key-takeaways" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-4xl mx-auto">
-          <SectionHeader badge="Key Takeaways" title="Why it compounded" align="center" />
+          <SectionHeader badge="Key Takeaways" title="Why it compounded" align="center" headingId="key-takeaways-heading" />
           <motion.div
             className="section-content flex justify-center"
             variants={fadeUp}
@@ -277,7 +280,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
             <FlowPills steps={meta.takeawaySteps} />
           </motion.div>
         </div>
-      </section>
+      </Section>
 
       <FAQSection
         label="FAQ"

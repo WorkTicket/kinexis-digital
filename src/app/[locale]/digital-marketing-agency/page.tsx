@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { setRequestLocale } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
+import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import { agencyHubContent } from "@/content/agency-hub";
 import { getLocalizedContent } from "@/lib/get-localized-content";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
@@ -40,6 +41,15 @@ export default async function DigitalMarketingAgencyPage({ params }: Props) {
             { name: "Digital Marketing Agency" },
           ]),
         ]}
+      />
+      <StaticHeroShell
+        variant="showcase"
+        label={c.hero.label}
+        line1={c.hero.headlineLine1}
+        line2={c.hero.headlineLine2}
+        subtitle={c.hero.subtitle}
+        ctaLabel={c.hero.ctaLabel}
+        ctaHref="/contact"
       />
       <AgencyHubPageClient content={c} />
     </>

@@ -1,14 +1,11 @@
-"use client";
-
-import { useMemo } from "react";
-import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
-import TwoLineText from "@/components/ui/TwoLineText";
-import { m as motion } from "@/lib/framer";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
-const OutcomeComparison = dynamic(() => import("@/components/ui/DataViz/OutcomeComparison"));
+import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/shared/services/Section";
+import { cardClasses } from "@/lib/card-styles";
+import OutcomeComparison from "@/components/ui/DataViz/OutcomeComparison";
 
 const caseStudyMeta = [
   {
@@ -40,40 +37,35 @@ const caseStudyMeta = [
   },
 ];
 
-export default function FeaturedResults() {
+type Props = { surfaceIndex?: number };
+
+export default function FeaturedResults({ surfaceIndex = 0 }: Props) {
   const t = useTranslations("featuredResults");
   const tCommon = useTranslations("common");
-  const { fadeUp } = useMotionVariants();
 
-  const caseStudies = useMemo(
-    () =>
-      caseStudyMeta.map((meta) => ({
-        ...meta,
-        category: t(`cases.${meta.key}.category`),
-        title: t(`cases.${meta.key}.title`),
-        headline: t(`cases.${meta.key}.headline`),
-        summary: t(`cases.${meta.key}.summary`),
-      })),
-    [t]
-  );
+  const caseStudies = caseStudyMeta.map((meta) => ({
+    ...meta,
+    category: t(`cases.${meta.key}.category`),
+    title: t(`cases.${meta.key}.title`),
+    headline: t(`cases.${meta.key}.headline`),
+    summary: t(`cases.${meta.key}.summary`),
+  }));
 
   return (
-    <section className="section-padding border-t border-white/[0.06]">
+    <Section id="featured-results" surfaceIndex={surfaceIndex}>
       <div className="container-site">
-        <div className="section-header">
-          <span className="section-label">{t("label")}</span>
-          <h2 className="section-title"><TwoLineText text={t("title")} variant="section" /></h2>
-          <p className="section-subtitle"><TwoLineText text={t("subtitle")} variant="body" /></p>
-        </div>
+        <SectionHeader
+          badge={t("label")}
+          title={t("title")}
+          description={t("subtitle")}
+          headingId="featured-results-heading"
+        />
 
-        <div className="section-content space-y-grid-lg">
+        <Reveal stagger className="section-content space-y-grid-lg">
           {caseStudies.map((cs, i) => (
-            <motion.article
+            <article
               key={cs.slug}
               className="relative"
-              initial={fadeUp.hidden}
-              whileInView={fadeUp.visible}
-              viewport={{ once: true, margin: "-100px" }}
             >
               <div
                 className={cn(
@@ -99,7 +91,7 @@ export default function FeaturedResults() {
                 </div>
 
                 <div className="relative">
-                  <div className="rounded-2xl border border-white/[0.06] bg-bg-dark card-pad">
+                  <div className={cardClasses({ hover: false, className: "!bg-bg-dark" })}>
                     <div className="flex items-baseline justify-between mb-6">
                       <span className="text-xs font-semibold uppercase tracking-wider text-muted">
                         {tCommon("outcomeComparison")}
@@ -123,9 +115,9 @@ export default function FeaturedResults() {
                   />
                 </div>
               </div>
-            </motion.article>
+            </article>
           ))}
-        </div>
+        </Reveal>
 
         <div className="section-cta-row">
           <Button
@@ -136,6 +128,6 @@ export default function FeaturedResults() {
           </Button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

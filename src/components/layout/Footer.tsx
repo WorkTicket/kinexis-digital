@@ -2,9 +2,10 @@ import { getTranslations } from "next-intl/server";
 import { Mail } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import SiteLogo from "@/components/ui/SiteLogo";
+import Button from "@/components/ui/Button";
+import { cardClasses } from "@/lib/card-styles";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { mainNavLinks, footerServiceLinks } from "@/lib/site-nav";
-import { cn } from "@/lib/utils";
 
 export default async function Footer() {
   const tNav = await getTranslations("nav");
@@ -14,7 +15,7 @@ export default async function Footer() {
   const tA11y = await getTranslations("a11y");
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
+    <footer className="relative overflow-hidden border-t border-surface bg-bg-dark">
       {/* Dot grid texture */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.014)_1px,transparent_1px)] bg-[size:28px_28px] opacity-60"
@@ -41,18 +42,18 @@ export default async function Footer() {
 
           {/* ── Brand column ── */}
           <div className="col-span-2 flex flex-col items-center lg:col-span-1 lg:pr-10">
-            <Link href="/" className="inline-block no-underline">
+            <Link href="/" className="group flex flex-col items-center no-underline">
               <SiteLogo
-                src="/assets/logos/KINEXIS_icon_logo.webp"
+                src="/assets/logos/KINEXIS_icon_mark.webp"
                 alt={tA11y("logoAlt")}
-                width={280}
-                height={188}
-                className="h-36 w-36 !object-cover !object-center overflow-hidden"
+                width={105}
+                height={59}
+                className="h-8 w-auto opacity-90 transition-opacity duration-300 group-hover:opacity-100"
               />
+              <p className="mt-2 text-xl font-bold tracking-wide text-white/80 text-center transition-colors duration-300 group-hover:text-white/90">
+                KINEXIS Digital Marketing
+              </p>
             </Link>
-            <p className="mt-3 text-xl font-bold tracking-wide text-white/80 text-center">
-              KINEXIS Digital Marketing
-            </p>
             <div className="mt-4 flex flex-col gap-2.5">
               <a
                 href="mailto:hello@kinexisdigital.com"
@@ -108,23 +109,22 @@ export default async function Footer() {
 
           {/* ── Mission card — right of services ── */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 flex flex-col">
+            <div className={cardClasses({ surface: "elevated", hover: false, className: "p-4 flex flex-col" })}>
               <p className="text-sm font-semibold leading-snug text-white/80">
                 {tFooter("missionTitle")}
               </p>
               <p className="mt-1.5 text-[13px] leading-relaxed text-white/60">
                 {tFooter("missionBody")}
               </p>
-              <Link
+              <Button
                 href="/contact"
+                size="sm"
+                variant="primary"
                 aria-label={tCommon("bookStrategyCall")}
-                className={cn(
-                  "mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient px-4 py-3 text-sm font-semibold tracking-wide text-white sm:w-auto",
-                  "min-h-touch min-w-touch-lg sm:hover:shadow-glow"
-                )}
+                className="mt-4 w-full sm:w-auto"
               >
                 {tCommon("bookStrategyCall")}
-              </Link>
+              </Button>
             </div>
           </div>
 
@@ -132,7 +132,7 @@ export default async function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="relative z-10 border-t border-white/[0.04]">
+      <div className="relative z-10 border-t border-subtle">
         <div className="container-site flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
           <div className="flex flex-col items-center gap-2 sm:items-start">
             <p className="text-[11px] tracking-wide text-white/50">

@@ -59,12 +59,20 @@ export type CROContent = {
     title: string;
     subtitle: string;
   };
+  processIntro: string;
   phases: ServicePhase[];
+  capabilityBodies: {
+    abTesting: string;
+    heatmaps: string;
+    uxResearch: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -76,7 +84,7 @@ export const croContent: Record<Locale, CROContent> = {
       headlineLine2: "you're already paying for.",
       subtitle:
         "Hands-on A/B testing, heatmap analysis,|and UX audits that keep improving your conversion rates.",
-      ctaLabel: "Start Optimizing",
+      ctaLabel: "Get Your CRO Audit",
       variantLabel: "Variant",
     },
     testTrackerSection: {
@@ -143,39 +151,47 @@ export const croContent: Record<Locale, CROContent> = {
       subtitle:
         "A continuous loop of data collection, hypothesis testing,|and implementation that never stops improving.",
     },
+    processIntro:
+      "CRO is a monthly discipline, not a one-time project. We collect behavioral data, test hypotheses on your highest-traffic pages, wait for statistical significance, then roll winners site-wide before starting the next round.",
     phases: [
       {
         title: "Collect Data",
-        desc: "Heatmaps, session recordings, and analytics to establish baselines from both numbers and user behavior",
-        metric: "Full conversion audit in week 1",
+        desc: "Heatmaps, session recordings, and analytics to establish baselines from both numbers and user behavior.",
+        metric: "",
       },
       {
         title: "Generate Hypotheses",
-        desc: "Every test starts with a hypothesis rooted in real data, not guesses",
-        metric: "8+ test hypotheses per quarter",
+        desc: "Every test starts with a hypothesis rooted in real data, where visitors hesitate, abandon, or scroll past the CTA.",
+        metric: "",
       },
       {
         title: "Run Experiments",
-        desc: "A/B tests and multivariate tests deployed on proven testing tools",
-        metric: "Avg. 4.2 active tests per month",
-      },
-      {
-        title: "Analyze Results",
-        desc: "Statistical significance checks so we don't call a winner too early",
-        metric: "95%+ statistical confidence required",
+        desc: "A/B tests deployed on proven tools with sample sizes calculated before launch.",
+        metric: "",
       },
       {
         title: "Implement & Iterate",
-        desc: "Winning variations deployed. Roadmap updated with fresh insights",
-        metric: "Avg. 23% conversion lift per winner",
+        desc: "Winning variations deployed site-wide. Roadmap updated with fresh insights for the next test cycle.",
+        metric: "",
       },
     ],
+    capabilityBodies: {
+      abTesting:
+        "Button color tests do not compound. We test assumptions about why people do not buy, form length, CTA placement, headline clarity, social proof position. Every experiment documents sample size, significance, and revenue impact before we call a winner.",
+      heatmaps:
+        "Analytics tell you what happened. Heatmaps and session recordings show why. We watch where visitors rage-click, where mobile users abandon forms, and which sections never get scrolled. Then prioritize fixes by traffic volume and revenue potential.",
+      uxResearch:
+        "Before we test headlines, we fix broken basics: mobile layouts that clip CTAs, pages that load slow enough to spike bounce, navigation that hides the path to purchase. Qualitative research catches what dashboards miss.",
+    },
     cta: {
       headline: "Ready to turn more traffic into revenue?",
       subtitle:
         "We'll build a testing program that steadily improves your conversion rates,|one winning test at a time.",
-      ctaLabel: "Start Optimizing",
+      ctaLabel: "See CRO Pricing",
     },
+    inlineCtaLabel: "Get a Conversion Audit",
+    inlineCtaSubtitle:
+      "We will review your highest-traffic pages, identify where visitors drop off, and outline the tests most likely to move conversion rate first.",
     faqs: [
       { question: "How do you decide what to test?", answer: "Every test starts with data. We review heatmaps, session recordings, analytics, and on-site behavior to find where visitors are dropping off or hesitating. Tests are hypotheses backed by real evidence, not guesses." },
       { question: "How long does a test run?", answer: "Tests run until they reach 95%+ statistical significance, which typically takes 2–4 weeks depending on traffic volume. We never call a winner early. That's how you end up implementing changes that hurt performance." },
@@ -191,7 +207,7 @@ export const croContent: Record<Locale, CROContent> = {
       headlineLine2: "en ingresos.",
       subtitle:
         "A/B testing práctico,|análisis de heatmaps y auditorías UX que mejoran continuamente tus tasas de conversión.",
-      ctaLabel: "Empieza a Optimizar",
+      ctaLabel: "Obtén Tu Auditoría CRO",
       variantLabel: "Variante",
     },
     testTrackerSection: {
@@ -258,39 +274,47 @@ export const croContent: Record<Locale, CROContent> = {
       subtitle:
         "Un bucle continuo de recopilación de datos,|prueba de hipótesis e implementación que nunca deja de mejorar.",
     },
+    processIntro:
+      "CRO es una disciplina mensual, no un proyecto único. Recopilamos datos conductuales, probamos hipótesis en tus páginas de mayor tráfico, esperamos significancia estadística y desplegamos ganadores en todo el sitio antes de la siguiente ronda.",
     phases: [
       {
         title: "Recopilar Datos",
-        desc: "Heatmaps, grabaciones de sesión y analytics para establecer líneas base con números y comportamiento",
-        metric: "Auditoría de conversión completa en semana 1",
+        desc: "Heatmaps, grabaciones de sesión y analytics para establecer líneas base con números y comportamiento.",
+        metric: "",
       },
       {
         title: "Generar Hipótesis",
-        desc: "Cada test empieza con una hipótesis basada en datos reales, no en suposiciones",
-        metric: "8+ hipótesis de test por trimestre",
+        desc: "Cada test empieza con una hipótesis basada en datos reales, dónde dudan, abandonan o pasan de largo el CTA los visitantes.",
+        metric: "",
       },
       {
         title: "Ejecutar Experimentos",
-        desc: "Tests A/B y multivariados desplegados en herramientas de testing probadas",
-        metric: "Prom. 4.2 tests activos por mes",
-      },
-      {
-        title: "Analizar Resultados",
-        desc: "Comprobaciones de significancia estadística para no declarar ganador demasiado pronto",
-        metric: "95%+ de confianza estadística requerida",
+        desc: "Tests A/B desplegados en herramientas probadas con tamaños de muestra calculados antes del lanzamiento.",
+        metric: "",
       },
       {
         title: "Implementar e Iterar",
-        desc: "Variaciones ganadoras desplegadas. Roadmap actualizado con nuevos insights",
-        metric: "Prom. 23% aumento de conversión por ganador",
+        desc: "Variaciones ganadoras desplegadas en todo el sitio. Roadmap actualizado con nuevos insights para el siguiente ciclo.",
+        metric: "",
       },
     ],
+    capabilityBodies: {
+      abTesting:
+        "Los tests de color de botón no se acumulan. Probamos suposiciones sobre por qué la gente no compra, longitud de formulario, ubicación del CTA, claridad del titular, posición de prueba social. Cada experimento documenta tamaño de muestra, significancia e impacto en ingresos antes de declarar un ganador.",
+      heatmaps:
+        "La analítica te dice qué pasó. Los heatmaps y grabaciones muestran por qué. Observamos dónde hacen rage-click los visitantes, dónde abandonan formularios en móvil y qué secciones nunca reciben scroll, luego priorizamos correcciones por volumen de tráfico y potencial de ingresos.",
+      uxResearch:
+        "Antes de probar titulares, corregimos lo básico roto: layouts móviles que recortan CTAs, páginas que cargan lo suficientemente lento para disparar rebote, navegación que esconde el camino a la compra. La investigación cualitativa detecta lo que los dashboards no ven.",
+    },
     cta: {
       headline: "¿Listo para convertir más tráfico en ingresos?",
       subtitle:
         "Construiremos un programa de testing que mejore tus tasas de conversión,|un test ganador a la vez.",
-      ctaLabel: "Empieza a Optimizar",
+      ctaLabel: "Ver Precios CRO",
     },
+    inlineCtaLabel: "Obtén una Auditoría de Conversión",
+    inlineCtaSubtitle:
+      "Revisaremos tus páginas de mayor tráfico, identificaremos dónde abandonan los visitantes y delinearemos los tests con mayor probabilidad de mover la conversión primero.",
     faqs: [
       { question: "¿Cómo deciden qué probar?", answer: "Cada test empieza con datos. Revisamos heatmaps, grabaciones de sesiones, analítica y comportamiento en el sitio para encontrar dónde los visitantes abandonan o dudan. Los tests son hipótesis respaldadas por evidencia real, no suposiciones." },
       { question: "¿Cuánto tiempo dura un test?", answer: "Los tests se ejecutan hasta alcanzar el 95%+ de significancia estadística, lo que generalmente tarda 2-4 semanas según el volumen de tráfico. Nunca declaramos un ganador prematuramente." },
@@ -298,4 +322,5 @@ export const croContent: Record<Locale, CROContent> = {
       { question: "¿Necesito mucho tráfico para que funcione el CRO?", answer: "Necesitas suficiente tráfico para alcanzar significancia estadística en un tiempo razonable. Generalmente recomendamos al menos 500 completaciones de objetivo mensuales antes de iniciar un programa de testing." },
       { question: "¿Qué páginas priorizan para los tests?", answer: "Páginas de alto tráfico con objetivos de conversión claros: homepage, páginas de servicio o producto, páginas de precios y flujos de checkout. Identificamos dónde una mejora de conversión tendrá mayor impacto en ingresos." },
     ],
-  },};
+  },
+};

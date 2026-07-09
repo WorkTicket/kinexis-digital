@@ -1,8 +1,9 @@
 import type { ServiceSeoContent } from "@/content/service-seo/types";
 import type { Locale } from "@/i18n/routing";
+import { getServiceSeoContent } from "@/content/service-seo";
 import { seoContent } from "@/content/services/seo";
 import { webDesignContent } from "@/content/services/web-design";
-import { paidAdsContent } from "@/content/services/paid-ads";
+import { paidAdsContent, metaAdsPageContent } from "@/content/services/paid-ads";
 import { localSeoContent } from "@/content/services/local-seo";
 import { croContent } from "@/content/services/cro";
 import { emailMarketingContent } from "@/content/services/email-marketing";
@@ -13,8 +14,13 @@ import { brandingContent } from "@/content/services/branding";
 import { analyticsContent } from "@/content/services/analytics";
 import { growthConsultingContent } from "@/content/services/growth-consulting";
 import { funnelsContent } from "@/content/services/funnels";
+import { landingPagesContent } from "@/content/services/landing-pages";
+import { copywritingContent } from "@/content/services/copywriting";
+import { youtubeAdsContent } from "@/content/services/youtube-ads";
 import type { ServiceSectionData, ServiceSectionTableHeaders, VisualVariant } from "./types";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
+import { buildGenericRichSections } from "./generic-service-capabilities";
+import { getGenericRichServiceContent } from "@/content/services/generic-rich-service-content";
 
 type Point = { title: string; description: string; metric?: string };
 
@@ -25,71 +31,63 @@ function section(
   visualVariant: VisualVariant,
   points: Point[],
   tableHeaders?: ServiceSectionTableHeaders,
+  body?: string,
+  maxCards = 3,
 ): ServiceSectionData {
-  return { id, headline, subheadline, visualVariant, points, tableHeaders };
-}
-
-function fromDeliverables(
-  seo: ServiceSeoContent,
-  keys: string[],
-  visualVariant: VisualVariant,
-  idPrefix: string,
-): Record<string, ServiceSectionData> {
-  const items = seo.deliverables.items;
-  const chunk = Math.ceil(items.length / keys.length);
-  return Object.fromEntries(
-    keys.map((key, i) => {
-      const slice = items.slice(i * chunk, (i + 1) * chunk);
-      return [
-        key,
-        section(
-          `${idPrefix}-${key.toLowerCase()}`,
-          slice[0]?.title ?? key,
-          slice.map((s) => s.description).join(" "),
-          visualVariant,
-          slice.map((s) => ({ title: s.title, description: s.description, metric: "Included" })),
-        ),
-      ];
-    }),
-  );
+  return {
+    id,
+    headline,
+    subheadline,
+    visualVariant,
+    points: points.slice(0, maxCards),
+    tableHeaders,
+    body,
+    maxCards,
+  };
 }
 
 function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: VisualVariant): Record<string, ServiceSectionData> {
   const isEn = locale === "en";
 
   if (slug === "seo") {
+    const c = seoContent[locale];
     return {
       SeoAudit: section(
         "seo-audit",
         isEn ? "Technical SEO Audit" : "Auditoría SEO Técnica",
         isEn ? "Find what's blocking your highest-value pages from ranking." : "Encuentra qué bloquea tus páginas de mayor valor.",
-        "dashboard",
+        "content",
         [
-          { title: "Crawl & Indexation", description: isEn ? "Orphan pages, redirect chains, index bloat" : "Páginas huérfanas, cadenas de redirección e inflación de índice", metric: "Week 1" },
-          { title: "Core Web Vitals", description: isEn ? "LCP, CLS, mobile usability" : "LCP, CLS y usabilidad móvil", metric: "Week 1" },
-          { title: "Schema & Structure", description: isEn ? "Structured data on revenue pages" : "Datos estructurados en páginas de ingresos", metric: "Week 1" },
+          { title: isEn ? "Crawl & Indexation" : "Rastreo e Indexación", description: isEn ? "Orphan pages, redirect chains, and index bloat fixed in priority order." : "Páginas huérfanas, cadenas de redirección e inflación de índice corregidas por prioridad." },
+          { title: isEn ? "Core Web Vitals" : "Core Web Vitals", description: isEn ? "LCP, CLS, and mobile usability tied to the pages that sell." : "LCP, CLS y usabilidad móvil ligados a las páginas que venden." },
         ],
+        undefined,
+        c.capabilityBodies.seoAudit,
+        2,
       ),
       RankingStrategy: section(
         "ranking-strategy",
-        isEn ? "Ranking Strategy" : "Estrategia de Posicionamiento",
-        seoContent[locale].keywordMatrixSubtitle,
-        "chart",
-        seoContent[locale].keywordMatrix.slice(0, 4).map((k) => ({ title: k.keyword, description: k.desc, metric: k.type })),
+        c.keywordMatrixTitle,
+        c.keywordMatrixSubtitle,
+        "dashboard",
+        c.keywordMatrix.slice(0, 3).map((k) => ({ title: k.keyword, description: k.desc, metric: k.type })),
+        {
+          col1: c.keywordColKeyword,
+          col2: c.keywordColType,
+          col3: isEn ? "Intent signal" : "Señal de intención",
+        },
+        c.capabilityBodies.rankingStrategy,
+        3,
       ),
       ContentStrategy: section(
         "content-strategy",
-        isEn ? "Content Strategy" : "Estrategia de Contenido",
-        seoContent[locale].ecosystemSubtitle,
-        "split",
-        seoContent[locale].ecosystemNodes.map((n) => ({ title: n.label, description: n.desc })),
-      ),
-      TechnicalSeo: section(
-        "technical-seo",
-        isEn ? "Technical SEO" : "SEO Técnico",
-        seoContent[locale].serpSubtitle,
-        "mockup",
-        seoContent[locale].serpFeatures.map((f) => ({ title: f.label, description: f.desc, metric: f.share })),
+        isEn ? "Content & Technical SEO" : "Contenido y SEO Técnico",
+        c.ecosystemSubtitle,
+        "chart",
+        c.ecosystemNodes.slice(0, 4).map((n) => ({ title: n.label, description: n.desc })),
+        undefined,
+        c.capabilityBodies.contentStrategy,
+        4,
       ),
     };
   }
@@ -102,69 +100,428 @@ function buildFlagshipSections(slug: ServiceSeoSlug, locale: Locale, _variant: V
       col3: c.roasDashboard.headerRoas,
     };
     return {
-      CampaignArchitecture: section("campaign-architecture", c.budget.title, c.budget.subtitle, "dashboard", c.budget.sources.map((s) => ({ title: s.source, description: isEn ? "Intent-segmented campaign" : "Campaña por intención", metric: "Active" })), {
-        col1: isEn ? "Source" : "Fuente",
-        col2: isEn ? "Approach" : "Enfoque",
-        col3: isEn ? "Status" : "Estado",
-      }),
-      KeywordResearch: section("keyword-research", isEn ? "Keyword Research & Negatives" : "Palabras Clave y Negativas", isEn ? "High-intent targets with weekly reviews." : "Objetivos de alta intención.", "chart", [
-        { title: "Brand Terms", description: isEn ? "Protect branded searches" : "Protege búsquedas de marca", metric: "4.2x" },
-        { title: "Commercial Intent", description: isEn ? "Buyer-intent queries" : "Consultas comerciales", metric: "3.6x" },
-        { title: "Negative Lists", description: isEn ? "Weekly irrelevant query blocking" : "Bloqueo semanal", metric: "-32%" },
-        { title: isEn ? "Search Term Mining" : "Minería de términos", description: isEn ? "Winning queries promoted, wasted spend cut each week" : "Consultas ganadoras promovidas, gasto cortado cada semana", metric: isEn ? "240+ reviewed" : "240+ revisadas" },
-      ]),
-      LandingPages: section(
-        "landing-pages",
-        c.conversion.title,
-        c.conversion.subtitle,
-        "chart",
-        c.conversion.cards.map((x) => ({ title: x.label, description: x.desc, metric: x.metric })),
+      CampaignArchitecture: section(
+        "campaign-architecture",
+        c.budget.title,
+        c.budget.subtitle,
+        "dashboard",
+        c.budget.sources.slice(0, 3).map((s) => ({ title: s.source, description: isEn ? "Intent-segmented campaign" : "Campaña por intención" })),
         {
-          col1: isEn ? "Conversion lever" : "Palanca de conversión",
+          col1: isEn ? "Source" : "Fuente",
           col2: isEn ? "Approach" : "Enfoque",
-          col3: isEn ? "Result" : "Resultado",
+          col3: isEn ? "Status" : "Estado",
         },
+        c.capabilityBodies.campaignArchitecture,
+        3,
       ),
-      ConversionTracking: section("conversion-tracking", c.roasDashboard.title, c.roasDashboard.subtitle, "dashboard", c.channels.map((x) => ({ title: x.channel, description: x.status, metric: x.status === "scaling" ? "4.2x ROAS" : x.status === "optimizing" ? "On target" : "Testing" })), channelHeaders),
+      KeywordResearch: section(
+        "keyword-research",
+        isEn ? "Keyword Research & Negatives" : "Palabras Clave y Negativas",
+        isEn ? "High-intent targets with weekly search term discipline." : "Objetivos de alta intención con disciplina semanal.",
+        "chart",
+        [
+          { title: isEn ? "Brand Terms" : "Términos de Marca", description: isEn ? "Protect branded searches" : "Protege búsquedas de marca" },
+          { title: isEn ? "Commercial Intent" : "Intención Comercial", description: isEn ? "Buyer-intent queries only" : "Solo consultas con intención de compra" },
+          { title: isEn ? "Negative Lists" : "Listas Negativas", description: isEn ? "Weekly irrelevant query blocking" : "Bloqueo semanal de consultas irrelevantes" },
+        ],
+        undefined,
+        c.capabilityBodies.keywordResearch,
+        3,
+      ),
+      ConversionTracking: section(
+        "conversion-tracking",
+        c.roasDashboard.title,
+        c.roasDashboard.subtitle,
+        "dashboard",
+        c.channels.slice(0, 3).map((x) => ({ title: x.channel, description: x.status })),
+        channelHeaders,
+        c.capabilityBodies.conversionTracking,
+        3,
+      ),
+    };
+  }
+
+  if (slug === "paid-ads") {
+    const c = paidAdsContent[locale];
+    const channelHeaders = {
+      col1: c.roasDashboard.headerChannel,
+      col2: c.roasDashboard.headerStatus,
+      col3: c.roasDashboard.headerRoas,
+    };
+    return {
+      ChannelStrategy: section(
+        "channel-strategy",
+        isEn ? "Channel Strategy & Selection" : "Estrategia y Selección de Canal",
+        isEn ? "Platform picks based on buyer behavior, not hype." : "Elección de plataforma según comportamiento del comprador, no hype.",
+        "dashboard",
+        c.channels.slice(0, 3).map((x) => ({ title: x.channel, description: x.status })),
+        channelHeaders,
+        c.capabilityBodies.channelStrategy,
+        3,
+      ),
+      CampaignStructure: section(
+        "campaign-structure",
+        c.budget.title,
+        c.budget.subtitle,
+        "chart",
+        c.budget.sources.slice(0, 3).map((s) => ({ title: s.source, description: isEn ? "Intent-segmented build" : "Construcción por intención" })),
+        undefined,
+        c.capabilityBodies.campaignArchitecture,
+        3,
+      ),
+      Attribution: section(
+        "attribution",
+        isEn ? "Attribution & CRM Alignment" : "Atribución y Alineación CRM",
+        isEn ? "Dashboards and pipeline that tell the same story." : "Dashboards y pipeline que cuentan la misma historia.",
+        "dashboard",
+        c.conversion.cards.slice(0, 3).map((x) => ({ title: x.label, description: x.desc })),
+        undefined,
+        c.capabilityBodies.attribution,
+        3,
+      ),
+    };
+  }
+
+  if (slug === "ppc-management") {
+    const c = paidAdsContent[locale];
+    const channelHeaders = {
+      col1: c.roasDashboard.headerChannel,
+      col2: c.roasDashboard.headerStatus,
+      col3: c.roasDashboard.headerRoas,
+    };
+    return {
+      CampaignArchitecture: section(
+        "campaign-architecture",
+        c.budget.title,
+        c.budget.subtitle,
+        "dashboard",
+        c.budget.sources.slice(0, 3).map((s) => ({ title: s.source, description: isEn ? "Intent-segmented campaign" : "Campaña por intención" })),
+        {
+          col1: isEn ? "Source" : "Fuente",
+          col2: isEn ? "Approach" : "Enfoque",
+          col3: isEn ? "Status" : "Estado",
+        },
+        c.capabilityBodies.campaignArchitecture,
+        3,
+      ),
+      KeywordResearch: section(
+        "keyword-research",
+        isEn ? "Keyword Research & Negatives" : "Palabras Clave y Negativas",
+        isEn ? "High-intent targets with weekly search term discipline." : "Objetivos de alta intención con disciplina semanal.",
+        "chart",
+        [
+          { title: isEn ? "Brand Terms" : "Términos de Marca", description: isEn ? "Protect branded searches" : "Protege búsquedas de marca" },
+          { title: isEn ? "Commercial Intent" : "Intención Comercial", description: isEn ? "Buyer-intent queries only" : "Solo consultas con intención de compra" },
+          { title: isEn ? "Negative Lists" : "Listas Negativas", description: isEn ? "Weekly irrelevant query blocking" : "Bloqueo semanal de consultas irrelevantes" },
+        ],
+        undefined,
+        c.capabilityBodies.keywordResearch,
+        3,
+      ),
+      ChannelMix: section(
+        "channel-mix",
+        isEn ? "Cross-Channel Budget Mix" : "Mix de Presupuesto Multicanal",
+        c.roasDashboard.subtitle,
+        "dashboard",
+        c.channels.slice(0, 3).map((x) => ({ title: x.channel, description: x.status })),
+        channelHeaders,
+        c.capabilityBodies.channelMix,
+        3,
+      ),
     };
   }
 
   if (slug === "web-design") {
     const c = webDesignContent[locale];
     return {
-      UxAudit: section("ux-audit", c.beforeAfterTitle, c.beforeAfterSubtitle, "comparison", c.beforeAfters.slice(0, 2).map((ba) => ({ title: ba.headline, description: ba.beforeDetails[0], metric: ba.afterDetails[0] }))),
-      DeviceMockups: section("device-mockups", c.surfacesTitle, c.surfacesSubtitle, "mockup", c.devices.map((d) => ({ title: d.name, description: isEn ? "Responsive across breakpoints" : "Responsive en breakpoints" }))),
-      ConversionOptimization: section("conversion-optimization", isEn ? "Conversion Optimization" : "Optimización de Conversión", isEn ? "Layout choices tied to one goal." : "Decisiones de diseño con un solo objetivo.", "comparison", [
-        { title: isEn ? "Above-fold CTA" : "CTA above fold", description: isEn ? "Primary action without scroll" : "Acción sin scroll", metric: "+425%" },
-        { title: isEn ? "Trust signals" : "Señales de confianza", description: isEn ? "Logos and testimonials first" : "Logos y testimonios primero", metric: "3.8x" },
-      ]),
-      Speed: section("speed", c.performanceTitle, c.performanceSubtitle, "chart", c.perfMetrics.map((m) => ({ title: m.label, description: m.sub, metric: "Pass" }))),
+      UxAudit: section(
+        "ux-audit",
+        c.beforeAfterTitle,
+        c.beforeAfterSubtitle,
+        "comparison",
+        c.beforeAfters.slice(0, 2).map((ba) => ({ title: ba.headline, description: ba.beforeDetails[0] })),
+        undefined,
+        c.capabilityBodies.uxAudit,
+        2,
+      ),
+      ConversionOptimization: section(
+        "conversion-optimization",
+        isEn ? "Conversion Optimization" : "Optimización de Conversión",
+        isEn ? "Layout choices tied to one goal." : "Decisiones de diseño con un solo objetivo.",
+        "comparison",
+        [
+          { title: isEn ? "Above-fold CTA" : "CTA above fold", description: isEn ? "Primary action without scroll" : "Acción sin scroll" },
+          { title: isEn ? "Trust signals" : "Señales de confianza", description: isEn ? "Logos and testimonials first" : "Logos y testimonios primero" },
+        ],
+        undefined,
+        c.capabilityBodies.conversionOptimization,
+        2,
+      ),
     };
   }
 
   if (slug === "meta-ads") {
+    const m = metaAdsPageContent[locale];
     return {
-      CreativeTesting: section("creative-testing", isEn ? "Creative Testing Program" : "Programa de Pruebas Creativas", isEn ? "New ads every two weeks. Fatigue is predictable. We stay ahead of it." : "Variaciones cada dos semanas.", "comparison", [
-        { title: isEn ? "Static & Video" : "Estático y Video", description: isEn ? "UGC, carousel, short-form" : "UGC, carrusel, corto", metric: "3-5/2wk" },
-        { title: isEn ? "Hook Testing" : "Prueba de Hooks", description: isEn ? "Headline splits with kill rules" : "Divisiones con reglas de corte", metric: "2-wk" },
-      ]),
-      AudienceTargeting: section("audience-targeting", isEn ? "Audience Targeting" : "Segmentación", isEn ? "Clean prospecting and retargeting." : "Prospección y retargeting limpios.", "dashboard", [
-        { title: "Lookalikes", description: isEn ? "CRM purchaser seeds" : "Semillas de compradores CRM", metric: "2.1x" },
-        { title: "Interest Stacks", description: isEn ? "Layered with exclusions" : "Capas con exclusiones", metric: "Active" },
-      ]),
-      LeadGenFunnel: section("lead-gen-funnel", isEn ? "Lead Gen Funnel" : "Embudo de Leads", isEn ? "Ad promise matches landing page and form." : "Promesa coincide con landing y formulario.", "chart", [
-        { title: isEn ? "Hook rate" : "Tasa de hook", description: isEn ? "First 3 seconds stop the scroll" : "Primeros 3 segundos detienen el scroll", metric: "28%" },
-        { title: isEn ? "Landing match" : "Coherencia landing", description: isEn ? "Headline and offer aligned to ad creative" : "Titular y oferta alineados al creativo", metric: "+34% CTR" },
-        { title: isEn ? "Form completion" : "Completado formulario", description: isEn ? "Short forms on mobile-first layouts" : "Formularios cortos en layouts mobile-first", metric: "3.2x" },
-        { title: isEn ? "CPL by audience" : "CPL por audiencia", description: isEn ? "Cold vs warm pools tracked separately" : "Pools fríos vs cálidos rastreados por separado", metric: "$47 avg." },
-      ]),
-      Retargeting: section("retargeting", isEn ? "Retargeting Sequences" : "Secuencias Retargeting", isEn ? "Stage-specific creative." : "Creativos por etapa.", "chart", [
-        { title: isEn ? "Site Visitors" : "Visitantes", description: isEn ? "7-day and 30-day pools" : "Pools 7 y 30 días", metric: "4.5x" },
-        { title: isEn ? "Engagers" : "Engagers", description: isEn ? "Video viewers and page engagers" : "Viewers de video e interacciones", metric: "3.2x" },
-        { title: isEn ? "Cart Abandoners" : "Abandonos", description: isEn ? "Dynamic product ads" : "DPA dinámico", metric: "5.1x" },
-        { title: isEn ? "Lead Form Starters" : "Inicios de Formulario", description: isEn ? "Reminder creative for partial submissions" : "Creativos recordatorio para envíos parciales", metric: "6.8x" },
-      ]),
+      CreativeTesting: section(
+        "creative-testing",
+        isEn ? "Creative Testing Program" : "Programa de Pruebas Creativas",
+        isEn ? "New ads every two weeks. Fatigue is predictable. We stay ahead of it." : "Anuncios nuevos cada dos semanas.",
+        "comparison",
+        [
+          { title: isEn ? "Static & Video" : "Estático y Video", description: isEn ? "UGC, carousel, short-form" : "UGC, carrusel, corto" },
+          { title: isEn ? "Hook Testing" : "Prueba de Hooks", description: isEn ? "Headline splits with kill rules" : "Divisiones con reglas de corte" },
+        ],
+        undefined,
+        m.capabilityBodies.creativeTesting,
+        2,
+      ),
+      AudienceTargeting: section(
+        "audience-targeting",
+        isEn ? "Audience Targeting" : "Segmentación",
+        isEn ? "Clean prospecting and retargeting." : "Prospección y retargeting limpios.",
+        "dashboard",
+        [
+          { title: "Lookalikes", description: isEn ? "CRM purchaser seeds" : "Semillas de compradores CRM" },
+          { title: "Interest Stacks", description: isEn ? "Layered with exclusions" : "Capas con exclusiones" },
+        ],
+        undefined,
+        m.capabilityBodies.audienceTargeting,
+        2,
+      ),
+      Retargeting: section(
+        "retargeting",
+        isEn ? "Retargeting Sequences" : "Secuencias Retargeting",
+        isEn ? "Stage-specific creative." : "Creativos por etapa.",
+        "chart",
+        [
+          { title: isEn ? "Site Visitors" : "Visitantes", description: isEn ? "7-day and 30-day pools" : "Pools 7 y 30 días" },
+          { title: isEn ? "Engagers" : "Engagers", description: isEn ? "Video viewers and page engagers" : "Viewers de video e interacciones" },
+        ],
+        undefined,
+        m.capabilityBodies.retargeting,
+        2,
+      ),
     };
+  }
+
+  if (slug === "email-marketing") {
+    const c = emailMarketingContent[locale];
+    return {
+      EmailSequences: section(
+        "email-sequences",
+        c.sequenceSection.title,
+        c.sequenceSection.subtitle,
+        "dashboard",
+        c.sequenceMap.slice(0, 3).map((r) => ({ title: r.action, description: r.day, metric: r.open })),
+        {
+          col1: c.sequenceSection.tableHeaders.email,
+          col2: c.sequenceSection.tableHeaders.timing,
+          col3: c.sequenceSection.tableHeaders.open,
+        },
+        c.capabilityBodies.emailSequences,
+        3,
+      ),
+      Automation: section(
+        "automation",
+        c.automationSection.title,
+        c.automationSection.subtitle,
+        "chart",
+        c.automationTypes.slice(0, 3).map((a) => ({ title: a.label, description: a.desc })),
+        undefined,
+        c.capabilityBodies.automation,
+        3,
+      ),
+      ListGrowth: section(
+        "list-growth",
+        c.metricsSection.title,
+        c.metricsSection.subtitle,
+        "comparison",
+        c.metricsSection.metrics.slice(0, 3).map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` })),
+        undefined,
+        c.capabilityBodies.listGrowth,
+        3,
+      ),
+    };
+  }
+
+  if (slug === "content-marketing") {
+    const c = contentMarketingContent[locale];
+    return {
+      ContentFunnel: section("content-funnel", c.funnel.title, c.funnel.subtitle, "chart", c.funnel.stages.slice(0, 2).map((s) => ({ title: s.stage, description: s.goal, metric: s.conversion })), undefined, c.capabilityBodies.contentFunnel, 2),
+      Production: section("production", c.production.title, c.production.subtitle, "split", c.production.contentTypes.slice(0, 3).map((t) => ({ title: t.label, description: t.impact, metric: t.output })), undefined, c.capabilityBodies.production, 3),
+      Distribution: section("distribution", isEn ? "Distribution & Amplification" : "Distribución y Amplificación", isEn ? "Every piece promoted beyond organic search." : "Cada pieza promovida más allá de búsqueda orgánica.", "dashboard", [{ title: isEn ? "Email promotion" : "Promoción email", description: isEn ? "Newsletter and nurture sends per piece" : "Envíos en newsletter y nurture por pieza" }, { title: isEn ? "Social syndication" : "Sindicación social", description: isEn ? "8–12 derivative assets per article" : "8–12 activos derivados por artículo" }], undefined, c.capabilityBodies.distribution, 2),
+    };
+  }
+
+  if (slug === "social-media") {
+    const c = socialMediaContent[locale];
+    return {
+      PlatformStrategy: section("platform-strategy", c.platformSection.title, c.platformSection.subtitle, "dashboard", c.platformData.slice(0, 3).map((p) => ({ title: p.platform, description: p.format, metric: p.eng })), undefined, c.capabilityBodies.platformStrategy, 3),
+      ContentPillars: section("content-pillars", c.pillarSection.title, c.pillarSection.subtitle, "split", c.pillarContent.slice(0, 3).map((p) => ({ title: p.pillar, description: p.examples, metric: p.roi })), undefined, c.capabilityBodies.contentPillars, 3),
+      Community: section("community", c.metricsSection.title, c.metricsSection.subtitle, "comparison", c.metricsSection.metrics.slice(0, 2).map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` })), undefined, c.capabilityBodies.community, 2),
+    };
+  }
+
+  if (slug === "video-marketing") {
+    const c = videoMarketingContent[locale];
+    return {
+      VideoProduction: section("video-production", c.productionSection.title, c.productionSection.subtitle, "mockup", c.productionPhases.slice(0, 3).map((t) => ({ title: t.phase, description: t.tasks, metric: t.duration })), undefined, c.capabilityBodies.videoProduction, 3),
+      VideoDistribution: section("video-distribution", c.formatsSection.title, c.formatsSection.subtitle, "dashboard", c.videoTypes.slice(0, 3).map((t) => ({ title: t.type, description: t.platform, metric: t.length })), undefined, c.capabilityBodies.videoDistribution, 3),
+      VideoStrategy: section("video-strategy", c.processSection.title, c.processSection.subtitle, "split", c.metricsSection.metrics.slice(0, 2).map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` })), undefined, c.capabilityBodies.videoStrategy, 2),
+    };
+  }
+
+  if (slug === "branding") {
+    const c = brandingContent[locale];
+    return {
+      BrandIdentity: section("brand-identity", c.evolution.title, c.evolution.subtitle, "comparison", c.evolution.phases.slice(0, 2).map((p) => ({ title: p.label, description: p.desc, metric: p.duration })), undefined, c.capabilityBodies.brandIdentity, 2),
+      VisualSystem: section("visual-system", c.identitySystem.title, c.identitySystem.subtitle, "mockup", c.identitySystem.layers.slice(0, 3).map((l) => ({ title: l.label, description: l.desc })), undefined, c.capabilityBodies.visualSystem, 3),
+      BrandGuidelines: section("brand-guidelines", c.process.title, c.process.subtitle, "split", [{ title: isEn ? "Brand guidelines doc" : "Documento de guías", description: isEn ? "Usage rules your team references" : "Reglas de uso que tu equipo consulta" }, { title: isEn ? "Digital templates" : "Plantillas digitales", description: isEn ? "Web, email, and social assets" : "Activos web, email y social" }], undefined, c.capabilityBodies.brandGuidelines, 2),
+    };
+  }
+
+  if (slug === "analytics") {
+    const c = analyticsContent[locale];
+    return {
+      DataStack: section("data-stack", c.stackSection.title, c.stackSection.subtitle, "dashboard", c.stackSection.items.map((i) => ({ title: i.title, description: i.desc })), undefined, c.capabilityBodies.dataStack, 3),
+      Dashboards: section("dashboards", c.dataWallSection.title, c.dataWallSection.subtitle, "chart", c.dataLayers.slice(0, 3).map((l) => ({ title: l.label, description: l.metric })), undefined, c.capabilityBodies.dashboards, 3),
+      Attribution: section("attribution", c.metricsSection.title, c.metricsSection.subtitle, "comparison", c.metricsSection.metrics.slice(0, 2).map((m) => ({ title: m.label, description: m.desc, metric: `${m.value}${m.suffix}` })), undefined, c.capabilityBodies.attribution, 2),
+    };
+  }
+
+  if (slug === "growth-consulting") {
+    const c = growthConsultingContent[locale];
+    return {
+      GrowthAudit: section("growth-audit", c.frameworkSection.title, c.frameworkSection.subtitle, "chart", c.frameworkSection.layers.slice(0, 3).map((d) => ({ title: d.layer, description: d.channels, metric: d.status })), undefined, c.capabilityBodies.growthAudit, 3),
+      ChannelMix: section("channel-mix", c.metricsSection.title, c.metricsSection.subtitle, "dashboard", c.metricsSection.metrics.slice(0, 2).map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` })), undefined, c.capabilityBodies.channelMix, 2),
+      Roadmap: section("roadmap", c.roadmapSection.title, c.roadmapSection.subtitle, "split", c.roadmapSection.quarters.slice(0, 3).map((p) => ({ title: p.focus, description: p.actions, metric: p.quarter })), undefined, c.capabilityBodies.roadmap, 3),
+    };
+  }
+
+  if (slug === "funnels") {
+    const c = funnelsContent[locale];
+    return {
+      FunnelMapping: section("funnel-mapping", c.leadFlow.title, c.leadFlow.subtitle, "chart", c.flowStages.slice(0, 3).map((s) => ({ title: s.label, description: isEn ? "Mapped to your offer" : "Mapeado a tu oferta" })), undefined, c.capabilityBodies.funnelMapping, 3),
+      Automation: section("automation", c.automation.title, c.automation.subtitle, "dashboard", c.automation.paths.slice(0, 3).map((p) => ({ title: p.trigger, description: p.actions, metric: p.delay })), undefined, c.capabilityBodies.automation, 3),
+      ConversionPaths: section("conversion-paths", c.components.title, c.components.subtitle, "split", c.components.items.slice(0, 3).map((i) => ({ title: i.label, description: i.desc })), undefined, c.capabilityBodies.conversionPaths, 3),
+    };
+  }
+
+  if (slug === "landing-pages") {
+    const c = landingPagesContent[locale];
+    const items = getServiceSeoContent("landing-pages", locale).deliverables.items;
+    return {
+      StrategyDesign: section(
+        "strategy-design",
+        isEn ? "Strategy & Design" : "Estrategia y Diseño",
+        isEn ? "Wireframes and visual hierarchy mapped to one conversion goal." : "Wireframes y jerarquía visual mapeados a un solo objetivo de conversión.",
+        "comparison",
+        items.slice(0, 2).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.strategyDesign,
+        2,
+      ),
+      BuildCopy: section(
+        "build-copy",
+        isEn ? "Build & Copy" : "Build y Copy",
+        isEn ? "Fast development and conversion copy that qualifies before it sells." : "Desarrollo rápido y copy de conversión que califica antes de vender.",
+        "mockup",
+        items.slice(2, 4).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.buildCopy,
+        2,
+      ),
+      TrackingTesting: section(
+        "tracking-testing",
+        isEn ? "Tracking & Testing" : "Tracking y Pruebas",
+        isEn ? "Every conversion captured, then tested with statistical discipline." : "Cada conversión capturada, luego probada con rigor estadístico.",
+        "chart",
+        items.slice(4, 6).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.trackingTesting,
+        2,
+      ),
+    };
+  }
+
+  if (slug === "copywriting") {
+    const c = copywritingContent[locale];
+    const items = getServiceSeoContent("copywriting", locale).deliverables.items;
+    return {
+      VoiceMessaging: section(
+        "voice-messaging",
+        isEn ? "Voice & Messaging" : "Voz y Mensajes",
+        isEn ? "A usable guide so every piece sounds like the same company wrote it." : "Una guía usable para que cada pieza suene escrita por la misma empresa.",
+        "content",
+        items.slice(0, 2).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.voiceMessaging,
+        2,
+      ),
+      ConversionCopy: section(
+        "conversion-copy",
+        isEn ? "Conversion Copy" : "Copy de Conversión",
+        isEn ? "Pages and emails written to qualify, answer objections, and ask once." : "Páginas y emails que califican, responden objeciones y piden una acción.",
+        "split",
+        items.slice(2, 4).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.conversionCopy,
+        2,
+      ),
+      ChannelCopy: section(
+        "channel-copy",
+        isEn ? "Ads, Sales & Optimization" : "Ads, Ventas y Optimización",
+        isEn ? "Channel-native hooks plus rewrites that sharpen what already exists." : "Hooks nativos por canal más reescrituras que afilan lo que ya existe.",
+        "chart",
+        items.slice(4, 6).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.channelCopy,
+        2,
+      ),
+    };
+  }
+
+  if (slug === "youtube-ads") {
+    const c = youtubeAdsContent[locale];
+    const items = getServiceSeoContent("youtube-ads", locale).deliverables.items;
+    return {
+      CampaignStrategy: section(
+        "campaign-strategy",
+        isEn ? "Campaign & Targeting" : "Campaña y Segmentación",
+        isEn ? "Placement architecture and audience pools built before spend scales." : "Arquitectura de placements y pools de audiencia antes de escalar el gasto.",
+        "dashboard",
+        items.slice(0, 2).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.campaignStrategy,
+        2,
+      ),
+      CreativeProduction: section(
+        "creative-production",
+        isEn ? "Creative & Landing Pages" : "Creativo y Landing Pages",
+        isEn ? "Skip-proof hooks and post-click pages matched to the ad promise." : "Hooks a prueba de skip y páginas post-clic alineadas a la promesa del anuncio.",
+        "comparison",
+        items.slice(2, 4).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.creativeProduction,
+        2,
+      ),
+      TrackingOptimization: section(
+        "tracking-optimization",
+        isEn ? "Tracking & Optimization" : "Tracking y Optimización",
+        isEn ? "Attribution you can trust and weekly improvements tied to CPA." : "Atribución confiable y mejoras semanales ligadas al CPA.",
+        "chart",
+        items.slice(4, 6).map((item) => ({ title: item.title, description: item.description })),
+        undefined,
+        c.capabilityBodies.trackingOptimization,
+        2,
+      ),
+    };
+  }
+
+  const genericRich = getGenericRichServiceContent(slug, locale);
+  if (genericRich) {
+    return buildGenericRichSections(slug, locale, genericRich.capabilityBodies);
   }
 
   return {};
@@ -179,27 +536,45 @@ function buildExtendedSections(slug: ServiceSeoSlug, locale: Locale, seo: Servic
     case "local-seo": {
       const c = localSeoContent[locale];
       return {
-        LocalGbp: section("local-gbp", isEn ? "Google Business Profile" : "Perfil de Google Business", isEn ? "Map pack visibility starts here." : "La visibilidad en map pack empieza aquí.", "split", c.phases.slice(0, 2).map((p) => ({ title: p.title, description: p.desc, metric: p.metric }))),
-        LocalCitations: section("local-citations", isEn ? "Citations & NAP" : "Citas y NAP", isEn ? "Consistent location signals." : "Señales de ubicación consistentes.", "chart", [{ title: isEn ? "Directory Audit" : "Auditoría directorios", description: isEn ? "45+ directories checked" : "45+ directorios", metric: isEn ? "Delivered by week 2" : "Entregado en semana 2" }, { title: isEn ? "NAP Cleanup" : "Limpieza NAP", description: isEn ? "Fix inconsistent data" : "Corregir inconsistencias", metric: isEn ? "All listings corrected" : "Todos los listados corregidos" }]),
-        LocalPages: section(
-          "local-pages",
-          isEn ? "Location Pages" : "Páginas de Ubicación",
-          isEn ? "Real market context, not templates." : "Contexto real, no plantillas.",
-          "comparison",
+        LocalGbp: section(
+          "local-gbp",
+          isEn ? "Google Business Profile" : "Perfil de Google Business",
+          isEn ? "Map pack visibility starts here." : "La visibilidad en map pack empieza aquí.",
+          "content",
           [
-            {
-              title: c.phases[2]?.title ?? (isEn ? "Citation and NAP Cleanup" : "Limpieza de Citas y NAP"),
-              description: c.phases[2]?.desc ?? "",
-              metric: isEn ? "45+ directories audited" : "45+ directorios auditados",
-            },
-            {
-              title: c.phases[3]?.title ?? (isEn ? "Location Content and On-Page SEO" : "Contenido Local y SEO On-Page"),
-              description: c.phases[3]?.desc ?? "",
-              metric: isEn ? "Local-quality page builds" : "Páginas de calidad local",
-            },
+            { title: isEn ? "Category & services" : "Categoría y servicios", description: isEn ? "Primary and secondary categories matched to how locals search." : "Categorías primarias y secundarias alineadas a búsquedas locales." },
+            { title: isEn ? "Photos & posts" : "Fotos y publicaciones", description: isEn ? "Weekly updates that signal an active, trustworthy business." : "Actualizaciones semanales que señalan un negocio activo y confiable." },
           ],
+          undefined,
+          c.capabilityBodies.localGbp,
+          2,
         ),
-        LocalReviews: section("local-reviews", isEn ? "Review Strategy" : "Estrategia de Reseñas", isEn ? "Sustainable review generation." : "Generación sostenible de reseñas.", "dashboard", [{ title: isEn ? "Review velocity" : "Velocidad reseñas", description: isEn ? "Map pack ranking factor" : "Factor de ranking map pack", metric: "+280%" }, { title: isEn ? "Reporting" : "Informes", description: c.phases[4]?.desc ?? "", metric: c.phases[4]?.metric }]),
+        LocalCitations: section(
+          "local-citations",
+          isEn ? "Citations, NAP & Location Pages" : "Citas, NAP y Páginas Locales",
+          isEn ? "Consistent location signals and pages built for real markets." : "Señales de ubicación consistentes y páginas para mercados reales.",
+          "split",
+          [
+            { title: isEn ? "Directory audit" : "Auditoría de directorios", description: isEn ? "45+ directories checked and prioritized for cleanup." : "45+ directorios revisados y priorizados para limpieza." },
+            { title: isEn ? "NAP cleanup" : "Limpieza NAP", description: isEn ? "Name, address, and phone data corrected across listings." : "Nombre, dirección y teléfono corregidos en listados." },
+          ],
+          undefined,
+          c.capabilityBodies.localCitations,
+          2,
+        ),
+        LocalReviews: section(
+          "local-reviews",
+          isEn ? "Reviews & Reporting" : "Reseñas e Informes",
+          isEn ? "Review velocity tied to rankings you can report on." : "Velocidad de reseñas ligada a rankings que puedes reportar.",
+          "chart",
+          [
+            { title: isEn ? "Review velocity" : "Velocidad de reseñas", description: isEn ? "Steady generation process tied to map pack movement." : "Proceso constante ligado a movimiento en map pack." },
+            { title: isEn ? "Call tracking" : "Seguimiento de llamadas", description: isEn ? "Map pack rankings connected to booked jobs." : "Rankings en map pack conectados a trabajos reservados." },
+          ],
+          undefined,
+          c.capabilityBodies.localReviews,
+          2,
+        ),
       };
     }
     case "ppc-management":
@@ -227,85 +602,40 @@ function buildExtendedSections(slug: ServiceSeoSlug, locale: Locale, seo: Servic
     case "cro": {
       const c = croContent[locale];
       return {
-        AbTesting: section("ab-testing", c.testTrackerSection.title, c.testTrackerSection.subtitle, "comparison", c.testResults.slice(0, 4).map((t) => ({ title: t.test, description: t.winner, metric: t.lift }))),
-        Heatmaps: section("heatmaps", c.metricsSection.title, c.metricsSection.subtitle, "chart", c.metricsSection.metrics.map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` }))),
-        UXResearch: section("ux-research", c.methodSection.title, c.methodSection.subtitle, "split", c.methodSection.steps.map((s) => ({ title: s.title, description: s.desc }))),
-      };
-    }
-    case "email-marketing": {
-      const c = emailMarketingContent[locale];
-      return {
-        EmailSequences: section("email-sequences", c.sequenceSection.title, c.sequenceSection.subtitle, "dashboard", c.sequenceMap.slice(0, 4).map((r) => ({ title: r.action, description: r.day, metric: r.open })), {
-          col1: c.sequenceSection.tableHeaders.email,
-          col2: c.sequenceSection.tableHeaders.timing,
-          col3: c.sequenceSection.tableHeaders.open,
-        }),
-        Automation: section("automation", c.automationSection.title, c.automationSection.subtitle, "chart", c.automationTypes.map((a) => ({ title: a.label, description: a.desc, metric: "Active" }))),
-        ListGrowth: section("list-growth", c.metricsSection.title, c.metricsSection.subtitle, "comparison", c.metricsSection.metrics.map((m) => ({ title: m.label, description: m.desc, metric: `${m.value}${m.suffix ?? ""}` }))),
-      };
-    }
-    case "content-marketing": {
-      const c = contentMarketingContent[locale];
-      return {
-        ContentFunnel: section("content-funnel", c.funnel.title, c.funnel.subtitle, "chart", c.funnel.stages.map((s) => ({ title: s.stage, description: s.goal, metric: s.conversion }))),
-        Production: section("production", c.production.title, c.production.subtitle, "split", c.production.contentTypes.map((t) => ({ title: t.label, description: t.impact, metric: t.output }))),
-        Distribution: section("distribution", c.process.title, c.process.subtitle, "dashboard", c.process.phases.slice(3).map((p) => ({ title: p.title, description: p.desc, metric: p.metric }))),
-      };
-    }
-    case "social-media": {
-      const c = socialMediaContent[locale];
-      return {
-        PlatformStrategy: section("platform-strategy", c.platformSection.title, c.platformSection.subtitle, "dashboard", c.platformData.map((p) => ({ title: p.platform, description: p.format, metric: p.eng }))),
-        ContentPillars: section("content-pillars", c.pillarSection.title, c.pillarSection.subtitle, "split", c.pillarContent.map((p) => ({ title: p.pillar, description: p.examples, metric: p.roi }))),
-        Community: section("community", c.metricsSection.title, c.metricsSection.subtitle, "comparison", c.metricsSection.metrics.map((m) => ({ title: m.label, description: m.desc, metric: `${m.value}${m.suffix ?? ""}` }))),
-      };
-    }
-    case "video-marketing": {
-      const c = videoMarketingContent[locale];
-      return {
-        VideoProduction: section("video-production", c.productionSection.title, c.productionSection.subtitle, "mockup", c.productionPhases.map((t) => ({ title: t.phase, description: t.tasks, metric: t.duration }))),
-        VideoDistribution: section("video-distribution", c.formatsSection.title, c.formatsSection.subtitle, "dashboard", c.videoTypes.map((t) => ({ title: t.type, description: t.platform, metric: t.length }))),
-        VideoStrategy: section("video-strategy", c.processSection.title, c.processSection.subtitle, "split", c.phases.slice(0, 3).map((p) => ({ title: p.title, description: p.desc, metric: p.metric }))),
-      };
-    }
-    case "branding": {
-      const c = brandingContent[locale];
-      return {
-        BrandIdentity: section("brand-identity", c.evolution.title, c.evolution.subtitle, "comparison", c.evolution.phases.slice(0, 2).map((p) => ({ title: p.label, description: p.desc, metric: p.duration }))),
-        VisualSystem: section("visual-system", c.identitySystem.title, c.identitySystem.subtitle, "mockup", c.identitySystem.layers.map((l) => ({ title: l.label, description: l.desc }))),
-        BrandGuidelines: section("brand-guidelines", c.process.title, c.process.subtitle, "split", c.process.phases.slice(2).map((p) => ({ title: p.title, description: p.desc, metric: p.metric }))),
-      };
-    }
-    case "analytics": {
-      const c = analyticsContent[locale];
-      return {
-        DataStack: section("data-stack", c.stackSection.title, c.stackSection.subtitle, "dashboard", c.stackSection.items.map((i) => ({ title: i.title, description: i.desc, metric: "Live" }))),
-        Dashboards: section("dashboards", c.dataWallSection.title, c.dataWallSection.subtitle, "chart", c.dataLayers.map((l) => ({ title: l.label, description: l.metric, metric: "Active" }))),
-        Attribution: section("attribution", c.metricsSection.title, c.metricsSection.subtitle, "comparison", c.metricsSection.metrics.map((m) => ({ title: m.label, description: m.desc, metric: `${m.value}${m.suffix}` }))),
-      };
-    }
-    case "growth-consulting": {
-      const c = growthConsultingContent[locale];
-      return {
-        GrowthAudit: section("growth-audit", c.frameworkSection.title, c.frameworkSection.subtitle, "chart", c.frameworkSection.layers.map((d) => ({ title: d.layer, description: d.channels, metric: d.status }))),
-        ChannelMix: section("channel-mix", c.metricsSection.title, c.metricsSection.subtitle, "dashboard", c.metricsSection.metrics.map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` }))),
-        Roadmap: section("roadmap", c.roadmapSection.title, c.roadmapSection.subtitle, "split", c.roadmapSection.quarters.map((p) => ({ title: p.focus, description: p.actions, metric: p.quarter }))),
-      };
-    }
-    case "funnels": {
-      const c = funnelsContent[locale];
-      const cro = croContent[locale];
-      return {
-        FunnelMapping: section("funnel-mapping", c.leadFlow.title, c.leadFlow.subtitle, "chart", c.flowStages.map((s) => ({ title: s.label, description: isEn ? "Mapped to your offer and sales cycle" : "Mapeado a tu oferta y ciclo de venta", metric: "Mapped" }))),
-        Automation: section("automation", c.automation.title, c.automation.subtitle, "dashboard", c.automation.paths.map((p) => ({ title: p.trigger, description: p.actions, metric: p.delay }))),
-        ConversionPaths: section("conversion-paths", c.components.title, c.components.subtitle, "split", c.components.items.map((i) => ({ title: i.label, description: i.desc, metric: "Active" }))),
-        AbTesting: section("ab-testing", cro.testTrackerSection.title, cro.testTrackerSection.subtitle, "comparison", cro.testResults.slice(0, 4).map((t) => ({ title: t.test, description: t.winner, metric: t.lift }))),
-        Heatmaps: section("heatmaps", cro.metricsSection.title, cro.metricsSection.subtitle, "chart", cro.metricsSection.metrics.map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` }))),
-        UXResearch: section("ux-research", cro.methodSection.title, cro.methodSection.subtitle, "split", cro.methodSection.steps.map((s) => ({ title: s.title, description: s.desc }))),
+        AbTesting: section(
+          "ab-testing",
+          c.testTrackerSection.title,
+          c.testTrackerSection.subtitle,
+          "comparison",
+          c.testResults.slice(0, 2).map((t) => ({ title: t.test, description: t.winner, metric: t.lift })),
+          undefined,
+          c.capabilityBodies.abTesting,
+          2,
+        ),
+        Heatmaps: section(
+          "heatmaps",
+          c.metricsSection.title,
+          c.metricsSection.subtitle,
+          "chart",
+          c.metricsSection.metrics.slice(0, 2).map((m) => ({ title: m.label, description: m.desc, metric: `${m.prefix ?? ""}${m.value}${m.suffix ?? ""}` })),
+          undefined,
+          c.capabilityBodies.heatmaps,
+          2,
+        ),
+        UXResearch: section(
+          "ux-research",
+          c.methodSection.title,
+          c.methodSection.subtitle,
+          "split",
+          c.methodSection.steps.slice(0, 3).map((s) => ({ title: s.title, description: s.desc })),
+          undefined,
+          c.capabilityBodies.uxResearch,
+          3,
+        ),
       };
     }
     default:
-      return fromDeliverables(seo, ["SectionOne", "SectionTwo", "SectionThree"], variant, slug);
+      return {};
   }
 }
 

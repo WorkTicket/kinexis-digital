@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
 
 export type EmailCredentials = {
@@ -8,9 +9,18 @@ export type EmailCredentials = {
 };
 
 export function getEmailCredentials(): EmailCredentials | null {
-  const toEmail = process.env.CONTACT_TO_EMAIL;
-  const gmailUser = process.env.GMAIL_USER;
-  const gmailPass = process.env.GMAIL_APP_PASSWORD;
+  let toEmail = process.env.CONTACT_TO_EMAIL;
+  let gmailUser = process.env.GMAIL_USER;
+  let gmailPass = process.env.GMAIL_APP_PASSWORD;
+
+  try {
+    const env = getCloudflareContext()?.env;
+    toEmail ??= env?.CONTACT_TO_EMAIL;
+    gmailUser ??= env?.GMAIL_USER;
+    gmailPass ??= env?.GMAIL_APP_PASSWORD;
+  } catch {
+    // Outside Cloudflare Workers runtime (local dev, tests).
+  }
 
   if (!toEmail || !gmailUser || !gmailPass || gmailPass === "your-gmail-app-password-here") {
     return null;
@@ -38,7 +48,7 @@ export function wrapKinexisEmailHtml(title: string, rows: string, footer?: strin
         ${
           footer
             ? `<div style="margin-top:32px;padding:16px 20px;background:rgba(0, 212, 255,0.06);border:1px solid rgba(0, 212, 255,0.15);border-radius:8px;">
-          <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.5);">${footer}</p>
+          <p style="margin:0;font-size:13px;color:rgba(255,255,255,0.5);">${escapeHtml(footer)}</p>
         </div>`
             : ""
         }

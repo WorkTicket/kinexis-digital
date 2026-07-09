@@ -6,10 +6,13 @@ import CTAArchetype from "@/components/ui/CTAArchetype";
 import { Link } from "@/i18n/navigation";
 import { Linkedin } from "lucide-react";
 import type { Author } from "@/content/authors";
+import Section from "@/components/shared/services/Section";
 
 type Props = { author: Author };
 
 export default function AuthorPageClient({ author }: Props) {
+  let surfaceIndex = 0;
+
   return (
     <>
       <HeroArchetype
@@ -21,13 +24,13 @@ export default function AuthorPageClient({ author }: Props) {
         ctaHref="/contact"
       />
 
-      <section className="section-padding bg-bg-dark">
+      <Section id="author-about" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
-          <SectionHeader pattern="B" title="About" />
+          <SectionHeader title="About" headingId="author-about-heading" />
 
           <div className="mt-6 flex items-center gap-5">
-            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.03]">
-              <span className="text-2xl font-bold text-neon-cyan/60">
+            <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-strong bg-surface-raised">
+              <span className="type-subheader text-neon-cyan/60">
                 {author.name.split(" ").map((n) => n[0]).join("")}
               </span>
             </div>
@@ -53,7 +56,7 @@ export default function AuthorPageClient({ author }: Props) {
             <h3 className="text-sm font-semibold uppercase tracking-widest text-neon-cyan mb-4">Areas of expertise</h3>
             <ul className="flex flex-wrap gap-2">
               {author.expertise.map((item) => (
-                <li key={item} className="rounded-full border border-white/[0.08] px-3 py-1 text-sm text-muted">
+                <li key={item} className="rounded-full border border-strong px-3 py-1 text-sm text-muted">
                   {item}
                 </li>
               ))}
@@ -65,7 +68,7 @@ export default function AuthorPageClient({ author }: Props) {
             </Link>
           </p>
         </div>
-      </section>
+      </Section>
 
       <CTAArchetype
         archetype="story"

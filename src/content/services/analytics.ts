@@ -49,12 +49,20 @@ export type AnalyticsContent = {
     title: string;
     subtitle: string;
   };
+  processIntro: string;
   phases: ServicePhase[];
+  capabilityBodies: {
+    dataStack: string;
+    dashboards: string;
+    attribution: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -116,39 +124,31 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
       title: "The implementation process.",
       subtitle: "From audit to live dashboards,|with a clear deliverable at every step.",
     },
+    processIntro:
+      "Analytics is not a GA4 install. Our implementation runs from tracking audit through event mapping, dashboard build, and CRM connection, every layer tied to the business questions your team needs answered weekly.",
     phases: [
-      {
-        title: "Audit & Requirements",
-        desc: "Review current tracking, find gaps, identify key business questions analytics needs to answer.",
-        metric: "Full tracking audit in week 1",
-      },
-      {
-        title: "GA4 & GTM Build",
-        desc: "Property setup, container config, event tracking, conversion goals, e-commerce tracking.",
-        metric: "Full tracking live within 2 weeks",
-      },
-      {
-        title: "Dashboard & Reports",
-        desc: "Custom dashboards showing KPIs in a clean, easy-to-read format.",
-        metric: "12 useful insights per month",
-      },
-      {
-        title: "Attribution Setup",
-        desc: "Multi-touch models so you see the full customer journey across every channel.",
-        metric: "95% tracking accuracy",
-      },
-      {
-        title: "Monitor & Optimize",
-        desc: "Weekly data quality checks, alerts for tracking breaks, monthly report reviews.",
-        metric: "18% month-over-month visibility improvement",
-      },
+      { title: "Audit & Requirements", desc: "Review current tracking, find gaps, identify key business questions analytics needs to answer.", metric: "" },
+      { title: "GA4 & GTM Build", desc: "Property setup, container config, event tracking, conversion goals, and e-commerce tracking.", metric: "" },
+      { title: "Dashboard & Reports", desc: "Custom dashboards showing KPIs in a clean, easy-to-read format.", metric: "" },
+      { title: "Attribution & Monitor", desc: "Multi-touch models plus weekly data quality checks and monthly report reviews.", metric: "" },
     ],
+    capabilityBodies: {
+      dataStack:
+        "Installed tracking that nobody trusts is worse than no tracking. We audit every conversion event, fix broken tags and duplicate fires, then rebuild GA4 and GTM around the actions that matter, booked calls, form fills, purchases, not pageviews dressed up as results.",
+      dashboards:
+        "Forty-seven charts nobody reads does not help anyone decide what to do next week. We build Looker Studio views around your specific KPIs: cost per qualified lead, channel contribution, funnel drop-off. One clean dashboard that answers what should we scale and what should we cut.",
+      attribution:
+        "Last-click attribution gives all credit to the final ad someone clicked. We implement multi-touch models and CRM integration so you see which channels started the journey, which nurtured it, and which closed the deal. Then budget follows revenue, not dashboard theater.",
+    },
     cta: {
       headline: "Ready to see your real numbers?",
       subtitle:
         "We'll audit your current analytics setup and build a measurement system|that gives you clear visibility you can act on.",
-      ctaLabel: "Audit My Analytics",
+      ctaLabel: "See Analytics Pricing",
     },
+    inlineCtaLabel: "Audit My Analytics Setup",
+    inlineCtaSubtitle:
+      "We will review your tracking accuracy, conversion gaps, and dashboard usefulness. Then outline the highest-impact measurement fixes.",
     faqs: [
       { question: "What analytics tools do you set up?", answer: "We implement GA4, Google Tag Manager, and Looker Studio dashboards as a baseline. We also set up multi-touch attribution and integrate with your CRM or ad platforms for full-funnel revenue visibility." },
       { question: "How do I know if my current tracking is accurate?", answer: "We start with a full audit of your existing setup: missing events, broken conversions, duplicated tags. We fix all of it before building anything new." },
@@ -214,39 +214,31 @@ export const analyticsContent: Record<Locale, AnalyticsContent> = {
       title: "El proceso de implementación.",
       subtitle: "De la auditoría a dashboards en vivo,|con un entregable claro en cada paso.",
     },
+    processIntro:
+      "Analytics no es instalar GA4. Nuestra implementación va de auditoría de tracking a mapeo de eventos, construcción de dashboards y conexión al CRM, cada capa ligada a las preguntas de negocio que tu equipo necesita responder cada semana.",
     phases: [
-      {
-        title: "Auditoría y Requisitos",
-        desc: "Revisar tracking actual, encontrar brechas e identificar preguntas clave de negocio.",
-        metric: "Auditoría de tracking completa en semana 1",
-      },
-      {
-        title: "Construcción GA4 y GTM",
-        desc: "Configuración de propiedad, contenedor, event tracking, objetivos de conversión y e-commerce.",
-        metric: "Tracking completo en vivo en 2 semanas",
-      },
-      {
-        title: "Dashboard y Reportes",
-        desc: "Dashboards personalizados con KPIs en formato claro y fácil de leer.",
-        metric: "12 insights útiles por mes",
-      },
-      {
-        title: "Configuración de Atribución",
-        desc: "Modelos multitoque para ver el recorrido completo del cliente en cada canal.",
-        metric: "95% de precisión de tracking",
-      },
-      {
-        title: "Monitoreo y Optimización",
-        desc: "Revisiones semanales de calidad de datos, alertas por fallos y revisiones mensuales.",
-        metric: "18% mejora mes a mes en visibilidad",
-      },
+      { title: "Auditoría y Requisitos", desc: "Revisar tracking actual, encontrar brechas e identificar preguntas clave de negocio.", metric: "" },
+      { title: "Construcción GA4 y GTM", desc: "Configuración de propiedad, contenedor, event tracking, objetivos de conversión y e-commerce.", metric: "" },
+      { title: "Dashboard y Reportes", desc: "Dashboards personalizados con KPIs en formato claro y fácil de leer.", metric: "" },
+      { title: "Atribución y Monitoreo", desc: "Modelos multitoque más revisiones semanales de calidad de datos y reportes mensuales.", metric: "" },
     ],
+    capabilityBodies: {
+      dataStack:
+        "Tracking instalado en el que nadie confía es peor que no tener tracking. Auditamos cada evento de conversión, corregimos etiquetas rotas y disparos duplicados, luego reconstruimos GA4 y GTM en torno a las acciones que importan, llamadas reservadas, formularios, compras, no pageviews disfrazados de resultados.",
+      dashboards:
+        "Cuarenta y siete gráficos que nadie lee no ayuda a decidir qué hacer la próxima semana. Construimos vistas en Looker Studio en torno a tus KPIs específicos: costo por lead calificado, contribución por canal, abandono en embudo. Un dashboard limpio que responde qué escalar y qué cortar.",
+      attribution:
+        "La atribución last-click da todo el crédito al último anuncio que alguien hizo clic. Implementamos modelos multitoque e integración CRM para ver qué canales iniciaron el recorrido, cuáles lo nutrieron y cuáles cerraron el deal, luego el presupuesto sigue a ingresos, no a teatro de dashboards.",
+    },
     cta: {
       headline: "¿Listo para ver tus números reales?",
       subtitle:
         "Auditaremos tu configuración actual y construiremos un sistema de|medición con visibilidad clara y accionable.",
-      ctaLabel: "Auditar Mi Analytics",
+      ctaLabel: "Ver Precios de Analytics",
     },
+    inlineCtaLabel: "Auditar Mi Configuración de Analytics",
+    inlineCtaSubtitle:
+      "Revisaremos la precisión de tu tracking, brechas de conversión y utilidad de dashboards, y delinearemos las correcciones de medición de mayor impacto.",
     faqs: [
       { question: "¿Qué herramientas de analítica configuran?", answer: "Implementamos GA4, Google Tag Manager y dashboards en Looker Studio como base. También configuramos atribución multitáctil e integramos con tu CRM o plataformas publicitarias para visibilidad completa del funnel." },
       { question: "¿Cómo sé si mi tracking actual es preciso?", answer: "Comenzamos con una auditoría completa de tu configuración: eventos perdidos, conversiones rotas, etiquetas duplicadas. Lo corregimos todo antes de construir nada nuevo." },

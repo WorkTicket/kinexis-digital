@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
 import SiteLogo from "@/components/ui/SiteLogo";
+import Button from "@/components/ui/Button";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 const Navigation = dynamic(() => import("./Navigation"));
@@ -144,10 +145,12 @@ export default function Header() {
             <div className="site-header__actions site-header__actions--desktop relative z-20 hidden shrink-0 items-center overflow-visible lg:flex">
               <LanguageSwitcher variant="header" menuOpen={menuOpen} compact />
               <div className="header-actions-divider" aria-hidden />
-              <Link
+              <Button
                 href="/contact"
+                size="header"
+                variant="primary"
                 aria-label={tNav("bookCall")}
-                className="header-cta group whitespace-nowrap rounded-lg px-3 text-[11px] xl:px-3.5 xl:text-xs"
+                className="group whitespace-nowrap xl:px-3.5"
               >
                 <span className="xl:hidden">{tNav("bookCallShort")}</span>
                 <span className="hidden xl:inline">{tNav("bookCall")}</span>
@@ -155,31 +158,33 @@ export default function Header() {
                   className="h-3 w-3 shrink-0 opacity-80 transition-transform duration-300 group-hover:translate-x-0.5"
                   aria-hidden
                 />
-              </Link>
+              </Button>
             </div>
 
             <div className="relative z-10 flex shrink-0 items-center gap-2 lg:hidden">
-              <Link
+              <Button
                 href="/contact"
+                size="header"
+                variant="primary"
                 aria-label={tNav("bookCall")}
-                className="header-cta shrink-0 h-7 whitespace-nowrap rounded-lg px-2.5 text-[10px] sm:px-3 sm:text-[11px]"
+                className="shrink-0 !h-9 whitespace-nowrap px-3 text-[11px] sm:px-3.5 sm:text-xs"
               >
                 {tNav("bookCallShort")}
-                <ArrowRight className="h-2.5 w-2.5 shrink-0 opacity-80" aria-hidden />
-              </Link>
+                <ArrowRight className="h-3 w-3 shrink-0 opacity-80" aria-hidden />
+              </Button>
               <button
                 ref={menuButtonRef}
                 type="button"
-                className="header-icon-btn h-10 w-10"
+                className="header-icon-btn h-12 w-12"
                 onClick={toggleMenu}
                 aria-label={menuOpen ? tNav("closeMenu") : tNav("toggleMenu")}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-site-nav"
               >
                 {menuOpen ? (
-                  <X className="h-5 w-5" />
+                  <X className="h-7 w-7" />
                 ) : (
-                  <Menu className="h-5 w-5" />
+                  <Menu className="h-7 w-7" />
                 )}
               </button>
             </div>

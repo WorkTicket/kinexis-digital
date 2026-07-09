@@ -22,7 +22,7 @@ export default function BrandingHeroViz() {
     <HeroVizShell>
       <HeroVizStage className="items-center">
         <BrowserFrame label="Style Guide" delay={0.5} frameClassName="h-[165px] w-[220px]">
-          <div className="mb-2 flex items-center gap-2 border-b border-white/[0.06] pb-2">
+          <div className="mb-2 flex items-center gap-2 border-b border-surface pb-2">
             <motion.div
               className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-neon-cyan to-neon-blue"
               initial={{ scale: 0 }}
@@ -47,7 +47,7 @@ export default function BrandingHeroViz() {
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.75 + i * 0.05 }}
               >
-                <div className="h-6 w-full rounded-md border border-white/[0.08]" style={{ backgroundColor: c.hex }} />
+                <div className="h-6 w-full rounded-md border border-strong" style={{ backgroundColor: c.hex }} />
                 <span className="text-[4px] font-mono text-muted/40">{c.hex}</span>
               </motion.div>
             ))}

@@ -2,6 +2,9 @@
 
 import { m as motion } from "@/lib/framer";
 import { Search, ClipboardList, Rocket, TrendingUp, Sparkles } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { cardClasses } from "@/lib/card-styles";
+import Section from "@/components/shared/services/Section";
 
 const phases = [
   {
@@ -60,7 +63,7 @@ const phases = [
 
 export default function ServicesProcess() {
   return (
-    <section className="section-padding bg-bg relative overflow-hidden">
+    <Section id="services-process" surfaceIndex={0} className="relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
         {[0, 1, 2].map((i) => (
           <div
@@ -82,20 +85,12 @@ export default function ServicesProcess() {
       </div>
 
       <div className="container-site relative z-10">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="section-label">How We Deliver</span>
-          <h2 className="section-title">Our Approach</h2>
-          <div className="section-divider" />
-          <p className="section-subtitle">
-            Every project follows four phases: move fast early, then keep building on what works.
-          </p>
-        </motion.div>
+        <SectionHeader
+          badge="How We Deliver"
+          title="Our Approach"
+          description="Every project follows four phases: move fast early, then keep building on what works."
+          headingId="services-process-heading"
+        />
 
         <div className="section-content grid gap-grid-sm md:grid-cols-2 lg:grid-cols-4">
           {phases.map((phase, i) => {
@@ -107,18 +102,18 @@ export default function ServicesProcess() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
-                className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 hover:border-white/10 hover:bg-white/[0.04] transition-all duration-300"
+                className={cardClasses({ surface: "elevated", className: "group !p-8" })}
               >
                 <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-neon-cyan/10 bg-gradient-to-br from-neon-cyan/20 to-neon-blue/10 mb-5">
                   <Icon className="h-6 w-6 text-neon-cyan" />
                 </div>
 
-                <h3 className="text-xl font-bold">{phase.title}</h3>
+                <h3 className="type-subheader">{phase.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted">
                   {phase.description}
                 </p>
 
-                <div className="mt-6 space-y-2.5 pt-6 border-t border-white/[0.06]">
+                <div className="mt-6 space-y-2.5 pt-6 border-t border-surface">
                   {phase.details.map((detail) => (
                     <div key={detail} className="flex items-start gap-2.5">
                       <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neon-cyan/10">
@@ -135,6 +130,6 @@ export default function ServicesProcess() {
           })}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

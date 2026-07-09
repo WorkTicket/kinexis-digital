@@ -85,9 +85,9 @@ export default function MobileMenu({
             type="button"
             onClick={onClose}
             aria-label={tNav("closeMenu")}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-surface-strong bg-white/[0.04] text-muted transition-colors hover:bg-white/[0.08] hover:text-white touch-manipulation"
+            className="flex h-12 w-12 items-center justify-center rounded-xl border border-surface-strong bg-surface-glass text-muted transition-colors hover:bg-surface-active hover:text-white touch-manipulation"
           >
-            <X className="h-5 w-5" />
+            <X className="h-7 w-7" />
           </button>
         </div>
 
@@ -105,8 +105,8 @@ export default function MobileMenu({
                 className={cn(
                   "flex w-full min-h-touch items-center rounded-xl px-4 py-4 transition-colors touch-manipulation",
                   pathname.startsWith("/services")
-                    ? "bg-white/[0.08] text-white"
-                    : "hover:bg-white/[0.04] text-white/90"
+                    ? "bg-surface-active text-white"
+                    : "hover:bg-surface-glass text-white/90"
                 )}
               >
                 <span className="flex-1 text-left text-lg font-semibold">
@@ -130,21 +130,21 @@ export default function MobileMenu({
                 )}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                  <div className="space-y-4 rounded-xl border border-surface bg-surface-base p-3">
                     <Link
                       href="/services"
                       onClick={onClose}
                       className={cn(
                         "flex min-h-touch items-center rounded-lg px-3 py-3 text-base font-medium transition-colors touch-manipulation",
                         pathname === "/services"
-                          ? "bg-white/10 text-white"
-                          : "text-muted hover:bg-white/[0.04] hover:text-white"
+                          ? "bg-surface-active text-white"
+                          : "text-muted hover:bg-surface-glass hover:text-white"
                       )}
                     >
                       {tNav("viewAllServices")}
                     </Link>
                     {serviceNavGroups.map((group) => (
-                      <div key={group.key} className="border-t border-white/[0.06] pt-3">
+                      <div key={group.key} className="border-t border-surface pt-3">
                         <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted/90">
                           {tNav(`serviceGroups.${group.key}`)}
                         </p>
@@ -157,8 +157,8 @@ export default function MobileMenu({
                                 className={cn(
                                   "flex min-h-touch items-center rounded-lg px-3 py-2.5 text-sm transition-colors touch-manipulation",
                                   pathname === s.href
-                                    ? "bg-white/10 font-medium text-white"
-                                    : "text-muted hover:bg-white/[0.04] hover:text-white"
+                                    ? "bg-surface-active font-medium text-white"
+                                    : "text-muted hover:bg-surface-glass hover:text-white"
                                 )}
                               >
                                 {tServices(s.key)}
@@ -182,8 +182,8 @@ export default function MobileMenu({
                 className={cn(
                   "flex w-full min-h-touch items-center rounded-xl px-4 py-4 transition-colors touch-manipulation",
                   pathname.startsWith("/industries")
-                    ? "bg-white/[0.08] text-white"
-                    : "hover:bg-white/[0.04] text-white/90"
+                    ? "bg-surface-active text-white"
+                    : "hover:bg-surface-glass text-white/90"
                 )}
               >
                 <span className="flex-1 text-left text-lg font-semibold">
@@ -207,21 +207,21 @@ export default function MobileMenu({
                 )}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                  <div className="space-y-4 rounded-xl border border-surface bg-surface-base p-3">
                     <Link
                       href="/industries"
                       onClick={onClose}
                       className={cn(
                         "flex min-h-touch items-center rounded-lg px-3 py-3 text-base font-medium transition-colors touch-manipulation",
                         pathname === "/industries"
-                          ? "bg-white/10 text-white"
-                          : "text-muted hover:bg-white/[0.04] hover:text-white"
+                          ? "bg-surface-active text-white"
+                          : "text-muted hover:bg-surface-glass hover:text-white"
                       )}
                     >
                       {tNav("viewAllIndustries")}
                     </Link>
                     {industryCategories.map((category) => (
-                      <div key={category.id} className="border-t border-white/[0.06] pt-3">
+                      <div key={category.id} className="border-t border-surface pt-3">
                         <Link
                           href={`/industries/${category.id}`}
                           onClick={onClose}
@@ -242,8 +242,8 @@ export default function MobileMenu({
                                   className={cn(
                                     "flex min-h-touch items-center rounded-lg px-3 py-2.5 text-sm transition-colors touch-manipulation",
                                     active
-                                      ? "bg-white/10 font-medium text-white"
-                                      : "text-muted hover:bg-white/[0.04] hover:text-white"
+                                      ? "bg-surface-active font-medium text-white"
+                                      : "text-muted hover:bg-surface-glass hover:text-white"
                                   )}
                                 >
                                   {industry.label}
@@ -270,8 +270,8 @@ export default function MobileMenu({
                   pathname.startsWith("/resources") ||
                     pathname.startsWith("/solutions") ||
                     pathname.includes("-vs-")
-                    ? "bg-white/[0.08] text-white"
-                    : "hover:bg-white/[0.04] text-white/90"
+                    ? "bg-surface-active text-white"
+                    : "hover:bg-surface-glass text-white/90"
                 )}
               >
                 <span className="flex-1 text-left text-lg font-semibold">
@@ -295,21 +295,21 @@ export default function MobileMenu({
                 )}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                  <div className="space-y-4 rounded-xl border border-surface bg-surface-base p-3">
                     <Link
                       href="/resources"
                       onClick={onClose}
                       className={cn(
                         "flex min-h-touch items-center rounded-lg px-3 py-3 text-base font-medium transition-colors touch-manipulation",
                         pathname === "/resources"
-                          ? "bg-white/10 text-white"
-                          : "text-muted hover:bg-white/[0.04] hover:text-white"
+                          ? "bg-surface-active text-white"
+                          : "text-muted hover:bg-surface-glass hover:text-white"
                       )}
                     >
                       {tNav("viewAllResources")}
                     </Link>
                     {resourceNavGroups.map((group) => (
-                      <div key={group.key} className="border-t border-white/[0.06] pt-3">
+                      <div key={group.key} className="border-t border-surface pt-3">
                         <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted/90">
                           {tResources(`groups.${group.key}`)}
                         </p>
@@ -322,8 +322,8 @@ export default function MobileMenu({
                                 className={cn(
                                   "flex min-h-touch items-center rounded-lg px-3 py-2.5 text-sm transition-colors touch-manipulation",
                                   pathname === link.href
-                                    ? "bg-white/10 font-medium text-white"
-                                    : "text-muted hover:bg-white/[0.04] hover:text-white"
+                                    ? "bg-surface-active font-medium text-white"
+                                    : "text-muted hover:bg-surface-glass hover:text-white"
                                 )}
                               >
                                 {tResources(link.key)}
@@ -351,8 +351,8 @@ export default function MobileMenu({
                     className={cn(
                       "flex min-h-touch items-center rounded-xl px-4 py-4 text-lg font-semibold transition-colors touch-manipulation",
                       active
-                        ? "bg-white/[0.08] text-white"
-                        : "text-white/90 hover:bg-white/[0.04]"
+                        ? "bg-surface-active text-white"
+                        : "text-white/90 hover:bg-surface-glass"
                     )}
                   >
                     {tNav(link.key)}
@@ -363,7 +363,7 @@ export default function MobileMenu({
           </ul>
         </nav>
 
-        <div className="shrink-0 border-t border-white/10 bg-bg/80 px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+        <div className="shrink-0 border-t border-strong bg-bg/80 px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
           <div className="mb-4 flex items-center justify-center gap-2">
             {locales.map((loc) => (
               <button
@@ -377,8 +377,8 @@ export default function MobileMenu({
                 className={cn(
                   "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                   locale === loc
-                    ? "bg-white/10 text-white"
-                    : "text-white/40 hover:bg-white/[0.04] hover:text-white/70"
+                    ? "bg-surface-active text-white"
+                    : "text-white/40 hover:bg-surface-glass hover:text-white/70"
                 )}
                 aria-current={locale === loc ? "true" : undefined}
               >

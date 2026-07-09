@@ -1,8 +1,6 @@
-"use client";
-
-import { m as motion } from "@/lib/framer";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
-import { pageSectionClasses } from "@/lib/page-section-surface";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/shared/services/Section";
 
 export type FAQItem = { question: string; answer: string };
 
@@ -19,36 +17,24 @@ export default function FAQSection({
   items,
   surfaceIndex = 0,
 }: FAQSectionProps) {
-  const { fadeUp, stagger } = useMotionVariants();
-
   return (
-    <section className={pageSectionClasses(surfaceIndex)}>
+    <Section id="faq" surfaceIndex={surfaceIndex}>
       <div className="container-site">
-        <div className="section-header">
-          <span className="section-label">{label}</span>
-          <h2 className="section-title">{title}</h2>
-          <div className="section-divider" />
-        </div>
-        <motion.div
-          className="section-content max-w-2xl mx-auto space-y-3"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
+        <SectionHeader badge={label} title={title} headingId="faq-heading" />
+        <Reveal stagger className="section-content max-w-2xl mx-auto space-y-3">
           {items.map((item) => (
-            <motion.div key={item.question} variants={fadeUp}>
-              <details className="group border-b border-white/[0.06]">
+            <div key={item.question}>
+              <details className="group border-b border-surface">
                 <summary className="faq-summary">
                   <span>{item.question}</span>
                   <span className="faq-chevron" aria-hidden="true">&gt;</span>
                 </summary>
                 <p className="faq-answer">{item.answer}</p>
               </details>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

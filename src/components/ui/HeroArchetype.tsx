@@ -1,15 +1,32 @@
 "use client";
 
+/**
+ * Hero decision tree — pick one entry point per page type:
+ *
+ * Homepage           → HeroShell (client, LCP-optimized)
+ * SSR service pages  → StaticHeroShell (no client JS for hero)
+ * Hub/detail pages   → HeroArchetype (client, archetype-driven)
+ * Contact            → StaticHeroShell compact variant
+ * Blog/case study    → StaticHeroShell article variant
+ *
+ * Shared text primitives: @/components/ui/hero/HeroContent (+ HeroContentMotion for animation)
+ */
 import { m as motion } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { EASE_OUT } from "@/lib/motion-config";
+import { cardClasses } from "@/lib/card-styles";
 import Button from "@/components/ui/Button";
 import HeroBackdrop, { type HeroTheme } from "@/components/ui/HeroBackdrop";
 import "@/styles/components/hero-decorative.css";
-import TwoLineText from "@/components/ui/TwoLineText";
 import ProofMetric from "@/components/ui/ProofMetric";
+import {
+  MotionHeroLabel,
+  MotionHeroSubtitle,
+  MotionHeroTitle,
+} from "@/components/ui/hero/HeroContentMotion";
+import type { HeroSubtitleVariant, HeroTitleVariant } from "@/components/ui/hero/HeroContent";
 import type { BreadcrumbItem } from "@/lib/schema";
 
 type Archetype = "dashboard" | "diagram" | "showcase" | "story" | "conversion" | "article";
@@ -99,35 +116,29 @@ export default function HeroArchetype({
 
   const bgGlow = (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,42rem)] h-72 rounded-full bg-neon-cyan/[0.022] blur-[140px]" />
+      <div className="hero-glow-orb absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,42rem)] h-72 rounded-full bg-neon-cyan/[0.022] blur-[140px]" />
       <div className="absolute inset-0 bg-gradient-to-b from-dark-gray/25 via-transparent to-charcoal/50" />
     </div>
   );
 
+  const titleVariant: HeroTitleVariant =
+    archetype === "showcase" ? "split" : archetype === "story" ? "section" : "default";
+
+  const subtitleVariant: HeroSubtitleVariant =
+    archetype === "showcase" ? "hero" : "intro-center";
+
   const labelEl = label && (
-    <motion.span variants={popUp} className="hero-label">
-      {label}
-    </motion.span>
+    <MotionHeroLabel variants={popUp}>{label}</MotionHeroLabel>
   );
 
   const headlineEl = (
-    <motion.h1
-      className={cn(
-        archetype === "showcase" ? "type-hero type-hero--split" :
-        archetype === "story" ? "type-section type-section--center" :
-        "type-hero",
-        "font-bold tracking-tight text-balance"
-      )}
-      variants={blurFadeUp}
-    >
+    <MotionHeroTitle variant={titleVariant} variants={blurFadeUp}>
       {headline}
-    </motion.h1>
+    </MotionHeroTitle>
   );
 
   const subtitleEl = subtitle && (
-    <motion.p variants={fadeUp} className={cn(archetype === "showcase" ? "hero__subtitle" : "section-intro-lg mt-8", archetype !== "showcase" && "section-intro-lg--center")}>
-      <TwoLineText text={subtitle} variant="body" className={subtitleLineClassName} />
-    </motion.p>
+    <MotionHeroSubtitle variants={fadeUp} variant={subtitleVariant} text={subtitle} lineClassName={subtitleLineClassName} />
   );
 
   const outcomeEl = outcome && (
@@ -194,7 +205,7 @@ export default function HeroArchetype({
               transition={{ duration: 0.5, delay: 0.45, ease: EASE_OUT }}
               className="mt-12 md:mt-16"
             >
-              <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 md:p-8 backdrop-blur-xl max-w-3xl">
+              <div className={cardClasses({ surface: "glass", hover: false, className: "!p-6 md:!p-8 max-w-3xl" })}>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-4">
                   {metrics.map((m) => (
                     <ProofMetric
@@ -299,7 +310,7 @@ export default function HeroArchetype({
         {gradientBg}
         {backdrop}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,36rem)] h-64 rounded-full bg-neon-cyan/[0.018] blur-[160px]" />
+          <div className="hero-glow-orb absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(100%,36rem)] h-64 rounded-full bg-neon-cyan/[0.018] blur-[160px]" />
         </div>
         <div className="container-site hero__container relative z-10">
           <motion.div
@@ -336,16 +347,13 @@ export default function HeroArchetype({
           >
             {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}
             {labelEl}
-            <motion.h1
-              className="mt-4 type-hero type-hero--center type-hero--article text-balance"
-              variants={fadeUp}
-            >
+            <MotionHeroTitle variant="article" className="mt-4" variants={fadeUp}>
               {headline}
-            </motion.h1>
+            </MotionHeroTitle>
             {subtitle && (
-              <motion.p variants={fadeUp} className="mt-3 text-sm text-muted">
+              <MotionHeroSubtitle variant="meta" variants={fadeUp}>
                 {subtitle}
-              </motion.p>
+              </MotionHeroSubtitle>
             )}
             {outcomeEl}
             {ctaEl}
@@ -371,13 +379,12 @@ export default function HeroArchetype({
           >
             {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}
             {labelEl}
-            <motion.h1
-              className="mt-6 type-hero type-hero--center text-balance"
-              variants={fadeUp}
-            >
+            <MotionHeroTitle variant="center" className="mt-6" variants={fadeUp}>
               {headline}
-            </motion.h1>
-            {subtitle && <motion.p variants={fadeUp} className="section-intro-lg section-intro-lg--center"><TwoLineText text={subtitle} variant="body" /></motion.p>}
+            </MotionHeroTitle>
+            {subtitle && (
+              <MotionHeroSubtitle variant="intro-center" variants={fadeUp} text={subtitle} />
+            )}
             {ctaEl}
           </motion.div>
         </div>

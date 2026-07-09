@@ -1,14 +1,14 @@
-"use client";
-
-import { m as motion } from "@/lib/framer";
 import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
 import { getDeliverableIcon } from "@/lib/deliverable-icons";
 import { cn } from "@/lib/utils";
+import Section from "@/components/shared/services/Section";
 
 type DeliverablesSectionProps = {
   title: string;
   subtitle: string;
   items: { title: string; description: string }[];
+  surfaceIndex?: number;
 };
 
 function DeliverableIcon({ title, active }: { title: string; active: boolean }) {
@@ -20,7 +20,7 @@ function DeliverableIcon({ title, active }: { title: string; active: boolean }) 
         "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border transition-all duration-500",
         active
           ? "border-neon-cyan/30 bg-neon-cyan/10 shadow-glow-sm"
-          : "border-white/[0.08] bg-white/[0.04] group-hover:border-neon-cyan/20 group-hover:bg-neon-cyan/[0.06]"
+          : "border-strong bg-surface-glass group-hover:border-neon-cyan/20 group-hover:bg-neon-cyan/[0.06]"
       )}
       aria-hidden
     >
@@ -29,20 +29,14 @@ function DeliverableIcon({ title, active }: { title: string; active: boolean }) 
   );
 }
 
-export default function DeliverablesSection({ title, subtitle, items }: DeliverablesSectionProps) {
+export default function DeliverablesSection({ title, subtitle, items, surfaceIndex = 0 }: DeliverablesSectionProps) {
   return (
-    <section className="section-padding border-t border-white/[0.06]">
+    <Section id="deliverables" surfaceIndex={surfaceIndex}>
       <div className="container-site">
         <div className="grid items-start gap-grid-lg lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)]">
-          <motion.div
-            className="lg:sticky lg:top-28"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <SectionHeader pattern="C" title={title} subtitle={subtitle} className="max-w-none" />
-          </motion.div>
+          <div className="lg:sticky lg:top-28">
+            <SectionHeader title={title} description={subtitle} className="max-w-none" headingId="deliverables-heading" />
+          </div>
 
           <div className="relative">
             <div
@@ -50,15 +44,11 @@ export default function DeliverablesSection({ title, subtitle, items }: Delivera
               aria-hidden
             />
 
-            <div className="space-y-0">
+            <Reveal stagger className="space-y-0">
               {items.map((item, i) => (
-                <motion.div
+                <div
                   key={item.title}
-                  className="group relative flex gap-5 border-b border-white/[0.06] py-8 last:border-0 sm:gap-6 sm:pl-12"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative flex gap-5 border-b border-surface py-8 last:border-0 sm:gap-6 sm:pl-12"
                 >
                   <div className="hidden shrink-0 sm:absolute sm:left-0 sm:top-8">
                     <DeliverableIcon title={item.title} active={i === 0} />
@@ -82,12 +72,12 @@ export default function DeliverablesSection({ title, subtitle, items }: Delivera
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

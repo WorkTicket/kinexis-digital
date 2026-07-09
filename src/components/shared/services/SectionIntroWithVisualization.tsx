@@ -14,13 +14,8 @@ export default function SectionIntroWithVisualization({ header, visualization, c
   }
 
   return (
-    <div
-      className={cn(
-        "service-section-intro grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] lg:gap-12 xl:gap-16",
-        className,
-      )}
-    >
-      {header}
+    <div className={cn("service-section-intro", className)}>
+      <div className="service-section-intro__copy">{header}</div>
       <ServicePageVisualization>{visualization}</ServicePageVisualization>
     </div>
   );

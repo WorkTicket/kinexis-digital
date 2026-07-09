@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
+import { cardClasses } from "@/lib/card-styles";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 export default function BackToTop() {
@@ -31,7 +32,12 @@ export default function BackToTop() {
       onClick={() =>
         window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" })
       }
-      className="fixed-safe-bottom fixed-safe-right fixed z-40 flex h-14 w-14 items-center justify-center rounded-full glass text-white shadow-lg transition-opacity duration-300 hover:opacity-90 touch-manipulation animate-[fadeIn_0.2s_ease-out]"
+      className={cardClasses({
+        surface: "glass",
+        hover: false,
+        className:
+          "fixed-safe-bottom fixed-safe-right fixed z-40 flex h-14 w-14 !min-h-0 !rounded-full !p-0 items-center justify-center text-white shadow-lg transition-opacity duration-300 hover:opacity-90 touch-manipulation animate-[fadeIn_0.2s_ease-out]",
+      })}
       aria-label="Back to top"
     >
       <ChevronUp className="h-5 w-5" />

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import AnimatedWrapper from "@/components/ui/AnimatedWrapper";
 import CTAArchetype from "@/components/ui/CTAArchetype";
-import ArticleHeroShell from "@/components/shared/ArticleHeroShell";
+import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import { getBlogArticle } from "@/content/blog-articles";
 import { getClusterPost } from "@/content/blog-clusters";
 import { blogContent } from "@/content/blog";
@@ -18,6 +18,7 @@ import { getBlogRelatedLinks } from "@/lib/blog-related-links";
 import RelatedLinks from "@/components/sections/RelatedLinks";
 import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
 import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
+import { pageSectionClasses } from "@/lib/page-section-surface";
 import type { Metadata } from "next";
 
 function getPostExcerpt(slug: string, locale: Locale, body: string): string {
@@ -99,7 +100,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           ]),
         ]}
       />
-      <ArticleHeroShell
+      <StaticHeroShell
+        variant="article"
         label={post.category}
         headline={post.title}
         subtitle={post.publishedAt}
@@ -121,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         </div>
       )}
 
-      <AnimatedWrapper className="section-padding">
+      <AnimatedWrapper className={pageSectionClasses(0)}>
         <div className="container-site">
           <div className="prose prose-gray max-w-3xl mx-auto
             prose-headings:font-bold prose-headings:text-text

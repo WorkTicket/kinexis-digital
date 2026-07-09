@@ -7,7 +7,7 @@ import { getServiceSeoContent } from "@/content/service-seo";
 import { mergeServiceFaqs } from "@/content/service-seo";
 import { seoContent } from "@/content/services/seo";
 import { webDesignContent } from "@/content/services/web-design";
-import { paidAdsContent } from "@/content/services/paid-ads";
+import { paidAdsContent, metaAdsPageContent } from "@/content/services/paid-ads";
 import { localSeoContent } from "@/content/services/local-seo";
 import { croContent } from "@/content/services/cro";
 import { emailMarketingContent } from "@/content/services/email-marketing";
@@ -18,6 +18,10 @@ import { brandingContent } from "@/content/services/branding";
 import { analyticsContent } from "@/content/services/analytics";
 import { growthConsultingContent } from "@/content/services/growth-consulting";
 import { funnelsContent } from "@/content/services/funnels";
+import { landingPagesContent } from "@/content/services/landing-pages";
+import { copywritingContent } from "@/content/services/copywriting";
+import { youtubeAdsContent } from "@/content/services/youtube-ads";
+import { getGenericRichServiceContent } from "@/content/services/generic-rich-service-content";
 import {
   analyticsPillarContent,
   brandingPillarContent,
@@ -32,11 +36,21 @@ import {
   socialMediaPillarContent,
   videoMarketingPillarContent,
   webDesignPillarContent,
+  youtubeAdsPillarContent,
+  landingPagesPillarContent,
+  websiteMaintenancePillarContent,
+  websiteSpeedPillarContent,
+  microsoftAdsPillarContent,
+  copywritingPillarContent,
+  marketingAuditsPillarContent,
+  marketingAutomationCrmPillarContent,
+  fractionalCmoPillarContent,
+  trainingWorkshopsPillarContent,
 } from "@/content/services/service-pillar-map";
 import { googleAdsPillarContent, metaAdsPillarContent, ppcPillarContent, getPaidServiceFaqs } from "@/content/services/paid-service-pillar";
 import { serviceArchitectureConfig } from "./service-architecture-config";
 import { buildServiceSections } from "./service-section-builders";
-import type { ServicePageData } from "./types";
+import type { ServicePageData, ProofData } from "./types";
 
 export const servicePillarBySlug: Record<ServiceSeoSlug, ServicePillarContent> = {
   seo: seoPillarContent,
@@ -55,6 +69,16 @@ export const servicePillarBySlug: Record<ServiceSeoSlug, ServicePillarContent> =
   analytics: analyticsPillarContent,
   "growth-consulting": growthConsultingPillarContent,
   funnels: funnelsPillarContent,
+  "youtube-ads": youtubeAdsPillarContent,
+  "microsoft-ads": microsoftAdsPillarContent,
+  "landing-pages": landingPagesPillarContent,
+  "website-maintenance": websiteMaintenancePillarContent,
+  "website-speed": websiteSpeedPillarContent,
+  copywriting: copywritingPillarContent,
+  "marketing-audits": marketingAuditsPillarContent,
+  "marketing-automation-crm": marketingAutomationCrmPillarContent,
+  "fractional-cmo": fractionalCmoPillarContent,
+  "training-workshops": trainingWorkshopsPillarContent,
 };
 
 function timelineToPhases(pillar: ServicePillarContent): ServicePhase[] {
@@ -71,70 +95,129 @@ function isEnProcess(locale: Locale): boolean {
 
 function getProcess(slug: ServiceSeoSlug, locale: Locale, pillar: ServicePillarContent) {
   switch (slug) {
-    case "seo":
-      return { title: seoContent[locale].phasesTitle, subtitle: seoContent[locale].phasesSubtitle, steps: seoContent[locale].phases };
-    case "web-design":
-      return { title: webDesignContent[locale].buildProcessTitle, subtitle: webDesignContent[locale].buildProcessSubtitle, steps: webDesignContent[locale].phases };
-    case "local-seo":
-      return { title: localSeoContent[locale].phasesTitle, subtitle: localSeoContent[locale].phasesSubtitle, steps: localSeoContent[locale].phases };
-    case "google-ads":
+    case "seo": {
+      const c = seoContent[locale];
       return {
-        title: paidAdsContent[locale].phases.title,
-        subtitle: paidAdsContent[locale].phases.subtitle,
-        steps: [
-          { title: isEnProcess(locale) ? "Account Audit & Restructure" : "Auditoría y Reestructuración", desc: isEnProcess(locale) ? "Campaign, keyword, match type, and conversion action review with rebuild plan." : "Revisión de campañas, keywords y conversiones con plan de rebuild.", metric: isEnProcess(locale) ? "Full audit in week 1" : "Auditoría completa en semana 1" },
-          { title: isEnProcess(locale) ? "Keyword & Negative Build" : "Keywords y Negativas", desc: isEnProcess(locale) ? "High-intent keyword targets plus negative lists to block irrelevant searches." : "Objetivos de alta intención y listas negativas.", metric: isEnProcess(locale) ? "240+ terms reviewed weekly" : "240+ términos revisados semanalmente" },
-          { title: isEnProcess(locale) ? "Ad & Landing Alignment" : "Alineación Anuncio-Landing", desc: isEnProcess(locale) ? "Responsive search ads, extensions, and landing pages matched to search intent." : "Anuncios responsivos, extensiones y landing pages alineadas.", metric: isEnProcess(locale) ? "8.2 avg Quality Score" : "8.2 Quality Score prom." },
-          { title: isEnProcess(locale) ? "Tracking & Launch" : "Tracking y Lanzamiento", desc: isEnProcess(locale) ? "GA4, enhanced conversions, call tracking, and CRM import verified before spend scales." : "GA4, conversiones mejoradas y tracking de llamadas verificados.", metric: isEnProcess(locale) ? "Live within 14 days" : "Activo en 14 días" },
-          { title: isEnProcess(locale) ? "Weekly Optimization" : "Optimización Semanal", desc: isEnProcess(locale) ? "Search term mining, bid adjustments, and budget pacing tied to qualified leads." : "Minería de términos, pujas y pacing ligados a leads calificados.", metric: isEnProcess(locale) ? "ROAS reported weekly" : "ROAS reportado semanalmente" },
-        ],
+        title: c.phasesTitle,
+        subtitle: c.phasesSubtitle,
+        intro: c.processIntro,
+        steps: c.phases,
       };
-    case "meta-ads":
+    }
+    case "web-design": {
+      const c = webDesignContent[locale];
+      return { title: c.buildProcessTitle, subtitle: c.buildProcessSubtitle, intro: c.processIntro, steps: c.phases };
+    }
+    case "local-seo": {
+      const c = localSeoContent[locale];
+      return { title: c.phasesTitle, subtitle: c.phasesSubtitle, intro: c.processIntro, steps: c.phases };
+    }
+    case "google-ads": {
+      const c = paidAdsContent[locale];
       return {
-        title: paidAdsContent[locale].phases.title,
-        subtitle: paidAdsContent[locale].phases.subtitle,
-        steps: [
-          { title: isEnProcess(locale) ? "Pixel & CAPI Audit" : "Auditoría Pixel y CAPI", desc: isEnProcess(locale) ? "Business Manager review, event mapping, and attribution gaps fixed before spend." : "Revisión de Business Manager y mapeo de eventos.", metric: isEnProcess(locale) ? "Tracking fixed in week 1" : "Tracking corregido en semana 1" },
-          { title: isEnProcess(locale) ? "Audience Architecture" : "Arquitectura de Audiencias", desc: isEnProcess(locale) ? "Prospecting, warm engagers, and retargeting pools built with clean exclusions." : "Prospección, engagers y retargeting con exclusiones limpias.", metric: isEnProcess(locale) ? "3 audience layers" : "3 capas de audiencia" },
-          { title: isEnProcess(locale) ? "Creative Sprint Launch" : "Lanzamiento Sprint Creativo", desc: isEnProcess(locale) ? "3 to 5 ad variations per sprint across static, video, and carousel formats." : "3 a 5 variaciones por sprint en estático, video y carrusel.", metric: isEnProcess(locale) ? "New creative every 2 weeks" : "Creativo nuevo cada 2 semanas" },
-          { title: isEnProcess(locale) ? "Funnel-Stage Budgeting" : "Presupuesto por Etapa", desc: isEnProcess(locale) ? "Prospecting and retargeting budgets shift based on blended ROAS, not gut feel." : "Presupuestos de prospección y retargeting por ROAS combinado.", metric: isEnProcess(locale) ? "Weekly budget reviews" : "Revisiones semanales" },
-          { title: isEnProcess(locale) ? "Scale & Refresh" : "Escalar y Refrescar", desc: isEnProcess(locale) ? "Winning ads scaled, fatigued creative retired, and landing pages kept in sync." : "Anuncios ganadores escalados y creativos fatigados retirados.", metric: isEnProcess(locale) ? "CPM monitored biweekly" : "CPM monitoreado quincenalmente" },
-        ],
+        title: c.phases.title,
+        subtitle: c.phases.subtitle,
+        intro: c.processIntro,
+        steps: c.phases.items,
       };
-    case "ppc-management":
+    }
+    case "meta-ads": {
+      const m = metaAdsPageContent[locale];
       return {
-        title: paidAdsContent[locale].phases.title,
-        subtitle: paidAdsContent[locale].phases.subtitle,
-        steps: [
-          { title: isEnProcess(locale) ? "Cross-Channel Audit" : "Auditoría Multicanal", desc: isEnProcess(locale) ? "Google, Meta, LinkedIn, and Microsoft accounts reviewed with unified KPI baseline." : "Cuentas de Google, Meta, LinkedIn y Microsoft con baseline unificado.", metric: isEnProcess(locale) ? "Unified audit in week 1" : "Auditoría unificada en semana 1" },
-          { title: isEnProcess(locale) ? "Tracking & Attribution" : "Tracking y Atribución", desc: isEnProcess(locale) ? "One conversion framework across platforms with CRM-backed lead quality." : "Un marco de conversión con calidad de leads respaldada por CRM.", metric: isEnProcess(locale) ? "CRM sync live week 2" : "Sync CRM activo semana 2" },
-          { title: isEnProcess(locale) ? "Budget Allocation Plan" : "Plan de Asignación", desc: isEnProcess(locale) ? "Channel mix and monthly budget split based on cost per qualified lead." : "Mix de canales y presupuesto por costo por lead calificado.", metric: isEnProcess(locale) ? "Weekly reallocation cadence" : "Reasignación semanal" },
-          { title: isEnProcess(locale) ? "Creative Coordination" : "Coordinación Creativa", desc: isEnProcess(locale) ? "Messaging and landing pages stay consistent across search and social campaigns." : "Mensajes y landing pages consistentes entre search y social.", metric: isEnProcess(locale) ? "Biweekly creative tests" : "Tests creativos quincenales" },
-          { title: isEnProcess(locale) ? "Optimize & Report" : "Optimizar e Informar", desc: isEnProcess(locale) ? "Cross-channel ROAS dashboard with weekly bid, budget, and audience adjustments." : "Dashboard ROAS multicanal con ajustes semanales.", metric: isEnProcess(locale) ? "One dashboard, all channels" : "Un dashboard, todos los canales" },
-        ],
+        title: isEnProcess(locale) ? "How we run Meta campaigns" : "Cómo ejecutamos campañas Meta",
+        subtitle: isEnProcess(locale)
+          ? "Biweekly creative sprints and clean audience separation on a fixed cadence."
+          : "Sprints creativos quincenales y separación limpia de audiencias en cadencia fija.",
+        intro: m.processIntro,
+        steps: m.phases,
       };
-    case "paid-ads":
-      return { title: paidAdsContent[locale].phases.title, subtitle: paidAdsContent[locale].phases.subtitle, steps: paidAdsContent[locale].phases.items };
-    case "cro":
-      return { title: croContent[locale].processSection.title, subtitle: croContent[locale].processSection.subtitle, steps: croContent[locale].phases };
+    }
+    case "ppc-management": {
+      const c = paidAdsContent[locale];
+      return { title: c.phases.title, subtitle: c.phases.subtitle, intro: c.processIntro, steps: c.phases.items };
+    }
+    case "paid-ads": {
+      const c = paidAdsContent[locale];
+      return { title: c.phases.title, subtitle: c.phases.subtitle, intro: c.processIntro, steps: c.phases.items };
+    }
+    case "cro": {
+      const c = croContent[locale];
+      return { title: c.processSection.title, subtitle: c.processSection.subtitle, intro: c.processIntro, steps: c.phases };
+    }
     case "email-marketing":
-      return { title: emailMarketingContent[locale].processSection.title, subtitle: emailMarketingContent[locale].processSection.subtitle, steps: emailMarketingContent[locale].phases };
-    case "content-marketing":
-      return { title: contentMarketingContent[locale].process.title, subtitle: contentMarketingContent[locale].process.subtitle, steps: contentMarketingContent[locale].process.phases };
-    case "social-media":
-      return { title: socialMediaContent[locale].processSection.title, subtitle: socialMediaContent[locale].processSection.subtitle, steps: socialMediaContent[locale].phases };
-    case "video-marketing":
-      return { title: videoMarketingContent[locale].processSection.title, subtitle: videoMarketingContent[locale].processSection.subtitle, steps: videoMarketingContent[locale].phases };
-    case "branding":
-      return { title: brandingContent[locale].process.title, subtitle: brandingContent[locale].process.subtitle, steps: brandingContent[locale].process.phases };
-    case "analytics":
-      return { title: analyticsContent[locale].processSection.title, subtitle: analyticsContent[locale].processSection.subtitle, steps: analyticsContent[locale].phases };
-    case "growth-consulting":
-      return { title: growthConsultingContent[locale].processSection.title, subtitle: growthConsultingContent[locale].processSection.subtitle, steps: growthConsultingContent[locale].phases };
-    case "funnels":
-      return { title: funnelsContent[locale].phases.title, subtitle: funnelsContent[locale].phases.subtitle, steps: funnelsContent[locale].phases.items };
-    default:
+      return {
+        title: emailMarketingContent[locale].processSection.title,
+        subtitle: emailMarketingContent[locale].processSection.subtitle,
+        intro: emailMarketingContent[locale].processIntro,
+        steps: emailMarketingContent[locale].phases,
+      };
+    case "content-marketing": {
+      const c = contentMarketingContent[locale];
+      return { title: c.process.title, subtitle: c.process.subtitle, intro: c.processIntro, steps: c.process.phases };
+    }
+    case "social-media": {
+      const c = socialMediaContent[locale];
+      return { title: c.processSection.title, subtitle: c.processSection.subtitle, intro: c.processIntro, steps: c.phases };
+    }
+    case "video-marketing": {
+      const c = videoMarketingContent[locale];
+      return { title: c.processSection.title, subtitle: c.processSection.subtitle, intro: c.processIntro, steps: c.phases };
+    }
+    case "branding": {
+      const c = brandingContent[locale];
+      return { title: c.process.title, subtitle: c.process.subtitle, intro: c.processIntro, steps: c.process.phases };
+    }
+    case "analytics": {
+      const c = analyticsContent[locale];
+      return { title: c.processSection.title, subtitle: c.processSection.subtitle, intro: c.processIntro, steps: c.phases };
+    }
+    case "growth-consulting": {
+      const c = growthConsultingContent[locale];
+      return { title: c.processSection.title, subtitle: c.processSection.subtitle, intro: c.processIntro, steps: c.phases };
+    }
+    case "funnels": {
+      const c = funnelsContent[locale];
+      return { title: c.phases.title, subtitle: c.phases.subtitle, intro: c.processIntro, steps: c.phases.items };
+    }
+    case "landing-pages": {
+      const c = landingPagesContent[locale];
+      return {
+        title: c.processSection.title,
+        subtitle: c.processSection.subtitle,
+        intro: c.processIntro,
+        steps: c.phases,
+      };
+    }
+    case "copywriting": {
+      const c = copywritingContent[locale];
+      return {
+        title: c.processSection.title,
+        subtitle: c.processSection.subtitle,
+        intro: c.processIntro,
+        steps: c.phases,
+      };
+    }
+    case "youtube-ads": {
+      const c = youtubeAdsContent[locale];
+      return {
+        title: c.processSection.title,
+        subtitle: c.processSection.subtitle,
+        intro: c.processIntro,
+        steps: c.phases,
+      };
+    }
+    default: {
+      const generic = getGenericRichServiceContent(slug, locale);
+      if (generic) {
+        return {
+          title: generic.processSection.title,
+          subtitle: generic.processSection.subtitle,
+          intro: generic.processIntro,
+          steps: generic.phases,
+        };
+      }
       return { title: pillar.timeline.title, subtitle: pillar.timeline.subtitle, steps: timelineToPhases(pillar) };
+    }
   }
 }
 
@@ -165,7 +248,7 @@ function getHeroCta(slug: ServiceSeoSlug, locale: Locale, seo: ReturnType<typeof
   const fromContent: Partial<Record<ServiceSeoSlug, string>> = {
     seo: seoContent[locale].heroCtaLabel,
     "web-design": webDesignContent[locale].heroCtaLabel,
-    "local-seo": localSeoContent[locale].ctaLabel,
+    "local-seo": localSeoContent[locale].heroCtaLabel,
     cro: croContent[locale].hero.ctaLabel,
     "email-marketing": emailMarketingContent[locale].hero.ctaLabel,
     "content-marketing": contentMarketingContent[locale].hero.ctaLabel,
@@ -175,12 +258,196 @@ function getHeroCta(slug: ServiceSeoSlug, locale: Locale, seo: ReturnType<typeof
     analytics: analyticsContent[locale].hero.ctaLabel,
     "growth-consulting": growthConsultingContent[locale].hero.ctaLabel,
     funnels: funnelsContent[locale].hero.ctaLabel,
+    "landing-pages": landingPagesContent[locale].hero.ctaLabel,
+    copywriting: copywritingContent[locale].hero.ctaLabel,
+    "youtube-ads": youtubeAdsContent[locale].hero.ctaLabel,
+    "microsoft-ads": getGenericRichServiceContent("microsoft-ads", locale)?.hero.ctaLabel,
+    "website-maintenance": getGenericRichServiceContent("website-maintenance", locale)?.hero.ctaLabel,
+    "website-speed": getGenericRichServiceContent("website-speed", locale)?.hero.ctaLabel,
+    "marketing-audits": getGenericRichServiceContent("marketing-audits", locale)?.hero.ctaLabel,
+    "marketing-automation-crm": getGenericRichServiceContent("marketing-automation-crm", locale)?.hero.ctaLabel,
+    "fractional-cmo": getGenericRichServiceContent("fractional-cmo", locale)?.hero.ctaLabel,
+    "training-workshops": getGenericRichServiceContent("training-workshops", locale)?.hero.ctaLabel,
     "paid-ads": paidAdsContent[locale].hero.ctaLabel,
     "ppc-management": paidAdsContent[locale].hero.ctaLabel,
     "google-ads": paidAdsContent[locale].hero.ctaLabel,
-    "meta-ads": paidAdsContent[locale].hero.ctaLabel,
+    "meta-ads": metaAdsPageContent[locale].heroCtaLabel,
   };
   return fromContent[slug] ?? seo.hero.label;
+}
+
+function buildEditorial(slug: ServiceSeoSlug, seo: ReturnType<typeof getServiceSeoContent>) {
+  if (!seo.editorial?.bridgeParagraph) return undefined;
+
+  const paragraphs = [seo.problem.intro, seo.editorial.bridgeParagraph, seo.solution.intro];
+
+  return {
+    headline: seo.problem.title,
+    paragraphs,
+    pullQuote: seo.editorial.pullQuote,
+  };
+}
+
+function buildProof(_slug: ServiceSeoSlug, _locale: Locale, configProof?: ProofData): ProofData | undefined {
+  return configProof;
+}
+
+function buildServiceCta(slug: ServiceSeoSlug, locale: Locale) {
+  switch (slug) {
+    case "seo": {
+      const c = seoContent[locale];
+      return {
+        headline: c.ctaHeadline,
+        subtitle: c.ctaSubtitle,
+        label: c.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "ppc-management": {
+      const c = paidAdsContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "google-ads": {
+      const c = paidAdsContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "paid-ads": {
+      const c = paidAdsContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "local-seo": {
+      const c = localSeoContent[locale];
+      return {
+        headline: c.ctaHeadline,
+        subtitle: c.ctaSubtitle,
+        label: c.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "meta-ads": {
+      const m = metaAdsPageContent[locale];
+      return {
+        headline: m.cta.headline,
+        subtitle: m.cta.subtitle,
+        label: m.cta.ctaLabel,
+        inlineLabel: m.inlineCtaLabel,
+        inlineSubtitle: m.inlineCtaSubtitle,
+      };
+    }
+    case "web-design": {
+      const c = webDesignContent[locale];
+      return {
+        headline: c.ctaHeadline,
+        subtitle: c.ctaSubtitle,
+        label: c.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "cro": {
+      const c = croContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "content-marketing": {
+      const c = contentMarketingContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "social-media": {
+      const c = socialMediaContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "video-marketing": {
+      const c = videoMarketingContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "branding": {
+      const c = brandingContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "analytics": {
+      const c = analyticsContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "growth-consulting": {
+      const c = growthConsultingContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "funnels": {
+      const c = funnelsContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "email-marketing": {
+      const c = emailMarketingContent[locale];
+      return { headline: c.cta.headline, subtitle: c.cta.subtitle, label: c.cta.ctaLabel, inlineLabel: c.inlineCtaLabel, inlineSubtitle: c.inlineCtaSubtitle };
+    }
+    case "landing-pages": {
+      const c = landingPagesContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "copywriting": {
+      const c = copywritingContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    case "youtube-ads": {
+      const c = youtubeAdsContent[locale];
+      return {
+        headline: c.cta.headline,
+        subtitle: c.cta.subtitle,
+        label: c.cta.ctaLabel,
+        inlineLabel: c.inlineCtaLabel,
+        inlineSubtitle: c.inlineCtaSubtitle,
+      };
+    }
+    default: {
+      const generic = getGenericRichServiceContent(slug, locale);
+      if (!generic) return undefined;
+      return {
+        headline: generic.cta.headline,
+        subtitle: generic.cta.subtitle,
+        label: generic.cta.ctaLabel,
+        inlineLabel: generic.inlineCtaLabel,
+        inlineSubtitle: generic.inlineCtaSubtitle,
+      };
+    }
+  }
 }
 
 export function buildServicePageData(slug: ServiceSeoSlug, locale: Locale): Omit<ServicePageData, "hero"> & { hero: Omit<ServicePageData["hero"], "visualization"> } {
@@ -202,6 +469,7 @@ export function buildServicePageData(slug: ServiceSeoSlug, locale: Locale): Omit
       ctaLabel: getHeroCta(slug, locale, seo),
     },
     sectionOrder: config.sectionOrder,
+    editorial: buildEditorial(slug, seo),
     overview: {
       headline: seo.problem.title,
       problem: seo.problem.intro,
@@ -210,7 +478,8 @@ export function buildServicePageData(slug: ServiceSeoSlug, locale: Locale): Omit
       solutionPoints: seo.solution.points,
     },
     whyKinexus: config.whyKinexus[locale],
-    proof: config.proof?.[locale],
+    proof: buildProof(slug, locale, config.proof?.[locale]),
+    cta: buildServiceCta(slug, locale),
     results: pillar.results,
     process: getProcess(slug, locale, pillar),
     deliverables: {

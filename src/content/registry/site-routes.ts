@@ -4,17 +4,27 @@ export const serviceSlugs = [
   "ppc-management",
   "google-ads",
   "meta-ads",
+  "youtube-ads",
+  "microsoft-ads",
   "web-design",
   "cro",
   "email-marketing",
   "content-marketing",
+  "copywriting",
   "social-media",
   "video-marketing",
   "branding",
   "analytics",
   "growth-consulting",
+  "marketing-audits",
+  "marketing-automation-crm",
+  "fractional-cmo",
+  "training-workshops",
   "funnels",
   "paid-ads",
+  "landing-pages",
+  "website-maintenance",
+  "website-speed",
 ] as const;
 
 export type ServiceSlug = (typeof serviceSlugs)[number];
@@ -23,17 +33,27 @@ export const coreRevenueServices: ServiceSlug[] = [
   "seo",
   "local-seo",
   "ppc-management",
-  "google-ads",
   "meta-ads",
+  "youtube-ads",
+  "microsoft-ads",
   "web-design",
+  "cro",
   "funnels",
   "email-marketing",
   "content-marketing",
+  "copywriting",
   "social-media",
   "video-marketing",
   "branding",
   "analytics",
   "growth-consulting",
+  "marketing-audits",
+  "marketing-automation-crm",
+  "fractional-cmo",
+  "training-workshops",
+  "landing-pages",
+  "website-maintenance",
+  "website-speed",
 ];
 
 export const serviceRoutes: Record<ServiceSlug, string> = {
@@ -42,36 +62,56 @@ export const serviceRoutes: Record<ServiceSlug, string> = {
   "ppc-management": "/services/ppc-management",
   "google-ads": "/services/google-ads",
   "meta-ads": "/services/meta-ads",
+  "youtube-ads": "/services/youtube-ads",
+  "microsoft-ads": "/services/microsoft-ads",
   "web-design": "/services/web-design",
-  cro: "/services/funnels",
+  cro: "/services/cro",
   "email-marketing": "/services/email-marketing",
   "content-marketing": "/services/content-marketing",
+  copywriting: "/services/copywriting",
   "social-media": "/services/social-media",
   "video-marketing": "/services/video-marketing",
   branding: "/services/branding",
   analytics: "/services/analytics",
   "growth-consulting": "/services/growth-consulting",
+  "marketing-audits": "/services/marketing-audits",
+  "marketing-automation-crm": "/services/marketing-automation-crm",
+  "fractional-cmo": "/services/fractional-cmo",
+  "training-workshops": "/services/training-workshops",
   funnels: "/services/funnels",
   "paid-ads": "/services/paid-ads",
+  "landing-pages": "/services/landing-pages",
+  "website-maintenance": "/services/website-maintenance",
+  "website-speed": "/services/website-speed",
 };
 
 export const serviceLabels: Record<ServiceSlug, string> = {
   seo: "SEO Services",
   "local-seo": "Local SEO Services",
-  "ppc-management": "PPC Management",
-  "google-ads": "Google Ads Management",
+  "ppc-management": "Google Ads (PPC) Management",
+  "google-ads": "Google Ads (PPC) Management",
   "meta-ads": "Meta Ads Management",
-  "web-design": "Web Design Services",
+  "youtube-ads": "YouTube Ads Management",
+  "microsoft-ads": "Microsoft Ads (Bing Ads) Management",
+  "web-design": "Website Design & Development",
   cro: "Conversion Rate Optimization",
-  "email-marketing": "Email Marketing Services",
+  "email-marketing": "Email Marketing & Automation",
   "content-marketing": "Content Marketing Services",
+  copywriting: "Copywriting & Content Creation",
   "social-media": "Social Media Marketing Services",
   "video-marketing": "Video Marketing Services",
-  branding: "Branding Services",
-  analytics: "Marketing Analytics Services",
-  "growth-consulting": "Growth Consulting Services",
-  funnels: "Funnels & Conversion Rate Optimization",
+  branding: "Branding & Visual Identity",
+  analytics: "Analytics & Reporting",
+  "growth-consulting": "Digital Marketing Strategy",
+  "marketing-audits": "Marketing Audits",
+  "marketing-automation-crm": "Marketing Automation & CRM Consulting",
+  "fractional-cmo": "Fractional CMO Services",
+  "training-workshops": "Training & Workshops",
+  funnels: "Customer Journey & Funnel Strategy",
   "paid-ads": "Paid Ads",
+  "landing-pages": "Landing Page Design & Optimization",
+  "website-maintenance": "Website Maintenance & Support",
+  "website-speed": "Website Speed & Performance Optimization",
 };
 
 export const staticPageRoutes = [
@@ -92,11 +132,11 @@ export const staticPageRoutes = [
   "/terms",
 ] as const;
 
-/** Legacy slug — redirects to funnels; excluded from sitemap. */
-export const sitemapExcludedServiceSlugs = ["cro"] as const;
+/** Legacy slugs — 301 to canonical service; excluded from sitemap. */
+export const sitemapExcludedServiceSlugs = ["google-ads", "paid-ads", "cro"] as const;
 
-/** Retired pricing slugs — 301 to ppc-management; excluded from sitemap. */
-export const sitemapExcludedPricingSlugs = ["google-ads", "paid-ads"] as const;
+/** Retired pricing slugs — 301 to canonical target; excluded from sitemap. */
+export const sitemapExcludedPricingSlugs = ["google-ads", "paid-ads", "cro"] as const;
 
 export const sitemapServiceSlugs = serviceSlugs.filter(
   (slug) => !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug),
@@ -109,10 +149,22 @@ export type PricingSlug = ServiceSlug;
 export const pricingSlugCanonical: Partial<Record<PricingSlug, PricingSlug>> = {
   "google-ads": "ppc-management",
   "paid-ads": "ppc-management",
+  cro: "funnels",
+};
+
+/** Canonical service page when a slug has been retired or merged. */
+export const serviceSlugCanonical: Partial<Record<ServiceSlug, ServiceSlug>> = {
+  "google-ads": "ppc-management",
+  "paid-ads": "ppc-management",
+  cro: "funnels",
 };
 
 export function resolvePricingSlug(slug: PricingSlug): PricingSlug {
   return pricingSlugCanonical[slug] ?? slug;
+}
+
+export function resolveServiceSlug(slug: ServiceSlug): ServiceSlug {
+  return serviceSlugCanonical[slug] ?? slug;
 }
 
 export const sitemapPricingSlugs = pricingSlugs.filter(

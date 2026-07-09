@@ -155,8 +155,8 @@ export default function LanguageSwitcher({
                 className={cn(
                   "flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-sm transition-colors duration-200",
                   locale === loc
-                    ? "bg-white/[0.08] text-white font-medium"
-                    : "text-white/55 hover:bg-white/[0.05] hover:text-white"
+                    ? "bg-surface-active text-white font-medium"
+                    : "text-white/55 hover:bg-surface-hover hover:text-white"
                 )}
               >
                 <span

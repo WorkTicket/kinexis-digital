@@ -1,4 +1,9 @@
-import { createArchitectedServiceMetadata, createArchitectedServicePage } from "@/lib/create-architected-service-page";
+import { redirect } from "next/navigation";
+import type { Locale } from "@/i18n/routing";
 
-export const generateMetadata = createArchitectedServiceMetadata("google-ads");
-export default createArchitectedServicePage("google-ads");
+type Props = { params: Promise<{ locale: Locale }> };
+
+export default async function GoogleAdsServiceRedirect({ params }: Props) {
+  const { locale } = await params;
+  redirect(`/${locale}/services/ppc-management`);
+}

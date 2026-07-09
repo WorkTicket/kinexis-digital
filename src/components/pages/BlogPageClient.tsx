@@ -6,6 +6,7 @@ import { Link } from "@/i18n/navigation";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import TextLink from "@/components/ui/TextLink";
+import SectionHeader from "@/components/ui/SectionHeader";
 import type { BlogContent } from "@/content/blog";
 import TwoLineText from "@/components/ui/TwoLineText";
 import { Eye, Share2, Star, Clock } from "lucide-react";
@@ -13,17 +14,20 @@ import { getRecentPosts } from "@/lib/blog-utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import BlogPostFeed from "@/components/blog/BlogPostFeed";
 import Button from "@/components/ui/Button";
+import { cardClasses } from "@/lib/card-styles";
+import Section from "@/components/shared/services/Section";
 
 const trendingIcons = [Eye, Share2, Star, Clock];
 
 type Props = { content: BlogContent };
 
 export default function BlogPageClient({ content: c }: Props) {
-  const { fadeUp, stagger, scaleIn } = useMotionVariants();
+  const { stagger, scaleIn } = useMotionVariants();
   const tNav = useTranslations("nav");
   const tCommon = useTranslations("common");
   const featuredPost = c.posts.find((p) => p.featured)!;
   const recentPosts = getRecentPosts(c.posts, 6);
+  let surfaceIndex = 0;
 
   return (
     <>
@@ -42,14 +46,22 @@ export default function BlogPageClient({ content: c }: Props) {
       />
 
       {/* SECTION 2: Featured Research */}
-      <section className="section-padding bg-bg-dark">
+      <Section id="featured-research" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="section-label">{c.featuredResearchLabel}</motion.span>
-          </motion.div>
+          <SectionHeader
+            badge={c.featuredResearchLabel}
+            title={c.featuredResearchLabel}
+            align="left"
+            className="[&_h2]:sr-only"
+            headingId="featured-research-heading"
+          />
           <Link href={`/blog/${featuredPost.slug}`}>
             <motion.div
-              className="group mt-6 relative overflow-hidden rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-white/[0.06]"
+              className={cardClasses({
+                hover: false,
+                className:
+                  "group mt-6 relative overflow-hidden bg-gradient-to-br from-surface-raised to-surface-hover",
+              })}
               variants={scaleIn}
               initial="hidden"
               whileInView="visible"
@@ -59,7 +71,7 @@ export default function BlogPageClient({ content: c }: Props) {
                 <div className="flex items-center gap-3 mb-6">
                   <span className="text-xs font-bold uppercase tracking-wider text-neon-cyan">{featuredPost.category}</span>
                 </div>
-                <h2 className="section-title section-title--left mt-6 group-hover:gradient-text transition-all duration-300">
+                <h2 className="card-heading mt-6 group-hover:gradient-text transition-all duration-300">
                   {featuredPost.title}
                 </h2>
                 <p className="mt-6 section-intro section-intro--left text-base md:text-lg">
@@ -74,15 +86,17 @@ export default function BlogPageClient({ content: c }: Props) {
             </motion.div>
           </Link>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 3: Recent Posts Preview */}
-      <section className="section-padding relative">
+      <Section id="recent-posts" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="section-label">{c.recentPostsLabel}</motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-2">{c.recentPostsTitle}</motion.h2>
-          </motion.div>
+          <SectionHeader
+            badge={c.recentPostsLabel}
+            title={c.recentPostsTitle}
+            align="left"
+            headingId="recent-posts-heading"
+          />
 
           <motion.div
             className="section-content grid gap-grid-sm sm:grid-cols-2 lg:grid-cols-3"
@@ -100,15 +114,17 @@ export default function BlogPageClient({ content: c }: Props) {
             </Button>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 5: Trending Insights */}
-      <section className="section-padding bg-bg-dark">
+      <Section id="trending-insights" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <motion.div variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="section-label">{c.trendingLabel}</motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-2">{c.trendingTitle}</motion.h2>
-          </motion.div>
+          <SectionHeader
+            badge={c.trendingLabel}
+            title={c.trendingTitle}
+            align="left"
+            headingId="trending-insights-heading"
+          />
 
           <div className="section-content grid gap-grid-sm md:grid-cols-4">
             {c.trendingItems.map((item, i) => {
@@ -116,7 +132,7 @@ export default function BlogPageClient({ content: c }: Props) {
               return (
                 <Link key={item.label} href={`/blog/${item.slug}`} className="h-full">
                   <motion.div
-                    className="group h-full rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 hover:border-white/[0.1] transition-all duration-300"
+                    className={cardClasses({ className: "group h-full" })}
                     variants={scaleIn}
                     initial="hidden"
                     whileInView="visible"
@@ -138,24 +154,24 @@ export default function BlogPageClient({ content: c }: Props) {
             })}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 6: Research Library */}
-      <section className="section-padding relative overflow-hidden">
+      <Section id="research-library" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div className="container-site">
-          <motion.div className="section-header section-header--left" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="section-label">{c.archiveLabel}</motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-2">{c.archiveTitle}</motion.h2>
-            <motion.p variants={fadeUp} className="section-subtitle section-subtitle--left mt-3">
-              <TwoLineText text={c.archiveDescription} variant="body" />
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            badge={c.archiveLabel}
+            title={c.archiveTitle}
+            description={<TwoLineText text={c.archiveDescription} variant="body" />}
+            align="left"
+            headingId="research-library-heading"
+          />
 
           <div className="section-content grid gap-grid-sm md:grid-cols-3">
             {c.archiveYears.map((y, i) => (
               <motion.div
                 key={y.year}
-                className="group rounded-2xl border border-white/[0.06] bg-white/[0.03] p-8 hover:border-white/[0.1] transition-all duration-300"
+                className={cardClasses({ className: "group !p-8" })}
                 variants={scaleIn}
                 initial="hidden"
                 whileInView="visible"
@@ -169,7 +185,7 @@ export default function BlogPageClient({ content: c }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       <CTAArchetype
         headline={c.ctaTitle}

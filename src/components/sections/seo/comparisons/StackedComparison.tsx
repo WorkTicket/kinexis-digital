@@ -3,6 +3,7 @@
 import { m as motion } from "@/lib/framer";
 import { getComparisonIcon } from "@/lib/deliverable-icons";
 import { Check } from "lucide-react";
+import { cardClasses } from "@/lib/card-styles";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import type { ComparisonProps } from "./shared";
 import { getColumnIndices } from "./shared";
@@ -16,7 +17,7 @@ export default function StackedComparison({ columns, rows }: ComparisonProps) {
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-3">
-        <span className="rounded-full border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-white/45">
+        <span className="rounded-full border border-strong bg-surface-raised px-4 py-2 text-[11px] font-semibold uppercase tracking-wider text-white/45">
           {altCol.header}
         </span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/25">vs</span>
@@ -38,16 +39,16 @@ export default function StackedComparison({ columns, rows }: ComparisonProps) {
             <motion.article
               key={row.label}
               variants={fadeUp}
-              className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.025] transition-colors duration-300 hover:border-white/[0.1] hover:bg-white/[0.035]"
+              className={cardClasses({ surface: "elevated", className: "overflow-hidden hover:bg-surface-raised" })}
             >
-              <div className="flex items-center gap-3 border-b border-white/[0.06] px-5 py-4 md:px-6">
+              <div className="flex items-center gap-3 border-b border-surface px-5 py-4 md:px-6">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-neon-cyan/15 bg-neon-cyan/10">
                   <Icon className="h-4 w-4 text-neon-cyan" aria-hidden />
                 </div>
                 <h3 className="text-sm font-bold uppercase tracking-wide text-white/80">{row.label}</h3>
               </div>
               <div className="grid md:grid-cols-2">
-                <div className="border-b border-white/[0.06] px-5 py-5 md:border-b-0 md:border-r md:px-6">
+                <div className="border-b border-surface px-5 py-5 md:border-b-0 md:border-r md:px-6">
                   <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-white/30">
                     {altCol.header}
                   </p>

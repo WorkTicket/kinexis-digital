@@ -46,7 +46,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
         { question: "Which is cheaper long term?", answer: "SEO usually wins on cost per lead after 8 to 12 months if you stay consistent. Ads win on speed and predictability in the short term." },
       ],
       relatedLinks: [
-        { href: "/services/google-ads", label: "Google Ads Management" },
+        { href: "/services/ppc-management", label: "PPC & Google Ads Management" },
         { href: "/services/seo", label: "SEO Services" },
         { href: "/pricing/ppc-management", label: "PPC Management Pricing" },
       ],
@@ -62,7 +62,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
       sections: [{ title: "Cuándo conviene Google Ads", body: "Necesitas leads este mes o estás lanzando un servicio nuevo." }],
       table: { title: "Comparación rápida", subtitle: "Patrones típicos.", columns: [{ header: "Google Ads" }, { header: "SEO", highlight: true }], rows: [{ label: "Tiempo a primeros leads", values: ["Días", "3 a 6 meses"] }] },
       faqs: [{ question: "¿Puedo hacer ambos?", answer: "Sí. La mayoría de nuestros clientes lo hace." }],
-      relatedLinks: [{ href: "/services/google-ads", label: "Google Ads" }, { href: "/services/seo", label: "SEO" }],
+      relatedLinks: [{ href: "/services/ppc-management", label: "PPC & Google Ads" }, { href: "/services/seo", label: "SEO" }],
       ctaHeadline: "¿No sabes por dónde empezar?", ctaSubtitle: "Revisamos tu mercado y recomendamos.", ctaLabel: "Agenda una Llamada",
     },
   },
@@ -160,7 +160,7 @@ export const comparisonContent: Record<ComparisonSlug, Record<Locale, Comparison
         ],
       },
       faqs: [{ question: "Do I need both for a local business?", answer: "Most successful local clients use both. Ads for immediate calls, local SEO for sustainable map pack rankings and lower cost per lead over time." }],
-      relatedLinks: [{ href: "/services/local-seo", label: "Local SEO Services" }, { href: "/services/google-ads", label: "Google Ads Management" }],
+      relatedLinks: [{ href: "/services/local-seo", label: "Local SEO Services" }, { href: "/services/ppc-management", label: "PPC & Google Ads Management" }],
       ctaHeadline: "Want a local marketing plan?", ctaSubtitle: "We will recommend the right split for your city and trade.", ctaLabel: "Get Local Strategy",
     },
     es: {

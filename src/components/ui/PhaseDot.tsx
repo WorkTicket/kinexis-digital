@@ -14,7 +14,7 @@ export default function PhaseDot({ active = false, letter, className }: Props) {
           "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs font-bold",
           active
             ? "border-neon-cyan/40 bg-neon-cyan/15 text-neon-cyan"
-            : "border-white/10 bg-white/[0.04] text-white/50",
+            : "border-strong bg-surface-glass text-white/50",
           className
         )}
       >

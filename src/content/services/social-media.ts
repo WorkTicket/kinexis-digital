@@ -65,12 +65,20 @@ export type SocialMediaContent = {
     title: string;
     subtitle: string;
   };
+  processIntro: string;
   phases: ServicePhaseContent[];
+  capabilityBodies: {
+    platformStrategy: string;
+    contentPillars: string;
+    community: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -173,39 +181,31 @@ export const socialMediaContent: Record<Locale, SocialMediaContent> = {
       title: "The social process.",
       subtitle: "From audit to ongoing management:|a step-by-step approach to building audience and engagement.",
     },
+    processIntro:
+      "Social is not a posting checklist. Our cycle runs from platform audit through content pillars, production, and community management, every phase tied to website clicks and leads attributed, not follower count.",
     phases: [
-      {
-        title: "Audit & Platform Strategy",
-        desc: "Analyze current presence. Pick the right platforms, not every platform.",
-        metric: "Platform strategy delivered in week 1",
-      },
-      {
-        title: "Content Calendar & Guidelines",
-        desc: "Monthly calendar tied to goals. Visual and tone guidelines keep everything consistent.",
-        metric: "30-day content calendar per month",
-      },
-      {
-        title: "Production & Scheduling",
-        desc: "Custom graphics, short-form video, carousels, all scheduled in advance.",
-        metric: "20+ assets produced per month",
-      },
-      {
-        title: "Community Management",
-        desc: "Daily engagement with comments, mentions, DMs. Real conversations, not bots.",
-        metric: "Avg. 4.2% engagement rate",
-      },
-      {
-        title: "Reporting & Optimization",
-        desc: "Monthly reports on reach, engagement, growth, and lead attribution.",
-        metric: "18% month-over-month audience growth",
-      },
+      { title: "Audit & Platform Strategy", desc: "Analyze current presence. Pick the right platforms, not every platform.", metric: "" },
+      { title: "Content Calendar & Guidelines", desc: "Monthly calendar tied to goals. Visual and tone guidelines keep everything consistent.", metric: "" },
+      { title: "Production & Scheduling", desc: "Custom graphics, short-form video, and carousels scheduled in advance.", metric: "" },
+      { title: "Community & Reporting", desc: "Daily engagement on comments and DMs. Monthly reports on reach, leads, and what to adjust.", metric: "" },
     ],
+    capabilityBodies: {
+      platformStrategy:
+        "Platform fit matters more than presence everywhere. We audit where your buyers actually engage, then build cadence, format, and messaging rules per network, LinkedIn for B2B depth, Instagram for visual proof, X for conversation. The matrix below shows how we match platform to audience and outcome, not a six-network checklist.",
+      contentPillars:
+        "Random posts feel like a different company every week. We organize content into four pillars, thought leadership, social proof, education, culture. Each mapped to a funnel stage and a number we can report on. Every post category has a purpose: authority, trust, leads, or human connection.",
+      community:
+        "Likes alone do not pay rent. We monitor comments, mentions, and DMs daily, route buying signals to sales follow-up, and track leads attributed to social traffic, not vanity engagement. Organic posts also feed retargeting pools and ad creative tests so social is wired into pipeline, not a standalone island.",
+    },
     cta: {
       headline: "Ready to grow your social presence?",
       subtitle:
         "We'll build a social strategy that drives real engagement and leads,|not just likes and empty followers.",
-      ctaLabel: "Start Your Social Strategy",
+      ctaLabel: "See Social Pricing",
     },
+    inlineCtaLabel: "Audit My Social Presence",
+    inlineCtaSubtitle:
+      "We will review your platform fit, content gaps, and lead paths. Then outline the highest-impact social fixes.",
     faqs: [
       { question: "Which social platforms do you manage?", answer: "We focus on LinkedIn, Instagram, and X (Twitter). We recommend the platforms where your specific audience is most active and where your content type will perform best, not every platform for the sake of presence." },
       { question: "How many posts do you create per month?", answer: "Our clients receive 20+ assets per month including posts, stories, carousels, and short-form video. Every asset is created from scratch for your brand, with no recycled templates or generic stock photo captions." },
@@ -303,39 +303,31 @@ export const socialMediaContent: Record<Locale, SocialMediaContent> = {
       title: "El proceso social.",
       subtitle: "De la auditoría a la gestión continua:|un enfoque paso a paso para construir audiencia y engagement.",
     },
+    processIntro:
+      "Social no es una lista de publicaciones. Nuestro ciclo va de auditoría de plataforma a pilares de contenido, producción y gestión de comunidad, cada fase ligada a clics al sitio y leads atribuidos, no al conteo de seguidores.",
     phases: [
-      {
-        title: "Auditoría y Estrategia de Plataforma",
-        desc: "Analizar presencia actual. Elegir las plataformas correctas, no todas las plataformas.",
-        metric: "Estrategia de plataforma entregada en la semana 1",
-      },
-      {
-        title: "Calendario de Contenido y Guías",
-        desc: "Calendario mensual vinculado a objetivos. Guías visuales y de tono mantienen todo consistente.",
-        metric: "Calendario de contenido de 30 días por mes",
-      },
-      {
-        title: "Producción y Programación",
-        desc: "Gráficos personalizados, video corto, carruseles, todo programado con anticipación.",
-        metric: "20+ activos producidos por mes",
-      },
-      {
-        title: "Gestión de Comunidad",
-        desc: "Engagement diario con comentarios, menciones y DMs. Conversaciones reales, no bots.",
-        metric: "Prom. 4.2% de tasa de engagement",
-      },
-      {
-        title: "Reportes y Optimización",
-        desc: "Reportes mensuales de alcance, engagement, crecimiento y atribución de leads.",
-        metric: "18% de crecimiento de audiencia mes a mes",
-      },
+      { title: "Auditoría y Estrategia de Plataforma", desc: "Analizar presencia actual. Elegir las plataformas correctas, no todas.", metric: "" },
+      { title: "Calendario de Contenido y Guías", desc: "Calendario mensual vinculado a objetivos. Guías visuales y de tono mantienen todo consistente.", metric: "" },
+      { title: "Producción y Programación", desc: "Gráficos personalizados, video corto y carruseles programados con anticipación.", metric: "" },
+      { title: "Comunidad y Reportes", desc: "Engagement diario en comentarios y DMs. Reportes mensuales de alcance, leads y ajustes.", metric: "" },
     ],
+    capabilityBodies: {
+      platformStrategy:
+        "El ajuste de plataforma importa más que estar en todas. Auditamos dónde tus compradores realmente interactúan, luego construimos cadencia, formato y reglas de mensaje por red, LinkedIn para profundidad B2B, Instagram para prueba visual, X para conversación. La matriz siguiente muestra cómo alineamos plataforma a audiencia y resultado, no un checklist de seis redes.",
+      contentPillars:
+        "Publicaciones aleatorias parecen una empresa distinta cada semana. Organizamos el contenido en cuatro pilares, liderazgo de pensamiento, prueba social, educación, cultura, cada uno mapeado a una etapa de embudo y un número que podemos reportar. Cada categoría de post tiene un propósito: autoridad, confianza, leads o conexión humana.",
+      community:
+        "Los likes solos no pagan la renta. Monitoreamos comentarios, menciones y DMs diariamente, enrutamos señales de compra a seguimiento de ventas y rastreamos leads atribuidos al tráfico social, no engagement vanidad. Los posts orgánicos también alimentan pools de retargeting y pruebas creativas para que social esté conectado al pipeline.",
+    },
     cta: {
       headline: "¿Listo para hacer crecer tu presencia social?",
       subtitle:
         "Construiremos una estrategia social que genere engagement y leads reales,|no solo likes y seguidores vacíos.",
-      ctaLabel: "Inicia Tu Estrategia Social",
+      ctaLabel: "Ver Precios de Social",
     },
+    inlineCtaLabel: "Auditar Mi Presencia Social",
+    inlineCtaSubtitle:
+      "Revisaremos tu ajuste de plataforma, brechas de contenido y rutas de leads, y delinearemos las correcciones sociales de mayor impacto.",
     faqs: [
       { question: "¿Qué plataformas sociales gestionan?", answer: "Nos centramos en LinkedIn, Instagram y X (Twitter). Recomendamos las plataformas donde tu audiencia específica es más activa y donde tu tipo de contenido rendirá mejor, no todas las plataformas por el simple hecho de tener presencia." },
       { question: "¿Cuántas publicaciones crean al mes?", answer: "Nuestros clientes reciben más de 20 activos al mes incluyendo publicaciones, stories, carruseles y video de formato corto. Cada activo se crea desde cero para tu marca, sin plantillas recicladas." },

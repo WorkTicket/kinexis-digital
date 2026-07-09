@@ -6,11 +6,26 @@ import type { Locale } from "@/i18n/routing";
 
 export type { ServiceSeoSlug };
 
-export type VisualVariant = "dashboard" | "mockup" | "split" | "chart" | "comparison";
+export type VisualVariant = "dashboard" | "mockup" | "split" | "chart" | "comparison" | "content";
+
+export type EditorialData = {
+  headline: string;
+  paragraphs: string[];
+  pullQuote?: { quote: string; attribution: string };
+};
+
+export type ServiceCTAData = {
+  headline: string;
+  subtitle: string;
+  label: string;
+  inlineLabel?: string;
+  inlineSubtitle?: string;
+};
 
 export type ServiceSectionId =
   | "ServiceOverview"
   | "WhyKinexus"
+  | "EditorialOverview"
   | "Process"
   | "Deliverables"
   | "Proof"
@@ -57,7 +72,7 @@ export type ServiceOverviewData = {
 
 export type WhyKinexusData = {
   headline: string;
-  /** Service-specific intro line — avoids generic copy on every page */
+  /** Service-specific intro line, avoids generic copy on every page */
   subtitle: string;
   points: { title: string; description: string }[];
 };
@@ -65,14 +80,10 @@ export type WhyKinexusData = {
 export type ProofCaseStudy = {
   client: string;
   challenge: string;
+  /** What we actually did, narrative between challenge and results. */
+  approach?: string;
   outcome: string;
   href?: string;
-};
-
-export type ProofTestimonial = {
-  quote: string;
-  name: string;
-  title: string;
 };
 
 export type ProofBeforeAfter = {
@@ -87,7 +98,6 @@ export type ProofData = {
   title?: string;
   subtitle?: string;
   caseStudy?: ProofCaseStudy;
-  testimonial?: ProofTestimonial;
   logos?: { src: string; alt: string }[];
   beforeAfter?: ProofBeforeAfter;
 };
@@ -114,7 +124,9 @@ export type ServiceSectionData = {
   subheadline?: string;
   visualVariant: VisualVariant;
   points?: { title: string; description: string; metric?: string }[];
+  /** Prose block above cards, required on content-rich service pages. */
   body?: string;
+  maxCards?: number;
   tableHeaders?: ServiceSectionTableHeaders;
 };
 
@@ -125,8 +137,10 @@ export type ServicePageData = {
   visualizationSection: string;
   hero: ServiceHeroData;
   sectionOrder: string[];
+  editorial?: EditorialData;
   overview: ServiceOverviewData;
   whyKinexus: WhyKinexusData;
+  cta?: ServiceCTAData;
   proof?: ProofData;
   results: {
     title: string;
@@ -136,6 +150,7 @@ export type ServicePageData = {
   process: {
     title: string;
     subtitle: string;
+    intro?: string;
     steps: ServicePhase[];
   };
   deliverables: {

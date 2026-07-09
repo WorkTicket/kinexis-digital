@@ -36,10 +36,10 @@ export default async function PricingHubPage({ params }: Props) {
       [
         "seo",
         "localSeo",
-        "ppcManagement",
+        "ppcManagementPricing",
         "googleAds",
-        "metaAds",
-        "webDesign",
+        "metaAdsPricing",
+        "webDesignPricing",
         "cro",
         "emailMarketing",
         "contentMarketing",
@@ -50,6 +50,10 @@ export default async function PricingHubPage({ params }: Props) {
         "growthConsulting",
         "funnels",
         "paidAds",
+        "youtubeAds",
+        "landingPages",
+        "websiteMaintenance",
+        "websiteSpeed",
       ] as const
     ).map((key) => [key, tServices(key)]),
   );

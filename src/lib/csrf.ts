@@ -1,3 +1,4 @@
+/** Origin/referer validation for same-site form submissions (not token-based CSRF). */
 import { getSiteUrl } from "@/lib/metadata";
 
 const ALLOWED_ORIGINS: string[] = [];

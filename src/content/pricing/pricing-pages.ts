@@ -35,7 +35,7 @@ export type PricingPageContent = {
 export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingPageContent>> = {
   seo: {
     en: {
-      metaTitle: "SEO Pricing | Plans from $2,500/mo | KINEXIS Digital",
+      metaTitle: "SEO Pricing | Plans from $750/mo | KINEXIS Digital",
       metaDescription:
         "Transparent SEO pricing for businesses that need leads. Starter, growth, and scale plans with clear deliverables. Most clients see ranking movement in 60 to 90 days.",
       hero: {
@@ -45,11 +45,11 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         subtitle: "No hidden fees. No vague retainers. You see what is included at each tier before you sign anything.",
       },
       answerBlock:
-        "KINEXIS SEO plans start at $2,500 per month for single-location businesses and scale to $8,000+ for competitive markets or multi-location brands. Every plan includes technical SEO, keyword strategy, on-page work, content production (2 to 8+ pieces per month by tier), and link building. Ad spend is not part of SEO pricing. Most clients need four to six months before lead volume clearly improves. Need map pack work only? See Local SEO pricing. Already have an SEO team and need production volume? See Content Marketing pricing.",
+        "KINEXIS SEO plans start at $750 per month for single-location businesses and scale to $3,000+ for competitive markets or multi-location brands. Every plan includes technical SEO, keyword strategy, on-page work, content production (2 to 8+ pieces per month by tier), and link building. Ad spend is not part of SEO pricing. Most clients need four to six months before lead volume clearly improves. Need map pack work only? See Local SEO pricing. Already have an SEO team and need production volume? See Content Marketing pricing.",
       tiers: [
-        { name: "Starter", range: "$2,500/mo", description: "One location or niche market with moderate competition.", bestFor: "Local service businesses getting started with SEO" },
-        { name: "Growth", range: "$5,000/mo", description: "Multi-service sites, content production, and active link building.", bestFor: "Growing brands ready to invest in content and authority" },
-        { name: "Scale", range: "$8,000+/mo", description: "Competitive markets, multiple locations, or aggressive growth targets.", bestFor: "Multi-location or high-competition industries" },
+        { name: "Starter", range: "$750/mo", description: "One location or niche market with moderate competition.", bestFor: "Local service businesses getting started with SEO" },
+        { name: "Growth", range: "$1,500/mo", description: "Multi-service sites, content production, and active link building.", bestFor: "Growing brands ready to invest in content and authority" },
+        { name: "Scale", range: "$3,000+/mo", description: "Competitive markets, multiple locations, or aggressive growth targets.", bestFor: "Multi-location or high-competition industries" },
       ],
       included: [
         "Monthly technical SEO monitoring and fixes",
@@ -79,7 +79,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
               "Multi-location or high-competition industries",
             ],
           },
-          { label: "Starting investment", values: ["$2,500/mo", "$5,000/mo", "$8,000+/mo"] },
+          { label: "Starting investment", values: ["$750/mo", "$1,500/mo", "$3,000+/mo"] },
         ],
       },
       faqs: [
@@ -94,12 +94,12 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         {
           question: "Do I need Local SEO or full SEO?",
           answer:
-            "If your business depends on map pack visibility and same-day calls in specific cities, start with Local SEO ($1,500/mo entry). Full SEO ($2,500/mo entry) covers technical site work, content, and link building for broader organic growth. Many local service businesses run both. We recommend the right mix on a strategy call.",
+            "If your business depends on map pack visibility and same-day calls in specific cities, start with Local SEO ($500/mo entry). Full SEO ($750/mo entry) covers technical site work, content, and link building for broader organic growth. Many local service businesses run both. We recommend the right mix on a strategy call.",
         },
         {
           question: "How is SEO content different from a content marketing retainer?",
           answer:
-            "SEO plans include content production tied to keyword strategy, technical fixes, and link building. Content marketing retainers ($2,000/mo entry) are for teams that already handle SEO in-house and need standalone article and landing page production. If you need the full organic program, SEO is usually the better fit.",
+            "SEO plans include content production tied to keyword strategy, technical fixes, and link building. Content marketing retainers ($800/mo entry) are for teams that already handle SEO in-house and need standalone article and landing page production. If you need the full organic program, SEO is usually the better fit.",
         },
       ],
       ctaHeadline: "Want a quote for your market?",
@@ -107,14 +107,14 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
       ctaLabel: "Get a Custom SEO Quote",
     },
     es: {
-      metaTitle: "Precios SEO | Planes desde $2,500/mes | KINEXIS Digital",
-      metaDescription: "Precios SEO transparentes para negocios que necesitan leads calificados. Planes Starter, Growth y Scale con entregables definidos y sin cargos ocultos. Desde $2,500/mes.",
+      metaTitle: "Precios SEO | Planes desde $750/mes | KINEXIS Digital",
+      metaDescription: "Precios SEO transparentes para negocios que necesitan leads calificados. Planes Starter, Growth y Scale con entregables definidos y sin cargos ocultos. Desde $750/mes.",
       hero: { label: "Precios SEO", line1: "Precios SEO que", line2: "Encajan con Tu Mercado.", subtitle: "Sin cargos ocultos. Ves exactamente qué incluye cada nivel antes de firmar." },
-      answerBlock: "Los planes SEO de KINEXIS empiezan en $2,500 al mes para negocios de una ubicación y escalan a $8,000+ para mercados competitivos. Cada plan incluye SEO técnico, estrategia de palabras clave, contenido y link building.",
+      answerBlock: "Los planes SEO de KINEXIS empiezan en $750 al mes para negocios de una ubicación y escalan a $3,000+ para mercados competitivos. Cada plan incluye SEO técnico, estrategia de palabras clave, contenido y link building.",
       tiers: [
-        { name: "Starter", range: "$2,500/mes", description: "Una ubicación o mercado nicho con competencia moderada.", bestFor: "Negocios locales que empiezan con SEO" },
-        { name: "Growth", range: "$5,000/mes", description: "Sitios multi-servicio, producción de contenido y link building activo.", bestFor: "Marcas en crecimiento" },
-        { name: "Scale", range: "$8,000+/mes", description: "Mercados competitivos o múltiples ubicaciones.", bestFor: "Multi-ubicación o industrias competitivas" },
+        { name: "Starter", range: "$750/mes", description: "Una ubicación o mercado nicho con competencia moderada.", bestFor: "Negocios locales que empiezan con SEO" },
+        { name: "Growth", range: "$1,500/mes", description: "Sitios multi-servicio, producción de contenido y link building activo.", bestFor: "Marcas en crecimiento" },
+        { name: "Scale", range: "$3,000+/mes", description: "Mercados competitivos o múltiples ubicaciones.", bestFor: "Multi-ubicación o industrias competitivas" },
       ],
       included: ["Monitoreo SEO técnico mensual", "Investigación de palabras clave", "Optimización on-page", "Producción de contenido", "Link building", "Informes de leads y rankings"],
       comparison: {
@@ -142,7 +142,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
   },
   "ppc-management": {
     en: {
-      metaTitle: "PPC Management Pricing | Google Ads from $2,500/mo | KINEXIS",
+      metaTitle: "PPC Management Pricing | Google Ads from $500/mo | KINEXIS",
       metaDescription:
         "PPC management pricing for Google Search, Shopping, Performance Max, and paid search programs. Transparent Starter, Growth, and Scale tiers. Management fees separate from ad spend.",
       hero: {
@@ -153,11 +153,11 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
           "Search, Shopping, and Performance Max covered under one management fee. You see what is included before you sign. Ad spend bills directly to Google.",
       },
       answerBlock:
-        "PPC management at KINEXIS starts at $2,500 per month for single-channel Search campaigns with up to $5,000 in ad spend. Growth plans at $5,000 per month cover Search plus Shopping or PMax, up to $25,000 in spend. Scale plans at $8,000+ handle multi-location accounts with $25,000+ monthly spend. You pay platforms directly for clicks. Management fees are always separate from ad spend. Most accounts need two to four weeks of data before optimization shows clear ROAS improvement. We work month to month.",
+        "PPC management at KINEXIS starts at $500 per month, or 15% of ad spend, for single-channel Search campaigns with up to $5,000 in ad spend. Growth plans run $1,000 per month, or 12% of spend, covering Search plus Shopping or PMax up to $25,000. Scale accounts are custom, typically 10% to 15% of spend, for multi-location programs above $25,000 monthly. You pay platforms directly for clicks. Management fees are always separate from ad spend. Most accounts need two to four weeks of data before optimization shows clear ROAS improvement. We work month to month.",
       tiers: [
-        { name: "Starter", range: "$2,500/mo mgmt", description: "Google Search for one service area, up to $5K ad spend.", bestFor: "Local businesses testing paid search" },
-        { name: "Growth", range: "$5,000/mo mgmt", description: "Search + Shopping or PMax, up to $25K ad spend.", bestFor: "Brands scaling proven campaigns" },
-        { name: "Scale", range: "$8,000+/mo mgmt", description: "Multi-location, advanced attribution, $25K+ spend.", bestFor: "High-spend accounts needing daily optimization" },
+        { name: "Starter", range: "$500/mo or 15%", description: "Google Search for one service area, up to $5K ad spend.", bestFor: "Local businesses testing paid search" },
+        { name: "Growth", range: "$1,000/mo or 12%", description: "Search + Shopping or PMax, up to $25K ad spend.", bestFor: "Brands scaling proven campaigns" },
+        { name: "Scale", range: "Custom (10–15%)", description: "Multi-location, advanced attribution, $25K+ spend.", bestFor: "High-spend accounts needing daily optimization" },
       ],
       tiersSection: {
         title: "Google Ads management vs. in-house",
@@ -205,11 +205,11 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
               "High-spend accounts needing daily optimization",
             ],
           },
-          { label: "Starting investment", values: ["$2,500/mo mgmt", "$5,000/mo mgmt", "$8,000+/mo mgmt"] },
+          { label: "Starting investment", values: ["$500/mo or 15%", "$1,000/mo or 12%", "Custom (10–15%)"] },
         ],
       },
       faqs: [
-        { question: "How much does PPC management cost?", answer: "Management starts at $2,500 per month for single-channel Search with up to $5,000 in ad spend. Growth is $5,000 per month (up to $25,000 spend). Scale is $8,000+ per month for $25,000+ spend accounts. Ad spend is separate and bills directly to Google." },
+        { question: "How much does PPC management cost?", answer: "Management starts at $500 per month, or 15% of ad spend, for single-channel Search with up to $5,000 in ad spend. Growth is $1,000 per month, or 12% of spend (up to $25,000). Scale accounts are custom, typically 10% to 15% of spend for $25,000+ accounts. Ad spend is separate and bills directly to Google." },
         { question: "Is ad spend included in the management fee?", answer: "No. You pay Google directly for clicks. Our fee covers strategy, setup, optimization, and reporting." },
         { question: "Which paid ad platform should I start with?", answer: "Depends on your audience. B2B services often start with Google Search. E-commerce often splits between Google Shopping and Meta. Local services do well with Google Search plus Meta retargeting. We recommend the mix on a strategy call." },
         { question: "What minimum ad spend do you recommend?", answer: "We generally recommend at least $3,000 per month in ad spend to gather enough data for smart optimization. Lower budgets can work for very targeted local campaigns." },
@@ -225,7 +225,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
       ctaLabel: "Get PPC Management Pricing",
     },
     es: {
-      metaTitle: "Precios PPC Management | Google Ads desde $2,500/mes | KINEXIS",
+      metaTitle: "Precios PPC Management | Google Ads desde $500/mes | KINEXIS",
       metaDescription:
         "Precios de gestión PPC para Google Search, Shopping, Performance Max y búsqueda pagada. Planes Starter, Growth y Scale. Tarifas de gestión separadas del gasto publicitario.",
       hero: {
@@ -236,11 +236,11 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
           "Search, Shopping y Performance Max bajo una tarifa de gestión. Ves qué incluye antes de firmar. El gasto en ads va directo a Google.",
       },
       answerBlock:
-        "La gestión PPC en KINEXIS empieza en $2,500 al mes para campañas Search de un canal con hasta $5,000 de gasto publicitario. Growth a $5,000 al mes cubre Search más Shopping o PMax, hasta $25,000 de gasto. Scale a $8,000+ maneja cuentas multi-ubicación con $25,000+ de gasto mensual. Pagas a las plataformas directamente por los clics. Las tarifas de gestión siempre son aparte del gasto en ads. La mayoría de cuentas necesita dos a cuatro semanas de datos antes de ver mejora clara de ROAS. Trabajamos mes a mes.",
+        "La gestión PPC en KINEXIS empieza en $500 al mes, o 15% del gasto, para campañas Search de un canal con hasta $5,000 de gasto publicitario. Growth a $1,000 al mes, o 12% del gasto, cubre Search más Shopping o PMax hasta $25,000. Scale es a medida, típicamente 10% a 15% del gasto, para cuentas multi-ubicación arriba de $25,000 al mes. Pagas a las plataformas directamente por los clics. Las tarifas de gestión siempre son aparte del gasto en ads. La mayoría de cuentas necesita dos a cuatro semanas de datos antes de ver mejora clara de ROAS. Trabajamos mes a mes.",
       tiers: [
-        { name: "Starter", range: "$2,500/mes gestión", description: "Google Search para una zona de servicio, hasta $5K de gasto.", bestFor: "Negocios locales probando búsqueda pagada" },
-        { name: "Growth", range: "$5,000/mes gestión", description: "Search + Shopping o PMax, hasta $25K de gasto.", bestFor: "Marcas escalando campañas probadas" },
-        { name: "Scale", range: "$8,000+/mes gestión", description: "Multi-ubicación, atribución avanzada, $25K+ de gasto.", bestFor: "Cuentas de alto gasto con optimización diaria" },
+        { name: "Starter", range: "$500/mes o 15%", description: "Google Search para una zona de servicio, hasta $5K de gasto.", bestFor: "Negocios locales probando búsqueda pagada" },
+        { name: "Growth", range: "$1,000/mes o 12%", description: "Search + Shopping o PMax, hasta $25K de gasto.", bestFor: "Marcas escalando campañas probadas" },
+        { name: "Scale", range: "A medida (10–15%)", description: "Multi-ubicación, atribución avanzada, $25K+ de gasto.", bestFor: "Cuentas de alto gasto con optimización diaria" },
       ],
       tiersSection: {
         title: "Gestión Google Ads vs. contratar in-house",
@@ -288,11 +288,11 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
               "Cuentas de alto gasto con optimización diaria",
             ],
           },
-          { label: "Inversión inicial", values: ["$2,500/mes gestión", "$5,000/mes gestión", "$8,000+/mes gestión"] },
+          { label: "Inversión inicial", values: ["$500/mes o 15%", "$1,000/mes o 12%", "A medida (10–15%)"] },
         ],
       },
       faqs: [
-        { question: "¿Cuánto cuesta la gestión PPC?", answer: "La gestión empieza en $2,500 al mes para Search de un canal con hasta $5,000 de gasto. Growth es $5,000 al mes (hasta $25,000 de gasto). Scale es $8,000+ al mes para cuentas con $25,000+ de gasto. El gasto en ads es aparte y va directo a Google." },
+        { question: "¿Cuánto cuesta la gestión PPC?", answer: "La gestión empieza en $500 al mes, o 15% del gasto, para Search de un canal con hasta $5,000 de gasto. Growth es $1,000 al mes, o 12% del gasto (hasta $25,000). Scale es a medida, típicamente 10% a 15% del gasto para cuentas con $25,000+. El gasto en ads es aparte y va directo a Google." },
         { question: "¿El gasto en anuncios está incluido en la tarifa de gestión?", answer: "No. Pagas a Google directamente por los clics. Nuestra tarifa cubre estrategia, setup, optimización e informes." },
         { question: "¿Con qué plataforma de anuncios pagados debería empezar?", answer: "Depende de tu audiencia. Servicios B2B suelen empezar con Google Search. E-commerce divide entre Google Shopping y Meta. Servicios locales funcionan bien con Google Search más retargeting Meta. Recomendamos la mezcla en una llamada estratégica." },
         { question: "¿Qué gasto mínimo en ads recomiendan?", answer: "Recomendamos al menos $3,000 al mes en gasto publicitario para reunir datos suficientes para optimizar bien. Presupuestos menores pueden funcionar en campañas locales muy focalizadas." },
@@ -308,15 +308,15 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
   },
   "web-design": {
     en: {
-      metaTitle: "Web Design Pricing | Sites from $8,000 | KINEXIS Digital",
+      metaTitle: "Web Design Pricing | Sites from $2,500 | KINEXIS Digital",
       metaDescription:
-        "Web design pricing for conversion-focused business websites. Landing pages from $3,500, business sites $8K to $35K with Core Web Vitals, CMS setup, and analytics included.",
+        "Web design pricing for conversion-focused business websites. Starter builds from $2,500, growth and custom sites to $10,000+ with Core Web Vitals, CMS setup, and analytics included.",
       hero: { label: "Web Design Pricing", line1: "Website pricing", line2: "built for conversions.", subtitle: "Quotes based on scope, not page count alone. Every build includes mobile optimization and analytics setup." },
-      answerBlock: "Business websites at KINEXIS typically range from $8,000 to $35,000 for a full custom build depending on pages, integrations, and e-commerce needs. Smaller landing page projects start around $3,500. Timeline is usually 6 to 10 weeks from kickoff to launch. Ongoing maintenance and CRO retainers are available separately.",
+      answerBlock: "Business websites at KINEXIS start at $2,500 for a Starter build and run to $10,000+ for larger custom sites, depending on pages, integrations, and e-commerce needs. Timeline is usually 6 to 10 weeks from kickoff to launch. Ongoing maintenance and CRO retainers are available separately.",
       tiers: [
-        { name: "Landing Page", range: "From $3,500", description: "Single high-converting page for campaigns or lead gen.", bestFor: "Paid traffic destinations" },
-        { name: "Business Site", range: "$8K to $18K", description: "5 to 15 pages, CMS, forms, and core integrations.", bestFor: "Service businesses replacing an outdated site" },
-        { name: "Custom Build", range: "$18K to $35K+", description: "E-commerce, portals, or complex functionality.", bestFor: "Brands needing custom features or large catalogs" },
+        { name: "Starter", range: "$2,500", description: "A focused business site or single high-converting landing page.", bestFor: "New businesses and campaign landing pages" },
+        { name: "Growth", range: "$5,000", description: "5 to 15 pages, CMS, forms, and core integrations.", bestFor: "Service businesses replacing an outdated site" },
+        { name: "Scale", range: "$10,000+", description: "E-commerce, portals, or complex custom functionality.", bestFor: "Brands needing custom features or large catalogs" },
       ],
       included: ["Mobile-first responsive design", "Core Web Vitals optimization", "CMS setup and training", "Form and CRM integration", "Analytics and conversion tracking", "30-day post-launch support"],
       comparison: {
@@ -324,7 +324,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         subtitle: "Why businesses outgrow cheap templates.",
         columns: [{ header: "Template / DIY" }, { header: "KINEXIS Build", highlight: true }],
         rows: [
-          { label: "Upfront cost", values: ["$500 to $2,000", "$8,000 to $35,000"] },
+          { label: "Upfront cost", values: ["$500 to $2,000", "$2,500 to $10,000+"] },
           { label: "Conversion optimization", values: ["Generic layout", "Built around your sales process"] },
           { label: "Page speed", values: ["Often poor", "Core Web Vitals target"] },
           { label: "SEO foundation", values: ["Basic", "Technical SEO built in"] },
@@ -335,7 +335,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         { question: "Do you offer payment plans?", answer: "Yes. Most projects split 50% at kickoff and 50% at launch. Larger builds can be phased by milestone." },
         { question: "Which platforms do you build on?", answer: "We work primarily in Next.js and Webflow depending on your needs. We recommend the stack that fits your team, budget, and growth plans." },
         { question: "Is hosting included?", answer: "Hosting is separate. We help you choose and configure the right setup, usually Vercel, Netlify, or Webflow hosting." },
-        { question: "How long does a typical project take?", answer: "A standard Business Site build takes 6 to 10 weeks from kickoff to launch. Landing page projects run 2 to 3 weeks. Custom builds with e-commerce or complex integrations run 10 to 16 weeks depending on scope." },
+        { question: "How long does a typical project take?", answer: "A standard multi-page Growth build takes 6 to 10 weeks from kickoff to launch. Starter sites and single landing pages run 2 to 3 weeks. Scale builds with e-commerce or complex integrations run 10 to 16 weeks depending on scope." },
         { question: "Will my site be optimized for SEO?", answer: "Yes. Every build includes a technical SEO foundation: semantic HTML structure, correct heading hierarchy, meta tags, schema markup, sitemap, and Core Web Vitals optimization. This is not an add-on. It is part of every project." },
         { question: "What do I need to provide for the project to start?", answer: "Your existing brand assets (logo, fonts, color palette if you have them), access to your current hosting and domain, example sites you like, and a brief describing your core services and target customers. We handle the rest including copy guidance, photography direction, and technical setup." },
         { question: "Can you redesign an existing site without starting over?", answer: "Sometimes. If the technical foundation is sound, a redesign is faster and cheaper than a full rebuild. We audit your current site in week one and give you a clear recommendation. We will not push a full rebuild if a focused redesign achieves your goals." },
@@ -346,14 +346,14 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
       ctaLabel: "Get a Web Design Quote",
     },
     es: {
-      metaTitle: "Precios Diseño Web | Sitios desde $8,000 | KINEXIS",
-      metaDescription: "Precios de diseño web enfocados en conversión con cotizaciones claras por alcance. Landing pages desde $3,500, sitios empresariales de $8K a $35K con optimización SEO y CRO incluida.",
+      metaTitle: "Precios Diseño Web | Sitios desde $2,500 | KINEXIS",
+      metaDescription: "Precios de diseño web enfocados en conversión con cotizaciones claras por alcance. Builds Starter desde $2,500, sitios growth y custom hasta $10,000+ con optimización SEO y CRO incluida.",
       hero: { label: "Precios Web", line1: "Precios de Sitio Web", line2: "Hechos para Convertir.", subtitle: "Cotizaciones basadas en alcance, no solo en número de páginas." },
-      answerBlock: "Los sitios web empresariales en KINEXIS suelen costar entre $8,000 y $35,000 según páginas, integraciones y e-commerce.",
+      answerBlock: "Los sitios web empresariales en KINEXIS empiezan en $2,500 para un build Starter y llegan a $10,000+ para sitios custom más grandes, según páginas, integraciones y e-commerce.",
       tiers: [
-        { name: "Landing Page", range: "Desde $3,500", description: "Una página de alta conversión.", bestFor: "Campañas pagadas" },
-        { name: "Sitio Empresarial", range: "$8K a $18K", description: "5 a 15 páginas con CMS.", bestFor: "Negocios de servicios" },
-        { name: "Build Custom", range: "$18K a $35K+", description: "E-commerce o funcionalidad compleja.", bestFor: "Marcas con necesidades custom" },
+        { name: "Starter", range: "$2,500", description: "Un sitio de negocio enfocado o una landing page de alta conversión.", bestFor: "Negocios nuevos y landing pages de campaña" },
+        { name: "Growth", range: "$5,000", description: "5 a 15 páginas con CMS, formularios e integraciones core.", bestFor: "Negocios de servicios que renuevan su sitio" },
+        { name: "Scale", range: "$10,000+", description: "E-commerce, portales o funcionalidad custom compleja.", bestFor: "Marcas con necesidades custom o catálogos grandes" },
       ],
       included: ["Diseño responsive mobile-first", "Optimización Core Web Vitals", "CMS e integraciones", "Analytics"],
       comparison: { title: "Build custom vs. plantilla", subtitle: "Por qué los negocios superan las plantillas baratas.", columns: [{ header: "Plantilla" }, { header: "KINEXIS", highlight: true }], rows: [{ label: "Optimización conversión", values: ["Genérica", "Según tu proceso de ventas"] }] },
@@ -372,7 +372,7 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
   },
   "meta-ads": {
     en: {
-      metaTitle: "Meta Ads Pricing | Management from $1,500/mo | KINEXIS",
+      metaTitle: "Meta Ads Pricing | Management from $500/mo | KINEXIS",
       metaDescription:
         "Meta Ads management pricing for Facebook and Instagram. Creative testing, audience segmentation, and ROAS reporting. Management separate from ad spend.",
       hero: {
@@ -382,11 +382,11 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         subtitle: "Management fees are separate from ad spend. You see what we charge and what goes to Meta before anything launches.",
       },
       answerBlock:
-        "Meta Ads management at KINEXIS starts at $1,500 per month for single-account Facebook and Instagram campaigns. Growth plans at $3,000 per month cover multi-audience accounts with active creative testing. You pay Meta directly for impressions and clicks. Most accounts need $3,000 to $15,000 in monthly ad spend and two to four weeks of creative testing before ROAS stabilizes.",
+        "Meta Ads management at KINEXIS starts at $500 per month for single-account Facebook and Instagram campaigns. Growth plans at $1,000 per month cover multi-audience accounts with active creative testing, and Scale runs $2,000+ for high-spend brands. You pay Meta directly for impressions and clicks. Most accounts need $3,000 to $15,000 in monthly ad spend and two to four weeks of creative testing before ROAS stabilizes.",
       tiers: [
-        { name: "Starter", range: "$1,500/mo mgmt", description: "Single Meta account, prospecting plus retargeting, up to $5K ad spend.", bestFor: "Local businesses testing paid social" },
-        { name: "Growth", range: "$3,000/mo mgmt", description: "Creative testing program, catalog ads, up to $15K ad spend.", bestFor: "E-commerce and DTC brands scaling Meta" },
-        { name: "Scale", range: "$5,000+/mo mgmt", description: "Multi-account, UGC creative pipeline, $15K+ ad spend.", bestFor: "High-spend brands needing weekly creative refresh" },
+        { name: "Starter", range: "$500/mo mgmt", description: "Single Meta account, prospecting plus retargeting, up to $5K ad spend.", bestFor: "Local businesses testing paid social" },
+        { name: "Growth", range: "$1,000/mo mgmt", description: "Creative testing program, catalog ads, up to $15K ad spend.", bestFor: "E-commerce and DTC brands scaling Meta" },
+        { name: "Scale", range: "$2,000+/mo mgmt", description: "Multi-account, UGC creative pipeline, $15K+ ad spend.", bestFor: "High-spend brands needing weekly creative refresh" },
       ],
       included: [
         "Account and pixel audit with CAPI setup",
@@ -424,14 +424,14 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
       ctaLabel: "Get Meta Ads Pricing",
     },
     es: {
-      metaTitle: "Precios Meta Ads | Gestión desde $1,500/mes | KINEXIS",
-      metaDescription: "Precios transparentes de gestión Meta Ads para Facebook e Instagram con pruebas creativas quincenales y segmentación avanzada de audiencias. Tarifas separadas del gasto publicitario. Desde $1,500/mes.",
+      metaTitle: "Precios Meta Ads | Gestión desde $500/mes | KINEXIS",
+      metaDescription: "Precios transparentes de gestión Meta Ads para Facebook e Instagram con pruebas creativas quincenales y segmentación avanzada de audiencias. Tarifas separadas del gasto publicitario. Desde $500/mes.",
       hero: { label: "Precios Meta Ads", line1: "Precios Meta Ads", line2: "Ligados al Rendimiento.", subtitle: "Las tarifas de gestión son separadas del gasto en anuncios." },
-      answerBlock: "La gestión de Meta Ads en KINEXIS empieza en $1,500 al mes para campañas en Facebook e Instagram.",
+      answerBlock: "La gestión de Meta Ads en KINEXIS empieza en $500 al mes para campañas en Facebook e Instagram. Growth a $1,000 al mes cubre cuentas multi-audiencia con pruebas creativas activas, y Scale corre $2,000+ para marcas de alto gasto.",
       tiers: [
-        { name: "Starter", range: "$1,500/mes", description: "Una cuenta Meta, hasta $5K de gasto.", bestFor: "Negocios locales" },
-        { name: "Growth", range: "$3,000/mes", description: "Programa de pruebas creativas, hasta $15K.", bestFor: "E-commerce en escala" },
-        { name: "Scale", range: "$5,000+/mes", description: "Multi-cuenta, $15K+.", bestFor: "Marcas de alto gasto" },
+        { name: "Starter", range: "$500/mes", description: "Una cuenta Meta, hasta $5K de gasto.", bestFor: "Negocios locales" },
+        { name: "Growth", range: "$1,000/mes", description: "Programa de pruebas creativas, hasta $15K.", bestFor: "E-commerce en escala" },
+        { name: "Scale", range: "$2,000+/mes", description: "Multi-cuenta, $15K+.", bestFor: "Marcas de alto gasto" },
       ],
       included: ["Auditoría de cuenta y pixel", "Arquitectura de audiencias", "Sprints creativos quincenales", "Informes CPL y ROAS"],
       comparison: { title: "Boost vs. gestión profesional", subtitle: "Qué cambia con gestión dedicada.", columns: [{ header: "Boost / DIY" }, { header: "KINEXIS", highlight: true }], rows: [{ label: "Creativos", values: ["Un anuncio", "3-5 variantes cada 2 semanas"] }] },

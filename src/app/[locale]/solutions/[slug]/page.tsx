@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import SolutionPageClient from "@/components/pages/SolutionPageClient";
-import ShowcaseHeroShell from "@/components/shared/ShowcaseHeroShell";
+import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import { solutions, getSolutionBySlug } from "@/content/registry/solutions";
@@ -60,7 +60,8 @@ export default async function SolutionPage({ params }: Props) {
           { name: solution.title },
         ]}
       />
-      <ShowcaseHeroShell
+      <StaticHeroShell
+        variant="showcase"
         label={solution.title}
         line1={solution.headlineLine1}
         line2={solution.headlineLine2}

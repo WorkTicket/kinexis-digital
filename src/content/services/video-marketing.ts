@@ -55,12 +55,20 @@ export type VideoMarketingContent = {
     title: string;
     subtitle: string;
   };
+  processIntro: string;
   phases: ServicePhase[];
+  capabilityBodies: {
+    videoProduction: string;
+    videoDistribution: string;
+    videoStrategy: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -152,38 +160,30 @@ export const videoMarketingContent: Record<Locale, VideoMarketingContent> = {
       title: "The production process.",
       subtitle: "From concept to final delivery,|with a workflow we've refined over time.",
     },
+    processIntro:
+      "Video production is not a one-off deliverable. Our workflow runs from script and storyboard through shoot, edit, and multi-format distribution, every phase sized for the channels where the creative actually runs.",
     phases: [
-      {
-        title: "Strategy & Concept",
-        desc: "Define goal, audience, platform, and key message before a single frame is shot.",
-        metric: "Creative brief delivered in 3 days",
-      },
-      {
-        title: "Scripting & Storyboard",
-        desc: "Every video starts with a script and storyboard. Iterate until the narrative arc feels right.",
-        metric: "Script approved before production",
-      },
-      {
-        title: "Production & Filming",
-        desc: "On-location or remote with professional equipment. We handle all coordination.",
-        metric: "Avg. 2-day shoot turnaround",
-      },
-      {
-        title: "Post-Production",
-        desc: "Editing, color grading, sound design, motion graphics, captions, platform formatting.",
-        metric: "Delivered in all platform formats",
-      },
-      {
-        title: "Distribution & Analysis",
-        desc: "Assets delivered in all formats. Track view-through, engagement, and conversion attribution.",
-        metric: "65% avg. video completion rate",
-      },
+      { title: "Strategy & Concept", desc: "Define goal, audience, platform, and key message before a single frame is shot.", metric: "" },
+      { title: "Scripting & Storyboard", desc: "Every video starts with a script and storyboard. Iterate until the narrative arc feels right.", metric: "" },
+      { title: "Production & Post", desc: "On-location or remote filming, then editing, captions, motion graphics, and platform formatting.", metric: "" },
+      { title: "Distribution & Analysis", desc: "Assets delivered in all formats. Track view-through, engagement, and conversion attribution.", metric: "" },
     ],
+    capabilityBodies: {
+      videoProduction:
+        "One hero video does not feed a modern ad account. We map scripts to funnel stages first, hook, proof, offer. Then shoot with repurposing built in: ad cuts, social clips, testimonial edits, and landing page embeds from a single production day. Quality stays consistent because the same team handles concept through delivery.",
+      videoDistribution:
+        "The same message needs different dimensions per channel. We deliver vertical for Reels, square for feed, long-form for YouTube, and 15-second hooks for paid, all from one shoot, all tracked to view-through and pipeline contribution. Distribution is planned before production, not bolted on after.",
+      videoStrategy:
+        "Video wins when it has a refresh cadence, not a one-time launch. We build monthly production workflows so Meta and YouTube always have new creative to test, CPM stays manageable, and fatigue gets caught before campaigns stall. Performance tracking ties each asset to booked calls, not just completion rates.",
+    },
     cta: {
       headline: "Ready to make video work for you?",
       subtitle: "Let's produce video content that grabs attention,|builds trust, and drives results.",
-      ctaLabel: "Start Your Video Strategy",
+      ctaLabel: "See Video Pricing",
     },
+    inlineCtaLabel: "Review My Video Strategy",
+    inlineCtaSubtitle:
+      "We will audit your current video assets, distribution gaps, and ad creative refresh cycle. Then outline the highest-impact production fixes.",
     faqs: [
       { question: "Do you handle the full production process?", answer: "Yes: scripting, filming, editing, and distribution. We manage the entire workflow from concept to final delivery. You review and approve at key stages, but you don't need to manage any production logistics yourself." },
       { question: "What video formats do you produce?", answer: "Short-form social content (15–30s for Reels, Shorts, and TikTok), testimonials (60–90s), product demos (60–120s), and ad creative (15–30s). We produce in all formats needed for your chosen distribution channels." },
@@ -279,38 +279,30 @@ export const videoMarketingContent: Record<Locale, VideoMarketingContent> = {
       title: "El proceso de producción.",
       subtitle: "Del concepto a la entrega final,|con un flujo de trabajo refinado con el tiempo.",
     },
+    processIntro:
+      "La producción de video no es un entregable único. Nuestro flujo va de guion y storyboard a rodaje, edición y distribución multi-formato, cada fase dimensionada para los canales donde el creativo realmente corre.",
     phases: [
-      {
-        title: "Estrategia y Concepto",
-        desc: "Definir objetivo, audiencia, plataforma y mensaje clave antes de grabar un solo frame.",
-        metric: "Brief creativo entregado en 3 días",
-      },
-      {
-        title: "Guion y Storyboard",
-        desc: "Cada video empieza con guion y storyboard. Iteramos hasta que el arco narrativo se sienta correcto.",
-        metric: "Guion aprobado antes de producción",
-      },
-      {
-        title: "Producción y Filmación",
-        desc: "En locación o remoto con equipo profesional. Nos encargamos de toda la coordinación.",
-        metric: "Prom. 2 días de turnaround de rodaje",
-      },
-      {
-        title: "Postproducción",
-        desc: "Edición, color grading, diseño de sonido, motion graphics, subtítulos, formato por plataforma.",
-        metric: "Entregado en todos los formatos",
-      },
-      {
-        title: "Distribución y Análisis",
-        desc: "Assets en todos los formatos. Seguimiento de view-through, engagement y atribución de conversión.",
-        metric: "4.2x tasa promedio de view-through",
-      },
+      { title: "Estrategia y Concepto", desc: "Definir objetivo, audiencia, plataforma y mensaje clave antes de grabar un solo frame.", metric: "" },
+      { title: "Guion y Storyboard", desc: "Cada video empieza con guion y storyboard. Iteramos hasta que el arco narrativo se sienta correcto.", metric: "" },
+      { title: "Producción y Post", desc: "Filmación en locación o remota, luego edición, subtítulos, motion graphics y formato por plataforma.", metric: "" },
+      { title: "Distribución y Análisis", desc: "Assets en todos los formatos. Seguimiento de view-through, engagement y atribución de conversión.", metric: "" },
     ],
+    capabilityBodies: {
+      videoProduction:
+        "Un video hero no alimenta una cuenta de anuncios moderna. Mapeamos guiones a etapas de embudo primero, hook, prueba, oferta, luego rodamos con repurposing integrado: cortes para ads, clips sociales, ediciones de testimonios y embeds en landing pages desde un solo día de producción.",
+      videoDistribution:
+        "El mismo mensaje necesita dimensiones distintas por canal. Entregamos vertical para Reels, cuadrado para feed, largo para YouTube y hooks de 15 segundos para paid, todo desde un rodaje, todo rastreado a view-through y contribución al pipeline. La distribución se planifica antes de producir, no se añade después.",
+      videoStrategy:
+        "El video gana cuando tiene cadencia de refresco, no un lanzamiento único. Construimos flujos de producción mensuales para que Meta y YouTube siempre tengan creativo nuevo para probar, el CPM se mantenga manejable y la fatiga se detecte antes de que las campañas se estanquen.",
+    },
     cta: {
       headline: "¿Listo para que el video trabaje para ti?",
       subtitle: "Produzcamos contenido en video que capte atención,|genere confianza y impulse resultados.",
-      ctaLabel: "Inicia Tu Estrategia de Video",
+      ctaLabel: "Ver Precios de Video",
     },
+    inlineCtaLabel: "Revisar Mi Estrategia de Video",
+    inlineCtaSubtitle:
+      "Auditaremos tus activos de video actuales, brechas de distribución y ciclo de refresco de creativos, y delinearemos las correcciones de producción de mayor impacto.",
     faqs: [
       { question: "¿Gestionan todo el proceso de producción?", answer: "Sí: guión, grabación, edición y distribución. Gestionamos todo el flujo de trabajo desde el concepto hasta la entrega final. Revisas y apruebas en etapas clave, pero no necesitas gestionar ninguna logística de producción." },
       { question: "¿Qué formatos de video producen?", answer: "Contenido de formato corto para redes sociales (15-30s para Reels, Shorts y TikTok), testimonios (60-90s), demostraciones de producto (60-120s) y creatividad publicitaria (15-30s). Producimos en todos los formatos necesarios para tus canales de distribución." },

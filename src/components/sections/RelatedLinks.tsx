@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
-import { pageSectionClasses } from "@/lib/page-section-surface";
+import Section from "@/components/shared/services/Section";
 
 type RelatedLinksProps = {
   agencyHub?: boolean;
@@ -41,7 +41,7 @@ export default function RelatedLinks({
   if (groups.length === 0) return null;
 
   return (
-    <section className={pageSectionClasses(surfaceIndex)}>
+    <Section id="related-links" surfaceIndex={surfaceIndex}>
       <div className="container-site">
         <h2 className="text-sm font-semibold uppercase tracking-widest text-neon-cyan mb-8">Explore Further</h2>
         <div className="grid gap-grid-lg md:grid-cols-2 lg:grid-cols-3">
@@ -62,6 +62,6 @@ export default function RelatedLinks({
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

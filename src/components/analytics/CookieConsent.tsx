@@ -76,7 +76,7 @@ function CookieBanner({
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className="fixed inset-x-0 bottom-0 z-[100] border-t border-white/[0.08] bg-bg-dark/95 p-4 backdrop-blur-md sm:p-6"
+      className="fixed inset-x-0 bottom-0 z-[100] border-t border-strong bg-bg-dark/95 p-4 backdrop-blur-md sm:p-6"
     >
       <div className="container-site flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="max-w-2xl">

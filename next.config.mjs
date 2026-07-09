@@ -65,11 +65,15 @@ const nextConfig = {
   },
 
   experimental: {
-    // Inline above-the-fold CSS; defer the rest to cut render-blocking stylesheets.
-    optimizeCss: true,
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
     optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs"],
+    // Inline the route's CSS into a <style> in the <head> instead of emitting a
+    // render-blocking <link rel="stylesheet">. On throttled mobile this removes
+    // an entire request round-trip from the critical path, cutting FCP/LCP by
+    // several hundred ms. The stylesheet is small enough that HTML growth is
+    // offset by the saved round-trip, and HTML is edge-cached via ISR.
+    inlineCss: true,
   },
 
   webpack(config, { dev, isServer }) {
@@ -137,8 +141,28 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/:locale(en|es)/services/google-ads",
+        destination: "/:locale/services/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|es)/services/paid-ads",
+        destination: "/:locale/services/ppc-management",
+        permanent: true,
+      },
+      {
         source: "/pricing/google-ads",
         destination: "/en/pricing/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/services/google-ads",
+        destination: "/en/services/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/services/paid-ads",
+        destination: "/en/services/ppc-management",
         permanent: true,
       },
       {

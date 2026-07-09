@@ -10,83 +10,34 @@ export const metadata: Metadata = {
 
 export default function RootNotFound() {
   return (
-    <html lang="en" style={{ colorScheme: "dark" }}>
-      <body
-        className="bg-bg text-foreground"
-        style={{
-          fontFamily: "system-ui, sans-serif",
-          display: "flex",
-          minHeight: "100vh",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          textAlign: "center",
-          padding: "2rem",
-        }}
-      >
-        <span
-          style={{
-            display: "inline-block",
-            marginBottom: "1.5rem",
-            borderRadius: "9999px",
-            border: "1px solid rgba(0,212,255,0.2)",
-            background: "rgba(0,212,255,0.06)",
-            padding: "0.375rem 1rem",
-            fontSize: "11px",
-            fontWeight: 700,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            color: "#00d4ff",
-          }}
-        >
-          404
-        </span>
+    <html lang="en" className="dark">
+      <body className="bg-bg text-foreground antialiased">
+        <main className="flex min-h-screen flex-col items-center justify-center px-8 text-center">
+          <span className="mb-6 inline-block rounded-full border border-neon-cyan/20 bg-neon-cyan/[0.06] px-4 py-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-neon-cyan">
+            404
+          </span>
 
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 700, margin: "0 0 1rem" }}>
-          Page not found
-        </h1>
-        <p className="text-muted" style={{ maxWidth: "480px", lineHeight: 1.7 }}>
-          The page you&apos;re looking for doesn&apos;t exist. Head back to the homepage to find
-          what you need.
-        </p>
+          <h1 className="text-4xl font-bold">Page not found</h1>
+          <p className="mt-4 max-w-lg leading-relaxed text-muted">
+            The page you&apos;re looking for doesn&apos;t exist. Head back to the homepage to find
+            what you need.
+          </p>
 
-        <div style={{ marginTop: "2.5rem", display: "flex", flexWrap: "wrap", gap: "0.75rem", justifyContent: "center" }}>
-          <Link
-            href="/en"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.625rem 1.25rem",
-              borderRadius: "0.75rem",
-              border: "1px solid rgba(255,255,255,0.08)",
-              background: "rgba(255,255,255,0.04)",
-              color: "rgba(255,255,255,0.8)",
-              textDecoration: "none",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-            }}
-          >
-            Homepage
-          </Link>
-          <Link
-            href="/en/contact"
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.5rem",
-              padding: "0.625rem 1.25rem",
-              borderRadius: "0.75rem",
-              background: "#00d4ff",
-              color: "#05060a",
-              textDecoration: "none",
-              fontSize: "0.875rem",
-              fontWeight: 700,
-            }}
-          >
-            Book a strategy call
-          </Link>
-        </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/en"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-text-secondary no-underline transition-colors hover:bg-white/[0.08] hover:text-text"
+            >
+              Homepage
+            </Link>
+            <Link
+              href="/en/contact"
+              className="inline-flex items-center gap-2 rounded-xl bg-neon-cyan px-5 py-2.5 text-sm font-bold text-bg no-underline transition-shadow hover:shadow-glow-sm"
+            >
+              Book a strategy call
+            </Link>
+          </div>
+        </main>
       </body>
     </html>
   );

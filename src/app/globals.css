@@ -33,6 +33,10 @@
   --border: var(--border-strong);
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.6);
+  --hero-muted: rgba(255, 255, 255, 0.4);
+  --surface-base: rgba(255, 255, 255, 0.025);
+  --surface-raised: rgba(255, 255, 255, 0.03);
+  --surface-glass: rgba(255, 255, 255, 0.04);
   --surface-hover: rgba(255, 255, 255, 0.05);
   --surface-active: rgba(255, 255, 255, 0.08);
   --nav-link-color: rgba(255, 255, 255, 0.52);
@@ -107,8 +111,9 @@
   --text-h2: clamp(1.75rem, 3.5vw, 2.75rem);
   --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
   --text-body: 1rem;
-  --btn-primary-bg: var(--neon-cyan);
-  --btn-primary-text: #05060a;
+  /* Primary buttons use .bg-gradient — solid cyan reserved for compact contexts */
+  --btn-primary-bg: var(--gradient);
+  --btn-primary-text: #ffffff;
   --btn-radius: var(--radius-control);
   --btn-padding: 0.875rem 1.75rem;
 }
@@ -123,6 +128,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
   scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -176,7 +187,9 @@ summary::-webkit-details-marker {
 
 @layer components {
   .container-site {
-    @apply mx-auto w-full max-w-[1280px] px-5 xs:px-6 sm:px-8 lg:px-10;
+    @apply mx-auto w-full;
+    max-width: var(--container-max);
+    padding-inline: var(--inner-padding);
   }
 
   .container-cta {
@@ -208,7 +221,7 @@ summary::-webkit-details-marker {
     --header-h-shrink: 0.375rem;
     --header-h: calc(4rem - (var(--header-h-shrink) * var(--header-progress)));
     --header-logo-scale: calc(1 - (0.1 * var(--header-progress)));
-    --header-surface-opacity: calc(0.92 + (0.04 * var(--header-progress)));
+    --header-surface-opacity: calc(0.78 + (0.08 * var(--header-progress)));
     --header-border-opacity: calc(0.07 + (0.03 * var(--header-progress)));
     --header-shadow-y: calc(4px + (4px * var(--header-progress)));
     --header-shadow-blur: calc(24px + (4px * var(--header-progress)));
@@ -232,9 +245,14 @@ summary::-webkit-details-marker {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: rgba(5, 6, 10, var(--header-surface-opacity));
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    background: linear-gradient(
+      180deg,
+      rgba(9, 11, 18, var(--header-surface-opacity)) 0%,
+      rgba(5, 6, 10, var(--header-surface-opacity)) 100%
+    );
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
     transform: translateZ(0);
   }
 
@@ -318,6 +336,98 @@ summary::-webkit-details-marker {
     }
   }
 
+  .nav-flyout {
+    --flyout-x: 0px;
+    --flyout-y: 7px;
+    --flyout-scale: 0.985;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform-origin: top center;
+    transform: translate3d(var(--flyout-x), var(--flyout-y), 0)
+      scale(var(--flyout-scale));
+    /* Opacity ramps fast so the translucent glass panel becomes opaque before
+       the slide finishes — this removes the flash of page text behind it. */
+    transition:
+      opacity 150ms ease-out,
+      transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 340ms;
+    will-change: transform, opacity;
+  }
+
+  .nav-flyout--center {
+    --flyout-x: -50%;
+  }
+
+  .nav-flyout[data-open="true"] {
+    --flyout-y: 0px;
+    --flyout-scale: 1;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      opacity 190ms ease-out,
+      transform 360ms cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s;
+  }
+
+  @media (min-width: 1280px) {
+    .nav-flyout--resources {
+      --flyout-x: -50%;
+    }
+  }
+
+  @keyframes navFlyoutRise {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .nav-flyout[data-open="true"] .nav-services-col,
+  .nav-flyout[data-open="true"] .nav-industries-grid > *,
+  .nav-flyout[data-open="true"] .nav-resources-grid > * {
+    animation: navFlyoutRise 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .nav-flyout[data-open="true"] .nav-services-col:nth-child(1) {
+    animation-delay: 60ms;
+  }
+  .nav-flyout[data-open="true"] .nav-services-col:nth-child(2) {
+    animation-delay: 100ms;
+  }
+  .nav-flyout[data-open="true"] .nav-services-col:nth-child(3) {
+    animation-delay: 140ms;
+  }
+  .nav-flyout[data-open="true"] .nav-services-col:nth-child(4) {
+    animation-delay: 180ms;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-flyout {
+      transform: translate3d(var(--flyout-x), 0, 0);
+      transition:
+        opacity 120ms linear,
+        visibility 0s linear 120ms;
+    }
+
+    .nav-flyout[data-open="true"] {
+      transition:
+        opacity 120ms linear,
+        visibility 0s;
+    }
+
+    .nav-flyout[data-open="true"] .nav-services-col,
+    .nav-flyout[data-open="true"] .nav-industries-grid > *,
+    .nav-flyout[data-open="true"] .nav-resources-grid > * {
+      animation: none;
+    }
+  }
+
   .nav-dropdown-panel {
     @apply relative w-max overflow-hidden rounded-2xl p-6;
     background: linear-gradient(
@@ -328,14 +438,20 @@ summary::-webkit-details-marker {
     border: 1px solid var(--border-strong);
     box-shadow:
       var(--shadow-panel),
-      0 0 0 1px rgba(0, 212, 255, 0.04),
-      0 0 80px rgba(0, 212, 255, 0.06);
+      0 0 0 1px rgba(0, 212, 255, 0.05),
+      0 0 90px rgba(0, 212, 255, 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
     backdrop-filter: blur(48px);
     -webkit-backdrop-filter: blur(48px);
   }
 
   .nav-dropdown-panel--services {
-    width: min(920px, calc(100vw - 2rem));
+    width: min(1140px, calc(100vw - 2.5rem));
+    @apply p-7;
+  }
+
+  .nav-services-flyout {
+    top: calc(var(--header-h, 4.25rem) / 2 + 1rem);
   }
 
   .nav-dropdown-panel--industries {
@@ -348,7 +464,63 @@ summary::-webkit-details-marker {
   }
 
   .nav-services-grid {
-    @apply grid grid-cols-3 gap-x-8 gap-y-2;
+    @apply grid grid-cols-2 gap-y-6 md:grid-cols-4 md:gap-y-0;
+  }
+
+  .nav-services-col {
+    @apply flex flex-col px-5 first:pl-0 last:pr-0;
+  }
+
+  .nav-services-col + .nav-services-col {
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .nav-services-col .nav-dropdown-link {
+    @apply whitespace-normal px-2.5 py-[0.4375rem] leading-snug;
+  }
+
+  .nav-services-col .nav-dropdown-group__list {
+    @apply space-y-0;
+  }
+
+  .nav-services-col .nav-dropdown-group__title {
+    @apply mb-3 pb-2.5 leading-snug tracking-[0.13em];
+    color: rgba(255, 255, 255, 0.45);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  @media (max-width: 767px) {
+    .nav-services-col {
+      @apply px-0;
+    }
+
+    .nav-services-col + .nav-services-col {
+      border-left: none;
+    }
+  }
+
+  .nav-services-footer {
+    @apply mt-6 flex items-center justify-between gap-4 rounded-xl border border-surface px-5 py-3.5 no-underline transition-all duration-200;
+    background: rgba(0, 212, 255, 0.04);
+  }
+
+  .nav-services-footer:hover {
+    border-color: rgba(0, 212, 255, 0.28);
+    background: rgba(0, 212, 255, 0.08);
+  }
+
+  .nav-services-footer__text {
+    @apply text-[13px] font-medium;
+    color: var(--text-secondary);
+  }
+
+  .nav-services-footer__cta {
+    @apply inline-flex shrink-0 items-center gap-1.5 text-[13px] font-semibold;
+    color: rgba(0, 212, 255, 0.9);
+  }
+
+  .nav-services-footer:hover .nav-services-footer__cta {
+    color: var(--neon-cyan);
   }
 
   .nav-resources-grid {
@@ -469,28 +641,14 @@ summary::-webkit-details-marker {
     background: var(--surface-hover);
   }
 
+  .nav-dropdown-link--compact:hover {
+    transform: translateX(2px);
+  }
+
   .nav-dropdown-link--active {
     color: var(--text);
     background: var(--surface-active);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  }
-
-  .header-cta {
-    @apply inline-flex items-center gap-1.5 rounded-lg bg-gradient font-medium leading-none tracking-wide text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)] ring-1 ring-white/10;
-    height: var(--header-control-h);
-    transition:
-      box-shadow 300ms ease-out,
-      transform 300ms ease-out;
-  }
-
-  .header-cta:hover {
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.22),
-      var(--shadow-glow-sm);
-  }
-
-  .header-cta:active {
-    transform: scale(0.98);
   }
 
   .header-icon-btn {
@@ -685,20 +843,6 @@ summary::-webkit-details-marker {
     @apply flex flex-col;
   }
 
-  /* Service cards — mobile-first full width, premium touch targets */
-  .service-card {
-    @apply block w-full rounded-2xl border bg-white/[0.03];
-    border-color: var(--border-default);
-    padding: clamp(1.5rem, 4vw, 2rem);
-    min-height: var(--touch-premium);
-  }
-
-  .service-card__title {
-    @apply font-bold tracking-tight text-balance line-clamp-2;
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
-    line-height: 1.25;
-  }
-
   /* Card / grid headings — 2-line max site-wide */
   .card-heading {
     @apply font-bold tracking-tight text-balance line-clamp-2;
@@ -718,14 +862,6 @@ summary::-webkit-details-marker {
     @apply line-clamp-none;
   }
 
-  .service-card__body {
-    @apply mt-4 type-body text-muted;
-    line-height: var(--line-height-body-mobile);
-  }
-
-  .service-card:hover {
-    /* Handled by .motion-card */
-  }
 
   .motion-card {
     transition:
@@ -833,6 +969,16 @@ summary::-webkit-details-marker {
   /* Page section rhythm — matches home page: border-t dividers + alternating bg shifts */
   .page-section {
     @apply section-padding border-t border-surface;
+    /*
+      Skip layout + paint for off-screen sections so the browser can paint the
+      hero (LCP) without laying out the entire long document first. This is the
+      biggest LCP lever on long templates (service / industry / solution pages).
+      `contain-intrinsic-size: auto <estimate>` reserves space up front and then
+      remembers each section's real rendered height, so revealing a section on
+      scroll doesn't shift layout — CLS stays at 0.
+    */
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
   }
 
   .page-section--elevated {
@@ -841,6 +987,43 @@ summary::-webkit-details-marker {
 
   .page-section--cta {
     @apply border-t border-surface bg-gradient-glow relative overflow-hidden;
+  }
+
+  .page-section--compact {
+    padding-top: var(--space-section-sm);
+    padding-bottom: var(--space-section-sm);
+  }
+
+  .section--data {
+    --section-content-gap: var(--grid-gap-sm);
+  }
+
+  .section--data .section-content {
+    margin-top: var(--space-element);
+  }
+
+  .section--data .section-content > .grid,
+  .section--data .section-content.grid {
+    gap: var(--grid-gap-sm);
+  }
+
+  .section--editorial .container-site {
+    max-width: min(var(--container-max), 56rem);
+  }
+
+  .section--editorial .section-header,
+  .section--editorial .section-content {
+    max-width: var(--readable-width);
+    margin-inline: auto;
+  }
+
+  .section--proof .section-content {
+    margin-top: var(--space-element);
+  }
+
+  .section--proof .type-metric-value,
+  .section--proof [class*="type-metric"] {
+    letter-spacing: -0.02em;
   }
 
   .section--visual {
@@ -864,14 +1047,16 @@ summary::-webkit-details-marker {
     margin-top: var(--space-subheading-cta);
   }
 
-  .border-surface {
-    border-color: var(--border-default);
-  }
-
+  .border-subtle,
   .border-surface-subtle {
     border-color: var(--border-subtle);
   }
 
+  .border-surface {
+    border-color: var(--border-default);
+  }
+
+  .border-strong,
   .border-surface-strong {
     border-color: var(--border-strong);
   }
@@ -1135,9 +1320,10 @@ summary::-webkit-details-marker {
 
   .hero .hero__subtitle,
   .hero .section-intro-lg {
-    @apply w-full type-body text-balance text-muted line-clamp-2;
+    @apply w-full type-body text-balance line-clamp-2;
     max-width: var(--subtitle-width);
     line-height: var(--line-height-body);
+    color: var(--hero-muted);
   }
 
   .hero:not(.hero--page) .section-intro-lg {
@@ -1351,8 +1537,46 @@ summary::-webkit-details-marker {
     line-height: 1.15;
   }
 
+  /* Large display numbers — About page stats, milestone years */
+  .type-display-stat {
+    @apply font-bold tabular-nums tracking-tight;
+    font-size: clamp(2.25rem, 5vw, 2.75rem);
+    line-height: 1;
+  }
+
+  /* Editorial pull quotes — About page, manifesto blocks */
+  .type-pull-quote {
+    @apply font-bold leading-[1.15] tracking-tight text-balance;
+    font-size: clamp(1.5rem, 2.5vw + 0.5rem, 2.25rem);
+  }
+
+  @media (min-width: 768px) {
+    .type-pull-quote {
+      font-size: clamp(1.875rem, 3vw, 1.875rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .type-pull-quote {
+      font-size: 2.25rem;
+    }
+  }
+
+  /* Mid-scale metrics — comparison chart values */
+  .type-metric-md {
+    @apply font-bold tabular-nums tracking-tight;
+    font-size: clamp(1.5rem, 3vw, 1.875rem);
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .type-metric-md {
+      font-size: clamp(1.75rem, 3.5vw, 1.875rem);
+    }
+  }
+
   .proof-metric-card {
-    @apply rounded-2xl border border-surface bg-white/[0.03] card-pad text-center;
+    @apply rounded-2xl border border-surface bg-surface-raised card-pad text-center;
   }
 
 
@@ -1435,29 +1659,6 @@ summary::-webkit-details-marker {
   .transition-premium {
     transition-duration: 600ms;
     transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  .glass {
-    background: var(--panel);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border-default);
-  }
-
-  .glass-hover {
-    transition:
-      transform var(--duration-interaction) var(--ease-out),
-      border-color var(--duration-interaction) var(--ease-out),
-      box-shadow var(--duration-interaction-slow) var(--ease-out);
-    will-change: transform;
-  }
-
-  @media (hover: hover) {
-    .glass-hover:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 212, 255, 0.28);
-      box-shadow: var(--shadow-card-hover);
-    }
   }
 
   .gradient-text {
@@ -1652,24 +1853,6 @@ summary::-webkit-details-marker {
     }
   }
 
-  .service-section-header .type-section {
-    letter-spacing: -0.025em;
-    max-width: none;
-  }
-
-  .service-section-header .type-section-line,
-  .service-section-header .type-body-line {
-    @apply text-pretty;
-  }
-
-  .service-section-header .type-subheader {
-    letter-spacing: -0.02em;
-  }
-
-  .service-section-header + * {
-    margin-top: var(--space-heading-content);
-  }
-
   .service-section-subtitle {
     @apply mt-5 type-body leading-snug;
     max-width: var(--subtitle-width);
@@ -1790,6 +1973,53 @@ summary::-webkit-details-marker {
       max-width: 360px;
       min-height: 13rem;
     }
+  }
+
+  /* Service page intro — centered headline with optional viz below */
+  .service-section-intro {
+    @apply flex flex-col items-center gap-8 text-center md:gap-10;
+  }
+
+  .service-section-intro__copy {
+    @apply min-w-0 w-full;
+  }
+
+  .service-section-intro .section-header {
+    @apply mx-auto max-w-3xl text-center;
+  }
+
+  .service-section-intro .section-title {
+    @apply mx-auto;
+    max-width: var(--heading-h2-max);
+    font-size: clamp(1.625rem, 3.2vw, 2.625rem);
+    line-height: 1.08;
+  }
+
+  @media (min-width: 1024px) {
+    .service-section-intro .section-title {
+      font-size: clamp(2rem, 2.6vw, 2.75rem);
+      line-height: 1.06;
+    }
+  }
+
+  .service-section-intro .type-section-line {
+    @apply block text-pretty;
+  }
+
+  .service-section-intro .section-subtitle {
+    @apply mx-auto text-center;
+    max-width: var(--subtitle-width);
+  }
+
+  .section--editorial .service-section-intro .section-header,
+  .section--editorial .service-section-intro .section-content,
+  .section--editorial .service-section-intro__copy {
+    max-width: none;
+    margin-inline: auto;
+  }
+
+  .why-kinexus-item + .why-kinexus-item {
+    @apply pt-2;
   }
 
   .pathway-viz {
@@ -2016,7 +2246,6 @@ summary::-webkit-details-marker {
 
 /* Touch devices: disable hover lift effects */
 @media (hover: none) {
-  .glass-hover:hover,
   .card:hover,
   .motion-card:hover,
   .motion-btn:hover,
@@ -2156,6 +2385,47 @@ summary::-webkit-details-marker {
   to   { opacity: 1; }
 }
 
+/* ── Scroll reveal (pure CSS, zero JS) ────────────────────────────────────────
+   Replaces framer-motion `whileInView` reveals on static content.
+
+   Design contract:
+   - Content is ALWAYS in the SSR HTML and visible by default. The `from` (hidden)
+     state only exists inside the keyframes, which only run when scroll-driven
+     animations are supported — so we never ship `opacity:0` to the SSR markup
+     (that was the AnswerBlock LCP trap).
+   - Mobile (<1024px) stays fully static: no animation, no JS, nothing on the
+     critical path. Mobile is where the Lighthouse budget is tightest.
+   - Only opacity/transform animate → CLS stays 0.
+   - Honors prefers-reduced-motion. */
+@keyframes reveal-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 20%;
+    }
+
+    /* Each direct child animates on its own view timeline → natural cascade,
+       no per-child delay bookkeeping and no JS. */
+    .reveal-stagger > * {
+      animation: reveal-fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 28%;
+    }
+  }
+}
+
 /* Footer — no link underlines */
 footer a,
 footer a:link,
@@ -2210,8 +2480,7 @@ footer a:focus {
 
   .motion-image__target,
   .motion-card,
-  .motion-btn,
-  .glass-hover {
+  .motion-btn {
     transition: none !important;
   }
 }

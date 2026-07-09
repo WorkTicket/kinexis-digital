@@ -1,7 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import HeroArchetype from "@/components/ui/HeroArchetype";
+import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
 import CTAArchetype from "@/components/ui/CTAArchetype";
@@ -14,39 +14,27 @@ import ProofMetric from "@/components/ui/ProofMetric";
 import TextLink from "@/components/ui/TextLink";
 import { getServiceExploreLabel } from "@/lib/service-explore-labels";
 import type { AgencyHubContent } from "@/content/agency-hub";
-
+import Section from "@/components/shared/services/Section";
 type Props = { content: AgencyHubContent };
 
 export default function AgencyHubPageClient({ content: c }: Props) {
+  let surfaceIndex = 0;
+
   return (
     <>
-      <HeroArchetype
-        archetype="showcase"
-        label={c.hero.label}
-        headline={
-          <>
-            <span className="type-hero-line">{c.hero.headlineLine1}</span>
-            <span className="type-hero-line">{c.hero.headlineLine2}</span>
-          </>
-        }
-        subtitle={c.hero.subtitle}
-        ctaLabel={c.hero.ctaLabel}
-        ctaHref="/contact"
-      />
+      <AgencyPositioningSection positioning={c.positioning} outro={c.outro} surfaceIndex={surfaceIndex++} />
 
-      <AgencyPositioningSection positioning={c.positioning} outro={c.outro} />
-
-      <section className="section-padding">
+      <Section id="audiences" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={c.audiences.title} subtitle={c.audiences.subtitle} />
+          <SectionHeader title={c.audiences.title} description={c.audiences.subtitle} headingId="audiences-heading" />
           <div className="section-content grid gap-grid-sm md:grid-cols-2">
             {c.audiences.segments.map((seg) => (
               <CardFamily key={seg.label} family="dashboard">
                 <h3 className="card-heading">{seg.label}</h3>
-                <p className="service-card__body">{seg.description}</p>
+                <p className="mt-4 type-body text-muted">{seg.description}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {seg.examples.map((ex) => (
-                    <span key={ex} className="text-xs px-2.5 py-1 rounded-full border border-white/[0.06] text-muted">{ex}</span>
+                    <span key={ex} className="text-xs px-2.5 py-1 rounded-full border border-surface text-muted">{ex}</span>
                   ))}
                 </div>
               </CardFamily>
@@ -58,19 +46,21 @@ export default function AgencyHubPageClient({ content: c }: Props) {
             </Button>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding section--data">
+      <Section id="capabilities" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={c.capabilities.title} subtitle={c.capabilities.subtitle} />
+          <SectionHeader title={c.capabilities.title} description={c.capabilities.subtitle} />
           <div className="section-content grid gap-grid-sm md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
             {c.capabilities.items.slice(0, 6).map((item) => (
-              <Link key={item.href} href={item.href} className="group block h-full service-card hover:border-neon-cyan/30 flex flex-col">
-                <h3 className="card-heading group-hover:text-neon-cyan transition-colors">{item.label}</h3>
-                <p className="service-card__body flex-1">{item.description}</p>
-                <span className="mt-4 block">
-                  <TextLink size="sm">{getServiceExploreLabel(item.href)}</TextLink>
-                </span>
+              <Link key={item.href} href={item.href} className="group block h-full">
+                <Card className="h-full flex flex-col hover:border-neon-cyan/30">
+                  <h3 className="card-heading group-hover:text-neon-cyan transition-colors">{item.label}</h3>
+                  <p className="mt-4 type-body text-muted flex-1">{item.description}</p>
+                  <span className="mt-4 block">
+                    <TextLink size="sm">{getServiceExploreLabel(item.href)}</TextLink>
+                  </span>
+                </Card>
               </Link>
             ))}
           </div>
@@ -80,13 +70,13 @@ export default function AgencyHubPageClient({ content: c }: Props) {
             </Button>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <AgencyProcessSection process={c.process} />
+      <AgencyProcessSection process={c.process} surfaceIndex={surfaceIndex++} />
 
-      <section className="section-padding section--data">
+      <Section id="proof" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="B" title={c.proof.title} subtitle={c.proof.subtitle} />
+          <SectionHeader title={c.proof.title} description={c.proof.subtitle} />
           <div className="section-content grid gap-grid-sm md:grid-cols-4">
             {c.proof.metrics.map((m) => (
               <ProofMetric key={m.label} value={m.value} label={m.label} />
@@ -98,9 +88,9 @@ export default function AgencyHubPageClient({ content: c }: Props) {
             </Button>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <FAQSection items={c.faqs} />
+      <FAQSection items={c.faqs} surfaceIndex={surfaceIndex++} />
 
       <RelatedLinks
         industryLinks={[
@@ -116,6 +106,7 @@ export default function AgencyHubPageClient({ content: c }: Props) {
           { href: "/blog/technical-seo-fundamentals", label: "Technical SEO Guide" },
           { href: "/blog/roas-calculations", label: "ROAS Calculations" },
         ]}
+        surfaceIndex={surfaceIndex++}
       />
 
       <CTAArchetype archetype="story" headline={c.cta.headline} subtitle={c.cta.subtitle} ctaLabel={c.cta.ctaLabel} ctaHref="/contact" />

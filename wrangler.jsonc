@@ -31,5 +31,15 @@
       "pattern": "www.kinexisdigital.com",
       "custom_domain": true
     }
+  ],
+  // Rate limiter KV namespace — enables persistent rate limiting across Worker instances.
+  // 1. Create KV namespace in Cloudflare Dashboard: Workers & Pages > KV > Create namespace
+  // 2. Copy the namespace ID below
+  // 3. Run: npm run cf-typegen  (regenerates cloudflare-env.d.ts)
+  "kv_namespaces": [
+    {
+      "binding": "RATE_LIMIT_KV",
+      "id": "e9a0644375534bad892eccb5b1f13ba7"
+    }
   ]
 }

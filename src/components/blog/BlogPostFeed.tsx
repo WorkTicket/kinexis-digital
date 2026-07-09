@@ -1,11 +1,9 @@
-"use client";
-
-import { m as motion } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
+import Reveal from "@/components/ui/Reveal";
 import TextLink from "@/components/ui/TextLink";
 import TwoLineText from "@/components/ui/TwoLineText";
+import { cardClasses } from "@/lib/card-styles";
 import type { BlogPost } from "@/content/blog";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
 
 type Props = {
   posts: BlogPost[];
@@ -14,7 +12,6 @@ type Props = {
 };
 
 export default function BlogPostFeed({ posts, readLabel, emptyMessage }: Props) {
-  const { fadeUp } = useMotionVariants();
   if (posts.length === 0) {
     return emptyMessage ? (
       <p className="col-span-full text-center text-muted section-content">{emptyMessage}</p>
@@ -23,15 +20,11 @@ export default function BlogPostFeed({ posts, readLabel, emptyMessage }: Props) 
 
   return (
     <>
-      {posts.map((post, i) => (
+      {posts.map((post) => (
         <Link key={post.slug} href={`/blog/${post.slug}`} className="h-full">
-          <motion.article
-            className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] hover:border-white/[0.1] transition-all duration-300"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ delay: i * 0.06 }}
+          <Reveal
+            as="article"
+            className={cardClasses({ className: "group flex h-full flex-col overflow-hidden !p-0" })}
           >
             <div className="flex flex-1 flex-col p-6">
               <div className="flex items-center gap-3 mb-3">
@@ -46,7 +39,7 @@ export default function BlogPostFeed({ posts, readLabel, emptyMessage }: Props) 
                 <TextLink size="sm">{readLabel}</TextLink>
               </div>
             </div>
-          </motion.article>
+          </Reveal>
         </Link>
       ))}
     </>

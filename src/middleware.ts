@@ -11,10 +11,10 @@ const APEX_HOST = "kinexisdigital.com";
 const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt", "/llms.txt"]);
 
 const UNPREFIXED_LEGACY: Record<string, string> = {
-  "/services/cro": "/en/services/funnels",
-  "/pricing/cro": "/en/pricing/funnels",
+  "/services/google-ads": "/en/services/ppc-management",
   "/pricing/google-ads": "/en/pricing/ppc-management",
   "/pricing/paid-ads": "/en/pricing/ppc-management",
+  "/services/paid-ads": "/en/services/ppc-management",
 };
 
 const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;

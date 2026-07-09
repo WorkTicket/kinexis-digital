@@ -1,27 +1,28 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
-import type { ReactNode } from "react";
-import { isHomePath } from "@/lib/is-home-path";
+import { useEffect, useState, type ComponentType, type ReactNode } from "react";
+import { scheduleIdleOrScroll } from "@/lib/schedule-idle-or-scroll";
 
-const FramerMotionProviderSSR = dynamic(
-  () =>
-    import("@/components/providers/FramerMotionProvider").then(
-      (m) => m.FramerMotionProvider
-    ),
-  { ssr: true }
-);
-
-/** Lazy-loaded Framer Motion — must render inside MotionFlagsProvider. */
+/**
+ * Defers the Framer Motion provider until idle/scroll on every page.
+ * SSR hero text paints without waiting on the ~40 KiB FM chunk.
+ */
 export default function FramerMotionShell({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const isHome = isHomePath(pathname);
+  const [Provider, setProvider] = useState<ComponentType<{ children: ReactNode }> | null>(
+    null
+  );
 
-  // Homepage defers FM to HomeDeferredSections so the hero never waits on the chunk.
-  if (isHome) {
+  useEffect(() => {
+    return scheduleIdleOrScroll(() => {
+      void import("@/components/providers/FramerMotionProvider").then((m) => {
+        setProvider(() => m.FramerMotionProvider);
+      });
+    });
+  }, []);
+
+  if (!Provider) {
     return <>{children}</>;
   }
 
-  return <FramerMotionProviderSSR>{children}</FramerMotionProviderSSR>;
+  return <Provider>{children}</Provider>;
 }

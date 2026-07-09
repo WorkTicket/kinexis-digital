@@ -19,7 +19,7 @@ export default function ContentMarketingHeroViz({ labels }: Props) {
       <HeroVizStage className="items-center">
         <BrowserFrame label="CMS Editor" delay={0.5} frameClassName="h-[165px] w-[220px]">
           <div className="flex flex-1 gap-1.5">
-            <div className="flex w-5 shrink-0 flex-col gap-1 border-r border-white/[0.06] pr-1 pt-0.5">
+            <div className="flex w-5 shrink-0 flex-col gap-1 border-r border-surface pr-1 pt-0.5">
               {["B", "M", "E", "S"].map((icon, i) => (
                 <div
                   key={icon}

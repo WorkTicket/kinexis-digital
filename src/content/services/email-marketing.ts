@@ -62,12 +62,20 @@ export type EmailMarketingContent = {
     title: string;
     subtitle: string;
   };
+  processIntro: string;
   phases: ServicePhaseContent[];
+  capabilityBodies: {
+    emailSequences: string;
+    automation: string;
+    listGrowth: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -141,39 +149,47 @@ export const emailMarketingContent: Record<Locale, EmailMarketingContent> = {
       title: "The build process.",
       subtitle: "From strategy to live campaigns,|every phase has a clear deliverable.",
     },
+    processIntro:
+      "Email is not a monthly blast calendar. Our build cycle runs from list audit through segmentation, automation build, and ongoing optimization, every phase tied to a deliverable your team can see in the ESP.",
     phases: [
       {
         title: "Audit & Strategy",
-        desc: "Review current email infrastructure, list health, and past performance. Map full lifecycle strategy.",
-        metric: "Full lifecycle strategy in week 1",
+        desc: "Review current email infrastructure, list health, and past performance. Map the full lifecycle from opt-in to booked call.",
+        metric: "",
       },
       {
         title: "Segmentation & Cleaning",
-        desc: "Slice audience by behavior and engagement. Remove inactives to protect sender reputation.",
-        metric: "Avg. 34% list health improvement",
+        desc: "Slice audience by behavior and engagement. Remove inactives and set suppression rules to protect sender reputation.",
+        metric: "",
       },
       {
         title: "Campaign & Automation Build",
-        desc: "Welcome sequences, nurture workflows, abandoned cart flows. All tested before going live.",
-        metric: "5+ automated sequences per client",
-      },
-      {
-        title: "Design & Copy",
-        desc: "Every email designed to drive action, from subject line to CTA button.",
-        metric: "Avg. 42% open rate on campaigns",
+        desc: "Welcome sequences, nurture workflows, and recovery flows, all tested in staging before anything goes live.",
+        metric: "",
       },
       {
         title: "Test, Report & Optimize",
-        desc: "A/B test subject lines, send times, and formats. Weekly reports with clear recommendations.",
-        metric: "18% month-over-month revenue growth",
+        desc: "A/B test subject lines, send times, and CTAs. Monthly reports tie opens and clicks to pipeline contribution.",
+        metric: "",
       },
     ],
+    capabilityBodies: {
+      emailSequences:
+        "Email sequences only work when each send matches where the subscriber is in the buying process. We map welcome, nurture, objection-handling, and re-engagement flows to specific offers and pipeline stages, not a one-size-fits-all drip. Every email has one job: move the reader closer to a booked call or purchase. The cadence below shows a typical B2B nurture sequence we build and test before scaling.",
+      automation:
+        "Automation should run without you babysitting it, but only if triggers, conditions, and branches are mapped before anything goes live. We build welcome fires, behavioral nurture paths, abandoned lead recovery, and lifecycle triggers based on opens, clicks, and inactivity. Each workflow connects to a conversion event your sales team closes, not a vanity metric like open rate.",
+      listGrowth:
+        "List growth is meaningless if new subscribers hurt deliverability or never convert. We combine lead magnets, opt-in forms, landing pages, and paid traffic integration to add qualified contacts. Then segment and clean aggressively to protect sender reputation. Performance gets measured on pipeline contribution and booking rate, not list size or industry-average benchmarks.",
+    },
     cta: {
       headline: "Ready to turn subscribers into revenue?",
       subtitle:
         "Let's build email campaigns that actually drive measurable results,|not just opens and clicks.",
-      ctaLabel: "Start Your Email Strategy",
+      ctaLabel: "See Email Pricing",
     },
+    inlineCtaLabel: "Audit My Email Program",
+    inlineCtaSubtitle:
+      "We will review your list health, automation gaps, and deliverability setup. Then outline the highest-impact sequence fixes.",
     faqs: [
       { question: "What email platforms do you work with?", answer: "We work with Klaviyo, ActiveCampaign, Mailchimp, HubSpot, Drip, ConvertKit, and most major ESPs. If you have a platform you're already invested in, we'll optimize it. If you're starting fresh, we'll recommend the best fit for your business model." },
       { question: "How do you grow my email list?", answer: "List growth is a strategy, not an accident. We combine lead magnets, optimized opt-in forms, landing pages, and paid traffic integration to add qualified subscribers, not just raw volume that hurts your deliverability." },
@@ -251,39 +267,47 @@ export const emailMarketingContent: Record<Locale, EmailMarketingContent> = {
       title: "El proceso de construcción.",
       subtitle: "De la estrategia a campañas en vivo,|cada fase tiene un entregable claro.",
     },
+    processIntro:
+      "El email no es un calendario de envíos mensuales. Nuestro ciclo va de la auditoría de lista a segmentación, construcción de automatización y optimización continua, cada fase ligada a un entregable que tu equipo puede ver en el ESP.",
     phases: [
       {
         title: "Auditoría y Estrategia",
-        desc: "Revisar infraestructura de email actual, salud de la lista y rendimiento pasado. Mapear estrategia de ciclo de vida completa.",
-        metric: "Estrategia de ciclo de vida completa en la semana 1",
+        desc: "Revisar infraestructura de email actual, salud de la lista y rendimiento pasado. Mapear el ciclo de vida completo desde opt-in hasta llamada agendada.",
+        metric: "",
       },
       {
         title: "Segmentación y Limpieza",
-        desc: "Segmentar audiencia por comportamiento y engagement. Eliminar inactivos para proteger la reputación del remitente.",
-        metric: "Prom. 34% de mejora en salud de lista",
+        desc: "Segmentar audiencia por comportamiento y engagement. Eliminar inactivos y definir reglas de supresión para proteger la reputación del remitente.",
+        metric: "",
       },
       {
         title: "Construcción de Campañas y Automatización",
-        desc: "Secuencias de bienvenida, flujos de nutrición, carritos abandonados. Todo probado antes de publicar.",
-        metric: "5+ secuencias automatizadas por cliente",
-      },
-      {
-        title: "Diseño y Copy",
-        desc: "Cada email diseñado para impulsar acción, desde la línea de asunto hasta el botón CTA.",
-        metric: "Prom. 42% de tasa de apertura en campañas",
+        desc: "Secuencias de bienvenida, flujos de nutrición y recuperación, todo probado en staging antes de publicar.",
+        metric: "",
       },
       {
         title: "Probar, Reportar y Optimizar",
-        desc: "Pruebas A/B de asuntos, horarios de envío y formatos. Reportes semanales con recomendaciones claras.",
-        metric: "18% de crecimiento de ingresos mes a mes",
+        desc: "Pruebas A/B de asuntos, horarios de envío y CTAs. Reportes mensuales vinculan aperturas y clics a contribución al pipeline.",
+        metric: "",
       },
     ],
+    capabilityBodies: {
+      emailSequences:
+        "Las secuencias de email solo funcionan cuando cada envío coincide con dónde está el suscriptor en el proceso de compra. Mapeamos flujos de bienvenida, nutrición, manejo de objeciones y re-engagement a ofertas específicas y etapas del pipeline, no un drip genérico. Cada email tiene un trabajo: acercar al lector a una llamada agendada o una compra. La cadencia siguiente muestra una secuencia típica de nurture B2B que construimos y probamos antes de escalar.",
+      automation:
+        "La automatización debe funcionar sin que la vigiles, pero solo si los disparadores, condiciones y ramas están mapeados antes de publicar. Construimos bienvenidas automáticas, rutas de nurture conductual, recuperación de leads abandonados y disparadores de ciclo de vida según aperturas, clics e inactividad. Cada flujo se conecta a un evento de conversión que tu equipo de ventas cierra, no a una métrica vanidad como la tasa de apertura.",
+      listGrowth:
+        "Hacer crecer la lista no sirve si los nuevos suscriptores dañan la entregabilidad o nunca convierten. Combinamos lead magnets, formularios de opt-in, landing pages e integración con tráfico de pago para agregar contactos calificados, luego segmentamos y limpiamos de forma agresiva para proteger la reputación del remitente. El rendimiento se mide por contribución al pipeline y tasa de reserva, no por tamaño de lista ni benchmarks del sector.",
+    },
     cta: {
       headline: "¿Listo para convertir suscriptores en ingresos?",
       subtitle:
         "Construyamos campañas de email que realmente generen resultados medibles,|no solo aperturas y clics.",
-      ctaLabel: "Inicia Tu Estrategia de Email",
+      ctaLabel: "Ver Precios de Email",
     },
+    inlineCtaLabel: "Auditar Mi Programa de Email",
+    inlineCtaSubtitle:
+      "Revisaremos la salud de tu lista, brechas de automatización y configuración de entregabilidad, y delinearemos las correcciones de secuencia de mayor impacto.",
     faqs: [
       { question: "¿Con qué plataformas de email trabajan?", answer: "Trabajamos con Klaviyo, ActiveCampaign, Mailchimp, HubSpot, Drip, ConvertKit y la mayoría de los ESPs principales. Si ya tienes una plataforma, la optimizamos. Si empiezas desde cero, recomendamos la mejor para tu modelo de negocio." },
       { question: "¿Cómo hacen crecer mi lista de email?", answer: "El crecimiento de la lista es una estrategia, no un accidente. Combinamos lead magnets, formularios de opt-in optimizados, landing pages e integración con tráfico de pago para agregar suscriptores calificados que no dañen tu entregabilidad." },

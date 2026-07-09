@@ -1,3 +1,9 @@
-import { createArchitectedServicePage } from "@/lib/create-architected-service-page";
+import { redirect } from "next/navigation";
+import type { Locale } from "@/i18n/routing";
 
-export default createArchitectedServicePage("paid-ads");
+type Props = { params: Promise<{ locale: Locale }> };
+
+export default async function PaidAdsServiceRedirect({ params }: Props) {
+  const { locale } = await params;
+  redirect(`/${locale}/services/ppc-management`);
+}

@@ -17,9 +17,9 @@ function WireframeContent({ compact = false }: { compact?: boolean }) {
 function DesktopMockup() {
   return (
     <div className="mx-auto w-full max-w-none">
-      <div className="overflow-hidden rounded-xl border-2 border-white/[0.12] bg-[#0d1117] p-2.5 shadow-lg shadow-black/20">
+      <div className="overflow-hidden rounded-xl border-2 border-strong bg-[#0d1117] p-2.5 shadow-lg shadow-black/20">
         <BrowserChrome className="mb-2 [&>div]:h-2 [&>div]:w-2" />
-        <div className="flex aspect-[16/10] flex-col gap-1.5 rounded-lg bg-white/[0.03] p-3">
+        <div className="flex aspect-[16/10] flex-col gap-1.5 rounded-lg bg-surface-raised p-3">
           <WireframeContent />
         </div>
       </div>
@@ -30,12 +30,12 @@ function DesktopMockup() {
 function TabletMockup() {
   return (
     <div className="mx-auto w-full max-w-[220px]">
-      <div className="overflow-hidden rounded-[14px] border-[3px] border-white/[0.14] bg-[#0d1117] p-2 shadow-lg shadow-black/20">
+      <div className="overflow-hidden rounded-[14px] border-[3px] border-strong bg-[#0d1117] p-2 shadow-lg shadow-black/20">
         <div className="mx-auto mb-2 h-1 w-8 rounded-full bg-white/10" />
-        <div className="flex aspect-[3/4] flex-col gap-1.5 rounded-lg bg-white/[0.03] p-2.5">
+        <div className="flex aspect-[3/4] flex-col gap-1.5 rounded-lg bg-surface-raised p-2.5">
           <WireframeContent compact />
         </div>
-        <div className="mx-auto mt-2 h-1 w-10 rounded-full bg-white/[0.08]" />
+        <div className="mx-auto mt-2 h-1 w-10 rounded-full bg-surface-active" />
       </div>
     </div>
   );
@@ -44,12 +44,12 @@ function TabletMockup() {
 function MobileMockup() {
   return (
     <div className="mx-auto w-full max-w-[120px]">
-      <div className="overflow-hidden rounded-[1.75rem] border-[3px] border-white/[0.14] bg-[#0d1117] p-1.5 shadow-lg shadow-black/20">
+      <div className="overflow-hidden rounded-[1.75rem] border-[3px] border-strong bg-[#0d1117] p-1.5 shadow-lg shadow-black/20">
         <div className="mx-auto mb-1.5 h-1.5 w-10 rounded-full bg-white/10" />
-        <div className="flex aspect-[9/16] flex-col gap-1 rounded-[1.25rem] bg-white/[0.03] p-2">
+        <div className="flex aspect-[9/16] flex-col gap-1 rounded-[1.25rem] bg-surface-raised p-2">
           <WireframeContent compact />
         </div>
-        <div className="mx-auto mt-1.5 h-1 w-8 rounded-full bg-white/[0.08]" />
+        <div className="mx-auto mt-1.5 h-1 w-8 rounded-full bg-surface-active" />
       </div>
     </div>
   );

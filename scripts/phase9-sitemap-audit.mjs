@@ -18,7 +18,8 @@ const base = (process.argv[2] || "https://www.kinexisdigital.com").replace(/\/$/
 const USER_AGENT = "KinexisPhase9Sitemap/1.0";
 const CONCURRENCY = 8;
 const CANONICAL_HOST = "www.kinexisdigital.com";
-const EXPECTED_SITEMAP_COUNT = 290;
+/** Fallback when `.next/server/app/sitemap.xml.body` is missing — run `npm run build` first. */
+const FALLBACK_EXPECTED_SITEMAP_COUNT = 324;
 
 const AHREFS_EXPORT = path.join(
   root,
@@ -191,10 +192,16 @@ async function main() {
   const sitemapIssues = [];
   if (canonicalSitemap.status !== 200) sitemapIssues.push(`sitemap_status_${canonicalSitemap.status}`);
 
+  const expectedFromBuild = loadExpectedUrlsFromBuild();
+  const expectedSitemapCount =
+    expectedFromBuild?.length ?? FALLBACK_EXPECTED_SITEMAP_COUNT;
+
   const locs = canonicalSitemap.status === 200 ? parseSitemapLocs(canonicalSitemap.body) : [];
   const uniqueLocs = [...new Set(locs)];
   if (locs.length !== uniqueLocs.length) sitemapIssues.push("duplicate_loc_entries");
-  if (locs.length !== EXPECTED_SITEMAP_COUNT) sitemapIssues.push(`url_count_${locs.length}_not_${EXPECTED_SITEMAP_COUNT}`);
+  if (locs.length !== expectedSitemapCount) {
+    sitemapIssues.push(`url_count_${locs.length}_not_${expectedSitemapCount}`);
+  }
 
   const nonWwwLocs = locs.filter((u) => !u.includes(CANONICAL_HOST));
   if (nonWwwLocs.length) sitemapIssues.push("non_www_loc_entries");
@@ -233,7 +240,6 @@ async function main() {
 
   const ahrefsUrls = loadAhrefsRowUrls(AHREFS_EXPORT);
 
-  const expectedFromBuild = loadExpectedUrlsFromBuild();
   let registryDiff = null;
   if (expectedFromBuild) {
     registryDiff = diffUrlSets(expectedFromBuild, locs);
@@ -242,9 +248,6 @@ async function main() {
     }
     if (registryDiff.extraInSitemap.length) {
       sitemapIssues.push(`extra_in_sitemap_${registryDiff.extraInSitemap.length}`);
-    }
-    if (expectedFromBuild.length !== EXPECTED_SITEMAP_COUNT) {
-      sitemapIssues.push(`registry_count_${expectedFromBuild.length}_not_${EXPECTED_SITEMAP_COUNT}`);
     }
   } else {
     console.warn(
@@ -256,7 +259,7 @@ async function main() {
     timestamp: started,
     finished: new Date().toISOString(),
     base,
-    expected_sitemap_url_count: EXPECTED_SITEMAP_COUNT,
+    expected_sitemap_url_count: expectedSitemapCount,
     sitemap_url_count: locs.length,
     sitemap_unique_count: uniqueLocs.length,
     sitemap_duplicate_locs: locs.length - uniqueLocs.length,
@@ -278,7 +281,7 @@ async function main() {
       robotsIssues.length === 0 &&
       redirectFails.length === 0 &&
       pageFails.length === 0 &&
-      locs.length === EXPECTED_SITEMAP_COUNT &&
+      locs.length === expectedSitemapCount &&
       (expectedFromBuild === null ||
         (registryDiff.missingFromSitemap.length === 0 && registryDiff.extraInSitemap.length === 0)),
   };
@@ -315,7 +318,7 @@ async function main() {
         gsc_manual_checklist: {
           action: "Google Search Console → Sitemaps → submit https://www.kinexisdigital.com/sitemap.xml",
           owner: "human",
-          confirm: "Status Success, discovered URLs ≈ 290",
+          confirm: `Status Success, discovered URLs ≈ ${expectedSitemapCount}`,
         },
       },
       null,

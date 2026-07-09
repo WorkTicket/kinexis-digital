@@ -1,26 +1,29 @@
 {
   "summary": {
-    "timestamp": "2026-07-04T18:02:55.744Z",
-    "finished": "2026-07-04T18:03:02.186Z",
+    "timestamp": "2026-07-09T03:47:09.835Z",
+    "finished": "2026-07-09T03:47:23.712Z",
     "base": "https://www.kinexisdigital.com",
-    "expected_sitemap_url_count": 290,
-    "sitemap_url_count": 290,
-    "sitemap_unique_count": 290,
+    "expected_sitemap_url_count": 324,
+    "sitemap_url_count": 328,
+    "sitemap_unique_count": 328,
     "sitemap_duplicate_locs": 0,
-    "sitemap_issues": [],
+    "sitemap_issues": [
+      "url_count_328_not_324",
+      "extra_in_sitemap_4"
+    ],
     "robots_sitemap_directive": "https://www.kinexisdigital.com/sitemap.xml",
     "robots_issues": [],
     "non_canonical_redirect_checks": 6,
     "non_canonical_redirect_failures": 0,
-    "indexable_page_failures": 0,
+    "indexable_page_failures": 4,
     "indexnow_configured": true,
     "indexnow_key_reachable": true,
     "ahrefs_multiple_sitemaps_baseline": 378,
-    "registry_expected_count": 290,
+    "registry_expected_count": 324,
     "registry_missing_from_sitemap": 0,
-    "registry_extra_in_sitemap": 0,
+    "registry_extra_in_sitemap": 4,
     "registry_diff_available": true,
-    "phase9Pass": true
+    "phase9Pass": false
   },
   "redirectChecks": [
     {
@@ -73,14 +76,52 @@
     }
   ],
   "redirectFailures": [],
-  "pageFailures": [],
+  "pageFailures": [
+    {
+      "url": "https://www.kinexisdigital.com/en/services/cro",
+      "http_status": 200,
+      "robots_meta": "index, follow",
+      "canonical": "https://www.kinexisdigital.com/en/services/funnels",
+      "issues": "canonical_mismatch",
+      "pass": false
+    },
+    {
+      "url": "https://www.kinexisdigital.com/es/services/cro",
+      "http_status": 200,
+      "robots_meta": "index, follow",
+      "canonical": "https://www.kinexisdigital.com/es/services/funnels",
+      "issues": "canonical_mismatch",
+      "pass": false
+    },
+    {
+      "url": "https://www.kinexisdigital.com/en/pricing/cro",
+      "http_status": 200,
+      "robots_meta": "index, follow",
+      "canonical": "https://www.kinexisdigital.com/en/pricing/funnels",
+      "issues": "canonical_mismatch",
+      "pass": false
+    },
+    {
+      "url": "https://www.kinexisdigital.com/es/pricing/cro",
+      "http_status": 200,
+      "robots_meta": "index, follow",
+      "canonical": "https://www.kinexisdigital.com/es/pricing/funnels",
+      "issues": "canonical_mismatch",
+      "pass": false
+    }
+  ],
   "registryDiff": {
     "missingFromSitemap": [],
-    "extraInSitemap": []
+    "extraInSitemap": [
+      "https://www.kinexisdigital.com/en/services/cro",
+      "https://www.kinexisdigital.com/es/services/cro",
+      "https://www.kinexisdigital.com/en/pricing/cro",
+      "https://www.kinexisdigital.com/es/pricing/cro"
+    ]
   },
   "gsc_manual_checklist": {
     "action": "Google Search Console → Sitemaps → submit https://www.kinexisdigital.com/sitemap.xml",
     "owner": "human",
-    "confirm": "Status Success, discovered URLs ≈ 290"
+    "confirm": "Status Success, discovered URLs ≈ 324"
   }
 }

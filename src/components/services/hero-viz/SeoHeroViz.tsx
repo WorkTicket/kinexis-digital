@@ -23,7 +23,7 @@ export default function SeoHeroViz({ labels }: Props) {
     <HeroVizShell>
       <HeroVizStage className="items-center">
         <BrowserFrame label="Search Console" delay={0.5} frameClassName="h-[165px] w-[220px]">
-          <div className="mb-1 grid grid-cols-[1fr_28px_28px] gap-1 border-b border-white/[0.06] pb-1">
+          <div className="mb-1 grid grid-cols-[1fr_28px_28px] gap-1 border-b border-surface pb-1">
             <span className="text-[6px] uppercase tracking-wider text-muted/40">Keyword</span>
             <span className="text-[6px] uppercase tracking-wider text-muted/40 text-center">Pos</span>
             <span className="text-[6px] uppercase tracking-wider text-muted/40 text-center">Δ</span>

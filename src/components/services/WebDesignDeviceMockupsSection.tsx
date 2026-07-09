@@ -26,8 +26,8 @@ export default function WebDesignDeviceMockupsSection({ surfaceIndex }: Props) {
 
   return (
     <Section id="device-mockups" variant="visual" surfaceIndex={surfaceIndex}>
-      <div className="container-site" style={{ maxWidth: "var(--container-max)", paddingInline: "var(--inner-padding)" }}>
-        <SectionHeader pattern="B" title={content.surfacesTitle} subtitle={content.surfacesSubtitle} />
+      <div className="container-site">
+        <SectionHeader title={content.surfacesTitle} description={content.surfacesSubtitle} />
 
         <motion.div
           className="section-content grid gap-10 md:grid-cols-3 md:gap-8"

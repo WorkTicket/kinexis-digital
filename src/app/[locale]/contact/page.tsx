@@ -1,6 +1,6 @@
 import { setRequestLocale } from "next-intl/server";
 import JsonLd from "@/components/seo/JsonLd";
-import ContactHeroShell from "@/components/shared/ContactHeroShell";
+import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import ContactPageClient from "@/components/pages/ContactPageClient";
 import type { Locale } from "@/i18n/routing";
 import { contactContent } from "@/content/contact";
@@ -28,7 +28,8 @@ export default async function ContactPage({ params }: Props) {
           ]),
         ]}
       />
-      <ContactHeroShell
+      <StaticHeroShell
+        variant="conversion"
         label="Contact"
         headline={content.heroTitle}
         subtitle={content.heroSubtitle}

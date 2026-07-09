@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "11052450938fa51290ac13af4c352d5082dcc946"
+      "_sentryRelease": "5492d99431a60aba8592fd7cb5f2124ed6cab587"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -169,7 +169,7 @@
       "imgOptSkipMetadata": null,
       "isrFlushToDisk": true,
       "workerThreads": false,
-      "optimizeCss": true,
+      "optimizeCss": false,
       "nextScriptWorkers": false,
       "scrollRestoration": false,
       "externalDir": false,
@@ -204,7 +204,7 @@
       "staticGenerationMaxConcurrency": 8,
       "staticGenerationMinPagesPerWorker": 25,
       "cacheComponents": false,
-      "inlineCss": false,
+      "inlineCss": true,
       "useCache": false,
       "globalNotFound": false,
       "devtoolSegmentExplorer": true,
@@ -345,8 +345,28 @@
         "permanent": true
       },
       {
+        "source": "/:locale(en|es)/services/google-ads",
+        "destination": "/:locale/services/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/services/paid-ads",
+        "destination": "/:locale/services/ppc-management",
+        "permanent": true
+      },
+      {
         "source": "/pricing/google-ads",
         "destination": "/en/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/services/google-ads",
+        "destination": "/en/services/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/services/paid-ads",
+        "destination": "/en/services/ppc-management",
         "permanent": true
       },
       {
@@ -471,11 +491,7 @@
     ".next\\BUILD_ID",
     ".next\\server\\next-font-manifest.js",
     ".next\\server\\next-font-manifest.json",
-    ".next\\required-server-files.json",
-    ".next\\static\\css\\0ba576beb94a46f7.css",
-    ".next\\static\\css\\0ba7fc9a89e6718c.css",
-    ".next\\static\\css\\2db94581d4172e33.css",
-    ".next\\static\\css\\d67fc45e4a86c8f6.css"
+    ".next\\required-server-files.json"
   ],
   "ignore": [
     "node_modules\\next\\dist\\compiled\\@ampproject\\toolbox-optimizer\\**\\*"

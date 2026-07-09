@@ -25,12 +25,36 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Run tests
+        run: npm test
+
       - name: Verify Cloudflare credentials
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
             echo "::error::Missing CLOUDFLARE_API_TOKEN repository secret. Create a Cloudflare API token with Workers deploy permissions, then add it under GitHub → Settings → Secrets and variables → Actions."
             exit 1
           fi
+
+      - name: Verify email credentials
+        run: |
+          missing=0
+          for var in GMAIL_USER GMAIL_APP_PASSWORD CONTACT_TO_EMAIL; do
+            if [ -z "${!var}" ]; then
+              echo "::error::Missing $var repository secret. Contact and lead forms will return 500 in production without it."
+              missing=1
+            fi
+          done
+          exit $missing
+        env:
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
 
       - name: Deploy to Cloudflare Workers
         run: npm run deploy
@@ -42,6 +66,8 @@ jobs:
           NEXT_PUBLIC_SITE_URL: https://www.kinexisdigital.com
           NEXT_PUBLIC_GA_ID: G-Z8245BRX2L
           NEXT_PUBLIC_GSC_VERIFICATION: 7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q
+          NEXT_PUBLIC_CLARITY_ID: ${{ secrets.NEXT_PUBLIC_CLARITY_ID }}
+          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
 
       - name: Submit URLs to IndexNow
         if: success()

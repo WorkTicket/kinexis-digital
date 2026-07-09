@@ -14,6 +14,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Our SEO work covers technical audits, keyword research, on-page fixes, content, and links. Most clients invest $2,500 to $8,000 per month depending on competition and scope. Ranking movement usually shows up in 60 to 90 days. Lead growth follows around months four to six.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies start with a technical audit that produces a 200-item spreadsheet. We start with revenue mapping: which pages should be driving calls, which keywords signal buying intent, and what's actually broken on the path between search and booked appointment.",
+    },
     problem: {
       title: "Most businesses rank for terms that never convert",
       intro:
@@ -144,6 +148,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Local SEO services include Google Business Profile optimization, citation building, review strategy, location page development, and local link acquisition. Retainers start at $1,500 per month for single-location businesses and scale to $5,000+ for multi-location brands. Full-site SEO is priced separately. Map pack movement often appears within 30 to 60 days.",
+    editorial: {
+      bridgeParagraph:
+        "Most local programs treat citations like a checklist and GBP like a one-time setup. We start with the searches that book jobs in your market. Then fix profile, NAP, reviews, and location pages in the order that moves map pack rankings fastest.",
+    },
     problem: {
       title: "You can be five minutes away and still invisible on Google Maps",
       intro:
@@ -267,116 +275,125 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   "ppc-management": {
-    metaTitle: "Multi-Channel PPC Management | KINEXIS",
+    metaTitle: "PPC & Google Ads Management | KINEXIS",
     metaDescription:
-      "One team managing Google, Meta, LinkedIn, and Microsoft Ads. Shared tracking, weekly budget shifts, and ROAS you can trust. From 15% of spend or $2,500/mo min.",
+      "Google Ads and cross-channel PPC management for Search, Shopping, Performance Max, Meta, LinkedIn, and Microsoft. Conversion tracking, Quality Score work, and ROAS-focused campaigns. From $2,500/mo.",
     hero: {
-      label: "PPC Management",
-      line1: "One team running",
-      line2: "every channel you pay for.",
+      label: "PPC & Google Ads",
+      line1: "Google Ads depth.",
+      line2: "Cross-channel discipline.",
       subtitle:
-        "One team managing Google, Meta, LinkedIn, and Microsoft. Shared goals, shared tracking, and weekly budget moves based on what your CRM confirms as real pipeline.",
+        "We manage Google Search, Shopping, and Performance Max with the same rigor we bring to Meta, LinkedIn, and Microsoft. One team, shared tracking, and weekly budget moves based on cost per qualified lead.",
     },
     answerBlock:
-      "PPC management covers strategy, campaign setup, bid optimization, creative coordination, and conversion tracking across Google, Meta, LinkedIn, and Microsoft Ads. Fees are typically 15% of ad spend with a $2,500 monthly minimum, or a flat retainer for larger accounts. Most accounts reach stable CPL within 45 to 60 days of launch.",
+      "PPC and Google Ads management covers account audit, campaign structure, keywords, ad copy, bids, Quality Score, and conversion tracking for Google Search, Shopping, and PMax, plus cross-channel coordination on Meta, LinkedIn, and Microsoft when you run multiple platforms. Management starts at $2,500 per month plus ad spend. Most accounts see CPL stabilize within 30 to 60 days.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies optimize toward clicks and platform-reported conversions. We start by fixing what your CRM actually counts as a lead. Then rebuild campaign structure so every dollar targets searches and channels that produce booked calls.",
+    },
     problem: {
-      title: "Separate ad accounts usually compete with each other",
+      title: "Most paid accounts waste budget on the wrong searches and siloed channels",
       intro:
-        "Google and Meta often run in silos. Nobody compares cost per lead across channels, tracking breaks between platforms and your CRM, and budget stays stuck on whatever looked good in a slide deck.",
+        "Google makes spending easy. Running Google and Meta in separate silos makes it worse. Most accounts we audit bleed budget on irrelevant searches, broken tracking, and channels that look good in dashboards but do not book revenue.",
       points: [
-        "Spend keeps flowing to underperforming platforms because no one owns the full picture.",
-        "Each platform counts conversions differently, so ROAS numbers do not match reality.",
-        "Creative and landing pages get rebuilt per channel with no shared testing plan.",
-        "Freelancers or internal owners manage one platform each, which slows decisions and duplicates work.",
+        "Broad match and auto-apply recommendations send Google budget to searches that will never convert.",
+        "Brand, competitor, and generic terms sit in the same campaign, so you cannot tell what is working.",
+        "Google and Meta run with different conversion definitions, so nobody compares true cost per lead.",
+        "Landing pages do not match the ad promise, which kills Quality Score and raises cost per click.",
       ],
     },
     solution: {
-      title: "Paid media run like one program",
+      title: "Google Ads and paid media run as one revenue program",
       intro:
-        "Shared goals, shared tracking, and weekly budget moves based on what your CRM confirms as qualified pipeline.",
+        "We restructure Google accounts around search intent, tighten tracking to qualified conversions, and coordinate budgets across every platform from a single dashboard.",
       points: [
-        "Budget allocation tied to cost per qualified lead, not platform preference or politics.",
-        "Conversion tracking from click to CRM so you see true ROAS by channel and campaign.",
-        "Creative and landing page coordination so messaging stays consistent across search and social.",
-        "Weekly optimization across every account instead of monthly check-ins on one platform.",
+        "Separate Google campaigns for brand, competitor, and high-intent generic keywords.",
+        "Weekly search term reviews and negative keyword lists to cut waste before it compounds.",
+        "Ad copy and landing page alignment that improves Quality Score and lowers CPC.",
+        "Cross-channel budget allocation tied to CRM-confirmed pipeline, not platform preference.",
       ],
     },
     deliverables: {
-      title: "What you get with PPC management",
-      subtitle: "Everything you need to run Google, Meta, LinkedIn, and Microsoft as one coordinated program.",
+      title: "What you get with PPC & Google Ads management",
+      subtitle: "Google Search, Shopping, and PMax plus cross-channel coordination when you need it.",
       items: [
+        {
+          title: "Google Account Audit and Restructure",
+          description:
+            "Full review of Search, Shopping, and PMax campaigns with intent-based rebuild plan.",
+        },
+        {
+          title: "Keyword Research and Negative Lists",
+          description:
+            "High-intent keyword targets plus ongoing negative lists to block irrelevant traffic.",
+        },
+        {
+          title: "Performance Max and Shopping Setup",
+          description:
+            "Feed optimization, asset groups, audience signals, and listing group structure for e-commerce.",
+        },
         {
           title: "Cross-Channel Strategy and Budget Plan",
           description:
-            "Channel mix recommendations, monthly budget allocation, and KPI targets by platform.",
+            "Channel mix recommendations and monthly budget allocation when you run Google with Meta, LinkedIn, or Microsoft.",
         },
         {
-          title: "Campaign Build and Launch",
+          title: "Conversion Tracking and Attribution",
           description:
-            "Account structure, audience targeting, ad copy, and extensions across Google, Meta, LinkedIn, and Microsoft.",
+            "GA4, GTM, enhanced conversions, call tracking, and CRM integration for accurate lead tracking.",
         },
         {
-          title: "Conversion Tracking Setup",
+          title: "Weekly Optimization and Reporting",
           description:
-            "GA4, platform pixels, CRM integration, and offline conversion import for accurate attribution.",
-        },
-        {
-          title: "Weekly Bid and Budget Optimization",
-          description:
-            "Ongoing bid adjustments, budget shifts, negative keyword management, and audience refinements.",
-        },
-        {
-          title: "Creative Testing Framework",
-          description:
-            "Ad copy and creative rotation with structured A/B tests and performance benchmarks.",
-        },
-        {
-          title: "Unified Performance Dashboard",
-          description:
-            "Cross-channel reporting on spend, CPL, ROAS, and pipeline value in one view.",
+            "Bid adjustments, search term mining, budget shifts, and ROAS reporting across every active platform.",
         },
       ],
     },
     comparison: {
-      title: "Multi-Channel PPC: Separate Managers vs. KINEXIS",
-      subtitle: "What changes when one team owns your entire paid media program.",
+      title: "Self-managed Google Ads vs. KINEXIS PPC management",
+      subtitle: "What changes when Google Ads expertise and cross-channel discipline live in one team.",
       layout: "impact",
       columns: [
-        { header: "Separate Channel Managers" },
-        { header: "KINEXIS PPC Management", highlight: true },
+        { header: "Self-Managed / Siloed Freelancers" },
+        { header: "KINEXIS PPC & Google Ads", highlight: true },
       ],
       rows: [
         {
-          label: "Strategy alignment",
-          values: ["Each platform optimizes in isolation", "Unified goals and shared KPIs"],
+          label: "Account structure",
+          values: ["Flat campaigns, mixed intent", "Segmented by intent and funnel stage"],
         },
         {
-          label: "Budget flexibility",
-          values: ["Siloed budgets, slow to shift", "Weekly reallocation to best performers"],
+          label: "Optimization frequency",
+          values: ["Monthly or when budget runs out", "Weekly search term and bid reviews"],
         },
         {
-          label: "Tracking consistency",
-          values: ["Different definitions of a conversion", "One tracking framework across all channels"],
+          label: "Conversion tracking",
+          values: ["Page views counted as conversions", "Qualified lead tracking with CRM sync"],
         },
         {
-          label: "Management cost",
-          values: ["15 to 20% per platform adds up", "Single fee structure, lower total overhead"],
+          label: "Cross-channel visibility",
+          values: ["Separate dashboards, conflicting numbers", "One dashboard with unified ROAS"],
         },
         {
-          label: "Reporting",
-          values: ["Multiple dashboards, conflicting numbers", "One dashboard with cross-channel ROAS"],
+          label: "Shopping / PMax expertise",
+          values: ["Limited feed and asset experience", "Dedicated e-commerce campaign management"],
         },
         {
-          label: "Decision speed",
-          values: ["Coordination meetings slow changes", "Same-day budget and bid adjustments"],
+          label: "Typical CPL improvement",
+          values: ["Baseline or increasing", "20 to 40% reduction within 90 days"],
         },
       ],
     },
     extraFaqs: [
       {
-        question: "What platforms do you manage under PPC management?",
+        question: "Do you manage Performance Max campaigns?",
         answer:
-          "Google Ads, Meta (Facebook and Instagram), LinkedIn Ads, and Microsoft Ads. We coordinate budgets and reporting across all four. If you only need one platform, our Google Ads or Meta Ads services may fit better.",
+          "Yes. We build and optimize PMax with proper asset groups, audience signals, and feed data. We also monitor search term insights to prevent PMax from cannibalizing branded Search traffic.",
+      },
+      {
+        question: "What platforms do you manage?",
+        answer:
+          "Google Ads is our core: Search, Shopping, Performance Max, Display, and YouTube. We also manage Meta, LinkedIn, and Microsoft Ads when you need cross-channel coordination under one team and one reporting framework.",
       },
       {
         question: "How is PPC management priced?",
@@ -384,14 +401,14 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
           "Typically 15% of monthly ad spend with a $2,500 minimum retainer, or a flat fee for accounts spending $50,000+ per month. Ad spend bills directly to the platforms on your accounts. You always own the accounts.",
       },
       {
-        question: "What ad spend level do you require?",
+        question: "Will I own my Google Ads account?",
         answer:
-          "We work best when total spend across channels is $5,000 to $100,000+ per month. Below $5,000, a single-channel program is usually more efficient.",
+          "Always. We work inside your account with full admin access. If you leave, you keep every campaign, keyword list, and conversion setup we built.",
       },
       {
-        question: "How is PPC management different from Google Ads-only management?",
+        question: "What ad spend level do you require?",
         answer:
-          "This pricing page covers Google Search, Shopping, and Performance Max management. Our Google Ads service page goes deeper on Search-specific strategy. Meta Ads is a separate program with dedicated creative testing. Multi-channel coordination across Google, Meta, LinkedIn, and Microsoft is scoped on Growth and Scale tiers.",
+          "We work best when total spend is $3,000 to $100,000+ per month. Below $3,000 on Google alone, we can still help, but data volume limits how fast we optimize.",
       },
     ],
   },
@@ -409,6 +426,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Google Ads management covers account audit, campaign structure, keywords, ad copy, bids, Quality Score, and conversion tracking for Search, Shopping, and PMax. Management starts at $1,500 per month plus ad spend. Most accounts see CPL stabilize within 30 to 45 days.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies optimize toward clicks and platform-reported conversions. We start by fixing what your CRM actually counts as a lead. Then rebuild Search and PMax structure so every dollar targets queries that produce booked calls.",
+    },
     problem: {
       title: "Most Google Ads accounts bleed budget on the wrong searches",
       intro:
@@ -539,6 +560,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Meta Ads management covers audience research, campaign structure, creative testing, retargeting funnels, and pixel-based tracking on Facebook and Instagram. Management starts at $1,500 per month. Most accounts need $3,000 to $15,000 in monthly ad spend and two to four weeks of creative testing to find stable ROAS.",
+    editorial: {
+      bridgeParagraph:
+        "Most Meta accounts die from creative fatigue and overlapping audiences. We build a testing pipeline that feeds the algorithm fresh ads every two weeks, with clean separation between cold, warm, and hot pools.",
+    },
     problem: {
       title: "Why Meta ad accounts stall after the first good week",
       intro:
@@ -669,6 +694,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Paid ads services cover channel selection, campaign strategy, ad creation, landing page alignment, conversion tracking, and ongoing optimization across Google, Meta, and LinkedIn. Google Search, Shopping, and Performance Max management is priced on our PPC Management page (from $2,500/mo management, ad spend separate). Meta Ads has its own pricing page. Most clients see their first qualified leads within 7 to 14 days of launch.",
+    editorial: {
+      bridgeParagraph:
+        "Most teams pick one platform and hope for leads. We start with where your buyers actually search and scroll. Then build campaigns, landing pages, and tracking so cost per qualified lead is measurable from week one.",
+    },
     problem: {
       title: "Most paid ad spend disappears before it reaches sales",
       intro:
@@ -800,6 +829,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Web design includes discovery, UX strategy, custom design, responsive development, CMS setup, basic SEO structure, and conversion-focused layouts. Projects run $8,000 for focused sites to $35,000+ for larger builds. Typical delivery is 6 to 10 weeks from kickoff to launch.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies design for awards and hand you a pretty homepage. We sketch the conversion path first, what visitors see, what they click, and what happens before they leave. Then design around that flow.",
+    },
     problem: {
       title: "Most business websites look fine and convert at 1 to 2%",
       intro:
@@ -930,6 +963,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "CRO services include conversion audits, heatmap and session analysis, hypothesis development, A/B testing, and UX improvements on high-traffic pages. Retainers start at $2,500 per month or project-based for single-page optimization. Most tests reach statistical significance within 2 to 4 weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most CRO projects test button colors while the real leak sits in form length or mobile layout. We start with session data on your highest-traffic pages. Then run hypothesis-driven tests that compound into pipeline lift.",
+    },
     problem: {
       title: "Buying more traffic rarely fixes a leaky site",
       intro:
@@ -1060,6 +1097,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Email marketing services include list strategy, automation workflows, campaign creation, segmentation, A/B testing, and deliverability monitoring. Retainers start at $2,000 to $5,000 per month depending on list size and automation complexity. Welcome sequences typically launch within 2 to 3 weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies start with a template welcome series and a monthly newsletter. We start with revenue mapping: which segments should be moving toward a booked call, which behavioral triggers signal buying intent, and what breaks between the first opt-in and your sales team's inbox.",
+    },
     problem: {
       title: "Opens look fine. Pipeline does not move.",
       intro:
@@ -1190,6 +1231,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Content marketing services include content strategy, keyword-driven topic planning, blog posts, guides, case studies, and distribution across search and social. Retainers start at $2,500 to $6,000 per month for 4 to 8 pieces monthly. First published content typically goes live within 3 to 4 weeks of kickoff.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies assign writers a word count and a keyword. We assign every piece a funnel stage, a search intent target, and a path to the page where you close. Then we track whether it actually sends qualified traffic.",
+    },
     problem: {
       title: "Publishing without a plan creates noise, not pipeline",
       intro:
@@ -1287,7 +1332,7 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
       {
         question: "How much does content marketing cost?",
         answer:
-          "Retainers start at $2,000 per month for 4 to 6 pieces and scale to $8,000+ for 20+ pieces with editorial leadership. This covers production and strategy only — not full technical SEO or link building. If you need the complete organic program, SEO pricing starts at $2,500 per month with content included.",
+          "Retainers start at $2,000 per month for 4 to 6 pieces and scale to $8,000+ for 20+ pieces with editorial leadership. This covers production and strategy only, not full technical SEO or link building. If you need the complete organic program, SEO pricing starts at $2,500 per month with content included.",
       },
       {
         question: "How is a content retainer different from SEO?",
@@ -1330,6 +1375,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Social media marketing includes platform strategy, content creation, posting schedules, community management, and performance reporting for LinkedIn, Instagram, Facebook, and X. Management starts at $1,500 to $4,000 per month depending on platforms and posting frequency. Content calendars are live within 2 weeks of kickoff.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies post on every platform with a recycled content calendar. We pick the two networks where your buyers actually show up, tie every post category to a funnel stage, and wire organic content into retargeting and lead capture.",
+    },
     problem: {
       title: "An inactive profile hurts trust faster than no profile at all",
       intro:
@@ -1465,6 +1514,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Video marketing services include concept development, scripting, production coordination, editing, and distribution planning for ads, social, and web. Project pricing starts at $3,000 for short-form packages. Monthly retainers from $2,500 cover ongoing video content. Typical turnaround is 2 to 4 weeks per project.",
+    editorial: {
+      bridgeParagraph:
+        "Most production shops deliver one hero video and call it done. We start with a distribution map, which cuts go to ads, which formats hit social, which embeds land on conversion pages, so one shoot feeds every channel that needs fresh creative.",
+    },
     problem: {
       title: "Most business video tries to say everything at once",
       intro:
@@ -1595,6 +1648,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Branding services include market positioning, brand strategy, logo design, visual identity systems, messaging frameworks, and brand guidelines. Projects range from $8,000 for focused identity refreshes to $25,000+ for full brand strategy and design. Typical delivery is 6 to 10 weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most designers start with mood boards and logo options. We start with positioning, who you serve, why they choose you, and what message has to stay consistent. Then build visual identity your marketing team can apply in web, ads, and email without calling us for every asset.",
+    },
     problem: {
       title: "Inconsistent branding makes you look smaller than you are",
       intro:
@@ -1725,6 +1782,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Marketing analytics services include GA4 setup, conversion tracking, CRM integration, custom dashboards, and monthly reporting across SEO, paid ads, email, and social. Retainers start at $1,500 to $3,500 per month. Dashboard builds typically go live within 2 to 3 weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies install GA4 and call tracking done. We start with the business questions your dashboards need to answer: which campaigns book revenue, where leads leak, what sales closes. Then build events and attribution that connect marketing spend to CRM outcomes.",
+    },
     problem: {
       title: "Dashboards full of traffic rarely help you allocate budget",
       intro:
@@ -1855,6 +1916,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Growth consulting includes marketing audits, competitive analysis, channel strategy, budget planning, and quarterly roadmaps. Engagements start at $3,000 to $6,000 per month for advisory or $5,000 to $15,000 for project-based strategy deliverables. Initial audit and roadmap delivery takes 3 to 4 weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most consultants deliver a strategy deck and disappear. We audit your full revenue system first, website, ads, SEO, email, analytics. Then deliver a prioritized roadmap with budget splits, timelines, and the option to execute what we recommend.",
+    },
     problem: {
       title: "Tactics without strategy burn budget fast",
       intro:
@@ -1985,6 +2050,10 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Funnels & CRO services include funnel strategy, landing page design, lead magnet creation, email automation, retargeting, heatmap analysis, and structured A/B testing. Funnel builds start at $5,000 to $15,000; ongoing CRO programs from $2,500 per month. Most systems launch in 4 to 8 weeks with optimization continuing after go-live.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies build a landing page and stop. We map the full path from ad click to booked call, lead magnets, nurture sequences, retargeting, CRM handoffs. Then keep testing until conversion compounds instead of stalling after launch week.",
+    },
     problem: {
       title: "A landing page is not a funnel",
       intro:
@@ -2103,6 +2172,1336 @@ export const serviceSeoEn: Record<ServiceSeoSlug, ServiceSeoContent> = {
         question: "Can you connect funnels to our CRM?",
         answer:
           "Yes. We integrate with HubSpot, Salesforce, ActiveCampaign, GoHighLevel, and most CRMs. Leads flow automatically with source tags, and sales gets notified when scoring thresholds are hit.",
+      },
+    ],
+  },
+  "youtube-ads": {
+    metaTitle: "YouTube Ads Management Agency | KINEXIS Digital",
+    metaDescription:
+      "YouTube advertising built around the first five seconds and the action that follows. Intent-based targeting, hook testing, and tracking tied to leads. Management from $2,000/mo.",
+    hero: {
+      label: "YouTube Ads Management",
+      line1: "Reach buyers on YouTube",
+      line2: "before they hit the search bar.",
+      subtitle:
+        "In-stream, in-feed, and Shorts campaigns built around a skip-proof hook and a clear next step. Targeting drawn from your customer data and tracking that ties views to booked calls, not just watch time.",
+    },
+    answerBlock:
+      "YouTube ads management covers campaign strategy, intent-based targeting, creative direction, landing page alignment, and conversion tracking. Most clients invest $2,000 to $6,000 per month in management plus ad spend. You get performance data within days and meaningful optimization by weeks two to four.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies import a brand video, turn on broad targeting, and report watch time. We start with placement and audience architecture, which format catches cold prospects, which retargets site visitors, and what hook has to land in five seconds. Then build creative and tracking around that structure before spend scales.",
+    },
+    problem: {
+      title: "Most YouTube budgets buy views, not customers",
+      intro:
+        "Video feels like brand work, so it gets measured like brand work. That is how spend disappears into watch time nobody can tie to revenue.",
+      points: [
+        "A repurposed brand video runs with a slow open that gets skipped before the offer lands.",
+        "One campaign targets everyone, so cold prospects and past customers see the same message.",
+        "Broad audiences and default placements burn budget on views that were never going to convert.",
+        "Reports celebrate impressions and completion rate while the CRM shows nothing new.",
+      ],
+    },
+    solution: {
+      title: "Video campaigns built to convert, not just play",
+      intro:
+        "We treat YouTube like a performance channel. Every campaign has an audience, a hook, and a conversion goal we can measure.",
+      points: [
+        "Campaigns split by intent across in-stream, in-feed, and Shorts, each with its own message.",
+        "Audiences built from customer lists, search intent, competitor viewers, and website visitors.",
+        "Hooks tested in the first five seconds so the ad earns the watch instead of the skip.",
+        "View-through and click conversions tracked back to leads and revenue, reported weekly.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with our YouTube program",
+      subtitle: "Six deliverables. One measurable video advertising system.",
+      items: [
+        {
+          title: "Campaign & Placement Strategy",
+          description:
+            "In-stream, in-feed, and Shorts campaigns structured by funnel stage and buying intent, not one catch-all setup.",
+        },
+        {
+          title: "Audience & Targeting Build",
+          description:
+            "Custom segments from customer lists, search intent, competitor viewers, and website retargeting pools.",
+        },
+        {
+          title: "Creative Direction & Hook Testing",
+          description:
+            "Scripts and edits built around the first five seconds, with multiple hooks tested against the skip button.",
+        },
+        {
+          title: "Landing Page Alignment",
+          description:
+            "Post-click pages matched to the ad promise so the traffic you pay for has somewhere to convert.",
+        },
+        {
+          title: "Conversion Tracking Setup",
+          description:
+            "GA4, enhanced conversions, and view-through attribution so video spend maps to leads and revenue.",
+        },
+        {
+          title: "Weekly Optimization & Reporting",
+          description:
+            "Bid, audience, and creative adjustments each week with reporting on view rate, CPA, and conversions.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Boosting Videos vs. Managed YouTube Ads",
+      subtitle: "What changes when targeting, creative, and tracking run as one system.",
+      layout: "progression",
+      columns: [
+        { header: "Boosting from YouTube" },
+        { header: "KINEXIS YouTube Ads", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Targeting",
+          values: ["Broad, platform-chosen", "Intent audiences and retargeting"],
+        },
+        {
+          label: "Creative",
+          values: ["One video, run as-is", "Hook testing on a schedule"],
+        },
+        {
+          label: "Placements",
+          values: ["Default everywhere", "Chosen by performance"],
+        },
+        {
+          label: "Tracking",
+          values: ["Views and watch time", "Conversions tied to CRM"],
+        },
+        {
+          label: "Optimization",
+          values: ["Set and forget", "Weekly bid and audience work"],
+        },
+        {
+          label: "Reporting",
+          values: ["Impression counts", "CPA and ROAS"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much do YouTube ads cost to manage?",
+        answer:
+          "Management runs $2,000 to $6,000 per month based on campaign volume and channel mix, separate from your ad spend. We set a fixed scope and price after a strategy call.",
+      },
+      {
+        question: "Do I need a video produced before we start?",
+        answer:
+          "Not necessarily. We can work with existing footage and re-edit it for performance, or coordinate production through our video marketing service. What matters most is the hook and the offer, not a big budget shoot.",
+      },
+      {
+        question: "How do you measure results on YouTube?",
+        answer:
+          "We track view-through and click conversions in GA4 with enhanced conversions, then tie them back to leads and revenue in your CRM. You see cost per qualified action, not just views.",
+      },
+      {
+        question: "How is this different from Google Ads?",
+        answer:
+          "YouTube reaches buyers earlier, while they are learning and comparing, rather than at the moment of a search. We often run it alongside Search so video builds demand and Search captures it. Both live under our PPC and paid media coordination.",
+      },
+    ],
+  },
+  "landing-pages": {
+    metaTitle: "Landing Page Design & Optimization | KINEXIS Digital",
+    metaDescription:
+      "Conversion-focused landing pages built for one campaign and one action, then tested. Message match, fast load, and tracking included. Pages from $2,500.",
+    hero: {
+      label: "Landing Page Design & Optimization",
+      line1: "Give your ad traffic",
+      line2: "a page built to convert.",
+      subtitle:
+        "Dedicated landing pages designed around a single offer and audience, with message match, a fast mobile load, and a form that removes friction. Built to convert, then tested so the number keeps climbing.",
+    },
+    answerBlock:
+      "Landing page design and optimization covers conversion strategy, custom design, development, copywriting, tracking, and A/B testing. Single pages start at $2,500, campaign sets from $6,000, and ongoing testing retainers from $3,000 per month. Most pages launch in two to three weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies design landing pages from a brand template and loosely match the ad in the hero. We start with a message match audit, what the ad promised, who clicked, and what single action has to happen before they leave. Then wireframe the page around that path before a pixel of design.",
+    },
+    problem: {
+      title: "A homepage is not a landing page",
+      intro:
+        "You pay for a specific click, then send it to a page built for everyone. The message match breaks, and the conversion rate pays for it.",
+      points: [
+        "Paid clicks land on a homepage that answers ten questions instead of the one they came for.",
+        "The ad promises one thing and the page opens with another, so the visitor second-guesses the click.",
+        "Long forms and vague CTAs add friction right at the moment of decision.",
+        "The page ships once and never gets tested, so easy wins in the headline and layout go unclaimed.",
+      ],
+    },
+    solution: {
+      title: "One page, one audience, one action",
+      intro:
+        "We build the page around the exact person who clicked and the single thing you want them to do next.",
+      points: [
+        "Message match between the ad and the page so the click feels like the right one.",
+        "A headline that qualifies fast and proof placed exactly where doubt shows up.",
+        "A short, mobile-first form or call CTA that makes converting the path of least resistance.",
+        "A testing plan that improves the highest-impact elements after launch, backed by data.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with our landing page work",
+      subtitle: "Six deliverables. From wireframe to a page that keeps improving.",
+      items: [
+        {
+          title: "Conversion Strategy & Wireframe",
+          description:
+            "Message match, offer positioning, and page structure mapped to the campaign and audience before design.",
+        },
+        {
+          title: "Custom Page Design",
+          description:
+            "On-brand, mobile-first design with a clear visual hierarchy that leads to a single primary action.",
+        },
+        {
+          title: "Development & Build",
+          description:
+            "Fast, responsive build on your CMS or a landing page platform, tested across devices and browsers.",
+        },
+        {
+          title: "Conversion Copywriting",
+          description:
+            "Headlines, subheads, and CTA copy written to qualify visitors and answer objections in order.",
+        },
+        {
+          title: "Tracking & Form Setup",
+          description:
+            "GA4, form and call tracking, and thank-you flows so every conversion is captured and attributed.",
+        },
+        {
+          title: "A/B Testing & Iteration",
+          description:
+            "Structured tests on headlines, layout, and forms with significance gates and a record of what won.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Homepage Traffic vs. a Purpose-Built Landing Page",
+      subtitle: "What you gain when the page is built for the campaign, then optimized.",
+      layout: "impact",
+      columns: [
+        { header: "Homepage / DIY Page" },
+        { header: "KINEXIS Landing Pages", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Message match",
+          values: ["Generic, one-size-fits-all", "Aligned to each ad and audience"],
+        },
+        {
+          label: "Conversion rate",
+          values: ["1 to 3% typical", "5 to 10% with a built page"],
+        },
+        {
+          label: "Load speed",
+          values: ["Whatever the theme allows", "Lighthouse 90+ target"],
+        },
+        {
+          label: "Form design",
+          values: ["Long, high friction", "Short, qualifying, mobile-first"],
+        },
+        {
+          label: "Testing",
+          values: ["None after launch", "Ongoing A/B experiments"],
+        },
+        {
+          label: "Investment",
+          values: ["Free but leaks budget", "$2,500 per page and up"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does a landing page cost?",
+        answer:
+          "A single conversion-focused page starts at $2,500 with copy, design, build, and tracking. A campaign set of three to five pages runs about $6,000. Ongoing design and testing retainers start at $3,000 per month.",
+      },
+      {
+        question: "How long until the page is live?",
+        answer:
+          "Most single pages launch in two to three weeks: wireframe and copy in week one, design in week two, build and tracking in week three. Campaign sets take a little longer depending on how many audiences we are matching.",
+      },
+      {
+        question: "Can you build on our existing website or platform?",
+        answer:
+          "Yes. We build on your CMS, whether that is WordPress, Webflow, or a headless setup, or on a dedicated landing page platform like Unbounce or Instapage if you prefer to keep campaign pages separate.",
+      },
+      {
+        question: "Do I need enough traffic to A/B test?",
+        answer:
+          "For formal tests, roughly 1,000 monthly visits on the page. Below that, we still improve conversion with heatmaps, session recordings, and best-practice fixes before moving to statistical testing.",
+      },
+    ],
+  },
+  "website-maintenance": {
+    metaTitle: "Website Maintenance & Support Services | KINEXIS Digital",
+    metaDescription:
+      "Proactive website care: updates tested on staging, daily backups, security monitoring, and real support. Predictable monthly plans from $250/mo.",
+    hero: {
+      label: "Website Maintenance & Support",
+      line1: "Keep your site fast,",
+      line2: "secure, and online.",
+      subtitle:
+        "Updates tested before they go live, daily backups you can restore from, security and uptime monitoring, and a real developer for the changes you need. A predictable plan instead of surprise invoices.",
+    },
+    answerBlock:
+      "Website maintenance covers core, theme, and plugin updates, daily backups, security and uptime monitoring, and a monthly block of support time. Plans start at $250 per month and scale with site size and support needs. Onboarding, cleanup, and monitoring are set up in the first few weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most care plans are reactive, someone notices the form is broken, then you hunt for a developer. We set up staging first so updates get tested before production, backups get restore-tested on a schedule, and uptime alerts fire before your customers notice downtime.",
+    },
+    problem: {
+      title: "Websites break quietly, then all at once",
+      intro:
+        "Nothing looks wrong until a form stops sending or the site goes down. By then the leads you lost are already gone.",
+      points: [
+        "Auto-updates push a change that breaks a page, and nobody notices until a customer does.",
+        "There is a backup somewhere, but no one has tested a restore, so it fails when it matters.",
+        "Outdated plugins leave the door open to malware and blocklisting that tanks your traffic.",
+        "A small edit turns into a week-long wait because there is no developer on call.",
+      ],
+    },
+    solution: {
+      title: "Proactive care, not reactive firefighting",
+      intro:
+        "We catch problems before they cost you and give you one place to go when you need something changed.",
+      points: [
+        "Updates applied and tested on a staging copy first, so production never breaks from an update.",
+        "Automated off-site backups with restore points that are actually tested.",
+        "Security hardening, malware scanning, and around-the-clock uptime monitoring with alerts.",
+        "A monthly block of developer time for edits and fixes, plus a clear health report.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with a care plan",
+      subtitle: "Six areas covered. One site you stop worrying about.",
+      items: [
+        {
+          title: "Core, Theme & Plugin Updates",
+          description:
+            "Updates applied and tested on staging first, so nothing breaks in production the way auto-updates do.",
+        },
+        {
+          title: "Daily Backups & Restore",
+          description:
+            "Automated off-site backups with tested restore points, so a bad update is a quick fix, not a crisis.",
+        },
+        {
+          title: "Security & Malware Monitoring",
+          description:
+            "Firewall management, malware scanning, and hardening to keep your site off blocklists and out of trouble.",
+        },
+        {
+          title: "Uptime Monitoring",
+          description:
+            "Round-the-clock uptime checks with alerts, so downtime is addressed before customers notice.",
+        },
+        {
+          title: "Content & Support Requests",
+          description:
+            "A monthly block of hands-on time for edits, new sections, and small fixes handled by a real developer.",
+        },
+        {
+          title: "Monthly Health Report",
+          description:
+            "A clear report on updates applied, threats blocked, uptime, and performance so you know the site is handled.",
+        },
+      ],
+    },
+    comparison: {
+      title: "DIY Updates vs. a Managed Care Plan",
+      subtitle: "What changes when updates, backups, and support happen every month.",
+      layout: "ledger",
+      columns: [
+        { header: "Handling It Yourself" },
+        { header: "KINEXIS Care Plan", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Updates",
+          values: ["Auto or forgotten", "Tested on staging first"],
+        },
+        {
+          label: "Backups",
+          values: ["Untested, if any", "Daily, off-site, restore-tested"],
+        },
+        {
+          label: "Security",
+          values: ["Reactive after a hack", "Monitored and hardened"],
+        },
+        {
+          label: "Downtime",
+          values: ["Noticed by customers", "Caught by 24/7 monitoring"],
+        },
+        {
+          label: "Support",
+          values: ["Find a freelancer", "Developer on your plan"],
+        },
+        {
+          label: "Cost",
+          values: ["Surprise invoices", "Predictable monthly fee"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does website maintenance cost?",
+        answer:
+          "Plans start at $250 per month for updates, backups, and monitoring on a standard business site. Larger or e-commerce sites with more support needs run $600 to $1,200 or more per month. Hosting and licenses are billed separately.",
+      },
+      {
+        question: "Do you work with WordPress and other platforms?",
+        answer:
+          "Yes. We maintain WordPress, WooCommerce, and most common CMS and page-builder setups. During onboarding we audit your stack and set up a staging environment so updates are safe to apply.",
+      },
+      {
+        question: "What if my site goes down or gets hacked?",
+        answer:
+          "Uptime monitoring alerts us to outages, and we respond within one business day on standard plans, faster on priority plans. If a site is compromised, we restore from a clean backup and close the vulnerability that let it in.",
+      },
+      {
+        question: "Are content edits included?",
+        answer:
+          "Each plan includes a monthly block of support time for edits, new sections, and small fixes. Larger projects, like new page templates or redesigns, are quoted separately before any work starts.",
+      },
+    ],
+  },
+  "website-speed": {
+    metaTitle: "Website Speed & Performance Optimization | KINEXIS Digital",
+    metaDescription:
+      "Core Web Vitals and load-time optimization backed by before-and-after data. Images, code, caching, and server tuning to recover lost traffic. Projects from $1,500.",
+    hero: {
+      label: "Website Speed & Performance Optimization",
+      line1: "Stop losing visitors",
+      line2: "to a slow website.",
+      subtitle:
+        "A measured performance overhaul: image and code cleanup, caching, and server tuning that brings Core Web Vitals into the green. We benchmark before and after, so the improvement is a number you can see.",
+    },
+    answerBlock:
+      "Website speed optimization covers a performance audit, image and media optimization, code and script cleanup, caching and delivery, and Core Web Vitals tuning. A standalone audit starts at $1,500, a full overhaul at $3,500, and ongoing monitoring at $1,000 per month. Most projects wrap in three to four weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Installing a caching plugin and calling it done is the most common speed fix, and the least measurable. We start with field Core Web Vitals data and rank fixes by actual impact on load time, then document before-and-after scores so you know the work moved the number.",
+    },
+    problem: {
+      title: "A slow site loses traffic before the page even loads",
+      intro:
+        "Speed is not a vanity metric. Visitors leave, conversions drop, and Google factors Core Web Vitals into where you rank.",
+      points: [
+        "Full-resolution images and every plugin's scripts load on every page, adding megabytes of dead weight.",
+        "Render-blocking CSS and JavaScript leave visitors staring at a blank screen while the browser catches up.",
+        "Core Web Vitals fail on mobile, so you lose the click at the search result before anyone sees the page.",
+        "Someone installs a caching plugin and calls it done, with no data showing anything improved.",
+      ],
+    },
+    solution: {
+      title: "Fix the causes, then prove the result",
+      intro:
+        "We audit against real Core Web Vitals data, fix the actual bottlenecks in priority order, and measure the gain.",
+      points: [
+        "Lab and field data pinpoint what is slowing the site, not guesses from a generic checklist.",
+        "The heaviest wins first: image optimization, caching, and a CDN before deeper code work.",
+        "Render-blocking scripts deferred, unused code removed, and server response time tuned.",
+        "Before-and-after Lighthouse and Core Web Vitals scores so you can see exactly what changed.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with a speed overhaul",
+      subtitle: "Six areas of work. One measurably faster site.",
+      items: [
+        {
+          title: "Performance Audit",
+          description:
+            "Lab and field data analysis against Core Web Vitals, with a prioritized list of what is actually slow.",
+        },
+        {
+          title: "Image & Media Optimization",
+          description:
+            "Compression, next-gen formats, correct sizing, and lazy loading to cut the heaviest page weight first.",
+        },
+        {
+          title: "Code & Script Cleanup",
+          description:
+            "Render-blocking CSS and JavaScript deferred or removed, unused code eliminated, third-party scripts audited.",
+        },
+        {
+          title: "Caching & Delivery",
+          description:
+            "Page and browser caching, a CDN, and compression configured for fast repeat loads and global delivery.",
+        },
+        {
+          title: "Server & Core Web Vitals Tuning",
+          description:
+            "Server response time, LCP, CLS, and INP addressed so the site passes on mobile and desktop.",
+        },
+        {
+          title: "Before & After Reporting",
+          description:
+            "Documented Lighthouse and Core Web Vitals scores before and after, so the gain is measurable.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Quick Tweaks vs. a Measured Speed Overhaul",
+      subtitle: "What you get when the work is audited, prioritized, and verified.",
+      layout: "impact",
+      columns: [
+        { header: "Caching Plugin Only" },
+        { header: "KINEXIS Speed Optimization", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Approach",
+          values: ["Install and hope", "Audit-driven, prioritized"],
+        },
+        {
+          label: "Images",
+          values: ["Untouched", "Compressed and next-gen"],
+        },
+        {
+          label: "Scripts",
+          values: ["All render-blocking", "Deferred and cleaned up"],
+        },
+        {
+          label: "Core Web Vitals",
+          values: ["Still failing", "Passing on mobile"],
+        },
+        {
+          label: "Proof",
+          values: ["No measurement", "Before and after scores"],
+        },
+        {
+          label: "Investment",
+          values: ["Plugin cost", "$1,500 audit and up"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does speed optimization cost?",
+        answer:
+          "A standalone audit with quick wins starts at $1,500. A full Core Web Vitals overhaul across images, code, caching, and server runs $3,500. Ongoing monitoring and tuning is $1,000 per month.",
+      },
+      {
+        question: "Will this actually improve my Google rankings?",
+        answer:
+          "Core Web Vitals are a confirmed ranking factor, especially on mobile. Speed alone will not outrank a stronger page, but a slow site actively holds you back. Fixing it removes that drag and improves conversions on the traffic you already have.",
+      },
+      {
+        question: "What platforms do you optimize?",
+        answer:
+          "WordPress and WooCommerce most often, along with Shopify, Webflow, and custom builds. The bottlenecks differ by platform, which is why we audit against your real data before recommending fixes.",
+      },
+      {
+        question: "How long does the work take?",
+        answer:
+          "A full overhaul typically runs three to four weeks: audit and baseline, asset and delivery work, code and server tuning, then re-measurement and reporting. An audit-only engagement is faster.",
+      },
+    ],
+  },
+  "microsoft-ads": {
+    metaTitle: "Microsoft Ads (Bing Ads) Management | KINEXIS Digital",
+    metaDescription:
+      "Managed Microsoft Advertising on Bing, Yahoo, and the Microsoft network. Lower CPCs, LinkedIn-based targeting, and its own conversion tracking. Management from $400/mo.",
+    hero: {
+      label: "Microsoft Ads (Bing Ads) Management",
+      line1: "Reach buyers Google misses",
+      line2: "at a lower cost per click.",
+      subtitle:
+        "Microsoft Advertising reaches an audience that skews older, higher-income, and often overlooked. We build and manage it as its own channel, not a copy-paste of your Google account, with targeting and tracking tuned to the network.",
+    },
+    answerBlock:
+      "Microsoft Ads management covers account structure, keyword and audience research, LinkedIn-profile targeting, ad copy, conversion tracking, and ongoing optimization across Bing, Yahoo, and partner sites. Management starts at $400 per month, with ad spend billed separately. Most accounts are live within one to two weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Importing Google campaigns untouched is why most Microsoft accounts underperform, different auction, different audience, different intent signals. We rebuild structure for Bing, turn on LinkedIn-profile targeting most advertisers ignore, and set up dedicated tracking so the channel earns budget on its own leads.",
+    },
+    problem: {
+      title: "Microsoft Ads is not a copy of your Google account",
+      intro:
+        "Most businesses either ignore the channel or import Google campaigns untouched, leaving cheaper, qualified clicks on the table.",
+      points: [
+        "Campaigns get imported from Google and never adjusted for a different auction and audience.",
+        "Lower competition means lower CPCs, but only if someone manages the account instead of letting it idle.",
+        "LinkedIn-based targeting by company, industry, and job function goes completely unused.",
+        "Without its own conversion tracking, Microsoft spend looks invisible and gets cut by default.",
+      ],
+    },
+    solution: {
+      title: "A managed channel, built for its own auction",
+      intro:
+        "We treat Microsoft Advertising as its own program: structured for the network, targeted to the audience, and measured on its own leads.",
+      points: [
+        "Account structure and keyword research built for Bing intent, not lifted from Google.",
+        "LinkedIn-profile targeting to reach decision-makers by company, industry, and role.",
+        "Ad copy and extensions written and tested for the Microsoft audience.",
+        "Dedicated conversion tracking so every lead is tied to the spend that produced it.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with Microsoft Ads management",
+      subtitle: "A channel run on its own merits, with reporting you can act on.",
+      items: [
+        {
+          title: "Account Setup & Structure",
+          description:
+            "Campaigns, ad groups, and settings built for the Microsoft auction, or a full rebuild of an imported account.",
+        },
+        {
+          title: "Keyword & Audience Research",
+          description:
+            "Search terms and audiences mapped to buyer intent, with negative keyword lists to protect budget.",
+        },
+        {
+          title: "LinkedIn-Profile Targeting",
+          description:
+            "Targeting layers by company, industry, and job function to reach the right decision-makers.",
+        },
+        {
+          title: "Ad Copy & Extensions",
+          description:
+            "Headlines, descriptions, and extensions written and split-tested for the Microsoft audience.",
+        },
+        {
+          title: "Conversion Tracking",
+          description:
+            "UET tags, call tracking, and goal setup so leads and sales are attributed to the right campaigns.",
+        },
+        {
+          title: "Ongoing Optimization & Reporting",
+          description:
+            "Bid, budget, and creative adjustments each month with reporting tied to leads, not just clicks.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Imported Account vs. Managed Microsoft Ads",
+      subtitle: "What changes when the channel is run for its own auction.",
+      layout: "impact",
+      columns: [
+        { header: "Imported from Google" },
+        { header: "KINEXIS Microsoft Ads", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Structure",
+          values: ["Copied, untouched", "Built for Bing intent"],
+        },
+        {
+          label: "Targeting",
+          values: ["Keywords only", "Keywords + LinkedIn profiles"],
+        },
+        {
+          label: "Cost per click",
+          values: ["Same bids as Google", "Tuned to a cheaper auction"],
+        },
+        {
+          label: "Tracking",
+          values: ["Shared or missing", "Dedicated conversion tracking"],
+        },
+        {
+          label: "Management",
+          values: ["Set and forget", "Monthly optimization"],
+        },
+        {
+          label: "Investment",
+          values: ["No active management", "From $400/mo + ad spend"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does Microsoft Ads management cost?",
+        answer:
+          "Management starts at $400 per month for a Starter account, $800 for Growth, and $1,800 or more for larger, multi-campaign accounts. Ad spend is paid to Microsoft separately and billed at cost.",
+      },
+      {
+        question: "Is Microsoft Ads worth it if I already run Google Ads?",
+        answer:
+          "Often, yes. CPCs are usually lower, competition is thinner, and the audience skews older and higher-income. It rarely replaces Google, but it adds qualified volume at a lower cost per lead once it is managed properly.",
+      },
+      {
+        question: "Can you reuse my existing Google Ads campaigns?",
+        answer:
+          "We import them as a starting point, then rebuild structure, bids, and targeting for the Microsoft auction. A straight import almost always underperforms because the auction and audience behave differently.",
+      },
+      {
+        question: "How fast can the account go live?",
+        answer:
+          "Most accounts are set up, tracked, and live within one to two weeks. Rebuilding a messy imported account can take a little longer, but tracking and structure come first so you never spend blind.",
+      },
+    ],
+  },
+  "copywriting": {
+    metaTitle: "Copywriting & Content Creation Services | KINEXIS Digital",
+    metaDescription:
+      "Conversion copywriting for websites, landing pages, emails, and ads, plus a defined brand voice. Written to move readers to act. Retainers from $400/mo.",
+    hero: {
+      label: "Copywriting & Content Creation",
+      line1: "Words that make",
+      line2: "the reader act.",
+      subtitle:
+        "Website pages, landing pages, emails, and ad copy written around what your buyer actually needs to hear. We define a brand voice once, then apply it everywhere so the message stays consistent and each page asks for one clear next step.",
+    },
+    answerBlock:
+      "Copywriting and content creation covers website and landing page copy, email and ad copy, brand voice and messaging, and ongoing content. Retainers start at $400 per month for a Starter scope, $800 for Growth, and $2,000 or more for Scale. Most first drafts are delivered within one to two weeks of the messaging brief.",
+    editorial: {
+      bridgeParagraph:
+        "Most agencies hand you a style guide and a writer who lists your features. We start with customer language: how buyers describe the problem, what they compare you against, what makes them hesitate. Then build a voice guide and write each asset around one action on one page.",
+    },
+    problem: {
+      title: "Most business copy talks about you, not the reader",
+      intro:
+        "Feature lists and borrowed clichés give the reader nothing to act on, and an inconsistent voice erodes trust across channels.",
+      points: [
+        "Copy lists what you do instead of naming the problem the reader came in with.",
+        "Interchangeable claims like \"trusted\" and \"results-driven\" could sit on any competitor's site.",
+        "Pages offer five options and ask for none, so the reader leaves without acting.",
+        "Every freelancer sounds different, so the brand voice drifts and consistency breaks.",
+      ],
+    },
+    solution: {
+      title: "A defined voice, applied to copy that converts",
+      intro:
+        "We start with the message and the buyer, set a voice you can reuse, and write each asset around a single clear action.",
+      points: [
+        "Messaging built on the reader's problem, objections, and the decision they are trying to make.",
+        "A documented brand voice so every page, email, and ad sounds like the same company.",
+        "One clear call to action per page instead of competing asks that stall the reader.",
+        "Copy structured for conversion and search, not word count for its own sake.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with copywriting",
+      subtitle: "A consistent voice and copy written to move the reader, not fill space.",
+      items: [
+        {
+          title: "Messaging & Brand Voice",
+          description:
+            "A documented voice, positioning, and messaging framework your whole team can apply consistently.",
+        },
+        {
+          title: "Website & Landing Page Copy",
+          description:
+            "Home, service, and landing page copy structured around the reader's problem and one clear action.",
+        },
+        {
+          title: "Email & Nurture Copy",
+          description:
+            "Welcome, nurture, and campaign emails written to build trust and book the next step.",
+        },
+        {
+          title: "Ad & Social Copy",
+          description:
+            "Headlines, ad variations, and captions matched to the offer and the platform.",
+        },
+        {
+          title: "Long-Form & SEO Content",
+          description:
+            "Articles and guides written for search intent with internal links and a conversion path.",
+        },
+        {
+          title: "Editing & Consistency Pass",
+          description:
+            "A review layer that keeps tone, terminology, and calls to action consistent across everything.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Generic Copy vs. Conversion Copywriting",
+      subtitle: "What changes when the words are built around the reader.",
+      layout: "contrast",
+      columns: [
+        { header: "Whoever Had Time" },
+        { header: "KINEXIS Copywriting", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Focus",
+          values: ["What you do", "What the reader needs"],
+        },
+        {
+          label: "Voice",
+          values: ["Different every time", "One documented voice"],
+        },
+        {
+          label: "Call to action",
+          values: ["Several, or none", "One clear next step"],
+        },
+        {
+          label: "Search",
+          values: ["Ignored or stuffed", "Written for real intent"],
+        },
+        {
+          label: "Consistency",
+          values: ["Drifts across channels", "Held to a standard"],
+        },
+        {
+          label: "Investment",
+          values: ["Ad hoc per piece", "From $400/mo retainer"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does copywriting cost?",
+        answer:
+          "Retainers start at $400 per month for a focused Starter scope, $800 for Growth, and $2,000 or more for Scale with higher volume across channels. One-off projects like a full website rewrite are quoted separately.",
+      },
+      {
+        question: "Do you write in our brand voice?",
+        answer:
+          "Yes. Early on we define a voice and messaging framework from your positioning, audience, and existing material. Every piece after that is written to it, so the brand sounds consistent no matter who reads it.",
+      },
+      {
+        question: "Can you handle SEO content too?",
+        answer:
+          "We do. Long-form articles and guides are written for search intent with internal linking and a conversion path, so content ranks and still moves the reader toward an action.",
+      },
+      {
+        question: "How fast do you deliver drafts?",
+        answer:
+          "Most first drafts arrive within one to two weeks of the messaging brief. Ongoing retainers work to an agreed monthly cadence so you always know what is coming and when.",
+      },
+    ],
+  },
+  "marketing-audits": {
+    metaTitle: "Marketing Audit Services | KINEXIS Digital",
+    metaDescription:
+      "A data-backed audit of your marketing: tracking, channels, funnel, and spend. Find what's broken and where budget is wasted, with a prioritized plan. From $500.",
+    hero: {
+      label: "Marketing Audits",
+      line1: "Find what's actually",
+      line2: "holding growth back.",
+      subtitle:
+        "A structured review of your tracking, channels, funnel, and spend, backed by your own data. You get a clear picture of what works, what's wasted, and what to fix first, in an order tied to revenue rather than opinion.",
+    },
+    answerBlock:
+      "A marketing audit reviews analytics and tracking, paid and organic channels, funnel and conversion paths, and budget allocation, then delivers a prioritized action plan. A focused audit starts at $500, a full audit at $1,000, and a deep multi-channel audit at $2,500. Most audits are delivered within one to three weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most stalled marketing gets diagnosed at the channel level, more Google spend, a new agency, another tool. We validate tracking first, then trace the full funnel, because the leak is usually in the data or a handoff nobody mapped, not the channel everyone blames.",
+    },
+    problem: {
+      title: "Stalled marketing rarely fails where you think",
+      intro:
+        "When the numbers can't be trusted, every decision after them is a guess, and budget keeps flowing to channels no one has actually checked.",
+      points: [
+        "Tracking is broken or misconfigured, so the reported numbers don't match reality.",
+        "Traffic and spend look fine, but leads drop somewhere nobody is watching.",
+        "Budget keeps going to channels out of habit, not because anyone proved they work.",
+        "Teams add more spend or another channel to mask a problem instead of finding it.",
+      ],
+    },
+    solution: {
+      title: "A clear read on what's working and what's wasted",
+      intro:
+        "We check the data first, trace the full funnel, and rank every finding by the impact it has on revenue.",
+      points: [
+        "Analytics and tracking validated end to end, so the rest of the audit stands on real data.",
+        "Every channel reviewed on cost per qualified lead, not vanity metrics.",
+        "Funnel drop-off mapped from first touch to closed deal to expose the leaks.",
+        "A prioritized action plan: what to fix first, what to cut, and what to keep.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with a marketing audit",
+      subtitle: "A documented, prioritized read on your marketing, backed by your own numbers.",
+      items: [
+        {
+          title: "Analytics & Tracking Review",
+          description:
+            "A full check of GA4, conversion tracking, and call tracking to confirm the data can be trusted.",
+        },
+        {
+          title: "Channel Performance Analysis",
+          description:
+            "Paid, organic, email, and social reviewed on cost per qualified lead and return, not clicks.",
+        },
+        {
+          title: "Funnel & Conversion Review",
+          description:
+            "Drop-off mapped from first touch to closed deal, with the biggest leaks identified.",
+        },
+        {
+          title: "Budget & Spend Analysis",
+          description:
+            "Where the money goes, what it returns, and where it is being wasted.",
+        },
+        {
+          title: "Competitor & Market Context",
+          description:
+            "How your visibility and positioning compare to the competitors you actually lose to.",
+        },
+        {
+          title: "Prioritized Action Plan",
+          description:
+            "A ranked roadmap of fixes and opportunities, ordered by impact on revenue.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Guessing vs. an Evidence-Based Audit",
+      subtitle: "What changes when decisions rest on validated data.",
+      layout: "ledger",
+      columns: [
+        { header: "Gut Feel" },
+        { header: "KINEXIS Audit", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Data",
+          values: ["Assumed correct", "Validated end to end"],
+        },
+        {
+          label: "Channels",
+          values: ["Judged on clicks", "Judged on cost per lead"],
+        },
+        {
+          label: "Funnel",
+          values: ["Not mapped", "Leaks identified"],
+        },
+        {
+          label: "Budget",
+          values: ["On autopilot", "Tied to return"],
+        },
+        {
+          label: "Output",
+          values: ["Opinions", "Prioritized action plan"],
+        },
+        {
+          label: "Investment",
+          values: ["Ongoing waste", "From $500 one-time"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does a marketing audit cost?",
+        answer:
+          "A focused single-area audit starts at $500. A full audit across analytics, channels, and funnel is $1,000. A deep multi-channel audit with competitor analysis and a detailed roadmap is $2,500.",
+      },
+      {
+        question: "What do I actually receive?",
+        answer:
+          "A documented audit with findings, evidence from your own data, and a prioritized action plan. We walk you through it live so you leave knowing exactly what to fix first and why.",
+      },
+      {
+        question: "Do I have to hire you to execute the fixes?",
+        answer:
+          "No. The audit stands on its own and the plan is yours to keep. Your team can run with it, or we can execute it for you. There is no obligation either way.",
+      },
+      {
+        question: "How long does an audit take?",
+        answer:
+          "A focused audit is usually done in about a week. A full or multi-channel audit runs two to three weeks depending on the number of channels and how clean the tracking is when we start.",
+      },
+    ],
+  },
+  "marketing-automation-crm": {
+    metaTitle: "Marketing Automation & CRM Consulting | KINEXIS Digital",
+    metaDescription:
+      "Connect your tools, build the workflows, and route leads to sales automatically. HubSpot, Salesforce, GoHighLevel, and more. Consulting projects from $1,000.",
+    hero: {
+      label: "Marketing Automation & CRM Consulting",
+      line1: "Stop losing leads",
+      line2: "between your tools.",
+      subtitle:
+        "We connect your marketing and sales stack, build the workflows that actually fire, and set the handoff rules so leads get scored, routed, and nurtured without manual work. The result is a system you can trust and revenue you can trace.",
+    },
+    answerBlock:
+      "Marketing automation and CRM consulting covers platform selection and setup, workflow and nurture automation, lead scoring and sales handoff, integrations, and reporting. Consulting projects start at $1,000 for a focused build, $2,500 for a full setup, and $5,000 or more for complex multi-tool systems. Most projects run two to six weeks.",
+    editorial: {
+      bridgeParagraph:
+        "Most automation projects stall at the integration step, leads in one tool, deals in another, and a workflow someone started but never finished. We map the flow you actually need, connect the tools, and test every trigger before your team depends on it.",
+    },
+    problem: {
+      title: "Your automation stack is fighting you",
+      intro:
+        "Half-built workflows and disconnected tools mean good leads go cold, and no one can trace which campaign produced the last ten customers.",
+      points: [
+        "Leads live in one platform and deals in another, so connecting them means a manual export every week.",
+        "Someone started automating, hit a snag, and stopped, so no one trusts what fires and what doesn't.",
+        "Marketing passes leads with no definition of sales-ready, so sales chases junk and good leads cool off.",
+        "No one can tell which campaign drove revenue, so budget decisions stay blind.",
+      ],
+    },
+    solution: {
+      title: "One connected system, from lead to closed deal",
+      intro:
+        "We map the flow you actually need, connect the tools, and build automation that routes and nurtures leads without anyone touching a spreadsheet.",
+      points: [
+        "The right platform for your team and budget, set up or cleaned up properly.",
+        "Workflows and nurture sequences that fire reliably on real behavior.",
+        "Lead scoring and clear handoff rules so sales only gets leads worth their time.",
+        "Reporting that ties campaigns to closed revenue, so budget decisions have data behind them.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with automation and CRM consulting",
+      subtitle: "A connected stack, working workflows, and reporting you can act on.",
+      items: [
+        {
+          title: "Platform Audit & Selection",
+          description:
+            "A review of your current stack and, where needed, a recommendation and setup of the right CRM and automation tools.",
+        },
+        {
+          title: "Workflow & Nurture Automation",
+          description:
+            "Behavioral workflows and multi-step sequences that fire on real triggers, not guesswork.",
+        },
+        {
+          title: "Lead Scoring & Sales Handoff",
+          description:
+            "Scoring rules and routing so sales-ready leads reach the right rep at the right moment.",
+        },
+        {
+          title: "Integrations & Data Flow",
+          description:
+            "Forms, ads, and tools connected so leads move automatically with source tags intact.",
+        },
+        {
+          title: "Pipeline & Reporting Setup",
+          description:
+            "Deal stages and dashboards that tie marketing activity to closed revenue.",
+        },
+        {
+          title: "Documentation & Training",
+          description:
+            "Clear documentation and a walkthrough so your team can run and trust the system.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Disconnected Tools vs. a Connected System",
+      subtitle: "What changes when the stack works as one.",
+      layout: "ledger",
+      columns: [
+        { header: "Patchwork Stack" },
+        { header: "KINEXIS System", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Tools",
+          values: ["Don't talk", "Fully integrated"],
+        },
+        {
+          label: "Workflows",
+          values: ["Half-built", "Reliable and tested"],
+        },
+        {
+          label: "Handoff",
+          values: ["No rules", "Scored and routed"],
+        },
+        {
+          label: "Data",
+          values: ["Manual exports", "Flows automatically"],
+        },
+        {
+          label: "Attribution",
+          values: ["None", "Campaign to revenue"],
+        },
+        {
+          label: "Investment",
+          values: ["Ongoing manual work", "From $1,000 project"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does automation and CRM consulting cost?",
+        answer:
+          "A focused build starts at $1,000. A full setup with workflows, scoring, and reporting is $2,500. Complex multi-tool systems with deep integrations run $5,000 or more. Platform license fees are billed separately by the vendor.",
+      },
+      {
+        question: "Which platforms do you work with?",
+        answer:
+          "HubSpot, Salesforce, ActiveCampaign, GoHighLevel, Klaviyo, and most common CRMs and automation tools. If you already have a platform, we usually work within it rather than push a migration you don't need.",
+      },
+      {
+        question: "Can you fix an existing setup instead of starting over?",
+        answer:
+          "Yes, and often that's the right call. We audit what you have, keep what works, fix what's broken, and build only what's missing so you get a working system without throwing away the investment you've already made.",
+      },
+      {
+        question: "Do you hand it off or manage it ongoing?",
+        answer:
+          "Either. Most projects end with documentation and training so your team can run it. If you'd rather we manage and keep optimizing the system, we offer that on a retainer.",
+      },
+    ],
+  },
+  "fractional-cmo": {
+    metaTitle: "Fractional CMO Services | KINEXIS Digital",
+    metaDescription:
+      "Senior marketing leadership without a full-time hire. Strategy, budget ownership, vendor management, and accountability tied to revenue. Engagements from $2,500/mo.",
+    hero: {
+      label: "Fractional CMO Services",
+      line1: "Senior marketing leadership,",
+      line2: "without the full-time hire.",
+      subtitle:
+        "An experienced marketing leader embedded in your business part-time: owning the strategy, the budget, the vendors, and the numbers. You get executive-level direction and accountability without the cost of a full-time CMO you're not ready for.",
+    },
+    answerBlock:
+      "Fractional CMO services provide part-time senior marketing leadership: strategy, budget ownership, team and vendor management, and reporting tied to revenue. Engagements start at $2,500 per month for a Starter scope, $5,000 for Growth, and $10,000 or more for Scale. Most engagements run on a rolling monthly basis with a defined quarterly plan.",
+    editorial: {
+      bridgeParagraph:
+        "Founders and junior managers end up running marketing by default, approving tactics, not owning a plan. We step in with budget authority, vendor accountability, and a quarterly roadmap tied to pipeline, so marketing has one owner without the $250K full-time hire.",
+    },
+    problem: {
+      title: "Growing companies stall without marketing leadership",
+      intro:
+        "Junior managers get stretched thin, founders run marketing on the side, and no one owns the plan or holds the vendors accountable.",
+      points: [
+        "Without a leader, marketing becomes a list of tactics with no plan tying spend to revenue.",
+        "Agencies and freelancers run unchecked because no one senior holds them to outcomes.",
+        "Budget follows habit and opinion instead of the numbers that actually perform.",
+        "A full-time CMO is out of reach, so the seat stays empty and growth plateaus.",
+      ],
+    },
+    solution: {
+      title: "Executive direction, tied to your numbers",
+      intro:
+        "We step in as your marketing leader: set the strategy, own the budget, manage the vendors, and report on what it returns.",
+      points: [
+        "A documented strategy and quarterly plan that ties every dollar to a revenue goal.",
+        "Budget ownership with spend shifted toward what performs and away from what doesn't.",
+        "Vendor and team management so agencies and freelancers are held to real outcomes.",
+        "Regular reporting to you or the board on pipeline, cost per lead, and return.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with a fractional CMO",
+      subtitle: "Senior leadership embedded in your business, accountable for the numbers.",
+      items: [
+        {
+          title: "Marketing Strategy & Roadmap",
+          description:
+            "A documented strategy and quarterly plan tied to revenue goals and unit economics.",
+        },
+        {
+          title: "Budget Ownership",
+          description:
+            "Allocation and reallocation of spend based on performance, with clear ROI tracking.",
+        },
+        {
+          title: "Team & Vendor Management",
+          description:
+            "Direction and accountability for your internal team, agencies, and freelancers.",
+        },
+        {
+          title: "Channel & Campaign Oversight",
+          description:
+            "Senior review of every channel so the mix stays aligned to the plan.",
+        },
+        {
+          title: "Reporting & Leadership Alignment",
+          description:
+            "Regular reporting to founders or the board on pipeline, cost per lead, and return.",
+        },
+        {
+          title: "Hiring & Process Guidance",
+          description:
+            "Help building the right team and processes as marketing scales past the fractional stage.",
+        },
+      ],
+    },
+    comparison: {
+      title: "No Leadership vs. a Fractional CMO",
+      subtitle: "What changes when someone senior owns marketing.",
+      layout: "contrast",
+      columns: [
+        { header: "No Marketing Leader" },
+        { header: "KINEXIS Fractional CMO", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Strategy",
+          values: ["Tactics by default", "Documented plan"],
+        },
+        {
+          label: "Budget",
+          values: ["Spent on feel", "Owned and tracked"],
+        },
+        {
+          label: "Vendors",
+          values: ["Unmanaged", "Held to outcomes"],
+        },
+        {
+          label: "Accountability",
+          values: ["Diffuse", "One owner"],
+        },
+        {
+          label: "Cost",
+          values: ["$250K full-time CMO", "From $2,500/mo"],
+        },
+        {
+          label: "Commitment",
+          values: ["Permanent hire", "Rolling monthly"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much does a fractional CMO cost?",
+        answer:
+          "Engagements start at $2,500 per month for a Starter scope with strategy and oversight, $5,000 for a more hands-on Growth engagement, and $10,000 or more at Scale. It's a fraction of a full-time CMO's $200K-plus total cost.",
+      },
+      {
+        question: "How much time do you actually commit?",
+        answer:
+          "It scales with the engagement, typically a set number of days or hours each month plus availability for key decisions. The point is senior direction and accountability, not a warm seat, so time is focused on the highest-leverage work.",
+      },
+      {
+        question: "Do you replace our team or work with them?",
+        answer:
+          "We lead the team and vendors you already have. Most clients keep their people and agencies; we give them a strategy, hold them accountable, and fill the leadership gap that was slowing everything down.",
+      },
+      {
+        question: "Is there a long-term contract?",
+        answer:
+          "Engagements run month to month around a defined quarterly plan. Many clients use a fractional CMO to bridge growth until a full-time hire makes sense, and we help scope and hire that role when the time comes.",
+      },
+    ],
+  },
+  "training-workshops": {
+    metaTitle: "Marketing Training & Workshops | KINEXIS Digital",
+    metaDescription:
+      "Hands-on marketing training run on your own accounts and business. SEO, ads, analytics, and more, with templates your team keeps using. Sessions from $500.",
+    hero: {
+      label: "Training & Workshops",
+      line1: "Build the skills",
+      line2: "in-house.",
+      subtitle:
+        "Practical marketing training run on your own accounts, not hypothetical examples. Your team learns by doing the real work, leaves with templates and processes they keep using, and gains the confidence to run campaigns and read the numbers without outside help.",
+    },
+    answerBlock:
+      "Marketing training and workshops cover SEO, paid ads, analytics, content, email, and strategy, delivered hands-on using your own accounts and data. A single session starts at $500, a full-day workshop at $1,500, and multi-day or ongoing programs are quoted custom. Sessions are tailored to your team's level and tools.",
+    editorial: {
+      bridgeParagraph:
+        "Recorded courses teach theory on someone else's account. Your team watches, nods, then freezes when a real campaign needs fixing. We build the curriculum around your gaps, run sessions on your live accounts, and leave templates the whole team keeps using after the day ends.",
+    },
+    problem: {
+      title: "Generic marketing courses don't stick",
+      intro:
+        "Recorded lectures and hypothetical examples build a false sense of competence that fades the moment real work appears.",
+      points: [
+        "A course on someone else's account teaches theory but never how it applies to your market and tools.",
+        "Passive video feels productive, then evaporates when the actual task shows up.",
+        "One person takes the course and none of it becomes a repeatable team process.",
+        "The session ends, questions pile up, and without follow-up the new skill quietly fades.",
+      ],
+    },
+    solution: {
+      title: "Learn by doing the real work",
+      intro:
+        "We train your team on your own accounts, leave behind reusable templates, and stay available so the skills actually take hold.",
+      points: [
+        "Sessions built around your business, tools, and current campaigns, not generic examples.",
+        "Hands-on work on live accounts so the team practices on what they'll actually manage.",
+        "Templates, checklists, and processes the team keeps using after the session ends.",
+        "Follow-up support so questions get answered and the new skills stick.",
+      ],
+    },
+    deliverables: {
+      title: "What you get with training and workshops",
+      subtitle: "Practical skills, reusable assets, and a team that can run the work.",
+      items: [
+        {
+          title: "Custom Curriculum",
+          description:
+            "A session plan built around your team's level, tools, and the goals you actually need to hit.",
+        },
+        {
+          title: "Hands-On Sessions",
+          description:
+            "Live training on your own accounts and data, so the team practices on real work.",
+        },
+        {
+          title: "Templates & Playbooks",
+          description:
+            "Checklists, templates, and processes your team keeps and reuses after training.",
+        },
+        {
+          title: "Topic Coverage",
+          description:
+            "SEO, paid ads, analytics, content, email, and strategy, focused where you need it most.",
+        },
+        {
+          title: "Recorded Sessions",
+          description:
+            "Recordings and materials so new hires can get up to speed later.",
+        },
+        {
+          title: "Follow-Up Support",
+          description:
+            "A window of support after the session so questions get answered and skills stick.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Generic Course vs. Hands-On Training",
+      subtitle: "What changes when the training uses your own work.",
+      layout: "stacked",
+      columns: [
+        { header: "Recorded Course" },
+        { header: "KINEXIS Training", highlight: true },
+      ],
+      rows: [
+        {
+          label: "Examples",
+          values: ["Someone else's account", "Your own accounts"],
+        },
+        {
+          label: "Format",
+          values: ["Watch passively", "Do the real work"],
+        },
+        {
+          label: "Takeaways",
+          values: ["Notes", "Templates and playbooks"],
+        },
+        {
+          label: "Retention",
+          values: ["One person, fades", "Team process that sticks"],
+        },
+        {
+          label: "Support",
+          values: ["None", "Follow-up window"],
+        },
+        {
+          label: "Investment",
+          values: ["Per seat", "From $500/session"],
+        },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "How much do training and workshops cost?",
+        answer:
+          "A single focused session starts at $500. A full-day workshop is $1,500. Multi-day programs and ongoing training are quoted custom based on team size, topics, and format.",
+      },
+      {
+        question: "What topics can you cover?",
+        answer:
+          "SEO, Google and Meta ads, analytics and GA4, content, email marketing, and marketing strategy. We tailor the curriculum to your team's level and the tools you actually use.",
+      },
+      {
+        question: "Can you train on our own accounts?",
+        answer:
+          "Yes, and we recommend it. Working on your live accounts and data is what makes the training stick, because the team practices on exactly what they'll manage afterward.",
+      },
+      {
+        question: "Is this in person or remote?",
+        answer:
+          "Both. Sessions run remotely by default, which suits most teams, and we can deliver on-site workshops for larger groups or full-day formats when that works better.",
       },
     ],
   },

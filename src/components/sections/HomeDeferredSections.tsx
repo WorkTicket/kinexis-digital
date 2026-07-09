@@ -2,6 +2,10 @@
 
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState, type ComponentType, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
+import TwoLineText from "@/components/ui/TwoLineText";
+import SiteCTA from "@/components/ui/SiteCTA";
+import { scheduleIdleOrScroll as scheduleMotionActivation } from "@/lib/schedule-idle-or-scroll";
 
 const sectionFallback = (minHeight: string) =>
   function SectionFallback() {
@@ -16,20 +20,12 @@ const ServicesEcosystem = dynamic(() => import("@/components/sections/ServicesEc
   loading: sectionFallback("28rem"),
   ssr: false,
 });
-const MidPageCTA = dynamic(() => import("@/components/sections/MidPageCTA"), {
-  loading: sectionFallback("16rem"),
-  ssr: false,
-});
 const FeaturedResults = dynamic(() => import("@/components/sections/FeaturedResults"), {
   loading: sectionFallback("24rem"),
   ssr: false,
 });
 const Philosophy = dynamic(() => import("@/components/sections/Philosophy"), {
   loading: sectionFallback("20rem"),
-  ssr: false,
-});
-const CTASection = dynamic(() => import("@/components/sections/CTASection"), {
-  loading: sectionFallback("18rem"),
   ssr: false,
 });
 
@@ -45,53 +41,66 @@ function SectionPlaceholders() {
   );
 }
 
-function scheduleMotionActivation(callback: () => void) {
-  if (typeof window === "undefined") return () => {};
+function HomeMidPageCTA() {
+  const t = useTranslations("midCta");
+  const tCommon = useTranslations("common");
 
-  let done = false;
-  const run = () => {
-    if (done) return;
-    done = true;
-    callback();
-  };
+  return (
+    <SiteCTA
+      tone="dark"
+      title={<TwoLineText text={t("title")} variant="section" />}
+      subtitle={<TwoLineText text={t("subtitle")} variant="body" />}
+      primaryLabel={tCommon("bookStrategyCall")}
+      secondaryLabel={t("secondaryCta")}
+      secondaryHref="/lead-magnet"
+      viewportMargin="-40px"
+    />
+  );
+}
 
-  if (typeof requestIdleCallback !== "undefined") {
-    const id = requestIdleCallback(run, { timeout: 2500 });
-    window.addEventListener("scroll", run, { once: true, passive: true });
-    return () => {
-      cancelIdleCallback(id);
-      window.removeEventListener("scroll", run);
-    };
-  }
+function HomeBottomCTA() {
+  const t = useTranslations("cta");
+  const tCommon = useTranslations("common");
 
-  const timer = window.setTimeout(run, 150);
-  window.addEventListener("scroll", run, { once: true, passive: true });
-  return () => {
-    window.clearTimeout(timer);
-    window.removeEventListener("scroll", run);
-  };
+  return (
+    <SiteCTA
+      tone="cta"
+      badge={t("label")}
+      title={
+        <>
+          {t("title")}{" "}
+          <span className="gradient-text">{t("titleHighlight")}</span>
+        </>
+      }
+      subtitle={<TwoLineText text={t("subtitle")} variant="body" />}
+      primaryLabel={tCommon("bookStrategyCall")}
+      secondaryLabel={tCommon("viewOurWork")}
+      secondaryHref="/case-studies"
+      viewportMargin="-50px"
+    />
+  );
 }
 
 function HomeBelowFoldSections() {
   return (
     <>
       <Suspense>
-        <RevenueEngine />
+        <RevenueEngine surfaceIndex={0} />
       </Suspense>
       <Suspense>
-        <ServicesEcosystem />
+        <ServicesEcosystem surfaceIndex={1} />
       </Suspense>
       <Suspense>
-        <MidPageCTA />
+        <HomeMidPageCTA />
       </Suspense>
       <Suspense>
-        <FeaturedResults />
+        <FeaturedResults surfaceIndex={2} />
       </Suspense>
       <Suspense>
-        <Philosophy />
+        <Philosophy surfaceIndex={3} />
       </Suspense>
       <Suspense>
-        <CTASection />
+        <HomeBottomCTA />
       </Suspense>
     </>
   );

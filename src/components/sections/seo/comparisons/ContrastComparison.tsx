@@ -1,38 +1,27 @@
-"use client";
-
-import { m as motion } from "@/lib/framer";
+import Reveal from "@/components/ui/Reveal";
 import { getComparisonIcon } from "@/lib/deliverable-icons";
 import { cn } from "@/lib/utils";
 import { Check, Minus } from "lucide-react";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
 import type { ComparisonProps } from "./shared";
 import { getColumnIndices } from "./shared";
 
 export default function ContrastComparison({ columns, rows }: ComparisonProps) {
-  const { fadeUp, stagger } = useMotionVariants();
   const { highlightIndex, altIndex } = getColumnIndices(columns);
 
   return (
-    <motion.div
-      className="grid gap-6 lg:grid-cols-2"
-      variants={stagger}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
-    >
+    <Reveal stagger className="grid gap-6 lg:grid-cols-2">
       {[altIndex, highlightIndex].map((colIndex) => {
         const col = columns[colIndex];
         const isKinexis = colIndex === highlightIndex;
 
         return (
-          <motion.div
+          <div
             key={col.header}
-            variants={fadeUp}
             className={cn(
               "relative flex flex-col overflow-hidden rounded-3xl border p-7 md:p-9",
               isKinexis
                 ? "border-neon-cyan/20 bg-gradient-to-br from-neon-cyan/[0.08] via-bg-secondary/90 to-bg-dark shadow-[0_20px_60px_-30px_rgba(0,212,255,0.4)]"
-                : "border-white/[0.06] bg-bg-secondary/60"
+                : "border-surface bg-bg-secondary/60"
             )}
           >
             {isKinexis && (
@@ -50,7 +39,7 @@ export default function ContrastComparison({ columns, rows }: ComparisonProps) {
               </span>
               <h3
                 className={cn(
-                  "mt-2 text-2xl font-bold tracking-tight md:text-3xl",
+                  "type-metric-md mt-2",
                   isKinexis ? "gradient-text" : "text-white/40"
                 )}
               >
@@ -68,7 +57,7 @@ export default function ContrastComparison({ columns, rows }: ComparisonProps) {
                         "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border",
                         isKinexis
                           ? "border-neon-cyan/20 bg-neon-cyan/10"
-                          : "border-white/[0.08] bg-white/[0.03]"
+                          : "border-strong bg-surface-raised"
                       )}
                     >
                       <Icon
@@ -100,9 +89,9 @@ export default function ContrastComparison({ columns, rows }: ComparisonProps) {
                 );
               })}
             </ul>
-          </motion.div>
+          </div>
         );
       })}
-    </motion.div>
+    </Reveal>
   );
 }

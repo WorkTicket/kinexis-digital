@@ -1,7 +1,7 @@
-"use client";
-
-import { m as motion } from "@/lib/framer";
 import PhaseDot from "@/components/ui/PhaseDot";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/shared/services/Section";
 
 const steps = [
   {
@@ -32,38 +32,28 @@ const steps = [
 
 export default function TrustedProcess() {
   return (
-    <section className="section-padding border-t border-white/[0.06] relative overflow-hidden">
+    <Section id="trusted-process" surfaceIndex={0} className="relative overflow-hidden">
       <div className="container-site relative z-10">
         <div className="grid gap-grid-lg lg:grid-cols-[1fr_1.2fr] items-start">
           {/* Editorial left column */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="section-label">How We Deliver</span>
-            <h2 className="section-title section-title--left mt-4">
-              A system, not a guess.
-            </h2>
-            <p className="section-subtitle section-subtitle--left mt-6">
-              No magic tricks. No hand-waving. A repeatable framework that takes your business from where it is to where you want it to be.
-            </p>
-          </motion.div>
+          <SectionHeader
+            align="left"
+            badge="How We Deliver"
+            title="A system, not a guess."
+            description="No magic tricks. No hand-waving. A repeatable framework that takes your business from where it is to where you want it to be."
+            viewportMargin="-60px"
+            headingId="trusted-process-heading"
+          />
 
           {/* Vertical timeline — no icons */}
           <div className="relative">
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-white/[0.06] hidden sm:block" />
+            <div className="absolute left-0 top-0 bottom-0 w-px bg-surface-hover hidden sm:block" />
 
-            <div className="space-y-0">
+            <Reveal stagger className="space-y-0">
               {steps.map((step, i) => (
-                <motion.div
+                <div
                   key={step.title}
-                  className="relative flex gap-8 sm:gap-10 py-8 border-b border-white/[0.04] last:border-0"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative flex gap-8 sm:gap-10 py-8 border-b border-subtle last:border-0"
                 >
                   <div className="hidden sm:flex w-8 shrink-0 items-start justify-center pt-1">
                     <PhaseDot letter={step.title[0]} active={i === 0} />
@@ -74,7 +64,7 @@ export default function TrustedProcess() {
                       <span className="sm:hidden">
                         <PhaseDot letter={step.title[0]} active={i === 0} />
                       </span>
-                      <h3 className="text-xl font-bold md:text-2xl">{step.title}</h3>
+                      <h3 className="card-heading">{step.title}</h3>
                     </div>
                     <p className="mt-3 text-sm leading-relaxed text-muted">
                       {step.description}
@@ -83,12 +73,12 @@ export default function TrustedProcess() {
                       {step.metric}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </div>
+            </Reveal>
           </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

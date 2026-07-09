@@ -14,6 +14,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Nuestros servicios SEO incluyen auditorías técnicas, investigación de keywords, optimización on-page, producción de contenido y adquisición de enlaces ligados a metas de ingresos. La mayoría de clientes invierte entre $2,500 y $8,000 al mes según competencia y alcance. Normalmente ves movimiento en posiciones en 60 a 90 días, con crecimiento real de leads entre el mes 4 y el 6.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias empieza con una auditoría técnica que produce una hoja de cálculo de 200 ítems. Nosotros empezamos con mapeo de ingresos: qué páginas deberían generar llamadas, qué keywords señalan intención de compra y qué está roto en el camino entre la búsqueda y la cita reservada.",
+    },
     problem: {
       title: "Por Qué la Mayoría de Programas SEO No Generan Ingresos",
       intro:
@@ -144,6 +148,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios SEO local incluyen optimización de Google Business Profile, construcción de citaciones, estrategia de reseñas, desarrollo de páginas de ubicación y adquisición de enlaces locales. Los retainers suelen partir en $2,000 a $5,000 al mes para negocios de una ubicación y escalan para marcas multi-ubicación. El movimiento en el map pack suele aparecer en 30 a 60 días.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de programas locales tratan las citas como checklist y el GBP como configuración única. Empezamos con las búsquedas que reservan trabajos en tu mercado, luego corregimos perfil, NAP, reseñas y páginas locales en el orden que mueve rankings en map pack más rápido.",
+    },
     problem: {
       title: "Por Qué los Negocios Locales Pierden Frente a Competidores en Google Maps",
       intro:
@@ -262,131 +270,140 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
   },
 
   "ppc-management": {
-    metaTitle: "Agencia de Gestión PPC Multi-Canal | KINEXIS Digital",
+    metaTitle: "Gestión PPC y Google Ads | KINEXIS Digital",
     metaDescription:
-      "Gestión PPC completa en Google, Meta, LinkedIn y Microsoft Ads. Un solo equipo, presupuestos unificados y reportes ROAS. Gestión desde 15% del ad spend o mínimo $2,500/mes.",
+      "Gestión de Google Ads y PPC multicanal: Search, Shopping, Performance Max, Meta, LinkedIn y Microsoft. Quality Score, tracking de conversiones y campañas orientadas a ROAS. Desde $2,500/mes.",
     hero: {
-      label: "Gestión PPC",
-      line1: "Un solo equipo en",
-      line2: "cada canal que pagas.",
+      label: "PPC y Google Ads",
+      line1: "Profundidad en Google Ads.",
+      line2: "Disciplina multicanal.",
       subtitle:
-        "Google, Meta, LinkedIn y Microsoft, gestionados juntos.|El presupuesto sigue al costo por lead calificado, no al que más vendió.",
+        "Gestionamos Google Search, Shopping y Performance Max con el mismo rigor que aplicamos a Meta, LinkedIn y Microsoft. Un equipo, tracking compartido y movimientos semanales de presupuesto según costo por lead calificado.",
     },
     answerBlock:
-      "La gestión PPC cubre estrategia, configuración de campañas, optimización de pujas, coordinación creativa y tracking de conversiones en Google, Meta, LinkedIn y Microsoft Ads. Las tarifas suelen ser 15% del ad spend con mínimo mensual de $2,500, o retainer fijo para cuentas grandes. La mayoría de cuentas estabiliza CPL en 45 a 60 días desde el lanzamiento.",
+      "La gestión PPC y Google Ads cubre auditoría de cuenta, estructura de campañas, keywords, copy, pujas, Quality Score y tracking para Google Search, Shopping y PMax, más coordinación multicanal en Meta, LinkedIn y Microsoft cuando operas varias plataformas. La gestión comienza en $2,500/mes más ad spend. La mayoría de cuentas estabiliza CPL en 30 a 60 días.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias optimiza hacia clics y conversiones reportadas por plataforma. Empezamos corrigiendo lo que tu CRM cuenta realmente como lead, luego reconstruimos la estructura de campañas para que cada dólar apunte a búsquedas y canales que producen llamadas reservadas.",
+    },
     problem: {
-      title: "Por Qué Cuentas de Anuncios Aisladas Desperdician Presupuesto",
+      title: "La mayoría de cuentas pagadas desperdician presupuesto en búsquedas equivocadas y canales aislados",
       intro:
-        "Correr Google y Meta por separado sin estrategia unificada hace que los canales compitan entre sí y nadie tenga la foto completa.",
+        "Google facilita gastar. Correr Google y Meta en silos lo empeora. La mayoría de cuentas que auditamos pierden presupuesto en búsquedas irrelevantes, tracking roto y canales que lucen bien en dashboards pero no generan ingresos.",
       points: [
-        "Los presupuestos se quedan en plataformas de bajo rendimiento porque nadie compara CPL entre canales.",
-        "El tracking se rompe entre plataformas de anuncios, CRM y sitio web, y los números de ROAS no son confiables.",
-        "Creativos y landing pages se construyen por canal sin un marco de pruebas compartido.",
-        "Equipos internos o freelancers gestionan una plataforma cada uno, ralentizando decisiones y duplicando gasto.",
+        "Broad match y recomendaciones automáticas envían presupuesto de Google a búsquedas que nunca convertirán.",
+        "Términos de marca, competencia y genéricos en la misma campaña, sin saber qué funciona.",
+        "Google y Meta con definiciones de conversión distintas, sin comparar el costo real por lead.",
+        "Landing pages que no coinciden con la promesa del anuncio, lo que mata Quality Score y sube el CPC.",
       ],
     },
     solution: {
-      title: "Un Solo Equipo Gestionando Cada Canal Pagado",
+      title: "Google Ads y medios pagados como un solo programa de ingresos",
       intro:
-        "Operamos todo tu stack de paid media con metas compartidas, tracking unificado y reasignación semanal de presupuesto según lo que realmente genera leads.",
+        "Reestructuramos cuentas de Google por intención de búsqueda, ajustamos tracking a conversiones calificadas y coordinamos presupuestos desde un solo dashboard.",
       points: [
-        "Estrategia cross-channel con asignación de presupuesto ligada a costo por lead calificado, no preferencia de plataforma.",
-        "Tracking de conversiones unificado de clic a CRM para conocer ROAS real por canal y campaña.",
-        "Coordinación de creativos y landing pages para mantener mensaje consistente en Google y social.",
-        "Ciclos de optimización semanal en todas las plataformas en lugar de revisiones mensuales en una sola cuenta.",
+        "Campañas de Google separadas para marca, competencia y keywords genéricas de alta intención.",
+        "Revisiones semanales de términos de búsqueda y listas negativas para cortar desperdicio.",
+        "Alineación de anuncios y landing pages que mejora Quality Score y reduce CPC.",
+        "Asignación de presupuesto multicanal ligada a pipeline confirmado por CRM, no preferencia de plataforma.",
       ],
     },
     deliverables: {
-      title: "Entregables de Gestión PPC",
-      subtitle: "Gestión de paid media full-funnel en cada plataforma que operes.",
+      title: "Qué incluye la gestión PPC y Google Ads",
+      subtitle: "Google Search, Shopping y PMax más coordinación multicanal cuando la necesitas.",
       items: [
         {
-          title: "Estrategia Multi-Canal y Plan de Presupuesto",
+          title: "Auditoría y Reestructuración de Cuenta Google",
           description:
-            "Recomendaciones de mix de canales, asignación mensual de presupuesto y metas KPI por plataforma.",
+            "Revisión completa de campañas Search, Shopping y PMax con plan de rebuild por intención.",
         },
         {
-          title: "Construcción y Lanzamiento de Campañas",
+          title: "Investigación de Keywords y Listas Negativas",
           description:
-            "Estructura de cuenta, segmentación de audiencias, copy de anuncios y extensiones en Google, Meta, LinkedIn y Microsoft.",
+            "Objetivos de keywords de alta intención más listas negativas continuas para bloquear tráfico irrelevante.",
         },
         {
-          title: "Configuración de Tracking de Conversiones",
+          title: "Configuración de Performance Max y Shopping",
           description:
-            "GA4, píxeles de plataforma, integración CRM e importación de conversiones offline para atribución precisa.",
+            "Optimización de feed, grupos de assets, señales de audiencia y estructura de listing groups para e-commerce.",
         },
         {
-          title: "Optimización Semanal de Pujas y Presupuesto",
+          title: "Estrategia Multicanal y Plan de Presupuesto",
           description:
-            "Ajustes de pujas, movimientos de presupuesto, gestión de keywords negativas y refinamiento de audiencias.",
+            "Recomendaciones de mix de canales y asignación mensual cuando corres Google con Meta, LinkedIn o Microsoft.",
         },
         {
-          title: "Marco de Pruebas Creativas",
+          title: "Tracking de Conversiones y Atribución",
           description:
-            "Rotación de copy y creativos con pruebas A/B estructuradas y benchmarks de rendimiento.",
+            "GA4, GTM, conversiones mejoradas, tracking de llamadas e integración CRM para seguimiento preciso de leads.",
         },
         {
-          title: "Dashboard Unificado de Rendimiento",
+          title: "Optimización Semanal e Informes",
           description:
-            "Reportes cross-channel de gasto, CPL, ROAS y valor de pipeline en una sola vista.",
+            "Ajustes de pujas, minería de términos, movimientos de presupuesto e informes ROAS en cada plataforma activa.",
         },
       ],
     },
     comparison: {
-      title: "PPC Multi-Canal: Gestores Separados vs. KINEXIS",
-      subtitle: "Qué cambia cuando un solo equipo gestiona todo tu programa de paid media.",
+      title: "Google Ads autogestionado vs. gestión PPC KINEXIS",
+      subtitle: "Qué cambia cuando la experiencia en Google Ads y la disciplina multicanal viven en un solo equipo.",
       layout: "impact",
       columns: [
-        { header: "Gestores por Canal Separados" },
-        { header: "KINEXIS Gestión PPC", highlight: true },
+        { header: "Autogestionado / Freelancers Aislados" },
+        { header: "KINEXIS PPC y Google Ads", highlight: true },
       ],
       rows: [
         {
-          label: "Alineación estratégica",
-          values: ["Cada plataforma optimiza aislada", "Metas unificadas y KPIs compartidos"],
+          label: "Estructura de cuenta",
+          values: ["Campañas planas, intención mezclada", "Segmentadas por intención y etapa del funnel"],
         },
         {
-          label: "Flexibilidad de presupuesto",
-          values: ["Presupuestos aislados, cambios lentos", "Reasignación semanal a mejores performers"],
+          label: "Frecuencia de optimización",
+          values: ["Mensual o cuando se acaba el presupuesto", "Revisiones semanales de términos y pujas"],
         },
         {
-          label: "Consistencia de tracking",
-          values: ["Definiciones distintas de conversión", "Un marco de tracking en todos los canales"],
+          label: "Tracking de conversiones",
+          values: ["Vistas de página contadas como conversiones", "Tracking de leads calificados con sync CRM"],
         },
         {
-          label: "Costo de gestión",
-          values: ["15 a 20% por plataforma se acumula", "Tarifa única, menor overhead total"],
+          label: "Visibilidad multicanal",
+          values: ["Dashboards separados, números en conflicto", "Un dashboard con ROAS unificado"],
         },
         {
-          label: "Reportes",
-          values: ["Varios dashboards, números en conflicto", "Un dashboard con ROAS cross-channel"],
+          label: "Experiencia Shopping / PMax",
+          values: ["Experiencia limitada en feed y assets", "Gestión dedicada de campañas e-commerce"],
         },
         {
-          label: "Velocidad de decisiones",
-          values: ["Reuniones de coordinación ralentizan cambios", "Ajustes de presupuesto y pujas el mismo día"],
+          label: "Mejora típica de CPL",
+          values: ["Línea base o en aumento", "Reducción del 20 al 40% en 90 días"],
         },
       ],
     },
     extraFaqs: [
       {
-        question: "¿Qué plataformas gestionan bajo gestión PPC?",
+        question: "¿Gestionan campañas Performance Max?",
         answer:
-          "Google Ads, Meta Ads (Facebook e Instagram), LinkedIn Ads y Microsoft Ads. Coordinamos presupuestos y reportes en las cuatro. Si solo necesitas una plataforma, nuestros servicios de Google Ads o Meta Ads pueden ser mejor opción.",
+          "Sí. Construimos y optimizamos PMax con grupos de assets, señales de audiencia y datos de feed correctos. También monitoreamos insights de términos de búsqueda para evitar que PMax canibalice tráfico de Search de marca.",
+      },
+      {
+        question: "¿Qué plataformas gestionan?",
+        answer:
+          "Google Ads es nuestro núcleo: Search, Shopping, Performance Max, Display y YouTube. También gestionamos Meta, LinkedIn y Microsoft Ads cuando necesitas coordinación multicanal bajo un solo equipo y marco de reportes.",
       },
       {
         question: "¿Cómo se cotiza la gestión PPC?",
         answer:
-          "Cobramos 15% del ad spend mensual con retainer mínimo de $2,500, o tarifa fija para cuentas que invierten $50,000+ al mes. El ad spend se factura directo a las plataformas en tus cuentas. Siempre eres dueño de tus cuentas de anuncios.",
+          "Cobramos 15% del ad spend mensual con retainer mínimo de $2,500, o tarifa fija para cuentas que invierten $50,000+ al mes. El ad spend se factura directo a las plataformas en tus cuentas. Siempre eres dueño de tus cuentas.",
+      },
+      {
+        question: "¿Seré dueño de mi cuenta de Google Ads?",
+        answer:
+          "Siempre. Trabajamos dentro de tu cuenta con acceso admin completo. Si te vas, conservas cada campaña, lista de keywords y configuración de conversiones que construimos.",
       },
       {
         question: "¿Qué nivel de ad spend requieren?",
         answer:
-          "Trabajamos mejor con negocios que invierten $5,000 a $100,000+ al mes en ad spend total entre canales. Por debajo de $5,000, un programa de un solo canal suele ser más eficiente.",
-      },
-      {
-        question: "¿En qué se diferencia la gestión PPC de su servicio de anuncios pagados?",
-        answer:
-          "Anuncios pagados es nuestra entrada para negocios que exploran paid media. Gestión PPC es el programa multi-canal completo con estrategia cross-platform, tracking unificado y optimización continua en Google, Meta, LinkedIn y Microsoft.",
+          "Trabajamos mejor con inversión total de $3,000 a $100,000+ al mes. Por debajo de $3,000 solo en Google podemos ayudar, pero el volumen de datos limita la velocidad de optimización.",
       },
     ],
   },
@@ -404,6 +421,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "La gestión Google Ads incluye auditoría de cuenta, estructura de campañas, estrategia de keywords, copy de anuncios, gestión de pujas, mejora de Quality Score y tracking de conversiones para Search, Shopping y Performance Max. Las tarifas de gestión parten en $1,500 al mes más ad spend. La mayoría de cuentas estabiliza CPL en 30 a 45 días.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias optimiza hacia clics y conversiones que reporta la plataforma. Empezamos corrigiendo lo que tu CRM cuenta como lead, luego reconstruimos la estructura de Search y PMax para que cada dólar apunte a consultas que reservan llamadas.",
+    },
     problem: {
       title: "Por Qué las Cuentas Google Ads Desperdician Presupuesto",
       intro:
@@ -534,6 +555,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "La gestión Meta Ads cubre investigación de audiencias, estructura de campañas, pruebas de creativos, embudos de retargeting y tracking de conversiones basado en píxel en Facebook e Instagram. La gestión parte en $1,500 al mes. La mayoría de cuentas necesita $3,000 a $15,000 de ad spend mensual y 2 a 4 semanas de pruebas creativas para encontrar ROAS estable.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de cuentas Meta mueren por fatiga creativa y audiencias superpuestas. Construimos un pipeline de pruebas que alimenta al algoritmo con anuncios frescos cada dos semanas, con separación limpia entre pools fríos, tibios y calientes.",
+    },
     problem: {
       title: "Por Qué las Cuentas Meta Ads se Estancan Después de la Primera Semana",
       intro:
@@ -664,6 +689,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios de anuncios pagados cubren selección de canal, estrategia de campañas, creación de anuncios, alineación de landing pages, tracking de conversiones y optimización continua en Google, Meta y LinkedIn. La gestión de Google Search, Shopping y Performance Max se cotiza en nuestra página PPC Management (desde $2,500/mes de gestión, gasto en ads aparte). Meta Ads tiene su propia página de precios. La mayoría de clientes ve sus primeros leads calificados en 7 a 14 días desde el lanzamiento.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de equipos elige una plataforma y espera leads. Empezamos por dónde tus compradores realmente buscan y navegan, luego construimos campañas, landing pages y tracking para que el costo por lead calificado sea medible desde la primera semana.",
+    },
     problem: {
       title: "Por Qué los Negocios Desperdician Dinero en Publicidad Pagada",
       intro:
@@ -795,6 +824,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios de diseño web incluyen discovery, estrategia UX, diseño custom, desarrollo responsive, setup de CMS, estructura SEO básica y layouts enfocados en conversión. Los proyectos van de $8,000 para sitios enfocados a $35,000+ para sitios empresariales multi-página. La entrega típica es 6 a 10 semanas desde kickoff hasta lanzamiento.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias diseña para premios y entrega una homepage bonita. Bosquejamos primero la ruta de conversión, qué ven los visitantes, qué hacen clic y qué pasa antes de irse, luego diseñamos alrededor de ese flujo.",
+    },
     problem: {
       title: "Por Qué la Mayoría de Sitios Web Empresariales No Convierten",
       intro:
@@ -925,6 +958,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios CRO incluyen auditorías de conversión, análisis de heatmaps y sesiones, desarrollo de hipótesis, pruebas A/B y mejoras UX en páginas de alto tráfico. Retainers parten en $2,500 al mes o por proyecto para optimización de una sola página. La mayoría de pruebas alcanza significancia estadística en 2 a 4 semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de proyectos CRO prueban colores de botón mientras la fuga real está en la longitud del formulario o el layout móvil. Empezamos con datos de sesión en tus páginas de mayor tráfico, luego ejecutamos tests con hipótesis que se acumulan en lift de pipeline.",
+    },
     problem: {
       title: "Por Qué Tu Tráfico No Se Convierte en Leads",
       intro:
@@ -1055,6 +1092,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios email marketing incluyen estrategia de lista, flujos de automatización, creación de campañas, segmentación, pruebas A/B y monitoreo de deliverability. Retainers parten en $2,000 a $5,000 al mes según tamaño de lista y complejidad de automatización. Secuencias de bienvenida suelen lanzarse en 2 a 3 semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias empieza con una serie de bienvenida plantilla y un newsletter mensual. Nosotros empezamos mapeando ingresos: qué segmentos deben avanzar hacia una llamada agendada, qué disparadores conductuales señalan intención de compra y qué se rompe entre el primer opt-in y la bandeja de tu equipo de ventas.",
+    },
     problem: {
       title: "Por Qué la Mayoría de Programas Email Generan Aperturas pero No Ingresos",
       intro:
@@ -1185,6 +1226,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios de marketing de contenidos incluyen estrategia de contenido, planificación de temas basada en keywords, artículos de blog, guías, casos de estudio y distribución en búsqueda y social. Retainers parten en $2,500 a $6,000 al mes para 4 a 8 piezas mensuales. El primer contenido publicado suele salir live en 3 a 4 semanas desde kickoff.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias asigna a los redactores un conteo de palabras y una keyword. Nosotros asignamos a cada pieza una etapa de embudo, un objetivo de intención de búsqueda y una ruta a la página donde cierras, luego medimos si realmente envía tráfico calificado.",
+    },
     problem: {
       title: "Por Qué la Mayoría del Marketing de Contenidos Produce Posts pero No Pipeline",
       intro:
@@ -1315,6 +1360,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "El marketing en redes sociales incluye estrategia de plataforma, creación de contenido, calendarios de publicación, community management y reportes de rendimiento para LinkedIn, Instagram, Facebook y X. La gestión parte en $1,500 a $4,000 al mes según plataformas y frecuencia de publicación. Calendarios de contenido quedan live en 2 semanas desde kickoff.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias publica en todas las plataformas con un calendario reciclado. Elegimos las dos redes donde tus compradores realmente aparecen, vinculamos cada categoría de contenido a una etapa de embudo y conectamos lo orgánico con retargeting y captura de leads.",
+    },
     problem: {
       title: "Por Qué la Mayoría de Cuentas Sociales Empresariales No Avanzan",
       intro:
@@ -1450,6 +1499,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios de video marketing incluyen desarrollo de concepto, guion, coordinación de producción, edición y planificación de distribución para anuncios, social y web. Proyectos parten en $3,000 para paquetes short-form. Retainers mensuales desde $2,500 cubren contenido de video continuo. Entrega típica: 2 a 4 semanas por proyecto.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de estudios entrega un video hero y lo da por hecho. Empezamos con un mapa de distribución: qué cortes van a ads, qué formatos a social, qué embeds a páginas de conversión, para que un rodaje alimente cada canal que necesita creativo fresco.",
+    },
     problem: {
       title: "Por Qué la Mayoría del Video Empresarial Rinde Poco",
       intro:
@@ -1580,6 +1633,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios de branding incluyen posicionamiento de mercado, estrategia de marca, diseño de logo, sistemas de identidad visual, marcos de mensaje y guías de marca. Proyectos van de $8,000 para refrescos de identidad enfocados a $25,000+ para estrategia y diseño de marca completa. Entrega típica: 6 a 10 semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de diseñadores empieza con mood boards y opciones de logo. Nosotros empezamos con posicionamiento: a quién sirves, por qué te eligen y qué mensaje debe mantenerse consistente, luego construimos identidad visual que tu equipo de marketing puede aplicar en web, ads y email sin llamarnos por cada activo.",
+    },
     problem: {
       title: "Por Qué un Branding Débil Te Cuesta Clientes",
       intro:
@@ -1710,6 +1767,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Los servicios de analítica de marketing incluyen setup GA4, tracking de conversiones, integración CRM, dashboards custom y reportes mensuales en SEO, anuncios pagados, email y social. Retainers parten en $1,500 a $3,500 al mes. Dashboards suelen quedar live en 2 a 3 semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias instala GA4 y da el tracking por terminado. Empezamos con las preguntas de negocio que tus dashboards deben responder, qué campañas reservan ingresos, dónde se pierden leads, qué cierra ventas, y construimos eventos y atribución que conectan gasto de marketing con resultados en el CRM.",
+    },
     problem: {
       title: "Por Qué la Mayoría de Reportes de Marketing No Ayudan a Decidir",
       intro:
@@ -1840,6 +1901,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "La consultoría de crecimiento incluye auditorías de marketing, análisis competitivo, estrategia de canal, planificación de presupuesto y roadmaps trimestrales. Engagements parten en $3,000 a $6,000 al mes en modalidad advisory o $5,000 a $15,000 por entregables de estrategia por proyecto. Auditoría inicial y roadmap se entregan en 3 a 4 semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de consultores entrega un deck de estrategia y desaparece. Auditamos primero tu sistema de ingresos completo, web, ads, SEO, email, analytics, y entregamos un roadmap priorizado con reparto de presupuesto, plazos y la opción de ejecutar lo que recomendamos.",
+    },
     problem: {
       title: "Por Qué los Negocios Gastan en Marketing Sin Estrategia",
       intro:
@@ -1970,6 +2035,10 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
     },
     answerBlock:
       "Servicios de embudos y CRO incluyen estrategia de embudo, diseño de landing pages, imanes de leads, automatización email, retargeting, análisis de heatmaps y pruebas A/B estructuradas. Builds desde $5,000 a $15,000; programas CRO desde $2,500 al mes. La mayoría de sistemas lanzan en 4 a 8 semanas con optimización continua.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias construye una landing page y se detiene. Mapeamos el camino completo del clic en el anuncio a la llamada reservada, lead magnets, secuencias de nurture, retargeting, handoffs al CRM, y seguimos probando hasta que la conversión se acumule en lugar de estancarse tras la semana de lanzamiento.",
+    },
     problem: {
       title: "Por Qué la Mayoría de Negocios Pierden Ingresos en Cada Etapa",
       intro:
@@ -2088,6 +2157,1156 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
         question: "¿Pueden conectar embudos a nuestro CRM?",
         answer:
           "Sí. Integramos con HubSpot, Salesforce, ActiveCampaign, GoHighLevel y la mayoría de CRMs. Los leads fluyen automáticamente con tags de fuente y notificaciones a ventas.",
+      },
+    ],
+  },
+  "youtube-ads": {
+    metaTitle: "Agencia de YouTube Ads | KINEXIS Digital",
+    metaDescription:
+      "Publicidad en YouTube construida alrededor de los primeros cinco segundos y la acción que sigue. Segmentación por intención, pruebas de hook y tracking ligado a leads. Gestión desde $2,000/mes.",
+    hero: {
+      label: "Gestión de YouTube Ads",
+      line1: "Alcanza compradores en YouTube",
+      line2: "antes de que lleguen al buscador.",
+      subtitle:
+        "Campañas in-stream, in-feed y Shorts construidas alrededor de un hook a prueba de skip y un siguiente paso claro. Segmentación desde tus datos de clientes y tracking que liga las vistas a llamadas reservadas, no solo a tiempo de reproducción.",
+    },
+    answerBlock:
+      "La gestión de YouTube Ads cubre estrategia de campañas, segmentación por intención, dirección creativa, alineación de landing pages y tracking de conversiones. La mayoría de clientes invierte $2,000 a $6,000 al mes en gestión más el gasto en ads. Obtienes datos en días y optimización significativa entre las semanas dos y cuatro.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias importa un video de marca, activa segmentación amplia y reporta tiempo de reproducción. Nosotros empezamos con arquitectura de placements y audiencias, qué formato captura prospectos fríos, cuál hace retargeting a visitantes del sitio y qué hook tiene que aterrizar en cinco segundos, luego construimos creativo y tracking alrededor de esa estructura antes de escalar el gasto.",
+    },
+    problem: {
+      title: "La mayoría del presupuesto de YouTube compra vistas, no clientes",
+      intro:
+        "El video se siente como trabajo de marca, así que se mide como trabajo de marca. Así desaparece el gasto en tiempo de reproducción que nadie liga a ingresos.",
+      points: [
+        "Un video de marca reciclado corre con una apertura lenta que se salta antes de llegar la oferta.",
+        "Una sola campaña apunta a todos, así que prospectos fríos y clientes previos ven el mismo mensaje.",
+        "Audiencias amplias y placements por defecto queman presupuesto en vistas que no iban a convertir.",
+        "Los informes celebran impresiones y tasa de finalización mientras el CRM no muestra nada nuevo.",
+      ],
+    },
+    solution: {
+      title: "Campañas de video hechas para convertir, no solo reproducirse",
+      intro:
+        "Tratamos YouTube como canal de performance. Cada campaña tiene una audiencia, un hook y un objetivo de conversión medible.",
+      points: [
+        "Campañas divididas por intención en in-stream, in-feed y Shorts, cada una con su mensaje.",
+        "Audiencias desde listas de clientes, intención de búsqueda, viewers de competidores y visitantes del sitio.",
+        "Hooks probados en los primeros cinco segundos para que el anuncio gane la vista, no el skip.",
+        "Conversiones view-through y por clic rastreadas hasta leads e ingresos, reportadas semanalmente.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con nuestro programa de YouTube",
+      subtitle: "Seis entregables. Un sistema de video medible.",
+      items: [
+        {
+          title: "Estrategia de Campañas y Placements",
+          description:
+            "Campañas in-stream, in-feed y Shorts estructuradas por etapa de embudo e intención, no un setup genérico.",
+        },
+        {
+          title: "Construcción de Audiencias",
+          description:
+            "Segmentos personalizados desde listas de clientes, intención de búsqueda, viewers de competidores y retargeting.",
+        },
+        {
+          title: "Dirección Creativa y Pruebas de Hook",
+          description:
+            "Scripts y ediciones alrededor de los primeros cinco segundos, con varios hooks probados contra el skip.",
+        },
+        {
+          title: "Alineación de Landing Pages",
+          description:
+            "Páginas post-clic alineadas con la promesa del anuncio para que el tráfico pagado tenga dónde convertir.",
+        },
+        {
+          title: "Configuración de Tracking",
+          description:
+            "GA4, conversiones mejoradas y atribución view-through para que el gasto en video mapee a leads e ingresos.",
+        },
+        {
+          title: "Optimización e Informes Semanales",
+          description:
+            "Ajustes de puja, audiencia y creativo cada semana con reportes de view rate, CPA y conversiones.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Impulsar Videos vs. YouTube Ads Gestionado",
+      subtitle: "Qué cambia cuando segmentación, creativo y tracking corren como un sistema.",
+      layout: "progression",
+      columns: [
+        { header: "Impulsar desde YouTube" },
+        { header: "KINEXIS YouTube Ads", highlight: true },
+      ],
+      rows: [
+        { label: "Segmentación", values: ["Amplia, elegida por la plataforma", "Audiencias por intención y retargeting"] },
+        { label: "Creativo", values: ["Un video, tal cual", "Pruebas de hook programadas"] },
+        { label: "Placements", values: ["Por defecto en todo", "Elegidos por rendimiento"] },
+        { label: "Tracking", values: ["Vistas y tiempo", "Conversiones ligadas al CRM"] },
+        { label: "Optimización", values: ["Configurar y olvidar", "Puja y audiencia cada semana"] },
+        { label: "Informes", values: ["Conteo de impresiones", "CPA y ROAS"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta gestionar YouTube Ads?",
+        answer:
+          "La gestión va de $2,000 a $6,000 al mes según volumen de campañas y mezcla de canales, aparte de tu gasto en ads. Definimos alcance y precio fijos tras una llamada estratégica.",
+      },
+      {
+        question: "¿Necesito un video producido antes de empezar?",
+        answer:
+          "No necesariamente. Podemos trabajar con material existente y reeditarlo para performance, o coordinar producción a través de nuestro servicio de video marketing. Lo que más importa es el hook y la oferta, no un rodaje de gran presupuesto.",
+      },
+      {
+        question: "¿Cómo miden resultados en YouTube?",
+        answer:
+          "Rastreamos conversiones view-through y por clic en GA4 con conversiones mejoradas, y las ligamos a leads e ingresos en tu CRM. Ves costo por acción calificada, no solo vistas.",
+      },
+      {
+        question: "¿En qué se diferencia de Google Ads?",
+        answer:
+          "YouTube alcanza compradores antes, mientras aprenden y comparan, en lugar del momento exacto de una búsqueda. Solemos correrlo junto a Search para que el video cree demanda y Search la capture. Ambos viven bajo nuestra coordinación de PPC y medios pagados.",
+      },
+    ],
+  },
+  "landing-pages": {
+    metaTitle: "Diseño y Optimización de Landing Pages | KINEXIS Digital",
+    metaDescription:
+      "Landing pages enfocadas en conversión hechas para una campaña y una acción, luego testeadas. Coherencia de mensaje, carga rápida y tracking incluidos. Páginas desde $2,500.",
+    hero: {
+      label: "Diseño y Optimización de Landing Pages",
+      line1: "Dale a tu tráfico pagado",
+      line2: "una página hecha para convertir.",
+      subtitle:
+        "Landing pages dedicadas diseñadas alrededor de una oferta y una audiencia, con coherencia de mensaje, carga móvil rápida y un formulario que elimina fricción. Hechas para convertir, luego testeadas para que el número siga subiendo.",
+    },
+    answerBlock:
+      "El diseño y optimización de landing pages cubre estrategia de conversión, diseño personalizado, desarrollo, copywriting, tracking y A/B testing. Páginas individuales desde $2,500, sets de campaña desde $6,000 y retainers de testing continuo desde $3,000 al mes. La mayoría lanza en dos a tres semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias diseña landing pages desde una plantilla de marca y hace coincidir el anuncio de forma vaga en el hero. Nosotros empezamos con una auditoría de coherencia de mensaje: qué prometió el anuncio, quién hizo clic y qué acción única tiene que ocurrir antes de que se vayan, luego wireframeamos la página alrededor de esa ruta antes del primer píxel de diseño.",
+    },
+    problem: {
+      title: "Una homepage no es una landing page",
+      intro:
+        "Pagas por un clic específico y lo envías a una página hecha para todos. La coherencia de mensaje se rompe y la tasa de conversión lo paga.",
+      points: [
+        "Los clics pagados llegan a una homepage que responde diez preguntas en vez de la que vinieron a resolver.",
+        "El anuncio promete una cosa y la página abre con otra, así que el visitante duda del clic.",
+        "Formularios largos y CTAs vagos suman fricción justo en el momento de decisión.",
+        "La página se publica una vez y nunca se testea, dejando mejoras fáciles en el titular y el layout.",
+      ],
+    },
+    solution: {
+      title: "Una página, una audiencia, una acción",
+      intro:
+        "Construimos la página alrededor de la persona exacta que hizo clic y la única cosa que quieres que haga después.",
+      points: [
+        "Coherencia de mensaje entre el anuncio y la página para que el clic se sienta correcto.",
+        "Un titular que califica rápido y prueba colocada justo donde aparece la duda.",
+        "Un formulario corto y mobile-first o CTA de llamada que hace de convertir el camino más fácil.",
+        "Un plan de testing que mejora los elementos de mayor impacto tras el lanzamiento, con datos.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con nuestro trabajo de landing pages",
+      subtitle: "Seis entregables. Del wireframe a una página que sigue mejorando.",
+      items: [
+        {
+          title: "Estrategia de Conversión y Wireframe",
+          description:
+            "Coherencia de mensaje, posicionamiento de oferta y estructura de página mapeados a la campaña antes de diseñar.",
+        },
+        {
+          title: "Diseño Personalizado",
+          description:
+            "Diseño on-brand y mobile-first con jerarquía visual clara que lleva a una sola acción principal.",
+        },
+        {
+          title: "Desarrollo y Build",
+          description:
+            "Build rápido y responsive en tu CMS o una plataforma de landing pages, probado en dispositivos y navegadores.",
+        },
+        {
+          title: "Copywriting de Conversión",
+          description:
+            "Titulares, subtítulos y copy de CTA escritos para calificar visitantes y responder objeciones en orden.",
+        },
+        {
+          title: "Tracking y Formularios",
+          description:
+            "GA4, tracking de formularios y llamadas, y flujos de agradecimiento para capturar y atribuir cada conversión.",
+        },
+        {
+          title: "A/B Testing e Iteración",
+          description:
+            "Tests estructurados en titulares, layout y formularios con umbrales de significancia y registro de ganadores.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Tráfico a Homepage vs. Landing Page Dedicada",
+      subtitle: "Qué ganas cuando la página se construye para la campaña y se optimiza.",
+      layout: "impact",
+      columns: [
+        { header: "Homepage / Página DIY" },
+        { header: "KINEXIS Landing Pages", highlight: true },
+      ],
+      rows: [
+        { label: "Coherencia de mensaje", values: ["Genérica, para todos", "Alineada a cada anuncio y audiencia"] },
+        { label: "Tasa de conversión", values: ["1 a 3% típico", "5 a 10% con página dedicada"] },
+        { label: "Velocidad de carga", values: ["Lo que permita el theme", "Objetivo Lighthouse 90+"] },
+        { label: "Diseño de formulario", values: ["Largo, alta fricción", "Corto, calificador, mobile-first"] },
+        { label: "Testing", values: ["Ninguno tras lanzar", "Experimentos A/B continuos"] },
+        { label: "Inversión", values: ["Gratis pero fuga presupuesto", "$2,500 por página en adelante"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta una landing page?",
+        answer:
+          "Una página individual enfocada en conversión empieza en $2,500 con copy, diseño, build y tracking. Un set de tres a cinco páginas ronda los $6,000. Los retainers de diseño y testing continuo empiezan en $3,000 al mes.",
+      },
+      {
+        question: "¿Cuánto tarda en estar en vivo?",
+        answer:
+          "La mayoría de páginas individuales lanzan en dos a tres semanas: wireframe y copy la semana uno, diseño la semana dos, build y tracking la semana tres. Los sets de campaña tardan algo más según cuántas audiencias alineemos.",
+      },
+      {
+        question: "¿Pueden construir en nuestro sitio o plataforma actual?",
+        answer:
+          "Sí. Construimos en tu CMS, sea WordPress, Webflow o un setup headless, o en una plataforma de landing pages como Unbounce o Instapage si prefieres mantener las páginas de campaña aparte.",
+      },
+      {
+        question: "¿Necesito suficiente tráfico para A/B testing?",
+        answer:
+          "Para tests formales, unas 1,000 visitas mensuales en la página. Por debajo, aún mejoramos conversión con heatmaps, grabaciones de sesión y fixes de mejores prácticas antes de pasar a testing estadístico.",
+      },
+    ],
+  },
+  "website-maintenance": {
+    metaTitle: "Mantenimiento y Soporte Web | KINEXIS Digital",
+    metaDescription:
+      "Cuidado web proactivo: actualizaciones probadas en staging, respaldos diarios, monitoreo de seguridad y soporte real. Planes mensuales predecibles desde $250/mes.",
+    hero: {
+      label: "Mantenimiento y Soporte Web",
+      line1: "Mantén tu sitio rápido,",
+      line2: "seguro y en línea.",
+      subtitle:
+        "Actualizaciones probadas antes de publicarse, respaldos diarios restaurables, monitoreo de seguridad y uptime, y un desarrollador real para los cambios que necesitas. Un plan predecible en vez de facturas sorpresa.",
+    },
+    answerBlock:
+      "El mantenimiento web cubre actualizaciones de core, tema y plugins, respaldos diarios, monitoreo de seguridad y uptime, y un bloque mensual de soporte. Los planes empiezan en $250 al mes y escalan con el tamaño del sitio y las necesidades de soporte. Onboarding, limpieza y monitoreo se configuran en las primeras semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de los planes de cuidado son reactivos: alguien nota que el formulario está roto y entonces buscas un desarrollador. Configuramos staging primero para que las actualizaciones se prueben antes de producción, los respaldos se prueben en restauración con calendario y las alertas de uptime salten antes de que tus clientes noten la caída.",
+    },
+    problem: {
+      title: "Los sitios se rompen en silencio, luego todos a la vez",
+      intro:
+        "Nada parece mal hasta que un formulario deja de enviar o el sitio se cae. Para entonces los leads que perdiste ya se fueron.",
+      points: [
+        "Las auto-actualizaciones publican un cambio que rompe una página, y nadie lo nota hasta que un cliente sí.",
+        "Hay un respaldo en algún lado, pero nadie ha probado una restauración, así que falla cuando importa.",
+        "Plugins desactualizados dejan la puerta abierta al malware y a listas negras que hunden tu tráfico.",
+        "Una edición pequeña se vuelve una espera de una semana porque no hay desarrollador disponible.",
+      ],
+    },
+    solution: {
+      title: "Cuidado proactivo, no apagar incendios",
+      intro:
+        "Detectamos problemas antes de que te cuesten y te damos un solo lugar al que acudir cuando necesitas un cambio.",
+      points: [
+        "Actualizaciones aplicadas y probadas primero en una copia de staging, para que producción nunca se rompa.",
+        "Respaldos automáticos fuera del sitio con puntos de restauración realmente probados.",
+        "Hardening de seguridad, escaneo de malware y monitoreo de uptime 24/7 con alertas.",
+        "Un bloque mensual de tiempo de desarrollo para ediciones y fixes, más un informe de salud claro.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con un plan de cuidado",
+      subtitle: "Seis áreas cubiertas. Un sitio del que dejas de preocuparte.",
+      items: [
+        {
+          title: "Actualizaciones de Core, Tema y Plugins",
+          description:
+            "Actualizaciones aplicadas y probadas en staging primero, para que nada se rompa en producción.",
+        },
+        {
+          title: "Respaldos Diarios y Restauración",
+          description:
+            "Respaldos automáticos fuera del sitio con puntos de restauración probados, para que un mal update sea un arreglo rápido.",
+        },
+        {
+          title: "Monitoreo de Seguridad y Malware",
+          description:
+            "Gestión de firewall, escaneo de malware y hardening para mantener tu sitio fuera de listas negras.",
+        },
+        {
+          title: "Monitoreo de Uptime",
+          description:
+            "Chequeos de uptime 24/7 con alertas, para que la caída se atienda antes de que los clientes lo noten.",
+        },
+        {
+          title: "Solicitudes de Contenido y Soporte",
+          description:
+            "Un bloque mensual de tiempo para ediciones, nuevas secciones y fixes pequeños hechos por un desarrollador real.",
+        },
+        {
+          title: "Informe Mensual de Salud",
+          description:
+            "Un informe claro de actualizaciones aplicadas, amenazas bloqueadas, uptime y rendimiento.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Actualizaciones DIY vs. un Plan de Cuidado Gestionado",
+      subtitle: "Qué cambia cuando actualizaciones, respaldos y soporte ocurren cada mes.",
+      layout: "ledger",
+      columns: [
+        { header: "Hacerlo Tú Mismo" },
+        { header: "Plan de Cuidado KINEXIS", highlight: true },
+      ],
+      rows: [
+        { label: "Actualizaciones", values: ["Auto u olvidadas", "Probadas en staging primero"] },
+        { label: "Respaldos", values: ["Sin probar, si los hay", "Diarios, externos, restaurables"] },
+        { label: "Seguridad", values: ["Reactiva tras un hackeo", "Monitoreada y reforzada"] },
+        { label: "Caídas", values: ["Notadas por clientes", "Detectadas por monitoreo 24/7"] },
+        { label: "Soporte", values: ["Buscar un freelancer", "Desarrollador en tu plan"] },
+        { label: "Costo", values: ["Facturas sorpresa", "Tarifa mensual predecible"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta el mantenimiento web?",
+        answer:
+          "Los planes empiezan en $250 al mes por actualizaciones, respaldos y monitoreo en un sitio de negocio estándar. Sitios más grandes o e-commerce con más necesidades de soporte van de $600 a $1,200 o más al mes. Hosting y licencias se facturan aparte.",
+      },
+      {
+        question: "¿Trabajan con WordPress y otras plataformas?",
+        answer:
+          "Sí. Mantenemos WordPress, WooCommerce y la mayoría de CMS y page builders comunes. En el onboarding auditamos tu stack y configuramos un entorno de staging para que las actualizaciones sean seguras.",
+      },
+      {
+        question: "¿Qué pasa si mi sitio se cae o lo hackean?",
+        answer:
+          "El monitoreo de uptime nos alerta de caídas y respondemos en un día hábil en planes estándar, más rápido en planes prioritarios. Si el sitio se compromete, restauramos desde un respaldo limpio y cerramos la vulnerabilidad.",
+      },
+      {
+        question: "¿Se incluyen ediciones de contenido?",
+        answer:
+          "Cada plan incluye un bloque mensual de tiempo de soporte para ediciones, nuevas secciones y fixes pequeños. Proyectos mayores, como nuevas plantillas o rediseños, se cotizan aparte antes de empezar.",
+      },
+    ],
+  },
+  "website-speed": {
+    metaTitle: "Optimización de Velocidad y Rendimiento Web | KINEXIS Digital",
+    metaDescription:
+      "Optimización de Core Web Vitals y tiempos de carga respaldada por datos de antes y después. Imágenes, código, caché y servidor para recuperar tráfico perdido. Proyectos desde $1,500.",
+    hero: {
+      label: "Optimización de Velocidad y Rendimiento Web",
+      line1: "Deja de perder visitantes",
+      line2: "por un sitio lento.",
+      subtitle:
+        "Una revisión de rendimiento medida: limpieza de imágenes y código, caché y tuning de servidor que lleva los Core Web Vitals al verde. Medimos antes y después, así la mejora es un número que puedes ver.",
+    },
+    answerBlock:
+      "La optimización de velocidad web cubre una auditoría de rendimiento, optimización de imágenes y medios, limpieza de código y scripts, caché y entrega, y tuning de Core Web Vitals. Una auditoría independiente empieza en $1,500, una revisión completa en $3,500 y el monitoreo continuo en $1,000 al mes. La mayoría de proyectos cierran en tres a cuatro semanas.",
+    editorial: {
+      bridgeParagraph:
+        "Instalar un plugin de caché y darlo por hecho es el arreglo de velocidad más común, y el menos medible. Empezamos con datos de Core Web Vitals en campo y priorizamos arreglos por impacto real en tiempo de carga, luego documentamos puntuaciones antes y después para que sepas que el trabajo movió el número.",
+    },
+    problem: {
+      title: "Un sitio lento pierde tráfico antes de que la página cargue",
+      intro:
+        "La velocidad no es una métrica de vanidad. Los visitantes se van, las conversiones caen y Google pondera los Core Web Vitals en tu ranking.",
+      points: [
+        "Imágenes a resolución completa y scripts de cada plugin cargan en cada página, sumando megabytes muertos.",
+        "CSS y JavaScript que bloquean el render dejan al visitante mirando una pantalla en blanco.",
+        "Los Core Web Vitals fallan en móvil, así que pierdes el clic en el resultado antes de que alguien vea la página.",
+        "Alguien instala un plugin de caché y lo da por hecho, sin datos que muestren mejora.",
+      ],
+    },
+    solution: {
+      title: "Arregla las causas, luego prueba el resultado",
+      intro:
+        "Auditamos contra datos reales de Core Web Vitals, arreglamos los cuellos de botella en orden de prioridad y medimos la ganancia.",
+      points: [
+        "Datos de laboratorio y de campo identifican qué frena el sitio, no suposiciones de una checklist genérica.",
+        "Las ganancias más pesadas primero: optimización de imágenes, caché y CDN antes del trabajo de código.",
+        "Scripts que bloquean el render diferidos, código sin usar eliminado y tiempo de respuesta del servidor afinado.",
+        "Puntajes de Lighthouse y Core Web Vitals de antes y después para que veas exactamente qué cambió.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con una revisión de velocidad",
+      subtitle: "Seis áreas de trabajo. Un sitio medible más rápido.",
+      items: [
+        {
+          title: "Auditoría de Rendimiento",
+          description:
+            "Análisis de datos de laboratorio y campo contra Core Web Vitals, con una lista priorizada de lo que en verdad frena.",
+        },
+        {
+          title: "Optimización de Imágenes y Medios",
+          description:
+            "Compresión, formatos next-gen, tamaño correcto y lazy loading para cortar primero el peso más pesado.",
+        },
+        {
+          title: "Limpieza de Código y Scripts",
+          description:
+            "CSS y JavaScript que bloquean el render diferidos o eliminados, código sin usar removido, scripts de terceros auditados.",
+        },
+        {
+          title: "Caché y Entrega",
+          description:
+            "Caché de página y navegador, un CDN y compresión configurados para cargas repetidas rápidas y entrega global.",
+        },
+        {
+          title: "Tuning de Servidor y Core Web Vitals",
+          description:
+            "Tiempo de respuesta del servidor, LCP, CLS e INP atendidos para que el sitio apruebe en móvil y escritorio.",
+        },
+        {
+          title: "Informe de Antes y Después",
+          description:
+            "Puntajes documentados de Lighthouse y Core Web Vitals antes y después, para que la ganancia sea medible.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Ajustes Rápidos vs. una Revisión de Velocidad Medida",
+      subtitle: "Qué obtienes cuando el trabajo se audita, prioriza y verifica.",
+      layout: "impact",
+      columns: [
+        { header: "Solo Plugin de Caché" },
+        { header: "KINEXIS Optimización de Velocidad", highlight: true },
+      ],
+      rows: [
+        { label: "Enfoque", values: ["Instalar y esperar", "Basado en auditoría, priorizado"] },
+        { label: "Imágenes", values: ["Sin tocar", "Comprimidas y next-gen"] },
+        { label: "Scripts", values: ["Todos bloquean render", "Diferidos y limpiados"] },
+        { label: "Core Web Vitals", values: ["Siguen fallando", "Aprobando en móvil"] },
+        { label: "Prueba", values: ["Sin medición", "Puntajes de antes y después"] },
+        { label: "Inversión", values: ["Costo del plugin", "$1,500 auditoría en adelante"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta la optimización de velocidad?",
+        answer:
+          "Una auditoría independiente con quick wins empieza en $1,500. Una revisión completa de Core Web Vitals en imágenes, código, caché y servidor corre $3,500. El monitoreo y tuning continuo es $1,000 al mes.",
+      },
+      {
+        question: "¿Esto realmente mejorará mi ranking en Google?",
+        answer:
+          "Los Core Web Vitals son un factor de ranking confirmado, sobre todo en móvil. La velocidad sola no superará a una página más fuerte, pero un sitio lento te frena activamente. Arreglarlo quita ese lastre y mejora conversiones en el tráfico que ya tienes.",
+      },
+      {
+        question: "¿Qué plataformas optimizan?",
+        answer:
+          "WordPress y WooCommerce con más frecuencia, junto con Shopify, Webflow y builds a medida. Los cuellos de botella difieren por plataforma, por eso auditamos contra tus datos reales antes de recomendar fixes.",
+      },
+      {
+        question: "¿Cuánto tarda el trabajo?",
+        answer:
+          "Una revisión completa suele correr tres a cuatro semanas: auditoría y baseline, trabajo de assets y entrega, tuning de código y servidor, luego remedición e informe. Una auditoría sola es más rápida.",
+      },
+    ],
+  },
+  "microsoft-ads": {
+    metaTitle: "Microsoft Ads (Bing Ads) | KINEXIS Digital",
+    metaDescription:
+      "Gestión de Microsoft Advertising en Bing, Yahoo y la red de Microsoft. CPCs más bajos, segmentación por perfil de LinkedIn y seguimiento propio. Gestión desde $400/mes.",
+    hero: {
+      label: "Microsoft Ads (Bing Ads)",
+      line1: "Alcanza compradores que Google no ve",
+      line2: "a un costo por clic menor.",
+      subtitle:
+        "Microsoft Advertising llega a una audiencia de mayor edad e ingresos que suele quedar ignorada. Lo gestionamos como su propio canal, no como una copia de tu cuenta de Google, con segmentación y seguimiento afinados a la red.",
+    },
+    answerBlock:
+      "La gestión de Microsoft Ads cubre estructura de cuenta, investigación de keywords y audiencias, segmentación por perfil de LinkedIn, copy de anuncios, seguimiento de conversiones y optimización continua en Bing, Yahoo y sitios asociados. La gestión empieza en $400 al mes, con la inversión publicitaria facturada aparte. La mayoría de cuentas están activas en una a dos semanas.",
+    editorial: {
+      bridgeParagraph:
+        "Importar campañas de Google sin ajustar es por lo que la mayoría de cuentas Microsoft rinden bajo, subasta distinta, audiencia distinta, señales de intención distintas. Reconstruimos la estructura para Bing, activamos targeting por perfil LinkedIn que la mayoría ignora y configuramos tracking dedicado para que el canal gane presupuesto con sus propios leads.",
+    },
+    problem: {
+      title: "Microsoft Ads no es una copia de tu cuenta de Google",
+      intro:
+        "La mayoría ignora el canal o importa las campañas de Google sin ajustar, dejando clics más baratos y calificados sobre la mesa.",
+      points: [
+        "Las campañas se importan de Google y nunca se ajustan a otra subasta y audiencia.",
+        "Menos competencia significa CPCs más bajos, pero solo si alguien gestiona la cuenta en vez de dejarla inactiva.",
+        "La segmentación por empresa, industria y puesto basada en LinkedIn queda sin usar.",
+        "Sin seguimiento de conversiones propio, el gasto en Microsoft se vuelve invisible y se recorta por defecto.",
+      ],
+    },
+    solution: {
+      title: "Un canal gestionado, construido para su propia subasta",
+      intro:
+        "Tratamos Microsoft Advertising como su propio programa: estructurado para la red, segmentado a la audiencia y medido por sus propios leads.",
+      points: [
+        "Estructura de cuenta e investigación de keywords construidas para la intención de Bing, no copiadas de Google.",
+        "Segmentación por perfil de LinkedIn para llegar a decisores por empresa, industria y puesto.",
+        "Copy de anuncios y extensiones escritos y probados para la audiencia de Microsoft.",
+        "Seguimiento de conversiones dedicado para atribuir cada lead al gasto que lo produjo.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con la gestión de Microsoft Ads",
+      subtitle: "Un canal gestionado por sus propios méritos, con informes accionables.",
+      items: [
+        {
+          title: "Configuración y Estructura de Cuenta",
+          description:
+            "Campañas, grupos de anuncios y ajustes construidos para la subasta de Microsoft, o una reconstrucción de una cuenta importada.",
+        },
+        {
+          title: "Investigación de Keywords y Audiencias",
+          description:
+            "Términos y audiencias mapeados a la intención de compra, con listas de negativas para proteger el presupuesto.",
+        },
+        {
+          title: "Segmentación por Perfil de LinkedIn",
+          description:
+            "Capas de segmentación por empresa, industria y puesto para llegar a los decisores correctos.",
+        },
+        {
+          title: "Copy de Anuncios y Extensiones",
+          description:
+            "Titulares, descripciones y extensiones escritos y probados para la audiencia de Microsoft.",
+        },
+        {
+          title: "Seguimiento de Conversiones",
+          description:
+            "Etiquetas UET, seguimiento de llamadas y objetivos para atribuir leads y ventas a las campañas correctas.",
+        },
+        {
+          title: "Optimización e Informes Continuos",
+          description:
+            "Ajustes de puja, presupuesto y creativos cada mes, con informes ligados a leads, no solo clics.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Cuenta Importada vs. Microsoft Ads Gestionado",
+      subtitle: "Qué cambia cuando el canal se gestiona para su propia subasta.",
+      layout: "impact",
+      columns: [
+        { header: "Importado de Google" },
+        { header: "KINEXIS Microsoft Ads", highlight: true },
+      ],
+      rows: [
+        { label: "Estructura", values: ["Copiada, sin tocar", "Construida para Bing"] },
+        { label: "Segmentación", values: ["Solo keywords", "Keywords + perfiles LinkedIn"] },
+        { label: "Costo por clic", values: ["Mismas pujas que Google", "Afinado a una subasta más barata"] },
+        { label: "Seguimiento", values: ["Compartido o ausente", "Seguimiento dedicado"] },
+        { label: "Gestión", values: ["Configurar y olvidar", "Optimización mensual"] },
+        { label: "Inversión", values: ["Sin gestión activa", "Desde $400/mes + inversión"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta la gestión de Microsoft Ads?",
+        answer:
+          "La gestión empieza en $400 al mes para una cuenta Starter, $800 para Growth y $1,800 o más para cuentas grandes con varias campañas. La inversión publicitaria se paga a Microsoft aparte y se factura al costo.",
+      },
+      {
+        question: "¿Vale la pena si ya hago Google Ads?",
+        answer:
+          "A menudo sí. Los CPCs suelen ser más bajos, la competencia es menor y la audiencia es de mayor edad e ingresos. Rara vez reemplaza a Google, pero suma volumen calificado a menor costo por lead cuando se gestiona bien.",
+      },
+      {
+        question: "¿Pueden reutilizar mis campañas de Google Ads?",
+        answer:
+          "Las importamos como punto de partida y luego reconstruimos estructura, pujas y segmentación para la subasta de Microsoft. Una importación directa casi siempre rinde menos porque la subasta y la audiencia se comportan distinto.",
+      },
+      {
+        question: "¿Qué tan rápido puede activarse la cuenta?",
+        answer:
+          "La mayoría de cuentas quedan configuradas, con seguimiento y activas en una a dos semanas. Reconstruir una cuenta importada desordenada toma un poco más, pero el seguimiento y la estructura van primero para no gastar a ciegas.",
+      },
+    ],
+  },
+  "copywriting": {
+    metaTitle: "Copywriting y Creación de Contenido | KINEXIS Digital",
+    metaDescription:
+      "Copywriting de conversión para sitios, landing pages, emails y anuncios, más una voz de marca definida. Escrito para que el lector actúe. Retainers desde $400/mes.",
+    hero: {
+      label: "Copywriting y Creación de Contenido",
+      line1: "Palabras que hacen",
+      line2: "actuar al lector.",
+      subtitle:
+        "Páginas de sitio, landing pages, emails y copy de anuncios escritos en torno a lo que tu comprador realmente necesita oír. Definimos una voz de marca una vez y la aplicamos en todo, para que el mensaje sea consistente y cada página pida un solo paso claro.",
+    },
+    answerBlock:
+      "El copywriting y la creación de contenido cubren copy de sitio y landing pages, emails y anuncios, voz de marca y mensajería, y contenido continuo. Los retainers empiezan en $400 al mes para un alcance Starter, $800 para Growth y $2,000 o más para Scale. La mayoría de primeros borradores se entregan en una a dos semanas del brief de mensajería.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de agencias entrega una guía de estilo y un redactor que enumera tus características. Nosotros empezamos con el lenguaje del cliente, cómo describen el problema, con qué te comparan, qué les hace dudar, luego construimos una guía de voz y escribimos cada pieza en torno a una acción en una página.",
+    },
+    problem: {
+      title: "La mayoría del copy empresarial habla de ti, no del lector",
+      intro:
+        "Las listas de características y los clichés prestados no le dan nada al lector para actuar, y una voz inconsistente erosiona la confianza entre canales.",
+      points: [
+        "El copy enumera lo que haces en vez de nombrar el problema con el que llegó el lector.",
+        "Afirmaciones intercambiables como \"confiable\" y \"orientado a resultados\" cabrían en cualquier competidor.",
+        "Las páginas ofrecen cinco opciones y no piden ninguna, así que el lector se va sin actuar.",
+        "Cada freelancer suena distinto, la voz se dispersa y la consistencia se rompe.",
+      ],
+    },
+    solution: {
+      title: "Una voz definida, aplicada a copy que convierte",
+      intro:
+        "Empezamos por el mensaje y el comprador, fijamos una voz reutilizable y escribimos cada pieza en torno a una sola acción clara.",
+      points: [
+        "Mensajería basada en el problema, las objeciones y la decisión que el lector intenta tomar.",
+        "Una voz de marca documentada para que cada página, email y anuncio suene a la misma empresa.",
+        "Un solo llamado a la acción por página en lugar de pedidos que compiten y estancan al lector.",
+        "Copy estructurado para conversión y búsqueda, no para llenar espacio.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con copywriting",
+      subtitle: "Una voz consistente y copy escrito para mover al lector, no para rellenar.",
+      items: [
+        {
+          title: "Mensajería y Voz de Marca",
+          description:
+            "Una voz, posicionamiento y marco de mensajería documentados que todo tu equipo puede aplicar de forma consistente.",
+        },
+        {
+          title: "Copy de Sitio y Landing Pages",
+          description:
+            "Copy de home, servicios y landing pages estructurado en torno al problema del lector y una acción clara.",
+        },
+        {
+          title: "Copy de Email y Nurture",
+          description:
+            "Emails de bienvenida, nurture y campañas escritos para generar confianza y reservar el siguiente paso.",
+        },
+        {
+          title: "Copy de Anuncios y Social",
+          description:
+            "Titulares, variaciones de anuncios y captions ajustados a la oferta y a la plataforma.",
+        },
+        {
+          title: "Contenido Largo y SEO",
+          description:
+            "Artículos y guías escritos para la intención de búsqueda con enlaces internos y una ruta de conversión.",
+        },
+        {
+          title: "Edición y Pase de Consistencia",
+          description:
+            "Una capa de revisión que mantiene tono, terminología y llamados a la acción consistentes en todo.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Copy Genérico vs. Copywriting de Conversión",
+      subtitle: "Qué cambia cuando las palabras se construyen en torno al lector.",
+      layout: "contrast",
+      columns: [
+        { header: "Quien Tuviera Tiempo" },
+        { header: "KINEXIS Copywriting", highlight: true },
+      ],
+      rows: [
+        { label: "Enfoque", values: ["Lo que haces", "Lo que el lector necesita"] },
+        { label: "Voz", values: ["Distinta cada vez", "Una voz documentada"] },
+        { label: "Llamado a la acción", values: ["Varios, o ninguno", "Un paso claro"] },
+        { label: "Búsqueda", values: ["Ignorada o saturada", "Escrita para intención real"] },
+        { label: "Consistencia", values: ["Se dispersa entre canales", "Sostenida por un estándar"] },
+        { label: "Inversión", values: ["Por pieza, ad hoc", "Desde $400/mes"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta el copywriting?",
+        answer:
+          "Los retainers empiezan en $400 al mes para un alcance Starter enfocado, $800 para Growth y $2,000 o más para Scale con mayor volumen entre canales. Los proyectos puntuales como reescribir un sitio completo se cotizan aparte.",
+      },
+      {
+        question: "¿Escriben en la voz de nuestra marca?",
+        answer:
+          "Sí. Al inicio definimos una voz y un marco de mensajería a partir de tu posicionamiento, audiencia y material existente. Cada pieza posterior se escribe según eso, para que la marca suene consistente sin importar quién lea.",
+      },
+      {
+        question: "¿Manejan también contenido SEO?",
+        answer:
+          "Sí. Los artículos y guías largas se escriben para la intención de búsqueda con enlaces internos y una ruta de conversión, para que el contenido posicione y aun así mueva al lector hacia una acción.",
+      },
+      {
+        question: "¿Qué tan rápido entregan borradores?",
+        answer:
+          "La mayoría de primeros borradores llega en una a dos semanas del brief de mensajería. Los retainers continuos trabajan con una cadencia mensual acordada, para que siempre sepas qué viene y cuándo.",
+      },
+    ],
+  },
+  "marketing-audits": {
+    metaTitle: "Auditorías de Marketing | KINEXIS Digital",
+    metaDescription:
+      "Una auditoría con datos de tu marketing: seguimiento, canales, embudo y gasto. Encuentra qué está roto y dónde se desperdicia presupuesto, con un plan priorizado. Desde $500.",
+    hero: {
+      label: "Auditorías de Marketing",
+      line1: "Encuentra qué frena",
+      line2: "realmente el crecimiento.",
+      subtitle:
+        "Una revisión estructurada de tu seguimiento, canales, embudo y gasto, respaldada por tus propios datos. Obtienes una imagen clara de qué funciona, qué se desperdicia y qué arreglar primero, en un orden ligado a ingresos, no a opiniones.",
+    },
+    answerBlock:
+      "Una auditoría de marketing revisa analítica y seguimiento, canales pagados y orgánicos, embudo y rutas de conversión, y asignación de presupuesto, y entrega un plan de acción priorizado. Una auditoría enfocada empieza en $500, una completa en $1,000 y una auditoría multicanal profunda en $2,500. La mayoría se entrega en una a tres semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría del marketing estancado se diagnostica a nivel de canal, más gasto en Google, una agencia nueva, otra herramienta. Validamos el tracking primero y trazamos el embudo completo, porque la fuga suele estar en los datos o en un handoff que nadie mapeó, no en el canal que todos culpan.",
+    },
+    problem: {
+      title: "El marketing estancado rara vez falla donde crees",
+      intro:
+        "Cuando no se puede confiar en los números, cada decisión posterior es una suposición, y el presupuesto sigue fluyendo a canales que nadie ha revisado.",
+      points: [
+        "El seguimiento está roto o mal configurado, así que los números reportados no coinciden con la realidad.",
+        "El tráfico y el gasto se ven bien, pero los leads caen donde nadie mira.",
+        "El presupuesto sigue yendo a canales por costumbre, no porque alguien probó que funcionan.",
+        "Los equipos suman gasto o otro canal para tapar un problema en vez de encontrarlo.",
+      ],
+    },
+    solution: {
+      title: "Una lectura clara de qué funciona y qué se desperdicia",
+      intro:
+        "Revisamos primero los datos, trazamos el embudo completo y ordenamos cada hallazgo por su impacto en ingresos.",
+      points: [
+        "Analítica y seguimiento validados de extremo a extremo, para que el resto de la auditoría se apoye en datos reales.",
+        "Cada canal revisado por costo por lead calificado, no por métricas de vanidad.",
+        "Caída del embudo mapeada del primer contacto al deal cerrado para exponer las fugas.",
+        "Un plan de acción priorizado: qué arreglar primero, qué cortar y qué mantener.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con una auditoría de marketing",
+      subtitle: "Una lectura documentada y priorizada de tu marketing, respaldada por tus propios números.",
+      items: [
+        {
+          title: "Revisión de Analítica y Seguimiento",
+          description:
+            "Una revisión completa de GA4, seguimiento de conversiones y de llamadas para confirmar que se puede confiar en los datos.",
+        },
+        {
+          title: "Análisis de Rendimiento por Canal",
+          description:
+            "Pagado, orgánico, email y social revisados por costo por lead calificado y retorno, no por clics.",
+        },
+        {
+          title: "Revisión de Embudo y Conversión",
+          description:
+            "Caída mapeada del primer contacto al deal cerrado, con las mayores fugas identificadas.",
+        },
+        {
+          title: "Análisis de Presupuesto y Gasto",
+          description:
+            "A dónde va el dinero, qué retorna y dónde se está desperdiciando.",
+        },
+        {
+          title: "Contexto de Competencia y Mercado",
+          description:
+            "Cómo se comparan tu visibilidad y posicionamiento con los competidores ante los que realmente pierdes.",
+        },
+        {
+          title: "Plan de Acción Priorizado",
+          description:
+            "Una hoja de ruta ordenada de arreglos y oportunidades, según su impacto en ingresos.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Suposición vs. Auditoría con Evidencia",
+      subtitle: "Qué cambia cuando las decisiones se apoyan en datos validados.",
+      layout: "ledger",
+      columns: [
+        { header: "Intuición" },
+        { header: "Auditoría KINEXIS", highlight: true },
+      ],
+      rows: [
+        { label: "Datos", values: ["Se asumen correctos", "Validados de extremo a extremo"] },
+        { label: "Canales", values: ["Juzgados por clics", "Juzgados por costo por lead"] },
+        { label: "Embudo", values: ["Sin mapear", "Fugas identificadas"] },
+        { label: "Presupuesto", values: ["En automático", "Ligado al retorno"] },
+        { label: "Resultado", values: ["Opiniones", "Plan de acción priorizado"] },
+        { label: "Inversión", values: ["Desperdicio continuo", "Desde $500 única vez"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta una auditoría de marketing?",
+        answer:
+          "Una auditoría enfocada en un solo área empieza en $500. Una auditoría completa de analítica, canales y embudo es $1,000. Una auditoría multicanal profunda con análisis de competencia y hoja de ruta detallada es $2,500.",
+      },
+      {
+        question: "¿Qué recibo exactamente?",
+        answer:
+          "Una auditoría documentada con hallazgos, evidencia de tus propios datos y un plan de acción priorizado. La recorremos en vivo contigo para que salgas sabiendo exactamente qué arreglar primero y por qué.",
+      },
+      {
+        question: "¿Tengo que contratarlos para ejecutar los arreglos?",
+        answer:
+          "No. La auditoría se sostiene sola y el plan es tuyo. Tu equipo puede ejecutarlo o podemos hacerlo nosotros. No hay obligación en ninguna dirección.",
+      },
+      {
+        question: "¿Cuánto tarda una auditoría?",
+        answer:
+          "Una auditoría enfocada suele estar lista en cerca de una semana. Una completa o multicanal corre dos a tres semanas según la cantidad de canales y qué tan limpio esté el seguimiento al empezar.",
+      },
+    ],
+  },
+  "marketing-automation-crm": {
+    metaTitle: "Automatización de Marketing y CRM | KINEXIS Digital",
+    metaDescription:
+      "Conectamos tus herramientas, construimos los workflows y enrutamos leads a ventas automáticamente. HubSpot, Salesforce, GoHighLevel y más. Proyectos desde $1,000.",
+    hero: {
+      label: "Automatización de Marketing y CRM",
+      line1: "Deja de perder leads",
+      line2: "entre tus herramientas.",
+      subtitle:
+        "Conectamos tu stack de marketing y ventas, construimos los workflows que de verdad se disparan y fijamos las reglas de handoff para que los leads se puntúen, enruten y nutran sin trabajo manual. El resultado es un sistema confiable e ingresos que puedes rastrear.",
+    },
+    answerBlock:
+      "La consultoría de automatización de marketing y CRM cubre selección y configuración de plataforma, automatización de workflows y nurture, lead scoring y handoff a ventas, integraciones e informes. Los proyectos empiezan en $1,000 para un build enfocado, $2,500 para una configuración completa y $5,000 o más para sistemas complejos con varias herramientas. La mayoría corre de dos a seis semanas.",
+    editorial: {
+      bridgeParagraph:
+        "La mayoría de proyectos de automatización se atascan en la integración, leads en una herramienta, deals en otra y un workflow que alguien empezó pero nunca terminó. Mapeamos el flujo que realmente necesitas, conectamos las herramientas y probamos cada disparador antes de que tu equipo dependa de ello.",
+    },
+    problem: {
+      title: "Tu stack de automatización te estorba",
+      intro:
+        "Workflows a medias y herramientas desconectadas hacen que buenos leads se enfríen, y nadie puede rastrear qué campaña produjo los últimos diez clientes.",
+      points: [
+        "Los leads viven en una plataforma y los deals en otra, así que conectarlos exige una exportación manual cada semana.",
+        "Alguien empezó a automatizar, se topó con un problema y se detuvo, y nadie confía en qué se dispara.",
+        "Marketing pasa leads sin definir qué es sales-ready, así que ventas persigue basura y los buenos se enfrían.",
+        "Nadie sabe qué campaña generó ingresos, así que el presupuesto se decide a ciegas.",
+      ],
+    },
+    solution: {
+      title: "Un sistema conectado, del lead al deal cerrado",
+      intro:
+        "Mapeamos el flujo que realmente necesitas, conectamos las herramientas y construimos automatización que enruta y nutre leads sin que nadie toque una hoja de cálculo.",
+      points: [
+        "La plataforma correcta para tu equipo y presupuesto, configurada o depurada como debe ser.",
+        "Workflows y secuencias de nurture que se disparan de forma confiable con comportamiento real.",
+        "Lead scoring y reglas claras de handoff para que ventas solo reciba leads que valen su tiempo.",
+        "Informes que ligan campañas a ingresos cerrados, para que el presupuesto tenga datos detrás.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con la consultoría de automatización y CRM",
+      subtitle: "Un stack conectado, workflows que funcionan e informes accionables.",
+      items: [
+        {
+          title: "Auditoría y Selección de Plataforma",
+          description:
+            "Una revisión de tu stack actual y, donde haga falta, la recomendación y configuración del CRM y las herramientas de automatización correctos.",
+        },
+        {
+          title: "Automatización de Workflows y Nurture",
+          description:
+            "Workflows conductuales y secuencias de varios pasos que se disparan con triggers reales, no por suposición.",
+        },
+        {
+          title: "Lead Scoring y Handoff a Ventas",
+          description:
+            "Reglas de puntuación y enrutamiento para que los leads sales-ready lleguen al rep correcto en el momento correcto.",
+        },
+        {
+          title: "Integraciones y Flujo de Datos",
+          description:
+            "Formularios, anuncios y herramientas conectados para que los leads se muevan automáticamente con sus etiquetas de fuente.",
+        },
+        {
+          title: "Configuración de Pipeline e Informes",
+          description:
+            "Etapas de deal y dashboards que ligan la actividad de marketing a los ingresos cerrados.",
+        },
+        {
+          title: "Documentación y Capacitación",
+          description:
+            "Documentación clara y un recorrido para que tu equipo pueda operar y confiar en el sistema.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Herramientas Desconectadas vs. un Sistema Conectado",
+      subtitle: "Qué cambia cuando el stack funciona como uno solo.",
+      layout: "ledger",
+      columns: [
+        { header: "Stack de Parches" },
+        { header: "Sistema KINEXIS", highlight: true },
+      ],
+      rows: [
+        { label: "Herramientas", values: ["No se hablan", "Totalmente integradas"] },
+        { label: "Workflows", values: ["A medias", "Confiables y probados"] },
+        { label: "Handoff", values: ["Sin reglas", "Puntuado y enrutado"] },
+        { label: "Datos", values: ["Exportaciones manuales", "Fluyen automáticamente"] },
+        { label: "Atribución", values: ["Ninguna", "De campaña a ingresos"] },
+        { label: "Inversión", values: ["Trabajo manual continuo", "Desde $1,000 por proyecto"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta la consultoría de automatización y CRM?",
+        answer:
+          "Un build enfocado empieza en $1,000. Una configuración completa con workflows, scoring e informes es $2,500. Los sistemas complejos con varias herramientas e integraciones profundas corren $5,000 o más. Las licencias de plataforma las factura el proveedor aparte.",
+      },
+      {
+        question: "¿Con qué plataformas trabajan?",
+        answer:
+          "HubSpot, Salesforce, ActiveCampaign, GoHighLevel, Klaviyo y la mayoría de CRMs y herramientas de automatización comunes. Si ya tienes una plataforma, solemos trabajar dentro de ella en vez de empujar una migración que no necesitas.",
+      },
+      {
+        question: "¿Pueden arreglar una configuración existente en vez de empezar de cero?",
+        answer:
+          "Sí, y a menudo es lo correcto. Auditamos lo que tienes, conservamos lo que funciona, arreglamos lo roto y construimos solo lo que falta, para que tengas un sistema funcionando sin tirar la inversión que ya hiciste.",
+      },
+      {
+        question: "¿Lo entregan o lo gestionan de forma continua?",
+        answer:
+          "Ambas. La mayoría de proyectos termina con documentación y capacitación para que tu equipo lo opere. Si prefieres que lo gestionemos y sigamos optimizando el sistema, lo ofrecemos como retainer.",
+      },
+    ],
+  },
+  "fractional-cmo": {
+    metaTitle: "Servicios de CMO Fraccional | KINEXIS Digital",
+    metaDescription:
+      "Liderazgo de marketing senior sin una contratación de tiempo completo. Estrategia, control del presupuesto, gestión de proveedores y responsabilidad ligada a ingresos. Desde $2,500/mes.",
+    hero: {
+      label: "Servicios de CMO Fraccional",
+      line1: "Liderazgo de marketing senior,",
+      line2: "sin la contratación de tiempo completo.",
+      subtitle:
+        "Un líder de marketing con experiencia integrado en tu negocio a tiempo parcial: dueño de la estrategia, el presupuesto, los proveedores y los números. Obtienes dirección y responsabilidad a nivel ejecutivo sin el costo de un CMO full-time que aún no necesitas.",
+    },
+    answerBlock:
+      "Los servicios de CMO fraccional aportan liderazgo de marketing senior a tiempo parcial: estrategia, control del presupuesto, gestión de equipo y proveedores, e informes ligados a ingresos. Los compromisos empiezan en $2,500 al mes para un alcance Starter, $5,000 para Growth y $10,000 o más para Scale. La mayoría corre mes a mes con un plan trimestral definido.",
+    editorial: {
+      bridgeParagraph:
+        "Fundadores y gerentes junior terminan llevando el marketing por defecto, aprobando tácticas, no siendo dueños de un plan. Entramos con autoridad de presupuesto, responsabilidad sobre proveedores y un roadmap trimestral ligado al pipeline, para que marketing tenga un dueño sin la contratación full-time de $250K.",
+    },
+    problem: {
+      title: "Las empresas en crecimiento se estancan sin liderazgo de marketing",
+      intro:
+        "Los gerentes junior se saturan, los fundadores llevan el marketing de lado y nadie es dueño del plan ni responsabiliza a los proveedores.",
+      points: [
+        "Sin un líder, el marketing se vuelve una lista de tácticas sin un plan que ligue gasto e ingresos.",
+        "Agencias y freelancers operan sin control porque nadie senior los responsabiliza por resultados.",
+        "El presupuesto sigue la costumbre y la opinión en vez de los números que rinden.",
+        "Un CMO full-time está fuera de alcance, así que el puesto queda vacío y el crecimiento se estanca.",
+      ],
+    },
+    solution: {
+      title: "Dirección ejecutiva, ligada a tus números",
+      intro:
+        "Entramos como tu líder de marketing: fijamos la estrategia, somos dueños del presupuesto, gestionamos los proveedores e informamos sobre el retorno.",
+      points: [
+        "Una estrategia documentada y un plan trimestral que ligan cada dólar a una meta de ingresos.",
+        "Control del presupuesto con gasto desplazado hacia lo que rinde y lejos de lo que no.",
+        "Gestión de proveedores y equipo para que agencias y freelancers respondan por resultados reales.",
+        "Informes regulares a ti o al directorio sobre pipeline, costo por lead y retorno.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con un CMO fraccional",
+      subtitle: "Liderazgo senior integrado en tu negocio, responsable de los números.",
+      items: [
+        {
+          title: "Estrategia y Hoja de Ruta de Marketing",
+          description:
+            "Una estrategia documentada y un plan trimestral ligados a metas de ingresos y unit economics.",
+        },
+        {
+          title: "Control del Presupuesto",
+          description:
+            "Asignación y reasignación del gasto según el rendimiento, con seguimiento claro del ROI.",
+        },
+        {
+          title: "Gestión de Equipo y Proveedores",
+          description:
+            "Dirección y responsabilidad para tu equipo interno, agencias y freelancers.",
+        },
+        {
+          title: "Supervisión de Canales y Campañas",
+          description:
+            "Revisión senior de cada canal para que el mix se mantenga alineado al plan.",
+        },
+        {
+          title: "Informes y Alineación de Liderazgo",
+          description:
+            "Informes regulares a fundadores o al directorio sobre pipeline, costo por lead y retorno.",
+        },
+        {
+          title: "Guía de Contratación y Procesos",
+          description:
+            "Ayuda para construir el equipo y los procesos correctos a medida que el marketing escala más allá de la etapa fraccional.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Sin Liderazgo vs. un CMO Fraccional",
+      subtitle: "Qué cambia cuando alguien senior es dueño del marketing.",
+      layout: "contrast",
+      columns: [
+        { header: "Sin Líder de Marketing" },
+        { header: "CMO Fraccional KINEXIS", highlight: true },
+      ],
+      rows: [
+        { label: "Estrategia", values: ["Tácticas por defecto", "Plan documentado"] },
+        { label: "Presupuesto", values: ["Gastado por intuición", "Controlado y rastreado"] },
+        { label: "Proveedores", values: ["Sin gestión", "Responsables por resultados"] },
+        { label: "Responsabilidad", values: ["Difusa", "Un dueño"] },
+        { label: "Costo", values: ["CMO full-time de $250K", "Desde $2,500/mes"] },
+        { label: "Compromiso", values: ["Contratación permanente", "Mes a mes"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuesta un CMO fraccional?",
+        answer:
+          "Los compromisos empiezan en $2,500 al mes para un alcance Starter con estrategia y supervisión, $5,000 para un Growth más práctico y $10,000 o más en Scale. Es una fracción del costo total de más de $200K de un CMO de tiempo completo.",
+      },
+      {
+        question: "¿Cuánto tiempo dedican realmente?",
+        answer:
+          "Escala con el compromiso, normalmente una cantidad definida de días u horas al mes más disponibilidad para decisiones clave. El punto es dirección y responsabilidad senior, no ocupar una silla, así que el tiempo se enfoca en el trabajo de mayor palanca.",
+      },
+      {
+        question: "¿Reemplazan a nuestro equipo o trabajan con él?",
+        answer:
+          "Lideramos el equipo y los proveedores que ya tienes. La mayoría de clientes conserva a su gente y agencias; nosotros les damos estrategia, los responsabilizamos y llenamos el vacío de liderazgo que frenaba todo.",
+      },
+      {
+        question: "¿Hay un contrato a largo plazo?",
+        answer:
+          "Los compromisos corren mes a mes en torno a un plan trimestral definido. Muchos clientes usan un CMO fraccional para puentear el crecimiento hasta que una contratación full-time tenga sentido, y ayudamos a definir y contratar ese rol cuando llega el momento.",
+      },
+    ],
+  },
+  "training-workshops": {
+    metaTitle: "Capacitación y Talleres de Marketing | KINEXIS Digital",
+    metaDescription:
+      "Capacitación práctica de marketing sobre tus propias cuentas y negocio. SEO, ads, analítica y más, con plantillas que tu equipo sigue usando. Sesiones desde $500.",
+    hero: {
+      label: "Capacitación y Talleres",
+      line1: "Construye las habilidades",
+      line2: "internamente.",
+      subtitle:
+        "Capacitación práctica de marketing sobre tus propias cuentas, no ejemplos hipotéticos. Tu equipo aprende haciendo el trabajo real, se queda con plantillas y procesos que sigue usando, y gana la confianza para lanzar campañas y leer los números sin ayuda externa.",
+    },
+    answerBlock:
+      "La capacitación y los talleres de marketing cubren SEO, ads pagados, analítica, contenido, email y estrategia, impartidos de forma práctica usando tus propias cuentas y datos. Una sesión individual empieza en $500, un taller de día completo en $1,500, y los programas de varios días o continuos se cotizan a medida. Las sesiones se adaptan al nivel y las herramientas de tu equipo.",
+    editorial: {
+      bridgeParagraph:
+        "Los cursos grabados enseñan teoría en la cuenta de otro, tu equipo mira, asiente y se congela cuando una campaña real necesita arreglo. Construimos el currículo alrededor de tus brechas, ejecutamos sesiones en tus cuentas en vivo y dejamos plantillas que todo el equipo sigue usando después del día.",
+    },
+    problem: {
+      title: "Los cursos genéricos de marketing no se fijan",
+      intro:
+        "Las clases grabadas y los ejemplos hipotéticos crean una falsa sensación de dominio que se evapora al aparecer el trabajo real.",
+      points: [
+        "Un curso sobre la cuenta de otro enseña teoría pero nunca cómo aplica a tu mercado y herramientas.",
+        "El video pasivo se siente productivo y luego se evapora cuando llega la tarea real.",
+        "Una persona toma el curso y nada se convierte en un proceso repetible del equipo.",
+        "La sesión termina, las dudas se acumulan y sin seguimiento la nueva habilidad se apaga.",
+      ],
+    },
+    solution: {
+      title: "Aprender haciendo el trabajo real",
+      intro:
+        "Capacitamos a tu equipo sobre tus propias cuentas, dejamos plantillas reutilizables y seguimos disponibles para que las habilidades realmente se fijen.",
+      points: [
+        "Sesiones construidas en torno a tu negocio, herramientas y campañas actuales, no ejemplos genéricos.",
+        "Trabajo práctico sobre cuentas en vivo para que el equipo practique con lo que de verdad gestionará.",
+        "Plantillas, checklists y procesos que el equipo sigue usando después de la sesión.",
+        "Soporte de seguimiento para que las dudas se respondan y las habilidades se fijen.",
+      ],
+    },
+    deliverables: {
+      title: "Qué obtienes con capacitación y talleres",
+      subtitle: "Habilidades prácticas, assets reutilizables y un equipo que puede llevar el trabajo.",
+      items: [
+        {
+          title: "Currículo a Medida",
+          description:
+            "Un plan de sesión construido en torno al nivel de tu equipo, sus herramientas y las metas que necesitas alcanzar.",
+        },
+        {
+          title: "Sesiones Prácticas",
+          description:
+            "Capacitación en vivo sobre tus propias cuentas y datos, para que el equipo practique con trabajo real.",
+        },
+        {
+          title: "Plantillas y Playbooks",
+          description:
+            "Checklists, plantillas y procesos que tu equipo conserva y reutiliza tras la capacitación.",
+        },
+        {
+          title: "Cobertura de Temas",
+          description:
+            "SEO, ads pagados, analítica, contenido, email y estrategia, enfocados donde más lo necesitas.",
+        },
+        {
+          title: "Sesiones Grabadas",
+          description:
+            "Grabaciones y materiales para que las nuevas incorporaciones se pongan al día después.",
+        },
+        {
+          title: "Soporte de Seguimiento",
+          description:
+            "Una ventana de soporte tras la sesión para que las dudas se respondan y las habilidades se fijen.",
+        },
+      ],
+    },
+    comparison: {
+      title: "Curso Genérico vs. Capacitación Práctica",
+      subtitle: "Qué cambia cuando la capacitación usa tu propio trabajo.",
+      layout: "stacked",
+      columns: [
+        { header: "Curso Grabado" },
+        { header: "Capacitación KINEXIS", highlight: true },
+      ],
+      rows: [
+        { label: "Ejemplos", values: ["La cuenta de otro", "Tus propias cuentas"] },
+        { label: "Formato", values: ["Mirar pasivamente", "Hacer el trabajo real"] },
+        { label: "Lo que te llevas", values: ["Apuntes", "Plantillas y playbooks"] },
+        { label: "Retención", values: ["Una persona, se apaga", "Proceso de equipo que se fija"] },
+        { label: "Soporte", values: ["Ninguno", "Ventana de seguimiento"] },
+        { label: "Inversión", values: ["Por asiento", "Desde $500/sesión"] },
+      ],
+    },
+    extraFaqs: [
+      {
+        question: "¿Cuánto cuestan la capacitación y los talleres?",
+        answer:
+          "Una sesión enfocada individual empieza en $500. Un taller de día completo es $1,500. Los programas de varios días y la capacitación continua se cotizan a medida según el tamaño del equipo, los temas y el formato.",
+      },
+      {
+        question: "¿Qué temas pueden cubrir?",
+        answer:
+          "SEO, Google y Meta ads, analítica y GA4, contenido, email marketing y estrategia de marketing. Adaptamos el currículo al nivel de tu equipo y a las herramientas que realmente usan.",
+      },
+      {
+        question: "¿Pueden capacitar sobre nuestras propias cuentas?",
+        answer:
+          "Sí, y lo recomendamos. Trabajar sobre tus cuentas y datos en vivo es lo que hace que la capacitación se fije, porque el equipo practica exactamente con lo que gestionará después.",
+      },
+      {
+        question: "¿Es presencial o remoto?",
+        answer:
+          "Ambos. Las sesiones corren de forma remota por defecto, lo que se adapta a la mayoría de equipos, y podemos impartir talleres presenciales para grupos más grandes o formatos de día completo cuando eso funciona mejor.",
       },
     ],
   },

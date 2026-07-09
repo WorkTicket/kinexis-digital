@@ -21,8 +21,9 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
-import TwoLineText from "@/components/ui/TwoLineText";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import Section from "@/components/shared/services/Section";
 import { EASE_OUT } from "@/lib/motion-config";
 
 const beforeIcons: LucideIcon[] = [Clock, FileX, EyeOff, Sparkles, RefreshCw];
@@ -121,7 +122,7 @@ function DashboardCard({
           <span>{pipelineLabel}</span>
           <span className={isBefore ? "text-red-400/40" : "text-neon-cyan/70"}>{pipelineValue}</span>
         </div>
-        <div className="h-1.5 overflow-hidden rounded-full bg-white/[0.06]">
+        <div className="h-1.5 overflow-hidden rounded-full bg-surface-hover">
           <motion.div
             className={cn(
               "h-full rounded-full",
@@ -185,8 +186,8 @@ function ComparisonListItem({
         className={cn(
           "group/item relative flex w-full min-h-[3.75rem] items-center gap-4 rounded-xl border px-4 py-3.5 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan/40",
           isBefore
-            ? "border-white/[0.04] bg-white/[0.015] hover:border-red-500/10 hover:bg-red-950/20"
-            : "border-neon-cyan/10 bg-white/[0.025] hover:border-neon-cyan/20 hover:bg-neon-cyan/[0.04] hover:shadow-[0_0_24px_-8px_rgba(0,212,255,0.25)]",
+            ? "border-subtle bg-surface-base hover:border-red-500/10 hover:bg-red-950/20"
+            : "border-neon-cyan/10 bg-surface-base hover:border-neon-cyan/20 hover:bg-neon-cyan/[0.04] hover:shadow-[0_0_24px_-8px_rgba(0,212,255,0.25)]",
           isOpen && (isBefore ? "border-red-500/15 bg-red-950/25" : "border-neon-cyan/25 bg-neon-cyan/[0.06]")
         )}
       >
@@ -298,7 +299,7 @@ function ComparisonPanel({
     <motion.div
       className={cn(
         "relative flex flex-col p-6 md:p-8 lg:p-10",
-        isBefore ? "border-b border-white/[0.06] lg:border-b-0 lg:border-r" : ""
+        isBefore ? "border-b border-surface lg:border-b-0 lg:border-r" : ""
       )}
       initial={fadeUp.hidden}
       whileInView={{
@@ -336,7 +337,7 @@ function ComparisonPanel({
           >
             {eyebrow}
           </span>
-          <h3 className={cn("mt-2 text-xl font-bold tracking-tight md:text-2xl", titleClassName)}>{title}</h3>
+          <h3 className={cn("type-subheader mt-2", titleClassName)}>{title}</h3>
         </div>
         {badge}
       </div>
@@ -375,7 +376,9 @@ function ComparisonPanel({
   );
 }
 
-export default function Philosophy() {
+type Props = { surfaceIndex?: number };
+
+export default function Philosophy({ surfaceIndex = 0 }: Props) {
   const t = useTranslations("philosophy");
   const tCommon = useTranslations("common");
   const { fadeUp } = useMotionVariants();
@@ -427,7 +430,7 @@ export default function Philosophy() {
   );
 
   return (
-    <section className="section-padding relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
+    <Section id="philosophy" surfaceIndex={surfaceIndex} className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.028)_1px,transparent_1px)] bg-[size:26px_26px] opacity-35"
         aria-hidden
@@ -446,15 +449,12 @@ export default function Philosophy() {
       />
 
       <div className="container-site relative z-10">
-        <div className="section-header">
-          <span className="section-label">{t("label")}</span>
-          <h2 className="section-title">
-            <TwoLineText text={t("title")} variant="section" />
-          </h2>
-          <p className="section-subtitle">
-            <TwoLineText text={t("subtitle")} variant="body" />
-          </p>
-        </div>
+        <SectionHeader
+          badge={t("label")}
+          title={t("title")}
+          description={t("subtitle")}
+          headingId="philosophy-heading"
+        />
 
         <div className="mx-auto mt-14 max-w-6xl lg:mt-16">
           <div className="relative overflow-hidden rounded-3xl border border-surface bg-gradient-to-br from-white/[0.04] via-bg-secondary/95 to-bg-dark shadow-panel-lg">
@@ -485,7 +485,7 @@ export default function Philosophy() {
                 onToggleTooltip={handleToggleTooltip}
               />
 
-              <div className="relative flex items-center justify-center self-stretch border-b border-white/[0.06] px-6 py-5 lg:border-b-0 lg:border-x lg:border-white/[0.06] lg:px-5 lg:py-10">
+              <div className="relative flex items-center justify-center self-stretch border-b border-surface px-6 py-5 lg:border-b-0 lg:border-x lg:border-surface lg:px-5 lg:py-10">
                 <div
                   className="pointer-events-none absolute inset-x-3 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-red-500/20 via-white/10 to-neon-cyan/30"
                   aria-hidden
@@ -539,6 +539,6 @@ export default function Philosophy() {
           </Button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

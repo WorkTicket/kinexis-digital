@@ -39,10 +39,17 @@ export type WebDesignContent = {
   perfMetrics: PerfMetricContent[];
   buildProcessTitle: string;
   buildProcessSubtitle: string;
+  processIntro: string;
   phases: ServicePhase[];
+  capabilityBodies: {
+    uxAudit: string;
+    conversionOptimization: string;
+  };
   ctaHeadline: string;
   ctaSubtitle: string;
   ctaLabel: string;
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -53,7 +60,7 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
     heroHeadlineLine2: "like products.",
     heroSubtitle:
       "We don't build template sites.|Every layout, interaction, and pixel is designed to turn visitors into qualified leads.",
-    heroCtaLabel: "Start Your Project",
+    heroCtaLabel: "Start Your Site Project",
     beforeAfterTitle: "Before & After",
     beforeAfterSubtitle:
       "Real before-and-after results from real projects.|Every number represents a measurable business outcome.",
@@ -131,38 +138,43 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
       { label: "Accessibility", sub: "WCAG 2.1 compliant" },
     ],
     buildProcessTitle: "The build process.",
-    buildProcessSubtitle:
-      "From discovery to launch,|every phase has a clear deliverable and a defined success metric.",
+    buildProcessSubtitle: "Four phases from discovery to launch. Each with a clear deliverable.",
+    processIntro:
+      "We do not start with mood boards. Discovery maps how buyers decide, wireframes test the conversion path, then design and development serve that flow, with performance benchmarks enforced at every gate.",
     phases: [
       {
         title: "Discovery & Strategy",
         desc: "User behavior analysis, competitor audit, stakeholder interviews. Output: strategic brief and sitemap.",
-        metric: "Strategic brief delivered in week 1",
+        metric: "",
       },
       {
         title: "UX & Wireframing",
         desc: "High-fidelity wireframes mapping every user journey. Navigation flows tested before a single pixel is designed.",
-        metric: "Every user journey mapped before design",
+        metric: "",
       },
       {
         title: "Visual Design",
         desc: "Full-color mockups rooted in conversion psychology. Each block has a clear hierarchy and purpose.",
-        metric: "Conversion-focused mockups in 2 weeks",
+        metric: "",
       },
       {
-        title: "Development & QA",
-        desc: "Clean code, Lighthouse 90+, WCAG accessible. Cross-browser tested on every device.",
-        metric: "Lighthouse 90+ on every build",
-      },
-      {
-        title: "Launch & Handoff",
-        desc: "Zero-downtime deployment, DNS migration, CMS training. Your team can hit the ground running.",
-        metric: "Zero-downtime deployment guaranteed",
+        title: "Development, QA & Launch",
+        desc: "Clean code, Lighthouse 90+, WCAG accessible. Zero-downtime deployment with CMS training for your team.",
+        metric: "",
       },
     ],
+    capabilityBodies: {
+      uxAudit:
+        "Most redesigns start with aesthetics. We start with where visitors drop off, heatmaps, session recordings, and funnel data on the pages that matter. The audit maps friction points, form abandonment, and mobile breakpoints before any design work begins.",
+      conversionOptimization:
+        "Every layout decision maps to one action: book a call, request a quote, start a trial. CTAs sit where visitors decide, trust signals appear before the ask, and forms stay short enough that mobile visitors actually finish them.",
+    },
     ctaHeadline: "Ready for a website that works as hard as you do?",
     ctaSubtitle: "Let's build a site that turns visitors into qualified leads,|starting today.",
-    ctaLabel: "Start Your Project",
+    ctaLabel: "See Web Pricing",
+    inlineCtaLabel: "Get a Site Review",
+    inlineCtaSubtitle:
+      "We will review your current site's conversion path, mobile experience, and page speed. Then outline the highest-impact fixes before a full rebuild.",
     faqs: [
       { question: "How long does a website project take?", answer: "Most projects run 6–10 weeks: 1 week discovery, 1–2 weeks UX and wireframing, 2–3 weeks visual design, 2–3 weeks development and QA, then launch. Complex sites with e-commerce or custom functionality may take longer." },
       { question: "Do you build on specific platforms or CMS?", answer: "We build custom sites and work with WordPress and Webflow depending on your team's needs and the complexity of the project. We recommend the right stack for your goals, not the one that's easiest for us." },
@@ -177,7 +189,7 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
     heroHeadlineLine2: "como productos.",
     heroSubtitle:
       "No construimos sitios con plantillas.|Cada diseño, interacción y píxel está diseñado para convertir visitantes en leads calificados.",
-    heroCtaLabel: "Inicia Tu Proyecto",
+    heroCtaLabel: "Inicia Tu Proyecto de Sitio",
     beforeAfterTitle: "Antes y Después",
     beforeAfterSubtitle:
       "Resultados reales de antes y después en proyectos reales.|Cada número representa un resultado de negocio medible.",
@@ -255,38 +267,43 @@ export const webDesignContent: Record<Locale, WebDesignContent> = {
       { label: "Accesibilidad", sub: "Cumple WCAG 2.1" },
     ],
     buildProcessTitle: "El proceso de construcción.",
-    buildProcessSubtitle:
-      "Del descubrimiento al lanzamiento,|cada fase tiene un entregable claro y una métrica de éxito definida.",
+    buildProcessSubtitle: "Cuatro fases desde discovery hasta lanzamiento, cada una con un entregable claro.",
+    processIntro:
+      "No empezamos con mood boards. El discovery mapea cómo deciden tus compradores, los wireframes prueban la ruta de conversión, y diseño y desarrollo sirven ese flujo, con benchmarks de rendimiento en cada etapa.",
     phases: [
       {
         title: "Descubrimiento y Estrategia",
         desc: "Análisis de comportamiento de usuario, auditoría de competidores, entrevistas con stakeholders. Entregable: brief estratégico y mapa del sitio.",
-        metric: "Brief estratégico entregado en la semana 1",
+        metric: "",
       },
       {
         title: "UX y Wireframing",
         desc: "Wireframes de alta fidelidad mapeando cada recorrido de usuario. Flujos de navegación probados antes de diseñar un solo píxel.",
-        metric: "Cada recorrido de usuario mapeado antes del diseño",
+        metric: "",
       },
       {
         title: "Diseño Visual",
         desc: "Mockups a todo color basados en psicología de conversión. Cada elemento tiene una jerarquía y una función.",
-        metric: "Mockups enfocados en conversión en 2 semanas",
+        metric: "",
       },
       {
-        title: "Desarrollo y QA",
-        desc: "Código limpio, Lighthouse 90+, accesible WCAG. Probado en todos los navegadores y dispositivos.",
-        metric: "Lighthouse 90+ en cada build",
-      },
-      {
-        title: "Lanzamiento y Entrega",
-        desc: "Despliegue sin tiempo de inactividad, migración DNS, capacitación CMS. Tu equipo puede empezar de inmediato.",
-        metric: "Despliegue sin tiempo de inactividad garantizado",
+        title: "Desarrollo, QA y Lanzamiento",
+        desc: "Código limpio, Lighthouse 90+, accesible WCAG. Despliegue sin tiempo de inactividad con capacitación CMS para tu equipo.",
+        metric: "",
       },
     ],
+    capabilityBodies: {
+      uxAudit:
+        "La mayoría de los rediseños empieza con estética. Nosotros empezamos con dónde abandonan los visitantes, heatmaps, grabaciones de sesión y datos de embudo en las páginas que importan. La auditoría mapea puntos de fricción, abandono de formularios y breakpoints móviles antes de cualquier trabajo de diseño.",
+      conversionOptimization:
+        "Cada decisión de layout mapea a una acción: reservar llamada, pedir cotización, iniciar prueba. Los CTAs están donde los visitantes deciden, las señales de confianza aparecen antes del pedido y los formularios son lo bastante cortos para que visitantes móviles los completen.",
+    },
     ctaHeadline: "¿Listo para un sitio web que trabaje tan duro como tú?",
     ctaSubtitle: "Construyamos un sitio que convierta visitantes en leads calificados,|empezando hoy.",
-    ctaLabel: "Inicia Tu Proyecto",
+    ctaLabel: "Ver Precios Web",
+    inlineCtaLabel: "Obtén una Revisión de Sitio",
+    inlineCtaSubtitle:
+      "Revisaremos la ruta de conversión de tu sitio actual, experiencia móvil y velocidad de página, luego delinearemos las correcciones de mayor impacto antes de un rebuild completo.",
     faqs: [
       { question: "¿Cuánto tiempo tarda un proyecto de diseño web?", answer: "La mayoría de los proyectos duran 6-10 semanas: 1 de discovery, 1-2 de UX y wireframing, 2-3 de diseño visual, 2-3 de desarrollo y QA y luego el lanzamiento. Sitios complejos con e-commerce pueden tardar más." },
       { question: "¿En qué plataformas o CMS construyen?", answer: "Construimos sitios personalizados y trabajamos con WordPress y Webflow según las necesidades de tu equipo y la complejidad del proyecto. Recomendamos la mejor opción para tus objetivos, no la más fácil para nosotros." },

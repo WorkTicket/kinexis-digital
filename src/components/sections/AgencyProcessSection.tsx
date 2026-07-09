@@ -12,12 +12,15 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import Button from "@/components/ui/Button";
-import TwoLineText from "@/components/ui/TwoLineText";
+import SectionHeader from "@/components/ui/SectionHeader";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import type { AgencyHubContent } from "@/content/agency-hub";
+import Section from "@/components/shared/services/Section";
+import { cardClasses } from "@/lib/card-styles";
 
 type Props = {
   process: AgencyHubContent["process"];
+  surfaceIndex?: number;
 };
 
 const phaseMeta: {
@@ -63,7 +66,7 @@ function DeliverablesPanel({
         <WindowChrome />
       </div>
 
-      <div className="relative flex-1 overflow-hidden rounded-2xl border border-white/[0.06] bg-black/25 p-6 md:p-8">
+      <div className={cardClasses({ hover: false, className: "relative flex-1 overflow-hidden !bg-black/25 !p-6 md:!p-8" })}>
         <div
           className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full blur-[70px]"
           style={{ background: glow }}
@@ -74,7 +77,7 @@ function DeliverablesPanel({
           {deliverables.map((item, i) => (
             <motion.li
               key={item}
-              className="flex items-start gap-3.5 rounded-xl border border-white/[0.05] bg-white/[0.025] px-4 py-3.5"
+              className="flex items-start gap-3.5 rounded-xl border border-subtle bg-surface-base px-4 py-3.5"
               initial={reducedMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
@@ -103,7 +106,7 @@ function DeliverablesPanel({
           <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
             Typical outcome
           </p>
-          <p className="mt-2 text-xl font-bold tracking-tight md:text-2xl" style={{ color: accent }}>
+          <p className="type-subheader mt-2" style={{ color: accent }}>
             {outcome}
           </p>
         </div>
@@ -112,7 +115,7 @@ function DeliverablesPanel({
   );
 }
 
-export default function AgencyProcessSection({ process }: Props) {
+export default function AgencyProcessSection({ process, surfaceIndex = 0 }: Props) {
   const reducedMotion = usePrefersReducedMotion();
   const [activeStep, setActiveStep] = useState(0);
 
@@ -134,7 +137,7 @@ export default function AgencyProcessSection({ process }: Props) {
   }, []);
 
   return (
-    <section className="section-padding relative overflow-hidden">
+    <Section id="agency-process" surfaceIndex={surfaceIndex} className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.028)_1px,transparent_1px)] bg-[size:26px_26px] opacity-35"
         aria-hidden
@@ -162,15 +165,12 @@ export default function AgencyProcessSection({ process }: Props) {
       </AnimatePresence>
 
       <div className="container-site relative z-10">
-        <div className="section-header">
-          <span className="section-label">Process</span>
-          <h2 className="section-title">
-            <TwoLineText text={process.title} variant="section" />
-          </h2>
-          <p className="section-subtitle">
-            <TwoLineText text={process.subtitle} variant="body" />
-          </p>
-        </div>
+        <SectionHeader
+          badge="Process"
+          title={process.title}
+          description={process.subtitle}
+          headingId="agency-process-heading"
+        />
 
         {/* Desktop pipeline navigator */}
         <div className="mx-auto mt-16 hidden max-w-4xl lg:block">
@@ -192,10 +192,10 @@ export default function AgencyProcessSection({ process }: Props) {
                     <span
                       className={`relative flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-2xl border transition-all duration-500 ${
                         isActive
-                          ? "border-neon-cyan/40 bg-white/[0.06] shadow-lg shadow-neon-cyan/10"
+                          ? "border-neon-cyan/40 bg-surface-hover shadow-lg shadow-neon-cyan/10"
                           : isPast
-                            ? "border-neon-cyan/20 bg-white/[0.03]"
-                            : "border-white/[0.08] bg-white/[0.02] group-hover:border-white/15 group-hover:bg-white/[0.04]"
+                            ? "border-neon-cyan/20 bg-surface-raised"
+                            : "border-strong bg-surface-base group-hover:border-strong group-hover:bg-surface-glass"
                       }`}
                     >
                       {isActive && (
@@ -231,7 +231,7 @@ export default function AgencyProcessSection({ process }: Props) {
                       className="relative mx-3 mt-[2.125rem] h-px min-w-[2rem] flex-1 self-start"
                       aria-hidden
                     >
-                      <div className="absolute inset-0 bg-white/[0.06]" />
+                      <div className="absolute inset-0 bg-surface-hover" />
                       <motion.div
                         className="absolute inset-y-0 left-0 bg-gradient-to-r from-neon-cyan/30 via-neon-cyan/70 to-neon-cyan"
                         initial={false}
@@ -259,7 +259,7 @@ export default function AgencyProcessSection({ process }: Props) {
                 className={`flex shrink-0 items-center gap-2.5 rounded-full border px-4 py-2.5 transition-all duration-400 ${
                   isActive
                     ? "border-neon-cyan/35 bg-neon-cyan/[0.08] text-white"
-                    : "border-white/[0.08] bg-white/[0.02] text-white/50"
+                    : "border-strong bg-surface-base text-white/50"
                 }`}
                 aria-current={isActive ? "step" : undefined}
               >
@@ -289,7 +289,7 @@ export default function AgencyProcessSection({ process }: Props) {
                 aria-hidden
               />
               <div className="relative grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-                <div className="border-b border-white/[0.06] p-8 md:p-10 lg:border-b-0 lg:border-r lg:p-12">
+                <div className="border-b border-surface p-8 md:p-10 lg:border-b-0 lg:border-r lg:p-12">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-white/40">
                       <span className="relative flex h-1.5 w-1.5">
@@ -301,7 +301,7 @@ export default function AgencyProcessSection({ process }: Props) {
 
                   <div className="mt-8 flex items-start gap-5">
                     <div
-                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.04]"
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-strong bg-surface-glass"
                       style={{ boxShadow: `0 0 32px ${active.glow}` }}
                     >
                       <active.icon className="h-6 w-6 text-neon-cyan" strokeWidth={1.5} />
@@ -319,7 +319,7 @@ export default function AgencyProcessSection({ process }: Props) {
                       {active.deliverables.map((tag) => (
                         <span
                           key={tag}
-                          className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/55"
+                          className="rounded-full border border-strong bg-surface-raised px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/55"
                         >
                           {tag}
                         </span>
@@ -336,7 +336,7 @@ export default function AgencyProcessSection({ process }: Props) {
                     >
                       Previous
                     </button>
-                    <div className="h-px flex-1 bg-white/[0.06]" />
+                    <div className="h-px flex-1 bg-surface-hover" />
                     {activeStep < steps.length - 1 ? (
                       <button
                         type="button"
@@ -380,9 +380,9 @@ export default function AgencyProcessSection({ process }: Props) {
                 key={step.phase}
                 type="button"
                 onClick={() => goToStep(i)}
-                className="flex w-full items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-4 text-left transition-colors hover:border-white/10 hover:bg-white/[0.03]"
+                className={cardClasses({ surface: "elevated", className: "flex w-full items-center gap-4 !px-5 !py-4 text-left" })}
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03]">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-strong bg-surface-raised">
                   <Icon className="h-4 w-4 text-white/40" strokeWidth={1.75} />
                 </span>
                 <div className="min-w-0 flex-1">
@@ -400,6 +400,6 @@ export default function AgencyProcessSection({ process }: Props) {
           </Button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

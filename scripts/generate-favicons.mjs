@@ -3,12 +3,50 @@
  * Run with: node scripts/generate-favicons.mjs
  */
 import sharp from "sharp";
-import toIco from "to-ico";
 import { mkdir, writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+/**
+ * Encodes an .ico from PNG buffers. Modern browsers read PNG-compressed ICO
+ * entries directly, so we embed each PNG as-is. This replaces the `to-ico`
+ * package, whose transitive deps (jimp/request/form-data) carried the audit
+ * vulnerabilities — sharp already produces the PNG buffers we need.
+ */
+function pngsToIco(images) {
+  const HEADER_SIZE = 6;
+  const ENTRY_SIZE = 16;
+
+  const header = Buffer.alloc(HEADER_SIZE);
+  header.writeUInt16LE(0, 0); // reserved
+  header.writeUInt16LE(1, 2); // type: 1 = icon
+  header.writeUInt16LE(images.length, 4); // image count
+
+  let offset = HEADER_SIZE + ENTRY_SIZE * images.length;
+  const entries = [];
+
+  for (const { size, data } of images) {
+    const entry = Buffer.alloc(ENTRY_SIZE);
+    entry.writeUInt8(size >= 256 ? 0 : size, 0); // width (0 means 256)
+    entry.writeUInt8(size >= 256 ? 0 : size, 1); // height
+    entry.writeUInt8(0, 2); // color palette count
+    entry.writeUInt8(0, 3); // reserved
+    entry.writeUInt16LE(1, 4); // color planes
+    entry.writeUInt16LE(32, 6); // bits per pixel
+    entry.writeUInt32LE(data.length, 8); // image byte size
+    entry.writeUInt32LE(offset, 12); // image data offset
+    entries.push(entry);
+    offset += data.length;
+  }
+
+  return Buffer.concat([
+    header,
+    ...entries,
+    ...images.map((image) => image.data),
+  ]);
+}
 const rootDir = join(__dirname, "..");
 const sourcePath = join(rootDir, "public", "assets", "logos", "KINEXIS_icon_logo.webp");
 const appDir = join(rootDir, "src", "app");
@@ -94,7 +132,11 @@ console.log(`✓ Generated ${join(appDir, "icon.png")} (32×32)`);
 
 await writeIcon(join(appDir, "apple-icon.png"), 180, 0.62);
 
-const faviconIco = await toIco([icon16, icon32, icon48]);
+const faviconIco = pngsToIco([
+  { size: 16, data: icon16 },
+  { size: 32, data: icon32 },
+  { size: 48, data: icon48 },
+]);
 await writeFile(join(appDir, "favicon.ico"), faviconIco);
 console.log(`✓ Generated ${join(appDir, "favicon.ico")} (16, 32, 48)`);
 

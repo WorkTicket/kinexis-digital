@@ -121,7 +121,7 @@ export const solutions: SolutionEntry[] = [
   {
     slug: "google-ads-for-roofers",
     title: "Google Ads for Roofers",
-    serviceSlug: "google-ads",
+    serviceSlug: "ppc-management",
     industrySlug: "roofing",
     headlineLine1: "Roofing Google Ads",
     headlineLine2: "for storm-season jobs.",

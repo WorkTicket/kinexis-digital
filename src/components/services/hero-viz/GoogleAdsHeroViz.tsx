@@ -14,7 +14,7 @@ export default function GoogleAdsHeroViz() {
     <HeroVizShell>
       <HeroVizStage className="items-center">
         <BrowserFrame label="Google Search" delay={0.5} frameClassName="h-[175px] w-[210px]">
-          <div className="mb-1.5 flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.03] px-2 py-1">
+          <div className="mb-1.5 flex items-center gap-1 rounded-full border border-strong bg-white/[0.03] px-2 py-1">
             <div className="flex gap-px">
               {"Google".split("").map((c, i) => (
                 <span key={i} className="text-[6px] font-bold text-neon-cyan/70">
@@ -48,14 +48,14 @@ export default function GoogleAdsHeroViz() {
             </div>
           </motion.div>
 
-          <div className="mb-1 rounded border border-white/[0.04] bg-white/[0.02] p-1 opacity-40">
+          <div className="mb-1 rounded border border-subtle bg-white/[0.02] p-1 opacity-40">
             <div className="mb-0.5 h-1 w-14 rounded-full bg-white/10" />
             <SkeletonLine width="md" className="h-1" />
           </div>
 
           <div className="mt-auto flex gap-1">
             {[1, 2, 3].map((n) => (
-              <div key={n} className="flex-1 rounded border border-white/[0.06] bg-white/[0.02] p-1">
+              <div key={n} className="flex-1 rounded border border-surface bg-white/[0.02] p-1">
                 <div className="mb-0.5 h-4 w-full rounded bg-white/[0.04]" />
                 <SkeletonLine width="sm" className="h-0.5" />
               </div>

@@ -6,11 +6,19 @@ interface KvBinding {
   put(key: string, value: string, options?: { expirationTtl?: number }): Promise<void>;
 }
 
+const MAX_MEMORY_ENTRIES = 10_000;
 const buckets = new Map<string, { count: number; resetAt: number }>();
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_REQUESTS = 8;
-const CLEANUP_INTERVAL_MS = 60 * 60 * 1000;
-let lastCleanup = Date.now();
+
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, bucket] of buckets) {
+    if (now > bucket.resetAt) {
+      buckets.delete(key);
+    }
+  }
+}, 60_000).unref();
 
 interface RateLimitBucket {
   count: number;
@@ -69,18 +77,6 @@ async function checkKvRateLimit(kv: KvBinding, key: string): Promise<boolean> {
   return false;
 }
 
-function cleanup() {
-  const now = Date.now();
-  if (now - lastCleanup < CLEANUP_INTERVAL_MS) return;
-  lastCleanup = now;
-
-  for (const [key, bucket] of buckets) {
-    if (now > bucket.resetAt) {
-      buckets.delete(key);
-    }
-  }
-}
-
 export function getClientIp(request: Request): string {
   const cfIp = request.headers.get("cf-connecting-ip");
   if (cfIp) return cfIp;
@@ -104,17 +100,20 @@ export async function isRateLimited(key: string): Promise<boolean> {
     }
   }
 
-  cleanup();
   const now = Date.now();
-  const bucket = buckets.get(key);
 
-  if (!bucket || now > bucket.resetAt) {
+  const existing = buckets.get(key);
+  if (!existing || now > existing.resetAt) {
+    if (buckets.size >= MAX_MEMORY_ENTRIES) {
+      const firstKey = buckets.keys().next().value;
+      if (firstKey !== undefined) buckets.delete(firstKey);
+    }
     buckets.set(key, { count: 1, resetAt: now + WINDOW_MS });
     return false;
   }
 
-  if (bucket.count >= MAX_REQUESTS) return true;
+  if (existing.count >= MAX_REQUESTS) return true;
 
-  bucket.count += 1;
+  existing.count += 1;
   return false;
 }

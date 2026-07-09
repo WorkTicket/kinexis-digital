@@ -1,0 +1,14 @@
+{
+  "summary": {
+    "timestamp": "2026-07-08T08:28:52.939Z",
+    "base": "https://www.kinexisdigital.com",
+    "sitemap_url_count": 288,
+    "urls_with_alt_issues": 0,
+    "total_missing_alt": 0,
+    "total_empty_alt": 0,
+    "fetch_errors": 0,
+    "pass": true,
+    "sample_failures": []
+  },
+  "rows": []
+}

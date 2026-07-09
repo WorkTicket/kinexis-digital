@@ -1,5 +1,17 @@
+/**
+ * Hero decision tree — pick one entry point per page type:
+ *
+ * Homepage           → HeroShell (SSR, LCP-optimized)
+ * SSR service pages  → StaticHeroShell (no client JS for hero)
+ * Hub/detail pages   → HeroArchetype (client, archetype-driven)
+ * Contact            → StaticHeroShell compact variant
+ * Blog/case study    → StaticHeroShell article variant
+ *
+ * Shared text primitives: @/components/ui/hero/HeroContent (+ HeroContentMotion for animation)
+ */
 import { getTranslations } from "next-intl/server";
 import HeroCtaLinks from "@/components/ui/HeroCtaLinks";
+import { HeroSubtitle, HeroTitle } from "@/components/ui/hero/HeroContent";
 import MeshBackground from "@/components/ui/MeshBackground";
 import TwoLineText from "@/components/ui/TwoLineText";
 
@@ -16,16 +28,16 @@ export default async function HeroShell() {
 
       <div className="container-site hero__container relative z-10">
         <div className="w-full">
-          <h1 className="type-hero">
+          <HeroTitle>
             <span className="type-hero-line">{t("line1")}</span>
             <span className="type-hero-line text-white/40" aria-hidden="true">{t("line2")}</span>
             <span className="type-hero-line">{t("line3")}</span>
-            <span className="type-hero-line gradient-text">{t("line3Highlight")}</span>
-          </h1>
+            <span className="type-hero-line gradient-text md:!whitespace-nowrap">{t("line3Highlight")}</span>
+          </HeroTitle>
 
-          <p className="section-intro-lg">
+          <HeroSubtitle variant="intro-plain">
             <TwoLineText text={t("subtitle")} variant="body" className="hero-home-subtitle-line" />
-          </p>
+          </HeroSubtitle>
 
           <HeroCtaLinks
             primary={{ label: tCommon("bookStrategyCall"), href: "/contact" }}

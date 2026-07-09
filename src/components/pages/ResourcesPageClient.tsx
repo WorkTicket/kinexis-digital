@@ -5,13 +5,13 @@ import { ArrowUpRight, ExternalLink } from "lucide-react";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import ProofMetric from "@/components/ui/ProofMetric";
-import TwoLineText from "@/components/ui/TwoLineText";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { cn } from "@/lib/utils";
 import type { ResourceCategory, Resource, ResourceBadge, ResourcesPageMeta, KinexisGuide } from "@/content/resources";
 import { Link } from "@/i18n/navigation";
+import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
-
+import { cardClasses } from "@/lib/card-styles";
 type Props = {
   meta: ResourcesPageMeta;
   categories: ResourceCategory[];
@@ -29,8 +29,8 @@ type Props = {
 // Free = cyan tint  |  Free + Paid = muted cyan  |  Paid = plain white
 const badgePillStyles: Record<ResourceBadge, string> = {
   "Free":         "text-neon-cyan/70  bg-neon-cyan/[0.07]  border-neon-cyan/[0.15]",
-  "Free + Paid":  "text-white/45      bg-white/[0.04]      border-white/[0.08]",
-  "Paid":         "text-white/30      bg-white/[0.02]      border-white/[0.05]",
+  "Free + Paid":  "text-white/45      bg-surface-glass      border-strong",
+  "Paid":         "text-white/30      bg-surface-base      border-subtle",
 };
 
 function BadgePill({ badge, label }: { badge: ResourceBadge; label: string }) {
@@ -64,10 +64,13 @@ function ResourceCard({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "motion-card group relative flex h-full flex-col overflow-hidden rounded-2xl border backdrop-blur-xl",
-        isFree
-          ? "border-neon-cyan/[0.14] bg-neon-cyan/[0.025]"
-          : "border-white/[0.06] bg-white/[0.03]"
+        cardClasses({
+          hover: true,
+          className: cn(
+            "group relative flex h-full flex-col overflow-hidden backdrop-blur-xl !p-0",
+            isFree && "border-neon-cyan/[0.14] bg-neon-cyan/[0.025]",
+          ),
+        }),
       )}
       variants={fadeUp}
       initial="hidden"
@@ -116,7 +119,7 @@ function ResourceCard({
         </p>
 
         {/* Footer */}
-        <div className="mt-5 flex items-center justify-between gap-2 border-t border-white/[0.05] pt-4">
+        <div className="mt-5 flex items-center justify-between gap-2 border-t border-subtle pt-4">
           <BadgePill badge={resource.badge} label={badgeLabels[resource.badge]} />
           <span
             className={cn(
@@ -138,30 +141,28 @@ function ResourceCard({
 // ── Category section ────────────────────────────────────────────────────────
 function CategorySection({
   category,
-  dark,
+  surfaceIndex,
   badgeLabels,
   visitToolLabel,
 }: {
   category: ResourceCategory;
-  dark: boolean;
+  surfaceIndex: number;
   badgeLabels: Record<ResourceBadge, string>;
   visitToolLabel: string;
 }) {
-  const { fadeUp, stagger } = useMotionVariants();
+  const elevated = surfaceIndex % 2 === 0;
 
   return (
-    <section
+    <Section
       id={category.id}
-      className={cn(
-        "section-padding relative overflow-hidden border-t border-white/[0.06]",
-        dark && "bg-bg-dark"
-      )}
+      surfaceIndex={surfaceIndex}
+      className="relative overflow-hidden"
     >
       <div
         className="pointer-events-none absolute -right-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-neon-cyan/[0.022] blur-[140px]"
         aria-hidden
       />
-      {dark && (
+      {elevated && (
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.016)_1px,transparent_1px)] bg-[size:28px_28px] opacity-50"
           aria-hidden
@@ -173,30 +174,13 @@ function CategorySection({
       />
 
       <div className="container-site relative z-10">
-        {/* Section header — identical to every other page */}
-        <motion.div
-          className="section-header section-header--left"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
-          <motion.span variants={fadeUp} className="section-label">
-            {category.label}
-          </motion.span>
-          <motion.h2
-            variants={fadeUp}
-            className="section-title section-title--left mt-4"
-          >
-            {category.title}
-          </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            className="section-subtitle section-subtitle--left mt-4 max-w-xl"
-          >
-            {category.subtitle}
-          </motion.p>
-        </motion.div>
+        <SectionHeader
+          badge={category.label}
+          title={category.title}
+          description={category.subtitle}
+          align="left"
+          headingId={`${category.id}-heading`}
+        />
 
         {/* Card grid */}
         <div
@@ -217,7 +201,7 @@ function CategorySection({
           ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }
 
@@ -226,7 +210,7 @@ function StatStrip({ stats }: { stats: { value: string; label: string }[] }) {
   const { fadeUp, stagger } = useMotionVariants();
 
   return (
-    <section className="relative overflow-hidden border-y border-white/[0.06] bg-bg-dark">
+    <Section id="stats" compact surfaceIndex={0} className="relative overflow-hidden border-y border-surface bg-bg-dark">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:24px_24px] opacity-40"
         aria-hidden
@@ -235,9 +219,9 @@ function StatStrip({ stats }: { stats: { value: string; label: string }[] }) {
         className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[60rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon-cyan/[0.022] blur-[120px]"
         aria-hidden
       />
-      <div className="container-site relative z-10 section-padding-sm">
+      <div className="container-site relative z-10">
         <motion.div
-          className="grid grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-white/[0.06]"
+          className="grid grid-cols-3 gap-6 md:gap-0 md:divide-x md:divide-surface"
           variants={stagger}
           initial="hidden"
           whileInView="visible"
@@ -259,14 +243,14 @@ function StatStrip({ stats }: { stats: { value: string; label: string }[] }) {
           ))}
         </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }
 
 // ── Category quick-jump nav ─────────────────────────────────────────────────
 function CategoryNav({ categories, categoryNavLabel }: { categories: ResourceCategory[]; categoryNavLabel: string }) {
   return (
-    <div className="sticky top-0 z-20 border-b border-white/[0.06] bg-bg/90 backdrop-blur-xl">
+    <div className="sticky top-0 z-20 border-b border-surface bg-bg/90 backdrop-blur-xl">
       <div className="container-site">
         <nav
           aria-label={categoryNavLabel}
@@ -276,7 +260,7 @@ function CategoryNav({ categories, categoryNavLabel }: { categories: ResourceCat
             <a
               key={cat.id}
               href={`#${cat.id}`}
-              className="shrink-0 rounded-lg border border-transparent px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/30 transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.04] hover:text-white/70"
+              className="shrink-0 rounded-lg border border-transparent px-3.5 py-2 text-[11px] font-bold uppercase tracking-[0.16em] text-white/30 transition-all duration-300 hover:border-strong hover:bg-surface-glass hover:text-white/70"
             >
               {cat.label}
             </a>
@@ -300,7 +284,8 @@ export default function ResourcesPageClient({
   badgeLabels,
   visitToolLabel,
 }: Props) {
-  const { fadeUp, stagger } = useMotionVariants();
+  const { fadeUp } = useMotionVariants();
+  let surfaceIndex = 0;
 
   return (
     <>
@@ -325,40 +310,24 @@ export default function ResourcesPageClient({
       <StatStrip stats={m.stats} />
 
       {/* ── INTRO ── */}
-      <section className="section-padding relative overflow-hidden">
+      <Section id="resources-intro" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute -left-32 top-0 h-[28rem] w-[28rem] rounded-full bg-neon-blue/[0.03] blur-[120px]"
           aria-hidden
         />
         <div className="container-site relative z-10">
-          <motion.div
-            className="section-header section-header--left"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+          <SectionHeader
+            badge={introLabel}
+            title={m.introTitle}
+            description={m.introBody}
+            align="left"
+            headingId="resources-intro-heading"
           >
-            <motion.span variants={fadeUp} className="section-label">
-              {introLabel}
-            </motion.span>
-            <motion.h2
-              variants={fadeUp}
-              className="section-title section-title--left mt-4 !max-w-[min(100%,52rem)]"
-            >
-              <TwoLineText text={m.introTitle} variant="section" />
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              className="section-subtitle section-subtitle--left mt-4"
-            >
-              {m.introBody}
-            </motion.p>
-
             {/* Legend + category jump links */}
             <motion.div variants={fadeUp} className="mt-8 space-y-5">
               {/* Badge legend */}
               <div className="flex flex-wrap items-center gap-3">
-                <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/25">
+                <span className="section-label text-white/25">
                   {keyLabel}
                 </span>
                 {(["Free", "Free + Paid", "Paid"] as ResourceBadge[]).map((b) => (
@@ -380,26 +349,26 @@ export default function ResourcesPageClient({
                   <a
                     key={cat.id}
                     href={`#${cat.id}`}
-                    className="inline-flex items-center rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.15em] text-muted/50 transition-all duration-300 hover:-translate-y-0.5 hover:border-white/[0.12] hover:bg-white/[0.06] hover:text-white/75"
+                    className="inline-flex items-center rounded-xl border border-strong bg-surface-raised px-4 py-2 text-[11px] font-bold uppercase tracking-[0.15em] text-muted/50 transition-all duration-300 hover:-translate-y-0.5 hover:border-strong hover:bg-surface-hover hover:text-white/75"
                   >
                     {cat.label}
                   </a>
                 ))}
               </div>
             </motion.div>
-          </motion.div>
+          </SectionHeader>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding bg-bg-dark border-y border-white/[0.06]">
+      <Section id="kinexis-guides" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={guidesTitle} subtitle={guidesSubtitle} />
+          <SectionHeader title={guidesTitle} description={guidesSubtitle} headingId="kinexis-guides-heading" />
           <div className="section-content grid gap-grid-sm md:grid-cols-2 lg:grid-cols-3">
             {guides.map((guide) => (
               <Link
                 key={guide.href}
                 href={guide.href}
-                className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-6 hover:border-white/[0.12] transition-colors"
+                className={cardClasses({ surface: "elevated", className: "rounded-xl p-6" })}
               >
                 <h3 className="font-bold">{guide.title}</h3>
                 <p className="mt-2 text-sm text-muted">{guide.description}</p>
@@ -407,17 +376,17 @@ export default function ResourcesPageClient({
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* ── STICKY CATEGORY NAV ── */}
       <CategoryNav categories={categories} categoryNavLabel={categoryNavLabel} />
 
       {/* ── CATEGORY SECTIONS ── */}
-      {categories.map((category, i) => (
+      {categories.map((category) => (
         <CategorySection
           key={category.id}
           category={category}
-          dark={i % 2 !== 0}
+          surfaceIndex={surfaceIndex++}
           badgeLabels={badgeLabels}
           visitToolLabel={visitToolLabel}
         />

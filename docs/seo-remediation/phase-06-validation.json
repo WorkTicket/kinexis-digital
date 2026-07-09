@@ -1,12 +1,12 @@
 {
   "summary": {
-    "timestamp": "2026-07-04T18:25:51.298Z",
-    "finished": "2026-07-04T18:26:01.250Z",
+    "timestamp": "2026-07-08T02:09:18.599Z",
+    "finished": "2026-07-08T02:09:26.559Z",
     "base": "https://www.kinexisdigital.com",
-    "sitemap_url_count": 290,
-    "urls_crawled": 292,
+    "sitemap_url_count": 286,
+    "urls_crawled": 288,
     "min_dofollow_inlinks_target": 3,
-    "sitemap_pass": 290,
+    "sitemap_pass": 286,
     "sitemap_fail": 0,
     "thin_dofollow_inlinks": 0,
     "thin_dofollow_inlinks_urls": [],
@@ -16,7 +16,7 @@
     "outlinks_to_redirect_total": 0,
     "orphan_count": 0,
     "orphan_urls": [],
-    "src_has_rel_nofollow_on_internal": true,
+    "src_has_rel_nofollow_on_internal": false,
     "ahrefs_still_applies": {
       "links_to_redirect": 0,
       "one_dofollow_inlink": 0,
@@ -26,7 +26,7 @@
       "links_to_redirect": 0,
       "one_dofollow_inlink": 0
     },
-    "phase6Pass": false
+    "phase6Pass": true
   },
   "ahrefsComparison": [
     {
@@ -199,7 +199,7 @@
       "ahrefs_url": "https://www.kinexisdigital.com/es/lead-magnet",
       "live_found": true,
       "live_dofollow_inlinks": 0,
-      "live_nofollow_inlinks": 1,
+      "live_nofollow_inlinks": 0,
       "live_outlinks_to_3xx": 0,
       "live_lead_magnet_pattern": "no",
       "ahrefs_still_applies": true,
@@ -221,7 +221,7 @@
       "ahrefs_url": "https://www.kinexisdigital.com/en/lead-magnet",
       "live_found": true,
       "live_dofollow_inlinks": 0,
-      "live_nofollow_inlinks": 1,
+      "live_nofollow_inlinks": 0,
       "live_outlinks_to_3xx": 0,
       "live_lead_magnet_pattern": "no",
       "ahrefs_still_applies": true,

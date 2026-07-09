@@ -16,9 +16,17 @@ const extraSolutionLinks: Partial<Record<ServiceSeoSlug, { href: string; label: 
   ],
 };
 
+const pricingLabelOverrides: Partial<Record<string, string>> = {
+  "web-design": "Website Design",
+  "ppc-management": "Google Ads (PPC)",
+  "meta-ads": "Meta Ads",
+};
+
 function servicePricingLink(slug: ServiceSeoSlug) {
   const canonical = resolvePricingSlug(slug);
-  const label = serviceLabels[canonical].replace(/ Services$/, "").replace(/ Management$/, "");
+  const label =
+    pricingLabelOverrides[canonical] ??
+    serviceLabels[canonical].replace(/ Services$/, "").replace(/ Management$/, "");
   return { href: pricingRoutes[canonical], label: `${label} Pricing` };
 }
 
@@ -50,7 +58,6 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   },
   "ppc-management": {
     services: [
-      { href: "/services/google-ads", label: "Google Ads Management" },
       { href: "/services/meta-ads", label: "Meta Ads Management" },
       servicePricingLink("ppc-management"),
     ],
@@ -62,9 +69,9 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   },
   "google-ads": {
     services: [
-      { href: "/services/ppc-management", label: "PPC Management" },
+      { href: "/services/ppc-management", label: "PPC & Google Ads Management" },
       { href: "/services/seo", label: "SEO Services" },
-      servicePricingLink("google-ads"),
+      servicePricingLink("ppc-management"),
     ],
     caseStudies: caseStudyLinks("plumbing", "landscaping"),
     blog: [
@@ -199,14 +206,123 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     ],
   },
   "paid-ads": {
+    services: [],
+    caseStudies: [],
+    blog: [],
+  },
+  "youtube-ads": {
     services: [
-      { href: "/services/ppc-management", label: "PPC Management" },
-      { href: "/services/google-ads", label: "Google Ads Management" },
-      servicePricingLink("paid-ads"),
+      { href: "/services/ppc-management", label: "PPC & Google Ads Management" },
+      { href: "/services/video-marketing", label: "Video Marketing Services" },
+      servicePricingLink("youtube-ads"),
+    ],
+    caseStudies: caseStudyLinks("saas", "plumbing"),
+    blog: [
+      { href: "/blog/roas-calculations", label: "ROAS Calculations" },
+      { href: "/blog/landing-page-best-practices", label: "Landing Page Best Practices" },
+    ],
+  },
+  "landing-pages": {
+    services: [
+      { href: "/services/funnels", label: "Funnels & Conversion Rate Optimization" },
+      { href: "/services/web-design", label: "Web Design Services" },
+      servicePricingLink("landing-pages"),
+    ],
+    caseStudies: caseStudyLinks("landscaping", "saas"),
+    blog: [
+      { href: "/blog/landing-page-best-practices", label: "Landing Page Best Practices" },
+      { href: "/blog/landing-page-optimization", label: "Landing Page Optimization" },
+    ],
+  },
+  "website-maintenance": {
+    services: [
+      { href: "/services/web-design", label: "Web Design Services" },
+      { href: "/services/website-speed", label: "Website Speed Optimization" },
+      servicePricingLink("website-maintenance"),
+    ],
+    caseStudies: caseStudyLinks("landscaping", "plumbing"),
+    blog: [],
+  },
+  "website-speed": {
+    services: [
+      { href: "/services/web-design", label: "Web Design Services" },
+      { href: "/services/website-maintenance", label: "Website Maintenance & Support" },
+      servicePricingLink("website-speed"),
+    ],
+    caseStudies: caseStudyLinks("landscaping", "saas"),
+    blog: [
+      { href: "/blog/website-conversion-optimization", label: "Website Conversion Optimization" },
+    ],
+  },
+  "microsoft-ads": {
+    services: [
+      { href: "/services/ppc-management", label: "Google Ads (PPC) Management" },
+      { href: "/services/meta-ads", label: "Meta Ads Management" },
+      servicePricingLink("microsoft-ads"),
     ],
     caseStudies: caseStudyLinks("plumbing", "saas"),
     blog: [
-      { href: "/blog/seo-vs-google-ads", label: "SEO vs Google Ads" },
+      { href: "/blog/quality-score-guide", label: "Quality Score Guide" },
+      { href: "/blog/roas-calculations", label: "ROAS Calculations" },
+    ],
+  },
+  copywriting: {
+    services: [
+      { href: "/services/content-marketing", label: "Content Marketing" },
+      { href: "/services/web-design", label: "Web Design Services" },
+      servicePricingLink("copywriting"),
+    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
+    blog: [
+      { href: "/blog/conversion-psychology", label: "Conversion Psychology" },
+      { href: "/blog/landing-page-best-practices", label: "Landing Page Best Practices" },
+    ],
+  },
+  "marketing-audits": {
+    services: [
+      { href: "/services/analytics", label: "Analytics & Reporting" },
+      { href: "/services/growth-consulting", label: "Digital Marketing Strategy" },
+      servicePricingLink("marketing-audits"),
+    ],
+    caseStudies: caseStudyLinks("plumbing", "saas"),
+    blog: [
+      { href: "/blog/ga4-reporting", label: "GA4 Reporting Guide" },
+      { href: "/blog/attribution-models", label: "Attribution Models" },
+    ],
+  },
+  "marketing-automation-crm": {
+    services: [
+      { href: "/services/email-marketing", label: "Email Marketing & Automation" },
+      { href: "/services/funnels", label: "Customer Journey & Funnel Strategy" },
+      servicePricingLink("marketing-automation-crm"),
+    ],
+    caseStudies: caseStudyLinks("saas", "plumbing"),
+    blog: [
+      { href: "/blog/automated-nurture-sequences", label: "Automated Nurture Sequences" },
+      { href: "/blog/lifecycle-marketing", label: "Lifecycle Marketing" },
+    ],
+  },
+  "fractional-cmo": {
+    services: [
+      { href: "/services/growth-consulting", label: "Digital Marketing Strategy" },
+      { href: "/services/marketing-audits", label: "Marketing Audits" },
+      servicePricingLink("fractional-cmo"),
+    ],
+    caseStudies: caseStudyLinks("saas", "plumbing"),
+    blog: [
+      { href: "/blog/marketing-dashboards", label: "Marketing Dashboards" },
+      { href: "/blog/attribution-models", label: "Attribution Models" },
+    ],
+  },
+  "training-workshops": {
+    services: [
+      { href: "/services/growth-consulting", label: "Digital Marketing Strategy" },
+      { href: "/services/analytics", label: "Analytics & Reporting" },
+      servicePricingLink("training-workshops"),
+    ],
+    caseStudies: caseStudyLinks("saas", "landscaping"),
+    blog: [
+      { href: "/blog/ga4-reporting", label: "GA4 Reporting Guide" },
     ],
   },
 };

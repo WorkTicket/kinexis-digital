@@ -80,12 +80,8 @@ export default function Navigation({
                   />
                 </Link>
                 <div
-                  className={cn(
-                    "absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                    servicesOpen
-                      ? "pointer-events-auto translate-y-0 opacity-100"
-                      : "pointer-events-none translate-y-2 opacity-0"
-                  )}
+                  className="nav-services-flyout nav-flyout nav-flyout--center fixed left-1/2 pt-3"
+                  data-open={servicesOpen}
                 >
                   <div className="nav-dropdown-panel nav-dropdown-panel--services">
                     <div className="nav-dropdown-header relative z-[1]">
@@ -99,7 +95,7 @@ export default function Navigation({
                     </div>
                     <div className="nav-services-grid relative z-[1]">
                       {serviceNavGroups.map((group) => (
-                        <div key={group.key} className="nav-dropdown-group">
+                        <div key={group.key} className="nav-services-col">
                           <h3 className="nav-dropdown-group__title">
                             {tNav(`serviceGroups.${group.key}`)}
                           </h3>
@@ -121,6 +117,14 @@ export default function Navigation({
                         </div>
                       ))}
                     </div>
+                    <Link href="/contact" className="nav-services-footer relative z-[1]">
+                      <span className="nav-services-footer__text">
+                        {tNav("servicesFooterPrompt")}
+                      </span>
+                      <span className="nav-services-footer__cta">
+                        {tNav("bookCall")}
+                      </span>
+                    </Link>
                   </div>
                 </div>
               </li>
@@ -152,12 +156,8 @@ export default function Navigation({
                   />
                 </Link>
                 <div
-                  className={cn(
-                    "absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                    industriesOpen
-                      ? "pointer-events-auto translate-y-0 opacity-100"
-                      : "pointer-events-none translate-y-2 opacity-0"
-                  )}
+                  className="nav-flyout nav-flyout--center absolute top-full left-1/2 pt-3"
+                  data-open={industriesOpen}
                 >
                   <IndustriesNavDropdown />
                 </div>
@@ -190,12 +190,8 @@ export default function Navigation({
                   />
                 </Link>
                 <div
-                  className={cn(
-                    "absolute top-full right-0 pt-3 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] xl:left-1/2 xl:right-auto xl:-translate-x-1/2",
-                    resourcesOpen
-                      ? "pointer-events-auto translate-y-0 opacity-100"
-                      : "pointer-events-none translate-y-2 opacity-0"
-                  )}
+                  className="nav-flyout nav-flyout--resources absolute top-full right-0 pt-3 xl:left-1/2 xl:right-auto"
+                  data-open={resourcesOpen}
                 >
                   <ResourcesNavDropdown />
                 </div>

@@ -55,6 +55,7 @@ export type SeoContent = {
   dataStories: SeoDataStory[];
   phasesTitle: string;
   phasesSubtitle: string;
+  processIntro: string;
   phases: ServicePhase[];
   serpTitle: string;
   serpSubtitle: string;
@@ -62,6 +63,13 @@ export type SeoContent = {
   ctaHeadline: string;
   ctaSubtitle: string;
   ctaLabel: string;
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
+  capabilityBodies: {
+    seoAudit: string;
+    rankingStrategy: string;
+    contentStrategy: string;
+  };
   diagramNodes: SeoDiagramNodeLabel[];
   faqs: FAQItem[];
 };
@@ -127,33 +135,29 @@ export const seoContent: Record<Locale, SeoContent> = {
       },
     ],
     phasesTitle: "How we grow search traffic",
-    phasesSubtitle:
-      "A clear process that combines technical fixes,|strong content, and smart link building.",
+    phasesSubtitle: "Four phases. Each one tied to a measurable outcome, not a checklist item.",
+    processIntro:
+      "We do not run SEO as a monthly task list. Every phase connects technical health, keyword strategy, and content to the pages that actually book calls. You always know what we are working on and why it matters for revenue.",
     phases: [
       {
         title: "Technical Foundation",
         desc: "Full site crawl identifying indexing gaps, speed bottlenecks, mobile issues, and schema opportunities. Every issue prioritized by revenue impact.",
-        metric: "Full technical audit delivered in week 1",
+        metric: "",
       },
       {
         title: "Keyword Research",
         desc: "We map what your buyers actually search for, find content gaps your competitors miss, and prioritize terms most likely to convert.",
-        metric: "Avg. 340 keywords mapped per client",
+        metric: "",
       },
       {
         title: "Content That Ranks",
         desc: "Every page tuned for relevance and authority. New content fills gaps in your topic coverage, matched to what searchers want at each stage.",
-        metric: "Avg. 4.2x traffic increase per article",
+        metric: "",
       },
       {
         title: "Building Authority",
-        desc: "Links earned through real relationships, digital PR, and content worth citing.",
-        metric: "40+ authority domains per quarter",
-      },
-      {
-        title: "Ongoing Optimization",
-        desc: "Weekly rank tracking, monthly reports, and quarterly strategy reviews. What we learn goes right back into the work.",
-        metric: "Weekly rank tracking and monthly reporting",
+        desc: "Links earned through real relationships, digital PR, and content worth citing. Weekly rank tracking and monthly reporting keep the work compounding.",
+        metric: "",
       },
     ],
     serpTitle: "Search results keep changing.",
@@ -184,7 +188,18 @@ export const seoContent: Record<Locale, SeoContent> = {
     ctaHeadline: "Ready to own search?",
     ctaSubtitle:
       "Get a full SEO opportunity analysis.|We'll identify your highest-value keywords, technical gaps, and quick wins.",
-    ctaLabel: "Claim Your SEO Roadmap",
+    ctaLabel: "Get Your SEO Roadmap",
+    inlineCtaLabel: "Get a Free SEO Audit",
+    inlineCtaSubtitle:
+      "We will review your current rankings, technical health, and keyword gaps. Then outline the highest-impact fixes.",
+    capabilityBodies: {
+      seoAudit:
+        "Most agencies start with a technical audit that produces a 200-item spreadsheet. We start with revenue mapping: which pages should be driving calls, which keywords signal buying intent, and what's actually broken on the path between search and booked appointment. The audit still covers crawl errors, Core Web Vitals, and schema. But every fix gets ranked by what it does for pipeline, not audit score.",
+      rankingStrategy:
+        "Keyword research is not a volume exercise. We build a matrix of terms your buyers search at each decision stage, then prioritize by commercial intent, ranking difficulty, and connection to service pages that convert. The table below shows the kind of intent mapping we do, not every keyword we target, but the categories that separate traffic from revenue.",
+      contentStrategy:
+        "Strong rankings need four systems working together: technical health, content authority, link equity, and user experience. Most sites underinvest in at least one. We close that gap with on-page optimization, topic clusters, and structured data on the pages that sell, not blog posts that rank for questions nobody in your sales pipeline ever asked.",
+    },
     diagramNodes: [
       { id: "technical", label: "Technical SEO" },
       { id: "ux", label: "User Experience" },
@@ -261,33 +276,29 @@ export const seoContent: Record<Locale, SeoContent> = {
       },
     ],
     phasesTitle: "Cómo hacemos crecer tu tráfico orgánico",
-    phasesSubtitle:
-      "Un proceso claro que combina correcciones técnicas,|contenido sólido y construcción inteligente de enlaces.",
+    phasesSubtitle: "Cuatro fases. Cada una ligada a un resultado medible, no a una checklist.",
+    processIntro:
+      "No ejecutamos SEO como una lista de tareas mensual. Cada fase conecta salud técnica, estrategia de keywords y contenido con las páginas que realmente reservan llamadas. Siempre sabes en qué trabajamos y por qué importa para los ingresos.",
     phases: [
       {
         title: "Fundamento Técnico",
         desc: "Rastreo completo del sitio identificando brechas de indexación, cuellos de botella de velocidad, problemas móviles y oportunidades de schema. Cada problema priorizado por impacto en ingresos.",
-        metric: "Auditoría técnica completa en semana 1",
+        metric: "",
       },
       {
         title: "Investigación de Palabras Clave",
         desc: "Mapeamos lo que tus compradores buscan de verdad, encontramos brechas que tus competidores dejan pasar y priorizamos los términos con más probabilidad de convertir.",
-        metric: "Prom. 340 palabras clave mapeadas por cliente",
+        metric: "",
       },
       {
         title: "Contenido que Posiciona",
         desc: "Cada página afinada para relevancia y autoridad. Nuevo contenido que cubre huecos temáticos, alineado con lo que buscan tus visitantes en cada etapa.",
-        metric: "Prom. 4.2x aumento de tráfico por artículo",
+        metric: "",
       },
       {
         title: "Construcción de Autoridad",
-        desc: "Enlaces ganados con relaciones reales, relaciones públicas digitales y contenido que merece ser citado.",
-        metric: "40+ dominios de autoridad por trimestre",
-      },
-      {
-        title: "Optimización Continua",
-        desc: "Seguimiento semanal de rankings, informes mensuales y revisiones trimestrales de estrategia. Lo que aprendemos vuelve directo al trabajo.",
-        metric: "Seguimiento semanal e informes mensuales",
+        desc: "Enlaces ganados con relaciones reales, relaciones públicas digitales y contenido que merece ser citado. Seguimiento semanal e informes mensuales mantienen el trabajo acumulándose.",
+        metric: "",
       },
     ],
     serpTitle: "Los resultados de búsqueda siguen cambiando.",
@@ -318,7 +329,18 @@ export const seoContent: Record<Locale, SeoContent> = {
     ctaHeadline: "¿Listo para dominar la búsqueda?",
     ctaSubtitle:
       "Obtén un análisis completo de oportunidades SEO.|Identificaremos tus palabras clave de mayor valor, brechas técnicas y victorias rápidas.",
-    ctaLabel: "Reclama Tu Hoja de Ruta SEO",
+    ctaLabel: "Obtén Tu Hoja de Ruta SEO",
+    inlineCtaLabel: "Obtén una Auditoría SEO Gratis",
+    inlineCtaSubtitle:
+      "Revisaremos tus posiciones actuales, salud técnica y brechas de keywords, luego delinearemos las correcciones de mayor impacto.",
+    capabilityBodies: {
+      seoAudit:
+        "La mayoría de agencias empieza con una auditoría técnica que produce una hoja de cálculo de 200 ítems. Nosotros empezamos con mapeo de ingresos: qué páginas deberían generar llamadas, qué keywords señalan intención de compra y qué está roto en el camino entre la búsqueda y la cita reservada. La auditoría cubre errores de rastreo, Core Web Vitals y schema. Pero cada corrección se prioriza por lo que hace al pipeline, no por la puntuación de auditoría.",
+      rankingStrategy:
+        "La investigación de keywords no es un ejercicio de volumen. Construimos una matriz de términos que tus compradores buscan en cada etapa de decisión, luego priorizamos por intención comercial, dificultad de posicionamiento y conexión con páginas de servicio que convierten. La tabla muestra el tipo de mapeo de intención que hacemos, no cada keyword que atacamos, sino las categorías que separan tráfico de ingresos.",
+      contentStrategy:
+        "Los rankings sólidos necesitan cuatro sistemas trabajando juntos: salud técnica, autoridad de contenido, equidad de enlaces y experiencia de usuario. La mayoría de sitios invierten poco en al menos uno. Cerramos esa brecha con optimización on-page, clusters temáticos y datos estructurados en las páginas que venden, no artículos de blog que posicionan para preguntas que nadie en tu pipeline de ventas hizo.",
+    },
     diagramNodes: [
       { id: "technical", label: "SEO Técnico" },
       { id: "ux", label: "Experiencia de Usuario" },
@@ -334,4 +356,5 @@ export const seoContent: Record<Locale, SeoContent> = {
       { question: "¿Cómo informan sobre el rendimiento SEO?", answer: "Seguimiento semanal de rankings, paneles mensuales de tráfico, leads y conversiones, y revisiones trimestrales de estrategia. Cada métrica está vinculada a resultados de negocio reales." },
       { question: "¿El SEO seguirá funcionando con la búsqueda IA?", answer: "Sí. El SEO técnico sólido, el contenido de autoridad y los enlaces de calidad siguen siendo la base de la visibilidad en los resultados de búsqueda impulsados por IA. Adaptamos nuestra estrategia a las nuevas funciones SERP continuamente." },
     ],
-  },};
+  },
+};

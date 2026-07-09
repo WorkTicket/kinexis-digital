@@ -8,6 +8,8 @@ import {
   sitemapServiceSlugs,
   sitemapPricingSlugs,
   serviceRoutes,
+  resolveServiceSlug,
+  resolvePricingSlug,
   staticPageRoutes,
   blogSlugs,
   caseStudySlugs,
@@ -43,7 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const slug of sitemapServiceSlugs) {
-    entries.push(...localeUrls(serviceRoutes[slug], 0.9));
+    entries.push(...localeUrls(serviceRoutes[resolveServiceSlug(slug)], 0.9));
   }
 
   for (const category of industryCategories) {
@@ -67,7 +69,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   for (const slug of sitemapPricingSlugs) {
-    entries.push(...localeUrls(pricingRoutes[slug], 0.85));
+    entries.push(...localeUrls(pricingRoutes[resolvePricingSlug(slug)], 0.85));
   }
 
   for (const slug of comparisonSlugs) {
