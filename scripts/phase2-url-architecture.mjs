@@ -7,10 +7,14 @@ import { writeFileSync } from "node:fs";
 const base = (process.argv[2] || "http://localhost:3000").replace(/\/$/, "");
 
 const REDIRECT_PROBES = [
-  { path: "/services/cro", maxHops: 1, finalIncludes: "/services/funnels" },
-  { path: "/en/services/cro", maxHops: 1, finalIncludes: "/en/services/funnels" },
-  { path: "/es/services/cro", maxHops: 1, finalIncludes: "/es/services/funnels" },
-  { path: "/pricing/cro", maxHops: 1, finalIncludes: "/pricing/funnels" },
+  // CRO is a live page (no longer aliased to funnels)
+  { path: "/services/cro", maxHops: 1, finalIncludes: "/services/cro" },
+  { path: "/en/services/cro", maxHops: 1, finalIncludes: "/en/services/cro" },
+  { path: "/es/services/cro", maxHops: 1, finalIncludes: "/es/services/cro" },
+  { path: "/pricing/cro", maxHops: 1, finalIncludes: "/pricing/cro" },
+  // Retired Google Ads / Paid Ads aliases
+  { path: "/en/services/google-ads", maxHops: 1, finalIncludes: "/en/services/ppc-management" },
+  { path: "/en/services/paid-ads", maxHops: 1, finalIncludes: "/en/services/ppc-management" },
 ];
 
 const BLOG_SLUGS = [

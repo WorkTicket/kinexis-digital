@@ -133,10 +133,10 @@ export const staticPageRoutes = [
 ] as const;
 
 /** Legacy slugs — 301 to canonical service; excluded from sitemap. */
-export const sitemapExcludedServiceSlugs = ["google-ads", "paid-ads", "cro"] as const;
+export const sitemapExcludedServiceSlugs = ["google-ads", "paid-ads"] as const;
 
 /** Retired pricing slugs — 301 to canonical target; excluded from sitemap. */
-export const sitemapExcludedPricingSlugs = ["google-ads", "paid-ads", "cro"] as const;
+export const sitemapExcludedPricingSlugs = ["google-ads", "paid-ads"] as const;
 
 export const sitemapServiceSlugs = serviceSlugs.filter(
   (slug) => !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug),
@@ -149,14 +149,12 @@ export type PricingSlug = ServiceSlug;
 export const pricingSlugCanonical: Partial<Record<PricingSlug, PricingSlug>> = {
   "google-ads": "ppc-management",
   "paid-ads": "ppc-management",
-  cro: "funnels",
 };
 
 /** Canonical service page when a slug has been retired or merged. */
 export const serviceSlugCanonical: Partial<Record<ServiceSlug, ServiceSlug>> = {
   "google-ads": "ppc-management",
   "paid-ads": "ppc-management",
-  cro: "funnels",
 };
 
 export function resolvePricingSlug(slug: PricingSlug): PricingSlug {

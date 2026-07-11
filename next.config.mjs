@@ -121,16 +121,6 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/:locale(en|es)/services/cro",
-        destination: "/:locale/services/funnels",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/pricing/cro",
-        destination: "/:locale/pricing/funnels",
-        permanent: true,
-      },
-      {
         source: "/:locale(en|es)/pricing/google-ads",
         destination: "/:locale/pricing/ppc-management",
         permanent: true,
