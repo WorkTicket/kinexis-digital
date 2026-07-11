@@ -19,7 +19,7 @@ export default function VideoMarketingHeroViz({ labels }: Props) {
     <HeroVizShell>
       <HeroVizStage className="items-center">
         <BrowserFrame label="Video Editor" delay={0.5} frameClassName="h-[175px] w-[220px]">
-          <div className="relative mb-1.5 flex aspect-video items-center justify-center overflow-hidden rounded-md border border-white/[0.06] bg-gradient-to-br from-neon-cyan/5 to-neon-blue/5">
+          <div className="relative mb-1.5 flex aspect-video items-center justify-center overflow-hidden rounded-md border border-surface bg-gradient-to-br from-neon-cyan/5 to-neon-blue/5">
             <div
               className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-white/25 bg-black/40"
             >
@@ -39,7 +39,7 @@ export default function VideoMarketingHeroViz({ labels }: Props) {
             </motion.span>
           </div>
 
-          <div className="relative mb-1 flex h-6 items-end gap-0.5 rounded border border-white/[0.06] bg-white/[0.02] p-0.5">
+          <div className="relative mb-1 flex h-6 items-end gap-0.5 rounded border border-surface bg-white/[0.02] p-0.5">
             {clips.map((label, i) => (
               <motion.div
                 key={label}

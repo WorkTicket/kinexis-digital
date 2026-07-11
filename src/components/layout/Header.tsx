@@ -1,24 +1,27 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { ArrowRight, Menu, X } from "lucide-react";
-import Navigation from "./Navigation";
-import MobileMenu from "./MobileMenu";
 import SiteLogo from "@/components/ui/SiteLogo";
-import LanguageSwitcher from "./LanguageSwitcher";
+import Button from "@/components/ui/Button";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+
+const Navigation = dynamic(() => import("./Navigation"));
+const MobileMenu = dynamic(() => import("./MobileMenu"), { ssr: false });
+const LanguageSwitcher = dynamic(() => import("./LanguageSwitcher"));
 
 export default function Header() {
   const tNav = useTranslations("nav");
+  const tA11y = useTranslations("a11y");
   const headerRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
   useBodyScrollLock(menuOpen);
 
@@ -42,12 +45,15 @@ export default function Header() {
         : Math.min(1, Math.max(0, window.scrollY / SHRINK_DISTANCE));
 
       header.style.setProperty("--header-progress", progress.toFixed(4));
+      document.documentElement.style.setProperty(
+        "--site-header-height",
+        `${header.offsetHeight}px`
+      );
 
       const nextScrolled = progress > 0.35;
       if (nextScrolled !== isScrolled) {
         isScrolled = nextScrolled;
         header.classList.toggle("site-header--scrolled", isScrolled);
-        setScrolled(isScrolled);
       }
 
       ticking = false;
@@ -62,7 +68,12 @@ export default function Header() {
 
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      document.documentElement.style.removeProperty("--site-header-height");
+    };
   }, []);
 
   const closeMenu = () => {
@@ -107,11 +118,11 @@ export default function Header() {
               <span className="site-header__logo-wrap">
                 <SiteLogo
                   src="/assets/logos/KINEXIS_logo_full.webp"
-                  alt="Kinexis Digital"
+                  alt={tA11y("logoAlt")}
                   width={180}
                   height={32}
                   priority
-                  className="site-header__logo motion-logo group-hover:opacity-80"
+                  className="site-header__logo group-hover:opacity-80"
                 />
               </span>
             </Link>
@@ -134,9 +145,12 @@ export default function Header() {
             <div className="site-header__actions site-header__actions--desktop relative z-20 hidden shrink-0 items-center overflow-visible lg:flex">
               <LanguageSwitcher variant="header" menuOpen={menuOpen} compact />
               <div className="header-actions-divider" aria-hidden />
-              <Link
+              <Button
                 href="/contact"
-                className="header-cta group whitespace-nowrap rounded-lg px-3 text-[11px] xl:px-3.5 xl:text-xs"
+                size="header"
+                variant="primary"
+                aria-label={tNav("bookCall")}
+                className="group whitespace-nowrap xl:px-3.5"
               >
                 <span className="xl:hidden">{tNav("bookCallShort")}</span>
                 <span className="hidden xl:inline">{tNav("bookCall")}</span>
@@ -144,30 +158,33 @@ export default function Header() {
                   className="h-3 w-3 shrink-0 opacity-80 transition-transform duration-300 group-hover:translate-x-0.5"
                   aria-hidden
                 />
-              </Link>
+              </Button>
             </div>
 
             <div className="relative z-10 flex shrink-0 items-center gap-2 lg:hidden">
-              <Link
+              <Button
                 href="/contact"
-                className="header-cta shrink-0 h-7 whitespace-nowrap rounded-lg px-2.5 text-[10px] sm:px-3 sm:text-[11px]"
+                size="header"
+                variant="primary"
+                aria-label={tNav("bookCall")}
+                className="shrink-0 !h-9 whitespace-nowrap px-3 text-[11px] sm:px-3.5 sm:text-xs"
               >
                 {tNav("bookCallShort")}
-                <ArrowRight className="h-2.5 w-2.5 shrink-0 opacity-80" aria-hidden />
-              </Link>
+                <ArrowRight className="h-3 w-3 shrink-0 opacity-80" aria-hidden />
+              </Button>
               <button
                 ref={menuButtonRef}
                 type="button"
-                className="header-icon-btn h-8 w-8"
+                className="header-icon-btn h-12 w-12"
                 onClick={toggleMenu}
                 aria-label={menuOpen ? tNav("closeMenu") : tNav("toggleMenu")}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-site-nav"
               >
                 {menuOpen ? (
-                  <X className="h-4 w-4" />
+                  <X className="h-7 w-7" />
                 ) : (
-                  <Menu className="h-4 w-4" />
+                  <Menu className="h-7 w-7" />
                 )}
               </button>
             </div>
@@ -175,29 +192,30 @@ export default function Header() {
         </div>
       </header>
 
-      <MobileMenu
-        open={menuOpen}
-        scrolled={scrolled}
-        servicesOpen={servicesOpen}
-        industriesOpen={industriesOpen}
-        resourcesOpen={resourcesOpen}
-        onClose={closeMenu}
-        onToggleServices={() => {
-          setIndustriesOpen(false);
-          setResourcesOpen(false);
-          setServicesOpen((prev) => !prev);
-        }}
-        onToggleIndustries={() => {
-          setServicesOpen(false);
-          setResourcesOpen(false);
-          setIndustriesOpen((prev) => !prev);
-        }}
-        onToggleResources={() => {
-          setServicesOpen(false);
-          setIndustriesOpen(false);
-          setResourcesOpen((prev) => !prev);
-        }}
-      />
+      {menuOpen ? (
+        <MobileMenu
+          open={menuOpen}
+          servicesOpen={servicesOpen}
+          industriesOpen={industriesOpen}
+          resourcesOpen={resourcesOpen}
+          onClose={closeMenu}
+          onToggleServices={() => {
+            setIndustriesOpen(false);
+            setResourcesOpen(false);
+            setServicesOpen((prev) => !prev);
+          }}
+          onToggleIndustries={() => {
+            setServicesOpen(false);
+            setResourcesOpen(false);
+            setIndustriesOpen((prev) => !prev);
+          }}
+          onToggleResources={() => {
+            setServicesOpen(false);
+            setIndustriesOpen(false);
+            setResourcesOpen((prev) => !prev);
+          }}
+        />
+      ) : null}
     </>
   );
 }

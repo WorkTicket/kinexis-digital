@@ -21,11 +21,11 @@ export default function EmailMarketingHeroViz({ sequence }: Props) {
       <HeroVizStage className="items-center">
         <BrowserFrame label="Email Sequence" delay={0.5} frameClassName="h-[165px] w-[220px]">
           <div className="flex flex-1 gap-1.5">
-            <div className="flex w-[38%] flex-col gap-1 border-r border-white/[0.06] pr-1">
+            <div className="flex w-[38%] flex-col gap-1 border-r border-surface pr-1">
               {items.map((s, i) => (
                 <motion.div
                   key={s.day}
-                  className={`rounded border px-1 py-1 ${i === 0 ? "border-neon-cyan/25 bg-neon-cyan/[0.06]" : "border-white/[0.06] bg-white/[0.02]"}`}
+                  className={`rounded border px-1 py-1 ${i === 0 ? "border-neon-cyan/25 bg-neon-cyan/[0.06]" : "border-surface bg-white/[0.02]"}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.65 + i * 0.08 }}

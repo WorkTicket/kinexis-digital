@@ -55,7 +55,7 @@ const clusterPostsEnMeta = [
     title: "Google Ads Quality Score Guide",
     category: "Paid Ads",
     publishedAt: "March 8, 2026",
-    parentServicePath: "/services/google-ads",
+    parentServicePath: "/services/ppc-management",
   },
   {
     slug: "negative-keywords-guide",
@@ -198,7 +198,7 @@ const clusterPostsEsMeta = [
     title: "Guía de Quality Score en Google Ads",
     category: "Anuncios Pagados",
     publishedAt: "8 de marzo de 2026",
-    parentServicePath: "/services/google-ads",
+    parentServicePath: "/services/ppc-management",
   },
   {
     slug: "negative-keywords-guide",

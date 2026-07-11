@@ -1,8 +1,7 @@
-"use client";
-
-import { m as motion } from "@/lib/framer";
 import { BarChart3, TrendingUp, Eye, Sparkles } from "lucide-react";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/shared/services/Section";
 
 const values = [
   {
@@ -32,56 +31,48 @@ const values = [
 ];
 
 export default function WhyKinexis() {
-  const { fadeUp, stagger } = useMotionVariants();
-
   return (
-    <section className="section-padding border-t border-white/[0.06]">
+    <Section id="why-kinexis" surfaceIndex={0}>
       <div className="container-site">
-        <div className="section-header">
-          <span className="section-label">Why KINEXIS</span>
-          <h2 className="section-title">Four principles we live by</h2>
-          <div className="section-divider" />
-          <p className="section-subtitle">
-            Four principles we actually live by.
-          </p>
-        </div>
+        <SectionHeader
+          align="left"
+          badge="Why KINEXIS"
+          title="Four principles we live by"
+          description="Four principles we actually live by."
+          headingId="why-kinexis-heading"
+        />
 
-        <motion.div
-          className="relative mx-auto mt-20 max-w-4xl"
-          variants={stagger}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        <div className="relative mx-auto mt-20 max-w-4xl">
           <div className="absolute left-7 top-0 h-full w-px bg-gradient-to-b from-white/10 via-white/5 to-transparent max-md:hidden" />
 
+          <Reveal stagger>
           {values.map((v) => (
-            <motion.div
+            <div
               key={v.title}
-              variants={fadeUp}
               className="group relative flex gap-8 pb-16 last:pb-0"
             >
               <div className="relative z-10 flex flex-col items-center max-md:hidden">
-                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-bg transition-all duration-200 group-hover:border-neon-cyan/40 group-hover:shadow-lg group-hover:shadow-neon-cyan/10">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-strong bg-bg transition-all duration-200 group-hover:border-neon-cyan/40 group-hover:shadow-lg group-hover:shadow-neon-cyan/10">
                   <v.icon className="h-6 w-6 text-white/40 transition-colors duration-200 group-hover:text-neon-cyan" />
                 </div>
               </div>
 
               <div className="flex-1">
                 <div className="flex items-center gap-3 md:hidden mb-2">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-strong">
                     <v.icon className="h-5 w-5 text-neon-cyan" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold md:text-2xl">{v.title}</h3>
+                <h3 className="card-heading">{v.title}</h3>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-base">
                   {v.description}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+          </Reveal>
+        </div>
       </div>
-    </section>
+    </Section>
   );
 }

@@ -2,18 +2,20 @@ import { getTranslations } from "next-intl/server";
 import { Mail } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 import SiteLogo from "@/components/ui/SiteLogo";
+import Button from "@/components/ui/Button";
+import { cardClasses } from "@/lib/card-styles";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { mainNavLinks, footerServiceLinks } from "@/lib/site-nav";
-import { cn } from "@/lib/utils";
 
 export default async function Footer() {
   const tNav = await getTranslations("nav");
   const tServices = await getTranslations("services");
   const tFooter = await getTranslations("footer");
   const tCommon = await getTranslations("common");
+  const tA11y = await getTranslations("a11y");
 
   return (
-    <footer className="relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
+    <footer className="relative overflow-hidden border-t border-surface bg-bg-dark">
       {/* Dot grid texture */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.014)_1px,transparent_1px)] bg-[size:28px_28px] opacity-60"
@@ -40,22 +42,22 @@ export default async function Footer() {
 
           {/* ── Brand column ── */}
           <div className="col-span-2 flex flex-col items-center lg:col-span-1 lg:pr-10">
-            <Link href="/" className="inline-block no-underline">
+            <Link href="/" className="group flex flex-col items-center no-underline">
               <SiteLogo
-                src="/assets/logos/KINEXIS_icon_logo.webp"
-                alt="KINEXIS Digital"
-                width={280}
-                height={188}
-                className="h-36 w-36 !object-cover !object-center overflow-hidden"
+                src="/assets/logos/KINEXIS_icon_mark.webp"
+                alt={tA11y("logoAlt")}
+                width={105}
+                height={59}
+                className="h-8 w-auto opacity-90 transition-opacity duration-300 group-hover:opacity-100"
               />
+              <p className="mt-2 text-xl font-bold tracking-wide text-white/80 text-center transition-colors duration-300 group-hover:text-white/90">
+                KINEXIS Digital Marketing
+              </p>
             </Link>
-            <p className="mt-3 text-xl font-bold tracking-wide text-white/70 text-center">
-              KINEXIS Digital Marketing
-            </p>
             <div className="mt-4 flex flex-col gap-2.5">
               <a
                 href="mailto:hello@kinexisdigital.com"
-                className="group flex items-center gap-2 text-[15px] text-muted/75 no-underline transition-colors duration-300 hover:text-white"
+                className="group flex items-center gap-2 text-[15px] text-white/60 no-underline transition-colors duration-300 hover:text-white"
               >
                 <Mail className="h-4 w-4 shrink-0 text-neon-cyan/40 transition-colors duration-300 group-hover:text-neon-cyan/80" />
                 hello@kinexisdigital.com
@@ -66,7 +68,7 @@ export default async function Footer() {
           {/* ── Navigation ── */}
           <div>
             <div className="mb-4">
-              <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/25">
+              <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/50">
                 {tFooter("navigation")}
               </h3>
             </div>
@@ -75,7 +77,7 @@ export default async function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted/75 no-underline transition-colors duration-200 hover:text-white"
+                    className="text-sm text-white/60 no-underline transition-colors duration-200 hover:text-white"
                   >
                     {tNav(link.key)}
                   </Link>
@@ -87,7 +89,7 @@ export default async function Footer() {
           {/* ── Services ── */}
           <div>
             <div className="mb-4">
-              <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/25">
+              <h3 className="text-[9px] font-bold uppercase tracking-[0.24em] text-white/50">
                 {tFooter("services")}
               </h3>
             </div>
@@ -96,7 +98,7 @@ export default async function Footer() {
                 <li key={service.href}>
                   <Link
                     href={service.href}
-                    className="text-sm text-muted/75 no-underline transition-colors duration-200 hover:text-white"
+                    className="text-sm text-white/60 no-underline transition-colors duration-200 hover:text-white"
                   >
                     {tServices(service.key)}
                   </Link>
@@ -107,22 +109,22 @@ export default async function Footer() {
 
           {/* ── Mission card — right of services ── */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="rounded-xl border border-white/[0.06] bg-white/[0.025] p-4 flex flex-col">
+            <div className={cardClasses({ surface: "elevated", hover: false, className: "p-4 flex flex-col" })}>
               <p className="text-sm font-semibold leading-snug text-white/80">
                 {tFooter("missionTitle")}
               </p>
-              <p className="mt-1.5 text-[13px] leading-relaxed text-muted/75">
+              <p className="mt-1.5 text-[13px] leading-relaxed text-white/60">
                 {tFooter("missionBody")}
               </p>
-              <Link
+              <Button
                 href="/contact"
-                className={cn(
-                  "mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient px-4 py-3 text-sm font-semibold tracking-wide text-white sm:w-auto",
-                  "min-h-touch min-w-touch-lg sm:hover:shadow-glow"
-                )}
+                size="sm"
+                variant="primary"
+                aria-label={tCommon("bookStrategyCall")}
+                className="mt-4 w-full sm:w-auto"
               >
                 {tCommon("bookStrategyCall")}
-              </Link>
+              </Button>
             </div>
           </div>
 
@@ -130,22 +132,25 @@ export default async function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div className="relative z-10 border-t border-white/[0.04]">
+      <div className="relative z-10 border-t border-subtle">
         <div className="container-site flex flex-col items-center justify-between gap-3 py-6 sm:flex-row">
           <div className="flex flex-col items-center gap-2 sm:items-start">
-            <p className="text-[11px] tracking-wide text-muted/30">
+            <p className="text-[11px] tracking-wide text-white/50">
               &copy; {new Date().getFullYear()} {tFooter("copyright")}
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px]">
-              <Link href="/privacy" className="text-muted/35 no-underline transition-colors hover:text-white/60">
+              <Link href="/privacy" className="text-white/55 no-underline transition-colors hover:text-white/80">
                 {tFooter("privacy")}
               </Link>
-              <Link href="/terms" className="text-muted/35 no-underline transition-colors hover:text-white/60">
+              <Link href="/terms" className="text-white/55 no-underline transition-colors hover:text-white/80">
                 {tFooter("terms")}
               </Link>
+              <a href="/llms.txt" className="text-white/55 no-underline transition-colors hover:text-white/80">
+                {tFooter("llmsIndex")}
+              </a>
             </div>
           </div>
-          <p className="order-3 text-[11px] italic tracking-wide text-muted/22 sm:order-2">
+          <p className="order-3 text-[11px] italic tracking-wide text-white/50 sm:order-2">
             {tFooter("builtWith")}
           </p>
           <div className="order-2 sm:order-3">

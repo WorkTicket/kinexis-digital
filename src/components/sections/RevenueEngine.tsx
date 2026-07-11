@@ -5,8 +5,11 @@ import dynamic from "next/dynamic";
 import { m as motion, AnimatePresence } from "@/lib/framer";
 import { useTranslations } from "next-intl";
 import { Eye, MousePointerClick, Users, TrendingUp, ArrowRight, type LucideIcon } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { cardClasses } from "@/lib/card-styles";
 import TwoLineText from "@/components/ui/TwoLineText";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import Section from "@/components/shared/services/Section";
 
 const ResultsTrajectoryChart = dynamic(
   () => import("@/components/ui/DataViz/ResultsTrajectoryChart"),
@@ -27,22 +30,23 @@ const stageMeta: Record<
 };
 
 const chartDataByStage: Record<StageId, number[]> = {
-  visibility: [4, 8, 14, 22, 32, 44, 58],
-  traffic: [1.2, 2.0, 2.8, 3.6, 4.8, 6.2, 9.2],
+  visibility: [4, 18, 29, 38, 46, 52, 58],
+  traffic: [1.2, 2.0, 2.8, 3.4, 4.2, 6.4, 9.2],
   leads: [12, 13, 14, 15, 17, 52, 125],
-  revenue: [5, 8, 12, 18, 26, 40, 62],
+  revenue: [5, 6.5, 9, 13, 21, 37, 62],
 };
 
 const chartLabels = ["M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 
 function formatMetric(value: number, unit: string): string {
+  const formattedValue = Number.isInteger(value) ? `${Math.round(value)}` : value.toFixed(1);
   if (unit.includes("$")) {
-    return value >= 10 ? `$${Math.round(value)}K` : `$${value.toFixed(1)}K`;
+    return `$${formattedValue}K`;
   }
   if (unit.includes("(K)")) {
-    return value >= 10 ? `${Math.round(value)}K` : `${value.toFixed(1)}K`;
+    return `${formattedValue}K`;
   }
-  return Number.isInteger(value) ? `${Math.round(value)}` : value.toFixed(1);
+  return formattedValue;
 }
 
 function growthLabel(start: number, end: number): string {
@@ -54,7 +58,9 @@ function growthLabel(start: number, end: number): string {
   return `+${pct}%`;
 }
 
-export default function RevenueEngine() {
+type Props = { surfaceIndex?: number };
+
+export default function RevenueEngine({ surfaceIndex = 0 }: Props) {
   const t = useTranslations("revenueEngine");
   const reducedMotion = usePrefersReducedMotion();
   const [activeStage, setActiveStage] = useState(0);
@@ -90,7 +96,7 @@ export default function RevenueEngine() {
   }, []);
 
   return (
-    <section className="section-padding relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
+    <Section id="revenue-engine" surfaceIndex={surfaceIndex} className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40"
         aria-hidden
@@ -114,15 +120,13 @@ export default function RevenueEngine() {
       </AnimatePresence>
 
       <div className="container-site relative z-10">
-        <div className="section-header">
-          <span className="section-label">{t("label")}</span>
-          <h2 className="section-title">
-            <TwoLineText text={t("title")} variant="section" />
-          </h2>
-          <p className="section-subtitle">
-            <TwoLineText text={t("subtitle")} variant="body" />
-          </p>
-        </div>
+        <SectionHeader
+          align="left"
+          badge={t("label")}
+          title={<TwoLineText text={t("title")} variant="section" />}
+          description={<TwoLineText text={t("subtitle")} variant="body" />}
+          headingId="revenue-engine-heading"
+        />
 
         {/* Desktop pipeline navigator */}
         <div className="mx-auto mt-16 hidden max-w-4xl lg:block">
@@ -144,10 +148,10 @@ export default function RevenueEngine() {
                     <span
                       className={`relative flex h-[4.25rem] w-[4.25rem] items-center justify-center rounded-2xl border transition-all duration-500 ${
                         isActive
-                          ? "border-neon-cyan/40 bg-white/[0.06] shadow-lg shadow-neon-cyan/10"
+                          ? "border-neon-cyan/40 bg-surface-hover shadow-lg shadow-neon-cyan/10"
                           : isPast
-                            ? "border-neon-cyan/20 bg-white/[0.03]"
-                            : "border-white/[0.08] bg-white/[0.02] group-hover:border-white/15 group-hover:bg-white/[0.04]"
+                            ? "border-neon-cyan/20 bg-surface-raised"
+                            : "border-strong bg-surface-base group-hover:border-strong group-hover:bg-surface-glass"
                       }`}
                     >
                       {isActive && (
@@ -179,7 +183,7 @@ export default function RevenueEngine() {
                       className="relative mx-3 mt-[2.125rem] h-px min-w-[2rem] flex-1 self-start"
                       aria-hidden
                     >
-                      <div className="absolute inset-0 bg-white/[0.06]" />
+                      <div className="absolute inset-0 bg-surface-hover" />
                       <motion.div
                         className="absolute inset-y-0 left-0 bg-gradient-to-r from-neon-cyan/30 via-neon-cyan/70 to-neon-cyan"
                         initial={false}
@@ -207,7 +211,7 @@ export default function RevenueEngine() {
                 className={`flex shrink-0 items-center gap-2.5 rounded-full border px-4 py-2.5 transition-all duration-400 ${
                   isActive
                     ? "border-neon-cyan/35 bg-neon-cyan/[0.08] text-white"
-                    : "border-white/[0.08] bg-white/[0.02] text-white/50"
+                    : "border-strong bg-surface-base text-white/50"
                 }`}
                 aria-current={isActive ? "step" : undefined}
               >
@@ -241,9 +245,9 @@ export default function RevenueEngine() {
 
               <div className="relative grid gap-0 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
                 {/* Content column */}
-                <div className="border-b border-white/[0.06] p-8 md:p-10 lg:border-b-0 lg:border-r lg:p-12">
+                <div className="border-b border-surface p-8 md:p-10 lg:border-b-0 lg:border-r lg:p-12">
                   <div className="flex items-center gap-3">
-                    <span className="rounded-full border border-white/[0.1] bg-white/[0.04] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
+                    <span className="rounded-full border border-strong bg-surface-glass px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">
                       {t("stage")} {active.index}
                     </span>
                     <span className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-neon-cyan/80">
@@ -256,7 +260,7 @@ export default function RevenueEngine() {
 
                   <div className="mt-8 flex items-start gap-5">
                     <div
-                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.04]"
+                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-strong bg-surface-glass"
                       style={{ boxShadow: `0 0 32px ${active.glow}` }}
                     >
                       <active.icon className="h-6 w-6 text-neon-cyan" strokeWidth={1.5} />
@@ -271,14 +275,14 @@ export default function RevenueEngine() {
                     {active.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/55"
+                        className="rounded-full border border-strong bg-surface-raised px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white/55"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="mt-10 rounded-2xl border border-white/[0.06] bg-black/20 p-5 md:p-6">
+                  <div className={cardClasses({ hover: false, className: "mt-10 !bg-black/20 !p-5 md:!p-6" })}>
                     <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/40">
                       {active.chartUnit}
                     </p>
@@ -340,9 +344,9 @@ export default function RevenueEngine() {
                 key={stage.id}
                 type="button"
                 onClick={() => goToStage(i)}
-                className="flex w-full items-center gap-4 rounded-2xl border border-white/[0.06] bg-white/[0.02] px-5 py-4 text-left transition-colors hover:border-white/10 hover:bg-white/[0.03]"
+                className={cardClasses({ surface: "elevated", className: "flex w-full items-center gap-4 !px-5 !py-4 text-left" })}
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.03]">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-strong bg-surface-raised">
                   <Icon className="h-4 w-4 text-white/40" strokeWidth={1.75} />
                 </span>
                 <div className="min-w-0 flex-1">
@@ -357,6 +361,6 @@ export default function RevenueEngine() {
           })}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

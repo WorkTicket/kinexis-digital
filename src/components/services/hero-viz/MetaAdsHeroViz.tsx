@@ -14,12 +14,12 @@ export default function MetaAdsHeroViz() {
     <HeroVizShell>
       <div className="relative flex flex-col items-center">
         <motion.div
-          className="w-[130px] overflow-hidden rounded-[1.1rem] border-2 border-white/[0.12] bg-[#0d1117] shadow-xl shadow-black/30"
+          className="w-[130px] overflow-hidden rounded-[1.1rem] border-2 border-strong bg-[#0d1117] shadow-xl shadow-black/30"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
         >
-          <div className="flex items-center justify-between border-b border-white/[0.06] bg-white/[0.02] px-2 py-1">
+          <div className="flex items-center justify-between border-b border-surface bg-white/[0.02] px-2 py-1">
             <span className="text-[6px] font-semibold text-muted/50">Instagram</span>
             <div className="flex gap-0.5">
               <div className="h-1 w-1 rounded-full bg-white/20" />

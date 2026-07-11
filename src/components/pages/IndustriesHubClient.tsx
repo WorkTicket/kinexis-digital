@@ -8,11 +8,13 @@ import Button from "@/components/ui/Button";
 import { industryCategories } from "@/content/registry/industries";
 import type { Locale } from "@/i18n/routing";
 import type { industriesHubContent } from "@/content/industries/detail";
+import Section from "@/components/shared/services/Section";
 
 type IndustriesHubContent = (typeof industriesHubContent)[Locale];
 type Props = { content: IndustriesHubContent };
 
 export default function IndustriesHubClient({ content: c }: Props) {
+  let surfaceIndex = 0;
 
   return (
     <>
@@ -33,9 +35,9 @@ export default function IndustriesHubClient({ content: c }: Props) {
         secondaryCtaHref="/digital-marketing-agency"
       />
 
-      <section className="section-padding border-t border-white/[0.06]">
+      <Section id="industries-intro" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
-          <SectionHeader pattern="B" title={c.intro.title} />
+          <SectionHeader title={c.intro.title} headingId="industries-intro-heading" />
           <div className="section-content space-y-5 text-muted leading-relaxed type-body">
             {c.intro.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 40)}>{paragraph}</p>
@@ -47,12 +49,12 @@ export default function IndustriesHubClient({ content: c }: Props) {
             </Button>
           </div>
         </div>
-      </section>
+      </Section>
 
-      {industryCategories.map((category, ci) => (
-        <section key={category.id} className={`section-padding ${ci % 2 === 0 ? "bg-bg-dark" : ""} border-t border-white/[0.06]`}>
+      {industryCategories.map((category) => (
+        <Section key={category.id} id={`industry-${category.id}`} surfaceIndex={surfaceIndex++}>
           <div className="container-site">
-            <SectionHeader pattern="C" title={category.label} subtitle={category.description} />
+            <SectionHeader title={category.label} description={category.description} headingId={`industry-${category.id}-heading`} />
             <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-stretch">
               {category.industries.map((industry, i) => (
                 <IndustryCard
@@ -65,7 +67,7 @@ export default function IndustriesHubClient({ content: c }: Props) {
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       ))}
 
       <CTAArchetype

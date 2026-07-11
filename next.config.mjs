@@ -2,16 +2,19 @@ import createNextIntlPlugin from "next-intl/plugin";
 import { withSentryConfig } from "@sentry/nextjs";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import bundleAnalyzer from "@next/bundle-analyzer";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 initOpenNextCloudflareForDev();
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-const isDev = process.env.NODE_ENV === "development";
-
-const cloudflareInsightsScript = "https://static.cloudflareinsights.com";
 const cloudflareInsightsConnect = "https://cloudflareinsights.com";
+
+const isDev = process.env.NODE_ENV === "development";
 
 // Security headers applied to every route (mirrored in public/_headers for Cloudflare Pages static assets).
 const securityHeaders = [
@@ -31,8 +34,8 @@ const securityHeaders = [
     key: "Content-Security-Policy",
     value: [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms ${cloudflareInsightsScript}`,
-      `script-src-elem 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms ${cloudflareInsightsScript}`,
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com`,
+      `script-src-elem 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.clarity.ms https://static.cloudflareinsights.com`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com",
       "font-src 'self' data:",
@@ -42,6 +45,7 @@ const securityHeaders = [
       "base-uri 'self'",
       "form-action 'self'",
       "frame-ancestors 'self'",
+      "report-uri https://kinexisdigital.report-uri.com/r/d/csp/enforce",
     ].join("; "),
   },
 ];
@@ -64,12 +68,29 @@ const nextConfig = {
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
     optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs"],
+    // Inline the route's CSS into a <style> in the <head> instead of emitting a
+    // render-blocking <link rel="stylesheet">. On throttled mobile this removes
+    // an entire request round-trip from the critical path, cutting FCP/LCP by
+    // several hundred ms. The stylesheet is small enough that HTML growth is
+    // offset by the saved round-trip, and HTML is edge-cached via ISR.
+    inlineCss: true,
   },
 
   webpack(config, { dev, isServer }) {
     // Dev: avoid Windows file-locking races with the filesystem cache.
     if (dev) {
       config.cache = { type: "memory" };
+    }
+
+    // Modern browsers only — drop Next.js Baseline polyfills (~24 KiB legacy JS).
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        "next/dist/build/polyfills/polyfill-module": path.join(
+          __dirname,
+          "src/lib/empty-polyfills.ts"
+        ),
+      };
     }
 
     // Production client bundles: split vendor chunks more granularly so
@@ -100,13 +121,43 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/:locale(en|es)/services/cro",
-        destination: "/:locale/services/funnels",
+        source: "/:locale(en|es)/pricing/google-ads",
+        destination: "/:locale/pricing/ppc-management",
         permanent: true,
       },
       {
-        source: "/:locale(en|es)/pricing/cro",
-        destination: "/:locale/pricing/funnels",
+        source: "/:locale(en|es)/pricing/paid-ads",
+        destination: "/:locale/pricing/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|es)/services/google-ads",
+        destination: "/:locale/services/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/:locale(en|es)/services/paid-ads",
+        destination: "/:locale/services/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/pricing/google-ads",
+        destination: "/en/pricing/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/services/google-ads",
+        destination: "/en/services/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/services/paid-ads",
+        destination: "/en/services/ppc-management",
+        permanent: true,
+      },
+      {
+        source: "/pricing/paid-ads",
+        destination: "/en/pricing/ppc-management",
         permanent: true,
       },
       ...getLegacyRedirects(),
@@ -114,6 +165,18 @@ const nextConfig = {
   },
   async headers() {
     return [
+      {
+        source: "/preloader-boot.js",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/cookie-preflight.js",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
       {
         source: "/sitemap.xml",
         headers: [
@@ -123,6 +186,13 @@ const nextConfig = {
       {
         source: "/robots.txt",
         headers: [
+          { key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" },
+        ],
+      },
+      {
+        source: "/llms.txt",
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
           { key: "Cache-Control", value: "public, s-maxage=3600, stale-while-revalidate=86400" },
         ],
       },

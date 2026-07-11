@@ -4,7 +4,7 @@ import { getHrefLang } from "@/i18n/locale-tags";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinexisdigital.com").replace(/\/$/, "");
 
-export const DEFAULT_OG_IMAGE_PATH = "/assets/images/kinexis_OG_image.png";
+export const DEFAULT_OG_IMAGE_PATH = "/assets/images/kinexis_OG_image.webp";
 
 /** Square brand mark for Organization/LocalBusiness logo rich results (not the wide OG card). */
 export const ORGANIZATION_LOGO_PATH = "/assets/logos/KINEXIS_icon_logo.webp";
@@ -77,6 +77,7 @@ export type PageMetadataInput = {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: "website" | "article";
   noIndex?: boolean;
 };
 
@@ -132,6 +133,7 @@ export function buildPageMetadata({
   title,
   description,
   ogImage,
+  ogType,
   noIndex,
 }: PageMetadataInput): Metadata {
   const safeTitle = normalizeMetaTitle(title);
@@ -158,16 +160,16 @@ export function buildPageMetadata({
       title: safeTitle,
       description: safeDescription,
       url,
-      type: "website",
+      type: ogType ?? "website",
       siteName: "KINEXIS Digital",
-      images: [{ url: imageUrl, alt: "KINEXIS Digital" }],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: "KINEXIS Digital" }],
     },
     twitter: {
       card: "summary_large_image",
       site: "@kinexisdigital",
       title: safeTitle,
       description: safeDescription,
-      images: [imageUrl],
+      images: [{ url: imageUrl, alt: "KINEXIS Digital" }],
     },
   };
 }

@@ -43,7 +43,7 @@ export const industryCategories: IndustryCategory[] = [
     label: "E-Commerce",
     description: "Revenue-focused shopping campaigns, retention systems, and conversion optimization for online brands.",
     industries: [
-      { slug: "shopify-brands", categoryId: "ecommerce", label: "Shopify Brands", shortDescription: "Shopping ads, product SEO, and email flows that lift AOV and LTV.", primaryServices: ["google-ads", "meta-ads", "email-marketing", "funnels"] },
+      { slug: "shopify-brands", categoryId: "ecommerce", label: "Shopify Brands", shortDescription: "Shopping ads, product SEO, and email flows that lift AOV and LTV.", primaryServices: ["ppc-management", "meta-ads", "email-marketing", "funnels"] },
       { slug: "dtc-brands", categoryId: "ecommerce", label: "DTC Brands", shortDescription: "Full-funnel paid social, UGC content, and retention automation.", primaryServices: ["meta-ads", "video-marketing", "email-marketing", "funnels"] },
       { slug: "online-retailers", categoryId: "ecommerce", label: "Online Retailers", shortDescription: "Catalog SEO, marketplace strategy, and margin-aware ROAS optimization.", primaryServices: ["seo", "ppc-management", "analytics", "funnels"] },
       { slug: "amazon-sellers", categoryId: "ecommerce", label: "Amazon Sellers", shortDescription: "Listing optimization, off-Amazon traffic, and brand-building beyond the marketplace.", primaryServices: ["ppc-management", "seo", "email-marketing", "analytics"] },
@@ -70,7 +70,7 @@ export const industryCategories: IndustryCategory[] = [
     description: "Authority-building content, trust signals, and demand generation for high-value client acquisition.",
     industries: [
       { slug: "law-firms", categoryId: "professional-services", label: "Law Firms", shortDescription: "Practice-area SEO, compliant content, and intake-optimized landing pages.", primaryServices: ["seo", "content-marketing", "ppc-management", "funnels"] },
-      { slug: "dentists", categoryId: "professional-services", label: "Dentists", shortDescription: "Patient acquisition funnels, local SEO, and reputation management.", primaryServices: ["seo", "google-ads", "web-design", "funnels"] },
+      { slug: "dentists", categoryId: "professional-services", label: "Dentists", shortDescription: "Patient acquisition funnels, local SEO, and reputation management.", primaryServices: ["seo", "ppc-management", "web-design", "funnels"] },
       { slug: "medical-practices", categoryId: "professional-services", label: "Medical Practices", shortDescription: "HIPAA-aware marketing, provider SEO, and appointment booking optimization.", primaryServices: ["seo", "content-marketing", "web-design", "analytics"] },
       { slug: "accountants", categoryId: "professional-services", label: "Accountants", shortDescription: "Seasonal tax campaigns, thought leadership, and referral-driven nurture flows.", primaryServices: ["seo", "email-marketing", "content-marketing", "ppc-management"] },
       { slug: "consultants", categoryId: "professional-services", label: "Consultants", shortDescription: "Positioning, authority content, and pipeline-focused demand generation.", primaryServices: ["branding", "content-marketing", "seo", "growth-consulting"] },
@@ -83,11 +83,11 @@ export const industryCategories: IndustryCategory[] = [
     description: "Compliant patient acquisition, trust-building content, and measurable growth for care providers.",
     industries: [
       { slug: "medical", categoryId: "healthcare", label: "Medical", shortDescription: "Provider SEO, patient education content, and conversion-optimized intake.", primaryServices: ["seo", "content-marketing", "web-design", "analytics"] },
-      { slug: "dental", categoryId: "healthcare", label: "Dental", shortDescription: "New patient funnels, local visibility, and treatment-specific landing pages.", primaryServices: ["seo", "google-ads", "funnels", "email-marketing"] },
+      { slug: "dental", categoryId: "healthcare", label: "Dental", shortDescription: "New patient funnels, local visibility, and treatment-specific landing pages.", primaryServices: ["seo", "ppc-management", "funnels", "email-marketing"] },
       { slug: "wellness", categoryId: "healthcare", label: "Wellness", shortDescription: "Membership funnels, community content, and retention-focused email systems.", primaryServices: ["social-media", "email-marketing", "web-design", "content-marketing"] },
-      { slug: "chiropractors", categoryId: "healthcare", label: "Chiropractors", shortDescription: "New patient acquisition, local SEO, and treatment-specific landing pages.", primaryServices: ["seo", "google-ads", "web-design", "funnels"] },
-      { slug: "physical-therapy", categoryId: "healthcare", label: "Physical Therapy", shortDescription: "Referral-driven growth, provider SEO, and insurance-aware intake funnels.", primaryServices: ["seo", "content-marketing", "google-ads", "analytics"] },
-      { slug: "pharmacies", categoryId: "healthcare", label: "Pharmacies", shortDescription: "Local visibility, prescription transfer campaigns, and community trust building.", primaryServices: ["seo", "google-ads", "email-marketing", "social-media"] },
+      { slug: "chiropractors", categoryId: "healthcare", label: "Chiropractors", shortDescription: "New patient acquisition, local SEO, and treatment-specific landing pages.", primaryServices: ["seo", "ppc-management", "web-design", "funnels"] },
+      { slug: "physical-therapy", categoryId: "healthcare", label: "Physical Therapy", shortDescription: "Referral-driven growth, provider SEO, and insurance-aware intake funnels.", primaryServices: ["seo", "content-marketing", "ppc-management", "analytics"] },
+      { slug: "pharmacies", categoryId: "healthcare", label: "Pharmacies", shortDescription: "Local visibility, prescription transfer campaigns, and community trust building.", primaryServices: ["seo", "ppc-management", "email-marketing", "social-media"] },
     ],
   },
   {
@@ -121,12 +121,12 @@ export const industryCategories: IndustryCategory[] = [
     label: "Home Services",
     description: "Local lead generation, service-area SEO, and paid campaigns for trades and contractors.",
     industries: [
-      { slug: "hvac", categoryId: "home-services", label: "HVAC", shortDescription: "Seasonal demand capture, emergency-intent SEO, and high-ROAS local service ads.", primaryServices: ["seo", "google-ads", "web-design", "funnels"] },
-      { slug: "roofing", categoryId: "home-services", label: "Roofing", shortDescription: "Storm-season campaigns, geo-targeted landing pages, and review-driven local visibility.", primaryServices: ["seo", "google-ads", "ppc-management", "funnels"] },
-      { slug: "landscaping", categoryId: "home-services", label: "Landscaping", shortDescription: "Visual portfolio sites, seasonal PPC, and local pack dominance.", primaryServices: ["seo", "web-design", "social-media", "google-ads"], relatedCaseStudySlugs: ["landscaping-company-growth"] },
-      { slug: "plumbing", categoryId: "home-services", label: "Plumbing", shortDescription: "Emergency-intent Google Ads, 24/7 call tracking, and service-area SEO.", primaryServices: ["google-ads", "seo", "funnels", "analytics"], relatedCaseStudySlugs: ["plumbing-company-growth"] },
-      { slug: "electrical", categoryId: "home-services", label: "Electrical", shortDescription: "Licensed-trades positioning, local SEO, and conversion-optimized quote flows.", primaryServices: ["seo", "web-design", "google-ads", "funnels"] },
-      { slug: "pest-control", categoryId: "home-services", label: "Pest Control", shortDescription: "Seasonal demand capture, local pack dominance, and high-intent service-area campaigns.", primaryServices: ["google-ads", "seo", "funnels", "analytics"] },
+      { slug: "hvac", categoryId: "home-services", label: "HVAC", shortDescription: "Seasonal demand capture, emergency-intent SEO, and high-ROAS local service ads.", primaryServices: ["seo", "ppc-management", "web-design", "funnels"] },
+      { slug: "roofing", categoryId: "home-services", label: "Roofing", shortDescription: "Storm-season campaigns, geo-targeted landing pages, and review-driven local visibility.", primaryServices: ["seo", "ppc-management", "funnels"] },
+      { slug: "landscaping", categoryId: "home-services", label: "Landscaping", shortDescription: "Visual portfolio sites, seasonal PPC, and local pack dominance.", primaryServices: ["seo", "web-design", "social-media", "ppc-management"], relatedCaseStudySlugs: ["landscaping-company-growth"] },
+      { slug: "plumbing", categoryId: "home-services", label: "Plumbing", shortDescription: "Emergency-intent Google Ads, 24/7 call tracking, and service-area SEO.", primaryServices: ["ppc-management", "seo", "funnels", "analytics"], relatedCaseStudySlugs: ["plumbing-company-growth"] },
+      { slug: "electrical", categoryId: "home-services", label: "Electrical", shortDescription: "Licensed-trades positioning, local SEO, and conversion-optimized quote flows.", primaryServices: ["seo", "web-design", "ppc-management", "funnels"] },
+      { slug: "pest-control", categoryId: "home-services", label: "Pest Control", shortDescription: "Seasonal demand capture, local pack dominance, and high-intent service-area campaigns.", primaryServices: ["ppc-management", "seo", "funnels", "analytics"] },
     ],
   },
 ];

@@ -1,5 +1,11 @@
-import type { FAQItem } from "@/components/sections/FAQSection";
-import { getServiceSeoContent, mergeServiceFaqs } from "@/content/service-seo";
+import { CASE_STUDIES } from "@/content/case-study-crossrefs";
+import {
+  buildGenericPricingFaqs,
+  generatedPricingOverrides,
+  tierProofSectionLabel,
+  tierProofTierLabels,
+} from "@/content/pricing/generated-pricing-localized";
+import { mergeServiceFaqs } from "@/content/service-seo";
 import type { ComparisonRow, ServiceSeoSlug } from "@/content/service-seo/types";
 import { servicePillarBySlug } from "@/content/services/architecture/build-service-page-data";
 import type { PricingSlug } from "@/content/registry/site-routes";
@@ -8,12 +14,22 @@ import type { Locale } from "@/i18n/routing";
 import { getLocalizedContent } from "@/lib/get-localized-content";
 import { pricingContent, type PricingPageContent } from "@/content/pricing/pricing-pages";
 
-const FLAGSHIP_PRICING_SLUGS = ["seo", "google-ads", "web-design", "meta-ads"] as const;
+const FLAGSHIP_PRICING_SLUGS = ["seo", "ppc-management", "web-design", "meta-ads"] as const;
 
-const INVESTMENT_LABELS = ["starting investment", "monthly investment", "project cost", "investment level"];
+const INVESTMENT_LABELS = ["starting investment", "monthly investment", "project cost", "investment level", "inversión"];
 const BEST_FOR_LABELS = ["best for", "ideal para"];
 
-function pricingShortName(label: string) {
+function pricingShortName(label: string, locale: Locale) {
+  if (locale === "es") {
+    const ES_SHORT: Record<string, string> = {
+      "Funnels & Conversion Rate Optimization": "Funnels y CRO",
+    };
+    if (ES_SHORT[label]) return ES_SHORT[label];
+    return label
+      .replace(/ Services$/, "")
+      .replace(/ Management$/, "")
+      .replace(/ Services$/, "");
+  }
   const SHORT: Record<string, string> = {
     "Funnels & Conversion Rate Optimization": "Funnels and CRO",
   };
@@ -29,30 +45,19 @@ function isBestForRow(label: string) {
   return BEST_FOR_LABELS.some((key) => label.toLowerCase().includes(key));
 }
 
-function genericPricingFaqs(note?: string): FAQItem[] {
-  return [
-    {
-      question: "Is there a setup fee?",
-      answer:
-        "Most engagements include onboarding and strategy in month one. We quote it upfront. No surprise charges on the first invoice.",
-    },
-    {
-      question: "Do you require a long-term contract?",
-      answer: "No. Month to month. Results should earn your business, not a contract clause.",
-    },
-    {
-      question: "What affects my price?",
-      answer:
-        note ??
-        "Scope, competition, where you are starting from, and how much production your market needs. We scope this on a strategy call, not a generic quote form.",
-    },
-    {
-      question: "Can I start with a smaller plan and upgrade?",
-      answer:
-        "Yes. Many clients start on Starter and move up once momentum builds. We plan the upgrade path so you are not rebuilding from scratch.",
-    },
-  ];
-}
+const PRICING_TIER_PROOF: Partial<
+  Record<PricingSlug, { caseStudy: keyof typeof CASE_STUDIES; result: string; tierName: string }>
+> = {
+  seo: { caseStudy: "landscaping", result: "4.8X lead growth", tierName: "Growth" },
+  "local-seo": { caseStudy: "plumbing", result: "327% more emergency calls", tierName: "Growth" },
+  "ppc-management": { caseStudy: "plumbing", result: "327% more emergency calls", tierName: "Growth" },
+  "meta-ads": { caseStudy: "saas", result: "5.9X demo requests", tierName: "Growth" },
+  "web-design": { caseStudy: "landscaping", result: "1.8% to 8.4% conversion rate", tierName: "Growth" },
+  funnels: { caseStudy: "landscaping", result: "1.8% to 8.4% conversion rate", tierName: "Growth" },
+  analytics: { caseStudy: "saas", result: "5.9X demo requests", tierName: "Growth" },
+  "growth-consulting": { caseStudy: "saas", result: "5.9X demo requests", tierName: "Growth" },
+  "social-media": { caseStudy: "landscaping", result: "4.8X lead growth", tierName: "Growth" },
+};
 
 function buildProgressionComparison(
   title: string,
@@ -95,12 +100,8 @@ function buildDeliverableFeatureRows(
 function resolveProgressionComparison(
   content: PricingPageContent,
   slug: PricingSlug,
-  locale: Locale,
+  _locale: Locale,
 ): PricingPageContent["comparison"] {
-  if (slug === "paid-ads") {
-    return getServiceSeoContent("paid-ads", locale).comparison;
-  }
-
   const { tiers, comparison, tiersSection } = content;
   if (tiers.length !== 3) {
     return { ...comparison, layout: comparison.layout ?? "progression" };
@@ -139,10 +140,22 @@ function resolveProgressionComparison(
 function enrichPricingContent(content: PricingPageContent, slug: PricingSlug, locale: Locale): PricingPageContent {
   const pillar = servicePillarBySlug[slug as ServiceSeoSlug];
   const comparison = resolveProgressionComparison(content, slug, locale);
+  const tierProofConfig = PRICING_TIER_PROOF[slug];
+  const tierNameKey = tierProofConfig?.tierName ?? "Growth";
+  const tierProof = tierProofConfig
+    ? {
+        result: tierProofConfig.result,
+        client: CASE_STUDIES[tierProofConfig.caseStudy].client,
+        href: CASE_STUDIES[tierProofConfig.caseStudy].href,
+        tierName: tierProofTierLabels[locale][tierNameKey] ?? tierNameKey,
+        sectionLabel: tierProofSectionLabel[locale],
+      }
+    : content.tierProof;
 
   return {
     ...content,
     comparison,
+    tierProof,
     tiersSection: content.tiersSection ?? {
       title: comparison.title,
       subtitle: comparison.subtitle,
@@ -163,8 +176,8 @@ function enrichPricingContent(content: PricingPageContent, slug: PricingSlug, lo
 function buildGeneratedPricingContent(slug: PricingSlug, locale: Locale): PricingPageContent {
   const pillar = servicePillarBySlug[slug as ServiceSeoSlug];
   const label = serviceLabels[slug];
-  const shortName = pricingShortName(label);
-  const pricingLabel = `${shortName} Pricing`;
+  const shortName = pricingShortName(label, locale);
+  const pricingLabel = locale === "es" ? `Precios ${shortName}` : `${shortName} Pricing`;
 
   const tiers = pillar.pricing.tiers.map((tier) => ({
     name: tier.name,
@@ -180,17 +193,29 @@ function buildGeneratedPricingContent(slug: PricingSlug, locale: Locale): Pricin
     note: pillar.pricing.note,
   };
 
+  const overrides = generatedPricingOverrides[locale][slug];
+  const defaultHero = {
+    label: pricingLabel,
+    line1: pricingLabel,
+    line2: locale === "es" ? "sin adivinar." : "without the guesswork.",
+    subtitle:
+      locale === "es"
+        ? "Alcance fijo en cada nivel. Ves qué incluye antes de firmar."
+        : "Fixed scope at each tier. You see what is included before you sign anything.",
+  };
+  const defaultAnswerBlock = [pillar.overview.paragraphs[0], pillar.pricing.note].filter(Boolean).join(" ");
+  const defaultMetaTitle = locale === "es" ? `Precios ${shortName} | KINEXIS` : `${shortName} Pricing | KINEXIS`;
+  const defaultMetaDescription =
+    locale === "es"
+      ? `Precios transparentes de ${shortName.toLowerCase()} con niveles Starter, Growth y Scale. Entregables definidos, sin cargos ocultos ni contratos largos.`
+      : `Transparent ${shortName.toLowerCase()} pricing with clear Starter, Growth, and Scale tiers. Defined deliverables at every level, no hidden fees, no vague retainers, and no long-term contracts required.`;
+
   return enrichPricingContent(
     {
-      metaTitle: `${shortName} Pricing | KINEXIS`,
-      metaDescription: `Transparent ${shortName.toLowerCase()} pricing with clear Starter, Growth, and Scale tiers. Defined deliverables at every level, no hidden fees, no vague retainers, and no long-term contracts required.`,
-      hero: {
-        label: pricingLabel,
-        line1: pricingLabel,
-        line2: "without the guesswork.",
-        subtitle: "Fixed scope at each tier. You see what is included before you sign anything.",
-      },
-      answerBlock: [pillar.overview.paragraphs[0], pillar.pricing.note].filter(Boolean).join(" "),
+      metaTitle: overrides?.metaTitle ?? defaultMetaTitle,
+      metaDescription: overrides?.metaDescription ?? defaultMetaDescription,
+      hero: overrides?.hero ?? defaultHero,
+      answerBlock: overrides?.answerBlock ?? defaultAnswerBlock,
       tiers,
       tiersSection,
       included,
@@ -208,11 +233,18 @@ function buildGeneratedPricingContent(slug: PricingSlug, locale: Locale): Pricin
         tiers,
         buildDeliverableFeatureRows(tiers, pillar.deliverables.items.map((item) => item.title)),
       ),
-      faqs: mergeServiceFaqs(slug, locale, genericPricingFaqs(pillar.pricing.note)).slice(0, 8),
-      ctaHeadline: `Want a quote for ${shortName.toLowerCase()}?`,
+      faqs: mergeServiceFaqs(slug, locale, buildGenericPricingFaqs(slug, locale, pillar.pricing.note)).slice(0, 8),
+      ctaHeadline:
+        overrides?.ctaHeadline ??
+        (locale === "es" ? `¿Quieres cotización de ${shortName.toLowerCase()}?` : `Want a quote for ${shortName.toLowerCase()}?`),
       ctaSubtitle:
-        "Tell us your goals, market, and scope.|We will recommend the right tier and show you what the first 90 days look like.",
-      ctaLabel: `Get ${shortName} Pricing`,
+        overrides?.ctaSubtitle ??
+        (locale === "es"
+          ? "Cuéntanos tus metas, mercado y alcance.|Recomendaremos el nivel y los primeros 90 días."
+          : "Tell us your goals, market, and scope.|We will recommend the right tier and show you what the first 90 days look like."),
+      ctaLabel:
+        overrides?.ctaLabel ??
+        (locale === "es" ? `Obtén Precios ${shortName}` : `Get ${shortName} Pricing`),
     },
     slug,
     locale,
@@ -227,3 +259,4 @@ export function getPricingPageContent(slug: PricingSlug, locale: Locale): Pricin
 
   return buildGeneratedPricingContent(slug, locale);
 }
+

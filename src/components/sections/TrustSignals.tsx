@@ -1,8 +1,7 @@
-"use client";
-
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
 import ProofMetric from "@/components/ui/ProofMetric";
-import { m as motion } from "@/lib/framer";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/shared/services/Section";
 
 const stats = [
   { label: "Revenue we've generated for clients", value: 12, prefix: "$", suffix: "M+" },
@@ -13,15 +12,9 @@ const stats = [
 
 export default function TrustSignals() {
   return (
-    <section className="section-padding-sm border-t border-white/[0.06]">
+    <Section id="trust-signals" surfaceIndex={0} compact>
       <div className="container-site">
-        <motion.div
-          className="grid gap-grid-lg md:grid-cols-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-        >
+        <Reveal className="grid gap-grid-lg md:grid-cols-4">
           {stats.map((s) => (
             <ProofMetric
               key={s.label}
@@ -37,8 +30,8 @@ export default function TrustSignals() {
               label={s.label}
             />
           ))}
-        </motion.div>
+        </Reveal>
       </div>
-    </section>
+    </Section>
   );
 }

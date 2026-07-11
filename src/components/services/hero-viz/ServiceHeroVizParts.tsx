@@ -79,7 +79,7 @@ export function BrowserFrame({
       <div
         className={cn(
           "rounded-xl border-2 bg-[#0d1117] p-2 shadow-xl shadow-black/30",
-          highlight ? "border-neon-cyan/30 shadow-neon-cyan/10" : "border-white/[0.12]",
+          highlight ? "border-neon-cyan/30 shadow-neon-cyan/10" : "border-strong",
           interactive && "hero-viz-interactive",
           frameClassName ?? "h-[130px] w-[180px]",
         )}
@@ -128,7 +128,7 @@ export function DeviceFrame({
       <div
         className={cn(
           "border-2 bg-[#0d1117] shadow-lg",
-          highlight ? "border-neon-cyan/30 shadow-neon-cyan/10 shadow-xl" : "border-white/[0.1]",
+          highlight ? "border-neon-cyan/30 shadow-neon-cyan/10 shadow-xl" : "border-strong",
           interactive && "hero-viz-interactive",
           isMobile ? "rounded-[10px] p-1" : "rounded-[8px] p-1.5",
           frameClassName ?? (isMobile ? "h-[100px] w-[52px]" : "h-[90px] w-[68px]"),
@@ -215,7 +215,7 @@ export function PanelShell({
     <MotionWrap delay={delay} className={cn("flex shrink-0 flex-col items-center", className)}>
       <div
         className={cn(
-          "overflow-hidden rounded-xl border-2 border-white/[0.12] bg-[#0d1117] p-2 shadow-xl shadow-black/30",
+          "overflow-hidden rounded-xl border-2 border-strong bg-[#0d1117] p-2 shadow-xl shadow-black/30",
           frameClassName ?? "h-[130px] w-[180px]",
         )}
       >
@@ -245,13 +245,13 @@ export function MiniPanel({
       initial={{ opacity: 0, y: 20 }}
       className={cn(
         "flex-1 overflow-hidden rounded-xl border-2 bg-[#0d1117] shadow-lg",
-        highlight ? "border-neon-cyan/30 shadow-neon-cyan/10" : "border-white/[0.08]",
+        highlight ? "border-neon-cyan/30 shadow-neon-cyan/10" : "border-strong",
       )}
     >
       <div
         className={cn(
           "flex items-center justify-between border-b px-2 py-1.5",
-          highlight ? "border-neon-cyan/15 bg-neon-cyan/[0.04]" : "border-white/[0.06] bg-white/[0.02]",
+          highlight ? "border-neon-cyan/15 bg-neon-cyan/[0.04]" : "border-surface bg-white/[0.02]",
         )}
       >
         <span

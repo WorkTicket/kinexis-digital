@@ -148,7 +148,7 @@ function HubCell({
         </div>
 
         <div>
-          <h3 className="text-2xl font-bold gradient-text md:text-[1.75rem]">{label}</h3>
+          <h3 className="type-subheader gradient-text">{label}</h3>
           <p className="mt-2 text-[9px] font-bold uppercase tracking-[0.22em] text-white/28">
             Intelligence Layer
           </p>
@@ -207,7 +207,7 @@ function SpokeCell({
 
   return (
     <motion.div
-      className="group relative flex flex-col justify-end overflow-hidden rounded-3xl border border-white/[0.07] bg-white/[0.025] p-6 transition-[border-color,background-color,box-shadow] duration-500 hover:border-neon-cyan/22 hover:bg-neon-cyan/[0.025] hover:shadow-[0_0_40px_-16px_rgba(0,212,255,0.25)] cursor-default"
+      className="group relative flex flex-col justify-end overflow-hidden rounded-3xl border border-surface bg-surface-base p-6 transition-[border-color,background-color,box-shadow] duration-500 hover:border-neon-cyan/22 hover:bg-neon-cyan/[0.025] hover:shadow-[0_0_40px_-16px_rgba(0,212,255,0.25)] cursor-default"
       initial={{ opacity: 0, scale: 0.93 }}
       animate={active ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.93 }}
       transition={{ duration: 0.55, ease: EASE, delay: cellDelay }}
@@ -239,7 +239,7 @@ function SpokeCell({
 
       {/* Content */}
       <div className="relative mt-auto flex flex-col gap-3">
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.07] bg-white/[0.04] transition-all duration-500 group-hover:border-neon-cyan/20 group-hover:bg-neon-cyan/[0.08]">
+        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-surface bg-surface-glass transition-all duration-500 group-hover:border-neon-cyan/20 group-hover:bg-neon-cyan/[0.08]">
           <Icon
             className="h-4 w-4 text-neon-cyan/62 transition-colors duration-500 group-hover:text-neon-cyan/90"
             strokeWidth={1.75}
@@ -261,7 +261,7 @@ function SpokeCell({
             )}
           >
             <div className="overflow-hidden min-h-0">
-              <div className="pt-3 border-t border-white/[0.06]">
+              <div className="pt-3 border-t border-surface">
                 <p className="text-[10px] leading-relaxed text-white/40 mb-2.5">
                   {conn.how}
                 </p>

@@ -23,16 +23,6 @@ export const SERVICE_PROOFS: Record<string, ServiceProof> = {
     client: CASE_STUDIES.plumbing.clientFull,
     href: CASE_STUDIES.plumbing.href,
   },
-  "paid-ads": {
-    result: CASE_STUDIES.plumbing.heroMetric,
-    client: CASE_STUDIES.plumbing.clientFull,
-    href: CASE_STUDIES.plumbing.href,
-  },
-  ppc: {
-    result: CASE_STUDIES.plumbing.heroMetric,
-    client: CASE_STUDIES.plumbing.clientFull,
-    href: CASE_STUDIES.plumbing.href,
-  },
   "ppc-management": {
     result: CASE_STUDIES.plumbing.heroMetric,
     client: CASE_STUDIES.plumbing.clientFull,

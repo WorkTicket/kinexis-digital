@@ -1,3 +1,3 @@
 "use client";
 
-export { useMotionVariants } from "@/components/providers/MotionProvider";
+export { useMotionVariants } from "@/components/providers/MotionFlagsProvider";

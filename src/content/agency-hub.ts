@@ -52,8 +52,7 @@ export type AgencyHubContent = {
 
 const enCapabilities = [
   { label: "SEO Services", description: "Technical foundations, authority content, and sustainable organic growth.", href: "/services/seo" },
-  { label: "PPC Management", description: "Cross-channel paid media optimized for ROAS and pipeline velocity.", href: "/services/ppc-management" },
-  { label: "Google Ads", description: "Search, Shopping, and Performance Max campaigns built for intent.", href: "/services/google-ads" },
+  { label: "PPC & Google Ads", description: "Google Search, Shopping, and Performance Max plus cross-channel paid media when you need it.", href: "/services/ppc-management" },
   { label: "Meta Ads", description: "Facebook and Instagram campaigns for demand creation and retargeting.", href: "/services/meta-ads" },
   { label: "Web Design", description: "Conversion-optimized websites that look premium and perform.", href: "/services/web-design" },
   { label: "Funnels & CRO", description: "Conversion systems, funnel builds, and experimentation that compounds revenue.", href: "/services/funnels" },

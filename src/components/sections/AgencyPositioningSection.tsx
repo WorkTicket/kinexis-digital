@@ -10,12 +10,17 @@ import {
   ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 import TwoLineText from "@/components/ui/TwoLineText";
+import { cn } from "@/lib/utils";
+import { cardClasses } from "@/lib/card-styles";
 import type { AgencyHubContent } from "@/content/agency-hub";
+import Section from "@/components/shared/services/Section";
 
 type Props = {
   positioning: AgencyHubContent["positioning"];
   outro: AgencyHubContent["outro"];
+  surfaceIndex?: number;
 };
 
 const pillarMeta: { icon: LucideIcon; accent: string }[] = [
@@ -36,7 +41,7 @@ function SpectrumScale() {
         <span className="hidden md:inline">Enterprise</span>
         <span>SaaS</span>
       </div>
-      <div className="relative mt-3 h-1 overflow-hidden rounded-full bg-white/[0.06]">
+      <div className="relative mt-3 h-1 overflow-hidden rounded-full bg-surface-hover">
         <div className="absolute inset-0 bg-gradient-to-r from-neon-cyan/20 via-neon-cyan/50 to-neon-cyan" />
         <motion.div
           className="absolute inset-y-0 left-0 w-full origin-left bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -67,7 +72,7 @@ function PillarCard({
 
   return (
     <motion.div
-      className="group relative flex h-full flex-col rounded-2xl border border-white/[0.06] bg-white/[0.025] p-6 transition-all duration-500 hover:border-white/[0.1] hover:bg-white/[0.035] md:p-7"
+      className={cn(cardClasses({ surface: "elevated" }), "group relative flex h-full flex-col p-6 md:p-7")}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -93,14 +98,14 @@ function PillarCard({
       </div>
 
       <h3 className="card-heading relative mt-5">{title}</h3>
-      <p className="service-card__body relative mt-3 flex-1">{description}</p>
+      <p className="type-body text-muted relative mt-3 flex-1">{description}</p>
     </motion.div>
   );
 }
 
-export default function AgencyPositioningSection({ positioning, outro }: Props) {
+export default function AgencyPositioningSection({ positioning, outro, surfaceIndex = 0 }: Props) {
   return (
-    <section className="section-padding relative overflow-hidden bg-bg-dark">
+    <Section id="agency-positioning" surfaceIndex={surfaceIndex} className="relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.028)_1px,transparent_1px)] bg-[size:26px_26px] opacity-35"
         aria-hidden
@@ -115,15 +120,13 @@ export default function AgencyPositioningSection({ positioning, outro }: Props) 
       />
 
       <div className="container-site relative z-10">
-        <div className="section-header max-w-[54rem]">
-          <span className="section-label">Full Spectrum</span>
-          <h2 className="section-title max-w-none">
-            <TwoLineText text={positioning.title} variant="section" />
-          </h2>
-          <p className="section-subtitle">
-            <TwoLineText text={positioning.subtitle} variant="body" />
-          </p>
-        </div>
+        <SectionHeader
+          className="max-w-[54rem]"
+          badge="Full Spectrum"
+          title={positioning.title}
+          description={positioning.subtitle}
+          headingId="agency-positioning-heading"
+        />
 
         <SpectrumScale />
 
@@ -150,7 +153,7 @@ export default function AgencyPositioningSection({ positioning, outro }: Props) 
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] via-bg-secondary/90 to-bg-dark px-6 py-8 text-center md:px-10 md:py-10">
+          <div className="relative overflow-hidden rounded-2xl border border-strong bg-gradient-to-br from-white/[0.04] via-bg-secondary/90 to-bg-dark px-6 py-8 text-center md:px-10 md:py-10">
             <div
               className="pointer-events-none absolute inset-0 bg-gradient-to-br from-neon-cyan/[0.03] via-transparent to-transparent"
               aria-hidden
@@ -164,6 +167,6 @@ export default function AgencyPositioningSection({ positioning, outro }: Props) 
           </div>
         </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }

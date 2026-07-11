@@ -1,12 +1,28 @@
-import { pricingRoutes, serviceLabels, type PricingSlug } from "@/content/registry/site-routes";
+import { activePricingSlugs, pricingRoutes, serviceLabels, type PricingSlug } from "@/content/registry/site-routes";
 
-const pricingGroups: PricingSlug[][] = [
-  ["seo", "local-seo", "content-marketing"],
-  ["ppc-management", "google-ads", "meta-ads", "paid-ads"],
-  ["web-design", "funnels", "branding"],
-  ["email-marketing", "social-media", "video-marketing"],
-  ["analytics", "growth-consulting"],
-];
+const pricingLabelOverrides: Partial<Record<PricingSlug, string>> = {
+  "web-design": "Website Design",
+  "ppc-management": "Google Ads (PPC)",
+  "meta-ads": "Meta Ads",
+};
+
+function formatPricingLinkLabel(slug: PricingSlug): string {
+  const base =
+    pricingLabelOverrides[slug] ??
+    serviceLabels[slug].replace(/ Services$/, "").replace(/ Management$/, "");
+  return `${base} Pricing`;
+}
+
+export const pricingHubGroups = [
+  { key: "searchAndAds", slugs: ["seo", "local-seo", "ppc-management", "meta-ads", "youtube-ads", "microsoft-ads"] as const satisfies readonly PricingSlug[] },
+  { key: "webAndConversion", slugs: ["web-design", "landing-pages", "cro", "website-maintenance", "website-speed", "analytics"] as const satisfies readonly PricingSlug[] },
+  { key: "brandAndContent", slugs: ["branding", "content-marketing", "email-marketing", "social-media", "video-marketing", "copywriting"] as const satisfies readonly PricingSlug[] },
+  { key: "growthAndStrategy", slugs: ["growth-consulting", "marketing-audits", "funnels", "marketing-automation-crm", "fractional-cmo", "training-workshops"] as const satisfies readonly PricingSlug[] },
+] as const;
+
+export type PricingHubGroupKey = (typeof pricingHubGroups)[number]["key"];
+
+const pricingGroups: PricingSlug[][] = pricingHubGroups.map((group) => [...group.slugs]);
 
 export function getPricingRelatedLinks(
   slug: PricingSlug,
@@ -18,15 +34,13 @@ export function getPricingRelatedLinks(
     .slice(0, limit)
     .map((s) => ({
       href: pricingRoutes[s],
-      label: `${serviceLabels[s].replace(/ Services$/, "").replace(/ Management$/, "")} Pricing`,
+      label: formatPricingLinkLabel(s),
     }));
 }
 
 export function getAllPricingLinks(): { href: string; label: string }[] {
-  return (Object.keys(pricingRoutes) as PricingSlug[])
-    .filter((slug) => slug !== "cro")
-    .map((slug) => ({
-      href: pricingRoutes[slug],
-      label: `${serviceLabels[slug].replace(/ Services$/, "").replace(/ Management$/, "")} Pricing`,
-    }));
+  return activePricingSlugs.map((slug) => ({
+    href: pricingRoutes[slug],
+    label: formatPricingLinkLabel(slug),
+  }));
 }

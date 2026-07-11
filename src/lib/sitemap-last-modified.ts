@@ -33,7 +33,7 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/": "2026-07-03",
   "/about": "2026-06-01",
   "/contact": "2026-07-03",
-  "/services": "2026-06-15",
+  "/services": "2026-07-07",
   "/blog": "2026-06-20",
   "/blog/posts": "2026-06-20",
   "/case-studies": "2026-06-01",
@@ -41,15 +41,16 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/industries": "2026-06-01",
   "/solutions": "2026-06-01",
   "/resources": "2026-05-15",
+  "/pricing": "2026-07-07",
   "/privacy": "2026-03-01",
   "/terms": "2026-03-01",
 };
 
-const SERVICE_LAST_MODIFIED = "2026-06-15";
-const PRICING_LAST_MODIFIED = "2026-06-15";
+const SERVICE_LAST_MODIFIED = "2026-07-07";
+const PRICING_LAST_MODIFIED = "2026-07-07";
 const COMPARISON_LAST_MODIFIED = "2026-06-01";
-const INDUSTRY_LAST_MODIFIED = "2026-06-01";
-const SOLUTION_LAST_MODIFIED = "2026-06-01";
+const INDUSTRY_LAST_MODIFIED = "2026-05-20";
+const SOLUTION_LAST_MODIFIED = "2026-05-25";
 const TEAM_LAST_MODIFIED = "2026-05-01";
 
 export function parseContentDate(value: string): Date | null {

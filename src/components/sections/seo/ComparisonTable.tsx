@@ -1,7 +1,7 @@
 "use client";
 
 import SectionHeader from "@/components/ui/SectionHeader";
-import { pageSectionClasses } from "@/lib/page-section-surface";
+import Section from "@/components/shared/services/Section";
 import type { ComparisonColumn, ComparisonLayout, ComparisonRow } from "@/content/service-seo/types";
 import ContrastComparison from "./comparisons/ContrastComparison";
 import ImpactComparison from "./comparisons/ImpactComparison";
@@ -39,11 +39,10 @@ export default function ComparisonTable({
   const isProgression = resolved === "progression";
 
   return (
-    <section
+    <Section
       id="comparison"
-      className={pageSectionClasses(surfaceIndex, {
-        className: isProgression ? "relative overflow-hidden" : undefined,
-      })}
+      surfaceIndex={surfaceIndex}
+      className={isProgression ? "relative overflow-hidden" : undefined}
     >
       {isProgression && (
         <>
@@ -59,7 +58,7 @@ export default function ComparisonTable({
       )}
 
       <div className="container-site relative z-10">
-        <SectionHeader pattern="C" title={title} subtitle={subtitle} />
+        <SectionHeader title={title} description={subtitle} headingId="comparison-heading" />
 
         <div className={isProgression ? "section-content mx-auto max-w-6xl" : "section-content mx-auto max-w-5xl"}>
           {resolved === "progression" && <ProgressionComparison columns={columns} rows={rows} />}
@@ -76,6 +75,6 @@ export default function ComparisonTable({
           </p>
         )}
       </div>
-    </section>
+    </Section>
   );
 }

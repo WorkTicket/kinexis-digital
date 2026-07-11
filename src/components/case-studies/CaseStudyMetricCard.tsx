@@ -1,4 +1,5 @@
 import AnimatedCounter from "@/components/ui/AnimatedCounter";
+import { cardClasses } from "@/lib/card-styles";
 import { formatMetricValue } from "@/lib/format-metric";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +21,7 @@ export default function CaseStudyMetricCard({ metric, className }: Props) {
   const { label, before, after, prefix, suffix, decimals } = metric;
 
   return (
-    <article className={cn("case-study-metric-card", className)}>
+    <article className={cn(cardClasses({ surface: "default", hover: false, className: "min-w-0 text-center !p-4 sm:!p-5" }), className)}>
       <p className="case-study-metric-card__label">{label}</p>
       <div className="case-study-metric-card__value type-metric-sm">
         <AnimatedCounter

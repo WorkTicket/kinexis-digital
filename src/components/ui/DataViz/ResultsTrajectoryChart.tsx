@@ -35,10 +35,11 @@ function smoothPath(points: { x: number; y: number }[]) {
 }
 
 function formatValue(value: number, unit?: string) {
-  if (unit?.includes("$")) {
-    return value >= 10 ? `${value}K` : `${value}`;
+  const formattedValue = Number.isInteger(value) ? `${Math.round(value)}` : value.toFixed(1);
+  if (unit?.includes("$") || unit?.includes("(K)")) {
+    return `${formattedValue}K`;
   }
-  return Number.isInteger(value) ? `${value}` : value.toFixed(1);
+  return formattedValue;
 }
 
 export default function ResultsTrajectoryChart({

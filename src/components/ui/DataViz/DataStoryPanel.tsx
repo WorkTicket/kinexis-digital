@@ -1,10 +1,9 @@
 "use client";
 
-import { m as motion } from "@/lib/framer";
 import GrowthLineChart from "./GrowthLineChart";
 import CaseStudyProof from "@/components/ui/CaseStudyProof";
 import ProofMetric from "@/components/ui/ProofMetric";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
+import Card from "@/components/ui/Card";
 
 type ChartType = "growth" | "ranking" | "volume" | "revenue";
 
@@ -41,16 +40,13 @@ export default function DataStoryPanel({
   unit,
   caseStudy,
 }: Props) {
-  const { fadeUp } = useMotionVariants();
   const preset = chartPresets[chartType];
 
   return (
-    <motion.div
-      className="group relative overflow-hidden rounded-2xl border border-white/[0.06] bg-bg-dark p-8 md:p-10"
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
+    <Card
+      animated
+      hover={false}
+      className="group relative overflow-hidden !bg-bg-dark !p-8 md:!p-10"
     >
       <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="lg:w-2/5">
@@ -88,6 +84,6 @@ export default function DataStoryPanel({
           />
         </div>
       </div>
-    </motion.div>
+    </Card>
   );
 }

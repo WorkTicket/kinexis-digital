@@ -2,12 +2,13 @@
 
 import { m as motion } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
+import Section from "@/components/shared/services/Section";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
-import ProofMetric from "@/components/ui/ProofMetric";
+import MetricCard from "@/components/ui/MetricCard";
 import PhaseDot from "@/components/ui/PhaseDot";
 import { ArrowRight, Check } from "lucide-react";
-
+import { cardClasses } from "@/lib/card-styles";
 export type PillarDeliverable = { title: string; description: string };
 export type PillarTimeline = { phase: string; duration: string; description: string };
 export type PillarPricingTier = { name: string; range: string; description: string };
@@ -25,25 +26,28 @@ export type ServicePillarContent = {
 
 type ServicePillarSectionsProps = {
   content: ServicePillarContent;
+  startSurfaceIndex?: number;
 };
 
-export default function ServicePillarSections({ content }: ServicePillarSectionsProps) {
+export default function ServicePillarSections({ content, startSurfaceIndex = 0 }: ServicePillarSectionsProps) {
+  let surfaceIndex = startSurfaceIndex;
+
   return (
     <>
-      <section className="section-padding bg-bg-dark">
+      <Section id="overview" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
-          <SectionHeader pattern="B" title={content.overview.title} />
+          <SectionHeader title={content.overview.title} headingId="overview-heading" />
           <div className="mt-8 space-y-5 text-muted leading-relaxed">
             {content.overview.paragraphs.map((p) => (
               <p key={p.slice(0, 40)}>{p}</p>
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding bg-bg-dark">
+      <Section id="pillar-deliverables" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={content.deliverables.title} subtitle={content.deliverables.subtitle} />
+          <SectionHeader title={content.deliverables.title} description={content.deliverables.subtitle} headingId="pillar-deliverables-heading" />
 
           <motion.div
             className="section-content relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-surface bg-gradient-to-br from-white/[0.05] via-bg-secondary/90 to-bg-dark shadow-panel"
@@ -57,7 +61,7 @@ export default function ServicePillarSections({ content }: ServicePillarSections
               aria-hidden
             />
 
-            <div className="relative border-b border-white/[0.06] px-6 py-5 md:px-10 md:py-6">
+            <div className="relative border-b border-surface px-6 py-5 md:px-10 md:py-6">
               <div className="flex items-center justify-between">
                 <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-white/35">
                   Scope of work
@@ -70,7 +74,7 @@ export default function ServicePillarSections({ content }: ServicePillarSections
               </div>
             </div>
 
-            <ul className="relative grid gap-px bg-white/[0.06] md:grid-cols-2">
+            <ul className="relative grid gap-px bg-surface-hover md:grid-cols-2">
               {content.deliverables.items.map((item, i) => (
                 <motion.li
                   key={item.title}
@@ -92,11 +96,11 @@ export default function ServicePillarSections({ content }: ServicePillarSections
             </ul>
           </motion.div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding section--data">
+      <Section id="timeline" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={content.timeline.title} subtitle={content.timeline.subtitle} />
+          <SectionHeader title={content.timeline.title} description={content.timeline.subtitle} headingId="timeline-heading" />
           <div className="section-content relative mx-auto max-w-3xl">
             {/* Vertical timeline track */}
             <div
@@ -122,9 +126,9 @@ export default function ServicePillarSections({ content }: ServicePillarSections
                   </div>
 
                   {/* Card */}
-                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.025] p-6 md:p-8 transition-all duration-500 group-hover:border-white/[0.1] group-hover:bg-white/[0.035]">
+                  <div className={cardClasses({ surface: "elevated", hover: false, className: "p-6 md:p-8 transition-all duration-500 group-hover:border-strong group-hover:bg-surface-raised" })}>
                     {/* Timing badge */}
-                    <span className="inline-block rounded-lg border border-white/[0.08] bg-white/[0.04] px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-neon-cyan/65 mb-4">
+                    <span className="inline-block rounded-lg border border-strong bg-surface-glass px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-neon-cyan/65 mb-4">
                       {phase.phase}
                     </span>
                     <h3 className="text-lg font-bold md:text-xl">{phase.duration}</h3>
@@ -135,11 +139,11 @@ export default function ServicePillarSections({ content }: ServicePillarSections
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding">
+      <Section id="pricing" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={content.pricing.title} subtitle={content.pricing.subtitle} />
+          <SectionHeader title={content.pricing.title} description={content.pricing.subtitle} headingId="pricing-heading" />
           <div className="section-content grid gap-grid-sm md:grid-cols-3">
             {content.pricing.tiers.map((tier) => (
               <CardFamily key={tier.name} family="dashboard">
@@ -151,23 +155,21 @@ export default function ServicePillarSections({ content }: ServicePillarSections
           </div>
           <p className="mt-8 text-sm text-muted text-center max-w-2xl mx-auto">{content.pricing.note}</p>
         </div>
-      </section>
+      </Section>
 
-      <section className="section-padding section--data">
+      <Section id="results" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader pattern="B" title={content.results.title} subtitle={content.results.subtitle} />
+          <SectionHeader title={content.results.title} description={content.results.subtitle} headingId="results-heading" />
           <div className="section-content grid gap-grid-sm md:grid-cols-3">
             {content.results.metrics.map((r) => (
-              <div key={r.label} className="proof-metric-card">
-                <ProofMetric value={r.metric} label={r.label} />
-              </div>
+              <MetricCard key={r.label} value={r.metric} label={r.label} />
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {content.internalLinks && content.internalLinks.length > 0 && (
-        <section className="section-padding border-t border-white/[0.06]">
+        <Section id="internal-links" surfaceIndex={surfaceIndex++}>
           <div className="container-site">
             <div className="grid gap-grid-lg md:grid-cols-2 lg:grid-cols-3">
               {content.internalLinks.map((group) => (
@@ -187,7 +189,7 @@ export default function ServicePillarSections({ content }: ServicePillarSections
               ))}
             </div>
           </div>
-        </section>
+        </Section>
       )}
     </>
   );

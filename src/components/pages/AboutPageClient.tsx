@@ -1,7 +1,6 @@
 "use client";
 
 import { m as motion } from "@/lib/framer";
-import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import AboutArchitectureMap from "@/components/pages/AboutArchitectureMap";
@@ -10,16 +9,18 @@ import HeroArchetype from "@/components/ui/HeroArchetype";
 import PhaseDot from "@/components/ui/PhaseDot";
 import PhaseTag from "@/components/ui/PhaseTag";
 import type { Locale } from "@/i18n/routing";
-import { Link } from "@/i18n/navigation";
-import { authorsContent } from "@/content/authors";
 import type { AboutContent } from "@/content/about";
+import SectionHeader from "@/components/ui/SectionHeader";
 import TwoLineText from "@/components/ui/TwoLineText";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { cardClasses } from "@/lib/card-styles";
+import Section from "@/components/shared/services/Section";
 
 type Props = { content: AboutContent; locale: Locale };
 
-export default function AboutPageClient({ content: c, locale }: Props) {
+export default function AboutPageClient({ content: c, locale: _locale }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
+  let surfaceIndex = 0;
   return (
     <>
       <HeroArchetype
@@ -38,7 +39,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
       />
 
       {/* SECTION 2: Why KINEXIS Exists — Editorial */}
-      <section className="section-padding relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
+      <Section id="why-we-exist" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.022)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40"
           aria-hidden
@@ -57,21 +58,12 @@ export default function AboutPageClient({ content: c, locale }: Props) {
         />
 
         <div className="container-site relative z-10">
-          {/* Section header — same pattern as every other section */}
-          <motion.div
-            className="section-header section-header--left"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            <motion.span variants={fadeUp} className="section-label">
-              {c.whyWeExistTag}
-            </motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-4">
-              <TwoLineText text={c.whyWeExistAside} variant="section" />
-            </motion.h2>
-          </motion.div>
+          <SectionHeader
+            badge={c.whyWeExistTag}
+            title={c.whyWeExistAside}
+            align="left"
+            headingId="why-we-exist-heading"
+          />
 
           {/* Editorial body */}
           <motion.div
@@ -104,13 +96,13 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                   &ldquo;
                 </span>
                 <div className="relative border-l-2 border-neon-cyan/40 pl-6 md:pl-8">
-                  <p className="text-2xl font-bold leading-[1.15] tracking-tight text-balance md:text-3xl lg:text-4xl">
+                  <p className="type-pull-quote">
                     <TwoLineText text={c.whyQuote} variant="section" className="gradient-text" />
                   </p>
                 </div>
               </blockquote>
 
-              <div className="space-y-6 border-t border-white/[0.06] pt-10 lg:pt-12">
+              <div className="space-y-6 border-t border-surface pt-10 lg:pt-12">
                 <p className="type-body-lg leading-[1.75] text-muted">{c.whyParagraph2}</p>
                 <p className="type-body-lg leading-[1.75] text-muted">{c.whyParagraph2b}</p>
                 <p className="type-body-lg leading-[1.75] text-white/85">{c.whyParagraph3}</p>
@@ -118,18 +110,18 @@ export default function AboutPageClient({ content: c, locale }: Props) {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 3: The KINEXIS Method */}
-      <section className="section-padding relative overflow-hidden">
+      <Section id="kinexis-method" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-neon-blue/[0.02] blur-[120px] pointer-events-none" />
         <div className="container-site relative z-10">
-          <motion.div className="section-header section-header--left" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">{c.methodTag}</motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-4">
-              <TwoLineText text={`${c.methodTitleLine1}|${c.methodTitleLine2}`} variant="section" />
-            </motion.h2>
-          </motion.div>
+          <SectionHeader
+            badge={c.methodTag}
+            title={`${c.methodTitleLine1}|${c.methodTitleLine2}`}
+            align="left"
+            headingId="kinexis-method-heading"
+          />
 
           <div className="section-content relative">
             <div className="absolute left-[5px] top-3 bottom-3 w-px bg-gradient-to-b from-neon-cyan/30 via-white/10 to-transparent hidden lg:block" />
@@ -147,7 +139,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                   <div className="hidden lg:flex absolute left-0 top-8 items-center justify-center">
                     <PhaseDot active className="group-hover:shadow-glow-sm transition-shadow duration-premium" />
                   </div>
-                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-8 md:p-10 group-hover:border-white/[0.1] transition-all duration-500">
+                  <div className={cn(cardClasses({ surface: "default", hover: false }), "p-8 md:p-10 transition-all duration-500 group-hover:border-strong")}>
                     <div className="lg:hidden flex items-center gap-3 mb-4">
                       <PhaseDot active />
                       <span className="text-xs font-bold uppercase tracking-[0.2em] text-neon-cyan/60">{phase.title}</span>
@@ -160,10 +152,10 @@ export default function AboutPageClient({ content: c, locale }: Props) {
             </div>
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 4: Inside The System — Architecture Map */}
-      <section className="section-padding relative overflow-hidden border-t border-white/[0.06] bg-bg-dark">
+      <Section id="inside-system" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50"
           aria-hidden
@@ -182,32 +174,12 @@ export default function AboutPageClient({ content: c, locale }: Props) {
         />
 
         <div className="container-site relative z-10">
-          {/* Centered editorial header */}
-          <motion.div
-            className="mx-auto mb-16 max-w-3xl text-center lg:mb-20"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            <motion.span variants={fadeUp} className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-              {c.architectureTag}
-            </motion.span>
-
-            <motion.h2
-              variants={fadeUp}
-              className="section-title mt-5 text-center"
-            >
-              {c.architectureTitle}
-            </motion.h2>
-
-            <motion.p
-              variants={fadeUp}
-              className="section-intro mt-5 text-center mx-auto max-w-xl"
-            >
-              {c.architectureSubtitle.replace("|", " ")}
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            badge={c.architectureTag}
+            title={c.architectureTitle}
+            description={c.architectureSubtitle.replace("|", " ")}
+            headingId="inside-system-heading"
+          />
 
           {/* Bento grid — cells animate individually via useInView inside the component */}
           <div className="mx-auto max-w-6xl">
@@ -227,22 +199,21 @@ export default function AboutPageClient({ content: c, locale }: Props) {
             </p>
             <Button href="/services" variant="secondary">
               Explore All Services
-              <ArrowRight className="h-4 w-4" />
             </Button>
           </motion.div>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 5: Principles - Editorial */}
-      <section className="section-padding relative overflow-hidden">
+      <Section id="principles" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-neon-cyan/[0.02] blur-[120px] pointer-events-none" />
         <div className="container-site relative z-10">
-          <motion.div className="section-header section-header--left" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-80px" }}>
-            <motion.span variants={fadeUp} className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">{c.principlesTag}</motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-4">
-              <TwoLineText text={c.principlesTitle} variant="section" />
-            </motion.h2>
-          </motion.div>
+          <SectionHeader
+            badge={c.principlesTag}
+            title={c.principlesTitle}
+            align="left"
+            headingId="principles-heading"
+          />
 
           <div className="section-content space-y-grid-lg">
             {c.principles.map((p) => (
@@ -258,7 +229,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                   <PhaseTag label={p.accent} size="watermark" />
                 </motion.div>
                 <motion.div className="md:col-span-3" variants={fadeUp}>
-                  <h3 className="type-section section-title--left mt-0">
+                  <h3 className="type-section mx-0 mt-0 text-left">
                     <TwoLineText text={p.statement} variant="section" />
                   </h3>
                   <div className="mt-4 h-px w-12 bg-neon-cyan/30" />
@@ -268,10 +239,10 @@ export default function AboutPageClient({ content: c, locale }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* SECTION 6: Future Vision */}
-      <section className="section-padding bg-bg-dark relative overflow-hidden">
+      <Section id="future-vision" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
         <div
           className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.016)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40"
           aria-hidden
@@ -286,23 +257,13 @@ export default function AboutPageClient({ content: c, locale }: Props) {
         />
 
         <div className="container-site relative z-10">
-          <motion.div
-            className="section-header section-header--left"
-            variants={stagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
-          >
-            <motion.span variants={fadeUp} className="section-label">
-              {c.roadmapTag}
-            </motion.span>
-            <motion.h2 variants={fadeUp} className="section-title section-title--left mt-4">
-              <TwoLineText text={c.roadmapTitle} variant="section" />
-            </motion.h2>
-            <motion.p variants={fadeUp} className="section-subtitle section-subtitle--left mt-4">
-              <TwoLineText text={c.roadmapSubtitle} variant="body" />
-            </motion.p>
-          </motion.div>
+          <SectionHeader
+            badge={c.roadmapTag}
+            title={c.roadmapTitle}
+            description={<TwoLineText text={c.roadmapSubtitle} variant="body" />}
+            align="left"
+            headingId="future-vision-heading"
+          />
 
           <div className="section-content grid gap-4 md:grid-cols-4 md:gap-5 lg:gap-6 items-stretch">
             {c.futureMilestones.map((m, i) => {
@@ -325,7 +286,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                       "relative flex flex-col flex-1 rounded-2xl border p-6 lg:p-7 overflow-hidden transition-all duration-500",
                       isCurrent
                         ? "border-neon-cyan/22 bg-gradient-to-b from-neon-cyan/[0.07] to-transparent shadow-[0_0_64px_-20px_rgba(0,212,255,0.22),inset_0_1px_0_rgba(0,212,255,0.1)]"
-                        : "border-white/[0.06] bg-white/[0.025] hover:border-white/[0.1] hover:bg-white/[0.035]"
+                        : cardClasses({ surface: "elevated", hover: false, className: "p-6 lg:p-7 hover:border-strong hover:bg-surface-raised" })
                     )}
                   >
                     {/* Top inset glow line — current only */}
@@ -366,7 +327,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                     {/* Year — large hero number */}
                     <p
                       className={cn(
-                        "text-[2.75rem] font-bold leading-none tracking-tight mb-5",
+                        "type-display-stat mb-5",
                         isCurrent ? "gradient-text" : isPast ? "text-white/[0.16]" : "text-white/28"
                       )}
                     >
@@ -377,7 +338,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                     <div
                       className={cn(
                         "h-px mb-5",
-                        isCurrent ? "bg-neon-cyan/[0.18]" : "bg-white/[0.05]"
+                        isCurrent ? "bg-neon-cyan/[0.18]" : "bg-surface-hover"
                       )}
                     />
 
@@ -388,7 +349,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
                           <span
                             className={cn(
                               "mt-[0.38rem] h-1 w-1 shrink-0 rounded-full",
-                              isCurrent ? "bg-neon-cyan/55" : "bg-white/[0.18]"
+                              isCurrent ? "bg-neon-cyan/55" : "bg-white/20"
                             )}
                           />
                           <p className="text-[0.8125rem] leading-[1.55] text-muted/65 line-clamp-2 min-h-[2.5rem]">
@@ -403,29 +364,7 @@ export default function AboutPageClient({ content: c, locale }: Props) {
             })}
           </div>
         </div>
-      </section>
-
-      <section className="section-padding border-t border-white/[0.06] bg-bg-dark">
-        <div className="container-site">
-          <div className="section-header section-header--center">
-            <span className="section-label">Team</span>
-            <h2 className="section-title mt-4">The people behind the work.</h2>
-          </div>
-          <div className="section-content mt-10 grid gap-grid-sm sm:grid-cols-3">
-            {authorsContent[locale].authors.map((author) => (
-              <Link
-                key={author.slug}
-                href={`/team/${author.slug}`}
-                className="block rounded-2xl border border-white/[0.06] bg-white/[0.025] p-6 no-underline transition-colors hover:border-neon-cyan/30"
-              >
-                <h3 className="font-bold text-white">{author.name}</h3>
-                <p className="mt-1 text-xs text-neon-cyan">{author.jobTitle}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted/60 line-clamp-3">{author.bio}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      </Section>
 
       <CTAArchetype
         headline={c.ctaTitle}

@@ -1,15 +1,17 @@
-"use client";
-
 import { cn } from "@/lib/utils";
 import { pageSectionClasses } from "@/lib/page-section-surface";
 import type { ReactNode } from "react";
+
+import type { PageSectionTone } from "@/lib/page-section-surface";
 
 type SectionProps = {
   id: string;
   children: ReactNode;
   className?: string;
   surfaceIndex: number;
-  variant?: "default" | "dark" | "data" | "editorial" | "visual";
+  compact?: boolean;
+  tone?: PageSectionTone | "cta";
+  variant?: "default" | "dark" | "data" | "editorial" | "visual" | "proof";
 };
 
 const variantClasses = {
@@ -18,13 +20,22 @@ const variantClasses = {
   data: "section--data",
   editorial: "section--editorial",
   visual: "section--visual",
+  proof: "section--proof",
 };
 
-export default function Section({ id, children, className, surfaceIndex, variant = "default" }: SectionProps) {
+export default function Section({
+  id,
+  children,
+  className,
+  surfaceIndex,
+  compact,
+  tone,
+  variant = "default",
+}: SectionProps) {
   return (
     <section
       id={id}
-      className={cn(pageSectionClasses(surfaceIndex), variantClasses[variant], className)}
+      className={cn(pageSectionClasses(surfaceIndex, { compact, tone }), variantClasses[variant], className)}
       aria-labelledby={`${id}-heading`}
     >
       {children}

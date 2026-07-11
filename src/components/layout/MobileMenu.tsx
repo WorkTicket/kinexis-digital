@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
+import { locales, type Locale } from "@/i18n/routing";
 import { ChevronDown, X } from "lucide-react";
 import { industryCategories } from "@/content/registry/industries";
 import {
@@ -20,7 +21,6 @@ const mobilePrimaryLinks = mainNavLinks.filter(
 
 type Props = {
   open: boolean;
-  scrolled: boolean;
   servicesOpen: boolean;
   industriesOpen: boolean;
   resourcesOpen: boolean;
@@ -32,7 +32,6 @@ type Props = {
 
 export default function MobileMenu({
   open,
-  scrolled,
   servicesOpen,
   industriesOpen,
   resourcesOpen,
@@ -42,6 +41,8 @@ export default function MobileMenu({
   onToggleResources,
 }: Props) {
   const pathname = usePathname();
+  const router = useRouter();
+  const locale = useLocale() as Locale;
   const tNav = useTranslations("nav");
   const tServices = useTranslations("services");
   const tResources = useTranslations("nav.resourceLinks");
@@ -64,23 +65,16 @@ export default function MobileMenu({
     <div
       ref={dialogRef}
       id="mobile-site-nav"
-      className="fixed inset-0 z-[100] lg:hidden"
+      className="fixed inset-0 z-[100] bg-bg/90 backdrop-blur-2xl lg:hidden"
       role="dialog"
       aria-modal="true"
       aria-label={tNav("menu")}
+      onClick={onClose}
     >
       <div
-        className="absolute inset-0 bg-bg/90 backdrop-blur-2xl"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-
-      <div
         ref={panelRef}
-        className={cn(
-          "absolute inset-x-0 bottom-0 z-10 flex flex-col",
-          scrolled ? "top-14 md:top-16" : "top-16 md:top-[72px]"
-        )}
+        className="absolute inset-x-0 bottom-0 top-[var(--site-header-height,4rem)] z-10 flex flex-col"
+        onClick={(event) => event.stopPropagation()}
       >
         <div className="flex shrink-0 items-center justify-between px-5 pb-3 pt-4">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted">
@@ -91,9 +85,9 @@ export default function MobileMenu({
             type="button"
             onClick={onClose}
             aria-label={tNav("closeMenu")}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-surface-strong bg-white/[0.04] text-muted transition-colors hover:bg-white/[0.08] hover:text-white touch-manipulation"
+            className="flex h-12 w-12 items-center justify-center rounded-xl border border-surface-strong bg-surface-glass text-muted transition-colors hover:bg-surface-active hover:text-white touch-manipulation"
           >
-            <X className="h-5 w-5" />
+            <X className="h-7 w-7" />
           </button>
         </div>
 
@@ -111,8 +105,8 @@ export default function MobileMenu({
                 className={cn(
                   "flex w-full min-h-touch items-center rounded-xl px-4 py-4 transition-colors touch-manipulation",
                   pathname.startsWith("/services")
-                    ? "bg-white/[0.08] text-white"
-                    : "hover:bg-white/[0.04] text-white/90"
+                    ? "bg-surface-active text-white"
+                    : "hover:bg-surface-glass text-white/90"
                 )}
               >
                 <span className="flex-1 text-left text-lg font-semibold">
@@ -136,21 +130,21 @@ export default function MobileMenu({
                 )}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                  <div className="space-y-4 rounded-xl border border-surface bg-surface-base p-3">
                     <Link
                       href="/services"
                       onClick={onClose}
                       className={cn(
                         "flex min-h-touch items-center rounded-lg px-3 py-3 text-base font-medium transition-colors touch-manipulation",
                         pathname === "/services"
-                          ? "bg-white/10 text-white"
-                          : "text-muted hover:bg-white/[0.04] hover:text-white"
+                          ? "bg-surface-active text-white"
+                          : "text-muted hover:bg-surface-glass hover:text-white"
                       )}
                     >
                       {tNav("viewAllServices")}
                     </Link>
                     {serviceNavGroups.map((group) => (
-                      <div key={group.key} className="border-t border-white/[0.06] pt-3">
+                      <div key={group.key} className="border-t border-surface pt-3">
                         <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted/90">
                           {tNav(`serviceGroups.${group.key}`)}
                         </p>
@@ -163,8 +157,8 @@ export default function MobileMenu({
                                 className={cn(
                                   "flex min-h-touch items-center rounded-lg px-3 py-2.5 text-sm transition-colors touch-manipulation",
                                   pathname === s.href
-                                    ? "bg-white/10 font-medium text-white"
-                                    : "text-muted hover:bg-white/[0.04] hover:text-white"
+                                    ? "bg-surface-active font-medium text-white"
+                                    : "text-muted hover:bg-surface-glass hover:text-white"
                                 )}
                               >
                                 {tServices(s.key)}
@@ -188,8 +182,8 @@ export default function MobileMenu({
                 className={cn(
                   "flex w-full min-h-touch items-center rounded-xl px-4 py-4 transition-colors touch-manipulation",
                   pathname.startsWith("/industries")
-                    ? "bg-white/[0.08] text-white"
-                    : "hover:bg-white/[0.04] text-white/90"
+                    ? "bg-surface-active text-white"
+                    : "hover:bg-surface-glass text-white/90"
                 )}
               >
                 <span className="flex-1 text-left text-lg font-semibold">
@@ -213,21 +207,21 @@ export default function MobileMenu({
                 )}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                  <div className="space-y-4 rounded-xl border border-surface bg-surface-base p-3">
                     <Link
                       href="/industries"
                       onClick={onClose}
                       className={cn(
                         "flex min-h-touch items-center rounded-lg px-3 py-3 text-base font-medium transition-colors touch-manipulation",
                         pathname === "/industries"
-                          ? "bg-white/10 text-white"
-                          : "text-muted hover:bg-white/[0.04] hover:text-white"
+                          ? "bg-surface-active text-white"
+                          : "text-muted hover:bg-surface-glass hover:text-white"
                       )}
                     >
                       {tNav("viewAllIndustries")}
                     </Link>
                     {industryCategories.map((category) => (
-                      <div key={category.id} className="border-t border-white/[0.06] pt-3">
+                      <div key={category.id} className="border-t border-surface pt-3">
                         <Link
                           href={`/industries/${category.id}`}
                           onClick={onClose}
@@ -248,8 +242,8 @@ export default function MobileMenu({
                                   className={cn(
                                     "flex min-h-touch items-center rounded-lg px-3 py-2.5 text-sm transition-colors touch-manipulation",
                                     active
-                                      ? "bg-white/10 font-medium text-white"
-                                      : "text-muted hover:bg-white/[0.04] hover:text-white"
+                                      ? "bg-surface-active font-medium text-white"
+                                      : "text-muted hover:bg-surface-glass hover:text-white"
                                   )}
                                 >
                                   {industry.label}
@@ -276,8 +270,8 @@ export default function MobileMenu({
                   pathname.startsWith("/resources") ||
                     pathname.startsWith("/solutions") ||
                     pathname.includes("-vs-")
-                    ? "bg-white/[0.08] text-white"
-                    : "hover:bg-white/[0.04] text-white/90"
+                    ? "bg-surface-active text-white"
+                    : "hover:bg-surface-glass text-white/90"
                 )}
               >
                 <span className="flex-1 text-left text-lg font-semibold">
@@ -301,21 +295,21 @@ export default function MobileMenu({
                 )}
               >
                 <div className="overflow-hidden">
-                  <div className="space-y-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-3">
+                  <div className="space-y-4 rounded-xl border border-surface bg-surface-base p-3">
                     <Link
                       href="/resources"
                       onClick={onClose}
                       className={cn(
                         "flex min-h-touch items-center rounded-lg px-3 py-3 text-base font-medium transition-colors touch-manipulation",
                         pathname === "/resources"
-                          ? "bg-white/10 text-white"
-                          : "text-muted hover:bg-white/[0.04] hover:text-white"
+                          ? "bg-surface-active text-white"
+                          : "text-muted hover:bg-surface-glass hover:text-white"
                       )}
                     >
                       {tNav("viewAllResources")}
                     </Link>
                     {resourceNavGroups.map((group) => (
-                      <div key={group.key} className="border-t border-white/[0.06] pt-3">
+                      <div key={group.key} className="border-t border-surface pt-3">
                         <p className="px-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted/90">
                           {tResources(`groups.${group.key}`)}
                         </p>
@@ -328,8 +322,8 @@ export default function MobileMenu({
                                 className={cn(
                                   "flex min-h-touch items-center rounded-lg px-3 py-2.5 text-sm transition-colors touch-manipulation",
                                   pathname === link.href
-                                    ? "bg-white/10 font-medium text-white"
-                                    : "text-muted hover:bg-white/[0.04] hover:text-white"
+                                    ? "bg-surface-active font-medium text-white"
+                                    : "text-muted hover:bg-surface-glass hover:text-white"
                                 )}
                               >
                                 {tResources(link.key)}
@@ -357,8 +351,8 @@ export default function MobileMenu({
                     className={cn(
                       "flex min-h-touch items-center rounded-xl px-4 py-4 text-lg font-semibold transition-colors touch-manipulation",
                       active
-                        ? "bg-white/[0.08] text-white"
-                        : "text-white/90 hover:bg-white/[0.04]"
+                        ? "bg-surface-active text-white"
+                        : "text-white/90 hover:bg-surface-glass"
                     )}
                   >
                     {tNav(link.key)}
@@ -369,7 +363,29 @@ export default function MobileMenu({
           </ul>
         </nav>
 
-        <div className="shrink-0 border-t border-white/10 bg-bg/80 px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+        <div className="shrink-0 border-t border-strong bg-bg/80 px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
+          <div className="mb-4 flex items-center justify-center gap-2">
+            {locales.map((loc) => (
+              <button
+                key={loc}
+                type="button"
+                onClick={() => {
+                  if (loc === locale) return;
+                  router.push(pathname, { locale: loc });
+                  router.refresh();
+                }}
+                className={cn(
+                  "rounded-lg px-4 py-2 text-sm font-medium transition-colors",
+                  locale === loc
+                    ? "bg-surface-active text-white"
+                    : "text-white/40 hover:bg-surface-glass hover:text-white/70"
+                )}
+                aria-current={locale === loc ? "true" : undefined}
+              >
+                {loc === "en" ? "English" : "Español"}
+              </button>
+            ))}
+          </div>
           <Button
             href="/contact"
             variant="primary"

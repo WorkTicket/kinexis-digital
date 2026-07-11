@@ -7,9 +7,11 @@ import Button from "@/components/ui/Button";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import { Download, TrendingUp, Search, Code, CheckCircle } from "lucide-react";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 
 import type { LeadMagnetContent } from "@/content/lead-magnet";
-import TwoLineText from "@/components/ui/TwoLineText";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Section from "@/components/shared/services/Section";
 
 
 type AuditType = "seo" | "ads" | "website";
@@ -18,6 +20,7 @@ type Props = { content: LeadMagnetContent };
 
 export default function LeadMagnetPageClient({ content: c }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
+  const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [auditType, setAuditType] = useState<AuditType>("seo");
@@ -32,6 +35,7 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
   ];
 
   const selectedAuditTitle = audits.find((a) => a.type === auditType)?.title ?? "";
+  let surfaceIndex = 0;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +51,7 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
           email,
           auditType: selectedAuditTitle,
           source: "lead-magnet",
+          ...honeypotPayload,
         }),
       });
 
@@ -79,29 +84,17 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
         ctaHref="#audit-form"
       />
 
-      <motion.section
-        id="audit-form"
-        className="section-padding"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-      >
+      <Section id="audit-form" surfaceIndex={surfaceIndex++}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
         <div className="container-site">
-          <div className="section-header">
-            <motion.div
-              className="mb-12"
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <motion.h2 variants={fadeUp} className="section-title mt-0">
-                <TwoLineText text={c.chooseAuditTitle} variant="section" />
-              </motion.h2>
-              <motion.div variants={fadeUp} className="mx-auto mt-3 h-px w-10 bg-accent/30" />
-            </motion.div>
-          </div>
+          <SectionHeader title={c.chooseAuditTitle} className="mb-12" headingId="audit-form-heading">
+            <div className="mx-auto mt-3 h-px w-10 bg-accent/30" />
+          </SectionHeader>
 
           <div className="mx-auto max-w-4xl">
             <motion.div
@@ -114,30 +107,31 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
               {audits.map((audit) => (
                 <motion.div key={audit.type} variants={fadeUp}>
                   <button type="button" onClick={() => setAuditType(audit.type)}
-                    className={`text-left rounded-2xl border border-white/[0.06] p-6 w-full min-h-touch-lg transition-all duration-200 touch-manipulation ${
-                      auditType === audit.type ? "ring-2 ring-accent shadow-md border-accent/30" : "hover:border-white/10"
+                    className={`text-left rounded-2xl border border-surface p-6 w-full min-h-touch-lg transition-all duration-200 touch-manipulation ${
+                      auditType === audit.type ? "ring-2 ring-accent shadow-md border-accent/30" : "hover:border-strong"
                     }`}>
                     <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-accent/10 text-accent">
                       <audit.icon className="h-5 w-5" />
                     </div>
-                    <h3 className="service-card__title">{audit.title}</h3>
-                    <p className="service-card__body text-sm">{audit.desc}</p>
+                    <h3 className="card-heading">{audit.title}</h3>
+                    <p className="mt-4 type-body text-muted text-sm">{audit.desc}</p>
                   </button>
                 </motion.div>
               ))}
             </motion.div>
 
             {submitted ? (
-              <div className="rounded-2xl border border-white/[0.06] p-12 text-center max-w-lg mx-auto">
+              <div className="rounded-2xl border border-surface p-12 text-center max-w-lg mx-auto">
                 <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-accent/10 mb-5">
                   <Download className="h-7 w-7 text-accent" />
                 </div>
-                <h3 className="text-2xl font-bold">{c.successTitle}</h3>
+                <h3 className="type-subheader">{c.successTitle}</h3>
                 <p className="mt-3 text-text-secondary">{c.successMessage.replace("{audit}", selectedAuditTitle)}</p>
                 <p className="mt-2 text-sm text-text-muted">{c.successCtaBefore}<Link href="/contact" className="text-accent underline">{c.successCtaLink}</Link>.</p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="max-w-md mx-auto form-stack">
+              <form onSubmit={handleSubmit} className="max-w-md mx-auto form-stack relative">
+                <input type="text" {...honeypotProps} />
                 <div className="form-group">
                   <label htmlFor="lead-name" className="form-label">{c.namePlaceholder}</label>
                   <input type="text" id="lead-name" required value={name} onChange={(e) => setName(e.target.value)}
@@ -168,38 +162,30 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
             )}
           </div>
         </div>
-      </motion.section>
+        </motion.div>
+      </Section>
 
-      <motion.section
-        className="section-padding bg-bg"
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-      >
+      <Section id="what-you-get" surfaceIndex={surfaceIndex++}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
         <div className="container-site">
-          <div className="section-header">
-            <motion.div
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-            >
-              <motion.h2 variants={fadeUp} className="section-title mt-0">
-                <TwoLineText text={c.whatYouGetTitle} variant="section" />
-              </motion.h2>
-              <motion.div variants={fadeUp} className="mx-auto mt-3 h-px w-10 bg-accent/30" />
-            </motion.div>
-            <motion.div
-              className="section-content grid gap-grid-sm md:grid-cols-3"
-              variants={stagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
-            >
+          <SectionHeader title={c.whatYouGetTitle} headingId="what-you-get-heading">
+            <div className="mx-auto mt-3 h-px w-10 bg-accent/30" />
+          </SectionHeader>
+          <motion.div
+            className="section-content grid gap-grid-sm md:grid-cols-3"
+            variants={stagger}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
               {c.benefits.map((item) => (
                 <motion.div key={item.title} variants={fadeUp}>
-                  <div className="rounded-2xl border border-white/[0.06] p-6">
+                  <div className="rounded-2xl border border-surface p-6">
                     <CheckCircle className="h-5 w-5 text-accent mb-3" />
                     <h3 className="font-bold">{item.title}</h3>
                     <p className="mt-2 text-sm text-text-secondary">{item.desc}</p>
@@ -207,9 +193,9 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
                 </motion.div>
               ))}
             </motion.div>
-          </div>
         </div>
-      </motion.section>
+        </motion.div>
+      </Section>
     </>
   );
 }

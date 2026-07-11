@@ -1,16 +1,43 @@
-import * as Sentry from "@sentry/nextjs";
-
 const SENTRY_DSN = process.env.NEXT_PUBLIC_SENTRY_DSN;
 
-Sentry.init({
-  dsn: SENTRY_DSN,
-  tracesSampleRate: 0.1,
-  enabled: Boolean(SENTRY_DSN),
-  replaysSessionSampleRate: 0.1,
-  replaysOnErrorSampleRate: 1.0,
-  // Only register the Replay integration when a DSN is present — the SDK
-  // still initialises DOM listeners even when `enabled: false` otherwise.
-  integrations: SENTRY_DSN ? [Sentry.replayIntegration()] : [],
-});
+let sentryInitPromise: Promise<typeof import("@sentry/nextjs")> | null = null;
 
-export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
+function loadSentry() {
+  if (!SENTRY_DSN) return null;
+  sentryInitPromise ??= import("@sentry/nextjs");
+  return sentryInitPromise;
+}
+
+function initSentryClient() {
+  const sentryPromise = loadSentry();
+  if (!sentryPromise) return;
+
+  void sentryPromise.then((Sentry) => {
+    Sentry.init({
+      dsn: SENTRY_DSN,
+      tracesSampleRate: 0.1,
+      enabled: true,
+      replaysSessionSampleRate: 0.1,
+      replaysOnErrorSampleRate: 1.0,
+      integrations: [Sentry.replayIntegration()],
+    });
+  });
+}
+
+if (SENTRY_DSN) {
+  if (typeof requestIdleCallback !== "undefined") {
+    requestIdleCallback(initSentryClient, { timeout: 4000 });
+  } else {
+    setTimeout(initSentryClient, 1500);
+  }
+}
+
+export const onRouterTransitionStart = (
+  ...args: Parameters<typeof import("@sentry/nextjs").captureRouterTransitionStart>
+) => {
+  const sentryPromise = loadSentry();
+  if (!sentryPromise) return;
+  void sentryPromise.then((Sentry) => {
+    Sentry.captureRouterTransitionStart(...args);
+  });
+};

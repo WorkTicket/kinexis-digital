@@ -24,6 +24,8 @@ function defaultOgImageObject() {
   return {
     "@type": "ImageObject" as const,
     url: getDefaultOgImageUrl(),
+    width: 1200,
+    height: 630,
   };
 }
 

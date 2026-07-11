@@ -7,29 +7,22 @@ import "../globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import SkipToMain from "@/components/layout/SkipToMain";
-import { MotionProvider } from "@/components/providers/MotionProvider";
+import SitePreloaderClient from "@/components/layout/SitePreloaderClient";
+import { MotionFlagsProvider } from "@/components/providers/MotionFlagsProvider";
+import FramerMotionShell from "@/components/providers/FramerMotionShell";
 import DeferredWidgets from "@/components/providers/DeferredWidgets";
 import { CookieConsentProvider } from "@/components/analytics/CookieConsent";
 import AnalyticsScripts from "@/components/analytics/AnalyticsScripts";
 import { routing, type Locale } from "@/i18n/routing";
 import { getHtmlLang } from "@/i18n/locale-tags";
+import { COOKIE_PREFLIGHT_SCRIPT, COOKIE_PENDING_CRITICAL_CSS } from "@/lib/site-boot-script";
 
 const ubuntu = Ubuntu({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
   variable: "--font-ubuntu",
-  display: "swap",
+  display: "optional",
   preload: true,
-  adjustFontFallback: true,
-});
-
-/** Weight 500 deferred — not needed for hero LCP (400/700 only above fold). */
-const ubuntuMedium = Ubuntu({
-  subsets: ["latin"],
-  weight: "500",
-  variable: "--font-ubuntu-medium",
-  display: "swap",
-  preload: false,
   adjustFontFallback: true,
 });
 
@@ -44,6 +37,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  colorScheme: "dark",
 };
 
 export default async function LocaleLayout({
@@ -63,20 +57,31 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={getHtmlLang(locale as Locale)} className={`${ubuntu.variable} ${ubuntuMedium.variable}`}>
-      <body className="font-ubuntu bg-bg text-white antialiased">
+    <html
+      lang={getHtmlLang(locale as Locale)}
+      className={`${ubuntu.variable} cookie-pending`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: COOKIE_PREFLIGHT_SCRIPT }} />
+        <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
+      </head>
+      <body className="font-ubuntu bg-bg text-foreground antialiased">
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
+          <SitePreloaderClient />
           <CookieConsentProvider>
-            <MotionProvider>
+            <MotionFlagsProvider>
               <SkipToMain />
               <div className="grain-overlay" />
               <Header />
-              <main id="main-content" tabIndex={-1} className="page-enter overflow-x-clip">
-                {children}
-              </main>
+              <FramerMotionShell>
+                <main id="main-content" tabIndex={-1} className="overflow-x-clip">
+                  {children}
+                </main>
+              </FramerMotionShell>
               <DeferredWidgets />
               <Footer />
-            </MotionProvider>
+            </MotionFlagsProvider>
             <AnalyticsScripts />
           </CookieConsentProvider>
         </NextIntlClientProvider>

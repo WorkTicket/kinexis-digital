@@ -5,6 +5,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { m as motion, AnimatePresence } from "@/lib/framer";
 import { MessageCircle, X, Send } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { cardClasses } from "@/lib/card-styles";
 import { cn } from "@/lib/utils";
 import type { ChatMessage } from "@/types";
 
@@ -109,9 +110,11 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed-safe-bottom fixed-safe-left fixed z-50 mb-16 w-[360px] max-w-[calc(100vw-2.5rem)] glass rounded-xl shadow-2xl overflow-hidden"
+            className={cn(
+              cardClasses({ surface: "glass", hover: false, className: "fixed-safe-bottom fixed-safe-left fixed z-50 mb-16 w-[360px] max-w-[calc(100vw-2.5rem)] rounded-xl shadow-2xl overflow-hidden !p-0" }),
+            )}
           >
-            <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-bg-dark">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-strong bg-bg-dark">
               <div className="flex items-center gap-2.5">
                 <div className="h-7 w-7 rounded-full bg-neon-cyan flex items-center justify-center text-xs font-bold text-bg">AD</div>
                 <div>
@@ -133,9 +136,12 @@ export default function ChatBot() {
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div
-                    className={`max-w-[85%] rounded-lg px-4 py-2.5 text-sm leading-relaxed ${
-                      msg.role === "user" ? "bg-neon-cyan text-bg" : "glass text-white"
-                    }`}
+                    className={cn(
+                      "max-w-[85%] rounded-lg px-4 py-2.5 text-sm leading-relaxed",
+                      msg.role === "user"
+                        ? "bg-neon-cyan text-bg"
+                        : cardClasses({ surface: "glass", hover: false, className: "!rounded-lg !p-0 text-white" }),
+                    )}
                   >
                     {msg.content}
                   </div>
@@ -173,14 +179,18 @@ export default function ChatBot() {
             </div>
 
             {!qualified && (
-              <form onSubmit={handleSubmit} className="border-t border-white/10 p-3 flex gap-2">
+              <form onSubmit={handleSubmit} className="border-t border-strong p-3 flex gap-2">
                 <input
                   type="text"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder={t("placeholder")}
                   aria-label={t("chatMessage")}
-                  className="flex-1 min-h-touch glass rounded-lg px-4 py-3 text-base text-white placeholder-muted focus:outline-none focus:ring-1 focus:ring-neon-cyan"
+                  className={cardClasses({
+                    surface: "glass",
+                    hover: false,
+                    className: "flex-1 min-h-touch rounded-lg px-4 py-3 text-base text-white placeholder-muted focus:outline-none focus:ring-1 focus:ring-neon-cyan !p-0",
+                  })}
                 />
                 <Button
                   type="submit"

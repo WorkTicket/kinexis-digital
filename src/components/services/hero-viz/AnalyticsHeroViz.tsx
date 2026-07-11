@@ -18,7 +18,7 @@ export default function AnalyticsHeroViz({ metrics }: Props) {
       <HeroVizStage className="items-center">
         <BrowserFrame label="GA4 Dashboard" delay={0.5} frameClassName="h-[165px] w-[220px]">
           <div className="flex flex-1 gap-1.5">
-            <div className="flex w-6 shrink-0 flex-col gap-1 border-r border-white/[0.06] pr-1">
+            <div className="flex w-6 shrink-0 flex-col gap-1 border-r border-surface pr-1">
               {[1, 2, 3, 4].map((n) => (
                 <div key={n} className={`h-1.5 rounded-sm ${n === 1 ? "bg-neon-cyan/30" : "bg-white/[0.06]"}`} />
               ))}
@@ -52,7 +52,7 @@ export default function AnalyticsHeroViz({ metrics }: Props) {
               </svg>
               <div className="mt-auto grid grid-cols-2 gap-1">
                 {metrics.slice(0, 4).map((m) => (
-                  <div key={m.shortLabel} className="rounded border border-white/[0.06] bg-white/[0.02] p-1 text-center">
+                  <div key={m.shortLabel} className="rounded border border-surface bg-white/[0.02] p-1 text-center">
                     <div className="text-[8px] font-bold text-neon-cyan">
                       {m.value}
                       {m.suffix ?? ""}

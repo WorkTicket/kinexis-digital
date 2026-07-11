@@ -43,15 +43,23 @@ export type ContentMarketingContent = {
     subtitle: string;
     phases: ServicePhase[];
   };
+  processIntro: string;
+  capabilityBodies: {
+    contentFunnel: string;
+    production: string;
+    distribution: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
-const enContentPhases: ServicePhase[] = [
+const _enContentPhases: ServicePhase[] = [
   { title: "Strategy & Audience Map", desc: "Identify buyer questions, pain points, and triggers at each funnel stage.", metric: "Full audience map in week 1" },
   { title: "Authority Asset Production", desc: "Blog posts, whitepapers, case studies, lead magnets with conversion intent built in.", metric: "Avg. 4.2x traffic increase per article" },
   { title: "Lead Magnet Creation", desc: "Gated assets designed to capture emails and feed your nurture pipeline.", metric: "Avg. 18% email capture rate" },
@@ -97,13 +105,31 @@ export const contentMarketingContent: Record<Locale, ContentMarketingContent> = 
     process: {
       title: "The content process.",
       subtitle: "From strategy to publication,|every piece goes through a proven production process.",
-      phases: enContentPhases,
+      phases: [
+        { title: "Strategy & Audience Map", desc: "Identify buyer questions, pain points, and triggers at each funnel stage. Map topics to keywords and conversion pages.", metric: "" },
+        { title: "Authority Asset Production", desc: "Blog posts, guides, and case studies with conversion intent built in. Each piece tied to a funnel stage.", metric: "" },
+        { title: "Lead Magnets & Nurture", desc: "Gated assets that capture emails plus nurture sequences that move subscribers toward a booked call.", metric: "" },
+        { title: "Repurposing & Distribution", desc: "Every asset repurposed across social, email, and syndication. Winners refreshed, underperformers retired.", metric: "" },
+      ],
+    },
+    processIntro:
+      "Content is not a publishing calendar. Our production cycle runs from intent mapping through creation, distribution, and refresh, every phase tied to a metric your sales team can see in the CRM.",
+    capabilityBodies: {
+      contentFunnel:
+        "Content only pays off when each piece knows which funnel stage it serves. We map awareness, consideration, decision, and retention content to specific formats and conversion goals, not a blog schedule picked in meetings. The stages below show how we align topics to buyer intent before a single word gets written.",
+      production:
+        "Production runs on a repeatable cadence: SEO-informed articles, gated lead magnets, nurture emails, and repurposed assets, all built from one editorial brief per piece. Every deliverable has a business purpose: traffic, lead capture, or pipeline influence. We do not publish filler that ranks for nothing and converts less.",
+      distribution:
+        "Publishing without distribution is half the job. We promote every piece across email, social, and syndication partners, then repurpose it into 8–12 derivative assets so reach compounds without producing entirely new content each week. Performance gets measured on leads attributed and pipeline influenced, not pageviews alone.",
     },
     cta: {
       headline: "Ready to build your content engine?",
       subtitle: "We'll build a content system that attracts, nurtures,|and converts while you focus on running the business.",
-      ctaLabel: "Start Your Content Strategy",
+      ctaLabel: "See Content Pricing",
     },
+    inlineCtaLabel: "Audit My Content Strategy",
+    inlineCtaSubtitle:
+      "We will review your topic gaps, keyword opportunities, and funnel alignment. Then outline the highest-impact content fixes.",
     faqs: [
       { question: "How much content do you produce per month?", answer: "Our standard production includes 4–6 blog posts, 1–2 lead magnets, 5+ nurture email sequences, and 8–12 repurposed social and distribution assets per month. The mix adjusts based on your funnel gaps and where the highest-impact opportunities are." },
       { question: "How do you choose content topics?", answer: "Topic selection is data-driven: keyword research for SEO opportunity, competitor gap analysis, and your sales team's most common prospect questions. Every piece of content has a business purpose: traffic, lead capture, or nurture." },
@@ -146,18 +172,30 @@ export const contentMarketingContent: Record<Locale, ContentMarketingContent> = 
       title: "El proceso de contenido.",
       subtitle: "De la estrategia a la publicación,|cada pieza pasa por un proceso de producción probado.",
       phases: [
-        { title: "Estrategia y Mapa de Audiencia", desc: "Identificar preguntas del comprador, puntos de dolor y disparadores en cada etapa del embudo.", metric: "Mapa de audiencia completo en semana 1" },
-        { title: "Producción de Activos de Autoridad", desc: "Artículos de blog, whitepapers, casos de estudio, lead magnets con intención de conversión integrada.", metric: "Prom. 4.2x aumento de tráfico por artículo" },
-        { title: "Creación de Lead Magnets", desc: "Activos con acceso restringido diseñados para capturar emails y alimentar tu pipeline de nurture.", metric: "Prom. 18% tasa de captura de email" },
-        { title: "Configuración de Email Nurture", desc: "Secuencias multi-touch que entregan valor, construyen confianza y crean oportunidades de reserva.", metric: "5+ secuencias de nurture por cliente" },
-        { title: "Reutilización y Distribución", desc: "Cada activo reutilizado en publicaciones sociales, video, newsletters para máximo alcance.", metric: "8-12 activos reutilizados por mes" },
+        { title: "Estrategia y Mapa de Audiencia", desc: "Identificar preguntas del comprador, puntos de dolor y disparadores en cada etapa. Mapear temas a keywords y páginas de conversión.", metric: "" },
+        { title: "Producción de Activos de Autoridad", desc: "Artículos, guías y casos de estudio con intención de conversión integrada, cada pieza ligada a una etapa de embudo.", metric: "" },
+        { title: "Lead Magnets y Nurture", desc: "Activos gated que capturan emails más secuencias de nurture que mueven suscriptores hacia una llamada agendada.", metric: "" },
+        { title: "Reutilización y Distribución", desc: "Cada activo reutilizado en social, email y sindicación. Ganadores actualizados, bajo rendimiento retirado.", metric: "" },
       ],
+    },
+    processIntro:
+      "El contenido no es un calendario de publicación. Nuestro ciclo va del mapeo de intención a creación, distribución y refresco, cada fase ligada a una métrica que tu equipo de ventas puede ver en el CRM.",
+    capabilityBodies: {
+      contentFunnel:
+        "El contenido solo rinde cuando cada pieza sabe qué etapa de embudo sirve. Mapeamos contenido de conciencia, consideración, decisión y retención a formatos y objetivos de conversión específicos, no un calendario de blog elegido en reuniones. Las etapas siguientes muestran cómo alineamos temas a intención del comprador antes de escribir una sola palabra.",
+      production:
+        "La producción corre en una cadencia repetible: artículos con SEO, lead magnets gated, emails de nurture y activos reutilizados, todo construido desde un brief editorial por pieza. Cada entregable tiene un propósito de negocio: tráfico, captura de leads o influencia en pipeline. No publicamos relleno que posiciona para nada y convierte menos.",
+      distribution:
+        "Publicar sin distribuir es la mitad del trabajo. Promovemos cada pieza en email, social y socios de sindicación, luego la reutilizamos en 8–12 activos derivados para que el alcance se acumule sin producir contenido nuevo cada semana. El rendimiento se mide por leads atribuidos e influencia en pipeline, no solo pageviews.",
     },
     cta: {
       headline: "¿Listo para construir tu motor de contenido?",
       subtitle: "Crearemos un sistema de contenido que atrae,|nutre y convierte mientras tú te enfocas en tu negocio.",
-      ctaLabel: "Inicia Tu Estrategia de Contenido",
+      ctaLabel: "Ver Precios de Contenido",
     },
+    inlineCtaLabel: "Auditar Mi Estrategia de Contenido",
+    inlineCtaSubtitle:
+      "Revisaremos tus brechas de temas, oportunidades de keywords y alineación de embudo, y delinearemos las correcciones de contenido de mayor impacto.",
     faqs: [
       { question: "¿Cuánto contenido producen al mes?", answer: "Nuestra producción estándar incluye 4-6 artículos de blog, 1-2 lead magnets, 5+ secuencias de email nurture y 8-12 activos reutilizados para distribución social. La mezcla se ajusta según los huecos de tu funnel y las oportunidades de mayor impacto." },
       { question: "¿Cómo eligen los temas de contenido?", answer: "La selección de temas es basada en datos: investigación de palabras clave, análisis de brechas de la competencia y las preguntas más comunes de tus prospectos. Cada pieza de contenido tiene un propósito de negocio: tráfico, captura de leads o nurture." },

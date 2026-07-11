@@ -1,13 +1,13 @@
 {
   "base": "https://www.kinexisdigital.com",
-  "timestamp": "2026-06-25T19:39:04.532Z",
+  "timestamp": "2026-07-09T03:32:06.827Z",
   "robots": {
     "status": 200,
-    "body": "User-Agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: https://www.kinexisdigital.com/sitemap.xml"
+    "body": "User-Agent: *\nAllow: /\nDisallow: /api/\nDisallow: /lead-magnet\nDisallow: /en/lead-magnet\nDisallow: /es/lead-magnet\n\nSitemap: https://www.kinexisdigital.com/sitemap.xml"
   },
   "sitemap": {
     "status": 200,
-    "urlCount": 378
+    "urlCount": 328
   },
   "pages": [
     {
@@ -16,16 +16,20 @@
       "status": 200,
       "schemas": [
         "Organization",
+        "ImageObject",
         "ContactPoint",
+        "ProfessionalService",
+        "PostalAddress",
+        "Country",
         "WebSite"
       ],
       "checks": {
         "canonical": "https://www.kinexisdigital.com/en",
         "ogTitle": "KINEXIS Digital - Turn Traffic Into Revenue",
-        "ogDescription": "We&#x27;re a digital marketing agency that builds real sales systems, not fancy brochures. We specialize in SEO, paid ads, web design, and conversion funnels - all designed to get your phone ringing with qualified leads.",
+        "ogDescription": "Digital marketing agency building real sales systems. SEO, paid ads, web design, and conversion funnels designed to drive qualified leads.",
         "ogUrl": "https://www.kinexisdigital.com/en",
         "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
-        "description": "We&#x27;re a digital marketing agency that builds real sales systems, not fancy brochures. We specialize in SEO, paid ads, web design, and conversion funnels - all designed to get your phone ringing with qualified leads.",
+        "description": "Digital marketing agency building real sales systems. SEO, paid ads, web design, and conversion funnels designed to drive qualified leads.",
         "hasOrganization": true,
         "hasBreadcrumb": false
       }
@@ -36,17 +40,21 @@
       "status": 200,
       "schemas": [
         "Organization",
+        "ImageObject",
         "ContactPoint",
+        "ProfessionalService",
+        "PostalAddress",
+        "Country",
         "BreadcrumbList",
         "ListItem"
       ],
       "checks": {
         "canonical": "https://www.kinexisdigital.com/en/contact",
-        "ogTitle": "Contact KINEXIS Digital | Start with a conversation, not a pitch deck.",
-        "ogDescription": "Tell us what&#x27;s not working in your marketing. We&#x27;ll respond within one business day with an honest read on whether we can help.",
+        "ogTitle": "Contact KINEXIS Digital | Book a Strategy Call",
+        "ogDescription": "Book a strategy call with KINEXIS, a digital marketing agency that builds real revenue systems. Share your goals and we&#x27;ll outline a practical growth…",
         "ogUrl": "https://www.kinexisdigital.com/en/contact",
         "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
-        "description": "Tell us what&#x27;s not working in your marketing. We&#x27;ll respond within one business day with an honest read on whether we can help.",
+        "description": "Book a strategy call with KINEXIS, a digital marketing agency that builds real revenue systems. Share your goals and we&#x27;ll outline a practical growth…",
         "hasOrganization": true,
         "hasBreadcrumb": true
       }
@@ -57,8 +65,10 @@
       "status": 200,
       "schemas": [
         "Organization",
+        "ImageObject",
         "ContactPoint",
         "Service",
+        "Country",
         "FAQPage",
         "Question",
         "Answer",
@@ -68,10 +78,10 @@
       "checks": {
         "canonical": "https://www.kinexisdigital.com/en/services/seo",
         "ogTitle": "SEO Agency for Lead Generation | KINEXIS Digital",
-        "ogDescription": "SEO focused on keywords that book calls, not vanity rankings. Technical audits, content, and links tied to revenue. Plans from $2,500/mo.",
+        "ogDescription": "SEO focused on keywords that book calls, not vanity rankings. Technical audits, content strategy, and link building all tied to revenue and lead…",
         "ogUrl": "https://www.kinexisdigital.com/en/services/seo",
         "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
-        "description": "SEO focused on keywords that book calls, not vanity rankings. Technical audits, content, and links tied to revenue. Plans from $2,500/mo.",
+        "description": "SEO focused on keywords that book calls, not vanity rankings. Technical audits, content strategy, and link building all tied to revenue and lead…",
         "hasOrganization": true,
         "hasBreadcrumb": true
       }
@@ -82,31 +92,33 @@
       "status": 200,
       "schemas": [
         "Organization",
+        "ImageObject",
         "ContactPoint",
         "BreadcrumbList",
         "ListItem"
       ],
       "checks": {
         "canonical": "https://www.kinexisdigital.com/en/case-studies",
-        "ogTitle": "Case Studies | Real growth. Real numbers. | KINEXIS",
-        "ogDescription": "Six verified client studies. Each one includes the strategy we used, the execution timeline, and the actual revenue outcome. We don&#x27;t publish projections.",
+        "ogTitle": "Case Studies | KINEXIS Digital",
+        "ogDescription": "Verified client results: traffic lifts, booked jobs, and pipeline growth from KINEXIS SEO, paid media, and web projects.",
         "ogUrl": "https://www.kinexisdigital.com/en/case-studies",
         "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
-        "description": "Six verified client studies. Each one includes the strategy we used, the execution timeline, and the actual revenue outcome. We don&#x27;t publish projections.",
+        "description": "Verified client results: traffic lifts, booked jobs, and pipeline growth from KINEXIS SEO, paid media, and web projects.",
         "hasOrganization": true,
         "hasBreadcrumb": true
       }
     },
     {
-      "path": "/en/locations/des-moines",
-      "label": "Location",
+      "path": "/en/digital-marketing-agency",
+      "label": "Agency Hub",
       "status": 200,
       "schemas": [
         "Organization",
+        "ImageObject",
         "ContactPoint",
-        "LocalBusiness",
-        "City",
-        "State",
+        "ProfessionalService",
+        "PostalAddress",
+        "Country",
         "FAQPage",
         "Question",
         "Answer",
@@ -114,12 +126,12 @@
         "ListItem"
       ],
       "checks": {
-        "canonical": "https://www.kinexisdigital.com/en/locations/des-moines",
-        "ogTitle": "Digital Marketing Agency Des Moines | KINEXIS Digital",
-        "ogDescription": "Full-service digital marketing for Des Moines businesses scaling beyond word-of-mouth: SaaS startups, professional firms, and regional brands competing statewide.",
-        "ogUrl": "https://www.kinexisdigital.com/en/locations/des-moines",
+        "canonical": "https://www.kinexisdigital.com/en/digital-marketing-agency",
+        "ogTitle": "Digital Marketing Agency | KINEXIS Digital",
+        "ogDescription": "Full-service digital marketing for local businesses, SaaS, and startups. SEO, paid media, web design, CRO, and analytics as one revenue system.",
+        "ogUrl": "https://www.kinexisdigital.com/en/digital-marketing-agency",
         "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
-        "description": "Full-service digital marketing for Des Moines businesses scaling beyond word-of-mouth: SaaS startups, professional firms, and regional brands competing statewide.",
+        "description": "Full-service digital marketing for local businesses, SaaS, and startups. SEO, paid media, web design, CRO, and analytics as one revenue system.",
         "hasOrganization": true,
         "hasBreadcrumb": true
       }
@@ -130,19 +142,21 @@
       "status": 200,
       "schemas": [
         "Organization",
+        "ImageObject",
         "ContactPoint",
         "Article",
         "Person",
+        "WebPage",
         "BreadcrumbList",
         "ListItem"
       ],
       "checks": {
         "canonical": "https://www.kinexisdigital.com/en/blog/local-seo-strategy-2026",
-        "ogTitle": "Local SEO Strategy for 2026: What&#x27;s Changed and What Still Works | KINEXIS Digital",
-        "ogDescription": "Google keeps tweaking its local search algorithm, and a lot of what used to work just doesn&#x27;t cut it anymore. We&#x27;ve been testing what actually drives rankings in 2026. Here&#x27;s what we&#x27;ve found.",
+        "ogTitle": "Local SEO Strategy for 2026: What&#x27;s Changed… | KINEXIS",
+        "ogDescription": "Google keeps tweaking its local search algorithm, and a lot of what used to work just doesn&#x27;t cut it anymore. We&#x27;ve been testing what actually…",
         "ogUrl": "https://www.kinexisdigital.com/en/blog/local-seo-strategy-2026",
         "viewport": "width=device-width, initial-scale=1, viewport-fit=cover",
-        "description": "Google keeps tweaking its local search algorithm, and a lot of what used to work just doesn&#x27;t cut it anymore. We&#x27;ve been testing what actually drives rankings in 2026. Here&#x27;s what we&#x27;ve found.",
+        "description": "Google keeps tweaking its local search algorithm, and a lot of what used to work just doesn&#x27;t cut it anymore. We&#x27;ve been testing what actually…",
         "hasOrganization": true,
         "hasBreadcrumb": true
       }
@@ -168,25 +182,23 @@
       "hasSafeArea": true
     }
   ],
-  "issues": [
-    "API /api/chat: returns 404"
-  ],
+  "issues": [],
   "passes": [
     "robots.txt: valid with sitemap reference",
-    "sitemap.xml: 378 URLs indexed",
+    "sitemap.xml: 328 URLs indexed",
     "Home: canonical present",
     "Contact: canonical present",
     "SEO Service: canonical present",
     "Case Studies: canonical present",
-    "Location: canonical present",
+    "Agency Hub: canonical present",
     "Blog Post: canonical present",
     "Mobile 375px: viewport meta OK (server render)",
     "Mobile 390px: viewport meta OK (server render)",
     "Mobile 430px: viewport meta OK (server render)",
     "Home: chat widget markup present",
     "Home: CTA links present",
-    "Analytics: Google Analytics script detected",
-    "API /api/contact: reachable (status 400)",
-    "API /api/lead: reachable (status 400)"
+    "Analytics: GA not in this build (set NEXT_PUBLIC_GA_ID at build time for production)",
+    "API /api/contact: reachable (status 403)",
+    "API /api/lead: reachable (status 403)"
   ]
 }

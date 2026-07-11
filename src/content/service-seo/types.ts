@@ -13,7 +13,7 @@ export type ComparisonRow = {
   values: string[];
 };
 
-/** Controls which comparison UI renders — each layout fits a different story. */
+/** Controls which comparison UI renders. Each layout fits a different story. */
 export type ComparisonLayout =
   | "ledger" // clean spec sheet: alt vs KINEXIS in one panel
   | "contrast" // two tall pillar columns
@@ -24,6 +24,10 @@ export type ComparisonLayout =
 export type ServiceSeoContent = {
   metaTitle: string;
   metaDescription: string;
+  editorial?: {
+    bridgeParagraph: string;
+    pullQuote?: { quote: string; attribution: string };
+  };
   hero: {
     label: string;
     line1: string;

@@ -2,19 +2,18 @@
 
 import { useState } from "react";
 import { m as motion, AnimatePresence } from "@/lib/framer";
-import { useTranslations } from "next-intl";
-import HeroArchetype from "@/components/ui/HeroArchetype";
 import BlogPostFeed from "@/components/blog/BlogPostFeed";
 import RelatedLinks from "@/components/sections/RelatedLinks";
+import SectionHeader from "@/components/ui/SectionHeader";
 import type { BlogContent } from "@/content/blog";
 import { sortPostsByRecency } from "@/lib/blog-utils";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import Section from "@/components/shared/services/Section";
 
 type Props = { content: BlogContent };
 
 export default function BlogPostsPageClient({ content: c }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
-  const tCommon = useTranslations("common");
   const [activeCategory, setActiveCategory] = useState(c.categories[0]);
 
   const nonFeaturedPosts = sortPostsByRecency(c.posts.filter((post) => !post.featured));
@@ -30,23 +29,11 @@ export default function BlogPostsPageClient({ content: c }: Props) {
     { href: "/blog/quality-score-guide", label: "Google Ads Quality Score" },
     { href: "/blog/email-segmentation", label: "Email Segmentation" },
   ];
+  let surfaceIndex = 0;
 
   return (
     <>
-      <HeroArchetype
-        archetype="showcase"
-        headline={
-          <>
-            <span className="type-hero-line">{c.postsHeroTitleLine1}</span>
-            <span className="type-hero-line gradient-text">{c.postsHeroTitleGradient}</span>
-          </>
-        }
-        subtitle={c.postsHeroSubtitle}
-        ctaLabel={tCommon("bookStrategyCall")}
-        ctaHref="/contact"
-      />
-
-      <section className="section-padding relative">
+      <Section id="content-explorer" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <motion.div
             className="flex flex-wrap items-center justify-between gap-4"
@@ -55,12 +42,12 @@ export default function BlogPostsPageClient({ content: c }: Props) {
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            <motion.div variants={fadeUp}>
-              <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-                {c.contentExplorerLabel}
-              </span>
-              <h2 className="section-title section-title--left mt-2">{c.contentExplorerTitle}</h2>
-            </motion.div>
+            <SectionHeader
+              badge={c.contentExplorerLabel}
+              title={c.contentExplorerTitle}
+              align="left"
+              headingId="content-explorer-heading"
+            />
             <motion.div variants={fadeUp} className="flex flex-wrap gap-1.5">
               {c.categories.map((cat) => (
                 <button
@@ -69,7 +56,7 @@ export default function BlogPostsPageClient({ content: c }: Props) {
                   className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
                     activeCategory === cat
                       ? "bg-neon-cyan text-bg-dark"
-                      : "border border-white/[0.08] text-muted hover:border-white/20 hover:text-white"
+                      : "border border-strong text-muted hover:border-white/20 hover:text-white"
                   }`}
                 >
                   {cat}
@@ -91,11 +78,12 @@ export default function BlogPostsPageClient({ content: c }: Props) {
             </motion.div>
           </AnimatePresence>
         </div>
-      </section>
+      </Section>
 
       <RelatedLinks
         blogLinks={clusterLinks}
         agencyHub
+        surfaceIndex={surfaceIndex++}
       />
     </>
   );

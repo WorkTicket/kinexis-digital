@@ -7,7 +7,7 @@ import {
   SkeletonLine,
 } from "./ServiceHeroVizParts";
 
-export type DeviceMockupVariant = "desktop" | "tablet" | "mobile";
+export type DeviceMockupVariant = "desktop" | "laptop" | "tablet" | "mobile";
 
 type Props = {
   variant: DeviceMockupVariant;
@@ -22,6 +22,19 @@ function DesktopSkeleton() {
       <div className="mt-auto flex gap-1">
         <SkeletonBlock className="h-5 flex-1 !bg-neon-cyan/15" />
         <div className="h-5 w-8 rounded bg-white/[0.04]" />
+      </div>
+    </>
+  );
+}
+
+function LaptopSkeleton() {
+  return (
+    <>
+      <SkeletonLine width="lg" />
+      <SkeletonLine width="md" />
+      <div className="mt-auto flex gap-1.5">
+        <SkeletonBlock className="h-4 flex-1 !bg-neon-cyan/12" />
+        <SkeletonBlock className="h-4 w-10 !bg-white/[0.04]" />
       </div>
     </>
   );
@@ -52,6 +65,14 @@ export default function WebDesignDeviceMockupsViz({ variant, delay = 0.3 }: Prop
     return (
       <BrowserFrame delay={delay} interactive frameClassName="h-[220px] w-[300px]">
         <DesktopSkeleton />
+      </BrowserFrame>
+    );
+  }
+
+  if (variant === "laptop") {
+    return (
+      <BrowserFrame delay={delay} interactive frameClassName="h-[200px] w-[260px]">
+        <LaptopSkeleton />
       </BrowserFrame>
     );
   }

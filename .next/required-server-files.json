@@ -4,7 +4,7 @@
     "env": {
       "_sentryRewriteFramesDistDir": ".next",
       "_sentryRewriteFramesAssetPrefixPath": "",
-      "_sentryRelease": "4d44dd2e6fa0a3cc80a844e1877efd31611af3dc"
+      "_sentryRelease": "5492d99431a60aba8592fd7cb5f2124ed6cab587"
     },
     "eslint": {
       "ignoreDuringBuilds": false
@@ -204,7 +204,7 @@
       "staticGenerationMaxConcurrency": 8,
       "staticGenerationMinPagesPerWorker": 25,
       "cacheComponents": false,
-      "inlineCss": false,
+      "inlineCss": true,
       "useCache": false,
       "globalNotFound": false,
       "devtoolSegmentExplorer": true,
@@ -332,6 +332,46 @@
       {
         "source": "/:locale(en|es)/pricing/cro",
         "destination": "/:locale/pricing/funnels",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/pricing/google-ads",
+        "destination": "/:locale/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/pricing/paid-ads",
+        "destination": "/:locale/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/services/google-ads",
+        "destination": "/:locale/services/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/:locale(en|es)/services/paid-ads",
+        "destination": "/:locale/services/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/pricing/google-ads",
+        "destination": "/en/pricing/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/services/google-ads",
+        "destination": "/en/services/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/services/paid-ads",
+        "destination": "/en/services/ppc-management",
+        "permanent": true
+      },
+      {
+        "source": "/pricing/paid-ads",
+        "destination": "/en/pricing/ppc-management",
         "permanent": true
       },
       {

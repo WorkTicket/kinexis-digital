@@ -1,13 +1,7 @@
 import type { Config } from "tailwindcss";
 
-// Brand color constants — single source of truth for all color values.
-// CSS vars in globals.css reference these via theme().
+// Brand accent constants — backgrounds/text use CSS vars in globals.css (dark mode only).
 const BRAND = {
-  BG: "#05060a",
-  BG_DARK: "#030408",
-  BG_SECONDARY: "#0a0b12",
-  CHARCOAL: "#111827",
-  DARK_GRAY: "#1f2937",
   NEON_CYAN: "#00d4ff",
   NEON_BLUE: "#0099cc",
 } as const;
@@ -25,19 +19,37 @@ const config: Config = {
     },
     extend: {
       colors: {
-        bg: BRAND.BG,
-        "bg-dark": BRAND.BG_DARK,
-        "bg-secondary": BRAND.BG_SECONDARY,
-        charcoal: BRAND.CHARCOAL,
-        "dark-gray": BRAND.DARK_GRAY,
-        panel: "rgba(255,255,255,0.06)",
-        muted: "rgba(255,255,255,0.7)",
+        bg: "var(--bg)",
+        "bg-dark": "var(--bg-dark)",
+        "bg-secondary": "var(--bg-secondary)",
+        charcoal: "var(--charcoal)",
+        "dark-gray": "var(--dark-gray)",
+        panel: "var(--panel)",
+        muted: "rgb(var(--muted-rgb) / <alpha-value>)",
+        foreground: "var(--text)",
         "neon-cyan": BRAND.NEON_CYAN,
         "neon-blue": BRAND.NEON_BLUE,
-        accent: BRAND.NEON_CYAN,
-        border: "rgba(255,255,255,0.08)",
-        "text-secondary": "rgba(255,255,255,0.7)",
-        "text-muted": "rgba(255,255,255,0.6)",
+        accent: "var(--accent)",
+        border: "var(--border)",
+        surface: {
+          base: "var(--surface-base)",
+          raised: "var(--surface-raised)",
+          glass: "var(--surface-glass)",
+          hover: "var(--surface-hover)",
+          active: "var(--surface-active)",
+        },
+        "text-secondary": "var(--text-secondary)",
+        "text-muted": "var(--text-muted)",
+      },
+      borderColor: {
+        subtle: "var(--border-subtle)",
+        surface: "var(--border-default)",
+        strong: "var(--border-strong)",
+      },
+      divideColor: {
+        subtle: "var(--border-subtle)",
+        surface: "var(--border-default)",
+        strong: "var(--border-strong)",
       },
       fontFamily: {
         ubuntu: ["var(--font-ubuntu)", "sans-serif"],
@@ -55,23 +67,8 @@ const config: Config = {
       backgroundImage: {
         gradient: `linear-gradient(90deg, ${BRAND.NEON_BLUE}, ${BRAND.NEON_CYAN})`,
       },
-      fontSize: {
-        hero: ["clamp(2.125rem, 6vw, 4.5rem)", { lineHeight: "1.0", letterSpacing: "-0.02em" }],
-        "hero-lg": ["clamp(3rem, 5.5vw, 4.5rem)", { lineHeight: "0.95", letterSpacing: "-0.02em" }],
-        "hero-xl": ["clamp(3.75rem, 7vw, 7.5rem)", { lineHeight: "0.92", letterSpacing: "-0.02em" }],
-        section: ["clamp(1.75rem, 4vw, 2.125rem)", { lineHeight: "1.1", letterSpacing: "-0.02em" }],
-        "section-md": ["clamp(2rem, 3.5vw, 2.5rem)", { lineHeight: "1.08", letterSpacing: "-0.02em" }],
-        "section-lg": ["clamp(2.5rem, 4.5vw, 4.5rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
-        subheader: ["clamp(1.25rem, 2.5vw, 1.75rem)", { lineHeight: "1.2", letterSpacing: "-0.01em" }],
-        "subheader-lg": ["clamp(1.5rem, 3vw, 2.25rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
-        body: ["clamp(1rem, 0.5vw + 0.95rem, 1.125rem)", { lineHeight: "1.7" }],
-        "body-lg": ["clamp(1.0625rem, 0.5vw + 1rem, 1.25rem)", { lineHeight: "1.65" }],
-      },
       spacing: {
         "hero-y": "clamp(6rem, 12vw, 7.5rem)",
-        "section-y": "4.5rem",
-        "section-y-md": "6rem",
-        "section-y-lg": "7.5rem",
         "card-pad": "clamp(1.5rem, 4vw, 2rem)",
         "touch": "3rem",
         "grid-gap-sm": "var(--grid-gap-sm)",

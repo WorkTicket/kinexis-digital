@@ -38,7 +38,7 @@ export default function SocialMediaHeroViz({ platforms }: Props) {
                 className={`flex h-5 items-center justify-center rounded-sm border ${
                   scheduled.includes(i)
                     ? "border-neon-cyan/25 bg-neon-cyan/[0.08]"
-                    : "border-white/[0.04] bg-white/[0.02]"
+                    : "border-subtle bg-white/[0.02]"
                 }`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -54,7 +54,7 @@ export default function SocialMediaHeroViz({ platforms }: Props) {
             {platforms.map((p) => (
               <div
                 key={p.id}
-                className="flex flex-1 flex-col items-center rounded border border-white/[0.06] bg-white/[0.02] py-1"
+                className="flex flex-1 flex-col items-center rounded border border-surface bg-white/[0.02] py-1"
               >
                 <span className="text-[5px] text-muted/40">{p.shortLabel}</span>
                 <span className="text-[7px] font-bold text-neon-cyan">{p.eng}</span>

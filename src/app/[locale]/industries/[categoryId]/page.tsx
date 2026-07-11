@@ -15,6 +15,7 @@ import {
 import { routing, type Locale } from "@/i18n/routing";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
+import Section from "@/components/shared/services/Section";
 
 type Props = { params: Promise<{ locale: Locale; categoryId: string }> };
 
@@ -76,9 +77,9 @@ export default async function IndustryCategoryPage({ params }: Props) {
           { name: category.label },
         ]}
       />
-      <section className="section-padding bg-bg-dark">
+      <Section id="industries-grid" surfaceIndex={0}>
         <div className="container-site">
-          <SectionHeader pattern="C" title={`${category.label} industries we serve`} />
+          <SectionHeader title={`${category.label} industries we serve`} headingId="industries-grid-heading" />
           <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry, i) => (
               <IndustryCard
@@ -91,7 +92,7 @@ export default async function IndustryCategoryPage({ params }: Props) {
             ))}
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

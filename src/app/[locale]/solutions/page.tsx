@@ -4,10 +4,12 @@ import { Link } from "@/i18n/navigation";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import HeroArchetype from "@/components/ui/HeroArchetype";
+import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { solutions } from "@/content/registry/solutions";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
+import Section from "@/components/shared/services/Section";
 import type { Locale } from "@/i18n/routing";
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -53,23 +55,21 @@ export default async function SolutionsIndexPage({ params }: Props) {
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
       />
-      <section className="section-padding bg-bg-dark">
+      <Section id="browse-solutions" surfaceIndex={0}>
         <div className="container-site">
-          <SectionHeader pattern="C" title="Browse solutions" />
+          <SectionHeader title="Browse solutions" headingId="browse-solutions-heading" />
           <div className="section-content grid gap-grid-sm md:grid-cols-2 lg:grid-cols-3">
             {solutions.map((s) => (
-              <Link
-                key={s.slug}
-                href={`/solutions/${s.slug}`}
-                className="block service-card bg-bg hover:border-neon-cyan/30 transition-colors"
-              >
-                <h3 className="card-heading">{s.title}</h3>
-                <p className="service-card__body line-clamp-2">{s.metaDescription}</p>
+              <Link key={s.slug} href={`/solutions/${s.slug}`} className="block h-full">
+                <Card className="bg-bg hover:border-neon-cyan/30 transition-colors">
+                  <h3 className="card-heading">{s.title}</h3>
+                  <p className="mt-4 type-body text-muted line-clamp-2">{s.metaDescription}</p>
+                </Card>
               </Link>
             ))}
           </div>
         </div>
-      </section>
+      </Section>
     </>
   );
 }

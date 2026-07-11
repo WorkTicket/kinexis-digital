@@ -35,17 +35,22 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "accepted" || stored === "rejected") {
       setConsent(stored);
+      document.documentElement.classList.remove("cookie-pending");
+    } else {
+      document.documentElement.classList.add("cookie-pending");
     }
     setReady(true);
   }, []);
 
   const accept = useCallback(() => {
     localStorage.setItem(STORAGE_KEY, "accepted");
+    document.documentElement.classList.remove("cookie-pending");
     setConsent("accepted");
   }, []);
 
   const reject = useCallback(() => {
     localStorage.setItem(STORAGE_KEY, "rejected");
+    document.documentElement.classList.remove("cookie-pending");
     setConsent("rejected");
   }, []);
 
@@ -71,14 +76,14 @@ function CookieBanner({
       role="dialog"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className="fixed inset-x-0 bottom-0 z-[100] border-t border-white/[0.08] bg-bg-dark/95 p-4 backdrop-blur-md sm:p-6"
+      className="fixed inset-x-0 bottom-0 z-[100] border-t border-strong bg-bg-dark/95 p-4 backdrop-blur-md sm:p-6"
     >
       <div className="container-site flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="max-w-2xl">
           <p id="cookie-consent-title" className="text-sm font-semibold text-white">
             {t("title")}
           </p>
-          <p id="cookie-consent-desc" className="mt-1.5 text-sm text-muted leading-relaxed">
+          <p id="cookie-consent-desc" className="mt-1.5 text-sm text-white/70 leading-relaxed">
             {t("description")}{" "}
             <Link href="/privacy" className="text-neon-cyan underline underline-offset-2">
               {t("privacyLink")}

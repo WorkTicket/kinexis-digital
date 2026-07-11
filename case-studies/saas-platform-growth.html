@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — SaaS Platform | KINEXIS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05060a;
+    --bg-dark:#030408;
+    --bg-secondary:#0a0b12;
+    --charcoal:#111827;
+    --dark-gray:#1f2937;
+    --neon-cyan:#00d4ff;
+    --neon-blue:#0099cc;
+    --accent:var(--neon-cyan);
+    --panel:rgba(255,255,255,0.06);
+    --text:#ffffff;
+    --muted:rgba(255,255,255,0.7);
+    --text-muted:rgba(255,255,255,0.6);
+    --text-secondary:rgba(255,255,255,0.7);
+    --line:rgba(255,255,255,0.06);
+    --line-strong:rgba(255,255,255,0.1);
+    --signal:var(--neon-cyan);
+    --teal:var(--neon-cyan);
+    --paper:var(--bg);
+    --paper-raised:rgba(255,255,255,0.03);
+    --gradient:linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'Ubuntu', sans-serif;
+    --serif: 'Ubuntu', sans-serif;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth; background:var(--bg);}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--signal); outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important; scroll-behavior:auto !important;}
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  .topbar{
+    border-bottom:1px solid var(--line);
+    padding:20px 0;
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+  .topbar .wrap{display:flex; justify-content:space-between; align-items:center;}
+  .topbar a{text-decoration:none; color:var(--muted);}
+  .topbar a:hover{color:var(--signal);}
+  .topbar .doc-id{color:var(--text-muted);}
+  .topbar .home-link{color:var(--muted);}
+
+  section.block{padding:64px 0; border-bottom:1px solid var(--line);}
+  .block-head{margin-bottom:32px; max-width:640px;}
+  .block-head .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--signal);
+    margin-bottom:10px;
+    display:block;
+  }
+  .block-head h2{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(24px,3vw,34px);
+    letter-spacing:-.01em;
+  }
+
+  .hero{padding:52px 0 0; border-bottom:1px solid var(--line);}
+  .hero .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--signal);
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  .hero .eyebrow::before{
+    content:"";
+    width:8px; height:8px;
+    background:var(--signal);
+    border-radius:50%;
+    display:inline-block;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(34px, 5.2vw, 60px);
+    line-height:1.03;
+    letter-spacing:-.01em;
+    max-width:15ch;
+    margin-bottom:36px;
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .headline-stats{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--line);
+    border-left:1px solid var(--line);
+  }
+  @media (max-width:800px){ .headline-stats{grid-template-columns:repeat(2, 1fr);} }
+  .headline-stats .stat{
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:26px 24px 24px;
+  }
+  .headline-stats .stat .label{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .headline-stats .stat .track{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    flex-wrap:wrap;
+    font-family:var(--mono);
+  }
+  .headline-stats .stat .from{
+    font-size:15px;
+    color:var(--text-muted);
+    text-decoration:line-through;
+    text-decoration-color:var(--text-muted);
+  }
+  .headline-stats .stat .arrow{color:var(--text-muted); font-size:13px;}
+  .headline-stats .stat .to{
+    font-size:clamp(26px,2.6vw,32px);
+    font-weight:600;
+    color:var(--teal);
+    display:block;
+    width:100%;
+    margin-top:2px;
+  }
+  .headline-stats .stat .delta{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--signal);
+    font-weight:600;
+    margin-top:10px;
+  }
+
+  .hero-jump{
+    display:flex; justify-content:flex-end;
+    padding:18px 0 44px;
+  }
+  .hero-jump a{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    text-decoration:none;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:2px;
+  }
+  .hero-jump a:hover{color:var(--signal); border-color:var(--signal);}
+
+  .overview-strip{
+    background:var(--paper-raised);
+    border-bottom:1px solid var(--line);
+    padding:28px 0;
+  }
+  .overview-grid{
+    display:grid;
+    grid-template-columns:repeat(6, 1fr);
+    gap:0;
+  }
+  @media (max-width:900px){ .overview-grid{grid-template-columns:repeat(3, 1fr); row-gap:20px;} }
+  @media (max-width:520px){ .overview-grid{grid-template-columns:repeat(2, 1fr);} }
+  .overview-grid .cell{
+    padding:0 20px;
+    border-left:1px solid var(--line);
+  }
+  .overview-grid .cell:first-child{border-left:none; padding-left:0;}
+  .overview-grid dt{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+    margin-bottom:6px;
+  }
+  .overview-grid dd{font-size:14.5px; font-weight:600;}
+
+  .summary p{font-size:18px; line-height:1.75; color:var(--text); max-width:70ch;}
+  .summary p + p{margin-top:18px;}
+
+  .diagnostic{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:8px;
+  }
+  @media (max-width:800px){ .diagnostic{grid-template-columns:1fr;} }
+  .diagnostic .col{background:var(--bg); padding:28px 26px;}
+  .diagnostic .col h3{
+    font-family:var(--serif);
+    font-size:19px;
+    font-weight:700;
+    margin-bottom:16px;
+    color:var(--neon-cyan);
+  }
+  .diagnostic .col ul{list-style:none;}
+  .diagnostic .col li{
+    font-size:14.5px;
+    color:var(--muted);
+    padding:9px 0;
+    border-top:1px solid var(--line);
+    display:flex;
+    gap:10px;
+  }
+  .diagnostic .col li:first-of-type{border-top:none;}
+  .diagnostic .col li::before{content:"–"; color:var(--text-muted); flex-shrink:0;}
+
+  .flow{
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:0;
+    margin-bottom:40px;
+    font-family:var(--mono);
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+  }
+  .flow .node{
+    border:1px solid var(--line-strong);
+    padding:10px 16px;
+    color:var(--text);
+    background:var(--paper-raised);
+  }
+  .flow .arrow{
+    color:var(--text-muted);
+    padding:0 10px;
+    font-size:14px;
+  }
+  @media (max-width:700px){
+    .flow{flex-direction:column; align-items:flex-start;}
+    .flow .arrow{transform:rotate(90deg); padding:6px 0 6px 18px;}
+  }
+
+  .approach-cards{display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:800px){ .approach-cards{grid-template-columns:1fr;} }
+  .approach-card{background:var(--bg); padding:26px;}
+  .approach-card .num{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--signal);
+    margin-bottom:10px;
+  }
+  .approach-card h3{font-family:var(--serif); font-size:19px; font-weight:700; margin-bottom:12px;}
+  .approach-card .field{margin-bottom:10px;}
+  .approach-card .field-label{
+    font-family:var(--mono);
+    font-size:10.5px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    margin-bottom:3px;
+  }
+  .approach-card .field-value{font-size:14.5px; color:var(--text); line-height:1.55;}
+  .approach-card .field:last-child .field-value{color:var(--teal); font-weight:600;}
+
+  .progression{margin-bottom:44px;}
+  .progression .track-row{
+    display:grid;
+    grid-template-columns:110px 1fr;
+    align-items:center;
+    gap:18px;
+    padding:14px 0;
+    border-top:1px solid var(--line);
+  }
+  .progression .track-row:last-child{border-bottom:1px solid var(--line);}
+  .progression .month-tag{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+  }
+  .progression .bar-wrap{position:relative; height:26px; background:var(--paper-raised); border:1px solid var(--line);}
+  .progression .bar-fill{
+    position:absolute; top:0; left:0; bottom:0;
+    background:var(--gradient);
+  }
+  .progression .bar-value{
+    position:absolute; right:10px; top:50%; transform:translateY(-50%);
+    font-family:var(--mono); font-size:12px; font-weight:600; color:var(--text);
+  }
+  .progression .bar-value.outside{ color:var(--muted); right:auto; left:calc(var(--fill, 20%) + 10px); }
+
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:900px){ .kpi-grid{grid-template-columns:repeat(2, 1fr);} }
+  @media (max-width:520px){ .kpi-grid{grid-template-columns:1fr;} }
+  .kpi-card{background:var(--bg); padding:24px 22px;}
+  .kpi-card .label{
+    font-family:var(--mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .kpi-card .values{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; font-family:var(--mono);}
+  .kpi-card .before{font-size:14px; color:var(--text-muted); text-decoration:line-through;}
+  .kpi-card .after{font-size:24px; font-weight:600; color:var(--neon-cyan);}
+  .kpi-card .delta{font-family:var(--mono); font-size:12px; color:var(--signal); font-weight:600; margin-top:10px;}
+
+  .deliverables-tech{display:grid; grid-template-columns:1.3fr 1fr; gap:56px;}
+  @media (max-width:900px){ .deliverables-tech{grid-template-columns:1fr;} }
+  .deliverables-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:480px){ .deliverables-grid{grid-template-columns:1fr;} }
+  .deliverable-cell{background:var(--bg); padding:18px 20px;}
+  .deliverable-cell .count{font-family:var(--serif); font-size:30px; font-weight:700; color:var(--neon-cyan); line-height:1;}
+  .deliverable-cell .label{font-size:13px; color:var(--muted); margin-top:8px;}
+
+  .tech-panel h3, .deliverables-col h3{
+    font-family:var(--mono);
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  .tech-grid{display:flex; flex-wrap:wrap; gap:8px;}
+  .tech-grid .chip{
+    font-family:var(--mono);
+    font-size:12.5px;
+    border:1px solid var(--line);
+    padding:8px 14px;
+    background:var(--paper-raised);
+    color:var(--muted);
+  }
+
+  .takeaway-flow{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    margin-bottom:0;
+  }
+  .takeaway-flow .node{
+    border:1px solid var(--line-strong);
+    padding:12px 18px;
+    background:var(--paper-raised);
+  }
+  .takeaway-flow .arrow{color:var(--text-muted); padding:0 12px; font-size:14px;}
+  @media (max-width:700px){
+    .takeaway-flow{flex-direction:column; align-items:flex-start;}
+    .takeaway-flow .arrow{transform:rotate(90deg); padding:8px 0 8px 20px;}
+  }
+
+  .faq{margin-top:8px;}
+  .faq details{border-top:1px solid var(--line); padding:18px 0;}
+  .faq details:last-child{border-bottom:1px solid var(--line);}
+  .faq summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    font-size:16px;
+    font-weight:600;
+    font-family:var(--sans);
+    color:var(--text);
+  }
+  .faq summary::-webkit-details-marker{display:none;}
+  .faq summary::after{
+    content:"+";
+    font-family:var(--mono);
+    font-size:20px;
+    color:var(--signal);
+    flex-shrink:0;
+    transition:transform .15s ease;
+  }
+  .faq details[open] summary::after{content:"–";}
+  .faq .a{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--muted);
+    margin-top:12px;
+    max-width:68ch;
+  }
+
+  .final-cta{padding:80px 0;}
+  .final-cta h2{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:clamp(28px,4vw,42px);
+    max-width:18ch;
+    margin-bottom:18px;
+    background:var(--gradient);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+  .final-cta p{
+    font-size:16px;
+    color:var(--muted);
+    max-width:60ch;
+    line-height:1.7;
+    margin-bottom:28px;
+  }
+  .btn-primary{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--neon-cyan);
+    color:var(--bg);
+    font-family:var(--mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    padding:16px 26px;
+    text-decoration:none;
+    border:1px solid var(--neon-cyan);
+    font-weight:600;
+    transition:background .15s ease, color .15s ease;
+  }
+  .btn-primary:hover{background:var(--neon-blue); border-color:var(--neon-blue);}
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <span class="home-link"><a href="/">Home</a> / <a href="/case-studies">Case Studies</a> / Technology</span>
+      <span class="doc-id">FILE NO. 003</span>
+    </div>
+  </div>
+
+  <!-- ============ 1. HERO / DASHBOARD ============ -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Case Study · B2B Technology</span>
+      <h1>5.9X demo requests in 8 months.</h1>
+    </div>
+
+    <div class="wrap" style="padding:0 32px;">
+      <div class="headline-stats">
+        <div class="stat">
+          <div class="label">Demo Requests</div>
+          <div class="track">
+            <span class="from">32</span>
+            <span class="arrow">→</span>
+            <span class="to">189/mo</span>
+          </div>
+          <div class="delta">+490%</div>
+        </div>
+        <div class="stat">
+          <div class="label">Organic Traffic</div>
+          <div class="track">
+            <span class="from">950</span>
+            <span class="arrow">→</span>
+            <span class="to">5,520/mo</span>
+          </div>
+          <div class="delta">+482%</div>
+        </div>
+        <div class="stat">
+          <div class="label">SQLs</div>
+          <div class="track">
+            <span class="from">14</span>
+            <span class="arrow">→</span>
+            <span class="to">78/mo</span>
+          </div>
+          <div class="delta">+457%</div>
+        </div>
+        <div class="stat">
+          <div class="label">MRR</div>
+          <div class="track">
+            <span class="from">$8,500</span>
+            <span class="arrow">→</span>
+            <span class="to">$33,000/mo</span>
+          </div>
+          <div class="delta">+288%</div>
+        </div>
+      </div>
+      <div class="hero-jump"><a href="#overview">Project Overview ↓</a></div>
+    </div>
+  </header>
+
+  <!-- ============ 2. PROJECT OVERVIEW ============ -->
+  <section class="overview-strip" id="overview">
+    <div class="wrap">
+      <dl class="overview-grid">
+        <div class="cell">
+          <dt>Industry</dt>
+          <dd>B2B Technology</dd>
+        </div>
+        <div class="cell">
+          <dt>Business Size</dt>
+          <dd>Growth-stage startup</dd>
+        </div>
+        <div class="cell">
+          <dt>Engagement</dt>
+          <dd>8 Months</dd>
+        </div>
+        <div class="cell">
+          <dt>Primary Goal</dt>
+          <dd>Scale qualified pipeline</dd>
+        </div>
+        <div class="cell">
+          <dt>Services</dt>
+          <dd>Content, SEO, CRO</dd>
+        </div>
+        <div class="cell">
+          <dt>Market</dt>
+          <dd>Global / English</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ 3. EXECUTIVE SUMMARY ============ -->
+  <section class="block summary">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Overview</span>
+        <h2>What happened, in three sentences</h2>
+      </div>
+      <p>
+        A growing B2B SaaS company had built an excellent analytics product for e-commerce operators but relied almost entirely on founder-led sales with no lead capture infrastructure and only three blog posts written over two years. Over 8 months we executed a content strategy targeting bottom-of-funnel keywords, a technical SEO overhaul that cut LCP from 3.2s to 1.4s, and a CRO program with dedicated landing pages for each use case.
+      </p>
+      <p>
+        Demo requests grew from 32 to 189 per month — a 5.9X increase — while MRR attributed to marketing channels rose from $8,500 to $33,000 per month. Customer acquisition cost decreased by 43% as organic channels reduced paid dependency.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 4. BEFORE WE STARTED ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Before We Started</span>
+        <h2>Where things stood at kickoff</h2>
+      </div>
+      <div class="diagnostic">
+        <div class="col">
+          <h3>Business</h3>
+          <ul>
+            <li>Slow pipeline growth — 32 demos/month insufficient for targets</li>
+            <li>Long sales cycle with no automation</li>
+            <li>Founder-led sales — no repeatable demand engine</li>
+            <li>No multi-touch attribution infrastructure</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Marketing</h3>
+          <ul>
+            <li>Weak organic SEO — only 3 blog posts in 2 years</li>
+            <li>Low domain authority — no backlink strategy</li>
+            <li>No content production pipeline or editorial calendar</li>
+            <li>No lead capture or email nurture infrastructure</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Website</h3>
+          <ul>
+            <li>Poor information architecture — features over outcomes</li>
+            <li>LCP of 3.2s — failed Core Web Vitals</li>
+            <li>No structured data or schema markup</li>
+            <li>No dedicated landing pages by use case</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. APPROACH (STRATEGY + PROCESS) ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Growth Strategy</span>
+        <h2>Three parallel tracks, run together</h2>
+      </div>
+
+      <div class="flow">
+        <span class="node">Content</span><span class="arrow">→</span>
+        <span class="node">Technical SEO</span><span class="arrow">→</span>
+        <span class="node">Landing Pages</span><span class="arrow">→</span>
+        <span class="node">CRO</span><span class="arrow">→</span>
+        <span class="node">Analytics</span>
+      </div>
+
+      <div class="approach-cards">
+        <div class="approach-card">
+          <div class="num">01</div>
+          <h3>Content Engine</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Own bottom-of-funnel search intent</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Published 6 long-form guides targeting churn analysis, cohort reporting, and CLTV tracking keywords. Each guide included expert quotes, proprietary data, and a demo CTA</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">Organic traffic grew from 950 to 5,520 visits/mo</div>
+          </div>
+        </div>
+        <div class="approach-card">
+          <div class="num">02</div>
+          <h3>Technical SEO</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Fix the technical foundation for rankings</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Site architecture redesign, Product/Article/FAQ/Breadcrumb schema implementation, Core Web Vitals optimization</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">LCP reduced from 3.2s to 1.4s</div>
+          </div>
+        </div>
+        <div class="approach-card">
+          <div class="num">03</div>
+          <h3>Conversion Optimization</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Convert organic traffic into qualified demos</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Dedicated landing pages for e-commerce, SaaS, and marketplace use cases. Progressive profiling forms, CRO testing on pricing page and demo booking flow</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">Demo requests increased from 32 to 189/mo — 5.9X</div>
+          </div>
+        </div>
+        <div class="approach-card">
+          <div class="num">04</div>
+          <h3>Analytics & Attribution</h3>
+          <div class="field">
+            <div class="field-label">Objective</div>
+            <div class="field-value">Measure what works and double down</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Actions Taken</div>
+            <div class="field-value">Built multi-touch attribution model, email nurture sequence for non-converting traffic, integrated CRM with marketing channels</div>
+          </div>
+          <div class="field">
+            <div class="field-label">Outcome</div>
+            <div class="field-value">CAC decreased 43%; content drove 62% of demos by month 8</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. RESULTS (PROGRESSION + KPI CARDS) ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">The Results</span>
+        <h2>MRR growth, month by month</h2>
+      </div>
+
+      <div class="progression">
+        <div class="track-row">
+          <span class="month-tag">Month 1</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:26%;"></div><span class="bar-value outside" style="--fill:26%;">$8,500</span></div>
+        </div>
+        <div class="track-row">
+          <span class="month-tag">Month 3</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:42%;"></div><span class="bar-value outside" style="--fill:42%;">$14,000</span></div>
+        </div>
+        <div class="track-row">
+          <span class="month-tag">Month 6</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:73%;"></div><span class="bar-value outside" style="--fill:73%;">$24,000</span></div>
+        </div>
+        <div class="track-row">
+          <span class="month-tag">Month 8</span>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%;"></div><span class="bar-value">$33,000</span></div>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="label">Demo Requests</div>
+          <div class="values"><span class="before">32</span><span class="after">189/mo</span></div>
+          <div class="delta">+490%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">Organic Traffic</div>
+          <div class="values"><span class="before">950</span><span class="after">5,520/mo</span></div>
+          <div class="delta">+482%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">SQLs</div>
+          <div class="values"><span class="before">14</span><span class="after">78/mo</span></div>
+          <div class="delta">+457%</div>
+        </div>
+        <div class="kpi-card">
+          <div class="label">MRR</div>
+          <div class="values"><span class="before">$8,500</span><span class="after">$33,000/mo</span></div>
+          <div class="delta">+288%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. DELIVERABLES + TECH STACK ============ -->
+  <section class="block">
+    <div class="wrap deliverables-tech">
+      <div class="deliverables-col">
+        <div class="block-head" style="margin-bottom:20px;">
+          <span class="tag">Deliverables</span>
+          <h2>What was built</h2>
+        </div>
+        <div class="deliverables-grid">
+          <div class="deliverable-cell"><div class="count">10</div><div class="label">Website Pages</div></div>
+          <div class="deliverable-cell"><div class="count">6</div><div class="label">Landing Pages</div></div>
+          <div class="deliverable-cell"><div class="count">18</div><div class="label">Content Guides</div></div>
+          <div class="deliverable-cell"><div class="count">12</div><div class="label">Schema Types</div></div>
+          <div class="deliverable-cell"><div class="count">8</div><div class="label">Integrations</div></div>
+          <div class="deliverable-cell"><div class="count">5</div><div class="label">Automations</div></div>
+        </div>
+      </div>
+      <div class="tech-panel">
+        <h3>Tools & Platforms</h3>
+        <div class="tech-grid">
+          <span class="chip">Next.js</span>
+          <span class="chip">Cloudflare Workers</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Google Analytics</span>
+          <span class="chip">Search Console</span>
+          <span class="chip">Schema Markup</span>
+          <span class="chip">Speed Optimization</span>
+          <span class="chip">Image Optimization</span>
+          <span class="chip">HubSpot</span>
+          <span class="chip">Ahrefs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. KEY TAKEAWAYS + FAQ + FINAL CTA ============ -->
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">Key Takeaways</span>
+        <h2>Why it compounded</h2>
+      </div>
+      <div class="takeaway-flow">
+        <span class="node">Content Authority</span><span class="arrow">→</span>
+        <span class="node">Organic Rankings</span><span class="arrow">→</span>
+        <span class="node">Dedicated Landing Pages</span><span class="arrow">→</span>
+        <span class="node">Qualified Demos</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="block-head">
+        <span class="tag">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>How long did this project take?</summary>
+          <p class="a">The full engagement ran 8 months — months 1-2 focused on technical audit and content production, months 3-5 on SEO maturation and landing page development, and months 6-8 on CRO and attribution buildout.</p>
+        </details>
+        <details>
+          <summary>How long before demo requests increased?</summary>
+          <p class="a">First content published in month 2 started ranking by month 3. Demo request volume began to meaningfully increase around month 4 as the content engine and landing pages aligned with search intent.</p>
+        </details>
+        <details>
+          <summary>Which tactic had the fastest impact?</summary>
+          <p class="a">The landing page and CRO program showed the fastest conversion gains. Technical SEO was the foundation, but dedicated use-case pages with progressive profiling forms drove the immediate demo volume lift.</p>
+        </details>
+        <details>
+          <summary>How did you reduce CAC by 43%?</summary>
+          <p class="a">As organic traffic grew from 950 to 5,520 visits per month, paid channels were scaled back. The content engine contributed 62% of new demo requests by month 8, significantly lowering the blended cost per acquisition.</p>
+        </details>
+        <details>
+          <summary>What tools were used?</summary>
+          <p class="a">See the Tools & Platforms section above. HubSpot was used for CRM and email nurture. Attribution was built through a custom multi-touch model connecting GA4 to the CRM pipeline.</p>
+        </details>
+        <details>
+          <summary>How were results measured?</summary>
+          <p class="a">Demo requests and SQLs were tracked through the CRM with source attribution. Traffic and rankings came from GA4 and Search Console. MRR was reported from the client's billing system, attributed back to marketing channels through the multi-touch model.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2>See what's possible for your business</h2>
+      <p>
+        Every business starts from a different position. Book a strategy session and we'll identify the highest-impact opportunities to increase traffic, improve conversion rates, and generate measurable growth.
+      </p>
+      <a href="/contact" class="btn-primary">Book a Strategy Session →</a>
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,29 +1,46 @@
 template,url,strategy,performance_score,lcp_ms,lcp_display,inp_ms,inp_display,cls,cls_display,ttfb_ms,ttfb_display,fcp_ms,speed_index_ms,tbt_ms,cwv_pass,cwv_issues,psi_elapsed_ms
-homepage,http://localhost:3000/en,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en: HTTP 400 — {
+homepage,https://www.kinexisdigital.com/en,mobile,0.95,1951,2.0 s,,,0.000,0,17,Root document took 20 ms,1351,5052,77,true,,21162
+homepage,https://www.kinexisdigital.com/en,desktop,0.93,875,0.9 s,,,0.000,0,14,Root document took 10 ms,391,2713,60,true,,46190
+service,https://www.kinexisdigital.com/en/services/seo,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/services/seo: HTTP 500 — {
   ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
-service,http://localhost:3000/en/services/seo,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/services/seo: HTTP 400 — {
+    ""code"": 500,
+    ""message"": ""Lighthouse returned error: Something went wrong."",
+    ""errors"": [
+      {
+        ""message"": ""Lighthouse returned error: Something went wrong."",
+      ",
+service,https://www.kinexisdigital.com/en/services/seo,desktop,0.97,567,0.6 s,,,0.000,0,15,Root document took 20 ms,307,1790,6,true,,30179
+service_heavy,https://www.kinexisdigital.com/en/services/ppc-management,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/services/ppc-management: HTTP 500 — {
   ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
-agency_hub,http://localhost:3000/en/digital-marketing-agency,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/digital-marketing-agency: HTTP 400 — {
+    ""code"": 500,
+    ""message"": ""Lighthouse returned error: Something went wrong."",
+    ""errors"": [
+      {
+        ""message"": ""Lighthouse returned error: Something went wrong."",
+      ",
+service_heavy,https://www.kinexisdigital.com/en/services/ppc-management,desktop,,,,,,,,,,,,,false,"PSI desktop https://www.kinexisdigital.com/en/services/ppc-management: HTTP 500 — {
   ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
-industry_detail,http://localhost:3000/en/industries/technology/startups,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/industries/technology/startups: HTTP 400 — {
-  ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
-blog_post,http://localhost:3000/en/blog/technical-seo-fundamentals,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/blog/technical-seo-fundamentals: HTTP 400 — {
-  ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
-solution,http://localhost:3000/en/solutions/seo-for-hvac-companies,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/solutions/seo-for-hvac-companies: HTTP 400 — {
-  ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
-contact,http://localhost:3000/en/contact,mobile,,,,,,,,,,,,,false,"PSI mobile http://localhost:3000/en/contact: HTTP 400 — {
-  ""error"": {
-    ""code"": 400,
-    ""message"": ""Lighthouse returned error: FAILED_DOCUMENT_REQUEST. Lighthouse was unable to reliably load the page you requested. Make sure you are testing the correct",
+    ""code"": 500,
+    ""message"": ""Lighthouse returned error: Something went wrong."",
+    ""errors"": [
+      {
+        ""message"": ""Lighthouse returned error: Something went wrong."",
+      ",
+agency_hub,https://www.kinexisdigital.com/en/digital-marketing-agency,mobile,0.97,2251,2.3 s,,,0.000,0,13,Root document took 10 ms,1351,3523,19,true,,39878
+agency_hub,https://www.kinexisdigital.com/en/digital-marketing-agency,desktop,0.98,688,0.7 s,,,0.000,0,14,Root document took 10 ms,328,1541,5,true,,26770
+industry_detail,https://www.kinexisdigital.com/en/industries/technology/startups,mobile,0.92,3320,3.3 s,,,0.000,0,12,Root document took 10 ms,1351,2580,25,false,lcp_3320ms,13710
+industry_detail,https://www.kinexisdigital.com/en/industries/technology/startups,desktop,0.99,804,0.8 s,,,0.000,0,12,Root document took 10 ms,327,1085,52,true,,57679
+blog_post,https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals,mobile,0.91,3248,3.2 s,,,0.000,0,12,Root document took 10 ms,1801,2822,21,false,lcp_3248ms,10912
+blog_post,https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals,desktop,0.87,672,0.7 s,,,0.000,0,13,Root document took 10 ms,373,2021,240,true,,35356
+solution,https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies,mobile,0.95,2701,2.7 s,,,0.000,0,11,Root document took 10 ms,1501,2049,83,false,lcp_2701ms,74677
+solution,https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies,desktop,0.99,588,0.6 s,,,0.000,0,14,Root document took 10 ms,328,1028,67,true,,27414
+contact,https://www.kinexisdigital.com/en/contact,mobile,0.95,1801,1.8 s,,,0.000,0,13,Root document took 10 ms,1501,5127,9,true,,22419
+contact,https://www.kinexisdigital.com/en/contact,desktop,0.97,577,0.6 s,,,0.000,0,12,Root document took 10 ms,327,1723,77,true,,90693
+pricing,https://www.kinexisdigital.com/en/pricing/seo,mobile,,,,,,,,,,,,,false,"PSI mobile https://www.kinexisdigital.com/en/pricing/seo: HTTP 502 — <!DOCTYPE html>
+<html lang=en>
+  <meta charset=utf-8>
+  <meta name=viewport content=""initial-scale=1, minimum-scale=1, width=device-width"">
+  <title>Error 502 (Server Error)!!1</title>
+  <style>
+    *",
+pricing,https://www.kinexisdigital.com/en/pricing/seo,desktop,1,688,0.7 s,,,0.000,0,12,Root document took 10 ms,328,907,6,true,,27472

@@ -3,20 +3,17 @@
 import { m as motion } from "@/lib/framer";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Search, BarChart3, Monitor, Filter, Palette, FileText } from "lucide-react";
+import { Search, BarChart3, Monitor, Filter } from "lucide-react";
 import Button from "@/components/ui/Button";
-import TwoLineText from "@/components/ui/TwoLineText";
+import Card from "@/components/ui/Card";
+import SectionHeader from "@/components/ui/SectionHeader";
+import Section from "@/components/shared/services/Section";
 
 const hubServiceKeys = [
   { key: "seo" as const, href: "/services/seo", icon: Search, position: "top" as const },
   { key: "webDesignShort" as const, href: "/services/web-design", icon: Monitor, position: "left" as const },
-  { key: "paidAds" as const, href: "/services/paid-ads", icon: BarChart3, position: "right" as const },
+  { key: "paidAds" as const, href: "/services/ppc-management", icon: BarChart3, position: "right" as const },
   { key: "funnelsShort" as const, href: "/services/funnels", icon: Filter, position: "bottom" as const },
-];
-
-const secondaryServiceKeys = [
-  { key: "content" as const, href: "/services/content-marketing", icon: FileText },
-  { key: "branding" as const, href: "/services/branding", icon: Palette },
 ];
 
 const stroke = "rgba(0, 212, 255,0.2)";
@@ -59,7 +56,7 @@ function HubNode({
   return (
     <Link href={href} className={className}>
       <motion.div
-        className="rounded-xl border border-white/[0.08] bg-bg-secondary/95 backdrop-blur-sm px-6 py-4 hover:border-neon-cyan/30 transition-all duration-500"
+        className="rounded-xl border border-strong bg-bg-secondary/95 backdrop-blur-sm px-6 py-4 hover:border-neon-cyan/30 transition-all duration-500"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -74,36 +71,9 @@ function HubNode({
   );
 }
 
-function SecondaryNode({
-  href,
-  icon: Icon,
-  title,
-  delay,
-}: {
-  href: string;
-  icon: typeof FileText;
-  title: string;
-  delay: number;
-}) {
-  return (
-    <Link href={href} className="group">
-      <motion.div
-        className="flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] px-5 py-2.5 hover:border-neon-cyan/20 transition-all duration-500"
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay }}
-      >
-        <Icon className="h-3.5 w-3.5 text-neon-cyan/70" />
-        <span className="text-sm font-semibold text-muted group-hover:text-white transition-colors">
-          {title}
-        </span>
-      </motion.div>
-    </Link>
-  );
-}
+type Props = { surfaceIndex?: number };
 
-export default function ServicesEcosystem() {
+export default function ServicesEcosystem({ surfaceIndex = 0 }: Props) {
   const t = useTranslations("servicesEcosystem");
   const tServices = useTranslations("services");
   const tCommon = useTranslations("common");
@@ -113,23 +83,17 @@ export default function ServicesEcosystem() {
     title: tServices(s.key),
   }));
 
-  const secondaryServices = secondaryServiceKeys.map((s) => ({
-    ...s,
-    title: tServices(s.key),
-  }));
-
   return (
-    <section className="section-padding border-t border-white/[0.06]">
+    <Section id="services-ecosystem" surfaceIndex={surfaceIndex}>
       <div className="container-site">
-        <div className="section-header">
-          <span className="inline-block text-xs font-semibold uppercase tracking-[0.2em] text-muted">
-            {t("label")}
-          </span>
-          <h2 className="section-title"><TwoLineText text={t("title")} variant="section" /></h2>
-          <p className="section-subtitle"><TwoLineText text={t("subtitle")} variant="body" /></p>
-        </div>
+        <SectionHeader
+          badge={t("label")}
+          title={t("title")}
+          description={t("subtitle")}
+          headingId="services-ecosystem-heading"
+        />
 
-        <div className="relative mx-auto mt-20 hidden md:grid max-w-lg grid-cols-[1fr_auto_1fr] grid-rows-[auto_auto_auto_auto] items-center justify-items-center gap-y-8 gap-x-4">
+        <div className="relative mx-auto mt-20 hidden md:grid max-w-lg grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] grid-rows-[auto_auto_auto] items-center justify-items-center gap-y-8 gap-x-4">
           <HubNode
             href="/services/seo"
             icon={Search}
@@ -217,7 +181,7 @@ export default function ServicesEcosystem() {
           </div>
 
           <HubNode
-            href="/services/paid-ads"
+            href="/services/ppc-management"
             icon={BarChart3}
             title={tServices("paidAds")}
             className="col-start-3 row-start-2 justify-self-start"
@@ -231,22 +195,10 @@ export default function ServicesEcosystem() {
             className="col-start-2 row-start-3"
             delay={0.6}
           />
-
-          <div className="col-span-3 row-start-4 flex justify-center gap-6 pt-2">
-            {secondaryServices.map((service, i) => (
-              <SecondaryNode
-                key={service.href}
-                href={service.href}
-                icon={service.icon}
-                title={service.title}
-                delay={0.7 + i * 0.1}
-              />
-            ))}
-          </div>
         </div>
 
         <div className="section-content grid grid-cols-1 gap-3 md:hidden">
-          {[...hubServices, ...secondaryServices].map((service, i) => {
+          {hubServices.map((service, i) => {
             const Icon = service.icon;
             return (
               <motion.div
@@ -257,14 +209,14 @@ export default function ServicesEcosystem() {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
               >
                 <Link href={service.href} className="group block touch-manipulation">
-                  <div className="service-card">
+                  <Card>
                     <div className="flex items-center gap-4">
                       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neon-cyan/10">
                         <Icon className="h-5 w-5 text-neon-cyan" />
                       </div>
-                      <span className="service-card__title">{service.title}</span>
+                      <span className="card-heading">{service.title}</span>
                     </div>
-                  </div>
+                  </Card>
                 </Link>
               </motion.div>
             );
@@ -277,6 +229,6 @@ export default function ServicesEcosystem() {
           </Button>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

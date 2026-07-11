@@ -42,7 +42,6 @@ async function getZoneId() {
 
 function buildRedirectRules() {
   const rules = [];
-  let priority = 1;
 
   for (const pathname of REDIRECT_PATHS) {
     for (const host of ["kinexisdigital.com", "www.kinexisdigital.com"]) {
@@ -65,7 +64,6 @@ function buildRedirectRules() {
           description: `Phase 9: ${sourceUrl} → ${CANONICAL}${pathname}`,
           enabled: true,
         });
-        priority++;
       }
     }
   }

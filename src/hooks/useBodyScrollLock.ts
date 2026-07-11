@@ -16,9 +16,11 @@ export function useBodyScrollLock(locked: boolean) {
       "--scrollbar-compensation",
       `${scrollbarWidth}px`
     );
+    document.documentElement.classList.add("mobile-menu-open");
     document.body.classList.add("mobile-menu-open");
 
     return () => {
+      document.documentElement.classList.remove("mobile-menu-open");
       document.body.classList.remove("mobile-menu-open");
       document.body.style.paddingRight = "";
       document.body.style.top = "";

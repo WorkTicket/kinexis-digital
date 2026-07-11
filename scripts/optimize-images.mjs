@@ -25,8 +25,13 @@ async function optimize() {
   if (await fileExists(logoFullPng)) {
     await sharp(logoFullPng)
       .resize(360, 60, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 90, effort: 6 })
+      .webp({ quality: 80, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_logo_full.webp"));
+
+    await sharp(logoFullPng)
+      .resize(180, 30, { fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 72, effort: 6 })
+      .toFile(path.join(logosDir, "KINEXIS_logo_preloader.webp"));
 
     await sharp(logoFullPng)
       .resize(360, 60, { fit: "inside", withoutEnlargement: true })
@@ -34,10 +39,19 @@ async function optimize() {
       .toFile(path.join(logosDir, "KINEXIS_logo_full.avif"));
   }
 
+  // Re-optimize from existing webp when source PNG was removed on prior runs
+  const logoFullWebp = path.join(logosDir, "KINEXIS_logo_full.webp");
+  if (!(await fileExists(logoFullPng)) && (await fileExists(logoFullWebp))) {
+    await sharp(logoFullWebp)
+      .resize(180, 30, { fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 72, effort: 6 })
+      .toFile(path.join(logosDir, "KINEXIS_logo_preloader.webp"));
+  }
+
   if (await fileExists(logoIconPng)) {
     await sharp(logoIconPng)
       .resize(280, 280, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 90, effort: 6 })
+      .webp({ quality: 80, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_icon_logo.webp"));
 
     await sharp(logoIconPng)
@@ -68,19 +82,37 @@ async function optimize() {
     }
   }
 
-  // Responsive polygonal net overlay (Polygonal_Net.jpg → optimized webp)
+  // Responsive polygonal net overlay — low-opacity decorative layer, keep files small
   const polyNetSrc = path.join(imagesDir, "Polygonal_Net.jpg");
-  if (await fileExists(polyNetSrc)) {
-    for (const [name, width] of [
-      ["polygonal-net-mobile", 640],
-      ["polygonal-net-tablet", 1024],
-      ["polygonal-net-desktop", 1920],
+  const polyNetExisting = path.join(imagesDir, "polygonal-net-desktop.webp");
+  const polySource = (await fileExists(polyNetSrc))
+    ? polyNetSrc
+    : (await fileExists(polyNetExisting))
+      ? polyNetExisting
+      : null;
+
+  if (polySource) {
+    for (const [name, width, quality] of [
+      ["polygonal-net-mobile", 640, 40],
+      ["polygonal-net-tablet", 720, 38],
+      ["polygonal-net-desktop", 960, 38],
     ]) {
-      await sharp(polyNetSrc)
+      const outPath = path.join(imagesDir, `${name}.webp`);
+      const tmpPath = `${outPath}.new`;
+      await sharp(polySource)
         .resize(width, null, { withoutEnlargement: true })
-        .webp({ quality: 80, effort: 6 })
-        .toFile(path.join(imagesDir, `${name}.webp`));
+        .webp({ quality, effort: 6, smartSubsample: true, nearLossless: false })
+        .toFile(tmpPath);
+      await unlink(outPath).catch(() => {});
+      await sharp(tmpPath)
+        .webp({ quality, effort: 6, smartSubsample: true })
+        .toFile(outPath);
+      await unlink(tmpPath).catch(() => {});
     }
+  }
+
+  for (const stale of ["polygonal-net-desktop.webp.tmp", "polygonal-net-tablet.webp.tmp", "polygonal-net-mobile.webp.tmp"]) {
+    await unlink(path.join(imagesDir, stale)).catch(() => {});
   }
 
   // Remove redundant assets

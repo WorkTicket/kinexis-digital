@@ -6,8 +6,17 @@ type SolutionSectionProps = {
   title: string;
   intro: string;
   points: string[];
+  surfaceIndex?: number;
 };
 
-export default function SolutionSection({ title, intro, points }: SolutionSectionProps) {
-  return <SeoInsightPanel variant="solution" title={title} intro={intro} points={points} />;
+export default function SolutionSection({ title, intro, points, surfaceIndex }: SolutionSectionProps) {
+  return (
+    <SeoInsightPanel
+      variant="solution"
+      title={title}
+      intro={intro}
+      points={points}
+      surfaceIndex={surfaceIndex}
+    />
+  );
 }

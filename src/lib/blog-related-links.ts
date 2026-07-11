@@ -9,7 +9,7 @@ const blogToService: Record<string, ServiceSeoSlug> = {
   "seo-audit-framework": "seo",
   "link-building-strategies": "seo",
   "local-seo-checklist": "local-seo",
-  "quality-score-guide": "google-ads",
+  "quality-score-guide": "ppc-management",
   "negative-keywords-guide": "ppc-management",
   "landing-page-best-practices": "funnels",
   "roas-calculations": "analytics",

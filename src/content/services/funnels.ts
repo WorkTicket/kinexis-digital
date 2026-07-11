@@ -59,11 +59,19 @@ export type FunnelsContent = {
     subtitle: string;
     items: ServicePhase[];
   };
+  processIntro: string;
+  capabilityBodies: {
+    funnelMapping: string;
+    automation: string;
+    conversionPaths: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
@@ -145,39 +153,31 @@ export const funnelsContent: Record<Locale, FunnelsContent> = {
       title: "Build process.",
       subtitle: "From strategy to live,|every funnel follows a proven build sequence.",
       items: [
-        {
-          title: "Funnel Mapping",
-          desc: "Full customer journey mapped, from traffic source to booked call.",
-          metric: "End-to-end journey mapped in week 1",
-        },
-        {
-          title: "Landing Page Build",
-          desc: "High-converting pages with lead magnets that capture emails.",
-          metric: "Avg. 12% landing page conversion rate",
-        },
-        {
-          title: "Email & SMS Setup",
-          desc: "Multi-step sequences with segmentation and urgency triggers.",
-          metric: "5+ automated nurture sequences",
-        },
-        {
-          title: "CRM Integration",
-          desc: "Lead scoring, routing rules, and sales notification workflows.",
-          metric: "Leads routed in under 60 seconds",
-        },
-        {
-          title: "Analytics & Optimize",
-          desc: "Every funnel stage tracked. Conversion rate optimized continuously.",
-          metric: "18% month-over-month funnel growth",
-        },
+        { title: "Funnel Mapping", desc: "Full customer journey mapped, from traffic source to booked call.", metric: "" },
+        { title: "Landing Page Build", desc: "High-converting pages with lead magnets that capture emails.", metric: "" },
+        { title: "Email & Automation Setup", desc: "Multi-step sequences with segmentation and urgency triggers.", metric: "" },
+        { title: "Analytics & Optimize", desc: "Every funnel stage tracked. Conversion rate optimized continuously.", metric: "" },
       ],
+    },
+    processIntro:
+      "A funnel is not a landing page. Our build connects traffic sources, opt-in pages, nurture automation, retargeting, and CRM handoffs. Then keeps testing until conversion compounds month over month.",
+    capabilityBodies: {
+      funnelMapping:
+        "Traffic without a mapped journey leaks revenue at every stage. We document the full path from ad click to booked call, where leads enter, where they stall, and what triggers move them forward. The flow below shows how we model conversion rates per stage so you know where optimization will move the needle most.",
+      automation:
+        "One welcome email is not nurture. We build trigger-based sequences, new lead, engagement signals, booking events, inactivity, with clean handoffs to sales and retargeting pools. Every automation path connects to a conversion event your team closes, not a form fill that goes cold.",
+      conversionPaths:
+        "Landing pages, lead magnets, CRM routing, SMS reminders, and retargeting only work when they are built as one system. We design each component to match the offer and audience, then wire tracking at every stage so you see cost per lead, booking rate, and revenue per contact, not guesswork after launch.",
     },
     cta: {
       headline: "Ready to build a funnel that runs itself?",
       subtitle:
         "We'll design a complete conversion system from first click to booked call,|fully automated.",
-      ctaLabel: "Build My Funnel",
+      ctaLabel: "See Funnel Pricing",
     },
+    inlineCtaLabel: "Audit My Conversion Funnel",
+    inlineCtaSubtitle:
+      "We will map where leads leak between traffic and booked calls. Then outline the highest-impact funnel fixes.",
     faqs: [
       { question: "What platforms do you build funnels on?", answer: "We work with your existing stack: GoHighLevel, HubSpot, ActiveCampaign, Klaviyo, ClickFunnels, and others. If you don't have a platform, we'll recommend the best fit for your business model and set it up from scratch." },
       { question: "How quickly can a funnel go live?", answer: "A standard lead capture and nurture funnel can launch in 2–4 weeks. More complex automations with CRM integration, SMS, and multi-stage sequences take 4–6 weeks. We give you a clear timeline after the strategy call." },
@@ -263,39 +263,31 @@ export const funnelsContent: Record<Locale, FunnelsContent> = {
       title: "Proceso de construcción.",
       subtitle: "De la estrategia a en vivo,|cada embudo sigue una secuencia de construcción probada.",
       items: [
-        {
-          title: "Mapeo del Embudo",
-          desc: "Recorrido completo del cliente mapeado, desde la fuente de tráfico hasta la llamada reservada.",
-          metric: "Recorrido de extremo a extremo mapeado en la semana 1",
-        },
-        {
-          title: "Construcción de Landing Page",
-          desc: "Páginas de alta conversión con lead magnets que capturan emails.",
-          metric: "Prom. 12% tasa de conversión en landing page",
-        },
-        {
-          title: "Configuración de Email y SMS",
-          desc: "Secuencias multi-paso con segmentación y triggers de urgencia.",
-          metric: "5+ secuencias de nutrición automatizadas",
-        },
-        {
-          title: "Integración CRM",
-          desc: "Lead scoring, reglas de enrutamiento y flujos de notificación a ventas.",
-          metric: "Leads enrutados en menos de 60 segundos",
-        },
-        {
-          title: "Analítica y Optimización",
-          desc: "Cada etapa del embudo rastreada. Tasa de conversión optimizada continuamente.",
-          metric: "18% crecimiento mensual del embudo",
-        },
+        { title: "Mapeo del Embudo", desc: "Recorrido completo del cliente mapeado, desde la fuente de tráfico hasta la llamada reservada.", metric: "" },
+        { title: "Construcción de Landing Page", desc: "Páginas de alta conversión con lead magnets que capturan emails.", metric: "" },
+        { title: "Email y Automatización", desc: "Secuencias multi-paso con segmentación y triggers de urgencia.", metric: "" },
+        { title: "Analítica y Optimización", desc: "Cada etapa del embudo rastreada. Tasa de conversión optimizada continuamente.", metric: "" },
       ],
+    },
+    processIntro:
+      "Un embudo no es una landing page. Nuestro build conecta fuentes de tráfico, páginas de opt-in, automatización de nurture, retargeting y handoffs al CRM, luego sigue probando hasta que la conversión se acumule mes a mes.",
+    capabilityBodies: {
+      funnelMapping:
+        "Tráfico sin un recorrido mapeado pierde ingresos en cada etapa. Documentamos el camino completo del clic en el anuncio a la llamada reservada, dónde entran los leads, dónde se estancan y qué disparadores los mueven adelante. El flujo siguiente muestra cómo modelamos tasas de conversión por etapa.",
+      automation:
+        "Un email de bienvenida no es nurture. Construimos secuencias basadas en disparadores, nuevo lead, señales de engagement, eventos de reserva, inactividad, con handoffs limpios a ventas y pools de retargeting. Cada ruta de automatización se conecta a un evento de conversión que tu equipo cierra.",
+      conversionPaths:
+        "Landing pages, lead magnets, enrutamiento CRM, recordatorios SMS y retargeting solo funcionan cuando se construyen como un sistema. Diseñamos cada componente para coincidir con la oferta y audiencia, luego cableamos tracking en cada etapa para ver costo por lead, tasa de reserva e ingresos por contacto.",
     },
     cta: {
       headline: "¿Listo para construir un embudo que se gestiona solo?",
       subtitle:
         "Diseñaremos un sistema de conversión completo,|del primer clic a la llamada reservada, totalmente automatizado.",
-      ctaLabel: "Construir Mi Embudo",
+      ctaLabel: "Ver Precios de Embudos",
     },
+    inlineCtaLabel: "Auditar Mi Embudo de Conversión",
+    inlineCtaSubtitle:
+      "Mapearemos dónde se pierden los leads entre tráfico y llamadas reservadas, y delinearemos las correcciones de embudo de mayor impacto.",
     faqs: [
       { question: "¿En qué plataformas construyen funnels?", answer: "Trabajamos con tu stack existente: GoHighLevel, HubSpot, ActiveCampaign, Klaviyo, ClickFunnels y otros. Si no tienes una plataforma, recomendamos la mejor para tu modelo de negocio y la configuramos desde cero." },
       { question: "¿Cuánto tiempo tarda un funnel en estar en vivo?", answer: "Un funnel estándar de captura de leads y nurturing puede lanzarse en 2-4 semanas. Automatizaciones más complejas con integración CRM, SMS y secuencias multi-etapa toman 4-6 semanas." },

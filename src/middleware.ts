@@ -8,13 +8,13 @@ const intlMiddleware = createMiddleware(routing);
 const WWW_HOST = "www.kinexisdigital.com";
 const APEX_HOST = "kinexisdigital.com";
 
-/** Crawler discovery files — canonical host only (Phase 9). */
-const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt"]);
+const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt", "/llms.txt"]);
 
-/** Unprefixed legacy URLs → final locale-prefixed 200 destination (single hop). */
 const UNPREFIXED_LEGACY: Record<string, string> = {
-  "/services/cro": "/en/services/funnels",
-  "/pricing/cro": "/en/pricing/funnels",
+  "/services/google-ads": "/en/services/ppc-management",
+  "/pricing/google-ads": "/en/pricing/ppc-management",
+  "/pricing/paid-ads": "/en/pricing/ppc-management",
+  "/services/paid-ads": "/en/services/ppc-management",
 };
 
 const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;
@@ -58,7 +58,6 @@ function buildRedirect(
   return NextResponse.redirect(url, 301);
 }
 
-/** Map unprefixed paths to locale-prefixed canonical paths. */
 function localePrefixedPath(pathname: string, request: NextRequest): string {
   if (hasLocalePrefix(pathname)) return pathname;
   const locale = detectLocale(request);
@@ -87,7 +86,6 @@ export default function middleware(request: NextRequest) {
     return buildRedirect(request, legacyTarget, { forceHttps: needsHttps, forceWww: needsWww });
   }
 
-  // Serve locale home at `/` with 200 (rewrite) — avoids Ahrefs 3XX on www root.
   if (!isLocalHost && pathname === "/" && !needsWww && !needsHttps) {
     const url = request.nextUrl.clone();
     url.pathname = `/${detectLocale(request)}`;

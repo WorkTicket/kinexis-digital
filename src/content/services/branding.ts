@@ -39,15 +39,23 @@ export type BrandingContent = {
     subtitle: string;
     phases: ServicePhase[];
   };
+  processIntro: string;
+  capabilityBodies: {
+    brandIdentity: string;
+    visualSystem: string;
+    brandGuidelines: string;
+  };
   cta: {
     headline: string;
     subtitle: string;
     ctaLabel: string;
   };
+  inlineCtaLabel: string;
+  inlineCtaSubtitle: string;
   faqs: FAQItem[];
 };
 
-const enBrandPhases: ServicePhase[] = [
+const _enBrandPhases: ServicePhase[] = [
   { title: "Discovery & Positioning", desc: "Market research, competitor analysis, stakeholder interviews, audience definition.", metric: "Positioning framework in 2 weeks" },
   { title: "Visual Identity", desc: "Logo system, color palette, typography, photographic style, visual language.", metric: "Complete visual system delivered" },
   { title: "Messaging Architecture", desc: "Voice guidelines, key messaging hierarchy, tagline, value proposition language.", metric: "Full messaging hierarchy documented" },
@@ -94,13 +102,31 @@ export const brandingContent: Record<Locale, BrandingContent> = {
     process: {
       title: "The brand build process.",
       subtitle: "From positioning to launch:|a repeatable process that builds brands built to last.",
-      phases: enBrandPhases,
+      phases: [
+        { title: "Discovery & Positioning", desc: "Market research, competitor analysis, stakeholder interviews, audience definition.", metric: "" },
+        { title: "Visual Identity", desc: "Logo system, color palette, typography, photographic style, visual language.", metric: "" },
+        { title: "Messaging Architecture", desc: "Voice guidelines, key messaging hierarchy, tagline, value proposition language.", metric: "" },
+        { title: "Guidelines & Launch", desc: "Full brand guide plus production-ready assets. Team alignment session included.", metric: "" },
+      ],
+    },
+    processIntro:
+      "Branding is not a logo delivery. Our build runs from positioning workshops through visual identity, messaging, and rollout, every phase documented so your team and partners stay aligned across web, ads, and sales.",
+    capabilityBodies: {
+      brandIdentity:
+        "A pretty logo on vague positioning does not win buyers. We start with market research, competitor analysis, and stakeholder interviews to define who you serve and why someone should pick you over the next tab. Positioning comes first; visual territory mapping follows, not the other way around.",
+      visualSystem:
+        "A brand is a system, not a single asset. We build logo suites, color palettes, typography, imagery style, and layout rules that work across web, print, and digital ads. Every element is designed to work together everywhere your brand shows up, not as one-off files that drift apart after launch.",
+      brandGuidelines:
+        "A 100-page PDF nobody opens does not protect your brand. We deliver practical guidelines your team and agencies actually use, logo usage, color specs, voice rules, and digital templates for site, email, and social. Launch includes a team session so everyone knows how to apply the identity from day one.",
     },
     cta: {
       headline: "Your brand is already communicating something.",
       subtitle: "Let's make sure it's the right message.|We'll build a brand system that positions you for the next decade.",
-      ctaLabel: "Start Your Brand Project",
+      ctaLabel: "See Branding Pricing",
     },
+    inlineCtaLabel: "Start a Brand Audit",
+    inlineCtaSubtitle:
+      "We will review your current positioning, visual consistency, and messaging gaps. Then outline what a unified brand system would fix.",
     faqs: [
       { question: "How long does a branding project take?", answer: "Our standard brand build runs 8 weeks: 2 weeks discovery, 1 week positioning, 3 weeks visual identity, and 2 weeks for guidelines and launch. Larger projects with multi-brand or enterprise scope may extend the timeline." },
       { question: "What is included in a brand identity package?", answer: "You receive a complete visual system: logo suite, color palette, typography, imagery style guide, digital application templates, and a brand guidelines document. Most clients receive 40+ production-ready assets at delivery." },
@@ -144,18 +170,30 @@ export const brandingContent: Record<Locale, BrandingContent> = {
       title: "El proceso de construcción de marca.",
       subtitle: "Del posicionamiento al lanzamiento:|un proceso repetible que construye marcas hechas para durar.",
       phases: [
-        { title: "Descubrimiento y Posicionamiento", desc: "Investigación de mercado, análisis de competidores, entrevistas con stakeholders, definición de audiencia.", metric: "Marco de posicionamiento en 2 semanas" },
-        { title: "Identidad Visual", desc: "Sistema de logo, paleta de colores, tipografía, estilo fotográfico, lenguaje visual.", metric: "Sistema visual completo entregado" },
-        { title: "Arquitectura de Mensajes", desc: "Guías de voz, jerarquía de mensajes clave, tagline, lenguaje de propuesta de valor.", metric: "Jerarquía de mensajes completa documentada" },
-        { title: "Guías y Activos", desc: "Guía de marca completa + activos listos para producción en cada formato.", metric: "40+ activos listos para producción" },
-        { title: "Lanzamiento y Alineación", desc: "Sesión de lanzamiento de marca asegurando que todo el equipo sepa cómo aplicar la identidad.", metric: "Sesión de alineación de equipo incluida" },
+        { title: "Descubrimiento y Posicionamiento", desc: "Investigación de mercado, análisis de competidores, entrevistas con stakeholders, definición de audiencia.", metric: "" },
+        { title: "Identidad Visual", desc: "Sistema de logo, paleta de colores, tipografía, estilo fotográfico, lenguaje visual.", metric: "" },
+        { title: "Arquitectura de Mensajes", desc: "Guías de voz, jerarquía de mensajes clave, tagline, lenguaje de propuesta de valor.", metric: "" },
+        { title: "Guías y Lanzamiento", desc: "Guía de marca completa más activos listos para producción. Sesión de alineación de equipo incluida.", metric: "" },
       ],
+    },
+    processIntro:
+      "El branding no es la entrega de un logo. Nuestro build va de talleres de posicionamiento a identidad visual, mensajería y rollout, cada fase documentada para que tu equipo y partners se mantengan alineados en web, ads y ventas.",
+    capabilityBodies: {
+      brandIdentity:
+        "Un logo bonito sobre posicionamiento vago no gana compradores. Empezamos con investigación de mercado, análisis de competidores y entrevistas con stakeholders para definir a quién sirves y por qué alguien debería elegirte sobre la siguiente pestaña. El posicionamiento va primero; el mapeo de territorio visual después.",
+      visualSystem:
+        "Una marca es un sistema, no un activo único. Construimos suites de logo, paletas de color, tipografía, estilo de imágenes y reglas de layout que funcionan en web, print y anuncios digitales. Cada elemento está diseñado para trabajar en conjunto dondequiera que aparezca tu marca.",
+      brandGuidelines:
+        "Un PDF de 100 páginas que nadie abre no protege tu marca. Entregamos guías prácticas que tu equipo y agencias realmente usan, uso de logo, especificaciones de color, reglas de voz y plantillas digitales para sitio, email y social. El lanzamiento incluye sesión de equipo para que todos sepan cómo aplicar la identidad desde el día uno.",
     },
     cta: {
       headline: "Tu marca ya está comunicando algo.",
       subtitle: "Asegurémonos de que sea el mensaje correcto.|Construiremos un sistema de marca que te posicione para la próxima década.",
-      ctaLabel: "Inicia Tu Proyecto de Marca",
+      ctaLabel: "Ver Precios de Branding",
     },
+    inlineCtaLabel: "Iniciar una Auditoría de Marca",
+    inlineCtaSubtitle:
+      "Revisaremos tu posicionamiento actual, consistencia visual y brechas de mensaje, y delinearemos qué corregiría un sistema de marca unificado.",
     faqs: [
       { question: "¿Cuánto tiempo tarda un proyecto de branding?", answer: "Nuestro proceso estándar dura 8 semanas: 2 de descubrimiento, 1 de posicionamiento, 3 de identidad visual y 2 para guías y lanzamiento. Proyectos más complejos pueden extender el plazo." },
       { question: "¿Qué incluye un paquete de identidad de marca?", answer: "Recibes un sistema visual completo: suite de logo, paleta de colores, tipografía, guía de estilo de imágenes, plantillas digitales y un documento de guías de marca. La mayoría de clientes reciben más de 40 activos listos para producción." },

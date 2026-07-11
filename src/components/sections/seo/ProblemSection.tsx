@@ -6,8 +6,17 @@ type ProblemSectionProps = {
   title: string;
   intro: string;
   points: string[];
+  surfaceIndex?: number;
 };
 
-export default function ProblemSection({ title, intro, points }: ProblemSectionProps) {
-  return <SeoInsightPanel variant="problem" title={title} intro={intro} points={points} />;
+export default function ProblemSection({ title, intro, points, surfaceIndex }: ProblemSectionProps) {
+  return (
+    <SeoInsightPanel
+      variant="problem"
+      title={title}
+      intro={intro}
+      points={points}
+      surfaceIndex={surfaceIndex}
+    />
+  );
 }
