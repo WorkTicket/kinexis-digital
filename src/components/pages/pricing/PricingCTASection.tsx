@@ -1,7 +1,10 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import TwoLineText from "@/components/ui/TwoLineText";
 import SiteCTA from "@/components/ui/SiteCTA";
+import { uiChrome } from "@/content/ui-chrome";
+import type { Locale } from "@/i18n/routing";
 
 type Props = {
   headline: string;
@@ -18,14 +21,17 @@ export default function PricingCTASection({
   ctaLabel,
   secondaryCtaLabel,
   secondaryCtaHref,
-  contractNote = "No long-term contracts. Month to month.",
+  contractNote,
 }: Props) {
+  const locale = useLocale() as Locale;
+  const copy = uiChrome[locale];
+
   return (
     <SiteCTA
       id="pricing-cta"
       headingId="pricing-cta-heading"
       tone="cta"
-      badge="Ready to scope your plan?"
+      badge={copy.pricingCta.badge}
       title={headline}
       subtitle={<TwoLineText text={subtitle} variant="body" />}
       primaryLabel={ctaLabel}

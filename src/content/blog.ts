@@ -698,7 +698,7 @@ export const blogContent: Record<Locale, BlogContent> = {
         title: "Checklist de SEO Local para Negocios de Servicios",
         category: "SEO",
         excerpt:
-          "GBP, citas, reseñas, páginas por ubicación y seguimiento de rankings. El checklist de SEO local en cinco partes que aplicamos en cada cliente de servicios.",
+          "GBP, citaciones, reseñas, páginas por ubicación y seguimiento de rankings. El checklist de SEO local en cinco partes que aplicamos en cada cliente de servicios.",
         publishedAt: "15 de febrero de 2026",
         featured: false,
         metric: null,

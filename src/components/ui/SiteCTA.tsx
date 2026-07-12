@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { pageSectionClasses } from "@/lib/page-section-surface";
+import { uiChrome } from "@/content/ui-chrome";
+import type { Locale } from "@/i18n/routing";
+import { useLocale } from "next-intl";
 import type { ReactNode } from "react";
 
 export type SiteCTATone = "cta" | "dark" | "glow" | "story";
@@ -22,7 +25,8 @@ export type SiteCTAProps = {
   primaryHref?: string;
   secondaryLabel?: string;
   secondaryHref?: string;
-  contractNote?: string;
+  /** Pass `null` to hide. Omit to use the localized default. */
+  contractNote?: string | null;
   className?: string;
   contentClassName?: string;
   titleClassName?: string;
@@ -58,7 +62,7 @@ export default function SiteCTA({
   primaryHref = "/contact",
   secondaryLabel,
   secondaryHref,
-  contractNote = "No long-term contracts. Month to month.",
+  contractNote,
   className,
   contentClassName,
   titleClassName,
@@ -67,6 +71,9 @@ export default function SiteCTA({
   viewportMargin = "-80px",
   showGlow = true,
 }: SiteCTAProps) {
+  const locale = useLocale() as Locale;
+  const resolvedContractNote =
+    contractNote === null ? null : (contractNote ?? uiChrome[locale].contractNote);
   const { fadeUp, blurFadeUp, popUp, stagger } = useMotionVariants();
   const hasSecondary = Boolean(secondaryLabel && secondaryHref);
 
@@ -168,7 +175,7 @@ export default function SiteCTA({
               </Button>
             )}
           </div>
-          {contractNote && <p className="text-xs text-text-muted">{contractNote}</p>}
+          {resolvedContractNote && <p className="text-xs text-text-muted">{resolvedContractNote}</p>}
         </motion.div>
       </motion.div>
     </section>

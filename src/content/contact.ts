@@ -32,6 +32,9 @@ export type ContactContent = {
   trustLabel1: string;
   trustLabel2: string;
   trustLabel3: string;
+  servicePlaceholder: string;
+  serviceOptions: string[];
+  formFootnote: string;
 };
 
 export const contactContent: Record<Locale, ContactContent> = {
@@ -61,8 +64,7 @@ export const contactContent: Record<Locale, ContactContent> = {
     submitButton: "Send Message",
     submittingButton: "Sending…",
     sidebarTitle: "What Happens Next",
-    sidebarSubtitle:
-      "We keep things simple. No long waits, no pressure.",
+    sidebarSubtitle: "We keep things simple. No long waits, no pressure.",
     step1Title: "We review your message",
     step1Desc:
       "A senior strategist reads every submission, not a bot. You'll hear from us within one business day.",
@@ -75,6 +77,19 @@ export const contactContent: Record<Locale, ContactContent> = {
     trustLabel1: "< 24hr response",
     trustLabel2: "No lock-in contracts",
     trustLabel3: "Free initial consultation",
+    servicePlaceholder: "Select a service…",
+    serviceOptions: [
+      "Web Design & Development",
+      "Search Engine Optimization (SEO)",
+      "Paid Ads (Google / Meta)",
+      "Social Media Marketing",
+      "Branding & Identity",
+      "Email Marketing",
+      "Content Marketing",
+      "Growth Consulting",
+      "Other / Not Sure Yet",
+    ],
+    formFootnote: "No long-term contracts. Month to month. We'll never share your details.",
   },
   es: {
     heroTitle: "Empieza con una conversación, no con un pitch.",
@@ -115,4 +130,18 @@ export const contactContent: Record<Locale, ContactContent> = {
     trustLabel1: "Respuesta < 24hrs",
     trustLabel2: "Sin contratos forzados",
     trustLabel3: "Consulta inicial gratuita",
-  },};
+    servicePlaceholder: "Selecciona un servicio…",
+    serviceOptions: [
+      "Diseño y Desarrollo Web",
+      "SEO (Optimización en Buscadores)",
+      "Anuncios Pagados (Google / Meta)",
+      "Marketing en Redes Sociales",
+      "Branding e Identidad",
+      "Email Marketing",
+      "Marketing de Contenidos",
+      "Consultoría de Crecimiento",
+      "Otro / Aún no estoy seguro",
+    ],
+    formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
+  },
+};

@@ -477,7 +477,7 @@ export function buildServicePageData(slug: ServiceSeoSlug, locale: Locale): Omit
       problemPoints: seo.problem.points,
       solutionPoints: seo.solution.points,
     },
-    whyKinexus: config.whyKinexus[locale],
+    whyKinexis: config.whyKinexis[locale],
     proof: buildProof(slug, locale, config.proof?.[locale]),
     cta: buildServiceCta(slug, locale),
     results: pillar.results,

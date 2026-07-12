@@ -3,7 +3,7 @@ import ProcessSection from "@/components/shared/services/ProcessSection";
 import ServicePricingTeaser from "@/components/shared/services/ServicePricingTeaser";
 import ServiceOverview from "@/components/shared/services/ServiceOverview";
 import EditorialSection from "@/components/shared/services/EditorialSection";
-import WhyKinexusSection from "@/components/shared/services/WhyKinexusSection";
+import WhyKinexisSection from "@/components/shared/services/WhyKinexisSection";
 import DeliverablesSection from "@/components/shared/services/DeliverablesSection";
 import ServiceSection from "@/components/shared/services/ServiceSection";
 import ProofSection from "@/components/shared/services/ProofSection";
@@ -27,7 +27,7 @@ type Props = ServicePageServerProps;
 const CORE_SECTIONS = [
   "ServiceOverview",
   "EditorialOverview",
-  "WhyKinexus",
+  "WhyKinexis",
   "Process",
   "Deliverables",
   "Proof",
@@ -74,12 +74,12 @@ export default function ServicePage({
               visualization={visualizationFor("EditorialOverview")}
             />
           ) : null;
-        case "WhyKinexus":
+        case "WhyKinexis":
           return (
-            <WhyKinexusSection
-              {...data.whyKinexus}
+            <WhyKinexisSection
+              {...data.whyKinexis}
               surfaceIndex={index}
-              visualization={visualizationFor("WhyKinexus")}
+              visualization={visualizationFor("WhyKinexis")}
             />
           );
         case "Process":
@@ -102,7 +102,7 @@ export default function ServicePage({
             />
           );
         case "Proof":
-          return data.proof ? <ProofSection {...data.proof} surfaceIndex={index} /> : null;
+          return data.proof ? <ProofSection {...data.proof} locale={locale} surfaceIndex={index} /> : null;
         case "Results":
           return (
             <ResultsSection
@@ -117,7 +117,7 @@ export default function ServicePage({
         case "Comparison":
           return data.comparison ? <ComparisonTable {...data.comparison} surfaceIndex={index} /> : null;
         case "PricingTeaser":
-          return <ServicePricingTeaser slug={slug} />;
+          return <ServicePricingTeaser slug={slug} locale={locale} surfaceIndex={index} />;
         case "ServiceInlineCTA":
           return data.cta?.inlineLabel ? (
             <ServiceInlineCTA

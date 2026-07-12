@@ -80,11 +80,11 @@ export const localSeoContent: Record<Locale, LocalSeoContent> = {
     phasesTitle: "Cómo hacemos crecer tu visibilidad local",
     phasesSubtitle: "Cuatro fases desde auditoría hasta rankings en map pack, cada una ligada a llamadas y trabajos reservados.",
     processIntro:
-      "El SEO local no es un volcado de citas y esperar. Corregimos primero el perfil, citas y reseñas que mueven rankings en map pack, luego construimos contenido local que posiciona para las búsquedas que reservan trabajos el mismo día.",
+      "El SEO local no es un volcado de citaciones y esperar. Corregimos primero el perfil, citaciones y reseñas que mueven rankings en map pack, luego construimos contenido local que posiciona para las búsquedas que reservan trabajos el mismo día.",
     phases: [
       {
         title: "Auditoría Local y Análisis de Competencia",
-        desc: "Mapeamos tu Perfil de Google Business, citas, reseñas y rankings locales contra los negocios que realmente ganan llamadas en tu mercado.",
+        desc: "Mapeamos tu Perfil de Google Business, citaciones, reseñas y rankings locales contra los negocios que realmente ganan llamadas en tu mercado.",
         metric: "",
       },
       {
@@ -93,7 +93,7 @@ export const localSeoContent: Record<Locale, LocalSeoContent> = {
         metric: "",
       },
       {
-        title: "Limpieza de Citas y NAP",
+        title: "Limpieza de Citaciones y NAP",
         desc: "Corregimos inconsistencias de nombre, dirección y teléfono en directorios para que Google confíe en tus señales de ubicación.",
         metric: "",
       },
@@ -107,9 +107,9 @@ export const localSeoContent: Record<Locale, LocalSeoContent> = {
       localGbp:
         "Tu Perfil de Google Business es la puerta de entrada para búsqueda local. La mayoría lo configura una vez y lo olvida. Optimizamos categorías, servicios, fotos y publicaciones para las consultas exactas que reservan trabajos, luego rastreamos movimiento en map pack semanalmente para que la optimización se ligue a llamadas, no impresiones.",
       localCitations:
-        "Cuando tu dirección aparece de tres formas distintas en directorios, Google deja de confiar en tu ubicación. Auditamos más de 45 listados, corregimos inconsistencias NAP y construimos citas nuevas en directorios que importan en tu rubro, no envíos masivos que se marcan como spam.",
+        "Cuando tu dirección aparece de tres formas distintas en directorios, Google deja de confiar en tu ubicación. Auditamos más de 45 listados, corregimos inconsistencias NAP y construimos citaciones nuevas en directorios que importan en tu rubro, no envíos masivos que se marcan como spam.",
       localReviews:
-        "La velocidad de reseñas afecta rankings en map pack tanto como las citas. Construimos un proceso constante de generación, plantillas de respuesta e informes que vinculan reseñas nuevas a movimiento de posiciones, para que sepas qué ubicaciones y líneas de servicio ganan terreno.",
+        "La velocidad de reseñas afecta rankings en map pack tanto como las citaciones. Construimos un proceso constante de generación, plantillas de respuesta e informes que vinculan reseñas nuevas a movimiento de posiciones, para que sepas qué ubicaciones y líneas de servicio ganan terreno.",
     },
     resultsTitle: "Resultados de SEO local que medimos",
     resultsSubtitle: "Números de clientes locales recientes, no promedios de la industria.",
@@ -124,7 +124,7 @@ export const localSeoContent: Record<Locale, LocalSeoContent> = {
     ctaLabel: "Ver Precios SEO Local",
     inlineCtaLabel: "Auditar Mi Perfil de Google",
     inlineCtaSubtitle:
-      "Revisaremos tu GBP, citas y rankings en map pack, luego delinearemos las correcciones que mueven la aguja más rápido en tu mercado.",
+      "Revisaremos tu GBP, citaciones y rankings en map pack, luego delinearemos las correcciones que mueven la aguja más rápido en tu mercado.",
     faqs: [],
   },
 };

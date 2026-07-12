@@ -2018,7 +2018,7 @@ summary::-webkit-details-marker {
     margin-inline: auto;
   }
 
-  .why-kinexus-item + .why-kinexus-item {
+  .why-kinexis-item + .why-kinexis-item {
     @apply pt-2;
   }
 

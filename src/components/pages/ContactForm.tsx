@@ -9,18 +9,6 @@ import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 
 type Props = { content: ContactContent };
 
-const SERVICE_OPTIONS = [
-  "Web Design & Development",
-  "Search Engine Optimization (SEO)",
-  "Paid Ads (Google / Meta)",
-  "Social Media Marketing",
-  "Branding & Identity",
-  "Email Marketing",
-  "Content Marketing",
-  "Growth Consulting",
-  "Other / Not Sure Yet",
-];
-
 /** Client island — only the interactive form hydrates; the rest of the page is static SSR. */
 export default function ContactForm({ content: c }: Props) {
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
@@ -122,7 +110,7 @@ export default function ContactForm({ content: c }: Props) {
 
           <div className="form-group">
             <label htmlFor="contact-service" className="form-label">
-              What are you looking for?
+              {c.serviceLabel}
             </label>
             <select
               id="contact-service"
@@ -137,9 +125,9 @@ export default function ContactForm({ content: c }: Props) {
               }}
             >
               <option value="" style={{ background: "#05060a" }}>
-                Select a service…
+                {c.servicePlaceholder}
               </option>
-              {SERVICE_OPTIONS.map((opt) => (
+              {c.serviceOptions.map((opt) => (
                 <option key={opt} value={opt} style={{ background: "#05060a" }}>
                   {opt}
                 </option>
@@ -178,7 +166,7 @@ export default function ContactForm({ content: c }: Props) {
               </Button>
             </div>
             <p className="text-xs text-text-muted">
-              No long-term contracts. Month to month. We&apos;ll never share your details.
+              {c.formFootnote}
             </p>
           </div>
         </form>

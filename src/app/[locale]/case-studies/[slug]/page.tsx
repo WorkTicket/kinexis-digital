@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return buildPageMetadata({
     locale,
     path: `/case-studies/${slug}`,
-    title: `${cs.title} Case Study | KINEXIS`,
+    title: locale === "es" ? `${cs.title} | Caso de Éxito | KINEXIS` : `${cs.title} Case Study | KINEXIS`,
     description: normalizeMetaDescription(cs.results),
   });
 }

@@ -1,6 +1,6 @@
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import type { Locale } from "@/i18n/routing";
-import type { ProofData, VisualVariant, WhyKinexusData } from "./types";
+import type { ProofData, VisualVariant, WhyKinexisData } from "./types";
 import { genericCapabilityKeys } from "./generic-service-capabilities";
 
 /** Industry-standard section flow shared across all service pages. */
@@ -13,7 +13,7 @@ export const STANDARD_SERVICE_TAIL = [
 ] as const;
 
 export function standardServiceOrder(capabilityKeys: string[]): string[] {
-  return ["ServiceOverview", "WhyKinexus", ...capabilityKeys, ...STANDARD_SERVICE_TAIL];
+  return ["ServiceOverview", "WhyKinexis", ...capabilityKeys, ...STANDARD_SERVICE_TAIL];
 }
 
 /** Content-rich flow, prose-first architecture for flagship service pages. */
@@ -79,16 +79,16 @@ export type ServiceArchitectureConfig = {
   /** Section id (from sectionOrder) where the page graphic belongs */
   visualizationSection: string;
   sectionOrder: string[];
-  whyKinexus: Record<Locale, WhyKinexusData>;
+  whyKinexis: Record<Locale, WhyKinexisData>;
   proof?: Record<Locale, ProofData>;
   /** Keys into serviceSections built by service-section-builders */
   serviceSectionKeys: string[];
 };
 
 const why = (
-  en: WhyKinexusData,
-  es: WhyKinexusData,
-): Record<Locale, WhyKinexusData> => ({ en, es });
+  en: WhyKinexisData,
+  es: WhyKinexisData,
+): Record<Locale, WhyKinexisData> => ({ en, es });
 
 export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectureConfig> = {
   seo: {
@@ -96,7 +96,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["SeoAudit", "RankingStrategy", "ContentStrategy"]),
     serviceSectionKeys: ["SeoAudit", "RankingStrategy", "ContentStrategy"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Most SEO Campaigns|Fail",
         subtitle: "Wrong keywords, unprioritized technical fixes, and reports that celebrate traffic your sales team never sees.",
@@ -151,7 +151,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["LocalGbp", "LocalCitations", "LocalReviews"]),
     serviceSectionKeys: ["LocalGbp", "LocalCitations", "LocalReviews"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Local SEO Fails|to Fill Your Calendar",
         subtitle: "Incomplete profiles, messy citations, and map pack rankings that never connect to a booked job.",
@@ -164,10 +164,10 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
       },
       {
         headline: "Por Qué el SEO Local|No Llena Tu Calendario",
-        subtitle: "Perfiles incompletos, citas inconsistentes y rankings en el map pack que no se traducen en trabajos reservados.",
+        subtitle: "Perfiles incompletos, citaciones inconsistentes y rankings en el map pack que no se traducen en trabajos reservados.",
         points: [
           { title: "Perfiles GBP incompletos", description: "Categorías y fotos faltantes entregan trabajos al map pack de competidores." },
-          { title: "Caos de citas", description: "Datos NAP inconsistentes erosionan la confianza de Google." },
+          { title: "Caos de citaciones", description: "Datos NAP inconsistentes erosionan la confianza de Google." },
           { title: "Páginas plantilla", description: "Páginas de ciudad genéricas no pasan controles de calidad local." },
           { title: "Sin seguimiento de llamadas", description: "No puedes optimizar lo que no puedes vincular a trabajos reservados." },
         ],
@@ -192,7 +192,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           challenge:
             "El map pack era invisible para búsquedas de plomería de emergencia. Un competidor con un GBP más nuevo y perfil de reseñas activo dominaba el 3-pack local en todas las zonas de servicio.",
           approach:
-            "Reconstruimos el Perfil de Google Business con categorías y zonas de servicio correctas, limpiamos inconsistencias de citas en más de 45 directorios, lanzamos un flujo de generación de reseñas y construimos páginas locales para cada zona de servicio de emergencia.",
+            "Reconstruimos el Perfil de Google Business con categorías y zonas de servicio correctas, limpiamos inconsistencias de citaciones en más de 45 directorios, lanzamos un flujo de generación de reseñas y construimos páginas locales para cada zona de servicio de emergencia.",
           outcome:
             "+327% llamadas de emergencia en 8 meses. Interacciones en GBP +2,371%. Top 3 en map pack para 48 de 60 keywords locales prioritarias.",
           href: "/case-studies/plumbing-company-growth",
@@ -206,9 +206,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["CampaignArchitecture", "KeywordResearch", "ConversionTracking"]),
     serviceSectionKeys: ["CampaignArchitecture", "KeywordResearch", "ConversionTracking"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "The Kinexus|Campaign Framework",
+        headline: "The Kinexis|Campaign Framework",
         subtitle: "Intent-first structure, weekly search term discipline, and bid optimization tied to leads your sales team closes.",
         points: [
           { title: "Intent-first architecture", description: "Brand, competitor, and high-intent searches each get their own campaign. No more one bucket for everything." },
@@ -218,7 +218,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "El Marco de|Campañas Kinexus",
+        headline: "El Marco de|Campañas Kinexis",
         subtitle: "Estructura por intención, disciplina semanal de términos de búsqueda y pujas ligadas a leads que ventas cierra.",
         points: [
           { title: "Arquitectura por intención", description: "Marca, competencia y términos genéricos en campañas separadas." },
@@ -259,9 +259,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["CampaignArchitecture", "KeywordResearch", "ChannelMix"]),
     serviceSectionKeys: ["CampaignArchitecture", "KeywordResearch", "ChannelMix"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "The Kinexus PPC|& Google Ads System",
+        headline: "The Kinexis PPC|& Google Ads System",
         subtitle: "Google Search depth, weekly search term discipline, and cross-channel budget allocation tied to leads your sales team closes.",
         points: [
           { title: "Intent-first Google architecture", description: "Brand, competitor, and high-intent searches each get their own campaign. No more one bucket for everything." },
@@ -271,7 +271,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "El Sistema PPC|y Google Ads Kinexus",
+        headline: "El Sistema PPC|y Google Ads Kinexis",
         subtitle: "Profundidad en Search, disciplina semanal de términos y asignación multicanal ligada a leads que ventas cierra.",
         points: [
           { title: "Arquitectura Google por intención", description: "Marca, competencia y términos genéricos en campañas separadas." },
@@ -314,9 +314,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["CreativeTesting", "AudienceTargeting", "Retargeting"]),
     serviceSectionKeys: ["CreativeTesting", "AudienceTargeting", "Retargeting"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "The Kinexus Creative|Testing System",
+        headline: "The Kinexis Creative|Testing System",
         subtitle: "Biweekly creative sprints, clean audience separation, and attribution built for iOS-era ad accounts.",
         points: [
           { title: "Biweekly creative sprints", description: "Three to five new ad variations every two weeks. Fatigue kills accounts. We stay ahead of it." },
@@ -326,7 +326,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "El Sistema de Pruebas|Creativas Kinexus",
+        headline: "El Sistema de Pruebas|Creativas Kinexis",
         subtitle: "Sprints creativos quincenales, audiencias separadas y atribución CAPI para cuentas post-iOS.",
         points: [
           { title: "Sprints creativos quincenales", description: "3–5 variaciones nuevas cada dos semanas." },
@@ -369,7 +369,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["ChannelStrategy", "CampaignStructure", "Attribution"]),
     serviceSectionKeys: ["ChannelStrategy", "CampaignStructure", "Attribution"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Most Ad Accounts|Bleed Budget",
         subtitle: "Channel hype, flat campaign structures, and attribution dashboards that disagree with your CRM.",
@@ -422,9 +422,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichWebDesignOrder(),
     serviceSectionKeys: ["UxAudit", "ConversionOptimization"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "What Makes a Kinexus Build|Different",
+        headline: "What Makes a Kinexis Build|Different",
         subtitle: "Conversion paths sketched first, performance benchmarks enforced, and a handoff your marketing team can run without us.",
         points: [
           { title: "Conversion before aesthetics", description: "We sketch the CTA path first. Pretty comes second. Awards do not pay your payroll." },
@@ -434,7 +434,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "Qué Hace Diferente|un Build de Kinexus",
+        headline: "Qué Hace Diferente|un Build de Kinexis",
         subtitle: "Rutas de conversión primero, benchmarks de rendimiento exigidos y entrega que tu equipo puede operar solo.",
         points: [
           { title: "Conversión antes que estética", description: "Cada decisión de diseño mapea a una acción del usuario." },
@@ -479,7 +479,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["AbTesting", "Heatmaps", "UXResearch"]),
     serviceSectionKeys: ["AbTesting", "Heatmaps", "UXResearch"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why CRO Projects Fail|to Move Revenue",
         subtitle: "Hypothesis-free tests, vanity metrics, and one-and-done projects that never touch pipeline.",
@@ -534,9 +534,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["EmailSequences", "Automation", "ListGrowth"]),
     serviceSectionKeys: ["EmailSequences", "Automation", "ListGrowth"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "The Kinexus Email|Revenue System",
+        headline: "The Kinexis Email|Revenue System",
         subtitle: "Behavioral sequences, deliverability discipline, and every flow tied to pipeline, not open-rate bragging.",
         points: [
           { title: "Revenue infrastructure, not newsletters", description: "Sequences built to move leads through decision stages toward booked calls. Not monthly blasts nobody reads." },
@@ -546,7 +546,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "El Sistema de Email|Revenue Kinexus",
+        headline: "El Sistema de Email|Revenue Kinexis",
         subtitle: "Secuencias comportamentales, entregabilidad primero y cada flujo ligado al pipeline, no a tasas de apertura.",
         points: [
           { title: "Infraestructura de ingresos", description: "Secuencias que mueven leads hacia llamadas reservadas." },
@@ -589,7 +589,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["ContentFunnel", "Production", "Distribution"]),
     serviceSectionKeys: ["ContentFunnel", "Production", "Distribution"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Content Marketing|Doesn't Convert",
         subtitle: "Articles with no intent target, no lead capture path, and traffic that never raises a hand.",
@@ -644,9 +644,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["PlatformStrategy", "ContentPillars", "Community"]),
     serviceSectionKeys: ["PlatformStrategy", "ContentPillars", "Community"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "The Kinexus Social|Growth Framework",
+        headline: "The Kinexis Social|Growth Framework",
         subtitle: "Platform fit over checklist presence, content pillars with ROI, and social wired into retargeting and pipeline.",
         points: [
           { title: "Platform fit over presence", description: "We pick the two networks where your buyers actually show up. Not all six because a checklist said to." },
@@ -656,7 +656,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "El Marco de Crecimiento|Social Kinexus",
+        headline: "El Marco de Crecimiento|Social Kinexis",
         subtitle: "Ajuste de plataforma, pilares con ROI y social integrado con retargeting y pipeline.",
         points: [
           { title: "Ajuste de plataforma", description: "Enfocamos donde tus compradores realmente interactúan." },
@@ -699,9 +699,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["VideoProduction", "VideoDistribution", "VideoStrategy"]),
     serviceSectionKeys: ["VideoProduction", "VideoDistribution", "VideoStrategy"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "What Makes Kinexus Video|Different",
+        headline: "What Makes Kinexis Video|Different",
         subtitle: "Scripts mapped to funnel stages, repurposing built into every shoot, and performance tracked to booked calls.",
         points: [
           { title: "Conversion-first scripts", description: "Every video maps to a funnel stage and a CTA. Brand montages are fine for the about page, not for paid spend." },
@@ -711,7 +711,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "Qué Hace Diferente|el Video de Kinexus",
+        headline: "Qué Hace Diferente|el Video de Kinexis",
         subtitle: "Scripts por etapa de embudo, repurposing en cada producción y rendimiento rastreado hasta llamadas reservadas.",
         points: [
           { title: "Scripts orientados a conversión", description: "Cada video mapea a etapa de embudo y CTA." },
@@ -754,7 +754,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["BrandIdentity", "VisualSystem", "BrandGuidelines"]),
     serviceSectionKeys: ["BrandIdentity", "VisualSystem", "BrandGuidelines"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Brand Projects|Fall Flat",
         subtitle: "Pretty logos without positioning, guidelines nobody uses, and launches that never reach your site or ad account.",
@@ -809,7 +809,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["DataStack", "Dashboards", "Attribution"]),
     serviceSectionKeys: ["DataStack", "Dashboards", "Attribution"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Most Analytics Setups|Lie",
         subtitle: "Tracking installed but disconnected from booked calls, last-click attribution, and dashboards nobody acts on.",
@@ -864,9 +864,9 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["GrowthAudit", "ChannelMix", "Roadmap"]),
     serviceSectionKeys: ["GrowthAudit", "ChannelMix", "Roadmap"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
-        headline: "The Kinexus Growth|Audit Framework",
+        headline: "The Kinexis Growth|Audit Framework",
         subtitle: "Full revenue-system diagnosis before anyone recommends a channel, with margin-aware recommendations and execution included.",
         points: [
           { title: "Diagnosis before prescription", description: "We audit your full revenue system before recommending channels. No cookie-cutter channel mix." },
@@ -876,7 +876,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
         ],
       },
       {
-        headline: "El Marco de Auditoría|de Crecimiento Kinexus",
+        headline: "El Marco de Auditoría|de Crecimiento Kinexis",
         subtitle: "Diagnóstico completo del sistema de ingresos antes de recomendar canales, con recomendaciones conscientes del margen.",
         points: [
           { title: "Diagnóstico antes de prescripción", description: "Auditamos tu sistema de ingresos completo antes de recomendar canales." },
@@ -919,7 +919,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(["FunnelMapping", "Automation", "ConversionPaths"]),
     serviceSectionKeys: ["FunnelMapping", "Automation", "ConversionPaths"],
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Conversion Systems|Leak Revenue",
         subtitle: "Stage gaps between traffic and sales, pages built on gut feel, and funnels left alone after launch day.",
@@ -974,7 +974,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("youtube-ads")),
     serviceSectionKeys: genericCapabilityKeys("youtube-ads"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why YouTube Campaigns|Get Skipped",
         subtitle: "Repurposed TV spots, no skip-proof hook, and view counts that never connect to a booked call.",
@@ -1029,7 +1029,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("landing-pages")),
     serviceSectionKeys: genericCapabilityKeys("landing-pages"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Campaign Traffic Dies|on the Homepage",
         subtitle: "One page answering ten questions, no message match, and forms that ask for everything up front.",
@@ -1086,7 +1086,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("website-maintenance")),
     serviceSectionKeys: genericCapabilityKeys("website-maintenance"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Neglected Sites Break|at the Worst Time",
         subtitle: "Auto-updates that crash pages, no tested backups, and problems nobody catches until a customer does.",
@@ -1141,7 +1141,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("website-speed")),
     serviceSectionKeys: genericCapabilityKeys("website-speed"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Slow Sites|Lose Traffic Twice",
         subtitle: "Unoptimized images, render-blocking scripts, no caching, and a slow server that costs rankings and conversions.",
@@ -1196,7 +1196,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("microsoft-ads")),
     serviceSectionKeys: genericCapabilityKeys("microsoft-ads"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Advertisers Miss|Microsoft Ads",
         subtitle: "Imported campaigns, ignored settings, and a cheaper audience nobody bothers to reach.",
@@ -1251,7 +1251,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("copywriting")),
     serviceSectionKeys: genericCapabilityKeys("copywriting"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Most Business Copy|Falls Flat",
         subtitle: "Feature lists, borrowed clichés, and a message the reader has to decode.",
@@ -1306,7 +1306,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("marketing-audits")),
     serviceSectionKeys: genericCapabilityKeys("marketing-audits"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Stalled Marketing|Fails Where You Think",
         subtitle: "Broken tracking, hidden funnel leaks, and budget defended by assumption instead of data.",
@@ -1361,7 +1361,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("marketing-automation-crm")),
     serviceSectionKeys: genericCapabilityKeys("marketing-automation-crm"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Your Automation Stack|Fights You",
         subtitle: "Half-built workflows, disconnected tools, and leads that fall through the cracks between them.",
@@ -1416,7 +1416,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("fractional-cmo")),
     serviceSectionKeys: genericCapabilityKeys("fractional-cmo"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Growing Companies|Get Stuck Without Leadership",
         subtitle: "Junior managers stretched thin, founders running marketing on the side, and no one owning the plan.",
@@ -1471,7 +1471,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     visualizationSection: "EditorialOverview",
     sectionOrder: contentRichServiceOrder(genericCapabilityKeys("training-workshops")),
     serviceSectionKeys: genericCapabilityKeys("training-workshops"),
-    whyKinexus: why(
+    whyKinexis: why(
       {
         headline: "Why Generic Marketing Courses|Don't Stick",
         subtitle: "Recorded lectures, hypothetical examples, and no bridge from watching to doing.",

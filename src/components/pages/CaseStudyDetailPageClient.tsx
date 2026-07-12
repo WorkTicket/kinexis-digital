@@ -1,5 +1,6 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { m as motion } from "@/lib/framer";
 import CaseStudyResultsMetrics from "@/components/case-studies/CaseStudyResultsMetrics";
 import FAQSection from "@/components/sections/FAQSection";
@@ -10,10 +11,12 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import ServicePhaseList from "@/components/ui/ServicePhaseList";
 import type { CaseStudyDetail } from "@/content/case-study-details";
 import type { CaseStudySlugMeta } from "@/content/case-study-slug-meta";
+import { uiChrome } from "@/content/ui-chrome";
 import Section from "@/components/shared/services/Section";
 import { cardClasses } from "@/lib/card-styles";
 import type { BreadcrumbItem } from "@/lib/schema";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
+import type { Locale } from "@/i18n/routing";
 
 type Props = {
   cs: CaseStudyDetail;
@@ -76,16 +79,27 @@ function ProgressionChart({ meta }: { meta: CaseStudySlugMeta }) {
 }
 
 export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Props) {
+  const locale = useLocale() as Locale;
+  const copy = uiChrome[locale].caseStudy;
   const { fadeUp, stagger } = useMotionVariants();
   let surfaceIndex = 0;
 
   const overviewMeta = [
-    { label: "Industry", value: cs.industry },
-    { label: "Client", value: cs.client },
-    { label: "Engagement", value: meta.timeline },
-    { label: "Primary Goal", value: cs.strategyPhases[0]?.objective ?? "Growth" },
-    { label: "Services", value: cs.strategyPhases.length > 0 ? `${cs.strategyPhases.length} phases` : "Full-stack" },
-    { label: "Results", value: `${cs.resultsList.length} KPIs tracked` },
+    { label: copy.meta.industry, value: cs.industry },
+    { label: copy.meta.client, value: cs.client },
+    { label: copy.meta.engagement, value: meta.timeline },
+    {
+      label: copy.meta.primaryGoal,
+      value: cs.strategyPhases[0]?.objective ?? copy.meta.growthFallback,
+    },
+    {
+      label: copy.meta.services,
+      value:
+        cs.strategyPhases.length > 0
+          ? copy.meta.phases(cs.strategyPhases.length)
+          : copy.meta.fullStack,
+    },
+    { label: copy.meta.results, value: copy.meta.kpisTracked(cs.resultsList.length) },
   ];
 
   const strategyPhases = cs.strategyPhases.map((phase) => ({
@@ -136,8 +150,8 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
       <Section id="overview" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
           <SectionHeader
-            badge="Overview"
-            title="What happened, in three sentences"
+            badge={copy.overviewBadge}
+            title={copy.overviewTitle}
             align="left"
             headingId="overview-heading"
           />
@@ -161,7 +175,12 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
       {cs.problems.length > 0 && (
         <Section id="kickoff-problems" surfaceIndex={surfaceIndex++}>
           <div className="container-site">
-            <SectionHeader badge={cs.beforeHeading} title="Where things stood at kickoff" align="left" headingId="kickoff-problems-heading" />
+            <SectionHeader
+              badge={cs.beforeHeading}
+              title={copy.kickoffTitle}
+              align="left"
+              headingId="kickoff-problems-heading"
+            />
             <motion.div
               className="section-content grid gap-grid-sm sm:grid-cols-2 xl:grid-cols-4"
               variants={stagger}
@@ -194,7 +213,12 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
       {cs.strategyPhases.length > 0 && (
         <Section id="strategy-phases" surfaceIndex={surfaceIndex++}>
           <div className="container-site">
-            <SectionHeader badge={cs.strategyHeading} title="Five moves, run in sequence" align="left" headingId="strategy-phases-heading" />
+            <SectionHeader
+              badge={cs.strategyHeading}
+              title={copy.strategyTitle}
+              align="left"
+              headingId="strategy-phases-heading"
+            />
             <motion.div
               className="section-content space-y-8"
               variants={fadeUp}
@@ -215,7 +239,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
         <div className="container-site">
           <SectionHeader
             badge={cs.resultsHeading}
-            title={`${meta.progressionLabel} growth, month by month`}
+            title={copy.growthTitle(meta.progressionLabel)}
             align="center"
           />
           <div className="section-content mx-auto max-w-3xl space-y-8">
@@ -229,7 +253,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
         <div className="container-site">
           <div className="grid gap-10 md:grid-cols-[1.3fr_1fr] md:gap-14">
             <div>
-              <SectionHeader badge="Deliverables" title="What was built" align="left" />
+              <SectionHeader badge={copy.deliverablesBadge} title={copy.deliverablesTitle} align="left" />
               <motion.div
                 className="section-content grid grid-cols-2 gap-grid-sm sm:grid-cols-3"
                 variants={stagger}
@@ -245,7 +269,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
               </motion.div>
             </div>
             <div>
-              <SectionHeader badge="Tools & Platforms" title={cs.techStackHeading} align="left" />
+              <SectionHeader badge={copy.toolsBadge} title={cs.techStackHeading} align="left" />
               <motion.div
                 className="section-content flex flex-wrap gap-2"
                 variants={fadeUp}
@@ -269,7 +293,12 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
 
       <Section id="key-takeaways" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-4xl mx-auto">
-          <SectionHeader badge="Key Takeaways" title="Why it compounded" align="center" headingId="key-takeaways-heading" />
+          <SectionHeader
+            badge={copy.takeawaysBadge}
+            title={copy.takeawaysTitle}
+            align="center"
+            headingId="key-takeaways-heading"
+          />
           <motion.div
             className="section-content flex justify-center"
             variants={fadeUp}
@@ -283,8 +312,8 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
       </Section>
 
       <FAQSection
-        label="FAQ"
-        title="Common questions"
+        label={copy.faqLabel}
+        title={copy.faqTitle}
         items={meta.faq.map((item) => ({ question: item.q, answer: item.a }))}
         surfaceIndex={surfaceIndex++}
       />

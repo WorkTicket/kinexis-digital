@@ -6,6 +6,7 @@ import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import Breadcrumbs from "@/components/seo/Breadcrumbs";
 import JsonLd from "@/components/seo/JsonLd";
 import { solutions, getSolutionBySlug } from "@/content/registry/solutions";
+import { uiChrome } from "@/content/ui-chrome";
 import { routing, type Locale } from "@/i18n/routing";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from "@/lib/schema";
@@ -38,6 +39,9 @@ export default async function SolutionPage({ params }: Props) {
   if (!solution) notFound();
 
   const path = `/solutions/${slug}`;
+  const chrome = uiChrome[locale];
+  const homeLabel = locale === "es" ? "Inicio" : "Home";
+  const solutionsLabel = locale === "es" ? "Soluciones" : "Solutions";
 
   return (
     <>
@@ -47,16 +51,16 @@ export default async function SolutionPage({ params }: Props) {
           serviceSchema(solution.title, solution.metaDescription, buildAbsoluteUrl(locale, path)),
           faqSchema(solution.faqs),
           breadcrumbSchema([
-            { name: "Home", url: buildAbsoluteUrl(locale, "/") },
-            { name: "Solutions", url: buildAbsoluteUrl(locale, "/solutions") },
+            { name: homeLabel, url: buildAbsoluteUrl(locale, "/") },
+            { name: solutionsLabel, url: buildAbsoluteUrl(locale, "/solutions") },
             { name: solution.title },
           ]),
         ]}
       />
       <Breadcrumbs
         items={[
-          { name: "Home", url: "/" },
-          { name: "Solutions", url: "/solutions" },
+          { name: homeLabel, url: "/" },
+          { name: solutionsLabel, url: "/solutions" },
           { name: solution.title },
         ]}
       />
@@ -66,7 +70,7 @@ export default async function SolutionPage({ params }: Props) {
         line1={solution.headlineLine1}
         line2={solution.headlineLine2}
         subtitle={solution.challenge}
-        ctaLabel="Book a Strategy Call"
+        ctaLabel={chrome.solution.ctaLabel}
         ctaHref="/contact"
       />
       <SolutionPageClient solution={solution} />

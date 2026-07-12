@@ -54,7 +54,7 @@ export default function CTAArchetype({
       primaryHref={ctaHref}
       secondaryLabel={secondaryCtaLabel}
       secondaryHref={secondaryCtaHref}
-      contractNote=""
+      contractNote={null}
     />
   );
 }

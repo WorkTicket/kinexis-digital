@@ -1,3 +1,6 @@
+"use client";
+
+import { useLocale } from "next-intl";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CardFamily from "@/components/ui/CardFamily";
 import MetricCard from "@/components/ui/MetricCard";
@@ -8,11 +11,16 @@ import type { SolutionEntry } from "@/content/registry/solutions";
 import { serviceRoutes, serviceLabels, type ServiceSlug } from "@/content/registry/site-routes";
 import { getIndustryBySlug } from "@/content/registry/industries";
 import { getSolutionRelatedLinks } from "@/lib/solution-related-links";
+import { uiChrome } from "@/content/ui-chrome";
 import Section from "@/components/shared/services/Section";
 import { featureCardGridClass } from "@/lib/card-styles";
+import type { Locale } from "@/i18n/routing";
+
 type Props = { solution: SolutionEntry };
 
 export default function SolutionPageClient({ solution }: Props) {
+  const locale = useLocale() as Locale;
+  const copy = uiChrome[locale].solution;
   const industry = getIndustryBySlug(solution.industrySlug);
   const serviceHref = serviceRoutes[solution.serviceSlug as ServiceSlug] || `/services/${solution.serviceSlug}`;
   const serviceLabel = serviceLabels[solution.serviceSlug as ServiceSlug] || solution.serviceSlug;
@@ -23,14 +31,18 @@ export default function SolutionPageClient({ solution }: Props) {
     <>
       <Section id="challenge" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
-          <SectionHeader title="The challenge" headingId="challenge-heading" />
+          <SectionHeader title={copy.challenge} headingId="challenge-heading" />
           <p className="mt-6 text-muted leading-relaxed">{solution.challenge}</p>
         </div>
       </Section>
 
       <Section id="approach" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader title="Our approach" description="A tailored strategy, not a template with your industry name swapped in." headingId="approach-heading" />
+          <SectionHeader
+            title={copy.approach}
+            description={copy.approachDesc}
+            headingId="approach-heading"
+          />
           <ol className="mt-8 space-y-4 max-w-3xl">
             {solution.approach.map((step, i) => (
               <li key={step} className="flex gap-4">
@@ -44,7 +56,7 @@ export default function SolutionPageClient({ solution }: Props) {
 
       <Section id="deliverables" variant="data" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader title="Deliverables" />
+          <SectionHeader title={copy.deliverables} />
           <div className={featureCardGridClass(solution.deliverables.length, "mt-8 items-stretch")}>
             {solution.deliverables.map((d) => (
               <CardFamily key={d} family="editorial" className="h-full flex flex-col">
@@ -57,7 +69,7 @@ export default function SolutionPageClient({ solution }: Props) {
 
       <Section id="results" variant="proof" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader title="Results framework" />
+          <SectionHeader title={copy.results} />
           <div className={featureCardGridClass(solution.results.length, "section-content")}>
             {solution.results.map((r) => (
               <MetricCard key={r.label} value={r.metric} label={r.label} />
@@ -75,19 +87,22 @@ export default function SolutionPageClient({ solution }: Props) {
         solutionLinks={solutionLinks.length > 0 ? solutionLinks : undefined}
         industryLinks={
           industry
-            ? [{ href: `/industries/${industry.categoryId}/${industry.slug}`, label: `${industry.label} Marketing` }]
+            ? [
+                {
+                  href: `/industries/${industry.categoryId}/${industry.slug}`,
+                  label: copy.industryMarketing(industry.label),
+                },
+              ]
             : undefined
         }
-        caseStudyLinks={[
-          { href: "/case-studies", label: "View All Case Studies" },
-        ]}
+        caseStudyLinks={[{ href: "/case-studies", label: copy.viewCaseStudies }]}
       />
 
       <CTAArchetype
         archetype="story"
-        headline={`Ready to get started with ${solution.title.toLowerCase()}?`}
-        subtitle="Book a strategy call and we'll outline a plan tailored to your market, competition, and revenue goals."
-        ctaLabel="Book a Strategy Call"
+        headline={copy.ctaHeadline(solution.title)}
+        subtitle={copy.ctaSubtitle}
+        ctaLabel={copy.ctaLabel}
         ctaHref="/contact"
       />
     </>

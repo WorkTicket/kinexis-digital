@@ -151,7 +151,7 @@ export const pricingHubPageContent: Record<Locale, PricingHubPageContent> = {
     },
     cardDescriptions: {
       seo: "SEO técnico, contenido y link building para negocios que necesitan leads orgánicos, no rankings vacíos.",
-      "local-seo": "Visibilidad en map pack, optimización de GBP y citas locales para negocios por zona de servicio.",
+      "local-seo": "Visibilidad en map pack, optimización de GBP y citaciones locales para negocios por zona de servicio.",
       "content-marketing": "Producción de artículos y landing pages para equipos que manejan SEO internamente pero necesitan volumen.",
       "ppc-management": "Google Ads y PPC multicanal: Search, Shopping, Performance Max e informes unificados cuando operas varias plataformas.",
       "meta-ads": "Campañas en Facebook e Instagram con pruebas creativas y arquitectura de audiencias.",

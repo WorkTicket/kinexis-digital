@@ -40,7 +40,7 @@ big `"use client"` boundary into server-rendered HTML with small interactive isl
 |---|---|
 | `src/app/globals.css` | Added `.reveal` / `.reveal-stagger` — CSS scroll-timeline reveal. Content is always visible in SSR (no `opacity:0` trap); animation is a **desktop-only** (`min-width:1024px`) enhancement gated on `prefers-reduced-motion: no-preference` + `@supports (animation-timeline: view())`. Mobile is fully static → no JS on the critical path. Only opacity/transform animate → CLS 0. |
 | `src/components/ui/Reveal.tsx` | **New** server component (`as`, `stagger` props). No `"use client"`, no framer. |
-| `ResultsSection`, `ProofSection`, `WhyKinexusSection`, `ServiceSection`, `ServicePageVisualization`, `ServicePricingTeaser` | Dropped `"use client"` + framer-motion; now static server components using `<Reveal>`. `Card animated` islands inside `ServiceSection` replaced with `cardClasses()` divs (CSS hover). |
+| `ResultsSection`, `ProofSection`, `WhyKinexisSection`, `ServiceSection`, `ServicePageVisualization`, `ServicePricingTeaser` | Dropped `"use client"` + framer-motion; now static server components using `<Reveal>`. `Card animated` islands inside `ServiceSection` replaced with `cardClasses()` divs (CSS hover). |
 | `src/components/services/service-hero-visualizations.tsx` | Removed `"use client"` so the viz map is server-importable (dynamic client leaves unchanged). |
 | `src/components/services/ServicePage.tsx` | **Removed `"use client"`** → server component. Direct-imports the now-server sections; keeps `dynamic()` only for real client leaves (AnswerBlock, ComparisonTable, ServiceCTA, ServiceFAQSection, RelatedLinks, DeviceMockups). |
 | `scripts/psi-lcp.mjs` | **New** — prints the LCP element + LCP timing breakdown (TTFB / load delay / load duration / render delay) for one URL. `node scripts/psi-lcp.mjs <url> [mobile|desktop]`. |
@@ -182,7 +182,7 @@ Representative URLs used this session: `/en`, `/en/industries/technology/saas`, 
 | `src/components/shared/services/Section.tsx` | Removed `"use client"` (pure presentational). |
 | `src/components/shared/services/ProcessSection.tsx`, `ServicePricingTeaser.tsx` | Removed `"use client"` (no client features). |
 | `src/components/shared/services/ServiceOverview.tsx`, `DeliverablesSection.tsx` | Rewrote as **static** (dropped framer-motion scroll reveals) — content-first, visible in SSR. |
-| `src/components/services/ServicePage.tsx` | `ServiceOverview`, `WhyKinexusSection`, `DeliverablesSection`, `ServiceSection` now `dynamic()`-imported to shrink the initial client chunk. |
+| `src/components/services/ServicePage.tsx` | `ServiceOverview`, `WhyKinexisSection`, `DeliverablesSection`, `ServiceSection` now `dynamic()`-imported to shrink the initial client chunk. |
 
 ### New tooling (scripts/)
 - `scripts/lh-summarize.mjs` — prints score/LCP/FCP/TBT/CLS/SI + top opportunities from every saved LH report in `docs/seo-remediation/phase-10-lighthouse/`.
@@ -219,7 +219,7 @@ Representative URLs used this session: `/en`, `/en/industries/technology/saas`, 
 
 ### 1. Service pages — mobile ~92 (highest priority)
 Mobile LCP ~2.7s, TBT ~240ms. Median PSI confirmed the dynamic-import batch did **not** close the gap. The `ServicePage` client tree is still the heaviest. Options (in order of safety):
-- Convert remaining always-visible service sections off framer-motion to static/CSS: `WhyKinexusSection.tsx` still uses `useMotionVariants` + `whileInView`. `ServicePageVisualization.tsx` wraps section graphics with `initial="hidden"` (opacity:0 in SSR). `ProofSection`, `ResultsSection`, `ServiceSection` are dynamic but still client+motion.
+- Convert remaining always-visible service sections off framer-motion to static/CSS: `WhyKinexisSection.tsx` still uses `useMotionVariants` + `whileInView`. `ServicePageVisualization.tsx` wraps section graphics with `initial="hidden"` (opacity:0 in SSR). `ProofSection`, `ResultsSection`, `ServiceSection` are dynamic but still client+motion.
 - **Do NOT** hide below-fold service content behind a JS-gated placeholder — service pages need full section HTML in SSR for SEO. (An attempt at `ServicePageDeferred` was reverted for exactly this reason.)
 
 ### 2. Migrate scroll-reveals from framer-motion → CSS (biggest structural lever)

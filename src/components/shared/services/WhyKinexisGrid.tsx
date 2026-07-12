@@ -14,7 +14,7 @@ type Props = {
 
 const whyIcons: LucideIcon[] = [AlertTriangle, Ban, FileWarning, CircleDollarSign];
 
-export default function WhyKinexusGrid({ points }: Props) {
+export default function WhyKinexisGrid({ points }: Props) {
   const { fadeUp, stagger } = useMotionVariants();
 
   return (

@@ -271,7 +271,7 @@ const es: Record<(typeof caseStudySlugs)[number], CaseStudyDetail> = {
       { category: "Operaciones", items: ["Sin enrutamiento de llamadas fuera de horario", "Gasto en anuncios subiendo, retornos planos", "Sin seguimiento de leads por fuente"] },
     ],
     strategyPhases: [
-      { objective: "Dominar búsqueda local", actions: "Optimización GBP con menú de servicios completo, limpieza de citas locales, campaña SEO de 60+ keywords", outcome: "Top-3 en pack local para 48 de 60 keywords objetivo" },
+      { objective: "Dominar búsqueda local", actions: "Optimización GBP con menú de servicios completo, limpieza de citaciones locales, campaña SEO de 60+ keywords", outcome: "Top-3 en pack local para 48 de 60 keywords objetivo" },
       { objective: "Convertir llamadas en trabajos", actions: "Landing pages de servicio de emergencia, CTAs click-to-call, seguimiento de llamadas integrado", outcome: "Trabajos reservados aumentaron de 18 a 67 por mes" },
       { objective: "Construir confianza y autoridad", actions: "Campaña de generación de reseñas, publicaciones semanales en GBP, contenido por área de servicio", outcome: "Interacciones GBP crecieron de 340 a 8,400 por mes" },
       { objective: "Reducir dependencia de anuncios", actions: "Estrategia de contenido orgánico, atribución de llamadas, optimización de gasto en anuncios por rendimiento de canal", outcome: "Gasto mensual en anuncios reducido de $6,800 a $2,400 sin perder volumen de leads" },
