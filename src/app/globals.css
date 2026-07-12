@@ -1306,7 +1306,8 @@ summary::-webkit-details-marker {
 
   @media (min-width: 1280px) {
     .hero:not(.hero--page) .type-hero {
-      font-size: clamp(4.5rem, 7vw, 7.5rem);
+      /* Cap below previous 7.5rem so the highlight line fits without clipping */
+      font-size: clamp(4.5rem, 6.5vw, 6.75rem);
     }
   }
 
@@ -1669,6 +1670,23 @@ summary::-webkit-details-marker {
     background-clip: text;
     background-size: 200% 100%;
     background-position: 0% center;
+    /* background-clip:text often shears the final glyph/period without end padding */
+    padding-inline-end: 0.15em;
+  }
+
+  /* Homepage highlight — fit the container; never clip the trailing E / period */
+  .hero--home .hero-home-highlight {
+    width: fit-content;
+    max-width: 100%;
+    overflow: visible;
+    padding-inline-end: 0.2em;
+  }
+
+  @media (min-width: 1280px) {
+    .hero--home .hero-home-highlight {
+      /* Slightly smaller than sibling lines so the full phrase stays on-screen */
+      font-size: 0.9em;
+    }
   }
 
   .neon-border {
