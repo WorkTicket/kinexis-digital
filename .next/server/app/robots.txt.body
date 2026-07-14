@@ -1,8 +1,0 @@
-User-Agent: *
-Allow: /
-Disallow: /api/
-Disallow: /lead-magnet
-Disallow: /en/lead-magnet
-Disallow: /es/lead-magnet
-
-Sitemap: https://www.kinexisdigital.com/sitemap.xml
