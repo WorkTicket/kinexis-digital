@@ -3,6 +3,7 @@
 
 # next.js — commit production build; exclude webpack/dev cache only
 .next/cache/
+.next/standalone/node_modules/
 /out/
 
 # production
