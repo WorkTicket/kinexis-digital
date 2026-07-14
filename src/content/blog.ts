@@ -106,6 +106,28 @@ export const blogContent: Record<Locale, BlogContent> = {
         layout: "horizontal",
       },
       {
+        slug: "seo-pricing-guide",
+        title: "SEO Pricing: How Much Should You Budget for SEO in 2026?",
+        category: "SEO",
+        excerpt:
+          "SEO pricing ranges from $500 to $30,000 per month. Here's what each tier actually buys you, how to evaluate whether a price is fair, and what to expect at every budget level.",
+        publishedAt: "July 14, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "how-long-does-seo-take",
+        title: "How Long Does SEO Take? Realistic Timelines for Real Results",
+        category: "SEO",
+        excerpt:
+          "Four to six months is the standard answer, but the real timeline depends on competition, budget, and starting point. Here's exactly what to expect month by month.",
+        publishedAt: "July 14, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
         slug: "email-nurture-sequences-that-book-calls",
         title: "Email Nurture Sequences That Actually Book Calls",
         category: "Email",
@@ -388,7 +410,7 @@ export const blogContent: Record<Locale, BlogContent> = {
       { label: "Newest", value: "Local SEO Strategy 2026", slug: "local-seo-strategy-2026", date: "June 15" },
     ],
     archiveYears: [
-      { year: "2026", count: 26 },
+      { year: "2026", count: 28 },
       { year: "2025", count: 12 },
       { year: "2024", count: 8 },
     ],
@@ -437,6 +459,28 @@ export const blogContent: Record<Locale, BlogContent> = {
           "Google sigue ajustando su algoritmo de búsqueda local, y mucho de lo que antes funcionaba ya no es suficiente. Hemos estado probando lo que realmente impulsa los rankings en 2026. Esto es lo que encontramos.",
         publishedAt: "15 de junio de 2026",
         featured: true,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "seo-pricing-guide",
+        title: "Precios de SEO: ¿Cuánto Deberías Presupuestar para SEO en 2026?",
+        category: "SEO",
+        excerpt:
+          "Los precios de SEO oscilan entre $500 y $30,000 al mes. Aquí te explicamos qué obtienes en cada nivel, cómo evaluar si un precio es justo y qué esperar en cada presupuesto.",
+        publishedAt: "14 de julio de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "how-long-does-seo-take",
+        title: "¿Cuánto Tiempo Toma el SEO? Plazos Realistas para Resultados Reales",
+        category: "SEO",
+        excerpt:
+          "De cuatro a seis meses es la respuesta estándar, pero el plazo real depende de la competencia, el presupuesto y el punto de partida. Aquí te explicamos mes a mes qué esperar.",
+        publishedAt: "14 de julio de 2026",
+        featured: false,
         metric: null,
         layout: "horizontal",
       },
@@ -723,7 +767,7 @@ export const blogContent: Record<Locale, BlogContent> = {
       { label: "Más Reciente", value: "Estrategia de SEO Local 2026", slug: "local-seo-strategy-2026", date: "15 de junio" },
     ],
     archiveYears: [
-      { year: "2026", count: 26 },
+      { year: "2026", count: 28 },
       { year: "2025", count: 12 },
       { year: "2024", count: 8 },
     ],

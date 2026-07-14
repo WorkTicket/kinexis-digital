@@ -197,6 +197,8 @@ export const authorSlugs = ["sarah-mitchell", "james-chen", "maria-rodriguez"] a
 export type AuthorSlug = (typeof authorSlugs)[number];
 
 export const blogSlugs = [
+  "seo-pricing-guide",
+  "how-long-does-seo-take",
   "local-seo-strategy-2026",
   "email-nurture-sequences-that-book-calls",
   "website-conversion-optimization",

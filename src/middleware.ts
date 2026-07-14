@@ -23,23 +23,6 @@ function hasLocalePrefix(pathname: string): boolean {
   return LOCALE_PREFIX_RE.test(pathname);
 }
 
-function isInsecureRequest(request: NextRequest): boolean {
-  const cfVisitor = request.headers.get("cf-visitor");
-  if (cfVisitor) {
-    try {
-      const parsed = JSON.parse(cfVisitor) as { scheme?: string };
-      if (parsed.scheme === "http") return true;
-    } catch {
-      /* ignore malformed Cf-Visitor */
-    }
-  }
-
-  const forwarded = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
-  if (forwarded === "http") return true;
-
-  return request.nextUrl.protocol === "http:";
-}
-
 function detectLocale(request: NextRequest): Locale {
   const accept = request.headers.get("accept-language")?.toLowerCase() ?? "";
   if (/\bes\b/.test(accept) || accept.includes("es-")) return "es";
@@ -70,10 +53,26 @@ export default function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const isLocalHost = host === "localhost" || host === "127.0.0.1";
   const needsWww = host === APEX_HOST;
-  const needsHttps = !isLocalHost && isInsecureRequest(request);
 
-  if (CRAWLER_PATHS.has(pathname) && !isLocalHost && (needsWww || needsHttps)) {
-    return buildRedirect(request, pathname, { forceHttps: true, forceWww: needsWww });
+  // HTTPS enforcement — check first, before any other processing.
+  // Uses x-forwarded-proto (set by Cloudflare) as the primary signal,
+  // with request.nextUrl.protocol as fallback for non-Cloudflare environments.
+  if (!isLocalHost) {
+    const forwardedProto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
+    const isHttp =
+      forwardedProto === "http" ||
+      request.nextUrl.protocol === "http:" ||
+      (() => {
+        try {
+          const cf = request.headers.get("cf-visitor");
+          if (cf) return JSON.parse(cf).scheme === "http";
+        } catch { /* ignore */ }
+        return false;
+      })();
+
+    if (isHttp || needsWww) {
+      return buildRedirect(request, pathname, { forceHttps: true, forceWww: needsWww });
+    }
   }
 
   if (CRAWLER_PATHS.has(pathname)) {
@@ -83,10 +82,12 @@ export default function middleware(request: NextRequest) {
   const legacyTarget =
     UNPREFIXED_LEGACY[pathname] ?? matchUnprefixedLegacyRedirect(pathname);
   if (legacyTarget) {
-    return buildRedirect(request, legacyTarget, { forceHttps: needsHttps, forceWww: needsWww });
+    const url = request.nextUrl.clone();
+    url.pathname = legacyTarget;
+    return NextResponse.redirect(url, 301);
   }
 
-  if (!isLocalHost && pathname === "/" && !needsWww && !needsHttps) {
+  if (!isLocalHost && pathname === "/") {
     const url = request.nextUrl.clone();
     url.pathname = `/${detectLocale(request)}`;
     return NextResponse.rewrite(url);
@@ -94,12 +95,10 @@ export default function middleware(request: NextRequest) {
 
   if (!isLocalHost) {
     const targetPath = localePrefixedPath(pathname, request);
-    const pathChanged = targetPath !== pathname;
-    if (needsWww || needsHttps || pathChanged) {
-      return buildRedirect(request, targetPath, {
-        forceHttps: needsHttps,
-        forceWww: needsWww,
-      });
+    if (targetPath !== pathname) {
+      const url = request.nextUrl.clone();
+      url.pathname = targetPath;
+      return NextResponse.redirect(url, 301);
     }
   }
 

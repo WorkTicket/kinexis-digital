@@ -1,9 +1,10 @@
 # dependencies
 /node_modules
 
-# next.js — commit production build; exclude webpack/dev cache only
+# next.js — commit production build; exclude webpack/dev cache & server chunks
 .next/cache/
 .next/standalone/node_modules/
+.next/standalone/.next/server/
 /out/
 
 # production
