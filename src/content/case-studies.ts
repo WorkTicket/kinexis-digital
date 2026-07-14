@@ -147,6 +147,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           { label: "Booked Jobs", from: 18, to: 67, suffix: "/mo" },
           { label: "Organic Traffic", from: 200, to: 1020, suffix: "/mo" },
           { label: "GBP Interactions", from: 340, to: 8400, suffix: "/mo" },
+          { label: "Revenue Influenced", from: 4200, to: 18400, prefix: "$", suffix: "/mo" },
         ],
         narrative: {
           challenge:
@@ -156,7 +157,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           implementation:
             "Month 1: Website audit and rebuild planning. GBP claimed, cleaned up, and optimized with complete service menu and 50+ photos. Citation cleanup across 38 directories. Month 2: New website built in Next.js with 12 service-area pages, dedicated emergency service landing page, integrated call tracking, and Cloudflare performance optimization. Month 3: SEO campaign launched targeting emergency plumbing, drain cleaning, water heater repair, and seasonal keywords. Review generation campaign deployed with automated post-service follow-up. Month 4-6: Content production — 3 articles per month on plumbing maintenance, emergency prep, and service guides. GBP posting cadence of 3 posts per week. Review volume reached 8-10 new reviews per month. Month 7-8: CRO testing on emergency service page — call-to-action placement, form fields, and mobile tap-to-call optimization.",
           outcome:
-            "Emergency service calls grew from 22 to 94 per month, a 327% increase. Booked jobs rose from 18 to 67 per month. Organic traffic increased from 200 to 1,020 monthly visits. Google Business Profile interactions went from 340 to 8,400 per month. Monthly ad spend was reduced from $6,800 to $2,400 as organic calls replaced paid leads. Revenue influenced by organic and direct channels reached $18,400 per month. The business achieved top-3 local pack rankings for 48 of 60 target keywords.",
+            "Emergency service calls grew from 22 to 94 per month, a 327% increase. Booked jobs rose from 18 to 67 per month. Organic traffic increased from 200 to 1,020 monthly visits. Google Business Profile interactions went from 340 to 8,400 per month. Monthly ad spend was reduced from $6,800 to $2,400 as organic calls replaced paid leads. Revenue influenced by organic and direct channels reached $18,400 per month, up from $4,200. The business achieved top-3 local pack rankings for 48 of 60 target keywords.",
         },
       },
       {
@@ -164,7 +165,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         title: "SaaS Platform",
         industry: "Technology",
         headline: "5.9X Demo Requests",
-        trafficLift: "+482%",
+        trafficLift: "+481%",
         leadLift: "+490%",
         revenueLift: "+$24,500/mo",
         timeline: "8 months",
@@ -186,7 +187,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           implementation:
             "Month 1: Technical audit and site architecture redesign. Schema markup implemented for product, article, FAQ, and breadcrumb types. Core Web Vitals optimized — LCP reduced from 3.2s to 1.4s. Month 2-3: Content engine launched — 6 long-form guides published targeting high-intent keywords. Each guide included expert quotes, proprietary data, and a CTA driving to a demo request page. Month 4-5: Landing page program — dedicated pages for e-commerce, SaaS, and marketplace use cases. Form optimization with progressive profiling reduced friction. Month 6-8: CRO testing on pricing page, demo booking flow, and email nurture sequence for non-converting traffic. Analytics infrastructure rebuilt with multi-touch attribution.",
           outcome:
-            "Demo requests grew from 32 to 189 per month, a 5.9X increase. Organic traffic jumped from 950 to 5,520 monthly visits — a 482% lift. SQLs increased from 14 to 78 per month. MRR attributed to marketing channels reached $33,000 per month, up from $8,500. CAC decreased by 43% as organic channels reduced paid dependency. The content engine contributed 62% of new demo requests by month 8.",
+            "Demo requests grew from 32 to 189 per month, a 5.9X increase. Organic traffic jumped from 950 to 5,520 monthly visits — a 481% lift. SQLs increased from 14 to 78 per month. MRR attributed to marketing channels reached $33,000 per month, up from $8,500. CAC decreased by 43% as organic channels reduced paid dependency. The content engine contributed 62% of new demo requests by month 8.",
         },
       },
     ],
@@ -269,6 +270,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           { label: "Trabajos Reservados", from: 18, to: 67, suffix: "/mes" },
           { label: "Tráfico Orgánico", from: 200, to: 1020, suffix: "/mes" },
           { label: "Interacciones GBP", from: 340, to: 8400, suffix: "/mes" },
+          { label: "Ingresos Influenciados", from: 4200, to: 18400, prefix: "$", suffix: "/mes" },
         ],
       },
       {
@@ -276,7 +278,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         title: "Plataforma SaaS",
         industry: "Tecnología",
         headline: "Solicitudes de Demo 5.9X",
-        trafficLift: "+482%",
+        trafficLift: "+481%",
         leadLift: "+490%",
         revenueLift: "+$24,500/mes",
         timeline: "8 meses",

@@ -106,12 +106,13 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     solution:
       "We rebuilt the website around emergency service with prominent click-to-call buttons, service-area pages for each neighborhood, and trust signals including license details and real-time availability. The GBP was fully optimized with a complete service menu, 50+ photos, and a weekly posting schedule. A review generation system targeting 10 new reviews per month was deployed with automated post-service follow-up. A local SEO campaign targeted 60+ high-intent keywords across emergency, repair, installation, and seasonal plumbing services. Call tracking and form analytics were integrated to tie every lead to a specific source.",
     results:
-      "Emergency service calls grew from 22 to 94 per month — a 327% increase. Booked jobs rose from 18 to 67 per month. Organic traffic increased from 200 to 1,020 monthly visits. GBP interactions went from 340 to 8,400 per month. Monthly ad spend was reduced from $6,800 to $2,400 as organic calls replaced paid leads. The business achieved top-3 local pack rankings for 48 of 60 target keywords.",
+      "Emergency service calls grew from 22 to 94 per month — a 327% increase. Booked jobs rose from 18 to 67 per month. Organic traffic increased from 200 to 1,020 monthly visits. GBP interactions went from 340 to 8,400 per month. Monthly ad spend was reduced from $6,800 to $2,400 as organic calls replaced paid leads. Monthly revenue influenced by digital channels reached $18,400, up from $4,200. The business achieved top-3 local pack rankings for 48 of 60 target keywords.",
     resultsList: [
       { label: "Emergency Calls", before: 22, after: 94, suffix: "/mo" },
       { label: "Booked Jobs", before: 18, after: 67, suffix: "/mo" },
       { label: "Organic Traffic", before: 200, after: 1020, suffix: " visits/mo" },
       { label: "GBP Interactions", before: 340, after: 8400, suffix: "/mo" },
+      { label: "Revenue Influenced", before: 4200, after: 18400, prefix: "$", suffix: "/mo" },
     ],
     challengeHeading: "The Challenge",
     solutionHeading: "The Solution",
@@ -151,7 +152,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     solution:
       "We executed three parallel tracks. A content strategy targeting bottom-of-funnel keywords where e-commerce operators actively searched for solutions — churn analysis, cohort reporting, and customer lifetime value tracking. Each guide was written as an authoritative resource ending with a relevant demo CTA. A technical SEO overhaul fixed site architecture, implemented structured data (Product, Article, FAQ, Breadcrumb schemas), and improved Core Web Vitals — LCP dropped from 3.2s to 1.4s. A landing page and CRO program converted organic traffic into qualified demo requests with dedicated pages for each use case and industry vertical, plus an email nurture sequence for non-converting visitors.",
     results:
-      "Demo requests grew from 32 to 189 per month — a 5.9X increase. Organic traffic jumped from 950 to 5,520 monthly visits — a 482% lift. SQLs increased from 14 to 78 per month. MRR attributed to marketing channels reached $33,000 per month, up from $8,500. Customer acquisition cost decreased by 43% as organic channels reduced paid dependency.",
+      "Demo requests grew from 32 to 189 per month — a 5.9X increase. Organic traffic jumped from 950 to 5,520 monthly visits — a 481% lift. SQLs increased from 14 to 78 per month. MRR attributed to marketing channels reached $33,000 per month, up from $8,500. Customer acquisition cost decreased by 43% as organic channels reduced paid dependency.",
     resultsList: [
       { label: "Demo Requests", before: 32, after: 189, suffix: "/mo" },
       { label: "Organic Traffic", before: 950, after: 5520, suffix: " visits/mo" },
@@ -244,12 +245,13 @@ const es: Record<(typeof caseStudySlugs)[number], CaseStudyDetail> = {
     solution:
       "Reconstruimos el sitio web alrededor del servicio de emergencia con botones de llamada destacados, páginas de área de servicio para cada vecindario y señales de confianza. Optimizamos el GBP con menú de servicios completo, más de 50 fotos y publicaciones semanales. Implementamos un sistema de generación de reseñas con seguimiento post-servicio automatizado. Una campaña de SEO local apuntó a más de 60 palabras clave de alta intención. Integramos seguimiento de llamadas y analítica de formularios para vincular cada lead a su fuente.",
     results:
-      "Las llamadas de emergencia crecieron de 22 a 94 por mes, un aumento del 327%. Los trabajos reservados aumentaron de 18 a 67 por mes. El tráfico orgánico subió de 200 a 1,020 visitas mensuales. Las interacciones del GBP pasaron de 340 a 8,400 por mes. El gasto mensual en anuncios se redujo de $6,800 a $2,400. El negocio logró posiciones en el top-3 del pack local para 48 de 60 palabras clave objetivo.",
+      "Las llamadas de emergencia crecieron de 22 a 94 por mes, un aumento del 327%. Los trabajos reservados aumentaron de 18 a 67 por mes. El tráfico orgánico subió de 200 a 1,020 visitas mensuales. Las interacciones del GBP pasaron de 340 a 8,400 por mes. El gasto mensual en anuncios se redujo de $6,800 a $2,400. Los ingresos mensuales influenciados por canales digitales alcanzaron $18,400, frente a $4,200 anteriores. El negocio logró posiciones en el top-3 del pack local para 48 de 60 palabras clave objetivo.",
     resultsList: [
       { label: "Llamadas de Emergencia", before: 22, after: 94, suffix: "/mes" },
       { label: "Trabajos Reservados", before: 18, after: 67, suffix: "/mes" },
       { label: "Tráfico Orgánico", before: 200, after: 1020, suffix: " visitas/mes" },
       { label: "Interacciones GBP", before: 340, after: 8400, suffix: "/mes" },
+      { label: "Ingresos Influenciados", before: 4200, after: 18400, prefix: "$", suffix: "/mes" },
     ],
     challengeHeading: "El Desafío",
     solutionHeading: "La Solución",

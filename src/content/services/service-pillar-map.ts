@@ -329,7 +329,7 @@ export const contentMarketingPillarContent: ServicePillarContent = {
     subtitle: "Content outcomes from recent programs.",
     metrics: [
       { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
-      { metric: "+482%", label: "organic traffic · same client" },
+      { metric: "+481%", label: "organic traffic · same client" },
       { metric: "62%", label: "of demos from content engine · month 8" },
       { metric: "62%", label: "of demos from content · month 8" },
     ],

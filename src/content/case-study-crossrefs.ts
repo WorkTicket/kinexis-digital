@@ -35,7 +35,7 @@ export const CASE_STUDIES = {
     clientFull: "SaaS Platform",
     heroMetric: "5.9X Demo Requests",
     linkLabel: "5.9X Demos · SaaS Platform",
-    trafficLift: "+482%",
+    trafficLift: "+481%",
     leadLift: "+490%",
     revenueLift: "+$24,500/mo",
     timeline: "8 months",
