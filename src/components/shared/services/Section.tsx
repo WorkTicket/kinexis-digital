@@ -14,7 +14,7 @@ type SectionProps = {
   variant?: "default" | "dark" | "data" | "editorial" | "visual" | "proof";
 };
 
-const variantClasses = {
+const variantClasses: Record<string, string> = {
   default: "",
   dark: "",
   data: "section--data",
@@ -30,12 +30,12 @@ export default function Section({
   surfaceIndex,
   compact,
   tone,
-  variant = "default",
+  variant,
 }: SectionProps) {
   return (
     <section
       id={id}
-      className={cn(pageSectionClasses(surfaceIndex, { compact, tone }), variantClasses[variant], className)}
+      className={cn(pageSectionClasses(surfaceIndex, { compact, tone }), variant ? variantClasses[variant] : "", className)}
       aria-labelledby={`${id}-heading`}
     >
       {children}

@@ -9,6 +9,20 @@ import MetricCard from "@/components/ui/MetricCard";
 import PhaseDot from "@/components/ui/PhaseDot";
 import { ArrowRight, Check } from "lucide-react";
 import { cardClasses } from "@/lib/card-styles";
+
+const MOTION_UP = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-50px" },
+  transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as const },
+};
+
+const MOTION_ITEM = (delay: number) => ({
+  initial: { opacity: 0, y: 16 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.45, delay, ease: [0.16, 1, 0.3, 1] as const },
+});
 export type PillarDeliverable = { title: string; description: string };
 export type PillarTimeline = { phase: string; duration: string; description: string };
 export type PillarPricingTier = { name: string; range: string; description: string };
@@ -51,10 +65,7 @@ export default function ServicePillarSections({ content, startSurfaceIndex = 0 }
 
           <motion.div
             className="section-content relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-surface bg-gradient-to-br from-white/[0.05] via-bg-secondary/90 to-bg-dark shadow-panel"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            {...MOTION_UP}
           >
             <div
               className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent"
@@ -79,10 +90,7 @@ export default function ServicePillarSections({ content, startSurfaceIndex = 0 }
                 <motion.li
                   key={item.title}
                   className="flex gap-4 bg-bg-secondary/90 px-6 py-6 md:px-8 md:py-7"
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.45, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  {...MOTION_ITEM(i * 0.06)}
                 >
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-neon-cyan/25 bg-neon-cyan/[0.1]">
                     <Check className="h-2.5 w-2.5 text-neon-cyan" strokeWidth={2.5} aria-hidden />
@@ -128,10 +136,10 @@ export default function ServicePillarSections({ content, startSurfaceIndex = 0 }
                   {/* Card */}
                   <div className={cardClasses({ surface: "elevated", hover: false, className: "p-6 md:p-8 transition-all duration-500 group-hover:border-strong group-hover:bg-surface-raised" })}>
                     {/* Timing badge */}
-                    <span className="inline-block rounded-lg border border-strong bg-surface-glass px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-neon-cyan/65 mb-4">
+                    <h3 className="inline-block rounded-lg border border-strong bg-surface-glass px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-neon-cyan/65 mb-4">
                       {phase.phase}
-                    </span>
-                    <h3 className="text-lg font-bold md:text-xl">{phase.duration}</h3>
+                    </h3>
+                    <span className="text-lg font-bold md:text-xl">{phase.duration}</span>
                     <p className="mt-3 text-sm leading-relaxed text-muted">{phase.description}</p>
                   </div>
                 </motion.div>

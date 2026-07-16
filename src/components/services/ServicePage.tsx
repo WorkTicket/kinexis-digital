@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import type { ReactNode } from "react";
 import ProcessSection from "@/components/shared/services/ProcessSection";
 import ServicePricingTeaser from "@/components/shared/services/ServicePricingTeaser";
 import ServiceOverview from "@/components/shared/services/ServiceOverview";
@@ -11,8 +12,9 @@ import ResultsSection from "@/components/shared/services/ResultsSection";
 import ServiceInlineCTA from "@/components/shared/services/ServiceInlineCTA";
 import { getServiceHeroVisualization } from "@/components/services/service-hero-visualizations";
 import type { ServicePageServerProps } from "@/lib/service-page-props";
+import type { ServiceSeoSlug } from "@/content/service-seo/types";
+import type { Locale } from "@/i18n/routing";
 
-// Interactive/client-only leaves — kept as lazy client islands.
 const AnswerBlock = dynamic(() => import("@/components/sections/seo/AnswerBlock"));
 const ComparisonTable = dynamic(() => import("@/components/sections/seo/ComparisonTable"));
 const ServiceCTA = dynamic(() => import("@/components/shared/services/ServiceCTA"));
@@ -24,21 +26,66 @@ const WebDesignDeviceMockupsSection = dynamic(
 
 type Props = ServicePageServerProps;
 
-const CORE_SECTIONS = [
-  "ServiceOverview",
-  "EditorialOverview",
-  "WhyKinexis",
-  "Process",
-  "Deliverables",
-  "Proof",
-  "Results",
-  "AnswerBlock",
-  "Comparison",
-  "PricingTeaser",
-  "ServiceInlineCTA",
-] as const;
+type SectionRenderer = (ctx: { index: number }) => ReactNode;
 
-type CoreSectionId = (typeof CORE_SECTIONS)[number];
+function buildRegistry(slug: ServiceSeoSlug, locale: Locale, data: Props["data"]): Record<string, SectionRenderer> {
+  const viz = getServiceHeroVisualization(slug, locale);
+
+  function visualizationFor(sectionName: string) {
+    return data.visualizationSection === sectionName ? viz : undefined;
+  }
+
+  return {
+    ServiceOverview: ({ index }) => (
+      <ServiceOverview {...data.overview} surfaceIndex={index} visualization={visualizationFor("ServiceOverview")} />
+    ),
+    EditorialOverview: ({ index }) =>
+      data.editorial ? (
+        <EditorialSection {...data.editorial} surfaceIndex={index} visualization={visualizationFor("EditorialOverview")} />
+      ) : null,
+    WhyKinexis: ({ index }) => (
+      <WhyKinexisSection {...data.whyKinexis} surfaceIndex={index} visualization={visualizationFor("WhyKinexis")} />
+    ),
+    Process: ({ index }) => (
+      <ProcessSection
+        title={data.process.title}
+        subtitle={data.process.subtitle}
+        intro={data.process.intro}
+        steps={data.process.steps}
+        surfaceIndex={index}
+      />
+    ),
+    Deliverables: ({ index }) => (
+      <DeliverablesSection
+        title={data.deliverables.title}
+        subtitle={data.deliverables.subtitle}
+        items={data.deliverables.items}
+        surfaceIndex={index}
+      />
+    ),
+    Proof: ({ index }) =>
+      data.proof ? <ProofSection {...data.proof} locale={locale} surfaceIndex={index} /> : null,
+    Results: ({ index }) => (
+      <ResultsSection
+        title={data.results.title}
+        subtitle={data.results.subtitle}
+        metrics={data.results.metrics}
+        surfaceIndex={index}
+      />
+    ),
+    AnswerBlock: ({ index }) =>
+      data.answerBlock ? <AnswerBlock text={data.answerBlock} surfaceIndex={index} /> : null,
+    Comparison: ({ index }) =>
+      data.comparison ? <ComparisonTable {...data.comparison} surfaceIndex={index} /> : null,
+    PricingTeaser: ({ index }) => <ServicePricingTeaser slug={slug} locale={locale} surfaceIndex={index} />,
+    ServiceInlineCTA: ({ index }) =>
+      data.cta?.inlineLabel ? (
+        <ServiceInlineCTA label={data.cta.inlineLabel} subtitle={data.cta.inlineSubtitle} surfaceIndex={index} />
+      ) : null,
+    DeviceMockups: ({ index }) =>
+      slug === "web-design" ? <WebDesignDeviceMockupsSection surfaceIndex={index} /> : null,
+  };
+}
 
 export default function ServicePage({
   slug,
@@ -47,111 +94,10 @@ export default function ServicePage({
   breadcrumbs: _breadcrumbs,
   relatedLinks,
 }: Props) {
-  const pageVisualization = getServiceHeroVisualization(slug, locale);
-
-  let surfaceIndex = 0;
-
-  function visualizationFor(sectionName: string) {
-    return data.visualizationSection === sectionName ? pageVisualization : undefined;
-  }
-
-  function renderSection(name: string, index: number) {
-    if (CORE_SECTIONS.includes(name as CoreSectionId)) {
-      switch (name as CoreSectionId) {
-        case "ServiceOverview":
-          return (
-            <ServiceOverview
-              {...data.overview}
-              surfaceIndex={index}
-              visualization={visualizationFor("ServiceOverview")}
-            />
-          );
-        case "EditorialOverview":
-          return data.editorial ? (
-            <EditorialSection
-              {...data.editorial}
-              surfaceIndex={index}
-              visualization={visualizationFor("EditorialOverview")}
-            />
-          ) : null;
-        case "WhyKinexis":
-          return (
-            <WhyKinexisSection
-              {...data.whyKinexis}
-              surfaceIndex={index}
-              visualization={visualizationFor("WhyKinexis")}
-            />
-          );
-        case "Process":
-          return (
-            <ProcessSection
-              title={data.process.title}
-              subtitle={data.process.subtitle}
-              intro={data.process.intro}
-              steps={data.process.steps}
-              surfaceIndex={index}
-            />
-          );
-        case "Deliverables":
-          return (
-            <DeliverablesSection
-              title={data.deliverables.title}
-              subtitle={data.deliverables.subtitle}
-              items={data.deliverables.items}
-              surfaceIndex={index}
-            />
-          );
-        case "Proof":
-          return data.proof ? <ProofSection {...data.proof} locale={locale} surfaceIndex={index} /> : null;
-        case "Results":
-          return (
-            <ResultsSection
-              title={data.results.title}
-              subtitle={data.results.subtitle}
-              metrics={data.results.metrics}
-              surfaceIndex={index}
-            />
-          );
-        case "AnswerBlock":
-          return data.answerBlock ? <AnswerBlock text={data.answerBlock} surfaceIndex={index} /> : null;
-        case "Comparison":
-          return data.comparison ? <ComparisonTable {...data.comparison} surfaceIndex={index} /> : null;
-        case "PricingTeaser":
-          return <ServicePricingTeaser slug={slug} locale={locale} surfaceIndex={index} />;
-        case "ServiceInlineCTA":
-          return data.cta?.inlineLabel ? (
-            <ServiceInlineCTA
-              label={data.cta.inlineLabel}
-              subtitle={data.cta.inlineSubtitle}
-              surfaceIndex={index}
-            />
-          ) : null;
-        default:
-          return null;
-      }
-    }
-
-    if (name === "DeviceMockups" && slug === "web-design") {
-      return <WebDesignDeviceMockupsSection surfaceIndex={index} />;
-    }
-
-    const serviceSection = data.serviceSections[name];
-    if (serviceSection) {
-      return (
-        <ServiceSection
-          {...serviceSection}
-          surfaceIndex={index}
-          visualization={visualizationFor(name)}
-        />
-      );
-    }
-
-    return null;
-  }
+  const registry = buildRegistry(slug, locale, data);
 
   const effectiveOrder = [...data.sectionOrder];
 
-  // Legacy pages: insert AnswerBlock after overview when not already in order.
   if (
     data.answerBlock &&
     !effectiveOrder.includes("AnswerBlock") &&
@@ -170,21 +116,36 @@ export default function ServicePage({
     }
   }
 
-  const orderedSections = effectiveOrder
-    .map((name) => {
-      const section = renderSection(name, surfaceIndex);
-      if (!section) return null;
-      const rendered = <div key={name}>{section}</div>;
-      if (name !== "PricingTeaser") {
-        surfaceIndex += 1;
+  const sectionsWithIndex = effectiveOrder.reduce<{ name: string; index: number }[]>(
+    (acc, name) => {
+      const lastIndex = acc.length > 0 ? acc[acc.length - 1].index : 0;
+      const nextIndex = name !== "PricingTeaser" ? lastIndex + 1 : lastIndex;
+      acc.push({ name, index: nextIndex });
+      return acc;
+    },
+    []
+  );
+
+  const orderedSections = sectionsWithIndex
+    .map(({ name, index }) => {
+      const renderer = registry[name];
+      if (renderer) {
+        const section = renderer({ index });
+        if (!section) return null;
+        return <div key={name}>{section}</div>;
       }
-      return rendered;
+      const serviceSection = data.serviceSections[name];
+      if (!serviceSection) return null;
+      const viz = data.visualizationSection === name ? getServiceHeroVisualization(slug, locale) : undefined;
+      return <div key={name}><ServiceSection {...serviceSection} surfaceIndex={index} visualization={viz} /></div>;
     })
     .filter(Boolean);
 
+  const faqSurfaceIndex =
+    sectionsWithIndex.length > 0 ? sectionsWithIndex[sectionsWithIndex.length - 1].index : 0;
   const faqSection =
     data.faq.length > 0 ? (
-      <ServiceFAQSection key="faq" items={data.faq} surfaceIndex={surfaceIndex++} />
+      <ServiceFAQSection key="faq" items={data.faq} surfaceIndex={faqSurfaceIndex} />
     ) : null;
 
   return (

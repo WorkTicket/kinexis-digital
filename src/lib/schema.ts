@@ -4,6 +4,12 @@ import { parseContentDate } from "@/lib/sitemap-last-modified";
 
 export type BreadcrumbItem = { name: string; url?: string };
 
+export type JsonLdEntity = {
+  "@context": "https://schema.org";
+  "@type": string;
+  [key: string]: unknown;
+};
+
 function organizationLogoObject() {
   return {
     "@type": "ImageObject" as const,
@@ -29,7 +35,7 @@ function defaultOgImageObject() {
   };
 }
 
-export function organizationSchema() {
+export function organizationSchema(): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -52,7 +58,7 @@ export function organizationSchema() {
  * Agency hub schema — ProfessionalService (subtype of LocalBusiness) with service-area
  * address only. No fabricated street address or phone; email matches footer + contact page.
  */
-export function localBusinessSchema(pageUrl?: string) {
+export function localBusinessSchema(pageUrl?: string): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -82,7 +88,7 @@ export function localBusinessSchema(pageUrl?: string) {
   };
 }
 
-export function websiteSchema() {
+export function websiteSchema(): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -103,7 +109,7 @@ export function serviceSchema(
   description: string,
   url: string,
   areaServed?: AreaServedInput
-) {
+): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -124,7 +130,7 @@ export function serviceSchema(
   };
 }
 
-export function faqSchema(items: { question: string; answer: string }[]) {
+export function faqSchema(items: { question: string; answer: string }[]): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -136,7 +142,7 @@ export function faqSchema(items: { question: string; answer: string }[]) {
   };
 }
 
-export function breadcrumbSchema(items: BreadcrumbItem[]) {
+export function breadcrumbSchema(items: BreadcrumbItem[]): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -157,7 +163,7 @@ export type PersonSchemaInput = {
   image?: string;
 };
 
-export function personSchema(person: PersonSchemaInput) {
+export function personSchema(person: PersonSchemaInput): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -189,7 +195,7 @@ export function articleSchema({
   authorName?: string;
   authorUrl?: string;
   reviewedBy?: string;
-}) {
+}): JsonLdEntity {
   const author = authorName
     ? { "@type": "Person" as const, name: authorName, ...(authorUrl && { url: authorUrl }) }
     : { "@type": "Organization" as const, "@id": `${getSiteUrl()}/#organization`, name: businessProfile.name };
@@ -223,7 +229,7 @@ export function caseStudySchema({
   url: string;
   industry: string;
   datePublished: string;
-}) {
+}): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "Article",

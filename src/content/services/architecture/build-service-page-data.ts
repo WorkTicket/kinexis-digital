@@ -52,6 +52,8 @@ import { serviceArchitectureConfig } from "./service-architecture-config";
 import { buildServiceSections } from "./service-section-builders";
 import type { ServicePageData, ProofData } from "./types";
 
+export type { ServicePageData };
+
 export const servicePillarBySlug: Record<ServiceSeoSlug, ServicePillarContent> = {
   seo: seoPillarContent,
   "local-seo": localSeoPillarContent,
