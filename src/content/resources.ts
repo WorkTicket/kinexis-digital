@@ -401,14 +401,14 @@ const resourceCategoriesEs: ResourceCategory[] = [
       {
         name: "Whitespark",
         description:
-          "Encuentra brechas en citas locales y gestiona reputación. Útil si tienes varias ubicaciones que mantener consistentes.",
+          "Encuentra brechas en citaciones locales y gestiona reputación. Útil si tienes varias ubicaciones que mantener consistentes.",
         badge: "Free + Paid",
         url: "https://whitespark.ca",
       },
       {
         name: "BrightLocal",
         description:
-          "Rastrea rankings locales, gestiona citas, revisa reseñas y ejecuta auditorías locales en varias ubicaciones.",
+          "Rastrea rankings locales, gestiona citaciones, revisa reseñas y ejecuta auditorías locales en varias ubicaciones.",
         badge: "Paid",
         url: "https://www.brightlocal.com",
       },

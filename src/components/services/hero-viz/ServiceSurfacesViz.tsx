@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { SkeletonLine } from "./ServiceHeroVizParts";
 
 export type SurfaceVariant =
   | "browser"
@@ -44,19 +45,14 @@ function Card({ children, chrome = true, className }: { children: ReactNode; chr
   );
 }
 
-function Line({ w = "full", accent = false }: { w?: "full" | "lg" | "md" | "sm"; accent?: boolean }) {
-  const width = w === "lg" ? "w-[70%]" : w === "md" ? "w-[55%]" : w === "sm" ? "w-[38%]" : "w-full";
-  return <div className={cn("h-1.5 rounded-full", width, accent ? "bg-neon-cyan/25" : "bg-white/10")} />;
-}
-
 export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVariant }) {
   switch (variant) {
     case "browser":
       return (
         <Card>
           <div className="flex flex-1 flex-col gap-1.5">
-            <Line w="lg" />
-            <Line w="md" />
+            <SkeletonLine width="lg" />
+            <SkeletonLine width="md" />
             <div className="mt-auto flex gap-1.5">
               <div className="h-6 flex-1 rounded bg-neon-cyan/15" />
               <div className="h-6 w-10 rounded bg-white/[0.05]" />
@@ -72,8 +68,8 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
             <div className="mx-auto mb-1.5 h-1 w-6 rounded-full bg-white/15" />
             <div className="flex flex-1 flex-col gap-1">
               <div className="h-8 rounded bg-neon-cyan/10" />
-              <Line />
-              <Line w="md" />
+              <SkeletonLine />
+              <SkeletonLine width="md" />
               <div className="mt-auto h-4 rounded bg-neon-cyan/20" />
             </div>
           </div>
@@ -85,7 +81,7 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
         <Card>
           <div className="mb-2 flex items-center gap-1 rounded-full border border-surface bg-white/[0.03] px-2 py-1">
             <span className="h-1.5 w-1.5 rounded-full border border-muted/40" />
-            <Line w="md" />
+            <SkeletonLine width="md" />
           </div>
           <div className="flex flex-1 flex-col gap-1.5">
             {[0, 1, 2].map((i) => (
@@ -98,9 +94,9 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
               >
                 <div className="mb-1 flex items-center gap-1">
                   {i === 0 && <span className="text-[7px] font-bold text-neon-cyan">#1</span>}
-                  <Line w="md" accent={i === 0} />
+                  <SkeletonLine width="md" accent={i === 0} />
                 </div>
-                <Line w="lg" />
+                <SkeletonLine width="lg" />
               </div>
             ))}
           </div>
@@ -151,7 +147,7 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
       return (
         <Card>
           <div className="mb-1 flex items-center justify-between">
-            <Line w="sm" />
+            <SkeletonLine width="sm" />
             <span className="text-[7px] font-bold text-emerald-400">▲ +38%</span>
           </div>
           <svg viewBox="0 0 180 90" className="flex-1" preserveAspectRatio="none">
@@ -231,8 +227,8 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
                   ✉
                 </div>
                 <div className="flex min-w-0 flex-1 flex-col gap-1">
-                  <Line w="md" accent={i === 0} />
-                  <Line w="lg" />
+                  <SkeletonLine width="md" accent={i === 0} />
+                  <SkeletonLine width="lg" />
                 </div>
                 {i === 0 && <span className="text-[6px] font-bold text-emerald-400">42%</span>}
               </div>
@@ -277,7 +273,7 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
             </div>
           </div>
           <div className="mt-1.5 flex items-center justify-between">
-            <Line w="md" />
+            <SkeletonLine width="md" />
             <span className="text-[7px] font-bold text-neon-cyan">1.2M</span>
           </div>
         </Card>
@@ -289,8 +285,8 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
           <div className="flex items-center gap-1.5">
             <div className="h-5 w-5 rounded-full bg-gradient-to-br from-neon-cyan to-neon-blue" />
             <div className="flex flex-1 flex-col gap-1">
-              <Line w="sm" />
-              <Line w="md" />
+              <SkeletonLine width="sm" />
+              <SkeletonLine width="md" />
             </div>
           </div>
           <div className="my-1.5 h-12 rounded bg-neon-cyan/10" />
@@ -329,12 +325,12 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
     case "doc":
       return (
         <Card>
-          <Line w="lg" accent />
+          <SkeletonLine width="lg" accent />
           <div className="mt-2 flex flex-1 flex-col gap-1.5">
-            <Line />
-            <Line w="lg" />
-            <Line />
-            <Line w="md" />
+            <SkeletonLine />
+            <SkeletonLine width="lg" />
+            <SkeletonLine />
+            <SkeletonLine width="md" />
           </div>
           <div className="mt-2 flex items-center justify-between border-t border-surface pt-1.5">
             <span className="text-[6px] uppercase text-muted/40">Readability</span>
@@ -350,7 +346,7 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-neon-cyan to-neon-blue text-[10px] font-black text-bg">
               K
             </div>
-            <Line w="md" />
+            <SkeletonLine width="md" />
           </div>
           <div className="flex gap-1.5">
             {["#00d4ff", "#0099cc", "#0033aa", "#ffffff", "#00b8d9"].map((c) => (
@@ -398,7 +394,7 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
             {[0, 1, 2, 3].map((i) => (
               <div key={i} className="flex flex-col gap-1 rounded border border-surface bg-white/[0.02] p-1">
                 <div className="h-6 rounded bg-neon-cyan/10" />
-                <Line w="lg" />
+                <SkeletonLine width="lg" />
                 <span className="text-[6px] font-bold text-neon-cyan">$4{i}9</span>
               </div>
             ))}
@@ -430,18 +426,18 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
         <Card>
           <div className="mb-2 flex items-center gap-1 rounded-full border border-surface bg-white/[0.03] px-2 py-1">
             <span className="h-1.5 w-1.5 rounded-full border border-muted/40" />
-            <Line w="md" />
+            <SkeletonLine width="md" />
           </div>
           <div className="rounded border border-neon-cyan/25 bg-neon-cyan/[0.05] px-1.5 py-1.5">
             <div className="mb-1 flex items-center gap-1">
               <span className="rounded-sm bg-neon-cyan/20 px-1 text-[5px] font-bold uppercase text-neon-cyan">Ad</span>
-              <Line w="md" accent />
+              <SkeletonLine width="md" accent />
             </div>
-            <Line w="lg" />
+            <SkeletonLine width="lg" />
           </div>
           <div className="mt-1.5 flex flex-col gap-1 rounded border border-surface bg-white/[0.02] px-1.5 py-1.5">
-            <Line w="md" />
-            <Line w="lg" />
+            <SkeletonLine width="md" />
+            <SkeletonLine width="lg" />
           </div>
           <span className="mt-auto pt-1.5 text-[6px] uppercase tracking-wider text-muted/40">Top of results</span>
         </Card>
@@ -451,7 +447,7 @@ export default function ServiceSurfacesViz({ variant }: { variant: SurfaceVarian
       return (
         <Card>
           <div className="flex flex-1 flex-col items-center justify-center gap-2 px-2">
-            <Line w="md" />
+            <SkeletonLine width="md" />
             <div className="relative">
               <div className="flex h-7 w-32 items-center justify-center rounded-lg bg-neon-cyan/90 text-[8px] font-bold uppercase text-bg">
                 Get Started

@@ -65,6 +65,16 @@ export default async function LocaleLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: COOKIE_PREFLIGHT_SCRIPT }} />
         <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+        />
+        <script
+          id="gtag-init"
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}window.gtag=gtag;gtag('js',new Date());gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`,
+          }}
+        />
       </head>
       <body className="font-ubuntu bg-bg text-foreground antialiased">
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>

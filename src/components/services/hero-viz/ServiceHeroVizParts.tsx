@@ -45,10 +45,10 @@ export function BrowserChrome({ className }: { className?: string }) {
   );
 }
 
-export function SkeletonLine({ width = "full", className }: { width?: "full" | "lg" | "md" | "sm"; className?: string }) {
+export function SkeletonLine({ width = "full", accent, className }: { width?: "full" | "lg" | "md" | "sm"; accent?: boolean; className?: string }) {
   const w =
     width === "lg" ? "w-[70%]" : width === "md" ? "w-[55%]" : width === "sm" ? "w-[40%]" : "w-full";
-  return <div className={cn("h-1.5 rounded-full bg-white/10", w, className)} />;
+  return <div className={cn("h-1.5 rounded-full", accent ? "bg-neon-cyan/25" : "bg-white/10", w, className)} />;
 }
 
 export function SkeletonBlock({ className }: { className?: string }) {

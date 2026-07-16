@@ -15,6 +15,7 @@ import TwoLineText from "@/components/ui/TwoLineText";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { cardClasses } from "@/lib/card-styles";
 import Section from "@/components/shared/services/Section";
+import { SectionGlow, SectionDivider, SectionGridOverlay } from "@/components/ui/SectionDecorations";
 
 type Props = { content: AboutContent; locale: Locale };
 
@@ -40,22 +41,10 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
 
       {/* SECTION 2: Why KINEXIS Exists — Editorial */}
       <Section id="why-we-exist" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.022)_1px,transparent_1px)] bg-[size:28px_28px] opacity-40"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/[0.1] to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -right-24 top-1/3 h-[28rem] w-[28rem] rounded-full bg-neon-cyan/[0.04] blur-[120px]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-neon-blue/[0.03] blur-[100px]"
-          aria-hidden
-        />
+        <SectionGridOverlay />
+        <SectionDivider />
+        <SectionGlow color="cyan" size="lg" position={{ right: "-96px", top: "33%" }} />
+        <SectionGlow color="blue" size="sm" opacity={0.03} blur={100} position={{ left: "-128px", bottom: "0" }} />
 
         <div className="container-site relative z-10">
           <SectionHeader
@@ -114,7 +103,7 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
 
       {/* SECTION 3: The KINEXIS Method */}
       <Section id="kinexis-method" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-neon-blue/[0.02] blur-[120px] pointer-events-none" />
+        <SectionGlow color="blue" size="xl" opacity={0.02} position={{ top: "50%", right: "0", transform: "translateY(-50%)" }} />
         <div className="container-site relative z-10">
           <SectionHeader
             badge={c.methodTag}
@@ -156,22 +145,10 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
 
       {/* SECTION 4: Inside The System — Architecture Map */}
       <Section id="inside-system" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:32px_32px] opacity-50"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-neon-cyan/[0.15] to-transparent"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute left-1/2 top-1/2 h-[48rem] w-[48rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-neon-blue/[0.05] blur-[140px]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute -right-32 top-1/4 h-72 w-72 rounded-full bg-neon-cyan/[0.03] blur-[100px]"
-          aria-hidden
-        />
+        <SectionGridOverlay cellSize={32} opacity={0.5} />
+        <SectionDivider color="cyan" />
+        <SectionGlow color="blue" width={768} height={768} opacity={0.05} blur={140} position={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
+        <SectionGlow color="cyan" size="sm" opacity={0.03} blur={100} position={{ right: "-128px", top: "25%" }} />
 
         <div className="container-site relative z-10">
           <SectionHeader
@@ -206,7 +183,7 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
 
       {/* SECTION 5: Principles - Editorial */}
       <Section id="principles" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-neon-cyan/[0.02] blur-[120px] pointer-events-none" />
+        <SectionGlow color="cyan" size="md" opacity={0.02} position={{ bottom: "0", left: "0" }} />
         <div className="container-site relative z-10">
           <SectionHeader
             badge={c.principlesTag}
@@ -243,18 +220,9 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
 
       {/* SECTION 6: Future Vision */}
       <Section id="future-vision" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.016)_1px,transparent_1px)] bg-[size:32px_32px] opacity-40"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute top-1/3 right-0 w-[480px] h-[480px] rounded-full bg-neon-blue/[0.025] blur-[140px]"
-          aria-hidden
-        />
-        <div
-          className="pointer-events-none absolute bottom-0 left-1/4 w-[360px] h-[360px] rounded-full bg-neon-cyan/[0.02] blur-[120px]"
-          aria-hidden
-        />
+        <SectionGridOverlay cellSize={32} opacity={0.4} />
+        <SectionGlow color="blue" size="lg" opacity={0.025} blur={140} position={{ top: "33%", right: "0" }} />
+        <SectionGlow color="cyan" width={360} height={360} opacity={0.02} position={{ bottom: "0", left: "25%" }} />
 
         <div className="container-site relative z-10">
           <SectionHeader

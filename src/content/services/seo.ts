@@ -352,7 +352,7 @@ export const seoContent: Record<Locale, SeoContent> = {
     faqs: [
       { question: "¿Cuánto tiempo tarda el SEO en mostrar resultados?", answer: "El movimiento de posiciones suele comenzar en 3-4 meses. El impacto en ingresos se vuelve claro alrededor de los 6-12 meses. El SEO se acumula con el tiempo: cada mejora y contenido sigue funcionando mucho después de publicarse." },
       { question: "¿Qué incluye tu servicio de SEO?", answer: "Cada proyecto incluye una auditoría técnica completa, investigación de palabras clave, optimización on-page, construcción de enlaces, estrategia de contenido e informes mensuales. La mezcla varía según lo que más impacto tenga para tu negocio." },
-      { question: "¿Trabajan con negocios locales?", answer: "Sí. El SEO local es una de nuestras fortalezas principales. Optimizamos Google Business Profile, construimos citas locales y producimos contenido específico por ubicación." },
+      { question: "¿Trabajan con negocios locales?", answer: "Sí. El SEO local es una de nuestras fortalezas principales. Optimizamos Google Business Profile, construimos citaciones locales y producimos contenido específico por ubicación." },
       { question: "¿Cómo informan sobre el rendimiento SEO?", answer: "Seguimiento semanal de rankings, paneles mensuales de tráfico, leads y conversiones, y revisiones trimestrales de estrategia. Cada métrica está vinculada a resultados de negocio reales." },
       { question: "¿El SEO seguirá funcionando con la búsqueda IA?", answer: "Sí. El SEO técnico sólido, el contenido de autoridad y los enlaces de calidad siguen siendo la base de la visibilidad en los resultados de búsqueda impulsados por IA. Adaptamos nuestra estrategia a las nuevas funciones SERP continuamente." },
     ],

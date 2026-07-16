@@ -24,7 +24,7 @@ export type ServiceCTAData = {
 
 export type ServiceSectionId =
   | "ServiceOverview"
-  | "WhyKinexus"
+  | "WhyKinexis"
   | "EditorialOverview"
   | "Process"
   | "Deliverables"
@@ -70,7 +70,7 @@ export type ServiceOverviewData = {
   solutionPoints: string[];
 };
 
-export type WhyKinexusData = {
+export type WhyKinexisData = {
   headline: string;
   /** Service-specific intro line, avoids generic copy on every page */
   subtitle: string;
@@ -139,7 +139,7 @@ export type ServicePageData = {
   sectionOrder: string[];
   editorial?: EditorialData;
   overview: ServiceOverviewData;
-  whyKinexus: WhyKinexusData;
+  whyKinexis: WhyKinexisData;
   cta?: ServiceCTAData;
   proof?: ProofData;
   results: {

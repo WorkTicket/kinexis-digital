@@ -1,29 +1,30 @@
 import Image from "next/image";
-
 import { Link } from "@/i18n/navigation";
-
 import { ArrowRight } from "lucide-react";
-
 import Section from "@/components/shared/services/Section";
-
 import SectionHeader from "@/components/ui/SectionHeader";
-
 import Reveal from "@/components/ui/Reveal";
-
 import type { ProofData } from "@/content/services/architecture/types";
+import { uiChrome } from "@/content/ui-chrome";
+import type { Locale } from "@/i18n/routing";
 
 type Props = ProofData & {
   surfaceIndex: number;
+  locale?: Locale;
 };
 
 export default function ProofSection({
-  title = "Proof it works",
-  subtitle = "Real client work with measurable outcomes, not vanity metrics.",
+  title,
+  subtitle,
   caseStudy,
   logos,
   beforeAfter,
   surfaceIndex,
+  locale = "en",
 }: Props) {
+  const copy = uiChrome[locale].proof;
+  const resolvedTitle = title ?? copy.title;
+  const resolvedSubtitle = subtitle ?? copy.subtitle;
   const hasContent = caseStudy || logos?.length || beforeAfter;
 
   if (!hasContent) return null;
@@ -31,31 +32,31 @@ export default function ProofSection({
   return (
     <Section id="proof" variant="proof" surfaceIndex={surfaceIndex}>
       <div className="container-site">
-        <SectionHeader title={title} description={subtitle} />
+        <SectionHeader title={resolvedTitle} description={resolvedSubtitle} />
 
         <Reveal stagger className="section-content mx-auto max-w-3xl space-y-10">
           {caseStudy ? (
             <article className="text-left">
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neon-cyan/70">
-                Case study
+                {copy.caseStudy}
               </span>
               <h3 className="type-subheader mt-3">{caseStudy.client}</h3>
 
               <div className="mt-6 space-y-5 text-base leading-relaxed md:text-lg">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted">The challenge</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted">{copy.challenge}</p>
                   <p className="mt-2 text-muted">{caseStudy.challenge}</p>
                 </div>
 
                 {caseStudy.approach ? (
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-muted">Our approach</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted">{copy.approach}</p>
                     <p className="mt-2 text-muted">{caseStudy.approach}</p>
                   </div>
                 ) : null}
 
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-muted">The results</p>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted">{copy.results}</p>
                   <p className="mt-2 text-white/90">{caseStudy.outcome}</p>
                 </div>
               </div>
@@ -65,7 +66,7 @@ export default function ProofSection({
                   href={caseStudy.href}
                   className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-neon-cyan transition-colors hover:text-white"
                 >
-                  Read the full case study
+                  {copy.readFull}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               ) : null}

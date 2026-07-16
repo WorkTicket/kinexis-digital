@@ -8,6 +8,8 @@ type RelatedLinkGroup = {
   blog: { href: string; label: string }[];
 };
 
+export type ServiceRelatedLinks = RelatedLinkGroup & { solutions: { href: string; label: string }[] };
+
 const extraSolutionLinks: Partial<Record<ServiceSeoSlug, { href: string; label: string }[]>> = {
   "google-ads": [{ href: "/solutions/google-ads-for-roofers", label: "Google Ads for Roofers" }],
   seo: [

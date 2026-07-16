@@ -126,18 +126,18 @@ ${L.seo}`,
 <p>Rastrea outreach en un CRM simple: periodista, fecha de pitch, estado, URL publicada. Revisa tasas de éxito trimestralmente para refinar ángulos de historia. Baja conversión suele significar que los datos no son suficientemente noticiosos, no que el PR falle como canal.</p>
 ${L.seo}`,
 
-  "local-seo-checklist": `<p>El SEO local para negocios de servicios no es una sola táctica. Son cinco sistemas trabajando juntos: Google Business Profile, citas, reseñas, contenido por ubicación y seguimiento de rankings. Omite un pilar y la visibilidad en el map pack se estanca aunque los demás se vean bien. Usamos esta lista en cada proyecto local porque detecta brechas que las auditorías SEO genéricas no ven.</p>
-<p>Una empresa de plomería que servía cuatro condados tenía GBP verificado, 200 reseñas y un sitio decente. Aun así perdió cuota en el map pack frente a un competidor con la mitad de reseñas. Las citas mostraban inconsistencias NAP en 14 directorios y sus páginas de ciudad eran plantillas copiadas. Corregir NAP, reescribir dos páginas de ciudad prioritarias con prueba local real y publicar actualizaciones semanales en GBP los movió de la posición seis a la dos para "fontanero de emergencia [ciudad]" en once semanas.</p>
+  "local-seo-checklist": `<p>El SEO local para negocios de servicios no es una sola táctica. Son cinco sistemas trabajando juntos: Google Business Profile, citaciones, reseñas, contenido por ubicación y seguimiento de rankings. Omite un pilar y la visibilidad en el map pack se estanca aunque los demás se vean bien. Usamos esta lista en cada proyecto local porque detecta brechas que las auditorías SEO genéricas no ven.</p>
+<p>Una empresa de plomería que servía cuatro condados tenía GBP verificado, 200 reseñas y un sitio decente. Aun así perdió cuota en el map pack frente a un competidor con la mitad de reseñas. Las citaciones mostraban inconsistencias NAP en 14 directorios y sus páginas de ciudad eran plantillas copiadas. Corregir NAP, reescribir dos páginas de ciudad prioritarias con prueba local real y publicar actualizaciones semanales en GBP los movió de la posición seis a la dos para "fontanero de emergencia [ciudad]" en once semanas.</p>
 <h2>Optimización de Google Business Profile</h2>
 <p>Tu GBP es la puerta de entrada a la búsqueda local. Completa cada campo: categorías, servicios, atributos, horarios, fotos y productos cuando aplique.</p>
 <h3>Hábitos Semanales en GBP</h3>
 <p>Publica actualizaciones semanales: fotos de proyectos, ofertas estacionales y FAQs. Responde a cada reseña en 48 horas, positiva o negativa. Usa Google Posts para destacar promociones pero evita rellenar el nombre del negocio con palabras clave. Activa mensajería solo si alguien lo monitoriza a diario.</p>
 <h3>Fotos y Preguntas y Respuestas</h3>
 <p>Sube fotos de proyectos geolocalizadas con constancia. Planta Q&A con preguntas reales de clientes y respuestas concisas. Monitoriza ediciones spam y reporta cambios inexactos rápidamente.</p>
-<h2>Citas NAP y Consistencia</h2>
+<h2>Citaciones NAP y Consistencia</h2>
 <p>Nombre, Dirección y Teléfono deben coincidir exactamente en tu sitio, GBP, Apple Maps, Bing Places, Yelp, directorios del sector y agregadores de datos. Incluso diferencias pequeñas ("C." vs "Calle," números de oficina) diluyen señales de confianza.</p>
-<h3>Proceso de Auditoría de Citas</h3>
-<p>Exporta listados existentes con una herramienta como BrightLocal o Semrush Local. Reclama perfiles no reclamados, fusiona duplicados y actualiza direcciones tras mudanzas. Construye citas nuevas en sitios relevantes del sector, no directorios globales aleatorios.</p>
+<h3>Proceso de Auditoría de Citaciones</h3>
+<p>Exporta listados existentes con una herramienta como BrightLocal o Semrush Local. Reclama perfiles no reclamados, fusiona duplicados y actualiza direcciones tras mudanzas. Construye citaciones nuevas en sitios relevantes del sector, no directorios globales aleatorios.</p>
 <h2>Generación de Reseñas y Reputación</h2>
 <p>Las reseñas influyen en rankings y en CTR. Apunta a velocidad constante, no ráfagas repentinas que parezcan fabricadas.</p>
 <h3>Un Sistema, No una Petición Aislada</h3>
@@ -147,14 +147,14 @@ ${L.seo}`,
 <h3>Evitar Páginas Puerta Local</h3>
 <p>Si una página no ayudaría a un residente humano, no ayudará al SEO. Fusiona páginas de ciudad finas en hubs de condado más amplios cuando carezcas de prueba local real. Enlaza páginas de ubicación desde contenido de blog sobre temas regionales y desde tus hubs de servicio principales.</p>
 <h2>Seguimiento de Map Pack y Rankings Orgánicos Locales</h2>
-<p>Sigue rankings semanalmente para términos core "servicio + ciudad" en una cuadrícula de tu zona de servicio. Separa map pack de resultados orgánicos locales. Correlaciona cambios de ranking con cambios en GBP, velocidad de reseñas y actualizaciones de citas para saber qué movió realmente la aguja.</p>
+<p>Sigue rankings semanalmente para términos core "servicio + ciudad" en una cuadrícula de tu zona de servicio. Separa map pack de resultados orgánicos locales. Correlaciona cambios de ranking con cambios en GBP, velocidad de reseñas y actualizaciones de citaciones para saber qué movió realmente la aguja.</p>
 <h2>Resumen de la Lista SEO Local</h2>
-<p><strong>GBP:</strong> perfil completo, publicaciones semanales, todas las reseñas respondidas.<br><strong>Citas:</strong> NAP consistente, listados reclamados, directorios relevantes.<br><strong>Reseñas:</strong> solicitudes automatizadas, flujo constante, respuestas profesionales.<br><strong>Contenido:</strong> páginas únicas de ciudad o condado con detalle local real.<br><strong>Seguimiento:</strong> informes de ranking en cuadrícula ligados a acciones tomadas.</p>
+<p><strong>GBP:</strong> perfil completo, publicaciones semanales, todas las reseñas respondidas.<br><strong>Citaciones:</strong> NAP consistente, listados reclamados, directorios relevantes.<br><strong>Reseñas:</strong> solicitudes automatizadas, flujo constante, respuestas profesionales.<br><strong>Contenido:</strong> páginas únicas de ciudad o condado con detalle local real.<br><strong>Seguimiento:</strong> informes de ranking en cuadrícula ligados a acciones tomadas.</p>
 <p>La mayoría de negocios de servicios ven movimiento significativo en el map pack en 60 a 90 días cuando los cinco pilares funcionan juntos. Trata el SEO local como operaciones más marketing, no como configuración de ficha que se hace una vez.</p>
 <h2>Link Building Local y Presencia Comunitaria</h2>
 <p>Patrocina eventos locales, únete a directorios de cámaras de comercio y gana enlaces de organizaciones comunitarias. Cobertura de noticias locales de proyectos (con permiso del cliente) construye relevancia geográfica. Combina actividad offline con menciones online que incluyan tu ciudad y palabras clave de servicio de forma natural.</p>
 <h3>Gestión Multi-Ubicación</h3>
-<p>Marcas con muchas ubicaciones necesitan un modelo de gobernanza: quién gestiona actualizaciones de GBP, respuestas a reseñas y cambios de citas por tienda. Usa una única fuente de verdad para NAP y audita trimestralmente. Horarios o teléfonos inconsistentes entre ubicaciones confunden a clientes y motores de búsqueda.</p>
+<p>Marcas con muchas ubicaciones necesitan un modelo de gobernanza: quién gestiona actualizaciones de GBP, respuestas a reseñas y cambios de citaciones por tienda. Usa una única fuente de verdad para NAP y audita trimestralmente. Horarios o teléfonos inconsistentes entre ubicaciones confunden a clientes y motores de búsqueda.</p>
 <h2>Ritmo de Reportes SEO Local</h2>
 <p>Mensualmente, revisa estadísticas de GBP: llamadas, solicitudes de indicaciones y clics al sitio. Compara con sesiones de landing pages orgánicas desde consultas locales. Divergencia entre acciones en GBP y tráfico al sitio puede indicar brechas de seguimiento o rutas de conversión débiles desde clics del mapa.</p>
 ${L.localSeo}`,

@@ -255,6 +255,115 @@ export const blogArticlesEnExpanded = {
 <p>Review these numbers monthly. Shift budget toward channels that perform and away from channels that don't. The playbook works when you commit to it long enough to see real data.</p>
 <p>Five channels. Consistent execution. Measured results. That's how local businesses grow predictably, and it's the system we build for every client at KINEXIS Digital.</p>`,
   },
+  "seo-pricing-guide": {
+    title: "SEO Pricing: How Much Should You Budget for SEO in 2026?",
+    category: "SEO",
+    publishedAt: "July 14, 2026",
+    body: `<p>Search engine optimization pricing is one of the most opaque topics in digital marketing. Agencies charge anywhere from $500 to $30,000 per month, and it's rarely obvious what separates the cheap option from the premium one. If you're a business owner trying to budget for SEO, the range is confusing by design.</p>
+<p>At KINEXIS Digital, we work with clients who have been burned by $500/month retainers that produced nothing and clients who overpaid for agencies that couldn't explain their process. This guide breaks down what different price points actually buy you, how to evaluate whether an investment is reasonable for your market, and what to expect at each tier.</p>
+<h2>The Three Pricing Tiers</h2>
+<h3>Tier 1: Basic / Local SEO ($500 to $1,500 per month)</h3>
+<p>At this price point, you're typically getting Google Business Profile optimization, basic on-page fixes, citation building, and maybe a few blog posts per month. This tier works best for very small local businesses with limited competition: a single-location plumber, a local restaurant, a solo practitioner dentist.</p>
+<p>What you won't get at this tier: serious link building, deep technical audits, competitive keyword research, or dedicated strategy. The agency is spreading their time across many clients, and you're getting a standardized, templated service.</p>
+<p>Best for: businesses in low-competition local markets with monthly marketing budgets under $2,000 total. If you're a roofer in a small town where the other roofers don't have websites, this tier can work.</p>
+<h3>Tier 2: Professional SEO ($2,000 to $5,000 per month)</h3>
+<p>This is the sweet spot for most service businesses, B2B companies, and ecommerce stores in moderately competitive markets. At this tier, you should expect a dedicated strategist or account manager, custom keyword research, technical SEO fixes prioritized by impact, regular content creation, and a link building program.</p>
+<p>The key difference from Tier 1 is strategy. Instead of templated fixes, the agency should be analyzing your specific market, competitors, and website to build a custom roadmap. You should also get regular reporting that ties SEO activity to business metrics, not just rankings and traffic.</p>
+<p>At KINEXIS Digital, our programs start in this range. We include technical audits, buyer-intent keyword research, content clusters, on-page optimization, and link building. Most clients in this tier start seeing measurable lead growth within 4 to 6 months.</p>
+<p>Best for: local businesses in competitive markets, regional service companies, B2B firms with 5 to 50 employees, and ecommerce stores with 50 to 500 products.</p>
+<h3>Tier 3: Enterprise SEO ($6,000 to $30,000+ per month)</h3>
+<p>Enterprise SEO involves multiple strategists, dedicated content teams, technical SEO engineers, and often a partnership with the client's internal marketing and engineering teams. This tier is for large websites (10,000+ pages), national or international brands, and highly competitive industries.</p>
+<p>You're paying for scale: more content production (8 to 20 pieces per month), aggressive link building (DA research, digital PR, guest posting at scale), technical architecture reviews, and often dedicated tools and custom reporting dashboards.</p>
+<p>Best for: ecommerce stores with 1,000+ products, national service chains, SaaS companies with enterprise sales cycles, and any business competing for keywords where the top 10 results all have 500+ backlinks.</p>
+<h2>What Pricing Actually Buys You</h2>
+<table>
+<tr><th>Service</th><th>Tier 1</th><th>Tier 2</th><th>Tier 3</th></tr>
+<tr><td>Technical audit</td><td>Automated scan</td><td>Manual audit with prioritized fixes</td><td>Full crawl + dev support</td></tr>
+<tr><td>Keyword research</td><td>Basic list</td><td>Buyer-intent research</td><td>Full market + competitor gap analysis</td></tr>
+<tr><td>Content</td><td>2-4 blog posts/mo</td><td>4-8 pieces/mo + clusters</td><td>8-20 pieces/mo + custom assets</td></tr>
+<tr><td>Link building</td><td>Minimal / automated</td><td>Manual outreach, 3-5 links/mo</td><td>PR, digital PR, partnerships</td></tr>
+<tr><td>Reporting</td><td>Monthly rankings PDF</td><td>Custom dashboard + lead tracking</td><td>Real-time dashboard + pipeline integration</td></tr>
+</table>
+<h2>One-Time vs Monthly Investment</h2>
+<p>Some agencies offer one-time SEO audits or project-based pricing. An audit ($1,500 to $5,000) gives you a snapshot of what's wrong with your site and a prioritized fix list. It's useful as a starting point, but an audit alone won't change your rankings.</p>
+<p>Some agencies offer project-based SEO for specific goals: a site migration, a content refresh, or a technical cleanup. Project pricing typically ranges from $3,000 to $15,000 depending on scope.</p>
+<p>But SEO is fundamentally a monthly investment because it requires ongoing work: publishing content, building links, monitoring rankings, and adapting to algorithm changes. If an agency tells you they can "fix your SEO" in one month for a flat fee, they are selling you an audit and calling it SEO.</p>
+<h2>How to Evaluate Whether Pricing Is Fair</h2>
+<p>Fair SEO pricing depends on three factors: the value of a customer to your business, the level of competition in your market, and the quality of the agency's process.</p>
+<p>Calculate your customer lifetime value. If you close $5,000 deals and SEO generates 10 new customers per year at a cost of $36,000 ($3,000/mo), your ROI is $50,000 in revenue for $36,000 in spend. That's a 38% return. If the same spend generates 20 customers, your ROI jumps to 177%.</p>
+<p>Compare against your cost per lead from other channels. If you're paying $50 per lead from Google Ads, and SEO produces leads at $25 per lead, the SEO investment pays for itself in unit economics even before you factor in compounding growth.</p>
+<p>Ask the agency for case studies in your industry or a similar competitive landscape. General testimonials are easy. Specific results from a business with similar dynamics are harder to fake.</p>
+<h2>Common Pricing Traps</h2>
+<p>Beware of agencies that guarantee #1 rankings. Nobody can guarantee this because Google controls the algorithm. Beware of contracts longer than 6 months with no performance terms. Beware of pricing that seems too good to be true; $500/month SEO for a competitive market is almost certainly automated spam that will get your site penalized.</p>
+<p>Beware of agencies that report only rankings and traffic without connecting them to leads or revenue. Rankings are vanity metrics if they don't produce business results. A page one ranking for a keyword nobody searches for is worthless.</p>
+<h2>What We Recommend</h2>
+<p>Start with a clear understanding of what a customer is worth to you and what you can afford to invest per month. For most businesses, $2,000 to $5,000 per month is the range where professional SEO becomes possible and ROI becomes measurable.</p>
+<p>Commit to at least 6 months. SEO compounds. Three months is rarely enough to see meaningful results. Six to nine months is where the momentum builds. Twelve months is where SEO often becomes your most cost-effective channel.</p>
+<p>If you're not sure where to start, request a strategy call and ask specific questions: what does your process look like, how do you prioritize fixes, what results have you achieved for businesses similar to mine, and how do you measure and report progress. The quality of the answers will tell you more than the price tag.</p>
+<p>At KINEXIS Digital, we're transparent about what we deliver at each investment level. <a href="/services/seo">See how our SEO programs work →</a></p>`,
+  },
+  "how-long-does-seo-take": {
+    title: "How Long Does SEO Take? Realistic Timelines for Real Results",
+    category: "SEO",
+    publishedAt: "July 14, 2026",
+    body: `<p>How long does SEO take? If you ask an agency, you'll usually hear "four to six months." If you ask a business owner who tried SEO once and quit, you'll hear "it didn't work." The real answer is more nuanced, but that nuance matters if you're deciding whether to invest or how to set expectations with stakeholders.</p>
+<p>At KINEXIS Digital, we've run SEO programs for dozens of businesses across home services, B2B, ecommerce, and professional services. The timelines vary by competition, budget, and starting point. But the pattern is consistent enough that we can give you a realistic roadmap.</p>
+<h2>The Short Answer</p>
+<h3>Technical fixes: 2 to 4 weeks</h3>
+<p>If your site has indexation problems, crawl errors, or obvious technical blockers, those are the fastest to fix and often produce the earliest signal. We've seen clients move from "not indexed" to "ranking on page 3" in under 30 days just by cleaning up technical issues that were blocking Google from finding their best pages.</p>
+<p>Example: a B2B SaaS client had 40% of their crawl budget wasted on filtered product URLs. After consolidating duplicates and tightening robots rules, organic sessions rose 31% in 90 days with no new content.</p>
+<h3>On-page and content: 2 to 4 months</h3>
+<p>Keyword research, content creation, and on-page optimization take longer to compound. Google needs to find your new pages, crawl them, evaluate relevance, and decide where to place them in search results. For a new piece of content targeting a low-competition keyword, you might see movement in 6 to 8 weeks. For competitive terms, expect 4 to 6 months before you see meaningful ranking changes.</p>
+<h3>Link building and authority: 6 to 12 months</h3>
+<p>This is the longest timeline because you don't control it. Earning backlinks from reputable sites takes outreach, relationship building, and content worth linking to. Domain authority accumulates slowly. A new site with zero backlinks cannot outrank a 10-year-old competitor with 500 referring domains in three months.</p>
+<p>That doesn't mean link building is optional. It means you need to start early and stay consistent.</p>
+<h2>Timeline by Site Type</h2>
+<h3>New website (less than 1 year old)</h3>
+<ul>
+<li>Months 1 to 3: Technical foundation, initial content, Google Business Profile setup (local businesses). You'll see Google start to index pages and maybe rank for branded searches.</li>
+<li>Months 4 to 8: Content compounding begins. Long-tail keywords start showing up in positions 5 to 15. Organic traffic grows slowly but consistently.</li>
+<li>Months 9 to 18: Authority builds as you earn backlinks and publish more content. Competitive terms become reachable. Traffic growth accelerates.</li>
+</ul>
+<h3>Established site (2+ years old) with SEO issues</h3>
+<ul>
+<li>Fixing technical problems: 2 to 6 weeks to see indexation improvements.</li>
+<li>Content refreshes and consolidation: 4 to 8 weeks for ranking recovery on previously indexed pages.</li>
+<li>Full SEO turnaround: 4 to 9 months depending on how far the site has fallen and how competitive the market is.</li>
+</ul>
+<h3>Local service business</h3>
+<ul>
+<li>GBP optimization: 2 to 4 weeks for local pack movement.</li>
+<li>Citation cleanup and review generation: 1 to 3 months for local ranking improvement.</li>
+<li>Combined local SEO program: 3 to 6 months to see meaningful lead growth from organic search.</li>
+</ul>
+<h2>What Affects Speed</h2>
+<p><strong>Competition.</strong> A plumber in a small town can rank for "plumber near me" faster than a national SaaS company can rank for "project management software." Local SEO moves faster because the competitive surface area is smaller.</p>
+<p><strong>Budget.</strong> More content, more technical resources, more link building outreach — all of it compounds faster. A $2,000/month SEO program takes longer than an $8,000/month program. But there are diminishing returns; doubling spend doesn't halve the timeline.</p>
+<p><strong>Starting point.</strong> A site with existing content, some backlinks, and no technical issues starts ahead of a brand new domain. If your site has been around for years but never had SEO attention, you have assets you can build on.</p>
+<p><strong>Content velocity.</strong> Publishing 4 posts per month produces results faster than 1 post per month. But consistency matters more than volume. A site that publishes weekly for 12 months will almost always outperform a site that publishes 20 posts in one month and then stops.</p>
+<h2>When to Expect Revenue</h2>
+<p>Traffic and rankings are milestones, not goals. Here's when the revenue impact typically shows up:</p>
+<ul>
+<li>Months 1 to 3: You should see improvements in indexation, crawl stats, and keyword rankings for branded and long-tail terms. Most leads still come from existing channels.</li>
+<li>Months 4 to 6: Long-tail keywords start producing qualified leads. Cost per lead from organic should be lower than paid channels. Revenue from SEO becomes measurable.</li>
+<li>Months 7 to 12: Core service pages gain traction. Organic lead volume should grow month over month. SEO becomes a predictable channel in your marketing mix.</li>
+<li>Beyond 12 months: Compounding effects kick in. Existing content ranks for more keywords, backlinks accumulate, and organic becomes a primary lead source.</li>
+</ul>
+<h2>What Realistic Growth Looks Like</h2>
+<p>We track actual results across our client portfolio. Here's what typical SEO growth looks like:</p>
+<ul>
+<li>Month 0 to 3: 0 to 200 organic sessions per month (new site).</li>
+<li>Month 3 to 6: 200 to 800 organic sessions per month.</li>
+<li>Month 6 to 12: 800 to 3,000 organic sessions per month.</li>
+<li>Year 2: 3,000 to 10,000+ organic sessions per month.</li>
+</ul>
+<p>These numbers vary widely by industry and geography. A local plumber with 500 sessions per month might generate more revenue than a B2B SaaS company with 5,000 sessions. Traffic is context. Leads and revenue are what matter.</p>
+<h2>How to Speed Things Up</h2>
+<p>You cannot shortcut SEO, but you can avoid slowing it down. Don't change URLs after they start ranking. Don't redesign your site without preserving redirects. Don't pause your program after three months because you haven't hit page one yet.</p>
+<p>Do prioritize technical fixes first (fastest impact). Do publish content consistently (compounding effect). Do earn backlinks from relevant sites (authority acceleration). Do track leads and revenue, not just rankings.</p>
+<p>SEO is not a campaign. It's a capability you build over time. The businesses that treat it that way are the ones that show up first when their ideal customers search.</p>
+<p>If you want a realistic timeline for your specific business and market, that's the kind of conversation we have every day at KINEXIS Digital. <a href="/services/seo">Talk to our team about your situation →</a></p>`,
+  },
   "email-nurture-sequences-that-book-calls": {
     title: "Email Nurture Sequences That Actually Book Calls",
     category: "Email Marketing",

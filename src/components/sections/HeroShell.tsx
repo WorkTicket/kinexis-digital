@@ -32,7 +32,7 @@ export default async function HeroShell() {
             <span className="type-hero-line">{t("line1")}</span>
             <span className="type-hero-line text-white/40" aria-hidden="true">{t("line2")}</span>
             <span className="type-hero-line">{t("line3")}</span>
-            <span className="type-hero-line gradient-text md:!whitespace-nowrap">{t("line3Highlight")}</span>
+            <span className="type-hero-line gradient-text hero-home-highlight">{t("line3Highlight")}</span>
           </HeroTitle>
 
           <HeroSubtitle variant="intro-plain">

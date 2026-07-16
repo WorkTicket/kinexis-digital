@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import type { ReactNode } from "react";
 import JsonLd from "@/components/seo/JsonLd";
 import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import ServicePage from "@/components/services/ServicePage";
@@ -14,7 +15,14 @@ import { buildAbsoluteUrl } from "@/lib/metadata";
 
 type Props = { params: Promise<{ locale: Locale }> };
 
-export function createArchitectedServicePage(slug: ServiceSeoSlug) {
+export type ServicePageSlots = {
+  beforeHero?: ReactNode;
+  afterHero?: ReactNode;
+  beforeServicePage?: ReactNode;
+  afterServicePage?: ReactNode;
+};
+
+export function createArchitectedServicePage(slug: ServiceSeoSlug, slots?: ServicePageSlots) {
   return async function ArchitectedServicePage({ params }: Props) {
     const { locale } = await params;
     setRequestLocale(locale);
@@ -31,6 +39,7 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
 
     return (
       <>
+        {slots?.beforeHero}
         <JsonLd
           data={[
             organizationSchema(),
@@ -50,8 +59,11 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug) {
           secondaryCtaLabel={tCommon("viewOurWork")}
           {...data.data.hero}
         />
+        {slots?.afterHero}
         <TrustStrip items={trustStripContent[locale].items} />
+        {slots?.beforeServicePage}
         <ServicePage {...data} />
+        {slots?.afterServicePage}
       </>
     );
   };
@@ -64,5 +76,3 @@ export function createArchitectedServiceMetadata(slug: ServiceSeoSlug) {
   };
 }
 
-export const createFlagshipServicePage = createArchitectedServicePage;
-export const createFlagshipServiceMetadata = createArchitectedServiceMetadata;

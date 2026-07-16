@@ -144,13 +144,13 @@ export const serviceSeoEs: Record<ServiceSeoSlug, ServiceSeoContent> = {
       line1: "Aparece en el mapa",
       line2: "cuando buscan cerca.",
       subtitle:
-        "Perfil de Google, citas, reseñas y páginas locales|para negocios que ganan trabajo a pocos kilómetros.",
+        "Perfil de Google, citaciones, reseñas y páginas locales|para negocios que ganan trabajo a pocos kilómetros.",
     },
     answerBlock:
       "Los servicios SEO local incluyen optimización de Google Business Profile, construcción de citaciones, estrategia de reseñas, desarrollo de páginas de ubicación y adquisición de enlaces locales. Los retainers suelen partir en $2,000 a $5,000 al mes para negocios de una ubicación y escalan para marcas multi-ubicación. El movimiento en el map pack suele aparecer en 30 a 60 días.",
     editorial: {
       bridgeParagraph:
-        "La mayoría de programas locales tratan las citas como checklist y el GBP como configuración única. Empezamos con las búsquedas que reservan trabajos en tu mercado, luego corregimos perfil, NAP, reseñas y páginas locales en el orden que mueve rankings en map pack más rápido.",
+        "La mayoría de programas locales tratan las citaciones como checklist y el GBP como configuración única. Empezamos con las búsquedas que reservan trabajos en tu mercado, luego corregimos perfil, NAP, reseñas y páginas locales en el orden que mueve rankings en map pack más rápido.",
     },
     problem: {
       title: "Por Qué los Negocios Locales Pierden Frente a Competidores en Google Maps",

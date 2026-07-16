@@ -11,7 +11,7 @@ export const blogArticlesEsExpanded = {
 <p>Sigue siendo lo más importante que puedes hacer para posicionarte localmente. Tu GBP es la ficha de tu negocio en Google. Si está incompleta o desactualizada, compites en desventaja. Completa todos los campos, publica al menos una vez por semana y responde cada reseña, buena o mala.</p>
 <p>Los negocios que gestionan su GBP activamente ven entre dos y tres veces más interacción que quienes la configuran y la abandonan. Tuvimos un cliente de plomería en Phoenix que pasó de 12 solicitudes de indicaciones al mes a 47 solo por publicar actualizaciones semanales y añadir fotos específicas por servicio. Sin backlinks nuevos ni rediseño del sitio. Solo gestión constante del perfil.</p>
 <h3>Consistencia de Citas (NAP)</h3>
-<p>Google sigue cruzando tu nombre, dirección y teléfono en la web. Si tus datos NAP difieren entre Yelp, Facebook y tu sitio, Google se confunde y tus rankings caen. Hemos visto casos donde solo corregir citas inconsistentes movió un negocio de la página 3 a la 1 en menos de 60 días.</p>
+<p>Google sigue cruzando tu nombre, dirección y teléfono en la web. Si tus datos NAP difieren entre Yelp, Facebook y tu sitio, Google se confunde y tus rankings caen. Hemos visto casos donde solo corregir citaciones inconsistentes movió un negocio de la página 3 a la 1 en menos de 60 días.</p>
 <p>Usa herramientas como Moz Local o BrightLocal para auditar y corregir directorios. Presta atención al número de oficina, abreviaturas (Calle vs C.) y si tu teléfono usa prefijo local o número gratuito. Las inconsistencias pequeñas se acumulan.</p>
 <h3>Señales de Reseñas</h3>
 <p>Las reseñas no son solo prueba social para clientes potenciales. Son señal de ranking directa. Google evalúa cantidad, recencia y diversidad (no todas concentradas en una semana). Un flujo constante de reseñas genuinas indica que tu negocio está activo y es confiable.</p>
@@ -31,7 +31,7 @@ export const blogArticlesEsExpanded = {
 <p>Eso no significa bloguear por bloguear. Significa crear páginas y publicaciones que conecten tus servicios con tu comunidad. ¿Patrocinas una carrera local? Escríbelo. ¿Contrataste dos técnicos nuevos? Anúncialo en tu sitio y en tu GBP. ¿Notas un patrón estacional en tus llamadas? Publica una guía breve al respecto.</p>
 <p>Un cliente de jardinería con el que trabajamos publica dos entradas cortas al mes sobre cuidado estacional del césped en su condado. Esas publicaciones posicionan para consultas de cola larga, envían tráfico a su página de reservas y dan a Google señales frescas de que el negocio está activo.</p>
 <h2>Qué Hacer Este Trimestre</h2>
-<p>¿Qué deberías hacer este trimestre? Primero, audita tu GBP por completo: todos los campos completos, publicaciones programadas para las próximas 8 semanas y una plantilla lista para responder reseñas. Segundo, ejecuta una auditoría de citas y corrige cada inconsistencia NAP. Tercero, monta un proceso simple de solicitud de reseñas ligado a trabajos completados, no a un email masivo genérico.</p>
+<p>¿Qué deberías hacer este trimestre? Primero, audita tu GBP por completo: todos los campos completos, publicaciones programadas para las próximas 8 semanas y una plantilla lista para responder reseñas. Segundo, ejecuta una auditoría de citaciones y corrige cada inconsistencia NAP. Tercero, monta un proceso simple de solicitud de reseñas ligado a trabajos completados, no a un email masivo genérico.</p>
 <p>Cuarto, crea al menos tres piezas de contenido local relevante: una página de servicio por barrio, una página de preguntas frecuentes con inquietudes locales y una entrada de blog ligada a un evento comunitario o una necesidad estacional. Combina estas cuatro cosas de forma consistente durante los próximos 90 días y estarás muy por delante de la mayoría de negocios locales que siguen intentando ponerse al día.</p>
 <p>El SEO local en 2026 premia la constancia por encima de los atajos. Los negocios que aparecen cada semana, en su perfil, en sus reseñas y en su sitio, son los que los clientes encuentran primero. Si quieres ayuda para construir ese sistema, es exactamente lo que hacemos en KINEXIS Digital.</p>`,
   },
@@ -147,7 +147,7 @@ export const blogArticlesEsExpanded = {
 <h2>El Enfoque Híbrido que la Mayoría Necesita</h2>
 <p>Para la mayoría de negocios con los que trabajamos, la respuesta no es SEO o Google Ads. Es ambos, con presupuestos distintos en distintas etapas.</p>
 <h3>Meses 1-3: Los anuncios lideran, el SEO arranca</h3>
-<p>Lanza una campaña de Google Ads enfocada en tus palabras clave de mayor intención. Al mismo tiempo, empieza los fundamentos de SEO: auditoría técnica, optimización de GBP, limpieza de citas y tus primeras 4 a 6 piezas de contenido. Los anuncios generan leads e ingresos mientras el SEO construye la base.</p>
+<p>Lanza una campaña de Google Ads enfocada en tus palabras clave de mayor intención. Al mismo tiempo, empieza los fundamentos de SEO: auditoría técnica, optimización de GBP, limpieza de citaciones y tus primeras 4 a 6 piezas de contenido. Los anuncios generan leads e ingresos mientras el SEO construye la base.</p>
 <h3>Meses 4-9: Inversión equilibrada</h3>
 <p>Mantén el gasto en anuncios a un nivel que mantenga tu pipeline lleno. Aumenta la inversión en SEO en creación de contenido, link building y optimización de conversión. Empieza a seguir cómo crecen el tráfico y los leads orgánicos mes a mes.</p>
 <h3>Meses 10-18: Lo orgánico carga más peso</h3>
@@ -220,7 +220,7 @@ export const blogArticlesEsExpanded = {
 <p>Este canal solo no construirá todo tu negocio, pero ignorarlo mientras gastas dinero en otros sitios es uno de los errores más comunes que vemos.</p>
 <h2>Canal 2: SEO Local</h2>
 <p>Coste: 1.500 a 4.000 dólares al mes (agencia o tiempo interno). Tiempo hasta resultados: 4 a 8 meses. Impacto: acumulativo, a largo plazo.</p>
-<p>El SEO local es cómo apareces cuando alguien busca "fontanero cerca de mí" o "mejor dentista en [tu ciudad]." Incluye optimización on-page, contenido por ubicación, construcción de citas, generación de reseñas y salud técnica del sitio.</p>
+<p>El SEO local es cómo apareces cuando alguien busca "fontanero cerca de mí" o "mejor dentista en [tu ciudad]." Incluye optimización on-page, contenido por ubicación, construcción de citaciones, generación de reseñas y salud técnica del sitio.</p>
 <h3>Lo que mueve la aguja</h3>
 <p>Páginas de zona de servicio para cada barrio que cubres. Un blog que publica entre 2 y 4 entradas locales relevantes al mes. Datos NAP consistentes en más de 40 directorios. Velocidad de reseñas de 3 a 5 reseñas nuevas en Google al mes. Enlaces internos entre páginas de servicio, páginas de ubicación y contenido del blog.</p>
 <p>Un cliente de HVAC en un mercado mediano de Texas pasó de 200 sesiones orgánicas al mes a 1.400 en 14 meses. Su coste por lead orgánico es ahora de 12 dólares frente a 67 de Google Ads. El SEO requiere paciencia, pero la economía es difícil de superar una vez que arranca.</p>
@@ -245,7 +245,7 @@ export const blogArticlesEsExpanded = {
 <h2>Cómo Fasear Estos Cinco Canales</h2>
 <p>No necesitas lanzar los cinco a la vez. Esta es la secuencia que recomendamos para la mayoría de negocios locales que empiezan desde cero.</p>
 <p><strong>Mes 1:</strong> optimiza tu GBP y configura un proceso de solicitud de reseñas. Lanza Google Ads con un presupuesto enfocado. Empieza a pedir referidos en cada trabajo completado.</p>
-<p><strong>Meses 2-3:</strong> inicia SEO local (auditoría técnica, citas, primeras páginas de ubicación). Únete a una organización comunitaria o patrocina un evento local. Refina campañas de anuncios según datos de seguimiento de llamadas.</p>
+<p><strong>Meses 2-3:</strong> inicia SEO local (auditoría técnica, citaciones, primeras páginas de ubicación). Únete a una organización comunitaria o patrocina un evento local. Refina campañas de anuncios según datos de seguimiento de llamadas.</p>
 <p><strong>Meses 4-6:</strong> publica contenido local con constancia. Formaliza tu programa de incentivos por referidos. Evalúa el crecimiento orgánico y ajusta el gasto en anuncios según el volumen de leads por canal.</p>
 <p><strong>Meses 7-12:</strong> refuerza los dos canales que ofrezcan el mejor coste por cliente adquirido. Para la mayoría de negocios, eso acaba siendo SEO local y referidos, con Google Ads a nivel de mantenimiento y GBP gestionado semanalmente.</p>
 <h2>Mide lo Que Importa</h2>

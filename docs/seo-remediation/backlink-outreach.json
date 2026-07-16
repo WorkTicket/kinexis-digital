@@ -1,0 +1,24 @@
+{
+  "prospects": [
+    {
+      "id": "BL-001",
+      "targetUrl": "https://example.com/resources",
+      "domain": "example.com",
+      "status": "contacted",
+      "ourContent": "",
+      "notes": "",
+      "outreachDate": "2026-07-14T12:52:57.481Z",
+      "followUpDate": null,
+      "responseDate": null,
+      "liveUrl": "",
+      "createdAt": "2026-07-14T12:52:51.139Z"
+    }
+  ],
+  "templates": {
+    "cold_email": "Subject: Quick question about [SITE_NAME]\n\nHi [NAME],\n\nI was reading your piece on [TOPIC] at [SITE_URL] and noticed it really aligns with a guide we recently published: [OUR_CONTENT_TITLE] ([OUR_CONTENT_URL]).\n\nSince you're already covering [RELATED_TOPIC], I thought your readers might find [OUR_CONTENT_TITLE] useful as an additional resource. It covers [BRIEF_VALUE_PROP].\n\nNo pressure at all — just thought I'd send it your way in case it's a fit.\n\nBest,\n[YOUR_NAME]\nKINEXIS Digital",
+    "broken_link": "Subject: Broken link on [SITE_NAME]\n\nHi [NAME],\n\nI was browsing [SITE_URL] and noticed the link to [BROKEN_URL] appears to be broken (returning a 404).\n\nI'm reaching out because I have a resource that would be a perfect replacement: [OUR_CONTENT_TITLE] ([OUR_CONTENT_URL]). It covers [TOPIC_DESCRIPTION].\n\nHope this helps you keep your content fresh!\n\nBest,\n[YOUR_NAME]\nKINEXIS Digital",
+    "resource_page": "Subject: Resource suggestion for [SITE_NAME]\n\nHi [NAME],\n\nI came across your resources page at [SITE_URL] and love what you've put together for [TOPIC].\n\nI noticed you don't currently have a resource covering [GAP_TOPIC], so I wanted to suggest our guide: [OUR_CONTENT_TITLE] ([OUR_CONTENT_URL]). It covers [BRIEF_VALUE_PROP].\n\nIf it fits, I'd be honored to have it included.\n\nBest,\n[YOUR_NAME]\nKINEXIS Digital",
+    "guest_post": "Subject: Guest post proposal for [SITE_NAME]\n\nHi [NAME],\n\nI'm a [ROLE] at KINEXIS Digital and a regular reader of [SITE_NAME]. I love your coverage of [TOPIC].\n\nI'd like to propose a guest post: \"[POST_TITLE]\". It would cover:\n\n[3 BULLET POINTS OF VALUE]\n\nNo heavy self-promotion — just genuine value for your audience. Happy to adjust to your guidelines.\n\nLet me know if this sounds interesting.\n\nBest,\n[YOUR_NAME]\nKINEXIS Digital"
+  },
+  "lastUpdated": "2026-07-14T12:52:57.482Z"
+}
