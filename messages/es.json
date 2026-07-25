@@ -302,9 +302,9 @@
   },
   "cookies": {
     "title": "Usamos cookies",
-    "description": "Usamos cookies esenciales para operar este sitio y, con tu consentimiento, cookies de analítica para entender cómo los visitantes usan kinexisdigital.com. Consulta nuestra",
+    "description": "Usamos cookies esenciales para operar este sitio y, con tu consentimiento, cookies de analítica y publicidad (Google Analytics, Google Ads, Microsoft Clarity) para medir tráfico y atribuir campañas. Consulta nuestra",
     "privacyLink": "Política de Privacidad",
-    "accept": "Aceptar analítica",
+    "accept": "Aceptar",
     "reject": "Rechazar no esenciales"
   },
   "notFound": {

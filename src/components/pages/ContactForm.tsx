@@ -6,11 +6,15 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import type { ContactContent } from "@/content/contact";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
+import { getAttributionPayload } from "@/lib/analytics/click-ids";
+import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
+import { useRouter } from "@/i18n/navigation";
 
 type Props = { content: ContactContent };
 
 /** Client island — only the interactive form hydrates; the rest of the page is static SSR. */
 export default function ContactForm({ content: c }: Props) {
+  const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -30,21 +34,26 @@ export default function ContactForm({ content: c }: Props) {
     setErrorMsg("");
 
     try {
+      const attribution = getAttributionPayload();
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...formData, ...honeypotPayload }),
+        body: JSON.stringify({
+          ...formData,
+          ...honeypotPayload,
+          ...attribution,
+        }),
       });
 
       if (res.ok) {
+        stashPendingConversion({
+          type: "lead",
+          email: formData.email,
+          serviceInterest: formData.service || "not_specified",
+          formType: "contact",
+        });
         setStatus("success");
-        if (typeof window !== "undefined" && Array.isArray((window as Window & { dataLayer?: unknown[] }).dataLayer)) {
-          (window as Window & { dataLayer: unknown[] }).dataLayer.push({
-            event: "generate_lead",
-            form_type: "contact",
-            service_interest: formData.service || "not_specified",
-          });
-        }
+        router.push("/thank-you");
       } else {
         const data = await res.json().catch(() => ({}));
         setErrorMsg(data.error || c.errorMessage);

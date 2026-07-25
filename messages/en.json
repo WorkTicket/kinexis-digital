@@ -302,9 +302,9 @@
   },
   "cookies": {
     "title": "We use cookies",
-    "description": "We use essential cookies to run this site and, with your consent, analytics cookies to understand how visitors use kinexisdigital.com. See our",
+    "description": "We use essential cookies to run this site and, with your consent, analytics and advertising cookies (Google Analytics, Google Ads, Microsoft Clarity) to measure traffic and attribute campaigns. See our",
     "privacyLink": "Privacy Policy",
-    "accept": "Accept analytics",
+    "accept": "Accept",
     "reject": "Reject non-essential"
   },
   "notFound": {

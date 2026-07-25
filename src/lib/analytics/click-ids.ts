@@ -1,0 +1,200 @@
+/**
+ * Capture and persist Google Ads click IDs + UTM params for closed-loop attribution.
+ * Stored in sessionStorage so form submissions and lead emails can include them.
+ */
+
+export const CLICK_ID_STORAGE_KEY = "kinexis-ads-attribution";
+
+export type AttributionData = {
+  gclid?: string;
+  gbraid?: string;
+  wbraid?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
+  landing_page?: string;
+  captured_at?: string;
+};
+
+const CLICK_ID_KEYS = ["gclid", "gbraid", "wbraid"] as const;
+const UTM_KEYS = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+] as const;
+
+const MAX_PARAM_LENGTH = 200;
+
+function sanitizeParam(value: string | null): string | undefined {
+  if (!value) return undefined;
+  const trimmed = value.trim().slice(0, MAX_PARAM_LENGTH);
+  return trimmed.length > 0 ? trimmed : undefined;
+}
+
+/** Parse attribution fields from a URLSearchParams (or URL search string). Pure — no DOM. */
+export function parseAttributionFromSearch(
+  search: string | URLSearchParams,
+): AttributionData {
+  const params =
+    typeof search === "string" ? new URLSearchParams(search) : search;
+
+  const data: AttributionData = {};
+
+  for (const key of CLICK_ID_KEYS) {
+    const value = sanitizeParam(params.get(key));
+    if (value) data[key] = value;
+  }
+
+  for (const key of UTM_KEYS) {
+    const value = sanitizeParam(params.get(key));
+    if (value) data[key] = value;
+  }
+
+  return data;
+}
+
+function hasAttributionSignal(data: AttributionData): boolean {
+  return (
+    Boolean(data.gclid) ||
+    Boolean(data.gbraid) ||
+    Boolean(data.wbraid) ||
+    Boolean(data.utm_source) ||
+    Boolean(data.utm_medium) ||
+    Boolean(data.utm_campaign)
+  );
+}
+
+function readStored(): AttributionData | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem(CLICK_ID_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as AttributionData;
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeStored(data: AttributionData): void {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.setItem(CLICK_ID_STORAGE_KEY, JSON.stringify(data));
+  } catch {
+    // sessionStorage may be blocked — attribution still works via URL for this page load
+  }
+}
+
+/**
+ * Capture click IDs / UTMs from the current URL into sessionStorage.
+ * First-touch within the session wins for click IDs; UTMs refresh when present.
+ */
+export function captureClickIds(): AttributionData {
+  if (typeof window === "undefined") return {};
+
+  const fromUrl = parseAttributionFromSearch(window.location.search);
+  const existing = readStored() ?? {};
+
+  const merged: AttributionData = { ...existing };
+
+  // Click IDs: keep first-touch within the session unless a new one arrives
+  for (const key of CLICK_ID_KEYS) {
+    if (fromUrl[key]) merged[key] = fromUrl[key];
+  }
+
+  for (const key of UTM_KEYS) {
+    if (fromUrl[key]) merged[key] = fromUrl[key];
+  }
+
+  if (hasAttributionSignal(fromUrl) || !existing.landing_page) {
+    if (!merged.landing_page) {
+      merged.landing_page = `${window.location.pathname}${window.location.search}`.slice(
+        0,
+        500,
+      );
+    }
+    if (!merged.captured_at) {
+      merged.captured_at = new Date().toISOString();
+    }
+  }
+
+  if (hasAttributionSignal(merged) || merged.landing_page) {
+    writeStored(merged);
+  }
+
+  return merged;
+}
+
+/** Return stored attribution for attaching to form payloads. */
+export function getAttributionPayload(): AttributionData {
+  if (typeof window === "undefined") return {};
+  const stored = readStored();
+  if (stored && hasAttributionSignal(stored)) return stored;
+
+  // Fallback: parse live URL if storage was empty/blocked
+  return parseAttributionFromSearch(window.location.search);
+}
+
+/** Validate attribution fields from an API request body. Returns sanitized subset. */
+export function sanitizeAttributionFromBody(
+  body: Record<string, unknown>,
+): AttributionData {
+  const out: AttributionData = {};
+  const allKeys = [...CLICK_ID_KEYS, ...UTM_KEYS, "landing_page", "captured_at"] as const;
+
+  for (const key of allKeys) {
+    const raw = body[key];
+    if (typeof raw !== "string") continue;
+    const value = sanitizeParam(raw);
+    if (!value) continue;
+    if (key === "landing_page") {
+      out.landing_page = value.slice(0, 500);
+    } else if (key === "captured_at") {
+      // Accept ISO-ish timestamps only
+      if (/^\d{4}-\d{2}-\d{2}T/.test(value)) {
+        out.captured_at = value.slice(0, 40);
+      }
+    } else {
+      out[key] = value;
+    }
+  }
+
+  return out;
+}
+
+/** Build email rows for attribution fields (empty string if none). */
+export function attributionEmailRows(
+  data: AttributionData,
+  emailRow: (label: string, value: string) => string,
+): string {
+  const rows: string[] = [];
+  if (data.gclid) rows.push(emailRow("GCLID", data.gclid));
+  if (data.gbraid) rows.push(emailRow("GBRAID", data.gbraid));
+  if (data.wbraid) rows.push(emailRow("WBRAID", data.wbraid));
+  if (data.utm_source) rows.push(emailRow("UTM Source", data.utm_source));
+  if (data.utm_medium) rows.push(emailRow("UTM Medium", data.utm_medium));
+  if (data.utm_campaign) rows.push(emailRow("UTM Campaign", data.utm_campaign));
+  if (data.utm_term) rows.push(emailRow("UTM Term", data.utm_term));
+  if (data.utm_content) rows.push(emailRow("UTM Content", data.utm_content));
+  if (data.landing_page) rows.push(emailRow("Landing Page", data.landing_page));
+  return rows.join("");
+}
+
+/** Plain-text lines for attribution in lead emails. */
+export function attributionTextLines(data: AttributionData): string[] {
+  const lines: string[] = [];
+  if (data.gclid) lines.push(`GCLID: ${data.gclid}`);
+  if (data.gbraid) lines.push(`GBRAID: ${data.gbraid}`);
+  if (data.wbraid) lines.push(`WBRAID: ${data.wbraid}`);
+  if (data.utm_source) lines.push(`UTM Source: ${data.utm_source}`);
+  if (data.utm_medium) lines.push(`UTM Medium: ${data.utm_medium}`);
+  if (data.utm_campaign) lines.push(`UTM Campaign: ${data.utm_campaign}`);
+  if (data.utm_term) lines.push(`UTM Term: ${data.utm_term}`);
+  if (data.utm_content) lines.push(`UTM Content: ${data.utm_content}`);
+  if (data.landing_page) lines.push(`Landing Page: ${data.landing_page}`);
+  return lines;
+}

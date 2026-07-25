@@ -9,6 +9,11 @@ import {
 import { escapeHtml } from "@/lib/sanitize";
 import { validateOrigin } from "@/lib/csrf";
 import { validateHoneypot } from "@/lib/honeypot";
+import {
+  attributionEmailRows,
+  attributionTextLines,
+  sanitizeAttributionFromBody,
+} from "@/lib/analytics/click-ids";
 
 export async function POST(request: Request) {
   try {
@@ -29,6 +34,7 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const { name, email, service, revenue, budget, goal, score, source, auditType, _hp, _ts } = body;
+    const attribution = sanitizeAttributionFromBody(body);
 
     const honeypot = validateHoneypot(
       { _hp },
@@ -98,11 +104,12 @@ export async function POST(request: Request) {
         );
       }
       if (process.env.ENABLE_DEV_FORM_LOGGING === "1") {
-        console.log("[DEV] Lead captured:", leadData);
+        console.log("[DEV] Lead captured:", { ...leadData, attribution });
       }
       return NextResponse.json({ success: true, message: "Lead captured successfully" }, { status: 200 });
     }
 
+    const attributionHtml = attributionEmailRows(attribution, emailRow);
     const rows = [
       emailRow("Name", leadData.name),
       emailRow("Email", leadData.email, true),
@@ -112,9 +119,11 @@ export async function POST(request: Request) {
       emailRow("Goal", leadData.goal),
       emailRow("Score", leadData.score),
       emailRow("Source", leadData.source),
+      attributionHtml,
     ].join("");
 
     const transporter = createMailTransporter(creds);
+    const attributionText = attributionTextLines(attribution);
 
     await transporter.sendMail({
       from: `"KINEXIS Digital Leads" <${creds.gmailUser}>`,
@@ -126,7 +135,20 @@ export async function POST(request: Request) {
         rows,
         `Reply directly to this email to contact <strong style="color:#fff;">${escapeHtml(leadData.name)}</strong> at <a href="mailto:${escapeHtml(leadData.email)}" style="color:#00d4ff;">${escapeHtml(leadData.email)}</a>.`,
       ),
-      text: `New Lead \u2014 KINEXIS Digital\n\nName: ${leadData.name}\nEmail: ${leadData.email}\nService: ${leadData.service}\nRevenue: ${leadData.revenue}\nBudget: ${leadData.budget}\nGoal: ${leadData.goal}\nScore: ${leadData.score}\nSource: ${leadData.source}\nCaptured: ${leadData.capturedAt}`,
+      text: [
+        `New Lead \u2014 KINEXIS Digital`,
+        "",
+        `Name: ${leadData.name}`,
+        `Email: ${leadData.email}`,
+        `Service: ${leadData.service}`,
+        `Revenue: ${leadData.revenue}`,
+        `Budget: ${leadData.budget}`,
+        `Goal: ${leadData.goal}`,
+        `Score: ${leadData.score}`,
+        `Source: ${leadData.source}`,
+        `Captured: ${leadData.capturedAt}`,
+        ...(attributionText.length ? ["", "Attribution:", ...attributionText] : []),
+      ].join("\n"),
     });
 
     return NextResponse.json({ success: true, message: "Lead captured successfully" }, { status: 200 });

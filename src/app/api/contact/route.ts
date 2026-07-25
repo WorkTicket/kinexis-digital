@@ -10,6 +10,11 @@ import {
 import { escapeHtml } from "@/lib/sanitize";
 import { validateOrigin } from "@/lib/csrf";
 import { validateHoneypot } from "@/lib/honeypot";
+import {
+  attributionEmailRows,
+  attributionTextLines,
+  sanitizeAttributionFromBody,
+} from "@/lib/analytics/click-ids";
 
 export async function POST(request: Request) {
   try {
@@ -30,6 +35,7 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const { name, email, company, phone, service, message, _hp, _ts } = body;
+    const attribution = sanitizeAttributionFromBody(body);
 
     const honeypot = validateHoneypot(
       { _hp },
@@ -79,13 +85,18 @@ export async function POST(request: Request) {
         );
       }
       if (process.env.ENABLE_DEV_FORM_LOGGING === "1") {
-        console.log("\n[DEV] Contact form submission (no email sent):", { name, email });
+        console.log("\n[DEV] Contact form submission (no email sent):", {
+          name,
+          email,
+          attribution,
+        });
       }
       return NextResponse.json({ success: true }, { status: 200 });
     }
 
     const safeName = String(name);
     const safeEmail = String(email);
+    const attributionHtml = attributionEmailRows(attribution, emailRow);
     const rows = [
       emailRow("Name", safeName),
       emailRow("Email", safeEmail, true),
@@ -93,9 +104,11 @@ export async function POST(request: Request) {
       phone ? emailRow("Phone", String(phone)) : "",
       service ? emailRow("Service", String(service)) : "",
       message ? emailMessageRow(String(message)) : "",
+      attributionHtml,
     ].join("");
 
     const transporter = createMailTransporter(creds);
+    const attributionText = attributionTextLines(attribution);
 
     await transporter.sendMail({
       from: `"KINEXIS Digital Contact" <${creds.gmailUser}>`,
@@ -116,6 +129,7 @@ export async function POST(request: Request) {
         phone ? `Phone: ${phone}` : "",
         service ? `Service Interest: ${service}` : "",
         message ? `\nMessage:\n${message}` : "",
+        attributionText.length ? ["", "Attribution:", ...attributionText].join("\n") : "",
       ]
         .filter(Boolean)
         .join("\n"),

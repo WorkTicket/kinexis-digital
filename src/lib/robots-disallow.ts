@@ -1,9 +1,8 @@
-
-
 /**
- * Paths that must not be crawled — unprefixed legacy URLs that redirect to /en/ or /es/
- * equivalents, plus paid-traffic-only lead-magnet pages.
+ * Paths disallowed for general crawlers.
+ * Paid landing pages (/lp/*, /thank-you*) use noindex metadata instead of robots
+ * disallow so AdsBot-Google can still crawl them for landing-page quality checks.
  */
 export function getRobotsDisallowPaths(): string[] {
-  return ["/api/", "/lead-magnet", "/en/lead-magnet", "/es/lead-magnet"];
+  return ["/api/"];
 }
