@@ -328,7 +328,7 @@ export const contentMarketingPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Content outcomes from recent programs.",
     metrics: [
-      { metric: "2.4X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
       { metric: "+140%", label: "organic traffic · same client" },
       { metric: "62%", label: "of demos from content engine · month 8" },
       { metric: "62%", label: "of demos from content · month 8" },
@@ -665,7 +665,7 @@ export const funnelsPillarContent: ServicePillarContent = {
     subtitle: "Funnel and CRO outcomes from recent programs.",
     metrics: [
       { metric: "1.8% → 3.9%", label: "conversion rate · Landscaping Co. funnel" },
-      { metric: "2.4X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
       { metric: "+35%", label: "nurture-to-booking rate · post-automation" },
       { metric: "+35%", label: "nurture-to-booking rate" },
     ],

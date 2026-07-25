@@ -1,6 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { useLocale } from "next-intl";
+import { ExternalLink } from "lucide-react";
 import { m as motion } from "@/lib/framer";
 import CaseStudyResultsMetrics from "@/components/case-studies/CaseStudyResultsMetrics";
 import FAQSection from "@/components/sections/FAQSection";
@@ -114,7 +116,7 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
         variant="article"
         label={cs.industry}
         headline={cs.headline}
-        subtitle={`${cs.title} · ${cs.client} · ${meta.timeline}`}
+        subtitle={`${cs.client} · ${meta.timeline}`}
         ctaLabel={cs.heroCtaLabel}
         ctaHref="/contact"
         breadcrumbs={breadcrumbs}
@@ -125,6 +127,47 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
           <CaseStudyResultsMetrics results={cs.resultsList} />
         </div>
       </Section>
+
+      {cs.screenshot && cs.liveUrl && (
+        <Section id="live-site" surfaceIndex={surfaceIndex++}>
+          <div className="container-site">
+            <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-neon-cyan">
+                  {cs.client}
+                </p>
+                <h2 className="type-subheader mt-2">{cs.visitLiveSite ?? "Visit Live Site"}</h2>
+              </div>
+              <a
+                href={cs.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-strong px-4 py-2 text-sm font-semibold text-muted transition-colors hover:border-neon-cyan/40 hover:text-neon-cyan"
+              >
+                {cs.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+            <a
+              href={cs.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden rounded-2xl border border-surface bg-bg-dark"
+            >
+              <div className="relative aspect-[16/9] w-full">
+                <Image
+                  src={cs.screenshot}
+                  alt={`${cs.client} live website`}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                  sizes="(max-width: 1024px) 100vw, 1100px"
+                  priority
+                />
+              </div>
+            </a>
+          </div>
+        </Section>
+      )}
 
       <Section id="overview-meta" surfaceIndex={surfaceIndex++}>
         <div className="container-site">

@@ -49,7 +49,7 @@ export const landingPages: LandingPageEntry[] = [
       { metric: "+118%", label: "pipeline from Ads + CRO" },
       { metric: "−43%", label: "CAC · SaaS platform, 8 mo" },
       { metric: "$4,100", label: "monthly ad spend after cut (was $6,800)" },
-      { metric: "2.4X", label: "demo volume · SaaS, 8 mo" },
+      { metric: "2.4X", label: "order volume · Manos Creativas, 8 mo" },
     ],
     bulletsTitle: "What we fix first",
     bullets: [
@@ -214,7 +214,7 @@ export const landingPages: LandingPageEntry[] = [
       { metric: "+168%", label: "growth · SEO + web redesign pattern" },
       { metric: "3.9%", label: "conversion rate · Landscaping (was 1.8%)" },
       { metric: "+142%", label: "growth · SEO + CRO pattern" },
-      { metric: "2.4X", label: "demos · SaaS after funnel + site work" },
+      { metric: "2.4X", label: "orders · Manos Creativas after funnel + site work" },
     ],
     bulletsTitle: "What we build for",
     bullets: [

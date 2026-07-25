@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { m as motion, AnimatePresence } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
 import CaseStudyMetricCard from "@/components/case-studies/CaseStudyMetricCard";
@@ -16,6 +17,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Section from "@/components/shared/services/Section";
 import {
   ArrowUpRight,
+  ExternalLink,
   TrendingUp,
   Users,
   MousePointerClick,
@@ -93,6 +95,28 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
+            <a
+              href={featuredCS.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block border-b border-surface"
+            >
+              <div className="relative aspect-[16/9] w-full bg-bg-dark">
+                <Image
+                  src={featuredCS.screenshot}
+                  alt={`${featuredCS.client} website homepage`}
+                  fill
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
+                  sizes="(max-width: 1024px) 100vw, 1100px"
+                  priority
+                />
+              </div>
+              <span className="absolute bottom-4 right-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-bg-dark/80 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+                {c.visitLiveSite}
+                <ExternalLink className="h-3.5 w-3.5" />
+              </span>
+            </a>
+
             <div className="grid lg:grid-cols-2">
               <div className="p-8 md:p-12 lg:p-14 flex flex-col justify-center">
                 <span className="inline-flex w-fit items-center gap-2 rounded-full border border-neon-cyan/25 bg-neon-cyan/[0.05] px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-neon-cyan">
@@ -104,7 +128,8 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                 <h2 className="card-heading mt-3 gradient-text">
                   {featuredCS.headline}
                 </h2>
-                <h3 className="card-heading mt-2">{featuredCS.title}</h3>
+                <h3 className="card-heading mt-2">{featuredCS.client}</h3>
+                <p className="mt-1 text-sm text-muted">{featuredCS.title}</p>
                 <p className="mt-4 section-intro section-intro--left">
                   {featuredCS.summary}
                 </p>
@@ -133,10 +158,19 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                   ))}
                 </div>
 
-                <div className="mt-8">
+                <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
                   <TextLink href={`/case-studies/${featuredCS.slug}`}>
                     {c.readFullCaseStudy}
                   </TextLink>
+                  <a
+                    href={featuredCS.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted transition-colors hover:text-neon-cyan"
+                  >
+                    {c.visitLiveSite}
+                    <ExternalLink className="h-3.5 w-3.5" />
+                  </a>
                 </div>
               </div>
 
@@ -236,6 +270,21 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
                 >
+                  <a
+                    href={cs.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block aspect-[16/10] border-b border-surface bg-bg-dark"
+                  >
+                    <Image
+                      src={cs.screenshotCard}
+                      alt={`${cs.client} website`}
+                      fill
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                    />
+                  </a>
+
                   <div className="p-6 md:p-8 flex-1 flex flex-col">
                     <div className="flex items-center justify-between gap-3">
                       <span className="inline-block rounded-full border border-strong px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-muted">
@@ -245,7 +294,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                     </div>
 
                     <h3 className="type-subheader mt-5 gradient-text">{cs.headline}</h3>
-                    <p className="mt-1 text-base font-semibold">{cs.title}</p>
+                    <p className="mt-1 text-base font-semibold">{cs.client}</p>
                     <p className="mt-3 text-sm leading-relaxed text-muted flex-1">{cs.summary}</p>
 
                     <CaseStudyLiftRow
@@ -264,13 +313,24 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                     </div>
                   </div>
 
-                  <Link
-                    href={`/case-studies/${cs.slug}`}
-                    className="flex items-center justify-between gap-2 border-t border-surface px-6 md:px-8 py-4 text-sm font-semibold text-neon-cyan group-hover:bg-neon-cyan/[0.03] transition-colors"
-                  >
-                    {c.viewCaseStudy}
-                    <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Link>
+                  <div className="grid grid-cols-2 border-t border-surface">
+                    <Link
+                      href={`/case-studies/${cs.slug}`}
+                      className="flex items-center justify-center gap-2 px-4 py-4 text-sm font-semibold text-neon-cyan group-hover:bg-neon-cyan/[0.03] transition-colors"
+                    >
+                      {c.viewCaseStudy}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                    <a
+                      href={cs.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 border-l border-surface px-4 py-4 text-sm font-semibold text-muted transition-colors hover:bg-white/[0.02] hover:text-white"
+                    >
+                      {c.visitLiveSite}
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
                 </motion.article>
               ))}
             </motion.div>

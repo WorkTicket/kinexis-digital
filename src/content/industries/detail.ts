@@ -118,7 +118,7 @@ const industryOutcomeMap: Record<string, { value: string; label: string }[]> = {
   ],
   // Technology
   saas: [
-    { value: "2.4X", label: "demo requests · SaaS Platform, 8 mo" },
+    { value: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
     { value: "43%", label: "CAC reduction · organic channels" },
     { value: "$17.2K", label: "MRR · marketing-attributed" },
   ],

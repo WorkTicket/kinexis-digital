@@ -192,7 +192,7 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       metrics: [
         { value: "2.8X", label: "qualified leads · Landscaping Co., 10 mo" },
         { value: "136%", label: "emergency calls · Plumbing Co., 8 mo" },
-        { value: "2.4X", label: "demo requests · SaaS Platform, 8 mo" },
+        { value: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
         { value: "3.9%", label: "lead conversion · Landscaping rebuild" },
       ],
     },
@@ -300,7 +300,7 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       metrics: [
         { value: "2.8X", label: "leads calificados · Landscaping Co., 10 meses" },
         { value: "136%", label: "llamadas de emergencia · Plumbing Co., 8 meses" },
-        { value: "2.4X", label: "solicitudes de demo · Plataforma SaaS, 8 meses" },
+        { value: "2.4X", label: "pedidos mensuales · Manos Creativas, 8 meses" },
         { value: "3.9%", label: "conversión de leads · rebuild Landscaping" },
       ],
     },
