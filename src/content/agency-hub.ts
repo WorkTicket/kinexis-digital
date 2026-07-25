@@ -190,10 +190,10 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       subtitle: "Everything here is documented. Ask for the strategy, the execution timeline, and the revenue outcome behind any number on this page.",
       viewAllLabel: "View all case studies",
       metrics: [
-        { value: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
-        { value: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-        { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
-        { value: "8.4%", label: "lead conversion · Landscaping rebuild" },
+        { value: "2.8X", label: "qualified leads · Landscaping Co., 10 mo" },
+        { value: "136%", label: "emergency calls · Plumbing Co., 8 mo" },
+        { value: "2.4X", label: "demo requests · SaaS Platform, 8 mo" },
+        { value: "3.9%", label: "lead conversion · Landscaping rebuild" },
       ],
     },
     faqs: [
@@ -298,10 +298,10 @@ export const agencyHubContent: Record<Locale, AgencyHubContent> = {
       subtitle: "Misma metodología. Distintas industrias. Cada métrica ligada a un caso verificado.",
       viewAllLabel: "Ver todos los casos de éxito",
       metrics: [
-        { value: "4.8X", label: "leads calificados · Landscaping Co., 10 meses" },
-        { value: "327%", label: "llamadas de emergencia · Plumbing Co., 8 meses" },
-        { value: "5.9X", label: "solicitudes de demo · Plataforma SaaS, 8 meses" },
-        { value: "8.4%", label: "conversión de leads · rebuild Landscaping" },
+        { value: "2.8X", label: "leads calificados · Landscaping Co., 10 meses" },
+        { value: "136%", label: "llamadas de emergencia · Plumbing Co., 8 meses" },
+        { value: "2.4X", label: "solicitudes de demo · Plataforma SaaS, 8 meses" },
+        { value: "3.9%", label: "conversión de leads · rebuild Landscaping" },
       ],
     },
     faqs: [

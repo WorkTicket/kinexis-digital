@@ -117,8 +117,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Organic Traffic",
         headline: "Steady growth, not spikes",
         description:
-          "Landscaping Company case study: organic traffic grew from 420 to 5,840 visits per month over 10 months after a site rebuild and local SEO campaign.",
-        metric: "+1,290%",
+          "Landscaping Company case study: organic traffic grew from 420 to 1,180 visits per month over 10 months after a site rebuild and local SEO campaign.",
+        metric: "+181%",
       },
       {
         label: "Keyword Rankings",
@@ -130,8 +130,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Qualified Lead Growth",
         headline: "Organic traffic that books",
         description:
-          "Landscaping client: qualified leads grew from 10 to 48 per month over 10 months as commercial-intent keywords moved into page one.",
-        metric: "4.8X leads",
+          "Landscaping client: qualified leads grew from 10 to 28 per month over 10 months as commercial-intent keywords moved into page one.",
+        metric: "2.8X leads",
       },
     ],
     phasesTitle: "How we grow search traffic",
@@ -258,8 +258,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Tráfico Orgánico",
         headline: "Crecimiento constante, no picos",
         description:
-          "Caso Landscaping Company: el tráfico orgánico pasó de 420 a 5.840 visitas al mes en 10 meses tras rebuild y SEO local.",
-        metric: "+1,290%",
+          "Caso Landscaping Company: el tráfico orgánico pasó de 420 a 1.180 visitas al mes en 10 meses tras rebuild y SEO local.",
+        metric: "+181%",
       },
       {
         label: "Posiciones de Palabras Clave",
@@ -271,8 +271,8 @@ export const seoContent: Record<Locale, SeoContent> = {
         label: "Crecimiento de Leads Calificados",
         headline: "Tráfico orgánico que reserva",
         description:
-          "Cliente Landscaping: leads calificados de 10 a 48 por mes en 10 meses a medida que keywords de intención comercial entraron a página uno.",
-        metric: "4.8X leads",
+          "Cliente Landscaping: leads calificados de 10 a 28 por mes en 10 meses a medida que keywords de intención comercial entraron a página uno.",
+        metric: "2.8X leads",
       },
     ],
     phasesTitle: "Cómo hacemos crecer tu tráfico orgánico",

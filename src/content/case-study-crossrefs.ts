@@ -1,44 +1,64 @@
-/** Canonical case study metrics — single source of truth for cross-page references */
+/** Canonical case study metrics — derived from listing content so pages stay uniform */
+
+import { caseStudiesContent } from "@/content/case-studies";
+
+const en = caseStudiesContent.en.caseStudies;
+
+function bySlug(slug: string) {
+  const study = en.find((item) => item.slug === slug);
+  if (!study) {
+    throw new Error(`Missing case study content for slug: ${slug}`);
+  }
+  return study;
+}
+
+const landscaping = bySlug("landscaping-company-growth");
+const plumbing = bySlug("plumbing-company-growth");
+const saas = bySlug("saas-platform-growth");
+
+const landscapingConversion = landscaping.metrics.find((m) =>
+  m.label.toLowerCase().includes("conversion")
+);
 
 export const CASE_STUDIES = {
   landscaping: {
-    slug: "landscaping-company-growth",
-    href: "/case-studies/landscaping-company-growth",
+    slug: landscaping.slug,
+    href: `/case-studies/${landscaping.slug}`,
     client: "Landscaping Co.",
-    clientFull: "Landscaping Company",
-    heroMetric: "4.8X Lead Growth",
-    linkLabel: "4.8X Leads · Landscaping Co.",
-    trafficLift: "+1,290%",
-    leadLift: "+380%",
-    revenueLift: "+$14,300/mo",
-    conversionBefore: "1.8%",
-    conversionAfter: "8.4%",
-    timeline: "10 months",
+    clientFull: landscaping.title,
+    heroMetric: `${landscaping.primaryLift} Lead Growth`,
+    linkLabel: `${landscaping.primaryLift} Leads · Landscaping Co.`,
+    trafficLift: landscaping.trafficLift,
+    leadLift: landscaping.leadLift,
+    revenueLift: landscaping.revenueLift,
+    conversionBefore: landscapingConversion ? `${landscapingConversion.from}%` : "1.8%",
+    conversionAfter: landscapingConversion ? `${landscapingConversion.to}%` : "3.9%",
+    timeline: landscaping.timeline,
   },
   plumbing: {
-    slug: "plumbing-company-growth",
-    href: "/case-studies/plumbing-company-growth",
+    slug: plumbing.slug,
+    href: `/case-studies/${plumbing.slug}`,
     client: "Plumbing Co.",
-    clientFull: "Plumbing Company",
-    heroMetric: "327% More Emergency Calls",
-    linkLabel: "327% Calls · Plumbing Co.",
-    trafficLift: "+410%",
-    leadLift: "+327%",
-    revenueLift: "+$14,200/mo",
-    adSpendReduction: "65%",
-    timeline: "8 months",
+    clientFull: plumbing.title,
+    heroMetric: `${plumbing.primaryLift} More Emergency Calls`,
+    linkLabel: `${plumbing.primaryLift} Calls · Plumbing Co.`,
+    trafficLift: plumbing.trafficLift,
+    leadLift: plumbing.leadLift,
+    revenueLift: plumbing.revenueLift,
+    adSpendReduction: "40%",
+    timeline: plumbing.timeline,
   },
   saas: {
-    slug: "saas-platform-growth",
-    href: "/case-studies/saas-platform-growth",
-    client: "SaaS Platform",
-    clientFull: "SaaS Platform",
-    heroMetric: "5.9X Demo Requests",
-    linkLabel: "5.9X Demos · SaaS Platform",
-    trafficLift: "+481%",
-    leadLift: "+490%",
-    revenueLift: "+$24,500/mo",
-    timeline: "8 months",
+    slug: saas.slug,
+    href: `/case-studies/${saas.slug}`,
+    client: saas.title,
+    clientFull: saas.title,
+    heroMetric: `${saas.primaryLift} Demo Requests`,
+    linkLabel: `${saas.primaryLift} Demos · SaaS Platform`,
+    trafficLift: saas.trafficLift,
+    leadLift: saas.leadLift,
+    revenueLift: saas.revenueLift,
+    timeline: saas.timeline,
   },
 } as const;
 

@@ -18,7 +18,7 @@ export default function SeoHeroViz({ labels }: Props) {
     <HeroVizContainer
       browserLabel="Search Console"
       frameClassName="h-[165px] w-[220px]"
-      badges={[{ label: "Landscaping Co.", value: "4.8X", accent: "emerald" }]}
+      badges={[{ label: "Landscaping Co.", value: "2.8X", accent: "emerald" }]}
     >
       <div className="mb-1 grid grid-cols-[1fr_28px_28px] gap-1 border-b border-surface pb-1">
         <span className="text-[6px] uppercase tracking-wider text-muted/40">Keyword</span>

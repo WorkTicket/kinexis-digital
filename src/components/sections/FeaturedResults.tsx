@@ -1,4 +1,6 @@
-import { useTranslations } from "next-intl";
+"use client";
+
+import { useLocale, useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import SectionHeader from "@/components/ui/SectionHeader";
@@ -6,50 +8,38 @@ import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/shared/services/Section";
 import { cardClasses } from "@/lib/card-styles";
 import OutcomeComparison from "@/components/ui/DataViz/OutcomeComparison";
+import { getHomepageCaseStudies } from "@/content/case-studies";
+import type { Locale } from "@/i18n/routing";
 
-const caseStudyMeta = [
-  {
-    key: "landscaping" as const,
-    before: 10,
-    after: 48,
-    unit: "leads/mo",
-    multiplierLabel: "4.8X",
-    duration: "10 months",
-    slug: "landscaping-company-growth",
-  },
-  {
-    key: "plumbing" as const,
-    before: 22,
-    after: 94,
-    unit: "calls/mo",
-    multiplierLabel: "327%",
-    duration: "8 months",
-    slug: "plumbing-company-growth",
-  },
-  {
-    key: "saas" as const,
-    before: 32,
-    after: 189,
-    unit: "demos/mo",
-    multiplierLabel: "5.9X",
-    duration: "8 months",
-    slug: "saas-platform-growth",
-  },
-];
+const PRIMARY_UNIT: Record<string, { en: string; es: string }> = {
+  "landscaping-company-growth": { en: "leads/mo", es: "leads/mes" },
+  "plumbing-company-growth": { en: "calls/mo", es: "llamadas/mes" },
+  "saas-platform-growth": { en: "demos/mo", es: "demos/mes" },
+};
 
 type Props = { surfaceIndex?: number };
 
 export default function FeaturedResults({ surfaceIndex = 0 }: Props) {
   const t = useTranslations("featuredResults");
   const tCommon = useTranslations("common");
+  const locale = useLocale() as Locale;
+  const studies = getHomepageCaseStudies(locale);
 
-  const caseStudies = caseStudyMeta.map((meta) => ({
-    ...meta,
-    category: t(`cases.${meta.key}.category`),
-    title: t(`cases.${meta.key}.title`),
-    headline: t(`cases.${meta.key}.headline`),
-    summary: t(`cases.${meta.key}.summary`),
-  }));
+  const caseStudies = studies.map((study) => {
+    const primary = study.metrics[0];
+    return {
+      slug: study.slug,
+      category: study.industry,
+      title: study.title,
+      headline: study.headline,
+      summary: study.summary,
+      before: primary.from,
+      after: primary.to,
+      unit: PRIMARY_UNIT[study.slug]?.[locale] ?? "mo",
+      multiplierLabel: study.primaryLift,
+      duration: study.timeline,
+    };
+  });
 
   return (
     <Section id="featured-results" surfaceIndex={surfaceIndex}>
@@ -63,10 +53,7 @@ export default function FeaturedResults({ surfaceIndex = 0 }: Props) {
 
         <Reveal stagger className="section-content space-y-grid-lg">
           {caseStudies.map((cs, i) => (
-            <article
-              key={cs.slug}
-              className="relative"
-            >
+            <article key={cs.slug} className="relative">
               <div
                 className={cn(
                   "grid items-center gap-grid-lg lg:grid-cols-2",
@@ -81,10 +68,7 @@ export default function FeaturedResults({ surfaceIndex = 0 }: Props) {
                   <p className="type-subheader mt-3 text-white/80">{cs.title}</p>
                   <p className="type-body mt-6 section-intro section-intro--left">{cs.summary}</p>
                   <div className="after-copy-cta">
-                    <Button
-                      href={`/case-studies/${cs.slug}`}
-                      variant="secondary"
-                    >
+                    <Button href={`/case-studies/${cs.slug}`} variant="secondary">
                       {tCommon("viewCaseStudy")}
                     </Button>
                   </div>
@@ -120,10 +104,7 @@ export default function FeaturedResults({ surfaceIndex = 0 }: Props) {
         </Reveal>
 
         <div className="section-cta-row">
-          <Button
-            href="/case-studies"
-            variant="secondary"
-          >
+          <Button href="/case-studies" variant="secondary">
             {tCommon("viewAllCaseStudies")}
           </Button>
         </div>

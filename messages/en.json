@@ -196,27 +196,7 @@
   "featuredResults": {
     "label": "Proven Results",
     "title": "Outcomes, not opinions.",
-    "subtitle": "Three verified client results across home services and technology. Strategy, execution timeline, and real revenue numbers.",
-    "cases": {
-      "landscaping": {
-        "category": "Home Services",
-        "title": "Landscaping Company",
-        "headline": "4.8X Qualified Lead Growth",
-        "summary": "A complete SEO and site rebuild. Qualified leads went from 10 to 48 per month, organic traffic up 1,290%, and conversion rate from 1.8% to 8.4%."
-      },
-      "plumbing": {
-        "category": "Home Services",
-        "title": "Plumbing Company",
-        "headline": "327% More Emergency Calls",
-        "summary": "Family-owned plumber escaped paid ad dependency. Emergency calls went from 22 to 94 per month, ad spend cut by 65%, and local pack dominance achieved."
-      },
-      "saas": {
-        "category": "Technology",
-        "title": "SaaS Platform",
-        "headline": "5.9X More Demos",
-        "summary": "B2B SaaS scaled demo requests from 32 to 189 per month through content marketing and technical SEO. MRR grew from $8.5K to $33K in 8 months."
-      }
-    }
+    "subtitle": "Three verified client results across home services and technology. Strategy, execution timeline, and real revenue numbers."
   },
   "philosophy": {
     "label": "Why Clients Switch To KINEXIS",

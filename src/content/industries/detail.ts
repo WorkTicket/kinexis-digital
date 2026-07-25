@@ -97,14 +97,14 @@ const industryOutcomeMap: Record<string, { value: string; label: string }[]> = {
     { value: "41", label: "signed contracts per month · post-campaign" },
   ],
   landscaping: [
-    { value: "4.8X", label: "qualified lead growth · Landscaping Co., 10 mo" },
-    { value: "+1,290%", label: "organic traffic · same client" },
-    { value: "8.4%", label: "lead conversion rate · post-rebuild" },
+    { value: "2.8X", label: "qualified lead growth · Landscaping Co., 10 mo" },
+    { value: "+181%", label: "organic traffic · same client" },
+    { value: "3.9%", label: "lead conversion rate · post-rebuild" },
   ],
   plumbing: [
-    { value: "327%", label: "emergency call growth · Plumbing Co., 8 mo" },
-    { value: "65%", label: "ad spend reduction · same client" },
-    { value: "94", label: "emergency calls per month" },
+    { value: "136%", label: "emergency call growth · Plumbing Co., 8 mo" },
+    { value: "40%", label: "ad spend reduction · same client" },
+    { value: "52", label: "emergency calls per month" },
   ],
   electrical: [
     { value: "2.9X", label: "quote requests · licensed-trades campaign" },
@@ -118,9 +118,9 @@ const industryOutcomeMap: Record<string, { value: string; label: string }[]> = {
   ],
   // Technology
   saas: [
-    { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+    { value: "2.4X", label: "demo requests · SaaS Platform, 8 mo" },
     { value: "43%", label: "CAC reduction · organic channels" },
-    { value: "$33K", label: "MRR · marketing-attributed" },
+    { value: "$17.2K", label: "MRR · marketing-attributed" },
   ],
   startups: [
     { value: "475%", label: "inbound lead growth · pre-Series A" },

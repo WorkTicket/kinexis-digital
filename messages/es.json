@@ -196,27 +196,7 @@
   "featuredResults": {
     "label": "Resultados Comprobados",
     "title": "Resultados, no opiniones.",
-    "subtitle": "Trayectorias reales de trabajo real con clientes.|Así medimos el éxito.",
-    "cases": {
-      "landscaping": {
-        "category": "Servicios para el Hogar",
-        "title": "Empresa de Jardinería",
-        "headline": "Crecimiento de Leads 4.8X",
-        "summary": "SEO local y reconstrucción del sitio. Los leads calificados pasaron de 10 a 48 por mes, tráfico orgánico aumentó 1,290% y conversión del 1.8% al 8.4%."
-      },
-      "plumbing": {
-        "category": "Servicios para el Hogar",
-        "title": "Empresa de Plomería",
-        "headline": "327% Más Llamadas de Emergencia",
-        "summary": "Plomero familiar superó la dependencia de anuncios. Llamadas de emergencia de 22 a 94 por mes, gasto en anuncios reducido 65% y dominio del pack local."
-      },
-      "saas": {
-        "category": "Tecnología",
-        "title": "Plataforma SaaS",
-        "headline": "5.9X Más Demos",
-        "summary": "SaaS B2B escaló solicitudes de demo de 32 a 189 por mes con marketing de contenido y SEO técnico. MRR creció de $8.5K a $33K en 8 meses."
-      }
-    }
+    "subtitle": "Trayectorias reales de trabajo real con clientes.|Así medimos el éxito."
   },
   "philosophy": {
     "label": "Por Qué los Clientes Cambian a KINEXIS",

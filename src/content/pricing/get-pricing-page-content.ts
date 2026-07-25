@@ -48,15 +48,15 @@ function isBestForRow(label: string) {
 const PRICING_TIER_PROOF: Partial<
   Record<PricingSlug, { caseStudy: keyof typeof CASE_STUDIES; result: string; tierName: string }>
 > = {
-  seo: { caseStudy: "landscaping", result: "4.8X lead growth", tierName: "Growth" },
-  "local-seo": { caseStudy: "plumbing", result: "327% more emergency calls", tierName: "Growth" },
-  "ppc-management": { caseStudy: "plumbing", result: "327% more emergency calls", tierName: "Growth" },
-  "meta-ads": { caseStudy: "saas", result: "5.9X demo requests", tierName: "Growth" },
-  "web-design": { caseStudy: "landscaping", result: "1.8% to 8.4% conversion rate", tierName: "Growth" },
-  funnels: { caseStudy: "landscaping", result: "1.8% to 8.4% conversion rate", tierName: "Growth" },
-  analytics: { caseStudy: "saas", result: "5.9X demo requests", tierName: "Growth" },
-  "growth-consulting": { caseStudy: "saas", result: "5.9X demo requests", tierName: "Growth" },
-  "social-media": { caseStudy: "landscaping", result: "4.8X lead growth", tierName: "Growth" },
+  seo: { caseStudy: "landscaping", result: "2.8X lead growth", tierName: "Growth" },
+  "local-seo": { caseStudy: "plumbing", result: "136% more emergency calls", tierName: "Growth" },
+  "ppc-management": { caseStudy: "plumbing", result: "136% more emergency calls", tierName: "Growth" },
+  "meta-ads": { caseStudy: "saas", result: "2.4X demo requests", tierName: "Growth" },
+  "web-design": { caseStudy: "landscaping", result: "1.8% to 3.9% conversion rate", tierName: "Growth" },
+  funnels: { caseStudy: "landscaping", result: "1.8% to 3.9% conversion rate", tierName: "Growth" },
+  analytics: { caseStudy: "saas", result: "2.4X demo requests", tierName: "Growth" },
+  "growth-consulting": { caseStudy: "saas", result: "2.4X demo requests", tierName: "Growth" },
+  "social-media": { caseStudy: "landscaping", result: "2.8X lead growth", tierName: "Growth" },
 };
 
 function buildProgressionComparison(

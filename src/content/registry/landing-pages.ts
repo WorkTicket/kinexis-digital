@@ -46,10 +46,10 @@ export const landingPages: LandingPageEntry[] = [
     formFootnote: "No pitch deck. Practical findings within one business day.",
     proofIntro: "Results from accounts we rebuilt — not vanity dashboards.",
     proof: [
-      { metric: "+276%", label: "pipeline from Ads + CRO" },
+      { metric: "+118%", label: "pipeline from Ads + CRO" },
       { metric: "−43%", label: "CAC · SaaS platform, 8 mo" },
-      { metric: "$2,400", label: "monthly ad spend after cut (was $6,800)" },
-      { metric: "5.9X", label: "demo volume · SaaS, 8 mo" },
+      { metric: "$4,100", label: "monthly ad spend after cut (was $6,800)" },
+      { metric: "2.4X", label: "demo volume · SaaS, 8 mo" },
     ],
     bulletsTitle: "What we fix first",
     bullets: [
@@ -101,10 +101,10 @@ export const landingPages: LandingPageEntry[] = [
     formFootnote: "Clear findings. No 40-page report designed to impress instead of act.",
     proofIntro: "Organic growth our clients can point to in their CRM.",
     proof: [
-      { metric: "+1,290%", label: "organic traffic · Landscaping, 10 mo" },
-      { metric: "4.8X", label: "qualified leads · Landscaping, 10 mo" },
-      { metric: "+481%", label: "organic traffic · SaaS, 8 mo" },
-      { metric: "+$14,300", label: "monthly revenue · Landscaping" },
+      { metric: "+181%", label: "organic traffic · Landscaping, 10 mo" },
+      { metric: "2.8X", label: "qualified leads · Landscaping, 10 mo" },
+      { metric: "+140%", label: "organic traffic · SaaS, 8 mo" },
+      { metric: "+$5,600", label: "monthly revenue · Landscaping" },
     ],
     bulletsTitle: "How we approach SEO",
     bullets: [
@@ -156,10 +156,10 @@ export const landingPages: LandingPageEntry[] = [
     formFootnote: "Practical GBP and local-pack findings. No junk citation spam.",
     proofIntro: "Local operators who needed phones to ring.",
     proof: [
-      { metric: "327%", label: "more emergency calls · Plumbing" },
-      { metric: "42/50", label: "local pack keywords · Landscaping" },
-      { metric: "+410%", label: "site traffic · Plumbing, 8 mo" },
-      { metric: "+$14,200", label: "monthly revenue · Plumbing" },
+      { metric: "136%", label: "more emergency calls · Plumbing" },
+      { metric: "28/50", label: "local pack keywords · Landscaping" },
+      { metric: "+170%", label: "site traffic · Plumbing, 8 mo" },
+      { metric: "+$5,200", label: "monthly revenue · Plumbing" },
     ],
     bulletsTitle: "What local SEO actually includes",
     bullets: [
@@ -211,10 +211,10 @@ export const landingPages: LandingPageEntry[] = [
     formFootnote: "Straight feedback on structure, speed, and conversion gaps.",
     proofIntro: "When the site stops being the bottleneck.",
     proof: [
-      { metric: "+423%", label: "growth · SEO + web redesign pattern" },
-      { metric: "8.4%", label: "conversion rate · Landscaping (was 1.8%)" },
-      { metric: "+317%", label: "growth · SEO + CRO pattern" },
-      { metric: "5.9X", label: "demos · SaaS after funnel + site work" },
+      { metric: "+168%", label: "growth · SEO + web redesign pattern" },
+      { metric: "3.9%", label: "conversion rate · Landscaping (was 1.8%)" },
+      { metric: "+142%", label: "growth · SEO + CRO pattern" },
+      { metric: "2.4X", label: "demos · SaaS after funnel + site work" },
     ],
     bulletsTitle: "What we build for",
     bullets: [
