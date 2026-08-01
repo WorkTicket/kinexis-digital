@@ -5,9 +5,10 @@ export type CardSurface = "default" | "glass" | "elevated";
 /** Shared card class strings — single source of truth for Card, CardFamily, and service cards. */
 export const cardSurfaces: Record<CardSurface, string> = {
   default: "rounded-2xl border border-surface bg-surface-raised card-pad",
-  glass: "rounded-2xl border border-surface bg-surface-glass backdrop-blur-xl card-pad",
+  /** Prefer default for content cards; glass is for nav/overlays only. */
+  glass: "rounded-2xl border border-surface bg-surface-raised card-pad",
   elevated:
-    "rounded-2xl border border-surface bg-surface-base card-pad transition-colors duration-300 hover:border-strong hover:bg-surface-glass",
+    "rounded-2xl border border-surface bg-surface-base card-pad transition-colors duration-300 hover:border-strong hover:bg-surface-hover",
 };
 
 type CardClassOptions = {

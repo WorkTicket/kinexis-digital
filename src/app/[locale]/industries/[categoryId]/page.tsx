@@ -65,12 +65,14 @@ export default async function IndustryCategoryPage({ params }: Props) {
         headline={
           <>
             <span className="type-hero-line">{category.label}</span>
-            <span className="type-hero-line">marketing built for your vertical.</span>
+            <span className="type-hero-line gradient-text">marketing built for your vertical.</span>
           </>
         }
         subtitle={category.description}
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
+        secondaryCtaLabel="Get Free Audit"
+        secondaryCtaHref="/lead-magnet"
         breadcrumbs={[
           { name: "Home", url: "/" },
           { name: "Industries", url: "/industries" },

@@ -5,16 +5,16 @@ export const marketingAuditsContent: Record<Locale, GenericRichServiceContent> =
   en: {
     hero: { ctaLabel: "Request an Audit" },
     processSection: {
-      title: "Engagement timeline",
-      subtitle: "From data validation to a prioritized action plan.",
+      title: "Audit methodology",
+      subtitle: "Same rigor as a paid engagement. Evidence first, then a severity-ranked plan.",
     },
     processIntro:
-      "An audit only helps if the numbers can be trusted first. Our cycle runs from tracking validation through channel performance review, funnel mapping, budget analysis, and a ranked action plan. Each finding tied to revenue impact, not opinion.",
+      "We treat audits like diagnostic engagements, not sales decks. Tracking gets validated before any channel is judged. Then we review cost per qualified lead, map funnel drop-off, and rank every finding by revenue impact and effort so your team knows what is P0 versus nice-to-have.",
     phases: [
-      { title: "Validate Tracking", desc: "GA4, conversion events, and call tracking checked end to end before anything else gets judged.", metric: "" },
-      { title: "Channel & Funnel Review", desc: "Every active channel scored on cost per qualified lead, with drop-off mapped stage by stage.", metric: "" },
-      { title: "Budget & Competitive Context", desc: "Spend allocation reviewed against return, with visibility compared to key competitors.", metric: "" },
-      { title: "Deliver Action Plan", desc: "Ranked roadmap of fixes and opportunities, walked through live with your team.", metric: "" },
+      { title: "Validate Tracking", desc: "GA4 events, GTM tags, call tracking, and CRM handoffs verified end to end. Broken data gets flagged before channel conclusions.", metric: "" },
+      { title: "Channel & Funnel Review", desc: "Each active channel scored on cost per qualified lead and pipeline contribution, with stage-by-stage drop-off mapped.", metric: "" },
+      { title: "Budget & Competitive Context", desc: "Spend vs return reviewed against your own history and the competitors you actually lose deals to.", metric: "" },
+      { title: "Deliver Findings Brief", desc: "Severity-ranked roadmap (Critical / High / Medium), walked through live so owners and next steps are clear.", metric: "" },
     ],
     capabilityBodies: {
       trackingAnalytics:
@@ -36,16 +36,16 @@ export const marketingAuditsContent: Record<Locale, GenericRichServiceContent> =
   es: {
     hero: { ctaLabel: "Solicitar una Auditoría" },
     processSection: {
-      title: "Cronograma del proyecto",
-      subtitle: "De validación de datos a un plan de acción priorizado.",
+      title: "Metodología de auditoría",
+      subtitle: "El mismo rigor que un engagement pago. Evidencia primero, luego un plan por severidad.",
     },
     processIntro:
-      "Una auditoría solo ayuda si los números se pueden confiar primero. Nuestro ciclo va de validación de tracking a revisión de rendimiento por canal, mapeo de embudo, análisis de presupuesto y plan de acción ordenado, cada hallazgo ligado a impacto en ingresos, no a opinión.",
+      "Tratamos las auditorías como diagnósticos, no como decks de venta. El tracking se valida antes de juzgar cualquier canal. Luego revisamos costo por lead calificado, mapeamos la caída del embudo y ordenamos cada hallazgo por impacto en ingresos y esfuerzo para que tu equipo sepa qué es P0 y qué es nice-to-have.",
     phases: [
-      { title: "Validar Tracking", desc: "GA4, eventos de conversión y tracking de llamadas revisados de punta a punta antes de juzgar cualquier canal.", metric: "" },
-      { title: "Revisión de Canales y Embudo", desc: "Cada canal activo puntuado por costo por lead calificado, con caída mapeada etapa por etapa.", metric: "" },
-      { title: "Presupuesto y Contexto Competitivo", desc: "Asignación de gasto revisada contra retorno, con visibilidad comparada a competidores clave.", metric: "" },
-      { title: "Entregar Plan de Acción", desc: "Roadmap ordenado de arreglos y oportunidades, repasado en vivo con tu equipo.", metric: "" },
+      { title: "Validar Tracking", desc: "Eventos GA4, tags GTM, tracking de llamadas y handoffs CRM verificados de punta a punta. Datos rotos se marcan antes de conclusiones de canal.", metric: "" },
+      { title: "Revisión de Canales y Embudo", desc: "Cada canal activo puntuado por costo por lead calificado y contribución al pipeline, con caída mapeada etapa por etapa.", metric: "" },
+      { title: "Presupuesto y Contexto Competitivo", desc: "Gasto vs retorno revisado contra tu historial y los competidores a los que realmente pierdes deals.", metric: "" },
+      { title: "Entregar Brief de Hallazgos", desc: "Roadmap por severidad (Critical / High / Medium), repasado en vivo para dejar claros responsables y siguientes pasos.", metric: "" },
     ],
     capabilityBodies: {
       trackingAnalytics:

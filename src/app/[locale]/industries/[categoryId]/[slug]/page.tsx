@@ -75,6 +75,7 @@ export default async function IndustryDetailPage({ params }: Props) {
         label={content.hero.label}
         line1={content.hero.headlineLine1}
         line2={content.hero.headlineLine2}
+        line2ClassName="gradient-text"
         subtitle={content.hero.subtitle}
         breadcrumbs={[
           { name: "Home", url: "/" },
@@ -84,6 +85,8 @@ export default async function IndustryDetailPage({ params }: Props) {
         ]}
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
+        secondaryCtaLabel="Get Free Audit"
+        secondaryCtaHref="/lead-magnet"
       />
       <IndustryDetailClient
         content={content}

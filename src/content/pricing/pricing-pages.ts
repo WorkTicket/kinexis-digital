@@ -192,10 +192,10 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         columns: [{ header: "Starter" }, { header: "Growth", highlight: true }, { header: "Scale" }],
         rows: [
           { label: "Search Campaign Architecture", values: ["Yes", "Yes", "Yes"] },
-          { label: "Shopping & PMax", values: ["—", "Yes", "Yes"] },
+          { label: "Shopping & PMax", values: ["-", "Yes", "Yes"] },
           { label: "Quality Score Optimization", values: ["Yes", "Yes", "Yes"] },
           { label: "Negative Keyword Management", values: ["Yes", "Yes", "Yes"] },
-          { label: "Multi-platform reach (Microsoft/programmatic)", values: ["—", "Add-on", "Included"] },
+          { label: "Multi-platform reach (Microsoft/programmatic)", values: ["-", "Add-on", "Included"] },
           { label: "Strategy call frequency", values: ["Monthly", "Bi-weekly", "Weekly"] },
           {
             label: "Best for",
@@ -275,10 +275,10 @@ export const pricingContent: Record<FlagshipPricingSlug, Record<Locale, PricingP
         columns: [{ header: "Starter" }, { header: "Growth", highlight: true }, { header: "Scale" }],
         rows: [
           { label: "Arquitectura Search", values: ["Sí", "Sí", "Sí"] },
-          { label: "Shopping y PMax", values: ["—", "Sí", "Sí"] },
+          { label: "Shopping y PMax", values: ["-", "Sí", "Sí"] },
           { label: "Optimización Quality Score", values: ["Sí", "Sí", "Sí"] },
           { label: "Palabras clave negativas", values: ["Sí", "Sí", "Sí"] },
-          { label: "Alcance multi-plataforma (Microsoft/programático)", values: ["—", "Add-on", "Incluido"] },
+          { label: "Alcance multi-plataforma (Microsoft/programático)", values: ["-", "Add-on", "Incluido"] },
           { label: "Frecuencia de llamadas estratégicas", values: ["Mensual", "Quincenal", "Semanal"] },
           {
             label: "Ideal para",

@@ -39,7 +39,7 @@ export default function WebDesignDeviceMockupsSection({ surfaceIndex }: Props) {
         >
           {content.devices.map((device, index) => (
             <motion.div key={device.name} variants={fadeUp} className="group flex flex-col items-center text-center">
-              <div className="mb-6 flex h-[280px] w-full items-center justify-center">
+              <div className="mb-6 flex h-[300px] w-full items-center justify-center">
                 <WebDesignDeviceMockupsViz variant={DEVICE_VARIANTS[index]} delay={0.2 + index * 0.15} />
               </div>
               <h3 className="font-bold">{device.name}</h3>

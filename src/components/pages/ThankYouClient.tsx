@@ -44,18 +44,22 @@ export default function ThankYouClient({
     if (fired.current) return;
     fired.current = true;
 
+    // Only fire after a real form submit stashed a pending conversion.
+    // Direct visits, crawlers, and refreshes must not inflate Ads counts.
     const pending = consumePendingConversion(variant);
+    if (!pending) return;
+
     if (variant === "audit") {
       trackAuditLead({
-        email: pending?.email,
-        formType: pending?.formType ?? "lead-magnet",
-        serviceInterest: pending?.serviceInterest ?? "audit",
+        email: pending.email,
+        formType: pending.formType ?? "lead-magnet",
+        serviceInterest: pending.serviceInterest ?? "audit",
       });
     } else {
       trackLead({
-        email: pending?.email,
-        formType: pending?.formType ?? "contact",
-        serviceInterest: pending?.serviceInterest,
+        email: pending.email,
+        formType: pending.formType ?? "contact",
+        serviceInterest: pending.serviceInterest,
       });
     }
   }, [variant]);

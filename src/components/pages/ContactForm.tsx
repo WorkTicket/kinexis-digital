@@ -3,17 +3,23 @@
 import { useState } from "react";
 import { CheckCircle } from "lucide-react";
 import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
 import type { ContactContent } from "@/content/contact";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
 import { useRouter } from "@/i18n/navigation";
 
-type Props = { content: ContactContent };
+type Props = {
+  content: ContactContent;
+  /** When true, omit outer card chrome (used inside ContactIntake). */
+  embedded?: boolean;
+};
+
+/** Let the short success flash register before navigating. */
+const THANK_YOU_DELAY_MS = 1200;
 
 /** Client island — only the interactive form hydrates; the rest of the page is static SSR. */
-export default function ContactForm({ content: c }: Props) {
+export default function ContactForm({ content: c, embedded = false }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
@@ -22,6 +28,7 @@ export default function ContactForm({ content: c }: Props) {
     name: "",
     email: "",
     service: "",
+    message: "",
   });
 
   const set = (field: keyof typeof formData) => (
@@ -40,6 +47,7 @@ export default function ContactForm({ content: c }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          message: formData.message.trim() || undefined,
           ...honeypotPayload,
           ...attribution,
         }),
@@ -53,7 +61,9 @@ export default function ContactForm({ content: c }: Props) {
           formType: "contact",
         });
         setStatus("success");
-        router.push("/thank-you");
+        window.setTimeout(() => {
+          router.push("/thank-you");
+        }, THANK_YOU_DELAY_MS);
       } else {
         const data = await res.json().catch(() => ({}));
         setErrorMsg(data.error || c.errorMessage);
@@ -65,121 +75,155 @@ export default function ContactForm({ content: c }: Props) {
     }
   };
 
+  const shellClass = embedded
+    ? ""
+    : "rounded-2xl border border-surface bg-surface-raised p-5 md:p-6 lg:p-7";
+
+  if (status === "success") {
+    return (
+      <div className={shellClass || undefined}>
+        <div
+          role="status"
+          aria-live="polite"
+          className="flex flex-col items-center justify-center gap-3 py-16 text-center"
+        >
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-neon-cyan/15 ring-1 ring-neon-cyan/30">
+            <CheckCircle className="h-6 w-6 text-neon-cyan" strokeWidth={1.5} />
+          </div>
+          <p className="text-xl font-semibold text-neon-cyan">{c.confirmFlash}</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Card hover={false} className="!p-8 md:!p-10">
-      <h2 className="type-subheader">{c.formTitle}</h2>
-      <p className="mt-3 type-body text-text-secondary prose-readable-sm">
-        {c.formSubtitle}
-      </p>
+    <div className={shellClass || undefined}>
+      <div className="mb-5">
+        <h2 className="text-lg font-semibold tracking-tight text-white md:text-xl">
+          {c.formTitle}
+        </h2>
+        <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-text-secondary">
+          {c.formSubtitle}
+        </p>
+      </div>
 
-      {status === "success" ? (
-        <Card hover={false} className="mt-10 flex flex-col items-center gap-5 !px-8 !py-14 text-center bg-surface-base">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-neon-cyan/20 to-accent/20 ring-1 ring-neon-cyan/30">
-            <CheckCircle className="h-8 w-8 text-neon-cyan" strokeWidth={1.5} />
-          </div>
-          <div>
-            <p className="type-subheader text-white">{c.successTitle}</p>
-            <p className="mt-2 type-body text-text-secondary">{c.successSubtitle}</p>
-          </div>
-        </Card>
-      ) : (
-        <form onSubmit={handleSubmit} className="mt-8 form-stack relative">
-          <input type="text" {...honeypotProps} />
-          <div className="form-group">
-            <label htmlFor="contact-name" className="form-label">
-              {c.nameLabel} <span className="text-neon-cyan">*</span>
-            </label>
-            <input
-              type="text"
-              id="contact-name"
-              required
-              value={formData.name}
-              onChange={set("name")}
-              className="form-input"
-              placeholder={c.namePlaceholder}
-              autoComplete="name"
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="relative space-y-5">
+        <input type="text" {...honeypotProps} />
 
-          <div className="form-group">
-            <label htmlFor="contact-email" className="form-label">
-              {c.emailLabel} <span className="text-neon-cyan">*</span>
-            </label>
-            <input
-              type="email"
-              id="contact-email"
-              required
-              value={formData.email}
-              onChange={set("email")}
-              className="form-input"
-              placeholder={c.emailPlaceholder}
-              autoComplete="email"
-            />
-          </div>
+        <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-stretch md:gap-6">
+          <div className="flex flex-col gap-3">
+            <div className="form-group !mb-0">
+              <label htmlFor="contact-name" className="form-label !mb-1.5 !text-xs">
+                {c.nameLabel} <span className="text-neon-cyan">*</span>
+              </label>
+              <input
+                type="text"
+                id="contact-name"
+                required
+                value={formData.name}
+                onChange={set("name")}
+                className="form-input !py-2.5 !text-sm"
+                placeholder={c.namePlaceholder}
+                autoComplete="name"
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="contact-service" className="form-label">
-              {c.serviceLabel}
-            </label>
-            <select
-              id="contact-service"
-              value={formData.service}
-              onChange={set("service")}
-              className="form-input appearance-none cursor-pointer"
-              style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "right 16px center",
-              }}
-            >
-              <option value="" style={{ background: "#05060a" }}>
-                {c.servicePlaceholder}
-              </option>
-              {c.serviceOptions.map((opt) => (
-                <option key={opt} value={opt} style={{ background: "#05060a" }}>
-                  {opt}
+            <div className="form-group !mb-0">
+              <label htmlFor="contact-email" className="form-label !mb-1.5 !text-xs">
+                {c.emailLabel} <span className="text-neon-cyan">*</span>
+              </label>
+              <input
+                type="email"
+                id="contact-email"
+                required
+                value={formData.email}
+                onChange={set("email")}
+                className="form-input !py-2.5 !text-sm"
+                placeholder={c.emailPlaceholder}
+                autoComplete="email"
+              />
+            </div>
+
+            <div className="form-group !mb-0">
+              <label htmlFor="contact-service" className="form-label !mb-1.5 !text-xs">
+                {c.serviceLabel}
+              </label>
+              <select
+                id="contact-service"
+                value={formData.service}
+                onChange={set("service")}
+                className="form-input !py-2.5 !text-sm appearance-none cursor-pointer"
+                style={{
+                  backgroundImage:
+                    "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E\")",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "right 16px center",
+                }}
+              >
+                <option value="" style={{ background: "#05060a" }}>
+                  {c.servicePlaceholder}
                 </option>
-              ))}
-            </select>
+                {c.serviceOptions.map((opt) => (
+                  <option key={opt} value={opt} style={{ background: "#05060a" }}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          {status === "error" && (
+          <div className="form-group !mb-0 flex h-full min-h-[12.75rem] flex-col">
+            <label htmlFor="contact-message" className="form-label !mb-1.5 !text-xs">
+              {c.messageLabel}
+            </label>
+            <textarea
+              id="contact-message"
+              value={formData.message}
+              onChange={set("message")}
+              className="form-textarea !min-h-0 flex-1 !py-2.5 !text-sm"
+              placeholder={c.messagePlaceholder}
+              rows={8}
+              maxLength={5000}
+            />
+          </div>
+        </div>
+
+        <div className="min-h-[2.75rem]">
+          {status === "error" && errorMsg ? (
             <p
               role="alert"
               aria-live="assertive"
               aria-atomic="true"
-              className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400"
+              className="rounded-lg border border-red-500/20 bg-red-500/10 px-3 py-2.5 text-sm text-red-400"
             >
               {errorMsg}
             </p>
-          )}
+          ) : null}
+        </div>
 
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-4">
-              <Button
-                type="submit"
-                variant="primary"
-                fullWidthMobile
-                disabled={status === "submitting"}
-                className={status === "submitting" ? "opacity-70 cursor-not-allowed" : ""}
-              >
-                {status === "submitting" ? (
-                  <>
-                    <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
-                    {c.submittingButton}
-                  </>
-                ) : (
-                  c.submitButton
-                )}
-              </Button>
-            </div>
-            <p className="text-xs text-text-muted">
-              {c.formFootnote}
-            </p>
-          </div>
-        </form>
-      )}
-    </Card>
+        <div className="flex flex-col gap-2 border-t border-white/[0.06] pt-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-text-muted sm:max-w-xs">{c.formFootnote}</p>
+          <Button
+            type="submit"
+            variant="primary"
+            disabled={status === "submitting"}
+            className={
+              status === "submitting"
+                ? "cursor-not-allowed opacity-70 sm:min-w-[12rem]"
+                : "sm:min-w-[12rem]"
+            }
+          >
+            {status === "submitting" ? (
+              <>
+                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
+                {c.submittingButton}
+              </>
+            ) : (
+              c.submitButton
+            )}
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 }

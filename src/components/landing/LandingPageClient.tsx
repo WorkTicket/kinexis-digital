@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 import LandingLeadForm from "@/components/landing/LandingLeadForm";
 import FAQSection from "@/components/sections/FAQSection";
+import Section from "@/components/shared/services/Section";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { Link } from "@/i18n/navigation";
 import { businessProfile, getBusinessTelHref } from "@/lib/business";
 import { trackBookingClick, trackCallClick } from "@/lib/analytics/events";
 import { buttonClasses } from "@/lib/button-styles";
+import { cn } from "@/lib/utils";
 
 type Props = { page: LandingPageEntry };
 
@@ -26,28 +30,26 @@ export default function LandingPageClient({ page }: Props) {
 
   return (
     <>
-      {/* Hero + form */}
-      <section className="relative overflow-hidden border-b border-surface">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,212,255,0.08),transparent_55%)]"
-          aria-hidden
-        />
-        <div className="container-site relative grid gap-10 py-14 md:grid-cols-2 md:gap-12 md:py-20 lg:items-start">
+      {/* Conversion hero — form-first, homepage atmosphere */}
+      <section className="hero hero--page relative overflow-hidden border-b border-surface">
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="absolute left-1/2 top-[18%] h-[28rem] w-[min(100%,42rem)] -translate-x-1/2 rounded-full bg-neon-cyan/[0.035] blur-[120px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
+        </div>
+
+        <div className="container-site relative z-10 grid gap-10 py-14 md:grid-cols-2 md:gap-12 md:py-20 lg:items-start">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-neon-cyan">
-              {page.badge}
-            </p>
-            <h1 className="mt-4 text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+            <p className="hero-label">{page.badge}</p>
+            <h1 className="mt-5 type-hero text-balance">
               {page.headline}{" "}
-              <span className="text-accent">{page.headlineAccent}</span>
+              <span className="gradient-text">{page.headlineAccent}</span>
             </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-text-secondary md:text-lg">
-              {page.subheadline}
-            </p>
+            <p className="mt-5 max-w-xl type-body text-muted md:text-lg">{page.subheadline}</p>
 
             <ul className="mt-8 space-y-3">
               {page.bullets.slice(0, 3).map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-sm text-text-secondary">
+                <li key={bullet} className="flex gap-3 text-sm text-muted">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neon-cyan" aria-hidden />
                   <span>{bullet}</span>
                 </li>
@@ -78,6 +80,17 @@ export default function LandingPageClient({ page }: Props) {
                 ) : null}
               </div>
             )}
+
+            <p className="mt-6 text-sm text-muted">
+              Not ready to talk?{" "}
+              <Link
+                href="/lead-magnet"
+                className="font-medium text-neon-cyan underline underline-offset-2 transition-colors hover:text-white"
+              >
+                Get a free growth audit
+              </Link>{" "}
+              first.
+            </p>
           </div>
 
           <LandingLeadForm
@@ -90,49 +103,56 @@ export default function LandingPageClient({ page }: Props) {
         </div>
       </section>
 
-      {/* Proof bar */}
-      <section className="border-b border-surface bg-bg-dark/50 py-12 md:py-16">
+      {/* Proof — homepage ProofStrip pattern (no metric cards) */}
+      <Section id="lp-proof" surfaceIndex={0} compact className="border-y border-surface">
         <div className="container-site">
-          <p className="text-center text-sm font-medium text-text-muted">{page.proofIntro}</p>
-          <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-            {page.proof.map((item) => (
-              <div
-                key={item.label}
-                className="rounded-xl border border-surface bg-surface-base/40 px-4 py-5 text-center"
-              >
-                <p className="text-2xl font-bold text-neon-cyan md:text-3xl">{item.metric}</p>
-                <p className="mt-2 text-xs text-text-secondary leading-snug">{item.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Full bullets */}
-      <section className="border-b border-surface py-14 md:py-20">
-        <div className="container-site max-w-3xl">
-          <h2 className="type-subheader text-white">{page.bulletsTitle}</h2>
-          <ul className="mt-8 space-y-4">
-            {page.bullets.map((bullet) => (
-              <li
-                key={bullet}
-                className="rounded-xl border border-surface bg-surface-base/30 px-5 py-4 text-sm leading-relaxed text-text-secondary"
-              >
-                {bullet}
+          <p className="mb-8 max-w-2xl text-sm leading-relaxed text-muted md:mb-10 md:text-[0.9375rem]">
+            {page.proofIntro}
+          </p>
+          <ul className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/[0.08]">
+            {page.proof.map((item, index) => (
+              <li key={item.label}>
+                <div
+                  className={cn(
+                    "flex h-full flex-col gap-2 lg:px-8",
+                    index === 0 && "lg:pl-0",
+                    index === page.proof.length - 1 && "lg:pr-0",
+                  )}
+                >
+                  <span className="type-metric text-3xl font-bold tracking-tight sm:text-4xl">
+                    <span className="gradient-text">{item.metric}</span>
+                  </span>
+                  <span className="text-sm font-medium leading-snug text-white/85">{item.label}</span>
+                </div>
               </li>
             ))}
           </ul>
         </div>
-      </section>
+      </Section>
+
+      <Section id="lp-bullets" surfaceIndex={1}>
+        <div className="container-site max-w-3xl">
+          <SectionHeader title={page.bulletsTitle} headingId="lp-bullets-heading" />
+          <ul className="section-content space-y-4">
+            {page.bullets.map((bullet) => (
+              <li key={bullet} className="flex gap-3 type-body text-muted">
+                <span className="mt-1 shrink-0 text-neon-cyan" aria-hidden>
+                  →
+                </span>
+                <span>{bullet}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
 
       <FAQSection
         label="Questions before you reach out"
         title="Straight answers"
         items={page.faqs}
-        surfaceIndex={0}
+        surfaceIndex={2}
       />
 
-      {/* Sticky mobile CTA */}
       <div
         className={`fixed inset-x-0 bottom-0 z-40 border-t border-surface bg-bg-dark/95 p-3 backdrop-blur-md transition-transform duration-300 md:hidden ${
           showSticky ? "translate-y-0" : "translate-y-full"

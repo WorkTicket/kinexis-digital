@@ -1,39 +1,118 @@
-import nodemailer from "nodemailer";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { escapeHtml, escapeHtmlWithBreaks } from "@/lib/sanitize";
 
-export type EmailCredentials = {
-  toEmail: string;
-  gmailUser: string;
-  gmailPass: string;
+/** Inbox that receives form notifications (comma-separated OK). */
+export const DEFAULT_CONTACT_TO_EMAIL = "hello@kinexisdigital.com";
+/** Must be an address on the Cloudflare Email Sending–onboarded domain. */
+export const DEFAULT_CONTACT_FROM_EMAIL = "forms@kinexisdigital.com";
+
+export type SendEmailBinding = {
+  send: (message: {
+    to: string | string[];
+    from: string | { email: string; name?: string };
+    subject: string;
+    html: string;
+    text: string;
+    replyTo?: string;
+  }) => Promise<unknown>;
 };
 
-export function getEmailCredentials(): EmailCredentials | null {
-  let toEmail = process.env.CONTACT_TO_EMAIL;
-  let gmailUser = process.env.GMAIL_USER;
-  let gmailPass = process.env.GMAIL_APP_PASSWORD;
+export type EmailEnv = {
+  EMAIL?: SendEmailBinding;
+  CONTACT_TO_EMAIL?: string;
+  CONTACT_FROM_EMAIL?: string;
+};
 
-  try {
-    const env = getCloudflareContext()?.env;
-    toEmail ??= env?.CONTACT_TO_EMAIL;
-    gmailUser ??= env?.GMAIL_USER;
-    gmailPass ??= env?.GMAIL_APP_PASSWORD;
-  } catch {
-    // Outside Cloudflare Workers runtime (local dev, tests).
-  }
-
-  if (!toEmail || !gmailUser || !gmailPass || gmailPass === "your-gmail-app-password-here") {
-    return null;
-  }
-
-  return { toEmail, gmailUser, gmailPass };
+export function getRecipientEmails(raw?: string | null): string[] {
+  const source = raw?.trim() || DEFAULT_CONTACT_TO_EMAIL;
+  return source
+    .split(",")
+    .map((email) => email.trim())
+    .filter(Boolean);
 }
 
-export function createMailTransporter(creds: EmailCredentials) {
-  return nodemailer.createTransport({
-    service: "gmail",
-    auth: { user: creds.gmailUser, pass: creds.gmailPass },
+export async function getEmailEnv(): Promise<EmailEnv> {
+  try {
+    const { env } = await getCloudflareContext({ async: true });
+    return env as EmailEnv;
+  } catch {
+    return {
+      CONTACT_TO_EMAIL: process.env.CONTACT_TO_EMAIL,
+      CONTACT_FROM_EMAIL: process.env.CONTACT_FROM_EMAIL,
+    };
+  }
+}
+
+/** Safe summary for server logs — never includes credentials. */
+export function describeMailError(error: unknown): string {
+  if (!error || typeof error !== "object") {
+    return String(error);
+  }
+
+  const err = error as {
+    code?: string;
+    status?: number;
+    message?: string;
+  };
+
+  const parts = [
+    err.code,
+    err.status != null ? `status=${err.status}` : null,
+    err.message?.split("\n")[0],
+  ].filter(Boolean);
+
+  return parts.join(" | ") || "Unknown mail error";
+}
+
+export type KinexisMailPayload = {
+  /** Display name in the From header, e.g. "KINEXIS Digital Contact". */
+  fromName: string;
+  replyTo: string;
+  subject: string;
+  title: string;
+  rows: string;
+  text: string;
+  /** Plain-text footer (HTML-escaped by the template). */
+  footer?: string;
+};
+
+export type SendKinexisMailResult =
+  | { ok: true; sent: boolean }
+  | { ok: false; reason: "missing_credentials" };
+
+/**
+ * Shared team-notification send used by contact, booking, and lead forms.
+ * Uses Cloudflare Email Service (`env.EMAIL.send`) — same approach as
+ * callpreferredplumbing / a1pslandscape.
+ */
+export async function sendKinexisMail(
+  payload: KinexisMailPayload,
+  logLabel = "Form",
+): Promise<SendKinexisMailResult> {
+  const env = await getEmailEnv();
+  const isDev = process.env.NODE_ENV === "development";
+
+  if (!env.EMAIL) {
+    if (!isDev) {
+      console.error(`${logLabel}: Cloudflare EMAIL binding not configured`);
+      return { ok: false, reason: "missing_credentials" };
+    }
+    return { ok: true, sent: false };
+  }
+
+  const toEmails = getRecipientEmails(env.CONTACT_TO_EMAIL);
+  const fromEmail = env.CONTACT_FROM_EMAIL?.trim() || DEFAULT_CONTACT_FROM_EMAIL;
+
+  await env.EMAIL.send({
+    to: toEmails.length === 1 ? toEmails[0] : toEmails,
+    from: { email: fromEmail, name: payload.fromName },
+    subject: payload.subject,
+    html: wrapKinexisEmailHtml(payload.title, payload.rows, payload.footer),
+    text: payload.text,
+    ...(payload.replyTo ? { replyTo: payload.replyTo } : {}),
   });
+
+  return { ok: true, sent: true };
 }
 
 export function wrapKinexisEmailHtml(title: string, rows: string, footer?: string): string {
@@ -41,7 +120,7 @@ export function wrapKinexisEmailHtml(title: string, rows: string, footer?: strin
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#05060a;color:#fff;border-radius:12px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#0099cc,#00d4ff);padding:32px 40px;">
         <h1 style="margin:0;font-size:22px;font-weight:700;color:#fff;">${escapeHtml(title)}</h1>
-        <p style="margin:8px 0 0;font-size:14px;opacity:0.85;">KINEXIS Digital — kinexisdigital.com</p>
+        <p style="margin:8px 0 0;font-size:14px;opacity:0.85;">KINEXIS Digital · kinexisdigital.com</p>
       </div>
       <div style="padding:40px;">
         <table style="width:100%;border-collapse:collapse;">${rows}</table>

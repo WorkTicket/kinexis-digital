@@ -28,7 +28,7 @@ const staticPageMeta: Record<
     blog: {
       title: "Digital Marketing Blog | KINEXIS Digital",
       description:
-        "Practical guides on SEO, paid ads, web design, and conversion from the KINEXIS team. No fluff — just strategies that work for service businesses and B2B brands.",
+        "Practical guides on SEO, paid ads, web design, and conversion from the KINEXIS team. No fluff, just strategies that work for service businesses and B2B brands.",
     },
     blogPosts: {
       title: "All Blog Posts | KINEXIS Digital",
@@ -43,7 +43,7 @@ const staticPageMeta: Record<
     leadMagnet: {
       title: "Free Growth Audit | KINEXIS Digital",
       description:
-        "Get a free marketing audit from KINEXIS Digital. We review your website, ads, and conversion funnel, then deliver a prioritized action plan to grow leads and revenue.",
+        "Request a complimentary SEO, paid media, or conversion-path audit. Severity-ranked findings from your live properties within 48 hours.",
     },
     servicesHub: {
       title: "Digital Marketing Services | KINEXIS Digital",
@@ -80,7 +80,7 @@ const staticPageMeta: Record<
     leadMagnet: {
       title: "Auditoría Gratis | KINEXIS Digital",
       description:
-        "Recibe una auditoría de marketing digital gratuita de KINEXIS. Revisamos tu sitio web, anuncios y embudo de conversión, y te enviamos un plan de acción priorizado para generar más leads e ingresos.",
+        "Solicita una auditoría gratuita de SEO, medios pagados o ruta de conversión. Hallazgos por severidad desde tus propiedades reales en 48 horas.",
     },
     servicesHub: {
       title: "Servicios de Marketing Digital | KINEXIS Digital",

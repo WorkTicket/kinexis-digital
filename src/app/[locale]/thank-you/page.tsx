@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path: "/thank-you",
-    title: "Thank you — we'll be in touch",
+    title: "Thank you. We'll be in touch",
     description:
       "Your message was received. A KINEXIS strategist will follow up shortly.",
     noIndex: true,
@@ -30,7 +30,7 @@ export default async function ThankYouPage({ params }: Props) {
       nextStepsTitle="What happens next"
       nextSteps={[
         "We review your goals and current setup.",
-        "You'll hear from us with clear next steps — not a generic pitch deck.",
+        "You'll hear from us with clear next steps, not a generic pitch deck.",
         "If we're a fit, we schedule a working session to map the plan.",
       ]}
       secondaryCtaLabel="Browse case studies"

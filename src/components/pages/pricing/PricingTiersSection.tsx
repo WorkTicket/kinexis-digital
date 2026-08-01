@@ -59,7 +59,7 @@ export default function PricingTiersSection({ tiers, section, surfaceIndex }: Pr
                     "mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200",
                     isRecommended
                       ? "bg-neon-cyan text-bg-dark hover:bg-white shadow-lg shadow-neon-cyan/25"
-                      : "border border-white/[0.1] bg-white/[0.04] text-white/65 hover:border-neon-cyan/25 hover:bg-neon-cyan/10 hover:text-white"
+                      : "border border-strong bg-surface-glass text-white/65 hover:border-neon-cyan/25 hover:bg-neon-cyan/10 hover:text-white"
                   )}
                   style={{ borderRadius: "var(--btn-radius)" }}
                 >

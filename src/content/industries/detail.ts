@@ -8,7 +8,7 @@ function industryServiceDescription(slug: ServiceSlug, industry: IndustryEntry):
   const byService: Partial<Record<ServiceSlug, string>> = {
     seo: `${industry.label} buyers search before they buy. We build the rankings, content, and local visibility to get you in front of them.`,
     "google-ads": `Paid search and local service ads tuned to ${label} buyer intent, with landing pages and call tracking that tie spend to booked work.`,
-    "ppc-management": `Google Ads and cross-channel paid media for ${label} companies — Search, Shopping, Performance Max, and coordinated Meta or LinkedIn when needed. Built around cost per lead and booked revenue, not impressions.`,
+    "ppc-management": `Google Ads and cross-channel paid media for ${label} companies: Search, Shopping, Performance Max, and coordinated Meta or LinkedIn when needed. Built around cost per lead and booked revenue, not impressions.`,
     "meta-ads": `Facebook and Instagram campaigns for ${label} brands that need demand creation and retargeting, with creative tested against real conversion data.`,
     "web-design": `Sites built for how ${label} prospects compare options, build trust, and take action. Fast, mobile-first, and wired to your CRM.`,
     cro: `Testing and UX fixes on the pages where ${label} leads convert. We find the friction that's costing you revenue.`,
@@ -430,7 +430,15 @@ export function buildIndustryDetailContent(industry: IndustryEntry, locale: Loca
   };
 }
 
-export const industriesHubContent: Record<Locale, { meta: { title: string; description: string }; hero: { label: string; headlineLine1: string; headlineLine2: string; subtitle: string }; intro: { title: string; paragraphs: string[]; ctaLabel: string } }> = {
+export const industriesHubContent: Record<
+  Locale,
+  {
+    meta: { title: string; description: string };
+    hero: { label: string; headlineLine1: string; headlineLine2: string; subtitle: string };
+    intro: { title: string; paragraphs: string[]; ctaLabel: string };
+    cta: { headline: string; subtitle: string };
+  }
+> = {
   en: {
     meta: {
       title: "Industries We Serve | KINEXIS Digital",
@@ -452,6 +460,11 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
       ],
       ctaLabel: "Book a Strategy Call",
     },
+    cta: {
+      headline: "Don't see your industry?",
+      subtitle:
+        "We work across dozens of verticals. Book a strategy call and we'll outline an approach for your market.",
+    },
   },
   es: {
     meta: {
@@ -469,4 +482,10 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
       ],
       ctaLabel: "Reservar una llamada estratégica",
     },
-  },};
+    cta: {
+      headline: "¿No ves tu industria?",
+      subtitle:
+        "Trabajamos en docenas de verticales. Reserva una llamada estratégica y te presentamos un enfoque para tu mercado.",
+    },
+  },
+};

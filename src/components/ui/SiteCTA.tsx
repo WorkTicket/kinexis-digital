@@ -80,12 +80,12 @@ export default function SiteCTA({
   const glow = showGlow && (
     <div className="pointer-events-none absolute inset-0">
       {tone === "story" ? (
-        <div className="absolute left-1/2 top-1/3 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-neon-cyan/[0.02] blur-[120px]" />
+        <div className="absolute left-1/2 top-1/3 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-neon-cyan/[0.015] blur-[120px]" />
       ) : (
         <div
           className={cn(
             "absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 bg-gradient blur-[100px]",
-            tone === "dark" ? "h-24 max-w-lg opacity-[0.08] blur-[80px]" : "h-32 max-w-3xl opacity-10",
+            tone === "dark" ? "h-20 max-w-md opacity-[0.05] blur-[80px]" : "h-28 max-w-2xl opacity-[0.06]",
           )}
         />
       )}
@@ -113,10 +113,18 @@ export default function SiteCTA({
                 </motion.p>
               )}
             </div>
-            <motion.div variants={fadeUp} className="w-full shrink-0 sm:w-auto">
+            <motion.div
+              variants={fadeUp}
+              className="flex w-full shrink-0 flex-col gap-2 sm:w-auto sm:flex-row sm:items-center"
+            >
               <Button href={primaryHref} variant="primary" fullWidthMobile>
                 {primaryLabel}
               </Button>
+              {hasSecondary ? (
+                <Button href={secondaryHref!} variant="secondary" fullWidthMobile>
+                  {secondaryLabel}
+                </Button>
+              ) : null}
             </motion.div>
           </motion.div>
         </div>

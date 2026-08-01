@@ -23,6 +23,9 @@ const RelatedLinks = dynamic(() => import("@/components/sections/RelatedLinks"))
 const WebDesignDeviceMockupsSection = dynamic(
   () => import("@/components/services/WebDesignDeviceMockupsSection")
 );
+const ServiceSurfacesSection = dynamic(
+  () => import("@/components/services/ServiceSurfacesSection")
+);
 
 type Props = ServicePageServerProps;
 
@@ -80,10 +83,17 @@ function buildRegistry(slug: ServiceSeoSlug, locale: Locale, data: Props["data"]
     PricingTeaser: ({ index }) => <ServicePricingTeaser slug={slug} locale={locale} surfaceIndex={index} />,
     ServiceInlineCTA: ({ index }) =>
       data.cta?.inlineLabel ? (
-        <ServiceInlineCTA label={data.cta.inlineLabel} subtitle={data.cta.inlineSubtitle} surfaceIndex={index} />
+        <ServiceInlineCTA
+          label={data.cta.inlineLabel}
+          subtitle={data.cta.inlineSubtitle}
+          surfaceIndex={index}
+          slug={slug}
+        />
       ) : null,
     DeviceMockups: ({ index }) =>
       slug === "web-design" ? <WebDesignDeviceMockupsSection surfaceIndex={index} /> : null,
+    Surfaces: ({ index }) =>
+      slug !== "web-design" ? <ServiceSurfacesSection slug={slug} surfaceIndex={index} /> : null,
   };
 }
 
@@ -159,7 +169,7 @@ export default function ServicePage({
         caseStudyLinks={relatedLinks.caseStudies}
         blogLinks={relatedLinks.blog}
       />
-      <ServiceCTA cta={data.cta} />
+      <ServiceCTA cta={data.cta} slug={slug} />
     </>
   );
 }

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: "/thank-you/audit",
     title: "Audit request received",
     description:
-      "Your free growth audit request was received. We'll dig in and follow up with findings.",
+      "Your free growth audit request was received. We'll review your properties and send a severity-ranked findings brief.",
     noIndex: true,
   });
 }
@@ -26,15 +26,15 @@ export default async function ThankYouAuditPage({ params }: Props) {
     <ThankYouClient
       variant="audit"
       title="Audit request received."
-      subtitle="We're digging into your request. Expect a practical readout — what's working, what's leaking, and where to focus first."
+      subtitle="We'll review the scope you selected against live signals from your site or ad accounts, then send a short findings brief within 48 hours."
       nextStepsTitle="What happens next"
       nextSteps={[
-        "We confirm the scope of the audit you requested.",
-        "We review the available signals (site, ads, search presence).",
-        "You get clear findings and recommended next moves — no fluff.",
+        "We confirm access and the audit scope you requested (SEO, paid media, or conversion path).",
+        "We pull evidence: crawl/index signals, ad account structure, or on-page conversion friction.",
+        "You receive a severity-ranked findings brief: Critical / High / Medium, with what to fix first.",
       ]}
-      secondaryCtaLabel="See how we work"
-      secondaryCtaHref="/about"
+      secondaryCtaLabel="Explore the full Marketing Audit"
+      secondaryCtaHref="/services/marketing-audits"
     />
   );
 }

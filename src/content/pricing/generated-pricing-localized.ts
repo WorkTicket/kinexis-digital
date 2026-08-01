@@ -21,7 +21,7 @@ const EN_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
         "GBP, citations, reviews, and location pages at fixed scope per tier. Not a watered-down version of full SEO.",
     },
     answerBlock:
-      "Local SEO plans start at $1,500 per month for single-location service businesses and scale to $5,000+ for multi-city or franchise operators. Every plan covers Google Business Profile optimization, citation cleanup, review strategy, and location page work. Full-site SEO with content and link building is a separate program — see SEO pricing. Most clients see map pack movement within 30 to 60 days. We work month to month.",
+      "Local SEO plans start at $1,500 per month for single-location service businesses and scale to $5,000+ for multi-city or franchise operators. Every plan covers Google Business Profile optimization, citation cleanup, review strategy, and location page work. Full-site SEO with content and link building is a separate program. See SEO pricing. Most clients see map pack movement within 30 to 60 days. We work month to month.",
     ctaHeadline: "Want a quote for local SEO?",
     ctaSubtitle: "Tell us your service areas and competition.|We will recommend the right tier and map pack strategy.",
     ctaLabel: "Get Local SEO Pricing",
@@ -38,7 +38,7 @@ const EN_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
         "Standalone article and landing page retainers for teams that need volume without a full SEO program. Fixed deliverables at each tier.",
     },
     answerBlock:
-      "Content marketing retainers start at $2,000 per month for 4 to 6 SEO-informed pieces and scale to $8,000+ for 20+ pieces with editorial leadership. This is production and strategy — not a substitute for technical SEO or link building. Full SEO programs include content at every tier ($2,500/mo entry). Per-piece pricing available for project work. First pieces typically publish within 3 to 4 weeks.",
+      "Content marketing retainers start at $2,000 per month for 4 to 6 SEO-informed pieces and scale to $8,000+ for 20+ pieces with editorial leadership. This is production and strategy, not a substitute for technical SEO or link building. Full SEO programs include content at every tier ($2,500/mo entry). Per-piece pricing available for project work. First pieces typically publish within 3 to 4 weeks.",
     ctaHeadline: "Want a content marketing quote?",
     ctaSubtitle: "Tell us your industry, volume needs, and goals.|We will scope the right retainer tier.",
     ctaLabel: "Get Content Marketing Pricing",
@@ -52,7 +52,7 @@ const EN_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
       line1: "Funnel builds and CRO",
       line2: "priced as one system.",
       subtitle:
-        "Landing pages, nurture automation, and structured testing under fixed scope — not disconnected one-off projects.",
+        "Landing pages, nurture automation, and structured testing under fixed scope, not disconnected one-off projects.",
     },
     answerBlock:
       "Funnel and CRO programs start at $5,000 for a single build with landing page, five-email nurture sequence, and conversion tracking setup. Ongoing optimization retainers run $6,500 to $12,000+ per month depending on traffic volume and test scope. Starter is a one-time project fee; Growth and Scale are monthly retainers. Every plan covers funnel architecture, landing pages, automation, and A/B testing. Ad spend is separate. First meaningful test results typically show within 60 to 90 days. Retainers are month to month.",
@@ -364,7 +364,7 @@ const ES_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
         "GBP, citaciones, reseñas y páginas de ubicación con alcance fijo por nivel. No es SEO completo reducido.",
     },
     answerBlock:
-      "Los planes SEO local empiezan en $1,500 al mes para negocios de servicio de una ubicación y escalan a $5,000+ para operadores multi-ciudad o franquicias. Cada plan cubre optimización de Google Business Profile, limpieza de citaciones, estrategia de reseñas y trabajo en páginas de ubicación. SEO de sitio completo con contenido y links es un programa aparte — ver precios SEO. La mayoría ve movimiento en map pack en 30 a 60 días. Trabajamos mes a mes.",
+      "Los planes SEO local empiezan en $1,500 al mes para negocios de servicio de una ubicación y escalan a $5,000+ para operadores multi-ciudad o franquicias. Cada plan cubre optimización de Google Business Profile, limpieza de citaciones, estrategia de reseñas y trabajo en páginas de ubicación. SEO de sitio completo con contenido y links es un programa aparte. Ver precios SEO. La mayoría ve movimiento en map pack en 30 a 60 días. Trabajamos mes a mes.",
     ctaHeadline: "¿Quieres cotización de SEO local?",
     ctaSubtitle: "Cuéntanos tus zonas de servicio y competencia.|Recomendaremos el nivel y estrategia de map pack.",
     ctaLabel: "Obtén Precios SEO Local",
@@ -381,7 +381,7 @@ const ES_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
         "Retainers de artículos y landing pages para equipos que necesitan volumen sin un programa SEO completo. Entregables fijos por nivel.",
     },
     answerBlock:
-      "Los retainers de content marketing empiezan en $2,000 al mes por 4 a 6 piezas informadas por SEO y escalan a $8,000+ por 20+ piezas con liderazgo editorial. Es producción y estrategia — no sustituye SEO técnico ni link building. Los programas SEO completos incluyen contenido en cada nivel (entrada $2,500/mes). Precio por pieza disponible para proyectos. Las primeras piezas suelen publicarse en 3 a 4 semanas.",
+      "Los retainers de content marketing empiezan en $2,000 al mes por 4 a 6 piezas informadas por SEO y escalan a $8,000+ por 20+ piezas con liderazgo editorial. Es producción y estrategia, no sustituye SEO técnico ni link building. Los programas SEO completos incluyen contenido en cada nivel (entrada $2,500/mes). Precio por pieza disponible para proyectos. Las primeras piezas suelen publicarse en 3 a 4 semanas.",
     ctaHeadline: "¿Quieres cotización de content marketing?",
     ctaSubtitle: "Cuéntanos tu industria, volumen y objetivos.|Definiremos el retainer adecuado.",
     ctaLabel: "Obtén Precios Content Marketing",
@@ -395,7 +395,7 @@ const ES_OVERRIDES: Partial<Record<PricingSlug, GeneratedOverride>> = {
       line1: "Builds de funnel y CRO",
       line2: "con precio como un solo sistema.",
       subtitle:
-        "Landing pages, automatización de nurture y testing estructurado bajo alcance fijo — no proyectos sueltos desconectados.",
+        "Landing pages, automatización de nurture y testing estructurado bajo alcance fijo, no proyectos sueltos desconectados.",
     },
     answerBlock:
       "Los programas de funnel y CRO empiezan en $5,000 por un build con landing page, secuencia de cinco emails y configuración de tracking de conversiones. Los retainers de optimización corren de $6,500 a $12,000+ al mes según volumen de tráfico y alcance de tests. Starter es tarifa única de proyecto; Growth y Scale son retainers mensuales. Cada plan cubre arquitectura de funnel, landing pages, automatización y A/B testing. El gasto en ads es aparte. Resultados de tests suelen verse en 60 a 90 días. Retainers mes a mes.",
@@ -702,11 +702,11 @@ export const generatedPricingOverrides: Record<Locale, Partial<Record<PricingSlu
 const SETUP_FEE_ANSWERS: Record<Locale, Partial<Record<PricingSlug, string>>> = {
   en: {
     funnels:
-      "Starter is a one-time funnel build fee quoted upfront. Growth and Scale are monthly retainers — onboarding is included in month one, not billed separately.",
+      "Starter is a one-time funnel build fee quoted upfront. Growth and Scale are monthly retainers. Onboarding is included in month one, not billed separately.",
     analytics:
       "Starter is a one-time analytics setup project. Growth and Scale are monthly reporting retainers with no separate onboarding charge beyond what we quote in your proposal.",
     branding:
-      "Brand projects are fixed-fee. Discovery, design rounds, and deliverables are scoped in your proposal before work starts — no hourly surprises.",
+      "Brand projects are fixed-fee. Discovery, design rounds, and deliverables are scoped in your proposal before work starts, no hourly surprises.",
     "web-design":
       "Web projects are fixed-fee by scope. A 50/50 payment split at kickoff and launch is standard. Hosting and third-party licenses are quoted separately.",
     "video-marketing":
@@ -714,11 +714,11 @@ const SETUP_FEE_ANSWERS: Record<Locale, Partial<Record<PricingSlug, string>>> = 
   },
   es: {
     funnels:
-      "Starter es tarifa única de build de funnel cotizada al inicio. Growth y Scale son retainers mensuales — el onboarding va incluido en el mes uno, sin cargo aparte.",
+      "Starter es tarifa única de build de funnel cotizada al inicio. Growth y Scale son retainers mensuales. El onboarding va incluido en el mes uno, sin cargo aparte.",
     analytics:
       "Starter es proyecto único de setup de analytics. Growth y Scale son retainers mensuales de reportes sin cargo de onboarding aparte del cotizado en tu propuesta.",
     branding:
-      "Proyectos de marca son tarifa fija. Discovery, rondas de diseño y entregables se definen en tu propuesta antes de empezar — sin sorpresas por horas.",
+      "Proyectos de marca son tarifa fija. Discovery, rondas de diseño y entregables se definen en tu propuesta antes de empezar, sin sorpresas por horas.",
     "web-design":
       "Proyectos web son tarifa fija por alcance. División 50/50 al kickoff y lanzamiento es estándar. Hosting y licencias de terceros se cotizan aparte.",
     "video-marketing":

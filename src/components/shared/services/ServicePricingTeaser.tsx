@@ -37,7 +37,7 @@ export default function ServicePricingTeaser({ slug, surfaceIndex = 0, locale = 
                 <Receipt className="h-3 w-3" aria-hidden />
                 {copy.badge}
               </span>
-              <h3 className="text-xl font-bold text-white md:text-2xl">{copy.title}</h3>
+              <h3 className="type-subheader text-white">{copy.title}</h3>
               <p className="text-sm leading-relaxed text-white/45 md:text-base">{copy.body}</p>
               <div className="flex flex-wrap gap-4 pt-2">
                 <div className="flex items-center gap-2 text-xs text-white/40">

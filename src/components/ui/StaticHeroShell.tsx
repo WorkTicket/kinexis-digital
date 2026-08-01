@@ -122,14 +122,16 @@ export default function StaticHeroShell(props: Props) {
     const { label, headline, subtitle } = props;
 
     return (
-      <section className={cn("hero hero--compact hero--centered hero--ssr overflow-hidden bg-gradient-glow")}>
-        <HeroGradientBg />
-        <HeroThemeBackdrop />
-        <HeroBgGlow />
+      <section className={cn("hero hero--compact hero--centered hero--ssr overflow-hidden")}>
+        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+          <div className="absolute left-1/2 top-[18%] h-[22rem] w-[min(100%,36rem)] -translate-x-1/2 rounded-full bg-neon-cyan/[0.035] blur-[120px]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
+        </div>
         <div className="container-site hero__container relative z-10">
-          <div className="section-header">
+          <div className="mx-auto w-full max-w-3xl text-center">
             <HeroLabel>{label}</HeroLabel>
-            <HeroTitle variant="center" className="mt-6" {...highPriority}>
+            <HeroTitle variant="center" className="mt-5" {...highPriority}>
               {headline}
             </HeroTitle>
             <HeroSubtitle variant="intro-center" {...highPriority}>
@@ -211,6 +213,7 @@ export default function StaticHeroShell(props: Props) {
     );
   }
 
+  // Showcase (text-only) — centered like the homepage hero
   const {
     label,
     line1,
@@ -222,28 +225,30 @@ export default function StaticHeroShell(props: Props) {
     ctaHref = "/contact",
     secondaryCtaLabel,
     secondaryCtaHref = "/case-studies",
-    theme = "default",
   } = props;
 
   return (
-    <section className={heroPageSectionClass(theme, "hero--split overflow-x-clip")}>
-      <HeroGradientBg />
-      <HeroThemeBackdrop theme={theme} />
-      <HeroBgGlow />
+    <section className={heroPageSectionClass("default", "hero--centered overflow-x-clip")}>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute left-1/2 top-[18%] h-[28rem] w-[min(100%,42rem)] -translate-x-1/2 rounded-full bg-neon-cyan/[0.035] blur-[120px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
+      </div>
       <div className="container-site hero__container relative z-10">
-        <div className="grid items-center gap-grid-lg md:grid-cols-1">
-          <div className="hero__content relative z-10 min-w-0">
-            {breadcrumbs && <HeroBreadcrumbsStatic items={breadcrumbs} />}
-            {label && <HeroLabel>{label}</HeroLabel>}
-            <SplitHeadline line1={line1} line2={line2} line2ClassName={line2ClassName} />
-            <HeroSubtitle text={subtitle} {...highPriority} />
-            <HeroCtas
-              ctaLabel={ctaLabel}
-              ctaHref={ctaHref}
-              secondaryCtaLabel={secondaryCtaLabel}
-              secondaryCtaHref={secondaryCtaHref}
-            />
-          </div>
+        <div className="mx-auto w-full max-w-4xl text-center">
+          {breadcrumbs && <HeroBreadcrumbsStatic items={breadcrumbs} />}
+          {label && <HeroLabel>{label}</HeroLabel>}
+          <HeroTitle variant="center" {...highPriority}>
+            <span className="type-hero-line">{line1}</span>
+            <span className={cn("type-hero-line", line2ClassName ?? "gradient-text")}>{line2}</span>
+          </HeroTitle>
+          <HeroSubtitle variant="intro-center" text={subtitle} {...highPriority} />
+          <HeroCtas
+            ctaLabel={ctaLabel}
+            ctaHref={ctaHref}
+            secondaryCtaLabel={secondaryCtaLabel}
+            secondaryCtaHref={secondaryCtaHref}
+          />
         </div>
       </div>
     </section>

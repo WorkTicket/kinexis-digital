@@ -1,7 +1,6 @@
 "use client";
 
 import { m as motion } from "@/lib/framer";
-import Button from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import AboutArchitectureMap from "@/components/pages/AboutArchitectureMap";
 import CTAArchetype from "@/components/ui/CTAArchetype";
@@ -15,7 +14,6 @@ import TwoLineText from "@/components/ui/TwoLineText";
 import { useMotionVariants } from "@/hooks/useMotionVariants";
 import { cardClasses } from "@/lib/card-styles";
 import Section from "@/components/shared/services/Section";
-import { SectionGlow, SectionDivider, SectionGridOverlay } from "@/components/ui/SectionDecorations";
 
 type Props = { content: AboutContent; locale: Locale };
 
@@ -29,24 +27,20 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
         label={c.heroTag}
         headline={
           <>
-            <span className="type-hero-line hero-intentional-hero-line">{c.heroTitle}</span>
-            <span className="type-hero-line hero-intentional-hero-line gradient-text">{c.heroTitleHighlight}</span>
+            <span className="type-hero-line">{c.heroTitle}</span>
+            <span className="type-hero-line gradient-text">{c.heroTitleHighlight}</span>
           </>
         }
         subtitle={c.heroSubtitleLine2 ? `${c.heroSubtitleLine1}|${c.heroSubtitleLine2}` : c.heroSubtitleLine1}
-        subtitleLineClassName="hero-intentional-subtitle-line"
         ctaLabel="Book a Strategy Call"
         ctaHref="/contact"
+        secondaryCtaLabel="View Our Work"
+        secondaryCtaHref="/case-studies"
       />
 
-      {/* SECTION 2: Why KINEXIS Exists — Editorial */}
-      <Section id="why-we-exist" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <SectionGridOverlay />
-        <SectionDivider />
-        <SectionGlow color="cyan" size="lg" position={{ right: "-96px", top: "33%" }} />
-        <SectionGlow color="blue" size="sm" opacity={0.03} blur={100} position={{ left: "-128px", bottom: "0" }} />
-
-        <div className="container-site relative z-10">
+      {/* SECTION 2: Why KINEXIS Exists */}
+      <Section id="why-we-exist" surfaceIndex={surfaceIndex++}>
+        <div className="container-site">
           <SectionHeader
             badge={c.whyWeExistTag}
             title={c.whyWeExistAside}
@@ -54,56 +48,84 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
             headingId="why-we-exist-heading"
           />
 
-          {/* Editorial body */}
           <motion.div
-            className="section-content grid gap-12 lg:grid-cols-12 lg:gap-20"
+            className="section-content grid gap-px overflow-hidden rounded-2xl border border-surface bg-white/[0.06] lg:grid-cols-2"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-80px" }}
           >
-            {/* Left sticky aside */}
-            <motion.div className="lg:col-span-4 lg:sticky lg:top-32 lg:self-start" variants={fadeUp}>
-              <div className="h-px w-14 bg-gradient-to-r from-neon-cyan/50 via-neon-cyan/20 to-transparent" />
-              <p className="mt-6 section-intro section-intro--left">
-                {c.whyParagraph1}
+            {/* Problem */}
+            <motion.div
+              variants={fadeUp}
+              className="flex flex-col bg-bg px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/35">
+                {c.whyProblemLabel}
               </p>
-
+              <div className="mt-5 space-y-5 type-body leading-relaxed text-muted">
+                <p>{c.whyParagraph1}</p>
+                <p>{c.whyParagraph2b}</p>
+              </div>
             </motion.div>
 
-            {/* Right content */}
-            <motion.div className="lg:col-span-8 space-y-10 lg:space-y-12" variants={fadeUp}>
-              <blockquote className="relative overflow-hidden rounded-3xl border border-surface bg-gradient-to-br from-white/[0.045] via-bg-secondary/90 to-bg-dark/80 p-8 shadow-panel-lg md:p-10 lg:p-12">
-                <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-br from-neon-cyan/[0.04] via-transparent to-transparent"
-                  aria-hidden
-                />
-                <span
-                  className="pointer-events-none absolute -right-2 -top-4 select-none font-serif text-[7rem] leading-none text-white/[0.03] md:text-[9rem]"
-                  aria-hidden
-                >
-                  &ldquo;
-                </span>
-                <div className="relative border-l-2 border-neon-cyan/40 pl-6 md:pl-8">
-                  <p className="type-pull-quote">
-                    <TwoLineText text={c.whyQuote} variant="section" className="gradient-text" />
-                  </p>
+            {/* Alternative */}
+            <motion.div
+              variants={fadeUp}
+              className="relative flex flex-col bg-bg px-6 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12"
+            >
+              <div
+                className="pointer-events-none absolute inset-0 bg-neon-cyan/[0.03]"
+                aria-hidden
+              />
+              <div className="relative">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-neon-cyan/70">
+                  {c.whySolutionLabel}
+                </p>
+                <p className="mt-5 type-subheader text-balance">
+                  <TwoLineText text={c.whyQuote} variant="subheader" className="gradient-text" />
+                </p>
+                <div className="mt-6 space-y-5 type-body leading-relaxed text-muted">
+                  <p>{c.whyParagraph2}</p>
+                  <p className="text-white/85">{c.whyParagraph3}</p>
                 </div>
-              </blockquote>
-
-              <div className="space-y-6 border-t border-surface pt-10 lg:pt-12">
-                <p className="type-body-lg leading-[1.75] text-muted">{c.whyParagraph2}</p>
-                <p className="type-body-lg leading-[1.75] text-muted">{c.whyParagraph2b}</p>
-                <p className="type-body-lg leading-[1.75] text-white/85">{c.whyParagraph3}</p>
               </div>
             </motion.div>
           </motion.div>
         </div>
       </Section>
 
+      {/* Partnership / human signal */}
+      <Section id="how-we-work" surfaceIndex={surfaceIndex++}>
+        <div className="container-site">
+          <SectionHeader
+            badge={c.partnershipTag}
+            title={c.partnershipTitle}
+            description={c.partnershipSubtitle}
+            align="left"
+            headingId="how-we-work-heading"
+          />
+          <ul className="section-content grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-surface bg-white/[0.06] md:grid-cols-3">
+            {c.partnershipSignals.map((signal, i) => (
+              <motion.li
+                key={signal.title}
+                className="bg-bg px-6 py-8 sm:px-7 sm:py-9"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ delay: i * 0.06 }}
+              >
+                <h3 className="text-lg font-semibold tracking-tight text-white">{signal.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted">{signal.description}</p>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
       {/* SECTION 3: The KINEXIS Method */}
       <Section id="kinexis-method" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <SectionGlow color="blue" size="xl" opacity={0.02} position={{ top: "50%", right: "0", transform: "translateY(-50%)" }} />
         <div className="container-site relative z-10">
           <SectionHeader
             badge={c.methodTag}
@@ -143,48 +165,28 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
         </div>
       </Section>
 
-      {/* SECTION 4: Inside The System — Architecture Map */}
-      <Section id="inside-system" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <SectionGridOverlay cellSize={32} opacity={0.5} />
-        <SectionDivider color="cyan" />
-        <SectionGlow color="blue" width={768} height={768} opacity={0.05} blur={140} position={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }} />
-        <SectionGlow color="cyan" size="sm" opacity={0.03} blur={100} position={{ right: "-128px", top: "25%" }} />
-
-        <div className="container-site relative z-10">
+      {/* SECTION 4: Inside The System */}
+      <Section id="inside-system" surfaceIndex={surfaceIndex++}>
+        <div className="container-site">
           <SectionHeader
             badge={c.architectureTag}
             title={c.architectureTitle}
-            description={c.architectureSubtitle.replace("|", " ")}
+            description={c.architectureSubtitle}
             headingId="inside-system-heading"
           />
 
-          {/* Bento grid — cells animate individually via useInView inside the component */}
-          <div className="mx-auto max-w-6xl">
-            <AboutArchitectureMap nodes={c.architectureNodes} caption={c.architectureCaption} />
+          <div className="section-content">
+            <AboutArchitectureMap
+              nodes={c.architectureNodes}
+              caption={c.architectureCaption}
+            />
           </div>
-
-          {/* CTA */}
-          <motion.div
-            className="mx-auto mt-12 flex flex-col items-center gap-3 text-center"
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
-            <p className="text-sm text-muted/60">
-              See every channel, every deliverable, every outcome.
-            </p>
-            <Button href="/services" variant="secondary">
-              Explore All Services
-            </Button>
-          </motion.div>
         </div>
       </Section>
 
       {/* SECTION 5: Principles - Editorial */}
-      <Section id="principles" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <SectionGlow color="cyan" size="md" opacity={0.02} position={{ bottom: "0", left: "0" }} />
-        <div className="container-site relative z-10">
+      <Section id="principles" surfaceIndex={surfaceIndex++}>
+        <div className="container-site">
           <SectionHeader
             badge={c.principlesTag}
             title={c.principlesTitle}
@@ -220,10 +222,6 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
 
       {/* SECTION 6: Future Vision */}
       <Section id="future-vision" surfaceIndex={surfaceIndex++} className="relative overflow-hidden">
-        <SectionGridOverlay cellSize={32} opacity={0.4} />
-        <SectionGlow color="blue" size="lg" opacity={0.025} blur={140} position={{ top: "33%", right: "0" }} />
-        <SectionGlow color="cyan" width={360} height={360} opacity={0.02} position={{ bottom: "0", left: "25%" }} />
-
         <div className="container-site relative z-10">
           <SectionHeader
             badge={c.roadmapTag}
@@ -253,7 +251,7 @@ export default function AboutPageClient({ content: c, locale: _locale }: Props) 
                     className={cn(
                       "relative flex flex-col flex-1 rounded-2xl border p-6 lg:p-7 overflow-hidden transition-all duration-500",
                       isCurrent
-                        ? "border-neon-cyan/22 bg-gradient-to-b from-neon-cyan/[0.07] to-transparent shadow-[0_0_64px_-20px_rgba(0,212,255,0.22),inset_0_1px_0_rgba(0,212,255,0.1)]"
+                        ? "border-neon-cyan/22 bg-gradient-to-b from-neon-cyan/[0.05] to-transparent"
                         : cardClasses({ surface: "elevated", hover: false, className: "p-6 lg:p-7 hover:border-strong hover:bg-surface-raised" })
                     )}
                   >

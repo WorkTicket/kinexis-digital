@@ -13,7 +13,6 @@ import {
   FileSearch,
   Gauge,
   Layers,
-  LineChart,
   MapPin,
   Search,
   Sparkles,
@@ -136,7 +135,7 @@ function ComparisonGrid({ points }: { points: Point[] }) {
           className={cn(
             "rounded-2xl border p-6 md:p-8",
             i % 2 === 0
-              ? "border-white/10 bg-white/[0.03]"
+              ? "border-strong bg-surface-raised"
               : "border-neon-cyan/15 bg-neon-cyan/[0.04]",
           )}
         >
@@ -159,7 +158,14 @@ function SplitGrid({ points }: { points: Point[] }) {
       {points.map((point, i) => {
         const Icon = contentIcons[i % contentIcons.length];
         return (
-          <motion.div key={point.title} variants={fadeUp} className="flex gap-4 rounded-2xl border border-surface bg-surface-raised/40 p-6">
+          <motion.div
+            key={point.title}
+            variants={fadeUp}
+            className={cardClasses({
+              hover: false,
+              className: "flex gap-4 !bg-surface-raised/40 !p-6",
+            })}
+          >
             <StepIcon icon={Icon} size="sm" />
             <div className="min-w-0">
               <h3 className="text-sm font-bold leading-snug md:text-base">{point.title}</h3>
@@ -176,29 +182,58 @@ function SplitGrid({ points }: { points: Point[] }) {
 }
 
 function MockupGrid({ points }: { points: Point[] }) {
+  const previews = [
+    { bars: [42, 68, 55, 88], metric: "+38%" },
+    { bars: [30, 48, 72, 60], metric: "2.1×" },
+    { bars: [55, 40, 78, 92], metric: "94" },
+    { bars: [22, 58, 45, 70], metric: "-41%" },
+  ];
+
   return (
     <div className={featureCardGridClass(points.length)}>
-      {points.map((point, i) => (
-        <motion.div
-          key={point.title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, delay: i * 0.08 }}
-          className="overflow-hidden rounded-2xl border border-surface bg-gradient-to-b from-white/[0.06] to-bg-secondary/80"
-        >
-          <div className="flex h-28 items-center justify-center border-b border-surface bg-bg-dark/60">
-            <LineChart className="h-8 w-8 text-neon-cyan/40" aria-hidden />
-          </div>
-          <div className="p-6">
-            <h3 className="font-bold leading-snug">{point.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">{point.description}</p>
-            {point.metric ? (
-              <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-neon-cyan/80">{point.metric}</p>
-            ) : null}
-          </div>
-        </motion.div>
-      ))}
+      {points.map((point, i) => {
+        const preview = previews[i % previews.length];
+        return (
+          <motion.div
+            key={point.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            className="overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-b from-white/[0.06] to-bg-secondary/90 shadow-[0_20px_40px_-16px_rgba(0,0,0,0.5)]"
+          >
+            <div className="relative border-b border-white/[0.06] bg-[linear-gradient(165deg,rgba(22,28,40,0.95),rgba(10,12,18,0.98))] px-5 pb-4 pt-4">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <div className="mb-3 flex items-center gap-1.5">
+                <div className="h-1.5 w-1.5 rounded-full bg-[#ff5f57]/70" />
+                <div className="h-1.5 w-1.5 rounded-full bg-[#febc2e]/70" />
+                <div className="h-1.5 w-1.5 rounded-full bg-[#28c840]/70" />
+                <div className="ml-1 h-3 flex-1 rounded bg-black/30" />
+              </div>
+              <div className="flex h-16 items-end gap-1.5">
+                {preview.bars.map((h, bi) => (
+                  <motion.div
+                    key={bi}
+                    className={`flex-1 rounded-t ${bi === preview.bars.length - 1 ? "bg-neon-cyan" : "bg-neon-cyan/30"}`}
+                    initial={{ height: 0 }}
+                    whileInView={{ height: `${h}%` }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.15 + bi * 0.05, duration: 0.45 }}
+                  />
+                ))}
+              </div>
+              <div className="mt-2 text-right text-[11px] font-bold text-neon-cyan">{preview.metric}</div>
+            </div>
+            <div className="p-6">
+              <h3 className="font-bold leading-snug">{point.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{point.description}</p>
+              {point.metric ? (
+                <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-neon-cyan/80">{point.metric}</p>
+              ) : null}
+            </div>
+          </motion.div>
+        );
+      })}
     </div>
   );
 }

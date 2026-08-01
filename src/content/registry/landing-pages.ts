@@ -41,10 +41,10 @@ export const landingPages: LandingPageEntry[] = [
       "We take over accounts that look busy and make them profitable. That means cleaning search terms, fixing conversion tracking, and putting budget only where it earns the right to stay.",
     formTitle: "Get a free Ads account review",
     formSubtitle:
-      "Tell us where you're spending. We'll tell you what's leaking — and what to fix first.",
+      "Tell us where you're spending. We'll tell you what's leaking, and what to fix first.",
     submitLabel: "Request my review",
     formFootnote: "No pitch deck. Practical findings within one business day.",
-    proofIntro: "Results from accounts we rebuilt — not vanity dashboards.",
+    proofIntro: "Results from accounts we rebuilt, not vanity dashboards.",
     proof: [
       { metric: "+118%", label: "pipeline from Ads + CRO" },
       { metric: "−43%", label: "CAC · SaaS platform, 8 mo" },
@@ -53,7 +53,7 @@ export const landingPages: LandingPageEntry[] = [
     ],
     bulletsTitle: "What we fix first",
     bullets: [
-      "Broken or missing conversion tracking — if Ads can't see leads, it optimizes for noise",
+      "Broken or missing conversion tracking. If Ads can't see leads, it optimizes for noise",
       "Search term waste and negative keyword gaps that quietly drain budget",
       "Landing pages that don't match the ad promise, so Quality Score and ROAS suffer together",
       "Campaign structure that mixes intent levels and makes bidding guesswork",
@@ -72,7 +72,7 @@ export const landingPages: LandingPageEntry[] = [
       {
         question: "What's the minimum monthly ad spend you work with?",
         answer:
-          "We work best when there's enough spend to learn from — typically a few thousand dollars a month or more. Below that, we may recommend a tighter geo or offer focus instead of spreading thin.",
+          "We work best when there's enough spend to learn from, typically a few thousand dollars a month or more. Below that, we may recommend a tighter geo or offer focus instead of spreading thin.",
       },
       {
         question: "Is this the same as your PPC management service?",
@@ -96,7 +96,7 @@ export const landingPages: LandingPageEntry[] = [
       "Rankings are a means, not the goal. We build the technical base, the pages that match how buyers search, and the conversion paths so traffic turns into conversations.",
     formTitle: "Get a free SEO growth audit",
     formSubtitle:
-      "Share your site. We'll flag what's holding organic growth back — and what to prioritize.",
+      "Share your site. We'll flag what's holding organic growth back, and what to prioritize.",
     submitLabel: "Request my SEO audit",
     formFootnote: "Clear findings. No 40-page report designed to impress instead of act.",
     proofIntro: "Organic growth our clients can point to in their CRM.",
@@ -109,7 +109,7 @@ export const landingPages: LandingPageEntry[] = [
     bulletsTitle: "How we approach SEO",
     bullets: [
       "Fix crawl, index, and Core Web Vitals issues that quietly cap growth",
-      "Map keywords to pages that match buyer intent — not thin content for every synonym",
+      "Map keywords to pages that match buyer intent, not thin content for every synonym",
       "Strengthen internal linking so authority reaches the pages that should convert",
       "Measure leads and revenue, not just positions on a weekly rank tracker",
     ],
@@ -122,7 +122,7 @@ export const landingPages: LandingPageEntry[] = [
       {
         question: "Do you guarantee #1 rankings?",
         answer:
-          "No honest agency does. We guarantee the work: sound technical SEO, pages worth ranking, and reporting tied to leads — not vanity screenshots.",
+          "No honest agency does. We guarantee the work: sound technical SEO, pages worth ranking, and reporting tied to leads, not vanity screenshots.",
       },
       {
         question: "Can SEO work with our Google Ads?",
@@ -143,7 +143,7 @@ export const landingPages: LandingPageEntry[] = [
     serviceLabel: "Local SEO",
     metaTitle: "Local SEO That Fills the Phone",
     metaDescription:
-      "Local SEO for service businesses that need map pack visibility, more calls, and booked jobs — not another list of citation logins.",
+      "Local SEO for service businesses that need map pack visibility, more calls, and booked jobs, not another list of citation logins.",
     badge: "Local SEO",
     headline: "Show up when locals",
     headlineAccent: "are ready to hire.",
@@ -151,7 +151,7 @@ export const landingPages: LandingPageEntry[] = [
       "Map pack, Google Business Profile, and location pages that earn calls. Built for trades, clinics, and home-service businesses that live or die by local demand.",
     formTitle: "Get a free local visibility check",
     formSubtitle:
-      "Tell us your market and service. We'll show where you're invisible — and how to fix it.",
+      "Tell us your market and service. We'll show where you're invisible, and how to fix it.",
     submitLabel: "Check my local visibility",
     formFootnote: "Practical GBP and local-pack findings. No junk citation spam.",
     proofIntro: "Local operators who needed phones to ring.",
@@ -164,7 +164,7 @@ export const landingPages: LandingPageEntry[] = [
     bulletsTitle: "What local SEO actually includes",
     bullets: [
       "Google Business Profile optimized for the categories and services that drive jobs",
-      "Service-area pages that are unique and useful — not city-name spam",
+      "Service-area pages that are unique and useful, not city-name spam",
       "Review velocity and response workflows that build trust in the map pack",
       "Call tracking and form paths so you know which searches book work",
     ],
@@ -172,7 +172,7 @@ export const landingPages: LandingPageEntry[] = [
       {
         question: "Do you help with Google Business Profile?",
         answer:
-          "Yes. GBP is often the highest-leverage local asset. Categories, services, photos, posts, and review response all matter — and most profiles leave money on the table.",
+          "Yes. GBP is often the highest-leverage local asset. Categories, services, photos, posts, and review response all matter, and most profiles leave money on the table.",
       },
       {
         question: "We serve multiple cities. Can you cover that?",
@@ -203,7 +203,7 @@ export const landingPages: LandingPageEntry[] = [
     headline: "A site that sells",
     headlineAccent: "while you sleep.",
     subheadline:
-      "Pretty isn't the brief. We design and build sites that load fast, explain the offer clearly, and make the next step obvious — on mobile first, where most of your traffic already lives.",
+      "Pretty isn't the brief. We design and build sites that load fast, explain the offer clearly, and make the next step obvious on mobile first, where most of your traffic already lives.",
     formTitle: "Get a free website conversion review",
     formSubtitle:
       "Send your URL. We'll call out what's killing conversions and what a rebuild should prioritize.",
@@ -218,7 +218,7 @@ export const landingPages: LandingPageEntry[] = [
     ],
     bulletsTitle: "What we build for",
     bullets: [
-      "Message match from ad or search result to the first screen — no bait-and-switch",
+      "Message match from ad or search result to the first screen, no bait-and-switch",
       "Mobile speed and Core Web Vitals so paid traffic isn't wasted on a slow load",
       "Clear primary CTA and form friction that matches intent (short when it should be)",
       "Structure that SEO and paid campaigns can actually land on without orphan pages",
@@ -232,7 +232,7 @@ export const landingPages: LandingPageEntry[] = [
       {
         question: "Will the new site be good for SEO?",
         answer:
-          "Yes. We plan URLs, headings, internal links, and technical basics during design — not as an afterthought once the pixels are done.",
+          "Yes. We plan URLs, headings, internal links, and technical basics during design, not as an afterthought once the pixels are done.",
       },
       {
         question: "How long does a typical project take?",

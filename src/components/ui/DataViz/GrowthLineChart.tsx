@@ -12,6 +12,7 @@ type Props = {
   accent?: string;
   showArea?: boolean;
   showDots?: boolean;
+  showHeader?: boolean;
   chartKey?: string;
   baselineZero?: boolean;
   lowerIsBetter?: boolean;
@@ -59,6 +60,7 @@ export default function GrowthLineChart({
   accent = "#00d4ff",
   showArea = true,
   showDots = true,
+  showHeader = true,
   chartKey,
   baselineZero = false,
   lowerIsBetter = false,
@@ -108,7 +110,7 @@ export default function GrowthLineChart({
 
   return (
     <div className={className}>
-      {unit && (
+      {showHeader && unit && (
         <div className="flex items-baseline justify-between mb-3 pl-10">
           <span className="text-[10px] font-medium text-white/40">
             {formatValue(startVal, unit)}

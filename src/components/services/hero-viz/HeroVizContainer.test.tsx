@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, cleanup } from "@testing-library/react";
 import HeroVizContainer from "./HeroVizContainer";
 
 afterEach(() => cleanup());
@@ -41,7 +41,7 @@ describe("HeroVizContainer", () => {
     expect(container.querySelector('[data-testid="child"]')).toHaveTextContent("content");
   });
 
-  it("renders badges when provided", () => {
+  it("renders at most one badge when multiple are provided", () => {
     const { container } = render(
       <HeroVizContainer
         browserLabel="Test"
@@ -53,7 +53,9 @@ describe("HeroVizContainer", () => {
         <div>content</div>
       </HeroVizContainer>
     );
-    expect(container.querySelectorAll('[data-testid="floating-badge"]')).toHaveLength(2);
+    const badges = container.querySelectorAll('[data-testid="floating-badge"]');
+    expect(badges).toHaveLength(1);
+    expect(badges[0]).toHaveAttribute("data-label", "Growth");
   });
 
   it("renders without badges", () => {

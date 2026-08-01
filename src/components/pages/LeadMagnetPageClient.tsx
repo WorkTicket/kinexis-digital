@@ -88,12 +88,14 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
         headline={
           <>
             <span className="type-hero-line">{c.heroTitlePrefix}</span>
-            <span className="type-hero-line text-accent">{c.heroTitleAccent}</span>
+            <span className="type-hero-line gradient-text">{c.heroTitleAccent}</span>
           </>
         }
         subtitle={c.heroSubtitle}
         ctaLabel={`Get Your Free ${c.heroTitleAccent}`}
         ctaHref="#audit-form"
+        secondaryCtaLabel="Book a Strategy Call"
+        secondaryCtaHref="/contact"
       />
 
       <Section id="audit-form" surfaceIndex={surfaceIndex++}>
@@ -206,6 +208,24 @@ export default function LeadMagnetPageClient({ content: c }: Props) {
               ))}
             </motion.div>
         </div>
+        </motion.div>
+      </Section>
+
+      <Section id="full-audit" surfaceIndex={surfaceIndex++}>
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="container-site max-w-3xl text-center"
+        >
+          <h2 className="type-subheader text-balance">{c.depthUpsellTitle}</h2>
+          <p className="mt-4 type-body text-muted">{c.depthUpsellBody}</p>
+          <div className="mt-8 flex justify-center">
+            <Button href="/services/marketing-audits" variant="secondary" fullWidthMobile>
+              {c.depthUpsellCta}
+            </Button>
+          </div>
         </motion.div>
       </Section>
     </>

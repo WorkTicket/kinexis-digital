@@ -13,56 +13,61 @@ export default function LocalSeoHeroViz() {
   return (
     <HeroVizContainer
       browserLabel="Local Map Pack"
-      frameClassName="h-[165px] w-[220px]"
+      url="google.com/maps"
+      frameClassName="h-[185px] w-[255px]"
       badges={[{ label: "Calls", value: "+64%", accent: "emerald" }]}
     >
-      <div className="flex flex-1 gap-1.5">
-        <div className="relative w-[42%] overflow-hidden rounded border border-surface bg-white/[0.02]">
-          <div className="absolute inset-0 opacity-40">
-            <div className="absolute left-2 top-0 h-full w-px bg-white/10" />
-            <div className="absolute left-6 top-0 h-full w-px bg-white/[0.06]" />
-            <div className="absolute left-0 top-3 h-px w-full bg-white/[0.06]" />
-            <div className="absolute left-0 top-8 h-px w-full bg-white/10" />
+      <div className="flex flex-1 gap-2">
+        <div className="relative w-[44%] overflow-hidden rounded-lg border border-white/[0.06] bg-[radial-gradient(circle_at_40%_45%,rgba(0,212,255,0.12),transparent_55%),linear-gradient(180deg,rgba(255,255,255,0.03),transparent)]">
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute left-3 top-0 h-full w-px bg-white/15" />
+            <div className="absolute left-8 top-0 h-full w-px bg-white/10" />
+            <div className="absolute left-0 top-4 h-px w-full bg-white/10" />
+            <div className="absolute left-0 top-10 h-px w-full bg-white/15" />
           </div>
           <motion.div
-            className="absolute left-1/2 top-1/2 flex h-4 w-4 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-neon-cyan"
+            className="absolute left-1/2 top-1/2 flex h-5 w-5 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-neon-cyan shadow-[0_0_16px_rgba(0,212,255,0.55)]"
             initial={{ scale: 0, y: -8 }}
             animate={{ scale: 1, y: 0 }}
-            transition={{ delay: 0.7, type: "spring" }}
+            transition={{ delay: 0.65, type: "spring" }}
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-bg" />
+            <span className="h-2 w-2 rounded-full bg-bg" />
           </motion.div>
           <motion.div
-            className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neon-cyan/40"
-            animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-neon-cyan/50"
+            animate={{ scale: [1, 2.6], opacity: [0.55, 0] }}
+            transition={{ duration: 2.2, repeat: Infinity }}
           />
         </div>
 
-        <div className="flex flex-1 flex-col gap-1">
+        <div className="flex flex-1 flex-col gap-1.5">
           {results.map((r, i) => (
             <motion.div
               key={r.name}
-              className={`flex items-center gap-1 rounded border px-1 py-1 ${
-                r.top ? "border-neon-cyan/30 bg-neon-cyan/[0.06]" : "border-surface bg-white/[0.02]"
-              }`}
+              className={
+                r.top
+                  ? "flex items-center gap-1.5 rounded-md border border-neon-cyan/35 bg-neon-cyan/[0.08] px-1.5 py-1.5"
+                  : "flex items-center gap-1.5 rounded-md border border-white/[0.05] bg-white/[0.02] px-1.5 py-1.5"
+              }
               initial={{ opacity: 0, x: 8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.7 + i * 0.1 }}
             >
               <span
-                className={`flex h-3 w-3 shrink-0 items-center justify-center rounded-full text-[6px] font-bold ${
-                  r.top ? "bg-neon-cyan text-bg" : "bg-white/10 text-muted/50"
-                }`}
+                className={
+                  r.top
+                    ? "flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-neon-cyan text-[8px] font-bold text-bg"
+                    : "flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white/10 text-[8px] font-bold text-white/45"
+                }
               >
                 {i + 1}
               </span>
               <div className="min-w-0 flex-1">
-                <div className={`truncate text-[6px] ${r.top ? "font-semibold text-white/85" : "text-white/55"}`}>
+                <div className={`truncate text-[9px] ${r.top ? "font-semibold text-white/90" : "text-white/55"}`}>
                   {r.name}
                 </div>
-                <div className="flex items-center gap-0.5 text-[5px] text-amber-400">
-                  ★ <span className="text-muted/50">{r.rating}</span>
+                <div className="flex items-center gap-0.5 text-[8px] text-amber-400">
+                  ★ <span className="text-white/40">{r.rating}</span>
                 </div>
               </div>
             </motion.div>
@@ -70,9 +75,9 @@ export default function LocalSeoHeroViz() {
         </div>
       </div>
 
-      <div className="mt-1.5 flex items-center justify-between rounded border border-emerald-400/20 bg-emerald-400/[0.06] px-2 py-1">
-        <span className="text-[6px] uppercase text-muted/50">Map Pack</span>
-        <span className="text-[8px] font-bold text-emerald-400">Top 3 · Local</span>
+      <div className="mt-2 flex items-center justify-between rounded-md border border-emerald-400/25 bg-emerald-400/[0.08] px-2.5 py-1.5">
+        <span className="text-[8px] uppercase tracking-wider text-white/45">Map Pack</span>
+        <span className="text-[10px] font-bold text-emerald-400">Top 3 · Local</span>
       </div>
     </HeroVizContainer>
   );

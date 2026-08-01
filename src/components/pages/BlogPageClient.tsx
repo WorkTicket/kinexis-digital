@@ -43,6 +43,8 @@ export default function BlogPageClient({ content: c }: Props) {
         subtitle={c.heroSubtitle}
         ctaLabel={tCommon("bookStrategyCall")}
         ctaHref="/contact"
+        secondaryCtaLabel={tCommon("getFreeAudit")}
+        secondaryCtaHref="/lead-magnet"
       />
 
       {/* SECTION 2: Featured Research */}

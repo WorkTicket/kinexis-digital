@@ -129,7 +129,7 @@ export default function ServicesHubClient({ content: c }: Props) {
         headline={
           <>
             <span className="type-hero-line">{c.hero.headlineLine1}</span>
-            <span className="type-hero-line">{c.hero.headlineLine2}</span>
+            <span className="type-hero-line gradient-text">{c.hero.headlineLine2}</span>
           </>
         }
         subtitle={c.hero.subtitle}
@@ -159,20 +159,20 @@ export default function ServicesHubClient({ content: c }: Props) {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.5, delay: (i % 4) * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <Link href={serviceHrefs[svc.id]} className="group block h-full">
-                    <Card className="h-full flex flex-col border-white/[0.06] transition-all duration-500 hover:border-neon-cyan/20 hover:shadow-[0_8px_30px_-8px_rgba(0,212,255,0.12)]">
-                      <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg border border-neon-cyan/[0.1] bg-neon-cyan/[0.04] transition-colors duration-500 group-hover:border-neon-cyan/25 group-hover:bg-neon-cyan/[0.08]">
-                        <Icon className="h-4 w-4 text-neon-cyan/50 transition-colors duration-500 group-hover:text-neon-cyan" aria-hidden />
+                  <Link href={serviceHrefs[svc.id]} className="group block h-full touch-manipulation">
+                    <Card className="flex h-full flex-col">
+                      <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 transition-colors group-hover:bg-white/10">
+                        <Icon className="h-5 w-5 text-neon-cyan" aria-hidden />
                       </div>
-                      <h3 className="type-subheader transition-colors duration-500 group-hover:text-neon-cyan">
+                      <h3 className="card-heading transition-colors duration-200 group-hover:text-neon-cyan">
                         <TwoLineText text={svc.label} variant="subheader" />
                       </h3>
-                      <p className="mt-2 type-body text-white/45 flex-1">
+                      <p className="mt-3 flex-1 type-body text-muted">
                         {svc.description}
                       </p>
-                      <div className="mt-5 pt-4 border-t border-white/[0.05] flex items-center justify-between">
-                        <span className="text-xs font-semibold text-neon-cyan/70">{svc.stat}</span>
-                        <ArrowRight className="h-4 w-4 text-neon-cyan/30 group-hover:text-neon-cyan group-hover:translate-x-0.5 transition-all duration-200" />
+                      <div className="mt-8 flex items-center justify-between border-t border-strong pt-5">
+                        <span className="text-xs font-semibold text-neon-cyan/80">{svc.stat}</span>
+                        <ArrowRight className="h-3.5 w-3.5 text-neon-cyan transition-transform duration-200 group-hover:translate-x-0.5" />
                       </div>
                     </Card>
                   </Link>
@@ -206,7 +206,7 @@ export default function ServicesHubClient({ content: c }: Props) {
                 <motion.div variants={fadeUp} className={idx % 2 !== 0 ? "md:order-2" : ""}>
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-xs font-bold uppercase tracking-[0.25em] text-neon-cyan">{p.label}</span>
-                    <span className="h-px flex-1 bg-white/[0.08]" />
+                    <span className="h-px flex-1 bg-surface-active" />
                   </div>
                   <h3 className="type-subheader"><TwoLineText text={p.headline} variant="subheader" /></h3>
                   <p className="mt-4 text-base leading-relaxed text-white/50">{p.description}</p>
@@ -248,7 +248,7 @@ export default function ServicesHubClient({ content: c }: Props) {
           />
 
           <motion.div
-            className="rounded-3xl border border-white/[0.06] bg-white/[0.01] overflow-hidden"
+            className="rounded-3xl border border-surface bg-surface-base overflow-hidden"
             variants={stagger}
             initial="hidden"
             whileInView="visible"
@@ -261,7 +261,7 @@ export default function ServicesHubClient({ content: c }: Props) {
                     <p className="mt-3 text-sm leading-relaxed text-white/45 mb-6">{phase.description}</p>
                     <div className="flex flex-wrap gap-1.5">
                       {phase.services.map((s) => (
-                        <span key={s} className="shrink-0 whitespace-nowrap rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[11px] font-medium text-white/40">
+                        <span key={s} className="shrink-0 whitespace-nowrap rounded-full border border-surface bg-surface-raised px-2.5 py-1 text-[11px] font-medium text-white/40">
                           {s}
                         </span>
                       ))}

@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 import {
-  createMailTransporter,
+  describeMailError,
   emailMessageRow,
   emailRow,
-  getEmailCredentials,
-  wrapKinexisEmailHtml,
+  sendKinexisMail,
 } from "@/lib/email";
-import { escapeHtml } from "@/lib/sanitize";
 import { validateOrigin } from "@/lib/csrf";
 import { validateHoneypot } from "@/lib/honeypot";
 import {
@@ -73,30 +71,10 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Message is too long (max 5000 characters)." }, { status: 400 });
     }
 
-    const creds = getEmailCredentials();
-    const isDev = process.env.NODE_ENV === "development";
-
-    if (!creds) {
-      if (!isDev) {
-        console.error("Contact form: email credentials not configured");
-        return NextResponse.json(
-          { error: "Server configuration error. Please try again later." },
-          { status: 500 },
-        );
-      }
-      if (process.env.ENABLE_DEV_FORM_LOGGING === "1") {
-        console.log("\n[DEV] Contact form submission (no email sent):", {
-          name,
-          email,
-          attribution,
-        });
-      }
-      return NextResponse.json({ success: true }, { status: 200 });
-    }
-
     const safeName = String(name);
     const safeEmail = String(email);
     const attributionHtml = attributionEmailRows(attribution, emailRow);
+    const attributionText = attributionTextLines(attribution);
     const rows = [
       emailRow("Name", safeName),
       emailRow("Email", safeEmail, true),
@@ -107,37 +85,49 @@ export async function POST(request: Request) {
       attributionHtml,
     ].join("");
 
-    const transporter = createMailTransporter(creds);
-    const attributionText = attributionTextLines(attribution);
-
-    await transporter.sendMail({
-      from: `"KINEXIS Digital Contact" <${creds.gmailUser}>`,
-      to: creds.toEmail,
-      replyTo: safeEmail,
-      subject: `New Inquiry from ${safeName}${company ? ` \u2014 ${company}` : ""}`,
-      html: wrapKinexisEmailHtml(
-        "New Contact Form Submission",
+    const mail = await sendKinexisMail(
+      {
+        fromName: "KINEXIS Digital Contact",
+        replyTo: safeEmail,
+        subject: `New Inquiry from ${safeName}${company ? ` \u2014 ${company}` : ""}`,
+        title: "New Contact Form Submission",
         rows,
-        `Reply directly to this email to respond to <strong style="color:#fff;">${escapeHtml(safeName)}</strong>.`,
-      ),
-      text: [
-        "New Contact Form Submission \u2014 KINEXIS Digital",
-        "",
-        `Name: ${safeName}`,
-        `Email: ${safeEmail}`,
-        company ? `Company: ${company}` : "",
-        phone ? `Phone: ${phone}` : "",
-        service ? `Service Interest: ${service}` : "",
-        message ? `\nMessage:\n${message}` : "",
-        attributionText.length ? ["", "Attribution:", ...attributionText].join("\n") : "",
-      ]
-        .filter(Boolean)
-        .join("\n"),
-    });
+        footer: `Reply directly to this email to respond to ${safeName}.`,
+        text: [
+          "New Contact Form Submission \u2014 KINEXIS Digital",
+          "",
+          `Name: ${safeName}`,
+          `Email: ${safeEmail}`,
+          company ? `Company: ${company}` : "",
+          phone ? `Phone: ${phone}` : "",
+          service ? `Service Interest: ${service}` : "",
+          message ? `\nMessage:\n${message}` : "",
+          attributionText.length ? ["", "Attribution:", ...attributionText].join("\n") : "",
+        ]
+          .filter(Boolean)
+          .join("\n"),
+      },
+      "Contact form",
+    );
+
+    if (!mail.ok) {
+      return NextResponse.json(
+        { error: "Server configuration error. Please try again later." },
+        { status: 500 },
+      );
+    }
+
+    if (!mail.sent && process.env.ENABLE_DEV_FORM_LOGGING === "1") {
+      console.log("\n[DEV] Contact form submission (no email sent):", {
+        name: safeName,
+        email: safeEmail,
+        attribution,
+      });
+    }
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("Contact form error:", describeMailError(error));
     return NextResponse.json(
       { error: "Failed to send message. Please try again." },
       { status: 500 },

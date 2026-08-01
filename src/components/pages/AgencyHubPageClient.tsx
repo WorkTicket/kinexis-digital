@@ -75,18 +75,36 @@ export default function AgencyHubPageClient({ content: c }: Props) {
 
       <AgencyProcessSection process={c.process} surfaceIndex={surfaceIndex++} />
 
-      <Section id="proof" variant="data" surfaceIndex={surfaceIndex++}>
+      <Section id="proof" variant="proof" surfaceIndex={surfaceIndex++} compact className="border-y border-surface">
         <div className="container-site">
-          <SectionHeader title={c.proof.title} description={c.proof.subtitle} />
-          <div className="section-content grid gap-grid-sm md:grid-cols-4">
-            {c.proof.metrics.map((m) => (
-              <ProofMetric key={m.label} value={m.value} label={m.label} />
-            ))}
-          </div>
-          <div className="section-cta-row">
+          <div className="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <h2 id="proof-heading" className="type-subheader text-balance">
+                {c.proof.title}
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted md:text-[0.9375rem]">
+                {c.proof.subtitle}
+              </p>
+            </div>
             <Button href="/case-studies" variant="secondary" fullWidthMobile>
               {c.proof.viewAllLabel}
             </Button>
+          </div>
+          <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/[0.08]">
+            {c.proof.metrics.map((m, index) => (
+              <div
+                key={m.label}
+                className={
+                  index === 0
+                    ? "lg:pr-8"
+                    : index === c.proof.metrics.length - 1
+                      ? "lg:pl-8"
+                      : "lg:px-8"
+                }
+              >
+                <ProofMetric value={m.value} label={m.label} />
+              </div>
+            ))}
           </div>
         </div>
       </Section>

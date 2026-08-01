@@ -47,9 +47,12 @@ export default async function DigitalMarketingAgencyPage({ params }: Props) {
         label={c.hero.label}
         line1={c.hero.headlineLine1}
         line2={c.hero.headlineLine2}
+        line2ClassName="gradient-text"
         subtitle={c.hero.subtitle}
         ctaLabel={c.hero.ctaLabel}
         ctaHref="/contact"
+        secondaryCtaLabel="View Our Work"
+        secondaryCtaHref="/case-studies"
       />
       <AgencyHubPageClient content={c} />
     </>

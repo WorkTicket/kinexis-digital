@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { m as motion, AnimatePresence } from "@/lib/framer";
 import { Link } from "@/i18n/navigation";
 import CaseStudyMetricCard from "@/components/case-studies/CaseStudyMetricCard";
@@ -13,24 +14,20 @@ import ProofMetric from "@/components/ui/ProofMetric";
 import { cardClasses } from "@/lib/card-styles";
 import type { CaseStudiesContent } from "@/content/case-studies";
 import { formatMetricValue } from "@/lib/format-metric";
+import { cn } from "@/lib/utils";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Section from "@/components/shared/services/Section";
 import {
   ArrowUpRight,
   ExternalLink,
-  TrendingUp,
-  Users,
-  MousePointerClick,
-  DollarSign,
   BarChart3,
   Layers,
 } from "lucide-react";
 
-const metricWallIcons = [DollarSign, TrendingUp, Users, MousePointerClick];
-
 type Props = { content: CaseStudiesContent };
 
 export default function CaseStudiesPageClient({ content: c }: Props) {
+  const tCommon = useTranslations("common");
   const [activeIndustry, setActiveIndustry] = useState(c.industries[0]);
 
   const filtered =
@@ -53,37 +50,35 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
           </>
         }
         subtitle={c.heroSubtitle}
-        ctaLabel="Book a Strategy Call"
+        ctaLabel={tCommon("bookStrategyCall")}
         ctaHref="/contact"
-        visualization={
-          <div className="flex justify-center w-full">
-            <div className="relative inline-flex">
-              <div className="absolute -inset-4 bg-gradient-to-br from-neon-cyan/[0.04] via-transparent to-transparent blur-2xl pointer-events-none" />
-              <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 xs:gap-4 sm:gap-5">
-                {c.metricWall.map((m, i) => {
-                  const Icon = metricWallIcons[i];
-                  return (
-                    <div
-                      key={m.label}
-                      className={cardClasses({ hover: false, className: "backdrop-blur-sm text-left !p-4 xs:!p-3.5 sm:!p-4" })}
-                    >
-                      <div className="flex flex-col gap-1.5">
-                        <span className="type-metric-label-stat inline-flex items-start gap-2 mt-0">
-                          <Icon className="h-4 w-4 text-neon-cyan shrink-0 mt-0.5" />
-                          <span>{m.label}</span>
-                        </span>
-                        <span className="type-metric">{m.value}</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        }
-        visualizationClassName="hero__viz-inner--service"
-        visualizationWrapperClassName="mt-8 lg:mt-0"
+        secondaryCtaLabel={tCommon("getFreeAudit")}
+        secondaryCtaHref="/lead-magnet"
       />
+
+      {/* Aggregate proof — below the fold, homepage ProofStrip pattern */}
+      <Section id="results-proof" surfaceIndex={surfaceIndex++} compact className="border-y border-surface">
+        <div className="container-site">
+          <ul className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-white/[0.08]">
+            {c.metricWall.map((m, index) => (
+              <li key={m.label}>
+                <div
+                  className={cn(
+                    "flex h-full flex-col gap-2 lg:px-8",
+                    index === 0 && "lg:pl-0",
+                    index === c.metricWall.length - 1 && "lg:pr-0",
+                  )}
+                >
+                  <span className="type-metric text-3xl font-bold tracking-tight sm:text-4xl">
+                    <span className="gradient-text">{m.value}</span>
+                  </span>
+                  <span className="text-sm font-medium leading-snug text-white/85">{m.label}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
 
       {/* Featured spotlight */}
       <Section id="featured-spotlight" surfaceIndex={surfaceIndex++}>
@@ -325,7 +320,7 @@ export default function CaseStudiesPageClient({ content: c }: Props) {
                       href={cs.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 border-l border-surface px-4 py-4 text-sm font-semibold text-muted transition-colors hover:bg-white/[0.02] hover:text-white"
+                      className="flex items-center justify-center gap-2 border-l border-surface px-4 py-4 text-sm font-semibold text-muted transition-colors hover:bg-surface-base hover:text-white"
                     >
                       {c.visitLiveSite}
                       <ExternalLink className="h-3.5 w-3.5" />

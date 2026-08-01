@@ -56,8 +56,9 @@ export function createArchitectedServicePage(slug: ServiceSeoSlug, slots?: Servi
           variant="service"
           slug={slug}
           breadcrumbs={data.breadcrumbs}
-          secondaryCtaLabel={tCommon("viewOurWork")}
           {...data.data.hero}
+          secondaryCtaLabel={tCommon("getFreeAudit")}
+          secondaryCtaHref="/lead-magnet"
         />
         {slots?.afterHero}
         <TrustStrip items={trustStripContent[locale].items} />

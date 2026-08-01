@@ -188,10 +188,21 @@
       "revenue": "$K MRR"
     }
   },
+  "proofStrip": {
+    "credibility": "Resultados verificados de programas en vivo, no proyecciones ni métricas vanidosas.",
+    "viewAll": "Ver casos de estudio",
+    "aggregateMeta": "En estudios publicados"
+  },
   "servicesEcosystem": {
-    "label": "Servicios Conectados",
-    "title": "Servicios que trabajan en conjunto.",
-    "subtitle": "El SEO alimenta el contenido. El contenido alimenta los embudos.|Los embudos alimentan el email. Cada canal hace que el siguiente rinda más."
+    "label": "Servicios",
+    "title": "Cuatro pilares. Un sistema de crecimiento.",
+    "subtitle": "Cada capacidad funciona por sí sola. Conectadas, dejan de perder leads entre canales y empiezan a multiplicarse.",
+    "pillars": {
+      "seo": "Aparece donde tus compradores ya buscan, y mantén las páginas rápidas, claras y listas para convertir.",
+      "paid": "Inversión que se paga sola. Campañas orientadas a demanda calificada, no a volumen de clics.",
+      "web": "Sitios y experiencias que hacen obvio el siguiente paso en cualquier dispositivo.",
+      "funnels": "Landing pages y nurturing que convierten atención en llamadas agendadas e ingresos."
+    }
   },
   "featuredResults": {
     "label": "Resultados Comprobados",
@@ -202,6 +213,32 @@
     "label": "Por Qué los Clientes Cambian a KINEXIS",
     "title": "Ya has estado aquí antes.",
     "subtitle": "Otra agencia. Otra promesa.|Otro panel lleno de números que no se conectan con los ingresos.",
+    "dimensionLabel": "Dónde falla",
+    "typicalAgency": "Agencia típica",
+    "signalLabel": "Lo que dirige la conversación",
+    "signalBefore": "Actividad",
+    "signalAfter": "Ingresos",
+    "dimensions": [
+      "Comunicación",
+      "Informes",
+      "Transparencia",
+      "Medición",
+      "Responsabilidad"
+    ],
+    "beforeDetails": [
+      "Correos que tardan tres días. Lo urgente espera hasta la próxima llamada.",
+      "Un PDF trimestral que cuenta qué pasó, pero no qué cambia después.",
+      "Alcance confuso, facturación opaca y ninguna claridad sobre quién trabaja.",
+      "Suben las impresiones mientras los leads calificados y el pipeline no avanzan.",
+      "Llega un nuevo gerente justo cuando el anterior entiende tu negocio."
+    ],
+    "afterDetails": [
+      "Un resumen semanal claro y acceso directo cuando algo no puede esperar.",
+      "KPIs en vivo, contexto sin rodeos y la próxima decisión ya definida.",
+      "Ves el trabajo, la inversión y el razonamiento detrás de cada decisión.",
+      "Leads calificados, tasa de cierre, ROAS y LTV marcan la agenda.",
+      "Un estratega senior conserva el contexto y responde por el resultado."
+    ],
     "before": "Antes",
     "after": "Después",
     "agencyA": "Agencia A",

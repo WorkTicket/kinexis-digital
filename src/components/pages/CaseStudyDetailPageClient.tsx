@@ -125,6 +125,18 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
       <Section id="results-metrics" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
           <CaseStudyResultsMetrics results={cs.resultsList} />
+          {cs.results && (
+            <figure className="mx-auto mt-10 max-w-3xl border-l-2 border-neon-cyan/40 pl-6 md:mt-12 md:pl-8">
+              <blockquote className="text-base leading-relaxed text-white/85 md:text-lg md:leading-relaxed">
+                {cs.results}
+              </blockquote>
+              <figcaption className="mt-4 text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                {cs.client}
+                <span className="text-white/25"> · </span>
+                {cs.industry}
+              </figcaption>
+            </figure>
+          )}
         </div>
       </Section>
 
@@ -152,7 +164,10 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
               href={cs.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative block overflow-hidden rounded-2xl border border-surface bg-bg-dark"
+              className={cardClasses({
+                hover: false,
+                className: "group relative block overflow-hidden !p-0 !bg-bg-dark",
+              })}
             >
               <div className="relative aspect-[16/9] w-full">
                 <Image
@@ -366,6 +381,8 @@ export default function CaseStudyDetailPageClient({ cs, meta, breadcrumbs }: Pro
         subtitle={cs.ctaSubtitle}
         ctaLabel={cs.ctaLabel}
         ctaHref="/contact"
+        secondaryCtaLabel="View All Case Studies"
+        secondaryCtaHref="/case-studies"
       />
     </article>
   );

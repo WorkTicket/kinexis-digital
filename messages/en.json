@@ -188,10 +188,21 @@
       "revenue": "$K MRR"
     }
   },
+  "proofStrip": {
+    "credibility": "Verified client outcomes from live programs, not projections or vanity metrics.",
+    "viewAll": "View case studies",
+    "aggregateMeta": "Across published studies"
+  },
   "servicesEcosystem": {
-    "label": "Connected Services",
-    "title": "Services that work together.",
-    "subtitle": "SEO feeds content. Content feeds funnels. Funnels feed email. Run them separately and they perform like separate services. Build them as one program and each one amplifies the rest."
+    "label": "Services",
+    "title": "Four pillars. One growth system.",
+    "subtitle": "Each capability is strong on its own. Connected, they stop leaking leads between channels and start compounding.",
+    "pillars": {
+      "seo": "Rank where buyers already search, then keep the pages fast, clear, and ready to convert.",
+      "paid": "Spend that pays for itself. Campaigns built around qualified demand, not click volume.",
+      "web": "Sites and experiences that make the next step obvious on every device.",
+      "funnels": "Landing pages and nurture paths that turn attention into booked calls and revenue."
+    }
   },
   "featuredResults": {
     "label": "Proven Results",
@@ -202,6 +213,32 @@
     "label": "Why Clients Switch To KINEXIS",
     "title": "You've been here before.",
     "subtitle": "Another agency. Another promise. Another quarterly report full of impressions that don't touch your pipeline.",
+    "dimensionLabel": "Where it breaks",
+    "typicalAgency": "Typical agency",
+    "signalLabel": "What leads the conversation",
+    "signalBefore": "Activity",
+    "signalAfter": "Revenue",
+    "dimensions": [
+      "Communication",
+      "Reporting",
+      "Transparency",
+      "Measurement",
+      "Ownership"
+    ],
+    "beforeDetails": [
+      "Three-day email loops. Urgent issues wait for the next scheduled call.",
+      "A quarterly PDF that tells you what happened, never what changes next.",
+      "Unclear scope, black-box billing, and no view into who does the work.",
+      "Impressions climb while qualified leads and pipeline stay flat.",
+      "A new account manager arrives just as the last one learns your business."
+    ],
+    "afterDetails": [
+      "A clear weekly digest, plus direct access when something cannot wait.",
+      "Live KPIs, plain-language context, and the next decision already defined.",
+      "You see the work, the spend, and the reasoning behind every move.",
+      "Qualified leads, close rate, ROAS, and LTV set the agenda.",
+      "One senior strategist holds the context and owns the outcome."
+    ],
     "before": "Before",
     "after": "After",
     "agencyA": "Agency A",

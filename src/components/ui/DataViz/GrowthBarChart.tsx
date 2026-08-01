@@ -8,6 +8,7 @@ type Props = {
   unit?: string;
   height?: number;
   className?: string;
+  showHeader?: boolean;
 };
 
 function formatValue(value: number, unit?: string) {
@@ -24,6 +25,7 @@ export default function GrowthBarChart({
   unit,
   height = 160,
   className = "",
+  showHeader = true,
 }: Props) {
   const width = 320;
   const padding = { top: 20, right: 12, bottom: 28, left: 36 };
@@ -55,16 +57,18 @@ export default function GrowthBarChart({
 
   return (
     <div className={className}>
-      <div className="flex items-baseline justify-between mb-3">
-        <span className="text-[10px] font-medium text-white/40">
-          {formatValue(startVal, unit)}
-          {unit && !unit.includes("$") ? ` ${unit}` : unit?.includes("$") ? "/mo" : ""}
-        </span>
-        <span className="text-[10px] font-semibold text-neon-cyan/80">
-          {formatValue(endVal, unit)}
-          {unit && !unit.includes("$") ? ` ${unit}` : unit?.includes("$") ? "/mo" : ""}
-        </span>
-      </div>
+      {showHeader && (
+        <div className="flex items-baseline justify-between mb-3">
+          <span className="text-[10px] font-medium text-white/40">
+            {formatValue(startVal, unit)}
+            {unit && !unit.includes("$") ? ` ${unit}` : unit?.includes("$") ? "/mo" : ""}
+          </span>
+          <span className="text-[10px] font-semibold text-neon-cyan/80">
+            {formatValue(endVal, unit)}
+            {unit && !unit.includes("$") ? ` ${unit}` : unit?.includes("$") ? "/mo" : ""}
+          </span>
+        </div>
+      )}
 
       <svg
         viewBox={`0 0 ${width} ${height}`}

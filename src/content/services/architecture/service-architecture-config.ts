@@ -26,10 +26,14 @@ export const CONTENT_RICH_SERVICE_TAIL = [
 ] as const;
 
 export function contentRichServiceOrder(capabilityKeys: string[]): string[] {
+  const caps = capabilityKeys.slice(0, 3);
+  const [first, ...rest] = caps;
   return [
     "AnswerBlock",
     "EditorialOverview",
-    ...capabilityKeys.slice(0, 3),
+    ...(first ? [first] : []),
+    "Surfaces",
+    ...rest,
     ...CONTENT_RICH_SERVICE_TAIL,
   ];
 }

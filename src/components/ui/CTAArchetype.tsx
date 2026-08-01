@@ -12,7 +12,8 @@ type Props = {
   subtitle?: string;
   ctaLabel: string;
   ctaHref?: string;
-  secondaryCtaLabel?: string;
+  /** Pass `null` to hide the secondary CTA. Omit to use the homepage default (Get Free Audit). */
+  secondaryCtaLabel?: string | null;
   secondaryCtaHref?: string;
   className?: string;
 };
@@ -21,13 +22,17 @@ const archetypeConfig: Record<
   Archetype,
   { tone: SiteCTATone; layout: SiteCTALayout; showGlow: boolean; badgeFromCta?: boolean }
 > = {
-  default: { tone: "glow", layout: "centered", showGlow: true, badgeFromCta: true },
-  tool: { tone: "glow", layout: "centered", showGlow: true },
-  story: { tone: "story", layout: "centered", showGlow: true, badgeFromCta: true },
-  bold: { tone: "glow", layout: "centered", showGlow: false },
-  inline: { tone: "glow", layout: "inline", showGlow: false },
+  default: { tone: "cta", layout: "centered", showGlow: false, badgeFromCta: true },
+  tool: { tone: "cta", layout: "centered", showGlow: false, badgeFromCta: true },
+  story: { tone: "cta", layout: "centered", showGlow: false, badgeFromCta: true },
+  bold: { tone: "cta", layout: "centered", showGlow: false, badgeFromCta: true },
+  inline: { tone: "cta", layout: "inline", showGlow: false },
 };
 
+/**
+ * Marketing CTA wrapper aligned to the homepage SiteCTA contract:
+ * tone="cta", no glow, dual CTAs, localized contract note.
+ */
 export default function CTAArchetype({
   archetype = "default",
   headline,
@@ -39,7 +44,13 @@ export default function CTAArchetype({
   className,
 }: Props) {
   const t = useTranslations("cta");
+  const tCommon = useTranslations("common");
   const config = archetypeConfig[archetype];
+
+  const resolvedSecondaryLabel =
+    secondaryCtaLabel === null ? undefined : (secondaryCtaLabel ?? tCommon("getFreeAudit"));
+  const resolvedSecondaryHref =
+    secondaryCtaLabel === null ? undefined : (secondaryCtaHref ?? "/lead-magnet");
 
   return (
     <SiteCTA
@@ -52,9 +63,8 @@ export default function CTAArchetype({
       subtitle={subtitle ? <TwoLineText text={subtitle} variant="body" /> : undefined}
       primaryLabel={ctaLabel}
       primaryHref={ctaHref}
-      secondaryLabel={secondaryCtaLabel}
-      secondaryHref={secondaryCtaHref}
-      contractNote={null}
+      secondaryLabel={resolvedSecondaryLabel}
+      secondaryHref={resolvedSecondaryHref}
     />
   );
 }

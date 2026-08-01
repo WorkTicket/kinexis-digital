@@ -17,12 +17,12 @@
   --accent: var(--neon-cyan);
   --panel: rgba(255, 255, 255, 0.06);
   --text: #ffffff;
-  --muted: rgba(255, 255, 255, 0.7);
+  --muted: rgba(255, 255, 255, 0.74);
   --muted-rgb: 255 255 255;
   --accent-hover: #33ddff;
-  --accent-glow: rgba(0, 212, 255, 0.5);
-  --accent-glow-soft: rgba(0, 212, 255, 0.15);
-  --accent-shadow: rgba(0, 153, 204, 0.3);
+  --accent-glow: rgba(0, 212, 255, 0.28);
+  --accent-glow-soft: rgba(0, 212, 255, 0.1);
+  --accent-shadow: rgba(0, 153, 204, 0.18);
   --tooltip-bg-before: #120808;
   --tooltip-bg-after: #061018;
   --light-gray: #9ca3af;
@@ -31,9 +31,9 @@
   --border-default: rgba(255, 255, 255, 0.06);
   --border-strong: rgba(255, 255, 255, 0.1);
   --border: var(--border-strong);
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.6);
-  --hero-muted: rgba(255, 255, 255, 0.4);
+  --text-secondary: rgba(255, 255, 255, 0.74);
+  --text-muted: rgba(255, 255, 255, 0.66);
+  --hero-muted: rgba(255, 255, 255, 0.48);
   --surface-base: rgba(255, 255, 255, 0.025);
   --surface-raised: rgba(255, 255, 255, 0.03);
   --surface-glass: rgba(255, 255, 255, 0.04);
@@ -45,11 +45,11 @@
   --dropdown-surface-from: rgba(14, 16, 26, 0.98);
   --dropdown-surface-to: rgba(5, 6, 10, 0.98);
   --gradient: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan));
-  --shadow-card: 0 0 20px rgba(0, 212, 255, 0.08), 0 0 60px rgba(0, 153, 204, 0.04);
+  --shadow-card: 0 0 16px rgba(0, 212, 255, 0.04), 0 8px 32px rgba(0, 0, 0, 0.35);
   --shadow-panel: 0 24px 80px -12px rgba(0, 0, 0, 0.55);
   --shadow-panel-lg: 0 32px 100px -20px rgba(0, 0, 0, 0.65);
-  --shadow-glow: 0 0 30px var(--accent-glow), 0 0 70px var(--accent-shadow), 0 0 140px rgba(0, 153, 204, 0.12);
-  --shadow-glow-sm: 0 0 12px var(--accent-glow-soft);
+  --shadow-glow: 0 0 18px var(--accent-glow), 0 0 40px var(--accent-shadow);
+  --shadow-glow-sm: 0 0 8px var(--accent-glow-soft);
   --radius-control: 0.75rem;
   --radius-card: 1rem;
   --radius-panel: 1.5rem;
@@ -84,12 +84,12 @@
   --intro-width: 65ch;
   --subtitle-width: 48rem;
   --shadow-card-hover:
-    0 18px 52px rgba(0, 0, 0, 0.52),
-    0 0 32px rgba(0, 212, 255, 0.13),
-    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    0 12px 36px rgba(0, 0, 0, 0.48),
+    0 0 16px rgba(0, 212, 255, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   --shadow-btn-hover:
-    0 4px 20px rgba(0, 0, 0, 0.4),
-    0 0 14px rgba(0, 212, 255, 0.08);
+    0 4px 16px rgba(0, 0, 0, 0.35),
+    0 0 10px rgba(0, 212, 255, 0.1);
   --duration-interaction-fast: 110ms;
   --duration-interaction: 260ms;
   --duration-interaction-slow: 380ms;
@@ -250,9 +250,9 @@ summary::-webkit-details-marker {
       rgba(9, 11, 18, var(--header-surface-opacity)) 0%,
       rgba(5, 6, 10, var(--header-surface-opacity)) 100%
     );
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
     transform: translateZ(0);
   }
 
@@ -873,8 +873,8 @@ summary::-webkit-details-marker {
 
   @media (hover: hover) {
     .motion-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0, 212, 255, 0.28);
+      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.14);
       box-shadow: var(--shadow-card-hover);
     }
   }
@@ -882,14 +882,31 @@ summary::-webkit-details-marker {
   .hero-viz-interactive {
     transition:
       border-color var(--duration-interaction) var(--ease-out),
-      box-shadow var(--duration-interaction) var(--ease-out);
+      box-shadow var(--duration-interaction) var(--ease-out),
+      transform var(--duration-interaction) var(--ease-out);
   }
 
   @media (hover: hover) {
     .group:hover .hero-viz-interactive {
-      border-color: var(--neon-cyan);
+      border-color: rgba(0, 212, 255, 0.35);
       box-shadow: var(--shadow-card-hover);
+      transform: translateY(-1px);
     }
+  }
+
+  .hero-viz-shell {
+    isolation: isolate;
+  }
+
+  .hero-viz-bloom {
+    background:
+      radial-gradient(ellipse at 50% 45%, rgba(0, 212, 255, 0.08), transparent 62%),
+      radial-gradient(ellipse at 30% 70%, rgba(0, 153, 204, 0.05), transparent 55%);
+    filter: blur(22px);
+  }
+
+  .viz-frame {
+    position: relative;
   }
 
   .motion-btn {
@@ -1306,8 +1323,7 @@ summary::-webkit-details-marker {
 
   @media (min-width: 1280px) {
     .hero:not(.hero--page) .type-hero {
-      /* Cap below previous 7.5rem so the highlight line fits without clipping */
-      font-size: clamp(4.5rem, 6.5vw, 6.75rem);
+      font-size: clamp(4.5rem, 7vw, 7.5rem);
     }
   }
 
@@ -1333,12 +1349,13 @@ summary::-webkit-details-marker {
   }
 
   .hero--home .hero-home-subtitle-line {
-    text-wrap: normal;
+    text-wrap: pretty;
   }
 
   @media (min-width: 768px) {
-    .hero--home .hero-home-subtitle-line {
+    .hero--home:not(.hero--centered) .hero-home-subtitle-line {
       white-space: nowrap;
+      text-wrap: normal;
     }
   }
 
@@ -1403,12 +1420,51 @@ summary::-webkit-details-marker {
   }
 
   .hero--split .hero__cta.cta-stack,
-  .hero--home .hero__cta.cta-stack {
+  .hero--home:not(.hero--centered) .hero__cta.cta-stack {
     @apply sm:justify-start;
   }
 
   .hero--centered .hero__cta.cta-stack {
     @apply sm:justify-center;
+  }
+
+  /* Centered homepage hero — oversized, uniform stack across viewports */
+  .hero--home.hero--centered .hero-home-copy {
+    container-type: inline-size;
+    width: 100%;
+  }
+
+  .hero--home.hero--centered .hero-label {
+    @apply text-xs font-bold tracking-[0.28em] text-neon-cyan/80;
+  }
+
+  .hero--home.hero--centered .type-hero {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.94;
+    /* Scale to container so every breakpoint keeps the same stacked proportion */
+    font-size: min(7.5rem, 8.5cqi);
+  }
+
+  .hero--home.hero--centered .type-hero-line {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .hero--home.hero--centered .section-intro-lg {
+    @apply mx-auto max-w-3xl text-center;
+  }
+
+  @supports not (width: 1cqi) {
+    .hero--home.hero--centered .type-hero {
+      font-size: clamp(1.85rem, 8.2vw, 7.5rem);
+    }
   }
 
 
@@ -1674,19 +1730,14 @@ summary::-webkit-details-marker {
     padding-inline-end: 0.15em;
   }
 
-  /* Homepage highlight — fit the container; never clip the trailing E / period */
+  /* Homepage highlight — same size as sibling lines; pad end so gradient doesn't clip */
+  .hero--home.hero--centered .type-hero-line.hero-home-highlight,
   .hero--home .hero-home-highlight {
     width: fit-content;
     max-width: 100%;
+    margin-inline: auto;
     overflow: visible;
-    padding-inline-end: 0.2em;
-  }
-
-  @media (min-width: 1280px) {
-    .hero--home .hero-home-highlight {
-      /* Slightly smaller than sibling lines so the full phrase stays on-screen */
-      font-size: 0.9em;
-    }
+    padding-inline-end: 0.22em;
   }
 
   .neon-border {
@@ -1724,8 +1775,8 @@ summary::-webkit-details-marker {
 
   @media (hover: hover) {
     .card:hover {
-      transform: translateY(-4px);
-      border-color: var(--neon-cyan);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.14);
       box-shadow: var(--shadow-card-hover);
     }
   }
@@ -1793,8 +1844,8 @@ summary::-webkit-details-marker {
 
   .bg-gradient-glow {
     background:
-      radial-gradient(ellipse 75% 55% at 42% 28%, rgba(0, 212, 255, 0.03) 0%, transparent 58%),
-      radial-gradient(ellipse at 80% 100%, rgba(0, 153, 204, 0.018) 0%, transparent 50%),
+      radial-gradient(ellipse 75% 55% at 42% 28%, rgba(0, 212, 255, 0.02) 0%, transparent 58%),
+      radial-gradient(ellipse at 80% 100%, rgba(0, 153, 204, 0.012) 0%, transparent 50%),
       linear-gradient(180deg, var(--charcoal) 0%, var(--bg) 100%);
   }
 

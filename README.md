@@ -51,8 +51,7 @@ Copy `.env.example` to `.env.local` and fill in:
 
 | Variable | Purpose |
 |---|---|
-| `GMAIL_USER` / `GMAIL_APP_PASSWORD` | SMTP for contact and lead forms |
-| `CONTACT_TO_EMAIL` | Inbox for form submissions |
+| `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` | Form notification inbox + sender (Cloudflare Email Service; also in `wrangler.jsonc`) |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL (e.g. `https://www.kinexisdigital.com`) |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (Consent Mode v2) |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Google Search Console HTML tag verification token |
@@ -110,11 +109,12 @@ Custom domain and routes are configured in [`wrangler.jsonc`](wrangler.jsonc).
 
 | Variable | Where to set |
 |---|---|
-| `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL` | Worker **Variables and Secrets** (runtime) |
+| `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | `wrangler.jsonc` `vars` (runtime) |
+| Email delivery | `send_email` binding named `EMAIL` in `wrangler.jsonc` |
 | `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GSC_VERIFICATION`, `NEXT_PUBLIC_CLARITY_ID` | **Build Variables and secrets** + runtime |
 | `SENTRY_*` | Optional — build + runtime |
 
-`GMAIL_APP_PASSWORD` must be a **Secret**. `NEXT_PUBLIC_*` vars must be present at build time or OG URLs, sitemap, and analytics will break.
+Form email uses **Cloudflare Email Service** (`env.EMAIL.send`) — same as callpreferredplumbing / a1pslandscape. Onboard `kinexisdigital.com` under Email Service and verify destination addresses listed in `allowed_destination_addresses`. `NEXT_PUBLIC_*` vars must be present at build time or OG URLs, sitemap, and analytics will break.
 
 ### Google Analytics & Search Console
 
@@ -134,7 +134,7 @@ Pushes to `main` deploy via [`.github/workflows/deploy.yml`](.github/workflows/d
 
 - `CLOUDFLARE_API_TOKEN`
 - `CLOUDFLARE_ACCOUNT_ID`
-- `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `CONTACT_TO_EMAIL`
+- Email is configured in `wrangler.jsonc` (`send_email` + `CONTACT_*` vars) — no Gmail secrets
 
 ### DNS
 

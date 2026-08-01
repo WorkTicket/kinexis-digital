@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
+import { cardClasses } from "@/lib/card-styles";
 import { useRouter } from "@/i18n/navigation";
 
 type Props = {
@@ -72,9 +73,13 @@ export default function LandingLeadForm({
   return (
     <div
       id={id}
-      className="rounded-2xl border border-surface bg-surface-base/80 p-6 shadow-lg backdrop-blur-sm md:p-8"
+      className={cardClasses({
+        surface: "glass",
+        hover: false,
+        className: "shadow-lg !bg-surface-base/80 backdrop-blur-sm md:!p-8",
+      })}
     >
-      <h2 className="text-xl font-bold text-white md:text-2xl">{formTitle}</h2>
+      <h2 className="type-subheader text-white">{formTitle}</h2>
       <p className="mt-2 text-sm text-text-secondary leading-relaxed">{formSubtitle}</p>
 
       <form onSubmit={handleSubmit} className="mt-6 form-stack relative">

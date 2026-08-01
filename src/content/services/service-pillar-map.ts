@@ -1073,7 +1073,7 @@ export const marketingAuditsPillarContent: ServicePillarContent = {
     paragraphs: [
       "When results stall, the instinct is to spend more or add another channel. Usually the real problem is somewhere you're not looking: broken tracking, a leaky funnel, budget in the wrong place, or a message that never landed. An audit finds it before you spend another dollar covering it up.",
       "KINEXIS runs a structured review of your marketing across acquisition, conversion, and measurement. We dig into your analytics, ad accounts, SEO footprint, website, email, and reporting, then rank what we find by impact so you know what to fix this month versus next quarter.",
-      "You get a clear, prioritized report and a working session to walk through it, not a 60-page PDF that gathers dust. Whether your team runs the fixes or we do, you leave with a plan grounded in your actual numbers.",
+      "You get a clear, prioritized report and a working session to walk through it, not a 60-page PDF that gathers dust. Your team can run the fixes or we can. Either way, you leave with a plan grounded in your actual numbers.",
     ],
   },
   deliverables: {
@@ -1240,7 +1240,7 @@ export const trainingWorkshopsPillarContent: ServicePillarContent = {
     title: "Marketing training that leaves your team able to do the work.",
     paragraphs: [
       "Sometimes the right move isn't to outsource, it's to build the skill in-house. But generic online courses rarely stick because they're not about your business, your tools, or your market. Your team finishes the video and still doesn't know how to apply it on Monday.",
-      "KINEXIS runs practical, hands-on training built around your actual accounts and goals. Whether it's SEO, paid ads, analytics, content, or a full-stack marketing overview, we teach with your data on the screen and your team doing the work, not watching slides.",
+      "KINEXIS runs practical, hands-on training built around your actual accounts and goals. SEO, paid ads, analytics, content, or a full-stack marketing overview: we teach with your data on the screen and your team doing the work, not watching slides.",
       "Sessions can be a single focused workshop, a multi-day intensive, or an ongoing coaching arrangement. Everyone leaves with templates, checklists, and recordings, so the knowledge stays in the building after we do.",
     ],
   },

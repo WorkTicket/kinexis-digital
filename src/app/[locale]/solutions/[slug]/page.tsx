@@ -69,9 +69,12 @@ export default async function SolutionPage({ params }: Props) {
         label={solution.title}
         line1={solution.headlineLine1}
         line2={solution.headlineLine2}
+        line2ClassName="gradient-text"
         subtitle={solution.challenge}
         ctaLabel={chrome.solution.ctaLabel}
         ctaHref="/contact"
+        secondaryCtaLabel="Get Free Audit"
+        secondaryCtaHref="/lead-magnet"
       />
       <SolutionPageClient solution={solution} />
     </>

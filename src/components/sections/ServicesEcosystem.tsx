@@ -1,75 +1,41 @@
 "use client";
 
-import { m as motion } from "@/lib/framer";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { Search, BarChart3, Monitor, Filter } from "lucide-react";
+import { ArrowRight, Search, BarChart3, Monitor, Filter } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Section from "@/components/shared/services/Section";
+import { featureCardGridClass } from "@/lib/card-styles";
+import { getServiceExploreLabel } from "@/lib/service-explore-labels";
 
-const hubServiceKeys = [
-  { key: "seo" as const, href: "/services/seo", icon: Search, position: "top" as const },
-  { key: "webDesignShort" as const, href: "/services/web-design", icon: Monitor, position: "left" as const },
-  { key: "paidAds" as const, href: "/services/ppc-management", icon: BarChart3, position: "right" as const },
-  { key: "funnelsShort" as const, href: "/services/funnels", icon: Filter, position: "bottom" as const },
-];
-
-const stroke = "rgba(0, 212, 255,0.2)";
-const HUB_RADIUS = 12;
-const GAP = 4;
-
-const hubConnectors = [
-  { angle: -Math.PI / 2 },
-  { angle: Math.PI },
-  { angle: 0 },
-  { angle: Math.PI / 2 },
+const pillars = [
+  {
+    key: "seo" as const,
+    serviceKey: "seo" as const,
+    href: "/services/seo",
+    icon: Search,
+  },
+  {
+    key: "paid" as const,
+    serviceKey: "paidAds" as const,
+    href: "/services/ppc-management",
+    icon: BarChart3,
+  },
+  {
+    key: "web" as const,
+    serviceKey: "webDesignShort" as const,
+    href: "/services/web-design",
+    icon: Monitor,
+  },
+  {
+    key: "funnels" as const,
+    serviceKey: "funnelsShort" as const,
+    href: "/services/funnels",
+    icon: Filter,
+  },
 ] as const;
-
-function hubLinePoints(angle: number) {
-  const cx = 50;
-  const cy = 50;
-  const endDist = 50 - GAP;
-  const startDist = HUB_RADIUS + 1;
-  return {
-    x1: cx + Math.cos(angle) * startDist,
-    y1: cy + Math.sin(angle) * startDist,
-    x2: cx + Math.cos(angle) * endDist,
-    y2: cy + Math.sin(angle) * endDist,
-  };
-}
-
-function HubNode({
-  href,
-  icon: Icon,
-  title,
-  className,
-  delay,
-}: {
-  href: string;
-  icon: typeof Search;
-  title: string;
-  className?: string;
-  delay: number;
-}) {
-  return (
-    <Link href={href} className={className}>
-      <motion.div
-        className="rounded-xl border border-strong bg-bg-secondary/95 backdrop-blur-sm px-6 py-4 hover:border-neon-cyan/30 transition-all duration-500"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        transition={{ delay }}
-      >
-        <div className="flex items-center gap-3 whitespace-nowrap">
-          <Icon className="h-4 w-4 text-neon-cyan shrink-0" />
-          <span className="font-bold">{title}</span>
-        </div>
-      </motion.div>
-    </Link>
-  );
-}
 
 type Props = { surfaceIndex?: number };
 
@@ -77,11 +43,6 @@ export default function ServicesEcosystem({ surfaceIndex = 0 }: Props) {
   const t = useTranslations("servicesEcosystem");
   const tServices = useTranslations("services");
   const tCommon = useTranslations("common");
-
-  const hubServices = hubServiceKeys.map((s) => ({
-    ...s,
-    title: tServices(s.key),
-  }));
 
   return (
     <Section id="services-ecosystem" surfaceIndex={surfaceIndex}>
@@ -91,137 +52,32 @@ export default function ServicesEcosystem({ surfaceIndex = 0 }: Props) {
           title={t("title")}
           description={t("subtitle")}
           headingId="services-ecosystem-heading"
+          align="center"
         />
 
-        <div className="relative mx-auto mt-20 hidden md:grid max-w-lg grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] grid-rows-[auto_auto_auto] items-center justify-items-center gap-y-8 gap-x-4">
-          <HubNode
-            href="/services/seo"
-            icon={Search}
-            title={tServices("seo")}
-            className="col-start-2 row-start-1"
-            delay={0.4}
-          />
-
-          <HubNode
-            href="/services/web-design"
-            icon={Monitor}
-            title={tServices("webDesignShort")}
-            className="col-start-1 row-start-2 justify-self-end"
-            delay={0.5}
-          />
-
-          <div className="col-start-2 row-start-2 relative flex h-36 w-36 items-center justify-center">
-            <svg
-              viewBox="0 0 100 100"
-              className="absolute inset-0 h-full w-full pointer-events-none"
-              fill="none"
-              aria-hidden
-            >
-              <motion.g
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                {hubConnectors.map((conn, i) => {
-                  const line = hubLinePoints(conn.angle);
-                  return (
-                    <line
-                      key={i}
-                      x1={line.x1}
-                      y1={line.y1}
-                      x2={line.x2}
-                      y2={line.y2}
-                      stroke={stroke}
-                      strokeWidth="0.6"
-                      strokeDasharray="3 2"
-                    />
-                  );
-                })}
-
-                {hubConnectors.map((conn, i) => {
-                  const line = hubLinePoints(conn.angle);
-                  return (
-                    <motion.circle
-                      key={`pulse-${i}`}
-                      r="1.2"
-                      fill="#00d4ff"
-                      initial={{ cx: line.x1, cy: line.y1, opacity: 0 }}
-                      animate={{
-                        cx: [line.x1, line.x2, line.x1],
-                        cy: [line.y1, line.y2, line.y1],
-                        opacity: [0, 0.9, 0],
-                      }}
-                      transition={{
-                        duration: 2.8,
-                        repeat: Infinity,
-                        delay: i * 0.55,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  );
-                })}
-              </motion.g>
-            </svg>
-
-            <motion.div
-              className="relative z-10 flex h-24 w-24 items-center justify-center rounded-full border-2 border-neon-cyan/30 bg-bg-dark shadow-xl shadow-neon-cyan/10"
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <motion.span
-                className="absolute inset-0 rounded-full border border-neon-cyan/20"
-                animate={{ scale: [1, 1.12, 1], opacity: [0.4, 0, 0.4] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              />
-              <span className="text-sm font-bold tracking-[0.15em] text-neon-cyan">KINEXIS</span>
-            </motion.div>
-          </div>
-
-          <HubNode
-            href="/services/ppc-management"
-            icon={BarChart3}
-            title={tServices("paidAds")}
-            className="col-start-3 row-start-2 justify-self-start"
-            delay={0.5}
-          />
-
-          <HubNode
-            href="/services/funnels"
-            icon={Filter}
-            title={tServices("funnelsShort")}
-            className="col-start-2 row-start-3"
-            delay={0.6}
-          />
-        </div>
-
-        <div className="section-content grid grid-cols-1 gap-3 md:hidden">
-          {hubServices.map((service, i) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={service.href}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-              >
-                <Link href={service.href} className="group block touch-manipulation">
-                  <Card>
-                    <div className="flex items-center gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-neon-cyan/10">
-                        <Icon className="h-5 w-5 text-neon-cyan" />
-                      </div>
-                      <span className="card-heading">{service.title}</span>
-                    </div>
-                  </Card>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </div>
+        <ul className={`section-content ${featureCardGridClass(4)}`}>
+          {pillars.map((pillar) => (
+            <li key={pillar.href}>
+              <Link href={pillar.href} className="group block h-full touch-manipulation">
+                <Card className="flex h-full flex-col">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-white/5 transition-colors group-hover:bg-white/10">
+                    <pillar.icon className="h-5 w-5 text-neon-cyan" aria-hidden />
+                  </div>
+                  <h3 className="card-heading transition-colors duration-200 group-hover:text-neon-cyan">
+                    {tServices(pillar.serviceKey)}
+                  </h3>
+                  <p className="mt-3 flex-1 type-body text-muted">{t(`pillars.${pillar.key}`)}</p>
+                  <div className="mt-8 border-t border-strong pt-5">
+                    <span className="inline-flex min-h-touch items-center gap-2 text-sm font-semibold text-neon-cyan">
+                      {getServiceExploreLabel(pillar.href)}
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </Card>
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <div className="section-cta-row">
           <Button href="/services" variant="secondary" fullWidthMobile>
