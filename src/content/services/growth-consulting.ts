@@ -154,9 +154,9 @@ export const growthConsultingContent: Record<Locale, GrowthConsultingContent> = 
         "We'll build a growth strategy fit for your business and revenue goals,|not a one-size-fits-all playbook.",
       ctaLabel: "See Growth Consulting Pricing",
     },
-    inlineCtaLabel: "Get a Growth Audit",
+    inlineCtaLabel: "Get a Free Growth Audit",
     inlineCtaSubtitle:
-      "We will audit your channel mix, tracking gaps, and competitive landscape. Then outline a prioritized 90-day growth plan.",
+      "Start with a complimentary single-channel diagnostic, or scope the full multi-channel Marketing Audit when you need the complete roadmap.",
     faqs: [
       { question: "What is fractional growth consulting?", answer: "We act as your embedded growth team without the full-time overhead. You get senior-level strategy, implementation oversight, and weekly accountability, all tied to your revenue goals, without hiring a VP of Marketing." },
       { question: "How long is a typical engagement?", answer: "Our average engagement runs 9 months. Most clients see meaningful ROI by month 3 and choose to continue because the compounding results keep accelerating. We work month-to-month so retention is earned, not locked in by contract." },
@@ -250,9 +250,9 @@ export const growthConsultingContent: Record<Locale, GrowthConsultingContent> = 
         "Construiremos una estrategia de crecimiento adaptada a tu negocio y objetivos de ingresos,|no un playbook genérico.",
       ctaLabel: "Ver Precios de Consultoría",
     },
-    inlineCtaLabel: "Obtener una Auditoría de Crecimiento",
+    inlineCtaLabel: "Obtener una Auditoría de Crecimiento Gratis",
     inlineCtaSubtitle:
-      "Auditaremos tu mix de canales, brechas de tracking y panorama competitivo, y delinearemos un plan de crecimiento priorizado de 90 días.",
+      "Empieza con un diagnóstico gratuito de un canal, o define la Auditoría de Marketing completa cuando necesites el roadmap multicanal.",
     faqs: [
       { question: "¿Qué es la consultoría de crecimiento fraccionada?", answer: "Actuamos como tu equipo de crecimiento integrado sin el costo de contratar a tiempo completo. Obtienes estrategia de nivel senior, supervisión de implementación y responsabilidad semanal, todo vinculado a tus objetivos de ingresos." },
       { question: "¿Cuánto dura un engagement típico?", answer: "Nuestro engagement promedio dura 9 meses. La mayoría de los clientes ven un ROI significativo en el mes 3 y optan por continuar porque los resultados se acumulan. Trabajamos mes a mes para que la retención se gane con resultados." },

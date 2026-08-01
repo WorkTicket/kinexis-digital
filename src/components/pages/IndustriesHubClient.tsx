@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import HeroArchetype from "@/components/ui/HeroArchetype";
 import SectionHeader from "@/components/ui/SectionHeader";
 import CTAArchetype from "@/components/ui/CTAArchetype";
@@ -14,6 +15,7 @@ type IndustriesHubContent = (typeof industriesHubContent)[Locale];
 type Props = { content: IndustriesHubContent };
 
 export default function IndustriesHubClient({ content: c }: Props) {
+  const tCommon = useTranslations("common");
   let surfaceIndex = 0;
 
   return (
@@ -23,16 +25,15 @@ export default function IndustriesHubClient({ content: c }: Props) {
         label={c.hero.label}
         headline={
           <>
-            <span className="type-hero-line hero-intentional-hero-line">{c.hero.headlineLine1}</span>
-            <span className="type-hero-line hero-intentional-hero-line">{c.hero.headlineLine2}</span>
+            <span className="type-hero-line">{c.hero.headlineLine1}</span>
+            <span className="type-hero-line gradient-text">{c.hero.headlineLine2}</span>
           </>
         }
         subtitle={c.hero.subtitle}
-        subtitleLineClassName="hero-intentional-subtitle-line"
-        ctaLabel="Book a Strategy Call"
+        ctaLabel={tCommon("bookStrategyCall")}
         ctaHref="/contact"
-        secondaryCtaLabel="See how we work"
-        secondaryCtaHref="/digital-marketing-agency"
+        secondaryCtaLabel={tCommon("viewOurWork")}
+        secondaryCtaHref="/case-studies"
       />
 
       <Section id="industries-intro" surfaceIndex={surfaceIndex++}>
@@ -54,8 +55,12 @@ export default function IndustriesHubClient({ content: c }: Props) {
       {industryCategories.map((category) => (
         <Section key={category.id} id={`industry-${category.id}`} surfaceIndex={surfaceIndex++}>
           <div className="container-site">
-            <SectionHeader title={category.label} description={category.description} headingId={`industry-${category.id}-heading`} />
-            <div className="mt-8 grid gap-3 md:grid-cols-2 lg:grid-cols-3 items-stretch">
+            <SectionHeader
+              title={category.label}
+              description={category.description}
+              headingId={`industry-${category.id}-heading`}
+            />
+            <div className="section-content grid gap-grid-sm md:grid-cols-2 lg:grid-cols-3 items-stretch">
               {category.industries.map((industry, i) => (
                 <IndustryCard
                   key={industry.slug}
@@ -71,10 +76,9 @@ export default function IndustriesHubClient({ content: c }: Props) {
       ))}
 
       <CTAArchetype
-        archetype="story"
-        headline="Don't see your industry?"
-        subtitle="We work with businesses across dozens of verticals. Book a strategy call and we'll outline an approach tailored to your market."
-        ctaLabel="Book a Strategy Call"
+        headline={c.cta.headline}
+        subtitle={c.cta.subtitle}
+        ctaLabel={tCommon("bookStrategyCall")}
         ctaHref="/contact"
       />
     </>

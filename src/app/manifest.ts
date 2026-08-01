@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "KINEXIS Digital",
     short_name: "KINEXIS",
     description:
-      "SEO, paid media, and web design for businesses that need measurable growth — not another agency pitch deck.",
+      "SEO, paid media, and web design for businesses that need measurable growth, not another agency pitch deck.",
     start_url: "/en",
     scope: "/",
     display: "standalone",

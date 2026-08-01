@@ -26,10 +26,14 @@ export const CONTENT_RICH_SERVICE_TAIL = [
 ] as const;
 
 export function contentRichServiceOrder(capabilityKeys: string[]): string[] {
+  const caps = capabilityKeys.slice(0, 3);
+  const [first, ...rest] = caps;
   return [
     "AnswerBlock",
     "EditorialOverview",
-    ...capabilityKeys.slice(0, 3),
+    ...(first ? [first] : []),
+    "Surfaces",
+    ...rest,
     ...CONTENT_RICH_SERVICE_TAIL,
   ];
 }
@@ -127,7 +131,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We mapped revenue to specific service pages, rebuilt the keyword strategy around commercial-intent terms, fixed technical blockers on pages that sell, and built content that moved visitors toward a booked estimate.",
           outcome:
-            "Qualified leads grew 4.8× in 10 months. Organic traffic up 1,290%. Rankings improved across 340+ commercial-intent keywords tied to booked jobs.",
+            "Qualified leads grew 2.8× in 10 months. Organic traffic up 181%. Rankings improved across 340+ commercial-intent keywords tied to booked jobs.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -139,7 +143,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Mapeamos ingresos a páginas de servicio específicas, reconstruimos la estrategia de keywords en torno a términos comerciales, corregimos bloqueos técnicos en páginas que venden y creamos contenido que movía visitantes hacia una cotización reservada.",
           outcome:
-            "Leads calificados 4.8× en 10 meses. Tráfico orgánico +1,290%. Mejora en 340+ keywords comerciales ligadas a trabajos reservados.",
+            "Leads calificados 2.8× en 10 meses. Tráfico orgánico +181%. Mejora en 340+ keywords comerciales ligadas a trabajos reservados.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -182,7 +186,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We rebuilt the Google Business Profile with correct categories and service areas, cleaned citation inconsistencies across 45+ directories, launched a review generation workflow, and built location pages for each emergency service zone.",
           outcome:
-            "Emergency calls up 327% in eight months. GBP interactions grew 2,371%. The business ranked in the top 3 map pack for 48 of 60 priority local keywords.",
+            "Emergency calls up 136% in eight months. GBP interactions grew 376%. The business ranked in the top 3 map pack for 34 of 60 priority local keywords.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -194,7 +198,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Reconstruimos el Perfil de Google Business con categorías y zonas de servicio correctas, limpiamos inconsistencias de citaciones en más de 45 directorios, lanzamos un flujo de generación de reseñas y construimos páginas locales para cada zona de servicio de emergencia.",
           outcome:
-            "+327% llamadas de emergencia en 8 meses. Interacciones en GBP +2,371%. Top 3 en map pack para 48 de 60 keywords locales prioritarias.",
+            "+136% llamadas de emergencia en 8 meses. Interacciones en GBP +376%. Top 3 en map pack para 34 de 60 keywords locales prioritarias.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -236,7 +240,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
             "The previous agency counted form submissions as conversions while ignoring phone calls. The primary conversion channel for emergency services. Brand, competitor, and generic terms sat in one campaign with no way to see which searches booked jobs.",
           approach:
             "We rebuilt conversion tracking around call conversions and CRM-confirmed leads, restructured Search campaigns by intent, built dedicated landing pages for emergency services, and tightened weekly search term reviews before scaling budget.",
-          outcome: "Emergency calls up 327%. CPL down 65% after tracking and campaign structure aligned with how the sales team actually closes.",
+          outcome: "Emergency calls up 136%. CPL down 40% after tracking and campaign structure aligned with how the sales team actually closes.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -247,7 +251,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
             "La agencia anterior contaba envíos de formulario como conversiones e ignoraba las llamadas. El canal principal para servicios de emergencia. Marca, competencia y términos genéricos vivían en una sola campaña.",
           approach:
             "Reconstruimos el tracking alrededor de llamadas y leads confirmados en CRM, reestructuramos campañas Search por intención, construimos landing pages dedicadas para emergencias y endurecimos la revisión semanal de términos de búsqueda antes de escalar presupuesto.",
-          outcome: "+327% llamadas de emergencia con 65% reducción de CPL tras alinear tracking y estructura con cómo ventas realmente cierra.",
+          outcome: "+136% llamadas de emergencia con 40% reducción de CPL tras alinear tracking y estructura con cómo ventas realmente cierra.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -290,7 +294,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We unified conversion tracking across Google Search and Meta, restructured campaigns by search intent, built dedicated landing pages for emergency services, and reallocated budget weekly toward the lowest cost per qualified call.",
           outcome:
-            "Emergency calls up 327% in eight months. CPL down 65% after cross-channel budget moved toward Search and weekly optimization ran across both platforms.",
+            "Emergency calls up 136% in eight months. CPL down 40% after cross-channel budget moved toward Search and weekly optimization ran across both platforms.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -302,7 +306,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Unificamos el tracking de conversiones en Google Search y Meta, reestructuramos campañas por intención de búsqueda, construimos landing pages dedicadas para servicios de emergencia y reasignamos presupuesto semanalmente hacia el menor costo por llamada calificada.",
           outcome:
-            "+327% llamadas de emergencia en 8 meses. CPL -65% tras mover presupuesto multicanal hacia Search con optimización semanal en ambas plataformas.",
+            "+136% llamadas de emergencia en 8 meses. CPL -40% tras mover presupuesto multicanal hacia Search con optimización semanal en ambas plataformas.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -399,7 +403,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
             "First paid media push sent Google traffic to the homepage with no call tracking. The previous setup counted form submissions while ignoring phone calls, the primary conversion for emergency plumbing.",
           approach:
             "We mapped channel fit for emergency services, launched Google Search with dedicated landing pages and call tracking, added Meta retargeting for site visitors, and aligned weekly optimization to cost per qualified call from CRM data.",
-          outcome: "Emergency calls up 327% and CPL down 65% after channel selection, dedicated landing pages, and conversion tracking rebuilt around qualified calls.",
+          outcome: "Emergency calls up 136% and CPL down 40% after channel selection, dedicated landing pages, and conversion tracking rebuilt around qualified calls.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -410,7 +414,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
             "El primer push de paid enviaba tráfico a la homepage sin tracking de llamadas. El setup anterior contaba formularios e ignoraba llamadas, la conversión principal en plomería de emergencia.",
           approach:
             "Mapeamos el canal adecuado para servicios de emergencia, lanzamos Google Search con landing pages dedicadas y tracking de llamadas, añadimos retargeting en Meta para visitantes del sitio y alineamos la optimización semanal al costo por llamada calificada desde el CRM.",
-          outcome: "+327% llamadas de emergencia y 65% reducción de CPL tras selección de canal, landing pages dedicadas y tracking reconstruido alrededor de llamadas calificadas.",
+          outcome: "+136% llamadas de emergencia y 40% reducción de CPL tras selección de canal, landing pages dedicadas y tracking reconstruido alrededor de llamadas calificadas.",
           href: "/case-studies/plumbing-company-growth",
         },
       },
@@ -446,7 +450,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     ),
     proof: {
       en: {
-        beforeAfter: { beforeLabel: "Before", afterLabel: "After", beforeValue: "1.8%", afterValue: "8.4%", metric: "Conversion Rate" },
+        beforeAfter: { beforeLabel: "Before", afterLabel: "After", beforeValue: "1.8%", afterValue: "3.9%", metric: "Conversion Rate" },
         caseStudy: {
           client: "Landscaping Company",
           challenge:
@@ -454,12 +458,12 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We mapped the buyer journey from service search to booked estimate, redesigned key pages mobile-first with the CTA in the first viewport, cut the form to four fields, and rebuilt the site for Lighthouse 94 with Core Web Vitals in the green.",
           outcome:
-            "4.8× lead growth after custom rebuild. Conversion rate went from 1.8% to 8.4%. Qualified leads grew from 10 to 48 per month within 10 months.",
+            "2.8× lead growth after custom rebuild. Conversion rate went from 1.8% to 3.9%. Qualified leads grew from 10 to 28 per month within 10 months.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
       es: {
-        beforeAfter: { beforeLabel: "Antes", afterLabel: "Después", beforeValue: "1.8%", afterValue: "8.4%", metric: "Tasa de Conversión" },
+        beforeAfter: { beforeLabel: "Antes", afterLabel: "Después", beforeValue: "1.8%", afterValue: "3.9%", metric: "Tasa de Conversión" },
         caseStudy: {
           client: "Empresa de Jardinería",
           challenge:
@@ -467,7 +471,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Mapeamos el recorrido del comprador desde la búsqueda de servicio hasta la cotización reservada, rediseñamos páginas clave mobile-first con el CTA en el primer viewport, redujimos el formulario a cuatro campos y reconstruimos el sitio para Lighthouse 94 con Core Web Vitals en verde.",
           outcome:
-            "Crecimiento de leads 4.8× tras rebuild personalizado. Conversión del 1.8% al 8.4%. Leads calificados de 10 a 48 por mes en 10 meses.",
+            "Crecimiento de leads 2.8× tras rebuild personalizado. Conversión del 1.8% al 3.9%. Leads calificados de 10 a 28 por mes en 10 meses.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -510,7 +514,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We ran structured A/B tests on form length, CTA placement, and mobile UX on the highest-traffic service pages, starting with session recordings that showed 68% of mobile visitors never scrolled past the hero.",
           outcome:
-            "Conversion rate went from 1.8% to 8.4% after winning variations rolled out site-wide. Qualified leads grew 4.8× in 10 months on the same traffic volume.",
+            "Conversion rate went from 1.8% to 3.9% after winning variations rolled out site-wide. Qualified leads grew 2.8× in 10 months on the same traffic volume.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -522,7 +526,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Ejecutamos tests A/B estructurados en longitud de formulario, ubicación del CTA y UX móvil en las páginas de servicio de mayor tráfico, empezando con grabaciones de sesión que mostraron que el 68% de visitantes móviles nunca pasaban del hero.",
           outcome:
-            "La tasa de conversión pasó del 1.8% al 8.4% tras desplegar las variaciones ganadoras en todo el sitio. Los leads calificados crecieron 4.8× en 10 meses con el mismo volumen de tráfico.",
+            "La tasa de conversión pasó del 1.8% al 3.9% tras desplegar las variaciones ganadoras en todo el sitio. Los leads calificados crecieron 2.8× en 10 meses con el mismo volumen de tráfico.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -620,7 +624,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We built topic clusters around commercial-intent keywords, wrote bottom-of-funnel guides with gated assets, wired internal links to demo and pricing pages, and connected content analytics to CRM demo attribution.",
           outcome:
-            "5.9× demo growth and 62% of demos attributed to the content engine after topic clusters, bottom-of-funnel guides, and internal linking to conversion pages.",
+            "2.4× demo growth and 62% of demos attributed to the content engine after topic clusters, bottom-of-funnel guides, and internal linking to conversion pages.",
           href: "/case-studies/saas-platform-growth",
         },
       },
@@ -632,7 +636,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Construimos clusters de temas en torno a keywords comerciales, escribimos guías de fondo de embudo con activos gated, enlazamos internamente a páginas de demo y precios, y conectamos analítica de contenido a atribución de demos en el CRM.",
           outcome:
-            "5.9× crecimiento en demos y 62% de demos atribuidas al motor de contenido tras clusters, guías de fondo de embudo y enlaces internos a páginas de conversión.",
+            "2.4× crecimiento en demos y 62% de demos atribuidas al motor de contenido tras clusters, guías de fondo de embudo y enlaces internos a páginas de conversión.",
           href: "/case-studies/saas-platform-growth",
         },
       },
@@ -950,7 +954,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We rebuilt the funnel with dedicated landing pages, a 7-email nurture sequence triggered by content engagement, retargeting pools for warm visitors, and structured A/B tests on pricing and demo booking pages.",
           outcome:
-            "5.9× demo growth after funnel rebuild with dedicated landing pages, a 7-email nurture sequence, retargeting pools, and structured tests on pricing and demo booking pages.",
+            "2.4× demo growth after funnel rebuild with dedicated landing pages, a 7-email nurture sequence, retargeting pools, and structured tests on pricing and demo booking pages.",
           href: "/case-studies/saas-platform-growth",
         },
       },
@@ -962,7 +966,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Reconstruimos el embudo con landing pages dedicadas, secuencia de nurture de 7 emails disparada por engagement con contenido, pools de retargeting para visitantes tibios y tests A/B estructurados en páginas de precios y demo.",
           outcome:
-            "5.9× crecimiento en demos tras rebuild con landing pages dedicadas, nurture de 7 emails, retargeting y tests en páginas de precios y demo.",
+            "2.4× crecimiento en demos tras rebuild con landing pages dedicadas, nurture de 7 emails, retargeting y tests en páginas de precios y demo.",
           href: "/case-studies/saas-platform-growth",
         },
       },
@@ -1053,7 +1057,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
     ),
     proof: {
       en: {
-        beforeAfter: { beforeLabel: "Before", afterLabel: "After", beforeValue: "1.8%", afterValue: "8.4%", metric: "Conversion Rate" },
+        beforeAfter: { beforeLabel: "Before", afterLabel: "After", beforeValue: "1.8%", afterValue: "3.9%", metric: "Conversion Rate" },
         caseStudy: {
           client: "Landscaping Company",
           challenge:
@@ -1061,12 +1065,12 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We wireframed a dedicated service page with message match to the Google ad, moved the CTA and phone number into the first mobile viewport, cut the form from seven fields to four, and set up call tracking before launch.",
           outcome:
-            "Conversion rate went from 1.8% to 8.4% after a dedicated landing page with message match, a short form, and A/B tests on the headline and layout.",
+            "Conversion rate went from 1.8% to 3.9% after a dedicated landing page with message match, a short form, and A/B tests on the headline and layout.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
       es: {
-        beforeAfter: { beforeLabel: "Antes", afterLabel: "Después", beforeValue: "1.8%", afterValue: "8.4%", metric: "Tasa de Conversión" },
+        beforeAfter: { beforeLabel: "Antes", afterLabel: "Después", beforeValue: "1.8%", afterValue: "3.9%", metric: "Tasa de Conversión" },
         caseStudy: {
           client: "Empresa de Jardinería",
           challenge:
@@ -1074,7 +1078,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Wireframeamos una página de servicio dedicada con coherencia de mensaje al anuncio de Google, movimos el CTA y el teléfono al primer viewport móvil, redujimos el formulario de siete a cuatro campos y configuramos tracking de llamadas antes del lanzamiento.",
           outcome:
-            "Conversión del 1.8% al 8.4% tras una landing page dedicada con coherencia de mensaje, formulario corto y tests A/B en titular y layout.",
+            "Conversión del 1.8% al 3.9% tras una landing page dedicada con coherencia de mensaje, formulario corto y tests A/B en titular y layout.",
           href: "/case-studies/landscaping-company-growth",
         },
       },
@@ -1282,7 +1286,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "We interviewed recent demo bookers and lost deals, built a messaging framework from their language, rewrote the homepage and nurture sequence around a single demo CTA, and ran an editorial pass so sales collateral matched the site.",
           outcome:
-            "Demo requests grew from 32 to 189 per month. A 5.9× lift, after a defined voice and conversion-focused rewrites across the site and nurture emails kept the message consistent end to end.",
+            "Demo requests grew from 32 to 78 per month. A 2.4× lift, after a defined voice and conversion-focused rewrites across the site and nurture emails kept the message consistent end to end.",
           href: "/case-studies/saas-platform-growth",
         },
       },
@@ -1294,7 +1298,7 @@ export const serviceArchitectureConfig: Record<ServiceSeoSlug, ServiceArchitectu
           approach:
             "Entrevistamos a quienes reservaron demo y deals perdidos, construimos un marco de mensajería con su lenguaje, reescribimos homepage y secuencia de nurture en torno a un solo CTA de demo, y pasamos material de ventas para alinearlo al sitio.",
           outcome:
-            "Las solicitudes de demo crecieron de 32 a 189 al mes, un aumento de 5.9×, tras una voz definida y reescrituras enfocadas en conversión en sitio y emails de nurture que mantuvieron el mensaje consistente de punta a punta.",
+            "Las solicitudes de demo crecieron de 32 a 78 al mes, un aumento de 2.4×, tras una voz definida y reescrituras enfocadas en conversión en sitio y emails de nurture que mantuvieron el mensaje consistente de punta a punta.",
           href: "/case-studies/saas-platform-growth",
         },
       },

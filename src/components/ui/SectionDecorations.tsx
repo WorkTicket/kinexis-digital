@@ -27,7 +27,7 @@ type GlowOrbProps = {
   position?: Position;
 };
 
-export function SectionGlow({ color = "cyan", size = "md", width, height, opacity = 0.04, blur, position }: GlowOrbProps) {
+export function SectionGlow({ color = "cyan", size = "md", width, height, opacity = 0.025, blur, position }: GlowOrbProps) {
   const preset = ORB_SIZES[size];
   const dims = { width: width ?? preset.width, height: height ?? preset.height };
   const blurValue = blur ?? ORB_BLURS[size];

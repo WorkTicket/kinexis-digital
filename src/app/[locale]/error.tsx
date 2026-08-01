@@ -21,7 +21,7 @@ export default function Error({
   return (
     <main className="flex min-h-[60vh] items-center justify-center px-6 text-center">
       <div className="max-w-md">
-        <h2 className="text-xl font-bold">Something went wrong</h2>
+        <h2 className="type-subheader">Something went wrong</h2>
         <p className="mt-3 leading-relaxed text-muted">
           An error occurred while loading this page. Please try again.
         </p>

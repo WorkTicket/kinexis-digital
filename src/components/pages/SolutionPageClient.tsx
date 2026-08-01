@@ -1,9 +1,7 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import SectionHeader from "@/components/ui/SectionHeader";
-import CardFamily from "@/components/ui/CardFamily";
-import MetricCard from "@/components/ui/MetricCard";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import FAQSection from "@/components/sections/FAQSection";
 import RelatedLinks from "@/components/sections/RelatedLinks";
@@ -13,13 +11,14 @@ import { getIndustryBySlug } from "@/content/registry/industries";
 import { getSolutionRelatedLinks } from "@/lib/solution-related-links";
 import { uiChrome } from "@/content/ui-chrome";
 import Section from "@/components/shared/services/Section";
-import { featureCardGridClass } from "@/lib/card-styles";
+import { cn } from "@/lib/utils";
 import type { Locale } from "@/i18n/routing";
 
 type Props = { solution: SolutionEntry };
 
 export default function SolutionPageClient({ solution }: Props) {
   const locale = useLocale() as Locale;
+  const tCommon = useTranslations("common");
   const copy = uiChrome[locale].solution;
   const industry = getIndustryBySlug(solution.industrySlug);
   const serviceHref = serviceRoutes[solution.serviceSlug as ServiceSlug] || `/services/${solution.serviceSlug}`;
@@ -32,7 +31,7 @@ export default function SolutionPageClient({ solution }: Props) {
       <Section id="challenge" surfaceIndex={surfaceIndex++}>
         <div className="container-site max-w-3xl">
           <SectionHeader title={copy.challenge} headingId="challenge-heading" />
-          <p className="mt-6 text-muted leading-relaxed">{solution.challenge}</p>
+          <p className="section-content type-body text-muted leading-relaxed">{solution.challenge}</p>
         </div>
       </Section>
 
@@ -43,38 +42,63 @@ export default function SolutionPageClient({ solution }: Props) {
             description={copy.approachDesc}
             headingId="approach-heading"
           />
-          <ol className="mt-8 space-y-4 max-w-3xl">
+          <ol className="section-content max-w-3xl space-y-5">
             {solution.approach.map((step, i) => (
               <li key={step} className="flex gap-4">
-                <span className="text-neon-cyan font-bold text-sm w-8">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-muted">{step}</span>
+                <span className="w-8 shrink-0 font-mono text-sm font-bold text-neon-cyan">
+                  {i + 1}
+                </span>
+                <span className="type-body text-muted">{step}</span>
               </li>
             ))}
           </ol>
         </div>
       </Section>
 
-      <Section id="deliverables" variant="data" surfaceIndex={surfaceIndex++}>
-        <div className="container-site">
-          <SectionHeader title={copy.deliverables} />
-          <div className={featureCardGridClass(solution.deliverables.length, "mt-8 items-stretch")}>
+      <Section id="deliverables" surfaceIndex={surfaceIndex++}>
+        <div className="container-site max-w-3xl">
+          <SectionHeader title={copy.deliverables} headingId="deliverables-heading" />
+          <ul className="section-content space-y-4">
             {solution.deliverables.map((d) => (
-              <CardFamily key={d} family="editorial" className="h-full flex flex-col">
-                <p className="text-sm text-muted flex-1">{d}</p>
-              </CardFamily>
+              <li key={d} className="flex gap-3 type-body text-muted">
+                <span className="mt-1 shrink-0 text-neon-cyan" aria-hidden>
+                  →
+                </span>
+                <span>{d}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Section>
 
-      <Section id="results" variant="proof" surfaceIndex={surfaceIndex++}>
+      <Section id="results" variant="proof" surfaceIndex={surfaceIndex++} compact className="border-y border-surface">
         <div className="container-site">
-          <SectionHeader title={copy.results} />
-          <div className={featureCardGridClass(solution.results.length, "section-content")}>
-            {solution.results.map((r) => (
-              <MetricCard key={r.label} value={r.metric} label={r.label} />
+          <SectionHeader title={copy.results} headingId="results-heading" />
+          <ul
+            className={cn(
+              "section-content grid gap-8",
+              solution.results.length >= 3
+                ? "sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/[0.08]"
+                : "sm:grid-cols-2 sm:gap-0 sm:divide-x sm:divide-white/[0.08]",
+            )}
+          >
+            {solution.results.map((r, index) => (
+              <li key={r.label}>
+                <div
+                  className={cn(
+                    "flex h-full flex-col gap-2 sm:px-8",
+                    index === 0 && "sm:pl-0",
+                    index === solution.results.length - 1 && "sm:pr-0",
+                  )}
+                >
+                  <span className="type-metric text-3xl font-bold tracking-tight sm:text-4xl">
+                    <span className="gradient-text">{r.metric}</span>
+                  </span>
+                  <span className="text-sm font-medium leading-snug text-white/85">{r.label}</span>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Section>
 
@@ -99,11 +123,12 @@ export default function SolutionPageClient({ solution }: Props) {
       />
 
       <CTAArchetype
-        archetype="story"
         headline={copy.ctaHeadline(solution.title)}
         subtitle={copy.ctaSubtitle}
         ctaLabel={copy.ctaLabel}
         ctaHref="/contact"
+        secondaryCtaLabel={tCommon("viewOurWork")}
+        secondaryCtaHref="/case-studies"
       />
     </>
   );

@@ -195,8 +195,8 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
           label: "Emergency Call Growth",
           headline: "Paid traffic tied to booked jobs",
           description:
-            "Plumbing Company case study: emergency calls grew from 22 to 94 per month after Google Search restructure, dedicated landing pages, and call tracking rebuilt.",
-          metric: "+327% calls",
+            "Plumbing Company case study: emergency calls grew from 22 to 52 per month after Google Search restructure, dedicated landing pages, and call tracking rebuilt.",
+          metric: "+136% calls",
         },
         {
           label: "Cost Per Lead",
@@ -342,8 +342,8 @@ export const paidAdsContent: Record<Locale, PaidAdsContent> = {
           label: "Crecimiento de Llamadas",
           headline: "Tráfico pagado ligado a trabajos reservados",
           description:
-            "Empresa de Plomería: llamadas de emergencia de 22 a 94 por mes tras reestructuración de Google Search, landing pages dedicadas y tracking de llamadas.",
-          metric: "+327% llamadas",
+            "Empresa de Plomería: llamadas de emergencia de 22 a 52 por mes tras reestructuración de Google Search, landing pages dedicadas y tracking de llamadas.",
+          metric: "+136% llamadas",
         },
         {
           label: "Costo por Lead",

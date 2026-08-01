@@ -4,11 +4,9 @@ import PricingPageClient from "@/components/pages/PricingPageClient";
 import StaticHeroShell from "@/components/ui/StaticHeroShell";
 import { getPricingPageContent } from "@/content/pricing/get-pricing-page-content";
 import { pricingRoutes, serviceLabels, serviceRoutes, type PricingSlug } from "@/content/registry/site-routes";
-import type { ServiceSeoSlug } from "@/content/service-seo/types";
 import type { Locale } from "@/i18n/routing";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, faqSchema, organizationSchema, serviceSchema } from "@/lib/schema";
-import { getServiceHeroTheme } from "@/lib/service-hero";
 
 export function createPricingPage(slug: PricingSlug) {
   return async function PricingPage({ params }: { params: Promise<{ locale: Locale }> }) {
@@ -39,10 +37,10 @@ export function createPricingPage(slug: PricingSlug) {
         />
         <StaticHeroShell
           variant="showcase"
-          theme={getServiceHeroTheme(slug as ServiceSeoSlug)}
           label={content.hero.label}
           line1={content.hero.line1}
           line2={content.hero.line2}
+          line2ClassName="gradient-text"
           subtitle={content.hero.subtitle}
           breadcrumbs={breadcrumbs}
           ctaLabel={content.ctaLabel}

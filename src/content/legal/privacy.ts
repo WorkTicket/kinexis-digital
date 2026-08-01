@@ -43,32 +43,32 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
       {
         title: "Cookies and Analytics",
         paragraphs: [
-          "We use cookies and similar technologies to operate the site and, with your consent, to measure traffic and user behavior. You can accept or reject non-essential cookies through our cookie banner.",
-          "When enabled, we may use Google Analytics and Microsoft Clarity to understand how visitors use our site. These providers may process data according to their own privacy policies.",
+          "We use cookies and similar technologies to operate the site and, with your consent, to measure traffic, understand user behavior, and attribute advertising campaigns. You can accept or reject non-essential cookies through our cookie banner.",
+          "When enabled, we may use Google Analytics, Google Ads conversion and remarketing tags, and Microsoft Clarity. These providers may process data according to their own privacy policies. Advertising cookies help us measure which ads lead to form submissions and improve campaign performance.",
         ],
       },
       {
         title: "Legal Bases (EEA/UK Visitors)",
         paragraphs: [
-          "Where applicable, we process personal data based on consent (analytics cookies), contract performance (responding to your requests), legitimate interests (site security and improvement), and legal obligations.",
+          "Where applicable, we process personal data based on consent (analytics and advertising cookies), contract performance (responding to your requests), legitimate interests (site security and improvement), and legal obligations.",
         ],
       },
       {
         title: "Sharing of Information",
         paragraphs: [
-          "We do not sell your personal information. We may share data with service providers who help us operate our website and communications (such as email delivery and analytics), subject to appropriate safeguards. We may also disclose information if required by law or to protect our rights.",
+          "We do not sell your personal information. We may share data with service providers who help us operate our website, communications, and advertising measurement (such as email delivery, analytics, and Google Ads), subject to appropriate safeguards. We may also disclose information if required by law or to protect our rights.",
         ],
       },
       {
         title: "Data Retention",
         paragraphs: [
-          "We retain contact and lead information for as long as needed to respond to your inquiry, maintain business records, and comply with legal requirements. Analytics data is retained according to each provider's settings.",
+          "We retain contact and lead information for as long as needed to respond to your inquiry, maintain business records, and comply with legal requirements. Analytics and advertising measurement data is retained according to each provider's settings.",
         ],
       },
       {
         title: "Your Rights",
         paragraphs: [
-          "Depending on your location, you may have rights to access, correct, delete, or restrict processing of your personal data, and to withdraw consent for analytics cookies at any time by clearing site data or using browser controls.",
+          "Depending on your location, you may have rights to access, correct, delete, or restrict processing of your personal data, and to withdraw consent for analytics and advertising cookies at any time by clearing site data or using browser controls.",
           "California residents may have additional rights under the CCPA/CPRA. To exercise rights, contact us at the email below.",
         ],
       },
@@ -126,20 +126,20 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
       {
         title: "Cookies y Analítica",
         paragraphs: [
-          "Usamos cookies y tecnologías similares para operar el sitio y, con tu consentimiento, medir tráfico y comportamiento. Puedes aceptar o rechazar cookies no esenciales mediante nuestro banner de cookies.",
-          "Cuando están habilitadas, podemos usar Google Analytics y Microsoft Clarity. Estos proveedores procesan datos según sus propias políticas de privacidad.",
+          "Usamos cookies y tecnologías similares para operar el sitio y, con tu consentimiento, medir tráfico, entender el comportamiento y atribuir campañas publicitarias. Puedes aceptar o rechazar cookies no esenciales mediante nuestro banner de cookies.",
+          "Cuando estén habilitadas, podemos usar Google Analytics, etiquetas de conversión y remarketing de Google Ads, y Microsoft Clarity. Estos proveedores procesan datos según sus propias políticas de privacidad. Las cookies publicitarias nos ayudan a medir qué anuncios generan envíos de formularios y a mejorar el rendimiento de las campañas.",
         ],
       },
       {
         title: "Bases Legales (Visitantes EEE/Reino Unido)",
         paragraphs: [
-          "Cuando corresponda, procesamos datos personales con base en consentimiento (cookies de analítica), ejecución de contrato (responder solicitudes), intereses legítimos (seguridad y mejora del sitio) y obligaciones legales.",
+          "Cuando corresponda, procesamos datos personales con base en consentimiento (cookies de analítica y publicidad), ejecución de contrato (responder solicitudes), intereses legítimos (seguridad y mejora del sitio) y obligaciones legales.",
         ],
       },
       {
         title: "Compartir Información",
         paragraphs: [
-          "No vendemos tu información personal. Podemos compartir datos con proveedores que nos ayudan a operar el sitio y las comunicaciones, sujetos a salvaguardas apropiadas. También podemos divulgar información si la ley lo exige.",
+          "No vendemos tu información personal. Podemos compartir datos con proveedores que nos ayudan a operar el sitio, las comunicaciones y la medición publicitaria (como entrega de correo, analítica y Google Ads), sujetos a salvaguardas apropiadas. También podemos divulgar información si la ley lo exige.",
         ],
       },
       {
@@ -151,7 +151,7 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
       {
         title: "Tus Derechos",
         paragraphs: [
-          "Según tu ubicación, puedes tener derechos de acceso, corrección, eliminación o restricción del procesamiento, y retirar el consentimiento para cookies de analítica en cualquier momento.",
+          "Según tu ubicación, puedes tener derechos de acceso, corrección, eliminación o restricción del procesamiento, y retirar el consentimiento para cookies de analítica y publicidad en cualquier momento.",
           "Los residentes de California pueden tener derechos adicionales bajo CCPA/CPRA. Contáctanos al correo indicado abajo.",
         ],
       },

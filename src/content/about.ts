@@ -11,6 +11,11 @@ export type Principle = {
   accent: string;
 };
 
+export type PartnershipSignal = {
+  title: string;
+  description: string;
+};
+
 export type FutureMilestone = {
   year: string;
   title: string;
@@ -18,7 +23,11 @@ export type FutureMilestone = {
 };
 
 export type ArchitectureNode = {
+  id: string;
   label: string;
+  role: string;
+  summary: string;
+  feeds: string[];
 };
 
 export type AboutContent = {
@@ -29,11 +38,17 @@ export type AboutContent = {
   heroSubtitleLine2: string;
   whyWeExistTag: string;
   whyWeExistAside: string;
+  whyProblemLabel: string;
+  whySolutionLabel: string;
   whyParagraph1: string;
   whyQuote: string;
   whyParagraph2: string;
   whyParagraph2b: string;
   whyParagraph3: string;
+  partnershipTag: string;
+  partnershipTitle: string;
+  partnershipSubtitle: string;
+  partnershipSignals: PartnershipSignal[];
   methodTag: string;
   methodTitleLine1: string;
   methodTitleLine2: string;
@@ -43,6 +58,10 @@ export type AboutContent = {
   architectureSubtitle: string;
   architectureNodes: ArchitectureNode[];
   architectureCaption: string;
+  architectureHubLabel: string;
+  architectureChannelLabel: string;
+  architectureFeedsLabel: string;
+  architectureFedByLabel: string;
   principlesTag: string;
   principlesTitle: string;
   principles: Principle[];
@@ -64,6 +83,8 @@ export const aboutContent: Record<Locale, AboutContent> = {
     heroSubtitleLine2: "Every channel connects. Every decision traces back to revenue. That's not a philosophy. It's how the work is structured from day one.",
     whyWeExistTag: "Why We Exist",
     whyWeExistAside: "The agency model is broken.|We built the alternative.",
+    whyProblemLabel: "The old model",
+    whySolutionLabel: "The KINEXIS model",
     whyParagraph1:
       "Most digital agencies sell tactics: a website here, some ads there, a handful of blog posts. Then they call it a strategy.",
     whyQuote: "We sell a system:|a repeatable, data-driven approach to growth.",
@@ -73,6 +94,27 @@ export const aboutContent: Record<Locale, AboutContent> = {
       "KINEXIS exists because the traditional agency model is broken. Too many firms promise the moon, hand over cookie-cutter templates, and disappear when results don't show up.",
     whyParagraph3:
       "We built something different. Smaller client rosters. Longer engagements. One question that guides everything: does this move the revenue needle? If the answer's no, we don't do it.",
+    partnershipTag: "How We Work",
+    partnershipTitle: "You work with people who own the outcome.",
+    partnershipSubtitle:
+      "No account manager reading from a script. Direct access to the strategists building your system, and reviews that talk about revenue, not vanity charts.",
+    partnershipSignals: [
+      {
+        title: "A small roster on purpose",
+        description:
+          "We keep 8–10 active clients. That cap exists so your account gets senior attention, not a junior handoff after the sales call.",
+      },
+      {
+        title: "Direct strategist access",
+        description:
+          "You talk to the people running SEO, paid, and conversion work. Questions get answered in hours, not next quarter's QBR.",
+      },
+      {
+        title: "Revenue-first reviews",
+        description:
+          "Weekly and monthly check-ins start with pipeline and cost per lead. If a channel isn't paying for itself, we change it.",
+      },
+    ],
     methodTag: "Methodology",
     methodTitleLine1: "The KINEXIS",
     methodTitleLine2: "Method",
@@ -100,16 +142,64 @@ export const aboutContent: Record<Locale, AboutContent> = {
     ],
     architectureTag: "Architecture",
     architectureTitle: "Inside the system.",
-    architectureSubtitle: "When you see the diagram, you understand why it works. Nothing is standalone. Every channel you add makes the others more effective.",
+    architectureSubtitle:
+      "Nothing here runs on its own. Every channel has a job, and each one makes the others more effective.",
     architectureNodes: [
-      { label: "SEO" },
-      { label: "Paid Ads" },
-      { label: "Web Design" },
-      { label: "Analytics" },
-      { label: "CRO" },
-      { label: "Email" },
+      {
+        id: "seo",
+        label: "SEO",
+        role: "Organic discovery",
+        summary:
+          "Rankings build the audiences Paid Ads retargets. Content shapes landing page copy. Every visit reports into Analytics.",
+        feeds: ["paid-ads", "web-design", "analytics"],
+      },
+      {
+        id: "paid-ads",
+        label: "Paid Ads",
+        role: "Paid acquisition",
+        summary:
+          "Ad traffic lands on designed pages. CRO removes the friction that kills conversions. Email catches the leads who didn't buy yet.",
+        feeds: ["web-design", "cro", "email"],
+      },
+      {
+        id: "web-design",
+        label: "Web Design",
+        role: "Conversion surface",
+        summary:
+          "Every design decision gets pressure-tested by CRO. Behavior on the page flows back to Analytics and informs the next iteration.",
+        feeds: ["cro", "analytics"],
+      },
+      {
+        id: "analytics",
+        label: "Analytics",
+        role: "Intelligence layer",
+        summary:
+          "The nervous system. Every channel reports in. Budgets, creative, and roadmap decisions all trace back to what the data shows.",
+        feeds: ["seo", "paid-ads", "web-design", "cro", "email"],
+      },
+      {
+        id: "cro",
+        label: "CRO",
+        role: "Friction removal",
+        summary:
+          "Higher conversion rates cut Paid Ads cost-per-lead directly. Winning variants get rolled into the Web Design baseline.",
+        feeds: ["paid-ads", "web-design"],
+      },
+      {
+        id: "email",
+        label: "Email",
+        role: "Retention engine",
+        summary:
+          "Open and click data completes full-funnel attribution in Analytics. Engaged segments become Paid Ads lookalike audiences.",
+        feeds: ["analytics", "paid-ads"],
+      },
     ],
-    architectureCaption: "Analytics is the nervous system. Every channel reports in. Every decision is data-informed.",
+    architectureCaption:
+      "Six channels, one loop. Add another and the rest get sharper, not busier.",
+    architectureHubLabel: "System hub",
+    architectureChannelLabel: "Channel",
+    architectureFeedsLabel: "Powers",
+    architectureFedByLabel: "Depends on",
     principlesTag: "Principles",
     principlesTitle: "Four principles. No exceptions.",
     principles: [
@@ -194,6 +284,8 @@ export const aboutContent: Record<Locale, AboutContent> = {
       "Mediante una metodología repetible y basada en datos que trata tu negocio como una inversión, no como una campaña.",
     whyWeExistTag: "Por Qué Existimos",
     whyWeExistAside: "El modelo de agencia está roto.|Construimos la alternativa.",
+    whyProblemLabel: "El modelo anterior",
+    whySolutionLabel: "El modelo KINEXIS",
     whyParagraph1:
       "La mayoría de las agencias digitales venden tácticas: un sitio web aquí, algunos anuncios allá, un puñado de entradas de blog. Luego lo llaman estrategia.",
     whyQuote: "Nosotros vendemos un sistema:|un enfoque repetible y basado en datos para el crecimiento.",
@@ -203,6 +295,27 @@ export const aboutContent: Record<Locale, AboutContent> = {
       "KINEXIS existe porque el modelo tradicional de agencia está roto. Demasiadas firmas prometen la luna, entregan plantillas genéricas y desaparecen cuando los resultados no llegan.",
     whyParagraph3:
       "Construimos algo diferente. Carteras de clientes más pequeñas. Compromisos más largos. Una pregunta guía todo: ¿esto mueve la aguja de los ingresos? Si la respuesta es no, no lo hacemos.",
+    partnershipTag: "Cómo Trabajamos",
+    partnershipTitle: "Trabajas con personas que son dueñas del resultado.",
+    partnershipSubtitle:
+      "Sin account managers leyendo un guion. Acceso directo a los estrategas que construyen tu sistema, y revisiones que hablan de ingresos, no de gráficos vanidosos.",
+    partnershipSignals: [
+      {
+        title: "Una cartera pequeña a propósito",
+        description:
+          "Mantenemos 8–10 clientes activos. Ese límite existe para que tu cuenta reciba atención senior, no un traspaso a junior después de la venta.",
+      },
+      {
+        title: "Acceso directo al estratega",
+        description:
+          "Hablas con quienes ejecutan SEO, paid y conversión. Las preguntas se responden en horas, no en el QBR del próximo trimestre.",
+      },
+      {
+        title: "Revisiones orientadas a ingresos",
+        description:
+          "Los check-ins semanales y mensuales empiezan por pipeline y costo por lead. Si un canal no se paga solo, lo cambiamos.",
+      },
+    ],
     methodTag: "Metodología",
     methodTitleLine1: "El Método",
     methodTitleLine2: "KINEXIS",
@@ -231,17 +344,63 @@ export const aboutContent: Record<Locale, AboutContent> = {
     architectureTag: "Arquitectura",
     architectureTitle: "Dentro del sistema.",
     architectureSubtitle:
-      "Cada servicio se conecta. Cada canal alimenta a otro.|Así es como encajan las piezas.",
+      "Aquí nada funciona por su cuenta. Cada canal tiene un trabajo, y cada uno hace que los demás sean más efectivos.",
     architectureNodes: [
-      { label: "SEO" },
-      { label: "Anuncios Pagados" },
-      { label: "Diseño Web" },
-      { label: "Analítica" },
-      { label: "CRO" },
-      { label: "Email" },
+      {
+        id: "seo",
+        label: "SEO",
+        role: "Descubrimiento orgánico",
+        summary:
+          "Los rankings construyen las audiencias que retargetean los Anuncios. El contenido da forma a las landing pages. Cada visita reporta a Analítica.",
+        feeds: ["paid-ads", "web-design", "analytics"],
+      },
+      {
+        id: "paid-ads",
+        label: "Anuncios Pagados",
+        role: "Adquisición pagada",
+        summary:
+          "El tráfico de anuncios aterriza en páginas diseñadas. El CRO elimina la fricción que mata conversiones. El Email captura a quienes aún no compraron.",
+        feeds: ["web-design", "cro", "email"],
+      },
+      {
+        id: "web-design",
+        label: "Diseño Web",
+        role: "Superficie de conversión",
+        summary:
+          "Cada decisión de diseño se pone a prueba con CRO. El comportamiento en la página vuelve a Analítica e informa la siguiente iteración.",
+        feeds: ["cro", "analytics"],
+      },
+      {
+        id: "analytics",
+        label: "Analítica",
+        role: "Capa de inteligencia",
+        summary:
+          "El sistema nervioso. Cada canal reporta. Presupuestos, creatividades y hoja de ruta se basan en lo que muestran los datos.",
+        feeds: ["seo", "paid-ads", "web-design", "cro", "email"],
+      },
+      {
+        id: "cro",
+        label: "CRO",
+        role: "Eliminación de fricción",
+        summary:
+          "Mejores tasas de conversión bajan el costo por lead de Anuncios. Las variantes ganadoras se integran a la base de Diseño Web.",
+        feeds: ["paid-ads", "web-design"],
+      },
+      {
+        id: "email",
+        label: "Email",
+        role: "Motor de retención",
+        summary:
+          "Aperturas y clics completan la atribución de embudo en Analítica. Los segmentos comprometidos se convierten en audiencias lookalike de Anuncios.",
+        feeds: ["analytics", "paid-ads"],
+      },
     ],
     architectureCaption:
-      "La analítica es el sistema nervioso. Cada canal reporta. Cada decisión está informada por datos.",
+      "Seis canales, un circuito. Añade otro y el resto gana precisión, no ruido.",
+    architectureHubLabel: "Núcleo del sistema",
+    architectureChannelLabel: "Canal",
+    architectureFeedsLabel: "Impulsa",
+    architectureFedByLabel: "Depende de",
     principlesTag: "Principios",
     principlesTitle: "Cuatro principios. Sin excepciones.",
     principles: [

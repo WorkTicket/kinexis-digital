@@ -173,8 +173,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   },
   analytics: {
     services: [
+      { href: "/services/marketing-audits", label: "Marketing Audits" },
       { href: "/services/growth-consulting", label: "Growth Consulting" },
-      { href: "/services/ppc-management", label: "PPC Management" },
       servicePricingLink("analytics"),
     ],
     caseStudies: caseStudyLinks("saas", "plumbing"),
@@ -185,8 +185,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
   },
   "growth-consulting": {
     services: [
+      { href: "/services/marketing-audits", label: "Marketing Audits" },
       { href: "/services/analytics", label: "Marketing Analytics" },
-      { href: "/services/seo", label: "SEO Services" },
       servicePricingLink("growth-consulting"),
     ],
     caseStudies: caseStudyLinks("saas", "plumbing"),
@@ -289,7 +289,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     caseStudies: caseStudyLinks("plumbing", "saas"),
     blog: [
       { href: "/blog/ga4-reporting", label: "GA4 Reporting Guide" },
-      { href: "/blog/attribution-models", label: "Attribution Models" },
+      { href: "/blog/seo-audit-framework", label: "SEO Audit Framework" },
     ],
   },
   "marketing-automation-crm": {

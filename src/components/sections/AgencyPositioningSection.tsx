@@ -68,7 +68,7 @@ function PillarCard({
   icon: LucideIcon;
   accent: string;
 }) {
-  const num = String(index + 1).padStart(2, "0");
+  const num = String(index + 1);
 
   return (
     <motion.div

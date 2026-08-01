@@ -17,9 +17,9 @@ export const buttonSizes: Record<ButtonSize, string> = {
 };
 
 export const buttonVariants: Record<ButtonVariant, string> = {
-  primary: "bg-gradient text-white sm:hover:shadow-glow",
+  primary: "bg-gradient text-white sm:hover:shadow-glow-sm",
   secondary:
-    "text-white/70 border border-surface hover:text-bg hover:bg-neon-cyan hover:border-neon-cyan hover:shadow-glow-sm",
+    "text-white/80 border border-strong bg-transparent hover:border-white/25 hover:bg-white/[0.04] hover:text-white",
   ghost: "text-muted hover:text-white transition-colors duration-200 ease-out",
 };
 

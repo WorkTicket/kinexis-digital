@@ -14,7 +14,7 @@ function isPositiveValue(val: string): boolean {
 
 function isNegativeValue(val: string): boolean {
   const lower = val.toLowerCase().trim();
-  if (["no", "—", "-", "n/a", "none", "ninguno"].includes(lower)) return true;
+  if (["no", "-", "n/a", "none", "ninguno"].includes(lower)) return true;
   return false;
 }
 
@@ -120,13 +120,13 @@ export default function ProgressionComparison({ columns, rows }: ComparisonProps
                         "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border",
                         isHighlight
                           ? "border-neon-cyan/20 bg-neon-cyan/10"
-                          : "border-white/[0.06] bg-white/[0.02]"
+                          : "border-surface bg-surface-base"
                       )}
                     >
                       {positive ? (
                         <Check className="h-3.5 w-3.5 text-emerald-400" aria-hidden />
                       ) : negative ? (
-                        <span className="text-xs text-white/20">—</span>
+                        <span className="text-xs text-white/20">-</span>
                       ) : (
                         <RowIcon
                           className={cn("h-3.5 w-3.5", isHighlight ? "text-neon-cyan" : "text-white/35")}
@@ -167,7 +167,7 @@ export default function ProgressionComparison({ columns, rows }: ComparisonProps
                   "inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200",
                   isHighlight
                     ? "bg-neon-cyan text-bg-dark hover:bg-white shadow-lg shadow-neon-cyan/25"
-                    : "border border-white/[0.1] bg-white/[0.04] text-white/70 hover:border-neon-cyan/25 hover:bg-neon-cyan/10 hover:text-white"
+                    : "border border-strong bg-surface-glass text-white/70 hover:border-neon-cyan/25 hover:bg-neon-cyan/10 hover:text-white"
                 )}
                 style={{ borderRadius: "var(--btn-radius)" }}
               >

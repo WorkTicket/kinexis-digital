@@ -41,28 +41,10 @@ jobs:
             exit 1
           fi
 
-      - name: Verify email credentials
-        run: |
-          missing=0
-          for var in GMAIL_USER GMAIL_APP_PASSWORD CONTACT_TO_EMAIL; do
-            if [ -z "${!var}" ]; then
-              echo "::error::Missing $var repository secret. Contact and lead forms will return 500 in production without it."
-              missing=1
-            fi
-          done
-          exit $missing
-        env:
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
-
       - name: Deploy to Cloudflare Workers
         run: npm run deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          CONTACT_TO_EMAIL: ${{ secrets.CONTACT_TO_EMAIL }}
           NEXT_PUBLIC_SITE_URL: https://www.kinexisdigital.com
           NEXT_PUBLIC_GA_ID: G-Z8245BRX2L
           NEXT_PUBLIC_GSC_VERIFICATION: 7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q

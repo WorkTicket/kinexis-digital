@@ -1,6 +1,8 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
-import MetricCard from "@/components/ui/MetricCard";
 import CTAArchetype from "@/components/ui/CTAArchetype";
 import FAQSection from "@/components/sections/FAQSection";
 import AnswerBlock from "@/components/sections/seo/AnswerBlock";
@@ -10,6 +12,9 @@ import { getServiceExploreLabel } from "@/lib/service-explore-labels";
 import type { IndustryDetailContent } from "@/content/industries/detail";
 import { Link } from "@/i18n/navigation";
 import Section from "@/components/shared/services/Section";
+import { cn } from "@/lib/utils";
+import { featureCardGridClass } from "@/lib/card-styles";
+
 type Props = {
   content: IndustryDetailContent;
   categoryLabel: string;
@@ -23,6 +28,7 @@ export default function IndustryDetailClient({
   industryLabel,
   categoryId,
 }: Props) {
+  const tCommon = useTranslations("common");
   let surfaceIndex = 0;
 
   return (
@@ -35,7 +41,9 @@ export default function IndustryDetailClient({
           <ul className="section-content space-y-4 type-body text-muted">
             {content.challenges.items.map((item) => (
               <li key={item} className="flex gap-3">
-                <span className="text-neon-cyan mt-1">→</span>
+                <span className="text-neon-cyan mt-1 shrink-0" aria-hidden>
+                  →
+                </span>
                 <span>{item}</span>
               </li>
             ))}
@@ -54,33 +62,50 @@ export default function IndustryDetailClient({
         </div>
       </Section>
 
-      <Section id="services" variant="data" surfaceIndex={surfaceIndex++}>
+      <Section id="services" surfaceIndex={surfaceIndex++}>
         <div className="container-site">
-          <SectionHeader title={content.services.title} />
-          <div className="section-content grid gap-grid-sm md:grid-cols-2">
+          <SectionHeader title={content.services.title} headingId="services-heading" />
+          <ul className={`section-content ${featureCardGridClass(2)}`}>
             {content.services.items.map((svc) => (
-              <Link key={svc.href} href={svc.href} className="group block h-full">
-                <Card className="h-full flex flex-col hover:border-neon-cyan/30">
-                  <h3 className="card-heading group-hover:text-neon-cyan transition-colors">{svc.label}</h3>
-                  <p className="mt-4 type-body text-muted flex-1">{svc.description}</p>
-                  <span className="mt-4 block">
-                    <TextLink size="sm">{getServiceExploreLabel(svc.href)}</TextLink>
-                  </span>
-                </Card>
-              </Link>
+              <li key={svc.href}>
+                <Link href={svc.href} className="group block h-full touch-manipulation">
+                  <Card className="flex h-full flex-col">
+                    <h3 className="card-heading transition-colors duration-200 group-hover:text-neon-cyan">
+                      {svc.label}
+                    </h3>
+                    <p className="mt-3 flex-1 type-body text-muted">{svc.description}</p>
+                    <div className="mt-8 border-t border-strong pt-5">
+                      <TextLink size="sm">{getServiceExploreLabel(svc.href)}</TextLink>
+                    </div>
+                  </Card>
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Section>
 
-      <Section id="outcomes" variant="proof" surfaceIndex={surfaceIndex++}>
+      <Section id="outcomes" variant="proof" surfaceIndex={surfaceIndex++} compact className="border-y border-surface">
         <div className="container-site">
-          <SectionHeader title={content.outcomes.title} />
-          <div className="section-content grid gap-grid-sm md:grid-cols-3">
-            {content.outcomes.metrics.map((metric) => (
-              <MetricCard key={metric.label} value={metric.value} label={metric.label} />
+          <SectionHeader title={content.outcomes.title} headingId="outcomes-heading" />
+          <ul className="section-content grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-white/[0.08]">
+            {content.outcomes.metrics.map((metric, index) => (
+              <li key={metric.label}>
+                <div
+                  className={cn(
+                    "flex h-full flex-col gap-2 sm:px-8",
+                    index === 0 && "sm:pl-0",
+                    index === content.outcomes.metrics.length - 1 && "sm:pr-0",
+                  )}
+                >
+                  <span className="type-metric text-3xl font-bold tracking-tight sm:text-4xl">
+                    <span className="gradient-text">{metric.value}</span>
+                  </span>
+                  <span className="text-sm font-medium leading-snug text-white/85">{metric.label}</span>
+                </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </Section>
 
@@ -94,10 +119,9 @@ export default function IndustryDetailClient({
       />
 
       <CTAArchetype
-        archetype="story"
         headline={`Ready to grow your ${industryLabel.toLowerCase()} business?`}
-        subtitle="Let's build marketing designed for your market, your buyers, and your revenue goals."
-        ctaLabel="Book a Strategy Call"
+        subtitle="We'll build marketing for your market, your buyers, and the revenue goals that matter."
+        ctaLabel={tCommon("bookStrategyCall")}
         ctaHref="/contact"
       />
     </>

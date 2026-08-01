@@ -60,8 +60,8 @@ export const ppcPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Google Ads and cross-channel paid media outcomes from recent programs.",
     metrics: [
-      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-      { metric: "65%", label: "wasted spend cut · same client" },
+      { metric: "136%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "40%", label: "wasted spend cut · same client" },
       { metric: "4.2x", label: "ROAS on high-intent Search campaigns" },
     ],
   },
@@ -92,8 +92,8 @@ export const googleAdsPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Google Ads outcomes from recent client programs.",
     metrics: [
-      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-      { metric: "65%", label: "CPL reduction · same client" },
+      { metric: "136%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "40%", label: "CPL reduction · same client" },
       { metric: "4.2x", label: "ROAS on high-intent Search campaigns" },
     ],
   },

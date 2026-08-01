@@ -257,9 +257,47 @@ export default function HeroArchetype({
   }
 
   // --- SHOWCASE HERO ---
+  // Text-only hubs match the homepage: centered composition, no viz in the first viewport.
+  // Split layout is reserved for pages that pass a real visualization.
   if (archetype === "showcase") {
     const hasVisualization = Boolean(visualization);
     const isServicePageViz = visualizationClassName?.includes("hero__viz-inner--service-page");
+
+    if (!hasVisualization) {
+      return (
+        <section className={cn(baseSection, "hero--centered overflow-x-clip", className)}>
+          <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="absolute left-1/2 top-[18%] h-[28rem] w-[min(100%,42rem)] -translate-x-1/2 rounded-full bg-neon-cyan/[0.035] blur-[120px]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-bg" />
+          </div>
+          <div className="container-site hero__container relative z-10">
+            <motion.div
+              className="mx-auto w-full max-w-4xl text-center"
+              variants={stagger}
+              initial={false}
+              animate="visible"
+            >
+              {breadcrumbs && <HeroBreadcrumbs items={breadcrumbs} />}
+              {labelEl}
+              <MotionHeroTitle variant="center" variants={blurFadeUp}>
+                {headline}
+              </MotionHeroTitle>
+              {subtitle && (
+                <MotionHeroSubtitle
+                  variants={fadeUp}
+                  variant="intro-center"
+                  text={subtitle}
+                  lineClassName={subtitleLineClassName}
+                />
+              )}
+              {outcomeEl}
+              {ctaEl}
+            </motion.div>
+          </div>
+        </section>
+      );
+    }
 
     return (
       <section className={cn(baseSection, "hero--split overflow-x-clip", className)}>
@@ -270,10 +308,9 @@ export default function HeroArchetype({
           <motion.div
             className={cn(
               "grid items-center gap-grid-lg",
-              hasVisualization &&
-                (isServicePageViz
-                  ? "md:grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)] xl:gap-x-14"
-                  : "md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,1fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_minmax(360px,1.1fr)] xl:gap-x-16")
+              isServicePageViz
+                ? "md:grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(280px,0.95fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1.1fr)_minmax(300px,0.9fr)] xl:gap-x-14"
+                : "md:grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(320px,1fr)] lg:gap-x-12 xl:grid-cols-[minmax(0,1fr)_minmax(360px,1.1fr)] xl:gap-x-16"
             )}
             variants={stagger}
             initial={false}
@@ -287,16 +324,14 @@ export default function HeroArchetype({
               {outcomeEl}
               {ctaEl}
             </div>
-            {hasVisualization && (
-              <motion.div
-                variants={fadeUp}
-                className={cn("hero__viz", visualizationWrapperClassName)}
-              >
-                <div className={cn("hero__viz-inner", visualizationClassName)}>
-                  <div className="hero__viz-content">{visualization}</div>
-                </div>
-              </motion.div>
-            )}
+            <motion.div
+              variants={fadeUp}
+              className={cn("hero__viz", visualizationWrapperClassName)}
+            >
+              <div className={cn("hero__viz-inner", visualizationClassName)}>
+                <div className="hero__viz-content">{visualization}</div>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

@@ -23,12 +23,14 @@ export default function ComparisonPageClient({ content: c }: Props) {
         headline={
           <>
             <span className="type-hero-line">{c.hero.line1}</span>
-            <span className="type-hero-line">{c.hero.line2}</span>
+            <span className="type-hero-line gradient-text">{c.hero.line2}</span>
           </>
         }
         subtitle={c.hero.subtitle}
         ctaLabel={c.ctaLabel}
         ctaHref="/contact"
+        secondaryCtaLabel="Get Free Audit"
+        secondaryCtaHref="/lead-magnet"
       />
 
       <AnswerBlock text={c.answerBlock} surfaceIndex={surfaceIndex++} />

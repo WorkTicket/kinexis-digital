@@ -26,7 +26,7 @@ export default function RootNotFound() {
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link
               href="/en"
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-text-secondary no-underline transition-colors hover:bg-white/[0.08] hover:text-text"
+              className="inline-flex items-center gap-2 rounded-xl border border-border bg-surface-glass px-5 py-2.5 text-sm font-medium text-text-secondary no-underline transition-colors hover:bg-surface-active hover:text-text"
             >
               Homepage
             </Link>

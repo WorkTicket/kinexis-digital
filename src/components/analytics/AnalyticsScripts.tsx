@@ -3,8 +3,10 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
+import { captureClickIds } from "@/lib/analytics/click-ids";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 declare global {
@@ -19,9 +21,9 @@ function setAnalyticsConsent(granted: boolean) {
   if (typeof window.gtag !== "function") return;
   window.gtag!("consent", "update", {
     analytics_storage: granted ? "granted" : "denied",
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
+    ad_storage: granted ? "granted" : "denied",
+    ad_user_data: granted ? "granted" : "denied",
+    ad_personalization: granted ? "granted" : "denied",
   });
 }
 
@@ -39,6 +41,11 @@ export default function AnalyticsScripts() {
   const pathname = usePathname();
   const { consent, ready } = useCookieConsent();
   const lastTrackedUrl = useRef<string | null>(null);
+
+  // Capture gclid / UTMs on every landing (before consent — URL params only)
+  useEffect(() => {
+    captureClickIds();
+  }, [pathname]);
 
   const trackPageView = () => {
     if (typeof window.gtag !== "function") return;
@@ -59,17 +66,20 @@ export default function AnalyticsScripts() {
       setAnalyticsConsent(true);
       trackPageView();
       loadClarity();
+    } else if (consent === "rejected") {
+      setAnalyticsConsent(false);
     }
   }, [consent, ready]);
 
   useEffect(() => {
     if (!ready) return;
+    if (consent !== "accepted") return;
     if (typeof window.gtag === "function") {
       trackPageView();
     }
-  }, [pathname, ready]);
+  }, [pathname, ready, consent]);
 
-  if (!GA_ID) return null;
+  if (!GA_ID && !ADS_ID) return null;
 
   return null;
 }

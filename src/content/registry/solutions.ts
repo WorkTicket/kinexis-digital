@@ -40,10 +40,10 @@ export const solutions: SolutionEntry[] = [
       "Rankings, calls, and booked-job reporting dashboard",
     ],
     results: [
-      { metric: "+1,290%", label: "organic traffic · Landscaping Co., 10 mo" },
-      { metric: "Top 3", label: "local pack positions · 42 keywords" },
-      { metric: "94", label: "emergency calls/mo · Plumbing Co." },
-      { metric: "4.8X", label: "qualified leads · Landscaping Co., 10 mo" },
+      { metric: "+181%", label: "organic traffic · Landscaping Co., 10 mo" },
+      { metric: "Top 3", label: "local pack positions · 28 keywords" },
+      { metric: "52", label: "emergency calls/mo · Plumbing Co." },
+      { metric: "2.8X", label: "qualified leads · Landscaping Co., 10 mo" },
     ],
     faqs: [
       { question: "How long until HVAC SEO produces leads?", answer: "Most HVAC clients see ranking movement in 60–90 days and meaningful call volume increases by months 4–6, depending on competition and site foundation." },
@@ -215,7 +215,7 @@ export const solutions: SolutionEntry[] = [
     ],
     results: [
       { metric: "65%", label: "conv. rate lift · E-Commerce client" },
-      { metric: "8.4%", label: "lead conversion · Landscaping rebuild" },
+      { metric: "3.9%", label: "lead conversion · Landscaping rebuild" },
       { metric: "40%", label: "CAC reduction · SaaS engagements" },
       { metric: "+210%", label: "organic revenue · e-commerce client" },
     ],

@@ -29,7 +29,7 @@ export default function PricingHubPageClient({ content: c, sections }: Props) {
         headline={
           <>
             <span className="type-hero-line">{c.hero.headlineLine1}</span>
-            <span className="type-hero-line">{c.hero.headlineLine2}</span>
+            <span className="type-hero-line gradient-text">{c.hero.headlineLine2}</span>
           </>
         }
         subtitle={c.hero.subtitle}

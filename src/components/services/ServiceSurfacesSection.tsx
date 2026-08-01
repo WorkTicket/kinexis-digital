@@ -35,14 +35,14 @@ export default function ServiceSurfacesSection({ slug, surfaceIndex }: Props) {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {content.surfaces.map((surface) => (
+          {content.surfaces.map((surface, index) => (
             <motion.div
               key={surface.name}
               variants={fadeUp}
               className="group flex flex-col items-center text-center"
             >
-              <div className="mb-6 flex h-[220px] w-full items-center justify-center">
-                <ServiceSurfacesViz variant={surface.variant} />
+              <div className="mb-6 flex h-[250px] w-full items-center justify-center">
+                <ServiceSurfacesViz variant={surface.variant} delay={0.15 + index * 0.1} />
               </div>
               <h3 className="font-bold">{surface.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{surface.description}</p>

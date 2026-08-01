@@ -2,12 +2,30 @@ interface CloudflareEnv {
   ASSETS: { fetch: (req: Request) => Promise<Response> };
   WORKER_SELF_REFERENCE: { fetch: (req: Request) => Promise<Response> };
 
+  /** Cloudflare Email Service send binding (see wrangler.jsonc `send_email`). */
+  EMAIL?: {
+    send: (message: {
+      to: string | string[];
+      from: string | { email: string; name?: string };
+      subject: string;
+      html: string;
+      text: string;
+      replyTo?: string;
+    }) => Promise<unknown>;
+  };
+
   INDEXNOW_KEY?: string;
   CONTACT_TO_EMAIL?: string;
-  GMAIL_USER?: string;
-  GMAIL_APP_PASSWORD?: string;
+  CONTACT_FROM_EMAIL?: string;
   NEXT_PUBLIC_SITE_URL?: string;
   NEXT_PUBLIC_GA_ID?: string;
+  NEXT_PUBLIC_GOOGLE_ADS_ID?: string;
+  NEXT_PUBLIC_GADS_LABEL_LEAD?: string;
+  NEXT_PUBLIC_GADS_LABEL_AUDIT?: string;
+  NEXT_PUBLIC_GADS_LABEL_CALL?: string;
+  NEXT_PUBLIC_GADS_LABEL_BOOKING?: string;
+  NEXT_PUBLIC_BUSINESS_PHONE?: string;
+  NEXT_PUBLIC_BOOKING_URL?: string;
   NEXT_PUBLIC_CLARITY_ID?: string;
   NEXT_PUBLIC_GSC_VERIFICATION?: string;
   SENTRY_ORG?: string;

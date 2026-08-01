@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import TwoLineText from "@/components/ui/TwoLineText";
 import SiteCTA from "@/components/ui/SiteCTA";
 import { uiChrome } from "@/content/ui-chrome";
@@ -24,6 +24,7 @@ export default function PricingCTASection({
   contractNote,
 }: Props) {
   const locale = useLocale() as Locale;
+  const tCommon = useTranslations("common");
   const copy = uiChrome[locale];
 
   return (
@@ -31,12 +32,13 @@ export default function PricingCTASection({
       id="pricing-cta"
       headingId="pricing-cta-heading"
       tone="cta"
+      showGlow={false}
       badge={copy.pricingCta.badge}
       title={headline}
       subtitle={<TwoLineText text={subtitle} variant="body" />}
       primaryLabel={ctaLabel}
-      secondaryLabel={secondaryCtaLabel}
-      secondaryHref={secondaryCtaHref}
+      secondaryLabel={secondaryCtaLabel ?? tCommon("getFreeAudit")}
+      secondaryHref={secondaryCtaHref ?? "/lead-magnet"}
       contractNote={contractNote}
     />
   );

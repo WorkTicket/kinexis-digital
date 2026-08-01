@@ -48,8 +48,8 @@ export const seoPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Real outcomes from recent client programs.",
     metrics: [
-      { metric: "+1,290%", label: "organic traffic · Landscaping Co." },
-      { metric: "4.8X", label: "qualified leads · same client, 10 mo" },
+      { metric: "+181%", label: "organic traffic · Landscaping Co." },
+      { metric: "2.8X", label: "qualified leads · same client, 10 mo" },
       { metric: "340+", label: "commercial keywords mapped per engagement" },
       { metric: "60–90 days", label: "typical time to ranking movement" },
     ],
@@ -104,9 +104,9 @@ export const localSeoPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Outcomes from recent local SEO programs.",
     metrics: [
-      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-      { metric: "+2,371%", label: "GBP interactions · same client" },
-      { metric: "Top 3", label: "map pack · 48 of 60 keywords" },
+      { metric: "136%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "+376%", label: "GBP interactions · same client" },
+      { metric: "Top 3", label: "map pack · 34 of 60 keywords" },
       { metric: "+41%", label: "call volume from GBP · avg. client" },
     ],
   },
@@ -160,8 +160,8 @@ export const webDesignPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Measurable outcomes from recent web projects.",
     metrics: [
-      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. rebuild" },
-      { metric: "4.8X", label: "qualified lead growth · same client, 10 mo" },
+      { metric: "1.8% → 3.9%", label: "conversion rate · Landscaping Co. rebuild" },
+      { metric: "2.8X", label: "qualified lead growth · same client, 10 mo" },
       { metric: "Lighthouse 94", label: "performance score · post-launch" },
       { metric: "< 3s", label: "median load time · post-launch" },
     ],
@@ -216,7 +216,7 @@ export const croPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Conversion outcomes from recent programs.",
     metrics: [
-      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co." },
+      { metric: "1.8% → 3.9%", label: "conversion rate · Landscaping Co." },
       { metric: "+42%", label: "form completion lift · A/B test winner" },
       { metric: "15–45%", label: "typical page lift · first 90 days" },
       { metric: "12+", label: "tests run per quarter · avg. program" },
@@ -328,8 +328,8 @@ export const contentMarketingPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Content outcomes from recent programs.",
     metrics: [
-      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
-      { metric: "+481%", label: "organic traffic · same client" },
+      { metric: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
+      { metric: "+140%", label: "organic traffic · same client" },
       { metric: "62%", label: "of demos from content engine · month 8" },
       { metric: "62%", label: "of demos from content · month 8" },
     ],
@@ -664,8 +664,8 @@ export const funnelsPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Funnel and CRO outcomes from recent programs.",
     metrics: [
-      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co. funnel" },
-      { metric: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+      { metric: "1.8% → 3.9%", label: "conversion rate · Landscaping Co. funnel" },
+      { metric: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
       { metric: "+35%", label: "nurture-to-booking rate · post-automation" },
       { metric: "+35%", label: "nurture-to-booking rate" },
     ],
@@ -720,8 +720,8 @@ export const paidAdsPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Paid media outcomes from recent client programs.",
     metrics: [
-      { metric: "327%", label: "emergency calls · Plumbing Co., 8 mo" },
-      { metric: "65%", label: "wasted spend eliminated · same client" },
+      { metric: "136%", label: "emergency calls · Plumbing Co., 8 mo" },
+      { metric: "40%", label: "wasted spend eliminated · same client" },
       { metric: "$47", label: "avg. cost per lead · after optimization" },
       { metric: "$47", label: "avg. cost per lead · after optimization" },
     ],
@@ -832,7 +832,7 @@ export const landingPagesPillarContent: ServicePillarContent = {
     title: "Results we track",
     subtitle: "Landing page outcomes from recent projects.",
     metrics: [
-      { metric: "1.8% → 8.4%", label: "conversion rate · Landscaping Co." },
+      { metric: "1.8% → 3.9%", label: "conversion rate · Landscaping Co." },
       { metric: "+42%", label: "form completion · A/B test winner" },
       { metric: "Lighthouse 94", label: "performance · post-build" },
       { metric: "+42%", label: "form completion · A/B winner" },
@@ -1073,7 +1073,7 @@ export const marketingAuditsPillarContent: ServicePillarContent = {
     paragraphs: [
       "When results stall, the instinct is to spend more or add another channel. Usually the real problem is somewhere you're not looking: broken tracking, a leaky funnel, budget in the wrong place, or a message that never landed. An audit finds it before you spend another dollar covering it up.",
       "KINEXIS runs a structured review of your marketing across acquisition, conversion, and measurement. We dig into your analytics, ad accounts, SEO footprint, website, email, and reporting, then rank what we find by impact so you know what to fix this month versus next quarter.",
-      "You get a clear, prioritized report and a working session to walk through it, not a 60-page PDF that gathers dust. Whether your team runs the fixes or we do, you leave with a plan grounded in your actual numbers.",
+      "You get a clear, prioritized report and a working session to walk through it, not a 60-page PDF that gathers dust. Your team can run the fixes or we can. Either way, you leave with a plan grounded in your actual numbers.",
     ],
   },
   deliverables: {
@@ -1240,7 +1240,7 @@ export const trainingWorkshopsPillarContent: ServicePillarContent = {
     title: "Marketing training that leaves your team able to do the work.",
     paragraphs: [
       "Sometimes the right move isn't to outsource, it's to build the skill in-house. But generic online courses rarely stick because they're not about your business, your tools, or your market. Your team finishes the video and still doesn't know how to apply it on Monday.",
-      "KINEXIS runs practical, hands-on training built around your actual accounts and goals. Whether it's SEO, paid ads, analytics, content, or a full-stack marketing overview, we teach with your data on the screen and your team doing the work, not watching slides.",
+      "KINEXIS runs practical, hands-on training built around your actual accounts and goals. SEO, paid ads, analytics, content, or a full-stack marketing overview: we teach with your data on the screen and your team doing the work, not watching slides.",
       "Sessions can be a single focused workshop, a multi-day intensive, or an ongoing coaching arrangement. Everyone leaves with templates, checklists, and recordings, so the knowledge stays in the building after we do.",
     ],
   },

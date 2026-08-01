@@ -45,6 +45,8 @@ export default async function BlogPostsPage({ params }: Props) {
         subtitle={content.postsHeroSubtitle}
         ctaLabel={tCommon("bookStrategyCall")}
         ctaHref="/contact"
+        secondaryCtaLabel={tCommon("getFreeAudit")}
+        secondaryCtaHref="/lead-magnet"
       />
       <BlogPostsPageClient content={content} />
     </>

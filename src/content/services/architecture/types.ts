@@ -18,6 +18,8 @@ export type ServiceCTAData = {
   headline: string;
   subtitle: string;
   label: string;
+  /** Override primary CTA destination (defaults to /contact, or pricing when label mentions pricing). */
+  primaryHref?: string;
   inlineLabel?: string;
   inlineSubtitle?: string;
 };
@@ -45,6 +47,7 @@ export type ServiceSectionId =
   // Web Design
   | "UxAudit"
   | "DeviceMockups"
+  | "Surfaces"
   | "ConversionOptimization"
   | "Speed"
   // Meta Ads

@@ -1,5 +1,30 @@
 import type { Locale } from "@/i18n/routing";
 
+export type ContactBookingContent = {
+  title: string;
+  subtitle: string;
+  timezoneNote: string;
+  timeLabel: string;
+  pickDateHint: string;
+  noSlots: string;
+  notesLabel: string;
+  notesPlaceholder: string;
+  submitButton: string;
+  submittingButton: string;
+  successTitle: string;
+  successSubtitle: string;
+  /** Brief flash shown before redirecting to /thank-you. */
+  confirmFlash: string;
+  errorMessage: string;
+  selectSlotError: string;
+  footnote: string;
+  prevMonth: string;
+  nextMonth: string;
+  orDivider: string;
+  tabLabel: string;
+  messageTabLabel: string;
+};
+
 export type ContactContent = {
   heroTitle: string;
   heroSubtitle: string;
@@ -7,6 +32,8 @@ export type ContactContent = {
   formSubtitle: string;
   successTitle: string;
   successSubtitle: string;
+  /** Brief flash shown before redirecting to /thank-you. */
+  confirmFlash: string;
   errorMessage: string;
   nameLabel: string;
   namePlaceholder: string;
@@ -35,6 +62,7 @@ export type ContactContent = {
   servicePlaceholder: string;
   serviceOptions: string[];
   formFootnote: string;
+  booking: ContactBookingContent;
 };
 
 export const contactContent: Record<Locale, ContactContent> = {
@@ -48,6 +76,7 @@ export const contactContent: Record<Locale, ContactContent> = {
     successTitle: "You're in good hands.",
     successSubtitle:
       "We've received your message and will reach out within one business day. Check your inbox.",
+    confirmFlash: "Message sent",
     errorMessage: "Something went wrong. Please try again or email us directly.",
     nameLabel: "Full Name",
     namePlaceholder: "Your name",
@@ -58,22 +87,22 @@ export const contactContent: Record<Locale, ContactContent> = {
     phoneLabel: "Phone Number",
     phonePlaceholder: "+1 (555) 000-0000 (optional)",
     serviceLabel: "What are you looking for?",
-    messageLabel: "Tell Us About Your Project",
+    messageLabel: "Comments",
     messagePlaceholder:
       "What's your biggest marketing challenge right now? What does success look like in 12 months?",
     submitButton: "Send Message",
     submittingButton: "Sending…",
     sidebarTitle: "What Happens Next",
     sidebarSubtitle: "We keep things simple. No long waits, no pressure.",
-    step1Title: "We review your message",
+    step1Title: "You book or write us",
     step1Desc:
-      "A senior strategist reads every submission, not a bot. You'll hear from us within one business day.",
-    step2Title: "We schedule a call",
+      "Pick a call time above, or send a short message. Either way, a strategist reviews it personally.",
+    step2Title: "We confirm within a day",
     step2Desc:
-      "If there's a fit, we'll book a 30-minute discovery call to dig into your goals and challenges.",
-    step3Title: "You get a clear proposal",
+      "You'll get a confirmation and, if needed, a quick reply before we meet.",
+    step3Title: "Clear next steps",
     step3Desc:
-      "A custom strategy and scope tailored to your business, with pricing that makes sense.",
+      "On the call we map what's broken, what to fix first, and whether we're the right fit.",
     trustLabel1: "< 24hr response",
     trustLabel2: "No lock-in contracts",
     trustLabel3: "Free initial consultation",
@@ -90,6 +119,30 @@ export const contactContent: Record<Locale, ContactContent> = {
       "Other / Not Sure Yet",
     ],
     formFootnote: "No long-term contracts. Month to month. We'll never share your details.",
+    booking: {
+      title: "Book a strategy call",
+      subtitle:
+        "30 minutes. Weekdays. We'll look at what's leaking and whether we can help.",
+      timezoneNote: "24-hour minimum notice",
+      timeLabel: "Times",
+      pickDateHint: "Choose a date to see open times.",
+      noSlots: "No open times this day. Try another date.",
+      notesLabel: "Notes (optional)",
+      notesPlaceholder: "Biggest challenge right now…",
+      submitButton: "Book strategy call",
+      submittingButton: "Booking…",
+      successTitle: "You're booked.",
+      successSubtitle: "We got your request and will confirm shortly. Check your inbox.",
+      confirmFlash: "Call booked",
+      errorMessage: "Something went wrong. Please try again or email us directly.",
+      selectSlotError: "Choose a date and time to continue.",
+      footnote: "Confirmation by email. No payment to book.",
+      prevMonth: "Previous month",
+      nextMonth: "Next month",
+      orDivider: "Or send a message instead",
+      tabLabel: "Book a call",
+      messageTabLabel: "Send a message",
+    },
   },
   es: {
     heroTitle: "Empieza con una conversación, no con un pitch.",
@@ -101,6 +154,7 @@ export const contactContent: Record<Locale, ContactContent> = {
     successTitle: "Estás en buenas manos.",
     successSubtitle:
       "Recibimos tu mensaje y nos pondremos en contacto en un día hábil. Revisa tu bandeja de entrada.",
+    confirmFlash: "Mensaje enviado",
     errorMessage: "Algo salió mal. Por favor intenta de nuevo o escríbenos directamente.",
     nameLabel: "Nombre Completo",
     namePlaceholder: "Tu nombre",
@@ -111,22 +165,22 @@ export const contactContent: Record<Locale, ContactContent> = {
     phoneLabel: "Teléfono",
     phonePlaceholder: "+1 (555) 000-0000 (opcional)",
     serviceLabel: "¿Qué estás buscando?",
-    messageLabel: "Cuéntanos Sobre Tu Proyecto",
+    messageLabel: "Comentarios",
     messagePlaceholder:
       "¿Cuál es tu mayor desafío de marketing ahora? ¿Cómo sería el éxito en 12 meses?",
     submitButton: "Enviar Mensaje",
     submittingButton: "Enviando…",
     sidebarTitle: "¿Qué Pasa Después?",
     sidebarSubtitle: "Lo mantenemos simple. Sin largas esperas, sin presión.",
-    step1Title: "Revisamos tu mensaje",
+    step1Title: "Agenda o escríbenos",
     step1Desc:
-      "Un estratega senior lee cada envío, no un bot. Tendrás respuesta en un día hábil.",
-    step2Title: "Agendamos una llamada",
+      "Elige un horario arriba o envía un mensaje corto. Un estratega lo revisa en persona.",
+    step2Title: "Confirmamos en un día",
     step2Desc:
-      "Si hay compatibilidad, programamos una llamada de 30 minutos para explorar tus objetivos.",
-    step3Title: "Recibes una propuesta clara",
+      "Recibes confirmación y, si hace falta, una respuesta rápida antes de la llamada.",
+    step3Title: "Próximos pasos claros",
     step3Desc:
-      "Una estrategia personalizada adaptada a tu negocio, con precios que tienen sentido.",
+      "En la llamada mapeamos qué falla, qué arreglar primero y si somos el equipo adecuado.",
     trustLabel1: "Respuesta < 24hrs",
     trustLabel2: "Sin contratos forzados",
     trustLabel3: "Consulta inicial gratuita",
@@ -143,5 +197,29 @@ export const contactContent: Record<Locale, ContactContent> = {
       "Otro / Aún no estoy seguro",
     ],
     formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
+    booking: {
+      title: "Agenda una llamada de estrategia",
+      subtitle:
+        "30 minutos. Entre semana. Revisamos qué está fallando y si podemos ayudar.",
+      timezoneNote: "Aviso mínimo de 24 horas",
+      timeLabel: "Horarios",
+      pickDateHint: "Elige una fecha para ver horarios.",
+      noSlots: "No quedan horarios este día. Prueba otra fecha.",
+      notesLabel: "Notas (opcional)",
+      notesPlaceholder: "Tu mayor desafío ahora…",
+      submitButton: "Reservar llamada",
+      submittingButton: "Reservando…",
+      successTitle: "Quedó agendada.",
+      successSubtitle: "Recibimos tu solicitud y confirmaremos pronto. Revisa tu bandeja de entrada.",
+      confirmFlash: "Llamada reservada",
+      errorMessage: "Algo salió mal. Intenta de nuevo o escríbenos directamente.",
+      selectSlotError: "Elige una fecha y hora para continuar.",
+      footnote: "Confirmación por correo. Sin pago para reservar.",
+      prevMonth: "Mes anterior",
+      nextMonth: "Mes siguiente",
+      orDivider: "O envía un mensaje",
+      tabLabel: "Agendar llamada",
+      messageTabLabel: "Enviar mensaje",
+    },
   },
 };

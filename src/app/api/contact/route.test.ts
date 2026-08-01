@@ -1,4 +1,6 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+const sendMock = vi.fn();
 
 vi.mock("@/lib/rate-limit", () => ({
   getClientIp: () => "127.0.0.1",
@@ -13,24 +15,28 @@ vi.mock("@/lib/honeypot", () => ({
   validateHoneypot: () => ({ blocked: false }),
 }));
 
-vi.mock("nodemailer", () => ({
-  default: {
-    createTransport: () => ({
-      sendMail: vi.fn().mockResolvedValue({ messageId: "test-id" }),
-    }),
-  },
+vi.mock("@opennextjs/cloudflare", () => ({
+  getCloudflareContext: vi.fn(async () => ({
+    env: {
+      EMAIL: { send: sendMock },
+      CONTACT_TO_EMAIL: "hello@kinexisdigital.com,coltondwehr@icloud.com",
+      CONTACT_FROM_EMAIL: "hello@kinexisdigital.com",
+    },
+  })),
 }));
 
 describe("POST /api/contact", () => {
   beforeEach(() => {
     vi.unstubAllEnvs();
     vi.stubEnv("NODE_ENV", "development");
-    vi.stubEnv("CONTACT_TO_EMAIL", "team@kinexisdigital.com");
-    vi.stubEnv("GMAIL_USER", "test@gmail.com");
-    vi.stubEnv("GMAIL_APP_PASSWORD", "testpass");
+  });
+
+  afterEach(() => {
+    sendMock.mockReset();
   });
 
   async function postContact(body: Record<string, unknown>) {
+    vi.resetModules();
     const { POST } = await import("@/app/api/contact/route");
     const request = new Request("https://www.kinexisdigital.com/api/contact", {
       method: "POST",
@@ -73,14 +79,21 @@ describe("POST /api/contact", () => {
     expect((await res.json()).error).toContain("Name is too long");
   });
 
-  it("returns 200 for valid submission in dev mode", async () => {
+  it("sends email via Cloudflare Email binding", async () => {
+    sendMock.mockResolvedValue(undefined);
     const res = await postContact({
       name: "John",
       email: "john@example.com",
       message: "Hello!",
     });
     expect(res.status).toBe(200);
-    const body = await res.json();
-    expect(body.success).toBe(true);
+    await expect(res.json()).resolves.toEqual({ success: true });
+    expect(sendMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        to: ["hello@kinexisdigital.com", "coltondwehr@icloud.com"],
+        replyTo: "john@example.com",
+        subject: "New Inquiry from John",
+      }),
+    );
   });
 });

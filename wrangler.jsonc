@@ -41,5 +41,21 @@
       "binding": "RATE_LIMIT_KV",
       "id": "e9a0644375534bad892eccb5b1f13ba7"
     }
-  ]
+  ],
+  // Cloudflare Email Sending — same pattern as callpreferredplumbing / a1pslandscape.
+  // TO addresses must be verified destinations (Email Service → Destination Addresses).
+  // Do NOT enable Email Routing on this zone — MX stays on Zoho for hello@.
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_destination_addresses": [
+        "hello@kinexisdigital.com",
+        "coltondwehr@icloud.com"
+      ]
+    }
+  ],
+  "vars": {
+    "CONTACT_TO_EMAIL": "hello@kinexisdigital.com",
+    "CONTACT_FROM_EMAIL": "forms@kinexisdigital.com"
+  }
 }

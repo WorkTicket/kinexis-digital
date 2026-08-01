@@ -188,40 +188,57 @@
       "revenue": "$K MRR"
     }
   },
+  "proofStrip": {
+    "credibility": "Verified client outcomes from live programs, not projections or vanity metrics.",
+    "viewAll": "View case studies",
+    "aggregateMeta": "Across published studies"
+  },
   "servicesEcosystem": {
-    "label": "Connected Services",
-    "title": "Services that work together.",
-    "subtitle": "SEO feeds content. Content feeds funnels. Funnels feed email. Run them separately and they perform like separate services. Build them as one program and each one amplifies the rest."
+    "label": "Services",
+    "title": "Four pillars. One growth system.",
+    "subtitle": "Each capability is strong on its own. Connected, they stop leaking leads between channels and start compounding.",
+    "pillars": {
+      "seo": "Rank where buyers already search, then keep the pages fast, clear, and ready to convert.",
+      "paid": "Spend that pays for itself. Campaigns built around qualified demand, not click volume.",
+      "web": "Sites and experiences that make the next step obvious on every device.",
+      "funnels": "Landing pages and nurture paths that turn attention into booked calls and revenue."
+    }
   },
   "featuredResults": {
     "label": "Proven Results",
     "title": "Outcomes, not opinions.",
-    "subtitle": "Three verified client results across home services and technology. Strategy, execution timeline, and real revenue numbers.",
-    "cases": {
-      "landscaping": {
-        "category": "Home Services",
-        "title": "Landscaping Company",
-        "headline": "4.8X Qualified Lead Growth",
-        "summary": "A complete SEO and site rebuild. Qualified leads went from 10 to 48 per month, organic traffic up 1,290%, and conversion rate from 1.8% to 8.4%."
-      },
-      "plumbing": {
-        "category": "Home Services",
-        "title": "Plumbing Company",
-        "headline": "327% More Emergency Calls",
-        "summary": "Family-owned plumber escaped paid ad dependency. Emergency calls went from 22 to 94 per month, ad spend cut by 65%, and local pack dominance achieved."
-      },
-      "saas": {
-        "category": "Technology",
-        "title": "SaaS Platform",
-        "headline": "5.9X More Demos",
-        "summary": "B2B SaaS scaled demo requests from 32 to 189 per month through content marketing and technical SEO. MRR grew from $8.5K to $33K in 8 months."
-      }
-    }
+    "subtitle": "Three verified client results across home services and e-commerce. Strategy, execution timeline, and real revenue numbers."
   },
   "philosophy": {
     "label": "Why Clients Switch To KINEXIS",
     "title": "You've been here before.",
     "subtitle": "Another agency. Another promise. Another quarterly report full of impressions that don't touch your pipeline.",
+    "dimensionLabel": "Where it breaks",
+    "typicalAgency": "Typical agency",
+    "signalLabel": "What leads the conversation",
+    "signalBefore": "Activity",
+    "signalAfter": "Revenue",
+    "dimensions": [
+      "Communication",
+      "Reporting",
+      "Transparency",
+      "Measurement",
+      "Ownership"
+    ],
+    "beforeDetails": [
+      "Three-day email loops. Urgent issues wait for the next scheduled call.",
+      "A quarterly PDF that tells you what happened, never what changes next.",
+      "Unclear scope, black-box billing, and no view into who does the work.",
+      "Impressions climb while qualified leads and pipeline stay flat.",
+      "A new account manager arrives just as the last one learns your business."
+    ],
+    "afterDetails": [
+      "A clear weekly digest, plus direct access when something cannot wait.",
+      "Live KPIs, plain-language context, and the next decision already defined.",
+      "You see the work, the spend, and the reasoning behind every move.",
+      "Qualified leads, close rate, ROAS, and LTV set the agenda.",
+      "One senior strategist holds the context and owns the outcome."
+    ],
     "before": "Before",
     "after": "After",
     "agencyA": "Agency A",
@@ -302,9 +319,9 @@
   },
   "cookies": {
     "title": "We use cookies",
-    "description": "We use essential cookies to run this site and, with your consent, analytics cookies to understand how visitors use kinexisdigital.com. See our",
+    "description": "We use essential cookies to run this site and, with your consent, analytics and advertising cookies (Google Analytics, Google Ads, Microsoft Clarity) to measure traffic and attribute campaigns. See our",
     "privacyLink": "Privacy Policy",
-    "accept": "Accept analytics",
+    "accept": "Accept",
     "reject": "Reject non-essential"
   },
   "notFound": {

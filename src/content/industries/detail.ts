@@ -8,7 +8,7 @@ function industryServiceDescription(slug: ServiceSlug, industry: IndustryEntry):
   const byService: Partial<Record<ServiceSlug, string>> = {
     seo: `${industry.label} buyers search before they buy. We build the rankings, content, and local visibility to get you in front of them.`,
     "google-ads": `Paid search and local service ads tuned to ${label} buyer intent, with landing pages and call tracking that tie spend to booked work.`,
-    "ppc-management": `Google Ads and cross-channel paid media for ${label} companies — Search, Shopping, Performance Max, and coordinated Meta or LinkedIn when needed. Built around cost per lead and booked revenue, not impressions.`,
+    "ppc-management": `Google Ads and cross-channel paid media for ${label} companies: Search, Shopping, Performance Max, and coordinated Meta or LinkedIn when needed. Built around cost per lead and booked revenue, not impressions.`,
     "meta-ads": `Facebook and Instagram campaigns for ${label} brands that need demand creation and retargeting, with creative tested against real conversion data.`,
     "web-design": `Sites built for how ${label} prospects compare options, build trust, and take action. Fast, mobile-first, and wired to your CRM.`,
     cro: `Testing and UX fixes on the pages where ${label} leads convert. We find the friction that's costing you revenue.`,
@@ -97,14 +97,14 @@ const industryOutcomeMap: Record<string, { value: string; label: string }[]> = {
     { value: "41", label: "signed contracts per month · post-campaign" },
   ],
   landscaping: [
-    { value: "4.8X", label: "qualified lead growth · Landscaping Co., 10 mo" },
-    { value: "+1,290%", label: "organic traffic · same client" },
-    { value: "8.4%", label: "lead conversion rate · post-rebuild" },
+    { value: "2.8X", label: "qualified lead growth · Landscaping Co., 10 mo" },
+    { value: "+181%", label: "organic traffic · same client" },
+    { value: "3.9%", label: "lead conversion rate · post-rebuild" },
   ],
   plumbing: [
-    { value: "327%", label: "emergency call growth · Plumbing Co., 8 mo" },
-    { value: "65%", label: "ad spend reduction · same client" },
-    { value: "94", label: "emergency calls per month" },
+    { value: "136%", label: "emergency call growth · Plumbing Co., 8 mo" },
+    { value: "40%", label: "ad spend reduction · same client" },
+    { value: "52", label: "emergency calls per month" },
   ],
   electrical: [
     { value: "2.9X", label: "quote requests · licensed-trades campaign" },
@@ -118,9 +118,9 @@ const industryOutcomeMap: Record<string, { value: string; label: string }[]> = {
   ],
   // Technology
   saas: [
-    { value: "5.9X", label: "demo requests · SaaS Platform, 8 mo" },
+    { value: "2.4X", label: "monthly orders · Manos Creativas, 8 mo" },
     { value: "43%", label: "CAC reduction · organic channels" },
-    { value: "$33K", label: "MRR · marketing-attributed" },
+    { value: "$17.2K", label: "MRR · marketing-attributed" },
   ],
   startups: [
     { value: "475%", label: "inbound lead growth · pre-Series A" },
@@ -430,7 +430,15 @@ export function buildIndustryDetailContent(industry: IndustryEntry, locale: Loca
   };
 }
 
-export const industriesHubContent: Record<Locale, { meta: { title: string; description: string }; hero: { label: string; headlineLine1: string; headlineLine2: string; subtitle: string }; intro: { title: string; paragraphs: string[]; ctaLabel: string } }> = {
+export const industriesHubContent: Record<
+  Locale,
+  {
+    meta: { title: string; description: string };
+    hero: { label: string; headlineLine1: string; headlineLine2: string; subtitle: string };
+    intro: { title: string; paragraphs: string[]; ctaLabel: string };
+    cta: { headline: string; subtitle: string };
+  }
+> = {
   en: {
     meta: {
       title: "Industries We Serve | KINEXIS Digital",
@@ -452,6 +460,11 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
       ],
       ctaLabel: "Book a Strategy Call",
     },
+    cta: {
+      headline: "Don't see your industry?",
+      subtitle:
+        "We work across dozens of verticals. Book a strategy call and we'll outline an approach for your market.",
+    },
   },
   es: {
     meta: {
@@ -469,4 +482,10 @@ export const industriesHubContent: Record<Locale, { meta: { title: string; descr
       ],
       ctaLabel: "Reservar una llamada estratégica",
     },
-  },};
+    cta: {
+      headline: "¿No ves tu industria?",
+      subtitle:
+        "Trabajamos en docenas de verticales. Reserva una llamada estratégica y te presentamos un enfoque para tu mercado.",
+    },
+  },
+};
