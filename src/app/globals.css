@@ -761,7 +761,6 @@ body {
 
 .media-reveal--float {
   transform-origin: center bottom;
-  will-change: transform, opacity, filter;
 }
 
 .media-reveal__mask {
@@ -775,7 +774,6 @@ body {
   display: block;
   width: 100%;
   transform-origin: center center;
-  will-change: transform;
 }
 
 .result-row__media-reveal {
@@ -2227,11 +2225,23 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 
 .result-row__media {
   width: 100%;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .result-row:hover .result-row__media {
-  transform: translateY(-6px);
+  transform: translate3d(0, -6px, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result-row__media {
+    transition: none;
+  }
+
+  .result-row:hover .result-row__media {
+    transform: none;
+  }
 }
 
 .result-row__body {
@@ -2517,7 +2527,7 @@ html[data-theme="dark"] .mesh-fallback__sheen {
   border-radius: 0.85rem;
   background: color-mix(in oklab, var(--foreground) 6%, transparent);
   color: var(--hero-signal);
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background-color 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .explore-path__icon svg {
@@ -2575,7 +2585,7 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 
 .explore-path:hover .explore-path__icon,
 .explore-path:focus-visible .explore-path__icon {
-  transform: scale(1.04);
+  background: color-mix(in oklab, var(--foreground) 9%, transparent);
 }
 
 @media (min-width: 768px) {
@@ -2631,7 +2641,7 @@ html[data-theme="dark"] .mesh-fallback__sheen {
   }
 
   .explore-path:hover .explore-path__icon {
-    transform: none;
+    background: color-mix(in oklab, var(--foreground) 6%, transparent);
   }
 }
 
@@ -2697,6 +2707,8 @@ html[data-theme="dark"] .mesh-fallback__sheen {
   background: color-mix(in oklab, var(--foreground) 4%, transparent);
   text-decoration: none;
   color: inherit;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   transition:
     background-color 280ms ease,
     transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -2714,10 +2726,8 @@ html[data-theme="dark"] .mesh-fallback__sheen {
   object-position: left top;
   filter: none;
   opacity: 0.9;
-  transform: scale(1.01);
-  transition:
-    transform 560ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 320ms ease;
+  backface-visibility: hidden;
+  transition: opacity 320ms ease;
 }
 
 .resource-tile__scrim {
@@ -2741,7 +2751,6 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 
 .resource-tile:hover .resource-tile__photo,
 .resource-tile:focus-visible .resource-tile__photo {
-  transform: scale(1.03);
   opacity: 1;
 }
 
@@ -2911,11 +2920,6 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 
   .resource-tile:hover,
   .resource-tile:focus-visible {
-    transform: none;
-  }
-
-  .resource-tile:hover .resource-tile__photo,
-  .resource-tile:focus-visible .resource-tile__photo {
     transform: none;
   }
 
@@ -4325,17 +4329,14 @@ html[data-theme="dark"] .work-roster__logo {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   background: #06070b;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .markets-folio__media .ind-visual__img--thumb {
   object-fit: cover !important;
   object-position: center center !important;
-  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.markets-folio__item:hover .markets-folio__media .ind-visual__img--thumb,
-.markets-folio__item:focus-visible .markets-folio__media .ind-visual__img--thumb {
-  transform: scale(1.04);
+  backface-visibility: hidden;
 }
 
 .markets-folio__body {
@@ -4413,15 +4414,9 @@ html[data-theme="dark"] .work-roster__logo {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .markets-folio__media .ind-visual__img--thumb,
   .markets-folio__title,
   .markets-folio__arrow {
     transition: none;
-  }
-
-  .markets-folio__item:hover .markets-folio__media .ind-visual__img--thumb,
-  .markets-folio__item:focus-visible .markets-folio__media .ind-visual__img--thumb {
-    transform: none;
   }
 
   .markets-folio__item:hover .markets-folio__arrow,
@@ -7199,6 +7194,8 @@ html[data-theme="dark"] .work-roster__logo {
   aspect-ratio: 3 / 2;
   overflow: hidden;
   background: #06070b;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .industry-atlas__media .ind-visual__img--thumb,
@@ -7208,14 +7205,7 @@ html[data-theme="dark"] .work-roster__logo {
   inset: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.industry-atlas__link:hover .industry-atlas__media .ind-visual__img--thumb,
-.industry-atlas__link:hover .industry-atlas__media .ind-visual__img--panel,
-.industry-atlas__link:focus-visible .industry-atlas__media .ind-visual__img--thumb,
-.industry-atlas__link:focus-visible .industry-atlas__media .ind-visual__img--panel {
-  transform: scale(1.03);
+  backface-visibility: hidden;
 }
 
 .industry-atlas__copy {
@@ -7301,18 +7291,9 @@ html[data-theme="dark"] .work-roster__logo {
 
 @media (prefers-reduced-motion: reduce) {
   .industry-atlas__link,
-  .industry-atlas__media .ind-visual__img--thumb,
-  .industry-atlas__media .ind-visual__img--panel,
   .industry-atlas__title,
   .industry-atlas__cta span[aria-hidden] {
     transition: none;
-  }
-
-  .industry-atlas__link:hover .industry-atlas__media .ind-visual__img--thumb,
-  .industry-atlas__link:hover .industry-atlas__media .ind-visual__img--panel,
-  .industry-atlas__link:focus-visible .industry-atlas__media .ind-visual__img--thumb,
-  .industry-atlas__link:focus-visible .industry-atlas__media .ind-visual__img--panel {
-    transform: none;
   }
 
   .industry-atlas__link:hover .industry-atlas__cta span[aria-hidden],
@@ -8186,6 +8167,8 @@ html[data-theme="dark"] .work-roster__logo {
   width: 100%;
   overflow: hidden;
   background: #06070b;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .ind-visual--hero {
@@ -8197,6 +8180,7 @@ html[data-theme="dark"] .work-roster__logo {
 .ind-visual__img {
   object-fit: cover;
   object-position: center center;
+  backface-visibility: hidden;
 }
 
 /* Hub atlas + markets: fill matched 3:2 frames edge-to-edge */

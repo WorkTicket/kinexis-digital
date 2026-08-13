@@ -345,8 +345,6 @@ export function MediaReveal({
             x,
             rotateX: 12,
             rotateY: from === "right" ? -8 : 8,
-            scale: 0.92,
-            filter: "blur(10px)",
           },
           visible: {
             opacity: 1,
@@ -354,8 +352,6 @@ export function MediaReveal({
             x: 0,
             rotateX: 0,
             rotateY: 0,
-            scale: 1,
-            filter: "blur(0px)",
           },
         }}
         transition={{
@@ -399,8 +395,8 @@ export function MediaReveal({
         <m.div
           className="media-reveal__scale"
           variants={{
-            hidden: { scale: 1.1, opacity: 0.65 },
-            visible: { scale: 1, opacity: 1 },
+            hidden: { opacity: 0.65 },
+            visible: { opacity: 1 },
           }}
           transition={{
             duration: duration.clip + 0.25,

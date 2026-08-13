@@ -132,7 +132,6 @@ html[data-theme="dark"],
   border-radius: 0.85rem;
   background: color-mix(in oklab, var(--foreground) 6%, transparent);
   color: var(--industry-accent, var(--hero-signal));
-  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .icon-well svg,
@@ -171,12 +170,6 @@ html[data-theme="dark"],
 @media (min-width: 768px) {
   .surface-tile {
     padding: 1.75rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .icon-well {
-    transition: none;
   }
 }
 

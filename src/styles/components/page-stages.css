@@ -135,6 +135,8 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
   position: relative;
   width: 100%;
   overflow: hidden;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .svc-visual--hero {
@@ -153,6 +155,7 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
 .svc-visual__img {
   object-fit: cover;
   object-position: center;
+  backface-visibility: hidden;
 }
 
 /* Shared service stage shell (signal language) */

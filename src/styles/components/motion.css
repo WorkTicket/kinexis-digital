@@ -7,16 +7,15 @@
 /* Cards — lift, border, and soft light (class used by cardClasses) */
 .motion-card {
   --motion-card-y: 0px;
-  --motion-card-scale: 1;
   position: relative;
   isolation: isolate;
-  transform: translate3d(0, var(--motion-card-y), 0) scale(var(--motion-card-scale));
+  transform: translate3d(0, var(--motion-card-y), 0);
+  backface-visibility: hidden;
   transition:
     transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 280ms ease,
     box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
     background-color 280ms ease;
-  will-change: transform;
 }
 
 .motion-card::after {
@@ -44,7 +43,6 @@
 @media (hover: hover) and (pointer: fine) {
   .motion-card:hover {
     --motion-card-y: -5px;
-    --motion-card-scale: 1.01;
     border-color: color-mix(in oklab, var(--accent) 28%, var(--border-strong, currentColor));
     box-shadow:
       0 1px 0 color-mix(in oklab, #fff 6%, transparent),
@@ -58,7 +56,6 @@
 
   .motion-card:active {
     --motion-card-y: -2px;
-    --motion-card-scale: 0.995;
   }
 }
 
@@ -114,12 +111,6 @@
 @media (hover: hover) and (pointer: fine) {
   .motion-tile:hover {
     transform: translate3d(0, -4px, 0);
-  }
-
-  .motion-card:hover .icon-well,
-  .motion-tile:hover .icon-well,
-  .motion-row:hover .icon-well {
-    transform: scale(1.06);
   }
 }
 
@@ -199,10 +190,7 @@
   .motion-card:hover,
   .motion-card:active,
   .motion-row:hover,
-  .motion-tile:hover,
-  .motion-card:hover .icon-well,
-  .motion-tile:hover .icon-well,
-  .motion-row:hover .icon-well {
+  .motion-tile:hover {
     transform: none !important;
   }
 
@@ -229,7 +217,6 @@ html[data-motion="reduce-mobile"] .icon-well {
 
 html[data-motion="reduce-mobile"] .motion-card:hover {
   --motion-card-y: -2px;
-  --motion-card-scale: 1;
   box-shadow: none;
 }
 
