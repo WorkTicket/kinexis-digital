@@ -9,8 +9,8 @@ html:not(.cookie-pending) .cookie-banner {
   z-index: 9999;
   border-top: 1px solid var(--chrome-glass-border);
   background: var(--chrome-glass);
-  backdrop-filter: var(--chrome-blur, blur(80px) saturate(1.8));
-  -webkit-backdrop-filter: var(--chrome-blur, blur(80px) saturate(1.8));
+  backdrop-filter: blur(80px) saturate(1.8);
+  -webkit-backdrop-filter: blur(80px) saturate(1.8);
   padding: 1rem;
   padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
 }

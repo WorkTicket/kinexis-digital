@@ -53,10 +53,12 @@
   }
 }
 
-/* Content sits above the fixed atmosphere */
+/* Content sits above the fixed atmosphere.
+   Padding holds the space the fixed header no longer occupies in-flow. */
 .site-shell {
   position: relative;
   z-index: 1;
+  padding-top: var(--site-header-h);
 }
 
 @media (prefers-reduced-motion: reduce) {

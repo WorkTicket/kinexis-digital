@@ -270,8 +270,8 @@ body {
 .chrome-glass {
   background: var(--chrome-glass);
   border-color: var(--chrome-glass-border);
-  backdrop-filter: var(--chrome-blur);
-  -webkit-backdrop-filter: var(--chrome-blur);
+  backdrop-filter: blur(80px) saturate(1.8);
+  -webkit-backdrop-filter: blur(80px) saturate(1.8);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -5986,25 +5986,26 @@ html[data-theme="dark"] .work-roster__logo {
 /* ─── Site header / solid flyouts ─── */
 
 .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
   background: transparent;
   border-bottom-color: transparent;
   transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header__frost {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 49;
-  height: var(--site-header-h);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
   pointer-events: none;
   background: var(--chrome-glass);
   border-bottom: 1px solid var(--chrome-glass-border);
-  backdrop-filter: var(--chrome-blur, blur(80px) saturate(1.8));
-  -webkit-backdrop-filter: var(--chrome-blur, blur(80px) saturate(1.8));
-  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  backdrop-filter: blur(80px) saturate(1.8);
+  -webkit-backdrop-filter: blur(80px) saturate(1.8);
 }
 
 .site-header--hidden {
@@ -6012,6 +6013,7 @@ html[data-theme="dark"] .work-roster__logo {
   pointer-events: none;
 }
 
+.site-header--menu-open .site-header__frost,
 .site-header__frost--solid {
   background: var(--background);
   border-bottom-color: transparent;
@@ -6020,8 +6022,7 @@ html[data-theme="dark"] .work-roster__logo {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-header,
-  .site-header__frost {
+  .site-header {
     transition: none;
   }
 }

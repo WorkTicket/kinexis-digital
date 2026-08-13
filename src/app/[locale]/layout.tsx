@@ -162,8 +162,8 @@ export default async function LocaleLayout({
             <MotionProvider>
               <SiteAnalytics>
                 <SiteAtmosphere />
+                <Header />
                 <div className="site-shell flex min-h-full flex-1 flex-col">
-                  <Header />
                   <div id="main-content" className="flex flex-1 flex-col">
                     {children}
                   </div>
