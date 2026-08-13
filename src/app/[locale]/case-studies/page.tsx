@@ -92,7 +92,6 @@ export default async function WorkIndexPage({ params }: Props) {
                         <SitePreview
                           image={study.image}
                           imageAlt={study.imageAlt}
-                          priority={index === 0}
                         />
                       </DeviceFrame>
                     </MediaReveal>

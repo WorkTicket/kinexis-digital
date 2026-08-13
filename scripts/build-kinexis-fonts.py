@@ -12,6 +12,7 @@ import shutil
 import sys
 from pathlib import Path
 
+from fontTools.subset import Options, Subsetter
 from fontTools.ttLib import TTFont
 from fontTools.varLib import instancer
 
@@ -55,6 +56,14 @@ TEXT_INSTANCES = [
     ("SemiBold", 600, 100.0, 600),
     ("Bold", 700, 100.0, 700),
 ]
+
+# Google Fonts "latin" + punctuation used in EN/ES copy.
+# Keeps woff2 files ~30 KB instead of shipping the full UF glyph set.
+LATIN_UNICODES = (
+    "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,"
+    "U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,"
+    "U+2212,U+2215,U+FEFF,U+FFFD"
+)
 
 
 def set_names(
@@ -128,9 +137,60 @@ def build_family(
         set_names(partial, family=family, style=style, ps_family=ps_family)
 
         out_path = out_dir / f"{ps_family}-{style}.woff2"
+        subset_latin(partial)
         partial.flavor = "woff2"
         partial.save(out_path)
         print(f"    -> {out_path.relative_to(ROOT)} ({out_path.stat().st_size // 1024} KB)")
+
+
+def parse_unicodes(spec: str) -> list[int]:
+    values: list[int] = []
+    for part in spec.split(","):
+        token = part.strip()
+        if not token:
+            continue
+        if "-" in token:
+            start_s, end_s = token.split("-", 1)
+            start = int(start_s.replace("U+", ""), 16)
+            end = int(end_s.replace("U+", ""), 16)
+            values.extend(range(start, end + 1))
+        else:
+            values.append(int(token.replace("U+", ""), 16))
+    return values
+
+
+def subset_latin(font: TTFont) -> None:
+    """Drop unused scripts so each weight stays small enough to preload."""
+    options = Options()
+    options.layout_features = [
+        "kern",
+        "liga",
+        "clig",
+        "calt",
+        "locl",
+        "mark",
+        "mkmk",
+        "ccmp",
+        "rlig",
+    ]
+    options.hinting = True
+    options.desubroutinize = True
+    options.notdef_outline = True
+    options.recommended_glyphs = True
+    subsetter = Subsetter(options=options)
+    subsetter.populate(unicodes=parse_unicodes(LATIN_UNICODES))
+    subsetter.subset(font)
+
+
+def subset_existing_woff2() -> None:
+    """Re-subset already-built files without re-instancing from the VF."""
+    for folder in (DISPLAY_DIR, TEXT_DIR):
+        for path in sorted(folder.glob("*.woff2")):
+            font = TTFont(path)
+            subset_latin(font)
+            font.flavor = "woff2"
+            font.save(path)
+            print(f"  subset {path.relative_to(ROOT)} ({path.stat().st_size // 1024} KB)")
 
 def write_docs() -> None:
     if LICENCE_SRC.exists():
@@ -149,6 +209,7 @@ Changes
 - Custom width/weight instances from Ubuntu Sans variable font
   (wdth ≈ 88 for a sharper, condensed product silhouette)
 - Primary Medium instance biased to wght 520 for wordmark presence
+- Latin (+ Latin-1) subset for EN/ES so each woff2 stays ~30 KB
 - Renamed to "Kinexis Display" per UFL substantial-modification naming
 
 Licence: Ubuntu Font Licence 1.0
@@ -171,6 +232,7 @@ Changes
 -------
 - Full-width (wdth = 100) instances optimized for paragraph and UI reading
 - Weight stops: Light 300, Regular 400, Medium 500, SemiBold 600, Bold 700
+- Latin (+ Latin-1) subset for EN/ES so each woff2 stays ~30 KB
 - Renamed to "Kinexis Text" per UFL substantial-modification naming
 
 Pairs with: Kinexis Display (condensed Ubuntu Sans derivative)
@@ -186,6 +248,12 @@ Built with: scripts/build-kinexis-fonts.py
 
 
 def main() -> None:
+    if "--subset-only" in sys.argv:
+        print("Subsetting existing Kinexis woff2 files…")
+        subset_existing_woff2()
+        print("Done.")
+        return
+
     print("Building Kinexis Display…")
     build_family(
         family="Kinexis Display",

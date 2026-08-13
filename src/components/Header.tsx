@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { useEffect, useId, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -171,11 +171,18 @@ export function Header() {
 
   return (
     <>
+      <div
+        className={cn(
+          "site-header__frost",
+          headerHidden && !menuOpen && "site-header--hidden",
+          menuOpen && "site-header__frost--solid",
+        )}
+        aria-hidden
+      />
       <header
         className={cn(
-          "site-header chrome-glass sticky top-0 z-50 overflow-visible border-b pt-[env(safe-area-inset-top,0px)]",
+          "site-header sticky top-0 z-50 border-b border-transparent pt-[env(safe-area-inset-top,0px)]",
           headerHidden && !menuOpen && "site-header--hidden",
-          menuOpen && "site-header--menu-open",
         )}
       >
         <div className="shell site-header__bar flex items-center gap-4 overflow-visible sm:gap-5 lg:gap-10">
@@ -188,24 +195,7 @@ export function Header() {
               closeMenu();
             }}
           >
-            <Image
-              src="/assets/logos/kinexis-logo-on-light.png"
-              alt="Kinexis Digital"
-              width={827}
-              height={161}
-              className="dark:hidden"
-              style={{ width: "auto" }}
-              priority
-            />
-            <Image
-              src="/assets/logos/kinexis-logo-on-dark.png"
-              alt="Kinexis Digital"
-              width={827}
-              height={161}
-              className="hidden dark:block"
-              style={{ width: "auto" }}
-              priority
-            />
+            <BrandLogo />
           </Link>
 
           <nav

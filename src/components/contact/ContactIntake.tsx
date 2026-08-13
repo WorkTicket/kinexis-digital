@@ -1,10 +1,21 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { ContactForm } from "@/components/contact/ContactForm";
-import { StrategyCallBooking } from "@/components/contact/StrategyCallBooking";
 import type { ContactContent } from "@/content/contact";
 import { cn } from "@/lib/cn";
+
+const StrategyCallBooking = dynamic(
+  () =>
+    import("@/components/contact/StrategyCallBooking").then(
+      (mod) => mod.StrategyCallBooking,
+    ),
+);
+
+const ContactForm = dynamic(
+  () =>
+    import("@/components/contact/ContactForm").then((mod) => mod.ContactForm),
+);
 
 type Props = { content: ContactContent };
 type Tab = "book" | "message";

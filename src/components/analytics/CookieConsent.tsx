@@ -58,27 +58,33 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
   return (
     <CookieConsentContext.Provider value={{ consent: ready ? consent : "pending", ready, accept, reject }}>
       {children}
-      {ready && consent === "pending" && <CookieBanner onAccept={accept} onReject={reject} />}
+      <CookieBanner
+        armed={ready && consent === "pending"}
+        onAccept={accept}
+        onReject={reject}
+      />
     </CookieConsentContext.Provider>
   );
 }
 
 function CookieBanner({
+  armed,
   onAccept,
   onReject,
 }: {
+  armed: boolean;
   onAccept: () => void;
   onReject: () => void;
 }) {
   const bannerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("cookies");
-  useFocusTrap(bannerRef, true);
+  useFocusTrap(bannerRef, armed);
 
   return (
     <div
       ref={bannerRef}
       role="dialog"
-      aria-modal="true"
+      aria-modal={armed || undefined}
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
       className="cookie-banner chrome-glass"

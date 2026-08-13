@@ -9,7 +9,6 @@ import {
   SemrushLogo,
   TikTokLogo,
 } from "@/components/home/certification-logos";
-import { Reveal } from "@/components/ui/Reveal";
 
 const partners = [
   { name: "Google Ads Partner", Icon: GoogleAdsLogo },
@@ -53,22 +52,20 @@ export async function HomeCertifications() {
       aria-labelledby="home-certifications-heading"
       className="cert-strip"
     >
-      <Reveal variant="fadeUp" delay={0.04}>
-        <div className="cert-strip__frame">
-          <div className="shell cert-strip__label-row">
-            <h2 id="home-certifications-heading" className="cert-strip__eyebrow">
-              {t("platformCertified")}
-            </h2>
-          </div>
+      <div className="cert-strip__frame">
+        <div className="shell cert-strip__label-row">
+          <h2 id="home-certifications-heading" className="cert-strip__eyebrow">
+            {t("platformCertified")}
+          </h2>
+        </div>
 
-          <div className="partner-ticker" role="presentation">
-            <div className="partner-ticker__viewport">
-              <TickerTrack />
-              <TickerTrack ariaHidden />
-            </div>
+        <div className="partner-ticker" role="presentation">
+          <div className="partner-ticker__viewport">
+            <TickerTrack />
+            <TickerTrack ariaHidden />
           </div>
         </div>
-      </Reveal>
+      </div>
     </section>
   );
 }

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LcpImage } from "@/components/ui/LcpImage";
 import { cn } from "@/lib/cn";
 
 type SitePreviewProps = {
@@ -19,13 +19,15 @@ export function SitePreview({
 }: SitePreviewProps) {
   return (
     <div className={cn("site-preview", className)}>
-      <Image
+      <LcpImage
         src={image}
         alt={imageAlt}
-        fill
         sizes={sizes}
+        quality={priority ? 75 : 70}
         priority={priority}
         className="site-preview__still object-cover object-top"
+        width={1600}
+        height={1000}
       />
     </div>
   );

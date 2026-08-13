@@ -28,7 +28,7 @@ function CheckIcon() {
   );
 }
 
-export async function ServiceProgramChapter({ service, index }: Props) {
+export async function ServiceProgramChapter({ service }: Props) {
   const t = await getTranslations("common");
   const headingId = `${service.slug}-heading`;
 
@@ -39,7 +39,7 @@ export async function ServiceProgramChapter({ service, index }: Props) {
       className="svc-offer"
     >
       <Reveal variant="fade" when="chapter" className="svc-offer__still">
-        <ServiceLaneArt slug={service.slug} priority={index === 0} />
+        <ServiceLaneArt slug={service.slug} />
       </Reveal>
 
       <div className="svc-offer__body">

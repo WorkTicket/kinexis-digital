@@ -8,6 +8,7 @@ Changes
 -------
 - Full-width (wdth = 100) instances optimized for paragraph and UI reading
 - Weight stops: Light 300, Regular 400, Medium 500, SemiBold 600, Bold 700
+- Latin (+ Latin-1) subset for EN/ES so each woff2 stays ~14 KB
 - Renamed to "Kinexis Text" per UFL substantial-modification naming
 
 Pairs with: Kinexis Display (condensed Ubuntu Sans derivative)

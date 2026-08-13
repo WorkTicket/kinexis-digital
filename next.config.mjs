@@ -55,6 +55,9 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
+  compiler: {
+    removeConsole: isDev ? false : { exclude: ["error", "warn"] },
+  },
 
   // Allow HMR /_next/* when opening via LAN IP (phone, another device, DHCP changes)
   allowedDevOrigins: ["192.168.*.*"],
@@ -66,7 +69,7 @@ const nextConfig = {
     // Production: long CDN TTL. Dev: no optimizer cache so public/ asset swaps show up.
     minimumCacheTTL: isDev ? 0 : 31536000,
     // Next 16 requires an explicit allowlist for non-default qualities.
-    qualities: [75, 90, 92, 100],
+    qualities: [60, 70, 75, 80, 85, 90, 92, 100],
     // Cache-busted industry stills use ?v=… — omit `search` to allow any query.
     localPatterns: [
       { pathname: "/assets/**" },
@@ -78,12 +81,8 @@ const nextConfig = {
   experimental: {
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
-    optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs"],
-    // Inline the route's CSS into a <style> in the <head> instead of emitting a
-    // render-blocking <link rel="stylesheet">. On throttled mobile this removes
-    // an entire request round-trip from the critical path, cutting FCP/LCP by
-    // several hundred ms. The stylesheet is small enough that HTML growth is
-    // offset by the saved round-trip, and HTML is edge-cached via ISR.
+    optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs", "ogl"],
+    // Avoid a render-blocking CSS round-trip on throttled mobile.
     inlineCss: true,
   },
 

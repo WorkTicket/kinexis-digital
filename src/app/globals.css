@@ -88,9 +88,10 @@
   --glass-highlight: rgba(255, 255, 255, 0.7);
   --glass-shadow: 0 24px 48px -28px rgba(15, 23, 42, 0.28);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-  /* Header / footer chrome — white glass */
-  --chrome-glass: rgba(255, 255, 255, 0.72);
+  /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
+  --chrome-glass: rgba(255, 255, 255, 0.46);
   --chrome-glass-border: rgba(0, 0, 0, 0.08);
+  --chrome-blur: blur(40px) saturate(1.8);
 }
 
 .dark,
@@ -101,9 +102,10 @@
   --glass-highlight: rgba(255, 255, 255, 0.22);
   --glass-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.65);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  /* Header / footer chrome — black glass */
-  --chrome-glass: rgba(0, 0, 0, 0.72);
+  /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
+  --chrome-glass: rgba(0, 0, 0, 0.42);
   --chrome-glass-border: rgba(255, 255, 255, 0.1);
+  --chrome-blur: blur(40px) saturate(1.8);
 }
 
 @theme inline {
@@ -117,13 +119,11 @@
   --color-accent-dim: var(--accent-dim);
   --font-sans: var(--font-text);
   --font-display: var(--font-display);
-  --font-script: var(--font-script);
 }
 
 html {
   color-scheme: light;
   background: var(--background);
-  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
@@ -145,13 +145,11 @@ body {
   letter-spacing: 0.005em;
   font-size: 18px;
   line-height: 1.6;
-  overflow-x: clip;
   -webkit-tap-highlight-color: transparent;
 }
 
 .site-shell {
   min-width: 0;
-  overflow-x: clip;
 }
 
 ::selection {
@@ -272,12 +270,13 @@ body {
 .chrome-glass {
   background: var(--chrome-glass);
   border-color: var(--chrome-glass-border);
-  backdrop-filter: blur(16px) saturate(1.35);
-  -webkit-backdrop-filter: blur(16px) saturate(1.35);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .chrome-glass {
+  .chrome-glass,
+  .site-header {
     background: var(--background);
   }
 }
@@ -440,12 +439,12 @@ body {
   }
 }
 
-/* Opening veil — brief dark wash that lifts into the scene */
+/* Opening veil — sits under copy/media so LCP is never covered */
 .hero-veil {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  z-index: 4;
+  z-index: 1;
   background: var(--background);
   opacity: 0;
 }
@@ -507,6 +506,16 @@ body {
   opacity: 1;
 }
 
+/* WebGL plane fades over the static fallback after idle mount */
+.signal-plane-canvas {
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.signal-plane-canvas.is-ready {
+  opacity: 1;
+}
+
 .hero-brand {
   display: inline-block;
   margin: 0;
@@ -557,6 +566,20 @@ body {
   }
 }
 
+/* Mobile: keep the cascade, drop gaussian blur (non-composited, hurts LCP) */
+@media (max-width: 768px) {
+  @keyframes hero-enter {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 1.1rem, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}
+
 @keyframes hero-enter-soft {
   from {
     opacity: 0;
@@ -579,39 +602,18 @@ body {
   }
 }
 
-@keyframes hero-line-rise {
-  from {
-    transform: translate3d(0, 112%, 0);
-    opacity: 0.2;
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-
 @keyframes hero-enter-stage {
   from {
-    opacity: 0;
-    transform: translate3d(0, 3.25rem, 0) scale(0.935);
-    filter: blur(16px);
+    transform: translate3d(0, 1.35rem, 0) scale(0.985);
   }
   to {
-    opacity: 1;
     transform: translate3d(0, 0, 0) scale(1);
-    filter: blur(0);
   }
 }
 
 @keyframes hero-veil-lift {
   0% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0.55;
-  }
-  75% {
-    opacity: 0.12;
+    opacity: 0.35;
   }
   100% {
     opacity: 0;
@@ -673,8 +675,15 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .hero-veil {
-    opacity: 1;
-    animation: hero-veil-lift 1.15s cubic-bezier(0.19, 1, 0.22, 1) 0s forwards;
+    display: none;
+  }
+
+  @media (min-width: 769px) {
+    .hero-veil {
+      display: block;
+      opacity: 0.35;
+      animation: hero-veil-lift 0.55s cubic-bezier(0.19, 1, 0.22, 1) 0s forwards;
+    }
   }
 
   .hero-enter {
@@ -683,37 +692,44 @@ body {
   }
 
   .hero-enter-1 {
-    animation-name: hero-enter-soft;
-    animation-duration: 0.9s;
-    animation-delay: 0.06s;
+    opacity: 1;
+    animation: none;
   }
 
   .hero-enter-1 .hero-brand {
-    animation: hero-brand-track 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.06s
-      forwards;
+    animation: none;
   }
 
+  @media (min-width: 769px) {
+    .hero-enter-1 {
+      opacity: 0;
+      animation-name: hero-enter-soft;
+      animation-duration: 0.9s;
+      animation-delay: 0.06s;
+    }
+
+    .hero-enter-1 .hero-brand {
+      animation: hero-brand-track 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.06s
+        forwards;
+    }
+  }
+
+  /* H1 is the LCP on most templates — paint it immediately */
   .hero-enter-2 {
     opacity: 1;
     animation: none;
   }
 
   .hero-enter-2 .hero-line__text {
-    transform: translate3d(0, 112%, 0);
-    opacity: 0.2;
-    animation: hero-line-rise 1.05s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    transform: none;
+    opacity: 1;
+    animation: none;
   }
 
-  .hero-enter-2 .hero-line:nth-child(1) .hero-line__text {
-    animation-delay: 0.18s;
-  }
-
-  .hero-enter-2 .hero-line:nth-child(2) .hero-line__text {
-    animation-delay: 0.32s;
-  }
-
+  /* Lede stays painted — animating it hides first-viewport copy from Speed Index */
   .hero-enter-3 {
-    animation-delay: 0.46s;
+    opacity: 1;
+    animation: none;
   }
 
   .hero-cta-row {
@@ -722,22 +738,38 @@ body {
 
   .hero-enter-4,
   .hero-enter-4b {
-    opacity: 0;
-    animation: hero-enter 0.9s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    opacity: 1;
+    animation: none;
   }
 
-  .hero-enter-4 {
-    animation-delay: 0.56s;
+  @media (min-width: 769px) {
+    .hero-enter-4,
+    .hero-enter-4b {
+      opacity: 0;
+      animation: hero-enter 0.9s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+
+    .hero-enter-4 {
+      animation-delay: 0.4s;
+    }
+
+    .hero-enter-4b {
+      animation-delay: 0.52s;
+    }
   }
 
-  .hero-enter-4b {
-    animation-delay: 0.68s;
-  }
-
+  /* Stage/media stays visible (LCP on industry / case study) */
   .hero-enter-5 {
-    animation-name: hero-enter-stage;
-    animation-duration: 1.25s;
-    animation-delay: 0.2s;
+    opacity: 1;
+    animation: none;
+  }
+
+  @media (min-width: 769px) {
+    .hero-enter-5 {
+      animation-name: hero-enter-stage;
+      animation-duration: 0.85s;
+      animation-delay: 0s;
+    }
   }
 }
 
@@ -852,6 +884,22 @@ body {
   width: max-content;
   animation: partner-ticker 55s linear infinite;
   will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .partner-ticker__viewport {
+    animation: none;
+    will-change: auto;
+    width: 100%;
+    max-width: 72rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    transform: none;
+  }
+
+  .partner-ticker__track[aria-hidden] {
+    display: none;
+  }
 }
 
 .partner-ticker__track {
@@ -5938,9 +5986,31 @@ html[data-theme="dark"] .work-roster__logo {
 /* ─── Site header / solid flyouts ─── */
 
 .site-header {
-  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform;
+  background: transparent;
   border-bottom-color: transparent;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-header__frost {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 49;
+  height: var(--site-header-h);
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--background);
+  border-bottom: 1px solid var(--chrome-glass-border);
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 769px) {
+  .site-header__frost {
+    background: var(--chrome-glass);
+    backdrop-filter: var(--chrome-blur, blur(40px) saturate(1.8));
+    -webkit-backdrop-filter: var(--chrome-blur, blur(40px) saturate(1.8));
+  }
 }
 
 .site-header--hidden {
@@ -5948,7 +6018,7 @@ html[data-theme="dark"] .work-roster__logo {
   pointer-events: none;
 }
 
-.site-header--menu-open {
+.site-header__frost--solid {
   background: var(--background);
   border-bottom-color: transparent;
   backdrop-filter: none;
@@ -5956,12 +6026,15 @@ html[data-theme="dark"] .work-roster__logo {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-header {
+  .site-header,
+  .site-header__frost {
     transition: none;
   }
 }
 
 .site-header__bar {
+  position: relative;
+  z-index: 1;
   height: 4.5rem;
   max-width: none;
   padding-inline: max(1.25rem, env(safe-area-inset-left, 0px))
@@ -6440,6 +6513,7 @@ html[data-theme="dark"] .work-roster__logo {
   top: 100%;
   left: 50%;
   z-index: 60;
+  display: none;
   width: max-content;
   min-width: 17.5rem;
   max-width: min(22rem, calc(100vw - 2rem));
@@ -6461,6 +6535,7 @@ html[data-theme="dark"] .work-roster__logo {
 }
 
 .nav-flyout__panel--open {
+  display: block;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;

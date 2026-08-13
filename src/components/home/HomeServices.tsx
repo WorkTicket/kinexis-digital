@@ -15,10 +15,8 @@ const tileClass =
 
 function ServiceTile({
   service,
-  priority = false,
 }: {
   service: HomeService;
-  priority?: boolean;
 }) {
   const visual = serviceVisuals[service.slug];
 
@@ -30,8 +28,8 @@ function ServiceTile({
           alt={visual.alt}
           fill
           sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
+          quality={75}
           className="object-cover object-center [backface-visibility:hidden]"
-          priority={priority}
         />
       </div>
       <div className="flex flex-1 flex-col p-6 md:p-7">
@@ -91,9 +89,9 @@ export async function HomeServices() {
           delayChildren={0.08}
           aria-label={t("demandProgramAria")}
         >
-          {services.map((service, index) => (
+          {services.map((service) => (
             <RevealItem key={service.slug} as="li" variant="fadeUp">
-              <ServiceTile service={service} priority={index === 0} />
+              <ServiceTile service={service} />
             </RevealItem>
           ))}
           <RevealItem as="li" variant="fadeUp">

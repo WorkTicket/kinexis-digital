@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LcpImage } from "@/components/ui/LcpImage";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import type { ServiceSlug } from "@/content/services";
 import { serviceVisuals } from "@/content/service-visuals";
@@ -34,17 +34,19 @@ export function ServiceVisual({
         className,
       )}
     >
-      <Image
+      <LcpImage
         src={visual.src}
         alt={visual.alt}
-        fill
         sizes={
           isLane
             ? "(max-width: 1023px) 100vw, 32vw"
             : "(max-width: 767px) 100vw, 44vw"
         }
+        quality={isLane ? 70 : 75}
         className="svc-visual__img"
         priority={priority}
+        width={1200}
+        height={800}
       />
     </MediaFrame>
   );

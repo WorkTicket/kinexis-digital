@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/Button";
 import { CONTACT_EMAIL } from "@/content/contact";
@@ -54,22 +54,7 @@ export async function Footer() {
                 className="site-footer__logo"
                 aria-label={t("logoHome")}
               >
-                <Image
-                  src="/assets/logos/kinexis-logo-on-light.png"
-                  alt="Kinexis Digital"
-                  width={827}
-                  height={161}
-                  className="dark:hidden"
-                  style={{ width: "auto" }}
-                />
-                <Image
-                  src="/assets/logos/kinexis-logo-on-dark.png"
-                  alt="Kinexis Digital"
-                  width={827}
-                  height={161}
-                  className="hidden dark:block"
-                  style={{ width: "auto" }}
-                />
+                <BrandLogo lazy />
               </Link>
               <p className="site-footer__blurb">{t("blurb")}</p>
               <div className="site-footer__contact">

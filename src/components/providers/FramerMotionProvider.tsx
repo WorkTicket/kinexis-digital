@@ -1,12 +1,15 @@
 "use client";
 
-import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
+import { LazyMotion, MotionConfig } from "framer-motion";
 import { useContext, useMemo, type ReactNode } from "react";
 import { EASE_OUT } from "@/lib/motion-config";
 import {
   MotionEnvironmentContext,
   MotionFlagsProvider,
 } from "@/components/providers/MotionFlagsProvider";
+
+const loadDomAnimation = () =>
+  import("framer-motion").then((mod) => mod.domAnimation);
 
 function FramerMotionInner({ children }: { children: ReactNode }) {
   const { reduced, mobile } = useContext(MotionEnvironmentContext);
@@ -18,10 +21,9 @@ function FramerMotionInner({ children }: { children: ReactNode }) {
     [reduced, mobile],
   );
 
-  // No `strict` — the app still mixes a few full `motion` helpers (scroll APIs).
-  // Animated UI should prefer `m` from @/lib/framer under this provider.
+  // Features load async so the animation runtime is not in the first JS chunk.
   return (
-    <LazyMotion features={domAnimation}>
+    <LazyMotion features={loadDomAnimation}>
       <MotionConfig
         reducedMotion="user"
         transition={{ duration: resolved.duration, ease: EASE_OUT }}

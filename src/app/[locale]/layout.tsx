@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Allura } from "next/font/google";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
@@ -17,6 +16,7 @@ import {
   getDefaultOgImageUrl,
   getSiteUrl,
 } from "@/lib/metadata";
+import { pickChromeMessages } from "@/lib/chrome-messages";
 import {
   COOKIE_PENDING_CRITICAL_CSS,
   COOKIE_PREFLIGHT_SCRIPT,
@@ -24,33 +24,27 @@ import {
 import { THEME_PREFLIGHT_SCRIPT } from "@/lib/theme";
 import "../globals.css";
 
-const kinexisScript = Allura({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-script",
-  display: "swap",
-});
-
 const kinexisDisplay = localFont({
-  src: [
-    { path: "../../fonts/kinexis-display/KinexisDisplay-Light.woff2", weight: "300", style: "normal" },
-    { path: "../../fonts/kinexis-display/KinexisDisplay-Regular.woff2", weight: "400", style: "normal" },
-    { path: "../../fonts/kinexis-display/KinexisDisplay-Medium.woff2", weight: "500", style: "normal" },
-    { path: "../../fonts/kinexis-display/KinexisDisplay-Bold.woff2", weight: "700", style: "normal" },
-  ],
+  src: "../../fonts/kinexis-display/KinexisDisplay-Bold.woff2",
+  weight: "700",
   variable: "--font-display",
-  display: "swap",
+  display: "optional",
+  preload: true,
+  adjustFontFallback: "Arial",
+  fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
 const kinexisText = localFont({
   src: [
-    { path: "../../fonts/kinexis-text/KinexisText-Light.woff2", weight: "300", style: "normal" },
     { path: "../../fonts/kinexis-text/KinexisText-Regular.woff2", weight: "400", style: "normal" },
     { path: "../../fonts/kinexis-text/KinexisText-Medium.woff2", weight: "500", style: "normal" },
     { path: "../../fonts/kinexis-text/KinexisText-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-text",
-  display: "swap",
+  display: "optional",
+  preload: false,
+  adjustFontFallback: "Arial",
+  fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
 export function generateStaticParams() {
@@ -113,7 +107,7 @@ export default async function LocaleLayout({
   params: LocaleParams;
 }) {
   const locale = await resolveLocale(params);
-  const messages = await getMessages();
+  const messages = pickChromeMessages(await getMessages());
   const t = await getTranslations({ locale, namespace: "a11y" });
   const gtagId =
     process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
@@ -122,44 +116,41 @@ export default async function LocaleLayout({
     <html
       lang={getHtmlLang(locale)}
       suppressHydrationWarning
-      className={`${kinexisDisplay.variable} ${kinexisText.variable} ${kinexisScript.variable} cookie-pending h-full antialiased`}
+      className={`${kinexisDisplay.variable} ${kinexisText.variable} cookie-pending h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_PREFLIGHT_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: COOKIE_PREFLIGHT_SCRIPT }} />
         <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
         {gtagId ? (
-          <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gtagId}`} />
-            <script
-              id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: [
-                  "window.dataLayer=window.dataLayer||[];",
-                  "function gtag(){dataLayer.push(arguments);}",
-                  "window.gtag=gtag;",
-                  "gtag('consent','default',{",
-                  "analytics_storage:'denied',",
-                  "ad_storage:'denied',",
-                  "ad_user_data:'denied',",
-                  "ad_personalization:'denied',",
-                  "wait_for_update:500",
-                  "});",
-                  "gtag('set','url_passthrough',true);",
-                  "gtag('set','ads_data_redaction',true);",
-                  "gtag('js',new Date());",
-                  process.env.NEXT_PUBLIC_GA_ID
-                    ? `gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`
-                    : "",
-                  process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
-                    ? `gtag('config','${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}',{allow_enhanced_conversions:true});`
-                    : "",
-                ]
-                  .filter(Boolean)
-                  .join(""),
-              }}
-            />
-          </>
+          <script
+            id="gtag-init"
+            dangerouslySetInnerHTML={{
+              __html: [
+                "window.dataLayer=window.dataLayer||[];",
+                "function gtag(){dataLayer.push(arguments);}",
+                "window.gtag=gtag;",
+                "gtag('consent','default',{",
+                "analytics_storage:'denied',",
+                "ad_storage:'denied',",
+                "ad_user_data:'denied',",
+                "ad_personalization:'denied',",
+                "wait_for_update:500",
+                "});",
+                "gtag('set','url_passthrough',true);",
+                "gtag('set','ads_data_redaction',true);",
+                "gtag('js',new Date());",
+                process.env.NEXT_PUBLIC_GA_ID
+                  ? `gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`
+                  : "",
+                process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
+                  ? `gtag('config','${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}',{allow_enhanced_conversions:true});`
+                  : "",
+              ]
+                .filter(Boolean)
+                .join(""),
+            }}
+          />
         ) : null}
       </head>
       <body className="min-h-full flex flex-col text-foreground">

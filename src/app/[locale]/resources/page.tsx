@@ -95,6 +95,7 @@ export default async function ResourcesPage({ params }: Props) {
                       alt=""
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      quality={75}
                       className="resource-tile__photo"
                     />
                     <span className="resource-tile__scrim" />

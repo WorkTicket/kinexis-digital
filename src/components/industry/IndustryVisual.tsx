@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LcpImage } from "@/components/ui/LcpImage";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import type { IndustrySlug } from "@/content/industries";
 import { industryVisuals } from "@/content/industry-visuals";
@@ -31,31 +31,33 @@ export function IndustryVisual({
 
   if (variant === "thumb") {
     return (
-      <Image
+      <LcpImage
         src={visual.thumb}
         alt=""
-        fill
         sizes={
           sizes ??
           "(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
         }
-        quality={90}
+        quality={70}
         className={cn("ind-visual__img ind-visual__img--thumb", className)}
         priority={priority}
+        width={720}
+        height={480}
       />
     );
   }
 
   if (variant === "panel") {
     return (
-      <Image
+      <LcpImage
         src={visual.src}
         alt=""
-        fill
         sizes={sizes ?? "(max-width: 1023px) 100vw, 58vw"}
-        quality={100}
+        quality={70}
         className={cn("ind-visual__img ind-visual__img--panel", className)}
         priority={priority}
+        width={1200}
+        height={800}
       />
     );
   }
@@ -66,14 +68,16 @@ export function IndustryVisual({
       size="lg"
       className={cn("ind-visual", "ind-visual--hero", className)}
     >
-      <Image
+      <LcpImage
         src={visual.src}
         alt={visual.alt}
-        fill
         sizes={sizes ?? "(max-width: 767px) 100vw, 44vw"}
-        quality={100}
+        quality={75}
         className="ind-visual__img"
         priority={priority}
+        width={1200}
+        height={800}
+        mobileSrc={priority ? visual.thumb : undefined}
       />
     </MediaFrame>
   );

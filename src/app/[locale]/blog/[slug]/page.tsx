@@ -102,13 +102,11 @@ export default async function BlogPostPage({ params }: PageProps) {
 
       <article className="chapter chapter--void relative">
         <div className="shell relative py-12 md:py-16 lg:py-20">
-          <Reveal variant="fadeUp">
-            <p className="blog-article__dek">{post.excerpt}</p>
-            <div
-              className="blog-article__body"
-              dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }}
-            />
-          </Reveal>
+          <p className="blog-article__dek">{post.excerpt}</p>
+          <div
+            className="blog-article__body"
+            dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }}
+          />
         </div>
       </article>
 

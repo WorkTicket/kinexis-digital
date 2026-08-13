@@ -15,7 +15,6 @@ import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal } from "@/components/ui/Reveal";
 import { clientMarks as clients } from "@/content/client-engagements";
 import { ease } from "@/lib/motion";
-import { useTranslations } from "next-intl";
 
 const VISIBLE = 5;
 const STEP_MS = 2200;
@@ -91,8 +90,19 @@ function ClientSlot({
   );
 }
 
-export function HomeClients() {
-  const t = useTranslations("home");
+type HomeClientsProps = {
+  eyebrow: string;
+  title: string;
+  dek: string;
+  meetClients: string;
+};
+
+export function HomeClients({
+  eyebrow,
+  title,
+  dek,
+  meetClients,
+}: HomeClientsProps) {
   const reduced = useReducedMotion();
   const [slots, setSlots] = useState(() => {
     const preferred = ["uber", "sony", "amazon", "slack", "meta"];
@@ -162,10 +172,10 @@ export function HomeClients() {
         <Reveal variant="fadeUp" delay={0.04} when="chapter">
           <ChapterLead
             className="client-wall__lead"
-            eyebrow={t("clientsEyebrow")}
+            eyebrow={eyebrow}
             headingId="home-clients-heading"
-            title={t("clientsTitle")}
-            dek={t("clientsDek")}
+            title={title}
+            dek={dek}
           />
         </Reveal>
 
@@ -183,7 +193,7 @@ export function HomeClients() {
 
             <div className="client-wall__all">
               <Button href="/clients" variant="link" arrow>
-                {t("meetClients")}
+                {meetClients}
               </Button>
             </div>
           </div>

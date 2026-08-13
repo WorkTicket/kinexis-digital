@@ -29,7 +29,7 @@ function CheckIcon() {
   );
 }
 
-export function IndustryProgramChapter({ industry, index }: Props) {
+export function IndustryProgramChapter({ industry }: Props) {
   const headingId = `${industry.slug}-heading`;
   const standalone = isStandaloneIndustry(industry.slug);
   const focusAreas = industry.domains.slice(0, 4).map((d) => d.title);
@@ -51,7 +51,6 @@ export function IndustryProgramChapter({ industry, index }: Props) {
           <IndustryVisual
             slug={industry.slug}
             variant="panel"
-            priority={index === 0}
             sizes="(max-width: 1023px) 100vw, 42vw"
           />
         </div>

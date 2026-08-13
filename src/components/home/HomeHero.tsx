@@ -14,6 +14,13 @@ export async function HomeHero() {
       aria-labelledby="home-hero-heading"
       className="hero-shell hero-shell--film page-hero relative flex min-h-[100svh] flex-col overflow-x-clip"
     >
+      <link
+        rel="preload"
+        as="image"
+        href="/assets/video/hero-open-v2-poster-sm.webp"
+        type="image/webp"
+        fetchPriority="high"
+      />
       <HeroFilm />
       <div className="hero-film-scrim" aria-hidden />
       <div className="hero-veil" aria-hidden />

@@ -76,7 +76,6 @@ export async function HomeResults() {
                       <SitePreview
                         image={result.image}
                         imageAlt={result.imageAlt}
-                        priority={index === 0}
                       />
                     </DeviceFrame>
                   </MediaReveal>

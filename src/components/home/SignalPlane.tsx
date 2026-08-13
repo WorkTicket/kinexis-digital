@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Mesh, Program, Renderer, Triangle, Vec2 } from "ogl";
 import { useTheme } from "@/components/ThemeProvider";
 import { signalFragment, signalVertex } from "@/components/home/signal-shaders";
@@ -15,6 +15,7 @@ type SignalPlaneProps = {
 
 export function SignalPlane({ onUnsupported }: SignalPlaneProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [ready, setReady] = useState(false);
   const { theme } = useTheme();
   const themeRef = useRef(theme);
 
@@ -160,7 +161,10 @@ export function SignalPlane({ onUnsupported }: SignalPlaneProps) {
     window.addEventListener("resize", resize);
     window.addEventListener("pointermove", onPointerMove, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
-    raf = requestAnimationFrame(frame);
+    raf = requestAnimationFrame((now) => {
+      frame(now);
+      setReady(true);
+    });
 
     return () => {
       running = false;
@@ -178,7 +182,7 @@ export function SignalPlane({ onUnsupported }: SignalPlaneProps) {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none absolute inset-0 h-full w-full"
+      className={`signal-plane-canvas pointer-events-none absolute inset-0 h-full w-full${ready ? " is-ready" : ""}`}
     />
   );
 }

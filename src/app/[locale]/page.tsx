@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import { HomeCertifications } from "@/components/home/HomeCertifications";
-import { HomeClients } from "@/components/home/HomeClients";
 import { HomeCTA } from "@/components/home/HomeCTA";
 import { HomeExplore } from "@/components/home/HomeExplore";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeProcess } from "@/components/home/HomeProcess";
 import { HomeResults } from "@/components/home/HomeResults";
 import { HomeServices } from "@/components/home/HomeServices";
-import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
 import { getTranslations } from "next-intl/server";
@@ -20,6 +19,13 @@ import {
   organizationSchema,
   websiteSchema,
 } from "@/lib/schema";
+
+const HomeClients = dynamic(() =>
+  import("@/components/home/HomeClients").then((mod) => mod.HomeClients),
+);
+const FaqAccordion = dynamic(() =>
+  import("@/components/page/FaqAccordion").then((mod) => mod.FaqAccordion),
+);
 
 type Props = { params: LocaleParams };
 
@@ -52,7 +58,12 @@ export default async function Home({ params }: Props) {
       <main className="flex flex-1 flex-col">
         <HomeHero />
         <HomeCertifications />
-        <HomeClients />
+        <HomeClients
+          eyebrow={t("clientsEyebrow")}
+          title={t("clientsTitle")}
+          dek={t("clientsDek")}
+          meetClients={t("meetClients")}
+        />
         <HomeServices />
         <HomeResults />
         <HomeProcess />
