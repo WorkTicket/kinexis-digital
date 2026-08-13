@@ -22,7 +22,7 @@ const familySurfaces: Record<Family, Parameters<typeof Card>[0]["surface"]> = {
 
 const familyExtras: Record<Family, string> = {
   glass: "",
-  editorial: "border-0 border-b border-surface rounded-none bg-transparent pb-6",
+  editorial: "border-0 rounded-none bg-transparent pb-6",
   dashboard: "bg-bg-dark",
   showcase: "relative overflow-hidden bg-bg-secondary",
   interactive: "bg-bg-secondary",

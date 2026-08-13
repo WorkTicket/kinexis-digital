@@ -23,8 +23,8 @@ For each website conversion:
 
 Optional destination URLs (backup signal, same conversion action — do **not** create a second action that would double-count):
 
-- Lead: `https://www.kinexisdigital.com/en/thank-you`
-- Audit: `https://www.kinexisdigital.com/en/thank-you/audit`
+- Lead: `https://www.kinexisdigital.com/thank-you`
+- Audit: `https://www.kinexisdigital.com/thank-you/audit`
 
 Conversions fire from the thank-you page via `gtag('event','conversion')` after a successful form submit.
 
@@ -47,25 +47,25 @@ Redeploy after setting `NEXT_PUBLIC_*` values so they are baked into the client 
 
 ## 3. Campaign final URLs
 
-Always use **locale-prefixed** paths so middleware does not 301:
+Use unprefixed paths. `/en/lp/*` 301s once onto `/lp/*` (the lander still renders).
 
 | Campaign | Final URL |
 |---|---|
-| Google Ads management | `https://www.kinexisdigital.com/en/lp/google-ads-management` |
-| SEO | `https://www.kinexisdigital.com/en/lp/seo` |
-| Local SEO | `https://www.kinexisdigital.com/en/lp/local-seo` |
-| Web design | `https://www.kinexisdigital.com/en/lp/web-design` |
+| Google Ads management | `https://www.kinexisdigital.com/lp/google-ads-management` |
+| SEO | `https://www.kinexisdigital.com/lp/seo` |
+| Local SEO | `https://www.kinexisdigital.com/lp/local-seo` |
+| Web design | `https://www.kinexisdigital.com/lp/web-design` |
 
 Enable **auto-tagging** (`gclid`) in the Google Ads account settings.
 
-Do **not** point Search ads at `/services/google-ads` — it 301s to `/services/ppc-management`. Use `/en/lp/google-ads-management` instead.
+Do **not** point Search ads at `/services/google-ads` — it 301s to `/services#paid-media`. Use `/lp/google-ads-management` instead.
 
 ## 4. Verify tags
 
 1. Open an LP with Tag Assistant / Ads preview:  
-   `https://www.kinexisdigital.com/en/lp/seo?gclid=test123`
+   `https://www.kinexisdigital.com/lp/seo?gclid=test123`
 2. Accept cookies → confirm Consent Mode updates grant `ad_storage`.
-3. Submit the form with a test email → land on `/en/thank-you`.
+3. Submit the form with a test email → land on `/thank-you`.
 4. Confirm a `conversion` hit with `send_to: AW-…/label` in the network panel or Tag Assistant.
 5. Reject cookies on a fresh session → confirm ads storage stays denied and `url_passthrough` still preserves `gclid` in the URL where applicable.
 6. Check the lead email includes **GCLID** / UTM rows when present.

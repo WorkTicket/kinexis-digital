@@ -1,40 +1,25 @@
-import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import type { Locale } from "@/i18n/routing";
+import { ThankYouView } from "@/components/thank-you/ThankYouView";
+import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildPageMetadata } from "@/lib/metadata";
-import ThankYouClient from "@/components/pages/ThankYouClient";
+import { getTranslations } from "next-intl/server";
 
-type Props = { params: Promise<{ locale: Locale }> };
+type Props = { params: LocaleParams };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: "pages.thankYou" });
   return buildPageMetadata({
     locale,
     path: "/thank-you",
-    title: "Thank you. We'll be in touch",
-    description:
-      "Your message was received. A KINEXIS strategist will follow up shortly.",
+    title: t("eyebrow"),
+    description: t("copy"),
     noIndex: true,
+    noFollow: true,
   });
 }
 
 export default async function ThankYouPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
-  return (
-    <ThankYouClient
-      variant="lead"
-      title="You're in good hands."
-      subtitle="We got your message. A strategist will review it and follow up within one business day."
-      nextStepsTitle="What happens next"
-      nextSteps={[
-        "We review your goals and current setup.",
-        "You'll hear from us with clear next steps, not a generic pitch deck.",
-        "If we're a fit, we schedule a working session to map the plan.",
-      ]}
-      secondaryCtaLabel="Browse case studies"
-      secondaryCtaHref="/case-studies"
-    />
-  );
+  await resolveLocale(params);
+  return <ThankYouView namespace="pages.thankYou" />;
 }

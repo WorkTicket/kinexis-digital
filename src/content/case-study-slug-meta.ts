@@ -67,7 +67,7 @@ export const caseStudySlugMeta: Record<string, CaseStudySlugMeta> = {
       { q: "How were results measured?", a: "Every inbound call was tracked through the call tracking system and matched to its source. Revenue data came from the client's CRM, and ranking data from Search Console and Ahrefs." },
     ],
   },
-  "saas-platform-growth": {
+  "ecommerce-store-growth": {
     timeline: "8 months",
     progressionLabel: "Revenue",
     progressionPrefix: "€",

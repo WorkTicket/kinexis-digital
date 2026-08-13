@@ -98,6 +98,7 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
       },
     ],
   },
+
   es: {
     title: "Política de Privacidad",
     lastUpdated: "24 de junio de 2026",
@@ -178,5 +179,10 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
         paragraphs: ["Para preguntas o solicitudes de privacidad, escribe a hello@kinexisdigital.com."],
       },
     ],
-  },
+  }
+
 };
+
+export function getPrivacyContent(locale: Locale): LegalPageContent {
+  return privacyContent[locale] ?? privacyContent.en;
+}

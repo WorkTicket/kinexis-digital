@@ -198,7 +198,7 @@ try {
 }
 
 // API routes exist (chat widget is client-side only — no /api/chat route)
-for (const api of ["/api/contact", "/api/lead"]) {
+for (const api of ["/api/contact", "/api/booking"]) {
   try {
     const res = await fetch(`${base}${api}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
     // Expect 400/405/422 — not 404

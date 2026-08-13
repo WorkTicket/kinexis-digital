@@ -1,32 +1,30 @@
-import type { Metadata } from "next";
-import { getLocale } from "next-intl/server";
-import NotFoundContent from "@/components/pages/NotFoundContent";
-import { buildPageMetadata } from "@/lib/metadata";
-import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
+import { Button } from "@/components/ui/Button";
 
-const notFoundMeta: Record<Locale, { title: string; description: string }> = {
-  en: {
-    title: "Page Not Found | KINEXIS Digital",
-    description: "This page does not exist. Return to the KINEXIS Digital homepage or contact us to find what you need.",
-  },
-  es: {
-    title: "Página No Encontrada | KINEXIS Digital",
-    description: "Esta página no existe. Vuelve al inicio de KINEXIS Digital o contáctanos para encontrar lo que buscas.",
-  },
-};
+export default async function LocaleNotFound() {
+  const t = await getTranslations("notFound");
 
-export async function generateMetadata(): Promise<Metadata> {
-  const locale = (await getLocale()) as Locale;
-  const meta = notFoundMeta[locale] ?? notFoundMeta.en;
-  return buildPageMetadata({
-    locale,
-    path: "/404",
-    title: meta.title,
-    description: meta.description,
-    noIndex: true,
-  });
-}
-
-export default function NotFound() {
-  return <NotFoundContent />;
+  return (
+    <main className="not-found-shell flex flex-1 flex-col">
+      <div className="shell">
+        <div className="mx-auto w-full max-w-2xl">
+          <p className="section-eyebrow mb-5">404</p>
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(2.35rem,8vw_+_0.25rem,4.85rem)] leading-[1.02] font-bold tracking-[-0.04em] text-balance">
+            {t("title")}.
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+            {t("body")}
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button href="/" size="lg" arrow>
+              {t("home")}
+            </Button>
+            <Button href="/contact" variant="link" arrow>
+              {t("cta")}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
 }

@@ -2,14 +2,13 @@
 
 Production marketing website for [KINEXIS Digital](https://www.kinexisdigital.com) — a premium growth agency focused on strategic websites, SEO, paid media, and measurable business growth.
 
-Built with Next.js 15, TypeScript, and Tailwind CSS. Fully bilingual (English / Spanish) with 395+ statically generated routes across services, industries, locations, blog, case studies, pricing, and comparison pages.
+Built with Next.js 15, TypeScript, and Tailwind CSS. English-only redesign with unprefixed routes across services, industries, blog, case studies, and resources.
 
 ## Tech stack
 
 - **Framework:** Next.js 15 (App Router), React 19, TypeScript
 - **Styling:** Tailwind CSS, Framer Motion
-- **i18n:** next-intl (`en`, `es`)
-- **Forms & API:** Nodemailer (contact, lead magnet), rate limiting, sanitization
+- **Forms & API:** Nodemailer (contact, lead), rate limiting, sanitization
 - **Analytics:** Google Analytics, Microsoft Clarity (cookie-consent gated)
 - **Monitoring:** Sentry (optional)
 - **Deployment:** Cloudflare Workers via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare)
@@ -17,13 +16,12 @@ Built with Next.js 15, TypeScript, and Tailwind CSS. Fully bilingual (English / 
 
 ## Features
 
-- Homepage, about, contact, resources, and lead magnet flows
-- 16 service pages with shared architecture and hero visualizations
-- Industry hub with category and detail pages
-- Location pages (city + city/service combinations)
-- Blog with clustered articles in EN and ES
-- Case studies, pricing tiers, SEO comparison pages, and solution landing pages
+- Homepage, about, contact, clients, resources, and thank-you flows
+- Five-pillar services hub with legacy service URLs redirected to anchors
+- Industry hub with category detail pages
+- Blog and case studies
 - JSON-LD, sitemap, robots.txt, security headers, and OG metadata
+- Legacy `/en/*` and `/es/*` URLs 301 to the redesign
 - Pre-rendered production build committed in `.next/` (webpack cache excluded)
 
 ## Getting started
@@ -122,8 +120,8 @@ Form email uses **Cloudflare Email Service** (`env.EMAIL.send`) — same as call
 
 **Search Console:** Add a **URL prefix** property for `https://www.kinexisdigital.com` (not the bare apex). Verification uses the meta tag from `NEXT_PUBLIC_GSC_VERIFICATION` (already in `src/app/layout.tsx`). After verifying:
 
-1. **Sitemaps** → submit `https://www.kinexisdigital.com/sitemap.xml` (378 URLs)
-2. **URL inspection** → test `https://www.kinexisdigital.com/en` → **Request indexing**
+1. **Sitemaps** → submit `https://www.kinexisdigital.com/sitemap.xml` (~51 unprefixed URLs after cutover)
+2. **URL inspection** → test `https://www.kinexisdigital.com/` → **Request indexing**
 3. Allow 3–14 days for first pages to appear; a new domain is normal to show zero indexed URLs at first
 
 If you use a **Domain** property (`kinexisdigital.com`), verify via DNS TXT in Cloudflare instead of the HTML tag.

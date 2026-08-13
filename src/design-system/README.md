@@ -8,21 +8,19 @@ One authoring path per UI concern. Extend primitives — do not fork styles at t
 | Headers | `<SectionHeader>` |
 | Cards | `<Card>` / `cardClasses()` / `<MetricCard>` |
 | Buttons | `<Button>` / `buttonClasses()` |
-| CTAs | `<SiteCTA>` (+ `<ServiceCTA>` on service pages) |
-| Heroes | `HeroShell` \| `StaticHeroShell` \| `HeroArchetype` |
+| CTAs | `<PageCTA>` |
+| Heroes | `PageHero` / homepage `HeroFilm` |
 | Typography | `.type-hero` \| `.type-section` \| `.type-subheader` \| `.type-body` |
 | Borders | `border-subtle` \| `border-surface` \| `border-strong` |
 | Surfaces | `bg-surface-raised` \| `bg-surface-glass` |
 
 ## Hero routing
 
-- **Homepage** → `HeroShell` (client, LCP-optimized)
-- **SSR service pages** → `StaticHeroShell`
-- **Hub/detail pages** → `HeroArchetype`
-- **Contact** → `StaticHeroShell` compact
-- **Blog/case study** → `StaticHeroShell` article variant
+- **Homepage** → `HeroFilm` / homepage hero stack
+- **Marketing pages** → `PageHero`
+- **Blog / case study** → page-specific headers under `components/blog` and case-study layouts
 
-Shared hero text primitives: `src/components/ui/hero/HeroContent.tsx` (SSR) and `HeroContentMotion.tsx` (animated client heroes)
+Shared page chrome: `src/components/page/` (`PageHero`, `PageCTA`, etc.)
 
 ## Banned patterns
 

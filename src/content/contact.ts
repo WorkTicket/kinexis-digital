@@ -27,6 +27,11 @@ export type ContactBookingContent = {
 
 export type ContactContent = {
   heroTitle: string;
+  heroTitleLine: string;
+  heroSignal: string;
+  heroEyebrow: string;
+  emailEyebrow: string;
+  optionsAria: string;
   heroSubtitle: string;
   formTitle: string;
   formSubtitle: string;
@@ -65,17 +70,22 @@ export type ContactContent = {
   booking: ContactBookingContent;
 };
 
-export const contactContent: Record<Locale, ContactContent> = {
+export const contactContentI18n: Record<Locale, ContactContent> = {
   en: {
-    heroTitle: "Start with a conversation, not a pitch deck.",
+    heroTitle: "Let's talk.",
+    heroTitleLine: "Let's",
+    heroSignal: "talk.",
+    heroEyebrow: "Contact",
+    emailEyebrow: "Email",
+    optionsAria: "Contact options",
     heroSubtitle:
-      "Tell us what's not working in your marketing. We'll respond within one business day with an honest read on whether we can help.",
-    formTitle: "Start the Conversation",
+      "Book a call or send a short message. You'll hear back within one business day with a straight read on fit and next steps.",
+    formTitle: "Send a message",
     formSubtitle:
-      "Share what you're working on and we'll come back to you with a clear plan. No vague promises, no wasted time.",
-    successTitle: "You're in good hands.",
+      "Share the challenge, the goal, and the timeline. We'll reply with a clear take, not a generic pitch.",
+    successTitle: "Got it. We'll be in touch.",
     successSubtitle:
-      "We've received your message and will reach out within one business day. Check your inbox.",
+      "We received your message and will reach out within one business day. Check your inbox.",
     confirmFlash: "Message sent",
     errorMessage: "Something went wrong. Please try again or email us directly.",
     nameLabel: "Full Name",
@@ -89,14 +99,14 @@ export const contactContent: Record<Locale, ContactContent> = {
     serviceLabel: "What are you looking for?",
     messageLabel: "Comments",
     messagePlaceholder:
-      "What's your biggest marketing challenge right now? What does success look like in 12 months?",
+      "What's the biggest leak in your marketing right now? What does a good next 12 months look like?",
     submitButton: "Send Message",
     submittingButton: "Sending…",
-    sidebarTitle: "What Happens Next",
-    sidebarSubtitle: "We keep things simple. No long waits, no pressure.",
+    sidebarTitle: "What happens next",
+    sidebarSubtitle: "Simple process. Fast reply. No pressure to buy on the call.",
     step1Title: "You book or write us",
     step1Desc:
-      "Pick a call time above, or send a short message. Either way, a strategist reviews it personally.",
+      "Pick a call time above, or send a short message. A strategist reviews it personally.",
     step2Title: "We confirm within a day",
     step2Desc:
       "You'll get a confirmation and, if needed, a quick reply before we meet.",
@@ -122,7 +132,7 @@ export const contactContent: Record<Locale, ContactContent> = {
     booking: {
       title: "Book a strategy call",
       subtitle:
-        "30 minutes. Weekdays. We'll look at what's leaking and whether we can help.",
+        "30 minutes. Weekdays. We review what's leaking, what to fix first, and if we're the right partner.",
       timezoneNote: "24-hour minimum notice",
       timeLabel: "Times",
       pickDateHint: "Choose a date to see open times.",
@@ -145,81 +155,100 @@ export const contactContent: Record<Locale, ContactContent> = {
     },
   },
   es: {
-    heroTitle: "Empieza con una conversación, no con un pitch.",
+    heroTitle: "Hablemos.",
+    heroTitleLine: "Hablemos",
+    heroSignal: "ya.",
+    heroEyebrow: "Contacto",
+    emailEyebrow: "Correo",
+    optionsAria: "Opciones de contacto",
     heroSubtitle:
-      "Cuéntanos qué no está funcionando en tu marketing. Responderemos en un día hábil con una evaluación honesta sobre si podemos ayudarte.",
-    formTitle: "Inicia la Conversación",
+      "Reserva una llamada o envía un mensaje corto. Te respondemos en un día laborable con una lectura clara de encaje y próximos pasos.",
+    formTitle: "Enviar un mensaje",
     formSubtitle:
-      "Comparte en qué estás trabajando y te responderemos con un plan claro. Sin promesas vagas, sin tiempo perdido.",
-    successTitle: "Estás en buenas manos.",
+      "Cuéntanos el problema, el objetivo y el plazo. Te devolvemos una lectura concreta, no un pitch genérico.",
+    successTitle: "Recibido. Te escribimos.",
     successSubtitle:
-      "Recibimos tu mensaje y nos pondremos en contacto en un día hábil. Revisa tu bandeja de entrada.",
+      "Hemos recibido tu mensaje y te contactaremos en un día laborable. Revisa tu bandeja de entrada.",
     confirmFlash: "Mensaje enviado",
-    errorMessage: "Algo salió mal. Por favor intenta de nuevo o escríbenos directamente.",
-    nameLabel: "Nombre Completo",
+    errorMessage: "Algo ha fallado. Inténtalo de nuevo o escríbenos directamente.",
+    nameLabel: "Nombre completo",
     namePlaceholder: "Tu nombre",
-    emailLabel: "Correo Electrónico",
+    emailLabel: "Correo electrónico",
     emailPlaceholder: "tu@empresa.com",
     companyLabel: "Empresa",
     companyPlaceholder: "Tu empresa (opcional)",
     phoneLabel: "Teléfono",
-    phonePlaceholder: "+1 (555) 000-0000 (opcional)",
-    serviceLabel: "¿Qué estás buscando?",
+    phonePlaceholder: "+34 600 000 000 (opcional)",
+    serviceLabel: "¿Qué necesitas?",
     messageLabel: "Comentarios",
     messagePlaceholder:
-      "¿Cuál es tu mayor desafío de marketing ahora? ¿Cómo sería el éxito en 12 meses?",
-    submitButton: "Enviar Mensaje",
+      "¿Dónde se está perdiendo ahora mismo tu marketing? ¿Cómo se ve un buen próximo año?",
+    submitButton: "Enviar mensaje",
     submittingButton: "Enviando…",
-    sidebarTitle: "¿Qué Pasa Después?",
-    sidebarSubtitle: "Lo mantenemos simple. Sin largas esperas, sin presión.",
-    step1Title: "Agenda o escríbenos",
+    sidebarTitle: "Qué pasa después",
+    sidebarSubtitle: "Proceso simple. Respuesta rápida. Sin presión para comprar en la llamada.",
+    step1Title: "Reservas o nos escribes",
     step1Desc:
-      "Elige un horario arriba o envía un mensaje corto. Un estratega lo revisa en persona.",
+      "Elige una hora arriba o envía un mensaje corto. Un estratega lo revisa en persona.",
     step2Title: "Confirmamos en un día",
     step2Desc:
-      "Recibes confirmación y, si hace falta, una respuesta rápida antes de la llamada.",
+      "Recibes confirmación y, si hace falta, una respuesta breve antes de vernos.",
     step3Title: "Próximos pasos claros",
     step3Desc:
-      "En la llamada mapeamos qué falla, qué arreglar primero y si somos el equipo adecuado.",
-    trustLabel1: "Respuesta < 24hrs",
-    trustLabel2: "Sin contratos forzados",
+      "En la llamada mapeamos qué está roto, qué arreglar primero y si somos el encaje correcto.",
+    trustLabel1: "Respuesta < 24 h",
+    trustLabel2: "Sin contratos de permanencia",
     trustLabel3: "Consulta inicial gratuita",
     servicePlaceholder: "Selecciona un servicio…",
     serviceOptions: [
-      "Diseño y Desarrollo Web",
-      "SEO (Optimización en Buscadores)",
-      "Anuncios Pagados (Google / Meta)",
-      "Marketing en Redes Sociales",
-      "Branding e Identidad",
-      "Email Marketing",
-      "Marketing de Contenidos",
-      "Consultoría de Crecimiento",
-      "Otro / Aún no estoy seguro",
+      "Diseño y desarrollo web",
+      "Posicionamiento SEO",
+      "Anuncios de pago (Google / Meta)",
+      "Marketing en redes sociales",
+      "Branding e identidad",
+      "Email marketing",
+      "Marketing de contenidos",
+      "Consultoría de crecimiento",
+      "Otro / Aún no lo tengo claro",
     ],
     formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
     booking: {
-      title: "Agenda una llamada de estrategia",
+      title: "Reservar una llamada estratégica",
       subtitle:
-        "30 minutos. Entre semana. Revisamos qué está fallando y si podemos ayudar.",
+        "30 minutos. De lunes a viernes. Revisamos qué se está perdiendo, qué arreglar primero y si encajamos como partner.",
       timezoneNote: "Aviso mínimo de 24 horas",
-      timeLabel: "Horarios",
-      pickDateHint: "Elige una fecha para ver horarios.",
-      noSlots: "No quedan horarios este día. Prueba otra fecha.",
+      timeLabel: "Horas",
+      pickDateHint: "Elige una fecha para ver huecos libres.",
+      noSlots: "No hay huecos este día. Prueba otra fecha.",
       notesLabel: "Notas (opcional)",
-      notesPlaceholder: "Tu mayor desafío ahora…",
-      submitButton: "Reservar llamada",
+      notesPlaceholder: "El mayor problema ahora mismo…",
+      submitButton: "Reservar llamada estratégica",
       submittingButton: "Reservando…",
-      successTitle: "Quedó agendada.",
-      successSubtitle: "Recibimos tu solicitud y confirmaremos pronto. Revisa tu bandeja de entrada.",
+      successTitle: "Queda reservada.",
+      successSubtitle: "Hemos recibido tu solicitud y confirmaremos en breve. Revisa tu bandeja de entrada.",
       confirmFlash: "Llamada reservada",
-      errorMessage: "Algo salió mal. Intenta de nuevo o escríbenos directamente.",
-      selectSlotError: "Elige una fecha y hora para continuar.",
+      errorMessage: "Algo ha fallado. Inténtalo de nuevo o escríbenos directamente.",
+      selectSlotError: "Elige una fecha y una hora para continuar.",
       footnote: "Confirmación por correo. Sin pago para reservar.",
       prevMonth: "Mes anterior",
       nextMonth: "Mes siguiente",
       orDivider: "O envía un mensaje",
-      tabLabel: "Agendar llamada",
-      messageTabLabel: "Enviar mensaje",
+      tabLabel: "Reservar llamada",
+      messageTabLabel: "Enviar un mensaje",
     },
   },
 };
+
+export const CONTACT_EMAIL = "hello@kinexisdigital.com";
+
+const en = contactContentI18n.en;
+
+export const contactContentFlat = {
+  ...en,
+};
+
+export { contactContentFlat as contactContent };
+
+export function getContactContent(locale: Locale): ContactContent {
+  return contactContentI18n[locale] ?? contactContentI18n.en;
+}

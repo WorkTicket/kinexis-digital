@@ -1,7 +1,11 @@
-import type { FAQItem } from "@/components/sections/FAQSection";
 import type { ServiceSlug } from "@/content/registry/site-routes";
 
 export type ServiceSeoSlug = ServiceSlug | "local-seo";
+
+export type FAQItem = {
+  question: string;
+  answer: string;
+};
 
 export type ComparisonColumn = {
   header: string;
@@ -15,11 +19,11 @@ export type ComparisonRow = {
 
 /** Controls which comparison UI renders. Each layout fits a different story. */
 export type ComparisonLayout =
-  | "ledger" // clean spec sheet: alt vs KINEXIS in one panel
-  | "contrast" // two tall pillar columns
-  | "impact" // metric-forward for ads / CRO
-  | "stacked" // stacked verdict cards
-  | "progression"; // 3-stage maturity path (paid ads)
+  | "ledger"
+  | "contrast"
+  | "impact"
+  | "stacked"
+  | "progression";
 
 export type ServiceSeoContent = {
   metaTitle: string;

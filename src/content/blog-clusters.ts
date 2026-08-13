@@ -297,7 +297,7 @@ const clusterPostsEsMeta = [
 
 const clusterPostsEs: ClusterPost[] = clusterPostsEsMeta.map((post) => ({
   ...post,
-  body: clusterPostBodiesEs[post.slug],
+  body: clusterPostBodiesEs[post.slug] ?? "",
 }));
 
 const clusterPostsByLocale: Record<Locale, ClusterPost[]> = {

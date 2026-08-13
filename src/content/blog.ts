@@ -59,10 +59,10 @@ export type BlogContent = {
 
 export const blogContent: Record<Locale, BlogContent> = {
   en: {
-    heroTitleLine1: "Growth",
+    heroTitleLine1: "Field",
     heroTitleGradient: "notes.",
     heroSubtitle:
-      "Research, experiments, strategies, and lessons from the KINEXIS team.|Here's what we're learning and what we're proving in the field.",
+      "Research, experiments, and field lessons from the KINEXIS team.|What we're learning, and what we're proving in the work.",
     featuredResearchLabel: "Featured Research",
     readArticle: "Read Article",
     contentExplorerLabel: "Content Explorer",
@@ -72,26 +72,26 @@ export const blogContent: Record<Locale, BlogContent> = {
     noArticlesMessage: "No articles in this category yet. Check back soon.",
     read: "Read",
     viewAllLabel: "View all posts",
-    postsHeroTitleLine1: "All",
-    postsHeroTitleGradient: "posts.",
+    postsHeroTitleLine1: "All articles.",
+    postsHeroTitleGradient: "Full archive.",
     postsHeroSubtitle:
       "Browse the full archive by topic.|Filter by category or scroll through every article.",
     trendingLabel: "Trending",
-    trendingTitle: "What's resonating right now.",
+    trendingTitle: "What's getting read right now.",
     readsSuffix: "reads",
     sharesSuffix: "shares",
     archiveLabel: "Archive",
     archiveTitle: "Research library.",
     archiveDescription:
-      "Browse our complete collection of research, case studies,|and strategic guides.",
+      "Browse our full collection of research, case studies,|and strategic guides.",
     articlesPublishedLabel: "articles published",
-    ctaTitle: "Want growth tips in your inbox?",
+    ctaTitle: "Want this applied to your funnel?",
     ctaSubtitle:
-      "Our best research, strategies, and experiments, delivered monthly.|No fluff, just useful stuff.",
-    ctaButton: "Subscribe to Our Newsletter",
-    postDetailCtaHeadline: "Want More Insights Like This?",
-    postDetailCtaSubtitle: "Get our best content delivered to your inbox.",
-    postDetailCtaButton: "Subscribe",
+      "Bring the bottleneck and current numbers.|We'll tell you what to fix first, and what to measure.",
+    ctaButton: "Book a Strategy Call",
+    postDetailCtaHeadline: "Want this applied to your business?",
+    postDetailCtaSubtitle: "Book a strategy call. Bring the bottleneck and current numbers.",
+    postDetailCtaButton: "Book a Strategy Call",
     categories: ["All", "SEO", "Web Design", "Paid Ads", "CRO", "Email", "Analytics", "Case Studies"],
     posts: [
       {
@@ -415,6 +415,7 @@ export const blogContent: Record<Locale, BlogContent> = {
       { year: "2024", count: 8 },
     ],
   },
+
   es: {
     heroTitleLine1: "Notas de",
     heroTitleGradient: "crecimiento.",
@@ -442,13 +443,13 @@ export const blogContent: Record<Locale, BlogContent> = {
     archiveDescription:
       "Explora nuestra colección completa de investigación, casos de estudio|y guías estratégicas.",
     articlesPublishedLabel: "artículos publicados",
-    ctaTitle: "¿Quieres ideas de crecimiento en tu bandeja de entrada?",
+    ctaTitle: "¿Quieres aplicar esto a tu embudo?",
     ctaSubtitle:
-      "Nuestra mejor investigación, estrategias y experimentos, entregados mensualmente.|Sin relleno, solo contenido útil.",
-    ctaButton: "Suscribirse al Boletín",
-    postDetailCtaHeadline: "¿Quieres Más Contenido Como Este?",
-    postDetailCtaSubtitle: "Recibe nuestro mejor contenido directo en tu bandeja de entrada.",
-    postDetailCtaButton: "Suscribirse",
+      "Trae el cuello de botella y los números actuales.|Te diremos qué arreglar primero y qué medir.",
+    ctaButton: "Reservar una llamada estratégica",
+    postDetailCtaHeadline: "¿Quieres aplicar esto a tu negocio?",
+    postDetailCtaSubtitle: "Reserva una llamada estratégica. Trae el cuello de botella y los números actuales.",
+    postDetailCtaButton: "Reservar una llamada estratégica",
     categories: ["Todos", "SEO", "Diseño Web", "Anuncios Pagados", "CRO", "Email", "Analítica", "Casos de Estudio"],
     posts: [
       {
@@ -486,10 +487,10 @@ export const blogContent: Record<Locale, BlogContent> = {
       },
       {
         slug: "email-nurture-sequences-that-book-calls",
-        title: "Secuencias de Email que Realmente Agendan Llamadas",
+        title: "Secuencias de Email que Realmente Reservan Llamadas",
         category: "Email",
         excerpt:
-          "La mayoría de los flujos de nutrición mueren en la bandeja de entrada. Desglosamos la estructura exacta de la secuencia, el timing y los mensajes que convierten suscriptores fríos en llamadas de descubrimiento agendadas, sin quemar tu lista.",
+          "La mayoría de los flujos de nutrición mueren en la bandeja de entrada. Desglosamos la estructura exacta de la secuencia, el timing y los mensajes que convierten suscriptores fríos en llamadas de descubrimiento reservadas, sin quemar tu lista.",
         publishedAt: "20 de junio de 2026",
         featured: false,
         metric: null,
@@ -771,4 +772,10 @@ export const blogContent: Record<Locale, BlogContent> = {
       { year: "2025", count: 12 },
       { year: "2024", count: 8 },
     ],
-  },};
+  }
+
+};
+
+export function getBlogContent(locale: Locale): BlogContent {
+  return blogContent[locale] ?? blogContent.en;
+}

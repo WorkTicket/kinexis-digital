@@ -10,7 +10,7 @@ Full source: [`src/design-system/README.md`](src/design-system/README.md)
 | Headers | `<SectionHeader>` |
 | Cards | `<Card>` / `cardClasses()` / `<MetricCard>` |
 | Buttons | `<Button>` / `buttonClasses()` |
-| CTAs | `<SiteCTA>` (+ `<ServiceCTA>` on service pages) |
+| CTAs | `<PageCTA>` |
 | Heroes | `HeroShell` \| `StaticHeroShell` \| `HeroArchetype` |
 | Hero text | `HeroLabel` \| `HeroTitle` \| `HeroSubtitle` — SSR in `HeroContent.tsx`, motion in `HeroContentMotion.tsx` |
 | Typography | `.type-hero` \| `.type-section` \| `.type-subheader` \| `.type-body` |

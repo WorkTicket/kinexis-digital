@@ -1,11 +1,11 @@
 import type { Locale } from "./routing";
 
-/** ISO 639-1 language code for HTML lang (Ahrefs / Google require valid codes only). */
+/** BCP 47 language tag for HTML lang. Spanish is Spain (es-ES). */
 export function getHtmlLang(locale: Locale): string {
-  return locale;
+  return locale === "es" ? "es-ES" : "en";
 }
 
-/** ISO 639-1 language code for hreflang alternates (must match HTML lang). */
-export function getHrefLang(locale: Locale): string {
-  return locale;
+/** Open Graph locale identifiers. */
+export function getOgLocale(locale: Locale): string {
+  return locale === "es" ? "es_ES" : "en_US";
 }

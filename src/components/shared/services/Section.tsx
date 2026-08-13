@@ -12,6 +12,11 @@ type SectionProps = {
   compact?: boolean;
   tone?: PageSectionTone | "cta";
   variant?: "default" | "dark" | "data" | "editorial" | "visual" | "proof";
+  /**
+   * Progressive CSS entrance (view-timeline). Off by default so Framer Reveal
+   * sections do not double-animate. Opt in for static sections without Reveal.
+   */
+  motion?: boolean | "fade";
 };
 
 const variantClasses: Record<string, string> = {
@@ -31,11 +36,24 @@ export default function Section({
   compact,
   tone,
   variant,
+  motion = false,
 }: SectionProps) {
+  const motionClass =
+    motion === true
+      ? "motion-section"
+      : motion === "fade"
+        ? "motion-section motion-section--fade"
+        : "";
+
   return (
     <section
       id={id}
-      className={cn(pageSectionClasses(surfaceIndex, { compact, tone }), variant ? variantClasses[variant] : "", className)}
+      className={cn(
+        pageSectionClasses(surfaceIndex, { compact, tone }),
+        variant ? variantClasses[variant] : "",
+        motionClass,
+        className,
+      )}
       aria-labelledby={`${id}-heading`}
     >
       {children}

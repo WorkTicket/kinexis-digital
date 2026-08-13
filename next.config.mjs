@@ -6,11 +6,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
 
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 initOpenNextCloudflareForDev();
-
-const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const cloudflareInsightsConnect = "https://cloudflareinsights.com";
 
@@ -23,7 +23,7 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(self)",
+    value: "camera=(), microphone=(), geolocation=()",
   },
   {
     key: "Strict-Transport-Security",
@@ -56,11 +56,22 @@ const nextConfig = {
   compress: true,
   reactStrictMode: true,
 
+  // Allow HMR /_next/* when opening via LAN IP (phone, another device, DHCP changes)
+  allowedDevOrigins: ["192.168.*.*"],
+
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 640, 768, 1024, 1280, 1536],
     imageSizes: [32, 64, 96, 128, 180, 256, 280, 360],
-    minimumCacheTTL: 31536000,
+    // Production: long CDN TTL. Dev: no optimizer cache so public/ asset swaps show up.
+    minimumCacheTTL: isDev ? 0 : 31536000,
+    // Next 16 requires an explicit allowlist for non-default qualities.
+    qualities: [75, 90, 92, 100],
+    // Cache-busted industry stills use ?v=… — omit `search` to allow any query.
+    localPatterns: [
+      { pathname: "/assets/**" },
+      { pathname: "/**", search: "" },
+    ],
     remotePatterns: [],
   },
 
@@ -119,49 +130,7 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return [
-      {
-        source: "/:locale(en|es)/pricing/google-ads",
-        destination: "/:locale/pricing/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/pricing/paid-ads",
-        destination: "/:locale/pricing/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/services/google-ads",
-        destination: "/:locale/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/services/paid-ads",
-        destination: "/:locale/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/pricing/google-ads",
-        destination: "/en/pricing/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/services/google-ads",
-        destination: "/en/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/services/paid-ads",
-        destination: "/en/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/pricing/paid-ads",
-        destination: "/en/pricing/ppc-management",
-        permanent: true,
-      },
-      ...getLegacyRedirects(),
-    ];
+    return [...getLegacyRedirects()];
   },
   async headers() {
     return [
@@ -199,15 +168,6 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
-      },
-      {
-        source: "/:locale(en|es)/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, s-maxage=86400, stale-while-revalidate=604800",
-          },
-        ],
       },
       {
         source: "/assets/:path*",
@@ -256,12 +216,12 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-const intlConfig = withNextIntl(nextConfig);
-
 // Sentry wraps the config to inject instrumentation.
 // Set SENTRY_ORG, SENTRY_PROJECT, and NEXT_PUBLIC_SENTRY_DSN in .env.local or CI
 // to enable error monitoring. The build works fine without them — Sentry stays
 // disabled (see instrumentation.ts and instrumentation-client.ts).
+const intlConfig = withNextIntl(nextConfig);
+
 export default withBundleAnalyzer(
   withSentryConfig(intlConfig, {
     org: process.env.SENTRY_ORG,

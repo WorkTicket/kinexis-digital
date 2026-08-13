@@ -23,6 +23,9 @@ export type CaseStudy = {
   client: string;
   industry: string;
   headline: string;
+  /** SERP title segment (32–42 chars). Display headline stays on the page. */
+  metaTitle: string;
+  metaDescription: string;
   /** Primary outcome badge (e.g. "2.8X", "136%") — used on homepage charts */
   primaryLift: string;
   trafficLift: string;
@@ -84,8 +87,8 @@ export type CaseStudiesContent = {
 
 export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
   en: {
-    heroTitleLine1: "Real growth.",
-    heroTitleGradient: "Real numbers.",
+    heroTitleLine1: "Selected",
+    heroTitleGradient: "work.",
     heroSubtitle:
       "Three verified client studies across home services and e-commerce. Each one includes the strategy we used, the execution timeline, and the actual revenue outcome. We don't publish projections.",
     featuredCaseStudyLabel: "Featured Case Study",
@@ -105,10 +108,11 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
     whatDataShowsLabel: "What the Data Shows",
     whatDataShowsTitle: "Combined services beat single tactics.",
     whatDataShowsDescription:
-      "Single-tactic approaches tend to plateau. When two or more services run as one program, each one lifts the performance of the others. The data below shows the typical gap.",
+      "Single-tactic approaches tend to plateau. When two or more services run as one program, each one lifts the others. The data below shows the typical gap.",
     ctaTitle: "Ready to become our next case study?",
-    ctaSubtitle: "Every engagement starts the same way: we audit, we plan, we execute, we measure. The strategy changes. The standard doesn't.",
-    ctaButton: "Start Your Growth Story",
+    ctaSubtitle:
+      "Every engagement starts the same way: we audit, we plan, we execute, we measure. The strategy changes. The standard doesn't.",
+    ctaButton: "Book a Strategy Call",
     industries: ["All", "Home Services", "E-commerce"],
     caseStudies: [
       {
@@ -117,13 +121,16 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         client: "A1 Property Services",
         industry: "Home Services",
         headline: "2.8X Qualified Lead Growth",
+        metaTitle: "A1 Property Services: 2.8X Leads",
+        metaDescription:
+          "A referral-dependent landscaping company grew to 2.8X qualified leads through local SEO, a conversion-first site, and pages built to book jobs.",
         primaryLift: "2.8X",
         trafficLift: "+181%",
         leadLift: "+180%",
         revenueLift: "+$5,600/mo",
         timeline: "10 months",
         summary:
-          "Turning a referral-dependent landscaping business into a steady lead channel through local SEO and conversion optimization.",
+          "A referral-dependent landscaping business turned into a steady lead channel through local SEO and conversion optimization.",
         services: ["Local SEO", "Web Design", "Conversion Optimization", "Content Marketing"],
         featured: true,
         liveUrl: "https://a1pslandscape.com/",
@@ -139,7 +146,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
           challenge:
             "A1 Property Services, a well-established landscaping company in Cedar Falls, Iowa, relied almost entirely on referrals to sustain their business. Their four-year-old brochure website was not mobile-friendly, loaded slowly, and had no conversion path. They had no SEO presence, no Google Business strategy, and seasonal revenue swings made growth unpredictable. A national franchise was aggressively capturing local search traffic for high-value services like hardscaping and outdoor living installations.",
           strategy:
-            "The strategy had three pillars. First, rebuild the website as a lead generation engine with service-area pages for each neighborhood, project portfolio galleries, prominent quote request forms, and clear CTAs above the fold on every page. Second, execute a local SEO program targeting 50+ high-intent keywords across landscaping, hardscaping, irrigation, lawn care, and seasonal services. Third, build authority through content marketing (project case studies, seasonal guides, and before/after galleries) supported by structured data and LocalBusiness schema.",
+            "The strategy had three pillars. First, rebuild the website as a lead generation engine with service-area pages for each neighborhood, project portfolio galleries, prominent quote request forms, and clear CTAs above the fold on every page. Second, run a local SEO program targeting 50+ high-intent keywords across landscaping, hardscaping, irrigation, lawn care, and seasonal services. Third, build authority through content marketing (project case studies, seasonal guides, and before/after galleries) supported by structured data and LocalBusiness schema.",
           implementation:
             "Month 1: Full technical audit and new site architecture planned around buyer intent. Month 2: Website rebuilt in Next.js with service-area landing pages, optimized forms, and Cloudflare-powered performance optimization. Google Business Profile rebuilt with complete service menu, 50+ photos, and weekly posting cadence. Month 3-4: Citation cleanup across 45+ directories. Local SEO campaign launched targeting service-specific and neighborhood keywords. Month 5-7: Content production. 2 project spotlights and 1 seasonal guide per month. Review generation campaign targeting 8 new reviews per month. Month 8-10: Conversion optimization. A/B tested form layouts, CTA placement, and mobile quote flow. Structured data implemented for LocalBusiness, Service, and Review schemas.",
           outcome:
@@ -152,6 +159,9 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         client: "Preferred Plumbing",
         industry: "Home Services",
         headline: "136% Increase in Emergency Calls",
+        metaTitle: "Preferred Plumbing: 136% More Calls",
+        metaDescription:
+          "A family-owned plumbing company cut paid-ad dependency and grew emergency calls 136% by winning local search for high-intent service keywords.",
         primaryLift: "136%",
         trafficLift: "+170%",
         leadLift: "+136%",
@@ -183,18 +193,21 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         },
       },
       {
-        slug: "saas-platform-growth",
+        slug: "ecommerce-store-growth",
         title: "Digital Products Store",
         client: "Manos Creativas",
         industry: "E-commerce",
         headline: "2.4X Monthly Orders",
+        metaTitle: "Manos Creativas: 2.4X Monthly Orders",
+        metaDescription:
+          "A digital crochet pattern brand grew monthly orders from 32 to 78 through a site rebuild, product SEO, and conversion-focused product pages.",
         primaryLift: "2.4X",
         trafficLift: "+140%",
         leadLift: "+144%",
         revenueLift: "+€8,700/mo",
         timeline: "8 months",
         summary:
-          "A digital crochet pattern brand scaled monthly orders from 32 to 78 through site rebuild, SEO, and conversion-focused product pages.",
+          "A digital crochet pattern brand grew monthly orders from 32 to 78 through a site rebuild, SEO, and conversion-focused product pages.",
         services: ["Web Design", "Technical SEO", "CRO", "Content Marketing"],
         featured: false,
         liveUrl: "https://bynmwcreative.com/",
@@ -231,6 +244,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
       { label: "Avg. Conversion Lift", value: "+89%" },
     ],
   },
+
   es: {
     heroTitleLine1: "Crecimiento real.",
     heroTitleGradient: "Números reales.",
@@ -266,6 +280,9 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         client: "A1 Property Services",
         industry: "Servicios del Hogar",
         headline: "Crecimiento de Leads 2.8X",
+        metaTitle: "A1 Property Services: 2.8X leads",
+        metaDescription:
+          "Una empresa de jardinería que dependía de referidos pasó a 2.8X leads cualificados con SEO local, una web pensada para convertir y páginas hechas para reservar trabajos.",
         primaryLift: "2.8X",
         trafficLift: "+181%",
         leadLift: "+180%",
@@ -287,17 +304,20 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
       },
       {
         slug: "plumbing-company-growth",
-        title: "Empresa de Plomería",
+        title: "Empresa de Fontanería",
         client: "Preferred Plumbing",
         industry: "Servicios del Hogar",
         headline: "136% Más Llamadas de Emergencia",
+        metaTitle: "Preferred Plumbing: 136% más llamadas",
+        metaDescription:
+          "Una empresa familiar de fontanería redujo la dependencia de anuncios y aumentó las llamadas de emergencia un 136% al ganar búsqueda local en keywords de alta intención.",
         primaryLift: "136%",
         trafficLift: "+170%",
         leadLift: "+136%",
         revenueLift: "+$5,200/mes",
         timeline: "8 meses",
         summary:
-          "Una empresa familiar de plomería redujo la dependencia de anuncios pagados ganando más búsqueda local para servicios de emergencia.",
+          "Una empresa familiar de fontanería redujo la dependencia de anuncios pagados ganando más búsqueda local para servicios de emergencia.",
         services: ["SEO Local", "Diseño Web", "Seguimiento de Llamadas", "Gestión de Reputación"],
         featured: false,
         liveUrl: "https://www.callpreferredplumbing.com/",
@@ -312,11 +332,14 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
         ],
       },
       {
-        slug: "saas-platform-growth",
+        slug: "ecommerce-store-growth",
         title: "Tienda de Productos Digitales",
         client: "Manos Creativas",
         industry: "E-commerce",
         headline: "Pedidos Mensuales 2.4X",
+        metaTitle: "Manos Creativas: 2.4X pedidos al mes",
+        metaDescription:
+          "Una marca de patrones de crochet digitales pasó de 32 a 78 pedidos al mes con un rediseño, SEO de producto y fichas orientadas a conversión.",
         primaryLift: "2.4X",
         trafficLift: "+140%",
         leadLift: "+144%",
@@ -349,13 +372,115 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
       { label: "Total de Leads Generados", value: "2.4K+" },
       { label: "Aumento Promedio de Conversión", value: "+89%" },
     ],
-  },
+  }
+
+
 };
 
-export function getCaseStudyBySlug(locale: Locale, slug: string): CaseStudy | undefined {
-  return caseStudiesContent[locale].caseStudies.find((study) => study.slug === slug);
+export function getCaseStudyBySlug(localeOrSlug: Locale | string, slug?: string): CaseStudy | undefined {
+  if (slug !== undefined) {
+    return caseStudiesContent[localeOrSlug as Locale]?.caseStudies.find((study) => study.slug === slug);
+  }
+  return caseStudiesContent.en.caseStudies.find((study) => study.slug === localeOrSlug);
 }
 
 export function getHomepageCaseStudies(locale: Locale): CaseStudy[] {
   return caseStudiesContent[locale].caseStudies;
+}
+
+export function getCaseStudiesContent(locale: Locale): CaseStudiesContent {
+  return caseStudiesContent[locale] ?? caseStudiesContent.en;
+}
+
+export function getAllCaseStudySlugs(): string[] {
+  return caseStudiesContent.en.caseStudies.map((s) => s.slug);
+}
+
+export type CaseStudyPage = {
+  slug: string;
+  client: string;
+  industry: string;
+  headline: string;
+  primaryLift: string;
+  timeline: string;
+  summary: string;
+  domain: string;
+  image: string;
+  imageAlt: string;
+  metaTitle: string;
+  metaDescription: string;
+  challengeTitle: string;
+  challenge: string;
+  approachTitle: string;
+  approach: string;
+  work: { title: string; description: string }[];
+  resultsCopy: string;
+  servicesUsed: string[];
+  metrics: { label: string; after: string; before: string; note: string }[];
+};
+
+export const caseStudyPages: CaseStudyPage[] = buildCaseStudyPages("en");
+
+export function getCaseStudyPages(locale: Locale): CaseStudyPage[] {
+  return buildCaseStudyPages(locale);
+}
+
+function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
+  const copy =
+    locale === "es"
+      ? {
+          challengeTitle: "El reto.",
+          approachTitle: "El enfoque.",
+          strategy: "Estrategia",
+          execution: "Ejecución",
+          outcome: "Resultado",
+          baseline: "Base",
+          over: "en",
+        }
+      : {
+          challengeTitle: "The challenge.",
+          approachTitle: "The approach.",
+          strategy: "Strategy",
+          execution: "Execution",
+          outcome: "Outcome",
+          baseline: "Baseline",
+          over: "over",
+        };
+
+  return (caseStudiesContent[locale] ?? caseStudiesContent.en).caseStudies.map((s) => ({
+    slug: s.slug,
+    client: s.client,
+    industry: s.industry,
+    headline: s.headline,
+    primaryLift: s.primaryLift,
+    timeline: s.timeline,
+    summary: s.summary,
+    domain: s.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, ""),
+    image: s.screenshot,
+    imageAlt: `${s.client} homepage preview`,
+    metaTitle: s.metaTitle,
+    metaDescription: s.metaDescription,
+    challengeTitle: copy.challengeTitle,
+    challenge: s.narrative?.challenge ?? s.summary,
+    approachTitle: copy.approachTitle,
+    approach: s.narrative?.strategy ?? "",
+    work: s.narrative
+      ? [
+          { title: copy.strategy, description: s.narrative.strategy },
+          { title: copy.execution, description: s.narrative.implementation },
+          { title: copy.outcome, description: s.narrative.outcome },
+        ]
+      : [],
+    resultsCopy: s.narrative?.outcome ?? "",
+    servicesUsed: s.services,
+    metrics: s.metrics.map((m) => ({
+      label: m.label,
+      after: `${m.prefix ?? ""}${m.to.toLocaleString()}${m.suffix ?? ""}`,
+      before:
+        m.from === 0
+          ? copy.baseline
+          : `${m.prefix ?? ""}${m.from.toLocaleString()}${m.suffix ?? ""}`,
+      note: `${m.label} ${copy.over} ${s.timeline}`,
+    })),
+  }));
 }

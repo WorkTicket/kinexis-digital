@@ -3,13 +3,21 @@ import { defineRouting } from "next-intl/routing";
 export const locales = ["en", "es"] as const;
 export type Locale = (typeof locales)[number];
 
+export const LOCALE_COOKIE_NAME = "NEXT_LOCALE";
+export const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
+
 export const routing = defineRouting({
   locales,
   defaultLocale: "en",
-  localePrefix: "always",
+  // Public URLs stay unprefixed (`/about`). Locale is a cookie + geo rewrite.
+  localePrefix: "never",
+  // Cookie still drives the footer toggle. Middleware injects geo before this runs
+  // so Accept-Language never overrides location on a first visit.
   localeDetection: true,
-  // Hreflang lives in Next.js metadata (buildPageMetadata). next-intl's Link
-  // header alternates omit the locale prefix on x-default with localePrefix:
-  // "always", which Ahrefs reads as duplicate/broken hreflang clusters.
+  localeCookie: {
+    name: LOCALE_COOKIE_NAME,
+    maxAge: LOCALE_COOKIE_MAX_AGE,
+    sameSite: "lax",
+  },
   alternateLinks: false,
 });

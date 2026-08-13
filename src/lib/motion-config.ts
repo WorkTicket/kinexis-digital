@@ -2,9 +2,16 @@ import type { TargetAndTransition } from "framer-motion";
 
 export const EASE_OUT = [0.16, 1, 0.3, 1] as const;
 
+/** Soft cinematic settle — hero / chapter rises */
+export const EASE_CINEMATIC = [0.19, 1, 0.22, 1] as const;
+
+/** Media wipe / clip paths */
+export const EASE_MEDIA = [0.77, 0, 0.175, 1] as const;
+
 // Spring presets for interactive elements (buttons, cards, tabs)
 export const SPRING_SNAPPY = { type: "spring" as const, stiffness: 420, damping: 30 };
 export const SPRING_GENTLE = { type: "spring" as const, stiffness: 200, damping: 24 };
+export const SPRING_LUXE = { type: "spring" as const, stiffness: 160, damping: 22, mass: 0.7 };
 
 export type MotionEnvironment = {
   reduced: boolean;
@@ -26,14 +33,14 @@ export function resolveMotionConfig({ reduced, mobile }: MotionEnvironment): Res
   return {
     // y is only used for the visible-state target (mobile reduces travel distance).
     // It is NOT encoded into the hidden state so all SSR renders are identical.
-    y: mobile ? 10 : 22,
-    duration: reduced ? 0 : mobile ? 0.3 : 0.65,
-    fadeInDuration: reduced ? 0 : mobile ? 0.25 : 0.55,
-    scaleInDuration: reduced ? 0 : mobile ? 0.25 : 0.5,
-    staggerChildren: reduced ? 0 : mobile ? 0.05 : 0.09,
-    delayChildren: reduced ? 0 : mobile ? 0.02 : 0.06,
+    y: mobile ? 12 : 26,
+    duration: reduced ? 0 : mobile ? 0.32 : 0.72,
+    fadeInDuration: reduced ? 0 : mobile ? 0.26 : 0.58,
+    scaleInDuration: reduced ? 0 : mobile ? 0.26 : 0.55,
+    staggerChildren: reduced ? 0 : mobile ? 0.055 : 0.085,
+    delayChildren: reduced ? 0 : mobile ? 0.03 : 0.08,
     // Blur filter is non-composited and hurts mobile Lighthouse scores — skip on mobile.
-    blurAmount: reduced || mobile ? 0 : 7,
+    blurAmount: reduced || mobile ? 0 : 8,
     instant: reduced,
   };
 }
@@ -89,7 +96,7 @@ export function createMotionVariants(config: ResolvedMotionConfig): MotionVarian
       },
     },
     scaleIn: {
-      hidden: { opacity: 0, scale: 0.96 },
+      hidden: { opacity: 0, scale: 0.965 },
       visible: {
         opacity: 1,
         scale: 1,
@@ -112,18 +119,18 @@ export function createMotionVariants(config: ResolvedMotionConfig): MotionVarian
         opacity: 1,
         y: 0,
         filter: "blur(0px)",
-        transition: { duration, ease: EASE_OUT },
+        transition: { duration, ease: EASE_CINEMATIC },
       },
     },
 
     // Compact pop-up for badges, chips, labels — tighter travel, slight scale.
     popUp: {
-      hidden: { opacity: 0, y: 10, scale: 0.93 },
+      hidden: { opacity: 0, y: 12, scale: 0.94 },
       visible: {
         opacity: 1,
         y: 0,
         scale: 1,
-        transition: { duration: 0.38, ease: EASE_OUT },
+        transition: { duration: 0.42, ease: EASE_OUT },
       },
     },
   };

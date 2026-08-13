@@ -1,0 +1,18 @@
+FONTLOG for Kinexis Display
+====================
+
+Kinexis Display is a substantially Modified Version of Ubuntu Sans (v1.006),
+created as the brand display typeface for Kinexis Digital Marketing.
+
+Changes
+-------
+- Custom width/weight instances from Ubuntu Sans variable font
+  (wdth ≈ 88 for a sharper, condensed product silhouette)
+- Primary Medium instance biased to wght 520 for wordmark presence
+- Renamed to "Kinexis Display" per UFL substantial-modification naming
+
+Licence: Ubuntu Font Licence 1.0
+Original: Copyright (c) Canonical Ltd
+Modifications: Copyright (c) 2026 Kinexis Digital Marketing
+
+Built with: scripts/build-kinexis-fonts.py

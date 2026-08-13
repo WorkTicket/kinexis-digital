@@ -1,12 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
-import { cardClasses } from "@/lib/card-styles";
 import { useRouter } from "@/i18n/navigation";
+import { useState } from "react";
 
 type Props = {
   serviceLabel: string;
@@ -17,7 +16,7 @@ type Props = {
   id?: string;
 };
 
-export default function LandingLeadForm({
+export function LandingLeadForm({
   serviceLabel,
   formTitle,
   formSubtitle,
@@ -53,7 +52,7 @@ export default function LandingLeadForm({
       });
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
+        const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
 
@@ -73,20 +72,18 @@ export default function LandingLeadForm({
   return (
     <div
       id={id}
-      className={cardClasses({
-        surface: "glass",
-        hover: false,
-        className: "shadow-lg !bg-surface-base/80 backdrop-blur-sm md:!p-8",
-      })}
+      className="rounded-2xl bg-[color-mix(in_oklab,var(--foreground)_4%,transparent)] p-5 sm:p-6 md:p-7"
     >
-      <h2 className="type-subheader text-white">{formTitle}</h2>
-      <p className="mt-2 text-sm text-text-secondary leading-relaxed">{formSubtitle}</p>
+      <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold tracking-tight text-foreground">
+        {formTitle}
+      </h2>
+      <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-muted">{formSubtitle}</p>
 
-      <form onSubmit={handleSubmit} className="mt-6 form-stack relative">
+      <form onSubmit={handleSubmit} className="relative mt-6 space-y-5">
         <input type="text" {...honeypotProps} />
-        <div className="form-group">
+        <div>
           <label htmlFor={`${id}-name`} className="form-label">
-            Name <span className="text-neon-cyan">*</span>
+            Name <span className="text-foreground">*</span>
           </label>
           <input
             type="text"
@@ -99,9 +96,9 @@ export default function LandingLeadForm({
             placeholder="Your name"
           />
         </div>
-        <div className="form-group">
+        <div>
           <label htmlFor={`${id}-email`} className="form-label">
-            Work email <span className="text-neon-cyan">*</span>
+            Work email <span className="text-foreground">*</span>
           </label>
           <input
             type="email"
@@ -119,22 +116,23 @@ export default function LandingLeadForm({
           <p
             role="alert"
             aria-live="assertive"
-            className="rounded-lg border border-red-500/20 bg-red-500/10 px-4 py-3 text-sm text-red-400"
+            className="rounded-[var(--radius-sm)] border border-red-500/30 bg-red-500/10 px-3 py-2.5 text-sm text-red-600 dark:text-red-400"
           >
             {errorMsg}
           </p>
         ) : null}
 
-        <Button
-          type="submit"
-          variant="primary"
-          fullWidthMobile
-          disabled={status === "submitting"}
-          className={status === "submitting" ? "opacity-70 cursor-not-allowed" : ""}
-        >
-          {status === "submitting" ? "Submitting…" : submitLabel}
-        </Button>
-        <p className="text-xs text-text-muted text-center sm:text-left">{formFootnote}</p>
+        <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-xs text-muted sm:max-w-xs">{formFootnote}</p>
+          <Button
+            type="submit"
+            size="lg"
+            disabled={status === "submitting"}
+            className="sm:min-w-[12rem]"
+          >
+            {status === "submitting" ? "Submitting…" : submitLabel}
+          </Button>
+        </div>
       </form>
     </div>
   );

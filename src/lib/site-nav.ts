@@ -1,56 +1,87 @@
-export const mainNavLinks = [
-  { href: "/digital-marketing-agency", key: "agency" as const },
-  { href: "/services", key: "services" as const, dropdown: "services" as const },
-  { href: "/case-studies", key: "caseStudies" as const },
-  { href: "/industries", key: "industries" as const, dropdown: "industries" as const },
-  { href: "/about", key: "about" as const },
-  { href: "/blog", key: "blog" as const },
-  { href: "/resources", key: "resources" as const, dropdown: "resources" as const },
-] as const;
+export const CTA_LABEL = "Book a strategy call";
+export const NAV_CONTACT_HREF = "/contact";
+export const NAV_CONTACT_LABEL = "Contact";
+
+export type NavChild = {
+  href: string;
+  label: string;
+  description?: string;
+};
+
+export type MainNavItem = {
+  href: string;
+  label: string;
+  key: string;
+  children?: NavChild[];
+  featured?: NavChild[];
+  allLabel?: string;
+  mega?: "services" | "industries";
+  megaIntro?: string;
+  dropdown?: string;
+};
+
+export const mainNavLinks: MainNavItem[] = [
+  { href: "/case-studies", key: "caseStudies", label: "Work" },
+  { href: "/clients", key: "clients", label: "Clients" },
+  { href: "/services", key: "services", label: "Services" },
+  {
+    href: "/industries",
+    key: "industries",
+    label: "Industries",
+    allLabel: "All industries",
+    children: [
+      { href: "/industries/home-services", label: "Home Services" },
+      { href: "/industries/ecommerce", label: "E-commerce" },
+    ],
+  },
+  { href: "/about", key: "about", label: "About" },
+  { href: "/blog", key: "blog", label: "Blog" },
+  { href: "/resources", key: "resources", label: "Resources" },
+];
 
 export const serviceNavGroups = [
   {
     key: "searchAndAds" as const,
     links: [
-      { href: "/services/seo", key: "seo" as const },
-      { href: "/services/local-seo", key: "localSeo" as const },
-      { href: "/services/ppc-management", key: "ppcManagement" as const },
-      { href: "/services/meta-ads", key: "metaAds" as const },
-      { href: "/services/youtube-ads", key: "youtubeAds" as const },
-      { href: "/services/microsoft-ads", key: "microsoftAds" as const },
+      { href: "/services#seo", key: "seo" as const },
+      { href: "/services#seo", key: "localSeo" as const },
+      { href: "/services#paid-media", key: "ppcManagement" as const },
+      { href: "/services#paid-media", key: "metaAds" as const },
+      { href: "/services#paid-media", key: "youtubeAds" as const },
+      { href: "/services#paid-media", key: "microsoftAds" as const },
     ],
   },
   {
     key: "webAndConversion" as const,
     links: [
-      { href: "/services/web-design", key: "webDesign" as const },
-      { href: "/services/landing-pages", key: "landingPages" as const },
-      { href: "/services/cro", key: "cro" as const },
-      { href: "/services/website-maintenance", key: "websiteMaintenance" as const },
-      { href: "/services/website-speed", key: "websiteSpeed" as const },
-      { href: "/services/analytics", key: "analytics" as const },
+      { href: "/services#web-design", key: "webDesign" as const },
+      { href: "/services#web-design", key: "landingPages" as const },
+      { href: "/services#web-design", key: "cro" as const },
+      { href: "/services#web-design", key: "websiteMaintenance" as const },
+      { href: "/services#web-design", key: "websiteSpeed" as const },
+      { href: "/services#seo", key: "analytics" as const },
     ],
   },
   {
     key: "brandAndContent" as const,
     links: [
-      { href: "/services/branding", key: "branding" as const },
-      { href: "/services/content-marketing", key: "contentMarketing" as const },
-      { href: "/services/email-marketing", key: "emailMarketing" as const },
-      { href: "/services/social-media", key: "socialMedia" as const },
-      { href: "/services/video-marketing", key: "videoMarketing" as const },
-      { href: "/services/copywriting", key: "copywriting" as const },
+      { href: "/services#branding", key: "branding" as const },
+      { href: "/services#content-marketing", key: "contentMarketing" as const },
+      { href: "/services#content-marketing", key: "emailMarketing" as const },
+      { href: "/services#content-marketing", key: "socialMedia" as const },
+      { href: "/services#content-marketing", key: "videoMarketing" as const },
+      { href: "/services#content-marketing", key: "copywriting" as const },
     ],
   },
   {
     key: "growthAndStrategy" as const,
     links: [
-      { href: "/services/growth-consulting", key: "growthConsulting" as const },
-      { href: "/services/marketing-audits", key: "marketingAudits" as const },
-      { href: "/services/funnels", key: "funnels" as const },
-      { href: "/services/marketing-automation-crm", key: "marketingAutomation" as const },
-      { href: "/services/fractional-cmo", key: "fractionalCmo" as const },
-      { href: "/services/training-workshops", key: "trainingWorkshops" as const },
+      { href: "/services", key: "growthConsulting" as const },
+      { href: "/services", key: "marketingAudits" as const },
+      { href: "/services", key: "funnels" as const },
+      { href: "/services", key: "marketingAutomation" as const },
+      { href: "/services", key: "fractionalCmo" as const },
+      { href: "/services", key: "trainingWorkshops" as const },
     ],
   },
 ] as const;
@@ -74,29 +105,28 @@ export const resourceNavGroups = [
       { href: "/blog/ab-testing-framework", key: "abTestingFramework" as const },
     ],
   },
-  {
-    key: "comparisons" as const,
-    links: [
-      { href: "/google-ads-vs-seo", key: "googleAdsVsSeo" as const },
-      { href: "/seo-vs-ppc", key: "seoVsPpc" as const },
-      { href: "/local-seo-vs-google-ads", key: "localSeoVsGoogleAds" as const },
-      { href: "/wordpress-vs-webflow", key: "wordpressVsWebflow" as const },
-    ],
-  },
-  {
-    key: "solutions" as const,
-    links: [
-      { href: "/solutions", key: "viewAllSolutions" as const },
-    ],
-  },
 ] as const;
 
 export const footerServiceLinks = [
-  { href: "/services/web-design", key: "webDesignShort" as const },
-  { href: "/services/seo", key: "seo" as const },
-  { href: "/services/local-seo", key: "localSeo" as const },
-  { href: "/services/ppc-management", key: "ppcManagementPricing" as const },
-  { href: "/services/meta-ads", key: "metaAdsPricing" as const },
-  { href: "/services/youtube-ads", key: "youtubeAds" as const },
-  { href: "/pricing", key: "pricing" as const },
+  { href: "/services#web-design", key: "webDesignShort" as const },
+  { href: "/services#seo", key: "seo" as const },
+  { href: "/services#branding", key: "branding" as const },
+  { href: "/services#paid-media", key: "ppcManagementPricing" as const },
+  { href: "/services#content-marketing", key: "contentMarketing" as const },
+  { href: "/contact", key: "pricing" as const },
+];
+
+export const footerNavLinks = [
+  { href: "/services", label: "Services" },
+  { href: "/case-studies", label: "Work" },
+  { href: "/industries", label: "Industries" },
+  { href: "/clients", label: "Clients" },
+  { href: "/about", label: "About" },
+  { href: "/resources", label: "Resources" },
+  { href: "/contact", label: "Contact" },
+];
+
+export const footerIndustryLinks = [
+  { href: "/industries/home-services", label: "Home Services" },
+  { href: "/industries/ecommerce", label: "E-commerce" },
 ];

@@ -1,0 +1,565 @@
+.btn {
+  --btn-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --btn-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: var(--radius-control);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    transform 280ms var(--btn-ease),
+    box-shadow 280ms var(--btn-ease),
+    background-color 200ms ease,
+    background 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    opacity 180ms ease,
+    filter 200ms ease,
+    gap 280ms var(--btn-spring);
+}
+
+.btn::before,
+.btn::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.btn::before {
+  inset: 0;
+  opacity: 0;
+  transition: opacity 240ms ease, transform 520ms var(--btn-ease);
+}
+
+.btn::after {
+  inset: -1px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.btn:disabled,
+.btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.55;
+  filter: grayscale(0.15);
+}
+
+/* ── Primary: brand signal fill ── */
+.btn--primary {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in oklab, #fff 18%, var(--accent)) 0%,
+      var(--accent) 42%,
+      color-mix(in oklab, #0a1a4a 22%, var(--accent)) 100%
+    );
+  color: #fff;
+  border-color: color-mix(in oklab, #fff 22%, var(--accent));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 28%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, #000 12%, transparent),
+    0 1px 2px color-mix(in oklab, var(--accent) 18%, transparent),
+    0 10px 24px -14px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+.btn--primary::before {
+  background: linear-gradient(
+    105deg,
+    transparent 28%,
+    color-mix(in oklab, #fff 38%, transparent) 48%,
+    transparent 68%
+  );
+  transform: translateX(-130%) skewX(-12deg);
+  opacity: 1;
+}
+
+.btn--primary::after {
+  box-shadow: 0 0 0 1px color-mix(in oklab, var(--accent) 35%, transparent);
+  opacity: 0;
+}
+
+.btn--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(-2px);
+  filter: brightness(1.05) saturate(1.06);
+  gap: 0.8rem;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 34%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, #000 10%, transparent),
+    0 2px 4px color-mix(in oklab, var(--accent) 22%, transparent),
+    0 16px 32px -14px color-mix(in oklab, var(--accent) 65%, transparent);
+}
+
+.btn--primary:hover:not(:disabled):not([aria-disabled="true"])::before {
+  transform: translateX(130%) skewX(-12deg);
+}
+
+.btn--primary:hover:not(:disabled):not([aria-disabled="true"])::after {
+  opacity: 1;
+}
+
+.btn--primary:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(1px) scale(0.98);
+  filter: brightness(0.96);
+  gap: 0.625rem;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 18%, transparent),
+    0 1px 2px color-mix(in oklab, var(--accent) 20%, transparent);
+}
+
+/* ── Outline: glass shell → accent fill ── */
+.btn--outline {
+  border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--foreground) 12%);
+  background: color-mix(in oklab, var(--accent) 6%, transparent);
+  color: var(--foreground);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, var(--background) 50%, transparent),
+    0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent);
+  backdrop-filter: blur(10px);
+}
+
+.btn--outline::before {
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    color-mix(in oklab, var(--accent) 18%, transparent) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  opacity: 1;
+}
+
+.btn--outline:hover:not(:disabled):not([aria-disabled="true"]) {
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in oklab, #fff 14%, var(--accent)) 0%,
+      var(--accent) 50%,
+      color-mix(in oklab, #0a1a4a 18%, var(--accent)) 100%
+    );
+  color: #fff;
+  border-color: color-mix(in oklab, #fff 24%, var(--accent));
+  transform: translateY(-1px);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 26%, transparent),
+    0 12px 28px -16px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+.btn--outline:hover:not(:disabled):not([aria-disabled="true"])::before {
+  transform: translateX(120%);
+}
+
+.btn--outline:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(1px) scale(0.985);
+}
+
+/* ── Ghost ── */
+.btn--ghost {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--foreground);
+}
+
+.btn--ghost:hover:not(:disabled):not([aria-disabled="true"]) {
+  background: color-mix(in oklab, var(--accent) 10%, transparent);
+  border-color: color-mix(in oklab, var(--accent) 14%, transparent);
+  color: color-mix(in oklab, var(--accent) 35%, var(--foreground));
+}
+
+.btn--ghost:active:not(:disabled):not([aria-disabled="true"]) {
+  background: color-mix(in oklab, var(--accent) 14%, transparent);
+}
+
+/* ── Link ── */
+.btn--link {
+  min-height: 0;
+  height: auto;
+  overflow: visible;
+  border-radius: 0;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: color-mix(in oklab, var(--foreground) 62%, transparent);
+  text-decoration: none;
+  background: none;
+  transition:
+    color 200ms ease,
+    gap 280ms var(--btn-spring);
+}
+
+.btn--link::before,
+.btn--link::after {
+  display: none;
+}
+
+.btn--link .btn__label {
+  display: inline-block;
+  padding-bottom: 0.12em;
+  background-image: linear-gradient(var(--foreground), var(--foreground));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1.5px;
+  transition: background-size 320ms var(--btn-ease);
+}
+
+.btn--link:hover:not(:disabled):not([aria-disabled="true"]) {
+  color: var(--foreground);
+}
+
+.btn--link:hover:not(:disabled):not([aria-disabled="true"]) .btn__label {
+  background-size: 100% 1.5px;
+}
+
+.btn--link:focus-visible {
+  outline-offset: 4px;
+}
+
+/* ── Sizes ── */
+.btn--sm {
+  min-height: 2.75rem;
+  height: 2.75rem;
+  padding-inline: 0.95rem;
+  font-size: 0.75rem;
+  border-radius: var(--radius-sm);
+}
+
+@media (min-width: 640px) {
+  .btn--sm {
+    min-height: 2.25rem;
+    height: 2.25rem;
+    padding-inline: 0.9rem;
+  }
+}
+
+.btn--md {
+  height: 2.5rem;
+  padding-inline: 1.15rem;
+  font-size: 0.8125rem;
+  border-radius: var(--radius-md);
+}
+
+.btn--header {
+  height: 2.25rem;
+  padding-inline: 1rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-sm);
+}
+
+@media (min-width: 1280px) {
+  .btn--header {
+    height: 2.375rem;
+    padding-inline: 1.1rem;
+    font-size: 0.875rem;
+  }
+}
+
+.btn--lg {
+  height: 3.05rem;
+  padding-inline: 1.55rem;
+  font-size: 0.875rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn--xl {
+  min-height: 3.85rem;
+  height: auto;
+  gap: 0.9rem;
+  padding: 1.15rem 2.25rem;
+  font-size: 1.0625rem;
+  letter-spacing: 0.015em;
+  border-radius: var(--radius-lg);
+}
+
+.btn--icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: var(--radius-md);
+}
+
+@media (min-width: 640px) {
+  .btn--icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.btn--icon-sm {
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border-radius: var(--radius-sm);
+}
+
+@media (min-width: 640px) {
+  .btn--icon-sm {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+}
+
+.btn--full {
+  width: 100%;
+}
+
+/* ── Hero lift: extra bounce + aura ── */
+.btn--lift:hover:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(-3px) scale(1.015);
+  filter: brightness(1.06) saturate(1.08);
+  gap: 0.95rem;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 36%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, #000 8%, transparent),
+    0 2px 6px color-mix(in oklab, var(--accent) 25%, transparent),
+    0 20px 40px -16px color-mix(in oklab, var(--accent) 70%, transparent),
+    0 0 0 1px color-mix(in oklab, #fff 18%, var(--accent));
+}
+
+.btn--lift:hover:not(:disabled):not([aria-disabled="true"])::after {
+  opacity: 1;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--accent) 40%, transparent),
+    0 0 28px -4px color-mix(in oklab, var(--accent) 45%, transparent);
+}
+
+.btn--lift:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(0) scale(0.985);
+  filter: brightness(0.97);
+  gap: 0.75rem;
+}
+
+.btn__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.05em;
+  height: 1.05em;
+  flex-shrink: 0;
+  transition: transform 360ms var(--btn-spring);
+}
+
+.btn__arrow svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.btn__arrow-stem {
+  transform-origin: left center;
+  transition: transform 360ms var(--btn-spring), opacity 200ms ease;
+}
+
+.btn:hover .btn__arrow,
+.group:hover .btn__arrow {
+  transform: translateX(0.35rem);
+}
+
+.btn:hover .btn__arrow-stem,
+.group:hover .btn__arrow-stem {
+  transform: scaleX(1.15);
+}
+
+.btn--lift:hover .btn__arrow {
+  transform: translateX(0.5rem) scale(1.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .btn::before,
+  .btn::after,
+  .btn__arrow,
+  .btn--link,
+  .btn--link .btn__label {
+    transition: none;
+  }
+
+  .btn--primary::before,
+  .btn--outline::before {
+    display: none;
+  }
+
+  .btn:hover .btn__arrow,
+  .group:hover .btn__arrow,
+  .btn--lift:hover .btn__arrow {
+    transform: none;
+  }
+
+  .btn:hover .btn__arrow-stem,
+  .group:hover .btn__arrow-stem {
+    transform: none;
+  }
+
+  .btn--primary:hover:not(:disabled):not([aria-disabled="true"]),
+  .btn--outline:hover:not(:disabled):not([aria-disabled="true"]),
+  .btn--lift:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: none;
+    gap: inherit;
+  }
+}
+
+/* Photos / screenshots */
+.media-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-media);
+  background: #06070b;
+  isolation: isolate;
+}
+
+.media-frame--shot {
+  box-shadow:
+    0 1px 0 color-mix(in oklab, var(--foreground) 4%, transparent),
+    0 18px 40px -28px color-mix(in oklab, var(--foreground) 35%, transparent);
+}
+
+.media-frame--sm {
+  border-radius: var(--radius-lg);
+}
+
+.media-frame--lg {
+  border-radius: var(--radius-2xl);
+}
+
+/* Device chrome — MacBook Pro mockup (industry-standard portfolio frame) */
+.device-frame {
+  position: relative;
+  width: 100%;
+  isolation: isolate;
+}
+
+.device-frame__stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 650 / 400;
+  filter: drop-shadow(0 18px 32px rgba(0, 0, 0, 0.22))
+    drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+}
+
+@media (min-width: 768px) {
+  .device-frame__stage {
+    filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.28))
+      drop-shadow(0 8px 16px rgba(0, 0, 0, 0.16));
+  }
+}
+
+.device-frame__chrome {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.device-frame__screen {
+  /* Exact cutout from the MacBook SVG (viewBox 650×400) */
+  position: absolute;
+  left: 11.4646%;
+  top: 5.33%;
+  width: 77.1108%;
+  height: 80.9625%;
+  overflow: hidden;
+  border-radius: 0.55%;
+  background: #050505;
+  z-index: 2;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.device-frame__gloss {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    transparent 28%,
+    transparent 72%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  mix-blend-mode: soft-light;
+}
+
+.device-frame__notch {
+  position: absolute;
+  top: 5.33%;
+  left: 50%;
+  z-index: 3;
+  width: 8.32%;
+  height: 2.3%;
+  border-radius: 0 0 0.35rem 0.35rem;
+  background: #050505;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.device-frame__camera {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 30%, #3a4a78 0%, #0a1020 70%);
+  box-shadow:
+    inset 0 0 0 1px rgba(140, 170, 240, 0.28),
+    0 0 4px rgba(80, 120, 220, 0.25);
+  transform: translate(-50%, -50%);
+}
+
+[data-theme="dark"] .device-frame__stage,
+.dark .device-frame__stage {
+  filter: drop-shadow(0 34px 56px rgba(0, 0, 0, 0.58))
+    drop-shadow(0 12px 22px rgba(0, 0, 0, 0.38));
+}
+
+[data-theme="light"] .device-frame__stage {
+  filter: drop-shadow(0 24px 44px rgba(15, 23, 42, 0.14))
+    drop-shadow(0 8px 16px rgba(15, 23, 42, 0.08));
+}
+
+[data-theme="light"] .device-frame__screen {
+  box-shadow:
+    inset 0 0 0 1px rgba(15, 23, 42, 0.06),
+    inset 0 18px 36px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="light"] .device-frame__gloss {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    transparent 30%,
+    transparent 75%,
+    rgba(15, 23, 42, 0.06) 100%
+  );
+}

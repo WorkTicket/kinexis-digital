@@ -1,28 +1,22 @@
 # Kinexis Digital
 
-> Kinexis Digital is a growth marketing agency that builds revenue systems through SEO, paid media, web design, and analytics for businesses that need measurable results.
+> Kinexis Digital is a growth marketing agency for home services and ecommerce brands. We run SEO, paid media, web design, branding, and content as one program scored on leads and revenue.
 
-## Services
+## Core pages
 
-- [Digital Marketing Services](https://www.kinexisdigital.com/en/services): Overview of SEO, PPC, web design, content, and analytics offerings.
-- [SEO Services](https://www.kinexisdigital.com/en/services/seo): Organic search strategy, technical SEO, and content that ranks and converts.
-- [PPC & Google Ads Management](https://www.kinexisdigital.com/en/services/ppc-management): Google Search, Shopping, and Performance Max campaigns plus cross-channel paid media when you need it.
-- [Web Design](https://www.kinexisdigital.com/en/services/web-design): Conversion-focused websites and landing pages with fast performance.
-- [Local SEO](https://www.kinexisdigital.com/en/services/local-seo): Local visibility for service businesses that depend on nearby customers.
-
-## Pricing
-
-- [Pricing Overview](https://www.kinexisdigital.com/en/pricing): Hub page linking to transparent pricing for SEO, paid media, web design, and every other KINEXIS service.
-
-## Company
-
-- [About Kinexis Digital](https://www.kinexisdigital.com/en/about): Agency background, team, and how we work with clients.
-- [Case Studies](https://www.kinexisdigital.com/en/case-studies): Client results across SEO, paid media, and website projects.
-- [Contact](https://www.kinexisdigital.com/en/contact): Book a strategy call or send a project inquiry.
-- [Blog](https://www.kinexisdigital.com/en/blog): Articles on SEO, PPC, analytics, and growth strategy.
+- [Home](https://www.kinexisdigital.com/): Agency overview and growth program.
+- [Services](https://www.kinexisdigital.com/services): Web design, SEO, branding, paid ads, and content marketing.
+- [Industries](https://www.kinexisdigital.com/industries): Markets we serve, with deep pages for home services and ecommerce.
+- [Home Services Marketing](https://www.kinexisdigital.com/industries/home-services): Local SEO, conversion pages, and paid media for booked jobs.
+- [Ecommerce Marketing](https://www.kinexisdigital.com/industries/ecommerce): Product SEO, conversion, and paid acquisition for orders and margin.
+- [Case Studies](https://www.kinexisdigital.com/case-studies): Measured client results across search, paid, and websites.
+- [About](https://www.kinexisdigital.com/about): How we work, partnership model, and method.
+- [Contact](https://www.kinexisdigital.com/contact): Book a strategy call or send a project inquiry.
+- [Blog](https://www.kinexisdigital.com/blog): Practical notes on SEO, paid media, CRO, email, and analytics.
+- [Resources](https://www.kinexisdigital.com/resources): Platform docs and tools we use with clients.
+- [Clients](https://www.kinexisdigital.com/clients): Brands and platform partners we've worked with.
 
 ## Optional
 
-- [Privacy Policy](https://www.kinexisdigital.com/en/privacy): How Kinexis Digital collects and uses site data.
-- [Terms of Service](https://www.kinexisdigital.com/en/terms): Legal terms for using this website.
-- [Resources](https://www.kinexisdigital.com/en/resources): Guides and downloads for marketing decision-makers.
+- [Privacy Policy](https://www.kinexisdigital.com/privacy): How Kinexis Digital collects and uses site data.
+- [Terms of Service](https://www.kinexisdigital.com/terms): Legal terms for using this website.

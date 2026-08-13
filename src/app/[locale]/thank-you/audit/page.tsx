@@ -1,40 +1,25 @@
-import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import type { Locale } from "@/i18n/routing";
+import { ThankYouView } from "@/components/thank-you/ThankYouView";
+import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildPageMetadata } from "@/lib/metadata";
-import ThankYouClient from "@/components/pages/ThankYouClient";
+import { getTranslations } from "next-intl/server";
 
-type Props = { params: Promise<{ locale: Locale }> };
+type Props = { params: LocaleParams };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
+  const locale = await resolveLocale(params);
+  const t = await getTranslations({ locale, namespace: "pages.thankYouAudit" });
   return buildPageMetadata({
     locale,
     path: "/thank-you/audit",
-    title: "Audit request received",
-    description:
-      "Your free growth audit request was received. We'll review your properties and send a severity-ranked findings brief.",
+    title: t("eyebrow"),
+    description: t("copy"),
     noIndex: true,
+    noFollow: true,
   });
 }
 
 export default async function ThankYouAuditPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
-  return (
-    <ThankYouClient
-      variant="audit"
-      title="Audit request received."
-      subtitle="We'll review the scope you selected against live signals from your site or ad accounts, then send a short findings brief within 48 hours."
-      nextStepsTitle="What happens next"
-      nextSteps={[
-        "We confirm access and the audit scope you requested (SEO, paid media, or conversion path).",
-        "We pull evidence: crawl/index signals, ad account structure, or on-page conversion friction.",
-        "You receive a severity-ranked findings brief: Critical / High / Medium, with what to fix first.",
-      ]}
-      secondaryCtaLabel="Explore the full Marketing Audit"
-      secondaryCtaHref="/services/marketing-audits"
-    />
-  );
+  await resolveLocale(params);
+  return <ThankYouView namespace="pages.thankYouAudit" />;
 }

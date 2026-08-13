@@ -1,9 +1,10 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 const STORAGE_KEY = "kinexis-cookie-consent";
 
@@ -69,32 +70,36 @@ function CookieBanner({
   onAccept: () => void;
   onReject: () => void;
 }) {
+  const bannerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("cookies");
+  useFocusTrap(bannerRef, true);
 
   return (
     <div
+      ref={bannerRef}
       role="dialog"
+      aria-modal="true"
       aria-labelledby="cookie-consent-title"
       aria-describedby="cookie-consent-desc"
-      className="fixed inset-x-0 bottom-0 z-[100] border-t border-strong bg-bg-dark/95 p-4 backdrop-blur-md sm:p-6"
+      className="cookie-banner chrome-glass"
     >
-      <div className="container-site flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="max-w-2xl">
-          <p id="cookie-consent-title" className="text-sm font-semibold text-white">
+      <div className="shell cookie-banner__inner">
+        <div className="cookie-banner__copy">
+          <p id="cookie-consent-title" className="cookie-banner__title">
             {t("title")}
           </p>
-          <p id="cookie-consent-desc" className="mt-1.5 text-sm text-white/70 leading-relaxed">
+          <p id="cookie-consent-desc" className="cookie-banner__desc">
             {t("description")}{" "}
-            <Link href="/privacy" className="text-neon-cyan underline underline-offset-2">
+            <Link href="/privacy" className="cookie-banner__link">
               {t("privacyLink")}
             </Link>
           </p>
         </div>
-        <div className="flex shrink-0 flex-wrap gap-2">
-          <Button type="button" variant="ghost" onClick={onReject} className="text-sm">
+        <div className="cookie-banner__actions">
+          <Button type="button" variant="ghost" size="sm" onClick={onReject}>
             {t("reject")}
           </Button>
-          <Button type="button" variant="primary" onClick={onAccept} className="text-sm">
+          <Button type="button" variant="primary" size="sm" onClick={onAccept}>
             {t("accept")}
           </Button>
         </div>

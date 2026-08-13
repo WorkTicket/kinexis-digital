@@ -1,57 +1,23 @@
-import { setRequestLocale } from "next-intl/server";
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
-import JsonLd from "@/components/seo/JsonLd";
-import type { Locale } from "@/i18n/routing";
-import { privacyContent } from "@/content/legal/privacy";
-import { getLocalizedContent } from "@/lib/get-localized-content";
-import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
-import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
+import { LegalPage } from "@/components/page/LegalPage";
+import { getPrivacyContent } from "@/content/legal/privacy";
+import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import { buildPageMetadata } from "@/lib/metadata";
 
-const LegalPageClient = dynamic(() => import("@/components/pages/LegalPageClient"));
-
-type Props = { params: Promise<{ locale: Locale }> };
+type Props = { params: LocaleParams };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params;
-  const privacyMeta: Record<Locale, { title: string; description: string }> = {
-    en: {
-      title: "Privacy Policy | KINEXIS",
-      description:
-        "How KINEXIS Digital collects, uses, stores, and protects your personal information on our website, forms, and marketing services.",
-    },
-    es: {
-      title: "Política de Privacidad | KINEXIS",
-      description:
-        "Cómo KINEXIS Digital recopila, usa, almacena y protege tu información personal en nuestro sitio web, formularios y servicios de marketing.",
-    },
-  };
-  const meta = privacyMeta[locale];
+  const locale = await resolveLocale(params);
   return buildPageMetadata({
     locale,
     path: "/privacy",
-    title: meta.title,
-    description: meta.description,
+    title: "Privacy Policy",
+    description:
+      "How KINEXIS Digital collects, uses, stores, and protects your personal information on our website, forms, and marketing services.",
   });
 }
 
 export default async function PrivacyPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const content = getLocalizedContent(privacyContent, locale);
-
-  return (
-    <>
-      <JsonLd
-        data={[
-          organizationSchema(),
-          breadcrumbSchema([
-            { name: "Home", url: buildAbsoluteUrl(locale, "/") },
-            { name: "Privacy Policy" },
-          ]),
-        ]}
-      />
-      <LegalPageClient content={content} />
-    </>
-  );
+  const locale = await resolveLocale(params);
+  return <LegalPage content={getPrivacyContent(locale)} />;
 }

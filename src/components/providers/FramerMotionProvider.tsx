@@ -13,15 +13,17 @@ function FramerMotionInner({ children }: { children: ReactNode }) {
 
   const resolved = useMemo(
     () => ({
-      duration: reduced ? 0 : mobile ? 0.3 : 0.65,
+      duration: reduced ? 0 : mobile ? 0.32 : 0.72,
     }),
-    [reduced, mobile]
+    [reduced, mobile],
   );
 
+  // No `strict` — the app still mixes a few full `motion` helpers (scroll APIs).
+  // Animated UI should prefer `m` from @/lib/framer under this provider.
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={domAnimation}>
       <MotionConfig
-        reducedMotion="never"
+        reducedMotion="user"
         transition={{ duration: resolved.duration, ease: EASE_OUT }}
       >
         {children}
@@ -35,7 +37,7 @@ export function FramerMotionProvider({ children }: { children: ReactNode }) {
   return <FramerMotionInner>{children}</FramerMotionInner>;
 }
 
-/** @deprecated Use MotionShell — kept for direct imports during migration. */
+/** Root / page motion shell — flags + LazyMotion features. */
 export function MotionProvider({ children }: { children: ReactNode }) {
   return (
     <MotionFlagsProvider>

@@ -69,7 +69,7 @@ const RULES = [
     message: "Use <SectionHeader> instead of manual section-title class",
     allow: (file) =>
       file.includes("SectionHeader.tsx") ||
-      file.includes("SiteCTA.tsx") ||
+      file.includes("PageCTA.tsx") ||
       (file.includes(`${path.sep}blog${path.sep}`) && file.endsWith("page.tsx")),
   },
   {
@@ -82,7 +82,7 @@ const RULES = [
     id: "section-padding-on-section",
     pattern: /<section[^>]*className="[^"]*section-padding/,
     message: "Use pageSectionClasses() or <Section> instead of section-padding on <section>",
-    allow: (file) => file.includes("SiteCTA.tsx"),
+    allow: (file) => file.includes("PageCTA.tsx"),
   },
 ];
 

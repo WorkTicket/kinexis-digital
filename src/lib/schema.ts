@@ -88,7 +88,7 @@ export function localBusinessSchema(pageUrl?: string): JsonLdEntity {
   };
 }
 
-export function websiteSchema(): JsonLdEntity {
+export function websiteSchema(inLanguage = "en"): JsonLdEntity {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -96,6 +96,7 @@ export function websiteSchema(): JsonLdEntity {
     name: businessProfile.name,
     url: getSiteUrl(),
     publisher: { "@id": `${getSiteUrl()}/#organization` },
+    inLanguage,
   };
 }
 

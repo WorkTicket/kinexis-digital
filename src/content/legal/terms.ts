@@ -80,6 +80,7 @@ export const termsContent: Record<Locale, LegalPageContent> = {
       },
     ],
   },
+
   es: {
     title: "Términos de Servicio",
     lastUpdated: "24 de junio de 2026",
@@ -157,5 +158,10 @@ export const termsContent: Record<Locale, LegalPageContent> = {
         paragraphs: ["Preguntas sobre estos Términos: hello@kinexisdigital.com"],
       },
     ],
-  },
+  }
+
 };
+
+export function getTermsContent(locale: Locale): LegalPageContent {
+  return termsContent[locale] ?? termsContent.en;
+}

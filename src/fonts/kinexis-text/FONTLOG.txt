@@ -1,0 +1,19 @@
+FONTLOG for Kinexis Text
+=================
+
+Kinexis Text is a substantially Modified Version of Ubuntu Sans (v1.006),
+created as the body / UI companion to Kinexis Display.
+
+Changes
+-------
+- Full-width (wdth = 100) instances optimized for paragraph and UI reading
+- Weight stops: Light 300, Regular 400, Medium 500, SemiBold 600, Bold 700
+- Renamed to "Kinexis Text" per UFL substantial-modification naming
+
+Pairs with: Kinexis Display (condensed Ubuntu Sans derivative)
+
+Licence: Ubuntu Font Licence 1.0
+Original: Copyright (c) Canonical Ltd
+Modifications: Copyright (c) 2026 Kinexis Digital Marketing
+
+Built with: scripts/build-kinexis-fonts.py
