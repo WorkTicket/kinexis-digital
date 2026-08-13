@@ -91,7 +91,7 @@
   /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
   --chrome-glass: rgba(255, 255, 255, 0.46);
   --chrome-glass-border: rgba(0, 0, 0, 0.08);
-  --chrome-blur: blur(40px) saturate(1.8);
+  --chrome-blur: blur(80px) saturate(1.8);
 }
 
 .dark,
@@ -105,7 +105,7 @@
   /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
   --chrome-glass: rgba(0, 0, 0, 0.42);
   --chrome-glass-border: rgba(255, 255, 255, 0.1);
-  --chrome-blur: blur(40px) saturate(1.8);
+  --chrome-blur: blur(80px) saturate(1.8);
 }
 
 @theme inline {
@@ -6000,17 +6000,11 @@ html[data-theme="dark"] .work-roster__logo {
   height: var(--site-header-h);
   overflow: hidden;
   pointer-events: none;
-  background: var(--background);
+  background: var(--chrome-glass);
   border-bottom: 1px solid var(--chrome-glass-border);
+  backdrop-filter: var(--chrome-blur, blur(80px) saturate(1.8));
+  -webkit-backdrop-filter: var(--chrome-blur, blur(80px) saturate(1.8));
   transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@media (min-width: 769px) {
-  .site-header__frost {
-    background: var(--chrome-glass);
-    backdrop-filter: var(--chrome-blur, blur(40px) saturate(1.8));
-    -webkit-backdrop-filter: var(--chrome-blur, blur(40px) saturate(1.8));
-  }
 }
 
 .site-header--hidden {
