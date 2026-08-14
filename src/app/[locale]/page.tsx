@@ -12,6 +12,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { getTranslations } from "next-intl/server";
 import { getFaqItems } from "@/content/about";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import { schemaLanguage } from "@/i18n/locale-tags";
 import { buildPageMetadata, getSiteUrl } from "@/lib/metadata";
 import {
   faqSchema,
@@ -51,7 +52,7 @@ export default async function Home({ params }: Props) {
         data={[
           organizationSchema(),
           localBusinessSchema(getSiteUrl()),
-          websiteSchema(locale === "es" ? "es" : "en"),
+          websiteSchema(schemaLanguage(locale)),
           faqSchema(faqs),
         ]}
       />

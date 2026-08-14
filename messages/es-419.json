@@ -292,7 +292,8 @@
   "language": {
     "label": "Idioma",
     "en": "English",
-    "es": "Español"
+    "es-ES": "España",
+    "es-419": "LatAm"
   },
   "theme": {
     "toLight": "Cambiar a modo claro",

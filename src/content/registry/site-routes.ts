@@ -1,3 +1,5 @@
+import { serviceHubPath } from "@/lib/legacy-redirects.mjs";
+
 export const serviceSlugs = [
   "seo",
   "local-seo",
@@ -56,34 +58,9 @@ export const coreRevenueServices: ServiceSlug[] = [
   "website-speed",
 ];
 
-export const serviceRoutes: Record<ServiceSlug, string> = {
-  seo: "/services/seo",
-  "local-seo": "/services/local-seo",
-  "ppc-management": "/services/ppc-management",
-  "google-ads": "/services/google-ads",
-  "meta-ads": "/services/meta-ads",
-  "youtube-ads": "/services/youtube-ads",
-  "microsoft-ads": "/services/microsoft-ads",
-  "web-design": "/services/web-design",
-  cro: "/services/cro",
-  "email-marketing": "/services/email-marketing",
-  "content-marketing": "/services/content-marketing",
-  copywriting: "/services/copywriting",
-  "social-media": "/services/social-media",
-  "video-marketing": "/services/video-marketing",
-  branding: "/services/branding",
-  analytics: "/services/analytics",
-  "growth-consulting": "/services/growth-consulting",
-  "marketing-audits": "/services/marketing-audits",
-  "marketing-automation-crm": "/services/marketing-automation-crm",
-  "fractional-cmo": "/services/fractional-cmo",
-  "training-workshops": "/services/training-workshops",
-  funnels: "/services/funnels",
-  "paid-ads": "/services/paid-ads",
-  "landing-pages": "/services/landing-pages",
-  "website-maintenance": "/services/website-maintenance",
-  "website-speed": "/services/website-speed",
-};
+export const serviceRoutes: Record<ServiceSlug, string> = Object.fromEntries(
+  serviceSlugs.map((slug) => [slug, serviceHubPath(slug)]),
+) as Record<ServiceSlug, string>;
 
 export const serviceLabels: Record<ServiceSlug, string> = {
   seo: "SEO Services",

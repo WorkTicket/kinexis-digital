@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 import type { IndustrySlug } from "./types";
 
 export type IndustriesHubContent = {
@@ -42,7 +43,7 @@ const industriesContentEn: IndustriesHubContent = {
     "Bring the bottleneck: quiet phones, junk leads, a site that doesn't ask for the next step. We'll tell you what we'd fix first.",
 };
 
-const industriesContentEs: IndustriesHubContent = {
+const industriesContentEsLatam: IndustriesHubContent = {
   metaTitle: "Programas de demanda por sector",
   metaDescription:
     "Marketing digital para servicios del hogar, ecommerce, salud, legal, SaaS y más. Programas pensados para conseguir trabajos, contratos e ingresos.",
@@ -65,10 +66,19 @@ const industriesContentEs: IndustriesHubContent = {
     "Cuéntanos el problema: teléfonos en silencio, leads de mala calidad o una web que no invita a dar el siguiente paso. Te diremos qué arreglaríamos primero.",
 };
 
-const industriesContentByLocale: Record<Locale, IndustriesHubContent> = {
-  en: industriesContentEn,
-  es: industriesContentEs,
+const industriesContentEsSpain: IndustriesHubContent = {
+  ...industriesContentEsLatam,
+  indexCopy:
+    "Entra en tu sector para ver el cuello de botella, el programa que montamos y si encajamos contigo.",
+  ctaCopy:
+    "Cuéntanos el cuello de botella: teléfonos en silencio, leads de mala calidad o una web que no pide el siguiente paso. Te diremos qué arreglaríamos primero.",
 };
+
+const industriesContentByLocale = localeContent({
+  en: industriesContentEn,
+  "es-419": industriesContentEsLatam,
+  "es-ES": industriesContentEsSpain,
+});
 
 export const industriesContent = industriesContentEn;
 

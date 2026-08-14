@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type HomeServiceSlug =
   "web-design" | "seo" | "branding" | "paid-media" | "content-marketing";
@@ -201,10 +202,10 @@ const homeServicesEs: HomeService[] = [
   },
 ];
 
-const homeServicesByLocale: Record<Locale, HomeService[]> = {
+const homeServicesByLocale = localeContent({
   en: homeServicesEn,
-  es: homeServicesEs,
-};
+  "es-419": homeServicesEs,
+});
 
 /** English default for service page composition. */
 export const homeServices = homeServicesEn;

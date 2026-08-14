@@ -1,13 +1,13 @@
 /** Cuerpos expandidos en español para artículos cluster del blog - importados por blog-clusters.ts */
 
 const L = {
-  seo: `<p><a href="/services/seo">Conoce nuestros servicios de SEO →</a></p>`,
-  localSeo: `<p><a href="/services/local-seo">Conoce nuestros servicios de SEO Local →</a></p>`,
-  googleAds: `<p><a href="/services/ppc-management">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
-  ppc: `<p><a href="/services/ppc-management">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
-  funnels: `<p><a href="/services/funnels">Conoce nuestros servicios de Funnels & CRO →</a></p>`,
-  analytics: `<p><a href="/services/analytics">Conoce nuestros servicios de Analítica de Marketing →</a></p>`,
-  email: `<p><a href="/services/email-marketing">Conoce nuestros servicios de Email Marketing →</a></p>`,
+  seo: `<p><a href="/services#seo">Conoce nuestros servicios de SEO →</a></p>`,
+  localSeo: `<p><a href="/services#seo">Conoce nuestros servicios de SEO Local →</a></p>`,
+  googleAds: `<p><a href="/services#paid-media">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
+  ppc: `<p><a href="/services#paid-media">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
+  funnels: `<p><a href="/services#web-design">Conoce nuestros servicios de Funnels & CRO →</a></p>`,
+  analytics: `<p><a href="/services#seo">Conoce nuestros servicios de Analítica de Marketing →</a></p>`,
+  email: `<p><a href="/services#content-marketing">Conoce nuestros servicios de Email Marketing →</a></p>`,
 };
 
 export const clusterPostBodiesEs: Record<string, string> = {

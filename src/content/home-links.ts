@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type HomeExploreLane = "markets" | "program";
 export type ExploreIconId =
@@ -38,13 +39,10 @@ const homeExploreLanesEs: Record<HomeExploreLane, { label: string; hint: string 
   },
 };
 
-const homeExploreLanesByLocale: Record<
-  Locale,
-  Record<HomeExploreLane, { label: string; hint: string }>
-> = {
+const homeExploreLanesByLocale = localeContent({
   en: homeExploreLanesEn,
-  es: homeExploreLanesEs,
-};
+  "es-419": homeExploreLanesEs,
+});
 
 export const homeExploreLanes = homeExploreLanesEn;
 
@@ -144,10 +142,10 @@ const homeExploreLinksEs: HomeExploreLink[] = [
   },
 ];
 
-const homeExploreLinksByLocale: Record<Locale, HomeExploreLink[]> = {
+const homeExploreLinksByLocale = localeContent({
   en: homeExploreLinksEn,
-  es: homeExploreLinksEs,
-};
+  "es-419": homeExploreLinksEs,
+});
 
 /** Internal destinations the homepage should surface beyond Services / Work. */
 export const homeExploreLinks = homeExploreLinksEn;

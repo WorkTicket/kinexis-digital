@@ -65,7 +65,6 @@ function ClientSlot({
         <motion.span
           key={client.slug}
           className="client-wall__mark"
-          aria-hidden
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={reduced ? undefined : { opacity: 0 }}
@@ -77,7 +76,7 @@ function ClientSlot({
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`/assets/logos/brands/${client.slug}.svg`}
-            alt=""
+            alt={client.name}
             width={160}
             height={48}
             className="client-wall__logo"
@@ -85,7 +84,6 @@ function ClientSlot({
           />
         </motion.span>
       </AnimatePresence>
-      <span className="sr-only">{client.name}</span>
     </li>
   );
 }

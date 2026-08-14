@@ -1,5 +1,6 @@
 import type { BlogPost } from "@/content/blog";
 import type { Locale } from "@/i18n/routing";
+import { isSpanishLocale } from "@/i18n/spanish";
 import { blogContent } from "@/content/blog";
 import { getBlogArticle } from "@/content/blog-articles";
 import { getClusterPost } from "@/content/blog-clusters";
@@ -248,7 +249,7 @@ export function getBlogListingPosts(locale: Locale = "en"): BlogPost[] {
 }
 
 export function getBlogCategories(locale: Locale = "en"): string[] {
-  const allLabel = locale === "es" ? "Todos" : "All";
+  const allLabel = isSpanishLocale(locale) ? "Todos" : "All";
   return (blogContent[locale] ?? blogContent.en).categories.filter((c) => c !== allLabel);
 }
 

@@ -1,4 +1,5 @@
 import { locales, type Locale } from "@/i18n/routing";
+import { serviceHubPath } from "@/lib/legacy-redirects.mjs";
 
 const LOCALE_SET = new Set<string>(locales);
 
@@ -6,7 +7,7 @@ const LOCALE_SET = new Set<string>(locales);
 const SKIP_FIRST_SEGMENTS = new Set(["api", "assets", "_next", ".well-known"]);
 
 /**
- * Keep internal hrefs unprefixed. Strip a leftover `/en` or `/es` prefix
+ * Keep internal hrefs unprefixed. Strip a leftover locale prefix
  * from HTML content that was written against the old URL scheme.
  */
 export function localizeHref(href: string, _locale: Locale): string {
@@ -16,8 +17,13 @@ export function localizeHref(href: string, _locale: Locale): string {
   if (SKIP_FIRST_SEGMENTS.has(firstSegment) || firstSegment.startsWith("_")) return href;
 
   if (LOCALE_SET.has(firstSegment)) {
-    const rest = href.replace(/^\/(en|es)(?=\/|$)/, "");
-    return rest === "" ? "/" : rest;
+    const rest = href.replace(/^\/(en|es-ES|es-419|es)(?=\/|$)/, "");
+    href = rest === "" ? "/" : rest;
+  }
+
+  const serviceMatch = href.match(/^\/services\/([^/?#]+)\/?$/);
+  if (serviceMatch) {
+    return serviceHubPath(serviceMatch[1]!);
   }
 
   return href;

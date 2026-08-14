@@ -5,7 +5,7 @@
 
 export const LOCATION_REDIRECT_DEST = "/about";
 
-const LOCALES = ["en", "es"];
+const LOCALES = ["en", "es-ES", "es-419", "es"];
 
 /** Retired case study slug → replacement slug. Empty string = case-studies hub. */
 export const CASE_STUDY_SLUG_REDIRECTS = {

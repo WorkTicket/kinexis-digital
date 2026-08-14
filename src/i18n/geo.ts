@@ -4,16 +4,17 @@ import {
   LOCALE_COOKIE_NAME,
   type Locale,
 } from "./routing";
+import { normalizeSpanishLocale } from "./spanish";
 
 const DEFAULT_LOCALE: Locale = "en";
 
 export { LOCALE_COOKIE_NAME, LOCALE_COOKIE_MAX_AGE };
 
-/** Spain and Spanish-speaking Latin America (Cloudflare ISO country codes). */
-const SPANISH_COUNTRY_CODES = new Set([
-  "ES",
-  "IC",
-  "EA",
+/** Spain, Canary Islands, Ceuta & Melilla. */
+const SPAIN_COUNTRY_CODES = new Set(["ES", "IC", "EA"]);
+
+/** Spanish-speaking Latin America + Caribbean. */
+const LATAM_COUNTRY_CODES = new Set([
   "MX",
   "GT",
   "SV",
@@ -45,7 +46,9 @@ export function isCrawlerRequest(request: NextRequest): boolean {
 
 export function getCookieLocale(request: NextRequest): Locale | null {
   const value = request.cookies.get(LOCALE_COOKIE_NAME)?.value;
-  if (value === "en" || value === "es") return value;
+  if (value === "en") return "en";
+  const spanish = normalizeSpanishLocale(value);
+  if (spanish) return spanish;
   return null;
 }
 
@@ -60,11 +63,12 @@ export function getRequestCountry(request: NextRequest): string | null {
   return code;
 }
 
-/** Spain and Spanish-speaking LatAm → Spanish. Everywhere else → English. Crawlers always English. */
+/** Spain → es-ES. Spanish-speaking LatAm → es-419. Everywhere else → English. */
 export function detectLocaleFromLocation(request: NextRequest): Locale {
   if (isCrawlerRequest(request)) return DEFAULT_LOCALE;
   const country = getRequestCountry(request);
-  if (country && SPANISH_COUNTRY_CODES.has(country)) return "es";
+  if (country && SPAIN_COUNTRY_CODES.has(country)) return "es-ES";
+  if (country && LATAM_COUNTRY_CODES.has(country)) return "es-419";
   return DEFAULT_LOCALE;
 }
 

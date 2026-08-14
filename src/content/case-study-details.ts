@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 import { caseStudySlugs } from "@/content/registry/site-routes";
 import { getCaseStudyBySlug } from "@/content/case-studies";
 import type { CaseStudyMetric } from "@/content/case-studies";
@@ -350,7 +351,7 @@ const es: Record<(typeof caseStudySlugs)[number], CaseStudyDetail> = {
   },
 };
 
-const byLocale: Record<Locale, typeof en> = { en, es };
+const byLocale = localeContent({ en, "es-419": es });
 
 export function getCaseStudyDetail(locale: Locale, slug: string): CaseStudyDetail | null {
   if (!(caseStudySlugs as readonly string[]).includes(slug)) return null;
@@ -377,6 +378,7 @@ export function getCaseStudyDetail(locale: Locale, slug: string): CaseStudyDetai
 export function getCaseStudyStaticParams() {
   return caseStudySlugs.flatMap((slug) => [
     { locale: "en" as const, slug },
-    { locale: "es" as const, slug },
+    { locale: "es-ES" as const, slug },
+    { locale: "es-419" as const, slug },
   ]);
 }

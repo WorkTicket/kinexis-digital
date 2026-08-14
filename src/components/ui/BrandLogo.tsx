@@ -8,7 +8,7 @@ type BrandLogoProps = {
 
 /**
  * Header/footer mark — native img so the optimizer never contends with LCP.
- * Parent links already expose the accessible name.
+ * Parent links expose the accessible name; alt supports SEO crawlers.
  */
 export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoProps) {
   const style = { width: "auto", height } as const;
@@ -19,7 +19,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/assets/logos/kinexis-logo-on-light.png"
-        alt=""
+        alt="Kinexis Digital"
         width={180}
         height={height}
         decoding="async"
@@ -30,7 +30,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/assets/logos/kinexis-logo-on-dark.png"
-        alt=""
+        alt="Kinexis Digital"
         width={180}
         height={height}
         decoding="async"

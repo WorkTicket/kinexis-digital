@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type HomeProcessStepId = "audit" | "build" | "run";
 
@@ -50,10 +51,10 @@ const homeProcessStepsEs: HomeProcessStep[] = [
   },
 ];
 
-const homeProcessStepsByLocale: Record<Locale, HomeProcessStep[]> = {
+const homeProcessStepsByLocale = localeContent({
   en: homeProcessStepsEn,
-  es: homeProcessStepsEs,
-};
+  "es-419": homeProcessStepsEs,
+});
 
 export const homeProcessSteps = homeProcessStepsEn;
 

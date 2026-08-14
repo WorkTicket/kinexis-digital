@@ -92,7 +92,7 @@ export function HeroFilm() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={POSTER_LCP}
-        alt=""
+        alt="Kinexis Digital homepage atmosphere"
         width={768}
         height={432}
         fetchPriority="high"

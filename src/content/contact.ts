@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type ContactBookingContent = {
   title: string;
@@ -70,7 +71,7 @@ export type ContactContent = {
   booking: ContactBookingContent;
 };
 
-export const contactContentI18n: Record<Locale, ContactContent> = {
+export const contactContentI18n = localeContent({
   en: {
     heroTitle: "Let's talk.",
     heroTitleLine: "Let's",
@@ -154,7 +155,7 @@ export const contactContentI18n: Record<Locale, ContactContent> = {
       messageTabLabel: "Send a message",
     },
   },
-  es: {
+  "es-419": {
     heroTitle: "Hablemos.",
     heroTitleLine: "Vamos a",
     heroSignal: "hablar.",
@@ -237,7 +238,90 @@ export const contactContentI18n: Record<Locale, ContactContent> = {
       messageTabLabel: "Enviar un mensaje",
     },
   },
-};
+  "es-ES": {
+    heroTitle: "Hablemos.",
+    heroTitleLine: "Vamos a",
+    heroSignal: "hablar.",
+    heroEyebrow: "Contacto",
+    emailEyebrow: "Correo",
+    optionsAria: "Opciones de contacto",
+    heroSubtitle:
+      "Reserva una llamada o envíanos un mensaje breve. Te respondemos en un día laborable con una evaluación directa de si encajamos y cuáles serían los siguientes pasos.",
+    formTitle: "Enviar un mensaje",
+    formSubtitle:
+      "Cuéntanos el problema, el objetivo y el plazo. Te respondemos con un análisis concreto, no con una presentación genérica.",
+    successTitle: "Recibido. Te escribimos pronto.",
+    successSubtitle:
+      "Hemos recibido tu mensaje y te contactaremos en un día laborable. Revisa tu bandeja de entrada.",
+    confirmFlash: "Mensaje enviado",
+    errorMessage: "Algo ha fallado. Inténtalo de nuevo o escríbenos directamente.",
+    nameLabel: "Nombre completo",
+    namePlaceholder: "Tu nombre",
+    emailLabel: "Correo electrónico",
+    emailPlaceholder: "tu@empresa.com",
+    companyLabel: "Empresa",
+    companyPlaceholder: "Tu empresa (opcional)",
+    phoneLabel: "Teléfono",
+    phonePlaceholder: "+34 600 000 000 (opcional)",
+    serviceLabel: "¿Qué necesitas?",
+    messageLabel: "Comentarios",
+    messagePlaceholder:
+      "¿Dónde se está perdiendo ahora mismo tu marketing? ¿Cómo se ve un buen próximo año?",
+    submitButton: "Enviar mensaje",
+    submittingButton: "Enviando…",
+    sidebarTitle: "Qué sigue",
+    sidebarSubtitle: "Proceso simple. Respuesta rápida. Sin presión para contratar en la llamada.",
+    step1Title: "Reservas o nos escribes",
+    step1Desc:
+      "Elige una hora arriba o envía un mensaje breve. Un estratega lo revisa personalmente.",
+    step2Title: "Confirmamos en un día",
+    step2Desc:
+      "Recibes confirmación y, si hace falta, una respuesta breve antes de la llamada.",
+    step3Title: "Próximos pasos claros",
+    step3Desc:
+      "En la llamada identificamos qué está fallando, qué conviene arreglar primero y si somos la opción correcta.",
+    trustLabel1: "Respuesta < 24 h",
+    trustLabel2: "Sin contratos de permanencia",
+    trustLabel3: "Consulta inicial gratuita",
+    servicePlaceholder: "Selecciona un servicio…",
+    serviceOptions: [
+      "Diseño y desarrollo web",
+      "Posicionamiento SEO",
+      "Anuncios de pago (Google / Meta)",
+      "Marketing en redes sociales",
+      "Branding e identidad",
+      "Email marketing",
+      "Marketing de contenidos",
+      "Consultoría de crecimiento",
+      "Otro / Aún no lo tengo claro",
+    ],
+    formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
+    booking: {
+      title: "Reservar una llamada estratégica",
+      subtitle:
+        "30 minutos. De lunes a viernes. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como socios.",
+      timezoneNote: "Aviso mínimo de 24 horas",
+      timeLabel: "Horas",
+      pickDateHint: "Elige una fecha para ver huecos libres.",
+      noSlots: "No hay huecos libres ese día. Prueba otra fecha.",
+      notesLabel: "Notas (opcional)",
+      notesPlaceholder: "Cuál es el mayor problema ahora mismo…",
+      submitButton: "Reservar llamada estratégica",
+      submittingButton: "Reservando…",
+      successTitle: "Queda reservada.",
+      successSubtitle: "Hemos recibido tu solicitud y confirmaremos en breve. Revisa tu bandeja de entrada.",
+      confirmFlash: "Llamada reservada",
+      errorMessage: "Algo ha fallado. Inténtalo de nuevo o escríbenos directamente.",
+      selectSlotError: "Elige una fecha y una hora para continuar.",
+      footnote: "Confirmación por correo. No se requiere pago para reservar.",
+      prevMonth: "Mes anterior",
+      nextMonth: "Mes siguiente",
+      orDivider: "O envía un mensaje",
+      tabLabel: "Reservar llamada",
+      messageTabLabel: "Enviar un mensaje",
+    },
+  },
+});
 
 export const CONTACT_EMAIL = "hello@kinexisdigital.com";
 

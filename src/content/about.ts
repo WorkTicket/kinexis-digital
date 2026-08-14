@@ -1,4 +1,6 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
+import { isSpanishLocale } from "@/i18n/spanish";
 
 export type MethodPhase = {
   title: string;
@@ -70,7 +72,7 @@ export type AboutContent = {
   ctaButton: string;
 };
 
-export const aboutContentI18n: Record<Locale, AboutContent> = {
+export const aboutContentI18n = localeContent({
   en: {
     heroTag: "About KINEXIS",
     heroTitle: "Growth isn't random.",
@@ -268,7 +270,7 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
     ctaButton: "Book a strategy call",
   },
 
-  es: {
+  "es-419": {
     heroTag: "Sobre KINEXIS",
     heroTitle: "El crecimiento no es suerte.",
     heroTitleHighlight: "Está diseñado.",
@@ -462,17 +464,15 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
     ctaTitle: "Construyamos algo que dure.",
     ctaSubtitle: "Solo aceptamos unos pocos clientes nuevos cada trimestre.|Los cupos se llenan rápido.",
     ctaButton: "Iniciar la conversación",
-  }
-
-
-};
+  },
+});
 
 export type FaqItem = {
   question: string;
   answer: string;
 };
 
-const faqItemsByLocale: Record<Locale, FaqItem[]> = {
+const faqItemsByLocale = localeContent({
   en: [
     {
       question: "How is Kinexis different from other agencies?",
@@ -500,7 +500,7 @@ const faqItemsByLocale: Record<Locale, FaqItem[]> = {
         "Leads, calls, orders, and revenue. Not vanity metrics. Every report starts with pipeline and cost per lead.",
     },
   ],
-  es: [
+  "es-419": [
     {
       question: "¿En qué se diferencia Kinexis de otras agencias?",
       answer:
@@ -527,7 +527,7 @@ const faqItemsByLocale: Record<Locale, FaqItem[]> = {
         "Leads, llamadas, pedidos e ingresos. No métricas vanidosas. Cada informe empieza por el pipeline y el coste por lead.",
     },
   ],
-};
+});
 
 /** English default for callers that have not switched to getFaqItems(locale). */
 export const faqItems: FaqItem[] = faqItemsByLocale.en;
@@ -538,8 +538,7 @@ export function getFaqItems(locale: Locale): FaqItem[] {
 
 function flattenAbout(locale: Locale) {
   const c = aboutContentI18n[locale] ?? aboutContentI18n.en;
-  const meta =
-    locale === "es"
+  const meta = isSpanishLocale(locale)
       ? {
           metaTitle: "Sobre nuestra agencia de growth marketing",
           metaDescription:

@@ -25,7 +25,9 @@ import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { getAboutContent, getFaqItems } from "@/content/about";
+import { localeContent } from "@/i18n/locale-content";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import type { Locale } from "@/i18n/routing";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { duration } from "@/lib/motion";
 import {
@@ -71,10 +73,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
-const statusLabel = {
+const statusLabel = localeContent({
   en: { done: "Done", now: "Now", soon: "Soon" },
-  es: { done: "Hecho", now: "Ahora", soon: "Pronto" },
-} as const;
+  "es-419": { done: "Hecho", now: "Ahora", soon: "Pronto" },
+});
 
 export default async function AboutPage({ params }: Props) {
   const locale = await resolveLocale(params);
@@ -334,7 +336,7 @@ export default async function AboutPage({ params }: Props) {
                 >
                   <div className="about-roadmap__meta">
                     <span className="about-roadmap__status">
-                      {statusLabel[locale][milestone.status]}
+                      {statusLabel[locale as Locale][milestone.status as "done" | "now" | "soon"]}
                     </span>
                     <span className="about-roadmap__year">{milestone.year}</span>
                     <h3 className="about-roadmap__title">{milestone.title}</h3>

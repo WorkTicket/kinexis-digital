@@ -72,10 +72,9 @@ export default async function ClientsPage({ params }: Props) {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={`/assets/logos/brands/${client.slug}.svg`}
-                      alt=""
+                      alt={client.name}
                       decoding="async"
                     />
-                    <span className="sr-only">{client.name}</span>
                   </div>
                   <div className="client-wall-page__body">
                     <h3 className="client-wall-page__name">{client.name}</h3>

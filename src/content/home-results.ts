@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type HomeResult = {
   slug: string;
@@ -102,10 +103,10 @@ const homeResultsEs: HomeResult[] = [
   },
 ];
 
-const homeResultsByLocale: Record<Locale, HomeResult[]> = {
+const homeResultsByLocale = localeContent({
   en: homeResultsEn,
-  es: homeResultsEs,
-};
+  "es-419": homeResultsEs,
+});
 
 export const homeResults = homeResultsEn;
 

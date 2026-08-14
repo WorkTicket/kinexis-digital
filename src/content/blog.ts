@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type BlogPost = {
   slug: string;
@@ -57,7 +58,7 @@ export type BlogContent = {
   archiveYears: { year: string; count: number }[];
 };
 
-export const blogContent: Record<Locale, BlogContent> = {
+export const blogContent = localeContent({
   en: {
     heroTitleLine1: "Field",
     heroTitleGradient: "notes.",
@@ -416,7 +417,7 @@ export const blogContent: Record<Locale, BlogContent> = {
     ],
   },
 
-  es: {
+  "es-419": {
     heroTitleLine1: "Notas",
     heroTitleGradient: "de campo.",
     heroSubtitle:
@@ -772,9 +773,8 @@ export const blogContent: Record<Locale, BlogContent> = {
       { year: "2025", count: 12 },
       { year: "2024", count: 8 },
     ],
-  }
-
-};
+  },
+});
 
 export function getBlogContent(locale: Locale): BlogContent {
   return blogContent[locale] ?? blogContent.en;

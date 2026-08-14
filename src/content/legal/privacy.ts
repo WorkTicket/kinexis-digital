@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type LegalSection = {
   title: string;
@@ -14,7 +15,7 @@ export type LegalPageContent = {
   contactLabel: string;
 };
 
-export const privacyContent: Record<Locale, LegalPageContent> = {
+export const privacyContent = localeContent({
   en: {
     title: "Privacy Policy",
     lastUpdated: "June 24, 2026",
@@ -99,7 +100,7 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
     ],
   },
 
-  es: {
+  "es-419": {
     title: "Política de Privacidad",
     lastUpdated: "24 de junio de 2026",
     intro:
@@ -179,9 +180,8 @@ export const privacyContent: Record<Locale, LegalPageContent> = {
         paragraphs: ["Para preguntas o solicitudes de privacidad, escribe a hello@kinexisdigital.com."],
       },
     ],
-  }
-
-};
+  },
+});
 
 export function getPrivacyContent(locale: Locale): LegalPageContent {
   return privacyContent[locale] ?? privacyContent.en;

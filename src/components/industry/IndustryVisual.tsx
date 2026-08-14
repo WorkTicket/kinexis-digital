@@ -33,7 +33,7 @@ export function IndustryVisual({
     return (
       <LcpImage
         src={visual.thumb}
-        alt=""
+        alt={visual.alt}
         sizes={
           sizes ??
           "(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
@@ -51,7 +51,7 @@ export function IndustryVisual({
     return (
       <LcpImage
         src={visual.src}
-        alt=""
+        alt={visual.alt}
         sizes={sizes ?? "(max-width: 1023px) 100vw, 58vw"}
         quality={70}
         className={cn("ind-visual__img ind-visual__img--panel", className)}

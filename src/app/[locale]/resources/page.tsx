@@ -92,7 +92,7 @@ export default async function ResourcesPage({ params }: Props) {
                   <span className="resource-tile__media" aria-hidden>
                     <Image
                       src={link.image}
-                      alt=""
+                      alt={link.imageAlt}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       quality={75}

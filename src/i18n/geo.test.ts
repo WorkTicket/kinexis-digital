@@ -18,20 +18,20 @@ function makeRequest(
 }
 
 describe("detectLocaleFromLocation", () => {
-  it("uses Spanish for Spain", () => {
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "ES" }))).toBe("es");
+  it("uses Spain Spanish for Spain", () => {
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "ES" }))).toBe("es-ES");
   });
 
-  it("uses Spanish for Canary Islands and Ceuta/Melilla", () => {
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "IC" }))).toBe("es");
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "EA" }))).toBe("es");
+  it("uses Spain Spanish for Canary Islands and Ceuta/Melilla", () => {
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "IC" }))).toBe("es-ES");
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "EA" }))).toBe("es-ES");
   });
 
-  it("uses Spanish for Latin America", () => {
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "MX" }))).toBe("es");
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "AR" }))).toBe("es");
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "CO" }))).toBe("es");
-    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "CL" }))).toBe("es");
+  it("uses LatAm Spanish for Latin America", () => {
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "MX" }))).toBe("es-419");
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "AR" }))).toBe("es-419");
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "CO" }))).toBe("es-419");
+    expect(detectLocaleFromLocation(makeRequest({ "cf-ipcountry": "CL" }))).toBe("es-419");
   });
 
   it("uses English for the rest of the world", () => {
@@ -65,6 +65,11 @@ describe("resolveRequestLocale", () => {
   });
 
   it("falls back to geo when no cookie is set", () => {
-    expect(resolveRequestLocale(makeRequest({ "cf-ipcountry": "ES" }))).toBe("es");
+    expect(resolveRequestLocale(makeRequest({ "cf-ipcountry": "ES" }))).toBe("es-ES");
+    expect(resolveRequestLocale(makeRequest({ "cf-ipcountry": "MX" }))).toBe("es-419");
+  });
+
+  it("maps legacy es cookie to LatAm Spanish", () => {
+    expect(getCookieLocale(makeRequest({}, "NEXT_LOCALE=es"))).toBe("es-419");
   });
 });

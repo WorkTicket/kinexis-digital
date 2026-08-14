@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type ResourceBadge = "Free" | "Free + Paid" | "Paid";
 
@@ -468,10 +469,10 @@ const resourcesContentEs: ResourcesContent = {
   visitToolLabel: "Visitar herramienta",
 };
 
-export const resourcesContent: Record<Locale, ResourcesContent> = {
+export const resourcesContent = localeContent({
   en: resourcesContentEn,
-  es: resourcesContentEs,
-};
+  "es-419": resourcesContentEs,
+});
 
 export function getResourcesContent(locale: Locale): ResourcesContent {
   return resourcesContent[locale] ?? resourcesContent.en;

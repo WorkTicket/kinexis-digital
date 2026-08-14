@@ -8,6 +8,7 @@ import {
   resolveRequestLocale,
 } from "./i18n/geo";
 import { routing, type Locale } from "./i18n/routing";
+import { acceptLanguageHeader } from "./i18n/locale-tags";
 import { resolveLegacyRedirect } from "./lib/legacy-redirects.mjs";
 
 const intlMiddleware = createMiddleware(routing);
@@ -17,7 +18,7 @@ const APEX_HOST = "kinexisdigital.com";
 
 const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt", "/llms.txt"]);
 
-const LOCALE_PREFIX_RE = /^\/(en|es)(?=\/|$)/;
+const LOCALE_PREFIX_RE = /^\/(en|es-ES|es-419)(?=\/|$)/;
 
 function getPathLocale(pathname: string): Locale | null {
   const match = pathname.match(LOCALE_PREFIX_RE);
@@ -49,7 +50,7 @@ function withRequestLocale(request: NextRequest, locale: Locale): NextRequest {
     .filter((part) => part && !part.startsWith(`${LOCALE_COOKIE_NAME}=`));
   parts.push(`${LOCALE_COOKIE_NAME}=${locale}`);
   headers.set("cookie", parts.join("; "));
-  headers.set("accept-language", locale === "es" ? "es-419,es;q=1.0" : "en-US,en;q=1.0");
+  headers.set("accept-language", acceptLanguageHeader(locale));
   return new NextRequest(request, { headers });
 }
 
