@@ -116,10 +116,12 @@ describe("getLegacyRedirects", () => {
     const healthcareCatchAll = redirects.find(
       (rule) => rule.source === "/en/industries/healthcare/:path*",
     );
-    expect(dental?.destination).toBe("/industries#dental");
-    expect(healthcareCatchAll?.destination).toBe("/industries#healthcare");
-    expect(redirects.indexOf(dental)).toBeLessThan(
-      redirects.indexOf(healthcareCatchAll),
+    expect(dental).toBeDefined();
+    expect(healthcareCatchAll).toBeDefined();
+    expect(dental!.destination).toBe("/industries#dental");
+    expect(healthcareCatchAll!.destination).toBe("/industries#healthcare");
+    expect(redirects.indexOf(dental!)).toBeLessThan(
+      redirects.indexOf(healthcareCatchAll!),
     );
   });
 });

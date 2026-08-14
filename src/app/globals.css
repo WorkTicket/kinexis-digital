@@ -91,9 +91,9 @@
   /* Header / consent glass — rgba only. color-mix() is compiled to
      `var(--background)` as a fallback, which paints a solid black bar. */
   --chrome-glass: rgba(255, 255, 255, 0.46);
-  --chrome-frost: rgba(255, 255, 255, 0.42);
+  --chrome-frost: rgba(255, 255, 255, 0.78);
   --chrome-glass-border: rgba(0, 0, 0, 0.08);
-  --chrome-blur: blur(20px) saturate(1.8);
+  --chrome-blur: blur(80px) saturate(1.8);
 }
 
 .dark,
@@ -107,9 +107,9 @@
   /* Header / consent glass — rgba only. color-mix() is compiled to
      `var(--background)` as a fallback, which paints a solid black bar. */
   --chrome-glass: rgba(0, 0, 0, 0.42);
-  --chrome-frost: rgba(8, 8, 8, 0.34);
+  --chrome-frost: rgba(0, 0, 0, 0.82);
   --chrome-glass-border: rgba(255, 255, 255, 0.14);
-  --chrome-blur: blur(20px) saturate(1.8);
+  --chrome-blur: blur(80px) saturate(1.8);
 }
 
 @theme inline {
