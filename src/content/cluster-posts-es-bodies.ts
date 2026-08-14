@@ -1,13 +1,13 @@
 /** Cuerpos expandidos en español para artículos cluster del blog - importados por blog-clusters.ts */
 
 const L = {
-  seo: `<p><a href="/services/seo">Conoce nuestros servicios de SEO →</a></p>`,
-  localSeo: `<p><a href="/services/local-seo">Conoce nuestros servicios de SEO Local →</a></p>`,
-  googleAds: `<p><a href="/services/ppc-management">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
-  ppc: `<p><a href="/services/ppc-management">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
-  funnels: `<p><a href="/services/funnels">Conoce nuestros servicios de Funnels & CRO →</a></p>`,
-  analytics: `<p><a href="/services/analytics">Conoce nuestros servicios de Analítica de Marketing →</a></p>`,
-  email: `<p><a href="/services/email-marketing">Conoce nuestros servicios de Email Marketing →</a></p>`,
+  seo: `<p><a href="/services#seo">Conoce nuestros servicios de SEO →</a></p>`,
+  localSeo: `<p><a href="/services#seo">Conoce nuestros servicios de SEO Local →</a></p>`,
+  googleAds: `<p><a href="/services#paid-media">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
+  ppc: `<p><a href="/services#paid-media">Conoce nuestros servicios de PPC y Google Ads →</a></p>`,
+  funnels: `<p><a href="/services#web-design">Conoce nuestros servicios de Funnels & CRO →</a></p>`,
+  analytics: `<p><a href="/services#seo">Conoce nuestros servicios de Analítica de Marketing →</a></p>`,
+  email: `<p><a href="/services#content-marketing">Conoce nuestros servicios de Email Marketing →</a></p>`,
 };
 
 export const clusterPostBodiesEs: Record<string, string> = {
@@ -127,7 +127,7 @@ ${L.seo}`,
 ${L.seo}`,
 
   "local-seo-checklist": `<p>El SEO local para negocios de servicios no es una sola táctica. Son cinco sistemas trabajando juntos: Google Business Profile, citaciones, reseñas, contenido por ubicación y seguimiento de rankings. Omite un pilar y la visibilidad en el map pack se estanca aunque los demás se vean bien. Usamos esta lista en cada proyecto local porque detecta brechas que las auditorías SEO genéricas no ven.</p>
-<p>Una empresa de plomería que servía cuatro condados tenía GBP verificado, 200 reseñas y un sitio decente. Aun así perdió cuota en el map pack frente a un competidor con la mitad de reseñas. Las citaciones mostraban inconsistencias NAP en 14 directorios y sus páginas de ciudad eran plantillas copiadas. Corregir NAP, reescribir dos páginas de ciudad prioritarias con prueba local real y publicar actualizaciones semanales en GBP los movió de la posición seis a la dos para "fontanero de emergencia [ciudad]" en once semanas.</p>
+<p>Una empresa de fontanería que servía cuatro condados tenía GBP verificado, 200 reseñas y un sitio decente. Aun así perdió cuota en el map pack frente a un competidor con la mitad de reseñas. Las citaciones mostraban inconsistencias NAP en 14 directorios y sus páginas de ciudad eran plantillas copiadas. Corregir NAP, reescribir dos páginas de ciudad prioritarias con prueba local real y publicar actualizaciones semanales en GBP los movió de la posición seis a la dos para "fontanero de emergencia [ciudad]" en once semanas.</p>
 <h2>Optimización de Google Business Profile</h2>
 <p>Tu GBP es la puerta de entrada a la búsqueda local. Completa cada campo: categorías, servicios, atributos, horarios, fotos y productos cuando aplique.</p>
 <h3>Hábitos Semanales en GBP</h3>

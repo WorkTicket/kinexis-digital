@@ -51,13 +51,15 @@ const rootDir = join(__dirname, "..");
 const sourcePath = join(rootDir, "public", "assets", "logos", "KINEXIS_icon_logo.webp");
 const appDir = join(rootDir, "src", "app");
 const TRANSPARENT = { r: 0, g: 0, b: 0, alpha: 0 };
+const BLACK = { r: 0, g: 0, b: 0, alpha: 1 };
 
 /** Scale for the tab icon (32px) — keep the mark smaller in the tab. */
 const TAB_LOGO_SCALE = 0.66;
 /** Scale for favicon.ico (16px) — fill more of the tiny loading slot. */
 const LOADING_LOGO_SCALE = 0.88;
 
-function removeDarkBackground(data) {
+/** Drop the black field and flatten the blue/cyan gradient to a white mark. */
+function toWhiteMark(data) {
   const pixels = new Uint8Array(data.length);
   pixels.set(data);
 
@@ -65,10 +67,20 @@ function removeDarkBackground(data) {
     const r = pixels[i];
     const g = pixels[i + 1];
     const b = pixels[i + 2];
+    const a = pixels[i + 3];
 
-    if (r < 48 && g < 48 && b < 48) {
+    if (a === 0 || (r < 48 && g < 48 && b < 48)) {
+      pixels[i] = 0;
+      pixels[i + 1] = 0;
+      pixels[i + 2] = 0;
       pixels[i + 3] = 0;
+      continue;
     }
+
+    pixels[i] = 255;
+    pixels[i + 1] = 255;
+    pixels[i + 2] = 255;
+    pixels[i + 3] = a;
   }
 
   return pixels;
@@ -81,7 +93,7 @@ async function loadTightLogo() {
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  const pixels = removeDarkBackground(data);
+  const pixels = toWhiteMark(data);
 
   return sharp(pixels, {
     raw: { width: info.width, height: info.height, channels: 4 },
@@ -91,7 +103,7 @@ async function loadTightLogo() {
     .toBuffer();
 }
 
-async function renderIcon(size, logoScale) {
+async function renderIcon(size, logoScale, background = BLACK) {
   const logoOnly = await loadTightLogo();
   const logoSize = Math.max(1, Math.round(size * logoScale));
 
@@ -107,7 +119,7 @@ async function renderIcon(size, logoScale) {
       width: size,
       height: size,
       channels: 4,
-      background: TRANSPARENT,
+      background,
     },
   })
     .composite([{ input: logo, gravity: "center" }])
@@ -139,5 +151,23 @@ const faviconIco = pngsToIco([
 ]);
 await writeFile(join(appDir, "favicon.ico"), faviconIco);
 console.log(`✓ Generated ${join(appDir, "favicon.ico")} (16, 32, 48)`);
+
+const maskPng = await renderIcon(64, 0.72, TRANSPARENT);
+const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .mark { fill: #111; }
+    @media (prefers-color-scheme: dark) {
+      .mark { fill: #fff; }
+    }
+  </style>
+  <mask id="k" mask-type="alpha">
+    <image href="data:image/png;base64,${maskPng.toString("base64")}" width="32" height="32"/>
+  </mask>
+  <rect class="mark" width="32" height="32" mask="url(#k)"/>
+</svg>
+`;
+await writeFile(join(appDir, "icon.svg"), svg);
+console.log(`✓ Generated ${join(appDir, "icon.svg")} (black / white)`);
 
 console.log("\n✅ Favicon assets written to src/app/");

@@ -1,0 +1,2522 @@
+{
+  "summary": {
+    "liveSitemapCount": 332,
+    "localeSplit": {
+      "en": 166,
+      "es": 166,
+      "other": 0
+    },
+    "uniqueRebuildDestinations": 122,
+    "byBucket": {
+      "home": {
+        "count": 2,
+        "kinds": {
+          "unprefix": 2
+        },
+        "samples": [
+          "/en → /",
+          "/es → /"
+        ]
+      },
+      "about": {
+        "count": 4,
+        "kinds": {
+          "unprefix": 2,
+          "retired": 2
+        },
+        "samples": [
+          "/en/about → /about",
+          "/es/about → /about",
+          "/en/digital-marketing-agency → /about",
+          "/es/digital-marketing-agency → /about"
+        ]
+      },
+      "contact": {
+        "count": 2,
+        "kinds": {
+          "unprefix": 2
+        },
+        "samples": [
+          "/en/contact → /contact",
+          "/es/contact → /contact"
+        ]
+      },
+      "services": {
+        "count": 50,
+        "kinds": {
+          "unprefix": 50
+        },
+        "samples": [
+          "/en/services → /services",
+          "/es/services → /services",
+          "/en/services/seo → /services/seo",
+          "/es/services/seo → /services/seo",
+          "/en/services/local-seo → /services/local-seo",
+          "/es/services/local-seo → /services/local-seo",
+          "/en/services/ppc-management → /services/ppc-management",
+          "/es/services/ppc-management → /services/ppc-management"
+        ]
+      },
+      "blog": {
+        "count": 60,
+        "kinds": {
+          "unprefix": 60
+        },
+        "samples": [
+          "/en/blog → /blog",
+          "/es/blog → /blog",
+          "/en/blog/posts → /blog/posts",
+          "/es/blog/posts → /blog/posts",
+          "/en/blog/seo-pricing-guide → /blog/seo-pricing-guide",
+          "/es/blog/seo-pricing-guide → /blog/seo-pricing-guide",
+          "/en/blog/how-long-does-seo-take → /blog/how-long-does-seo-take",
+          "/es/blog/how-long-does-seo-take → /blog/how-long-does-seo-take"
+        ]
+      },
+      "case-studies": {
+        "count": 8,
+        "kinds": {
+          "unprefix": 6,
+          "legacy": 2
+        },
+        "samples": [
+          "/en/case-studies → /case-studies",
+          "/es/case-studies → /case-studies",
+          "/en/case-studies/landscaping-company-growth → /case-studies/landscaping-company-growth",
+          "/es/case-studies/landscaping-company-growth → /case-studies/landscaping-company-growth",
+          "/en/case-studies/plumbing-company-growth → /case-studies/plumbing-company-growth",
+          "/es/case-studies/plumbing-company-growth → /case-studies/plumbing-company-growth",
+          "/en/case-studies/saas-platform-growth → /case-studies/ecommerce-store-growth",
+          "/es/case-studies/saas-platform-growth → /case-studies/ecommerce-store-growth"
+        ]
+      },
+      "industries": {
+        "count": 114,
+        "kinds": {
+          "unprefix": 114
+        },
+        "samples": [
+          "/en/industries → /industries",
+          "/es/industries → /industries",
+          "/en/industries/technology → /industries/technology",
+          "/es/industries/technology → /industries/technology",
+          "/en/industries/ecommerce → /industries/ecommerce",
+          "/es/industries/ecommerce → /industries/ecommerce",
+          "/en/industries/financial-services → /industries/financial-services",
+          "/es/industries/financial-services → /industries/financial-services"
+        ]
+      },
+      "solutions": {
+        "count": 22,
+        "kinds": {
+          "retired": 22
+        },
+        "samples": [
+          "/en/solutions → /services",
+          "/es/solutions → /services",
+          "/en/solutions/seo-for-hvac-companies → /services",
+          "/es/solutions/seo-for-hvac-companies → /services",
+          "/en/solutions/seo-for-dentists → /services",
+          "/es/solutions/seo-for-dentists → /services",
+          "/en/solutions/seo-for-law-firms → /services",
+          "/es/solutions/seo-for-law-firms → /services"
+        ]
+      },
+      "resources": {
+        "count": 2,
+        "kinds": {
+          "unprefix": 2
+        },
+        "samples": [
+          "/en/resources → /resources",
+          "/es/resources → /resources"
+        ]
+      },
+      "pricing": {
+        "count": 50,
+        "kinds": {
+          "retired": 50
+        },
+        "samples": [
+          "/en/pricing → /contact",
+          "/es/pricing → /contact",
+          "/en/pricing/seo → /contact",
+          "/es/pricing/seo → /contact",
+          "/en/pricing/local-seo → /contact",
+          "/es/pricing/local-seo → /contact",
+          "/en/pricing/ppc-management → /contact",
+          "/es/pricing/ppc-management → /contact"
+        ]
+      },
+      "legal": {
+        "count": 4,
+        "kinds": {
+          "unprefix": 4
+        },
+        "samples": [
+          "/en/privacy → /privacy",
+          "/es/privacy → /privacy",
+          "/en/terms → /terms",
+          "/es/terms → /terms"
+        ]
+      },
+      "comparisons": {
+        "count": 8,
+        "kinds": {
+          "retired": 8
+        },
+        "samples": [
+          "/en/google-ads-vs-seo → /resources",
+          "/es/google-ads-vs-seo → /resources",
+          "/en/seo-vs-ppc → /resources",
+          "/es/seo-vs-ppc → /resources",
+          "/en/wordpress-vs-webflow → /resources",
+          "/es/wordpress-vs-webflow → /resources",
+          "/en/local-seo-vs-google-ads → /resources",
+          "/es/local-seo-vs-google-ads → /resources"
+        ]
+      },
+      "team": {
+        "count": 6,
+        "kinds": {
+          "retired": 6
+        },
+        "samples": [
+          "/en/team/sarah-mitchell → /about",
+          "/es/team/sarah-mitchell → /about",
+          "/en/team/james-chen → /about",
+          "/es/team/james-chen → /about",
+          "/en/team/maria-rodriguez → /about",
+          "/es/team/maria-rodriguez → /about"
+        ]
+      }
+    },
+    "otherPaths": []
+  },
+  "rows": [
+    {
+      "live": "https://www.kinexisdigital.com/en",
+      "path": "/en",
+      "bucket": "home",
+      "dest": "/",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es",
+      "path": "/es",
+      "bucket": "home",
+      "dest": "/",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/about",
+      "path": "/en/about",
+      "bucket": "about",
+      "dest": "/about",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/about",
+      "path": "/es/about",
+      "bucket": "about",
+      "dest": "/about",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/contact",
+      "path": "/en/contact",
+      "bucket": "contact",
+      "dest": "/contact",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/contact",
+      "path": "/es/contact",
+      "bucket": "contact",
+      "dest": "/contact",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services",
+      "path": "/en/services",
+      "bucket": "services",
+      "dest": "/services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services",
+      "path": "/es/services",
+      "bucket": "services",
+      "dest": "/services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog",
+      "path": "/en/blog",
+      "bucket": "blog",
+      "dest": "/blog",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog",
+      "path": "/es/blog",
+      "bucket": "blog",
+      "dest": "/blog",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/posts",
+      "path": "/en/blog/posts",
+      "bucket": "blog",
+      "dest": "/blog/posts",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/posts",
+      "path": "/es/blog/posts",
+      "bucket": "blog",
+      "dest": "/blog/posts",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/case-studies",
+      "path": "/en/case-studies",
+      "bucket": "case-studies",
+      "dest": "/case-studies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/case-studies",
+      "path": "/es/case-studies",
+      "bucket": "case-studies",
+      "dest": "/case-studies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/digital-marketing-agency",
+      "path": "/en/digital-marketing-agency",
+      "bucket": "about",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/digital-marketing-agency",
+      "path": "/es/digital-marketing-agency",
+      "bucket": "about",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries",
+      "path": "/en/industries",
+      "bucket": "industries",
+      "dest": "/industries",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries",
+      "path": "/es/industries",
+      "bucket": "industries",
+      "dest": "/industries",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions",
+      "path": "/en/solutions",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions",
+      "path": "/es/solutions",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/resources",
+      "path": "/en/resources",
+      "bucket": "resources",
+      "dest": "/resources",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/resources",
+      "path": "/es/resources",
+      "bucket": "resources",
+      "dest": "/resources",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing",
+      "path": "/en/pricing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing",
+      "path": "/es/pricing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/privacy",
+      "path": "/en/privacy",
+      "bucket": "legal",
+      "dest": "/privacy",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/privacy",
+      "path": "/es/privacy",
+      "bucket": "legal",
+      "dest": "/privacy",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/terms",
+      "path": "/en/terms",
+      "bucket": "legal",
+      "dest": "/terms",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/terms",
+      "path": "/es/terms",
+      "bucket": "legal",
+      "dest": "/terms",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/seo",
+      "path": "/en/services/seo",
+      "bucket": "services",
+      "dest": "/services/seo",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/seo",
+      "path": "/es/services/seo",
+      "bucket": "services",
+      "dest": "/services/seo",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/local-seo",
+      "path": "/en/services/local-seo",
+      "bucket": "services",
+      "dest": "/services/local-seo",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/local-seo",
+      "path": "/es/services/local-seo",
+      "bucket": "services",
+      "dest": "/services/local-seo",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/ppc-management",
+      "path": "/en/services/ppc-management",
+      "bucket": "services",
+      "dest": "/services/ppc-management",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/ppc-management",
+      "path": "/es/services/ppc-management",
+      "bucket": "services",
+      "dest": "/services/ppc-management",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/meta-ads",
+      "path": "/en/services/meta-ads",
+      "bucket": "services",
+      "dest": "/services/meta-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/meta-ads",
+      "path": "/es/services/meta-ads",
+      "bucket": "services",
+      "dest": "/services/meta-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/youtube-ads",
+      "path": "/en/services/youtube-ads",
+      "bucket": "services",
+      "dest": "/services/youtube-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/youtube-ads",
+      "path": "/es/services/youtube-ads",
+      "bucket": "services",
+      "dest": "/services/youtube-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/microsoft-ads",
+      "path": "/en/services/microsoft-ads",
+      "bucket": "services",
+      "dest": "/services/microsoft-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/microsoft-ads",
+      "path": "/es/services/microsoft-ads",
+      "bucket": "services",
+      "dest": "/services/microsoft-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/web-design",
+      "path": "/en/services/web-design",
+      "bucket": "services",
+      "dest": "/services/web-design",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/web-design",
+      "path": "/es/services/web-design",
+      "bucket": "services",
+      "dest": "/services/web-design",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/cro",
+      "path": "/en/services/cro",
+      "bucket": "services",
+      "dest": "/services/cro",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/cro",
+      "path": "/es/services/cro",
+      "bucket": "services",
+      "dest": "/services/cro",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/email-marketing",
+      "path": "/en/services/email-marketing",
+      "bucket": "services",
+      "dest": "/services/email-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/email-marketing",
+      "path": "/es/services/email-marketing",
+      "bucket": "services",
+      "dest": "/services/email-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/content-marketing",
+      "path": "/en/services/content-marketing",
+      "bucket": "services",
+      "dest": "/services/content-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/content-marketing",
+      "path": "/es/services/content-marketing",
+      "bucket": "services",
+      "dest": "/services/content-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/copywriting",
+      "path": "/en/services/copywriting",
+      "bucket": "services",
+      "dest": "/services/copywriting",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/copywriting",
+      "path": "/es/services/copywriting",
+      "bucket": "services",
+      "dest": "/services/copywriting",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/social-media",
+      "path": "/en/services/social-media",
+      "bucket": "services",
+      "dest": "/services/social-media",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/social-media",
+      "path": "/es/services/social-media",
+      "bucket": "services",
+      "dest": "/services/social-media",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/video-marketing",
+      "path": "/en/services/video-marketing",
+      "bucket": "services",
+      "dest": "/services/video-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/video-marketing",
+      "path": "/es/services/video-marketing",
+      "bucket": "services",
+      "dest": "/services/video-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/branding",
+      "path": "/en/services/branding",
+      "bucket": "services",
+      "dest": "/services/branding",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/branding",
+      "path": "/es/services/branding",
+      "bucket": "services",
+      "dest": "/services/branding",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/analytics",
+      "path": "/en/services/analytics",
+      "bucket": "services",
+      "dest": "/services/analytics",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/analytics",
+      "path": "/es/services/analytics",
+      "bucket": "services",
+      "dest": "/services/analytics",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/growth-consulting",
+      "path": "/en/services/growth-consulting",
+      "bucket": "services",
+      "dest": "/services/growth-consulting",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/growth-consulting",
+      "path": "/es/services/growth-consulting",
+      "bucket": "services",
+      "dest": "/services/growth-consulting",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/marketing-audits",
+      "path": "/en/services/marketing-audits",
+      "bucket": "services",
+      "dest": "/services/marketing-audits",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/marketing-audits",
+      "path": "/es/services/marketing-audits",
+      "bucket": "services",
+      "dest": "/services/marketing-audits",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/marketing-automation-crm",
+      "path": "/en/services/marketing-automation-crm",
+      "bucket": "services",
+      "dest": "/services/marketing-automation-crm",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/marketing-automation-crm",
+      "path": "/es/services/marketing-automation-crm",
+      "bucket": "services",
+      "dest": "/services/marketing-automation-crm",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/fractional-cmo",
+      "path": "/en/services/fractional-cmo",
+      "bucket": "services",
+      "dest": "/services/fractional-cmo",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/fractional-cmo",
+      "path": "/es/services/fractional-cmo",
+      "bucket": "services",
+      "dest": "/services/fractional-cmo",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/training-workshops",
+      "path": "/en/services/training-workshops",
+      "bucket": "services",
+      "dest": "/services/training-workshops",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/training-workshops",
+      "path": "/es/services/training-workshops",
+      "bucket": "services",
+      "dest": "/services/training-workshops",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/funnels",
+      "path": "/en/services/funnels",
+      "bucket": "services",
+      "dest": "/services/funnels",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/funnels",
+      "path": "/es/services/funnels",
+      "bucket": "services",
+      "dest": "/services/funnels",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/landing-pages",
+      "path": "/en/services/landing-pages",
+      "bucket": "services",
+      "dest": "/services/landing-pages",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/landing-pages",
+      "path": "/es/services/landing-pages",
+      "bucket": "services",
+      "dest": "/services/landing-pages",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/website-maintenance",
+      "path": "/en/services/website-maintenance",
+      "bucket": "services",
+      "dest": "/services/website-maintenance",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/website-maintenance",
+      "path": "/es/services/website-maintenance",
+      "bucket": "services",
+      "dest": "/services/website-maintenance",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/services/website-speed",
+      "path": "/en/services/website-speed",
+      "bucket": "services",
+      "dest": "/services/website-speed",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/services/website-speed",
+      "path": "/es/services/website-speed",
+      "bucket": "services",
+      "dest": "/services/website-speed",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology",
+      "path": "/en/industries/technology",
+      "bucket": "industries",
+      "dest": "/industries/technology",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology",
+      "path": "/es/industries/technology",
+      "bucket": "industries",
+      "dest": "/industries/technology",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce",
+      "path": "/en/industries/ecommerce",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce",
+      "path": "/es/industries/ecommerce",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services",
+      "path": "/en/industries/financial-services",
+      "bucket": "industries",
+      "dest": "/industries/financial-services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services",
+      "path": "/es/industries/financial-services",
+      "bucket": "industries",
+      "dest": "/industries/financial-services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services",
+      "path": "/en/industries/professional-services",
+      "bucket": "industries",
+      "dest": "/industries/professional-services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services",
+      "path": "/es/industries/professional-services",
+      "bucket": "industries",
+      "dest": "/industries/professional-services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare",
+      "path": "/en/industries/healthcare",
+      "bucket": "industries",
+      "dest": "/industries/healthcare",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare",
+      "path": "/es/industries/healthcare",
+      "bucket": "industries",
+      "dest": "/industries/healthcare",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing",
+      "path": "/en/industries/manufacturing",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing",
+      "path": "/es/industries/manufacturing",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality",
+      "path": "/en/industries/hospitality",
+      "bucket": "industries",
+      "dest": "/industries/hospitality",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality",
+      "path": "/es/industries/hospitality",
+      "bucket": "industries",
+      "dest": "/industries/hospitality",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services",
+      "path": "/en/industries/home-services",
+      "bucket": "industries",
+      "dest": "/industries/home-services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services",
+      "path": "/es/industries/home-services",
+      "bucket": "industries",
+      "dest": "/industries/home-services",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology/saas",
+      "path": "/en/industries/technology/saas",
+      "bucket": "industries",
+      "dest": "/industries/technology/saas",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology/saas",
+      "path": "/es/industries/technology/saas",
+      "bucket": "industries",
+      "dest": "/industries/technology/saas",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology/startups",
+      "path": "/en/industries/technology/startups",
+      "bucket": "industries",
+      "dest": "/industries/technology/startups",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology/startups",
+      "path": "/es/industries/technology/startups",
+      "bucket": "industries",
+      "dest": "/industries/technology/startups",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology/ai-companies",
+      "path": "/en/industries/technology/ai-companies",
+      "bucket": "industries",
+      "dest": "/industries/technology/ai-companies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology/ai-companies",
+      "path": "/es/industries/technology/ai-companies",
+      "bucket": "industries",
+      "dest": "/industries/technology/ai-companies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology/software-companies",
+      "path": "/en/industries/technology/software-companies",
+      "bucket": "industries",
+      "dest": "/industries/technology/software-companies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology/software-companies",
+      "path": "/es/industries/technology/software-companies",
+      "bucket": "industries",
+      "dest": "/industries/technology/software-companies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology/fintech",
+      "path": "/en/industries/technology/fintech",
+      "bucket": "industries",
+      "dest": "/industries/technology/fintech",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology/fintech",
+      "path": "/es/industries/technology/fintech",
+      "bucket": "industries",
+      "dest": "/industries/technology/fintech",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/technology/cybersecurity",
+      "path": "/en/industries/technology/cybersecurity",
+      "bucket": "industries",
+      "dest": "/industries/technology/cybersecurity",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/technology/cybersecurity",
+      "path": "/es/industries/technology/cybersecurity",
+      "bucket": "industries",
+      "dest": "/industries/technology/cybersecurity",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce/shopify-brands",
+      "path": "/en/industries/ecommerce/shopify-brands",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/shopify-brands",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce/shopify-brands",
+      "path": "/es/industries/ecommerce/shopify-brands",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/shopify-brands",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce/dtc-brands",
+      "path": "/en/industries/ecommerce/dtc-brands",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/dtc-brands",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce/dtc-brands",
+      "path": "/es/industries/ecommerce/dtc-brands",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/dtc-brands",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce/online-retailers",
+      "path": "/en/industries/ecommerce/online-retailers",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/online-retailers",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce/online-retailers",
+      "path": "/es/industries/ecommerce/online-retailers",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/online-retailers",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce/amazon-sellers",
+      "path": "/en/industries/ecommerce/amazon-sellers",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/amazon-sellers",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce/amazon-sellers",
+      "path": "/es/industries/ecommerce/amazon-sellers",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/amazon-sellers",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce/subscription-boxes",
+      "path": "/en/industries/ecommerce/subscription-boxes",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/subscription-boxes",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce/subscription-boxes",
+      "path": "/es/industries/ecommerce/subscription-boxes",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/subscription-boxes",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/ecommerce/b2b-ecommerce",
+      "path": "/en/industries/ecommerce/b2b-ecommerce",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/b2b-ecommerce",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/ecommerce/b2b-ecommerce",
+      "path": "/es/industries/ecommerce/b2b-ecommerce",
+      "bucket": "industries",
+      "dest": "/industries/ecommerce/b2b-ecommerce",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services/financial-advisors",
+      "path": "/en/industries/financial-services/financial-advisors",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/financial-advisors",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services/financial-advisors",
+      "path": "/es/industries/financial-services/financial-advisors",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/financial-advisors",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services/insurance",
+      "path": "/en/industries/financial-services/insurance",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/insurance",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services/insurance",
+      "path": "/es/industries/financial-services/insurance",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/insurance",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services/mortgage-lenders",
+      "path": "/en/industries/financial-services/mortgage-lenders",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/mortgage-lenders",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services/mortgage-lenders",
+      "path": "/es/industries/financial-services/mortgage-lenders",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/mortgage-lenders",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services/banks",
+      "path": "/en/industries/financial-services/banks",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/banks",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services/banks",
+      "path": "/es/industries/financial-services/banks",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/banks",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services/wealth-management",
+      "path": "/en/industries/financial-services/wealth-management",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/wealth-management",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services/wealth-management",
+      "path": "/es/industries/financial-services/wealth-management",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/wealth-management",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/financial-services/credit-unions",
+      "path": "/en/industries/financial-services/credit-unions",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/credit-unions",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/financial-services/credit-unions",
+      "path": "/es/industries/financial-services/credit-unions",
+      "bucket": "industries",
+      "dest": "/industries/financial-services/credit-unions",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services/law-firms",
+      "path": "/en/industries/professional-services/law-firms",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/law-firms",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services/law-firms",
+      "path": "/es/industries/professional-services/law-firms",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/law-firms",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services/dentists",
+      "path": "/en/industries/professional-services/dentists",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/dentists",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services/dentists",
+      "path": "/es/industries/professional-services/dentists",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/dentists",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services/medical-practices",
+      "path": "/en/industries/professional-services/medical-practices",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/medical-practices",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services/medical-practices",
+      "path": "/es/industries/professional-services/medical-practices",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/medical-practices",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services/accountants",
+      "path": "/en/industries/professional-services/accountants",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/accountants",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services/accountants",
+      "path": "/es/industries/professional-services/accountants",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/accountants",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services/consultants",
+      "path": "/en/industries/professional-services/consultants",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/consultants",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services/consultants",
+      "path": "/es/industries/professional-services/consultants",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/consultants",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/professional-services/real-estate",
+      "path": "/en/industries/professional-services/real-estate",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/real-estate",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/professional-services/real-estate",
+      "path": "/es/industries/professional-services/real-estate",
+      "bucket": "industries",
+      "dest": "/industries/professional-services/real-estate",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare/medical",
+      "path": "/en/industries/healthcare/medical",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/medical",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare/medical",
+      "path": "/es/industries/healthcare/medical",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/medical",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare/dental",
+      "path": "/en/industries/healthcare/dental",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/dental",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare/dental",
+      "path": "/es/industries/healthcare/dental",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/dental",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare/wellness",
+      "path": "/en/industries/healthcare/wellness",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/wellness",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare/wellness",
+      "path": "/es/industries/healthcare/wellness",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/wellness",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare/chiropractors",
+      "path": "/en/industries/healthcare/chiropractors",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/chiropractors",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare/chiropractors",
+      "path": "/es/industries/healthcare/chiropractors",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/chiropractors",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare/physical-therapy",
+      "path": "/en/industries/healthcare/physical-therapy",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/physical-therapy",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare/physical-therapy",
+      "path": "/es/industries/healthcare/physical-therapy",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/physical-therapy",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/healthcare/pharmacies",
+      "path": "/en/industries/healthcare/pharmacies",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/pharmacies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/healthcare/pharmacies",
+      "path": "/es/industries/healthcare/pharmacies",
+      "bucket": "industries",
+      "dest": "/industries/healthcare/pharmacies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing/industrial",
+      "path": "/en/industries/manufacturing/industrial",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/industrial",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing/industrial",
+      "path": "/es/industries/manufacturing/industrial",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/industrial",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing/b2b-manufacturing",
+      "path": "/en/industries/manufacturing/b2b-manufacturing",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/b2b-manufacturing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing/b2b-manufacturing",
+      "path": "/es/industries/manufacturing/b2b-manufacturing",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/b2b-manufacturing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing/automotive",
+      "path": "/en/industries/manufacturing/automotive",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/automotive",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing/automotive",
+      "path": "/es/industries/manufacturing/automotive",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/automotive",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing/aerospace",
+      "path": "/en/industries/manufacturing/aerospace",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/aerospace",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing/aerospace",
+      "path": "/es/industries/manufacturing/aerospace",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/aerospace",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing/food-production",
+      "path": "/en/industries/manufacturing/food-production",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/food-production",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing/food-production",
+      "path": "/es/industries/manufacturing/food-production",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/food-production",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/manufacturing/packaging",
+      "path": "/en/industries/manufacturing/packaging",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/packaging",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/manufacturing/packaging",
+      "path": "/es/industries/manufacturing/packaging",
+      "bucket": "industries",
+      "dest": "/industries/manufacturing/packaging",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality/hotels",
+      "path": "/en/industries/hospitality/hotels",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/hotels",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality/hotels",
+      "path": "/es/industries/hospitality/hotels",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/hotels",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality/resorts",
+      "path": "/en/industries/hospitality/resorts",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/resorts",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality/resorts",
+      "path": "/es/industries/hospitality/resorts",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/resorts",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality/restaurants",
+      "path": "/en/industries/hospitality/restaurants",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/restaurants",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality/restaurants",
+      "path": "/es/industries/hospitality/restaurants",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/restaurants",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality/bars-nightlife",
+      "path": "/en/industries/hospitality/bars-nightlife",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/bars-nightlife",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality/bars-nightlife",
+      "path": "/es/industries/hospitality/bars-nightlife",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/bars-nightlife",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality/cafes",
+      "path": "/en/industries/hospitality/cafes",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/cafes",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality/cafes",
+      "path": "/es/industries/hospitality/cafes",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/cafes",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/hospitality/event-venues",
+      "path": "/en/industries/hospitality/event-venues",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/event-venues",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/hospitality/event-venues",
+      "path": "/es/industries/hospitality/event-venues",
+      "bucket": "industries",
+      "dest": "/industries/hospitality/event-venues",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services/hvac",
+      "path": "/en/industries/home-services/hvac",
+      "bucket": "industries",
+      "dest": "/industries/home-services/hvac",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services/hvac",
+      "path": "/es/industries/home-services/hvac",
+      "bucket": "industries",
+      "dest": "/industries/home-services/hvac",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services/roofing",
+      "path": "/en/industries/home-services/roofing",
+      "bucket": "industries",
+      "dest": "/industries/home-services/roofing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services/roofing",
+      "path": "/es/industries/home-services/roofing",
+      "bucket": "industries",
+      "dest": "/industries/home-services/roofing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services/landscaping",
+      "path": "/en/industries/home-services/landscaping",
+      "bucket": "industries",
+      "dest": "/industries/home-services/landscaping",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services/landscaping",
+      "path": "/es/industries/home-services/landscaping",
+      "bucket": "industries",
+      "dest": "/industries/home-services/landscaping",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services/plumbing",
+      "path": "/en/industries/home-services/plumbing",
+      "bucket": "industries",
+      "dest": "/industries/home-services/plumbing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services/plumbing",
+      "path": "/es/industries/home-services/plumbing",
+      "bucket": "industries",
+      "dest": "/industries/home-services/plumbing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services/electrical",
+      "path": "/en/industries/home-services/electrical",
+      "bucket": "industries",
+      "dest": "/industries/home-services/electrical",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services/electrical",
+      "path": "/es/industries/home-services/electrical",
+      "bucket": "industries",
+      "dest": "/industries/home-services/electrical",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/industries/home-services/pest-control",
+      "path": "/en/industries/home-services/pest-control",
+      "bucket": "industries",
+      "dest": "/industries/home-services/pest-control",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/industries/home-services/pest-control",
+      "path": "/es/industries/home-services/pest-control",
+      "bucket": "industries",
+      "dest": "/industries/home-services/pest-control",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/seo-for-hvac-companies",
+      "path": "/en/solutions/seo-for-hvac-companies",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/seo-for-hvac-companies",
+      "path": "/es/solutions/seo-for-hvac-companies",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/seo-for-dentists",
+      "path": "/en/solutions/seo-for-dentists",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/seo-for-dentists",
+      "path": "/es/solutions/seo-for-dentists",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/seo-for-law-firms",
+      "path": "/en/solutions/seo-for-law-firms",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/seo-for-law-firms",
+      "path": "/es/solutions/seo-for-law-firms",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/google-ads-for-roofers",
+      "path": "/en/solutions/google-ads-for-roofers",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/google-ads-for-roofers",
+      "path": "/es/solutions/google-ads-for-roofers",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/email-marketing-for-saas",
+      "path": "/en/solutions/email-marketing-for-saas",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/email-marketing-for-saas",
+      "path": "/es/solutions/email-marketing-for-saas",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/cro-for-saas-companies",
+      "path": "/en/solutions/cro-for-saas-companies",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/cro-for-saas-companies",
+      "path": "/es/solutions/cro-for-saas-companies",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/saas-marketing-agency",
+      "path": "/en/solutions/saas-marketing-agency",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/saas-marketing-agency",
+      "path": "/es/solutions/saas-marketing-agency",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/startup-marketing-agency",
+      "path": "/en/solutions/startup-marketing-agency",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/startup-marketing-agency",
+      "path": "/es/solutions/startup-marketing-agency",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/ai-marketing-agency",
+      "path": "/en/solutions/ai-marketing-agency",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/ai-marketing-agency",
+      "path": "/es/solutions/ai-marketing-agency",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/solutions/web-design-for-saas-companies",
+      "path": "/en/solutions/web-design-for-saas-companies",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/solutions/web-design-for-saas-companies",
+      "path": "/es/solutions/web-design-for-saas-companies",
+      "bucket": "solutions",
+      "dest": "/services",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/seo-pricing-guide",
+      "path": "/en/blog/seo-pricing-guide",
+      "bucket": "blog",
+      "dest": "/blog/seo-pricing-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/seo-pricing-guide",
+      "path": "/es/blog/seo-pricing-guide",
+      "bucket": "blog",
+      "dest": "/blog/seo-pricing-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/how-long-does-seo-take",
+      "path": "/en/blog/how-long-does-seo-take",
+      "bucket": "blog",
+      "dest": "/blog/how-long-does-seo-take",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/how-long-does-seo-take",
+      "path": "/es/blog/how-long-does-seo-take",
+      "bucket": "blog",
+      "dest": "/blog/how-long-does-seo-take",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/local-seo-strategy-2026",
+      "path": "/en/blog/local-seo-strategy-2026",
+      "bucket": "blog",
+      "dest": "/blog/local-seo-strategy-2026",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/local-seo-strategy-2026",
+      "path": "/es/blog/local-seo-strategy-2026",
+      "bucket": "blog",
+      "dest": "/blog/local-seo-strategy-2026",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/email-nurture-sequences-that-book-calls",
+      "path": "/en/blog/email-nurture-sequences-that-book-calls",
+      "bucket": "blog",
+      "dest": "/blog/email-nurture-sequences-that-book-calls",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/email-nurture-sequences-that-book-calls",
+      "path": "/es/blog/email-nurture-sequences-that-book-calls",
+      "bucket": "blog",
+      "dest": "/blog/email-nurture-sequences-that-book-calls",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/website-conversion-optimization",
+      "path": "/en/blog/website-conversion-optimization",
+      "bucket": "blog",
+      "dest": "/blog/website-conversion-optimization",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/website-conversion-optimization",
+      "path": "/es/blog/website-conversion-optimization",
+      "bucket": "blog",
+      "dest": "/blog/website-conversion-optimization",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/google-business-profile-tips",
+      "path": "/en/blog/google-business-profile-tips",
+      "bucket": "blog",
+      "dest": "/blog/google-business-profile-tips",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/google-business-profile-tips",
+      "path": "/es/blog/google-business-profile-tips",
+      "bucket": "blog",
+      "dest": "/blog/google-business-profile-tips",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/seo-vs-google-ads",
+      "path": "/en/blog/seo-vs-google-ads",
+      "bucket": "blog",
+      "dest": "/blog/seo-vs-google-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/seo-vs-google-ads",
+      "path": "/es/blog/seo-vs-google-ads",
+      "bucket": "blog",
+      "dest": "/blog/seo-vs-google-ads",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/technical-seo-fundamentals",
+      "path": "/en/blog/technical-seo-fundamentals",
+      "bucket": "blog",
+      "dest": "/blog/technical-seo-fundamentals",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/technical-seo-fundamentals",
+      "path": "/es/blog/technical-seo-fundamentals",
+      "bucket": "blog",
+      "dest": "/blog/technical-seo-fundamentals",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/local-business-growth-playbook",
+      "path": "/en/blog/local-business-growth-playbook",
+      "bucket": "blog",
+      "dest": "/blog/local-business-growth-playbook",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/local-business-growth-playbook",
+      "path": "/es/blog/local-business-growth-playbook",
+      "bucket": "blog",
+      "dest": "/blog/local-business-growth-playbook",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/technical-seo-guide",
+      "path": "/en/blog/technical-seo-guide",
+      "bucket": "blog",
+      "dest": "/blog/technical-seo-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/technical-seo-guide",
+      "path": "/es/blog/technical-seo-guide",
+      "bucket": "blog",
+      "dest": "/blog/technical-seo-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/internal-linking-guide",
+      "path": "/en/blog/internal-linking-guide",
+      "bucket": "blog",
+      "dest": "/blog/internal-linking-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/internal-linking-guide",
+      "path": "/es/blog/internal-linking-guide",
+      "bucket": "blog",
+      "dest": "/blog/internal-linking-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/seo-audit-framework",
+      "path": "/en/blog/seo-audit-framework",
+      "bucket": "blog",
+      "dest": "/blog/seo-audit-framework",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/seo-audit-framework",
+      "path": "/es/blog/seo-audit-framework",
+      "bucket": "blog",
+      "dest": "/blog/seo-audit-framework",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/link-building-strategies",
+      "path": "/en/blog/link-building-strategies",
+      "bucket": "blog",
+      "dest": "/blog/link-building-strategies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/link-building-strategies",
+      "path": "/es/blog/link-building-strategies",
+      "bucket": "blog",
+      "dest": "/blog/link-building-strategies",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/local-seo-checklist",
+      "path": "/en/blog/local-seo-checklist",
+      "bucket": "blog",
+      "dest": "/blog/local-seo-checklist",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/local-seo-checklist",
+      "path": "/es/blog/local-seo-checklist",
+      "bucket": "blog",
+      "dest": "/blog/local-seo-checklist",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/quality-score-guide",
+      "path": "/en/blog/quality-score-guide",
+      "bucket": "blog",
+      "dest": "/blog/quality-score-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/quality-score-guide",
+      "path": "/es/blog/quality-score-guide",
+      "bucket": "blog",
+      "dest": "/blog/quality-score-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/negative-keywords-guide",
+      "path": "/en/blog/negative-keywords-guide",
+      "bucket": "blog",
+      "dest": "/blog/negative-keywords-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/negative-keywords-guide",
+      "path": "/es/blog/negative-keywords-guide",
+      "bucket": "blog",
+      "dest": "/blog/negative-keywords-guide",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/landing-page-best-practices",
+      "path": "/en/blog/landing-page-best-practices",
+      "bucket": "blog",
+      "dest": "/blog/landing-page-best-practices",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/landing-page-best-practices",
+      "path": "/es/blog/landing-page-best-practices",
+      "bucket": "blog",
+      "dest": "/blog/landing-page-best-practices",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/roas-calculations",
+      "path": "/en/blog/roas-calculations",
+      "bucket": "blog",
+      "dest": "/blog/roas-calculations",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/roas-calculations",
+      "path": "/es/blog/roas-calculations",
+      "bucket": "blog",
+      "dest": "/blog/roas-calculations",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/heatmap-analysis",
+      "path": "/en/blog/heatmap-analysis",
+      "bucket": "blog",
+      "dest": "/blog/heatmap-analysis",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/heatmap-analysis",
+      "path": "/es/blog/heatmap-analysis",
+      "bucket": "blog",
+      "dest": "/blog/heatmap-analysis",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/conversion-psychology",
+      "path": "/en/blog/conversion-psychology",
+      "bucket": "blog",
+      "dest": "/blog/conversion-psychology",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/conversion-psychology",
+      "path": "/es/blog/conversion-psychology",
+      "bucket": "blog",
+      "dest": "/blog/conversion-psychology",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/ab-testing-framework",
+      "path": "/en/blog/ab-testing-framework",
+      "bucket": "blog",
+      "dest": "/blog/ab-testing-framework",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/ab-testing-framework",
+      "path": "/es/blog/ab-testing-framework",
+      "bucket": "blog",
+      "dest": "/blog/ab-testing-framework",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/landing-page-optimization",
+      "path": "/en/blog/landing-page-optimization",
+      "bucket": "blog",
+      "dest": "/blog/landing-page-optimization",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/landing-page-optimization",
+      "path": "/es/blog/landing-page-optimization",
+      "bucket": "blog",
+      "dest": "/blog/landing-page-optimization",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/lifecycle-marketing",
+      "path": "/en/blog/lifecycle-marketing",
+      "bucket": "blog",
+      "dest": "/blog/lifecycle-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/lifecycle-marketing",
+      "path": "/es/blog/lifecycle-marketing",
+      "bucket": "blog",
+      "dest": "/blog/lifecycle-marketing",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/automated-nurture-sequences",
+      "path": "/en/blog/automated-nurture-sequences",
+      "bucket": "blog",
+      "dest": "/blog/automated-nurture-sequences",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/automated-nurture-sequences",
+      "path": "/es/blog/automated-nurture-sequences",
+      "bucket": "blog",
+      "dest": "/blog/automated-nurture-sequences",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/email-segmentation",
+      "path": "/en/blog/email-segmentation",
+      "bucket": "blog",
+      "dest": "/blog/email-segmentation",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/email-segmentation",
+      "path": "/es/blog/email-segmentation",
+      "bucket": "blog",
+      "dest": "/blog/email-segmentation",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/attribution-models",
+      "path": "/en/blog/attribution-models",
+      "bucket": "blog",
+      "dest": "/blog/attribution-models",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/attribution-models",
+      "path": "/es/blog/attribution-models",
+      "bucket": "blog",
+      "dest": "/blog/attribution-models",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/ga4-reporting",
+      "path": "/en/blog/ga4-reporting",
+      "bucket": "blog",
+      "dest": "/blog/ga4-reporting",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/ga4-reporting",
+      "path": "/es/blog/ga4-reporting",
+      "bucket": "blog",
+      "dest": "/blog/ga4-reporting",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/blog/marketing-dashboards",
+      "path": "/en/blog/marketing-dashboards",
+      "bucket": "blog",
+      "dest": "/blog/marketing-dashboards",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/blog/marketing-dashboards",
+      "path": "/es/blog/marketing-dashboards",
+      "bucket": "blog",
+      "dest": "/blog/marketing-dashboards",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/case-studies/landscaping-company-growth",
+      "path": "/en/case-studies/landscaping-company-growth",
+      "bucket": "case-studies",
+      "dest": "/case-studies/landscaping-company-growth",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/case-studies/landscaping-company-growth",
+      "path": "/es/case-studies/landscaping-company-growth",
+      "bucket": "case-studies",
+      "dest": "/case-studies/landscaping-company-growth",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/case-studies/plumbing-company-growth",
+      "path": "/en/case-studies/plumbing-company-growth",
+      "bucket": "case-studies",
+      "dest": "/case-studies/plumbing-company-growth",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/case-studies/plumbing-company-growth",
+      "path": "/es/case-studies/plumbing-company-growth",
+      "bucket": "case-studies",
+      "dest": "/case-studies/plumbing-company-growth",
+      "kind": "unprefix"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/case-studies/saas-platform-growth",
+      "path": "/en/case-studies/saas-platform-growth",
+      "bucket": "case-studies",
+      "dest": "/case-studies/ecommerce-store-growth",
+      "kind": "legacy"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/case-studies/saas-platform-growth",
+      "path": "/es/case-studies/saas-platform-growth",
+      "bucket": "case-studies",
+      "dest": "/case-studies/ecommerce-store-growth",
+      "kind": "legacy"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/seo",
+      "path": "/en/pricing/seo",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/seo",
+      "path": "/es/pricing/seo",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/local-seo",
+      "path": "/en/pricing/local-seo",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/local-seo",
+      "path": "/es/pricing/local-seo",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/ppc-management",
+      "path": "/en/pricing/ppc-management",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/ppc-management",
+      "path": "/es/pricing/ppc-management",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/meta-ads",
+      "path": "/en/pricing/meta-ads",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/meta-ads",
+      "path": "/es/pricing/meta-ads",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/youtube-ads",
+      "path": "/en/pricing/youtube-ads",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/youtube-ads",
+      "path": "/es/pricing/youtube-ads",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/microsoft-ads",
+      "path": "/en/pricing/microsoft-ads",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/microsoft-ads",
+      "path": "/es/pricing/microsoft-ads",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/web-design",
+      "path": "/en/pricing/web-design",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/web-design",
+      "path": "/es/pricing/web-design",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/cro",
+      "path": "/en/pricing/cro",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/cro",
+      "path": "/es/pricing/cro",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/email-marketing",
+      "path": "/en/pricing/email-marketing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/email-marketing",
+      "path": "/es/pricing/email-marketing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/content-marketing",
+      "path": "/en/pricing/content-marketing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/content-marketing",
+      "path": "/es/pricing/content-marketing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/copywriting",
+      "path": "/en/pricing/copywriting",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/copywriting",
+      "path": "/es/pricing/copywriting",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/social-media",
+      "path": "/en/pricing/social-media",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/social-media",
+      "path": "/es/pricing/social-media",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/video-marketing",
+      "path": "/en/pricing/video-marketing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/video-marketing",
+      "path": "/es/pricing/video-marketing",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/branding",
+      "path": "/en/pricing/branding",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/branding",
+      "path": "/es/pricing/branding",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/analytics",
+      "path": "/en/pricing/analytics",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/analytics",
+      "path": "/es/pricing/analytics",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/growth-consulting",
+      "path": "/en/pricing/growth-consulting",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/growth-consulting",
+      "path": "/es/pricing/growth-consulting",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/marketing-audits",
+      "path": "/en/pricing/marketing-audits",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/marketing-audits",
+      "path": "/es/pricing/marketing-audits",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/marketing-automation-crm",
+      "path": "/en/pricing/marketing-automation-crm",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/marketing-automation-crm",
+      "path": "/es/pricing/marketing-automation-crm",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/fractional-cmo",
+      "path": "/en/pricing/fractional-cmo",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/fractional-cmo",
+      "path": "/es/pricing/fractional-cmo",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/training-workshops",
+      "path": "/en/pricing/training-workshops",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/training-workshops",
+      "path": "/es/pricing/training-workshops",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/funnels",
+      "path": "/en/pricing/funnels",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/funnels",
+      "path": "/es/pricing/funnels",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/landing-pages",
+      "path": "/en/pricing/landing-pages",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/landing-pages",
+      "path": "/es/pricing/landing-pages",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/website-maintenance",
+      "path": "/en/pricing/website-maintenance",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/website-maintenance",
+      "path": "/es/pricing/website-maintenance",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/pricing/website-speed",
+      "path": "/en/pricing/website-speed",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/pricing/website-speed",
+      "path": "/es/pricing/website-speed",
+      "bucket": "pricing",
+      "dest": "/contact",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/google-ads-vs-seo",
+      "path": "/en/google-ads-vs-seo",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/google-ads-vs-seo",
+      "path": "/es/google-ads-vs-seo",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/seo-vs-ppc",
+      "path": "/en/seo-vs-ppc",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/seo-vs-ppc",
+      "path": "/es/seo-vs-ppc",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/wordpress-vs-webflow",
+      "path": "/en/wordpress-vs-webflow",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/wordpress-vs-webflow",
+      "path": "/es/wordpress-vs-webflow",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/local-seo-vs-google-ads",
+      "path": "/en/local-seo-vs-google-ads",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/local-seo-vs-google-ads",
+      "path": "/es/local-seo-vs-google-ads",
+      "bucket": "comparisons",
+      "dest": "/resources",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/team/sarah-mitchell",
+      "path": "/en/team/sarah-mitchell",
+      "bucket": "team",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/team/sarah-mitchell",
+      "path": "/es/team/sarah-mitchell",
+      "bucket": "team",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/team/james-chen",
+      "path": "/en/team/james-chen",
+      "bucket": "team",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/team/james-chen",
+      "path": "/es/team/james-chen",
+      "bucket": "team",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/en/team/maria-rodriguez",
+      "path": "/en/team/maria-rodriguez",
+      "bucket": "team",
+      "dest": "/about",
+      "kind": "retired"
+    },
+    {
+      "live": "https://www.kinexisdigital.com/es/team/maria-rodriguez",
+      "path": "/es/team/maria-rodriguez",
+      "bucket": "team",
+      "dest": "/about",
+      "kind": "retired"
+    }
+  ]
+}

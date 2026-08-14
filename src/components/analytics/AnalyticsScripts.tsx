@@ -27,6 +27,19 @@ function setAnalyticsConsent(granted: boolean) {
   });
 }
 
+function loadGtag() {
+  const id = GA_ID || ADS_ID;
+  if (!id) return;
+  if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
+    return;
+  }
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+  document.head.appendChild(script);
+}
+
 function loadClarity() {
   if (!CLARITY_ID || window.__kinexisClarityLoaded) return;
   window.__kinexisClarityLoaded = true;
@@ -46,6 +59,20 @@ export default function AnalyticsScripts() {
   useEffect(() => {
     captureClickIds();
   }, [pathname]);
+
+  // External gtag.js is idle-deferred so it never contends with LCP.
+  // The inline consent default in layout still queues calls on dataLayer.
+  useEffect(() => {
+    if (!GA_ID && !ADS_ID) return;
+
+    const start = () => loadGtag();
+    if (typeof requestIdleCallback === "function") {
+      const idleId = requestIdleCallback(start, { timeout: 4000 });
+      return () => cancelIdleCallback(idleId);
+    }
+    const timeoutId = window.setTimeout(start, 2000);
+    return () => window.clearTimeout(timeoutId);
+  }, []);
 
   const trackPageView = () => {
     if (typeof window.gtag !== "function") return;

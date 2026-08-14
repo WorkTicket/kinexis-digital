@@ -17,7 +17,7 @@ describe("validateOrigin", () => {
   it("accepts same-origin request", () => {
     const req = makeRequest({
       origin: "https://www.kinexisdigital.com",
-      referer: "https://www.kinexisdigital.com/en/contact",
+      referer: "https://www.kinexisdigital.com/contact",
     });
     expect(validateOrigin(req)).toBe(true);
   });
@@ -36,7 +36,7 @@ describe("validateOrigin", () => {
 
   it("accepts referer-only request from same origin", () => {
     const req = makeRequest({
-      referer: "https://www.kinexisdigital.com/en/services/seo",
+      referer: "https://www.kinexisdigital.com/services",
     });
     expect(validateOrigin(req)).toBe(true);
   });

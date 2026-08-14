@@ -1,46 +1,78 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
 import type { Metadata } from "next";
-import { organizationSchema, websiteSchema, localBusinessSchema } from "@/lib/schema";
+import dynamic from "next/dynamic";
+import { HomeCertifications } from "@/components/home/HomeCertifications";
+import { HomeCTA } from "@/components/home/HomeCTA";
+import { HomeExplore } from "@/components/home/HomeExplore";
+import { HomeHero } from "@/components/home/HomeHero";
+import { HomeProcess } from "@/components/home/HomeProcess";
+import { HomeResults } from "@/components/home/HomeResults";
+import { HomeServices } from "@/components/home/HomeServices";
+import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
-import HeroShell from "@/components/sections/HeroShell";
-import HomeDeferredSections from "@/components/sections/HomeDeferredSections";
-import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
-import type { Locale } from "@/i18n/routing";
+import { getTranslations } from "next-intl/server";
+import { getFaqItems } from "@/content/about";
+import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import { schemaLanguage } from "@/i18n/locale-tags";
+import { buildPageMetadata, getSiteUrl } from "@/lib/metadata";
+import {
+  faqSchema,
+  localBusinessSchema,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/schema";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
-  const { locale } = await params;
+const HomeClients = dynamic(() =>
+  import("@/components/home/HomeClients").then((mod) => mod.HomeClients),
+);
+const FaqAccordion = dynamic(() =>
+  import("@/components/page/FaqAccordion").then((mod) => mod.FaqAccordion),
+);
+
+type Props = { params: LocaleParams };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: "metadata" });
-
   return buildPageMetadata({
-    locale: locale as Locale,
+    locale,
     path: "/",
+    absolute: true,
     title: t("title"),
     description: t("description"),
   });
 }
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  setRequestLocale(locale);
+export default async function Home({ params }: Props) {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations("home");
+  const faqs = getFaqItems(locale);
   return (
     <>
       <JsonLd
         data={[
           organizationSchema(),
-          localBusinessSchema(buildAbsoluteUrl(locale as Locale, "/")),
-          websiteSchema(),
+          localBusinessSchema(getSiteUrl()),
+          websiteSchema(schemaLanguage(locale)),
+          faqSchema(faqs),
         ]}
       />
-      <HeroShell />
-      <HomeDeferredSections />
+      <main className="flex flex-1 flex-col">
+        <HomeHero />
+        <HomeCertifications />
+        <HomeClients
+          eyebrow={t("clientsEyebrow")}
+          title={t("clientsTitle")}
+          dek={t("clientsDek")}
+          meetClients={t("meetClients")}
+        />
+        <HomeServices />
+        <HomeResults />
+        <HomeProcess />
+        <WhereWeWork />
+        <FaqAccordion items={faqs} title={t("faqTitle")} />
+        <HomeExplore />
+        <HomeCTA />
+      </main>
     </>
   );
 }

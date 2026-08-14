@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 import { caseStudySlugs } from "@/content/registry/site-routes";
 import { getCaseStudyBySlug } from "@/content/case-studies";
 import type { CaseStudyMetric } from "@/content/case-studies";
@@ -76,7 +77,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     challenge:
       "A1 Property Services, a well-established landscaping company in Cedar Falls, Iowa, relied almost entirely on word-of-mouth referrals. Their four-year-old brochure website was not mobile-friendly, loaded slowly, and had no path to convert visitors into leads. There was no SEO strategy, no Google Business Profile optimization, and seasonal revenue swings made growth unpredictable. A national franchise had entered their market and was aggressively capturing local search traffic for high-value services like hardscaping and outdoor living installations.",
     solution:
-      "We rebuilt the website as a dedicated lead generation engine: fast-loading, mobile-first, with service-area landing pages for each target neighborhood, and prominent quote request forms above the fold on every page. We executed a local SEO program targeting 50+ high-intent keywords across landscaping, hardscaping, irrigation, and seasonal services. The Google Business Profile was fully optimized with a complete service menu, 50+ photos, and a weekly content cadence. A content marketing program produced project case studies and seasonal guides, supported by LocalBusiness schema and structured data markup.",
+      "We rebuilt the website as a dedicated lead generation engine: fast-loading, mobile-first, with service-area landing pages for each target neighborhood, and prominent quote request forms above the fold on every page. We ran a local SEO program targeting 50+ high-intent keywords across landscaping, hardscaping, irrigation, and seasonal services. The Google Business Profile was fully optimized with a complete service menu, 50+ photos, and a weekly content cadence. A content marketing program produced project case studies and seasonal guides, supported by LocalBusiness schema and structured data markup.",
     results:
       "Qualified leads grew from 10 to 28 per month, a 2.8X increase. Organic traffic rose from 420 to 1,180 monthly visits. Lead conversion rate improved from 1.8% to 3.9%. Monthly revenue influenced by digital channels reached $9,800, up from $4,200. The business now ranks in the local pack for 28 of 50 target keywords and added a second service crew to handle new demand.",
     resultsList: [
@@ -93,9 +94,9 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     techStackHeading: "Tech Stack",
     actionsLabel: "Actions Taken",
     outcomeLabel: "Outcome",
-    ctaHeadline: "Want Results Like These?",
-    ctaSubtitle: "Let's talk about what real growth looks like for your business.",
-    ctaLabel: "Start Your Growth Story",
+    ctaHeadline: "Want results like these?",
+    ctaSubtitle: "Seasonal swings don't have to run the books. We'll map what to fix first.",
+    ctaLabel: "Book a Strategy Call",
     heroCtaLabel: "Book a Strategy Call",
     breadcrumbs: { home: "Home", caseStudies: "Case Studies" },
     problems: [
@@ -140,9 +141,9 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     techStackHeading: "Tech Stack",
     actionsLabel: "Actions Taken",
     outcomeLabel: "Outcome",
-    ctaHeadline: "Want Results Like These?",
-    ctaSubtitle: "Let's talk about what real growth looks like for your business.",
-    ctaLabel: "Start Your Growth Story",
+    ctaHeadline: "Want results like these?",
+    ctaSubtitle: "Emergency calls shouldn't depend on a shrinking ad budget.",
+    ctaLabel: "Book a Strategy Call",
     heroCtaLabel: "Book a Strategy Call",
     breadcrumbs: { home: "Home", caseStudies: "Case Studies" },
     problems: [
@@ -160,7 +161,7 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     techStack: ["Cloudflare Workers", "Next.js", "Analytics", "Search Console", "Structured Data", "Call Tracking", "CRM Integration"],
     visitLiveSite: "Visit Live Site",
   },
-  "saas-platform-growth": {
+  "ecommerce-store-growth": {
     title: "Digital Products Store",
     datePublished: "2025-05-01",
     client: "Manos Creativas",
@@ -186,9 +187,9 @@ const en: Record<(typeof caseStudySlugs)[number], Omit<CaseStudyDetail, never>> 
     techStackHeading: "Tech Stack",
     actionsLabel: "Actions Taken",
     outcomeLabel: "Outcome",
-    ctaHeadline: "Want Results Like These?",
-    ctaSubtitle: "Let's talk about what real growth looks like for your business.",
-    ctaLabel: "Start Your Growth Story",
+    ctaHeadline: "Want results like these?",
+    ctaSubtitle: "A store that describes files won't sell the finished work.",
+    ctaLabel: "Book a Strategy Call",
     heroCtaLabel: "Book a Strategy Call",
     breadcrumbs: { home: "Home", caseStudies: "Case Studies" },
     problems: [
@@ -257,7 +258,7 @@ const es: Record<(typeof caseStudySlugs)[number], CaseStudyDetail> = {
   },
   "plumbing-company-growth": {
     ...en["plumbing-company-growth"],
-    title: "Empresa de Plomería",
+    title: "Empresa de Fontanería",
     client: "Preferred Plumbing",
     industry: "Servicios del Hogar",
     headline: "136% Más Llamadas de Emergencia",
@@ -302,8 +303,8 @@ const es: Record<(typeof caseStudySlugs)[number], CaseStudyDetail> = {
     techStack: ["Cloudflare Workers", "Next.js", "Analytics", "Search Console", "Datos Estructurados", "Seguimiento de Llamadas", "Integración CRM"],
     visitLiveSite: "Visitar Sitio en Vivo",
   },
-  "saas-platform-growth": {
-    ...en["saas-platform-growth"],
+  "ecommerce-store-growth": {
+    ...en["ecommerce-store-growth"],
     title: "Tienda de Productos Digitales",
     client: "Manos Creativas",
     industry: "E-commerce",
@@ -350,7 +351,7 @@ const es: Record<(typeof caseStudySlugs)[number], CaseStudyDetail> = {
   },
 };
 
-const byLocale: Record<Locale, typeof en> = { en, es };
+const byLocale = localeContent({ en, "es-419": es });
 
 export function getCaseStudyDetail(locale: Locale, slug: string): CaseStudyDetail | null {
   if (!(caseStudySlugs as readonly string[]).includes(slug)) return null;
@@ -377,6 +378,7 @@ export function getCaseStudyDetail(locale: Locale, slug: string): CaseStudyDetai
 export function getCaseStudyStaticParams() {
   return caseStudySlugs.flatMap((slug) => [
     { locale: "en" as const, slug },
-    { locale: "es" as const, slug },
+    { locale: "es-ES" as const, slug },
+    { locale: "es-419" as const, slug },
   ]);
 }

@@ -128,6 +128,10 @@ describe("articleSchema", () => {
     });
     expect(isValidJsonLdEntity(result)).toBe(true);
     expect(result["@type"]).toBe("Article");
+    expect(result.author).toMatchObject({
+      "@type": "Organization",
+      name: "KINEXIS Digital",
+    });
   });
 });
 

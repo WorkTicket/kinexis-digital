@@ -1,156 +1,191 @@
-import { notFound } from "next/navigation";
-import AnimatedWrapper from "@/components/ui/AnimatedWrapper";
-import CTAArchetype from "@/components/ui/CTAArchetype";
-import StaticHeroShell from "@/components/ui/StaticHeroShell";
-import { getBlogArticle } from "@/content/blog-articles";
-import { getClusterPost } from "@/content/blog-clusters";
-import { blogContent } from "@/content/blog";
-import { blogSlugs } from "@/content/registry/site-routes";
-import { routing, type Locale } from "@/i18n/routing";
-import { getLocalizedContent } from "@/lib/get-localized-content";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import JsonLd from "@/components/seo/JsonLd";
-import { Link } from "@/i18n/navigation";
-import { getAuthor } from "@/content/authors";
-import { getBlogAuthorSlug } from "@/lib/blog-authors";
-import { localizeInternalLinks } from "@/lib/locale-path";
-import { getBlogRelatedLinks } from "@/lib/blog-related-links";
-import RelatedLinks from "@/components/sections/RelatedLinks";
-import { buildAbsoluteUrl, buildPageMetadata, normalizeMetaDescription } from "@/lib/metadata";
-import { articleSchema, breadcrumbSchema, organizationSchema } from "@/lib/schema";
-import { pageSectionClasses } from "@/lib/page-section-surface";
 import type { Metadata } from "next";
+import { Link } from "@/i18n/navigation";
+import { notFound } from "next/navigation";
+import {
+  BlogArticleHeader,
+  BlogCard,
+  blogCategoryHref,
+} from "@/components/blog/BlogFeed";
+import { PageCTA } from "@/components/page/PageCTA";
+import JsonLd from "@/components/seo/JsonLd";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { resolveLocale } from "@/i18n/locale";
+import { getBlogRelatedLinks } from "@/lib/blog-related-links";
+import { localizeInternalLinks } from "@/lib/locale-path";
+import {
+  blogAbsoluteUrl,
+  getAllBlogSlugs,
+  getBlogListingPosts,
+  getBlogSerpMeta,
+  resolvePost,
+  sortPostsByRecency,
+} from "@/lib/blog-utils";
+import { normalizeMetaDescription, buildPageMetadata } from "@/lib/metadata";
+import { duration } from "@/lib/motion";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  organizationSchema,
+} from "@/lib/schema";
 
-function getPostExcerpt(slug: string, locale: Locale, body: string): string {
-  const listing = getLocalizedContent(blogContent, locale).posts.find((p) => p.slug === slug);
-  if (listing?.excerpt) return normalizeMetaDescription(listing.excerpt);
-  const cluster = getClusterPost(slug, locale);
-  if (cluster?.excerpt) return normalizeMetaDescription(cluster.excerpt);
-  const stripped = body.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
-  return normalizeMetaDescription(stripped);
-}
-
-function resolvePost(slug: string, locale: Locale) {
-  const featured = getBlogArticle(slug, locale);
-  if (featured) return featured;
-  const cluster = getClusterPost(slug, locale);
-  if (cluster) {
-    return {
-      title: cluster.title,
-      category: cluster.category,
-      publishedAt: cluster.publishedAt,
-      body: cluster.body,
-    };
-  }
-  return null;
-}
+type PageProps = {
+  params: Promise<{ locale: string; slug: string }>;
+};
 
 export function generateStaticParams() {
-  return routing.locales.flatMap((locale) => blogSlugs.map((slug) => ({ locale, slug })));
+  return getAllBlogSlugs().map((slug) => ({ slug }));
 }
 
-type Params = Promise<{ locale: Locale; slug: string }>;
-
-export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
-  const { locale, slug } = await params;
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  const { slug } = await params;
   const post = resolvePost(slug, locale);
   if (!post) return {};
-  const description = getPostExcerpt(slug, locale, post.body);
+  const serp = getBlogSerpMeta(post);
   return buildPageMetadata({
     locale,
     path: `/blog/${slug}`,
-    title: `${post.title} | KINEXIS`,
-    description,
+    title: serp.title,
+    description: serp.description,
     ogType: "article",
+    publishedTime: post.publishedAtIso,
+    modifiedTime: post.publishedAtIso,
   });
 }
 
-export default async function BlogPostPage({ params }: { params: Params }) {
-  const { locale, slug } = await params;
-  setRequestLocale(locale);
+export default async function BlogPostPage({ params }: PageProps) {
+  const locale = await resolveLocale(params);
+  const { slug } = await params;
   const post = resolvePost(slug, locale);
-
   if (!post) notFound();
 
-  const description = getPostExcerpt(slug, locale, post.body);
-  const c = getLocalizedContent(blogContent, locale);
-  const tNav = await getTranslations({ locale, namespace: "nav" });
-  const tCommon = await getTranslations({ locale, namespace: "common" });
-  const authorSlug = getBlogAuthorSlug(post.category);
-  const author = getAuthor(authorSlug, locale);
   const related = getBlogRelatedLinks(slug, locale);
+  const moreInCategory = sortPostsByRecency(
+    getBlogListingPosts(locale).filter(
+      (p) => p.category === post.category && p.slug !== slug,
+    ),
+  ).slice(0, 3);
+
+  const serviceLinks = related.serviceLinks;
+  const blogLinks = related.blogLinks.filter(
+    (l) => !l.href.endsWith("/blog/posts"),
+  );
 
   return (
-    <article>
+    <main className="flex flex-1 flex-col">
       <JsonLd
         data={[
           organizationSchema(),
           articleSchema({
             title: post.title,
-            description,
-            url: buildAbsoluteUrl(locale, `/blog/${slug}`),
-            datePublished: post.publishedAt,
-            authorName: author?.name,
-            authorUrl: buildAbsoluteUrl(locale, `/team/${authorSlug}`),
+            description: normalizeMetaDescription(post.excerpt),
+            url: blogAbsoluteUrl(locale, `/blog/${slug}`),
+            datePublished: post.publishedAtIso,
           }),
           breadcrumbSchema([
-            { name: tNav("home"), url: buildAbsoluteUrl(locale, "/") },
-            { name: tNav("blog"), url: buildAbsoluteUrl(locale, "/blog") },
+            { name: "Home", url: blogAbsoluteUrl(locale, "/") },
+            { name: "Blog", url: blogAbsoluteUrl(locale, "/blog") },
             { name: post.title },
           ]),
         ]}
       />
-      <StaticHeroShell
-        variant="article"
-        label={post.category}
-        headline={post.title}
-        subtitle={post.publishedAt}
-        ctaLabel={tCommon("bookStrategyCall")}
-        ctaHref="/contact"
-        breadcrumbs={[
-          { name: tNav("home"), url: "/" },
-          { name: tNav("blog"), url: "/blog" },
-          { name: post.title },
-        ]}
+
+      <BlogArticleHeader
+        category={post.category}
+        title={post.title}
+        publishedAt={post.publishedAt}
+        publishedAtIso={post.publishedAtIso}
+        readingMinutes={post.readingMinutes}
       />
 
-      {author && (
-        <div className="container-site -mt-8 mb-4 text-center text-sm text-muted">
-          <Link href={`/team/${authorSlug}`} className="text-neon-cyan/80 hover:text-neon-cyan no-underline transition-colors">
-            {author.name}
-          </Link>
-          <span className="text-muted/50"> · {author.jobTitle}</span>
+      <article className="chapter chapter--void relative">
+        <div className="shell relative py-12 md:py-16 lg:py-20">
+          <p className="blog-article__dek">{post.excerpt}</p>
+          <div
+            className="blog-article__body"
+            dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }}
+          />
         </div>
+      </article>
+
+      {(serviceLinks.length > 0 || blogLinks.length > 0) && (
+        <section className="chapter chapter--studio relative">
+          <div className="shell relative py-14 md:py-20">
+            <Reveal variant="rise" when="chapter">
+              <p className="section-eyebrow">Related</p>
+              <h2 className="blog-section-head__title mt-4">
+                Keep going
+              </h2>
+            </Reveal>
+            <ul className="blog-related mt-10">
+              {serviceLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="blog-related__item">
+                    <span className="blog-related__kind">Service</span>
+                    <span className="blog-related__title">{link.label}</span>
+                    <span aria-hidden className="blog-related__arrow">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+              {blogLinks.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="blog-related__item">
+                    <span className="blog-related__kind">Article</span>
+                    <span className="blog-related__title">{link.label}</span>
+                    <span aria-hidden className="blog-related__arrow">
+                      →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
       )}
 
-      <AnimatedWrapper className={pageSectionClasses(0)}>
-        <div className="container-site">
-          <div className="prose prose-gray max-w-3xl mx-auto
-            prose-headings:font-bold prose-headings:text-text
-            prose-p:text-text-secondary prose-p:leading-relaxed
-            prose-strong:text-text
-            [&_h2]:text-2xl [&_h2]:mt-10 [&_h2]:mb-3
-            [&_h3]:text-xl [&_h3]:mt-6 [&_h3]:mb-2
-            [&_p]:mb-4
-            [&_a]:text-primary [&_a]:underline [&_a]:underline-offset-2"
-            dangerouslySetInnerHTML={{ __html: localizeInternalLinks(post.body, locale) }} />
-        </div>
-      </AnimatedWrapper>
+      {moreInCategory.length > 0 ? (
+        <section className="chapter chapter--void relative">
+          <div className="shell relative py-14 md:py-20 lg:py-24">
+            <Reveal variant="rise" when="chapter" className="mb-10">
+              <div className="blog-section-head">
+                <div>
+                  <p className="section-eyebrow">More in {post.category}</p>
+                  <h2 className="blog-section-head__title mt-4">
+                    Continue reading
+                  </h2>
+                </div>
+                <Link
+                  href={blogCategoryHref(post.category)}
+                  className="blog-section-head__more"
+                >
+                  All {post.category}
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
+            </Reveal>
+            <RevealGroup
+              as="ul"
+              className="blog-grid"
+              stagger={duration.staggerTight}
+            >
+              {moreInCategory.map((item) => (
+                <RevealItem key={item.slug} as="li" variant="fadeUp">
+                  <BlogCard post={item} />
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </div>
+        </section>
+      ) : null}
 
-      {(related.serviceLinks.length > 0 || related.blogLinks.length > 0) && (
-        <RelatedLinks
-          serviceLinks={related.serviceLinks}
-          blogLinks={related.blogLinks}
-          agencyHub
-        />
-      )}
-
-      <CTAArchetype
-        headline={c.postDetailCtaHeadline}
-        subtitle={c.postDetailCtaSubtitle}
-        ctaLabel={c.postDetailCtaButton}
-        ctaHref="/contact"
+      <PageCTA
+        title="Want results like these applied to your funnel?"
+        copy="Bring your numbers and the bottleneck. We'll map what to fix first."
       />
-    </article>
+    </main>
   );
 }

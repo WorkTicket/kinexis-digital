@@ -14,7 +14,7 @@ function bySlug(slug: string) {
 
 const landscaping = bySlug("landscaping-company-growth");
 const plumbing = bySlug("plumbing-company-growth");
-const saas = bySlug("saas-platform-growth");
+const ecommerce = bySlug("ecommerce-store-growth");
 
 const landscapingConversion = landscaping.metrics.find((m) =>
   m.label.toLowerCase().includes("conversion")
@@ -51,17 +51,17 @@ export const CASE_STUDIES = {
     liveUrl: plumbing.liveUrl,
   },
   saas: {
-    slug: saas.slug,
-    href: `/case-studies/${saas.slug}`,
-    client: saas.client,
-    clientFull: saas.client,
-    heroMetric: `${saas.primaryLift} Monthly Orders`,
-    linkLabel: `${saas.primaryLift} Orders · ${saas.client}`,
-    trafficLift: saas.trafficLift,
-    leadLift: saas.leadLift,
-    revenueLift: saas.revenueLift,
-    timeline: saas.timeline,
-    liveUrl: saas.liveUrl,
+    slug: ecommerce.slug,
+    href: `/case-studies/${ecommerce.slug}`,
+    client: ecommerce.client,
+    clientFull: ecommerce.client,
+    heroMetric: `${ecommerce.primaryLift} Monthly Orders`,
+    linkLabel: `${ecommerce.primaryLift} Orders · ${ecommerce.client}`,
+    trafficLift: ecommerce.trafficLift,
+    leadLift: ecommerce.leadLift,
+    revenueLift: ecommerce.revenueLift,
+    timeline: ecommerce.timeline,
+    liveUrl: ecommerce.liveUrl,
   },
 } as const;
 

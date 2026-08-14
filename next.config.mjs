@@ -6,11 +6,11 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
 
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 initOpenNextCloudflareForDev();
-
-const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const cloudflareInsightsConnect = "https://cloudflareinsights.com";
 
@@ -23,7 +23,7 @@ const securityHeaders = [
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=(self)",
+    value: "camera=(), microphone=(), geolocation=()",
   },
   {
     key: "Strict-Transport-Security",
@@ -38,6 +38,7 @@ const securityHeaders = [
       `script-src-elem 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.clarity.ms https://static.cloudflareinsights.com`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.ca https://googleads.g.doubleclick.net https://www.googleadservices.com",
+      "media-src 'self' blob:",
       "font-src 'self' data:",
       `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://www.google.com https://td.doubleclick.net https://googleads.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
       "frame-src 'self' https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com",
@@ -55,24 +56,34 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
+  compiler: {
+    removeConsole: isDev ? false : { exclude: ["error", "warn"] },
+  },
+
+  // Allow HMR /_next/* when opening via LAN IP (phone, another device, DHCP changes)
+  allowedDevOrigins: ["192.168.*.*"],
 
   images: {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 640, 768, 1024, 1280, 1536],
     imageSizes: [32, 64, 96, 128, 180, 256, 280, 360],
-    minimumCacheTTL: 31536000,
+    // Production: long CDN TTL. Dev: no optimizer cache so public/ asset swaps show up.
+    minimumCacheTTL: isDev ? 0 : 31536000,
+    // Next 16 requires an explicit allowlist for non-default qualities.
+    qualities: [60, 70, 75, 80, 85, 90, 92, 100],
+    // Cache-busted industry stills use ?v=… — omit `search` to allow any query.
+    localPatterns: [
+      { pathname: "/assets/**" },
+      { pathname: "/**", search: "" },
+    ],
     remotePatterns: [],
   },
 
   experimental: {
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
-    optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs"],
-    // Inline the route's CSS into a <style> in the <head> instead of emitting a
-    // render-blocking <link rel="stylesheet">. On throttled mobile this removes
-    // an entire request round-trip from the critical path, cutting FCP/LCP by
-    // several hundred ms. The stylesheet is small enough that HTML growth is
-    // offset by the saved round-trip, and HTML is edge-cached via ISR.
+    optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs", "ogl"],
+    // Avoid a render-blocking CSS round-trip on throttled mobile.
     inlineCss: true,
   },
 
@@ -119,49 +130,7 @@ const nextConfig = {
     return config;
   },
   async redirects() {
-    return [
-      {
-        source: "/:locale(en|es)/pricing/google-ads",
-        destination: "/:locale/pricing/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/pricing/paid-ads",
-        destination: "/:locale/pricing/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/services/google-ads",
-        destination: "/:locale/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/:locale(en|es)/services/paid-ads",
-        destination: "/:locale/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/pricing/google-ads",
-        destination: "/en/pricing/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/services/google-ads",
-        destination: "/en/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/services/paid-ads",
-        destination: "/en/services/ppc-management",
-        permanent: true,
-      },
-      {
-        source: "/pricing/paid-ads",
-        destination: "/en/pricing/ppc-management",
-        permanent: true,
-      },
-      ...getLegacyRedirects(),
-    ];
+    return [...getLegacyRedirects()];
   },
   async headers() {
     return [
@@ -199,15 +168,6 @@ const nextConfig = {
       {
         source: "/:path*",
         headers: securityHeaders,
-      },
-      {
-        source: "/:locale(en|es)/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, s-maxage=86400, stale-while-revalidate=604800",
-          },
-        ],
       },
       {
         source: "/assets/:path*",
@@ -256,12 +216,12 @@ const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-const intlConfig = withNextIntl(nextConfig);
-
 // Sentry wraps the config to inject instrumentation.
 // Set SENTRY_ORG, SENTRY_PROJECT, and NEXT_PUBLIC_SENTRY_DSN in .env.local or CI
 // to enable error monitoring. The build works fine without them — Sentry stays
 // disabled (see instrumentation.ts and instrumentation-client.ts).
+const intlConfig = withNextIntl(nextConfig);
+
 export default withBundleAnalyzer(
   withSentryConfig(intlConfig, {
     org: process.env.SENTRY_ORG,

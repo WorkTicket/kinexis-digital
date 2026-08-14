@@ -1,7 +1,15 @@
 import createMiddleware from "next-intl/middleware";
-import { type NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import {
+  LOCALE_COOKIE_NAME,
+  getCookieLocale,
+  isCrawlerRequest,
+  localeCookieOptions,
+  resolveRequestLocale,
+} from "./i18n/geo";
 import { routing, type Locale } from "./i18n/routing";
-import { matchUnprefixedLegacyRedirect } from "./lib/legacy-redirects.mjs";
+import { acceptLanguageHeader } from "./i18n/locale-tags";
+import { resolveLegacyRedirect } from "./lib/legacy-redirects.mjs";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -10,42 +18,48 @@ const APEX_HOST = "kinexisdigital.com";
 
 const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt", "/llms.txt"]);
 
-const UNPREFIXED_LEGACY: Record<string, string> = {
-  "/services/google-ads": "/en/services/ppc-management",
-  "/pricing/google-ads": "/en/pricing/ppc-management",
-  "/pricing/paid-ads": "/en/pricing/ppc-management",
-  "/services/paid-ads": "/en/services/ppc-management",
-};
+const LOCALE_PREFIX_RE = /^\/(en|es-ES|es-419)(?=\/|$)/;
 
-const LOCALE_PREFIX_RE = /^\/(en|es)(\/|$)/;
-
-function hasLocalePrefix(pathname: string): boolean {
-  return LOCALE_PREFIX_RE.test(pathname);
-}
-
-function detectLocale(request: NextRequest): Locale {
-  const accept = request.headers.get("accept-language")?.toLowerCase() ?? "";
-  if (/\bes\b/.test(accept) || accept.includes("es-")) return "es";
-  return routing.defaultLocale;
+function getPathLocale(pathname: string): Locale | null {
+  const match = pathname.match(LOCALE_PREFIX_RE);
+  return match ? (match[1] as Locale) : null;
 }
 
 function buildRedirect(
   request: NextRequest,
   pathname: string,
-  { forceHttps, forceWww }: { forceHttps: boolean; forceWww: boolean },
+  {
+    forceHttps,
+    forceWww,
+    hash,
+  }: { forceHttps: boolean; forceWww: boolean; hash?: string },
 ): NextResponse {
   const url = request.nextUrl.clone();
   url.pathname = pathname;
+  url.hash = hash ?? "";
   if (forceHttps) url.protocol = "https:";
   if (forceWww) url.host = WWW_HOST;
   return NextResponse.redirect(url, 301);
 }
 
-function localePrefixedPath(pathname: string, request: NextRequest): string {
-  if (hasLocalePrefix(pathname)) return pathname;
-  const locale = detectLocale(request);
-  if (pathname === "/" || pathname === "") return `/${locale}`;
-  return `/${locale}${pathname}`;
+function withRequestLocale(request: NextRequest, locale: Locale): NextRequest {
+  const headers = new Headers(request.headers);
+  const parts = (headers.get("cookie") ?? "")
+    .split(";")
+    .map((part) => part.trim())
+    .filter((part) => part && !part.startsWith(`${LOCALE_COOKIE_NAME}=`));
+  parts.push(`${LOCALE_COOKIE_NAME}=${locale}`);
+  headers.set("cookie", parts.join("; "));
+  headers.set("accept-language", acceptLanguageHeader(locale));
+  return new NextRequest(request, { headers });
+}
+
+function persistLocaleCookie(response: NextResponse, request: NextRequest, locale: Locale) {
+  if (isCrawlerRequest(request)) return response;
+  const host = request.headers.get("host")?.split(":")[0] ?? "";
+  const secure = host !== "localhost" && host !== "127.0.0.1";
+  response.cookies.set(LOCALE_COOKIE_NAME, locale, localeCookieOptions(secure));
+  return response;
 }
 
 export default function middleware(request: NextRequest) {
@@ -54,9 +68,6 @@ export default function middleware(request: NextRequest) {
   const isLocalHost = host === "localhost" || host === "127.0.0.1";
   const needsWww = host === APEX_HOST;
 
-  // HTTPS enforcement — check first, before any other processing.
-  // Uses x-forwarded-proto (set by Cloudflare) as the primary signal,
-  // with request.nextUrl.protocol as fallback for non-Cloudflare environments.
   if (!isLocalHost) {
     const forwardedProto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
     const isHttp =
@@ -66,7 +77,9 @@ export default function middleware(request: NextRequest) {
         try {
           const cf = request.headers.get("cf-visitor");
           if (cf) return JSON.parse(cf).scheme === "http";
-        } catch { /* ignore */ }
+        } catch {
+          /* ignore */
+        }
         return false;
       })();
 
@@ -79,30 +92,26 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const legacyTarget =
-    UNPREFIXED_LEGACY[pathname] ?? matchUnprefixedLegacyRedirect(pathname);
-  if (legacyTarget) {
-    const url = request.nextUrl.clone();
-    url.pathname = legacyTarget;
-    return NextResponse.redirect(url, 301);
+  const pathLocale = getPathLocale(pathname);
+  const resolved = resolveLegacyRedirect(pathname);
+
+  if (resolved) {
+    const response = buildRedirect(request, resolved.path, {
+      forceHttps: false,
+      forceWww: false,
+      hash: resolved.hash,
+    });
+    if (pathLocale) persistLocaleCookie(response, request, pathLocale);
+    return response;
   }
 
-  if (!isLocalHost && pathname === "/") {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${detectLocale(request)}`;
-    return NextResponse.rewrite(url);
-  }
+  const hadCookie = Boolean(getCookieLocale(request));
+  const locale = resolveRequestLocale(request);
+  const localizedRequest = withRequestLocale(request, locale);
+  const response = intlMiddleware(localizedRequest);
 
-  if (!isLocalHost) {
-    const targetPath = localePrefixedPath(pathname, request);
-    if (targetPath !== pathname) {
-      const url = request.nextUrl.clone();
-      url.pathname = targetPath;
-      return NextResponse.redirect(url, 301);
-    }
-  }
-
-  return intlMiddleware(request);
+  if (!hadCookie) persistLocaleCookie(response, request, locale);
+  return response;
 }
 
 export const config = {

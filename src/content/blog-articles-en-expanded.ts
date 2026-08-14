@@ -300,7 +300,7 @@ export const blogArticlesEnExpanded = {
 <p>Start with a clear understanding of what a customer is worth to you and what you can afford to invest per month. For most businesses, $2,000 to $5,000 per month is the range where professional SEO becomes possible and ROI becomes measurable.</p>
 <p>Commit to at least 6 months. SEO compounds. Three months is rarely enough to see meaningful results. Six to nine months is where the momentum builds. Twelve months is where SEO often becomes your most cost-effective channel.</p>
 <p>If you're not sure where to start, request a strategy call and ask specific questions: what does your process look like, how do you prioritize fixes, what results have you achieved for businesses similar to mine, and how do you measure and report progress. The quality of the answers will tell you more than the price tag.</p>
-<p>At KINEXIS Digital, we're transparent about what we deliver at each investment level. <a href="/services/seo">See how our SEO programs work →</a></p>`,
+<p>At KINEXIS Digital, we're transparent about what we deliver at each investment level. <a href="/services#seo">See how our SEO programs work →</a></p>`,
   },
   "how-long-does-seo-take": {
     title: "How Long Does SEO Take? Realistic Timelines for Real Results",
@@ -362,7 +362,7 @@ export const blogArticlesEnExpanded = {
 <p>You cannot shortcut SEO, but you can avoid slowing it down. Don't change URLs after they start ranking. Don't redesign your site without preserving redirects. Don't pause your program after three months because you haven't hit page one yet.</p>
 <p>Do prioritize technical fixes first (fastest impact). Do publish content consistently (compounding effect). Do earn backlinks from relevant sites (authority acceleration). Do track leads and revenue, not just rankings.</p>
 <p>SEO is not a campaign. It's a capability you build over time. The businesses that treat it that way are the ones that show up first when their ideal customers search.</p>
-<p>If you want a realistic timeline for your specific business and market, that's the kind of conversation we have every day at KINEXIS Digital. <a href="/services/seo">Talk to our team about your situation →</a></p>`,
+<p>If you want a realistic timeline for your specific business and market, that's the kind of conversation we have every day at KINEXIS Digital. <a href="/services#seo">Talk to our team about your situation →</a></p>`,
   },
   "email-nurture-sequences-that-book-calls": {
     title: "Email Nurture Sequences That Actually Book Calls",

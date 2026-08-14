@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type Author = {
   slug: string;
@@ -10,7 +11,7 @@ export type Author = {
   linkedin?: string;
 };
 
-export const authorsContent: Record<Locale, { authors: Author[] }> = {
+export const authorsContent = localeContent({
   en: {
     authors: [
       {
@@ -42,7 +43,7 @@ export const authorsContent: Record<Locale, { authors: Author[] }> = {
       },
     ],
   },
-  es: {
+  "es-419": {
     authors: [
       {
         slug: "sarah-mitchell",
@@ -70,7 +71,7 @@ export const authorsContent: Record<Locale, { authors: Author[] }> = {
       },
     ],
   },
-};
+});
 
 export function getAuthor(slug: string, locale: Locale): Author | undefined {
   return authorsContent[locale].authors.find((a) => a.slug === slug);

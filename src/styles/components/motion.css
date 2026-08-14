@@ -1,0 +1,229 @@
+/* ── Site-wide motion language ─────────────────────────────────────────────
+   Interactive polish + progressive CSS reveals. Framer Reveal remains the
+   primary entrance system; these styles cover hover micro-motion and any
+   section marked with .motion-section that is not already wrapped in Reveal.
+────────────────────────────────────────────────────────────────────────── */
+
+/* Cards — lift, border, and soft light (class used by cardClasses) */
+.motion-card {
+  --motion-card-y: 0px;
+  position: relative;
+  isolation: isolate;
+  transform: translate3d(0, var(--motion-card-y), 0);
+  backface-visibility: hidden;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease,
+    box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 280ms ease;
+}
+
+.motion-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    155deg,
+    color-mix(in oklab, var(--accent) 12%, transparent) 0%,
+    transparent 42%,
+    transparent 100%
+  );
+  transition: opacity 420ms ease;
+  z-index: 0;
+}
+
+.motion-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-card:hover {
+    --motion-card-y: -5px;
+    border-color: color-mix(in oklab, var(--accent) 28%, var(--border-strong, currentColor));
+    box-shadow:
+      0 1px 0 color-mix(in oklab, #fff 6%, transparent),
+      0 18px 40px -28px color-mix(in oklab, var(--accent) 35%, transparent),
+      0 28px 56px -36px color-mix(in oklab, #000 45%, transparent);
+  }
+
+  .motion-card:hover::after {
+    opacity: 1;
+  }
+
+  .motion-card:active {
+    --motion-card-y: -2px;
+  }
+}
+
+/* Inline / text links — underline draw */
+.motion-link {
+  background-image: linear-gradient(
+    currentColor,
+    currentColor
+  );
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  transition:
+    background-size 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 200ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-link:hover {
+    background-size: 100% 1px;
+  }
+}
+
+.motion-link:focus-visible {
+  background-size: 100% 1px;
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* List / grid items — quiet hover shift */
+.motion-row {
+  transition:
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 240ms ease,
+    border-color 240ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-row:hover {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+/* Catalog / tile cards without Framer wrappers */
+.motion-tile {
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease,
+    box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 280ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .motion-tile:hover {
+    transform: translate3d(0, -4px, 0);
+  }
+}
+
+/* Progressive CSS section entrance — desktop only, no JS.
+   Use on sections that are not already wrapped in Reveal / RevealGroup. */
+@keyframes motion-section-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+@keyframes motion-section-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 1024px) {
+    .motion-section {
+      animation: motion-section-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% entry 35%;
+    }
+
+    .motion-section--fade {
+      animation-name: motion-section-fade;
+    }
+
+    .motion-stagger > * {
+      animation: motion-section-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 8% entry 38%;
+    }
+
+    .motion-stagger > *:nth-child(1) {
+      animation-range: entry 6% entry 34%;
+    }
+    .motion-stagger > *:nth-child(2) {
+      animation-range: entry 10% entry 38%;
+    }
+    .motion-stagger > *:nth-child(3) {
+      animation-range: entry 14% entry 42%;
+    }
+    .motion-stagger > *:nth-child(4) {
+      animation-range: entry 18% entry 46%;
+    }
+    .motion-stagger > *:nth-child(5) {
+      animation-range: entry 22% entry 50%;
+    }
+    .motion-stagger > *:nth-child(6) {
+      animation-range: entry 26% entry 54%;
+    }
+  }
+}
+
+/* Respect reduced motion + mobile defer flags from MotionFlagsProvider */
+@media (prefers-reduced-motion: reduce) {
+  .motion-card,
+  .motion-card::after,
+  .motion-link,
+  .motion-row,
+  .motion-tile {
+    transition: none !important;
+  }
+
+  .motion-card:hover,
+  .motion-card:active,
+  .motion-row:hover,
+  .motion-tile:hover {
+    transform: none !important;
+  }
+
+  .motion-section,
+  .motion-stagger > * {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+  }
+}
+
+html[data-reduced-motion="true"] .motion-card,
+html[data-reduced-motion="true"] .motion-card::after,
+html[data-reduced-motion="true"] .motion-link,
+html[data-reduced-motion="true"] .motion-row,
+html[data-reduced-motion="true"] .motion-tile,
+html[data-reduced-motion="true"] .icon-well,
+html[data-motion="reduce-mobile"] .motion-card,
+html[data-motion="reduce-mobile"] .motion-card::after,
+html[data-motion="reduce-mobile"] .icon-well {
+  transition-duration: 160ms !important;
+}
+
+html[data-motion="reduce-mobile"] .motion-card:hover {
+  --motion-card-y: -2px;
+  box-shadow: none;
+}
+
+html[data-motion="reduce-mobile"] .motion-section,
+html[data-motion="reduce-mobile"] .motion-stagger > * {
+  animation: none !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}

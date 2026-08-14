@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 
 export type ContactBookingContent = {
   title: string;
@@ -27,6 +28,11 @@ export type ContactBookingContent = {
 
 export type ContactContent = {
   heroTitle: string;
+  heroTitleLine: string;
+  heroSignal: string;
+  heroEyebrow: string;
+  emailEyebrow: string;
+  optionsAria: string;
   heroSubtitle: string;
   formTitle: string;
   formSubtitle: string;
@@ -65,17 +71,22 @@ export type ContactContent = {
   booking: ContactBookingContent;
 };
 
-export const contactContent: Record<Locale, ContactContent> = {
+export const contactContentI18n = localeContent({
   en: {
-    heroTitle: "Start with a conversation, not a pitch deck.",
+    heroTitle: "Let's talk.",
+    heroTitleLine: "Let's",
+    heroSignal: "talk.",
+    heroEyebrow: "Contact",
+    emailEyebrow: "Email",
+    optionsAria: "Contact options",
     heroSubtitle:
-      "Tell us what's not working in your marketing. We'll respond within one business day with an honest read on whether we can help.",
-    formTitle: "Start the Conversation",
+      "Book a call or send a short message. You'll hear back within one business day with a straight read on fit and next steps.",
+    formTitle: "Send a message",
     formSubtitle:
-      "Share what you're working on and we'll come back to you with a clear plan. No vague promises, no wasted time.",
-    successTitle: "You're in good hands.",
+      "Share the challenge, the goal, and the timeline. We'll reply with a clear take, not a generic pitch.",
+    successTitle: "Got it. We'll be in touch.",
     successSubtitle:
-      "We've received your message and will reach out within one business day. Check your inbox.",
+      "We received your message and will reach out within one business day. Check your inbox.",
     confirmFlash: "Message sent",
     errorMessage: "Something went wrong. Please try again or email us directly.",
     nameLabel: "Full Name",
@@ -89,14 +100,14 @@ export const contactContent: Record<Locale, ContactContent> = {
     serviceLabel: "What are you looking for?",
     messageLabel: "Comments",
     messagePlaceholder:
-      "What's your biggest marketing challenge right now? What does success look like in 12 months?",
+      "What's the biggest leak in your marketing right now? What does a good next 12 months look like?",
     submitButton: "Send Message",
     submittingButton: "Sending…",
-    sidebarTitle: "What Happens Next",
-    sidebarSubtitle: "We keep things simple. No long waits, no pressure.",
+    sidebarTitle: "What happens next",
+    sidebarSubtitle: "Simple process. Fast reply. No pressure to buy on the call.",
     step1Title: "You book or write us",
     step1Desc:
-      "Pick a call time above, or send a short message. Either way, a strategist reviews it personally.",
+      "Pick a call time above, or send a short message. A strategist reviews it personally.",
     step2Title: "We confirm within a day",
     step2Desc:
       "You'll get a confirmation and, if needed, a quick reply before we meet.",
@@ -122,7 +133,7 @@ export const contactContent: Record<Locale, ContactContent> = {
     booking: {
       title: "Book a strategy call",
       subtitle:
-        "30 minutes. Weekdays. We'll look at what's leaking and whether we can help.",
+        "30 minutes. Weekdays. We review what's leaking, what to fix first, and if we're the right partner.",
       timezoneNote: "24-hour minimum notice",
       timeLabel: "Times",
       pickDateHint: "Choose a date to see open times.",
@@ -144,82 +155,184 @@ export const contactContent: Record<Locale, ContactContent> = {
       messageTabLabel: "Send a message",
     },
   },
-  es: {
-    heroTitle: "Empieza con una conversación, no con un pitch.",
+  "es-419": {
+    heroTitle: "Hablemos.",
+    heroTitleLine: "Vamos a",
+    heroSignal: "hablar.",
+    heroEyebrow: "Contacto",
+    emailEyebrow: "Correo",
+    optionsAria: "Opciones de contacto",
     heroSubtitle:
-      "Cuéntanos qué no está funcionando en tu marketing. Responderemos en un día hábil con una evaluación honesta sobre si podemos ayudarte.",
-    formTitle: "Inicia la Conversación",
+      "Agenda una llamada o envíanos un mensaje breve. Te respondemos en un día hábil con una evaluación directa de si encajamos y cuáles serían los siguientes pasos.",
+    formTitle: "Enviar un mensaje",
     formSubtitle:
-      "Comparte en qué estás trabajando y te responderemos con un plan claro. Sin promesas vagas, sin tiempo perdido.",
-    successTitle: "Estás en buenas manos.",
+      "Cuéntanos el problema, el objetivo y el plazo. Te respondemos con un análisis concreto, no con una presentación genérica.",
+    successTitle: "Recibido. Te escribimos pronto.",
     successSubtitle:
-      "Recibimos tu mensaje y nos pondremos en contacto en un día hábil. Revisa tu bandeja de entrada.",
+      "Recibimos tu mensaje y te contactaremos en un día hábil. Revisa tu bandeja de entrada.",
     confirmFlash: "Mensaje enviado",
-    errorMessage: "Algo salió mal. Por favor intenta de nuevo o escríbenos directamente.",
-    nameLabel: "Nombre Completo",
+    errorMessage: "Algo salió mal. Inténtalo de nuevo o escríbenos directamente.",
+    nameLabel: "Nombre completo",
     namePlaceholder: "Tu nombre",
-    emailLabel: "Correo Electrónico",
+    emailLabel: "Correo electrónico",
     emailPlaceholder: "tu@empresa.com",
     companyLabel: "Empresa",
     companyPlaceholder: "Tu empresa (opcional)",
     phoneLabel: "Teléfono",
     phonePlaceholder: "+1 (555) 000-0000 (opcional)",
-    serviceLabel: "¿Qué estás buscando?",
+    serviceLabel: "¿Qué necesitas?",
     messageLabel: "Comentarios",
     messagePlaceholder:
-      "¿Cuál es tu mayor desafío de marketing ahora? ¿Cómo sería el éxito en 12 meses?",
-    submitButton: "Enviar Mensaje",
+      "¿Dónde se está perdiendo ahora mismo tu marketing? ¿Cómo se ve un buen próximo año?",
+    submitButton: "Enviar mensaje",
     submittingButton: "Enviando…",
-    sidebarTitle: "¿Qué Pasa Después?",
-    sidebarSubtitle: "Lo mantenemos simple. Sin largas esperas, sin presión.",
-    step1Title: "Agenda o escríbenos",
+    sidebarTitle: "Qué sigue",
+    sidebarSubtitle: "Proceso simple. Respuesta rápida. Sin presión para contratar en la llamada.",
+    step1Title: "Agendas o nos escribes",
     step1Desc:
-      "Elige un horario arriba o envía un mensaje corto. Un estratega lo revisa en persona.",
+      "Elige un horario arriba o envía un mensaje breve. Un estratega lo revisa personalmente.",
     step2Title: "Confirmamos en un día",
     step2Desc:
-      "Recibes confirmación y, si hace falta, una respuesta rápida antes de la llamada.",
+      "Recibes confirmación y, si hace falta, una respuesta breve antes de la llamada.",
     step3Title: "Próximos pasos claros",
     step3Desc:
-      "En la llamada mapeamos qué falla, qué arreglar primero y si somos el equipo adecuado.",
-    trustLabel1: "Respuesta < 24hrs",
-    trustLabel2: "Sin contratos forzados",
+      "En la llamada identificamos qué está fallando, qué conviene arreglar primero y si somos la opción correcta.",
+    trustLabel1: "Respuesta < 24 h",
+    trustLabel2: "Sin contratos de permanencia",
     trustLabel3: "Consulta inicial gratuita",
     servicePlaceholder: "Selecciona un servicio…",
     serviceOptions: [
-      "Diseño y Desarrollo Web",
-      "SEO (Optimización en Buscadores)",
-      "Anuncios Pagados (Google / Meta)",
-      "Marketing en Redes Sociales",
-      "Branding e Identidad",
-      "Email Marketing",
-      "Marketing de Contenidos",
-      "Consultoría de Crecimiento",
-      "Otro / Aún no estoy seguro",
+      "Diseño y desarrollo web",
+      "Posicionamiento SEO",
+      "Anuncios de pago (Google / Meta)",
+      "Marketing en redes sociales",
+      "Branding e identidad",
+      "Email marketing",
+      "Marketing de contenidos",
+      "Consultoría de crecimiento",
+      "Otro / Aún no lo tengo claro",
     ],
     formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
     booking: {
-      title: "Agenda una llamada de estrategia",
+      title: "Agendar una llamada estratégica",
       subtitle:
-        "30 minutos. Entre semana. Revisamos qué está fallando y si podemos ayudar.",
+        "30 minutos. De lunes a viernes. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como aliados.",
       timezoneNote: "Aviso mínimo de 24 horas",
       timeLabel: "Horarios",
-      pickDateHint: "Elige una fecha para ver horarios.",
-      noSlots: "No quedan horarios este día. Prueba otra fecha.",
+      pickDateHint: "Elige una fecha para ver horarios disponibles.",
+      noSlots: "No hay horarios disponibles ese día. Prueba otra fecha.",
       notesLabel: "Notas (opcional)",
-      notesPlaceholder: "Tu mayor desafío ahora…",
-      submitButton: "Reservar llamada",
-      submittingButton: "Reservando…",
+      notesPlaceholder: "Cuál es el mayor problema ahora mismo…",
+      submitButton: "Agendar llamada estratégica",
+      submittingButton: "Agendando…",
       successTitle: "Quedó agendada.",
-      successSubtitle: "Recibimos tu solicitud y confirmaremos pronto. Revisa tu bandeja de entrada.",
-      confirmFlash: "Llamada reservada",
-      errorMessage: "Algo salió mal. Intenta de nuevo o escríbenos directamente.",
-      selectSlotError: "Elige una fecha y hora para continuar.",
-      footnote: "Confirmación por correo. Sin pago para reservar.",
+      successSubtitle: "Recibimos tu solicitud y confirmaremos en breve. Revisa tu bandeja de entrada.",
+      confirmFlash: "Llamada agendada",
+      errorMessage: "Algo salió mal. Inténtalo de nuevo o escríbenos directamente.",
+      selectSlotError: "Elige una fecha y un horario para continuar.",
+      footnote: "Confirmación por correo. No se requiere pago para agendar.",
       prevMonth: "Mes anterior",
       nextMonth: "Mes siguiente",
       orDivider: "O envía un mensaje",
       tabLabel: "Agendar llamada",
-      messageTabLabel: "Enviar mensaje",
+      messageTabLabel: "Enviar un mensaje",
     },
   },
+  "es-ES": {
+    heroTitle: "Hablemos.",
+    heroTitleLine: "Vamos a",
+    heroSignal: "hablar.",
+    heroEyebrow: "Contacto",
+    emailEyebrow: "Correo",
+    optionsAria: "Opciones de contacto",
+    heroSubtitle:
+      "Reserva una llamada o envíanos un mensaje breve. Te respondemos en un día laborable con una evaluación directa de si encajamos y cuáles serían los siguientes pasos.",
+    formTitle: "Enviar un mensaje",
+    formSubtitle:
+      "Cuéntanos el problema, el objetivo y el plazo. Te respondemos con un análisis concreto, no con una presentación genérica.",
+    successTitle: "Recibido. Te escribimos pronto.",
+    successSubtitle:
+      "Hemos recibido tu mensaje y te contactaremos en un día laborable. Revisa tu bandeja de entrada.",
+    confirmFlash: "Mensaje enviado",
+    errorMessage: "Algo ha fallado. Inténtalo de nuevo o escríbenos directamente.",
+    nameLabel: "Nombre completo",
+    namePlaceholder: "Tu nombre",
+    emailLabel: "Correo electrónico",
+    emailPlaceholder: "tu@empresa.com",
+    companyLabel: "Empresa",
+    companyPlaceholder: "Tu empresa (opcional)",
+    phoneLabel: "Teléfono",
+    phonePlaceholder: "+34 600 000 000 (opcional)",
+    serviceLabel: "¿Qué necesitas?",
+    messageLabel: "Comentarios",
+    messagePlaceholder:
+      "¿Dónde se está perdiendo ahora mismo tu marketing? ¿Cómo se ve un buen próximo año?",
+    submitButton: "Enviar mensaje",
+    submittingButton: "Enviando…",
+    sidebarTitle: "Qué sigue",
+    sidebarSubtitle: "Proceso simple. Respuesta rápida. Sin presión para contratar en la llamada.",
+    step1Title: "Reservas o nos escribes",
+    step1Desc:
+      "Elige una hora arriba o envía un mensaje breve. Un estratega lo revisa personalmente.",
+    step2Title: "Confirmamos en un día",
+    step2Desc:
+      "Recibes confirmación y, si hace falta, una respuesta breve antes de la llamada.",
+    step3Title: "Próximos pasos claros",
+    step3Desc:
+      "En la llamada identificamos qué está fallando, qué conviene arreglar primero y si somos la opción correcta.",
+    trustLabel1: "Respuesta < 24 h",
+    trustLabel2: "Sin contratos de permanencia",
+    trustLabel3: "Consulta inicial gratuita",
+    servicePlaceholder: "Selecciona un servicio…",
+    serviceOptions: [
+      "Diseño y desarrollo web",
+      "Posicionamiento SEO",
+      "Anuncios de pago (Google / Meta)",
+      "Marketing en redes sociales",
+      "Branding e identidad",
+      "Email marketing",
+      "Marketing de contenidos",
+      "Consultoría de crecimiento",
+      "Otro / Aún no lo tengo claro",
+    ],
+    formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
+    booking: {
+      title: "Reservar una llamada estratégica",
+      subtitle:
+        "30 minutos. De lunes a viernes. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como socios.",
+      timezoneNote: "Aviso mínimo de 24 horas",
+      timeLabel: "Horas",
+      pickDateHint: "Elige una fecha para ver huecos libres.",
+      noSlots: "No hay huecos libres ese día. Prueba otra fecha.",
+      notesLabel: "Notas (opcional)",
+      notesPlaceholder: "Cuál es el mayor problema ahora mismo…",
+      submitButton: "Reservar llamada estratégica",
+      submittingButton: "Reservando…",
+      successTitle: "Queda reservada.",
+      successSubtitle: "Hemos recibido tu solicitud y confirmaremos en breve. Revisa tu bandeja de entrada.",
+      confirmFlash: "Llamada reservada",
+      errorMessage: "Algo ha fallado. Inténtalo de nuevo o escríbenos directamente.",
+      selectSlotError: "Elige una fecha y una hora para continuar.",
+      footnote: "Confirmación por correo. No se requiere pago para reservar.",
+      prevMonth: "Mes anterior",
+      nextMonth: "Mes siguiente",
+      orDivider: "O envía un mensaje",
+      tabLabel: "Reservar llamada",
+      messageTabLabel: "Enviar un mensaje",
+    },
+  },
+});
+
+export const CONTACT_EMAIL = "hello@kinexisdigital.com";
+
+const en = contactContentI18n.en;
+
+export const contactContentFlat = {
+  ...en,
 };
+
+export { contactContentFlat as contactContent };
+
+export function getContactContent(locale: Locale): ContactContent {
+  return contactContentI18n[locale] ?? contactContentI18n.en;
+}

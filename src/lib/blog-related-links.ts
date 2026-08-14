@@ -1,6 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import { getClusterPost } from "@/content/blog-clusters";
 import { getServiceRelatedLinks } from "@/lib/service-related-links";
+import { serviceHubPath } from "@/lib/legacy-redirects.mjs";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 
 const blogToService: Record<string, ServiceSeoSlug> = {
@@ -75,7 +76,7 @@ export function getBlogRelatedLinks(
     const related = getServiceRelatedLinks(serviceSlug);
     if (serviceLinks.length === 0) {
       serviceLinks.push({
-        href: `/services/${serviceSlug}`,
+        href: serviceHubPath(serviceSlug),
         label: related.services[0]?.label ?? "Related Services",
       });
     }

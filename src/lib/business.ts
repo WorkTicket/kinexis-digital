@@ -15,7 +15,7 @@ export const businessProfile = {
   legalName: "KINEXIS Digital",
   email: "hello@kinexisdigital.com",
   description:
-    "Digital marketing agency specializing in SEO, paid media, web design, CRO, and analytics for local businesses, SaaS companies, and enterprise organizations.",
+    "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
   linkedIn: "https://www.linkedin.com/company/kinexisdigital",
   /** ISO 3166-1 alpha-2 — primary market; no street address published on site. */
   addressCountry: "CA",

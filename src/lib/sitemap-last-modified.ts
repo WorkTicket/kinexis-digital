@@ -5,13 +5,9 @@ import { getCaseStudyDetail } from "@/content/case-study-details";
 import {
   blogSlugs,
   caseStudySlugs,
-  comparisonSlugs,
-  authorSlugs,
   sitemapServiceSlugs,
-  sitemapPricingSlugs,
 } from "@/content/registry/site-routes";
 import { allIndustries, industryCategories } from "@/content/registry/industries";
-import { solutions } from "@/content/registry/solutions";
 
 const SPANISH_MONTHS: Record<string, number> = {
   enero: 0,
@@ -37,21 +33,16 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/blog": "2026-06-20",
   "/blog/posts": "2026-06-20",
   "/case-studies": "2026-06-01",
-  "/digital-marketing-agency": "2026-06-15",
+  "/clients": "2026-06-01",
   "/industries": "2026-06-01",
-  "/solutions": "2026-06-01",
   "/resources": "2026-05-15",
-  "/pricing": "2026-07-07",
+  "/thank-you": "2026-07-03",
   "/privacy": "2026-03-01",
   "/terms": "2026-03-01",
 };
 
 const SERVICE_LAST_MODIFIED = "2026-07-07";
-const PRICING_LAST_MODIFIED = "2026-07-07";
-const COMPARISON_LAST_MODIFIED = "2026-06-01";
 const INDUSTRY_LAST_MODIFIED = "2026-05-20";
-const SOLUTION_LAST_MODIFIED = "2026-05-25";
-const TEAM_LAST_MODIFIED = "2026-05-01";
 
 export function parseContentDate(value: string): Date | null {
   const trimmed = value.trim();
@@ -102,7 +93,7 @@ function dateFromIsoString(iso: string): Date {
   return new Date(`${iso}T12:00:00.000Z`);
 }
 
-/** Resolve lastModified for a locale-neutral site path (no /en prefix). */
+/** Resolve lastModified for a site path. */
 export function getPathLastModified(path: string): Date {
   const normalized = path === "/" ? "/" : path.replace(/\/$/, "");
 
@@ -127,16 +118,6 @@ export function getPathLastModified(path: string): Date {
     return dateFromIsoString(SERVICE_LAST_MODIFIED);
   }
 
-  const pricingMatch = normalized.match(/^\/pricing\/([^/]+)$/);
-  if (pricingMatch && (sitemapPricingSlugs as readonly string[]).includes(pricingMatch[1])) {
-    return dateFromIsoString(PRICING_LAST_MODIFIED);
-  }
-
-  const comparisonMatch = normalized.match(/^\/(google-ads-vs-seo|seo-vs-ppc|wordpress-vs-webflow|local-seo-vs-google-ads)$/);
-  if (comparisonMatch && (comparisonSlugs as readonly string[]).includes(comparisonMatch[1] as (typeof comparisonSlugs)[number])) {
-    return dateFromIsoString(COMPARISON_LAST_MODIFIED);
-  }
-
   const industryCategoryMatch = normalized.match(/^\/industries\/([^/]+)$/);
   if (industryCategoryMatch && industryCategories.some((c) => c.id === industryCategoryMatch[1])) {
     return dateFromIsoString(INDUSTRY_LAST_MODIFIED);
@@ -150,16 +131,6 @@ export function getPathLastModified(path: string): Date {
     )
   ) {
     return dateFromIsoString(INDUSTRY_LAST_MODIFIED);
-  }
-
-  const solutionMatch = normalized.match(/^\/solutions\/([^/]+)$/);
-  if (solutionMatch && solutions.some((s) => s.slug === solutionMatch[1])) {
-    return dateFromIsoString(SOLUTION_LAST_MODIFIED);
-  }
-
-  const teamMatch = normalized.match(/^\/team\/([^/]+)$/);
-  if (teamMatch && (authorSlugs as readonly string[]).includes(teamMatch[1] as (typeof authorSlugs)[number])) {
-    return dateFromIsoString(TEAM_LAST_MODIFIED);
   }
 
   return dateFromIsoString(TEMPLATE_DEFAULTS["/"]);

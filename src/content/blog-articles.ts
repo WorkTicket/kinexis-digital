@@ -1,7 +1,7 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 import { blogArticlesEnExpanded } from "./blog-articles-en-expanded";
 import { blogArticlesEsExpanded } from "./blog-articles-es-expanded";
-
 export type BlogArticle = {
   title: string;
   category: string;
@@ -9,11 +9,11 @@ export type BlogArticle = {
   body: string;
 };
 
-export const blogArticles: Record<Locale, Record<string, BlogArticle>> = {
+export const blogArticles = localeContent({
   en: blogArticlesEnExpanded,
-  es: blogArticlesEsExpanded,
-};
-
+  "es-419": blogArticlesEsExpanded,
+});
 export function getBlogArticle(slug: string, locale: Locale): BlogArticle | undefined {
-  return blogArticles[locale]?.[slug] ?? blogArticles.en[slug];
+  const localized = blogArticles[locale] as Record<string, BlogArticle>;
+  return localized?.[slug] ?? blogArticles.en[slug as keyof typeof blogArticles.en];
 }

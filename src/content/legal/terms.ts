@@ -1,7 +1,8 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
 import type { LegalPageContent } from "@/content/legal/privacy";
 
-export const termsContent: Record<Locale, LegalPageContent> = {
+export const termsContent = localeContent({
   en: {
     title: "Terms of Service",
     lastUpdated: "June 24, 2026",
@@ -80,7 +81,8 @@ export const termsContent: Record<Locale, LegalPageContent> = {
       },
     ],
   },
-  es: {
+
+  "es-419": {
     title: "Términos de Servicio",
     lastUpdated: "24 de junio de 2026",
     intro:
@@ -158,4 +160,8 @@ export const termsContent: Record<Locale, LegalPageContent> = {
       },
     ],
   },
-};
+});
+
+export function getTermsContent(locale: Locale): LegalPageContent {
+  return termsContent[locale] ?? termsContent.en;
+}

@@ -1,3 +1,5 @@
+import { serviceHubPath } from "@/lib/legacy-redirects.mjs";
+
 export const serviceSlugs = [
   "seo",
   "local-seo",
@@ -56,34 +58,9 @@ export const coreRevenueServices: ServiceSlug[] = [
   "website-speed",
 ];
 
-export const serviceRoutes: Record<ServiceSlug, string> = {
-  seo: "/services/seo",
-  "local-seo": "/services/local-seo",
-  "ppc-management": "/services/ppc-management",
-  "google-ads": "/services/google-ads",
-  "meta-ads": "/services/meta-ads",
-  "youtube-ads": "/services/youtube-ads",
-  "microsoft-ads": "/services/microsoft-ads",
-  "web-design": "/services/web-design",
-  cro: "/services/cro",
-  "email-marketing": "/services/email-marketing",
-  "content-marketing": "/services/content-marketing",
-  copywriting: "/services/copywriting",
-  "social-media": "/services/social-media",
-  "video-marketing": "/services/video-marketing",
-  branding: "/services/branding",
-  analytics: "/services/analytics",
-  "growth-consulting": "/services/growth-consulting",
-  "marketing-audits": "/services/marketing-audits",
-  "marketing-automation-crm": "/services/marketing-automation-crm",
-  "fractional-cmo": "/services/fractional-cmo",
-  "training-workshops": "/services/training-workshops",
-  funnels: "/services/funnels",
-  "paid-ads": "/services/paid-ads",
-  "landing-pages": "/services/landing-pages",
-  "website-maintenance": "/services/website-maintenance",
-  "website-speed": "/services/website-speed",
-};
+export const serviceRoutes: Record<ServiceSlug, string> = Object.fromEntries(
+  serviceSlugs.map((slug) => [slug, serviceHubPath(slug)]),
+) as Record<ServiceSlug, string>;
 
 export const serviceLabels: Record<ServiceSlug, string> = {
   seo: "SEO Services",
@@ -118,16 +95,14 @@ export const staticPageRoutes = [
   "/",
   "/about",
   "/contact",
-  "/lead-magnet",
   "/services",
   "/blog",
   "/blog/posts",
   "/case-studies",
-  "/digital-marketing-agency",
+  "/clients",
   "/industries",
-  "/solutions",
   "/resources",
-  "/pricing",
+  "/thank-you",
   "/privacy",
   "/terms",
 ] as const;
@@ -135,21 +110,9 @@ export const staticPageRoutes = [
 /** Legacy slugs — 301 to canonical service; excluded from sitemap. */
 export const sitemapExcludedServiceSlugs = ["google-ads", "paid-ads"] as const;
 
-/** Retired pricing slugs — 301 to canonical target; excluded from sitemap. */
-export const sitemapExcludedPricingSlugs = ["google-ads", "paid-ads"] as const;
-
 export const sitemapServiceSlugs = serviceSlugs.filter(
   (slug) => !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug),
 );
-
-export const pricingSlugs = serviceSlugs;
-export type PricingSlug = ServiceSlug;
-
-/** Canonical pricing page when a slug has been retired or merged. */
-export const pricingSlugCanonical: Partial<Record<PricingSlug, PricingSlug>> = {
-  "google-ads": "ppc-management",
-  "paid-ads": "ppc-management",
-};
 
 /** Canonical service page when a slug has been retired or merged. */
 export const serviceSlugCanonical: Partial<Record<ServiceSlug, ServiceSlug>> = {
@@ -157,44 +120,9 @@ export const serviceSlugCanonical: Partial<Record<ServiceSlug, ServiceSlug>> = {
   "paid-ads": "ppc-management",
 };
 
-export function resolvePricingSlug(slug: PricingSlug): PricingSlug {
-  return pricingSlugCanonical[slug] ?? slug;
-}
-
 export function resolveServiceSlug(slug: ServiceSlug): ServiceSlug {
   return serviceSlugCanonical[slug] ?? slug;
 }
-
-export const sitemapPricingSlugs = pricingSlugs.filter(
-  (slug) =>
-    !(sitemapExcludedServiceSlugs as readonly string[]).includes(slug) &&
-    !(sitemapExcludedPricingSlugs as readonly string[]).includes(slug),
-);
-
-/** Active pricing pages indexed and statically generated (excludes retired slugs). */
-export const activePricingSlugs = sitemapPricingSlugs;
-
-export const pricingRoutes = Object.fromEntries(
-  serviceSlugs.map((slug) => [slug, `/pricing/${slug}`]),
-) as Record<PricingSlug, string>;
-
-export const comparisonSlugs = [
-  "google-ads-vs-seo",
-  "seo-vs-ppc",
-  "wordpress-vs-webflow",
-  "local-seo-vs-google-ads",
-] as const;
-export type ComparisonSlug = (typeof comparisonSlugs)[number];
-
-export const comparisonRoutes: Record<ComparisonSlug, string> = {
-  "google-ads-vs-seo": "/google-ads-vs-seo",
-  "seo-vs-ppc": "/seo-vs-ppc",
-  "wordpress-vs-webflow": "/wordpress-vs-webflow",
-  "local-seo-vs-google-ads": "/local-seo-vs-google-ads",
-};
-
-export const authorSlugs = ["sarah-mitchell", "james-chen", "maria-rodriguez"] as const;
-export type AuthorSlug = (typeof authorSlugs)[number];
 
 export const blogSlugs = [
   "seo-pricing-guide",
@@ -230,5 +158,5 @@ export const blogSlugs = [
 export const caseStudySlugs = [
   "landscaping-company-growth",
   "plumbing-company-growth",
-  "saas-platform-growth",
+  "ecommerce-store-growth",
 ] as const;

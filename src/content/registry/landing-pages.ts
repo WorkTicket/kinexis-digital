@@ -29,7 +29,7 @@ export type LandingPageEntry = {
 export const landingPages: LandingPageEntry[] = [
   {
     slug: "google-ads-management",
-    serviceHref: "/services/ppc-management",
+    serviceHref: "/services#paid-media",
     serviceLabel: "Google Ads management",
     metaTitle: "Google Ads Management That Stops Waste",
     metaDescription:
@@ -84,7 +84,7 @@ export const landingPages: LandingPageEntry[] = [
   },
   {
     slug: "seo",
-    serviceHref: "/services/seo",
+    serviceHref: "/services#seo",
     serviceLabel: "SEO",
     metaTitle: "SEO That Builds Pipeline, Not Just Rankings",
     metaDescription:
@@ -139,7 +139,7 @@ export const landingPages: LandingPageEntry[] = [
   },
   {
     slug: "local-seo",
-    serviceHref: "/services/local-seo",
+    serviceHref: "/services#seo",
     serviceLabel: "Local SEO",
     metaTitle: "Local SEO That Fills the Phone",
     metaDescription:
@@ -194,7 +194,7 @@ export const landingPages: LandingPageEntry[] = [
   },
   {
     slug: "web-design",
-    serviceHref: "/services/web-design",
+    serviceHref: "/services#web-design",
     serviceLabel: "Web design",
     metaTitle: "Web Design Built to Convert",
     metaDescription:

@@ -1,11 +1,24 @@
 import type { Locale } from "./routing";
+import { isSpanishLocale } from "./spanish";
 
-/** ISO 639-1 language code for HTML lang (Ahrefs / Google require valid codes only). */
 export function getHtmlLang(locale: Locale): string {
-  return locale;
+  if (locale === "es-ES") return "es-ES";
+  if (locale === "es-419") return "es-419";
+  return "en";
 }
 
-/** ISO 639-1 language code for hreflang alternates (must match HTML lang). */
-export function getHrefLang(locale: Locale): string {
-  return locale;
+export function getOgLocale(locale: Locale): string {
+  if (locale === "es-ES") return "es_ES";
+  if (locale === "es-419") return "es_419";
+  return "en_US";
+}
+
+export function acceptLanguageHeader(locale: Locale): string {
+  if (locale === "es-ES") return "es-ES,es;q=1.0";
+  if (locale === "es-419") return "es-419,es;q=1.0";
+  return "en-US,en;q=1.0";
+}
+
+export function schemaLanguage(locale: Locale): string {
+  return isSpanishLocale(locale) ? getHtmlLang(locale) : "en";
 }

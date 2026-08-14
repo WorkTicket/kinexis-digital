@@ -49,8 +49,7 @@
     {
       "name": "EMAIL",
       "allowed_destination_addresses": [
-        "hello@kinexisdigital.com",
-        "coltondwehr@icloud.com"
+        "hello@kinexisdigital.com"
       ]
     }
   ],

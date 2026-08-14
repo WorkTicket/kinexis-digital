@@ -1,6 +1,6 @@
 "use client";
 
-import { LazyMotion, MotionConfig, domAnimation } from "framer-motion";
+import { LazyMotion, MotionConfig } from "framer-motion";
 import { useContext, useMemo, type ReactNode } from "react";
 import { EASE_OUT } from "@/lib/motion-config";
 import {
@@ -8,20 +8,24 @@ import {
   MotionFlagsProvider,
 } from "@/components/providers/MotionFlagsProvider";
 
+const loadDomAnimation = () =>
+  import("framer-motion").then((mod) => mod.domAnimation);
+
 function FramerMotionInner({ children }: { children: ReactNode }) {
   const { reduced, mobile } = useContext(MotionEnvironmentContext);
 
   const resolved = useMemo(
     () => ({
-      duration: reduced ? 0 : mobile ? 0.3 : 0.65,
+      duration: reduced ? 0 : mobile ? 0.32 : 0.72,
     }),
-    [reduced, mobile]
+    [reduced, mobile],
   );
 
+  // Features load async so the animation runtime is not in the first JS chunk.
   return (
-    <LazyMotion features={domAnimation} strict>
+    <LazyMotion features={loadDomAnimation}>
       <MotionConfig
-        reducedMotion="never"
+        reducedMotion="user"
         transition={{ duration: resolved.duration, ease: EASE_OUT }}
       >
         {children}
@@ -35,7 +39,7 @@ export function FramerMotionProvider({ children }: { children: ReactNode }) {
   return <FramerMotionInner>{children}</FramerMotionInner>;
 }
 
-/** @deprecated Use MotionShell — kept for direct imports during migration. */
+/** Root / page motion shell — flags + LazyMotion features. */
 export function MotionProvider({ children }: { children: ReactNode }) {
   return (
     <MotionFlagsProvider>

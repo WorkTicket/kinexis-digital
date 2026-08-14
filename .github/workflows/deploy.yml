@@ -28,6 +28,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Design system lint
+        run: npm run lint:design
+
       - name: Type check
         run: npx tsc --noEmit
 

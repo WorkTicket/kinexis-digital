@@ -1,0 +1,79 @@
+/* Static site-wide paper depth — gradient flow, vignette, film grain.
+   Theme-tuned so light and dark read with equal presence. */
+
+.site-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.site-atmosphere__flow,
+.site-atmosphere__vignette,
+.site-atmosphere__grain {
+  position: absolute;
+  inset: 0;
+}
+
+/* Secondary flow layer — soft diagonal sheen over the document gradient */
+.site-atmosphere__flow {
+  background: linear-gradient(
+    152deg,
+    transparent 24%,
+    var(--gradient-flow-sheen) 48%,
+    transparent 72%
+  );
+  opacity: 0.85;
+}
+
+.site-atmosphere__vignette {
+  background: var(--site-gradient-vignette);
+  opacity: 0.72;
+}
+
+.site-atmosphere__grain {
+  display: none;
+}
+
+/* Layout wrapper only — never isolate. isolation/transform on an ancestor
+   or sibling of .site-header__frost makes Chrome sample an empty backdrop. */
+.site-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
+  min-width: 0;
+}
+
+/* Content sits above the fixed atmosphere.
+   Padding holds the space the fixed header no longer occupies in-flow. */
+.site-shell {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding-top: var(--site-header-h);
+}
+
+@media (min-width: 769px) {
+  .site-atmosphere__grain {
+    display: block;
+    opacity: 0.055;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+  }
+
+  html[data-theme="dark"] .site-atmosphere__grain,
+  .dark .site-atmosphere__grain {
+    opacity: 0.048;
+    mix-blend-mode: overlay;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    background-attachment: scroll;
+  }
+}

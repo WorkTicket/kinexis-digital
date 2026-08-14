@@ -9,7 +9,7 @@ export const blogArticlesEsExpanded = {
 <p>Antes de hablar de lo nuevo, conviene aclarar qué sigue moviendo el ranking local. Estos tres pilares han resistido varias actualizaciones del algoritmo, y no esperamos que cambien pronto.</p>
 <h3>Optimización de Google Business Profile</h3>
 <p>Sigue siendo lo más importante que puedes hacer para posicionarte localmente. Tu GBP es la ficha de tu negocio en Google. Si está incompleta o desactualizada, compites en desventaja. Completa todos los campos, publica al menos una vez por semana y responde cada reseña, buena o mala.</p>
-<p>Los negocios que gestionan su GBP activamente ven entre dos y tres veces más interacción que quienes la configuran y la abandonan. Tuvimos un cliente de plomería en Phoenix que pasó de 12 solicitudes de indicaciones al mes a 47 solo por publicar actualizaciones semanales y añadir fotos específicas por servicio. Sin backlinks nuevos ni rediseño del sitio. Solo gestión constante del perfil.</p>
+<p>Los negocios que gestionan su GBP activamente ven entre dos y tres veces más interacción que quienes la configuran y la abandonan. Tuvimos un cliente de fontanería en Phoenix que pasó de 12 solicitudes de indicaciones al mes a 47 solo por publicar actualizaciones semanales y añadir fotos específicas por servicio. Sin backlinks nuevos ni rediseño del sitio. Solo gestión constante del perfil.</p>
 <h3>Consistencia de Citas (NAP)</h3>
 <p>Google sigue cruzando tu nombre, dirección y teléfono en la web. Si tus datos NAP difieren entre Yelp, Facebook y tu sitio, Google se confunde y tus rankings caen. Hemos visto casos donde solo corregir citaciones inconsistentes movió un negocio de la página 3 a la 1 en menos de 60 días.</p>
 <p>Usa herramientas como Moz Local o BrightLocal para auditar y corregir directorios. Presta atención al número de oficina, abreviaturas (Calle vs C.) y si tu teléfono usa prefijo local o número gratuito. Las inconsistencias pequeñas se acumulan.</p>
@@ -254,12 +254,12 @@ export const blogArticlesEsExpanded = {
 <p>Cinco canales. Ejecución constante. Resultados medidos. Así crecen los negocios locales de forma predecible, y es el sistema que construimos para cada cliente en KINEXIS Digital.</p>`,
   },
   "email-nurture-sequences-that-book-calls": {
-    title: "Secuencias de Email que Realmente Agendan Llamadas",
+    title: "Secuencias de Email que Realmente Reservan Llamadas",
     category: "Email Marketing",
     publishedAt: "20 de junio de 2026",
     body: `<p>La mayoría trata el email nurture como una newsletter: un envío periódico sin camino claro a ingresos. Los suscriptores reciben un email de bienvenida, quizá una actualización mensual, y luego silencio hasta la próxima promoción. Eso no es nurture. Es ruido.</p>
 <p>Las secuencias que realmente agendan llamadas están estructuradas de otra forma. Se construyen con un solo objetivo: llevar al suscriptor de la curiosidad a una conversación. Cada email tiene una función. Cada envío está programado según dónde está el lector en su proceso de decisión.</p>
-<p>Hemos construido secuencias de nurture para bufetes de abogados, empresas de servicios para el hogar, startups SaaS y consultores B2B en KINEXIS Digital. Los frameworks de abajo son los que producen llamadas de descubrimiento agendadas de forma consistente, no solo aperturas y clics.</p>
+<p>Hemos construido secuencias de nurture para bufetes de abogados, empresas de servicios para el hogar, startups SaaS y consultores B2B en KINEXIS Digital. Los frameworks de abajo son los que producen llamadas de descubrimiento reservadas de forma consistente, no solo aperturas y clics.</p>
 <h2>Empieza con Segmentación, No con un Envío Masivo</h2>
 <p>Antes de escribir un solo email, segmenta por intención. Quien descargó una guía de precios no es igual a quien leyó un artículo de la parte alta del embudo. Quien visitó tu página de casos de estudio tres veces está más avanzado que quien se suscribió desde un popup genérico de la página de inicio.</p>
 <p>Usamos tres tracks principales para negocios de servicios:</p>
@@ -277,7 +277,7 @@ export const blogArticlesEsExpanded = {
 <p>Ejemplo para una agencia de marketing: "Los 3 números que todo dueño de negocio local debería revisar en Google Analytics cada lunes." Ejemplo para un bufete: "Qué documentar inmediatamente después de un accidente de tráfico (la mayoría se salta el punto 3)."</p>
 <p>Un insight accionable por email. No una clase magistral. No una lista de 20 consejos. Una cosa que puedan hacer ahora mismo.</p>
 <h3>Email 3: Prueba social</h3>
-<p>Comparte un resultado de cliente, testimonio o antes/después que refleje la situación del lector. La especificidad lo es todo. "Ayudamos a una empresa de plomería de 12 personas en Denver a pasar de 15 a 52 llamadas de Google al mes en 90 días" supera a "¡A nuestros clientes les encantamos!"</p>
+<p>Comparte un resultado de cliente, testimonio o antes/después que refleje la situación del lector. La especificidad lo es todo. "Ayudamos a una empresa de fontanería de 12 personas en Denver a pasar de 15 a 52 llamadas de Google al mes en 90 días" supera a "¡A nuestros clientes les encantamos!"</p>
 <p>Incluye una foto si es posible. Nombres reales de clientes y cifras reales generan más confianza que citas anónimas.</p>
 <h3>Email 4: Manejo de objeciones</h3>
 <p>Aborda las tres razones principales por las que la gente no agenda: coste, timing y confianza. No necesitas nombrarlas explícitamente. Estructura el email para disolver cada preocupación de forma natural.</p>
@@ -299,12 +299,12 @@ export const blogArticlesEsExpanded = {
 <h2>Qué Medir</h2>
 <p>No uses la tasa de apertura como métrica principal. Apple Mail Privacy Protection y otras herramientas han hecho las aperturas poco fiables. Sigue esto en su lugar:</p>
 <p><strong>Tasa de clic a reserva:</strong> ¿qué porcentaje de quienes hacen clic en email realmente agenda una llamada? Objetivo 15-25% para segmentos de alta intención.</p>
-<p><strong>Tasa de asistencia a llamadas:</strong> ¿qué porcentaje de llamadas agendadas realmente ocurre? Si la gente reserva pero no aparece, tu promesa en el Email 5 puede estar exagerada o tu sistema de recordatorios necesita trabajo.</p>
-<p><strong>Coste por llamada agendada desde email:</strong> coste total de la plataforma de email más tiempo de creación de contenido, dividido entre llamadas agendadas. Compáralo con tu coste por lead de anuncios u otros canales.</p>
+<p><strong>Tasa de asistencia a llamadas:</strong> ¿qué porcentaje de llamadas reservadas realmente ocurre? Si la gente reserva pero no aparece, tu promesa en el Email 5 puede estar exagerada o tu sistema de recordatorios necesita trabajo.</p>
+<p><strong>Coste por llamada reservada desde email:</strong> coste total de la plataforma de email más tiempo de creación de contenido, dividido entre llamadas reservadas. Compáralo con tu coste por lead de anuncios u otros canales.</p>
 <p>Una secuencia que agenda entre el 3% y el 5% de suscriptores activos en llamadas de descubrimiento está cumpliendo su trabajo para la mayoría de negocios B2B y de servicios locales. Si alcanzas ese benchmark, escala impulsando más opt-ins. Si estás por debajo del 2%, audita segmentación, asuntos y claridad del CTA antes de reescribir toda la secuencia.</p>
 <h2>Errores Comunes que Vemos</h2>
 <p>Enviar la misma secuencia a todos sin importar cómo se registraron. Esperar demasiado para pedir la llamada (si esperas 30 días, ya olvidaron quién eres). Incluir múltiples CTAs por email (un email, una acción). Escribir emails que suenan generados por máquina (si no dirías "sinergiza tus esfuerzos de marketing" en persona, no lo pongas en un email).</p>
 <p>El email nurture no va de volumen. Va de relevancia, timing y un camino claro de suscriptor a conversación. Construye la secuencia una vez, mídela cada mes y refina según lo que digan los datos.</p>
-<p>Si quieres ayuda para construir un sistema de nurture que convierta tu lista de email en un motor de llamadas agendadas, es trabajo que hacemos cada semana en KINEXIS Digital.</p>`,
+<p>Si quieres ayuda para construir un sistema de nurture que convierta tu lista de email en un motor de llamadas reservadas, es trabajo que hacemos cada semana en KINEXIS Digital.</p>`,
   },
 };

@@ -1,54 +1,95 @@
-import { setRequestLocale, getTranslations } from "next-intl/server";
-import dynamic from "next/dynamic";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import {
+  BlogCard,
+  BlogMasthead,
+  BlogSectionHeader,
+} from "@/components/blog/BlogFeed";
+import { PageCTA } from "@/components/page/PageCTA";
 import JsonLd from "@/components/seo/JsonLd";
-import StaticHeroShell from "@/components/ui/StaticHeroShell";
-import type { Locale } from "@/i18n/routing";
-import { blogContent } from "@/content/blog";
-import { getLocalizedContent } from "@/lib/get-localized-content";
-import { buildAbsoluteUrl } from "@/lib/metadata";
-import { getBlogPostsMetadata } from "@/lib/static-page-metadata";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import {
+  blogAbsoluteUrl,
+  getBlogListingPosts,
+  sortPostsByRecency,
+} from "@/lib/blog-utils";
+import { buildPageMetadata } from "@/lib/metadata";
+import { duration } from "@/lib/motion";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
-const BlogPostsPageClient = dynamic(() => import("@/components/pages/BlogPostsPageClient"));
+type Props = { params: LocaleParams };
 
-type Props = { params: Promise<{ locale: Locale }> };
-
-export async function generateMetadata({ params }: Props) {
-  const { locale } = await params;
-  return getBlogPostsMetadata(locale);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  return buildPageMetadata({
+    locale,
+    path: "/blog/posts",
+    title: "All Marketing Guides and Articles",
+    description:
+      "Browse the full KINEXIS archive: SEO, paid media, conversion, email, and analytics guides for operators who measure growth.",
+  });
 }
 
-export default async function BlogPostsPage({ params }: Props) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-
-  const content = getLocalizedContent(blogContent, locale);
-  const tCommon = await getTranslations("common");
+export default async function BlogArchivePage({ params }: Props) {
+  const locale = await resolveLocale(params);
+  const t = await getTranslations("pages.blog");
+  const tNav = await getTranslations("nav");
+  const posts = sortPostsByRecency(getBlogListingPosts(locale));
 
   return (
-    <>
+    <main className="flex flex-1 flex-col">
       <JsonLd
         data={[
           organizationSchema(),
           breadcrumbSchema([
-            { name: "Home", url: buildAbsoluteUrl(locale, "/") },
-            { name: "Blog", url: buildAbsoluteUrl(locale, "/blog") },
-            { name: content.postsHeroTitleLine1, url: buildAbsoluteUrl(locale, "/blog/posts") },
+            { name: tNav("home"), url: blogAbsoluteUrl(locale, "/") },
+            { name: tNav("blog"), url: blogAbsoluteUrl(locale, "/blog") },
+            { name: t("archive"), url: blogAbsoluteUrl(locale, "/blog/posts") },
           ]),
         ]}
       />
-      <StaticHeroShell
-        variant="showcase"
-        line1={content.postsHeroTitleLine1}
-        line2={content.postsHeroTitleGradient}
-        line2ClassName="gradient-text"
-        subtitle={content.postsHeroSubtitle}
-        ctaLabel={tCommon("bookStrategyCall")}
-        ctaHref="/contact"
-        secondaryCtaLabel={tCommon("getFreeAudit")}
-        secondaryCtaHref="/lead-magnet"
+
+      <BlogMasthead
+        eyebrow={t("archive")}
+        title={t("allPosts")}
+        description={t("archiveDek")}
+        count={posts.length}
+        topicsActive="all"
       />
-      <BlogPostsPageClient content={content} />
-    </>
+
+      <section
+        aria-labelledby="blog-archive-heading"
+        className="chapter chapter--void relative"
+      >
+        <div className="shell relative py-14 md:py-20 lg:py-24">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+            <BlogSectionHeader
+              titleId="blog-archive-heading"
+              title={t("library")}
+              description={t("libraryDek")}
+            />
+          </Reveal>
+
+          <RevealGroup
+            as="ul"
+            className="blog-grid blog-grid--archive"
+            stagger={duration.staggerTight}
+            delayChildren={0.02}
+          >
+            {posts.map((post) => (
+              <RevealItem key={post.slug} as="li" variant="fadeUp">
+                <BlogCard post={post} />
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        </div>
+      </section>
+
+      <PageCTA
+        title={t("ctaTitle")}
+        copy={t("ctaCopy")}
+      />
+    </main>
   );
 }

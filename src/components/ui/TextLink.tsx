@@ -1,7 +1,6 @@
 "use client";
 
 import { Link } from "@/i18n/navigation";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type TextLinkProps = {
@@ -12,6 +11,10 @@ type TextLinkProps = {
   showArrow?: boolean;
 };
 
+/**
+ * Text secondary CTA — same visual language as `Button variant="link"`.
+ * Use when nesting inside another interactive card (span form).
+ */
 export default function TextLink({
   href,
   children,
@@ -20,17 +23,35 @@ export default function TextLink({
   showArrow = true,
 }: TextLinkProps) {
   const classes = cn(
-    "inline-flex items-center font-semibold text-neon-cyan transition-all duration-premium ease-premium",
-    size === "sm" ? "gap-1.5 text-xs group-hover:gap-2.5" : "gap-2 text-sm group-hover:gap-3",
-    className
+    "btn btn--link group",
+    size === "sm" && "text-sm",
+    className,
   );
 
   const content = (
     <>
-      {children}
-      {showArrow && (
-        <ArrowRight className={size === "sm" ? "h-3 w-3" : "h-4 w-4"} />
-      )}
+      <span className="btn__label">{children}</span>
+      {showArrow ? (
+        <span aria-hidden className="btn__arrow">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              className="btn__arrow-stem"
+              d="M2.5 8h10"
+              stroke="currentColor"
+              strokeWidth="1.85"
+              strokeLinecap="round"
+            />
+            <path
+              className="btn__arrow-head"
+              d="M8.25 3.25 13.5 8l-5.25 4.75"
+              stroke="currentColor"
+              strokeWidth="1.85"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      ) : null}
     </>
   );
 

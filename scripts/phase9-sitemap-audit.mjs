@@ -19,7 +19,7 @@ const USER_AGENT = "KinexisPhase9Sitemap/1.0";
 const CONCURRENCY = 8;
 const CANONICAL_HOST = "www.kinexisdigital.com";
 /** Fallback when `.next/server/app/sitemap.xml.body` is missing — run `npm run build` first. */
-const FALLBACK_EXPECTED_SITEMAP_COUNT = 324;
+const FALLBACK_EXPECTED_SITEMAP_COUNT = 52;
 
 const AHREFS_EXPORT = path.join(
   root,
