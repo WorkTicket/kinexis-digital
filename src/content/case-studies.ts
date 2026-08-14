@@ -1,4 +1,6 @@
 import type { Locale } from "@/i18n/routing";
+import { localeContent } from "@/i18n/locale-content";
+import { isSpanishLocale } from "@/i18n/spanish";
 
 export type CaseStudyMetric = {
   label: string;
@@ -85,7 +87,7 @@ export type CaseStudiesContent = {
   metricWall: MetricWallItem[];
 };
 
-export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
+export const caseStudiesContent = localeContent({
   en: {
     heroTitleLine1: "Selected",
     heroTitleGradient: "work.",
@@ -245,7 +247,7 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
     ],
   },
 
-  es: {
+  "es-419": {
     heroTitleLine1: "Trabajo",
     heroTitleGradient: "seleccionado.",
     heroSubtitle:
@@ -372,10 +374,8 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
       { label: "Total de Leads Generados", value: "2.4K+" },
       { label: "Aumento Promedio de Conversión", value: "+89%" },
     ],
-  }
-
-
-};
+  },
+});
 
 export function getCaseStudyBySlug(localeOrSlug: Locale | string, slug?: string): CaseStudy | undefined {
   if (slug !== undefined) {
@@ -426,8 +426,7 @@ export function getCaseStudyPages(locale: Locale): CaseStudyPage[] {
 }
 
 function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
-  const copy =
-    locale === "es"
+  const copy = isSpanishLocale(locale)
       ? {
           challengeTitle: "El reto.",
           approachTitle: "El enfoque.",
@@ -447,40 +446,44 @@ function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
           over: "over",
         };
 
-  return (caseStudiesContent[locale] ?? caseStudiesContent.en).caseStudies.map((s) => ({
-    slug: s.slug,
-    client: s.client,
-    industry: s.industry,
-    headline: s.headline,
-    primaryLift: s.primaryLift,
-    timeline: s.timeline,
-    summary: s.summary,
-    domain: s.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, ""),
-    image: s.screenshot,
-    imageAlt: `${s.client} homepage preview`,
-    metaTitle: s.metaTitle,
-    metaDescription: s.metaDescription,
-    challengeTitle: copy.challengeTitle,
-    challenge: s.narrative?.challenge ?? s.summary,
-    approachTitle: copy.approachTitle,
-    approach: s.narrative?.strategy ?? "",
-    work: s.narrative
-      ? [
-          { title: copy.strategy, description: s.narrative.strategy },
-          { title: copy.execution, description: s.narrative.implementation },
-          { title: copy.outcome, description: s.narrative.outcome },
-        ]
-      : [],
-    resultsCopy: s.narrative?.outcome ?? "",
-    servicesUsed: s.services,
-    metrics: s.metrics.map((m) => ({
-      label: m.label,
-      after: `${m.prefix ?? ""}${m.to.toLocaleString()}${m.suffix ?? ""}`,
-      before:
-        m.from === 0
-          ? copy.baseline
-          : `${m.prefix ?? ""}${m.from.toLocaleString()}${m.suffix ?? ""}`,
-      note: `${m.label} ${copy.over} ${s.timeline}`,
-    })),
-  }));
+  return (caseStudiesContent[locale] ?? caseStudiesContent.en).caseStudies.map((entry) => {
+    const s = entry as CaseStudy;
+
+    return {
+      slug: s.slug,
+      client: s.client,
+      industry: s.industry,
+      headline: s.headline,
+      primaryLift: s.primaryLift,
+      timeline: s.timeline,
+      summary: s.summary,
+      domain: s.liveUrl.replace(/^https?:\/\//, "").replace(/\/$/, ""),
+      image: s.screenshot,
+      imageAlt: `${s.client} homepage preview`,
+      metaTitle: s.metaTitle,
+      metaDescription: s.metaDescription,
+      challengeTitle: copy.challengeTitle,
+      challenge: s.narrative?.challenge ?? s.summary,
+      approachTitle: copy.approachTitle,
+      approach: s.narrative?.strategy ?? "",
+      work: s.narrative
+        ? [
+            { title: copy.strategy, description: s.narrative.strategy },
+            { title: copy.execution, description: s.narrative.implementation },
+            { title: copy.outcome, description: s.narrative.outcome },
+          ]
+        : [],
+      resultsCopy: s.narrative?.outcome ?? "",
+      servicesUsed: s.services,
+      metrics: s.metrics.map((m) => ({
+        label: m.label,
+        after: `${m.prefix ?? ""}${m.to.toLocaleString()}${m.suffix ?? ""}`,
+        before:
+          m.from === 0
+            ? copy.baseline
+            : `${m.prefix ?? ""}${m.from.toLocaleString()}${m.suffix ?? ""}`,
+        note: `${m.label} ${copy.over} ${s.timeline}`,
+      })),
+    };
+  });
 }
