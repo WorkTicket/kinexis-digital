@@ -88,11 +88,11 @@
   --glass-highlight: rgba(255, 255, 255, 0.7);
   --glass-shadow: 0 24px 48px -28px rgba(15, 23, 42, 0.28);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-  /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
+  /* Header / consent frost — fill stays high so content is not readable through the bar. */
   --chrome-glass: rgba(255, 255, 255, 0.46);
-  --chrome-frost: rgba(255, 255, 255, 0.16);
+  --chrome-frost: color-mix(in oklab, var(--background) 78%, transparent);
   --chrome-glass-border: rgba(0, 0, 0, 0.08);
-  --chrome-blur: blur(48px) saturate(1.8);
+  --chrome-blur: blur(80px) saturate(1.8);
 }
 
 .dark,
@@ -103,11 +103,11 @@
   --glass-highlight: rgba(255, 255, 255, 0.22);
   --glass-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.65);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
+  /* Header / consent frost — fill stays high so content is not readable through the bar. */
   --chrome-glass: rgba(0, 0, 0, 0.42);
-  --chrome-frost: rgba(0, 0, 0, 0.22);
+  --chrome-frost: color-mix(in oklab, var(--background) 82%, transparent);
   --chrome-glass-border: rgba(255, 255, 255, 0.1);
-  --chrome-blur: blur(48px) saturate(1.8);
+  --chrome-blur: blur(80px) saturate(1.8);
 }
 
 @theme inline {
