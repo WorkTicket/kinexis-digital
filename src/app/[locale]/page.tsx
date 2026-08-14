@@ -51,7 +51,7 @@ export default async function Home({ params }: Props) {
         data={[
           organizationSchema(),
           localBusinessSchema(getSiteUrl()),
-          websiteSchema(locale === "es" ? "es-ES" : "en"),
+          websiteSchema(locale === "es" ? "es" : "en"),
           faqSchema(faqs),
         ]}
       />

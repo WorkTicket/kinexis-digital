@@ -49,7 +49,7 @@ function withRequestLocale(request: NextRequest, locale: Locale): NextRequest {
     .filter((part) => part && !part.startsWith(`${LOCALE_COOKIE_NAME}=`));
   parts.push(`${LOCALE_COOKIE_NAME}=${locale}`);
   headers.set("cookie", parts.join("; "));
-  headers.set("accept-language", locale === "es" ? "es-ES,es;q=1.0" : "en-US,en;q=1.0");
+  headers.set("accept-language", locale === "es" ? "es-419,es;q=1.0" : "en-US,en;q=1.0");
   return new NextRequest(request, { headers });
 }
 

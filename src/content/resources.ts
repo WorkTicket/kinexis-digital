@@ -182,8 +182,8 @@ export const resourceCategories: ResourceCategory[] = [
 
 export const resourcesPageMeta = {
   heroTag: "Marketing Toolkit",
-  heroTitle: "Useful",
-  heroTitleHighlight: "resources.",
+  heroTitle: "Resources",
+  heroTitleHighlight: "worth keeping.",
   heroSubtitle:
     "Platforms we run campaigns on every day, grouped by what they do.|No sponsored links. Just tools that earn their keep.",
   heroCtaLabel: "Book a Strategy Call",

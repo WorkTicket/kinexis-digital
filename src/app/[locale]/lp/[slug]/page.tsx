@@ -83,7 +83,7 @@ export default async function LandingPage({ params }: Props) {
                   key={item.label}
                   className={index === 0 ? "lg:pr-8" : "lg:px-8"}
                 >
-                  <p className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                  <p className="type-display-stat tracking-tight">
                     {item.metric}
                   </p>
                   <p className="mt-2 text-sm font-medium leading-snug text-muted">

@@ -43,26 +43,26 @@ const industriesContentEn: IndustriesHubContent = {
 };
 
 const industriesContentEs: IndustriesHubContent = {
-  metaTitle: "Programas de demanda que construimos por sector",
+  metaTitle: "Programas de demanda por sector",
   metaDescription:
-    "Marketing digital para servicios del hogar, ecommerce, salud, legal, SaaS y más. Programas de demanda pensados para trabajos reservados, encargos firmados e ingresos.",
+    "Marketing digital para servicios del hogar, ecommerce, salud, legal, SaaS y más. Programas pensados para conseguir trabajos, contratos e ingresos.",
   heroEyebrow: "Sectores",
   heroTitle: "Dónde",
   heroSignal: "trabajamos.",
   heroCopy:
-    "Programas para operadores que viven de trabajos reservados, encargos firmados y pedidos que protegen el margen.",
+    "Programas para empresas que viven de trabajos agendados, contratos firmados y ventas que protegen el margen.",
   indexEyebrow: "Los mercados",
   indexTitle: "Los mercados.",
   indexCopy:
-    "Entra en tu sector para ver el cuello de botella, el programa que montamos y si encajamos.",
+    "Entra a tu sector para ver el problema principal, el programa que armamos y si encajamos contigo.",
   previewEyebrow: "Dónde trabajamos",
   previewTitle: "Dónde trabajamos.",
   previewCopy:
-    "Cada página cubre el cuello de botella, el programa que montamos y la prueba que importa ahí.",
+    "Cada página explica el problema principal, el programa que ejecutamos y las pruebas que importan en ese sector.",
   previewAllLabel: "Todos los sectores",
   ctaTitle: "¿No sabes si encajas?",
   ctaCopy:
-    "Trae el cuello de botella: teléfonos en silencio, leads basura, una web que no pide el siguiente paso. Te diremos qué arreglaríamos primero.",
+    "Cuéntanos el problema: teléfonos en silencio, leads de mala calidad o una web que no invita a dar el siguiente paso. Te diremos qué arreglaríamos primero.",
 };
 
 const industriesContentByLocale: Record<Locale, IndustriesHubContent> = {

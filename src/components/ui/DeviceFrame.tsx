@@ -19,7 +19,6 @@ export function DeviceFrame({
   const lidEdge = `mbp-lid-edge-${uid}`;
   const base = `mbp-base-${uid}`;
   const indent = `mbp-indent-${uid}`;
-  const ground = `mbp-ground-${uid}`;
 
   return (
     <div className={cn("device-frame", className)} {...props}>
@@ -31,15 +30,6 @@ export function DeviceFrame({
           xmlns="http://www.w3.org/2000/svg"
           aria-hidden
         >
-          <ellipse
-            cx="325"
-            cy="392"
-            rx="268"
-            ry="7.5"
-            fill={`url(#${ground})`}
-            opacity="0.55"
-          />
-
           <path
             fill={`url(#${lid})`}
             d="M79.56 13.18h491.32c7.23 0 13.1 5.87 13.1 13.1v336.61H66.46V26.28c0-7.23 5.87-13.1 13.1-13.1Z"
@@ -155,17 +145,6 @@ export function DeviceFrame({
               <stop offset="0" stopColor="#9a9b9d" />
               <stop offset="1" stopColor="#6e6f71" />
             </linearGradient>
-            <radialGradient
-              id={ground}
-              cx="0"
-              cy="0"
-              r="1"
-              gradientUnits="userSpaceOnUse"
-              gradientTransform="translate(325 392) scale(268 7.5)"
-            >
-              <stop offset="0" stopColor="#000" stopOpacity="0.55" />
-              <stop offset="1" stopColor="#000" stopOpacity="0" />
-            </radialGradient>
           </defs>
         </svg>
 

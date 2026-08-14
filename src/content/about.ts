@@ -270,13 +270,13 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
 
   es: {
     heroTag: "Sobre KINEXIS",
-    heroTitle: "El crecimiento no es casual.",
+    heroTitle: "El crecimiento no es suerte.",
     heroTitleHighlight: "Está diseñado.",
     heroSubtitleLine1:
-      "Convertimos el tráfico inconsistente en sistemas de ingresos predecibles. No mediante suposiciones.",
+      "Hay una diferencia entre tener marketing y tener un sistema de marketing. Nosotros construimos lo segundo.",
     heroSubtitleLine2:
-      "Mediante una metodología repetible y basada en datos que trata tu negocio como una inversión, no como una campaña.",
-    whyWeExistTag: "Por Qué Existimos",
+      "Cada canal se conecta. Cada decisión se mide en ingresos. Así está estructurado el trabajo desde el primer día.",
+    whyWeExistTag: "Por qué existimos",
     whyWeExistAside: "El modelo de agencia está roto.|Construimos la alternativa.",
     whyProblemLabel: "El modelo anterior",
     whySolutionLabel: "El modelo KINEXIS",
@@ -284,34 +284,34 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
       "La mayoría de las agencias digitales venden tácticas: un sitio web aquí, algunos anuncios allá, un puñado de entradas de blog. Luego lo llaman estrategia.",
     whyQuote: "Nosotros vendemos un sistema:|un enfoque repetible y basado en datos para el crecimiento.",
     whyParagraph2:
-      "Cada pieza se conecta. El SEO alimenta los anuncios. Los anuncios alimentan las landing pages. Las landing pages alimentan tu pipeline.",
+      "Cada pieza se conecta. El SEO alimenta los anuncios. Los anuncios llevan tráfico a las landing pages. Las landing pages alimentan tu embudo comercial.",
     whyParagraph2b:
-      "KINEXIS existe porque el modelo tradicional de agencia está roto. Demasiadas firmas prometen la luna, entregan plantillas genéricas y desaparecen cuando los resultados no llegan.",
+      "Demasiadas agencias prometen de más, entregan plantillas genéricas y desaparecen cuando los resultados se estancan.",
     whyParagraph3:
-      "Construimos algo diferente. Carteras de clientes más pequeñas. Compromisos más largos. Una pregunta guía todo: ¿esto mueve la aguja de los ingresos? Si la respuesta es no, no lo hacemos.",
-    partnershipTag: "Cómo Trabajamos",
-    partnershipTitle: "Trabajas con personas que son dueñas del resultado.",
+      "Mantenemos una cartera más pequeña, relaciones más largas y un solo filtro para el trabajo: ¿esto genera ingresos? Si no, no lo hacemos.",
+    partnershipTag: "Cómo trabajamos",
+    partnershipTitle: "Trabajas con personas que responden por el resultado.",
     partnershipSubtitle:
-      "Sin account managers leyendo un guion. Acceso directo a los estrategas que construyen tu sistema, y revisiones que hablan de ingresos, no de gráficos vanidosos.",
+      "Sin ejecutivos de cuenta leyendo un guion. Acceso directo a los estrategas que construyen tu sistema, y revisiones que hablan de ingresos, no de métricas vanidosas.",
     partnershipSignals: [
       {
         title: "Una cartera pequeña a propósito",
         description:
-          "Mantenemos 8–10 clientes activos. Ese límite existe para que tu cuenta reciba atención senior, no un traspaso a junior después de la venta.",
+          "Mantenemos 8–10 clientes activos. Ese límite existe para que tu cuenta reciba atención senior, no un traspaso a un junior después de la venta.",
       },
       {
         title: "Acceso directo al estratega",
         description:
-          "Hablas con quienes ejecutan SEO, paid y conversión. Las preguntas se responden en horas, no en el QBR del próximo trimestre.",
+          "Hablas con quienes ejecutan SEO, anuncios pagados y conversión. Las preguntas se responden en horas, no en la revisión trimestral.",
       },
       {
         title: "Revisiones orientadas a ingresos",
         description:
-          "Los check-ins semanales y mensuales empiezan por pipeline y coste por lead. Si un canal no se paga solo, lo cambiamos.",
+          "Las revisiones semanales y mensuales empiezan por el embudo comercial y el costo por lead. Si un canal no se paga solo, lo ajustamos.",
       },
     ],
     methodTag: "Metodología",
-    methodTitleLine1: "El Método",
+    methodTitleLine1: "El método",
     methodTitleLine2: "KINEXIS",
     methodPhases: [
       {
@@ -328,7 +328,7 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
       },
       {
         title: "OPTIMIZAR",
-        desc: "Revisiones semanales de rendimiento. Pruebas A/B. Reasignación de presupuesto. Los datos retroalimentan el sistema.",
+        desc: "Revisiones semanales de rendimiento. Pruebas A/B. Reasignación de presupuesto. Los datos guían el sistema.",
       },
       {
         title: "ESCALAR",
@@ -413,10 +413,10 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
         accent: "Enfoque",
       },
     ],
-    roadmapTag: "Hoja de Ruta",
+    roadmapTag: "Hoja de ruta",
     roadmapTitle: "Hacia dónde vamos.",
     roadmapSubtitle:
-      "Una cartera más pequeña, compromisos más profundos y playbooks que se acumulan entre industrias.",
+      "Una cartera más pequeña, relaciones más profundas y metodologías que se fortalecen entre industrias.",
     futureMilestones: [
       {
         year: "2025",
@@ -443,7 +443,7 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
         title: "Profundidad",
         status: "soon",
         items: [
-          "Playbooks desarrollados para múltiples industrias y sectores",
+          "Metodologías desarrolladas para múltiples industrias y sectores",
           "Práctica dedicada de CRO y optimización de embudos",
           "Asociaciones de retainer a largo plazo con resultados que siguen creciendo",
         ],
@@ -459,9 +459,9 @@ export const aboutContentI18n: Record<Locale, AboutContent> = {
         ],
       },
     ],
-    ctaTitle: "Construyamos algo que perdure.",
-    ctaSubtitle: "Solo aceptamos un puñado de clientes nuevos cada trimestre.|Los cupos se agotan rápido.",
-    ctaButton: "Iniciar la Conversación",
+    ctaTitle: "Construyamos algo que dure.",
+    ctaSubtitle: "Solo aceptamos unos pocos clientes nuevos cada trimestre.|Los cupos se llenan rápido.",
+    ctaButton: "Iniciar la conversación",
   }
 
 

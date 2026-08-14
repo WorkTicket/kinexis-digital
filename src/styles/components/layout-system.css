@@ -483,6 +483,15 @@ html[data-theme="dark"],
   line-height: 1.2;
 }
 
+.type-display-stat {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-size: clamp(1.875rem, 3vw, 2.25rem);
+  line-height: 1;
+  color: var(--foreground);
+}
+
 @media (min-width: 1024px) {
   .type-subheader {
     font-size: clamp(1.5rem, 3vw, 2.25rem);

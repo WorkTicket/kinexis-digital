@@ -417,8 +417,8 @@ export const blogContent: Record<Locale, BlogContent> = {
   },
 
   es: {
-    heroTitleLine1: "Notas de",
-    heroTitleGradient: "crecimiento.",
+    heroTitleLine1: "Notas",
+    heroTitleGradient: "de campo.",
     heroSubtitle:
       "Investigación, experimentos, estrategias e ideas del equipo KINEXIS.|Esto es lo que estamos aprendiendo y lo que estamos comprobando en el campo.",
     featuredResearchLabel: "Investigación Destacada",

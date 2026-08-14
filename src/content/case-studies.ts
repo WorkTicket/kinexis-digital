@@ -246,8 +246,8 @@ export const caseStudiesContent: Record<Locale, CaseStudiesContent> = {
   },
 
   es: {
-    heroTitleLine1: "Crecimiento real.",
-    heroTitleGradient: "Números reales.",
+    heroTitleLine1: "Trabajo",
+    heroTitleGradient: "seleccionado.",
     heroSubtitle:
       "Tres casos de estudio verificados en servicios del hogar y e-commerce. Cada uno incluye estrategia, ejecución y resultados reales. Sin métricas vanidosas. Solo ingresos.",
     featuredCaseStudyLabel: "Caso de Estudio Destacado",

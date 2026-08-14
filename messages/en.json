@@ -215,8 +215,8 @@
     },
     "resources": {
       "eyebrow": "Resources",
-      "title": "Useful",
-      "signal": "resources.",
+      "title": "Resources",
+      "signal": "worth keeping.",
       "copy": "Official docs we open when a claim needs the source, plus the tools we run campaigns on every day.",
       "deskEyebrow": "Field desk",
       "deskTitle": "Start with the source.",
