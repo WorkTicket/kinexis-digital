@@ -57,12 +57,14 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
 
   return (
     <CookieConsentContext.Provider value={{ consent: ready ? consent : "pending", ready, accept, reject }}>
-      {children}
-      <CookieBanner
-        armed={ready && consent === "pending"}
-        onAccept={accept}
-        onReject={reject}
-      />
+      <div className="site-root">
+        {children}
+        <CookieBanner
+          armed={ready && consent === "pending"}
+          onAccept={accept}
+          onReject={reject}
+        />
+      </div>
     </CookieConsentContext.Provider>
   );
 }

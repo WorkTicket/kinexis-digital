@@ -173,7 +173,7 @@ export function Header() {
     <>
       <div
         className={cn(
-          "site-header__frost",
+          "site-header__frost chrome-glass",
           headerHidden && !menuOpen && "site-header__frost--hidden",
           menuOpen && "site-header__frost--solid",
         )}
@@ -181,7 +181,7 @@ export function Header() {
       />
       <header
         className={cn(
-          "site-header border-b border-transparent pt-[env(safe-area-inset-top,0px)]",
+          "site-header pt-[env(safe-area-inset-top,0px)]",
           headerHidden && !menuOpen && "site-header--hidden",
         )}
       >

@@ -38,6 +38,7 @@ const securityHeaders = [
       `script-src-elem 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.clarity.ms https://static.cloudflareinsights.com`,
       "style-src 'self' 'unsafe-inline'",
       "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.ca https://googleads.g.doubleclick.net https://www.googleadservices.com",
+      "media-src 'self' blob:",
       "font-src 'self' data:",
       `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://www.google.com https://td.doubleclick.net https://googleads.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
       "frame-src 'self' https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com",

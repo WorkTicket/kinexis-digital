@@ -3,7 +3,7 @@
 /* ??? Page hero atmosphere ??? */
 
 .page-hero {
-  isolation: isolate;
+  position: relative;
   display: flex;
   flex-direction: column;
 }

@@ -36,6 +36,26 @@
   display: none;
 }
 
+/* Layout wrapper only — never isolate. isolation/transform on an ancestor
+   or sibling of .site-header__frost makes Chrome sample an empty backdrop. */
+.site-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
+  min-width: 0;
+}
+
+/* Content sits above the fixed atmosphere.
+   Padding holds the space the fixed header no longer occupies in-flow. */
+.site-shell {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  padding-top: var(--site-header-h);
+}
+
 @media (min-width: 769px) {
   .site-atmosphere__grain {
     display: block;
@@ -50,13 +70,6 @@
     opacity: 0.048;
     mix-blend-mode: overlay;
   }
-}
-
-/* Content sits above the fixed atmosphere.
-   Padding holds the space the fixed header no longer occupies in-flow. */
-.site-shell {
-  position: relative;
-  padding-top: var(--site-header-h);
 }
 
 @media (prefers-reduced-motion: reduce) {
