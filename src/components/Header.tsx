@@ -171,17 +171,20 @@ export function Header() {
 
   return (
     <>
+      <div
+        className={cn(
+          "site-header__frost",
+          headerHidden && !menuOpen && "site-header__frost--hidden",
+          menuOpen && "site-header__frost--solid",
+        )}
+        aria-hidden
+      />
       <header
         className={cn(
           "site-header border-b border-transparent pt-[env(safe-area-inset-top,0px)]",
           headerHidden && !menuOpen && "site-header--hidden",
-          menuOpen && "site-header--menu-open",
         )}
       >
-        <div
-          className={cn("site-header__frost", menuOpen && "site-header__frost--solid")}
-          aria-hidden
-        />
         <div className="shell site-header__bar flex items-center gap-4 overflow-visible sm:gap-5 lg:gap-10">
           <Link
             href="/"

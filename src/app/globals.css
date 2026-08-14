@@ -90,8 +90,9 @@
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
   /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
   --chrome-glass: rgba(255, 255, 255, 0.46);
+  --chrome-frost: rgba(255, 255, 255, 0.16);
   --chrome-glass-border: rgba(0, 0, 0, 0.08);
-  --chrome-blur: blur(80px) saturate(1.8);
+  --chrome-blur: blur(48px) saturate(1.8);
 }
 
 .dark,
@@ -104,8 +105,9 @@
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   /* Header / footer chrome — frosted glass (keep alpha low so blur reads) */
   --chrome-glass: rgba(0, 0, 0, 0.42);
+  --chrome-frost: rgba(0, 0, 0, 0.22);
   --chrome-glass-border: rgba(255, 255, 255, 0.1);
-  --chrome-blur: blur(80px) saturate(1.8);
+  --chrome-blur: blur(48px) saturate(1.8);
 }
 
 @theme inline {
@@ -270,13 +272,14 @@ body {
 .chrome-glass {
   background: var(--chrome-glass);
   border-color: var(--chrome-glass-border);
-  backdrop-filter: blur(80px) saturate(1.8);
-  -webkit-backdrop-filter: blur(80px) saturate(1.8);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
 }
 
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .chrome-glass,
-  .site-header {
+  .site-header__frost,
+  .cookie-banner.chrome-glass {
     background: var(--background);
   }
 }
@@ -5996,16 +5999,23 @@ html[data-theme="dark"] .work-roster__logo {
   transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/*
+ * Frost is a sibling, not a child. A fixed+z-index header is its own
+ * stacking context, so backdrop-filter on descendants never samples the page.
+ */
 .site-header__frost {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 49;
+  height: var(--site-header-h);
   pointer-events: none;
-  background: var(--chrome-glass);
+  background: var(--chrome-frost);
   border-bottom: 1px solid var(--chrome-glass-border);
-  backdrop-filter: blur(80px) saturate(1.8);
-  -webkit-backdrop-filter: blur(80px) saturate(1.8);
+  backdrop-filter: var(--chrome-blur);
+  -webkit-backdrop-filter: var(--chrome-blur);
+  transition: top 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-header--hidden {
@@ -6013,7 +6023,10 @@ html[data-theme="dark"] .work-roster__logo {
   pointer-events: none;
 }
 
-.site-header--menu-open .site-header__frost,
+.site-header__frost--hidden {
+  top: calc(-1 * var(--site-header-h));
+}
+
 .site-header__frost--solid {
   background: var(--background);
   border-bottom-color: transparent;
@@ -6022,7 +6035,8 @@ html[data-theme="dark"] .work-roster__logo {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .site-header {
+  .site-header,
+  .site-header__frost {
     transition: none;
   }
 }
