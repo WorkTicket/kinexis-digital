@@ -24,6 +24,8 @@ export function ContactForm({ content: c }: Props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    company: "",
+    phone: "",
     service: "",
     message: "",
   });
@@ -49,6 +51,8 @@ export function ContactForm({ content: c }: Props) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...formData,
+          company: formData.company.trim() || undefined,
+          phone: formData.phone.trim() || undefined,
           message: formData.message.trim() || undefined,
           ...honeypotPayload,
           ...attribution,
@@ -59,6 +63,7 @@ export function ContactForm({ content: c }: Props) {
         stashPendingConversion({
           type: "lead",
           email: formData.email,
+          phone: formData.phone.trim() || undefined,
           serviceInterest: formData.service || "not_specified",
           formType: "contact",
         });
@@ -133,6 +138,38 @@ export function ContactForm({ content: c }: Props) {
               className="form-input"
               placeholder={c.emailPlaceholder}
               autoComplete="email"
+            />
+          </div>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          <div>
+            <label htmlFor="contact-company" className="form-label">
+              {c.companyLabel}
+            </label>
+            <input
+              type="text"
+              id="contact-company"
+              value={formData.company}
+              onChange={set("company")}
+              className="form-input"
+              placeholder={c.companyPlaceholder}
+              autoComplete="organization"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="contact-phone" className="form-label">
+              {c.phoneLabel}
+            </label>
+            <input
+              type="tel"
+              id="contact-phone"
+              value={formData.phone}
+              onChange={set("phone")}
+              className="form-input"
+              placeholder={c.phonePlaceholder}
+              autoComplete="tel"
             />
           </div>
         </div>

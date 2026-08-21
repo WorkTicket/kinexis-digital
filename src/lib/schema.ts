@@ -36,7 +36,17 @@ function defaultOgImageObject() {
 }
 
 export function organizationSchema(): JsonLdEntity {
-  return {
+  const contactPoint: Record<string, unknown> = {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: businessProfile.email,
+    availableLanguage: [...businessProfile.languages],
+  };
+  if (businessProfile.phone) {
+    contactPoint.telephone = businessProfile.phone;
+  }
+
+  const schema: JsonLdEntity = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${getSiteUrl()}/#organization`,
@@ -45,21 +55,30 @@ export function organizationSchema(): JsonLdEntity {
     logo: organizationLogoObject(),
     description: businessProfile.description,
     sameAs: [businessProfile.linkedIn],
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "sales",
-      email: businessProfile.email,
-      availableLanguage: [...businessProfile.languages],
-    },
+    contactPoint,
   };
+  if (businessProfile.phone) {
+    schema.telephone = businessProfile.phone;
+  }
+  return schema;
 }
 
 /**
  * Agency hub schema — ProfessionalService (subtype of LocalBusiness) with service-area
- * address only. No fabricated street address or phone; email matches footer + contact page.
+ * address only. No fabricated street address; phone only when env-configured.
  */
 export function localBusinessSchema(pageUrl?: string): JsonLdEntity {
-  return {
+  const contactPoint: Record<string, unknown> = {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    email: businessProfile.email,
+    availableLanguage: [...businessProfile.languages],
+  };
+  if (businessProfile.phone) {
+    contactPoint.telephone = businessProfile.phone;
+  }
+
+  const schema: JsonLdEntity = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "@id": `${getSiteUrl()}/#localbusiness`,
@@ -77,15 +96,14 @@ export function localBusinessSchema(pageUrl?: string): JsonLdEntity {
       "@type": "Country",
       name,
     })),
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "customer service",
-      email: businessProfile.email,
-      availableLanguage: [...businessProfile.languages],
-    },
+    contactPoint,
     sameAs: [businessProfile.linkedIn],
     parentOrganization: { "@id": `${getSiteUrl()}/#organization` },
   };
+  if (businessProfile.phone) {
+    schema.telephone = businessProfile.phone;
+  }
+  return schema;
 }
 
 export function websiteSchema(inLanguage = "en"): JsonLdEntity {

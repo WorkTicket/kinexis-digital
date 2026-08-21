@@ -213,8 +213,8 @@ export const caseStudiesContent = localeContent({
         services: ["Web Design", "Technical SEO", "CRO", "Content Marketing"],
         featured: false,
         liveUrl: "https://bynmwcreative.com/",
-        screenshot: "/assets/images/case-studies/saas-platform-growth.webp",
-        screenshotCard: "/assets/images/case-studies/saas-platform-growth-card.webp",
+        screenshot: "/assets/images/case-studies/saas-platform-growth.webp?v=20260820a",
+        screenshotCard: "/assets/images/case-studies/saas-platform-growth-card.webp?v=20260820a",
         metrics: [
           { label: "Monthly Orders", from: 32, to: 78, suffix: "/mo" },
           { label: "Organic Traffic", from: 950, to: 2280, suffix: "/mo" },
@@ -352,8 +352,8 @@ export const caseStudiesContent = localeContent({
         services: ["Diseño Web", "SEO Técnico", "CRO", "Marketing de Contenido"],
         featured: false,
         liveUrl: "https://bynmwcreative.com/",
-        screenshot: "/assets/images/case-studies/saas-platform-growth.webp",
-        screenshotCard: "/assets/images/case-studies/saas-platform-growth-card.webp",
+        screenshot: "/assets/images/case-studies/saas-platform-growth.webp?v=20260820a",
+        screenshotCard: "/assets/images/case-studies/saas-platform-growth-card.webp?v=20260820a",
         metrics: [
           { label: "Pedidos Mensuales", from: 32, to: 78, suffix: "/mes" },
           { label: "Tráfico Orgánico", from: 950, to: 2280, suffix: "/mes" },

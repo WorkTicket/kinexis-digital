@@ -18,6 +18,8 @@ export type LandingPageEntry = {
   formSubtitle: string;
   submitLabel: string;
   formFootnote: string;
+  /** Free review / audit offers use the audit conversion label + /thank-you/audit. */
+  conversionKind: "lead" | "audit";
   proofIntro: string;
   proof: LandingPageProof[];
   bulletsTitle: string;
@@ -44,6 +46,7 @@ export const landingPages: LandingPageEntry[] = [
       "Tell us where you're spending. We'll tell you what's leaking, and what to fix first.",
     submitLabel: "Request my review",
     formFootnote: "No pitch deck. Practical findings within one business day.",
+    conversionKind: "audit",
     proofIntro: "Results from accounts we rebuilt, not vanity dashboards.",
     proof: [
       { metric: "+118%", label: "pipeline from Ads + CRO" },
@@ -96,9 +99,10 @@ export const landingPages: LandingPageEntry[] = [
       "Rankings are a means, not the goal. We build the technical base, the pages that match how buyers search, and the conversion paths so traffic turns into conversations.",
     formTitle: "Get a free SEO growth audit",
     formSubtitle:
-      "Share your site. We'll flag what's holding organic growth back, and what to prioritize.",
+      "Share your site URL and market. We'll flag what's holding organic growth back, and what to prioritize.",
     submitLabel: "Request my SEO audit",
     formFootnote: "Clear findings. No 40-page report designed to impress instead of act.",
+    conversionKind: "audit",
     proofIntro: "Organic growth our clients can point to in their CRM.",
     proof: [
       { metric: "+181%", label: "organic traffic · Landscaping, 10 mo" },
@@ -151,9 +155,10 @@ export const landingPages: LandingPageEntry[] = [
       "Map pack, Google Business Profile, and location pages that earn calls. Built for trades, clinics, and home-service businesses that live or die by local demand.",
     formTitle: "Get a free local visibility check",
     formSubtitle:
-      "Tell us your market and service. We'll show where you're invisible, and how to fix it.",
+      "Add your market and site in the form. We'll show where you're invisible, and how to fix it.",
     submitLabel: "Check my local visibility",
     formFootnote: "Practical GBP and local-pack findings. No junk citation spam.",
+    conversionKind: "audit",
     proofIntro: "Local operators who needed phones to ring.",
     proof: [
       { metric: "136%", label: "more emergency calls · Plumbing" },
@@ -206,9 +211,10 @@ export const landingPages: LandingPageEntry[] = [
       "Pretty isn't the brief. We design and build sites that load fast, explain the offer clearly, and make the next step obvious on mobile first, where most of your traffic already lives.",
     formTitle: "Get a free website conversion review",
     formSubtitle:
-      "Send your URL. We'll call out what's killing conversions and what a rebuild should prioritize.",
+      "Drop your URL in the form. We'll call out what's killing conversions and what a rebuild should prioritize.",
     submitLabel: "Review my website",
     formFootnote: "Straight feedback on structure, speed, and conversion gaps.",
+    conversionKind: "audit",
     proofIntro: "When the site stops being the bottleneck.",
     proof: [
       { metric: "+168%", label: "growth · SEO + web redesign pattern" },

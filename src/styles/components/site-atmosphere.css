@@ -9,6 +9,13 @@
   overflow: hidden;
 }
 
+/* Mobile: drop fixed atmosphere layers — they cost paint before LCP text settles */
+@media (max-width: 1023px) {
+  .site-atmosphere {
+    display: none;
+  }
+}
+
 .site-atmosphere__flow,
 .site-atmosphere__vignette,
 .site-atmosphere__grain {

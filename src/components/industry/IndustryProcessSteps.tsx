@@ -3,7 +3,6 @@ import { cn } from "@/lib/cn";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { duration } from "@/lib/motion";
 import type { IndustryProcessStep } from "@/content/industries";
-import { getProcessIcon } from "@/components/industry/industry-icons";
 
 type Props = {
   title: string;
@@ -35,44 +34,40 @@ export function IndustryProcessSteps({
       )}
       style={accentStyle}
     >
-      <div className="shell relative z-[1] py-24 md:py-32 lg:py-40">
-        <Reveal variant="rise" when="chapter" className="industry-process__mast">
-          <header>
-            <p className="section-eyebrow">Process</p>
-            <h2
-              id="industry-process-heading"
-              className="industry-process__heading"
-            >
-              {title}
-            </h2>
-            <p className="industry-process__dek">{copy}</p>
-          </header>
-        </Reveal>
+      <div className="shell chapter-shell--standard relative z-[1]">
+        <div className="industry-process__layout">
+          <Reveal variant="rise" when="chapter" className="industry-process__mast">
+            <header>
+              <p className="section-eyebrow">Process</p>
+              <h2
+                id="industry-process-heading"
+                className="industry-process__heading"
+              >
+                {title}
+              </h2>
+              <p className="industry-process__dek">{copy}</p>
+            </header>
+          </Reveal>
 
-        <RevealGroup
-          as="ol"
-          className="industry-process__stack"
-          stagger={duration.staggerTight}
-          delayChildren={0.06}
-          aria-label="Engagement steps"
-        >
-          {steps.map((step, index) => {
-            const Icon = getProcessIcon(step.title, index);
-            return (
+          <RevealGroup
+            as="ol"
+            className="industry-process__rail"
+            stagger={duration.staggerTight}
+            delayChildren={0.06}
+            aria-label="Engagement steps"
+          >
+            {steps.map((step) => (
               <RevealItem key={step.title} as="li" variant="fadeUp">
-                <article className="industry-process__block motion-card">
-                  <span className="icon-well" aria-hidden>
-                    <Icon strokeWidth={1.5} />
-                  </span>
+                <article className="industry-process__step">
                   <div className="industry-process__copy">
                     <h3 className="industry-process__title">{step.title}</h3>
                     <p className="industry-process__body">{step.detail}</p>
                   </div>
                 </article>
               </RevealItem>
-            );
-          })}
-        </RevealGroup>
+            ))}
+          </RevealGroup>
+        </div>
       </div>
     </section>
   );

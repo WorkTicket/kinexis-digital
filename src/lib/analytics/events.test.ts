@@ -81,6 +81,35 @@ describe("analytics events", () => {
     const { trackLead } = await import("@/lib/analytics/events");
     expect(trackLead({ email: "a@b.com" })).toBe(false);
   });
+
+  it("ignores Ads IDs that do not start with AW-", async () => {
+    vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "G-WRONG");
+    vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "AbCdEfGh");
+    const gtag = vi.fn();
+    vi.stubGlobal("window", { gtag });
+
+    const { trackLead, getConversionSendTo } = await import(
+      "@/lib/analytics/events"
+    );
+    expect(getConversionSendTo("lead")).toBeUndefined();
+    expect(trackLead({ email: "a@b.com" })).toBe(false);
+  });
+
+  it("trackBookingClick attaches Enhanced Conversions email", async () => {
+    vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
+    vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_BOOKING", "BookLabel");
+    const gtag = vi.fn();
+    vi.stubGlobal("window", { gtag });
+
+    const { trackBookingClick } = await import("@/lib/analytics/events");
+    expect(trackBookingClick({ email: "  Book@Example.COM " })).toBe(true);
+    expect(gtag).toHaveBeenCalledWith("set", "user_data", {
+      email: "book@example.com",
+    });
+    expect(gtag).toHaveBeenCalledWith("event", "conversion", {
+      send_to: "AW-123456789/BookLabel",
+    });
+  });
 });
 
 describe("pending conversion stash", () => {
@@ -112,12 +141,14 @@ describe("pending conversion stash", () => {
     stashPendingConversion({
       type: "lead",
       email: "lead@example.com",
+      phone: "+15551212",
       formType: "contact",
       serviceInterest: "SEO",
     });
 
     const first = consumePendingConversion("lead");
     expect(first?.email).toBe("lead@example.com");
+    expect(first?.phone).toBe("+15551212");
     expect(consumePendingConversion("lead")).toBeNull();
   });
 

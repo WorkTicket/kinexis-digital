@@ -1,6 +1,22 @@
 # Google Ads Launch Checklist
 
-Use this after deploying the Google Ads readiness work. The site ships conversion plumbing that **no-ops until env vars are set** — fill them in before spending.
+The site ships conversion plumbing that **no-ops until env vars are set**. Fill them in, redeploy, then spend.
+
+Deploy fails if Ads ID is set without `NEXT_PUBLIC_GADS_LABEL_LEAD` (see `scripts/check-ads-env.mjs`).
+
+## What’s already built
+
+- Consent Mode v2 + gtag (GA4 live: `G-Z8245BRX2L`)
+- Form → thank-you conversions with Enhanced Conversions (email + optional phone)
+- gclid / gbraid / wbraid + UTM + landing page capture into lead emails
+- Dedicated landers: `/lp/google-ads-management`, `/lp/seo`, `/lp/local-seo`, `/lp/web-design`
+- LP forms: name + email required; phone, website, details optional
+- LP submits use the **audit** conversion path → `/thank-you/audit` (falls back to LEAD label if AUDIT unset)
+- Contact form: name, email, company, phone, service, message
+- Strategy-call booking fires booking conversion on submit **with email** for Enhanced Conversions
+- Slim chrome + mobile sticky CTA on landers (offset above cookie banner while pending)
+- Thank-you conversions fire after accept **or** reject (Consent Mode models when denied)
+- Click-to-call tracking when `NEXT_PUBLIC_BUSINESS_PHONE` is set
 
 ## 1. Create conversion actions in Google Ads
 
@@ -9,9 +25,9 @@ In **Goals → Conversions → Summary → New conversion action**:
 | Action | Type | Suggested name | Env var for label |
 |---|---|---|---|
 | Primary lead | Website → Submit lead form | `Lead — Form Submit` | `NEXT_PUBLIC_GADS_LABEL_LEAD` |
-| Audit request | Website → Submit lead form | `Lead — Audit Request` | `NEXT_PUBLIC_GADS_LABEL_AUDIT` |
+| Audit / LP review | Website → Submit lead form | `Lead — Audit Request` | `NEXT_PUBLIC_GADS_LABEL_AUDIT` |
 | Phone call (optional) | Website → Click to call | `Lead — Call Click` | `NEXT_PUBLIC_GADS_LABEL_CALL` |
-| Booking click (optional) | Website → Page view / custom | `Lead — Booking Click` | `NEXT_PUBLIC_GADS_LABEL_BOOKING` |
+| Booking (optional) | Website → Submit / custom | `Lead — Booking` | `NEXT_PUBLIC_GADS_LABEL_BOOKING` |
 
 For each website conversion:
 
@@ -19,35 +35,33 @@ For each website conversion:
 2. Copy the **Conversion ID** (`AW-XXXXXXXXXX`) → `NEXT_PUBLIC_GOOGLE_ADS_ID`.
 3. Copy each **Conversion label** into the matching `NEXT_PUBLIC_GADS_LABEL_*` var.
 4. Enable **Enhanced conversions** (email) for form actions.
-5. Set primary lead as **Primary** for bidding; audit can be secondary or primary depending on offer.
+5. Set primary lead as **Primary** for bidding; audit can be primary for Search campaigns that land on `/lp/*`.
 
-Optional destination URLs (backup signal, same conversion action — do **not** create a second action that would double-count):
+Destination URLs (backup signal — do **not** create a second action that would double-count):
 
-- Lead: `https://www.kinexisdigital.com/thank-you`
-- Audit: `https://www.kinexisdigital.com/thank-you/audit`
+- Contact / general lead: `https://www.kinexisdigital.com/thank-you`
+- LP audit / review: `https://www.kinexisdigital.com/thank-you/audit`
 
-Conversions fire from the thank-you page via `gtag('event','conversion')` after a successful form submit.
+LP conversions fire from `/thank-you/audit` via `gtag('event','conversion')` after a successful form submit. Contact message forms use `/thank-you`. Bookings fire on submit (not again on thank-you).
 
-## 2. Set production secrets / env
+## 2. Set production secrets
 
-Cloudflare Workers / Pages (or `.env.local` for staging):
+Add these as **GitHub Actions secrets** (deploy workflow reads them) and/or Cloudflare build env:
 
 ```
-NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
 NEXT_PUBLIC_GOOGLE_ADS_ID=AW-XXXXXXXXXX
 NEXT_PUBLIC_GADS_LABEL_LEAD=xxxxxxxx
 NEXT_PUBLIC_GADS_LABEL_AUDIT=xxxxxxxx
 NEXT_PUBLIC_GADS_LABEL_CALL=xxxxxxxx   # only if publishing a phone number
 NEXT_PUBLIC_GADS_LABEL_BOOKING=xxxxxxxx
-NEXT_PUBLIC_BUSINESS_PHONE=+1XXXXXXXXXX  # optional — enables call CTAs
-NEXT_PUBLIC_BOOKING_URL=https://cal.com/...  # optional — enables booking CTAs
+NEXT_PUBLIC_BUSINESS_PHONE=+1XXXXXXXXXX  # optional — enables call CTAs + schema telephone
 ```
 
 Redeploy after setting `NEXT_PUBLIC_*` values so they are baked into the client bundle.
 
 ## 3. Campaign final URLs
 
-Use unprefixed paths. `/en/lp/*` 301s once onto `/lp/*` (the lander still renders).
+Use unprefixed paths. `/en/lp/*` 301s onto `/lp/*`.
 
 | Campaign | Final URL |
 |---|---|
@@ -62,39 +76,24 @@ Do **not** point Search ads at `/services/google-ads` — it 301s to `/services#
 
 ## 4. Verify tags
 
-1. Open an LP with Tag Assistant / Ads preview:  
+1. Open an LP with Tag Assistant:  
    `https://www.kinexisdigital.com/lp/seo?gclid=test123`
-2. Accept cookies → confirm Consent Mode updates grant `ad_storage`.
-3. Submit the form with a test email → land on `/thank-you`.
-4. Confirm a `conversion` hit with `send_to: AW-…/label` in the network panel or Tag Assistant.
-5. Reject cookies on a fresh session → confirm ads storage stays denied and `url_passthrough` still preserves `gclid` in the URL where applicable.
-6. Check the lead email includes **GCLID** / UTM rows when present.
+2. Accept cookies → confirm Consent Mode grants `ad_storage`.
+3. Submit the form → land on `/thank-you/audit`.
+4. Confirm a `conversion` hit with `send_to: AW-…/label` (audit label, or lead if audit unset).
+5. Fresh session → reject cookies → submit again → conversion still fires (cookieless / modeled).
+6. Check the lead email includes **GCLID** / UTM / landing page rows when present.
+7. Book a strategy call on `/contact` → confirm booking conversion includes Enhanced Conversions email.
 
-## 5. CSP sanity check
+## 5. Soft launch
 
-Conversion pixels must not be blocked. After deploy:
+1. One campaign → one LP (recommend `google-ads-management` or `seo`).
+2. Confirm conversions in Ads within 24–48h (Recording → Verified).
+3. Scale budget and clone for additional LPs.
 
-1. Submit a test lead with DevTools → Network / Console open.
-2. Confirm no CSP violations for `googleadservices.com`, `doubleclick.net`, or `www.google.com`.
-3. If `report-uri` (report-uri.com) shows new Google Ads blocks, update both:
-   - `next.config.mjs` security headers
-   - `public/_headers`
+## 6. Conversion UX notes
 
-## 6. AdsBot crawlability
-
-`/robots.txt` should include an explicit `AdsBot-Google` allow group. Landing pages are `noindex` via metadata (not robots disallow) so quality checks can crawl them without indexing.
-
-## 7. Soft launch
-
-1. Start with one campaign → one LP (recommend `google-ads-management` or `seo`).
-2. Confirm conversions in Ads within 24–48h (status: Recording / Unverified → Verified).
-3. Only then scale budget and clone the pattern for additional LPs.
-
-## 8. Optional contact channels
-
-Phone and booking CTAs render **only** when env vars are set. Provide:
-
-- `NEXT_PUBLIC_BUSINESS_PHONE` (E.164 preferred)
-- `NEXT_PUBLIC_BOOKING_URL` (Cal.com / Calendly / etc.)
-
-Then create matching conversion actions and labels so click-to-call / booking are measurable.
+- LP forms: name + email required; phone / website / details optional (better Enhanced Conversions + sales context).
+- Contact page: strategy-call booking or message form (company + phone collected).
+- Cookie banner remains on landers (required for Consent Mode); sticky CTA lifts above it while pending.
+- Phone CTAs appear only when `NEXT_PUBLIC_BUSINESS_PHONE` is set.

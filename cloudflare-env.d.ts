@@ -25,7 +25,6 @@ interface CloudflareEnv {
   NEXT_PUBLIC_GADS_LABEL_CALL?: string;
   NEXT_PUBLIC_GADS_LABEL_BOOKING?: string;
   NEXT_PUBLIC_BUSINESS_PHONE?: string;
-  NEXT_PUBLIC_BOOKING_URL?: string;
   NEXT_PUBLIC_CLARITY_ID?: string;
   NEXT_PUBLIC_GSC_VERIFICATION?: string;
   SENTRY_ORG?: string;

@@ -31,7 +31,21 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, service, revenue, budget, goal, score, source, auditType, _hp, _ts } = body;
+    const {
+      name,
+      email,
+      phone,
+      website,
+      service,
+      revenue,
+      budget,
+      goal,
+      score,
+      source,
+      auditType,
+      _hp,
+      _ts,
+    } = body;
     const attribution = sanitizeAttributionFromBody(body);
 
     const honeypot = validateHoneypot(
@@ -53,6 +67,12 @@ export async function POST(request: Request) {
 
     if (String(name).length > 200) {
       return NextResponse.json({ error: "Name is too long." }, { status: 400 });
+    }
+    if (phone && String(phone).length > 50) {
+      return NextResponse.json({ error: "Phone number is too long." }, { status: 400 });
+    }
+    if (website && String(website).length > 500) {
+      return NextResponse.json({ error: "Website URL is too long." }, { status: 400 });
     }
     if (service && String(service).length > 200) {
       return NextResponse.json({ error: "Service value is too long." }, { status: 400 });
@@ -78,9 +98,13 @@ export async function POST(request: Request) {
 
     const safeName = String(name);
     const safeEmail = String(email);
+    const safePhone = phone ? String(phone).trim() : "";
+    const safeWebsite = website ? String(website).trim() : "";
     const leadData = {
       name: safeName,
       email: safeEmail,
+      phone: safePhone || "Not specified",
+      website: safeWebsite || "Not specified",
       service: service ? String(service) : auditType ? String(auditType) : "Not specified",
       revenue: revenue ? String(revenue) : "Not specified",
       budget: budget ? String(budget) : "Not specified",
@@ -95,6 +119,8 @@ export async function POST(request: Request) {
     const rows = [
       emailRow("Name", leadData.name),
       emailRow("Email", leadData.email, true),
+      safePhone ? emailRow("Phone", safePhone) : "",
+      safeWebsite ? emailRow("Website", safeWebsite) : "",
       emailRow("Service", leadData.service),
       emailRow("Revenue", leadData.revenue),
       emailRow("Budget", leadData.budget),
@@ -117,6 +143,8 @@ export async function POST(request: Request) {
           "",
           `Name: ${leadData.name}`,
           `Email: ${leadData.email}`,
+          safePhone ? `Phone: ${safePhone}` : "",
+          safeWebsite ? `Website: ${safeWebsite}` : "",
           `Service: ${leadData.service}`,
           `Revenue: ${leadData.revenue}`,
           `Budget: ${leadData.budget}`,
@@ -125,7 +153,9 @@ export async function POST(request: Request) {
           `Source: ${leadData.source}`,
           `Captured: ${leadData.capturedAt}`,
           ...(attributionText.length ? ["", "Attribution:", ...attributionText] : []),
-        ].join("\n"),
+        ]
+          .filter(Boolean)
+          .join("\n"),
       },
       "Lead capture",
     );

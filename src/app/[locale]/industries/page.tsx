@@ -38,7 +38,10 @@ export default async function IndustriesPage({ params }: Props) {
           organizationSchema(),
           breadcrumbSchema([
             { name: tNav("home"), url: buildAbsoluteUrl(locale, "/") },
-            { name: tNav("industries"), url: buildAbsoluteUrl(locale, "/industries") },
+            {
+              name: tNav("industries"),
+              url: buildAbsoluteUrl(locale, "/industries"),
+            },
           ]),
         ]}
       />
@@ -57,13 +60,10 @@ export default async function IndustriesPage({ params }: Props) {
         className="ind-catalog chapter chapter--void relative"
         aria-labelledby="industries-index-heading"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal
-            variant="rise"
-            when="chapter"
-            className="mb-12 md:mb-16 lg:mb-20"
-          >
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
+              layout="split"
               eyebrow={c.indexEyebrow}
               headingId="industries-index-heading"
               title={c.indexTitle}
@@ -74,23 +74,25 @@ export default async function IndustriesPage({ params }: Props) {
 
           <RevealGroup
             as="ul"
-            className="svc-catalog__grid ind-catalog__grid"
-            stagger={0.05}
-            delayChildren={0.04}
+            className="ind-folio"
+            stagger={0.04}
+            delayChildren={0.03}
             aria-label={tCommon("jumpToIndustry")}
           >
             {industries.map((industry) => (
               <RevealItem as="li" key={industry.slug} variant="fadeUp">
-                <a
-                  href={`#${industry.slug}`}
-                  className="svc-catalog__card motion-tile"
-                >
-                  <span className="icon-well" aria-hidden>
+                <a href={`#${industry.slug}`} className="ind-folio__item">
+                  <span className="ind-folio__glyph" aria-hidden>
                     <IndustryGlyph slug={industry.slug} />
                   </span>
-                  <span className="svc-catalog__role">{industry.eyebrow}</span>
-                  <span className="svc-catalog__name">{industry.title}</span>
-                  <span className="svc-catalog__dek">{industry.summary}</span>
+                  <span>
+                    <span className="ind-folio__role">{industry.eyebrow}</span>
+                    <span className="ind-folio__name">{industry.title}</span>
+                  </span>
+                  <p className="ind-folio__meta">{industry.summary}</p>
+                  <span className="ind-folio__arrow" aria-hidden>
+                    →
+                  </span>
                 </a>
               </RevealItem>
             ))}
@@ -110,7 +112,7 @@ export default async function IndustriesPage({ params }: Props) {
         </div>
       </div>
 
-      <PageCTA title={c.ctaTitle} copy={c.ctaCopy} />
+      <PageCTA layout="minimal" title={c.ctaTitle} copy={c.ctaCopy} />
     </main>
   );
 }

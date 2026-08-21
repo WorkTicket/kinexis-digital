@@ -13,6 +13,8 @@ type Props = {
   formSubtitle: string;
   submitLabel: string;
   formFootnote: string;
+  /** Audit-style offers fire the audit conversion label on /thank-you/audit. */
+  conversionKind?: "lead" | "audit";
   id?: string;
 };
 
@@ -22,12 +24,16 @@ export function LandingLeadForm({
   formSubtitle,
   submitLabel,
   formFootnote,
+  conversionKind = "audit",
   id = "lp-form",
 }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [website, setWebsite] = useState("");
+  const [details, setDetails] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -44,8 +50,12 @@ export function LandingLeadForm({
         body: JSON.stringify({
           name,
           email,
+          phone: phone.trim() || undefined,
+          website: website.trim() || undefined,
+          goal: details.trim() || undefined,
           service: serviceLabel,
           source: "landing-page",
+          auditType: conversionKind === "audit" ? serviceLabel : undefined,
           ...honeypotPayload,
           ...attribution,
         }),
@@ -56,13 +66,17 @@ export function LandingLeadForm({
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
 
+      const thankYouPath =
+        conversionKind === "audit" ? "/thank-you/audit" : "/thank-you";
+
       stashPendingConversion({
-        type: "lead",
+        type: conversionKind,
         email,
+        phone: phone.trim() || undefined,
         serviceInterest: serviceLabel,
-        formType: "landing-page",
+        formType: conversionKind === "audit" ? "lead-magnet" : "landing-page",
       });
-      router.push("/thank-you");
+      router.push(thankYouPath);
     } catch (err) {
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong. Please try again.");
       setStatus("error");
@@ -109,6 +123,49 @@ export function LandingLeadForm({
             className="form-input"
             autoComplete="email"
             placeholder="you@company.com"
+          />
+        </div>
+        <div>
+          <label htmlFor={`${id}-phone`} className="form-label">
+            Phone
+          </label>
+          <input
+            type="tel"
+            id={`${id}-phone`}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            className="form-input"
+            autoComplete="tel"
+            placeholder="+1…"
+          />
+        </div>
+        <div>
+          <label htmlFor={`${id}-website`} className="form-label">
+            Website
+          </label>
+          <input
+            type="text"
+            id={`${id}-website`}
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            className="form-input"
+            autoComplete="url"
+            placeholder="https://yoursite.com"
+            inputMode="url"
+          />
+        </div>
+        <div>
+          <label htmlFor={`${id}-details`} className="form-label">
+            Details
+          </label>
+          <textarea
+            id={`${id}-details`}
+            value={details}
+            onChange={(e) => setDetails(e.target.value)}
+            className="form-textarea !min-h-[4.5rem]"
+            placeholder="Market, spend, or what you want fixed first"
+            rows={2}
+            maxLength={1000}
           />
         </div>
 

@@ -25,9 +25,10 @@ export async function HomeExplore() {
       aria-labelledby="home-explore-heading"
       className="explore-section chapter chapter--studio relative"
     >
-      <div className="shell relative py-24 md:py-32 lg:py-40">
+      <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter" className="explore-mast">
           <ChapterLead
+            layout="rail"
             eyebrow={t("exploreEyebrow")}
             headingId="home-explore-heading"
             title={t("exploreTitle")}

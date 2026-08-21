@@ -1,25 +1,16 @@
 "use client";
 
-import {
-  AnimatePresence,
-  m as motion,
-  useReducedMotion,
-} from "framer-motion";
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal } from "@/components/ui/Reveal";
 import { clientMarks as clients } from "@/content/client-engagements";
-import { ease } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
+import { cn } from "@/lib/cn";
 
 const VISIBLE = 5;
 const STEP_MS = 2200;
 const PASS_PAUSE_MS = 1200;
-const FADE_S = 0.45;
 
 const PATTERNS: number[][] = [
   [2, 0, 4, 1, 3],
@@ -52,38 +43,30 @@ function pickReplacement(visible: number[], slot: number) {
 
 function ClientSlot({
   clientIndex,
-  reduced,
+  fadeKey,
 }: {
   clientIndex: number;
-  reduced: boolean | null;
+  fadeKey: number;
 }) {
   const client = clients[clientIndex]!;
 
   return (
     <li className="client-wall__item">
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={client.slug}
-          className="client-wall__mark"
-          initial={reduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={reduced ? undefined : { opacity: 0 }}
-          transition={{
-            duration: reduced ? 0 : FADE_S,
-            ease: ease.out,
-          }}
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={`/assets/logos/brands/${client.slug}.svg`}
-            alt={client.name}
-            width={160}
-            height={48}
-            className="client-wall__logo"
-            decoding="async"
-          />
-        </motion.span>
-      </AnimatePresence>
+      <span
+        key={`${client.slug}-${fadeKey}`}
+        className={cn("client-wall__mark", "client-wall__mark--fade")}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`/assets/logos/brands/${client.slug}.svg`}
+          alt={client.name}
+          width={160}
+          height={48}
+          className="client-wall__logo"
+          decoding="async"
+          loading="lazy"
+        />
+      </span>
     </li>
   );
 }
@@ -101,7 +84,7 @@ export function HomeClients({
   dek,
   meetClients,
 }: HomeClientsProps) {
-  const reduced = useReducedMotion();
+  const reduced = usePrefersReducedMotion();
   const [slots, setSlots] = useState(() => {
     const preferred = ["uber", "sony", "amazon", "slack", "meta"];
     const bySlug = new Map(clients.map((c, i) => [c.slug, i]));
@@ -111,13 +94,16 @@ export function HomeClients({
     if (initial.length >= VISIBLE) return initial.slice(0, VISIBLE);
     return clients.slice(0, VISIBLE).map((_, i) => i);
   });
+  const [fadeKeys, setFadeKeys] = useState(() =>
+    Array.from({ length: VISIBLE }, () => 0),
+  );
   const [ready, setReady] = useState(false);
   const stepRef = useRef(0);
   const patternRef = useRef(PATTERNS[0]!);
 
   useEffect(() => {
     if (reduced) return;
-    const id = window.setTimeout(() => setReady(true), 900);
+    const id = window.setTimeout(() => setReady(true), 1200);
     return () => window.clearTimeout(id);
   }, [reduced]);
 
@@ -135,6 +121,11 @@ export function HomeClients({
       setSlots((prev) => {
         const next = [...prev];
         next[slot] = pickReplacement(prev, slot);
+        return next;
+      });
+      setFadeKeys((prev) => {
+        const next = [...prev];
+        next[slot] = (next[slot] ?? 0) + 1;
         return next;
       });
 
@@ -162,10 +153,7 @@ export function HomeClients({
   }, [reduced, ready]);
 
   return (
-    <section
-      aria-labelledby="home-clients-heading"
-      className="client-wall"
-    >
+    <section aria-labelledby="home-clients-heading" className="client-wall">
       <div className="shell client-wall__frame">
         <Reveal variant="fadeUp" delay={0.04} when="chapter">
           <ChapterLead
@@ -184,7 +172,7 @@ export function HomeClients({
                 <ClientSlot
                   key={slot}
                   clientIndex={clientIndex}
-                  reduced={reduced}
+                  fadeKey={fadeKeys[slot] ?? 0}
                 />
               ))}
             </ul>

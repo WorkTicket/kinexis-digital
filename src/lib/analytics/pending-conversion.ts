@@ -8,8 +8,11 @@ const PENDING_KEY = "kinexis-pending-conversion";
 export type PendingConversion = {
   type: "lead" | "audit";
   email: string;
+  phone?: string;
   serviceInterest?: string;
   formType?: "contact" | "lead-magnet" | "landing-page";
+  /** When true, conversion already fired on submit (e.g. booking) — thank-you only sets user_data. */
+  conversionAlreadyFired?: boolean;
   storedAt: number;
 };
 

@@ -44,6 +44,16 @@ jobs:
             exit 1
           fi
 
+      - name: Check Google Ads conversion env
+        run: node scripts/check-ads-env.mjs
+        env:
+          NEXT_PUBLIC_GOOGLE_ADS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ADS_ID }}
+          NEXT_PUBLIC_GADS_LABEL_LEAD: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_LEAD }}
+          NEXT_PUBLIC_GADS_LABEL_AUDIT: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_AUDIT }}
+          NEXT_PUBLIC_GADS_LABEL_CALL: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_CALL }}
+          NEXT_PUBLIC_GADS_LABEL_BOOKING: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_BOOKING }}
+          NEXT_PUBLIC_BUSINESS_PHONE: ${{ secrets.NEXT_PUBLIC_BUSINESS_PHONE }}
+
       - name: Deploy to Cloudflare Workers
         run: npm run deploy
         env:
@@ -53,6 +63,13 @@ jobs:
           NEXT_PUBLIC_GSC_VERIFICATION: 7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q
           NEXT_PUBLIC_CLARITY_ID: ${{ secrets.NEXT_PUBLIC_CLARITY_ID }}
           NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          # Google Ads — set in GitHub → Settings → Secrets (see docs/google-ads-launch-checklist.md)
+          NEXT_PUBLIC_GOOGLE_ADS_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_ADS_ID }}
+          NEXT_PUBLIC_GADS_LABEL_LEAD: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_LEAD }}
+          NEXT_PUBLIC_GADS_LABEL_AUDIT: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_AUDIT }}
+          NEXT_PUBLIC_GADS_LABEL_CALL: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_CALL }}
+          NEXT_PUBLIC_GADS_LABEL_BOOKING: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_BOOKING }}
+          NEXT_PUBLIC_BUSINESS_PHONE: ${{ secrets.NEXT_PUBLIC_BUSINESS_PHONE }}
 
       - name: Submit URLs to IndexNow
         if: success()

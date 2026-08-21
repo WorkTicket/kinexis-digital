@@ -3,10 +3,17 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
+import {
+  getGaMeasurementId,
+  getGoogleAdsId,
+  getGtagLoaderId,
+} from "@/lib/analytics/ads-config";
 import { captureClickIds } from "@/lib/analytics/click-ids";
+import { updateGtagConsent } from "@/lib/analytics/consent";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+const GA_ID = getGaMeasurementId();
+const ADS_ID = getGoogleAdsId();
+const LOADER_ID = getGtagLoaderId();
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 declare global {
@@ -17,26 +24,15 @@ declare global {
   }
 }
 
-function setAnalyticsConsent(granted: boolean) {
-  if (typeof window.gtag !== "function") return;
-  window.gtag!("consent", "update", {
-    analytics_storage: granted ? "granted" : "denied",
-    ad_storage: granted ? "granted" : "denied",
-    ad_user_data: granted ? "granted" : "denied",
-    ad_personalization: granted ? "granted" : "denied",
-  });
-}
-
 function loadGtag() {
-  const id = GA_ID || ADS_ID;
-  if (!id) return;
+  if (!LOADER_ID) return;
   if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
     return;
   }
 
   const script = document.createElement("script");
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${LOADER_ID}`;
   document.head.appendChild(script);
 }
 
@@ -63,7 +59,7 @@ export default function AnalyticsScripts() {
   // External gtag.js is idle-deferred so it never contends with LCP.
   // The inline consent default in layout still queues calls on dataLayer.
   useEffect(() => {
-    if (!GA_ID && !ADS_ID) return;
+    if (!LOADER_ID) return;
 
     const start = () => loadGtag();
     if (typeof requestIdleCallback === "function") {
@@ -90,11 +86,11 @@ export default function AnalyticsScripts() {
     if (!ready) return;
 
     if (consent === "accepted") {
-      setAnalyticsConsent(true);
+      updateGtagConsent(true);
       trackPageView();
       loadClarity();
     } else if (consent === "rejected") {
-      setAnalyticsConsent(false);
+      updateGtagConsent(false);
     }
   }, [consent, ready]);
 

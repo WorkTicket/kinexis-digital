@@ -1,32 +1,160 @@
 # Performance Optimization — Agent Handoff
 
-**Goal:** Lighthouse/PSI 100 on every template, mobile + desktop, without breaking the site.
-**Status:** Phases 1 & 2 deployed + validated. **TBT and CLS are no longer the constraint anywhere** (mobile TBT 12–86ms, CLS 0.000). The single remaining lever to reach a consistent 100 is **Phase 3 — hero above-the-fold paint cost on mobile** (LCP/FCP/Speed Index). Full plan below under "⭐ Phase 3".
+**Prior chat:** [PSI 95+ LCP work](b532d619-5c11-4ac6-9bca-fbd867901c90)
 
-**Live production version:** `4af70b4f-232d-403c-b22e-15cbce2c267c` (Phase 2, this session)
-Site: `kinexisdigital.com` / `www.kinexisdigital.com` (OpenNext → Cloudflare Workers)
+**Goal (current):** **95+ PSI mobile and desktop** on every template (warm median of 3). Stretch 100 is not the gate.
+**Site:** `https://www.kinexisdigital.com` (OpenNext → Cloudflare Workers). Canonical URLs are **unprefixed** (`/`, not `/en`). Apex 301s to www and inflates LCP ~780ms — always audit `www`.
 
----
+**Live production version (last measured):** `f15a3ed4-34fa-4412-998c-b0ad3801cbd9`
+That deploy has **`experimental.inlineCss: false`**. CSS ships as two render-blocking files (~1.3 KB + ~229 KB uncompressed globals/Tailwind).
 
-## TL;DR for the next agent
-
-1. **Go straight to ⭐ Phase 3 (hero paint).** It's the only thing standing between the current medians and 100. It's a shared visual layer, so gate every change at `@media (max-width:1023px)` to leave desktop untouched. Measure with `psi-lcp.mjs` / `psi-diagnose.mjs` before/after.
-2. **The JS work is done.** Phase 1 (service pages → SSR + CSS reveal) and Phase 2 (rolled that recipe to homepage/industry/blog/pricing/SEO sections) eliminated framer from the critical path. Don't re-litigate TBT — it's ≤86ms mobile everywhere.
-3. **Always warm the Worker, then take medians.** After `npm run deploy` the Cloudflare Worker is COLD — the first PSI batch this session showed a bogus CLS 0.400 + scores of 58/77 that vanished on warm re-measure (CLS 0.000, no shift elements). `curl` each URL once, then `psi-check.mjs 3 <urls>`.
-4. **PSI mobile variance is real (±300–500ms)** plus Google-side 500/502 flakes. "100 literally every run" isn't guaranteeable; the target is **100 at the warm median with LCP headroom**. See "Acceptance target" in Phase 3.
-5. **Deploys require manual approval** in this environment. `npm run deploy` builds + deploys to Cloudflare.
+**Working tree:** all of this session's perf work is **uncommitted** (HEAD `98842db7` is unrelated). Nothing has been committed. `next.config.mjs` currently has `inlineCss: true` again — **that flip was not deployed or measured**. Do not treat the working-tree config as live.
 
 ---
 
-## Stack / architecture facts
+## TL;DR — start here
 
-- Next.js 15.5.19 (App Router) + next-intl, deployed via `@opennextjs/cloudflare`.
-- Build artifacts under `.next/` **are tracked in git** — ignore the huge `git status`; only `src/`, `*.config.*`, `scripts/` matter.
-- The working tree already had **many uncommitted changes before this session** (hero-viz, content files, new service routes, etc.). Don't attribute those to perf work. Nothing has been committed this session.
-- CWV thresholds used by the audit: LCP ≤ 2500ms, INP ≤ 200ms, CLS ≤ 0.1.
-- Hero decision tree (see comment block in `StaticHeroShell.tsx`): homepage → `HeroShell`; SSR service pages → `StaticHeroShell`; hub/detail → historically `HeroArchetype` (client) — we've been moving these to `StaticHeroShell` so the LCP text is in SSR HTML.
+1. **Re-measure live first** (Worker warm, median of 3) before changing `inlineCss` again. Homepage **98** and industry **96** mobile looked locked on live. Contact **93** / services **88** in the last batch may be PSI flakes — an earlier inlineCss-off batch had contact **97** / services **96**.
+2. **The remaining constraint is CSS delivery, not JS.** TBT/CLS are fine. Shared mobile FCP is ~1.95s on every template (CSS parse floor). Homepage/industry LCP was element **render delay**, then HTML size when CSS was inlined (~935 KB uncompressed document).
+3. **Do not toggle `inlineCss` as a binary “fix”.** It trades image-LCP pages against text-LCP pages. The real lock for all 95+ is a **small critical CSS inline + async rest**, or shrinking/splitting `globals.css`.
+4. **Do not repeat the failed experiments** listed below (industry still below the fold, hiding industry visual, `react-dom` `preload()`, `headers()` in the locale layout).
+5. **Do not audit `/services/seo`.** It **308s to `/services#seo`**. Use `/services` for the hub.
+
+Everything below “Historical (Phases 1–2)” is older context. Heroes are now `HomeHero` / `IndustryHero` / `PageHero`, not `StaticHeroShell`. Old URLs used `/en/...`. Old scores are stale.
 
 ---
+
+## Last measured PSI (warm medians of 3)
+
+### Confirm batch on live `f15a3ed4` (`inlineCss` OFF + film hide + paint cuts)
+
+| Template | Mobile | Desktop |
+|---|---|---|
+| Homepage | **98** (97/98/98), LCP ~2.1s | 99 |
+| Industry `/industries/ecommerce` | **96** (96/96/96), LCP ~2.4s | 99 |
+| Contact | **93** (93/93/75), LCP ~2.85s | 100 |
+| Services hub | **88** (88/88/97), LCP ~3.45s | 98 |
+
+Blog was **96 / 100** on an earlier same-architecture batch, not re-run in this confirm.
+
+### Earlier same-architecture batch (also `inlineCss` OFF + film hide; industry still eager)
+
+| Template | Mobile | Desktop |
+|---|---|---|
+| Homepage | **96** (96/97/96), LCP ~2.4s | 100 |
+| Services hub | **96** (89/98/96) | 100 |
+| Contact | **97** | 100 |
+| Industry ecommerce | **94** (94/94/94), LCP ~2.85s | 100 |
+| Blog post | **96** | 100 |
+
+Desktop is comfortably 95+. Variance is real (±300–500ms LCP, occasional 75/66 flakes). Treat medians, not single runs.
+
+### User-reported starting point (before this session’s CSS-split / film-hide work)
+
+| Template | Mobile | Desktop |
+|---|---|---|
+| Homepage | 91 (LCP ~3.0s) | 98 |
+| Services hub | 95 | 97 |
+| Contact | 97 | 100 |
+| Industry ecommerce | 89 (LCP ~3.4s) | 99 |
+| Blog post | 96 | 100 |
+
+---
+
+## The `inlineCss` tradeoff (do not ignore)
+
+Measured, not guessed:
+
+| Config | Homepage mobile | Industry mobile | Contact mobile | Services mobile |
+|---|---|---|---|---|
+| `inlineCss: true` (935 KB HTML, LCP preload after the `<style>` blob) | 91–94 | 89–93 | **97** | **95** |
+| `inlineCss: false` (HTML ~243 KB; CSS files; LCP image can start in parallel) | **98** | **96** | 93 or 97 | 88 or 96 |
+
+- **Inlining** helps **text-LCP** pages (contact, services): no stylesheet RTT, FCP ~2.0s.
+- **Splitting** helps **image-LCP** pages (homepage poster / industry still): image download is not blocked behind parsing 935 KB of HTML. Shared FCP is then the large CSS parse (~229 KB).
+- **Never measured together:** `inlineCss: true` **plus** mobile `.hero-film-media { display: none }`. Hypothesis: homepage LCP becomes the H1, so inlining might restore contact/services without tanking homepage. Industry still has an image LCP and may fall back to ~94. Working tree currently has this combo; **it is not live**.
+
+**Correct long-term fix (if toggling is not enough):** tiny critical CSS in `<head>` (header, hero type, buttons) + load the rest with `media="print" onload="this.media='all'"` (or split blog/contact/resources/industry chunks out of `globals.css`). Next does not support per-route `inlineCss`.
+
+---
+
+## Ordered next actions
+
+1. Warm + full 5-template median on **current live** (do not deploy first):
+
+```bash
+curl -s -o NUL https://www.kinexisdigital.com/
+curl -s -o NUL https://www.kinexisdigital.com/services
+curl -s -o NUL https://www.kinexisdigital.com/contact
+curl -s -o NUL https://www.kinexisdigital.com/industries/ecommerce
+curl -s -o NUL https://www.kinexisdigital.com/blog/seo-pricing-guide
+
+node scripts/psi-check.mjs 3 https://www.kinexisdigital.com/ https://www.kinexisdigital.com/services https://www.kinexisdigital.com/contact https://www.kinexisdigital.com/industries/ecommerce https://www.kinexisdigital.com/blog/seo-pricing-guide
+```
+
+2. If contact + services medians are **≥95** with `inlineCss` still off: **stop. Goal met.** Keep the working-tree `inlineCss: true` from going live, or revert that config line to match live.
+3. If they are still below 95: either
+   - **A.** Deploy the untested combo (`inlineCss: true` + film hide) and measure all 5. Expect industry to be the risk.
+   - **B (better).** Leave CSS split, add a small critical-CSS path / cut `globals.css`. That is the lever that can satisfy both image-LCP and text-LCP pages.
+4. Gate visual/paint cuts at `@media (max-width: 1023px)` so desktop stays put. Deploys need manual approval: `npm run deploy`.
+
+---
+
+## Do not repeat
+
+- **Industry still below the fold** (`min-height: 100svh` on copy-col) + `priority={false}`: the lazy image at the fold became LCP → industry **86**, desktop LCP worse. Reverted. Keep the still visible and `priority`.
+- **`display: none` on `.industry-hero__visual` on mobile:** hid content, did not lock 95+. Reverted.
+- **`react-dom` `preload()`** in `src/app/[locale]/page.tsx` and industry `page.tsx`: **does not emit a `<head>` link in production HTML**. Keep real `<link rel="preload">` in `HomeHero` / `IndustryHero` / `LcpImage`.
+- **`headers()` in the locale layout:** kills SSG. Do not.
+- **Lazy-load above-the-fold industry stills.**
+- **Audit `/services/seo`.** 308 → `/services#seo`.
+- **Measure a cold Worker.** After deploy, `curl` each URL once, then medians.
+
+---
+
+## What shipped and should stay
+
+Uncommitted in the working tree; live `f15a3ed4` already includes most of this (except the latest `inlineCss: true` revert).
+
+| Area | What |
+|---|---|
+| Hero video | Poster-only on mobile (`shouldLoadVideo` + CSS `.hero-film-media { display: none }` at ≤1023px). Desktop loads **2.2 MB** MP4 after idle (`scheduleIdleOrScroll`). Was 11.6 MB + `preload=auto`. Poster: `/assets/video/hero-open-v2-poster-sm.webp`. |
+| Framer | Off the critical path. CSS `Reveal` / `Card`. Framer **not** in `[locale]/layout.tsx`. `HomeClients` CSS fades. Homepage First Load JS **172 → 145 KB**. |
+| WebGL | Gesture-gated (`SignalPlaneMount`). Industry / case study use static CSS mesh only. |
+| Contact booking | Click-to-load in `ContactIntake` (`hydrateBook` / `hydrateMessage`). Killed TBT ~650ms + CLS from skeleton swap. Review UX if scores are already 95+. |
+| Mobile paint budget | End of `src/app/globals.css` `@media (max-width: 1023px)` so it wins source order: **no `backdrop-filter`** on header frost / chrome / cookie / outline btn; solid `--chrome-fallback`; simpler `.hero-film-scrim`; hide `.hero-atmosphere__fade`, mesh blobs, non-film `.hero-atmosphere`. |
+| Industry CSS | `IndustryHero` no longer imports `page-stages.css` (~3500 lines). Split-grid rules live in `globals.css`. `PageBreadcrumb` extracted so industry does not pull `PageHero` → page-stages. `PageHero` / `CaseStudyHero` / `ServiceProgramChapter` still import page-stages. |
+| LCP images | `decoding="sync"` on `HeroFilm` poster and `LcpImage` priority path. Mobile-first `<picture>` (`src={mobileSrc}`, desktop via `<source min-width: 768px>`). Explicit `<link rel="preload">` in heroes. Bypass `/_next/image` on priority stills (Worker Sharp hop delayed LCP). |
+| Other | `content-visibility: auto` on `.chapter:not(.page-hero):not(.case-hero)`; `contain: paint` on `.hero-atmosphere`; `BrandLogo` `fetchPriority="low"`; `HomeServices` images `loading="lazy"`. Cookie banner blur gated to `min-width: 1024px`. |
+
+**New files:** `src/lib/lcp-preload.ts`, `src/lib/schedule-idle-or-scroll.ts`, `src/components/page/PageBreadcrumb.tsx`.
+
+---
+
+## Stack / architecture (current)
+
+- Next.js 15.5.x App Router + next-intl, `@opennextjs/cloudflare`.
+- Heroes: homepage → `HomeHero` + `HeroFilm`; industry → `IndustryHero` + `LcpImage`; other pages → `PageHero` / `CaseStudyHero`.
+- Fonts: local `KinexisDisplay` / `KinexisText` in `[locale]/layout.tsx`, `display: "optional"`. Display font preloaded; text font not.
+- CWV: LCP ≤ 2500ms, INP ≤ 200ms, CLS ≤ 0.1. PSI 95 ≈ LCP needs to sit ~2.5s with headroom.
+- `.next/` build artifacts may appear huge in git — ignore; only `src/`, configs, `scripts/` matter for this work.
+- `npm run deploy` = opennext build + Cloudflare deploy (needs approval here).
+
+### Measurement
+
+```bash
+# LCP element + TTFB / load delay / load duration / render delay
+node scripts/psi-lcp.mjs https://www.kinexisdigital.com/industries/ecommerce mobile
+node scripts/psi-diagnose.mjs https://www.kinexisdigital.com/contact mobile
+```
+
+Needs `GOOGLE_PSI_API_KEY` in `.env.local` (scripts load it).
+
+---
+
+# Historical (Phases 1–2 and early Phase 3)
+
+> Scores, live version IDs, `/en/...` URLs, and `StaticHeroShell` references below are from earlier sessions. Use them as background on JS/TBT work only. Do not execute the old Phase 3 plan as written — paint cuts, film hide, and CSS-split experiments already landed.
 
 ## Phase 1 — CSS reveal + service pages as server components (deployed, VALIDATED)
 
@@ -115,9 +243,11 @@ These still import framer but are **not on the critical path** (framer is global
 
 ---
 
-# ⭐ Phase 3 — the gate to consistent 100 (hero above-the-fold paint)
+# ⭐ Phase 3 — historical plan (paint cuts already shipped)
 
-**This is the one remaining lever.** After Phase 2, TBT and CLS are no longer the constraint anywhere. The binding constraint site-wide is now **mobile LCP / FCP / Speed Index**, and its root cause is the hero's stacked decorative paint under PSI's mobile throttling (4× CPU, slow 4G).
+**Superseded.** Mobile paint budget, film hide, mesh hide, and CSS-split experiments already landed — see the current section at the top of this file. Do not re-run this plan as a todo list.
+
+**This was the remaining lever after Phase 2.** TBT and CLS were no longer the constraint. The binding constraint site-wide is now **mobile LCP / FCP / Speed Index**, and its root cause is the hero's stacked decorative paint under PSI's mobile throttling (4× CPU, slow 4G).
 
 ### The diagnosis (measured, not guessed)
 - `psi-lcp.mjs` on `/services/seo` mobile: LCP element is **text**, breakdown ≈ TTFB 13ms + **render delay ~1900ms**, no image load, TBT trivial. LCP is gated purely on *when the above-the-fold paint settles*.

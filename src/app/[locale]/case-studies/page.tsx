@@ -58,9 +58,10 @@ export default async function WorkIndexPage({ params }: Props) {
         aria-labelledby="work-index-heading"
         className="chapter chapter--void relative"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--monument relative">
+          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16">
             <ChapterLead
+              layout="split"
               eyebrow={t("indexEyebrow")}
               headingId="work-index-heading"
               title={t("indexTitle")}
@@ -124,9 +125,10 @@ export default async function WorkIndexPage({ params }: Props) {
       </section>
 
       <section className="chapter chapter--studio relative overflow-hidden">
-        <div className="shell relative py-24 md:py-32 lg:py-40">
+        <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter">
             <ChapterLead
+              layout="rail"
               eyebrow={t("pictureEyebrow")}
               title={t("pictureTitle")}
               headingClassName="max-w-[12ch]"
@@ -141,6 +143,7 @@ export default async function WorkIndexPage({ params }: Props) {
       </section>
 
       <PageCTA
+        layout="minimal"
         title={t("indexCtaTitle")}
         copy={t("indexCtaCopy")}
       />

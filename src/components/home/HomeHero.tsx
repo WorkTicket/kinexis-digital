@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { HeroFilm } from "@/components/home/HeroFilm";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { HeroSignalLine } from "@/components/page/HeroSignalLine";
+import { HOME_HERO_POSTER, HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
 
 export async function HomeHero() {
   const t = await getTranslations("home");
@@ -17,9 +18,18 @@ export async function HomeHero() {
       <link
         rel="preload"
         as="image"
-        href="/assets/video/hero-open-v2-poster-sm.webp"
+        href={HOME_HERO_POSTER}
         type="image/webp"
         fetchPriority="high"
+        media="(max-width: 1023px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={HOME_HERO_POSTER_DESKTOP}
+        type="image/webp"
+        fetchPriority="high"
+        media="(min-width: 1024px)"
       />
       <HeroFilm />
       <div className="hero-film-scrim" aria-hidden />

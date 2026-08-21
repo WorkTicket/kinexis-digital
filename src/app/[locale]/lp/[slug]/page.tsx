@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LandingLeadForm } from "@/components/landing/LandingLeadForm";
+import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageHero } from "@/components/page/PageHero";
+import JsonLd from "@/components/seo/JsonLd";
 import { Reveal } from "@/components/ui/Reveal";
 import {
   getLandingPage,
@@ -11,6 +13,7 @@ import {
 import { resolveLocale } from "@/i18n/locale";
 import { Link } from "@/i18n/navigation";
 import { buildPageMetadata } from "@/lib/metadata";
+import { faqSchema } from "@/lib/schema";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -52,7 +55,8 @@ export default async function LandingPage({ params }: Props) {
   if (!page) notFound();
 
   return (
-    <main className="flex flex-1 flex-col">
+    <main className="flex flex-1 flex-col pb-24 md:pb-0">
+      <JsonLd data={faqSchema(page.faqs)} />
       <PageHero
         eyebrow={page.badge}
         title={page.headline}
@@ -67,6 +71,7 @@ export default async function LandingPage({ params }: Props) {
             formSubtitle={page.formSubtitle}
             submitLabel={page.submitLabel}
             formFootnote={page.formFootnote}
+            conversionKind={page.conversionKind}
           />
         }
       />
@@ -121,6 +126,8 @@ export default async function LandingPage({ params }: Props) {
         eyebrow="Before you reach out"
         title="Straight answers."
       />
+
+      <LandingStickyCta label={page.stickyCtaLabel} />
     </main>
   );
 }

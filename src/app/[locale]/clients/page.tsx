@@ -53,9 +53,10 @@ export default async function ClientsPage({ params }: Props) {
         aria-labelledby="clients-roster-heading"
         className="chapter chapter--void relative"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--standard relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
             <ChapterLead
+              layout="split"
               eyebrow={t("rosterEyebrow")}
               headingId="clients-roster-heading"
               title={t("rosterTitle")}
@@ -91,6 +92,7 @@ export default async function ClientsPage({ params }: Props) {
       <HomeCertifications />
 
       <PageCTA
+        layout="minimal"
         title={t("ctaTitle")}
         copy={t("ctaCopy")}
       />

@@ -3,6 +3,8 @@
  * No-ops when IDs or labels are unset so builds stay green before credentials exist.
  */
 
+import { getGoogleAdsId } from "@/lib/analytics/ads-config";
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -20,11 +22,6 @@ export type ConversionOptions = {
   value?: number;
   currency?: string;
 };
-
-function getAdsId(): string | undefined {
-  const id = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
-  return id && id.startsWith("AW-") ? id : undefined;
-}
 
 function getLeadLabel(): string | undefined {
   const label = process.env.NEXT_PUBLIC_GADS_LABEL_LEAD;
@@ -47,7 +44,7 @@ function getBookingLabel(): string | undefined {
 }
 
 function sendTo(label: string): string | undefined {
-  const adsId = getAdsId();
+  const adsId = getGoogleAdsId();
   if (!adsId || !label) return undefined;
   return `${adsId}/${label}`;
 }
@@ -155,10 +152,10 @@ export function trackCallClick(): boolean {
   return fired;
 }
 
-/** Booking / calendar click conversion. */
-export function trackBookingClick(): boolean {
+/** Booking / calendar conversion — pass email (and phone) for Enhanced Conversions. */
+export function trackBookingClick(options: ConversionOptions = {}): boolean {
   const label = getBookingLabel() ?? getLeadLabel();
-  const fired = trackConversion(label);
+  const fired = trackConversion(label, options);
 
   if (canTrack()) {
     window.gtag!("event", "book_appointment", {});

@@ -107,5 +107,6 @@ export function industryProofImage(href?: string): string | undefined {
   };
   const fileSlug = known[slug];
   if (!fileSlug) return undefined;
-  return `/assets/images/case-studies/${fileSlug}.webp`;
+  const version = fileSlug === "saas-platform-growth" ? "?v=20260820a" : "";
+  return `/assets/images/case-studies/${fileSlug}.webp${version}`;
 }

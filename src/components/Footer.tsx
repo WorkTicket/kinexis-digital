@@ -2,10 +2,12 @@ import { getTranslations } from "next-intl/server";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Button } from "@/components/ui/Button";
+import { CallLink } from "@/components/analytics/CallLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { Link } from "@/i18n/navigation";
 import { CTA_PRIMARY_HREF } from "@/lib/site-cta";
 import { footerIndustryLinks, footerNavLinks } from "@/lib/site-nav";
+import { getBusinessTelHref } from "@/lib/business";
 
 export async function Footer() {
   const year = new Date().getFullYear();
@@ -65,6 +67,9 @@ export async function Footer() {
                   <span className="site-footer__email-dot" aria-hidden />
                   {CONTACT_EMAIL}
                 </a>
+                {getBusinessTelHref() ? (
+                  <CallLink className="site-footer__email mt-2 inline-flex" />
+                ) : null}
                 <p className="site-footer__meta-line">{t("replies")}</p>
               </div>
             </div>

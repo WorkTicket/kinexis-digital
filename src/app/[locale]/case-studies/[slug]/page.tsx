@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { Map, TrendingUp, Wrench, type LucideIcon } from "lucide-react";
 import { CaseStudyHero } from "@/components/page/CaseStudyHero";
 import { PageCTA } from "@/components/page/PageCTA";
 import JsonLd from "@/components/seo/JsonLd";
@@ -57,14 +56,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const others = getCaseStudyPages(locale).filter((c) => c.slug !== study.slug);
 
   const metricFills = ["88%", "76%", "64%", "92%"];
-  const SCOPE_ICONS: Record<string, LucideIcon> = {
-    Strategy: Map,
-    Execution: Wrench,
-    Outcome: TrendingUp,
-    Estrategia: Map,
-    Ejecución: Wrench,
-    Resultado: TrendingUp,
-  };
 
   return (
     <main className="flex flex-1 flex-col">
@@ -147,20 +138,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 className="scope-grid"
                 stagger={duration.staggerTight}
               >
-                {study.work.map((item) => {
-                  const Icon = SCOPE_ICONS[item.title] ?? Map;
-                  return (
-                    <RevealItem key={item.title} as="li" variant="fadeUp">
-                      <div className="scope-item motion-card surface-tile">
-                        <span className="icon-well" aria-hidden>
-                          <Icon strokeWidth={1.5} />
-                        </span>
-                        <h3 className="scope-item__title">{item.title}</h3>
-                        <p className="scope-item__copy">{item.description}</p>
-                      </div>
-                    </RevealItem>
-                  );
-                })}
+                {study.work.map((item) => (
+                  <RevealItem key={item.title} as="li" variant="fadeUp">
+                    <div className="scope-item">
+                      <h3 className="scope-item__title">{item.title}</h3>
+                      <p className="scope-item__copy">{item.description}</p>
+                    </div>
+                  </RevealItem>
+                ))}
               </RevealGroup>
             </div>
 

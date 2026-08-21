@@ -21,7 +21,7 @@ export function IndustryTestimonialBlock({
       aria-labelledby="industry-testimonials-heading"
       className={cn("chapter chapter--studio relative overflow-hidden", className)}
     >
-      <div className="shell relative z-[1] py-24 md:py-32 lg:py-40">
+      <div className="shell chapter-shell--tight relative z-[1]">
         <div className="testimonial-editorial">
           <Reveal variant="rise" when="chapter" className="testimonial-editorial__lead">
             <p className="section-eyebrow">Testimonials</p>

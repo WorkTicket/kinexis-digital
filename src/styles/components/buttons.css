@@ -137,7 +137,12 @@
   box-shadow:
     inset 0 1px 0 color-mix(in oklab, var(--background) 50%, transparent),
     0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent);
-  backdrop-filter: blur(10px);
+}
+
+@media (min-width: 1024px) {
+  .btn--outline {
+    backdrop-filter: blur(10px);
+  }
 }
 
 .btn--outline::before {

@@ -5,9 +5,12 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { LandingFooter } from "@/components/landing/LandingFooter";
+import { LandingHeader } from "@/components/landing/LandingHeader";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
+import { SiteShell } from "@/components/SiteShell";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { MotionProvider } from "@/components/providers/FramerMotionProvider";
+import { MotionFlagsProvider } from "@/components/providers/MotionFlagsProvider";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { getHtmlLang, getOgLocale } from "@/i18n/locale-tags";
 import { routing } from "@/i18n/routing";
@@ -22,6 +25,11 @@ import {
   COOKIE_PREFLIGHT_SCRIPT,
 } from "@/lib/site-boot-script";
 import { THEME_PREFLIGHT_SCRIPT } from "@/lib/theme";
+import {
+  getGaMeasurementId,
+  getGoogleAdsId,
+  getGtagLoaderId,
+} from "@/lib/analytics/ads-config";
 import "../globals.css";
 
 const kinexisDisplay = localFont({
@@ -109,8 +117,9 @@ export default async function LocaleLayout({
   const locale = await resolveLocale(params);
   const messages = pickChromeMessages(await getMessages());
   const t = await getTranslations({ locale, namespace: "a11y" });
-  const gtagId =
-    process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  const gaId = getGaMeasurementId();
+  const adsId = getGoogleAdsId();
+  const gtagId = getGtagLoaderId();
 
   return (
     <html
@@ -140,11 +149,9 @@ export default async function LocaleLayout({
                 "gtag('set','url_passthrough',true);",
                 "gtag('set','ads_data_redaction',true);",
                 "gtag('js',new Date());",
-                process.env.NEXT_PUBLIC_GA_ID
-                  ? `gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`
-                  : "",
-                process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
-                  ? `gtag('config','${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}',{allow_enhanced_conversions:true});`
+                gaId ? `gtag('config','${gaId}');` : "",
+                adsId
+                  ? `gtag('config','${adsId}',{allow_enhanced_conversions:true});`
                   : "",
               ]
                 .filter(Boolean)
@@ -159,18 +166,19 @@ export default async function LocaleLayout({
             {t("skipToMain")}
           </a>
           <ThemeProvider>
-            <MotionProvider>
+            <MotionFlagsProvider>
               <SiteAnalytics>
                 <SiteAtmosphere />
-                <Header />
-                <div className="site-shell flex min-h-full flex-1 flex-col">
-                  <div id="main-content" className="flex flex-1 flex-col">
-                    {children}
-                  </div>
-                  <Footer />
-                </div>
+                <SiteShell
+                  header={<Header />}
+                  footer={<Footer />}
+                  landingHeader={<LandingHeader />}
+                  landingFooter={<LandingFooter />}
+                >
+                  {children}
+                </SiteShell>
               </SiteAnalytics>
-            </MotionProvider>
+            </MotionFlagsProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

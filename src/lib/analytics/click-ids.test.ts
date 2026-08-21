@@ -108,4 +108,31 @@ describe("captureClickIds (jsdom sessionStorage)", () => {
     expect(captured.gclid).toBe("from-url");
     expect(getAttributionPayload().gclid).toBe("from-url");
   });
+
+  it("returns landing_page even without click IDs", async () => {
+    vi.stubGlobal("window", {
+      location: {
+        search: "",
+        pathname: "/lp/seo",
+      },
+      sessionStorage: (() => {
+        const store = new Map<string, string>();
+        return {
+          getItem: (k: string) => store.get(k) ?? null,
+          setItem: (k: string, v: string) => {
+            store.set(k, v);
+          },
+          removeItem: (k: string) => {
+            store.delete(k);
+          },
+        };
+      })(),
+    });
+
+    const { captureClickIds, getAttributionPayload } = await import(
+      "@/lib/analytics/click-ids"
+    );
+    captureClickIds();
+    expect(getAttributionPayload().landing_page).toContain("/lp/seo");
+  });
 });

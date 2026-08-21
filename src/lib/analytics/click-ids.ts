@@ -133,10 +133,22 @@ export function captureClickIds(): AttributionData {
 export function getAttributionPayload(): AttributionData {
   if (typeof window === "undefined") return {};
   const stored = readStored();
-  if (stored && hasAttributionSignal(stored)) return stored;
+  // Include landing_page-only storage (no click IDs/UTMs) so lead emails
+  // still show which page converted organic or direct traffic.
+  if (stored && (hasAttributionSignal(stored) || stored.landing_page)) {
+    return stored;
+  }
 
   // Fallback: parse live URL if storage was empty/blocked
-  return parseAttributionFromSearch(window.location.search);
+  const fromUrl = parseAttributionFromSearch(window.location.search);
+  if (hasAttributionSignal(fromUrl)) return fromUrl;
+
+  return {
+    landing_page: `${window.location.pathname}${window.location.search}`.slice(
+      0,
+      500,
+    ),
+  };
 }
 
 /** Validate attribution fields from an API request body. Returns sanitized subset. */

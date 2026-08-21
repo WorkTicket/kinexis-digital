@@ -68,13 +68,14 @@ export default async function ServicesIndexPage({ params }: Props) {
         className="svc-catalog chapter chapter--void relative"
         aria-labelledby="svc-catalog-heading"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
+        <div className="shell chapter-shell--tight relative">
           <Reveal
             variant="rise"
             when="chapter"
-            className="mb-12 md:mb-16 lg:mb-20"
+            className="mb-10 md:mb-12"
           >
             <ChapterLead
+              layout="split"
               eyebrow={t("mixEyebrow")}
               headingId="svc-catalog-heading"
               title={t("mixTitle")}

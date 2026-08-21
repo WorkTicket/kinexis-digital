@@ -2,8 +2,8 @@
  * Canonical on-page business facts for schema and site metadata.
  * Remote-first agency — no public storefront; schema uses service-area address only.
  *
- * Phone and booking URL are env-driven so we never fabricate contact channels.
- * Set NEXT_PUBLIC_BUSINESS_PHONE / NEXT_PUBLIC_BOOKING_URL to enable CTAs.
+ * Phone is env-driven so we never fabricate contact channels.
+ * Set NEXT_PUBLIC_BUSINESS_PHONE to enable call CTAs.
  */
 function optionalEnv(key: string): string | undefined {
   const value = process.env[key]?.trim();
@@ -23,8 +23,6 @@ export const businessProfile = {
   languages: ["English", "Spanish"] as const,
   /** E.164 preferred. Undefined when not configured — do not invent a number. */
   phone: optionalEnv("NEXT_PUBLIC_BUSINESS_PHONE"),
-  /** Cal.com / Calendly / other booking URL. Undefined when not configured. */
-  bookingUrl: optionalEnv("NEXT_PUBLIC_BOOKING_URL"),
 } as const;
 
 /** tel: href from configured phone, or null when unavailable. */

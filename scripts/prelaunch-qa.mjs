@@ -6,12 +6,14 @@
 const base = (process.argv[2] || "http://localhost:3000").replace(/\/$/, "");
 
 const pages = [
-  { path: "/en", label: "Home" },
-  { path: "/en/contact", label: "Contact" },
-  { path: "/en/services/seo", label: "SEO Service" },
-  { path: "/en/case-studies", label: "Case Studies" },
-  { path: "/en/digital-marketing-agency", label: "Agency Hub" },
-  { path: "/en/blog/local-seo-strategy-2026", label: "Blog Post" },
+  { path: "/", label: "Home" },
+  { path: "/contact", label: "Contact" },
+  { path: "/lp/seo", label: "SEO Landing" },
+  { path: "/lp/google-ads-management", label: "Ads Landing" },
+  { path: "/thank-you", label: "Thank You" },
+  { path: "/thank-you/audit", label: "Thank You Audit" },
+  { path: "/services", label: "Services Hub" },
+  { path: "/case-studies", label: "Case Studies" },
 ];
 
 const mobileWidths = [375, 390, 430];
@@ -136,14 +138,17 @@ for (const page of pages) {
     if (!entry.checks.ogTitle) report.issues.push(`${page.label}: missing og:title`);
     if (!entry.checks.description) report.issues.push(`${page.label}: missing meta description`);
 
-    if (page.path === "/en" && !entry.checks.hasOrganization) {
+    if (page.path === "/" && !entry.checks.hasOrganization) {
       report.issues.push("Home: missing Organization schema");
     }
-    if (page.path.includes("/services/") && !entry.schemas.includes("Service")) {
-      report.issues.push(`${page.label}: missing Service schema`);
+    if (page.path.startsWith("/lp/") && !entry.schemas.includes("FAQPage")) {
+      report.issues.push(`${page.label}: missing FAQPage schema`);
     }
-    if (page.path.includes("/blog/") && !entry.schemas.includes("Article")) {
-      report.issues.push(`${page.label}: missing Article schema`);
+    if (
+      (page.path === "/thank-you" || page.path === "/thank-you/audit") &&
+      html.includes("noindex")
+    ) {
+      report.passes.push(`${page.label}: noindex present`);
     }
   } catch (e) {
     report.issues.push(`${page.label}: fetch failed — ${e.message}`);
@@ -154,7 +159,7 @@ for (const page of pages) {
 // Mobile viewport checks (375/390/430 via Lighthouse user-agent isn't needed — verify responsive meta + no horizontal overflow indicators)
 for (const width of mobileWidths) {
   try {
-    const { status, html } = await fetchText("/en");
+    const { status, html } = await fetchText("/");
     const hasViewport = html.includes("width=device-width");
     const hasSafeArea = html.includes("viewport-fit=cover") || html.includes("fixed-safe-bottom");
     report.mobileChecks.push({ width, status, hasViewport, hasSafeArea });
@@ -168,7 +173,7 @@ for (const width of mobileWidths) {
 
 // Chat widget + CTA presence on home
 try {
-  const { html } = await fetchText("/en");
+  const { html } = await fetchText("/");
   if (html.includes("openChat") || html.includes("chatbot")) {
     report.passes.push("Home: chat widget markup present");
   }
@@ -181,7 +186,7 @@ try {
 
 // GA — consent stub is baked in at build time when NEXT_PUBLIC_GA_ID is set
 try {
-  const { html } = await fetchText("/en");
+  const { html } = await fetchText("/");
   if (
     html.includes("gtag-consent-default") ||
     html.includes("function gtag()") ||
@@ -198,7 +203,7 @@ try {
 }
 
 // API routes exist (chat widget is client-side only — no /api/chat route)
-for (const api of ["/api/contact", "/api/booking"]) {
+for (const api of ["/api/contact", "/api/booking", "/api/lead"]) {
   try {
     const res = await fetch(`${base}${api}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
     // Expect 400/405/422 — not 404

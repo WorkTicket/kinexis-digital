@@ -83,7 +83,9 @@ const nextConfig = {
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
     optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs", "ogl"],
-    // Avoid a render-blocking CSS round-trip on throttled mobile.
+    // Small HTML + parallel CSS helped image-LCP pages; text-LCP pages (contact,
+    // services) lost the inlined-CSS RTT win. Keep inlining; homepage LCP is now
+    // the H1 (film img is display:none on mobile).
     inlineCss: true,
   },
 

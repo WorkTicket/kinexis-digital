@@ -24,7 +24,7 @@ export function IndustryCaseStudyCard({
       aria-labelledby="industry-proof-heading"
       className={cn("chapter chapter--void relative overflow-hidden", className)}
     >
-      <div className="shell relative z-[1] py-24 md:py-32 lg:py-40">
+      <div className="shell chapter-shell--tight relative z-[1]">
         <Reveal variant="rise" when="chapter">
           <header className="industry-section-mast mb-12 md:mb-16">
             <p className="section-eyebrow">Proof</p>
