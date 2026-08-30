@@ -29,7 +29,7 @@ export default function GlobalError({
           </p>
           <button
             onClick={reset}
-            className="rounded-xl bg-neon-cyan px-6 py-2.5 text-sm font-bold text-bg transition-shadow hover:shadow-glow-sm"
+            className="rounded-[var(--radius-control)] bg-[var(--hero-signal)] px-6 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
           >
             Try again
           </button>

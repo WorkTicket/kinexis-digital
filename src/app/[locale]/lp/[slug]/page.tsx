@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { LandingLeadForm } from "@/components/landing/LandingLeadForm";
+import { LandingIntake } from "@/components/landing/LandingIntake";
+import { LandingProcess } from "@/components/landing/LandingProcess";
+import { LandingSpotlight } from "@/components/landing/LandingSpotlight";
+import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
+import { LandingWorkSamples } from "@/components/landing/LandingWorkSamples";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
+import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
-import { Reveal } from "@/components/ui/Reveal";
+import JsonLd from "@/components/seo/JsonLd";
+import { ChapterLead } from "@/components/ui/ChapterLead";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import {
   getLandingPage,
   landingPageSlugs,
 } from "@/content/registry/landing-pages";
 import { resolveLocale } from "@/i18n/locale";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/cn";
 import { buildPageMetadata } from "@/lib/metadata";
+import { duration } from "@/lib/motion";
+import { faqSchema } from "@/lib/schema";
+import "@/styles/components/landing.css";
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -45,82 +56,194 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   });
 }
 
+function CheckIcon() {
+  return (
+    <svg
+      className="svc-offer__check"
+      viewBox="0 0 20 20"
+      fill="none"
+      aria-hidden
+    >
+      <path
+        d="M4.2 10.4 8 14.1 15.8 5.8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 export default async function LandingPage({ params }: Props) {
   await resolveLocale(params);
   const { slug } = await params;
   const page = getLandingPage(slug);
   if (!page) notFound();
 
+  const scopeItems = page.scopeItems;
+  const hasWork = Boolean(page.samples?.length && page.samplesTitle);
+  const heroIntake = Boolean(page.heroIntake);
+
   return (
-    <main className="flex flex-1 flex-col">
+    <main className="flex flex-1 flex-col pb-24 md:pb-0">
+      <JsonLd data={faqSchema(page.faqs)} />
       <PageHero
         eyebrow={page.badge}
         title={page.headline}
         signal={page.headlineAccent}
         copy={page.subheadline}
-        compact
-        hideActions
+        compact={!heroIntake}
+        intake={heroIntake}
+        hideActions={heroIntake}
+        className={heroIntake ? "page-hero--lp-intake" : undefined}
         visual={
-          <LandingLeadForm
-            serviceLabel={page.serviceLabel}
-            formTitle={page.formTitle}
-            formSubtitle={page.formSubtitle}
-            submitLabel={page.submitLabel}
-            formFootnote={page.formFootnote}
-          />
+          heroIntake ? <LandingIntake page={page} embedded /> : undefined
+        }
+        primaryHref="#lp-form"
+        primaryLabel={page.stickyCtaLabel}
+        secondaryHref={!heroIntake && hasWork ? "#work" : undefined}
+        secondaryLabel={!heroIntake && hasWork ? "See the work" : undefined}
+        meta={
+          page.heroMeta?.length || page.serviceArea?.length ? (
+            <div className="lp-hero-meta">
+              {page.heroMeta?.length ? (
+                <ul className="page-hero__meta-list">
+                  {page.heroMeta.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {page.serviceArea?.length ? (
+                <p className="lp-service-area">{page.serviceArea.join(" · ")}</p>
+              ) : null}
+            </div>
+          ) : undefined
         }
       />
 
-      <section className="chapter chapter--studio relative">
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="fadeUp">
-            <p className="max-w-2xl text-sm leading-relaxed text-muted md:text-[0.975rem]">
-              {page.proofIntro}
-            </p>
-            <ul className="mt-10 grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-foreground/10">
-              {page.proof.map((item, index) => (
-                <li
-                  key={item.label}
-                  className={index === 0 ? "lg:pr-8" : "lg:px-8"}
-                >
-                  <p className="type-display-stat tracking-tight">
-                    {item.metric}
-                  </p>
-                  <p className="mt-2 text-sm font-medium leading-snug text-muted">
-                    {item.label}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+      {heroIntake ? null : <LandingIntake page={page} />}
 
-          <Reveal variant="fadeUp" delay={0.08} className="mt-20 max-w-3xl md:mt-28">
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3vw,2.35rem)] font-bold leading-[1.05] tracking-[-0.045em] text-foreground">
-              {page.bulletsTitle}
-            </h2>
-            <ul className="mt-8 space-y-4">
-              {page.bullets.map((bullet) => (
-                <li key={bullet} className="flex gap-3 text-[0.975rem] leading-relaxed text-muted">
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-foreground" aria-hidden />
-                  <span>{bullet}</span>
-                </li>
+      {page.spotlight ? <LandingSpotlight {...page.spotlight} /> : null}
+
+      {hasWork && page.samples && page.samplesTitle && page.samplesIntro ? (
+        <LandingWorkSamples
+          title={page.samplesTitle}
+          intro={page.samplesIntro}
+          samples={page.samples}
+          proof={page.proof}
+        />
+      ) : (
+        <section
+          aria-labelledby="lp-proof-heading"
+          className="chapter chapter--void relative"
+        >
+          <div className="shell chapter-shell--monument relative">
+            <Reveal variant="rise" when="chapter">
+              <ChapterLead
+                layout="split"
+                eyebrow="Proof"
+                headingId="lp-proof-heading"
+                title={page.proofTitle ?? "The work, in numbers."}
+                dek={page.proofIntro}
+              />
+            </Reveal>
+            <RevealGroup
+              as="ul"
+              className={cn(
+                "results-metric-rail",
+                page.proof.length >= 4 && "results-metric-rail--quad",
+              )}
+              stagger={duration.staggerTight}
+              delayChildren={0.08}
+            >
+              {page.proof.map((item) => (
+                <RevealItem key={item.label} as="li" variant="fadeUp">
+                  <div className="results-metric-rail__item">
+                    <p className="results-metric-rail__lift">{item.metric}</p>
+                    <p className="results-metric-rail__label">{item.label}</p>
+                  </div>
+                </RevealItem>
               ))}
-            </ul>
-            <p className="mt-8 text-sm text-muted">
+            </RevealGroup>
+          </div>
+        </section>
+      )}
+
+      <section
+        aria-labelledby="lp-scope-heading"
+        className="chapter chapter--studio relative"
+      >
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter">
+            <ChapterLead
+              layout="split"
+              eyebrow="Scope"
+              headingId="lp-scope-heading"
+              title={page.bulletsTitle}
+            />
+          </Reveal>
+          <RevealGroup
+            as="ul"
+            className="svc-offer__included mt-10 max-w-3xl"
+            stagger={duration.staggerTight}
+            delayChildren={0.06}
+          >
+            {scopeItems?.length
+              ? scopeItems.map((item) => (
+                  <RevealItem as="li" key={item.title} variant="fadeUp">
+                    <CheckIcon />
+                    <span>
+                      <strong>{item.title}.</strong> {item.description}
+                    </span>
+                  </RevealItem>
+                ))
+              : page.bullets.map((bullet) => (
+                  <RevealItem as="li" key={bullet} variant="fadeUp">
+                    <CheckIcon />
+                    <span>{bullet}</span>
+                  </RevealItem>
+                ))}
+          </RevealGroup>
+          {page.hideServiceLink ? null : (
+            <p className="mt-10 text-sm text-muted">
               Prefer the long version?{" "}
-              <Link href={page.serviceHref} className="text-foreground underline underline-offset-2">
+              <Link
+                href={page.serviceHref}
+                className="text-foreground underline underline-offset-2"
+              >
                 {page.serviceLabel}
               </Link>
             </p>
-          </Reveal>
+          )}
         </div>
       </section>
+
+      {page.process?.length && page.processTitle && page.processIntro ? (
+        <LandingProcess
+          title={page.processTitle}
+          intro={page.processIntro}
+          steps={page.process}
+        />
+      ) : null}
 
       <FaqAccordion
         items={page.faqs}
         eyebrow="Before you reach out"
         title="Straight answers."
       />
+
+      <PageCTA
+        title={page.closingTitle ?? page.formTitle}
+        copy={page.closingCopy ?? page.formSubtitle}
+        primaryHref="#lp-form"
+        primaryLabel={page.stickyCtaLabel}
+        secondaryLabel={hasWork ? "See the work" : null}
+        secondaryHref="#work"
+        meta={page.formFootnote}
+      />
+
+      <LandingStickyCta label={page.stickyCtaLabel} />
     </main>
   );
 }

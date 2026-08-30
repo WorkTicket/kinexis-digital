@@ -1,11 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import type { CSSProperties } from "react";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
-import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
+import { SignalPlaneFallback } from "@/components/home/SignalPlaneFallback";
 import { IndustryVisual } from "@/components/industry/IndustryVisual";
-import { PageBreadcrumb } from "@/components/page/PageHero";
+import { PageBreadcrumb } from "@/components/page/PageBreadcrumb";
 import { Button } from "@/components/ui/Button";
 import type { Industry } from "@/content/industries";
+import { industryVisuals } from "@/content/industry-visuals";
 import { cn } from "@/lib/cn";
 
 type IndustryHeroProps = {
@@ -33,7 +34,28 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
       )}
       style={accentStyle}
     >
-      <SignalPlaneMount />
+      <link
+        rel="preload"
+        as="image"
+        href={industryVisuals[industry.slug].thumb}
+        type="image/webp"
+        fetchPriority="high"
+        media="(max-width: 767px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={industryVisuals[industry.slug].src}
+        type="image/webp"
+        fetchPriority="high"
+        media="(min-width: 768px)"
+      />
+      <div
+        aria-hidden
+        className="hero-atmosphere pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      >
+        <SignalPlaneFallback />
+      </div>
       <div className="hero-film-scrim" aria-hidden />
       <div className="hero-veil" aria-hidden />
 

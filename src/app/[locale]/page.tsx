@@ -11,6 +11,8 @@ import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
 import { getTranslations } from "next-intl/server";
 import { getFaqItems } from "@/content/about";
+import { HOME_HERO_POSTER } from "@/lib/lcp-preload";
+import { preload } from "react-dom";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { schemaLanguage } from "@/i18n/locale-tags";
 import { buildPageMetadata, getSiteUrl } from "@/lib/metadata";
@@ -21,9 +23,6 @@ import {
   websiteSchema,
 } from "@/lib/schema";
 
-const HomeClients = dynamic(() =>
-  import("@/components/home/HomeClients").then((mod) => mod.HomeClients),
-);
 const FaqAccordion = dynamic(() =>
   import("@/components/page/FaqAccordion").then((mod) => mod.FaqAccordion),
 );
@@ -46,6 +45,11 @@ export default async function Home({ params }: Props) {
   const locale = await resolveLocale(params);
   const t = await getTranslations("home");
   const faqs = getFaqItems(locale);
+  preload(HOME_HERO_POSTER, {
+    as: "image",
+    type: "image/webp",
+    fetchPriority: "high",
+  });
   return (
     <>
       <JsonLd
@@ -59,12 +63,6 @@ export default async function Home({ params }: Props) {
       <main className="flex flex-1 flex-col">
         <HomeHero />
         <HomeCertifications />
-        <HomeClients
-          eyebrow={t("clientsEyebrow")}
-          title={t("clientsTitle")}
-          dek={t("clientsDek")}
-          meetClients={t("meetClients")}
-        />
         <HomeServices />
         <HomeResults />
         <HomeProcess />

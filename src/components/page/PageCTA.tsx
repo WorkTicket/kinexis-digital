@@ -41,7 +41,7 @@ function CtaShell({
   return <div className="shell relative">{children}</div>;
 }
 
-/** Terminal / inline CTA shared across new-design pages. */
+/** Terminal / inline / minimal CTA shared across marketing pages. */
 export async function PageCTA({
   eyebrow,
   title,
@@ -59,18 +59,23 @@ export async function PageCTA({
   const t = await getTranslations("common");
   const tNav = await getTranslations("nav");
   const isInline = layout === "inline";
+  const isMinimal = layout === "minimal";
   const resolvedId = id ?? (isInline ? "mid-cta" : "get-started");
   const resolvedEyebrow =
-    eyebrow ?? (isInline ? t("ready") : tNav("contact"));
+    eyebrow ?? (isInline || isMinimal ? t("ready") : tNav("contact"));
   const resolvedPrimaryLabel = primaryLabel ?? t("bookStrategyCall");
   const resolvedSecondaryLabel =
     secondaryLabel === undefined
-      ? isInline
+      ? isInline || isMinimal
         ? null
         : t("sendMessage")
       : secondaryLabel;
   const resolvedMeta =
-    meta === undefined ? (isInline ? null : t("ctaMeta")) : meta;
+    meta === undefined
+      ? isInline || isMinimal
+        ? null
+        : t("ctaMeta")
+      : meta;
   const showSecondary =
     resolvedSecondaryLabel != null && resolvedSecondaryLabel !== "";
   const showMeta = resolvedMeta != null && resolvedMeta !== "";
@@ -82,14 +87,19 @@ export async function PageCTA({
       className={cn(
         "cta-section chapter relative",
         isInline && "cta-section--inline",
+        isMinimal && "cta-section--minimal",
         className,
       )}
     >
-      <div className="cta-section__glow" aria-hidden />
+      {isMinimal ? null : <div className="cta-section__glow" aria-hidden />}
 
       <CtaShell motion={motion}>
         <div
-          className={cn("cta-terminal", isInline && "cta-terminal--inline")}
+          className={cn(
+            "cta-terminal",
+            isInline && "cta-terminal--inline",
+            isMinimal && "cta-terminal--minimal",
+          )}
         >
           <Reveal variant="rise" when="chapter">
             <header className="cta-terminal__lead">
@@ -106,8 +116,8 @@ export async function PageCTA({
               <div className="cta-terminal__actions">
                 <Button
                   href={primaryHref}
-                  size={isInline ? "lg" : "xl"}
-                  lift={!isInline}
+                  size={isInline || isMinimal ? "lg" : "xl"}
+                  lift={!isInline && !isMinimal}
                   arrow
                 >
                   {resolvedPrimaryLabel}
@@ -131,4 +141,3 @@ export async function PageCTA({
     </section>
   );
 }
-

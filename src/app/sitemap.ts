@@ -7,6 +7,7 @@ import {
   blogSlugs,
   caseStudySlugs,
 } from "@/content/registry/site-routes";
+import { FLAGSHIP_SERVICE_SLUGS } from "@/lib/legacy-redirects.mjs";
 
 /** Indexable static routes only — excludes thank-you (noindex). */
 const sitemapStaticRoutes = staticPageRoutes.filter(
@@ -45,6 +46,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
         isLegal ? "monthly" : "weekly",
       ),
     );
+  }
+
+  for (const slug of FLAGSHIP_SERVICE_SLUGS) {
+    entries.push(pageUrl(`/services/${slug}`, 0.85));
   }
 
   for (const slug of getStandaloneIndustrySlugs()) {

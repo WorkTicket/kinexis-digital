@@ -6,15 +6,18 @@
 
 - [Home](https://www.kinexisdigital.com/): Agency overview and growth program.
 - [Services](https://www.kinexisdigital.com/services): Web design, SEO, branding, paid ads, and content marketing.
+- [SEO](https://www.kinexisdigital.com/services/seo): Search demand programs for jobs and orders.
+- [Paid Media](https://www.kinexisdigital.com/services/paid-media): Google and Meta budgets tied to conversions.
+- [Web Design](https://www.kinexisdigital.com/services/web-design): Phone-first sites built to convert.
 - [Industries](https://www.kinexisdigital.com/industries): Markets we serve, with deep pages for home services and ecommerce.
 - [Home Services Marketing](https://www.kinexisdigital.com/industries/home-services): Local SEO, conversion pages, and paid media for booked jobs.
 - [Ecommerce Marketing](https://www.kinexisdigital.com/industries/ecommerce): Product SEO, conversion, and paid acquisition for orders and margin.
 - [Case Studies](https://www.kinexisdigital.com/case-studies): Measured client results across search, paid, and websites.
-- [About](https://www.kinexisdigital.com/about): How we work, partnership model, and method.
+- [About](https://www.kinexisdigital.com/about): How we work, who runs accounts, and the method.
+- [Marketing Scorecard](https://www.kinexisdigital.com/audit): Interactive audit of site, search, ads, and tracking.
 - [Contact](https://www.kinexisdigital.com/contact): Book a strategy call or send a project inquiry.
 - [Blog](https://www.kinexisdigital.com/blog): Practical notes on SEO, paid media, CRO, email, and analytics.
 - [Resources](https://www.kinexisdigital.com/resources): Platform docs and tools we use with clients.
-- [Clients](https://www.kinexisdigital.com/clients): Brands and platform partners we've worked with.
 
 ## Optional
 

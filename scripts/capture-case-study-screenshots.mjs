@@ -21,7 +21,7 @@ const sites = [
     url: "https://www.callpreferredplumbing.com/",
   },
   {
-    slug: "saas-platform-growth",
+    slug: "ecommerce-store-growth",
     url: "https://bynmwcreative.com/",
   },
 ];

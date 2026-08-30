@@ -1,9 +1,10 @@
 import { SitePreview } from "@/components/home/SitePreview";
-import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
+import { SignalPlaneFallback } from "@/components/home/SignalPlaneFallback";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
-import { PageBreadcrumb } from "@/components/page/PageHero";
+import { PageBreadcrumb } from "@/components/page/PageBreadcrumb";
 import { DeviceFrame } from "@/components/ui/DeviceFrame";
 import type { CaseStudyPage } from "@/content/case-studies";
+import "@/styles/components/page-stages.css";
 
 type CaseStudyHeroProps = {
   study: CaseStudyPage;
@@ -18,7 +19,12 @@ export function CaseStudyHero({ study }: CaseStudyHeroProps) {
       className="hero-shell case-hero page-hero page-hero--split chapter chapter--void relative flex min-h-0 flex-col overflow-x-clip lg:min-h-[100svh]"
       aria-labelledby="case-hero-heading"
     >
-      <SignalPlaneMount />
+      <div
+        aria-hidden
+        className="hero-atmosphere pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      >
+        <SignalPlaneFallback />
+      </div>
       <div className="hero-film-scrim" aria-hidden />
       <div className="hero-veil" aria-hidden />
 

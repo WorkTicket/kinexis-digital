@@ -21,9 +21,9 @@ function FramerMotionInner({ children }: { children: ReactNode }) {
     [reduced, mobile],
   );
 
-  // Features load async so the animation runtime is not in the first JS chunk.
+  // Async feature load keeps domAnimation out of the first JS chunk.
   return (
-    <LazyMotion features={loadDomAnimation}>
+    <LazyMotion features={loadDomAnimation} strict>
       <MotionConfig
         reducedMotion="user"
         transition={{ duration: resolved.duration, ease: EASE_OUT }}

@@ -13,5 +13,5 @@ export const CTA_INLINE_TITLE = "Let's talk.";
 export const CTA_INLINE_COPY =
   "We will map the first fix on a short strategy call.";
 
-export type PageCtaLayout = "terminal" | "inline";
+export type PageCtaLayout = "terminal" | "inline" | "minimal";
 export type PageCtaMotion = "default" | "chapter";

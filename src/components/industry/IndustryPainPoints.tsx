@@ -29,7 +29,7 @@ export function IndustryPainPoints({
           className,
         )}
       >
-        <div className="shell relative z-[1] py-24 md:py-32 lg:py-40">
+        <div className="shell chapter-shell--monument relative z-[1]">
           <div className="industry-challenges__split">
             <Reveal variant="rise" when="chapter">
               <header className="industry-challenges__mast">
@@ -69,9 +69,9 @@ export function IndustryPainPoints({
         aria-labelledby="industry-approach-heading"
         className="industry-approach-band chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell relative z-[1] py-24 md:py-32 lg:py-40">
+        <div className="shell chapter-shell--standard relative z-[1]">
           <Reveal variant="rise" when="chapter">
-            <div className="industry-approach-band__inner">
+            <blockquote className="industry-approach-band__inner">
               <p className="section-eyebrow">Approach</p>
               <h2
                 id="industry-approach-heading"
@@ -80,7 +80,7 @@ export function IndustryPainPoints({
                 {approachTitle}
               </h2>
               <p className="industry-approach-band__body">{approachCopy}</p>
-            </div>
+            </blockquote>
           </Reveal>
         </div>
       </section>

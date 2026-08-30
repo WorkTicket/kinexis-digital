@@ -48,6 +48,20 @@ export const SERVICE_HUB_ANCHOR_BY_SLUG = {
   "training-workshops": "",
 };
 
+/** Dedicated service pages that render instead of hub-anchor redirects. */
+export const FLAGSHIP_SERVICE_SLUGS = [
+  "web-design",
+  "seo",
+  "branding",
+  "paid-media",
+  "content-marketing",
+];
+const FLAGSHIP_SERVICE_SET = new Set(FLAGSHIP_SERVICE_SLUGS);
+
+export function isFlagshipServiceSlug(slug) {
+  return FLAGSHIP_SERVICE_SET.has(slug);
+}
+
 export const STANDALONE_INDUSTRY_SLUGS = ["home-services", "ecommerce"];
 
 export const INDUSTRY_HUB_SLUGS = [
@@ -90,9 +104,12 @@ function caseStudyDestination(slug) {
 }
 
 export function serviceHubPath(slug) {
+  if (FLAGSHIP_SERVICE_SET.has(slug)) return `/services/${slug}`;
   if (!(slug in SERVICE_HUB_ANCHOR_BY_SLUG)) return "/services";
   const anchor = SERVICE_HUB_ANCHOR_BY_SLUG[slug];
-  return anchor ? `/services#${anchor}` : "/services";
+  if (!anchor) return "/services";
+  if (FLAGSHIP_SERVICE_SET.has(anchor)) return `/services/${anchor}`;
+  return `/services#${anchor}`;
 }
 
 export function stripLocalePrefix(pathname) {
@@ -137,6 +154,7 @@ function matchServicePath(pathname) {
 
   const slug = pathname.slice("/services/".length).split("/").filter(Boolean)[0];
   if (!slug) return "/services";
+  if (FLAGSHIP_SERVICE_SET.has(slug)) return null;
   return serviceHubPath(slug);
 }
 
@@ -148,6 +166,7 @@ export function matchUnprefixedLegacyRedirect(pathname) {
   if (startsWithPrefix(pathname, "/digital-marketing-agency")) return "/about";
   if (startsWithPrefix(pathname, "/solutions")) return "/services";
   if (startsWithPrefix(pathname, "/team")) return "/about";
+  if (startsWithPrefix(pathname, "/clients")) return "/case-studies";
 
   if (pathname === "/lp" || pathname === "/lp/") return "/contact";
 
@@ -210,6 +229,8 @@ export function getLegacyRedirects() {
     ...rulesFor("/solutions/:path*", "/services"),
     ...rulesFor("/team", "/about"),
     ...rulesFor("/team/:path*", "/about"),
+    ...rulesFor("/clients", "/case-studies"),
+    ...rulesFor("/clients/:path*", "/case-studies"),
     ...rulesFor("/lp", "/contact"),
     ...rulesFor("/google-ads-vs-seo", "/resources"),
     ...rulesFor("/seo-vs-ppc", "/resources"),
@@ -218,10 +239,9 @@ export function getLegacyRedirects() {
   ];
 
   for (const slug of Object.keys(SERVICE_HUB_ANCHOR_BY_SLUG)) {
+    if (FLAGSHIP_SERVICE_SET.has(slug)) continue;
     redirects.push(...rulesFor(`/services/${slug}`, serviceHubPath(slug)));
   }
-  redirects.push(...rulesFor("/services/:slug", "/services"));
-
   for (const slug of STANDALONE_INDUSTRY_SLUGS) {
     redirects.push(...rulesFor(`/industries/${slug}/:path+`, `/industries/${slug}`));
   }

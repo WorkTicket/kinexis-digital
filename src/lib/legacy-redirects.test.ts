@@ -31,17 +31,40 @@ describe("resolveLegacyRedirect", () => {
     expect(resolveLegacyRedirect("/thank-you/audit")).toBeNull();
   });
 
-  it("maps locale-prefixed service URLs straight to the hub anchor", () => {
-    expect(resolveLegacyRedirect("/en/services/seo")).toEqual({
-      path: "/services",
-      hash: "seo",
+  it("maps locale-prefixed long-tail services onto flagship pages", () => {
+    expect(resolveLegacyRedirect("/en/services/local-seo")).toEqual({
+      path: "/services/seo",
+      hash: "",
     });
     expect(resolveLegacyRedirect("/es/services/ppc-management")).toEqual({
-      path: "/services",
-      hash: "paid-media",
+      path: "/services/paid-media",
+      hash: "",
     });
     expect(resolveLegacyRedirect("/en/services/fractional-cmo")).toEqual({
       path: "/services",
+      hash: "",
+    });
+  });
+
+  it("keeps flagship service pages live", () => {
+    expect(resolveLegacyRedirect("/services/seo")).toBeNull();
+    expect(resolveLegacyRedirect("/services/web-design")).toBeNull();
+    expect(resolveLegacyRedirect("/services/paid-media")).toBeNull();
+    expect(resolveLegacyRedirect("/services/branding")).toBeNull();
+    expect(resolveLegacyRedirect("/services/content-marketing")).toBeNull();
+    expect(resolveLegacyRedirect("/en/services/seo")).toEqual({
+      path: "/services/seo",
+      hash: "",
+    });
+  });
+
+  it("retires the clients roster onto case studies", () => {
+    expect(resolveLegacyRedirect("/clients")).toEqual({
+      path: "/case-studies",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/clients")).toEqual({
+      path: "/case-studies",
       hash: "",
     });
   });
@@ -83,6 +106,7 @@ describe("matchUnprefixedLegacyRedirect", () => {
     expect(matchUnprefixedLegacyRedirect("/lp/google-ads-management")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/lp/local-seo")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/lp/web-design")).toBeNull();
+    expect(matchUnprefixedLegacyRedirect("/lp/facebook-web-design")).toBeNull();
   });
 });
 
@@ -127,10 +151,14 @@ describe("getLegacyRedirects", () => {
 });
 
 describe("serviceHubPath", () => {
-  it("anchors known slugs onto the five pillars", () => {
-    expect(serviceHubPath("seo")).toBe("/services#seo");
-    expect(serviceHubPath("meta-ads")).toBe("/services#paid-media");
-    expect(serviceHubPath("copywriting")).toBe("/services#content-marketing");
+  it("keeps flagships on dedicated paths and sends related slugs to the parent page", () => {
+    expect(serviceHubPath("seo")).toBe("/services/seo");
+    expect(serviceHubPath("web-design")).toBe("/services/web-design");
+    expect(serviceHubPath("paid-media")).toBe("/services/paid-media");
+    expect(serviceHubPath("branding")).toBe("/services/branding");
+    expect(serviceHubPath("content-marketing")).toBe("/services/content-marketing");
+    expect(serviceHubPath("meta-ads")).toBe("/services/paid-media");
+    expect(serviceHubPath("copywriting")).toBe("/services/content-marketing");
     expect(serviceHubPath("growth-consulting")).toBe("/services");
   });
 });

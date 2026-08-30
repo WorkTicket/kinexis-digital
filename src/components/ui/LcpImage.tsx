@@ -70,16 +70,16 @@ export function LcpImage({
           />
         )}
         {mobileSrc ? (
-          <picture className={fill ? "absolute inset-0 block h-full w-full" : undefined}>
-            <source media="(max-width: 767px)" srcSet={mobileSrc} type="image/webp" />
+          <picture>
+            <source media="(min-width: 768px)" srcSet={src} type="image/webp" />
             <img
-              src={src}
+              src={mobileSrc}
               alt={alt}
               width={width}
               height={height}
               fetchPriority="high"
-              decoding="async"
-              className={cn(fill && "h-full w-full object-cover", className)}
+              decoding="sync"
+              className={imgClassName}
             />
           </picture>
         ) : (
@@ -90,7 +90,7 @@ export function LcpImage({
             width={width}
             height={height}
             fetchPriority="high"
-            decoding="async"
+            decoding="sync"
             className={imgClassName}
           />
         )}

@@ -18,7 +18,7 @@ export type LegalPageContent = {
 export const privacyContent = localeContent({
   en: {
     title: "Privacy Policy",
-    lastUpdated: "June 24, 2026",
+    lastUpdated: "August 30, 2026",
     intro:
       "KINEXIS Digital (\"KINEXIS,\" \"we,\" \"us,\" or \"our\") operates kinexisdigital.com. This Privacy Policy explains how we collect, use, disclose, and protect personal information when you visit our website, submit forms, or communicate with us.",
     contactLabel: "hello@kinexisdigital.com",
@@ -45,7 +45,7 @@ export const privacyContent = localeContent({
         title: "Cookies and Analytics",
         paragraphs: [
           "We use cookies and similar technologies to operate the site and, with your consent, to measure traffic, understand user behavior, and attribute advertising campaigns. You can accept or reject non-essential cookies through our cookie banner.",
-          "When enabled, we may use Google Analytics, Google Ads conversion and remarketing tags, and Microsoft Clarity. These providers may process data according to their own privacy policies. Advertising cookies help us measure which ads lead to form submissions and improve campaign performance.",
+          "When enabled, we may use Google Analytics, Google Ads conversion and remarketing tags, the Meta Pixel (Facebook/Instagram), and Microsoft Clarity. These providers may process data according to their own privacy policies. Advertising cookies help us measure which ads lead to form submissions and improve campaign performance.",
         ],
       },
       {
@@ -102,7 +102,7 @@ export const privacyContent = localeContent({
 
   "es-419": {
     title: "Política de Privacidad",
-    lastUpdated: "24 de junio de 2026",
+    lastUpdated: "30 de agosto de 2026",
     intro:
       "KINEXIS Digital (\"KINEXIS,\" \"nosotros\" o \"nuestro\") opera kinexisdigital.com. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos la información personal cuando visitas nuestro sitio, envías formularios o te comunicas con nosotros.",
     contactLabel: "hello@kinexisdigital.com",
@@ -129,7 +129,7 @@ export const privacyContent = localeContent({
         title: "Cookies y Analítica",
         paragraphs: [
           "Usamos cookies y tecnologías similares para operar el sitio y, con tu consentimiento, medir tráfico, entender el comportamiento y atribuir campañas publicitarias. Puedes aceptar o rechazar cookies no esenciales mediante nuestro banner de cookies.",
-          "Cuando estén habilitadas, podemos usar Google Analytics, etiquetas de conversión y remarketing de Google Ads, y Microsoft Clarity. Estos proveedores procesan datos según sus propias políticas de privacidad. Las cookies publicitarias nos ayudan a medir qué anuncios generan envíos de formularios y a mejorar el rendimiento de las campañas.",
+          "Cuando estén habilitadas, podemos usar Google Analytics, etiquetas de conversión y remarketing de Google Ads, el píxel de Meta (Facebook/Instagram) y Microsoft Clarity. Estos proveedores procesan datos según sus propias políticas de privacidad. Las cookies publicitarias nos ayudan a medir qué anuncios generan envíos de formularios y a mejorar el rendimiento de las campañas.",
         ],
       },
       {

@@ -1,5 +1,5 @@
 /**
- * Capture and persist Google Ads click IDs + UTM params for closed-loop attribution.
+ * Capture and persist Google / Meta click IDs + UTM params for closed-loop attribution.
  * Stored in sessionStorage so form submissions and lead emails can include them.
  */
 
@@ -9,6 +9,7 @@ export type AttributionData = {
   gclid?: string;
   gbraid?: string;
   wbraid?: string;
+  fbclid?: string;
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
@@ -18,7 +19,7 @@ export type AttributionData = {
   captured_at?: string;
 };
 
-const CLICK_ID_KEYS = ["gclid", "gbraid", "wbraid"] as const;
+const CLICK_ID_KEYS = ["gclid", "gbraid", "wbraid", "fbclid"] as const;
 const UTM_KEYS = [
   "utm_source",
   "utm_medium",
@@ -62,6 +63,7 @@ function hasAttributionSignal(data: AttributionData): boolean {
     Boolean(data.gclid) ||
     Boolean(data.gbraid) ||
     Boolean(data.wbraid) ||
+    Boolean(data.fbclid) ||
     Boolean(data.utm_source) ||
     Boolean(data.utm_medium) ||
     Boolean(data.utm_campaign)
@@ -133,10 +135,22 @@ export function captureClickIds(): AttributionData {
 export function getAttributionPayload(): AttributionData {
   if (typeof window === "undefined") return {};
   const stored = readStored();
-  if (stored && hasAttributionSignal(stored)) return stored;
+  // Include landing_page-only storage (no click IDs/UTMs) so lead emails
+  // still show which page converted organic or direct traffic.
+  if (stored && (hasAttributionSignal(stored) || stored.landing_page)) {
+    return stored;
+  }
 
   // Fallback: parse live URL if storage was empty/blocked
-  return parseAttributionFromSearch(window.location.search);
+  const fromUrl = parseAttributionFromSearch(window.location.search);
+  if (hasAttributionSignal(fromUrl)) return fromUrl;
+
+  return {
+    landing_page: `${window.location.pathname}${window.location.search}`.slice(
+      0,
+      500,
+    ),
+  };
 }
 
 /** Validate attribution fields from an API request body. Returns sanitized subset. */
@@ -175,6 +189,7 @@ export function attributionEmailRows(
   if (data.gclid) rows.push(emailRow("GCLID", data.gclid));
   if (data.gbraid) rows.push(emailRow("GBRAID", data.gbraid));
   if (data.wbraid) rows.push(emailRow("WBRAID", data.wbraid));
+  if (data.fbclid) rows.push(emailRow("FBCLID", data.fbclid));
   if (data.utm_source) rows.push(emailRow("UTM Source", data.utm_source));
   if (data.utm_medium) rows.push(emailRow("UTM Medium", data.utm_medium));
   if (data.utm_campaign) rows.push(emailRow("UTM Campaign", data.utm_campaign));
@@ -190,6 +205,7 @@ export function attributionTextLines(data: AttributionData): string[] {
   if (data.gclid) lines.push(`GCLID: ${data.gclid}`);
   if (data.gbraid) lines.push(`GBRAID: ${data.gbraid}`);
   if (data.wbraid) lines.push(`WBRAID: ${data.wbraid}`);
+  if (data.fbclid) lines.push(`FBCLID: ${data.fbclid}`);
   if (data.utm_source) lines.push(`UTM Source: ${data.utm_source}`);
   if (data.utm_medium) lines.push(`UTM Medium: ${data.utm_medium}`);
   if (data.utm_campaign) lines.push(`UTM Campaign: ${data.utm_campaign}`);

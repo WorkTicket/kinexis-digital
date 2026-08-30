@@ -9,11 +9,17 @@ html:not(.cookie-pending) .cookie-banner {
   z-index: 9999;
   border-top: 1px solid var(--chrome-glass-border);
   box-shadow: var(--chrome-highlight);
-  background-color: var(--chrome-glass);
-  -webkit-backdrop-filter: blur(85px) saturate(180%);
-  backdrop-filter: blur(85px) saturate(180%);
+  background-color: var(--chrome-fallback);
   padding: 1rem;
   padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 1024px) {
+  .cookie-banner {
+    background-color: var(--chrome-glass);
+    -webkit-backdrop-filter: blur(85px) saturate(180%);
+    backdrop-filter: blur(85px) saturate(180%);
+  }
 }
 
 @media (min-width: 640px) {
@@ -88,5 +94,16 @@ html:not(.cookie-pending) .cookie-banner {
   .cookie-banner__actions .btn {
     flex: 1 1 0;
     justify-content: center;
+  }
+}
+
+/* Keep LP sticky CTA above the cookie banner while consent is pending. */
+html.cookie-pending .landing-sticky-cta {
+  bottom: 9.75rem;
+}
+
+@media (min-width: 640px) {
+  html.cookie-pending .landing-sticky-cta {
+    bottom: 6.5rem;
   }
 }

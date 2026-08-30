@@ -5,6 +5,7 @@ import bundleAnalyzer from "@next/bundle-analyzer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getLegacyRedirects } from "./src/lib/legacy-redirects.mjs";
+import { buildContentSecurityPolicy } from "./src/lib/security/csp.mjs";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
@@ -16,9 +17,9 @@ const cloudflareInsightsConnect = "https://cloudflareinsights.com";
 
 const isDev = process.env.NODE_ENV === "development";
 
-// Security headers applied to every route (mirrored in public/_headers for Cloudflare Pages static assets).
+// Security headers applied to every HTML route. public/_headers uses a
+// compact CSP because Cloudflare asset header lines cap at 2000 characters.
 const securityHeaders = [
-  { key: "X-Frame-Options", value: "SAMEORIGIN" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
@@ -32,22 +33,7 @@ const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
   {
     key: "Content-Security-Policy",
-    value: [
-      "default-src 'self'",
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.clarity.ms https://static.cloudflareinsights.com`,
-      `script-src-elem 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.clarity.ms https://static.cloudflareinsights.com`,
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://www.google.ca https://googleads.g.doubleclick.net https://www.googleadservices.com",
-      "media-src 'self' blob:",
-      "font-src 'self' data:",
-      `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://analytics.google.com https://www.google.com https://td.doubleclick.net https://googleads.g.doubleclick.net https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
-      "frame-src 'self' https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      "frame-ancestors 'self'",
-      "report-uri https://kinexisdigital.report-uri.com/r/d/csp/enforce",
-    ].join("; "),
+    value: buildContentSecurityPolicy({ isDev, cloudflareInsightsConnect }),
   },
 ];
 
@@ -83,7 +69,9 @@ const nextConfig = {
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
     optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs", "ogl"],
-    // Avoid a render-blocking CSS round-trip on throttled mobile.
+    // Small HTML + parallel CSS helped image-LCP pages; text-LCP pages (contact,
+    // services) lost the inlined-CSS RTT win. Keep inlining; homepage LCP is now
+    // the H1 (film img is display:none on mobile).
     inlineCss: true,
   },
 

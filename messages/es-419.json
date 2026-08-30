@@ -19,7 +19,6 @@
     "work": "Trabajo",
     "homeServices": "Servicios del hogar",
     "ecommerce": "E-commerce",
-    "clients": "Clientes",
     "about": "Nosotros",
     "blog": "Blog",
     "pricing": "Precios",
@@ -66,7 +65,8 @@
       "toolkitDesc": "17 herramientas que usamos a diario, por canal."
     },
     "bookCall": "Agendar una llamada estratégica",
-    "bookCallShort": "Agendar llamada"
+    "bookCallShort": "Agendar llamada",
+    "audit": "Auditoría"
   },
   "services": {
     "pricing": "Precios",
@@ -195,23 +195,12 @@
       "ctaCopy": "Cuéntanos el problema y comparte tus números. Definimos una primera fase con objetivos claros.",
       "inlineCtaTitle": "¿Quieres resultados así?",
       "inlineCtaCopy": "Comparte tus números y cuál es el problema principal. Definimos una primera fase con objetivos claros.",
-      "pictureEyebrow": "El panorama completo",
-      "pictureTitle": "Más marcas. Más alcance.",
-      "pictureDek": "Estos son los casos publicados. También trabajamos con plataformas, fintech, retail y programas B2B que podemos describir aunque las cifras queden bajo NDA.",
-      "seeRoster": "Ver clientes",
+      "pictureEyebrow": "El estudio",
+      "pictureTitle": "Cómo se hace el trabajo.",
+      "pictureDek": "Los casos publicados muestran el mecanismo. En About está el tope de cartera, las revisiones y cómo los canales trabajan como un solo sistema.",
       "indexCtaTitle": "¿Quieres resultados así?",
-      "indexCtaCopy": "Comparte tus números y cuál es el problema principal. Te diremos qué debería resolver una primera fase y qué conviene medir."
-    },
-    "clients": {
-      "eyebrow": "Clientes",
-      "title": "Nuestros",
-      "signal": "clientes.",
-      "copy": "Desde programas Fortune 100 hasta plataformas que usas a diario. Trabajo que podemos describir. Resultados que publicamos cuando nos lo permiten.",
-      "rosterEyebrow": "La lista",
-      "rosterTitle": "Con quién hemos trabajado.",
-      "rosterDek": "Alianzas directas con las plataformas donde corre nuestro trabajo. Sin intermediarios. Cada proyecto que aparece aquí tuvo a nuestro equipo de por medio, persiguiendo resultados medibles, no presentaciones vacías.",
-      "ctaTitle": "¿Quieres ver tu logo aquí?",
-      "ctaCopy": "Comparte tus números y cuál es el problema principal. Te diremos qué debería resolver una primera fase y qué conviene medir."
+      "indexCtaCopy": "Comparte tus números y cuál es el problema principal. Te diremos qué debería resolver una primera fase y qué conviene medir.",
+      "seeAbout": "Sobre KINEXIS"
     },
     "resources": {
       "eyebrow": "Recursos",
@@ -239,20 +228,20 @@
       "step3Detail": "Agendamos una sesión de trabajo para definir el plan."
     },
     "thankYouAudit": {
-      "eyebrow": "Solicitud de auditoría",
-      "title": "Auditoría",
+      "eyebrow": "Solicitud de revisión",
+      "title": "Revisión",
       "signal": "recibida.",
-      "copy": "Revisaremos el alcance que elegiste con señales reales de tu sitio o cuentas publicitarias, y te enviaremos un informe breve de hallazgos en 48 horas.",
+      "copy": "Un estratega abrirá tu sitio o cuenta, marcará qué está filtrando leads y te enviará un informe breve por escrito en un día hábil.",
       "nextEyebrow": "Qué sigue",
       "nextTitle": "Tres pasos sencillos.",
       "nextDek": "Sin correos automáticos en cadena. Un estratega revisa la solicitud y responde con qué conviene arreglar primero.",
       "nextAria": "Siguientes pasos",
-      "step1Title": "Confirmamos el alcance",
-      "step1Detail": "SEO, anuncios pagados o conversión: la auditoría se centra en lo que pediste.",
-      "step2Title": "Reunimos evidencia",
-      "step2Detail": "Señales de rastreo e indexación, estructura de la cuenta publicitaria o fricción en la página.",
+      "step1Title": "Abrimos lo que enviaste",
+      "step1Detail": "Tu URL, cuenta de Ads o alcance SEO: la revisión se centra en el activo que nombraste.",
+      "step2Title": "Marcamos las fugas",
+      "step2Detail": "Fricción de conversión, velocidad, claridad de la oferta, huecos de medición o gasto en búsqueda — según lo que pediste.",
       "step3Title": "Recibes el informe",
-      "step3Detail": "Hallazgos por prioridad: crítico, alto y medio, con qué arreglar primero."
+      "step3Detail": "Hallazgos en lenguaje claro y una primera corrección recomendada. Rebuild vs reparación cuando esa sea la respuesta honesta."
     },
     "blog": {
       "title": "Notas",
@@ -292,8 +281,8 @@
   "language": {
     "label": "Idioma",
     "en": "English",
-    "es-ES": "España",
-    "es-419": "LatAm"
+    "es-ES": "Español (España)",
+    "es-419": "Español (LatAm)"
   },
   "theme": {
     "toLight": "Cambiar a modo claro",
@@ -332,10 +321,6 @@
     "ctaTitle": "Hablemos.",
     "ctaCopy": "Treinta minutos sobre tu web, tus anuncios y el seguimiento comercial. Sales con una primera acción clara.",
     "faqTitle": "Preguntas frecuentes.",
-    "clientsEyebrow": "Clientes",
-    "clientsTitle": "Marcas que se quedan.",
-    "clientsDek": "Empresas que necesitaban un flujo de ventas predecible y un aliado que sigue presente después de la primera llamada.",
-    "meetClients": "Conoce a los clientes",
     "programLabel": "Programa",
     "viewAllServicesTitle": "Ver todos los servicios",
     "viewAllServicesDek": "El programa completo en una sola página: qué incluye cada área, qué cambia y si encaja contigo.",
@@ -348,66 +333,6 @@
     "resultsOutro": "Estos tres son una muestra. El resto del trabajo sigue el mismo patrón: encontrar dónde se pierde la demanda, reconstruir lo que debería captarla y medir lo que realmente cambió.",
     "viewAllWork": "Ver todo el trabajo",
     "howWeWorkAria": "Cómo trabajamos"
-  },
-  "hero": {
-    "line1": "NO GENERAMOS",
-    "line2": "LEADS.",
-    "line3": "CONSTRUIMOS",
-    "line3Highlight": "MARCAS QUE VENDEN.",
-    "subtitle": "La infraestructura que convierte tráfico calificado en ingresos: técnica, creativa y estratégica, en un solo programa coordinado.|No es una lista de servicios. Es un sistema."
-  },
-  "revenueEngine": {
-    "label": "El marco KINEXIS",
-    "title": "Visibilidad → Tráfico → Leads → Ingresos",
-    "subtitle": "Cuatro etapas. Cada una depende de la anterior. Si saltas una, todo se pierde.",
-    "liveTrajectory": "Trayectoria en vivo",
-    "stage": "Etapa",
-    "trajectoryPeriod": "Trayectoria de 7 meses",
-    "metricStart": "Inicio",
-    "metricCurrent": "Actual",
-    "chartStart": "Inicio",
-    "chartEnd": "Ahora",
-    "stages": {
-      "visibility": {
-        "label": "Visibilidad",
-        "description": "Visitantes calificados desde búsqueda, redes sociales y canales pagados",
-        "tags": [
-          "SEO",
-          "Anuncios Pagados",
-          "Social"
-        ]
-      },
-      "traffic": {
-        "label": "Tráfico",
-        "description": "Páginas hechas para convertir, donde sea que te encuentren",
-        "tags": [
-          "Landing Pages",
-          "Lead Magnets"
-        ]
-      },
-      "leads": {
-        "label": "Leads",
-        "description": "Captura sin fricción y conversaciones de ventas estratégicas",
-        "tags": [
-          "Formularios",
-          "Llamadas de diagnóstico"
-        ]
-      },
-      "revenue": {
-        "label": "Ingresos",
-        "description": "Crecimiento predecible en ingresos recurrentes y valor de vida del cliente",
-        "tags": [
-          "MRR",
-          "LTV"
-        ]
-      }
-    },
-    "chartUnits": {
-      "visibility": "impresiones (K)",
-      "traffic": "sesiones (K)",
-      "leads": "leads/mes",
-      "revenue": "$K MRR"
-    }
   },
   "proofStrip": {
     "credibility": "Resultados verificados de programas en vivo, no proyecciones ni métricas vanidosas.",
@@ -530,10 +455,31 @@
       "goal": "¿Cuál es tu objetivo principal? (leads, ventas, crecimiento de marca)"
     },
     "quickReplies": {
-      "services": ["SEO", "Anuncios Pagados", "Diseño Web", "Embudos", "Branding"],
-      "businessTypes": ["E-Commerce", "Servicio Local", "SaaS", "Servicios Profesionales"],
-      "revenue": ["Menos de $10k/mes", "$10k-$50k/mes", "$50k-$100k/mes", "$100k+/mes"],
-      "goals": ["Más leads", "Más ventas", "Reconocimiento de marca", "Todo lo anterior"]
+      "services": [
+        "SEO",
+        "Anuncios Pagados",
+        "Diseño Web",
+        "Embudos",
+        "Branding"
+      ],
+      "businessTypes": [
+        "E-Commerce",
+        "Servicio Local",
+        "SaaS",
+        "Servicios Profesionales"
+      ],
+      "revenue": [
+        "Menos de $10k/mes",
+        "$10k-$50k/mes",
+        "$50k-$100k/mes",
+        "$100k+/mes"
+      ],
+      "goals": [
+        "Más leads",
+        "Más ventas",
+        "Reconocimiento de marca",
+        "Todo lo anterior"
+      ]
     },
     "highIntentResponse": "Pareces un buen perfil. Agendemos tu llamada estratégica. 👇",
     "lowIntentResponse": "Gracias. Empieza con nuestra auditoría de crecimiento gratuita. Te dará una idea clara de dónde enfocarte. 👇"

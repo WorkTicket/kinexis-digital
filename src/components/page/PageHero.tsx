@@ -1,10 +1,10 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import type { ReactNode } from "react";
 import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
+import "@/styles/components/page-stages.css";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -20,10 +20,12 @@ type PageHeroProps = {
   visual?: ReactNode;
   /** Full-bleed SignalPlane atmosphere like the homepage hero */
   atmosphere?: boolean;
-  /** Shorter hero for intake pages (contact) */
+  /** Shorter hero for intake pages (contact) — skips WebGL by default */
   compact?: boolean;
   /** Hide CTA row when the next section is the action */
   hideActions?: boolean;
+  /** Form in the visual rail — do not clip to the media-stage height. */
+  intake?: boolean;
   className?: string;
 };
 
@@ -41,9 +43,10 @@ export async function PageHero({
   secondaryLabel,
   meta,
   visual,
-  atmosphere = true,
+  atmosphere = false,
   compact = false,
   hideActions = false,
+  intake = false,
   className,
 }: PageHeroProps) {
   const t = await getTranslations("common");
@@ -52,6 +55,7 @@ export async function PageHero({
     "hero-shell page-hero chapter chapter--void relative flex flex-col overflow-x-clip",
     compact ? "page-hero--compact" : visual ? "lg:min-h-[100svh]" : "min-h-[100svh]",
     visual ? "page-hero--split" : null,
+    intake ? "page-hero--intake" : null,
     className,
   );
 
@@ -133,36 +137,5 @@ export async function PageHero({
         ) : null}
       </HeroScrollRoot>
     </section>
-  );
-}
-
-type BreadcrumbItem = { href?: string; label: string };
-
-export function PageBreadcrumb({ items }: { items: BreadcrumbItem[] }) {
-  return (
-    <nav aria-label="Breadcrumb" className="page-breadcrumb">
-      <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted">
-        {items.map((item, i) => {
-          const last = i === items.length - 1;
-          return (
-            <li key={`${item.label}-${i}`} className="inline-flex items-center gap-2">
-              {i > 0 ? <span aria-hidden>/</span> : null}
-              {item.href && !last ? (
-                <Link
-                  href={item.href}
-                  className="transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                </Link>
-              ) : (
-                <span className={last ? "text-foreground" : undefined}>
-                  {item.label}
-                </span>
-              )}
-            </li>
-          );
-        })}
-      </ol>
-    </nav>
   );
 }

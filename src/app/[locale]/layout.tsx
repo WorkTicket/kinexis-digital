@@ -6,8 +6,9 @@ import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
+import { SiteShell } from "@/components/SiteShell";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { MotionProvider } from "@/components/providers/FramerMotionProvider";
+import { MotionFlagsProvider } from "@/components/providers/MotionFlagsProvider";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { getHtmlLang, getOgLocale } from "@/i18n/locale-tags";
 import { routing } from "@/i18n/routing";
@@ -22,6 +23,21 @@ import {
   COOKIE_PREFLIGHT_SCRIPT,
 } from "@/lib/site-boot-script";
 import { THEME_PREFLIGHT_SCRIPT } from "@/lib/theme";
+import {
+  getGaMeasurementId,
+  getGoogleAdsId,
+  getLeadConversionSendTo,
+  getMetaPixelId,
+} from "@/lib/analytics/ads-config";
+import {
+  buildGtagInitScript,
+  buildLeadConversionSnippet,
+  getGtagScriptSrcId,
+} from "@/lib/analytics/conversion-snippet";
+import {
+  buildMetaLeadSnippet,
+  buildMetaPixelInitScript,
+} from "@/lib/analytics/meta-pixel";
 import "../globals.css";
 
 const kinexisDisplay = localFont({
@@ -109,8 +125,15 @@ export default async function LocaleLayout({
   const locale = await resolveLocale(params);
   const messages = pickChromeMessages(await getMessages());
   const t = await getTranslations({ locale, namespace: "a11y" });
-  const gtagId =
-    process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  const gaId = getGaMeasurementId();
+  const adsId = getGoogleAdsId();
+  const gtagSrcId = getGtagScriptSrcId(adsId, gaId);
+  const gtagInit = buildGtagInitScript(adsId, gaId);
+  const leadSendTo = getLeadConversionSendTo();
+  const leadSnippet = leadSendTo ? buildLeadConversionSnippet(leadSendTo) : "";
+  const metaPixelId = getMetaPixelId();
+  const metaInit = metaPixelId ? buildMetaPixelInitScript(metaPixelId) : "";
+  const metaLeadSnippet = metaPixelId ? buildMetaLeadSnippet(metaPixelId) : "";
 
   return (
     <html
@@ -119,39 +142,44 @@ export default async function LocaleLayout({
       className={`${kinexisDisplay.variable} ${kinexisText.variable} cookie-pending h-full antialiased`}
     >
       <head>
+        {gtagSrcId && gtagInit ? (
+          <>
+            <script
+              id="gtag-src"
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${gtagSrcId}`}
+            />
+            <script
+              id="gtag-init"
+              dangerouslySetInnerHTML={{ __html: gtagInit }}
+            />
+            {leadSnippet ? (
+              <script
+                id="gtag-lead-conversion"
+                dangerouslySetInnerHTML={{
+                  __html: `/* Event snippet for Submit lead form (1) conversion page */${leadSnippet}`,
+                }}
+              />
+            ) : null}
+          </>
+        ) : null}
+        {metaInit ? (
+          <>
+            <script
+              id="meta-pixel-init"
+              dangerouslySetInnerHTML={{ __html: metaInit }}
+            />
+            {metaLeadSnippet ? (
+              <script
+                id="meta-pixel-lead"
+                dangerouslySetInnerHTML={{ __html: metaLeadSnippet }}
+              />
+            ) : null}
+          </>
+        ) : null}
         <script dangerouslySetInnerHTML={{ __html: THEME_PREFLIGHT_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: COOKIE_PREFLIGHT_SCRIPT }} />
         <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
-        {gtagId ? (
-          <script
-            id="gtag-init"
-            dangerouslySetInnerHTML={{
-              __html: [
-                "window.dataLayer=window.dataLayer||[];",
-                "function gtag(){dataLayer.push(arguments);}",
-                "window.gtag=gtag;",
-                "gtag('consent','default',{",
-                "analytics_storage:'denied',",
-                "ad_storage:'denied',",
-                "ad_user_data:'denied',",
-                "ad_personalization:'denied',",
-                "wait_for_update:500",
-                "});",
-                "gtag('set','url_passthrough',true);",
-                "gtag('set','ads_data_redaction',true);",
-                "gtag('js',new Date());",
-                process.env.NEXT_PUBLIC_GA_ID
-                  ? `gtag('config','${process.env.NEXT_PUBLIC_GA_ID}');`
-                  : "",
-                process.env.NEXT_PUBLIC_GOOGLE_ADS_ID
-                  ? `gtag('config','${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}',{allow_enhanced_conversions:true});`
-                  : "",
-              ]
-                .filter(Boolean)
-                .join(""),
-            }}
-          />
-        ) : null}
       </head>
       <body className="min-h-full flex flex-col text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>
@@ -159,18 +187,14 @@ export default async function LocaleLayout({
             {t("skipToMain")}
           </a>
           <ThemeProvider>
-            <MotionProvider>
+            <MotionFlagsProvider>
               <SiteAnalytics>
                 <SiteAtmosphere />
-                <Header />
-                <div className="site-shell flex min-h-full flex-1 flex-col">
-                  <div id="main-content" className="flex flex-1 flex-col">
-                    {children}
-                  </div>
-                  <Footer />
-                </div>
+                <SiteShell header={<Header />} footer={<Footer />}>
+                  {children}
+                </SiteShell>
               </SiteAnalytics>
-            </MotionProvider>
+            </MotionFlagsProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

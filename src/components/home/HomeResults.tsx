@@ -21,9 +21,10 @@ export async function HomeResults() {
       aria-labelledby="home-results-heading"
       className="results-section chapter chapter--void relative"
     >
-      <ChapterMotion className="shell relative py-24 md:py-32 lg:py-40">
-        <Reveal variant="rise" when="chapter">
+      <ChapterMotion className="shell chapter-shell--monument relative">
+        <Reveal variant="rise" when="chapter" className="mb-4 md:mb-6">
           <ChapterLead
+            layout="split"
             eyebrow={t("resultsEyebrow")}
             headingId="home-results-heading"
             title={t("resultsTitle")}

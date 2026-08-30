@@ -71,15 +71,15 @@ const hubs: Entry[] = [
       "Real client results: 2.8X leads, 136% more emergency calls, 2.4X orders. See how we rebuild demand programs that finance can defend.",
   },
   {
-    path: "/clients",
-    title: "Brands and Partners We Work With",
-    description:
-      "Platform partners and brands we've worked with across search, paid, creative, and conversion. Scope we can describe. Results we publish when cleared.",
-  },
-  {
     path: "/resources",
     title: "Marketing Resources and Field Tools",
     description: resourcesContent.en.meta.metaDescription,
+  },
+  {
+    path: "/audit",
+    title: "Free Marketing Scorecard Audit Online",
+    description:
+      "Score your site, search, ads, and tracking in five minutes. Get a plain-English read on what's leaking demand and what to fix first.",
   },
   {
     path: "/blog",
@@ -119,7 +119,7 @@ const hubs: Entry[] = [
 const inventory: Entry[] = [
   ...hubs,
   ...servicePages.map((s) => ({
-    path: `/services#${s.slug}`,
+    path: `/services/${s.slug}`,
     title: s.metaTitle,
     description: s.metaDescription,
   })),

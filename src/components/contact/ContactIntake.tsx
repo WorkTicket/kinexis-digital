@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/Button";
 import type { ContactContent } from "@/content/contact";
 import { cn } from "@/lib/cn";
 
@@ -10,11 +11,13 @@ const StrategyCallBooking = dynamic(
     import("@/components/contact/StrategyCallBooking").then(
       (mod) => mod.StrategyCallBooking,
     ),
+  { ssr: false },
 );
 
 const ContactForm = dynamic(
   () =>
     import("@/components/contact/ContactForm").then((mod) => mod.ContactForm),
+  { ssr: false },
 );
 
 type Props = { content: ContactContent };
@@ -27,9 +30,15 @@ function tabFromHash(): Tab {
 
 export function ContactIntake({ content: c }: Props) {
   const [tab, setTab] = useState<Tab>("book");
+  const [hydrateBook, setHydrateBook] = useState(false);
+  const [hydrateMessage, setHydrateMessage] = useState(false);
 
   useEffect(() => {
-    const sync = () => setTab(tabFromHash());
+    const sync = () => {
+      const next = tabFromHash();
+      setTab(next);
+      if (next === "message") setHydrateMessage(true);
+    };
     sync();
     window.addEventListener("hashchange", sync);
     return () => window.removeEventListener("hashchange", sync);
@@ -49,7 +58,10 @@ export function ContactIntake({ content: c }: Props) {
             aria-selected={tab === "book"}
             id="contact-tab-book"
             aria-controls="contact-panel-book"
-            onClick={() => setTab("book")}
+            onClick={() => {
+              setTab("book");
+              setHydrateBook(true);
+            }}
             className={cn(
               "min-h-11 rounded-[var(--radius-sm)] px-3 py-2.5 text-sm font-semibold transition-colors",
               tab === "book"
@@ -65,7 +77,10 @@ export function ContactIntake({ content: c }: Props) {
             aria-selected={tab === "message"}
             id="contact-tab-message"
             aria-controls="contact-panel-message"
-            onClick={() => setTab("message")}
+            onClick={() => {
+              setTab("message");
+              setHydrateMessage(true);
+            }}
             className={cn(
               "min-h-11 rounded-[var(--radius-sm)] px-3 py-2.5 text-sm font-semibold transition-colors",
               tab === "message"
@@ -85,7 +100,20 @@ export function ContactIntake({ content: c }: Props) {
           aria-labelledby="contact-tab-book"
           hidden={tab !== "book"}
         >
-          {tab === "book" ? <StrategyCallBooking content={c} /> : null}
+          {tab === "book" ? (
+            hydrateBook ? (
+              <StrategyCallBooking content={c} />
+            ) : (
+              <div className="flex min-h-[28rem] flex-col items-start justify-center gap-4 rounded-xl bg-foreground/[0.03] p-6 sm:p-8">
+                <p className="max-w-md text-base leading-relaxed text-muted">
+                  {c.booking.subtitle}
+                </p>
+                <Button type="button" onClick={() => setHydrateBook(true)}>
+                  {c.booking.tabLabel}
+                </Button>
+              </div>
+            )
+          ) : null}
         </div>
         <div
           role="tabpanel"
@@ -93,7 +121,9 @@ export function ContactIntake({ content: c }: Props) {
           aria-labelledby="contact-tab-message"
           hidden={tab !== "message"}
         >
-          {tab === "message" ? <ContactForm content={c} /> : null}
+          {tab === "message" && hydrateMessage ? (
+            <ContactForm content={c} />
+          ) : null}
         </div>
       </div>
     </div>

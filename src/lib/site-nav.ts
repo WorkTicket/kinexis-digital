@@ -22,7 +22,6 @@ export type MainNavItem = {
 
 export const mainNavLinks: MainNavItem[] = [
   { href: "/case-studies", key: "caseStudies", label: "Work" },
-  { href: "/clients", key: "clients", label: "Clients" },
   { href: "/services", key: "services", label: "Services" },
   {
     href: "/industries",
@@ -43,41 +42,41 @@ export const serviceNavGroups = [
   {
     key: "searchAndAds" as const,
     links: [
-      { href: "/services#seo", key: "seo" as const },
-      { href: "/services#seo", key: "localSeo" as const },
-      { href: "/services#paid-media", key: "ppcManagement" as const },
-      { href: "/services#paid-media", key: "metaAds" as const },
-      { href: "/services#paid-media", key: "youtubeAds" as const },
-      { href: "/services#paid-media", key: "microsoftAds" as const },
+      { href: "/services/seo", key: "seo" as const },
+      { href: "/services/seo", key: "localSeo" as const },
+      { href: "/services/paid-media", key: "ppcManagement" as const },
+      { href: "/services/paid-media", key: "metaAds" as const },
+      { href: "/services/paid-media", key: "youtubeAds" as const },
+      { href: "/services/paid-media", key: "microsoftAds" as const },
     ],
   },
   {
     key: "webAndConversion" as const,
     links: [
-      { href: "/services#web-design", key: "webDesign" as const },
-      { href: "/services#web-design", key: "landingPages" as const },
-      { href: "/services#web-design", key: "cro" as const },
-      { href: "/services#web-design", key: "websiteMaintenance" as const },
-      { href: "/services#web-design", key: "websiteSpeed" as const },
-      { href: "/services#seo", key: "analytics" as const },
+      { href: "/services/web-design", key: "webDesign" as const },
+      { href: "/services/web-design", key: "landingPages" as const },
+      { href: "/services/web-design", key: "cro" as const },
+      { href: "/services/web-design", key: "websiteMaintenance" as const },
+      { href: "/services/web-design", key: "websiteSpeed" as const },
+      { href: "/services/seo", key: "analytics" as const },
     ],
   },
   {
     key: "brandAndContent" as const,
     links: [
-      { href: "/services#branding", key: "branding" as const },
-      { href: "/services#content-marketing", key: "contentMarketing" as const },
-      { href: "/services#content-marketing", key: "emailMarketing" as const },
-      { href: "/services#content-marketing", key: "socialMedia" as const },
-      { href: "/services#content-marketing", key: "videoMarketing" as const },
-      { href: "/services#content-marketing", key: "copywriting" as const },
+      { href: "/services/branding", key: "branding" as const },
+      { href: "/services/content-marketing", key: "contentMarketing" as const },
+      { href: "/services/content-marketing", key: "emailMarketing" as const },
+      { href: "/services/content-marketing", key: "socialMedia" as const },
+      { href: "/services/content-marketing", key: "videoMarketing" as const },
+      { href: "/services/content-marketing", key: "copywriting" as const },
     ],
   },
   {
     key: "growthAndStrategy" as const,
     links: [
       { href: "/services", key: "growthConsulting" as const },
-      { href: "/services", key: "marketingAudits" as const },
+      { href: "/audit", key: "marketingAudits" as const },
       { href: "/services", key: "funnels" as const },
       { href: "/services", key: "marketingAutomation" as const },
       { href: "/services", key: "fractionalCmo" as const },
@@ -108,11 +107,11 @@ export const resourceNavGroups = [
 ] as const;
 
 export const footerServiceLinks = [
-  { href: "/services#web-design", key: "webDesignShort" as const },
-  { href: "/services#seo", key: "seo" as const },
-  { href: "/services#branding", key: "branding" as const },
-  { href: "/services#paid-media", key: "ppcManagementPricing" as const },
-  { href: "/services#content-marketing", key: "contentMarketing" as const },
+  { href: "/services/web-design", key: "webDesignShort" as const },
+  { href: "/services/seo", key: "seo" as const },
+  { href: "/services/branding", key: "branding" as const },
+  { href: "/services/paid-media", key: "ppcManagementPricing" as const },
+  { href: "/services/content-marketing", key: "contentMarketing" as const },
   { href: "/contact", key: "pricing" as const },
 ];
 
@@ -120,9 +119,9 @@ export const footerNavLinks = [
   { href: "/services", label: "Services" },
   { href: "/case-studies", label: "Work" },
   { href: "/industries", label: "Industries" },
-  { href: "/clients", label: "Clients" },
   { href: "/about", label: "About" },
   { href: "/resources", label: "Resources" },
+  { href: "/audit", label: "Audit" },
   { href: "/contact", label: "Contact" },
 ];
 

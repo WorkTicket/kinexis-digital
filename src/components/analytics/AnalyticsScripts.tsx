@@ -3,10 +3,12 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
+import { getGtagLoaderId } from "@/lib/analytics/ads-config";
 import { captureClickIds } from "@/lib/analytics/click-ids";
+import { updateGtagConsent } from "@/lib/analytics/consent";
+import { trackMetaPageView, updateMetaPixelConsent } from "@/lib/analytics/meta-pixel";
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+const LOADER_ID = getGtagLoaderId();
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
 
 declare global {
@@ -17,26 +19,15 @@ declare global {
   }
 }
 
-function setAnalyticsConsent(granted: boolean) {
-  if (typeof window.gtag !== "function") return;
-  window.gtag!("consent", "update", {
-    analytics_storage: granted ? "granted" : "denied",
-    ad_storage: granted ? "granted" : "denied",
-    ad_user_data: granted ? "granted" : "denied",
-    ad_personalization: granted ? "granted" : "denied",
-  });
-}
-
 function loadGtag() {
-  const id = GA_ID || ADS_ID;
-  if (!id) return;
+  if (!LOADER_ID) return;
   if (document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) {
     return;
   }
 
   const script = document.createElement("script");
   script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${LOADER_ID}`;
   document.head.appendChild(script);
 }
 
@@ -55,23 +46,14 @@ export default function AnalyticsScripts() {
   const { consent, ready } = useCookieConsent();
   const lastTrackedUrl = useRef<string | null>(null);
 
-  // Capture gclid / UTMs on every landing (before consent — URL params only)
+  // Capture gclid / fbclid / UTMs on every landing (before consent — URL params only)
   useEffect(() => {
     captureClickIds();
   }, [pathname]);
 
-  // External gtag.js is idle-deferred so it never contends with LCP.
-  // The inline consent default in layout still queues calls on dataLayer.
+  // Fallback if the inline head loader did not inject gtag.js.
   useEffect(() => {
-    if (!GA_ID && !ADS_ID) return;
-
-    const start = () => loadGtag();
-    if (typeof requestIdleCallback === "function") {
-      const idleId = requestIdleCallback(start, { timeout: 4000 });
-      return () => cancelIdleCallback(idleId);
-    }
-    const timeoutId = window.setTimeout(start, 2000);
-    return () => window.clearTimeout(timeoutId);
+    loadGtag();
   }, []);
 
   const trackPageView = () => {
@@ -90,11 +72,13 @@ export default function AnalyticsScripts() {
     if (!ready) return;
 
     if (consent === "accepted") {
-      setAnalyticsConsent(true);
+      updateGtagConsent(true);
+      updateMetaPixelConsent(true);
       trackPageView();
       loadClarity();
     } else if (consent === "rejected") {
-      setAnalyticsConsent(false);
+      updateGtagConsent(false);
+      updateMetaPixelConsent(false);
     }
   }, [consent, ready]);
 
@@ -106,7 +90,17 @@ export default function AnalyticsScripts() {
     }
   }, [pathname, ready, consent]);
 
-  if (!GA_ID && !ADS_ID) return null;
+  const lastMetaPath = useRef<string | null>(null);
+  useEffect(() => {
+    if (lastMetaPath.current === null) {
+      lastMetaPath.current = pathname;
+      return;
+    }
+    if (lastMetaPath.current === pathname) return;
+    lastMetaPath.current = pathname;
+    if (consent === "rejected") return;
+    trackMetaPageView();
+  }, [pathname, consent]);
 
   return null;
 }

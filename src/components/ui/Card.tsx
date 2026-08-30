@@ -4,12 +4,7 @@
  * MetricCard → proof stats, case study metrics
  * Never inline: rounded-2xl border border-surface bg-surface-raised
  */
-"use client";
-
-import { m as motion } from "@/lib/framer";
 import { cardClasses, type CardSurface } from "@/lib/card-styles";
-import { useMotionVariants } from "@/hooks/useMotionVariants";
-import { SPRING_SNAPPY } from "@/lib/motion-config";
 import { cn } from "@/lib/utils";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
@@ -31,24 +26,15 @@ export default function Card({
   children,
   ...props
 }: CardProps) {
-  const { fadeUp } = useMotionVariants();
-  const classes = cardClasses({ surface, hover, className });
-
-  if (animated) {
-    return (
-      <motion.div
-        className={classes}
-        variants={fadeUp}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        whileTap={press ? { scale: 0.982, transition: SPRING_SNAPPY } : undefined}
-        {...props}
-      >
-        {children}
-      </motion.div>
-    );
-  }
+  const classes = cardClasses({
+    surface,
+    hover,
+    className: cn(
+      animated && "motion-section",
+      press && "active:scale-[0.982] transition-transform",
+      className,
+    ),
+  });
 
   return (
     <div className={classes} {...props}>
@@ -69,7 +55,10 @@ export function CardRow({
       surface="elevated"
       hover={false}
       animated={animated}
-      className={cn("flex flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5", className)}
+      className={cn(
+        "flex flex-wrap items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5",
+        className,
+      )}
       {...props}
     >
       {children}

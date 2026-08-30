@@ -33,7 +33,7 @@ export function FaqAccordion({
       aria-labelledby={`${baseId}-heading`}
       className={cn("faq-section chapter chapter--void relative", className)}
     >
-      <div className="shell relative py-24 md:py-32 lg:py-40">
+      <div className="shell chapter-shell--tight relative">
         <div className="faq-layout">
           <Reveal variant="rise" when="chapter" className="faq-lead">
             <header>

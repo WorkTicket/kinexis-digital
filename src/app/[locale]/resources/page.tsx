@@ -63,9 +63,10 @@ export default async function ResourcesPage({ params }: Props) {
         aria-labelledby="resources-heading"
         className="resources-section chapter chapter--void relative"
       >
-        <div className="shell relative py-16 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
+              layout="split"
               eyebrow={t("deskEyebrow")}
               headingId="resources-heading"
               title={t("deskTitle")}
@@ -120,9 +121,10 @@ export default async function ResourcesPage({ params }: Props) {
         className="chapter chapter--studio relative"
         id="toolkit"
       >
-        <div className="shell relative py-16 md:py-32 lg:py-40">
+        <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
             <ChapterLead
+              layout="rail"
               eyebrow={content.introLabel}
               headingId="toolkit-heading"
               title={content.meta.introTitle}
@@ -180,9 +182,10 @@ export default async function ResourcesPage({ params }: Props) {
         aria-labelledby="guides-heading"
         className="chapter chapter--void relative"
       >
-        <div className="shell relative py-16 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter" className="mb-8 md:mb-10">
             <ChapterLead
+              layout="rail"
               eyebrow="Guides"
               headingId="guides-heading"
               title={content.guidesTitle}
@@ -223,13 +226,14 @@ export default async function ResourcesPage({ params }: Props) {
             aria-labelledby={`${category.id}-heading`}
             className={cn("chapter relative", chapterClass)}
           >
-            <div className="shell relative py-16 md:py-32 lg:py-40">
+            <div className="shell chapter-shell--tight relative">
               <Reveal
                 variant="rise"
                 when="chapter"
-                className="mb-10 md:mb-14"
+                className="mb-8 md:mb-10"
               >
                 <ChapterLead
+                  layout="split"
                   eyebrow={category.label}
                   headingId={`${category.id}-heading`}
                   title={category.title}
@@ -281,6 +285,7 @@ export default async function ResourcesPage({ params }: Props) {
       })}
 
       <PageCTA
+        layout="minimal"
         title={content.meta.ctaTitle}
         copy={content.meta.ctaSubtitle}
         secondaryLabel="See services"

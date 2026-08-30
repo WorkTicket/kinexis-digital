@@ -5,8 +5,10 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
-
-const STORAGE_KEY = "kinexis-cookie-consent";
+import {
+  CONSENT_STORAGE_KEY,
+  persistConsentChoice,
+} from "@/lib/analytics/consent";
 
 type ConsentState = "pending" | "accepted" | "rejected";
 
@@ -33,8 +35,9 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
     if (stored === "accepted" || stored === "rejected") {
+      persistConsentChoice(stored);
       setConsent(stored);
       document.documentElement.classList.remove("cookie-pending");
     } else {
@@ -44,13 +47,13 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
   }, []);
 
   const accept = useCallback(() => {
-    localStorage.setItem(STORAGE_KEY, "accepted");
+    persistConsentChoice("accepted");
     document.documentElement.classList.remove("cookie-pending");
     setConsent("accepted");
   }, []);
 
   const reject = useCallback(() => {
-    localStorage.setItem(STORAGE_KEY, "rejected");
+    persistConsentChoice("rejected");
     document.documentElement.classList.remove("cookie-pending");
     setConsent("rejected");
   }, []);

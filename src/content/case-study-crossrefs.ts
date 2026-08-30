@@ -50,7 +50,7 @@ export const CASE_STUDIES = {
     timeline: plumbing.timeline,
     liveUrl: plumbing.liveUrl,
   },
-  saas: {
+  ecommerce: {
     slug: ecommerce.slug,
     href: `/case-studies/${ecommerce.slug}`,
     client: ecommerce.client,

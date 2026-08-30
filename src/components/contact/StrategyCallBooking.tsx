@@ -190,12 +190,13 @@ export function StrategyCallBooking({ content: c }: Props) {
         throw new Error(data.error || b.errorMessage);
       }
 
-      trackBookingClick();
+      trackBookingClick({ email });
       stashPendingConversion({
         type: "lead",
         email,
         serviceInterest: "Strategy Call",
         formType: "contact",
+        conversionAlreadyFired: true,
       });
 
       const bookedDate = selectedDate;

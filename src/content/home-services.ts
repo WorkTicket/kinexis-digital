@@ -24,7 +24,7 @@ const homeServicesEn: HomeService[] = [
     role: "Convert",
     description:
       "Sites built phone-first. Fast load, clear paths, and a CTA that does not hide when the screen shrinks.",
-    href: "/services#web-design",
+    href: "/services/web-design",
     icon: "web",
     capabilities: [
       "Mobile-first design",
@@ -42,7 +42,7 @@ const homeServicesEn: HomeService[] = [
     role: "Demand",
     description:
       "Technical cleanup and pages that rank for the jobs and products people already type into Google.",
-    href: "/services#seo",
+    href: "/services/seo",
     icon: "seo",
     capabilities: [
       "Technical SEO",
@@ -60,7 +60,7 @@ const homeServicesEn: HomeService[] = [
     role: "Position",
     description:
       "Positioning, voice, and visuals that help a stranger pick you before they open the next tab.",
-    href: "/services#branding",
+    href: "/services/branding",
     icon: "branding",
     capabilities: [
       "Brand strategy",
@@ -78,7 +78,7 @@ const homeServicesEn: HomeService[] = [
     role: "Scale",
     description:
       "Google and Meta budgets run like a P&L. Every dollar tied to a conversion you can name.",
-    href: "/services#paid-media",
+    href: "/services/paid-media",
     icon: "paid",
     capabilities: [
       "Google Ads",
@@ -96,7 +96,7 @@ const homeServicesEn: HomeService[] = [
     role: "Trust",
     description:
       "Pages and sequences that answer buyer questions early and keep warm leads from going cold.",
-    href: "/services#content-marketing",
+    href: "/services/content-marketing",
     icon: "content",
     capabilities: [
       "Content strategy",
@@ -117,7 +117,7 @@ const homeServicesEs: HomeService[] = [
     role: "Convertir",
     description:
       "Webs pensadas primero para el móvil. Carga rápida, caminos claros y un CTA que no desaparece cuando se encoge la pantalla.",
-    href: "/services#web-design",
+    href: "/services/web-design",
     icon: "web",
     capabilities: [
       "Diseño mobile-first",
@@ -135,7 +135,7 @@ const homeServicesEs: HomeService[] = [
     role: "Demanda",
     description:
       "Limpieza técnica y páginas que posicionan para los trabajos y productos que la gente ya busca en Google.",
-    href: "/services#seo",
+    href: "/services/seo",
     icon: "seo",
     capabilities: [
       "SEO técnico",
@@ -153,7 +153,7 @@ const homeServicesEs: HomeService[] = [
     role: "Posición",
     description:
       "Posicionamiento, voz y visuales para que un desconocido te elija antes de abrir la siguiente pestaña.",
-    href: "/services#branding",
+    href: "/services/branding",
     icon: "branding",
     capabilities: [
       "Estrategia de marca",
@@ -171,7 +171,7 @@ const homeServicesEs: HomeService[] = [
     role: "Escala",
     description:
       "Presupuestos de Google y Meta gestionados como un P&L. Cada euro atado a una conversión que puedes nombrar.",
-    href: "/services#paid-media",
+    href: "/services/paid-media",
     icon: "paid",
     capabilities: [
       "Google Ads",
@@ -189,7 +189,7 @@ const homeServicesEs: HomeService[] = [
     role: "Confianza",
     description:
       "Páginas y secuencias que responden pronto a las dudas del comprador y evitan que los leads calientes se enfríen.",
-    href: "/services#content-marketing",
+    href: "/services/content-marketing",
     icon: "content",
     capabilities: [
       "Estrategia de contenido",
@@ -202,9 +202,20 @@ const homeServicesEs: HomeService[] = [
   },
 ];
 
+const homeServicesEsLatam: HomeService[] = homeServicesEs.map((service) =>
+  service.slug === "paid-media"
+    ? {
+        ...service,
+        description:
+          "Presupuestos de Google y Meta gestionados como un P&L. Cada dólar atado a una conversión que puedes nombrar.",
+      }
+    : service,
+);
+
 const homeServicesByLocale = localeContent({
   en: homeServicesEn,
-  "es-419": homeServicesEs,
+  "es-419": homeServicesEsLatam,
+  "es-ES": homeServicesEs,
 });
 
 /** English default for service page composition. */

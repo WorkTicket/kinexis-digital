@@ -16,6 +16,8 @@ export type CaseStudyNarrative = {
   strategy: string;
   implementation: string;
   outcome: string;
+  /** Honest next phase after the published results */
+  next?: string;
 };
 
 export type CaseStudy = {
@@ -153,6 +155,7 @@ export const caseStudiesContent = localeContent({
             "Month 1: Full technical audit and new site architecture planned around buyer intent. Month 2: Website rebuilt in Next.js with service-area landing pages, optimized forms, and Cloudflare-powered performance optimization. Google Business Profile rebuilt with complete service menu, 50+ photos, and weekly posting cadence. Month 3-4: Citation cleanup across 45+ directories. Local SEO campaign launched targeting service-specific and neighborhood keywords. Month 5-7: Content production. 2 project spotlights and 1 seasonal guide per month. Review generation campaign targeting 8 new reviews per month. Month 8-10: Conversion optimization. A/B tested form layouts, CTA placement, and mobile quote flow. Structured data implemented for LocalBusiness, Service, and Review schemas.",
           outcome:
             "Monthly qualified leads grew from 10 to 28, a 2.8X increase over 10 months. Organic traffic rose from 420 to 1,180 monthly visits. Lead conversion rate improved from 1.8% to 3.9% after the site rebuild and CTA optimization. Revenue influenced by digital channels reached $9,800 per month, up from $4,200. The business ranked in the local pack for 28 of 50 target keywords. A second service crew was hired to absorb the increased demand.",
+          next: "Phase two is paid search for high-margin installs only, plus email nurture for seasonal homeowners who requested quotes but did not book.",
         },
       },
       {
@@ -192,6 +195,7 @@ export const caseStudiesContent = localeContent({
             "Month 1: Website audit and rebuild planning. GBP claimed, cleaned up, and optimized with complete service menu and 50+ photos. Citation cleanup across 38 directories. Month 2: New website built in Next.js with 12 service-area pages, dedicated emergency service landing page, integrated call tracking, and Cloudflare performance optimization. Month 3: SEO campaign launched targeting emergency plumbing, drain cleaning, water heater repair, and seasonal keywords. Review generation campaign deployed with automated post-service follow-up. Month 4-6: Content production. 3 articles per month on plumbing maintenance, emergency prep, and service guides. GBP posting cadence of 3 posts per week. Review volume reached 8-10 new reviews per month. Month 7-8: CRO testing on emergency service page: call-to-action placement, form fields, and mobile tap-to-call optimization.",
           outcome:
             "Emergency service calls grew from 22 to 52 per month, a 136% increase. Booked jobs rose from 18 to 39 per month. Organic traffic increased from 200 to 540 monthly visits. Google Business Profile interactions went from 340 to 1,620 per month. Monthly ad spend was reduced from $6,800 to $4,100 as organic calls carried more of the lead volume. Revenue influenced by organic and direct channels reached $9,400 per month, up from $4,200. The business achieved top-3 local pack rankings for 34 of 60 target keywords.",
+          next: "Next is tighter call-routing by job type and a light Meta remarketing layer for homeowners who visited emergency pages without calling.",
         },
       },
       {
@@ -213,8 +217,8 @@ export const caseStudiesContent = localeContent({
         services: ["Web Design", "Technical SEO", "CRO", "Content Marketing"],
         featured: false,
         liveUrl: "https://bynmwcreative.com/",
-        screenshot: "/assets/images/case-studies/saas-platform-growth.webp",
-        screenshotCard: "/assets/images/case-studies/saas-platform-growth-card.webp",
+        screenshot: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+        screenshotCard: "/assets/images/case-studies/ecommerce-store-growth-card.webp?v=20260822a",
         metrics: [
           { label: "Monthly Orders", from: 32, to: 78, suffix: "/mo" },
           { label: "Organic Traffic", from: 950, to: 2280, suffix: "/mo" },
@@ -230,6 +234,7 @@ export const caseStudiesContent = localeContent({
             "Month 1: Technical audit and site architecture redesign around collections, product pages, and checkout flow. Core Web Vitals optimized and Product schema implemented. Month 2-3: Full site rebuild in Next.js with collection funnels, social proof, and mobile-first CTAs. Month 4-5: Content engine. Pattern guides and how-to articles targeting high-intent crochet keywords, each linking into a collection. Month 6-8: CRO on pricing presentation, free-pattern capture, and post-purchase email/WhatsApp support. Analytics rebuilt to attribute orders to organic, direct, and paid sources.",
           outcome:
             "Monthly orders grew from 32 to 78, a 2.4X increase. Organic traffic rose from 950 to 2,280 monthly visits, a 140% lift. Conversion rate improved from 1.9% to 3.4%. Revenue reached €17,200 per month, up from €8,500. Paid dependency dropped as organic and direct channels carried a larger share of orders by month 8.",
+          next: "Next is expanding collection SEO into adjacent crafts and a post-purchase sequence that turns first-time buyers into repeat pattern customers.",
         },
       },
     ],
@@ -352,8 +357,8 @@ export const caseStudiesContent = localeContent({
         services: ["Diseño Web", "SEO Técnico", "CRO", "Marketing de Contenido"],
         featured: false,
         liveUrl: "https://bynmwcreative.com/",
-        screenshot: "/assets/images/case-studies/saas-platform-growth.webp",
-        screenshotCard: "/assets/images/case-studies/saas-platform-growth-card.webp",
+        screenshot: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+        screenshotCard: "/assets/images/case-studies/ecommerce-store-growth-card.webp?v=20260822a",
         metrics: [
           { label: "Pedidos Mensuales", from: 32, to: 78, suffix: "/mes" },
           { label: "Tráfico Orgánico", from: 950, to: 2280, suffix: "/mes" },
@@ -415,6 +420,8 @@ export type CaseStudyPage = {
   approach: string;
   work: { title: string; description: string }[];
   resultsCopy: string;
+  nextTitle: string;
+  nextCopy: string;
   servicesUsed: string[];
   metrics: { label: string; after: string; before: string; note: string }[];
 };
@@ -433,6 +440,7 @@ function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
           strategy: "Estrategia",
           execution: "Ejecución",
           outcome: "Resultado",
+          nextTitle: "Lo que sigue.",
           baseline: "Base",
           over: "en",
         }
@@ -442,6 +450,7 @@ function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
           strategy: "Strategy",
           execution: "Execution",
           outcome: "Outcome",
+          nextTitle: "What we'd do next.",
           baseline: "Baseline",
           over: "over",
         };
@@ -474,6 +483,8 @@ function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
           ]
         : [],
       resultsCopy: s.narrative?.outcome ?? "",
+      nextTitle: copy.nextTitle,
+      nextCopy: s.narrative?.next ?? "",
       servicesUsed: s.services,
       metrics: s.metrics.map((m) => ({
         label: m.label,

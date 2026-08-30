@@ -54,13 +54,6 @@ export function getHomeExploreLanes(
 
 const homeExploreLinksEn: HomeExploreLink[] = [
   {
-    href: "/industries",
-    label: "Industries",
-    dek: "Home services, ecommerce, legal, SaaS, and the markets next door.",
-    lane: "markets",
-    icon: "industries",
-  },
-  {
     href: "/industries/home-services",
     label: "Home services",
     dek: "Local search, booking paths, and ads built for crews on the job.",
@@ -89,22 +82,15 @@ const homeExploreLinksEn: HomeExploreLink[] = [
     icon: "work",
   },
   {
-    href: "/contact",
-    label: "Contact",
-    dek: "Bring the leak. We will tell you what we would fix first.",
+    href: "/audit",
+    label: "Scorecard",
+    dek: "Five questions. A score. What to fix before you spend more.",
     lane: "program",
     icon: "contact",
   },
 ];
 
 const homeExploreLinksEs: HomeExploreLink[] = [
-  {
-    href: "/industries",
-    label: "Sectores",
-    dek: "Servicios del hogar, ecommerce, legal, SaaS y los mercados de al lado.",
-    lane: "markets",
-    icon: "industries",
-  },
   {
     href: "/industries/home-services",
     label: "Servicios del hogar",
@@ -134,9 +120,9 @@ const homeExploreLinksEs: HomeExploreLink[] = [
     icon: "work",
   },
   {
-    href: "/contact",
-    label: "Contacto",
-    dek: "Trae la fuga. Te diremos qué arreglaríamos primero.",
+    href: "/audit",
+    label: "Scorecard",
+    dek: "Cinco preguntas. Una puntuación. Qué arreglar antes de gastar más.",
     lane: "program",
     icon: "contact",
   },

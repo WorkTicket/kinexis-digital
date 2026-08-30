@@ -3,6 +3,7 @@ import { ServiceLaneArt } from "@/components/page/ServiceLaneArt";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import type { ServicePage } from "@/content/services";
+import "@/styles/components/page-stages.css";
 
 type Props = {
   service: ServicePage;

@@ -15,14 +15,23 @@ const SignalPlane = dynamic(
 );
 
 function canMountWebGL() {
-  if (window.matchMedia("(max-width: 768px)").matches) return false;
+  if (window.matchMedia("(max-width: 1023px)").matches) return false;
   const connection = (
-    navigator as Navigator & { connection?: { saveData?: boolean } }
+    navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }
   ).connection;
   if (connection?.saveData) return false;
+  if (connection?.effectiveType === "slow-2g" || connection?.effectiveType === "2g") {
+    return false;
+  }
   return true;
 }
 
+/**
+ * WebGL only after a real user gesture. Auto-mounting on idle tanks desktop
+ * TBT in lab tools (PSI) even when the canvas is decorative.
+ */
 export function SignalPlaneMount() {
   const reducedMotion = usePrefersReducedMotion();
   const [enhance, setEnhance] = useState(false);
@@ -34,20 +43,22 @@ export function SignalPlaneMount() {
     if (!canMountWebGL()) return;
 
     const start = () => setEnhance(true);
-    if (document.readyState === "complete") {
-      const idleId =
-        typeof requestIdleCallback === "function"
-          ? requestIdleCallback(start, { timeout: 3000 })
-          : 0;
-      const timeoutId = idleId ? 0 : window.setTimeout(start, 1500);
-      return () => {
-        if (idleId) cancelIdleCallback(idleId);
-        if (timeoutId) window.clearTimeout(timeoutId);
-      };
-    }
+    const opts = { once: true, passive: true } as const;
+    window.addEventListener("pointerdown", start, opts);
+    window.addEventListener("keydown", start, opts);
+    window.addEventListener("touchstart", start, opts);
+    // Scroll past the first fold — intentional browse, not lab idle
+    const onScroll = () => {
+      if (window.scrollY > 120) start();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    window.addEventListener("load", start, { once: true });
-    return () => window.removeEventListener("load", start);
+    return () => {
+      window.removeEventListener("pointerdown", start);
+      window.removeEventListener("keydown", start);
+      window.removeEventListener("touchstart", start);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, [reducedMotion]);
 
   const showWebGL = enhance && !reducedMotion && !unsupported;

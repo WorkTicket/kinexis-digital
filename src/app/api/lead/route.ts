@@ -12,6 +12,7 @@ import {
   attributionTextLines,
   sanitizeAttributionFromBody,
 } from "@/lib/analytics/click-ids";
+import { isWebsiteValue } from "@/lib/website-url";
 
 export async function POST(request: Request) {
   try {
@@ -31,7 +32,23 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, service, revenue, budget, goal, score, source, auditType, _hp, _ts } = body;
+    const {
+      name,
+      email,
+      phone,
+      website,
+      websiteRequired,
+      service,
+      revenue,
+      budget,
+      goal,
+      score,
+      source,
+      auditType,
+      landingSlug,
+      _hp,
+      _ts,
+    } = body;
     const attribution = sanitizeAttributionFromBody(body);
 
     const honeypot = validateHoneypot(
@@ -54,6 +71,25 @@ export async function POST(request: Request) {
     if (String(name).length > 200) {
       return NextResponse.json({ error: "Name is too long." }, { status: 400 });
     }
+    if (phone && String(phone).length > 50) {
+      return NextResponse.json({ error: "Phone number is too long." }, { status: 400 });
+    }
+    if (website && String(website).length > 500) {
+      return NextResponse.json({ error: "Website URL is too long." }, { status: 400 });
+    }
+    if (websiteRequired) {
+      if (!website || !isWebsiteValue(String(website))) {
+        return NextResponse.json(
+          { error: "A valid website URL is required." },
+          { status: 400 },
+        );
+      }
+    } else if (website && String(website).trim() && !isWebsiteValue(String(website))) {
+      return NextResponse.json(
+        { error: "Enter a valid website URL." },
+        { status: 400 },
+      );
+    }
     if (service && String(service).length > 200) {
       return NextResponse.json({ error: "Service value is too long." }, { status: 400 });
     }
@@ -75,13 +111,28 @@ export async function POST(request: Request) {
     if (auditType && String(auditType).length > 100) {
       return NextResponse.json({ error: "Audit type value is too long." }, { status: 400 });
     }
+    if (
+      landingSlug &&
+      !/^[a-z0-9-]{1,80}$/.test(String(landingSlug))
+    ) {
+      return NextResponse.json({ error: "Invalid landing page." }, { status: 400 });
+    }
 
     const safeName = String(name);
     const safeEmail = String(email);
+    const safePhone = phone ? String(phone).trim() : "";
+    const safeWebsite = website ? String(website).trim() : "";
+    const safeLandingSlug =
+      landingSlug && /^[a-z0-9-]{1,80}$/.test(String(landingSlug))
+        ? String(landingSlug)
+        : "";
     const leadData = {
       name: safeName,
       email: safeEmail,
+      phone: safePhone || "Not specified",
+      website: safeWebsite || "Not specified",
       service: service ? String(service) : auditType ? String(auditType) : "Not specified",
+      landingPage: safeLandingSlug || "Not specified",
       revenue: revenue ? String(revenue) : "Not specified",
       budget: budget ? String(budget) : "Not specified",
       goal: goal ? String(goal) : "Not specified",
@@ -95,7 +146,14 @@ export async function POST(request: Request) {
     const rows = [
       emailRow("Name", leadData.name),
       emailRow("Email", leadData.email, true),
+      safePhone ? emailRow("Phone", safePhone) : "",
+      emailRow(
+        "Website",
+        safeWebsite ||
+          (String(source) === "landing-page" ? "New site (no URL yet)" : "Not specified"),
+      ),
       emailRow("Service", leadData.service),
+      safeLandingSlug ? emailRow("Landing page", `/lp/${safeLandingSlug}`) : "",
       emailRow("Revenue", leadData.revenue),
       emailRow("Budget", leadData.budget),
       emailRow("Goal", leadData.goal),
@@ -108,7 +166,7 @@ export async function POST(request: Request) {
       {
         fromName: "KINEXIS Digital Leads",
         replyTo: leadData.email,
-        subject: `New Lead: ${leadData.name}${leadData.service !== "Not specified" ? ` \u2014 ${leadData.service}` : ""} (Score: ${leadData.score})`,
+        subject: `New Lead: ${leadData.name}${safeLandingSlug ? ` \u2014 /lp/${safeLandingSlug}` : leadData.service !== "Not specified" ? ` \u2014 ${leadData.service}` : ""} (Score: ${leadData.score})`,
         title: "New Lead Captured",
         rows,
         footer: `Reply directly to this email to contact ${leadData.name} at ${leadData.email}.`,
@@ -117,7 +175,10 @@ export async function POST(request: Request) {
           "",
           `Name: ${leadData.name}`,
           `Email: ${leadData.email}`,
+          safePhone ? `Phone: ${safePhone}` : "",
+          `Website: ${safeWebsite || (String(source) === "landing-page" ? "New site (no URL yet)" : "Not specified")}`,
           `Service: ${leadData.service}`,
+          safeLandingSlug ? `Landing page: /lp/${safeLandingSlug}` : "",
           `Revenue: ${leadData.revenue}`,
           `Budget: ${leadData.budget}`,
           `Goal: ${leadData.goal}`,
@@ -125,7 +186,9 @@ export async function POST(request: Request) {
           `Source: ${leadData.source}`,
           `Captured: ${leadData.capturedAt}`,
           ...(attributionText.length ? ["", "Attribution:", ...attributionText] : []),
-        ].join("\n"),
+        ]
+          .filter(Boolean)
+          .join("\n"),
       },
       "Lead capture",
     );

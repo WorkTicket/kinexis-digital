@@ -1,6 +1,7 @@
 /** Blog cluster articles - topical authority content funneling to parent service pages */
 
 import type { Locale } from "@/i18n/routing";
+import { applySpainEuros } from "@/i18n/currency";
 import { localeContent } from "@/i18n/locale-content";
 import { clusterPostBodiesEn } from "./cluster-posts-en-bodies";
 import { clusterPostBodiesEs } from "./cluster-posts-es-bodies";
@@ -314,5 +315,6 @@ export const clusterPostsBySlug = Object.fromEntries(clusterPostsEn.map((p) => [
 
 export function getClusterPost(slug: string, locale: Locale): ClusterPost | undefined {
   const posts = clusterPostsByLocale[locale] ?? clusterPostsEn;
-  return posts.find((p) => p.slug === slug) ?? clusterPostsEn.find((p) => p.slug === slug);
+  const post = posts.find((p) => p.slug === slug) ?? clusterPostsEn.find((p) => p.slug === slug);
+  return post ? applySpainEuros(post, locale) : undefined;
 }

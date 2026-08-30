@@ -5,6 +5,7 @@ import { PageHero } from "@/components/page/PageHero";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
+import { getLeadConversionPixelUrl } from "@/lib/analytics/ads-config";
 import { duration } from "@/lib/motion";
 
 type ThankYouCopyNamespace = "pages.thankYou" | "pages.thankYouAudit";
@@ -19,6 +20,8 @@ export async function ThankYouView({
   const t = await getTranslations(namespace);
   const tCommon = await getTranslations("common");
 
+  const conversionPixel = getLeadConversionPixelUrl();
+
   const steps = [
     { title: t("step1Title"), detail: t("step1Detail"), icon: STEP_ICONS[0] },
     { title: t("step2Title"), detail: t("step2Detail"), icon: STEP_ICONS[1] },
@@ -27,6 +30,13 @@ export async function ThankYouView({
 
   return (
     <main className="flex flex-1 flex-col">
+      {conversionPixel ? (
+        <noscript>
+          {/* Conversion pixel must be a raw img; next/image cannot run in noscript. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img height={1} width={1} alt="" src={conversionPixel} />
+        </noscript>
+      ) : null}
       <ThankYouConversion />
       <PageHero
         eyebrow={t("eyebrow")}

@@ -103,9 +103,10 @@ export function industryProofImage(href?: string): string | undefined {
   const known: Record<string, string> = {
     "landscaping-company-growth": "landscaping-company-growth",
     "plumbing-company-growth": "plumbing-company-growth",
-    "ecommerce-store-growth": "saas-platform-growth",
+    "ecommerce-store-growth": "ecommerce-store-growth",
   };
   const fileSlug = known[slug];
   if (!fileSlug) return undefined;
-  return `/assets/images/case-studies/${fileSlug}.webp`;
+  const version = fileSlug === "ecommerce-store-growth" ? "?v=20260822a" : "";
+  return `/assets/images/case-studies/${fileSlug}.webp${version}`;
 }

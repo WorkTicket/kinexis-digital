@@ -3,13 +3,17 @@
  * Conversions can fire once on the destination without putting PII in the URL.
  */
 
-const PENDING_KEY = "kinexis-pending-conversion";
+export const PENDING_CONVERSION_KEY = "kinexis-pending-conversion";
 
 export type PendingConversion = {
   type: "lead" | "audit";
   email: string;
+  phone?: string;
   serviceInterest?: string;
   formType?: "contact" | "lead-magnet" | "landing-page";
+  landingSlug?: string;
+  /** When true, conversion already fired on submit (e.g. booking) — thank-you only sets user_data. */
+  conversionAlreadyFired?: boolean;
   storedAt: number;
 };
 
@@ -21,7 +25,7 @@ export function stashPendingConversion(
   if (typeof window === "undefined") return;
   try {
     const payload: PendingConversion = { ...data, storedAt: Date.now() };
-    window.sessionStorage.setItem(PENDING_KEY, JSON.stringify(payload));
+    window.sessionStorage.setItem(PENDING_CONVERSION_KEY, JSON.stringify(payload));
   } catch {
     // ignore storage failures
   }
@@ -32,9 +36,9 @@ export function consumePendingConversion(
 ): PendingConversion | null {
   if (typeof window === "undefined") return null;
   try {
-    const raw = window.sessionStorage.getItem(PENDING_KEY);
+    const raw = window.sessionStorage.getItem(PENDING_CONVERSION_KEY);
     if (!raw) return null;
-    window.sessionStorage.removeItem(PENDING_KEY);
+    window.sessionStorage.removeItem(PENDING_CONVERSION_KEY);
     const parsed = JSON.parse(raw) as PendingConversion;
     if (!parsed?.email || !parsed?.type) return null;
     if (Date.now() - parsed.storedAt > MAX_AGE_MS) return null;

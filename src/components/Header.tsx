@@ -6,6 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/Button";
+import { CallLink } from "@/components/analytics/CallLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import {
@@ -14,6 +15,8 @@ import {
   type MainNavItem,
 } from "@/lib/site-nav";
 import { cn } from "@/lib/cn";
+import { getBusinessTelHref } from "@/lib/business";
+import { getLandingChrome } from "@/lib/landing-chrome";
 
 const SCROLL_DELTA = 8;
 const SCROLL_TOP_REVEAL = 28;
@@ -50,6 +53,11 @@ export function Header() {
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastScrollY = useRef(0);
   const mobileNavId = useId();
+  const hasPhone = Boolean(getBusinessTelHref());
+  const isLanding = pathname.startsWith("/lp");
+  const landing = getLandingChrome(pathname);
+  const contactHref = landing?.formHref ?? (isLanding ? "#lp-form" : NAV_CONTACT_HREF);
+  const contactLabel = landing?.ctaLabel ?? t("contact");
 
   useEffect(() => {
     return () => {
@@ -242,8 +250,11 @@ export function Header() {
           </nav>
 
           <div className="site-header__actions hidden items-center lg:flex">
-            <Button href={NAV_CONTACT_HREF} size="header" onClick={closeDropdown}>
-              {t("contact")}
+            {hasPhone ? (
+              <CallLink className="mr-1 text-sm font-medium text-muted underline-offset-2 hover:text-foreground hover:underline" />
+            ) : null}
+            <Button href={contactHref} size="header" onClick={closeDropdown}>
+              {contactLabel}
             </Button>
             <ThemeToggle />
           </div>
@@ -339,8 +350,8 @@ export function Header() {
             </ul>
 
             <div className="site-menu__meta">
-              <Button href={NAV_CONTACT_HREF} size="lg" fullWidthMobile onClick={closeMenu}>
-                {t("contact")}
+              <Button href={contactHref} size="lg" fullWidthMobile onClick={closeMenu}>
+                {contactLabel}
               </Button>
               <a href={`mailto:${CONTACT_EMAIL}`} className="site-menu__email">
                 {CONTACT_EMAIL}

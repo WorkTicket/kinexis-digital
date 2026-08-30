@@ -47,6 +47,11 @@ export function isCrawlerRequest(request: NextRequest): boolean {
 export function getCookieLocale(request: NextRequest): Locale | null {
   const value = request.cookies.get(LOCALE_COOKIE_NAME)?.value;
   if (value === "en") return "en";
+  // Pre-split `es` cookie: Spain stays Spain Spanish, everyone else LatAm.
+  if (value === "es") {
+    const country = getRequestCountry(request);
+    return country && SPAIN_COUNTRY_CODES.has(country) ? "es-ES" : "es-419";
+  }
   const spanish = normalizeSpanishLocale(value);
   if (spanish) return spanish;
   return null;

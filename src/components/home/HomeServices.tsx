@@ -29,6 +29,7 @@ function ServiceTile({
           fill
           sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
           quality={75}
+          loading="lazy"
           className="object-cover object-center [backface-visibility:hidden]"
         />
       </div>
@@ -66,14 +67,14 @@ export async function HomeServices() {
       aria-labelledby="home-services-heading"
       className="services-section chapter chapter--void relative"
     >
-      <div className="shell relative py-24 md:py-32 lg:py-40">
+      <div className="shell chapter-shell--standard relative">
         <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
           <ChapterLead
+            layout="split"
             eyebrow={t("servicesEyebrow")}
             headingId="home-services-heading"
             title={t("servicesTitle")}
-            className="mx-auto text-center md:mx-0 md:text-left"
-            headingClassName="mx-auto max-w-none md:mx-0 md:max-w-[12ch]"
+            headingClassName="max-w-[12ch]"
             dek={t("servicesDek")}
           >
             <Button href="/services" variant="link" arrow>

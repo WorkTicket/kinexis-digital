@@ -1,7 +1,7 @@
 import type { BlogPost } from "@/content/blog";
 import type { Locale } from "@/i18n/routing";
 import { isSpanishLocale } from "@/i18n/spanish";
-import { blogContent } from "@/content/blog";
+import { getBlogContent } from "@/content/blog";
 import { getBlogArticle } from "@/content/blog-articles";
 import { getClusterPost } from "@/content/blog-clusters";
 import { blogSlugs } from "@/content/registry/site-routes";
@@ -245,12 +245,12 @@ export function getRecentPosts(
 }
 
 export function getBlogListingPosts(locale: Locale = "en"): BlogPost[] {
-  return (blogContent[locale] ?? blogContent.en).posts;
+  return getBlogContent(locale).posts;
 }
 
 export function getBlogCategories(locale: Locale = "en"): string[] {
   const allLabel = isSpanishLocale(locale) ? "Todos" : "All";
-  return (blogContent[locale] ?? blogContent.en).categories.filter((c) => c !== allLabel);
+  return getBlogContent(locale).categories.filter((c) => c !== allLabel);
 }
 
 const CATEGORY_NAME_TO_SLUG: Record<string, string> = {

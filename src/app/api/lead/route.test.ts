@@ -70,4 +70,25 @@ describe("POST /api/lead", () => {
       }),
     );
   });
+
+  it("rejects a site-review lead without a valid website", async () => {
+    const res = await postLead({
+      name: "John",
+      email: "john@example.com",
+      websiteRequired: true,
+    });
+    expect(res.status).toBe(400);
+  });
+
+  it("accepts a site-review lead with a hostname", async () => {
+    sendMock.mockResolvedValue(undefined);
+    const res = await postLead({
+      name: "John",
+      email: "john@example.com",
+      website: "example.com",
+      websiteRequired: true,
+      source: "landing-page",
+    });
+    expect(res.status).toBe(200);
+  });
 });

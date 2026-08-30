@@ -16,7 +16,7 @@ Built with Next.js 15, TypeScript, and Tailwind CSS. English-only redesign with 
 
 ## Features
 
-- Homepage, about, contact, clients, resources, and thank-you flows
+- Homepage, about, contact, resources, audit scorecard, and thank-you flows
 - Five-pillar services hub with legacy service URLs redirected to anchors
 - Industry hub with category detail pages
 - Blog and case studies
@@ -52,6 +52,7 @@ Copy `.env.example` to `.env.local` and fill in:
 | `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` | Form notification inbox + sender (Cloudflare Email Service; also in `wrangler.jsonc`) |
 | `NEXT_PUBLIC_SITE_URL` | Canonical URL (e.g. `https://www.kinexisdigital.com`) |
 | `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (Consent Mode v2) |
+| `NEXT_PUBLIC_GOOGLE_ADS_ID` | Google Ads tag ID (`AW-18409243306`; baked into production builds) |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Google Search Console HTML tag verification token |
 | `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity (optional, loads after consent) |
 | `SENTRY_*` | Error monitoring (optional) |

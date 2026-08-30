@@ -2,45 +2,43 @@
 
 import { useEffect } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
+import { updateGtagConsent } from "@/lib/analytics/consent";
+import { updateMetaPixelConsent } from "@/lib/analytics/meta-pixel";
 import { consumePendingConversion } from "@/lib/analytics/pending-conversion";
-import {
-  setEnhancedConversionUserData,
-  trackAuditLead,
-  trackLead,
-} from "@/lib/analytics/events";
+import { setEnhancedConversionUserData } from "@/lib/analytics/events";
 
 /**
- * Fires the stashed form conversion on /thank-you after analytics consent.
- * Booking already sent a click conversion on submit; we only attach hashed
- * user_data there so Ads is not double-counted.
+ * Completes Enhanced Conversions + GA4 generate_lead after the head snippet
+ * has already sent the Google Ads conversion on /thank-you page load.
+ * Booking already fired Ads on submit (`conversionAlreadyFired`).
  */
 export function ThankYouConversion() {
   const { consent, ready } = useCookieConsent();
 
   useEffect(() => {
-    if (!ready || consent !== "accepted") return;
+    if (!ready) return;
+
+    if (consent !== "pending") {
+      const granted = consent === "accepted";
+      updateGtagConsent(granted);
+      updateMetaPixelConsent(granted);
+    }
 
     const pending = consumePendingConversion();
     if (!pending?.email) return;
 
-    if (pending.serviceInterest === "Strategy Call") {
-      setEnhancedConversionUserData({ email: pending.email });
-      return;
-    }
-
-    if (pending.type === "audit" || pending.formType === "lead-magnet") {
-      trackAuditLead({
-        email: pending.email,
-        formType: pending.formType ?? "lead-magnet",
-        serviceInterest: pending.serviceInterest,
-      });
-      return;
-    }
-
-    trackLead({
+    setEnhancedConversionUserData({
       email: pending.email,
-      formType: pending.formType ?? "contact",
-      serviceInterest: pending.serviceInterest,
+      phone: pending.phone,
+    });
+
+    if (pending.conversionAlreadyFired) return;
+    if (typeof window.gtag !== "function") return;
+
+    window.gtag("event", "generate_lead", {
+      form_type: pending.formType ?? "contact",
+      service_interest: pending.serviceInterest ?? "not_specified",
+      ...(pending.landingSlug ? { landing_page: pending.landingSlug } : {}),
     });
   }, [ready, consent]);
 

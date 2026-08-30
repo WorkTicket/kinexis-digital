@@ -25,6 +25,12 @@ describe("parseAttributionFromSearch", () => {
     expect(data.wbraid).toBe("wb1");
   });
 
+  it("parses fbclid from Meta ads", () => {
+    const data = parseAttributionFromSearch("fbclid=IwAR0testClick&utm_source=facebook");
+    expect(data.fbclid).toBe("IwAR0testClick");
+    expect(data.utm_source).toBe("facebook");
+  });
+
   it("ignores empty and oversized values", () => {
     const data = parseAttributionFromSearch(`gclid=${"x".repeat(300)}&utm_source=`);
     expect(data.gclid?.length).toBe(200);
@@ -107,5 +113,32 @@ describe("captureClickIds (jsdom sessionStorage)", () => {
     const captured = captureClickIds();
     expect(captured.gclid).toBe("from-url");
     expect(getAttributionPayload().gclid).toBe("from-url");
+  });
+
+  it("returns landing_page even without click IDs", async () => {
+    vi.stubGlobal("window", {
+      location: {
+        search: "",
+        pathname: "/lp/seo",
+      },
+      sessionStorage: (() => {
+        const store = new Map<string, string>();
+        return {
+          getItem: (k: string) => store.get(k) ?? null,
+          setItem: (k: string, v: string) => {
+            store.set(k, v);
+          },
+          removeItem: (k: string) => {
+            store.delete(k);
+          },
+        };
+      })(),
+    });
+
+    const { captureClickIds, getAttributionPayload } = await import(
+      "@/lib/analytics/click-ids"
+    );
+    captureClickIds();
+    expect(getAttributionPayload().landing_page).toContain("/lp/seo");
   });
 });

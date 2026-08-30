@@ -8,8 +8,10 @@ import JsonLd from "@/components/seo/JsonLd";
 import { ServiceProgramChapter } from "@/components/services/ServiceProgramChapter";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import { Link } from "@/i18n/navigation";
 import { getServicePages } from "@/content/services";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import { isFlagshipServiceSlug } from "@/lib/legacy-redirects.mjs";
 import { buildAbsoluteUrl, buildPageMetadata, getSiteUrl } from "@/lib/metadata";
 import {
   breadcrumbSchema,
@@ -50,7 +52,9 @@ export default async function ServicesIndexPage({ params }: Props) {
             serviceSchema(
               service.title,
               service.metaDescription,
-              `${getSiteUrl()}/services#${service.slug}`,
+              isFlagshipServiceSlug(service.slug)
+                ? `${getSiteUrl()}/services/${service.slug}`
+                : `${getSiteUrl()}/services#${service.slug}`,
             ),
           ),
         ]}
@@ -68,13 +72,14 @@ export default async function ServicesIndexPage({ params }: Props) {
         className="svc-catalog chapter chapter--void relative"
         aria-labelledby="svc-catalog-heading"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
+        <div className="shell chapter-shell--tight relative">
           <Reveal
             variant="rise"
             when="chapter"
-            className="mb-12 md:mb-16 lg:mb-20"
+            className="mb-10 md:mb-12"
           >
             <ChapterLead
+              layout="split"
               eyebrow={t("mixEyebrow")}
               headingId="svc-catalog-heading"
               title={t("mixTitle")}
@@ -92,19 +97,35 @@ export default async function ServicesIndexPage({ params }: Props) {
           >
             {pages.map((service) => {
               const Icon = serviceIconsBySlug[service.slug];
+              const href = isFlagshipServiceSlug(service.slug)
+                ? `/services/${service.slug}`
+                : `#${service.slug}`;
+              const className = "svc-catalog__card motion-tile";
               return (
                 <RevealItem as="li" key={service.slug} variant="fadeUp">
-                  <a
-                    href={`#${service.slug}`}
-                    className="svc-catalog__card motion-tile"
-                  >
-                    <span className="icon-well" aria-hidden>
-                      <Icon />
-                    </span>
-                    <span className="svc-catalog__role">{service.role}</span>
-                    <span className="svc-catalog__name">{service.title}</span>
-                    <span className="svc-catalog__dek">{service.description}</span>
-                  </a>
+                  {isFlagshipServiceSlug(service.slug) ? (
+                    <Link href={href} className={className}>
+                      <span className="icon-well" aria-hidden>
+                        <Icon />
+                      </span>
+                      <span className="svc-catalog__role">{service.role}</span>
+                      <span className="svc-catalog__name">{service.title}</span>
+                      <span className="svc-catalog__dek">
+                        {service.description}
+                      </span>
+                    </Link>
+                  ) : (
+                    <a href={href} className={className}>
+                      <span className="icon-well" aria-hidden>
+                        <Icon />
+                      </span>
+                      <span className="svc-catalog__role">{service.role}</span>
+                      <span className="svc-catalog__name">{service.title}</span>
+                      <span className="svc-catalog__dek">
+                        {service.description}
+                      </span>
+                    </a>
+                  )}
                 </RevealItem>
               );
             })}

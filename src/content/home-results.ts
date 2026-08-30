@@ -54,7 +54,7 @@ const homeResultsEn: HomeResult[] = [
     mechanism: "Conversion rebuild and product SEO",
     summary:
       "A conversion-led rebuild and product SEO lifted orders from 32 to 78 a month, without endless promo discounts.",
-    image: "/assets/images/case-studies/saas-platform-growth.webp",
+    image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
     imageAlt: "Manos Creativas storefront preview after conversion-led rebuild",
   },
 ];
@@ -98,7 +98,7 @@ const homeResultsEs: HomeResult[] = [
     mechanism: "Reconstrucción de conversión y SEO de producto",
     summary:
       "Una reconstrucción orientada a conversión y SEO de producto subió los pedidos de 32 a 78 al mes, sin descuentos promocionales eternos.",
-    image: "/assets/images/case-studies/saas-platform-growth.webp",
+    image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
     imageAlt: "Vista previa de la tienda de Manos Creativas tras la reconstrucción de conversión",
   },
 ];

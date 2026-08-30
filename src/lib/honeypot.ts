@@ -14,11 +14,14 @@ export function validateHoneypot(
     return { blocked: true, reason: "honeypot_filled" };
   }
 
-  if (submittedAt !== undefined) {
-    const elapsed = Date.now() - submittedAt;
-    if (elapsed < MIN_FORM_TIME_MS) {
-      return { blocked: true, reason: "too_fast" };
-    }
+  // Bots that POST JSON and skip unknown fields omit _ts. Require it.
+  if (typeof submittedAt !== "number" || !Number.isFinite(submittedAt)) {
+    return { blocked: true, reason: "too_fast" };
+  }
+
+  const elapsed = Date.now() - submittedAt;
+  if (elapsed < MIN_FORM_TIME_MS) {
+    return { blocked: true, reason: "too_fast" };
   }
 
   return { blocked: false };

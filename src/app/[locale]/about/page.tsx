@@ -1,22 +1,4 @@
 import type { Metadata } from "next";
-import type { LucideIcon } from "lucide-react";
-import {
-  BarChart3,
-  Calendar,
-  Handshake,
-  LineChart,
-  Mail,
-  Map,
-  Megaphone,
-  Monitor,
-  MousePointerClick,
-  Rocket,
-  Search,
-  Target,
-  Users,
-  Workflow,
-  Wrench,
-} from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
@@ -36,30 +18,6 @@ import {
   organizationSchema,
 } from "@/lib/schema";
 
-const METHOD_ICONS: LucideIcon[] = [Search, Map, Wrench, LineChart, Rocket];
-
-const SIGNAL_ICONS: LucideIcon[] = [Users, Handshake, BarChart3];
-
-const ARCH_ICONS: Record<string, LucideIcon> = {
-  seo: Search,
-  "paid-ads": Megaphone,
-  "web-design": Monitor,
-  analytics: BarChart3,
-  cro: MousePointerClick,
-  email: Mail,
-};
-
-const PRINCIPLE_ICONS: Record<string, LucideIcon> = {
-  Evidence: BarChart3,
-  Systems: Workflow,
-  "Long-term": Calendar,
-  Focus: Target,
-  Evidencia: BarChart3,
-  Sistemas: Workflow,
-  "Largo plazo": Calendar,
-  Enfoque: Target,
-};
-
 type Props = { params: LocaleParams };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -74,14 +32,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const statusLabel = localeContent({
-  en: { done: "Done", now: "Now", soon: "Soon" },
-  "es-419": { done: "Hecho", now: "Ahora", soon: "Pronto" },
+  en: {
+    done: "Done",
+    now: "Now",
+    soon: "Soon",
+  },
+  "es-419": {
+    done: "Hecho",
+    now: "Ahora",
+    soon: "Pronto",
+  },
 });
 
 export default async function AboutPage({ params }: Props) {
   const locale = await resolveLocale(params);
   const c = getAboutContent(locale);
   const faqs = getFaqItems(locale);
+  const labels = statusLabel[locale as Locale];
   const tCommon = await getTranslations("common");
 
   return (
@@ -106,13 +73,13 @@ export default async function AboutPage({ params }: Props) {
         atmosphere
       />
 
-      {/* Why we exist */}
+      {/* Why we exist — editorial split, monument density */}
       <section
         aria-labelledby="about-why-heading"
         className="chapter chapter--studio relative overflow-hidden"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--monument relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
             <ChapterLead
               eyebrow={c.why.eyebrow}
               headingId="about-why-heading"
@@ -131,7 +98,11 @@ export default async function AboutPage({ params }: Props) {
               ))}
             </Reveal>
 
-            <Reveal variant="fadeUp" delay={0.08} className="about-why__col about-why__col--solution">
+            <Reveal
+              variant="fadeUp"
+              delay={0.08}
+              className="about-why__col about-why__col--solution"
+            >
               <p className="about-why__label">{c.why.solutionLabel}</p>
               <p className="about-why__quote">{c.why.solutionQuote}</p>
               {c.why.solution.map((para) => (
@@ -144,14 +115,15 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      {/* How we work */}
+      {/* How we work — numbered columns */}
       <section
         aria-labelledby="about-work-heading"
         className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
+              layout="split"
               eyebrow={c.partnership.eyebrow}
               headingId="about-work-heading"
               title={c.partnership.title}
@@ -165,32 +137,27 @@ export default async function AboutPage({ params }: Props) {
             className="about-signals"
             stagger={duration.staggerTight}
           >
-            {c.partnership.signals.map((signal, index) => {
-              const Icon = SIGNAL_ICONS[index] ?? Users;
-              return (
-                <RevealItem key={signal.title} as="li" variant="fadeUp">
-                  <article className="about-signal motion-card surface-tile">
-                    <span className="icon-well" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
-                    <h3 className="about-signal__title">{signal.title}</h3>
-                    <p className="about-signal__copy">{signal.description}</p>
-                  </article>
-                </RevealItem>
-              );
-            })}
+            {c.partnership.signals.map((signal) => (
+              <RevealItem key={signal.title} as="li" variant="fadeUp">
+                <article className="about-signal">
+                  <h3 className="about-signal__title">{signal.title}</h3>
+                  <p className="about-signal__copy">{signal.description}</p>
+                </article>
+              </RevealItem>
+            ))}
           </RevealGroup>
         </div>
       </section>
 
-      {/* Method */}
+      {/* Method — vertical spine */}
       <section
         aria-labelledby="about-method-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--standard relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
             <ChapterLead
+              layout="rail"
               eyebrow={c.method.eyebrow}
               headingId="about-method-heading"
               title={c.method.title}
@@ -204,34 +171,29 @@ export default async function AboutPage({ params }: Props) {
             stagger={duration.staggerTight}
             aria-label="KINEXIS method phases"
           >
-            {c.method.phases.map((phase, index) => {
-              const Icon = METHOD_ICONS[index] ?? Search;
-              return (
-                <RevealItem key={phase.title} as="li" variant="fadeUp">
-                  <article className="about-method__step motion-card">
-                    <span className="icon-well" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
-                    <div className="about-method__copy">
-                      <h3 className="about-method__title">{phase.title}</h3>
-                      <p className="about-method__body">{phase.desc}</p>
-                    </div>
-                  </article>
-                </RevealItem>
-              );
-            })}
+            {c.method.phases.map((phase) => (
+              <RevealItem key={phase.title} as="li" variant="fadeUp">
+                <article className="about-method__step">
+                  <div className="about-method__copy">
+                    <h3 className="about-method__title">{phase.title}</h3>
+                    <p className="about-method__body">{phase.desc}</p>
+                  </div>
+                </article>
+              </RevealItem>
+            ))}
           </RevealGroup>
         </div>
       </section>
 
-      {/* Architecture */}
+      {/* Architecture — linked role list */}
       <section
         aria-labelledby="about-arch-heading"
-        className="chapter chapter--void relative overflow-hidden"
+        className="chapter chapter--studio relative overflow-hidden"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
+              layout="split"
               eyebrow={c.architecture.eyebrow}
               headingId="about-arch-heading"
               title={c.architecture.title}
@@ -245,21 +207,15 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch"
             stagger={duration.staggerTight}
           >
-            {c.architecture.nodes.map((node) => {
-              const Icon = ARCH_ICONS[node.id] ?? Search;
-              return (
-                <RevealItem key={node.id} as="li" variant="fadeUp">
-                  <article className="about-arch__node motion-card surface-tile">
-                    <span className="icon-well" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
-                    <p className="about-arch__role">{node.role}</p>
-                    <h3 className="about-arch__title">{node.label}</h3>
-                    <p className="about-arch__copy">{node.summary}</p>
-                  </article>
-                </RevealItem>
-              );
-            })}
+            {c.architecture.nodes.map((node) => (
+              <RevealItem key={node.id} as="li" variant="fadeUp">
+                <article className="about-arch__node">
+                  <p className="about-arch__role">{node.role}</p>
+                  <h3 className="about-arch__title">{node.label}</h3>
+                  <p className="about-arch__copy">{node.summary}</p>
+                </article>
+              </RevealItem>
+            ))}
           </RevealGroup>
 
           <Reveal variant="fadeUp" delay={0.12} className="about-arch__caption">
@@ -268,14 +224,15 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Principles */}
+      {/* Principles — manifesto rows */}
       <section
         aria-labelledby="about-principles-heading"
         className="chapter chapter--studio relative overflow-hidden"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--standard relative">
+          <Reveal variant="rise" when="chapter" className="mb-8 md:mb-10">
             <ChapterLead
+              layout="rail"
               eyebrow={c.principles.eyebrow}
               headingId="about-principles-heading"
               title={c.principles.title}
@@ -288,33 +245,30 @@ export default async function AboutPage({ params }: Props) {
             className="about-principles"
             stagger={duration.staggerTight}
           >
-            {c.principles.items.map((item) => {
-              const Icon = PRINCIPLE_ICONS[item.accent] ?? Target;
-              return (
-                <RevealItem key={item.statement} as="li" variant="fadeUp">
-                  <article className="about-principle motion-card surface-tile">
-                    <span className="icon-well" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
-                    <p className="about-principle__accent">{item.accent}</p>
+            {c.principles.items.map((item) => (
+              <RevealItem key={item.statement} as="li" variant="fadeUp">
+                <article className="about-principle">
+                  <p className="about-principle__accent">{item.accent}</p>
+                  <div className="about-principle__body">
                     <h3 className="about-principle__title">{item.statement}</h3>
                     <p className="about-principle__copy">{item.explanation}</p>
-                  </article>
-                </RevealItem>
-              );
-            })}
+                  </div>
+                </article>
+              </RevealItem>
+            ))}
           </RevealGroup>
         </div>
       </section>
 
-      {/* Roadmap */}
+      {/* Roadmap — keep milestone cards, split mast, tight density */}
       <section
         aria-labelledby="about-roadmap-heading"
         className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell relative py-24 md:py-32 lg:py-40">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
+              layout="split"
               eyebrow={c.roadmap.eyebrow}
               headingId="about-roadmap-heading"
               title={c.roadmap.title}
@@ -336,7 +290,11 @@ export default async function AboutPage({ params }: Props) {
                 >
                   <div className="about-roadmap__meta">
                     <span className="about-roadmap__status">
-                      {statusLabel[locale as Locale][milestone.status as "done" | "now" | "soon"]}
+                      {
+                        labels[
+                          milestone.status as "done" | "now" | "soon"
+                        ]
+                      }
                     </span>
                     <span className="about-roadmap__year">{milestone.year}</span>
                     <h3 className="about-roadmap__title">{milestone.title}</h3>
@@ -355,7 +313,7 @@ export default async function AboutPage({ params }: Props) {
 
       <FaqAccordion items={faqs} />
 
-      <PageCTA title={c.ctaTitle} copy={c.ctaCopy} />
+      <PageCTA layout="minimal" title={c.ctaTitle} copy={c.ctaCopy} />
     </main>
   );
 }

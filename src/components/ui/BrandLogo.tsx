@@ -23,6 +23,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
         width={180}
         height={height}
         decoding="async"
+        fetchPriority="low"
         loading={loading}
         className={cn("dark:hidden", className)}
         style={style}
@@ -34,6 +35,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
         width={180}
         height={height}
         decoding="async"
+        fetchPriority="low"
         loading={loading}
         className={cn("hidden dark:block", className)}
         style={style}

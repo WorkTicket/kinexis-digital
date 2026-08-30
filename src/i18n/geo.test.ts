@@ -69,7 +69,16 @@ describe("resolveRequestLocale", () => {
     expect(resolveRequestLocale(makeRequest({ "cf-ipcountry": "MX" }))).toBe("es-419");
   });
 
-  it("maps legacy es cookie to LatAm Spanish", () => {
+  it("maps legacy es cookie to LatAm Spanish outside Spain", () => {
     expect(getCookieLocale(makeRequest({}, "NEXT_LOCALE=es"))).toBe("es-419");
+    expect(getCookieLocale(makeRequest({ "cf-ipcountry": "MX" }, "NEXT_LOCALE=es"))).toBe(
+      "es-419",
+    );
+  });
+
+  it("maps legacy es cookie in Spain to Spain Spanish", () => {
+    expect(getCookieLocale(makeRequest({ "cf-ipcountry": "ES" }, "NEXT_LOCALE=es"))).toBe(
+      "es-ES",
+    );
   });
 });

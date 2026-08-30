@@ -44,6 +44,18 @@ jobs:
             exit 1
           fi
 
+      - name: Check Google Ads conversion env
+        run: node scripts/check-ads-env.mjs
+        env:
+          NEXT_PUBLIC_GOOGLE_ADS_ID: AW-18409243306
+          NEXT_PUBLIC_GADS_LABEL_LEAD: AtDSCIa1--ccEKqFm8pE
+          NEXT_PUBLIC_GADS_LABEL_AUDIT: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_AUDIT }}
+          NEXT_PUBLIC_GADS_LABEL_LP_WEB_DESIGN: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_LP_WEB_DESIGN }}
+          NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN }}
+          NEXT_PUBLIC_GADS_LABEL_CALL: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_CALL }}
+          NEXT_PUBLIC_GADS_LABEL_BOOKING: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_BOOKING }}
+          NEXT_PUBLIC_BUSINESS_PHONE: ${{ secrets.NEXT_PUBLIC_BUSINESS_PHONE }}
+
       - name: Deploy to Cloudflare Workers
         run: npm run deploy
         env:
@@ -53,6 +65,15 @@ jobs:
           NEXT_PUBLIC_GSC_VERIFICATION: 7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q
           NEXT_PUBLIC_CLARITY_ID: ${{ secrets.NEXT_PUBLIC_CLARITY_ID }}
           NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          # Google tag + primary lead conversion (public IDs; same pattern as GA4).
+          NEXT_PUBLIC_GOOGLE_ADS_ID: AW-18409243306
+          NEXT_PUBLIC_GADS_LABEL_LEAD: AtDSCIa1--ccEKqFm8pE
+          NEXT_PUBLIC_GADS_LABEL_AUDIT: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_AUDIT }}
+          NEXT_PUBLIC_GADS_LABEL_LP_WEB_DESIGN: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_LP_WEB_DESIGN }}
+          NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN }}
+          NEXT_PUBLIC_GADS_LABEL_CALL: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_CALL }}
+          NEXT_PUBLIC_GADS_LABEL_BOOKING: ${{ secrets.NEXT_PUBLIC_GADS_LABEL_BOOKING }}
+          NEXT_PUBLIC_BUSINESS_PHONE: ${{ secrets.NEXT_PUBLIC_BUSINESS_PHONE }}
 
       - name: Submit URLs to IndexNow
         if: success()

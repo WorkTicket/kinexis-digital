@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
+export type ChapterLeadLayout = "stack" | "split" | "rail";
+
 type Props = {
   eyebrow: string;
   title: ReactNode;
@@ -10,6 +12,8 @@ type Props = {
   className?: string;
   headingClassName?: string;
   dekClassName?: string;
+  /** Composition variant — break the default stacked lead metronome. */
+  layout?: ChapterLeadLayout;
 };
 
 export function ChapterLead({
@@ -21,9 +25,16 @@ export function ChapterLead({
   className,
   headingClassName,
   dekClassName,
+  layout = "stack",
 }: Props) {
   return (
-    <header className={cn("chapter-lead", className)}>
+    <header
+      className={cn(
+        "chapter-lead",
+        layout !== "stack" && `chapter-lead--${layout}`,
+        className,
+      )}
+    >
       <p className="section-eyebrow">{eyebrow}</p>
       <h2
         id={headingId}

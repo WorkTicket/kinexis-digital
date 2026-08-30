@@ -1,13 +1,18 @@
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { HeroFilm } from "@/components/home/HeroFilm";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { HeroSignalLine } from "@/components/page/HeroSignalLine";
+import { getHomeResults } from "@/content/home-results";
+import type { Locale } from "@/i18n/routing";
+import { HOME_HERO_POSTER, HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
 
 export async function HomeHero() {
+  const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
   const tCommon = await getTranslations("common");
+  const [featured] = getHomeResults(locale);
 
   return (
     <section
@@ -17,9 +22,18 @@ export async function HomeHero() {
       <link
         rel="preload"
         as="image"
-        href="/assets/video/hero-open-v2-poster-sm.webp"
+        href={HOME_HERO_POSTER}
         type="image/webp"
         fetchPriority="high"
+        media="(max-width: 1023px)"
+      />
+      <link
+        rel="preload"
+        as="image"
+        href={HOME_HERO_POSTER_DESKTOP}
+        type="image/webp"
+        fetchPriority="high"
+        media="(min-width: 1024px)"
       />
       <HeroFilm />
       <div className="hero-film-scrim" aria-hidden />
@@ -37,9 +51,7 @@ export async function HomeHero() {
               className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-6 md:mt-7"
             >
               <span className="hero-line">
-                <span className="hero-line__text">
-                  {t("heroLine")}
-                </span>
+                <span className="hero-line__text">{t("heroLine")}</span>
               </span>
               <HeroSignalLine text={t("heroSignal")} />
             </h1>
@@ -74,6 +86,19 @@ export async function HomeHero() {
                 </Button>
               </div>
             </div>
+
+            {featured ? (
+              <p className="hero-enter hero-enter-5 hero-proof mt-6 max-w-lg text-[0.9375rem] leading-snug text-muted sm:mt-7">
+                <Link
+                  href={`/case-studies/${featured.slug}`}
+                  className="hero-inline-link"
+                >
+                  {featured.client}
+                </Link>
+                {": "}
+                {featured.primaryLift} {featured.headline}
+              </p>
+            ) : null}
           </div>
         </HeroParallax>
       </HeroScrollRoot>

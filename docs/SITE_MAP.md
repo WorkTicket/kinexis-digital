@@ -13,15 +13,15 @@ Live routes, purpose, and how pages are composed. Content lives in TypeScript mo
 
 | Route | Purpose |
 |---|---|
-| `/` | Trust and demand: hero, certifications, clients, services, results, process, FAQ, explore, CTA |
-| `/services` | Five-pillar hub (`#web-design`, `#seo`, `#branding`, `#paid-media`, `#content-marketing`). Legacy `/services/[slug]` 301s here. |
+| `/` | Trust and demand: hero, certifications, services, results, process, FAQ, explore, CTA |
+| `/services` | Five-pillar hub. Flagships also live at `/services/seo`, `/services/paid-media`, `/services/web-design`. |
 | `/industries` | Hub of industry chapters. Standalone pages: `/industries/home-services`, `/industries/ecommerce`. Other slugs 301 to hub anchors. |
 | `/case-studies` | Index of published work |
 | `/case-studies/landscaping-company-growth` | A1 Property Services |
 | `/case-studies/plumbing-company-growth` | Preferred Plumbing |
 | `/case-studies/ecommerce-store-growth` | Manos Creativas (`/case-studies/saas-platform-growth` 301s here) |
-| `/clients` | Partner and brand roster |
-| `/about` | Method, signals, architecture, FAQ |
+| `/about` | Method, operators, signals, architecture, FAQ |
+| `/audit` | Interactive marketing scorecard → `/thank-you/audit` |
 | `/blog` | Featured + recent + topics |
 | `/blog/posts` | Full archive |
 | `/blog/[slug]` | Article (organization-authored) |
@@ -35,7 +35,7 @@ Live routes, purpose, and how pages are composed. Content lives in TypeScript mo
 
 ## Retired URLs (301)
 
-`/pricing`, `/lead-magnet`, `/solutions`, `/locations`, `/team`, `/digital-marketing-agency`, comparison pages, `/services/[slug]` (hub anchors), nested `/industries/:category/:sub`, `/en/*`, `/es/*` prefixes. Bare `/lp` goes to `/contact`; slug LPs stay.
+`/pricing`, `/lead-magnet`, `/solutions`, `/locations`, `/team`, `/clients`, `/digital-marketing-agency`, comparison pages, long-tail `/services/[slug]` (hub anchors; flagships exempt), nested `/industries/:category/:sub`, `/en/*`, `/es/*` prefixes. Bare `/lp` goes to `/contact`; slug LPs stay.
 
 ## Not in sitemap
 

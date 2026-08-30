@@ -3,6 +3,13 @@
  * No-ops when IDs or labels are unset so builds stay green before credentials exist.
  */
 
+import {
+  getGoogleAdsId,
+  getLandingPageConversionLabel,
+  getLeadConversionLabel,
+} from "@/lib/analytics/ads-config";
+import { trackMetaEvent, trackMetaLead } from "@/lib/analytics/meta-pixel";
+
 declare global {
   interface Window {
     dataLayer?: unknown[];
@@ -17,23 +24,18 @@ export type ConversionOptions = {
   phone?: string;
   formType?: LeadFormType;
   serviceInterest?: string;
+  /** Paid lander slug — splits GA/Meta reporting when both pages share an offer. */
+  landingSlug?: string;
   value?: number;
   currency?: string;
 };
 
-function getAdsId(): string | undefined {
-  const id = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
-  return id && id.startsWith("AW-") ? id : undefined;
-}
-
 function getLeadLabel(): string | undefined {
-  const label = process.env.NEXT_PUBLIC_GADS_LABEL_LEAD;
-  return label && label.length > 0 ? label : undefined;
+  return getLeadConversionLabel();
 }
 
-function getAuditLabel(): string | undefined {
-  const label = process.env.NEXT_PUBLIC_GADS_LABEL_AUDIT;
-  return label && label.length > 0 ? label : undefined;
+function getAuditLabel(slug?: string): string | undefined {
+  return getLandingPageConversionLabel(slug);
 }
 
 function getCallLabel(): string | undefined {
@@ -47,13 +49,51 @@ function getBookingLabel(): string | undefined {
 }
 
 function sendTo(label: string): string | undefined {
-  const adsId = getAdsId();
+  const adsId = getGoogleAdsId();
   if (!adsId || !label) return undefined;
   return `${adsId}/${label}`;
 }
 
 function canTrack(): boolean {
   return typeof window !== "undefined" && typeof window.gtag === "function";
+}
+
+function isAdsDebug(): boolean {
+  try {
+    return (
+      typeof window !== "undefined" &&
+      /[?&]_dbg=/.test(window.location?.search ?? "")
+    );
+  } catch {
+    return false;
+  }
+}
+
+function trackClarityConversion(
+  name: string,
+  tags?: Record<string, string>,
+): void {
+  if (typeof window === "undefined") return;
+  const clarity = (
+    window as Window & { clarity?: (...args: unknown[]) => void }
+  ).clarity;
+  if (typeof clarity !== "function") return;
+  if (tags) {
+    for (const [key, value] of Object.entries(tags)) {
+      if (value) clarity("set", key, value);
+    }
+  }
+  clarity("event", name);
+}
+
+function generateLeadParams(options: ConversionOptions): Record<string, unknown> {
+  const payload: Record<string, unknown> = {
+    form_type: options.formType ?? "contact",
+    service_interest: options.serviceInterest ?? "not_specified",
+  };
+  if (options.landingSlug) payload.landing_page = options.landingSlug;
+  if (isAdsDebug()) payload.debug_mode = true;
+  return payload;
 }
 
 /** Normalize email for Enhanced Conversions (lowercase, trim). */
@@ -82,6 +122,12 @@ export function setEnhancedConversionUserData(options: {
   window.gtag!("set", "user_data", userData);
 }
 
+function inferredCurrency(explicit?: string): string | undefined {
+  if (explicit) return explicit;
+  if (typeof document === "undefined") return undefined;
+  return document.documentElement.lang === "es-ES" ? "EUR" : undefined;
+}
+
 /**
  * Fire a Google Ads conversion for a given conversion label.
  * Also emits a GA4 `generate_lead` / custom event when GA is present.
@@ -104,7 +150,8 @@ export function trackConversion(
     send_to: destination,
   };
   if (typeof options.value === "number") payload.value = options.value;
-  if (options.currency) payload.currency = options.currency;
+  const currency = inferredCurrency(options.currency);
+  if (currency) payload.currency = currency;
 
   window.gtag!("event", "conversion", payload);
   return true;
@@ -116,29 +163,58 @@ export function trackLead(options: ConversionOptions = {}): boolean {
   const fired = trackConversion(label, options);
 
   if (canTrack()) {
-    window.gtag!("event", "generate_lead", {
-      form_type: options.formType ?? "contact",
-      service_interest: options.serviceInterest ?? "not_specified",
-    });
+    window.gtag!("event", "generate_lead", generateLeadParams(options));
   }
+
+  trackMetaLead({
+    email: options.email,
+    phone: options.phone,
+    contentName: options.landingSlug ?? options.serviceInterest,
+    contentCategory: options.formType ?? "contact",
+    value: options.value,
+    currency: options.currency,
+  });
+
+  trackClarityConversion(
+    "generate_lead",
+    options.landingSlug ? { landing_page: options.landingSlug } : undefined,
+  );
 
   return fired;
 }
 
 /** Free audit / lead-magnet conversion. */
 export function trackAuditLead(options: ConversionOptions = {}): boolean {
-  const label = getAuditLabel() ?? getLeadLabel();
+  const formType = options.formType ?? "lead-magnet";
+  const serviceInterest = options.serviceInterest ?? "audit";
+  const label = getAuditLabel(options.landingSlug);
   const fired = trackConversion(label, {
     ...options,
-    formType: options.formType ?? "lead-magnet",
+    formType,
+    serviceInterest,
   });
 
   if (canTrack()) {
-    window.gtag!("event", "generate_lead", {
-      form_type: options.formType ?? "lead-magnet",
-      service_interest: options.serviceInterest ?? "audit",
-    });
+    window.gtag!("event", "generate_lead", generateLeadParams({
+      ...options,
+      formType,
+      serviceInterest,
+    }));
   }
+
+  trackMetaLead({
+    email: options.email,
+    phone: options.phone,
+    contentName: options.landingSlug ?? serviceInterest,
+    contentCategory: formType,
+    value: options.value,
+    currency: options.currency,
+  });
+
+  trackClarityConversion(
+    "generate_lead",
+    options.landingSlug ? { landing_page: options.landingSlug } : undefined,
+  );
 
   return fired;
 }
@@ -152,17 +228,26 @@ export function trackCallClick(): boolean {
     window.gtag!("event", "click_to_call", {});
   }
 
+  trackMetaEvent("Contact");
+
   return fired;
 }
 
-/** Booking / calendar click conversion. */
-export function trackBookingClick(): boolean {
+/** Booking / calendar conversion — pass email (and phone) for Enhanced Conversions. */
+export function trackBookingClick(options: ConversionOptions = {}): boolean {
   const label = getBookingLabel() ?? getLeadLabel();
-  const fired = trackConversion(label);
+  const fired = trackConversion(label, options);
 
   if (canTrack()) {
     window.gtag!("event", "book_appointment", {});
   }
+
+  trackMetaEvent("Schedule", {
+    email: options.email,
+    phone: options.phone,
+    contentName: options.serviceInterest,
+    contentCategory: "booking",
+  });
 
   return fired;
 }
@@ -175,7 +260,7 @@ export function getConversionSendTo(
     which === "lead"
       ? getLeadLabel()
       : which === "audit"
-        ? getAuditLabel() ?? getLeadLabel()
+        ? getAuditLabel()
         : which === "call"
           ? getCallLabel()
           : getBookingLabel() ?? getLeadLabel();

@@ -19,7 +19,6 @@
     "work": "Work",
     "homeServices": "Home Services",
     "ecommerce": "E-commerce",
-    "clients": "Clients",
     "about": "About",
     "blog": "Blog",
     "pricing": "Pricing",
@@ -66,7 +65,8 @@
       "toolkitDesc": "17 tools we use daily, grouped by channel."
     },
     "bookCall": "Book a strategy call",
-    "bookCallShort": "Book a call"
+    "bookCallShort": "Book a call",
+    "audit": "Audit"
   },
   "services": {
     "pricing": "Pricing",
@@ -195,23 +195,12 @@
       "ctaCopy": "Bring your bottleneck and current numbers. We'll map a first phase with a clear definition of done.",
       "inlineCtaTitle": "Want results like these?",
       "inlineCtaCopy": "Bring your numbers and the bottleneck. We'll map a first phase with a clear definition of done.",
-      "pictureEyebrow": "The full picture",
-      "pictureTitle": "More brands. More scope.",
-      "pictureDek": "These are the published case studies. Our client roster also spans platforms, fintech, retail, and B2B programs we can describe even when lifts stay under NDA.",
-      "seeRoster": "See client roster",
+      "pictureEyebrow": "The studio",
+      "pictureTitle": "How the work gets done.",
+      "pictureDek": "Published case studies show the mechanism. About covers the roster cap, the reviews, and how channels connect as one system.",
       "indexCtaTitle": "Want results like these?",
-      "indexCtaCopy": "Bring your numbers and the bottleneck. We'll tell you what a first phase should fix, and what it should measure."
-    },
-    "clients": {
-      "eyebrow": "Clients",
-      "title": "Our",
-      "signal": "clients.",
-      "copy": "From Fortune 100 programs to platforms you use every day. Scope we can describe. Lifts we publish when we're allowed to.",
-      "rosterEyebrow": "The roster",
-      "rosterTitle": "Who we've worked with.",
-      "rosterDek": "Direct partnerships with the platforms where our work lives. No reseller middlemen. Every engagement named here had our team in the room, chasing measurable outcomes, not vanity slides.",
-      "ctaTitle": "Want to see your logo here?",
-      "ctaCopy": "Bring your numbers and the bottleneck. We'll tell you what a first phase should fix, and what it should measure."
+      "indexCtaCopy": "Bring your numbers and the bottleneck. We'll tell you what a first phase should fix, and what it should measure.",
+      "seeAbout": "About KINEXIS"
     },
     "resources": {
       "eyebrow": "Resources",
@@ -239,20 +228,20 @@
       "step3Detail": "We schedule a working session to map the plan."
     },
     "thankYouAudit": {
-      "eyebrow": "Audit request",
-      "title": "Audit",
+      "eyebrow": "Review request",
+      "title": "Review",
       "signal": "received.",
-      "copy": "We'll review the scope you selected against live signals from your site or ad accounts, then send a short findings brief within 48 hours.",
+      "copy": "A strategist will open your site or account, mark what's leaking, and send a short written brief within one business day.",
       "nextEyebrow": "What happens next",
       "nextTitle": "Three short steps.",
       "nextDek": "No automated drip. A strategist reads the request and replies with what to fix first.",
       "nextAria": "Next steps",
-      "step1Title": "We confirm scope",
-      "step1Detail": "SEO, paid media, or conversion path — we lock the audit to what you asked for.",
-      "step2Title": "We pull evidence",
-      "step2Detail": "Crawl and index signals, ad account structure, or on-page conversion friction.",
+      "step1Title": "We open what you sent",
+      "step1Detail": "Your URL, Ads account, or SEO scope — we lock the review to the asset you named.",
+      "step2Title": "We mark the leaks",
+      "step2Detail": "Conversion friction, speed, offer clarity, tracking gaps, or search waste — whichever matches the request.",
       "step3Title": "You get the brief",
-      "step3Detail": "Severity-ranked findings: Critical / High / Medium, with what to fix first."
+      "step3Detail": "Plain-language findings and a recommended first fix. Rebuild vs repair when that is the honest call."
     },
     "blog": {
       "title": "Field",
@@ -292,8 +281,8 @@
   "language": {
     "label": "Language",
     "en": "English",
-    "es-ES": "España",
-    "es-419": "LatAm"
+    "es-ES": "Español (España)",
+    "es-419": "Español (LatAm)"
   },
   "theme": {
     "toLight": "Switch to light mode",
@@ -332,10 +321,6 @@
     "ctaTitle": "Let's talk.",
     "ctaCopy": "Thirty minutes on your site, ads, and follow-up. You leave with a clear first fix.",
     "faqTitle": "Common questions.",
-    "clientsEyebrow": "Clients",
-    "clientsTitle": "Brands that stay with us.",
-    "clientsDek": "Operators who needed pipeline they could count on, and a partner who shows up after the kickoff call.",
-    "meetClients": "Meet the clients",
     "programLabel": "Program",
     "viewAllServicesTitle": "View all services",
     "viewAllServicesDek": "The full program on one page: what each lever includes, what changes, and whether it fits.",
@@ -348,66 +333,6 @@
     "resultsOutro": "These three are a sample. The rest of the work follows the same pattern: find where demand dies, rebuild what should catch it, and keep score on what actually moved.",
     "viewAllWork": "View all work",
     "howWeWorkAria": "How we work"
-  },
-  "hero": {
-    "line1": "WE DON'T",
-    "line2": "GENERATE LEADS.",
-    "line3": "WE BUILD",
-    "line3Highlight": "MARKET DOMINANCE.",
-    "subtitle": "The infrastructure that moves qualified traffic toward revenue: technical, creative, and strategic, built as one coordinated program.|Not a list of services. A system."
-  },
-  "revenueEngine": {
-    "label": "The KINEXIS Framework",
-    "title": "Visibility → Traffic → Leads → Revenue",
-    "subtitle": "Four stages. Each one depends on the last. Skip one and the whole thing leaks.",
-    "liveTrajectory": "Live trajectory",
-    "stage": "Stage",
-    "trajectoryPeriod": "7-month trajectory",
-    "metricStart": "Start",
-    "metricCurrent": "Current",
-    "chartStart": "Start",
-    "chartEnd": "Now",
-    "stages": {
-      "visibility": {
-        "label": "Visibility",
-        "description": "Qualified visitors from search, social, and paid channels",
-        "tags": [
-          "SEO",
-          "Paid Ads",
-          "Social"
-        ]
-      },
-      "traffic": {
-        "label": "Traffic",
-        "description": "Pages built to convert, wherever people find you",
-        "tags": [
-          "Landing Pages",
-          "Lead Magnets"
-        ]
-      },
-      "leads": {
-        "label": "Leads",
-        "description": "Frictionless capture and strategic sales conversations",
-        "tags": [
-          "Forms",
-          "Discovery Calls"
-        ]
-      },
-      "revenue": {
-        "label": "Revenue",
-        "description": "Predictable growth in recurring revenue and lifetime value",
-        "tags": [
-          "MRR",
-          "LTV"
-        ]
-      }
-    },
-    "chartUnits": {
-      "visibility": "impressions (K)",
-      "traffic": "sessions (K)",
-      "leads": "leads/mo",
-      "revenue": "$K MRR"
-    }
   },
   "proofStrip": {
     "credibility": "Verified client outcomes from live programs, not projections or vanity metrics.",
@@ -530,10 +455,31 @@
       "goal": "What's your primary goal? (leads, sales, brand growth)"
     },
     "quickReplies": {
-      "services": ["SEO", "Paid Ads", "Web Design", "Funnels", "Branding"],
-      "businessTypes": ["E-Commerce", "Local Service", "SaaS", "Professional Services"],
-      "revenue": ["Under $10k/mo", "$10k-$50k/mo", "$50k-$100k/mo", "$100k+/mo"],
-      "goals": ["More leads", "More sales", "Brand awareness", "All of the above"]
+      "services": [
+        "SEO",
+        "Paid Ads",
+        "Web Design",
+        "Funnels",
+        "Branding"
+      ],
+      "businessTypes": [
+        "E-Commerce",
+        "Local Service",
+        "SaaS",
+        "Professional Services"
+      ],
+      "revenue": [
+        "Under $10k/mo",
+        "$10k-$50k/mo",
+        "$50k-$100k/mo",
+        "$100k+/mo"
+      ],
+      "goals": [
+        "More leads",
+        "More sales",
+        "Brand awareness",
+        "All of the above"
+      ]
     },
     "highIntentResponse": "You sound like a great fit! Let's get you booked for a strategy call. 👇",
     "lowIntentResponse": "Thanks! Start with our free growth audit. It'll give you a clear picture of where to focus. 👇"

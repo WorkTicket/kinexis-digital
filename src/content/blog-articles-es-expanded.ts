@@ -253,6 +253,115 @@ export const blogArticlesEsExpanded = {
 <p>Revisa estos números cada mes. Desplaza presupuesto hacia canales que rinden y aleja de los que no. El playbook funciona cuando te comprometes el tiempo suficiente para ver datos reales.</p>
 <p>Cinco canales. Ejecución constante. Resultados medidos. Así crecen los negocios locales de forma predecible, y es el sistema que construimos para cada cliente en KINEXIS Digital.</p>`,
   },
+  "seo-pricing-guide": {
+    title: "Precios de SEO: ¿Cuánto Deberías Presupuestar para SEO en 2026?",
+    category: "SEO",
+    publishedAt: "14 de julio de 2026",
+    body: `<p>Los precios de SEO son de los temas más opacos del marketing digital. Las agencias cobran entre 500 y 30.000 dólares al mes, y casi nunca queda claro qué separa la opción barata de la premium. Si estás presupuestando SEO, el rango es confuso a propósito.</p>
+<p>En KINEXIS Digital trabajamos con negocios que ya se quemaron con retainers de 500 dólares al mes que no produjeron nada, y con otros que pagaron de más a agencias que no sabían explicar su proceso. Esta guía desglosa qué compras en cada tramo, cómo saber si la inversión es razonable para tu mercado y qué esperar en cada nivel.</p>
+<h2>Los Tres Niveles de Precio</h2>
+<h3>Nivel 1: SEO básico / local (500 a 1.500 dólares al mes)</h3>
+<p>A este precio sueles recibir optimización de Google Business Profile, ajustes on-page básicos, citaciones y quizá un par de artículos al mes. Encaja en negocios locales muy pequeños con poca competencia: un fontanero de un solo local, un restaurante de barrio, un dentista autónomo.</p>
+<p>Lo que no entra: link building serio, auditorías técnicas profundas, investigación competitiva de keywords ni estrategia dedicada. La agencia reparte el tiempo entre muchos clientes y te da un servicio estandarizado.</p>
+<p>Mejor para: mercados locales poco competitivos con un presupuesto de marketing total por debajo de 2.000 dólares al mes. Si eres techador en un pueblo donde el resto no tiene web, este nivel puede funcionar.</p>
+<h3>Nivel 2: SEO profesional (2.000 a 5.000 dólares al mes)</h3>
+<p>Es el punto dulce para la mayoría de negocios de servicios, B2B y tiendas ecommerce en mercados de competencia media. Aquí deberías tener un estratega o account manager dedicado, research de keywords a medida, correcciones técnicas priorizadas por impacto, contenido regular y un programa de enlaces.</p>
+<p>La diferencia con el Nivel 1 es la estrategia. En vez de parches de plantilla, la agencia debería analizar tu mercado, tus competidores y tu sitio para armar un plan concreto. También deberías recibir reporting que conecte el SEO con métricas de negocio, no solo rankings y tráfico.</p>
+<p>En KINEXIS Digital los programas empiezan en este rango. Incluyen auditorías técnicas, keywords de intención de compra, clusters de contenido, on-page y link building. La mayoría de clientes en este nivel ve crecimiento medible de leads en 4 a 6 meses.</p>
+<p>Mejor para: negocios locales en mercados competitivos, empresas de servicios regionales, B2B de 5 a 50 empleados y tiendas con 50 a 500 productos.</p>
+<h3>Nivel 3: SEO enterprise (6.000 a 30.000 dólares o más al mes)</h3>
+<p>El SEO enterprise implica varios estrategas, equipos de contenido, ingenieros técnicos y, a menudo, trabajo conjunto con marketing e ingeniería internos. Este nivel es para sitios grandes (más de 10.000 páginas), marcas nacionales o internacionales e industrias muy competitivas.</p>
+<p>Pagas escala: más contenido (8 a 20 piezas al mes), link building agresivo (PR digital, guest posting a escala), revisiones de arquitectura y reporting a medida.</p>
+<p>Mejor para: ecommerce con más de 1.000 productos, cadenas nacionales, SaaS con ciclo enterprise y cualquier negocio que compita por keywords donde los 10 primeros resultados tienen 500 o más backlinks.</p>
+<h2>Qué Compras Realmente con el Precio</h2>
+<table>
+<tr><th>Servicio</th><th>Nivel 1</th><th>Nivel 2</th><th>Nivel 3</th></tr>
+<tr><td>Auditoría técnica</td><td>Escaneo automático</td><td>Auditoría manual con prioridades</td><td>Crawl completo + apoyo de desarrollo</td></tr>
+<tr><td>Keyword research</td><td>Lista básica</td><td>Research de intención de compra</td><td>Análisis de mercado y huecos de competidores</td></tr>
+<tr><td>Contenido</td><td>2-4 artículos/mes</td><td>4-8 piezas/mes + clusters</td><td>8-20 piezas/mes + assets a medida</td></tr>
+<tr><td>Link building</td><td>Mínimo / automatizado</td><td>Outreach manual, 3-5 enlaces/mes</td><td>PR, PR digital, partnerships</td></tr>
+<tr><td>Reporting</td><td>PDF mensual de rankings</td><td>Dashboard + seguimiento de leads</td><td>Dashboard en tiempo real + pipeline</td></tr>
+</table>
+<h2>Auditoría Puntual vs Inversión Mensual</h2>
+<p>Algunas agencias venden auditorías o proyectos. Una auditoría (1.500 a 5.000 dólares) te da una foto de lo que falla y una lista priorizada. Sirve como punto de partida. Sola no cambia tus rankings.</p>
+<p>El SEO por proyecto (migración, refresco de contenido, limpieza técnica) suele ir de 3.000 a 15.000 dólares según el alcance.</p>
+<p>El SEO de verdad es inversión mensual: publicar, enlazar, vigilar rankings y adaptarse al algoritmo. Si una agencia dice que puede "arreglar tu SEO" en un mes a tanto alzado, te está vendiendo una auditoría con otro nombre.</p>
+<h2>Cómo Saber Si el Precio Es Justo</h2>
+<p>Un precio justo depende de tres cosas: lo que vale un cliente para tu negocio, el nivel de competencia y la calidad del proceso de la agencia.</p>
+<p>Calcula el valor de vida del cliente. Si cierras tratos de 5.000 dólares y el SEO genera 10 clientes nuevos al año a un coste de 36.000 (3.000 al mes), son 50.000 en ingresos frente a 36.000 de gasto. Un 38% de retorno. Si el mismo gasto genera 20 clientes, el ROI salta al 177%.</p>
+<p>Compara con tu coste por lead en otros canales. Si pagas 50 dólares por lead en Google Ads y el SEO produce leads a 25, la inversión se paga en economía unitaria antes de contar el crecimiento compuesto.</p>
+<p>Pide casos en tu sector o en un mercado parecido. Los testimonios genéricos son fáciles. Resultados concretos de un negocio con la misma dinámica, no.</p>
+<h2>Trampas Habituales</h2>
+<p>Desconfía de quien garantiza el nº 1. Nadie puede, Google controla el algoritmo. Desconfía de contratos de más de 6 meses sin condiciones de rendimiento. Desconfía del precio demasiado bueno: 500 dólares al mes de SEO en un mercado competitivo casi siempre es spam automatizado que te puede penalizar.</p>
+<p>Desconfía también de quien reporta solo rankings y tráfico sin ligarlos a leads o ingresos. Un ranking en primera página de una keyword que nadie busca no vale nada.</p>
+<h2>Qué Recomendamos</h2>
+<p>Empieza por saber lo que vale un cliente y lo que puedes invertir al mes. Para la mayoría de negocios, 2.000 a 5.000 dólares al mes es el rango donde el SEO profesional es posible y el ROI se puede medir.</p>
+<p>Comprométete al menos 6 meses. El SEO se acumula. Tres meses casi nunca bastan. Entre seis y nueve es donde coge ritmo. A los doce suele ser tu canal más eficiente.</p>
+<p>Si no sabes por dónde empezar, pide una llamada de estrategia y pregunta: cómo es el proceso, cómo priorizan, qué han conseguido con negocios como el tuyo y cómo miden. La calidad de las respuestas dice más que la cifra.</p>
+<p>En KINEXIS Digital somos claros con lo que entregamos en cada nivel de inversión. <a href="/services#seo">Mira cómo funcionan nuestros programas de SEO →</a></p>`,
+  },
+  "how-long-does-seo-take": {
+    title: "¿Cuánto Tiempo Toma el SEO? Plazos Realistas para Resultados Reales",
+    category: "SEO",
+    publishedAt: "14 de julio de 2026",
+    body: `<p>¿Cuánto tarda el SEO? Si preguntas a una agencia, oirás "cuatro a seis meses." Si preguntas a un dueño que lo probó una vez y lo dejó, oirás "no funcionó." La respuesta real tiene matices, y esos matices importan si estás decidiendo si invertir o cómo fijar expectativas.</p>
+<p>En KINEXIS Digital hemos llevado programas de SEO para decenas de negocios de servicios del hogar, B2B, ecommerce y profesionales. Los plazos cambian con la competencia, el presupuesto y el punto de partida. El patrón es lo bastante estable para darte una hoja de ruta realista.</p>
+<h2>La Respuesta Corta</h2>
+<h3>Correcciones técnicas: 2 a 4 semanas</h3>
+<p>Si el sitio tiene problemas de indexación, errores de crawl o bloqueos técnicos obvios, esas son las piezas más rápidas de arreglar y suelen dar la señal más temprana. Hemos visto clientes pasar de "no indexado" a "página 3" en menos de 30 días solo limpiando lo que impedía a Google encontrar sus mejores páginas.</p>
+<p>Ejemplo: un cliente SaaS B2B tiraba el 40% del crawl budget en URLs filtradas de producto. Tras consolidar duplicados y ajustar robots, las sesiones orgánicas subieron un 31% en 90 días sin contenido nuevo.</p>
+<h3>On-page y contenido: 2 a 4 meses</h3>
+<p>El research de keywords, el contenido y el on-page tardan más en acumularse. Google tiene que encontrar las páginas nuevas, rastrearlas, evaluar relevancia y decidir dónde colocarlas. Una pieza nueva para una keyword poco competitiva puede moverse en 6 a 8 semanas. En términos competitivos, espera 4 a 6 meses antes de ver cambios de ranking de verdad.</p>
+<h3>Link building y autoridad: 6 a 12 meses</h3>
+<p>Es el tramo más largo porque no lo controlas tú. Ganar enlaces de sitios serios pide outreach, relaciones y contenido que merezca el enlace. La autoridad de dominio se acumula despacio. Un sitio nuevo sin backlinks no adelanta en tres meses a un competidor de 10 años con 500 dominios de referencia.</p>
+<p>Eso no hace el link building opcional. Significa que hay que empezar pronto y no parar.</p>
+<h2>Plazos Según el Tipo de Sitio</h2>
+<h3>Web nueva (menos de 1 año)</h3>
+<ul>
+<li>Meses 1 a 3: base técnica, contenido inicial, Google Business Profile si eres local. Google empieza a indexar y quizá ranks para búsquedas de marca.</li>
+<li>Meses 4 a 8: el contenido empieza a componer. Keywords de cola larga aparecen en posiciones 5 a 15. El tráfico orgánico crece despacio pero constante.</li>
+<li>Meses 9 a 18: la autoridad sube con backlinks y más contenido. Los términos competitivos se ponen al alcance. El tráfico acelera.</li>
+</ul>
+<h3>Sitio establecido (2+ años) con problemas de SEO</h3>
+<ul>
+<li>Arreglar lo técnico: 2 a 6 semanas para ver mejoras de indexación.</li>
+<li>Refresco y consolidación de contenido: 4 a 8 semanas para recuperar rankings en páginas ya indexadas.</li>
+<li>Giro completo de SEO: 4 a 9 meses, según lo caído que esté el sitio y lo dura que sea la competencia.</li>
+</ul>
+<h3>Negocio local de servicios</h3>
+<ul>
+<li>Optimización de GBP: 2 a 4 semanas para movimiento en el pack local.</li>
+<li>Limpieza de citaciones y reseñas: 1 a 3 meses para mejorar ranking local.</li>
+<li>Programa local combinado: 3 a 6 meses para ver crecimiento de leads desde orgánico.</li>
+</ul>
+<h2>Qué Afecta la Velocidad</h2>
+<p><strong>Competencia.</strong> Un fontanero en un pueblo rankea "fontanero cerca de mí" más rápido de lo que un SaaS nacional rankea "software de gestión de proyectos." El SEO local se mueve antes porque la superficie competitiva es más pequeña.</p>
+<p><strong>Presupuesto.</strong> Más contenido, más recursos técnicos, más outreach de enlaces. Todo se acumula antes. Un programa de 2.000 dólares al mes tarda más que uno de 8.000. Hay rendimientos decrecientes: duplicar el gasto no recorta el plazo a la mitad.</p>
+<p><strong>Punto de partida.</strong> Un sitio con contenido, algunos backlinks y sin fallos técnicos sale por delante de un dominio nuevo. Si tu web lleva años pero nunca tuvo SEO, tienes activos sobre los que construir.</p>
+<p><strong>Ritmo de contenido.</strong> Publicar 4 piezas al mes da resultados antes que 1. La constancia pesa más que el volumen. Un sitio que publica cada semana durante 12 meses casi siempre gana a uno que suelta 20 posts en un mes y para.</p>
+<h2>Cuándo Esperar Ingresos</h2>
+<p>Tráfico y rankings son hitos, no el objetivo. El impacto en ingresos suele verse así:</p>
+<ul>
+<li>Meses 1 a 3: mejoras de indexación, crawl y rankings de marca y cola larga. La mayoría de leads sigue viniendo de canales que ya tenías.</li>
+<li>Meses 4 a 6: las keywords de cola larga empiezan a producir leads cualificados. El coste por lead orgánico debería ser más bajo que el de pago. El ingreso del SEO se puede medir.</li>
+<li>Meses 7 a 12: las páginas de servicio core ganan tracción. El volumen de leads orgánicos debería crecer mes a mes. El SEO pasa a ser un canal predecible.</li>
+<li>Más de 12 meses: entra el efecto compuesto. El contenido existente rankea para más keywords, los backlinks se acumulan y el orgánico se convierte en una fuente principal de leads.</li>
+</ul>
+<h2>Cómo Se Ve un Crecimiento Realista</h2>
+<p>Seguimos resultados reales en la cartera de clientes. Un crecimiento típico de SEO se parece a esto:</p>
+<ul>
+<li>Mes 0 a 3: 0 a 200 sesiones orgánicas al mes (sitio nuevo).</li>
+<li>Mes 3 a 6: 200 a 800 sesiones orgánicas al mes.</li>
+<li>Mes 6 a 12: 800 a 3.000 sesiones orgánicas al mes.</li>
+<li>Año 2: 3.000 a 10.000+ sesiones orgánicas al mes.</li>
+</ul>
+<p>Los números varían mucho por sector y geografía. Un fontanero local con 500 sesiones al mes puede facturar más que un SaaS B2B con 5.000. El tráfico es contexto. Los leads y los ingresos son lo que cuenta.</p>
+<h2>Cómo Acelerar Sin Atajos</h2>
+<p>No puedes saltarte el SEO, pero sí puedes dejar de frenarlo. No cambies URLs cuando empiezan a rankear. No rediseñes sin preservar redirecciones. No pauses el programa a los tres meses porque aún no estás en primera página.</p>
+<p>Prioriza lo técnico primero (impacto más rápido). Publica con constancia (efecto compuesto). Gana enlaces de sitios relevantes (autoridad). Mide leads e ingresos, no solo rankings.</p>
+<p>El SEO no es una campaña. Es una capacidad que se construye. Los negocios que lo tratan así son los que aparecen primero cuando su cliente ideal busca.</p>
+<p>Si quieres un plazo realista para tu negocio y tu mercado, esa es la conversación que tenemos cada semana en KINEXIS Digital. <a href="/services#seo">Habla con el equipo sobre tu caso →</a></p>`,
+  },
   "email-nurture-sequences-that-book-calls": {
     title: "Secuencias de Email que Realmente Reservan Llamadas",
     category: "Email Marketing",

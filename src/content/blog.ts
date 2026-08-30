@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import { applySpainEuros } from "@/i18n/currency";
 import { localeContent } from "@/i18n/locale-content";
 
 export type BlogPost = {
@@ -777,5 +778,5 @@ export const blogContent = localeContent({
 });
 
 export function getBlogContent(locale: Locale): BlogContent {
-  return blogContent[locale] ?? blogContent.en;
+  return applySpainEuros(blogContent[locale] ?? blogContent.en, locale);
 }
