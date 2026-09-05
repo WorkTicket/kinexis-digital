@@ -11,8 +11,6 @@ import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
 import { getTranslations } from "next-intl/server";
 import { getFaqItems } from "@/content/about";
-import { HOME_HERO_POSTER } from "@/lib/lcp-preload";
-import { preload } from "react-dom";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { schemaLanguage } from "@/i18n/locale-tags";
 import { buildPageMetadata, getSiteUrl } from "@/lib/metadata";
@@ -45,11 +43,6 @@ export default async function Home({ params }: Props) {
   const locale = await resolveLocale(params);
   const t = await getTranslations("home");
   const faqs = getFaqItems(locale);
-  preload(HOME_HERO_POSTER, {
-    as: "image",
-    type: "image/webp",
-    fetchPriority: "high",
-  });
   return (
     <>
       <JsonLd

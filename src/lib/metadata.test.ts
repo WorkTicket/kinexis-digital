@@ -5,6 +5,7 @@ import {
   META_TITLE_PAGE_MAX,
   TITLE_BRAND_SUFFIX,
   buildPageMetadata,
+  getSiteUrl,
   normalizeMetaDescription,
   normalizeMetaTitle,
   stripBrandSuffix,
@@ -97,5 +98,22 @@ describe("buildPageMetadata", () => {
         "Digital marketing for home services and ecommerce. SEO, paid ads, web design, and branding scored on leads and revenue, not vanity metrics. Book a call.",
     });
     expect(meta.title).toEqual({ absolute: title });
+    expect(String(meta.openGraph?.url ?? "")).toBe(getSiteUrl());
+    expect(String(meta.alternates?.canonical)).toBe(getSiteUrl());
+  });
+
+  it("does not reuse the homepage URL for a landing page", () => {
+    const meta = buildPageMetadata({
+      locale: "en",
+      path: "/lp/dallas-website-audit",
+      title: "Get a Website Built to Win More Customers | Dallas",
+      description:
+        "Custom websites for Dallas businesses. New sites and redesigns that look credible, work on mobile, and turn more visitors into customers. Free consultation.",
+      noIndex: true,
+      noFollow: true,
+    });
+    expect(String(meta.openGraph?.url ?? "")).toBe(
+      `${getSiteUrl()}/lp/dallas-website-audit`,
+    );
   });
 });

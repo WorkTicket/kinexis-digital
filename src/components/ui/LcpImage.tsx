@@ -14,6 +14,8 @@ type LcpImageProps = {
   height?: number;
   /** Smaller still for phones — preloaded only on mobile. */
   mobileSrc?: string;
+  /** Already-compressed webp: skip `/_next/image` and lazy-load the file. */
+  direct?: boolean;
 };
 
 /**
@@ -32,6 +34,7 @@ export function LcpImage({
   width = 1200,
   height = 800,
   mobileSrc,
+  direct = false,
 }: LcpImageProps) {
   const imgClassName = cn(
     fill && "absolute inset-0 h-full w-full object-cover",
@@ -72,6 +75,7 @@ export function LcpImage({
         {mobileSrc ? (
           <picture>
             <source media="(min-width: 768px)" srcSet={src} type="image/webp" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={mobileSrc}
               alt={alt}
@@ -95,6 +99,22 @@ export function LcpImage({
           />
         )}
       </>
+    );
+  }
+
+  if (direct) {
+    return (
+      /* eslint-disable-next-line @next/next/no-img-element */
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="lazy"
+        decoding="async"
+        fetchPriority="low"
+        className={imgClassName}
+      />
     );
   }
 

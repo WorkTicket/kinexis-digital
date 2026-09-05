@@ -23,41 +23,35 @@ function getAllowedOrigins(): string[] {
   return ALLOWED_ORIGINS;
 }
 
-export function validateOrigin(request: Request): boolean {
-  const origin = request.headers.get("origin");
-  const referer = request.headers.get("referer");
-
-  if (!origin && !referer) return false;
-
-  const allowed = getAllowedOrigins();
-
-  if (origin) {
-    return allowed.some((allowedOrigin) => {
+function hostnameAllowed(candidate: string): boolean {
+  try {
+    const candidateUrl = new URL(candidate);
+    return getAllowedOrigins().some((allowedOrigin) => {
       try {
-        const originUrl = new URL(origin);
-        const allowedUrl = new URL(allowedOrigin);
-        return originUrl.hostname === allowedUrl.hostname;
+        return candidateUrl.hostname === new URL(allowedOrigin).hostname;
       } catch {
         return false;
       }
     });
+  } catch {
+    return false;
   }
+}
 
-  if (referer) {
-    try {
-      const refererUrl = new URL(referer);
-      return allowed.some((allowedOrigin) => {
-        try {
-          const allowedUrl = new URL(allowedOrigin);
-          return refererUrl.hostname === allowedUrl.hostname;
-        } catch {
-          return false;
-        }
-      });
-    } catch {
-      return false;
-    }
-  }
+function usableOrigin(origin: string | null): string | null {
+  if (!origin || origin === "null") return null;
+  return origin;
+}
+
+export function validateOrigin(request: Request): boolean {
+  const fetchSite = request.headers.get("sec-fetch-site");
+  if (fetchSite === "same-origin" || fetchSite === "same-site") return true;
+
+  const origin = usableOrigin(request.headers.get("origin"));
+  const referer = request.headers.get("referer");
+
+  if (origin) return hostnameAllowed(origin);
+  if (referer) return hostnameAllowed(referer);
 
   return false;
 }

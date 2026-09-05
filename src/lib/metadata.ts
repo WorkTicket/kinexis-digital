@@ -64,7 +64,9 @@ export function buildLocalePath(_locale: Locale, path: string) {
 }
 
 export function buildAbsoluteUrl(locale: Locale, path: string) {
-  return `${getSiteUrl()}${buildLocalePath(locale, path)}`;
+  const localePath = buildLocalePath(locale, path);
+  if (localePath === "/") return getSiteUrl();
+  return `${getSiteUrl()}${localePath}`;
 }
 
 export type PageMetadataInput = {

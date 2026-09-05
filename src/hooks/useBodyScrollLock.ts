@@ -6,26 +6,23 @@ export function useBodyScrollLock(locked: boolean) {
   useEffect(() => {
     if (!locked) return;
 
-    const scrollY = window.scrollY;
-    const scrollbarWidth =
-      window.innerWidth - document.documentElement.clientWidth;
-
-    document.body.style.paddingRight = `${scrollbarWidth}px`;
-    document.body.style.top = `-${scrollY}px`;
-    document.documentElement.style.setProperty(
-      "--scrollbar-compensation",
-      `${scrollbarWidth}px`
+    const { documentElement, body } = document;
+    const scrollbarWidth = Math.max(
+      0,
+      window.innerWidth - documentElement.clientWidth,
     );
-    document.documentElement.classList.add("mobile-menu-open");
-    document.body.classList.add("mobile-menu-open");
+
+    documentElement.style.setProperty(
+      "--scrollbar-compensation",
+      `${scrollbarWidth}px`,
+    );
+    documentElement.classList.add("mobile-menu-open");
+    body.classList.add("mobile-menu-open");
 
     return () => {
-      document.documentElement.classList.remove("mobile-menu-open");
-      document.body.classList.remove("mobile-menu-open");
-      document.body.style.paddingRight = "";
-      document.body.style.top = "";
-      document.documentElement.style.removeProperty("--scrollbar-compensation");
-      window.scrollTo(0, scrollY);
+      documentElement.classList.remove("mobile-menu-open");
+      body.classList.remove("mobile-menu-open");
+      documentElement.style.removeProperty("--scrollbar-compensation");
     };
   }, [locked]);
 }

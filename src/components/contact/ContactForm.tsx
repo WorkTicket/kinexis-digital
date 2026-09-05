@@ -1,13 +1,17 @@
 "use client";
 
 import { useRouter } from "@/i18n/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import type { ContactContent } from "@/content/contact";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import { trackLead } from "@/lib/analytics/events";
-import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
+import {
+  createMetaEventId,
+  stashPendingConversion,
+} from "@/lib/analytics/pending-conversion";
+import { navigateAfterSubmit } from "@/lib/in-app-browser";
 
 type Props = {
   content: ContactContent;
@@ -18,6 +22,7 @@ const THANK_YOU_DELAY_MS = 1200;
 export function ContactForm({ content: c }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
+  const submitLock = useRef(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle",
   );
@@ -42,11 +47,14 @@ export function ContactForm({ content: c }: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitLock.current) return;
+    submitLock.current = true;
     setStatus("submitting");
     setErrorMsg("");
 
     try {
       const attribution = getAttributionPayload();
+      const metaEventId = createMetaEventId("Lead");
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -55,18 +63,13 @@ export function ContactForm({ content: c }: Props) {
           company: formData.company.trim() || undefined,
           phone: formData.phone.trim() || undefined,
           message: formData.message.trim() || undefined,
+          metaEventId,
           ...honeypotPayload,
           ...attribution,
         }),
       });
 
       if (res.ok) {
-        trackLead({
-          email: formData.email,
-          phone: formData.phone.trim() || undefined,
-          formType: "contact",
-          serviceInterest: formData.service || "not_specified",
-        });
         stashPendingConversion({
           type: "lead",
           email: formData.email,
@@ -74,17 +77,28 @@ export function ContactForm({ content: c }: Props) {
           serviceInterest: formData.service || "not_specified",
           formType: "contact",
           conversionAlreadyFired: true,
+          metaEvent: "Lead",
+          metaEventId,
+        });
+        trackLead({
+          email: formData.email,
+          phone: formData.phone.trim() || undefined,
+          formType: "contact",
+          serviceInterest: formData.service || "not_specified",
+          metaEventId,
         });
         setStatus("success");
         window.setTimeout(() => {
-          router.push("/thank-you");
+          navigateAfterSubmit("/thank-you", router);
         }, THANK_YOU_DELAY_MS);
       } else {
+        submitLock.current = false;
         const data = await res.json().catch(() => ({}));
         setErrorMsg(data.error || c.errorMessage);
         setStatus("error");
       }
     } catch {
+      submitLock.current = false;
       setErrorMsg(c.errorMessage);
       setStatus("error");
     }

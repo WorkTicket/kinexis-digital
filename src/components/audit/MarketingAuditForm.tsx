@@ -1,11 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import { trackAuditLead } from "@/lib/analytics/events";
-import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
+import {
+  createMetaEventId,
+  stashPendingConversion,
+} from "@/lib/analytics/pending-conversion";
+import { navigateAfterSubmit } from "@/lib/in-app-browser";
 import { useRouter } from "@/i18n/navigation";
 import {
   AUDIT_MAX_SCORE,
@@ -21,6 +25,7 @@ type Props = {
 export function MarketingAuditForm({ content }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
+  const submitLock = useRef(false);
   const [started, setStarted] = useState(false);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, number>>({});
@@ -50,6 +55,8 @@ export function MarketingAuditForm({ content }: Props) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!complete || !band) return;
+    if (submitLock.current) return;
+    submitLock.current = true;
     setStatus("submitting");
     setErrorMsg("");
 
@@ -74,16 +81,12 @@ export function MarketingAuditForm({ content }: Props) {
       });
 
       if (!res.ok) {
+        submitLock.current = false;
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
 
-      trackAuditLead({
-        email,
-        phone: phone.trim() || undefined,
-        formType: "lead-magnet",
-        serviceInterest: "Marketing scorecard",
-      });
+      const metaEventId = createMetaEventId("Lead");
       stashPendingConversion({
         type: "audit",
         email,
@@ -91,9 +94,19 @@ export function MarketingAuditForm({ content }: Props) {
         serviceInterest: "Marketing scorecard",
         formType: "lead-magnet",
         conversionAlreadyFired: true,
+        metaEvent: "Lead",
+        metaEventId,
       });
-      router.push("/thank-you/audit");
+      trackAuditLead({
+        email,
+        phone: phone.trim() || undefined,
+        formType: "lead-magnet",
+        serviceInterest: "Marketing scorecard",
+        metaEventId,
+      });
+      navigateAfterSubmit("/thank-you/audit", router);
     } catch (err) {
+      submitLock.current = false;
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
     }

@@ -1,18 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { HOME_HERO_POSTER, HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
+import { HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
 import { scheduleIdleOrScroll } from "@/lib/schedule-idle-or-scroll";
 
-const POSTER_LCP = HOME_HERO_POSTER;
 const POSTER_DESKTOP = HOME_HERO_POSTER_DESKTOP;
 const SRC_WEBM = "/assets/video/hero-open-v2-sm.webm?v=20260816";
 const SRC_MP4 = "/assets/video/hero-open-v2-sm.mp4?v=20260816";
+const TRANSPARENT_PIXEL =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
 function shouldLoadVideo(): boolean {
   if (typeof window === "undefined") return false;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
-  // Mobile lab + real devices: poster is LCP; a multi-MB video fights first paint.
+  // Mobile lab + real devices: poster is not LCP; a multi-MB video fights first paint.
   if (window.matchMedia("(max-width: 1023px)").matches) return false;
   const connection = (
     navigator as Navigator & {
@@ -71,14 +72,14 @@ export function HeroFilm() {
           srcSet={POSTER_DESKTOP}
           type="image/webp"
         />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
+        {/* Transparent fallback so mobile never downloads the desktop film still. */}
         <img
-          src={POSTER_LCP}
+          src={TRANSPARENT_PIXEL}
           alt=""
-          width={768}
-          height={432}
+          width={1920}
+          height={1080}
+          decoding="async"
           fetchPriority="high"
-          decoding="sync"
           className="hero-film-media"
         />
       </picture>
@@ -97,8 +98,6 @@ export function HeroFilm() {
           <source src={SRC_WEBM} type="video/webm" />
         </video>
       ) : null}
-
-      <div className="hero-atmosphere__fade" />
     </div>
   );
 }

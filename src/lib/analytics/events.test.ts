@@ -198,6 +198,54 @@ describe("analytics events", () => {
       send_to: "AW-123456789/BookLabel",
     });
   });
+
+  it("trackBookingClick fires a Meta Schedule event", async () => {
+    vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
+    vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_BOOKING", "BookLabel");
+    vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
+    const gtag = vi.fn();
+    const fbq = vi.fn();
+    vi.stubGlobal("window", { gtag, fbq });
+
+    const { trackBookingClick } = await import("@/lib/analytics/events");
+    expect(trackBookingClick({ email: "book@example.com" })).toBe(true);
+    expect(fbq).toHaveBeenCalledWith("track", "Schedule", {
+      content_category: "booking",
+    });
+  });
+
+  it("trackPurchase fires Meta Purchase with USD", async () => {
+    vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
+    const fbq = vi.fn();
+    const store = new Map<string, string>();
+    vi.stubGlobal("window", {
+      fbq,
+      sessionStorage: {
+        getItem: (k: string) => store.get(k) ?? null,
+        setItem: (k: string, v: string) => {
+          store.set(k, v);
+        },
+        removeItem: (k: string) => {
+          store.delete(k);
+        },
+      },
+    });
+
+    const { trackPurchase } = await import("@/lib/analytics/events");
+    expect(trackPurchase({ value: 1500, email: "pay@example.com" })).toBe(true);
+    expect(fbq).toHaveBeenCalledWith("init", "2080705549212381", {
+      em: "pay@example.com",
+    });
+    expect(fbq).toHaveBeenCalledWith(
+      "track",
+      "Purchase",
+      {
+        value: 1500,
+        currency: "USD",
+      },
+      expect.objectContaining({ eventID: expect.stringMatching(/^Purchase\./) }),
+    );
+  });
 });
 
 describe("pending conversion stash", () => {
@@ -252,5 +300,33 @@ describe("pending conversion stash", () => {
     });
 
     expect(consumePendingConversion("lead")).toBeNull();
+  });
+
+  it("peeks without consuming and claims a Meta event id once", async () => {
+    const {
+      stashPendingConversion,
+      peekPendingConversion,
+      consumePendingConversion,
+      claimMetaEventFire,
+      createMetaEventId,
+      resolveMetaConversionEvent,
+    } = await import("@/lib/analytics/pending-conversion");
+
+    const metaEventId = createMetaEventId("Schedule");
+    stashPendingConversion({
+      type: "booking",
+      email: "book@example.com",
+      metaEvent: "Schedule",
+      metaEventId,
+    });
+
+    const peeked = peekPendingConversion();
+    expect(peeked?.type).toBe("booking");
+    expect(resolveMetaConversionEvent(peeked!)).toBe("Schedule");
+    expect(peekPendingConversion()?.email).toBe("book@example.com");
+    expect(consumePendingConversion("booking")?.metaEventId).toBe(metaEventId);
+
+    expect(claimMetaEventFire(metaEventId)).toBe(true);
+    expect(claimMetaEventFire(metaEventId)).toBe(false);
   });
 });

@@ -69,10 +69,9 @@ const nextConfig = {
     // Tree-shake these large packages at the module graph level so only
     // the specific named exports used per-page are included in each chunk.
     optimizePackageImports: ["lucide-react", "framer-motion", "@sentry/nextjs", "ogl"],
-    // Small HTML + parallel CSS helped image-LCP pages; text-LCP pages (contact,
-    // services) lost the inlined-CSS RTT win. Keep inlining; homepage LCP is now
-    // the H1 (film img is display:none on mobile).
-    inlineCss: true,
+    // External CSS + inlined critical CSS (layout) + async rest (gtag-wrapper).
+    // Inlining the full bundle made HTML huge and delayed image-LCP discovery.
+    inlineCss: false,
   },
 
   webpack(config, { dev, isServer }) {
@@ -160,7 +159,12 @@ const nextConfig = {
       {
         source: "/assets/:path*",
         headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          {
+            key: "Cache-Control",
+            value: isDev
+              ? "no-store, must-revalidate"
+              : "public, max-age=31536000, immutable",
+          },
         ],
       },
       {

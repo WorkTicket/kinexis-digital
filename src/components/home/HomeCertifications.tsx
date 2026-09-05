@@ -21,25 +21,42 @@ const partners = [
   { name: "TikTok Ads Partner", Icon: TikTokLogo },
 ] as const;
 
-function TickerItem({ name, Icon }: (typeof partners)[number]) {
+function TickerItem({
+  name,
+  Icon,
+  maskSuffix,
+}: (typeof partners)[number] & { maskSuffix: string }) {
   return (
     <li className="partner-ticker__item">
       <span className="partner-ticker__mark-slot" aria-hidden>
-        <Icon className="partner-ticker__mark" />
+        <Icon
+          className="partner-ticker__mark"
+          maskId={name.startsWith("Google Ads") ? `google-g-${maskSuffix}` : undefined}
+        />
       </span>
       <span className="partner-ticker__label">{name}</span>
     </li>
   );
 }
 
-function TickerTrack({ ariaHidden }: { ariaHidden?: boolean }) {
+function TickerTrack({
+  ariaHidden,
+  maskSuffix,
+}: {
+  ariaHidden?: boolean;
+  maskSuffix: string;
+}) {
   return (
     <ul
       className="partner-ticker__track"
       aria-hidden={ariaHidden || undefined}
     >
       {partners.map((partner) => (
-        <TickerItem key={partner.name} {...partner} />
+        <TickerItem
+          key={partner.name}
+          {...partner}
+          maskSuffix={maskSuffix}
+        />
       ))}
     </ul>
   );
@@ -61,8 +78,8 @@ export async function HomeCertifications() {
 
         <div className="partner-ticker" role="presentation">
           <div className="partner-ticker__viewport">
-            <TickerTrack />
-            <TickerTrack ariaHidden />
+            <TickerTrack maskSuffix="a" />
+            <TickerTrack ariaHidden maskSuffix="b" />
           </div>
         </div>
       </div>

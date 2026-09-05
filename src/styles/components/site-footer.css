@@ -1,70 +1,18 @@
-/* Site footer — editorial chrome, brand-forward, quiet CTA */
+/* Site footer — flat paper, type-led, no glass or wash */
 
 .site-footer {
   position: relative;
   isolation: isolate;
   overflow: clip;
   margin-top: auto;
-  border-top: none;
-}
-
-.site-footer.chrome-glass {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, #000000 3%, transparent) 0%,
-      color-mix(in oklab, #000000 1.4%, transparent) 35%,
-      transparent 70%
-    ),
-    var(--chrome-glass);
-}
-
-html[data-theme="dark"] .site-footer.chrome-glass,
-.dark .site-footer.chrome-glass {
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, #ffffff 3.5%, transparent) 0%,
-      color-mix(in oklab, #ffffff 1.6%, transparent) 35%,
-      transparent 70%
-    ),
-    var(--chrome-glass);
-}
-
-.site-footer__signal {
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in oklab, #000000 55%, transparent) 22%,
-    #000000 50%,
-    color-mix(in oklab, #000000 55%, transparent) 78%,
-    transparent 100%
-  );
-  opacity: 0.55;
-  pointer-events: none;
-}
-
-html[data-theme="dark"] .site-footer__signal,
-.dark .site-footer__signal {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in oklab, #ffffff 55%, transparent) 22%,
-    #ffffff 50%,
-    color-mix(in oklab, #ffffff 55%, transparent) 78%,
-    transparent 100%
-  );
-  opacity: 0.85;
+  background: var(--background);
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
 }
 
 .site-footer__mark {
   position: absolute;
   inset-inline: 0;
-  bottom: -0.12em;
+  bottom: -0.08em;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
@@ -75,16 +23,12 @@ html[data-theme="dark"] .site-footer__signal,
   display: block;
   padding-inline: max(1rem, env(safe-area-inset-left, 0px));
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(4.5rem, 18vw, 11rem);
+  font-size: clamp(5rem, 20vw, 12rem);
   font-weight: 700;
-  line-height: 0.82;
-  letter-spacing: -0.06em;
-  color: color-mix(in oklab, var(--foreground) 4.5%, transparent);
+  line-height: 0.8;
+  letter-spacing: -0.065em;
+  color: color-mix(in oklab, var(--foreground) 8%, transparent);
   white-space: nowrap;
-}
-
-html[data-theme="dark"] .site-footer__mark-text {
-  color: color-mix(in oklab, var(--foreground) 5.5%, transparent);
 }
 
 .site-footer__inner {
@@ -92,16 +36,15 @@ html[data-theme="dark"] .site-footer__mark-text {
   z-index: 1;
 }
 
-/* Quiet closing strip — not a full-glow page CTA */
 .site-footer__cta {
-  border-bottom: none;
+  border-bottom: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
 }
 
 .site-footer__cta-row {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  padding-block: 2rem;
+  gap: 1.35rem;
+  padding-block: 2.5rem;
 }
 
 @media (min-width: 768px) {
@@ -109,8 +52,8 @@ html[data-theme="dark"] .site-footer__mark-text {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
-    padding-block: 2.25rem;
+    gap: 2.5rem;
+    padding-block: 3rem;
     text-align: left;
   }
 }
@@ -173,7 +116,7 @@ html[data-theme="dark"] .site-footer__mark-text {
 .site-footer__cta-title {
   margin: 0.55rem 0 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.45rem, 2.8vw, 2rem);
+  font-size: clamp(1.55rem, 3vw, 2.15rem);
   font-weight: 700;
   line-height: 1.12;
   letter-spacing: -0.035em;
@@ -188,14 +131,13 @@ html[data-theme="dark"] .site-footer__mark-text {
   color: var(--muted);
 }
 
-/* Main navigation grid */
 .site-footer__main {
-  padding-block: 3rem 2.75rem;
+  padding-block: 3.25rem 3rem;
 }
 
 @media (min-width: 768px) {
   .site-footer__main {
-    padding-block: 3.5rem 3rem;
+    padding-block: 4rem 3.25rem;
   }
 }
 
@@ -264,16 +206,20 @@ html[data-theme="dark"] .site-footer__mark-text {
   transition: opacity 0.2s ease;
 }
 
+.site-footer__email[href^="tel:"] {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}
+
 .site-footer__email:hover {
   opacity: 0.72;
 }
 
 .site-footer__email-dot {
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.35rem;
+  height: 0.35rem;
   border-radius: 999px;
   background: var(--accent);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 22%, transparent);
   flex-shrink: 0;
 }
 
@@ -335,16 +281,15 @@ html[data-theme="dark"] .site-footer__mark-text {
   color: var(--accent);
 }
 
-/* Bottom bar */
 .site-footer__bar {
-  border-top: none;
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
 }
 
 .site-footer__bar-row {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  padding-block: 1.15rem 1.35rem;
+  padding-block: 1.25rem 1.5rem;
 }
 
 @media (min-width: 640px) {

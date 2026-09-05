@@ -90,9 +90,15 @@ export async function ThankYouView({
 
           <Reveal variant="fadeUp" delay={0.2} when="chapter">
             <div className="mt-12 flex flex-col gap-3 sm:mt-16 sm:flex-row sm:items-center">
-              <Button href="/" size="lg" arrow>
-                {tCommon("backToHome")}
-              </Button>
+              {namespace === "pages.thankYouAudit" ? (
+                <Button href="/contact" size="lg" arrow>
+                  {tCommon("bookCall")}
+                </Button>
+              ) : (
+                <Button href="/" size="lg" arrow>
+                  {tCommon("backToHome")}
+                </Button>
+              )}
               <Button href="/case-studies" variant="link" arrow>
                 {tCommon("seeTheWork")}
               </Button>

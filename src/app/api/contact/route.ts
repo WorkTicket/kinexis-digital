@@ -13,6 +13,7 @@ import {
   attributionTextLines,
   sanitizeAttributionFromBody,
 } from "@/lib/analytics/click-ids";
+import { sendMetaCapiEvent } from "@/lib/analytics/meta-capi";
 
 export async function POST(request: Request) {
   try {
@@ -32,7 +33,7 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json();
-    const { name, email, company, phone, service, message, _hp, _ts } = body;
+    const { name, email, company, phone, service, message, metaEventId, _hp, _ts } = body;
     const attribution = sanitizeAttributionFromBody(body);
 
     const honeypot = validateHoneypot(
@@ -124,6 +125,21 @@ export async function POST(request: Request) {
         attribution,
       });
     }
+
+    await sendMetaCapiEvent({
+      eventName: "Lead",
+      eventId: typeof metaEventId === "string" ? metaEventId : undefined,
+      email: safeEmail,
+      phone: phone ? String(phone) : undefined,
+      fbp: attribution.fbp,
+      fbc: attribution.fbc,
+      fbclid: attribution.fbclid,
+      clientIp: ip,
+      userAgent: request.headers.get("user-agent") ?? undefined,
+      eventSourceUrl: attribution.landing_page,
+      contentName: service ? String(service) : "contact",
+      contentCategory: "contact",
+    });
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {

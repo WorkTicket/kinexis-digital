@@ -1,4 +1,5 @@
 import { SitePreview } from "@/components/home/SitePreview";
+import { EditorialStill } from "@/components/landing/EditorialStill";
 import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { DeviceFrame } from "@/components/ui/DeviceFrame";
@@ -77,13 +78,22 @@ export function LandingWorkSamples({
                     from={flipped ? "right" : "left"}
                     delay={0.04}
                   >
-                    <DeviceFrame className="result-row__media">
-                      <SitePreview
+                    {sample.framed === false ? (
+                      <EditorialStill
+                        className="result-row__media"
                         image={sample.image}
                         imageAlt={sample.imageAlt}
                         sizes="(max-width: 768px) 100vw, 52vw"
                       />
-                    </DeviceFrame>
+                    ) : (
+                      <DeviceFrame className="result-row__media">
+                        <SitePreview
+                          image={sample.image}
+                          imageAlt={sample.imageAlt}
+                          sizes="(max-width: 768px) 100vw, 52vw"
+                        />
+                      </DeviceFrame>
+                    )}
                   </MediaReveal>
 
                   <Reveal

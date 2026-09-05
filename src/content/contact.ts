@@ -32,6 +32,8 @@ export type ContactContent = {
   heroSignal: string;
   heroEyebrow: string;
   emailEyebrow: string;
+  phoneEyebrow: string;
+  phoneHint: string;
   optionsAria: string;
   heroSubtitle: string;
   formTitle: string;
@@ -78,6 +80,8 @@ export const contactContentI18n = localeContent({
     heroSignal: "talk.",
     heroEyebrow: "Contact",
     emailEyebrow: "Email",
+    phoneEyebrow: "Phone",
+    phoneHint: "Ask for a strategy call.",
     optionsAria: "Contact options",
     heroSubtitle:
       "Book a call or send a short message. You'll hear back within one business day with a straight read on fit and next steps.",
@@ -161,6 +165,8 @@ export const contactContentI18n = localeContent({
     heroSignal: "hablar.",
     heroEyebrow: "Contacto",
     emailEyebrow: "Correo",
+    phoneEyebrow: "Teléfono",
+    phoneHint: "Pide una llamada de estrategia.",
     optionsAria: "Opciones de contacto",
     heroSubtitle:
       "Agenda una llamada o envíanos un mensaje breve. Te respondemos en un día hábil con una evaluación directa de si encajamos y cuáles serían los siguientes pasos.",
@@ -244,6 +250,8 @@ export const contactContentI18n = localeContent({
     heroSignal: "hablar.",
     heroEyebrow: "Contacto",
     emailEyebrow: "Correo",
+    phoneEyebrow: "Teléfono",
+    phoneHint: "Pide una llamada de estrategia.",
     optionsAria: "Opciones de contacto",
     heroSubtitle:
       "Reserva una llamada o envíanos un mensaje breve. Te respondemos en un día laborable con una evaluación directa de si encajamos y cuáles serían los siguientes pasos.",

@@ -16,7 +16,7 @@ The Google tag (`AW-18409243306`) starts downloading from the first inline `<hea
 - Contact form: name, email, company, phone, service, message
 - Strategy-call booking fires booking conversion on submit **with email** for Enhanced Conversions
 - Slim chrome + mobile sticky CTA on landers (offset above cookie banner while pending)
-- Click-to-call tracking when `NEXT_PUBLIC_BUSINESS_PHONE` is set
+- Click-to-call tracking when `NEXT_PUBLIC_BUSINESS_PHONE` is set (defaults to `+13075003371`)
 
 ## 1. Create conversion actions in Google Ads
 
@@ -58,7 +58,7 @@ NEXT_PUBLIC_GADS_LABEL_LP_WEB_DESIGN=xxxxxxxx
 NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN=xxxxxxxx
 NEXT_PUBLIC_GADS_LABEL_CALL=xxxxxxxx   # only if publishing a phone number
 NEXT_PUBLIC_GADS_LABEL_BOOKING=xxxxxxxx
-NEXT_PUBLIC_BUSINESS_PHONE=+1XXXXXXXXXX  # optional — enables call CTAs + schema telephone
+NEXT_PUBLIC_BUSINESS_PHONE=+13075003371
 ```
 
 Redeploy after setting `NEXT_PUBLIC_*` values so they are baked into the client bundle.

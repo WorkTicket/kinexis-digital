@@ -1,6 +1,4 @@
-"use client";
-
-import { useId, type SVGProps } from "react";
+import { type SVGProps } from "react";
 import {
   siGoogleanalytics,
   siHubspot,
@@ -9,12 +7,13 @@ import {
   siTiktok,
 } from "simple-icons";
 
-type IconProps = SVGProps<SVGSVGElement>;
+type IconProps = SVGProps<SVGSVGElement> & { maskId?: string };
 
 function BrandIcon({
   path,
   title,
   viewBox = "0 0 24 24",
+  maskId: _maskId,
   ...props
 }: IconProps & { path: string; title: string; viewBox?: string }) {
   return (
@@ -36,8 +35,8 @@ function BrandIcon({
  * Paths define a mask (with a slight merge stroke) so the visible
  * fill is one unbroken color — no segment seams.
  */
-export function GoogleAdsLogo(props: IconProps) {
-  const maskId = `google-g-${useId().replace(/:/g, "")}`;
+export function GoogleAdsLogo({ maskId = "google-g", ...props }: IconProps) {
+  const id = maskId.replace(/[^a-zA-Z0-9_-]/g, "");
 
   return (
     <svg
@@ -50,7 +49,7 @@ export function GoogleAdsLogo(props: IconProps) {
       <title>Google Ads</title>
       <defs>
         <mask
-          id={maskId}
+          id={id}
           maskUnits="userSpaceOnUse"
           x="0"
           y="0"
@@ -76,7 +75,7 @@ export function GoogleAdsLogo(props: IconProps) {
         width="24"
         height="24"
         fill="currentColor"
-        mask={`url(#${maskId})`}
+        mask={`url(#${id})`}
       />
     </svg>
   );

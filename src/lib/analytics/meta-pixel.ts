@@ -1,23 +1,41 @@
 /**
  * Meta Pixel (Facebook) base tag + standard-event helpers.
  * Mirrors the Google tag pattern: production ID fallback, no-op when unset.
+ *
+ * Conversion events (Lead / Schedule / Purchase) are fired only after a
+ * confirmed success, then suppressed by metaEventId so submit, thank-you,
+ * and refresh cannot double-count. ViewContent is owned elsewhere — do not
+ * add it here. Search is omitted because the site has no internal search.
  */
 
 import { getMetaPixelId } from "@/lib/analytics/ads-config";
-import { PENDING_CONVERSION_KEY } from "@/lib/analytics/pending-conversion";
+import { READ_STORED_CONSENT_JS } from "@/lib/analytics/consent";
+import {
+  claimMetaEventFire,
+  HAS_META_FIRED_JS,
+  MARK_META_FIRED_JS,
+  peekPendingConversion,
+  READ_PENDING_CONVERSION_JS,
+  resolveMetaConversionEvent,
+  type PendingConversion,
+} from "@/lib/analytics/pending-conversion";
 
 const PIXEL_ID_PATTERN = /^\d{5,20}$/;
 
-export type MetaStandardEvent = "PageView" | "Lead" | "Contact" | "Schedule";
+export type MetaStandardEvent = "PageView" | "Lead" | "Contact" | "Schedule" | "Purchase";
 
-export type MetaLeadOptions = {
+export type MetaEventOptions = {
   email?: string;
   phone?: string;
   contentName?: string;
   contentCategory?: string;
   value?: number;
   currency?: string;
+  eventId?: string;
 };
+
+/** @deprecated Use MetaEventOptions. */
+export type MetaLeadOptions = MetaEventOptions;
 
 declare global {
   interface Window {
@@ -62,7 +80,7 @@ export function buildMetaPixelInitScript(
   return [
     "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');",
     `fbq('consent','${defaultConsent}');`,
-    "try{var c=localStorage.getItem('kinexis-cookie-consent');if(c==='rejected')fbq('consent','revoke');else if(c==='accepted')fbq('consent','grant');}catch(e){}",
+    `try{var c=${READ_STORED_CONSENT_JS};if(c==='rejected')fbq('consent','revoke');else if(c==='accepted')fbq('consent','grant');}catch(e){}`,
     `fbq('init','${id}');`,
     "fbq('track','PageView');",
   ].join("");
@@ -78,15 +96,17 @@ export function buildEarlyMetaPixelHtml(
 ): string {
   const init = buildMetaPixelInitScript(pixelId, options);
   if (!init) return "";
-  const lead = buildMetaLeadSnippet(pixelId);
-  return `<script>${init}</script>${lead ? `<script>${lead}</script>` : ""}`;
+  const conversion = buildMetaConversionSnippet(pixelId);
+  return `<script>${init}</script>${conversion ? `<script>${conversion}</script>` : ""}`;
 }
 
 /**
- * Page-load Lead event on /thank-you, with Advanced Matching from the
- * pending-conversion stash. Skips when the form already fired Lead.
+ * Confirmation-page Pixel events for Lead / Schedule / Purchase.
+ * Lives in <head> so Events Manager can see the standard event names, but
+ * only fires on /thank-you when a pending confirmed conversion exists and
+ * has not already been claimed. Direct visits and refreshes no-op.
  */
-export function buildMetaLeadSnippet(pixelId?: string): string {
+export function buildMetaConversionSnippet(pixelId?: string): string {
   const id = validPixelId(pixelId);
   if (!id) return "";
 
@@ -95,23 +115,41 @@ export function buildMetaLeadSnippet(pixelId?: string): string {
     "if(typeof fbq!=='function')return;",
     "if(!/(^|\\/)thank-you(\\/|$)/.test(location.pathname))return;",
     "try{",
-    "var c=localStorage.getItem('kinexis-cookie-consent');",
+    `var c=${READ_STORED_CONSENT_JS};`,
     "if(c==='rejected'){fbq('consent','revoke');return;}",
     "if(c==='accepted')fbq('consent','grant');",
-    `var raw=sessionStorage.getItem('${PENDING_CONVERSION_KEY}');`,
-    "if(raw){",
+    `var raw=${READ_PENDING_CONVERSION_JS};`,
+    "if(!raw)return;",
     "var p=JSON.parse(raw);",
-    "if(p&&p.conversionAlreadyFired&&!/[?&]_dbg=/.test(location.search))return;",
-    "if(p&&p.email){",
+    "if(!p||!p.type)return;",
+    "var event=p.metaEvent||(p.type==='booking'?'Schedule':p.type==='purchase'?'Purchase':'Lead');",
+    "if(event!=='Lead'&&event!=='Schedule'&&event!=='Purchase')return;",
+    "var eid=p.metaEventId?String(p.metaEventId):'';",
+    `if(eid&&${HAS_META_FIRED_JS}(eid))return;`,
+    "if(!eid&&p.conversionAlreadyFired&&!/[?&]_dbg=/.test(location.search))return;",
+    "if(p.email){",
     "var ud={em:String(p.email).trim().toLowerCase()};",
     "if(p.phone){var ph=String(p.phone).replace(/[^\\d+]/g,'');if(ph)ud.ph=ph;}",
     `fbq('init','${id}',ud);`,
     "}",
+    "var opts=eid?{eventID:eid}:undefined;",
+    "if(event==='Purchase'){",
+    "if(typeof p.purchaseValue!=='number'||!(p.purchaseValue>0))return;",
+    "fbq('track','Purchase',{value:p.purchaseValue,currency:p.purchaseCurrency||'USD'},opts||{});",
+    "}else if(event==='Schedule'){",
+    "opts?fbq('track','Schedule',{},opts):fbq('track','Schedule');",
+    "}else{",
+    "opts?fbq('track','Lead',{},opts):fbq('track','Lead');",
     "}",
+    `if(eid)${MARK_META_FIRED_JS}(eid);`,
     "}catch(e){}",
-    "fbq('track','Lead');",
     "})();",
   ].join("");
+}
+
+/** @deprecated Use buildMetaConversionSnippet. */
+export function buildMetaLeadSnippet(pixelId?: string): string {
+  return buildMetaConversionSnippet(pixelId);
 }
 
 export function updateMetaPixelConsent(granted: boolean): void {
@@ -119,7 +157,7 @@ export function updateMetaPixelConsent(granted: boolean): void {
   window.fbq!("consent", granted ? "grant" : "revoke");
 }
 
-function advancedMatching(options: MetaLeadOptions): Record<string, string> {
+function advancedMatching(options: MetaEventOptions): Record<string, string> {
   const userData: Record<string, string> = {};
   if (options.email) {
     userData.em = options.email.trim().toLowerCase();
@@ -131,14 +169,15 @@ function advancedMatching(options: MetaLeadOptions): Record<string, string> {
   return userData;
 }
 
-/** Re-init with Advanced Matching, then fire a standard event. */
+/** Re-init with Advanced Matching, then fire a standard event once per eventId. */
 export function trackMetaEvent(
   event: MetaStandardEvent,
-  options: MetaLeadOptions = {},
+  options: MetaEventOptions = {},
 ): boolean {
   if (!canTrackMeta()) return false;
   const pixelId = getMetaPixelId();
   if (!pixelId) return false;
+  if (options.eventId && !claimMetaEventFire(options.eventId)) return false;
 
   const userData = advancedMatching(options);
   if (Object.keys(userData).length > 0) {
@@ -151,16 +190,79 @@ export function trackMetaEvent(
   if (typeof options.value === "number") payload.value = options.value;
   if (options.currency) payload.currency = options.currency;
 
+  const trackOptions = options.eventId ? { eventID: options.eventId } : undefined;
   if (Object.keys(payload).length > 0) {
-    window.fbq!("track", event, payload);
+    if (trackOptions) {
+      window.fbq!("track", event, payload, trackOptions);
+    } else {
+      window.fbq!("track", event, payload);
+    }
+  } else if (trackOptions) {
+    window.fbq!("track", event, {}, trackOptions);
   } else {
     window.fbq!("track", event);
   }
   return true;
 }
 
-export function trackMetaLead(options: MetaLeadOptions = {}): boolean {
+export function trackMetaLead(options: MetaEventOptions = {}): boolean {
   return trackMetaEvent("Lead", options);
+}
+
+export function trackMetaSchedule(options: MetaEventOptions = {}): boolean {
+  return trackMetaEvent("Schedule", options);
+}
+
+export function trackMetaPurchase(
+  options: MetaEventOptions & { value: number },
+): boolean {
+  if (!Number.isFinite(options.value) || options.value <= 0) return false;
+  return trackMetaEvent("Purchase", {
+    ...options,
+    currency: options.currency || "USD",
+  });
+}
+
+/**
+ * SPA fallback: fire the pending Meta conversion on /thank-you if submit
+ * did not already claim the event id (pixel missing, full page load, etc.).
+ */
+export function firePendingMetaConversion(
+  pending: PendingConversion | null = peekPendingConversion(),
+): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    if (!/(^|\/)thank-you(\/|$)/.test(window.location?.pathname ?? "")) {
+      return false;
+    }
+  } catch {
+    return false;
+  }
+  if (!pending) return false;
+
+  const event = resolveMetaConversionEvent(pending);
+  if (!event) return false;
+
+  const shared = {
+    email: pending.email,
+    phone: pending.phone,
+    contentName: pending.landingSlug ?? pending.serviceInterest,
+    contentCategory: pending.formType,
+    eventId: pending.metaEventId,
+  };
+
+  if (event === "Purchase") {
+    if (typeof pending.purchaseValue !== "number" || pending.purchaseValue <= 0) {
+      return false;
+    }
+    return trackMetaPurchase({
+      ...shared,
+      value: pending.purchaseValue,
+      currency: pending.purchaseCurrency || "USD",
+    });
+  }
+
+  return trackMetaEvent(event, shared);
 }
 
 export function trackMetaPageView(): boolean {

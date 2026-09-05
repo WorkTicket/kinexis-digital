@@ -8,7 +8,16 @@ import {
   getLandingPageConversionLabel,
   getLeadConversionLabel,
 } from "@/lib/analytics/ads-config";
-import { trackMetaEvent, trackMetaLead } from "@/lib/analytics/meta-pixel";
+import {
+  trackMetaEvent,
+  trackMetaLead,
+  trackMetaPurchase,
+  trackMetaSchedule,
+} from "@/lib/analytics/meta-pixel";
+import {
+  createMetaEventId,
+  stashPendingConversion,
+} from "@/lib/analytics/pending-conversion";
 
 declare global {
   interface Window {
@@ -28,6 +37,8 @@ export type ConversionOptions = {
   landingSlug?: string;
   value?: number;
   currency?: string;
+  /** Pixel eventID — same id on submit and thank-you so Meta cannot double-count. */
+  metaEventId?: string;
 };
 
 function getLeadLabel(): string | undefined {
@@ -173,6 +184,7 @@ export function trackLead(options: ConversionOptions = {}): boolean {
     contentCategory: options.formType ?? "contact",
     value: options.value,
     currency: options.currency,
+    eventId: options.metaEventId,
   });
 
   trackClarityConversion(
@@ -209,6 +221,7 @@ export function trackAuditLead(options: ConversionOptions = {}): boolean {
     contentCategory: formType,
     value: options.value,
     currency: options.currency,
+    eventId: options.metaEventId,
   });
 
   trackClarityConversion(
@@ -242,14 +255,47 @@ export function trackBookingClick(options: ConversionOptions = {}): boolean {
     window.gtag!("event", "book_appointment", {});
   }
 
-  trackMetaEvent("Schedule", {
+  trackMetaSchedule({
     email: options.email,
     phone: options.phone,
     contentName: options.serviceInterest,
     contentCategory: "booking",
+    eventId: options.metaEventId,
   });
 
   return fired;
+}
+
+/**
+ * Meta Purchase — only after a payment provider confirms the charge.
+ * Never call this from a checkout-button click or a cancelled/failed payment.
+ * Stashes the conversion so /thank-you can finish Advanced Matching without
+ * firing a second Pixel event.
+ */
+export function trackPurchase(
+  options: ConversionOptions & { value: number },
+): boolean {
+  if (!Number.isFinite(options.value) || options.value <= 0) return false;
+  const metaEventId = options.metaEventId ?? createMetaEventId("Purchase");
+  if (typeof window !== "undefined") {
+    stashPendingConversion({
+      type: "purchase",
+      email: options.email,
+      phone: options.phone,
+      conversionAlreadyFired: true,
+      metaEvent: "Purchase",
+      metaEventId,
+      purchaseValue: options.value,
+      purchaseCurrency: options.currency || "USD",
+    });
+  }
+  return trackMetaPurchase({
+    email: options.email,
+    phone: options.phone,
+    value: options.value,
+    currency: options.currency || "USD",
+    eventId: metaEventId,
+  });
 }
 
 /** Exported for tests — resolve whether Ads conversion would fire. */

@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/Button";
 import { CallLink } from "@/components/analytics/CallLink";
 import { CONTACT_EMAIL } from "@/content/contact";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import {
   mainNavLinks,
@@ -15,7 +16,7 @@ import {
   type MainNavItem,
 } from "@/lib/site-nav";
 import { cn } from "@/lib/cn";
-import { getBusinessTelHref } from "@/lib/business";
+import { getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
 import { getLandingChrome } from "@/lib/landing-chrome";
 
 const SCROLL_DELTA = 8;
@@ -54,10 +55,17 @@ export function Header() {
   const lastScrollY = useRef(0);
   const mobileNavId = useId();
   const hasPhone = Boolean(getBusinessTelHref());
-  const isLanding = pathname.startsWith("/lp");
+  const contactHref = NAV_CONTACT_HREF;
+  const contactLabel = t("contact");
   const landing = getLandingChrome(pathname);
-  const contactHref = landing?.formHref ?? (isLanding ? "#lp-form" : NAV_CONTACT_HREF);
-  const contactLabel = landing?.ctaLabel ?? t("contact");
+  const isSlimLanding = Boolean(landing?.slim);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isSlimLanding) root.classList.add("lp-chrome");
+    else root.classList.remove("lp-chrome");
+    return () => root.classList.remove("lp-chrome");
+  }, [isSlimLanding]);
 
   useEffect(() => {
     return () => {
@@ -97,15 +105,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [menuOpen]);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = previous;
-    };
-  }, [menuOpen]);
+  useBodyScrollLock(menuOpen);
 
   useFocusTrap(mobilePanelRef, menuOpen, () => {
     setMenuOpen(false);
@@ -182,7 +182,7 @@ export function Header() {
       <div
         className={cn(
           "site-header__frost chrome-glass",
-          headerHidden && !menuOpen && "site-header__frost--hidden",
+          headerHidden && !menuOpen && !isSlimLanding && "site-header__frost--hidden",
           menuOpen && "site-header__frost--solid",
         )}
         aria-hidden
@@ -190,7 +190,7 @@ export function Header() {
       <header
         className={cn(
           "site-header pt-[env(safe-area-inset-top,0px)]",
-          headerHidden && !menuOpen && "site-header--hidden",
+          headerHidden && !menuOpen && !isSlimLanding && "site-header--hidden",
         )}
       >
         <div className="shell site-header__bar flex items-center gap-4 overflow-visible sm:gap-5 lg:gap-10">
@@ -206,10 +206,18 @@ export function Header() {
             <BrandLogo />
           </Link>
 
-          <nav
-            className="relative z-50 ml-auto hidden overflow-visible lg:block"
-            aria-label={t("main")}
-          >
+          {isSlimLanding && landing ? (
+            <div className="ml-auto flex items-center">
+              <Button href={landing.formHref} size="header">
+                {landing.headerCtaLabel}
+              </Button>
+            </div>
+          ) : (
+            <>
+              <nav
+                className="relative z-50 ml-auto hidden overflow-visible lg:block"
+                aria-label={t("main")}
+              >
             <ul className="site-header__nav-list">
               {mainNavLinks.map((link) => {
                 const isActive = pathname.startsWith(link.href);
@@ -251,7 +259,15 @@ export function Header() {
 
           <div className="site-header__actions hidden items-center lg:flex">
             {hasPhone ? (
-              <CallLink className="mr-1 text-sm font-medium text-muted underline-offset-2 hover:text-foreground hover:underline" />
+              <>
+                <CallLink className="site-header__phone">
+                  <span className="site-header__phone-dot" aria-hidden />
+                  <span className="site-header__phone-num">
+                    {getBusinessPhoneDisplay()}
+                  </span>
+                </CallLink>
+                <span className="site-header__rule" aria-hidden />
+              </>
             ) : null}
             <Button href={contactHref} size="header" onClick={closeDropdown}>
               {contactLabel}
@@ -287,10 +303,12 @@ export function Header() {
               </span>
             </button>
           </div>
+            </>
+          )}
         </div>
       </header>
 
-      {menuOpen ? (
+      {menuOpen && !isSlimLanding ? (
         <div
           ref={mobilePanelRef}
           id={mobileNavId}
@@ -353,6 +371,14 @@ export function Header() {
               <Button href={contactHref} size="lg" fullWidthMobile onClick={closeMenu}>
                 {contactLabel}
               </Button>
+              {hasPhone ? (
+                <CallLink className="site-menu__phone">
+                  <span className="site-header__phone-dot" aria-hidden />
+                  <span className="site-menu__phone-num">
+                    {getBusinessPhoneDisplay()}
+                  </span>
+                </CallLink>
+              ) : null}
               <a href={`mailto:${CONTACT_EMAIL}`} className="site-menu__email">
                 {CONTACT_EMAIL}
               </a>

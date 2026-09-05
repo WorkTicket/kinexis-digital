@@ -133,8 +133,11 @@
 
 html {
   color-scheme: light;
-  background: var(--background);
+  background-color: var(--background);
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -247,6 +250,47 @@ body {
   padding-bottom: clamp(2.75rem, 7vh, 4.5rem);
 }
 
+.page-hero--intake.page-hero--split {
+  min-height: 0;
+}
+
+@media (min-width: 1024px) {
+  .page-hero--intake.page-hero--split {
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+
+  .page-hero--intake .page-hero__visual {
+    height: auto;
+    min-height: 0;
+    align-self: center;
+    overflow: visible;
+  }
+}
+
+.page-hero__meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.page-hero__meta-list li {
+  position: relative;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.page-hero__meta-list li + li::before {
+  content: "·";
+  position: absolute;
+  left: -0.75rem;
+  color: color-mix(in oklab, var(--foreground) 35%, transparent);
+}
+
 @media (max-width: 1023px) {
   .page-hero--split .hero-stage,
   .case-hero .hero-stage {
@@ -291,6 +335,7 @@ body {
 /* Header height — keep in sync with .site-header__bar */
 :root {
   --site-header-h: calc(4.5rem + env(safe-area-inset-top, 0px));
+  --scrollbar-compensation: 0px;
 }
 
 @media (min-width: 1024px) {
@@ -326,6 +371,7 @@ body {
 #get-started,
 #contact-form,
 #lp-form,
+#lp-form-close,
 #work,
 #branding,
 #web-design,
@@ -333,6 +379,18 @@ body {
 #paid-media,
 #content-marketing {
   scroll-margin-top: 6.25rem;
+}
+
+#lp-form,
+#lp-form-close,
+#contact-form {
+  scroll-margin-bottom: 7.5rem;
+}
+
+html.in-app-browser #lp-form,
+html.in-app-browser #lp-form-close,
+html.in-app-browser #contact-form {
+  scroll-margin-bottom: calc(7.5rem + var(--in-app-chrome-bottom, 3.5rem));
 }
 
 .form-label {
@@ -392,6 +450,70 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a3a3a3' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
 }
 
+.form-choice-set {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-inline-size: 0;
+}
+
+.form-choice-set .form-label {
+  padding: 0;
+}
+
+.form-choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.form-choice-grid > .form-choice:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.form-choice {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-control);
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.form-choice:hover {
+  border-color: color-mix(in oklab, var(--foreground) 35%, transparent);
+}
+
+.form-choice:has(input:checked) {
+  border-color: color-mix(in oklab, var(--foreground) 55%, transparent);
+  background: color-mix(in oklab, var(--foreground) 6%, var(--background));
+}
+
+.form-choice:has(input:focus-visible) {
+  border-color: color-mix(in oklab, var(--foreground) 55%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--foreground) 12%, transparent);
+}
+
+.form-choice input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
 /*
  * Pull atmospheric heroes under the sticky header so chrome-glass
  * samples the gradient at rest (not only after scroll).
@@ -417,20 +539,9 @@ body {
 }
 
 .hero-atmosphere__fade {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(
-    to bottom,
-    transparent 48%,
-    color-mix(in oklab, var(--background) 42%, transparent) 72%,
-    color-mix(in oklab, var(--background) 82%, transparent) 88%,
-    var(--background) 100%
-  );
+  display: none;
 }
 
-/* Soft residual wash that carries tone into the cert strip */
 .hero-shell::after {
   content: none;
 }
@@ -496,6 +607,7 @@ body {
 }
 
 .hero-shell--film {
+  min-height: 100vh;
   min-height: 100svh;
   min-height: 100dvh;
 }
@@ -564,7 +676,7 @@ body {
 @media (min-width: 1024px) {
   .hero-film-media {
     opacity: 1;
-    filter: grayscale(1) brightness(0.94) contrast(1.08);
+    filter: grayscale(1) brightness(1) contrast(1);
   }
 }
 
@@ -1086,7 +1198,12 @@ html[data-theme="dark"] .mesh-noise {
   mix-blend-mode: overlay;
 }
 
-/* CSS fallback — soft monochrome washes when WebGL is off */
+/* CSS fallback — off. Gray orbs fought the flat paper field. */
+.mesh-fallback__blob,
+.mesh-fallback__sheen {
+  display: none;
+}
+
 .mesh-fallback__blob {
   position: absolute;
   border-radius: 50%;
@@ -1094,8 +1211,8 @@ html[data-theme="dark"] .mesh-noise {
   filter: none;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #141418 18%, transparent) 0%,
-    transparent 70%
+    color-mix(in oklab, #141418 7%, transparent) 0%,
+    transparent 74%
   );
   animation: none;
   will-change: auto;
@@ -1109,35 +1226,35 @@ html[data-theme="dark"] .mesh-noise {
   }
 
   .mesh-fallback__blob--a {
-    background: color-mix(in oklab, #141418 14%, transparent);
+    background: color-mix(in oklab, #141418 5%, transparent);
   }
 
   .mesh-fallback__blob--b {
-    background: color-mix(in oklab, #1c1c22 11%, transparent);
+    background: color-mix(in oklab, #1c1c22 4%, transparent);
   }
 
   .mesh-fallback__blob--c {
-    background: color-mix(in oklab, #0a0a0c 9%, transparent);
+    background: color-mix(in oklab, #0a0a0c 3.5%, transparent);
   }
 
   .mesh-fallback__blob--d {
-    background: color-mix(in oklab, #222228 8%, transparent);
+    background: color-mix(in oklab, #222228 3%, transparent);
   }
 
   html[data-theme="dark"] .mesh-fallback__blob--a {
-    background: color-mix(in oklab, #e8e8ec 14%, transparent);
+    background: color-mix(in oklab, #e8e8ec 5%, transparent);
   }
 
   html[data-theme="dark"] .mesh-fallback__blob--b {
-    background: color-mix(in oklab, #c8c8d0 10%, transparent);
+    background: color-mix(in oklab, #c8c8d0 4%, transparent);
   }
 
   html[data-theme="dark"] .mesh-fallback__blob--c {
-    background: color-mix(in oklab, #ffffff 9%, transparent);
+    background: color-mix(in oklab, #ffffff 3.5%, transparent);
   }
 
   html[data-theme="dark"] .mesh-fallback__blob--d {
-    background: color-mix(in oklab, #a8a8b0 7%, transparent);
+    background: color-mix(in oklab, #a8a8b0 2.5%, transparent);
   }
 }
 
@@ -1163,8 +1280,8 @@ html[data-theme="dark"] .mesh-noise {
   right: -6%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #141418 22%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #141418 8%, transparent) 0%,
+    transparent 72%
   );
   animation-duration: 36s;
 }
@@ -1176,8 +1293,8 @@ html[data-theme="dark"] .mesh-noise {
   right: 18%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #1c1c22 18%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #1c1c22 6%, transparent) 0%,
+    transparent 72%
   );
   animation-duration: 30s;
   animation-delay: -8s;
@@ -1190,8 +1307,8 @@ html[data-theme="dark"] .mesh-noise {
   right: 2%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #0a0a0c 16%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #0a0a0c 5.5%, transparent) 0%,
+    transparent 72%
   );
   animation-duration: 34s;
   animation-delay: -14s;
@@ -1204,8 +1321,8 @@ html[data-theme="dark"] .mesh-noise {
   right: -10%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #222228 14%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #222228 5%, transparent) 0%,
+    transparent 72%
   );
   animation-duration: 28s;
   animation-delay: -4s;
@@ -1214,32 +1331,32 @@ html[data-theme="dark"] .mesh-noise {
 html[data-theme="dark"] .mesh-fallback__blob--a {
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #e8e8ec 18%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #e8e8ec 7%, transparent) 0%,
+    transparent 72%
   );
 }
 
 html[data-theme="dark"] .mesh-fallback__blob--b {
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #c8c8d0 14%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #c8c8d0 5.5%, transparent) 0%,
+    transparent 72%
   );
 }
 
 html[data-theme="dark"] .mesh-fallback__blob--c {
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #ffffff 12%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #ffffff 4.5%, transparent) 0%,
+    transparent 72%
   );
 }
 
 html[data-theme="dark"] .mesh-fallback__blob--d {
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #a8a8b0 10%, transparent) 0%,
-    transparent 68%
+    color-mix(in oklab, #a8a8b0 3.5%, transparent) 0%,
+    transparent 72%
   );
 }
 
@@ -3523,35 +3640,11 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 }
 
 .cta-section:not(.cta-section--inline):not(.cta-section--minimal) {
-  background:
-    radial-gradient(
-      ellipse 92% 70% at 50% 108%,
-      color-mix(in oklab, var(--foreground) 8%, transparent),
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      color-mix(in oklab, var(--foreground) 2.2%, transparent) 48%,
-      color-mix(in oklab, var(--foreground) 4.5%, transparent) 100%
-    );
+  background: transparent;
 }
 
 .cta-section__glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(
-      ellipse 70% 55% at 18% 88%,
-      color-mix(in oklab, var(--foreground) 6%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      ellipse 55% 48% at 86% 92%,
-      color-mix(in oklab, var(--foreground) 4%, transparent),
-      transparent 68%
-    );
+  display: none;
 }
 
 .cta-section--inline .cta-section__glow {
@@ -4841,6 +4934,22 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   transform: translate3d(0, 0, 0);
 }
 
+.faq-acc--static .faq-acc__static {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.35rem 1.25rem 1.2rem;
+}
+
+.faq-acc--static .faq-acc__title {
+  margin: 0;
+}
+
+.faq-acc--static .faq-acc__answer {
+  padding: 0;
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .faq-acc__panel,
   .faq-acc__answer,
@@ -4921,6 +5030,46 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   font-size: 0.9rem;
   font-weight: 600;
   color: color-mix(in oklab, var(--foreground) 88%, transparent);
+}
+
+.contact-aside__channels {
+  display: grid;
+  gap: 1.35rem;
+}
+
+.contact-aside__channel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+.contact-aside__channel-value {
+  font-family: var(--font-text), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+
+.contact-aside__channel-value.call-link {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}
+
+.contact-aside__channel-value:hover,
+.contact-aside__channel-value:focus-visible {
+  opacity: 0.7;
+  outline: none;
+}
+
+.contact-aside__channel-hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
 }
 
 /* About chapter compositions — each section has its own layout DNA */
@@ -6244,6 +6393,21 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 }
 
 /*
+ * Locking body scroll removes the scrollbar and would otherwise widen the
+ * viewport. Pad the same amount on body + fixed chrome so the bar stays put.
+ */
+html.mobile-menu-open,
+html.mobile-menu-open body {
+  overflow: hidden;
+}
+
+html.mobile-menu-open body,
+html.mobile-menu-open .site-header,
+html.mobile-menu-open .site-menu {
+  padding-right: var(--scrollbar-compensation);
+}
+
+/*
  * Frost is a sibling of page content inside .site-root, not a child of the
  * header. Never put transform/translateZ on this pane — Chrome then samples
  * an empty buffer and the bar looks like a tint with no blur.
@@ -6262,8 +6426,8 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   transition: top 360ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.site-header--hidden,
-.site-header__frost--hidden {
+.site-header.site-header--hidden,
+.site-header__frost.site-header__frost--hidden {
   top: calc(-1 * var(--site-header-h));
   pointer-events: none;
 }
@@ -6315,6 +6479,36 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   opacity: 0.85;
 }
 
+html.lp-chrome .site-header__bar {
+  gap: 0.75rem;
+}
+
+html.lp-chrome .site-header .btn--header {
+  max-width: min(22rem, 72vw);
+  white-space: normal;
+  text-wrap: balance;
+  line-height: 1.2;
+  height: auto;
+  min-height: 2.75rem;
+  padding-block: 0.55rem;
+}
+
+.brand-logo--on-light {
+  display: block;
+}
+
+.brand-logo--on-dark {
+  display: none;
+}
+
+html[data-theme="dark"] .brand-logo--on-light {
+  display: none;
+}
+
+html[data-theme="dark"] .brand-logo--on-dark {
+  display: block;
+}
+
 .site-header__logo img {
   height: 1.5rem;
   width: auto;
@@ -6360,6 +6554,60 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   .site-header__actions {
     gap: 1rem;
   }
+}
+
+.call-link {
+  text-decoration: none;
+}
+
+.site-header__phone {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.25rem;
+  padding: 0;
+  color: color-mix(in oklab, var(--foreground) 68%, transparent);
+  white-space: nowrap;
+  transition: color 200ms ease;
+}
+
+.site-header__phone:hover,
+.site-header__phone:focus-visible {
+  color: var(--foreground);
+  outline: none;
+}
+
+.site-header__phone-dot {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 999px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.site-header__phone-num,
+.site-header__phone .call-link__num {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  line-height: 1;
+}
+
+@media (min-width: 1280px) {
+  .site-header__phone-num,
+  .site-header__phone .call-link__num {
+    font-size: 0.875rem;
+  }
+}
+
+.site-header__rule {
+  width: 1px;
+  height: 0.9rem;
+  background: color-mix(in oklab, var(--foreground) 14%, transparent);
+  flex-shrink: 0;
 }
 
 /* ── Nav link (desktop) ── */
@@ -6738,6 +6986,32 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 .site-menu__email:focus-visible {
   color: var(--foreground);
   outline: none;
+}
+
+.site-menu__phone {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: opacity 160ms ease;
+}
+
+.site-menu__phone:hover,
+.site-menu__phone:focus-visible {
+  opacity: 0.7;
+  outline: none;
+}
+
+.site-menu__phone-num,
+.site-menu__phone .call-link__num {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  line-height: 1;
 }
 
 @media (min-width: 640px) {
@@ -8674,5 +8948,13 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   .mesh-fallback__sheen,
   .mesh-noise {
     display: none;
+  }
+
+  /* Keep header frost as glass on phones — the budget block above
+     strips blur from .chrome-glass, which also matches the frost pane. */
+  .site-header__frost.chrome-glass {
+    background-color: var(--chrome-glass);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    backdrop-filter: blur(40px) saturate(180%);
   }
 }

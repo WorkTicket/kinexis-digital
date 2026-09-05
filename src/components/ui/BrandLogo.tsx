@@ -25,7 +25,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
         decoding="async"
         fetchPriority="low"
         loading={loading}
-        className={cn("dark:hidden", className)}
+        className={cn("brand-logo brand-logo--on-light", className)}
         style={style}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -37,7 +37,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
         decoding="async"
         fetchPriority="low"
         loading={loading}
-        className={cn("hidden dark:block", className)}
+        className={cn("brand-logo brand-logo--on-dark", className)}
         style={style}
       />
     </>

@@ -28,9 +28,11 @@ export function FooterCtaBand({ eyebrow, title, dek, buttonLabel }: Props) {
           <p className="site-footer__cta-title">{landing.closingTitle}</p>
           <p className="site-footer__cta-dek">{landing.closingCopy}</p>
         </div>
-        <a href={landing.formHref} className="site-footer__cta-text">
-          {landing.ctaLabel}
-        </a>
+        <div className="site-footer__cta-actions">
+          <a href={landing.formHref} className="site-footer__cta-text">
+            {landing.ctaLabel}
+          </a>
+        </div>
       </div>
     );
   }

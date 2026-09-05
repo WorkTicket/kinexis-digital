@@ -1,5 +1,5 @@
-import { GTAG_CONSENT_RESTORE_SCRIPT } from "@/lib/analytics/consent";
-import { PENDING_CONVERSION_KEY } from "@/lib/analytics/pending-conversion";
+import { GTAG_CONSENT_RESTORE_SCRIPT, READ_STORED_CONSENT_JS } from "@/lib/analytics/consent";
+import { READ_PENDING_CONVERSION_JS } from "@/lib/analytics/pending-conversion";
 
 /** Google Ads conversion IDs look like AW-1234567890/AbCdEfGhIjK. */
 const SEND_TO_PATTERN = /^AW-\d+\/[A-Za-z0-9_-]+$/;
@@ -124,12 +124,12 @@ export function buildLeadConversionSnippet(sendTo: string): string {
     "(function(){",
     "if(!/(^|\\/)thank-you(\\/|$)/.test(location.pathname))return;",
     "try{",
-    "var c=localStorage.getItem('kinexis-cookie-consent');",
+    `var c=${READ_STORED_CONSENT_JS};`,
     "if(c==='accepted'||c==='rejected'){",
     "var g=c==='accepted'?'granted':'denied';",
     "gtag('consent','update',{analytics_storage:g,ad_storage:g,ad_user_data:g,ad_personalization:g});",
     "}",
-    `var raw=sessionStorage.getItem('${PENDING_CONVERSION_KEY}');`,
+    `var raw=${READ_PENDING_CONVERSION_JS};`,
     "if(raw){",
     "var p=JSON.parse(raw);",
     "if(p&&p.conversionAlreadyFired&&!/[?&]_dbg=/.test(location.search))return;",

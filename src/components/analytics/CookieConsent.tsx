@@ -1,14 +1,14 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
-import { useFocusTrap } from "@/hooks/useFocusTrap";
 import {
-  CONSENT_STORAGE_KEY,
   persistConsentChoice,
+  readStoredConsent,
 } from "@/lib/analytics/consent";
+import { isCookieBannerExemptPath } from "@/lib/landing-chrome";
 
 type ConsentState = "pending" | "accepted" | "rejected";
 
@@ -31,11 +31,23 @@ export function useCookieConsent() {
 }
 
 export function CookieConsentProvider({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const hideBanner = isCookieBannerExemptPath(pathname);
   const [consent, setConsent] = useState<ConsentState>("pending");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
+    const stored = readStoredConsent();
+    if (hideBanner) {
+      document.documentElement.classList.remove("cookie-pending");
+      if (stored === "accepted" || stored === "rejected") {
+        persistConsentChoice(stored);
+        setConsent(stored);
+      }
+      setReady(true);
+      return;
+    }
+
     if (stored === "accepted" || stored === "rejected") {
       persistConsentChoice(stored);
       setConsent(stored);
@@ -44,7 +56,7 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
       document.documentElement.classList.add("cookie-pending");
     }
     setReady(true);
-  }, []);
+  }, [hideBanner]);
 
   const accept = useCallback(() => {
     persistConsentChoice("accepted");
@@ -62,35 +74,27 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
     <CookieConsentContext.Provider value={{ consent: ready ? consent : "pending", ready, accept, reject }}>
       <div className="site-root">
         {children}
-        <CookieBanner
-          armed={ready && consent === "pending"}
-          onAccept={accept}
-          onReject={reject}
-        />
+        {hideBanner ? null : (
+          <CookieBanner onAccept={accept} onReject={reject} />
+        )}
       </div>
     </CookieConsentContext.Provider>
   );
 }
 
 function CookieBanner({
-  armed,
   onAccept,
   onReject,
 }: {
-  armed: boolean;
   onAccept: () => void;
   onReject: () => void;
 }) {
-  const bannerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations("cookies");
-  useFocusTrap(bannerRef, armed);
 
   return (
     <div
-      ref={bannerRef}
-      role="dialog"
-      aria-modal={armed || undefined}
-      aria-labelledby="cookie-consent-title"
+      role="region"
+      aria-label={t("title")}
       aria-describedby="cookie-consent-desc"
       className="cookie-banner chrome-glass"
     >

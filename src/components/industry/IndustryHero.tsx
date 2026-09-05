@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import type { Industry } from "@/content/industries";
 import { industryVisuals } from "@/content/industry-visuals";
 import { cn } from "@/lib/cn";
+import "@/styles/components/page-stages.css";
 
 type IndustryHeroProps = {
   industry: Industry;

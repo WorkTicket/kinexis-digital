@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
-import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
@@ -18,8 +17,8 @@ type PageHeroProps = {
   meta?: ReactNode;
   /** Optional right-rail visual (stage, gallery, device) */
   visual?: ReactNode;
-  /** Full-bleed SignalPlane atmosphere like the homepage hero */
-  atmosphere?: boolean;
+  /** Full-bleed atmosphere layer — pass a mount from the route so other pages skip WebGL JS */
+  atmosphere?: ReactNode;
   /** Shorter hero for intake pages (contact) — skips WebGL by default */
   compact?: boolean;
   /** Hide CTA row when the next section is the action */
@@ -43,7 +42,7 @@ export async function PageHero({
   secondaryLabel,
   meta,
   visual,
-  atmosphere = false,
+  atmosphere,
   compact = false,
   hideActions = false,
   intake = false,
@@ -65,7 +64,7 @@ export async function PageHero({
     <section className={sectionClass} aria-labelledby="page-hero-heading">
       {atmosphere ? (
         <>
-          <SignalPlaneMount />
+          {atmosphere}
           <div className="hero-film-scrim" aria-hidden />
         </>
       ) : null}

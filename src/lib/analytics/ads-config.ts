@@ -90,6 +90,10 @@ export function getLandingPageConversionLabel(
     const raw = process.env.NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN;
     if (raw?.trim()) return raw.trim();
   }
+  if (slug === "dallas-website-audit") {
+    const raw = process.env.NEXT_PUBLIC_GADS_LABEL_LP_DALLAS_WEBSITE_AUDIT;
+    if (raw?.trim()) return raw.trim();
+  }
   return getAuditConversionLabel();
 }
 

@@ -1,7 +1,12 @@
 /**
  * Capture and persist Google / Meta click IDs + UTM params for closed-loop attribution.
- * Stored in sessionStorage so form submissions and lead emails can include them.
+ * sessionStorage first; first-party cookie fallback for Instagram/Facebook WebViews.
  */
+
+import {
+  readDocumentCookie,
+  writeDocumentCookie,
+} from "@/lib/client-cookie";
 
 export const CLICK_ID_STORAGE_KEY = "kinexis-ads-attribution";
 
@@ -17,6 +22,9 @@ export type AttributionData = {
   utm_content?: string;
   landing_page?: string;
   captured_at?: string;
+  /** Meta Pixel first-party cookies for Conversions API. */
+  fbp?: string;
+  fbc?: string;
 };
 
 const CLICK_ID_KEYS = ["gclid", "gbraid", "wbraid", "fbclid"] as const;
@@ -29,6 +37,8 @@ const UTM_KEYS = [
 ] as const;
 
 const MAX_PARAM_LENGTH = 200;
+/** Meta click ID cookie window (90 days). */
+const ATTRIBUTION_COOKIE_MAX_AGE = 60 * 60 * 24 * 90;
 
 function sanitizeParam(value: string | null): string | undefined {
   if (!value) return undefined;
@@ -70,11 +80,9 @@ function hasAttributionSignal(data: AttributionData): boolean {
   );
 }
 
-function readStored(): AttributionData | null {
-  if (typeof window === "undefined") return null;
+function parseStoredJson(raw: string | null): AttributionData | null {
+  if (!raw) return null;
   try {
-    const raw = sessionStorage.getItem(CLICK_ID_STORAGE_KEY);
-    if (!raw) return null;
     const parsed = JSON.parse(raw) as AttributionData;
     return parsed && typeof parsed === "object" ? parsed : null;
   } catch {
@@ -82,13 +90,54 @@ function readStored(): AttributionData | null {
   }
 }
 
+function readStored(): AttributionData | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const fromSession = parseStoredJson(
+      window.sessionStorage.getItem(CLICK_ID_STORAGE_KEY),
+    );
+    if (fromSession) return fromSession;
+  } catch {
+    // sessionStorage blocked (common in Instagram iOS)
+  }
+  return parseStoredJson(readDocumentCookie(CLICK_ID_STORAGE_KEY));
+}
+
+/**
+ * Meta first-party `_fbc` from fbclid so the Pixel can still attribute after
+ * the query string is dropped (consent delay, in-app navigation).
+ * Format: fb.{subdomainIndex}.{creationTime}.{fbclid}
+ */
+export function fbcCookieFromFbclid(
+  fbclid: string,
+  hostname = typeof location !== "undefined" ? location.hostname : "",
+  now = Date.now(),
+): string {
+  const parts = hostname.split(".").filter(Boolean);
+  const subdomainIndex = Math.max(parts.length - 1, 1);
+  return `fb.${subdomainIndex}.${now}.${fbclid}`;
+}
+
+function persistFbcCookie(fbclid: string): void {
+  const existing = readDocumentCookie("_fbc");
+  if (existing && existing.endsWith(`.${fbclid}`)) return;
+  writeDocumentCookie(
+    "_fbc",
+    fbcCookieFromFbclid(fbclid),
+    ATTRIBUTION_COOKIE_MAX_AGE,
+  );
+}
+
 function writeStored(data: AttributionData): void {
   if (typeof window === "undefined") return;
+  const raw = JSON.stringify(data);
   try {
-    sessionStorage.setItem(CLICK_ID_STORAGE_KEY, JSON.stringify(data));
+    window.sessionStorage.setItem(CLICK_ID_STORAGE_KEY, raw);
   } catch {
-    // sessionStorage may be blocked — attribution still works via URL for this page load
+    // sessionStorage may be blocked — cookie + live URL still cover this visit
   }
+  writeDocumentCookie(CLICK_ID_STORAGE_KEY, raw, ATTRIBUTION_COOKIE_MAX_AGE);
+  if (data.fbclid) persistFbcCookie(data.fbclid);
 }
 
 /**
@@ -131,25 +180,36 @@ export function captureClickIds(): AttributionData {
   return merged;
 }
 
+function pixelCookies(): Pick<AttributionData, "fbp" | "fbc"> {
+  const fbp = readDocumentCookie("_fbp") ?? undefined;
+  const fbc = readDocumentCookie("_fbc") ?? undefined;
+  return {
+    ...(fbp ? { fbp } : {}),
+    ...(fbc ? { fbc } : {}),
+  };
+}
+
 /** Return stored attribution for attaching to form payloads. */
 export function getAttributionPayload(): AttributionData {
   if (typeof window === "undefined") return {};
+  const cookies = pixelCookies();
   const stored = readStored();
   // Include landing_page-only storage (no click IDs/UTMs) so lead emails
   // still show which page converted organic or direct traffic.
   if (stored && (hasAttributionSignal(stored) || stored.landing_page)) {
-    return stored;
+    return { ...stored, ...cookies };
   }
 
   // Fallback: parse live URL if storage was empty/blocked
   const fromUrl = parseAttributionFromSearch(window.location.search);
-  if (hasAttributionSignal(fromUrl)) return fromUrl;
+  if (hasAttributionSignal(fromUrl)) return { ...fromUrl, ...cookies };
 
   return {
     landing_page: `${window.location.pathname}${window.location.search}`.slice(
       0,
       500,
     ),
+    ...cookies,
   };
 }
 
@@ -158,7 +218,14 @@ export function sanitizeAttributionFromBody(
   body: Record<string, unknown>,
 ): AttributionData {
   const out: AttributionData = {};
-  const allKeys = [...CLICK_ID_KEYS, ...UTM_KEYS, "landing_page", "captured_at"] as const;
+  const allKeys = [
+    ...CLICK_ID_KEYS,
+    ...UTM_KEYS,
+    "landing_page",
+    "captured_at",
+    "fbp",
+    "fbc",
+  ] as const;
 
   for (const key of allKeys) {
     const raw = body[key];

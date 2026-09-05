@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { AuditLanding } from "@/components/landing/AuditLanding";
+import { CampaignLanding } from "@/components/landing/CampaignLanding";
 import { LandingIntake } from "@/components/landing/LandingIntake";
 import { LandingProcess } from "@/components/landing/LandingProcess";
 import { LandingSpotlight } from "@/components/landing/LandingSpotlight";
@@ -21,6 +23,10 @@ import { cn } from "@/lib/cn";
 import { buildPageMetadata } from "@/lib/metadata";
 import { duration } from "@/lib/motion";
 import { faqSchema } from "@/lib/schema";
+import {
+  getBusinessPhoneDisplay,
+  getBusinessTelHref,
+} from "@/lib/business";
 import "@/styles/components/landing.css";
 
 type Props = {
@@ -81,9 +87,19 @@ export default async function LandingPage({ params }: Props) {
   const page = getLandingPage(slug);
   if (!page) notFound();
 
+  if (page.auditLayout) {
+    return <AuditLanding page={page} />;
+  }
+
+  if (page.campaignLayout) {
+    return <CampaignLanding page={page} />;
+  }
+
   const scopeItems = page.scopeItems;
   const hasWork = Boolean(page.samples?.length && page.samplesTitle);
   const heroIntake = Boolean(page.heroIntake);
+  const telHref = getBusinessTelHref();
+  const phoneDisplay = getBusinessPhoneDisplay();
 
   return (
     <main className="flex flex-1 flex-col pb-24 md:pb-0">
@@ -238,8 +254,14 @@ export default async function LandingPage({ params }: Props) {
         copy={page.closingCopy ?? page.formSubtitle}
         primaryHref="#lp-form"
         primaryLabel={page.stickyCtaLabel}
-        secondaryLabel={hasWork ? "See the work" : null}
-        secondaryHref="#work"
+        secondaryLabel={
+          telHref && phoneDisplay
+            ? `Call ${phoneDisplay}`
+            : hasWork
+              ? "See the work"
+              : null
+        }
+        secondaryHref={telHref ?? "#work"}
         meta={page.formFootnote}
       />
 

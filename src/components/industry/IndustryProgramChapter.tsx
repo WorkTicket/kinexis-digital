@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import type { Industry } from "@/content/industries";
 import { isStandaloneIndustry, industryHref } from "@/content/industries";
+import "@/styles/components/page-stages.css";
 
 type Props = {
   industry: Industry;

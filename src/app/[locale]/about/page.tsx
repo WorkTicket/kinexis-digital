@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
+import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -70,7 +71,7 @@ export default async function AboutPage({ params }: Props) {
         copy={c.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
-        atmosphere
+        atmosphere={<SignalPlaneMount />}
       />
 
       {/* Why we exist — editorial split, monument density */}

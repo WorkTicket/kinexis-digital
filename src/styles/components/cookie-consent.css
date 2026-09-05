@@ -97,6 +97,10 @@ html:not(.cookie-pending) .cookie-banner {
   }
 }
 
+html.lp-chrome .cookie-banner {
+  display: none;
+}
+
 /* Keep LP sticky CTA above the cookie banner while consent is pending. */
 html.cookie-pending .landing-sticky-cta {
   bottom: 9.75rem;
@@ -105,5 +109,42 @@ html.cookie-pending .landing-sticky-cta {
 @media (min-width: 640px) {
   html.cookie-pending .landing-sticky-cta {
     bottom: 6.5rem;
+  }
+}
+
+/* Instagram/Facebook in-app chrome is not in safe-area-inset. Lift fixed bars. */
+html.in-app-browser {
+  --in-app-chrome-bottom: 3.5rem;
+}
+
+html.in-app-instagram {
+  --in-app-chrome-bottom: 4.25rem;
+}
+
+html.in-app-browser .cookie-banner {
+  padding-bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + var(--in-app-chrome-bottom)));
+}
+
+html.in-app-browser .landing-sticky-cta {
+  padding-bottom: max(1rem, calc(env(safe-area-inset-bottom, 0px) + var(--in-app-chrome-bottom)));
+}
+
+html.cookie-pending.in-app-browser .landing-sticky-cta {
+  bottom: calc(9.75rem + var(--in-app-chrome-bottom));
+}
+
+@media (min-width: 640px) {
+  html.cookie-pending.in-app-browser .landing-sticky-cta {
+    bottom: calc(6.5rem + var(--in-app-chrome-bottom));
+  }
+}
+
+html.in-app-browser.cookie-pending body {
+  padding-bottom: calc(6.5rem + var(--in-app-chrome-bottom, 0px));
+}
+
+@media (min-width: 640px) {
+  html.in-app-browser.cookie-pending body {
+    padding-bottom: calc(5.5rem + var(--in-app-chrome-bottom, 0px));
   }
 }

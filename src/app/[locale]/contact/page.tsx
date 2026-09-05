@@ -9,11 +9,13 @@ import {
   Shield,
 } from "lucide-react";
 import { ContactIntake } from "@/components/contact/ContactIntake";
+import { CallLink } from "@/components/analytics/CallLink";
 import { PageHero } from "@/components/page/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { CONTACT_EMAIL, getContactContent } from "@/content/contact";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import { getBusinessTelHref } from "@/lib/business";
 import { buildAbsoluteUrl, buildPageMetadata, getSiteUrl } from "@/lib/metadata";
 import { duration } from "@/lib/motion";
 import {
@@ -141,14 +143,23 @@ export default async function ContactPage({ params }: Props) {
                   })}
                 </ul>
 
-                <div>
-                  <p className="section-eyebrow">{c.emailEyebrow}</p>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="mt-2 inline-flex text-sm text-foreground transition-opacity hover:opacity-70"
-                  >
-                    {CONTACT_EMAIL}
-                  </a>
+                <div className="contact-aside__channels">
+                  {getBusinessTelHref() ? (
+                    <div className="contact-aside__channel">
+                      <p className="section-eyebrow">{c.phoneEyebrow}</p>
+                      <CallLink className="contact-aside__channel-value" />
+                      <p className="contact-aside__channel-hint">{c.phoneHint}</p>
+                    </div>
+                  ) : null}
+                  <div className="contact-aside__channel">
+                    <p className="section-eyebrow">{c.emailEyebrow}</p>
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="contact-aside__channel-value"
+                    >
+                      {CONTACT_EMAIL}
+                    </a>
+                  </div>
                 </div>
               </aside>
             </Reveal>

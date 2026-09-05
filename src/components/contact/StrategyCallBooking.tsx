@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "@/i18n/navigation";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import type { ContactContent } from "@/content/contact";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
@@ -17,7 +17,11 @@ import {
 } from "@/lib/booking";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import { trackBookingClick } from "@/lib/analytics/events";
-import { stashPendingConversion } from "@/lib/analytics/pending-conversion";
+import {
+  createMetaEventId,
+  stashPendingConversion,
+} from "@/lib/analytics/pending-conversion";
+import { navigateAfterSubmit } from "@/lib/in-app-browser";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -50,6 +54,7 @@ function formatShortDateLabel(date: string): string {
 export function StrategyCallBooking({ content: c }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
+  const submitLock = useRef(false);
   const b = c.booking;
 
   const now = useMemo(() => new Date(), []);
@@ -165,6 +170,8 @@ export function StrategyCallBooking({ content: c }: Props) {
       setStatus("error");
       return;
     }
+    if (submitLock.current) return;
+    submitLock.current = true;
 
     setStatus("submitting");
     setErrorMsg("");
@@ -186,18 +193,22 @@ export function StrategyCallBooking({ content: c }: Props) {
       });
 
       if (!res.ok) {
+        submitLock.current = false;
         const data = await res.json().catch(() => ({}));
         throw new Error(data.error || b.errorMessage);
       }
 
-      trackBookingClick({ email });
+      const metaEventId = createMetaEventId("Schedule");
       stashPendingConversion({
-        type: "lead",
+        type: "booking",
         email,
         serviceInterest: "Strategy Call",
         formType: "contact",
         conversionAlreadyFired: true,
+        metaEvent: "Schedule",
+        metaEventId,
       });
+      trackBookingClick({ email, metaEventId, serviceInterest: "Strategy Call" });
 
       const bookedDate = selectedDate;
       const bookedTime = selectedTime;
@@ -215,9 +226,10 @@ export function StrategyCallBooking({ content: c }: Props) {
       setStatus("success");
       void refreshAvailability();
       window.setTimeout(() => {
-        router.push("/thank-you");
+        navigateAfterSubmit("/thank-you", router);
       }, THANK_YOU_DELAY_MS);
     } catch (err) {
+      submitLock.current = false;
       setErrorMsg(err instanceof Error ? err.message : b.errorMessage);
       setStatus("error");
       void refreshAvailability();

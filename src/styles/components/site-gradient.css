@@ -1,8 +1,6 @@
 /*
- * Site-wide gradient system
- * Light mode: subtle black ink washes on white paper.
- * Dark mode: subtle white paper washes on black.
- * Tokens keep chapter sections and atmosphere in sync.
+ * Site-wide surfaces stay flat paper.
+ * Tokens remain so chapters and CTAs share one background, not stacked washes.
  */
 
 :root,
@@ -10,116 +8,25 @@
   --gradient-ink: #000000;
   --gradient-paper: #ffffff;
 
-  --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 2.8%, transparent);
-  --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 4.2%, transparent);
-  --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 6%, transparent);
-  --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 1.6%, transparent);
+  --gradient-flow-soft: transparent;
+  --gradient-flow-mid: transparent;
+  --gradient-flow-strong: transparent;
+  --gradient-flow-sheen: transparent;
 
   --site-gradient-base: var(--background);
-  --site-gradient-flow:
-    radial-gradient(
-      ellipse 115% 72% at 88% -4%,
-      var(--gradient-flow-mid),
-      transparent 56%
-    ),
-    radial-gradient(
-      ellipse 82% 64% at -6% 42%,
-      var(--gradient-flow-soft),
-      transparent 52%
-    ),
-    radial-gradient(
-      ellipse 96% 58% at 52% 108%,
-      var(--gradient-flow-soft),
-      transparent 60%
-    ),
-    linear-gradient(
-      168deg,
-      var(--gradient-flow-sheen) 0%,
-      transparent 36%,
-      var(--gradient-flow-soft) 68%,
-      transparent 100%
-    );
+  --site-gradient-flow: none;
+  --site-gradient-vignette: transparent;
 
-  --site-gradient-vignette:
-    radial-gradient(
-      ellipse 130% 95% at 50% 50%,
-      transparent 42%,
-      color-mix(in oklab, var(--gradient-ink) 3.5%, transparent) 100%
-    );
+  --gradient-chapter-studio: transparent;
+  --gradient-chapter-signal: transparent;
+  --gradient-chapter-cta: transparent;
 
-  --gradient-chapter-studio:
-    radial-gradient(
-      ellipse 88% 58% at 50% 42%,
-      var(--gradient-flow-soft),
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      var(--gradient-flow-sheen) 46%,
-      transparent 100%
-    );
-
-  --gradient-chapter-signal:
-    radial-gradient(
-      ellipse 90% 65% at 50% 100%,
-      var(--gradient-flow-mid),
-      transparent 74%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      var(--gradient-flow-sheen) 58%,
-      var(--gradient-flow-soft) 100%
-    );
-
-  --gradient-chapter-cta:
-    radial-gradient(
-      ellipse 92% 70% at 50% 108%,
-      var(--gradient-flow-strong),
-      transparent 72%
-    ),
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      var(--gradient-flow-sheen) 48%,
-      var(--gradient-flow-mid) 100%
-    );
-
-  --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 5%, transparent);
-  --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 3.5%, transparent);
+  --gradient-chapter-cta-glow-a: transparent;
+  --gradient-chapter-cta-glow-b: transparent;
 }
 
 .dark,
 [data-theme="dark"] {
   --gradient-ink: #ffffff;
   --gradient-paper: #000000;
-
-  --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 4%, transparent);
-  --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 6%, transparent);
-  --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 8.5%, transparent);
-  --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 2.2%, transparent);
-
-  --site-gradient-vignette:
-    radial-gradient(
-      ellipse 130% 95% at 50% 50%,
-      transparent 40%,
-      color-mix(in oklab, var(--gradient-ink) 5%, transparent) 100%
-    );
-
-  --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 7%, transparent);
-  --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 5%, transparent);
-}
-
-/* Document base — fixed flow so every route shares the same ambient field */
-html {
-  background-color: var(--site-gradient-base);
-  background-image: var(--site-gradient-flow);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-attachment: fixed;
-}
-
-body {
-  background: transparent;
 }

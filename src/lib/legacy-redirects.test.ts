@@ -107,6 +107,7 @@ describe("matchUnprefixedLegacyRedirect", () => {
     expect(matchUnprefixedLegacyRedirect("/lp/local-seo")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/lp/web-design")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/lp/facebook-web-design")).toBeNull();
+    expect(matchUnprefixedLegacyRedirect("/lp/dallas-website-audit")).toBeNull();
   });
 });
 

@@ -45,8 +45,9 @@ next-env.d.ts
 # local temp / research dumps
 .tmp-*/
 .tmp-*
+tmp-lp-preview/
 audit-report.json
 qa-report.json
 motion/
-assets/
+/assets/
 sanity/

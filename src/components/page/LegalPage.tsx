@@ -15,7 +15,6 @@ export async function LegalPage({ content: c }: Props) {
         copy={c.intro}
         compact
         hideActions
-        atmosphere={false}
       />
 
       <section

@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
+import { CallButton } from "@/components/analytics/CallButton";
 import { ChapterMotion } from "@/components/home/ChapterMotion";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
@@ -123,9 +124,15 @@ export async function PageCTA({
                   {resolvedPrimaryLabel}
                 </Button>
                 {showSecondary ? (
-                  <Button href={secondaryHref} variant="link" arrow>
-                    {resolvedSecondaryLabel}
-                  </Button>
+                  secondaryHref?.startsWith("tel:") ? (
+                    <CallButton variant="outline" size={isInline || isMinimal ? "lg" : "xl"}>
+                      {resolvedSecondaryLabel}
+                    </CallButton>
+                  ) : (
+                    <Button href={secondaryHref} variant="link" arrow>
+                      {resolvedSecondaryLabel}
+                    </Button>
+                  )
                 ) : null}
               </div>
               {showMeta ? (

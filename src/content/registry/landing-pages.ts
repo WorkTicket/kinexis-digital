@@ -1,3 +1,9 @@
+import { dallasWebsiteAudit } from "@/content/lp/dallas-website-audit";
+import { getBusinessPhoneDisplay } from "@/lib/business";
+
+const CAMPAIGN_PHONE =
+  getBusinessPhoneDisplay() ?? "+1 (307) 500-3371";
+
 export type LandingPageProof = {
   metric: string;
   label: string;
@@ -11,8 +17,12 @@ export type LandingPageSample = {
   label: string;
   href?: string;
   industry?: string;
+  /** Short project type, e.g. "Mobile-first service website". */
+  kind?: string;
   mechanism?: string;
   summary?: string;
+  /** When false, render an editorial still instead of a laptop screenshot. */
+  framed?: boolean;
 };
 
 export type LandingPageProcessStep = {
@@ -43,6 +53,79 @@ export type LandingPageSpotlight = {
   kicker: string;
   title: string;
   body: string;
+  /** When false, skip the laptop frame (editorial campaign stills). Default true. */
+  framed?: boolean;
+  /** Optional proof chip overlaid on the still. */
+  metric?: string;
+  metricLabel?: string;
+};
+
+export type LandingPageOption = {
+  value: string;
+  label: string;
+};
+
+export type LandingPageStill = {
+  src: string;
+  alt: string;
+  mobileSrc?: string;
+  /** When false, render an editorial photo instead of a laptop screenshot. */
+  framed?: boolean;
+};
+
+export type LandingPageFitVisual = {
+  src: string;
+  alt: string;
+  label: string;
+};
+
+export type LandingPagePainItem = {
+  mark?: string;
+  title: string;
+  body: string;
+};
+
+export type LandingPageAuditItem = {
+  title: string;
+  body: string;
+};
+
+export type LandingPageSellPoint = {
+  title: string;
+  body: string;
+  items?: string[];
+  /** Render as a footnote instead of a peer in the feature grid. */
+  quiet?: boolean;
+};
+
+export type LandingPagePath = {
+  title: string;
+  body: string;
+  detail: string;
+  cta: string;
+};
+
+export type LandingPagePrice = {
+  name: string;
+  price: string;
+  cadence?: string;
+  tag?: string;
+  body: string;
+  items?: string[];
+  featured?: boolean;
+};
+
+export type LandingPagePitch = {
+  eyebrow: string;
+  title: string;
+  dek: string;
+  metric?: string;
+  unit?: string;
+  before?: string;
+  after?: string;
+  beforeValue?: number;
+  afterValue?: number;
+  caption?: string;
 };
 
 export type LandingPageEntry = {
@@ -62,6 +145,10 @@ export type LandingPageEntry = {
   formSubtitle: string;
   submitLabel: string;
   formFootnote: string;
+  /** Short hint next to the submit button. Falls back to formFootnote. */
+  formCtaHint?: string;
+  /** Extra line under the submit hint. Dallas Meta consult form. */
+  formCtaDetail?: string;
   formDetailsPlaceholder?: string;
   /** Website URL required — use on site-review offers. */
   websiteRequired?: boolean;
@@ -69,10 +156,13 @@ export type LandingPageEntry = {
   conversionKind: "lead" | "audit";
   proofIntro: string;
   proofTitle?: string;
+  /** Compact proof-strip link, usually to #work. */
+  proofCta?: string;
   proof: LandingPageProof[];
   samplesTitle?: string;
   samplesIntro?: string;
   samples?: LandingPageSample[];
+  workCtaTitle?: string;
   bulletsTitle: string;
   bullets: string[];
   /** Title + description rows — preferred when the lander has a scope chapter. */
@@ -86,6 +176,7 @@ export type LandingPageEntry = {
   formTrust?: string[];
   closingTitle?: string;
   closingCopy?: string;
+  closingFinePrint?: string;
   faqs: { question: string; answer: string }[];
   stickyCtaLabel: string;
   /** Hide the mid-page link off to the organic service page (paid landers). */
@@ -94,12 +185,92 @@ export type LandingPageEntry = {
   heroIntake?: boolean;
   /** URL-only first step, then name/email. Use on the general conversion-review lander. */
   stagedHeroForm?: boolean;
+  /** Name + email + optional URL only. Use on cold Meta landers. */
+  essentialsOnly?: boolean;
   logos?: LandingPageLogo[];
   testimonial?: LandingPageTestimonial;
   /** City / neighborhood chips for local Meta landers. */
   serviceArea?: string[];
   /** Visual proof band directly under the hero (before/after or local analog). */
   spotlight?: LandingPageSpotlight;
+  /** Dedicated cinematic layout for high-intent paid landers. */
+  campaignLayout?: boolean;
+  /** Compact proof chips in the campaign hero (message-match with ads). */
+  heroStats?: LandingPageProof[];
+  /**
+   * Dallas Meta audit lander: form in the first viewport, short proof
+   * chapters, qualification. Not the homepage and not the San Antonio
+   * consult campaign.
+   */
+  auditLayout?: boolean;
+  /** Use the site header/footer chrome instead of lander CTA overrides. */
+  siteNav?: boolean;
+  /** Stacked hero lines for the mobile-first audit lander. */
+  headlineLines?: string[];
+  heroCtaLabel?: string;
+  heroFinePrint?: string;
+  phoneRequired?: boolean;
+  /** Required business name on short Meta consult forms. */
+  businessNameRequired?: boolean;
+  /** Checkbox copy under the consult form. */
+  consentLabel?: string;
+  needOptions?: LandingPageOption[];
+  budgetOptions?: LandingPageOption[];
+  painTitle?: string;
+  painSubtitle?: string;
+  painEyebrow?: string;
+  painItems?: LandingPagePainItem[];
+  painCtaLabel?: string;
+  /** Two-path chapter: new website vs. redesign. */
+  pathsTitle?: string;
+  pathsNote?: string;
+  paths?: LandingPagePath[];
+  auditTitle?: string;
+  auditItems?: LandingPageAuditItem[];
+  sellPoints?: LandingPageSellPoint[];
+  /** Selling chapter for the Dallas audit lander (mobile visual + points). */
+  pitches?: {
+    mobile?: LandingPagePitch;
+    conversion?: LandingPagePitch;
+    calls?: LandingPagePitch;
+  };
+  pricingTitle?: string;
+  pricingIntro?: string;
+  pricingNote?: string;
+  /** Large price-anchor line under the pricing title. */
+  pricingAnchor?: string;
+  /** Qualification line shown above the price chapter. */
+  pricingQualify?: string;
+  pricingPaths?: string[];
+  pricing?: LandingPagePrice[];
+  reportTitle?: string;
+  reportNote?: string;
+  beforeAfterTitle?: string;
+  transformTitle?: string;
+  transformIntro?: string;
+  transformNote?: string;
+  transformBefore?: { title: string; items: string[] };
+  transformAfter?: { title: string; items: string[] };
+  imagineTitle?: string;
+  imagineIntro?: string;
+  imagineNote?: string;
+  imagineItems?: { variant: string; title: string; body: string }[];
+  buildTitle?: string;
+  buildIntro?: string;
+  whyTitle?: string;
+  whyNote?: string;
+  whyItems?: { title: string; body: string }[];
+  fitTitle?: string;
+  fitItems?: string[];
+  fitNote?: string;
+  /** City / atmosphere still behind the audit hero. Decorative. */
+  heroStill?: LandingPageStill;
+  /** Overlapping editorial stills for the pain chapter. */
+  painStills?: LandingPageStill[];
+  /** Designed still beside the consultation scope index. */
+  scopeStill?: LandingPageStill;
+  /** Industry stills for the fit mosaic. */
+  fitVisuals?: LandingPageFitVisual[];
 };
 
 const CLIENT_LOGOS = {
@@ -577,11 +748,17 @@ export const landingPages: LandingPageEntry[] = [
     headline: "Turn your website",
     headlineAccent: "into more customers.",
     subheadline:
-      "San Antonio owners reach out with a site that is not producing, ads that waste money, or no site at all. We look at the website, SEO, and ads together so visits turn into calls and jobs. If you have a URL, paste it. If you need one built, say so. Written notes, not a deck.",
+      "San Antonio owners reach out with a site that is not producing, ads that waste money, or no site at all. We look at the website, SEO, and ads together so visits turn into jobs. Written notes in one business day.",
     heroMeta: [
       "San Antonio and nearby cities",
       "New site, rebuild, SEO, or ads",
       "Written consult in one business day",
+    ],
+    campaignLayout: true,
+    heroStats: [
+      { metric: "22 → 52", label: "emergency calls / month" },
+      { metric: "$4.1k", label: "ad spend after the cut" },
+      { metric: "2.8×", label: "qualified leads" },
     ],
     serviceArea: [
       "San Antonio",
@@ -593,12 +770,14 @@ export const landingPages: LandingPageEntry[] = [
     ],
     formTitle: "Get your free growth consultation",
     formSubtitle:
-      "URL if you have one. Site, ads, or both. Starting from scratch is enough.",
+      "Name, email, and a URL if you have one. Starting from scratch is enough.",
     submitLabel: "Get my free consult",
+    formCtaHint: "Notes in one business day. No deck.",
     formFootnote:
       "Written notes within one business day. We keep 8 to 10 active clients, so a project only happens when it fits.",
     formDetailsPlaceholder: "New site, ads, or SEO. Whatever isn't converting.",
     websiteRequired: false,
+    essentialsOnly: true,
     conversionKind: "audit",
     heroIntake: true,
     logos: [CLIENT_LOGOS.plumbing, CLIENT_LOGOS.a1, CLIENT_LOGOS.manos],
@@ -609,13 +788,16 @@ export const landingPages: LandingPageEntry[] = [
       role: "Family-owned plumbing · published case",
     },
     spotlight: {
-      image: "/assets/images/case-studies/plumbing-company-growth.webp",
+      image: "/assets/images/lp/spotlight-ads-running.webp?v=20260901c",
       imageAlt:
-        "Preferred Plumbing site after the rebuild, built to capture emergency calls on a phone",
+        "Digital marketing still: ads dashboard with spend climbing and zero conversions — ads running, phone still quiet",
       kicker: "Same leak, local operators",
       title: "Ads running. Phone still quiet.",
       body:
         "Preferred Plumbing had spend climbing and a site that could not finish the job. After the rebuild, local SEO, and cleaner tracking, emergency calls more than doubled and ad spend came down. That is the pattern we see on San Antonio service businesses too.",
+      framed: false,
+      metric: "22 → 52",
+      metricLabel: "emergency calls / month",
     },
     formAsideTitle: "What you get back",
     formAsideSubtitle:
@@ -637,11 +819,11 @@ export const landingPages: LandingPageEntry[] = [
     formTrust: [
       "Notes in one business day",
       "No deck, no bait-and-switch",
-      "San Antonio owners, not a national mill",
+      "No obligation to start a project",
     ],
     closingTitle: "Have a site, or need one built.",
     closingCopy:
-      "Free growth consult for San Antonio owners. Written notes in one business day. What to build or fix first, and what is not worth spending on.",
+      "Free growth consult for San Antonio owners. Send the form. Written notes in one business day. What to build or fix first, and what is not worth spending on.",
     proofTitle: "Local operators. Real numbers.",
     proofIntro:
       "These are service businesses that had ads or a site that was not finishing the job. The numbers moved after both got fixed.",
@@ -649,10 +831,11 @@ export const landingPages: LandingPageEntry[] = [
       { metric: "136%", label: "more emergency calls · Preferred Plumbing" },
       { metric: "$4,100", label: "monthly ad spend after the cut (was $6,800)" },
       { metric: "2.8×", label: "qualified leads · A1 Property Services, 10 mo" },
+      { metric: "2.4×", label: "monthly orders · Manos Creativas, 8 mo" },
     ],
     samplesTitle: "Work that looks like this market.",
     samplesIntro:
-      "Local service businesses. Site, search, and ads treated as one system, not three disconnected retainers.",
+      "Local service businesses and a conversion rebuild. Site, search, and ads treated as one system, not three disconnected retainers.",
     samples: [
       {
         image: "/assets/images/case-studies/plumbing-company-growth.webp",
@@ -661,7 +844,6 @@ export const landingPages: LandingPageEntry[] = [
         client: "Preferred Plumbing",
         metric: "136%",
         label: "more emergency calls after site, SEO, and ad cleanup",
-        href: "/case-studies/plumbing-company-growth",
         industry: "Home services",
         mechanism: "Emergency-first site. Local pack. Less wasted ad spend.",
         summary:
@@ -674,11 +856,21 @@ export const landingPages: LandingPageEntry[] = [
         client: "A1 Property Services",
         metric: "2.8×",
         label: "qualified leads after local pages and a phone-first rebuild",
-        href: "/case-studies/landscaping-company-growth",
         industry: "Home services",
         mechanism: "Neighborhood pages. Quote form on screen. Local pack.",
         summary:
           "Referrals had been the whole engine. Seasonal swings made growth guesswork. Local pages and a site built to book jobs took qualified leads from 10 to 28 a month.",
+      },
+      {
+        image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+        imageAlt: "Manos Creativas storefront preview after conversion-led rebuild",
+        client: "Manos Creativas",
+        metric: "2.4×",
+        label: "monthly orders after the conversion rebuild",
+        industry: "E-commerce",
+        mechanism: "Product pages, checkout path, and trust on a phone.",
+        summary:
+          "A conversion-led rebuild and tighter product pages lifted orders from 32 to 78 a month, without stacking promo discounts.",
       },
     ],
     bulletsTitle: "What the consult actually covers",
@@ -732,6 +924,11 @@ export const landingPages: LandingPageEntry[] = [
     ],
     faqs: [
       {
+        question: "Can I call instead of using the form?",
+        answer:
+          `Yes. Call ${CAMPAIGN_PHONE}. Ask for the growth consult. Same written notes within one business day. The form is there if you want to send a URL first.`,
+      },
+      {
         question: "Do I have to get on a call to get the consult?",
         answer:
           "No. Send a URL if you have one, or a short note if you need a site built. We send written notes within one business day. A call only if you want to talk through what to do first.",
@@ -775,6 +972,7 @@ export const landingPages: LandingPageEntry[] = [
     stickyCtaLabel: "Get my free consult",
     hideServiceLink: true,
   },
+  dallasWebsiteAudit,
 ];
 
 export const landingPageSlugs = landingPages.map((p) => p.slug);

@@ -106,12 +106,19 @@ describe("ads-config", () => {
       "NEXT_PUBLIC_GADS_LABEL_LP_FACEBOOK_WEB_DESIGN",
       "FacebookWebDesignLabel",
     );
+    vi.stubEnv(
+      "NEXT_PUBLIC_GADS_LABEL_LP_DALLAS_WEBSITE_AUDIT",
+      "DallasAuditLabel",
+    );
     const { getLandingPageConversionLabel } = await import(
       "@/lib/analytics/ads-config"
     );
     expect(getLandingPageConversionLabel("web-design")).toBe("WebDesignLabel");
     expect(getLandingPageConversionLabel("facebook-web-design")).toBe(
       "FacebookWebDesignLabel",
+    );
+    expect(getLandingPageConversionLabel("dallas-website-audit")).toBe(
+      "DallasAuditLabel",
     );
     expect(getLandingPageConversionLabel("google-ads-management")).toBe(
       "AuditLabel99",

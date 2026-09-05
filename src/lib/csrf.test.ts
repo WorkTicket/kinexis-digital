@@ -40,4 +40,27 @@ describe("validateOrigin", () => {
     });
     expect(validateOrigin(req)).toBe(true);
   });
+
+  it("treats Origin: null as missing and falls back to referer (in-app browsers)", () => {
+    const req = makeRequest({
+      origin: "null",
+      referer: "https://www.kinexisdigital.com/lp/facebook-web-design",
+    });
+    expect(validateOrigin(req)).toBe(true);
+  });
+
+  it("accepts Sec-Fetch-Site same-origin when Origin is missing", () => {
+    const req = makeRequest({
+      "sec-fetch-site": "same-origin",
+    });
+    expect(validateOrigin(req)).toBe(true);
+  });
+
+  it("still rejects a cross-origin Origin even with a same-site referer", () => {
+    const req = makeRequest({
+      origin: "https://evil.com",
+      referer: "https://www.kinexisdigital.com/lp/facebook-web-design",
+    });
+    expect(validateOrigin(req)).toBe(false);
+  });
 });

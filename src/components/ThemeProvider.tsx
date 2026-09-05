@@ -4,7 +4,7 @@ import {
   createContext,
   useCallback,
   useContext,
-  useLayoutEffect,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
@@ -26,7 +26,7 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>("light");
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const next = readStoredTheme();
     setThemeState(next);
     applyTheme(next);

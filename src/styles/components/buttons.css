@@ -17,6 +17,7 @@
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
+  touch-action: manipulation;
   transition:
     transform 280ms var(--btn-ease),
     box-shadow 280ms var(--btn-ease),
@@ -233,6 +234,7 @@
 
 .btn--link:hover:not(:disabled):not([aria-disabled="true"]) {
   color: var(--foreground);
+  text-decoration: none;
 }
 
 .btn--link:hover:not(:disabled):not([aria-disabled="true"]) .btn__label {

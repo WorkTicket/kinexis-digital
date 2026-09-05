@@ -15,9 +15,9 @@ import { routing } from "@/i18n/routing";
 import {
   DEFAULT_OG_IMAGE_PATH,
   getDefaultOgImageUrl,
-  getSiteUrl,
 } from "@/lib/metadata";
 import { pickChromeMessages } from "@/lib/chrome-messages";
+import { CRITICAL_FIRST_PAINT_CSS } from "@/lib/critical-css";
 import {
   COOKIE_PENDING_CRITICAL_CSS,
   COOKIE_PREFLIGHT_SCRIPT,
@@ -71,6 +71,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
+  interactiveWidget: "resizes-content",
 };
 
 export async function generateMetadata({
@@ -92,7 +93,6 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: getOgLocale(locale),
-      url: getSiteUrl(),
       siteName: "KINEXIS Digital",
       title,
       description,
@@ -142,6 +142,11 @@ export default async function LocaleLayout({
       className={`${kinexisDisplay.variable} ${kinexisText.variable} cookie-pending h-full antialiased`}
     >
       <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `${CRITICAL_FIRST_PAINT_CSS}${COOKIE_PENDING_CRITICAL_CSS}`,
+          }}
+        />
         {gtagSrcId && gtagInit ? (
           <>
             <script
@@ -179,7 +184,6 @@ export default async function LocaleLayout({
         ) : null}
         <script dangerouslySetInnerHTML={{ __html: THEME_PREFLIGHT_SCRIPT }} />
         <script dangerouslySetInnerHTML={{ __html: COOKIE_PREFLIGHT_SCRIPT }} />
-        <style dangerouslySetInnerHTML={{ __html: COOKIE_PENDING_CRITICAL_CSS }} />
       </head>
       <body className="min-h-full flex flex-col text-foreground">
         <NextIntlClientProvider locale={locale} messages={messages} key={locale}>

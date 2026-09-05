@@ -1,3 +1,4 @@
+import { EditorialStill } from "@/components/landing/EditorialStill";
 import { SitePreview } from "@/components/home/SitePreview";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { DeviceFrame } from "@/components/ui/DeviceFrame";
@@ -10,7 +11,27 @@ export function LandingSpotlight({
   kicker,
   title,
   body,
+  framed = true,
+  metric,
+  metricLabel,
 }: LandingPageSpotlight) {
+  const still = framed ? (
+    <DeviceFrame>
+      <SitePreview
+        image={image}
+        imageAlt={imageAlt}
+        sizes="(max-width: 768px) 100vw, 48vw"
+      />
+    </DeviceFrame>
+  ) : (
+    <EditorialStill
+      image={image}
+      imageAlt={imageAlt}
+      sizes="(max-width: 768px) 100vw, 48vw"
+      wide
+    />
+  );
+
   return (
     <section
       aria-labelledby="lp-spotlight-heading"
@@ -24,13 +45,17 @@ export function LandingSpotlight({
             from="left"
             delay={0.04}
           >
-            <DeviceFrame>
-              <SitePreview
-                image={image}
-                imageAlt={imageAlt}
-                sizes="(max-width: 768px) 100vw, 48vw"
-              />
-            </DeviceFrame>
+            <div className="lp-spotlight__frame">
+              {still}
+              {metric ? (
+                <p className="lp-spotlight__badge">
+                  <span className="lp-spotlight__badge-metric">{metric}</span>
+                  {metricLabel ? (
+                    <span className="lp-spotlight__badge-label">{metricLabel}</span>
+                  ) : null}
+                </p>
+              ) : null}
+            </div>
           </MediaReveal>
 
           <Reveal variant="fadeUp" when="media" delay={0.14} className="lp-spotlight__copy">

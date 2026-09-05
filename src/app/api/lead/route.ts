@@ -12,6 +12,7 @@ import {
   attributionTextLines,
   sanitizeAttributionFromBody,
 } from "@/lib/analytics/click-ids";
+import { sendMetaCapiEvent } from "@/lib/analytics/meta-capi";
 import { isWebsiteValue } from "@/lib/website-url";
 
 export async function POST(request: Request) {
@@ -34,6 +35,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     const {
       name,
+      businessName,
       email,
       phone,
       website,
@@ -41,11 +43,13 @@ export async function POST(request: Request) {
       service,
       revenue,
       budget,
+      need,
       goal,
       score,
       source,
       auditType,
       landingSlug,
+      metaEventId,
       _hp,
       _ts,
     } = body;
@@ -99,6 +103,15 @@ export async function POST(request: Request) {
     if (budget && String(budget).length > 50) {
       return NextResponse.json({ error: "Budget value is too long." }, { status: 400 });
     }
+    if (need && String(need).length > 80) {
+      return NextResponse.json({ error: "Need value is too long." }, { status: 400 });
+    }
+    if (businessName && String(businessName).length > 200) {
+      return NextResponse.json(
+        { error: "Business name is too long." },
+        { status: 400 },
+      );
+    }
     if (goal && String(goal).length > 1000) {
       return NextResponse.json({ error: "Goal is too long." }, { status: 400 });
     }
@@ -122,12 +135,15 @@ export async function POST(request: Request) {
     const safeEmail = String(email);
     const safePhone = phone ? String(phone).trim() : "";
     const safeWebsite = website ? String(website).trim() : "";
+    const safeBusinessName = businessName ? String(businessName).trim() : "";
+    const safeNeed = need ? String(need) : "";
     const safeLandingSlug =
       landingSlug && /^[a-z0-9-]{1,80}$/.test(String(landingSlug))
         ? String(landingSlug)
         : "";
     const leadData = {
       name: safeName,
+      businessName: safeBusinessName || "Not specified",
       email: safeEmail,
       phone: safePhone || "Not specified",
       website: safeWebsite || "Not specified",
@@ -135,6 +151,7 @@ export async function POST(request: Request) {
       landingPage: safeLandingSlug || "Not specified",
       revenue: revenue ? String(revenue) : "Not specified",
       budget: budget ? String(budget) : "Not specified",
+      need: safeNeed || "Not specified",
       goal: goal ? String(goal) : "Not specified",
       score: score ? String(score) : "unscored",
       source: source ? String(source) : auditType ? "lead-magnet" : "website",
@@ -146,6 +163,7 @@ export async function POST(request: Request) {
     const rows = [
       emailRow("Name", leadData.name),
       emailRow("Email", leadData.email, true),
+      safeBusinessName ? emailRow("Business", safeBusinessName) : "",
       safePhone ? emailRow("Phone", safePhone) : "",
       emailRow(
         "Website",
@@ -156,6 +174,7 @@ export async function POST(request: Request) {
       safeLandingSlug ? emailRow("Landing page", `/lp/${safeLandingSlug}`) : "",
       emailRow("Revenue", leadData.revenue),
       emailRow("Budget", leadData.budget),
+      safeNeed ? emailRow("Need", safeNeed) : "",
       emailRow("Goal", leadData.goal),
       emailRow("Score", leadData.score),
       emailRow("Source", leadData.source),
@@ -175,12 +194,14 @@ export async function POST(request: Request) {
           "",
           `Name: ${leadData.name}`,
           `Email: ${leadData.email}`,
+          safeBusinessName ? `Business: ${safeBusinessName}` : "",
           safePhone ? `Phone: ${safePhone}` : "",
           `Website: ${safeWebsite || (String(source) === "landing-page" ? "New site (no URL yet)" : "Not specified")}`,
           `Service: ${leadData.service}`,
           safeLandingSlug ? `Landing page: /lp/${safeLandingSlug}` : "",
           `Revenue: ${leadData.revenue}`,
           `Budget: ${leadData.budget}`,
+          safeNeed ? `Need: ${safeNeed}` : "",
           `Goal: ${leadData.goal}`,
           `Score: ${leadData.score}`,
           `Source: ${leadData.source}`,
@@ -203,6 +224,21 @@ export async function POST(request: Request) {
     if (!mail.sent && process.env.ENABLE_DEV_FORM_LOGGING === "1") {
       console.log("[DEV] Lead captured:", { ...leadData, attribution });
     }
+
+    await sendMetaCapiEvent({
+      eventName: "Lead",
+      eventId: typeof metaEventId === "string" ? metaEventId : undefined,
+      email: safeEmail,
+      phone: safePhone || undefined,
+      fbp: attribution.fbp,
+      fbc: attribution.fbc,
+      fbclid: attribution.fbclid,
+      clientIp: ip,
+      userAgent: request.headers.get("user-agent") ?? undefined,
+      eventSourceUrl: attribution.landing_page,
+      contentName: safeLandingSlug || leadData.service,
+      contentCategory: String(source) === "landing-page" ? "landing-page" : "lead",
+    });
 
     return NextResponse.json({ success: true, message: "Lead captured successfully" }, { status: 200 });
   } catch (error) {

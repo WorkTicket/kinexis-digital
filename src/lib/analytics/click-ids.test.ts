@@ -4,6 +4,7 @@ import {
   sanitizeAttributionFromBody,
   attributionTextLines,
   CLICK_ID_STORAGE_KEY,
+  fbcCookieFromFbclid,
 } from "@/lib/analytics/click-ids";
 
 describe("parseAttributionFromSearch", () => {
@@ -140,5 +141,16 @@ describe("captureClickIds (jsdom sessionStorage)", () => {
     );
     captureClickIds();
     expect(getAttributionPayload().landing_page).toContain("/lp/seo");
+  });
+});
+
+describe("fbcCookieFromFbclid", () => {
+  it("uses Meta's fb.{subdomainIndex}.{time}.{fbclid} format", () => {
+    expect(fbcCookieFromFbclid("IwAR0test", "www.kinexisdigital.com", 1_700_000_000_000)).toBe(
+      "fb.2.1700000000000.IwAR0test",
+    );
+    expect(fbcCookieFromFbclid("IwAR0test", "kinexisdigital.com", 1_700_000_000_000)).toBe(
+      "fb.1.1700000000000.IwAR0test",
+    );
   });
 });

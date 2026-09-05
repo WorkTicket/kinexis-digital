@@ -1,7 +1,11 @@
 "use client";
 
 import { trackCallClick } from "@/lib/analytics/events";
-import { businessProfile, getBusinessTelHref } from "@/lib/business";
+import {
+  businessProfile,
+  formatBusinessPhone,
+  getBusinessTelHref,
+} from "@/lib/business";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -13,16 +17,20 @@ type Props = {
 export function CallLink({ className, children }: Props) {
   const href = getBusinessTelHref();
   if (!href || !businessProfile.phone) return null;
+  const display =
+    formatBusinessPhone(businessProfile.phone) ?? businessProfile.phone;
 
   return (
     <a
       href={href}
-      className={cn(className)}
+      target="_self"
+      className={cn("call-link", className)}
+      aria-label={`Call ${display}`}
       onClick={() => {
         trackCallClick();
       }}
     >
-      {children ?? businessProfile.phone}
+      {children ?? <span className="call-link__num">{display}</span>}
     </a>
   );
 }

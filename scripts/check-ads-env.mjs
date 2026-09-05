@@ -79,6 +79,13 @@ if (pixel && !/^\d{5,20}$/.test(pixel)) {
   );
 }
 
+const capi = (process.env.META_CAPI_ACCESS_TOKEN || "").trim();
+if (pixel && !capi) {
+  warn(
+    "META_CAPI_ACCESS_TOKEN is unset — Facebook Lead events stay browser-only. Set the Conversions API token so iOS / in-app clicks still report.",
+  );
+}
+
 if (!adsId && !lead) {
   console.log(
     "Ads conversion env unset — site will deploy; form conversions will no-op until secrets are set and redeployed.",

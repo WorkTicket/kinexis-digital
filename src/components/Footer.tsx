@@ -1,12 +1,13 @@
 import { getTranslations } from "next-intl/server";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FooterCtaBand } from "@/components/FooterCtaBand";
+import { LandingChromeGate } from "@/components/landing/LandingChromeGate";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { CallLink } from "@/components/analytics/CallLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { Link } from "@/i18n/navigation";
 import { footerIndustryLinks, footerNavLinks } from "@/lib/site-nav";
-import { getBusinessTelHref } from "@/lib/business";
+import { getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
 
 export async function Footer() {
   const year = new Date().getFullYear();
@@ -25,21 +26,25 @@ export async function Footer() {
   };
 
   return (
-    <footer className="site-footer chrome-glass">
-      <div className="site-footer__signal" aria-hidden />
+    <footer className="site-footer">
       <div className="site-footer__mark" aria-hidden>
         <span className="site-footer__mark-text">Kinexis</span>
       </div>
 
       <div className="site-footer__inner">
-        <div className="site-footer__cta">
-          <FooterCtaBand
-            eyebrow={t("ctaEyebrow")}
-            title={t("ctaTitle")}
-            dek={t("ctaDek")}
-            buttonLabel={tCommon("bookStrategyCall")}
-          />
-        </div>
+        <LandingChromeGate
+          slimOnly
+          offLanding={
+            <div className="site-footer__cta">
+              <FooterCtaBand
+                eyebrow={t("ctaEyebrow")}
+                title={t("ctaTitle")}
+                dek={t("ctaDek")}
+                buttonLabel={tCommon("bookStrategyCall")}
+              />
+            </div>
+          }
+        />
 
         <div className="shell site-footer__main">
           <div className="site-footer__grid">
@@ -51,22 +56,40 @@ export async function Footer() {
               >
                 <BrandLogo lazy />
               </Link>
-              <p className="site-footer__blurb">{t("blurb")}</p>
-              <div className="site-footer__contact">
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="site-footer__email"
-                >
-                  <span className="site-footer__email-dot" aria-hidden />
-                  {CONTACT_EMAIL}
-                </a>
-                {getBusinessTelHref() ? (
-                  <CallLink className="site-footer__email mt-2 inline-flex" />
-                ) : null}
-                <p className="site-footer__meta-line">{t("replies")}</p>
-              </div>
+              <LandingChromeGate
+                slimOnly
+                onLanding={
+                  <>
+                    <p className="site-footer__blurb">Kinexis Digital</p>
+                    <p className="site-footer__meta-line">Dallas, Texas</p>
+                  </>
+                }
+                offLanding={
+                  <>
+                    <p className="site-footer__blurb">{t("blurb")}</p>
+                    <div className="site-footer__contact">
+                      <a
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        className="site-footer__email"
+                      >
+                        <span className="site-footer__email-dot" aria-hidden />
+                        {CONTACT_EMAIL}
+                      </a>
+                      {getBusinessTelHref() ? (
+                        <CallLink className="site-footer__email">
+                          <span className="site-footer__email-dot" aria-hidden />
+                          {getBusinessPhoneDisplay()}
+                        </CallLink>
+                      ) : null}
+                      <p className="site-footer__meta-line">{t("replies")}</p>
+                    </div>
+                  </>
+                }
+              />
             </div>
 
+            <LandingChromeGate
+              offLanding={
             <nav className="site-footer__nav" aria-label={t("navigation")}>
               <div>
                 <h2 className="section-eyebrow site-footer__col-title">
@@ -108,6 +131,8 @@ export async function Footer() {
                 </ul>
               </div>
             </nav>
+              }
+            />
           </div>
         </div>
 
@@ -117,6 +142,19 @@ export async function Footer() {
               © {year} {t("copyright")}
             </p>
             <div className="site-footer__bar-links">
+              <LandingChromeGate
+                onLanding={
+                  <>
+                    <Link href="/privacy" className="site-footer__bar-link">
+                      {t("privacy")}
+                    </Link>
+                    <Link href="/terms" className="site-footer__bar-link">
+                      {t("terms")}
+                    </Link>
+                  </>
+                }
+                offLanding={
+                  <>
               <LanguageSwitcher />
               <Link href="/terms" className="site-footer__bar-link">
                 {t("terms")}
@@ -136,6 +174,9 @@ export async function Footer() {
               >
                 {t("email")}
               </a>
+                  </>
+                }
+              />
             </div>
           </div>
         </div>

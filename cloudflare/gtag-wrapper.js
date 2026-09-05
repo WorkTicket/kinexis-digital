@@ -21,6 +21,7 @@ import {
   isGdprConsentRegion,
 } from "../src/lib/analytics/conversion-snippet.ts";
 import { buildEarlyMetaPixelHtml } from "../src/lib/analytics/meta-pixel.ts";
+import { ASYNC_CSS_BOOT_SCRIPT } from "../src/lib/critical-css.ts";
 
 export { BucketCachePurge, DOQueueHandler, DOShardedTagCache };
 
@@ -41,15 +42,27 @@ export default {
     const metaHtml = buildEarlyMetaPixelHtml(PRODUCTION_META_PIXEL_ID, {
       defaultConsent: isGdprConsentRegion(country) ? "revoke" : "grant",
     });
-    const earlyHead = `${EARLY_GTAG_HTML}${metaHtml}`;
-    if (!earlyHead) {
-      return response;
-    }
+    const earlyHead = `${EARLY_GTAG_HTML}${metaHtml}<script>${ASYNC_CSS_BOOT_SCRIPT}</script>`;
 
     return new HTMLRewriter()
       .on("head", {
         element(element) {
           element.prepend(earlyHead, { html: true });
+        },
+      })
+      .on("link", {
+        element(element) {
+          const rel = (element.getAttribute("rel") ?? "").toLowerCase();
+          if (rel !== "stylesheet") return;
+          const href = element.getAttribute("href") ?? "";
+          if (!href.includes("/_next/static/css/")) return;
+          element.setAttribute("media", "print");
+          element.setAttribute("onload", "this.onload=null;this.media='all'");
+          element.setAttribute("data-kinexis-async", "1");
+          element.after(
+            `<noscript><link rel="stylesheet" href="${href.replace(/"/g, "")}"></noscript>`,
+            { html: true },
+          );
         },
       })
       .on("script#gtag-src", {

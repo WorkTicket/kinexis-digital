@@ -13,6 +13,8 @@ type FaqAccordionProps = {
   eyebrow?: string;
   title?: ReactNode;
   className?: string;
+  /** Show every answer. Use on paid landers where extractors and skimmers need the objections visible. */
+  expandAll?: boolean;
 };
 
 export function FaqAccordion({
@@ -20,6 +22,7 @@ export function FaqAccordion({
   eyebrow = "FAQ",
   title = "Questions we get a lot.",
   className,
+  expandAll = false,
 }: FaqAccordionProps) {
   const baseId = useId();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -55,7 +58,7 @@ export function FaqAccordion({
             aria-label="Frequently asked questions"
           >
             {items.map((item, index) => {
-              const isOpen = openIndex === index;
+              const isOpen = expandAll || openIndex === index;
               const panelId = `${baseId}-panel-${index}`;
               const triggerId = `${baseId}-trigger-${index}`;
 
@@ -64,33 +67,48 @@ export function FaqAccordion({
                   key={item.question}
                   as="li"
                   variant="fadeUp"
-                  className={isOpen ? "faq-acc faq-acc--open" : "faq-acc"}
+                  className={
+                    expandAll
+                      ? "faq-acc faq-acc--static"
+                      : isOpen
+                        ? "faq-acc faq-acc--open"
+                        : "faq-acc"
+                  }
                 >
-                  <button
-                    type="button"
-                    id={triggerId}
-                    className="faq-acc__trigger group"
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    onClick={() => toggle(index)}
-                  >
-                    <span className="faq-acc__title">{item.question}</span>
-                    <span className="faq-acc__chevron icon-well" aria-hidden>
-                      <Plus strokeWidth={1.75} />
-                    </span>
-                  </button>
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={triggerId}
-                    className="faq-acc__panel"
-                    aria-hidden={!isOpen}
-                    {...(!isOpen ? { inert: true } : {})}
-                  >
-                    <div className="faq-acc__panel-inner">
+                  {expandAll ? (
+                    <div className="faq-acc__static">
+                      <h3 className="faq-acc__title">{item.question}</h3>
                       <p className="faq-acc__answer">{item.answer}</p>
                     </div>
-                  </div>
+                  ) : (
+                    <>
+                      <button
+                        type="button"
+                        id={triggerId}
+                        className="faq-acc__trigger group"
+                        aria-expanded={isOpen}
+                        aria-controls={panelId}
+                        onClick={() => toggle(index)}
+                      >
+                        <span className="faq-acc__title">{item.question}</span>
+                        <span className="faq-acc__chevron icon-well" aria-hidden>
+                          <Plus strokeWidth={1.75} />
+                        </span>
+                      </button>
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={triggerId}
+                        className="faq-acc__panel"
+                        aria-hidden={!isOpen}
+                        {...(!isOpen ? { inert: true } : {})}
+                      >
+                        <div className="faq-acc__panel-inner">
+                          <p className="faq-acc__answer">{item.answer}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
                 </RevealItem>
               );
             })}

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 150" role="img" aria-label="A1 Property Services">
+  <!-- House roof with chimney; underside curves into the driveway -->
+  <path
+    fill="#E31C23"
+    d="M30 86
+       L30 74
+       L100 22
+       L148 62
+       V42
+       H166
+       V76
+       C166 76 166 86 166 86
+       C128 64 72 64 30 86
+       Z"
+  />
+  <!-- Lower charcoal path -->
+  <path
+    fill="#8B9099"
+    d="M22 122
+       C78 92 128 90 182 112
+       C136 96 86 96 38 118
+       Z"
+  />
+</svg>

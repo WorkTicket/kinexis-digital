@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
+import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
 import { IndustryGlyph } from "@/components/industry/industry-glyphs";
 import { IndustryProgramChapter } from "@/components/industry/IndustryProgramChapter";
 import JsonLd from "@/components/seo/JsonLd";
@@ -52,7 +53,7 @@ export default async function IndustriesPage({ params }: Props) {
         copy={c.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
-        atmosphere
+        atmosphere={<SignalPlaneMount />}
         className="industries-hub-hero"
       />
 
