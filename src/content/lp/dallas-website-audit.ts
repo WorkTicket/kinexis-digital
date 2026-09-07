@@ -237,31 +237,55 @@ export const dallasWebsiteAudit: LandingPageEntry = {
       src: industryVisuals.construction.thumb,
       alt: industryVisuals.construction.alt,
       label: "Contractors",
+      lines: [
+        "Quote requests start on the phone.",
+        "The site has to finish that job.",
+      ],
     },
     {
       src: industryVisuals["home-services"].thumb,
       alt: industryVisuals["home-services"].alt,
       label: "Home services",
+      lines: [
+        "They search when something breaks.",
+        "The next step stays on the phone.",
+      ],
     },
     {
       src: industryVisuals["professional-services"].thumb,
       alt: industryVisuals["professional-services"].alt,
       label: "Professional services",
+      lines: [
+        "Trust is decided before they call.",
+        "The site has to look like the work.",
+      ],
     },
     {
       src: industryVisuals.dental.thumb,
       alt: industryVisuals.dental.alt,
       label: "Medical & dental",
+      lines: [
+        "Patients check you before they book.",
+        "The visit path has to be obvious.",
+      ],
     },
     {
       src: industryVisuals["real-estate"].thumb,
       alt: industryVisuals["real-estate"].alt,
       label: "Real estate",
+      lines: [
+        "Buyers leave after two quick taps.",
+        "The listing path has to hold them.",
+      ],
     },
     {
       src: industryVisuals.restaurants.thumb,
       alt: industryVisuals.restaurants.alt,
       label: "Restaurants",
+      lines: [
+        "Guests pick a table from a phone.",
+        "The reservation has to be one tap.",
+      ],
     },
   ],
   pricingTitle: "Professional Websites Built Around Your Business",

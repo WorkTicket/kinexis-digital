@@ -207,6 +207,19 @@ describe("dallas-website-audit landing page", () => {
     expect(page?.process?.[0].title.toLowerCase()).toMatch(/new website/);
     expect(page?.process?.[1].title.toLowerCase()).toMatch(/already have/);
     expect(page?.fitVisuals?.length).toBe(6);
+    expect(
+      page?.fitVisuals?.every(
+        (visual) => visual.lines?.length === 2 && visual.lines.every((line) => line.length > 0),
+      ),
+    ).toBe(true);
+    expect(page?.fitVisuals?.map((visual) => visual.label)).toEqual([
+      "Contractors",
+      "Home services",
+      "Professional services",
+      "Medical & dental",
+      "Real estate",
+      "Restaurants",
+    ]);
     expect(page?.fitTitle?.toLowerCase()).toMatch(/businesses that need the site to work/);
     expect(page?.fitTitle?.toLowerCase()).not.toMatch(/dallas/);
     expect(page?.fitNote?.toLowerCase()).not.toMatch(/dallas|dfw|north texas/);

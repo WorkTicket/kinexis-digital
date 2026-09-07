@@ -92,7 +92,7 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 }
 
 .lp-audit-hero .lp-form-trust {
-  display: flex;
+  display: none;
 }
 
 .lp-audit .result-row__lift {
@@ -103,6 +103,8 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   content-visibility: visible;
   display: flex;
   flex-direction: column;
+  min-height: 100svh;
+  min-height: 100dvh;
   background:
     radial-gradient(
       ellipse 80% 55% at 78% 88%,
@@ -177,14 +179,17 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  padding-top: 0.7rem;
-  padding-bottom: 1rem;
+  min-height: 0;
+  padding-top: 0.35rem;
+  padding-bottom: 0.55rem;
 }
 
 .lp-audit-hero__layout {
   display: grid;
-  gap: 1.15rem;
+  gap: 0.65rem;
   flex: 1 1 auto;
+  min-height: 0;
+  grid-template-rows: auto auto minmax(6.5rem, 1fr);
 }
 
 .lp-audit-hero__copy {
@@ -227,6 +232,74 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 
 .lp-audit-hero__visual {
   max-width: 38rem;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+
+.lp-audit-hero__visual .lp-hero-cluster {
+  width: 100%;
+  margin: 0;
+  max-height: 100%;
+}
+
+.lp-audit-hero__visual .lp-hero-cluster__caption {
+  display: none;
+}
+
+.lp-audit-hero .lp-audit-form-card .form-label {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.lp-audit-hero .lp-audit-form-card .form-input,
+.lp-audit-hero .lp-audit-form-card .form-select {
+  min-height: 2.75rem;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: #1b2030;
+  color: #fff;
+}
+
+.lp-audit-hero .lp-audit-form-card .form-input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.lp-audit-hero .lp-audit-form-card .form-input:focus,
+.lp-audit-hero .lp-audit-form-card .form-select:focus {
+  border-color: rgba(158, 196, 255, 0.72);
+}
+
+.lp-audit-hero .lp-form-consent {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.lp-audit-hero__proof-line {
+  margin: 0.5rem 0 0;
+  max-width: 36rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: #9ec4ff;
+}
+
+.lp-audit-hero__cite {
+  display: none;
+  margin: 0.7rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.lp-audit-hero__cite-quote {
+  display: block;
+}
+
+.lp-audit-hero__cite-attr {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .lp-audit-hero .lp-audit-form-card .btn {
@@ -235,6 +308,14 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 
 .lp-audit-hero .lp-audit-form-card h2 {
   font-size: 1.05rem;
+}
+
+.lp-audit-hero .lp-audit-form-card form.space-y-3 {
+  gap: 0.55rem;
+}
+
+.lp-audit-hero .lp-audit-form-card form.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.55rem;
 }
 
 .lp-audit-hero .lp-audit-form-card h2 + p {
@@ -255,9 +336,9 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 }
 
 .lp-audit-hero__title {
-  margin: 0.7rem 0 0;
+  margin: 0.35rem 0 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.85rem, 8.2vw, 3.15rem);
+  font-size: clamp(1.55rem, 6.6vw, 2.35rem);
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 1.06;
@@ -271,11 +352,11 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 }
 
 .lp-audit-hero__lede {
-  margin: 0.85rem 0 0;
+  margin: 0.45rem 0 0;
   max-width: 34rem;
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  line-height: 1.7;
+  line-height: 1.45;
   color: rgba(255, 255, 255, 0.92);
   text-wrap: pretty;
   text-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.55);
@@ -325,8 +406,8 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 }
 
 .lp-audit-hero__fine {
-  display: block;
-  margin: 1.15rem 0 0;
+  display: none;
+  margin: 0.55rem 0 0;
   font-size: 0.8125rem;
   line-height: 1.5;
   color: rgba(255, 255, 255, 0.58);
@@ -570,12 +651,30 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   padding: 0;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 0.8rem;
+  gap: 1.35rem 0.9rem;
 }
 
 .lp-audit-fit__tile {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
   margin: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.lp-audit-fit__name {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--foreground);
+}
+
+.lp-audit-fit__frame {
+  position: relative;
   overflow: hidden;
   aspect-ratio: 3 / 2;
   border-radius: 0.9rem;
@@ -592,24 +691,26 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   object-position: center center;
 }
 
-.lp-audit-fit__tile figcaption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
+.lp-audit-fit__blurb {
+  display: grid;
+  gap: 0.2rem;
+  min-height: 2.7em;
+}
+
+.lp-audit-fit__blurb p {
   margin: 0;
-  padding: 1.6rem 0.7rem 0.65rem;
-  background: linear-gradient(
-    to top,
-    color-mix(in oklab, #050505 84%, transparent) 0%,
-    transparent 100%
-  );
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.lp-audit-fit__tile figcaption {
+  margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
   font-size: 0.875rem;
   font-weight: 650;
   letter-spacing: -0.03em;
-  color: #fff;
+  color: var(--foreground);
 }
 
 .lp-audit-form-card {
@@ -625,7 +726,8 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 }
 
 .lp-audit-hero .lp-audit-form-card {
-  border-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: #12151c;
   box-shadow:
     0 1px 0 color-mix(in oklab, #fff 16%, transparent) inset,
     0 28px 64px -22px rgba(0, 0, 0, 0.62);
@@ -636,7 +738,7 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 }
 
 .lp-audit-form-card__inner {
-  padding: 1rem 1.05rem 1.1rem;
+  padding: 0.8rem 0.85rem 0.85rem;
 }
 
 .lp-audit-form-card .form-label {
@@ -1584,26 +1686,34 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   .lp-audit-hero__visual {
     max-width: none;
   }
+
+  .lp-audit-hero .lp-audit-form-card .mb-3:has(h2) {
+    display: none;
+  }
+
+  .lp-audit-hero__visual .lp-audit-laptop__screen {
+    max-height: 22vh;
+  }
 }
 
 @media (min-width: 768px) {
   .lp-audit-hero__stage {
-    padding-top: 1.25rem;
-    padding-bottom: 1.35rem;
+    padding-top: 0.55rem;
+    padding-bottom: 0.7rem;
   }
 
   .lp-audit-hero__layout {
-    gap: 1.5rem;
+    gap: 0.75rem;
   }
 
   .lp-audit-hero__title {
-    margin-top: 0.95rem;
+    margin-top: 0.45rem;
   }
 
   .lp-audit-hero__lede {
-    margin-top: 1.05rem;
-    font-size: 1.125rem;
-    line-height: 1.7;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
   }
 
   .lp-audit-hero__lede + .lp-audit-hero__lede {
@@ -1623,13 +1733,13 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   .lp-audit-hero__meta {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1.25rem;
+    margin-top: 0.7rem;
     gap: 0.45rem;
     font-size: 0.8125rem;
   }
 
   .lp-audit-form-card__inner {
-    padding: 1.25rem 1.3rem 1.35rem;
+    padding: 0.95rem 1.05rem 1rem;
   }
 
   .lp-audit-scope__layout {
@@ -1727,18 +1837,17 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 
   .lp-audit-fit__mosaic {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.9rem;
+    gap: 1.5rem 1.1rem;
     margin-top: 2.25rem;
   }
 
-  .lp-audit-fit__tile {
+  .lp-audit-fit__frame {
     aspect-ratio: 16 / 10;
     border-radius: 1.1rem;
   }
 
-  .lp-audit-fit__tile figcaption {
-    font-size: 1.05rem;
-    padding: 2.4rem 0.95rem 0.85rem;
+  .lp-audit-fit__name {
+    font-size: 1.12rem;
   }
 
   .lp-audit .chapter-shell--tight {
@@ -1776,8 +1885,8 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
     grid-template-areas:
       "copy panel"
       "visual panel";
-    gap: 0.7rem 2.25rem;
-    align-items: start;
+    gap: 0.55rem 2rem;
+    align-items: stretch;
   }
 
   .lp-audit-hero__copy {
@@ -1796,7 +1905,33 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   .lp-audit-hero__visual {
     grid-area: visual;
     max-width: none;
-    align-self: start;
+    align-self: stretch;
+  }
+
+  .lp-audit-hero__visual .lp-hero-cluster {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .lp-audit-hero__visual .lp-hero-cluster__stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .lp-audit-hero__visual .lp-audit-laptop {
+    width: 100%;
+  }
+
+  .lp-audit-hero__visual .lp-audit-laptop__screen {
+    max-height: min(32vh, 100%);
+  }
+
+  .lp-audit-hero__cite {
+    display: block;
   }
 
   .lp-audit-hero__visual .lp-hero-cluster {
@@ -1897,49 +2032,55 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding-top: clamp(1.75rem, 4vh, 2.75rem);
-    padding-bottom: clamp(1.5rem, 3vh, 2.25rem);
+    padding-top: clamp(0.85rem, 2vh, 1.35rem);
+    padding-bottom: clamp(0.7rem, 1.6vh, 1.1rem);
   }
 
   .lp-audit-hero__layout {
     width: 100%;
     grid-template-columns: minmax(0, 1.02fr) minmax(22rem, 0.98fr);
+    grid-template-rows: min-content 1fr;
     grid-template-areas:
       "copy panel"
       "visual panel";
-    gap: 1.5rem 2.75rem;
-    align-items: start;
+    gap: 0.65rem 2.25rem;
+    align-items: stretch;
   }
 
   .lp-audit-hero__title {
-    margin-top: 1.05rem;
-    font-size: clamp(2.85rem, 4.4vw, 4.15rem);
+    margin-top: 0.45rem;
+    font-size: clamp(2.05rem, 3.2vw, 3.05rem);
     line-height: 1.05;
   }
 
   .lp-audit-hero__lede {
-    margin-top: 1.2rem;
+    margin-top: 0.55rem;
     max-width: 36rem;
-    font-size: 1.1875rem;
-    line-height: 1.68;
+    font-size: 1.0625rem;
+    line-height: 1.5;
   }
 
   .lp-audit-hero__meta {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 1.85rem;
+    margin-top: 0.85rem;
     gap: 0.55rem;
     font-size: 0.8125rem;
   }
 
   .lp-audit-hero__fine {
     display: block;
-    margin-top: 1.35rem;
-    font-size: 0.875rem;
+    margin-top: 0.65rem;
+    font-size: 0.8125rem;
   }
 
   .lp-audit-hero__stats {
     display: grid;
+    margin-top: 0.7rem;
+  }
+
+  .lp-audit-hero__proof-line {
+    display: none;
   }
 
   .lp-audit-hero .lp-form-trust {
@@ -1947,11 +2088,11 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
   }
 
   .lp-audit-form-card__inner {
-    padding: 1.45rem 1.5rem 1.55rem;
+    padding: 1.1rem 1.2rem 1.15rem;
   }
 
-  .lp-audit-hero__caption {
-    padding: 0.85rem clamp(2rem, 6vw, 4rem) 1.25rem;
+  .lp-audit-hero__visual .lp-hero-cluster__caption {
+    display: block;
   }
 
   .lp-audit-pain__layout {
@@ -1996,12 +2137,11 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 
   .lp-audit-fit__mosaic {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.15rem;
+    gap: 1.65rem 1.25rem;
   }
 
-  .lp-audit-fit__tile figcaption {
+  .lp-audit-fit__name {
     font-size: 1.2rem;
-    padding: 2.8rem 1.1rem 1rem;
   }
 
   .lp-audit-close__layout {
@@ -2140,13 +2280,12 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
     line-height: 1.35;
   }
 
-  .lp-audit-fit__tile {
+  .lp-audit-fit__frame {
     border-radius: 1rem;
   }
 
-  .lp-audit-fit__tile figcaption {
+  .lp-audit-fit__name {
     font-size: 1.05rem;
-    padding: 2.2rem 0.9rem 0.85rem;
   }
 }
 

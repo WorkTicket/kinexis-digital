@@ -336,16 +336,26 @@ export function AuditFit({
           {visuals.map((visual) => (
             <RevealItem as="li" key={visual.label} variant="fadeUp">
               <figure className="lp-audit-fit__tile">
-                <LcpImage
-                  src={visual.src}
-                  alt=""
-                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  width={720}
-                  height={480}
-                  direct
-                  className="lp-audit-fit__img object-cover object-center"
-                />
-                <figcaption>{visual.label}</figcaption>
+                <p className="lp-audit-fit__name">{visual.label}</p>
+                <div className="lp-audit-fit__frame">
+                  <LcpImage
+                    src={visual.src}
+                    alt={visual.alt}
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                    width={720}
+                    height={480}
+                    direct
+                    className="lp-audit-fit__img object-cover object-center"
+                  />
+                </div>
+                {visual.lines ? (
+                  <div className="lp-audit-fit__blurb">
+                    <p>{visual.lines[0]}</p>
+                    <p>{visual.lines[1]}</p>
+                  </div>
+                ) : (
+                  <figcaption>{visual.label}</figcaption>
+                )}
               </figure>
             </RevealItem>
           ))}

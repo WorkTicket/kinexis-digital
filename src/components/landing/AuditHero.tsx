@@ -6,9 +6,6 @@ export function AuditHero({ page }: { page: LandingPageEntry }) {
   const lines = page.headlineLines?.length
     ? page.headlineLines
     : [page.headline, page.headlineAccent].filter(Boolean);
-  const caption = page.heroMeta?.length
-    ? page.heroMeta.join(" · ")
-    : (page.serviceArea ?? []).join(" · ");
   const ledeParts = page.subheadline.split(/\n\n/).filter(Boolean);
 
   return (
@@ -32,6 +29,14 @@ export function AuditHero({ page }: { page: LandingPageEntry }) {
                 {para}
               </p>
             ))}
+            {page.proof.length ? (
+              <p className="lp-audit-hero__proof-line">
+                {page.proof
+                  .slice(0, 2)
+                  .map((item) => `${item.metric} ${item.label}`)
+                  .join(" · ")}
+              </p>
+            ) : null}
             {page.heroFinePrint ? (
               <p className="lp-audit-hero__fine">{page.heroFinePrint}</p>
             ) : null}
@@ -53,15 +58,22 @@ export function AuditHero({ page }: { page: LandingPageEntry }) {
               trust="checks"
               showCallPath={false}
             />
+            {page.testimonial ? (
+              <p className="lp-audit-hero__cite">
+                <span className="lp-audit-hero__cite-quote">
+                  “{page.testimonial.quote}”
+                </span>
+                <span className="lp-audit-hero__cite-attr">
+                  {page.testimonial.name}
+                </span>
+              </p>
+            ) : null}
           </div>
           <div className="lp-audit-hero__visual">
             <HeroCluster variant="ridge" priority caption="Sample design" />
           </div>
         </div>
       </div>
-      {caption ? (
-        <p className="lp-audit-hero__caption">{caption}</p>
-      ) : null}
     </section>
   );
 }

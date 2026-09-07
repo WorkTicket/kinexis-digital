@@ -77,6 +77,8 @@ export type LandingPageFitVisual = {
   src: string;
   alt: string;
   label: string;
+  /** Two short lines under the still. Keep length even across tiles. */
+  lines?: [string, string];
 };
 
 export type LandingPagePainItem = {
