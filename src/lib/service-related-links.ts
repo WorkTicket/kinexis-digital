@@ -40,7 +40,7 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     caseStudies: caseStudyLinks("plumbing", "ecommerce"),
     blog: [
       { href: "/blog/quality-score-guide", label: "Quality Score Guide" },
-      { href: "/blog/roas-calculations", label: "ROAS Calculations" },
+      { href: "/blog/google-ads-vs-facebook-ads", label: "Google Ads vs Facebook Ads" },
     ],
   },
   "google-ads": {
@@ -88,7 +88,8 @@ const baseLinks: Record<ServiceSeoSlug, RelatedLinkGroup> = {
     caseStudies: caseStudyLinks("ecommerce", "landscaping"),
     blog: [
       { href: "/blog/website-conversion-optimization", label: "Website Conversion Optimization" },
-      { href: "/blog/landing-page-best-practices", label: "Landing Page Best Practices" },
+      { href: "/blog/small-business-website-cost", label: "Small Business Website Cost" },
+      { href: "/blog/website-not-generating-leads", label: "Why the Site Gets No Leads" },
     ],
   },
   cro: {

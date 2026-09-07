@@ -16,6 +16,10 @@ import {
   TrendingUp,
   GraduationCap,
   Sparkles,
+  Droplets,
+  Trees,
+  Thermometer,
+  Home,
   type LucideIcon,
 } from "lucide-react";
 
@@ -40,6 +44,10 @@ const ICONS: Record<IndustrySlug, LucideIcon> = {
   "financial-services": TrendingUp,
   education: GraduationCap,
   "beauty-wellness": Sparkles,
+  plumbing: Droplets,
+  landscaping: Trees,
+  hvac: Thermometer,
+  roofing: Home,
 };
 
 export function IndustryGlyph({ slug, className }: GlyphProps) {

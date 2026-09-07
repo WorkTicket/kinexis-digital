@@ -35,11 +35,13 @@ type Props = {
   dense?: boolean;
   /** Website URL first; name and email become step 2. */
   staged?: boolean;
-  /** Qualification fields for the Dallas audit lander. */
+  /** Qualification fields for the slim consult lander. */
   qualification?: boolean;
   /** Name, email, optional URL — cold Meta traffic. */
   essentialsOnly?: boolean;
   phoneRequired?: boolean;
+  phoneOptional?: boolean;
+  hideWebsite?: boolean;
   businessNameRequired?: boolean;
   consentLabel?: string;
   needOptions?: { value: string; label: string }[];
@@ -85,6 +87,8 @@ export function LandingLeadForm({
   qualification = false,
   essentialsOnly = false,
   phoneRequired = false,
+  phoneOptional = false,
+  hideWebsite = false,
   businessNameRequired = false,
   consentLabel,
   needOptions,
@@ -111,10 +115,9 @@ export function LandingLeadForm({
   const showUrlStep = staged && step === 1;
   const gap = dense ? "space-y-3" : "space-y-5";
   const gridGap = dense
-    ? essentialsOnly
-      ? "grid grid-cols-2 gap-x-2.5 gap-y-3"
-      : "grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-2.5 gap-y-3"
+    ? "grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-2.5 gap-y-3"
     : "grid gap-5 md:grid-cols-2";
+  const showPhone = phoneRequired || phoneOptional;
 
   const submitLead = async () => {
     if (submitLock.current) return;
@@ -343,22 +346,26 @@ export function LandingLeadForm({
                 />
               </div>
             </div>
-            {phoneRequired || businessNameRequired ? (
-              <div className={gridGap}>
-                {phoneRequired ? (
+            {showPhone || businessNameRequired ? (
+              <div
+                className={
+                  showPhone && businessNameRequired ? gridGap : undefined
+                }
+              >
+                {showPhone ? (
                   <div>
-                    <FieldLabel htmlFor={`${id}-phone`} required>
+                    <FieldLabel htmlFor={`${id}-phone`} required={phoneRequired}>
                       Phone
                     </FieldLabel>
                     <input
                       type="tel"
                       id={`${id}-phone`}
-                      required
+                      required={phoneRequired}
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       className="form-input"
                       autoComplete="tel"
-                      placeholder="(214) 555-0123"
+                      placeholder="(555) 010-1234"
                     />
                   </div>
                 ) : null}
@@ -381,7 +388,7 @@ export function LandingLeadForm({
                 ) : null}
               </div>
             ) : null}
-            {websiteField}
+            {hideWebsite ? null : websiteField}
             {consentLabel ? (
               <label className="lp-form-consent" htmlFor={`${id}-consent`}>
                 <input
@@ -445,7 +452,7 @@ export function LandingLeadForm({
                   onChange={(e) => setPhone(e.target.value)}
                   className="form-input"
                   autoComplete="tel"
-                  placeholder="(214) 555-0123"
+                  placeholder="(555) 010-1234"
                 />
               </div>
               <div>

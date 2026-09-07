@@ -9,10 +9,13 @@ export { industries } from "./data";
 export {
   FEATURED_SLUGS,
   STANDALONE_INDUSTRY_SLUGS,
+  VERTICAL_INDUSTRY_SLUGS,
   isStandaloneIndustry,
+  isVerticalIndustry,
   getIndustryBySlug,
   getAllIndustrySlugs,
   getStandaloneIndustrySlugs,
+  getHubIndustries,
   industryHref,
   getRelatedIndustries,
 } from "./helpers";

@@ -106,9 +106,9 @@ describe("buildPageMetadata", () => {
     const meta = buildPageMetadata({
       locale: "en",
       path: "/lp/dallas-website-audit",
-      title: "Get a Website Built to Win More Customers | Dallas",
+      title: "Get a Website Built to Win More Customers",
       description:
-        "Custom websites for Dallas businesses. New sites and redesigns that look credible, work on mobile, and turn more visitors into customers. Free consultation.",
+        "Custom websites for businesses that need more calls, quotes, and orders. New sites and redesigns that look credible, work on mobile, and turn visitors into customers. Free consultation.",
       noIndex: true,
       noFollow: true,
     });

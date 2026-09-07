@@ -1,4 +1,7 @@
+import { blogArticlesEsIntent } from "./blog-articles-es-intent";
+
 export const blogArticlesEsExpanded = {
+  ...blogArticlesEsIntent,
   "local-seo-strategy-2026": {
     title: "Estrategia de SEO Local para 2026: Qué Ha Cambiado y Qué Sigue Funcionando",
     category: "Crecimiento de Negocios Locales",

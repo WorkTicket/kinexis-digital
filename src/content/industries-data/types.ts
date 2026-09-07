@@ -6,6 +6,8 @@ export type IndustryFocus = {
 export type IndustryDomain = {
   title: string;
   detail: string;
+  /** Optional sibling vertical or service URL. Hub chapters stay unlinked. */
+  href?: string;
 };
 
 export type IndustryFaq = {
@@ -28,7 +30,11 @@ export type IndustrySlug =
   | "professional-services"
   | "financial-services"
   | "education"
-  | "beauty-wellness";
+  | "beauty-wellness"
+  | "plumbing"
+  | "landscaping"
+  | "hvac"
+  | "roofing";
 
 export type IndustryStatCallout = {
   value: string;
@@ -118,4 +124,6 @@ export type Industry = {
   midCtaCopy?: string;
   /** FAQ section heading — unique per industry */
   faqTitle?: string;
+  /** Topical links off this page (services, proof, sibling verticals). */
+  relatedLinks?: { href: string; label: string }[];
 };

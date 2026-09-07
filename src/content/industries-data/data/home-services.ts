@@ -82,16 +82,19 @@ export const industry: Industry = {
     domains: [
       {
         title: "Plumbing",
+        href: "/industries/plumbing",
         detail:
           "Emergency and planned work, with pages that capture the call when water is already on the floor.",
       },
       {
         title: "Landscaping & outdoor",
+        href: "/industries/landscaping",
         detail:
           "Seasonal demand, commercial and residential jobs, and search that fills the calendar before peak hits.",
       },
       {
         title: "HVAC",
+        href: "/industries/hvac",
         detail:
           "Install and service cycles that spike with weather. Ads that don't burn budget in the off months.",
       },
@@ -102,6 +105,7 @@ export const industry: Industry = {
       },
       {
         title: "Roofing & exterior",
+        href: "/industries/roofing",
         detail:
           "Storm-driven spikes and long consideration jobs. Structured so you catch both.",
       },
@@ -154,6 +158,14 @@ export const industry: Industry = {
     ctaTitle: "The crew you want busy is waiting on better leads.",
     ctaCopy:
       "Tell us your trade, trade area, and what's broken: referrals drying up, junk leads, or a site that doesn't ask for the call. We'll map what to fix first on a strategy call.",
+    relatedLinks: [
+      { href: "/industries/plumbing", label: "Plumbing marketing" },
+      { href: "/industries/landscaping", label: "Landscaping marketing" },
+      { href: "/industries/hvac", label: "HVAC marketing" },
+      { href: "/industries/roofing", label: "Roofing marketing" },
+      { href: "/services/web-design", label: "Web design" },
+      { href: "/services/seo", label: "SEO" },
+    ],
     statCallout: {
       value: "2.8×",
       label: "More qualified leads in 10 months",

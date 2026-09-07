@@ -1359,28 +1359,10 @@
   accent-color: var(--hero-signal);
 }
 
-.lp-audit-close--dark {
-  background: #080808;
-  color: #f4f1ea;
-}
-
-.lp-audit-close--dark .chapter-lead__heading,
-.lp-audit-close--dark .section-eyebrow {
-  color: #f4f1ea;
-}
-
-.lp-audit-close--dark .chapter-lead__dek {
-  color: rgba(244, 241, 234, 0.72);
-}
-
-.lp-audit-close--dark .lp-audit-form-card {
-  border-color: rgba(255, 255, 255, 0.12);
-}
-
 .lp-audit-close__trust {
   margin: 1rem 0 0;
   font-size: 0.8125rem;
-  color: rgba(244, 241, 234, 0.58);
+  color: var(--muted);
 }
 
 @media (min-width: 768px) {

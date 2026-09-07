@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import type { CSSProperties } from "react";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
-import { SignalPlaneFallback } from "@/components/home/SignalPlaneFallback";
 import { IndustryVisual } from "@/components/industry/IndustryVisual";
 import { PageBreadcrumb } from "@/components/page/PageBreadcrumb";
 import { Button } from "@/components/ui/Button";
@@ -16,8 +15,7 @@ type IndustryHeroProps = {
 };
 
 /**
- * Homepage-grade cinematic open — veil, atmosphere, staggered enter,
- * split copy + editorial still that settles on load.
+ * Split copy + editorial still that settles on load.
  */
 export async function IndustryHero({ industry, className }: IndustryHeroProps) {
   const t = await getTranslations("common");
@@ -51,15 +49,6 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
         fetchPriority="high"
         media="(min-width: 768px)"
       />
-      <div
-        aria-hidden
-        className="hero-atmosphere pointer-events-none absolute inset-0 z-0 overflow-hidden"
-      >
-        <SignalPlaneFallback />
-      </div>
-      <div className="hero-film-scrim" aria-hidden />
-      <div className="hero-veil" aria-hidden />
-
       <HeroScrollRoot className="shell shell--cinema page-hero__grid hero-stage relative z-[2]">
         <div className="page-hero__copy-col">
           <HeroParallax layer="copy">

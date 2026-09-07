@@ -125,6 +125,13 @@ export function resolveServiceSlug(slug: ServiceSlug): ServiceSlug {
 }
 
 export const blogSlugs = [
+  "small-business-website-cost",
+  "website-not-generating-leads",
+  "website-traffic-no-calls",
+  "website-redesign-signs",
+  "website-builder-vs-professional",
+  "google-ads-vs-facebook-ads",
+  "more-leads-from-service-website",
   "seo-pricing-guide",
   "how-long-does-seo-take",
   "local-seo-strategy-2026",

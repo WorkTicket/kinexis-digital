@@ -62,13 +62,7 @@ export async function PageHero({
 
   return (
     <section className={sectionClass} aria-labelledby="page-hero-heading">
-      {atmosphere ? (
-        <>
-          {atmosphere}
-          <div className="hero-film-scrim" aria-hidden />
-        </>
-      ) : null}
-      <div className="hero-veil" aria-hidden />
+      {atmosphere}
 
       <HeroScrollRoot
         className={cn(

@@ -7,6 +7,7 @@ import {
   caseStudySlugs,
   sitemapServiceSlugs,
 } from "@/content/registry/site-routes";
+import { STANDALONE_INDUSTRY_SLUGS, VERTICAL_INDUSTRY_SLUGS } from "@/content/industries";
 import { allIndustries, industryCategories } from "@/content/registry/industries";
 
 const SPANISH_MONTHS: Record<string, number> = {
@@ -116,6 +117,17 @@ export function getPathLastModified(path: string): Date {
   const serviceMatch = normalized.match(/^\/services\/([^/]+)$/);
   if (serviceMatch && (sitemapServiceSlugs as readonly string[]).includes(serviceMatch[1])) {
     return dateFromIsoString(SERVICE_LAST_MODIFIED);
+  }
+
+  const industryStandaloneMatch = normalized.match(/^\/industries\/([^/]+)$/);
+  if (industryStandaloneMatch) {
+    const slug = industryStandaloneMatch[1];
+    if ((VERTICAL_INDUSTRY_SLUGS as readonly string[]).includes(slug)) {
+      return dateFromIsoString("2026-09-06");
+    }
+    if ((STANDALONE_INDUSTRY_SLUGS as readonly string[]).includes(slug)) {
+      return dateFromIsoString(INDUSTRY_LAST_MODIFIED);
+    }
   }
 
   const industryCategoryMatch = normalized.match(/^\/industries\/([^/]+)$/);

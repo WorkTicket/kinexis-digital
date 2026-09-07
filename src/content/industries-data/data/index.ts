@@ -1,5 +1,9 @@
 import type { Industry } from "../types";
 import { industry as homeServicesIndustry } from "./home-services";
+import { industry as plumbingIndustry } from "./plumbing";
+import { industry as landscapingIndustry } from "./landscaping";
+import { industry as hvacIndustry } from "./hvac";
+import { industry as roofingIndustry } from "./roofing";
 import { industry as ecommerceIndustry } from "./ecommerce";
 import { industry as healthcareIndustry } from "./healthcare";
 import { industry as dentalIndustry } from "./dental";
@@ -17,6 +21,10 @@ import { industry as beautyWellnessIndustry } from "./beauty-wellness";
 
 export const industries: Industry[] = [
   homeServicesIndustry,
+  plumbingIndustry,
+  landscapingIndustry,
+  hvacIndustry,
+  roofingIndustry,
   ecommerceIndustry,
   healthcareIndustry,
   dentalIndustry,

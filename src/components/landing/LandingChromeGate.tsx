@@ -9,7 +9,7 @@ type Props = {
   onLanding?: ReactNode;
   /** Rendered on the rest of the site. */
   offLanding?: ReactNode;
-  /** Dallas Meta lander only. Other /lp pages keep their existing chrome. */
+  /** Slim consult lander only. Other /lp pages keep their existing chrome. */
   slimOnly?: boolean;
 };
 

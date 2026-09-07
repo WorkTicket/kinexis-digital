@@ -287,7 +287,7 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 
 .lp-audit-hero__stats {
   list-style: none;
-  display: grid;
+  display: none;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.45rem;
   margin: 1.05rem 0 0;
@@ -659,6 +659,26 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
 
 .lp-audit-form-card .btn {
   width: 100%;
+}
+
+.lp-audit-close .btn--primary {
+  background: var(--accent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 22%, transparent),
+    0 1px 2px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+.lp-audit-close .btn--primary::before,
+.lp-audit-close .btn--primary::after {
+  content: none;
+}
+
+.lp-audit-close .btn--primary:hover:not(:disabled):not([aria-disabled="true"]) {
+  filter: none;
+  background: color-mix(in oklab, #fff 10%, var(--accent));
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab, #fff 28%, transparent),
+    0 2px 4px color-mix(in oklab, var(--accent) 22%, transparent);
 }
 
 .lp-audit-close__layout {
@@ -1916,6 +1936,10 @@ html.in-app-browser .lp-audit .chapter:not(.lp-audit-hero) {
     display: block;
     margin-top: 1.35rem;
     font-size: 0.875rem;
+  }
+
+  .lp-audit-hero__stats {
+    display: grid;
   }
 
   .lp-audit-hero .lp-form-trust {

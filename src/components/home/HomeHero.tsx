@@ -29,7 +29,6 @@ export async function HomeHero() {
       />
       <HeroFilm />
       <div className="hero-film-scrim" aria-hidden />
-      <div className="hero-veil" aria-hidden />
 
       <HeroScrollRoot className="shell shell--cinema hero-stage relative z-[2]">
         <HeroParallax layer="copy">

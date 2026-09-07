@@ -61,7 +61,6 @@ export async function Footer() {
                 onLanding={
                   <>
                     <p className="site-footer__blurb">Kinexis Digital</p>
-                    <p className="site-footer__meta-line">Dallas, Texas</p>
                   </>
                 }
                 offLanding={
@@ -114,9 +113,7 @@ export async function Footer() {
                   {footerIndustryLinks.map((link) => (
                     <li key={link.href}>
                       <Link href={link.href} className="site-footer__link">
-                        {link.href.includes("home-services")
-                          ? tNav("homeServices")
-                          : tNav("ecommerce")}
+                        {tNav.has(link.key) ? tNav(link.key) : link.label}
                       </Link>
                     </li>
                   ))}

@@ -62,7 +62,14 @@ export function isFlagshipServiceSlug(slug) {
   return FLAGSHIP_SERVICE_SET.has(slug);
 }
 
-export const STANDALONE_INDUSTRY_SLUGS = ["home-services", "ecommerce"];
+export const STANDALONE_INDUSTRY_SLUGS = [
+  "home-services",
+  "ecommerce",
+  "plumbing",
+  "landscaping",
+  "hvac",
+  "roofing",
+];
 
 export const INDUSTRY_HUB_SLUGS = [
   "home-services",

@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
+import { Link, redirect } from "@/i18n/navigation";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
 import {
@@ -79,8 +79,7 @@ export default async function IndustryDetailPage({ params }: PageProps) {
     return null;
   }
 
-  // Only home-services + ecommerce keep full detail pages (nav dropdown).
-  // Everyone else lives as a chapter on the industries hub.
+  // Standalone markets keep full detail pages. Hub chapters redirect to /industries#slug.
   if (!isStandaloneIndustry(slug)) {
     redirect({ href: `/industries#${slug}`, locale });
   }
@@ -235,7 +234,13 @@ export default async function IndustryDetailPage({ params }: PageProps) {
             {industry.domains.map((domain) => (
               <RevealItem key={domain.title} as="li" variant="fadeUp">
                 <article className="industry-domain">
-                  <h3 className="industry-domain__title">{domain.title}</h3>
+                  {domain.href ? (
+                    <h3 className="industry-domain__title">
+                      <Link href={domain.href}>{domain.title}</Link>
+                    </h3>
+                  ) : (
+                    <h3 className="industry-domain__title">{domain.title}</h3>
+                  )}
                   <p className="industry-domain__body">{domain.detail}</p>
                 </article>
               </RevealItem>
@@ -277,6 +282,41 @@ export default async function IndustryDetailPage({ params }: PageProps) {
           </RevealGroup>
         </div>
       </section>
+
+      {industry.relatedLinks && industry.relatedLinks.length > 0 ? (
+        <section
+          aria-labelledby="industry-related-heading"
+          className="chapter chapter--void relative"
+        >
+          <div className="shell chapter-shell--tight relative">
+            <Reveal variant="rise" when="chapter">
+              <header className="industry-why__mast">
+                <p className="section-eyebrow">{t("keepReading")}</p>
+                <h2
+                  id="industry-related-heading"
+                  className="industry-why__heading"
+                >
+                  Related services and proof
+                </h2>
+              </header>
+            </Reveal>
+            <RevealGroup
+              as="ul"
+              className="industry-why-grid"
+              stagger={duration.staggerTight}
+            >
+              {industry.relatedLinks.map((link) => (
+                <RevealItem key={link.href} as="li" variant="fadeUp">
+                  <Link href={link.href} className="industry-why">
+                    <h3 className="industry-why__title">{link.label}</h3>
+                    <p className="industry-why__body">Open this page</p>
+                  </Link>
+                </RevealItem>
+              ))}
+            </RevealGroup>
+          </div>
+        </section>
+      ) : null}
 
       <FaqAccordion
         items={industry.faq}

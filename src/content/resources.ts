@@ -232,10 +232,11 @@ export type ResourcesContent = {
 const kinexisGuidesEn: KinexisGuide[] = [
   { title: "Local SEO Checklist", description: "Step-by-step local SEO audit for service businesses.", href: "/blog/local-seo-checklist" },
   { title: "SEO Audit Framework", description: "How we prioritize technical fixes by revenue impact.", href: "/blog/seo-audit-framework" },
-  { title: "Google Ads vs SEO", description: "When to invest in paid search vs organic.", href: "/google-ads-vs-seo" },
+  { title: "Google Ads vs SEO", description: "When to invest in paid search vs organic.", href: "/blog/seo-vs-google-ads" },
   { title: "Landing Page Best Practices", description: "What converts on paid traffic landing pages.", href: "/blog/landing-page-best-practices" },
   { title: "A/B Testing Framework", description: "How we run conversion tests without breaking tracking.", href: "/blog/ab-testing-framework" },
-  { title: "SEO Pricing Guide", description: "What SEO actually costs and what you should get.", href: "/blog/seo-pricing-guide" },
+  { title: "Small Business Website Cost", description: "What a professional site actually costs, and what is a waste of money.", href: "/blog/small-business-website-cost" },
+  { title: "Why the Site Gets No Leads", description: "The usual reasons a business website never produces calls.", href: "/blog/website-not-generating-leads" },
 ];
 
 const resourcesContentEn: ResourcesContent = {
@@ -446,10 +447,11 @@ const resourcesPageMetaEs: ResourcesPageMeta = {
 const kinexisGuidesEs: KinexisGuide[] = [
   { title: "Checklist de SEO local", description: "Auditoría local paso a paso para negocios de servicios.", href: "/blog/local-seo-checklist" },
   { title: "Marco de auditoría SEO", description: "Cómo priorizamos correcciones técnicas según el impacto en ingresos.", href: "/blog/seo-audit-framework" },
-  { title: "Google Ads vs SEO", description: "Cuándo invertir en búsqueda de pago frente a orgánica.", href: "/google-ads-vs-seo" },
+  { title: "Google Ads vs SEO", description: "Cuándo invertir en búsqueda de pago frente a orgánica.", href: "/blog/seo-vs-google-ads" },
   { title: "Buenas prácticas de landing", description: "Qué convierte en landings de tráfico de pago.", href: "/blog/landing-page-best-practices" },
   { title: "Marco de pruebas A/B", description: "Cómo hacemos tests de conversión sin romper el tracking.", href: "/blog/ab-testing-framework" },
-  { title: "Guía de precios de SEO", description: "Cuánto cuesta el SEO de verdad y qué deberías recibir.", href: "/blog/seo-pricing-guide" },
+  { title: "Coste de una web para pymes", description: "Qué cuesta de verdad un sitio profesional y qué es tirar el dinero.", href: "/blog/small-business-website-cost" },
+  { title: "Por qué la web no genera leads", description: "Las razones habituales por las que una web de empresa no produce llamadas.", href: "/blog/website-not-generating-leads" },
 ];
 
 const resourcesContentEs: ResourcesContent = {

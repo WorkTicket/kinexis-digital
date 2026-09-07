@@ -54,7 +54,8 @@ export function AuditLanding({ page }: { page: LandingPageEntry }) {
         <AuditProof
           intro={page.proofIntro}
           items={page.proof}
-          ctaLabel={page.proofCta}
+          ctaLabel={consultCta}
+          href="#lp-form"
         />
       ) : null}
 
@@ -164,7 +165,6 @@ export function AuditLanding({ page }: { page: LandingPageEntry }) {
         items={page.faqs}
         eyebrow="Questions"
         title="Straight answers."
-        expandAll
       />
 
       <AuditClose page={page} />

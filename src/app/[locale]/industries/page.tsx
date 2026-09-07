@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
-import { SignalPlaneMount } from "@/components/home/SignalPlaneMount";
 import { IndustryGlyph } from "@/components/industry/industry-glyphs";
 import { IndustryProgramChapter } from "@/components/industry/IndustryProgramChapter";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { industries, getIndustriesContent } from "@/content/industries";
+import { getHubIndustries, getIndustriesContent } from "@/content/industries";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -29,6 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function IndustriesPage({ params }: Props) {
   const locale = await resolveLocale(params);
   const c = getIndustriesContent(locale);
+  const hubIndustries = getHubIndustries();
   const tCommon = await getTranslations("common");
   const tNav = await getTranslations("nav");
 
@@ -53,7 +53,6 @@ export default async function IndustriesPage({ params }: Props) {
         copy={c.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
-        atmosphere={<SignalPlaneMount />}
         className="industries-hub-hero"
       />
 
@@ -80,7 +79,7 @@ export default async function IndustriesPage({ params }: Props) {
             delayChildren={0.03}
             aria-label={tCommon("jumpToIndustry")}
           >
-            {industries.map((industry) => (
+            {hubIndustries.map((industry) => (
               <RevealItem as="li" key={industry.slug} variant="fadeUp">
                 <a href={`#${industry.slug}`} className="ind-folio__item">
                   <span className="ind-folio__glyph" aria-hidden>
@@ -103,7 +102,7 @@ export default async function IndustriesPage({ params }: Props) {
 
       <div className="svc-offer-rail ind-offer-rail chapter chapter--studio">
         <div className="shell">
-          {industries.map((industry, index) => (
+          {hubIndustries.map((industry, index) => (
             <IndustryProgramChapter
               key={industry.slug}
               industry={industry}

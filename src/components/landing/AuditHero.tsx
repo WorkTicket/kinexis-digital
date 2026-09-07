@@ -35,12 +35,22 @@ export function AuditHero({ page }: { page: LandingPageEntry }) {
             {page.heroFinePrint ? (
               <p className="lp-audit-hero__fine">{page.heroFinePrint}</p>
             ) : null}
+            {page.proof.length ? (
+              <ul className="lp-audit-hero__stats">
+                {page.proof.slice(0, 3).map((item) => (
+                  <li key={`${item.metric}-${item.label}`}>
+                    <span className="lp-audit-hero__stat-value">{item.metric}</span>
+                    <span className="lp-audit-hero__stat-label">{item.label}</span>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
           <div className="lp-audit-hero__panel">
             <LandingIntake
               page={page}
               embedded
-              trust="none"
+              trust="checks"
               showCallPath={false}
             />
           </div>

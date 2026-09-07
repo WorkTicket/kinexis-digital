@@ -30,6 +30,10 @@ export const mainNavLinks: MainNavItem[] = [
     allLabel: "All industries",
     children: [
       { href: "/industries/home-services", label: "Home Services" },
+      { href: "/industries/plumbing", label: "Plumbing" },
+      { href: "/industries/landscaping", label: "Landscaping" },
+      { href: "/industries/hvac", label: "HVAC" },
+      { href: "/industries/roofing", label: "Roofing" },
       { href: "/industries/ecommerce", label: "E-commerce" },
     ],
   },
@@ -126,6 +130,10 @@ export const footerNavLinks = [
 ];
 
 export const footerIndustryLinks = [
-  { href: "/industries/home-services", label: "Home Services" },
-  { href: "/industries/ecommerce", label: "E-commerce" },
+  { href: "/industries/home-services", label: "Home Services", key: "homeServices" },
+  { href: "/industries/plumbing", label: "Plumbing", key: "plumbing" },
+  { href: "/industries/landscaping", label: "Landscaping", key: "landscaping" },
+  { href: "/industries/hvac", label: "HVAC", key: "hvac" },
+  { href: "/industries/roofing", label: "Roofing", key: "roofing" },
+  { href: "/industries/ecommerce", label: "E-commerce", key: "ecommerce" },
 ];

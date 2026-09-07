@@ -82,6 +82,8 @@ export function LandingIntake({
           qualification={page.auditLayout && !page.essentialsOnly}
           essentialsOnly={page.essentialsOnly}
           phoneRequired={page.phoneRequired}
+          phoneOptional={page.phoneOptional}
+          hideWebsite={page.hideWebsite}
           businessNameRequired={page.businessNameRequired}
           consentLabel={page.consentLabel}
           needOptions={page.needOptions}

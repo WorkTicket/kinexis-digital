@@ -33,7 +33,6 @@ function CheckIcon() {
 export function IndustryProgramChapter({ industry }: Props) {
   const headingId = `${industry.slug}-heading`;
   const standalone = isStandaloneIndustry(industry.slug);
-  const focusAreas = industry.domains.slice(0, 4).map((d) => d.title);
   const fitPoints = industry.why.slice(0, 3).map((w) => w.title);
 
   return (
@@ -101,8 +100,14 @@ export function IndustryProgramChapter({ industry }: Props) {
             <RevealItem>
               <h3 className="svc-offer__label">Focus areas</h3>
               <ul className="svc-offer__list">
-                {focusAreas.map((item) => (
-                  <li key={item}>{item}</li>
+                {industry.domains.slice(0, 4).map((item) => (
+                  <li key={item.title}>
+                    {item.href ? (
+                      <a href={item.href}>{item.title}</a>
+                    ) : (
+                      item.title
+                    )}
+                  </li>
                 ))}
               </ul>
             </RevealItem>

@@ -16,7 +16,6 @@ export function CampaignHero({ page }: { page: LandingPageEntry }) {
         <span className="lp-campaign-hero__orb lp-campaign-hero__orb--ink" />
         <span className="lp-campaign-hero__mesh" />
       </div>
-      <div className="hero-veil" aria-hidden />
 
       <HeroScrollRoot className="shell shell--cinema lp-campaign-hero__stage relative z-[2]">
         <div className="lp-campaign-hero__layout">

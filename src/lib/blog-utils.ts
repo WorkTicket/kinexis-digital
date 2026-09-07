@@ -8,6 +8,13 @@ import { blogSlugs } from "@/content/registry/site-routes";
 import { buildAbsoluteUrl, normalizeMetaDescription } from "@/lib/metadata";
 
 const POST_PUBLISHED_AT: Record<string, string> = {
+  "small-business-website-cost": "2026-09-06",
+  "website-not-generating-leads": "2026-09-06",
+  "website-traffic-no-calls": "2026-09-06",
+  "website-redesign-signs": "2026-09-06",
+  "website-builder-vs-professional": "2026-09-06",
+  "google-ads-vs-facebook-ads": "2026-09-06",
+  "more-leads-from-service-website": "2026-09-06",
   "seo-pricing-guide": "2026-07-14",
   "how-long-does-seo-take": "2026-07-14",
   "email-nurture-sequences-that-book-calls": "2026-06-20",
@@ -104,6 +111,41 @@ export const BLOG_CATEGORY_META: Record<
 
 /** SERP-only titles/descriptions. Page H1s and card excerpts stay unchanged. */
 export const BLOG_SERP_META: Record<string, { title: string; description: string }> = {
+  "small-business-website-cost": {
+    title: "Small Business Website Cost Guide",
+    description:
+      "What small service and ecommerce sites actually cost in 2026, what changes the price, and which DIY shortcuts waste money once ads and search start.",
+  },
+  "website-not-generating-leads": {
+    title: "Why a Business Website Gets No Leads",
+    description:
+      "Traffic can look healthy while the phone stays quiet. The conversion, targeting, and follow-up problems we find when we put the site on a phone.",
+  },
+  "website-traffic-no-calls": {
+    title: "Traffic but No Calls From a Site",
+    description:
+      "Sessions are not dispatches. How informational rankings hide hire intent, and how to make click-to-call the next step on a service page.",
+  },
+  "website-redesign-signs": {
+    title: "Signs You Need a Website Redesign",
+    description:
+      "When to patch a business site, when to redesign, and when a rebuild is the wrong move. The checks we run before anyone opens a new design file.",
+  },
+  "website-builder-vs-professional": {
+    title: "Website Builder vs Pro Web Design",
+    description:
+      "Use a builder to get live. Hire professional design when the page has to take calls and paid traffic. A clear recommendation for service businesses.",
+  },
+  "google-ads-vs-facebook-ads": {
+    title: "Google Ads vs Facebook Ads Local",
+    description:
+      "Google captures people already hiring. Meta interrupts. For local trades, search usually comes first. When Facebook and Instagram actually earn budget.",
+  },
+  "more-leads-from-service-website": {
+    title: "More Leads From a Service Website",
+    description:
+      "Phone-first pages, one URL per job you want, proof beside the form, and ads that match those pages. How service businesses get more qualified calls.",
+  },
   "seo-pricing-guide": {
     title: "How Much to Budget for SEO in 2026",
     description:

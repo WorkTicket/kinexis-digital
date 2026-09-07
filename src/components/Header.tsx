@@ -29,6 +29,10 @@ function navChildLabel(
 ) {
   if (href.includes("/home-services")) return t("homeServices");
   if (href.includes("/ecommerce")) return t("ecommerce");
+  if (href.includes("/plumbing")) return t.has("plumbing") ? t("plumbing") : fallback;
+  if (href.includes("/landscaping")) return t.has("landscaping") ? t("landscaping") : fallback;
+  if (href.includes("/hvac")) return t.has("hvac") ? t("hvac") : fallback;
+  if (href.includes("/roofing")) return t.has("roofing") ? t("roofing") : fallback;
   return fallback;
 }
 

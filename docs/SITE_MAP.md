@@ -15,7 +15,7 @@ Live routes, purpose, and how pages are composed. Content lives in TypeScript mo
 |---|---|
 | `/` | Trust and demand: hero, certifications, services, results, process, FAQ, explore, CTA |
 | `/services` | Five-pillar hub. Flagships also live at `/services/seo`, `/services/paid-media`, `/services/web-design`. |
-| `/industries` | Hub of industry chapters. Standalone pages: `/industries/home-services`, `/industries/ecommerce`. Other slugs 301 to hub anchors. |
+| `/industries` | Hub of industry chapters. Standalone pages: `/industries/home-services`, `/industries/ecommerce`, `/industries/plumbing`, `/industries/landscaping`, `/industries/hvac`, `/industries/roofing`. Other slugs 301 to hub anchors. |
 | `/case-studies` | Index of published work |
 | `/case-studies/landscaping-company-growth` | A1 Property Services |
 | `/case-studies/plumbing-company-growth` | Preferred Plumbing |

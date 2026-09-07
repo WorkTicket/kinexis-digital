@@ -108,15 +108,17 @@ describe("dallas-website-audit landing page", () => {
   const page = getLandingPage("dallas-website-audit");
   const metaPage = getLandingPage("facebook-web-design");
 
-  it("is a Dallas Meta sales lander for website consultations", () => {
+  it("is a Meta sales lander for website consultations, not a Dallas office claim", () => {
     expect(page).toBeDefined();
     expect(page?.auditLayout).toBe(true);
     expect(page?.siteNav).toBeFalsy();
     expect(page?.campaignLayout).toBeFalsy();
     expect(page?.websiteRequired).toBeFalsy();
+    expect(page?.hideWebsite).toBe(true);
     expect(page?.essentialsOnly).toBe(true);
-    expect(page?.phoneRequired).toBe(true);
-    expect(page?.businessNameRequired).toBe(true);
+    expect(page?.phoneRequired).toBeFalsy();
+    expect(page?.phoneOptional).toBe(true);
+    expect(page?.businessNameRequired).toBeFalsy();
     expect(page?.consentLabel?.toLowerCase()).toMatch(/contacted/);
     expect(page?.needOptions).toBeUndefined();
     expect(page?.budgetOptions).toBeUndefined();
@@ -128,17 +130,19 @@ describe("dallas-website-audit landing page", () => {
     expect(page?.pricingPaths?.length).toBe(2);
     expect(page?.conversionKind).toBe("audit");
     expect(page?.hideServiceLink).toBe(true);
-    expect(page?.badge.toLowerCase()).toContain("dallas");
-    expect(page?.badge.toLowerCase()).toMatch(/more customers/);
+    expect(page?.badge.toLowerCase()).toMatch(/free website consultation/);
+    expect(page?.badge.toLowerCase()).not.toMatch(/dallas/);
     expect(page?.headlineLines?.join(" ").toLowerCase()).toMatch(
       /win more customers/,
     );
     expect(page?.subheadline.toLowerCase()).toMatch(
-      /first website|replace|redesign/,
+      /first website|rebuild/,
     );
-    expect(page?.subheadline.toLowerCase()).toMatch(/dallas-area/);
+    expect(page?.subheadline.toLowerCase()).not.toMatch(
+      /dallas|dfw|north texas/,
+    );
     expect(page?.subheadline.toLowerCase()).toMatch(
-      /calls, quote requests, bookings, and sales/,
+      /what to build/,
     );
     expect(page?.heroCtaLabel?.toLowerCase()).toMatch(
       /get my free website consultation/,
@@ -203,7 +207,10 @@ describe("dallas-website-audit landing page", () => {
     expect(page?.process?.[0].title.toLowerCase()).toMatch(/new website/);
     expect(page?.process?.[1].title.toLowerCase()).toMatch(/already have/);
     expect(page?.fitVisuals?.length).toBe(6);
-    expect(page?.fitTitle?.toLowerCase()).toMatch(/dallas businesses/);
+    expect(page?.fitTitle?.toLowerCase()).toMatch(/businesses that need the site to work/);
+    expect(page?.fitTitle?.toLowerCase()).not.toMatch(/dallas/);
+    expect(page?.fitNote?.toLowerCase()).not.toMatch(/dallas|dfw|north texas/);
+    expect(page?.serviceArea).toBeUndefined();
     expect(page?.logos).toBeUndefined();
     expect(page?.testimonial?.name).toBe("A1 Property Services");
     expect(page?.sellPoints?.length).toBe(6);
@@ -225,6 +232,15 @@ describe("dallas-website-audit landing page", () => {
       "32 → 78",
     ]);
     expect(page?.formTrust?.length).toBeGreaterThanOrEqual(3);
+    expect(page?.heroMeta?.join(" ").toLowerCase()).not.toMatch(
+      /dallas|dfw|north texas/,
+    );
+    expect(page?.formTrust?.join(" ").toLowerCase()).not.toMatch(
+      /dallas|dfw|north texas/,
+    );
+    expect(`${page?.metaTitle} ${page?.metaDescription}`.toLowerCase()).not.toMatch(
+      /dallas|dfw|north texas/,
+    );
     expect(
       page?.faqs.some((faq) => /don't have a website yet/i.test(faq.question)),
     ).toBe(true);
@@ -254,11 +270,10 @@ describe("dallas-website-audit landing page", () => {
     expect(page?.submitLabel).toBe("Get My Free Website Consultation");
     expect(page?.formTitle).toBe("Get My Free Website Consultation");
     expect(page?.formSubtitle.toLowerCase()).toMatch(
-      /recommend what to build/,
+      /name and email/,
     );
-    expect(page?.formCtaDetail?.toLowerCase()).toMatch(
-      /not sure what your business actually needs/,
-    );
+    expect(page?.formSubtitle.toLowerCase()).toMatch(/phone helps us follow up/);
+    expect(page?.formCtaDetail).toBeUndefined();
     expect(page?.formCtaHint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.closingTitle?.toLowerCase()).toMatch(/build a better website/);
     expect(page?.closingCopy?.toLowerCase()).toMatch(/recommendation/);

@@ -93,6 +93,26 @@ export const industryVisuals: Record<IndustrySlug, IndustryVisualAsset> = {
     thumb: industryAsset("beauty-wellness", "thumb"),
     alt: "Beauty and wellness editorial: treatment menu, booking card, and capacity ring",
   },
+  plumbing: {
+    src: industryAsset("home-services", "full"),
+    thumb: industryAsset("home-services", "thumb"),
+    alt: "Plumbing marketing editorial: emergency call path, service-area map, and booked-job proof",
+  },
+  landscaping: {
+    src: industryAsset("home-services", "full"),
+    thumb: industryAsset("home-services", "thumb"),
+    alt: "Landscaping marketing editorial: outdoor portfolio stills and estimate booking UI",
+  },
+  hvac: {
+    src: industryAsset("home-services", "full"),
+    thumb: industryAsset("home-services", "thumb"),
+    alt: "HVAC marketing editorial: repair dispatch card and seasonal demand chart",
+  },
+  roofing: {
+    src: industryAsset("home-services", "full"),
+    thumb: industryAsset("home-services", "thumb"),
+    alt: "Roofing marketing editorial: inspection booking card and local job proof",
+  },
 };
 
 /** Map a case-study href to its screenshot when one exists in the asset library. */

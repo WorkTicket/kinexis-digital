@@ -1,6 +1,9 @@
 /** Expanded English featured blog article bodies */
 
+import { blogArticlesEnIntent } from "./blog-articles-en-intent";
+
 export const blogArticlesEnExpanded = {
+  ...blogArticlesEnIntent,
   "local-seo-strategy-2026": {
     title: "Local SEO Strategy for 2026: What's Changed and What Still Works",
     category: "Local Business Growth",

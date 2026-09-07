@@ -97,6 +97,83 @@ export const blogContent = localeContent({
     categories: ["All", "SEO", "Web Design", "Paid Ads", "CRO", "Email", "Analytics", "Case Studies"],
     posts: [
       {
+        slug: "small-business-website-cost",
+        title: "How Much Does a Small Business Website Cost?",
+        category: "Web Design",
+        excerpt:
+          "Real ranges for service and ecommerce sites in 2026, what changes the price, and what is a waste of money. Not an agency dodge.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-not-generating-leads",
+        title: "Why Isn't My Website Generating Leads?",
+        category: "Web Design",
+        excerpt:
+          "Traffic can look healthy while the phone stays quiet. The usual causes, in the order we find them when we put the site on a phone.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-traffic-no-calls",
+        title: "Why Does My Website Get Traffic but No Calls?",
+        category: "CRO",
+        excerpt:
+          "Sessions are not dispatches. How to tell informational traffic from hire intent, and how to make the call the next step.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-redesign-signs",
+        title: "Signs Your Business Website Needs a Redesign",
+        category: "Web Design",
+        excerpt:
+          "When to patch, when to redesign, and when a rebuild is the wrong move. The checks we run before anyone opens Figma.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-builder-vs-professional",
+        title: "Website Builder vs Professional Web Design",
+        category: "Web Design",
+        excerpt:
+          "Use a builder to get live. Hire professional design when the page has to take calls and paid traffic. A recommendation, not a shrug.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "google-ads-vs-facebook-ads",
+        title: "Google Ads vs Facebook Ads for Local Businesses",
+        category: "Paid Ads",
+        excerpt:
+          "Google captures hire intent. Meta interrupts. For local trades, search usually comes first. When social actually earns a seat.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "more-leads-from-service-website",
+        title: "How to Get More Leads From a Service Business Website",
+        category: "Web Design",
+        excerpt:
+          "Phone-first pages, one URL per job you want, proof at the decision, and ads that match those pages. The path we use with crews.",
+        publishedAt: "September 6, 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
         slug: "local-seo-strategy-2026",
         title: "Local SEO Strategy for 2026:|What's Changed and What Still Works",
         category: "SEO",
@@ -412,7 +489,7 @@ export const blogContent = localeContent({
       { label: "Newest", value: "Local SEO Strategy 2026", slug: "local-seo-strategy-2026", date: "June 15" },
     ],
     archiveYears: [
-      { year: "2026", count: 28 },
+      { year: "2026", count: 35 },
       { year: "2025", count: 12 },
       { year: "2024", count: 8 },
     ],
@@ -454,6 +531,83 @@ export const blogContent = localeContent({
     postDetailCtaButton: "Reservar una llamada estratégica",
     categories: ["Todos", "SEO", "Diseño Web", "Anuncios Pagados", "CRO", "Email", "Analítica", "Casos de Estudio"],
     posts: [
+      {
+        slug: "small-business-website-cost",
+        title: "¿Cuánto cuesta una web para un pequeño negocio?",
+        category: "Diseño Web",
+        excerpt:
+          "Rangos reales para sitios de oficios y ecommerce en 2026, qué mueve el precio y qué es tirar el dinero. Sin rodeos de agencia.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-not-generating-leads",
+        title: "¿Por qué mi web no genera leads?",
+        category: "Diseño Web",
+        excerpt:
+          "El tráfico puede verse sano mientras el teléfono no suena. Las causas habituales, en el orden en que las encontramos al poner el sitio en un móvil.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-traffic-no-calls",
+        title: "¿Por qué mi web tiene tráfico y no llamadas?",
+        category: "CRO",
+        excerpt:
+          "Las sesiones no son despachos. Cómo distinguir tráfico informativo de intención de contratar, y cómo hacer de la llamada el siguiente paso.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-redesign-signs",
+        title: "Señales de que tu web de empresa necesita un rediseño",
+        category: "Diseño Web",
+        excerpt:
+          "Cuándo parchear, cuándo rediseñar y cuándo reconstruir es la jugada equivocada. Las pruebas que corremos antes de abrir Figma.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "website-builder-vs-professional",
+        title: "Builder de sitios vs diseño web profesional",
+        category: "Diseño Web",
+        excerpt:
+          "Usa un builder para publicar. Contrata diseño profesional cuando la página tiene que tomar llamadas y tráfico de pago. Una recomendación, no un 'depende'.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "google-ads-vs-facebook-ads",
+        title: "Google Ads vs Facebook Ads para negocios locales",
+        category: "Anuncios Pagados",
+        excerpt:
+          "Google captura intención de contratar. Meta interrumpe. En oficios locales, la búsqueda suele ir primero. Cuándo el social sí se gana el asiento.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
+      {
+        slug: "more-leads-from-service-website",
+        title: "Cómo sacar más leads de la web de un negocio de servicios",
+        category: "Diseño Web",
+        excerpt:
+          "Páginas phone-first, una URL por trabajo que quieres, prueba en la decisión y anuncios que coinciden con esas páginas. El camino que usamos con cuadrillas.",
+        publishedAt: "6 de septiembre de 2026",
+        featured: false,
+        metric: null,
+        layout: "horizontal",
+      },
       {
         slug: "local-seo-strategy-2026",
         title: "Estrategia de SEO Local para 2026:|Qué Ha Cambiado y Qué Sigue Funcionando",
@@ -770,7 +924,7 @@ export const blogContent = localeContent({
       { label: "Más Reciente", value: "Estrategia de SEO Local 2026", slug: "local-seo-strategy-2026", date: "15 de junio" },
     ],
     archiveYears: [
-      { year: "2026", count: 28 },
+      { year: "2026", count: 35 },
       { year: "2025", count: 12 },
       { year: "2024", count: 8 },
     ],

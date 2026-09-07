@@ -535,7 +535,6 @@ html.in-app-browser #contact-form {
 .hero-atmosphere {
   mask-image: none;
   -webkit-mask-image: none;
-  contain: paint;
 }
 
 .hero-atmosphere__fade {
@@ -596,14 +595,10 @@ html.in-app-browser #contact-form {
   }
 }
 
-/* Opening veil — sits under copy/media so LCP is never covered */
+/* Opening veil — retired. Resting opacity 0.35 after the lift animation
+   was discarded offscreen, so a paper wash reappeared on scroll-back. */
 .hero-veil {
-  pointer-events: none;
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: var(--background);
-  opacity: 0;
+  display: none;
 }
 
 .hero-shell--film {
@@ -789,16 +784,6 @@ html.in-app-browser #contact-form {
   }
 }
 
-@keyframes hero-veil-lift {
-  0% {
-    opacity: 0.35;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
 .hero-enter {
   opacity: 1;
 }
@@ -852,18 +837,6 @@ html.in-app-browser #contact-form {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .hero-veil {
-    display: none;
-  }
-
-  @media (min-width: 769px) {
-    .hero-veil {
-      display: block;
-      opacity: 0.35;
-      animation: hero-veil-lift 0.55s cubic-bezier(0.19, 1, 0.22, 1) 0s forwards;
-    }
-  }
-
   .hero-enter {
     opacity: 0;
     animation: hero-enter 0.95s cubic-bezier(0.19, 1, 0.22, 1) forwards;
@@ -951,10 +924,6 @@ html.in-app-browser #contact-form {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-veil {
-    display: none;
-  }
-
   .hero-enter-2 .hero-line__text {
     transform: none;
     opacity: 1;
@@ -1182,8 +1151,9 @@ html.in-app-browser #contact-form {
 }
 
 
-/* Film grain overlay (SignalPlane fallback) */
+/* Film grain overlay (SignalPlane fallback) — off with the gray orbs */
 .mesh-noise {
+  display: none;
   position: absolute;
   inset: 0;
   opacity: 0.12;
@@ -1220,9 +1190,10 @@ html[data-theme="dark"] .mesh-noise {
 
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   .mesh-fallback__blob {
-    filter: blur(100px);
-    will-change: transform;
-    animation: mesh-fallback-drift 34s ease-in-out infinite alternate;
+    display: none;
+    filter: none;
+    will-change: auto;
+    animation: none;
   }
 
   .mesh-fallback__blob--a {

@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { STANDALONE_INDUSTRY_SLUGS as contentStandalone } from "@/content/industries";
 import {
   getLegacyRedirects,
   matchIndustryPath,
   matchUnprefixedLegacyRedirect,
   resolveLegacyRedirect,
   serviceHubPath,
+  STANDALONE_INDUSTRY_SLUGS as redirectStandalone,
 } from "./legacy-redirects.mjs";
 
 describe("resolveLegacyRedirect", () => {
@@ -26,9 +28,18 @@ describe("resolveLegacyRedirect", () => {
     expect(resolveLegacyRedirect("/industries")).toBeNull();
     expect(resolveLegacyRedirect("/industries/home-services")).toBeNull();
     expect(resolveLegacyRedirect("/industries/ecommerce")).toBeNull();
+    expect(resolveLegacyRedirect("/industries/plumbing")).toBeNull();
+    expect(resolveLegacyRedirect("/industries/landscaping")).toBeNull();
+    expect(resolveLegacyRedirect("/industries/hvac")).toBeNull();
+    expect(resolveLegacyRedirect("/industries/roofing")).toBeNull();
     expect(resolveLegacyRedirect("/lp/seo")).toBeNull();
     expect(resolveLegacyRedirect("/thank-you")).toBeNull();
     expect(resolveLegacyRedirect("/thank-you/audit")).toBeNull();
+  });
+
+  it("does not invent a /dallas retirement — that URL never shipped", () => {
+    expect(resolveLegacyRedirect("/dallas")).toBeNull();
+    expect(matchUnprefixedLegacyRedirect("/dallas")).toBeNull();
   });
 
   it("maps locale-prefixed long-tail services onto flagship pages", () => {
@@ -115,6 +126,8 @@ describe("matchIndustryPath", () => {
   it("keeps standalone market pages", () => {
     expect(matchIndustryPath("/industries/home-services")).toBeNull();
     expect(matchIndustryPath("/industries/ecommerce")).toBeNull();
+    expect(matchIndustryPath("/industries/plumbing")).toBeNull();
+    expect(matchIndustryPath("/industries/hvac")).toBeNull();
   });
 
   it("collapses nested standalone paths onto the parent page", () => {
@@ -148,6 +161,12 @@ describe("getLegacyRedirects", () => {
     expect(redirects.indexOf(dental!)).toBeLessThan(
       redirects.indexOf(healthcareCatchAll!),
     );
+  });
+});
+
+describe("standalone industry allowlists", () => {
+  it("keeps redirect map and content registry in sync", () => {
+    expect([...redirectStandalone].sort()).toEqual([...contentStandalone].sort());
   });
 });
 

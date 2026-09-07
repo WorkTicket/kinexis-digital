@@ -92,7 +92,7 @@ function Ridge({
         </div>
         <div className="lp-site__copy">
           {phone ? null : (
-            <p className="lp-site__kicker">Dallas · licensed crews</p>
+            <p className="lp-site__kicker">Licensed crews</p>
           )}
           <p className="lp-site__title">Storm-tight roofs. Same week.</p>
           {layout === "desktop" ? (
@@ -107,7 +107,7 @@ function Ridge({
         </div>
       </div>
       {phone ? (
-        <p className="lp-site__call">Call now · (214) 555-0148</p>
+        <p className="lp-site__call">Call now</p>
       ) : (
         <div className="lp-site__strip">
           <span>Roof repair</span>
@@ -187,7 +187,7 @@ function Haven({ layout }: { layout: ShowcaseLayout }) {
       <div className="lp-site__hero lp-site__hero--editorial">
         <div className="lp-site__copy">
           {phone ? null : (
-            <p className="lp-site__kicker">Family practice · Plano</p>
+            <p className="lp-site__kicker">Family practice</p>
           )}
           <p className="lp-site__title">Calm care. A clear next step.</p>
           {layout === "desktop" ? (
@@ -231,7 +231,7 @@ function Meridian({ layout }: { layout: ShowcaseLayout }) {
         </header>
         <div className="lp-site__copy">
           {phone ? null : (
-            <p className="lp-site__kicker">Private listings · North Texas</p>
+            <p className="lp-site__kicker">Private listings</p>
           )}
           <p className="lp-site__title">Homes with presence.</p>
           {layout === "desktop" ? (
@@ -241,7 +241,7 @@ function Meridian({ layout }: { layout: ShowcaseLayout }) {
           ) : null}
           <span className="lp-site__cta">Schedule a showing</span>
           {phone ? null : (
-            <p className="lp-site__meta">$1.85M · Highland Park</p>
+            <p className="lp-site__meta">$1.85M · listed this week</p>
           )}
         </div>
       </div>
@@ -260,11 +260,11 @@ function Dated({ layout }: { layout: ShowcaseLayout }) {
       <div className="lp-site__dated-top">
         <span>Free Estimates</span>
         {phone ? (
-          <span>(214) 555-0148</span>
+          <span>Call now</span>
         ) : (
           <>
             <span>Licensed &amp; Insured</span>
-            <span>(214) 555-0148</span>
+            <span>Free estimates</span>
             <span className="lp-site__dated-socials" aria-hidden>
               <i />
               <i />
@@ -300,8 +300,7 @@ function Dated({ layout }: { layout: ShowcaseLayout }) {
           <p className="lp-site__dated-title">Quality Roofing You Can Trust</p>
           {phone ? null : (
             <p className="lp-site__dated-sub">
-              Serving the Dallas / Fort Worth area since 1998. Call for more
-              information.
+              Family owned since 1998. Call for more information.
             </p>
           )}
           <span className="lp-site__dated-cta">Click Here</span>

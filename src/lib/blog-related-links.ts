@@ -5,6 +5,13 @@ import { serviceHubPath } from "@/lib/legacy-redirects.mjs";
 import type { ServiceSeoSlug } from "@/content/service-seo/types";
 
 const blogToService: Record<string, ServiceSeoSlug> = {
+  "small-business-website-cost": "web-design",
+  "website-not-generating-leads": "web-design",
+  "website-traffic-no-calls": "funnels",
+  "website-redesign-signs": "web-design",
+  "website-builder-vs-professional": "web-design",
+  "google-ads-vs-facebook-ads": "ppc-management",
+  "more-leads-from-service-website": "web-design",
   "technical-seo-guide": "seo",
   "internal-linking-guide": "seo",
   "seo-audit-framework": "seo",

@@ -147,7 +147,7 @@ export type LandingPageEntry = {
   formFootnote: string;
   /** Short hint next to the submit button. Falls back to formFootnote. */
   formCtaHint?: string;
-  /** Extra line under the submit hint. Dallas Meta consult form. */
+  /** Extra line under the submit hint. Slim consult form. */
   formCtaDetail?: string;
   formDetailsPlaceholder?: string;
   /** Website URL required — use on site-review offers. */
@@ -198,9 +198,9 @@ export type LandingPageEntry = {
   /** Compact proof chips in the campaign hero (message-match with ads). */
   heroStats?: LandingPageProof[];
   /**
-   * Dallas Meta audit lander: form in the first viewport, short proof
+   * Slim Meta consult lander: form in the first viewport, short proof
    * chapters, qualification. Not the homepage and not the San Antonio
-   * consult campaign.
+   * consult campaign. URL may keep a market slug for ad tracking.
    */
   auditLayout?: boolean;
   /** Use the site header/footer chrome instead of lander CTA overrides. */
@@ -210,6 +210,10 @@ export type LandingPageEntry = {
   heroCtaLabel?: string;
   heroFinePrint?: string;
   phoneRequired?: boolean;
+  /** Show phone on the short Meta form without requiring it. */
+  phoneOptional?: boolean;
+  /** Omit the website field on cold Meta consult forms. */
+  hideWebsite?: boolean;
   /** Required business name on short Meta consult forms. */
   businessNameRequired?: boolean;
   /** Checkbox copy under the consult form. */
@@ -228,7 +232,7 @@ export type LandingPageEntry = {
   auditTitle?: string;
   auditItems?: LandingPageAuditItem[];
   sellPoints?: LandingPageSellPoint[];
-  /** Selling chapter for the Dallas audit lander (mobile visual + points). */
+  /** Selling chapter for the slim consult lander (mobile visual + points). */
   pitches?: {
     mobile?: LandingPagePitch;
     conversion?: LandingPagePitch;

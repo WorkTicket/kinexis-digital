@@ -615,7 +615,7 @@ export function AuditClose({ page }: { page: LandingPageEntry }) {
   return (
     <section
       aria-labelledby="lp-audit-close-heading"
-      className="lp-audit-close lp-audit-close--dark chapter relative"
+      className="lp-audit-close chapter relative"
     >
       <div className="shell chapter-shell--standard relative">
         <div className="lp-audit-close__layout">
