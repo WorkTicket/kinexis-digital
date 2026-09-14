@@ -17,7 +17,8 @@ import {
 } from "@/lib/site-nav";
 import { cn } from "@/lib/cn";
 import { getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
-import { getLandingChrome } from "@/lib/landing-chrome";
+import { getLandingChrome, landingSlugFromPath } from "@/lib/landing-chrome";
+import { trackLandingFunnel } from "@/lib/analytics/landing-funnel";
 
 const SCROLL_DELTA = 8;
 const SCROLL_TOP_REVEAL = 28;
@@ -198,23 +199,52 @@ export function Header() {
         )}
       >
         <div className="shell site-header__bar flex items-center gap-4 overflow-visible sm:gap-5 lg:gap-10">
-          <Link
-            href="/"
-            className="site-header__logo inline-flex min-h-11 shrink-0 items-center"
-            aria-label={tA11y("logoAlt")}
-            onClick={() => {
-              closeDropdown();
-              closeMenu();
-            }}
-          >
-            <BrandLogo />
-          </Link>
+          {isSlimLanding ? (
+            <Link
+              href="/"
+              className="site-header__logo site-header__logo--quiet inline-flex min-h-11 shrink-0 items-center"
+              aria-label={tA11y("logoAlt")}
+            >
+              <BrandLogo />
+            </Link>
+          ) : (
+            <Link
+              href="/"
+              className="site-header__logo inline-flex min-h-11 shrink-0 items-center"
+              aria-label={tA11y("logoAlt")}
+              onClick={() => {
+                closeDropdown();
+                closeMenu();
+              }}
+            >
+              <BrandLogo />
+            </Link>
+          )}
 
           {isSlimLanding && landing ? (
-            <div className="ml-auto flex items-center">
-              <Button href={landing.formHref} size="header">
+            <div className="site-header__lp-actions ml-auto flex min-w-0 items-center gap-2 sm:gap-3">
+              {hasPhone ? (
+                <CallLink className="site-header__phone">
+                  <span className="site-header__phone-dot" aria-hidden />
+                  <span className="site-header__phone-num">
+                    {getBusinessPhoneDisplay()}
+                  </span>
+                </CallLink>
+              ) : null}
+              <Button
+                href={landing.formHref}
+                size="header"
+                className="site-header__lp-cta"
+                onClick={() =>
+                  trackLandingFunnel("cta_click", {
+                    placement: "header",
+                    landingSlug: landingSlugFromPath(pathname),
+                  })
+                }
+              >
                 {landing.headerCtaLabel}
               </Button>
+              <ThemeToggle />
             </div>
           ) : (
             <>

@@ -306,25 +306,6 @@ export async function BlogArticleHeader({
   );
 }
 
-/** @deprecated — kept for any leftover imports; prefer BlogCard */
-export async function BlogPostLink({
-  post,
-  size = "md",
-  className,
-  body,
-}: {
-  post: BlogPost;
-  size?: "lg" | "md" | "sm";
-  className?: string;
-  body?: string;
-}) {
-  return (
-    <div className={cn(size === "lg" && "blog-card--span", className)}>
-      <BlogCard post={post} body={body} />
-    </div>
-  );
-}
-
 export function BlogSectionHeader({
   eyebrow,
   title,

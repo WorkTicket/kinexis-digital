@@ -101,6 +101,7 @@ const RETIRED_EXACT = {
   "/seo-vs-ppc": "/resources",
   "/wordpress-vs-webflow": "/resources",
   "/local-seo-vs-google-ads": "/resources",
+  "/lp/dallas-website-audit": "/lp/get-a-website",
 };
 
 const STANDALONE_INDUSTRY_SET = new Set(STANDALONE_INDUSTRY_SLUGS);
@@ -119,10 +120,20 @@ export function serviceHubPath(slug) {
   return `/services#${anchor}`;
 }
 
+/** Longer tags first so `/es-ES` does not collapse to `/es`. */
+export const LOCALE_PREFIX_RE = /^\/(es-ES|es-419|es|en)(?=\/|$)/i;
+
+export function normalizeTrailingSlash(pathname) {
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    return pathname.replace(/\/+$/, "") || "/";
+  }
+  return pathname;
+}
+
 export function stripLocalePrefix(pathname) {
-  const match = pathname.match(/^\/(en|es)(\/.*)?$/);
+  const match = pathname.match(LOCALE_PREFIX_RE);
   if (!match) return pathname;
-  const rest = match[2] ?? "";
+  const rest = pathname.slice(match[0].length);
   return rest === "" ? "/" : rest;
 }
 
@@ -196,7 +207,8 @@ export function matchUnprefixedLegacyRedirect(pathname) {
  * Locale prefixes always 301 onto the unprefixed dest.
  */
 export function resolveLegacyRedirect(pathname) {
-  const normalized = stripLocalePrefix(pathname);
+  const withoutSlash = normalizeTrailingSlash(pathname);
+  const normalized = stripLocalePrefix(withoutSlash);
   const mapped = matchUnprefixedLegacyRedirect(normalized) ?? normalized;
   if (mapped === pathname) return null;
 
@@ -239,6 +251,7 @@ export function getLegacyRedirects() {
     ...rulesFor("/clients", "/case-studies"),
     ...rulesFor("/clients/:path*", "/case-studies"),
     ...rulesFor("/lp", "/contact"),
+    ...rulesFor("/lp/dallas-website-audit", "/lp/get-a-website"),
     ...rulesFor("/google-ads-vs-seo", "/resources"),
     ...rulesFor("/seo-vs-ppc", "/resources"),
     ...rulesFor("/wordpress-vs-webflow", "/resources"),
@@ -283,8 +296,12 @@ export function getLegacyRedirects() {
   redirects.push(
     rule("/en", "/"),
     rule("/es", "/"),
+    rule("/es-ES", "/"),
+    rule("/es-419", "/"),
     rule("/en/:path*", "/:path*"),
     rule("/es/:path*", "/:path*"),
+    rule("/es-ES/:path*", "/:path*"),
+    rule("/es-419/:path*", "/:path*"),
   );
 
   return redirects;

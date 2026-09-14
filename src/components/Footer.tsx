@@ -49,18 +49,36 @@ export async function Footer() {
         <div className="shell site-footer__main">
           <div className="site-footer__grid">
             <div className="site-footer__brand-lockup">
-              <Link
-                href="/"
-                className="site-footer__logo"
-                aria-label={t("logoHome")}
-              >
-                <BrandLogo lazy />
-              </Link>
+              <LandingChromeGate
+                slimOnly
+                onLanding={
+                  <span className="site-footer__logo">
+                    <BrandLogo lazy />
+                  </span>
+                }
+                offLanding={
+                  <Link
+                    href="/"
+                    className="site-footer__logo"
+                    aria-label={t("logoHome")}
+                  >
+                    <BrandLogo lazy />
+                  </Link>
+                }
+              />
               <LandingChromeGate
                 slimOnly
                 onLanding={
                   <>
-                    <p className="site-footer__blurb">Kinexis Digital</p>
+                    <p className="site-footer__blurb">kinexisdigital.com</p>
+                    {getBusinessTelHref() ? (
+                      <div className="site-footer__contact">
+                        <CallLink className="site-footer__email">
+                          <span className="site-footer__email-dot" aria-hidden />
+                          {getBusinessPhoneDisplay()}
+                        </CallLink>
+                      </div>
+                    ) : null}
                   </>
                 }
                 offLanding={
@@ -136,7 +154,15 @@ export async function Footer() {
         <div className="site-footer__bar">
           <div className="shell site-footer__bar-row">
             <p className="site-footer__legal">
-              © {year} {t("copyright")}
+              <LandingChromeGate
+                slimOnly
+                onLanding={<>© {year} KINEXIS Digital</>}
+                offLanding={
+                  <>
+                    © {year} {t("copyright")}
+                  </>
+                }
+              />
             </p>
             <div className="site-footer__bar-links">
               <LandingChromeGate

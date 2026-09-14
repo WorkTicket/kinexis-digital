@@ -1,34 +1,27 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { redirect } from "@/i18n/navigation";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
 import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
 import { ServiceProgramChapter } from "@/components/services/ServiceProgramChapter";
 import { resolveLocale } from "@/i18n/locale";
-import {
-  FLAGSHIP_SERVICE_SLUGS,
-  isFlagshipServiceSlug,
-  serviceHubPath,
-} from "@/lib/legacy-redirects.mjs";
+import { FLAGSHIP_SERVICE_SLUGS, isFlagshipServiceSlug, serviceHubPath } from "@/lib/legacy-redirects.mjs";
 import { buildAbsoluteUrl, buildPageMetadata, getSiteUrl } from "@/lib/metadata";
 import {
   breadcrumbSchema,
   organizationSchema,
   serviceSchema,
 } from "@/lib/schema";
-import { serviceSlugs } from "@/content/registry/site-routes";
-import { getAllServiceSlugs, getServiceBySlug } from "@/content/services";
+import { getServiceBySlug } from "@/content/services";
 
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
 export function generateStaticParams() {
-  const slugs = new Set<string>([...serviceSlugs, ...getAllServiceSlugs()]);
-  return [...slugs].map((slug) => ({ slug }));
+  return FLAGSHIP_SERVICE_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -63,7 +56,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
   const { slug } = await params;
 
   if (!isFlagshipServiceSlug(slug)) {
-    redirect({ href: serviceHubPath(slug), locale });
+    permanentRedirect(serviceHubPath(slug));
   }
 
   const service = getServiceBySlug(slug, locale);

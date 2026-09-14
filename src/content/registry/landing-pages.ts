@@ -1,4 +1,4 @@
-import { dallasWebsiteAudit } from "@/content/lp/dallas-website-audit";
+import { getAWebsite } from "@/content/lp/get-a-website";
 import { getBusinessPhoneDisplay } from "@/lib/business";
 
 const CAMPAIGN_PHONE =
@@ -179,6 +179,20 @@ export type LandingPageEntry = {
   closingTitle?: string;
   closingCopy?: string;
   closingFinePrint?: string;
+  /** Message-match fallback for the audience line. Never interpolated from the query string. */
+  marketLine?: string;
+  planHasSiteTitle?: string;
+  planHasSiteItems?: string[];
+  planNoSiteTitle?: string;
+  planNoSiteItems?: string[];
+  privacyMicrocopy?: string;
+  successTitle?: string;
+  successCopy?: string;
+  formStep1Title?: string;
+  formStep2Title?: string;
+  noWebsiteLabel?: string;
+  investmentLabel?: string;
+  timelineLabel?: string;
   faqs: { question: string; answer: string }[];
   stickyCtaLabel: string;
   /** Hide the mid-page link off to the organic service page (paid landers). */
@@ -187,8 +201,17 @@ export type LandingPageEntry = {
   heroIntake?: boolean;
   /** URL-only first step, then name/email. Use on the general conversion-review lander. */
   stagedHeroForm?: boolean;
+  /**
+   * Two-step Meta qualify form: name / business / website, then email /
+   * phone / budget / timeline. Use on the contractor website lander.
+   */
+  twoStepQualify?: boolean;
   /** Name + email + optional URL only. Use on cold Meta landers. */
   essentialsOnly?: boolean;
+  /** After a successful submit, send the lead here instead of /thank-you. */
+  successHref?: string;
+  /** Step-1 button on a two-step qualify form. */
+  continueLabel?: string;
   logos?: LandingPageLogo[];
   testimonial?: LandingPageTestimonial;
   /** City / neighborhood chips for local Meta landers. */
@@ -210,6 +233,9 @@ export type LandingPageEntry = {
   /** Stacked hero lines for the mobile-first audit lander. */
   headlineLines?: string[];
   heroCtaLabel?: string;
+  /** Secondary hero action, usually a text link to work. */
+  heroSecondaryLabel?: string;
+  heroSecondaryHref?: string;
   heroFinePrint?: string;
   phoneRequired?: boolean;
   /** Show phone on the short Meta form without requiring it. */
@@ -222,6 +248,8 @@ export type LandingPageEntry = {
   consentLabel?: string;
   needOptions?: LandingPageOption[];
   budgetOptions?: LandingPageOption[];
+  /** "When are you looking to start?" on the two-step qualify form. */
+  timelineOptions?: LandingPageOption[];
   painTitle?: string;
   painSubtitle?: string;
   painEyebrow?: string;
@@ -269,6 +297,8 @@ export type LandingPageEntry = {
   fitTitle?: string;
   fitItems?: string[];
   fitNote?: string;
+  /** Quiet line after the industry mosaic. */
+  fitClose?: string;
   /** City / atmosphere still behind the audit hero. Decorative. */
   heroStill?: LandingPageStill;
   /** Overlapping editorial stills for the pain chapter. */
@@ -978,7 +1008,7 @@ export const landingPages: LandingPageEntry[] = [
     stickyCtaLabel: "Get my free consult",
     hideServiceLink: true,
   },
-  dallasWebsiteAudit,
+  getAWebsite,
 ];
 
 export const landingPageSlugs = landingPages.map((p) => p.slug);

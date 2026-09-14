@@ -5,9 +5,13 @@ import { routing, type Locale } from "./routing";
 
 export type LocaleParams = Promise<{ locale: string }>;
 
+export function isAppLocale(value: string): value is Locale {
+  return hasLocale(routing.locales, value);
+}
+
 export async function resolveLocale(params: LocaleParams): Promise<Locale> {
   const { locale } = await params;
-  if (!hasLocale(routing.locales, locale)) {
+  if (!isAppLocale(locale)) {
     notFound();
   }
   setRequestLocale(locale);

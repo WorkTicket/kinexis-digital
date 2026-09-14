@@ -105,7 +105,7 @@ describe("buildPageMetadata", () => {
   it("does not reuse the homepage URL for a landing page", () => {
     const meta = buildPageMetadata({
       locale: "en",
-      path: "/lp/dallas-website-audit",
+      path: "/lp/get-a-website",
       title: "Get a Website Built to Win More Customers",
       description:
         "Custom websites for businesses that need more calls, quotes, and orders. New sites and redesigns that look credible, work on mobile, and turn visitors into customers. Free consultation.",
@@ -113,7 +113,7 @@ describe("buildPageMetadata", () => {
       noFollow: true,
     });
     expect(String(meta.openGraph?.url ?? "")).toBe(
-      `${getSiteUrl()}/lp/dallas-website-audit`,
+      `${getSiteUrl()}/lp/get-a-website`,
     );
   });
 });

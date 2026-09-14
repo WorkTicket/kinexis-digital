@@ -1,7 +1,7 @@
 import { IN_APP_BROWSER_PREFLIGHT_SCRIPT } from "@/lib/in-app-browser";
 
 /** Sync cookie + in-app-browser preflight — runs before paint. */
-export const COOKIE_PREFLIGHT_SCRIPT = `${IN_APP_BROWSER_PREFLIGHT_SCRIPT}(function(){try{if(/\\/lp\\/dallas-website-audit\\/?$/.test(location.pathname))document.documentElement.classList.add("lp-chrome")}catch(e){}try{if(/\\/lp\\//.test(location.pathname)||/\\/thank-you(\\/|$)/.test(location.pathname)){document.documentElement.classList.remove("cookie-pending");return}var c=null;try{c=localStorage.getItem("kinexis-cookie-consent")}catch(e){}if(!(c==="accepted"||c==="rejected")){var m=document.cookie.match(/(?:^|; )kinexis-cookie-consent=(accepted|rejected)/);c=m&&m[1]}if(c==="accepted"||c==="rejected")document.documentElement.classList.remove("cookie-pending")}catch(e){}})();`;
+export const COOKIE_PREFLIGHT_SCRIPT = `${IN_APP_BROWSER_PREFLIGHT_SCRIPT}(function(){try{if(/\\/lp\\/(get-a-website|dallas-website-audit)\\/?$/.test(location.pathname))document.documentElement.classList.add("lp-chrome")}catch(e){}try{if(/\\/lp\\//.test(location.pathname)||/\\/thank-you(\\/|$)/.test(location.pathname)){document.documentElement.classList.remove("cookie-pending");return}var c=null;try{c=localStorage.getItem("kinexis-cookie-consent")}catch(e){}if(!(c==="accepted"||c==="rejected")){var m=document.cookie.match(/(?:^|; )kinexis-cookie-consent=(accepted|rejected)/);c=m&&m[1]}if(c==="accepted"||c==="rejected")document.documentElement.classList.remove("cookie-pending")}catch(e){}})();`;
 
 /** Inlined in layout head — keeps cookie-banner space reserved without a render-blocking stylesheet. */
 export const COOKIE_PENDING_CRITICAL_CSS =

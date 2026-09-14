@@ -95,8 +95,8 @@ describe("sendMetaCapiEvent", () => {
       fbclid: "IwAR0testClick",
       clientIp: "203.0.113.10",
       userAgent: "FBAN",
-      eventSourceUrl: "/en/lp/dallas-website-audit",
-      contentName: "dallas-website-audit",
+      eventSourceUrl: "/en/lp/get-a-website",
+      contentName: "get-a-website",
       contentCategory: "landing-page",
     });
 
@@ -120,7 +120,7 @@ describe("sendMetaCapiEvent", () => {
     expect(body.access_token).toBe("test-token");
     expect(body.data[0].event_name).toBe("Lead");
     expect(body.data[0].event_id).toBe("Lead.abc-def-123456");
-    expect(body.data[0].event_source_url).toContain("/en/lp/dallas-website-audit");
+    expect(body.data[0].event_source_url).toContain("/en/lp/get-a-website");
     expect(body.data[0].user_data.em[0]).toBe(
       hashMetaUserValue(normalizeEmailForMeta("Maria@OakCliff.com")),
     );

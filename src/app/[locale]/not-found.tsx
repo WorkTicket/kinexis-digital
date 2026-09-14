@@ -1,5 +1,10 @@
 import { getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
 export default async function LocaleNotFound() {
   const t = await getTranslations("notFound");

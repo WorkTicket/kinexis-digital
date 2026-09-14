@@ -4,7 +4,6 @@ import { PENDING_CONVERSION_KEY } from "@/lib/analytics/pending-conversion";
 import {
   buildEarlyMetaPixelHtml,
   buildMetaConversionSnippet,
-  buildMetaLeadSnippet,
   buildMetaPixelInitScript,
 } from "@/lib/analytics/meta-pixel";
 
@@ -45,17 +44,15 @@ describe("buildEarlyMetaPixelHtml", () => {
   });
 });
 
-describe("buildMetaConversionSnippet parse", () => {
+describe("buildMetaConversionSnippet", () => {
   it("is valid JavaScript so thank-you Lead can actually run", () => {
     const snippet = buildMetaConversionSnippet(PRODUCTION_META_PIXEL_ID);
     expect(snippet.length).toBeGreaterThan(0);
     expect(() => new Function(snippet)).not.toThrow();
   });
-});
 
-describe("buildMetaLeadSnippet", () => {
   it("fires Lead only on thank-you when a pending conversion exists", () => {
-    const snippet = buildMetaLeadSnippet(PRODUCTION_META_PIXEL_ID);
+    const snippet = buildMetaConversionSnippet(PRODUCTION_META_PIXEL_ID);
     expect(snippet).toContain("thank-you");
     expect(snippet).toContain(PENDING_CONVERSION_KEY);
     expect(snippet).toContain("if(!raw)return");
@@ -68,7 +65,7 @@ describe("buildMetaLeadSnippet", () => {
   });
 
   it("rejects malformed pixel IDs", () => {
-    expect(buildMetaLeadSnippet("abc")).toBe("");
+    expect(buildMetaConversionSnippet("abc")).toBe("");
   });
 });
 

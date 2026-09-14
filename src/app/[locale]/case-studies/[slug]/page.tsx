@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { CaseStudyHero } from "@/components/page/CaseStudyHero";
 import { PageCTA } from "@/components/page/PageCTA";
@@ -12,6 +12,7 @@ import {
 } from "@/content/case-studies";
 import { caseStudyHref } from "@/content/home-results";
 import { resolveLocale } from "@/i18n/locale";
+import { matchUnprefixedLegacyRedirect } from "@/lib/legacy-redirects.mjs";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { duration } from "@/lib/motion";
 import {
@@ -47,6 +48,8 @@ export async function generateMetadata({
 export default async function CaseStudyPage({ params }: PageProps) {
   const locale = await resolveLocale(params);
   const { slug } = await params;
+  const retired = matchUnprefixedLegacyRedirect(`/case-studies/${slug}`);
+  if (retired) permanentRedirect(retired);
   const study = getCaseStudyPages(locale).find((s) => s.slug === slug);
   if (!study) notFound();
 

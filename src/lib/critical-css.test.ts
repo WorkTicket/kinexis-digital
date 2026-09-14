@@ -25,12 +25,9 @@ describe("getLcpImagePreload", () => {
     expect(getLcpImagePreload("/en")).toBeNull();
   });
 
-  it("preloads the Dallas lander hero mockup photo", () => {
-    expect(getLcpImagePreload("/lp/dallas-website-audit")).toMatch(
-      /showcase-ridge/,
-    );
-    expect(getLcpImagePreload("/en/lp/dallas-website-audit")).toMatch(
-      /showcase-ridge/,
-    );
+  it("preloads the website lander hero mockup photo", () => {
+    expect(getLcpImagePreload("/lp/get-a-website")).toMatch(/lp\/a1-mobile/);
+    expect(getLcpImagePreload("/en/lp/get-a-website")).toMatch(/lp\/a1-mobile/);
+    expect(getLcpImagePreload("/es/lp/get-a-website")).toMatch(/lp\/a1-mobile/);
   });
 });

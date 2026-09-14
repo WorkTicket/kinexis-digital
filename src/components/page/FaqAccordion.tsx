@@ -15,6 +15,8 @@ type FaqAccordionProps = {
   className?: string;
   /** Show every answer. Use on paid landers where extractors and skimmers need the objections visible. */
   expandAll?: boolean;
+  /** Start with every answer collapsed. */
+  startClosed?: boolean;
 };
 
 export function FaqAccordion({
@@ -23,9 +25,12 @@ export function FaqAccordion({
   title = "Questions we get a lot.",
   className,
   expandAll = false,
+  startClosed = false,
 }: FaqAccordionProps) {
   const baseId = useId();
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(
+    startClosed ? null : 0,
+  );
 
   const toggle = useCallback((index: number) => {
     setOpenIndex((current) => (current === index ? null : index));

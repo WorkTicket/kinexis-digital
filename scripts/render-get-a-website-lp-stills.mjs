@@ -1,8 +1,8 @@
 /**
- * Designed editorial stills for the Dallas website-audit lander.
+ * Designed editorial stills for the get-a-website audit lander.
  * Same language as industry boards: dark studio, signal blue, UI — not photos.
  */
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
@@ -73,75 +73,6 @@ function pin(x, y, label, side = "right") {
       <text x="${tw / 2}" y="21" text-anchor="middle" fill="#ffd0d0" font-family="${FONT}" font-size="13" font-weight="700">${label}</text>
     </g>
   </g>`;
-}
-
-function heroSvg() {
-  const w = 1536;
-  const h = 840;
-  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
-    <rect width="${w}" height="${h}" fill="#050505"/>
-    <radialGradient id="hg" cx="62%" cy="48%" r="48%">
-      <stop offset="0%" stop-color="${BLUE}" stop-opacity="0.22"/>
-      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0"/>
-    </radialGradient>
-    <rect width="${w}" height="${h}" fill="url(#hg)"/>
-    ${dots(72, 64, 8, 5)}
-    ${dots(1380, 700, 7, 5)}
-    ${cross(80, 760)}
-    ${cross(1456, 80)}
-
-    <!-- Desktop frame, ghosted -->
-    <g transform="translate(430 148)" opacity="0.55">
-      <rect width="720" height="460" rx="18" fill="#0c0e14" stroke="#2a2d36" stroke-width="1.5"/>
-      <rect width="720" height="36" rx="18" fill="#10131a"/>
-      <rect y="18" width="720" height="18" fill="#10131a"/>
-      <circle cx="22" cy="18" r="5" fill="#3a3d46"/>
-      <circle cx="40" cy="18" r="5" fill="#3a3d46"/>
-      <circle cx="58" cy="18" r="5" fill="#3a3d46"/>
-      <rect x="88" y="12" width="220" height="12" rx="6" fill="#1c2028"/>
-      <rect x="48" y="72" width="280" height="22" rx="4" fill="#ececec" opacity="0.9"/>
-      <rect x="48" y="108" width="210" height="10" rx="3" fill="#6b6f78"/>
-      <rect x="48" y="126" width="246" height="10" rx="3" fill="#3a3d46"/>
-      <rect x="48" y="168" width="132" height="34" rx="8" fill="${BLUE}"/>
-      <rect x="400" y="72" width="272" height="168" rx="10" fill="#161920"/>
-      <rect x="48" y="248" width="200" height="88" rx="10" fill="#161920"/>
-      <rect x="264" y="248" width="200" height="88" rx="10" fill="#161920"/>
-      <rect x="480" y="248" width="192" height="88" rx="10" fill="#161920"/>
-    </g>
-
-    <!-- Phone: CTA clipped — the leak -->
-    ${phone({
-      x: 1028,
-      y: 176,
-      clip: "heroPhone",
-      inner: `
-        <rect x="16" y="32" width="260" height="540" fill="#f4f4f2"/>
-        <rect x="36" y="52" width="88" height="10" rx="3" fill="#c8c8c4"/>
-        <rect x="36" y="84" width="176" height="16" rx="3" fill="#111"/>
-        <rect x="36" y="108" width="132" height="8" rx="3" fill="#9a9a96"/>
-        <rect x="36" y="132" width="220" height="118" rx="8" fill="#d9d9d4"/>
-        <rect x="36" y="268" width="220" height="10" rx="3" fill="#c8c8c4"/>
-        <rect x="36" y="286" width="168" height="10" rx="3" fill="#c8c8c4"/>
-        <rect x="36" y="318" width="220" height="72" rx="8" fill="#e8e8e4"/>
-        <rect x="36" y="408" width="220" height="72" rx="8" fill="#e8e8e4"/>
-        <rect x="36" y="528" width="220" height="44" rx="10" fill="${BLUE}"/>
-      `,
-    })}
-
-    <!-- Drop-off rail -->
-    <g transform="translate(118 250)">
-      <rect width="248" height="340" rx="18" fill="#0c0e14" stroke="#22252c" stroke-width="1"/>
-      <text x="24" y="42" fill="${BLUE}" font-family="${FONT}" font-size="13" font-weight="700" letter-spacing="2.4">THE LEAK</text>
-      <g transform="translate(36 78)">
-        <rect width="44" height="196" rx="6" fill="${BLUE}" opacity="0.92"/>
-        <rect x="68" width="44" height="118" y="78" rx="6" fill="#3a3d46"/>
-        <rect x="136" width="44" height="36" y="160" rx="6" fill="#1c2028"/>
-      </g>
-      <text x="36" y="300" fill="#9aa0ab" font-family="${FONT}" font-size="13">Visits</text>
-      <text x="104" y="300" fill="#9aa0ab" font-family="${FONT}" font-size="13">Clicks</text>
-      <text x="176" y="300" fill="#9aa0ab" font-family="${FONT}" font-size="13">Calls</text>
-    </g>
-  </svg>`;
 }
 
 function painSvg() {
@@ -217,7 +148,7 @@ function painSvg() {
         <rect x="452" y="332" width="12" height="44" fill="#7a8470"/>
 
         <text x="584" y="206" fill="#2a2218" font-family="${SERIF}" font-size="34" font-weight="700">Welcome to Our Website!</text>
-        <text x="584" y="240" fill="#6a5e4e" font-family="${SERIF}" font-size="18">Serving Dallas homeowners since 1998.</text>
+        <text x="584" y="240" fill="#6a5e4e" font-family="${SERIF}" font-size="18">Serving local homeowners since 1998.</text>
         <text x="584" y="276" fill="#8a7d6c" font-family="${FONT}" font-size="15">Use the links above to learn more,</text>
         <text x="584" y="298" fill="#8a7d6c" font-family="${FONT}" font-size="15">view the gallery, or send an email.</text>
         <rect x="584" y="336" width="132" height="36" rx="2" fill="#6e6a62"/>
@@ -323,6 +254,138 @@ function painSvg() {
   </svg>`;
 }
 
+function sparkline(values, width, height) {
+  return values
+    .map((value, index) => {
+      const x = (index / (values.length - 1)) * width;
+      const y = height - value * height;
+      return `${index === 0 ? "M" : "L"}${x.toFixed(1)} ${y.toFixed(1)}`;
+    })
+    .join(" ");
+}
+
+function area(values, width, height) {
+  return `${sparkline(values, width, height)} L${width} ${height} L0 ${height} Z`;
+}
+
+function compareSvg() {
+  const w = 1536;
+  const h = 1024;
+  const weak = [0.58, 0.55, 0.57, 0.5, 0.46, 0.4, 0.36, 0.3];
+  const strong = [0.22, 0.26, 0.34, 0.42, 0.52, 0.64, 0.76, 0.88];
+  const weakLine = sparkline(weak, 560, 168);
+  const strongLine = sparkline(strong, 560, 168);
+  const weakArea = area(weak, 560, 168);
+  const strongArea = area(strong, 560, 168);
+
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
+    <rect width="${w}" height="${h}" fill="#050505"/>
+    <radialGradient id="cg" cx="52%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="${BLUE}" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0"/>
+    </radialGradient>
+    <rect width="${w}" height="${h}" fill="url(#cg)"/>
+    ${dots(48, 40, 7, 5)}
+    ${dots(1390, 900, 7, 5)}
+    ${cross(56, 968)}
+    ${cross(1480, 56)}
+
+    <text x="64" y="78" fill="${BLUE}" font-family="${FONT}" font-size="15" font-weight="700" letter-spacing="3.2">SEARCH PERFORMANCE</text>
+    <text x="64" y="126" fill="#fff" font-family="${FONT}" font-size="36" font-weight="700">Unoptimized site vs a site built to rank.</text>
+
+    <linearGradient id="weakFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff5c5c" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#ff5c5c" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="strongFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="${BLUE}" stop-opacity="0.38"/>
+      <stop offset="100%" stop-color="${BLUE}" stop-opacity="0"/>
+    </linearGradient>
+
+    <g transform="translate(64 168)">
+      <rect width="680" height="760" rx="22" fill="#0c0e14" stroke="#2a2d36"/>
+      <rect width="680" height="72" rx="22" fill="#14171f"/>
+      <rect y="50" width="680" height="22" fill="#14171f"/>
+      <circle cx="28" cy="36" r="6" fill="#3a3d46"/>
+      <circle cx="48" cy="36" r="6" fill="#3a3d46"/>
+      <circle cx="68" cy="36" r="6" fill="#3a3d46"/>
+      <text x="96" y="42" fill="#8b909a" font-family="${FONT}" font-size="16" font-weight="700">Unoptimized site</text>
+      <rect x="504" y="22" width="152" height="28" rx="14" fill="#1a0d0d" stroke="#ff5c5c" stroke-opacity="0.55"/>
+      <text x="580" y="41" text-anchor="middle" fill="#ffd0d0" font-family="${FONT}" font-size="13" font-weight="700">Losing demand</text>
+
+      <text x="36" y="128" fill="#8b909a" font-family="${FONT}" font-size="15" font-weight="650">Conversion</text>
+      <text x="36" y="188" fill="#fff" font-family="${FONT}" font-size="64" font-weight="700">1.8%</text>
+      <text x="36" y="228" fill="#8b909a" font-family="${FONT}" font-size="16">Traffic arrives. The quote path does not.</text>
+
+      <g transform="translate(36 268)">
+        <path d="${weakArea}" fill="url(#weakFill)"/>
+        <path d="${weakLine}" fill="none" stroke="#ff5c5c" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <g font-family="${FONT}">
+        <rect x="36" y="476" width="196" height="96" rx="14" fill="#12151c"/>
+        <text x="52" y="512" fill="#8b909a" font-size="13" font-weight="650">Search visibility</text>
+        <text x="52" y="548" fill="#fff" font-size="28" font-weight="700">Low</text>
+        <rect x="242" y="476" width="196" height="96" rx="14" fill="#12151c"/>
+        <text x="258" y="512" fill="#8b909a" font-size="13" font-weight="650">Load time</text>
+        <text x="258" y="548" fill="#fff" font-size="28" font-weight="700">4.8s</text>
+        <rect x="448" y="476" width="196" height="96" rx="14" fill="#12151c"/>
+        <text x="464" y="512" fill="#8b909a" font-size="13" font-weight="650">SERP position</text>
+        <text x="464" y="548" fill="#fff" font-size="28" font-weight="700">Page 4</text>
+      </g>
+
+      <g transform="translate(36 596)">
+        <text y="24" fill="#8b909a" font-family="${FONT}" font-size="13" font-weight="650" letter-spacing="1.4">SEARCH RESULT</text>
+        <rect y="40" width="608" height="96" rx="12" fill="#10131a"/>
+        <text x="20" y="78" fill="#8b8d96" font-family="${FONT}" font-size="18">Welcome to Our Website | Home</text>
+        <text x="20" y="108" fill="#5c616a" font-family="${FONT}" font-size="14">example.com  ·  Click here to learn more</text>
+      </g>
+    </g>
+
+    <g transform="translate(792 168)">
+      <rect width="680" height="760" rx="22" fill="#0c0e14" stroke="#1d3a66"/>
+      <rect width="680" height="72" rx="22" fill="#10182a"/>
+      <rect y="50" width="680" height="22" fill="#10182a"/>
+      <circle cx="28" cy="36" r="6" fill="#3a3d46"/>
+      <circle cx="48" cy="36" r="6" fill="#3a3d46"/>
+      <circle cx="68" cy="36" r="6" fill="#3a3d46"/>
+      <text x="96" y="42" fill="#c8d8f0" font-family="${FONT}" font-size="16" font-weight="700">SEO-built site</text>
+      <rect x="488" y="22" width="168" height="28" rx="14" fill="#0b1c38" stroke="${BLUE}" stroke-opacity="0.65"/>
+      <text x="572" y="41" text-anchor="middle" fill="#9ec4ff" font-family="${FONT}" font-size="13" font-weight="700">Ready to rank</text>
+
+      <text x="36" y="128" fill="#8b909a" font-family="${FONT}" font-size="15" font-weight="650">Conversion</text>
+      <text x="36" y="188" fill="#fff" font-family="${FONT}" font-size="64" font-weight="700">3.9%</text>
+      <text x="36" y="228" fill="#8b909a" font-family="${FONT}" font-size="16">Offer, proof, and a next step on the first screen.</text>
+
+      <g transform="translate(36 268)">
+        <path d="${strongArea}" fill="url(#strongFill)"/>
+        <path d="${strongLine}" fill="none" stroke="${BLUE}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+
+      <g font-family="${FONT}">
+        <rect x="36" y="476" width="196" height="96" rx="14" fill="#10182a"/>
+        <text x="52" y="512" fill="#8b909a" font-size="13" font-weight="650">Search visibility</text>
+        <text x="52" y="548" fill="#9ec4ff" font-size="28" font-weight="700">High</text>
+        <rect x="242" y="476" width="196" height="96" rx="14" fill="#10182a"/>
+        <text x="258" y="512" fill="#8b909a" font-size="13" font-weight="650">Load time</text>
+        <text x="258" y="548" fill="#9ec4ff" font-size="28" font-weight="700">1.2s</text>
+        <rect x="448" y="476" width="196" height="96" rx="14" fill="#10182a"/>
+        <text x="464" y="512" fill="#8b909a" font-size="13" font-weight="650">SERP position</text>
+        <text x="464" y="548" fill="#9ec4ff" font-size="28" font-weight="700">Page 1</text>
+      </g>
+
+      <g transform="translate(36 596)">
+        <text y="24" fill="#8b909a" font-family="${FONT}" font-size="13" font-weight="650" letter-spacing="1.4">SEARCH RESULT</text>
+        <rect y="40" width="608" height="96" rx="12" fill="#10182a"/>
+        <text x="20" y="78" fill="#9ec4ff" font-family="${FONT}" font-size="18">AC Repair Today | Same-Day Quotes</text>
+        <text x="20" y="108" fill="#7a90b0" font-family="${FONT}" font-size="14">example.com  ·  Call now  ·  reviews on the listing</text>
+      </g>
+    </g>
+
+    <text x="64" y="978" fill="#6b6f78" font-family="${FONT}" font-size="16">Sample comparison. Conversion lift is from a published rebuild.</text>
+  </svg>`;
+}
+
 function spotlightSvg() {
   const w = 1408;
   const h = 1056;
@@ -405,83 +468,14 @@ async function writeWebp(svg, name, width, height) {
   console.log(`${name}  ${meta.width}x${meta.height}`);
 }
 
-async function recompress(name, width, height, quality) {
-  const dest = path.join(outDir, name);
-  const buffer = await sharp(dest)
-    .resize(width, height, { fit: "cover", withoutEnlargement: true })
-    .webp({ quality, effort: 6 })
-    .toBuffer();
-  await writeFile(dest, buffer);
-  const meta = await sharp(dest).metadata();
-  console.log(`${name}  ${meta.width}x${meta.height}  ${buffer.length}b`);
-}
-
 await mkdir(outDir, { recursive: true });
 
 if (process.argv.includes("--rebuild-ui")) {
-  await writeWebp(painSvg(), "dallas-pain.webp", 1200, 800);
+  await writeWebp(compareSvg(), "seo-compare.webp", 1200, 800);
   if (process.argv.includes("--all")) {
-    await writeWebp(spotlightSvg(), "dallas-spotlight.webp", 1200, 800);
+    await writeWebp(painSvg(), "pain.webp", 1200, 800);
+    await writeWebp(spotlightSvg(), "spotlight.webp", 1200, 800);
   }
 } else {
-  const skyline = path.join(outDir, "dallas-skyline.webp");
-  const skylineBuffer = await sharp(skyline).toBuffer();
-  await recompress("dallas-skyline.webp", 1536, 840, 64);
-  const sm = path.join(outDir, "dallas-skyline-sm.webp");
-  const skylineWide = await sharp(skylineBuffer)
-    .resize(768, 420, { fit: "inside" })
-    .toBuffer();
-  const { data, info } = await sharp(skylineWide)
-    .raw()
-    .toBuffer({ resolveWithObject: true });
-  const sample = (rowY) => {
-    let r = 0;
-    let g = 0;
-    let b = 0;
-    const start = rowY * info.width * 3;
-    for (let x = 0; x < info.width; x += 1) {
-      const i = start + x * 3;
-      r += data[i];
-      g += data[i + 1];
-      b += data[i + 2];
-    }
-    return [r, g, b]
-      .map((v) =>
-        Math.round(v / info.width)
-          .toString(16)
-          .padStart(2, "0"),
-      )
-      .join("");
-  };
-  const skyHex = `#${sample(2)}`;
-  const groundHex = `#${sample(info.height - 3)}`;
-  const canvas = await sharp(
-    Buffer.from(`<svg width="768" height="1344" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="${skyHex}"/>
-      <stop offset="0.18" stop-color="${skyHex}"/>
-      <stop offset="0.58" stop-color="${groundHex}"/>
-      <stop offset="1" stop-color="#050505"/>
-    </linearGradient>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#g)"/>
-</svg>`),
-  )
-    .composite([{ input: skylineWide, top: 176, left: 0 }])
-    .webp({ quality: 58, effort: 6 })
-    .toBuffer();
-  await writeFile(sm, canvas);
-  console.log(`dallas-skyline-sm.webp  768x1344  ${canvas.length}b`);
-  await recompress("dallas-pain.webp", 1200, 800, 68);
-  await recompress("dallas-spotlight.webp", 1200, 800, 68);
-
-  const street = path.join(outDir, "dallas-street.webp");
-  const streetSm = path.join(outDir, "dallas-street-sm.webp");
-  const streetSmBuffer = await sharp(street)
-    .resize(768, 1344, { fit: "cover", position: "east" })
-    .webp({ quality: 58, effort: 6 })
-    .toBuffer();
-  await writeFile(streetSm, streetSmBuffer);
-  console.log(`dallas-street-sm.webp  768x1344  ${streetSmBuffer.length}b`);
+  console.log("Pass --rebuild-ui to regenerate seo-compare.webp (add --all for pain/spotlight).");
 }

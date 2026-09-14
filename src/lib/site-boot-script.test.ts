@@ -6,7 +6,7 @@ describe("COOKIE_PREFLIGHT_SCRIPT", () => {
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("in-app-browser");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("in-app-instagram");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("kinexis-cookie-consent=(accepted|rejected)");
-    expect(COOKIE_PREFLIGHT_SCRIPT).toContain("dallas-website-audit");
+    expect(COOKIE_PREFLIGHT_SCRIPT).toContain("get-a-website");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("lp-chrome");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("\\/lp\\/");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("thank-you");

@@ -1,3 +1,4 @@
+import { iconForLandingPoint } from "@/components/landing/landing-icons";
 import {
   ShowcaseSite,
   type ShowcaseVariant,
@@ -30,23 +31,27 @@ export function SalesTransform({
   note,
   before,
   after,
+  afterImage,
+  afterImageAlt,
 }: {
   title: string;
   intro?: string;
   note?: string;
   before: { title: string; items: string[] };
   after: { title: string; items: string[] };
+  afterImage?: string;
+  afterImageAlt?: string;
 }) {
   return (
     <section
       aria-labelledby="lp-transform-heading"
-      className="lp-audit-transform chapter chapter--studio relative"
+      className="lp-audit-transform chapter relative"
     >
       <div className="shell chapter-shell--monument relative">
         <Reveal variant="rise" when="chapter">
           <ChapterLead
             headingId="lp-transform-heading"
-            eyebrow="The shift"
+            eyebrow="Before / After"
             title={title}
             dek={intro}
           />
@@ -54,13 +59,22 @@ export function SalesTransform({
 
         <div className="lp-transform">
           <Reveal variant="fadeUp" when="chapter" className="lp-transform__pane">
-            <p className="lp-transform__label">{before.title}</p>
-            <div className="lp-transform__frame">
+            <p className="lp-transform__label">
+              {before.title}
+              <span className="lp-transform__label-note">
+                Recreated previous-site experience
+              </span>
+            </p>
+            <div className="lp-transform__frame lp-transform__frame--before">
               <div className="lp-transform__screen">
                 <ShowcaseSite variant="dated" layout="desktop" />
               </div>
-              <span className="lp-showcase-badge">Dated-site example</span>
             </div>
+            <ul className="lp-transform__captions" aria-label={before.title}>
+              {before.items.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </Reveal>
           <span className="lp-transform__arrow" aria-hidden>
             →
@@ -74,31 +88,33 @@ export function SalesTransform({
             <p className="lp-transform__label">{after.title}</p>
             <div className="lp-transform__frame">
               <div className="lp-transform__screen">
-                <ShowcaseSite variant="ridge" layout="desktop" />
+                {afterImage ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={afterImage}
+                    alt={afterImageAlt ?? ""}
+                    width={1600}
+                    height={1000}
+                    className="lp-transform__photo"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <ShowcaseSite variant="ridge" layout="desktop" />
+                )}
               </div>
-              <span className="lp-showcase-badge">Sample design</span>
             </div>
-          </Reveal>
-        </div>
-
-        <div className="lp-transform__compare">
-          <div>
-            <p className="lp-transform__label">{before.title}</p>
-            <ul className="lp-transform__list">
-              {before.items.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="lp-transform__label">{after.title}</p>
-            <ul className="lp-transform__list lp-transform__list--after">
+            <ul
+              className="lp-transform__captions lp-transform__captions--after"
+              aria-label={after.title}
+            >
               {after.items.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
+
         {note ? <p className="lp-transform__note">{note}</p> : null}
       </div>
     </section>
@@ -173,7 +189,7 @@ export function SalesBuild({
   return (
     <section
       aria-labelledby="lp-build-heading"
-      className="lp-audit-build chapter chapter--studio relative"
+      className="lp-audit-build chapter relative"
     >
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter">
@@ -186,24 +202,31 @@ export function SalesBuild({
         </Reveal>
         <RevealGroup
           as="ul"
-          className="lp-build__list"
+          className="lp-build__list lp-build__list--cards"
           stagger={duration.staggerTight}
           delayChildren={0.05}
         >
-          {featured.map((point) => (
-            <RevealItem as="li" key={point.title} variant="fadeUp">
-              <article>
-                <h3 className="lp-build__title">{point.title}</h3>
-                <p className="lp-build__body">{point.body}</p>
-              </article>
-            </RevealItem>
-          ))}
+          {featured.map((point) => {
+            const Icon = iconForLandingPoint(point.title);
+            return (
+              <RevealItem as="li" key={point.title} variant="fadeUp">
+                <article className="lp-build__item lp-build__item--card">
+                  <span className="icon-well lp-build__icon" aria-hidden>
+                    <Icon strokeWidth={1.5} />
+                  </span>
+                  <h3 className="lp-build__title">{point.title}</h3>
+                  <p className="lp-build__body">{point.body}</p>
+                </article>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
         {quiet.length ? (
           <ul className="lp-build__quiet">
             {quiet.map((point) => (
               <li key={point.title}>
-                <strong>{point.title}.</strong> {point.body}
+                <span className="lp-build__quiet-label">{point.title}</span>
+                {point.body}
               </li>
             ))}
           </ul>
@@ -298,14 +321,22 @@ export function SalesWhy({
           stagger={duration.staggerTight}
           delayChildren={0.05}
         >
-          {items.map((item) => (
-            <RevealItem as="li" key={item.title} variant="fadeUp">
-              <article>
-                <h3 className="lp-why__title">{item.title}</h3>
-                <p className="lp-why__body">{item.body}</p>
-              </article>
-            </RevealItem>
-          ))}
+          {items.map((item) => {
+            const Icon = iconForLandingPoint(item.title);
+            return (
+              <RevealItem as="li" key={item.title} variant="fadeUp">
+                <article className="lp-why__item">
+                  <span className="icon-well lp-why__icon" aria-hidden>
+                    <Icon strokeWidth={1.5} />
+                  </span>
+                  <div>
+                    <h3 className="lp-why__title">{item.title}</h3>
+                    <p className="lp-why__body">{item.body}</p>
+                  </div>
+                </article>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
       </div>
     </section>

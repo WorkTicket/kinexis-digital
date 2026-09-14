@@ -102,7 +102,7 @@ export default async function LandingPage({ params }: Props) {
   const phoneDisplay = getBusinessPhoneDisplay();
 
   return (
-    <main className="flex flex-1 flex-col pb-24 md:pb-0">
+    <main className="flex flex-1 flex-col pb-24 lg:pb-0">
       <JsonLd data={faqSchema(page.faqs)} />
       <PageHero
         eyebrow={page.badge}

@@ -307,12 +307,6 @@ const clusterPostsByLocale = localeContent({
   "es-419": clusterPostsEs,
 });
 
-/** @deprecated Use getClusterPost(slug, locale) instead */
-export const clusterPosts = clusterPostsEn;
-
-/** @deprecated Use getClusterPost(slug, locale) instead */
-export const clusterPostsBySlug = Object.fromEntries(clusterPostsEn.map((p) => [p.slug, p]));
-
 export function getClusterPost(slug: string, locale: Locale): ClusterPost | undefined {
   const posts = clusterPostsByLocale[locale] ?? clusterPostsEn;
   const post = posts.find((p) => p.slug === slug) ?? clusterPostsEn.find((p) => p.slug === slug);

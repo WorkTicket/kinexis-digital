@@ -2,6 +2,7 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import {
   LOCALE_COOKIE_NAME,
+  detectLocaleFromLocation,
   getCookieLocale,
   isCrawlerRequest,
   localeCookieOptions,
@@ -9,7 +10,10 @@ import {
 } from "./i18n/geo";
 import { routing, type Locale } from "./i18n/routing";
 import { acceptLanguageHeader } from "./i18n/locale-tags";
-import { resolveLegacyRedirect } from "./lib/legacy-redirects.mjs";
+import {
+  LOCALE_PREFIX_RE,
+  resolveLegacyRedirect,
+} from "./lib/legacy-redirects.mjs";
 
 const intlMiddleware = createMiddleware(routing);
 
@@ -18,11 +22,17 @@ const APEX_HOST = "kinexisdigital.com";
 
 const CRAWLER_PATHS = new Set(["/sitemap.xml", "/robots.txt", "/llms.txt"]);
 
-const LOCALE_PREFIX_RE = /^\/(en|es-ES|es-419)(?=\/|$)/;
-
-function getPathLocale(pathname: string): Locale | null {
+function getPathLocale(pathname: string, request: NextRequest): Locale | null {
   const match = pathname.match(LOCALE_PREFIX_RE);
-  return match ? (match[1] as Locale) : null;
+  if (!match) return null;
+  const raw = match[1];
+  if (/^en$/i.test(raw)) return "en";
+  if (/^es-ES$/i.test(raw)) return "es-ES";
+  if (/^es-419$/i.test(raw)) return "es-419";
+  if (/^es$/i.test(raw)) {
+    return detectLocaleFromLocation(request) === "es-ES" ? "es-ES" : "es-419";
+  }
+  return null;
 }
 
 function buildRedirect(
@@ -34,12 +44,13 @@ function buildRedirect(
     hash,
   }: { forceHttps: boolean; forceWww: boolean; hash?: string },
 ): NextResponse {
-  const url = request.nextUrl.clone();
-  url.pathname = pathname;
-  url.hash = hash ?? "";
-  if (forceHttps) url.protocol = "https:";
-  if (forceWww) url.host = WWW_HOST;
-  return NextResponse.redirect(url, 301);
+  // Use WHATWG URL so NextURL cannot keep a trailing slash on the destination.
+  const dest = new URL(request.url);
+  dest.pathname = pathname || "/";
+  dest.hash = hash ? `#${hash}` : "";
+  if (forceHttps) dest.protocol = "https:";
+  if (forceWww) dest.host = WWW_HOST;
+  return NextResponse.redirect(dest, 301);
 }
 
 function withRequestLocale(request: NextRequest, locale: Locale): NextRequest {
@@ -62,47 +73,40 @@ function persistLocaleCookie(response: NextResponse, request: NextRequest, local
   return response;
 }
 
+function isHttpRequest(request: NextRequest): boolean {
+  const forwardedProto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
+  if (forwardedProto === "http") return true;
+  if (request.nextUrl.protocol === "http:") return true;
+  try {
+    const cf = request.headers.get("cf-visitor");
+    if (cf) return JSON.parse(cf).scheme === "http";
+  } catch {
+    /* ignore */
+  }
+  return false;
+}
+
 export default function middleware(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0] ?? "";
   const pathname = request.nextUrl.pathname;
   const isLocalHost = host === "localhost" || host === "127.0.0.1";
-  const needsWww = host === APEX_HOST;
+  const needsWww = !isLocalHost && host === APEX_HOST;
+  const needsHttps = !isLocalHost && isHttpRequest(request);
+  const pathLocale = getPathLocale(pathname, request);
+  const resolved = resolveLegacyRedirect(pathname);
 
-  if (!isLocalHost) {
-    const forwardedProto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim();
-    const isHttp =
-      forwardedProto === "http" ||
-      request.nextUrl.protocol === "http:" ||
-      (() => {
-        try {
-          const cf = request.headers.get("cf-visitor");
-          if (cf) return JSON.parse(cf).scheme === "http";
-        } catch {
-          /* ignore */
-        }
-        return false;
-      })();
-
-    if (isHttp || needsWww) {
-      return buildRedirect(request, pathname, { forceHttps: true, forceWww: needsWww });
-    }
+  if (needsHttps || needsWww || resolved) {
+    const response = buildRedirect(request, resolved?.path ?? pathname, {
+      forceHttps: needsHttps || needsWww,
+      forceWww: needsWww,
+      hash: resolved?.hash,
+    });
+    if (pathLocale) persistLocaleCookie(response, request, pathLocale);
+    return response;
   }
 
   if (CRAWLER_PATHS.has(pathname)) {
     return NextResponse.next();
-  }
-
-  const pathLocale = getPathLocale(pathname);
-  const resolved = resolveLegacyRedirect(pathname);
-
-  if (resolved) {
-    const response = buildRedirect(request, resolved.path, {
-      forceHttps: false,
-      forceWww: false,
-      hash: resolved.hash,
-    });
-    if (pathLocale) persistLocaleCookie(response, request, pathLocale);
-    return response;
   }
 
   const hadCookie = Boolean(getCookieLocale(request));

@@ -34,9 +34,6 @@ export type MetaEventOptions = {
   eventId?: string;
 };
 
-/** @deprecated Use MetaEventOptions. */
-export type MetaLeadOptions = MetaEventOptions;
-
 declare global {
   interface Window {
     fbq?: MetaPixelFn;
@@ -145,11 +142,6 @@ export function buildMetaConversionSnippet(pixelId?: string): string {
     "}catch(e){}",
     "})();",
   ].join("");
-}
-
-/** @deprecated Use buildMetaConversionSnippet. */
-export function buildMetaLeadSnippet(pixelId?: string): string {
-  return buildMetaConversionSnippet(pixelId);
 }
 
 export function updateMetaPixelConsent(granted: boolean): void {

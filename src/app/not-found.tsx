@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
+import { buttonClasses } from "@/lib/button-styles";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -27,12 +28,12 @@ export default function RootNotFound() {
                 home or book a call and we&apos;ll point you the right way.
               </p>
               <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-                <Button href="/" size="lg" arrow>
+                <Link href="/" className={buttonClasses({ size: "lg" })}>
                   Back to home
-                </Button>
-                <Button href="/contact" variant="link" arrow>
+                </Link>
+                <Link href="/contact" className={buttonClasses({ variant: "link" })}>
                   Book a strategy call
-                </Button>
+                </Link>
               </div>
             </div>
           </div>

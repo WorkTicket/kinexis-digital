@@ -17,25 +17,25 @@ describe("landing chrome", () => {
   it("maps each lander to its own primary CTA, not the sitewide strategy call", () => {
     const google = getLandingChrome("/lp/web-design");
     const meta = getLandingChrome("/lp/facebook-web-design");
-    const dallas = getLandingChrome("/lp/dallas-website-audit");
+    const website = getLandingChrome("/lp/get-a-website");
 
     expect(google?.ctaLabel.toLowerCase()).toContain("notes");
     expect(meta?.ctaLabel.toLowerCase()).toContain("consult");
-    expect(dallas?.ctaLabel.toLowerCase()).toContain("consultation");
-    expect(dallas?.headerCtaLabel.toLowerCase()).toMatch(/get my free website consultation/);
-    expect(dallas?.ctaLabel.toLowerCase()).toMatch(/book free consultation/);
+    expect(website?.ctaLabel.toLowerCase()).toContain("plan");
+    expect(website?.headerCtaLabel.toLowerCase()).toMatch(/get my free website plan/);
+    expect(website?.ctaLabel.toLowerCase()).toMatch(/website plan/);
     expect(google?.slim).toBe(false);
     expect(meta?.slim).toBe(false);
-    expect(dallas?.slim).toBe(true);
+    expect(website?.slim).toBe(true);
     expect(google?.formHref).toBe("#lp-form");
-    expect(dallas?.formHref).toBe("#lp-form");
+    expect(website?.formHref).toBe("#lp-form");
     expect(meta?.ctaLabel).not.toBe(google?.ctaLabel);
     expect(getLandingChrome("/contact")).toBeNull();
   });
 
   it("hides the cookie banner on paid landers and thank-you", () => {
-    expect(isCookieBannerExemptPath("/lp/dallas-website-audit")).toBe(true);
-    expect(isCookieBannerExemptPath("/en/lp/dallas-website-audit")).toBe(true);
+    expect(isCookieBannerExemptPath("/lp/get-a-website")).toBe(true);
+    expect(isCookieBannerExemptPath("/en/lp/get-a-website")).toBe(true);
     expect(isCookieBannerExemptPath("/thank-you/audit")).toBe(true);
     expect(isCookieBannerExemptPath("/en/thank-you")).toBe(true);
     expect(isCookieBannerExemptPath("/contact")).toBe(false);

@@ -10,11 +10,6 @@
 /** E.164 — public click-to-call number. */
 export const DEFAULT_BUSINESS_PHONE = "+13075003371";
 
-function optionalEnv(key: string): string | undefined {
-  const value = process.env[key]?.trim();
-  return value && value.length > 0 ? value : undefined;
-}
-
 function resolveBusinessPhone(): string | undefined {
   const raw = process.env.NEXT_PUBLIC_BUSINESS_PHONE;
   if (raw !== undefined && raw.trim() === "") return undefined;

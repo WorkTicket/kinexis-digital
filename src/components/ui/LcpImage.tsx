@@ -75,7 +75,6 @@ export function LcpImage({
         {mobileSrc ? (
           <picture>
             <source media="(min-width: 768px)" srcSet={src} type="image/webp" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={mobileSrc}
               alt={alt}

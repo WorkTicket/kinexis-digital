@@ -39,6 +39,11 @@ type Props = {
   qualification?: boolean;
   /** Name, email, optional URL — cold Meta traffic. */
   essentialsOnly?: boolean;
+  /** Two-step qualify: business/site first, then email/budget/timeline. */
+  twoStepQualify?: boolean;
+  /** After a successful submit, send the lead here instead of /thank-you. */
+  successHref?: string;
+  continueLabel?: string;
   phoneRequired?: boolean;
   phoneOptional?: boolean;
   hideWebsite?: boolean;
@@ -46,6 +51,7 @@ type Props = {
   consentLabel?: string;
   needOptions?: { value: string; label: string }[];
   budgetOptions?: { value: string; label: string }[];
+  timelineOptions?: { value: string; label: string }[];
 };
 
 function FieldLabel({
@@ -86,6 +92,9 @@ export function LandingLeadForm({
   staged = false,
   qualification = false,
   essentialsOnly = false,
+  twoStepQualify = false,
+  successHref,
+  continueLabel = "Continue",
   phoneRequired = false,
   phoneOptional = false,
   hideWebsite = false,
@@ -93,26 +102,31 @@ export function LandingLeadForm({
   consentLabel,
   needOptions,
   budgetOptions,
+  timelineOptions,
 }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const submitLock = useRef(false);
-  const [step, setStep] = useState<1 | 2>(staged ? 1 : 2);
+  const [step, setStep] = useState<1 | 2>(staged || twoStepQualify ? 1 : 2);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [website, setWebsite] = useState("");
+  const [noWebsite, setNoWebsite] = useState(false);
   const [consent, setConsent] = useState(false);
   const [need, setNeed] = useState("");
   const [budget, setBudget] = useState("");
+  const [timeline, setTimeline] = useState("");
   const [details, setDetails] = useState("");
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const showUrlStep = staged && step === 1;
+  const showUrlStep = staged && !twoStepQualify && step === 1;
+  const showQualifyStep1 = twoStepQualify && step === 1;
+  const showQualifyStep2 = twoStepQualify && step === 2;
   const gap = dense ? "space-y-3" : "space-y-5";
   const gridGap = dense
     ? "grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-2.5 gap-y-3"
@@ -124,13 +138,13 @@ export function LandingLeadForm({
     setStatus("submitting");
     setErrorMsg("");
 
-    if (websiteRequired && !isWebsiteValue(website)) {
+    if (websiteRequired && !noWebsite && !isWebsiteValue(website)) {
       setStatus("error");
       setErrorMsg("Add the site URL you want reviewed.");
       return;
     }
 
-    if (website.trim() && !isWebsiteValue(website)) {
+    if (!noWebsite && website.trim() && !isWebsiteValue(website)) {
       setStatus("error");
       setErrorMsg("Add a valid URL, or leave it blank if you need a site built.");
       return;
@@ -148,9 +162,27 @@ export function LandingLeadForm({
       return;
     }
 
+    if (twoStepQualify && businessNameRequired && !businessName.trim()) {
+      setStatus("error");
+      setErrorMsg("Add your business name.");
+      return;
+    }
+
+    if (twoStepQualify && budgetOptions?.length && !budget) {
+      setStatus("error");
+      setErrorMsg("Select a website investment range.");
+      return;
+    }
+
+    if (twoStepQualify && timelineOptions?.length && !timeline) {
+      setStatus("error");
+      setErrorMsg("Select when you're looking to start.");
+      return;
+    }
+
     if (consentLabel && !consent) {
       setStatus("error");
-      setErrorMsg("Please agree to be contacted so we can schedule the consultation.");
+      setErrorMsg("Please agree to be contacted so we can follow up.");
       return;
     }
 
@@ -168,11 +200,12 @@ export function LandingLeadForm({
           email,
           phone: phone.trim() || undefined,
           businessName: businessName.trim() || undefined,
-          website: website.trim() || undefined,
-          websiteRequired,
+          website: noWebsite ? undefined : website.trim() || undefined,
+          websiteRequired: websiteRequired && !noWebsite,
           goal: details.trim() || undefined,
           need: need || undefined,
           budget: budget || undefined,
+          timeline: timeline || undefined,
           service: serviceLabel,
           source: "landing-page",
           landingSlug,
@@ -190,7 +223,8 @@ export function LandingLeadForm({
       }
 
       const thankYouPath =
-        conversionKind === "audit" ? "/thank-you/audit" : "/thank-you";
+        successHref ??
+        (conversionKind === "audit" ? "/thank-you/audit" : "/thank-you");
 
       const conversionOpts = {
         email,
@@ -243,6 +277,28 @@ export function LandingLeadForm({
       return;
     }
 
+    if (showQualifyStep1) {
+      setErrorMsg("");
+      if (!name.trim()) {
+        setStatus("error");
+        setErrorMsg("Add your name.");
+        return;
+      }
+      if (businessNameRequired && !businessName.trim()) {
+        setStatus("error");
+        setErrorMsg("Add your business name.");
+        return;
+      }
+      if (!noWebsite && website.trim() && !isWebsiteValue(website)) {
+        setStatus("error");
+        setErrorMsg("Add a valid URL, or leave it blank if you need a site built.");
+        return;
+      }
+      setStatus("idle");
+      setStep(2);
+      return;
+    }
+
     await submitLead();
   };
 
@@ -254,7 +310,9 @@ export function LandingLeadForm({
         className="flex flex-col items-center justify-center gap-3 py-16 text-center"
       >
         <p className="text-xl font-semibold text-foreground">
-          Got it. We will follow up within one business day.
+          {successHref
+            ? "Got it. Pick a time for the audit call."
+            : "Got it. We will follow up within one business day."}
         </p>
       </div>
     );
@@ -289,25 +347,217 @@ export function LandingLeadForm({
     <div>
       <div className={dense ? "mb-3" : "mb-5"}>
         <h2 className="font-[family-name:var(--font-display)] text-[1.125rem] font-semibold tracking-tight text-foreground sm:text-xl">
-          {showUrlStep
-            ? formTitle
-            : staged
-              ? "Where should we send the notes?"
-              : formTitle}
+          {showQualifyStep2
+            ? "Step 2 of 2"
+            : showQualifyStep1
+              ? "Step 1 of 2"
+              : showUrlStep
+                ? formTitle
+                : staged
+                  ? "Where should we send the notes?"
+                  : formTitle}
         </h2>
         <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted">
-          {showUrlStep
-            ? formSubtitle
-            : staged
-              ? "Name and work email. Phone is optional."
-              : formSubtitle}
+          {showQualifyStep2
+            ? "Email, phone, budget, and timeline."
+            : showQualifyStep1
+              ? "Name, business, and website if you have one."
+              : showUrlStep
+                ? formSubtitle
+                : staged
+                  ? "Name and work email. Phone is optional."
+                  : formSubtitle}
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className={`relative ${gap}`}>
         <input type="text" {...honeypotProps} />
 
-        {showUrlStep ? (
+        {showQualifyStep1 ? (
+          <>
+            <div>
+              <FieldLabel htmlFor={`${id}-name`} required>
+                Your name
+              </FieldLabel>
+              <input
+                type="text"
+                id={`${id}-name`}
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="form-input"
+                autoComplete="name"
+                placeholder="Your name"
+              />
+            </div>
+            <div>
+              <FieldLabel htmlFor={`${id}-business`} required>
+                Business name
+              </FieldLabel>
+              <input
+                type="text"
+                id={`${id}-business`}
+                required={businessNameRequired}
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
+                className="form-input"
+                autoComplete="organization"
+                placeholder="Your business"
+              />
+            </div>
+            <div>
+              <FieldLabel htmlFor={`${id}-website`}>
+                Current website
+              </FieldLabel>
+              <input
+                type="text"
+                id={`${id}-website`}
+                disabled={noWebsite}
+                value={noWebsite ? "" : website}
+                onChange={(e) => setWebsite(e.target.value)}
+                className="form-input"
+                autoComplete="url"
+                placeholder={
+                  noWebsite ? "No website yet" : "yoursite.com (optional)"
+                }
+                inputMode="url"
+              />
+            </div>
+            <label className="lp-form-consent" htmlFor={`${id}-no-website`}>
+              <input
+                type="checkbox"
+                id={`${id}-no-website`}
+                checked={noWebsite}
+                onChange={(e) => {
+                  setNoWebsite(e.target.checked);
+                  if (e.target.checked) setWebsite("");
+                }}
+              />
+              <span>I don&apos;t have a website yet</span>
+            </label>
+          </>
+        ) : showQualifyStep2 ? (
+          <>
+            <p className="text-sm text-muted">
+              {businessName.trim() ? (
+                <>
+                  Audit for{" "}
+                  <span className="text-foreground">{businessName.trim()}</span>
+                </>
+              ) : (
+                <span className="text-foreground">New website. No URL yet.</span>
+              )}
+              {" · "}
+              <button
+                type="button"
+                className="lp-form-back underline underline-offset-2 hover:text-foreground"
+                onClick={() => {
+                  setStatus("idle");
+                  setErrorMsg("");
+                  setStep(1);
+                }}
+              >
+                Back
+              </button>
+            </p>
+            <div className={gridGap}>
+              <div>
+                <FieldLabel htmlFor={`${id}-email`} required>
+                  Email
+                </FieldLabel>
+                <input
+                  type="email"
+                  id={`${id}-email`}
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-input"
+                  autoComplete="email"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  placeholder="you@company.com"
+                />
+              </div>
+              <div>
+                <FieldLabel htmlFor={`${id}-phone`} required={phoneRequired}>
+                  Phone
+                </FieldLabel>
+                <input
+                  type="tel"
+                  id={`${id}-phone`}
+                  required={phoneRequired}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="form-input"
+                  autoComplete="tel"
+                  placeholder="(555) 010-1234"
+                />
+              </div>
+            </div>
+            {budgetOptions?.length ? (
+              <div>
+                <FieldLabel htmlFor={`${id}-budget`} required>
+                  Approximate website investment
+                </FieldLabel>
+                <select
+                  id={`${id}-budget`}
+                  required
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  className="form-select"
+                >
+                  <option value="" disabled>
+                    Select range
+                  </option>
+                  {budgetOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <p className="mt-1.5 text-xs leading-relaxed text-muted">
+                  This helps us recommend the right scope.
+                </p>
+              </div>
+            ) : null}
+            {timelineOptions?.length ? (
+              <div>
+                <FieldLabel htmlFor={`${id}-timeline`} required>
+                  When are you looking to start?
+                </FieldLabel>
+                <select
+                  id={`${id}-timeline`}
+                  required
+                  value={timeline}
+                  onChange={(e) => setTimeline(e.target.value)}
+                  className="form-select"
+                >
+                  <option value="" disabled>
+                    Select one
+                  </option>
+                  {timelineOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : null}
+            {consentLabel ? (
+              <label className="lp-form-consent" htmlFor={`${id}-consent`}>
+                <input
+                  type="checkbox"
+                  id={`${id}-consent`}
+                  required
+                  checked={consent}
+                  onChange={(e) => setConsent(e.target.checked)}
+                />
+                <span>{consentLabel}</span>
+              </label>
+            ) : null}
+          </>
+        ) : showUrlStep ? (
           websiteField
         ) : essentialsOnly ? (
           <>
@@ -645,19 +895,24 @@ export function LandingLeadForm({
         </div>
 
         <div className={
-          qualification || essentialsOnly
+          qualification || essentialsOnly || twoStepQualify
             ? "flex flex-col gap-2 pt-1"
             : "flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between"
         }>
-          {qualification || essentialsOnly ? (
+          {qualification || essentialsOnly || twoStepQualify ? (
             <>
               <Button
                 type="submit"
                 size="lg"
                 disabled={status === "submitting"}
                 className="w-full"
+                arrow={status !== "submitting"}
               >
-                {status === "submitting" ? "Submitting…" : submitLabel}
+                {status === "submitting"
+                  ? "Submitting…"
+                  : showQualifyStep1
+                    ? continueLabel
+                    : submitLabel}
               </Button>
               <p className="text-center text-xs font-medium text-muted">
                 {formCtaHint ?? formFootnote}

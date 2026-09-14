@@ -6454,14 +6454,38 @@ html.lp-chrome .site-header__bar {
   gap: 0.75rem;
 }
 
+html.lp-chrome .site-header__lp-actions {
+  gap: 0.7rem;
+}
+
+html.lp-chrome .site-header__phone {
+  flex-shrink: 0;
+}
+
 html.lp-chrome .site-header .btn--header {
-  max-width: min(22rem, 72vw);
+  max-width: min(22rem, 52vw);
   white-space: normal;
   text-wrap: balance;
   line-height: 1.2;
   height: auto;
   min-height: 2.75rem;
   padding-block: 0.55rem;
+}
+
+html.lp-chrome .site-header__lp-actions .theme-toggle {
+  flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+  html.lp-chrome .site-header__rule--lp,
+  html.lp-chrome .site-header__lp-actions .btn--header {
+    display: none;
+  }
+
+  html.lp-chrome .site-header__phone-num,
+  html.lp-chrome .site-header__phone .call-link__num {
+    font-size: 0.75rem;
+  }
 }
 
 .brand-logo--on-light {
@@ -6676,6 +6700,18 @@ html[data-theme="dark"] .brand-logo--on-dark {
 .theme-toggle svg {
   width: 1.4rem;
   height: 1.4rem;
+}
+
+.theme-toggle__sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle__sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle__moon {
+  display: none;
 }
 
 /* ── Hamburger (mobile) ── */

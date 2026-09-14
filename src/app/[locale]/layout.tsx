@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -9,7 +9,7 @@ import { SiteAtmosphere } from "@/components/SiteAtmosphere";
 import { SiteShell } from "@/components/SiteShell";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { MotionFlagsProvider } from "@/components/providers/MotionFlagsProvider";
-import { resolveLocale, type LocaleParams } from "@/i18n/locale";
+import { isAppLocale, resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { getHtmlLang, getOgLocale } from "@/i18n/locale-tags";
 import { routing } from "@/i18n/routing";
 import {
@@ -35,7 +35,7 @@ import {
   getGtagScriptSrcId,
 } from "@/lib/analytics/conversion-snippet";
 import {
-  buildMetaLeadSnippet,
+  buildMetaConversionSnippet,
   buildMetaPixelInitScript,
 } from "@/lib/analytics/meta-pixel";
 import "../globals.css";
@@ -79,7 +79,16 @@ export async function generateMetadata({
 }: {
   params: LocaleParams;
 }): Promise<Metadata> {
-  const locale = await resolveLocale(params);
+  const { locale: raw } = await params;
+  // notFound() inside generateMetadata 500s on the Cloudflare adapter.
+  if (!isAppLocale(raw)) {
+    return {
+      robots: { index: false, follow: false },
+      title: { absolute: "Page Not Found | Kinexis Digital" },
+    };
+  }
+  setRequestLocale(raw);
+  const locale = raw;
   const t = await getTranslations({ locale, namespace: "metadata" });
   const title = t("title");
   const description = t("description");
@@ -133,7 +142,7 @@ export default async function LocaleLayout({
   const leadSnippet = leadSendTo ? buildLeadConversionSnippet(leadSendTo) : "";
   const metaPixelId = getMetaPixelId();
   const metaInit = metaPixelId ? buildMetaPixelInitScript(metaPixelId) : "";
-  const metaLeadSnippet = metaPixelId ? buildMetaLeadSnippet(metaPixelId) : "";
+  const metaLeadSnippet = metaPixelId ? buildMetaConversionSnippet(metaPixelId) : "";
 
   return (
     <html

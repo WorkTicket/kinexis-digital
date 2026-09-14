@@ -1,7 +1,8 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Link, redirect } from "@/i18n/navigation";
+import { permanentRedirect } from "next/navigation";
+import { Link } from "@/i18n/navigation";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
 import {
@@ -16,7 +17,7 @@ import { IndustryProcessSteps } from "@/components/industry/IndustryProcessSteps
 import { IndustryTestimonialBlock } from "@/components/industry/IndustryTestimonialBlock";
 import JsonLd from "@/components/seo/JsonLd";
 import {
-  getAllIndustrySlugs,
+  getStandaloneIndustrySlugs,
   getIndustryBySlug,
   isStandaloneIndustry,
 } from "@/content/industries";
@@ -38,7 +39,7 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return getAllIndustrySlugs().map((slug) => ({ slug }));
+  return getStandaloneIndustrySlugs().map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -72,16 +73,14 @@ export default async function IndustryDetailPage({ params }: PageProps) {
   const industry = getIndustryBySlug(slug);
 
   if (!industry) {
-    redirect({
-      href: matchUnprefixedLegacyRedirect(`/industries/${slug}`) ?? "/industries",
-      locale,
-    });
-    return null;
+    permanentRedirect(
+      matchUnprefixedLegacyRedirect(`/industries/${slug}`) ?? "/industries",
+    );
   }
 
   // Standalone markets keep full detail pages. Hub chapters redirect to /industries#slug.
   if (!isStandaloneIndustry(slug)) {
-    redirect({ href: `/industries#${slug}`, locale });
+    permanentRedirect(`/industries#${slug}`);
   }
 
   const t = await getTranslations("common");

@@ -92,16 +92,17 @@ describe("POST /api/lead", () => {
     expect(res.status).toBe(200);
   });
 
-  it("accepts a Dallas audit qualification with business name and need", async () => {
+  it("accepts a contractor audit qualification with business name, budget, and timeline", async () => {
     sendMock.mockResolvedValue(undefined);
     const res = await postLead({
       name: "Maria",
       businessName: "Oak Cliff Roofing",
       email: "maria@example.com",
       phone: "2145550100",
-      need: "new-website",
-      budget: "10000-plus",
-      landingSlug: "dallas-website-audit",
+      website: "oakcliffroofing.com",
+      budget: "3000-5000",
+      timeline: "30-days",
+      landingSlug: "get-a-website",
       source: "landing-page",
     });
     expect(res.status).toBe(200);

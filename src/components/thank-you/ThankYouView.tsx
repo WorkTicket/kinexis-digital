@@ -92,7 +92,7 @@ export async function ThankYouView({
             <div className="mt-12 flex flex-col gap-3 sm:mt-16 sm:flex-row sm:items-center">
               {namespace === "pages.thankYouAudit" ? (
                 <Button href="/contact" size="lg" arrow>
-                  {tCommon("bookCall")}
+                  {tCommon("bookStrategyCall")}
                 </Button>
               ) : (
                 <Button href="/" size="lg" arrow>

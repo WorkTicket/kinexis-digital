@@ -7,22 +7,45 @@ export type ShowcaseVariant =
 
 export type ShowcaseLayout = "desktop" | "tablet" | "phone";
 
-const ASSET_V = "20260904c";
+const ASSET_V = "20260908a";
 
 const PHOTOS = {
   ridge: `/assets/images/lp/showcase-ridge.webp?v=${ASSET_V}`,
   marigold: `/assets/images/lp/showcase-marigold.webp?v=${ASSET_V}`,
   haven: `/assets/images/lp/showcase-haven.webp?v=${ASSET_V}`,
   meridian: `/assets/images/lp/showcase-meridian.webp?v=${ASSET_V}`,
+  /** Yard photo for the dated A1 WordPress recreation — not the industry board. */
+  a1: `/assets/images/lp/showcase-a1-before.webp?v=${ASSET_V}`,
 } as const;
 
 function Chrome({
   host,
   secure = true,
+  windows = false,
 }: {
   host: string;
   secure?: boolean;
+  windows?: boolean;
 }) {
+  if (windows) {
+    return (
+      <div className="lp-site__chrome lp-site__chrome--win">
+        <span className="lp-site__win-nav" aria-hidden>
+          <i />
+          <i />
+          <i />
+        </span>
+        <span className="lp-site__url lp-site__url--http">
+          <span className="lp-site__insecure">Not secure</span>
+          <span className="lp-site__sep" aria-hidden>
+            |
+          </span>
+          <span className="lp-site__host">{host.replace(/^www\./, "")}</span>
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div className="lp-site__chrome">
       <span className="lp-site__dots" aria-hidden>
@@ -255,93 +278,112 @@ function Dated({ layout }: { layout: ShowcaseLayout }) {
   return (
     <>
       {phone ? null : (
-        <Chrome host="www.ridgeandco.com" secure={false} />
+        <Chrome host="www.a1propertyservices.com" secure={false} windows />
       )}
-      <div className="lp-site__dated-top">
-        <span>Free Estimates</span>
-        {phone ? (
-          <span>Call now</span>
-        ) : (
-          <>
-            <span>Licensed &amp; Insured</span>
-            <span>Free estimates</span>
-            <span className="lp-site__dated-socials" aria-hidden>
-              <i />
-              <i />
-              <i />
+      <div className="lp-site__dated-page">
+        <div className="lp-site__dated-wrap">
+          <div className="lp-site__dated-top">
+            <span>Free Estimates</span>
+            {phone ? (
+              <span>Call now</span>
+            ) : (
+              <>
+                <span>Licensed &amp; Insured</span>
+                <span>Free estimates</span>
+                <span className="lp-site__dated-socials" aria-hidden>
+                  <i />
+                  <i />
+                  <i />
+                </span>
+              </>
+            )}
+          </div>
+          <header className="lp-site__dated-head">
+            <span className="lp-site__dated-logo">
+              <svg
+                className="lp-site__dated-mark"
+                viewBox="0 0 200 150"
+                aria-hidden
+              >
+                <path
+                  fill="#E31C23"
+                  d="M30 86 L30 74 L100 22 L148 62 V42 H166 V76 C166 76 166 86 166 86 C128 64 72 64 30 86 Z"
+                />
+                <path
+                  fill="#8B9099"
+                  d="M22 122 C78 92 128 90 182 112 C136 96 86 96 38 118 Z"
+                />
+              </svg>
+              A1 Property Services
             </span>
-          </>
-        )}
-      </div>
-      <header className="lp-site__dated-head">
-        <span className="lp-site__dated-logo">
-          <i aria-hidden />
-          Ridge &amp; Co.
-        </span>
-        {phone ? (
-          <span className="lp-site__menu" />
-        ) : (
-          <span className="lp-site__dated-nav">
-            <span className="is-current">Home</span>
-            <span>About Us</span>
-            <span>Our Services</span>
-            <span>Gallery</span>
-            <span>Testimonials</span>
-            <span>Contact</span>
-          </span>
-        )}
-      </header>
-      <div className="lp-site__dated-slider">
-        <div className="lp-site__dated-slide">
-          <Photo src={PHOTOS.ridge} />
-        </div>
-        <div className="lp-site__dated-caption">
-          <p className="lp-site__dated-kicker">Welcome to our website</p>
-          <p className="lp-site__dated-title">Quality Roofing You Can Trust</p>
+            {phone ? (
+              <span className="lp-site__menu" />
+            ) : (
+              <span className="lp-site__dated-nav">
+                <span className="is-current">Home</span>
+                <span>About Us</span>
+                <span>Our Services</span>
+                <span>Gallery</span>
+                <span>Testimonials</span>
+                <span>Contact</span>
+              </span>
+            )}
+          </header>
+          <div className="lp-site__dated-slider">
+            <div className="lp-site__dated-slide">
+              <Photo src={PHOTOS.a1} />
+            </div>
+            <div className="lp-site__dated-caption">
+              <p className="lp-site__dated-kicker">Welcome to our website</p>
+              <p className="lp-site__dated-title">
+                Quality Landscaping You Can Trust
+              </p>
+              {phone ? null : (
+                <p className="lp-site__dated-sub">
+                  Family owned since 1998. Call for more information.
+                </p>
+              )}
+              <span className="lp-site__dated-cta">Click Here</span>
+            </div>
+            {phone ? null : (
+              <>
+                <span className="lp-site__dated-prev" aria-hidden>
+                  ‹
+                </span>
+                <span className="lp-site__dated-next" aria-hidden>
+                  ›
+                </span>
+                <span className="lp-site__dated-dots" aria-hidden>
+                  <i className="is-on" />
+                  <i />
+                  <i />
+                </span>
+              </>
+            )}
+          </div>
           {phone ? null : (
-            <p className="lp-site__dated-sub">
-              Family owned since 1998. Call for more information.
-            </p>
+            <div className="lp-site__dated-cards">
+              <span>
+                <i aria-hidden />
+                Lawn Care
+              </span>
+              <span>
+                <i aria-hidden />
+                Landscaping
+              </span>
+              <span>
+                <i aria-hidden />
+                Hardscaping
+              </span>
+            </div>
           )}
-          <span className="lp-site__dated-cta">Click Here</span>
+          <p className="lp-site__dated-foot">
+            {phone
+              ? "Call for more information"
+              : "A1 Property Services · Cedar Falls, IA"}
+          </p>
         </div>
-        {phone ? null : (
-          <>
-            <span className="lp-site__dated-prev" aria-hidden>
-              ‹
-            </span>
-            <span className="lp-site__dated-next" aria-hidden>
-              ›
-            </span>
-            <span className="lp-site__dated-dots" aria-hidden>
-              <i className="is-on" />
-              <i />
-              <i />
-            </span>
-          </>
-        )}
       </div>
-      {phone ? null : (
-        <div className="lp-site__dated-cards">
-          <span>
-            <i aria-hidden />
-            Residential
-          </span>
-          <span>
-            <i aria-hidden />
-            Commercial
-          </span>
-          <span>
-            <i aria-hidden />
-            Storm Repair
-          </span>
-        </div>
-      )}
-      <p className="lp-site__dated-foot">
-        {phone
-          ? "Call for more information"
-          : "© 2016 Ridge & Co.  ·  Site last updated March 12, 2016"}
-      </p>
     </>
   );
 }

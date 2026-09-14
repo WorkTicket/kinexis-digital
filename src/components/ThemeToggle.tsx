@@ -19,7 +19,12 @@ export function ThemeToggle() {
       aria-label={label}
       title={label}
     >
-      {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+      <span className="theme-toggle__moon">
+        <MoonIcon />
+      </span>
+      <span className="theme-toggle__sun">
+        <SunIcon />
+      </span>
     </Button>
   );
 }

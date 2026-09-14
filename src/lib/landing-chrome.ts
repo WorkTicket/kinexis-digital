@@ -16,7 +16,7 @@ export function getLandingChrome(pathname: string) {
   const page = getLandingPage(slug);
   if (!page) return null;
 
-  const slim = slug === "dallas-website-audit";
+  const slim = Boolean(page.auditLayout);
   if (page.siteNav && !slim) return null;
 
   return {

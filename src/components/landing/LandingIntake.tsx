@@ -79,8 +79,11 @@ export function LandingIntake({
           id={formId}
           dense={embedded}
           staged={page.stagedHeroForm}
-          qualification={page.auditLayout && !page.essentialsOnly}
-          essentialsOnly={page.essentialsOnly}
+          qualification={page.auditLayout && !page.essentialsOnly && !page.twoStepQualify}
+          essentialsOnly={page.essentialsOnly && !page.twoStepQualify}
+          twoStepQualify={page.twoStepQualify}
+          successHref={page.successHref}
+          continueLabel={page.continueLabel}
           phoneRequired={page.phoneRequired}
           phoneOptional={page.phoneOptional}
           hideWebsite={page.hideWebsite}
@@ -88,6 +91,7 @@ export function LandingIntake({
           consentLabel={page.consentLabel}
           needOptions={page.needOptions}
           budgetOptions={page.budgetOptions}
+          timelineOptions={page.timelineOptions}
         />
         {showLogos ? (
           <LandingTrust
@@ -107,7 +111,7 @@ export function LandingIntake({
             compact={embedded}
             hint={
               page.auditLayout
-                ? "Same-day pickup on mobile. Ask for the website consultation."
+                ? "Same-day pickup on mobile. Ask for the website audit."
                 : undefined
             }
           />

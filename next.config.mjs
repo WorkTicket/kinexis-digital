@@ -1,5 +1,5 @@
 import createNextIntlPlugin from "next-intl/plugin";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import bundleAnalyzer from "@next/bundle-analyzer";
 import path from "node:path";
@@ -42,6 +42,8 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   reactStrictMode: true,
+  // Middleware collapses trailing slashes with locale/legacy dests in one 301.
+  skipTrailingSlashRedirect: true,
   compiler: {
     removeConsole: isDev ? false : { exclude: ["error", "warn"] },
   },

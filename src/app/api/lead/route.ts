@@ -44,6 +44,7 @@ export async function POST(request: Request) {
       revenue,
       budget,
       need,
+      timeline,
       goal,
       score,
       source,
@@ -106,6 +107,9 @@ export async function POST(request: Request) {
     if (need && String(need).length > 80) {
       return NextResponse.json({ error: "Need value is too long." }, { status: 400 });
     }
+    if (timeline && String(timeline).length > 80) {
+      return NextResponse.json({ error: "Timeline value is too long." }, { status: 400 });
+    }
     if (businessName && String(businessName).length > 200) {
       return NextResponse.json(
         { error: "Business name is too long." },
@@ -137,6 +141,7 @@ export async function POST(request: Request) {
     const safeWebsite = website ? String(website).trim() : "";
     const safeBusinessName = businessName ? String(businessName).trim() : "";
     const safeNeed = need ? String(need) : "";
+    const safeTimeline = timeline ? String(timeline) : "";
     const safeLandingSlug =
       landingSlug && /^[a-z0-9-]{1,80}$/.test(String(landingSlug))
         ? String(landingSlug)
@@ -152,6 +157,7 @@ export async function POST(request: Request) {
       revenue: revenue ? String(revenue) : "Not specified",
       budget: budget ? String(budget) : "Not specified",
       need: safeNeed || "Not specified",
+      timeline: safeTimeline || "Not specified",
       goal: goal ? String(goal) : "Not specified",
       score: score ? String(score) : "unscored",
       source: source ? String(source) : auditType ? "lead-magnet" : "website",
@@ -175,6 +181,7 @@ export async function POST(request: Request) {
       emailRow("Revenue", leadData.revenue),
       emailRow("Budget", leadData.budget),
       safeNeed ? emailRow("Need", safeNeed) : "",
+      safeTimeline ? emailRow("Timeline", safeTimeline) : "",
       emailRow("Goal", leadData.goal),
       emailRow("Score", leadData.score),
       emailRow("Source", leadData.source),
@@ -202,6 +209,7 @@ export async function POST(request: Request) {
           `Revenue: ${leadData.revenue}`,
           `Budget: ${leadData.budget}`,
           safeNeed ? `Need: ${safeNeed}` : "",
+          safeTimeline ? `Timeline: ${safeTimeline}` : "",
           `Goal: ${leadData.goal}`,
           `Score: ${leadData.score}`,
           `Source: ${leadData.source}`,

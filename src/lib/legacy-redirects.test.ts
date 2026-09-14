@@ -18,6 +18,25 @@ describe("resolveLegacyRedirect", () => {
       path: "/thank-you/audit",
       hash: "",
     });
+    expect(resolveLegacyRedirect("/es-ES/about")).toEqual({ path: "/about", hash: "" });
+    expect(resolveLegacyRedirect("/es-419/services/seo")).toEqual({
+      path: "/services/seo",
+      hash: "",
+    });
+  });
+
+  it("collapses trailing slashes in the same hop as locale and legacy dests", () => {
+    expect(resolveLegacyRedirect("/en/")).toEqual({ path: "/", hash: "" });
+    expect(resolveLegacyRedirect("/about/")).toEqual({ path: "/about", hash: "" });
+    expect(resolveLegacyRedirect("/en/about/")).toEqual({ path: "/about", hash: "" });
+    expect(resolveLegacyRedirect("/es/pricing/seo/")).toEqual({
+      path: "/contact",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/services/google-ads/")).toEqual({
+      path: "/services/paid-media",
+      hash: "",
+    });
   });
 
   it("does not redirect canonical rebuild URLs", () => {
@@ -33,6 +52,7 @@ describe("resolveLegacyRedirect", () => {
     expect(resolveLegacyRedirect("/industries/hvac")).toBeNull();
     expect(resolveLegacyRedirect("/industries/roofing")).toBeNull();
     expect(resolveLegacyRedirect("/lp/seo")).toBeNull();
+    expect(resolveLegacyRedirect("/lp/get-a-website")).toBeNull();
     expect(resolveLegacyRedirect("/thank-you")).toBeNull();
     expect(resolveLegacyRedirect("/thank-you/audit")).toBeNull();
   });
@@ -40,6 +60,17 @@ describe("resolveLegacyRedirect", () => {
   it("does not invent a /dallas retirement — that URL never shipped", () => {
     expect(resolveLegacyRedirect("/dallas")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/dallas")).toBeNull();
+  });
+
+  it("sends the retired Dallas lander onto /lp/get-a-website", () => {
+    expect(resolveLegacyRedirect("/lp/dallas-website-audit")).toEqual({
+      path: "/lp/get-a-website",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/lp/dallas-website-audit")).toEqual({
+      path: "/lp/get-a-website",
+      hash: "",
+    });
   });
 
   it("maps locale-prefixed long-tail services onto flagship pages", () => {
@@ -118,7 +149,10 @@ describe("matchUnprefixedLegacyRedirect", () => {
     expect(matchUnprefixedLegacyRedirect("/lp/local-seo")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/lp/web-design")).toBeNull();
     expect(matchUnprefixedLegacyRedirect("/lp/facebook-web-design")).toBeNull();
-    expect(matchUnprefixedLegacyRedirect("/lp/dallas-website-audit")).toBeNull();
+    expect(matchUnprefixedLegacyRedirect("/lp/get-a-website")).toBeNull();
+    expect(matchUnprefixedLegacyRedirect("/lp/dallas-website-audit")).toBe(
+      "/lp/get-a-website",
+    );
   });
 });
 
@@ -160,6 +194,16 @@ describe("getLegacyRedirects", () => {
     expect(healthcareCatchAll!.destination).toBe("/industries#healthcare");
     expect(redirects.indexOf(dental!)).toBeLessThan(
       redirects.indexOf(healthcareCatchAll!),
+    );
+  });
+
+  it("strips es-ES and es-419 prefixes onto unprefixed dests", () => {
+    const redirects = getLegacyRedirects();
+    expect(redirects).toEqual(
+      expect.arrayContaining([
+        { source: "/es-ES", destination: "/", permanent: true },
+        { source: "/es-419/:path*", destination: "/:path*", permanent: true },
+      ]),
     );
   });
 });

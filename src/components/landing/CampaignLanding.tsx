@@ -16,7 +16,7 @@ export function CampaignLanding({ page }: { page: LandingPageEntry }) {
   const hasWork = Boolean(page.samples?.length && page.samplesTitle);
 
   return (
-    <main className="lp-campaign flex flex-1 flex-col pb-24 md:pb-0">
+    <main className="lp-campaign flex flex-1 flex-col pb-24 lg:pb-0">
       <JsonLd data={faqSchema(page.faqs)} />
       <CampaignHero page={page} />
 

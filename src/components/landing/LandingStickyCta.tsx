@@ -2,12 +2,15 @@
 
 import { useEffect, useState, type MouseEvent } from "react";
 import { Button } from "@/components/ui/Button";
+import { trackLandingFunnel } from "@/lib/analytics/landing-funnel";
 import { cn } from "@/lib/cn";
 import { isInAppBrowser } from "@/lib/in-app-browser";
 
 type Props = {
   label: string;
   formId?: string;
+  /** Hide until this element leaves the viewport (usually the hero CTA). */
+  revealAfterId?: string;
 };
 
 function keyboardCoversViewport(): boolean {
@@ -37,13 +40,19 @@ function scrollToLeadForm(id: string) {
 }
 
 /**
- * Mobile sticky CTA for paid landers. Form only — phone is not the primary
- * action on cold Meta traffic. Hidden while the hero form is on screen.
+ * Sticky CTA for paid landers on phone and tablet. Form only — phone is not
+ * the primary action on cold Meta traffic. Hidden from lg up once the hero
+ * form sits in a persistent side panel. Hidden while the hero form is on screen.
  */
-export function LandingStickyCta({ label, formId = "lp-form" }: Props) {
+export function LandingStickyCta({
+  label,
+  formId = "lp-form",
+  revealAfterId,
+}: Props) {
   const [keyboardOpen, setKeyboardOpen] = useState(false);
   const [atPageEnd, setAtPageEnd] = useState(false);
-  const [formInView, setFormInView] = useState(true);
+  const [formInView, setFormInView] = useState(false);
+  const [heroInView, setHeroInView] = useState(Boolean(revealAfterId));
 
   useEffect(() => {
     const syncKeyboard = () => setKeyboardOpen(keyboardCoversViewport());
@@ -92,26 +101,42 @@ export function LandingStickyCta({ label, formId = "lp-form" }: Props) {
     return () => observer.disconnect();
   }, [formId]);
 
+  useEffect(() => {
+    if (!revealAfterId) return;
+    const el = document.getElementById(revealAfterId);
+    if (!el) {
+      setHeroInView(false);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => setHeroInView(entry.isIntersecting),
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [revealAfterId]);
+
   const onFormLinkClick = (event: MouseEvent<HTMLAnchorElement>) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey) {
       return;
     }
     event.preventDefault();
+    trackLandingFunnel("cta_click", { placement: "sticky" });
     scrollToLeadForm(formId);
   };
 
-  if (keyboardOpen || formInView) return null;
+  if (keyboardOpen || formInView || heroInView) return null;
 
   return (
     <div
       className={cn(
-        "landing-sticky-cta pointer-events-none fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] md:hidden",
+        "landing-sticky-cta pointer-events-none fixed inset-x-0 bottom-0 z-40 px-4 pb-[max(1rem,env(safe-area-inset-bottom))] lg:hidden",
         atPageEnd && "landing-sticky-cta--at-end",
       )}
       aria-hidden={atPageEnd || undefined}
       inert={atPageEnd || undefined}
     >
-      <div className="landing-sticky-cta__panel pointer-events-auto mx-auto max-w-lg rounded-2xl border border-foreground/10 bg-[color-mix(in_oklab,var(--background)_96%,transparent)] p-3">
+      <div className="landing-sticky-cta__panel pointer-events-auto mx-auto w-full max-w-lg rounded-2xl border border-foreground/10 bg-[color-mix(in_oklab,var(--background)_96%,transparent)] p-3 md:max-w-xl md:px-4 md:py-3.5">
         <Button
           href={`#${formId}`}
           size="lg"
