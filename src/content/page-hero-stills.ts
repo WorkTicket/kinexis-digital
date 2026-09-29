@@ -8,8 +8,9 @@ export const pageHeroStills = {
     src: "/assets/images/editorial/service-paid-media.webp",
   },
   about: {
-    src: "/assets/images/industries/industry-professional-services.webp",
-    srcSm: "/assets/images/industries/industry-professional-services-thumb.webp",
+    // Avoid industry-professional-services — it bakes in the About headline
+    src: "/assets/images/editorial/market-legal.webp",
+    srcSm: "/assets/images/editorial/market-legal-thumb.webp",
   },
   caseStudies: {
     src: "/assets/images/case-studies/ecommerce-store-growth.webp",
