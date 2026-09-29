@@ -695,10 +695,10 @@ html.in-app-browser #contact-form {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 90% 42%;
-  /* Full-strength still; copy stays readable via localized pad + short scrim */
-  opacity: 0.88;
-  filter: grayscale(1) contrast(1.05) brightness(1.03);
+  /* Bias subject into the clear right half of the agency wash */
+  object-position: 78% 42%;
+  opacity: 0.9;
+  filter: grayscale(1) contrast(1.06) brightness(1.02);
 }
 
 @media (min-width: 1024px) {
@@ -709,79 +709,67 @@ html.in-app-browser #contact-form {
 
 html[data-theme="dark"] .page-hero-atmosphere__media,
 .dark .page-hero-atmosphere__media {
-  opacity: 0.72;
-  filter: grayscale(1) contrast(1.08) brightness(0.85);
+  opacity: 0.78;
+  filter: grayscale(1) contrast(1.08) brightness(0.86);
 }
 
 @media (min-width: 1024px) {
   html[data-theme="dark"] .page-hero-atmosphere__media,
   .dark .page-hero-atmosphere__media {
-    opacity: 0.95;
+    opacity: 0.96;
   }
 }
 
+/* Full-height agency wash: solid paper through mid, photo owns the right */
 .page-hero-atmosphere__scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Short left veil only — copy::before buries the HTML; right half stays photo */
   background: linear-gradient(
     90deg,
     var(--background) 0%,
-    color-mix(in oklab, var(--background) 78%, transparent) 12%,
-    color-mix(in oklab, var(--background) 28%, transparent) 24%,
-    transparent 36%
+    var(--background) 42%,
+    color-mix(in oklab, var(--background) 78%, transparent) 52%,
+    color-mix(in oklab, var(--background) 28%, transparent) 64%,
+    color-mix(in oklab, var(--background) 6%, transparent) 76%,
+    transparent 88%
   );
 }
 
-/* Opaque pad directly behind the HTML copy block */
 .page-hero:not(.hero-shell--film) .hero-copy {
   position: relative;
   isolation: isolate;
-  /* Leave the right half for the still — do not let type span the frame */
-  max-width: min(38rem, 100%);
+  max-width: min(36rem, 100%);
 }
 
+/* No card pad — full-height scrim carries readability */
 .page-hero:not(.hero-shell--film) .hero-copy::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -1.5rem -1rem -2.5rem -1.75rem;
-  background: var(--background);
-  pointer-events: none;
-  /* Soft right edge so it reads as wash, not a card */
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 48%, transparent 88%);
-  mask-image: linear-gradient(90deg, #000 0%, #000 48%, transparent 88%);
+  content: none;
 }
 
 @media (max-width: 767px) {
   .page-hero-atmosphere__media {
-    opacity: 0.62;
-    object-position: 72% 35%;
-    filter: grayscale(1) contrast(1.05) brightness(1.03);
+    opacity: 0.7;
+    object-position: 70% 35%;
+    filter: grayscale(1) contrast(1.06) brightness(1.02);
   }
 
   html[data-theme="dark"] .page-hero-atmosphere__media,
   .dark .page-hero-atmosphere__media {
-    opacity: 0.52;
-    filter: grayscale(1) contrast(1.08) brightness(0.85);
+    opacity: 0.58;
+    filter: grayscale(1) contrast(1.08) brightness(0.86);
   }
 
+  /* Full-height top wash on mobile — copy above, still below */
   .page-hero-atmosphere__scrim {
     background: linear-gradient(
       180deg,
       var(--background) 0%,
-      var(--background) 22%,
-      color-mix(in oklab, var(--background) 70%, transparent) 42%,
-      color-mix(in oklab, var(--background) 28%, transparent) 62%,
+      var(--background) 38%,
+      color-mix(in oklab, var(--background) 72%, transparent) 52%,
+      color-mix(in oklab, var(--background) 22%, transparent) 72%,
       transparent 100%
     );
-  }
-
-  .page-hero:not(.hero-shell--film) .hero-copy::before {
-    inset: -1rem -1.25rem -1.75rem -1rem;
-    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 78%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 0%, #000 78%, transparent 100%);
   }
 }
 
