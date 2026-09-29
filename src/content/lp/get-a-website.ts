@@ -1,66 +1,102 @@
+/**
+ * Live production content for /lp/get-a-website with soft pricing:
+ * keep the $2,000 starting panel, omit the $200/$120 sticker addon board.
+ */
+
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
-import { LANDING_HEADLINES, LANDING_MARKETS } from "@/lib/landing-message-match";
 import { localeContent } from "@/i18n/locale-content";
 import type { Locale } from "@/i18n/routing";
 import { applySpainEuros } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
 
-const A1_STILL = "/assets/images/lp/a1-desktop.webp";
-const A1_CASE_STILL = "/assets/images/case-studies/landscaping-company-growth.webp";
-const A1_MOBILE_STILL = "/assets/images/lp/a1-mobile.webp";
-const PLUMBING_STILL = "/assets/images/case-studies/plumbing-company-growth.webp";
+const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260916g";
+const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
+const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
 
 const CTA = "Get My Free Website Plan";
+const REPLY = "one business day";
+const DELIVERY = "6 to 12";
+const START = 2000;
 
-/** Soft pricing copy — no cold Essential/Growth/Custom board. */
+/** Soft live-panel overlays — no $200/$120 addons; Spain gets euro rewrite. */
 const softPricing = localeContent({
   en: {
-    pricingTitle: "What does a custom website cost?",
-    pricingAnchor: "Most builds start around $2,000",
+    pricingTitle: "Custom website projects start at $2,000",
+    pricingAnchor: `$${START.toLocaleString("en-US")}`,
     pricingQualify:
-      "Final pricing depends on scope, pages, and integrations.",
+      "Final pricing depends on pages, content, and how much has to be custom. Most contractor and home-service projects fall between $2,000 and $5,000+.",
+    pricingDelivery: `Most builds take ${DELIVERY} weeks.`,
     pricingIntro:
-      "Exact scope and price come in your free website plan — after we learn what you sell and what the site needs to do.",
-    pricingPaths: [
-      "Starting from scratch? We'll plan and build the site around your business.",
-      "Already have a website? We can redesign or rebuild it around what you need today.",
-    ],
+      "You'll know the recommended scope before you commit to a project.",
     pricingNote:
-      "Optional hosting, maintenance, and ongoing support available after launch.",
+      "The website plan is free. You only pay if you decide to build. Optional hosting, maintenance, and support are available after launch.",
+    pricingHighlights: [
+      "Custom scope and a written proposal before work begins",
+      "Milestone-based payment option",
+    ] as string[],
+    monthlyTitle: "Keep us on after launch if you want to",
+    monthlyCopy:
+      "After launch, optional hosting, maintenance, and ongoing support are available if you want help keeping the site current. The proposal spells out what is included.",
+    heroPrice: `Projects start at $${START.toLocaleString("en-US")}. Most take ${DELIVERY} weeks.`,
+    proofSupportLabel: "ongoing support",
     costFaqAnswer:
-      "Most builds start around $2,000. Larger sites run higher. You'll get a clear scope and price in your free website plan before you commit.",
+      "Projects start at $2,000. Most contractor and home-service websites land between $2,000 and $5,000+, depending on pages, photos, and extras. You'll get a written number before anything is built.",
+    hostingFaqAnswer:
+      "We can host the site after launch, or you can take it to your own provider. You own the website either way. The proposal states whose account the hosting sits in.",
+    maintenanceFaqAnswer:
+      "No. Ongoing maintenance and support are optional unless a specific proposal says otherwise. A lot of clients launch, settle in, and add help later. Hosting is separate — with us, or on your own provider.",
   },
   "es-419": {
-    pricingTitle: "¿Cuánto cuesta un sitio web a medida?",
-    pricingAnchor: "La mayoría de proyectos empiezan alrededor de $2,000",
+    pricingTitle: "Los proyectos de sitios web a medida empiezan en $2,000",
+    pricingAnchor: `$${START.toLocaleString("en-US")}`,
     pricingQualify:
-      "El precio final depende del alcance, las páginas y las integraciones.",
+      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre $2,000 y $5,000+.",
+    pricingDelivery: `La mayoría de proyectos toma de ${DELIVERY} semanas.`,
     pricingIntro:
-      "El alcance y el precio exactos llegan en tu plan gratuito de sitio web — después de entender qué vendes y qué tiene que lograr el sitio.",
-    pricingPaths: [
-      "¿Empezando de cero? Planificamos y construimos el sitio alrededor de tu negocio.",
-      "¿Ya tienes sitio? Podemos rediseñarlo o reconstruirlo según lo que necesitas hoy.",
-    ],
+      "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
     pricingNote:
-      "Hosting, mantenimiento y soporte continuo opcionales después del lanzamiento.",
+      "El plan del sitio web es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
+    pricingHighlights: [
+      "Alcance a medida y propuesta escrita antes de empezar",
+      "Opción de pago por hitos",
+    ],
+    monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
+    monthlyCopy:
+      "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
+    heroPrice: `Los proyectos empiezan en $${START.toLocaleString("en-US")}. La mayoría toma de ${DELIVERY} semanas.`,
+    proofSupportLabel: "soporte continuo",
     costFaqAnswer:
-      "La mayoría de proyectos empiezan alrededor de $2,000. Los sitios más grandes cuestan más. Recibes alcance y precio claros en tu plan gratuito antes de comprometerte.",
+      "Los proyectos empiezan en $2,000. La mayoría de sitios para contratistas y servicios del hogar queda entre $2,000 y $5,000+, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.",
+    hostingFaqAnswer:
+      "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
+    maintenanceFaqAnswer:
+      "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
   "es-ES": {
-    pricingTitle: "¿Cuánto cuesta un sitio web a medida?",
-    pricingAnchor: "La mayoría de proyectos empiezan alrededor de $2,000",
+    pricingTitle: "Los proyectos de sitios web a medida empiezan en $2,000",
+    pricingAnchor: `$${START.toLocaleString("en-US")}`,
     pricingQualify:
-      "El precio final depende del alcance, las páginas y las integraciones.",
+      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre $2,000 y $5,000+.",
+    pricingDelivery: `La mayoría de proyectos toma de ${DELIVERY} semanas.`,
     pricingIntro:
-      "El alcance y el precio exactos llegan en tu plan gratuito de sitio web — después de entender qué vendes y qué tiene que lograr el sitio.",
-    pricingPaths: [
-      "¿Empezando de cero? Planificamos y construimos el sitio alrededor de tu negocio.",
-      "¿Ya tienes sitio? Podemos rediseñarlo o reconstruirlo según lo que necesitas hoy.",
-    ],
+      "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
     pricingNote:
-      "Hosting, mantenimiento y soporte continuo opcionales después del lanzamiento.",
+      "El plan del sitio web es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
+    pricingHighlights: [
+      "Alcance a medida y propuesta escrita antes de empezar",
+      "Opción de pago por hitos",
+    ],
+    monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
+    monthlyCopy:
+      "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
+    heroPrice: `Los proyectos empiezan en $${START.toLocaleString("en-US")}. La mayoría toma de ${DELIVERY} semanas.`,
+    proofSupportLabel: "soporte continuo",
     costFaqAnswer:
-      "La mayoría de proyectos empiezan alrededor de $2,000. Los sitios más grandes cuestan más. Recibes alcance y precio claros en tu plan gratuito antes de comprometerte.",
+      "Los proyectos empiezan en $2,000. La mayoría de sitios para contratistas y servicios del hogar queda entre $2,000 y $5,000+, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.",
+    hostingFaqAnswer:
+      "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
+    maintenanceFaqAnswer:
+      "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
 });
 
@@ -68,265 +104,399 @@ const baseGetAWebsite: LandingPageEntry = {
   slug: "get-a-website",
   serviceHref: "/services/web-design",
   serviceLabel: "Web design & development",
-  metaTitle: "Custom Websites for Contractors",
+  metaTitle: "Custom Contractor Websites",
   metaDescription:
-    "Custom websites built for contractors and home-service businesses. Mobile-first, speed optimized, SEO ready, and designed around calls and quote requests.",
-  badge: "Websites for contractors & home services",
-  headline: LANDING_HEADLINES.build_business.join(" "),
+    "Custom websites for contractors and home-service businesses. Built so customers can tell who you are, then call or request a quote. Projects start at $2,000.",
+  badge: "Custom websites for contractors",
+  headline: "Your business has grown. Your website should show it.",
   headlineAccent: "",
-  headlineLines: [...LANDING_HEADLINES.build_business],
-  marketLine: LANDING_MARKETS.default,
+  headlineLines: [
+    "Your business has grown.",
+    "Your website should show it.",
+  ],
+  marketLine:
+    "Custom websites for contractors & home-service businesses.",
   subheadline:
-    "Custom websites designed to turn more visitors into calls, quote requests, and booked work.",
+    "Customers look you up before they call. If the site is slow, dated, or awkward on a phone, they don't wait around. We build custom websites for contractors and home-service businesses so the first impression matches the work you already do, and requesting a quote is obvious.",
   heroCtaLabel: CTA,
-  heroFinePrint: "No obligation. Built around your business.",
-  heroMeta: ["Custom built", "Mobile first", "SEO ready", "You own it"],
+  headerCtaLabel: "Get My Website Plan",
+  heroFinePrint: `No obligation. We'll reply within ${REPLY} with what a rebuild should fix first.`,
+  heroPrice: softPricing.en.heroPrice,
+  heroMeta: [
+    "Custom-built, not a generic template",
+    "Designed for the phone in their hand",
+    "You own your website",
+  ],
   heroStill: {
-    src: A1_STILL,
-    mobileSrc: A1_MOBILE_STILL,
-    alt: "A1 Property Services website on a phone, built by KINEXIS",
+    src: A1_DESKTOP,
+    mobileSrc: A1_MOBILE,
+    alt: "A1 Property Services website on a laptop, built by KINEXIS",
   },
-  formTitle: "Let's plan the website your business actually needs",
-  formSubtitle:
-    "Tell us a little about your business. We'll use it to recommend the right website structure, conversion path, and next steps.",
-  submitLabel: CTA,
+
+  formTitle: "Get your free website plan",
+  formSubtitle: `Tell us about the business and the site you have now. Within ${REPLY}, we'll come back with what's costing you calls, and what a custom rebuild would actually take.`,
+  submitLabel: "Send My Website Plan Request",
   continueLabel: "Continue",
-  formCtaHint: "No obligation. Built around your business.",
+  formCtaHint: `No obligation. We'll reply within ${REPLY}.`,
   formFootnote:
-    "Your information is used to respond to your website request.",
+    "Your information is used to respond to your website plan request.",
   formAsideTitle: "What the plan covers",
   formAsideSubtitle:
-    "If you already have a website, we'll also review the areas most likely to affect mobile usability, speed, search, and lead capture.",
-  formStep1Title: "First, tell us about the business",
-  formStep2Title: "Where should we send your plan?",
+    "If you already have a website, we look at the pages people actually use: how it feels on a phone, whether services are clear, and if calling or requesting a quote is obvious.",
+  formStep1Title: "About the business",
+  formStep2Title: "About the project",
+  formStep3Title: "How should we reach you?",
   noWebsiteLabel: "I don't have a website yet",
-  investmentLabel: "Website investment",
-  timelineLabel: "Timeline",
+  noWebsiteStatus:
+    "Website skipped. You indicated you do not have a website yet.",
+  investmentLabel: "What can you invest?",
+  timelineLabel: "When do you want to start?",
+  industryLabel: "What kind of work do you do?",
+  websiteStatusLabel: "What's true of the current website?",
+  goalLabel: "What should this site do first?",
+  contactMethodLabel: "Best way to reach you",
+  notesLabel: "Anything else we should know?",
+  notesPlaceholder:
+    "Towns you cover, services that have to be on the site, or what's frustrating about the current one.",
+  consentLabel:
+    "I agree to be contacted about this website plan request. We'll use the details above to follow up.",
   privacyMicrocopy:
-    "Your information is used to respond to your website request.",
-  successTitle: "We've got it.",
-  successCopy:
-    "Your request has been received. We'll review the information you sent and follow up using the contact details you provided.",
+    "Your information is used to respond to your website plan request.",
+  successTitle: "We got your request",
+  successCopy: `Thanks. We'll look at the current site, or the notes you sent, and reply within ${REPLY} with what a rebuild should fix first. If you'd rather talk it through, you can book a call below.`,
+  inlineThankYou: true,
+  bookingHref: "/contact",
+  bookingCtaLabel: "Book a Website Strategy Call",
+
   planHasSiteTitle: "If you already have a website",
   planHasSiteItems: [
-    "Mobile experience",
-    "Speed and performance",
-    "Call and quote path",
-    "Search and SEO foundation",
-    "Lead capture and tracking",
+    "Whether it looks like the company behind it",
+    "How it behaves on a phone",
+    "Whether calling or requesting a quote is obvious",
+    "Speed and the search basics",
+    "What we would change first in a rebuild",
   ],
   planNoSiteTitle: "If you don't have a website yet",
   planNoSiteItems: [
-    "Recommended site structure",
-    "Recommended service pages",
-    "Primary conversion path",
-    "Mobile strategy",
-    "Search and SEO foundation",
-    "Build recommendations",
+    "The pages you actually need",
+    "How to organize services",
+    "The main path to a call or quote",
+    "A mobile and search foundation",
+    "A clear build recommendation and price",
   ],
   formSteps: [
     {
-      title: "We learn the business",
-      detail: "What you sell, who you serve, and what customers should do next.",
+      title: "You tell us about the business",
+      detail:
+        "The work you do, who you serve, and what a visitor should do next.",
     },
     {
-      title: "You get a website plan",
-      detail: "Structure, conversion path, and the right next step for your situation.",
+      title: "We send a website plan",
+      detail: `Within ${REPLY}: what's weak now, what to change first, and how the site should be structured.`,
     },
     {
-      title: "A clear recommendation",
-      detail: "Scope and price before you commit to a build.",
+      title: "You get a clear recommendation",
+      detail: "Scope and price in writing before anyone starts building.",
     },
   ],
-  formTrust: ["No obligation", "Works with or without a current site", "You own the website"],
+  formTrust: [
+    "No obligation",
+    `Reply within ${REPLY}`,
+    "Works with or without a current site",
+    "You own the website",
+  ],
+
   websiteRequired: false,
   hideWebsite: false,
   essentialsOnly: false,
   twoStepQualify: true,
+  threeStepQualify: true,
   phoneRequired: true,
   phoneOptional: false,
   businessNameRequired: true,
   conversionKind: "audit",
   auditLayout: true,
   hideServiceLink: true,
+
+  industryOptions: [
+    { value: "general-contractor", label: "General contractor" },
+    { value: "remodeling", label: "Remodeling" },
+    { value: "roofing", label: "Roofing" },
+    { value: "plumbing", label: "Plumbing" },
+    { value: "hvac", label: "HVAC" },
+    { value: "electrical", label: "Electrical" },
+    { value: "landscaping", label: "Landscaping" },
+    { value: "other-home-service", label: "Other home service" },
+  ],
+  websiteStatusOptions: [
+    { value: "none", label: "We do not have one" },
+    { value: "outdated", label: "It looks outdated" },
+    { value: "mobile", label: "It's hard to use on a phone" },
+    { value: "inquiries", label: "It's not bringing in enough calls" },
+    { value: "redesign", label: "We need a complete redesign" },
+  ],
+  goalOptions: [
+    { value: "calls", label: "More calls" },
+    { value: "quotes", label: "More quote requests" },
+    { value: "credibility", label: "Look more established" },
+    { value: "search", label: "Show up better in search" },
+  ],
   budgetOptions: [
-    { value: "1500-3000", label: "$1,500–$3,000" },
+    { value: "2000-3000", label: "$2,000–$3,000" },
     { value: "3000-5000", label: "$3,000–$5,000" },
     { value: "5000-plus", label: "$5,000+" },
     { value: "not-sure", label: "Not sure yet" },
   ],
   timelineOptions: [
-    { value: "asap", label: "ASAP" },
     { value: "30-days", label: "Within 30 days" },
-    { value: "1-3-months", label: "1–3 months" },
-    { value: "researching", label: "Just researching" },
+    { value: "1-3-months", label: "One to three months" },
+    { value: "3-plus-months", label: "More than three months" },
   ],
-  painEyebrow: "Where jobs leak",
-  painTitle: "A good-looking website can still lose the job",
+  contactMethodOptions: [
+    { value: "email", label: "Email" },
+    { value: "phone", label: "Phone" },
+    { value: "either", label: "Either is fine" },
+  ],
+
+  outcomes: [
+    {
+      title: "Look established",
+      body: "Looks like the company you already run",
+    },
+    {
+      title: "Generate inquiries",
+      body: "Call and quote buttons that are hard to miss",
+    },
+    {
+      title: "Load quickly",
+      body: "Fast on a phone, not just on office Wi‑Fi",
+    },
+    {
+      title: "Own your website",
+      body: "The site stays yours. No builder lock-in",
+    },
+  ],
+
+  painEyebrow: "They look you up first",
+  painTitle: "A weak website can make a strong business look small",
   painSubtitle:
-    "A website has to do more than look professional. It needs to make the next step obvious.",
-  painItems: [
-    {
-      title: "Mobile",
-      body: "The quote action disappears or becomes difficult to use.",
-    },
-    {
-      title: "Calls",
-      body: "The phone number gets buried when the customer is ready to call.",
-    },
-    {
-      title: "Speed",
-      body: "The visitor waits too long before seeing the offer.",
-    },
-    {
-      title: "Search",
-      body: "Weak page structure makes services and locations harder for search engines to understand.",
-    },
-  ],
-  samplesTitle: "See what a better website can do",
+    "Homeowners and property managers check the website before they pick up the phone. If it looks generic, loads slowly, or hides the number, a capable company can look like a side hustle. We rebuild that first impression around the work you actually do, the towns you cover, and a next step people can take without hunting for it.",
+  transformTitle: "What a rebuild changes",
+  transformBefore: {
+    title: "What they see now",
+    items: [
+      "Looks like a template",
+      "Awkward on a phone",
+      "Services hard to follow",
+      "Call button easy to miss",
+      "Slow, and easy to bounce from",
+    ],
+  },
+  transformAfter: {
+    title: "What they should see",
+    items: [
+      "Looks like your company",
+      "Built for a phone first",
+      "Services a homeowner can scan",
+      "Call and quote in reach",
+      "Fast enough that people stay",
+    ],
+  },
+
+  samplesTitle: "Sites already working for home-service companies",
   samplesIntro:
-    "These are live KINEXIS sites. Each one made the next step easier to find on a phone.",
+    "These are live websites, not mockups. Open them. Both companies needed the site to look as established as the crews already were.",
+  testimonial: {
+    quote:
+      "The quote button used to disappear on a phone. After the rebuild, conversion went from 1.8% to 3.9%.",
+    name: "A1 Property Services",
+    role: "Landscaping · published case",
+  },
+  workCtaTitle: "See what we would build for your business",
   samples: [
     {
-      image: A1_CASE_STILL,
+      image: A1_DESKTOP,
       imageAlt:
-        "A1 Property Services website after the mobile quote-path rebuild",
+        "A1 Property Services website on a laptop, built by KINEXIS",
       client: "A1 Property Services",
-      kind: "Landscaping",
-      metric: "1.8% → 3.9%",
-      label: "conversion rate",
+      kind: "Landscaping & property services",
       industry: "Landscaping",
+      liveUrl: "https://a1pslandscape.com/",
+      challenge:
+        "A Cedar Falls landscaping company had outgrown a brochure site. Services were buried, and requesting a quote on a phone took too much work.",
+      work: "We rebuilt it around clear service pages, local search structure, and a quote path that stays usable with one thumb.",
+      result: "Qualified leads went from 10 a month to 28.",
       summary:
-        "The quote action used to disappear on mobile. The redesign created a persistent mobile quote path.",
+        "A Cedar Falls landscaping company had outgrown a brochure site. We rebuilt it around service pages, local structure, and a quote path that works on a phone.",
+      metric: "10 → 28",
+      label: "qualified leads / month",
     },
     {
-      image: PLUMBING_STILL,
+      image: PLUMBING_DESKTOP,
       imageAlt:
-        "Preferred Plumbing website with call and contact actions in clear view",
-      client: "Preferred Plumbing",
-      kind: "Plumbing",
-      metric: "22 → 52",
-      label: "calls per month",
+        "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
+      client: "Preferred Plumbing Solutions",
+      kind: "Plumbing & construction services",
       industry: "Plumbing",
+      liveUrl: "https://www.callpreferredplumbing.com/",
+      challenge:
+        "A plumbing and construction company needed a site that made the work obvious and made calling from a phone feel like the natural next step.",
+      work: "The rebuild put service clarity and trust first, then kept the call button in reach on mobile.",
+      result: "Emergency calls went from 22 a month to 52.",
       summary:
-        "Important contact actions were difficult to find. They were moved into much more visible positions.",
+        "A plumbing and construction company needed a site that made services obvious and made calling from a phone the natural next step.",
+      metric: "22 → 52",
+      label: "emergency calls / month",
     },
   ],
-  buildTitle: "Built around how customers actually hire",
-  buildIntro: "",
+
+  buildTitle: "What a contractor website has to include",
+  ownershipStatement:
+    "You own your website. No proprietary builder, and no monthly ransom to keep your own pages online.",
   sellPoints: [
     {
-      title: "Custom Design",
-      body: "Built around the company, customer, and sale.",
+      title: "Built around your company",
+      body: "Designed for the work you do, not a theme with your logo dropped in.",
     },
     {
-      title: "Mobile First",
-      body: "Designed around the device many customers search from.",
+      title: "Works on a phone",
+      body: "Most customers look you up from a truck, a kitchen, or a job site.",
     },
     {
-      title: "Conversion Path",
-      body: "Calls and quote requests are intentionally built into the layout.",
+      title: "Makes calling easy",
+      body: "Services are clear. Call and quote paths sit where a thumb can find them.",
     },
     {
-      title: "Performance",
-      body: "Built to load quickly on real mobile connections.",
+      title: "Stays fast",
+      body: "Lightweight pages so people don't bounce while the site is still loading.",
     },
     {
-      title: "SEO Foundation",
-      body: "Clean structure, service pages, and technical fundamentals.",
+      title: "Ready for search",
+      body: "Service pages, metadata, and the technical basics Google actually needs.",
     },
     {
-      title: "You Own It",
-      body: "No proprietary website builder locking you into the agency.",
-    },
-    {
-      title: "Under the hood",
-      body: "Next.js · Tailwind CSS · Cloudflare",
-      quiet: true,
+      title: "Tracked from day one",
+      body: "You'll be able to see whether the site is producing inquiries, not just visits.",
     },
   ],
-  processTitle: "From plan to launch",
-  processIntro: "",
+
+  processTitle: "How a rebuild actually runs",
+  processIntro:
+    "You see the plan before we write a line of code. You approve the structure before the site gets built.",
   process: [
     {
-      title: "Plan",
+      title: "Website plan",
       detail:
-        "We learn what you sell, who you serve, and what customers need to do next.",
+        "We look at the current site, the work you do, and what a visitor should do next.",
     },
     {
-      title: "Build",
+      title: "Structure and design",
       detail:
-        "KINEXIS designs and develops the site around mobile use, speed, search, and conversions.",
+        "Pages, services, and the look of the site, approved before we build it.",
     },
     {
-      title: "Launch",
+      title: "Development",
       detail:
-        "The website goes live with the core tracking and technical setup ready.",
+        "We build the approved design in custom code. Not a page builder.",
+    },
+    {
+      title: "Launch and tracking",
+      detail:
+        "The site goes live, analytics get connected, and the call and quote paths get checked.",
     },
   ],
-  fitTitle: "Built for contractors & home services",
-  fitNote: "",
-  fitItems: [
-    "Construction",
-    "Roofing",
-    "Plumbing",
-    "HVAC",
-    "Landscaping",
-    "Electrical",
-    "Remodeling",
-    "Home Services",
+
+  fitTitle: "Is this the right fit?",
+  fitGoodTitle: "This is a good fit if",
+  fitGoodItems: [
+    "Contractor or home-service company",
+    "The current site doesn't match the work",
+    "The business has outgrown a basic website",
+    "Wants a custom site the company actually owns",
+    "Prepared to invest at least $2,000",
+    "Can send photos, services, and feedback",
   ],
-  // Soft pricing defaults (English). Locale overlays applied in withLocale().
+  fitNotTitle: "Probably not a fit if",
+  fitNotItems: [
+    "Looking for a free website",
+    "Wants a template finished this weekend",
+    "Shopping for the cheapest option",
+    "Can't make time to review drafts",
+  ],
+
   pricingTitle: softPricing.en.pricingTitle,
   pricingAnchor: softPricing.en.pricingAnchor,
   pricingQualify: softPricing.en.pricingQualify,
+  pricingDelivery: softPricing.en.pricingDelivery,
   pricingIntro: softPricing.en.pricingIntro,
-  pricingPaths: softPricing.en.pricingPaths,
   pricingNote: softPricing.en.pricingNote,
+  pricingHighlights: softPricing.en.pricingHighlights,
+  pricingAddOns: [],
   pricing: [],
-  proofIntro:
-    "Results from published KINEXIS client projects. Individual results vary.",
+
+  monthlyTitle: softPricing.en.monthlyTitle,
+  monthlyCopy: softPricing.en.monthlyCopy,
+  monthlyItems: [
+    "Technical maintenance",
+    "SEO improvements",
+    "Reasonable content updates",
+  ],
+
+  proofIntro: "Published KINEXIS client work. Individual results vary.",
   proofTitle: "",
   proof: [
-    { metric: "1.8% → 3.9%", label: "conversion rate · A1 Property Services" },
-    { metric: "22 → 52", label: "calls per month · Preferred Plumbing" },
-    { metric: "Custom built", label: "No template lock-in" },
-    { metric: "You own it", label: "The site is yours" },
+    { metric: "Custom built", label: "Not a template" },
+    { metric: "You own it", label: "No builder lock-in" },
+    { metric: `$${START.toLocaleString("en-US")}`, label: "starting investment" },
+    { metric: "Optional", label: softPricing.en.proofSupportLabel },
   ],
   bulletsTitle: "What you actually get",
   bullets: [],
-  closingTitle: "Your business deserves a website that looks the part.",
-  closingCopy:
-    "If you need a first site or you're replacing an outdated one, we'll build the right foundation.",
-  closingFinePrint: "No obligation.",
+
+  closingTitle: "Get your free website plan",
+  closingCopy: `If the current site is underselling the business, send the details. We'll reply within ${REPLY} with what a rebuild should fix first.`,
+  closingFinePrint: `No obligation. Projects start at $2,000. Reply within ${REPLY}.`,
+
   faqs: [
     {
-      question: "How much does a website cost?",
+      question: "How much does a custom website cost?",
       answer: softPricing.en.costFaqAnswer,
     },
     {
-      question: "Do I need an existing website?",
-      answer:
-        "No. KINEXIS builds first websites as well as complete redesigns.",
+      question: "How soon will I hear back?",
+      answer: `Within ${REPLY}. We'll look at the current site, or the notes you sent, and come back with what a rebuild should fix first.`,
     },
     {
-      question: "Do I own my website?",
-      answer: "Yes. Ownership is a core part of the KINEXIS offer.",
+      question: "Is this a WordPress template?",
+      answer:
+        "No. These are custom websites, built with Next.js and Tailwind CSS. Not a theme you could buy, and not a page builder.",
+    },
+    {
+      question: "Will I own my website?",
+      answer:
+        "Yes. You own the finished website. You are not locked into a proprietary builder, and you don't pay a monthly ransom to keep your own pages online.",
+    },
+    {
+      question: "Is hosting included?",
+      answer: softPricing.en.hostingFaqAnswer,
     },
     {
       question: "Is SEO included?",
       answer:
-        "The website is built with a technical and structural SEO foundation. That is not a promise of search rankings.",
+        "The project includes a technical and on-page SEO foundation: service structure, metadata, and the indexing basics. Ongoing SEO and content work are a separate conversation.",
     },
     {
-      question: "Will it work on mobile?",
+      question: "Can you redesign my existing website?",
       answer:
-        "The site is designed mobile-first and tested across appropriate viewport sizes.",
+        "Yes. That's most of the work on this page. If the business has outgrown the current site, that's the starting point.",
     },
     {
-      question: "Do you only work with Raleigh businesses?",
-      answer:
-        "No. KINEXIS can work with businesses outside Raleigh. Raleigh wording on this landing page may be campaign-specific.",
+      question: "How long does a project take?",
+      answer: `Most contractor websites land in about ${DELIVERY} weeks. That depends on how quickly content and feedback come back. We won't quote a faster number just to win the click.`,
+    },
+    {
+      question: "Do I have to purchase monthly maintenance?",
+      answer: softPricing.en.maintenanceFaqAnswer,
     },
   ],
   stickyCtaLabel: CTA,
@@ -335,7 +505,7 @@ const baseGetAWebsite: LandingPageEntry = {
 /** English export kept for registry / tests. */
 export const getAWebsite: LandingPageEntry = baseGetAWebsite;
 
-/** Soft-pricing overlay for every locale; Spain also gets euro rewrite. */
+/** Soft live-panel overlay for every locale; Spain also gets euro rewrite. */
 export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
   const copy = softPricing[locale] ?? softPricing.en;
   const next: LandingPageEntry = {
@@ -343,15 +513,32 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
     pricingTitle: copy.pricingTitle,
     pricingAnchor: copy.pricingAnchor,
     pricingQualify: copy.pricingQualify,
+    pricingDelivery: copy.pricingDelivery,
     pricingIntro: copy.pricingIntro,
-    pricingPaths: copy.pricingPaths,
     pricingNote: copy.pricingNote,
+    pricingHighlights: copy.pricingHighlights,
+    pricingAddOns: [],
     pricing: [],
-    faqs: baseGetAWebsite.faqs.map((faq) =>
-      /how much does a website cost/i.test(faq.question)
-        ? { ...faq, answer: copy.costFaqAnswer }
-        : faq,
+    monthlyTitle: copy.monthlyTitle,
+    monthlyCopy: copy.monthlyCopy,
+    heroPrice: copy.heroPrice,
+    proof: baseGetAWebsite.proof.map((item) =>
+      item.metric === "Optional"
+        ? { ...item, label: copy.proofSupportLabel }
+        : item,
     ),
+    faqs: baseGetAWebsite.faqs.map((faq) => {
+      if (/how much does a custom website cost/i.test(faq.question)) {
+        return { ...faq, answer: copy.costFaqAnswer };
+      }
+      if (/is hosting included/i.test(faq.question)) {
+        return { ...faq, answer: copy.hostingFaqAnswer };
+      }
+      if (/do i have to purchase monthly maintenance/i.test(faq.question)) {
+        return { ...faq, answer: copy.maintenanceFaqAnswer };
+      }
+      return faq;
+    }),
   };
 
   if (isSpanishLocale(locale) && locale === "es-ES") {

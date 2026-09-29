@@ -7,12 +7,19 @@ import {
 import { PlanCta } from "@/components/landing/PlanCta";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
+/**
+ * Live get-a-website hero — recovered from production DOM.
+ * Key differences vs prior repo: heroPrice line, proof list with marks
+ * under the visual (not a joined values string), captioned HeroCluster.
+ */
 export function WebsiteHero({ page }: { page: LandingPageEntry }) {
   const lines = page.headlineLines?.length
     ? page.headlineLines
     : [page.headline];
   const still = page.heroStill;
   const market = page.marketLine ?? page.badge;
+  const heroPrice = page.heroPrice;
+  const proof = page.heroMeta ?? [];
 
   return (
     <section
@@ -39,6 +46,9 @@ export function WebsiteHero({ page }: { page: LandingPageEntry }) {
               </Suspense>
             </h1>
             <p className="lp-web-hero__lede">{page.subheadline}</p>
+            {heroPrice ? (
+              <p className="lp-web-hero__price">{heroPrice}</p>
+            ) : null}
             <div className="lp-web-hero__actions" id="lp-hero-actions">
               <PlanCta placement="hero" landingSlug={page.slug} size="xl" arrow>
                 {page.heroCtaLabel ?? page.stickyCtaLabel}
@@ -46,9 +56,6 @@ export function WebsiteHero({ page }: { page: LandingPageEntry }) {
             </div>
             {page.heroFinePrint ? (
               <p className="lp-web-hero__micro">{page.heroFinePrint}</p>
-            ) : null}
-            {page.heroMeta?.length ? (
-              <p className="lp-web-hero__values">{page.heroMeta.join(" · ")}</p>
             ) : null}
           </div>
           <div className="lp-web-hero__visual">
@@ -74,11 +81,39 @@ export function WebsiteHero({ page }: { page: LandingPageEntry }) {
               image={still?.src}
               imageAlt={still?.alt}
               phoneImage={still?.mobileSrc}
+              caption="A1 Property Services — live site"
               priority
             />
           </div>
+          {proof.length ? (
+            <ul className="lp-web-hero__proof">
+              {proof.map((item) => (
+                <li key={item}>
+                  <span className="lp-web-hero__proof-mark" aria-hidden>
+                    <CheckMark />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : null}
         </div>
       </div>
     </section>
+  );
+}
+
+function CheckMark() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+      <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
+      <path
+        d="M20 33.5 28.5 42 44 24"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }

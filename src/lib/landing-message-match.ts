@@ -8,7 +8,10 @@ export const DEFAULT_MARKET_KEY = "default" as const;
 
 export const LANDING_HEADLINES = {
   build_business: ["Build your business.", "We'll build the website."],
-  business_grown: ["Your business has grown.", "Has your website?"],
+  business_grown: [
+    "Your business has grown.",
+    "Your website should show it.",
+  ],
 } as const;
 
 export type LandingHeadlineKey = keyof typeof LANDING_HEADLINES;

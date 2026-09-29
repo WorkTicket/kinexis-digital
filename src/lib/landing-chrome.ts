@@ -21,7 +21,8 @@ export function getLandingChrome(pathname: string) {
 
   return {
     ctaLabel: page.stickyCtaLabel,
-    headerCtaLabel: page.heroCtaLabel ?? page.stickyCtaLabel,
+    headerCtaLabel:
+      page.headerCtaLabel ?? page.heroCtaLabel ?? page.stickyCtaLabel,
     formHref: "#lp-form" as const,
     closingTitle: page.closingTitle ?? page.formTitle,
     closingCopy: page.closingCopy ?? page.formFootnote,

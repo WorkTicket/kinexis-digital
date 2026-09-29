@@ -22,7 +22,7 @@ describe("landing chrome", () => {
     expect(google?.ctaLabel.toLowerCase()).toContain("notes");
     expect(meta?.ctaLabel.toLowerCase()).toContain("consult");
     expect(website?.ctaLabel.toLowerCase()).toContain("plan");
-    expect(website?.headerCtaLabel.toLowerCase()).toMatch(/get my free website plan/);
+    expect(website?.headerCtaLabel.toLowerCase()).toMatch(/get my website plan/);
     expect(website?.ctaLabel.toLowerCase()).toMatch(/website plan/);
     expect(google?.slim).toBe(false);
     expect(meta?.slim).toBe(false);
