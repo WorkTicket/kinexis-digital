@@ -54,3 +54,17 @@ export function getBusinessTelHref(): string | null {
   const keepPlus = phone.replace(/[^\d+]/g, "");
   return keepPlus ? `tel:${keepPlus}` : null;
 }
+
+/**
+ * WhatsApp click-to-chat href (wa.me) from the business phone.
+ * Optional prefilled message for Spanish support CTAs on paid landers.
+ */
+export function getBusinessWhatsAppHref(prefill?: string): string | null {
+  const phone = businessProfile.phone;
+  if (!phone) return null;
+  const digits = phone.replace(/\D/g, "");
+  if (!digits) return null;
+  const base = `https://wa.me/${digits}`;
+  if (!prefill?.trim()) return base;
+  return `${base}?text=${encodeURIComponent(prefill.trim())}`;
+}

@@ -168,6 +168,7 @@ export async function Footer() {
               <LandingChromeGate
                 onLanding={
                   <>
+                    <LanguageSwitcher />
                     <Link href="/privacy" className="site-footer__bar-link">
                       {t("privacy")}
                     </Link>

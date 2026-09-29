@@ -297,6 +297,13 @@ export type LandingPageEntry = {
   fitNotItems?: string[];
   /** Soft price line under the hero lede. */
   heroPrice?: string;
+  /**
+   * Spanish-locale WhatsApp support CTAs (hero pill + plan text link).
+   * Omit on English — English landers keep the form-only path.
+   */
+  whatsappHref?: string;
+  whatsappHeroLabel?: string;
+  whatsappPlanLabel?: string;
   /** Header chrome CTA label (nav). */
   headerCtaLabel?: string;
   painTitle?: string;

@@ -258,6 +258,20 @@ describe("get-a-website landing page", () => {
       getLandingPage("get-a-website", "es-ES")?.pricingAddOns?.length ?? 0,
     ).toBe(0);
 
+    expect(getLandingPage("get-a-website", "en")?.whatsappHref).toBeUndefined();
+    expect(getLandingPage("get-a-website", "es-419")?.whatsappHref).toMatch(
+      /^https:\/\/wa\.me\/13075003371/,
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.whatsappHref).toMatch(
+      /^https:\/\/wa\.me\/13075003371/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.whatsappHeroLabel).toBe(
+      "Escribir por WhatsApp",
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.whatsappPlanLabel).toBe(
+      "Escribir por WhatsApp",
+    );
+
     expect(page?.proofIntro.toLowerCase()).toMatch(/individual results vary/);
     expect(page?.proof.map((item) => item.metric)).toEqual([
       "Custom built",
