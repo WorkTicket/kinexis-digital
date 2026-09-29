@@ -3,16 +3,19 @@ import { cn } from "@/lib/cn";
 type Props = {
   href: string;
   label: string;
-  /** Hero pill next to the primary plan CTA. */
-  variant?: "hero" | "plan";
+  /**
+   * `nav` / `menu` replace the header phone slot on Spanish locales.
+   * `hero` / `plan` remain available for lander body CTAs if needed.
+   */
+  variant?: "nav" | "menu" | "hero" | "plan";
   className?: string;
 };
 
-/** Spanish-locale support path — pill in the hero, text link in the plan intro. */
+/** WhatsApp support link — Spanish locales only at call sites. */
 export function WhatsAppLink({
   href,
   label,
-  variant = "hero",
+  variant = "nav",
   className,
 }: Props) {
   if (variant === "plan") {
@@ -30,24 +33,47 @@ export function WhatsAppLink({
     );
   }
 
+  if (variant === "hero") {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn("lp-web-hero__whatsapp", className)}
+        data-cta="whatsapp-hero"
+      >
+        <WhatsAppMark />
+        <span>{label}</span>
+      </a>
+    );
+  }
+
+  const isMenu = variant === "menu";
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={cn("lp-web-hero__whatsapp", className)}
-      data-cta="whatsapp-hero"
+      className={cn(
+        isMenu ? "site-menu__phone" : "site-header__phone",
+        "site-header__whatsapp",
+        className,
+      )}
+      data-cta={isMenu ? "whatsapp-menu" : "whatsapp-nav"}
+      aria-label={label}
     >
-      <WhatsAppMark />
-      <span>{label}</span>
+      <WhatsAppMark className="site-header__whatsapp-mark" />
+      <span className={isMenu ? "site-menu__phone-num" : "site-header__phone-num"}>
+        {label}
+      </span>
     </a>
   );
 }
 
-function WhatsAppMark() {
+export function WhatsAppMark({ className }: { className?: string }) {
   return (
     <svg
-      className="whatsapp-link__mark"
+      className={cn("whatsapp-link__mark", className)}
       viewBox="0 0 24 24"
       aria-hidden
       focusable="false"

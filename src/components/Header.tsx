@@ -1,12 +1,13 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { useEffect, useId, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/Button";
 import { CallLink } from "@/components/analytics/CallLink";
+import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
@@ -16,9 +17,15 @@ import {
   type MainNavItem,
 } from "@/lib/site-nav";
 import { cn } from "@/lib/cn";
-import { getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
+import {
+  getBusinessPhoneDisplay,
+  getBusinessTelHref,
+  getBusinessWhatsAppHref,
+} from "@/lib/business";
 import { getLandingChrome, landingSlugFromPath } from "@/lib/landing-chrome";
 import { trackLandingFunnel } from "@/lib/analytics/landing-funnel";
+import { isSpanishLocale } from "@/i18n/spanish";
+import type { Locale } from "@/i18n/routing";
 
 const SCROLL_DELTA = 8;
 const SCROLL_TOP_REVEAL = 28;
@@ -47,6 +54,7 @@ function navItemLabel(
 
 export function Header() {
   const pathname = usePathname();
+  const locale = useLocale() as Locale;
   const t = useTranslations("nav");
   const tA11y = useTranslations("a11y");
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,10 +68,47 @@ export function Header() {
   const lastScrollY = useRef(0);
   const mobileNavId = useId();
   const hasPhone = Boolean(getBusinessTelHref());
+  const whatsappHref = isSpanishLocale(locale)
+    ? getBusinessWhatsAppHref(
+        "Hola, me interesa hablar sobre un sitio web para mi negocio.",
+      )
+    : null;
+  const showWhatsApp = Boolean(whatsappHref);
   const contactHref = NAV_CONTACT_HREF;
   const contactLabel = t("contact");
   const landing = getLandingChrome(pathname);
   const isSlimLanding = Boolean(landing?.slim);
+
+  const supportSlot = (placement: "nav" | "menu") => {
+    if (showWhatsApp && whatsappHref) {
+      return (
+        <WhatsAppLink
+          href={whatsappHref}
+          label={t("whatsappSupport")}
+          variant={placement}
+        />
+      );
+    }
+    if (!hasPhone) return null;
+    if (placement === "menu") {
+      return (
+        <CallLink className="site-menu__phone">
+          <span className="site-header__phone-dot" aria-hidden />
+          <span className="site-menu__phone-num">
+            {getBusinessPhoneDisplay()}
+          </span>
+        </CallLink>
+      );
+    }
+    return (
+      <CallLink className="site-header__phone">
+        <span className="site-header__phone-dot" aria-hidden />
+        <span className="site-header__phone-num">
+          {getBusinessPhoneDisplay()}
+        </span>
+      </CallLink>
+    );
+  };
 
   useEffect(() => {
     const root = document.documentElement;
@@ -223,14 +268,7 @@ export function Header() {
 
           {isSlimLanding && landing ? (
             <div className="site-header__lp-actions ml-auto flex min-w-0 items-center gap-2 sm:gap-3">
-              {hasPhone ? (
-                <CallLink className="site-header__phone">
-                  <span className="site-header__phone-dot" aria-hidden />
-                  <span className="site-header__phone-num">
-                    {getBusinessPhoneDisplay()}
-                  </span>
-                </CallLink>
-              ) : null}
+              {supportSlot("nav")}
               <Button
                 href={landing.formHref}
                 size="header"
@@ -292,14 +330,9 @@ export function Header() {
           </nav>
 
           <div className="site-header__actions hidden items-center lg:flex">
-            {hasPhone ? (
+            {showWhatsApp || hasPhone ? (
               <>
-                <CallLink className="site-header__phone">
-                  <span className="site-header__phone-dot" aria-hidden />
-                  <span className="site-header__phone-num">
-                    {getBusinessPhoneDisplay()}
-                  </span>
-                </CallLink>
+                {supportSlot("nav")}
                 <span className="site-header__rule" aria-hidden />
               </>
             ) : null}
@@ -405,14 +438,7 @@ export function Header() {
               <Button href={contactHref} size="lg" fullWidthMobile onClick={closeMenu}>
                 {contactLabel}
               </Button>
-              {hasPhone ? (
-                <CallLink className="site-menu__phone">
-                  <span className="site-header__phone-dot" aria-hidden />
-                  <span className="site-menu__phone-num">
-                    {getBusinessPhoneDisplay()}
-                  </span>
-                </CallLink>
-              ) : null}
+              {supportSlot("menu")}
               <a href={`mailto:${CONTACT_EMAIL}`} className="site-menu__email">
                 {CONTACT_EMAIL}
               </a>

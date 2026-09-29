@@ -6874,6 +6874,18 @@ html[data-theme="dark"] .brand-logo--on-dark {
   flex-shrink: 0;
 }
 
+.site-header__whatsapp-mark {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.site-menu__phone .site-header__whatsapp-mark {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
 .site-header__phone-num,
 .site-header__phone .call-link__num {
   font-family: var(--font-display), system-ui, sans-serif;

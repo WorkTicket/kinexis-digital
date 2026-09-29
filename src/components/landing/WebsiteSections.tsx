@@ -3,7 +3,6 @@ import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker"
 import { PlanCta } from "@/components/landing/PlanCta";
 import { ShowcaseSite } from "@/components/landing/ShowcaseSite";
 import { WebsitePlanForm } from "@/components/landing/WebsitePlanForm";
-import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type {
   LandingPageEntry,
   LandingPageOutcome,
@@ -643,11 +642,6 @@ function PlanBuildBoard() {
 }
 
 export function WebsitePlan({ page }: { page: LandingPageEntry }) {
-  const whatsapp =
-    page.whatsappHref && page.whatsappPlanLabel
-      ? { href: page.whatsappHref, label: page.whatsappPlanLabel }
-      : null;
-
   return (
     <section
       id="lp-form"
@@ -661,13 +655,6 @@ export function WebsitePlan({ page }: { page: LandingPageEntry }) {
               <p className="lp-web-kicker">Next step</p>
               <h2 id="lp-web-plan-heading">{page.formTitle}</h2>
               <p>{page.formSubtitle}</p>
-              {whatsapp ? (
-                <WhatsAppLink
-                  href={whatsapp.href}
-                  label={whatsapp.label}
-                  variant="plan"
-                />
-              ) : null}
               {page.formSteps?.length ? (
                 <ol className="lp-web-plan__next">
                   {page.formSteps.map((step) => (

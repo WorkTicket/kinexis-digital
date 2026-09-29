@@ -5,14 +5,13 @@ import {
   MatchedMarketLine,
 } from "@/components/landing/MatchedCopy";
 import { PlanCta } from "@/components/landing/PlanCta";
-import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 /**
  * Live get-a-website hero — recovered from production DOM.
  * Key differences vs prior repo: heroPrice line, proof list with marks
  * under the visual (not a joined values string), captioned HeroCluster.
- * Spanish locales also get a WhatsApp support pill beside the plan CTA.
+ * Spanish WhatsApp support lives in the header nav (not the hero).
  */
 export function WebsiteHero({ page }: { page: LandingPageEntry }) {
   const lines = page.headlineLines?.length
@@ -22,10 +21,6 @@ export function WebsiteHero({ page }: { page: LandingPageEntry }) {
   const market = page.marketLine ?? page.badge;
   const heroPrice = page.heroPrice;
   const proof = page.heroMeta ?? [];
-  const whatsapp =
-    page.whatsappHref && page.whatsappHeroLabel
-      ? { href: page.whatsappHref, label: page.whatsappHeroLabel }
-      : null;
 
   return (
     <section
@@ -59,9 +54,6 @@ export function WebsiteHero({ page }: { page: LandingPageEntry }) {
               <PlanCta placement="hero" landingSlug={page.slug} size="xl" arrow>
                 {page.heroCtaLabel ?? page.stickyCtaLabel}
               </PlanCta>
-              {whatsapp ? (
-                <WhatsAppLink href={whatsapp.href} label={whatsapp.label} />
-              ) : null}
             </div>
             {page.heroFinePrint ? (
               <p className="lp-web-hero__micro">{page.heroFinePrint}</p>
