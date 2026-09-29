@@ -698,8 +698,8 @@ html.in-app-browser #contact-form {
   /* Bias subject into the clear right half of the agency wash */
   object-position: 72% 42%;
   opacity: 0.92;
-  /* Soft grade — keep modern photos bright, not noir */
-  filter: grayscale(0.35) contrast(1.04) brightness(1.04);
+  /* Full B&W — match homepage hero film grade on colorful craft stills */
+  filter: grayscale(1) brightness(0.98) contrast(1.06);
 }
 
 @media (min-width: 1024px) {
@@ -711,7 +711,7 @@ html.in-app-browser #contact-form {
 html[data-theme="dark"] .page-hero-atmosphere__media,
 .dark .page-hero-atmosphere__media {
   opacity: 0.82;
-  filter: grayscale(0.45) contrast(1.06) brightness(0.88);
+  filter: grayscale(1) contrast(1.08) brightness(0.88);
 }
 
 @media (min-width: 1024px) {
@@ -751,13 +751,13 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
   .page-hero-atmosphere__media {
     opacity: 0.78;
     object-position: 70% 35%;
-    filter: grayscale(0.35) contrast(1.04) brightness(1.04);
+    filter: grayscale(1) brightness(0.98) contrast(1.06);
   }
 
   html[data-theme="dark"] .page-hero-atmosphere__media,
   .dark .page-hero-atmosphere__media {
     opacity: 0.7;
-    filter: grayscale(0.45) contrast(1.06) brightness(0.88);
+    filter: grayscale(1) contrast(1.08) brightness(0.88);
   }
 
   /* Full-height top wash on mobile — copy above, still below */

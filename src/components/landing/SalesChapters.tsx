@@ -17,6 +17,8 @@ const SHOWCASE_VARIANTS = new Set<ShowcaseVariant>([
   "haven",
   "meridian",
   "dated",
+  "greenfield-dated",
+  "greenfield",
 ]);
 
 function asVariant(value: string): ShowcaseVariant {

@@ -164,13 +164,13 @@ export function WebsitePain({
         <div className="lp-web-pain__stage">
           <figure className="lp-web-pain__shot">
             <div className="lp-web-pain__screen">
-              <ShowcaseSite variant="dated" layout="desktop" />
+              <ShowcaseSite variant="greenfield-dated" layout="desktop" />
             </div>
             <figcaption>A dated WordPress template</figcaption>
           </figure>
           <figure className="lp-web-pain__shot lp-web-pain__shot--after">
             <div className="lp-web-pain__screen">
-              <ShowcaseSite variant="ridge" layout="desktop" />
+              <ShowcaseSite variant="greenfield" layout="desktop" />
             </div>
             <figcaption>A custom Next.js rebuild</figcaption>
           </figure>
