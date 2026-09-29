@@ -244,11 +244,33 @@ describe("get-a-website landing page", () => {
     expect(page?.ownershipStatement?.toLowerCase()).toMatch(/you own your website/);
 
     expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).toMatch(
-      /\$2,000/,
+      /^2\.000$/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).not.toMatch(
+      /\$|USD|dólar/i,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.heroPrice).toMatch(
+      /empiezan en 2\.000/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.heroPrice).not.toMatch(
+      /\$|USD|dólar/i,
     );
     expect(getLandingPage("get-a-website", "es-ES")?.pricingAnchor).toMatch(
       /2\.000 €/,
     );
+    expect(getLandingPage("get-a-website", "es-ES")?.heroPrice).toMatch(
+      /2\.000 €/,
+    );
+    expect(
+      getLandingPage("get-a-website", "es-419")?.budgetOptions?.some((o) =>
+        /\$/.test(o.label),
+      ),
+    ).toBe(false);
+    expect(
+      getLandingPage("get-a-website", "es-ES")?.budgetOptions?.some((o) =>
+        /\$/.test(o.label),
+      ),
+    ).toBe(false);
     expect(getLandingPage("get-a-website", "es-419")?.pricing).toEqual([]);
     expect(getLandingPage("get-a-website", "es-ES")?.pricing).toEqual([]);
     expect(

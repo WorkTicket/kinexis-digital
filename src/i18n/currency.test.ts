@@ -1,17 +1,20 @@
 import { describe, expect, it } from "vitest";
 import {
+  applyLatAmSoftPricing,
+  applyLocalePricing,
   applySpainEuros,
   formatEsInteger,
   getDisplayCurrency,
+  toLatAmSoftCopy,
   toSpainEurosCopy,
   usesEuros,
 } from "./currency";
 
 describe("display currency", () => {
-  it("uses euros only for Spain Spanish", () => {
+  it("uses euros for Spain and soft numeric for LatAm", () => {
     expect(getDisplayCurrency("es-ES")).toBe("EUR");
     expect(usesEuros("es-ES")).toBe(true);
-    expect(getDisplayCurrency("es-419")).toBe("USD");
+    expect(getDisplayCurrency("es-419")).toBe("SOFT");
     expect(getDisplayCurrency("en")).toBe("USD");
   });
 });
@@ -47,6 +50,40 @@ describe("toSpainEurosCopy", () => {
     expect(applySpainEuros(copy, "es-ES").excerpt).toBe(
       "Los precios oscilan entre 500 € y 30.000 € al mes.",
     );
+  });
+});
+
+describe("toLatAmSoftCopy", () => {
+  it("strips $ framing and uses Spanish thousands grouping", () => {
+    expect(toLatAmSoftCopy("Projects start at $2,000")).toBe(
+      "Projects start at 2.000",
+    );
+    expect(toLatAmSoftCopy("$2,000–$3,000")).toBe("2.000–3.000");
+    expect(toLatAmSoftCopy("entre $2,000 y $5,000+")).toBe(
+      "entre 2.000 y 5.000+",
+    );
+    expect(toLatAmSoftCopy("Gastaban 4.200 dólares al mes")).toBe(
+      "Gastaban 4.200 al mes",
+    );
+  });
+
+  it("only soft-rewrites for es-419", () => {
+    const copy = { excerpt: "Desde $2,000" };
+    expect(applyLatAmSoftPricing(copy, "en").excerpt).toContain("$2,000");
+    expect(applyLatAmSoftPricing(copy, "es-ES").excerpt).toContain("$2,000");
+    expect(applyLatAmSoftPricing(copy, "es-419").excerpt).toBe("Desde 2.000");
+  });
+});
+
+describe("applyLocalePricing", () => {
+  it("routes Spain to euros and LatAm to soft numbers", () => {
+    expect(applyLocalePricing("Start at $2,000", "es-ES")).toBe(
+      "Start at 2.000 €",
+    );
+    expect(applyLocalePricing("Start at $2,000", "es-419")).toBe(
+      "Start at 2.000",
+    );
+    expect(applyLocalePricing("Start at $2,000", "en")).toBe("Start at $2,000");
   });
 });
 

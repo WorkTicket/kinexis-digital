@@ -6,7 +6,7 @@
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 import { localeContent } from "@/i18n/locale-content";
 import type { Locale } from "@/i18n/routing";
-import { applySpainEuros } from "@/i18n/currency";
+import { applyLocalePricing, formatEsInteger } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
 import { getBusinessWhatsAppHref } from "@/lib/business";
 
@@ -18,8 +18,10 @@ const CTA = "Get My Free Website Plan";
 const REPLY = "one business day";
 const DELIVERY = "6 to 12";
 const START = 2000;
+const START_ES = formatEsInteger(START);
+const RANGE_ES = `${START_ES} y ${formatEsInteger(5000)}+`;
 
-/** Soft live-panel overlays — no $200/$120 addons; Spain gets euro rewrite. */
+/** Soft live-panel overlays — no $200/$120 addons; Spanish locales avoid $ framing. */
 const softPricing = localeContent({
   en: {
     pricingTitle: "Custom website projects start at $2,000",
@@ -40,6 +42,7 @@ const softPricing = localeContent({
       "After launch, optional hosting, maintenance, and ongoing support are available if you want help keeping the site current. The proposal spells out what is included.",
     heroPrice: `Projects start at $${START.toLocaleString("en-US")}. Most take ${DELIVERY} weeks.`,
     proofSupportLabel: "ongoing support",
+    proofStartMetric: `$${START.toLocaleString("en-US")}`,
     costFaqAnswer:
       "Projects start at $2,000. Most contractor and home-service websites land between $2,000 and $5,000+, depending on pages, photos, and extras. You'll get a written number before anything is built.",
     hostingFaqAnswer:
@@ -48,11 +51,10 @@ const softPricing = localeContent({
       "No. Ongoing maintenance and support are optional unless a specific proposal says otherwise. A lot of clients launch, settle in, and add help later. Hosting is separate — with us, or on your own provider.",
   },
   "es-419": {
-    pricingTitle: "Los proyectos de sitios web a medida empiezan en $2,000",
-    pricingAnchor: `$${START.toLocaleString("en-US")}`,
-    pricingQualify:
-      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre $2,000 y $5,000+.",
-    pricingDelivery: `La mayoría de proyectos toma de ${DELIVERY} semanas.`,
+    pricingTitle: `Los proyectos de sitios web a medida empiezan en ${START_ES}`,
+    pricingAnchor: START_ES,
+    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${RANGE_ES}.`,
+    pricingDelivery: `La mayoría de proyectos toma de 6 a 12 semanas.`,
     pricingIntro:
       "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
     pricingNote:
@@ -64,21 +66,20 @@ const softPricing = localeContent({
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
-    heroPrice: `Los proyectos empiezan en $${START.toLocaleString("en-US")}. La mayoría toma de ${DELIVERY} semanas.`,
+    heroPrice: `Los proyectos empiezan en ${START_ES}. La mayoría toma de 6 a 12 semanas.`,
     proofSupportLabel: "soporte continuo",
-    costFaqAnswer:
-      "Los proyectos empiezan en $2,000. La mayoría de sitios para contratistas y servicios del hogar queda entre $2,000 y $5,000+, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.",
+    proofStartMetric: START_ES,
+    costFaqAnswer: `Los proyectos empiezan en ${START_ES}. La mayoría de sitios para contratistas y servicios del hogar queda entre ${RANGE_ES}, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.`,
     hostingFaqAnswer:
       "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
     maintenanceFaqAnswer:
       "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
   "es-ES": {
-    pricingTitle: "Los proyectos de sitios web a medida empiezan en $2,000",
-    pricingAnchor: `$${START.toLocaleString("en-US")}`,
-    pricingQualify:
-      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre $2,000 y $5,000+.",
-    pricingDelivery: `La mayoría de proyectos toma de ${DELIVERY} semanas.`,
+    pricingTitle: `Los proyectos de sitios web a medida empiezan en ${START_ES} €`,
+    pricingAnchor: `${START_ES} €`,
+    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${START_ES} € y ${formatEsInteger(5000)} €+.`,
+    pricingDelivery: `La mayoría de proyectos toma de 6 a 12 semanas.`,
     pricingIntro:
       "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
     pricingNote:
@@ -90,10 +91,10 @@ const softPricing = localeContent({
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
-    heroPrice: `Los proyectos empiezan en $${START.toLocaleString("en-US")}. La mayoría toma de ${DELIVERY} semanas.`,
+    heroPrice: `Los proyectos empiezan en ${START_ES} €. La mayoría toma de 6 a 12 semanas.`,
     proofSupportLabel: "soporte continuo",
-    costFaqAnswer:
-      "Los proyectos empiezan en $2,000. La mayoría de sitios para contratistas y servicios del hogar queda entre $2,000 y $5,000+, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.",
+    proofStartMetric: `${START_ES} €`,
+    costFaqAnswer: `Los proyectos empiezan en ${START_ES} €. La mayoría de sitios para contratistas y servicios del hogar queda entre ${START_ES} € y ${formatEsInteger(5000)} €+, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.`,
     hostingFaqAnswer:
       "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
     maintenanceFaqAnswer:
@@ -514,7 +515,7 @@ const spanishWhatsApp = {
     "Hola, me interesa el plan gratuito de sitio web para mi negocio.",
 } as const;
 
-/** Soft live-panel overlay for every locale; Spain also gets euro rewrite. */
+/** Soft live-panel overlay for every locale; Spanish strips $ framing. */
 export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
   const copy = softPricing[locale] ?? softPricing.en;
   const next: LandingPageEntry = {
@@ -531,11 +532,15 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
     monthlyTitle: copy.monthlyTitle,
     monthlyCopy: copy.monthlyCopy,
     heroPrice: copy.heroPrice,
-    proof: baseGetAWebsite.proof.map((item) =>
-      item.metric === "Optional"
-        ? { ...item, label: copy.proofSupportLabel }
-        : item,
-    ),
+    proof: baseGetAWebsite.proof.map((item) => {
+      if (item.metric === "Optional") {
+        return { ...item, label: copy.proofSupportLabel };
+      }
+      if (item.label === "starting investment") {
+        return { ...item, metric: copy.proofStartMetric };
+      }
+      return item;
+    }),
     faqs: baseGetAWebsite.faqs.map((faq) => {
       if (/how much does a custom website cost/i.test(faq.question)) {
         return { ...faq, answer: copy.costFaqAnswer };
@@ -559,8 +564,6 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
     }
   }
 
-  if (isSpanishLocale(locale) && locale === "es-ES") {
-    return applySpainEuros(next, locale);
-  }
-  return next;
+  // Rewrites remaining English $ strings (budget options, fit, closing, meta).
+  return applyLocalePricing(next, locale);
 }
