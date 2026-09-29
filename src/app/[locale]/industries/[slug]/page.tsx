@@ -10,11 +10,13 @@ import {
   RevealGroup,
   RevealItem,
 } from "@/components/ui/Reveal";
+import { ChapterLead } from "@/components/ui/ChapterLead";
 import { IndustryHero } from "@/components/industry/IndustryHero";
 import { IndustryPainPoints } from "@/components/industry/IndustryPainPoints";
 import { IndustryCaseStudyCard } from "@/components/industry/IndustryCaseStudyCard";
 import { IndustryProcessSteps } from "@/components/industry/IndustryProcessSteps";
 import { IndustryTestimonialBlock } from "@/components/industry/IndustryTestimonialBlock";
+import { IndustryVisual } from "@/components/industry/IndustryVisual";
 import JsonLd from "@/components/seo/JsonLd";
 import {
   getStandaloneIndustrySlugs,
@@ -132,50 +134,51 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         painPoints={industry.painPoints}
       />
 
+      {/* Program — capability mosaic */}
       <section
         aria-labelledby="industry-help-heading"
         className="industry-program-chapter chapter chapter--studio relative overflow-hidden"
       >
         <div className="shell chapter-shell--standard relative z-[1]">
-          <Reveal variant="rise" when="chapter">
-            <header className="industry-program__mast">
-              <p className="section-eyebrow">{t("program")}</p>
-              <h2
-                id="industry-help-heading"
-                className="industry-program__heading"
-              >
-                {industry.helpTitle}
-              </h2>
-            </header>
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
+            <ChapterLead
+              eyebrow={t("program")}
+              headingId="industry-help-heading"
+              title={industry.helpTitle}
+              headingClassName="max-w-[18ch]"
+            />
           </Reveal>
 
           <RevealGroup
             as="ul"
-            className="industry-program-list"
+            className="industry-capability"
             stagger={duration.staggerTight}
           >
             {industry.help.map((item) => (
               <RevealItem key={item.title} as="li" variant="fadeUp">
-                <article className="industry-program">
-                  <span className="industry-program__check" aria-hidden>
-                    <svg viewBox="0 0 20 20" fill="none">
-                      <path
-                        d="M4.2 10.4 8 14.1 15.8 5.8"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                  <div className="industry-program__copy">
-                    <h3 className="industry-program__title">{item.title}</h3>
-                    <p className="industry-program__body">{item.detail}</p>
-                  </div>
+                <article className="industry-capability__item">
+                  <h3 className="industry-capability__title">{item.title}</h3>
+                  <p className="industry-capability__body">{item.detail}</p>
                 </article>
               </RevealItem>
             ))}
           </RevealGroup>
+        </div>
+      </section>
+
+      {/* Mid-page still — break text density */}
+      <section
+        aria-hidden
+        className="industry-still-band chapter chapter--void relative overflow-hidden"
+      >
+        <div className="shell chapter-shell--tight relative">
+          <Reveal variant="fade" when="chapter" className="industry-still-band__frame media-grade">
+            <IndustryVisual
+              slug={industry.slug}
+              variant="panel"
+              sizes="(max-width: 1023px) 100vw, 90vw"
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -207,22 +210,20 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         />
       ) : null}
 
+      {/* Domains — trade mosaic */}
       <section
         aria-labelledby="industry-domains-heading"
         className="industry-domains chapter chapter--void relative overflow-hidden"
       >
         <div className="shell chapter-shell--tight relative z-[1]">
-          <Reveal variant="rise" when="chapter">
-            <header className="industry-domains__mast">
-              <p className="section-eyebrow">{t("focus")}</p>
-              <h2
-                id="industry-domains-heading"
-                className="industry-domains__heading"
-              >
-                {industry.domainsTitle}
-              </h2>
-              <p className="industry-domains__dek">{industry.domainsCopy}</p>
-            </header>
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+            <ChapterLead
+              eyebrow={t("focus")}
+              headingId="industry-domains-heading"
+              title={industry.domainsTitle}
+              headingClassName="max-w-[18ch]"
+              dek={industry.domainsCopy}
+            />
           </Reveal>
 
           <RevealGroup
@@ -248,21 +249,19 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Why — manifesto columns */}
       <section
         aria-labelledby="industry-why-heading"
         className="industry-why-chapter chapter chapter--studio relative"
       >
         <div className="shell chapter-shell--tight relative">
-          <Reveal variant="rise" when="chapter">
-            <header className="industry-why__mast">
-              <p className="section-eyebrow">{t("whyUs")}</p>
-              <h2
-                id="industry-why-heading"
-                className="industry-why__heading"
-              >
-                {industry.whyTitle}
-              </h2>
-            </header>
+          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+            <ChapterLead
+              eyebrow={t("whyUs")}
+              headingId="industry-why-heading"
+              title={industry.whyTitle}
+              headingClassName="max-w-[16ch]"
+            />
           </Reveal>
 
           <RevealGroup
@@ -288,27 +287,26 @@ export default async function IndustryDetailPage({ params }: PageProps) {
           className="chapter chapter--void relative"
         >
           <div className="shell chapter-shell--tight relative">
-            <Reveal variant="rise" when="chapter">
-              <header className="industry-why__mast">
-                <p className="section-eyebrow">{t("keepReading")}</p>
-                <h2
-                  id="industry-related-heading"
-                  className="industry-why__heading"
-                >
-                  Related services and proof
-                </h2>
-              </header>
+            <Reveal variant="rise" when="chapter" className="mb-8 md:mb-10">
+              <ChapterLead
+                eyebrow={t("keepReading")}
+                headingId="industry-related-heading"
+                title="Related services and proof"
+                headingClassName="max-w-[18ch]"
+              />
             </Reveal>
             <RevealGroup
               as="ul"
-              className="industry-why-grid"
+              className="industry-related"
               stagger={duration.staggerTight}
             >
               {industry.relatedLinks.map((link) => (
                 <RevealItem key={link.href} as="li" variant="fadeUp">
-                  <Link href={link.href} className="industry-why">
-                    <h3 className="industry-why__title">{link.label}</h3>
-                    <p className="industry-why__body">Open this page</p>
+                  <Link href={link.href} className="industry-related__link">
+                    <span className="industry-related__label">{link.label}</span>
+                    <span className="industry-related__arrow" aria-hidden>
+                      →
+                    </span>
                   </Link>
                 </RevealItem>
               ))}

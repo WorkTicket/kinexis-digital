@@ -1,36 +1,35 @@
 /**
  * Unique full-bleed stills for marketing PageHero hubs.
- * Keep paths under /public/assets — one composition per page.
+ * Prefer bright agency craft / UI plates over gothic desk photography.
  */
 export const pageHeroStills = {
   services: {
-    // Atmosphere texture without large display type
-    src: "/assets/images/editorial/service-content-marketing.webp",
+    src: "/assets/images/agency/hero-services.webp",
+    srcSm: "/assets/images/agency/hero-services-sm.webp",
   },
   about: {
-    // Avoid industry-professional-services — it bakes in the About headline
-    src: "/assets/images/editorial/market-legal.webp",
-    srcSm: "/assets/images/editorial/market-legal-thumb.webp",
+    src: "/assets/images/agency/hero-about.webp",
+    srcSm: "/assets/images/agency/hero-about-sm.webp",
   },
   caseStudies: {
-    // Editorial market plate — not a color client screenshot
-    src: "/assets/images/editorial/market-ecommerce.webp",
-    srcSm: "/assets/images/editorial/market-ecommerce-thumb.webp",
+    src: "/assets/images/agency/hero-work.webp",
+    srcSm: "/assets/images/agency/hero-work-sm.webp",
   },
   industries: {
-    src: "/assets/images/editorial/market-home-services.webp",
-    srcSm: "/assets/images/editorial/market-home-services-thumb.webp",
+    src: "/assets/images/agency/hero-industries.webp",
+    srcSm: "/assets/images/agency/hero-industries-sm.webp",
   },
   contact: {
-    src: "/assets/images/editorial/market-saas.webp",
-    srcSm: "/assets/images/editorial/market-saas-thumb.webp",
+    src: "/assets/images/agency/hero-contact.webp",
+    srcSm: "/assets/images/agency/hero-contact-sm.webp",
   },
   resources: {
-    // Editorial craft still — not a colorful product UI screenshot
-    src: "/assets/images/editorial/service-web-design.webp",
+    src: "/assets/images/agency/hero-resources.webp",
+    srcSm: "/assets/images/agency/hero-resources-sm.webp",
   },
   audit: {
-    src: "/assets/images/editorial/service-seo.webp",
+    // SEO craft plate — on-brand UI language
+    src: "/assets/images/services/service-seo.webp",
   },
 } as const;
 

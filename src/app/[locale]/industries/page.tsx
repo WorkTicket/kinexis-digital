@@ -7,7 +7,13 @@ import { IndustryProgramChapter } from "@/components/industry/IndustryProgramCha
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { getHubIndustries, getIndustriesContent } from "@/content/industries";
+import { Link } from "@/i18n/navigation";
+import {
+  getHubIndustries,
+  getIndustriesContent,
+  industryHref,
+  isStandaloneIndustry,
+} from "@/content/industries";
 import { industryVisuals } from "@/content/industry-visuals";
 import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -77,34 +83,43 @@ export default async function IndustriesPage({ params }: Props) {
 
           <RevealGroup
             as="ul"
-            className="ind-folio"
+            className="svc-catalog__grid ind-catalog__grid"
             stagger={0.04}
             delayChildren={0.03}
             aria-label={tCommon("jumpToIndustry")}
           >
             {hubIndustries.map((industry) => {
               const visual = industryVisuals[industry.slug];
+              const href = isStandaloneIndustry(industry.slug)
+                ? industryHref(industry.slug)
+                : `#${industry.slug}`;
+              const body = (
+                <>
+                  <span className="svc-catalog__still media-grade" aria-hidden>
+                    <Image
+                      src={visual.src}
+                      alt=""
+                      width={480}
+                      height={300}
+                      className="svc-catalog__still-img"
+                    />
+                  </span>
+                  <span className="svc-catalog__role">{industry.eyebrow}</span>
+                  <span className="svc-catalog__name">{industry.title}</span>
+                  <span className="svc-catalog__dek">{industry.summary}</span>
+                </>
+              );
               return (
                 <RevealItem as="li" key={industry.slug} variant="fadeUp">
-                  <a href={`#${industry.slug}`} className="ind-folio__item">
-                    <span className="ind-folio__thumb media-grade" aria-hidden>
-                      <Image
-                        src={visual.thumb}
-                        alt=""
-                        width={96}
-                        height={72}
-                        className="ind-folio__thumb-img"
-                      />
-                    </span>
-                    <span>
-                      <span className="ind-folio__role">{industry.eyebrow}</span>
-                      <span className="ind-folio__name">{industry.title}</span>
-                    </span>
-                    <p className="ind-folio__meta">{industry.summary}</p>
-                    <span className="ind-folio__arrow" aria-hidden>
-                      →
-                    </span>
-                  </a>
+                  {isStandaloneIndustry(industry.slug) ? (
+                    <Link href={href} className="svc-catalog__card motion-tile">
+                      {body}
+                    </Link>
+                  ) : (
+                    <a href={href} className="svc-catalog__card motion-tile">
+                      {body}
+                    </a>
+                  )}
                 </RevealItem>
               );
             })}
