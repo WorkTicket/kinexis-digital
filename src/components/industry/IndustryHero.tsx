@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import type { CSSProperties } from "react";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { IndustryVisual } from "@/components/industry/IndustryVisual";
+import { HeroHeading } from "@/components/page/HeroHeading";
 import { PageBreadcrumb } from "@/components/page/PageBreadcrumb";
 import { Button } from "@/components/ui/Button";
 import type { Industry } from "@/content/industries";
@@ -66,16 +67,12 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
 
               <h1
                 id="industry-hero-heading"
-                className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-6 md:mt-7"
+                className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-foreground sm:mt-6 md:mt-7"
               >
-                <span className="hero-line">
-                  <span className="hero-line__text">{industry.heroTitle}</span>
-                </span>
-                {industry.heroSignal ? (
-                  <span className="hero-line hero-signal-line block">
-                    <span className="hero-line__text">{industry.heroSignal}</span>
-                  </span>
-                ) : null}
+                <HeroHeading
+                  title={industry.heroTitle}
+                  signal={industry.heroSignal}
+                />
               </h1>
 
               <p className="hero-enter hero-enter-3 hero-lede mt-7 max-w-xl text-[1.125rem] leading-relaxed text-muted sm:mt-8 sm:text-[1.25rem] md:text-[1.3125rem] md:leading-relaxed">

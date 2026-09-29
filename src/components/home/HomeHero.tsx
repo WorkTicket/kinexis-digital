@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/Button";
 import { HeroFilm } from "@/components/home/HeroFilm";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
-import { HeroSignalLine } from "@/components/page/HeroSignalLine";
+import { HeroHeading } from "@/components/page/HeroHeading";
 import { HOME_HERO_POSTER, HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
 
 export async function HomeHero() {
@@ -38,12 +38,9 @@ export async function HomeHero() {
           <div className="hero-copy relative z-[3]">
             <h1
               id="home-hero-heading"
-              className="hero-enter hero-enter-2 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground"
+              className="hero-enter hero-enter-2 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-foreground"
             >
-              <span className="hero-line">
-                <span className="hero-line__text">{t("heroLine")}</span>
-              </span>
-              <HeroSignalLine text={t("heroSignal")} />
+              <HeroHeading title={t("heroLine")} signal={t("heroSignal")} />
             </h1>
 
             <p className="hero-enter hero-enter-3 hero-lede mt-7 max-w-xl text-[1.125rem] leading-relaxed text-muted sm:mt-8 sm:text-[1.25rem] md:text-[1.3125rem] md:leading-relaxed">

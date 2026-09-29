@@ -67,7 +67,7 @@ export default async function WorkIndexPage({ params }: Props) {
               eyebrow={t("indexEyebrow")}
               headingId="work-index-heading"
               title={t("indexTitle")}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("indexDek")}
             />
           </Reveal>
@@ -132,7 +132,7 @@ export default async function WorkIndexPage({ params }: Props) {
             <ChapterLead
               eyebrow={t("pictureEyebrow")}
               title={t("pictureTitle")}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("pictureDek")}
             >
               <Button href="/about" variant="link" arrow>

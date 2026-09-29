@@ -738,7 +738,7 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
 .page-hero:not(.hero-shell--film) .hero-copy {
   position: relative;
   isolation: isolate;
-  max-width: min(36rem, 100%);
+  max-width: min(42rem, 100%);
 }
 
 /* No card pad — full-height scrim carries readability */
@@ -827,8 +827,13 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
 }
 
 .hero-enter-2 {
-  font-size: clamp(2.75rem, 7.5vw + 0.15rem, 6.75rem);
-  line-height: 0.92;
+  font-size: clamp(2.65rem, 6.2vw + 0.2rem, 5.85rem);
+  line-height: 0.96;
+  max-width: 14ch;
+}
+
+.hero-shell--film .hero-enter-2 {
+  max-width: 16ch;
 }
 
 .hero-signal-line {
@@ -844,11 +849,12 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
 }
 
 .hero-line + .hero-line {
-  margin-top: 0.02em;
+  margin-top: 0.04em;
 }
 
 .hero-line__text {
   display: block;
+  text-wrap: balance;
 }
 
 /* Cinematic open — long settle curves, deliberate cascade */
@@ -2490,12 +2496,13 @@ html[data-theme="dark"] .ind-visual__img--thumb,
 .results-chapter__heading {
   margin-block: 1.25rem 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(2.75rem, 6vw + 0.25rem, 5.25rem);
-  font-weight: 800;
-  letter-spacing: -0.05em;
-  line-height: 0.94;
+  font-size: clamp(2.2rem, 4.8vw + 0.15rem, 3.75rem);
+  font-weight: 750;
+  letter-spacing: -0.048em;
+  line-height: 1.05;
   color: var(--foreground);
   text-wrap: balance;
+  max-width: 20ch;
 }
 
 .chapter-lead__dek,

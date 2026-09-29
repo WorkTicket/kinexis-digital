@@ -86,7 +86,7 @@ export default async function ServicesIndexPage({ params }: Props) {
               eyebrow={t("mixEyebrow")}
               headingId="svc-catalog-heading"
               title={t("mixTitle")}
-              headingClassName="max-w-[10ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("mixDek")}
             />
           </Reveal>

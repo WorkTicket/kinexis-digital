@@ -38,7 +38,7 @@ export async function HomeProcess() {
             eyebrow={t("processEyebrow")}
             headingId="home-process-heading"
             title={t("processTitle")}
-            headingClassName="max-w-[12ch]"
+            headingClassName="max-w-[20ch]"
             dek={t("processDek")}
           >
             <Button href="/about" variant="link" arrow>

@@ -1,6 +1,6 @@
 import { LandingIntake } from "@/components/landing/LandingIntake";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
-import { HeroSignalLine } from "@/components/page/HeroSignalLine";
+import { HeroHeading } from "@/components/page/HeroHeading";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 export function CampaignHero({ page }: { page: LandingPageEntry }) {
@@ -31,12 +31,12 @@ export function CampaignHero({ page }: { page: LandingPageEntry }) {
 
                 <h1
                   id="page-hero-heading"
-                  className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-6"
+                  className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-foreground sm:mt-6"
                 >
-                  <span className="hero-line">
-                    <span className="hero-line__text">{page.headline}</span>
-                  </span>
-                  <HeroSignalLine text={page.headlineAccent} />
+                  <HeroHeading
+                    title={page.headline}
+                    signal={page.headlineAccent}
+                  />
                 </h1>
               </div>
             </HeroParallax>

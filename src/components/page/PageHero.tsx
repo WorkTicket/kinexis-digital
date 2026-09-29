@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
+import { HeroHeading } from "@/components/page/HeroHeading";
 import { PageHeroAtmosphere } from "@/components/page/PageHeroAtmosphere";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
@@ -102,16 +103,9 @@ export async function PageHero({
 
               <h1
                 id="page-hero-heading"
-                className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-6 md:mt-7"
+                className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-foreground sm:mt-6 md:mt-7"
               >
-                <span className="hero-line">
-                  <span className="hero-line__text">{title}</span>
-                </span>
-                {signal ? (
-                  <span className="hero-line hero-signal-line block">
-                    <span className="hero-line__text">{signal}</span>
-                  </span>
-                ) : null}
+                <HeroHeading title={title} signal={signal} />
               </h1>
 
               <p className="hero-enter hero-enter-3 hero-lede mt-7 max-w-xl text-[1.125rem] leading-relaxed text-muted sm:mt-8 sm:text-[1.25rem] md:text-[1.3125rem] md:leading-relaxed">

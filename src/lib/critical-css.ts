@@ -31,7 +31,7 @@ export const CRITICAL_FIRST_PAINT_CSS = [
   ".hero-stage{display:flex;flex:1 1 auto;flex-direction:column;justify-content:center;padding-top:clamp(2.75rem,5.5vh,4.75rem);padding-bottom:clamp(6.5rem,16vh,11rem)}",
   ".hero-copy{position:relative;z-index:3;max-width:min(52rem,100%);text-align:center;margin-inline:auto}",
   "@media(min-width:768px){.hero-copy{text-align:left;margin-inline:0}}",
-  ".hero-enter-2{margin:0;font-family:var(--font-display),ui-sans-serif,sans-serif;font-size:clamp(2.75rem,7.5vw + .15rem,6.75rem);font-weight:700;line-height:.92;letter-spacing:-.045em;text-wrap:balance;color:var(--foreground)}",
+  ".hero-enter-2{margin:0;font-family:var(--font-display),ui-sans-serif,sans-serif;font-size:clamp(2.65rem,6.2vw + .2rem,5.85rem);font-weight:700;line-height:.96;letter-spacing:-.045em;color:var(--foreground)}",
   ".hero-lede{max-width:min(36rem,100%);color:var(--muted);text-wrap:pretty}",
   ".hero-enter,.hero-enter-1,.hero-enter-2,.hero-enter-3,.hero-enter-4,.hero-enter-4b,.hero-enter-5{opacity:1}",
   ".hero-film-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 42%;opacity:.88}",

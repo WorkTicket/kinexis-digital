@@ -73,7 +73,7 @@ export async function HomeServices() {
             eyebrow={t("servicesEyebrow")}
             headingId="home-services-heading"
             title={t("servicesTitle")}
-            headingClassName="max-w-[12ch]"
+            headingClassName="max-w-[20ch]"
             dek={t("servicesDek")}
           >
             <Button href="/services" variant="link" arrow>

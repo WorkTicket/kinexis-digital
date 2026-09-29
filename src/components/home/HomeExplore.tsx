@@ -31,7 +31,7 @@ export async function HomeExplore() {
             eyebrow={t("exploreEyebrow")}
             headingId="home-explore-heading"
             title={t("exploreTitle")}
-            headingClassName="max-w-[12ch]"
+            headingClassName="max-w-[20ch]"
             dek={t("exploreDek")}
           />
         </Reveal>

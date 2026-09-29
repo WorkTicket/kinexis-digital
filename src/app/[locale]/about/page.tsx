@@ -109,7 +109,7 @@ export default async function AboutPage({ params }: Props) {
               eyebrow={c.why.eyebrow}
               headingId="about-why-heading"
               title={c.why.title}
-              headingClassName="max-w-[18ch]"
+              headingClassName="max-w-[22ch]"
             />
           </Reveal>
 
@@ -161,7 +161,7 @@ export default async function AboutPage({ params }: Props) {
               eyebrow={c.partnership.eyebrow}
               headingId="about-work-heading"
               title={c.partnership.title}
-              headingClassName="max-w-[16ch]"
+              headingClassName="max-w-[22ch]"
               dek={c.partnership.copy}
             />
           </Reveal>
@@ -200,7 +200,7 @@ export default async function AboutPage({ params }: Props) {
               eyebrow={c.method.eyebrow}
               headingId="about-method-heading"
               title={c.method.title}
-              headingClassName="max-w-[14ch]"
+              headingClassName="max-w-[20ch]"
             />
           </Reveal>
 
@@ -241,7 +241,7 @@ export default async function AboutPage({ params }: Props) {
               eyebrow={c.architecture.eyebrow}
               headingId="about-arch-heading"
               title={c.architecture.title}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={c.architecture.copy}
             />
           </Reveal>
@@ -287,7 +287,7 @@ export default async function AboutPage({ params }: Props) {
               eyebrow={c.principles.eyebrow}
               headingId="about-principles-heading"
               title={c.principles.title}
-              headingClassName="max-w-[14ch]"
+              headingClassName="max-w-[20ch]"
             />
           </Reveal>
 
@@ -322,7 +322,7 @@ export default async function AboutPage({ params }: Props) {
               eyebrow={c.roadmap.eyebrow}
               headingId="about-roadmap-heading"
               title={c.roadmap.title}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={c.roadmap.copy}
             />
           </Reveal>
