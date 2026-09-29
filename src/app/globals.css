@@ -695,28 +695,28 @@ html.in-app-browser #contact-form {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 78% 42%;
-  /* Soften type that may be painted into the still */
-  opacity: 0.28;
-  filter: grayscale(1) contrast(0.88) brightness(1.1) blur(1.2px);
+  object-position: 82% 42%;
+  /* Atmosphere only — never compete with HTML type */
+  opacity: 0.22;
+  filter: grayscale(1) contrast(0.85) brightness(1.12);
 }
 
 @media (min-width: 1024px) {
   .page-hero-atmosphere__media {
-    opacity: 0.36;
+    opacity: 0.3;
   }
 }
 
 html[data-theme="dark"] .page-hero-atmosphere__media,
 .dark .page-hero-atmosphere__media {
-  opacity: 0.22;
-  filter: grayscale(1) contrast(0.9) brightness(0.65) blur(1.2px);
+  opacity: 0.18;
+  filter: grayscale(1) contrast(0.88) brightness(0.6);
 }
 
 @media (min-width: 1024px) {
   html[data-theme="dark"] .page-hero-atmosphere__media,
   .dark .page-hero-atmosphere__media {
-    opacity: 0.3;
+    opacity: 0.24;
   }
 }
 
@@ -724,72 +724,64 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
   position: absolute;
   inset: 0;
   z-index: 1;
-  /* Copy column stays solid paper so photo glyph never doubles HTML type */
-  background:
-    linear-gradient(
-      90deg,
-      var(--background) 0%,
-      var(--background) 46%,
-      color-mix(in oklab, var(--background) 96%, transparent) 56%,
-      color-mix(in oklab, var(--background) 82%, transparent) 66%,
-      color-mix(in oklab, var(--background) 58%, transparent) 78%,
-      color-mix(in oklab, var(--background) 34%, transparent) 100%
-    ),
-    linear-gradient(
-      180deg,
-      color-mix(in oklab, var(--background) 78%, transparent) 0%,
-      color-mix(in oklab, var(--background) 42%, transparent) 36%,
-      transparent 68%
-    ),
-    linear-gradient(
-      0deg,
-      color-mix(in oklab, var(--background) 48%, transparent) 0%,
-      transparent 30%
-    );
+  /* Solid paper through the copy column — photo glyphs cannot peek under HTML */
+  background: linear-gradient(
+    90deg,
+    var(--background) 0%,
+    var(--background) 54%,
+    color-mix(in oklab, var(--background) 94%, transparent) 64%,
+    color-mix(in oklab, var(--background) 72%, transparent) 76%,
+    color-mix(in oklab, var(--background) 42%, transparent) 88%,
+    color-mix(in oklab, var(--background) 22%, transparent) 100%
+  );
+}
+
+/* Opaque pad directly behind the HTML copy block */
+.page-hero:not(.hero-shell--film) .hero-copy {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-hero:not(.hero-shell--film) .hero-copy::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -1.25rem -2.5rem -2.25rem -1.5rem;
+  background: var(--background);
+  pointer-events: none;
+  /* Soft right edge so it reads as wash, not a card */
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 78%, transparent 100%);
 }
 
 @media (max-width: 767px) {
   .page-hero-atmosphere__media {
-    opacity: 0.18;
-    object-position: 60% 35%;
-    /* Skip live blur on phones — opacity + scrim already bury photo type */
-    filter: grayscale(1) contrast(0.88) brightness(1.1);
+    opacity: 0.14;
+    object-position: 65% 35%;
+    filter: grayscale(1) contrast(0.85) brightness(1.12);
   }
 
   html[data-theme="dark"] .page-hero-atmosphere__media,
   .dark .page-hero-atmosphere__media {
-    opacity: 0.14;
-    filter: grayscale(1) contrast(0.9) brightness(0.65);
+    opacity: 0.12;
+    filter: grayscale(1) contrast(0.88) brightness(0.6);
   }
 
   .page-hero-atmosphere__scrim {
-    background:
-      linear-gradient(
-        180deg,
-        var(--background) 0%,
-        var(--background) 22%,
-        color-mix(in oklab, var(--background) 94%, transparent) 42%,
-        color-mix(in oklab, var(--background) 78%, transparent) 60%,
-        color-mix(in oklab, var(--background) 52%, transparent) 78%,
-        color-mix(in oklab, var(--background) 32%, transparent) 100%
-      ),
-      linear-gradient(
-        90deg,
-        color-mix(in oklab, var(--background) 78%, transparent) 0%,
-        color-mix(in oklab, var(--background) 42%, transparent) 55%,
-        transparent 100%
-      );
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-hero-atmosphere__media {
-    filter: grayscale(1) contrast(0.88) brightness(1.1);
+    background: linear-gradient(
+      180deg,
+      var(--background) 0%,
+      var(--background) 36%,
+      color-mix(in oklab, var(--background) 92%, transparent) 55%,
+      color-mix(in oklab, var(--background) 68%, transparent) 72%,
+      color-mix(in oklab, var(--background) 40%, transparent) 100%
+    );
   }
 
-  html[data-theme="dark"] .page-hero-atmosphere__media,
-  .dark .page-hero-atmosphere__media {
-    filter: grayscale(1) contrast(0.9) brightness(0.65);
+  .page-hero:not(.hero-shell--film) .hero-copy::before {
+    inset: -1rem -1.25rem -1.75rem -1rem;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 85%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 85%, transparent 100%);
   }
 }
 

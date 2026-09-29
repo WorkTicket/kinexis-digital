@@ -4,8 +4,8 @@
  */
 export const pageHeroStills = {
   services: {
-    // Full demand program — distinct from individual service stills
-    src: "/assets/images/editorial/service-paid-media.webp",
+    // Atmosphere texture without large display type
+    src: "/assets/images/editorial/service-content-marketing.webp",
   },
   about: {
     // Avoid industry-professional-services — it bakes in the About headline
