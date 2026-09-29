@@ -5318,50 +5318,52 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   display: block;
 }
 
-/* Partnership — stacked manifesto rows (no icons) */
+/* Partnership — three designed columns with accent bars (no icons) */
 .about-signals {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0;
-  max-width: 48rem;
-  margin-inline: auto;
+  gap: 1.5rem;
+}
+
+@media (min-width: 800px) {
+  .about-signals {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.75rem 2rem;
+  }
 }
 
 .about-signal {
   display: grid;
-  gap: 0.55rem;
-  padding: 1.75rem 0;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem 1.6rem;
   border: none;
-  border-top: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
-  background: transparent;
-  border-radius: 0;
+  border-top: 3px solid var(--hero-signal);
+  border-radius: 0 0 var(--radius-lg, 0.75rem) var(--radius-lg, 0.75rem);
+  background: color-mix(in oklab, var(--foreground) 3%, transparent);
   box-shadow: none;
   text-align: left;
   justify-items: start;
 }
 
-.about-signal:last-child {
-  border-bottom: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
-}
-
 .about-signal__title {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.55rem, 2.8vw, 2.05rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
   font-weight: 750;
-  letter-spacing: -0.04em;
-  line-height: 1.12;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
   color: var(--foreground);
-  max-width: 22ch;
+  max-width: 14ch;
+  text-wrap: balance;
 }
 
 .about-signal__copy {
   margin: 0;
-  max-width: 40rem;
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  max-width: 28rem;
+  font-size: 0.975rem;
+  line-height: 1.6;
   color: var(--muted);
   text-wrap: pretty;
 }
