@@ -221,30 +221,14 @@ export const getAWebsite: LandingPageEntry = {
     "Home Services",
   ],
   pricingTitle: "What does a custom website cost?",
-  pricingAnchor: "",
+  pricingAnchor: "Most builds start around $2,000",
   pricingQualify:
-    "Every project is different, but most KINEXIS builds fall into one of these ranges.",
+    "Exact scope and price come in your free website plan — after we learn what you sell and what the site needs to do.",
   pricingIntro:
-    "You'll know the recommended scope before committing to a project.",
+    "Exact scope and price come in your free website plan — after we learn what you sell and what the site needs to do.",
   pricingNote:
-    "You'll know the recommended scope before committing to a project.",
-  pricing: [
-    {
-      name: "Essential",
-      price: "$2,000–$3,000",
-      body: "A focused site for a smaller service business.",
-    },
-    {
-      name: "Growth",
-      price: "$3,000–$5,000",
-      body: "More services, pages, and a stronger conversion path.",
-    },
-    {
-      name: "Custom",
-      price: "$5,000+",
-      body: "Larger builds, extra integrations, and expanded content.",
-    },
-  ],
+    "You'll get a clear recommendation for your business before you commit to a build.",
+  pricing: [],
   proofIntro:
     "Results from published KINEXIS client projects. Individual results vary.",
   proofTitle: "",
@@ -264,7 +248,7 @@ export const getAWebsite: LandingPageEntry = {
     {
       question: "How much does a website cost?",
       answer:
-        "Most projects fall between roughly $2,000 and $5,000, with larger custom builds available.",
+        "Most builds start around $2,000. Larger sites run higher. You'll get a clear scope and price in your free website plan before you commit.",
     },
     {
       question: "Do I need an existing website?",

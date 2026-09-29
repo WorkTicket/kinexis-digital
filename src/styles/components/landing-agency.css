@@ -561,6 +561,23 @@ html.lp-chrome .landing-sticky-cta__panel {
   color: var(--lp-ink);
 }
 
+.lp-web-pricing__anchor {
+  margin: 1.35rem 0 0;
+  max-width: 28ch;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.85rem, 4vw, 2.65rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  color: var(--lp-ink);
+  text-wrap: balance;
+}
+
+.lp-web-pricing--soft .lp-web-pricing__note {
+  margin-top: 0.85rem;
+  max-width: 36rem;
+}
+
 .lp-web-pricing__note {
   margin: 1.25rem 0 0;
   font-size: 0.9375rem;

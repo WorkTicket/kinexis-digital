@@ -236,38 +236,49 @@ export function WebsitePricing({
   intro,
   items,
   note,
+  anchor,
   ctaLabel,
   landingSlug,
 }: {
   title: string;
   intro?: string;
-  items: LandingPagePrice[];
+  items?: LandingPagePrice[];
   note?: string;
+  /** Soft price line shown instead of (or above) a cold tier board. */
+  anchor?: string;
   ctaLabel: string;
   landingSlug: string;
 }) {
+  const tiers = items ?? [];
+  const softOnly = Boolean(anchor) && tiers.length === 0;
+
   return (
     <section
       id="pricing"
       aria-labelledby="lp-web-pricing-heading"
-      className="lp-web-pricing chapter relative"
+      className={`lp-web-pricing chapter relative${softOnly ? " lp-web-pricing--soft" : ""}`}
     >
       <div className="shell relative">
         <header className="lp-web-lead">
           <h2 id="lp-web-pricing-heading">{title}</h2>
           {intro ? <p>{intro}</p> : null}
         </header>
-        <ul className="lp-web-pricing__list">
-          {items.map((item) => (
-            <li key={item.name}>
-              <article className="lp-web-pricing__card">
-                <h3>{item.name}</h3>
-                <p className="lp-web-pricing__price">{item.price}</p>
-                <p>{item.body}</p>
-              </article>
-            </li>
-          ))}
-        </ul>
+        {anchor ? (
+          <p className="lp-web-pricing__anchor">{anchor}</p>
+        ) : null}
+        {tiers.length > 0 ? (
+          <ul className="lp-web-pricing__list">
+            {tiers.map((item) => (
+              <li key={item.name}>
+                <article className="lp-web-pricing__card">
+                  <h3>{item.name}</h3>
+                  <p className="lp-web-pricing__price">{item.price}</p>
+                  <p>{item.body}</p>
+                </article>
+              </li>
+            ))}
+          </ul>
+        ) : null}
         {note ? <p className="lp-web-pricing__note">{note}</p> : null}
         <div className="lp-web-pricing__cta">
           <PlanCta placement="pricing" landingSlug={landingSlug} arrow>

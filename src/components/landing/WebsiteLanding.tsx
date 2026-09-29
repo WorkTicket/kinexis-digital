@@ -50,12 +50,14 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
       {page.process?.length && page.processTitle ? (
         <WebsiteProcess title={page.processTitle} steps={page.process} />
       ) : null}
-      {page.pricing?.length && page.pricingTitle ? (
+      {page.pricingTitle &&
+      (page.pricingAnchor || page.pricing?.length) ? (
         <WebsitePricing
           title={page.pricingTitle}
           intro={page.pricingQualify}
           items={page.pricing}
           note={page.pricingNote}
+          anchor={page.pricingAnchor}
           ctaLabel={cta}
           landingSlug={page.slug}
         />

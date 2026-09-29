@@ -138,14 +138,12 @@ describe("get-a-website landing page", () => {
       "1–3 months",
       "Just researching",
     ]);
-    expect(page?.pricing?.map((tier) => tier.name)).toEqual([
-      "Essential",
-      "Growth",
-      "Custom",
-    ]);
-    expect(page?.pricing?.every((tier) => !tier.featured)).toBe(true);
+    expect(page?.pricing?.map((tier) => tier.name) ?? []).toEqual([]);
+    expect(page?.pricingAnchor?.toLowerCase()).toMatch(
+      /most builds start around \$2,000/,
+    );
     expect(page?.pricingQualify?.toLowerCase()).toMatch(
-      /most kinexis builds fall into one of these ranges/,
+      /exact scope and price come in your free website plan/,
     );
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
     expect(page?.conversionKind).toBe("audit");
@@ -248,11 +246,8 @@ describe("get-a-website landing page", () => {
     expect(page?.pricingTitle?.toLowerCase()).toMatch(
       /what does a custom website cost/,
     );
-    expect(page?.pricing?.map((tier) => tier.price)).toEqual([
-      "$2,000–$3,000",
-      "$3,000–$5,000",
-      "$5,000+",
-    ]);
+    expect(page?.pricing?.map((tier) => tier.price) ?? []).toEqual([]);
+    expect(page?.pricingAnchor).toBe("Most builds start around $2,000");
     expect(page?.proofIntro.toLowerCase()).toMatch(/individual results vary/);
     expect(page?.proof.map((item) => item.metric)).toEqual([
       "1.8% → 3.9%",
@@ -287,7 +282,7 @@ describe("get-a-website landing page", () => {
         (faq) =>
           /how much does a website cost/i.test(faq.question) &&
           /\$2,000/.test(faq.answer) &&
-          /\$5,000/.test(faq.answer),
+          /free website plan/i.test(faq.answer),
       ),
     ).toBe(true);
     expect(
