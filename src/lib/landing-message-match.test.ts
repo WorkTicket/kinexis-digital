@@ -8,8 +8,8 @@ import {
 describe("resolveLandingMessage", () => {
   it("falls back to the default headline and market line", () => {
     const message = resolveLandingMessage();
-    expect(message.headlineKey).toBe("build_business");
-    expect(message.headlineLines).toEqual(LANDING_HEADLINES.build_business);
+    expect(message.headlineKey).toBe("business_grown");
+    expect(message.headlineLines).toEqual(LANDING_HEADLINES.business_grown);
     expect(message.marketKey).toBe("default");
     expect(message.marketLine).toBe(LANDING_MARKETS.default);
   });
@@ -44,7 +44,7 @@ describe("resolveLandingMessage", () => {
       utmCampaign: "boise-hack",
       market: poison,
     });
-    expect(message.headlineKey).toBe("build_business");
+    expect(message.headlineKey).toBe("business_grown");
     expect(message.marketKey).toBe("default");
     expect(JSON.stringify(message)).not.toContain(poison);
     expect(JSON.stringify(message)).not.toContain("boise-hack");

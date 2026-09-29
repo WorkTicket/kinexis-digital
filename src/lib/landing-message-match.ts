@@ -3,7 +3,7 @@
  * Query values are mapped through an allowlist — never rendered as copy.
  */
 
-export const DEFAULT_HEADLINE_KEY = "build_business" as const;
+export const DEFAULT_HEADLINE_KEY = "business_grown" as const;
 export const DEFAULT_MARKET_KEY = "default" as const;
 
 export const LANDING_HEADLINES = {
