@@ -1,21 +1,28 @@
 /**
  * Full-bleed still for marketing PageHero routes.
- * Mesh orbs are display:none in globals — this is the visible atmosphere.
+ * Pass a page-specific asset so hubs don't share one photo.
  */
-export function PageHeroAtmosphere() {
+export function PageHeroAtmosphere({
+  src,
+  srcSm,
+}: {
+  src: string;
+  /** Optional smaller still for phones; falls back to `src`. */
+  srcSm?: string;
+}) {
+  const mobileSrc = srcSm ?? src;
+
   return (
     <div
       aria-hidden
       className="page-hero-atmosphere pointer-events-none absolute inset-0 overflow-hidden"
     >
       <picture>
-        <source
-          media="(min-width: 1024px)"
-          srcSet="/assets/images/editorial/hero-still.webp"
-          type="image/webp"
-        />
+        {srcSm ? (
+          <source media="(min-width: 1024px)" srcSet={src} type="image/webp" />
+        ) : null}
         <img
-          src="/assets/images/editorial/hero-still-sm.webp"
+          src={mobileSrc}
           alt=""
           width={1920}
           height={1080}

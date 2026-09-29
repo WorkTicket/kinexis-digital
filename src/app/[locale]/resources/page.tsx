@@ -12,6 +12,7 @@ import {
   getResourcesContent,
   type ResourceBadge,
 } from "@/content/resources";
+import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { cn } from "@/lib/cn";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
@@ -57,6 +58,7 @@ export default async function ResourcesPage({ params }: Props) {
         copy={t("copy")}
         secondaryHref="/blog"
         secondaryLabel={tCommon("readTheBlog")}
+        atmosphereSrc={pageHeroStills.resources.src}
       />
 
       <section

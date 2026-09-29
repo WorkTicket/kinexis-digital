@@ -10,6 +10,7 @@ import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Link } from "@/i18n/navigation";
 import { getServicePages } from "@/content/services";
+import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { isFlagshipServiceSlug } from "@/lib/legacy-redirects.mjs";
 import { buildAbsoluteUrl, buildPageMetadata, getSiteUrl } from "@/lib/metadata";
@@ -66,6 +67,7 @@ export default async function ServicesIndexPage({ params }: Props) {
         copy={t("copy")}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
+        atmosphereSrc={pageHeroStills.services.src}
       />
 
       <section

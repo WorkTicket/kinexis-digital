@@ -18,9 +18,12 @@ type PageHeroProps = {
   meta?: ReactNode;
   /** Optional right-rail visual (stage, gallery, device) */
   visual?: ReactNode;
-  /** Full-bleed atmosphere layer — defaults to editorial still */
+  /** Full-bleed atmosphere — pass a mount, or use atmosphereSrc */
   atmosphere?: ReactNode;
-  /** Shorter hero for intake pages (contact) — skips WebGL by default */
+  /** Unique still for this route (preferred over shared default) */
+  atmosphereSrc?: string;
+  atmosphereSrcSm?: string;
+  /** Shorter hero for intake pages (contact) */
   compact?: boolean;
   /** Hide CTA row when the next section is the action */
   hideActions?: boolean;
@@ -31,7 +34,7 @@ type PageHeroProps = {
 
 /**
  * Site-wide cinematic hero — same shell, spacing, and enter cascade as HomeHero.
- * Brand lockup leads the composition; page title remains the semantic h1.
+ * Nav carries the brand; heroes lead with the page value prop + unique still.
  */
 export async function PageHero({
   eyebrow,
@@ -45,6 +48,8 @@ export async function PageHero({
   meta,
   visual,
   atmosphere,
+  atmosphereSrc,
+  atmosphereSrcSm,
   compact = false,
   hideActions = false,
   intake = false,
@@ -61,7 +66,20 @@ export async function PageHero({
   );
 
   const showActions = !hideActions;
-  const atmosphereLayer = atmosphere ?? <PageHeroAtmosphere />;
+  const resolvedSrc =
+    atmosphereSrc ?? "/assets/images/editorial/hero-still.webp";
+  const atmosphereLayer =
+    atmosphere ?? (
+      <PageHeroAtmosphere
+        src={resolvedSrc}
+        srcSm={
+          atmosphereSrcSm ??
+          (atmosphereSrc
+            ? undefined
+            : "/assets/images/editorial/hero-still-sm.webp")
+        }
+      />
+    );
 
   return (
     <section className={sectionClass} aria-labelledby="page-hero-heading">
@@ -79,19 +97,12 @@ export async function PageHero({
           <HeroParallax layer="copy">
             <div className="hero-copy relative z-[3]">
               <div className="hero-enter hero-enter-1">
-                <p className="hero-brand hero-brand--page">
-                  <span className="hero-brand__name">KINEXIS</span>
-                  <span className="hero-brand__mark">Digital</span>
-                </p>
+                <p className="section-eyebrow">{eyebrow}</p>
               </div>
-
-              <p className="hero-enter hero-enter-1 section-eyebrow mt-5 sm:mt-6">
-                {eyebrow}
-              </p>
 
               <h1
                 id="page-hero-heading"
-                className="hero-enter hero-enter-2 mt-4 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-5 md:mt-6"
+                className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-6 md:mt-7"
               >
                 <span className="hero-line">
                   <span className="hero-line__text">{title}</span>

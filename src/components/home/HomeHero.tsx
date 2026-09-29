@@ -36,16 +36,9 @@ export async function HomeHero() {
       <HeroScrollRoot className="shell shell--cinema hero-stage relative z-[2]">
         <HeroParallax layer="copy">
           <div className="hero-copy relative z-[3]">
-            <div className="hero-enter hero-enter-1">
-              <p className="hero-brand">
-                <span className="hero-brand__name">KINEXIS</span>
-                <span className="hero-brand__mark">Digital</span>
-              </p>
-            </div>
-
             <h1
               id="home-hero-heading"
-              className="hero-enter hero-enter-2 mt-6 font-[family-name:var(--font-display)] font-bold tracking-[-0.04em] text-balance text-foreground sm:mt-7 md:mt-8"
+              className="hero-enter hero-enter-2 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground"
             >
               <span className="hero-line">
                 <span className="hero-line__text">{t("heroLine")}</span>

@@ -756,6 +756,7 @@ html.in-app-browser #contact-form {
 }
 
 /* Brand masthead — hero-level signal; must outrank the value headline */
+/* Brand masthead — unused in heroes (nav logo carries brand). Kept as utility. */
 .hero-brand {
   display: flex;
   flex-direction: row;
@@ -792,33 +793,6 @@ html.in-app-browser #contact-form {
   letter-spacing: -0.03em;
   text-transform: none;
   color: color-mix(in oklab, var(--foreground) 68%, var(--muted));
-}
-
-/* Inner marketing heroes — brand present, page title stays primary h1 scale */
-.hero-brand--page .hero-brand__name {
-  font-size: clamp(2.65rem, 6.5vw + 0.2rem, 5.25rem);
-  letter-spacing: -0.05em;
-  line-height: 0.92;
-}
-
-.hero-brand--page .hero-brand__mark {
-  font-size: clamp(1.05rem, 2vw + 0.35rem, 1.85rem);
-  letter-spacing: -0.025em;
-}
-
-/* Page heroes (non-film): keep brand ahead of the page title */
-.page-hero:not(.hero-shell--film) .hero-enter-2 {
-  font-size: clamp(2.15rem, 4.8vw + 0.25rem, 4.35rem);
-  line-height: 0.98;
-  max-width: 16ch;
-}
-
-/* Value headline sits under the brand masthead — secondary scale */
-.hero-shell--film .hero-enter-2 {
-  font-size: clamp(1.65rem, 3.4vw + 0.35rem, 3.15rem);
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  max-width: 18ch;
 }
 
 .hero-enter-2 {

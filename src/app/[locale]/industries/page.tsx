@@ -8,6 +8,7 @@ import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { getHubIndustries, getIndustriesContent } from "@/content/industries";
+import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -54,6 +55,8 @@ export default async function IndustriesPage({ params }: Props) {
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
         className="industries-hub-hero"
+        atmosphereSrc={pageHeroStills.industries.src}
+        atmosphereSrcSm={pageHeroStills.industries.srcSm}
       />
 
       <section
