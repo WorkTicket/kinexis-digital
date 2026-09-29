@@ -86,12 +86,32 @@ function isHttpRequest(request: NextRequest): boolean {
   return false;
 }
 
+function isLoopbackOrPrivateHost(host: string): boolean {
+  if (
+    host === "localhost" ||
+    host === "127.0.0.1" ||
+    host === "::1" ||
+    host === "[::1]"
+  ) {
+    return true;
+  }
+  // Cloud agent / Try Live often hits the pod via a private IP Host header.
+  // Forcing HTTPS there redirects to https://localhost on the *viewer* machine.
+  if (/^10\.\d+\.\d+\.\d+$/.test(host)) return true;
+  if (/^192\.168\.\d+\.\d+$/.test(host)) return true;
+  if (/^172\.(1[6-9]|2\d|3[0-1])\.\d+\.\d+$/.test(host)) return true;
+  return false;
+}
+
 export default function middleware(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0] ?? "";
   const pathname = request.nextUrl.pathname;
-  const isLocalHost = host === "localhost" || host === "127.0.0.1";
-  const needsWww = !isLocalHost && host === APEX_HOST;
-  const needsHttps = !isLocalHost && isHttpRequest(request);
+  const isDev = process.env.NODE_ENV === "development";
+  const isLocalHost = isLoopbackOrPrivateHost(host);
+  // Never force HTTPS/www in `next dev` — Try Live / tunnel Host headers are
+  // not "localhost" and previously 301'd viewers to https://localhost:3000.
+  const needsWww = !isDev && !isLocalHost && host === APEX_HOST;
+  const needsHttps = !isDev && !isLocalHost && isHttpRequest(request);
   const pathLocale = getPathLocale(pathname, request);
   const resolved = resolveLegacyRedirect(pathname);
 
