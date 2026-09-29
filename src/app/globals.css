@@ -732,14 +732,21 @@ html.in-app-browser #contact-form {
 
 /* Inner marketing heroes — brand present, page title stays primary h1 scale */
 .hero-brand--page .hero-brand__name {
-  font-size: clamp(1.85rem, 4.2vw + 0.2rem, 3.35rem);
-  letter-spacing: -0.045em;
-  line-height: 0.9;
+  font-size: clamp(2.65rem, 6.5vw + 0.2rem, 5.25rem);
+  letter-spacing: -0.05em;
+  line-height: 0.88;
 }
 
 .hero-brand--page .hero-brand__mark {
-  font-size: clamp(0.7rem, 0.55vw + 0.55rem, 0.875rem);
-  letter-spacing: 0.36em;
+  font-size: clamp(0.78rem, 0.7vw + 0.55rem, 1rem);
+  letter-spacing: 0.38em;
+}
+
+/* Page heroes (non-film): keep brand ahead of the page title */
+.page-hero:not(.hero-shell--film) .hero-enter-2 {
+  font-size: clamp(2.15rem, 4.8vw + 0.25rem, 4.35rem);
+  line-height: 0.98;
+  max-width: 16ch;
 }
 
 /* Value headline sits under the brand masthead — secondary scale */
@@ -1320,8 +1327,9 @@ html[data-theme="dark"] .mesh-noise {
   right: -6%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #141418 8%, transparent) 0%,
-    transparent 72%
+    color-mix(in oklab, var(--gradient-signal, var(--accent)) 14%, transparent) 0%,
+    color-mix(in oklab, #141418 7%, transparent) 42%,
+    transparent 74%
   );
   animation-duration: 36s;
 }
@@ -1333,7 +1341,7 @@ html[data-theme="dark"] .mesh-noise {
   right: 18%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #1c1c22 6%, transparent) 0%,
+    color-mix(in oklab, #1c1c22 9%, transparent) 0%,
     transparent 72%
   );
   animation-duration: 30s;
@@ -1347,8 +1355,9 @@ html[data-theme="dark"] .mesh-noise {
   right: 2%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #0a0a0c 5.5%, transparent) 0%,
-    transparent 72%
+    color-mix(in oklab, var(--gradient-signal, var(--accent)) 8%, transparent) 0%,
+    color-mix(in oklab, #0a0a0c 5%, transparent) 48%,
+    transparent 74%
   );
   animation-duration: 34s;
   animation-delay: -14s;
@@ -1361,7 +1370,7 @@ html[data-theme="dark"] .mesh-noise {
   right: -10%;
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #222228 5%, transparent) 0%,
+    color-mix(in oklab, #222228 8%, transparent) 0%,
     transparent 72%
   );
   animation-duration: 28s;
@@ -1371,15 +1380,16 @@ html[data-theme="dark"] .mesh-noise {
 html[data-theme="dark"] .mesh-fallback__blob--a {
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #e8e8ec 7%, transparent) 0%,
-    transparent 72%
+    color-mix(in oklab, var(--gradient-signal, var(--accent)) 16%, transparent) 0%,
+    color-mix(in oklab, #e8e8ec 6%, transparent) 46%,
+    transparent 74%
   );
 }
 
 html[data-theme="dark"] .mesh-fallback__blob--b {
   background: radial-gradient(
     circle at center,
-    color-mix(in oklab, #c8c8d0 5.5%, transparent) 0%,
+    color-mix(in oklab, #c8c8d0 7%, transparent) 0%,
     transparent 72%
   );
 }
@@ -9000,21 +9010,36 @@ html[data-theme="dark"] .theme-toggle__moon {
 
   /* One wash instead of two color-mix gradients + a second fade layer */
   .hero-film-scrim {
-    background: color-mix(in oklab, var(--background) 58%, transparent);
+    background:
+      linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--background) 72%, transparent) 0%,
+        color-mix(in oklab, var(--background) 38%, transparent) 48%,
+        transparent 78%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklab, var(--background) 55%, transparent) 0%,
+        transparent 70%
+      );
   }
 
   .hero-atmosphere__fade {
     display: none;
   }
 
+  /* Poster stays — full-bleed visual on phones; only defer live video */
   .hero-film-media {
+    display: block;
+    opacity: 0.78;
+  }
+
+  .hero-film-video {
     display: none;
   }
 
-  /* Mesh/WebGL fallback is a desktop treatment. On mobile it sits under
-     LCP text/stills and costs extra gradient raster before first paint. */
-  .page-hero:not(.hero-shell--film) .hero-atmosphere,
-  .page-hero:not(.hero-shell--film) .hero-film-scrim,
+  /* Mesh/WebGL fallback is a desktop treatment on case heroes.
+     Marketing page heroes keep the static mesh wash on phones. */
   .case-hero .hero-atmosphere,
   .case-hero .hero-film-scrim {
     display: none;

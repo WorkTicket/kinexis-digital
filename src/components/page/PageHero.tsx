@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
+import { SignalPlaneFallback } from "@/components/home/SignalPlaneFallback";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 import "@/styles/components/page-stages.css";
@@ -17,7 +18,7 @@ type PageHeroProps = {
   meta?: ReactNode;
   /** Optional right-rail visual (stage, gallery, device) */
   visual?: ReactNode;
-  /** Full-bleed atmosphere layer — pass a mount from the route so other pages skip WebGL JS */
+  /** Full-bleed atmosphere layer — defaults to static mesh wash */
   atmosphere?: ReactNode;
   /** Shorter hero for intake pages (contact) — skips WebGL by default */
   compact?: boolean;
@@ -60,10 +61,14 @@ export async function PageHero({
   );
 
   const showActions = !hideActions;
+  const atmosphereLayer = atmosphere ?? <SignalPlaneFallback />;
 
   return (
     <section className={sectionClass} aria-labelledby="page-hero-heading">
-      {atmosphere}
+      <div className="hero-atmosphere pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        {atmosphereLayer}
+      </div>
+      <div className="hero-film-scrim" aria-hidden />
 
       <HeroScrollRoot
         className={cn(
