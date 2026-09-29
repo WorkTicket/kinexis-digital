@@ -728,11 +728,10 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
   background: linear-gradient(
     90deg,
     var(--background) 0%,
-    var(--background) 42%,
-    color-mix(in oklab, var(--background) 78%, transparent) 52%,
-    color-mix(in oklab, var(--background) 28%, transparent) 64%,
-    color-mix(in oklab, var(--background) 6%, transparent) 76%,
-    transparent 88%
+    var(--background) 48%,
+    color-mix(in oklab, var(--background) 55%, transparent) 58%,
+    color-mix(in oklab, var(--background) 14%, transparent) 70%,
+    transparent 80%
   );
 }
 
