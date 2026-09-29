@@ -8486,9 +8486,9 @@ html[data-theme="dark"] .theme-toggle__moon {
 .industry-capability__item {
   display: grid;
   gap: 0.65rem;
-  padding: 1.5rem 1.35rem 1.6rem;
-  border-radius: var(--radius-xl, 1rem);
-  background: color-mix(in oklab, var(--foreground) 3.5%, transparent);
+  padding: 1.15rem 0 0;
+  border-radius: 0;
+  background: transparent;
   border-top: 3px solid var(--industry-accent, var(--hero-signal));
 }
 
@@ -8673,10 +8673,11 @@ html[data-theme="dark"] .theme-toggle__moon {
 .industry-domain {
   display: grid;
   gap: 0.55rem;
-  padding: 1.35rem 1.25rem 1.45rem;
+  padding: 1.1rem 0 0;
   border: none;
-  border-radius: var(--radius-lg, 0.75rem);
-  background: color-mix(in oklab, var(--foreground) 3%, transparent);
+  border-top: 2px solid color-mix(in oklab, var(--industry-accent, var(--hero-signal)) 55%, transparent);
+  border-radius: 0;
+  background: transparent;
   text-align: start;
 }
 
