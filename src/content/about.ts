@@ -279,12 +279,13 @@ export const aboutContentI18n = localeContent({
     heroSubtitleLine2:
       "Cada canal se conecta. Cada decisión se mide en ingresos. Así está estructurado el trabajo desde el primer día.",
     whyWeExistTag: "Por qué existimos",
-    whyWeExistAside: "El modelo de agencia está roto.|Construimos la alternativa.",
+    whyWeExistAside: "El modelo de agencia está roto. Construimos la alternativa.",
     whyProblemLabel: "El modelo anterior",
     whySolutionLabel: "El modelo KINEXIS",
     whyParagraph1:
       "La mayoría de las agencias digitales venden tácticas: un sitio web aquí, algunos anuncios allá, un puñado de entradas de blog. Luego lo llaman estrategia.",
-    whyQuote: "Nosotros vendemos un sistema:|un enfoque repetible y basado en datos para el crecimiento.",
+    whyQuote:
+      "Nosotros vendemos un sistema: un enfoque repetible y basado en datos para el crecimiento.",
     whyParagraph2:
       "Cada pieza se conecta. El SEO alimenta los anuncios. Los anuncios llevan tráfico a las landing pages. Las landing pages alimentan tu embudo comercial.",
     whyParagraph2b:
@@ -317,23 +318,23 @@ export const aboutContentI18n = localeContent({
     methodTitleLine2: "KINEXIS",
     methodPhases: [
       {
-        title: "ANALIZAR",
+        title: "Analizar",
         desc: "Auditoría completa del embudo. Revisión de la infraestructura de datos. Métricas base establecidas antes de formular cualquier estrategia.",
       },
       {
-        title: "ESTRATEGIA",
+        title: "Estrategia",
         desc: "Selección de canales según el mayor potencial de ROI. Hoja de ruta con hitos, plazos y KPIs claros.",
       },
       {
-        title: "CONSTRUIR",
+        title: "Construir",
         desc: "Ejecución en los canales seleccionados. Contenido, anuncios, landing pages y automatización, todo construido según especificaciones.",
       },
       {
-        title: "OPTIMIZAR",
+        title: "Optimizar",
         desc: "Revisiones semanales de rendimiento. Pruebas A/B. Reasignación de presupuesto. Los datos guían el sistema.",
       },
       {
-        title: "ESCALAR",
+        title: "Escalar",
         desc: "Los canales ganadores reciben más impulso. Los sistemas se automatizan. El motor funciona con su propio impulso.",
       },
     ],
@@ -462,7 +463,8 @@ export const aboutContentI18n = localeContent({
       },
     ],
     ctaTitle: "Construyamos algo que dure.",
-    ctaSubtitle: "Solo aceptamos unos pocos clientes nuevos cada trimestre.|Los cupos se llenan rápido.",
+    ctaSubtitle:
+      "Solo aceptamos unos pocos clientes nuevos cada trimestre. Los cupos se llenan rápido.",
     ctaButton: "Iniciar la conversación",
   },
 });

@@ -5228,85 +5228,115 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   color: var(--muted);
 }
 
-/* About chapter compositions — each section has its own layout DNA */
+/* About — premium editorial agency page (no icon wells / hairline rails) */
+
+.about-page {
+  --about-ink: var(--foreground);
+  --about-mute: var(--muted);
+  --about-signal: var(--hero-signal);
+  background:
+    radial-gradient(
+      55% 40% at 100% 0%,
+      color-mix(in oklab, var(--hero-signal) 7%, transparent),
+      transparent 70%
+    ),
+    var(--background);
+}
+
+/* Editorial left rhythm — break the sitewide centered chapter-lead metronome */
+.about-page .chapter-lead,
+.about-page .chapter-lead .section-eyebrow,
+.about-page .chapter-lead .chapter-lead__heading,
+.about-page .chapter-lead .chapter-lead__dek {
+  text-align: left;
+  margin-inline: 0;
+  justify-items: start;
+}
+
+.about-page .chapter-lead {
+  display: grid;
+  justify-items: start;
+  max-width: 40rem;
+}
+
+.about-why__lead {
+  margin-bottom: 3rem;
+  max-width: 40rem;
+}
+
+@media (min-width: 900px) {
+  .about-why__lead {
+    margin-bottom: 4.5rem;
+  }
+}
+
 .about-why {
   display: grid;
-  gap: 2.5rem;
-  text-align: center;
-  justify-items: center;
+  gap: 2.75rem;
+  align-items: start;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 960px) {
   .about-why {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 3rem 4rem;
-    align-items: start;
-    text-align: left;
-    justify-items: stretch;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: 4rem 5rem;
   }
 }
 
-.about-why__col {
+.about-why__problem,
+.about-why__solution {
   display: grid;
-  gap: 1rem;
+  gap: 1.1rem;
   min-width: 0;
-  justify-items: center;
-}
-
-@media (min-width: 900px) {
-  .about-why__col {
-    justify-items: start;
-  }
 }
 
 .about-why__label {
   margin: 0;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 650;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--about-mute);
 }
 
-.about-why__col--solution .about-why__label {
-  color: var(--hero-signal);
+.about-why__solution .about-why__label {
+  color: var(--about-signal);
 }
 
 .about-why__quote {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.45rem, 2.8vw, 1.95rem);
+  font-size: clamp(1.85rem, 3.6vw, 2.65rem);
   font-weight: 750;
-  letter-spacing: -0.035em;
-  line-height: 1.2;
-  color: var(--foreground);
-  text-wrap: pretty;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  color: var(--about-ink);
+  text-wrap: balance;
+  max-width: 16ch;
 }
 
 .about-why__copy {
   margin: 0;
-  max-width: 36rem;
+  max-width: 34rem;
   font-size: 1.0625rem;
   line-height: 1.7;
-  color: var(--muted);
+  color: var(--about-mute);
   text-wrap: pretty;
 }
 
 .about-why__still {
   display: block;
-  margin-top: 3rem;
+  margin-top: 3.5rem;
   width: 100%;
   overflow: hidden;
-  border-radius: var(--radius-xl, 1rem);
-  aspect-ratio: 21 / 10;
-  background: color-mix(in oklab, var(--foreground) 3%, transparent);
-  border: 1px solid color-mix(in oklab, var(--foreground) 6%, transparent);
+  aspect-ratio: 16 / 9;
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
 }
 
 @media (min-width: 900px) {
   .about-why__still {
-    margin-top: 4rem;
-    aspect-ratio: 24 / 10;
+    margin-top: 5rem;
+    aspect-ratio: 21 / 9;
   }
 }
 
@@ -5316,187 +5346,233 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   object-fit: cover;
   object-position: center;
   display: block;
+  transform: scale(1.02);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Partnership — three designed columns with accent bars (no icons, no cards) */
-.about-signals {
+.about-why__still:hover .about-why__still-img {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-why__still-img,
+  .about-why__still:hover .about-why__still-img {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Partnership — sticky lead + indexed rows */
+.about-partnership {
+  display: grid;
+  gap: 3rem;
+}
+
+@media (min-width: 960px) {
+  .about-partnership {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 4rem 5.5rem;
+    align-items: start;
+  }
+}
+
+.about-partnership__lead {
+  min-width: 0;
+}
+
+@media (min-width: 960px) {
+  .about-partnership__lead {
+    position: sticky;
+    top: 6.5rem;
+  }
+}
+
+.about-partnership__list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 2rem;
+  gap: 2.75rem;
 }
 
-@media (min-width: 800px) {
-  .about-signals {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 2rem 2.5rem;
+@media (min-width: 900px) {
+  .about-partnership__list {
+    gap: 3.25rem;
   }
 }
 
-.about-signal {
+.about-partnership__row {
   display: grid;
-  gap: 0.85rem;
-  padding: 1.15rem 0 0;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.25rem 1.75rem;
+  padding: 0;
   border: none;
-  border-top: 3px solid var(--hero-signal);
-  border-radius: 0;
   background: transparent;
-  box-shadow: none;
-  text-align: left;
-  justify-items: start;
 }
 
-.about-signal__title {
+.about-partnership__index {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: color-mix(in oklab, var(--about-signal) 80%, var(--foreground));
+  padding-top: 0.15rem;
+}
+
+.about-partnership__body {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.about-partnership__title {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+  font-size: clamp(1.55rem, 2.8vw, 2rem);
   font-weight: 750;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
-  color: var(--foreground);
-  max-width: 14ch;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--about-ink);
+  max-width: 16ch;
   text-wrap: balance;
 }
 
-.about-signal__copy {
+.about-partnership__copy {
   margin: 0;
-  max-width: 28rem;
-  font-size: 0.975rem;
-  line-height: 1.6;
-  color: var(--muted);
+  max-width: 36rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--about-mute);
   text-wrap: pretty;
 }
 
-/* Method — connected phase rail (dot marks, no icons) */
+/* Method — oversized numbers, vertical stack */
 .about-method {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 2rem;
-  position: relative;
+  gap: 2.5rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .about-method {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1.5rem 1.25rem;
-  }
-
-  .about-method::before {
-    content: "";
-    position: absolute;
-    top: 0.4rem;
-    left: 8%;
-    right: 8%;
-    height: 1px;
-    background: color-mix(in oklab, var(--hero-signal) 35%, transparent);
-    pointer-events: none;
+    gap: 3.25rem;
   }
 }
 
 .about-method__step {
   display: grid;
-  gap: 0.95rem;
-  justify-items: start;
-  text-align: left;
+  gap: 0.85rem 2rem;
   padding: 0;
   border: none;
-  border-radius: 0;
   background: transparent;
   position: relative;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 768px) {
   .about-method__step {
-    justify-items: center;
-    text-align: center;
+    grid-template-columns: 6.5rem minmax(0, 1fr);
+    align-items: start;
   }
 }
 
-.about-method__mark {
-  display: block;
-  width: 0.85rem;
-  height: 0.85rem;
-  border-radius: 50%;
-  background: var(--hero-signal);
-  box-shadow: 0 0 0 4px color-mix(in oklab, var(--background) 100%, transparent);
-  position: relative;
-  z-index: 1;
+.about-method__num {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.75rem, 6vw, 4.25rem);
+  font-weight: 750;
+  letter-spacing: -0.07em;
+  line-height: 0.9;
+  color: color-mix(in oklab, var(--about-signal) 70%, transparent);
+  animation: about-num-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes about-num-in {
+  from {
+    opacity: 0.35;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-method__num {
+    animation: none;
+  }
 }
 
 .about-method__copy {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.55rem;
   min-width: 0;
-  justify-items: start;
-}
-
-@media (min-width: 900px) {
-  .about-method__copy {
-    justify-items: center;
-  }
+  max-width: 38rem;
+  padding-top: 0.35rem;
 }
 
 .about-method__title {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+  font-size: clamp(1.85rem, 3.2vw, 2.45rem);
   font-weight: 750;
-  letter-spacing: -0.04em;
-  line-height: 1.08;
-  color: var(--foreground);
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  color: var(--about-ink);
 }
 
 .about-method__body {
   margin: 0;
-  max-width: 16rem;
-  font-size: 0.975rem;
-  line-height: 1.55;
-  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--about-mute);
   text-wrap: pretty;
 }
 
-/* Architecture — linked role list */
+/* Architecture — channel index + plate */
+.about-arch__lead {
+  margin-bottom: 3rem;
+  max-width: 40rem;
+}
+
+@media (min-width: 900px) {
+  .about-arch__lead {
+    margin-bottom: 4rem;
+  }
+}
+
 .about-arch {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1.5rem;
+  gap: 2.25rem 3rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 800px) {
   .about-arch {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.75rem 2rem;
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1180px) {
   .about-arch {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2.75rem 3.25rem;
   }
 }
 
 .about-arch__node {
   display: grid;
-  gap: 0.75rem;
-  justify-items: center;
-  text-align: center;
-  padding: 1.25rem 1rem;
-  border: none;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-}
-
-.about-arch__lead {
-  display: flex;
-  flex-direction: column;
   gap: 0.55rem;
-  align-items: center;
+  align-content: start;
+  padding: 0;
+  border: none;
+  background: transparent;
+  text-align: left;
+  justify-items: start;
 }
 
 .about-arch__role {
@@ -5505,42 +5581,64 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   font-weight: 650;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--hero-signal);
+  color: var(--about-signal);
 }
 
 .about-arch__title {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+  font-size: clamp(1.55rem, 2.6vw, 1.95rem);
   font-weight: 750;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
-  color: var(--foreground);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--about-ink);
 }
 
 .about-arch__copy {
   margin: 0;
-  max-width: 22rem;
-  font-size: 0.975rem;
-  line-height: 1.55;
-  color: var(--muted);
+  max-width: 28rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--about-mute);
   text-wrap: pretty;
 }
 
 .about-arch__caption {
-  margin-top: 1.75rem;
-  text-align: center;
-  max-width: 40rem;
-  margin-inline: auto;
+  margin: 2.5rem 0 0;
+  max-width: 36rem;
 }
 
 .about-arch__caption p {
   margin: 0;
-  max-width: 42rem;
-  font-size: 0.975rem;
-  line-height: 1.6;
-  color: var(--muted);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+  color: var(--about-ink);
   text-wrap: pretty;
+}
+
+.about-arch__plate {
+  display: block;
+  margin-top: 3rem;
+  width: min(100%, 52rem);
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+@media (min-width: 900px) {
+  .about-arch__plate {
+    margin-top: 4rem;
+  }
+}
+
+.about-arch__plate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Marketing audit scorecard */
@@ -5721,100 +5819,94 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   color: var(--muted);
 }
 
-/* Principles — manifesto rows */
+/* Principles — open manifesto stack */
 .about-principles {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 2rem;
+  gap: 3.25rem;
+  max-width: 48rem;
+}
+
+@media (min-width: 900px) {
+  .about-principles {
+    gap: 4rem;
+  }
 }
 
 .about-principle {
   display: grid;
-  gap: 0.65rem;
+  gap: 0.7rem;
   padding: 0;
   border: none;
-  border-radius: 0;
   background: transparent;
-  box-shadow: none;
-}
-
-@media (min-width: 900px) {
-  .about-principle {
-    grid-template-columns: 9rem minmax(0, 1fr);
-    column-gap: 2.5rem;
-    align-items: start;
-  }
 }
 
 .about-principle__accent {
   margin: 0;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
-  font-weight: 750;
-  letter-spacing: -0.03em;
-  text-transform: none;
-  color: var(--hero-signal);
-}
-
-.about-principle__body {
-  display: grid;
-  gap: 0.45rem;
-  min-width: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--about-signal);
 }
 
 .about-principle__title {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.55rem, 3vw, 2.15rem);
+  font-size: clamp(2rem, 4.2vw, 3rem);
   font-weight: 750;
-  letter-spacing: -0.04em;
-  line-height: 1.12;
-  color: var(--foreground);
-  max-width: 28ch;
+  letter-spacing: -0.05em;
+  line-height: 1.05;
+  color: var(--about-ink);
+  max-width: 18ch;
+  text-wrap: balance;
 }
 
 .about-principle__copy {
   margin: 0;
   max-width: 40rem;
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--about-mute);
   text-wrap: pretty;
 }
 
+/* Roadmap — open year spine (no tiles) */
 .about-roadmap {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1.25rem;
+  gap: 2.75rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
   .about-roadmap {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.35rem;
+    gap: 3.5rem;
   }
 }
 
 .about-roadmap__item {
   display: grid;
-  gap: 1.15rem;
-  height: 100%;
-  padding: 1.55rem 1.55rem 1.7rem;
-  border-radius: 1rem;
-  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  gap: 1rem 2.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
-.about-roadmap__item--now {
-  background: color-mix(in oklab, var(--hero-signal) 8%, transparent);
+@media (min-width: 800px) {
+  .about-roadmap__item {
+    grid-template-columns: 9.5rem minmax(0, 1fr);
+    align-items: start;
+  }
 }
 
-.about-roadmap__meta {
+.about-roadmap__year-block {
   display: grid;
-  gap: 0.35rem;
+  gap: 0.45rem;
+  align-content: start;
 }
 
 .about-roadmap__status {
@@ -5822,7 +5914,7 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   font-weight: 650;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--about-mute);
 }
 
 .about-roadmap__item--done .about-roadmap__status {
@@ -5830,25 +5922,37 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 }
 
 .about-roadmap__item--now .about-roadmap__status {
-  color: var(--hero-signal);
+  color: var(--about-signal);
 }
 
 .about-roadmap__year {
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: color-mix(in oklab, var(--foreground) 55%, var(--muted));
+  font-size: clamp(1.85rem, 3.4vw, 2.5rem);
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--about-ink);
+}
+
+.about-roadmap__item--now .about-roadmap__year {
+  color: var(--about-signal);
+}
+
+.about-roadmap__body {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+  max-width: 40rem;
 }
 
 .about-roadmap__title {
-  margin: 0.15rem 0 0;
+  margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.55rem, 2.8vw, 2rem);
-  font-weight: 800;
+  font-size: clamp(1.65rem, 2.8vw, 2.15rem);
+  font-weight: 750;
   letter-spacing: -0.04em;
-  line-height: 1.05;
-  color: var(--foreground);
+  line-height: 1.08;
+  color: var(--about-ink);
 }
 
 .about-roadmap__list {
@@ -5856,26 +5960,13 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.45rem;
 }
 
 .about-roadmap__list li {
-  position: relative;
-  padding-left: 0.95rem;
-  font-size: 0.975rem;
+  font-size: 1.02rem;
   line-height: 1.55;
-  color: var(--muted);
-}
-
-.about-roadmap__list li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 0.35rem;
-  height: 0.35rem;
-  border-radius: 50%;
-  background: var(--hero-signal);
+  color: var(--about-mute);
 }
 
 /* ─── Blog — professional editorial system ─── */
