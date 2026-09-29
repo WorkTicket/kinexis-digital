@@ -21,7 +21,7 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
   const t = await getTranslations("common");
   const tNav = await getTranslations("nav");
   const accentStyle = {
-    "--industry-accent": industry.accentColor ?? "#0099b8",
+    "--industry-accent": industry.accentColor ?? "#0066ff",
   } as CSSProperties;
 
   return (

@@ -2,7 +2,7 @@ import type { Industry } from "../types";
 
 export const industry: Industry = {
   slug: "hvac",
-  accentColor: "#0099b8",
+  accentColor: "#0066ff",
   title: "HVAC",
   navLabel: "HVAC",
   eyebrow: "Weather-driven demand",

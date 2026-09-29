@@ -1,21 +1,21 @@
 /*
  * Site-wide gradient system
- * Light: cool graphite washes + whisper of cyan on studio paper.
- * Dark: soft paper washes + neon-cyan rim light on graphite.
+ * Light mode: subtle black ink washes on white paper.
+ * Dark mode: subtle white paper washes on black.
  * Tokens keep chapter sections and atmosphere in sync.
  */
 
 :root,
 [data-theme="light"] {
-  --gradient-ink: #05060a;
-  --gradient-paper: #f5f7fa;
-  --gradient-signal: #0099b8;
+  --gradient-ink: #000000;
+  --gradient-paper: #ffffff;
+  --gradient-signal: #0066ff;
 
   --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 2.8%, transparent);
   --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 4.2%, transparent);
   --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 6%, transparent);
   --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 1.6%, transparent);
-  --gradient-flow-cyan: color-mix(in oklab, var(--gradient-signal) 4.5%, transparent);
+  --gradient-flow-cyan: color-mix(in oklab, var(--gradient-signal) 3.5%, transparent);
 
   --site-gradient-base: var(--background);
   --site-gradient-flow:
@@ -99,15 +99,15 @@
 
 .dark,
 [data-theme="dark"] {
-  --gradient-ink: #f5f7fa;
-  --gradient-paper: #05060a;
-  --gradient-signal: #00d4ff;
+  --gradient-ink: #ffffff;
+  --gradient-paper: #000000;
+  --gradient-signal: #0066ff;
 
   --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 4%, transparent);
   --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 6%, transparent);
   --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 8.5%, transparent);
   --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 2.2%, transparent);
-  --gradient-flow-cyan: color-mix(in oklab, var(--gradient-signal) 7%, transparent);
+  --gradient-flow-cyan: color-mix(in oklab, var(--gradient-signal) 6%, transparent);
 
   --site-gradient-flow:
     radial-gradient(
@@ -142,7 +142,7 @@
     radial-gradient(
       ellipse 130% 95% at 50% 50%,
       transparent 40%,
-      color-mix(in oklab, var(--gradient-paper) 55%, transparent) 100%
+      color-mix(in oklab, var(--gradient-ink) 5%, transparent) 100%
     );
 
   --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 7%, transparent);
