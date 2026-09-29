@@ -11,8 +11,8 @@ export const pageHeroStills = {
   about: {
     src: "/assets/images/agency/hero-about.webp",
     srcSm: "/assets/images/agency/hero-about-sm.webp",
-    /** Bias drafting tools / ink into the clear right half under the wash */
-    focus: "82% 48%",
+    /** Bias desk craft into the clear right half under the wash */
+    focus: "78% 42%",
   },
   caseStudies: {
     src: "/assets/images/agency/hero-work.webp",
