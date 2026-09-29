@@ -9,8 +9,8 @@ export const pageHeroStills = {
     srcSm: "/assets/images/agency/hero-services-sm.webp",
   },
   about: {
-    src: "/assets/images/agency/hero-about.webp",
-    srcSm: "/assets/images/agency/hero-about-sm.webp",
+    src: "/assets/images/agency/hero-about.webp?v=20260929b",
+    srcSm: "/assets/images/agency/hero-about-sm.webp?v=20260929b",
     /** Bias desk craft into the clear right half under the wash */
     focus: "78% 42%",
   },

@@ -130,7 +130,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-why__still media-grade"
           >
             <Image
-              src="/assets/images/agency/about-system.webp"
+              src="/assets/images/agency/about-system.webp?v=20260929b"
               alt=""
               width={1600}
               height={800}
@@ -269,7 +269,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch__plate media-grade"
           >
             <Image
-              src="/assets/images/editorial/about-architecture-plate.webp"
+              src="/assets/images/editorial/about-architecture-plate.webp?v=20260929b"
               alt=""
               width={1400}
               height={788}
