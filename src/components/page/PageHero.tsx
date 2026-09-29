@@ -24,6 +24,8 @@ type PageHeroProps = {
   /** Unique still for this route (preferred over shared default) */
   atmosphereSrc?: string;
   atmosphereSrcSm?: string;
+  /** CSS object-position for the atmosphere still under the left wash */
+  atmosphereFocus?: string;
   /** Shorter hero for intake pages (contact) */
   compact?: boolean;
   /** Hide CTA row when the next section is the action */
@@ -51,6 +53,7 @@ export async function PageHero({
   atmosphere,
   atmosphereSrc,
   atmosphereSrcSm,
+  atmosphereFocus,
   compact = false,
   hideActions = false,
   intake = false,
@@ -79,6 +82,7 @@ export async function PageHero({
             ? undefined
             : "/assets/images/editorial/hero-still-sm.webp")
         }
+        focus={atmosphereFocus}
       />
     );
 

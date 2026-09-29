@@ -81,6 +81,7 @@ export default async function AboutPage({ params }: Props) {
         secondaryLabel={tCommon("seeTheWork")}
         atmosphereSrc={pageHeroStills.about.src}
         atmosphereSrcSm={pageHeroStills.about.srcSm}
+        atmosphereFocus={pageHeroStills.about.focus}
       />
 
       {/* Why — manifesto + full-bleed still */}
@@ -268,7 +269,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch__plate media-grade"
           >
             <Image
-              src="/assets/images/editorial/service-seo.webp"
+              src="/assets/images/editorial/about-architecture-plate.webp"
               alt=""
               width={1400}
               height={788}

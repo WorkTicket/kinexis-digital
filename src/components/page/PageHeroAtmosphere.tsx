@@ -1,3 +1,5 @@
+import type { CSSProperties } from "react";
+
 /**
  * Full-bleed still for marketing PageHero routes.
  * Pass a page-specific asset so hubs don't share one photo.
@@ -5,17 +7,24 @@
 export function PageHeroAtmosphere({
   src,
   srcSm,
+  focus,
 }: {
   src: string;
   /** Optional smaller still for phones; falls back to `src`. */
   srcSm?: string;
+  /** CSS object-position — bias the subject into the clear half under the wash. */
+  focus?: string;
 }) {
   const mobileSrc = srcSm ?? src;
+  const style = focus
+    ? ({ ["--page-hero-focus"]: focus } as CSSProperties)
+    : undefined;
 
   return (
     <div
       aria-hidden
       className="page-hero-atmosphere pointer-events-none absolute inset-0 overflow-hidden"
+      style={style}
     >
       <picture>
         {srcSm ? (

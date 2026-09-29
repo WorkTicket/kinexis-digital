@@ -1,6 +1,7 @@
 /**
  * Unique full-bleed stills for marketing PageHero hubs.
  * Prefer bright agency craft / UI plates over gothic desk photography.
+ * Optional `focus` is CSS object-position for pages tuned under the left wash.
  */
 export const pageHeroStills = {
   services: {
@@ -10,6 +11,8 @@ export const pageHeroStills = {
   about: {
     src: "/assets/images/agency/hero-about.webp",
     srcSm: "/assets/images/agency/hero-about-sm.webp",
+    /** Bias drafting tools / ink into the clear right half under the wash */
+    focus: "82% 48%",
   },
   caseStudies: {
     src: "/assets/images/agency/hero-work.webp",

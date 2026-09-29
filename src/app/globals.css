@@ -695,8 +695,9 @@ html.in-app-browser #contact-form {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Bias subject into the clear right half of the agency wash */
-  object-position: 72% 42%;
+  /* Bias subject into the clear right half of the agency wash.
+     About (and other tuned pages) override via --page-hero-focus */
+  object-position: var(--page-hero-focus, 72% 42%);
   opacity: 0.92;
   /* Full B&W — match homepage hero film grade on colorful craft stills */
   filter: grayscale(1) brightness(0.98) contrast(1.06);
@@ -750,7 +751,7 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
 @media (max-width: 767px) {
   .page-hero-atmosphere__media {
     opacity: 0.78;
-    object-position: 70% 35%;
+    object-position: var(--page-hero-focus, 70% 35%);
     filter: grayscale(1) brightness(0.98) contrast(1.06);
   }
 
@@ -2055,6 +2056,25 @@ html[data-theme="dark"] .ind-visual__img--thumb,
 .dark .ind-visual__img--panel,
 .dark .ind-visual__img--thumb {
   filter: grayscale(0.35) contrast(1.05) brightness(0.92);
+}
+
+/* About section plates — full editorial B&W to match the About hero film */
+.about-why__still.media-grade,
+.about-why__still.media-grade img,
+.about-arch__plate.media-grade,
+.about-arch__plate.media-grade img {
+  filter: grayscale(1) contrast(1.04) brightness(1.01);
+}
+
+html[data-theme="dark"] .about-why__still.media-grade,
+html[data-theme="dark"] .about-why__still.media-grade img,
+html[data-theme="dark"] .about-arch__plate.media-grade,
+html[data-theme="dark"] .about-arch__plate.media-grade img,
+.dark .about-why__still.media-grade,
+.dark .about-why__still.media-grade img,
+.dark .about-arch__plate.media-grade,
+.dark .about-arch__plate.media-grade img {
+  filter: grayscale(1) contrast(1.06) brightness(0.92);
 }
 
 /* Industries hub index — folio rows with editorial thumbs */
