@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
-import { IndustryGlyph } from "@/components/industry/industry-glyphs";
 import { IndustryProgramChapter } from "@/components/industry/IndustryProgramChapter";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { getHubIndustries, getIndustriesContent } from "@/content/industries";
+import { industryVisuals } from "@/content/industry-visuals";
 import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
@@ -82,23 +83,32 @@ export default async function IndustriesPage({ params }: Props) {
             delayChildren={0.03}
             aria-label={tCommon("jumpToIndustry")}
           >
-            {hubIndustries.map((industry) => (
-              <RevealItem as="li" key={industry.slug} variant="fadeUp">
-                <a href={`#${industry.slug}`} className="ind-folio__item">
-                  <span className="ind-folio__glyph" aria-hidden>
-                    <IndustryGlyph slug={industry.slug} />
-                  </span>
-                  <span>
-                    <span className="ind-folio__role">{industry.eyebrow}</span>
-                    <span className="ind-folio__name">{industry.title}</span>
-                  </span>
-                  <p className="ind-folio__meta">{industry.summary}</p>
-                  <span className="ind-folio__arrow" aria-hidden>
-                    →
-                  </span>
-                </a>
-              </RevealItem>
-            ))}
+            {hubIndustries.map((industry) => {
+              const visual = industryVisuals[industry.slug];
+              return (
+                <RevealItem as="li" key={industry.slug} variant="fadeUp">
+                  <a href={`#${industry.slug}`} className="ind-folio__item">
+                    <span className="ind-folio__thumb media-grade" aria-hidden>
+                      <Image
+                        src={visual.thumb}
+                        alt=""
+                        width={96}
+                        height={72}
+                        className="ind-folio__thumb-img"
+                      />
+                    </span>
+                    <span>
+                      <span className="ind-folio__role">{industry.eyebrow}</span>
+                      <span className="ind-folio__name">{industry.title}</span>
+                    </span>
+                    <p className="ind-folio__meta">{industry.summary}</p>
+                    <span className="ind-folio__arrow" aria-hidden>
+                      →
+                    </span>
+                  </a>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>

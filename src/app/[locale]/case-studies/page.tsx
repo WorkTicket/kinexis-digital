@@ -54,6 +54,7 @@ export default async function WorkIndexPage({ params }: Props) {
         secondaryHref="/services"
         secondaryLabel={tCommon("seeServices")}
         atmosphereSrc={pageHeroStills.caseStudies.src}
+        atmosphereSrcSm={pageHeroStills.caseStudies.srcSm}
       />
 
       <section

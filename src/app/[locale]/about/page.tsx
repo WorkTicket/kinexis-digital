@@ -1,4 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import {
+  Activity,
+  BarChart3,
+  Layers,
+  LineChart,
+  Mail,
+  Search,
+  Target,
+  Users,
+  type LucideIcon,
+} from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
@@ -20,6 +32,17 @@ import {
 } from "@/lib/schema";
 
 type Props = { params: LocaleParams };
+
+const SIGNAL_ICONS: LucideIcon[] = [Users, Target, LineChart];
+const METHOD_ICONS: LucideIcon[] = [Search, Layers, Activity, BarChart3, Target];
+const ARCH_ICONS: Record<string, LucideIcon> = {
+  seo: Search,
+  "paid-ads": Target,
+  "web-design": Layers,
+  analytics: BarChart3,
+  cro: Activity,
+  email: Mail,
+};
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -114,6 +137,16 @@ export default async function AboutPage({ params }: Props) {
               ))}
             </Reveal>
           </div>
+
+          <Reveal variant="fadeUp" delay={0.1} className="about-why__still media-grade">
+            <Image
+              src="/assets/images/editorial/hero-still.webp"
+              alt=""
+              width={1400}
+              height={700}
+              className="about-why__still-img"
+            />
+          </Reveal>
         </div>
       </section>
 
@@ -139,14 +172,20 @@ export default async function AboutPage({ params }: Props) {
             className="about-signals"
             stagger={duration.staggerTight}
           >
-            {c.partnership.signals.map((signal) => (
-              <RevealItem key={signal.title} as="li" variant="fadeUp">
-                <article className="about-signal">
-                  <h3 className="about-signal__title">{signal.title}</h3>
-                  <p className="about-signal__copy">{signal.description}</p>
-                </article>
-              </RevealItem>
-            ))}
+            {c.partnership.signals.map((signal, index) => {
+              const Icon = SIGNAL_ICONS[index % SIGNAL_ICONS.length];
+              return (
+                <RevealItem key={signal.title} as="li" variant="fadeUp">
+                  <article className="about-signal">
+                    <span className="icon-well" aria-hidden>
+                      <Icon strokeWidth={1.5} />
+                    </span>
+                    <h3 className="about-signal__title">{signal.title}</h3>
+                    <p className="about-signal__copy">{signal.description}</p>
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>
@@ -173,16 +212,27 @@ export default async function AboutPage({ params }: Props) {
             stagger={duration.staggerTight}
             aria-label="KINEXIS method phases"
           >
-            {c.method.phases.map((phase) => (
-              <RevealItem key={phase.title} as="li" variant="fadeUp">
-                <article className="about-method__step">
-                  <div className="about-method__copy">
-                    <h3 className="about-method__title">{phase.title}</h3>
-                    <p className="about-method__body">{phase.desc}</p>
-                  </div>
-                </article>
-              </RevealItem>
-            ))}
+            {c.method.phases.map((phase, index) => {
+              const Icon = METHOD_ICONS[index % METHOD_ICONS.length];
+              return (
+                <RevealItem key={phase.title} as="li" variant="fadeUp">
+                  <article className="about-method__step">
+                    <div className="about-method__mark">
+                      <span className="icon-well" aria-hidden>
+                        <Icon strokeWidth={1.5} />
+                      </span>
+                      <span className="about-method__index" aria-hidden>
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className="about-method__copy">
+                      <h3 className="about-method__title">{phase.title}</h3>
+                      <p className="about-method__body">{phase.desc}</p>
+                    </div>
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>
@@ -209,15 +259,23 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch"
             stagger={duration.staggerTight}
           >
-            {c.architecture.nodes.map((node) => (
-              <RevealItem key={node.id} as="li" variant="fadeUp">
-                <article className="about-arch__node">
-                  <p className="about-arch__role">{node.role}</p>
-                  <h3 className="about-arch__title">{node.label}</h3>
-                  <p className="about-arch__copy">{node.summary}</p>
-                </article>
-              </RevealItem>
-            ))}
+            {c.architecture.nodes.map((node) => {
+              const Icon = ARCH_ICONS[node.id] ?? Layers;
+              return (
+                <RevealItem key={node.id} as="li" variant="fadeUp">
+                  <article className="about-arch__node">
+                    <div className="about-arch__lead">
+                      <span className="icon-well icon-well--sm" aria-hidden>
+                        <Icon strokeWidth={1.5} />
+                      </span>
+                      <p className="about-arch__role">{node.role}</p>
+                    </div>
+                    <h3 className="about-arch__title">{node.label}</h3>
+                    <p className="about-arch__copy">{node.summary}</p>
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
 
           <Reveal variant="fadeUp" delay={0.12} className="about-arch__caption">

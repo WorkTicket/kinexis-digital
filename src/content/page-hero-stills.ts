@@ -13,7 +13,9 @@ export const pageHeroStills = {
     srcSm: "/assets/images/editorial/market-legal-thumb.webp",
   },
   caseStudies: {
-    src: "/assets/images/case-studies/ecommerce-store-growth.webp",
+    // Editorial market plate — not a color client screenshot
+    src: "/assets/images/editorial/market-ecommerce.webp",
+    srcSm: "/assets/images/editorial/market-ecommerce-thumb.webp",
   },
   industries: {
     src: "/assets/images/editorial/market-home-services.webp",
@@ -24,7 +26,8 @@ export const pageHeroStills = {
     srcSm: "/assets/images/editorial/market-saas-thumb.webp",
   },
   resources: {
-    src: "/assets/images/resources/web-performance.webp",
+    // Editorial craft still — not a colorful product UI screenshot
+    src: "/assets/images/editorial/service-web-design.webp",
   },
   audit: {
     src: "/assets/images/editorial/service-seo.webp",
