@@ -1,3 +1,4 @@
+import { getLocale } from "next-intl/server";
 import { WebsiteHero } from "@/components/landing/WebsiteHero";
 import {
   WebsiteBuild,
@@ -13,6 +14,8 @@ import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
+import { getWebsiteLpChrome } from "@/content/lp/website-lp-chrome";
+import type { Locale } from "@/i18n/routing";
 import { faqSchema } from "@/lib/schema";
 import "@/styles/components/landing.css";
 import "@/styles/components/landing-agency.css";
@@ -33,15 +36,19 @@ import "@/styles/components/landing-showcase.css";
  *
  * No FinalCta on live. Sticky CTA is client-side.
  */
-export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
+export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
+  const locale = (await getLocale()) as Locale;
+  const chrome = getWebsiteLpChrome(locale);
   const samples = page.samples ?? [];
   const cta = page.heroCtaLabel ?? page.stickyCtaLabel;
 
   return (
     <main className="lp-web flex flex-1 flex-col pb-24 lg:pb-0">
       <JsonLd data={faqSchema(page.faqs)} />
-      <WebsiteHero page={page} />
-      {page.outcomes?.length ? <WebsiteOutcomes items={page.outcomes} /> : null}
+      <WebsiteHero page={page} caption={chrome.heroCaption} />
+      {page.outcomes?.length ? (
+        <WebsiteOutcomes items={page.outcomes} ariaLabel={chrome.outcomesAria} />
+      ) : null}
       {page.painTitle && page.painSubtitle ? (
         <WebsitePain
           eyebrow={page.painEyebrow}
@@ -49,6 +56,8 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           subtitle={page.painSubtitle}
           before={page.transformBefore}
           after={page.transformAfter}
+          datedCaption={chrome.datedCaption}
+          customCaption={chrome.customCaption}
         />
       ) : null}
       {samples.length && page.samplesTitle ? (
@@ -61,6 +70,8 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           workCtaTitle={page.workCtaTitle}
           ctaLabel={cta}
           landingSlug={page.slug}
+          kicker={chrome.liveSitesKicker}
+          viewLiveLabel={chrome.viewLive}
         />
       ) : null}
       {page.buildTitle && page.sellPoints?.length ? (
@@ -68,6 +79,7 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           title={page.buildTitle}
           points={page.sellPoints}
           ownershipStatement={page.ownershipStatement}
+          kicker={chrome.includedKicker}
         />
       ) : null}
       {page.process?.length && page.processTitle ? (
@@ -75,6 +87,7 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           title={page.processTitle}
           intro={page.processIntro}
           steps={page.process}
+          kicker={chrome.howItWorksKicker}
         />
       ) : null}
       {page.pricingTitle && page.pricingAnchor ? (
@@ -89,6 +102,8 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           note={page.pricingNote}
           ctaLabel={cta}
           landingSlug={page.slug}
+          kicker={chrome.pricingKicker}
+          startingLabel={chrome.startingLabel}
         />
       ) : null}
       {page.fitTitle && page.fitGoodItems?.length ? (
@@ -98,16 +113,21 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           goodItems={page.fitGoodItems}
           notTitle={page.fitNotTitle}
           notItems={page.fitNotItems}
+          kicker={chrome.fitKicker}
         />
       ) : null}
       <FaqAccordion
         items={page.faqs}
-        eyebrow="Before you send the form"
-        title="Straight answers"
+        eyebrow={chrome.faqEyebrow}
+        title={chrome.faqTitle}
         startClosed
         className="lp-web-faq"
       />
-      <WebsitePlan page={page} />
+      <WebsitePlan
+        page={page}
+        kicker={chrome.nextStepKicker}
+        figcaption={chrome.planFigcaption}
+      />
       <LandingStickyCta
         label={page.stickyCtaLabel}
         revealAfterId="lp-hero-actions"

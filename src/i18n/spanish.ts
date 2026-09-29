@@ -2,7 +2,8 @@ import type { Locale } from "./routing";
 
 export type SpanishLocale = "es-ES" | "es-419";
 
-export const SPANISH_LOCALES: SpanishLocale[] = ["es-ES", "es-419"];
+/** Prefer LatAm before Spain — matches public locale switcher order. */
+export const SPANISH_LOCALES: SpanishLocale[] = ["es-419", "es-ES"];
 
 export function isSpanishLocale(locale: Locale): locale is SpanishLocale {
   return locale === "es-ES" || locale === "es-419";

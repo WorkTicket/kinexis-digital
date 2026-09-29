@@ -3,23 +3,56 @@
  * Query values are mapped through an allowlist — never rendered as copy.
  */
 
+import { localeContent } from "@/i18n/locale-content";
+import type { Locale } from "@/i18n/routing";
+
 export const DEFAULT_HEADLINE_KEY = "business_grown" as const;
 export const DEFAULT_MARKET_KEY = "default" as const;
 
-export const LANDING_HEADLINES = {
-  build_business: ["Build your business.", "We'll build the website."],
-  business_grown: [
-    "Your business has grown.",
-    "Your website should show it.",
-  ],
-} as const;
+const headlinesByLocale = localeContent({
+  en: {
+    build_business: [
+      "Build your business.",
+      "We'll build the website.",
+    ] as const,
+    business_grown: [
+      "Your business has grown.",
+      "Your website should show it.",
+    ] as const,
+  },
+  "es-419": {
+    build_business: [
+      "Haz crecer tu negocio.",
+      "Nosotros hacemos el sitio web.",
+    ] as const,
+    business_grown: [
+      "Tu negocio ha crecido.",
+      "Tu sitio web debería mostrarlo.",
+    ] as const,
+  },
+});
+
+/** English map kept for tests and allowlist typing. */
+export const LANDING_HEADLINES = headlinesByLocale.en;
 
 export type LandingHeadlineKey = keyof typeof LANDING_HEADLINES;
 
-export const LANDING_MARKETS = {
-  default: "Custom websites for contractors & home-service businesses.",
-  raleigh: "Custom websites for Raleigh contractors & home-service businesses.",
-} as const;
+const marketsByLocale = localeContent({
+  en: {
+    default: "Custom websites for contractors & home-service businesses.",
+    raleigh:
+      "Custom websites for Raleigh contractors & home-service businesses.",
+  },
+  "es-419": {
+    default:
+      "Sitios web a medida para contratistas y negocios de servicios del hogar.",
+    raleigh:
+      "Sitios web a medida para contratistas y servicios del hogar en Raleigh.",
+  },
+});
+
+/** English map kept for tests and allowlist typing. */
+export const LANDING_MARKETS = marketsByLocale.en;
 
 export type LandingMarketKey = keyof typeof LANDING_MARKETS;
 
@@ -45,6 +78,7 @@ export type LandingMessageInput = {
   utmContent?: string | null;
   utmCampaign?: string | null;
   market?: string | null;
+  locale?: Locale | null;
 };
 
 export type LandingMessage = {
@@ -66,6 +100,7 @@ export function resolveLandingMessage(
   const content = normalizeToken(input.utmContent);
   const campaign = normalizeToken(input.utmCampaign);
   const marketToken = normalizeToken(input.market);
+  const locale = input.locale ?? "en";
 
   const headlineKey =
     (content && HEADLINE_BY_CONTENT[content]) || DEFAULT_HEADLINE_KEY;
@@ -74,12 +109,14 @@ export function resolveLandingMessage(
     (campaign && MARKET_BY_CAMPAIGN[campaign]) ||
     DEFAULT_MARKET_KEY;
 
-  const headlineLines = LANDING_HEADLINES[headlineKey];
+  const headlines = headlinesByLocale[locale] ?? headlinesByLocale.en;
+  const markets = marketsByLocale[locale] ?? marketsByLocale.en;
+  const headlineLines = headlines[headlineKey];
 
   return {
     headlineKey,
     headlineLines,
     marketKey,
-    marketLine: LANDING_MARKETS[marketKey],
+    marketLine: markets[marketKey],
   };
 }

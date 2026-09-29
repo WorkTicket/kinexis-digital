@@ -255,6 +255,20 @@ describe("get-a-website landing page", () => {
     expect(getLandingPage("get-a-website", "es-419")?.heroPrice).not.toMatch(
       /\$|USD|dólar/i,
     );
+    expect(getLandingPage("get-a-website", "es-419")?.headlineLines).toEqual([
+      "Tu negocio ha crecido.",
+      "Tu sitio web debería mostrarlo.",
+    ]);
+    expect(getLandingPage("get-a-website", "es-ES")?.headlineLines).toEqual([
+      "Tu negocio ha crecido.",
+      "Tu sitio web debería mostrarlo.",
+    ]);
+    expect(getLandingPage("get-a-website", "es-419")?.subheadline).toMatch(
+      /Los clientes te buscan antes de llamar/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.heroCtaLabel).toMatch(
+      /plan gratis/i,
+    );
     expect(getLandingPage("get-a-website", "es-ES")?.pricingAnchor).toMatch(
       /2\.000 €/,
     );

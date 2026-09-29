@@ -46,37 +46,30 @@ function CrossMark() {
   );
 }
 
-const OUTCOME_MARKS: Record<string, ReactNode> = {
-  "Look established": (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden>
-      <path d="M8 44V22L32 8l24 14v22L32 58 8 44Z" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M20 34V24.5L32 17.5 44 24.5V34L32 41 20 34Z" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M32 41v9" stroke="currentColor" strokeWidth="2.4" />
-    </svg>
-  ),
-  "Generate inquiries": (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden>
-      <rect x="18" y="8" width="28" height="48" rx="5" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M26 14h12" stroke="currentColor" strokeWidth="2.4" />
-      <rect x="24" y="22" width="16" height="7" rx="1.5" fill="currentColor" />
-      <path d="M24 36h16M24 42h10" stroke="currentColor" strokeWidth="2.4" />
-    </svg>
-  ),
-  "Load quickly": (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden>
-      <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M32 32 42 18" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
-      <path d="M18 34h8l4 8 6-16 4 8h6" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />
-    </svg>
-  ),
-  "Own your website": (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden>
-      <rect x="14" y="26" width="36" height="26" rx="3" stroke="currentColor" strokeWidth="2.4" />
-      <path d="M22 26v-6a10 10 0 0 1 20 0v6" stroke="currentColor" strokeWidth="2.4" />
-      <circle cx="32" cy="39" r="3" fill="currentColor" />
-    </svg>
-  ),
-};
+/** Index-ordered marks so Spanish outcome titles still get icons. */
+const OUTCOME_MARKS: ReactNode[] = [
+  <svg key="established" viewBox="0 0 64 64" fill="none" aria-hidden>
+    <path d="M8 44V22L32 8l24 14v22L32 58 8 44Z" stroke="currentColor" strokeWidth="2.4" />
+    <path d="M20 34V24.5L32 17.5 44 24.5V34L32 41 20 34Z" stroke="currentColor" strokeWidth="2.4" />
+    <path d="M32 41v9" stroke="currentColor" strokeWidth="2.4" />
+  </svg>,
+  <svg key="inquiries" viewBox="0 0 64 64" fill="none" aria-hidden>
+    <rect x="18" y="8" width="28" height="48" rx="5" stroke="currentColor" strokeWidth="2.4" />
+    <path d="M26 14h12" stroke="currentColor" strokeWidth="2.4" />
+    <rect x="24" y="22" width="16" height="7" rx="1.5" fill="currentColor" />
+    <path d="M24 36h16M24 42h10" stroke="currentColor" strokeWidth="2.4" />
+  </svg>,
+  <svg key="fast" viewBox="0 0 64 64" fill="none" aria-hidden>
+    <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
+    <path d="M32 32 42 18" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
+    <path d="M18 34h8l4 8 6-16 4 8h6" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />
+  </svg>,
+  <svg key="own" viewBox="0 0 64 64" fill="none" aria-hidden>
+    <rect x="14" y="26" width="36" height="26" rx="3" stroke="currentColor" strokeWidth="2.4" />
+    <path d="M22 26v-6a10 10 0 0 1 20 0v6" stroke="currentColor" strokeWidth="2.4" />
+    <circle cx="32" cy="39" r="3" fill="currentColor" />
+  </svg>,
+];
 
 const PROCESS_MARKS = [
   // Website plan
@@ -113,16 +106,22 @@ type TransformCol = { title: string; items: string[] };
 /*  Outcomes                                                           */
 /* ------------------------------------------------------------------ */
 
-export function WebsiteOutcomes({ items }: { items: LandingPageOutcome[] }) {
+export function WebsiteOutcomes({
+  items,
+  ariaLabel = "What the website is built to do",
+}: {
+  items: LandingPageOutcome[];
+  ariaLabel?: string;
+}) {
   if (!items.length) return null;
   return (
-    <aside className="lp-web-outcomes" aria-label="What the website is built to do">
+    <aside className="lp-web-outcomes" aria-label={ariaLabel}>
       <div className="shell">
         <ul className="lp-web-outcomes__list">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <li key={item.title}>
               <span className="lp-web-mark" aria-hidden>
-                {OUTCOME_MARKS[item.title] ?? <CheckMark />}
+                {OUTCOME_MARKS[index] ?? <CheckMark />}
               </span>
               <p className="lp-web-outcomes__title">{item.title}</p>
               <p className="lp-web-outcomes__body">{item.body}</p>
@@ -144,12 +143,16 @@ export function WebsitePain({
   subtitle,
   before,
   after,
+  datedCaption = "A dated WordPress template",
+  customCaption = "A custom Next.js rebuild",
 }: {
   eyebrow?: string;
   title: string;
   subtitle: string;
   before?: TransformCol;
   after?: TransformCol;
+  datedCaption?: string;
+  customCaption?: string;
 }) {
   return (
     <section
@@ -167,13 +170,13 @@ export function WebsitePain({
             <div className="lp-web-pain__screen">
               <ShowcaseSite variant="greenfield-dated" layout="desktop" />
             </div>
-            <figcaption>A dated WordPress template</figcaption>
+            <figcaption>{datedCaption}</figcaption>
           </figure>
           <figure className="lp-web-pain__shot lp-web-pain__shot--after">
             <div className="lp-web-pain__screen">
               <ShowcaseSite variant="greenfield" layout="desktop" />
             </div>
-            <figcaption>A custom Next.js rebuild</figcaption>
+            <figcaption>{customCaption}</figcaption>
           </figure>
         </div>
         {before && after ? (
@@ -254,6 +257,8 @@ export function WebsiteWork({
   workCtaTitle,
   ctaLabel,
   landingSlug,
+  kicker = "Live sites",
+  viewLiveLabel = "View live website",
 }: {
   title: string;
   intro?: string;
@@ -263,6 +268,8 @@ export function WebsiteWork({
   workCtaTitle?: string;
   ctaLabel: string;
   landingSlug: string;
+  kicker?: string;
+  viewLiveLabel?: string;
 }) {
   if (!samples.length) return null;
 
@@ -274,7 +281,7 @@ export function WebsiteWork({
     >
       <div className="shell relative">
         <header className="lp-web-lead">
-          <p className="lp-web-kicker">Live sites</p>
+          <p className="lp-web-kicker">{kicker}</p>
           <h2 id="lp-web-work-heading">{title}</h2>
           {intro ? <p>{intro}</p> : null}
         </header>
@@ -309,7 +316,7 @@ export function WebsiteWork({
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      View live website
+                      {viewLiveLabel}
                     </a>
                   ) : null}
                 </div>
@@ -360,10 +367,12 @@ export function WebsiteBuild({
   title,
   points,
   ownershipStatement,
+  kicker = "What's included",
 }: {
   title: string;
   points: LandingPageSellPoint[];
   ownershipStatement?: string;
+  kicker?: string;
 }) {
   return (
     <section
@@ -372,7 +381,7 @@ export function WebsiteBuild({
     >
       <div className="shell relative">
         <header className="lp-web-lead">
-          <p className="lp-web-kicker">What&apos;s included</p>
+          <p className="lp-web-kicker">{kicker}</p>
           <h2 id="lp-web-build-heading">{title}</h2>
         </header>
         <figure className="lp-web-build__board">
@@ -430,10 +439,12 @@ export function WebsiteProcess({
   title,
   intro,
   steps,
+  kicker = "How it works",
 }: {
   title: string;
   intro?: string;
   steps: { title: string; detail: string }[];
+  kicker?: string;
 }) {
   return (
     <section
@@ -442,7 +453,7 @@ export function WebsiteProcess({
     >
       <div className="shell relative">
         <header className="lp-web-lead">
-          <p className="lp-web-kicker">How it works</p>
+          <p className="lp-web-kicker">{kicker}</p>
           <h2 id="lp-web-process-heading">{title}</h2>
           {intro ? <p>{intro}</p> : null}
         </header>
@@ -481,6 +492,8 @@ export function WebsitePricing({
   note,
   ctaLabel,
   landingSlug,
+  kicker = "Pricing",
+  startingLabel = "starting",
 }: {
   title: string;
   intro?: string;
@@ -492,6 +505,8 @@ export function WebsitePricing({
   note?: string;
   ctaLabel: string;
   landingSlug: string;
+  kicker?: string;
+  startingLabel?: string;
 }) {
   const soft = !addOns?.length;
 
@@ -504,14 +519,14 @@ export function WebsitePricing({
       <div className="shell relative">
         <div className="lp-web-pricing__layout">
           <header className="lp-web-lead">
-            <p className="lp-web-kicker">Pricing</p>
+            <p className="lp-web-kicker">{kicker}</p>
             <h2 id="lp-web-pricing-heading">{title}</h2>
             {intro ? <p>{intro}</p> : null}
           </header>
           <div className="lp-web-pricing__panel">
             <p className="lp-web-pricing__anchor">
               <span>{anchor}</span>
-              <small>starting</small>
+              <small>{startingLabel}</small>
             </p>
             {delivery ? (
               <p className="lp-web-pricing__delivery">{delivery}</p>
@@ -570,12 +585,14 @@ export function WebsiteFit({
   goodItems,
   notTitle,
   notItems,
+  kicker = "Fit check",
 }: {
   title: string;
   goodTitle?: string;
   goodItems?: string[];
   notTitle?: string;
   notItems?: string[];
+  kicker?: string;
 }) {
   return (
     <section
@@ -584,7 +601,7 @@ export function WebsiteFit({
     >
       <div className="shell relative">
         <header className="lp-web-lead">
-          <p className="lp-web-kicker">Fit check</p>
+          <p className="lp-web-kicker">{kicker}</p>
           <h2 id="lp-web-fit-heading">{title}</h2>
         </header>
         <div className="lp-web-fit__grid">
@@ -642,7 +659,15 @@ function PlanBuildBoard() {
   );
 }
 
-export function WebsitePlan({ page }: { page: LandingPageEntry }) {
+export function WebsitePlan({
+  page,
+  kicker = "Next step",
+  figcaption = "A short written brief. Five points, then a clear recommendation.",
+}: {
+  page: LandingPageEntry;
+  kicker?: string;
+  figcaption?: string;
+}) {
   const whatsapp =
     page.whatsappHref && page.whatsappPlanLabel
       ? { href: page.whatsappHref, label: page.whatsappPlanLabel }
@@ -658,7 +683,7 @@ export function WebsitePlan({ page }: { page: LandingPageEntry }) {
         <div className="lp-web-plan__layout">
           <div className="lp-web-plan__intro">
             <div>
-              <p className="lp-web-kicker">Next step</p>
+              <p className="lp-web-kicker">{kicker}</p>
               <h2 id="lp-web-plan-heading">{page.formTitle}</h2>
               <p>{page.formSubtitle}</p>
               {whatsapp ? (
@@ -681,9 +706,7 @@ export function WebsitePlan({ page }: { page: LandingPageEntry }) {
             </div>
             <figure className="lp-web-plan__folio">
               <PlanFolio />
-              <figcaption>
-                A short written brief. Five points, then a clear recommendation.
-              </figcaption>
+              <figcaption>{figcaption}</figcaption>
             </figure>
           </div>
           <div className="lp-web-plan__form">

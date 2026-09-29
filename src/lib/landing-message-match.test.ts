@@ -49,4 +49,20 @@ describe("resolveLandingMessage", () => {
     expect(JSON.stringify(message)).not.toContain(poison);
     expect(JSON.stringify(message)).not.toContain("boise-hack");
   });
+
+  it("serves Spanish headline and market copy for Spanish locales", () => {
+    const latam = resolveLandingMessage({ locale: "es-419" });
+    expect(latam.headlineLines).toEqual([
+      "Tu negocio ha crecido.",
+      "Tu sitio web debería mostrarlo.",
+    ]);
+    expect(latam.marketLine).toMatch(/contratistas/);
+
+    const spain = resolveLandingMessage({
+      locale: "es-ES",
+      utmContent: "build_business",
+    });
+    expect(spain.headlineLines[0]).toMatch(/negocio/i);
+    expect(spain.headlineLines.join(" ")).not.toMatch(/Build your business/i);
+  });
 });

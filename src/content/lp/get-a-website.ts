@@ -4,6 +4,7 @@
  */
 
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
+import { buildSpanishGetAWebsite } from "@/content/lp/get-a-website-es";
 import { localeContent } from "@/i18n/locale-content";
 import type { Locale } from "@/i18n/routing";
 import { applyLocalePricing, formatEsInteger } from "@/i18n/currency";
@@ -507,6 +508,12 @@ const baseGetAWebsite: LandingPageEntry = {
 /** English export kept for registry / tests. */
 export const getAWebsite: LandingPageEntry = baseGetAWebsite;
 
+/** Full Spanish bodies — LatAm soft numbers; Spain euros via softPricing.es-ES. */
+const spanishByLocale = {
+  "es-419": buildSpanishGetAWebsite(softPricing["es-419"]),
+  "es-ES": buildSpanishGetAWebsite(softPricing["es-ES"]),
+} as const;
+
 /** Spanish page WhatsApp CTAs — hero pill + plan text (nav is separate). */
 const spanishWhatsApp = {
   heroLabel: "Escribir por WhatsApp",
@@ -515,45 +522,25 @@ const spanishWhatsApp = {
     "Hola, me interesa el plan gratuito de sitio web para mi negocio.",
 } as const;
 
-/** Soft live-panel overlay for every locale; Spanish strips $ framing. */
+/** Full locale entry: English base, or full Spanish body + WhatsApp. */
 export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
-  const copy = softPricing[locale] ?? softPricing.en;
-  const next: LandingPageEntry = {
-    ...baseGetAWebsite,
-    pricingTitle: copy.pricingTitle,
-    pricingAnchor: copy.pricingAnchor,
-    pricingQualify: copy.pricingQualify,
-    pricingDelivery: copy.pricingDelivery,
-    pricingIntro: copy.pricingIntro,
-    pricingNote: copy.pricingNote,
-    pricingHighlights: copy.pricingHighlights,
-    pricingAddOns: [],
-    pricing: [],
-    monthlyTitle: copy.monthlyTitle,
-    monthlyCopy: copy.monthlyCopy,
-    heroPrice: copy.heroPrice,
-    proof: baseGetAWebsite.proof.map((item) => {
-      if (item.metric === "Optional") {
-        return { ...item, label: copy.proofSupportLabel };
-      }
-      if (item.label === "starting investment") {
-        return { ...item, metric: copy.proofStartMetric };
-      }
-      return item;
-    }),
-    faqs: baseGetAWebsite.faqs.map((faq) => {
-      if (/how much does a custom website cost/i.test(faq.question)) {
-        return { ...faq, answer: copy.costFaqAnswer };
-      }
-      if (/is hosting included/i.test(faq.question)) {
-        return { ...faq, answer: copy.hostingFaqAnswer };
-      }
-      if (/do i have to purchase monthly maintenance/i.test(faq.question)) {
-        return { ...faq, answer: copy.maintenanceFaqAnswer };
-      }
-      return faq;
-    }),
-  };
+  const next: LandingPageEntry = isSpanishLocale(locale)
+    ? { ...spanishByLocale[locale] }
+    : {
+        ...baseGetAWebsite,
+        pricingTitle: softPricing.en.pricingTitle,
+        pricingAnchor: softPricing.en.pricingAnchor,
+        pricingQualify: softPricing.en.pricingQualify,
+        pricingDelivery: softPricing.en.pricingDelivery,
+        pricingIntro: softPricing.en.pricingIntro,
+        pricingNote: softPricing.en.pricingNote,
+        pricingHighlights: softPricing.en.pricingHighlights,
+        pricingAddOns: [],
+        pricing: [],
+        monthlyTitle: softPricing.en.monthlyTitle,
+        monthlyCopy: softPricing.en.monthlyCopy,
+        heroPrice: softPricing.en.heroPrice,
+      };
 
   if (isSpanishLocale(locale)) {
     const href = getBusinessWhatsAppHref(spanishWhatsApp.prefill);
@@ -564,6 +551,6 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
     }
   }
 
-  // Rewrites remaining English $ strings (budget options, fit, closing, meta).
+  // Spain euros / LatAm soft rewrites for any remaining money framing.
   return applyLocalePricing(next, locale);
 }

@@ -15,7 +15,13 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
  * Spanish locales also get a WhatsApp support pill beside the plan CTA
  * (nav shows Soporte WhatsApp separately).
  */
-export function WebsiteHero({ page }: { page: LandingPageEntry }) {
+export function WebsiteHero({
+  page,
+  caption = "A1 Property Services — live site",
+}: {
+  page: LandingPageEntry;
+  caption?: string;
+}) {
   const lines = page.headlineLines?.length
     ? page.headlineLines
     : [page.headline];
@@ -95,7 +101,7 @@ export function WebsiteHero({ page }: { page: LandingPageEntry }) {
               image={still?.src}
               imageAlt={still?.alt}
               phoneImage={still?.mobileSrc}
-              caption="A1 Property Services — live site"
+              caption={caption}
               priority
             />
           </div>
