@@ -728,11 +728,11 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
   background: linear-gradient(
     90deg,
     var(--background) 0%,
-    var(--background) 38%,
-    color-mix(in oklab, var(--background) 88%, transparent) 48%,
-    color-mix(in oklab, var(--background) 42%, transparent) 62%,
-    color-mix(in oklab, var(--background) 12%, transparent) 78%,
-    transparent 92%
+    var(--background) 30%,
+    color-mix(in oklab, var(--background) 72%, transparent) 42%,
+    color-mix(in oklab, var(--background) 28%, transparent) 55%,
+    color-mix(in oklab, var(--background) 8%, transparent) 70%,
+    transparent 84%
   );
 }
 
@@ -746,12 +746,12 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -1.25rem -1.75rem -2.25rem -1.5rem;
+  inset: -1.25rem -1.25rem -2.25rem -1.5rem;
   background: var(--background);
   pointer-events: none;
   /* Soft right edge so it reads as wash, not a card */
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 70%, transparent 100%);
-  mask-image: linear-gradient(90deg, #000 0%, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 62%, transparent 100%);
 }
 
 @media (max-width: 767px) {
