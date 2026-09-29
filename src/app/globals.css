@@ -2036,26 +2036,45 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 /* Shared editorial grade — full B&W craft to match About / PageHero stills */
 .media-grade,
 .media-grade img,
-.svc-visual__img,
-.ind-visual__img,
-.ind-visual__img--panel,
-.ind-visual__img--thumb {
+.svc-visual__img {
   filter: grayscale(1) contrast(1.04) brightness(1.01);
 }
 
 html[data-theme="dark"] .media-grade,
 html[data-theme="dark"] .media-grade img,
 html[data-theme="dark"] .svc-visual__img,
+.dark .media-grade,
+.dark .media-grade img,
+.dark .svc-visual__img {
+  filter: grayscale(1) contrast(1.06) brightness(0.92);
+}
+
+/* Industries / markets plates — soft desat so prior UI stills keep brand blue */
+.ind-catalog .media-grade,
+.ind-catalog .media-grade img,
+.industry-still-band .media-grade,
+.industry-still-band .media-grade img,
+.ind-visual__img,
+.ind-visual__img--panel,
+.ind-visual__img--thumb {
+  filter: grayscale(0.25) contrast(1.03) brightness(1.02);
+}
+
+html[data-theme="dark"] .ind-catalog .media-grade,
+html[data-theme="dark"] .ind-catalog .media-grade img,
+html[data-theme="dark"] .industry-still-band .media-grade,
+html[data-theme="dark"] .industry-still-band .media-grade img,
 html[data-theme="dark"] .ind-visual__img,
 html[data-theme="dark"] .ind-visual__img--panel,
 html[data-theme="dark"] .ind-visual__img--thumb,
-.dark .media-grade,
-.dark .media-grade img,
-.dark .svc-visual__img,
+.dark .ind-catalog .media-grade,
+.dark .ind-catalog .media-grade img,
+.dark .industry-still-band .media-grade,
+.dark .industry-still-band .media-grade img,
 .dark .ind-visual__img,
 .dark .ind-visual__img--panel,
 .dark .ind-visual__img--thumb {
-  filter: grayscale(1) contrast(1.06) brightness(0.92);
+  filter: grayscale(0.35) contrast(1.05) brightness(0.92);
 }
 
 /* About section plates — full editorial B&W to match the About hero film */
