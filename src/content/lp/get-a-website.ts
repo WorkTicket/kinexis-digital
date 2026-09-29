@@ -8,6 +8,7 @@ import { localeContent } from "@/i18n/locale-content";
 import type { Locale } from "@/i18n/routing";
 import { applySpainEuros } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
+import { getBusinessWhatsAppHref } from "@/lib/business";
 
 const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260916g";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
@@ -505,6 +506,14 @@ const baseGetAWebsite: LandingPageEntry = {
 /** English export kept for registry / tests. */
 export const getAWebsite: LandingPageEntry = baseGetAWebsite;
 
+/** Spanish page WhatsApp CTAs — hero pill + plan text (nav is separate). */
+const spanishWhatsApp = {
+  heroLabel: "Escribir por WhatsApp",
+  planLabel: "Escribir por WhatsApp",
+  prefill:
+    "Hola, me interesa el plan gratuito de sitio web para mi negocio.",
+} as const;
+
 /** Soft live-panel overlay for every locale; Spain also gets euro rewrite. */
 export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
   const copy = softPricing[locale] ?? softPricing.en;
@@ -540,6 +549,15 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
       return faq;
     }),
   };
+
+  if (isSpanishLocale(locale)) {
+    const href = getBusinessWhatsAppHref(spanishWhatsApp.prefill);
+    if (href) {
+      next.whatsappHref = href;
+      next.whatsappHeroLabel = spanishWhatsApp.heroLabel;
+      next.whatsappPlanLabel = spanishWhatsApp.planLabel;
+    }
+  }
 
   if (isSpanishLocale(locale) && locale === "es-ES") {
     return applySpainEuros(next, locale);
