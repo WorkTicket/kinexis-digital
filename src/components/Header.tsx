@@ -76,7 +76,7 @@ export function Header() {
   const showWhatsApp = Boolean(whatsappHref);
   const contactHref = NAV_CONTACT_HREF;
   const contactLabel = t("contact");
-  const landing = getLandingChrome(pathname);
+  const landing = getLandingChrome(pathname, locale);
   const isSlimLanding = Boolean(landing?.slim);
 
   const supportSlot = (placement: "nav" | "menu") => {

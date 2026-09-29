@@ -1,7 +1,9 @@
 "use client";
 
+import { useLocale } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { usePathname } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 import { getLandingChrome } from "@/lib/landing-chrome";
 import { CTA_PRIMARY_HREF } from "@/lib/site-cta";
 
@@ -18,7 +20,8 @@ type Props = {
  */
 export function FooterCtaBand({ eyebrow, title, dek, buttonLabel }: Props) {
   const pathname = usePathname();
-  const landing = getLandingChrome(pathname);
+  const locale = useLocale() as Locale;
+  const landing = getLandingChrome(pathname, locale);
 
   if (landing) {
     return (

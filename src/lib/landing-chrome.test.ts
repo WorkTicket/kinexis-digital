@@ -33,6 +33,17 @@ describe("landing chrome", () => {
     expect(getLandingChrome("/contact")).toBeNull();
   });
 
+  it("localizes get-a-website chrome for Spanish locales", () => {
+    const latam = getLandingChrome("/lp/get-a-website", "es-419");
+    expect(latam?.headerCtaLabel).toMatch(/plan de sitio web/i);
+    expect(latam?.ctaLabel).toMatch(/plan gratis/i);
+    expect(latam?.closingTitle).toMatch(/plan gratis/i);
+    expect(latam?.headerCtaLabel).not.toMatch(/Get My Website Plan/i);
+
+    const spain = getLandingChrome("/lp/get-a-website", "es-ES");
+    expect(spain?.headerCtaLabel).toMatch(/plan de sitio web/i);
+  });
+
   it("hides the cookie banner on paid landers and thank-you", () => {
     expect(isCookieBannerExemptPath("/lp/get-a-website")).toBe(true);
     expect(isCookieBannerExemptPath("/en/lp/get-a-website")).toBe(true);
