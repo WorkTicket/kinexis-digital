@@ -143,7 +143,11 @@ describe("get-a-website landing page", () => {
       /most builds start around \$2,000/,
     );
     expect(page?.pricingQualify?.toLowerCase()).toMatch(
-      /exact scope and price come in your free website plan/,
+      /final pricing depends on scope/,
+    );
+    expect(page?.pricingPaths?.length).toBe(2);
+    expect(page?.pricingNote?.toLowerCase()).toMatch(
+      /hosting, maintenance, and ongoing support/,
     );
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
     expect(page?.conversionKind).toBe("audit");
@@ -248,6 +252,14 @@ describe("get-a-website landing page", () => {
     );
     expect(page?.pricing?.map((tier) => tier.price) ?? []).toEqual([]);
     expect(page?.pricingAnchor).toBe("Most builds start around $2,000");
+    expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).toMatch(
+      /\$2,000/,
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.pricingAnchor).toMatch(
+      /2\.000 €/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.pricing).toEqual([]);
+    expect(getLandingPage("get-a-website", "es-ES")?.pricing).toEqual([]);
     expect(page?.proofIntro.toLowerCase()).toMatch(/individual results vary/);
     expect(page?.proof.map((item) => item.metric)).toEqual([
       "1.8% → 3.9%",

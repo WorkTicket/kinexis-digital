@@ -573,6 +573,35 @@ html.lp-chrome .landing-sticky-cta__panel {
   text-wrap: balance;
 }
 
+.lp-web-pricing__paths {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+  max-width: 40rem;
+}
+
+.lp-web-pricing__paths li {
+  position: relative;
+  padding-left: 0.95rem;
+  font-size: 0.975rem;
+  line-height: 1.55;
+  color: var(--lp-muted);
+  text-wrap: pretty;
+}
+
+.lp-web-pricing__paths li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--hero-signal, #0066ff);
+}
+
 .lp-web-pricing--soft .lp-web-pricing__note {
   margin-top: 0.85rem;
   max-width: 36rem;

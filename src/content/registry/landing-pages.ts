@@ -1,4 +1,6 @@
-import { getAWebsite } from "@/content/lp/get-a-website";
+import { getAWebsite, getAWebsiteForLocale } from "@/content/lp/get-a-website";
+import type { Locale } from "@/i18n/routing";
+import { applySpainEuros } from "@/i18n/currency";
 import { getBusinessPhoneDisplay } from "@/lib/business";
 
 const CAMPAIGN_PHONE =
@@ -1013,6 +1015,14 @@ export const landingPages: LandingPageEntry[] = [
 
 export const landingPageSlugs = landingPages.map((p) => p.slug);
 
-export function getLandingPage(slug: string): LandingPageEntry | undefined {
-  return landingPages.find((p) => p.slug === slug);
+export function getLandingPage(
+  slug: string,
+  locale: Locale = "en",
+): LandingPageEntry | undefined {
+  if (slug === "get-a-website") {
+    return getAWebsiteForLocale(locale);
+  }
+  const page = landingPages.find((p) => p.slug === slug);
+  if (!page) return undefined;
+  return applySpainEuros(page, locale);
 }

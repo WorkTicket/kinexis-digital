@@ -1,5 +1,9 @@
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 import { LANDING_HEADLINES, LANDING_MARKETS } from "@/lib/landing-message-match";
+import { localeContent } from "@/i18n/locale-content";
+import type { Locale } from "@/i18n/routing";
+import { applySpainEuros } from "@/i18n/currency";
+import { isSpanishLocale } from "@/i18n/spanish";
 
 const A1_STILL = "/assets/images/lp/a1-desktop.webp";
 const A1_CASE_STILL = "/assets/images/case-studies/landscaping-company-growth.webp";
@@ -8,7 +12,59 @@ const PLUMBING_STILL = "/assets/images/case-studies/plumbing-company-growth.webp
 
 const CTA = "Get My Free Website Plan";
 
-export const getAWebsite: LandingPageEntry = {
+/** Soft pricing copy — no cold Essential/Growth/Custom board. */
+const softPricing = localeContent({
+  en: {
+    pricingTitle: "What does a custom website cost?",
+    pricingAnchor: "Most builds start around $2,000",
+    pricingQualify:
+      "Final pricing depends on scope, pages, and integrations.",
+    pricingIntro:
+      "Exact scope and price come in your free website plan — after we learn what you sell and what the site needs to do.",
+    pricingPaths: [
+      "Starting from scratch? We'll plan and build the site around your business.",
+      "Already have a website? We can redesign or rebuild it around what you need today.",
+    ],
+    pricingNote:
+      "Optional hosting, maintenance, and ongoing support available after launch.",
+    costFaqAnswer:
+      "Most builds start around $2,000. Larger sites run higher. You'll get a clear scope and price in your free website plan before you commit.",
+  },
+  "es-419": {
+    pricingTitle: "¿Cuánto cuesta un sitio web a medida?",
+    pricingAnchor: "La mayoría de proyectos empiezan alrededor de $2,000",
+    pricingQualify:
+      "El precio final depende del alcance, las páginas y las integraciones.",
+    pricingIntro:
+      "El alcance y el precio exactos llegan en tu plan gratuito de sitio web — después de entender qué vendes y qué tiene que lograr el sitio.",
+    pricingPaths: [
+      "¿Empezando de cero? Planificamos y construimos el sitio alrededor de tu negocio.",
+      "¿Ya tienes sitio? Podemos rediseñarlo o reconstruirlo según lo que necesitas hoy.",
+    ],
+    pricingNote:
+      "Hosting, mantenimiento y soporte continuo opcionales después del lanzamiento.",
+    costFaqAnswer:
+      "La mayoría de proyectos empiezan alrededor de $2,000. Los sitios más grandes cuestan más. Recibes alcance y precio claros en tu plan gratuito antes de comprometerte.",
+  },
+  "es-ES": {
+    pricingTitle: "¿Cuánto cuesta un sitio web a medida?",
+    pricingAnchor: "La mayoría de proyectos empiezan alrededor de $2,000",
+    pricingQualify:
+      "El precio final depende del alcance, las páginas y las integraciones.",
+    pricingIntro:
+      "El alcance y el precio exactos llegan en tu plan gratuito de sitio web — después de entender qué vendes y qué tiene que lograr el sitio.",
+    pricingPaths: [
+      "¿Empezando de cero? Planificamos y construimos el sitio alrededor de tu negocio.",
+      "¿Ya tienes sitio? Podemos rediseñarlo o reconstruirlo según lo que necesitas hoy.",
+    ],
+    pricingNote:
+      "Hosting, mantenimiento y soporte continuo opcionales después del lanzamiento.",
+    costFaqAnswer:
+      "La mayoría de proyectos empiezan alrededor de $2,000. Los sitios más grandes cuestan más. Recibes alcance y precio claros en tu plan gratuito antes de comprometerte.",
+  },
+});
+
+const baseGetAWebsite: LandingPageEntry = {
   slug: "get-a-website",
   serviceHref: "/services/web-design",
   serviceLabel: "Web design & development",
@@ -220,14 +276,13 @@ export const getAWebsite: LandingPageEntry = {
     "Remodeling",
     "Home Services",
   ],
-  pricingTitle: "What does a custom website cost?",
-  pricingAnchor: "Most builds start around $2,000",
-  pricingQualify:
-    "Exact scope and price come in your free website plan — after we learn what you sell and what the site needs to do.",
-  pricingIntro:
-    "Exact scope and price come in your free website plan — after we learn what you sell and what the site needs to do.",
-  pricingNote:
-    "You'll get a clear recommendation for your business before you commit to a build.",
+  // Soft pricing defaults (English). Locale overlays applied in withLocale().
+  pricingTitle: softPricing.en.pricingTitle,
+  pricingAnchor: softPricing.en.pricingAnchor,
+  pricingQualify: softPricing.en.pricingQualify,
+  pricingIntro: softPricing.en.pricingIntro,
+  pricingPaths: softPricing.en.pricingPaths,
+  pricingNote: softPricing.en.pricingNote,
   pricing: [],
   proofIntro:
     "Results from published KINEXIS client projects. Individual results vary.",
@@ -247,8 +302,7 @@ export const getAWebsite: LandingPageEntry = {
   faqs: [
     {
       question: "How much does a website cost?",
-      answer:
-        "Most builds start around $2,000. Larger sites run higher. You'll get a clear scope and price in your free website plan before you commit.",
+      answer: softPricing.en.costFaqAnswer,
     },
     {
       question: "Do I need an existing website?",
@@ -277,3 +331,31 @@ export const getAWebsite: LandingPageEntry = {
   ],
   stickyCtaLabel: CTA,
 };
+
+/** English export kept for registry / tests. */
+export const getAWebsite: LandingPageEntry = baseGetAWebsite;
+
+/** Soft-pricing overlay for every locale; Spain also gets euro rewrite. */
+export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
+  const copy = softPricing[locale] ?? softPricing.en;
+  const next: LandingPageEntry = {
+    ...baseGetAWebsite,
+    pricingTitle: copy.pricingTitle,
+    pricingAnchor: copy.pricingAnchor,
+    pricingQualify: copy.pricingQualify,
+    pricingIntro: copy.pricingIntro,
+    pricingPaths: copy.pricingPaths,
+    pricingNote: copy.pricingNote,
+    pricing: [],
+    faqs: baseGetAWebsite.faqs.map((faq) =>
+      /how much does a website cost/i.test(faq.question)
+        ? { ...faq, answer: copy.costFaqAnswer }
+        : faq,
+    ),
+  };
+
+  if (isSpanishLocale(locale) && locale === "es-ES") {
+    return applySpainEuros(next, locale);
+  }
+  return next;
+}

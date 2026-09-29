@@ -237,6 +237,7 @@ export function WebsitePricing({
   items,
   note,
   anchor,
+  paths,
   ctaLabel,
   landingSlug,
 }: {
@@ -246,6 +247,8 @@ export function WebsitePricing({
   note?: string;
   /** Soft price line shown instead of (or above) a cold tier board. */
   anchor?: string;
+  /** Soft path notes under the anchor (new site vs rebuild). */
+  paths?: string[];
   ctaLabel: string;
   landingSlug: string;
 }) {
@@ -276,6 +279,13 @@ export function WebsitePricing({
                   <p>{item.body}</p>
                 </article>
               </li>
+            ))}
+          </ul>
+        ) : null}
+        {paths?.length ? (
+          <ul className="lp-web-pricing__paths">
+            {paths.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
         ) : null}

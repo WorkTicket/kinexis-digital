@@ -40,7 +40,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const { slug } = await params;
-  const page = getLandingPage(slug);
+  const page = getLandingPage(slug, locale);
   if (!page) {
     return buildPageMetadata({
       locale,
@@ -82,9 +82,9 @@ function CheckIcon() {
 }
 
 export default async function LandingPage({ params }: Props) {
-  await resolveLocale(params);
+  const locale = await resolveLocale(params);
   const { slug } = await params;
-  const page = getLandingPage(slug);
+  const page = getLandingPage(slug, locale);
   if (!page) notFound();
 
   if (page.auditLayout) {

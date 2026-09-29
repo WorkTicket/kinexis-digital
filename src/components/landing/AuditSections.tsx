@@ -215,17 +215,24 @@ export function AuditPricing({
   intro,
   items,
   note,
+  anchor,
+  paths,
 }: {
   title: string;
   intro?: string;
-  items: LandingPagePrice[];
+  items?: LandingPagePrice[];
   note?: string;
+  anchor?: string;
+  paths?: string[];
 }) {
+  const tiers = items ?? [];
+  const softOnly = Boolean(anchor) && tiers.length === 0;
+
   return (
     <section
       id="pricing"
       aria-labelledby="lp-audit-pricing-heading"
-      className="lp-audit-pricing chapter relative"
+      className={`lp-audit-pricing chapter relative${softOnly ? " lp-audit-pricing--soft" : ""}`}
     >
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter">
@@ -237,24 +244,38 @@ export function AuditPricing({
           />
         </Reveal>
 
-        <RevealGroup
-          as="ul"
-          className="lp-audit-pricing__list"
-          stagger={duration.staggerTight}
-          delayChildren={0.06}
-        >
-          {items.map((item) => (
-            <RevealItem as="li" key={item.name} variant="fadeUp">
-              <article className="lp-audit-pricing__card">
-                <div className="lp-audit-pricing__head">
-                  <h3 className="lp-audit-pricing__name">{item.name}</h3>
-                  <p className="lp-audit-pricing__price">{item.price}</p>
-                </div>
-                <p className="lp-audit-pricing__body">{item.body}</p>
-              </article>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        {anchor ? (
+          <p className="lp-audit-pricing__anchor">{anchor}</p>
+        ) : null}
+
+        {tiers.length > 0 ? (
+          <RevealGroup
+            as="ul"
+            className="lp-audit-pricing__list"
+            stagger={duration.staggerTight}
+            delayChildren={0.06}
+          >
+            {tiers.map((item) => (
+              <RevealItem as="li" key={item.name} variant="fadeUp">
+                <article className="lp-audit-pricing__card">
+                  <div className="lp-audit-pricing__head">
+                    <h3 className="lp-audit-pricing__name">{item.name}</h3>
+                    <p className="lp-audit-pricing__price">{item.price}</p>
+                  </div>
+                  <p className="lp-audit-pricing__body">{item.body}</p>
+                </article>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        ) : null}
+
+        {paths?.length ? (
+          <ul className="lp-audit-pricing__paths">
+            {paths.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
 
         {note ? <p className="lp-audit-pricing__note">{note}</p> : null}
       </div>

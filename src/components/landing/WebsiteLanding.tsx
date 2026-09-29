@@ -54,10 +54,11 @@ export function WebsiteLanding({ page }: { page: LandingPageEntry }) {
       (page.pricingAnchor || page.pricing?.length) ? (
         <WebsitePricing
           title={page.pricingTitle}
-          intro={page.pricingQualify}
+          intro={page.pricingQualify ?? page.pricingIntro}
           items={page.pricing}
           note={page.pricingNote}
           anchor={page.pricingAnchor}
+          paths={page.pricingPaths}
           ctaLabel={cta}
           landingSlug={page.slug}
         />
