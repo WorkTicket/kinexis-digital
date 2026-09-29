@@ -68,7 +68,6 @@ export async function PageHero({
       <div className="hero-atmosphere pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {atmosphereLayer}
       </div>
-      <div className="hero-film-scrim" aria-hidden />
 
       <HeroScrollRoot
         className={cn(
