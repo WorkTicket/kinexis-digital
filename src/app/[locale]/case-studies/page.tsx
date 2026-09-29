@@ -55,6 +55,7 @@ export default async function WorkIndexPage({ params }: Props) {
         secondaryLabel={tCommon("seeServices")}
         atmosphereSrc={pageHeroStills.caseStudies.src}
         atmosphereSrcSm={pageHeroStills.caseStudies.srcSm}
+        atmosphereFocus={pageHeroStills.caseStudies.focus}
       />
 
       <section

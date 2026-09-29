@@ -7,7 +7,7 @@ export type IndustryVisualAsset = {
 };
 
 /** Bump when industry stills are regenerated so Next/Image + browser caches refresh. */
-const INDUSTRY_VISUAL_VERSION = "20260812a";
+const INDUSTRY_VISUAL_VERSION = "20260929e";
 
 function industryAsset(slug: IndustrySlug, kind: "full" | "thumb") {
   const base =
@@ -21,100 +21,97 @@ export const industryVisuals: Record<IndustrySlug, IndustryVisualAsset> = {
   "home-services": {
     src: industryAsset("home-services", "full"),
     thumb: industryAsset("home-services", "thumb"),
-    alt: "Home services editorial: local demand headline with map pin and booking appointment UI",
+    alt: "Home services desk craft: tablet map booking wireframe and job checklist clipboard",
   },
   ecommerce: {
     src: industryAsset("ecommerce", "full"),
     thumb: industryAsset("ecommerce", "thumb"),
-    alt: "Ecommerce editorial: product cards, checkout rail, and conversion metric chip",
+    alt: "Ecommerce desk craft: product grid wireframe and packing checklist",
   },
   healthcare: {
     src: industryAsset("healthcare", "full"),
     thumb: industryAsset("healthcare", "thumb"),
-    alt: "Healthcare editorial: confirmed appointment cards and Find, Book, Visit care path",
+    alt: "Healthcare desk craft: appointment schedule wireframe and clipboard checklist",
   },
   dental: {
     src: industryAsset("dental", "full"),
     thumb: industryAsset("dental", "thumb"),
-    alt: "Dental editorial: practice schedule grid with fill-rate progress and patient reminder",
+    alt: "Dental desk craft: practice schedule wireframe and appointment cards",
   },
   legal: {
     src: industryAsset("legal", "full"),
     thumb: industryAsset("legal", "thumb"),
-    alt: "Legal editorial: scales construction mark, matter file intake card, and case status rail",
+    alt: "Legal desk craft: case folders and document intake wireframe",
   },
   "real-estate": {
     src: industryAsset("real-estate", "full"),
     thumb: industryAsset("real-estate", "thumb"),
-    alt: "Real estate editorial: building facade grid with listing cards and open house chip",
+    alt: "Real estate desk craft: listing cards wireframe and floorplan sheet",
   },
   restaurants: {
     src: industryAsset("restaurants", "full"),
     thumb: industryAsset("restaurants", "thumb"),
-    alt: "Restaurants editorial: reservation board, guest card, and covers metric",
+    alt: "Restaurants desk craft: reservation board wireframe and menu layout grid",
   },
   saas: {
     src: industryAsset("saas", "full"),
     thumb: industryAsset("saas", "thumb"),
-    alt: "SaaS editorial: pipeline dashboard with charts, retention metric, and live overview",
+    alt: "SaaS desk craft: product dashboard wireframe and funnel diagram sheet",
   },
   automotive: {
     src: industryAsset("automotive", "full"),
     thumb: industryAsset("automotive", "thumb"),
-    alt: "Automotive editorial: vehicle mark with service checklist and bay booking card",
+    alt: "Automotive desk craft: service checklist and bay booking schedule",
   },
   fitness: {
     src: industryAsset("fitness", "full"),
     thumb: industryAsset("fitness", "thumb"),
-    alt: "Fitness editorial: class schedule grid with progress ring and membership status",
+    alt: "Fitness desk craft: class schedule wireframe and membership sheet",
   },
   construction: {
     src: industryAsset("construction", "full"),
     thumb: industryAsset("construction", "thumb"),
-    alt: "Construction editorial: blueprint panel with project timeline and won bid chip",
+    alt: "Construction desk craft: blueprint grids and project timeline wireframe",
   },
   "professional-services": {
     src: industryAsset("professional-services", "full"),
     thumb: industryAsset("professional-services", "thumb"),
-    alt: "Professional services editorial: signed proposal document and engagement agenda rail",
+    alt: "Professional services desk craft: proposal document and agenda wireframe",
   },
   "financial-services": {
     src: industryAsset("financial-services", "full"),
     thumb: industryAsset("financial-services", "thumb"),
-    alt: "Financial services editorial: growth chart, portfolio cards, and allocation mix",
+    alt: "Financial services desk craft: portfolio chart wireframe and allocation sheets",
   },
   education: {
     src: industryAsset("education", "full"),
     thumb: industryAsset("education", "thumb"),
-    alt: "Education editorial: course module path with enrollment open chip",
+    alt: "Education desk craft: course module path wireframe and notebooks",
   },
   "beauty-wellness": {
     src: industryAsset("beauty-wellness", "full"),
     thumb: industryAsset("beauty-wellness", "thumb"),
-    alt: "Beauty and wellness editorial: treatment menu, booking card, and capacity ring",
+    alt: "Beauty and wellness desk craft: treatment booking menu and appointment cards",
   },
   plumbing: {
     src: industryAsset("home-services", "full"),
     thumb: industryAsset("home-services", "thumb"),
-    alt: "Plumbing marketing editorial: emergency call path, service-area map, and booked-job proof",
+    alt: "Plumbing desk craft: service-area map wireframe and job checklist",
   },
   landscaping: {
-    // Construction plate — project / outdoor built-environment language
     src: industryAsset("construction", "full"),
     thumb: industryAsset("construction", "thumb"),
-    alt: "Landscaping marketing editorial: project timeline, estimate booking, and outdoor portfolio cues",
+    alt: "Landscaping desk craft: project timeline wireframe and estimate sheets",
   },
   hvac: {
-    // Automotive plate — mechanical service / bay dispatch language
     src: industryAsset("automotive", "full"),
     thumb: industryAsset("automotive", "thumb"),
-    alt: "HVAC marketing editorial: repair dispatch card and seasonal demand cues",
+    alt: "HVAC desk craft: dispatch checklist and bay booking schedule",
   },
   roofing: {
-    // Real-estate plate — building facade / inspection language
     src: industryAsset("real-estate", "full"),
     thumb: industryAsset("real-estate", "thumb"),
-    alt: "Roofing marketing editorial: building facade, inspection booking, and local job proof",
+    alt: "Roofing desk craft: listing-style building cards and inspection booking sheet",
   },
 };
 

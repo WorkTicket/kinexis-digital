@@ -6,7 +6,7 @@ export type ServiceVisual = {
 };
 
 /** Bump when service stills are regenerated so Next/Image + browser caches refresh. */
-const SERVICE_VISUAL_VERSION = "20260811c";
+const SERVICE_VISUAL_VERSION = "20260929e";
 
 function serviceAsset(slug: string) {
   return `/assets/images/services/service-${slug}.webp?v=${SERVICE_VISUAL_VERSION}`;
@@ -15,22 +15,22 @@ function serviceAsset(slug: string) {
 export const serviceVisuals: Record<ServiceSlug, ServiceVisual> = {
   branding: {
     src: serviceAsset("branding"),
-    alt: "Brand foundation graphic with mark construction, type specimen, and color system",
+    alt: "Brand craft desk: logo construction grids, type specimen sheets, and ruler",
   },
   "web-design": {
     src: serviceAsset("web-design"),
-    alt: "Desktop and mobile wireframe mockups showing a responsive site layout",
+    alt: "Web design desk craft: laptop wireframe with printed desktop and mobile layouts",
   },
   seo: {
     src: serviceAsset("seo"),
-    alt: "Search results graphic with the top ranking result highlighted",
+    alt: "SEO desk craft: laptop search wireframe with keyword matrix sheet",
   },
   "paid-media": {
     src: serviceAsset("paid-media"),
-    alt: "Ad creative cards on a targeting reticle with campaign outcome icons",
+    alt: "Paid media desk craft: campaign calendar wireframe and media plan sheets",
   },
   "content-marketing": {
     src: serviceAsset("content-marketing"),
-    alt: "Editorial document layout with a discover, create, distribute process rail",
+    alt: "Content marketing desk craft: editorial proofs and content calendar grid",
   },
 };

@@ -64,6 +64,7 @@ export default async function IndustriesPage({ params }: Props) {
         className="industries-hub-hero"
         atmosphereSrc={pageHeroStills.industries.src}
         atmosphereSrcSm={pageHeroStills.industries.srcSm}
+        atmosphereFocus={pageHeroStills.industries.focus}
       />
 
       <section

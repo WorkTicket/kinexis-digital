@@ -47,6 +47,8 @@ export default async function AuditPage({ params }: Props) {
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
         atmosphereSrc={pageHeroStills.audit.src}
+        atmosphereSrcSm={pageHeroStills.audit.srcSm}
+        atmosphereFocus={pageHeroStills.audit.focus}
       />
 
       <section

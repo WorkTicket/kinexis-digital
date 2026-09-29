@@ -59,6 +59,8 @@ export default async function ResourcesPage({ params }: Props) {
         secondaryHref="/blog"
         secondaryLabel={tCommon("readTheBlog")}
         atmosphereSrc={pageHeroStills.resources.src}
+        atmosphereSrcSm={pageHeroStills.resources.srcSm}
+        atmosphereFocus={pageHeroStills.resources.focus}
       />
 
       <section

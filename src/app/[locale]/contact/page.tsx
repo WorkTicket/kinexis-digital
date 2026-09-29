@@ -85,6 +85,7 @@ export default async function ContactPage({ params }: Props) {
         hideActions
         atmosphereSrc={pageHeroStills.contact.src}
         atmosphereSrcSm={pageHeroStills.contact.srcSm}
+        atmosphereFocus={pageHeroStills.contact.focus}
       />
 
       <section className="chapter chapter--studio relative">

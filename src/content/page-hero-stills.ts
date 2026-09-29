@@ -1,38 +1,46 @@
 /**
  * Unique full-bleed stills for marketing PageHero hubs.
- * Prefer bright agency craft / UI plates over gothic desk photography.
- * Optional `focus` is CSS object-position for pages tuned under the left wash.
+ * Grade: bright high-key B&W editorial craft (About is the style reference).
+ * Optional `focus` is CSS object-position under the left wash.
  */
+const V = "20260929e";
+
 export const pageHeroStills = {
   services: {
-    src: "/assets/images/agency/hero-services.webp",
-    srcSm: "/assets/images/agency/hero-services-sm.webp",
+    src: `/assets/images/agency/hero-services.webp?v=${V}`,
+    srcSm: `/assets/images/agency/hero-services-sm.webp?v=${V}`,
+    focus: "78% 42%",
   },
   about: {
-    src: "/assets/images/agency/hero-about.webp?v=20260929d",
-    srcSm: "/assets/images/agency/hero-about-sm.webp?v=20260929d",
+    src: `/assets/images/agency/hero-about.webp?v=20260929d`,
+    srcSm: `/assets/images/agency/hero-about-sm.webp?v=20260929d`,
     /** Bias desk craft into the clear right half under the wash */
     focus: "80% 44%",
   },
   caseStudies: {
-    src: "/assets/images/agency/hero-work.webp",
-    srcSm: "/assets/images/agency/hero-work-sm.webp",
+    src: `/assets/images/agency/hero-work.webp?v=${V}`,
+    srcSm: `/assets/images/agency/hero-work-sm.webp?v=${V}`,
+    focus: "76% 40%",
   },
   industries: {
-    src: "/assets/images/agency/hero-industries.webp",
-    srcSm: "/assets/images/agency/hero-industries-sm.webp",
+    src: `/assets/images/agency/hero-industries.webp?v=${V}`,
+    srcSm: `/assets/images/agency/hero-industries-sm.webp?v=${V}`,
+    focus: "78% 42%",
   },
   contact: {
-    src: "/assets/images/agency/hero-contact.webp",
-    srcSm: "/assets/images/agency/hero-contact-sm.webp",
+    src: `/assets/images/agency/hero-contact.webp?v=${V}`,
+    srcSm: `/assets/images/agency/hero-contact-sm.webp?v=${V}`,
+    focus: "72% 45%",
   },
   resources: {
-    src: "/assets/images/agency/hero-resources.webp",
-    srcSm: "/assets/images/agency/hero-resources-sm.webp",
+    src: `/assets/images/agency/hero-resources.webp?v=${V}`,
+    srcSm: `/assets/images/agency/hero-resources-sm.webp?v=${V}`,
+    focus: "74% 42%",
   },
   audit: {
-    // SEO craft plate — on-brand UI language
-    src: "/assets/images/services/service-seo.webp",
+    src: `/assets/images/agency/hero-audit.webp?v=${V}`,
+    srcSm: `/assets/images/agency/hero-audit-sm.webp?v=${V}`,
+    focus: "78% 40%",
   },
 } as const;
 
