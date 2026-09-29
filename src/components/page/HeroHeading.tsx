@@ -20,7 +20,11 @@ export function composeHeroHeading(
   const titleWords = t.split(/\s+/).filter(Boolean).length;
   const signalWords = s.split(/\s+/).filter(Boolean).length;
   const titleIsClause = titleWords >= 3 || /[.!?]$/.test(t);
-  const stack = Boolean(s && titleIsClause && signalWords >= 2);
+  // Stack only when BOTH lines have weight — never orphan a 1-word line
+  const balancedCouplet = titleWords >= 2 && signalWords >= 2;
+  const stack = Boolean(
+    s && ((titleIsClause && signalWords >= 2) || balancedCouplet),
+  );
 
   return {
     mode: stack ? "stack" : "single",
