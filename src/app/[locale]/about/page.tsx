@@ -130,7 +130,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-why__still media-grade"
           >
             <Image
-              src="/assets/images/agency/about-system.webp?v=20260929b"
+              src="/assets/images/agency/about-system.webp?v=20260929d"
               alt=""
               width={1600}
               height={800}
@@ -141,7 +141,7 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Partnership — sticky lead + indexed manifesto rows */}
+      {/* Partnership — sticky lead + manifesto rows (no index numbers) */}
       <section
         aria-labelledby="about-work-heading"
         className="chapter chapter--void relative overflow-hidden"
@@ -163,16 +163,13 @@ export default async function AboutPage({ params }: Props) {
             </Reveal>
 
             <RevealGroup
-              as="ol"
+              as="ul"
               className="about-partnership__list"
               stagger={duration.staggerTight}
             >
-              {c.partnership.signals.map((signal, index) => (
+              {c.partnership.signals.map((signal) => (
                 <RevealItem key={signal.title} as="li" variant="fadeUp">
                   <article className="about-partnership__row">
-                    <span className="about-partnership__index" aria-hidden>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                     <div className="about-partnership__body">
                       <h3 className="about-partnership__title">
                         {signal.title}
@@ -189,7 +186,7 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Method — large-number vertical stack */}
+      {/* Method — phase titles only (no 01/02/03/04) */}
       <section
         aria-labelledby="about-method-heading"
         className="chapter chapter--signal relative overflow-hidden"
@@ -205,17 +202,14 @@ export default async function AboutPage({ params }: Props) {
           </Reveal>
 
           <RevealGroup
-            as="ol"
+            as="ul"
             className="about-method"
             stagger={duration.staggerTight}
             aria-label="KINEXIS method phases"
           >
-            {c.method.phases.map((phase, index) => (
+            {c.method.phases.map((phase) => (
               <RevealItem key={phase.title} as="li" variant="fadeUp">
                 <article className="about-method__step">
-                  <span className="about-method__num" aria-hidden>
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                   <div className="about-method__copy">
                     <h3 className="about-method__title">{phase.title}</h3>
                     <p className="about-method__body">{phase.desc}</p>
@@ -269,7 +263,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch__plate media-grade"
           >
             <Image
-              src="/assets/images/editorial/about-architecture-plate.webp?v=20260929b"
+              src="/assets/images/editorial/about-architecture-plate.webp?v=20260929d"
               alt=""
               width={1400}
               height={788}
