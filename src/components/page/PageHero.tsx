@@ -30,6 +30,7 @@ type PageHeroProps = {
 
 /**
  * Site-wide cinematic hero — same shell, spacing, and enter cascade as HomeHero.
+ * Brand lockup leads the composition; page title remains the semantic h1.
  */
 export async function PageHero({
   eyebrow,
@@ -74,12 +75,19 @@ export async function PageHero({
           <HeroParallax layer="copy">
             <div className="hero-copy relative z-[3]">
               <div className="hero-enter hero-enter-1">
-                <p className="section-eyebrow">{eyebrow}</p>
+                <p className="hero-brand hero-brand--page">
+                  <span className="hero-brand__name">KINEXIS</span>
+                  <span className="hero-brand__mark">Digital</span>
+                </p>
               </div>
+
+              <p className="hero-enter hero-enter-1 section-eyebrow mt-5 sm:mt-6">
+                {eyebrow}
+              </p>
 
               <h1
                 id="page-hero-heading"
-                className="hero-enter hero-enter-2 mt-5 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-6 md:mt-7"
+                className="hero-enter hero-enter-2 mt-4 font-[family-name:var(--font-display)] font-bold tracking-[-0.045em] text-balance text-foreground sm:mt-5 md:mt-6"
               >
                 <span className="hero-line">
                   <span className="hero-line__text">{title}</span>

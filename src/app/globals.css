@@ -40,16 +40,18 @@
 
 :root,
 [data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #000000;
-  --muted: #525252;
-  --line: rgba(0, 0, 0, 0.12);
-  --atmosphere: rgba(0, 0, 0, 0.04);
-  --hero-signal: #0066ff;
-  --ink: #000000;
-  --paper: #ffffff;
-  --accent: #0066ff;
-  --accent-dim: #0066ff33;
+  /* Cool studio paper — not cream, not flat white */
+  --background: #f5f7fa;
+  --foreground: #05060a;
+  --muted: #5a6472;
+  --line: rgba(5, 6, 10, 0.12);
+  --atmosphere: rgba(5, 6, 10, 0.045);
+  --hero-signal: #0099b8;
+  --ink: #05060a;
+  --paper: #f5f7fa;
+  --accent: #0099b8;
+  --accent-dim: #0099b833;
+  --accent-ink: #05060a;
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-accent: var(--accent);
@@ -59,16 +61,18 @@
 
 .dark,
 [data-theme="dark"] {
-  --background: #000000;
-  --foreground: #ffffff;
-  --muted: #a3a3a3;
-  --line: rgba(255, 255, 255, 0.14);
-  --atmosphere: rgba(255, 255, 255, 0.05);
-  --hero-signal: #0066ff;
-  --ink: #ffffff;
-  --paper: #000000;
-  --accent: #0066ff;
-  --accent-dim: #0066ff33;
+  /* Graphite studio — brand neon cyan signal */
+  --background: #05060a;
+  --foreground: #f5f7fa;
+  --muted: #9aa3b0;
+  --line: rgba(245, 247, 250, 0.14);
+  --atmosphere: rgba(245, 247, 250, 0.05);
+  --hero-signal: #00d4ff;
+  --ink: #f5f7fa;
+  --paper: #05060a;
+  --accent: #00d4ff;
+  --accent-dim: #00d4ff33;
+  --accent-ink: #05060a;
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-accent: var(--accent);
@@ -90,16 +94,16 @@
 
 :root,
 [data-theme="light"] {
-  --glass-bg: rgba(255, 255, 255, 0.42);
-  --glass-bg-strong: rgba(255, 255, 255, 0.58);
+  --glass-bg: rgba(245, 247, 250, 0.42);
+  --glass-bg-strong: rgba(245, 247, 250, 0.58);
   --glass-border: rgba(255, 255, 255, 0.55);
   --glass-highlight: rgba(255, 255, 255, 0.7);
-  --glass-shadow: 0 24px 48px -28px rgba(15, 23, 42, 0.28);
+  --glass-shadow: 0 24px 48px -28px rgba(5, 6, 10, 0.28);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
   /* Chrome glass — light fill so the blur is the frost, not a dark sheet. */
-  --chrome-glass: rgba(255, 255, 255, 0.55);
-  --chrome-fallback: rgba(255, 255, 255, 0.92);
-  --chrome-glass-border: rgba(0, 0, 0, 0.08);
+  --chrome-glass: rgba(245, 247, 250, 0.55);
+  --chrome-fallback: rgba(245, 247, 250, 0.92);
+  --chrome-glass-border: rgba(5, 6, 10, 0.08);
   --chrome-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
@@ -112,9 +116,9 @@
   --glass-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.65);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.14);
   /* Chrome glass — light fill so the blur is the frost, not a dark sheet. */
-  --chrome-glass: rgba(0, 0, 0, 0.58);
-  --chrome-fallback: rgba(0, 0, 0, 0.92);
-  --chrome-glass-border: rgba(255, 255, 255, 0.14);
+  --chrome-glass: rgba(5, 6, 10, 0.58);
+  --chrome-fallback: rgba(5, 6, 10, 0.92);
+  --chrome-glass-border: rgba(245, 247, 250, 0.14);
   --chrome-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
@@ -655,7 +659,7 @@ html.in-app-browser #contact-form {
 
 /* Soft film grade. Position via inset (not transform) so the frost pane can
    still sample these pixels for backdrop-filter.
-   Mobile: no live filters — full-viewport filter is the hero paint killer. */
+   Mobile: skip live filters — full-viewport filter hurts first paint. */
 .hero-film-media {
   position: absolute;
   inset: 0;
@@ -665,13 +669,13 @@ html.in-app-browser #contact-form {
   object-fit: cover;
   object-position: 58% 42%;
   filter: none;
-  opacity: 0.72;
+  opacity: 0.82;
 }
 
 @media (min-width: 1024px) {
   .hero-film-media {
     opacity: 1;
-    filter: grayscale(1) brightness(1) contrast(1);
+    filter: grayscale(0.45) brightness(0.96) contrast(1.06);
   }
 }
 
@@ -689,15 +693,61 @@ html.in-app-browser #contact-form {
   opacity: 1;
 }
 
+/* Brand masthead — hero-level signal; must outrank the value headline */
 .hero-brand {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15em;
   margin: 0;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(0.8125rem, 1.1vw, 0.9375rem);
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: var(--foreground);
+}
+
+@media (min-width: 768px) {
+  .hero-brand {
+    align-items: flex-start;
+  }
+}
+
+.hero-brand__name {
+  display: block;
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-size: clamp(3.35rem, 11vw + 0.25rem, 8.75rem);
+  font-weight: 700;
+  line-height: 0.86;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.hero-brand__mark {
+  display: block;
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  font-size: clamp(0.95rem, 1.6vw + 0.35rem, 1.35rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 62%, var(--muted));
+}
+
+/* Inner marketing heroes — brand present, page title stays primary h1 scale */
+.hero-brand--page .hero-brand__name {
+  font-size: clamp(1.85rem, 4.2vw + 0.2rem, 3.35rem);
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+.hero-brand--page .hero-brand__mark {
+  font-size: clamp(0.7rem, 0.55vw + 0.55rem, 0.875rem);
+  letter-spacing: 0.36em;
+}
+
+/* Value headline sits under the brand masthead — secondary scale */
+.hero-shell--film .hero-enter-2 {
+  font-size: clamp(1.65rem, 3.4vw + 0.35rem, 3.15rem);
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  max-width: 18ch;
 }
 
 .hero-enter-2 {
@@ -766,11 +816,24 @@ html.in-app-browser #contact-form {
 
 @keyframes hero-brand-track {
   from {
-    letter-spacing: 0.48em;
-    opacity: 0.55;
+    letter-spacing: -0.02em;
+    opacity: 0.45;
+    transform: translate3d(0, 0.55rem, 0);
   }
   to {
-    letter-spacing: 0.28em;
+    letter-spacing: -0.055em;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-brand-mark {
+  from {
+    letter-spacing: 0.62em;
+    opacity: 0;
+  }
+  to {
+    letter-spacing: 0.42em;
     opacity: 1;
   }
 }
@@ -847,19 +910,25 @@ html.in-app-browser #contact-form {
     animation: none;
   }
 
-  .hero-enter-1 .hero-brand {
+  .hero-enter-1 .hero-brand__name,
+  .hero-enter-1 .hero-brand__mark {
     animation: none;
   }
 
   @media (min-width: 769px) {
     .hero-enter-1 {
       opacity: 0;
-      animation: hero-enter-soft 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.06s
+      animation: hero-enter-soft 0.9s cubic-bezier(0.19, 1, 0.22, 1) 0.04s
         forwards;
     }
 
-    .hero-enter-1 .hero-brand {
-      animation: hero-brand-track 0.95s cubic-bezier(0.19, 1, 0.22, 1) 0.06s
+    .hero-enter-1 .hero-brand__name {
+      animation: hero-brand-track 1.05s cubic-bezier(0.19, 1, 0.22, 1) 0.04s
+        forwards;
+    }
+
+    .hero-enter-1 .hero-brand__mark {
+      animation: hero-brand-mark 1s cubic-bezier(0.19, 1, 0.22, 1) 0.18s
         forwards;
     }
   }

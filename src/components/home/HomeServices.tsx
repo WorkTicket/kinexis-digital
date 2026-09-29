@@ -11,7 +11,7 @@ import { cn } from "@/lib/cn";
 import { duration } from "@/lib/motion";
 
 const tileClass =
-  "group flex h-full flex-col overflow-hidden rounded-2xl transform-gpu bg-[color-mix(in_oklab,var(--foreground)_4%,transparent)] text-inherit no-underline transition-[transform,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-[color-mix(in_oklab,var(--foreground)_7%,transparent)] hover:shadow-[0_24px_48px_-32px_color-mix(in_oklab,#000_55%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--hero-signal)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none";
+  "group flex h-full flex-col overflow-hidden rounded-[1.15rem] transform-gpu bg-[color-mix(in_oklab,var(--foreground)_3.5%,transparent)] text-inherit no-underline transition-[transform,background-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-1 hover:bg-[color-mix(in_oklab,var(--foreground)_6.5%,transparent)] hover:shadow-[0_28px_56px_-36px_color-mix(in_oklab,#05060a_50%,transparent)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--hero-signal)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none";
 
 function ServiceTile({
   service,
@@ -22,7 +22,7 @@ function ServiceTile({
 
   return (
     <Link href={service.href} className={tileClass}>
-      <div className="relative aspect-[16/10] overflow-hidden bg-[#06070b] [transform:translateZ(0)]">
+      <div className="relative aspect-[16/10] overflow-hidden bg-[#05060a] [transform:translateZ(0)]">
         <Image
           src={visual.src}
           alt={visual.alt}
@@ -30,7 +30,7 @@ function ServiceTile({
           sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
           quality={75}
           loading="lazy"
-          className="object-cover object-center [backface-visibility:hidden]"
+          className="object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100 [backface-visibility:hidden]"
         />
       </div>
       <div className="flex flex-1 flex-col p-6 md:p-7">
