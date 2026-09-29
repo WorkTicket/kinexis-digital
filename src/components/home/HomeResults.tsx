@@ -24,7 +24,6 @@ export async function HomeResults() {
       <ChapterMotion className="shell chapter-shell--monument relative">
         <Reveal variant="rise" when="chapter" className="mb-4 md:mb-6">
           <ChapterLead
-            layout="split"
             eyebrow={t("resultsEyebrow")}
             headingId="home-results-heading"
             title={t("resultsTitle")}

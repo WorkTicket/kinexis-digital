@@ -70,7 +70,6 @@ export async function HomeServices() {
       <div className="shell chapter-shell--standard relative">
         <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
           <ChapterLead
-            layout="split"
             eyebrow={t("servicesEyebrow")}
             headingId="home-services-heading"
             title={t("servicesTitle")}

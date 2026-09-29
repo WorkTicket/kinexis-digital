@@ -158,7 +158,6 @@ export default async function AboutPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
-              layout="split"
               eyebrow={c.partnership.eyebrow}
               headingId="about-work-heading"
               title={c.partnership.title}
@@ -198,7 +197,6 @@ export default async function AboutPage({ params }: Props) {
         <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
             <ChapterLead
-              layout="rail"
               eyebrow={c.method.eyebrow}
               headingId="about-method-heading"
               title={c.method.title}
@@ -217,14 +215,9 @@ export default async function AboutPage({ params }: Props) {
               return (
                 <RevealItem key={phase.title} as="li" variant="fadeUp">
                   <article className="about-method__step">
-                    <div className="about-method__mark">
-                      <span className="icon-well" aria-hidden>
-                        <Icon strokeWidth={1.5} />
-                      </span>
-                      <span className="about-method__index" aria-hidden>
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                    </div>
+                    <span className="icon-well" aria-hidden>
+                      <Icon strokeWidth={1.5} />
+                    </span>
                     <div className="about-method__copy">
                       <h3 className="about-method__title">{phase.title}</h3>
                       <p className="about-method__body">{phase.desc}</p>
@@ -245,7 +238,6 @@ export default async function AboutPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
-              layout="split"
               eyebrow={c.architecture.eyebrow}
               headingId="about-arch-heading"
               title={c.architecture.title}
@@ -292,7 +284,6 @@ export default async function AboutPage({ params }: Props) {
         <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="mb-8 md:mb-10">
             <ChapterLead
-              layout="rail"
               eyebrow={c.principles.eyebrow}
               headingId="about-principles-heading"
               title={c.principles.title}
@@ -328,7 +319,6 @@ export default async function AboutPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
-              layout="split"
               eyebrow={c.roadmap.eyebrow}
               headingId="about-roadmap-heading"
               title={c.roadmap.title}

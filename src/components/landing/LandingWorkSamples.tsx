@@ -32,7 +32,6 @@ export function LandingWorkSamples({
       <div className="shell chapter-shell--monument relative">
         <Reveal variant="rise" when="chapter" className="mb-4 md:mb-6">
           <ChapterLead
-            layout="split"
             eyebrow="Work"
             headingId="lp-work-heading"
             title={title}

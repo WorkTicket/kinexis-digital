@@ -50,7 +50,6 @@ export async function WhereWeWork({ className, compact, plain }: WhereWeWorkProp
       >
         <Reveal variant="rise" when="chapter" className="markets-preview__mast">
           <ChapterLead
-            layout="split"
             eyebrow={c.previewEyebrow}
             headingId="where-we-work-heading"
             title={

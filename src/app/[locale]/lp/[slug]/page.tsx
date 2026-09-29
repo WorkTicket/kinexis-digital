@@ -157,7 +157,6 @@ export default async function LandingPage({ params }: Props) {
           <div className="shell chapter-shell--monument relative">
             <Reveal variant="rise" when="chapter">
               <ChapterLead
-                layout="split"
                 eyebrow="Proof"
                 headingId="lp-proof-heading"
                 title={page.proofTitle ?? "The work, in numbers."}
@@ -193,7 +192,6 @@ export default async function LandingPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter">
             <ChapterLead
-              layout="split"
               eyebrow="Scope"
               headingId="lp-scope-heading"
               title={page.bulletsTitle}

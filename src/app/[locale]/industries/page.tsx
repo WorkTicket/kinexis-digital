@@ -67,7 +67,6 @@ export default async function IndustriesPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
-              layout="split"
               eyebrow={c.indexEyebrow}
               headingId="industries-index-heading"
               title={c.indexTitle}

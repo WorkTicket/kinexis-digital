@@ -21,7 +21,6 @@ export function CampaignScope({
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter">
           <ChapterLead
-            layout="split"
             eyebrow="Scope"
             headingId="lp-scope-heading"
             title={title}

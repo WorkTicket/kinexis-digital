@@ -83,7 +83,6 @@ export default async function ServicesIndexPage({ params }: Props) {
             className="mb-10 md:mb-12"
           >
             <ChapterLead
-              layout="split"
               eyebrow={t("mixEyebrow")}
               headingId="svc-catalog-heading"
               title={t("mixTitle")}

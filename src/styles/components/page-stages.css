@@ -3430,7 +3430,8 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
 .svc-catalog__card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
   gap: 0.7rem;
   height: 100%;
   padding: 0.35rem 0 0.55rem;

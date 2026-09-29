@@ -21,7 +21,6 @@ export function LandingProcess({
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
           <ChapterLead
-            layout="split"
             eyebrow="Process"
             headingId="lp-process-heading"
             title={title}

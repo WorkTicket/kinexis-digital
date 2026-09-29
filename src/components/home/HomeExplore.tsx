@@ -28,7 +28,6 @@ export async function HomeExplore() {
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter" className="explore-mast">
           <ChapterLead
-            layout="rail"
             eyebrow={t("exploreEyebrow")}
             headingId="home-explore-heading"
             title={t("exploreTitle")}

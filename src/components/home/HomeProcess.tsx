@@ -35,7 +35,6 @@ export async function HomeProcess() {
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
           <ChapterLead
-            layout="split"
             eyebrow={t("processEyebrow")}
             headingId="home-process-heading"
             title={t("processTitle")}
@@ -55,19 +54,14 @@ export async function HomeProcess() {
           delayChildren={0.06}
           aria-label={t("howWeWorkAria")}
         >
-          {steps.map((step, index) => {
+          {steps.map((step) => {
             const Icon = PROCESS_ICONS[step.id] ?? Search;
             return (
               <RevealItem key={step.id} as="li" variant="fadeUp">
                 <article className="process-spine__step">
-                  <div className="process-spine__mark">
-                    <span className="icon-well" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
-                    <span className="process-spine__index" aria-hidden>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+                  <span className="icon-well" aria-hidden>
+                    <Icon strokeWidth={1.5} />
+                  </span>
                   <h3 className="process-spine__title">{step.title}</h3>
                   <p className="process-spine__body">{step.description}</p>
                 </article>
