@@ -132,7 +132,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-why__still"
           >
             <Image
-              src="/assets/images/agency/about-system.webp?v=20260930c"
+              src="/assets/images/agency/about-system.webp?v=20260930d"
               alt="Diagram comparing scattered marketing tactics to the connected KINEXIS growth system"
               width={1600}
               height={800}
