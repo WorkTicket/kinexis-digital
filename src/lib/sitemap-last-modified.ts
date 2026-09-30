@@ -27,14 +27,14 @@ const SPANISH_MONTHS: Record<string, number> = {
 
 /** Fallback when a template has no content-level publish date. */
 const TEMPLATE_DEFAULTS: Record<string, string> = {
-  "/": "2026-07-03",
+  "/": "2026-09-28",
   "/about": "2026-06-01",
   "/contact": "2026-07-03",
-  "/services": "2026-07-07",
+  "/services": "2026-09-28",
   "/blog": "2026-06-20",
   "/blog/posts": "2026-06-20",
   "/case-studies": "2026-06-01",
-  "/industries": "2026-06-01",
+  "/industries": "2026-09-28",
   "/resources": "2026-05-15",
   "/audit": "2026-08-22",
   "/thank-you": "2026-07-03",
@@ -42,8 +42,8 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/terms": "2026-03-01",
 };
 
-const SERVICE_LAST_MODIFIED = "2026-07-07";
-const INDUSTRY_LAST_MODIFIED = "2026-05-20";
+const SERVICE_LAST_MODIFIED = "2026-09-28";
+const INDUSTRY_LAST_MODIFIED = "2026-09-29";
 
 export function parseContentDate(value: string): Date | null {
   const trimmed = value.trim();

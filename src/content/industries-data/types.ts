@@ -24,6 +24,7 @@ export type IndustrySlug =
   | "real-estate"
   | "restaurants"
   | "saas"
+  | "fintech"
   | "automotive"
   | "fitness"
   | "construction"

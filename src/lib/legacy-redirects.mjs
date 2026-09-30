@@ -5,6 +5,14 @@
 
 export const LOCATION_REDIRECT_DEST = "/about";
 
+/** City URLs that still get impressions. Send each one to the page that matches the query. */
+export const LOCATION_SLUG_REDIRECTS = {
+  "cedar-falls": "/case-studies/landscaping-company-growth",
+};
+
+/** Nested /industries/home-services/{trade} should land on the trade page, not the hub. */
+export const NESTED_TRADE_SLUGS = ["plumbing", "landscaping", "hvac", "roofing"];
+
 const LOCALES = ["en", "es-ES", "es-419", "es"];
 
 /** Retired case study slug → replacement slug. Empty string = case-studies hub. */
@@ -65,6 +73,8 @@ export function isFlagshipServiceSlug(slug) {
 export const STANDALONE_INDUSTRY_SLUGS = [
   "home-services",
   "ecommerce",
+  "saas",
+  "fintech",
   "plumbing",
   "landscaping",
   "hvac",
@@ -91,17 +101,42 @@ export const INDUSTRY_HUB_SLUGS = [
 
 /** Live category slugs that are not rebuild hub chapters. */
 export const INDUSTRY_CATEGORY_REDIRECTS = {
-  technology: "/industries#saas",
+  technology: "/industries/saas",
   hospitality: "/industries#restaurants",
   manufacturing: "/industries",
 };
+
+/** Location+service URLs that still rank. Send the service, not /about. */
+export const LOCATION_SERVICE_DEST = {
+  "ppc-management": "/services/paid-media",
+  "google-ads": "/services/paid-media",
+  "paid-ads": "/services/paid-media",
+  "paid-media": "/services/paid-media",
+  seo: "/services/seo",
+  "local-seo": "/services/seo",
+  "web-design": "/services/web-design",
+  branding: "/services/branding",
+  "content-marketing": "/services/content-marketing",
+};
+
+const RETIRED_LANDING_SLUGS = [
+  "dallas-website-audit",
+  "facebook-web-design",
+  "google-ads-management",
+  "local-seo",
+  "seo",
+  "web-design",
+];
 
 const RETIRED_EXACT = {
   "/google-ads-vs-seo": "/resources",
   "/seo-vs-ppc": "/resources",
   "/wordpress-vs-webflow": "/resources",
   "/local-seo-vs-google-ads": "/resources",
-  "/lp/dallas-website-audit": "/lp/get-a-website",
+  "/solutions/saas-marketing-agency": "/industries/saas",
+  ...Object.fromEntries(
+    RETIRED_LANDING_SLUGS.map((slug) => [`/lp/${slug}`, "/lp/get-a-website"]),
+  ),
 };
 
 const STANDALONE_INDUSTRY_SET = new Set(STANDALONE_INDUSTRY_SLUGS);
@@ -149,12 +184,15 @@ export function matchIndustryPath(pathname) {
   const category = parts[1];
   const nested = parts.slice(2);
 
-  if (STANDALONE_INDUSTRY_SET.has(category)) {
-    return nested.length > 0 ? `/industries/${category}` : null;
-  }
+  if (STANDALONE_INDUSTRY_SET.has(category) && nested.length === 0) return null;
 
   for (const segment of nested) {
+    if (STANDALONE_INDUSTRY_SET.has(segment)) return `/industries/${segment}`;
     if (INDUSTRY_HUB_SET.has(segment)) return `/industries#${segment}`;
+  }
+
+  if (STANDALONE_INDUSTRY_SET.has(category)) {
+    return `/industries/${category}`;
   }
 
   if (category in INDUSTRY_CATEGORY_REDIRECTS) {
@@ -176,19 +214,34 @@ function matchServicePath(pathname) {
   return serviceHubPath(slug);
 }
 
+function matchLocationPath(pathname) {
+  if (!startsWithPrefix(pathname, "/locations")) return null;
+  const parts = pathname.slice("/locations".length).split("/").filter(Boolean);
+  const city = parts[0];
+  const service = parts[1];
+  if (service && service in LOCATION_SERVICE_DEST) return LOCATION_SERVICE_DEST[service];
+  if (service) {
+    const hub = serviceHubPath(service);
+    if (hub && hub !== "/services") return hub;
+  }
+  if (city && city in LOCATION_SLUG_REDIRECTS) return LOCATION_SLUG_REDIRECTS[city];
+  return LOCATION_REDIRECT_DEST;
+}
+
 /** Unprefixed path → dest (may include hash), or null to keep. */
 export function matchUnprefixedLegacyRedirect(pathname) {
-  if (startsWithPrefix(pathname, "/locations")) return LOCATION_REDIRECT_DEST;
+  const locationDest = matchLocationPath(pathname);
+  if (locationDest) return locationDest;
+  if (pathname in RETIRED_EXACT) return RETIRED_EXACT[pathname];
+
   if (startsWithPrefix(pathname, "/pricing")) return "/contact";
   if (startsWithPrefix(pathname, "/lead-magnet")) return "/contact";
-  if (startsWithPrefix(pathname, "/digital-marketing-agency")) return "/about";
+  if (startsWithPrefix(pathname, "/digital-marketing-agency")) return "/";
   if (startsWithPrefix(pathname, "/solutions")) return "/services";
   if (startsWithPrefix(pathname, "/team")) return "/about";
   if (startsWithPrefix(pathname, "/clients")) return "/case-studies";
 
   if (pathname === "/lp" || pathname === "/lp/") return "/contact";
-
-  if (pathname in RETIRED_EXACT) return RETIRED_EXACT[pathname];
 
   for (const [oldSlug, newSlug] of Object.entries(CASE_STUDY_SLUG_REDIRECTS)) {
     if (pathname === `/case-studies/${oldSlug}`) {
@@ -236,14 +289,21 @@ function rulesFor(sourcePath, destination) {
 /** Redirect rules consumed by next.config.mjs `redirects()`. */
 export function getLegacyRedirects() {
   const redirects = [
+    ...Object.entries(LOCATION_SERVICE_DEST).flatMap(([service, dest]) =>
+      rulesFor(`/locations/:city/${service}`, dest),
+    ),
+    ...Object.entries(LOCATION_SLUG_REDIRECTS).flatMap(([slug, dest]) =>
+      rulesFor(`/locations/${slug}`, dest),
+    ),
     ...rulesFor("/locations", LOCATION_REDIRECT_DEST),
     ...rulesFor("/locations/:path*", LOCATION_REDIRECT_DEST),
     ...rulesFor("/pricing", "/contact"),
     ...rulesFor("/pricing/:path*", "/contact"),
     ...rulesFor("/lead-magnet", "/contact"),
     ...rulesFor("/lead-magnet/:path*", "/contact"),
-    ...rulesFor("/digital-marketing-agency", "/about"),
-    ...rulesFor("/digital-marketing-agency/:path*", "/about"),
+    ...rulesFor("/digital-marketing-agency", "/"),
+    ...rulesFor("/digital-marketing-agency/:path*", "/"),
+    ...rulesFor("/solutions/saas-marketing-agency", "/industries/saas"),
     ...rulesFor("/solutions", "/services"),
     ...rulesFor("/solutions/:path*", "/services"),
     ...rulesFor("/team", "/about"),
@@ -251,7 +311,9 @@ export function getLegacyRedirects() {
     ...rulesFor("/clients", "/case-studies"),
     ...rulesFor("/clients/:path*", "/case-studies"),
     ...rulesFor("/lp", "/contact"),
-    ...rulesFor("/lp/dallas-website-audit", "/lp/get-a-website"),
+    ...RETIRED_LANDING_SLUGS.flatMap((slug) =>
+      rulesFor(`/lp/${slug}`, "/lp/get-a-website"),
+    ),
     ...rulesFor("/google-ads-vs-seo", "/resources"),
     ...rulesFor("/seo-vs-ppc", "/resources"),
     ...rulesFor("/wordpress-vs-webflow", "/resources"),
@@ -262,9 +324,20 @@ export function getLegacyRedirects() {
     if (FLAGSHIP_SERVICE_SET.has(slug)) continue;
     redirects.push(...rulesFor(`/services/${slug}`, serviceHubPath(slug)));
   }
+  for (const child of NESTED_TRADE_SLUGS) {
+    redirects.push(
+      ...rulesFor(`/industries/home-services/${child}`, `/industries/${child}`),
+      ...rulesFor(`/industries/home-services/${child}/:path*`, `/industries/${child}`),
+    );
+  }
   for (const slug of STANDALONE_INDUSTRY_SLUGS) {
     redirects.push(...rulesFor(`/industries/${slug}/:path+`, `/industries/${slug}`));
   }
+
+  redirects.push(
+    ...rulesFor("/industries/technology/fintech", "/industries/fintech"),
+    ...rulesFor("/industries/technology/saas", "/industries/saas"),
+  );
 
   for (const [category, dest] of Object.entries(INDUSTRY_CATEGORY_REDIRECTS)) {
     redirects.push(...rulesFor(`/industries/${category}`, dest));

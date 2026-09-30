@@ -4,6 +4,8 @@ export const locales = ["en", "es-ES", "es-419"] as const;
 export type Locale = (typeof locales)[number];
 
 export const LOCALE_COOKIE_NAME = "NEXT_LOCALE";
+/** Set only when someone uses the language switcher. Geo can replace an automatic cookie. */
+export const LOCALE_CHOICE_COOKIE_NAME = "NEXT_LOCALE_CHOICE";
 export const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365;
 
 export const routing = defineRouting({

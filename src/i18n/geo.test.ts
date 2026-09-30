@@ -58,10 +58,30 @@ describe("detectLocaleFromLocation", () => {
 });
 
 describe("resolveRequestLocale", () => {
-  it("lets the footer cookie override geo", () => {
-    const request = makeRequest({ "cf-ipcountry": "ES" }, "NEXT_LOCALE=en");
+  it("lets an explicit footer choice override geo", () => {
+    const request = makeRequest(
+      { "cf-ipcountry": "CO" },
+      "NEXT_LOCALE=en; NEXT_LOCALE_CHOICE=1",
+    );
     expect(getCookieLocale(request)).toBe("en");
     expect(resolveRequestLocale(request)).toBe("en");
+  });
+
+  it("uses LatAm Spanish in Colombia even if an automatic English cookie is set", () => {
+    const request = makeRequest({ "cf-ipcountry": "CO" }, "NEXT_LOCALE=en");
+    expect(resolveRequestLocale(request)).toBe("es-419");
+  });
+
+  it("reads the country from the Cloudflare request object", () => {
+    const request = makeRequest({});
+    Object.defineProperty(request, "cf", { value: { country: "CO" } });
+    expect(resolveRequestLocale(request)).toBe("es-419");
+  });
+
+  it("uses LatAm Spanish from the browser language when the country is missing", () => {
+    expect(
+      resolveRequestLocale(makeRequest({ "accept-language": "es-CO,es;q=0.9" })),
+    ).toBe("es-419");
   });
 
   it("falls back to geo when no cookie is set", () => {

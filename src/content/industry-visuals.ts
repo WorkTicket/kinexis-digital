@@ -58,6 +58,11 @@ export const industryVisuals: Record<IndustrySlug, IndustryVisualAsset> = {
     thumb: industryAsset("saas", "thumb"),
     alt: "SaaS editorial: pipeline dashboard with charts, retention metric, and live overview",
   },
+  fintech: {
+    src: industryAsset("saas", "full"),
+    thumb: industryAsset("saas", "thumb"),
+    alt: "Fintech editorial: trust and pipeline UI for payments, lending, and B2B finance products",
+  },
   automotive: {
     src: industryAsset("automotive", "full"),
     thumb: industryAsset("automotive", "thumb"),

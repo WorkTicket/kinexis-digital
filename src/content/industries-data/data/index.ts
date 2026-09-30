@@ -11,6 +11,7 @@ import { industry as legalIndustry } from "./legal";
 import { industry as realEstateIndustry } from "./real-estate";
 import { industry as restaurantsIndustry } from "./restaurants";
 import { industry as saasIndustry } from "./saas";
+import { industry as fintechIndustry } from "./fintech";
 import { industry as automotiveIndustry } from "./automotive";
 import { industry as fitnessIndustry } from "./fitness";
 import { industry as constructionIndustry } from "./construction";
@@ -32,6 +33,7 @@ export const industries: Industry[] = [
   realEstateIndustry,
   restaurantsIndustry,
   saasIndustry,
+  fintechIndustry,
   automotiveIndustry,
   fitnessIndustry,
   constructionIndustry,

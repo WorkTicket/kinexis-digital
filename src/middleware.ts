@@ -4,6 +4,7 @@ import {
   LOCALE_COOKIE_NAME,
   detectLocaleFromLocation,
   getCookieLocale,
+  hasExplicitLocaleChoice,
   isCrawlerRequest,
   localeCookieOptions,
   resolveRequestLocale,
@@ -109,12 +110,22 @@ export default function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  const hadCookie = Boolean(getCookieLocale(request));
+  const explicitChoice = hasExplicitLocaleChoice(request);
   const locale = resolveRequestLocale(request);
   const localizedRequest = withRequestLocale(request, locale);
   const response = intlMiddleware(localizedRequest);
 
-  if (!hadCookie) persistLocaleCookie(response, request, locale);
+  if (!explicitChoice && getCookieLocale(request) !== locale) {
+    persistLocaleCookie(response, request, locale);
+  }
+
+  // Repeat AI/search crawls should hit the edge cache instead of a cold Worker.
+  if (isCrawlerRequest(request) && !CRAWLER_PATHS.has(pathname)) {
+    response.headers.set(
+      "Cache-Control",
+      "public, s-maxage=3600, stale-while-revalidate=86400",
+    );
+  }
   return response;
 }
 
