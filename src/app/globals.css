@@ -722,24 +722,6 @@ html.in-app-browser #contact-form {
     forwards;
 }
 
-.page-hero-type-atmosphere__rule {
-  position: absolute;
-  top: clamp(6.5rem, 18vh, 10rem);
-  bottom: clamp(5rem, 14vh, 8rem);
-  right: clamp(1.25rem, 6vw, 4.5rem);
-  width: 1px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    color-mix(in oklab, var(--accent) 55%, transparent) 22%,
-    color-mix(in oklab, var(--foreground) 18%, transparent) 55%,
-    transparent 100%
-  );
-  transform: scaleY(0);
-  transform-origin: top center;
-  animation: page-hero-type-rule 1s cubic-bezier(0.19, 1, 0.22, 1) 0.28s forwards;
-}
-
 .page-hero-type-atmosphere__grain {
   position: absolute;
   inset: 0;
@@ -799,19 +781,9 @@ html[data-theme="dark"] .page-hero-type-atmosphere__wash,
   }
 }
 
-@keyframes page-hero-type-rule {
-  from {
-    transform: scaleY(0);
-  }
-  to {
-    transform: scaleY(1);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .page-hero-type-atmosphere__wash,
   .page-hero-type-atmosphere__bloom,
-  .page-hero-type-atmosphere__rule,
   .page-hero-type-atmosphere__grain {
     animation: none;
     opacity: 1;

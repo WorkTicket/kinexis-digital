@@ -88,7 +88,6 @@ export async function PageHero({
         >
           <div className="page-hero-type-atmosphere__wash" />
           <div className="page-hero-type-atmosphere__bloom" />
-          <div className="page-hero-type-atmosphere__rule" />
           <div className="page-hero-type-atmosphere__grain" />
         </div>
       );
