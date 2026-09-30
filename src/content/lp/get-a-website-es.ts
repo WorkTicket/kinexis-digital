@@ -7,8 +7,7 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
-const MANOS_DESKTOP =
-  "/assets/images/lp/case-manos-creativas.webp?v=20260930a";
+const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20260930c";
 
 /** Short hero/sticky label — long form title stays on the plan section. */
 const CTA = "Obtener mi plan gratis";

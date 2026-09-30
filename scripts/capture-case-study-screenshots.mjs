@@ -29,6 +29,7 @@ const sites = [
   {
     slug: "ecommerce-store-growth",
     url: "https://bynmwcreative.com/",
+    lpCopy: "manos-desktop.webp",
   },
 ];
 
