@@ -56,7 +56,7 @@ export function buildSpanishGetAWebsite(
     marketLine:
       "Sitios web a medida para contratistas y negocios de servicios del hogar.",
     subheadline:
-      "Los clientes te buscan antes de llamar. Si el sitio es lento, anticuado o incómodo en el teléfono, no se quedan. Construimos sitios a medida para contratistas y servicios del hogar para que la primera impresión coincida con el trabajo que ya haces, y pedir una cotización sea obvio.",
+      "Los clientes te buscan antes de llamar. Construimos sitios a medida para que la primera impresión coincida con el trabajo que ya haces, y pedir una cotización sea obvio.",
     heroCtaLabel: CTA,
     headerCtaLabel: "Obtener mi plan de sitio web",
     heroFinePrint: `Sin compromiso. Respondemos en ${REPLY} con lo que una reconstrucción debería arreglar primero.`,

@@ -31,7 +31,7 @@ const softPricing = localeContent({
     pricingAnchor: `$${LOW.toLocaleString("en-US")}–$${HIGH.toLocaleString("en-US")}`,
     pricingQualify:
       "Final pricing depends on pages, content, and how much has to be custom. Most contractor and home-service projects fall between $500 and $2,000. Exact quote after the free plan.",
-    pricingDelivery: `Most builds take ${DELIVERY} weeks.`,
+    pricingDelivery: `Most take ${DELIVERY} weeks.`,
     pricingIntro:
       "You'll know the recommended scope before you commit to a project.",
     pricingNote:
@@ -57,7 +57,7 @@ const softPricing = localeContent({
     pricingTitle: `Planes desde ${LOW_ES} a ${HIGH_ES}`,
     pricingAnchor: `${LOW_ES}–${HIGH_ES}`,
     pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${LOW_ES} y ${HIGH_ES}. La cotización exacta llega después del plan gratis.`,
-    pricingDelivery: `La mayoría de proyectos toma de 6 a 12 semanas.`,
+    pricingDelivery: "La mayoría toma de 6 a 12 semanas.",
     pricingIntro:
       "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
     pricingNote:
@@ -82,7 +82,7 @@ const softPricing = localeContent({
     pricingTitle: `Planes desde ${LOW_ES} € a ${HIGH_ES} €`,
     pricingAnchor: `${LOW_ES} €–${HIGH_ES} €`,
     pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${LOW_ES} € y ${HIGH_ES} €. La cotización exacta llega después del plan gratis.`,
-    pricingDelivery: `La mayoría de proyectos toma de 6 a 12 semanas.`,
+    pricingDelivery: "La mayoría toma de 6 a 12 semanas.",
     pricingIntro:
       "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
     pricingNote:
@@ -122,7 +122,7 @@ const baseGetAWebsite: LandingPageEntry = {
   marketLine:
     "Custom websites for contractors & home-service businesses.",
   subheadline:
-    "Customers look you up before they call. If the site is slow, dated, or awkward on a phone, they don't wait around. We build custom websites for contractors and home-service businesses so the first impression matches the work you already do, and requesting a quote is obvious.",
+    "Customers look you up before they call. We build custom contractor sites so the first impression matches the work you already do — and requesting a quote is obvious.",
   heroCtaLabel: CTA,
   headerCtaLabel: "Get My Website Plan",
   heroFinePrint: `No obligation. We'll reply within ${REPLY} with what a rebuild should fix first.`,

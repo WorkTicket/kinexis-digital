@@ -9,9 +9,9 @@ import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 /**
- * get-a-website hero — mobile-first, craft-led conversion composition.
- * Shared site theme (kinexis-theme / data-theme). Soft price range in meta.
- * No floating badge clouds or mockup gimmicks.
+ * get-a-website hero — professional agency composition.
+ * Mobile-first: quiet type → soft price → one CTA → staged proof.
+ * Shared site theme (kinexis-theme / data-theme). No mockup badge clouds.
  */
 export function WebsiteHero({
   page,
@@ -43,7 +43,6 @@ export function WebsiteHero({
       <div className="lp-web-hero__atmosphere" aria-hidden>
         <span className="lp-web-hero__wash lp-web-hero__wash--a" />
         <span className="lp-web-hero__wash lp-web-hero__wash--b" />
-        <span className="lp-web-hero__rail" />
         <span className="lp-web-hero__grain" />
       </div>
 
@@ -51,7 +50,6 @@ export function WebsiteHero({
         <div className="lp-web-hero__layout">
           <div className="lp-web-hero__copy">
             <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
-              <span className="lp-web-hero__eyebrow-bar" aria-hidden />
               <Suspense fallback={market}>
                 <MatchedMarketLine fallback={market} />
               </Suspense>
@@ -84,27 +82,22 @@ export function WebsiteHero({
             </p>
 
             {priceAnchor || priceFallback ? (
-              <p className="lp-web-hero__meta lp-web-hero__anim lp-web-hero__anim--4">
+              <div className="lp-web-hero__meta lp-web-hero__anim lp-web-hero__anim--4">
                 {priceAnchor ? (
                   <>
-                    <span className="lp-web-hero__meta-price">
+                    <span className="lp-web-hero__chip lp-web-hero__chip--price">
                       {priceAnchor}
                     </span>
                     {priceDelivery ? (
-                      <>
-                        <span className="lp-web-hero__meta-dot" aria-hidden>
-                          ·
-                        </span>
-                        <span className="lp-web-hero__meta-note">
-                          {priceDelivery}
-                        </span>
-                      </>
+                      <span className="lp-web-hero__chip">{priceDelivery}</span>
                     ) : null}
                   </>
                 ) : (
-                  <span className="lp-web-hero__meta-note">{priceFallback}</span>
+                  <span className="lp-web-hero__chip lp-web-hero__chip--price">
+                    {priceFallback}
+                  </span>
                 )}
-              </p>
+              </div>
             ) : null}
 
             <div
@@ -143,14 +136,13 @@ export function WebsiteHero({
                     <span className="lp-web-hero__proof-mark" aria-hidden>
                       <CheckMark />
                     </span>
-                    {item}
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
             ) : null}
           </div>
 
-          {/* Mobile product proof — staged phone, not a second CTA competitor */}
           {phoneSrc ? (
             <div className="lp-web-hero__phone-lead lp-web-hero__anim lp-web-hero__anim--4">
               <link
@@ -160,17 +152,19 @@ export function WebsiteHero({
                 type="image/webp"
                 fetchPriority="high"
               />
-              <div className="lp-web-hero__phone-glow" aria-hidden />
-              <figure className="lp-web-hero__phone-figure">
-                <PhoneFrame image={phoneSrc} priority />
-                <figcaption className="lp-web-hero__phone-caption">
-                  {caption}
-                </figcaption>
-              </figure>
+              <div className="lp-web-hero__phone-stage">
+                <div className="lp-web-hero__phone-glow" aria-hidden />
+                <div className="lp-web-hero__phone-floor" aria-hidden />
+                <figure className="lp-web-hero__phone-figure">
+                  <PhoneFrame image={phoneSrc} priority />
+                  <figcaption className="lp-web-hero__phone-caption">
+                    {caption}
+                  </figcaption>
+                </figure>
+              </div>
             </div>
           ) : null}
 
-          {/* Desktop / tablet visual — laptop with live still */}
           <div className="lp-web-hero__visual lp-web-hero__anim lp-web-hero__anim--3">
             {still?.src ? (
               <link
@@ -183,6 +177,7 @@ export function WebsiteHero({
               />
             ) : null}
             <div className="lp-web-hero__glow" aria-hidden />
+            <div className="lp-web-hero__visual-floor" aria-hidden />
             <HeroCluster
               image={still?.src}
               imageAlt={still?.alt}
@@ -200,11 +195,10 @@ export function WebsiteHero({
 function CheckMark() {
   return (
     <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
-      <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
       <path
-        d="M20 33.5 28.5 42 44 24"
+        d="M18 33.5 28 43.5 46 22"
         stroke="currentColor"
-        strokeWidth="2.8"
+        strokeWidth="3.2"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
