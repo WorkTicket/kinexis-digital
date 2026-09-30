@@ -130,6 +130,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
       />
       <LandingStickyCta
         label={page.stickyCtaLabel}
+        note={page.formCtaHint ?? page.heroFinePrint}
         revealAfterId="lp-hero-actions"
       />
     </main>

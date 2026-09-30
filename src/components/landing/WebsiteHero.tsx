@@ -183,7 +183,6 @@ export function WebsiteHero({
             <HeroCluster
               image={still?.src}
               imageAlt={still?.alt}
-              phoneImage={still?.mobileSrc}
               caption={caption}
               priority
             />

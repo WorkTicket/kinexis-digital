@@ -123,7 +123,6 @@ export function HeroCluster({
   phoneImage?: string;
 }) {
   const livePhone = Boolean(phoneImage);
-  const phoneSrc = phoneImage ?? image;
 
   return (
     <figure
@@ -135,14 +134,14 @@ export function HeroCluster({
           <LaptopFrame
             variant={variant}
             image={image}
-            priority={priority && !livePhone}
+            priority={priority}
           />
         </div>
-        {phoneSrc ? (
+        {phoneImage ? (
           <div className="lp-hero-cluster__phone">
             <PhoneFrame
               variant={variant}
-              image={phoneSrc}
+              image={phoneImage}
               priority={priority && livePhone}
             />
           </div>

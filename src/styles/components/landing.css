@@ -183,12 +183,14 @@
 }
 
 .landing-sticky-cta {
-  transition: opacity 0.38s ease, transform 0.38s ease;
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
 }
 
 .landing-sticky-cta--at-end {
   opacity: 0;
-  transform: translateY(0.7rem);
+  visibility: hidden;
+  transform: translateY(0.55rem);
+  pointer-events: none;
 }
 
 .landing-sticky-cta--at-end .landing-sticky-cta__panel {
@@ -197,7 +199,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .landing-sticky-cta {
-    transition: opacity 0.12s linear;
+    transition: opacity 0.12s linear, visibility 0.12s linear;
   }
 
   .landing-sticky-cta--at-end {
