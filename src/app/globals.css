@@ -677,7 +677,149 @@ html.in-app-browser #contact-form {
   }
 }
 
-/* Marketing PageHero — editorial still as the real visual anchor.
+/* Marketing PageHero — type-led default (no shared desk still).
+   Photo atmospheres are opt-in via atmosphereSrc. */
+.page-hero-type-atmosphere {
+  position: absolute;
+  inset: 0;
+  background: var(--background);
+}
+
+.page-hero-type-atmosphere__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 90% 70% at 92% 18%,
+      color-mix(in oklab, var(--accent) 7%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 8% 88%,
+      color-mix(in oklab, var(--foreground) 4%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      155deg,
+      transparent 30%,
+      color-mix(in oklab, var(--foreground) 2.2%, transparent) 52%,
+      transparent 74%
+    );
+  opacity: 0;
+  animation: page-hero-type-wash 1.1s cubic-bezier(0.19, 1, 0.22, 1) 0.08s forwards;
+}
+
+.page-hero-type-atmosphere__bloom {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 48% at 78% 42%,
+    color-mix(in oklab, var(--accent) 5.5%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  animation: page-hero-type-bloom 1.35s cubic-bezier(0.19, 1, 0.22, 1) 0.18s
+    forwards;
+}
+
+.page-hero-type-atmosphere__rule {
+  position: absolute;
+  top: clamp(6.5rem, 18vh, 10rem);
+  bottom: clamp(5rem, 14vh, 8rem);
+  right: clamp(1.25rem, 6vw, 4.5rem);
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    color-mix(in oklab, var(--accent) 55%, transparent) 22%,
+    color-mix(in oklab, var(--foreground) 18%, transparent) 55%,
+    transparent 100%
+  );
+  transform: scaleY(0);
+  transform-origin: top center;
+  animation: page-hero-type-rule 1s cubic-bezier(0.19, 1, 0.22, 1) 0.28s forwards;
+}
+
+.page-hero-type-atmosphere__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .page-hero-type-atmosphere__grain {
+    opacity: 0.04;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    background-size: 180px 180px;
+    animation: page-hero-type-wash 1.2s cubic-bezier(0.19, 1, 0.22, 1) 0.2s
+      forwards;
+  }
+}
+
+html[data-theme="dark"] .page-hero-type-atmosphere__wash,
+.dark .page-hero-type-atmosphere__wash {
+  background:
+    radial-gradient(
+      ellipse 90% 70% at 92% 18%,
+      color-mix(in oklab, var(--accent) 12%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 70% 55% at 8% 88%,
+      color-mix(in oklab, var(--foreground) 5%, transparent),
+      transparent 60%
+    ),
+    linear-gradient(
+      155deg,
+      transparent 30%,
+      color-mix(in oklab, var(--foreground) 3%, transparent) 52%,
+      transparent 74%
+    );
+}
+
+@keyframes page-hero-type-wash {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes page-hero-type-bloom {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes page-hero-type-rule {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-type-atmosphere__wash,
+  .page-hero-type-atmosphere__bloom,
+  .page-hero-type-atmosphere__rule,
+  .page-hero-type-atmosphere__grain {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Opt-in photographic PageHero — editorial still as visual anchor.
    Scrim must fully bury any baked-in type in the photo so only HTML copy reads. */
 .page-hero-atmosphere {
   position: absolute;
@@ -741,6 +883,10 @@ html[data-theme="dark"] .page-hero-atmosphere__media,
   position: relative;
   isolation: isolate;
   max-width: min(42rem, 100%);
+}
+
+.page-hero--type:not(.hero-shell--film) .hero-copy {
+  max-width: min(48rem, 100%);
 }
 
 /* No card pad — full-height scrim carries readability */
