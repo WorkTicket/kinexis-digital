@@ -5535,7 +5535,7 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   aspect-ratio: 2 / 1;
   border: 0;
   border-radius: 0;
-  background: #08080a;
+  background: transparent;
 }
 
 @media (min-width: 900px) {
@@ -5746,7 +5746,7 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   aspect-ratio: 1400 / 788;
   border: 0;
   border-radius: 0;
-  background: #08080a;
+  background: transparent;
 }
 
 @media (min-width: 900px) {
