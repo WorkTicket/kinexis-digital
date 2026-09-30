@@ -93,7 +93,6 @@ export default async function AboutPage({ params }: Props) {
       >
         <div className="about-atmosphere about-atmosphere--why" aria-hidden>
           <span className="about-atmosphere__orb" />
-          <span className="about-atmosphere__grid" />
         </div>
         <div className="shell chapter-shell--monument relative">
           <Reveal variant="rise" when="chapter" className="about-chapter-lead">
@@ -107,7 +106,6 @@ export default async function AboutPage({ params }: Props) {
 
           <div className="about-why">
             <Reveal variant="fadeUp" className="about-why__panel about-why__panel--problem">
-              <span className="about-why__mark" aria-hidden />
               <p className="about-why__label">{c.why.problemLabel}</p>
               {c.why.problem.map((para) => (
                 <p key={para.slice(0, 24)} className="about-why__copy">
@@ -121,7 +119,6 @@ export default async function AboutPage({ params }: Props) {
               delay={0.08}
               className="about-why__panel about-why__panel--solution"
             >
-              <span className="about-why__mark about-why__mark--signal" aria-hidden />
               <p className="about-why__label">{c.why.solutionLabel}</p>
               <p className="about-why__quote">{c.why.solutionQuote}</p>
               {c.why.solution.map((para) => (
@@ -220,9 +217,6 @@ export default async function AboutPage({ params }: Props) {
               return (
                 <RevealItem key={phase.title} as="li" variant="fadeUp">
                   <article className="about-method__step">
-                    <span className="about-method__index" aria-hidden>
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                     <span className="icon-well" aria-hidden>
                       <Icon strokeWidth={1.5} />
                     </span>
