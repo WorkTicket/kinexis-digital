@@ -11,7 +11,7 @@ import { applyLocalePricing, formatEsInteger } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
 import { getBusinessWhatsAppHref } from "@/lib/business";
 
-const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260916g";
+const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
 const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
 
