@@ -1,5 +1,6 @@
-import type { Locale } from "@/i18n/routing";
 import { applySpainEuros } from "@/i18n/currency";
+import { applySpanishDialect } from "@/i18n/dialect";
+import type { Locale } from "@/i18n/routing";
 import { localeContent } from "@/i18n/locale-content";
 import { blogArticlesEnExpanded } from "./blog-articles-en-expanded";
 import { blogArticlesEsExpanded } from "./blog-articles-es-expanded";
@@ -18,5 +19,5 @@ export function getBlogArticle(slug: string, locale: Locale): BlogArticle | unde
   const localized = blogArticles[locale] as Record<string, BlogArticle>;
   const article =
     localized?.[slug] ?? blogArticles.en[slug as keyof typeof blogArticles.en];
-  return article ? applySpainEuros(article, locale) : undefined;
+  return article ? applySpainEuros(applySpanishDialect(article, locale), locale) : undefined;
 }

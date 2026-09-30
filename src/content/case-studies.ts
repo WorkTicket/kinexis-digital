@@ -1,5 +1,6 @@
-import type { Locale } from "@/i18n/routing";
+import { applySpanishDialect } from "@/i18n/dialect";
 import { localeContent } from "@/i18n/locale-content";
+import type { Locale } from "@/i18n/routing";
 import { isSpanishLocale } from "@/i18n/spanish";
 
 export type CaseStudyMetric = {
@@ -384,17 +385,18 @@ export const caseStudiesContent = localeContent({
 
 export function getCaseStudyBySlug(localeOrSlug: Locale | string, slug?: string): CaseStudy | undefined {
   if (slug !== undefined) {
-    return caseStudiesContent[localeOrSlug as Locale]?.caseStudies.find((study) => study.slug === slug);
+    return getCaseStudiesContent(localeOrSlug as Locale).caseStudies.find((study) => study.slug === slug);
   }
   return caseStudiesContent.en.caseStudies.find((study) => study.slug === localeOrSlug);
 }
 
 export function getHomepageCaseStudies(locale: Locale): CaseStudy[] {
-  return caseStudiesContent[locale].caseStudies;
+  return getCaseStudiesContent(locale).caseStudies;
 }
 
 export function getCaseStudiesContent(locale: Locale): CaseStudiesContent {
-  return caseStudiesContent[locale] ?? caseStudiesContent.en;
+  const content = caseStudiesContent[locale] ?? caseStudiesContent.en;
+  return applySpanishDialect(content, locale);
 }
 
 export function getAllCaseStudySlugs(): string[] {
@@ -455,7 +457,7 @@ function buildCaseStudyPages(locale: Locale): CaseStudyPage[] {
           over: "over",
         };
 
-  return (caseStudiesContent[locale] ?? caseStudiesContent.en).caseStudies.map((entry) => {
+  return getCaseStudiesContent(locale).caseStudies.map((entry) => {
     const s = entry as CaseStudy;
 
     return {
