@@ -257,22 +257,31 @@ def export(img: Image.Image, png: Path, webp: Path, sm: Path | None = None) -> N
 
 
 def main() -> None:
+    # Architecture plate is locked to the premium "Six channels. One loop."
+    # render from commit 431892d — do not overwrite unless explicitly forced.
+    import sys
+
     system = compose_system()
-    arch = compose_arch()
     export(
         system,
         ROOT / "public/assets/images/agency/about-system.png",
         ROOT / "public/assets/images/agency/about-system.webp",
         ROOT / "public/assets/images/agency/about-system-sm.webp",
     )
-    export(
-        arch,
-        ROOT / "public/assets/images/editorial/about-architecture-plate.png",
-        ROOT / "public/assets/images/editorial/about-architecture-plate.webp",
-    )
     Path("/tmp/about-plates").mkdir(parents=True, exist_ok=True)
     system.save("/tmp/about-plates/system-preview.png")
-    arch.save("/tmp/about-plates/arch-preview.png")
+
+    if "--with-arch" in sys.argv:
+        arch = compose_arch()
+        export(
+            arch,
+            ROOT / "public/assets/images/editorial/about-architecture-plate.png",
+            ROOT / "public/assets/images/editorial/about-architecture-plate.webp",
+        )
+        arch.save("/tmp/about-plates/arch-preview.png")
+        print("wrote architecture (forced)")
+    else:
+        print("skipped architecture plate (locked; pass --with-arch to overwrite)")
     print("done")
 
 
