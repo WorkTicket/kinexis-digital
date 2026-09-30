@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { HeroCluster } from "@/components/landing/ViewportCluster";
+import { HeroCluster, PhoneFrame } from "@/components/landing/ViewportCluster";
 import {
   MatchedHeadline,
   MatchedMarketLine,
@@ -9,9 +9,10 @@ import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 /**
- * get-a-website hero — type-led copy + existing device still.
- * No floating badge clouds; presence comes from hierarchy, accent,
- * and a clear price-range signal into the CTA.
+ * get-a-website hero — mobile-first conversion composition.
+ * Phone product proof leads on small screens; laptop cluster scales up.
+ * Theme tokens only (shared site light/dark via data-theme / kinexis-theme).
+ * No floating badge clouds or mockup gimmicks.
  */
 export function WebsiteHero({
   page,
@@ -31,91 +32,126 @@ export function WebsiteHero({
     page.whatsappHref && page.whatsappHeroLabel
       ? { href: page.whatsappHref, label: page.whatsappHeroLabel }
       : null;
+  const phoneSrc = still?.mobileSrc ?? still?.src;
 
   return (
     <section
       className="lp-web-hero chapter relative overflow-x-clip"
       aria-labelledby="page-hero-heading"
     >
+      <div className="lp-web-hero__atmosphere" aria-hidden>
+        <span className="lp-web-hero__wash lp-web-hero__wash--a" />
+        <span className="lp-web-hero__wash lp-web-hero__wash--b" />
+        <span className="lp-web-hero__grain" />
+      </div>
+
       <div className="shell lp-web-hero__stage relative">
         <div className="lp-web-hero__layout">
-          <div className="lp-web-hero__copy">
-            <p className="lp-web-hero__eyebrow">
-              <span className="lp-web-hero__eyebrow-bar" aria-hidden />
-              <Suspense fallback={market}>
-                <MatchedMarketLine fallback={market} />
-              </Suspense>
-            </p>
-            <h1 id="page-hero-heading" className="lp-web-hero__title">
-              <Suspense
-                fallback={lines.map((line, index) => (
-                  <span
-                    key={line}
-                    className={
-                      index === lines.length - 1
-                        ? "lp-web-hero__line lp-web-hero__line--signal"
-                        : "lp-web-hero__line"
-                    }
-                  >
-                    {line}
-                  </span>
-                ))}
-              >
-                <MatchedHeadline fallback={lines} />
-              </Suspense>
-            </h1>
-            <p className="lp-web-hero__lede">{page.subheadline}</p>
-            {heroPrice ? (
-              <p className="lp-web-hero__price">
-                <span className="lp-web-hero__price-label">{heroPrice}</span>
-              </p>
-            ) : null}
-            <div className="lp-web-hero__actions" id="lp-hero-actions">
-              <PlanCta placement="hero" landingSlug={page.slug} size="xl" arrow>
-                {page.heroCtaLabel ?? page.stickyCtaLabel}
-              </PlanCta>
-              {whatsapp ? (
-                <WhatsAppLink
-                  href={whatsapp.href}
-                  label={whatsapp.label}
-                  variant="hero"
-                />
-              ) : null}
+          <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
+            <span className="lp-web-hero__eyebrow-bar" aria-hidden />
+            <Suspense fallback={market}>
+              <MatchedMarketLine fallback={market} />
+            </Suspense>
+          </p>
+
+          <h1
+            id="page-hero-heading"
+            className="lp-web-hero__title lp-web-hero__anim lp-web-hero__anim--2"
+          >
+            <Suspense
+              fallback={lines.map((line, index) => (
+                <span
+                  key={line}
+                  className={
+                    index === lines.length - 1
+                      ? "lp-web-hero__line lp-web-hero__line--signal"
+                      : "lp-web-hero__line"
+                  }
+                >
+                  {line}
+                </span>
+              ))}
+            >
+              <MatchedHeadline fallback={lines} />
+            </Suspense>
+          </h1>
+
+          {/* Mobile-first product proof — phone leads the composition */}
+          {phoneSrc ? (
+            <div className="lp-web-hero__phone-lead lp-web-hero__anim lp-web-hero__anim--3">
+              <link
+                rel="preload"
+                as="image"
+                href={phoneSrc}
+                type="image/webp"
+                fetchPriority="high"
+              />
+              <div className="lp-web-hero__phone-glow" aria-hidden />
+              <figure className="lp-web-hero__phone-figure">
+                <PhoneFrame image={phoneSrc} priority />
+                <figcaption className="lp-web-hero__phone-caption">
+                  {caption}
+                </figcaption>
+              </figure>
             </div>
-            {page.heroFinePrint ? (
-              <p className="lp-web-hero__micro">{page.heroFinePrint}</p>
-            ) : null}
-            {proof.length ? (
-              <ul className="lp-web-hero__proof">
-                {proof.map((item) => (
-                  <li key={item}>
-                    <span className="lp-web-hero__proof-mark" aria-hidden>
-                      <CheckMark />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+          ) : null}
+
+          <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--4">
+            {page.subheadline}
+          </p>
+
+          {heroPrice ? (
+            <p className="lp-web-hero__price lp-web-hero__anim lp-web-hero__anim--5">
+              <span className="lp-web-hero__price-label">{heroPrice}</span>
+            </p>
+          ) : null}
+
+          <div
+            className="lp-web-hero__actions lp-web-hero__anim lp-web-hero__anim--5"
+            id="lp-hero-actions"
+          >
+            <PlanCta placement="hero" landingSlug={page.slug} size="xl" arrow>
+              {page.heroCtaLabel ?? page.stickyCtaLabel}
+            </PlanCta>
+            {whatsapp ? (
+              <WhatsAppLink
+                href={whatsapp.href}
+                label={whatsapp.label}
+                variant="hero"
+              />
             ) : null}
           </div>
-          <div className="lp-web-hero__visual">
-            {still?.mobileSrc ? (
-              <>
-                <link
-                  rel="preload"
-                  as="image"
-                  href={still.mobileSrc}
-                  type="image/webp"
-                  fetchPriority="high"
-                />
-                <link
-                  rel="preload"
-                  as="image"
-                  href={still.src}
-                  type="image/webp"
-                  media="(min-width: 1024px)"
-                />
-              </>
+
+          {page.heroFinePrint ? (
+            <p className="lp-web-hero__micro lp-web-hero__anim lp-web-hero__anim--6">
+              {page.heroFinePrint}
+            </p>
+          ) : null}
+
+          {proof.length ? (
+            <ul className="lp-web-hero__proof lp-web-hero__anim lp-web-hero__anim--6">
+              {proof.map((item) => (
+                <li key={item}>
+                  <span className="lp-web-hero__proof-mark" aria-hidden>
+                    <CheckMark />
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+
+          {/* Desktop / tablet visual — laptop with live still */}
+          <div className="lp-web-hero__visual lp-web-hero__anim lp-web-hero__anim--3">
+            {still?.src ? (
+              <link
+                rel="preload"
+                as="image"
+                href={still.src}
+                type="image/webp"
+                media="(min-width: 768px)"
+                fetchPriority="high"
+              />
             ) : null}
             <div className="lp-web-hero__glow" aria-hidden />
             <HeroCluster

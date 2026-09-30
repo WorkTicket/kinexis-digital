@@ -73,4 +73,13 @@ describe("get-a-website theme tokens", () => {
       /html\.lp-chrome\s+body\s*\{\s*background-color:\s*var\(--background\);/,
     );
   });
+
+  it("shares the sitewide theme storage key (no LP-only theme)", async () => {
+    const { THEME_STORAGE_KEY, THEME_PREFLIGHT_SCRIPT } = await import(
+      "@/lib/theme"
+    );
+    expect(THEME_STORAGE_KEY).toBe("kinexis-theme");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain("kinexis-theme");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain('setAttribute("data-theme"');
+  });
 });
