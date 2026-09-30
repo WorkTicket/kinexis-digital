@@ -202,19 +202,19 @@ export function buildSpanishGetAWebsite(
     outcomes: [
       {
         title: "Verse establecido",
-        body: "Se ve como la empresa que ya diriges",
+        body: "Se ve establecida\ncomo tu empresa",
       },
       {
         title: "Generar consultas",
-        body: "Botones de llamada y cotización difíciles de pasar por alto",
+        body: "Para llamar y cotizar\nsin tener que buscar",
       },
       {
         title: "Cargar rápido",
-        body: "Rápido en el teléfono, no solo en el Wi‑Fi de la oficina",
+        body: "Rápido en el teléfono\nno solo en la oficina",
       },
       {
         title: "Ser dueño de tu sitio",
-        body: "El sitio sigue siendo tuyo. Sin atarte a un constructor",
+        body: "Sigue siendo tuyo.\nSin un constructor.",
       },
     ],
 

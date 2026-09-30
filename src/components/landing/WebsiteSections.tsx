@@ -107,7 +107,52 @@ type TransformCol = { title: string; items: string[] };
 /*  Outcomes                                                           */
 /* ------------------------------------------------------------------ */
 
+function OutcomeBody({ body }: { body: string }) {
+  const lines = body
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  return (
+    <span className="lp-web-outcomes__body">
+      {lines.map((line) => (
+        <span key={line} className="lp-web-outcomes__line">
+          {line}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 function OutcomeGroup({
+  items,
+  hidden = false,
+  copyKey,
+}: {
+  items: LandingPageOutcome[];
+  hidden?: boolean;
+  copyKey: string;
+}) {
+  return (
+    <ul className="lp-web-outcomes__group" aria-hidden={hidden || undefined}>
+      {items.map((item, index) => (
+        <li key={`${copyKey}-${item.title}`}>
+          <span className="lp-web-outcomes__mark" aria-hidden>
+            {OUTCOME_MARKS[index % OUTCOME_MARKS.length] ?? <CheckMark />}
+          </span>
+          <span className="lp-web-outcomes__copy">
+            <span className="lp-web-outcomes__title">{item.title}</span>
+            <OutcomeBody body={item.body} />
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** Repeated so a wide screen never runs out of items before the loop resets. */
+const MARQUEE_COPIES = 4;
+
+function OutcomeHalf({
   items,
   hidden = false,
 }: {
@@ -115,19 +160,16 @@ function OutcomeGroup({
   hidden?: boolean;
 }) {
   return (
-    <ul className="lp-web-outcomes__group" aria-hidden={hidden || undefined}>
-      {items.map((item, index) => (
-        <li key={hidden ? `${item.title}-copy` : item.title}>
-          <span className="lp-web-outcomes__mark" aria-hidden>
-            {OUTCOME_MARKS[index] ?? <CheckMark />}
-          </span>
-          <span className="lp-web-outcomes__copy">
-            <span className="lp-web-outcomes__title">{item.title}</span>
-            <span className="lp-web-outcomes__body">{item.body}</span>
-          </span>
-        </li>
+    <div className="lp-web-outcomes__half">
+      {Array.from({ length: MARQUEE_COPIES }, (_, copy) => (
+        <OutcomeGroup
+          key={copy}
+          items={items}
+          hidden={hidden || copy > 0}
+          copyKey={hidden ? `b${copy}` : `a${copy}`}
+        />
       ))}
-    </ul>
+    </div>
   );
 }
 
@@ -143,8 +185,8 @@ export function WebsiteOutcomes({
     <aside className="lp-web-outcomes" aria-label={ariaLabel}>
       <div className="lp-web-outcomes__marquee">
         <div className="lp-web-outcomes__track">
-          <OutcomeGroup items={items} />
-          <OutcomeGroup items={items} hidden />
+          <OutcomeHalf items={items} />
+          <OutcomeHalf items={items} hidden />
         </div>
       </div>
     </aside>

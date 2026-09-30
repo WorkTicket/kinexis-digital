@@ -267,19 +267,19 @@ const baseGetAWebsite: LandingPageEntry = {
   outcomes: [
     {
       title: "Look established",
-      body: "Looks like the company you already run",
+      body: "A look that matches\nthe company you run",
     },
     {
       title: "Generate inquiries",
-      body: "Call and quote buttons that are hard to miss",
+      body: "Call and quote buttons\nthat people cannot miss",
     },
     {
       title: "Load quickly",
-      body: "Fast on a phone, not just on office Wi‑Fi",
+      body: "Fast on the phone,\nnot just office Wi-Fi",
     },
     {
       title: "Own your website",
-      body: "The site stays yours. No builder lock-in",
+      body: "The site stays yours\nnot a builder lock-in",
     },
   ],
 
