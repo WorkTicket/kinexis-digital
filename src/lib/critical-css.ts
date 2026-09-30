@@ -35,6 +35,7 @@ export const CRITICAL_FIRST_PAINT_CSS = [
   ".hero-lede{max-width:min(36rem,100%);color:var(--muted);text-wrap:pretty}",
   ".hero-enter,.hero-enter-1,.hero-enter-2,.hero-enter-3,.hero-enter-4,.hero-enter-4b,.hero-enter-5{opacity:1}",
   ".hero-film-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:58% 42%;opacity:.88}",
+  "@media(max-width:1023px){.hero-shell--film{background:var(--background,#fff)}.hero-shell--film .hero-atmosphere,.hero-shell--film .hero-film-scrim,.hero-shell--film .hero-film-media{display:none}}",
   ".btn{display:inline-flex;align-items:center;justify-content:center;gap:.625rem;border:1px solid transparent;border-radius:var(--radius-control);font-weight:700;text-decoration:none;cursor:pointer}",
   ".btn--primary{background:var(--accent);color:#fff;border-color:var(--accent)}",
   ".btn--xl{min-height:3.85rem;padding:1.15rem 2.25rem;font-size:1.0625rem;border-radius:var(--radius-lg)}",

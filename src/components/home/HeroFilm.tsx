@@ -1,13 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import {
-  HOME_HERO_POSTER,
-  HOME_HERO_POSTER_DESKTOP,
-} from "@/lib/lcp-preload";
+import { HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
 import { scheduleIdleOrScroll } from "@/lib/schedule-idle-or-scroll";
 
-const POSTER_MOBILE = HOME_HERO_POSTER;
 const POSTER_DESKTOP = HOME_HERO_POSTER_DESKTOP;
 const SRC_WEBM = "/assets/video/hero-open-v2-sm.webm?v=20260816";
 const SRC_MP4 = "/assets/video/hero-open-v2-sm.mp4?v=20260816";
@@ -70,12 +66,16 @@ export function HeroFilm() {
     >
       <picture>
         <source
+          media="(max-width: 1023px)"
+          srcSet="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        />
+        <source
           media="(min-width: 1024px)"
           srcSet={POSTER_DESKTOP}
           type="image/webp"
         />
         <img
-          src={POSTER_MOBILE}
+          src={POSTER_DESKTOP}
           alt=""
           width={1920}
           height={1080}

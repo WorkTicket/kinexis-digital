@@ -9682,10 +9682,15 @@ html[data-theme="dark"] .theme-toggle__moon {
     display: none;
   }
 
-  /* Poster stays — full-bleed visual on phones; only defer live video */
-  .hero-film-media {
-    display: block;
-    opacity: 0.78;
+  /* Phone still is a soft crop. Type sits on the page background instead. */
+  .hero-shell--film {
+    background: var(--background);
+  }
+
+  .hero-shell--film .hero-atmosphere,
+  .hero-shell--film .hero-film-scrim,
+  .hero-shell--film .hero-film-media {
+    display: none;
   }
 
   .hero-film-video {
