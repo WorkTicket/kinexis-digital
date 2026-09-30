@@ -47,11 +47,12 @@ export function buildSpanishGetAWebsite(
     metaTitle: "Sitios web a medida para contratistas",
     metaDescription: `Sitios web a medida para contratistas y negocios de servicios del hogar. Hechos para que el cliente sepa quién eres y pueda llamar o pedir una cotización. Planes desde ${lowLabel} a ${highLabel}.`,
     badge: "Sitios web a medida para contratistas",
-    headline: "Tu negocio ha crecido. Tu sitio web debería mostrarlo.",
+    headline:
+      "Tu negocio ha crecido. Tu sitio web debería\u00A0mostrarlo.",
     headlineAccent: "",
     headlineLines: [
       "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      "Tu sitio web debería\u00A0mostrarlo.",
     ],
     marketLine:
       "Sitios web a medida para contratistas y negocios de servicios del hogar.",

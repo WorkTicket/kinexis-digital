@@ -17,7 +17,8 @@ const headlinesByLocale = localeContent({
     ] as const,
     business_grown: [
       "Your business has grown.",
-      "Your website should show it.",
+      // Keep “should show it” as one wrap unit (nbsp).
+      "Your website should\u00A0show\u00A0it.",
     ] as const,
   },
   "es-419": {
@@ -27,7 +28,8 @@ const headlinesByLocale = localeContent({
     ] as const,
     business_grown: [
       "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      // Keep “debería mostrarlo” as one wrap unit (nbsp).
+      "Tu sitio web debería\u00A0mostrarlo.",
     ] as const,
   },
 });

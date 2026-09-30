@@ -113,11 +113,12 @@ const baseGetAWebsite: LandingPageEntry = {
   metaDescription:
     "Custom websites for contractors and home-service businesses. Built so customers can tell who you are, then call or request a quote. Plans from $500 to $2,000.",
   badge: "Custom websites for contractors",
-  headline: "Your business has grown. Your website should show it.",
+  headline:
+    "Your business has grown. Your website should\u00A0show\u00A0it.",
   headlineAccent: "",
   headlineLines: [
     "Your business has grown.",
-    "Your website should show it.",
+    "Your website should\u00A0show\u00A0it.",
   ],
   marketLine:
     "Custom websites for contractors & home-service businesses.",

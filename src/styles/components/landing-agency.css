@@ -401,23 +401,42 @@ html[data-theme=dark] .lp-web-hero__wash--a {
 .lp-web-hero__stage {
   position:relative;
   z-index:1;
-  padding-top:1.75rem;
-  padding-bottom:2.75rem;
+  padding-top:1.35rem;
+  padding-bottom:1.75rem;
 }
 
 .lp-web-hero__layout {
   display:grid;
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:
-    "copy"
+    "copy-top"
     "phone"
+    "copy-bot"
     "visual";
-  gap:2.25rem;
+  gap:1rem;
   align-items:start;
+  /* Clear sticky CTA so the device proof isn’t clipped on mobile */
+  padding-bottom:calc(4.75rem + env(safe-area-inset-bottom,0px));
 }
 
+.lp-web-hero__copy-top,
+.lp-web-hero__copy-bot {
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  max-width:34rem;
+}
+
+.lp-web-hero__copy-top {
+  grid-area:copy-top;
+}
+
+.lp-web-hero__copy-bot {
+  grid-area:copy-bot;
+}
+
+/* Legacy alias — keep any external selectors from breaking */
 .lp-web-hero__copy {
-  grid-area:copy;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
@@ -436,9 +455,10 @@ html[data-theme=dark] .lp-web-hero__wash--a {
 }
 
 .lp-web-hero__title {
-  margin:1.15rem 0 0;
-  max-width:12ch;
-  font-size:clamp(2.55rem,11vw,3.15rem);
+  margin:.85rem 0 0;
+  /* Wide enough that “should show it” / “debería mostrarlo” stay intact */
+  max-width:min(18ch,100%);
+  font-size:clamp(2.35rem,10vw,2.95rem);
   letter-spacing:-.055em;
   line-height:1.02;
 }
@@ -449,11 +469,11 @@ html[data-theme=dark] .lp-web-hero__wash--a {
 
 .lp-web-hero__line--signal {
   color:var(--lp-accent);
-  margin-top:.1em;
+  margin-top:.12em;
 }
 
 .lp-web-hero__lede {
-  margin:1.2rem 0 0;
+  margin:0;
   max-width:30rem;
   font-size:1rem;
   line-height:1.55;
@@ -465,8 +485,8 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   display:flex;
   flex-wrap:wrap;
   align-items:center;
-  gap:.5rem;
-  margin:1.35rem 0 0;
+  gap:.45rem;
+  margin:.95rem 0 0;
 }
 
 .lp-web-hero__chip {
@@ -496,7 +516,15 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   flex-wrap:wrap;
   align-items:center;
   gap:.85rem 1.15rem;
-  margin:1.4rem 0 0;
+  margin:1.15rem 0 0;
+}
+
+@media (max-width:767px) {
+  .lp-web-hero__actions .btn.lp-web-hero__cta {
+    width:100%;
+    min-width:0;
+    justify-content:center;
+  }
 }
 
 .lp-web-hero__cta.btn,
@@ -638,7 +666,7 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   grid-area:phone;
   position:relative;
   justify-self:center;
-  width:min(100%,22rem);
+  width:min(100%,22.5rem);
   margin:0;
 }
 
@@ -646,7 +674,7 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   position:relative;
   display:grid;
   place-items:center;
-  padding:1.25rem 1rem 1.5rem;
+  padding:.15rem .35rem .65rem;
 }
 
 .lp-web-hero__phone-glow {
@@ -683,13 +711,14 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   position:relative;
   z-index:1;
   margin:0;
-  width:min(12.75rem,58vw);
+  width:min(14.25rem,62vw);
+  filter:drop-shadow(0 22px 36px color-mix(in oklab,var(--lp-ink) 22%,transparent));
 }
 
 .lp-web-hero__phone-caption {
-  margin:.85rem 0 0;
-  font-size:.7rem;
-  letter-spacing:.04em;
+  margin:.65rem 0 0;
+  font-size:.68rem;
+  letter-spacing:.05em;
   text-transform:uppercase;
   color:var(--lp-muted);
   text-align:center;
@@ -2178,11 +2207,14 @@ html[data-theme=dark] .lp-web-hero__wash--a {
     padding-bottom:3.25rem;
   }
   .lp-web-hero__layout {
-    grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
-    grid-template-areas:"copy visual";
-    column-gap:2.5rem;
-    row-gap:0;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+    grid-template-areas:
+      "copy-top visual"
+      "copy-bot visual";
+    column-gap:2.75rem;
+    row-gap:1.15rem;
     align-items:center;
+    padding-bottom:0;
   }
   .lp-web-hero__phone-lead {
     display:none;
@@ -2190,6 +2222,22 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   .lp-web-hero__visual {
     display:block;
     align-self:center;
+    grid-row:1 / span 2;
+    padding:.5rem 0 1rem;
+    margin-right:-.75rem;
+  }
+  .lp-web-hero__glow {
+    inset:-4% -12% 4% -4%;
+    opacity:1;
+    background:radial-gradient(
+      ellipse 72% 62% at 58% 44%,
+      color-mix(in oklab,var(--lp-accent) 22%,transparent),
+      transparent 74%
+    );
+  }
+  .lp-web-hero__copy-top,
+  .lp-web-hero__copy-bot {
+    max-width:36rem;
   }
   .lp-web-hero__lede {
     font-size:1.0625rem;
@@ -2197,8 +2245,8 @@ html[data-theme=dark] .lp-web-hero__wash--a {
     max-width:32rem;
   }
   .lp-web-hero__title {
-    max-width:11ch;
-    font-size:clamp(2.85rem,5vw,3.7rem);
+    max-width:min(16ch,100%);
+    font-size:clamp(2.85rem,4.8vw,3.65rem);
   }
   .lp-web-hero__cta.btn,
   .lp-web-hero__actions .btn.lp-web-hero__cta {
@@ -2300,15 +2348,19 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   .lp-hero-cluster--live .lp-hero-cluster__desk {
     display:block;
   }
+  /* Live GAW cluster must win over the .lp-web phone kill-switch */
+  .lp-web .lp-hero-cluster--live .lp-hero-cluster__phone,
   .lp-hero-cluster--live .lp-hero-cluster__phone {
+    display:block!important;
     position:absolute;
     right:6%;
     bottom:-5%;
-    width:22%;
-    min-width:5.5rem;
-    max-width:8.75rem;
+    width:24%;
+    min-width:5.75rem;
+    max-width:9.25rem;
     margin:0;
-    transform:var(--lp-phone-tilt);
+    transform:rotate(-6deg);
+    filter:drop-shadow(0 18px 28px color-mix(in oklab,var(--lp-ink) 28%,transparent));
   }
   .lp-hero-cluster--live.lp-hero-cluster--mirror .lp-hero-cluster__phone {
     right:auto;
@@ -2325,11 +2377,11 @@ html[data-theme=dark] .lp-web-hero__wash--a {
     padding-bottom:0;
   }
   .lp-web-hero__layout {
-    grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);
-    column-gap:3rem;
+    grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+    column-gap:3.25rem;
   }
   .lp-web-hero__visual {
-    margin-right:-1.5rem;
+    margin-right:-2rem;
   }
   .lp-web-still--hero {
     transform:rotate(.85deg) translate3d(.85rem,.2rem,0);
@@ -2345,27 +2397,29 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   .lp-hero-cluster--live .lp-hero-cluster__desk {
     display:block;
   }
+  .lp-web .lp-hero-cluster--live .lp-hero-cluster__phone,
   .lp-hero-cluster--live .lp-hero-cluster__phone {
+    display:block!important;
     position:absolute;
-    right:5%;
-    bottom:-6%;
-    width:23%;
-    min-width:6.25rem;
-    max-width:9.25rem;
+    right:4%;
+    bottom:-7%;
+    width:25%;
+    min-width:6.5rem;
+    max-width:10rem;
     margin:0;
-    transform:var(--lp-phone-tilt);
+    transform:rotate(-7deg);
   }
   .lp-hero-cluster--live.lp-hero-cluster--mirror .lp-hero-cluster__phone {
     right:auto;
-    left:5%;
-    transform:var(--lp-phone-tilt-mirror);
+    left:4%;
+    transform:rotate(7deg);
   }
   .lp-hero-cluster--live .lp-hero-cluster__stage {
     padding-bottom:1.75rem;
   }
   .lp-web-hero__title {
-    max-width:10.5ch;
-    font-size:clamp(3.35rem,4.3vw,4.3rem);
+    max-width:min(15ch,100%);
+    font-size:clamp(3.2rem,4.2vw,4.15rem);
   }
   .lp-web-build__list {
     grid-template-columns:repeat(3,minmax(0,1fr));

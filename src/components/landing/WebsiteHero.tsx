@@ -10,8 +10,8 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 /**
  * get-a-website hero — professional agency composition.
- * Mobile-first: quiet type → soft price → one CTA → staged proof.
- * Shared site theme (kinexis-theme / data-theme). No mockup badge clouds.
+ * Mobile-first: type → device proof in the first viewport → price/CTA.
+ * Shared site theme (kinexis-theme / data-theme). Real KINEXIS device stills.
  */
 export function WebsiteHero({
   page,
@@ -48,7 +48,7 @@ export function WebsiteHero({
 
       <div className="shell lp-web-hero__stage relative">
         <div className="lp-web-hero__layout">
-          <div className="lp-web-hero__copy">
+          <div className="lp-web-hero__copy-top">
             <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
               <Suspense fallback={market}>
                 <MatchedMarketLine fallback={market} />
@@ -77,12 +77,8 @@ export function WebsiteHero({
               </Suspense>
             </h1>
 
-            <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--3">
-              {page.subheadline}
-            </p>
-
             {priceAnchor || priceFallback ? (
-              <div className="lp-web-hero__meta lp-web-hero__anim lp-web-hero__anim--4">
+              <div className="lp-web-hero__meta lp-web-hero__anim lp-web-hero__anim--3">
                 {priceAnchor ? (
                   <>
                     <span className="lp-web-hero__chip lp-web-hero__chip--price">
@@ -99,6 +95,34 @@ export function WebsiteHero({
                 )}
               </div>
             ) : null}
+          </div>
+
+          {phoneSrc ? (
+            <div className="lp-web-hero__phone-lead lp-web-hero__anim lp-web-hero__anim--3">
+              <link
+                rel="preload"
+                as="image"
+                href={phoneSrc}
+                type="image/webp"
+                fetchPriority="high"
+              />
+              <div className="lp-web-hero__phone-stage">
+                <div className="lp-web-hero__phone-glow" aria-hidden />
+                <div className="lp-web-hero__phone-floor" aria-hidden />
+                <figure className="lp-web-hero__phone-figure">
+                  <PhoneFrame image={phoneSrc} priority />
+                  <figcaption className="lp-web-hero__phone-caption">
+                    {caption}
+                  </figcaption>
+                </figure>
+              </div>
+            </div>
+          ) : null}
+
+          <div className="lp-web-hero__copy-bot">
+            <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--4">
+              {page.subheadline}
+            </p>
 
             <div
               className="lp-web-hero__actions lp-web-hero__anim lp-web-hero__anim--5"
@@ -142,28 +166,6 @@ export function WebsiteHero({
               </ul>
             ) : null}
           </div>
-
-          {phoneSrc ? (
-            <div className="lp-web-hero__phone-lead lp-web-hero__anim lp-web-hero__anim--4">
-              <link
-                rel="preload"
-                as="image"
-                href={phoneSrc}
-                type="image/webp"
-                fetchPriority="high"
-              />
-              <div className="lp-web-hero__phone-stage">
-                <div className="lp-web-hero__phone-glow" aria-hidden />
-                <div className="lp-web-hero__phone-floor" aria-hidden />
-                <figure className="lp-web-hero__phone-figure">
-                  <PhoneFrame image={phoneSrc} priority />
-                  <figcaption className="lp-web-hero__phone-caption">
-                    {caption}
-                  </figcaption>
-                </figure>
-              </div>
-            </div>
-          ) : null}
 
           <div className="lp-web-hero__visual lp-web-hero__anim lp-web-hero__anim--3">
             {still?.src ? (
