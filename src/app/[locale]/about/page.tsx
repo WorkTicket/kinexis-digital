@@ -89,11 +89,8 @@ export default async function AboutPage({ params }: Props) {
       {/* Why — centered manifesto + dual columns + system still */}
       <section
         aria-labelledby="about-why-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="about-atmosphere about-atmosphere--why" aria-hidden>
-          <span className="about-atmosphere__orb" />
-        </div>
         <div className="shell chapter-shell--monument relative">
           <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
@@ -191,11 +188,8 @@ export default async function AboutPage({ params }: Props) {
       {/* Method — centered process spine */}
       <section
         aria-labelledby="about-method-heading"
-        className="chapter chapter--signal relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="about-atmosphere about-atmosphere--method" aria-hidden>
-          <span className="about-atmosphere__orb" />
-        </div>
         <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
@@ -233,7 +227,7 @@ export default async function AboutPage({ params }: Props) {
       {/* Architecture — icon channel grid + plate */}
       <section
         aria-labelledby="about-arch-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
         <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="about-chapter-lead">
@@ -334,7 +328,7 @@ export default async function AboutPage({ params }: Props) {
       {/* Roadmap — centered timeline */}
       <section
         aria-labelledby="about-roadmap-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
         <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="about-chapter-lead">

@@ -5404,21 +5404,21 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   color: var(--muted);
 }
 
-/* About — visual chapters: centered leads, marks, icons, graphic rhythm */
+/* About — flat centered chapters (no nested panel washes / glow borders) */
 
 .about-page {
   --about-ink: var(--foreground);
   --about-mute: var(--muted);
   --about-signal: var(--hero-signal);
   --about-line: color-mix(in oklab, var(--foreground) 12%, transparent);
-  --about-panel: color-mix(in oklab, var(--foreground) 3.5%, transparent);
-  background:
-    radial-gradient(
-      55% 40% at 50% 0%,
-      color-mix(in oklab, var(--hero-signal) 8%, transparent),
-      transparent 70%
-    ),
-    var(--background);
+  background: var(--background);
+}
+
+.about-page .chapter,
+.about-page .chapter--void,
+.about-page .chapter--studio,
+.about-page .chapter--signal {
+  background: transparent;
 }
 
 .about-page .chapter-lead,
@@ -5446,46 +5446,43 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   }
 }
 
-.about-atmosphere {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
+/* Icon marks stay open — no nested wells on About */
+.about-page .icon-well {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--about-signal);
 }
 
-.about-atmosphere__orb {
-  position: absolute;
-  top: -18%;
-  left: 50%;
-  width: min(70vw, 36rem);
-  height: min(50vw, 24rem);
-  translate: -50% 0;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse at center,
-    color-mix(in oklab, var(--about-signal) 12%, transparent),
-    transparent 72%
-  );
-  filter: blur(48px);
-  opacity: 0.75;
+.about-page .icon-well--sm {
+  width: 2rem;
+  height: 2rem;
 }
 
-.about-atmosphere--method .about-atmosphere__orb {
-  top: 35%;
-  opacity: 0.45;
+.about-page .icon-well svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.about-page .icon-well--sm svg {
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .about-why {
   display: grid;
-  gap: 1.35rem;
-  align-items: stretch;
+  gap: 2.5rem;
+  align-items: start;
+  max-width: 64rem;
+  margin-inline: auto;
 }
 
 @media (min-width: 900px) {
   .about-why {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.75rem;
+    gap: 3.5rem 4.5rem;
   }
 }
 
@@ -5494,16 +5491,10 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   display: grid;
   gap: 1rem;
   min-width: 0;
-  padding: 1.6rem 1.4rem 1.75rem;
-  border: 1px solid var(--about-line);
-  border-radius: 1rem;
-  background: var(--about-panel);
-}
-
-@media (min-width: 900px) {
-  .about-why__panel {
-    padding: 2rem 1.85rem 2.1rem;
-  }
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-why__label {
@@ -5542,18 +5533,18 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 
 .about-why__still {
   display: block;
-  margin-top: 2.75rem;
+  margin-top: 3rem;
   width: 100%;
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  border-radius: 1rem;
-  border: 1px solid var(--about-line);
-  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 @media (min-width: 900px) {
   .about-why__still {
-    margin-top: 3.75rem;
+    margin-top: 4rem;
     aspect-ratio: 21 / 9;
   }
 }
@@ -5564,35 +5555,21 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   object-fit: cover;
   object-position: center;
   display: block;
-  transform: scale(1.02);
-  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.about-why__still:hover .about-why__still-img {
-  transform: scale(1.05);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .about-why__still-img,
-  .about-why__still:hover .about-why__still-img {
-    transform: none;
-    transition: none;
-  }
-}
-
-/* Partnership — centered icon triad */
+/* Partnership — open icon triad */
 .about-partnership {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 
 @media (min-width: 800px) {
   .about-partnership {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem 1.75rem;
+    gap: 2rem 2.5rem;
   }
 }
 
@@ -5602,10 +5579,10 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   justify-items: center;
   text-align: center;
   min-height: 100%;
-  padding: 1.6rem 1.25rem 1.75rem;
-  border: 1px solid var(--about-line);
-  border-radius: 1rem;
-  background: var(--about-panel);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-partnership__title {
@@ -5629,27 +5606,27 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   text-wrap: pretty;
 }
 
-/* Method — centered process spine */
+/* Method — open process columns */
 .about-method {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1.25rem;
+  gap: 2.25rem;
   counter-reset: none;
 }
 
 @media (min-width: 720px) {
   .about-method {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.35rem;
+    gap: 2.5rem 2rem;
   }
 }
 
 @media (min-width: 1100px) {
   .about-method {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 2rem 1.25rem;
   }
 }
 
@@ -5660,10 +5637,10 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   justify-items: center;
   text-align: center;
   min-height: 100%;
-  padding: 1.55rem 1.05rem 1.65rem;
-  border: 1px solid var(--about-line);
-  border-radius: 1rem;
-  background: var(--about-panel);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-method__title {
@@ -5685,13 +5662,13 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   text-wrap: pretty;
 }
 
-/* Architecture — centered channel grid + plate */
+/* Architecture — open channel grid + plate */
 .about-arch {
   list-style: none;
   margin: 0 auto;
   padding: 0;
   display: grid;
-  gap: 1.15rem;
+  gap: 2.25rem 1.75rem;
   max-width: 68rem;
 }
 
@@ -5704,7 +5681,7 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 @media (min-width: 1100px) {
   .about-arch {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 2.5rem 2rem;
   }
 }
 
@@ -5715,10 +5692,10 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   text-align: center;
   align-content: start;
   min-height: 100%;
-  padding: 1.45rem 1.2rem 1.55rem;
-  border: 1px solid var(--about-line);
-  border-radius: 1rem;
-  background: var(--about-panel);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-arch__role {
@@ -5750,7 +5727,7 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 }
 
 .about-arch__caption {
-  margin: 2.25rem auto 0;
+  margin: 2.5rem auto 0;
   max-width: 36rem;
   text-align: center;
 }
@@ -5772,9 +5749,9 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   width: min(100%, 52rem);
   overflow: hidden;
   aspect-ratio: 16 / 9;
-  border-radius: 1rem;
-  border: 1px solid var(--about-line);
-  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 @media (min-width: 900px) {
@@ -5968,20 +5945,20 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   color: var(--muted);
 }
 
-/* Principles — centered 2×2 */
+/* Principles — open 2×2 */
 .about-principles {
   list-style: none;
   margin: 0 auto;
   padding: 0;
   display: grid;
-  gap: 1.25rem;
+  gap: 2.5rem;
   max-width: 64rem;
 }
 
 @media (min-width: 800px) {
   .about-principles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.35rem;
+    gap: 2.75rem 3rem;
   }
 }
 
@@ -5991,10 +5968,10 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   justify-items: center;
   text-align: center;
   min-height: 100%;
-  padding: 1.7rem 1.4rem 1.85rem;
-  border: 1px solid var(--about-line);
-  border-radius: 1rem;
-  background: var(--about-panel);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .about-principle__top {
@@ -6159,10 +6136,10 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   gap: 0.7rem;
   min-width: 0;
   grid-column: 2;
-  padding: 1.15rem 1.2rem 1.25rem;
-  border: 1px solid var(--about-line);
-  border-radius: 0.9rem;
-  background: var(--about-panel);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 @media (min-width: 720px) {
