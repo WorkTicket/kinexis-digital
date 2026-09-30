@@ -128,9 +128,9 @@ describe("get-a-website landing page", () => {
       /respond to your website plan request/,
     );
     expect(page?.budgetOptions?.map((option) => option.label)).toEqual([
+      "$500–$2,000",
       "$2,000–$3,000",
       "$3,000–$5,000",
-      "$5,000+",
       "Not sure yet",
     ]);
     expect(page?.timelineOptions?.map((option) => option.label)).toEqual([
@@ -143,9 +143,9 @@ describe("get-a-website landing page", () => {
     expect(page?.pricing?.map((tier) => tier.name) ?? []).toEqual([]);
     expect(page?.pricing?.length ?? 0).toBe(0);
     expect(page?.pricingAddOns?.length ?? 0).toBe(0);
-    expect(page?.pricingAnchor).toBe("$2,000");
+    expect(page?.pricingAnchor).toBe("$500–$2,000");
     expect(page?.pricingTitle?.toLowerCase()).toMatch(
-      /custom website projects start at \$2,000/,
+      /plans from \$500 to \$2,000/,
     );
     expect(page?.pricingDelivery?.toLowerCase()).toMatch(/6 to 12 weeks/);
     expect(page?.pricingQualify?.toLowerCase()).toMatch(
@@ -176,7 +176,9 @@ describe("get-a-website landing page", () => {
     expect(page?.heroCtaLabel?.toLowerCase()).toMatch(
       /get my free website plan/,
     );
-    expect(page?.heroPrice?.toLowerCase()).toMatch(/projects start at \$2,000/);
+    expect(page?.heroPrice?.toLowerCase()).toMatch(
+      /plans from \$500 to \$2,000/,
+    );
     expect(page?.heroSecondaryLabel).toBeUndefined();
     expect(page?.heroFinePrint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.heroMeta).toEqual([
@@ -244,13 +246,13 @@ describe("get-a-website landing page", () => {
     expect(page?.ownershipStatement?.toLowerCase()).toMatch(/you own your website/);
 
     expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).toMatch(
-      /^2\.000$/,
+      /^500–2\.000$/,
     );
     expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).not.toMatch(
       /\$|USD|dólar/i,
     );
     expect(getLandingPage("get-a-website", "es-419")?.heroPrice).toMatch(
-      /empiezan en 2\.000/,
+      /Planes desde 500 a 2\.000/,
     );
     expect(getLandingPage("get-a-website", "es-419")?.heroPrice).not.toMatch(
       /\$|USD|dólar/i,
@@ -270,10 +272,10 @@ describe("get-a-website landing page", () => {
       /plan gratis/i,
     );
     expect(getLandingPage("get-a-website", "es-ES")?.pricingAnchor).toMatch(
-      /2\.000 €/,
+      /500 €–2\.000 €/,
     );
     expect(getLandingPage("get-a-website", "es-ES")?.heroPrice).toMatch(
-      /2\.000 €/,
+      /Planes desde 500 € a 2\.000 €/,
     );
     expect(
       getLandingPage("get-a-website", "es-419")?.budgetOptions?.some((o) =>
@@ -312,7 +314,7 @@ describe("get-a-website landing page", () => {
     expect(page?.proof.map((item) => item.metric)).toEqual([
       "Custom built",
       "You own it",
-      "$2,000",
+      "$500–$2,000",
       "Optional",
     ]);
     expect(page?.proof.map((item) => item.label).join(" ").toLowerCase()).not.toMatch(

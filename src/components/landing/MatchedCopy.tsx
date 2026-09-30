@@ -22,8 +22,15 @@ export function MatchedHeadline({ fallback }: HeadlineProps) {
 
   return (
     <>
-      {lines.map((line) => (
-        <span key={line} className="lp-web-hero__line">
+      {lines.map((line, index) => (
+        <span
+          key={line}
+          className={
+            index === lines.length - 1
+              ? "lp-web-hero__line lp-web-hero__line--signal"
+              : "lp-web-hero__line"
+          }
+        >
           {line}
         </span>
       ))}

@@ -36,14 +36,15 @@ export function buildSpanishGetAWebsite(
   const euros = pricing.proofStartMetric.includes("€");
   const money = (amount: string, plus = false) =>
     `${amount}${euros ? " €" : ""}${plus ? "+" : ""}`;
-  const startLabel = money("2.000");
+  const lowLabel = money("500");
+  const highLabel = money("2.000");
 
   return {
     slug: "get-a-website",
     serviceHref: "/services/web-design",
     serviceLabel: "Diseño y desarrollo web",
     metaTitle: "Sitios web a medida para contratistas",
-    metaDescription: `Sitios web a medida para contratistas y negocios de servicios del hogar. Hechos para que el cliente sepa quién eres y pueda llamar o pedir una cotización. Los proyectos empiezan en ${startLabel}.`,
+    metaDescription: `Sitios web a medida para contratistas y negocios de servicios del hogar. Hechos para que el cliente sepa quién eres y pueda llamar o pedir una cotización. Planes desde ${lowLabel} a ${highLabel}.`,
     badge: "Sitios web a medida para contratistas",
     headline: "Tu negocio ha crecido. Tu sitio web debería mostrarlo.",
     headlineAccent: "",
@@ -179,9 +180,9 @@ export function buildSpanishGetAWebsite(
       { value: "search", label: "Aparecer mejor en búsqueda" },
     ],
     budgetOptions: [
+      { value: "500-2000", label: `${money("500")}–${money("2.000")}` },
       { value: "2000-3000", label: `${money("2.000")}–${money("3.000")}` },
       { value: "3000-5000", label: `${money("3.000")}–${money("5.000")}` },
-      { value: "5000-plus", label: money("5.000", true) },
       { value: "not-sure", label: "Aún no estoy seguro" },
     ],
     timelineOptions: [
@@ -350,7 +351,7 @@ export function buildSpanishGetAWebsite(
       "El sitio actual no refleja el trabajo",
       "El negocio ha superado un sitio básico",
       "Quieres un sitio a medida del que la empresa sea dueña",
-      `Estás preparado para invertir al menos ${startLabel}`,
+      `Estás preparado para invertir en un sitio a medida (planes desde ${lowLabel})`,
       "Puedes enviar fotos, servicios y feedback",
     ],
     fitNotTitle: "Probablemente no es encaje si",
@@ -384,7 +385,7 @@ export function buildSpanishGetAWebsite(
     proof: [
       { metric: "A medida", label: "No es plantilla" },
       { metric: "Es tuyo", label: "Sin atarte a un builder" },
-      { metric: pricing.proofStartMetric, label: "inversión inicial" },
+      { metric: pricing.proofStartMetric, label: "rango de planes" },
       { metric: "Opcional", label: pricing.proofSupportLabel },
     ],
     bulletsTitle: "Lo que realmente obtienes",
@@ -392,7 +393,7 @@ export function buildSpanishGetAWebsite(
 
     closingTitle: "Obtén tu plan gratis de sitio web",
     closingCopy: `Si el sitio actual está vendiendo de menos al negocio, envía los detalles. Respondemos en ${REPLY} con lo que una reconstrucción debería arreglar primero.`,
-    closingFinePrint: `Sin compromiso. Los proyectos empiezan en ${startLabel}. Respuesta en ${REPLY}.`,
+    closingFinePrint: `Sin compromiso. Planes desde ${lowLabel} a ${highLabel}. Respuesta en ${REPLY}.`,
 
     faqs: [
       {

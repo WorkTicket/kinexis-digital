@@ -12,7 +12,7 @@ export const websiteLpChrome = localeContent({
     includedKicker: "What's included",
     howItWorksKicker: "How it works",
     pricingKicker: "Pricing",
-    startingLabel: "starting",
+    startingLabel: "plans from",
     fitKicker: "Fit check",
     nextStepKicker: "Next step",
     planFigcaption:
@@ -30,7 +30,7 @@ export const websiteLpChrome = localeContent({
     includedKicker: "Qué incluye",
     howItWorksKicker: "Cómo funciona",
     pricingKicker: "Precios",
-    startingLabel: "desde",
+    startingLabel: "planes desde",
     fitKicker: "Encaje",
     nextStepKicker: "Siguiente paso",
     planFigcaption:

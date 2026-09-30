@@ -18,17 +18,18 @@ const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=202609
 const CTA = "Get My Free Website Plan";
 const REPLY = "one business day";
 const DELIVERY = "6 to 12";
-const START = 2000;
-const START_ES = formatEsInteger(START);
-const RANGE_ES = `${START_ES} y ${formatEsInteger(5000)}+`;
+const LOW = 500;
+const HIGH = 2000;
+const LOW_ES = formatEsInteger(LOW);
+const HIGH_ES = formatEsInteger(HIGH);
 
-/** Soft live-panel overlays — no $200/$120 addons; Spanish locales avoid $ framing. */
+/** Soft live-panel overlays — range from 500–2000; no $200/$120 addons. */
 const softPricing = localeContent({
   en: {
-    pricingTitle: "Custom website projects start at $2,000",
-    pricingAnchor: `$${START.toLocaleString("en-US")}`,
+    pricingTitle: "Plans from $500 to $2,000",
+    pricingAnchor: `$${LOW.toLocaleString("en-US")}–$${HIGH.toLocaleString("en-US")}`,
     pricingQualify:
-      "Final pricing depends on pages, content, and how much has to be custom. Most contractor and home-service projects fall between $2,000 and $5,000+.",
+      "Final pricing depends on pages, content, and how much has to be custom. Most contractor and home-service projects fall between $500 and $2,000. Exact quote after the free plan.",
     pricingDelivery: `Most builds take ${DELIVERY} weeks.`,
     pricingIntro:
       "You'll know the recommended scope before you commit to a project.",
@@ -41,20 +42,20 @@ const softPricing = localeContent({
     monthlyTitle: "Keep us on after launch if you want to",
     monthlyCopy:
       "After launch, optional hosting, maintenance, and ongoing support are available if you want help keeping the site current. The proposal spells out what is included.",
-    heroPrice: `Projects start at $${START.toLocaleString("en-US")}. Most take ${DELIVERY} weeks.`,
+    heroPrice: `Plans from $${LOW.toLocaleString("en-US")} to $${HIGH.toLocaleString("en-US")}. Most take ${DELIVERY} weeks.`,
     proofSupportLabel: "ongoing support",
-    proofStartMetric: `$${START.toLocaleString("en-US")}`,
+    proofStartMetric: `$${LOW.toLocaleString("en-US")}–$${HIGH.toLocaleString("en-US")}`,
     costFaqAnswer:
-      "Projects start at $2,000. Most contractor and home-service websites land between $2,000 and $5,000+, depending on pages, photos, and extras. You'll get a written number before anything is built.",
+      "Plans run from $500 to $2,000 depending on pages, photos, and extras. You'll get a written number before anything is built — the free plan is how we size it.",
     hostingFaqAnswer:
       "We can host the site after launch, or you can take it to your own provider. You own the website either way. The proposal states whose account the hosting sits in.",
     maintenanceFaqAnswer:
       "No. Ongoing maintenance and support are optional unless a specific proposal says otherwise. A lot of clients launch, settle in, and add help later. Hosting is separate — with us, or on your own provider.",
   },
   "es-419": {
-    pricingTitle: `Los proyectos de sitios web a medida empiezan en ${START_ES}`,
-    pricingAnchor: START_ES,
-    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${RANGE_ES}.`,
+    pricingTitle: `Planes desde ${LOW_ES} a ${HIGH_ES}`,
+    pricingAnchor: `${LOW_ES}–${HIGH_ES}`,
+    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${LOW_ES} y ${HIGH_ES}. La cotización exacta llega después del plan gratis.`,
     pricingDelivery: `La mayoría de proyectos toma de 6 a 12 semanas.`,
     pricingIntro:
       "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
@@ -67,19 +68,19 @@ const softPricing = localeContent({
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
-    heroPrice: `Los proyectos empiezan en ${START_ES}. La mayoría toma de 6 a 12 semanas.`,
+    heroPrice: `Planes desde ${LOW_ES} a ${HIGH_ES}. La mayoría toma de 6 a 12 semanas.`,
     proofSupportLabel: "soporte continuo",
-    proofStartMetric: START_ES,
-    costFaqAnswer: `Los proyectos empiezan en ${START_ES}. La mayoría de sitios para contratistas y servicios del hogar queda entre ${RANGE_ES}, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.`,
+    proofStartMetric: `${LOW_ES}–${HIGH_ES}`,
+    costFaqAnswer: `Los planes van desde ${LOW_ES} a ${HIGH_ES}, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada: el plan gratis es como lo dimensionamos.`,
     hostingFaqAnswer:
       "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
     maintenanceFaqAnswer:
       "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
   "es-ES": {
-    pricingTitle: `Los proyectos de sitios web a medida empiezan en ${START_ES} €`,
-    pricingAnchor: `${START_ES} €`,
-    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${START_ES} € y ${formatEsInteger(5000)} €+.`,
+    pricingTitle: `Planes desde ${LOW_ES} € a ${HIGH_ES} €`,
+    pricingAnchor: `${LOW_ES} €–${HIGH_ES} €`,
+    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${LOW_ES} € y ${HIGH_ES} €. La cotización exacta llega después del plan gratis.`,
     pricingDelivery: `La mayoría de proyectos toma de 6 a 12 semanas.`,
     pricingIntro:
       "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
@@ -92,10 +93,10 @@ const softPricing = localeContent({
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
-    heroPrice: `Los proyectos empiezan en ${START_ES} €. La mayoría toma de 6 a 12 semanas.`,
+    heroPrice: `Planes desde ${LOW_ES} € a ${HIGH_ES} €. La mayoría toma de 6 a 12 semanas.`,
     proofSupportLabel: "soporte continuo",
-    proofStartMetric: `${START_ES} €`,
-    costFaqAnswer: `Los proyectos empiezan en ${START_ES} €. La mayoría de sitios para contratistas y servicios del hogar queda entre ${START_ES} € y ${formatEsInteger(5000)} €+, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada.`,
+    proofStartMetric: `${LOW_ES} €–${HIGH_ES} €`,
+    costFaqAnswer: `Los planes van desde ${LOW_ES} € a ${HIGH_ES} €, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada: el plan gratis es como lo dimensionamos.`,
     hostingFaqAnswer:
       "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
     maintenanceFaqAnswer:
@@ -109,7 +110,7 @@ const baseGetAWebsite: LandingPageEntry = {
   serviceLabel: "Web design & development",
   metaTitle: "Custom Contractor Websites",
   metaDescription:
-    "Custom websites for contractors and home-service businesses. Built so customers can tell who you are, then call or request a quote. Projects start at $2,000.",
+    "Custom websites for contractors and home-service businesses. Built so customers can tell who you are, then call or request a quote. Plans from $500 to $2,000.",
   badge: "Custom websites for contractors",
   headline: "Your business has grown. Your website should show it.",
   headlineAccent: "",
@@ -245,9 +246,9 @@ const baseGetAWebsite: LandingPageEntry = {
     { value: "search", label: "Show up better in search" },
   ],
   budgetOptions: [
+    { value: "500-2000", label: "$500–$2,000" },
     { value: "2000-3000", label: "$2,000–$3,000" },
     { value: "3000-5000", label: "$3,000–$5,000" },
-    { value: "5000-plus", label: "$5,000+" },
     { value: "not-sure", label: "Not sure yet" },
   ],
   timelineOptions: [
@@ -416,7 +417,7 @@ const baseGetAWebsite: LandingPageEntry = {
     "The current site doesn't match the work",
     "The business has outgrown a basic website",
     "Wants a custom site the company actually owns",
-    "Prepared to invest at least $2,000",
+    "Prepared to invest in a custom site (plans from $500)",
     "Can send photos, services, and feedback",
   ],
   fitNotTitle: "Probably not a fit if",
@@ -450,7 +451,10 @@ const baseGetAWebsite: LandingPageEntry = {
   proof: [
     { metric: "Custom built", label: "Not a template" },
     { metric: "You own it", label: "No builder lock-in" },
-    { metric: `$${START.toLocaleString("en-US")}`, label: "starting investment" },
+    {
+      metric: softPricing.en.proofStartMetric,
+      label: "soft plan range",
+    },
     { metric: "Optional", label: softPricing.en.proofSupportLabel },
   ],
   bulletsTitle: "What you actually get",
@@ -458,7 +462,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   closingTitle: "Get your free website plan",
   closingCopy: `If the current site is underselling the business, send the details. We'll reply within ${REPLY} with what a rebuild should fix first.`,
-  closingFinePrint: `No obligation. Projects start at $2,000. Reply within ${REPLY}.`,
+  closingFinePrint: `No obligation. Plans from $500 to $2,000. Reply within ${REPLY}.`,
 
   faqs: [
     {

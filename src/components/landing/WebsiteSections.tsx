@@ -525,8 +525,8 @@ export function WebsitePricing({
           </header>
           <div className="lp-web-pricing__panel">
             <p className="lp-web-pricing__anchor">
-              <span>{anchor}</span>
               <small>{startingLabel}</small>
+              <span>{anchor}</span>
             </p>
             {delivery ? (
               <p className="lp-web-pricing__delivery">{delivery}</p>

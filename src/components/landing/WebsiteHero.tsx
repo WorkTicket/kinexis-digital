@@ -9,11 +9,9 @@ import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 /**
- * Live get-a-website hero — recovered from production DOM.
- * Key differences vs prior repo: heroPrice line, proof list with marks
- * under the visual (not a joined values string), captioned HeroCluster.
- * Spanish locales also get a WhatsApp support pill beside the plan CTA
- * (nav shows Soporte WhatsApp separately).
+ * get-a-website hero — type-led copy + existing device still.
+ * No floating badge clouds; presence comes from hierarchy, accent,
+ * and a clear price-range signal into the CTA.
  */
 export function WebsiteHero({
   page,
@@ -43,14 +41,22 @@ export function WebsiteHero({
         <div className="lp-web-hero__layout">
           <div className="lp-web-hero__copy">
             <p className="lp-web-hero__eyebrow">
+              <span className="lp-web-hero__eyebrow-bar" aria-hidden />
               <Suspense fallback={market}>
                 <MatchedMarketLine fallback={market} />
               </Suspense>
             </p>
             <h1 id="page-hero-heading" className="lp-web-hero__title">
               <Suspense
-                fallback={lines.map((line) => (
-                  <span key={line} className="lp-web-hero__line">
+                fallback={lines.map((line, index) => (
+                  <span
+                    key={line}
+                    className={
+                      index === lines.length - 1
+                        ? "lp-web-hero__line lp-web-hero__line--signal"
+                        : "lp-web-hero__line"
+                    }
+                  >
                     {line}
                   </span>
                 ))}
@@ -60,7 +66,9 @@ export function WebsiteHero({
             </h1>
             <p className="lp-web-hero__lede">{page.subheadline}</p>
             {heroPrice ? (
-              <p className="lp-web-hero__price">{heroPrice}</p>
+              <p className="lp-web-hero__price">
+                <span className="lp-web-hero__price-label">{heroPrice}</span>
+              </p>
             ) : null}
             <div className="lp-web-hero__actions" id="lp-hero-actions">
               <PlanCta placement="hero" landingSlug={page.slug} size="xl" arrow>
@@ -76,6 +84,18 @@ export function WebsiteHero({
             </div>
             {page.heroFinePrint ? (
               <p className="lp-web-hero__micro">{page.heroFinePrint}</p>
+            ) : null}
+            {proof.length ? (
+              <ul className="lp-web-hero__proof">
+                {proof.map((item) => (
+                  <li key={item}>
+                    <span className="lp-web-hero__proof-mark" aria-hidden>
+                      <CheckMark />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             ) : null}
           </div>
           <div className="lp-web-hero__visual">
@@ -97,6 +117,7 @@ export function WebsiteHero({
                 />
               </>
             ) : null}
+            <div className="lp-web-hero__glow" aria-hidden />
             <HeroCluster
               image={still?.src}
               imageAlt={still?.alt}
@@ -105,18 +126,6 @@ export function WebsiteHero({
               priority
             />
           </div>
-          {proof.length ? (
-            <ul className="lp-web-hero__proof">
-              {proof.map((item) => (
-                <li key={item}>
-                  <span className="lp-web-hero__proof-mark" aria-hidden>
-                    <CheckMark />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          ) : null}
         </div>
       </div>
     </section>
