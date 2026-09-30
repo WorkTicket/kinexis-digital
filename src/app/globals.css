@@ -2214,23 +2214,12 @@ html[data-theme="dark"] .ind-visual__img--thumb,
   filter: grayscale(0.35) contrast(1.05) brightness(0.92);
 }
 
-/* About section plates — full editorial B&W to match the About hero film */
-.about-why__still.media-grade,
-.about-why__still.media-grade img,
-.about-arch__plate.media-grade,
-.about-arch__plate.media-grade img {
-  filter: grayscale(1) contrast(1.04) brightness(1.01);
-}
-
-html[data-theme="dark"] .about-why__still.media-grade,
-html[data-theme="dark"] .about-why__still.media-grade img,
-html[data-theme="dark"] .about-arch__plate.media-grade,
-html[data-theme="dark"] .about-arch__plate.media-grade img,
-.dark .about-why__still.media-grade,
-.dark .about-why__still.media-grade img,
-.dark .about-arch__plate.media-grade,
-.dark .about-arch__plate.media-grade img {
-  filter: grayscale(1) contrast(1.06) brightness(0.92);
+/* About brand plates are authored black / #0066ff — never grayscale. */
+.about-why__still,
+.about-why__still img,
+.about-arch__plate,
+.about-arch__plate img {
+  filter: none;
 }
 
 /* Industries hub index — folio rows with editorial thumbs */
@@ -5540,26 +5529,25 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 
 .about-why__still {
   display: block;
-  margin-top: 3rem;
-  width: 100%;
+  margin: 3.25rem auto 0;
+  width: min(100%, 64rem);
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 2 / 1;
   border: 0;
   border-radius: 0;
-  background: transparent;
+  background: #08080a;
 }
 
 @media (min-width: 900px) {
   .about-why__still {
     margin-top: 4rem;
-    aspect-ratio: 21 / 9;
   }
 }
 
 .about-why__still-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
   display: block;
 }
@@ -5753,12 +5741,12 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 .about-arch__plate {
   display: block;
   margin: 2.75rem auto 0;
-  width: min(100%, 52rem);
+  width: min(100%, 56rem);
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1400 / 788;
   border: 0;
   border-radius: 0;
-  background: transparent;
+  background: #08080a;
 }
 
 @media (min-width: 900px) {
@@ -5770,7 +5758,7 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
 .about-arch__plate-img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 

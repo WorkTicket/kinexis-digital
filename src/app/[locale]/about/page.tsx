@@ -129,11 +129,11 @@ export default async function AboutPage({ params }: Props) {
           <MediaReveal
             variant="float"
             delay={0.1}
-            className="about-why__still media-grade"
+            className="about-why__still"
           >
             <Image
-              src="/assets/images/agency/about-system.webp?v=20260929d"
-              alt=""
+              src="/assets/images/agency/about-system.webp?v=20260930a"
+              alt="Diagram comparing scattered marketing tactics to the connected KINEXIS growth system"
               width={1600}
               height={800}
               className="about-why__still-img"
@@ -270,11 +270,11 @@ export default async function AboutPage({ params }: Props) {
           <MediaReveal
             variant="float"
             delay={0.12}
-            className="about-arch__plate media-grade"
+            className="about-arch__plate"
           >
             <Image
-              src="/assets/images/editorial/about-architecture-plate.webp?v=20260929d"
-              alt=""
+              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930a"
+              alt="KINEXIS growth architecture: six channels connected in one loop — SEO, paid, web, CRO, email, and data"
               width={1400}
               height={788}
               className="about-arch__plate-img"
