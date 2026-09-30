@@ -2153,18 +2153,37 @@ html[data-theme="dark"] .mesh-fallback__sheen {
 
 /* Shared editorial grade — full B&W craft to match About / PageHero stills */
 .media-grade,
-.media-grade img,
-.svc-visual__img {
+.media-grade img {
   filter: grayscale(1) contrast(1.04) brightness(1.01);
 }
 
 html[data-theme="dark"] .media-grade,
 html[data-theme="dark"] .media-grade img,
-html[data-theme="dark"] .svc-visual__img,
 .dark .media-grade,
-.dark .media-grade img,
-.dark .svc-visual__img {
+.dark .media-grade img {
   filter: grayscale(1) contrast(1.06) brightness(0.92);
+}
+
+/*
+ * Service brand plates (home tiles, hub catalog, detail lanes) are authored
+ * as black / #0066ff UI — do not grayscale them away.
+ */
+.svc-catalog .media-grade,
+.svc-catalog .media-grade img,
+.svc-visual__img,
+.services-section img {
+  filter: none;
+}
+
+html[data-theme="dark"] .svc-catalog .media-grade,
+html[data-theme="dark"] .svc-catalog .media-grade img,
+html[data-theme="dark"] .svc-visual__img,
+html[data-theme="dark"] .services-section img,
+.dark .svc-catalog .media-grade,
+.dark .svc-catalog .media-grade img,
+.dark .svc-visual__img,
+.dark .services-section img {
+  filter: none;
 }
 
 /* Industries / markets plates — soft desat so prior UI stills keep brand blue */
