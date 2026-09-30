@@ -459,8 +459,8 @@ html[data-theme=dark] .lp-web-hero__grain {
   grid-area:phone;
   position:relative;
   justify-self:center;
-  width:min(11rem,52vw);
-  margin:0;
+  width:min(13rem,62vw);
+  margin:.2rem 0 0;
 }
 
 .lp-web-hero__phone-glow {
