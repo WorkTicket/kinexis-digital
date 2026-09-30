@@ -8,6 +8,17 @@ html.lp-chrome body {
   background-color: var(--background);
 }
 
+html.lp-chrome .site-footer {
+  /* Quiet closer — same paper as the lander, firmer top edge */
+  border-top: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--foreground) 3.5%, var(--background)) 0%,
+      var(--background) 42%
+    );
+}
+
 html.lp-chrome .site-footer__mark {
   display: none;
 }
@@ -17,7 +28,146 @@ html.lp-chrome .site-footer__grid {
 }
 
 html.lp-chrome .site-footer__main {
-  padding-block: 2rem;
+  padding-block: 2.15rem 1.65rem;
+}
+
+html.lp-chrome .site-footer__lp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+html.lp-chrome .site-footer__lp-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.7rem;
+  max-width: 26rem;
+}
+
+html.lp-chrome .site-footer__blurb--lp {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+html.lp-chrome .site-footer__contact--lp {
+  margin-top: 0;
+  padding-top: 0;
+  gap: 0.45rem;
+  width: auto;
+}
+
+html.lp-chrome .site-footer__lp-channels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+html.lp-chrome .site-footer__email--primary {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+html.lp-chrome .site-footer__email--quiet {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+html.lp-chrome .site-footer__email--quiet:hover {
+  color: var(--foreground);
+  opacity: 1;
+}
+
+html.lp-chrome .site-footer__contact--lp .site-footer__meta-line {
+  margin-top: 0.1rem;
+  letter-spacing: 0.035em;
+}
+
+html.lp-chrome .site-footer__logo img {
+  height: 1.5rem;
+}
+
+html.lp-chrome .site-footer__bar {
+  border-top-color: color-mix(in oklab, var(--foreground) 10%, transparent);
+}
+
+html.lp-chrome .site-footer__bar-row {
+  padding-block: 1rem 1.25rem;
+  align-items: flex-start;
+  text-align: left;
+}
+
+html.lp-chrome .site-footer__bar-links {
+  justify-content: flex-start;
+  gap: 0.45rem 1rem;
+}
+
+html.lp-chrome .site-footer__lang {
+  justify-content: flex-start;
+}
+
+html.lp-chrome .site-footer__legal {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+@media (min-width: 720px) {
+  html.lp-chrome .site-footer__main {
+    padding-block: 2.5rem 1.85rem;
+  }
+
+  html.lp-chrome .site-footer__lp {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2.5rem;
+  }
+
+  html.lp-chrome .site-footer__contact--lp {
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  html.lp-chrome .site-footer__lp-channels {
+    align-items: flex-end;
+  }
+
+  html.lp-chrome .site-footer__contact--lp .site-footer__email {
+    justify-content: flex-end;
+  }
+
+  html.lp-chrome .site-footer__bar-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  html.lp-chrome .site-footer__bar-links,
+  html.lp-chrome .site-footer__lang {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 719px) {
+  /* Override the sitewide centered mobile footer — LP stays editorial/left */
+  html.lp-chrome .site-footer__bar-row {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  html.lp-chrome .site-footer__bar-links,
+  html.lp-chrome .site-footer__lang {
+    justify-content: flex-start;
+  }
 }
 
 html.lp-chrome .site-header__logo img {
