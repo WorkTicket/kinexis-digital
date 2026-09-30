@@ -1645,8 +1645,9 @@
 }
 
 .lp-site--greenfield .lp-site__nav-cta,
-.lp-site--greenfield .lp-site__cta {
+.lp-site--greenfield .lp-site__cta:not(.lp-site__cta--ghost) {
   background: var(--lp-site-accent);
+  color: #fff;
 }
 
 .lp-site__actions {
@@ -1661,6 +1662,13 @@
   background: transparent;
   color: var(--lp-site-accent, #2f4a22);
   box-shadow: inset 0 0 0 1.5px color-mix(in oklab, var(--lp-site-accent, #2f4a22) 70%, transparent);
+}
+
+/* Secondary Call CTA — solid fill so label stays white (never green-on-green). */
+.lp-site--greenfield .lp-site__cta--ghost {
+  background: color-mix(in oklab, var(--lp-site-accent) 88%, #000);
+  color: #fff;
+  box-shadow: none;
 }
 
 .lp-site--greenfield .lp-site__photo img {
