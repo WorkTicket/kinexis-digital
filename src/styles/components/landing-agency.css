@@ -402,14 +402,14 @@ html[data-theme=dark] .lp-web-hero__grain {
   grid-template-areas:
     "eyebrow"
     "title"
-    "phone"
     "price"
     "actions"
+    "phone"
     "lede"
     "micro"
     "proof"
     "visual";
-  gap:.7rem;
+  gap:.65rem;
   align-items:start;
 }
 
@@ -459,7 +459,7 @@ html[data-theme=dark] .lp-web-hero__grain {
   grid-area:phone;
   position:relative;
   justify-self:center;
-  width:min(12.25rem,58vw);
+  width:min(11rem,52vw);
   margin:0;
 }
 
