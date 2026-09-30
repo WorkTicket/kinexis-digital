@@ -5414,11 +5414,18 @@ body:has(.cta-section:not(.cta-section--inline)) .site-footer__cta {
   background: var(--background);
 }
 
+/* Single flat page ground — no chapter studio/signal washes on About */
 .about-page .chapter,
 .about-page .chapter--void,
 .about-page .chapter--studio,
 .about-page .chapter--signal {
-  background: transparent;
+  background: var(--background);
+}
+
+.about-page .chapter::before,
+.about-page .chapter::after {
+  content: none !important;
+  display: none !important;
 }
 
 .about-page .chapter-lead,
