@@ -1,10 +1,11 @@
-/* Chrome rules preserved from prior repo (header/footer/sticky for lp-chrome). */
+/* Chrome rules preserved from prior repo (header/footer/sticky for lp-chrome).
+   Backgrounds follow site theme tokens — never lock the LP to dark. */
 html.lp-chrome {
-  background-color: #000;
+  background-color: var(--background);
 }
 
 html.lp-chrome body {
-  background-color: #000;
+  background-color: var(--background);
 }
 
 html.lp-chrome .site-footer__mark {
@@ -70,8 +71,8 @@ html.lp-chrome .landing-sticky-cta__panel {
   padding-bottom:0;
 }
 
-html[data-theme=dark] .lp-web,
-html.lp-chrome .lp-web {
+/* Dark LP tokens only when the site theme is dark — lp-chrome must not force dark. */
+html[data-theme=dark] .lp-web {
   --lp-bg:#000;
   --lp-ink:#ffffff;
   --lp-muted:#a3a3a3;

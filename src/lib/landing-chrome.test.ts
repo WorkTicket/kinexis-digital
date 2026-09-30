@@ -53,3 +53,24 @@ describe("landing chrome", () => {
     expect(isCookieBannerExemptPath("/")).toBe(false);
   });
 });
+
+describe("get-a-website theme tokens", () => {
+  it("does not force dark LP tokens when lp-chrome is present", async () => {
+    const { readFileSync } = await import("node:fs");
+    const { resolve } = await import("node:path");
+    const css = readFileSync(
+      resolve(process.cwd(), "src/styles/components/landing-agency.css"),
+      "utf8",
+    );
+    // Dark .lp-web tokens must key off data-theme=dark only.
+    expect(css).toMatch(/html\[data-theme=dark\]\s*\.lp-web\s*\{/);
+    expect(css).not.toMatch(/html\.lp-chrome\s*\.lp-web\s*\{/);
+    // Chrome shell follows theme background, not hardcoded black.
+    expect(css).toMatch(
+      /html\.lp-chrome\s*\{\s*background-color:\s*var\(--background\);/,
+    );
+    expect(css).toMatch(
+      /html\.lp-chrome\s+body\s*\{\s*background-color:\s*var\(--background\);/,
+    );
+  });
+});
