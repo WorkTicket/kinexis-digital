@@ -337,7 +337,7 @@ html[data-theme=dark] .lp-web {
   z-index:1;
 }
 
-/* Mobile-first hero: phone product proof → CTA path → scale to desktop. */
+/* Mobile-first hero — craft-led composition, shared theme tokens. */
 .lp-web-hero {
   position:relative;
   isolation:isolate;
@@ -355,95 +355,112 @@ html[data-theme=dark] .lp-web {
 .lp-web-hero__wash {
   position:absolute;
   border-radius:50%;
-  filter:blur(48px);
+  filter:blur(56px);
 }
 
 .lp-web-hero__wash--a {
-  top:-18%;
-  right:-28%;
-  width:min(92vw,34rem);
-  height:min(72vw,26rem);
+  top:-22%;
+  right:-34%;
+  width:min(110vw,40rem);
+  height:min(80vw,30rem);
   background:var(--lp-hero-wash);
-  opacity:.95;
+  opacity:1;
 }
 
 .lp-web-hero__wash--b {
-  bottom:-22%;
-  left:-30%;
-  width:min(88vw,28rem);
-  height:min(70vw,22rem);
-  background:color-mix(in oklab,var(--lp-accent) 10%,transparent);
-  opacity:.7;
+  bottom:-28%;
+  left:-36%;
+  width:min(96vw,32rem);
+  height:min(72vw,24rem);
+  background:color-mix(in oklab,var(--lp-accent) 9%,transparent);
+  opacity:.65;
+}
+
+.lp-web-hero__rail {
+  position:absolute;
+  top:0;
+  left:0;
+  width:3px;
+  height:42%;
+  background:linear-gradient(
+    180deg,
+    var(--lp-accent),
+    color-mix(in oklab,var(--lp-accent) 0%,transparent)
+  );
+  opacity:.55;
 }
 
 .lp-web-hero__grain {
   position:absolute;
   inset:0;
-  opacity:.035;
+  opacity:.03;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:180px 180px;
+  background-size:160px 160px;
   mix-blend-mode:overlay;
 }
 
 html[data-theme=dark] .lp-web-hero__grain {
-  opacity:.055;
+  opacity:.05;
+}
+
+html[data-theme=dark] .lp-web-hero__rail {
+  opacity:.7;
 }
 
 .lp-web-hero__stage {
   position:relative;
   z-index:1;
-  padding-top:1rem;
-  padding-bottom:1.5rem;
+  padding-top:1.35rem;
+  padding-bottom:2.25rem;
 }
 
 .lp-web-hero__layout {
   display:grid;
   grid-template-columns:minmax(0,1fr);
   grid-template-areas:
-    "eyebrow"
-    "title"
-    "price"
-    "actions"
+    "copy"
     "phone"
-    "lede"
-    "micro"
-    "proof"
     "visual";
-  gap:.65rem;
+  gap:1.75rem;
   align-items:start;
 }
 
+.lp-web-hero__copy {
+  grid-area:copy;
+  display:grid;
+  gap:0;
+  max-width:36rem;
+}
+
 .lp-web-hero__eyebrow {
-  grid-area:eyebrow;
   display:flex;
   align-items:center;
-  gap:.65rem;
+  gap:.55rem;
   margin:0;
   max-width:34rem;
-  font-size:.72rem;
+  font-size:.6875rem;
   font-weight:700;
-  letter-spacing:.08em;
+  letter-spacing:.09em;
   text-transform:uppercase;
-  line-height:1.4;
+  line-height:1.45;
   color:var(--lp-accent);
 }
 
 .lp-web-hero__eyebrow-bar {
   display:block;
-  width:1.5rem;
-  height:2px;
+  width:1.15rem;
+  height:1.5px;
   flex-shrink:0;
   background:var(--lp-accent);
   border-radius:1px;
 }
 
 .lp-web-hero__title {
-  grid-area:title;
-  margin:0;
-  max-width:20ch;
-  font-size:clamp(2.15rem,9.8vw,2.85rem);
-  letter-spacing:-.048em;
-  line-height:.98;
+  margin:1rem 0 0;
+  max-width:11.5ch;
+  font-size:clamp(2.4rem,10.5vw,3rem);
+  letter-spacing:-.052em;
+  line-height:1.02;
 }
 
 .lp-web-hero__line {
@@ -452,51 +469,14 @@ html[data-theme=dark] .lp-web-hero__grain {
 
 .lp-web-hero__line--signal {
   color:var(--lp-accent);
-  margin-top:.08em;
-}
-
-.lp-web-hero__phone-lead {
-  grid-area:phone;
-  position:relative;
-  justify-self:center;
-  width:min(13rem,62vw);
-  margin:.2rem 0 0;
-}
-
-.lp-web-hero__phone-glow {
-  position:absolute;
-  inset:8% -18% -12%;
-  z-index:0;
-  pointer-events:none;
-  background:radial-gradient(
-    ellipse 70% 55% at 50% 45%,
-    color-mix(in oklab,var(--lp-accent) 28%,transparent),
-    transparent 72%
-  );
-  filter:blur(22px);
-  opacity:.9;
-}
-
-.lp-web-hero__phone-figure {
-  position:relative;
-  z-index:1;
-  margin:0;
-}
-
-.lp-web-hero__phone-caption {
-  margin:.45rem 0 0;
-  font-size:.7rem;
-  letter-spacing:.01em;
-  color:var(--lp-muted);
-  text-align:center;
+  margin-top:.12em;
 }
 
 .lp-web-hero__lede {
-  grid-area:lede;
-  margin:.15rem 0 0;
-  max-width:36rem;
-  font-size:.95rem;
-  line-height:1.45;
+  margin:1.05rem 0 0;
+  max-width:34rem;
+  font-size:.975rem;
+  line-height:1.55;
   color:var(--lp-muted);
   text-wrap:pretty;
   display:-webkit-box;
@@ -505,34 +485,93 @@ html[data-theme=dark] .lp-web-hero__grain {
   overflow:hidden;
 }
 
-.lp-web-hero__actions {
-  grid-area:actions;
+.lp-web-hero__meta {
   display:flex;
   flex-wrap:wrap;
-  align-items:center;
-  gap:.65rem;
-  margin:0;
+  align-items:baseline;
+  gap:.35rem .55rem;
+  margin:1.15rem 0 0;
+  font-size:.875rem;
+  line-height:1.4;
 }
 
-.lp-web-hero__whatsapp {
+.lp-web-hero__meta-price {
+  font-weight:700;
+  letter-spacing:-.02em;
+  color:var(--lp-ink);
+}
+
+.lp-web-hero__meta-dot {
+  color:color-mix(in oklab,var(--lp-muted) 70%,transparent);
+}
+
+.lp-web-hero__meta-note {
+  color:var(--lp-muted);
+}
+
+.lp-web-hero__actions {
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:.7rem;
+  margin:1.25rem 0 0;
+}
+
+.lp-web-hero__cta.btn,
+.lp-web-hero__actions .btn.lp-web-hero__cta {
+  width:100%;
+  height:2.9rem;
+  min-height:2.9rem;
+  max-height:2.9rem;
+  padding:.65rem 1.25rem;
+  font-size:.9375rem;
+  font-weight:650;
+  letter-spacing:-.01em;
+  border-radius:.7rem;
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklab,#fff 22%,transparent),
+    0 12px 24px -16px color-mix(in oklab,var(--lp-accent) 70%,transparent);
+}
+
+.lp-web-hero__cta .btn__label {
+  white-space:nowrap;
+  text-wrap:nowrap;
+}
+
+.lp-web-hero__whatsapp,
+.lp-web-hero__whatsapp--text {
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:.45rem;
-  min-height:3.15rem;
-  width:100%;
-  padding:.7rem 1.1rem;
-  border:1px solid color-mix(in oklab,var(--lp-ink) 18%,transparent);
-  border-radius:999px;
-  color:var(--lp-ink);
-  font-weight:650;
+  gap:.4rem;
+  width:auto;
+  min-height:0;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  color:var(--lp-muted);
+  font-size:.875rem;
+  font-weight:600;
   text-decoration:none;
-  background:color-mix(in oklab,var(--lp-bg) 70%,transparent);
+  text-underline-offset:.16em;
 }
 
-.lp-web-hero__whatsapp:focus-visible,.lp-web-hero__whatsapp:hover {
-  border-color:var(--lp-ink);
+.lp-web-hero__whatsapp:focus-visible,
+.lp-web-hero__whatsapp:hover,
+.lp-web-hero__whatsapp--text:focus-visible,
+.lp-web-hero__whatsapp--text:hover {
+  color:var(--lp-ink);
+  border-color:transparent;
+  text-decoration:underline;
   outline:none;
+}
+
+.lp-web-hero__whatsapp .whatsapp-link__mark,
+.lp-web-hero__whatsapp--text .whatsapp-link__mark {
+  width:1.1rem;
+  height:1.1rem;
+  color:var(--lp-accent);
 }
 
 .whatsapp-link__mark {
@@ -568,71 +607,71 @@ html[data-theme=dark] .lp-web-hero__grain {
   text-align:center;
 }
 
-.lp-web-hero__actions .btn,.lp-web-pricing__cta .btn,.lp-web-work__cta .btn {
-  min-height:3.25rem;
+.lp-web-pricing__cta .btn,.lp-web-work__cta .btn {
+  min-height:3rem;
   width:100%;
 }
 
-.lp-web-hero__actions .btn {
-  box-shadow:
-    inset 0 1px 0 color-mix(in oklab,#fff 26%,transparent),
-    0 14px 28px -18px color-mix(in oklab,var(--lp-accent) 75%,transparent);
-}
-
 .lp-web-hero__micro {
-  grid-area:micro;
-  margin:0;
-  font-size:.8125rem;
-  line-height:1.4;
+  margin:.65rem 0 0;
+  font-size:.78rem;
+  line-height:1.45;
   color:var(--lp-muted);
 }
 
-.lp-web-hero__price {
-  grid-area:price;
-  margin:0;
-  max-width:36rem;
-}
-
-.lp-web-hero__price-label {
-  display:inline-flex;
-  align-items:center;
-  padding:.6rem .9rem;
-  border:1px solid color-mix(in oklab,var(--lp-accent) 40%,var(--lp-border));
-  border-radius:.7rem;
-  background:
-    linear-gradient(
-      135deg,
-      color-mix(in oklab,var(--lp-accent) 12%,transparent),
-      color-mix(in oklab,var(--lp-accent) 4%,transparent)
-    );
-  font-size:.92rem;
-  font-weight:700;
-  letter-spacing:-.015em;
-  line-height:1.35;
-  color:var(--lp-ink);
-  box-shadow:0 10px 24px -20px color-mix(in oklab,var(--lp-accent) 55%,transparent);
-}
-
 .lp-web-hero__proof {
-  grid-area:proof;
-  margin:.15rem 0 0;
-  padding:.85rem .95rem;
+  margin:1.15rem 0 0;
+  padding:0;
   list-style:none;
   display:grid;
-  gap:.45rem;
-  border:1px solid var(--lp-border);
-  border-radius:.85rem;
-  background:color-mix(in oklab,var(--lp-surface) 88%,transparent);
+  gap:.4rem;
 }
 
 .lp-web-hero__proof li {
   display:grid;
   grid-template-columns:auto minmax(0,1fr);
-  gap:.55rem;
+  gap:.45rem;
   align-items:start;
-  font-size:.875rem;
+  font-size:.8125rem;
   line-height:1.4;
   color:var(--lp-muted);
+}
+
+.lp-web-hero__phone-lead {
+  grid-area:phone;
+  position:relative;
+  justify-self:center;
+  width:min(14.5rem,68vw);
+  margin:0;
+}
+
+.lp-web-hero__phone-glow {
+  position:absolute;
+  inset:6% -22% -8%;
+  z-index:0;
+  pointer-events:none;
+  background:radial-gradient(
+    ellipse 68% 58% at 50% 42%,
+    color-mix(in oklab,var(--lp-accent) 26%,transparent),
+    transparent 72%
+  );
+  filter:blur(26px);
+  opacity:.95;
+}
+
+.lp-web-hero__phone-figure {
+  position:relative;
+  z-index:1;
+  margin:0;
+  filter:drop-shadow(0 22px 40px color-mix(in oklab,var(--lp-ink) 22%,transparent));
+}
+
+.lp-web-hero__phone-caption {
+  margin:.7rem 0 0;
+  font-size:.72rem;
+  letter-spacing:.02em;
+  color:var(--lp-muted);
+  text-align:center;
 }
 
 .lp-web-hero__visual {
@@ -645,16 +684,16 @@ html[data-theme=dark] .lp-web-hero__grain {
 
 .lp-web-hero__glow {
   position:absolute;
-  inset:12% -8% -10% 8%;
+  inset:8% -10% -12% 4%;
   z-index:0;
   pointer-events:none;
   background:radial-gradient(
-    ellipse 70% 60% at 55% 45%,
-    color-mix(in oklab,var(--lp-accent) 22%,transparent),
-    transparent 70%
+    ellipse 72% 62% at 55% 45%,
+    color-mix(in oklab,var(--lp-accent) 20%,transparent),
+    transparent 72%
   );
-  filter:blur(28px);
-  opacity:.85;
+  filter:blur(32px);
+  opacity:.9;
 }
 
 .lp-web-hero__visual .lp-hero-cluster {
@@ -664,24 +703,24 @@ html[data-theme=dark] .lp-web-hero__grain {
 
 @media (prefers-reduced-motion:no-preference) {
   .lp-web-hero__anim {
-    animation:lp-web-hero-rise .7s cubic-bezier(.22,1,.36,1) both;
+    animation:lp-web-hero-rise .75s cubic-bezier(.22,1,.36,1) both;
   }
-  .lp-web-hero__anim--1 { animation-delay:.04s; }
-  .lp-web-hero__anim--2 { animation-delay:.1s; }
-  .lp-web-hero__anim--3 { animation-delay:.16s; }
-  .lp-web-hero__anim--4 { animation-delay:.22s; }
-  .lp-web-hero__anim--5 { animation-delay:.28s; }
-  .lp-web-hero__anim--6 { animation-delay:.34s; }
+  .lp-web-hero__anim--1 { animation-delay:.03s; }
+  .lp-web-hero__anim--2 { animation-delay:.08s; }
+  .lp-web-hero__anim--3 { animation-delay:.14s; }
+  .lp-web-hero__anim--4 { animation-delay:.2s; }
+  .lp-web-hero__anim--5 { animation-delay:.26s; }
+  .lp-web-hero__anim--6 { animation-delay:.32s; }
   .lp-web-hero__phone-figure .lp-audit-phone {
-    animation:lp-web-hero-float 5.5s ease-in-out infinite;
-    animation-delay:.6s;
+    animation:lp-web-hero-float 6s ease-in-out infinite;
+    animation-delay:.7s;
   }
 }
 
 @keyframes lp-web-hero-rise {
   from {
     opacity:0;
-    transform:translate3d(0,.7rem,0);
+    transform:translate3d(0,.55rem,0);
   }
   to {
     opacity:1;
@@ -691,7 +730,7 @@ html[data-theme=dark] .lp-web-hero__grain {
 
 @keyframes lp-web-hero-float {
   0%,100% { transform:translate3d(0,0,0); }
-  50% { transform:translate3d(0,-.35rem,0); }
+  50% { transform:translate3d(0,-.28rem,0); }
 }
 
 .lp-web-phone {
@@ -714,6 +753,13 @@ html[data-theme=dark] .lp-web-hero__grain {
   /* Mobile hero uses phone-lead; hide laptop cluster entirely. */
   .lp-web-hero__visual {
     display:none!important;
+  }
+  .lp-web-hero__rail {
+    display:none;
+  }
+  /* On small screens, keep proof below the fold so CTA stays lean. */
+  .lp-web-hero__proof {
+    display:none;
   }
 }
 
@@ -2099,24 +2145,16 @@ html[data-theme=dark] .lp-web-hero__grain {
     --lp-strip-pad:2.15rem;
   }
   .lp-web-hero__stage {
-    padding-top:2.25rem;
-    padding-bottom:2.75rem;
+    padding-top:2.5rem;
+    padding-bottom:3rem;
   }
   .lp-web-hero__layout {
-    grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
-    grid-template-areas:
-      "eyebrow visual"
-      "title visual"
-      "lede visual"
-      "price visual"
-      "actions visual"
-      "micro visual"
-      "proof visual";
-    column-gap:1.75rem;
-    row-gap:.75rem;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+    grid-template-areas:"copy visual";
+    column-gap:2rem;
+    row-gap:0;
     align-items:center;
   }
-  /* Desktop keeps copy→lede→price→CTA reading order. */
   .lp-web-hero__phone-lead {
     display:none;
   }
@@ -2130,13 +2168,25 @@ html[data-theme=dark] .lp-web-hero__grain {
     display:block;
     overflow:visible;
     font-size:1.0625rem;
-    line-height:1.55;
+    line-height:1.58;
   }
   .lp-web-hero__title {
-    max-width:14ch;
-    font-size:clamp(2.6rem,5.4vw,3.55rem);
+    max-width:12ch;
+    font-size:clamp(2.75rem,5.2vw,3.65rem);
+  }
+  .lp-web-hero__actions {
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:.85rem 1.1rem;
+  }
+  .lp-web-hero__cta.btn,
+  .lp-web-hero__actions .btn.lp-web-hero__cta {
+    width:auto;
+    min-width:14.5rem;
   }
   .lp-web-hero__proof {
+    display:grid;
     max-width:28rem;
   }
   .lp-web-build__list,.lp-web-compare,.lp-web-fit__grid,.lp-web-process__list {
@@ -2254,13 +2304,9 @@ html[data-theme=dark] .lp-web-hero__grain {
   .lp-web {
     padding-bottom:0;
   }
-  .lp-web-hero__actions .btn,.lp-web-hero__whatsapp {
-    width:auto;
-  }
   .lp-web-hero__layout {
-    grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
-    column-gap:2.25rem;
-    row-gap:.8rem;
+    grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
+    column-gap:2.75rem;
   }
   .lp-web-hero__visual {
     margin-right:-1.75rem;
@@ -2270,12 +2316,12 @@ html[data-theme=dark] .lp-web-hero__grain {
     transform:rotate(.85deg) translate3d(.85rem,.2rem,0);
   }
   .lp-web-hero__stage {
-    padding-top:3rem;
-    padding-bottom:3.5rem;
+    padding-top:3.35rem;
+    padding-bottom:3.75rem;
   }
   .lp-web-hero__wash--a {
-    width:min(48vw,36rem);
-    height:min(36vw,26rem);
+    width:min(48vw,38rem);
+    height:min(36vw,28rem);
   }
   .lp-hero-cluster--live .lp-hero-cluster__desk {
     display:block;
@@ -2299,8 +2345,11 @@ html[data-theme=dark] .lp-web-hero__grain {
     padding-bottom:1.75rem;
   }
   .lp-web-hero__title {
-    max-width:12ch;
-    font-size:clamp(3.15rem,4.5vw,4.2rem);
+    max-width:11ch;
+    font-size:clamp(3.25rem,4.4vw,4.25rem);
+  }
+  .lp-web-hero__lede {
+    max-width:32rem;
   }
   .lp-web-build__list {
     grid-template-columns:repeat(3,minmax(0,1fr));

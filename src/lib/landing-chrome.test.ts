@@ -23,7 +23,7 @@ describe("landing chrome", () => {
     expect(meta?.ctaLabel.toLowerCase()).toContain("consult");
     expect(website?.ctaLabel.toLowerCase()).toContain("plan");
     expect(website?.headerCtaLabel.toLowerCase()).toMatch(/get my website plan/);
-    expect(website?.ctaLabel.toLowerCase()).toMatch(/website plan/);
+    expect(website?.ctaLabel.toLowerCase()).toMatch(/free plan|website plan/);
     expect(google?.slim).toBe(false);
     expect(meta?.slim).toBe(false);
     expect(website?.slim).toBe(true);
@@ -37,6 +37,7 @@ describe("landing chrome", () => {
     const latam = getLandingChrome("/lp/get-a-website", "es-419");
     expect(latam?.headerCtaLabel).toMatch(/plan de sitio web/i);
     expect(latam?.ctaLabel).toMatch(/plan gratis/i);
+    expect(latam?.ctaLabel.length).toBeLessThan(28);
     expect(latam?.closingTitle).toMatch(/plan gratis/i);
     expect(latam?.headerCtaLabel).not.toMatch(/Get My Website Plan/i);
 

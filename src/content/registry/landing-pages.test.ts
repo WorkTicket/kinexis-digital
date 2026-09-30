@@ -174,7 +174,7 @@ describe("get-a-website landing page", () => {
       /dallas|dfw|north texas|boise/,
     );
     expect(page?.heroCtaLabel?.toLowerCase()).toMatch(
-      /get my free website plan/,
+      /get my free plan/,
     );
     expect(page?.heroPrice?.toLowerCase()).toMatch(
       /plans from \$500 to \$2,000/,
@@ -360,7 +360,7 @@ describe("get-a-website landing page", () => {
       ),
     ).toBe(true);
     expect(page?.headline).not.toBe(metaPage?.headline);
-    expect(page?.stickyCtaLabel.toLowerCase()).toMatch(/website plan/);
+    expect(page?.stickyCtaLabel.toLowerCase()).toMatch(/free plan|website plan/);
     expect(page?.submitLabel).toBe("Send My Website Plan Request");
     expect(page?.formTitle.toLowerCase()).toMatch(/free website plan/);
     expect(page?.formSubtitle.toLowerCase()).toMatch(

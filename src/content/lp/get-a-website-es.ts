@@ -9,7 +9,8 @@ const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260916g";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
 const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
 
-const CTA = "Obtener mi plan gratis de sitio web";
+/** Short hero/sticky label — long form title stays on the plan section. */
+const CTA = "Obtener mi plan gratis";
 const REPLY = "un día hábil";
 
 export type SoftPricingCopy = {

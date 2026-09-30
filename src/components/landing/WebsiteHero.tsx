@@ -9,9 +9,8 @@ import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 /**
- * get-a-website hero — mobile-first conversion composition.
- * Phone product proof leads on small screens; laptop cluster scales up.
- * Theme tokens only (shared site light/dark via data-theme / kinexis-theme).
+ * get-a-website hero — mobile-first, craft-led conversion composition.
+ * Shared site theme (kinexis-theme / data-theme). Soft price range in meta.
  * No floating badge clouds or mockup gimmicks.
  */
 export function WebsiteHero({
@@ -26,13 +25,15 @@ export function WebsiteHero({
     : [page.headline];
   const still = page.heroStill;
   const market = page.marketLine ?? page.badge;
-  const heroPrice = page.heroPrice;
   const proof = page.heroMeta ?? [];
   const whatsapp =
     page.whatsappHref && page.whatsappHeroLabel
       ? { href: page.whatsappHref, label: page.whatsappHeroLabel }
       : null;
   const phoneSrc = still?.mobileSrc ?? still?.src;
+  const priceAnchor = page.pricingAnchor;
+  const priceDelivery = page.pricingDelivery;
+  const priceFallback = page.heroPrice;
 
   return (
     <section
@@ -42,43 +43,116 @@ export function WebsiteHero({
       <div className="lp-web-hero__atmosphere" aria-hidden>
         <span className="lp-web-hero__wash lp-web-hero__wash--a" />
         <span className="lp-web-hero__wash lp-web-hero__wash--b" />
+        <span className="lp-web-hero__rail" />
         <span className="lp-web-hero__grain" />
       </div>
 
       <div className="shell lp-web-hero__stage relative">
         <div className="lp-web-hero__layout">
-          <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
-            <span className="lp-web-hero__eyebrow-bar" aria-hidden />
-            <Suspense fallback={market}>
-              <MatchedMarketLine fallback={market} />
-            </Suspense>
-          </p>
+          <div className="lp-web-hero__copy">
+            <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
+              <span className="lp-web-hero__eyebrow-bar" aria-hidden />
+              <Suspense fallback={market}>
+                <MatchedMarketLine fallback={market} />
+              </Suspense>
+            </p>
 
-          <h1
-            id="page-hero-heading"
-            className="lp-web-hero__title lp-web-hero__anim lp-web-hero__anim--2"
-          >
-            <Suspense
-              fallback={lines.map((line, index) => (
-                <span
-                  key={line}
-                  className={
-                    index === lines.length - 1
-                      ? "lp-web-hero__line lp-web-hero__line--signal"
-                      : "lp-web-hero__line"
-                  }
-                >
-                  {line}
-                </span>
-              ))}
+            <h1
+              id="page-hero-heading"
+              className="lp-web-hero__title lp-web-hero__anim lp-web-hero__anim--2"
             >
-              <MatchedHeadline fallback={lines} />
-            </Suspense>
-          </h1>
+              <Suspense
+                fallback={lines.map((line, index) => (
+                  <span
+                    key={line}
+                    className={
+                      index === lines.length - 1
+                        ? "lp-web-hero__line lp-web-hero__line--signal"
+                        : "lp-web-hero__line"
+                    }
+                  >
+                    {line}
+                  </span>
+                ))}
+              >
+                <MatchedHeadline fallback={lines} />
+              </Suspense>
+            </h1>
 
-          {/* Mobile-first product proof — phone leads the composition */}
+            <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--3">
+              {page.subheadline}
+            </p>
+
+            {priceAnchor || priceFallback ? (
+              <p className="lp-web-hero__meta lp-web-hero__anim lp-web-hero__anim--4">
+                {priceAnchor ? (
+                  <>
+                    <span className="lp-web-hero__meta-price">
+                      {priceAnchor}
+                    </span>
+                    {priceDelivery ? (
+                      <>
+                        <span className="lp-web-hero__meta-dot" aria-hidden>
+                          ·
+                        </span>
+                        <span className="lp-web-hero__meta-note">
+                          {priceDelivery}
+                        </span>
+                      </>
+                    ) : null}
+                  </>
+                ) : (
+                  <span className="lp-web-hero__meta-note">{priceFallback}</span>
+                )}
+              </p>
+            ) : null}
+
+            <div
+              className="lp-web-hero__actions lp-web-hero__anim lp-web-hero__anim--5"
+              id="lp-hero-actions"
+            >
+              <PlanCta
+                placement="hero"
+                landingSlug={page.slug}
+                size="lg"
+                arrow
+                className="lp-web-hero__cta"
+              >
+                {page.heroCtaLabel ?? page.stickyCtaLabel}
+              </PlanCta>
+              {whatsapp ? (
+                <WhatsAppLink
+                  href={whatsapp.href}
+                  label={whatsapp.label}
+                  variant="hero"
+                  className="lp-web-hero__whatsapp--text"
+                />
+              ) : null}
+            </div>
+
+            {page.heroFinePrint ? (
+              <p className="lp-web-hero__micro lp-web-hero__anim lp-web-hero__anim--6">
+                {page.heroFinePrint}
+              </p>
+            ) : null}
+
+            {proof.length ? (
+              <ul className="lp-web-hero__proof lp-web-hero__anim lp-web-hero__anim--6">
+                {proof.map((item) => (
+                  <li key={item}>
+                    <span className="lp-web-hero__proof-mark" aria-hidden>
+                      <CheckMark />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+
+          {/* Mobile product proof — staged phone, not a second CTA competitor */}
           {phoneSrc ? (
-            <div className="lp-web-hero__phone-lead lp-web-hero__anim lp-web-hero__anim--3">
+            <div className="lp-web-hero__phone-lead lp-web-hero__anim lp-web-hero__anim--4">
               <link
                 rel="preload"
                 as="image"
@@ -94,51 +168,6 @@ export function WebsiteHero({
                 </figcaption>
               </figure>
             </div>
-          ) : null}
-
-          <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--4">
-            {page.subheadline}
-          </p>
-
-          {heroPrice ? (
-            <p className="lp-web-hero__price lp-web-hero__anim lp-web-hero__anim--5">
-              <span className="lp-web-hero__price-label">{heroPrice}</span>
-            </p>
-          ) : null}
-
-          <div
-            className="lp-web-hero__actions lp-web-hero__anim lp-web-hero__anim--5"
-            id="lp-hero-actions"
-          >
-            <PlanCta placement="hero" landingSlug={page.slug} size="xl" arrow>
-              {page.heroCtaLabel ?? page.stickyCtaLabel}
-            </PlanCta>
-            {whatsapp ? (
-              <WhatsAppLink
-                href={whatsapp.href}
-                label={whatsapp.label}
-                variant="hero"
-              />
-            ) : null}
-          </div>
-
-          {page.heroFinePrint ? (
-            <p className="lp-web-hero__micro lp-web-hero__anim lp-web-hero__anim--6">
-              {page.heroFinePrint}
-            </p>
-          ) : null}
-
-          {proof.length ? (
-            <ul className="lp-web-hero__proof lp-web-hero__anim lp-web-hero__anim--6">
-              {proof.map((item) => (
-                <li key={item}>
-                  <span className="lp-web-hero__proof-mark" aria-hidden>
-                    <CheckMark />
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
           ) : null}
 
           {/* Desktop / tablet visual — laptop with live still */}
