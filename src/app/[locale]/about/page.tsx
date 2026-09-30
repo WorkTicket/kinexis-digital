@@ -273,7 +273,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch__plate"
           >
             <Image
-              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930d"
+              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930e"
               alt="KINEXIS growth architecture: six channels connected in one loop — SEO, paid, web, CRO, email, and data"
               width={1400}
               height={788}
