@@ -11,7 +11,6 @@ import { DeviceFrame } from "@/components/ui/DeviceFrame";
 import { MediaReveal, Reveal } from "@/components/ui/Reveal";
 import { caseStudyHref } from "@/content/home-results";
 import { getCaseStudyPages } from "@/content/case-studies";
-import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -53,9 +52,6 @@ export default async function WorkIndexPage({ params }: Props) {
         copy={t("copy")}
         secondaryHref="/services"
         secondaryLabel={tCommon("seeServices")}
-        atmosphereSrc={pageHeroStills.caseStudies.src}
-        atmosphereSrcSm={pageHeroStills.caseStudies.srcSm}
-        atmosphereFocus={pageHeroStills.caseStudies.focus}
       />
 
       <section

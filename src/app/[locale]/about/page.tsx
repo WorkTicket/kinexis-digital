@@ -13,7 +13,6 @@ import {
   RevealItem,
 } from "@/components/ui/Reveal";
 import { getAboutContent, getFaqItems } from "@/content/about";
-import { pageHeroStills } from "@/content/page-hero-stills";
 import { localeContent } from "@/i18n/locale-content";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import type { Locale } from "@/i18n/routing";
@@ -79,9 +78,6 @@ export default async function AboutPage({ params }: Props) {
         copy={c.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
-        atmosphereSrc={pageHeroStills.about.src}
-        atmosphereSrcSm={pageHeroStills.about.srcSm}
-        atmosphereFocus={pageHeroStills.about.focus}
       />
 
       {/* Why — manifesto + full-bleed still */}

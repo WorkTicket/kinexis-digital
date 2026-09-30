@@ -4,7 +4,6 @@ import { MarketingAuditForm } from "@/components/audit/MarketingAuditForm";
 import { PageHero } from "@/components/page/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { getMarketingAuditContent } from "@/content/marketing-audit";
-import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -46,9 +45,6 @@ export default async function AuditPage({ params }: Props) {
         copy={content.copy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
-        atmosphereSrc={pageHeroStills.audit.src}
-        atmosphereSrcSm={pageHeroStills.audit.srcSm}
-        atmosphereFocus={pageHeroStills.audit.focus}
       />
 
       <section

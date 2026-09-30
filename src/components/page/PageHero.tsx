@@ -19,9 +19,9 @@ type PageHeroProps = {
   meta?: ReactNode;
   /** Optional right-rail visual (stage, gallery, device) */
   visual?: ReactNode;
-  /** Full-bleed atmosphere — pass a mount, or use atmosphereSrc */
+  /** Explicit full-bleed atmosphere mount (rare — hubs are type-led) */
   atmosphere?: ReactNode;
-  /** Unique still for this route (preferred over shared default) */
+  /** Opt-in still — omitted by default so hubs stay type-led */
   atmosphereSrc?: string;
   atmosphereSrcSm?: string;
   /** CSS object-position for the atmosphere still under the left wash */
@@ -37,7 +37,8 @@ type PageHeroProps = {
 
 /**
  * Site-wide cinematic hero — same shell, spacing, and enter cascade as HomeHero.
- * Nav carries the brand; heroes lead with the page value prop + unique still.
+ * Marketing hubs are type-led (no shared desk still). Pass atmosphereSrc only
+ * when a route truly needs a unique photographic plate.
  */
 export async function PageHero({
   eyebrow,
@@ -61,8 +62,10 @@ export async function PageHero({
 }: PageHeroProps) {
   const t = await getTranslations("common");
   const resolvedPrimaryLabel = primaryLabel ?? t("bookStrategyCall");
+  const hasPhotoAtmosphere = Boolean(atmosphere || atmosphereSrc);
   const sectionClass = cn(
     "hero-shell page-hero chapter chapter--void relative flex flex-col overflow-x-clip",
+    !hasPhotoAtmosphere && "page-hero--type",
     compact ? "page-hero--compact" : visual ? "lg:min-h-[100svh]" : "min-h-[100svh]",
     visual ? "page-hero--split" : null,
     intake ? "page-hero--intake" : null,
@@ -70,21 +73,25 @@ export async function PageHero({
   );
 
   const showActions = !hideActions;
-  const resolvedSrc =
-    atmosphereSrc ?? "/assets/images/editorial/hero-still.webp";
-  const atmosphereLayer =
-    atmosphere ?? (
-      <PageHeroAtmosphere
-        src={resolvedSrc}
-        srcSm={
-          atmosphereSrcSm ??
-          (atmosphereSrc
-            ? undefined
-            : "/assets/images/editorial/hero-still-sm.webp")
-        }
-        focus={atmosphereFocus}
-      />
-    );
+  const atmosphereLayer = hasPhotoAtmosphere
+    ? (atmosphere ?? (
+        <PageHeroAtmosphere
+          src={atmosphereSrc!}
+          srcSm={atmosphereSrcSm}
+          focus={atmosphereFocus}
+        />
+      ))
+    : (
+        <div
+          aria-hidden
+          className="page-hero-type-atmosphere pointer-events-none absolute inset-0 overflow-hidden"
+        >
+          <div className="page-hero-type-atmosphere__wash" />
+          <div className="page-hero-type-atmosphere__bloom" />
+          <div className="page-hero-type-atmosphere__rule" />
+          <div className="page-hero-type-atmosphere__grain" />
+        </div>
+      );
 
   return (
     <section className={sectionClass} aria-labelledby="page-hero-heading">

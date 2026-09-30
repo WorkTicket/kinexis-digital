@@ -14,7 +14,6 @@ import { PageHero } from "@/components/page/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { CONTACT_EMAIL, getContactContent } from "@/content/contact";
-import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { getBusinessTelHref } from "@/lib/business";
 import { buildAbsoluteUrl, buildPageMetadata, getSiteUrl } from "@/lib/metadata";
@@ -83,9 +82,6 @@ export default async function ContactPage({ params }: Props) {
         copy={c.heroSubtitle}
         compact
         hideActions
-        atmosphereSrc={pageHeroStills.contact.src}
-        atmosphereSrcSm={pageHeroStills.contact.srcSm}
-        atmosphereFocus={pageHeroStills.contact.focus}
       />
 
       <section className="chapter chapter--studio relative">

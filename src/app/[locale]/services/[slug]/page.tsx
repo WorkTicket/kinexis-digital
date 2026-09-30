@@ -16,30 +16,6 @@ import {
 } from "@/lib/schema";
 import { getServiceBySlug } from "@/content/services";
 
-const SERVICE_HERO_V = "20260929e";
-const SERVICE_HERO_STILLS: Record<string, { src: string; focus: string }> = {
-  branding: {
-    src: `/assets/images/editorial/service-branding.webp?v=${SERVICE_HERO_V}`,
-    focus: "76% 42%",
-  },
-  "web-design": {
-    src: `/assets/images/editorial/service-web-design.webp?v=${SERVICE_HERO_V}`,
-    focus: "78% 40%",
-  },
-  seo: {
-    src: `/assets/images/editorial/service-seo.webp?v=${SERVICE_HERO_V}`,
-    focus: "78% 42%",
-  },
-  "paid-media": {
-    src: `/assets/images/editorial/service-paid-media.webp?v=${SERVICE_HERO_V}`,
-    focus: "76% 40%",
-  },
-  "content-marketing": {
-    src: `/assets/images/editorial/service-content-marketing.webp?v=${SERVICE_HERO_V}`,
-    focus: "74% 45%",
-  },
-};
-
 type PageProps = {
   params: Promise<{ locale: string; slug: string }>;
 };
@@ -120,11 +96,6 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         copy={service.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
-        atmosphereSrc={
-          SERVICE_HERO_STILLS[slug]?.src ??
-          `/assets/images/editorial/service-web-design.webp?v=${SERVICE_HERO_V}`
-        }
-        atmosphereFocus={SERVICE_HERO_STILLS[slug]?.focus ?? "78% 42%"}
       />
 
       <section

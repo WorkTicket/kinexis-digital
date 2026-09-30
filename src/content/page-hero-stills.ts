@@ -1,7 +1,7 @@
 /**
- * Unique full-bleed stills for marketing PageHero hubs.
- * Grade: bright high-key B&W editorial craft (About is the style reference).
- * Optional `focus` is CSS object-position under the left wash.
+ * Legacy photographic PageHero stills.
+ * Marketing hubs are type-led (no atmosphere photo) as of the no-photo redesign.
+ * Kept only if a future route opts back into atmosphereSrc.
  */
 const V = "20260929e";
 
@@ -14,7 +14,6 @@ export const pageHeroStills = {
   about: {
     src: `/assets/images/agency/hero-about.webp?v=20260929d`,
     srcSm: `/assets/images/agency/hero-about-sm.webp?v=20260929d`,
-    /** Bias desk craft into the clear right half under the wash */
     focus: "80% 44%",
   },
   caseStudies: {

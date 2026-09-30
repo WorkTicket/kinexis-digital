@@ -15,7 +15,6 @@ import {
   isStandaloneIndustry,
 } from "@/content/industries";
 import { industryVisuals } from "@/content/industry-visuals";
-import { pageHeroStills } from "@/content/page-hero-stills";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -62,9 +61,6 @@ export default async function IndustriesPage({ params }: Props) {
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
         className="industries-hub-hero"
-        atmosphereSrc={pageHeroStills.industries.src}
-        atmosphereSrcSm={pageHeroStills.industries.srcSm}
-        atmosphereFocus={pageHeroStills.industries.focus}
       />
 
       <section
