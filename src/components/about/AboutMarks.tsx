@@ -1,6 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import {
-  Activity,
   BarChart3,
   Crosshair,
   Layers,
@@ -11,7 +10,6 @@ import {
   MessageSquare,
   RefreshCw,
   Search,
-  Target,
   TrendingUp,
   Users,
   Wrench,
@@ -30,8 +28,6 @@ const ARCHITECTURE_ICONS: Record<string, LucideIcon> = {
   email: Mail,
 };
 
-const PRINCIPLE_ICONS = [Target, Layers, Activity, Users] as const;
-
 export function partnershipIcon(index: number): LucideIcon {
   return PARTNERSHIP_ICONS[index % PARTNERSHIP_ICONS.length] ?? Users;
 }
@@ -42,8 +38,4 @@ export function methodIcon(index: number): LucideIcon {
 
 export function architectureIcon(id: string): LucideIcon {
   return ARCHITECTURE_ICONS[id] ?? Layers;
-}
-
-export function principleIcon(index: number): LucideIcon {
-  return PRINCIPLE_ICONS[index % PRINCIPLE_ICONS.length] ?? Target;
 }

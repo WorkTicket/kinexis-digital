@@ -73,13 +73,13 @@
   }
 
   .site-footer__brand-lockup {
-    align-items: center;
-    text-align: center;
-    margin-inline: auto;
+    align-items: flex-start;
+    text-align: left;
+    margin-inline: 0;
   }
 
   .site-footer__contact {
-    align-items: center;
+    align-items: flex-start;
   }
 
   .site-footer__nav {
@@ -102,6 +102,25 @@
   .site-footer__bar-links,
   .site-footer__lang {
     justify-content: center;
+  }
+}
+
+/* Phone, email, Facebook, and the reply line stay left on phone and tablet. */
+@media (max-width: 899px) {
+  .site-footer__brand-lockup {
+    align-items: flex-start;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .site-footer__contact {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
   }
 }
 
@@ -216,6 +235,24 @@
   padding-top: 1.35rem;
   border-top: none;
   width: 100%;
+}
+
+@media (max-width: 899px) {
+  .site-footer__brand-lockup {
+    align-items: flex-start;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .site-footer__contact {
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+  }
 }
 
 .site-footer__email {

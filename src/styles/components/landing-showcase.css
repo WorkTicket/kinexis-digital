@@ -1375,9 +1375,11 @@
 .lp-build__item,
 .lp-why__item {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 0.75rem 0.95rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.7rem;
+  justify-items: center;
   align-items: start;
+  text-align: center;
 }
 
 .lp-build__item--index {
@@ -1402,7 +1404,7 @@
 
 .lp-build__body,
 .lp-why__body {
-  margin: 0.4rem 0 0;
+  margin: 0.4rem auto 0;
   max-width: 36rem;
   font-size: 1.02rem;
   line-height: 1.65;

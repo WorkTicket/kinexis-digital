@@ -1,23 +1,22 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import {
   architectureIcon,
   methodIcon,
   partnershipIcon,
-  principleIcon,
 } from "@/components/about/AboutMarks";
+import {
+  AboutArchitectureMap,
+  AboutRoster,
+  AboutWhyPlate,
+} from "@/components/about/AboutPlates";
+import "@/styles/components/about.css";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
-import {
-  MediaReveal,
-  Reveal,
-  RevealGroup,
-  RevealItem,
-} from "@/components/ui/Reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { getAboutContent, getFaqItems } from "@/content/about";
 import { localeContent } from "@/i18n/locale-content";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -84,25 +83,32 @@ export default async function AboutPage({ params }: Props) {
         copy={c.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
+        visual={<AboutRoster locale={locale as Locale} />}
       />
 
-      {/* Why — centered manifesto + dual columns + system still */}
+      {/* Why — headline opposite the quote, essays under, diagram last */}
       <section
         aria-labelledby="about-why-heading"
         className="chapter chapter--void relative overflow-hidden"
       >
         <div className="shell chapter-shell--monument relative">
-          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
-            <ChapterLead
-              eyebrow={c.why.eyebrow}
-              headingId="about-why-heading"
-              title={c.why.title}
-              headingClassName="max-w-[20ch]"
-            />
-          </Reveal>
-
           <div className="about-why">
-            <Reveal variant="fadeUp" className="about-why__panel about-why__panel--problem">
+            <Reveal variant="rise" when="chapter" className="about-why__mast">
+              <ChapterLead
+                eyebrow={c.why.eyebrow}
+                headingId="about-why-heading"
+                title={c.why.title}
+                headingClassName="max-w-[18ch]"
+              />
+            </Reveal>
+
+            <Reveal variant="fadeUp" delay={0.06} className="about-why__voice">
+              <p className="about-why__quote">{c.why.solutionQuote}</p>
+            </Reveal>
+          </div>
+
+          <div className="about-why__essays">
+            <Reveal variant="fadeUp" className="about-why__essay">
               <p className="about-why__label">{c.why.problemLabel}</p>
               {c.why.problem.map((para) => (
                 <p key={para.slice(0, 24)} className="about-why__copy">
@@ -114,10 +120,9 @@ export default async function AboutPage({ params }: Props) {
             <Reveal
               variant="fadeUp"
               delay={0.08}
-              className="about-why__panel about-why__panel--solution"
+              className="about-why__essay about-why__essay--solution"
             >
               <p className="about-why__label">{c.why.solutionLabel}</p>
-              <p className="about-why__quote">{c.why.solutionQuote}</p>
               {c.why.solution.map((para) => (
                 <p key={para.slice(0, 24)} className="about-why__copy">
                   {para}
@@ -126,20 +131,13 @@ export default async function AboutPage({ params }: Props) {
             </Reveal>
           </div>
 
-          <MediaReveal
-            variant="float"
-            delay={0.1}
-            className="about-why__still"
-          >
-            <Image
-              src="/assets/images/agency/about-system.webp?v=20260930e"
-              alt="Diagram comparing scattered marketing tactics to the connected KINEXIS growth system"
-              width={1600}
-              height={800}
-              className="about-why__still-img"
-              sizes="(max-width: 900px) 100vw, 1120px"
+          <Reveal variant="fadeUp" delay={0.04}>
+            <AboutWhyPlate
+              locale={locale as Locale}
+              brokenLabel={c.why.problemLabel}
+              systemLabel={c.why.solutionLabel}
             />
-          </MediaReveal>
+          </Reveal>
         </div>
       </section>
 
@@ -169,11 +167,13 @@ export default async function AboutPage({ params }: Props) {
               const Icon = partnershipIcon(index);
               return (
                 <RevealItem key={signal.title} as="li" variant="fadeUp">
-                  <article className="about-partnership__card">
-                    <span className="icon-well" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
-                    <h3 className="about-partnership__title">{signal.title}</h3>
+                  <article className="about-partnership__row">
+                    <div className="about-partnership__head">
+                      <span className="icon-well" aria-hidden>
+                        <Icon strokeWidth={1.5} />
+                      </span>
+                      <h3 className="about-partnership__title">{signal.title}</h3>
+                    </div>
                     <p className="about-partnership__copy">
                       {signal.description}
                     </p>
@@ -224,7 +224,7 @@ export default async function AboutPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Architecture — icon channel grid + plate */}
+      {/* Architecture — caption, then channel legend */}
       <section
         aria-labelledby="about-arch-heading"
         className="chapter chapter--void relative overflow-hidden"
@@ -241,6 +241,14 @@ export default async function AboutPage({ params }: Props) {
             />
           </Reveal>
 
+          <Reveal variant="fadeUp" delay={0.1} className="about-arch__caption">
+            <p>{c.architecture.caption}</p>
+          </Reveal>
+
+          <Reveal variant="fadeUp" delay={0.06}>
+            <AboutArchitectureMap nodes={c.architecture.nodes} />
+          </Reveal>
+
           <RevealGroup
             as="ul"
             className="about-arch"
@@ -251,40 +259,23 @@ export default async function AboutPage({ params }: Props) {
               return (
                 <RevealItem key={node.id} as="li" variant="fadeUp">
                   <article className="about-arch__node">
-                    <span className="icon-well icon-well--sm" aria-hidden>
-                      <Icon strokeWidth={1.5} />
-                    </span>
                     <p className="about-arch__role">{node.role}</p>
-                    <h3 className="about-arch__title">{node.label}</h3>
+                    <div className="about-arch__name">
+                      <span className="icon-well icon-well--sm" aria-hidden>
+                        <Icon strokeWidth={1.5} />
+                      </span>
+                      <h3 className="about-arch__title">{node.label}</h3>
+                    </div>
                     <p className="about-arch__copy">{node.summary}</p>
                   </article>
                 </RevealItem>
               );
             })}
           </RevealGroup>
-
-          <Reveal variant="fadeUp" delay={0.1} className="about-arch__caption">
-            <p>{c.architecture.caption}</p>
-          </Reveal>
-
-          <MediaReveal
-            variant="float"
-            delay={0.12}
-            className="about-arch__plate"
-          >
-            <Image
-              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930f"
-              alt="KINEXIS growth architecture: six channels connected in one loop — SEO, paid, web, CRO, email, and data"
-              width={1400}
-              height={788}
-              className="about-arch__plate-img"
-              sizes="(max-width: 900px) 100vw, 960px"
-            />
-          </MediaReveal>
         </div>
       </section>
 
-      {/* Principles — centered 2×2 */}
+      {/* Principles — statement type, no icons */}
       <section
         aria-labelledby="about-principles-heading"
         className="chapter chapter--void relative overflow-hidden"
@@ -304,23 +295,15 @@ export default async function AboutPage({ params }: Props) {
             className="about-principles"
             stagger={duration.staggerTight}
           >
-            {c.principles.items.map((item, index) => {
-              const Icon = principleIcon(index);
-              return (
+            {c.principles.items.map((item) => (
                 <RevealItem key={item.statement} as="li" variant="fadeUp">
                   <article className="about-principle">
-                    <div className="about-principle__top">
-                      <span className="icon-well icon-well--sm" aria-hidden>
-                        <Icon strokeWidth={1.5} />
-                      </span>
-                      <p className="about-principle__accent">{item.accent}</p>
-                    </div>
+                    <p className="about-principle__accent">{item.accent}</p>
                     <h3 className="about-principle__title">{item.statement}</h3>
                     <p className="about-principle__copy">{item.explanation}</p>
                   </article>
                 </RevealItem>
-              );
-            })}
+              ))}
           </RevealGroup>
         </div>
       </section>

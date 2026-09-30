@@ -1,0 +1,872 @@
+/* About — one composition per chapter. Not a repeated icon grid. */
+
+.about-page {
+  --about-ink: var(--foreground);
+  --about-mute: var(--muted);
+  --about-signal: var(--hero-signal);
+  --about-line: color-mix(in oklab, var(--foreground) 14%, transparent);
+  background: var(--background);
+}
+
+.about-page .chapter,
+.about-page .chapter--void,
+.about-page .chapter--studio,
+.about-page .chapter--signal {
+  background: var(--background);
+}
+
+.about-page .chapter::before,
+.about-page .chapter::after {
+  content: none !important;
+  display: none !important;
+}
+
+.about-page .chapter-lead,
+.about-page .chapter-lead .section-eyebrow,
+.about-page .chapter-lead .chapter-lead__heading,
+.about-page .chapter-lead .chapter-lead__dek {
+  text-align: center;
+  margin-inline: auto;
+  justify-items: center;
+}
+
+.about-page .chapter-lead {
+  display: grid;
+  justify-items: center;
+  max-width: 44rem;
+}
+
+.about-chapter-lead {
+  margin-bottom: 3rem;
+}
+
+@media (min-width: 900px) {
+  .about-chapter-lead {
+    margin-bottom: 4.25rem;
+  }
+}
+
+.about-page .icon-well {
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  color: var(--about-signal);
+}
+
+.about-page .icon-well--sm {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.about-page .icon-well svg {
+  width: 1.35rem;
+  height: 1.35rem;
+}
+
+.about-page .icon-well--sm svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* Why — headline and quote as a split, essays underneath */
+
+.about-why {
+  display: grid;
+  gap: 1.75rem;
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .about-why {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 2.5rem 4.5rem;
+  }
+
+  .about-why__mast .chapter-lead,
+  .about-why__mast .chapter-lead .section-eyebrow,
+  .about-why__mast .chapter-lead .chapter-lead__heading {
+    text-align: start;
+    margin-inline: 0;
+    justify-items: start;
+  }
+
+  .about-why__mast .chapter-lead {
+    max-width: none;
+    margin-bottom: 0;
+  }
+}
+
+.about-why__quote {
+  margin: 0 auto;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.85rem, 3.4vw, 2.65rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  color: var(--about-ink);
+  text-align: center;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+
+@media (min-width: 900px) {
+  .about-why__quote {
+    margin-inline: 0;
+    text-align: start;
+  }
+
+  .about-why__voice {
+    justify-self: end;
+  }
+}
+
+.about-why__essays {
+  display: grid;
+  gap: 2.25rem;
+  margin-top: 2.75rem;
+}
+
+@media (min-width: 900px) {
+  .about-why__essays {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 3rem 4.5rem;
+    margin-top: 3.5rem;
+  }
+}
+
+.about-why__essay {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.about-why__label {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--about-mute);
+}
+
+.about-why__essay--solution .about-why__label {
+  color: var(--about-ink);
+}
+
+.about-why__copy {
+  margin: 0;
+  max-width: 34rem;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--about-mute);
+  text-wrap: pretty;
+}
+
+/* Roster plate — hero rail. Theme colors, not a baked image. */
+
+.about-roster {
+  margin: 0;
+  display: grid;
+  align-content: space-between;
+  gap: 2rem;
+  min-height: 18rem;
+  height: 100%;
+  padding: 1.35rem 1.35rem 1.2rem;
+  border: 1px solid var(--about-line);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in oklab, var(--about-signal) 14%, transparent) 0%,
+      transparent 42%
+    ),
+    color-mix(in oklab, var(--foreground) 4%, var(--background));
+}
+
+.about-roster__kicker,
+.about-split__kicker,
+.about-map__role {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--about-mute);
+}
+
+.about-roster__figure {
+  margin: 0.85rem 0 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(4.5rem, 8vw, 6.25rem);
+  font-weight: 750;
+  letter-spacing: -0.07em;
+  line-height: 0.85;
+  color: var(--about-ink);
+}
+
+.about-roster__unit {
+  margin: 0.7rem 0 0;
+  font-size: 1.05rem;
+  color: var(--about-mute);
+}
+
+.about-roster__lines {
+  list-style: none;
+  margin: 0;
+  padding: 1rem 0 0;
+  display: grid;
+  gap: 0.7rem;
+  border-top: 1px solid var(--about-line);
+}
+
+.about-roster__lines li {
+  position: relative;
+  padding-left: 1.15rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: var(--about-ink);
+}
+
+.about-roster__lines li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--about-signal);
+}
+
+/* Why — disconnected scraps beside a connected chain */
+
+.about-split {
+  margin: 3.25rem 0 0;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 800px) {
+  .about-split {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: 1.15rem;
+    margin-top: 4rem;
+  }
+}
+
+.about-split__side {
+  display: grid;
+  align-content: start;
+  gap: 1.15rem;
+  min-height: 16rem;
+  padding: 1.25rem 1.2rem 1.35rem;
+  border: 1px solid var(--about-line);
+  background: color-mix(in oklab, var(--foreground) 3.5%, var(--background));
+}
+
+.about-split__side--system {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--about-signal) 10%, transparent),
+      transparent 36%
+    ),
+    color-mix(in oklab, var(--foreground) 3.5%, var(--background));
+  border-color: color-mix(in oklab, var(--about-signal) 35%, var(--about-line));
+}
+
+.about-split__scraps {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.about-split__scraps li {
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.55rem 0.8rem;
+  border: 1px dashed color-mix(in oklab, var(--foreground) 28%, transparent);
+  font-size: 0.95rem;
+  color: var(--about-mute);
+}
+
+.about-split__scraps li:nth-child(1) {
+  margin-left: 0.35rem;
+  rotate: -1.5deg;
+}
+
+.about-split__scraps li:nth-child(2) {
+  margin-left: 2.4rem;
+  rotate: 1.2deg;
+}
+
+.about-split__scraps li:nth-child(3) {
+  margin-left: 0.8rem;
+  rotate: -0.6deg;
+}
+
+.about-split__chain {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 1.15rem;
+  display: grid;
+  gap: 0;
+  border-left: 2px solid var(--about-signal);
+}
+
+.about-split__chain li {
+  position: relative;
+  padding: 0.72rem 0 0.72rem 1rem;
+}
+
+.about-split__chain li::before {
+  content: "";
+  position: absolute;
+  left: -1.15rem;
+  top: 50%;
+  width: 0.7rem;
+  height: 2px;
+  translate: -100% -50%;
+  background: var(--about-signal);
+}
+
+.about-split__chain span {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--about-ink);
+}
+
+.about-split__chain li.is-end span {
+  color: var(--about-signal);
+}
+
+/* Architecture — working channels report into one layer */
+
+.about-map {
+  margin: 2.5rem auto 0;
+  max-width: 62rem;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .about-map {
+    grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 0.85fr);
+    gap: 1.15rem;
+    align-items: stretch;
+    margin-top: 3rem;
+  }
+}
+
+.about-map__flow {
+  list-style: none;
+  margin: 0;
+  padding: 1.15rem 1.15rem 1.15rem 0.35rem;
+  display: grid;
+  gap: 0;
+  border: 1px solid var(--about-line);
+  background: color-mix(in oklab, var(--foreground) 3%, var(--background));
+}
+
+.about-map__flow li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 0.35rem;
+  align-items: center;
+  padding: 0.85rem 1rem 0.85rem 0;
+  position: relative;
+}
+
+.about-map__flow li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 1.25rem;
+  top: calc(50% + 0.35rem);
+  bottom: calc(-50% + 0.35rem);
+  width: 1px;
+  background: var(--about-signal);
+}
+
+.about-map__mark {
+  justify-self: center;
+  position: relative;
+  z-index: 1;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--about-signal);
+  box-shadow: 0 0 0 4px var(--background);
+}
+
+.about-map__body {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.about-map__name {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--about-ink);
+}
+
+.about-map__intel {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: 1.25rem 1.2rem 1.3rem;
+  border: 1px solid color-mix(in oklab, var(--about-signal) 40%, var(--about-line));
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--about-signal) 16%, transparent),
+      transparent 48%
+    ),
+    color-mix(in oklab, var(--foreground) 4%, var(--background));
+}
+
+.about-map__intel-name {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.1rem, 3vw, 2.85rem);
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  color: var(--about-ink);
+}
+
+.about-map__feeds {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0.9rem 0 0;
+  display: grid;
+  gap: 0.45rem;
+  border-top: 1px solid var(--about-line);
+}
+
+.about-map__feeds li {
+  position: relative;
+  padding-left: 0.95rem;
+  font-size: 0.92rem;
+  color: var(--about-mute);
+}
+
+.about-map__feeds li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.55rem;
+  height: 1px;
+  background: var(--about-signal);
+}
+
+/* Partnership — one centered column of rows, icon beside the title */
+
+.about-partnership {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: 2.35rem;
+  max-width: 38rem;
+}
+
+.about-partnership__row {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  text-align: center;
+}
+
+.about-partnership__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  max-width: 22rem;
+}
+
+.about-partnership__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: var(--about-ink);
+  text-align: start;
+  text-wrap: balance;
+}
+
+.about-partnership__copy {
+  margin: 0;
+  max-width: 32rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--about-mute);
+  text-wrap: pretty;
+}
+
+/* Method — a horizontal sequence, not five cards */
+
+.about-method {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.5rem;
+  position: relative;
+}
+
+@media (min-width: 960px) {
+  .about-method {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+  }
+
+  .about-method::before {
+    content: "";
+    position: absolute;
+    top: 1.05rem;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: var(--about-line);
+  }
+}
+
+.about-method__step {
+  position: relative;
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  text-align: center;
+  min-height: 100%;
+}
+
+.about-method__step .icon-well {
+  position: relative;
+  z-index: 1;
+  background: var(--background);
+}
+
+.about-method__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.3rem, 2vw, 1.55rem);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--about-ink);
+}
+
+.about-method__body {
+  margin: 0;
+  max-width: 16rem;
+  font-size: 0.925rem;
+  line-height: 1.55;
+  color: var(--about-mute);
+  text-wrap: pretty;
+}
+
+/* Architecture — caption, then the channel legend */
+
+.about-arch__caption {
+  margin: 0 auto;
+  max-width: 34rem;
+  text-align: center;
+}
+
+.about-arch__caption p {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1.35;
+  color: var(--about-ink);
+  text-wrap: pretty;
+}
+
+.about-arch {
+  list-style: none;
+  margin: 2.75rem auto 0;
+  padding: 0;
+  display: grid;
+  gap: 1.75rem 1.5rem;
+  max-width: 58rem;
+}
+
+@media (min-width: 720px) {
+  .about-arch {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .about-arch {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem 1.75rem;
+  }
+}
+
+.about-arch__node {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  text-align: center;
+  align-content: start;
+}
+
+.about-arch__name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.about-arch__role {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--about-mute);
+}
+
+.about-arch__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--about-ink);
+}
+
+.about-arch__copy {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  color: var(--about-mute);
+  text-wrap: pretty;
+}
+
+/* Principles — statement type, no icons */
+
+.about-principles {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: 2.75rem 3rem;
+  max-width: 62rem;
+}
+
+@media (min-width: 800px) {
+  .about-principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.about-principle {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  text-align: center;
+  align-content: start;
+}
+
+.about-principle__accent {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--about-signal);
+}
+
+.about-principle__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.85rem, 3.2vw, 2.55rem);
+  font-weight: 750;
+  letter-spacing: -0.048em;
+  line-height: 1.02;
+  color: var(--about-ink);
+  max-width: 14ch;
+  text-wrap: balance;
+}
+
+.about-principle__copy {
+  margin: 0;
+  max-width: 28rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--about-mute);
+  text-wrap: pretty;
+}
+
+/* Roadmap — year and rail carry the chapter */
+
+.about-roadmap {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  max-width: 42rem;
+}
+
+.about-roadmap__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  gap: 0.55rem 1.35rem;
+  padding: 0 0 2.5rem;
+  border: none;
+  background: transparent;
+}
+
+@media (min-width: 720px) {
+  .about-roadmap__item {
+    grid-template-columns: 1.25rem 8.5rem minmax(0, 1fr);
+    gap: 0.55rem 1.75rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.about-roadmap__item:last-child {
+  padding-bottom: 0;
+}
+
+.about-roadmap__rail {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  grid-row: 1 / span 2;
+}
+
+@media (min-width: 720px) {
+  .about-roadmap__rail {
+    grid-row: auto;
+  }
+}
+
+.about-roadmap__rail::before {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  bottom: -2.5rem;
+  left: 50%;
+  width: 1px;
+  translate: -50% 0;
+  background: var(--about-line);
+}
+
+.about-roadmap__item:last-child .about-roadmap__rail::before {
+  display: none;
+}
+
+.about-roadmap__dot {
+  position: relative;
+  z-index: 1;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--foreground) 28%, transparent);
+  box-shadow: 0 0 0 4px var(--background);
+}
+
+.about-roadmap__item--now .about-roadmap__dot {
+  background: var(--about-ink);
+}
+
+.about-roadmap__item--done .about-roadmap__dot {
+  background: color-mix(in oklab, var(--foreground) 42%, var(--muted));
+}
+
+.about-roadmap__year-block {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  grid-column: 2;
+}
+
+@media (min-width: 720px) {
+  .about-roadmap__year-block {
+    grid-column: auto;
+  }
+}
+
+.about-roadmap__status {
+  font-size: 0.68rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--about-mute);
+}
+
+.about-roadmap__item--now .about-roadmap__status {
+  color: var(--about-ink);
+}
+
+.about-roadmap__year {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  color: var(--about-ink);
+}
+
+.about-roadmap__body {
+  display: grid;
+  gap: 0.55rem;
+  min-width: 0;
+  grid-column: 2;
+  padding-top: 0.35rem;
+}
+
+@media (min-width: 720px) {
+  .about-roadmap__body {
+    grid-column: auto;
+    padding-top: 0.55rem;
+  }
+}
+
+.about-roadmap__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: var(--about-ink);
+}
+
+.about-roadmap__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.about-roadmap__list li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--about-mute);
+}

@@ -45,7 +45,11 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
   return (
     <main className="lp-web flex flex-1 flex-col pb-24 lg:pb-0">
       <JsonLd data={faqSchema(page.faqs)} />
-      <WebsiteHero page={page} caption={chrome.heroCaption} />
+      <WebsiteHero
+        page={page}
+        caption={chrome.heroCaption}
+        benefits={chrome.heroBenefits}
+      />
       {page.outcomes?.length ? (
         <WebsiteOutcomes items={page.outcomes} ariaLabel={chrome.outcomesAria} />
       ) : null}
@@ -125,6 +129,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
       />
       <WebsitePlan
         page={page}
+        locale={locale}
         kicker={chrome.nextStepKicker}
         figcaption={chrome.planFigcaption}
       />

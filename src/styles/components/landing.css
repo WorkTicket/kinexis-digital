@@ -629,6 +629,7 @@ html.in-app-browser .lp-campaign .chapter:not(.lp-campaign-hero) {
   border: 1px solid var(--line);
   border-radius: 1.05rem;
   background: color-mix(in oklab, var(--foreground) 3%, var(--background));
+  text-align: center;
   transition: border-color 200ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -641,7 +642,7 @@ html.in-app-browser .lp-campaign .chapter:not(.lp-campaign-hero) {
   place-items: center;
   width: 2.15rem;
   height: 2.15rem;
-  margin-bottom: 1.1rem;
+  margin: 0 auto 1.1rem;
   border-radius: 0.65rem;
   border: 1px solid var(--line);
   color: var(--foreground);

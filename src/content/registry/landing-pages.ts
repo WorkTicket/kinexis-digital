@@ -14,6 +14,8 @@ export type LandingPageProof = {
 export type LandingPageSample = {
   image: string;
   imageAlt: string;
+  /** Studio photo: live site on a laptop with a smaller phone. */
+  deviceShot?: string;
   client: string;
   metric: string;
   label: string;

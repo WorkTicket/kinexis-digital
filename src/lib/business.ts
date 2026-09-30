@@ -23,6 +23,7 @@ export const businessProfile = {
   description:
     "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
   linkedIn: "https://www.linkedin.com/company/kinexisdigital",
+  facebook: "https://www.facebook.com/profile.php?id=61591998497960",
   /** ISO 3166-1 alpha-2 — primary market; no street address published on site. */
   addressCountry: "CA",
   areaServed: ["Canada", "United States"],

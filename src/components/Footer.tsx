@@ -7,7 +7,7 @@ import { CallLink } from "@/components/analytics/CallLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { Link } from "@/i18n/navigation";
 import { footerIndustryLinks, footerNavLinks } from "@/lib/site-nav";
-import { getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
+import { businessProfile, getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
 
 export async function Footer() {
   const year = new Date().getFullYear();
@@ -77,6 +77,14 @@ export async function Footer() {
                       >
                         {CONTACT_EMAIL}
                       </a>
+                      <a
+                        href={businessProfile.facebook}
+                        className="site-footer__email site-footer__email--quiet"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Facebook
+                      </a>
                     </div>
                     <p className="site-footer__meta-line">{t("replies")}</p>
                   </div>
@@ -106,6 +114,15 @@ export async function Footer() {
                         {phoneDisplay}
                       </CallLink>
                     ) : null}
+                    <a
+                      href={businessProfile.facebook}
+                      className="site-footer__email"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="site-footer__email-dot" aria-hidden />
+                      Facebook
+                    </a>
                     <p className="site-footer__meta-line">{t("replies")}</p>
                   </div>
                 </div>

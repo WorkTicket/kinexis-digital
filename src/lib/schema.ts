@@ -54,7 +54,7 @@ export function organizationSchema(): JsonLdEntity {
     url: getSiteUrl(),
     logo: organizationLogoObject(),
     description: businessProfile.description,
-    sameAs: [businessProfile.linkedIn],
+    sameAs: [businessProfile.linkedIn, businessProfile.facebook],
     contactPoint,
   };
   if (businessProfile.phone) {
@@ -97,7 +97,7 @@ export function localBusinessSchema(pageUrl?: string): JsonLdEntity {
       name,
     })),
     contactPoint,
-    sameAs: [businessProfile.linkedIn],
+    sameAs: [businessProfile.linkedIn, businessProfile.facebook],
     parentOrganization: { "@id": `${getSiteUrl()}/#organization` },
   };
   if (businessProfile.phone) {

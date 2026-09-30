@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Locale } from "@/i18n/routing";
 import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker";
 import { PlanCta } from "@/components/landing/PlanCta";
 import { ShowcaseSite } from "@/components/landing/ShowcaseSite";
@@ -106,6 +107,30 @@ type TransformCol = { title: string; items: string[] };
 /*  Outcomes                                                           */
 /* ------------------------------------------------------------------ */
 
+function OutcomeGroup({
+  items,
+  hidden = false,
+}: {
+  items: LandingPageOutcome[];
+  hidden?: boolean;
+}) {
+  return (
+    <ul className="lp-web-outcomes__group" aria-hidden={hidden || undefined}>
+      {items.map((item, index) => (
+        <li key={hidden ? `${item.title}-copy` : item.title}>
+          <span className="lp-web-outcomes__mark" aria-hidden>
+            {OUTCOME_MARKS[index] ?? <CheckMark />}
+          </span>
+          <span className="lp-web-outcomes__copy">
+            <span className="lp-web-outcomes__title">{item.title}</span>
+            <span className="lp-web-outcomes__body">{item.body}</span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function WebsiteOutcomes({
   items,
   ariaLabel = "What the website is built to do",
@@ -116,18 +141,11 @@ export function WebsiteOutcomes({
   if (!items.length) return null;
   return (
     <aside className="lp-web-outcomes" aria-label={ariaLabel}>
-      <div className="shell">
-        <ul className="lp-web-outcomes__list">
-          {items.map((item, index) => (
-            <li key={item.title}>
-              <span className="lp-web-mark" aria-hidden>
-                {OUTCOME_MARKS[index] ?? <CheckMark />}
-              </span>
-              <p className="lp-web-outcomes__title">{item.title}</p>
-              <p className="lp-web-outcomes__body">{item.body}</p>
-            </li>
-          ))}
-        </ul>
+      <div className="lp-web-outcomes__marquee">
+        <div className="lp-web-outcomes__track">
+          <OutcomeGroup items={items} />
+          <OutcomeGroup items={items} hidden />
+        </div>
       </div>
     </aside>
   );
@@ -291,10 +309,27 @@ export function WebsiteWork({
               <article className="lp-web-work__card">
                 <CaseStudyViewTracker client={sample.client} />
                 <div className="lp-web-work__devices">
-                  <WorkLaptop
-                    image={sample.image}
-                    imageAlt={sample.imageAlt}
-                  />
+                  {sample.deviceShot ? (
+                    <figure
+                      className="lp-web-work__shot"
+                      aria-label={sample.imageAlt}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={sample.deviceShot}
+                        alt=""
+                        width={1040}
+                        height={692}
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </figure>
+                  ) : (
+                    <WorkLaptop
+                      image={sample.image}
+                      imageAlt={sample.imageAlt}
+                    />
+                  )}
                 </div>
                 <div className="lp-web-work__copy">
                   <p className="lp-web-kicker">
@@ -641,33 +676,209 @@ export function WebsiteFit({
 /*  Plan                                                               */
 /* ------------------------------------------------------------------ */
 
-function PlanFolio() {
+type PlanBoardCopy = {
+  folioKicker: string;
+  folioTitle: string;
+  folioLede: string;
+  folioRows: readonly [string, string, string, string, string];
+  folioStamp: string;
+  stampWidth: number;
+  clickHere: string;
+  navClutter: string;
+  buriedCta: string;
+  stockPhoto: string;
+  inspection: string;
+  sheet: string;
+  home: string;
+  entry: string;
+  about: string;
+  contact: string;
+  services: string;
+  hall: string;
+  servicePages: string;
+  servicePagesSub?: string;
+  quote: string;
+  desk: string;
+  primaryPath: string;
+};
+
+const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
+  en: {
+    folioKicker: "Website plan",
+    folioTitle: "Written plan.",
+    folioLede: "Written around the business.",
+    folioRows: ["First look", "On a phone", "Call path", "Speed", "Rebuild first"],
+    folioStamp: "No obligation",
+    stampWidth: 88,
+    clickHere: "Click Here",
+    navClutter: "nav clutter",
+    buriedCta: "buried CTA",
+    stockPhoto: "stock photo",
+    inspection: "Site inspection · punch list",
+    sheet: "SHT 01 · Structure",
+    home: "Home",
+    entry: "entry",
+    about: "About",
+    contact: "Contact",
+    services: "Services",
+    hall: "hall",
+    servicePages: "Service pages",
+    quote: "Call / Get a quote",
+    desk: "front desk",
+    primaryPath: "Primary path",
+  },
+  "es-419": {
+    folioKicker: "Plan web",
+    folioTitle: "Plan escrito.",
+    folioLede: "Hecho para el negocio.",
+    folioRows: ["Primera mirada", "En el celular", "Ruta de llamada", "Velocidad", "Qué cambiar"],
+    folioStamp: "Sin compromiso",
+    stampWidth: 118,
+    clickHere: "Clic aquí",
+    navClutter: "menú saturado",
+    buriedCta: "botón escondido",
+    stockPhoto: "foto genérica",
+    inspection: "Inspección del sitio · fallos",
+    sheet: "HOJA 01 · Estructura",
+    home: "Inicio",
+    entry: "entrada",
+    about: "Nosotros",
+    contact: "Contacto",
+    services: "Servicios",
+    hall: "pasillo",
+    servicePages: "Páginas",
+    servicePagesSub: "de servicio",
+    quote: "Llamar / Cotizar",
+    desk: "recepción",
+    primaryPath: "Camino principal",
+  },
+  "es-ES": {
+    folioKicker: "Plan web",
+    folioTitle: "Plan escrito.",
+    folioLede: "Hecho para el negocio.",
+    folioRows: ["Primera mirada", "En el móvil", "Ruta de llamada", "Velocidad", "Qué cambiar"],
+    folioStamp: "Sin compromiso",
+    stampWidth: 118,
+    clickHere: "Pulsa aquí",
+    navClutter: "menú saturado",
+    buriedCta: "botón escondido",
+    stockPhoto: "foto de archivo",
+    inspection: "Inspección de la web · fallos",
+    sheet: "HOJA 01 · Estructura",
+    home: "Inicio",
+    entry: "entrada",
+    about: "Nosotros",
+    contact: "Contacto",
+    services: "Servicios",
+    hall: "pasillo",
+    servicePages: "Páginas",
+    servicePagesSub: "de servicio",
+    quote: "Llamar / Cotizar",
+    desk: "recepción",
+    primaryPath: "Camino principal",
+  },
+};
+
+function PlanFolio({ copy }: { copy: PlanBoardCopy }) {
   return (
-    <svg viewBox="0 0 220 340" fill="none" aria-hidden={true} className="lp-web-board lp-web-board--folio"><rect x="18" y="16" width="190" height="308" rx="3" fill="#1c1b19" /><rect x="10" y="10" width="190" height="308" rx="3" fill="#f3efe6" /><path d="M168 10h32v32H168Z" fill="#e7e0d2" /><path d="M168 10l32 32" stroke="#1c1b19" strokeWidth="1.2" /><rect x="24" y="28" width="36" height="4" rx="1" fill="#6f90c4" /><text className="is-kicker" x="24" y="52">Website plan</text><text className="is-display" x="24" y="78">Written plan.</text><text className="is-lede" x="24" y="96">Written around the business.</text><g><line x1="24" y1="110" x2="184" y2="110" stroke="#1c1b19" strokeOpacity="0.14" /><text className="is-num" x="24" y="126">01</text><text className="is-row" x="58" y="126">First look</text></g><g><line x1="24" y1="142" x2="184" y2="142" stroke="#1c1b19" strokeOpacity="0.14" /><text className="is-num" x="24" y="158">02</text><text className="is-row" x="58" y="158">On a phone</text></g><g><line x1="24" y1="174" x2="184" y2="174" stroke="#1c1b19" strokeOpacity="0.14" /><text className="is-num" x="24" y="190">03</text><text className="is-row" x="58" y="190">Call path</text></g><g><line x1="24" y1="206" x2="184" y2="206" stroke="#1c1b19" strokeOpacity="0.14" /><text className="is-num" x="24" y="222">04</text><text className="is-row" x="58" y="222">Speed</text></g><g><line x1="24" y1="238" x2="184" y2="238" stroke="#1c1b19" strokeOpacity="0.14" /><text className="is-num" x="24" y="254">05</text><text className="is-row" x="58" y="254">Rebuild first</text></g><rect x="24" y="286" width="88" height="18" rx="9" fill="#1c1b19" /><text className="is-stamp" x="68" y="298">No obligation</text></svg>
+    <div className="lp-web-plan__sheet">
+      <p className="lp-web-plan__sheet-kicker">{copy.folioKicker}</p>
+      <p className="lp-web-plan__sheet-title">{copy.folioTitle}</p>
+      <p className="lp-web-plan__sheet-lede">{copy.folioLede}</p>
+      <ul className="lp-web-plan__sheet-list">
+        {copy.folioRows.map((label) => (
+          <li key={label}>{label}</li>
+        ))}
+      </ul>
+      <p className="lp-web-plan__sheet-stamp">{copy.folioStamp}</p>
+    </div>
   );
 }
 
-function PlanReviewBoard() {
+function PlanReviewBoard({ copy }: { copy: PlanBoardCopy }) {
   return (
-    <svg viewBox="0 0 420 300" fill="none" aria-hidden={true} className="lp-web-board lp-web-board--review"><rect width="420" height="300" fill="#d8d2c6" /><rect x="28" y="22" width="364" height="256" rx="4" fill="#f7f3ea" /><rect x="178" y="10" width="64" height="22" rx="3" fill="#2a2a2a" /><rect x="186" y="16" width="48" height="8" rx="1" fill="#c9c4b8" /><rect x="48" y="42" width="324" height="214" fill="#fff" stroke="#1c1b19" strokeWidth="1.4" /><rect x="48" y="42" width="324" height="18" fill="#2f4a22" /><rect x="58" y="68" width="18" height="18" fill="#2f4a22" /><path d="M82 76h52" stroke="#1c1b19" strokeWidth="3" /><path d="M200 78h22M228 78h22M256 78h22M284 78h22M312 78h22M340 78h18" stroke="#1144aa" strokeWidth="2" /><rect x="58" y="98" width="304" height="98" fill="#6d7468" /><path d="M58 196h304v-28L250 128 188 158 128 138 58 176Z" fill="#4f564a" /><rect x="286" y="148" width="40" height="28" fill="#cfc3ad" /><path d="M278 148l28-18 28 18" fill="#8d7d66" /><rect x="70" y="168" width="78" height="20" fill="#d8d8d8" stroke="#111" strokeWidth="1.2" /><text className="is-fake-cta" x="109" y="182">Click Here</text><ellipse cx="318" cy="78" rx="78" ry="16" stroke="#c45c26" strokeWidth="2.2" transform="rotate(-4 318 78)" /><text className="is-note" x="268" y="58" transform="rotate(-6 268 58)">nav clutter</text><ellipse cx="110" cy="178" rx="52" ry="20" stroke="#c45c26" strokeWidth="2.4" transform="rotate(-8 110 178)" /><text className="is-note" x="168" y="198" transform="rotate(-4 168 198)">buried CTA</text><text className="is-note" x="300" y="118" transform="rotate(7 300 118)">stock photo</text><rect x="58" y="208" width="92" height="36" fill="#f3f3f3" stroke="#cfcfcf" /><rect x="162" y="208" width="92" height="36" fill="#f3f3f3" stroke="#cfcfcf" /><rect x="266" y="208" width="92" height="36" fill="#f3f3f3" stroke="#cfcfcf" /><text className="is-sheet" x="48" y="276">Site inspection · punch list</text></svg>
+    <div className="lp-web-plan__sketch lp-web-plan__sketch--review">
+      <div className="lp-web-plan__browser">
+        <div className="lp-web-plan__browser-bar" aria-hidden>
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="lp-web-plan__browser-nav" aria-hidden>
+          <i />
+          <b />
+          <b />
+          <b />
+          <b />
+        </div>
+        <div className="lp-web-plan__browser-hero" aria-hidden>
+          <em />
+          <em />
+          <strong>{copy.clickHere}</strong>
+        </div>
+        <div className="lp-web-plan__browser-cards" aria-hidden>
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+      <ul className="lp-web-plan__tags">
+        <li>{copy.navClutter}</li>
+        <li>{copy.buriedCta}</li>
+        <li>{copy.stockPhoto}</li>
+      </ul>
+      <p className="lp-web-plan__sketch-label">{copy.inspection}</p>
+    </div>
   );
 }
 
-function PlanBuildBoard() {
+function PlanBuildBoard({ copy }: { copy: PlanBoardCopy }) {
   return (
-    <svg viewBox="0 0 420 300" fill="none" aria-hidden={true} className="lp-web-board lp-web-board--build"><rect width="420" height="300" fill="#efe9dc" /><g stroke="#1c1b19" strokeOpacity="0.08" strokeWidth="0.8"><line x1="0" y1="0" x2="0" y2="300" /><line x1="21" y1="0" x2="21" y2="300" /><line x1="42" y1="0" x2="42" y2="300" /><line x1="63" y1="0" x2="63" y2="300" /><line x1="84" y1="0" x2="84" y2="300" /><line x1="105" y1="0" x2="105" y2="300" /><line x1="126" y1="0" x2="126" y2="300" /><line x1="147" y1="0" x2="147" y2="300" /><line x1="168" y1="0" x2="168" y2="300" /><line x1="189" y1="0" x2="189" y2="300" /><line x1="210" y1="0" x2="210" y2="300" /><line x1="231" y1="0" x2="231" y2="300" /><line x1="252" y1="0" x2="252" y2="300" /><line x1="273" y1="0" x2="273" y2="300" /><line x1="294" y1="0" x2="294" y2="300" /><line x1="315" y1="0" x2="315" y2="300" /><line x1="336" y1="0" x2="336" y2="300" /><line x1="357" y1="0" x2="357" y2="300" /><line x1="378" y1="0" x2="378" y2="300" /><line x1="399" y1="0" x2="399" y2="300" /><line x1="0" y1="0" x2="420" y2="0" /><line x1="0" y1="20" x2="420" y2="20" /><line x1="0" y1="40" x2="420" y2="40" /><line x1="0" y1="60" x2="420" y2="60" /><line x1="0" y1="80" x2="420" y2="80" /><line x1="0" y1="100" x2="420" y2="100" /><line x1="0" y1="120" x2="420" y2="120" /><line x1="0" y1="140" x2="420" y2="140" /><line x1="0" y1="160" x2="420" y2="160" /><line x1="0" y1="180" x2="420" y2="180" /><line x1="0" y1="200" x2="420" y2="200" /><line x1="0" y1="220" x2="420" y2="220" /><line x1="0" y1="240" x2="420" y2="240" /><line x1="0" y1="260" x2="420" y2="260" /><line x1="0" y1="280" x2="420" y2="280" /></g><text className="is-sheet" x="24" y="28">SHT 01 · Structure</text><rect x="36" y="42" width="348" height="232" fill="#f7f3ea" stroke="#1c1b19" strokeWidth="3" /><rect x="52" y="58" width="200" height="52" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.8" /><text className="is-room" x="152" y="82">Home</text><text className="is-room-sub" x="152" y="98">entry</text><rect x="268" y="58" width="100" height="52" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.8" /><text className="is-room" x="318" y="82">About</text><rect x="268" y="126" width="100" height="52" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.8" /><text className="is-room" x="318" y="150">Contact</text><rect x="52" y="126" width="200" height="52" fill="#e7efe8" stroke="#1f4d3a" strokeWidth="2.2" /><text className="is-room is-path" x="152" y="150">Services</text><text className="is-room-sub is-path" x="152" y="166">hall</text><rect x="52" y="194" width="128" height="62" fill="#e7efe8" stroke="#1f4d3a" strokeWidth="2.2" /><text className="is-room is-path" x="116" y="222">Service pages</text><rect x="196" y="194" width="172" height="62" fill="#1c1b19" /><text className="is-desk" x="282" y="222">Call / Get a quote</text><text className="is-room-sub is-desk-sub" x="282" y="240">front desk</text><path d="M152 110v16M152 178v16" stroke="#1f4d3a" strokeWidth="6" strokeLinecap="square" /><path d="M180 222H196V218L210 225 196 232V228H180Z" fill="#1f4d3a" /><text className="is-sheet" x="36" y="290">Primary path</text></svg>
+    <div className="lp-web-plan__sketch lp-web-plan__sketch--build">
+      <p className="lp-web-plan__sketch-label">{copy.sheet}</p>
+      <div className="lp-web-plan__sitemap">
+        <div className="lp-web-plan__node lp-web-plan__node--home">
+          <strong>{copy.home}</strong>
+          <span>{copy.entry}</span>
+        </div>
+        <div className="lp-web-plan__node">
+          <strong>{copy.about}</strong>
+        </div>
+        <div className="lp-web-plan__node lp-web-plan__node--path">
+          <strong>{copy.services}</strong>
+          <span>{copy.hall}</span>
+        </div>
+        <div className="lp-web-plan__node">
+          <strong>{copy.contact}</strong>
+        </div>
+        <div className="lp-web-plan__node lp-web-plan__node--path lp-web-plan__node--wide">
+          <strong>{copy.servicePages}</strong>
+          {copy.servicePagesSub ? <span>{copy.servicePagesSub}</span> : null}
+        </div>
+        <div className="lp-web-plan__node lp-web-plan__node--end">
+          <strong>{copy.quote}</strong>
+          <span>{copy.desk}</span>
+        </div>
+      </div>
+      <p className="lp-web-plan__sketch-label lp-web-plan__sketch-label--end">
+        {copy.primaryPath}
+      </p>
+    </div>
   );
 }
 
 export function WebsitePlan({
   page,
+  locale = "en",
   kicker = "Next step",
   figcaption = "A short written brief. Five points, then a clear recommendation.",
 }: {
   page: LandingPageEntry;
+  locale?: Locale;
   kicker?: string;
   figcaption?: string;
 }) {
+  const boards = PLAN_BOARDS[locale] ?? PLAN_BOARDS.en;
   const whatsapp =
     page.whatsappHref && page.whatsappPlanLabel
       ? { href: page.whatsappHref, label: page.whatsappPlanLabel }
@@ -705,7 +916,7 @@ export function WebsitePlan({
               ) : null}
             </div>
             <figure className="lp-web-plan__folio">
-              <PlanFolio />
+              <PlanFolio copy={boards} />
               <figcaption>{figcaption}</figcaption>
             </figure>
           </div>
@@ -716,7 +927,7 @@ export function WebsitePlan({
             {page.planHasSiteItems?.length ? (
               <article className="lp-web-plan__path lp-web-plan__path--has">
                 <figure className="lp-web-plan__preview" aria-hidden>
-                  <PlanReviewBoard />
+                  <PlanReviewBoard copy={boards} />
                 </figure>
                 <h3>{page.planHasSiteTitle}</h3>
                 <ul>
@@ -729,7 +940,7 @@ export function WebsitePlan({
             {page.planNoSiteItems?.length ? (
               <article className="lp-web-plan__path lp-web-plan__path--none">
                 <figure className="lp-web-plan__preview" aria-hidden>
-                  <PlanBuildBoard />
+                  <PlanBuildBoard copy={boards} />
                 </figure>
                 <h3>{page.planNoSiteTitle}</h3>
                 <ul>

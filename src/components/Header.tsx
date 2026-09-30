@@ -101,8 +101,31 @@ export function Header() {
       );
     }
     return (
-      <CallLink className="site-header__phone">
-        <span className="site-header__phone-dot" aria-hidden />
+      <CallLink
+        className={cn(
+          "site-header__phone",
+          isSlimLanding && "site-header__phone--lp",
+        )}
+      >
+        {isSlimLanding ? (
+          <svg
+            className="site-header__phone-mark"
+            viewBox="0 0 24 24"
+            aria-hidden
+            focusable="false"
+          >
+            <path
+              d="M8.2 3.8h1.6c.5 0 .9.3 1 .8l.7 2.2a1 1 0 0 1-.3 1.1L9.7 9.2a11.2 11.2 0 0 0 5.1 5.1l1.3-1.5a1 1 0 0 1 1.1-.3l2.2.7c.5.1.8.5.8 1v1.6a1.4 1.4 0 0 1-1.5 1.4A14.6 14.6 0 0 1 4.4 6.8 1.4 1.4 0 0 1 5.8 5.3h1.1c.5 0 .9.1 1.3.5Z"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.7"
+              strokeLinejoin="round"
+              strokeLinecap="round"
+            />
+          </svg>
+        ) : (
+          <span className="site-header__phone-dot" aria-hidden />
+        )}
         <span className="site-header__phone-num">
           {getBusinessPhoneDisplay()}
         </span>
@@ -250,7 +273,7 @@ export function Header() {
               className="site-header__logo site-header__logo--quiet inline-flex min-h-11 shrink-0 items-center"
               aria-label={tA11y("logoAlt")}
             >
-              <BrandLogo />
+              <BrandLogo height={22} />
             </Link>
           ) : (
             <Link
@@ -282,7 +305,6 @@ export function Header() {
               >
                 {landing.headerCtaLabel}
               </Button>
-              <ThemeToggle />
             </div>
           ) : (
             <>

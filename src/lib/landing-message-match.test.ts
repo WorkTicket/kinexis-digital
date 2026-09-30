@@ -54,8 +54,7 @@ describe("resolveLandingMessage", () => {
     const latam = resolveLandingMessage({ locale: "es-419" });
     expect(latam.headlineLines).toEqual([
       "Tu negocio ha crecido.",
-      "Tu sitio web",
-      "debería\u00A0mostrarlo.",
+      "Tu sitio web debería mostrarlo.",
     ]);
     expect(latam.marketLine).toMatch(/contratistas/);
 

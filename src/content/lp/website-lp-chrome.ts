@@ -20,6 +20,12 @@ export const websiteLpChrome = localeContent({
     faqEyebrow: "Before you send the form",
     faqTitle: "Straight answers",
     heroCaption: "A1 Property Services — live site",
+    heroBenefits: [
+      { label: "Fast loading", note: "Better user experience" },
+      { label: "Mobile-first", note: "Looks great on every device" },
+      { label: "SEO included", note: "Get found on Google" },
+      { label: "100% custom", note: "Just your brand" },
+    ],
   },
   "es-419": {
     outcomesAria: "Para qué está hecho el sitio web",
@@ -38,6 +44,12 @@ export const websiteLpChrome = localeContent({
     faqEyebrow: "Antes de enviar el formulario",
     faqTitle: "Respuestas directas",
     heroCaption: "A1 Property Services — sitio en vivo",
+    heroBenefits: [
+      { label: "Carga rápida", note: "Mejor experiencia" },
+      { label: "Mobile-first", note: "Se ve bien en cada dispositivo" },
+      { label: "SEO incluido", note: "Te encuentran en Google" },
+      { label: "100% a medida", note: "Solo tu marca" },
+    ],
   },
 });
 

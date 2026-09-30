@@ -17,9 +17,7 @@ const headlinesByLocale = localeContent({
     ] as const,
     business_grown: [
       "Your business has grown.",
-      "Your website",
-      // Own signal line so “should show it” never orphans.
-      "should\u00A0show\u00A0it.",
+      "Your website should show it.",
     ] as const,
   },
   "es-419": {
@@ -29,9 +27,7 @@ const headlinesByLocale = localeContent({
     ] as const,
     business_grown: [
       "Tu negocio ha crecido.",
-      "Tu sitio web",
-      // Own signal line so “debería mostrarlo” never orphans.
-      "debería\u00A0mostrarlo.",
+      "Tu sitio web debería mostrarlo.",
     ] as const,
   },
 });

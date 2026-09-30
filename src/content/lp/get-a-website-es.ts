@@ -49,12 +49,11 @@ export function buildSpanishGetAWebsite(
     metaDescription: `Sitios web a medida para contratistas y negocios de servicios del hogar. Hechos para que el cliente sepa quién eres y pueda llamar o pedir una cotización. Planes desde ${lowLabel} a ${highLabel}.`,
     badge: "Sitios web a medida para contratistas",
     headline:
-      "Tu negocio ha crecido. Tu sitio web debería\u00A0mostrarlo.",
+      "Tu negocio ha crecido. Tu sitio web debería mostrarlo.",
     headlineAccent: "",
     headlineLines: [
       "Tu negocio ha crecido.",
-      "Tu sitio web",
-      "debería\u00A0mostrarlo.",
+      "Tu sitio web debería mostrarlo.",
     ],
     marketLine:
       "Sitios web a medida para contratistas y negocios de servicios del hogar.",
@@ -258,6 +257,7 @@ export function buildSpanishGetAWebsite(
     samples: [
       {
         image: A1_DESKTOP,
+        deviceShot: "/assets/images/lp/a1-devices.webp?v=20260930d",
         imageAlt:
           "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
         client: "A1 Property Services",
@@ -275,6 +275,7 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: PLUMBING_DESKTOP,
+        deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20260930e",
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",
@@ -292,6 +293,7 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: MANOS_DESKTOP,
+        deviceShot: "/assets/images/lp/manos-devices.webp?v=20260930e",
         imageAlt:
           "Tienda de Manos Creativas en una laptop, construida por KINEXIS",
         client: "Manos Creativas",

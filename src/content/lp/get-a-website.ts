@@ -114,17 +114,16 @@ const baseGetAWebsite: LandingPageEntry = {
     "Custom websites for contractors and home-service businesses. Built so customers can tell who you are, then call or request a quote. Plans from $500 to $2,000.",
   badge: "Custom websites for contractors",
   headline:
-    "Your business has grown. Your website should\u00A0show\u00A0it.",
+    "Your business has grown. Your website should show it.",
   headlineAccent: "",
   headlineLines: [
     "Your business has grown.",
-    "Your website",
-    "should\u00A0show\u00A0it.",
+    "Your website should show it.",
   ],
   marketLine:
     "Custom websites for contractors & home-service businesses.",
   subheadline:
-    "Customers look you up before they call. We build custom contractor sites so the first impression matches the work you already do — and requesting a quote is obvious.",
+    "Customers look you up before they call. We build custom contractor websites so the first impression matches the work you already do — and requesting a quote is obvious.",
   heroCtaLabel: CTA,
   headerCtaLabel: "Get My Website Plan",
   heroFinePrint: `No obligation. We'll reply within ${REPLY} with what a rebuild should fix first.`,
@@ -323,6 +322,7 @@ const baseGetAWebsite: LandingPageEntry = {
   samples: [
     {
       image: A1_DESKTOP,
+      deviceShot: "/assets/images/lp/a1-devices.webp?v=20260930d",
       imageAlt:
         "A1 Property Services website on a laptop, built by KINEXIS",
       client: "A1 Property Services",
@@ -340,6 +340,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       image: PLUMBING_DESKTOP,
+      deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20260930e",
       imageAlt:
         "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
       client: "Preferred Plumbing Solutions",
@@ -521,12 +522,11 @@ const spanishByLocale = {
   "es-ES": buildSpanishGetAWebsite(softPricing["es-ES"]),
 } as const;
 
-/** Spanish page WhatsApp CTAs — hero pill + plan text (nav is separate). */
-const spanishWhatsApp = {
+/** Spanish-only WhatsApp. English keeps the phone number in the header. */
+const heroWhatsAppEs = {
   heroLabel: "Escribir por WhatsApp",
   planLabel: "Escribir por WhatsApp",
-  prefill:
-    "Hola, me interesa el plan gratuito de sitio web para mi negocio.",
+  prefill: "Hola, me interesa el plan gratuito de sitio web para mi negocio.",
 } as const;
 
 /** Full locale entry: English base, or full Spanish body + WhatsApp. */
@@ -550,11 +550,11 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
       };
 
   if (isSpanishLocale(locale)) {
-    const href = getBusinessWhatsAppHref(spanishWhatsApp.prefill);
+    const href = getBusinessWhatsAppHref(heroWhatsAppEs.prefill);
     if (href) {
       next.whatsappHref = href;
-      next.whatsappHeroLabel = spanishWhatsApp.heroLabel;
-      next.whatsappPlanLabel = spanishWhatsApp.planLabel;
+      next.whatsappHeroLabel = heroWhatsAppEs.heroLabel;
+      next.whatsappPlanLabel = heroWhatsAppEs.planLabel;
     }
   }
 
