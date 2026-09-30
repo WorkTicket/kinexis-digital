@@ -223,13 +223,18 @@ describe("get-a-website landing page", () => {
     );
     expect(
       getLandingPage("get-a-website", "es-419")?.samples?.map((s) => s.client),
-    ).toEqual(["A1 Property Services", "Manos Creativas"]);
+    ).toEqual([
+      "A1 Property Services",
+      "Preferred Plumbing Solutions",
+      "Manos Creativas",
+    ]);
     expect(
       getLandingPage("get-a-website", "es-ES")?.samples?.map((s) => s.client),
-    ).toEqual(["A1 Property Services", "Manos Creativas"]);
-    expect(
-      getLandingPage("get-a-website", "es-419")?.samples?.map((s) => s.client),
-    ).not.toContain("Preferred Plumbing Solutions");
+    ).toEqual([
+      "A1 Property Services",
+      "Preferred Plumbing Solutions",
+      "Manos Creativas",
+    ]);
     expect(page?.process?.length).toBe(4);
     expect(page?.process?.map((step) => step.title)).toEqual([
       "Website plan",

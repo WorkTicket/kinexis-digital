@@ -7,6 +7,7 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
+const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
 const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20260930c";
 
 /** Short hero/sticky label — long form title stays on the plan section. */
@@ -246,7 +247,7 @@ export function buildSpanishGetAWebsite(
 
     samplesTitle: "Sitios que ya funcionan para negocios reales",
     samplesIntro:
-      "Estos son sitios en vivo, no maquetas. Ábrelos. Ambos negocios necesitaban que el sitio se viera tan sólido como el trabajo que ya hacían.",
+      "Estos son sitios en vivo, no maquetas. Ábrelos. Cada negocio necesitaba que el sitio se viera tan sólido como el trabajo que ya hacía.",
     testimonial: {
       quote:
         "El botón de cotización desaparecía en el teléfono. Después de la reconstrucción, la conversión pasó de 1,8% a 3,9%.",
@@ -271,6 +272,23 @@ export function buildSpanishGetAWebsite(
           "Una empresa de paisajismo en Cedar Falls había superado un sitio de folleto. Lo reconstruimos alrededor de páginas de servicio, estructura local, y un camino de cotización que funciona en el teléfono.",
         metric: "10 → 28",
         label: "leads calificados / mes",
+      },
+      {
+        image: PLUMBING_DESKTOP,
+        imageAlt:
+          "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
+        client: "Preferred Plumbing Solutions",
+        kind: "Plomería y servicios de construcción",
+        industry: "Plomería",
+        liveUrl: "https://www.callpreferredplumbing.com/",
+        challenge:
+          "Una empresa de plomería y construcción necesitaba un sitio que dejara el trabajo claro y hiciera que llamar desde el teléfono se sintiera como el siguiente paso natural.",
+        work: "La reconstrucción priorizó claridad de servicios y confianza, y mantuvo el botón de llamada a mano en móvil.",
+        result: "Las llamadas de emergencia pasaron de 22 al mes a 52.",
+        summary:
+          "Una empresa de plomería y construcción necesitaba un sitio que dejara los servicios claros y hiciera de llamar desde el teléfono el siguiente paso natural.",
+        metric: "22 → 52",
+        label: "llamadas de emergencia / mes",
       },
       {
         image: MANOS_DESKTOP,
