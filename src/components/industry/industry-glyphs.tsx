@@ -37,6 +37,7 @@ const ICONS: Record<IndustrySlug, LucideIcon> = {
   "real-estate": Building2,
   restaurants: UtensilsCrossed,
   saas: Cloud,
+  fintech: TrendingUp,
   automotive: Car,
   fitness: Dumbbell,
   construction: HardHat,

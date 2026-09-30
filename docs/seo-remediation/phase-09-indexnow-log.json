@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-08-14T03:40:11.160Z",
+  "timestamp": "2026-09-30T03:41:12.644Z",
   "base": "https://www.kinexisdigital.com",
   "host": "www.kinexisdigital.com",
   "keyLocation": "https://www.kinexisdigital.com/8ab5897f-65da-4126-b6f5-0c1ef3914d39.txt",
-  "total_urls": 52,
+  "total_urls": 70,
   "batch_count": 1,
   "all_success": true,
   "results": [
     {
       "batch": 1,
-      "url_count": 52,
+      "url_count": 70,
       "http_status": 200,
       "status_text": "OK",
       "success": true

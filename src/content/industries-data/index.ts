@@ -6,6 +6,7 @@ export {
   marketsPreviewSlugs,
 } from "./industries-content";
 export { industries } from "./data";
+export { localizeIndustry } from "./spanish";
 export {
   FEATURED_SLUGS,
   STANDALONE_INDUSTRY_SLUGS,

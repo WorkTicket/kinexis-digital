@@ -13,7 +13,10 @@ describe("resolveLegacyRedirect", () => {
   it("strips locale in one hop onto the unprefixed path", () => {
     expect(resolveLegacyRedirect("/en")).toEqual({ path: "/", hash: "" });
     expect(resolveLegacyRedirect("/es/about")).toEqual({ path: "/about", hash: "" });
-    expect(resolveLegacyRedirect("/en/lp/seo")).toEqual({ path: "/lp/seo", hash: "" });
+    expect(resolveLegacyRedirect("/en/lp/seo")).toEqual({
+      path: "/lp/get-a-website",
+      hash: "",
+    });
     expect(resolveLegacyRedirect("/en/thank-you/audit")).toEqual({
       path: "/thank-you/audit",
       hash: "",
@@ -46,12 +49,17 @@ describe("resolveLegacyRedirect", () => {
     expect(resolveLegacyRedirect("/services")).toBeNull();
     expect(resolveLegacyRedirect("/industries")).toBeNull();
     expect(resolveLegacyRedirect("/industries/home-services")).toBeNull();
+    expect(resolveLegacyRedirect("/industries/saas")).toBeNull();
+    expect(resolveLegacyRedirect("/industries/fintech")).toBeNull();
     expect(resolveLegacyRedirect("/industries/ecommerce")).toBeNull();
     expect(resolveLegacyRedirect("/industries/plumbing")).toBeNull();
     expect(resolveLegacyRedirect("/industries/landscaping")).toBeNull();
     expect(resolveLegacyRedirect("/industries/hvac")).toBeNull();
     expect(resolveLegacyRedirect("/industries/roofing")).toBeNull();
-    expect(resolveLegacyRedirect("/lp/seo")).toBeNull();
+    expect(resolveLegacyRedirect("/lp/seo")).toEqual({
+      path: "/lp/get-a-website",
+      hash: "",
+    });
     expect(resolveLegacyRedirect("/lp/get-a-website")).toBeNull();
     expect(resolveLegacyRedirect("/thank-you")).toBeNull();
     expect(resolveLegacyRedirect("/thank-you/audit")).toBeNull();
@@ -113,11 +121,15 @@ describe("resolveLegacyRedirect", () => {
 
   it("maps nested industry URLs in one hop", () => {
     expect(resolveLegacyRedirect("/en/industries/technology/startups")).toEqual({
-      path: "/industries",
-      hash: "saas",
+      path: "/industries/saas",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/industries/technology/fintech")).toEqual({
+      path: "/industries/fintech",
+      hash: "",
     });
     expect(resolveLegacyRedirect("/en/industries/home-services/hvac")).toEqual({
-      path: "/industries/home-services",
+      path: "/industries/hvac",
       hash: "",
     });
     expect(resolveLegacyRedirect("/en/industries/healthcare/dental")).toEqual({
@@ -134,6 +146,9 @@ describe("resolveLegacyRedirect", () => {
 describe("matchUnprefixedLegacyRedirect", () => {
   it("retires pricing, solutions, team, and comparisons", () => {
     expect(matchUnprefixedLegacyRedirect("/pricing/seo")).toBe("/contact");
+    expect(matchUnprefixedLegacyRedirect("/solutions/saas-marketing-agency")).toBe(
+      "/industries/saas",
+    );
     expect(matchUnprefixedLegacyRedirect("/solutions/seo-for-hvac-companies")).toBe(
       "/services",
     );
@@ -143,16 +158,20 @@ describe("matchUnprefixedLegacyRedirect", () => {
     expect(matchUnprefixedLegacyRedirect("/lp")).toBe("/contact");
   });
 
-  it("keeps paid landing page slugs", () => {
-    expect(matchUnprefixedLegacyRedirect("/lp/seo")).toBeNull();
-    expect(matchUnprefixedLegacyRedirect("/lp/google-ads-management")).toBeNull();
-    expect(matchUnprefixedLegacyRedirect("/lp/local-seo")).toBeNull();
-    expect(matchUnprefixedLegacyRedirect("/lp/web-design")).toBeNull();
-    expect(matchUnprefixedLegacyRedirect("/lp/facebook-web-design")).toBeNull();
+  it("sends retired landing pages to /lp/get-a-website", () => {
+    for (const slug of [
+      "seo",
+      "google-ads-management",
+      "local-seo",
+      "web-design",
+      "facebook-web-design",
+      "dallas-website-audit",
+    ]) {
+      expect(matchUnprefixedLegacyRedirect(`/lp/${slug}`)).toBe(
+        "/lp/get-a-website",
+      );
+    }
     expect(matchUnprefixedLegacyRedirect("/lp/get-a-website")).toBeNull();
-    expect(matchUnprefixedLegacyRedirect("/lp/dallas-website-audit")).toBe(
-      "/lp/get-a-website",
-    );
   });
 });
 
@@ -161,6 +180,8 @@ describe("matchIndustryPath", () => {
     expect(matchIndustryPath("/industries/home-services")).toBeNull();
     expect(matchIndustryPath("/industries/ecommerce")).toBeNull();
     expect(matchIndustryPath("/industries/plumbing")).toBeNull();
+    expect(matchIndustryPath("/industries/saas")).toBeNull();
+    expect(matchIndustryPath("/industries/fintech")).toBeNull();
     expect(matchIndustryPath("/industries/hvac")).toBeNull();
   });
 
@@ -170,8 +191,44 @@ describe("matchIndustryPath", () => {
     );
   });
 
+  it("sends nested trade URLs to the trade page", () => {
+    expect(matchIndustryPath("/industries/home-services/roofing")).toBe(
+      "/industries/roofing",
+    );
+    expect(matchIndustryPath("/industries/home-services/plumbing")).toBe(
+      "/industries/plumbing",
+    );
+    expect(resolveLegacyRedirect("/es/industries/home-services/roofing")).toEqual({
+      path: "/industries/roofing",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/locations/cedar-falls")).toEqual({
+      path: "/case-studies/landscaping-company-growth",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/locations/dallas/ppc-management")).toEqual({
+      path: "/services/paid-media",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/locations/cedar-rapids/seo")).toEqual({
+      path: "/services/seo",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/en/locations/cedar-rapids/google-ads")).toEqual({
+      path: "/services/paid-media",
+      hash: "",
+    });
+    expect(resolveLegacyRedirect("/digital-marketing-agency")).toEqual({
+      path: "/",
+      hash: "",
+    });
+  });
+
   it("maps retired live categories", () => {
-    expect(matchIndustryPath("/industries/technology")).toBe("/industries#saas");
+    expect(matchIndustryPath("/industries/technology")).toBe("/industries/saas");
+    expect(matchIndustryPath("/industries/technology/fintech")).toBe(
+      "/industries/fintech",
+    );
     expect(matchIndustryPath("/industries/hospitality")).toBe(
       "/industries#restaurants",
     );
