@@ -118,7 +118,8 @@ const baseGetAWebsite: LandingPageEntry = {
   headlineAccent: "",
   headlineLines: [
     "Your business has grown.",
-    "Your website should\u00A0show\u00A0it.",
+    "Your website",
+    "should\u00A0show\u00A0it.",
   ],
   marketLine:
     "Custom websites for contractors & home-service businesses.",

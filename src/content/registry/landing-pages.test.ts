@@ -165,7 +165,8 @@ describe("get-a-website landing page", () => {
     expect(page?.badge.toLowerCase()).not.toMatch(/dallas|boise/);
     expect(page?.headlineLines).toEqual([
       "Your business has grown.",
-      "Your website should\u00A0show\u00A0it.",
+      "Your website",
+      "should\u00A0show\u00A0it.",
     ]);
     expect(page?.subheadline.toLowerCase()).toMatch(
       /customers look you up before they call/,
@@ -259,11 +260,13 @@ describe("get-a-website landing page", () => {
     );
     expect(getLandingPage("get-a-website", "es-419")?.headlineLines).toEqual([
       "Tu negocio ha crecido.",
-      "Tu sitio web debería\u00A0mostrarlo.",
+      "Tu sitio web",
+      "debería\u00A0mostrarlo.",
     ]);
     expect(getLandingPage("get-a-website", "es-ES")?.headlineLines).toEqual([
       "Tu negocio ha crecido.",
-      "Tu sitio web debería\u00A0mostrarlo.",
+      "Tu sitio web",
+      "debería\u00A0mostrarlo.",
     ]);
     expect(getLandingPage("get-a-website", "es-419")?.subheadline).toMatch(
       /Los clientes te buscan antes de llamar/,

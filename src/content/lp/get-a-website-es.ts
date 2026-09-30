@@ -52,7 +52,8 @@ export function buildSpanishGetAWebsite(
     headlineAccent: "",
     headlineLines: [
       "Tu negocio ha crecido.",
-      "Tu sitio web debería\u00A0mostrarlo.",
+      "Tu sitio web",
+      "debería\u00A0mostrarlo.",
     ],
     marketLine:
       "Sitios web a medida para contratistas y negocios de servicios del hogar.",

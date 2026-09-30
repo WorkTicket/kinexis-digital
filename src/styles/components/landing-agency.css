@@ -470,6 +470,7 @@ html[data-theme=dark] .lp-web-hero__wash--a {
 .lp-web-hero__line--signal {
   color:var(--lp-accent);
   margin-top:.12em;
+  white-space:nowrap;
 }
 
 .lp-web-hero__lede {

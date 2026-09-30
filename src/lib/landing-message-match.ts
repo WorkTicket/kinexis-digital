@@ -17,8 +17,9 @@ const headlinesByLocale = localeContent({
     ] as const,
     business_grown: [
       "Your business has grown.",
-      // Keep “should show it” as one wrap unit (nbsp).
-      "Your website should\u00A0show\u00A0it.",
+      "Your website",
+      // Own signal line so “should show it” never orphans.
+      "should\u00A0show\u00A0it.",
     ] as const,
   },
   "es-419": {
@@ -28,8 +29,9 @@ const headlinesByLocale = localeContent({
     ] as const,
     business_grown: [
       "Tu negocio ha crecido.",
-      // Keep “debería mostrarlo” as one wrap unit (nbsp).
-      "Tu sitio web debería\u00A0mostrarlo.",
+      "Tu sitio web",
+      // Own signal line so “debería mostrarlo” never orphans.
+      "debería\u00A0mostrarlo.",
     ] as const,
   },
 });
@@ -85,7 +87,7 @@ export type LandingMessageInput = {
 
 export type LandingMessage = {
   headlineKey: LandingHeadlineKey;
-  headlineLines: readonly [string, string];
+  headlineLines: readonly string[];
   marketKey: LandingMarketKey;
   marketLine: string;
 };
