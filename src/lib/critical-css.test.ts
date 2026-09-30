@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ASYNC_CSS_BOOT_SCRIPT, CRITICAL_FIRST_PAINT_CSS } from "@/lib/critical-css";
+import { CRITICAL_FIRST_PAINT_CSS } from "@/lib/critical-css";
 import { getLcpImagePreload } from "@/lib/lcp-preload";
 
 describe("critical first-paint CSS", () => {
@@ -11,11 +11,6 @@ describe("critical first-paint CSS", () => {
       ".btn--link{background:none;border:0;color:var(--foreground);text-decoration:none}",
     );
     expect(CRITICAL_FIRST_PAINT_CSS.length).toBeLessThan(12_000);
-  });
-
-  it("schedules async stylesheet application after paint", () => {
-    expect(ASYNC_CSS_BOOT_SCRIPT).toContain("data-kinexis-async");
-    expect(ASYNC_CSS_BOOT_SCRIPT).toContain("requestAnimationFrame");
   });
 });
 

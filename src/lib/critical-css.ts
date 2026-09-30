@@ -1,6 +1,7 @@
 /**
- * First-viewport CSS inlined in <head>. Production stylesheets are loaded
- * async (see cloudflare/gtag-wrapper.js) so this is what paints LCP text.
+ * First-viewport CSS inlined in <head> so type is readable if the
+ * stylesheet is still on the way. Production stylesheets stay render-blocking
+ * so the page arrives finished instead of restyling after paint.
  * Keep it small: tokens, chrome, hero type, primary button.
  */
 export const CRITICAL_FIRST_PAINT_CSS = [
@@ -48,7 +49,3 @@ export const CRITICAL_FIRST_PAINT_CSS = [
   ".text-foreground{color:var(--foreground)}.text-muted{color:var(--muted)}.font-bold{font-weight:700}",
   "html.cookie-pending body{padding-bottom:6.5rem}",
 ].join("");
-
-/** After first paint, force async stylesheets to apply if onload did not. */
-export const ASYNC_CSS_BOOT_SCRIPT =
-  "(function(){var a=function(){document.querySelectorAll('link[data-kinexis-async]').forEach(function(l){l.media='all'})};if('requestAnimationFrame'in window)requestAnimationFrame(function(){requestAnimationFrame(a)});else setTimeout(a,0)})();";

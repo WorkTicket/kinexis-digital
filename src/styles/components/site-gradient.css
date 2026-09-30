@@ -11,47 +11,30 @@
   --gradient-paper: #ffffff;
   --gradient-signal: #0066ff;
 
-  --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 2.8%, transparent);
-  --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 4.2%, transparent);
-  --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 6%, transparent);
-  --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 1.6%, transparent);
-  --gradient-flow-cyan: color-mix(in oklab, var(--gradient-signal) 3.5%, transparent);
+  --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 1.4%, transparent);
+  --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 2%, transparent);
+  --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 2.8%, transparent);
+  --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 0.7%, transparent);
 
   --site-gradient-base: var(--background);
+  /* One ink wash. Blue stays on type and buttons, not the page field. */
   --site-gradient-flow:
     radial-gradient(
-      ellipse 115% 72% at 88% -4%,
-      var(--gradient-flow-mid),
-      transparent 56%
-    ),
-    radial-gradient(
-      ellipse 70% 55% at 12% 8%,
-      var(--gradient-flow-cyan),
-      transparent 58%
-    ),
-    radial-gradient(
-      ellipse 82% 64% at -6% 42%,
+      ellipse 80% 48% at 100% -8%,
       var(--gradient-flow-soft),
-      transparent 52%
-    ),
-    radial-gradient(
-      ellipse 96% 58% at 52% 108%,
-      var(--gradient-flow-soft),
-      transparent 60%
+      transparent 70%
     ),
     linear-gradient(
-      168deg,
-      var(--gradient-flow-sheen) 0%,
-      transparent 36%,
-      var(--gradient-flow-soft) 68%,
-      transparent 100%
+      180deg,
+      transparent 0%,
+      var(--gradient-flow-sheen) 100%
     );
 
   --site-gradient-vignette:
     radial-gradient(
-      ellipse 130% 95% at 50% 50%,
-      transparent 42%,
-      color-mix(in oklab, var(--gradient-ink) 3.5%, transparent) 100%
+      ellipse 140% 100% at 50% 45%,
+      transparent 68%,
+      color-mix(in oklab, var(--gradient-ink) 1.6%, transparent) 100%
     );
 
   --gradient-chapter-studio:
@@ -93,8 +76,8 @@
       var(--gradient-flow-mid) 100%
     );
 
-  --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 5%, transparent);
-  --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 3.5%, transparent);
+  --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 2.4%, transparent);
+  --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 1.6%, transparent);
 }
 
 .dark,
@@ -103,50 +86,13 @@
   --gradient-paper: #000000;
   --gradient-signal: #0066ff;
 
-  --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 4%, transparent);
-  --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 6%, transparent);
-  --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 8.5%, transparent);
-  --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 2.2%, transparent);
-  --gradient-flow-cyan: color-mix(in oklab, var(--gradient-signal) 6%, transparent);
+  --gradient-flow-soft: color-mix(in oklab, var(--gradient-ink) 1.8%, transparent);
+  --gradient-flow-mid: color-mix(in oklab, var(--gradient-ink) 2.4%, transparent);
+  --gradient-flow-strong: color-mix(in oklab, var(--gradient-ink) 3.2%, transparent);
+  --gradient-flow-sheen: color-mix(in oklab, var(--gradient-ink) 1%, transparent);
 
-  --site-gradient-flow:
-    radial-gradient(
-      ellipse 115% 72% at 88% -4%,
-      var(--gradient-flow-mid),
-      transparent 56%
-    ),
-    radial-gradient(
-      ellipse 68% 52% at 8% 6%,
-      var(--gradient-flow-cyan),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 82% 64% at -6% 42%,
-      var(--gradient-flow-soft),
-      transparent 52%
-    ),
-    radial-gradient(
-      ellipse 96% 58% at 52% 108%,
-      var(--gradient-flow-soft),
-      transparent 60%
-    ),
-    linear-gradient(
-      168deg,
-      var(--gradient-flow-sheen) 0%,
-      transparent 36%,
-      var(--gradient-flow-soft) 68%,
-      transparent 100%
-    );
-
-  --site-gradient-vignette:
-    radial-gradient(
-      ellipse 130% 95% at 50% 50%,
-      transparent 40%,
-      color-mix(in oklab, var(--gradient-ink) 5%, transparent) 100%
-    );
-
-  --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 7%, transparent);
-  --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 5%, transparent);
+  --gradient-chapter-cta-glow-a: color-mix(in oklab, var(--gradient-ink) 3%, transparent);
+  --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 2%, transparent);
 }
 
 /* Document base — fixed flow so every route shares the same ambient field */
