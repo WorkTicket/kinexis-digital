@@ -161,6 +161,30 @@
   max-width: 22rem;
 }
 
+/* Slim consult lander closer — composed in Footer via LandingChromeGate */
+.site-footer__lp {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.site-footer__lp-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.site-footer__blurb--lp {
+  margin: 0;
+}
+
+.site-footer__contact--lp {
+  margin-top: 0;
+  padding-top: 0;
+}
+
 .site-footer__logo {
   display: inline-flex;
   align-items: center;

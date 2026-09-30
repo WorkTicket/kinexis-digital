@@ -30,4 +30,19 @@ describe("business phone", () => {
     expect(formatBusinessPhone("+14165550199")).toBe("+1 (416) 555-0199");
     expect(getBusinessTelHref()).toBe("tel:+14165550199");
   });
+
+  it("builds a wa.me href from the business phone", async () => {
+    vi.stubEnv("NEXT_PUBLIC_BUSINESS_PHONE", undefined as unknown as string);
+    const { getBusinessWhatsAppHref } = await import("@/lib/business");
+    expect(getBusinessWhatsAppHref()).toBe("https://wa.me/13075003371");
+    expect(getBusinessWhatsAppHref("Hola")).toBe(
+      `https://wa.me/13075003371?text=${encodeURIComponent("Hola")}`,
+    );
+  });
+
+  it("hides WhatsApp when phone env is empty", async () => {
+    vi.stubEnv("NEXT_PUBLIC_BUSINESS_PHONE", "");
+    const { getBusinessWhatsAppHref } = await import("@/lib/business");
+    expect(getBusinessWhatsAppHref()).toBeNull();
+  });
 });

@@ -1735,6 +1735,53 @@ html[data-theme="dark"] .lp-audit-hero .lp-audit-form-card {
   color: var(--hero-signal);
 }
 
+.lp-audit-pricing__anchor {
+  margin: 1.5rem auto 0;
+  max-width: 28ch;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.85rem, 4vw, 2.65rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  color: var(--foreground);
+  text-wrap: balance;
+  text-align: center;
+}
+
+.lp-audit-pricing__paths {
+  list-style: none;
+  margin: 1.35rem auto 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+  max-width: 40rem;
+}
+
+.lp-audit-pricing__paths li {
+  position: relative;
+  padding-left: 0.95rem;
+  font-size: 0.975rem;
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.lp-audit-pricing__paths li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--hero-signal);
+}
+
+.lp-audit-pricing--soft .lp-audit-pricing__note {
+  margin-top: 0.85rem;
+  text-align: center;
+}
+
 .lp-audit-pricing__cadence {
   margin-left: 0.2rem;
   font-family: var(--font-text), system-ui, sans-serif;

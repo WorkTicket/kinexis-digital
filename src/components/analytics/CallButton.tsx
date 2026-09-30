@@ -20,7 +20,7 @@ type Props = {
 
 /** Button-styled click-to-call — no-ops when phone is not configured. */
 export function CallButton({
-  variant = "outline",
+  variant = "primary",
   size = "lg",
   fullWidth,
   fullWidthMobile,

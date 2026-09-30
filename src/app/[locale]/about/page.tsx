@@ -1,11 +1,23 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import {
+  architectureIcon,
+  methodIcon,
+  partnershipIcon,
+  principleIcon,
+} from "@/components/about/AboutMarks";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
+import {
+  MediaReveal,
+  Reveal,
+  RevealGroup,
+  RevealItem,
+} from "@/components/ui/Reveal";
 import { getAboutContent, getFaqItems } from "@/content/about";
 import { localeContent } from "@/i18n/locale-content";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -50,6 +62,7 @@ export default async function AboutPage({ params }: Props) {
   const faqs = getFaqItems(locale);
   const labels = statusLabel[locale as Locale];
   const tCommon = await getTranslations("common");
+  const tNav = await getTranslations("nav");
 
   return (
     <main className="about-page flex flex-1 flex-col">
@@ -58,11 +71,12 @@ export default async function AboutPage({ params }: Props) {
           organizationSchema(),
           faqSchema(faqs),
           breadcrumbSchema([
-            { name: "Home", url: buildAbsoluteUrl(locale, "/") },
-            { name: "About", url: buildAbsoluteUrl(locale, "/about") },
+            { name: tNav("home"), url: buildAbsoluteUrl(locale, "/") },
+            { name: tNav("about"), url: buildAbsoluteUrl(locale, "/about") },
           ]),
         ]}
       />
+
       <PageHero
         eyebrow={c.heroEyebrow}
         title={c.heroTitle}
@@ -72,23 +86,23 @@ export default async function AboutPage({ params }: Props) {
         secondaryLabel={tCommon("seeTheWork")}
       />
 
-      {/* Why we exist — editorial split, monument density */}
+      {/* Why — centered manifesto + dual columns + system still */}
       <section
         aria-labelledby="about-why-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
         <div className="shell chapter-shell--monument relative">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
+          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
               eyebrow={c.why.eyebrow}
               headingId="about-why-heading"
               title={c.why.title}
-              headingClassName="max-w-[18ch]"
+              headingClassName="max-w-[20ch]"
             />
           </Reveal>
 
           <div className="about-why">
-            <Reveal variant="fadeUp" className="about-why__col">
+            <Reveal variant="fadeUp" className="about-why__panel about-why__panel--problem">
               <p className="about-why__label">{c.why.problemLabel}</p>
               {c.why.problem.map((para) => (
                 <p key={para.slice(0, 24)} className="about-why__copy">
@@ -100,7 +114,7 @@ export default async function AboutPage({ params }: Props) {
             <Reveal
               variant="fadeUp"
               delay={0.08}
-              className="about-why__col about-why__col--solution"
+              className="about-why__panel about-why__panel--solution"
             >
               <p className="about-why__label">{c.why.solutionLabel}</p>
               <p className="about-why__quote">{c.why.solutionQuote}</p>
@@ -111,56 +125,78 @@ export default async function AboutPage({ params }: Props) {
               ))}
             </Reveal>
           </div>
+
+          <MediaReveal
+            variant="float"
+            delay={0.1}
+            className="about-why__still"
+          >
+            <Image
+              src="/assets/images/agency/about-system.webp?v=20260930e"
+              alt="Diagram comparing scattered marketing tactics to the connected KINEXIS growth system"
+              width={1600}
+              height={800}
+              className="about-why__still-img"
+              sizes="(max-width: 900px) 100vw, 1120px"
+            />
+          </MediaReveal>
         </div>
       </section>
 
-      {/* How we work — numbered columns */}
+      {/* Partnership — centered lead + icon triad */}
       <section
         aria-labelledby="about-work-heading"
         className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell chapter-shell--tight relative">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+        <div className="shell chapter-shell--standard relative">
+          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
-              layout="split"
               eyebrow={c.partnership.eyebrow}
               headingId="about-work-heading"
               title={c.partnership.title}
-              headingClassName="max-w-[16ch]"
+              headingClassName="max-w-[18ch]"
               dek={c.partnership.copy}
+              dekClassName="max-w-[42rem]"
             />
           </Reveal>
 
           <RevealGroup
             as="ul"
-            className="about-signals"
+            className="about-partnership"
             stagger={duration.staggerTight}
           >
-            {c.partnership.signals.map((signal) => (
-              <RevealItem key={signal.title} as="li" variant="fadeUp">
-                <article className="about-signal">
-                  <h3 className="about-signal__title">{signal.title}</h3>
-                  <p className="about-signal__copy">{signal.description}</p>
-                </article>
-              </RevealItem>
-            ))}
+            {c.partnership.signals.map((signal, index) => {
+              const Icon = partnershipIcon(index);
+              return (
+                <RevealItem key={signal.title} as="li" variant="fadeUp">
+                  <article className="about-partnership__card">
+                    <span className="icon-well" aria-hidden>
+                      <Icon strokeWidth={1.5} />
+                    </span>
+                    <h3 className="about-partnership__title">{signal.title}</h3>
+                    <p className="about-partnership__copy">
+                      {signal.description}
+                    </p>
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>
 
-      {/* Method — vertical spine */}
+      {/* Method — centered process spine */}
       <section
         aria-labelledby="about-method-heading"
         className="chapter chapter--void relative overflow-hidden"
       >
         <div className="shell chapter-shell--standard relative">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
+          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
-              layout="rail"
               eyebrow={c.method.eyebrow}
               headingId="about-method-heading"
               title={c.method.title}
-              headingClassName="max-w-[14ch]"
+              headingClassName="max-w-[16ch]"
             />
           </Reveal>
 
@@ -170,34 +206,38 @@ export default async function AboutPage({ params }: Props) {
             stagger={duration.staggerTight}
             aria-label="KINEXIS method phases"
           >
-            {c.method.phases.map((phase) => (
-              <RevealItem key={phase.title} as="li" variant="fadeUp">
-                <article className="about-method__step">
-                  <div className="about-method__copy">
+            {c.method.phases.map((phase, index) => {
+              const Icon = methodIcon(index);
+              return (
+                <RevealItem key={phase.title} as="li" variant="fadeUp">
+                  <article className="about-method__step">
+                    <span className="icon-well" aria-hidden>
+                      <Icon strokeWidth={1.5} />
+                    </span>
                     <h3 className="about-method__title">{phase.title}</h3>
                     <p className="about-method__body">{phase.desc}</p>
-                  </div>
-                </article>
-              </RevealItem>
-            ))}
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>
 
-      {/* Architecture — linked role list */}
+      {/* Architecture — icon channel grid + plate */}
       <section
         aria-labelledby="about-arch-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell chapter-shell--tight relative">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+        <div className="shell chapter-shell--standard relative">
+          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
-              layout="split"
               eyebrow={c.architecture.eyebrow}
               headingId="about-arch-heading"
               title={c.architecture.title}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[14ch]"
               dek={c.architecture.copy}
+              dekClassName="max-w-[40rem]"
             />
           </Reveal>
 
@@ -206,36 +246,56 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch"
             stagger={duration.staggerTight}
           >
-            {c.architecture.nodes.map((node) => (
-              <RevealItem key={node.id} as="li" variant="fadeUp">
-                <article className="about-arch__node">
-                  <p className="about-arch__role">{node.role}</p>
-                  <h3 className="about-arch__title">{node.label}</h3>
-                  <p className="about-arch__copy">{node.summary}</p>
-                </article>
-              </RevealItem>
-            ))}
+            {c.architecture.nodes.map((node) => {
+              const Icon = architectureIcon(node.id);
+              return (
+                <RevealItem key={node.id} as="li" variant="fadeUp">
+                  <article className="about-arch__node">
+                    <span className="icon-well icon-well--sm" aria-hidden>
+                      <Icon strokeWidth={1.5} />
+                    </span>
+                    <p className="about-arch__role">{node.role}</p>
+                    <h3 className="about-arch__title">{node.label}</h3>
+                    <p className="about-arch__copy">{node.summary}</p>
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
 
-          <Reveal variant="fadeUp" delay={0.12} className="about-arch__caption">
+          <Reveal variant="fadeUp" delay={0.1} className="about-arch__caption">
             <p>{c.architecture.caption}</p>
           </Reveal>
+
+          <MediaReveal
+            variant="float"
+            delay={0.12}
+            className="about-arch__plate"
+          >
+            <Image
+              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930f"
+              alt="KINEXIS growth architecture: six channels connected in one loop — SEO, paid, web, CRO, email, and data"
+              width={1400}
+              height={788}
+              className="about-arch__plate-img"
+              sizes="(max-width: 900px) 100vw, 960px"
+            />
+          </MediaReveal>
         </div>
       </section>
 
-      {/* Principles — manifesto rows */}
+      {/* Principles — centered 2×2 */}
       <section
         aria-labelledby="about-principles-heading"
-        className="chapter chapter--studio relative overflow-hidden"
+        className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell chapter-shell--standard relative">
-          <Reveal variant="rise" when="chapter" className="mb-8 md:mb-10">
+        <div className="shell chapter-shell--monument relative">
+          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
-              layout="rail"
               eyebrow={c.principles.eyebrow}
               headingId="about-principles-heading"
               title={c.principles.title}
-              headingClassName="max-w-[14ch]"
+              headingClassName="max-w-[16ch]"
             />
           </Reveal>
 
@@ -244,35 +304,41 @@ export default async function AboutPage({ params }: Props) {
             className="about-principles"
             stagger={duration.staggerTight}
           >
-            {c.principles.items.map((item) => (
-              <RevealItem key={item.statement} as="li" variant="fadeUp">
-                <article className="about-principle">
-                  <p className="about-principle__accent">{item.accent}</p>
-                  <div className="about-principle__body">
+            {c.principles.items.map((item, index) => {
+              const Icon = principleIcon(index);
+              return (
+                <RevealItem key={item.statement} as="li" variant="fadeUp">
+                  <article className="about-principle">
+                    <div className="about-principle__top">
+                      <span className="icon-well icon-well--sm" aria-hidden>
+                        <Icon strokeWidth={1.5} />
+                      </span>
+                      <p className="about-principle__accent">{item.accent}</p>
+                    </div>
                     <h3 className="about-principle__title">{item.statement}</h3>
                     <p className="about-principle__copy">{item.explanation}</p>
-                  </div>
-                </article>
-              </RevealItem>
-            ))}
+                  </article>
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>
 
-      {/* Roadmap — keep milestone cards, split mast, tight density */}
+      {/* Roadmap — centered timeline */}
       <section
         aria-labelledby="about-roadmap-heading"
         className="chapter chapter--void relative overflow-hidden"
       >
-        <div className="shell chapter-shell--tight relative">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+        <div className="shell chapter-shell--standard relative">
+          <Reveal variant="rise" when="chapter" className="about-chapter-lead">
             <ChapterLead
-              layout="split"
               eyebrow={c.roadmap.eyebrow}
               headingId="about-roadmap-heading"
               title={c.roadmap.title}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[16ch]"
               dek={c.roadmap.copy}
+              dekClassName="max-w-[40rem]"
             />
           </Reveal>
 
@@ -287,22 +353,23 @@ export default async function AboutPage({ params }: Props) {
                 <article
                   className={`about-roadmap__item about-roadmap__item--${milestone.status}`}
                 >
-                  <div className="about-roadmap__meta">
+                  <div className="about-roadmap__rail" aria-hidden>
+                    <span className="about-roadmap__dot" />
+                  </div>
+                  <div className="about-roadmap__year-block">
                     <span className="about-roadmap__status">
-                      {
-                        labels[
-                          milestone.status as "done" | "now" | "soon"
-                        ]
-                      }
+                      {labels[milestone.status as "done" | "now" | "soon"]}
                     </span>
                     <span className="about-roadmap__year">{milestone.year}</span>
-                    <h3 className="about-roadmap__title">{milestone.title}</h3>
                   </div>
-                  <ul className="about-roadmap__list">
-                    {milestone.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
+                  <div className="about-roadmap__body">
+                    <h3 className="about-roadmap__title">{milestone.title}</h3>
+                    <ul className="about-roadmap__list">
+                      {milestone.items.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </article>
               </RevealItem>
             ))}

@@ -1,6 +1,7 @@
 import { defineRouting } from "next-intl/routing";
 
-export const locales = ["en", "es-ES", "es-419"] as const;
+/** Footer LanguageSwitcher order: English / LatAm / Spain. */
+export const locales = ["en", "es-419", "es-ES"] as const;
 export type Locale = (typeof locales)[number];
 
 export const LOCALE_COOKIE_NAME = "NEXT_LOCALE";

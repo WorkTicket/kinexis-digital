@@ -1,3 +1,16 @@
+import {
+  ArrowRight,
+  CheckCircle2,
+  ClipboardList,
+  Globe,
+  LineChart,
+  Phone,
+  ScanSearch,
+  Search,
+  Smartphone,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { SitePreview } from "@/components/home/SitePreview";
 import { LandingIntake } from "@/components/landing/LandingIntake";
 import { iconForLandingPoint } from "@/components/landing/landing-icons";
@@ -202,17 +215,24 @@ export function AuditPricing({
   intro,
   items,
   note,
+  anchor,
+  paths,
 }: {
   title: string;
   intro?: string;
-  items: LandingPagePrice[];
+  items?: LandingPagePrice[];
   note?: string;
+  anchor?: string;
+  paths?: string[];
 }) {
+  const tiers = items ?? [];
+  const softOnly = Boolean(anchor) && tiers.length === 0;
+
   return (
     <section
       id="pricing"
       aria-labelledby="lp-audit-pricing-heading"
-      className="lp-audit-pricing chapter relative"
+      className={`lp-audit-pricing chapter relative${softOnly ? " lp-audit-pricing--soft" : ""}`}
     >
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter">
@@ -224,24 +244,38 @@ export function AuditPricing({
           />
         </Reveal>
 
-        <RevealGroup
-          as="ul"
-          className="lp-audit-pricing__list"
-          stagger={duration.staggerTight}
-          delayChildren={0.06}
-        >
-          {items.map((item) => (
-            <RevealItem as="li" key={item.name} variant="fadeUp">
-              <article className="lp-audit-pricing__card">
-                <div className="lp-audit-pricing__head">
-                  <h3 className="lp-audit-pricing__name">{item.name}</h3>
-                  <p className="lp-audit-pricing__price">{item.price}</p>
-                </div>
-                <p className="lp-audit-pricing__body">{item.body}</p>
-              </article>
-            </RevealItem>
-          ))}
-        </RevealGroup>
+        {anchor ? (
+          <p className="lp-audit-pricing__anchor">{anchor}</p>
+        ) : null}
+
+        {tiers.length > 0 ? (
+          <RevealGroup
+            as="ul"
+            className="lp-audit-pricing__list"
+            stagger={duration.staggerTight}
+            delayChildren={0.06}
+          >
+            {tiers.map((item) => (
+              <RevealItem as="li" key={item.name} variant="fadeUp">
+                <article className="lp-audit-pricing__card">
+                  <div className="lp-audit-pricing__head">
+                    <h3 className="lp-audit-pricing__name">{item.name}</h3>
+                    <p className="lp-audit-pricing__price">{item.price}</p>
+                  </div>
+                  <p className="lp-audit-pricing__body">{item.body}</p>
+                </article>
+              </RevealItem>
+            ))}
+          </RevealGroup>
+        ) : null}
+
+        {paths?.length ? (
+          <ul className="lp-audit-pricing__paths">
+            {paths.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        ) : null}
 
         {note ? <p className="lp-audit-pricing__note">{note}</p> : null}
       </div>
@@ -249,21 +283,21 @@ export function AuditPricing({
   );
 }
 
-const AUDIT_POINT_EMOJI: Record<string, string> = {
-  "Mobile usability": "📱",
-  "Speed and performance": "⚡",
-  "Call and quote path": "📞",
-  "Search foundation": "🔍",
-  "Tracking and lead capture": "📈",
+const AUDIT_POINT_ICONS: Record<string, LucideIcon> = {
+  "Mobile usability": Smartphone,
+  "Speed and performance": Zap,
+  "Call and quote path": Phone,
+  "Search foundation": Search,
+  "Tracking and lead capture": LineChart,
 };
 
-const NEXT_STEP_EMOJI: Record<string, string> = {
-  "Send your website": "🌐",
-  "We review the five key areas": "🔎",
-  "You get our recommendations": "📋",
+const NEXT_STEP_ICONS: Record<string, LucideIcon> = {
+  "Send your website": Globe,
+  "We review the five key areas": ScanSearch,
+  "You get our recommendations": ClipboardList,
 };
 
-function emojiFor(map: Record<string, string>, title: string, fallback: string) {
+function iconFor(map: Record<string, LucideIcon>, title: string, fallback: LucideIcon) {
   return map[title] ?? fallback;
 }
 
@@ -294,23 +328,26 @@ export function AuditClose({ page }: { page: LandingPageEntry }) {
                 className="lp-audit-close__checks"
                 aria-label="What the audit reviews"
               >
-                {checks.map((step) => (
-                  <li key={step.title}>
-                    <span className="lp-audit-close__emoji" aria-hidden>
-                      {emojiFor(AUDIT_POINT_EMOJI, step.title, "✅")}
-                    </span>
-                    <span className="lp-audit-close__check-copy">
-                      <span className="lp-audit-close__check-title">
-                        {step.title}
+                {checks.map((step) => {
+                  const Icon = iconFor(AUDIT_POINT_ICONS, step.title, CheckCircle2);
+                  return (
+                    <li key={step.title}>
+                      <span className="icon-well icon-well--sm" aria-hidden>
+                        <Icon strokeWidth={1.5} />
                       </span>
-                      {step.detail ? (
-                        <span className="lp-audit-close__check-detail">
-                          {step.detail}
+                      <span className="lp-audit-close__check-copy">
+                        <span className="lp-audit-close__check-title">
+                          {step.title}
                         </span>
-                      ) : null}
-                    </span>
-                  </li>
-                ))}
+                        {step.detail ? (
+                          <span className="lp-audit-close__check-detail">
+                            {step.detail}
+                          </span>
+                        ) : null}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             ) : null}
             {nextSteps.length ? (
@@ -320,21 +357,24 @@ export function AuditClose({ page }: { page: LandingPageEntry }) {
                   className="lp-audit-close__steps"
                   aria-label="What happens next"
                 >
-                  {nextSteps.map((step) => (
-                    <li key={step.title}>
-                      <span className="lp-audit-close__emoji" aria-hidden>
-                        {emojiFor(NEXT_STEP_EMOJI, step.title, "➡️")}
-                      </span>
-                      <div className="lp-audit-close__step-copy">
-                        <p className="lp-audit-close__step-title">{step.title}</p>
-                        {step.detail ? (
-                          <p className="lp-audit-close__step-detail">
-                            {step.detail}
-                          </p>
-                        ) : null}
-                      </div>
-                    </li>
-                  ))}
+                  {nextSteps.map((step) => {
+                    const Icon = iconFor(NEXT_STEP_ICONS, step.title, ArrowRight);
+                    return (
+                      <li key={step.title}>
+                        <span className="icon-well icon-well--sm" aria-hidden>
+                          <Icon strokeWidth={1.5} />
+                        </span>
+                        <div className="lp-audit-close__step-copy">
+                          <p className="lp-audit-close__step-title">{step.title}</p>
+                          {step.detail ? (
+                            <p className="lp-audit-close__step-detail">
+                              {step.detail}
+                            </p>
+                          ) : null}
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             ) : null}

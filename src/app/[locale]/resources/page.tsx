@@ -66,7 +66,6 @@ export default async function ResourcesPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
-              layout="split"
               eyebrow={t("deskEyebrow")}
               headingId="resources-heading"
               title={t("deskTitle")}
@@ -124,7 +123,6 @@ export default async function ResourcesPage({ params }: Props) {
         <div className="shell chapter-shell--standard relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
             <ChapterLead
-              layout="rail"
               eyebrow={content.introLabel}
               headingId="toolkit-heading"
               title={content.meta.introTitle}
@@ -185,7 +183,6 @@ export default async function ResourcesPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-8 md:mb-10">
             <ChapterLead
-              layout="rail"
               eyebrow="Guides"
               headingId="guides-heading"
               title={content.guidesTitle}
@@ -233,7 +230,6 @@ export default async function ResourcesPage({ params }: Props) {
                 className="mb-8 md:mb-10"
               >
                 <ChapterLead
-                  layout="split"
                   eyebrow={category.label}
                   headingId={`${category.id}-heading`}
                   title={category.title}

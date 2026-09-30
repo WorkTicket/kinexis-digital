@@ -8,7 +8,8 @@ export const HOME_HERO_POSTER_DESKTOP = "/assets/video/hero-open-v2-poster-film-
 
 const INDUSTRY_DETAIL_RE = /^\/industries\/([a-z0-9-]+)\/?$/;
 const GET_A_WEBSITE_RE = /^\/lp\/get-a-website\/?$/;
-const GET_A_WEBSITE_LCP = "/assets/images/lp/a1-mobile.webp";
+/** Match WebsiteHero phone still (3x crop) so LCP preload hits the painted image. */
+const GET_A_WEBSITE_LCP = "/assets/images/lp/a1-mobile-3x.webp";
 
 /** Route-specific LCP still to preload as the first `<head>` byte after charset. */
 export function getLcpImagePreload(pathname: string): string | null {

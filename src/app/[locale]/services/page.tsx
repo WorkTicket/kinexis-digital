@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { serviceIconsBySlug } from "@/components/home/service-icons";
 import { PageCTA } from "@/components/page/PageCTA";
@@ -10,6 +11,7 @@ import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { Link } from "@/i18n/navigation";
 import { getServicePages } from "@/content/services";
+import { serviceVisuals } from "@/content/service-visuals";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { isFlagshipServiceSlug } from "@/lib/legacy-redirects.mjs";
 import { buildAbsoluteUrl, buildPageMetadata, getSiteUrl } from "@/lib/metadata";
@@ -79,11 +81,10 @@ export default async function ServicesIndexPage({ params }: Props) {
             className="mb-10 md:mb-12"
           >
             <ChapterLead
-              layout="split"
               eyebrow={t("mixEyebrow")}
               headingId="svc-catalog-heading"
               title={t("mixTitle")}
-              headingClassName="max-w-[10ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("mixDek")}
             />
           </Reveal>
@@ -97,33 +98,41 @@ export default async function ServicesIndexPage({ params }: Props) {
           >
             {pages.map((service) => {
               const Icon = serviceIconsBySlug[service.slug];
+              const visual = serviceVisuals[service.slug];
               const href = isFlagshipServiceSlug(service.slug)
                 ? `/services/${service.slug}`
                 : `#${service.slug}`;
               const className = "svc-catalog__card motion-tile";
+              const body = (
+                <>
+                  <span className="svc-catalog__still media-grade" aria-hidden>
+                    <Image
+                      src={visual.src}
+                      alt=""
+                      width={480}
+                      height={300}
+                      className="svc-catalog__still-img"
+                    />
+                  </span>
+                  <span className="icon-well" aria-hidden>
+                    <Icon />
+                  </span>
+                  <span className="svc-catalog__role">{service.role}</span>
+                  <span className="svc-catalog__name">{service.title}</span>
+                  <span className="svc-catalog__dek">
+                    {service.description}
+                  </span>
+                </>
+              );
               return (
                 <RevealItem as="li" key={service.slug} variant="fadeUp">
                   {isFlagshipServiceSlug(service.slug) ? (
                     <Link href={href} className={className}>
-                      <span className="icon-well" aria-hidden>
-                        <Icon />
-                      </span>
-                      <span className="svc-catalog__role">{service.role}</span>
-                      <span className="svc-catalog__name">{service.title}</span>
-                      <span className="svc-catalog__dek">
-                        {service.description}
-                      </span>
+                      {body}
                     </Link>
                   ) : (
                     <a href={href} className={className}>
-                      <span className="icon-well" aria-hidden>
-                        <Icon />
-                      </span>
-                      <span className="svc-catalog__role">{service.role}</span>
-                      <span className="svc-catalog__name">{service.title}</span>
-                      <span className="svc-catalog__dek">
-                        {service.description}
-                      </span>
+                      {body}
                     </a>
                   )}
                 </RevealItem>

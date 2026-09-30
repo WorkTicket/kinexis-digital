@@ -129,8 +129,9 @@ html[data-theme="dark"],
   flex-shrink: 0;
   width: 2.75rem;
   height: 2.75rem;
-  border-radius: 0.85rem;
-  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+  border-radius: var(--radius-md, 0.625rem);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
   color: var(--industry-accent, var(--hero-signal));
 }
 
@@ -142,15 +143,15 @@ html[data-theme="dark"],
 }
 
 .icon-well--sm {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 0.75rem;
+  width: 2.35rem;
+  height: 2.35rem;
+  border-radius: var(--radius-sm, 0.5rem);
 }
 
 .icon-well--sm svg,
 .icon-well--sm .industry-glyph {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.15rem;
+  height: 1.15rem;
 }
 
 .icon-well .industry-glyph {

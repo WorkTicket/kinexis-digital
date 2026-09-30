@@ -8,8 +8,8 @@ import {
 describe("resolveLandingMessage", () => {
   it("falls back to the default headline and market line", () => {
     const message = resolveLandingMessage();
-    expect(message.headlineKey).toBe("build_business");
-    expect(message.headlineLines).toEqual(LANDING_HEADLINES.build_business);
+    expect(message.headlineKey).toBe("business_grown");
+    expect(message.headlineLines).toEqual(LANDING_HEADLINES.business_grown);
     expect(message.marketKey).toBe("default");
     expect(message.marketLine).toBe(LANDING_MARKETS.default);
   });
@@ -44,9 +44,26 @@ describe("resolveLandingMessage", () => {
       utmCampaign: "boise-hack",
       market: poison,
     });
-    expect(message.headlineKey).toBe("build_business");
+    expect(message.headlineKey).toBe("business_grown");
     expect(message.marketKey).toBe("default");
     expect(JSON.stringify(message)).not.toContain(poison);
     expect(JSON.stringify(message)).not.toContain("boise-hack");
+  });
+
+  it("serves Spanish headline and market copy for Spanish locales", () => {
+    const latam = resolveLandingMessage({ locale: "es-419" });
+    expect(latam.headlineLines).toEqual([
+      "Tu negocio ha crecido.",
+      "Tu sitio web",
+      "debería\u00A0mostrarlo.",
+    ]);
+    expect(latam.marketLine).toMatch(/contratistas/);
+
+    const spain = resolveLandingMessage({
+      locale: "es-ES",
+      utmContent: "build_business",
+    });
+    expect(spain.headlineLines[0]).toMatch(/negocio/i);
+    expect(spain.headlineLines.join(" ")).not.toMatch(/Build your business/i);
   });
 });

@@ -30,9 +30,25 @@ const EARLY_GTAG_HTML = buildEarlyGoogleTagHtml(
   PRODUCTION_GA_ID,
 );
 
+function withCountryHeader(request) {
+  const country = request.cf?.country;
+  if (!country || typeof country !== "string") return request;
+  // OpenNext middleware reads CF-IPCountry; Workers expose the same value on
+  // request.cf.country. Keep them aligned so geo locale (en / es-419 / es-ES)
+  // matches the edge country on first visit.
+  const existing = request.headers.get("cf-ipcountry");
+  if (existing && existing.toUpperCase() === country.toUpperCase()) {
+    return request;
+  }
+  const headers = new Headers(request.headers);
+  headers.set("cf-ipcountry", country);
+  return new Request(request, { headers });
+}
+
 export default {
   async fetch(request, env, ctx) {
-    const response = await openNextWorker.fetch(request, env, ctx);
+    const localizedRequest = withCountryHeader(request);
+    const response = await openNextWorker.fetch(localizedRequest, env, ctx);
     const contentType = response.headers.get("content-type") ?? "";
     if (!contentType.includes("text/html")) {
       return response;

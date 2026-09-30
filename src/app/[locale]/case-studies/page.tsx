@@ -61,11 +61,10 @@ export default async function WorkIndexPage({ params }: Props) {
         <div className="shell chapter-shell--monument relative">
           <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16">
             <ChapterLead
-              layout="split"
               eyebrow={t("indexEyebrow")}
               headingId="work-index-heading"
               title={t("indexTitle")}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("indexDek")}
             />
           </Reveal>
@@ -128,10 +127,9 @@ export default async function WorkIndexPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter">
             <ChapterLead
-              layout="rail"
               eyebrow={t("pictureEyebrow")}
               title={t("pictureTitle")}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("pictureDek")}
             >
               <Button href="/about" variant="link" arrow>

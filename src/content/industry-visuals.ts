@@ -104,19 +104,22 @@ export const industryVisuals: Record<IndustrySlug, IndustryVisualAsset> = {
     alt: "Plumbing marketing editorial: emergency call path, service-area map, and booked-job proof",
   },
   landscaping: {
-    src: industryAsset("home-services", "full"),
-    thumb: industryAsset("home-services", "thumb"),
-    alt: "Landscaping marketing editorial: outdoor portfolio stills and estimate booking UI",
+    // Construction plate — project / outdoor built-environment language
+    src: industryAsset("construction", "full"),
+    thumb: industryAsset("construction", "thumb"),
+    alt: "Landscaping marketing editorial: project timeline, estimate booking, and outdoor portfolio cues",
   },
   hvac: {
-    src: industryAsset("home-services", "full"),
-    thumb: industryAsset("home-services", "thumb"),
-    alt: "HVAC marketing editorial: repair dispatch card and seasonal demand chart",
+    // Automotive plate — mechanical service / bay dispatch language
+    src: industryAsset("automotive", "full"),
+    thumb: industryAsset("automotive", "thumb"),
+    alt: "HVAC marketing editorial: repair dispatch card and seasonal demand cues",
   },
   roofing: {
-    src: industryAsset("home-services", "full"),
-    thumb: industryAsset("home-services", "thumb"),
-    alt: "Roofing marketing editorial: inspection booking card and local job proof",
+    // Real-estate plate — building facade / inspection language
+    src: industryAsset("real-estate", "full"),
+    thumb: industryAsset("real-estate", "thumb"),
+    alt: "Roofing marketing editorial: building facade, inspection booking, and local job proof",
   },
 };
 

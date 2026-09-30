@@ -56,7 +56,7 @@ export async function ThankYouView({
               eyebrow={t("nextEyebrow")}
               headingId="thank-you-next-heading"
               title={t("nextTitle")}
-              headingClassName="max-w-[12ch]"
+              headingClassName="max-w-[20ch]"
               dek={t("nextDek")}
             />
           </Reveal>

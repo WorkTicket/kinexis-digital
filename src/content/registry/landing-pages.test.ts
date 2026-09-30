@@ -108,7 +108,7 @@ describe("get-a-website landing page", () => {
   const page = getLandingPage("get-a-website");
   const metaPage = getLandingPage("facebook-web-design");
 
-  it("is a contractor Meta lander for a free website plan, not a city office claim", () => {
+  it("matches live contractor lander content with soft pricing (no addon sticker board)", () => {
     expect(page).toBeDefined();
     expect(page?.slug).toBe("get-a-website");
     expect(page?.auditLayout).toBe(true);
@@ -118,148 +118,225 @@ describe("get-a-website landing page", () => {
     expect(page?.hideWebsite).toBeFalsy();
     expect(page?.essentialsOnly).toBeFalsy();
     expect(page?.twoStepQualify).toBe(true);
+    expect(page?.threeStepQualify).toBe(true);
     expect(page?.successHref).toBeUndefined();
     expect(page?.phoneRequired).toBe(true);
     expect(page?.phoneOptional).toBeFalsy();
     expect(page?.businessNameRequired).toBe(true);
-    expect(page?.consentLabel).toBeUndefined();
+    expect(page?.consentLabel).toMatch(/agree to be contacted/i);
     expect(page?.privacyMicrocopy?.toLowerCase()).toMatch(
-      /respond to your website request/,
+      /respond to your website plan request/,
     );
     expect(page?.budgetOptions?.map((option) => option.label)).toEqual([
-      "$1,500–$3,000",
+      "$500–$2,000",
+      "$2,000–$3,000",
       "$3,000–$5,000",
-      "$5,000+",
       "Not sure yet",
     ]);
     expect(page?.timelineOptions?.map((option) => option.label)).toEqual([
-      "ASAP",
       "Within 30 days",
-      "1–3 months",
-      "Just researching",
+      "One to three months",
+      "More than three months",
     ]);
-    expect(page?.pricing?.map((tier) => tier.name)).toEqual([
-      "Essential",
-      "Growth",
-      "Custom",
-    ]);
-    expect(page?.pricing?.every((tier) => !tier.featured)).toBe(true);
+
+    // Soft pricing: live panel without Essential/Growth/Custom or $200/$120 addons
+    expect(page?.pricing?.map((tier) => tier.name) ?? []).toEqual([]);
+    expect(page?.pricing?.length ?? 0).toBe(0);
+    expect(page?.pricingAddOns?.length ?? 0).toBe(0);
+    expect(page?.pricingAnchor).toBe("$500–$2,000");
+    expect(page?.pricingTitle?.toLowerCase()).toMatch(
+      /plans from \$500 to \$2,000/,
+    );
+    expect(page?.pricingDelivery?.toLowerCase()).toMatch(/6 to 12 weeks/);
     expect(page?.pricingQualify?.toLowerCase()).toMatch(
-      /most kinexis builds fall into one of these ranges/,
+      /final pricing depends on pages/,
     );
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
+    expect(page?.pricingNote?.toLowerCase()).toMatch(/website plan is free/);
+    expect(page?.pricingNote?.toLowerCase()).toMatch(
+      /optional hosting|optional.*support|maintenance.*support/,
+    );
+    expect(page?.pricingHighlights?.length).toBeGreaterThanOrEqual(2);
+    expect(page?.pricingPaths).toBeUndefined();
+
     expect(page?.conversionKind).toBe("audit");
     expect(page?.hideServiceLink).toBe(true);
-    expect(page?.badge.toLowerCase()).toMatch(/contractors & home services/);
+    expect(page?.badge.toLowerCase()).toMatch(/custom websites for contractors/);
     expect(page?.badge.toLowerCase()).not.toMatch(/dallas|boise/);
-    expect(page?.headlineLines?.join(" ").toLowerCase()).toMatch(
-      /build your business/,
-    );
-    expect(page?.headlineLines?.join(" ").toLowerCase()).toMatch(
-      /we'll build the website/,
-    );
+    expect(page?.headlineLines).toEqual([
+      "Your business has grown.",
+      "Your website",
+      "should\u00A0show\u00A0it.",
+    ]);
     expect(page?.subheadline.toLowerCase()).toMatch(
-      /calls, quote requests, and booked work/,
+      /customers look you up before they call/,
     );
     expect(page?.subheadline.toLowerCase()).not.toMatch(
       /dallas|dfw|north texas|boise/,
     );
     expect(page?.heroCtaLabel?.toLowerCase()).toMatch(
-      /get my free website plan/,
+      /get my free plan/,
+    );
+    expect(page?.heroPrice?.toLowerCase()).toMatch(
+      /plans from \$500 to \$2,000/,
     );
     expect(page?.heroSecondaryLabel).toBeUndefined();
     expect(page?.heroFinePrint?.toLowerCase()).toMatch(/no obligation/);
-    expect(page?.heroFinePrint?.toLowerCase()).not.toMatch(/\$2,000/);
     expect(page?.heroMeta).toEqual([
-      "Custom built",
-      "Mobile first",
-      "SEO ready",
-      "You own it",
+      "Custom-built, not a generic template",
+      "Designed for the phone in their hand",
+      "You own your website",
     ]);
     expect(page?.heroStill?.src).toMatch(/lp\/a1-desktop/);
     expect(page?.heroStill?.mobileSrc).toMatch(/lp\/a1-mobile/);
     expect(page?.paths).toBeUndefined();
-    expect(page?.painItems?.length).toBe(4);
-    expect(page?.painItems?.map((item) => item.title)).toEqual([
-      "Mobile",
-      "Calls",
-      "Speed",
-      "Search",
-    ]);
+    expect(page?.painItems).toBeUndefined();
     expect(page?.painStills).toBeUndefined();
-    expect(page?.painTitle?.toLowerCase()).toMatch(/lose the job/);
-    expect(page?.transformTitle).toBeUndefined();
-    expect(page?.transformBefore).toBeUndefined();
-    expect(page?.transformAfter).toBeUndefined();
+    expect(page?.painTitle?.toLowerCase()).toMatch(
+      /weak website can make a strong business look small/,
+    );
+    expect(page?.transformTitle?.toLowerCase()).toMatch(/what a rebuild changes/);
+    expect(page?.transformBefore?.items.length).toBeGreaterThanOrEqual(4);
+    expect(page?.transformAfter?.items.length).toBeGreaterThanOrEqual(4);
+    expect(page?.outcomes?.length).toBe(4);
+    expect(page?.fitGoodItems?.length).toBeGreaterThanOrEqual(4);
+    expect(page?.fitNotItems?.length).toBeGreaterThanOrEqual(3);
     expect(page?.imagineItems).toBeUndefined();
     expect(page?.whyItems).toBeUndefined();
     expect(page?.samples?.length).toBe(2);
     expect(page?.samples?.every((sample) => !sample.href)).toBe(true);
     expect(page?.samples?.every((sample) => Boolean(sample.kind))).toBe(true);
-    expect(page?.samplesIntro?.toLowerCase()).toMatch(/live kinexis sites/);
-    expect(page?.workCtaTitle).toBeUndefined();
+    expect(page?.samples?.every((sample) => Boolean(sample.liveUrl))).toBe(true);
+    expect(page?.samplesIntro?.toLowerCase()).toMatch(/live websites/);
+    expect(page?.workCtaTitle?.toLowerCase()).toMatch(/what we would build/);
     expect(
       page?.samples?.every((sample) =>
-        sample.image.includes("/assets/images/case-studies/"),
+        sample.image.includes("/assets/images/lp/"),
       ),
     ).toBe(true);
     expect(page?.samples?.map((sample) => sample.client)).toEqual([
       "A1 Property Services",
-      "Preferred Plumbing",
+      "Preferred Plumbing Solutions",
     ]);
     expect(page?.samples?.map((sample) => sample.client)).not.toContain(
       "Manos Creativas",
     );
-    expect(page?.process?.length).toBe(3);
+    expect(
+      getLandingPage("get-a-website", "es-419")?.samples?.map((s) => s.client),
+    ).toEqual([
+      "A1 Property Services",
+      "Preferred Plumbing Solutions",
+      "Manos Creativas",
+    ]);
+    expect(
+      getLandingPage("get-a-website", "es-ES")?.samples?.map((s) => s.client),
+    ).toEqual([
+      "A1 Property Services",
+      "Preferred Plumbing Solutions",
+      "Manos Creativas",
+    ]);
+    expect(page?.process?.length).toBe(4);
     expect(page?.process?.map((step) => step.title)).toEqual([
-      "Plan",
-      "Build",
-      "Launch",
+      "Website plan",
+      "Structure and design",
+      "Development",
+      "Launch and tracking",
     ]);
     expect(page?.fitVisuals).toBeUndefined();
-    expect(page?.fitItems).toEqual([
-      "Construction",
-      "Roofing",
-      "Plumbing",
-      "HVAC",
-      "Landscaping",
-      "Electrical",
-      "Remodeling",
-      "Home Services",
-    ]);
-    expect(page?.fitTitle?.toLowerCase()).toMatch(/contractors & home services/);
+    expect(page?.fitTitle?.toLowerCase()).toMatch(/right fit/);
     expect(page?.fitTitle?.toLowerCase()).not.toMatch(/dallas|boise/);
     expect(page?.fitClose).toBeUndefined();
     expect(page?.serviceArea).toBeUndefined();
     expect(page?.logos).toBeUndefined();
-    expect(page?.testimonial).toBeUndefined();
-    expect(page?.sellPoints?.length).toBe(7);
-    expect(
-      page?.sellPoints?.filter((point) => !point.quiet).map((point) => point.title),
-    ).toEqual([
-      "Custom Design",
-      "Mobile First",
-      "Conversion Path",
-      "Performance",
-      "SEO Foundation",
-      "You Own It",
+    expect(page?.testimonial?.name).toMatch(/A1 Property Services/);
+    expect(page?.sellPoints?.length).toBe(6);
+    expect(page?.sellPoints?.map((point) => point.title)).toEqual([
+      "Built around your company",
+      "Works on a phone",
+      "Makes calling easy",
+      "Stays fast",
+      "Ready for search",
+      "Tracked from day one",
     ]);
-    expect(page?.sellPoints?.some((point) => point.quiet)).toBe(true);
-    expect(page?.pricingTitle?.toLowerCase()).toMatch(
-      /what does a custom website cost/,
+    expect(page?.ownershipStatement?.toLowerCase()).toMatch(/you own your website/);
+
+    expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).toMatch(
+      /^500–2\.000$/,
     );
-    expect(page?.pricing?.map((tier) => tier.price)).toEqual([
-      "$2,000–$3,000",
-      "$3,000–$5,000",
-      "$5,000+",
+    expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).not.toMatch(
+      /\$|USD|dólar/i,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.heroPrice).toMatch(
+      /Planes desde 500 a 2\.000/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.heroPrice).not.toMatch(
+      /\$|USD|dólar/i,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.headlineLines).toEqual([
+      "Tu negocio ha crecido.",
+      "Tu sitio web",
+      "debería\u00A0mostrarlo.",
     ]);
+    expect(getLandingPage("get-a-website", "es-ES")?.headlineLines).toEqual([
+      "Tu negocio ha crecido.",
+      "Tu sitio web",
+      "debería\u00A0mostrarlo.",
+    ]);
+    expect(getLandingPage("get-a-website", "es-419")?.subheadline).toMatch(
+      /Los clientes te buscan antes de llamar/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.heroCtaLabel).toMatch(
+      /plan gratis/i,
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.pricingAnchor).toMatch(
+      /500 €–2\.000 €/,
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.heroPrice).toMatch(
+      /Planes desde 500 € a 2\.000 €/,
+    );
+    expect(
+      getLandingPage("get-a-website", "es-419")?.budgetOptions?.some((o) =>
+        /\$/.test(o.label),
+      ),
+    ).toBe(false);
+    expect(
+      getLandingPage("get-a-website", "es-ES")?.budgetOptions?.some((o) =>
+        /\$/.test(o.label),
+      ),
+    ).toBe(false);
+    expect(getLandingPage("get-a-website", "es-419")?.pricing).toEqual([]);
+    expect(getLandingPage("get-a-website", "es-ES")?.pricing).toEqual([]);
+    expect(
+      getLandingPage("get-a-website", "es-419")?.pricingAddOns?.length ?? 0,
+    ).toBe(0);
+    expect(
+      getLandingPage("get-a-website", "es-ES")?.pricingAddOns?.length ?? 0,
+    ).toBe(0);
+
+    expect(getLandingPage("get-a-website", "en")?.whatsappHref).toBeUndefined();
+    expect(getLandingPage("get-a-website", "es-419")?.whatsappHref).toMatch(
+      /^https:\/\/wa\.me\/13075003371/,
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.whatsappHref).toMatch(
+      /^https:\/\/wa\.me\/13075003371/,
+    );
+    expect(getLandingPage("get-a-website", "es-419")?.whatsappHeroLabel).toBe(
+      "Escribir por WhatsApp",
+    );
+    expect(getLandingPage("get-a-website", "es-ES")?.whatsappPlanLabel).toBe(
+      "Escribir por WhatsApp",
+    );
+
     expect(page?.proofIntro.toLowerCase()).toMatch(/individual results vary/);
     expect(page?.proof.map((item) => item.metric)).toEqual([
-      "1.8% → 3.9%",
-      "22 → 52",
       "Custom built",
       "You own it",
+      "$500–$2,000",
+      "Optional",
     ]);
+    expect(page?.proof.map((item) => item.label).join(" ").toLowerCase()).not.toMatch(
+      /\$200/,
+    );
     expect(page?.proof.map((item) => item.label).join(" ")).not.toMatch(/orders/);
     expect(page?.formTrust?.length).toBeGreaterThanOrEqual(3);
     expect(page?.heroMeta?.join(" ").toLowerCase()).not.toMatch(
@@ -271,30 +348,27 @@ describe("get-a-website landing page", () => {
     expect(`${page?.metaTitle} ${page?.metaDescription}`.toLowerCase()).not.toMatch(
       /dallas|dfw|north texas|boise/,
     );
-    expect(
-      page?.faqs.some((faq) => /do i need an existing website/i.test(faq.question)),
-    ).toBe(true);
-    expect(page?.faqs.some((faq) => /raleigh/i.test(faq.question))).toBe(true);
-    expect(
-      page?.faqs.every(
-        (faq) => /raleigh-based|local raleigh/i.test(faq.answer) === false,
-      ),
-    ).toBe(true);
-    expect(page?.faqs.length).toBe(6);
+    expect(page?.faqs.length).toBe(9);
     expect(page?.faqs.every((faq) => faq.answer.trim().length > 20)).toBe(true);
     expect(
       page?.faqs.some(
         (faq) =>
-          /how much does a website cost/i.test(faq.question) &&
-          /\$2,000/.test(faq.answer) &&
-          /\$5,000/.test(faq.answer),
+          /how much does a custom website cost/i.test(faq.question) &&
+          /\$2,000/.test(faq.answer),
       ),
     ).toBe(true);
     expect(
       page?.faqs.some(
         (faq) =>
-          /is seo included/i.test(faq.question) &&
-          /not a promise of search rankings/i.test(faq.answer),
+          /is hosting included/i.test(faq.question) &&
+          !/\$120/.test(faq.answer),
+      ),
+    ).toBe(true);
+    expect(
+      page?.faqs.some(
+        (faq) =>
+          /monthly maintenance/i.test(faq.question) &&
+          !/\$200/.test(faq.answer),
       ),
     ).toBe(true);
     expect(
@@ -303,23 +377,18 @@ describe("get-a-website landing page", () => {
       ),
     ).toBe(true);
     expect(page?.headline).not.toBe(metaPage?.headline);
-    expect(page?.stickyCtaLabel.toLowerCase()).toMatch(/website plan/);
-    expect(page?.submitLabel).toBe("Get My Free Website Plan");
-    expect(page?.formTitle.toLowerCase()).toMatch(/plan the website/);
+    expect(page?.stickyCtaLabel.toLowerCase()).toMatch(/free plan|website plan/);
+    expect(page?.submitLabel).toBe("Send My Website Plan Request");
+    expect(page?.formTitle.toLowerCase()).toMatch(/free website plan/);
     expect(page?.formSubtitle.toLowerCase()).toMatch(
-      /tell us a little about your business/,
+      /tell us about the business/,
     );
     expect(page?.formCtaDetail).toBeUndefined();
     expect(page?.formCtaHint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.formSteps?.length).toBe(3);
-    expect(page?.formStep1Title?.toLowerCase()).toMatch(
-      /tell us about the business/,
-    );
-    expect(page?.formStep2Title?.toLowerCase()).toMatch(
-      /where should we send your plan/,
-    );
-    expect(page?.closingTitle?.toLowerCase()).toMatch(/looks the part/);
-    expect(page?.closingCopy?.toLowerCase()).not.toMatch(/whether you're/);
+    expect(page?.formStep1Title?.toLowerCase()).toMatch(/about the business/);
+    expect(page?.formStep2Title?.toLowerCase()).toMatch(/about the project/);
+    expect(page?.closingTitle?.toLowerCase()).toMatch(/free website plan/);
     expect(page?.closingFinePrint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.marketLine?.toLowerCase()).toMatch(
       /contractors & home-service businesses/,

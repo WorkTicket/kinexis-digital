@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
-import { IndustryGlyph } from "@/components/industry/industry-glyphs";
 import { IndustryProgramChapter } from "@/components/industry/IndustryProgramChapter";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { getHubIndustries, getIndustriesContent } from "@/content/industries";
+import { Link } from "@/i18n/navigation";
+import {
+  getHubIndustries,
+  getIndustriesContent,
+  industryHref,
+  isStandaloneIndustry,
+} from "@/content/industries";
+import { industryVisuals } from "@/content/industry-visuals";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
@@ -63,7 +70,6 @@ export default async function IndustriesPage({ params }: Props) {
         <div className="shell chapter-shell--tight relative">
           <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
             <ChapterLead
-              layout="split"
               eyebrow={c.indexEyebrow}
               headingId="industries-index-heading"
               title={c.indexTitle}
@@ -74,28 +80,46 @@ export default async function IndustriesPage({ params }: Props) {
 
           <RevealGroup
             as="ul"
-            className="ind-folio"
+            className="svc-catalog__grid ind-catalog__grid"
             stagger={0.04}
             delayChildren={0.03}
             aria-label={tCommon("jumpToIndustry")}
           >
-            {hubIndustries.map((industry) => (
-              <RevealItem as="li" key={industry.slug} variant="fadeUp">
-                <a href={`#${industry.slug}`} className="ind-folio__item">
-                  <span className="ind-folio__glyph" aria-hidden>
-                    <IndustryGlyph slug={industry.slug} />
+            {hubIndustries.map((industry) => {
+              const visual = industryVisuals[industry.slug];
+              const href = isStandaloneIndustry(industry.slug)
+                ? industryHref(industry.slug)
+                : `#${industry.slug}`;
+              const body = (
+                <>
+                  <span className="svc-catalog__still media-grade" aria-hidden>
+                    <Image
+                      src={visual.src}
+                      alt=""
+                      width={480}
+                      height={300}
+                      className="svc-catalog__still-img"
+                    />
                   </span>
-                  <span>
-                    <span className="ind-folio__role">{industry.eyebrow}</span>
-                    <span className="ind-folio__name">{industry.title}</span>
-                  </span>
-                  <p className="ind-folio__meta">{industry.summary}</p>
-                  <span className="ind-folio__arrow" aria-hidden>
-                    →
-                  </span>
-                </a>
-              </RevealItem>
-            ))}
+                  <span className="svc-catalog__role">{industry.eyebrow}</span>
+                  <span className="svc-catalog__name">{industry.title}</span>
+                  <span className="svc-catalog__dek">{industry.summary}</span>
+                </>
+              );
+              return (
+                <RevealItem as="li" key={industry.slug} variant="fadeUp">
+                  {isStandaloneIndustry(industry.slug) ? (
+                    <Link href={href} className="svc-catalog__card motion-tile">
+                      {body}
+                    </Link>
+                  ) : (
+                    <a href={href} className="svc-catalog__card motion-tile">
+                      {body}
+                    </a>
+                  )}
+                </RevealItem>
+              );
+            })}
           </RevealGroup>
         </div>
       </section>

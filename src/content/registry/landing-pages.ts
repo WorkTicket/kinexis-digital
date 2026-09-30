@@ -1,4 +1,6 @@
-import { getAWebsite } from "@/content/lp/get-a-website";
+import { getAWebsite, getAWebsiteForLocale } from "@/content/lp/get-a-website";
+import type { Locale } from "@/i18n/routing";
+import { applySpainEuros } from "@/i18n/currency";
 import { getBusinessPhoneDisplay } from "@/lib/business";
 
 const CAMPAIGN_PHONE =
@@ -23,6 +25,22 @@ export type LandingPageSample = {
   summary?: string;
   /** When false, render an editorial still instead of a laptop screenshot. */
   framed?: boolean;
+  liveUrl?: string;
+  challenge?: string;
+  work?: string;
+  result?: string;
+};
+
+export type LandingPageOutcome = {
+  title: string;
+  body: string;
+};
+
+export type LandingPagePricingAddOn = {
+  price: string;
+  cadence: string;
+  title: string;
+  body: string;
 };
 
 export type LandingPageProcessStep = {
@@ -190,9 +208,21 @@ export type LandingPageEntry = {
   successCopy?: string;
   formStep1Title?: string;
   formStep2Title?: string;
+  formStep3Title?: string;
   noWebsiteLabel?: string;
+  noWebsiteStatus?: string;
   investmentLabel?: string;
   timelineLabel?: string;
+  industryLabel?: string;
+  websiteStatusLabel?: string;
+  goalLabel?: string;
+  contactMethodLabel?: string;
+  notesLabel?: string;
+  notesPlaceholder?: string;
+  /** Show thank-you inline instead of navigating away. */
+  inlineThankYou?: boolean;
+  bookingHref?: string;
+  bookingCtaLabel?: string;
   faqs: { question: string; answer: string }[];
   stickyCtaLabel: string;
   /** Hide the mid-page link off to the organic service page (paid landers). */
@@ -206,6 +236,8 @@ export type LandingPageEntry = {
    * phone / budget / timeline. Use on the contractor website lander.
    */
   twoStepQualify?: boolean;
+  /** Three-step qualify form (business → project → contact). */
+  threeStepQualify?: boolean;
   /** Name + email + optional URL only. Use on cold Meta landers. */
   essentialsOnly?: boolean;
   /** After a successful submit, send the lead here instead of /thank-you. */
@@ -247,9 +279,33 @@ export type LandingPageEntry = {
   /** Checkbox copy under the consult form. */
   consentLabel?: string;
   needOptions?: LandingPageOption[];
+  industryOptions?: LandingPageOption[];
+  websiteStatusOptions?: LandingPageOption[];
+  goalOptions?: LandingPageOption[];
+  contactMethodOptions?: LandingPageOption[];
   budgetOptions?: LandingPageOption[];
   /** "When are you looking to start?" on the two-step qualify form. */
   timelineOptions?: LandingPageOption[];
+  /** Four outcome tiles under the hero (aside.lp-web-outcomes). */
+  outcomes?: LandingPageOutcome[];
+  /** Ownership line under the build chapter. */
+  ownershipStatement?: string;
+  /** Fit chapter — good / not columns. */
+  fitGoodTitle?: string;
+  fitGoodItems?: string[];
+  fitNotTitle?: string;
+  fitNotItems?: string[];
+  /** Soft price line under the hero lede. */
+  heroPrice?: string;
+  /**
+   * Spanish-locale WhatsApp support CTAs (hero pill + plan text link).
+   * Nav also shows Soporte WhatsApp on Spanish; omit these on English.
+   */
+  whatsappHref?: string;
+  whatsappHeroLabel?: string;
+  whatsappPlanLabel?: string;
+  /** Header chrome CTA label (nav). */
+  headerCtaLabel?: string;
   painTitle?: string;
   painSubtitle?: string;
   painEyebrow?: string;
@@ -275,8 +331,18 @@ export type LandingPageEntry = {
   pricingAnchor?: string;
   /** Qualification line shown above the price chapter. */
   pricingQualify?: string;
+  /** Delivery line inside the pricing panel. */
+  pricingDelivery?: string;
+  /** Bullet points under the price anchor. */
+  pricingHighlights?: string[];
+  /** Optional addon rows in the pricing panel (omit for soft pricing). */
+  pricingAddOns?: LandingPagePricingAddOn[];
   pricingPaths?: string[];
   pricing?: LandingPagePrice[];
+  /** Optional post-launch support copy. */
+  monthlyTitle?: string;
+  monthlyCopy?: string;
+  monthlyItems?: string[];
   reportTitle?: string;
   reportNote?: string;
   beforeAfterTitle?: string;
@@ -1013,6 +1079,14 @@ export const landingPages: LandingPageEntry[] = [
 
 export const landingPageSlugs = landingPages.map((p) => p.slug);
 
-export function getLandingPage(slug: string): LandingPageEntry | undefined {
-  return landingPages.find((p) => p.slug === slug);
+export function getLandingPage(
+  slug: string,
+  locale: Locale = "en",
+): LandingPageEntry | undefined {
+  if (slug === "get-a-website") {
+    return getAWebsiteForLocale(locale);
+  }
+  const page = landingPages.find((p) => p.slug === slug);
+  if (!page) return undefined;
+  return applySpainEuros(page, locale);
 }

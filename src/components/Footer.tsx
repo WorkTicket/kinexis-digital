@@ -25,6 +25,9 @@ export async function Footer() {
     "/contact": tNav("contact"),
   };
 
+  const phoneDisplay = getBusinessPhoneDisplay();
+  const telHref = getBusinessTelHref();
+
   return (
     <footer className="site-footer">
       <div className="site-footer__mark" aria-hidden>
@@ -48,15 +51,39 @@ export async function Footer() {
 
         <div className="shell site-footer__main">
           <div className="site-footer__grid">
-            <div className="site-footer__brand-lockup">
-              <LandingChromeGate
-                slimOnly
-                onLanding={
-                  <span className="site-footer__logo">
-                    <BrandLogo lazy />
-                  </span>
-                }
-                offLanding={
+            <LandingChromeGate
+              slimOnly
+              onLanding={
+                <div className="site-footer__lp">
+                  <div className="site-footer__lp-brand">
+                    <span className="site-footer__logo">
+                      <BrandLogo lazy height={28} />
+                    </span>
+                    <p className="site-footer__blurb site-footer__blurb--lp">
+                      {t("lpBlurb")}
+                    </p>
+                  </div>
+                  <div className="site-footer__contact site-footer__contact--lp">
+                    <div className="site-footer__lp-channels">
+                      {telHref ? (
+                        <CallLink className="site-footer__email site-footer__email--primary">
+                          <span className="site-footer__email-dot" aria-hidden />
+                          {phoneDisplay}
+                        </CallLink>
+                      ) : null}
+                      <a
+                        href={`mailto:${CONTACT_EMAIL}`}
+                        className="site-footer__email site-footer__email--quiet"
+                      >
+                        {CONTACT_EMAIL}
+                      </a>
+                    </div>
+                    <p className="site-footer__meta-line">{t("replies")}</p>
+                  </div>
+                </div>
+              }
+              offLanding={
+                <div className="site-footer__brand-lockup">
                   <Link
                     href="/"
                     className="site-footer__logo"
@@ -64,88 +91,68 @@ export async function Footer() {
                   >
                     <BrandLogo lazy />
                   </Link>
-                }
-              />
-              <LandingChromeGate
-                slimOnly
-                onLanding={
-                  <>
-                    <p className="site-footer__blurb">kinexisdigital.com</p>
-                    {getBusinessTelHref() ? (
-                      <div className="site-footer__contact">
-                        <CallLink className="site-footer__email">
-                          <span className="site-footer__email-dot" aria-hidden />
-                          {getBusinessPhoneDisplay()}
-                        </CallLink>
-                      </div>
-                    ) : null}
-                  </>
-                }
-                offLanding={
-                  <>
-                    <p className="site-footer__blurb">{t("blurb")}</p>
-                    <div className="site-footer__contact">
-                      <a
-                        href={`mailto:${CONTACT_EMAIL}`}
-                        className="site-footer__email"
-                      >
+                  <p className="site-footer__blurb">{t("blurb")}</p>
+                  <div className="site-footer__contact">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="site-footer__email"
+                    >
+                      <span className="site-footer__email-dot" aria-hidden />
+                      {CONTACT_EMAIL}
+                    </a>
+                    {telHref ? (
+                      <CallLink className="site-footer__email">
                         <span className="site-footer__email-dot" aria-hidden />
-                        {CONTACT_EMAIL}
-                      </a>
-                      {getBusinessTelHref() ? (
-                        <CallLink className="site-footer__email">
-                          <span className="site-footer__email-dot" aria-hidden />
-                          {getBusinessPhoneDisplay()}
-                        </CallLink>
-                      ) : null}
-                      <p className="site-footer__meta-line">{t("replies")}</p>
-                    </div>
-                  </>
-                }
-              />
-            </div>
+                        {phoneDisplay}
+                      </CallLink>
+                    ) : null}
+                    <p className="site-footer__meta-line">{t("replies")}</p>
+                  </div>
+                </div>
+              }
+            />
 
             <LandingChromeGate
               offLanding={
-            <nav className="site-footer__nav" aria-label={t("navigation")}>
-              <div>
-                <h2 className="section-eyebrow site-footer__col-title">
-                  {t("explore")}
-                </h2>
-                <ul className="site-footer__list">
-                  {footerNavLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="site-footer__link">
-                        {navLabels[link.href] ?? link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <nav className="site-footer__nav" aria-label={t("navigation")}>
+                  <div>
+                    <h2 className="section-eyebrow site-footer__col-title">
+                      {t("explore")}
+                    </h2>
+                    <ul className="site-footer__list">
+                      {footerNavLinks.map((link) => (
+                        <li key={link.href}>
+                          <Link href={link.href} className="site-footer__link">
+                            {navLabels[link.href] ?? link.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-              <div>
-                <h2 className="section-eyebrow site-footer__col-title">
-                  {t("markets")}
-                </h2>
-                <ul className="site-footer__list">
-                  {footerIndustryLinks.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="site-footer__link">
-                        {tNav.has(link.key) ? tNav(link.key) : link.label}
-                      </Link>
-                    </li>
-                  ))}
-                  <li>
-                    <Link
-                      href="/industries"
-                      className="site-footer__link site-footer__link--more"
-                    >
-                      {t("allIndustries")}
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </nav>
+                  <div>
+                    <h2 className="section-eyebrow site-footer__col-title">
+                      {t("markets")}
+                    </h2>
+                    <ul className="site-footer__list">
+                      {footerIndustryLinks.map((link) => (
+                        <li key={link.href}>
+                          <Link href={link.href} className="site-footer__link">
+                            {tNav.has(link.key) ? tNav(link.key) : link.label}
+                          </Link>
+                        </li>
+                      ))}
+                      <li>
+                        <Link
+                          href="/industries"
+                          className="site-footer__link site-footer__link--more"
+                        >
+                          {t("allIndustries")}
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
               }
             />
           </div>
@@ -168,6 +175,7 @@ export async function Footer() {
               <LandingChromeGate
                 onLanding={
                   <>
+                    <LanguageSwitcher />
                     <Link href="/privacy" className="site-footer__bar-link">
                       {t("privacy")}
                     </Link>
@@ -178,25 +186,25 @@ export async function Footer() {
                 }
                 offLanding={
                   <>
-              <LanguageSwitcher />
-              <Link href="/terms" className="site-footer__bar-link">
-                {t("terms")}
-              </Link>
-              <Link href="/privacy" className="site-footer__bar-link">
-                {t("privacy")}
-              </Link>
-              <Link href="/about" className="site-footer__bar-link">
-                {t("about")}
-              </Link>
-              <Link href="/contact" className="site-footer__bar-link">
-                {t("contact")}
-              </Link>
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="site-footer__bar-link"
-              >
-                {t("email")}
-              </a>
+                    <LanguageSwitcher />
+                    <Link href="/terms" className="site-footer__bar-link">
+                      {t("terms")}
+                    </Link>
+                    <Link href="/privacy" className="site-footer__bar-link">
+                      {t("privacy")}
+                    </Link>
+                    <Link href="/about" className="site-footer__bar-link">
+                      {t("about")}
+                    </Link>
+                    <Link href="/contact" className="site-footer__bar-link">
+                      {t("contact")}
+                    </Link>
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="site-footer__bar-link"
+                    >
+                      {t("email")}
+                    </a>
                   </>
                 }
               />

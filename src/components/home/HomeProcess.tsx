@@ -1,10 +1,25 @@
 import { getLocale, getTranslations } from "next-intl/server";
+import {
+  Activity,
+  Layers,
+  Search,
+  type LucideIcon,
+} from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { getHomeProcessSteps } from "@/content/home-process";
+import {
+  getHomeProcessSteps,
+  type HomeProcessStepId,
+} from "@/content/home-process";
 import { duration } from "@/lib/motion";
+
+const PROCESS_ICONS: Record<HomeProcessStepId, LucideIcon> = {
+  audit: Search,
+  build: Layers,
+  run: Activity,
+};
 
 export async function HomeProcess() {
   const locale = (await getLocale()) as Locale;
@@ -20,11 +35,10 @@ export async function HomeProcess() {
       <div className="shell chapter-shell--tight relative">
         <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
           <ChapterLead
-            layout="split"
             eyebrow={t("processEyebrow")}
             headingId="home-process-heading"
             title={t("processTitle")}
-            headingClassName="max-w-[12ch]"
+            headingClassName="max-w-[20ch]"
             dek={t("processDek")}
           >
             <Button href="/about" variant="link" arrow>
@@ -40,14 +54,20 @@ export async function HomeProcess() {
           delayChildren={0.06}
           aria-label={t("howWeWorkAria")}
         >
-          {steps.map((step) => (
-            <RevealItem key={step.id} as="li" variant="fadeUp">
-              <article className="process-spine__step">
-                <h3 className="process-spine__title">{step.title}</h3>
-                <p className="process-spine__body">{step.description}</p>
-              </article>
-            </RevealItem>
-          ))}
+          {steps.map((step) => {
+            const Icon = PROCESS_ICONS[step.id] ?? Search;
+            return (
+              <RevealItem key={step.id} as="li" variant="fadeUp">
+                <article className="process-spine__step">
+                  <span className="icon-well" aria-hidden>
+                    <Icon strokeWidth={1.5} />
+                  </span>
+                  <h3 className="process-spine__title">{step.title}</h3>
+                  <p className="process-spine__body">{step.description}</p>
+                </article>
+              </RevealItem>
+            );
+          })}
         </RevealGroup>
       </div>
     </section>

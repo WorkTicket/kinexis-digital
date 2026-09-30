@@ -125,7 +125,7 @@ export async function PageCTA({
                 </Button>
                 {showSecondary ? (
                   secondaryHref?.startsWith("tel:") ? (
-                    <CallButton variant="outline" size={isInline || isMinimal ? "lg" : "xl"}>
+                    <CallButton variant="primary" size={isInline || isMinimal ? "lg" : "xl"}>
                       {resolvedSecondaryLabel}
                     </CallButton>
                   ) : (
