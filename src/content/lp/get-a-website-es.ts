@@ -7,7 +7,8 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
-const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
+const MANOS_DESKTOP =
+  "/assets/images/lp/case-manos-creativas.webp?v=20260930a";
 
 /** Short hero/sticky label — long form title stays on the plan section. */
 const CTA = "Obtener mi plan gratis";
@@ -244,9 +245,9 @@ export function buildSpanishGetAWebsite(
       ],
     },
 
-    samplesTitle: "Sitios que ya funcionan para empresas de servicios del hogar",
+    samplesTitle: "Sitios que ya funcionan para negocios reales",
     samplesIntro:
-      "Estos son sitios en vivo, no maquetas. Ábrelos. Ambas empresas necesitaban que el sitio se viera tan establecido como ya lo eran sus equipos.",
+      "Estos son sitios en vivo, no maquetas. Ábrelos. Ambos negocios necesitaban que el sitio se viera tan sólido como el trabajo que ya hacían.",
     testimonial: {
       quote:
         "El botón de cotización desaparecía en el teléfono. Después de la reconstrucción, la conversión pasó de 1,8% a 3,9%.",
@@ -273,21 +274,21 @@ export function buildSpanishGetAWebsite(
         label: "leads calificados / mes",
       },
       {
-        image: PLUMBING_DESKTOP,
+        image: MANOS_DESKTOP,
         imageAlt:
-          "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
-        client: "Preferred Plumbing Solutions",
-        kind: "Plomería y servicios de construcción",
-        industry: "Plomería",
-        liveUrl: "https://www.callpreferredplumbing.com/",
+          "Tienda de Manos Creativas en una laptop, construida por KINEXIS",
+        client: "Manos Creativas",
+        kind: "E-commerce de productos digitales",
+        industry: "E-commerce",
+        liveUrl: "https://bynmwcreative.com/",
         challenge:
-          "Una empresa de plomería y construcción necesitaba un sitio que dejara el trabajo claro y hiciera que llamar desde el teléfono se sintiera como el siguiente paso natural.",
-        work: "La reconstrucción priorizó claridad de servicios y confianza, y mantuvo el botón de llamada a mano en móvil.",
-        result: "Las llamadas de emergencia pasaron de 22 al mes a 52.",
+          "Una marca de patrones de crochet digitales vendía entre marketplaces y un sitio flojo. Las fichas hablaban del archivo, no del resultado, y el checkout vivía fuera del sitio.",
+        work: "Reconstruimos la tienda alrededor de colecciones claras, fichas orientadas a conversión y un camino de compra usable en el teléfono.",
+        result: "Los pedidos mensuales pasaron de 32 a 78.",
         summary:
-          "Una empresa de plomería y construcción necesitaba un sitio que dejara los servicios claros y hiciera de llamar desde el teléfono el siguiente paso natural.",
-        metric: "22 → 52",
-        label: "llamadas de emergencia / mes",
+          "Una marca de patrones digitales necesitaba una tienda propia. La reconstruimos alrededor de colecciones, fichas de producto y un checkout que funciona en el teléfono.",
+        metric: "32 → 78",
+        label: "pedidos / mes",
       },
     ],
 

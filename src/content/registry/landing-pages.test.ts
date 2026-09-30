@@ -221,6 +221,15 @@ describe("get-a-website landing page", () => {
     expect(page?.samples?.map((sample) => sample.client)).not.toContain(
       "Manos Creativas",
     );
+    expect(
+      getLandingPage("get-a-website", "es-419")?.samples?.map((s) => s.client),
+    ).toEqual(["A1 Property Services", "Manos Creativas"]);
+    expect(
+      getLandingPage("get-a-website", "es-ES")?.samples?.map((s) => s.client),
+    ).toEqual(["A1 Property Services", "Manos Creativas"]);
+    expect(
+      getLandingPage("get-a-website", "es-419")?.samples?.map((s) => s.client),
+    ).not.toContain("Preferred Plumbing Solutions");
     expect(page?.process?.length).toBe(4);
     expect(page?.process?.map((step) => step.title)).toEqual([
       "Website plan",
