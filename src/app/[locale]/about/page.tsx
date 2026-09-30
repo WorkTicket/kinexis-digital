@@ -132,7 +132,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-why__still"
           >
             <Image
-              src="/assets/images/agency/about-system.webp?v=20260930b"
+              src="/assets/images/agency/about-system.webp?v=20260930c"
               alt="Diagram comparing scattered marketing tactics to the connected KINEXIS growth system"
               width={1600}
               height={800}
@@ -273,7 +273,7 @@ export default async function AboutPage({ params }: Props) {
             className="about-arch__plate"
           >
             <Image
-              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930b"
+              src="/assets/images/editorial/about-architecture-plate.webp?v=20260930c"
               alt="KINEXIS growth architecture: six channels connected in one loop — SEO, paid, web, CRO, email, and data"
               width={1400}
               height={788}
