@@ -50,6 +50,8 @@ describe("landing chrome", () => {
     expect(isCookieBannerExemptPath("/en/lp/get-a-website")).toBe(true);
     expect(isCookieBannerExemptPath("/thank-you/audit")).toBe(true);
     expect(isCookieBannerExemptPath("/en/thank-you")).toBe(true);
+    expect(isCookieBannerExemptPath("/intake")).toBe(true);
+    expect(isCookieBannerExemptPath("/en/intake")).toBe(true);
     expect(isCookieBannerExemptPath("/contact")).toBe(false);
     expect(isCookieBannerExemptPath("/")).toBe(false);
   });

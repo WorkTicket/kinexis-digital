@@ -10,6 +10,8 @@ describe("COOKIE_PREFLIGHT_SCRIPT", () => {
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("lp-chrome");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("\\/lp\\/");
     expect(COOKIE_PREFLIGHT_SCRIPT).toContain("thank-you");
+    expect(COOKIE_PREFLIGHT_SCRIPT).toContain("intake-page");
+    expect(COOKIE_PREFLIGHT_SCRIPT).toContain("intake");
   });
 });
 

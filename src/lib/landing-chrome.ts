@@ -8,7 +8,11 @@ export function landingSlugFromPath(pathname: string): string | undefined {
 
 /** Paid landers and thank-you — no cookie bar over the form or confirmation. */
 export function isCookieBannerExemptPath(pathname: string): boolean {
-  return /\/lp\//.test(pathname) || /\/thank-you(\/|$)/.test(pathname);
+  return (
+    /\/lp\//.test(pathname) ||
+    /\/thank-you(\/|$)/.test(pathname) ||
+    /(?:^|\/)intake\/?$/.test(pathname)
+  );
 }
 
 export function getLandingChrome(

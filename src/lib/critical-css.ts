@@ -48,4 +48,8 @@ export const CRITICAL_FIRST_PAINT_CSS = [
   "@media(min-width:1024px){.lg\\:block{display:block}.lg\\:flex{display:flex}.lg\\:hidden{display:none}}",
   ".text-foreground{color:var(--foreground)}.text-muted{color:var(--muted)}.font-bold{font-weight:700}",
   "html.cookie-pending body{padding-bottom:6.5rem}",
+  "html.intake-page,html.intake-page body{background:#fff!important;color:#16181d!important;color-scheme:light!important}",
+  "html.intake-page body{padding-bottom:0!important}",
+  "html.intake-page .site-shell{padding-top:0!important}",
+  "html.intake-page .site-header,html.intake-page .site-header__frost,html.intake-page .site-footer,html.intake-page .site-atmosphere,html.intake-page .cookie-banner{display:none!important}",
 ].join("");
