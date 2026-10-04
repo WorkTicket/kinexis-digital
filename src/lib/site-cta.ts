@@ -6,7 +6,7 @@ export const CTA_PRIMARY_LABEL = CTA_LABEL;
 export const CTA_PRIMARY_HREF = "/contact";
 export const CTA_SECONDARY_LABEL = "Send a message";
 export const CTA_SECONDARY_HREF = "/contact#contact-form";
-export const CTA_META = "30 minutes · Clear next steps";
+export const CTA_META = "15 minutes · Clear next steps";
 
 export const CTA_INLINE_EYEBROW = "Ready?";
 export const CTA_INLINE_TITLE = "Let's talk.";

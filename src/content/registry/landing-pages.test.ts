@@ -125,34 +125,40 @@ describe("get-a-website landing page", () => {
     expect(page?.businessNameRequired).toBe(true);
     expect(page?.consentLabel).toMatch(/agree to be contacted/i);
     expect(page?.privacyMicrocopy?.toLowerCase()).toMatch(
-      /respond to your website plan request/,
+      /follow up on this call/,
     );
     expect(page?.budgetOptions?.map((option) => option.label)).toEqual([
-      "$500–$2,000",
-      "$2,000–$3,000",
-      "$3,000–$5,000",
-      "Not sure yet",
+      "$500–$1,999",
+      "$2,000–$4,999",
+      "$5,000+",
     ]);
     expect(page?.timelineOptions?.map((option) => option.label)).toEqual([
-      "Within 30 days",
-      "One to three months",
-      "More than three months",
+      "Next 30 days",
+      "1–3 months",
+      "Just researching",
+    ]);
+    expect(page?.roleOptions?.map((option) => option.value)).toEqual([
+      "owner",
+      "partner",
+      "manager",
+      "employee",
     ]);
 
-    // Soft pricing: live panel without Essential/Growth/Custom or $200/$120 addons
-    expect(page?.pricing?.map((tier) => tier.name) ?? []).toEqual([]);
-    expect(page?.pricing?.length ?? 0).toBe(0);
+    expect(page?.pricing?.map((tier) => tier.name) ?? []).toEqual([
+      "Basic",
+      "Custom",
+    ]);
     expect(page?.pricingAddOns?.length ?? 0).toBe(0);
-    expect(page?.pricingAnchor).toBe("$500–$2,000");
-    expect(page?.pricingTitle?.toLowerCase()).toMatch(
-      /plans from \$500 to \$2,000/,
+    expect(page?.pricingAnchor).toBe("From $500");
+    expect(page?.pricingTitle).toBe(
+      "Basic websites from $500. Custom multi-page websites from $2,000+.",
     );
-    expect(page?.pricingDelivery?.toLowerCase()).toMatch(/6 to 12 weeks/);
+    expect(page?.pricingDelivery).toMatch(/2 to 6 weeks/);
     expect(page?.pricingQualify?.toLowerCase()).toMatch(
       /final pricing depends on pages/,
     );
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
-    expect(page?.pricingNote?.toLowerCase()).toMatch(/website plan is free/);
+    expect(page?.pricingNote?.toLowerCase()).toMatch(/call is free/);
     expect(page?.pricingNote?.toLowerCase()).toMatch(
       /optional hosting|optional.*support|maintenance.*support/,
     );
@@ -164,28 +170,29 @@ describe("get-a-website landing page", () => {
     expect(page?.badge.toLowerCase()).toMatch(/custom websites for contractors/);
     expect(page?.badge.toLowerCase()).not.toMatch(/dallas|boise/);
     expect(page?.headlineLines).toEqual([
-      "Your business has grown.",
-      "Your website should show it.",
+      "Get a Website Built to",
+      "Bring You More Business",
     ]);
     expect(page?.subheadline.toLowerCase()).toMatch(
-      /customers look you up before they call/,
+      /built to turn visitors into calls/,
     );
     expect(page?.subheadline.toLowerCase()).not.toMatch(
       /dallas|dfw|north texas|boise/,
     );
-    expect(page?.heroCtaLabel?.toLowerCase()).toMatch(
-      /get my free plan/,
-    );
-    expect(page?.heroPrice?.toLowerCase()).toMatch(
-      /plans from \$500 to \$2,000/,
+    expect(page?.heroCtaLabel).toBe("Book a 15-Minute Project Call");
+    expect(page?.heroPrice).toBe(
+      "Basic websites from $500. Custom multi-page websites from $2,000+.",
     );
     expect(page?.heroSecondaryLabel).toBeUndefined();
     expect(page?.heroFinePrint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.heroMeta).toEqual([
-      "Custom-built, not a generic template",
-      "Designed for the phone in their hand",
-      "You own your website",
+      "Custom Built",
+      "No Templates",
+      "You Own Your Website",
     ]);
+    expect(page?.heroPortrait?.name).toBe("Colton Wehr");
+    expect(page?.heroPortrait?.role).toBe("Lead Web Designer & Developer");
+    expect(page?.heroPortrait?.src).toMatch(/colton-wehr-819\.webp/);
     expect(page?.heroStill?.src).toMatch(/lp\/a1-desktop/);
     expect(page?.heroStill?.mobileSrc).toMatch(/lp\/a1-mobile/);
     expect(page?.paths).toBeUndefined();
@@ -236,7 +243,7 @@ describe("get-a-website landing page", () => {
     ]);
     expect(page?.process?.length).toBe(4);
     expect(page?.process?.map((step) => step.title)).toEqual([
-      "Website plan",
+      "Project call",
       "Structure and design",
       "Development",
       "Launch and tracking",
@@ -260,36 +267,36 @@ describe("get-a-website landing page", () => {
     expect(page?.ownershipStatement?.toLowerCase()).toMatch(/you own your website/);
 
     expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).toMatch(
-      /^500–2\.000$/,
+      /^Desde 500$/,
     );
     expect(getLandingPage("get-a-website", "es-419")?.pricingAnchor).not.toMatch(
       /\$|USD|dólar/i,
     );
     expect(getLandingPage("get-a-website", "es-419")?.heroPrice).toMatch(
-      /Planes desde 500 a 2\.000/,
+      /Sitios básicos desde 500/,
     );
     expect(getLandingPage("get-a-website", "es-419")?.heroPrice).not.toMatch(
       /\$|USD|dólar/i,
     );
     expect(getLandingPage("get-a-website", "es-419")?.headlineLines).toEqual([
-      "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      "Un sitio web hecho para",
+      "traerte más negocio",
     ]);
     expect(getLandingPage("get-a-website", "es-ES")?.headlineLines).toEqual([
-      "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      "Un sitio web hecho para",
+      "traerte más negocio",
     ]);
     expect(getLandingPage("get-a-website", "es-419")?.subheadline).toMatch(
-      /Los clientes te buscan antes de llamar/,
+      /llamadas y cotizaciones/i,
     );
     expect(getLandingPage("get-a-website", "es-419")?.heroCtaLabel).toMatch(
-      /plan gratis/i,
+      /llamada de 15 min/i,
     );
     expect(getLandingPage("get-a-website", "es-ES")?.pricingAnchor).toMatch(
-      /500 €–2\.000 €/,
+      /Desde 500 €/,
     );
     expect(getLandingPage("get-a-website", "es-ES")?.heroPrice).toMatch(
-      /Planes desde 500 € a 2\.000 €/,
+      /Sitios básicos desde 500 €/,
     );
     expect(
       getLandingPage("get-a-website", "es-419")?.budgetOptions?.some((o) =>
@@ -301,8 +308,14 @@ describe("get-a-website landing page", () => {
         /\$/.test(o.label),
       ),
     ).toBe(false);
-    expect(getLandingPage("get-a-website", "es-419")?.pricing).toEqual([]);
-    expect(getLandingPage("get-a-website", "es-ES")?.pricing).toEqual([]);
+    expect(getLandingPage("get-a-website", "es-419")?.pricing?.map((t) => t.name)).toEqual([
+      "Básico",
+      "A medida",
+    ]);
+    expect(getLandingPage("get-a-website", "es-ES")?.pricing?.map((t) => t.name)).toEqual([
+      "Básico",
+      "A medida",
+    ]);
     expect(
       getLandingPage("get-a-website", "es-419")?.pricingAddOns?.length ?? 0,
     ).toBe(0);
@@ -330,7 +343,7 @@ describe("get-a-website landing page", () => {
     expect(page?.proof.map((item) => item.metric)).toEqual([
       "Custom built",
       "You own it",
-      "$500–$2,000",
+      "2–6 weeks",
       "Optional",
     ]);
     expect(page?.proof.map((item) => item.label).join(" ").toLowerCase()).not.toMatch(
@@ -376,9 +389,9 @@ describe("get-a-website landing page", () => {
       ),
     ).toBe(true);
     expect(page?.headline).not.toBe(metaPage?.headline);
-    expect(page?.stickyCtaLabel.toLowerCase()).toMatch(/free plan|website plan/);
-    expect(page?.submitLabel).toBe("Send My Website Plan Request");
-    expect(page?.formTitle.toLowerCase()).toMatch(/free website plan/);
+    expect(page?.stickyCtaLabel).toBe("Book a 15-Minute Project Call");
+    expect(page?.submitLabel).toBe("Book my call");
+    expect(page?.formTitle.toLowerCase()).toMatch(/15-minute project call/);
     expect(page?.formSubtitle.toLowerCase()).toMatch(
       /tell us about the business/,
     );
@@ -387,11 +400,9 @@ describe("get-a-website landing page", () => {
     expect(page?.formSteps?.length).toBe(3);
     expect(page?.formStep1Title?.toLowerCase()).toMatch(/about the business/);
     expect(page?.formStep2Title?.toLowerCase()).toMatch(/about the project/);
-    expect(page?.closingTitle?.toLowerCase()).toMatch(/free website plan/);
+    expect(page?.closingTitle?.toLowerCase()).toMatch(/15-minute project call/);
     expect(page?.closingFinePrint?.toLowerCase()).toMatch(/no obligation/);
-    expect(page?.marketLine?.toLowerCase()).toMatch(
-      /contractors & home-service businesses/,
-    );
+    expect(page?.marketLine).toBe("Working with contractors across the U.S.");
     expect(page?.planHasSiteItems?.length).toBeGreaterThanOrEqual(4);
     expect(page?.planNoSiteItems?.length).toBeGreaterThanOrEqual(4);
   });

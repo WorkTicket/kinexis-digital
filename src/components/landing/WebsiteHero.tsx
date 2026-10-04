@@ -10,12 +10,9 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
 type Benefit = WebsiteLpChrome["heroBenefits"][number];
 
-/** Studio photo: laptop with a smaller phone, A1 site on both screens. */
-const DEVICE_SHOT = "/assets/images/lp/a1-devices.webp?v=20260930d";
-
 /**
  * get-a-website hero.
- * Mobile order: headline, supporting copy, CTA, device photo, benefits.
+ * Mobile order: headline, supporting copy, price, CTA, trust points, portrait.
  */
 export function WebsiteHero({
   page,
@@ -29,7 +26,7 @@ export function WebsiteHero({
   const lines = page.headlineLines?.length
     ? page.headlineLines
     : [page.headline];
-  const still = page.heroStill;
+  const portrait = page.heroPortrait;
   const market = page.marketLine ?? page.badge;
   const whatsapp =
     page.whatsappHref && page.whatsappHeroLabel
@@ -47,7 +44,13 @@ export function WebsiteHero({
       </div>
 
       <div className="shell lp-web-hero__stage relative">
-        <div className="lp-web-hero__layout">
+        <div
+          className={
+            portrait
+              ? "lp-web-hero__layout"
+              : "lp-web-hero__layout lp-web-hero__layout--solo"
+          }
+        >
           <div className="lp-web-hero__copy">
             <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
               <Suspense fallback={market}>
@@ -81,6 +84,12 @@ export function WebsiteHero({
               {page.subheadline}
             </p>
 
+            {page.heroPrice ? (
+              <p className="lp-web-hero__price lp-web-hero__anim lp-web-hero__anim--3">
+                {page.heroPrice}
+              </p>
+            ) : null}
+
             <div
               className="lp-web-hero__actions lp-web-hero__anim lp-web-hero__anim--4"
               id="lp-hero-actions"
@@ -103,38 +112,61 @@ export function WebsiteHero({
                 />
               ) : null}
             </div>
+
+            {page.heroMeta?.length ? (
+              <ul className="lp-web-hero__trust lp-web-hero__anim lp-web-hero__anim--4">
+                {page.heroMeta.map((item) => (
+                  <li key={item}>
+                    <TrustCheck />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+
+            {page.heroFinePrint ? (
+              <p className="lp-web-hero__fine lp-web-hero__anim lp-web-hero__anim--4">
+                {page.heroFinePrint}
+              </p>
+            ) : null}
           </div>
 
-          {still?.src ? (
-            <div className="lp-web-hero__devices lp-web-hero__anim lp-web-hero__anim--5">
+          {portrait ? (
+            <figure className="lp-web-hero__portrait lp-web-hero__anim lp-web-hero__anim--5">
               <link
                 rel="preload"
                 as="image"
-                href={DEVICE_SHOT}
-                type="image/webp"
+                href={portrait.src}
+                imageSrcSet={portrait.srcSet}
+                imageSizes={portrait.sizes}
                 fetchPriority="high"
               />
-              <div className="lp-web-hero__device-glow" aria-hidden />
-              <figure className="lp-web-hero__shot" aria-label={still.alt}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={DEVICE_SHOT}
-                  alt=""
-                  width={1040}
-                  height={692}
-                  decoding="sync"
-                  fetchPriority="high"
-                />
-                {caption ? (
-                  <figcaption className="lp-web-hero__shot-caption">
-                    {caption}
-                  </figcaption>
-                ) : null}
-              </figure>
-            </div>
+              <span className="lp-web-hero__portrait-glow" aria-hidden />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={portrait.src}
+                srcSet={portrait.srcSet}
+                sizes={portrait.sizes}
+                alt={portrait.alt}
+                width={portrait.width}
+                height={portrait.height}
+                decoding="sync"
+                fetchPriority="high"
+              />
+              {portrait.name ? (
+                <figcaption className="lp-web-hero__identity">
+                  <strong>{portrait.name}</strong>
+                  {portrait.role ? <span>{portrait.role}</span> : null}
+                </figcaption>
+              ) : caption ? (
+                <figcaption className="lp-web-hero__shot-caption">
+                  {caption}
+                </figcaption>
+              ) : null}
+            </figure>
           ) : null}
 
-          {benefits.length ? (
+          {!portrait && benefits.length ? (
             <ul className="lp-web-hero__benefits lp-web-hero__anim lp-web-hero__anim--6">
               {benefits.map((item, index) => (
                 <li key={item.label}>
@@ -150,6 +182,21 @@ export function WebsiteHero({
         </div>
       </div>
     </section>
+  );
+}
+
+function TrustCheck() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden>
+      <path
+        d="M3.2 8.2 6.4 11.4 12.8 4.6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 

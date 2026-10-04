@@ -408,9 +408,7 @@ function GreenfieldDated({ layout }: { layout: ShowcaseLayout }) {
   const phone = layout === "phone";
   return (
     <>
-      {phone ? null : (
-        <Chrome host="greenfieldlawncare.com" secure={false} windows />
-      )}
+      {phone ? null : <Chrome host="greenfieldlawncare.com" />}
       <div className="lp-site__dated-page">
         <div className="lp-site__dated-wrap">
           <div className="lp-site__dated-top">
@@ -530,13 +528,16 @@ function Greenfield({
             <span className="lp-site__links">
               <span className="is-current">Design</span>
               <span>Hardscape</span>
-              <span>Care</span>
+              <span>Lawn care</span>
+              <span>Gallery</span>
+              <span>About</span>
+              <span>Contact</span>
             </span>
             <span className="lp-site__nav-cta">Get a quote</span>
           </>
         )}
       </header>
-      <div className="lp-site__hero">
+      <div className="lp-site__hero lp-site__hero--bleed">
         <div className="lp-site__photo">
           <Photo src={PHOTOS.a1} priority={priority} />
         </div>

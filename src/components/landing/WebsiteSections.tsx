@@ -8,6 +8,7 @@ import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type {
   LandingPageEntry,
   LandingPageOutcome,
+  LandingPagePrice,
   LandingPagePricingAddOn,
   LandingPageSample,
   LandingPageSellPoint,
@@ -73,7 +74,7 @@ const OUTCOME_MARKS: ReactNode[] = [
 ];
 
 const PROCESS_MARKS = [
-  // Website plan
+  // Project call
   <svg key="plan" viewBox="0 0 64 64" fill="none" aria-hidden>
     <rect x="14" y="8" width="36" height="48" rx="3" stroke="currentColor" strokeWidth="2.4" />
     <path d="M22 20h20M22 28h20M22 36h12" stroke="currentColor" strokeWidth="2.4" />
@@ -114,62 +115,13 @@ function OutcomeBody({ body }: { body: string }) {
     .filter(Boolean);
   return (
     <span className="lp-web-outcomes__body">
-      {lines.map((line) => (
+      {lines.map((line, index) => (
         <span key={line} className="lp-web-outcomes__line">
+          {index > 0 ? " " : null}
           {line}
         </span>
       ))}
     </span>
-  );
-}
-
-function OutcomeGroup({
-  items,
-  hidden = false,
-  copyKey,
-}: {
-  items: LandingPageOutcome[];
-  hidden?: boolean;
-  copyKey: string;
-}) {
-  return (
-    <ul className="lp-web-outcomes__group" aria-hidden={hidden || undefined}>
-      {items.map((item, index) => (
-        <li key={`${copyKey}-${item.title}`}>
-          <span className="lp-web-outcomes__mark" aria-hidden>
-            {OUTCOME_MARKS[index % OUTCOME_MARKS.length] ?? <CheckMark />}
-          </span>
-          <span className="lp-web-outcomes__copy">
-            <span className="lp-web-outcomes__title">{item.title}</span>
-            <OutcomeBody body={item.body} />
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-/** Repeated so a wide screen never runs out of items before the loop resets. */
-const MARQUEE_COPIES = 4;
-
-function OutcomeHalf({
-  items,
-  hidden = false,
-}: {
-  items: LandingPageOutcome[];
-  hidden?: boolean;
-}) {
-  return (
-    <div className="lp-web-outcomes__half">
-      {Array.from({ length: MARQUEE_COPIES }, (_, copy) => (
-        <OutcomeGroup
-          key={copy}
-          items={items}
-          hidden={hidden || copy > 0}
-          copyKey={hidden ? `b${copy}` : `a${copy}`}
-        />
-      ))}
-    </div>
   );
 }
 
@@ -183,11 +135,20 @@ export function WebsiteOutcomes({
   if (!items.length) return null;
   return (
     <aside className="lp-web-outcomes" aria-label={ariaLabel}>
-      <div className="lp-web-outcomes__marquee">
-        <div className="lp-web-outcomes__track">
-          <OutcomeHalf items={items} />
-          <OutcomeHalf items={items} hidden />
-        </div>
+      <div className="shell">
+        <ul className="lp-web-outcomes__list">
+          {items.map((item, index) => (
+            <li key={item.title}>
+              <span className="lp-web-outcomes__mark" aria-hidden>
+                {OUTCOME_MARKS[index % OUTCOME_MARKS.length] ?? <CheckMark />}
+              </span>
+              <span className="lp-web-outcomes__copy">
+                <span className="lp-web-outcomes__title">{item.title}</span>
+                <OutcomeBody body={item.body} />
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </aside>
   );
@@ -360,10 +321,11 @@ export function WebsiteWork({
                       <img
                         src={sample.deviceShot}
                         alt=""
-                        width={1040}
-                        height={692}
+                        width={819}
+                        height={538}
                         decoding="async"
                         loading="lazy"
+                        fetchPriority="low"
                       />
                     </figure>
                   ) : (
@@ -378,13 +340,16 @@ export function WebsiteWork({
                     {sample.kind ?? sample.industry}
                   </p>
                   <h3>{sample.client}</h3>
-                  {sample.challenge ? <p>{sample.challenge}</p> : null}
-                  {sample.work ? <p>{sample.work}</p> : null}
-                  {!sample.challenge && sample.summary ? (
-                    <p>{sample.summary}</p>
+                  {sample.metric ? (
+                    <p className="lp-web-work__stat">
+                      <strong>{sample.metric}</strong>
+                      <span>{sample.label}</span>
+                    </p>
                   ) : null}
-                  {sample.result ? (
-                    <p className="lp-web-work__result">{sample.result}</p>
+                  {sample.summary ? (
+                    <p>{sample.summary}</p>
+                  ) : sample.challenge ? (
+                    <p>{sample.challenge}</p>
                   ) : null}
                   {sample.liveUrl ? (
                     <a
@@ -415,10 +380,13 @@ export function WebsiteWork({
             ) : null}
           </figure>
         ) : null}
-        {workCtaTitle ? (
+        {workCtaTitle || ctaLabel ? (
           <div className="lp-web-work__cta">
-            <PlanCta placement="work" landingSlug={landingSlug} arrow>
-              {workCtaTitle ?? ctaLabel}
+            {workCtaTitle ? (
+              <p className="lp-web-work__cta-title">{workCtaTitle}</p>
+            ) : null}
+            <PlanCta placement="work" landingSlug={landingSlug} size="lg" arrow>
+              {ctaLabel}
             </PlanCta>
           </div>
         ) : null}
@@ -555,7 +523,47 @@ export function WebsiteProcess({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Pricing — live panel ($2,000 starting; soft when addOns empty)     */
+/*  Proof strip — two live results directly under the hero             */
+/* ------------------------------------------------------------------ */
+
+export function WebsiteProofStrip({
+  samples,
+  viewLiveLabel = "View live site",
+}: {
+  samples: LandingPageSample[];
+  viewLiveLabel?: string;
+}) {
+  const shown = samples.filter((sample) => sample.liveUrl).slice(0, 2);
+  if (!shown.length) return null;
+
+  return (
+    <section className="lp-web-proofstrip" aria-label="Client results">
+      <div className="shell">
+        <ul className="lp-web-proofstrip__list">
+          {shown.map((sample) => (
+            <li key={sample.client}>
+              <p className="lp-web-proofstrip__client">{sample.client}</p>
+              <p className="lp-web-proofstrip__metric">
+                <span className="lp-web-proofstrip__figure">{sample.metric}</span>
+                <span className="lp-web-proofstrip__label">{sample.label}</span>
+              </p>
+              <a
+                href={sample.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {viewLiveLabel}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Pricing — two starting prices, or a single soft panel              */
 /* ------------------------------------------------------------------ */
 
 export function WebsitePricing({
@@ -565,6 +573,7 @@ export function WebsitePricing({
   delivery,
   qualify,
   highlights,
+  tiers,
   addOns,
   note,
   ctaLabel,
@@ -578,6 +587,7 @@ export function WebsitePricing({
   delivery?: string;
   qualify?: string;
   highlights?: string[];
+  tiers?: LandingPagePrice[];
   addOns?: LandingPagePricingAddOn[];
   note?: string;
   ctaLabel: string;
@@ -601,10 +611,38 @@ export function WebsitePricing({
             {intro ? <p>{intro}</p> : null}
           </header>
           <div className="lp-web-pricing__panel">
-            <p className="lp-web-pricing__anchor">
-              <small>{startingLabel}</small>
-              <span>{anchor}</span>
-            </p>
+            {tiers?.length ? (
+              <ul className="lp-web-pricing__tiers">
+                {tiers.map((tier) => (
+                  <li
+                    key={tier.name}
+                    className={
+                      tier.featured
+                        ? "lp-web-pricing__tier lp-web-pricing__tier--featured"
+                        : "lp-web-pricing__tier"
+                    }
+                  >
+                    <h3>{tier.name}</h3>
+                    <p className="lp-web-pricing__tier-price">{tier.price}</p>
+                    {tier.body ? (
+                      <p className="lp-web-pricing__tier-body">{tier.body}</p>
+                    ) : null}
+                    {tier.items?.length ? (
+                      <ul className="lp-web-pricing__points">
+                        {tier.items.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="lp-web-pricing__anchor">
+                <small>{startingLabel}</small>
+                <span>{anchor}</span>
+              </p>
+            )}
             {delivery ? (
               <p className="lp-web-pricing__delivery">{delivery}</p>
             ) : null}
@@ -746,10 +784,10 @@ type PlanBoardCopy = {
 
 const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
   en: {
-    folioKicker: "Website plan",
-    folioTitle: "Written plan.",
-    folioLede: "Written around the business.",
-    folioRows: ["First look", "On a phone", "Call path", "Speed", "Rebuild first"],
+    folioKicker: "Project call",
+    folioTitle: "15 minutes.",
+    folioLede: "The business, the site, and what to build.",
+    folioRows: ["The work you do", "Who you serve", "The current site", "What to fix first", "Scope and price"],
     folioStamp: "No obligation",
     stampWidth: 88,
     clickHere: "Click Here",
@@ -757,7 +795,7 @@ const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
     buriedCta: "buried CTA",
     stockPhoto: "stock photo",
     inspection: "Site inspection · punch list",
-    sheet: "SHT 01 · Structure",
+    sheet: "Structure",
     home: "Home",
     entry: "entry",
     about: "About",
@@ -770,10 +808,10 @@ const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
     primaryPath: "Primary path",
   },
   "es-419": {
-    folioKicker: "Plan web",
-    folioTitle: "Plan escrito.",
-    folioLede: "Hecho para el negocio.",
-    folioRows: ["Primera mirada", "En el celular", "Ruta de llamada", "Velocidad", "Qué cambiar"],
+    folioKicker: "Llamada",
+    folioTitle: "15 minutos.",
+    folioLede: "El negocio, el sitio, y qué construir.",
+    folioRows: ["El trabajo", "A quién sirves", "El sitio actual", "Qué cambiar primero", "Alcance y precio"],
     folioStamp: "Sin compromiso",
     stampWidth: 118,
     clickHere: "Clic aquí",
@@ -781,7 +819,7 @@ const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
     buriedCta: "botón escondido",
     stockPhoto: "foto genérica",
     inspection: "Inspección del sitio · fallos",
-    sheet: "HOJA 01 · Estructura",
+    sheet: "Estructura",
     home: "Inicio",
     entry: "entrada",
     about: "Nosotros",
@@ -795,10 +833,10 @@ const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
     primaryPath: "Camino principal",
   },
   "es-ES": {
-    folioKicker: "Plan web",
-    folioTitle: "Plan escrito.",
-    folioLede: "Hecho para el negocio.",
-    folioRows: ["Primera mirada", "En el móvil", "Ruta de llamada", "Velocidad", "Qué cambiar"],
+    folioKicker: "Llamada",
+    folioTitle: "15 minutos.",
+    folioLede: "El negocio, el sitio, y qué construir.",
+    folioRows: ["El trabajo", "A quién sirves", "El sitio actual", "Qué cambiar primero", "Alcance y precio"],
     folioStamp: "Sin compromiso",
     stampWidth: 118,
     clickHere: "Pulsa aquí",
@@ -806,7 +844,7 @@ const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
     buriedCta: "botón escondido",
     stockPhoto: "foto de archivo",
     inspection: "Inspección de la web · fallos",
-    sheet: "HOJA 01 · Estructura",
+    sheet: "Estructura",
     home: "Inicio",
     entry: "entrada",
     about: "Nosotros",
@@ -913,7 +951,7 @@ export function WebsitePlan({
   page,
   locale = "en",
   kicker = "Next step",
-  figcaption = "A short written brief. Five points, then a clear recommendation.",
+  figcaption = "A 15-minute call. Then scope and price in writing.",
 }: {
   page: LandingPageEntry;
   locale?: Locale;

@@ -267,7 +267,11 @@ export function Header() {
         )}
       >
         <div className="shell site-header__bar flex items-center gap-4 overflow-visible sm:gap-5 lg:gap-10">
-          {isSlimLanding ? (
+          {isSlimLanding && landingSlugFromPath(pathname) === "get-a-website" ? (
+            <span className="site-header__logo site-header__logo--quiet inline-flex min-h-11 shrink-0 items-center">
+              <BrandLogo height={22} />
+            </span>
+          ) : isSlimLanding ? (
             <Link
               href="/"
               className="site-header__logo site-header__logo--quiet inline-flex min-h-11 shrink-0 items-center"

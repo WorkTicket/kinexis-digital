@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import type { ContactContent } from "@/content/contact";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import {
+  BOOKING_DURATION_MINUTES,
   BOOKING_TIMEZONE_LABEL,
   dayHasBookableSlots,
   findFirstBookableDate,
@@ -26,6 +27,10 @@ import { cn } from "@/lib/cn";
 
 type Props = {
   content: ContactContent;
+  /** Name, email, and notes already collected on the landing form. */
+  preset?: { name: string; email: string; notes?: string };
+  /** Stay on the landing page after a time is confirmed. */
+  stayOnPage?: boolean;
 };
 
 const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
@@ -51,7 +56,11 @@ function formatShortDateLabel(date: string): string {
   }).format(parsed);
 }
 
-export function StrategyCallBooking({ content: c }: Props) {
+export function StrategyCallBooking({
+  content: c,
+  preset,
+  stayOnPage = false,
+}: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const submitLock = useRef(false);
@@ -73,9 +82,9 @@ export function StrategyCallBooking({ content: c }: Props) {
   const [viewMonth, setViewMonth] = useState(initialMonth);
   const [selectedDate, setSelectedDate] = useState<string>(initialDate);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [notes, setNotes] = useState("");
+  const [name, setName] = useState(preset?.name ?? "");
+  const [email, setEmail] = useState(preset?.email ?? "");
+  const [notes, setNotes] = useState(preset?.notes ?? "");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
     "idle",
   );
@@ -225,9 +234,11 @@ export function StrategyCallBooking({ content: c }: Props) {
 
       setStatus("success");
       void refreshAvailability();
-      window.setTimeout(() => {
-        navigateAfterSubmit("/thank-you", router);
-      }, THANK_YOU_DELAY_MS);
+      if (!stayOnPage) {
+        window.setTimeout(() => {
+          navigateAfterSubmit("/thank-you", router);
+        }, THANK_YOU_DELAY_MS);
+      }
     } catch (err) {
       submitLock.current = false;
       setErrorMsg(err instanceof Error ? err.message : b.errorMessage);
@@ -336,7 +347,7 @@ export function StrategyCallBooking({ content: c }: Props) {
             </div>
 
             <p className="mt-2.5 text-[11px] leading-snug text-muted">
-              {BOOKING_TIMEZONE_LABEL} · 30-minute call
+              {BOOKING_TIMEZONE_LABEL} · {BOOKING_DURATION_MINUTES}-minute call
             </p>
           </div>
 
@@ -349,7 +360,7 @@ export function StrategyCallBooking({ content: c }: Props) {
                 <p className="text-[11px] text-muted">{b.timezoneNote}</p>
               </div>
 
-              <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 sm:gap-1.5">
+              <div className="grid max-h-72 grid-cols-3 gap-2 overflow-y-auto sm:grid-cols-4 sm:gap-1.5">
                 {ALL_SLOT_TIMES.map((time) => {
                   const taken = selectedDayBooked.includes(time);
                   const bookable = isSlotBookable(
@@ -397,53 +408,57 @@ export function StrategyCallBooking({ content: c }: Props) {
               </p>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div>
-                <label htmlFor="booking-name" className="form-label">
-                  {c.nameLabel} <span className="text-foreground">*</span>
-                </label>
-                <input
-                  type="text"
-                  id="booking-name"
-                  required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="form-input"
-                  placeholder={c.namePlaceholder}
-                  autoComplete="name"
-                />
-              </div>
-              <div>
-                <label htmlFor="booking-email" className="form-label">
-                  {c.emailLabel} <span className="text-foreground">*</span>
-                </label>
-                <input
-                  type="email"
-                  id="booking-email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="form-input"
-                  placeholder={c.emailPlaceholder}
-                  autoComplete="email"
-                />
-              </div>
-            </div>
+            {preset ? null : (
+              <>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="booking-name" className="form-label">
+                      {c.nameLabel} <span className="text-foreground">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="booking-name"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="form-input"
+                      placeholder={c.namePlaceholder}
+                      autoComplete="name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="booking-email" className="form-label">
+                      {c.emailLabel} <span className="text-foreground">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      id="booking-email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="form-input"
+                      placeholder={c.emailPlaceholder}
+                      autoComplete="email"
+                    />
+                  </div>
+                </div>
 
-            <div>
-              <label htmlFor="booking-notes" className="form-label">
-                {b.notesLabel}
-              </label>
-              <textarea
-                id="booking-notes"
-                value={notes}
-                onChange={(e) => setNotes(e.target.value)}
-                className="form-textarea !min-h-[4.5rem]"
-                placeholder={b.notesPlaceholder}
-                rows={2}
-                maxLength={2000}
-              />
-            </div>
+                <div>
+                  <label htmlFor="booking-notes" className="form-label">
+                    {b.notesLabel}
+                  </label>
+                  <textarea
+                    id="booking-notes"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    className="form-textarea !min-h-[4.5rem]"
+                    placeholder={b.notesPlaceholder}
+                    rows={2}
+                    maxLength={2000}
+                  />
+                </div>
+              </>
+            )}
           </div>
         </div>
 

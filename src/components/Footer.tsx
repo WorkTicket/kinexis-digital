@@ -86,7 +86,7 @@ export async function Footer() {
                         Facebook
                       </a>
                     </div>
-                    <p className="site-footer__meta-line">{t("replies")}</p>
+                    <p className="site-footer__meta-line">{t("lpReplies")}</p>
                   </div>
                 </div>
               }

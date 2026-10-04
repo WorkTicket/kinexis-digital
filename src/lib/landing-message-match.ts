@@ -16,8 +16,8 @@ const headlinesByLocale = localeContent({
       "We'll build the website.",
     ] as const,
     business_grown: [
-      "Your business has grown.",
-      "Your website should show it.",
+      "Get a Website Built to",
+      "Bring You More Business",
     ] as const,
   },
   "es-419": {
@@ -26,8 +26,8 @@ const headlinesByLocale = localeContent({
       "Nosotros hacemos el sitio web.",
     ] as const,
     business_grown: [
-      "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      "Un sitio web hecho para",
+      "traerte más negocio",
     ] as const,
   },
 });
@@ -39,15 +39,13 @@ export type LandingHeadlineKey = keyof typeof LANDING_HEADLINES;
 
 const marketsByLocale = localeContent({
   en: {
-    default: "Custom websites for contractors & home-service businesses.",
-    raleigh:
-      "Custom websites for Raleigh contractors & home-service businesses.",
+    default: "Working with contractors across the U.S.",
+    // Raleigh ads still map here, but the line stays national.
+    raleigh: "Working with contractors across the U.S.",
   },
   "es-419": {
-    default:
-      "Sitios web a medida para contratistas y negocios de servicios del hogar.",
-    raleigh:
-      "Sitios web a medida para contratistas y servicios del hogar en Raleigh.",
+    default: "Trabajamos con contratistas en todo Estados Unidos.",
+    raleigh: "Trabajamos con contratistas en todo Estados Unidos.",
   },
 });
 

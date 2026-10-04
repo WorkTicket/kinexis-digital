@@ -8,6 +8,7 @@ import {
   WebsitePlan,
   WebsitePricing,
   WebsiteProcess,
+  WebsiteProofStrip,
   WebsiteWork,
 } from "@/components/landing/WebsiteSections";
 import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
@@ -22,19 +23,20 @@ import "@/styles/components/landing-agency.css";
 import "@/styles/components/landing-showcase.css";
 
 /**
- * Live get-a-website section order (from production DOM):
+ * High-intent order: offer, proof, price, then the longer explanation.
  *   1. Hero
- *   2. Outcomes (aside)
- *   3. Pain (before/after ShowcaseSite + compare)
+ *   2. Outcomes
+ *   3. Proof strip
  *   4. Work
- *   5. Build
+ *   5. Pricing
  *   6. Process
- *   7. Pricing (panel; soft = no addon sticker board)
- *   8. Fit (good / not columns)
- *   9. FAQ
- *  10. Plan / form
+ *   7. Pain
+ *   8. Build
+ *   9. Fit
+ *  10. FAQ
+ *  11. Plan / form
  *
- * No FinalCta on live. Sticky CTA is client-side.
+ * No FinalCta. Sticky CTA is client-side.
  */
 export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
   const locale = (await getLocale()) as Locale;
@@ -53,15 +55,10 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
       {page.outcomes?.length ? (
         <WebsiteOutcomes items={page.outcomes} ariaLabel={chrome.outcomesAria} />
       ) : null}
-      {page.painTitle && page.painSubtitle ? (
-        <WebsitePain
-          eyebrow={page.painEyebrow}
-          title={page.painTitle}
-          subtitle={page.painSubtitle}
-          before={page.transformBefore}
-          after={page.transformAfter}
-          datedCaption={chrome.datedCaption}
-          customCaption={chrome.customCaption}
+      {samples.length ? (
+        <WebsiteProofStrip
+          samples={samples}
+          viewLiveLabel={chrome.viewLive}
         />
       ) : null}
       {samples.length && page.samplesTitle ? (
@@ -78,12 +75,21 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           viewLiveLabel={chrome.viewLive}
         />
       ) : null}
-      {page.buildTitle && page.sellPoints?.length ? (
-        <WebsiteBuild
-          title={page.buildTitle}
-          points={page.sellPoints}
-          ownershipStatement={page.ownershipStatement}
-          kicker={chrome.includedKicker}
+      {page.pricingTitle && page.pricingAnchor ? (
+        <WebsitePricing
+          title={page.pricingTitle}
+          intro={page.pricingIntro}
+          anchor={page.pricingAnchor}
+          delivery={page.pricingDelivery}
+          qualify={page.pricingQualify}
+          highlights={page.pricingHighlights}
+          tiers={page.pricing}
+          addOns={page.pricingAddOns}
+          note={page.pricingNote}
+          ctaLabel={cta}
+          landingSlug={page.slug}
+          kicker={chrome.pricingKicker}
+          startingLabel={chrome.startingLabel}
         />
       ) : null}
       {page.process?.length && page.processTitle ? (
@@ -94,20 +100,23 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           kicker={chrome.howItWorksKicker}
         />
       ) : null}
-      {page.pricingTitle && page.pricingAnchor ? (
-        <WebsitePricing
-          title={page.pricingTitle}
-          intro={page.pricingIntro}
-          anchor={page.pricingAnchor}
-          delivery={page.pricingDelivery}
-          qualify={page.pricingQualify}
-          highlights={page.pricingHighlights}
-          addOns={page.pricingAddOns}
-          note={page.pricingNote}
-          ctaLabel={cta}
-          landingSlug={page.slug}
-          kicker={chrome.pricingKicker}
-          startingLabel={chrome.startingLabel}
+      {page.painTitle && page.painSubtitle ? (
+        <WebsitePain
+          eyebrow={page.painEyebrow}
+          title={page.painTitle}
+          subtitle={page.painSubtitle}
+          before={page.transformBefore}
+          after={page.transformAfter}
+          datedCaption={chrome.datedCaption}
+          customCaption={chrome.customCaption}
+        />
+      ) : null}
+      {page.buildTitle && page.sellPoints?.length ? (
+        <WebsiteBuild
+          title={page.buildTitle}
+          points={page.sellPoints}
+          ownershipStatement={page.ownershipStatement}
+          kicker={chrome.includedKicker}
         />
       ) : null}
       {page.fitTitle && page.fitGoodItems?.length ? (
@@ -135,7 +144,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
       />
       <LandingStickyCta
         label={page.stickyCtaLabel}
-        note={page.formCtaHint ?? page.heroFinePrint}
+        note={chrome.stickyNote}
         revealAfterId="lp-hero-actions"
       />
     </main>

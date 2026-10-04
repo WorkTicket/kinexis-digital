@@ -1,6 +1,7 @@
 /**
- * Live production content for /lp/get-a-website with soft pricing:
- * keep the $2,000 starting panel, omit the $200/$120 sticker addon board.
+ * Live production content for /lp/get-a-website.
+ * Basic sites from $500. Custom multi-page sites from $2,000+.
+ * No $200/$120 sticker addon board.
  */
 
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
@@ -15,89 +16,139 @@ const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
 const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
 
-/** Compact hero CTA — sticky/header can stay slightly longer via headerCtaLabel. */
-const CTA = "Get My Free Plan";
-const REPLY = "one business day";
-const DELIVERY = "6 to 12";
-const LOW = 500;
-const HIGH = 2000;
-const LOW_ES = formatEsInteger(LOW);
-const HIGH_ES = formatEsInteger(HIGH);
+/** Sticky and header keep the call. The hero button names the free plan. */
+const CTA = "Book a 15-Minute Project Call";
+const REPLY = "We usually call back the same day";
+const DELIVERY = "Most sites go live in 2 to 6 weeks.";
+const PRICE_LINE =
+  "Basic websites from $500. Custom multi-page websites from $2,000+.";
+const LOW_ES = formatEsInteger(500);
+const HIGH_ES = formatEsInteger(2000);
 
-/** Soft live-panel overlays — range from 500–2000; no $200/$120 addons. */
+/** Two starting prices. No $200/$120 addons. */
 const softPricing = localeContent({
   en: {
-    pricingTitle: "Plans from $500 to $2,000",
-    pricingAnchor: `$${LOW.toLocaleString("en-US")}–$${HIGH.toLocaleString("en-US")}`,
+    pricingTitle: PRICE_LINE,
+    pricingAnchor: "From $500",
     pricingQualify:
-      "Final pricing depends on pages, content, and how much has to be custom. Most contractor and home-service projects fall between $500 and $2,000. Exact quote after the free plan.",
-    pricingDelivery: `Most take ${DELIVERY} weeks.`,
+      "Final pricing depends on pages, content, and how much has to be custom. Exact quote after the call.",
+    pricingDelivery: DELIVERY,
     pricingIntro:
-      "You'll know the recommended scope before you commit to a project.",
+      "Basic is a smaller site. Custom is built around every service and the areas you cover.",
     pricingNote:
-      "The website plan is free. You only pay if you decide to build. Optional hosting, maintenance, and support are available after launch.",
+      "The call is free. You only pay if you decide to build. Optional hosting, maintenance, and support are available after launch.",
     pricingHighlights: [
-      "Custom scope and a written proposal before work begins",
+      "Written scope before work begins",
       "Milestone-based payment option",
+    ] as string[],
+    basicName: "Basic",
+    basicPrice: "From $500",
+    basicItems: [
+      "A few pages",
+      "Mobile-fast",
+      "Click-to-call button",
+      "You own the site",
+    ] as string[],
+    customName: "Custom",
+    customPrice: "From $2,000+",
+    customItems: [
+      "Covers every service",
+      "Quote form",
+      "Built around your service areas",
+      "You own the site",
     ] as string[],
     monthlyTitle: "Keep us on after launch if you want to",
     monthlyCopy:
       "After launch, optional hosting, maintenance, and ongoing support are available if you want help keeping the site current. The proposal spells out what is included.",
-    heroPrice: `Plans from $${LOW.toLocaleString("en-US")} to $${HIGH.toLocaleString("en-US")}. Most take ${DELIVERY} weeks.`,
+    heroPrice: PRICE_LINE,
     proofSupportLabel: "ongoing support",
-    proofStartMetric: `$${LOW.toLocaleString("en-US")}–$${HIGH.toLocaleString("en-US")}`,
+    proofStartMetric: "2–6 weeks",
     costFaqAnswer:
-      "Plans run from $500 to $2,000 depending on pages, photos, and extras. You'll get a written number before anything is built — the free plan is how we size it.",
+      "Basic websites from $500. Custom multi-page websites from $2,000+. You'll get a written number before anything is built.",
     hostingFaqAnswer:
       "We can host the site after launch, or you can take it to your own provider. You own the website either way. The proposal states whose account the hosting sits in.",
     maintenanceFaqAnswer:
       "No. Ongoing maintenance and support are optional unless a specific proposal says otherwise. A lot of clients launch, settle in, and add help later. Hosting is separate — with us, or on your own provider.",
   },
   "es-419": {
-    pricingTitle: `Planes desde ${LOW_ES} a ${HIGH_ES}`,
-    pricingAnchor: `${LOW_ES}–${HIGH_ES}`,
-    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${LOW_ES} y ${HIGH_ES}. La cotización exacta llega después del plan gratis.`,
-    pricingDelivery: "La mayoría toma de 6 a 12 semanas.",
+    pricingTitle: `Sitios básicos desde ${LOW_ES}. Sitios a medida de varias páginas desde ${HIGH_ES}+.`,
+    pricingAnchor: `Desde ${LOW_ES}`,
+    pricingQualify:
+      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La cotización exacta llega después de la llamada.",
+    pricingDelivery: "La mayoría de los sitios sale en vivo en 2 a 6 semanas.",
     pricingIntro:
-      "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
+      "El básico es un sitio más corto. El a medida se construye alrededor de cada servicio y las zonas que cubres.",
     pricingNote:
-      "El plan del sitio web es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
+      "La llamada es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
     pricingHighlights: [
-      "Alcance a medida y propuesta escrita antes de empezar",
+      "Alcance por escrito antes de empezar",
       "Opción de pago por hitos",
+    ],
+    basicName: "Básico",
+    basicPrice: `Desde ${LOW_ES}`,
+    basicItems: [
+      "Unas pocas páginas",
+      "Rápido en el celular",
+      "Botón de clic para llamar",
+      "El sitio es tuyo",
+    ],
+    customName: "A medida",
+    customPrice: `Desde ${HIGH_ES}+`,
+    customItems: [
+      "Cubre cada servicio",
+      "Formulario de cotización",
+      "Hecho alrededor de tus zonas de servicio",
+      "El sitio es tuyo",
     ],
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
-    heroPrice: `Planes desde ${LOW_ES} a ${HIGH_ES}. La mayoría toma de 6 a 12 semanas.`,
+    heroPrice: `Sitios básicos desde ${LOW_ES}. Sitios a medida de varias páginas desde ${HIGH_ES}+.`,
     proofSupportLabel: "soporte continuo",
-    proofStartMetric: `${LOW_ES}–${HIGH_ES}`,
-    costFaqAnswer: `Los planes van desde ${LOW_ES} a ${HIGH_ES}, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada: el plan gratis es como lo dimensionamos.`,
+    proofStartMetric: "2–6 semanas",
+    costFaqAnswer: `Sitios básicos desde ${LOW_ES}. Sitios a medida de varias páginas desde ${HIGH_ES}+. Recibes un número por escrito antes de construir nada.`,
     hostingFaqAnswer:
       "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
     maintenanceFaqAnswer:
       "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
   "es-ES": {
-    pricingTitle: `Planes desde ${LOW_ES} € a ${HIGH_ES} €`,
-    pricingAnchor: `${LOW_ES} €–${HIGH_ES} €`,
-    pricingQualify: `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La mayoría de proyectos para contratistas y servicios del hogar queda entre ${LOW_ES} € y ${HIGH_ES} €. La cotización exacta llega después del plan gratis.`,
-    pricingDelivery: "La mayoría toma de 6 a 12 semanas.",
+    pricingTitle: `Sitios básicos desde ${LOW_ES} €. Sitios a medida de varias páginas desde ${HIGH_ES} €+.`,
+    pricingAnchor: `Desde ${LOW_ES} €`,
+    pricingQualify:
+      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La cotización exacta llega después de la llamada.",
+    pricingDelivery: "La mayoría de los sitios sale en vivo en 2 a 6 semanas.",
     pricingIntro:
-      "Conocerás el alcance recomendado antes de comprometerte con un proyecto.",
+      "El básico es un sitio más corto. El a medida se construye alrededor de cada servicio y las zonas que cubres.",
     pricingNote:
-      "El plan del sitio web es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
+      "La llamada es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
     pricingHighlights: [
-      "Alcance a medida y propuesta escrita antes de empezar",
+      "Alcance por escrito antes de empezar",
       "Opción de pago por hitos",
+    ],
+    basicName: "Básico",
+    basicPrice: `Desde ${LOW_ES} €`,
+    basicItems: [
+      "Unas pocas páginas",
+      "Rápido en el móvil",
+      "Botón de clic para llamar",
+      "El sitio es tuyo",
+    ],
+    customName: "A medida",
+    customPrice: `Desde ${HIGH_ES} €+`,
+    customItems: [
+      "Cubre cada servicio",
+      "Formulario de presupuesto",
+      "Hecho alrededor de tus zonas de servicio",
+      "El sitio es tuyo",
     ],
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
-    heroPrice: `Planes desde ${LOW_ES} € a ${HIGH_ES} €. La mayoría toma de 6 a 12 semanas.`,
+    heroPrice: `Sitios básicos desde ${LOW_ES} €. Sitios a medida de varias páginas desde ${HIGH_ES} €+.`,
     proofSupportLabel: "soporte continuo",
-    proofStartMetric: `${LOW_ES} €–${HIGH_ES} €`,
-    costFaqAnswer: `Los planes van desde ${LOW_ES} € a ${HIGH_ES} €, según páginas, fotos y extras. Recibes un número por escrito antes de construir nada: el plan gratis es como lo dimensionamos.`,
+    proofStartMetric: "2–6 semanas",
+    costFaqAnswer: `Sitios básicos desde ${LOW_ES} €. Sitios a medida de varias páginas desde ${HIGH_ES} €+. Recibes un número por escrito antes de construir nada.`,
     hostingFaqAnswer:
       "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
     maintenanceFaqAnswer:
@@ -111,42 +162,47 @@ const baseGetAWebsite: LandingPageEntry = {
   serviceLabel: "Web design & development",
   metaTitle: "Custom Contractor Websites",
   metaDescription:
-    "Custom websites for contractors and home-service businesses. Built so customers can tell who you are, then call or request a quote. Plans from $500 to $2,000.",
+    "Custom websites for contractors and home-service businesses. Fast on a phone, built to get calls, and you own it. Basic websites from $500. Custom multi-page websites from $2,000+.",
   badge: "Custom websites for contractors",
-  headline:
-    "Your business has grown. Your website should show it.",
+  headline: "Get a Website Built to Bring You More Business",
   headlineAccent: "",
   headlineLines: [
-    "Your business has grown.",
-    "Your website should show it.",
+    "Get a Website Built to",
+    "Bring You More Business",
   ],
-  marketLine:
-    "Custom websites for contractors & home-service businesses.",
+  marketLine: "Working with contractors across the U.S.",
   subheadline:
-    "Customers look you up before they call. We build custom contractor websites so the first impression matches the work you already do — and requesting a quote is obvious.",
+    "Custom websites for contractors and home-service businesses. Fast, mobile-first, SEO-ready, and built to turn visitors into calls and quote requests.",
   heroCtaLabel: CTA,
-  headerCtaLabel: "Get My Website Plan",
-  heroFinePrint: `No obligation. We'll reply within ${REPLY} with what a rebuild should fix first.`,
+  headerCtaLabel: "Book a 15-Min Call",
+  heroFinePrint: `${DELIVERY} No obligation. ${REPLY}.`,
   heroPrice: softPricing.en.heroPrice,
-  heroMeta: [
-    "Custom-built, not a generic template",
-    "Designed for the phone in their hand",
-    "You own your website",
-  ],
+  heroMeta: ["Custom Built", "No Templates", "You Own Your Website"],
+  heroPortrait: {
+    src: "/assets/images/lp/colton-wehr-819.webp?v=20261004s",
+    srcSet:
+      "/assets/images/lp/colton-wehr-480.webp?v=20261004s 480w, /assets/images/lp/colton-wehr-640.webp?v=20261004s 640w, /assets/images/lp/colton-wehr-819.webp?v=20261004s 676w",
+    sizes: "(max-width: 767px) 78vw, min(34rem, 42vw)",
+    alt: "Colton Wehr, lead web designer and developer at KINEXIS",
+    width: 676,
+    height: 819,
+    name: "Colton Wehr",
+    role: "Lead Web Designer & Developer",
+  },
   heroStill: {
     src: A1_DESKTOP,
     mobileSrc: A1_MOBILE,
     alt: "A1 Property Services website on a laptop, built by KINEXIS",
   },
 
-  formTitle: "Get your free website plan",
-  formSubtitle: `Tell us about the business and the site you have now. Within ${REPLY}, we'll come back with what's costing you calls, and what a custom rebuild would actually take.`,
-  submitLabel: "Send My Website Plan Request",
+  formTitle: "Book a 15-minute project call",
+  formSubtitle: `Tell us about the business and the site you have now. ${REPLY}.`,
+  submitLabel: "Book my call",
   continueLabel: "Continue",
-  formCtaHint: `No obligation. We'll reply within ${REPLY}.`,
+  formCtaHint: `No obligation. ${PRICE_LINE} ${REPLY}.`,
   formFootnote:
-    "Your information is used to respond to your website plan request.",
-  formAsideTitle: "What the plan covers",
+    "Your information is used to follow up on this call.",
+  formAsideTitle: "What the call covers",
   formAsideSubtitle:
     "If you already have a website, we look at the pages people actually use: how it feels on a phone, whether services are clear, and if calling or requesting a quote is obvious.",
   formStep1Title: "About the business",
@@ -155,24 +211,26 @@ const baseGetAWebsite: LandingPageEntry = {
   noWebsiteLabel: "I don't have a website yet",
   noWebsiteStatus:
     "Website skipped. You indicated you do not have a website yet.",
-  investmentLabel: "What can you invest?",
+  investmentLabel: "Budget",
   timelineLabel: "When do you want to start?",
-  industryLabel: "What kind of work do you do?",
-  websiteStatusLabel: "What's true of the current website?",
+  roleLabel: "Your role",
+  industryLabel: "Type of work",
+  websiteStatusLabel: "Current website",
   goalLabel: "What should this site do first?",
   contactMethodLabel: "Best way to reach you",
   notesLabel: "Anything else we should know?",
   notesPlaceholder:
     "Towns you cover, services that have to be on the site, or what's frustrating about the current one.",
   consentLabel:
-    "I agree to be contacted about this website plan request. We'll use the details above to follow up.",
-  privacyMicrocopy:
-    "Your information is used to respond to your website plan request.",
-  successTitle: "We got your request",
-  successCopy: `Thanks. We'll look at the current site, or the notes you sent, and reply within ${REPLY} with what a rebuild should fix first. If you'd rather talk it through, you can book a call below.`,
+    "I agree to be contacted about this project call. We'll use the details above to follow up.",
+  privacyMicrocopy: "Your information is used to follow up on this call.",
+  successTitle: "We'll call you",
+  successCopy: "Your details are in. We usually call back the same day.",
+  calendarTitle: "Pick a 15-minute time",
+  calendarSubtitle: `Central Time, weekdays. ${REPLY} if none of these work.`,
   inlineThankYou: true,
   bookingHref: "/contact",
-  bookingCtaLabel: "Book a Website Strategy Call",
+  bookingCtaLabel: CTA,
 
   planHasSiteTitle: "If you already have a website",
   planHasSiteItems: [
@@ -197,17 +255,18 @@ const baseGetAWebsite: LandingPageEntry = {
         "The work you do, who you serve, and what a visitor should do next.",
     },
     {
-      title: "We send a website plan",
-      detail: `Within ${REPLY}: what's weak now, what to change first, and how the site should be structured.`,
+      title: "Pick a time if you're ready",
+      detail:
+        "Owners starting within 3 months see the calendar. Others get a note.",
     },
     {
       title: "You get a clear recommendation",
-      detail: "Scope and price in writing before anyone starts building.",
+      detail: "Clear scope and price in writing before anyone starts building.",
     },
   ],
   formTrust: [
     "No obligation",
-    `Reply within ${REPLY}`,
+    REPLY,
     "Works with or without a current site",
     "You own the website",
   ],
@@ -234,12 +293,16 @@ const baseGetAWebsite: LandingPageEntry = {
     { value: "landscaping", label: "Landscaping" },
     { value: "other-home-service", label: "Other home service" },
   ],
+  roleOptions: [
+    { value: "owner", label: "Owner" },
+    { value: "partner", label: "Partner" },
+    { value: "manager", label: "Manager" },
+    { value: "employee", label: "Employee" },
+  ],
   websiteStatusOptions: [
-    { value: "none", label: "We do not have one" },
-    { value: "outdated", label: "It looks outdated" },
-    { value: "mobile", label: "It's hard to use on a phone" },
-    { value: "inquiries", label: "It's not bringing in enough calls" },
-    { value: "redesign", label: "We need a complete redesign" },
+    { value: "none", label: "None" },
+    { value: "outdated", label: "Outdated" },
+    { value: "not-bringing-calls", label: "Not bringing calls" },
   ],
   goalOptions: [
     { value: "calls", label: "More calls" },
@@ -248,15 +311,14 @@ const baseGetAWebsite: LandingPageEntry = {
     { value: "search", label: "Show up better in search" },
   ],
   budgetOptions: [
-    { value: "500-2000", label: "$500–$2,000" },
-    { value: "2000-3000", label: "$2,000–$3,000" },
-    { value: "3000-5000", label: "$3,000–$5,000" },
-    { value: "not-sure", label: "Not sure yet" },
+    { value: "500-1999", label: "$500–$1,999" },
+    { value: "2000-4999", label: "$2,000–$4,999" },
+    { value: "5000-plus", label: "$5,000+" },
   ],
   timelineOptions: [
-    { value: "30-days", label: "Within 30 days" },
-    { value: "1-3-months", label: "One to three months" },
-    { value: "3-plus-months", label: "More than three months" },
+    { value: "30-days", label: "Next 30 days" },
+    { value: "1-3-months", label: "1–3 months" },
+    { value: "researching", label: "Just researching" },
   ],
   contactMethodOptions: [
     { value: "email", label: "Email" },
@@ -267,26 +329,26 @@ const baseGetAWebsite: LandingPageEntry = {
   outcomes: [
     {
       title: "Look established",
-      body: "A look that matches\nthe company you run",
+      body: "A look that matches the company you already run.",
     },
     {
       title: "Generate inquiries",
-      body: "Call and quote buttons\nthat people cannot miss",
+      body: "Call and quote sit where a visitor can find them.",
     },
     {
       title: "Load quickly",
-      body: "Fast on the phone,\nnot just office Wi-Fi",
+      body: "Fast on a phone, where most people look you up.",
     },
     {
       title: "Own your website",
-      body: "The site stays yours\nnot a builder lock-in",
+      body: "The site stays yours. It is not locked in a builder.",
     },
   ],
 
   painEyebrow: "They look you up first",
   painTitle: "A weak website can make a strong business look small",
   painSubtitle:
-    "Homeowners and property managers check the website before they pick up the phone. If it looks generic, loads slowly, or hides the number, a capable company can look like a side hustle. We rebuild that first impression around the work you actually do, the towns you cover, and a next step people can take without hunting for it.",
+    "Homeowners and property managers check the site before they call. If it looks generic, loads slowly, or hides the number, a capable crew can look like a side job. We rebuild that page around the work you do, the towns you cover, and a next step people can\u00A0find.",
   transformTitle: "What a rebuild changes",
   transformBefore: {
     title: "What they see now",
@@ -311,7 +373,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   samplesTitle: "Sites already working for home-service companies",
   samplesIntro:
-    "These are live websites, not mockups. Open them. Both companies needed the site to look as established as the crews already were.",
+    "These are live websites, not mockups. Open them. Both companies needed the site to look as solid as the crews already were.",
   testimonial: {
     quote:
       "The quote button used to disappear on a phone. After the rebuild, conversion went from 1.8% to 3.9%.",
@@ -322,7 +384,7 @@ const baseGetAWebsite: LandingPageEntry = {
   samples: [
     {
       image: A1_DESKTOP,
-      deviceShot: "/assets/images/lp/a1-devices.webp?v=20260930d",
+      deviceShot: "/assets/images/lp/a1-devices.webp?v=20261004t",
       imageAlt:
         "A1 Property Services website on a laptop, built by KINEXIS",
       client: "A1 Property Services",
@@ -336,11 +398,11 @@ const baseGetAWebsite: LandingPageEntry = {
       summary:
         "A Cedar Falls landscaping company had outgrown a brochure site. We rebuilt it around service pages, local structure, and a quote path that works on a phone.",
       metric: "10 → 28",
-      label: "qualified leads / month",
+      label: "leads/mo",
     },
     {
       image: PLUMBING_DESKTOP,
-      deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20260930e",
+      deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261004t",
       imageAlt:
         "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
       client: "Preferred Plumbing Solutions",
@@ -354,63 +416,63 @@ const baseGetAWebsite: LandingPageEntry = {
       summary:
         "A plumbing and construction company needed a site that made services obvious and made calling from a phone the natural next step.",
       metric: "22 → 52",
-      label: "emergency calls / month",
+      label: "emergency calls/mo",
     },
   ],
 
   buildTitle: "What a contractor website has to include",
   ownershipStatement:
-    "You own your website. No proprietary builder, and no monthly ransom to keep your own pages online.",
+    "You own your website. You're not stuck in a builder, and you don't pay a monthly fee just to keep your own pages up.",
   sellPoints: [
     {
       title: "Built around your company",
-      body: "Designed for the work you do, not a theme with your logo dropped in.",
+      body: "We start from the jobs you do, not a theme with your logo dropped on it.",
     },
     {
       title: "Works on a phone",
-      body: "Most customers look you up from a truck, a kitchen, or a job site.",
+      body: "Most people look you up from a truck, a kitchen, or the job site.",
     },
     {
       title: "Makes calling easy",
-      body: "Services are clear. Call and quote paths sit where a thumb can find them.",
+      body: "Services are clear, and call and quote sit where a thumb can reach.",
     },
     {
       title: "Stays fast",
-      body: "Lightweight pages so people don't bounce while the site is still loading.",
+      body: "Pages stay light, so people don't leave while the site is still loading.",
     },
     {
       title: "Ready for search",
-      body: "Service pages, metadata, and the technical basics Google actually needs.",
+      body: "Service pages, plus the basics Google needs to understand the work.",
     },
     {
       title: "Tracked from day one",
-      body: "You'll be able to see whether the site is producing inquiries, not just visits.",
+      body: "You can tell if the site is bringing inquiries, not just visits.",
     },
   ],
 
   processTitle: "How a rebuild actually runs",
   processIntro:
-    "You see the plan before we write a line of code. You approve the structure before the site gets built.",
+    "You see the scope and the price before we write a line of code. You sign off on the structure before the site gets built.",
   process: [
     {
-      title: "Website plan",
+      title: "Project call",
       detail:
-        "We look at the current site, the work you do, and what a visitor should do next.",
+        "We look at your site, the work you do, and what should happen next.",
     },
     {
       title: "Structure and design",
       detail:
-        "Pages, services, and the look of the site, approved before we build it.",
+        "You approve the pages, services, and the look before we build it.",
     },
     {
       title: "Development",
       detail:
-        "We build the approved design in custom code. Not a page builder.",
+        "We build that approved design in custom code. Not a page builder.",
     },
     {
       title: "Launch and tracking",
       detail:
-        "The site goes live, analytics get connected, and the call and quote paths get checked.",
+        "We launch the site, connect tracking, and check call and quote.",
     },
   ],
 
@@ -421,7 +483,7 @@ const baseGetAWebsite: LandingPageEntry = {
     "The current site doesn't match the work",
     "The business has outgrown a basic website",
     "Wants a custom site the company actually owns",
-    "Prepared to invest in a custom site (plans from $500)",
+    "Prepared to invest. Basic websites from $500. Custom multi-page websites from $2,000+.",
     "Can send photos, services, and feedback",
   ],
   fitNotTitle: "Probably not a fit if",
@@ -440,7 +502,21 @@ const baseGetAWebsite: LandingPageEntry = {
   pricingNote: softPricing.en.pricingNote,
   pricingHighlights: softPricing.en.pricingHighlights,
   pricingAddOns: [],
-  pricing: [],
+  pricing: [
+    {
+      name: softPricing.en.basicName,
+      price: softPricing.en.basicPrice,
+      body: "A shorter site for a crew that needs the phone to ring.",
+      items: softPricing.en.basicItems,
+    },
+    {
+      name: softPricing.en.customName,
+      price: softPricing.en.customPrice,
+      body: "A multi-page site built around the work and the areas you cover.",
+      items: softPricing.en.customItems,
+      featured: true,
+    },
+  ],
 
   monthlyTitle: softPricing.en.monthlyTitle,
   monthlyCopy: softPricing.en.monthlyCopy,
@@ -457,16 +533,16 @@ const baseGetAWebsite: LandingPageEntry = {
     { metric: "You own it", label: "No builder lock-in" },
     {
       metric: softPricing.en.proofStartMetric,
-      label: "soft plan range",
+      label: "most sites go live",
     },
     { metric: "Optional", label: softPricing.en.proofSupportLabel },
   ],
   bulletsTitle: "What you actually get",
   bullets: [],
 
-  closingTitle: "Get your free website plan",
-  closingCopy: `If the current site is underselling the business, send the details. We'll reply within ${REPLY} with what a rebuild should fix first.`,
-  closingFinePrint: `No obligation. Plans from $500 to $2,000. Reply within ${REPLY}.`,
+  closingTitle: "Book a 15-minute project call",
+  closingCopy: `If the current site is underselling the crew, send the details. ${REPLY}.`,
+  closingFinePrint: `No obligation. ${PRICE_LINE} ${REPLY}.`,
 
   faqs: [
     {
@@ -475,17 +551,17 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       question: "How soon will I hear back?",
-      answer: `Within ${REPLY}. We'll look at the current site, or the notes you sent, and come back with what a rebuild should fix first.`,
+      answer: `${REPLY}. We'll look at the current site, or the notes you sent, and come back with what a rebuild should fix first.`,
     },
     {
       question: "Is this a WordPress template?",
       answer:
-        "No. These are custom websites, built with Next.js and Tailwind CSS. Not a theme you could buy, and not a page builder.",
+        "No. We build these in custom code, with Next.js and Tailwind. Not a theme you can buy, and not a page builder.",
     },
     {
       question: "Will I own my website?",
       answer:
-        "Yes. You own the finished website. You are not locked into a proprietary builder, and you don't pay a monthly ransom to keep your own pages online.",
+        "Yes. You own the finished site. You're not stuck in a builder, and you don't pay a monthly fee just to keep your own pages up.",
     },
     {
       question: "Is hosting included?",
@@ -494,7 +570,7 @@ const baseGetAWebsite: LandingPageEntry = {
     {
       question: "Is SEO included?",
       answer:
-        "The project includes a technical and on-page SEO foundation: service structure, metadata, and the indexing basics. Ongoing SEO and content work are a separate conversation.",
+        "The build includes the search foundation: service pages, titles, and the indexing basics. Ongoing SEO is a separate conversation.",
     },
     {
       question: "Can you redesign my existing website?",
@@ -503,7 +579,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       question: "How long does a project take?",
-      answer: `Most contractor websites land in about ${DELIVERY} weeks. That depends on how quickly content and feedback come back. We won't quote a faster number just to win the click.`,
+      answer: `${DELIVERY} That depends on how quickly photos and feedback come back.`,
     },
     {
       question: "Do I have to purchase monthly maintenance?",
@@ -526,7 +602,7 @@ const spanishByLocale = {
 const heroWhatsAppEs = {
   heroLabel: "Escribir por WhatsApp",
   planLabel: "Escribir por WhatsApp",
-  prefill: "Hola, me interesa el plan gratuito de sitio web para mi negocio.",
+  prefill: "Hola, me interesa una llamada de 15 minutos sobre el sitio de mi negocio.",
 } as const;
 
 /** Full locale entry: English base, or full Spanish body + WhatsApp. */
@@ -543,7 +619,7 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
         pricingNote: softPricing.en.pricingNote,
         pricingHighlights: softPricing.en.pricingHighlights,
         pricingAddOns: [],
-        pricing: [],
+        pricing: baseGetAWebsite.pricing,
         monthlyTitle: softPricing.en.monthlyTitle,
         monthlyCopy: softPricing.en.monthlyCopy,
         heroPrice: softPricing.en.heroPrice,

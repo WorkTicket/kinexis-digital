@@ -137,7 +137,7 @@ export const contactContentI18n = localeContent({
     booking: {
       title: "Book a strategy call",
       subtitle:
-        "30 minutes. Weekdays. We review what's leaking, what to fix first, and if we're the right partner.",
+        "15 minutes. Weekdays, Central Time. We review what's leaking, what to fix first, and if we're the right partner.",
       timezoneNote: "24-hour minimum notice",
       timeLabel: "Times",
       pickDateHint: "Choose a date to see open times.",
@@ -222,7 +222,7 @@ export const contactContentI18n = localeContent({
     booking: {
       title: "Agendar una llamada estratégica",
       subtitle:
-        "30 minutos. De lunes a viernes. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como aliados.",
+        "15 minutos. Días de semana, hora del Centro. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como aliados.",
       timezoneNote: "Aviso mínimo de 24 horas",
       timeLabel: "Horarios",
       pickDateHint: "Elige una fecha para ver horarios disponibles.",
@@ -307,7 +307,7 @@ export const contactContentI18n = localeContent({
     booking: {
       title: "Reservar una llamada estratégica",
       subtitle:
-        "30 minutos. De lunes a viernes. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como socios.",
+        "15 minutos. Días laborables, hora del Centro. Revisamos qué se está perdiendo, qué conviene arreglar primero y si encajamos como socios.",
       timezoneNote: "Aviso mínimo de 24 horas",
       timeLabel: "Horas",
       pickDateHint: "Elige una fecha para ver huecos libres.",

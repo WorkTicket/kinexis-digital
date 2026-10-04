@@ -1,22 +1,23 @@
 /**
  * Strategy-call booking rules shared by the calendar UI and /api/booking.
  * Times are interpreted in Central Time (America/Chicago).
+ * That zone is Central Daylight Time in summer and Central Standard Time in winter.
  */
 
 export const BOOKING_TIMEZONE = "America/Chicago";
 /** Visitor-facing label — keep plain language, not the IANA id. */
-export const BOOKING_TIMEZONE_LABEL = "Central Standard Time";
-export const BOOKING_DURATION_MINUTES = 30;
+export const BOOKING_TIMEZONE_LABEL = "Central Time";
+export const BOOKING_DURATION_MINUTES = 15;
 /** Minimum lead time before a slot can be booked. */
 export const BOOKING_MIN_LEAD_MS = 24 * 60 * 60 * 1000;
 /** How far ahead visitors can book. */
 export const BOOKING_MAX_DAYS_AHEAD = 45;
 /** Weekday hours (inclusive start, exclusive end of last slot start). */
 export const BOOKING_SLOT_START_HOUR = 9;
-export const BOOKING_SLOT_END_HOUR = 17; // last slot starts at 16:30
+export const BOOKING_SLOT_END_HOUR = 17; // last 15-minute slot starts at 16:45
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
-const TIME_RE = /^([01]\d|2[0-3]):(00|30)$/;
+const TIME_RE = /^([01]\d|2[0-3]):(00|15|30|45)$/;
 
 export type BookingSlot = {
   /** YYYY-MM-DD in BOOKING_TIMEZONE */
@@ -35,7 +36,7 @@ export function formatDateInBookingTz(date: Date): string {
   }).format(date);
 }
 
-/** Convert a Toronto local date+time into a UTC Date. */
+/** Convert a Central wall-clock date and time into a UTC Date. */
 export function bookingSlotToUtc(date: string, time: string): Date {
   if (!DATE_RE.test(date) || !TIME_RE.test(time)) {
     return new Date(NaN);
@@ -74,7 +75,7 @@ export function bookingSlotToUtc(date: string, time: string): Date {
 
 export function isWeekdayInBookingTz(date: string): boolean {
   if (!DATE_RE.test(date)) return false;
-  // Noon UTC on that calendar date is a safe probe for weekday in Toronto.
+  // Noon on that calendar day is a safe probe for the weekday in Central Time.
   const probe = bookingSlotToUtc(date, "12:00");
   if (Number.isNaN(probe.getTime())) return false;
   const weekday = new Intl.DateTimeFormat("en-US", {
@@ -84,12 +85,14 @@ export function isWeekdayInBookingTz(date: string): boolean {
   return weekday !== "Sat" && weekday !== "Sun";
 }
 
-/** Half-hour slot starts for a given calendar day (may include past/too-soon slots). */
+/** 15-minute slot starts for a weekday (may include past or too-soon slots). */
 export function listDaySlotTimes(): string[] {
+  const minutes = ["00", "15", "30", "45"] as const;
   const times: string[] = [];
   for (let hour = BOOKING_SLOT_START_HOUR; hour < BOOKING_SLOT_END_HOUR; hour++) {
-    times.push(`${String(hour).padStart(2, "0")}:00`);
-    times.push(`${String(hour).padStart(2, "0")}:30`);
+    for (const minute of minutes) {
+      times.push(`${String(hour).padStart(2, "0")}:${minute}`);
+    }
   }
   return times;
 }
@@ -187,7 +190,7 @@ export function getMonthGrid(year: number, monthIndex: number): (string | null)[
   // monthIndex: 0-11
   const first = new Date(Date.UTC(year, monthIndex, 1));
   const daysInMonth = new Date(Date.UTC(year, monthIndex + 1, 0)).getUTCDate();
-  // Weekday of the 1st in Toronto — use noon UTC probe for that calendar day
+  // Weekday of the 1st in Central Time.
   const firstDateStr = `${year}-${String(monthIndex + 1).padStart(2, "0")}-01`;
   const probe = bookingSlotToUtc(firstDateStr, "12:00");
   const weekdayName = new Intl.DateTimeFormat("en-US", {

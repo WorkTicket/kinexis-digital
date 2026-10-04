@@ -15,11 +15,12 @@ describe("booking helpers", () => {
     vi.useRealTimers();
   });
 
-  it("lists half-hour weekday slots from 09:00 to 16:30", () => {
+  it("lists 15-minute weekday slots from 09:00 to 16:45", () => {
     const times = listDaySlotTimes();
     expect(times[0]).toBe("09:00");
+    expect(times).toContain("12:15");
     expect(times).toContain("12:30");
-    expect(times.at(-1)).toBe("16:30");
+    expect(times.at(-1)).toBe("16:45");
     expect(times).not.toContain("17:00");
   });
 
@@ -30,7 +31,7 @@ describe("booking helpers", () => {
   });
 
   it("rejects slots sooner than 24 hours", () => {
-    // Freeze "now" to a Tuesday morning Toronto time
+    // Freeze "now" to a Tuesday morning Central Time
     const now = bookingSlotToUtc("2026-08-04", "10:00");
     vi.setSystemTime(now);
 

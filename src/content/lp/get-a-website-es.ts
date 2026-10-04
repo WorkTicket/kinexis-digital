@@ -10,9 +10,9 @@ const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
 const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
 const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20260930c";
 
-/** Short hero/sticky label — long form title stays on the plan section. */
-const CTA = "Obtener mi plan gratis";
-const REPLY = "un día hábil";
+/** Short hero/sticky label. Header uses a shorter label. */
+const CTA = "Reservar llamada de 15 min";
+const REPLY = "Normalmente devolvemos la llamada el mismo día";
 
 export type SoftPricingCopy = {
   pricingTitle: string;
@@ -22,6 +22,12 @@ export type SoftPricingCopy = {
   pricingIntro: string;
   pricingNote: string;
   pricingHighlights: string[];
+  basicName: string;
+  basicPrice: string;
+  basicItems: string[];
+  customName: string;
+  customPrice: string;
+  customItems: string[];
   monthlyTitle: string;
   monthlyCopy: string;
   heroPrice: string;
@@ -35,53 +41,56 @@ export type SoftPricingCopy = {
 export function buildSpanishGetAWebsite(
   pricing: SoftPricingCopy,
 ): LandingPageEntry {
-  const euros = pricing.proofStartMetric.includes("€");
+  const euros = pricing.customPrice.includes("€");
   const money = (amount: string, plus = false) =>
     `${amount}${euros ? " €" : ""}${plus ? "+" : ""}`;
-  const lowLabel = money("500");
-  const highLabel = money("2.000");
 
   return {
     slug: "get-a-website",
     serviceHref: "/services/web-design",
     serviceLabel: "Diseño y desarrollo web",
     metaTitle: "Sitios web a medida para contratistas",
-    metaDescription: `Sitios web a medida para contratistas y negocios de servicios del hogar. Hechos para que el cliente sepa quién eres y pueda llamar o pedir una cotización. Planes desde ${lowLabel} a ${highLabel}.`,
+    metaDescription: `Sitios web a medida para contratistas y negocios de servicios del hogar. Rápidos en el teléfono, hechos para conseguir llamadas, y el sitio es tuyo. ${pricing.pricingTitle}`,
     badge: "Sitios web a medida para contratistas",
-    headline:
-      "Tu negocio ha crecido. Tu sitio web debería mostrarlo.",
+    headline: "Un sitio web hecho para traerte más negocio",
     headlineAccent: "",
     headlineLines: [
-      "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      "Un sitio web hecho para",
+      "traerte más negocio",
     ],
-    marketLine:
-      "Sitios web a medida para contratistas y negocios de servicios del hogar.",
+    marketLine: "Trabajamos con contratistas en todo Estados Unidos.",
     subheadline:
-      "Los clientes te buscan antes de llamar. Construimos sitios a medida para que la primera impresión coincida con el trabajo que ya haces, y pedir una cotización sea obvio.",
+      "Sitios web a medida para contratistas y negocios de servicios del hogar. Rápidos, pensados para el teléfono, listos para búsqueda, y hechos para convertir visitas en llamadas y cotizaciones.",
     heroCtaLabel: CTA,
-    headerCtaLabel: "Obtener mi plan de sitio web",
-    heroFinePrint: `Sin compromiso. Respondemos en ${REPLY} con lo que una reconstrucción debería arreglar primero.`,
+    headerCtaLabel: "Llamada de 15 min",
+    heroFinePrint: `${pricing.pricingDelivery} Sin compromiso. ${REPLY}.`,
     heroPrice: pricing.heroPrice,
-    heroMeta: [
-      "Hecho a medida, no una plantilla genérica",
-      "Diseñado para el teléfono en su mano",
-      "El sitio es tuyo",
-    ],
+    heroMeta: ["A medida", "Sin plantillas", "El sitio es tuyo"],
+    heroPortrait: {
+      src: "/assets/images/lp/colton-wehr-819.webp?v=20261004s",
+      srcSet:
+        "/assets/images/lp/colton-wehr-480.webp?v=20261004s 480w, /assets/images/lp/colton-wehr-640.webp?v=20261004s 640w, /assets/images/lp/colton-wehr-819.webp?v=20261004s 676w",
+      sizes: "(max-width: 767px) 78vw, min(34rem, 42vw)",
+      alt: "Colton Wehr, diseñador y desarrollador web principal en KINEXIS",
+      width: 676,
+      height: 819,
+      name: "Colton Wehr",
+      role: "Diseñador y desarrollador web principal",
+    },
     heroStill: {
       src: A1_DESKTOP,
       mobileSrc: A1_MOBILE,
       alt: "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
     },
 
-    formTitle: "Obtén tu plan gratis de sitio web",
-    formSubtitle: `Cuéntanos del negocio y del sitio que tienes ahora. En ${REPLY} te respondemos con lo que te está costando llamadas, y qué implicaría una reconstrucción a medida.`,
-    submitLabel: "Enviar mi solicitud de plan",
+    formTitle: "Reserva una llamada de proyecto de 15 minutos",
+    formSubtitle: `Cuéntanos del negocio y del sitio que tienes ahora. ${REPLY}.`,
+    submitLabel: "Reservar mi llamada",
     continueLabel: "Continuar",
-    formCtaHint: `Sin compromiso. Respondemos en ${REPLY}.`,
+    formCtaHint: `Sin compromiso. ${pricing.pricingTitle} ${REPLY}.`,
     formFootnote:
-      "Usamos tu información para responder a tu solicitud de plan de sitio web.",
-    formAsideTitle: "Qué cubre el plan",
+      "Usamos tu información para dar seguimiento a esta llamada.",
+    formAsideTitle: "Qué cubre la llamada",
     formAsideSubtitle:
       "Si ya tienes un sitio, revisamos las páginas que la gente realmente usa: cómo se siente en el teléfono, si los servicios están claros, y si llamar o pedir cotización es obvio.",
     formStep1Title: "Sobre el negocio",
@@ -90,24 +99,26 @@ export function buildSpanishGetAWebsite(
     noWebsiteLabel: "Todavía no tengo un sitio web",
     noWebsiteStatus:
       "Sitio omitido. Indicaste que todavía no tienes un sitio web.",
-    investmentLabel: "¿Cuánto puedes invertir?",
+    investmentLabel: "Presupuesto",
     timelineLabel: "¿Cuándo quieres empezar?",
-    industryLabel: "¿Qué tipo de trabajo haces?",
-    websiteStatusLabel: "¿Qué es cierto del sitio actual?",
+    roleLabel: "Tu rol",
+    industryLabel: "Tipo de trabajo",
+    websiteStatusLabel: "Sitio actual",
     goalLabel: "¿Qué debería lograr este sitio primero?",
     contactMethodLabel: "Mejor forma de contactarte",
     notesLabel: "¿Algo más que debamos saber?",
     notesPlaceholder:
       "Pueblos que cubres, servicios que tienen que estar en el sitio, o qué te frustra del actual.",
     consentLabel:
-      "Acepto que me contacten sobre esta solicitud de plan de sitio web. Usaremos los datos de arriba para dar seguimiento.",
-    privacyMicrocopy:
-      "Usamos tu información para responder a tu solicitud de plan de sitio web.",
-    successTitle: "Recibimos tu solicitud",
-    successCopy: `Gracias. Revisaremos el sitio actual, o las notas que enviaste, y responderemos en ${REPLY} con lo que una reconstrucción debería arreglar primero. Si prefieres hablarlo, puedes agendar una llamada abajo.`,
+      "Acepto que me contacten sobre esta llamada de proyecto. Usaremos los datos de arriba para dar seguimiento.",
+    privacyMicrocopy: "Usamos tu información para dar seguimiento a esta llamada.",
+    successTitle: "Te llamamos",
+    successCopy: "Tus datos ya están. Normalmente devolvemos la llamada el mismo día.",
+    calendarTitle: "Elige un horario de 15 minutos",
+    calendarSubtitle: `Hora del Centro, días de semana. ${REPLY} si ninguno de estos te sirve.`,
     inlineThankYou: true,
     bookingHref: "/contact",
-    bookingCtaLabel: "Agendar una llamada de estrategia web",
+    bookingCtaLabel: CTA,
 
     planHasSiteTitle: "Si ya tienes un sitio web",
     planHasSiteItems: [
@@ -129,20 +140,22 @@ export function buildSpanishGetAWebsite(
       {
         title: "Nos cuentas del negocio",
         detail:
-          "El trabajo que haces, a quién sirves, y qué debería hacer el visitante después.",
+          "El trabajo que haces, a quién sirves, y qué debe hacer el visitante.",
       },
       {
-        title: "Te enviamos un plan de sitio web",
-        detail: `En ${REPLY}: qué está débil ahora, qué cambiar primero, y cómo debería estructurarse el sitio.`,
+        title: "Elige un horario si estás listo",
+        detail:
+          "Dueños que empiezan en 3 meses ven el calendario. Los demás, una nota.",
       },
       {
         title: "Recibes una recomendación clara",
-        detail: "Alcance y precio por escrito antes de que alguien empiece a construir.",
+        detail:
+          "Alcance y precio por escrito antes de que alguien empiece a construir.",
       },
     ],
     formTrust: [
       "Sin compromiso",
-      `Respuesta en ${REPLY}`,
+      REPLY,
       "Sirve con o sin sitio actual",
       "El sitio es tuyo",
     ],
@@ -169,12 +182,16 @@ export function buildSpanishGetAWebsite(
       { value: "landscaping", label: "Paisajismo" },
       { value: "other-home-service", label: "Otro servicio del hogar" },
     ],
+    roleOptions: [
+      { value: "owner", label: "Dueño" },
+      { value: "partner", label: "Socio" },
+      { value: "manager", label: "Gerente" },
+      { value: "employee", label: "Empleado" },
+    ],
     websiteStatusOptions: [
-      { value: "none", label: "No tenemos uno" },
-      { value: "outdated", label: "Se ve anticuado" },
-      { value: "mobile", label: "Es difícil de usar en el teléfono" },
-      { value: "inquiries", label: "No está trayendo suficientes llamadas" },
-      { value: "redesign", label: "Necesitamos un rediseño completo" },
+      { value: "none", label: "Ninguno" },
+      { value: "outdated", label: "Desactualizado" },
+      { value: "not-bringing-calls", label: "No está trayendo llamadas" },
     ],
     goalOptions: [
       { value: "calls", label: "Más llamadas" },
@@ -183,15 +200,14 @@ export function buildSpanishGetAWebsite(
       { value: "search", label: "Aparecer mejor en búsqueda" },
     ],
     budgetOptions: [
-      { value: "500-2000", label: `${money("500")}–${money("2.000")}` },
-      { value: "2000-3000", label: `${money("2.000")}–${money("3.000")}` },
-      { value: "3000-5000", label: `${money("3.000")}–${money("5.000")}` },
-      { value: "not-sure", label: "Aún no estoy seguro" },
+      { value: "500-1999", label: `${money("500")}–${money("1.999")}` },
+      { value: "2000-4999", label: `${money("2.000")}–${money("4.999")}` },
+      { value: "5000-plus", label: `${money("5.000", true)}` },
     ],
     timelineOptions: [
-      { value: "30-days", label: "En los próximos 30 días" },
-      { value: "1-3-months", label: "De uno a tres meses" },
-      { value: "3-plus-months", label: "Más de tres meses" },
+      { value: "30-days", label: "Próximos 30 días" },
+      { value: "1-3-months", label: "1 a 3 meses" },
+      { value: "researching", label: "Solo estoy investigando" },
     ],
     contactMethodOptions: [
       { value: "email", label: "Correo" },
@@ -202,26 +218,26 @@ export function buildSpanishGetAWebsite(
     outcomes: [
       {
         title: "Verse establecido",
-        body: "Se ve establecida\ncomo tu empresa",
+        body: "Una imagen que coincide con la empresa que ya tienes.",
       },
       {
         title: "Generar consultas",
-        body: "Para llamar y cotizar\nsin tener que buscar",
+        body: "Llamar y cotizar queda donde el visitante lo encuentra.",
       },
       {
         title: "Cargar rápido",
-        body: "Rápido en el teléfono\nno solo en la oficina",
+        body: "Rápido en el teléfono, que es donde te buscan.",
       },
       {
         title: "Ser dueño de tu sitio",
-        body: "Sigue siendo tuyo.\nSin un constructor.",
+        body: "El sitio sigue siendo tuyo. No queda en un constructor.",
       },
     ],
 
     painEyebrow: "Primero te buscan",
     painTitle: "Un sitio débil puede hacer que un negocio fuerte se vea pequeño",
     painSubtitle:
-      "Dueños de casa y administradores de propiedades revisan el sitio antes de marcar. Si se ve genérico, carga lento u oculta el número, una empresa capaz puede parecer un trabajo secundario. Reconstruimos esa primera impresión alrededor del trabajo que realmente haces, los pueblos que cubres, y un siguiente paso que la gente pueda tomar sin buscarlo.",
+      "Los dueños de casa y los administradores revisan el sitio antes de llamar. Si se ve genérico, carga lento u oculta el número, un equipo capaz puede parecer un trabajo de lado. Reconstruimos esa página alrededor del trabajo que haces, los pueblos que cubres, y un siguiente paso que se encuentre.",
     transformTitle: "Qué cambia una reconstrucción",
     transformBefore: {
       title: "Lo que ven ahora",
@@ -257,7 +273,7 @@ export function buildSpanishGetAWebsite(
     samples: [
       {
         image: A1_DESKTOP,
-        deviceShot: "/assets/images/lp/a1-devices.webp?v=20260930d",
+        deviceShot: "/assets/images/lp/a1-devices.webp?v=20261004t",
         imageAlt:
           "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
         client: "A1 Property Services",
@@ -271,11 +287,11 @@ export function buildSpanishGetAWebsite(
         summary:
           "Una empresa de paisajismo en Cedar Falls había superado un sitio de folleto. Lo reconstruimos alrededor de páginas de servicio, estructura local, y un camino de cotización que funciona en el teléfono.",
         metric: "10 → 28",
-        label: "leads calificados / mes",
+        label: "leads/mes",
       },
       {
         image: PLUMBING_DESKTOP,
-        deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20260930e",
+        deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261004t",
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",
@@ -289,7 +305,7 @@ export function buildSpanishGetAWebsite(
         summary:
           "Una empresa de plomería y construcción necesitaba un sitio que dejara los servicios claros y hiciera de llamar desde el teléfono el siguiente paso natural.",
         metric: "22 → 52",
-        label: "llamadas de emergencia / mes",
+        label: "llamadas de emergencia/mes",
       },
       {
         image: MANOS_DESKTOP,
@@ -313,57 +329,57 @@ export function buildSpanishGetAWebsite(
 
     buildTitle: "Qué tiene que incluir el sitio de un contratista",
     ownershipStatement:
-      "El sitio es tuyo. Sin constructor propietario, y sin un rescate mensual para mantener tus propias páginas en línea.",
+      "El sitio terminado es tuyo. No quedas atado a un constructor, y no pagas una cuota mensual solo para mantener tus páginas en línea.",
     sellPoints: [
       {
         title: "Hecho alrededor de tu empresa",
-        body: "Diseñado para el trabajo que haces, no un tema con tu logo puesto encima.",
+        body: "Partimos del trabajo que haces, no de un tema con tu logo encima.",
       },
       {
         title: "Funciona en el teléfono",
-        body: "La mayoría de clientes te buscan desde una camioneta, la cocina o una obra.",
+        body: "La mayoría te busca desde una camioneta, la cocina o la obra.",
       },
       {
         title: "Facilita llamar",
-        body: "Los servicios están claros. Llamada y cotización donde el pulgar los encuentra.",
+        body: "Los servicios están claros, y llamar o cotizar queda al alcance del pulgar.",
       },
       {
         title: "Se mantiene rápido",
-        body: "Páginas ligeras para que la gente no se vaya mientras el sitio sigue cargando.",
+        body: "Las páginas pesan poco, así la gente no se va mientras el sitio carga.",
       },
       {
         title: "Listo para búsqueda",
-        body: "Páginas de servicio, metadatos y lo técnico básico que Google realmente necesita.",
+        body: "Páginas de servicio, y lo básico que Google necesita para entender el trabajo.",
       },
       {
         title: "Medido desde el día uno",
-        body: "Podrás ver si el sitio produce consultas, no solo visitas.",
+        body: "Puedes ver si el sitio trae consultas, no solo visitas.",
       },
     ],
 
     processTitle: "Cómo corre realmente una reconstrucción",
     processIntro:
-      "Ves el plan antes de que escribamos una línea de código. Apruebas la estructura antes de que se construya el sitio.",
+      "Ves el alcance y el precio antes de que escribamos una línea de código. Apruebas la estructura antes de que se construya el sitio.",
     process: [
       {
-        title: "Plan de sitio web",
+        title: "Llamada de proyecto",
         detail:
-          "Revisamos el sitio actual, el trabajo que haces, y qué debería hacer el visitante después.",
+          "Revisamos tu sitio, el trabajo que haces, y qué debería pasar después.",
       },
       {
         title: "Estructura y diseño",
         detail:
-          "Páginas, servicios y el aspecto del sitio, aprobados antes de construirlo.",
+          "Apruebas las páginas, los servicios y el aspecto antes de construirlo.",
       },
       {
         title: "Desarrollo",
         detail:
-          "Construimos el diseño aprobado en código a medida. No un page builder.",
+          "Construimos ese diseño aprobado en código a medida. No un page builder.",
       },
       {
         title: "Lanzamiento y medición",
         detail:
-          "El sitio sale en vivo, se conecta la analítica, y se revisan los caminos de llamada y cotización.",
+          "Lanzamos el sitio, conectamos la medición y revisamos llamada y cotización.",
       },
     ],
 
@@ -374,7 +390,7 @@ export function buildSpanishGetAWebsite(
       "El sitio actual no refleja el trabajo",
       "El negocio ha superado un sitio básico",
       "Quieres un sitio a medida del que la empresa sea dueña",
-      `Estás preparado para invertir en un sitio a medida (planes desde ${lowLabel})`,
+      `Listo para invertir. ${pricing.pricingTitle}`,
       "Puedes enviar fotos, servicios y feedback",
     ],
     fitNotTitle: "Probablemente no es encaje si",
@@ -393,7 +409,21 @@ export function buildSpanishGetAWebsite(
     pricingNote: pricing.pricingNote,
     pricingHighlights: pricing.pricingHighlights,
     pricingAddOns: [],
-    pricing: [],
+    pricing: [
+      {
+        name: pricing.basicName,
+        price: pricing.basicPrice,
+        body: "Un sitio más corto para un equipo que necesita que suene el teléfono.",
+        items: pricing.basicItems,
+      },
+      {
+        name: pricing.customName,
+        price: pricing.customPrice,
+        body: "Un sitio de varias páginas, hecho alrededor del trabajo y las zonas que cubres.",
+        items: pricing.customItems,
+        featured: true,
+      },
+    ],
 
     monthlyTitle: pricing.monthlyTitle,
     monthlyCopy: pricing.monthlyCopy,
@@ -408,15 +438,15 @@ export function buildSpanishGetAWebsite(
     proof: [
       { metric: "A medida", label: "No es plantilla" },
       { metric: "Es tuyo", label: "Sin atarte a un builder" },
-      { metric: pricing.proofStartMetric, label: "rango de planes" },
+      { metric: pricing.proofStartMetric, label: "la mayoría sale en vivo" },
       { metric: "Opcional", label: pricing.proofSupportLabel },
     ],
     bulletsTitle: "Lo que realmente obtienes",
     bullets: [],
 
-    closingTitle: "Obtén tu plan gratis de sitio web",
-    closingCopy: `Si el sitio actual está vendiendo de menos al negocio, envía los detalles. Respondemos en ${REPLY} con lo que una reconstrucción debería arreglar primero.`,
-    closingFinePrint: `Sin compromiso. Planes desde ${lowLabel} a ${highLabel}. Respuesta en ${REPLY}.`,
+    closingTitle: "Reserva una llamada de proyecto de 15 minutos",
+    closingCopy: `Si el sitio actual está vendiendo de menos al equipo, envía los detalles. ${REPLY}.`,
+    closingFinePrint: `Sin compromiso. ${pricing.pricingTitle} ${REPLY}.`,
 
     faqs: [
       {
@@ -425,17 +455,17 @@ export function buildSpanishGetAWebsite(
       },
       {
         question: "¿Qué tan pronto me responden?",
-        answer: `En ${REPLY}. Revisamos el sitio actual, o las notas que enviaste, y volvemos con lo que una reconstrucción debería arreglar primero.`,
+        answer: `${REPLY}. Revisamos el sitio actual, o las notas que enviaste, y volvemos con lo que una reconstrucción debería arreglar primero.`,
       },
       {
         question: "¿Es una plantilla de WordPress?",
         answer:
-          "No. Son sitios a medida, construidos con Next.js y Tailwind CSS. No un tema que podrías comprar, ni un page builder.",
+          "No. Los construimos en código a medida, con Next.js y Tailwind. No un tema que se compra, ni un page builder.",
       },
       {
         question: "¿Seré dueño de mi sitio web?",
         answer:
-          "Sí. Eres dueño del sitio terminado. No quedas atado a un constructor propietario, y no pagas un rescate mensual para mantener tus propias páginas en línea.",
+          "Sí. El sitio terminado es tuyo. No quedas atado a un constructor, y no pagas una cuota mensual solo para mantener tus páginas en línea.",
       },
       {
         question: "¿El hosting está incluido?",
@@ -444,7 +474,7 @@ export function buildSpanishGetAWebsite(
       {
         question: "¿El SEO está incluido?",
         answer:
-          "El proyecto incluye una base técnica y on-page de SEO: estructura de servicios, metadatos y lo básico de indexación. SEO continuo y contenido son una conversación aparte.",
+          "La construcción incluye la base de búsqueda: páginas de servicio, títulos y lo básico de indexación. El SEO continuo es una conversación aparte.",
       },
       {
         question: "¿Pueden rediseñar mi sitio actual?",
@@ -454,7 +484,7 @@ export function buildSpanishGetAWebsite(
       {
         question: "¿Cuánto dura un proyecto?",
         answer:
-          "La mayoría de sitios para contratistas quedan en unas 6 a 12 semanas. Depende de qué tan rápido vuelvan el contenido y el feedback. No cotizamos un número más corto solo para ganar el clic.",
+          `${pricing.pricingDelivery} Depende de qué tan rápido vuelvan las fotos y el feedback.`,
       },
       {
         question: "¿Tengo que comprar mantenimiento mensual?",

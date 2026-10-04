@@ -20,9 +20,9 @@ describe("getLcpImagePreload", () => {
     expect(getLcpImagePreload("/en")).toBeNull();
   });
 
-  it("preloads the website lander hero mockup photo", () => {
-    expect(getLcpImagePreload("/lp/get-a-website")).toMatch(/lp\/a1-mobile/);
-    expect(getLcpImagePreload("/en/lp/get-a-website")).toMatch(/lp\/a1-mobile/);
-    expect(getLcpImagePreload("/es/lp/get-a-website")).toMatch(/lp\/a1-mobile/);
+  it("does not preload a device mockup on the contractor lander", () => {
+    expect(getLcpImagePreload("/lp/get-a-website")).toBeNull();
+    expect(getLcpImagePreload("/en/lp/get-a-website")).toBeNull();
+    expect(getLcpImagePreload("/es/lp/get-a-website")).toBeNull();
   });
 });

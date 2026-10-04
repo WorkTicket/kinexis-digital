@@ -288,6 +288,22 @@ export type LandingPageEntry = {
   budgetOptions?: LandingPageOption[];
   /** "When are you looking to start?" on the two-step qualify form. */
   timelineOptions?: LandingPageOption[];
+  roleLabel?: string;
+  roleOptions?: LandingPageOption[];
+  /** Shown above the inline calendar for qualified project-call leads. */
+  calendarTitle?: string;
+  calendarSubtitle?: string;
+  /** Real photo in the hero, in place of a device mockup. */
+  heroPortrait?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    srcSet?: string;
+    sizes?: string;
+    name?: string;
+    role?: string;
+  };
   /** Four outcome tiles under the hero (aside.lp-web-outcomes). */
   outcomes?: LandingPageOutcome[];
   /** Ownership line under the build chapter. */

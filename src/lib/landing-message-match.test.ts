@@ -28,6 +28,8 @@ describe("resolveLandingMessage", () => {
     });
     expect(message.marketKey).toBe("raleigh");
     expect(message.marketLine).toBe(LANDING_MARKETS.raleigh);
+    expect(message.marketLine).toBe("Working with contractors across the U.S.");
+    expect(message.marketLine).not.toMatch(/raleigh/i);
     expect(message.marketLine).not.toContain("raleigh_contractors");
   });
 
@@ -53,8 +55,8 @@ describe("resolveLandingMessage", () => {
   it("serves Spanish headline and market copy for Spanish locales", () => {
     const latam = resolveLandingMessage({ locale: "es-419" });
     expect(latam.headlineLines).toEqual([
-      "Tu negocio ha crecido.",
-      "Tu sitio web debería mostrarlo.",
+      "Un sitio web hecho para",
+      "traerte más negocio",
     ]);
     expect(latam.marketLine).toMatch(/contratistas/);
 

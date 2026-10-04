@@ -45,6 +45,9 @@ export async function POST(request: Request) {
       budget,
       need,
       timeline,
+      role,
+      industry,
+      websiteStatus,
       goal,
       score,
       source,
@@ -110,6 +113,18 @@ export async function POST(request: Request) {
     if (timeline && String(timeline).length > 80) {
       return NextResponse.json({ error: "Timeline value is too long." }, { status: 400 });
     }
+    if (role && String(role).length > 80) {
+      return NextResponse.json({ error: "Role value is too long." }, { status: 400 });
+    }
+    if (industry && String(industry).length > 80) {
+      return NextResponse.json({ error: "Industry value is too long." }, { status: 400 });
+    }
+    if (websiteStatus && String(websiteStatus).length > 80) {
+      return NextResponse.json(
+        { error: "Website status is too long." },
+        { status: 400 },
+      );
+    }
     if (businessName && String(businessName).length > 200) {
       return NextResponse.json(
         { error: "Business name is too long." },
@@ -142,6 +157,9 @@ export async function POST(request: Request) {
     const safeBusinessName = businessName ? String(businessName).trim() : "";
     const safeNeed = need ? String(need) : "";
     const safeTimeline = timeline ? String(timeline) : "";
+    const safeRole = role ? String(role) : "";
+    const safeIndustry = industry ? String(industry) : "";
+    const safeWebsiteStatus = websiteStatus ? String(websiteStatus) : "";
     const safeLandingSlug =
       landingSlug && /^[a-z0-9-]{1,80}$/.test(String(landingSlug))
         ? String(landingSlug)
@@ -180,6 +198,9 @@ export async function POST(request: Request) {
       safeLandingSlug ? emailRow("Landing page", `/lp/${safeLandingSlug}`) : "",
       emailRow("Revenue", leadData.revenue),
       emailRow("Budget", leadData.budget),
+      safeRole ? emailRow("Role", safeRole) : "",
+      safeIndustry ? emailRow("Type of work", safeIndustry) : "",
+      safeWebsiteStatus ? emailRow("Current website", safeWebsiteStatus) : "",
       safeNeed ? emailRow("Need", safeNeed) : "",
       safeTimeline ? emailRow("Timeline", safeTimeline) : "",
       emailRow("Goal", leadData.goal),
@@ -208,6 +229,9 @@ export async function POST(request: Request) {
           safeLandingSlug ? `Landing page: /lp/${safeLandingSlug}` : "",
           `Revenue: ${leadData.revenue}`,
           `Budget: ${leadData.budget}`,
+          safeRole ? `Role: ${safeRole}` : "",
+          safeIndustry ? `Type of work: ${safeIndustry}` : "",
+          safeWebsiteStatus ? `Current website: ${safeWebsiteStatus}` : "",
           safeNeed ? `Need: ${safeNeed}` : "",
           safeTimeline ? `Timeline: ${safeTimeline}` : "",
           `Goal: ${leadData.goal}`,

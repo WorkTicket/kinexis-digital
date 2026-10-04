@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/Button";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { Link } from "@/i18n/navigation";
@@ -10,13 +11,22 @@ import {
   createMetaEventId,
   stashPendingConversion,
 } from "@/lib/analytics/pending-conversion";
-import { navigateAfterSubmit } from "@/lib/in-app-browser";
+import { qualifiesForProjectCall } from "@/lib/project-call";
 import { isWebsiteValue } from "@/lib/website-url";
-import { useRouter } from "@/i18n/navigation";
+import { getContactContent } from "@/content/contact";
+import { useLocale } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
-import type { LandingPageEntry } from "@/content/registry/landing-pages";
+import type { LandingPageEntry, LandingPageOption } from "@/content/registry/landing-pages";
+import type { Locale } from "@/i18n/routing";
 
-const THANK_YOU_DELAY_MS = 2200;
+const ProjectCallCalendar = dynamic(
+  () =>
+    import("@/components/contact/StrategyCallBooking").then(
+      (mod) => mod.StrategyCallBooking,
+    ),
+  { ssr: false },
+);
+
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type FieldName =
@@ -26,7 +36,10 @@ type FieldName =
   | "email"
   | "phone"
   | "budget"
-  | "timeline";
+  | "timeline"
+  | "role"
+  | "industry"
+  | "websiteStatus";
 
 type FieldErrors = Partial<Record<FieldName, string>>;
 
@@ -61,6 +74,56 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
+function optionLabel(options: LandingPageOption[] | undefined, value: string) {
+  return options?.find((option) => option.value === value)?.label ?? value;
+}
+
+function ChoiceSet({
+  id,
+  legend,
+  name,
+  options,
+  value,
+  error,
+  onChange,
+}: {
+  id: string;
+  legend: string;
+  name: string;
+  options: LandingPageOption[];
+  value: string;
+  error?: string;
+  onChange: (next: string) => void;
+}) {
+  return (
+    <fieldset
+      className="form-choice-set lp-web-form__fieldset"
+      aria-invalid={Boolean(error)}
+      aria-describedby={error ? `${id}-error` : undefined}
+    >
+      <legend className="form-label">
+        {legend}
+        <span aria-hidden> *</span>
+      </legend>
+      <div className="lp-web-form__choices" id={id}>
+        {options.map((option) => (
+          <label key={option.value} className="lp-web-form__choice">
+            <input
+              type="radio"
+              name={name}
+              value={option.value}
+              checked={value === option.value}
+              onChange={() => onChange(option.value)}
+            />
+            <span>{option.label}</span>
+          </label>
+        ))}
+      </div>
+      <FieldError id={`${id}-error`} message={error} />
+    </fieldset>
+  );
+}
+
 function firstErrorField(
   errors: FieldErrors,
   order: FieldName[],
@@ -69,7 +132,7 @@ function firstErrorField(
 }
 
 export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
-  const router = useRouter();
+  const locale = useLocale() as Locale;
   const liveId = useId();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const twoStep = page.twoStepQualify !== false;
@@ -80,11 +143,13 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   const [name, setName] = useState("");
   const [businessName, setBusinessName] = useState("");
   const [website, setWebsite] = useState("");
-  const [noWebsite, setNoWebsite] = useState(false);
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [budget, setBudget] = useState("");
   const [timeline, setTimeline] = useState("");
+  const [role, setRole] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [websiteStatus, setWebsiteStatus] = useState("");
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
   >("idle");
@@ -94,11 +159,13 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   const nameId = `${id}-name`;
   const businessId = `${id}-business`;
   const websiteId = `${id}-website`;
-  const noWebsiteId = `${id}-no-website`;
   const emailId = `${id}-email`;
   const phoneId = `${id}-phone`;
   const budgetId = `${id}-budget`;
   const timelineId = `${id}-timeline`;
+  const roleId = `${id}-role`;
+  const industryId = `${id}-industry`;
+  const websiteStatusId = `${id}-website-status`;
 
   const markStarted = () => {
     if (started.current) return;
@@ -108,6 +175,14 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       placement: "plan-form",
     });
   };
+
+  useEffect(() => {
+    if (status !== "success") return;
+    document.getElementById("lp-form")?.scrollIntoView({
+      block: "start",
+      behavior: "smooth",
+    });
+  }, [status]);
 
   useEffect(() => {
     const onLeave = () => {
@@ -130,6 +205,9 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       phone: phoneId,
       budget: budgetId,
       timeline: timelineId,
+      role: roleId,
+      industry: industryId,
+      websiteStatus: websiteStatusId,
     };
     const node = document.getElementById(map[field]);
     if (node instanceof HTMLElement) {
@@ -144,9 +222,22 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
     if (page.businessNameRequired && !businessName.trim()) {
       next.businessName = "Enter your business name.";
     }
-    if (!noWebsite && website.trim() && !isWebsiteValue(website)) {
-      next.website =
-        "Enter a valid website, or check the box if you don't have one yet.";
+    if (page.roleOptions?.length && !role) {
+      next.role = "Select your role.";
+    }
+    if (page.industryOptions?.length && !industry) {
+      next.industry = "Select the type of work.";
+    }
+    if (page.websiteStatusOptions?.length && !websiteStatus) {
+      next.websiteStatus = "Select what's true of the current website.";
+    }
+    if (
+      websiteStatus &&
+      websiteStatus !== "none" &&
+      website.trim() &&
+      !isWebsiteValue(website)
+    ) {
+      next.website = "Enter a valid website, or leave it blank.";
     }
     return next;
   };
@@ -210,10 +301,22 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
           email: email.trim(),
           phone: phone.trim() || undefined,
           businessName: businessName.trim() || undefined,
-          website: noWebsite ? undefined : website.trim() || undefined,
+          website:
+            websiteStatus === "none" ? undefined : website.trim() || undefined,
           websiteRequired: false,
-          budget: budget || undefined,
-          timeline: timeline || undefined,
+          budget: budget
+            ? optionLabel(page.budgetOptions, budget)
+            : undefined,
+          timeline: timeline
+            ? optionLabel(page.timelineOptions, timeline)
+            : undefined,
+          role: role ? optionLabel(page.roleOptions, role) : undefined,
+          industry: industry
+            ? optionLabel(page.industryOptions, industry)
+            : undefined,
+          websiteStatus: websiteStatus
+            ? optionLabel(page.websiteStatusOptions, websiteStatus)
+            : undefined,
           service: page.serviceLabel,
           source: "landing-page",
           landingSlug: page.slug,
@@ -229,10 +332,6 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
         const data = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(data.error || "Something went wrong. Please try again.");
       }
-
-      const thankYouPath =
-        page.successHref ??
-        (page.conversionKind === "audit" ? "/thank-you/audit" : "/thank-you");
 
       const conversionOpts = {
         email: email.trim(),
@@ -259,9 +358,6 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       }
       submitted.current = true;
       setStatus("success");
-      window.setTimeout(() => {
-        navigateAfterSubmit(thankYouPath, router);
-      }, THANK_YOU_DELAY_MS);
     } catch (err) {
       submitLock.current = false;
       setFormError(
@@ -280,7 +376,14 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
     if (twoStep && step === 1) {
       const next = validateStep1();
       if (Object.keys(next).length) {
-        reportErrors(next, ["name", "businessName", "website"]);
+        reportErrors(next, [
+          "name",
+          "businessName",
+          "role",
+          "industry",
+          "websiteStatus",
+          "website",
+        ]);
         return;
       }
       setErrors({});
@@ -299,15 +402,51 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   };
 
   if (status === "success") {
+    const showCalendar = qualifiesForProjectCall(role, timeline);
+    if (!showCalendar) {
+      return (
+        <div className="lp-web-form__success" role="status" aria-live="polite">
+          <h3 className="lp-web-form__success-title">
+            {page.successTitle ?? "Thanks"}
+          </h3>
+          <p className="lp-web-form__success-copy">
+            {page.successCopy ?? "We'll be in touch."}
+          </p>
+        </div>
+      );
+    }
+
+    const contact = getContactContent(locale);
+    const notes = [
+      businessName.trim() ? `Business: ${businessName.trim()}` : "",
+      `Role: ${optionLabel(page.roleOptions, role)}`,
+      `Type of work: ${optionLabel(page.industryOptions, industry)}`,
+      `Current website: ${optionLabel(page.websiteStatusOptions, websiteStatus)}`,
+      websiteStatus !== "none" && website.trim() ? `URL: ${website.trim()}` : "",
+      `Budget: ${optionLabel(page.budgetOptions, budget)}`,
+      `Start: ${optionLabel(page.timelineOptions, timeline)}`,
+      phone.trim() ? `Phone: ${phone.trim()}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
     return (
       <div className="lp-web-form__success" role="status" aria-live="polite">
-        <h3 className="lp-web-form__success-title">
-          {page.successTitle ?? "We've got it."}
-        </h3>
-        <p className="lp-web-form__success-copy">
-          {page.successCopy ??
-            "Your request has been received. We'll review the information you sent and follow up using the contact details you provided."}
-        </p>
+        <ProjectCallCalendar
+          stayOnPage
+          preset={{ name: name.trim(), email: email.trim(), notes }}
+          content={{
+            ...contact,
+            booking: {
+              ...contact.booking,
+              title: page.calendarTitle ?? "Pick a 15-minute time",
+              subtitle:
+                page.calendarSubtitle ??
+                "Central Time. Weekdays. 15 minutes.",
+              submitButton: "Confirm this time",
+            },
+          }}
+        />
       </div>
     );
   }
@@ -377,13 +516,64 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
                 message={errors.businessName}
               />
             </div>
-            {noWebsite ? (
-              <p id={`${websiteId}-status`} className="sr-only">
-                Website skipped. You indicated you do not have a website yet.
-              </p>
-            ) : (
+            {page.roleOptions?.length ? (
+              <ChoiceSet
+                id={roleId}
+                legend={page.roleLabel ?? "Your role"}
+                name={`${id}-role`}
+                options={page.roleOptions}
+                value={role}
+                error={errors.role}
+                onChange={setRole}
+              />
+            ) : null}
+            {page.industryOptions?.length ? (
               <div className="lp-web-form__field">
-                <FieldLabel htmlFor={websiteId}>Current website</FieldLabel>
+                <FieldLabel htmlFor={industryId} required>
+                  {page.industryLabel ?? "Type of work"}
+                </FieldLabel>
+                <select
+                  id={industryId}
+                  name="industry"
+                  required
+                  value={industry}
+                  onChange={(event) => setIndustry(event.target.value)}
+                  className="form-select"
+                  aria-invalid={Boolean(errors.industry)}
+                  aria-describedby={
+                    errors.industry ? `${industryId}-error` : undefined
+                  }
+                >
+                  <option value="">Select</option>
+                  {page.industryOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+                <FieldError
+                  id={`${industryId}-error`}
+                  message={errors.industry}
+                />
+              </div>
+            ) : null}
+            {page.websiteStatusOptions?.length ? (
+              <ChoiceSet
+                id={websiteStatusId}
+                legend={page.websiteStatusLabel ?? "Current website"}
+                name={`${id}-website-status`}
+                options={page.websiteStatusOptions}
+                value={websiteStatus}
+                error={errors.websiteStatus}
+                onChange={(next) => {
+                  setWebsiteStatus(next);
+                  if (next === "none") setWebsite("");
+                }}
+              />
+            ) : null}
+            {websiteStatus && websiteStatus !== "none" ? (
+              <div className="lp-web-form__field">
+                <FieldLabel htmlFor={websiteId}>Website address</FieldLabel>
                 <input
                   type="text"
                   id={websiteId}
@@ -400,27 +590,7 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
                 />
                 <FieldError id={`${websiteId}-error`} message={errors.website} />
               </div>
-            )}
-            <label className="lp-web-form__check" htmlFor={noWebsiteId}>
-              <input
-                type="checkbox"
-                id={noWebsiteId}
-                checked={noWebsite}
-                onChange={(event) => {
-                  setNoWebsite(event.target.checked);
-                  if (event.target.checked) {
-                    setWebsite("");
-                    setErrors((current) => {
-                      if (!current.website) return current;
-                      const next = { ...current };
-                      delete next.website;
-                      return next;
-                    });
-                  }
-                }}
-              />
-              <span>{page.noWebsiteLabel ?? "I don't have a website yet"}</span>
-            </label>
+            ) : null}
           </>
         ) : (
           <>
