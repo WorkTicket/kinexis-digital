@@ -193,6 +193,18 @@ describe("get-a-website landing page", () => {
     expect(page?.heroPortrait?.name).toBe("Colton Wehr");
     expect(page?.heroPortrait?.role).toBe("Lead Web Designer & Developer");
     expect(page?.heroPortrait?.src).toMatch(/colton-wehr-819\.webp/);
+    expect(page?.heroCredit).toBe(
+      "Talk to Colton. I'll call you back the same day.",
+    );
+    expect(page?.heroDevices?.src).toMatch(/hero-devices\.webp/);
+    expect(page?.directIntro?.title).toBe(
+      "You'll work with me, not a call center.",
+    );
+    expect(page?.directIntro?.points).toEqual([
+      "Custom built, no templates.",
+      "You own the site.",
+      "Most sites go live in 2–6 weeks.",
+    ]);
     expect(page?.heroStill?.src).toMatch(/lp\/a1-desktop/);
     expect(page?.heroStill?.mobileSrc).toMatch(/lp\/a1-mobile/);
     expect(page?.paths).toBeUndefined();

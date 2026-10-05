@@ -19,86 +19,88 @@ import type {
 /*  Marks (live custom SVGs — not Lucide)                              */
 /* ------------------------------------------------------------------ */
 
+const markProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  "aria-hidden": true as const,
+  stroke: "currentColor",
+  strokeWidth: 1.75,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+};
+
 function CheckMark() {
   return (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden>
-      <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
-      <path
-        d="M20 33.5 28.5 42 44 24"
-        stroke="currentColor"
-        strokeWidth="2.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <svg {...markProps}>
+      <circle cx="12" cy="12" r="8.25" />
+      <path d="m8.2 12.2 2.4 2.5 5-5.4" />
     </svg>
   );
 }
 
 function CrossMark() {
   return (
-    <svg viewBox="0 0 64 64" fill="none" aria-hidden>
-      <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
-      <path
-        d="M22 22 42 42M42 22 22 42"
-        stroke="currentColor"
-        strokeWidth="2.6"
-        strokeLinecap="round"
-      />
+    <svg {...markProps}>
+      <circle cx="12" cy="12" r="8.25" />
+      <path d="M9 9l6 6M15 9l-6 6" />
     </svg>
   );
 }
 
-/** Index-ordered marks so Spanish outcome titles still get icons. */
+/** Index-ordered marks so Spanish titles still get the same icons. */
 const OUTCOME_MARKS: ReactNode[] = [
-  <svg key="established" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <path d="M8 44V22L32 8l24 14v22L32 58 8 44Z" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M20 34V24.5L32 17.5 44 24.5V34L32 41 20 34Z" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M32 41v9" stroke="currentColor" strokeWidth="2.4" />
+  // Look established — a storefront, not a gem.
+  <svg key="established" {...markProps}>
+    <path d="M3.5 10.5 12 4l8.5 6.5" />
+    <path d="M6 10v9.5h12V10" />
+    <path d="M10 19.5V14h4v5.5" />
+    <path d="M8 12.25h1.75M14.25 12.25H16" />
   </svg>,
-  <svg key="inquiries" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <rect x="18" y="8" width="28" height="48" rx="5" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M26 14h12" stroke="currentColor" strokeWidth="2.4" />
-    <rect x="24" y="22" width="16" height="7" rx="1.5" fill="currentColor" />
-    <path d="M24 36h16M24 42h10" stroke="currentColor" strokeWidth="2.4" />
+  // Generate inquiries — a phone that's ringing.
+  <svg key="inquiries" {...markProps}>
+    <rect x="3.25" y="2.75" width="9" height="18.5" rx="2" />
+    <path d="M6 6h3.5M6.75 18.25h1.75" />
+    <path d="M15.25 8a5.4 5.4 0 0 1 0 8" />
+    <path d="M17.75 5.75a8.4 8.4 0 0 1 0 12.5" />
   </svg>,
-  <svg key="fast" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <circle cx="32" cy="32" r="22" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M32 32 42 18" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" />
-    <path d="M18 34h8l4 8 6-16 4 8h6" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />
+  // Load quickly — a bolt, not a gauge with a pulse through it.
+  <svg key="fast" {...markProps}>
+    <path d="M13 2.25 4.75 13.25H11l-.75 8.5L19.25 10H12.5L13 2.25Z" />
   </svg>,
-  <svg key="own" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <rect x="14" y="26" width="36" height="26" rx="3" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M22 26v-6a10 10 0 0 1 20 0v6" stroke="currentColor" strokeWidth="2.4" />
-    <circle cx="32" cy="39" r="3" fill="currentColor" />
+  // Own your website — the key, not a lock.
+  <svg key="own" {...markProps}>
+    <circle cx="8.25" cy="8.75" r="3.6" />
+    <circle cx="8.25" cy="8.75" r="1.15" />
+    <path d="m11.1 11.4 8.15 8.15" />
+    <path d="m15.4 15.7 2.55-2.55" />
+    <path d="m17.15 18.45 2.55-2.55" />
   </svg>,
 ];
 
 const PROCESS_MARKS = [
   // Project call
-  <svg key="plan" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <rect x="14" y="8" width="36" height="48" rx="3" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M22 20h20M22 28h20M22 36h12" stroke="currentColor" strokeWidth="2.4" />
+  <svg key="plan" {...markProps}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
   </svg>,
   // Structure and design
-  <svg key="structure" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <rect x="8" y="10" width="48" height="12" rx="2" stroke="currentColor" strokeWidth="2.4" />
-    <rect x="8" y="28" width="22" height="26" rx="2" stroke="currentColor" strokeWidth="2.4" />
-    <rect x="34" y="28" width="22" height="26" rx="2" stroke="currentColor" strokeWidth="2.4" />
+  <svg key="structure" {...markProps}>
+    <rect x="3" y="3.5" width="18" height="17" rx="2" />
+    <path d="M3 8h18" />
+    <rect x="5.5" y="10.25" width="6" height="7.25" rx="1" />
+    <rect x="13.25" y="10.25" width="5.25" height="3" rx="0.8" />
+    <rect x="13.25" y="14.75" width="5.25" height="2.75" rx="0.8" />
   </svg>,
   // Development
-  <svg key="dev" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <rect x="8" y="14" width="38" height="26" rx="3" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M8 22h38" stroke="currentColor" strokeWidth="2.4" />
-    <circle cx="14" cy="18" r="1.4" fill="currentColor" />
-    <circle cx="19" cy="18" r="1.4" fill="currentColor" />
-    <rect x="22" y="28" width="28" height="22" rx="4" stroke="currentColor" strokeWidth="2.4" />
+  <svg key="dev" {...markProps}>
+    <path d="m9 7.5-4.25 4.5L9 16.5" />
+    <path d="m15 7.5 4.25 4.5L15 16.5" />
+    <path d="m13 5.5-2 13" />
   </svg>,
   // Launch and tracking
-  <svg key="launch" viewBox="0 0 64 64" fill="none" aria-hidden>
-    <path d="M32 8 40 28H24L32 8Z" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />
-    <path d="M32 28v16" stroke="currentColor" strokeWidth="2.4" />
-    <path d="M20 52h24" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
-    <path d="M24 44h16" stroke="currentColor" strokeWidth="2.4" />
+  <svg key="launch" {...markProps}>
+    <path d="M4 18.5h16" />
+    <path d="m6 14.75 4.5-4.5 3 2.75L19.25 6" />
+    <path d="M14.5 6H19.25v4.75" />
   </svg>,
 ];
 
@@ -108,29 +110,14 @@ type TransformCol = { title: string; items: string[] };
 /*  Outcomes                                                           */
 /* ------------------------------------------------------------------ */
 
-function OutcomeBody({ body }: { body: string }) {
-  const lines = body
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean);
-  return (
-    <span className="lp-web-outcomes__body">
-      {lines.map((line, index) => (
-        <span key={line} className="lp-web-outcomes__line">
-          {index > 0 ? " " : null}
-          {line}
-        </span>
-      ))}
-    </span>
-  );
-}
-
 export function WebsiteOutcomes({
   items,
   ariaLabel = "What the website is built to do",
 }: {
   items: LandingPageOutcome[];
   ariaLabel?: string;
+  /** Kept so the hero can mark this strip as inside the first screen. */
+  nested?: boolean;
 }) {
   if (!items.length) return null;
   return (
@@ -142,10 +129,7 @@ export function WebsiteOutcomes({
               <span className="lp-web-outcomes__mark" aria-hidden>
                 {OUTCOME_MARKS[index % OUTCOME_MARKS.length] ?? <CheckMark />}
               </span>
-              <span className="lp-web-outcomes__copy">
-                <span className="lp-web-outcomes__title">{item.title}</span>
-                <OutcomeBody body={item.body} />
-              </span>
+              <span className="lp-web-outcomes__title">{item.title}</span>
             </li>
           ))}
         </ul>
@@ -321,8 +305,8 @@ export function WebsiteWork({
                       <img
                         src={sample.deviceShot}
                         alt=""
-                        width={819}
-                        height={538}
+                        width={1024}
+                        height={672}
                         decoding="async"
                         loading="lazy"
                         fetchPriority="low"
@@ -399,14 +383,120 @@ export function WebsiteWork({
 /*  Build                                                              */
 /* ------------------------------------------------------------------ */
 
+function BuildPlate({
+  rotate,
+  children,
+}: {
+  rotate: number;
+  children: ReactNode;
+}) {
+  return (
+    <svg viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate">
+      <rect width="168" height="104" rx="14" fill="#0c0c0c" />
+      <rect
+        x="0.7"
+        y="0.7"
+        width="166.6"
+        height="102.6"
+        rx="13.3"
+        stroke="rgba(244,241,234,0.13)"
+      />
+      <g transform={`rotate(${rotate} 84 52)`}>
+        <rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" />
+        <rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" />
+        {children}
+      </g>
+    </svg>
+  );
+}
+
 const BUILD_PLATES = [
-  <svg key="plate-0" viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate"><rect width="168" height="104" rx="14" fill="#0c0c0c" /><rect x="0.7" y="0.7" width="166.6" height="102.6" rx="13.3" stroke="rgba(244,241,234,0.13)" /><g transform="rotate(-3.2 84 52)"><rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" /><rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" /><rect x="38" y="24" width="92" height="52" rx="3" fill="#1c1b19" /><rect x="41" y="27" width="86" height="38" rx="1.5" fill="#0e0e0e" /><rect x="41" y="27" width="86" height="7" fill="#ece7dc" /><circle cx="45.5" cy="30.5" r="1.1" fill="#c4bfb4" /><circle cx="49" cy="30.5" r="1.1" fill="#c4bfb4" /><circle cx="52.5" cy="30.5" r="1.1" fill="#c4bfb4" /><rect x="46" y="38" width="28" height="18" rx="1" fill="#6f90c4" /><path d="M78 40h22M78 45h16M78 50h19" stroke="#ece7dc" strokeWidth="1.6" /><rect x="46" y="68" width="76" height="5" rx="1" fill="#2a2926" /><rect x="28" y="58" width="36" height="26" rx="2" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" /><path d="M34 66h24M34 71h18M34 76h14" stroke="#1c1b19" strokeWidth="1.4" /></g></svg>,
-  <svg key="plate-1" viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate"><rect width="168" height="104" rx="14" fill="#0c0c0c" /><rect x="0.7" y="0.7" width="166.6" height="102.6" rx="13.3" stroke="rgba(244,241,234,0.13)" /><g transform="rotate(2.8 84 52)"><rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" /><rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" /><rect x="64" y="20" width="40" height="68" rx="7" fill="#1c1b19" /><rect x="67" y="26" width="34" height="54" rx="2" fill="#111110" /><rect x="67" y="26" width="34" height="18" fill="#6f90c4" /><path d="M72 48h24M72 53h16" stroke="#ece7dc" strokeWidth="1.5" /><rect x="71" y="60" width="26" height="8" rx="1.5" fill="#f3efe6" /><rect x="78" y="22.5" width="12" height="2" rx="1" fill="#2c2b28" /><path d="M80 82h8" stroke="#ece7dc" strokeWidth="1.8" strokeLinecap="round" /><circle cx="118" cy="72" r="10" fill="none" stroke="#6f90c4" strokeWidth="1.6" /><path d="M112 78 108 84" stroke="#6f90c4" strokeWidth="1.6" strokeLinecap="round" /></g></svg>,
-  <svg key="plate-2" viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate"><rect width="168" height="104" rx="14" fill="#0c0c0c" /><rect x="0.7" y="0.7" width="166.6" height="102.6" rx="13.3" stroke="rgba(244,241,234,0.13)" /><g transform="rotate(-2.4 84 52)"><rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" /><rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" /><rect x="34" y="26" width="52" height="16" rx="2" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" /><rect x="40" y="46" width="52" height="16" rx="2" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" /><rect x="46" y="66" width="52" height="16" rx="2" fill="#1c1b19" /><path d="M40 32h28M46 52h24" stroke="#1c1b19" strokeWidth="1.4" /><path d="M52 72h28" stroke="#f3efe6" strokeWidth="1.5" /><path d="M90 34h18c6 0 10 4 10 9v6" stroke="#6f90c4" strokeWidth="1.8" fill="none" /><path d="M112 45l6 4-6 4" fill="#6f90c4" /><rect x="108" y="64" width="28" height="12" rx="6" fill="#6f90c4" /></g></svg>,
-  <svg key="plate-3" viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate"><rect width="168" height="104" rx="14" fill="#0c0c0c" /><rect x="0.7" y="0.7" width="166.6" height="102.6" rx="13.3" stroke="rgba(244,241,234,0.13)" /><g transform="rotate(3.1 84 52)"><rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" /><rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" /><rect x="36" y="48" width="52" height="28" rx="2" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" /><rect x="42" y="38" width="52" height="28" rx="2" fill="#ece7dc" stroke="#1c1b19" strokeWidth="1.4" /><rect x="48" y="28" width="52" height="28" rx="2" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" /><path d="M56 38h28M56 43h18" stroke="#1c1b19" strokeWidth="1.4" /><path d="M108 68c0-14 10-24 24-24" stroke="#1c1b19" strokeWidth="1.6" fill="none" /><path d="M108 68h24" stroke="#1c1b19" strokeWidth="1.4" /><path d="M124 32 132 44" stroke="#6f90c4" strokeWidth="2" strokeLinecap="round" /><circle cx="124" cy="68" r="2.2" fill="#6f90c4" /></g></svg>,
-  <svg key="plate-4" viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate"><rect width="168" height="104" rx="14" fill="#0c0c0c" /><rect x="0.7" y="0.7" width="166.6" height="102.6" rx="13.3" stroke="rgba(244,241,234,0.13)" /><g transform="rotate(-3.6 84 52)"><rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" /><rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" /><circle cx="52" cy="44" r="14" stroke="#1c1b19" strokeWidth="1.8" fill="#fffaf2" /><path d="M62 54 72 66" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" /><rect x="78" y="26" width="62" height="52" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" /><path d="M86 36h30" stroke="#6f90c4" strokeWidth="1.6" /><path d="M86 44h46M86 50h38M86 56h28" stroke="#1c1b19" strokeWidth="1.4" /><rect x="86" y="64" width="16" height="6" rx="1" fill="#1c1b19" /><rect x="106" y="64" width="16" height="6" rx="1" fill="#ece7dc" stroke="#1c1b19" strokeWidth="1.2" /></g></svg>,
-  <svg key="plate-5" viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate"><rect width="168" height="104" rx="14" fill="#0c0c0c" /><rect x="0.7" y="0.7" width="166.6" height="102.6" rx="13.3" stroke="rgba(244,241,234,0.13)" /><g transform="rotate(2.2 84 52)"><rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" /><rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" /><path d="M38 74V52h16v22H38Z" fill="#1c1b19" /><path d="M62 74V36h16v38H62Z" fill="#1c1b19" /><path d="M86 74V28h16v46H86Z" fill="#6f90c4" /><path d="M118 68c8-6 12-16 18-28" stroke="#1c1b19" strokeWidth="1.7" fill="none" strokeLinecap="round" /><circle cx="118" cy="68" r="3" fill="#1c1b19" /><circle cx="128" cy="52" r="3" fill="#1c1b19" /><circle cx="136" cy="40" r="3.2" fill="#6f90c4" /><path d="M38 78h100" stroke="#1c1b19" strokeWidth="1.4" /></g></svg>
-] as const;
+  // Built around the jobs, not a theme with a logo dropped on it.
+  <BuildPlate key="company" rotate={-3.2}>
+    <rect x="30" y="24" width="48" height="58" rx="2.5" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.3" />
+    <circle cx="42" cy="36" r="5.5" fill="#c4bfb4" />
+    <path d="M36 48h36M36 55h36M36 62h36M36 71h22" stroke="#c4bfb4" strokeWidth="2.2" strokeLinecap="round" />
+    <rect x="86" y="24" width="52" height="58" rx="2.5" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" />
+    <rect x="90" y="28" width="44" height="24" rx="1.5" fill="#6f90c4" />
+    <path d="M100 46.5 112 36.5 124 46.5v5h-24v-5z" fill="#f3efe6" />
+    <rect x="108" y="42" width="8" height="6.5" fill="#6f90c4" />
+    <path d="M92 58h32M92 64h24M92 70h28" stroke="#1c1b19" strokeWidth="1.7" strokeLinecap="round" />
+  </BuildPlate>,
+  // The site, on a phone. No search glass.
+  <BuildPlate key="phone" rotate={2.8}>
+    <rect x="60" y="18" width="48" height="72" rx="8" fill="#1c1b19" />
+    <rect x="64" y="26" width="40" height="54" rx="2" fill="#111110" />
+    <rect x="64" y="26" width="40" height="16" fill="#6f90c4" />
+    <path d="M70 48h28M70 54h18M70 60h24" stroke="#ece7dc" strokeWidth="1.7" strokeLinecap="round" />
+    <rect x="70" y="68" width="28" height="7" rx="2" fill="#f3efe6" />
+    <rect x="74" y="21" width="20" height="2.4" rx="1" fill="#3a3834" />
+    <path d="M80 82.5h8" stroke="#ece7dc" strokeWidth="1.8" strokeLinecap="round" />
+  </BuildPlate>,
+  // Services up top. Call and quote sit in the thumb zone.
+  <BuildPlate key="call" rotate={-2.4}>
+    <path d="M34 28h36M34 35h26M34 42h32" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" />
+    <rect x="32" y="52" width="62" height="16" rx="8" fill="#1c1b19" />
+    <g
+      transform="translate(40 53.2) scale(0.58)"
+      fill="none"
+      stroke="#f3efe6"
+      strokeWidth="2.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </g>
+    <path d="M58 60h24" stroke="#f3efe6" strokeWidth="2.2" strokeLinecap="round" />
+    <rect x="32" y="72" width="62" height="16" rx="8" fill="#6f90c4" />
+    <rect x="40" y="75" width="9" height="10" rx="1.3" fill="#f3efe6" />
+    <path d="M42.2 78h4.6M42.2 81h3.2" stroke="#6f90c4" strokeWidth="1.1" strokeLinecap="round" />
+    <path d="M54 80h22" stroke="#0c0c0c" strokeWidth="2.2" strokeLinecap="round" />
+    <circle cx="86" cy="80" r="9" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.5" />
+    <ellipse cx="86" cy="76.8" rx="3" ry="2" fill="#e4ddd0" />
+  </BuildPlate>,
+  // A light page, already loaded, with the speed mark beside it.
+  <BuildPlate key="fast" rotate={3.1}>
+    <rect x="30" y="24" width="68" height="56" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" />
+    <path d="M30 32h68" stroke="#1c1b19" strokeWidth="1.2" />
+    <circle cx="37" cy="28" r="1.5" fill="#1c1b19" />
+    <circle cx="42.5" cy="28" r="1.5" fill="#1c1b19" />
+    <circle cx="48" cy="28" r="1.5" fill="#1c1b19" />
+    <path d="M38 44h22" stroke="#1c1b19" strokeWidth="1.8" strokeLinecap="round" />
+    <rect x="38" y="68" width="52" height="4" rx="2" fill="#6f90c4" />
+    <path d="M118 22 104 50h14l-8 30 26-34h-14l10-24z" fill="#6f90c4" />
+  </BuildPlate>,
+  // A search field, then the service pages Google can list.
+  <BuildPlate key="search" rotate={-3.6}>
+    <rect x="30" y="20" width="108" height="16" rx="8" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" />
+    <circle cx="42" cy="28" r="3.4" stroke="#1c1b19" strokeWidth="1.5" />
+    <path d="M44.5 30.6 47.2 33.4" stroke="#1c1b19" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M52 28h52" stroke="#c4bfb4" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M34 46h46" stroke="#6f90c4" strokeWidth="2.4" strokeLinecap="round" />
+    <path d="M34 53h78" stroke="#1c1b19" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M34 63h40" stroke="#6f90c4" strokeWidth="2.4" strokeLinecap="round" />
+    <path d="M34 70h70" stroke="#1c1b19" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M34 80h44" stroke="#6f90c4" strokeWidth="2.4" strokeLinecap="round" />
+  </BuildPlate>,
+  // New calls and quotes. Visits sit quieter underneath.
+  <BuildPlate key="tracked" rotate={2.2}>
+    <rect x="30" y="20" width="108" height="20" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.3" />
+    <circle cx="44" cy="30" r="6.5" fill="#6f90c4" />
+    <path
+      d="M41.3 27.4c.3-.55.95-.85 1.5-.55l.55.3c.4.25.55.75.35 1.2l-.25.55c-.1.25.05.5.3.55.65.2 1.2.6 1.6 1.1.15.2.1.5-.1.6l-.45.3c-.4.25-.5.8-.25 1.2l.3.55c.35.6.15 1.35-.5 1.65l-.6.25c-1.6.7-3.4-.1-4.2-1.6-.7-1.3-.75-2.8-.1-4.1l.4-.6c.3-.45.8-.6 1.2-.45z"
+      fill="#f3efe6"
+    />
+    <path d="M56 30h42" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="124" cy="30" r="3.2" fill="#6f90c4" />
+    <rect x="30" y="44" width="108" height="20" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.3" />
+    <circle cx="44" cy="54" r="6.5" fill="#6f90c4" />
+    <rect x="40.6" y="50.4" width="6.8" height="7.2" rx="1" fill="#f3efe6" />
+    <path d="M42.2 52.6h3.6M42.2 54.6h2.6" stroke="#6f90c4" strokeWidth="0.9" strokeLinecap="round" />
+    <path d="M56 54h36" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="124" cy="54" r="3.2" fill="#6f90c4" />
+    <path d="M38 76h28" stroke="#c4bfb4" strokeWidth="2" strokeLinecap="round" />
+    <path d="M72 76h22" stroke="#c4bfb4" strokeWidth="2" strokeLinecap="round" />
+  </BuildPlate>,
+];
 
 export function WebsiteBuild({
   title,

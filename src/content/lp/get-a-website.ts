@@ -179,13 +179,31 @@ const baseGetAWebsite: LandingPageEntry = {
   heroPrice: softPricing.en.heroPrice,
   heroMeta: ["Custom Built", "No Templates", "You Own Your Website"],
   heroPortrait: {
-    src: "/assets/images/lp/colton-wehr-819.webp?v=20261004s",
+    src: "/assets/images/lp/colton-wehr-819.webp?v=20261005p",
     srcSet:
-      "/assets/images/lp/colton-wehr-480.webp?v=20261004s 480w, /assets/images/lp/colton-wehr-640.webp?v=20261004s 640w, /assets/images/lp/colton-wehr-819.webp?v=20261004s 676w",
-    sizes: "(max-width: 767px) 78vw, min(34rem, 42vw)",
-    alt: "Colton Wehr, lead web designer and developer at KINEXIS",
+      "/assets/images/lp/colton-wehr-480.webp?v=20261005p 480w, /assets/images/lp/colton-wehr-640.webp?v=20261005p 640w, /assets/images/lp/colton-wehr-819.webp?v=20261005p 676w",
+    sizes: "2rem",
+    alt: "Colton Wehr, lead developer at KINEXIS",
     width: 676,
     height: 819,
+    name: "Colton Wehr",
+    role: "Lead Web Designer & Developer",
+  },
+  heroCredit: "Talk to Colton. I'll call you back the same day.",
+  heroDevices: {
+    src: "/assets/images/lp/hero-devices-float.webp?v=20261005v",
+    alt: "A1 Property Services and Preferred Plumbing websites on laptops and phones, built by KINEXIS",
+    width: 1024,
+    height: 512,
+  },
+  directIntro: {
+    title: "You'll work with me, not a call center.",
+    body: "I'm Colton, the lead web designer and developer behind KINEXIS. I build every site myself, and you'll work directly with me from our first conversation through launch. When you request a call, you'll hear from me, usually the same day. We'll spend about 15 minutes talking through your business, what you need from your website, and whether we're a good fit. If we are, I'll send you a clear scope and price in writing. If we're not, I'll be upfront about it.",
+    points: [
+      "Custom built, no templates.",
+      "You own the site.",
+      "Most sites go live in 2–6 weeks.",
+    ],
     name: "Colton Wehr",
     role: "Lead Web Designer & Developer",
   },
@@ -384,7 +402,7 @@ const baseGetAWebsite: LandingPageEntry = {
   samples: [
     {
       image: A1_DESKTOP,
-      deviceShot: "/assets/images/lp/a1-devices.webp?v=20261004t",
+      deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261005v",
       imageAlt:
         "A1 Property Services website on a laptop, built by KINEXIS",
       client: "A1 Property Services",
@@ -402,7 +420,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       image: PLUMBING_DESKTOP,
-      deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261004t",
+      deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261005v",
       imageAlt:
         "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
       client: "Preferred Plumbing Solutions",
@@ -426,7 +444,7 @@ const baseGetAWebsite: LandingPageEntry = {
   sellPoints: [
     {
       title: "Built around your company",
-      body: "We start from the jobs you do, not a theme with your logo dropped on it.",
+      body: "We start from the jobs you do, not a theme with your logo on it.",
     },
     {
       title: "Works on a phone",
@@ -434,7 +452,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       title: "Makes calling easy",
-      body: "Services are clear, and call and quote sit where a thumb can reach.",
+      body: "Clear services, and call and quote sit right where a thumb can reach.",
     },
     {
       title: "Stays fast",
@@ -442,11 +460,11 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       title: "Ready for search",
-      body: "Service pages, plus the basics Google needs to understand the work.",
+      body: "Full service pages, plus the basics Google needs to read the work.",
     },
     {
       title: "Tracked from day one",
-      body: "You can tell if the site is bringing inquiries, not just visits.",
+      body: "You'll see new inquiries come in, not just visits that go nowhere.",
     },
   ],
 
@@ -457,22 +475,22 @@ const baseGetAWebsite: LandingPageEntry = {
     {
       title: "Project call",
       detail:
-        "We look at your site, the work you do, and what should happen next.",
+        "We look at your site and work, and what should happen next.",
     },
     {
       title: "Structure and design",
       detail:
-        "You approve the pages, services, and the look before we build it.",
+        "You approve pages, services, and the look before we build.",
     },
     {
       title: "Development",
       detail:
-        "We build that approved design in custom code. Not a page builder.",
+        "We build the approved design in code, never a page builder.",
     },
     {
       title: "Launch and tracking",
       detail:
-        "We launch the site, connect tracking, and check call and quote.",
+        "We launch, connect tracking, and check the call and quote.",
     },
   ],
 

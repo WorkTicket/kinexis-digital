@@ -1,9 +1,9 @@
 import { getLocale } from "next-intl/server";
+import { WebsiteDirect } from "@/components/landing/WebsiteDirect";
 import { WebsiteHero } from "@/components/landing/WebsiteHero";
 import {
   WebsiteBuild,
   WebsiteFit,
-  WebsiteOutcomes,
   WebsitePain,
   WebsitePlan,
   WebsitePricing,
@@ -34,7 +34,8 @@ import "@/styles/components/landing-showcase.css";
  *   8. Build
  *   9. Fit
  *  10. FAQ
- *  11. Plan / form
+ *  11. Direct intro
+ *  12. Plan / form
  *
  * No FinalCta. Sticky CTA is client-side.
  */
@@ -51,10 +52,8 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
         page={page}
         caption={chrome.heroCaption}
         benefits={chrome.heroBenefits}
+        outcomesLabel={chrome.outcomesAria}
       />
-      {page.outcomes?.length ? (
-        <WebsiteOutcomes items={page.outcomes} ariaLabel={chrome.outcomesAria} />
-      ) : null}
       {samples.length ? (
         <WebsiteProofStrip
           samples={samples}
@@ -136,6 +135,9 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
         startClosed
         className="lp-web-faq"
       />
+      {page.directIntro && page.heroPortrait ? (
+        <WebsiteDirect intro={page.directIntro} portrait={page.heroPortrait} />
+      ) : null}
       <WebsitePlan
         page={page}
         locale={locale}

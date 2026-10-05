@@ -1,9 +1,9 @@
-import { Suspense } from "react";
 import {
   MatchedHeadline,
   MatchedMarketLine,
 } from "@/components/landing/MatchedCopy";
 import { PlanCta } from "@/components/landing/PlanCta";
+import { WebsiteOutcomes } from "@/components/landing/WebsiteSections";
 import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { WebsiteLpChrome } from "@/content/lp/website-lp-chrome";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
@@ -11,22 +11,28 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 type Benefit = WebsiteLpChrome["heroBenefits"][number];
 
 /**
- * get-a-website hero.
- * Mobile order: headline, supporting copy, price, CTA, trust points, portrait.
+ * get-a-website hero. Fills the first screen.
+ * Mobile order: headline, supporting copy, price, CTA, one-line credit, then the device photo.
  */
 export function WebsiteHero({
   page,
-  caption = "A1 Property Services — live site",
   benefits,
+  outcomesLabel,
 }: {
   page: LandingPageEntry;
+  /** Unused. Kept so older call sites can still pass a caption. */
   caption?: string;
   benefits: Benefit[];
+  outcomesLabel?: string;
 }) {
   const lines = page.headlineLines?.length
     ? page.headlineLines
     : [page.headline];
   const portrait = page.heroPortrait;
+  const visual = page.heroDevices;
+  const credit =
+    page.heroCredit ??
+    (portrait?.name ? creditLine(portrait.name, portrait.role) : null);
   const market = page.marketLine ?? page.badge;
   const whatsapp =
     page.whatsappHref && page.whatsappHeroLabel
@@ -46,38 +52,21 @@ export function WebsiteHero({
       <div className="shell lp-web-hero__stage relative">
         <div
           className={
-            portrait
+            visual
               ? "lp-web-hero__layout"
               : "lp-web-hero__layout lp-web-hero__layout--solo"
           }
         >
           <div className="lp-web-hero__copy">
             <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
-              <Suspense fallback={market}>
-                <MatchedMarketLine fallback={market} />
-              </Suspense>
+              <MatchedMarketLine fallback={market} />
             </p>
 
             <h1
               id="page-hero-heading"
               className="lp-web-hero__title lp-web-hero__anim lp-web-hero__anim--2"
             >
-              <Suspense
-                fallback={lines.map((line, index) => (
-                  <span
-                    key={line}
-                    className={
-                      index === lines.length - 1
-                        ? "lp-web-hero__line lp-web-hero__line--signal"
-                        : "lp-web-hero__line"
-                    }
-                  >
-                    {line}
-                  </span>
-                ))}
-              >
-                <MatchedHeadline fallback={lines} />
-              </Suspense>
+              <MatchedHeadline fallback={lines} />
             </h1>
 
             <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--3">
@@ -103,6 +92,36 @@ export function WebsiteHero({
               >
                 {page.heroCtaLabel ?? page.stickyCtaLabel}
               </PlanCta>
+              {portrait && credit ? (
+                <p className="lp-web-hero__byline">
+                  {page.directIntro ? (
+                    <a
+                      href="#lp-direct"
+                      className="lp-web-hero__byline-photo"
+                      aria-label={portrait.name ?? "Introduction"}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src="/assets/images/lp/colton-wehr-face.webp?v=20261005p"
+                        alt=""
+                        width={380}
+                        height={380}
+                        decoding="async"
+                      />
+                    </a>
+                  ) : (
+                    /* eslint-disable-next-line @next/next/no-img-element */
+                    <img
+                      src="/assets/images/lp/colton-wehr-face.webp?v=20261005p"
+                      alt=""
+                      width={380}
+                      height={380}
+                      decoding="async"
+                    />
+                  )}
+                  <span>{credit}</span>
+                </p>
+              ) : null}
               {whatsapp ? (
                 <WhatsAppLink
                   href={whatsapp.href}
@@ -131,38 +150,23 @@ export function WebsiteHero({
             ) : null}
           </div>
 
-          {portrait ? (
-            <figure className="lp-web-hero__portrait lp-web-hero__anim lp-web-hero__anim--5">
+          {visual ? (
+            <figure className="lp-web-hero__devices">
               <link
                 rel="preload"
                 as="image"
-                href={portrait.src}
-                imageSrcSet={portrait.srcSet}
-                imageSizes={portrait.sizes}
+                href={visual.src}
                 fetchPriority="high"
               />
-              <span className="lp-web-hero__portrait-glow" aria-hidden />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={portrait.src}
-                srcSet={portrait.srcSet}
-                sizes={portrait.sizes}
-                alt={portrait.alt}
-                width={portrait.width}
-                height={portrait.height}
+                src={visual.src}
+                alt={visual.alt}
+                width={visual.width}
+                height={visual.height}
                 decoding="sync"
                 fetchPriority="high"
               />
-              {portrait.name ? (
-                <figcaption className="lp-web-hero__identity">
-                  <strong>{portrait.name}</strong>
-                  {portrait.role ? <span>{portrait.role}</span> : null}
-                </figcaption>
-              ) : caption ? (
-                <figcaption className="lp-web-hero__shot-caption">
-                  {caption}
-                </figcaption>
-              ) : null}
             </figure>
           ) : null}
 
@@ -179,10 +183,23 @@ export function WebsiteHero({
               ))}
             </ul>
           ) : null}
+
+          {page.outcomes?.length ? (
+            <WebsiteOutcomes
+              items={page.outcomes}
+              ariaLabel={outcomesLabel}
+              nested
+            />
+          ) : null}
         </div>
       </div>
     </section>
   );
+}
+
+function creditLine(name: string, role?: string) {
+  const line = role ? `${name}, ${role}` : name;
+  return line.endsWith(".") ? line : `${line}.`;
 }
 
 function TrustCheck() {

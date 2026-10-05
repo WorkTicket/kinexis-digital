@@ -293,7 +293,7 @@ export type LandingPageEntry = {
   /** Shown above the inline calendar for qualified project-call leads. */
   calendarTitle?: string;
   calendarSubtitle?: string;
-  /** Real photo in the hero, in place of a device mockup. */
+  /** Small circular photo beside the hero call button. */
   heroPortrait?: {
     src: string;
     alt: string;
@@ -303,6 +303,23 @@ export type LandingPageEntry = {
     sizes?: string;
     name?: string;
     role?: string;
+  };
+  /** One gray line beside the hero circle. */
+  heroCredit?: string;
+  /** Device photo that fills the hero beside the offer. */
+  heroDevices?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  /** Portrait and intro immediately above the plan form. */
+  directIntro?: {
+    title: string;
+    body: string;
+    points: string[];
+    name: string;
+    role: string;
   };
   /** Four outcome tiles under the hero (aside.lp-web-outcomes). */
   outcomes?: LandingPageOutcome[];

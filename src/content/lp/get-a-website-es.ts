@@ -67,13 +67,31 @@ export function buildSpanishGetAWebsite(
     heroPrice: pricing.heroPrice,
     heroMeta: ["A medida", "Sin plantillas", "El sitio es tuyo"],
     heroPortrait: {
-      src: "/assets/images/lp/colton-wehr-819.webp?v=20261004s",
+      src: "/assets/images/lp/colton-wehr-819.webp?v=20261005p",
       srcSet:
-        "/assets/images/lp/colton-wehr-480.webp?v=20261004s 480w, /assets/images/lp/colton-wehr-640.webp?v=20261004s 640w, /assets/images/lp/colton-wehr-819.webp?v=20261004s 676w",
-      sizes: "(max-width: 767px) 78vw, min(34rem, 42vw)",
-      alt: "Colton Wehr, diseñador y desarrollador web principal en KINEXIS",
+        "/assets/images/lp/colton-wehr-480.webp?v=20261005p 480w, /assets/images/lp/colton-wehr-640.webp?v=20261005p 640w, /assets/images/lp/colton-wehr-819.webp?v=20261005p 676w",
+      sizes: "2rem",
+      alt: "Colton Wehr, desarrollador principal en KINEXIS",
       width: 676,
       height: 819,
+      name: "Colton Wehr",
+      role: "Diseñador y desarrollador web principal",
+    },
+    heroCredit: "Habla con Colton. Te llamo el mismo día.",
+    heroDevices: {
+      src: "/assets/images/lp/hero-devices-float.webp?v=20261005v",
+      alt: "Sitios de A1 Property Services y Preferred Plumbing en laptops y teléfonos, hechos por KINEXIS",
+      width: 1024,
+      height: 512,
+    },
+    directIntro: {
+      title: "Trabajas conmigo, no con un centro de llamadas.",
+      body: "Soy Colton, el diseñador y desarrollador web principal detrás de KINEXIS. Construyo cada sitio yo mismo, y trabajas directo conmigo desde la primera conversación hasta el lanzamiento. Cuando pides una llamada, te respondo yo, normalmente el mismo día. Hablamos unos 15 minutos de tu negocio, de lo que necesitas del sitio, y de si encajamos. Si encajamos, te mando un alcance y un precio claros por escrito. Si no, te lo digo de frente.",
+      points: [
+        "A medida, sin plantillas.",
+        "El sitio es tuyo.",
+        "La mayoría sale en vivo en 2 a 6 semanas.",
+      ],
       name: "Colton Wehr",
       role: "Diseñador y desarrollador web principal",
     },
@@ -273,7 +291,7 @@ export function buildSpanishGetAWebsite(
     samples: [
       {
         image: A1_DESKTOP,
-        deviceShot: "/assets/images/lp/a1-devices.webp?v=20261004t",
+        deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261005v",
         imageAlt:
           "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
         client: "A1 Property Services",
@@ -291,7 +309,7 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: PLUMBING_DESKTOP,
-        deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261004t",
+        deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261005v",
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",

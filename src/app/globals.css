@@ -665,13 +665,38 @@ html.in-app-browser #contact-form {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 58% 42%;
+  object-position: 50% 38%;
   filter: none;
-  opacity: 0.82;
+  opacity: 0.9;
+}
+
+/* Dissolves the film into the page so the hero doesn't end on a hard edge. */
+.hero-film-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  height: clamp(12rem, 36vh, 22rem);
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    color-mix(in oklab, var(--background) 22%, transparent) 30%,
+    color-mix(in oklab, var(--background) 68%, transparent) 64%,
+    var(--background) 100%
+  );
+}
+
+@media (min-width: 768px) {
+  .hero-film-media {
+    object-position: 54% 40%;
+  }
 }
 
 @media (min-width: 1024px) {
   .hero-film-media {
+    object-position: 58% 42%;
     opacity: 1;
     filter: grayscale(0.45) brightness(0.96) contrast(1.06);
   }
@@ -2376,7 +2401,26 @@ html[data-theme="dark"] .ind-visual__img--thumb,
 .services-section {
   background: transparent;
   isolation: isolate;
-  overflow: hidden;
+}
+
+.service-tile__art {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: transparent;
+}
+
+.service-tile__plate--dark {
+  display: none;
+}
+
+html[data-theme="dark"] .service-tile__plate--light,
+.dark .service-tile__plate--light {
+  display: none;
+}
+
+html[data-theme="dark"] .service-tile__plate--dark,
+.dark .service-tile__plate--dark {
+  display: block;
 }
 
 .services-mast {
@@ -9117,33 +9161,21 @@ html[data-theme="dark"] .theme-toggle__moon {
 
   /* One wash instead of two color-mix gradients + a second fade layer */
   .hero-film-scrim {
-    background:
-      linear-gradient(
-        180deg,
-        color-mix(in oklab, var(--background) 72%, transparent) 0%,
-        color-mix(in oklab, var(--background) 38%, transparent) 48%,
-        transparent 78%
-      ),
-      linear-gradient(
-        90deg,
-        color-mix(in oklab, var(--background) 55%, transparent) 0%,
-        transparent 70%
-      );
+    background: linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--background) 88%, transparent) 0%,
+      color-mix(in oklab, var(--background) 62%, transparent) 34%,
+      color-mix(in oklab, var(--background) 18%, transparent) 62%,
+      transparent 82%
+    );
   }
 
   .hero-atmosphere__fade {
     display: none;
   }
 
-  /* Phone still is a soft crop. Type sits on the page background instead. */
   .hero-shell--film {
     background: var(--background);
-  }
-
-  .hero-shell--film .hero-atmosphere,
-  .hero-shell--film .hero-film-scrim,
-  .hero-shell--film .hero-film-media {
-    display: none;
   }
 
   .hero-film-video {
