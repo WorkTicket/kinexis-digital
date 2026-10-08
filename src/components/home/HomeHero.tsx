@@ -1,39 +1,34 @@
 import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/Button";
-import { HeroFilm } from "@/components/home/HeroFilm";
+import { HeroEngine, type HeroEngineSegment } from "@/components/home/HeroEngine";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
+import { HomeCertifications } from "@/components/home/HomeCertifications";
 import { HeroHeading } from "@/components/page/HeroHeading";
-import { HOME_HERO_POSTER, HOME_HERO_POSTER_DESKTOP } from "@/lib/lcp-preload";
+import { Button } from "@/components/ui/Button";
+
+const ENGINE_SEGMENTS = [
+  { id: "search", href: "/services/seo" },
+  { id: "ads", href: "/services/paid-media" },
+  { id: "web", href: "/services/web-design" },
+  { id: "brand", href: "/services/branding" },
+] as const satisfies ReadonlyArray<Pick<HeroEngineSegment, "id" | "href">>;
 
 export async function HomeHero() {
   const t = await getTranslations("home");
   const tCommon = await getTranslations("common");
+  const segments: HeroEngineSegment[] = ENGINE_SEGMENTS.map((segment) => ({
+    id: segment.id,
+    href: segment.href,
+    label: t(`engine.segments.${segment.id}.label`),
+    role: t(`engine.segments.${segment.id}.role`),
+    title: t(`engine.segments.${segment.id}.title`),
+    body: t(`engine.segments.${segment.id}.body`),
+  }));
 
   return (
     <section
       aria-labelledby="home-hero-heading"
-      className="hero-shell hero-shell--film page-hero relative flex min-h-[100svh] flex-col overflow-x-clip"
+      className="hero-shell hero-shell--film page-hero relative flex flex-col overflow-hidden"
     >
-      <link
-        rel="preload"
-        as="image"
-        href={HOME_HERO_POSTER}
-        type="image/webp"
-        fetchPriority="high"
-        media="(max-width: 1023px)"
-      />
-      <link
-        rel="preload"
-        as="image"
-        href={HOME_HERO_POSTER_DESKTOP}
-        type="image/webp"
-        fetchPriority="high"
-        media="(min-width: 1024px)"
-      />
-      <HeroFilm />
-      <div className="hero-film-scrim" aria-hidden />
-      <div className="hero-film-fade" aria-hidden />
-
       <HeroScrollRoot className="shell shell--cinema hero-stage relative z-[2]">
         <HeroParallax layer="copy">
           <div className="hero-copy relative z-[3]">
@@ -62,7 +57,15 @@ export async function HomeHero() {
             </div>
           </div>
         </HeroParallax>
+        <HeroEngine
+          ariaLabel={t("engine.aria")}
+          mark={t("engine.mark")}
+          kicker={t("engine.kicker")}
+          proof={t("engine.proof")}
+          segments={segments}
+        />
       </HeroScrollRoot>
+      <HomeCertifications />
     </section>
   );
 }

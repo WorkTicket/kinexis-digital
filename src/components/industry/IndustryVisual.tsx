@@ -30,16 +30,16 @@ export function IndustryVisual({
   const visual = industryVisuals[slug];
 
   if (variant === "thumb") {
+    const thumbClass = cn("ind-visual__img ind-visual__img--thumb", className);
     return (
       <LcpImage
         src={visual.thumb}
         alt={visual.alt}
         sizes={
-          sizes ??
-          "(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
+          sizes ?? "(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
         }
-        quality={70}
-        className={cn("ind-visual__img ind-visual__img--thumb", className)}
+        quality={90}
+        className={thumbClass}
         priority={priority}
         width={720}
         height={480}
@@ -48,13 +48,14 @@ export function IndustryVisual({
   }
 
   if (variant === "panel") {
+    const panelClass = cn("ind-visual__img ind-visual__img--panel", className);
     return (
       <LcpImage
         src={visual.src}
         alt={visual.alt}
         sizes={sizes ?? "(max-width: 1023px) 100vw, 58vw"}
-        quality={70}
-        className={cn("ind-visual__img ind-visual__img--panel", className)}
+        quality={90}
+        className={panelClass}
         priority={priority}
         width={1200}
         height={800}
@@ -72,7 +73,7 @@ export function IndustryVisual({
         src={visual.src}
         alt={visual.alt}
         sizes={sizes ?? "(max-width: 767px) 100vw, 44vw"}
-        quality={75}
+        quality={90}
         className="ind-visual__img"
         priority={priority}
         width={1200}

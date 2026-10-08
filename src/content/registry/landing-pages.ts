@@ -746,7 +746,7 @@ export const landingPages: LandingPageEntry[] = [
       "Three businesses. Same job: make the next step obvious on a phone, then keep score on leads, calls, and orders.",
     samples: [
       {
-        image: "/assets/images/case-studies/landscaping-company-growth.webp",
+        image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
         imageAlt:
           "A1 Property Services site preview showing local lead-gen pages",
         client: "A1 Property Services",
@@ -759,7 +759,7 @@ export const landingPages: LandingPageEntry[] = [
           "The old brochure site buried the quote button on a phone. After the rebuild, conversion moved from 1.8% to 3.9%, and qualified leads followed.",
       },
       {
-        image: "/assets/images/case-studies/plumbing-company-growth.webp",
+        image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
         imageAlt:
           "Preferred Plumbing site preview focused on emergency call capture",
         client: "Preferred Plumbing",
@@ -975,7 +975,7 @@ export const landingPages: LandingPageEntry[] = [
       "Local service businesses and a conversion rebuild. Site, search, and ads treated as one system, not three disconnected retainers.",
     samples: [
       {
-        image: "/assets/images/case-studies/plumbing-company-growth.webp",
+        image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
         imageAlt:
           "Preferred Plumbing site preview focused on emergency call capture",
         client: "Preferred Plumbing",
@@ -987,7 +987,7 @@ export const landingPages: LandingPageEntry[] = [
           "A family-owned shop was paying $6,800 a month in ads for shrinking returns. The site could not capture a call on a phone. After the rebuild, local SEO, and tracking, emergency calls went from 22 to 52 a month and ad spend dropped to $4,100.",
       },
       {
-        image: "/assets/images/case-studies/landscaping-company-growth.webp",
+        image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
         imageAlt:
           "A1 Property Services site preview showing local lead-gen pages",
         client: "A1 Property Services",

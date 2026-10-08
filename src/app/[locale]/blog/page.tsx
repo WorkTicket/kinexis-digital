@@ -42,7 +42,7 @@ export default async function BlogPage({ params }: Props) {
   const locale = await resolveLocale(params);
   const t = await getTranslations("pages.blog");
   const tNav = await getTranslations("nav");
-  const latest = getLatestPosts(7, locale);
+  const latest = getLatestPosts(6, locale);
   const [featured, ...restLatest] = latest;
   const secondary = restLatest.slice(0, 2);
   const grid = restLatest.slice(2);

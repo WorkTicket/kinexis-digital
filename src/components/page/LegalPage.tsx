@@ -21,30 +21,26 @@ export async function LegalPage({ content: c }: Props) {
         aria-labelledby="legal-content-heading"
         className="chapter chapter--studio relative"
       >
-        <div className="shell relative py-16 md:py-24 lg:py-32">
+        <div className="shell relative py-16 md:py-20 lg:py-24">
           <h2 id="legal-content-heading" className="sr-only">
             {c.title} content
           </h2>
-          <div className="mx-auto max-w-3xl space-y-10">
+          <div className="blog-article__body legal-copy">
             {c.sections.map((section, index) => (
               <Reveal key={section.title} variant="fadeUp" delay={0.04 * index}>
-                <div>
-                  <h3 className="type-subheader text-foreground">
-                    {section.title}
-                  </h3>
-                  <div className="mt-4 space-y-3 text-[0.975rem] leading-relaxed text-muted md:text-base">
-                    {section.paragraphs.map((paragraph) => (
-                      <p key={paragraph}>{paragraph}</p>
-                    ))}
-                    {section.list ? (
-                      <ul className="list-disc space-y-2 pl-5">
-                        {section.list.map((item) => (
-                          <li key={item}>{item}</li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                </div>
+                <section className="legal-section">
+                  <h3>{section.title}</h3>
+                  {section.paragraphs.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                  {section.list ? (
+                    <ul>
+                      {section.list.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                </section>
               </Reveal>
             ))}
           </div>

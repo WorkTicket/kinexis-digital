@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
-import { HomeCertifications } from "@/components/home/HomeCertifications";
 import { HomeCTA } from "@/components/home/HomeCTA";
 import { HomeExplore } from "@/components/home/HomeExplore";
 import { HomeHero } from "@/components/home/HomeHero";
@@ -55,7 +54,6 @@ export default async function Home({ params }: Props) {
       />
       <main className="flex flex-1 flex-col">
         <HomeHero />
-        <HomeCertifications />
         <HomeServices />
         <HomeResults />
         <HomeProcess />

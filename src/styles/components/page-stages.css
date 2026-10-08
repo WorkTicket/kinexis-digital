@@ -258,7 +258,7 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
   min-height: 100%;
   border-radius: inherit;
   box-shadow: none;
-  background: #06070b;
+  background: var(--background);
 }
 
 .svc-visual__img {
@@ -1610,7 +1610,7 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
   min-height: 16rem;
   border-radius: var(--radius-lg, 0.75rem);
   border: 1px solid color-mix(in oklab, var(--line) 70%, transparent);
-  background: #06070b;
+  background: var(--background);
   box-shadow:
     0 16px 40px -28px color-mix(in oklab, var(--foreground) 26%, transparent),
     inset 0 1px 0 color-mix(in oklab, #fff 6%, transparent);
@@ -3277,7 +3277,7 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
   aspect-ratio: 3 / 2;
   min-height: 0;
   isolation: isolate;
-  background: #06070b;
+  background: var(--background);
 }
 
 /* concentric rings */
@@ -3695,7 +3695,7 @@ html[data-theme="dark"] .case-hero .hero-atmosphere,
   width: 100%;
   aspect-ratio: 3 / 2;
   overflow: hidden;
-  background: #06070b;
+  background: #fff;
   border-radius: var(--radius-2xl, 1.25rem);
 }
 

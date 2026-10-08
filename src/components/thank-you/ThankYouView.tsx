@@ -63,7 +63,7 @@ export async function ThankYouView({
 
           <RevealGroup
             as="ol"
-            className="grid list-none grid-cols-1 gap-4 p-0 md:grid-cols-3 md:gap-5"
+            className="thanks-steps"
             stagger={duration.staggerTight}
             delayChildren={0.08}
             aria-label={t("nextAria")}
@@ -72,16 +72,12 @@ export async function ThankYouView({
               const Icon = step.icon;
               return (
                 <RevealItem key={step.title} as="li" variant="fadeUp">
-                  <article className="motion-card surface-tile">
-                    <span className="icon-well mb-5" aria-hidden>
+                  <article className="thanks-step">
+                    <span className="icon-well" aria-hidden>
                       <Icon strokeWidth={1.5} />
                     </span>
-                    <h3 className="font-[family-name:var(--font-display)] text-[clamp(1.85rem,3vw,2.35rem)] font-bold leading-[1.05] tracking-[-0.045em] text-balance text-foreground">
-                      {step.title}
-                    </h3>
-                    <p className="mt-4 text-[0.975rem] leading-relaxed text-pretty text-muted md:text-base">
-                      {step.detail}
-                    </p>
+                    <h3 className="thanks-step__title">{step.title}</h3>
+                    <p className="thanks-step__copy">{step.detail}</p>
                   </article>
                 </RevealItem>
               );

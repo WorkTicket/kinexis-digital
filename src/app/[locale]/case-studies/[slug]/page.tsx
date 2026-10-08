@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { CaseStudyHero } from "@/components/page/CaseStudyHero";
 import { PageCTA } from "@/components/page/PageCTA";
+import { ChapterLead } from "@/components/ui/ChapterLead";
 import JsonLd from "@/components/seo/JsonLd";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import {
@@ -58,8 +59,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const tNav = await getTranslations("nav");
   const others = getCaseStudyPages(locale).filter((c) => c.slug !== study.slug);
 
-  const metricFills = ["88%", "76%", "64%", "92%"];
-
   return (
     <main className="flex flex-1 flex-col">
       <JsonLd
@@ -94,9 +93,9 @@ export default async function CaseStudyPage({ params }: PageProps) {
             aria-label={t("results")}
             stagger={duration.staggerTight}
           >
-            {study.metrics.map((metric, i) => (
+            {study.metrics.map((metric) => (
               <RevealItem key={metric.label} as="li" variant="fadeUp">
-                <div className="case-metric case-metric--visual">
+                <div className="case-metric">
                   <p className="case-metric__label">{metric.label}</p>
                   <p className="case-metric__value">
                     {metric.after}
@@ -107,9 +106,6 @@ export default async function CaseStudyPage({ params }: PageProps) {
                     ) : null}
                   </p>
                   <p className="case-metric__note">{metric.note}</p>
-                  <div className="case-metric__bar" aria-hidden>
-                    <i style={{ width: metricFills[i % metricFills.length] }} />
-                  </div>
                 </div>
               </RevealItem>
             ))}
@@ -184,10 +180,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
         <section className="chapter chapter--void relative">
           <div className="shell relative py-16 sm:py-24 md:py-32">
             <Reveal variant="rise" when="chapter">
-              <p className="section-eyebrow">{t("moreWork")}</p>
-              <h2 className="mt-4 max-w-xl font-[family-name:var(--font-display)] text-[clamp(1.85rem,4vw,3rem)] font-bold tracking-[-0.04em] leading-[1.05]">
-                {t("keepReading")}
-              </h2>
+              <ChapterLead
+                eyebrow={t("moreWork")}
+                title={t("keepReading")}
+                headingClassName="max-w-[16ch]"
+              />
             </Reveal>
             <ul className="related-list mt-10">
               {others.map((other) => (

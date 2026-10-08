@@ -13,10 +13,6 @@ import { duration } from "@/lib/motion";
 const tileClass =
   "group flex h-full flex-col text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--hero-signal)]";
 
-function floatSrc(src: string) {
-  return src.replace(".webp", "-float.webp");
-}
-
 function ServiceTile({
   service,
 }: {
@@ -28,22 +24,13 @@ function ServiceTile({
     <Link href={service.href} className={tileClass}>
       <div className="service-tile__art">
         <Image
-          src={floatSrc(visual.src)}
+          src={visual.src}
           alt={visual.alt}
           fill
           sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
-          quality={75}
+          quality={90}
           loading="lazy"
-          className="service-tile__plate service-tile__plate--light object-contain object-center"
-        />
-        <Image
-          src={visual.src}
-          alt=""
-          fill
-          sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
-          quality={75}
-          loading="lazy"
-          className="service-tile__plate service-tile__plate--dark object-contain object-center"
+          className="service-tile__plate object-contain object-center"
         />
       </div>
       <div className="flex flex-1 flex-col p-6 md:p-7">

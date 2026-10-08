@@ -26,7 +26,7 @@ const homeResultsEn: HomeResult[] = [
     mechanism: "Local SEO plus tighter landing pages",
     summary:
       "Local SEO and tighter landing pages replaced feast-or-famine referrals with steady inbound through the season.",
-    image: "/assets/images/case-studies/landscaping-company-growth.webp",
+    image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
     imageAlt:
       "A1 Property Services site preview showing local lead-gen pages",
   },
@@ -40,7 +40,7 @@ const homeResultsEn: HomeResult[] = [
     mechanism: "Stronger local rankings, less wasted ad spend",
     summary:
       "Stronger local rankings cut wasted ad spend and more than doubled emergency calls when homeowners needed help now.",
-    image: "/assets/images/case-studies/plumbing-company-growth.webp",
+    image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
     imageAlt:
       "Preferred Plumbing site preview focused on emergency call capture",
   },
@@ -70,7 +70,7 @@ const homeResultsEs: HomeResult[] = [
     mechanism: "SEO local y landings más precisas",
     summary:
       "El SEO local y landings más precisas sustituyeron los referidos a trompicones por demanda estable durante toda la temporada.",
-    image: "/assets/images/case-studies/landscaping-company-growth.webp",
+    image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
     imageAlt:
       "Vista previa del sitio de A1 Property Services con páginas locales de captación",
   },
@@ -84,7 +84,7 @@ const homeResultsEs: HomeResult[] = [
     mechanism: "Mejor ranking local, menos gasto publicitario tirado",
     summary:
       "Un ranking local más sólido recortó gasto inútil y más que duplicó las llamadas de emergencia cuando el cliente necesitaba ayuda ya.",
-    image: "/assets/images/case-studies/plumbing-company-growth.webp",
+    image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
     imageAlt:
       "Vista previa del sitio de Preferred Plumbing centrada en captar llamadas de emergencia",
   },

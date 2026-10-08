@@ -122,6 +122,8 @@
     "terms": "Términos",
     "about": "Nosotros",
     "email": "Email",
+    "phone": "Teléfono",
+    "facebook": "Facebook",
     "llmsIndex": "Índice del sitio para IA",
     "locations": "Ubicaciones",
     "ctaEyebrow": "Hablemos",
@@ -310,6 +312,46 @@
     "heroLedeAnd": "y",
     "heroLedeEcommerce": "e-commerce",
     "heroLedeAfter": ". Un solo programa. Medido en leads e ingresos.",
+    "engine": {
+      "aria": "Partes del programa",
+      "mark": "Kinexis",
+      "kicker": "Un solo programa",
+      "proof": "Leads e ingresos",
+      "segments": {
+        "search": {
+          "label": "Orgánico",
+          "role": "Demanda",
+          "title": "SEO en Google",
+          "body": "Limpieza técnica y páginas que posicionan para lo que la gente ya escribe en Google."
+        },
+        "web": {
+          "label": "Sitio web",
+          "role": "Convierte",
+          "title": "Web a medida",
+          "body": "Hecho para el teléfono. Rápido, con un camino a la llamada que se queda en pantalla."
+        },
+        "ads": {
+          "label": "Anuncios",
+          "role": "Escalado",
+          "title": "Medios de pago",
+          "body": "Inversión en Google y Meta, medida como resultados. Cada gasto vuelve en un lead o pedido."
+        },
+        "brand": {
+          "label": "Branding",
+          "role": "Posición",
+          "title": "Marca a medida",
+          "body": "Posición, voz y una imagen para que un desconocido te elija antes de la siguiente pestaña."
+        },
+        "content": {
+          "label": "Contenido",
+          "role": "Confianza",
+          "title": "Contenido",
+          "body": "Páginas y correos que responden pronto, para que un lead tibio no se enfríe entre visitas."
+        }
+      }
+    },
+    "funnelAria": "Cómo el programa se estrecha hasta un lead",
+    "funnelOutlet": "Leads",
     "servicesEyebrow": "Servicios",
     "servicesTitle": "Qué hacemos.",
     "servicesDek": "Muchas empresas compran marketing por partes y esperan que los números cuadren solos. Nosotros integramos diseño web, SEO, branding, anuncios y contenido para que cada inversión apunte al mismo resultado: demanda que tu equipo puede cerrar.",

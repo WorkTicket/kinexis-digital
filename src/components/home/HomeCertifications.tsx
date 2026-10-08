@@ -70,16 +70,16 @@ export async function HomeCertifications() {
       className="cert-strip"
     >
       <div className="cert-strip__frame">
-        <div className="shell cert-strip__label-row">
+        <div className="cert-strip__bar shell shell--cinema">
           <h2 id="home-certifications-heading" className="cert-strip__eyebrow">
             {t("platformCertified")}
           </h2>
-        </div>
 
-        <div className="partner-ticker" role="presentation">
-          <div className="partner-ticker__viewport">
-            <TickerTrack maskSuffix="a" />
-            <TickerTrack ariaHidden maskSuffix="b" />
+          <div className="partner-ticker" role="presentation">
+            <div className="partner-ticker__viewport">
+              <TickerTrack maskSuffix="a" />
+              <TickerTrack ariaHidden maskSuffix="b" />
+            </div>
           </div>
         </div>
       </div>

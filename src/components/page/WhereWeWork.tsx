@@ -1,6 +1,7 @@
 import { getLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
+import { MarketsBoard } from "@/components/home/MarketsBoard";
 import { IndustryVisual } from "@/components/industry/IndustryVisual";
 import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
@@ -11,6 +12,7 @@ import {
   industryHref,
   marketsPreviewSlugs,
 } from "@/content/industries";
+import { industryVisuals } from "@/content/industry-visuals";
 import { duration } from "@/lib/motion";
 import { cn } from "@/lib/cn";
 
@@ -20,13 +22,20 @@ type WhereWeWorkProps = {
   compact?: boolean;
   /** Type-only list — no industry stills or atmosphere wash */
   plain?: boolean;
+  /** Homepage instrument: one market lit, the still beside it */
+  board?: boolean;
 };
 
-export async function WhereWeWork({ className, compact, plain }: WhereWeWorkProps) {
+export async function WhereWeWork({
+  className,
+  compact,
+  plain,
+  board,
+}: WhereWeWorkProps) {
   const locale = (await getLocale()) as Locale;
   const c = getIndustriesContent(locale);
   const markets = marketsPreviewSlugs
-    .map((slug) => getIndustryBySlug(slug))
+    .map((slug) => getIndustryBySlug(slug, locale))
     .filter((industry): industry is NonNullable<typeof industry> =>
       Boolean(industry),
     );
@@ -75,6 +84,28 @@ export async function WhereWeWork({ className, compact, plain }: WhereWeWorkProp
           </ChapterLead>
         </Reveal>
 
+        {board ? (
+          <Reveal variant="rise" when="chapter">
+            <MarketsBoard
+              ariaLabel={c.previewEyebrow}
+              markets={markets.map((industry) => {
+                const visual = industryVisuals[industry.slug];
+                return {
+                  slug: industry.slug,
+                  href: industryHref(industry.slug),
+                  eyebrow: industry.eyebrow,
+                  title: industry.title,
+                  summary: industry.summary,
+                  focus: industry.discover.slice(0, 3),
+                  still: visual.thumb,
+                  stillAlt: visual.alt,
+                };
+              })}
+            />
+          </Reveal>
+        ) : null}
+
+        {board ? null : (
         <RevealGroup
           as="ul"
           className="markets-folio"
@@ -120,6 +151,7 @@ export async function WhereWeWork({ className, compact, plain }: WhereWeWorkProp
             </RevealItem>
           ))}
         </RevealGroup>
+        )}
       </div>
     </section>
   );

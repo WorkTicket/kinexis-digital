@@ -5,9 +5,9 @@
 
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
-const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
-const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
-const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
+const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261006d";
+const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20261006d";
+const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261006d";
 const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20260930c";
 
 /** Short hero/sticky label. Header uses a shorter label. */
@@ -79,7 +79,7 @@ export function buildSpanishGetAWebsite(
     },
     heroCredit: "Habla con Colton. Te llamo el mismo día.",
     heroDevices: {
-      src: "/assets/images/lp/hero-devices-float.webp?v=20261005v",
+      src: "/assets/images/lp/hero-devices-float.webp?v=20261006d",
       alt: "Sitios de A1 Property Services y Preferred Plumbing en laptops y teléfonos, hechos por KINEXIS",
       width: 1024,
       height: 512,
@@ -291,7 +291,7 @@ export function buildSpanishGetAWebsite(
     samples: [
       {
         image: A1_DESKTOP,
-        deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261005v",
+        deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261006d",
         imageAlt:
           "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
         client: "A1 Property Services",
@@ -309,7 +309,7 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: PLUMBING_DESKTOP,
-        deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261005v",
+        deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261006d",
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",

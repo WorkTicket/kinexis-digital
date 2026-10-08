@@ -10,6 +10,8 @@ export type HomeService = {
   shortTitle: string;
   /** One-word job in the demand program */
   role: string;
+  /** Short label on the program funnel. Kept to a similar length on every band. */
+  mark: string;
   description: string;
   href: string;
   icon: "branding" | "web" | "seo" | "paid" | "content";
@@ -22,6 +24,7 @@ const homeServicesEn: HomeService[] = [
     title: "Web Design",
     shortTitle: "Web Design",
     role: "Convert",
+    mark: "Websites",
     description:
       "Sites built phone-first. Fast load, clear paths, and a CTA that does not hide when the screen shrinks.",
     href: "/services/web-design",
@@ -40,6 +43,7 @@ const homeServicesEn: HomeService[] = [
     title: "SEO",
     shortTitle: "SEO",
     role: "Demand",
+    mark: "Organic",
     description:
       "Technical cleanup and pages that rank for the jobs and products people already type into Google.",
     href: "/services/seo",
@@ -58,6 +62,7 @@ const homeServicesEn: HomeService[] = [
     title: "Branding",
     shortTitle: "Branding",
     role: "Position",
+    mark: "Branding",
     description:
       "Positioning, voice, and visuals that help a stranger pick you before they open the next tab.",
     href: "/services/branding",
@@ -76,6 +81,7 @@ const homeServicesEn: HomeService[] = [
     title: "Paid Ads",
     shortTitle: "Paid Ads",
     role: "Scale",
+    mark: "Ad spend",
     description:
       "Google and Meta budgets run like a P&L. Every dollar tied to a conversion you can name.",
     href: "/services/paid-media",
@@ -94,6 +100,7 @@ const homeServicesEn: HomeService[] = [
     title: "Content Marketing",
     shortTitle: "Content Marketing",
     role: "Trust",
+    mark: "Content",
     description:
       "Pages and sequences that answer buyer questions early and keep warm leads from going cold.",
     href: "/services/content-marketing",
@@ -115,6 +122,7 @@ const homeServicesEs: HomeService[] = [
     title: "Diseño web",
     shortTitle: "Diseño web",
     role: "Convertir",
+    mark: "Sitio web",
     description:
       "Webs pensadas primero para el móvil. Carga rápida, caminos claros y un CTA que no desaparece cuando se encoge la pantalla.",
     href: "/services/web-design",
@@ -133,6 +141,7 @@ const homeServicesEs: HomeService[] = [
     title: "SEO",
     shortTitle: "SEO",
     role: "Demanda",
+    mark: "Orgánico",
     description:
       "Limpieza técnica y páginas que posicionan para los trabajos y productos que la gente ya busca en Google.",
     href: "/services/seo",
@@ -151,6 +160,7 @@ const homeServicesEs: HomeService[] = [
     title: "Branding",
     shortTitle: "Branding",
     role: "Posición",
+    mark: "Branding",
     description:
       "Posicionamiento, voz y visuales para que un desconocido te elija antes de abrir la siguiente pestaña.",
     href: "/services/branding",
@@ -169,6 +179,7 @@ const homeServicesEs: HomeService[] = [
     title: "Anuncios de pago",
     shortTitle: "Anuncios de pago",
     role: "Escala",
+    mark: "Anuncios",
     description:
       "Presupuestos de Google y Meta gestionados como un P&L. Cada euro atado a una conversión que puedes nombrar.",
     href: "/services/paid-media",
@@ -187,6 +198,7 @@ const homeServicesEs: HomeService[] = [
     title: "Marketing de contenidos",
     shortTitle: "Contenido",
     role: "Confianza",
+    mark: "Contenido",
     description:
       "Páginas y secuencias que responden pronto a las dudas del comprador y evitan que los leads calientes se enfríen.",
     href: "/services/content-marketing",

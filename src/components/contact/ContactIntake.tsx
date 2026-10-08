@@ -2,16 +2,29 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/Button";
 import type { ContactContent } from "@/content/contact";
 import { cn } from "@/lib/cn";
+
+function BookingSkeleton() {
+  return (
+    <div className="contact-booking-skeleton" aria-busy="true">
+      <span className="sr-only">Loading the calendar</span>
+      <div className="contact-booking-skeleton__title" />
+      <div className="contact-booking-skeleton__line" />
+      <div className="contact-booking-skeleton__cols">
+        <div className="contact-booking-skeleton__cal" />
+        <div className="contact-booking-skeleton__side" />
+      </div>
+    </div>
+  );
+}
 
 const StrategyCallBooking = dynamic(
   () =>
     import("@/components/contact/StrategyCallBooking").then(
       (mod) => mod.StrategyCallBooking,
     ),
-  { ssr: false },
+  { ssr: false, loading: () => <BookingSkeleton /> },
 );
 
 const ContactForm = dynamic(
@@ -30,7 +43,6 @@ function tabFromHash(): Tab {
 
 export function ContactIntake({ content: c }: Props) {
   const [tab, setTab] = useState<Tab>("book");
-  const [hydrateBook, setHydrateBook] = useState(false);
   const [hydrateMessage, setHydrateMessage] = useState(false);
 
   useEffect(() => {
@@ -58,10 +70,7 @@ export function ContactIntake({ content: c }: Props) {
             aria-selected={tab === "book"}
             id="contact-tab-book"
             aria-controls="contact-panel-book"
-            onClick={() => {
-              setTab("book");
-              setHydrateBook(true);
-            }}
+            onClick={() => setTab("book")}
             className={cn(
               "min-h-11 rounded-[var(--radius-sm)] px-3 py-2.5 text-sm font-semibold transition-colors",
               tab === "book"
@@ -100,20 +109,7 @@ export function ContactIntake({ content: c }: Props) {
           aria-labelledby="contact-tab-book"
           hidden={tab !== "book"}
         >
-          {tab === "book" ? (
-            hydrateBook ? (
-              <StrategyCallBooking content={c} />
-            ) : (
-              <div className="flex min-h-[28rem] flex-col items-start justify-center gap-4 rounded-xl bg-foreground/[0.03] p-6 sm:p-8">
-                <p className="max-w-md text-base leading-relaxed text-muted">
-                  {c.booking.subtitle}
-                </p>
-                <Button type="button" onClick={() => setHydrateBook(true)}>
-                  {c.booking.tabLabel}
-                </Button>
-              </div>
-            )
-          ) : null}
+          {tab === "book" ? <StrategyCallBooking content={c} /> : null}
         </div>
         <div
           role="tabpanel"

@@ -4,7 +4,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { useEffect, useId, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Button } from "@/components/ui/Button";
 import { CallLink } from "@/components/analytics/CallLink";
 import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
@@ -361,11 +360,16 @@ export function Header() {
             <Button href={contactHref} size="header" onClick={closeDropdown}>
               {contactLabel}
             </Button>
-            <ThemeToggle />
           </div>
 
-          <div className="ml-auto flex items-center gap-2 sm:gap-3 lg:hidden">
-            <ThemeToggle />
+          <div className="site-header__mobile ml-auto flex items-center gap-1.5 sm:gap-3 lg:hidden">
+            {hasPhone ? (
+              <CallLink className="site-header__phone site-header__phone--bar">
+                <span className="site-header__phone-num">
+                  {getBusinessPhoneDisplay()}
+                </span>
+              </CallLink>
+            ) : null}
             <button
               ref={menuButtonRef}
               type="button"
@@ -385,11 +389,18 @@ export function Header() {
                 setMenuOpen(true);
               }}
             >
-              <span className="site-nav__burger-box" aria-hidden>
-                <span />
-                <span />
-                <span />
-              </span>
+              <svg
+                className="site-nav__burger-icon"
+                viewBox="0 0 22 16"
+                width="22"
+                height="16"
+                aria-hidden
+                focusable="false"
+              >
+                <path className="site-nav__burger-line" d="M2 2h18" />
+                <path className="site-nav__burger-line" d="M2 8h18" />
+                <path className="site-nav__burger-line" d="M2 14h18" />
+              </svg>
             </button>
           </div>
             </>

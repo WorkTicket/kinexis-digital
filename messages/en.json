@@ -122,6 +122,8 @@
     "terms": "Terms",
     "about": "About",
     "email": "Email",
+    "phone": "Phone",
+    "facebook": "Facebook",
     "llmsIndex": "AI site index",
     "locations": "Locations",
     "ctaEyebrow": "Get in touch",
@@ -310,6 +312,46 @@
     "heroLedeAnd": "and",
     "heroLedeEcommerce": "e-commerce",
     "heroLedeAfter": ". One program. Measured on leads and revenue.",
+    "engine": {
+      "aria": "Parts of the program",
+      "mark": "Kinexis",
+      "kicker": "One program",
+      "proof": "Leads and revenue",
+      "segments": {
+        "search": {
+          "label": "Organic",
+          "role": "Demand",
+          "title": "Google SEO",
+          "body": "Technical cleanup and pages that rank for the jobs people already type into Google."
+        },
+        "web": {
+          "label": "Website",
+          "role": "Convert",
+          "title": "Web design",
+          "body": "Built for the phone in someone's hand. Fast, with a path to the call that stays put."
+        },
+        "ads": {
+          "label": "Ad spend",
+          "role": "Scaling",
+          "title": "Paid media",
+          "body": "Google and Meta spend, scored like a P&L, so each dollar returns as a lead or order."
+        },
+        "brand": {
+          "label": "Branding",
+          "role": "Position",
+          "title": "Brand work",
+          "body": "Positioning, voice, and a look a stranger can choose before they open the next tab."
+        },
+        "content": {
+          "label": "Content",
+          "role": "Trust",
+          "title": "Content",
+          "body": "Pages and emails that answer the question early, so a warm lead doesn't cool off between visits."
+        }
+      }
+    },
+    "funnelAria": "How the program narrows to a lead",
+    "funnelOutlet": "Leads",
     "servicesEyebrow": "Services",
     "servicesTitle": "What we do.",
     "servicesDek": "Most companies buy marketing in pieces and hope the math works. We run web design, SEO, branding, paid ads, and content so every dollar aims at the same outcome: demand your team can close.",

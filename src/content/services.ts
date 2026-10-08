@@ -319,6 +319,7 @@ export function getServicePages(locale: Locale = "en"): ServicePage[] {
     ...page,
     title: overlay[page.slug].title,
     shortTitle: overlay[page.slug].shortTitle,
+    mark: overlay[page.slug].mark,
     role: overlay[page.slug].role,
     description: overlay[page.slug].description,
     capabilities: overlay[page.slug].capabilities,

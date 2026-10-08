@@ -42,7 +42,7 @@ export function ServiceVisual({
             ? "(max-width: 1023px) 100vw, 32vw"
             : "(max-width: 767px) 100vw, 44vw"
         }
-        quality={isLane ? 70 : 75}
+        quality={90}
         className="svc-visual__img"
         priority={priority}
         width={1200}

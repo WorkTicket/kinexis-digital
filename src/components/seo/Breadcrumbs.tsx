@@ -18,16 +18,16 @@ export default function Breadcrumbs({ items }: BreadcrumbsProps) {
           const isLast = i === items.length - 1;
           return (
             <li key={`${item.name}-${i}`} className="flex items-center gap-1">
-              {i > 0 && <ChevronRight className="h-3 w-3 text-white/20" />}
+              {i > 0 && <ChevronRight className="h-3 w-3 text-foreground/25" />}
               {isLast || !item.url ? (
                 <span
                   {...(isLast ? { "aria-current": "page" as const } : {})}
-                  className={isLast ? "text-white/70" : ""}
+                  className={isLast ? "text-foreground/70" : ""}
                 >
                   {item.name}
                 </span>
               ) : (
-                <Link href={item.url} className="hover:text-white transition-colors">
+                <Link href={item.url} className="transition-colors hover:text-foreground">
                   {item.name}
                 </Link>
               )}

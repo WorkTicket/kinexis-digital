@@ -12,9 +12,9 @@ import { applyLocalePricing, formatEsInteger } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
 import { getBusinessWhatsAppHref } from "@/lib/business";
 
-const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20260930a";
-const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20260916g";
-const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20260916g";
+const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261006d";
+const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20261006d";
+const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261006d";
 
 /** Sticky and header keep the call. The hero button names the free plan. */
 const CTA = "Book a 15-Minute Project Call";
@@ -191,7 +191,7 @@ const baseGetAWebsite: LandingPageEntry = {
   },
   heroCredit: "Talk to Colton. I'll call you back the same day.",
   heroDevices: {
-    src: "/assets/images/lp/hero-devices-float.webp?v=20261005v",
+    src: "/assets/images/lp/hero-devices-float.webp?v=20261006d",
     alt: "A1 Property Services and Preferred Plumbing websites on laptops and phones, built by KINEXIS",
     width: 1024,
     height: 512,
@@ -402,7 +402,7 @@ const baseGetAWebsite: LandingPageEntry = {
   samples: [
     {
       image: A1_DESKTOP,
-      deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261005v",
+      deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261006d",
       imageAlt:
         "A1 Property Services website on a laptop, built by KINEXIS",
       client: "A1 Property Services",
@@ -420,7 +420,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       image: PLUMBING_DESKTOP,
-      deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261005v",
+      deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261006d",
       imageAlt:
         "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
       client: "Preferred Plumbing Solutions",
