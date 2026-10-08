@@ -102,20 +102,20 @@ export function WebsiteHero({
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src="/assets/images/lp/colton-wehr-face.webp?v=20261005p"
+                        src="/assets/images/lp/colton-wehr-face.webp?v=20261007b"
                         alt=""
-                        width={380}
-                        height={380}
+                        width={580}
+                        height={580}
                         decoding="async"
                       />
                     </a>
                   ) : (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
-                      src="/assets/images/lp/colton-wehr-face.webp?v=20261005p"
+                      src="/assets/images/lp/colton-wehr-face.webp?v=20261007b"
                       alt=""
-                      width={380}
-                      height={380}
+                      width={580}
+                      height={580}
                       decoding="async"
                     />
                   )}
@@ -156,11 +156,15 @@ export function WebsiteHero({
                 rel="preload"
                 as="image"
                 href={visual.src}
+                imageSrcSet={visual.srcSet}
+                imageSizes={visual.sizes}
                 fetchPriority="high"
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={visual.src}
+                srcSet={visual.srcSet}
+                sizes={visual.sizes}
                 alt={visual.alt}
                 width={visual.width}
                 height={visual.height}

@@ -7411,8 +7411,8 @@ html.lp-chrome .site-header__phone:focus-visible {
 }
 
 html.lp-chrome .site-header__phone-mark {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 1rem;
+  height: 1rem;
   flex-shrink: 0;
   color: #0575f5;
 }

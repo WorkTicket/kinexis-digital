@@ -304,9 +304,14 @@ export function WebsiteWork({
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={sample.deviceShot}
+                        srcSet={sample.deviceShotSrcSet}
+                        sizes={
+                          sample.deviceShotSizes ??
+                          "(max-width: 767px) 100vw, 34rem"
+                        }
                         alt=""
-                        width={1024}
-                        height={672}
+                        width={1920}
+                        height={1260}
                         decoding="async"
                         loading="lazy"
                         fetchPriority="low"

@@ -16,6 +16,8 @@ export type LandingPageSample = {
   imageAlt: string;
   /** Studio photo: live site on a laptop with a smaller phone. */
   deviceShot?: string;
+  deviceShotSrcSet?: string;
+  deviceShotSizes?: string;
   client: string;
   metric: string;
   label: string;
@@ -309,6 +311,8 @@ export type LandingPageEntry = {
   /** Device photo that fills the hero beside the offer. */
   heroDevices?: {
     src: string;
+    srcSet?: string;
+    sizes?: string;
     alt: string;
     width: number;
     height: number;

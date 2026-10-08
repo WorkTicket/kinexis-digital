@@ -664,7 +664,8 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   .lp-web-hero__devices img {
     width:100%;
     max-width:100%;
-    max-height:clamp(5.25rem,17svh,11rem);
+    height:auto;
+    max-height:none;
   }
 }
 
@@ -1083,7 +1084,6 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   max-height:min(34svh,22rem);
   object-fit:contain;
   object-position:center center;
-  object-view-box:inset(17.5% 0.4% 13.5% 2.2%);
   filter:drop-shadow(0 22px 28px rgba(0,0,0,.55));
 }
 
@@ -3303,7 +3303,8 @@ html[data-theme=dark] .lp-web-hero__wash--a {
   }
   .lp-web-hero__devices img {
     width:100%;
-    max-height:clamp(6.5rem,24svh,14rem);
+    height:auto;
+    max-height:none;
   }
 }
 
@@ -3909,7 +3910,12 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
   .lp-web-hero__devices img {
     width:100%;
     max-width:100%;
-    max-height:clamp(5.25rem,17svh,11rem);
+    height:auto;
+    max-height:none;
+    filter:drop-shadow(0 6px 8px rgba(0,0,0,.4));
+  }
+  .lp-web-work__shot img {
+    filter:drop-shadow(0 8px 10px rgba(0,0,0,.16));
   }
   .lp-web-outcomes__list {
     row-gap:clamp(.35rem,1.2svh,.75rem);
@@ -3971,6 +3977,7 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
     gap:.4rem;
   }
   .lp-web-hero__devices img {
-    max-height:5.75rem;
+    height:auto;
+    max-height:none;
   }
 }

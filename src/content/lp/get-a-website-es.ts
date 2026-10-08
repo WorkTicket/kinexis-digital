@@ -79,10 +79,13 @@ export function buildSpanishGetAWebsite(
     },
     heroCredit: "Habla con Colton. Te llamo el mismo día.",
     heroDevices: {
-      src: "/assets/images/lp/hero-devices-float.webp?v=20261006d",
+      src: "/assets/images/lp/hero-devices.webp?v=20261007d",
+      srcSet:
+        "/assets/images/lp/hero-devices-640.webp?v=20261007d 640w, /assets/images/lp/hero-devices-960.webp?v=20261007d 960w, /assets/images/lp/hero-devices-1440.webp?v=20261007d 1440w, /assets/images/lp/hero-devices-2048.webp?v=20261007d 2048w",
+      sizes: "(max-width: 767px) 100vw, min(52rem, 50vw)",
       alt: "Sitios de A1 Property Services y Preferred Plumbing en laptops y teléfonos, hechos por KINEXIS",
-      width: 1024,
-      height: 512,
+      width: 2048,
+      height: 726,
     },
     directIntro: {
       title: "Trabajas conmigo, no con un centro de llamadas.",
@@ -291,7 +294,10 @@ export function buildSpanishGetAWebsite(
     samples: [
       {
         image: A1_DESKTOP,
-        deviceShot: "/assets/images/lp/a1-devices-float.webp?v=20261006d",
+        deviceShot: "/assets/images/lp/a1-devices.webp?v=20261007d",
+        deviceShotSrcSet:
+          "/assets/images/lp/a1-devices-640.webp?v=20261007d 640w, /assets/images/lp/a1-devices-960.webp?v=20261007d 960w, /assets/images/lp/a1-devices-1440.webp?v=20261007d 1440w, /assets/images/lp/a1-devices-1920.webp?v=20261007d 1920w",
+        deviceShotSizes: "(max-width: 767px) 100vw, 34rem",
         imageAlt:
           "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
         client: "A1 Property Services",
@@ -309,7 +315,10 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: PLUMBING_DESKTOP,
-        deviceShot: "/assets/images/lp/plumbing-devices-float.webp?v=20261006d",
+        deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261007d",
+        deviceShotSrcSet:
+          "/assets/images/lp/plumbing-devices-640.webp?v=20261007d 640w, /assets/images/lp/plumbing-devices-960.webp?v=20261007d 960w, /assets/images/lp/plumbing-devices-1440.webp?v=20261007d 1440w, /assets/images/lp/plumbing-devices-1920.webp?v=20261007d 1920w",
+        deviceShotSizes: "(max-width: 767px) 100vw, 34rem",
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",
