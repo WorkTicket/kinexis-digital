@@ -35,12 +35,11 @@ export async function ServiceProgramChapter({
       aria-labelledby={headingId}
       className={cn(
         "svc-offer",
-        !still && Mark && "svc-offer--mark",
-        !still && !Mark && "svc-offer--copy",
+        !still && "svc-offer--mark",
         still && index % 2 === 1 && "svc-offer--flip",
       )}
     >
-      {!still && Mark ? (
+      {!still ? (
         <div className="svc-offer__mark" aria-hidden>
           <Mark />
         </div>

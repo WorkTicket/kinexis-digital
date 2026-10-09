@@ -4,7 +4,8 @@ const sendKinexisMail = vi.fn(async () => ({ ok: true, sent: true }));
 
 vi.mock("@/lib/email", () => ({
   emailRow: (label: string, value: string) => `${label}:${value}`,
-  sendKinexisMail: (...args: unknown[]) => sendKinexisMail(...args),
+  sendKinexisMail: (...args: Parameters<typeof sendKinexisMail>) =>
+    sendKinexisMail(...args),
 }));
 
 vi.mock("@opennextjs/cloudflare", () => ({

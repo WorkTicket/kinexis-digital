@@ -318,7 +318,7 @@ describe("get-a-website landing page", () => {
       expect(spanish?.testimonial?.name).toBe("Mac Christensen");
       expect(spanish?.testimonial?.role).toBe("Dueño, A1 Property Services");
       expect(spanish?.pricingIntro).toMatch(/hasta 4 páginas/i);
-      expect(spanish?.pricing?.[0]?.items.join(" ")).toMatch(/Hasta 4 páginas/);
+      expect(spanish?.pricing?.[0]?.items?.join(" ")).toMatch(/Hasta 4 páginas/);
       expect(spanish?.pricingHighlights?.join(" ").toLowerCase()).not.toMatch(
         /hosting/,
       );
