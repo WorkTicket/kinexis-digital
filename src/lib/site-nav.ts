@@ -2,118 +2,174 @@ export const CTA_LABEL = "Book a strategy call";
 export const NAV_CONTACT_HREF = "/contact";
 export const NAV_CONTACT_LABEL = "Contact";
 
-export type NavChild = {
+export type MegaMenuId = "services" | "industries" | "resources";
+
+export type MegaLink = {
   href: string;
-  label: string;
-  description?: string;
+  key: string;
+};
+
+export type MegaGroup = {
+  key: string;
+  links: MegaLink[];
+};
+
+export type MegaFeature = {
+  href: string;
+  secondaryHref?: string;
 };
 
 export type MainNavItem = {
   href: string;
   label: string;
   key: string;
-  children?: NavChild[];
-  featured?: NavChild[];
-  allLabel?: string;
-  mega?: "services" | "industries";
-  megaIntro?: string;
-  dropdown?: string;
+  /** Copy lives at `nav.mega.{menu}` */
+  menu?: MegaMenuId;
+  groups?: MegaGroup[];
+  feature?: MegaFeature;
 };
 
+/**
+ * Menus only list pages that exist. Channel names that share a URL
+ * (Google Ads, Meta, local SEO) stay on that service page.
+ */
 export const mainNavLinks: MainNavItem[] = [
   { href: "/case-studies", key: "caseStudies", label: "Work" },
-  { href: "/services", key: "services", label: "Services" },
+  {
+    href: "/services",
+    key: "services",
+    label: "Services",
+    menu: "services",
+    groups: [
+      {
+        key: "program",
+        links: [
+          { href: "/services/seo", key: "seo" },
+          { href: "/services/paid-media", key: "paidAds" },
+          { href: "/services/web-design", key: "webDesign" },
+          { href: "/services/branding", key: "branding" },
+          { href: "/services/content-marketing", key: "content" },
+        ],
+      },
+      {
+        key: "proof",
+        links: [
+          { href: "/case-studies/landscaping-company-growth", key: "a1" },
+          { href: "/case-studies/plumbing-company-growth", key: "preferred" },
+          { href: "/case-studies/ecommerce-store-growth", key: "manos" },
+        ],
+      },
+    ],
+    feature: {
+      href: "/contact",
+      secondaryHref: "/audit",
+    },
+  },
   {
     href: "/industries",
     key: "industries",
     label: "Industries",
-    allLabel: "All industries",
-    children: [
-      { href: "/industries/home-services", label: "Home Services" },
-      { href: "/industries/plumbing", label: "Plumbing" },
-      { href: "/industries/landscaping", label: "Landscaping" },
-      { href: "/industries/hvac", label: "HVAC" },
-      { href: "/industries/roofing", label: "Roofing" },
-      { href: "/industries/ecommerce", label: "E-commerce" },
+    menu: "industries",
+    groups: [
+      {
+        key: "contractors",
+        links: [
+          { href: "/industries/home-services", key: "homeServices" },
+          { href: "/industries/plumbing", key: "plumbing" },
+          { href: "/industries/hvac", key: "hvac" },
+          { href: "/industries/roofing", key: "roofing" },
+          { href: "/industries/landscaping", key: "landscaping" },
+        ],
+      },
+      {
+        key: "commerce",
+        links: [
+          { href: "/industries/ecommerce", key: "ecommerce" },
+          { href: "/industries/saas", key: "saas" },
+          { href: "/industries/fintech", key: "fintech" },
+        ],
+      },
     ],
+    feature: {
+      href: "/industries/home-services",
+      secondaryHref: "/case-studies",
+    },
   },
   { href: "/about", key: "about", label: "About" },
   { href: "/blog", key: "blog", label: "Blog" },
-  { href: "/resources", key: "resources", label: "Resources" },
+  {
+    href: "/resources",
+    key: "resources",
+    label: "Resources",
+    menu: "resources",
+    groups: [
+      {
+        key: "guides",
+        links: [
+          { href: "/blog/local-seo-checklist", key: "localSeoChecklist" },
+          { href: "/blog/seo-audit-framework", key: "seoAuditFramework" },
+          { href: "/blog/landing-page-best-practices", key: "landingPageBestPractices" },
+          { href: "/blog/ab-testing-framework", key: "abTestingFramework" },
+          { href: "/blog/local-seo-strategy-2026", key: "localSeoStrategy" },
+        ],
+      },
+      {
+        key: "read",
+        links: [
+          { href: "/blog", key: "blog" },
+          { href: "/case-studies", key: "work" },
+          { href: "/blog/website-conversion-optimization", key: "conversion" },
+        ],
+      },
+    ],
+    feature: {
+      href: "/audit",
+      secondaryHref: "/blog/local-seo-checklist",
+    },
+  },
 ];
 
-export const serviceNavGroups = [
-  {
-    key: "searchAndAds" as const,
-    links: [
-      { href: "/services/seo", key: "seo" as const },
-      { href: "/services/seo", key: "localSeo" as const },
-      { href: "/services/paid-media", key: "ppcManagement" as const },
-      { href: "/services/paid-media", key: "metaAds" as const },
-      { href: "/services/paid-media", key: "youtubeAds" as const },
-      { href: "/services/paid-media", key: "microsoftAds" as const },
-    ],
-  },
-  {
-    key: "webAndConversion" as const,
-    links: [
-      { href: "/services/web-design", key: "webDesign" as const },
-      { href: "/services/web-design", key: "landingPages" as const },
-      { href: "/services/web-design", key: "cro" as const },
-      { href: "/services/web-design", key: "websiteMaintenance" as const },
-      { href: "/services/web-design", key: "websiteSpeed" as const },
-      { href: "/services/seo", key: "analytics" as const },
-    ],
-  },
-  {
-    key: "brandAndContent" as const,
-    links: [
-      { href: "/services/branding", key: "branding" as const },
-      { href: "/services/content-marketing", key: "contentMarketing" as const },
-      { href: "/services/content-marketing", key: "emailMarketing" as const },
-      { href: "/services/content-marketing", key: "socialMedia" as const },
-      { href: "/services/content-marketing", key: "videoMarketing" as const },
-      { href: "/services/content-marketing", key: "copywriting" as const },
-    ],
-  },
-  {
-    key: "growthAndStrategy" as const,
-    links: [
-      { href: "/services", key: "growthConsulting" as const },
-      { href: "/audit", key: "marketingAudits" as const },
-      { href: "/services", key: "funnels" as const },
-      { href: "/services", key: "marketingAutomation" as const },
-      { href: "/services", key: "fractionalCmo" as const },
-      { href: "/services", key: "trainingWorkshops" as const },
-    ],
-  },
-] as const;
+export function megaDestinations(item: MainNavItem): string[] {
+  const hrefs = item.groups?.flatMap((group) => group.links.map((link) => link.href)) ?? [];
+  if (item.feature) {
+    hrefs.push(item.feature.href);
+    if (item.feature.secondaryHref) hrefs.push(item.feature.secondaryHref);
+  }
+  return hrefs;
+}
 
-export type ServiceNavLink = (typeof serviceNavGroups)[number]["links"][number];
+/** Longest matching href wins, so a guide doesn't also light up the blog index. */
+export function activeMegaHref(pathname: string, hrefs: readonly string[]) {
+  let best: string | undefined;
+  for (const href of hrefs) {
+    const match = pathname === href || pathname.startsWith(`${href}/`);
+    if (!match) continue;
+    if (!best || href.length > best.length) best = href;
+  }
+  return best;
+}
 
-export const serviceNavLinks: readonly ServiceNavLink[] = [
-  ...serviceNavGroups[0].links,
-  ...serviceNavGroups[1].links,
-  ...serviceNavGroups[2].links,
-  ...serviceNavGroups[3].links,
-];
-
-export const resourceNavGroups = [
-  {
-    key: "guides" as const,
-    links: [
-      { href: "/blog/local-seo-checklist", key: "localSeoChecklist" as const },
-      { href: "/blog/seo-audit-framework", key: "seoAuditFramework" as const },
-      { href: "/blog/landing-page-best-practices", key: "landingPageBestPractices" as const },
-      { href: "/blog/ab-testing-framework", key: "abTestingFramework" as const },
-    ],
-  },
-] as const;
+export function isMainNavActive(
+  pathname: string,
+  item: MainNavItem,
+  items: readonly MainNavItem[],
+) {
+  if (pathname === item.href || pathname.startsWith(`${item.href}/`)) return true;
+  const tops = items.map((entry) => entry.href);
+  return megaDestinations(item).some((href) => {
+    if (href === item.href) return false;
+    const covered = tops.some(
+      (top) => top !== item.href && (href === top || href.startsWith(`${top}/`)),
+    );
+    if (covered) return false;
+    return pathname === href || pathname.startsWith(`${href}/`);
+  });
+}
 
 export const footerServiceLinks = [
   { href: "/services/web-design", key: "webDesignShort" as const },
   { href: "/services/seo", key: "seo" as const },
-  { href: "/services/branding", key: "branding" as const },
+  { href: "/services/branding", key: "brandingShort" as const },
   { href: "/services/paid-media", key: "ppcManagementPricing" as const },
   { href: "/services/content-marketing", key: "contentMarketing" as const },
   { href: "/contact", key: "pricing" as const },

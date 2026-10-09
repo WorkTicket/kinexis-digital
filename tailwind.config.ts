@@ -2,8 +2,8 @@ import type { Config } from "tailwindcss";
 
 // Brand accent constants — backgrounds/text use CSS vars in globals.css (dark mode only).
 const BRAND = {
-  NEON_CYAN: "#00d4ff",
-  NEON_BLUE: "#0099cc",
+  NEON_CYAN: "#0066ff",
+  NEON_BLUE: "#0055cc",
 } as const;
 
 const config: Config = {
@@ -52,7 +52,7 @@ const config: Config = {
         strong: "var(--border-strong)",
       },
       fontFamily: {
-        ubuntu: ["var(--font-ubuntu)", "sans-serif"],
+        ubuntu: ["var(--font-text)", "system-ui", "sans-serif"],
       },
       maxWidth: {
         container: "1280px",

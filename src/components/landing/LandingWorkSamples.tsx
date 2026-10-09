@@ -1,4 +1,5 @@
 import { SitePreview } from "@/components/home/SitePreview";
+import "@/styles/routes/result-row.css";
 import { EditorialStill } from "@/components/landing/EditorialStill";
 import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";

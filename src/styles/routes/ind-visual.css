@@ -1,0 +1,42 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+.ind-visual__img--dark {
+  display: none;
+}
+
+
+html[data-theme="dark"] .ind-visual__img--light,
+.dark .ind-visual__img--light {
+  display: none;
+}
+
+
+html[data-theme="dark"] .ind-visual__img--dark,
+.dark .ind-visual__img--dark {
+  display: block;
+}
+
+
+/* Industry editorial stills — frames match asset ratio (1536×1024 = 3:2) */
+.ind-visual {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #fff;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+
+.ind-visual--hero {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 3 / 2;
+}
+
+
+.ind-visual__img {
+  object-fit: cover;
+  object-position: center center;
+  backface-visibility: hidden;
+}

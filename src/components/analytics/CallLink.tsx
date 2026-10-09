@@ -11,10 +11,13 @@ import { cn } from "@/lib/cn";
 type Props = {
   className?: string;
   children?: React.ReactNode;
+  /** Overrides the default English "Call {number}" name. */
+  ariaLabel?: string;
+  dataCta?: string;
 };
 
 /** Click-to-call link — only renders when NEXT_PUBLIC_BUSINESS_PHONE is set. */
-export function CallLink({ className, children }: Props) {
+export function CallLink({ className, children, ariaLabel, dataCta }: Props) {
   const href = getBusinessTelHref();
   if (!href || !businessProfile.phone) return null;
   const display =
@@ -25,7 +28,8 @@ export function CallLink({ className, children }: Props) {
       href={href}
       target="_self"
       className={cn("call-link", className)}
-      aria-label={`Call ${display}`}
+      aria-label={ariaLabel ?? `Call ${display}`}
+      data-cta={dataCta}
       onClick={() => {
         trackCallClick();
       }}

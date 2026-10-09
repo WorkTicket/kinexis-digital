@@ -1,4 +1,5 @@
 import { LcpImage } from "@/components/ui/LcpImage";
+import "@/styles/routes/ind-visual.css";
 import { MediaFrame } from "@/components/ui/MediaFrame";
 import type { IndustrySlug } from "@/content/industries";
 import { industryVisuals } from "@/content/industry-visuals";

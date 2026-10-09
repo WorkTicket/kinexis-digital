@@ -27,9 +27,13 @@ export type FutureMilestone = {
 
 export type ArchitectureNode = {
   id: string;
+  /** Short name on the loop diagram. */
+  mark: string;
   label: string;
   role: string;
   summary: string;
+  /** Other channel ids this one makes sharper. */
+  sharpens: string[];
 };
 
 export type AboutContent = {
@@ -59,6 +63,8 @@ export type AboutContent = {
   architectureTitle: string;
   architectureSubtitle: string;
   architectureNodes: ArchitectureNode[];
+  architectureOne: string;
+  architectureSharpens: string;
   architectureCaption: string;
   principlesTag: string;
   principlesTitle: string;
@@ -147,47 +153,61 @@ export const aboutContentI18n = localeContent({
     architectureNodes: [
       {
         id: "seo",
+        mark: "SEO",
         label: "SEO",
         role: "Organic discovery",
         summary:
           "Rankings build the audiences Paid Ads retargets. Content shapes landing page copy. Every visit reports into Analytics.",
+        sharpens: ["paid-ads", "web-design", "analytics"],
       },
       {
         id: "paid-ads",
+        mark: "Ads",
         label: "Paid Ads",
         role: "Paid acquisition",
         summary:
           "Ad traffic lands on designed pages. CRO removes the friction that kills conversions. Email catches the leads who didn't buy yet.",
+        sharpens: ["web-design", "cro", "email"],
       },
       {
         id: "web-design",
+        mark: "Web",
         label: "Web Design",
         role: "Conversion surface",
         summary:
           "Every design decision gets pressure-tested by CRO. Behavior on the page flows back to Analytics and informs the next iteration.",
+        sharpens: ["cro", "analytics"],
       },
       {
         id: "analytics",
+        mark: "Data",
         label: "Analytics",
         role: "Intelligence layer",
         summary:
           "Every channel reports in. Budgets, creative, and roadmap decisions all trace back to what the data shows.",
+        sharpens: ["seo", "paid-ads", "web-design", "cro", "email"],
       },
       {
         id: "cro",
+        mark: "CRO",
         label: "CRO",
         role: "Friction removal",
         summary:
           "Higher conversion rates cut Paid Ads cost-per-lead directly. Winning variants get rolled into the Web Design baseline.",
+        sharpens: ["paid-ads", "web-design"],
       },
       {
         id: "email",
+        mark: "Mail",
         label: "Email",
         role: "Retention engine",
         summary:
           "Open and click data completes full-funnel attribution in Analytics. Engaged segments become Paid Ads lookalike audiences.",
+        sharpens: ["analytics", "paid-ads"],
       },
     ],
+    architectureOne: "One",
+    architectureSharpens: "Gets sharper",
     architectureCaption:
       "Six channels, one loop. Add another and the rest get sharper, not busier.",
     principlesTag: "Principles",
@@ -345,47 +365,61 @@ export const aboutContentI18n = localeContent({
     architectureNodes: [
       {
         id: "seo",
+        mark: "SEO",
         label: "SEO",
         role: "Descubrimiento orgánico",
         summary:
           "Los rankings construyen las audiencias que retargetean los Anuncios. El contenido da forma a las landing pages. Cada visita reporta a Analítica.",
+        sharpens: ["paid-ads", "web-design", "analytics"],
       },
       {
         id: "paid-ads",
+        mark: "Pauta",
         label: "Anuncios Pagados",
         role: "Adquisición pagada",
         summary:
           "El tráfico de anuncios aterriza en páginas diseñadas. El CRO elimina la fricción que mata conversiones. El Email captura a quienes aún no compraron.",
+        sharpens: ["web-design", "cro", "email"],
       },
       {
         id: "web-design",
+        mark: "Web",
         label: "Diseño Web",
         role: "Superficie de conversión",
         summary:
           "Cada decisión de diseño se pone a prueba con CRO. El comportamiento en la página vuelve a Analítica e informa la siguiente iteración.",
+        sharpens: ["cro", "analytics"],
       },
       {
         id: "analytics",
+        mark: "Datos",
         label: "Analítica",
         role: "Capa de inteligencia",
         summary:
           "El sistema nervioso. Cada canal reporta. Presupuestos, creatividades y hoja de ruta se basan en lo que muestran los datos.",
+        sharpens: ["seo", "paid-ads", "web-design", "cro", "email"],
       },
       {
         id: "cro",
+        mark: "CRO",
         label: "CRO",
         role: "Eliminación de fricción",
         summary:
           "Mejores tasas de conversión bajan el coste por lead de Anuncios. Las variantes ganadoras se integran a la base de Diseño Web.",
+        sharpens: ["paid-ads", "web-design"],
       },
       {
         id: "email",
+        mark: "Mail",
         label: "Email",
         role: "Motor de retención",
         summary:
           "Aperturas y clics completan la atribución de embudo en Analítica. Los segmentos comprometidos se convierten en audiencias lookalike de Anuncios.",
+        sharpens: ["analytics", "paid-ads"],
       },
     ],
+    architectureOne: "Uno",
+    architectureSharpens: "Gana precisión",
     architectureCaption:
       "Seis canales, un circuito. Añade otro y el resto gana precisión, no ruido.",
     principlesTag: "Principios",
@@ -583,6 +617,8 @@ function flattenAbout(locale: Locale) {
       title: c.architectureTitle,
       copy: c.architectureSubtitle,
       nodes: c.architectureNodes,
+      one: c.architectureOne,
+      sharpensLabel: c.architectureSharpens,
       caption: c.architectureCaption,
     },
     principles: {

@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import "@/styles/routes/industry.css";
 import { getTranslations } from "next-intl/server";
+import { MarketHubStage } from "@/components/page/MarketHubStage";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
 import { IndustryProgramChapter } from "@/components/industry/IndustryProgramChapter";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Link } from "@/i18n/navigation";
+import { Reveal } from "@/components/ui/Reveal";
 import {
   getHubIndustries,
+  getIndustryBySlug,
   getIndustriesContent,
   industryHref,
-  isStandaloneIndustry,
+  marketsPreviewSlugs,
 } from "@/content/industries";
 import { industryVisuals } from "@/content/industry-visuals";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -35,7 +36,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function IndustriesPage({ params }: Props) {
   const locale = await resolveLocale(params);
   const c = getIndustriesContent(locale);
-  const hubIndustries = getHubIndustries();
+  const hubIndustries = getHubIndustries(locale);
+  const previewMarkets = marketsPreviewSlugs.flatMap((slug) => {
+    const industry = getIndustryBySlug(slug, locale);
+    const visual = industry ? industryVisuals[industry.slug] : undefined;
+    if (!industry || !visual?.thumb) return [];
+    return [
+      {
+        slug: industry.slug,
+        href: industryHref(industry.slug),
+        eyebrow: industry.eyebrow,
+        title: industry.title,
+        still: visual.thumb,
+        stillAlt: visual.alt,
+      },
+    ];
+  });
   const tCommon = await getTranslations("common");
   const tNav = await getTranslations("nav");
 
@@ -61,14 +77,20 @@ export default async function IndustriesPage({ params }: Props) {
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
         className="industries-hub-hero"
+        visual={
+          <MarketHubStage
+            ariaLabel={c.indexTitle}
+            markets={previewMarkets}
+          />
+        }
       />
 
       <section
-        className="ind-catalog chapter chapter--void relative"
+        className="svc-offer-rail ind-offer-rail chapter chapter--studio relative"
         aria-labelledby="industries-index-heading"
       >
-        <div className="shell chapter-shell--tight relative">
-          <Reveal variant="rise" when="chapter" className="mb-10 md:mb-12">
+        <div className="shell chapter-shell--monument relative">
+          <Reveal variant="rise" when="chapter" className="svc-offer-rail__lead">
             <ChapterLead
               eyebrow={c.indexEyebrow}
               headingId="industries-index-heading"
@@ -78,54 +100,6 @@ export default async function IndustriesPage({ params }: Props) {
             />
           </Reveal>
 
-          <RevealGroup
-            as="ul"
-            className="svc-catalog__grid ind-catalog__grid"
-            stagger={0.04}
-            delayChildren={0.03}
-            aria-label={tCommon("jumpToIndustry")}
-          >
-            {hubIndustries.map((industry) => {
-              const visual = industryVisuals[industry.slug];
-              const href = isStandaloneIndustry(industry.slug)
-                ? industryHref(industry.slug)
-                : `#${industry.slug}`;
-              const body = (
-                <>
-                  <span className="svc-catalog__still media-grade" aria-hidden>
-                    <Image
-                      src={visual.src}
-                      alt=""
-                      width={480}
-                      height={300}
-                      className="svc-catalog__still-img"
-                    />
-                  </span>
-                  <span className="svc-catalog__role">{industry.eyebrow}</span>
-                  <span className="svc-catalog__name">{industry.title}</span>
-                  <span className="svc-catalog__dek">{industry.summary}</span>
-                </>
-              );
-              return (
-                <RevealItem as="li" key={industry.slug} variant="fadeUp">
-                  {isStandaloneIndustry(industry.slug) ? (
-                    <Link href={href} className="svc-catalog__card motion-tile">
-                      {body}
-                    </Link>
-                  ) : (
-                    <a href={href} className="svc-catalog__card motion-tile">
-                      {body}
-                    </a>
-                  )}
-                </RevealItem>
-              );
-            })}
-          </RevealGroup>
-        </div>
-      </section>
-
-      <div className="svc-offer-rail ind-offer-rail chapter chapter--studio">
-        <div className="shell">
           {hubIndustries.map((industry, index) => (
             <IndustryProgramChapter
               key={industry.slug}
@@ -134,7 +108,7 @@ export default async function IndustriesPage({ params }: Props) {
             />
           ))}
         </div>
-      </div>
+      </section>
 
       <PageCTA layout="minimal" title={c.ctaTitle} copy={c.ctaCopy} />
     </main>

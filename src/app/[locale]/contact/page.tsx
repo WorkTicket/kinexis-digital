@@ -1,13 +1,5 @@
 import type { Metadata } from "next";
-import type { LucideIcon } from "lucide-react";
-import {
-  Calendar,
-  Clock,
-  Handshake,
-  Mail,
-  Map,
-  Shield,
-} from "lucide-react";
+import "@/styles/routes/contact.css";
 import { ContactIntake } from "@/components/contact/ContactIntake";
 import { CallLink } from "@/components/analytics/CallLink";
 import { PageHero } from "@/components/page/PageHero";
@@ -36,9 +28,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       "Tell us what's broken in your marketing. Book a strategy call. We respond within one business day with clear next steps, not a generic pitch deck.",
   });
 }
-
-const STEP_ICONS: LucideIcon[] = [Calendar, Mail, Map];
-const TRUST_ICONS: LucideIcon[] = [Clock, Shield, Handshake];
 
 export default async function ContactPage({ params }: Props) {
   const locale = await resolveLocale(params);
@@ -85,7 +74,7 @@ export default async function ContactPage({ params }: Props) {
       />
 
       <section className="chapter chapter--studio relative">
-        <div className="shell relative py-24 md:py-32 lg:py-40">
+        <div className="shell relative py-10 md:py-14 lg:py-16">
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_300px]">
             <Reveal variant="fadeUp">
               <ContactIntake content={c} />
@@ -106,41 +95,27 @@ export default async function ContactPage({ params }: Props) {
                     delayChildren={0.06}
                     aria-label={c.sidebarTitle}
                   >
-                    {steps.map((step, index) => {
-                      const Icon = STEP_ICONS[index] ?? Calendar;
-                      return (
+                    {steps.map((step) => (
                         <RevealItem key={step.title} as="li" variant="fadeUp">
                           <div className="contact-aside__step">
-                            <span className="icon-well icon-well--sm" aria-hidden>
-                              <Icon strokeWidth={1.5} />
-                            </span>
-                            <div>
-                              <p className="contact-aside__step-title">
-                                {step.title}
-                              </p>
-                              <p className="contact-aside__step-desc">
-                                {step.desc}
-                              </p>
-                            </div>
+                            <p className="contact-aside__step-title">
+                              {step.title}
+                            </p>
+                            <p className="contact-aside__step-desc">
+                              {step.desc}
+                            </p>
                           </div>
                         </RevealItem>
-                      );
-                    })}
+                      ))}
                   </RevealGroup>
                 </div>
 
                 <ul className="contact-aside__trust">
-                  {trust.map((label, index) => {
-                    const Icon = TRUST_ICONS[index] ?? Shield;
-                    return (
+                  {trust.map((label) => (
                       <li key={label} className="contact-aside__trust-item">
-                        <span className="icon-well icon-well--sm" aria-hidden>
-                          <Icon strokeWidth={1.5} />
-                        </span>
                         {label}
                       </li>
-                    );
-                  })}
+                    ))}
                 </ul>
 
                 <div className="contact-aside__channels">

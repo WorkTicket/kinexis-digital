@@ -1,21 +1,31 @@
 import { SitePreview } from "@/components/home/SitePreview";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { PageBreadcrumb } from "@/components/page/PageBreadcrumb";
-import { DeviceFrame } from "@/components/ui/DeviceFrame";
 import type { CaseStudyPage } from "@/content/case-studies";
 import "@/styles/components/page-stages.css";
 
 type CaseStudyHeroProps = {
   study: CaseStudyPage;
+  /** Short companion to the figure, without repeating the number. */
+  headline?: string;
+  homeLabel: string;
+  workLabel: string;
+  eyebrow: string;
 };
 
 /**
  * Case study open — same cinematic shell and optical lift as PageHero / HomeHero.
  */
-export function CaseStudyHero({ study }: CaseStudyHeroProps) {
+export function CaseStudyHero({
+  study,
+  headline,
+  homeLabel,
+  workLabel,
+  eyebrow,
+}: CaseStudyHeroProps) {
   return (
     <section
-      className="hero-shell case-hero page-hero page-hero--split chapter chapter--void relative flex min-h-0 flex-col overflow-x-clip lg:min-h-[100svh]"
+      className="hero-shell case-hero page-hero page-hero--split chapter chapter--void relative flex min-h-0 flex-col overflow-x-clip"
       aria-labelledby="case-hero-heading"
     >
       <HeroScrollRoot className="shell shell--cinema page-hero__grid hero-stage relative z-[2]">
@@ -25,12 +35,12 @@ export function CaseStudyHero({ study }: CaseStudyHeroProps) {
               <div className="hero-enter hero-enter-1">
                 <PageBreadcrumb
                   items={[
-                    { href: "/", label: "Home" },
-                    { href: "/case-studies", label: "Work" },
+                    { href: "/", label: homeLabel },
+                    { href: "/case-studies", label: workLabel },
                     { label: study.client },
                   ]}
                 />
-                <p className="section-eyebrow mt-6">Case study</p>
+                <p className="section-eyebrow mt-6">{eyebrow}</p>
               </div>
 
               <h1
@@ -52,10 +62,10 @@ export function CaseStudyHero({ study }: CaseStudyHeroProps) {
 
               <div className="hero-enter hero-enter-3 mt-8 flex flex-wrap items-end gap-x-6 gap-y-2">
                 <p className="font-[family-name:var(--font-display)] text-[clamp(3rem,8vw,5rem)] font-bold leading-none tracking-[-0.05em] text-[color:var(--hero-signal)]">
-                  {study.primaryLift}
+                  {study.primaryLift.replace(/X/g, "×")}
                 </p>
                 <p className="max-w-xs pb-1 text-lg font-semibold text-foreground sm:text-xl">
-                  {study.headline}
+                  {headline ?? study.headline}
                 </p>
               </div>
 
@@ -68,16 +78,13 @@ export function CaseStudyHero({ study }: CaseStudyHeroProps) {
 
         <div className="page-hero__visual">
           <HeroParallax layer="stage">
-            <div className="hero-enter hero-enter-5 case-hero-media">
-              <div className="work-card__media-glow" />
-              <DeviceFrame>
-                <SitePreview
-                  image={study.image}
-                  imageAlt={study.imageAlt}
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 80vw"
-                />
-              </DeviceFrame>
+            <div className="hero-enter hero-enter-5 case-hero-plate">
+              <SitePreview
+                image={study.image}
+                imageAlt={study.imageAlt}
+                priority
+                sizes="(max-width: 1024px) 100vw, 46vw"
+              />
             </div>
           </HeroParallax>
         </div>

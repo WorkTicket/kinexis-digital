@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import "@/styles/routes/blog.css";
 import { PageHero } from "@/components/page/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import type { LegalPageContent } from "@/content/legal/privacy";

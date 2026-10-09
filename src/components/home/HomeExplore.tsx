@@ -1,7 +1,8 @@
 import { getLocale, getTranslations } from "next-intl/server";
+import "@/styles/routes/home-explore.css";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
-import { exploreIcons } from "@/components/home/explore-icons";
+import { exploreMarks } from "@/components/home/studio-marks";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import {
@@ -59,12 +60,12 @@ export async function HomeExplore() {
                   delayChildren={0.06}
                 >
                   {laneLinks.map((link) => {
-                    const Icon = exploreIcons[link.icon];
+                    const Icon = exploreMarks[link.icon];
                     return (
                       <RevealItem key={link.href} as="li" variant="fadeUp">
                         <Link href={link.href} className="explore-path group">
                           <span className="explore-path__icon" aria-hidden>
-                            <Icon strokeWidth={1.5} />
+                            <Icon />
                           </span>
                           <span className="explore-path__body">
                             <span className="explore-path__label">

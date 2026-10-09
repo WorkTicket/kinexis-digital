@@ -29,7 +29,7 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
     <section
       aria-labelledby="industry-hero-heading"
       className={cn(
-        "hero-shell page-hero page-hero--split relative flex min-h-0 flex-col overflow-x-clip lg:min-h-[100svh]",
+        "hero-shell page-hero page-hero--split relative flex min-h-0 flex-col overflow-x-clip",
         className,
       )}
       style={accentStyle}
@@ -81,7 +81,7 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
 
               <div className="hero-cta-row mt-10 sm:mt-11 md:mt-12">
                 <div className="hero-enter hero-enter-4">
-                  <Button href="/contact" size="xl" lift arrow>
+                  <Button href="/contact" size="lg">
                     {t("bookStrategyCall")}
                   </Button>
                 </div>

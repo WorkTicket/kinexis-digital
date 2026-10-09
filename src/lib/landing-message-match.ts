@@ -39,13 +39,13 @@ export type LandingHeadlineKey = keyof typeof LANDING_HEADLINES;
 
 const marketsByLocale = localeContent({
   en: {
-    default: "Working with contractors across the U.S.",
-    // Raleigh ads still map here, but the line stays national.
-    raleigh: "Working with contractors across the U.S.",
+    default: "Working with contractors and home-service crews",
+    // Raleigh ads still map here. The line names the work, not a city.
+    raleigh: "Working with contractors and home-service crews",
   },
   "es-419": {
-    default: "Trabajamos con contratistas en todo Estados Unidos.",
-    raleigh: "Trabajamos con contratistas en todo Estados Unidos.",
+    default: "Trabajamos con contratistas y equipos de servicios del hogar.",
+    raleigh: "Trabajamos con contratistas y equipos de servicios del hogar.",
   },
 });
 

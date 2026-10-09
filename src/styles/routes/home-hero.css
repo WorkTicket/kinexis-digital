@@ -1,0 +1,488 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+.partner-ticker {
+  position: relative;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  /* Extra hit area so a hover on the logo row actually lands. */
+  padding-block: 0.7rem;
+  margin-block: -0.7rem;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+
+@media (min-width: 768px) {
+.partner-ticker {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 4%,
+      #000 94%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 4%,
+      #000 94%,
+      transparent
+    );
+  }
+}
+
+
+
+.partner-ticker__viewport {
+  display: flex;
+  width: max-content;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+.partner-ticker__viewport {
+    animation: partner-ticker 38s linear infinite;
+  }
+}
+
+
+
+.partner-ticker__track {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2.25rem;
+  margin: 0;
+  padding: 0 2.25rem 0 0;
+  list-style: none;
+}
+
+
+.partner-ticker__item {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+
+.partner-ticker__mark-slot {
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+}
+
+
+.partner-ticker__mark {
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex-shrink: 0;
+  overflow: hidden;
+  color: color-mix(in oklab, var(--foreground) 42%, transparent);
+  transition: color 280ms ease;
+}
+
+
+.partner-ticker__label {
+  display: block;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-align: left;
+  color: color-mix(in oklab, var(--foreground) 48%, transparent);
+  transition: color 280ms ease;
+}
+
+
+.partner-ticker__item:hover .partner-ticker__mark,
+.partner-ticker__item:hover .partner-ticker__label {
+  color: var(--foreground);
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+.partner-ticker__viewport {
+    animation: none;
+    transform: none;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    row-gap: 0.75rem;
+  }
+
+  .partner-ticker {
+    mask-image: none;
+    -webkit-mask-image: none;
+    overflow: visible;
+  }
+
+  .partner-ticker__track {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+    row-gap: 0.75rem;
+  }
+
+  .partner-ticker__track[aria-hidden] {
+    display: none;
+  }
+
+  .partner-ticker__mark,
+  .partner-ticker__label {
+    transition: none;
+  }
+}
+
+
+
+.hero-engine {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 24rem);
+  margin-top: 0.75rem;
+  margin-inline: auto;
+  padding-top: 0;
+  color: var(--foreground);
+}
+
+
+@media (min-width: 1024px) {
+.hero-engine {
+    width: min(100%, 34rem);
+    margin-top: 0;
+  }
+}
+
+
+
+.hero-engine__stage {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+}
+
+
+.hero-engine__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+
+.hero-engine__well {
+  fill: color-mix(in oklab, var(--foreground) 4%, transparent);
+  stroke: var(--foreground);
+  stroke-opacity: 0.14;
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+
+.hero-engine__orbit {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-opacity: 0.12;
+  stroke-width: 1;
+  pointer-events: none;
+}
+
+
+.hero-engine__gap {
+  stroke: var(--foreground);
+  stroke-opacity: 0.34;
+  stroke-width: 1.25;
+  stroke-linecap: square;
+  pointer-events: none;
+}
+
+
+.hero-engine__tab {
+  cursor: pointer;
+  outline: none;
+}
+
+
+.hero-engine__hit {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 56;
+  pointer-events: stroke;
+}
+
+
+.hero-engine__arc {
+  fill: none;
+  stroke: color-mix(in oklab, var(--accent) 38%, var(--foreground));
+  stroke-width: 22;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: stroke 0.28s ease;
+}
+
+
+.hero-engine__tab.is-active .hero-engine__arc {
+  stroke: var(--accent);
+  filter: drop-shadow(0 0 7px color-mix(in oklab, var(--accent) 70%, transparent));
+}
+
+
+.hero-engine__tab:focus-visible .hero-engine__arc {
+  stroke: var(--accent);
+}
+
+
+.hero-engine__badge {
+  pointer-events: none;
+}
+
+
+.hero-engine__plate {
+  fill: var(--background);
+  stroke: var(--foreground);
+  stroke-opacity: 0.16;
+  stroke-width: 1;
+  transition:
+    fill 0.28s ease,
+    stroke 0.28s ease;
+}
+
+
+.hero-engine__tab.is-active .hero-engine__plate,
+.hero-engine__tab:focus-visible .hero-engine__plate {
+  fill: var(--accent);
+  stroke: var(--accent);
+  stroke-opacity: 1;
+}
+
+
+.hero-engine__glyph {
+  fill: none;
+  stroke: var(--foreground);
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.28s ease;
+}
+
+
+.hero-engine__glyph-dot {
+  fill: var(--foreground);
+  stroke: none;
+  transition: fill 0.28s ease;
+}
+
+
+.hero-engine__tab.is-active .hero-engine__glyph,
+.hero-engine__tab:focus-visible .hero-engine__glyph {
+  stroke: var(--accent-ink);
+}
+
+
+.hero-engine__tab.is-active .hero-engine__glyph-dot,
+.hero-engine__tab:focus-visible .hero-engine__glyph-dot {
+  fill: var(--accent-ink);
+}
+
+
+.hero-engine__name {
+  fill: var(--foreground);
+  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  dominant-baseline: middle;
+  user-select: none;
+}
+
+
+.hero-engine__name.is-active {
+  fill: var(--accent);
+}
+
+
+.hero-engine__readout {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: min(10.5rem, 34%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+
+.hero-engine__role {
+  margin: 0 0 0.35rem;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+
+.hero-engine__title {
+  display: inline;
+  text-wrap: balance;
+  color: var(--foreground);
+  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, var(--foreground) 28%, transparent);
+  text-underline-offset: 0.16em;
+  pointer-events: auto;
+}
+
+
+.hero-engine__title:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+
+.hero-engine__title:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+
+.hero-engine__body {
+  margin: 0.7rem 0 0;
+  text-wrap: balance;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+
+.hero-engine__caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem 0.7rem;
+  margin: 0.35rem 0 0;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+
+.hero-engine__mark {
+  color: var(--foreground);
+  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+
+@media (min-width: 768px) and (max-width: 1023px) {
+.hero-engine__readout {
+    width: min(9.25rem, 32%);
+  }
+
+  .hero-engine__title {
+    font-size: 1.125rem;
+  }
+
+  .hero-engine__body {
+    margin-top: 0.45rem;
+    font-size: 0.75rem;
+    line-height: 1.35;
+  }
+}
+
+
+
+@media (max-width: 1023px) {
+.hero-shell--film .hero-engine {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+.hero-engine {
+    width: min(100%, 22rem);
+    margin-top: 0;
+  }
+
+  .hero-engine__name {
+    font-size: 16px;
+  }
+
+  .hero-engine__role {
+    margin-bottom: 0.15rem;
+    font-size: 0.6875rem;
+  }
+
+  .hero-engine__readout {
+    width: min(8.5rem, 30%);
+  }
+
+  .hero-engine__title {
+    font-size: 1rem;
+  }
+
+  .hero-engine__body {
+    margin-top: 0.4rem;
+    font-size: 0.6875rem;
+    line-height: 1.35;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+.hero-engine__readout-inner {
+    animation: hero-engine-readout 0.32s ease;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+.hero-engine__arc,
+  .hero-engine__plate,
+  .hero-engine__glyph,
+  .hero-engine__glyph-dot,
+  .hero-engine__readout-inner {
+    transition: none;
+    animation: none;
+  }
+}

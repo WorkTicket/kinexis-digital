@@ -1,74 +1,50 @@
 import { getLocale, getTranslations } from "next-intl/server";
-import {
-  Activity,
-  Layers,
-  Search,
-  type LucideIcon,
-} from "lucide-react";
 import type { Locale } from "@/i18n/routing";
+import { ProcessStage } from "@/components/home/ProcessStage";
 import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import {
-  getHomeProcessSteps,
-  type HomeProcessStepId,
-} from "@/content/home-process";
-import { duration } from "@/lib/motion";
+import { Reveal } from "@/components/ui/Reveal";
+import { getHomeProcessSteps } from "@/content/home-process";
 
-const PROCESS_ICONS: Record<HomeProcessStepId, LucideIcon> = {
-  audit: Search,
-  build: Layers,
-  run: Activity,
+type Props = {
+  headingId?: string;
+  sectionId?: string;
+  ctaHref?: string;
 };
 
-export async function HomeProcess() {
+export async function HomeProcess({
+  headingId = "home-process-heading",
+  sectionId = "process",
+  ctaHref = "/about",
+}: Props = {}) {
   const locale = (await getLocale()) as Locale;
   const t = await getTranslations("home");
   const steps = getHomeProcessSteps(locale);
 
   return (
     <section
-      id="process"
-      aria-labelledby="home-process-heading"
+      id={sectionId}
+      aria-labelledby={headingId}
       className="process-section chapter chapter--void relative"
     >
-      <div className="shell chapter-shell--tight relative">
-        <Reveal variant="rise" when="chapter" className="mb-10 md:mb-14">
+      <div className="shell chapter-shell--standard relative">
+        <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
           <ChapterLead
             eyebrow={t("processEyebrow")}
-            headingId="home-process-heading"
+            headingId={headingId}
             title={t("processTitle")}
             headingClassName="max-w-[20ch]"
             dek={t("processDek")}
           >
-            <Button href="/about" variant="link" arrow>
+            <Button href={ctaHref} variant="link" arrow>
               {t("processCta")}
             </Button>
           </ChapterLead>
         </Reveal>
 
-        <RevealGroup
-          as="ol"
-          className="process-spine"
-          stagger={duration.staggerTight}
-          delayChildren={0.06}
-          aria-label={t("howWeWorkAria")}
-        >
-          {steps.map((step) => {
-            const Icon = PROCESS_ICONS[step.id] ?? Search;
-            return (
-              <RevealItem key={step.id} as="li" variant="fadeUp">
-                <article className="process-spine__step">
-                  <span className="icon-well" aria-hidden>
-                    <Icon strokeWidth={1.5} />
-                  </span>
-                  <h3 className="process-spine__title">{step.title}</h3>
-                  <p className="process-spine__body">{step.description}</p>
-                </article>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
+        <Reveal variant="rise" when="chapter">
+          <ProcessStage steps={steps} ariaLabel={t("howWeWorkAria")} />
+        </Reveal>
       </div>
     </section>
   );

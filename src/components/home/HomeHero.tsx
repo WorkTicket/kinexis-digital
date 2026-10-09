@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import "@/styles/routes/home-hero.css";
 import { HeroEngine, type HeroEngineSegment } from "@/components/home/HeroEngine";
 import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { HomeCertifications } from "@/components/home/HomeCertifications";

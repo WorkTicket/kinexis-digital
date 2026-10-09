@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { SiteAnalytics } from "@/components/analytics/SiteAnalytics";
+import { BackToTop } from "@/components/BackToTop";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { SiteAtmosphere } from "@/components/SiteAtmosphere";
@@ -206,6 +207,7 @@ export default async function LocaleLayout({
                 <SiteShell header={<Header />} footer={<Footer />}>
                   {children}
                 </SiteShell>
+                <BackToTop />
               </SiteAnalytics>
             </MotionFlagsProvider>
           </ThemeProvider>

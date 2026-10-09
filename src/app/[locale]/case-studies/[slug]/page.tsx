@@ -11,7 +11,7 @@ import {
   getAllCaseStudySlugs,
   getCaseStudyPages,
 } from "@/content/case-studies";
-import { caseStudyHref } from "@/content/home-results";
+import { caseStudyHref, getHomeResults } from "@/content/home-results";
 import { resolveLocale } from "@/i18n/locale";
 import { matchUnprefixedLegacyRedirect } from "@/lib/legacy-redirects.mjs";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
@@ -57,7 +57,20 @@ export default async function CaseStudyPage({ params }: PageProps) {
   const t = await getTranslations("common");
   const tWork = await getTranslations("pages.work");
   const tNav = await getTranslations("nav");
-  const others = getCaseStudyPages(locale).filter((c) => c.slug !== study.slug);
+  const roster = getHomeResults(locale);
+  const result = roster.find((item) => item.slug === study.slug);
+  const execution = study.work[1];
+  const others = getCaseStudyPages(locale)
+    .filter((item) => item.slug !== study.slug)
+    .map((item) => ({
+      slug: item.slug,
+      href: caseStudyHref(item.slug),
+      client: item.client,
+      lift: item.primaryLift.replace(/X/g, "×"),
+      headline:
+        roster.find((entry) => entry.slug === item.slug)?.headline ??
+        item.headline,
+    }));
 
   return (
     <main className="flex flex-1 flex-col">
@@ -83,10 +96,16 @@ export default async function CaseStudyPage({ params }: PageProps) {
           ]),
         ]}
       />
-      <CaseStudyHero study={study} />
+      <CaseStudyHero
+        study={study}
+        headline={result?.headline}
+        homeLabel={tNav("home")}
+        workLabel={tNav("work")}
+        eyebrow={tWork("caseEyebrow")}
+      />
 
-      <section className="chapter chapter--studio relative">
-        <div className="shell relative py-24 md:py-32 lg:py-40">
+      <section className="chapter chapter--void relative">
+        <div className="shell chapter-shell--monument relative">
           <RevealGroup
             as="ul"
             className="case-metric-grid"
@@ -97,15 +116,12 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <RevealItem key={metric.label} as="li" variant="fadeUp">
                 <div className="case-metric">
                   <p className="case-metric__label">{metric.label}</p>
-                  <p className="case-metric__value">
-                    {metric.after}
-                    {metric.before !== "Baseline" && metric.before !== "Base" ? (
-                      <span className="ml-2 text-[0.55em] font-semibold tracking-normal text-muted">
-                        {t("from")} {metric.before}
-                      </span>
-                    ) : null}
-                  </p>
-                  <p className="case-metric__note">{metric.note}</p>
+                  <p className="case-metric__value">{metric.after}</p>
+                  {metric.before !== "Baseline" && metric.before !== "Base" ? (
+                    <p className="case-metric__note">
+                      {t("from")} {metric.before}
+                    </p>
+                  ) : null}
                 </div>
               </RevealItem>
             ))}
@@ -128,25 +144,15 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <p className="page-prose__body">{study.approach}</p>
             </Reveal>
 
-            <div>
-              <Reveal variant="rise" when="chapter">
-                <h2 className="page-prose__heading mb-8 md:mb-10">{t("theWork")}</h2>
-              </Reveal>
-              <RevealGroup
-                as="ul"
-                className="scope-grid"
-                stagger={duration.staggerTight}
+            {execution ? (
+              <Reveal
+                variant="fadeUp"
+                className="page-prose__block page-prose__block--split"
               >
-                {study.work.map((item) => (
-                  <RevealItem key={item.title} as="li" variant="fadeUp">
-                    <div className="scope-item">
-                      <h3 className="scope-item__title">{item.title}</h3>
-                      <p className="scope-item__copy">{item.description}</p>
-                    </div>
-                  </RevealItem>
-                ))}
-              </RevealGroup>
-            </div>
+                <h2 className="page-prose__heading">{execution.title}.</h2>
+                <p className="page-prose__body">{execution.description}</p>
+              </Reveal>
+            ) : null}
 
             <Reveal
               variant="fadeUp"
@@ -156,8 +162,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
               <div>
                 <p className="page-prose__body">{study.resultsCopy}</p>
                 <ul className="cap-chips" aria-label={t("servicesUsed")}>
-                  {study.servicesUsed.map((s) => (
-                    <li key={s}>{s}</li>
+                  {study.servicesUsed.map((service) => (
+                    <li key={service} className="cap-chips__item">
+                      {service}
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -178,7 +186,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
       {others.length > 0 ? (
         <section className="chapter chapter--void relative">
-          <div className="shell relative py-16 sm:py-24 md:py-32">
+          <div className="shell chapter-shell--standard relative">
             <Reveal variant="rise" when="chapter">
               <ChapterLead
                 eyebrow={t("moreWork")}
@@ -186,16 +194,14 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 headingClassName="max-w-[16ch]"
               />
             </Reveal>
-            <ul className="related-list mt-10">
+            <ul className="related-list">
               {others.map((other) => (
                 <li key={other.slug}>
-                  <Link
-                    href={caseStudyHref(other.slug)}
-                    className="related-row group"
-                  >
+                  <Link href={other.href} className="related-row group">
                     <span className="related-row__title">{other.client}</span>
-                    <span className="related-row__dek">
-                      {other.primaryLift} {other.headline}
+                    <span className="related-row__proof">
+                      <span className="related-row__lift">{other.lift}</span>
+                      <span className="related-row__dek">{other.headline}</span>
                     </span>
                     <span aria-hidden className="related-row__arrow">
                       →

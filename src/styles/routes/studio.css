@@ -1,0 +1,134 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+.studio-mark {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--foreground);
+  overflow: visible;
+}
+
+
+.studio-mark__sheet {
+  fill: color-mix(in oklab, var(--foreground) 4%, var(--background));
+  stroke: color-mix(in oklab, var(--foreground) 14%, transparent);
+  stroke-width: 1;
+}
+
+
+.studio-mark__misreg {
+  fill: var(--accent);
+}
+
+
+.studio-mark__frame {
+  fill: var(--background);
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+
+.studio-mark__ink {
+  fill: currentColor;
+}
+
+
+.studio-mark__faint {
+  fill: currentColor;
+  opacity: 0.28;
+}
+
+
+.studio-mark__ghost-line,
+.studio-mark__ghost-dot {
+  fill: currentColor;
+  opacity: 0.14;
+}
+
+
+.studio-mark__quiet {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  opacity: 0.34;
+}
+
+
+.studio-mark__blue {
+  fill: var(--accent);
+}
+
+
+.studio-mark__cut {
+  fill: var(--background);
+}
+
+
+.studio-mark__rule,
+.studio-mark__arrow,
+.studio-mark__arrow-head,
+.studio-mark__check,
+.studio-mark__strike,
+.studio-mark__crop,
+.studio-mark__ring,
+.studio-mark__focus,
+.studio-mark__plot,
+.studio-mark__glyph {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+
+
+.studio-mark__arrow,
+.studio-mark__arrow-head,
+.studio-mark__check,
+.studio-mark__strike,
+.studio-mark__focus,
+.studio-mark__plot {
+  stroke: var(--accent);
+}
+
+
+.studio-mark__plot {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+.studio-mark__ring {
+  opacity: 1;
+}
+
+
+.studio-mark__dot {
+  fill: currentColor;
+}
+
+
+.studio-mark__highlight {
+  fill: var(--accent);
+  opacity: 0.22;
+}
+
+
+.studio-mark__ink {
+  fill: currentColor;
+}
+
+
+.studio-mark--glyph .studio-mark__glyph,
+.studio-mark--glyph .studio-mark__ring,
+.studio-mark--glyph .studio-mark__frame {
+  stroke-width: 2;
+}
+
+
+.studio-mark--glyph .studio-mark__sheet {
+  stroke-width: 1;
+}

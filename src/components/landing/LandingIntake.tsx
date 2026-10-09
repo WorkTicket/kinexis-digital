@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import "@/styles/routes/contact.css";
 import { Clock, Handshake, Mail, Shield } from "lucide-react";
 import { CallLink } from "@/components/analytics/CallLink";
 import { LandingCallPath } from "@/components/landing/LandingCallPath";

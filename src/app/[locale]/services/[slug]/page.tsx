@@ -3,6 +3,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
+import { ServiceMark } from "@/components/page/ServiceMark";
 import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
 import { ServiceProgramChapter } from "@/components/services/ServiceProgramChapter";
@@ -96,6 +97,7 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         copy={service.heroCopy}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
+        visual={<ServiceMark slug={service.slug} />}
       />
 
       <section
@@ -106,11 +108,12 @@ export default async function ServiceDetailPage({ params }: PageProps) {
           <ServiceProgramChapter
             service={service}
             index={flagshipIndex >= 0 ? flagshipIndex : 0}
+            still={false}
           />
         </div>
       </section>
 
-      <WhereWeWork />
+      <WhereWeWork board />
 
       <PageCTA
         layout="minimal"

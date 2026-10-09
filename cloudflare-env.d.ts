@@ -36,6 +36,10 @@ interface CloudflareEnv {
   SENTRY_PROJECT?: string;
   NEXT_PUBLIC_SENTRY_DSN?: string;
   GOOGLE_PSI_API_KEY?: string;
+  /** PayPal account that receives checkout payments. Production: npx wrangler secret put PAYPAL_BUSINESS_EMAIL */
+  PAYPAL_BUSINESS_EMAIL?: string;
+  /** "sandbox" or "live". Defaults to live. */
+  PAYPAL_ENV?: string;
 
   RATE_LIMIT_KV?: {
     get(key: string): Promise<string | null>;

@@ -4,10 +4,24 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "@/components/ThemeProvider";
 import { Button } from "@/components/ui/Button";
 
-export function ThemeToggle() {
+export function ThemeToggle({ variant = "icon" }: { variant?: "icon" | "menu" }) {
   const { theme, toggleTheme } = useTheme();
   const t = useTranslations("theme");
   const label = theme === "dark" ? t("toLight") : t("toDark");
+
+  if (variant === "menu") {
+    return (
+      <button type="button" className="site-menu__theme" onClick={toggleTheme}>
+        <span className="theme-toggle__moon" aria-hidden>
+          <MoonIcon />
+        </span>
+        <span className="theme-toggle__sun" aria-hidden>
+          <SunIcon />
+        </span>
+        <span>{label}</span>
+      </button>
+    );
+  }
 
   return (
     <Button

@@ -8,7 +8,8 @@
     "skipToMain": "Skip to main content",
     "logoAlt": "KINEXIS Digital home",
     "preloaderLogoAlt": "KINEXIS Digital logo",
-    "loadingSite": "Loading KINEXIS Digital"
+    "loadingSite": "Loading KINEXIS Digital",
+    "backToTop": "Back to top"
   },
   "nav": {
     "home": "Home",
@@ -71,7 +72,153 @@
     },
     "bookCall": "Book a strategy call",
     "bookCallShort": "Book a call",
-    "audit": "Audit"
+    "audit": "Audit",
+    "mega": {
+      "services": {
+        "all": "All services",
+        "groups": {
+          "program": "The program",
+          "proof": "Selected work"
+        },
+        "links": {
+          "seo": {
+            "label": "SEO",
+            "desc": "Rank for jobs and products people already search."
+          },
+          "paidAds": {
+            "label": "Paid ads",
+            "desc": "Spend scored on leads and orders, not clicks."
+          },
+          "webDesign": {
+            "label": "Web design",
+            "desc": "Phone-first sites with a path to the call or cart."
+          },
+          "branding": {
+            "label": "Branding",
+            "desc": "A position the site and the ads can both run."
+          },
+          "content": {
+            "label": "Content",
+            "desc": "Pages that answer the question before the form."
+          },
+          "a1": {
+            "label": "A1 Property Services",
+            "desc": "Local SEO and tighter pages. Leads no longer wait on referrals."
+          },
+          "preferred": {
+            "label": "Preferred Plumbing",
+            "desc": "Stronger rankings, and emergency calls when the pipe fails."
+          },
+          "manos": {
+            "label": "Manos Creativas",
+            "desc": "A rebuild and product SEO. Orders without a standing discount."
+          }
+        },
+        "feature": {
+          "eyebrow": "Start here",
+          "title": "Bring the bottleneck.",
+          "dek": "We'll tell you what to fix first, and if we're the right team for it.",
+          "cta": "Book a call",
+          "secondary": "Start with an audit"
+        }
+      },
+      "industries": {
+        "all": "All industries",
+        "groups": {
+          "contractors": "Contractors",
+          "commerce": "Commerce"
+        },
+        "links": {
+          "homeServices": {
+            "label": "Home services",
+            "desc": "The contractors we build programs around."
+          },
+          "plumbing": {
+            "label": "Plumbing",
+            "desc": "Calls, maps, and a site that picks up after hours."
+          },
+          "hvac": {
+            "label": "HVAC",
+            "desc": "Seasonal demand without feast-or-famine ads."
+          },
+          "roofing": {
+            "label": "Roofing",
+            "desc": "Storm weeks, and the quiet months between them."
+          },
+          "landscaping": {
+            "label": "Landscaping",
+            "desc": "Quotes from the yard, not a parked brochure."
+          },
+          "ecommerce": {
+            "label": "E-commerce",
+            "desc": "Orders and margin, not another traffic chart."
+          },
+          "saas": {
+            "label": "SaaS & tech",
+            "desc": "Search demand, and a site that explains the product."
+          },
+          "fintech": {
+            "label": "Fintech",
+            "desc": "A serious tone, and acquisition you can explain."
+          }
+        },
+        "feature": {
+          "eyebrow": "The core book",
+          "title": "Home services and stores.",
+          "dek": "Contractors who live on the phone. Shops that live on the order. That's most of the work.",
+          "cta": "Home services",
+          "secondary": "See the work"
+        }
+      },
+      "resources": {
+        "all": "All resources",
+        "groups": {
+          "guides": "Guides",
+          "read": "Read"
+        },
+        "links": {
+          "localSeoChecklist": {
+            "label": "Local SEO checklist",
+            "desc": "The map-pack checks we run before anything else."
+          },
+          "seoAuditFramework": {
+            "label": "SEO audit framework",
+            "desc": "How we read a site before we touch it."
+          },
+          "landingPageBestPractices": {
+            "label": "Landing page practices",
+            "desc": "What the page needs before you buy traffic."
+          },
+          "abTestingFramework": {
+            "label": "A/B testing framework",
+            "desc": "Tests worth running, and the ones that waste a month."
+          },
+          "blog": {
+            "label": "Blog",
+            "desc": "Notes from the work."
+          },
+          "work": {
+            "label": "Work",
+            "desc": "Programs scored on leads, calls, and orders."
+          },
+          "localSeoStrategy": {
+            "label": "Local SEO strategy",
+            "desc": "What still ranks when the map pack is the page people see."
+          },
+          "conversion": {
+            "label": "Website conversion",
+            "desc": "Page changes that turn a visit into a call or an order."
+          }
+        },
+        "feature": {
+          "eyebrow": "Before you hire",
+          "title": "Get a straight read.",
+          "dek": "We look at the site, the ads, and the calls. You leave with what to fix first.",
+          "cta": "Request an audit",
+          "secondary": "Or start with the local checklist"
+        }
+      }
+    }
   },
   "services": {
     "pricing": "Pricing",
@@ -119,6 +266,7 @@
     "missionTitle": "We take on 8–10 clients at a time.",
     "missionBody": "Focused engagements. Real results. No cookie-cutter playbooks.",
     "privacy": "Privacy",
+    "pay": "Pay invoice",
     "terms": "Terms",
     "about": "About",
     "email": "Email",
@@ -161,6 +309,7 @@
     "whatYouGet": "What you get",
     "aFitIf": "A fit if",
     "talkAbout": "Talk about {name}",
+    "seeServicePage": "See the {name} page",
     "from": "from",
     "theWork": "The work.",
     "whatMoved": "What moved.",
@@ -194,11 +343,12 @@
     },
     "work": {
       "eyebrow": "Work",
+      "caseEyebrow": "Case study",
       "title": "Selected",
       "signal": "work.",
       "copy": "Programs rebuilt around a real bottleneck, then measured on leads, calls, and orders.",
       "indexEyebrow": "Case studies",
-      "indexTitle": "Selected work.",
+      "indexTitle": "The constraint.",
       "indexDek": "Every program starts with a real constraint: a site that leaks, ads buying the wrong intent, or pages that describe features instead of decisions. Then we fix it and measure what moved.",
       "ctaTitle": "Want a program like this?",
       "ctaCopy": "Bring your bottleneck and current numbers. We'll map a first phase with a clear definition of done.",
@@ -322,25 +472,25 @@
           "label": "Organic",
           "role": "Demand",
           "title": "Google SEO",
-          "body": "Technical cleanup and pages that rank for the jobs people already type into Google."
+          "body": "Pages that rank for real searches."
         },
         "web": {
           "label": "Website",
           "role": "Convert",
           "title": "Web design",
-          "body": "Built for the phone in someone's hand. Fast, with a path to the call that stays put."
+          "body": "Fast sites with the call still in reach."
         },
         "ads": {
           "label": "Ad spend",
           "role": "Scaling",
           "title": "Paid media",
-          "body": "Google and Meta spend, scored like a P&L, so each dollar returns as a lead or order."
+          "body": "Spend that earns back a lead."
         },
         "brand": {
           "label": "Branding",
           "role": "Position",
           "title": "Brand work",
-          "body": "Positioning, voice, and a look a stranger can choose before they open the next tab."
+          "body": "A look a stranger can choose."
         },
         "content": {
           "label": "Content",

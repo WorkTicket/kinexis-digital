@@ -92,8 +92,6 @@ export async function PageCTA({
         className,
       )}
     >
-      {isMinimal ? null : <div className="cta-section__glow" aria-hidden />}
-
       <CtaShell motion={motion}>
         <div
           className={cn(
@@ -117,9 +115,7 @@ export async function PageCTA({
               <div className="cta-terminal__actions">
                 <Button
                   href={primaryHref}
-                  size={isInline || isMinimal ? "lg" : "xl"}
-                  lift={!isInline && !isMinimal}
-                  arrow
+                  size={isInline || isMinimal ? "md" : "lg"}
                 >
                   {resolvedPrimaryLabel}
                 </Button>

@@ -193,6 +193,21 @@
   pointer-events: none;
 }
 
+/* Phone and back-to-top sit on the mobile dock. Fade them with the bar. */
+@media (max-width: 1023px) {
+  html.lp-chrome .back-to-top,
+  html.lp-chrome .lp-contact-dock {
+    transition: opacity 0.28s ease, visibility 0.28s;
+  }
+
+  html.lp-chrome:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) .back-to-top,
+  html.lp-chrome:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) .lp-contact-dock {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
 .landing-sticky-cta--at-end .landing-sticky-cta__panel {
   pointer-events: none;
 }
@@ -204,6 +219,11 @@
 
   .landing-sticky-cta--at-end {
     transform: none;
+  }
+
+  html.lp-chrome .back-to-top,
+  html.lp-chrome .lp-contact-dock {
+    transition: opacity 0.12s linear, visibility 0.12s linear;
   }
 }
 

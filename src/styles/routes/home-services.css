@@ -1,0 +1,416 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+.service-spread {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(3rem, 6vw, 5rem);
+}
+
+
+.service-spread__link {
+  display: grid;
+  gap: 0.85rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.service-spread__link:focus-visible {
+  outline: 2px solid var(--hero-signal);
+  outline-offset: 8px;
+  border-radius: 0.75rem;
+}
+
+
+.service-spread__art {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+
+.service-spread__plate {
+  position: relative;
+  width: min(100%, 36rem);
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background: #07090d;
+}
+
+
+.service-spread__img {
+  object-fit: cover;
+  object-position: center;
+}
+
+
+.service-spread__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+
+.service-spread__role {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+
+.service-spread__title {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2rem, 4vw, 3.15rem);
+  font-weight: 750;
+  letter-spacing: -0.048em;
+  line-height: 0.98;
+  color: var(--foreground);
+  text-wrap: balance;
+  transition: color 0.28s ease;
+}
+
+
+.service-spread__link:hover .service-spread__title,
+.service-spread__link:focus-visible .service-spread__title {
+  color: var(--accent);
+}
+
+
+.service-spread__dek {
+  margin: 0.85rem 0 0;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+
+.service-spread__caps,
+.service-spread__points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin: 1.15rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: color-mix(in oklab, var(--foreground) 62%, var(--muted));
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+
+.service-spread__points {
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 1.35rem;
+  color: var(--foreground);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+
+.service-spread__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.35rem;
+  color: color-mix(in oklab, var(--foreground) 70%, transparent);
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+
+.service-spread__more span:first-child {
+  border-bottom: 1.5px solid transparent;
+  padding-bottom: 0.08em;
+  transition: border-color 0.28s ease;
+}
+
+
+.service-spread__link:hover .service-spread__more,
+.service-spread__link:focus-visible .service-spread__more {
+  color: var(--foreground);
+}
+
+
+.service-spread__link:hover .service-spread__more span:first-child,
+.service-spread__link:focus-visible .service-spread__more span:first-child {
+  border-bottom-color: var(--foreground);
+}
+
+
+.service-spread__more span:last-child {
+  transition: transform 0.28s ease;
+}
+
+
+.service-spread__link:hover .service-spread__more span:last-child,
+.service-spread__link:focus-visible .service-spread__more span:last-child {
+  transform: translateX(0.25rem);
+}
+
+
+.service-spread__cta {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  max-width: 34rem;
+}
+
+
+.service-spread__cta-copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+
+@media (min-width: 900px) {
+.service-spread__link {
+    grid-template-columns: minmax(0, 1.05fr) minmax(16rem, 0.95fr);
+    gap: 1.5rem 4.5rem;
+    align-items: center;
+  }
+
+  .service-spread__link--flip {
+    grid-template-columns: minmax(16rem, 0.95fr) minmax(0, 1.05fr);
+  }
+
+  .service-spread__link--flip .service-spread__art {
+    order: 2;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+.service-spread__link:hover .service-spread__more span:last-child,
+  .service-spread__link:focus-visible .service-spread__more span:last-child {
+    transform: none;
+  }
+}
+
+
+
+.service-mega-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2.75rem;
+}
+
+
+.service-mega {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: center;
+  max-width: 42rem;
+  padding: 0.35rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+
+.service-mega__viz {
+  pointer-events: none;
+  width: min(100%, 17.5rem);
+  justify-self: start;
+}
+
+
+.service-mega__viz .hero-viz-shell {
+  height: 13.5rem;
+}
+
+
+/*
+ * HeroViz entrance frames use Framer `m` with initial opacity:0.
+ * If motion features fail to hydrate, keep hub graphics readable.
+ * Match `opacity:0;` only — not `opacity:0.5` mid-animation.
+ */
+.service-mega__viz [style*="opacity:0;"],
+.service-mega__viz [style*="opacity: 0;"] {
+  opacity: 1 !important;
+  filter: none !important;
+  transform: none !important;
+}
+
+
+.service-mega__body {
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+
+.service-mega:focus-visible {
+  outline: 2px solid var(--hero-signal);
+  outline-offset: 8px;
+}
+
+
+.service-mega__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5.25rem);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 0.9;
+  color: var(--foreground);
+  transition: color 280ms ease;
+}
+
+
+.service-mega:hover .service-mega__title,
+.service-mega:focus-visible .service-mega__title {
+  color: var(--hero-signal);
+}
+
+
+.service-mega__aside {
+  display: grid;
+  gap: 0.9rem;
+  max-width: 30rem;
+}
+
+
+.service-mega__dek {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+
+.service-mega__chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0;
+}
+
+
+.service-mega__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0;
+  margin-right: 0;
+  border-radius: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--foreground) 58%, var(--muted));
+  background: transparent;
+}
+
+
+.service-mega__chip:not(:last-child)::after {
+  content: "·";
+  margin-inline: 0.85rem;
+  color: color-mix(in oklab, var(--muted) 70%, transparent);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+.service-mega__title {
+    transition: none;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+.service-mega-list {
+    gap: 3.5rem;
+  }
+
+  .service-mega {
+    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+    max-width: min(64rem, 100%);
+    gap: 1.75rem 2.25rem;
+  }
+
+  .service-mega__viz {
+    width: 100%;
+  }
+
+  .service-mega__viz .hero-viz-shell {
+    height: 15rem;
+  }
+
+  .service-mega__body {
+    gap: 1rem;
+  }
+
+  .service-mega__aside {
+    max-width: 34rem;
+  }
+
+  .service-mega__dek {
+    font-size: 1.125rem;
+  }
+
+  .service-mega__chip:not(:last-child)::after {
+    margin-inline: 1rem;
+  }
+}
+
+
+
+@media (min-width: 1024px) {
+.service-mega-list {
+    gap: 4rem;
+  }
+
+  .service-mega {
+    grid-template-columns: minmax(16rem, 20rem) minmax(0, 1fr);
+    gap: 2rem 3rem;
+    max-width: min(72rem, 100%);
+  }
+
+  .service-mega__viz .hero-viz-shell {
+    height: 16.25rem;
+  }
+
+  .service-mega__title {
+    font-size: clamp(3.25rem, 5.2vw, 5.75rem);
+  }
+
+  .service-mega__dek {
+    font-size: 1.1875rem;
+    line-height: 1.55;
+  }
+}
+
+
+
+@media (hover: none) {
+.service-mega:hover .service-mega__title {
+    color: var(--foreground);
+  }
+}

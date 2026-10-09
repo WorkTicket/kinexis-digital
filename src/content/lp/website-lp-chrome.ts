@@ -5,8 +5,8 @@ import type { Locale } from "@/i18n/routing";
 export const websiteLpChrome = localeContent({
   en: {
     outcomesAria: "What the website is built to do",
-    datedCaption: "A dated WordPress template",
-    customCaption: "A custom Next.js rebuild",
+    datedCaption: "Illustrative example. “Click Here” is the button we replace.",
+    customCaption: "Illustrative example. A custom rebuild, not a client result.",
     liveSitesKicker: "Live sites",
     viewLive: "View live site",
     includedKicker: "What's included",
@@ -29,8 +29,8 @@ export const websiteLpChrome = localeContent({
   },
   "es-419": {
     outcomesAria: "Para qué está hecho el sitio web",
-    datedCaption: "Una plantilla WordPress anticuada",
-    customCaption: "Una reconstrucción a medida en Next.js",
+    datedCaption: "Ejemplo ilustrativo. “Click Here” es el botón que reemplazamos.",
+    customCaption: "Ejemplo ilustrativo. Una reconstrucción a medida, no un resultado de cliente.",
     liveSitesKicker: "Sitios en vivo",
     viewLive: "Ver sitio en vivo",
     includedKicker: "Qué incluye",

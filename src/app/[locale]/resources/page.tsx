@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import "@/styles/routes/resources.css";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
+import { ResourceStage } from "@/components/page/ResourceStage";
 import JsonLd from "@/components/seo/JsonLd";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
@@ -57,6 +59,7 @@ export default async function ResourcesPage({ params }: Props) {
         copy={t("copy")}
         secondaryHref="/blog"
         secondaryLabel={tCommon("readTheBlog")}
+        visual={<ResourceStage plates={fieldResources} />}
       />
 
       <section
@@ -100,14 +103,16 @@ export default async function ResourcesPage({ params }: Props) {
                     />
                     <span className="resource-tile__scrim" />
                   </span>
-                  <span className="resource-tile__top">
-                    <span className="resource-tile__source">{link.source}</span>
-                    <span aria-hidden className="resource-tile__arrow">
-                      ↗
+                  <span className="resource-tile__copy">
+                    <span className="resource-tile__top">
+                      <span className="resource-tile__source">{link.source}</span>
+                      <span aria-hidden className="resource-tile__arrow">
+                        ↗
+                      </span>
                     </span>
+                    <span className="resource-tile__label">{link.label}</span>
+                    <span className="resource-tile__dek">{link.dek}</span>
                   </span>
-                  <span className="resource-tile__label">{link.label}</span>
-                  <span className="resource-tile__dek">{link.dek}</span>
                 </a>
               </RevealItem>
             ))}

@@ -28,7 +28,9 @@ describe("resolveLandingMessage", () => {
     });
     expect(message.marketKey).toBe("raleigh");
     expect(message.marketLine).toBe(LANDING_MARKETS.raleigh);
-    expect(message.marketLine).toBe("Working with contractors across the U.S.");
+    expect(message.marketLine).toBe(
+      "Working with contractors and home-service crews",
+    );
     expect(message.marketLine).not.toMatch(/raleigh/i);
     expect(message.marketLine).not.toContain("raleigh_contractors");
   });

@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { getWebsiteLpChrome } from "@/content/lp/website-lp-chrome";
 import { getLandingPage } from "@/content/registry/landing-pages";
 
 describe("web-design landing page", () => {
@@ -153,7 +154,11 @@ describe("get-a-website landing page", () => {
     expect(page?.pricingTitle).toBe(
       "Basic websites from $500. Custom multi-page websites from $2,000+.",
     );
-    expect(page?.pricingDelivery).toMatch(/2 to 6 weeks/);
+    expect(page?.pricingDelivery).toBeUndefined();
+    expect(page?.processIntro).toMatch(/2 to 6 weeks/);
+    expect(page?.processIntro?.toLowerCase()).toMatch(
+      /scope and the price before we write/,
+    );
     expect(page?.pricingQualify?.toLowerCase()).toMatch(
       /final pricing depends on pages/,
     );
@@ -162,7 +167,12 @@ describe("get-a-website landing page", () => {
     expect(page?.pricingNote?.toLowerCase()).toMatch(
       /optional hosting|optional.*support|maintenance.*support/,
     );
-    expect(page?.pricingHighlights?.length).toBeGreaterThanOrEqual(2);
+    expect(page?.pricingHighlights).toEqual([
+      "Milestone-based payment option",
+    ]);
+    expect(page?.pricingHighlights?.join(" ").toLowerCase()).not.toMatch(
+      /hosting/,
+    );
     expect(page?.pricingPaths).toBeUndefined();
 
     expect(page?.conversionKind).toBe("audit");
@@ -203,7 +213,7 @@ describe("get-a-website landing page", () => {
     expect(page?.directIntro?.points).toEqual([
       "Custom built, no templates.",
       "You own the site.",
-      "Most sites go live in 2–6 weeks.",
+      "Basic is custom code too.",
     ]);
     expect(page?.heroStill?.src).toMatch(/lp\/a1-desktop/);
     expect(page?.heroStill?.mobileSrc).toMatch(/lp\/a1-mobile/);
@@ -266,7 +276,13 @@ describe("get-a-website landing page", () => {
     expect(page?.fitClose).toBeUndefined();
     expect(page?.serviceArea).toBeUndefined();
     expect(page?.logos).toBeUndefined();
-    expect(page?.testimonial?.name).toMatch(/A1 Property Services/);
+    expect(page?.testimonial?.name).toBe("Mac Christensen");
+    expect(page?.testimonial?.role).toBe("Owner, A1 Property Services");
+    expect(page?.directIntro?.body.toLowerCase()).toMatch(/short roster of active clients/);
+    expect(page?.directIntro?.body.toLowerCase()).not.toMatch(/written scope/);
+    expect(
+      page?.faqs.find((faq) => /hosting included/i.test(faq.question))?.answer,
+    ).toMatch(/host the finished site anywhere/i);
     expect(page?.sellPoints?.length).toBe(6);
     expect(page?.sellPoints?.map((point) => point.title)).toEqual([
       "Built around your company",
@@ -294,6 +310,26 @@ describe("get-a-website landing page", () => {
       "Un sitio web hecho para",
       "traerte más negocio",
     ]);
+    for (const locale of ["es-419", "es-ES"] as const) {
+      const spanish = getLandingPage("get-a-website", locale);
+      expect(spanish?.marketLine).toBe(
+        "Trabajamos con contratistas y equipos de servicios del hogar.",
+      );
+      expect(spanish?.testimonial?.name).toBe("Mac Christensen");
+      expect(spanish?.testimonial?.role).toBe("Dueño, A1 Property Services");
+      expect(spanish?.pricingIntro).toMatch(/hasta 4 páginas/i);
+      expect(spanish?.pricing?.[0]?.items.join(" ")).toMatch(/Hasta 4 páginas/);
+      expect(spanish?.pricingHighlights?.join(" ").toLowerCase()).not.toMatch(
+        /hosting/,
+      );
+      expect(
+        spanish?.faqs.find((faq) => /hosting está incluido/i.test(faq.question))
+          ?.answer,
+      ).toMatch(/donde quieras/i);
+      const chrome = getWebsiteLpChrome(locale);
+      expect(chrome.datedCaption).toMatch(/ejemplo ilustrativo/i);
+      expect(chrome.customCaption).toMatch(/ejemplo ilustrativo/i);
+    }
     expect(getLandingPage("get-a-website", "es-ES")?.headlineLines).toEqual([
       "Un sitio web hecho para",
       "traerte más negocio",
@@ -335,6 +371,9 @@ describe("get-a-website landing page", () => {
       getLandingPage("get-a-website", "es-ES")?.pricingAddOns?.length ?? 0,
     ).toBe(0);
 
+    expect(getLandingPage("get-a-website", "en")?.callHeroLabel).toBe("Call");
+    expect(getLandingPage("get-a-website", "es-419")?.callHeroLabel).toBeUndefined();
+    expect(getLandingPage("get-a-website", "es-ES")?.callHeroLabel).toBeUndefined();
     expect(getLandingPage("get-a-website", "en")?.whatsappHref).toBeUndefined();
     expect(getLandingPage("get-a-website", "en")?.whatsappHeroLabel).toBeUndefined();
     expect(getLandingPage("get-a-website", "en")?.whatsappPlanLabel).toBeUndefined();
@@ -355,7 +394,7 @@ describe("get-a-website landing page", () => {
     expect(page?.proof.map((item) => item.metric)).toEqual([
       "Custom built",
       "You own it",
-      "2–6 weeks",
+      "Short roster",
       "Optional",
     ]);
     expect(page?.proof.map((item) => item.label).join(" ").toLowerCase()).not.toMatch(
@@ -414,7 +453,9 @@ describe("get-a-website landing page", () => {
     expect(page?.formStep2Title?.toLowerCase()).toMatch(/about the project/);
     expect(page?.closingTitle?.toLowerCase()).toMatch(/15-minute project call/);
     expect(page?.closingFinePrint?.toLowerCase()).toMatch(/no obligation/);
-    expect(page?.marketLine).toBe("Working with contractors across the U.S.");
+    expect(page?.marketLine).toBe(
+      "Working with contractors and home-service crews",
+    );
     expect(page?.planHasSiteItems?.length).toBeGreaterThanOrEqual(4);
     expect(page?.planNoSiteItems?.length).toBeGreaterThanOrEqual(4);
   });

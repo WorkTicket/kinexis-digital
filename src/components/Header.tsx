@@ -6,12 +6,18 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import { CallLink } from "@/components/analytics/CallLink";
+import { PhoneMark } from "@/components/ui/PhoneMark";
 import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import { MegaTrigger } from "@/components/nav/MegaMenu";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import {
+  isMainNavActive,
   mainNavLinks,
+  megaDestinations,
+  activeMegaHref,
   NAV_CONTACT_HREF,
   type MainNavItem,
 } from "@/lib/site-nav";
@@ -28,20 +34,6 @@ import type { Locale } from "@/i18n/routing";
 
 const SCROLL_DELTA = 8;
 const SCROLL_TOP_REVEAL = 28;
-
-function navChildLabel(
-  href: string,
-  fallback: string,
-  t: ReturnType<typeof useTranslations>,
-) {
-  if (href.includes("/home-services")) return t("homeServices");
-  if (href.includes("/ecommerce")) return t("ecommerce");
-  if (href.includes("/plumbing")) return t.has("plumbing") ? t("plumbing") : fallback;
-  if (href.includes("/landscaping")) return t.has("landscaping") ? t("landscaping") : fallback;
-  if (href.includes("/hvac")) return t.has("hvac") ? t("hvac") : fallback;
-  if (href.includes("/roofing")) return t.has("roofing") ? t("roofing") : fallback;
-  return fallback;
-}
 
 function navItemLabel(
   link: Pick<MainNavItem, "key" | "label">,
@@ -63,6 +55,7 @@ export function Header() {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobilePanelRef = useRef<HTMLDivElement>(null);
   const dropdownRefs = useRef<Map<string, HTMLLIElement>>(new Map());
+  const triggerRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastScrollY = useRef(0);
   const mobileNavId = useId();
@@ -78,13 +71,15 @@ export function Header() {
   const landing = getLandingChrome(pathname, locale);
   const isSlimLanding = Boolean(landing?.slim);
 
-  const supportSlot = (placement: "nav" | "menu") => {
+  const supportSlot = (placement: "nav" | "menu" | "bar") => {
     if (showWhatsApp && whatsappHref) {
       return (
         <WhatsAppLink
           href={whatsappHref}
-          label={t("whatsappSupport")}
-          variant={placement}
+          label={placement === "bar" ? "WhatsApp" : t("whatsappSupport")}
+          ariaLabel={t("whatsappSupport")}
+          variant={placement === "menu" ? "menu" : "nav"}
+          className={placement === "bar" ? "site-header__phone--bar" : undefined}
         />
       );
     }
@@ -92,8 +87,17 @@ export function Header() {
     if (placement === "menu") {
       return (
         <CallLink className="site-menu__phone">
-          <span className="site-header__phone-dot" aria-hidden />
+          <PhoneMark className="site-header__phone-mark" />
           <span className="site-menu__phone-num">
+            {getBusinessPhoneDisplay()}
+          </span>
+        </CallLink>
+      );
+    }
+    if (placement === "bar") {
+      return (
+        <CallLink className="site-header__phone site-header__phone--bar">
+          <span className="site-header__phone-num">
             {getBusinessPhoneDisplay()}
           </span>
         </CallLink>
@@ -106,25 +110,7 @@ export function Header() {
           isSlimLanding && "site-header__phone--lp",
         )}
       >
-        {isSlimLanding ? (
-          <svg
-            className="site-header__phone-mark"
-            viewBox="0 0 24 24"
-            aria-hidden
-            focusable="false"
-          >
-            <path
-              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-            />
-          </svg>
-        ) : (
-          <span className="site-header__phone-dot" aria-hidden />
-        )}
+        <PhoneMark className="site-header__phone-mark" />
         <span className="site-header__phone-num">
           {getBusinessPhoneDisplay()}
         </span>
@@ -205,7 +191,9 @@ export function Header() {
           clearTimeout(closeTimer.current);
           closeTimer.current = null;
         }
+        const trigger = triggerRefs.current.get(openDropdown);
         setOpenDropdown(null);
+        trigger?.focus();
       }
     };
 
@@ -238,7 +226,7 @@ export function Header() {
     closeTimer.current = setTimeout(() => {
       setOpenDropdown(null);
       closeTimer.current = null;
-    }, 140);
+    }, 220);
   };
 
   const closeDropdown = () => {
@@ -254,17 +242,21 @@ export function Header() {
       <div
         className={cn(
           "site-header__frost chrome-glass",
-          headerHidden && !menuOpen && !isSlimLanding && "site-header__frost--hidden",
-          menuOpen && "site-header__frost--solid",
+          headerHidden && !menuOpen && !openDropdown && !isSlimLanding && "site-header__frost--hidden",
+          (menuOpen || openDropdown) && "site-header__frost--solid",
         )}
         aria-hidden
       />
       <header
         className={cn(
           "site-header pt-[env(safe-area-inset-top,0px)]",
-          headerHidden && !menuOpen && !isSlimLanding && "site-header--hidden",
+          headerHidden && !menuOpen && !openDropdown && !isSlimLanding && "site-header--hidden",
+          openDropdown && "site-header--open",
         )}
       >
+        {openDropdown && !isSlimLanding ? (
+          <div className="mega-scrim" aria-hidden onClick={closeDropdown} />
+        ) : null}
         <div className="shell site-header__bar flex items-center gap-4 overflow-visible sm:gap-5 lg:gap-10">
           {isSlimLanding ? (
             <Link
@@ -308,19 +300,20 @@ export function Header() {
           ) : (
             <>
               <nav
-                className="relative z-50 ml-auto hidden overflow-visible lg:block"
+                className="relative z-50 ml-auto hidden h-full overflow-visible lg:flex lg:items-stretch"
                 aria-label={t("main")}
               >
             <ul className="site-header__nav-list">
               {mainNavLinks.map((link) => {
-                const isActive = pathname.startsWith(link.href);
-                return link.children ? (
-                  <DesktopFlyout
+                const isActive = isMainNavActive(pathname, link, mainNavLinks);
+                return link.groups ? (
+                  <MegaTrigger
                     key={link.href}
                     link={link}
+                    label={navItemLabel(link, t)}
                     active={isActive}
                     open={openDropdown === link.href}
-                    menuId={`nav-flyout-${link.href.replace(/\W+/g, "-")}`}
+                    menuId={`nav-mega-${link.key}`}
                     onOpen={() => openNavDropdown(link.href)}
                     onScheduleClose={scheduleCloseDropdown}
                     onClose={closeDropdown}
@@ -332,6 +325,10 @@ export function Header() {
                     setRef={(node) => {
                       if (node) dropdownRefs.current.set(link.href, node);
                       else dropdownRefs.current.delete(link.href);
+                    }}
+                    setTriggerRef={(node) => {
+                      if (node) triggerRefs.current.set(link.href, node);
+                      else triggerRefs.current.delete(link.href);
                     }}
                   />
                 ) : (
@@ -357,19 +354,14 @@ export function Header() {
                 <span className="site-header__rule" aria-hidden />
               </>
             ) : null}
+            <ThemeToggle />
             <Button href={contactHref} size="header" onClick={closeDropdown}>
               {contactLabel}
             </Button>
           </div>
 
-          <div className="site-header__mobile ml-auto flex items-center gap-1.5 sm:gap-3 lg:hidden">
-            {hasPhone ? (
-              <CallLink className="site-header__phone site-header__phone--bar">
-                <span className="site-header__phone-num">
-                  {getBusinessPhoneDisplay()}
-                </span>
-              </CallLink>
-            ) : null}
+          <div className="site-header__mobile ml-auto flex items-center lg:hidden">
+            {supportSlot("bar")}
             <button
               ref={menuButtonRef}
               type="button"
@@ -383,7 +375,8 @@ export function Header() {
                   return;
                 }
                 const openGroup = mainNavLinks.find(
-                  (link) => link.children && pathname.startsWith(link.href),
+                  (link) =>
+                    link.groups && isMainNavActive(pathname, link, mainNavLinks),
                 );
                 setMobileOpenHref(openGroup?.href ?? null);
                 setMenuOpen(true);
@@ -432,8 +425,8 @@ export function Header() {
                 </Link>
               </li>
               {mainNavLinks.map((link) => {
-                const isActive = pathname.startsWith(link.href);
-                if (link.children) {
+                const isActive = isMainNavActive(pathname, link, mainNavLinks);
+                if (link.groups) {
                   return (
                     <MobileNavGroup
                       key={link.href}
@@ -468,13 +461,14 @@ export function Header() {
             </ul>
 
             <div className="site-menu__meta">
-              <Button href={contactHref} size="lg" fullWidthMobile onClick={closeMenu}>
+              <Button href={contactHref} size="header" onClick={closeMenu}>
                 {contactLabel}
               </Button>
               {supportSlot("menu")}
               <a href={`mailto:${CONTACT_EMAIL}`} className="site-menu__email">
                 {CONTACT_EMAIL}
               </a>
+              <ThemeToggle variant="menu" />
             </div>
           </nav>
         </div>
@@ -499,11 +493,11 @@ function MobileNavGroup({
   const pathname = usePathname();
   const t = useTranslations("nav");
   const panelId = useId();
-  const children = link.children ?? [];
-  const allLabel =
-    link.key === "industries"
-      ? t("allIndustries")
-      : (link.allLabel ?? `All ${link.label.toLowerCase()}`);
+  const menu = link.menu;
+  const groups = link.groups ?? [];
+  const current = activeMegaHref(pathname, megaDestinations(link));
+
+  if (!menu) return null;
 
   return (
     <li className="site-menu__item">
@@ -526,187 +520,57 @@ function MobileNavGroup({
         inert={open ? undefined : true}
       >
         <div className="site-menu__panel-inner">
-          <ul className="site-menu__sub">
-            {children.map((child) => (
-              <li key={child.href}>
+          {groups.map((group) => (
+            <div key={group.key} className="site-menu__group">
+              <p className="site-menu__group-label">
+                {t(`mega.${menu}.groups.${group.key}`)}
+              </p>
+              <ul className="site-menu__sub">
+                {group.links.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "site-menu__sub-link",
+                        current === item.href && "site-menu__sub-link--active",
+                      )}
+                      onClick={onNavigate}
+                    >
+                      {t(`mega.${menu}.links.${item.key}.label`)}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          {link.feature ? (
+            <div className="site-menu__feature">
+              <p className="site-menu__feature-title">
+                {t(`mega.${menu}.feature.title`)}
+              </p>
+              <p className="site-menu__feature-dek">
+                {t(`mega.${menu}.feature.dek`)}
+              </p>
+              <Link
+                href={link.feature.href}
+                className="site-menu__feature-link"
+                onClick={onNavigate}
+              >
+                {t(`mega.${menu}.feature.cta`)}
+              </Link>
+              {link.feature.secondaryHref ? (
                 <Link
-                  href={child.href}
-                  className={cn(
-                    "site-menu__sub-link",
-                    pathname.startsWith(child.href) && "site-menu__sub-link--active",
-                  )}
+                  href={link.feature.secondaryHref}
+                  className="site-menu__sub-link"
                   onClick={onNavigate}
                 >
-                  {navChildLabel(child.href, child.label, t)}
+                  {t(`mega.${menu}.feature.secondary`)}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ) : null}
+            </div>
+          ) : null}
           <Link href={link.href} className="site-menu__all" onClick={onNavigate}>
-            <span>{allLabel}</span>
-            <ArrowIcon />
-          </Link>
-        </div>
-      </div>
-    </li>
-  );
-}
-
-function DesktopFlyout({
-  link,
-  active,
-  open,
-  menuId,
-  onOpen,
-  onScheduleClose,
-  onClose,
-  onToggle,
-  setRef,
-}: {
-  link: MainNavItem;
-  active: boolean;
-  open: boolean;
-  menuId: string;
-  onOpen: () => void;
-  onScheduleClose: () => void;
-  onClose: () => void;
-  onToggle: () => void;
-  setRef: (node: HTMLLIElement | null) => void;
-}) {
-  const t = useTranslations("nav");
-  const children = link.children ?? [];
-  const featured = link.featured ?? [];
-  const allLabel = link.key === "industries" ? t("allIndustries") : (link.allLabel ?? `All ${link.label.toLowerCase()}`);
-  const isWide = link.mega === "industries";
-  const showDesc = link.mega === "services";
-  const remainingChildren = isWide
-    ? children.filter(
-        (c) => !featured.some((f) => f.href === c.href),
-      )
-    : children;
-
-  return (
-    <li
-      ref={setRef}
-      className="nav-flyout relative"
-      onMouseEnter={onOpen}
-      onMouseLeave={onScheduleClose}
-    >
-      <button
-        type="button"
-        className={cn(
-          "site-nav__link site-nav__link--trigger",
-          (open || active) && "site-nav__link--active",
-        )}
-        aria-expanded={open}
-        aria-haspopup="menu"
-        aria-controls={menuId}
-        onClick={onToggle}
-        onFocus={onOpen}
-      >
-        <span className="site-nav__label">{navItemLabel(link, t)}</span>
-        <ChevronIcon open={open} />
-      </button>
-
-      <div
-        id={menuId}
-        role="menu"
-        aria-label={navItemLabel(link, t)}
-        className={cn(
-          "nav-flyout__panel",
-          isWide && "nav-flyout__panel--wide",
-          open && "nav-flyout__panel--open",
-        )}
-      >
-        <div className="nav-flyout__surface">
-          {isWide && featured.length > 0 ? (
-            <>
-              <div className="nav-flyout__featured">
-                <p className="nav-flyout__featured-heading">
-                  {link.megaIntro}
-                </p>
-                <div className="nav-flyout__featured-grid">
-                  {featured.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      role="menuitem"
-                      className="nav-flyout__featured-card"
-                      onClick={onClose}
-                    >
-                      <span className="nav-flyout__featured-label">
-                        {navChildLabel(item.href, item.label, t)}
-                      </span>
-                      {item.description ? (
-                        <span className="nav-flyout__featured-desc">
-                          {item.description}
-                        </span>
-                      ) : null}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="nav-flyout__divider" />
-
-              <ul className="nav-flyout__list nav-flyout__list--cols">
-                {remainingChildren.map((child) => (
-                  <li key={child.href} role="none">
-                    <Link
-                      href={child.href}
-                      role="menuitem"
-                      className="nav-flyout__item"
-                      onClick={onClose}
-                    >
-                      <span className="nav-flyout__item-label">
-                        {navChildLabel(child.href, child.label, t)}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          ) : (
-            <>
-              <ul
-                className={cn(
-                  "nav-flyout__list",
-                  (isWide || showDesc) && "nav-flyout__list--cols",
-                )}
-              >
-                {children.map((child) => (
-                  <li key={child.href} role="none">
-                    <Link
-                      href={child.href}
-                      role="menuitem"
-                      className={cn(
-                        "nav-flyout__item",
-                        showDesc && "nav-flyout__item--rich",
-                      )}
-                      onClick={onClose}
-                    >
-                      <span className="nav-flyout__item-label">{navChildLabel(child.href, child.label, t)}</span>
-                      {showDesc && child.description ? (
-                        <span className="nav-flyout__item-desc">
-                          {child.description}
-                        </span>
-                      ) : null}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-
-          <div className="nav-flyout__divider" />
-
-          <Link
-            href={link.href}
-            role="menuitem"
-            className="nav-flyout__all"
-            onClick={onClose}
-          >
-            <span>{allLabel}</span>
+            <span>{t(`mega.${menu}.all`)}</span>
             <ArrowIcon />
           </Link>
         </div>

@@ -558,7 +558,7 @@ function Greenfield({
             )}
           </span>
           {phone ? null : (
-            <p className="lp-site__meta">★★★★★ 4.9 · 180+ jobs this year</p>
+            <p className="lp-site__meta">Licensed · Insured · Local crews</p>
           )}
         </div>
       </div>

@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
-import { SitePreview } from "@/components/home/SitePreview";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
+import { WorkHubStage } from "@/components/page/WorkHubStage";
+import { WorkStudy } from "@/components/page/WorkStudy";
 import JsonLd from "@/components/seo/JsonLd";
-import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
-import { DeviceFrame } from "@/components/ui/DeviceFrame";
-import { MediaReveal, Reveal } from "@/components/ui/Reveal";
-import { caseStudyHref } from "@/content/home-results";
+import { Reveal } from "@/components/ui/Reveal";
 import { getCaseStudyPages } from "@/content/case-studies";
+import { caseStudyHref, getHomeResults } from "@/content/home-results";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildAbsoluteUrl, buildPageMetadata } from "@/lib/metadata";
 import { breadcrumbSchema, organizationSchema } from "@/lib/schema";
 
 type Props = { params: LocaleParams };
+
+function figure(lift: string) {
+  return lift.replace(/X/g, "×");
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
@@ -33,7 +35,18 @@ export default async function WorkIndexPage({ params }: Props) {
   const t = await getTranslations("pages.work");
   const tCommon = await getTranslations("common");
   const tNav = await getTranslations("nav");
-  const studies = getCaseStudyPages(locale);
+  const results = getHomeResults(locale);
+  const studies = getCaseStudyPages(locale).map((study) => {
+    const result = results.find((item) => item.slug === study.slug);
+    return {
+      study,
+      href: caseStudyHref(study.slug),
+      lift: figure(study.primaryLift),
+      headline: result?.headline ?? study.headline,
+      mechanism: result?.mechanism,
+    };
+  });
+
   return (
     <main className="flex flex-1 flex-col">
       <JsonLd
@@ -52,99 +65,62 @@ export default async function WorkIndexPage({ params }: Props) {
         copy={t("copy")}
         secondaryHref="/services"
         secondaryLabel={tCommon("seeServices")}
+        visual={
+          <WorkHubStage
+            ariaLabel={t("indexEyebrow")}
+            studies={studies.map(({ study, href, lift, headline }) => ({
+              slug: study.slug,
+              href,
+              client: study.client,
+              lift,
+              headline,
+              image: study.image,
+              imageAlt: study.imageAlt,
+            }))}
+          />
+        }
       />
 
       <section
         aria-labelledby="work-index-heading"
-        className="chapter chapter--void relative"
+        className="work-folio-section chapter chapter--void relative"
       >
         <div className="shell chapter-shell--monument relative">
-          <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16">
+          <Reveal variant="rise" when="chapter" className="work-folio__lead">
             <ChapterLead
               eyebrow={t("indexEyebrow")}
               headingId="work-index-heading"
               title={t("indexTitle")}
-              headingClassName="max-w-[20ch]"
+              headingClassName="max-w-[16ch]"
               dek={t("indexDek")}
             />
           </Reveal>
 
-          <ul className="work-index">
-            {studies.map((study, index) => {
-              const href = caseStudyHref(study.slug);
-              const flipped = index % 2 === 1;
-              return (
-                <li key={study.slug}>
-                  <Link
-                    href={href}
-                    className={
-                      flipped
-                        ? "work-card work-card--flip group"
-                        : "work-card group"
-                    }
-                  >
-                    <MediaReveal
-                      className="work-card__media"
-                      variant="float"
-                      from={flipped ? "right" : "left"}
-                    >
-                      <DeviceFrame>
-                        <SitePreview
-                          image={study.image}
-                          imageAlt={study.imageAlt}
-                        />
-                      </DeviceFrame>
-                    </MediaReveal>
-                    <Reveal
-                      variant="fadeUp"
-                      when="media"
-                      delay={0.12}
-                      className="work-card__body"
-                    >
-                      <h3 className="work-card__client">{study.client}</h3>
-                      <p className="work-card__meta">
-                        <span>{study.industry}</span>
-                        <span aria-hidden>·</span>
-                        <span>{study.timeline}</span>
-                      </p>
-                      <p className="work-card__lift">{study.primaryLift}</p>
-                      <p className="work-card__headline">{study.headline}</p>
-                      <p className="work-card__summary">{study.summary}</p>
-                      <span className="work-card__cta">
-                        {tCommon("readTheCase")}
-                        <span aria-hidden>→</span>
-                      </span>
-                    </Reveal>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          <div className="work-folio">
+            {studies.map(({ study, href, lift, headline, mechanism }, index) => (
+              <WorkStudy
+                key={study.slug}
+                href={href}
+                client={study.client}
+                industry={study.industry}
+                timeline={study.timeline}
+                lift={lift}
+                headline={headline}
+                mechanism={mechanism}
+                summary={study.summary}
+                services={study.servicesUsed}
+                image={study.image}
+                imageAlt={study.imageAlt}
+                flipped={index % 2 === 1}
+                readLabel={tCommon("readTheCase")}
+                servicesLabel={tCommon("servicesUsed")}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="chapter chapter--studio relative overflow-hidden">
-        <div className="shell chapter-shell--tight relative">
-          <Reveal variant="rise" when="chapter">
-            <ChapterLead
-              eyebrow={t("pictureEyebrow")}
-              title={t("pictureTitle")}
-              headingClassName="max-w-[20ch]"
-              dek={t("pictureDek")}
-            >
-              <Button href="/about" variant="link" arrow>
-                {t("seeAbout")}
-              </Button>
-            </ChapterLead>
-          </Reveal>
-        </div>
-      </section>
-
-      <PageCTA
-        layout="minimal"
-        title={t("indexCtaTitle")}
-        copy={t("indexCtaCopy")}
-      />
+      <PageCTA title={t("indexCtaTitle")} copy={t("indexCtaCopy")} />
     </main>
   );
 }

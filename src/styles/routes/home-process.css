@@ -1,0 +1,261 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+.process-track__rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+
+.process-track__step {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 5.75rem;
+  margin: 0;
+  padding: 0.75rem 0.85rem;
+  border: 0;
+  background: var(--foreground);
+  color: var(--background);
+  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  font-size: clamp(1.45rem, 2.5vw, 2.25rem);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease;
+}
+
+
+.process-track__step:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: -0.48rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-top: 2px solid var(--foreground);
+  border-right: 2px solid var(--foreground);
+  transform: translateY(-50%) rotate(45deg);
+  pointer-events: none;
+}
+
+
+.process-track__step.is-active {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+
+.process-track__step:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+}
+
+
+.process-track__panel {
+  margin-top: 1.75rem;
+}
+
+
+.process-track__read {
+  margin: 0 auto;
+  max-width: 36rem;
+  color: var(--muted);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+
+@media (max-width: 719px) {
+.process-track__rail {
+    grid-template-columns: 1fr;
+  }
+
+  .process-track__step {
+    min-height: 4.35rem;
+    font-size: 1.65rem;
+  }
+
+  .process-track__step:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -0.48rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(135deg);
+  }
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+.process-track__read {
+    animation: hero-engine-readout 0.32s ease;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+.process-track__step,
+  .process-track__read {
+    transition: none;
+    animation: none;
+  }
+}
+
+
+
+/* Homepage process — arc instrument, one step live */
+.process-stage__rail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 2.5vw, 2rem);
+}
+
+
+.process-stage__tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.05rem;
+  margin: 0;
+  padding: 0.35rem 0.15rem 0.15rem;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+
+.process-stage__tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: 0.5rem;
+}
+
+
+.process-stage__brush {
+  display: block;
+  width: 1.75rem;
+  height: 3px;
+  border-radius: 0;
+  background: color-mix(in oklab, var(--foreground) 22%, transparent);
+  transition:
+    width 0.28s ease,
+    background-color 0.28s ease;
+}
+
+
+.process-stage__tab.is-active .process-stage__brush {
+  width: 3.25rem;
+  background: var(--accent);
+}
+
+
+.process-stage__name {
+  font-family: var(--font-display), Arial, Helvetica, sans-serif;
+  font-size: clamp(1.7rem, 4.2vw, 3.35rem);
+  font-weight: 750;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  text-align: center;
+  text-wrap: balance;
+  color: color-mix(in oklab, var(--foreground) 34%, transparent);
+  transition: color 0.28s ease;
+}
+
+
+.process-stage__tab.is-active .process-stage__name,
+.process-stage__tab:hover .process-stage__name {
+  color: var(--foreground);
+}
+
+
+.process-stage__tab.is-active .process-stage__name {
+  color: var(--accent);
+}
+
+
+.process-stage__panel {
+  margin: 2.75rem 0 0;
+  min-height: 0;
+}
+
+
+.process-stage__live {
+  display: grid;
+  gap: 1.35rem;
+  align-items: center;
+}
+
+
+.process-stage__study {
+  width: 100%;
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.9rem;
+  background: #07080c;
+}
+
+
+.process-stage__read {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.1875rem;
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+
+@media (min-width: 800px) {
+.process-stage__live {
+    grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
+    gap: 1.5rem 3.5rem;
+  }
+
+  .process-stage__study {
+    margin-inline: 0;
+  }
+
+  .process-stage__read {
+    text-align: left;
+  }
+}
+
+
+
+@media (min-width: 768px) {
+.process-stage__read {
+    font-size: 1.3125rem;
+    line-height: 1.55;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+.process-stage__study,
+  .process-stage__read {
+    animation: hero-engine-readout 0.32s ease;
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+.process-stage__brush,
+  .process-stage__name,
+  .process-stage__read {
+    transition: none;
+    animation: none;
+  }
+}

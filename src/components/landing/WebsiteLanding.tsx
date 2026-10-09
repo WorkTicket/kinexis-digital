@@ -12,6 +12,7 @@ import {
   WebsiteWork,
 } from "@/components/landing/WebsiteSections";
 import { LandingStickyCta } from "@/components/landing/LandingStickyCta";
+import { WebsiteContactDock } from "@/components/landing/WebsiteReach";
 import { FaqAccordion } from "@/components/page/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
@@ -149,6 +150,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
         note={chrome.stickyNote}
         revealAfterId="lp-hero-actions"
       />
+      <WebsiteContactDock page={page} />
     </main>
   );
 }

@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
+import { getTranslations } from "next-intl/server";
 import { IndustryVisual } from "@/components/industry/IndustryVisual";
 import { Button } from "@/components/ui/Button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import type { Industry } from "@/content/industries";
 import { isStandaloneIndustry, industryHref } from "@/content/industries";
+import { cn } from "@/lib/cn";
 import "@/styles/components/page-stages.css";
 
 type Props = {
@@ -11,35 +13,17 @@ type Props = {
   index: number;
 };
 
-function CheckIcon() {
-  return (
-    <svg
-      className="svc-offer__check"
-      viewBox="0 0 20 20"
-      fill="none"
-      aria-hidden
-    >
-      <path
-        d="M4.2 10.4 8 14.1 15.8 5.8"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-export function IndustryProgramChapter({ industry }: Props) {
+export async function IndustryProgramChapter({ industry, index }: Props) {
+  const t = await getTranslations("common");
   const headingId = `${industry.slug}-heading`;
   const standalone = isStandaloneIndustry(industry.slug);
-  const fitPoints = industry.why.slice(0, 3).map((w) => w.title);
+  const fitPoints = industry.why.slice(0, 3).map((item) => item.title);
 
   return (
     <article
       id={industry.slug}
       aria-labelledby={headingId}
-      className="svc-offer ind-offer"
+      className={cn("svc-offer ind-offer", index % 2 === 1 && "svc-offer--flip")}
       style={
         industry.accentColor
           ? ({ "--industry-accent": industry.accentColor } as CSSProperties)
@@ -51,7 +35,7 @@ export function IndustryProgramChapter({ industry }: Props) {
           <IndustryVisual
             slug={industry.slug}
             variant="panel"
-            sizes="(max-width: 1023px) 100vw, 42vw"
+            sizes="(max-width: 1023px) 100vw, 46vw"
           />
         </div>
       </Reveal>
@@ -73,7 +57,7 @@ export function IndustryProgramChapter({ industry }: Props) {
         <div className="svc-offer__facts">
           <div>
             <Reveal variant="fadeUp" delay={0.1} when="chapter">
-              <h3 className="svc-offer__label">What we run</h3>
+              <h3 className="svc-offer__label">{t("whatsIncluded")}</h3>
             </Reveal>
             <RevealGroup
               as="ul"
@@ -83,10 +67,7 @@ export function IndustryProgramChapter({ industry }: Props) {
             >
               {industry.help.map((item) => (
                 <RevealItem as="li" key={item.title} variant="fadeUp">
-                  <CheckIcon />
-                  <span>
-                    <strong>{item.title}.</strong> {item.detail}
-                  </span>
+                  <strong>{item.title}.</strong> {item.detail}
                 </RevealItem>
               ))}
             </RevealGroup>
@@ -98,21 +79,17 @@ export function IndustryProgramChapter({ industry }: Props) {
             delayChildren={0.08}
           >
             <RevealItem>
-              <h3 className="svc-offer__label">Focus areas</h3>
+              <h3 className="svc-offer__label">{t("focus")}</h3>
               <ul className="svc-offer__list">
                 {industry.domains.slice(0, 4).map((item) => (
                   <li key={item.title}>
-                    {item.href ? (
-                      <a href={item.href}>{item.title}</a>
-                    ) : (
-                      item.title
-                    )}
+                    {item.href ? <a href={item.href}>{item.title}</a> : item.title}
                   </li>
                 ))}
               </ul>
             </RevealItem>
             <RevealItem>
-              <h3 className="svc-offer__label">A fit if</h3>
+              <h3 className="svc-offer__label">{t("aFitIf")}</h3>
               <ul className="svc-offer__list">
                 {fitPoints.map((item) => (
                   <li key={item}>{item}</li>
@@ -131,15 +108,15 @@ export function IndustryProgramChapter({ industry }: Props) {
           {standalone ? (
             <>
               <Button href={industryHref(industry.slug)} arrow>
-                See the full {industry.navLabel.toLowerCase()} program
+                {`See the full ${industry.navLabel.toLowerCase()} program`}
               </Button>
               <Button href="/contact" variant="link" arrow>
-                Book a strategy call
+                {t("bookStrategyCall")}
               </Button>
             </>
           ) : (
             <Button href="/contact" arrow>
-              Talk about {industry.navLabel}
+              {t("talkAbout", { name: industry.navLabel })}
             </Button>
           )}
         </Reveal>

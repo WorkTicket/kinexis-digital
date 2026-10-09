@@ -337,8 +337,13 @@ export type LandingPageEntry = {
   /** Soft price line under the hero lede. */
   heroPrice?: string;
   /**
-   * Spanish-locale WhatsApp support CTAs (hero pill + plan text link).
-   * Nav also shows Soporte WhatsApp on Spanish; omit these on English.
+   * Accessible name for the get-a-website corner call button.
+   * English only. Omitted when the public phone number is unset.
+   */
+  callHeroLabel?: string;
+  callPlanLabel?: string;
+  /**
+   * Spanish-only WhatsApp on get-a-website. Omit on English.
    */
   whatsappHref?: string;
   whatsappHeroLabel?: string;

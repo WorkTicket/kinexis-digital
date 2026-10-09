@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
+import "@/styles/routes/blog.css";
 import { Link } from "@/i18n/navigation";
 import type { BlogPost } from "@/content/blog";
+import { HeroSignalInline } from "@/components/page/HeroSignalLine";
 import { Button } from "@/components/ui/Button";
 import {
   categoryToSlug,
@@ -47,7 +49,12 @@ export async function BlogMasthead({
         <div className="blog-masthead__row">
           <h1 className="blog-masthead__title">
             {title}
-            {signal ? ` ${signal}` : null}
+            {signal ? (
+              <>
+                {" "}
+                <HeroSignalInline text={signal} />
+              </>
+            ) : null}
           </h1>
           {typeof count === "number" ? (
             <p className="blog-masthead__count" aria-label={t("articles", { count })}>

@@ -1,4 +1,5 @@
 import { Calendar, Mail, Search } from "lucide-react";
+import "@/styles/routes/thanks.css";
 import { getTranslations } from "next-intl/server";
 import { ThankYouConversion } from "@/components/analytics/ThankYouConversion";
 import { PageHero } from "@/components/page/PageHero";

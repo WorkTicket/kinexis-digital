@@ -1,4 +1,5 @@
 import { LcpImage } from "@/components/ui/LcpImage";
+import "@/styles/routes/site-preview.css";
 import { cn } from "@/lib/cn";
 
 type SitePreviewProps = {

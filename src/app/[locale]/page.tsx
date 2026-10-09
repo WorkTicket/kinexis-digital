@@ -57,7 +57,7 @@ export default async function Home({ params }: Props) {
         <HomeServices />
         <HomeResults />
         <HomeProcess />
-        <WhereWeWork />
+        <WhereWeWork board />
         <FaqAccordion items={faqs} title={t("faqTitle")} />
         <HomeExplore />
         <HomeCTA />

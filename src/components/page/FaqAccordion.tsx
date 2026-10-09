@@ -1,6 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
+import "@/styles/routes/faq.css";
 import type { ReactNode } from "react";
 import { useCallback, useId, useState } from "react";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";

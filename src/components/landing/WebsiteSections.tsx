@@ -4,7 +4,6 @@ import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker"
 import { PlanCta } from "@/components/landing/PlanCta";
 import { ShowcaseSite } from "@/components/landing/ShowcaseSite";
 import { WebsitePlanForm } from "@/components/landing/WebsitePlanForm";
-import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type {
   LandingPageEntry,
   LandingPageOutcome,
@@ -49,25 +48,25 @@ function CrossMark() {
 
 /** Index-ordered marks so Spanish titles still get the same icons. */
 const OUTCOME_MARKS: ReactNode[] = [
-  // Look established — a storefront, not a gem.
+  // Looks like your company — a storefront, not a gem.
   <svg key="established" {...markProps}>
     <path d="M3.5 10.5 12 4l8.5 6.5" />
     <path d="M6 10v9.5h12V10" />
     <path d="M10 19.5V14h4v5.5" />
     <path d="M8 12.25h1.75M14.25 12.25H16" />
   </svg>,
-  // Generate inquiries — a phone that's ringing.
+  // Call and quote in reach — a phone that's ringing.
   <svg key="inquiries" {...markProps}>
     <rect x="3.25" y="2.75" width="9" height="18.5" rx="2" />
     <path d="M6 6h3.5M6.75 18.25h1.75" />
     <path d="M15.25 8a5.4 5.4 0 0 1 0 8" />
     <path d="M17.75 5.75a8.4 8.4 0 0 1 0 12.5" />
   </svg>,
-  // Load quickly — a bolt, not a gauge with a pulse through it.
+  // Fast on a phone — a bolt, not a gauge with a pulse through it.
   <svg key="fast" {...markProps}>
     <path d="M13 2.25 4.75 13.25H11l-.75 8.5L19.25 10H12.5L13 2.25Z" />
   </svg>,
-  // Own your website — the key, not a lock.
+  // You own the site — the key, not a lock.
   <svg key="own" {...markProps}>
     <circle cx="8.25" cy="8.75" r="3.6" />
     <circle cx="8.25" cy="8.75" r="1.15" />
@@ -249,6 +248,28 @@ function WorkLaptop({
   );
 }
 
+const QUOTE_METRIC = /(\d+[.,]\d+%)/;
+
+/** Keep the sentence, and let the before/after rates read as the result. */
+function renderQuote(quote: string) {
+  const parts = quote.split(QUOTE_METRIC);
+  return (
+    <>
+      “
+      {parts.map((part, index) =>
+        QUOTE_METRIC.test(part) ? (
+          <strong key={index} className="lp-web-quote__metric">
+            {part}
+          </strong>
+        ) : (
+          part
+        ),
+      )}
+      ”
+    </>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /*  Work                                                               */
 /* ------------------------------------------------------------------ */
@@ -358,15 +379,17 @@ export function WebsiteWork({
         {testimonial ? (
           <figure className="lp-web-quote">
             <blockquote>
-              <p>“{testimonial.quote}”</p>
+              <p>{renderQuote(testimonial.quote)}</p>
             </blockquote>
             <figcaption>
-              <span className="lp-web-quote__name">{testimonial.name}</span>
-              <span className="lp-web-quote__role">{testimonial.role}</span>
+              <div className="lp-web-quote__by">
+                <span className="lp-web-quote__name">{testimonial.name}</span>
+                <span className="lp-web-quote__role">{testimonial.role}</span>
+              </div>
+              {proofIntro ? (
+                <p className="lp-web-quote__note">{proofIntro}</p>
+              ) : null}
             </figcaption>
-            {proofIntro ? (
-              <p className="lp-web-quote__note">{proofIntro}</p>
-            ) : null}
           </figure>
         ) : null}
         {workCtaTitle || ctaLabel ? (
@@ -954,22 +977,6 @@ const PLAN_BOARDS: Record<Locale, PlanBoardCopy> = {
   },
 };
 
-function PlanFolio({ copy }: { copy: PlanBoardCopy }) {
-  return (
-    <div className="lp-web-plan__sheet">
-      <p className="lp-web-plan__sheet-kicker">{copy.folioKicker}</p>
-      <p className="lp-web-plan__sheet-title">{copy.folioTitle}</p>
-      <p className="lp-web-plan__sheet-lede">{copy.folioLede}</p>
-      <ul className="lp-web-plan__sheet-list">
-        {copy.folioRows.map((label) => (
-          <li key={label}>{label}</li>
-        ))}
-      </ul>
-      <p className="lp-web-plan__sheet-stamp">{copy.folioStamp}</p>
-    </div>
-  );
-}
-
 function PlanReviewBoard({ copy }: { copy: PlanBoardCopy }) {
   return (
     <div className="lp-web-plan__sketch lp-web-plan__sketch--review">
@@ -1046,7 +1053,6 @@ export function WebsitePlan({
   page,
   locale = "en",
   kicker = "Next step",
-  figcaption = "A 15-minute call. Then scope and price in writing.",
 }: {
   page: LandingPageEntry;
   locale?: Locale;
@@ -1054,10 +1060,6 @@ export function WebsitePlan({
   figcaption?: string;
 }) {
   const boards = PLAN_BOARDS[locale] ?? PLAN_BOARDS.en;
-  const whatsapp =
-    page.whatsappHref && page.whatsappPlanLabel
-      ? { href: page.whatsappHref, label: page.whatsappPlanLabel }
-      : null;
 
   return (
     <section
@@ -1072,13 +1074,6 @@ export function WebsitePlan({
               <p className="lp-web-kicker">{kicker}</p>
               <h2 id="lp-web-plan-heading">{page.formTitle}</h2>
               <p>{page.formSubtitle}</p>
-              {whatsapp ? (
-                <WhatsAppLink
-                  href={whatsapp.href}
-                  label={whatsapp.label}
-                  variant="plan"
-                />
-              ) : null}
               {page.formSteps?.length ? (
                 <ol className="lp-web-plan__next">
                   {page.formSteps.map((step) => (
@@ -1090,10 +1085,6 @@ export function WebsitePlan({
                 </ol>
               ) : null}
             </div>
-            <figure className="lp-web-plan__folio">
-              <PlanFolio copy={boards} />
-              <figcaption>{figcaption}</figcaption>
-            </figure>
           </div>
           <div className="lp-web-plan__form">
             <WebsitePlanForm page={page} />

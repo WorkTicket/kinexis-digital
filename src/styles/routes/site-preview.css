@@ -1,0 +1,31 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+/* Site preview — static homepage screenshot */
+.site-preview {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #050505;
+}
+
+
+.site-preview__still {
+  position: absolute !important;
+  inset: 0;
+}
+
+
+.site-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.08) 0%,
+    transparent 18%,
+    transparent 78%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+}

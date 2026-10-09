@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { cn } from "@/lib/cn";
 
 type BrandLogoProps = {
@@ -10,8 +11,8 @@ type BrandLogoProps = {
  * Header/footer mark — native img so the optimizer never contends with LCP.
  * Parent links expose the accessible name; alt supports SEO crawlers.
  */
-export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoProps) {
-  const style = { width: "auto", height } as const;
+export function BrandLogo({ className, height = 28, lazy = false }: BrandLogoProps) {
+  const style = { "--brand-logo-h": `${height}px` } as CSSProperties;
   const loading = lazy ? ("lazy" as const) : undefined;
 
   return (
@@ -21,7 +22,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
         src="/assets/logos/kinexis-logo-on-light.png"
         alt="Kinexis Digital"
         width={180}
-        height={height}
+        height={35}
         decoding="async"
         fetchPriority="low"
         loading={loading}
@@ -33,7 +34,7 @@ export function BrandLogo({ className, height = 35, lazy = false }: BrandLogoPro
         src="/assets/logos/kinexis-logo-on-dark.png"
         alt="Kinexis Digital"
         width={180}
-        height={height}
+        height={35}
         decoding="async"
         fetchPriority="low"
         loading={loading}

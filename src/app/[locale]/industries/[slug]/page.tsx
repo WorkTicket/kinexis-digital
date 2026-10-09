@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import "@/styles/routes/industry.css";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { permanentRedirect } from "next/navigation";

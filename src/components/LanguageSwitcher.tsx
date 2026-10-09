@@ -26,25 +26,20 @@ export function LanguageSwitcher({ className }: { className?: string }) {
 
   return (
     <nav aria-label={t("label")} className={cn("site-footer__lang", className)}>
-      {locales.map((loc, index) => (
-        <span key={loc} className="site-footer__lang-item">
-          {index > 0 ? (
-            <span className="site-footer__lang-sep" aria-hidden>
-              /
-            </span>
-          ) : null}
-          <button
-            type="button"
-            onClick={() => switchLocale(loc)}
-            className={cn(
-              "site-footer__bar-link site-footer__lang-btn",
-              locale === loc && "site-footer__lang-btn--active",
-            )}
-            aria-current={locale === loc ? "true" : undefined}
-          >
-            {t(loc)}
-          </button>
-        </span>
+      {locales.map((loc) => (
+        <button
+          key={loc}
+          type="button"
+          lang={loc}
+          onClick={() => switchLocale(loc)}
+          className={cn(
+            "site-footer__lang-btn",
+            locale === loc && "site-footer__lang-btn--active",
+          )}
+          aria-current={locale === loc ? "true" : undefined}
+        >
+          {t(loc)}
+        </button>
       ))}
     </nav>
   );

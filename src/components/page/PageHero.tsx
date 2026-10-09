@@ -66,7 +66,7 @@ export async function PageHero({
   const sectionClass = cn(
     "hero-shell page-hero chapter chapter--void relative flex flex-col overflow-x-clip",
     !hasPhotoAtmosphere && "page-hero--type",
-    compact ? "page-hero--compact" : visual ? "lg:min-h-[100svh]" : "min-h-[100svh]",
+    compact ? "page-hero--compact" : null,
     visual ? "page-hero--split" : null,
     intake ? "page-hero--intake" : null,
     className,
@@ -131,7 +131,7 @@ export async function PageHero({
               {showActions ? (
                 <div className="hero-cta-row mt-10 sm:mt-11 md:mt-12">
                   <div className="hero-enter hero-enter-4">
-                    <Button href={primaryHref} size="xl" lift arrow>
+                    <Button href={primaryHref} size="lg">
                       {resolvedPrimaryLabel}
                     </Button>
                   </div>

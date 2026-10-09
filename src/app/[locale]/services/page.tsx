@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
-import { serviceIconsBySlug } from "@/components/home/service-icons";
 import { PageCTA } from "@/components/page/PageCTA";
 import { PageHero } from "@/components/page/PageHero";
+import { ServiceHubStage } from "@/components/page/ServiceHubStage";
 import { WhereWeWork } from "@/components/page/WhereWeWork";
 import JsonLd from "@/components/seo/JsonLd";
 import { ServiceProgramChapter } from "@/components/services/ServiceProgramChapter";
 import { ChapterLead } from "@/components/ui/ChapterLead";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
-import { Link } from "@/i18n/navigation";
+import { Reveal } from "@/components/ui/Reveal";
 import { getServicePages } from "@/content/services";
 import { serviceVisuals } from "@/content/service-visuals";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -68,18 +66,30 @@ export default async function ServicesIndexPage({ params }: Props) {
         copy={t("copy")}
         secondaryHref="/case-studies"
         secondaryLabel={tCommon("seeTheWork")}
+        visual={
+          <ServiceHubStage
+            ariaLabel={t("mixTitle")}
+            items={pages.map((service) => {
+              const visual = serviceVisuals[service.slug];
+              return {
+                slug: service.slug,
+                href: service.href,
+                role: service.role,
+                title: service.shortTitle,
+                still: visual.src,
+                stillAlt: visual.alt,
+              };
+            })}
+          />
+        }
       />
 
       <section
-        className="svc-catalog chapter chapter--void relative"
+        className="svc-offer-rail chapter chapter--studio relative"
         aria-labelledby="svc-catalog-heading"
       >
-        <div className="shell chapter-shell--tight relative">
-          <Reveal
-            variant="rise"
-            when="chapter"
-            className="mb-10 md:mb-12"
-          >
+        <div className="shell chapter-shell--monument relative">
+          <Reveal variant="rise" when="chapter" className="svc-offer-rail__lead">
             <ChapterLead
               eyebrow={t("mixEyebrow")}
               headingId="svc-catalog-heading"
@@ -89,72 +99,18 @@ export default async function ServicesIndexPage({ params }: Props) {
             />
           </Reveal>
 
-          <RevealGroup
-            as="ul"
-            className="svc-catalog__grid"
-            stagger={0.05}
-            delayChildren={0.04}
-            aria-label={tCommon("jumpToService")}
-          >
-            {pages.map((service) => {
-              const Icon = serviceIconsBySlug[service.slug];
-              const visual = serviceVisuals[service.slug];
-              const href = isFlagshipServiceSlug(service.slug)
-                ? `/services/${service.slug}`
-                : `#${service.slug}`;
-              const className = "svc-catalog__card motion-tile";
-              const body = (
-                <>
-                  <span className="svc-catalog__still media-grade" aria-hidden>
-                    <Image
-                      src={visual.src}
-                      alt=""
-                      width={480}
-                      height={300}
-                      className="svc-catalog__still-img"
-                    />
-                  </span>
-                  <span className="icon-well" aria-hidden>
-                    <Icon />
-                  </span>
-                  <span className="svc-catalog__role">{service.role}</span>
-                  <span className="svc-catalog__name">{service.title}</span>
-                  <span className="svc-catalog__dek">
-                    {service.description}
-                  </span>
-                </>
-              );
-              return (
-                <RevealItem as="li" key={service.slug} variant="fadeUp">
-                  {isFlagshipServiceSlug(service.slug) ? (
-                    <Link href={href} className={className}>
-                      {body}
-                    </Link>
-                  ) : (
-                    <a href={href} className={className}>
-                      {body}
-                    </a>
-                  )}
-                </RevealItem>
-              );
-            })}
-          </RevealGroup>
-        </div>
-      </section>
-
-      <div className="svc-offer-rail chapter chapter--studio">
-        <div className="shell">
           {pages.map((service, index) => (
             <ServiceProgramChapter
               key={service.slug}
               service={service}
               index={index}
+              linkPage
             />
           ))}
         </div>
-      </div>
+      </section>
 
-      <WhereWeWork />
+      <WhereWeWork board />
       <PageCTA
         title={t("ctaTitle")}
         copy={t("ctaCopy")}

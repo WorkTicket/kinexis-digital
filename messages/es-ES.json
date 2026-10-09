@@ -8,7 +8,8 @@
     "skipToMain": "Saltar al contenido principal",
     "logoAlt": "Inicio de KINEXIS Digital",
     "preloaderLogoAlt": "Logo de KINEXIS Digital",
-    "loadingSite": "Cargando KINEXIS Digital"
+    "loadingSite": "Cargando KINEXIS Digital",
+    "backToTop": "Volver arriba"
   },
   "nav": {
     "home": "Inicio",
@@ -71,7 +72,153 @@
     },
     "bookCall": "Reservar una llamada estratégica",
     "bookCallShort": "Reservar llamada",
-    "audit": "Auditoría"
+    "audit": "Auditoría",
+    "mega": {
+      "services": {
+        "all": "Todos los servicios",
+        "groups": {
+          "program": "El programa",
+          "proof": "Trabajo seleccionado"
+        },
+        "links": {
+          "seo": {
+            "label": "SEO",
+            "desc": "Posiciona para trabajos y productos que la gente ya busca."
+          },
+          "paidAds": {
+            "label": "Anuncios",
+            "desc": "Inversión medida en leads y pedidos, no en clics."
+          },
+          "webDesign": {
+            "label": "Diseño web",
+            "desc": "Sitios pensados para el móvil, con camino a la llamada o al carrito."
+          },
+          "branding": {
+            "label": "Branding",
+            "desc": "Una posición que el sitio y los anuncios pueden usar."
+          },
+          "content": {
+            "label": "Contenido",
+            "desc": "Páginas que responden la duda antes del formulario."
+          },
+          "a1": {
+            "label": "A1 Property Services",
+            "desc": "SEO local y páginas más precisas. Los leads ya no dependen de referidos."
+          },
+          "preferred": {
+            "label": "Preferred Plumbing",
+            "desc": "Mejores posiciones, y llamadas de urgencia cuando falla la tubería."
+          },
+          "manos": {
+            "label": "Manos Creativas",
+            "desc": "Reconstrucción y SEO de producto. Pedidos sin un descuento fijo."
+          }
+        },
+        "feature": {
+          "eyebrow": "Empieza aquí",
+          "title": "Trae el cuello de botella.",
+          "dek": "Te decimos qué arreglar primero, y si somos el equipo adecuado.",
+          "cta": "Reservar una llamada",
+          "secondary": "Empieza con una auditoría"
+        }
+      },
+      "industries": {
+        "all": "Todos los sectores",
+        "groups": {
+          "contractors": "Contratistas",
+          "commerce": "Comercio"
+        },
+        "links": {
+          "homeServices": {
+            "label": "Servicios del hogar",
+            "desc": "Los contratistas para los que armamos programas."
+          },
+          "plumbing": {
+            "label": "Fontanería",
+            "desc": "Llamadas, mapas y un sitio que contesta fuera de horario."
+          },
+          "hvac": {
+            "label": "Climatización",
+            "desc": "Demanda de temporada, sin anuncios de abundancia y sequía."
+          },
+          "roofing": {
+            "label": "Cubiertas",
+            "desc": "Semanas de tormenta y los meses tranquilos entre medias."
+          },
+          "landscaping": {
+            "label": "Jardinería",
+            "desc": "Presupuestos desde el jardín, no un folleto aparcado."
+          },
+          "ecommerce": {
+            "label": "E-commerce",
+            "desc": "Pedidos y margen, no otro gráfico de tráfico."
+          },
+          "saas": {
+            "label": "SaaS y tech",
+            "desc": "Demanda desde la búsqueda y un sitio que explica el producto."
+          },
+          "fintech": {
+            "label": "Fintech",
+            "desc": "Tono serio y captación que se puede explicar."
+          }
+        },
+        "feature": {
+          "eyebrow": "El núcleo",
+          "title": "Hogar y tiendas.",
+          "dek": "Contratistas que viven del teléfono. Tiendas que viven del pedido. Ahí está casi todo el trabajo.",
+          "cta": "Servicios del hogar",
+          "secondary": "Ver el trabajo"
+        }
+      },
+      "resources": {
+        "all": "Todos los recursos",
+        "groups": {
+          "guides": "Guías",
+          "read": "Lectura"
+        },
+        "links": {
+          "localSeoChecklist": {
+            "label": "Checklist de SEO local",
+            "desc": "Las comprobaciones de Google Maps que hacemos primero."
+          },
+          "seoAuditFramework": {
+            "label": "Marco de auditoría SEO",
+            "desc": "Cómo leemos un sitio antes de tocarlo."
+          },
+          "landingPageBestPractices": {
+            "label": "Landings que convierten",
+            "desc": "Lo que la página necesita antes de comprar tráfico."
+          },
+          "abTestingFramework": {
+            "label": "Pruebas A/B",
+            "desc": "Pruebas que merecen hacerse, y las que pierden un mes."
+          },
+          "blog": {
+            "label": "Blog",
+            "desc": "Notas del trabajo."
+          },
+          "work": {
+            "label": "Trabajo",
+            "desc": "Programas medidos en leads, llamadas y pedidos."
+          },
+          "localSeoStrategy": {
+            "label": "Estrategia de SEO local",
+            "desc": "Qué sigue posicionando cuando el pack de mapas es la primera página."
+          },
+          "conversion": {
+            "label": "Conversión web",
+            "desc": "Cambios de página que convierten una visita en llamada o pedido."
+          }
+        },
+        "feature": {
+          "eyebrow": "Antes de contratar",
+          "title": "Una lectura directa.",
+          "dek": "Miramos el sitio, los anuncios y las llamadas. Te vas con lo que hay que arreglar primero.",
+          "cta": "Pedir una auditoría",
+          "secondary": "O empieza por el checklist local"
+        }
+      }
+    }
   },
   "services": {
     "pricing": "Precios",
@@ -119,6 +266,7 @@
     "missionTitle": "Trabajamos con 8–10 clientes a la vez.",
     "missionBody": "Pocos clientes, mucha atención. Resultados reales. Sin fórmulas genéricas.",
     "privacy": "Privacidad",
+    "pay": "Pagar factura",
     "terms": "Términos",
     "about": "Nosotros",
     "email": "Email",
@@ -161,6 +309,7 @@
     "whatYouGet": "Qué obtienes",
     "aFitIf": "Encaja si",
     "talkAbout": "Hablemos de {name}",
+    "seeServicePage": "Ver la página de {name}",
     "from": "desde",
     "theWork": "El trabajo.",
     "whatMoved": "Qué se movió.",
@@ -194,11 +343,12 @@
     },
     "work": {
       "eyebrow": "Trabajo",
+      "caseEyebrow": "Caso de estudio",
       "title": "Trabajo",
       "signal": "seleccionado.",
       "copy": "Programas reconstruidos en torno a un problema real, medidos en leads, llamadas y ventas.",
       "indexEyebrow": "Casos de estudio",
-      "indexTitle": "Trabajo seleccionado.",
+      "indexTitle": "El problema concreto.",
       "indexDek": "Cada programa parte de un problema concreto: una web que no convierte, anuncios que atraen al cliente equivocado o páginas que explican funciones en lugar de vender. Lo arreglamos y medimos qué cambió.",
       "ctaTitle": "¿Quieres un programa así?",
       "ctaCopy": "Cuéntanos el problema y comparte tus números. Definimos una primera fase con objetivos claros.",
@@ -322,25 +472,25 @@
           "label": "Orgánico",
           "role": "Demanda",
           "title": "SEO en Google",
-          "body": "Limpieza técnica y páginas que posicionan para lo que la gente ya escribe en Google."
+          "body": "Páginas para lo que ya buscan."
         },
         "web": {
           "label": "Sitio web",
           "role": "Convierte",
           "title": "Web a medida",
-          "body": "Hecho para el teléfono. Rápido, con un camino a la llamada que se queda en pantalla."
+          "body": "Sitio rápido, llamada a la mano."
         },
         "ads": {
           "label": "Anuncios",
           "role": "Escalado",
           "title": "Medios de pago",
-          "body": "Inversión en Google y Meta, medida como resultados. Cada gasto vuelve en un lead o pedido."
+          "body": "Inversión que vuelve en un lead."
         },
         "brand": {
           "label": "Branding",
           "role": "Posición",
           "title": "Marca a medida",
-          "body": "Posición, voz y una imagen para que un desconocido te elija antes de la siguiente pestaña."
+          "body": "Una imagen que un extraño elige."
         },
         "content": {
           "label": "Contenido",

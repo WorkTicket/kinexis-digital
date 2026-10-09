@@ -1,4 +1,5 @@
 import Image from "next/image";
+import "@/styles/routes/home-services.css";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
@@ -10,43 +11,40 @@ import { serviceVisuals } from "@/content/service-visuals";
 import { cn } from "@/lib/cn";
 import { duration } from "@/lib/motion";
 
-const tileClass =
-  "group flex h-full flex-col text-inherit no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[color:var(--hero-signal)]";
-
-function ServiceTile({
+function ServiceRow({
   service,
+  flipped,
 }: {
   service: HomeService;
+  flipped: boolean;
 }) {
   const visual = serviceVisuals[service.slug];
 
   return (
-    <Link href={service.href} className={tileClass}>
-      <div className="service-tile__art">
-        <Image
-          src={visual.src}
-          alt={visual.alt}
-          fill
-          sizes="(max-width: 767px) 100vw, (max-width: 1099px) 50vw, 33vw"
-          quality={90}
-          loading="lazy"
-          className="service-tile__plate object-contain object-center"
-        />
+    <Link
+      href={service.href}
+      className={cn(
+        "service-spread__link group",
+        flipped && "service-spread__link--flip",
+      )}
+    >
+      <div className={cn("service-spread__art", `service-spread__art--${service.slug}`)}>
+        <div className="service-spread__plate">
+          <Image
+            src={visual.src}
+            alt={visual.alt}
+            fill
+            sizes="(max-width: 899px) 100vw, 46vw"
+            quality={90}
+            className="service-spread__img"
+          />
+        </div>
       </div>
-      <div className="flex flex-1 flex-col p-6 md:p-7">
-        <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--hero-signal)]">
-          {service.role}
-        </p>
-        <h3 className="mt-2.5 font-[family-name:var(--font-display)] text-[1.55rem] font-bold leading-[1.08] tracking-[-0.04em] text-balance text-foreground transition-colors duration-300 group-hover:text-[color:var(--hero-signal)] md:text-[1.75rem]">
-          {service.shortTitle}
-        </h3>
-        <p className="mt-3 text-[0.975rem] leading-relaxed text-pretty text-muted md:text-base">
-          {service.description}
-        </p>
-        <ul
-          className="mt-auto flex flex-wrap gap-x-4 gap-y-1.5 pt-5 text-[0.8125rem] font-medium tracking-[-0.01em] text-[color-mix(in_oklab,var(--foreground)_42%,var(--muted))]"
-          aria-label={`${service.title} capabilities`}
-        >
+      <div className="service-spread__copy">
+        <p className="service-spread__role">{service.role}</p>
+        <h3 className="service-spread__title">{service.shortTitle}</h3>
+        <p className="service-spread__dek">{service.description}</p>
+        <ul className="service-spread__caps" aria-label={`${service.title} capabilities`}>
           {service.capabilities.slice(0, 3).map((cap) => (
             <li key={cap}>{cap}</li>
           ))}
@@ -84,52 +82,24 @@ export async function HomeServices() {
 
         <RevealGroup
           as="ul"
-          className="grid list-none grid-cols-1 gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5"
+          className="service-spread"
           stagger={duration.staggerTight}
           delayChildren={0.08}
           aria-label={t("demandProgramAria")}
         >
-          {services.map((service) => (
+          {services.map((service, index) => (
             <RevealItem key={service.slug} as="li" variant="fadeUp">
-              <ServiceTile service={service} />
+              <ServiceRow service={service} flipped={index % 2 === 1} />
             </RevealItem>
           ))}
-          <RevealItem as="li" variant="fadeUp">
-            <Link
-              href="/services"
-              className={cn(tileClass, "p-6 md:p-7")}
-            >
-              <p className="text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-[color:var(--hero-signal)]">
-                {t("programLabel")}
-              </p>
-              <h3 className="mt-2.5 font-[family-name:var(--font-display)] text-[1.55rem] font-bold leading-[1.08] tracking-[-0.04em] text-balance text-foreground transition-colors duration-300 group-hover:text-[color:var(--hero-signal)] md:text-[1.75rem]">
-                {t("viewAllServicesTitle")}
-              </h3>
-              <p className="mt-3 text-[0.975rem] leading-relaxed text-pretty text-muted md:text-base">
-                {t("viewAllServicesDek")}
-              </p>
-              <ul
-                className="mt-auto grid gap-1.5 pt-8 font-[family-name:var(--font-display)] text-[1.0625rem] font-bold tracking-[-0.03em] text-foreground"
-                aria-label={t("onServicesPageAria")}
-              >
-                <li>{t("theMix")}</li>
-                <li>{t("whatsIncluded")}</li>
-                <li>{t("whereToStart")}</li>
-              </ul>
-              <span
-                aria-hidden
-                className="mt-8 inline-flex items-center gap-2.5 text-base font-semibold tracking-[0.03em] text-[color-mix(in_oklab,var(--foreground)_62%,transparent)] transition-colors duration-200 group-hover:text-foreground"
-              >
-                <span className="border-b-[1.5px] border-transparent pb-[0.12em] transition-[border-color] duration-300 group-hover:border-foreground">
-                  {t("servicesCta")}
-                </span>
-                <span className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transform-none">
-                  →
-                </span>
-              </span>
-            </Link>
-          </RevealItem>
         </RevealGroup>
+
+        <Reveal variant="fadeUp" className="service-spread__cta">
+          <p className="service-spread__cta-copy">{t("viewAllServicesDek")}</p>
+          <Button href="/services" size="lg" arrow>
+            {t("viewAllServicesTitle")}
+          </Button>
+        </Reveal>
       </div>
     </section>
   );

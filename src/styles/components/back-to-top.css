@@ -1,0 +1,78 @@
+html {
+  --corner-fab-gap: 0.5rem;
+  --corner-fab-size: 2.75rem;
+  --corner-fab-bottom: max(1.15rem, env(safe-area-inset-bottom, 0px));
+}
+
+.back-to-top {
+  position: fixed;
+  z-index: 35;
+  right: max(1rem, env(safe-area-inset-right, 0px));
+  bottom: var(--corner-fab-bottom);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--corner-fab-size);
+  height: var(--corner-fab-size);
+  padding: 0;
+  border: 1px solid var(--chrome-glass-border);
+  border-radius: 999px;
+  background-color: var(--chrome-fallback);
+  box-shadow: var(--chrome-highlight);
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.back-to-top:hover {
+  border-color: var(--accent);
+  color: var(--foreground);
+}
+
+.back-to-top:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .back-to-top {
+    background-color: var(--chrome-glass);
+    -webkit-backdrop-filter: blur(85px) saturate(180%);
+    backdrop-filter: blur(85px) saturate(180%);
+  }
+}
+
+/* Sit above the mobile lander dock and the cookie bar. */
+@media (max-width: 1023px) {
+  html.lp-chrome {
+    --corner-fab-bottom: calc(6.35rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+html.cookie-pending:not(.lp-chrome) .back-to-top {
+  bottom: 8.75rem;
+}
+
+@media (min-width: 640px) {
+  html.cookie-pending:not(.lp-chrome) .back-to-top {
+    bottom: 6.75rem;
+  }
+}
+
+html.in-app-browser {
+  --corner-fab-bottom: calc(1.15rem + var(--in-app-chrome-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+}
+
+@media (max-width: 1023px) {
+  html.lp-chrome.in-app-browser {
+    --corner-fab-bottom: calc(6.35rem + var(--in-app-chrome-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+  }
+}

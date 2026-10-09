@@ -3,21 +3,41 @@ import { cn } from "@/lib/cn";
 type Props = {
   href: string;
   label: string;
+  /** Accessible name when the visible label is shortened for the mobile bar. */
+  ariaLabel?: string;
   /**
    * `nav` / `menu` replace the header phone slot on Spanish locales.
-   * `hero` / `plan` remain available for lander body CTAs if needed.
+   * `hero` / `plan` are labeled lander CTAs. `icon` is the sticky phone-bar mark.
    */
-  variant?: "nav" | "menu" | "hero" | "plan";
+  variant?: "nav" | "menu" | "hero" | "plan" | "icon";
   className?: string;
+  dataCta?: string;
 };
 
-/** WhatsApp support link — Spanish locales only at call sites. */
+/** WhatsApp support link. Header slot is Spanish-only; lander CTAs pass their own copy. */
 export function WhatsAppLink({
   href,
   label,
+  ariaLabel,
   variant = "nav",
   className,
+  dataCta,
 }: Props) {
+  if (variant === "icon") {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn("lp-web-reach__icon lp-web-reach__icon--whatsapp", className)}
+        data-cta={dataCta ?? "whatsapp-sticky"}
+        aria-label={ariaLabel ?? label}
+      >
+        <WhatsAppMark />
+      </a>
+    );
+  }
+
   if (variant === "plan") {
     return (
       <p className={cn("lp-web-plan__whatsapp", className)}>
@@ -25,7 +45,7 @@ export function WhatsAppLink({
           href={href}
           target="_blank"
           rel="noopener noreferrer"
-          data-cta="whatsapp-plan"
+          data-cta={dataCta ?? "whatsapp-plan"}
         >
           {label}
         </a>
@@ -40,7 +60,8 @@ export function WhatsAppLink({
         target="_blank"
         rel="noopener noreferrer"
         className={cn("lp-web-hero__whatsapp", className)}
-        data-cta="whatsapp-hero"
+        data-cta={dataCta ?? "whatsapp-hero"}
+        aria-label={ariaLabel ?? label}
       >
         <WhatsAppMark />
         <span>{label}</span>
@@ -60,7 +81,7 @@ export function WhatsAppLink({
         className,
       )}
       data-cta={isMenu ? "whatsapp-menu" : "whatsapp-nav"}
-      aria-label={label}
+      aria-label={ariaLabel ?? label}
     >
       <WhatsAppMark className="site-header__whatsapp-mark" />
       <span className={isMenu ? "site-menu__phone-num" : "site-header__phone-num"}>

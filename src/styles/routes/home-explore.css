@@ -1,0 +1,168 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+.explore-paths {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+
+.explore-path {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.85rem 1rem;
+  align-items: center;
+  min-width: 0;
+  padding: 0.7rem 0.35rem;
+  border-radius: 0.85rem;
+  background: transparent;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.explore-path:hover,
+.explore-path:focus-visible {
+  background: color-mix(in oklab, var(--foreground) 7%, transparent);
+}
+
+
+.explore-path:focus-visible {
+  outline: 2px solid var(--hero-signal);
+  outline-offset: 4px;
+}
+
+
+.explore-path__icon {
+  display: grid;
+  place-items: center;
+  width: 3.35rem;
+  height: 3.35rem;
+  color: var(--foreground);
+}
+
+
+.explore-path__icon svg {
+  width: 3.35rem;
+  height: 3.35rem;
+}
+
+
+.explore-path__body {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+
+.explore-path__label {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--foreground);
+  transition: color 280ms ease;
+}
+
+
+.explore-path__dek {
+  margin: 0;
+  font-family: var(--font-text), system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+
+.explore-path__arrow {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
+  transition:
+    color 280ms ease,
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+.explore-path:hover .explore-path__label,
+.explore-path:focus-visible .explore-path__label {
+  color: var(--hero-signal);
+}
+
+
+.explore-path:hover .explore-path__arrow,
+.explore-path:focus-visible .explore-path__arrow {
+  color: var(--foreground);
+  transform: translateX(0.28rem);
+}
+
+
+.explore-path:hover .explore-path__icon,
+.explore-path:focus-visible .explore-path__icon {
+  color: var(--foreground);
+}
+
+
+@media (min-width: 768px) {
+.explore-path {
+    padding: 1.25rem 1.35rem;
+    gap: 1rem 1.25rem;
+  }
+
+  .explore-path__dek {
+    font-size: 1rem;
+  }
+}
+
+
+
+@media (min-width: 1024px) {
+.explore-paths {
+    gap: 1rem;
+  }
+
+  .explore-path__label {
+    font-size: clamp(1.3rem, 1.4vw, 1.65rem);
+  }
+}
+
+
+
+@media (hover: none) {
+.explore-path:hover {
+    transform: none;
+  }
+
+  .explore-path:hover .explore-path__label {
+    color: var(--foreground);
+  }
+
+  .explore-path:hover .explore-path__arrow {
+    color: color-mix(in oklab, var(--foreground) 45%, transparent);
+    transform: none;
+  }
+
+  .explore-path:hover .explore-path__icon {
+    color: var(--foreground);
+  }
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+.explore-path,
+  .explore-path__label,
+  .explore-path__arrow,
+  .explore-path__icon {
+    transition: none;
+  }
+}

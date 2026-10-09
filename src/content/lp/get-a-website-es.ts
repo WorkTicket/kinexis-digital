@@ -32,7 +32,6 @@ export type SoftPricingCopy = {
   monthlyCopy: string;
   heroPrice: string;
   proofSupportLabel: string;
-  proofStartMetric: string;
   costFaqAnswer: string;
   hostingFaqAnswer: string;
   maintenanceFaqAnswer: string;
@@ -58,7 +57,7 @@ export function buildSpanishGetAWebsite(
       "Un sitio web hecho para",
       "traerte más negocio",
     ],
-    marketLine: "Trabajamos con contratistas en todo Estados Unidos.",
+    marketLine: "Trabajamos con contratistas y equipos de servicios del hogar.",
     subheadline:
       "Sitios web a medida para contratistas y negocios de servicios del hogar. Rápidos, pensados para el teléfono, listos para búsqueda, y hechos para convertir visitas en llamadas y cotizaciones.",
     heroCtaLabel: CTA,
@@ -89,11 +88,11 @@ export function buildSpanishGetAWebsite(
     },
     directIntro: {
       title: "Trabajas conmigo, no con un centro de llamadas.",
-      body: "Soy Colton, el diseñador y desarrollador web principal detrás de KINEXIS. Construyo cada sitio yo mismo, y trabajas directo conmigo desde la primera conversación hasta el lanzamiento. Cuando pides una llamada, te respondo yo, normalmente el mismo día. Hablamos unos 15 minutos de tu negocio, de lo que necesitas del sitio, y de si encajamos. Si encajamos, te mando un alcance y un precio claros por escrito. Si no, te lo digo de frente.",
+      body: "Soy Colton, el diseñador y desarrollador web principal detrás de KINEXIS. Construyo cada sitio yo mismo, y trabajas directo conmigo desde la primera conversación hasta el lanzamiento. KINEXIS mantiene una lista corta de clientes activos, así que la persona de la llamada es la persona que construye el sitio. Cuando pides una llamada, te respondo yo, normalmente el mismo día. Hablamos unos 15 minutos de tu negocio, de lo que el sitio tiene que hacer, y de si encajamos. Si no encajamos, te lo digo de frente.",
       points: [
         "A medida, sin plantillas.",
         "El sitio es tuyo.",
-        "La mayoría sale en vivo en 2 a 6 semanas.",
+        "El básico también es código a medida.",
       ],
       name: "Colton Wehr",
       role: "Diseñador y desarrollador web principal",
@@ -238,19 +237,19 @@ export function buildSpanishGetAWebsite(
 
     outcomes: [
       {
-        title: "Verse establecido",
+        title: "Se ve como tu empresa",
         body: "Una imagen que coincide con la empresa que ya tienes.",
       },
       {
-        title: "Generar consultas",
-        body: "Llamar y cotizar queda donde el visitante lo encuentra.",
+        title: "Llamada y cotización a mano",
+        body: "El número y el formulario quedan donde un pulgar los encuentra.",
       },
       {
-        title: "Cargar rápido",
-        body: "Rápido en el teléfono, que es donde te buscan.",
+        title: "Rápido en el teléfono",
+        body: "Las páginas pesan poco, así la gente no se va mientras el sitio carga.",
       },
       {
-        title: "Ser dueño de tu sitio",
+        title: "El sitio es tuyo",
         body: "El sitio sigue siendo tuyo. No queda en un constructor.",
       },
     ],
@@ -287,8 +286,8 @@ export function buildSpanishGetAWebsite(
     testimonial: {
       quote:
         "El botón de cotización desaparecía en el teléfono. Después de la reconstrucción, la conversión pasó de 1,8% a 3,9%.",
-      name: "A1 Property Services",
-      role: "Paisajismo · caso publicado",
+      name: "Mac Christensen",
+      role: "Dueño, A1 Property Services",
     },
     workCtaTitle: "Mira lo que construiríamos para tu negocio",
     samples: [
@@ -322,15 +321,15 @@ export function buildSpanishGetAWebsite(
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",
-        kind: "Plomería y servicios de construcción",
+        kind: "Servicios de plomería",
         industry: "Plomería",
         liveUrl: "https://www.callpreferredplumbing.com/",
         challenge:
-          "Una empresa de plomería y construcción necesitaba un sitio que dejara el trabajo claro y hiciera que llamar desde el teléfono se sintiera como el siguiente paso natural.",
+          "Una empresa de plomería necesitaba un sitio que dejara el trabajo claro y hiciera que llamar desde el teléfono se sintiera como el siguiente paso natural.",
         work: "La reconstrucción priorizó claridad de servicios y confianza, y mantuvo el botón de llamada a mano en móvil.",
         result: "Las llamadas de emergencia pasaron de 22 al mes a 52.",
         summary:
-          "Una empresa de plomería y construcción necesitaba un sitio que dejara los servicios claros y hiciera de llamar desde el teléfono el siguiente paso natural.",
+          "Una empresa de plomería necesitaba un sitio que dejara los servicios claros y hiciera de llamar desde el teléfono el siguiente paso natural.",
         metric: "22 → 52",
         label: "llamadas de emergencia/mes",
       },
@@ -386,7 +385,7 @@ export function buildSpanishGetAWebsite(
 
     processTitle: "Cómo corre realmente una reconstrucción",
     processIntro:
-      "Ves el alcance y el precio antes de que escribamos una línea de código. Apruebas la estructura antes de que se construya el sitio.",
+      `${pricing.pricingDelivery} Ves el alcance y el precio antes de que escribamos una línea de código.`,
     process: [
       {
         title: "Llamada de proyecto",
@@ -415,7 +414,7 @@ export function buildSpanishGetAWebsite(
     fitGoodItems: [
       "Eres contratista o empresa de servicios del hogar",
       "El sitio actual no refleja el trabajo",
-      "El negocio ha superado un sitio básico",
+      "El sitio actual es una plantilla o un folleto corto",
       "Quieres un sitio a medida del que la empresa sea dueña",
       `Listo para invertir. ${pricing.pricingTitle}`,
       "Puedes enviar fotos, servicios y feedback",
@@ -423,7 +422,7 @@ export function buildSpanishGetAWebsite(
     fitNotTitle: "Probablemente no es encaje si",
     fitNotItems: [
       "Buscas un sitio gratis",
-      "Quieres una plantilla terminada este fin de semana",
+      "Lo necesitas en vivo este fin de semana",
       "Estás comprando la opción más barata",
       "No puedes dedicar tiempo a revisar borradores",
     ],
@@ -431,7 +430,6 @@ export function buildSpanishGetAWebsite(
     pricingTitle: pricing.pricingTitle,
     pricingAnchor: pricing.pricingAnchor,
     pricingQualify: pricing.pricingQualify,
-    pricingDelivery: pricing.pricingDelivery,
     pricingIntro: pricing.pricingIntro,
     pricingNote: pricing.pricingNote,
     pricingHighlights: pricing.pricingHighlights,
@@ -440,7 +438,7 @@ export function buildSpanishGetAWebsite(
       {
         name: pricing.basicName,
         price: pricing.basicPrice,
-        body: "Un sitio más corto para un equipo que necesita que suene el teléfono.",
+        body: "Un sitio a medida más corto, hasta 4 páginas, para un equipo que necesita que suene el teléfono.",
         items: pricing.basicItems,
       },
       {
@@ -465,7 +463,7 @@ export function buildSpanishGetAWebsite(
     proof: [
       { metric: "A medida", label: "No es plantilla" },
       { metric: "Es tuyo", label: "Sin atarte a un builder" },
-      { metric: pricing.proofStartMetric, label: "la mayoría sale en vivo" },
+      { metric: "Lista corta", label: "clientes activos" },
       { metric: "Opcional", label: pricing.proofSupportLabel },
     ],
     bulletsTitle: "Lo que realmente obtienes",
@@ -501,7 +499,7 @@ export function buildSpanishGetAWebsite(
       {
         question: "¿El SEO está incluido?",
         answer:
-          "La construcción incluye la base de búsqueda: páginas de servicio, títulos y lo básico de indexación. El SEO continuo es una conversación aparte.",
+          "Cada servicio tiene su propia página, con un título, una descripción y lo necesario para que Google indexe el trabajo. Esa base va incluida. El posicionamiento, el Perfil de Empresa en Google y el SEO mensual son opcionales después del lanzamiento.",
       },
       {
         question: "¿Pueden rediseñar mi sitio actual?",

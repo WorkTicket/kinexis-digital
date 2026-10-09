@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import "@/styles/routes/audit.css";
 import { Button } from "@/components/ui/Button";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";

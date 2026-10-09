@@ -10,7 +10,7 @@ import { localeContent } from "@/i18n/locale-content";
 import type { Locale } from "@/i18n/routing";
 import { applyLocalePricing, formatEsInteger } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
-import { getBusinessWhatsAppHref } from "@/lib/business";
+import { getBusinessTelHref, getBusinessWhatsAppHref } from "@/lib/business";
 
 const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261006d";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20261006d";
@@ -31,21 +31,20 @@ const softPricing = localeContent({
     pricingTitle: PRICE_LINE,
     pricingAnchor: "From $500",
     pricingQualify:
-      "Final pricing depends on pages, content, and how much has to be custom. Exact quote after the call.",
+      "Final pricing depends on pages, content, and how much has to be custom. A six-page plumbing site with a quote form is a Custom build: it starts at $2,000. Exact quote after the call.",
     pricingDelivery: DELIVERY,
     pricingIntro:
-      "Basic is a smaller site. Custom is built around every service and the areas you cover.",
+      "Basic is still custom code, up to 4 pages. Custom covers every service and the areas you work.",
     pricingNote:
       "The call is free. You only pay if you decide to build. Optional hosting, maintenance, and support are available after launch.",
     pricingHighlights: [
-      "Written scope before work begins",
       "Milestone-based payment option",
     ] as string[],
     basicName: "Basic",
     basicPrice: "From $500",
     basicItems: [
-      "A few pages",
-      "Mobile-fast",
+      "Custom code, not a theme",
+      "Up to 4 pages, fast on a phone",
       "Click-to-call button",
       "You own the site",
     ] as string[],
@@ -62,11 +61,10 @@ const softPricing = localeContent({
       "After launch, optional hosting, maintenance, and ongoing support are available if you want help keeping the site current. The proposal spells out what is included.",
     heroPrice: PRICE_LINE,
     proofSupportLabel: "ongoing support",
-    proofStartMetric: "2–6 weeks",
     costFaqAnswer:
-      "Basic websites from $500. Custom multi-page websites from $2,000+. You'll get a written number before anything is built.",
+      "Basic websites from $500. Those are shorter custom sites, up to 4 pages, not templates. Custom multi-page websites start at $2,000. A six-page plumbing site with a quote form is a Custom build, so it starts there. You'll get a written number before anything is built.",
     hostingFaqAnswer:
-      "We can host the site after launch, or you can take it to your own provider. You own the website either way. The proposal states whose account the hosting sits in.",
+      "Hosting is not included in the build price. You can host the finished site anywhere: your own provider, or ours if you want us to run it. You own the site either way. You don't pay us a monthly fee just to keep the pages up. If you want KINEXIS to host it, that cost is separate and named in the proposal.",
     maintenanceFaqAnswer:
       "No. Ongoing maintenance and support are optional unless a specific proposal says otherwise. A lot of clients launch, settle in, and add help later. Hosting is separate — with us, or on your own provider.",
   },
@@ -74,21 +72,20 @@ const softPricing = localeContent({
     pricingTitle: `Sitios básicos desde ${LOW_ES}. Sitios a medida de varias páginas desde ${HIGH_ES}+.`,
     pricingAnchor: `Desde ${LOW_ES}`,
     pricingQualify:
-      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La cotización exacta llega después de la llamada.",
+      `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. Un sitio de plomería de seis páginas, con formulario de cotización, es un proyecto a medida: empieza en ${HIGH_ES}. La cotización exacta llega después de la llamada.`,
     pricingDelivery: "La mayoría de los sitios sale en vivo en 2 a 6 semanas.",
     pricingIntro:
-      "El básico es un sitio más corto. El a medida se construye alrededor de cada servicio y las zonas que cubres.",
+      "El básico sigue siendo código a medida, hasta 4 páginas. El a medida cubre cada servicio y las zonas que trabajas.",
     pricingNote:
       "La llamada es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
     pricingHighlights: [
-      "Alcance por escrito antes de empezar",
       "Opción de pago por hitos",
     ],
     basicName: "Básico",
     basicPrice: `Desde ${LOW_ES}`,
     basicItems: [
-      "Unas pocas páginas",
-      "Rápido en el celular",
+      "Código a medida, no un tema",
+      "Hasta 4 páginas, rápido en el celular",
       "Botón de clic para llamar",
       "El sitio es tuyo",
     ],
@@ -105,10 +102,9 @@ const softPricing = localeContent({
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
     heroPrice: `Sitios básicos desde ${LOW_ES}. Sitios a medida de varias páginas desde ${HIGH_ES}+.`,
     proofSupportLabel: "soporte continuo",
-    proofStartMetric: "2–6 semanas",
-    costFaqAnswer: `Sitios básicos desde ${LOW_ES}. Sitios a medida de varias páginas desde ${HIGH_ES}+. Recibes un número por escrito antes de construir nada.`,
+    costFaqAnswer: `Sitios básicos desde ${LOW_ES}. Son sitios a medida más cortos, hasta 4 páginas, no plantillas. Los sitios de varias páginas empiezan en ${HIGH_ES}. Un sitio de plomería de seis páginas, con formulario de cotización, es un proyecto a medida, así que empieza ahí. Recibes un número por escrito antes de construir nada.`,
     hostingFaqAnswer:
-      "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
+      "El hosting no está incluido en el precio de la construcción. Puedes alojar el sitio terminado donde quieras: en tu propio proveedor, o en el nuestro si quieres que lo operemos. El sitio es tuyo de cualquier forma. No nos pagas una cuota mensual solo para mantener las páginas en línea. Si quieres que KINEXIS lo aloje, ese costo va aparte y queda en la propuesta.",
     maintenanceFaqAnswer:
       "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
@@ -116,21 +112,20 @@ const softPricing = localeContent({
     pricingTitle: `Sitios básicos desde ${LOW_ES} €. Sitios a medida de varias páginas desde ${HIGH_ES} €+.`,
     pricingAnchor: `Desde ${LOW_ES} €`,
     pricingQualify:
-      "El precio final depende de las páginas, el contenido y cuánto hay que personalizar. La cotización exacta llega después de la llamada.",
+      `El precio final depende de las páginas, el contenido y cuánto hay que personalizar. Un sitio de fontanería de seis páginas, con formulario de presupuesto, es un proyecto a medida: empieza en ${HIGH_ES} €. La cotización exacta llega después de la llamada.`,
     pricingDelivery: "La mayoría de los sitios sale en vivo en 2 a 6 semanas.",
     pricingIntro:
-      "El básico es un sitio más corto. El a medida se construye alrededor de cada servicio y las zonas que cubres.",
+      "El básico sigue siendo código a medida, hasta 4 páginas. El a medida cubre cada servicio y las zonas que trabajas.",
     pricingNote:
       "La llamada es gratis. Solo pagas si decides construir. Hosting, mantenimiento y soporte opcionales están disponibles después del lanzamiento.",
     pricingHighlights: [
-      "Alcance por escrito antes de empezar",
       "Opción de pago por hitos",
     ],
     basicName: "Básico",
     basicPrice: `Desde ${LOW_ES} €`,
     basicItems: [
-      "Unas pocas páginas",
-      "Rápido en el móvil",
+      "Código a medida, no un tema",
+      "Hasta 4 páginas, rápido en el móvil",
       "Botón de clic para llamar",
       "El sitio es tuyo",
     ],
@@ -147,10 +142,9 @@ const softPricing = localeContent({
       "Después del lanzamiento, hosting, mantenimiento y soporte continuo opcionales están disponibles si quieres ayuda para mantener el sitio al día. La propuesta detalla qué incluye.",
     heroPrice: `Sitios básicos desde ${LOW_ES} €. Sitios a medida de varias páginas desde ${HIGH_ES} €+.`,
     proofSupportLabel: "soporte continuo",
-    proofStartMetric: "2–6 semanas",
-    costFaqAnswer: `Sitios básicos desde ${LOW_ES} €. Sitios a medida de varias páginas desde ${HIGH_ES} €+. Recibes un número por escrito antes de construir nada.`,
+    costFaqAnswer: `Sitios básicos desde ${LOW_ES} €. Son sitios a medida más cortos, hasta 4 páginas, no plantillas. Los sitios de varias páginas empiezan en ${HIGH_ES} €. Un sitio de fontanería de seis páginas, con formulario de presupuesto, es un proyecto a medida, así que empieza ahí. Recibes un número por escrito antes de construir nada.`,
     hostingFaqAnswer:
-      "Podemos alojar el sitio después del lanzamiento, o puedes llevarlo a tu propio proveedor. El sitio es tuyo de cualquier forma. La propuesta indica en qué cuenta queda el hosting.",
+      "El hosting no está incluido en el precio de la construcción. Puedes alojar el sitio terminado donde quieras: en tu propio proveedor, o en el nuestro si quieres que lo operemos. El sitio es tuyo de cualquier forma. No nos pagas una cuota mensual solo para mantener las páginas en línea. Si quieres que KINEXIS lo aloje, ese coste va aparte y queda en la propuesta.",
     maintenanceFaqAnswer:
       "No. El mantenimiento y el soporte continuo son opcionales salvo que una propuesta diga lo contrario. Muchos clientes lanzan, se asientan y lo suman después. El hosting es aparte: con nosotros o en tu propio proveedor.",
   },
@@ -170,7 +164,7 @@ const baseGetAWebsite: LandingPageEntry = {
     "Get a Website Built to",
     "Bring You More Business",
   ],
-  marketLine: "Working with contractors across the U.S.",
+  marketLine: "Working with contractors and home-service crews",
   subheadline:
     "Custom websites for contractors and home-service businesses. Fast, mobile-first, SEO-ready, and built to turn visitors into calls and quote requests.",
   heroCtaLabel: CTA,
@@ -201,11 +195,11 @@ const baseGetAWebsite: LandingPageEntry = {
   },
   directIntro: {
     title: "You'll work with me, not a call center.",
-    body: "I'm Colton, the lead web designer and developer behind KINEXIS. I build every site myself, and you'll work directly with me from our first conversation through launch. When you request a call, you'll hear from me, usually the same day. We'll spend about 15 minutes talking through your business, what you need from your website, and whether we're a good fit. If we are, I'll send you a clear scope and price in writing. If we're not, I'll be upfront about it.",
+    body: "I'm Colton, the lead web designer and developer behind KINEXIS. I build every site myself, and you'll work directly with me from our first conversation through launch. KINEXIS keeps a short roster of active clients, so the person on this call is the person who builds the site. When you request a call, you'll hear from me, usually the same day. We'll spend about 15 minutes on your business, what the site needs to do, and whether we're a fit. If we're not, I'll say so.",
     points: [
       "Custom built, no templates.",
       "You own the site.",
-      "Most sites go live in 2–6 weeks.",
+      "Basic is custom code too.",
     ],
     name: "Colton Wehr",
     role: "Lead Web Designer & Developer",
@@ -349,19 +343,19 @@ const baseGetAWebsite: LandingPageEntry = {
 
   outcomes: [
     {
-      title: "Look established",
+      title: "Looks like your company",
       body: "A look that matches the company you already run.",
     },
     {
-      title: "Generate inquiries",
-      body: "Call and quote sit where a visitor can find them.",
+      title: "Call and quote in reach",
+      body: "The number and the form sit where a thumb can find them.",
     },
     {
-      title: "Load quickly",
-      body: "Fast on a phone, where most people look you up.",
+      title: "Fast on a phone",
+      body: "Pages stay light, so people don't leave while the site is still loading.",
     },
     {
-      title: "Own your website",
+      title: "You own the site",
       body: "The site stays yours. It is not locked in a builder.",
     },
   ],
@@ -398,8 +392,8 @@ const baseGetAWebsite: LandingPageEntry = {
   testimonial: {
     quote:
       "The quote button used to disappear on a phone. After the rebuild, conversion went from 1.8% to 3.9%.",
-    name: "A1 Property Services",
-    role: "Landscaping · published case",
+    name: "Mac Christensen",
+    role: "Owner, A1 Property Services",
   },
   workCtaTitle: "See what we would build for your business",
   samples: [
@@ -433,15 +427,15 @@ const baseGetAWebsite: LandingPageEntry = {
       imageAlt:
         "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
       client: "Preferred Plumbing Solutions",
-      kind: "Plumbing & construction services",
+      kind: "Plumbing services",
       industry: "Plumbing",
       liveUrl: "https://www.callpreferredplumbing.com/",
       challenge:
-        "A plumbing and construction company needed a site that made the work obvious and made calling from a phone feel like the natural next step.",
+        "A plumbing company needed a site that made the work obvious and made calling from a phone feel like the natural next step.",
       work: "The rebuild put service clarity and trust first, then kept the call button in reach on mobile.",
       result: "Emergency calls went from 22 a month to 52.",
       summary:
-        "A plumbing and construction company needed a site that made services obvious and made calling from a phone the natural next step.",
+        "A plumbing company needed a site that made services obvious and made calling from a phone the natural next step.",
       metric: "22 → 52",
       label: "emergency calls/mo",
     },
@@ -479,7 +473,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   processTitle: "How a rebuild actually runs",
   processIntro:
-    "You see the scope and the price before we write a line of code. You sign off on the structure before the site gets built.",
+    `${DELIVERY} You see the scope and the price before we write a line of code.`,
   process: [
     {
       title: "Project call",
@@ -508,7 +502,7 @@ const baseGetAWebsite: LandingPageEntry = {
   fitGoodItems: [
     "Contractor or home-service company",
     "The current site doesn't match the work",
-    "The business has outgrown a basic website",
+    "The current site is a template or a thin brochure",
     "Wants a custom site the company actually owns",
     "Prepared to invest. Basic websites from $500. Custom multi-page websites from $2,000+.",
     "Can send photos, services, and feedback",
@@ -516,7 +510,7 @@ const baseGetAWebsite: LandingPageEntry = {
   fitNotTitle: "Probably not a fit if",
   fitNotItems: [
     "Looking for a free website",
-    "Wants a template finished this weekend",
+    "Needs a site live this weekend",
     "Shopping for the cheapest option",
     "Can't make time to review drafts",
   ],
@@ -524,7 +518,6 @@ const baseGetAWebsite: LandingPageEntry = {
   pricingTitle: softPricing.en.pricingTitle,
   pricingAnchor: softPricing.en.pricingAnchor,
   pricingQualify: softPricing.en.pricingQualify,
-  pricingDelivery: softPricing.en.pricingDelivery,
   pricingIntro: softPricing.en.pricingIntro,
   pricingNote: softPricing.en.pricingNote,
   pricingHighlights: softPricing.en.pricingHighlights,
@@ -533,7 +526,7 @@ const baseGetAWebsite: LandingPageEntry = {
     {
       name: softPricing.en.basicName,
       price: softPricing.en.basicPrice,
-      body: "A shorter site for a crew that needs the phone to ring.",
+      body: "A shorter custom site, up to 4 pages, for a crew that needs the phone to ring.",
       items: softPricing.en.basicItems,
     },
     {
@@ -558,10 +551,7 @@ const baseGetAWebsite: LandingPageEntry = {
   proof: [
     { metric: "Custom built", label: "Not a template" },
     { metric: "You own it", label: "No builder lock-in" },
-    {
-      metric: softPricing.en.proofStartMetric,
-      label: "most sites go live",
-    },
+    { metric: "Short roster", label: "active clients" },
     { metric: "Optional", label: softPricing.en.proofSupportLabel },
   ],
   bulletsTitle: "What you actually get",
@@ -597,7 +587,7 @@ const baseGetAWebsite: LandingPageEntry = {
     {
       question: "Is SEO included?",
       answer:
-        "The build includes the search foundation: service pages, titles, and the indexing basics. Ongoing SEO is a separate conversation.",
+        "Each service gets its own page, with a title, a description, and the indexing setup Google needs to read the work. That foundation is part of the build. Rankings, Google Business Profile, and monthly SEO are optional after launch.",
     },
     {
       question: "Can you redesign my existing website?",
@@ -625,14 +615,20 @@ const spanishByLocale = {
   "es-ES": buildSpanishGetAWebsite(softPricing["es-ES"]),
 } as const;
 
-/** Spanish-only WhatsApp. English keeps the phone number in the header. */
-const heroWhatsAppEs = {
-  heroLabel: "Escribir por WhatsApp",
-  planLabel: "Escribir por WhatsApp",
-  prefill: "Hola, me interesa una llamada de 15 minutos sobre el sitio de mi negocio.",
+/** English gets the corner call button. Spanish gets WhatsApp only. */
+const pageContact = {
+  en: {
+    callHeroLabel: "Call",
+  },
+  es: {
+    whatsappHeroLabel: "Escribir por WhatsApp",
+    whatsappPlanLabel: "Escribir por WhatsApp",
+    prefill:
+      "Hola, me interesa una llamada de 15 minutos sobre el sitio de mi negocio.",
+  },
 } as const;
 
-/** Full locale entry: English base, or full Spanish body + WhatsApp. */
+/** Full locale entry: English base, or full Spanish body, plus call and WhatsApp. */
 export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
   const next: LandingPageEntry = isSpanishLocale(locale)
     ? { ...spanishByLocale[locale] }
@@ -641,7 +637,6 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
         pricingTitle: softPricing.en.pricingTitle,
         pricingAnchor: softPricing.en.pricingAnchor,
         pricingQualify: softPricing.en.pricingQualify,
-        pricingDelivery: softPricing.en.pricingDelivery,
         pricingIntro: softPricing.en.pricingIntro,
         pricingNote: softPricing.en.pricingNote,
         pricingHighlights: softPricing.en.pricingHighlights,
@@ -652,12 +647,15 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
         heroPrice: softPricing.en.heroPrice,
       };
 
+  if (!isSpanishLocale(locale) && getBusinessTelHref()) {
+    next.callHeroLabel = pageContact.en.callHeroLabel;
+  }
   if (isSpanishLocale(locale)) {
-    const href = getBusinessWhatsAppHref(heroWhatsAppEs.prefill);
+    const href = getBusinessWhatsAppHref(pageContact.es.prefill);
     if (href) {
       next.whatsappHref = href;
-      next.whatsappHeroLabel = heroWhatsAppEs.heroLabel;
-      next.whatsappPlanLabel = heroWhatsAppEs.planLabel;
+      next.whatsappHeroLabel = pageContact.es.whatsappHeroLabel;
+      next.whatsappPlanLabel = pageContact.es.whatsappPlanLabel;
     }
   }
 

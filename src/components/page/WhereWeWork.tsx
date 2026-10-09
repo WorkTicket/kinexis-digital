@@ -1,4 +1,5 @@
 import { getLocale } from "next-intl/server";
+import "@/styles/routes/markets.css";
 import type { Locale } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { MarketsBoard } from "@/components/home/MarketsBoard";
@@ -88,18 +89,21 @@ export async function WhereWeWork({
           <Reveal variant="rise" when="chapter">
             <MarketsBoard
               ariaLabel={c.previewEyebrow}
-              markets={markets.map((industry) => {
+              markets={markets.flatMap((industry) => {
                 const visual = industryVisuals[industry.slug];
-                return {
-                  slug: industry.slug,
-                  href: industryHref(industry.slug),
-                  eyebrow: industry.eyebrow,
-                  title: industry.title,
-                  summary: industry.summary,
-                  focus: industry.discover.slice(0, 3),
-                  still: visual.thumb,
-                  stillAlt: visual.alt,
-                };
+                if (!visual?.thumb) return [];
+                return [
+                  {
+                    slug: industry.slug,
+                    href: industryHref(industry.slug),
+                    eyebrow: industry.eyebrow,
+                    title: industry.title,
+                    summary: industry.summary,
+                    focus: industry.discover.slice(0, 3),
+                    still: visual.thumb,
+                    stillAlt: visual.alt,
+                  },
+                ];
               })}
             />
           </Reveal>

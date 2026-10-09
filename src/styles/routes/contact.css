@@ -1,0 +1,194 @@
+/* Route CSS split from globals.css — loaded only with the components that use it. */
+
+/* ── Contact sidebar ── */
+
+.contact-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+}
+
+
+.contact-aside__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+
+.contact-aside__subtitle {
+  margin: 0.4rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+
+.contact-aside__steps {
+  list-style: none;
+  margin: 1.35rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 1.15rem;
+}
+
+
+.contact-aside__step {
+  display: grid;
+  gap: 0.25rem;
+}
+
+
+.contact-aside__step-title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--foreground);
+}
+
+
+.contact-aside__step-desc {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+
+.contact-aside__trust {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+
+.contact-aside__trust-item {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+
+.contact-aside__channels {
+  display: grid;
+  gap: 1.35rem;
+}
+
+
+.contact-aside__channel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+}
+
+
+.contact-aside__channel-value {
+  font-family: var(--font-text), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: opacity 200ms ease;
+}
+
+
+.contact-aside__channel-value.call-link {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+}
+
+
+.contact-aside__channel-value:hover,
+.contact-aside__channel-value:focus-visible {
+  opacity: 0.7;
+  outline: none;
+}
+
+
+.contact-aside__channel-hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+
+.contact-booking-skeleton {
+  display: grid;
+  gap: 0.7rem;
+}
+
+
+.contact-booking-skeleton__title,
+.contact-booking-skeleton__line,
+.contact-booking-skeleton__cal,
+.contact-booking-skeleton__side {
+  border-radius: 0.75rem;
+  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+}
+
+
+.contact-booking-skeleton__title {
+  width: 11rem;
+  height: 1.35rem;
+}
+
+
+.contact-booking-skeleton__line {
+  width: min(100%, 22rem);
+  height: 0.85rem;
+}
+
+
+.contact-booking-skeleton__cols {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 0.85rem;
+}
+
+
+@media (min-width: 768px) {
+.contact-booking-skeleton__cols {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  }
+}
+
+
+
+.contact-booking-skeleton__cal {
+  min-height: 18rem;
+}
+
+
+.contact-booking-skeleton__side {
+  min-height: 18rem;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+.contact-booking-skeleton__title,
+  .contact-booking-skeleton__line,
+  .contact-booking-skeleton__cal,
+  .contact-booking-skeleton__side {
+    animation: contact-booking-pulse 1.4s ease-in-out infinite;
+  }
+}
+
+
+
+@media (max-width: 767px) {
+.contact-aside {
+    padding-top: 0.5rem;
+  }
+}

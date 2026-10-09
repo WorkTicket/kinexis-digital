@@ -4,7 +4,6 @@ import {
 } from "@/components/landing/MatchedCopy";
 import { PlanCta } from "@/components/landing/PlanCta";
 import { WebsiteOutcomes } from "@/components/landing/WebsiteSections";
-import { WhatsAppLink } from "@/components/landing/WhatsAppLink";
 import type { WebsiteLpChrome } from "@/content/lp/website-lp-chrome";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
@@ -34,10 +33,6 @@ export function WebsiteHero({
     page.heroCredit ??
     (portrait?.name ? creditLine(portrait.name, portrait.role) : null);
   const market = page.marketLine ?? page.badge;
-  const whatsapp =
-    page.whatsappHref && page.whatsappHeroLabel
-      ? { href: page.whatsappHref, label: page.whatsappHeroLabel }
-      : null;
   return (
     <section
       className="lp-web-hero chapter relative overflow-x-clip"
@@ -121,14 +116,6 @@ export function WebsiteHero({
                   )}
                   <span>{credit}</span>
                 </p>
-              ) : null}
-              {whatsapp ? (
-                <WhatsAppLink
-                  href={whatsapp.href}
-                  label={whatsapp.label}
-                  variant="hero"
-                  className="lp-web-hero__whatsapp"
-                />
               ) : null}
             </div>
 
