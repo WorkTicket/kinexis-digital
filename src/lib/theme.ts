@@ -13,15 +13,10 @@ export function getSystemTheme(): ThemeMode {
     : "light";
 }
 
-/**
- * The device color scheme wins on phones, tablets, and computers.
- * A previously saved toggle must not keep the site on the other theme.
- */
-export function resolveTheme(
-  _stored: string | null,
-  system: ThemeMode = "light",
-): ThemeMode {
-  return system;
+/** A saved light or dark choice wins. Otherwise follow the device. */
+export function resolveTheme(stored: string | null): ThemeMode {
+  if (isThemeMode(stored)) return stored;
+  return getSystemTheme();
 }
 
 /** Apply theme via data-theme only — React owns html.className, so .dark is unreliable. */
@@ -31,14 +26,13 @@ export function applyTheme(theme: ThemeMode) {
   root.style.colorScheme = theme;
 }
 
-/** Always the live device preference. Drops any saved override. */
-export function readDeviceTheme(): ThemeMode {
+/** Prefer localStorage over the DOM attribute — React can reset data-theme from SSR props. */
+export function readStoredTheme(): ThemeMode {
   try {
-    localStorage.removeItem(THEME_STORAGE_KEY);
+    return resolveTheme(localStorage.getItem(THEME_STORAGE_KEY));
   } catch {
-    // private mode / blocked storage
+    return getSystemTheme();
   }
-  return getSystemTheme();
 }
 
-export const THEME_PREFLIGHT_SCRIPT = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};try{localStorage.removeItem(k)}catch(e){}var t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";var r=document.documentElement;r.setAttribute("data-theme",t);r.style.colorScheme=t;var m=window.matchMedia("(prefers-color-scheme: dark)");var sync=function(){var n=m.matches?"dark":"light";r.setAttribute("data-theme",n);r.style.colorScheme=n};if(m.addEventListener)m.addEventListener("change",sync);else if(m.addListener)m.addListener(sync)}catch(e){}})();`;
+export const THEME_PREFLIGHT_SCRIPT = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var s=localStorage.getItem(k);var t=(s==="light"||s==="dark")?s:(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");var r=document.documentElement;r.setAttribute("data-theme",t);r.style.colorScheme=t}catch(e){}})();`;

@@ -428,7 +428,7 @@ html[data-theme=dark] .lp-web {
   border:0;
   background:transparent;
   box-shadow:none;
-  width:min(19rem, 100%);
+  width:min(24rem, 100%);
 }
 
 .lp-web-pain__phone {
@@ -442,8 +442,8 @@ html[data-theme=dark] .lp-web {
 
 .lp-web .lp-ex-stage .lp-web-pain__shot,
 .lp-web .lp-ex-stage .lp-web-pain__shot--after {
-  width:min(19rem, 100%);
-  max-width:19rem;
+  width:min(24rem, 100%);
+  max-width:24rem;
   margin:0;
   justify-self:center;
   align-self:start;
@@ -789,17 +789,14 @@ html[data-theme=dark] .lp-web {
   height:calc(100svh - var(--site-header-h, 4rem));
   max-height:calc(100svh - var(--site-header-h, 4rem));
   overflow:hidden;
-  background:var(--lp-bg);
-  color:var(--lp-ink);
-}
-
-html[data-theme=dark] .lp-web .lp-web-hero {
   background:#000;
   color:#fff;
   --lp-bg:#000;
   --lp-ink:#fff;
   --lp-muted:#a3a3a3;
   --lp-border:rgba(255,255,255,.14);
+  --lp-surface:#111111;
+  --lp-card:#111111;
 }
 
 .lp-web-hero__atmosphere {
@@ -839,18 +836,10 @@ html[data-theme=dark] .lp-web .lp-web-hero {
 .lp-web-hero__grain {
   position:absolute;
   inset:0;
-  opacity:.028;
+  opacity:.045;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size:140px 140px;
   mix-blend-mode:overlay;
-}
-
-html[data-theme=dark] .lp-web-hero__grain {
-  opacity:.045;
-}
-
-html[data-theme=dark] .lp-web-hero__wash--a {
-  opacity:1;
 }
 
 .lp-web-hero__stage {
@@ -4818,23 +4807,13 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
   }
 }
 
-/* Visual finish: one hero gradient, then the results band continues it. */
+/* The hero gradient stays on the black field in both themes. */
 
-html[data-theme=dark] .lp-web .lp-web-hero {
-  background:#000;
-  color:#fff;
-}
-
-.lp-web .lp-web-hero__wash--a,
-.lp-web .lp-web-hero__wash--b {
-  opacity: 0;
-}
-
-html[data-theme=dark] .lp-web .lp-web-hero__wash--a {
+.lp-web .lp-web-hero__wash--a {
   opacity: 0.8;
 }
 
-html[data-theme=dark] .lp-web .lp-web-hero__wash--b {
+.lp-web .lp-web-hero__wash--b {
   opacity: 0.75;
 }
 
@@ -4844,7 +4823,7 @@ html[data-theme=dark] .lp-web .lp-web-hero__wash--b {
 }
 
 @media (min-width: 1024px) {
-  html[data-theme=dark] .lp-web .lp-web-hero {
+  .lp-web .lp-web-hero {
     background:#000;
   }
 }
@@ -4949,8 +4928,9 @@ html[data-theme=dark] .lp-web .lp-web-hero__wash--b {
 
   .lp-web .lp-ex-stage .lp-web-pain__shot,
   .lp-web .lp-ex-stage .lp-web-pain__shot--after {
-    width: min(100%, calc(60svh * 466 / 944));
-    max-width: 19rem;
+    /* Whole chassis fits under the header and above the sticky call bar. */
+    width: min(100%, calc((100svh - 16.25rem) * 466 / 944));
+    max-width: 22rem;
     margin: 0 auto;
   }
 

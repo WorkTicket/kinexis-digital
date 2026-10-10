@@ -77,14 +77,14 @@ describe("get-a-website theme tokens", () => {
     );
   });
 
-  it("follows the device color scheme instead of a saved LP theme", async () => {
+  it("keeps a saved theme for the next visit", async () => {
     const { THEME_STORAGE_KEY, THEME_PREFLIGHT_SCRIPT } = await import(
       "@/lib/theme"
     );
     expect(THEME_STORAGE_KEY).toBe("kinexis-theme");
     expect(THEME_PREFLIGHT_SCRIPT).toContain("kinexis-theme");
-    expect(THEME_PREFLIGHT_SCRIPT).toContain("localStorage.removeItem");
-    expect(THEME_PREFLIGHT_SCRIPT).not.toContain("localStorage.getItem");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain("localStorage.getItem");
+    expect(THEME_PREFLIGHT_SCRIPT).not.toContain("localStorage.removeItem");
     expect(THEME_PREFLIGHT_SCRIPT).toContain(
       'window.matchMedia("(prefers-color-scheme: dark)")',
     );

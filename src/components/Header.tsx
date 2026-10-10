@@ -283,6 +283,7 @@ export function Header() {
           {isSlimLanding && landing ? (
             <div className="site-header__lp-actions ml-auto flex min-w-0 items-center gap-2 sm:gap-3">
               {supportSlot("nav")}
+              <ThemeToggle />
               <Button
                 href={landing.formHref}
                 size="header"
