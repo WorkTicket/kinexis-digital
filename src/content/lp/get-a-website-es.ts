@@ -68,9 +68,9 @@ export function buildSpanishGetAWebsite(
     headerCtaLabel: "Llamada de 15 min",
     heroPrice: pricing.heroPrice,
     heroPortrait: {
-      src: "/assets/images/lp/colton-wehr-819.webp?v=20261005p",
+      src: "/assets/images/lp/colton-wehr-819.webp?v=20261010c",
       srcSet:
-        "/assets/images/lp/colton-wehr-480.webp?v=20261005p 480w, /assets/images/lp/colton-wehr-640.webp?v=20261005p 640w, /assets/images/lp/colton-wehr-819.webp?v=20261005p 676w",
+        "/assets/images/lp/colton-wehr-480.webp?v=20261010c 480w, /assets/images/lp/colton-wehr-640.webp?v=20261010c 640w, /assets/images/lp/colton-wehr-819.webp?v=20261010c 676w",
       sizes: "2rem",
       alt: "Colton Wehr, desarrollador principal en KINEXIS",
       width: 676,

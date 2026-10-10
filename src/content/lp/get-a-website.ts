@@ -191,9 +191,9 @@ const baseGetAWebsite: LandingPageEntry = {
   headerCtaLabel: "Book a 15-Min Call",
   heroPrice: softPricing.en.heroPrice,
   heroPortrait: {
-    src: "/assets/images/lp/colton-wehr-819.webp?v=20261005p",
+    src: "/assets/images/lp/colton-wehr-819.webp?v=20261010c",
     srcSet:
-      "/assets/images/lp/colton-wehr-480.webp?v=20261005p 480w, /assets/images/lp/colton-wehr-640.webp?v=20261005p 640w, /assets/images/lp/colton-wehr-819.webp?v=20261005p 676w",
+      "/assets/images/lp/colton-wehr-480.webp?v=20261010c 480w, /assets/images/lp/colton-wehr-640.webp?v=20261010c 640w, /assets/images/lp/colton-wehr-819.webp?v=20261010c 676w",
     sizes: "2rem",
     alt: "Colton Wehr, lead developer at KINEXIS",
     width: 676,
