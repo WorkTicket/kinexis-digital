@@ -425,7 +425,7 @@
 
 @media (max-width: 1023px) {
 .hero-shell--film .hero-engine {
-    flex: 0 1 auto;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;

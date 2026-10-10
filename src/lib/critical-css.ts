@@ -34,7 +34,7 @@ export const CRITICAL_FIRST_PAINT_CSS = [
   "html[data-theme=dark] .hero-shell--film{background:#000}",
   ".hero-stage{display:flex;flex:1 1 auto;flex-direction:column;justify-content:center;padding-top:clamp(2.75rem,5.5vh,4.75rem);padding-bottom:clamp(6.5rem,16vh,11rem)}",
   ".hero-shell--film .hero-stage{flex:1 1 auto;justify-content:center;padding-top:clamp(1.5rem,4.5vh,3.25rem);padding-bottom:clamp(.75rem,2vh,1.5rem)}",
-  "@media(max-width:1023px){.hero-shell--film .hero-stage{justify-content:flex-start;padding-bottom:0}.hero-shell--film .hero-engine{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;margin-top:0;margin-bottom:0}}",
+  "@media(max-width:1023px){.hero-shell--film .hero-stage{justify-content:flex-start;padding-bottom:0}.hero-shell--film .hero-engine{flex:1 0 auto;display:flex;flex-direction:column;justify-content:center;margin-top:0;margin-bottom:0}}",
   ".hero-copy{position:relative;z-index:3;max-width:min(52rem,100%);text-align:center;margin-inline:auto}",
   "@media(min-width:768px){.hero-copy{text-align:left;margin-inline:0}}",
   ".hero-enter-2{margin:0;font-family:var(--font-display),ui-sans-serif,sans-serif;font-size:clamp(2.5rem,5.4vw + .25rem,5.25rem);font-weight:700;line-height:1.02;letter-spacing:-.045em;color:var(--foreground);max-width:min(22ch,100%)}",

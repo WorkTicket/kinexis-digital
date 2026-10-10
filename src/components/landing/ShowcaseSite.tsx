@@ -406,44 +406,99 @@ function Dated({ layout }: { layout: ShowcaseLayout }) {
 /** Generic landscaping brand — dated WordPress look (before). */
 function GreenfieldDated({ layout }: { layout: ShowcaseLayout }) {
   const phone = layout === "phone";
-  return (
-    <>
-      {phone ? null : <Chrome host="greenfieldlawncare.com" />}
+  if (phone) {
+    return (
       <div className="lp-site__dated-page">
         <div className="lp-site__dated-wrap">
           <div className="lp-site__dated-top">
             <span>Free Estimates</span>
-            {phone ? (
-              <span>Call now</span>
-            ) : (
-              <>
-                <span>Licensed &amp; Insured</span>
-                <span>Free estimates</span>
-                <span className="lp-site__dated-socials" aria-hidden>
-                  <i />
-                  <i />
-                  <i />
-                </span>
-              </>
-            )}
+            <span>Call now</span>
           </div>
           <header className="lp-site__dated-head">
             <span className="lp-site__dated-logo">
               <GreenfieldMark className="lp-site__dated-mark" />
               Greenfield Lawn Care
             </span>
-            {phone ? (
-              <span className="lp-site__menu" />
-            ) : (
-              <span className="lp-site__dated-nav">
-                <span className="is-current">Home</span>
-                <span>About Us</span>
-                <span>Our Services</span>
-                <span>Gallery</span>
-                <span>Testimonials</span>
-                <span>Contact</span>
-              </span>
-            )}
+            <span className="lp-site__menu" />
+          </header>
+          <div className="lp-site__dated-slider">
+            <div className="lp-site__dated-slide">
+              <Photo src={PHOTOS.a1} />
+            </div>
+            <span className="lp-site__dated-prev" aria-hidden>
+              ‹
+            </span>
+            <span className="lp-site__dated-next" aria-hidden>
+              ›
+            </span>
+            <span className="lp-site__dated-dots" aria-hidden>
+              <i className="is-on" />
+              <i />
+              <i />
+            </span>
+          </div>
+          <div className="lp-site__dated-body">
+            <p className="lp-site__dated-kicker">Welcome to our website</p>
+            <p className="lp-site__dated-title">
+              Quality Landscaping You Can Trust
+            </p>
+            <p className="lp-site__dated-sub">
+              Family owned since 1998. Call for more information.
+            </p>
+            <span className="lp-site__dated-cta">Click Here</span>
+          </div>
+          <div className="lp-site__dated-cards">
+            <span>
+              <i aria-hidden />
+              Lawn Care
+            </span>
+            <span>
+              <i aria-hidden />
+              Landscaping
+            </span>
+            <span>
+              <i aria-hidden />
+              Hardscaping
+            </span>
+          </div>
+          <div className="lp-site__dated-widget">
+            <p className="lp-site__dated-widget-title">From the blog</p>
+            <p>5 Tips for a Greener Lawn This Spring</p>
+            <span>Read More</span>
+          </div>
+          <p className="lp-site__dated-foot">Proudly powered by WordPress</p>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <>
+      <Chrome host="greenfieldlawncare.com" />
+      <div className="lp-site__dated-page">
+        <div className="lp-site__dated-wrap">
+          <div className="lp-site__dated-top">
+            <span>Free Estimates</span>
+            <span>Licensed &amp; Insured</span>
+            <span>Free estimates</span>
+            <span className="lp-site__dated-socials" aria-hidden>
+              <i />
+              <i />
+              <i />
+            </span>
+          </div>
+          <header className="lp-site__dated-head">
+            <span className="lp-site__dated-logo">
+              <GreenfieldMark className="lp-site__dated-mark" />
+              Greenfield Lawn Care
+            </span>
+            <span className="lp-site__dated-nav">
+              <span className="is-current">Home</span>
+              <span>About Us</span>
+              <span>Our Services</span>
+              <span>Gallery</span>
+              <span>Testimonials</span>
+              <span>Contact</span>
+            </span>
           </header>
           <div className="lp-site__dated-slider">
             <div className="lp-site__dated-slide">
@@ -459,42 +514,34 @@ function GreenfieldDated({ layout }: { layout: ShowcaseLayout }) {
               </p>
               <span className="lp-site__dated-cta">Click Here</span>
             </div>
-            {phone ? null : (
-              <>
-                <span className="lp-site__dated-prev" aria-hidden>
-                  ‹
-                </span>
-                <span className="lp-site__dated-next" aria-hidden>
-                  ›
-                </span>
-                <span className="lp-site__dated-dots" aria-hidden>
-                  <i className="is-on" />
-                  <i />
-                  <i />
-                </span>
-              </>
-            )}
+            <span className="lp-site__dated-prev" aria-hidden>
+              ‹
+            </span>
+            <span className="lp-site__dated-next" aria-hidden>
+              ›
+            </span>
+            <span className="lp-site__dated-dots" aria-hidden>
+              <i className="is-on" />
+              <i />
+              <i />
+            </span>
           </div>
-          {phone ? null : (
-            <div className="lp-site__dated-cards">
-              <span>
-                <i aria-hidden />
-                Lawn Care
-              </span>
-              <span>
-                <i aria-hidden />
-                Landscaping
-              </span>
-              <span>
-                <i aria-hidden />
-                Hardscaping
-              </span>
-            </div>
-          )}
+          <div className="lp-site__dated-cards">
+            <span>
+              <i aria-hidden />
+              Lawn Care
+            </span>
+            <span>
+              <i aria-hidden />
+              Landscaping
+            </span>
+            <span>
+              <i aria-hidden />
+              Hardscaping
+            </span>
+          </div>
           <p className="lp-site__dated-foot">
-            {phone
-              ? "Call for more information"
-              : "Greenfield Lawn Care · Powered by WordPress"}
+            Greenfield Lawn Care · Powered by WordPress
           </p>
         </div>
       </div>
@@ -552,6 +599,25 @@ function Greenfield({
           <p className="lp-site__meta">Licensed · Insured · Local crews</p>
         </div>
       </div>
+      {phone ? (
+        <div className="lp-site__sheet">
+          <p className="lp-site__sheet-label">Services</p>
+          <ul>
+            <li>
+              <strong>Design</strong>
+              <span>Plans before the crew</span>
+            </li>
+            <li>
+              <strong>Hardscape</strong>
+              <span>Patios, walks, walls</span>
+            </li>
+            <li>
+              <strong>Lawn care</strong>
+              <span>On a seasonal route</span>
+            </li>
+          </ul>
+        </div>
+      ) : null}
       {phone ? null : (
         <div className="lp-site__strip">
           <span>Landscape design</span>

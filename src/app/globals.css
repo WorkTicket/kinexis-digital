@@ -5425,9 +5425,10 @@ html[data-theme="dark"] .hero-shell--film {
   }
 
   .hero-shell--film .hero-engine {
-    flex: 0 1 auto;
+    flex: 1 0 auto;
     align-self: center;
-    width: min(100%, 26rem, 36dvh);
+    /* svh, not dvh: the mobile toolbar changes dvh while scrolling and the wheel would resize with it. */
+    width: min(100%, 26rem, 36svh);
     margin-inline: auto;
   }
 }
@@ -5454,7 +5455,7 @@ html[data-theme="dark"] .hero-shell--film {
   }
 
   .hero-shell--film .hero-engine {
-    width: min(100%, 28rem, 40dvh);
+    width: min(100%, 28rem, 40svh);
   }
 }
 

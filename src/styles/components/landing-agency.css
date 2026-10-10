@@ -494,6 +494,7 @@ html[data-theme=dark] .lp-web {
   flex:1 1 auto;
   min-height:0;
   overflow:hidden;
+  padding-bottom:.85rem;
   background:#fff;
 }
 
@@ -620,43 +621,9 @@ html[data-theme=dark] .lp-web {
   background:currentColor;
 }
 
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-foot {
-  display:none;
-}
-
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-top {
-  font-size:.4em;
-  padding:.32em .7em;
-}
-
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-head {
-  padding:.28em .55em;
-}
-
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-caption {
-  right:.55em;
-  bottom:.85em;
-  left:.55em;
-  align-items:flex-start;
-  max-width:none;
-  padding:.55em .6em .6em;
-  border-radius:.3em;
-}
-
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-title {
-  font-size:.72em;
-}
-
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-sub {
-  font-size:.4em;
-}
-
-.lp-web-pain__screen .lp-site--dated .lp-site__dated-cta {
-  align-self:stretch;
-  justify-content:center;
-  margin-top:.45em;
-  padding:.4em .7em;
-  font-size:.46em;
+.lp-web-pain__screen .lp-site--dated {
+  font-size:5.15cqi;
+  background:#fff;
 }
 
 .lp-web .lp-web-pain__shot figcaption {
@@ -4969,7 +4936,28 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
   }
 }
 
-@media (min-width: 900px) {
+/* Two columns until each step is wide enough to sit on two lines. */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .lp-web .lp-web-process__rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 42rem;
+    gap: 1.6rem 2rem;
+  }
+
+  .lp-web .lp-web-process__rail > li::after {
+    content: none;
+  }
+
+  .lp-web .lp-web-process__copy p {
+    max-width: 17rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .lp-web .lp-web-process > .shell {
+    max-width: 76rem;
+  }
+
   .lp-web .lp-web-process__rail {
     --lp-process-gap: 1.35rem;
     max-width: none;
@@ -4999,7 +4987,7 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
   .lp-web .lp-web-process__rail .lp-web-process__copy h3 {
     text-align: center;
     margin-inline: auto;
-    max-width: 16rem;
+    max-width: 17rem;
   }
 }
 
@@ -5034,6 +5022,7 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
 
 .lp-web .lp-web-build__copy p {
   margin-top: 0.35rem;
+  max-width: 22rem;
 }
 
 .lp-web .lp-web-pricing__tier--featured {
