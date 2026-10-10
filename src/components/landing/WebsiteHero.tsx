@@ -97,7 +97,7 @@ export function WebsiteHero({
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src="/assets/images/lp/colton-wehr-face.webp?v=20261010c"
+                        src="/assets/images/lp/colton-wehr-face.webp?v=20261010d"
                         alt=""
                         width={580}
                         height={580}
@@ -107,7 +107,7 @@ export function WebsiteHero({
                   ) : (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
-                      src="/assets/images/lp/colton-wehr-face.webp?v=20261010c"
+                      src="/assets/images/lp/colton-wehr-face.webp?v=20261010d"
                       alt=""
                       width={580}
                       height={580}
