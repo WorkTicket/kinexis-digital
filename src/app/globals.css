@@ -3736,13 +3736,15 @@ html.mobile-menu-open .site-menu {
 }
 
 
-.site-header__bar {
+.shell.site-header__bar {
   position: relative;
   z-index: 1;
   flex: 1 1 auto;
+  width: 100%;
   height: auto;
   min-height: 0;
   max-width: none;
+  margin-inline: 0;
   padding-inline: max(1.25rem, env(safe-area-inset-left, 0px))
     max(1.25rem, env(safe-area-inset-right, 0px));
 }
@@ -4587,8 +4589,7 @@ html[data-theme="dark"] .mega__sheet {
 
 .mega__inner {
   display: grid;
-  width: min(100%, 100rem);
-  margin-inline: auto;
+  width: 100%;
   align-items: stretch;
 }
 
@@ -4642,6 +4643,7 @@ html[data-theme="dark"] .mega__sheet {
   position: relative;
   display: flex;
   width: 100%;
+  min-height: 5rem;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.18rem;

@@ -97,6 +97,7 @@ export function Header() {
     if (placement === "bar") {
       return (
         <CallLink className="site-header__phone site-header__phone--bar">
+          <PhoneMark className="site-header__phone-mark" />
           <span className="site-header__phone-num">
             {getBusinessPhoneDisplay()}
           </span>
