@@ -48,6 +48,11 @@ function CrossMark() {
 
 /** Index-ordered marks so Spanish titles still get the same icons. */
 const OUTCOME_MARKS: ReactNode[] = [
+  // Custom coded.
+  <svg key="coded" {...markProps}>
+    <path d="m9 7.5-4.25 4.5L9 16.5" />
+    <path d="m15 7.5 4.25 4.5L15 16.5" />
+  </svg>,
   // Looks like your company — a storefront, not a gem.
   <svg key="established" {...markProps}>
     <path d="M3.5 10.5 12 4l8.5 6.5" />
@@ -137,6 +142,67 @@ export function WebsiteOutcomes({
   );
 }
 
+function SafariStatus({ tone }: { tone: "light" | "dark" }) {
+  return (
+    <div className={`lp-safari__status lp-safari__status--${tone}`} aria-hidden>
+      <span>9:41</span>
+      <span className="lp-web-pain__status-glyphs">
+        <i className="lp-web-pain__signal" />
+        <i className="lp-web-pain__wifi" />
+        <i className="lp-web-pain__battery" />
+      </span>
+    </div>
+  );
+}
+
+function SafariBar({ host }: { host: string }) {
+  return (
+    <div className="lp-safari__bar" aria-hidden>
+      <span className="lp-safari__aa">aA</span>
+      <span className="lp-safari__host">
+        <svg viewBox="0 0 12 14" className="lp-safari__lock" aria-hidden>
+          <rect x="1.5" y="6" width="9" height="7" rx="1.2" />
+          <path d="M3.2 6V4.2a2.8 2.8 0 0 1 5.6 0V6" />
+        </svg>
+        {host}
+      </span>
+      <svg viewBox="0 0 16 16" className="lp-safari__reload" aria-hidden>
+        <path d="M13.2 8a5.2 5.2 0 1 1-1.4-3.5" />
+        <path d="M12.2 1.8v3.1H9" />
+      </svg>
+    </div>
+  );
+}
+
+/** Photo iPhone frame. The site sits in the keyed screen, in Safari. */
+function IphoneMockup({
+  host,
+  tone,
+  children,
+}: {
+  host: string;
+  tone: "light" | "dark";
+  children: ReactNode;
+}) {
+  return (
+    <div className="lp-web-pain__phone">
+      <div className="lp-web-pain__screen">
+        <div className={`lp-safari lp-safari--${tone}`}>
+          <SafariStatus tone={tone} />
+          <SafariBar host={host} />
+          <div className="lp-safari__page">{children}</div>
+          <span className="lp-safari__home" />
+        </div>
+      </div>
+      <img
+        className="lp-web-pain__chassis"
+        src="/assets/images/lp/iphone-15-mockup.webp"
+        alt=""
+      />
+    </div>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /*  Pain — ShowcaseSite before/after + compare columns                 */
 /* ------------------------------------------------------------------ */
@@ -169,17 +235,17 @@ export function WebsitePain({
           <h2 id="lp-web-pain-heading">{title}</h2>
           <p>{subtitle}</p>
         </header>
-        <div className="lp-web-pain__stage">
+        <div className="lp-web-pain__stage lp-web-pain__stage--overlap">
           <figure className="lp-web-pain__shot">
-            <div className="lp-web-pain__screen">
-              <ShowcaseSite variant="greenfield-dated" layout="desktop" />
-            </div>
+            <IphoneMockup host="greenfieldlawncare.com" tone="light">
+              <ShowcaseSite variant="greenfield-dated" layout="phone" />
+            </IphoneMockup>
             <figcaption>{datedCaption}</figcaption>
           </figure>
           <figure className="lp-web-pain__shot lp-web-pain__shot--after">
-            <div className="lp-web-pain__screen">
-              <ShowcaseSite variant="greenfield" layout="desktop" />
-            </div>
+            <IphoneMockup host="greenfieldlawncare.com" tone="dark">
+              <ShowcaseSite variant="greenfield" layout="phone" />
+            </IphoneMockup>
             <figcaption>{customCaption}</figcaption>
           </figure>
         </div>
@@ -250,24 +316,34 @@ function WorkLaptop({
 
 const QUOTE_METRIC = /(\d+[.,]\d+%)/;
 
-/** Keep the sentence, and let the before/after rates read as the result. */
-function renderQuote(quote: string) {
-  const parts = quote.split(QUOTE_METRIC);
-  return (
-    <>
-      “
-      {parts.map((part, index) =>
-        QUOTE_METRIC.test(part) ? (
-          <strong key={index} className="lp-web-quote__metric">
-            {part}
-          </strong>
-        ) : (
-          part
-        ),
-      )}
-      ”
-    </>
+/** Two sentences, one line each, so the quote doesn't rag into a short third line. */
+function quoteLines(quote: string) {
+  const parts = quote.split(/(?<=\.)\s+/).map((part) => part.trim()).filter(Boolean);
+  return parts.length === 2 ? parts : [quote];
+}
+
+function renderQuoteLine(line: string, keyPrefix: string) {
+  const parts = line.split(QUOTE_METRIC);
+  return parts.map((part, index) =>
+    QUOTE_METRIC.test(part) ? (
+      <strong key={`${keyPrefix}-${index}`} className="lp-web-quote__metric">
+        {part}
+      </strong>
+    ) : (
+      part
+    ),
   );
+}
+
+function renderQuote(quote: string) {
+  const lines = quoteLines(quote);
+  return lines.map((line, index) => (
+    <span key={line} className="lp-web-quote__line">
+      {index === 0 ? "“" : null}
+      {renderQuoteLine(line, String(index))}
+      {index === lines.length - 1 ? "”" : null}
+    </span>
+  ));
 }
 
 /* ------------------------------------------------------------------ */
@@ -411,121 +487,6 @@ export function WebsiteWork({
 /*  Build                                                              */
 /* ------------------------------------------------------------------ */
 
-function BuildPlate({
-  rotate,
-  children,
-}: {
-  rotate: number;
-  children: ReactNode;
-}) {
-  return (
-    <svg viewBox="0 0 168 104" fill="none" aria-hidden={true} className="lp-web-plate">
-      <rect width="168" height="104" rx="14" fill="#0c0c0c" />
-      <rect
-        x="0.7"
-        y="0.7"
-        width="166.6"
-        height="102.6"
-        rx="13.3"
-        stroke="rgba(244,241,234,0.13)"
-      />
-      <g transform={`rotate(${rotate} 84 52)`}>
-        <rect x="24" y="16" width="124" height="78" rx="3.5" fill="#141311" />
-        <rect x="22" y="14" width="124" height="78" rx="3.5" fill="#f3efe6" />
-        {children}
-      </g>
-    </svg>
-  );
-}
-
-const BUILD_PLATES = [
-  // Built around the jobs, not a theme with a logo dropped on it.
-  <BuildPlate key="company" rotate={-3.2}>
-    <rect x="30" y="24" width="48" height="58" rx="2.5" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.3" />
-    <circle cx="42" cy="36" r="5.5" fill="#c4bfb4" />
-    <path d="M36 48h36M36 55h36M36 62h36M36 71h22" stroke="#c4bfb4" strokeWidth="2.2" strokeLinecap="round" />
-    <rect x="86" y="24" width="52" height="58" rx="2.5" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" />
-    <rect x="90" y="28" width="44" height="24" rx="1.5" fill="#6f90c4" />
-    <path d="M100 46.5 112 36.5 124 46.5v5h-24v-5z" fill="#f3efe6" />
-    <rect x="108" y="42" width="8" height="6.5" fill="#6f90c4" />
-    <path d="M92 58h32M92 64h24M92 70h28" stroke="#1c1b19" strokeWidth="1.7" strokeLinecap="round" />
-  </BuildPlate>,
-  // The site, on a phone. No search glass.
-  <BuildPlate key="phone" rotate={2.8}>
-    <rect x="60" y="18" width="48" height="72" rx="8" fill="#1c1b19" />
-    <rect x="64" y="26" width="40" height="54" rx="2" fill="#111110" />
-    <rect x="64" y="26" width="40" height="16" fill="#6f90c4" />
-    <path d="M70 48h28M70 54h18M70 60h24" stroke="#ece7dc" strokeWidth="1.7" strokeLinecap="round" />
-    <rect x="70" y="68" width="28" height="7" rx="2" fill="#f3efe6" />
-    <rect x="74" y="21" width="20" height="2.4" rx="1" fill="#3a3834" />
-    <path d="M80 82.5h8" stroke="#ece7dc" strokeWidth="1.8" strokeLinecap="round" />
-  </BuildPlate>,
-  // Services up top. Call and quote sit in the thumb zone.
-  <BuildPlate key="call" rotate={-2.4}>
-    <path d="M34 28h36M34 35h26M34 42h32" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" />
-    <rect x="32" y="52" width="62" height="16" rx="8" fill="#1c1b19" />
-    <g
-      transform="translate(40 53.2) scale(0.58)"
-      fill="none"
-      stroke="#f3efe6"
-      strokeWidth="2.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-    </g>
-    <path d="M58 60h24" stroke="#f3efe6" strokeWidth="2.2" strokeLinecap="round" />
-    <rect x="32" y="72" width="62" height="16" rx="8" fill="#6f90c4" />
-    <rect x="40" y="75" width="9" height="10" rx="1.3" fill="#f3efe6" />
-    <path d="M42.2 78h4.6M42.2 81h3.2" stroke="#6f90c4" strokeWidth="1.1" strokeLinecap="round" />
-    <path d="M54 80h22" stroke="#0c0c0c" strokeWidth="2.2" strokeLinecap="round" />
-    <circle cx="86" cy="80" r="9" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.5" />
-    <ellipse cx="86" cy="76.8" rx="3" ry="2" fill="#e4ddd0" />
-  </BuildPlate>,
-  // A light page, already loaded, with the speed mark beside it.
-  <BuildPlate key="fast" rotate={3.1}>
-    <rect x="30" y="24" width="68" height="56" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" />
-    <path d="M30 32h68" stroke="#1c1b19" strokeWidth="1.2" />
-    <circle cx="37" cy="28" r="1.5" fill="#1c1b19" />
-    <circle cx="42.5" cy="28" r="1.5" fill="#1c1b19" />
-    <circle cx="48" cy="28" r="1.5" fill="#1c1b19" />
-    <path d="M38 44h22" stroke="#1c1b19" strokeWidth="1.8" strokeLinecap="round" />
-    <rect x="38" y="68" width="52" height="4" rx="2" fill="#6f90c4" />
-    <path d="M118 22 104 50h14l-8 30 26-34h-14l10-24z" fill="#6f90c4" />
-  </BuildPlate>,
-  // A search field, then the service pages Google can list.
-  <BuildPlate key="search" rotate={-3.6}>
-    <rect x="30" y="20" width="108" height="16" rx="8" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.4" />
-    <circle cx="42" cy="28" r="3.4" stroke="#1c1b19" strokeWidth="1.5" />
-    <path d="M44.5 30.6 47.2 33.4" stroke="#1c1b19" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M52 28h52" stroke="#c4bfb4" strokeWidth="1.8" strokeLinecap="round" />
-    <path d="M34 46h46" stroke="#6f90c4" strokeWidth="2.4" strokeLinecap="round" />
-    <path d="M34 53h78" stroke="#1c1b19" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M34 63h40" stroke="#6f90c4" strokeWidth="2.4" strokeLinecap="round" />
-    <path d="M34 70h70" stroke="#1c1b19" strokeWidth="1.5" strokeLinecap="round" />
-    <path d="M34 80h44" stroke="#6f90c4" strokeWidth="2.4" strokeLinecap="round" />
-  </BuildPlate>,
-  // New calls and quotes. Visits sit quieter underneath.
-  <BuildPlate key="tracked" rotate={2.2}>
-    <rect x="30" y="20" width="108" height="20" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.3" />
-    <circle cx="44" cy="30" r="6.5" fill="#6f90c4" />
-    <path
-      d="M41.3 27.4c.3-.55.95-.85 1.5-.55l.55.3c.4.25.55.75.35 1.2l-.25.55c-.1.25.05.5.3.55.65.2 1.2.6 1.6 1.1.15.2.1.5-.1.6l-.45.3c-.4.25-.5.8-.25 1.2l.3.55c.35.6.15 1.35-.5 1.65l-.6.25c-1.6.7-3.4-.1-4.2-1.6-.7-1.3-.75-2.8-.1-4.1l.4-.6c.3-.45.8-.6 1.2-.45z"
-      fill="#f3efe6"
-    />
-    <path d="M56 30h42" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="124" cy="30" r="3.2" fill="#6f90c4" />
-    <rect x="30" y="44" width="108" height="20" rx="3" fill="#fffaf2" stroke="#1c1b19" strokeWidth="1.3" />
-    <circle cx="44" cy="54" r="6.5" fill="#6f90c4" />
-    <rect x="40.6" y="50.4" width="6.8" height="7.2" rx="1" fill="#f3efe6" />
-    <path d="M42.2 52.6h3.6M42.2 54.6h2.6" stroke="#6f90c4" strokeWidth="0.9" strokeLinecap="round" />
-    <path d="M56 54h36" stroke="#1c1b19" strokeWidth="2" strokeLinecap="round" />
-    <circle cx="124" cy="54" r="3.2" fill="#6f90c4" />
-    <path d="M38 76h28" stroke="#c4bfb4" strokeWidth="2" strokeLinecap="round" />
-    <path d="M72 76h22" stroke="#c4bfb4" strokeWidth="2" strokeLinecap="round" />
-  </BuildPlate>,
-];
-
 export function WebsiteBuild({
   title,
   points,
@@ -559,12 +520,9 @@ export function WebsiteBuild({
           />
         </figure>
         <ul className="lp-web-build__list">
-          {points.map((point, index) => (
+          {points.map((point) => (
             <li key={point.title}>
               <article className="lp-web-build__item">
-                <span className="lp-web-build__plate-wrap" aria-hidden>
-                  {BUILD_PLATES[index] ?? BUILD_PLATES[0]}
-                </span>
                 <div className="lp-web-build__copy">
                   <h3>{point.title}</h3>
                   <p>{point.body}</p>
@@ -620,7 +578,7 @@ export function WebsiteProcess({
           <h2 id="lp-web-process-heading">{title}</h2>
           {intro ? <p>{intro}</p> : null}
         </header>
-        <ol className="lp-web-process__list">
+        <ol className="lp-web-process__list lp-web-process__rail">
           {steps.map((step, index) => (
             <li key={step.title}>
               <article className="lp-web-process__item">
@@ -658,26 +616,45 @@ export function WebsiteProofStrip({
     <section className="lp-web-proofstrip" aria-label="Client results">
       <div className="shell">
         <ul className="lp-web-proofstrip__list">
-          {shown.map((sample) => (
-            <li key={sample.client}>
-              <p className="lp-web-proofstrip__client">{sample.client}</p>
-              <p className="lp-web-proofstrip__metric">
-                <span className="lp-web-proofstrip__figure">{sample.metric}</span>
-                <span className="lp-web-proofstrip__label">{sample.label}</span>
-              </p>
-              <a
-                href={sample.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {viewLiveLabel}
-              </a>
-            </li>
-          ))}
+          {shown.map((sample) => {
+            const parts = sample.metric.split(/\s*→\s*/);
+            const paired = parts.length === 2;
+            return (
+              <li key={sample.client}>
+                <a
+                  href={sample.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p className="lp-web-proofstrip__client">{sample.client}</p>
+                  <p className="lp-web-proofstrip__metric">
+                    {paired ? (
+                      <>
+                        <span className="lp-web-proofstrip__figure">{parts[0]}</span>
+                        <span className="lp-web-proofstrip__arrow">→</span>
+                        <span className="lp-web-proofstrip__figure">{parts[1]}</span>
+                      </>
+                    ) : (
+                      <span className="lp-web-proofstrip__figure">{sample.metric}</span>
+                    )}
+                  </p>
+                  <p className="lp-web-proofstrip__label">{sample.label}</p>
+                  <span className="lp-web-proofstrip__go">{viewLiveLabel}</span>
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </section>
   );
+}
+
+function finePrintParagraphs(text: string) {
+  return text
+    .split(/\n\n+/)
+    .map((paragraph) => paragraph.trim())
+    .filter(Boolean);
 }
 
 /* ------------------------------------------------------------------ */
@@ -690,6 +667,9 @@ export function WebsitePricing({
   anchor,
   delivery,
   qualify,
+  closer,
+  compareTitle,
+  compare,
   highlights,
   tiers,
   addOns,
@@ -704,6 +684,9 @@ export function WebsitePricing({
   anchor: string;
   delivery?: string;
   qualify?: string;
+  closer?: string;
+  compareTitle?: string;
+  compare?: { label: string; basic: string; custom: string }[];
   highlights?: string[];
   tiers?: LandingPagePrice[];
   addOns?: LandingPagePricingAddOn[];
@@ -729,7 +712,53 @@ export function WebsitePricing({
             {intro ? <p>{intro}</p> : null}
           </header>
           <div className="lp-web-pricing__panel">
-            {tiers?.length ? (
+            {compare?.length && tiers && tiers.length >= 2 ? (
+              <div
+                className="lp-web-pricing__board"
+                role="table"
+                aria-label={compareTitle}
+              >
+                <div className="lp-web-pricing__board-head" role="row">
+                  {tiers.map((tier) => (
+                    <div
+                      key={tier.name}
+                      role="columnheader"
+                      className={
+                        tier.featured
+                          ? "lp-web-pricing__tier lp-web-pricing__tier--featured"
+                          : "lp-web-pricing__tier"
+                      }
+                    >
+                      <h3>{tier.name}</h3>
+                      <p className="lp-web-pricing__tier-price">{tier.price}</p>
+                      {tier.tag ? (
+                        <p className="lp-web-pricing__fit">{tier.tag}</p>
+                      ) : null}
+                      {tier.body ? (
+                        <p className="lp-web-pricing__tier-body">{tier.body}</p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+                <div className="lp-web-pricing__board-cols" aria-hidden="true">
+                  <span>{tiers[0].name}</span>
+                  <span>{tiers[1].name}</span>
+                </div>
+                {compare
+                  .filter((row) => !/^(price|precio)$/i.test(row.label))
+                  .map((row) => (
+                    <div
+                      key={row.label}
+                      className="lp-web-pricing__board-row"
+                      role="row"
+                    >
+                      <div role="rowheader">{row.label}</div>
+                      <div role="cell">{row.basic}</div>
+                      <div role="cell">{row.custom}</div>
+                    </div>
+                  ))}
+              </div>
+            ) : tiers?.length ? (
               <ul className="lp-web-pricing__tiers">
                 {tiers.map((tier) => (
                   <li
@@ -742,6 +771,9 @@ export function WebsitePricing({
                   >
                     <h3>{tier.name}</h3>
                     <p className="lp-web-pricing__tier-price">{tier.price}</p>
+                    {tier.tag ? (
+                      <p className="lp-web-pricing__fit">{tier.tag}</p>
+                    ) : null}
                     {tier.body ? (
                       <p className="lp-web-pricing__tier-body">{tier.body}</p>
                     ) : null}
@@ -764,15 +796,37 @@ export function WebsitePricing({
             {delivery ? (
               <p className="lp-web-pricing__delivery">{delivery}</p>
             ) : null}
-            {qualify ? (
-              <p className="lp-web-pricing__qualify">{qualify}</p>
-            ) : null}
-            {highlights?.length ? (
-              <ul className="lp-web-pricing__points">
-                {highlights.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+            {qualify || closer || highlights?.length || note ? (
+              <div className="lp-web-pricing__foot">
+                {closer ? (
+                  <p className="lp-web-pricing__closer">{closer}</p>
+                ) : null}
+                {highlights?.length ? (
+                  <ul className="lp-web-pricing__points">
+                    {highlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                {qualify || note ? (
+                  <div className="lp-web-pricing__details">
+                    {qualify ? (
+                      <div className="lp-web-pricing__qualify">
+                        {finePrintParagraphs(qualify).map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                    {note ? (
+                      <div className="lp-web-pricing__note">
+                        {finePrintParagraphs(note).map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
+              </div>
             ) : null}
             {addOns?.length ? (
               <ul className="lp-web-pricing__addons">
@@ -790,7 +844,6 @@ export function WebsitePricing({
                 ))}
               </ul>
             ) : null}
-            {note ? <p className="lp-web-pricing__note">{note}</p> : null}
             <div className="lp-web-pricing__cta">
               <PlanCta
                 placement="pricing"

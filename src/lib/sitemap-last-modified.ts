@@ -36,7 +36,7 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/case-studies": "2026-06-01",
   "/industries": "2026-09-28",
   "/resources": "2026-05-15",
-  "/audit": "2026-08-22",
+  "/audit": "2026-10-09",
   "/thank-you": "2026-07-03",
   "/privacy": "2026-03-01",
   "/terms": "2026-03-01",

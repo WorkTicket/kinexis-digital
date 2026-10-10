@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
-import "@/styles/routes/audit.css";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { getAttributionPayload } from "@/lib/analytics/click-ids";
@@ -12,50 +11,33 @@ import {
 } from "@/lib/analytics/pending-conversion";
 import { navigateAfterSubmit } from "@/lib/in-app-browser";
 import { useRouter } from "@/i18n/navigation";
-import {
-  AUDIT_MAX_SCORE,
-  scoreAuditBand,
-  type MarketingAuditContent,
-} from "@/content/marketing-audit";
-import { cn } from "@/lib/cn";
+import type { MarketingAuditContent } from "@/content/marketing-audit";
 
 type Props = {
   content: MarketingAuditContent;
 };
 
+const SERVICE = "Marketing audit";
+
 export function MarketingAuditForm({ content }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
   const submitLock = useRef(false);
-  const [started, setStarted] = useState(false);
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, number>>({});
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
   const [phone, setPhone] = useState("");
   const [website, setWebsite] = useState("");
+  const [focus, setFocus] = useState("");
+  const [notes, setNotes] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const score = useMemo(
-    () => Object.values(answers).reduce((sum, points) => sum + points, 0),
-    [answers],
-  );
-  const complete = Object.keys(answers).length === content.questions.length;
-  const band = complete ? scoreAuditBand(score, content.bands) : null;
-  const question = content.questions[step];
-
-  const selectOption = (points: number) => {
-    if (!question) return;
-    setAnswers((prev) => ({ ...prev, [question.id]: points }));
-    if (step < content.questions.length - 1) {
-      setStep((current) => current + 1);
-    }
-  };
+  const focusLabel =
+    content.focusOptions.find((option) => option.value === focus)?.label ?? "";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!complete || !band) return;
     if (submitLock.current) return;
     submitLock.current = true;
     setStatus("submitting");
@@ -69,13 +51,15 @@ export function MarketingAuditForm({ content }: Props) {
         body: JSON.stringify({
           name,
           email,
+          businessName: company.trim() || undefined,
           phone: phone.trim() || undefined,
-          website: website.trim() || undefined,
-          goal: `${band.title} — ${band.summary}`,
-          service: "Marketing scorecard",
-          source: "marketing-audit",
-          auditType: "Marketing scorecard",
-          score,
+          website: website.trim(),
+          websiteRequired: true,
+          need: focusLabel,
+          goal: notes.trim() || focusLabel,
+          service: SERVICE,
+          source: "lead-magnet",
+          auditType: SERVICE,
           ...honeypotPayload,
           ...attribution,
         }),
@@ -84,7 +68,7 @@ export function MarketingAuditForm({ content }: Props) {
       if (!res.ok) {
         submitLock.current = false;
         const data = (await res.json().catch(() => ({}))) as { error?: string };
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        throw new Error(data.error || content.errorMessage);
       }
 
       const metaEventId = createMetaEventId("Lead");
@@ -92,7 +76,7 @@ export function MarketingAuditForm({ content }: Props) {
         type: "audit",
         email,
         phone: phone.trim() || undefined,
-        serviceInterest: "Marketing scorecard",
+        serviceInterest: SERVICE,
         formType: "lead-magnet",
         conversionAlreadyFired: true,
         metaEvent: "Lead",
@@ -102,150 +86,152 @@ export function MarketingAuditForm({ content }: Props) {
         email,
         phone: phone.trim() || undefined,
         formType: "lead-magnet",
-        serviceInterest: "Marketing scorecard",
+        serviceInterest: SERVICE,
         metaEventId,
       });
       navigateAfterSubmit("/thank-you/audit", router);
     } catch (err) {
       submitLock.current = false;
       setStatus("error");
-      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setErrorMsg(err instanceof Error ? err.message : content.errorMessage);
     }
   };
 
-  if (!started) {
-    return (
-      <div className="audit-panel">
-        <Button size="lg" arrow onClick={() => setStarted(true)}>
-          {content.startLabel}
-        </Button>
-      </div>
-    );
-  }
-
-  if (complete && band) {
-    return (
-      <div className="audit-panel audit-panel--result">
-        <p className="audit-score">
-          <span className="audit-score__label">{content.scoreLabel}</span>
-          <span className="audit-score__value">
-            {score}
-            <span className="audit-score__max">/{AUDIT_MAX_SCORE}</span>
-          </span>
-        </p>
-        <h2 className="audit-band__title">{band.title}</h2>
-        <p className="audit-band__summary">{band.summary}</p>
-
-        <form className="audit-lead" onSubmit={handleSubmit} noValidate>
-          <div className="audit-lead__head">
-            <h3 className="audit-lead__title">{content.formTitle}</h3>
-            <p className="audit-lead__dek">{content.formSubtitle}</p>
-          </div>
-
-          <div className="audit-lead__grid">
-            <label className="audit-field">
-              <span>Name</span>
-              <input
-                required
-                name="name"
-                autoComplete="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </label>
-            <label className="audit-field">
-              <span>Email</span>
-              <input
-                required
-                type="email"
-                name="email"
-                autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </label>
-            <label className="audit-field">
-              <span>Phone</span>
-              <input
-                type="tel"
-                name="phone"
-                autoComplete="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-            </label>
-            <label className="audit-field">
-              <span>Website</span>
-              <input
-                type="url"
-                name="website"
-                autoComplete="url"
-                placeholder="https://"
-                value={website}
-                onChange={(e) => setWebsite(e.target.value)}
-              />
-            </label>
-          </div>
-
-          <input {...honeypotProps} />
-
-          {status === "error" ? (
-            <p className="audit-lead__error" role="alert">
-              {errorMsg}
-            </p>
-          ) : null}
-
-          <Button
-            type="submit"
-            size="lg"
-            arrow
-            disabled={status === "submitting"}
-          >
-            {status === "submitting" ? "Sending…" : content.submitLabel}
-          </Button>
-          <p className="audit-lead__footnote">{content.formFootnote}</p>
-        </form>
-      </div>
-    );
-  }
-
-  if (!question) return null;
-
   return (
-    <div className="audit-panel">
-      <p className="audit-progress">
-        {step + 1} / {content.questions.length}
-      </p>
-      <h2 className="audit-question">{question.prompt}</h2>
-      <ul className="audit-options">
-        {question.options.map((option) => {
-          const selected = answers[question.id] === option.points;
-          return (
-            <li key={option.label}>
-              <button
-                type="button"
-                className={cn(
-                  "audit-option",
-                  selected && "audit-option--selected",
-                )}
-                onClick={() => selectOption(option.points)}
-              >
-                {option.label}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="audit-nav">
-        <Button
-          type="button"
-          variant="ghost"
-          disabled={step === 0}
-          onClick={() => setStep((current) => Math.max(0, current - 1))}
-        >
-          {content.backLabel}
-        </Button>
+    <div className="audit-form">
+      <div>
+        <h2 id="audit-form-heading" className="audit-form__title">
+          {content.formTitle}
+        </h2>
+        <p className="audit-form__dek">{content.formSubtitle}</p>
       </div>
+
+      <form onSubmit={handleSubmit}>
+        <input {...honeypotProps} />
+
+        <div className="audit-form__grid">
+          <label className="audit-field">
+            <span className="form-label">
+              {content.nameLabel} <span className="text-foreground">*</span>
+            </span>
+            <input
+              required
+              name="name"
+              autoComplete="name"
+              className="form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label className="audit-field">
+            <span className="form-label">
+              {content.emailLabel} <span className="text-foreground">*</span>
+            </span>
+            <input
+              required
+              type="email"
+              name="email"
+              autoComplete="email"
+              className="form-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <label className="audit-field">
+            <span className="form-label">
+              {content.companyLabel}{" "}
+              <span className="form-label__optional">({content.companyOptional})</span>
+            </span>
+            <input
+              name="organization"
+              autoComplete="organization"
+              className="form-input"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+            />
+          </label>
+          <label className="audit-field">
+            <span className="form-label">
+              {content.phoneLabel}{" "}
+              <span className="form-label__optional">({content.phoneOptional})</span>
+            </span>
+            <input
+              type="tel"
+              name="phone"
+              autoComplete="tel"
+              className="form-input"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </label>
+        </div>
+
+        <label className="audit-field">
+          <span className="form-label">
+            {content.websiteLabel} <span className="text-foreground">*</span>
+          </span>
+          <input
+            required
+            type="text"
+            inputMode="url"
+            name="website"
+            autoComplete="url"
+            className="form-input"
+            placeholder={content.websitePlaceholder}
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </label>
+
+        <label className="audit-field">
+          <span className="form-label">
+            {content.focusLabel} <span className="text-foreground">*</span>
+          </span>
+          <select
+            required
+            name="focus"
+            className="form-select"
+            value={focus}
+            onChange={(e) => setFocus(e.target.value)}
+          >
+            <option value="">{content.focusPlaceholder}</option>
+            {content.focusOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="audit-field">
+          <span className="form-label">
+            {content.notesLabel}{" "}
+            <span className="form-label__optional">({content.notesOptional})</span>
+          </span>
+          <textarea
+            name="notes"
+            className="form-textarea"
+            rows={5}
+            maxLength={1000}
+            placeholder={content.notesPlaceholder}
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+          />
+        </label>
+
+        {status === "error" ? (
+          <p className="audit-form__error" role="alert">
+            {errorMsg}
+          </p>
+        ) : null}
+
+        <div className="audit-form__submit">
+          <p className="audit-form__footnote">{content.formFootnote}</p>
+          <Button type="submit" size="lg" arrow disabled={status === "submitting"}>
+            {status === "submitting" ? content.submittingLabel : content.submitLabel}
+          </Button>
+        </div>
+      </form>
     </div>
   );
 }

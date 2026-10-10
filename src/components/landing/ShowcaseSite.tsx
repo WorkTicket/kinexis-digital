@@ -20,6 +20,8 @@ const PHOTOS = {
   meridian: `/assets/images/lp/showcase-meridian.webp?v=${ASSET_V}`,
   /** Yard photo for the dated A1 WordPress recreation — not the industry board. */
   a1: `/assets/images/lp/showcase-a1-before.webp?v=${ASSET_V}`,
+  /** Finished yard for the Greenfield rebuild hero. */
+  yard: `/assets/images/lp/showcase-greenfield-yard.webp?v=${ASSET_V}`,
 } as const;
 
 function Chrome({
@@ -353,11 +355,9 @@ function Dated({ layout }: { layout: ShowcaseLayout }) {
               <p className="lp-site__dated-title">
                 Quality Landscaping You Can Trust
               </p>
-              {phone ? null : (
-                <p className="lp-site__dated-sub">
-                  Family owned since 1998. Call for more information.
-                </p>
-              )}
+              <p className="lp-site__dated-sub">
+                Family owned since 1998. Call for more information.
+              </p>
               <span className="lp-site__dated-cta">Click Here</span>
             </div>
             {phone ? null : (
@@ -454,11 +454,9 @@ function GreenfieldDated({ layout }: { layout: ShowcaseLayout }) {
               <p className="lp-site__dated-title">
                 Quality Landscaping You Can Trust
               </p>
-              {phone ? null : (
-                <p className="lp-site__dated-sub">
-                  Family owned since 1998. Call for more information.
-                </p>
-              )}
+              <p className="lp-site__dated-sub">
+                Family owned since 1998. Call for more information.
+              </p>
               <span className="lp-site__dated-cta">Click Here</span>
             </div>
             {phone ? null : (
@@ -539,27 +537,19 @@ function Greenfield({
       </header>
       <div className="lp-site__hero lp-site__hero--bleed">
         <div className="lp-site__photo">
-          <Photo src={PHOTOS.a1} priority={priority} />
+          <Photo src={PHOTOS.yard} priority={priority} />
         </div>
         <div className="lp-site__copy">
-          {phone ? null : (
-            <p className="lp-site__kicker">Design-build crews</p>
-          )}
+          <p className="lp-site__kicker">Design-build crews</p>
           <p className="lp-site__title">Yards that look finished.</p>
-          {phone ? null : (
-            <p className="lp-site__lede">
-              Services first. Quote in a tap. Call when you need a person.
-            </p>
-          )}
+          <p className="lp-site__lede">
+            Services first. Quote in a tap. Call when you need a person.
+          </p>
           <span className="lp-site__actions">
             <span className="lp-site__cta">Get a quote</span>
-            {phone ? null : (
-              <span className="lp-site__cta lp-site__cta--ghost">Call</span>
-            )}
+            <span className="lp-site__cta lp-site__cta--ghost">Call</span>
           </span>
-          {phone ? null : (
-            <p className="lp-site__meta">Licensed · Insured · Local crews</p>
-          )}
+          <p className="lp-site__meta">Licensed · Insured · Local crews</p>
         </div>
       </div>
       {phone ? null : (

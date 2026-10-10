@@ -1,22 +1,20 @@
 import type { Locale } from "@/i18n/routing";
 import { localeContent } from "@/i18n/locale-content";
 
-export type AuditOption = {
-  label: string;
-  points: number;
-};
-
-export type AuditQuestion = {
-  id: string;
-  prompt: string;
-  options: AuditOption[];
-};
-
-export type AuditBand = {
-  min: number;
-  max: number;
+export type AuditLayer = {
+  id: "site" | "search" | "ads" | "handoff";
   title: string;
-  summary: string;
+  body: string;
+};
+
+export type AuditStep = {
+  title: string;
+  detail: string;
+};
+
+export type AuditFocusOption = {
+  value: string;
+  label: string;
 };
 
 export type MarketingAuditContent = {
@@ -26,197 +24,217 @@ export type MarketingAuditContent = {
   title: string;
   signal: string;
   copy: string;
-  startLabel: string;
-  nextLabel: string;
-  backLabel: string;
-  scoreLabel: string;
+  primaryLabel: string;
+  layersEyebrow: string;
+  layersTitle: string;
+  layersDek: string;
+  layers: AuditLayer[];
   formTitle: string;
   formSubtitle: string;
+  nameLabel: string;
+  emailLabel: string;
+  companyLabel: string;
+  companyOptional: string;
+  phoneLabel: string;
+  phoneOptional: string;
+  websiteLabel: string;
+  websitePlaceholder: string;
+  focusLabel: string;
+  focusPlaceholder: string;
+  focusOptions: AuditFocusOption[];
+  notesLabel: string;
+  notesOptional: string;
+  notesPlaceholder: string;
   submitLabel: string;
+  submittingLabel: string;
   formFootnote: string;
-  questions: AuditQuestion[];
-  bands: AuditBand[];
+  errorMessage: string;
+  asideTitle: string;
+  asideSubtitle: string;
+  returns: string[];
+  stepsTitle: string;
+  steps: AuditStep[];
+  trust: string[];
 };
 
 const en: MarketingAuditContent = {
-  metaTitle: "Free Marketing Scorecard Audit Online",
+  metaTitle: "Free Marketing Audit of Your Site",
   metaDescription:
-    "Score your site, search, ads, and tracking in five minutes. Get a plain-English read on what's leaking demand and what to fix first.",
-  eyebrow: "Scorecard",
-  title: "Find where",
-  signal: "demand dies.",
-  copy: "Five questions. No pitch deck. You get a score, a short read on the bottleneck, and the option to send it to a strategist.",
-  startLabel: "Start the scorecard",
-  nextLabel: "Next",
-  backLabel: "Back",
-  scoreLabel: "Your score",
-  formTitle: "Want the full read?",
-  formSubtitle:
-    "Leave your details and a strategist will follow up with what we'd fix first. Practical notes within one business day.",
-  submitLabel: "Send my scorecard",
-  formFootnote: "No automated drip. A person reads what you sent.",
-  questions: [
-    {
-      id: "tracking",
-      prompt: "Can you name the phone calls, forms, and orders each channel produced last month?",
-      options: [
-        { label: "Yes — tracked end to end", points: 4 },
-        { label: "Partially — some channels, not all", points: 2 },
-        { label: "No — we mostly watch traffic and spend", points: 0 },
-      ],
-    },
+    "Send your site. We review the pages, search, ads, and how fast a lead gets a person, then write what to fix first. One business day.",
+  eyebrow: "Audit",
+  title: "Send the site.",
+  signal: "We'll read it.",
+  copy: "Send the URL. A strategist opens the site on a phone, checks whether search and ads are tied to calls or orders, and looks at how fast a lead gets a person. You get a short written brief: the main leak, what to fix before you spend more, and whether the honest move is a repair or a rebuild. If the site is fine and the follow-up is the problem, the brief says that. One business day. No deck.",
+  primaryLabel: "Request the audit",
+  layersEyebrow: "What we open",
+  layersTitle: "Four places demand usually dies.",
+  layersDek:
+    "The review stays on the parts that decide whether a visit becomes a call, a form, or an order. A crawl export is a list. This is a read of where demand dies. Most of the time one of these four is doing the damage, and the other three can wait.",
+  layers: [
     {
       id: "site",
-      prompt: "On a phone, is the primary CTA obvious within two seconds?",
-      options: [
-        { label: "Yes — call or buy is hard to miss", points: 4 },
-        { label: "Somewhat — it depends on the page", points: 2 },
-        { label: "No — it still feels like a desktop brochure", points: 0 },
-      ],
+      title: "The site on a phone",
+      body: "Is the offer obvious, and can someone call or buy without hunting? A brochure that hides the next step wastes every channel you add on top.",
     },
     {
       id: "search",
-      prompt: "Do you rank or appear in the map pack for the jobs and products people already pay for?",
-      options: [
-        { label: "Yes for our core offers", points: 4 },
-        { label: "Only for brand or soft queries", points: 2 },
-        { label: "Not really / we don't know", points: 0 },
-      ],
+      title: "Search",
+      body: "Do you show up for the jobs and products people already pay for, including the map pack? Ranking only for your own name is a different problem.",
     },
     {
       id: "ads",
-      prompt: "If you run ads, is budget tied to conversions you can defend in a P&L?",
-      options: [
-        { label: "Yes — waste gets cut weekly", points: 4 },
-        { label: "Somewhat — reports look busy", points: 2 },
-        { label: "No ads, or spend without clear CPA", points: 0 },
-      ],
+      title: "Ads, if you run them",
+      body: "Is the budget tied to a conversion you can defend, or to clicks that never become work?",
     },
     {
-      id: "followup",
-      prompt: "When a lead comes in, how fast does a human follow up?",
-      options: [
-        { label: "Under an hour during business hours", points: 4 },
-        { label: "Same day, sometimes next", points: 2 },
-        { label: "It depends / leads go cold", points: 0 },
-      ],
+      id: "handoff",
+      title: "The handoff",
+      body: "When a lead lands, does a person follow up the same day? And can you name which channel produced last month's calls?",
     },
   ],
-  bands: [
+  formTitle: "Request the audit",
+  formSubtitle:
+    "The website is required so we can open it. A phone number helps if one detail is missing before we write.",
+  nameLabel: "Name",
+  emailLabel: "Email",
+  companyLabel: "Company",
+  companyOptional: "optional",
+  phoneLabel: "Phone",
+  phoneOptional: "optional",
+  websiteLabel: "Website",
+  websitePlaceholder: "yoursite.com",
+  focusLabel: "What should we open first?",
+  focusPlaceholder: "Choose one",
+  focusOptions: [
+    { value: "site", label: "The site on a phone" },
+    { value: "search", label: "Search and the map pack" },
+    { value: "ads", label: "Paid ads" },
+    { value: "tracking", label: "Tracking and follow-up" },
+    { value: "full", label: "The whole demand path" },
+  ],
+  notesLabel: "Anything we should know",
+  notesOptional: "optional",
+  notesPlaceholder:
+    "Towns you cover, the offer that has to convert, or the number that stopped moving.",
+  submitLabel: "Request the audit",
+  submittingLabel: "Sending…",
+  formFootnote: "No automated sequence. A person reads what you sent.",
+  errorMessage: "Something went wrong. Please try again.",
+  asideTitle: "What you get back",
+  asideSubtitle:
+    "A strategist writes it. You can use the brief with us or on your own.",
+  returns: [
+    "The main leak, named in plain language",
+    "What to fix before you spend more",
+    "Repair or rebuild, when that is the honest call",
+    "Enough detail to act without another call",
+  ],
+  stepsTitle: "What happens next",
+  steps: [
     {
-      min: 16,
-      max: 20,
-      title: "Solid base. Tighten the edges.",
-      summary:
-        "Tracking and conversion paths are mostly working. The next gains usually come from sharper offer pages, local depth, or cutting paid waste — not a full rebuild.",
+      title: "We open the URL",
+      detail: "The site you sent, on a phone, plus the part you asked us to look at.",
     },
     {
-      min: 10,
-      max: 15,
-      title: "Demand is leaking in a few places.",
-      summary:
-        "Something between the click and the booked job is soft. Most teams in this range need one primary fix — site, search, or ads — before stacking more channels.",
+      title: "We mark the leak",
+      detail: "One primary bottleneck. The rest stays in the notes so it does not bury the point.",
     },
     {
-      min: 0,
-      max: 9,
-      title: "Foundation first.",
-      summary:
-        "Traffic without measurement, or a site that hides the CTA, will burn any budget you add. Start with tracking and conversion paths before you scale spend.",
+      title: "You get the brief",
+      detail: "Written findings within one business day. What to fix first, and why.",
     },
   ],
+  trust: ["One business day", "Written by a person", "Useful if you never hire us"],
 };
 
 const es: MarketingAuditContent = {
-  metaTitle: "Auditoría scorecard de marketing gratis",
+  metaTitle: "Auditoría de marketing de tu web",
   metaDescription:
-    "Puntúa tu web, búsqueda, anuncios y medición en cinco minutos. Una lectura clara de dónde se pierde la demanda y qué arreglar primero.",
-  eyebrow: "Scorecard",
-  title: "Encuentra dónde",
-  signal: "muere la demanda.",
-  copy: "Cinco preguntas. Sin pitch. Obtienes una puntuación, una lectura corta del cuello de botella y la opción de enviársela a un estratega.",
-  startLabel: "Empezar el scorecard",
-  nextLabel: "Siguiente",
-  backLabel: "Atrás",
-  scoreLabel: "Tu puntuación",
-  formTitle: "¿Quieres la lectura completa?",
-  formSubtitle:
-    "Déjanos tus datos y un estratega te dirá qué arreglaríamos primero. Notas prácticas en un día hábil.",
-  submitLabel: "Enviar mi scorecard",
-  formFootnote: "Sin drip automático. Una persona lee lo que enviaste.",
-  questions: [
-    {
-      id: "tracking",
-      prompt:
-        "¿Puedes nombrar las llamadas, formularios y pedidos que produjo cada canal el mes pasado?",
-      options: [
-        { label: "Sí — medido de punta a punta", points: 4 },
-        { label: "Parcial — algunos canales, no todos", points: 2 },
-        { label: "No — miramos sobre todo tráfico y gasto", points: 0 },
-      ],
-    },
+    "Envía tu sitio. Revisamos las páginas, la búsqueda, los anuncios y qué tan rápido responde una persona. El informe llega en un día hábil.",
+  eyebrow: "Auditoría",
+  title: "Envía el sitio.",
+  signal: "Lo leemos.",
+  copy: "Envía la URL. Un estratega abre el sitio en el teléfono, revisa si la búsqueda y los anuncios están atados a llamadas o pedidos, y mira qué tan rápido un lead llega a una persona. Recibes un informe corto: la fuga principal, qué arreglar antes de gastar más, y si lo honesto es reparar o reconstruir. Si el sitio está bien y el problema es el seguimiento, el informe lo dice. Un día hábil. Sin presentación.",
+  primaryLabel: "Pedir la auditoría",
+  layersEyebrow: "Qué abrimos",
+  layersTitle: "Cuatro puntos donde suele morir la demanda.",
+  layersDek:
+    "La revisión se queda en lo que decide si una visita se vuelve llamada, formulario o pedido. Un export de rastreo es una lista. Esto es una lectura de dónde muere la demanda. Casi siempre uno de estos cuatro está haciendo el daño, y los otros tres pueden esperar.",
+  layers: [
     {
       id: "site",
-      prompt: "En el móvil, ¿el CTA principal es obvio en dos segundos?",
-      options: [
-        { label: "Sí — llamar o comprar es difícil de pasar por alto", points: 4 },
-        { label: "Más o menos — depende de la página", points: 2 },
-        { label: "No — sigue pareciendo un folleto de escritorio", points: 0 },
-      ],
+      title: "El sitio en el teléfono",
+      body: "¿La oferta es obvia, y se puede llamar o comprar sin buscar? Un folleto que esconde el siguiente paso desperdicia cualquier canal que le pongas encima.",
     },
     {
       id: "search",
-      prompt:
-        "¿Apareces en rankings o en el pack de mapas para los trabajos y productos que la gente ya paga?",
-      options: [
-        { label: "Sí para nuestras ofertas principales", points: 4 },
-        { label: "Solo marca o consultas blandas", points: 2 },
-        { label: "No realmente / no lo sabemos", points: 0 },
-      ],
+      title: "Búsqueda",
+      body: "¿Apareces para los trabajos y productos que la gente ya paga, incluido el pack de mapas? Salir solo por tu propio nombre es otro problema.",
     },
     {
       id: "ads",
-      prompt:
-        "Si corres anuncios, ¿el presupuesto está atado a conversiones que puedes defender en un P&L?",
-      options: [
-        { label: "Sí — el desperdicio se corta cada semana", points: 4 },
-        { label: "Más o menos — los reportes se ven ocupados", points: 2 },
-        { label: "Sin anuncios, o gasto sin CPA claro", points: 0 },
-      ],
+      title: "Anuncios, si los corres",
+      body: "Si están activos, ¿el presupuesto está atado a una conversión que puedes defender, o a clics que nunca se vuelven trabajo?",
     },
     {
-      id: "followup",
-      prompt: "Cuando entra un lead, ¿qué tan rápido responde un humano?",
-      options: [
-        { label: "Menos de una hora en horario laboral", points: 4 },
-        { label: "El mismo día, a veces al siguiente", points: 2 },
-        { label: "Depende / los leads se enfrían", points: 0 },
-      ],
+      id: "handoff",
+      title: "El traspaso",
+      body: "Cuando entra un lead, ¿una persona responde el mismo día? ¿Y puedes nombrar qué canal produjo las llamadas del mes pasado?",
     },
   ],
-  bands: [
+  formTitle: "Pedir la auditoría",
+  formSubtitle:
+    "El sitio es obligatorio para poder abrirlo. Un teléfono ayuda si falta un detalle antes de escribir.",
+  nameLabel: "Nombre",
+  emailLabel: "Email",
+  companyLabel: "Empresa",
+  companyOptional: "opcional",
+  phoneLabel: "Teléfono",
+  phoneOptional: "opcional",
+  websiteLabel: "Sitio web",
+  websitePlaceholder: "tusitio.com",
+  focusLabel: "¿Qué abrimos primero?",
+  focusPlaceholder: "Elige uno",
+  focusOptions: [
+    { value: "site", label: "El sitio en el teléfono" },
+    { value: "search", label: "Búsqueda y el pack de mapas" },
+    { value: "ads", label: "Anuncios de pago" },
+    { value: "tracking", label: "Medición y seguimiento" },
+    { value: "full", label: "Toda la ruta de demanda" },
+  ],
+  notesLabel: "Algo que debamos saber",
+  notesOptional: "opcional",
+  notesPlaceholder:
+    "Las ciudades que cubres, la oferta que tiene que convertir, o el número que dejó de moverse.",
+  submitLabel: "Pedir la auditoría",
+  submittingLabel: "Enviando…",
+  formFootnote: "Sin secuencia automática. Una persona lee lo que enviaste.",
+  errorMessage: "Algo salió mal. Inténtalo de nuevo.",
+  asideTitle: "Qué recibes",
+  asideSubtitle:
+    "Lo escribe un estratega. Puedes usar el informe con nosotros o por tu cuenta.",
+  returns: [
+    "La fuga principal, dicha en lenguaje claro",
+    "Qué arreglar antes de gastar más",
+    "Reparar o reconstruir, cuando esa sea la respuesta honesta",
+    "Detalle suficiente para actuar sin otra llamada",
+  ],
+  stepsTitle: "Qué sigue",
+  steps: [
     {
-      min: 16,
-      max: 20,
-      title: "Base sólida. Ajusta los bordes.",
-      summary:
-        "La medición y las rutas de conversión funcionan en buena parte. Las siguientes ganancias suelen venir de páginas de oferta más afiladas, profundidad local o recortar desperdicio en paid.",
+      title: "Abrimos la URL",
+      detail: "El sitio que enviaste, en un teléfono, más la parte que pediste revisar.",
     },
     {
-      min: 10,
-      max: 15,
-      title: "La demanda se filtra en algunos puntos.",
-      summary:
-        "Algo entre el clic y el trabajo cerrado está flojo. La mayoría en este rango necesita un arreglo principal — web, búsqueda o ads — antes de apilar más canales.",
+      title: "Marcamos la fuga",
+      detail: "Un cuello de botella principal. El resto queda en las notas para no tapar el punto.",
     },
     {
-      min: 0,
-      max: 9,
-      title: "Primero la base.",
-      summary:
-        "Tráfico sin medición, o una web que esconde el CTA, quemará cualquier presupuesto que añadas. Empieza por tracking y conversión antes de escalar spend.",
+      title: "Recibes el informe",
+      detail: "Hallazgos por escrito en un día hábil. Qué arreglar primero, y por qué.",
     },
   ],
+  trust: ["Un día hábil", "Lo escribe una persona", "Sirve aunque no nos contrates"],
 };
 
 const byLocale = localeContent({
@@ -227,12 +245,3 @@ const byLocale = localeContent({
 export function getMarketingAuditContent(locale: Locale): MarketingAuditContent {
   return byLocale[locale] ?? en;
 }
-
-export function scoreAuditBand(score: number, bands: AuditBand[]): AuditBand {
-  return (
-    bands.find((band) => score >= band.min && score <= band.max) ??
-    bands[bands.length - 1]!
-  );
-}
-
-export const AUDIT_MAX_SCORE = 20;

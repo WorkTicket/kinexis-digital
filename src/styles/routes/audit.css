@@ -1,202 +1,343 @@
-/* Route CSS split from globals.css — loaded only with the components that use it. */
+/* Route CSS split from globals.css — loaded only with the audit page. */
 
-/* Marketing audit scorecard */
-.audit-panel {
-  max-width: 42rem;
+/* This hero's second line is one phrase, so the whole line is signal blue. */
+.audit-page .hero-signal-line,
+.audit-page .hero-signal-line .text-foreground {
+  color: var(--hero-signal);
+}
+
+.audit-review {
   display: grid;
-  gap: 1.25rem;
+  gap: 2.5rem;
+  min-width: 0;
+}
+
+.audit-review > * {
+  min-width: 0;
 }
 
 
-.audit-panel--result {
-  gap: 1.5rem;
-}
-
-
-.audit-progress {
+.audit-board__still {
   margin: 0;
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
+  overflow: hidden;
+  width: min(100%, 36rem);
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-media);
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  background: #07090d;
 }
 
-
-.audit-question {
-  margin: 0;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.45rem, 2.8vw, 1.9rem);
-  font-weight: 750;
-  letter-spacing: -0.04em;
-  line-height: 1.15;
-  color: var(--foreground);
-  text-wrap: balance;
-}
-
-
-.audit-options {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  gap: 0.75rem;
-}
-
-
-.audit-option {
+.audit-board__img {
+  display: block;
   width: 100%;
-  text-align: left;
-  padding: 1rem 1.15rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  background: color-mix(in oklab, var(--foreground) 3%, transparent);
-  color: var(--foreground);
-  font-size: 0.975rem;
-  line-height: 1.45;
-  cursor: pointer;
-  transition:
-    border-color 200ms ease,
-    background-color 200ms ease;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
-
-.audit-option:hover,
-.audit-option--selected {
-  border-color: color-mix(in oklab, var(--hero-signal) 55%, var(--line));
-  background: color-mix(in oklab, var(--hero-signal) 8%, transparent);
+@media (prefers-reduced-motion: no-preference) {
+  .audit-board__img {
+    animation: audit-still-in 280ms ease;
+  }
 }
 
+@keyframes audit-still-in {
+  from { opacity: 0.45; }
+  to { opacity: 1; }
+}
 
-.audit-nav {
-  display: flex;
+.audit-board {
+  display: grid;
+  gap: 1.35rem;
+  min-width: 0;
+}
+
+.audit-board > * {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .audit-board {
+    grid-template-columns: minmax(0, 1.08fr) minmax(16rem, 0.92fr);
+    gap: 2rem 2.75rem;
+    align-items: center;
+  }
+
+  .audit-board__still {
+    width: 100%;
+  }
+}
+
+.audit-board__list {
+  display: grid;
+  gap: 0.2rem;
+  align-content: center;
+  padding: 0;
+}
+
+.audit-board__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
   gap: 0.75rem;
+  align-items: start;
+  width: 100%;
+  margin: 0;
+  padding: 0.9rem 0.95rem 1rem;
+  border: 0;
+  border-radius: 0.85rem;
+  background: transparent;
+  color: var(--foreground);
+  text-align: left;
+  cursor: pointer;
 }
 
+.audit-board__row.is-active {
+  background: color-mix(in oklab, var(--hero-signal) 10%, transparent);
+  box-shadow: inset 3px 0 0 var(--hero-signal);
+}
 
-.audit-score {
-  display: flex;
-  flex-direction: column;
+.audit-board__row:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.audit-board__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.15rem;
+  color: color-mix(in oklab, var(--foreground) 42%, transparent);
+}
+
+.audit-board__row.is-active .audit-board__icon {
+  color: var(--hero-signal);
+}
+
+.audit-board__copy {
+  display: grid;
   gap: 0.35rem;
-  margin: 0;
 }
 
-
-.audit-score__label {
-  font-size: 0.75rem;
-  font-weight: 650;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-
-.audit-score__value {
+.audit-board__name {
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(2.5rem, 6vw, 3.5rem);
-  font-weight: 750;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  color: var(--foreground);
-}
-
-
-.audit-score__max {
-  font-size: 0.45em;
-  color: var(--muted);
-}
-
-
-.audit-band__title {
-  margin: 0;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-  font-weight: 750;
+  font-size: clamp(1.2rem, 1.7vw, 1.45rem);
+  font-weight: 700;
   letter-spacing: -0.035em;
-  line-height: 1.15;
-  color: var(--foreground);
+  line-height: 1.1;
 }
 
+.audit-board__row:not(.is-active) .audit-board__name {
+  color: color-mix(in oklab, var(--foreground) 78%, transparent);
+}
 
-.audit-band__summary {
-  margin: 0;
-  font-size: 1.0625rem;
-  line-height: 1.6;
+.audit-board__body {
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: var(--muted);
   text-wrap: pretty;
 }
 
-
-.audit-lead {
+.audit-request {
   display: grid;
-  gap: 1rem;
-  margin-top: 0.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
+  gap: 2.75rem;
+  align-items: start;
+  min-width: 0;
 }
 
+.audit-request > * {
+  min-width: 0;
+}
 
-.audit-lead__title {
+@media (min-width: 1024px) {
+  .audit-request {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 20.5rem);
+    gap: 4rem;
+  }
+}
+
+.audit-form {
+  display: grid;
+  gap: 1.35rem;
+  padding: 1.35rem 1.15rem 1.5rem;
+  border-radius: 1.15rem;
+  background: color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+@media (min-width: 768px) {
+  .audit-form {
+    padding: 1.75rem 1.6rem 1.85rem;
+  }
+}
+
+.audit-form form {
+  display: grid;
+  gap: 1.15rem;
+}
+
+.audit-form__title {
   margin: 0;
   font-family: var(--font-display), system-ui, sans-serif;
-  font-size: 1.35rem;
+  font-size: clamp(1.65rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: var(--foreground);
+}
+
+.audit-form__dek {
+  margin: 0.55rem 0 0;
+  max-width: 38rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.audit-form__grid {
+  display: grid;
+  gap: 1.15rem;
+}
+
+@media (min-width: 640px) {
+  .audit-form__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.audit-field {
+  display: block;
+}
+
+.audit-form__error {
+  margin: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in oklab, #c0392b 35%, transparent);
+  background: color-mix(in oklab, #c0392b 10%, transparent);
+  padding: 0.7rem 0.85rem;
+  color: #c0392b;
+  font-size: 0.9rem;
+}
+
+.audit-form__submit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 0.35rem;
+}
+
+@media (min-width: 640px) {
+  .audit-form__submit {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+}
+
+.audit-form__footnote {
+  margin: 0;
+  max-width: 22rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.audit-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  padding: 1.35rem 1.15rem 1.5rem;
+  border-radius: 1.15rem;
+  background:
+    linear-gradient(160deg, color-mix(in oklab, var(--hero-signal) 16%, transparent), transparent 42%),
+    color-mix(in oklab, var(--foreground) 4%, transparent);
+}
+
+@media (min-width: 768px) {
+  .audit-aside {
+    padding: 1.6rem 1.4rem 1.7rem;
+  }
+}
+
+.audit-aside__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.2rem;
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--foreground);
 }
 
-
-.audit-lead__dek {
-  margin: 0.35rem 0 0;
-  font-size: 0.975rem;
+.audit-aside__dek {
+  margin: 0.45rem 0 0;
+  font-size: 0.95rem;
   line-height: 1.55;
   color: var(--muted);
 }
 
-
-.audit-lead__grid {
+.audit-returns {
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
   display: grid;
   gap: 0.85rem;
 }
 
-
-@media (min-width: 640px) {
-.audit-lead__grid {
-    grid-template-columns: 1fr 1fr;
-  }
+.audit-returns li {
+  position: relative;
+  padding-left: 0.95rem;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.35;
+  color: var(--foreground);
 }
 
+.audit-returns li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background: var(--hero-signal);
+}
 
-
-.audit-field {
+.audit-steps {
+  list-style: none;
+  margin: 1.15rem 0 0;
+  padding: 0;
   display: grid;
-  gap: 0.35rem;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  gap: 1.15rem;
+}
+
+.audit-steps__title {
+  margin: 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--foreground);
+}
+
+.audit-steps__detail {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
   color: var(--muted);
 }
 
-
-.audit-field input {
-  width: 100%;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-control);
-  background: color-mix(in oklab, var(--foreground) 3%, transparent);
-  color: var(--foreground);
-  font-size: 1rem;
+.audit-trust {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
 }
 
-
-.audit-lead__error {
-  margin: 0;
-  color: #c0392b;
-  font-size: 0.9rem;
-}
-
-
-.audit-lead__footnote {
-  margin: 0;
-  font-size: 0.8125rem;
+.audit-trust li {
+  font-size: 0.875rem;
+  line-height: 1.4;
   color: var(--muted);
 }

@@ -83,8 +83,8 @@ const homeExploreLinksEn: HomeExploreLink[] = [
   },
   {
     href: "/audit",
-    label: "Scorecard",
-    dek: "Five questions. A score. What to fix before you spend more.",
+    label: "Audit",
+    dek: "Send the site. A written brief on what to fix first.",
     lane: "program",
     icon: "contact",
   },
@@ -121,8 +121,8 @@ const homeExploreLinksEs: HomeExploreLink[] = [
   },
   {
     href: "/audit",
-    label: "Scorecard",
-    dek: "Cinco preguntas. Una puntuación. Qué arreglar antes de gastar más.",
+    label: "Auditoría",
+    dek: "Envía el sitio. Un informe escrito sobre qué arreglar primero.",
     lane: "program",
     icon: "contact",
   },

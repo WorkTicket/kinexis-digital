@@ -325,7 +325,7 @@ export type LandingPageEntry = {
     name: string;
     role: string;
   };
-  /** Four outcome tiles under the hero (aside.lp-web-outcomes). */
+  /** Icon pills under the hero (aside.lp-web-outcomes). */
   outcomes?: LandingPageOutcome[];
   /** Ownership line under the build chapter. */
   ownershipStatement?: string;
@@ -375,6 +375,12 @@ export type LandingPageEntry = {
   pricingAnchor?: string;
   /** Qualification line shown above the price chapter. */
   pricingQualify?: string;
+  /** Decision line under the tier comparison. */
+  pricingCloser?: string;
+  /** Heading for the side-by-side rows. */
+  pricingCompareTitle?: string;
+  /** Short Basic vs Custom rows. Column names come from the tiers. */
+  pricingCompare?: { label: string; basic: string; custom: string }[];
   /** Delivery line inside the pricing panel. */
   pricingDelivery?: string;
   /** Bullet points under the price anchor. */

@@ -119,22 +119,6 @@ export function WebsiteHero({
               ) : null}
             </div>
 
-            {page.heroMeta?.length ? (
-              <ul className="lp-web-hero__trust lp-web-hero__anim lp-web-hero__anim--4">
-                {page.heroMeta.map((item) => (
-                  <li key={item}>
-                    <TrustCheck />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-
-            {page.heroFinePrint ? (
-              <p className="lp-web-hero__fine lp-web-hero__anim lp-web-hero__anim--4">
-                {page.heroFinePrint}
-              </p>
-            ) : null}
           </div>
 
           {visual ? (
@@ -191,21 +175,6 @@ export function WebsiteHero({
 function creditLine(name: string, role?: string) {
   const line = role ? `${name}, ${role}` : name;
   return line.endsWith(".") ? line : `${line}.`;
-}
-
-function TrustCheck() {
-  return (
-    <svg viewBox="0 0 16 16" aria-hidden>
-      <path
-        d="M3.2 8.2 6.4 11.4 12.8 4.6"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
 }
 
 function BenefitIcon({ index }: { index: number }) {

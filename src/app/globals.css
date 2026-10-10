@@ -431,6 +431,7 @@ body {
 #process,
 #get-started,
 #contact-form,
+#audit-request,
 #lp-form,
 #lp-form-close,
 #work,
@@ -5359,7 +5360,8 @@ html[data-theme="dark"] .industry-still-band__frame .ind-visual__img--dark,
 }
 
 
-/* Homepage program diagram. Copy stays high; the wheel sits in the field under it. */
+/* Homepage program diagram. Phone and tablet stack a centered column.
+   Desktop places the copy beside the wheel. */
 .hero-shell--film {
   background: #fff;
   overflow: hidden;
@@ -5381,6 +5383,97 @@ html[data-theme="dark"] .hero-shell--film {
   color: color-mix(in oklab, var(--foreground) 88%, var(--background));
 }
 
+/* Stacked hero (phone + tablet): one centered column. The shell already
+   clears the sticky header, so the stage does not add a second header offset. */
+@media (max-width: 1023px) {
+  .hero-shell--film .hero-stage {
+    align-items: center;
+    justify-content: safe center;
+    gap: clamp(0.2rem, 1.2vh, 0.85rem);
+    padding-top: clamp(0.5rem, 1.6vh, 1.25rem);
+    padding-bottom: 0.25rem;
+  }
+
+  .hero-shell--film .hero-copy {
+    width: min(100%, 40rem);
+    max-width: 40rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-shell--film .hero-enter-2 {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
+    font-size: clamp(2.65rem, 6.2vw, 4.15rem);
+    line-height: 0.98;
+  }
+
+  .hero-shell--film .hero-lede {
+    max-width: 34rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .hero-shell--film .hero-cta-row {
+    width: min(100%, 22.5rem);
+    max-width: 22.5rem;
+    margin-inline: auto;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-shell--film .hero-engine {
+    flex: 0 1 auto;
+    align-self: center;
+    width: min(100%, 26rem, 36dvh);
+    margin-inline: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-shell--film .hero-enter-2 {
+    font-size: clamp(3.25rem, 5.6vw, 4.5rem);
+  }
+
+  .hero-shell--film .hero-lede {
+    margin-top: 0.95rem;
+  }
+
+  .hero-shell--film .hero-cta-row {
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 1.25rem;
+    flex-direction: row;
+    gap: 1.35rem;
+  }
+
+  .hero-shell--film .hero-cta-row .btn--xl {
+    width: auto;
+  }
+
+  .hero-shell--film .hero-engine {
+    width: min(100%, 28rem, 40dvh);
+  }
+}
+
+@media (max-width: 1023px) and (max-height: 740px) {
+  .hero-shell--film .hero-stage {
+    justify-content: flex-start;
+    gap: 0.35rem;
+    padding-top: 0.65rem;
+  }
+
+  .hero-shell--film .hero-enter-2 {
+    font-size: clamp(2.15rem, 4.8vw, 2.85rem);
+  }
+
+  .hero-shell--film .hero-engine {
+    width: min(100%, 16.5rem);
+  }
+}
+
 @media (min-width: 1024px) {
 .hero-shell--film .hero-copy {
     max-width: 40rem;
@@ -5388,7 +5481,10 @@ html[data-theme="dark"] .hero-shell--film {
 
   .hero-shell--film .hero-enter-2 {
     max-width: 11em;
+    margin-inline: 0;
+    text-align: left;
     font-size: clamp(3.4rem, 4.4vw, 5.35rem);
+    line-height: 1.02;
   }
 }
 
@@ -5399,63 +5495,55 @@ html[data-theme="dark"] .hero-shell--film {
     grid-template-columns: minmax(0, 1.05fr) minmax(16rem, 0.95fr);
     align-items: center;
     column-gap: clamp(1.25rem, 3vw, 3.25rem);
-    padding-top: calc(var(--site-header-h) + clamp(0.5rem, 2vh, 1.25rem));
+    padding-top: clamp(0.75rem, 2.5vh, 1.75rem);
     padding-bottom: clamp(0.5rem, 2vh, 1.25rem);
   }
 
   .hero-shell--film .hero-copy {
     max-width: 36rem;
-  }
-}
-
-
-@media (min-width: 768px) {
-.hero-shell--film .hero-copy {
-    text-align: center;
-    margin-inline: auto;
-  }
-
-  .hero-shell--film .hero-cta-row {
-    justify-content: center;
-  }
-}
-
-
-@media (min-width: 1024px) {
-.hero-shell--film .hero-copy {
-    text-align: left;
+    width: auto;
     margin-inline: 0;
+    text-align: left;
+  }
+
+  .hero-shell--film .hero-lede {
+    margin-inline: 0;
+    text-align: left;
   }
 
   .hero-shell--film .hero-cta-row {
+    width: auto;
+    max-width: none;
+    margin-inline: 0;
     justify-content: flex-start;
   }
 }
 
 
-@media (max-width: 1023px) {
-/* Wheel sits in the band between the CTAs and the cert strip.
-     Extra viewport height is split evenly above and below it. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .hero-shell--film .hero-enter-2 {
+    font-size: clamp(2.85rem, 3.5vw, 3.65rem);
+  }
+
   .hero-shell--film .hero-stage {
-    justify-content: flex-start;
-    padding-bottom: 0;
+    column-gap: clamp(1rem, 2vw, 1.75rem);
   }
 }
 
 
 @media (max-width: 767px) {
 .hero-shell--film .hero-stage {
-    padding-top: calc(var(--site-header-h) + 0.65rem);
-    padding-bottom: 0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.25rem;
   }
 
   .hero-shell--film .hero-lede {
-    margin-top: 0.75rem;
+    margin-top: 0.85rem;
   }
 
   .hero-shell--film .hero-cta-row {
-    margin-top: 1.1rem;
-    gap: 0.75rem;
+    margin-top: 1.15rem;
+    gap: 0.7rem;
   }
 
   .cert-strip__frame {

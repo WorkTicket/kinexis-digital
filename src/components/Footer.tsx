@@ -29,7 +29,7 @@ function FooterReach({
   phoneLabel: string;
   facebookLabel: string;
   phoneDisplay?: string;
-  note: string;
+  note?: string;
   showIcons: boolean;
 }) {
   return (
@@ -57,7 +57,7 @@ function FooterReach({
           {facebookLabel}
         </a>
       </div>
-      <p className="site-footer__meta-line">{note}</p>
+      {note ? <p className="site-footer__meta-line">{note}</p> : null}
     </div>
   );
 }
@@ -105,7 +105,7 @@ export async function Footer() {
 
   const phoneDisplay = getBusinessPhoneDisplay();
 
-  const reach = (note: string, showIcons: boolean) => (
+  const reach = (note: string | undefined, showIcons: boolean) => (
     <FooterReach
       emailLabel={t("email")}
       phoneLabel={t("phone")}
@@ -148,7 +148,7 @@ export async function Footer() {
                     </p>
                   </div>
                   <div className="site-footer__contact site-footer__contact--lp">
-                    {reach(t("lpReplies"), false)}
+                    {reach(undefined, false)}
                   </div>
                 </div>
               }

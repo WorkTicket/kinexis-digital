@@ -425,12 +425,14 @@
 
 @media (max-width: 1023px) {
 .hero-shell--film .hero-engine {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-self: center;
     margin-top: 0;
     margin-bottom: 0;
+    margin-inline: auto;
   }
 }
 

@@ -82,6 +82,9 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           anchor={page.pricingAnchor}
           delivery={page.pricingDelivery}
           qualify={page.pricingQualify}
+          closer={page.pricingCloser}
+          compareTitle={page.pricingCompareTitle}
+          compare={page.pricingCompare}
           highlights={page.pricingHighlights}
           tiers={page.pricing}
           addOns={page.pricingAddOns}

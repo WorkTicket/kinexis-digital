@@ -5,7 +5,7 @@ import type { LegalPageContent } from "@/content/legal/privacy";
 export const termsContent = localeContent({
   en: {
     title: "Terms of Service",
-    lastUpdated: "June 24, 2026",
+    lastUpdated: "October 9, 2026",
     intro:
       "These Terms of Service (\"Terms\") govern your access to and use of the KINEXIS Digital website at kinexisdigital.com. By using this site, you agree to these Terms. If you do not agree, please do not use the site.",
     contactLabel: "hello@kinexisdigital.com",
@@ -37,6 +37,24 @@ export const termsContent = localeContent({
         title: "Intellectual Property",
         paragraphs: [
           "All site content, including text, graphics, logos, layouts, and code, is owned by KINEXIS Digital or its licensors and is protected by copyright and other intellectual property laws. You may not copy, reproduce, or distribute site content without prior written permission.",
+        ],
+      },
+      {
+        title: "Ownership and handover",
+        paragraphs: [
+          "Once the final payment clears, you own the finished site, its source code, and your content. You get the full source files, and we will deploy the site to your own Cloudflare account on request. We keep ownership of our general tools, libraries, and methods, and of any third-party or open-source code, which stays under its own license. We may show the finished site in our portfolio unless you ask us not to.",
+        ],
+      },
+      {
+        title: "Hosting",
+        paragraphs: [
+          "Sites are hosted on Cloudflare Pages under the hosting terms in your proposal. You can move the site to your own Cloudflare account at any time with 14 days' notice, and we will handle the transfer. We are not liable for outages of Cloudflare or any other third-party service. Moving to a different host is possible but is quoted as a separate task, because it depends on how your site was built.",
+        ],
+      },
+      {
+        title: "Third-party services",
+        paragraphs: [
+          "The contact form, email delivery, analytics, maps, Cloudflare, and your domain registrar depend on outside services whose pricing, features, and uptime we do not control. If you move to your own Cloudflare account, the form service moves with it. We will note what needs to move at handover.",
         ],
       },
       {
@@ -84,7 +102,7 @@ export const termsContent = localeContent({
 
   "es-419": {
     title: "Términos de Servicio",
-    lastUpdated: "24 de junio de 2026",
+    lastUpdated: "9 de octubre de 2026",
     intro:
       "Estos Términos de Servicio (\"Términos\") rigen tu acceso y uso del sitio web de KINEXIS Digital en kinexisdigital.com. Al usar este sitio, aceptas estos Términos. Si no estás de acuerdo, no uses el sitio.",
     contactLabel: "hello@kinexisdigital.com",
@@ -116,6 +134,24 @@ export const termsContent = localeContent({
         title: "Propiedad Intelectual",
         paragraphs: [
           "Todo el contenido del sitio es propiedad de KINEXIS Digital o sus licenciantes y está protegido por derechos de autor. No puedes copiar o distribuir contenido sin permiso escrito previo.",
+        ],
+      },
+      {
+        title: "Propiedad y entrega",
+        paragraphs: [
+          "Cuando se liquida el pago final, el sitio terminado, su código fuente y tu contenido son tuyos. Recibes los archivos fuente completos, y desplegamos el sitio en tu propia cuenta de Cloudflare si lo pides. Conservamos la propiedad de nuestras herramientas, librerías y métodos generales, y de cualquier código de terceros o de código abierto, que sigue bajo su propia licencia. Podemos mostrar el sitio terminado en nuestro portafolio salvo que nos pidas que no lo hagamos.",
+        ],
+      },
+      {
+        title: "Hosting",
+        paragraphs: [
+          "Los sitios se alojan en Cloudflare Pages según las condiciones de hosting de tu propuesta. Puedes pasar el sitio a tu propia cuenta de Cloudflare en cualquier momento con 14 días de aviso, y nosotros hacemos la transferencia. No respondemos por caídas de Cloudflare ni de ningún otro servicio de terceros. Pasarlo a un host distinto es posible, pero se cotiza como un trabajo aparte, porque depende de cómo se construyó el sitio.",
+        ],
+      },
+      {
+        title: "Servicios de terceros",
+        paragraphs: [
+          "El formulario de contacto, el envío de correo, la analítica, los mapas, Cloudflare y el registrador de tu dominio dependen de servicios externos cuyo precio, funciones y disponibilidad no controlamos. Si pasas a tu propia cuenta de Cloudflare, el servicio del formulario se muda con el sitio. En la entrega anotamos qué hay que mover.",
         ],
       },
       {

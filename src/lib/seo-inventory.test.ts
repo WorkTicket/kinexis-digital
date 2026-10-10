@@ -77,9 +77,9 @@ const hubs: Entry[] = [
   },
   {
     path: "/audit",
-    title: "Free Marketing Scorecard Audit Online",
+    title: "Free Marketing Audit of Your Site",
     description:
-      "Score your site, search, ads, and tracking in five minutes. Get a plain-English read on what's leaking demand and what to fix first.",
+      "Send your site. We review the pages, search, ads, and how fast a lead gets a person, then write what to fix first. One business day.",
   },
   {
     path: "/blog",
