@@ -5,8 +5,6 @@ import type { Locale } from "@/i18n/routing";
 export const websiteLpChrome = localeContent({
   en: {
     outcomesAria: "What the website is built to do",
-    datedCaption: "Illustrative example",
-    customCaption: "Illustrative example",
     liveSitesKicker: "Live sites",
     viewLive: "View live site",
     includedKicker: "What's included",
@@ -29,8 +27,6 @@ export const websiteLpChrome = localeContent({
   },
   "es-419": {
     outcomesAria: "Para qué está hecho el sitio web",
-    datedCaption: "Ejemplo ilustrativo",
-    customCaption: "Ejemplo ilustrativo",
     liveSitesKicker: "Sitios en vivo",
     viewLive: "Ver sitio en vivo",
     includedKicker: "Qué incluye",

@@ -269,21 +269,21 @@ export function buildSpanishGetAWebsite(
     transformBefore: {
       title: "Lo que ven ahora",
       items: [
-        "Parece un tema genérico",
-        "Incómodo en el teléfono",
-        "Servicios difíciles de seguir",
-        "Botón de llamada fácil de pasar por alto",
+        "Se ve como un tema genérico",
+        "Se siente incómodo en el teléfono",
+        "Los servicios cuestan seguirlos",
+        "El botón de llamada se pierde",
         "Lento, y fácil de abandonar",
       ],
     },
     transformAfter: {
       title: "Lo que deberían ver",
       items: [
-        "Tu nombre y tus servicios se leen",
-        "Hecho primero para el teléfono",
-        "Servicios que un dueño de casa puede escanear",
+        "El nombre y los servicios se leen",
+        "Hecho para usarse en el teléfono",
+        "Servicios fáciles de revisar",
         "El botón de llamada queda a mano",
-        "Lo bastante rápido para que la gente se quede",
+        "Lo bastante rápido para quedarse",
       ],
     },
 
@@ -395,19 +395,23 @@ export function buildSpanishGetAWebsite(
     process: [
       {
         title: "Llamada de proyecto",
-        detail: "Revisamos tu sitio, el trabajo y qué debería pasar después.",
+        detail:
+          "Quince minutos sobre el sitio que tienes, el trabajo que buscas y dónde se están perdiendo las llamadas.",
       },
       {
         title: "Estructura y diseño",
-        detail: "Apruebas páginas, servicios y el aspecto antes de que construyamos.",
+        detail:
+          "Ves las páginas, los servicios y el aspecto. No se construye nada hasta que apruebas ese plan.",
       },
       {
         title: "Desarrollo",
-        detail: "Construimos el diseño aprobado en código, no en un page builder.",
+        detail:
+          "Esas páginas se escriben en código. Sin tema que mantener, y sin un page builder en el medio.",
       },
       {
         title: "Lanzamiento y medición",
-        detail: "Lanzamos, conectamos la medición y revisamos la llamada y el formulario.",
+        detail:
+          "Lo publicamos con la medición activa, y probamos el botón de llamada y el formulario en un teléfono antes de entregártelo.",
       },
     ],
 

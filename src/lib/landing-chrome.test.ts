@@ -77,12 +77,17 @@ describe("get-a-website theme tokens", () => {
     );
   });
 
-  it("shares the sitewide theme storage key (no LP-only theme)", async () => {
+  it("follows the device color scheme instead of a saved LP theme", async () => {
     const { THEME_STORAGE_KEY, THEME_PREFLIGHT_SCRIPT } = await import(
       "@/lib/theme"
     );
     expect(THEME_STORAGE_KEY).toBe("kinexis-theme");
     expect(THEME_PREFLIGHT_SCRIPT).toContain("kinexis-theme");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain("localStorage.removeItem");
+    expect(THEME_PREFLIGHT_SCRIPT).not.toContain("localStorage.getItem");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain(
+      'window.matchMedia("(prefers-color-scheme: dark)")',
+    );
     expect(THEME_PREFLIGHT_SCRIPT).toContain('setAttribute("data-theme"');
   });
 });

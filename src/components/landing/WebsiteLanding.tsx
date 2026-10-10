@@ -110,8 +110,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           subtitle={page.painSubtitle}
           before={page.transformBefore}
           after={page.transformAfter}
-          datedCaption={chrome.datedCaption}
-          customCaption={chrome.customCaption}
+          locale={locale}
         />
       ) : null}
       {page.buildTitle && page.sellPoints?.length ? (

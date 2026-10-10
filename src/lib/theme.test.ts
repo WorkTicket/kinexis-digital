@@ -14,25 +14,24 @@ describe("theme resolution", () => {
     expect(isThemeMode(null)).toBe(false);
   });
 
-  it("uses a stored choice over the system preference", () => {
-    expect(resolveTheme("dark")).toBe("dark");
-    expect(resolveTheme("light")).toBe("light");
-  });
-
-  it("falls back to light when the system preference is not available", () => {
-    expect(resolveTheme(null)).toBe("light");
-    expect(resolveTheme("system")).toBe("light");
+  it("follows the device on phones, tablets, and computers, even if a theme was saved", () => {
+    expect(resolveTheme("dark", "light")).toBe("light");
+    expect(resolveTheme("light", "dark")).toBe("dark");
+    expect(resolveTheme(null, "dark")).toBe("dark");
+    expect(resolveTheme("system", "light")).toBe("light");
   });
 });
 
 describe("THEME_PREFLIGHT_SCRIPT", () => {
-  it("applies stored theme, otherwise the device light/dark preference, before first paint", () => {
+  it("applies the device light/dark preference before first paint and drops a saved override", () => {
     expect(THEME_PREFLIGHT_SCRIPT).toContain(THEME_STORAGE_KEY);
-    expect(THEME_PREFLIGHT_SCRIPT).toContain("localStorage.getItem");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain("localStorage.removeItem");
+    expect(THEME_PREFLIGHT_SCRIPT).not.toContain("localStorage.getItem");
     expect(THEME_PREFLIGHT_SCRIPT).toContain(
       'window.matchMedia("(prefers-color-scheme: dark)")',
     );
     expect(THEME_PREFLIGHT_SCRIPT).toContain('setAttribute("data-theme"');
     expect(THEME_PREFLIGHT_SCRIPT).toContain("colorScheme");
+    expect(THEME_PREFLIGHT_SCRIPT).toContain('addEventListener("change"');
   });
 });

@@ -9,9 +9,8 @@ import {
   type ReactNode,
 } from "react";
 import {
-  THEME_STORAGE_KEY,
   applyTheme,
-  readStoredTheme,
+  readDeviceTheme,
   type ThemeMode,
 } from "@/lib/theme";
 
@@ -27,18 +26,19 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<ThemeMode>("light");
 
   useLayoutEffect(() => {
-    const next = readStoredTheme();
-    setThemeState(next);
-    applyTheme(next);
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const sync = () => {
+      const next = readDeviceTheme();
+      setThemeState(next);
+      applyTheme(next);
+    };
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
   }, []);
 
   const setTheme = useCallback((next: ThemeMode) => {
     setThemeState(next);
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // private mode / blocked storage
-    }
     applyTheme(next);
   }, []);
 
@@ -48,11 +48,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         ? "dark"
         : "light";
     const next: ThemeMode = current === "dark" ? "light" : "dark";
-    try {
-      localStorage.setItem(THEME_STORAGE_KEY, next);
-    } catch {
-      // private mode / blocked storage
-    }
     setThemeState(next);
     applyTheme(next);
   }, []);

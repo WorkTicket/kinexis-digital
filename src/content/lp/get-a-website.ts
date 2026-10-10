@@ -391,21 +391,21 @@ const baseGetAWebsite: LandingPageEntry = {
   transformBefore: {
     title: "What they see now",
     items: [
-      "Looks like a stock theme",
-      "Awkward on a phone",
-      "Services hard to follow",
-      "Call button easy to miss",
+      "It looks like a stock theme",
+      "It feels awkward on a phone",
+      "The services are hard to follow",
+      "The call button is easy to miss",
       "Slow, and easy to bounce from",
     ],
   },
   transformAfter: {
     title: "What they should see",
     items: [
-      "Your name and services are clear",
-      "Built for a phone first",
+      "Name and services stay clear",
+      "Built to work well on a phone",
       "Services a homeowner can scan",
-      "Call button easy to tap",
-      "Fast enough that people stay",
+      "The call button is easy to tap",
+      "Fast enough for people to stay",
     ],
   },
 
@@ -499,19 +499,23 @@ const baseGetAWebsite: LandingPageEntry = {
   process: [
     {
       title: "Project call",
-      detail: "We look at your site, the work, and what should happen next.",
+      detail:
+        "Fifteen minutes on the site you have now, the jobs you want, and where the calls are dropping off.",
     },
     {
       title: "Structure and design",
-      detail: "You approve pages, services, and the look before we build.",
+      detail:
+        "You see the pages, the services, and the look. Nothing gets built until you approve that plan.",
     },
     {
       title: "Development",
-      detail: "We build the approved design in code, not a page builder.",
+      detail:
+        "The approved pages are written in code. No theme to maintain, and no page builder in the way.",
     },
     {
       title: "Launch and tracking",
-      detail: "We launch, connect tracking, and check the call button and form.",
+      detail:
+        "We put it live, turn tracking on, and test the call button and form from a phone before you take it.",
     },
   ],
 

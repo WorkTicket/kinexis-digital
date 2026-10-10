@@ -95,15 +95,13 @@
   --gradient-chapter-cta-glow-b: color-mix(in oklab, var(--gradient-ink) 2%, transparent);
 }
 
-/* Document base — fixed flow so every route shares the same ambient field */
+/* Document base — solid paper. A fixed wash reads gray on phones, tablets, and desktops. */
 html {
   background-color: var(--site-gradient-base);
-  background-image: var(--site-gradient-flow);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-attachment: fixed;
+  background-image: none;
+  background-attachment: scroll;
 }
 
 body {
-  background: transparent;
+  background: var(--background);
 }

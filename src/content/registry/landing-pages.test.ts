@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getWebsiteLpChrome } from "@/content/lp/website-lp-chrome";
+import { getGreenfieldExampleCopy } from "@/content/lp/greenfield-examples";
 import { getLandingPage } from "@/content/registry/landing-pages";
 
 describe("web-design landing page", () => {
@@ -372,9 +372,30 @@ describe("get-a-website landing page", () => {
         spanish?.faqs.find((faq) => /hosting está incluido/i.test(faq.question))
           ?.answer,
       ).not.toMatch(/donde quieras|otro hosting/i);
-      const chrome = getWebsiteLpChrome(locale);
-      expect(chrome.datedCaption).toMatch(/ejemplo ilustrativo/i);
-      expect(chrome.customCaption).toMatch(/ejemplo ilustrativo/i);
+      const examples = getGreenfieldExampleCopy(locale);
+      expect(examples.beforeCaption).toMatch(/anterior/i);
+      expect(examples.beforeNote).toMatch(/wordpress/i);
+      expect(examples.afterCaption).toMatch(/nuevo/i);
+      expect(examples.afterNote).toMatch(/medida/i);
+      expect(examples.wp.nav.map((item) => item.id)).toEqual([
+        "home",
+        "about",
+        "services",
+        "contact",
+      ]);
+      expect(examples.nx.stats).toHaveLength(3);
+      expect(examples.nx.steps).toHaveLength(3);
+      expect(examples.nx.reviews.length).toBeGreaterThan(1);
+      expect(examples.nx.services.map((item) => item.path)).toEqual([
+        "/lawn-care",
+        "/fertilization",
+        "/aeration",
+        "/seasonal-cleanup",
+        "/landscape-design",
+        "/planting",
+        "/hardscaping",
+        "/irrigation",
+      ]);
     }
     expect(getLandingPage("get-a-website", "es-ES")?.headlineLines).toEqual([
       "Un sitio web hecho para",

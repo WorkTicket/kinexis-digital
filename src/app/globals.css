@@ -99,9 +99,9 @@
   --glass-highlight: rgba(255, 255, 255, 0.7);
   --glass-shadow: 0 24px 48px -28px rgba(15, 23, 42, 0.28);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.65);
-  /* Chrome glass — light fill so the blur is the frost, not a dark sheet. */
-  --chrome-glass: rgba(255, 255, 255, 0.55);
-  --chrome-fallback: rgba(255, 255, 255, 0.92);
+  /* Solid paper. A translucent frost over the page reads as gray. */
+  --chrome-glass: #ffffff;
+  --chrome-fallback: #ffffff;
   --chrome-glass-border: rgba(0, 0, 0, 0.08);
   --chrome-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
@@ -114,9 +114,9 @@
   --glass-highlight: rgba(255, 255, 255, 0.22);
   --glass-shadow: 0 28px 56px -24px rgba(0, 0, 0, 0.65);
   --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  /* Chrome glass — light fill so the blur is the frost, not a dark sheet. */
-  --chrome-glass: rgba(0, 0, 0, 0.58);
-  --chrome-fallback: rgba(0, 0, 0, 0.92);
+  /* Solid black. A translucent frost over the page reads as gray. */
+  --chrome-glass: #000000;
+  --chrome-fallback: #000000;
   --chrome-glass-border: rgba(255, 255, 255, 0.14);
   --chrome-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
@@ -5349,14 +5349,13 @@ html[data-theme="dark"] .industry-still-band__frame .ind-visual__img--dark,
   .mesh-noise {
     display: none;
   }
+}
 
-  /* Keep header frost as glass on phones — the budget block above
-     strips blur from .chrome-glass, which also matches the frost pane. */
-  .site-header__frost.chrome-glass {
-    background-color: var(--chrome-glass);
-    -webkit-backdrop-filter: blur(40px) saturate(180%);
-    backdrop-filter: blur(40px) saturate(180%);
-  }
+/* Solid header on phones, tablets, and desktops. Translucent blur was reading as gray. */
+.site-header__frost.chrome-glass {
+  background-color: var(--background);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
 }
 
 

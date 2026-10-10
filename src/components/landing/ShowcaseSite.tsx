@@ -549,6 +549,37 @@ function GreenfieldDated({ layout }: { layout: ShowcaseLayout }) {
   );
 }
 
+const GREENFIELD_MARQUEE = [
+  "Design",
+  "Hardscape",
+  "Lawn care",
+  "Licensed",
+  "Insured",
+  "Local crews",
+] as const;
+
+function GreenfieldMarquee() {
+  const group = (suffix: string) => (
+    <span className="lp-site__marquee-group">
+      {GREENFIELD_MARQUEE.map((item) => (
+        <span key={`${suffix}-${item}`} className="lp-site__marquee-item">
+          {item}
+          <i />
+        </span>
+      ))}
+    </span>
+  );
+
+  return (
+    <div className="lp-site__marquee">
+      <div className="lp-site__marquee-track">
+        {group("a")}
+        {group("b")}
+      </div>
+    </div>
+  );
+}
+
 /** Same Greenfield brand — custom Next.js rebuild (after). */
 function Greenfield({
   layout,
@@ -590,35 +621,47 @@ function Greenfield({
           <p className="lp-site__kicker">Design-build crews</p>
           <p className="lp-site__title">Yards that look finished.</p>
           <p className="lp-site__lede">
-            Services first. Quote in a tap. Call when you need a person.
+            {phone
+              ? "Design, build, and seasonal care from one crew."
+              : "Services first. Quote in a tap. Call when you need a person."}
           </p>
           <span className="lp-site__actions">
             <span className="lp-site__cta">Get a quote</span>
-            <span className="lp-site__cta lp-site__cta--ghost">Call</span>
+            <span className="lp-site__cta lp-site__cta--ghost">
+              {phone ? "Call now" : "Call"}
+            </span>
           </span>
-          <p className="lp-site__meta">Licensed · Insured · Local crews</p>
+          {phone ? null : (
+            <p className="lp-site__meta">Licensed · Insured · Local crews</p>
+          )}
         </div>
       </div>
       {phone ? (
-        <div className="lp-site__sheet">
-          <p className="lp-site__sheet-label">Services</p>
-          <ul>
-            <li>
-              <strong>Design</strong>
-              <span>Plans before the crew</span>
-            </li>
-            <li>
-              <strong>Hardscape</strong>
-              <span>Patios, walks, walls</span>
-            </li>
-            <li>
-              <strong>Lawn care</strong>
-              <span>On a seasonal route</span>
-            </li>
-          </ul>
-        </div>
-      ) : null}
-      {phone ? null : (
+        <>
+          <GreenfieldMarquee />
+          <section className="lp-site__services">
+            <p className="lp-site__services-label">Services</p>
+            <ul>
+              <li>
+                <strong>Design</strong>
+                <span>Plans before the crew</span>
+              </li>
+              <li>
+                <strong>Hardscape</strong>
+                <span>Patios, walks, walls</span>
+              </li>
+              <li>
+                <strong>Lawn care</strong>
+                <span>On a seasonal route</span>
+              </li>
+            </ul>
+          </section>
+          <div className="lp-site__dock">
+            <span className="lp-site__cta">Get a quote</span>
+            <span className="lp-site__cta lp-site__cta--line">Call now</span>
+          </div>
+        </>
+      ) : (
         <div className="lp-site__strip">
           <span>Landscape design</span>
           <span>Hardscape</span>

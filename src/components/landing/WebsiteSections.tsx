@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/routing";
 import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker";
 import { PlanCta } from "@/components/landing/PlanCta";
-import { ShowcaseSite } from "@/components/landing/ShowcaseSite";
+import { GreenfieldExamples } from "@/components/landing/GreenfieldExamples";
 import { WebsitePlanForm } from "@/components/landing/WebsitePlanForm";
 import type {
   LandingPageEntry,
@@ -82,29 +82,33 @@ const OUTCOME_MARKS: ReactNode[] = [
 ];
 
 const PROCESS_MARKS = [
-  // Project call
+  // Project call — handset, drawn to the same 16px box as the others.
   <svg key="plan" {...markProps}>
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    <rect x="3.75" y="4.25" width="9" height="15.5" rx="2" />
+    <path d="M6.35 7.15h3.8" />
+    <path d="M7.15 16.7h2.2" />
+    <path d="M15.15 8.7c1.55 1.05 1.55 2.85 0 3.9" />
+    <path d="M17.45 6.55c2.45 1.75 2.45 5.45 0 7.2" />
   </svg>,
   // Structure and design
   <svg key="structure" {...markProps}>
-    <rect x="3" y="3.5" width="18" height="17" rx="2" />
-    <path d="M3 8h18" />
-    <rect x="5.5" y="10.25" width="6" height="7.25" rx="1" />
-    <rect x="13.25" y="10.25" width="5.25" height="3" rx="0.8" />
-    <rect x="13.25" y="14.75" width="5.25" height="2.75" rx="0.8" />
+    <rect x="4.25" y="4.25" width="15.5" height="15.5" rx="2" />
+    <path d="M4.25 8.65h15.5" />
+    <rect x="6.4" y="10.65" width="5.5" height="6.5" rx="0.9" />
+    <rect x="13.15" y="10.65" width="4.4" height="2.55" rx="0.65" />
+    <rect x="13.15" y="14.5" width="4.4" height="2.65" rx="0.65" />
   </svg>,
   // Development
   <svg key="dev" {...markProps}>
-    <path d="m9 7.5-4.25 4.5L9 16.5" />
-    <path d="m15 7.5 4.25 4.5L15 16.5" />
-    <path d="m13 5.5-2 13" />
+    <path d="M9.15 4.7 4.25 12l4.9 7.3" />
+    <path d="M14.85 4.7 19.75 12l-4.9 7.3" />
+    <path d="M13.15 4.45 10.85 19.55" />
   </svg>,
   // Launch and tracking
   <svg key="launch" {...markProps}>
-    <path d="M4 18.5h16" />
-    <path d="m6 14.75 4.5-4.5 3 2.75L19.25 6" />
-    <path d="M14.5 6H19.25v4.75" />
+    <path d="M4.25 19.55h15.5" />
+    <path d="M6.45 15.15 10.15 11.35l3 2.45L19.7 4.45" />
+    <path d="M15.15 4.45H19.7v4.55" />
   </svg>,
 ];
 
@@ -142,69 +146,8 @@ export function WebsiteOutcomes({
   );
 }
 
-function SafariStatus({ tone }: { tone: "light" | "dark" }) {
-  return (
-    <div className={`lp-safari__status lp-safari__status--${tone}`} aria-hidden>
-      <span>9:41</span>
-      <span className="lp-web-pain__status-glyphs">
-        <i className="lp-web-pain__signal" />
-        <i className="lp-web-pain__wifi" />
-        <i className="lp-web-pain__battery" />
-      </span>
-    </div>
-  );
-}
-
-function SafariBar({ host }: { host: string }) {
-  return (
-    <div className="lp-safari__bar" aria-hidden>
-      <span className="lp-safari__aa">aA</span>
-      <span className="lp-safari__host">
-        <svg viewBox="0 0 12 14" className="lp-safari__lock" aria-hidden>
-          <rect x="1.5" y="6" width="9" height="7" rx="1.2" />
-          <path d="M3.2 6V4.2a2.8 2.8 0 0 1 5.6 0V6" />
-        </svg>
-        {host}
-      </span>
-      <svg viewBox="0 0 16 16" className="lp-safari__reload" aria-hidden>
-        <path d="M13.2 8a5.2 5.2 0 1 1-1.4-3.5" />
-        <path d="M12.2 1.8v3.1H9" />
-      </svg>
-    </div>
-  );
-}
-
-/** Photo iPhone frame. The site sits in the keyed screen, in Safari. */
-function IphoneMockup({
-  host,
-  tone,
-  children,
-}: {
-  host: string;
-  tone: "light" | "dark";
-  children: ReactNode;
-}) {
-  return (
-    <div className="lp-web-pain__phone">
-      <div className="lp-web-pain__screen">
-        <div className={`lp-safari lp-safari--${tone}`}>
-          <SafariStatus tone={tone} />
-          <SafariBar host={host} />
-          <div className="lp-safari__page">{children}</div>
-          <span className="lp-safari__home" />
-        </div>
-      </div>
-      <img
-        className="lp-web-pain__chassis"
-        src="/assets/images/lp/iphone-15-mockup.webp"
-        alt=""
-      />
-    </div>
-  );
-}
-
 /* ------------------------------------------------------------------ */
-/*  Pain — ShowcaseSite before/after + compare columns                 */
+/*  Pain — interactive before/after sites + compare columns            */
 /* ------------------------------------------------------------------ */
 
 export function WebsitePain({
@@ -213,17 +156,38 @@ export function WebsitePain({
   subtitle,
   before,
   after,
-  datedCaption = "A dated WordPress template",
-  customCaption = "A custom Next.js rebuild",
+  locale,
 }: {
   eyebrow?: string;
   title: string;
   subtitle: string;
   before?: TransformCol;
   after?: TransformCol;
-  datedCaption?: string;
-  customCaption?: string;
+  locale: Locale;
 }) {
+  const beforeColumn =
+    before && after ? (
+      <article className="lp-web-compare__col lp-web-compare__col--before">
+        <h3>{before.title}</h3>
+        <ul>
+          {before.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </article>
+    ) : null;
+  const afterColumn =
+    before && after ? (
+      <article className="lp-web-compare__col lp-web-compare__col--after">
+        <h3>{after.title}</h3>
+        <ul>
+          {after.items.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      </article>
+    ) : null;
+
   return (
     <section
       aria-labelledby="lp-web-pain-heading"
@@ -235,40 +199,11 @@ export function WebsitePain({
           <h2 id="lp-web-pain-heading">{title}</h2>
           <p>{subtitle}</p>
         </header>
-        <div className="lp-web-pain__stage lp-web-pain__stage--overlap">
-          <figure className="lp-web-pain__shot">
-            <IphoneMockup host="greenfieldlawncare.com" tone="light">
-              <ShowcaseSite variant="greenfield-dated" layout="phone" />
-            </IphoneMockup>
-            <figcaption>{datedCaption}</figcaption>
-          </figure>
-          <figure className="lp-web-pain__shot lp-web-pain__shot--after">
-            <IphoneMockup host="greenfieldlawncare.com" tone="dark">
-              <ShowcaseSite variant="greenfield" layout="phone" />
-            </IphoneMockup>
-            <figcaption>{customCaption}</figcaption>
-          </figure>
-        </div>
-        {before && after ? (
-          <div className="lp-web-compare">
-            <article className="lp-web-compare__col lp-web-compare__col--before">
-              <h3>{before.title}</h3>
-              <ul>
-                {before.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-            <article className="lp-web-compare__col lp-web-compare__col--after">
-              <h3>{after.title}</h3>
-              <ul>
-                {after.items.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </article>
-          </div>
-        ) : null}
+        <GreenfieldExamples
+          locale={locale}
+          beforeColumn={beforeColumn}
+          afterColumn={afterColumn}
+        />
       </div>
     </section>
   );
@@ -388,7 +323,10 @@ export function WebsiteWork({
           {intro ? <p>{intro}</p> : null}
         </header>
         <ul className="lp-web-work__list">
-          {samples.map((sample) => (
+          {samples.map((sample) => {
+            const parts = sample.metric?.split(/\s*→\s*/) ?? [];
+            const paired = parts.length === 2;
+            return (
             <li key={sample.client}>
               <article className="lp-web-work__card">
                 <CaseStudyViewTracker client={sample.client} />
@@ -428,7 +366,17 @@ export function WebsiteWork({
                   <h3>{sample.client}</h3>
                   {sample.metric ? (
                     <p className="lp-web-work__stat">
-                      <strong>{sample.metric}</strong>
+                      <strong className={paired ? "lp-web-work__pair" : undefined}>
+                        {paired ? (
+                          <>
+                            {parts[0]}
+                            <span className="lp-web-work__arrow">→</span>
+                            {parts[1]}
+                          </>
+                        ) : (
+                          sample.metric
+                        )}
+                      </strong>
                       <span>{sample.label}</span>
                     </p>
                   ) : null}
@@ -450,7 +398,8 @@ export function WebsiteWork({
                 </div>
               </article>
             </li>
-          ))}
+            );
+          })}
         </ul>
         {testimonial ? (
           <figure className="lp-web-quote">
