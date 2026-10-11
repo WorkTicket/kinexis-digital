@@ -193,14 +193,18 @@
   pointer-events: none;
 }
 
-/* Phone and back-to-top sit on the mobile dock. Fade them with the bar. */
+/* Phone sits with the mobile sticky bar and leaves with it. Back-to-top stays. */
 @media (max-width: 1023px) {
-  html.lp-chrome .back-to-top,
   html.lp-chrome .lp-contact-dock {
+    /* Keep the phone in place while back-to-top moves into the free corner. */
+    --corner-fab-bottom: calc(6.35rem + var(--in-app-chrome-bottom, 0px) + env(safe-area-inset-bottom, 0px));
     transition: opacity 0.28s ease, visibility 0.28s;
   }
 
-  html.lp-chrome:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) .back-to-top,
+  html.lp-chrome .back-to-top {
+    transition: bottom 0.28s ease;
+  }
+
   html.lp-chrome:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) .lp-contact-dock {
     opacity: 0;
     visibility: hidden;
@@ -221,9 +225,12 @@
     transform: none;
   }
 
-  html.lp-chrome .back-to-top,
   html.lp-chrome .lp-contact-dock {
     transition: opacity 0.12s linear, visibility 0.12s linear;
+  }
+
+  html.lp-chrome .back-to-top {
+    transition: none;
   }
 }
 

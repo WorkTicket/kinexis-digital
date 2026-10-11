@@ -50,10 +50,14 @@ html {
   }
 }
 
-/* Sit above the mobile lander dock and the cookie bar. */
+/* Sit above the mobile lander dock and the cookie bar. Drop to the corner when the dock is gone. */
 @media (max-width: 1023px) {
   html.lp-chrome {
     --corner-fab-bottom: calc(6.35rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  html.lp-chrome:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) {
+    --corner-fab-bottom: max(1.15rem, env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -74,5 +78,9 @@ html.in-app-browser {
 @media (max-width: 1023px) {
   html.lp-chrome.in-app-browser {
     --corner-fab-bottom: calc(6.35rem + var(--in-app-chrome-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+  }
+
+  html.lp-chrome.in-app-browser:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) {
+    --corner-fab-bottom: calc(1.15rem + var(--in-app-chrome-bottom, 0px) + env(safe-area-inset-bottom, 0px));
   }
 }
