@@ -432,12 +432,12 @@ const CLIENT_LOGOS = {
     name: "A1 Property Services",
   },
   plumbing: {
-    src: "/assets/logos/clients/preferred-plumbing.webp",
+    src: "/assets/logos/clients/preferred-plumbing.webp?v=20261010ll",
     alt: "Preferred Plumbing",
     name: "Preferred Plumbing",
   },
   manos: {
-    src: "/assets/logos/clients/manos-creativas.webp",
+    src: "/assets/logos/clients/manos-creativas.webp?v=20261010ll",
     alt: "Manos Creativas",
     name: "Manos Creativas",
   },
@@ -761,7 +761,7 @@ export const landingPages: LandingPageEntry[] = [
       "Three businesses. Same job: make the next step obvious on a phone, then keep score on leads, calls, and orders.",
     samples: [
       {
-        image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
+        image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261010ll",
         imageAlt:
           "A1 Property Services site preview showing local lead-gen pages",
         client: "A1 Property Services",
@@ -774,7 +774,7 @@ export const landingPages: LandingPageEntry[] = [
           "The old brochure site buried the quote button on a phone. After the rebuild, conversion moved from 1.8% to 3.9%, and qualified leads followed.",
       },
       {
-        image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
+        image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261010ll",
         imageAlt:
           "Preferred Plumbing site preview focused on emergency call capture",
         client: "Preferred Plumbing",
@@ -787,7 +787,7 @@ export const landingPages: LandingPageEntry[] = [
           "Ads were bringing the click, but the site could not finish a call on a phone. After the rebuild, emergency calls went from 22 to 52 a month.",
       },
       {
-        image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+        image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20261010ll",
         imageAlt:
           "Manos Creativas storefront preview after conversion-led rebuild",
         client: "Manos Creativas",
@@ -940,7 +940,7 @@ export const landingPages: LandingPageEntry[] = [
       role: "Family-owned plumbing · published case",
     },
     spotlight: {
-      image: "/assets/images/lp/spotlight-ads-running.webp?v=20260901c",
+      image: "/assets/images/lp/spotlight-ads-running.webp?v=20261010ll",
       imageAlt:
         "Digital marketing still: ads dashboard with spend climbing and zero conversions — ads running, phone still quiet",
       kicker: "Same leak, local operators",
@@ -990,7 +990,7 @@ export const landingPages: LandingPageEntry[] = [
       "Local service businesses and a conversion rebuild. Site, search, and ads treated as one system, not three disconnected retainers.",
     samples: [
       {
-        image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
+        image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261010ll",
         imageAlt:
           "Preferred Plumbing site preview focused on emergency call capture",
         client: "Preferred Plumbing",
@@ -1002,7 +1002,7 @@ export const landingPages: LandingPageEntry[] = [
           "A family-owned shop was paying $6,800 a month in ads for shrinking returns. The site could not capture a call on a phone. After the rebuild, local SEO, and tracking, emergency calls went from 22 to 52 a month and ad spend dropped to $4,100.",
       },
       {
-        image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
+        image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261010ll",
         imageAlt:
           "A1 Property Services site preview showing local lead-gen pages",
         client: "A1 Property Services",
@@ -1014,7 +1014,7 @@ export const landingPages: LandingPageEntry[] = [
           "Referrals had been the whole engine. Seasonal swings made growth guesswork. Local pages and a site built to book jobs took qualified leads from 10 to 28 a month.",
       },
       {
-        image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+        image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20261010ll",
         imageAlt: "Manos Creativas storefront preview after conversion-led rebuild",
         client: "Manos Creativas",
         metric: "2.4×",

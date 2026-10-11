@@ -20,14 +20,14 @@ import {
 } from "@/content/lp/greenfield-examples";
 import type { Locale } from "@/i18n/routing";
 
-const YARD = "/assets/images/lp/showcase-greenfield-yard.webp?v=20261010a";
-const BEFORE = "/assets/images/lp/showcase-a1-before.webp?v=20261010a";
-const PATIO = "/assets/images/lp/greenfield-patio.webp?v=20261010a";
-const IRRIGATION = "/assets/images/lp/greenfield-irrigation.webp?v=20261010a";
-const AERATION = "/assets/images/lp/greenfield-aeration.webp?v=20261010a";
-const CLEANUP = "/assets/images/lp/greenfield-cleanup.webp?v=20261010a";
-const FEED = "/assets/images/lp/greenfield-feed.webp?v=20261010a";
-const WALL = "/assets/images/lp/greenfield-wall.webp?v=20261010a";
+const YARD = "/assets/images/lp/showcase-greenfield-yard.webp?v=20261010ll";
+const BEFORE = "/assets/images/lp/showcase-a1-before.webp?v=20261010ll";
+const PATIO = "/assets/images/lp/greenfield-patio.webp?v=20261010ll";
+const IRRIGATION = "/assets/images/lp/greenfield-irrigation.webp?v=20261010ll";
+const AERATION = "/assets/images/lp/greenfield-aeration.webp?v=20261010ll";
+const CLEANUP = "/assets/images/lp/greenfield-cleanup.webp?v=20261010ll";
+const FEED = "/assets/images/lp/greenfield-feed.webp?v=20261010ll";
+const WALL = "/assets/images/lp/greenfield-wall.webp?v=20261010ll";
 
 const STILL_SRC = {
   yard: YARD,
@@ -281,7 +281,7 @@ function PhoneFrame({
       </div>
       <img
         className="lp-web-pain__chassis"
-        src="/assets/images/lp/iphone-15-mockup.webp"
+        src="/assets/images/lp/iphone-15-mockup.webp?v=20261010ll"
         alt=""
       />
     </div>

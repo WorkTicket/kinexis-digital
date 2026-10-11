@@ -2,13 +2,8 @@
 
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import "@/styles/routes/home-process.css";
-import type { HomeProcessStep, HomeProcessStepId } from "@/content/home-process";
-
-const processStills: Record<HomeProcessStepId, string> = {
-  audit: "/assets/images/process/audit.webp?v=20261009",
-  build: "/assets/images/process/build.webp?v=20261009",
-  run: "/assets/images/process/run.webp?v=20261009",
-};
+import { processMarks } from "@/components/stage-marks";
+import type { HomeProcessStep } from "@/content/home-process";
 
 type Props = {
   steps: HomeProcessStep[];
@@ -43,6 +38,7 @@ export function ProcessStage({ steps, ariaLabel }: Props) {
   }
 
   if (!current) return null;
+  const Mark = processMarks[current.id];
 
   return (
     <div className="process-stage">
@@ -87,15 +83,8 @@ export function ProcessStage({ steps, ariaLabel }: Props) {
         className="process-stage__panel"
       >
         <div key={current.id} className="process-stage__live">
-          <div className="process-stage__study" aria-hidden>
-            <img
-              src={processStills[current.id]}
-              alt=""
-              width={1280}
-              height={720}
-              decoding="async"
-              className="process-stage__still"
-            />
+          <div className="process-stage__study process-stage__study--mark" aria-hidden>
+            <Mark />
           </div>
           <p className="process-stage__read">{current.description}</p>
         </div>

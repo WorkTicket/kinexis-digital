@@ -19,7 +19,7 @@ export function BrandLogo({ className, height = 28, lazy = false }: BrandLogoPro
     <>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/assets/logos/kinexis-logo-on-light.png"
+        src="/assets/logos/kinexis-logo-on-light.webp?v=20261010ll"
         alt="Kinexis Digital"
         width={180}
         height={35}
@@ -31,7 +31,7 @@ export function BrandLogo({ className, height = 28, lazy = false }: BrandLogoPro
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/assets/logos/kinexis-logo-on-dark.png"
+        src="/assets/logos/kinexis-logo-on-dark.webp?v=20261010ll"
         alt="Kinexis Digital"
         width={180}
         height={35}

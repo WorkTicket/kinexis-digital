@@ -213,7 +213,7 @@ export function ClientIntakeForm() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             className="intake-hero__logo"
-            src="/assets/logos/kinexis-logo-on-dark.png"
+            src="/assets/logos/kinexis-logo-on-dark.webp?v=20261010ll"
             alt="Kinexis"
             width={180}
             height={28}

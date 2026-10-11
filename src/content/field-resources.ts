@@ -17,7 +17,7 @@ export const fieldResources: FieldResource[] = [
     label: "Google Search Central",
     source: "Google",
     dek: "How search actually works, from crawling to ranking, in Google's words.",
-    image: "/assets/images/resources/search-central.webp",
+    image: "/assets/images/resources/search-central.webp?v=20261010ll",
     imageAlt: "Full-screen Google Search Console Performance overview",
   },
   {
@@ -25,7 +25,7 @@ export const fieldResources: FieldResource[] = [
     label: "Google Ads Help",
     source: "Google",
     dek: "Campaign structure, bidding, and measurement written in Google's own words.",
-    image: "/assets/images/resources/ads-help.webp",
+    image: "/assets/images/resources/ads-help.webp?v=20261010ll",
     imageAlt: "Full-screen Google Ads campaigns overview",
   },
   {
@@ -33,7 +33,7 @@ export const fieldResources: FieldResource[] = [
     label: "Meta Business Help",
     source: "Meta",
     dek: "Ads Manager, audiences, and creative rules across Facebook and Instagram.",
-    image: "/assets/images/resources/meta-help.webp",
+    image: "/assets/images/resources/meta-help.webp?v=20261010ll",
     imageAlt: "Full-screen Meta Ads Manager campaign overview",
   },
   {
@@ -41,7 +41,7 @@ export const fieldResources: FieldResource[] = [
     label: "web.dev Performance",
     source: "Chrome",
     dek: "Core Web Vitals plus the speed work that actually protects conversion.",
-    image: "/assets/images/resources/web-performance.webp",
+    image: "/assets/images/resources/web-performance.webp?v=20261010ll",
     imageAlt: "Full-screen Chrome Lighthouse performance report",
   },
   {
@@ -49,7 +49,7 @@ export const fieldResources: FieldResource[] = [
     label: "Google Business Profile",
     source: "Google",
     dek: "Maps, reviews, and local presence for crews that need the phone to ring.",
-    image: "/assets/images/resources/business-profile.webp",
+    image: "/assets/images/resources/business-profile.webp?v=20261010ll",
     imageAlt: "Full-screen Google Business Profile manager",
   },
   {
@@ -57,7 +57,7 @@ export const fieldResources: FieldResource[] = [
     label: "Think with Google",
     source: "Google",
     dek: "Buyer research and media insights we open when a client needs market context.",
-    image: "/assets/images/resources/think-with-google.webp",
+    image: "/assets/images/resources/think-with-google.webp?v=20261010ll",
     imageAlt: "Full-screen Think with Google insights page",
   },
 ];

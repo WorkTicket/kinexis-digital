@@ -206,6 +206,24 @@
 }
 
 
+.process-stage__study--mark {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  width: min(100%, 17.5rem);
+  overflow: visible;
+  border-radius: 1.15rem;
+  background: color-mix(in oklab, var(--foreground) 5%, var(--background));
+}
+
+
+.process-stage__study--mark .process-stage__mark {
+  width: 62%;
+  height: auto;
+  object-fit: contain;
+}
+
+
 .process-stage__read {
   margin: 0;
   color: var(--muted);
@@ -220,6 +238,12 @@
 .process-stage__live {
     grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.85fr);
     gap: 1.5rem 3.5rem;
+  }
+
+  .process-stage__live:has(.process-stage__study--mark) {
+    grid-template-columns: auto minmax(16rem, 32rem);
+    justify-content: start;
+    align-items: center;
   }
 
   .process-stage__study {

@@ -460,7 +460,7 @@ export function WebsiteBuild({
         <figure className="lp-web-build__board">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/images/lp/craft-build-board.webp?v=20260915g"
+            src="/assets/images/lp/craft-build-board.webp?v=20261010ll"
             alt="Printed cream plates on a studio desk, each one a piece of what a contractor website has to ship with."
             width={1280}
             height={720}
@@ -484,7 +484,7 @@ export function WebsiteBuild({
           <figure className="lp-web-own">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/assets/images/lp/craft-studio.webp?v=20260915g"
+              src="/assets/images/lp/craft-studio.webp?v=20261010ll"
               alt="A design studio desk with website layouts, a laptop, and a phone during a rebuild."
               width={1152}
               height={864}

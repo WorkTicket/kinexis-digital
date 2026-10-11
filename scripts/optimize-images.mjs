@@ -25,12 +25,12 @@ async function optimize() {
   if (await fileExists(logoFullPng)) {
     await sharp(logoFullPng)
       .resize(360, 60, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 80, effort: 6 })
+      .webp({ lossless: true, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_logo_full.webp"));
 
     await sharp(logoFullPng)
       .resize(180, 30, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 72, effort: 6 })
+      .webp({ lossless: true, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_logo_preloader.webp"));
 
     await sharp(logoFullPng)
@@ -44,14 +44,14 @@ async function optimize() {
   if (!(await fileExists(logoFullPng)) && (await fileExists(logoFullWebp))) {
     await sharp(logoFullWebp)
       .resize(180, 30, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 72, effort: 6 })
+      .webp({ lossless: true, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_logo_preloader.webp"));
   }
 
   if (await fileExists(logoIconPng)) {
     await sharp(logoIconPng)
       .resize(280, 280, { fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 80, effort: 6 })
+      .webp({ lossless: true, effort: 6 })
       .toFile(path.join(logosDir, "KINEXIS_icon_logo.webp"));
 
     await sharp(logoIconPng)
@@ -77,7 +77,7 @@ async function optimize() {
     ]) {
       await sharp(heroSrc)
         .resize(width, null, { withoutEnlargement: true })
-        .webp({ quality: 75, effort: 6 })
+        .webp({ lossless: true, effort: 6 })
         .toFile(path.join(imagesDir, `${name}.webp`));
     }
   }
@@ -92,20 +92,20 @@ async function optimize() {
       : null;
 
   if (polySource) {
-    for (const [name, width, quality] of [
-      ["polygonal-net-mobile", 640, 40],
-      ["polygonal-net-tablet", 720, 38],
-      ["polygonal-net-desktop", 960, 38],
+    for (const [name, width] of [
+      ["polygonal-net-mobile", 640],
+      ["polygonal-net-tablet", 720],
+      ["polygonal-net-desktop", 960],
     ]) {
       const outPath = path.join(imagesDir, `${name}.webp`);
       const tmpPath = `${outPath}.new`;
       await sharp(polySource)
         .resize(width, null, { withoutEnlargement: true })
-        .webp({ quality, effort: 6, smartSubsample: true, nearLossless: false })
+        .webp({ lossless: true, effort: 6 })
         .toFile(tmpPath);
       await unlink(outPath).catch(() => {});
       await sharp(tmpPath)
-        .webp({ quality, effort: 6, smartSubsample: true })
+        .webp({ lossless: true, effort: 6 })
         .toFile(outPath);
       await unlink(tmpPath).catch(() => {});
     }

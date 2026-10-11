@@ -7,7 +7,7 @@ export type IndustryVisualAsset = {
 };
 
 /** Bump when industry stills are regenerated so Next/Image + browser caches refresh. */
-const INDUSTRY_VISUAL_VERSION = "20261007e";
+const INDUSTRY_VISUAL_VERSION = "20261010ll";
 
 function industryAsset(slug: IndustrySlug, kind: "full" | "thumb") {
   const base =
@@ -136,9 +136,9 @@ export function industryProofImage(href?: string): string | undefined {
   const fileSlug = known[slug];
   if (!fileSlug) return undefined;
   const versions: Record<string, string> = {
-    "ecommerce-store-growth": "?v=20260822a",
-    "landscaping-company-growth": "?v=20261006d",
-    "plumbing-company-growth": "?v=20261006d",
+    "ecommerce-store-growth": "?v=20261010ll",
+    "landscaping-company-growth": "?v=20261010ll",
+    "plumbing-company-growth": "?v=20261010ll",
   };
   const version = versions[fileSlug] ?? "";
   return `/assets/images/case-studies/${fileSlug}.webp${version}`;

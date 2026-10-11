@@ -26,7 +26,7 @@ const homeResultsEn: HomeResult[] = [
     mechanism: "Local SEO plus tighter landing pages",
     summary:
       "Local SEO and tighter landing pages replaced feast-or-famine referrals with steady inbound through the season.",
-    image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
+    image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261010ll",
     imageAlt:
       "A1 Property Services site preview showing local lead-gen pages",
   },
@@ -40,7 +40,7 @@ const homeResultsEn: HomeResult[] = [
     mechanism: "Stronger local rankings, less wasted ad spend",
     summary:
       "Stronger local rankings cut wasted ad spend and more than doubled emergency calls when homeowners needed help now.",
-    image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
+    image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261010ll",
     imageAlt:
       "Preferred Plumbing site preview focused on emergency call capture",
   },
@@ -54,7 +54,7 @@ const homeResultsEn: HomeResult[] = [
     mechanism: "Conversion rebuild and product SEO",
     summary:
       "A conversion-led rebuild and product SEO lifted orders from 32 to 78 a month, without endless promo discounts.",
-    image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+    image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20261010ll",
     imageAlt: "Manos Creativas storefront preview after conversion-led rebuild",
   },
 ];
@@ -70,7 +70,7 @@ const homeResultsEs: HomeResult[] = [
     mechanism: "SEO local y landings más precisas",
     summary:
       "El SEO local y landings más precisas sustituyeron los referidos a trompicones por demanda estable durante toda la temporada.",
-    image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261006d",
+    image: "/assets/images/case-studies/landscaping-company-growth.webp?v=20261010ll",
     imageAlt:
       "Vista previa del sitio de A1 Property Services con páginas locales de captación",
   },
@@ -84,7 +84,7 @@ const homeResultsEs: HomeResult[] = [
     mechanism: "Mejor ranking local, menos gasto publicitario tirado",
     summary:
       "Un ranking local más sólido recortó gasto inútil y más que duplicó las llamadas de emergencia cuando el cliente necesitaba ayuda ya.",
-    image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261006d",
+    image: "/assets/images/case-studies/plumbing-company-growth.webp?v=20261010ll",
     imageAlt:
       "Vista previa del sitio de Preferred Plumbing centrada en captar llamadas de emergencia",
   },
@@ -98,7 +98,7 @@ const homeResultsEs: HomeResult[] = [
     mechanism: "Reconstrucción de conversión y SEO de producto",
     summary:
       "Una reconstrucción orientada a conversión y SEO de producto subió los pedidos de 32 a 78 al mes, sin descuentos promocionales eternos.",
-    image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20260822a",
+    image: "/assets/images/case-studies/ecommerce-store-growth.webp?v=20261010ll",
     imageAlt: "Vista previa de la tienda de Manos Creativas tras la reconstrucción de conversión",
   },
 ];

@@ -11,7 +11,7 @@ export type ShowcaseVariant =
 
 export type ShowcaseLayout = "desktop" | "tablet" | "phone";
 
-const ASSET_V = "20260908a";
+const ASSET_V = "20261010ll";
 
 const PHOTOS = {
   ridge: `/assets/images/lp/showcase-ridge.webp?v=${ASSET_V}`,

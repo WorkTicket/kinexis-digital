@@ -6,7 +6,7 @@ export type ServiceVisual = {
 };
 
 /** Bump when service stills are regenerated so Next/Image + browser caches refresh. */
-const SERVICE_VISUAL_VERSION = "20261007e";
+const SERVICE_VISUAL_VERSION = "20261010ll";
 
 function serviceAsset(slug: string) {
   return `/assets/images/services/service-${slug}.webp?v=${SERVICE_VISUAL_VERSION}`;

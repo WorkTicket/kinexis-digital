@@ -4,10 +4,10 @@ import { getOgLocale } from "@/i18n/locale-tags";
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinexisdigital.com").replace(/\/$/, "");
 
-export const DEFAULT_OG_IMAGE_PATH = "/assets/images/kinexis_OG_image.webp";
+export const DEFAULT_OG_IMAGE_PATH = "/assets/images/kinexis_OG_image.webp?v=20261010ll";
 
 /** Square brand mark for Organization/LocalBusiness logo rich results (not the wide OG card). */
-export const ORGANIZATION_LOGO_PATH = "/assets/logos/KINEXIS_icon_logo.webp";
+export const ORGANIZATION_LOGO_PATH = "/assets/logos/KINEXIS_icon_logo.webp?v=20261010ll";
 
 /**
  * Google SERP title display is pixel-based (~580–600px), ~50–60 characters.

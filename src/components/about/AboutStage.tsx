@@ -3,19 +3,12 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import "@/styles/routes/home-process.css";
 import type { MethodMarkId } from "@/components/about/about-studies";
+import { methodMarks } from "@/components/stage-marks";
 
 export type AboutStageStep = {
   id: MethodMarkId;
   title: string;
   description: string;
-};
-
-const methodStills: Record<MethodMarkId, string> = {
-  analyze: "/assets/images/method/analyze.webp?v=20261009",
-  strategize: "/assets/images/method/strategize.webp?v=20261009",
-  build: "/assets/images/method/build.webp?v=20261009",
-  optimize: "/assets/images/method/optimize.webp?v=20261009",
-  scale: "/assets/images/method/scale.webp?v=20261009",
 };
 
 type Props = {
@@ -51,6 +44,7 @@ export function AboutStage({ steps, ariaLabel }: Props) {
   }
 
   if (!current) return null;
+  const Mark = methodMarks[current.id];
 
   return (
     <div className="process-stage process-stage--method">
@@ -95,15 +89,8 @@ export function AboutStage({ steps, ariaLabel }: Props) {
         className="process-stage__panel"
       >
         <div key={current.id} className="process-stage__live">
-          <div className="process-stage__study" aria-hidden>
-            <img
-              src={methodStills[current.id]}
-              alt=""
-              width={1280}
-              height={720}
-              decoding="async"
-              className="process-stage__still"
-            />
+          <div className="process-stage__study process-stage__study--mark" aria-hidden>
+            <Mark />
           </div>
           <p className="process-stage__read">{current.description}</p>
         </div>
