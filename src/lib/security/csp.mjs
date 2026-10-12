@@ -53,6 +53,13 @@ export function googleWwwImgSrcHosts() {
   );
 }
 
+// Exact gateway origins returned by this site's Meta Pixel configuration.
+// Avoid allowing unrelated AWS and Google Cloud customer origins.
+export const META_GATEWAY_ORIGINS = [
+  "https://8b-ffbbe167ddcc42afb5f860276d91024e.ecs.us-west-2.on.aws",
+  "https://bded8a3c6ae-1-1053047382554.us-central1.run.app",
+].join(" ");
+
 /**
  * @param {{ isDev?: boolean, cloudflareInsightsConnect?: string, includeGoogleTldImgSrc?: boolean }} [options]
  * HTML documents use the full Google TLD img-src list. Cloudflare `_headers`
@@ -76,7 +83,7 @@ export function buildContentSecurityPolicy({
     `img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://www.facebook.com https://facebook.com https://connect.facebook.net ${googleImgHosts}`,
     "media-src 'self' blob:",
     "font-src 'self' data:",
-    `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://analytics.google.com https://www.google.com https://google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://td.doubleclick.net https://ad.doubleclick.net https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.facebook.com https://facebook.com https://connect.facebook.net https://graph.facebook.com https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
+    `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://analytics.google.com https://www.google.com https://google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://td.doubleclick.net https://ad.doubleclick.net https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.facebook.com https://facebook.com https://connect.facebook.net https://graph.facebook.com ${META_GATEWAY_ORIGINS} https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
     "frame-src 'self' https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com https://tagassistant.google.com https://www.facebook.com https://web.facebook.com",
     "object-src 'none'",
     "base-uri 'self'",
@@ -102,7 +109,7 @@ export function buildAssetContentSecurityPolicy({
     "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.facebook.com https://connect.facebook.net",
     "media-src 'self' blob:",
     "font-src 'self' data:",
-    `connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.googleadservices.com https://*.g.doubleclick.net https://td.doubleclick.net https://www.facebook.com https://connect.facebook.net https://graph.facebook.com https://*.clarity.ms ${cloudflareInsightsConnect}`,
+    `connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.googleadservices.com https://*.g.doubleclick.net https://td.doubleclick.net https://www.facebook.com https://connect.facebook.net https://graph.facebook.com ${META_GATEWAY_ORIGINS} https://*.clarity.ms ${cloudflareInsightsConnect}`,
     "frame-src 'self' https://td.doubleclick.net https://www.googletagmanager.com https://www.facebook.com",
     "object-src 'none'",
     "base-uri 'self'",

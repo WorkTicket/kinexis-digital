@@ -1,0 +1,62 @@
+/* Shared landing controls, without campaign-only layout styles. */
+.form-label__optional {
+  text-transform: none;
+  font-weight: 500;
+  letter-spacing: 0;
+  opacity: 0.75;
+}
+
+.landing-sticky-cta {
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
+}
+
+.landing-sticky-cta--at-end {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.55rem);
+  pointer-events: none;
+}
+@media (max-width: 1023px) {
+  html.lp-chrome .lp-contact-dock {
+    --corner-fab-bottom: calc(6.35rem + var(--in-app-chrome-bottom, 0px) + env(safe-area-inset-bottom, 0px));
+    transition: opacity 0.28s ease, visibility 0.28s;
+  }
+
+  html.lp-chrome .back-to-top {
+    transition: bottom 0.28s ease;
+  }
+
+  html.lp-chrome:not(:has(.landing-sticky-cta:not(.landing-sticky-cta--at-end))) .lp-contact-dock {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.landing-sticky-cta--at-end .landing-sticky-cta__panel {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-sticky-cta {
+    transition: opacity 0.12s linear, visibility 0.12s linear;
+  }
+
+  .landing-sticky-cta--at-end {
+    transform: none;
+  }
+
+  html.lp-chrome .lp-contact-dock {
+    transition: opacity 0.12s linear, visibility 0.12s linear;
+  }
+
+  html.lp-chrome .back-to-top {
+    transition: none;
+  }
+}
+
+.landing-sticky-cta__split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 0.5rem;
+}

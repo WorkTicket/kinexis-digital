@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/routing";
 import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker";
 import { PlanCta } from "@/components/landing/PlanCta";
-import { GreenfieldExamples } from "@/components/landing/GreenfieldExamples";
+import { LazyGreenfieldExamples as GreenfieldExamples } from "@/components/landing/LazyGreenfieldExamples";
 import { WebsitePlanForm } from "@/components/landing/WebsitePlanForm";
 import type {
   LandingPageEntry,
@@ -342,7 +342,7 @@ export function WebsiteWork({
                         srcSet={sample.deviceShotSrcSet}
                         sizes={
                           sample.deviceShotSizes ??
-                          "(max-width: 767px) 100vw, 34rem"
+                          "(max-width: 767px) calc(100vw - 3rem), 34rem"
                         }
                         alt=""
                         width={1920}

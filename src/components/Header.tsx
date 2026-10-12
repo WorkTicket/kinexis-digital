@@ -263,6 +263,7 @@ export function Header() {
             <Link
               href="/"
               className="site-header__logo site-header__logo--quiet inline-flex min-h-11 shrink-0 items-center"
+              prefetch={false}
               aria-label={tA11y("logoAlt")}
             >
               <BrandLogo height={22} />
@@ -284,7 +285,6 @@ export function Header() {
           {isSlimLanding && landing ? (
             <div className="site-header__lp-actions ml-auto flex min-w-0 items-center gap-2 sm:gap-3">
               {supportSlot("nav")}
-              <ThemeToggle />
               <Button
                 href={landing.formHref}
                 size="header"

@@ -3,6 +3,7 @@ import { cn } from "@/lib/cn";
 
 type LcpImageProps = {
   src: string;
+  srcSet?: string;
   alt: string;
   className?: string;
   sizes?: string;
@@ -25,6 +26,7 @@ type LcpImageProps = {
  */
 export function LcpImage({
   src,
+  srcSet,
   alt,
   className,
   sizes,
@@ -106,6 +108,8 @@ export function LcpImage({
       /* eslint-disable-next-line @next/next/no-img-element */
       <img
         src={src}
+        srcSet={srcSet}
+        sizes={sizes}
         alt={alt}
         width={width}
         height={height}

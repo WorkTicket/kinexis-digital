@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 vi.mock("@opennextjs/cloudflare", () => ({
   getCloudflareContext: vi.fn(async () => ({ env: {} })),
@@ -48,6 +49,7 @@ describe("Meta CAPI helpers", () => {
 
 describe("sendMetaCapiEvent", () => {
   beforeEach(() => {
+    vi.mocked(getCloudflareContext).mockResolvedValue({ env: {} } as Awaited<ReturnType<typeof getCloudflareContext>>);
     vi.unstubAllEnvs();
     vi.stubEnv("NODE_ENV", "production");
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
@@ -131,6 +133,21 @@ describe("sendMetaCapiEvent", () => {
     expect(body.data[0].user_data.fbc).toContain("IwAR0testClick");
     expect(infoSpy).toHaveBeenCalledWith("Meta CAPI Lead sent");
     infoSpy.mockRestore();
+  });
+
+  it("reads the token and test code from Cloudflare runtime secrets", async () => {
+    vi.stubEnv("META_CAPI_ACCESS_TOKEN", "");
+    vi.stubEnv("META_CAPI_TEST_EVENT_CODE", "");
+    vi.mocked(getCloudflareContext).mockResolvedValue({
+      env: { META_CAPI_ACCESS_TOKEN: "worker-token", META_CAPI_TEST_EVENT_CODE: "TEST123" },
+    } as Awaited<ReturnType<typeof getCloudflareContext>>);
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    expect((await sendMetaCapiEvent({ email: "lead@example.com" })).sent).toBe(true);
+    const body = JSON.parse(fetchMock.mock.calls[0][1].body);
+    expect(body.access_token).toBe("worker-token");
+    expect(body.test_event_code).toBe("TEST123");
   });
 
   it("still posts when the public pixel env is unset but a CAPI token exists", async () => {

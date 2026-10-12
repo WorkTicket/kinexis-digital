@@ -32,9 +32,15 @@ export function useCookieConsent() {
 
 export function CookieConsentProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const hideBanner = isCookieBannerExemptPath(pathname);
+  const [requiresMetaConsent, setRequiresMetaConsent] = useState(false);
+  const hideBanner = isCookieBannerExemptPath(pathname) && !requiresMetaConsent;
   const [consent, setConsent] = useState<ConsentState>("pending");
   const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    setRequiresMetaConsent(/\/lp\/get-a-website\/?$/.test(pathname)
+      && window.__kinexisMetaDefaultConsent === "revoke");
+  }, [pathname]);
 
   useEffect(() => {
     const stored = readStoredConsent();

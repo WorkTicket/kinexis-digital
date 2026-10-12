@@ -28,6 +28,7 @@ export function WebsiteDirect({
               alt=""
               width={portrait.width}
               height={portrait.height}
+              loading="lazy"
               decoding="async"
             />
             <figcaption>

@@ -31,6 +31,7 @@ type Props = {
   preset?: { name: string; email: string; notes?: string };
   /** Stay on the landing page after a time is confirmed. */
   stayOnPage?: boolean;
+  landingSlug?: string;
 };
 
 const WEEKDAYS = ["S", "M", "T", "W", "T", "F", "S"];
@@ -60,6 +61,7 @@ export function StrategyCallBooking({
   content: c,
   preset,
   stayOnPage = false,
+  landingSlug,
 }: Props) {
   const router = useRouter();
   const { honeypotProps, honeypotPayload } = useFormHoneypot();
@@ -187,11 +189,14 @@ export function StrategyCallBooking({
 
     try {
       const attribution = getAttributionPayload();
+      const metaEventId = createMetaEventId("Schedule");
       const res = await fetch("/api/booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
+          landingSlug,
+          metaEventId,
           email,
           date: selectedDate,
           time: selectedTime,
@@ -207,9 +212,9 @@ export function StrategyCallBooking({
         throw new Error(data.error || b.errorMessage);
       }
 
-      const metaEventId = createMetaEventId("Schedule");
       stashPendingConversion({
         type: "booking",
+        landingSlug,
         email,
         serviceInterest: "Strategy Call",
         formType: "contact",
@@ -217,7 +222,7 @@ export function StrategyCallBooking({
         metaEvent: "Schedule",
         metaEventId,
       });
-      trackBookingClick({ email, metaEventId, serviceInterest: "Strategy Call" });
+      trackBookingClick({ email, metaEventId, landingSlug, serviceInterest: "Strategy Call" });
 
       const bookedDate = selectedDate;
       const bookedTime = selectedTime;

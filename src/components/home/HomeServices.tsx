@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { homeImageAssets } from "@/lib/home-image-assets";
 import "@/styles/routes/home-services.css";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
@@ -30,12 +30,16 @@ function ServiceRow({
     >
       <div className={cn("service-spread__art", `service-spread__art--${service.slug}`)}>
         <div className="service-spread__plate">
-          <Image
-            src={visual.src}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            {...homeImageAssets(visual.src)}
             alt={visual.alt}
-            fill
-            sizes="(max-width: 899px) 100vw, 46vw"
-            quality={90}
+            width={1536}
+            height={1024}
+            loading="lazy"
+            decoding="async"
+            sizes="(max-width: 899px) calc(100vw - 2.5rem), 46vw"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
             className="service-spread__img"
           />
         </div>

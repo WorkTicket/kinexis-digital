@@ -256,8 +256,7 @@ export async function Footer() {
               <LandingChromeGate
                 onLanding={
                   <>
-                    <LanguageSwitcher />
-                    <span className="site-footer__bar-sep" aria-hidden />
+                    <LanguageSwitcher withSeparator />
                     <span className="site-footer__bar-group">
                       <Link href="/privacy" className="site-footer__bar-link">
                         {t("privacy")}
@@ -270,8 +269,7 @@ export async function Footer() {
                 }
                 offLanding={
                   <>
-                    <LanguageSwitcher />
-                    <span className="site-footer__bar-sep" aria-hidden />
+                    <LanguageSwitcher withSeparator />
                     <span className="site-footer__bar-group">
                       <Link href="/privacy" className="site-footer__bar-link">
                         {t("privacy")}

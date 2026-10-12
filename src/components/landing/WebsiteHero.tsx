@@ -97,7 +97,7 @@ export function WebsiteHero({
                     >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
-                        src="/assets/images/lp/colton-wehr-face.webp?v=20261010ll"
+                        src="/assets/images/lp/optimized/colton-wehr-face.webp?v=20261010perf2"
                         alt=""
                         width={580}
                         height={580}
@@ -107,7 +107,7 @@ export function WebsiteHero({
                   ) : (
                     /* eslint-disable-next-line @next/next/no-img-element */
                     <img
-                      src="/assets/images/lp/colton-wehr-face.webp?v=20261010ll"
+                      src="/assets/images/lp/optimized/colton-wehr-face.webp?v=20261010perf2"
                       alt=""
                       width={580}
                       height={580}
@@ -123,14 +123,6 @@ export function WebsiteHero({
 
           {visual ? (
             <figure className="lp-web-hero__devices">
-              <link
-                rel="preload"
-                as="image"
-                href={visual.src}
-                imageSrcSet={visual.srcSet}
-                imageSizes={visual.sizes}
-                fetchPriority="high"
-              />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={visual.src}

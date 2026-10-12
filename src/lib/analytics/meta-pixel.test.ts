@@ -79,7 +79,7 @@ describe("trackMetaLead", () => {
   it("re-inits with Advanced Matching and fires Lead", async () => {
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
     const fbq = vi.fn();
-    vi.stubGlobal("window", { fbq });
+    vi.stubGlobal("window", { fbq, location: { pathname: "/lp/get-a-website" } });
 
     const { trackMetaLead } = await import("@/lib/analytics/meta-pixel");
     expect(
@@ -119,7 +119,7 @@ describe("trackMetaPurchase and eventId dedupe", () => {
   it("fires Purchase with value and USD", async () => {
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
     const fbq = vi.fn();
-    vi.stubGlobal("window", { fbq, sessionStorage: memorySession() });
+    vi.stubGlobal("window", { fbq, location: { pathname: "/lp/get-a-website" }, sessionStorage: memorySession() });
 
     const { trackMetaPurchase } = await import("@/lib/analytics/meta-pixel");
     expect(trackMetaPurchase({ value: 1500, currency: "USD" })).toBe(true);
@@ -132,7 +132,7 @@ describe("trackMetaPurchase and eventId dedupe", () => {
   it("rejects zero or invalid purchase values", async () => {
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
     const fbq = vi.fn();
-    vi.stubGlobal("window", { fbq, sessionStorage: memorySession() });
+    vi.stubGlobal("window", { fbq, location: { pathname: "/lp/get-a-website" }, sessionStorage: memorySession() });
 
     const { trackMetaPurchase } = await import("@/lib/analytics/meta-pixel");
     expect(trackMetaPurchase({ value: 0 })).toBe(false);
@@ -143,7 +143,7 @@ describe("trackMetaPurchase and eventId dedupe", () => {
   it("does not fire the same eventId twice", async () => {
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
     const fbq = vi.fn();
-    vi.stubGlobal("window", { fbq, sessionStorage: memorySession() });
+    vi.stubGlobal("window", { fbq, location: { pathname: "/lp/get-a-website" }, sessionStorage: memorySession() });
 
     const { trackMetaLead } = await import("@/lib/analytics/meta-pixel");
     expect(trackMetaLead({ eventId: "lead-once" })).toBe(true);
@@ -166,12 +166,13 @@ describe("trackMetaPurchase and eventId dedupe", () => {
     expect(
       firePendingMetaConversion({
         type: "booking",
+        landingSlug: "get-a-website",
         email: "book@example.com",
         metaEvent: "Schedule",
         storedAt: Date.now(),
       }),
     ).toBe(true);
-    expect(fbq).toHaveBeenCalledWith("track", "Schedule");
+    expect(fbq).toHaveBeenCalledWith("track", "Schedule", { content_name: "get-a-website" });
 
     vi.stubGlobal("window", {
       fbq,

@@ -267,7 +267,9 @@ export async function POST(request: Request) {
       fbclid: attribution.fbclid,
       clientIp: ip,
       userAgent: request.headers.get("user-agent") ?? undefined,
-      eventSourceUrl: attribution.landing_page,
+      eventSourceUrl:
+        attribution.landing_page ||
+        (safeLandingSlug ? `/lp/${safeLandingSlug}` : undefined),
       contentName: safeLandingSlug || leadData.service,
       contentCategory: String(source) === "landing-page" ? "landing-page" : "lead",
     });

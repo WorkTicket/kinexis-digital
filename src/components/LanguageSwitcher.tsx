@@ -10,7 +10,7 @@ import {
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { cn } from "@/lib/cn";
 
-export function LanguageSwitcher({ className }: { className?: string }) {
+export function LanguageSwitcher({ className, withSeparator = false }: { className?: string; withSeparator?: boolean }) {
   const locale = useLocale() as Locale;
   const router = useRouter();
   const pathname = usePathname();
@@ -24,7 +24,10 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     router.refresh();
   };
 
+  if (/^\/lp\/get-a-website\/?$/.test(pathname)) return null;
+
   return (
+    <>
     <nav aria-label={t("label")} className={cn("site-footer__lang", className)}>
       {locales.map((loc) => (
         <button
@@ -42,5 +45,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         </button>
       ))}
     </nav>
+    {withSeparator ? <span className="site-footer__bar-sep" aria-hidden /> : null}
+    </>
   );
 }

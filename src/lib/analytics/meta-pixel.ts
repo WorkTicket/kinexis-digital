@@ -10,6 +10,7 @@
 
 import { getMetaPixelId } from "@/lib/analytics/ads-config";
 import { READ_STORED_CONSENT_JS } from "@/lib/analytics/consent";
+import { guardMetaTrackingScript, isMetaTrackingPath, shouldLoadMetaTracking } from "./meta-tracking";
 import {
   claimMetaEventFire,
   HAS_META_FIRED_JS,
@@ -54,10 +55,11 @@ function validPixelId(id: string | undefined): string | undefined {
 }
 
 function canTrackMeta(): boolean {
-  return typeof window !== "undefined" && typeof window.fbq === "function";
+  return typeof window !== "undefined" && isMetaTrackingPath(window.location?.pathname ?? "") && typeof window.fbq === "function";
 }
 
 export type MetaPixelInitOptions = {
+  landingOnly?: boolean;
   /**
    * GDPR countries should start revoked so PageView waits for the banner.
    * Elsewhere matches Google Consent Mode (granted until the visitor rejects).
@@ -94,7 +96,8 @@ export function buildEarlyMetaPixelHtml(
   const init = buildMetaPixelInitScript(pixelId, options);
   if (!init) return "";
   const conversion = buildMetaConversionSnippet(pixelId);
-  return `<script>${init}</script>${conversion ? `<script>${conversion}</script>` : ""}`;
+  const scoped = (script: string) => options.landingOnly ? guardMetaTrackingScript(script) : script;
+  return `<script>${scoped(init)}</script>${conversion ? `<script>${scoped(conversion)}</script>` : ""}`;
 }
 
 /**
@@ -146,6 +149,8 @@ export function buildMetaConversionSnippet(pixelId?: string): string {
 
 export function updateMetaPixelConsent(granted: boolean): void {
   if (!canTrackMeta()) return;
+  if (granted && !shouldLoadMetaTracking(window.location.pathname, peekPendingConversion())
+    && window.__kinexisMetaTrackingPath !== window.location.pathname) return;
   window.fbq!("consent", granted ? "grant" : "revoke");
 }
 
@@ -231,6 +236,7 @@ export function firePendingMetaConversion(
     return false;
   }
   if (!pending) return false;
+  if (pending.landingSlug !== "get-a-website") return false;
 
   const event = resolveMetaConversionEvent(pending);
   if (!event) return false;

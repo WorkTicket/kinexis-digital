@@ -2,6 +2,8 @@
  * Landing-page funnel events. These are measurement only.
  * Meta Lead is never fired from here — Lead stays on confirmed submit.
  */
+import { shouldLoadGoogleTracking } from "@/lib/analytics/google-tracking";
+import { isMetaTrackingPath } from "@/lib/analytics/meta-tracking";
 
 export type LandingFunnelEvent =
   | "cta_click"
@@ -21,11 +23,11 @@ export type LandingFunnelParams = {
 };
 
 function canTrackGa(): boolean {
-  return typeof window !== "undefined" && typeof window.gtag === "function";
+  return typeof window !== "undefined" && shouldLoadGoogleTracking(window.location.pathname) && typeof window.gtag === "function";
 }
 
 function canTrackMetaCustom(): boolean {
-  return typeof window !== "undefined" && typeof window.fbq === "function";
+  return typeof window !== "undefined" && isMetaTrackingPath(window.location.pathname) && typeof window.fbq === "function";
 }
 
 /** GA4 + optional Meta custom event. Safe to call from CTA/form instrumentation. */

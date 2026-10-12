@@ -8,6 +8,7 @@ import {
   getLandingPageConversionLabel,
   getLeadConversionLabel,
 } from "@/lib/analytics/ads-config";
+import { shouldLoadGoogleTracking } from "@/lib/analytics/google-tracking";
 import {
   trackMetaEvent,
   trackMetaLead,
@@ -66,7 +67,7 @@ function sendTo(label: string): string | undefined {
 }
 
 function canTrack(): boolean {
-  return typeof window !== "undefined" && typeof window.gtag === "function";
+  return typeof window !== "undefined" && shouldLoadGoogleTracking(window.location.pathname) && typeof window.gtag === "function";
 }
 
 function isAdsDebug(): boolean {
@@ -258,7 +259,7 @@ export function trackBookingClick(options: ConversionOptions = {}): boolean {
   trackMetaSchedule({
     email: options.email,
     phone: options.phone,
-    contentName: options.serviceInterest,
+    contentName: options.landingSlug ?? options.serviceInterest,
     contentCategory: "booking",
     eventId: options.metaEventId,
   });

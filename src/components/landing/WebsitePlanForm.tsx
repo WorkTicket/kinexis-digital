@@ -434,6 +434,7 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       <div className="lp-web-form__success" role="status" aria-live="polite">
         <ProjectCallCalendar
           stayOnPage
+          landingSlug={page.slug}
           preset={{ name: name.trim(), email: email.trim(), notes }}
           content={{
             ...contact,

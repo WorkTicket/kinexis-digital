@@ -58,6 +58,20 @@ describe("detectLocaleFromLocation", () => {
 });
 
 describe("resolveRequestLocale", () => {
+  it.each([
+    { country: "CO", language: "es-CO", cookie: "" },
+    { country: "ES", language: "es-ES", cookie: "" },
+    { country: "", language: "es-ES", cookie: "" },
+    { country: "ES", language: "es-ES", cookie: "NEXT_LOCALE=es-ES; NEXT_LOCALE_CHOICE=1" },
+  ])("loads the website landing page in English for $country / $language", ({ country, language, cookie }) => {
+    for (const pathname of ["/lp/get-a-website", "/lp/get-a-website/"]) {
+      const request = new NextRequest(`https://www.kinexisdigital.com${pathname}`, {
+        headers: { "cf-ipcountry": country, "accept-language": language, cookie },
+      });
+      expect(resolveRequestLocale(request)).toBe("en");
+    }
+  });
+
   it("lets an explicit footer choice override geo", () => {
     const request = makeRequest(
       { "cf-ipcountry": "CO" },

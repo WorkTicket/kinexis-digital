@@ -191,9 +191,9 @@ const baseGetAWebsite: LandingPageEntry = {
   headerCtaLabel: "Book a 15-Min Call",
   heroPrice: softPricing.en.heroPrice,
   heroPortrait: {
-    src: "/assets/images/lp/colton-wehr-819.webp?v=20261010ll",
+    src: "/assets/images/lp/optimized/colton-wehr-819.webp?v=20261010perf2",
     srcSet:
-      "/assets/images/lp/colton-wehr-480.webp?v=20261010ll 480w, /assets/images/lp/colton-wehr-640.webp?v=20261010ll 640w, /assets/images/lp/colton-wehr-819.webp?v=20261010ll 676w",
+      "/assets/images/lp/optimized/colton-wehr-480.webp?v=20261010perf2 480w, /assets/images/lp/optimized/colton-wehr-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/colton-wehr-819.webp?v=20261010perf2 676w",
     sizes: "2rem",
     alt: "Colton Wehr, lead developer at KINEXIS",
     width: 676,
@@ -203,10 +203,10 @@ const baseGetAWebsite: LandingPageEntry = {
   },
   heroCredit: "Talk to Colton.",
   heroDevices: {
-    src: "/assets/images/lp/hero-devices.webp?v=20261010ll",
+    src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
     srcSet:
-      "/assets/images/lp/hero-devices-640.webp?v=20261010ll 640w, /assets/images/lp/hero-devices-960.webp?v=20261010ll 960w, /assets/images/lp/hero-devices-1440.webp?v=20261010ll 1440w, /assets/images/lp/hero-devices-2048.webp?v=20261010ll 2048w",
-    sizes: "(max-width: 767px) 100vw, min(52rem, 50vw)",
+      "/assets/images/lp/optimized/hero-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/hero-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/hero-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/hero-devices-2048.webp?v=20261010perf2 2048w",
+    sizes: "(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) 36rem, min(41rem, 50vw)",
     alt: "A1 Property Services and Preferred Plumbing websites on laptops and phones, built by KINEXIS",
     width: 2048,
     height: 726,
@@ -422,10 +422,10 @@ const baseGetAWebsite: LandingPageEntry = {
   samples: [
     {
       image: A1_DESKTOP,
-      deviceShot: "/assets/images/lp/a1-devices.webp?v=20261010ll",
+      deviceShot: "/assets/images/lp/optimized/a1-devices.webp?v=20261010perf2",
       deviceShotSrcSet:
-        "/assets/images/lp/a1-devices-640.webp?v=20261010ll 640w, /assets/images/lp/a1-devices-960.webp?v=20261010ll 960w, /assets/images/lp/a1-devices-1440.webp?v=20261010ll 1440w, /assets/images/lp/a1-devices-1920.webp?v=20261010ll 1920w",
-      deviceShotSizes: "(max-width: 767px) 100vw, 34rem",
+        "/assets/images/lp/optimized/a1-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/a1-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/a1-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/a1-devices-1920.webp?v=20261010perf2 1920w",
+      deviceShotSizes: "(max-width: 767px) calc(100vw - 3rem), 34rem",
       imageAlt:
         "A1 Property Services website on a laptop, built by KINEXIS",
       client: "A1 Property Services",
@@ -443,10 +443,10 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       image: PLUMBING_DESKTOP,
-      deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261010ll",
+      deviceShot: "/assets/images/lp/optimized/plumbing-devices.webp?v=20261010perf2",
       deviceShotSrcSet:
-        "/assets/images/lp/plumbing-devices-640.webp?v=20261010ll 640w, /assets/images/lp/plumbing-devices-960.webp?v=20261010ll 960w, /assets/images/lp/plumbing-devices-1440.webp?v=20261010ll 1440w, /assets/images/lp/plumbing-devices-1920.webp?v=20261010ll 1920w",
-      deviceShotSizes: "(max-width: 767px) 100vw, 34rem",
+        "/assets/images/lp/optimized/plumbing-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/plumbing-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/plumbing-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/plumbing-devices-1920.webp?v=20261010perf2 1920w",
+      deviceShotSizes: "(max-width: 767px) calc(100vw - 3rem), 34rem",
       imageAlt:
         "Preferred Plumbing Solutions website on a laptop, built by KINEXIS",
       client: "Preferred Plumbing Solutions",

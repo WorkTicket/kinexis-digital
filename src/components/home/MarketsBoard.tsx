@@ -3,6 +3,7 @@
 import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { Link } from "@/i18n/navigation";
 import type { IndustrySlug } from "@/content/industries";
+import { homeImageAssets } from "@/lib/home-image-assets";
 
 export type MarketPlate = {
   slug: IndustrySlug;
@@ -108,10 +109,13 @@ export function MarketsBoard({ markets, ariaLabel }: Props) {
         <div key={active.slug} className="markets-board__stage-inner">
           <Link href={active.href} className="markets-board__still">
             <img
-              src={active.still}
+              {...homeImageAssets(active.still)}
               alt={active.stillAlt}
               width={720}
               height={480}
+              sizes="(max-width: 767px) calc(100vw - 2.5rem), 36rem"
+              loading="lazy"
+              decoding="async"
               className="markets-board__img"
             />
           </Link>

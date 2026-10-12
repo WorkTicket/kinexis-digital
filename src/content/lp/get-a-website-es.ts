@@ -68,9 +68,9 @@ export function buildSpanishGetAWebsite(
     headerCtaLabel: "Llamada de 15 min",
     heroPrice: pricing.heroPrice,
     heroPortrait: {
-      src: "/assets/images/lp/colton-wehr-819.webp?v=20261010ll",
+      src: "/assets/images/lp/optimized/colton-wehr-819.webp?v=20261010perf2",
       srcSet:
-        "/assets/images/lp/colton-wehr-480.webp?v=20261010ll 480w, /assets/images/lp/colton-wehr-640.webp?v=20261010ll 640w, /assets/images/lp/colton-wehr-819.webp?v=20261010ll 676w",
+        "/assets/images/lp/optimized/colton-wehr-480.webp?v=20261010perf2 480w, /assets/images/lp/optimized/colton-wehr-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/colton-wehr-819.webp?v=20261010perf2 676w",
       sizes: "2rem",
       alt: "Colton Wehr, desarrollador principal en KINEXIS",
       width: 676,
@@ -80,10 +80,10 @@ export function buildSpanishGetAWebsite(
     },
     heroCredit: "Habla con Colton.",
     heroDevices: {
-      src: "/assets/images/lp/hero-devices.webp?v=20261010ll",
+      src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
       srcSet:
-        "/assets/images/lp/hero-devices-640.webp?v=20261010ll 640w, /assets/images/lp/hero-devices-960.webp?v=20261010ll 960w, /assets/images/lp/hero-devices-1440.webp?v=20261010ll 1440w, /assets/images/lp/hero-devices-2048.webp?v=20261010ll 2048w",
-      sizes: "(max-width: 767px) 100vw, min(52rem, 50vw)",
+        "/assets/images/lp/optimized/hero-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/hero-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/hero-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/hero-devices-2048.webp?v=20261010perf2 2048w",
+      sizes: "(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) 36rem, min(41rem, 50vw)",
       alt: "Sitios de A1 Property Services y Preferred Plumbing en laptops y teléfonos, hechos por KINEXIS",
       width: 2048,
       height: 726,
@@ -300,10 +300,10 @@ export function buildSpanishGetAWebsite(
     samples: [
       {
         image: A1_DESKTOP,
-        deviceShot: "/assets/images/lp/a1-devices.webp?v=20261010ll",
+        deviceShot: "/assets/images/lp/optimized/a1-devices.webp?v=20261010perf2",
         deviceShotSrcSet:
-          "/assets/images/lp/a1-devices-640.webp?v=20261010ll 640w, /assets/images/lp/a1-devices-960.webp?v=20261010ll 960w, /assets/images/lp/a1-devices-1440.webp?v=20261010ll 1440w, /assets/images/lp/a1-devices-1920.webp?v=20261010ll 1920w",
-        deviceShotSizes: "(max-width: 767px) 100vw, 34rem",
+          "/assets/images/lp/optimized/a1-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/a1-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/a1-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/a1-devices-1920.webp?v=20261010perf2 1920w",
+        deviceShotSizes: "(max-width: 767px) calc(100vw - 3rem), 34rem",
         imageAlt:
           "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
         client: "A1 Property Services",
@@ -321,10 +321,10 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: PLUMBING_DESKTOP,
-        deviceShot: "/assets/images/lp/plumbing-devices.webp?v=20261010ll",
+        deviceShot: "/assets/images/lp/optimized/plumbing-devices.webp?v=20261010perf2",
         deviceShotSrcSet:
-          "/assets/images/lp/plumbing-devices-640.webp?v=20261010ll 640w, /assets/images/lp/plumbing-devices-960.webp?v=20261010ll 960w, /assets/images/lp/plumbing-devices-1440.webp?v=20261010ll 1440w, /assets/images/lp/plumbing-devices-1920.webp?v=20261010ll 1920w",
-        deviceShotSizes: "(max-width: 767px) 100vw, 34rem",
+          "/assets/images/lp/optimized/plumbing-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/plumbing-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/plumbing-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/plumbing-devices-1920.webp?v=20261010perf2 1920w",
+        deviceShotSizes: "(max-width: 767px) calc(100vw - 3rem), 34rem",
         imageAlt:
           "Sitio de Preferred Plumbing Solutions en una laptop, construido por KINEXIS",
         client: "Preferred Plumbing Solutions",
@@ -342,7 +342,9 @@ export function buildSpanishGetAWebsite(
       },
       {
         image: MANOS_DESKTOP,
-        deviceShot: "/assets/images/lp/manos-devices.webp?v=20261010ll",
+        deviceShot: "/assets/images/lp/optimized/manos-devices-640.webp?v=20261010perf2",
+        deviceShotSrcSet: "/assets/images/lp/optimized/manos-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/manos-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/manos-devices-1280.webp?v=20261010perf2 1280w",
+        deviceShotSizes: "(max-width: 767px) calc(100vw - 3rem), 34rem",
         imageAlt:
           "Tienda de Manos Creativas en una laptop, construida por KINEXIS",
         client: "Manos Creativas",

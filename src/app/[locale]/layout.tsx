@@ -32,9 +32,12 @@ import {
 } from "@/lib/analytics/ads-config";
 import {
   buildGtagInitScript,
+  buildGtagLoaderSnippet,
   buildLeadConversionSnippet,
   getGtagScriptSrcId,
 } from "@/lib/analytics/conversion-snippet";
+import { guardGoogleTrackingScript } from "@/lib/analytics/google-tracking";
+import { guardMetaTrackingScript } from "@/lib/analytics/meta-tracking";
 import {
   buildMetaConversionSnippet,
   buildMetaPixelInitScript,
@@ -160,13 +163,9 @@ export default async function LocaleLayout({
         {gtagSrcId && gtagInit ? (
           <>
             <script
-              id="gtag-src"
-              async
-              src={`https://www.googletagmanager.com/gtag/js?id=${gtagSrcId}`}
-            />
-            <script
               id="gtag-init"
-              dangerouslySetInnerHTML={{ __html: gtagInit }}
+              suppressHydrationWarning
+              dangerouslySetInnerHTML={{ __html: guardGoogleTrackingScript(gtagInit + buildGtagLoaderSnippet(gtagSrcId)) }}
             />
             {leadSnippet ? (
               <script
@@ -182,12 +181,14 @@ export default async function LocaleLayout({
           <>
             <script
               id="meta-pixel-init"
-              dangerouslySetInnerHTML={{ __html: metaInit }}
+              suppressHydrationWarning
+              dangerouslySetInnerHTML={{ __html: guardMetaTrackingScript(metaInit) }}
             />
             {metaLeadSnippet ? (
               <script
                 id="meta-pixel-lead"
-                dangerouslySetInnerHTML={{ __html: metaLeadSnippet }}
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{ __html: guardMetaTrackingScript(metaLeadSnippet) }}
               />
             ) : null}
           </>

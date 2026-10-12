@@ -4,6 +4,7 @@ import { cn } from "@/lib/cn";
 
 type SitePreviewProps = {
   image: string;
+  srcSet?: string;
   imageAlt: string;
   className?: string;
   sizes?: string;
@@ -15,6 +16,7 @@ type SitePreviewProps = {
 /** Static homepage screenshot inside the device frame. */
 export function SitePreview({
   image,
+  srcSet,
   imageAlt,
   className,
   sizes = "(max-width: 1024px) 100vw, 52vw",
@@ -25,6 +27,7 @@ export function SitePreview({
     <div className={cn("site-preview", className)}>
       <LcpImage
         src={image}
+        srcSet={srcSet}
         alt={imageAlt}
         sizes={sizes}
         quality={priority ? 75 : 70}

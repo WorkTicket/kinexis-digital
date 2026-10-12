@@ -1,5 +1,7 @@
 "use client";
 
+import "@/styles/components/landing-showcase.css";
+
 import {
   useEffect,
   useLayoutEffect,
@@ -20,14 +22,14 @@ import {
 } from "@/content/lp/greenfield-examples";
 import type { Locale } from "@/i18n/routing";
 
-const YARD = "/assets/images/lp/showcase-greenfield-yard.webp?v=20261010ll";
-const BEFORE = "/assets/images/lp/showcase-a1-before.webp?v=20261010ll";
-const PATIO = "/assets/images/lp/greenfield-patio.webp?v=20261010ll";
-const IRRIGATION = "/assets/images/lp/greenfield-irrigation.webp?v=20261010ll";
-const AERATION = "/assets/images/lp/greenfield-aeration.webp?v=20261010ll";
-const CLEANUP = "/assets/images/lp/greenfield-cleanup.webp?v=20261010ll";
-const FEED = "/assets/images/lp/greenfield-feed.webp?v=20261010ll";
-const WALL = "/assets/images/lp/greenfield-wall.webp?v=20261010ll";
+const YARD = "/assets/images/lp/optimized/showcase-greenfield-yard.webp?v=20261010perf2";
+const BEFORE = "/assets/images/lp/optimized/showcase-a1-before.webp?v=20261010perf2";
+const PATIO = "/assets/images/lp/optimized/greenfield-patio.webp?v=20261010perf2";
+const IRRIGATION = "/assets/images/lp/optimized/greenfield-irrigation.webp?v=20261010perf2";
+const AERATION = "/assets/images/lp/optimized/greenfield-aeration.webp?v=20261010perf2";
+const CLEANUP = "/assets/images/lp/optimized/greenfield-cleanup.webp?v=20261010perf2";
+const FEED = "/assets/images/lp/optimized/greenfield-feed.webp?v=20261010perf2";
+const WALL = "/assets/images/lp/optimized/greenfield-wall.webp?v=20261010perf2";
 
 const STILL_SRC = {
   yard: YARD,
@@ -279,9 +281,10 @@ function PhoneFrame({
           <span className="lp-safari__home" />
         </div>
       </div>
-      <img
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img loading="lazy" decoding="async"
         className="lp-web-pain__chassis"
-        src="/assets/images/lp/iphone-15-mockup.webp?v=20261010ll"
+        src="/assets/images/lp/optimized/iphone-15-mockup.webp?v=20261010perf2"
         alt=""
       />
     </div>
@@ -483,7 +486,7 @@ function WpSite({
             {page === "home" ? (
               <>
                 <div className="lp-ex-wp__slider">
-                  <img src={slide === 1 ? YARD : BEFORE} alt="" />
+                  <img loading="lazy" decoding="async" src={slide === 1 ? YARD : BEFORE} alt="" />
                   <button
                     type="button"
                     className="lp-ex-wp__arrow lp-ex-wp__arrow--prev"
@@ -628,7 +631,7 @@ function WpSite({
             {page === "about" ? (
               <article className="lp-ex-wp__page">
                 <h1>{copy.aboutTitle}</h1>
-                <img className="lp-ex-wp__about-photo" src={BEFORE} alt="" />
+                <img loading="lazy" decoding="async" className="lp-ex-wp__about-photo" src={BEFORE} alt="" />
                 {copy.about.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -754,7 +757,7 @@ function NxPageHero({
 }) {
   return (
     <section className="lp-ex-nx__hero lp-ex-nx__hero--page">
-      <img src={src} alt="" style={focus ? { objectPosition: focus } : undefined} />
+      <img loading="lazy" decoding="async" src={src} alt="" style={focus ? { objectPosition: focus } : undefined} />
       <div className="lp-ex-nx__hero-copy">
         {kicker ? <p className="lp-ex-nx__kicker">{kicker}</p> : null}
         <h1>{title}</h1>
@@ -891,7 +894,7 @@ function NxSite({
             {page === "home" && featured && featuredStill ? (
               <div className="lp-ex-nx__home">
                 <section className="lp-ex-nx__hero">
-                  <img src={YARD} alt="" />
+                  <img loading="lazy" decoding="async" src={YARD} alt="" />
                   <div className="lp-ex-nx__hero-copy">
                     <p className="lp-ex-nx__kicker">{copy.kicker}</p>
                     <h1>{copy.title}</h1>
@@ -949,7 +952,7 @@ function NxSite({
                     className="lp-ex-nx__feature"
                     onClick={() => go(featured.id)}
                   >
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={featuredStill.src}
                       alt=""
                       style={{ objectPosition: featuredStill.focus }}
@@ -970,7 +973,7 @@ function NxSite({
                           className="lp-ex-nx__cell"
                           onClick={() => go(item.id)}
                         >
-                          <img src={still.src} alt="" style={{ objectPosition: still.focus }} />
+                          <img loading="lazy" decoding="async" src={still.src} alt="" style={{ objectPosition: still.focus }} />
                           <span>
                             <strong>{item.nav}</strong>
                             <em>{item.card}</em>
@@ -997,7 +1000,7 @@ function NxSite({
                   </div>
                 </section>
                 <section className="lp-ex-nx__spot">
-                  <img src={PATIO} alt="" style={{ objectPosition: "center 46%" }} />
+                  <img loading="lazy" decoding="async" src={PATIO} alt="" style={{ objectPosition: "center 46%" }} />
                   <div className="lp-ex-nx__spot-copy">
                     <p className="lp-ex-nx__kicker">{copy.spotlightKicker}</p>
                     <h2>{copy.spotlightTitle}</h2>
@@ -1098,7 +1101,7 @@ function NxSite({
                     .filter((item) => item.id !== service.id)
                     .map((item) => (
                       <button key={item.id} type="button" onClick={() => go(item.id)}>
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={serviceStill(item.id).src}
                           alt=""
                           style={{ objectPosition: serviceStill(item.id).focus }}
@@ -1156,7 +1159,7 @@ function NxSite({
                 <div className="lp-ex-nx__gallery">
                   {copy.projects.map((project) => (
                     <figure key={project.title}>
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={STILL_SRC[project.image]}
                         alt=""
                         style={{ objectPosition: project.focus }}

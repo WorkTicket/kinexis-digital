@@ -2138,7 +2138,7 @@
 }
 
 .lp-ex__views button[aria-checked="true"] {
-  background: var(--lp-accent);
+  background: #0068df;
   color: #fff;
 }
 
@@ -2553,13 +2553,23 @@
 }
 
 .lp-ex-wp__dots button {
+  width: 1.75rem;
+  height: 1.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.lp-ex-wp__dots button::after {
+  content: "";
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.55);
 }
 
-.lp-ex-wp__dots button.is-on {
+.lp-ex-wp__dots button.is-on::after {
   background: #e31c23;
 }
 

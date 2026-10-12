@@ -102,6 +102,11 @@ export function hasExplicitLocaleChoice(request: NextRequest): boolean {
  * English cookie from a visit where the country was missing.
  */
 export function resolveRequestLocale(request: NextRequest): Locale {
+  // Temporarily keep this campaign in English for every visitor on load.
+  if (/^\/lp\/get-a-website\/?$/.test(request.nextUrl.pathname)) {
+    return DEFAULT_LOCALE;
+  }
+
   if (hasExplicitLocaleChoice(request)) {
     return getCookieLocale(request) ?? detectLocaleFromLocation(request);
   }

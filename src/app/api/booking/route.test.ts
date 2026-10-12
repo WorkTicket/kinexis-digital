@@ -2,6 +2,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { bookingSlotToUtc } from "@/lib/booking";
 
 const sendMock = vi.fn();
+const metaMock = vi.hoisted(() => vi.fn().mockResolvedValue({ sent: true }));
+vi.mock("@/lib/analytics/meta-capi", () => ({ sendMetaCapiEvent: metaMock }));
 
 vi.mock("@/lib/rate-limit", () => ({
   getClientIp: () => "127.0.0.1",
@@ -35,6 +37,7 @@ describe("POST /api/booking", () => {
 
   afterEach(() => {
     sendMock.mockReset();
+    metaMock.mockClear();
   });
 
   async function loadPost() {
@@ -72,6 +75,7 @@ describe("POST /api/booking", () => {
     expect(res.status).toBe(400);
     const body = await res.json();
     expect(body.error).toMatch(/24 hours/i);
+    expect(metaMock).not.toHaveBeenCalled();
   });
 
   it("accepts a valid weekday slot 24h+ out and emails via Cloudflare", async () => {
@@ -91,6 +95,7 @@ describe("POST /api/booking", () => {
     expect(body.success).toBe(true);
     expect(body.date).toBe("2026-08-06");
     expect(body.time).toBe("14:00");
+    expect(metaMock).not.toHaveBeenCalled();
     expect(sendMock).toHaveBeenCalledWith(
       expect.objectContaining({
         to: "hello@kinexisdigital.com",
@@ -131,6 +136,34 @@ describe("POST /api/booking", () => {
     expect(second.status).toBe(409);
     const body = await second.json();
     expect(body.error).toMatch(/just booked|not available/i);
+  });
+
+  it("sends Schedule only after a confirmed landing-page booking, sharing the browser event ID", async () => {
+    vi.setSystemTime(bookingSlotToUtc("2026-08-04", "10:00"));
+    sendMock.mockResolvedValue(undefined);
+    const POST = await loadPost();
+    const booking = {
+      name: "Alex", email: "alex@example.com", date: "2026-08-06", time: "14:00",
+      landingSlug: "get-a-website", metaEventId: "Schedule.test-event-123",
+    };
+    expect((await postBooking(booking, POST)).status).toBe(200);
+    expect(metaMock).toHaveBeenCalledWith(expect.objectContaining({
+      eventName: "Schedule", eventId: booking.metaEventId,
+      contentName: "get-a-website", email: booking.email,
+    }));
+    expect((await postBooking(booking, POST)).status).toBe(409);
+    expect(metaMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not send Schedule when the booking email fails", async () => {
+    vi.setSystemTime(bookingSlotToUtc("2026-08-04", "10:00"));
+    sendMock.mockRejectedValue(new Error("Mail unavailable"));
+    const res = await postBooking({
+      name: "Alex", email: "alex@example.com", date: "2026-08-06", time: "14:00",
+      landingSlug: "get-a-website", metaEventId: "Schedule.test-event-123",
+    });
+    expect(res.status).toBe(500);
+    expect(metaMock).not.toHaveBeenCalled();
   });
 
   it("rejects weekend dates", async () => {

@@ -19,6 +19,7 @@ import {
   validateBookingSlot,
 } from "@/lib/booking";
 import { reserveBookingSlot } from "@/lib/booking-store";
+import { sendMetaCapiEvent } from "@/lib/analytics/meta-capi";
 
 export async function POST(request: Request) {
   try {
@@ -146,6 +147,22 @@ export async function POST(request: Request) {
         time: slot.time,
         slotLabel,
         attribution,
+      });
+    }
+
+    if (body.landingSlug === "get-a-website") {
+      await sendMetaCapiEvent({
+        eventName: "Schedule",
+        eventId: typeof body.metaEventId === "string" ? body.metaEventId : undefined,
+        email: safeEmail,
+        fbp: attribution.fbp,
+        fbc: attribution.fbc,
+        fbclid: attribution.fbclid,
+        clientIp: ip,
+        userAgent: request.headers.get("user-agent") ?? undefined,
+        eventSourceUrl: attribution.landing_page,
+        contentName: "get-a-website",
+        contentCategory: "booking",
       });
     }
 

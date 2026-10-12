@@ -3776,6 +3776,16 @@ html.lp-chrome {
   --site-header-h: calc(3.5rem + env(safe-area-inset-top, 0px));
 }
 
+/* Keep decorative overflow and mobile edge bounce off the horizontal axis. */
+@media (max-width: 1023px) {
+  html.lp-chrome,
+  html.lp-chrome body {
+    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+  }
+}
+
 html.lp-chrome .site-header__frost {
   background: var(--chrome-fallback);
   border-bottom: 1px solid var(--chrome-glass-border);
@@ -3825,6 +3835,7 @@ html.lp-chrome .site-header .btn--header {
   min-height: 2.35rem;
   max-height: 2.35rem;
   max-width: none;
+  flex-shrink: 0;
   padding: 0 0.95rem;
   border-radius: 999px;
   background: #0575f5;
@@ -3856,14 +3867,55 @@ html.lp-chrome {
 
 
 @media (max-width: 639px) {
-html.lp-chrome .site-header__rule--lp,
-  html.lp-chrome .site-header__lp-actions .btn--header {
-    display: none;
+  html.lp-chrome .site-header__bar {
+    gap: 0.45rem;
+    padding-inline: max(0.7rem, env(safe-area-inset-left, 0px))
+      max(0.7rem, env(safe-area-inset-right, 0px));
+  }
+
+  html.lp-chrome .site-header__lp-actions {
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  html.lp-chrome .site-header__logo img {
+    height: 1rem !important;
+  }
+
+  html.lp-chrome .site-header__phone {
+    gap: 0.25rem;
   }
 
   html.lp-chrome .site-header__phone-num,
   html.lp-chrome .site-header__phone .call-link__num {
-    font-size: 0.78rem;
+    font-size: 0.6875rem;
+  }
+
+  html.lp-chrome .site-header .btn--header {
+    padding: 0 0.6rem;
+    font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 389px) {
+  html.lp-chrome .site-header__bar {
+    gap: 0.3rem;
+    padding-inline: max(0.45rem, env(safe-area-inset-left, 0px))
+      max(0.45rem, env(safe-area-inset-right, 0px));
+  }
+
+  html.lp-chrome .site-header__lp-actions {
+    gap: 0.3rem;
+  }
+
+  html.lp-chrome .site-header__logo img {
+    height: 0.9rem !important;
+  }
+
+  html.lp-chrome .site-header__phone-mark,
+  html.lp-chrome .site-header__whatsapp-mark {
+    width: 0.9rem;
+    height: 0.9rem;
   }
 }
 

@@ -11,7 +11,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "");
     const gtag = vi.fn();
-    vi.stubGlobal("window", { gtag });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag });
 
     const { trackLead, getConversionSendTo } = await import(
       "@/lib/analytics/events"
@@ -50,7 +50,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "AbCdEfGh");
     const gtag = vi.fn();
-    vi.stubGlobal("window", { gtag });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag });
 
     const { trackLead, normalizeUserEmail, getConversionSendTo } = await import(
       "@/lib/analytics/events"
@@ -80,7 +80,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "AbCdEfGh");
     const gtag = vi.fn();
-    vi.stubGlobal("window", { gtag });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag });
     vi.stubGlobal("document", { documentElement: { lang: "es-ES" } });
 
     const { trackLead } = await import("@/lib/analytics/events");
@@ -95,7 +95,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_CALL", "");
     const gtag = vi.fn();
-    vi.stubGlobal("window", { gtag });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag });
 
     const { trackCallClick } = await import("@/lib/analytics/events");
     expect(trackCallClick()).toBe(false);
@@ -109,7 +109,7 @@ describe("analytics events", () => {
     const gtag = vi.fn();
     const fbq = vi.fn();
     const clarity = vi.fn();
-    vi.stubGlobal("window", { gtag, fbq, clarity });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag, fbq, clarity });
 
     const { trackLead } = await import("@/lib/analytics/events");
     expect(trackLead({ email: "a@b.com", formType: "landing-page" })).toBe(true);
@@ -130,7 +130,7 @@ describe("analytics events", () => {
     const gtag = vi.fn();
     const fbq = vi.fn();
     const clarity = vi.fn();
-    vi.stubGlobal("window", { gtag, fbq, clarity });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag, fbq, clarity });
 
     const { trackAuditLead } = await import("@/lib/analytics/events");
     expect(
@@ -164,7 +164,7 @@ describe("analytics events", () => {
   it("returns false when gtag is missing", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "AbCdEfGh");
-    vi.stubGlobal("window", {});
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" },});
 
     const { trackLead } = await import("@/lib/analytics/events");
     expect(trackLead({ email: "a@b.com" })).toBe(false);
@@ -174,7 +174,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "G-WRONG");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "AbCdEfGh");
     const gtag = vi.fn();
-    vi.stubGlobal("window", { gtag });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag });
 
     const { trackLead, getConversionSendTo } = await import(
       "@/lib/analytics/events"
@@ -187,7 +187,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_BOOKING", "BookLabel");
     const gtag = vi.fn();
-    vi.stubGlobal("window", { gtag });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag });
 
     const { trackBookingClick } = await import("@/lib/analytics/events");
     expect(trackBookingClick({ email: "  Book@Example.COM " })).toBe(true);
@@ -205,7 +205,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
     const gtag = vi.fn();
     const fbq = vi.fn();
-    vi.stubGlobal("window", { gtag, fbq });
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" }, gtag, fbq });
 
     const { trackBookingClick } = await import("@/lib/analytics/events");
     expect(trackBookingClick({ email: "book@example.com" })).toBe(true);
@@ -218,7 +218,7 @@ describe("analytics events", () => {
     vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
     const fbq = vi.fn();
     const store = new Map<string, string>();
-    vi.stubGlobal("window", {
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" },
       fbq,
       sessionStorage: {
         getItem: (k: string) => store.get(k) ?? null,
@@ -251,7 +251,7 @@ describe("analytics events", () => {
 describe("pending conversion stash", () => {
   beforeEach(() => {
     const store = new Map<string, string>();
-    vi.stubGlobal("window", {
+    vi.stubGlobal("window", { location: { pathname: "/thank-you" },
       sessionStorage: {
         getItem: (k: string) => store.get(k) ?? null,
         setItem: (k: string, v: string) => {

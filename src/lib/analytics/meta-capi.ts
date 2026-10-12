@@ -85,7 +85,7 @@ export function fbcFromFbclid(fbclid: string, now = Date.now()): string {
 }
 
 async function readCloudflareSecret(
-  key: "META_CAPI_ACCESS_TOKEN" | "NEXT_PUBLIC_META_PIXEL_ID",
+  key: "META_CAPI_ACCESS_TOKEN" | "NEXT_PUBLIC_META_PIXEL_ID" | "META_CAPI_TEST_EVENT_CODE",
 ): Promise<string | undefined> {
   try {
     const { env } = await getCloudflareContext({ async: true });
@@ -185,7 +185,9 @@ export async function sendMetaCapiEvent(
     data: [event],
     access_token: token,
   };
-  const testCode = process.env.META_CAPI_TEST_EVENT_CODE?.trim();
+  const testCode =
+    process.env.META_CAPI_TEST_EVENT_CODE?.trim() ||
+    (await readCloudflareSecret("META_CAPI_TEST_EVENT_CODE"));
   if (testCode) payload.test_event_code = testCode;
 
   try {

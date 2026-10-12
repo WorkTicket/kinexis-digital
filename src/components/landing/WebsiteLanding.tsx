@@ -19,9 +19,8 @@ import type { LandingPageEntry } from "@/content/registry/landing-pages";
 import { getWebsiteLpChrome } from "@/content/lp/website-lp-chrome";
 import type { Locale } from "@/i18n/routing";
 import { faqSchema } from "@/lib/schema";
-import "@/styles/components/landing.css";
+import "@/styles/components/landing-website-shared.css";
 import "@/styles/components/landing-agency.css";
-import "@/styles/components/landing-showcase.css";
 
 /**
  * High-intent order: offer, proof, price, then the longer explanation.

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { Reveal, MediaReveal } from "@/components/ui/Reveal";
 import { caseStudyHref, getHomeResults } from "@/content/home-results";
+import { homeImageAssets } from "@/lib/home-image-assets";
 
 export async function HomeResults() {
   const locale = (await getLocale()) as Locale;
@@ -39,9 +40,11 @@ export async function HomeResults() {
                   <MediaReveal className="proof-spread__media">
                     <Link href={href} className="proof-spread__plate">
                       <SitePreview
-                        image={result.image}
+                        image={homeImageAssets(result.image).src}
+                        srcSet={homeImageAssets(result.image).srcSet}
                         imageAlt={result.imageAlt}
-                        sizes="(max-width: 1023px) 100vw, 58vw"
+                        sizes="(max-width: 1023px) calc(100vw - 2.5rem), 58vw"
+                        direct
                       />
                     </Link>
                   </MediaReveal>

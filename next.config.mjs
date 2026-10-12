@@ -79,7 +79,7 @@ const nextConfig = {
     inlineCss: false,
   },
 
-  webpack(config, { dev, isServer }) {
+  webpack(config, { dev, isServer, webpack }) {
     // Dev: avoid Windows file-locking races with the filesystem cache.
     if (dev) {
       config.cache = { type: "memory" };
@@ -87,6 +87,12 @@ const nextConfig = {
 
     // Modern browsers only — drop Next.js Baseline polyfills (~24 KiB legacy JS).
     if (!isServer) {
+      // Next imports this module by a relative path; a package-name alias
+      // alone does not intercept the ESM or CommonJS client entry points.
+      config.plugins.push(new webpack.NormalModuleReplacementPlugin(
+        /build[\\/]polyfills[\\/]polyfill-module(?:\.js)?$/,
+        path.join(__dirname, "src/lib/empty-polyfills.ts"),
+      ));
       config.resolve.alias = {
         ...config.resolve.alias,
         "next/dist/build/polyfills/polyfill-module": path.join(

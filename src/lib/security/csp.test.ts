@@ -3,11 +3,25 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   GOOGLE_SUPPORTED_DOMAINS,
+  META_GATEWAY_ORIGINS,
   buildAssetContentSecurityPolicy,
   buildContentSecurityPolicy,
 } from "./csp.mjs";
 
 describe("buildContentSecurityPolicy", () => {
+  it("allows the configured Meta gateways only for connections", () => {
+    for (const csp of [buildContentSecurityPolicy(), buildAssetContentSecurityPolicy()]) {
+      const directives = csp.split("; ");
+      const connections = directives.find((part) => part.startsWith("connect-src "));
+      const scripts = directives.find((part) => part.startsWith("script-src "));
+      for (const origin of META_GATEWAY_ORIGINS.split(" ")) {
+        expect(connections).toContain(origin);
+        expect(scripts).not.toContain(origin);
+      }
+      expect(csp).not.toContain("https://*.run.app");
+      expect(csp).not.toContain("https://*.on.aws");
+    }
+  });
   it("allows Google Ads audience pixels on country Google domains", () => {
     const csp = buildContentSecurityPolicy();
     const imgSrc = csp.split("; ").find((part) => part.startsWith("img-src "));
