@@ -111,7 +111,7 @@ function CookieBanner({
           </p>
           <p id="cookie-consent-desc" className="cookie-banner__desc">
             {t("description")}{" "}
-            <Link href="/privacy" className="cookie-banner__link">
+            <Link href="/privacy" prefetch={false} className="cookie-banner__link">
               {t("privacyLink")}
             </Link>
           </p>

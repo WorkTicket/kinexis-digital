@@ -67,6 +67,14 @@ const imagePreloads = [...html.matchAll(/<link\b[^>]*rel="preload"[^>]*as="image
   .map((match) => match[0])
   .filter((tag) => /\/(hero-devices|colton-wehr-face)/.test(tag))
   .join("");
+let textFontPreload = "";
+postcss.parse(css).walkAtRules("font-face", rule => {
+  const declarations = Object.fromEntries(rule.nodes.filter(node => node.type === "decl").map(node => [node.prop, node.value]));
+  if (declarations["font-family"] !== "kinexisText" || declarations["font-weight"] !== "400") return;
+  const href = declarations.src?.match(/url\(["']?([^"')]+)/)?.[1];
+  if (href) textFontPreload = `<link rel="preload" as="font" href="${href}" type="font/woff2" crossorigin="anonymous">`;
+});
+if (!textFontPreload) throw new Error("The primary text font was not found in the critical CSS");
 await fs.writeFile("cloudflare/website-critical-css.generated.js", `// Generated from the production CSS by scripts/generate-landing-critical-css.mjs.\nexport const WEBSITE_CRITICAL_CSS = ${JSON.stringify(css)};\nexport const WEBSITE_PRELOAD_HTML = ${JSON.stringify(imagePreloads)};\n`);
 console.log(`Landing first-paint CSS: ${(Buffer.byteLength(css) / 1024).toFixed(1)} KiB`);
 
@@ -104,5 +112,5 @@ for (const href of new Set(homeSheets)) {
   root.walkDecls(decl => { decl.value = decl.value.replace(/url\((['"]?)\.\.\/media\//g, "url($1/_next/static/media/"); });
   homeCss += root.toString();
 }
-await fs.appendFile("cloudflare/website-critical-css.generated.js", `export const HOME_CRITICAL_CSS = ${JSON.stringify(homeCss)};\n`);
+await fs.appendFile("cloudflare/website-critical-css.generated.js", `export const HOME_CRITICAL_CSS = ${JSON.stringify(homeCss)};\nexport const TEXT_FONT_PRELOAD_HTML = ${JSON.stringify(textFontPreload)};\n`);
 console.log(`Homepage first-paint CSS: ${(Buffer.byteLength(homeCss) / 1024).toFixed(1)} KiB`);

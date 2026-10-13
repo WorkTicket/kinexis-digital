@@ -12,6 +12,7 @@ import { updateGtagConsent } from "@/lib/analytics/consent";
 import { trackMetaPageView, updateMetaPixelConsent, buildMetaPixelInitScript } from "@/lib/analytics/meta-pixel";
 import { shouldLoadMetaTracking } from "@/lib/analytics/meta-tracking";
 import { peekPendingConversion } from "@/lib/analytics/pending-conversion";
+import { afterPrimaryPaint } from "@/lib/analytics/after-primary-paint";
 
 const LOADER_ID = getGtagLoaderId();
 const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID;
@@ -62,6 +63,14 @@ export default function AnalyticsScripts() {
   const lastTrackedUrl = useRef<string | null>(null);
   const metaBootstrappedPath = useRef<string | null>(null);
   const [metaReady, setMetaReady] = useState(false);
+  const [metaLibraryReady, setMetaLibraryReady] = useState(false);
+
+  // Keep the early fbq queue, but allow the hero to paint before Meta's DOM
+  // inspection and configuration script consume the main thread.
+  useEffect(() => {
+    if (!metaReady || metaLibraryReady) return;
+    return afterPrimaryPaint(() => setMetaLibraryReady(true));
+  }, [metaReady, metaLibraryReady]);
 
   // Capture gclid / fbclid / UTMs on every landing (before consent — URL params only)
   useEffect(() => {
@@ -70,6 +79,9 @@ export default function AnalyticsScripts() {
 
   // Fallback if the inline head loader did not inject gtag.js.
   useEffect(() => {
+    if (/^\/(?:(?:en|es-419|es-ES)\/?)?$/.test(pathname)) {
+      return afterPrimaryPaint(loadGtag, true);
+    }
     loadGtag();
   }, [pathname]);
 
@@ -148,7 +160,7 @@ export default function AnalyticsScripts() {
     trackMetaPageView();
   }, [pathname, consent]);
 
-  return metaReady ? (
+  return metaReady && metaLibraryReady ? (
     <Script
       id="meta-pixel-library"
       src="https://connect.facebook.net/en_US/fbevents.js"

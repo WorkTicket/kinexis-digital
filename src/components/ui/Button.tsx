@@ -133,6 +133,7 @@ export const Button = forwardRef<
     return (
       <Link
         href={href}
+        prefetch={false}
         className={classes}
         ref={ref as Ref<HTMLAnchorElement>}
         {...linkProps}

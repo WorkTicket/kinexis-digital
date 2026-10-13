@@ -105,11 +105,12 @@ export function buildGtagInitScript(adsId?: string, gaId?: string): string {
  * Official Google tag HTML prepended as the first <head> children so Tag
  * Assistant can find a real gtag/js script src before Next.js inlined CSS.
  */
-export function buildEarlyGoogleTagHtml(adsId: string, gaId?: string): string {
+export function buildEarlyGoogleTagHtml(adsId: string, gaId?: string, options: { loadScript?: boolean } = {}): string {
   const srcId = getGtagScriptSrcId(adsId, gaId);
   const init = buildGtagInitScript(adsId, gaId);
   if (!srcId || !init) return "";
-  return `<script async src="https://www.googletagmanager.com/gtag/js?id=${srcId}"></script><script>${init}</script>`;
+  const source = options.loadScript === false ? "" : `<script async src="https://www.googletagmanager.com/gtag/js?id=${srcId}"></script>`;
+  return `${source}<script>${init}</script>`;
 }
 
 /**

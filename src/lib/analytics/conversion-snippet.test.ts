@@ -34,6 +34,14 @@ describe("buildLeadConversionSnippet", () => {
 });
 
 describe("buildEarlyGoogleTagHtml", () => {
+  it("preserves consent and configuration when the library waits for first paint", () => {
+    const html = buildEarlyGoogleTagHtml(PRODUCTION_GOOGLE_ADS_ID, "G-Z8245BRX2L", { loadScript: false });
+    expect(html).not.toContain("<script async src=");
+    expect(html).toContain("gtag('config','G-Z8245BRX2L')");
+    expect(html).toContain(`gtag('config','${PRODUCTION_GOOGLE_ADS_ID}',{allow_enhanced_conversions:true})`);
+    expect(html).toContain("gtag('consent','default'");
+    expect(() => new Function(html.replace(/^<script>|<\/script>$/g, ""))).not.toThrow();
+  });
   it("puts a real gtag.js script src first for Tag Assistant", () => {
     const html = buildEarlyGoogleTagHtml(PRODUCTION_GOOGLE_ADS_ID, "G-Z8245BRX2L");
     expect(html.startsWith(

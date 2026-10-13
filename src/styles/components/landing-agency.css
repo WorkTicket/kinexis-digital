@@ -5470,3 +5470,12 @@ html.lp-chrome .site-header .btn--header,
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }
+
+/* Avoid full-screen procedural noise and blur rasterization on phones. */
+@media (max-width: 1023px) {
+  .lp-web .lp-web-hero__grain { display: none; }
+  .lp-web .lp-web-hero__wash,
+  .lp-web .lp-web-hero__devices::before,
+  .lp-web .lp-web-hero__devices img { filter: none; }
+  .lp-web .lp-web-hero__anim { animation: none; }
+}

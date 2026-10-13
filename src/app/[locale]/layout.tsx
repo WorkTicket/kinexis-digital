@@ -62,7 +62,7 @@ const kinexisText = localFont({
   ],
   variable: "--font-text",
   display: "swap",
-  preload: true,
+  preload: false,
   adjustFontFallback: "Arial",
   fallback: ["Arial", "Helvetica", "sans-serif"],
 });

@@ -1,7 +1,7 @@
 /**
- * Wraps the OpenNext worker so the official Google tag is the first <head>
- * children. Next.js parks gtag behind ~300KB of inlined CSS, which makes
- * Tag Assistant time out with "no debuggable Google tags".
+ * Queue Google and Meta events at the start of <head>. The homepage and
+ * website lander load their analytics libraries after the primary paint;
+ * other templates keep the immediate Google library for Tag Assistant.
  *
  * Neutralizes React-rendered inline copies so tracking runs once while the
  * script elements remain available for hydration. Same for Meta Pixel.
@@ -23,12 +23,17 @@ import {
 import { buildEarlyMetaPixelHtml } from "../src/lib/analytics/meta-pixel.ts";
 import { shouldLoadGoogleTracking } from "../src/lib/analytics/google-tracking.ts";
 import { isMetaTrackingPath } from "../src/lib/analytics/meta-tracking.ts";
-import { WEBSITE_CRITICAL_CSS, WEBSITE_PRELOAD_HTML, HOME_CRITICAL_CSS } from "./website-critical-css.generated.js";
+import { WEBSITE_CRITICAL_CSS, WEBSITE_PRELOAD_HTML, HOME_CRITICAL_CSS, TEXT_FONT_PRELOAD_HTML } from "./website-critical-css.generated.js";
 export { BucketCachePurge, DOQueueHandler, DOShardedTagCache };
 
 const EARLY_GTAG_HTML = buildEarlyGoogleTagHtml(
   PRODUCTION_GOOGLE_ADS_ID,
   PRODUCTION_GA_ID,
+);
+const EARLY_GTAG_QUEUE_HTML = buildEarlyGoogleTagHtml(
+  PRODUCTION_GOOGLE_ADS_ID,
+  PRODUCTION_GA_ID,
+  { loadScript: false },
 );
 
 function withCountryHeader(request) {
@@ -64,7 +69,7 @@ export default {
     const homepage = /^\/(?:(?:en|es-419|es-ES)\/?)?$/.test(new URL(request.url).pathname);
     const criticalCss = websiteLanding ? WEBSITE_CRITICAL_CSS : homepage ? HOME_CRITICAL_CSS : "";
     const googleHtml = shouldLoadGoogleTracking(new URL(request.url).pathname)
-      ? EARLY_GTAG_HTML
+      ? homepage ? EARLY_GTAG_QUEUE_HTML : EARLY_GTAG_HTML
       : "";
     const metaConsentDefault = isGdprConsentRegion(country) ? "revoke" : "grant";
     const earlyHead = `<script>window.__kinexisMetaDefaultConsent='${metaConsentDefault}';</script>${googleHtml}${metaHtml}`;
@@ -80,7 +85,7 @@ export default {
           if (criticalCss) {
             // Responsive preloads must follow viewport metadata, otherwise
             // mobile browsers first fetch a candidate for their 980px default.
-            element.after(`${websiteLanding ? WEBSITE_PRELOAD_HTML : ""}<style>${criticalCss}</style>`, { html: true });
+            element.after(`${websiteLanding ? WEBSITE_PRELOAD_HTML : ""}${TEXT_FONT_PRELOAD_HTML}<style>${criticalCss}</style>`, { html: true });
           }
         },
       })
@@ -99,6 +104,15 @@ export default {
       .on('link[rel="preload"][as="style"]', {
         element(element) {
           if (criticalCss) element.remove();
+        },
+      })
+      .on('link[rel="preload"][as="image"]', {
+        element(element) {
+          // The responsive hero hint is inserted after viewport metadata above.
+          // Remove React's original hint so phones do not first select a
+          // larger candidate using the browser's initial 980px viewport.
+          const source = element.getAttribute("imagesrcset") ?? element.getAttribute("href") ?? "";
+          if (websiteLanding && source.includes("/hero-devices-")) element.remove();
         },
       })
       .on('script[src], link[rel="preload"][as="script"]', {
