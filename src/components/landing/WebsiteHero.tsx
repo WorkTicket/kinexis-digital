@@ -35,6 +35,7 @@ export function WebsiteHero({
     page.heroCredit ??
     (portrait?.name ? creditLine(portrait.name, portrait.role) : null);
   const market = page.marketLine ?? page.badge;
+  const isRaleighLanding = page.slug === "get-a-website" && locale === "en";
   return (
     <section
       className="lp-web-hero chapter relative overflow-x-clip"
@@ -55,11 +56,8 @@ export function WebsiteHero({
           }
         >
           <div className="lp-web-hero__copy">
-            {page.slug === "get-a-website" && locale === "en" ? (
-              <p className="lp-web-hero__eyebrow">Websites for Raleigh-area contractors</p>
-            ) : null}
             <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
-              <MatchedMarketLine fallback={market} />
+              {isRaleighLanding ? "Websites for Raleigh-area contractors" : <MatchedMarketLine fallback={market} />}
             </p>
 
             <h1
@@ -72,8 +70,8 @@ export function WebsiteHero({
             <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--3">
               {page.subheadline}
             </p>
-            {page.slug === "get-a-website" && locale === "en" ? (
-              <p className="lp-web-hero__byline">Serving Raleigh, Cary, Apex, Garner, Holly Springs and Wake Forest</p>
+            {isRaleighLanding ? (
+              <p className="lp-web-hero__service-area lp-web-hero__anim lp-web-hero__anim--3">Serving Raleigh, Cary, Apex, Garner, Holly Springs and Wake Forest</p>
             ) : null}
 
             {page.heroPrice ? (
