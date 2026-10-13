@@ -116,6 +116,14 @@ describe("captureClickIds (jsdom sessionStorage)", () => {
     expect(getAttributionPayload().gclid).toBe("from-url");
   });
 
+  it("keeps all lead UTMs after leaving the ad URL", async () => {
+    const { captureClickIds, getAttributionPayload } = await import("./click-ids");
+    window.location.search = "?utm_source=facebook&utm_medium=paid_social&utm_campaign=raleigh&utm_content=ad2";
+    captureClickIds();
+    window.location.search = "";
+    expect(getAttributionPayload()).toMatchObject({ utm_source: "facebook", utm_medium: "paid_social", utm_campaign: "raleigh", utm_content: "ad2" });
+  });
+
   it("returns landing_page even without click IDs", async () => {
     vi.stubGlobal("window", {
       location: {

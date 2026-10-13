@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { randomUUID } from "node:crypto";
+import { isQualifiedLead } from "@/lib/analytics/qualified-lead";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 import {
   describeMailError,
@@ -257,22 +259,37 @@ export async function POST(request: Request) {
       console.log("[DEV] Lead captured:", { ...leadData, attribution });
     }
 
-    await sendMetaCapiEvent({
+    const nameParts = safeName.trim().split(/\s+/);
+    const cookies = new Map((request.headers.get("cookie") ?? "").split(";").map((cookie) => {
+      const index = cookie.indexOf("=");
+      return [cookie.slice(0, index).trim(), cookie.slice(index + 1).trim()];
+    }));
+    const metaInput = {
       eventName: "Lead",
       eventId: typeof metaEventId === "string" ? metaEventId : undefined,
       email: safeEmail,
       phone: safePhone || undefined,
-      fbp: attribution.fbp,
-      fbc: attribution.fbc,
+      firstName: nameParts[0],
+      lastName: nameParts.length > 1 ? nameParts.slice(1).join(" ") : undefined,
+      fbp: cookies.get("_fbp") || attribution.fbp,
+      fbc: cookies.get("_fbc") || attribution.fbc,
       fbclid: attribution.fbclid,
       clientIp: ip,
       userAgent: request.headers.get("user-agent") ?? undefined,
       eventSourceUrl:
         attribution.landing_page ||
-        (safeLandingSlug ? `/lp/${safeLandingSlug}` : undefined),
+        (safeLandingSlug ? `/lp/${safeLandingSlug}` : request.headers.get("referer") || request.url),
       contentName: safeLandingSlug || leadData.service,
       contentCategory: String(source) === "landing-page" ? "landing-page" : "lead",
-    });
+    } as const;
+    await sendMetaCapiEvent(metaInput);
+    if (isQualifiedLead(safeRole, budget, safeTimeline)) {
+      await sendMetaCapiEvent({
+        ...metaInput,
+        eventName: "QualifiedLead",
+        eventId: `QualifiedLead.${randomUUID()}`,
+      });
+    }
 
     return NextResponse.json({ success: true, message: "Lead captured successfully" }, { status: 200 });
   } catch (error) {

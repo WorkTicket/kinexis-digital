@@ -49,6 +49,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
     <main className="lp-web flex flex-1 flex-col pb-24 lg:pb-0">
       <JsonLd data={faqSchema(page.faqs)} />
       <WebsiteHero
+        locale={locale}
         page={page}
         caption={chrome.heroCaption}
         benefits={chrome.heroBenefits}

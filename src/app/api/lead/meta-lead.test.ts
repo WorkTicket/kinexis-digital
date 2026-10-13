@@ -91,4 +91,21 @@ describe("website landing page server-side Lead", () => {
     mocks.meta.mockResolvedValue({ sent: false, reason: "network" });
     expect((await submit()).status).toBe(200);
   });
+
+  it("sends a server-only QualifiedLead with distinct ID and identical match data", async () => {
+    expect((await submit({ role: "Owner", budget: "$500–$1,999", timeline: "1–3 months" })).status).toBe(200);
+    expect(mocks.meta).toHaveBeenCalledTimes(2);
+    const [leadEvent, qualifiedEvent] = mocks.meta.mock.calls.map(([event]) => event);
+    expect(leadEvent.eventId).toBe(lead.metaEventId);
+    expect(qualifiedEvent).toEqual({ ...leadEvent, eventName: "QualifiedLead", eventId: expect.stringMatching(/^QualifiedLead\./) });
+    expect(qualifiedEvent.firstName).toBe("Test");
+    expect(qualifiedEvent.lastName).toBe("Lead");
+  });
+
+  it("includes all four UTMs in the lead notification", async () => {
+    const utms = { utm_source: "facebook", utm_medium: "paid_social", utm_campaign: "raleigh", utm_content: "ad-2" };
+    expect((await submit(utms)).status).toBe(200);
+    const text = mocks.mail.mock.calls[0][0].text;
+    for (const value of Object.values(utms)) expect(text).toContain(value);
+  });
 });

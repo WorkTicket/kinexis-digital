@@ -15,13 +15,15 @@ import { getSiteUrl } from "@/lib/metadata";
 const GRAPH_VERSION = "v21.0";
 const CAPI_TIMEOUT_MS = 2500;
 
-export type MetaCapiEventName = "Lead" | "Schedule" | "Purchase";
+export type MetaCapiEventName = "Lead" | "Schedule" | "Purchase" | "QualifiedLead";
 
 export type MetaCapiEventInput = {
   eventName?: MetaCapiEventName;
   eventId?: string;
   email?: string;
   phone?: string;
+  firstName?: string;
+  lastName?: string;
   fbp?: string;
   fbc?: string;
   fbclid?: string;
@@ -60,7 +62,7 @@ export function hashMetaUserValue(value: string): string {
 export function sanitizeMetaEventId(raw: unknown): string | undefined {
   if (typeof raw !== "string") return undefined;
   const value = raw.trim();
-  if (!/^(Lead|Schedule|Purchase)\.[A-Za-z0-9._-]{6,80}$/.test(value)) {
+  if (!/^(Lead|Schedule|Purchase|QualifiedLead)\.[A-Za-z0-9._-]{6,80}$/.test(value)) {
     return undefined;
   }
   return value;
@@ -136,7 +138,11 @@ export async function sendMetaCapiEvent(
   const userData: Record<string, unknown> = {};
   if (input.email) {
     userData.em = [hashMetaUserValue(normalizeEmailForMeta(input.email))];
+    // Stable across submissions and events; never use a per-event identifier.
+    userData.external_id = [hashMetaUserValue(normalizeEmailForMeta(input.email))];
   }
+  if (input.firstName?.trim()) userData.fn = [hashMetaUserValue(input.firstName.trim().toLowerCase())];
+  if (input.lastName?.trim()) userData.ln = [hashMetaUserValue(input.lastName.trim().toLowerCase())];
   if (input.phone) {
     const phone = normalizePhoneForMeta(input.phone);
     if (phone.length >= 10) {

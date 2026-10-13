@@ -46,6 +46,9 @@ next-env.d.ts
 .tmp-*/
 .tmp-*
 tmp-lp-preview/
+/tmp/
+/tmp-*.mjs
+__pycache__/
 
 # Local source stills and full-size encodes. Production uses .webp / -sm.
 public/assets/images/**/*.jpg

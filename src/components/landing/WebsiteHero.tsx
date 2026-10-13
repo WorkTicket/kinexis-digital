@@ -17,12 +17,14 @@ export function WebsiteHero({
   page,
   benefits,
   outcomesLabel,
+  locale = "en",
 }: {
   page: LandingPageEntry;
   /** Unused. Kept so older call sites can still pass a caption. */
   caption?: string;
   benefits: Benefit[];
   outcomesLabel?: string;
+  locale?: string;
 }) {
   const lines = page.headlineLines?.length
     ? page.headlineLines
@@ -53,6 +55,9 @@ export function WebsiteHero({
           }
         >
           <div className="lp-web-hero__copy">
+            {page.slug === "get-a-website" && locale === "en" ? (
+              <p className="lp-web-hero__eyebrow">Websites for Raleigh-area contractors</p>
+            ) : null}
             <p className="lp-web-hero__eyebrow lp-web-hero__anim lp-web-hero__anim--1">
               <MatchedMarketLine fallback={market} />
             </p>
@@ -67,6 +72,9 @@ export function WebsiteHero({
             <p className="lp-web-hero__lede lp-web-hero__anim lp-web-hero__anim--3">
               {page.subheadline}
             </p>
+            {page.slug === "get-a-website" && locale === "en" ? (
+              <p className="lp-web-hero__byline">Serving Raleigh, Cary, Apex, Garner, Holly Springs and Wake Forest</p>
+            ) : null}
 
             {page.heroPrice ? (
               <p className="lp-web-hero__price lp-web-hero__anim lp-web-hero__anim--3">

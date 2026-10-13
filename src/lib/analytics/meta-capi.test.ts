@@ -24,10 +24,16 @@ describe("Meta CAPI helpers", () => {
   });
 
   it("hashes with sha256 hex", () => {
+    expect(hashMetaUserValue("abc")).toBe("ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
     expect(hashMetaUserValue("maria@oakcliff.com")).toHaveLength(64);
     expect(hashMetaUserValue("maria@oakcliff.com")).toBe(
       hashMetaUserValue("maria@oakcliff.com"),
     );
+  });
+
+  it("builds fbc with a millisecond timestamp", () => {
+    expect(fbcFromFbclid("click123", 1710000000000)).toBe("fb.1.1710000000000.click123");
+    expect(sanitizeMetaEventId("QualifiedLead.abc-def-123456")).toBe("QualifiedLead.abc-def-123456");
   });
 
   it("accepts Pixel event ids and cookie formats", () => {
@@ -93,6 +99,8 @@ describe("sendMetaCapiEvent", () => {
       eventId: "Lead.abc-def-123456",
       email: "Maria@OakCliff.com",
       phone: "2145550100",
+      firstName: " Maria ",
+      lastName: " Garcia ",
       fbp: "fb.1.1710000000.1234567890",
       fbclid: "IwAR0testClick",
       clientIp: "203.0.113.10",
@@ -131,6 +139,14 @@ describe("sendMetaCapiEvent", () => {
     );
     expect(body.data[0].user_data.fbp).toBe("fb.1.1710000000.1234567890");
     expect(body.data[0].user_data.fbc).toContain("IwAR0testClick");
+    expect(body.data[0].user_data).toMatchObject({
+      fn: [hashMetaUserValue("maria")],
+      ln: [hashMetaUserValue("garcia")],
+      external_id: [hashMetaUserValue("maria@oakcliff.com")],
+      client_ip_address: "203.0.113.10",
+      client_user_agent: "FBAN",
+    });
+    expect(body.data[0]).toHaveProperty("action_source", "website");
     expect(infoSpy).toHaveBeenCalledWith("Meta CAPI Lead sent");
     infoSpy.mockRestore();
   });

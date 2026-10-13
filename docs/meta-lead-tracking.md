@@ -7,6 +7,21 @@ for Pixel deduplication, available `_fbp` / `_fbc` attribution, IP, user agent,
 and landing URL. Failed validation and email delivery errors do not send events.
 Meta delivery failure is logged without rejecting the captured lead.
 
+Lead match data also includes hashed first/last name (split from the collected
+full name) and a stable external ID derived from normalized email. Browser
+advanced matching already supplies email and phone. Lead deduplication IDs
+remain unchanged.
+
+Owners with a budget starting at $500 and a timeline of Next 30 days or
+1–3 months also produce a server-only `QualifiedLead` with a separate UUID
+and the same match data. Partner/manager/employee and researching responses
+do not qualify.
+
+UTM source, medium, campaign and content persist in session storage with a
+first-party cookie fallback and travel in submissions and both email formats.
+Notifications go through Cloudflare Email Sending to `hello@kinexisdigital.com`
+(`CONTACT_TO_EMAIL`); there is no separate lead database in this route.
+
 ## Production setup
 
 Generate an access token for this pixel in Meta Events Manager under
