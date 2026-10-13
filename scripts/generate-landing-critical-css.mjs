@@ -8,15 +8,27 @@ if (!stylesheets.length) throw new Error("Landing page stylesheets were not foun
 
 const firstPaintMarkup = [html.match(/<html\b[^>]*>/)?.[0], html.match(/<body\b[^>]*>/)?.[0],
   html.match(/<header\b[^>]*class="site-header[^]*?<\/header>/)?.[0],
-  html.match(/<section\b[^>]*class="lp-web-hero[^]*?<\/section>/)?.[0]].join("");
+  html.match(/<section\b[^>]*class="lp-web-hero[^]*?<\/section>/)?.[0],
+  html.match(/<section\b[^>]*class="lp-web-proofstrip[^]*?<\/section>/)?.[0]].join("");
 const classes = new Set([...firstPaintMarkup.matchAll(/class="([^"]+)"/g)].flatMap((match) => match[1].split(/\s+/)));
 for (const name of ["site-shell", "flex", "min-h-full", "flex-1", "flex-col", "lp-web", "pb-24", "lg:pb-0", "skip-link"]) classes.add(name);
+for (const name of ["lp-chrome", "cookie-pending", "site-header__frost", "site-header--hidden", "site-header__frost--hidden"]) classes.add(name);
 const utilitySelectors = [...classes].map((name) => `.${name.replace(/[^a-zA-Z0-9_-]/g, "\\$&")}`);
 
-function criticalSelector(selector) {
-  if (/\.lp-web-(?!hero|outcomes|proofstrip)[\w-]+/.test(selector)) return false;
-  return /(?:^html\.lp-chrome(?:\s+body)?$|\.lp-web(?:\W|$)|\.lp-web-hero|\.lp-web-outcomes|\.lp-web-proofstrip|\.site-header|\.site-shell|\.shell(?:\W|$)|\.brand-logo|\.btn(?:\W|__)|\.skip-link|\.phone-mark|\.whatsapp-link|\.__variable_|\.__className_)/.test(selector)
-    || !selector.includes(".");
+function criticalSelector(selector, usedClasses) {
+  // Check every class, not just a shared ancestor such as .shell or .lp-web.
+  // Otherwise entire offscreen sections and retired hero designs get inlined.
+  const names = [...selector.matchAll(/\.((?:\\.|[\w-])+)/g)]
+    .map(match => match[1].replace(/\\(.)/g, "$1"));
+  return names.every(name => usedClasses.has(name));
+}
+
+function trimAnimations(root) {
+  const animations = [];
+  root.walkDecls(/^animation(?:-name)?$/, decl => animations.push(decl.value));
+  root.walkAtRules(/keyframes$/, rule => {
+    if (!animations.some(value => value.split(/[\s,]+/).includes(rule.params))) rule.remove();
+  });
 }
 
 let css = "";
@@ -38,10 +50,11 @@ for (const href of new Set(stylesheets)) {
       else rule.selector = selectors.join(",");
       return;
     }
-    const selectors = postcss.list.comma(rule.selector).filter(criticalSelector);
+    const selectors = postcss.list.comma(rule.selector).filter(selector => criticalSelector(selector, classes));
     if (!selectors.length) rule.remove();
     else rule.selector = selectors.join(",");
   });
+  trimAnimations(root);
   root.walkAtRules((rule) => {
     if (rule.nodes && !rule.nodes.length) rule.remove();
   });
@@ -63,6 +76,7 @@ const homeMarkup = [homeHtml.match(/<html\b[^>]*>/)?.[0], homeHtml.match(/<body\
   homeHtml.match(/<section\b[^>]*class="hero-shell[^]*?<\/section>/)?.[0]].join("");
 const homeClasses = new Set([...homeMarkup.matchAll(/class="([^"]+)"/g)].flatMap(match => match[1].split(/\s+/)));
 for (const name of ["site-shell", "flex", "min-h-full", "flex-1", "flex-col", "skip-link"]) homeClasses.add(name);
+for (const name of ["cookie-pending", "site-header__frost", "site-header--hidden", "site-header__frost--hidden"]) homeClasses.add(name);
 const homeSelectors = [...homeClasses].map(name => `.${name.replace(/[^a-zA-Z0-9_-]/g, "\\$&")}`);
 const homeSheets = [...homeHtml.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/g)].map(match => match[1]);
 let homeCss = "";
@@ -75,16 +89,17 @@ for (const href of new Set(homeSheets)) {
       if (ancestor.type === "atrule" && ancestor.name.includes("keyframes")) return;
       ancestor = ancestor.parent;
     }
-    const selectors = postcss.list.comma(rule.selector).filter(selector =>
-      !selector.includes(".")
-      || /\.(?:hero-|site-header|brand-logo|theme-toggle|btn(?:\W|__)|__variable_|__className_)/.test(selector)
-      || homeSelectors.some(classSelector => {
-        const index = selector.indexOf(classSelector);
-        return index !== -1 && !/[\w-]/.test(selector[index + classSelector.length] ?? "");
-      }));
+    let utilityLayer = false;
+    for (let parent = rule.parent; parent; parent = parent.parent) {
+      if (parent.type === "atrule" && parent.name === "layer" && parent.params === "utilities") utilityLayer = true;
+    }
+    const selectors = postcss.list.comma(rule.selector).filter(selector => utilityLayer
+      ? homeSelectors.some(utility => selector.startsWith(utility) && !/[\w-]/.test(selector[utility.length] ?? ""))
+      : criticalSelector(selector, homeClasses));
     if (!selectors.length) rule.remove();
     else rule.selector = selectors.join(",");
   });
+  trimAnimations(root);
   root.walkAtRules(rule => { if (rule.nodes && !rule.nodes.length) rule.remove(); });
   root.walkDecls(decl => { decl.value = decl.value.replace(/url\((['"]?)\.\.\/media\//g, "url($1/_next/static/media/"); });
   homeCss += root.toString();

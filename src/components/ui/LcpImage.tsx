@@ -124,6 +124,7 @@ export function LcpImage({
   if (fill) {
     return (
       <Image
+        unoptimized
         src={src}
         alt={alt}
         fill
@@ -136,6 +137,7 @@ export function LcpImage({
 
   return (
     <Image
+      unoptimized
       src={src}
       alt={alt}
       width={width}

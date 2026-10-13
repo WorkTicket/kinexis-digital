@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { getLandingPage, landingPageSlugs } from "@/content/registry/landing-pages";
 import {
   getLandingChrome,
   isCookieBannerExemptPath,
@@ -6,6 +7,22 @@ import {
 } from "@/lib/landing-chrome";
 
 describe("landing chrome", () => {
+  it("preserves the registry's navigation copy and behavior for every locale", () => {
+    for (const locale of ["en", "es-419", "es-ES"] as const) {
+      for (const slug of landingPageSlugs) {
+        const page = getLandingPage(slug, locale)!;
+        const slim = Boolean(page.auditLayout);
+        expect(getLandingChrome(`/lp/${slug}`, locale)).toEqual(page.siteNav && !slim ? null : {
+          ctaLabel: page.stickyCtaLabel,
+          headerCtaLabel: page.headerCtaLabel ?? page.heroCtaLabel ?? page.stickyCtaLabel,
+          formHref: "#lp-form",
+          closingTitle: page.closingTitle ?? page.formTitle,
+          closingCopy: page.closingCopy ?? page.formFootnote,
+          slim,
+        });
+      }
+    }
+  });
   it("reads the slug from locale-unprefixed and prefixed paths", () => {
     expect(landingSlugFromPath("/lp/web-design")).toBe("web-design");
     expect(landingSlugFromPath("/en/lp/facebook-web-design")).toBe(

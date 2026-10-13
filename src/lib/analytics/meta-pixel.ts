@@ -60,6 +60,8 @@ function canTrackMeta(): boolean {
 
 export type MetaPixelInitOptions = {
   landingOnly?: boolean;
+  /** Queue events immediately; let next/script fetch the library after hydration. */
+  loadScript?: boolean;
   /**
    * GDPR countries should start revoked so PageView waits for the banner.
    * Elsewhere matches Google Consent Mode (granted until the visitor rejects).
@@ -77,7 +79,9 @@ export function buildMetaPixelInitScript(
   const defaultConsent = options.defaultConsent === "revoke" ? "revoke" : "grant";
 
   return [
-    "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');",
+    "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];"
+      + (options.loadScript === false ? "" : "t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s);")
+      + "}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');",
     `fbq('consent','${defaultConsent}');`,
     `try{var c=${READ_STORED_CONSENT_JS};if(c==='rejected')fbq('consent','revoke');else if(c==='accepted')fbq('consent','grant');}catch(e){}`,
     `fbq('init','${id}');`,
@@ -93,7 +97,7 @@ export function buildEarlyMetaPixelHtml(
   pixelId?: string,
   options: MetaPixelInitOptions = {},
 ): string {
-  const init = buildMetaPixelInitScript(pixelId, options);
+  const init = buildMetaPixelInitScript(pixelId, { ...options, loadScript: false });
   if (!init) return "";
   const conversion = buildMetaConversionSnippet(pixelId);
   const scoped = (script: string) => options.landingOnly ? guardMetaTrackingScript(script) : script;

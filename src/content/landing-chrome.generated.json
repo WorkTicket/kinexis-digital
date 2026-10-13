@@ -1,0 +1,152 @@
+{
+  "en": {
+    "google-ads-management": {
+      "ctaLabel": "Get my free review",
+      "headerCtaLabel": "Get my free review",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll tell you where the budget is leaking.",
+      "closingCopy": "Send the account details. You get practical notes within one business day, not a slide deck.",
+      "slim": false
+    },
+    "seo": {
+      "ctaLabel": "Get my SEO audit",
+      "headerCtaLabel": "Get my SEO audit",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll tell you what's capping organic growth.",
+      "closingCopy": "Share the URL and market. You get a short audit you can act on, not a ranking slideshow.",
+      "slim": false
+    },
+    "local-seo": {
+      "ctaLabel": "Check my visibility",
+      "headerCtaLabel": "Check my visibility",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll show you where you're invisible locally.",
+      "closingCopy": "Add the market and the site. You get map-pack findings you can act on, not a login to another citation tool.",
+      "slim": false
+    },
+    "web-design": {
+      "ctaLabel": "Get my notes",
+      "headerCtaLabel": "Get my notes",
+      "formHref": "#lp-form",
+      "closingTitle": "Have a URL, or need one built.",
+      "closingCopy": "Written notes in one business day. New build, rebuild, or a repair, and what to do first.",
+      "slim": false
+    },
+    "facebook-web-design": {
+      "ctaLabel": "Get my free consult",
+      "headerCtaLabel": "Get my free consult",
+      "formHref": "#lp-form",
+      "closingTitle": "Have a site, or need one built.",
+      "closingCopy": "Free growth consult for San Antonio owners. Send the form. Written notes in one business day. What to build or fix first, and what is not worth spending on.",
+      "slim": false
+    },
+    "get-a-website": {
+      "ctaLabel": "Book a 15-Minute Project Call",
+      "headerCtaLabel": "Book a 15-Min Call",
+      "formHref": "#lp-form",
+      "closingTitle": "Book a 15-minute project call",
+      "closingCopy": "If the current site is underselling the crew, send the details. We follow up the same day.",
+      "slim": true
+    }
+  },
+  "es-419": {
+    "google-ads-management": {
+      "ctaLabel": "Get my free review",
+      "headerCtaLabel": "Get my free review",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll tell you where the budget is leaking.",
+      "closingCopy": "Send the account details. You get practical notes within one business day, not a slide deck.",
+      "slim": false
+    },
+    "seo": {
+      "ctaLabel": "Get my SEO audit",
+      "headerCtaLabel": "Get my SEO audit",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll tell you what's capping organic growth.",
+      "closingCopy": "Share the URL and market. You get a short audit you can act on, not a ranking slideshow.",
+      "slim": false
+    },
+    "local-seo": {
+      "ctaLabel": "Check my visibility",
+      "headerCtaLabel": "Check my visibility",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll show you where you're invisible locally.",
+      "closingCopy": "Add the market and the site. You get map-pack findings you can act on, not a login to another citation tool.",
+      "slim": false
+    },
+    "web-design": {
+      "ctaLabel": "Get my notes",
+      "headerCtaLabel": "Get my notes",
+      "formHref": "#lp-form",
+      "closingTitle": "Have a URL, or need one built.",
+      "closingCopy": "Written notes in one business day. New build, rebuild, or a repair, and what to do first.",
+      "slim": false
+    },
+    "facebook-web-design": {
+      "ctaLabel": "Get my free consult",
+      "headerCtaLabel": "Get my free consult",
+      "formHref": "#lp-form",
+      "closingTitle": "Have a site, or need one built.",
+      "closingCopy": "Free growth consult for San Antonio owners. Send the form. Written notes in one business day. What to build or fix first, and what is not worth spending on.",
+      "slim": false
+    },
+    "get-a-website": {
+      "ctaLabel": "Reservar llamada de 15 min",
+      "headerCtaLabel": "Llamada de 15 min",
+      "formHref": "#lp-form",
+      "closingTitle": "Reserva una llamada de proyecto de 15 minutos",
+      "closingCopy": "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te respondemos el mismo día.",
+      "slim": true
+    }
+  },
+  "es-ES": {
+    "google-ads-management": {
+      "ctaLabel": "Get my free review",
+      "headerCtaLabel": "Get my free review",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll tell you where the budget is leaking.",
+      "closingCopy": "Send the account details. You get practical notes within one business day, not a slide deck.",
+      "slim": false
+    },
+    "seo": {
+      "ctaLabel": "Get my SEO audit",
+      "headerCtaLabel": "Get my SEO audit",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll tell you what's capping organic growth.",
+      "closingCopy": "Share the URL and market. You get a short audit you can act on, not a ranking slideshow.",
+      "slim": false
+    },
+    "local-seo": {
+      "ctaLabel": "Check my visibility",
+      "headerCtaLabel": "Check my visibility",
+      "formHref": "#lp-form",
+      "closingTitle": "We'll show you where you're invisible locally.",
+      "closingCopy": "Add the market and the site. You get map-pack findings you can act on, not a login to another citation tool.",
+      "slim": false
+    },
+    "web-design": {
+      "ctaLabel": "Get my notes",
+      "headerCtaLabel": "Get my notes",
+      "formHref": "#lp-form",
+      "closingTitle": "Have a URL, or need one built.",
+      "closingCopy": "Written notes in one business day. New build, rebuild, or a repair, and what to do first.",
+      "slim": false
+    },
+    "facebook-web-design": {
+      "ctaLabel": "Get my free consult",
+      "headerCtaLabel": "Get my free consult",
+      "formHref": "#lp-form",
+      "closingTitle": "Have a site, or need one built.",
+      "closingCopy": "Free growth consult for San Antonio owners. Send the form. Written notes in one business day. What to build or fix first, and what is not worth spending on.",
+      "slim": false
+    },
+    "get-a-website": {
+      "ctaLabel": "Reservar llamada de 15 min",
+      "headerCtaLabel": "Llamada de 15 min",
+      "formHref": "#lp-form",
+      "closingTitle": "Reserva una llamada de proyecto de 15 minutos",
+      "closingCopy": "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te respondemos el mismo día.",
+      "slim": true
+    }
+  }
+}

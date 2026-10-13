@@ -8,6 +8,20 @@ import {
 } from "@/lib/analytics/meta-pixel";
 
 describe("buildMetaPixelInitScript", () => {
+  it("queues init, PageView, and conversion event IDs without fetching before hydration", () => {
+    const snippet = buildMetaPixelInitScript(PRODUCTION_META_PIXEL_ID, { loadScript: false });
+    const browser = {} as { fbq: ((...args: unknown[]) => void) & { queue: unknown[][] } };
+    const createElement = vi.fn();
+    new Function("window", "document", "localStorage", "sessionStorage", `with(window){${snippet};fbq('track','Lead',{}, {eventID:'confirmed-lead'});}`)(
+      browser, { createElement }, { getItem: () => null }, { getItem: () => null },
+    );
+    expect(createElement).not.toHaveBeenCalled();
+    const calls = browser.fbq.queue.map(args => Array.from(args));
+    expect(calls).toContainEqual(["init", PRODUCTION_META_PIXEL_ID]);
+    expect(calls).toContainEqual(["track", "PageView"]);
+    expect(calls).toContainEqual(["track", "Lead", {}, { eventID: "confirmed-lead" }]);
+  });
+
   it("emits the official fbevents stub, init, and PageView", () => {
     const snippet = buildMetaPixelInitScript(PRODUCTION_META_PIXEL_ID);
     expect(snippet).toContain("https://connect.facebook.net/en_US/fbevents.js");
@@ -41,6 +55,7 @@ describe("buildEarlyMetaPixelHtml", () => {
     expect(html).toContain("fbevents.js");
     expect(html).toContain("fbq('track','Lead')");
     expect(html).not.toContain('id="');
+    expect(html).not.toContain("createElement(e)");
   });
 });
 

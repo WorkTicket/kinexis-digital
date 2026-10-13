@@ -13,16 +13,16 @@ import {
 } from "@/lib/analytics/pending-conversion";
 import { qualifiesForProjectCall } from "@/lib/project-call";
 import { isWebsiteValue } from "@/lib/website-url";
-import { getContactContent } from "@/content/contact";
 import { useLocale } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
-import type { LandingPageEntry, LandingPageOption } from "@/content/registry/landing-pages";
+import type { LandingPageOption } from "@/content/registry/landing-pages";
+import type { WebsitePlanFormPage } from "@/lib/website-plan-form-page";
 import type { Locale } from "@/i18n/routing";
 
 const ProjectCallCalendar = dynamic(
   () =>
-    import("@/components/contact/StrategyCallBooking").then(
-      (mod) => mod.StrategyCallBooking,
+    import("@/components/landing/WebsiteProjectCall").then(
+      (mod) => mod.WebsiteProjectCall,
     ),
   { ssr: false },
 );
@@ -44,7 +44,7 @@ type FieldName =
 type FieldErrors = Partial<Record<FieldName, string>>;
 
 type Props = {
-  page: LandingPageEntry;
+  page: WebsitePlanFormPage;
   id?: string;
 };
 
@@ -416,7 +416,6 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       );
     }
 
-    const contact = getContactContent(locale);
     const notes = [
       businessName.trim() ? `Business: ${businessName.trim()}` : "",
       `Role: ${optionLabel(page.roleOptions, role)}`,
@@ -433,20 +432,11 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
     return (
       <div className="lp-web-form__success" role="status" aria-live="polite">
         <ProjectCallCalendar
-          stayOnPage
+          locale={locale}
           landingSlug={page.slug}
           preset={{ name: name.trim(), email: email.trim(), notes }}
-          content={{
-            ...contact,
-            booking: {
-              ...contact.booking,
-              title: page.calendarTitle ?? "Pick a 15-minute time",
-              subtitle:
-                page.calendarSubtitle ??
-                "Central Time. Weekdays. 15 minutes.",
-              submitButton: "Confirm this time",
-            },
-          }}
+          title={page.calendarTitle ?? "Pick a 15-minute time"}
+          subtitle={page.calendarSubtitle ?? "Central Time. Weekdays. 15 minutes."}
         />
       </div>
     );

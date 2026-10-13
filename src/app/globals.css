@@ -17,6 +17,12 @@
   flex-direction: column;
 }
 
+/* Keep the complete server-rendered page while deferring offscreen rendering. */
+main:has(> .hero-shell--film) > section:not(.hero-shell--film) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 .skip-link {
   position: absolute;
   left: 1rem;

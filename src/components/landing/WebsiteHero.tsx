@@ -3,6 +3,7 @@ import {
   MatchedMarketLine,
 } from "@/components/landing/MatchedCopy";
 import { PlanCta } from "@/components/landing/PlanCta";
+import { WebsiteHeroImage } from "@/components/landing/WebsiteHeroImage";
 import { WebsiteOutcomes } from "@/components/landing/WebsiteSections";
 import type { WebsiteLpChrome } from "@/content/lp/website-lp-chrome";
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
@@ -129,17 +130,7 @@ export function WebsiteHero({
 
           {visual ? (
             <figure className="lp-web-hero__devices">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={visual.src}
-                srcSet={visual.srcSet}
-                sizes={visual.sizes}
-                alt={visual.alt}
-                width={visual.width}
-                height={visual.height}
-                decoding="sync"
-                fetchPriority="high"
-              />
+              <WebsiteHeroImage visual={visual} />
             </figure>
           ) : null}
 

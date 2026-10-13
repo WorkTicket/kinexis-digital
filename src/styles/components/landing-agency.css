@@ -1497,7 +1497,7 @@ html[data-theme=dark] .lp-web {
 
 @media (prefers-reduced-motion:no-preference) {
   .lp-web-hero__anim {
-    animation:lp-web-hero-rise .8s cubic-bezier(.22,1,.36,1) both;
+    animation:lp-web-hero-rise .8s cubic-bezier(.22,1,.36,1) backwards;
   }
   .lp-web-hero__anim--1 { animation-delay:.02s; }
   .lp-web-hero__anim--2 { animation-delay:.08s; }
@@ -1513,7 +1513,6 @@ html[data-theme=dark] .lp-web {
 
 @keyframes lp-web-hero-rise {
   from {
-    opacity:0;
     transform:translate3d(0,.65rem,0);
   }
   to {
@@ -5467,7 +5466,7 @@ html.lp-chrome .site-header .btn--header,
 .lp-web .lp-web-hero__actions .btn.lp-web-hero__cta { background: #0068df; border-color: #0068df; color: #fff; }
 
 /* Defer layout and painting of the long sections until they approach the viewport. */
-.lp-web > section:not(.lp-web-hero) {
+.lp-web > section:not(.lp-web-hero):not(.lp-web-work) {
   content-visibility: auto;
   contain-intrinsic-size: auto 900px;
 }

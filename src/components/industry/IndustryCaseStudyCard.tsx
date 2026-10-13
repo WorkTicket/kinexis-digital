@@ -77,6 +77,7 @@ export function IndustryCaseStudyCard({
             >
               <MediaFrame shot size="lg" className="proof-asymmetric__frame">
                 <Image
+                  unoptimized
                   src={proofSrc}
                   alt={`${caseStudy.client} project preview`}
                   fill

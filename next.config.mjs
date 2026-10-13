@@ -52,9 +52,9 @@ const nextConfig = {
   allowedDevOrigins: ["192.168.*.*"],
 
   images: {
-    // Files in public/assets are already lossless WebP. The optimizer would
-    // decode them and save a lossy derivative, which is what made stills look soft.
-    unoptimized: true,
+    // Existing stills opt out per component to preserve their original quality.
+    // The landing hero uses a custom loader for pre-encoded responsive variants.
+    unoptimized: false,
     formats: ["image/avif", "image/webp"],
     deviceSizes: [375, 640, 768, 1024, 1280, 1536],
     imageSizes: [32, 64, 96, 128, 180, 256, 280, 360],

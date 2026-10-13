@@ -22,6 +22,7 @@ export function ResourceStage({ plates }: { plates: Plate[] }) {
           rel="noopener noreferrer"
         >
           <Image
+            unoptimized
             src={plate.image}
             alt={plate.imageAlt}
             fill

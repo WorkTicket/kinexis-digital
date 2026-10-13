@@ -48,7 +48,7 @@ const kinexisDisplay = localFont({
   src: "../../fonts/kinexis-display/KinexisDisplay-Bold.woff2",
   weight: "700",
   variable: "--font-display",
-  display: "optional",
+  display: "swap",
   preload: true,
   adjustFontFallback: "Arial",
   fallback: ["Arial", "Helvetica", "sans-serif"],
@@ -61,8 +61,8 @@ const kinexisText = localFont({
     { path: "../../fonts/kinexis-text/KinexisText-Bold.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-text",
-  display: "optional",
-  preload: false,
+  display: "swap",
+  preload: true,
   adjustFontFallback: "Arial",
   fallback: ["Arial", "Helvetica", "sans-serif"],
 });
@@ -145,7 +145,7 @@ export default async function LocaleLayout({
   const leadSendTo = getLeadConversionSendTo();
   const leadSnippet = leadSendTo ? buildLeadConversionSnippet(leadSendTo) : "";
   const metaPixelId = getMetaPixelId();
-  const metaInit = metaPixelId ? buildMetaPixelInitScript(metaPixelId) : "";
+  const metaInit = metaPixelId ? buildMetaPixelInitScript(metaPixelId, { loadScript: false }) : "";
   const metaLeadSnippet = metaPixelId ? buildMetaConversionSnippet(metaPixelId) : "";
 
   return (

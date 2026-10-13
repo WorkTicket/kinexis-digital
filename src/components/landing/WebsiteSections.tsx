@@ -4,6 +4,7 @@ import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker"
 import { PlanCta } from "@/components/landing/PlanCta";
 import { LazyGreenfieldExamples as GreenfieldExamples } from "@/components/landing/LazyGreenfieldExamples";
 import { WebsitePlanForm } from "@/components/landing/WebsitePlanForm";
+import { getWebsitePlanFormPage } from "@/lib/website-plan-form-page";
 import type {
   LandingPageEntry,
   LandingPageOutcome,
@@ -1089,7 +1090,7 @@ export function WebsitePlan({
             </div>
           </div>
           <div className="lp-web-plan__form">
-            <WebsitePlanForm page={page} />
+            <WebsitePlanForm page={getWebsitePlanFormPage(page)} />
           </div>
           <div className="lp-web-plan__paths">
             {page.planHasSiteItems?.length ? (

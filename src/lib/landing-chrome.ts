@@ -1,4 +1,4 @@
-import { getLandingPage } from "@/content/registry/landing-pages";
+import chrome from "@/content/landing-chrome.generated.json";
 import type { Locale } from "@/i18n/routing";
 
 export function landingSlugFromPath(pathname: string): string | undefined {
@@ -21,19 +21,6 @@ export function getLandingChrome(
 ) {
   const slug = landingSlugFromPath(pathname);
   if (!slug) return null;
-  const page = getLandingPage(slug, locale);
-  if (!page) return null;
-
-  const slim = Boolean(page.auditLayout);
-  if (page.siteNav && !slim) return null;
-
-  return {
-    ctaLabel: page.stickyCtaLabel,
-    headerCtaLabel:
-      page.headerCtaLabel ?? page.heroCtaLabel ?? page.stickyCtaLabel,
-    formHref: "#lp-form" as const,
-    closingTitle: page.closingTitle ?? page.formTitle,
-    closingCopy: page.closingCopy ?? page.formFootnote,
-    slim,
-  };
+  const localized = chrome[locale];
+  return localized[slug as keyof typeof localized] ?? null;
 }

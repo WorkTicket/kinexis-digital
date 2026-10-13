@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/generate-landing-chrome.mjs",
     "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
@@ -64,6 +65,7 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
+    "esbuild": "^0.28.1",
     "eslint": "^9.39.5",
     "eslint-config-next": "^15.5.25",
     "jsdom": "^29.1.1",

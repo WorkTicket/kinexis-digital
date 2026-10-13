@@ -1,7 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import Script from "next/script";
+import { useEffect, useRef, useState } from "react";
 import { useCookieConsent } from "@/components/analytics/CookieConsent";
 import { getGtagLoaderId, getGaMeasurementId, getGoogleAdsId, getMetaPixelId } from "@/lib/analytics/ads-config";
 import { buildGtagInitScript } from "@/lib/analytics/conversion-snippet";
@@ -60,6 +61,7 @@ export default function AnalyticsScripts() {
   const { consent, ready } = useCookieConsent();
   const lastTrackedUrl = useRef<string | null>(null);
   const metaBootstrappedPath = useRef<string | null>(null);
+  const [metaReady, setMetaReady] = useState(false);
 
   // Capture gclid / fbclid / UTMs on every landing (before consent — URL params only)
   useEffect(() => {
@@ -76,19 +78,23 @@ export default function AnalyticsScripts() {
       // Revoke an already loaded pixel when navigating out of the funnel.
       if (typeof window.fbq === "function") window.fbq("consent", "revoke");
       delete window.__kinexisMetaTrackingPath;
+      setMetaReady(false);
       return;
     }
     if (typeof window.fbq === "function") {
       updateMetaPixelConsent(consent === "accepted" || (consent === "pending" && window.__kinexisMetaDefaultConsent === "grant"));
+      setMetaReady(true);
       return;
     }
     window.__kinexisMetaTrackingPath = pathname;
     metaBootstrappedPath.current = pathname;
     const script = document.createElement("script");
     script.textContent = buildMetaPixelInitScript(getMetaPixelId(), {
+      loadScript: false,
       defaultConsent: consent === "pending" ? window.__kinexisMetaDefaultConsent ?? "revoke" : consent === "accepted" ? "grant" : "revoke",
     });
     document.head.appendChild(script);
+    setMetaReady(Boolean(getMetaPixelId()));
   }, [pathname, consent]);
 
   const trackPageView = () => {
@@ -142,5 +148,11 @@ export default function AnalyticsScripts() {
     trackMetaPageView();
   }, [pathname, consent]);
 
-  return null;
+  return metaReady ? (
+    <Script
+      id="meta-pixel-library"
+      src="https://connect.facebook.net/en_US/fbevents.js"
+      strategy="afterInteractive"
+    />
+  ) : null;
 }
