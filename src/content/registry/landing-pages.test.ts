@@ -154,9 +154,9 @@ describe("get-a-website landing page", () => {
     expect(page?.pricingTitle).toBe("Pick the option that fits");
     expect(page?.pricingIntro).toMatch(/proven layout/i);
     expect(page?.pricingIntro).toMatch(/designed and coded/i);
-    expect(page?.pricingQualify).toMatch(/comes after the call/i);
-    expect(page?.pricingQualify).toMatch(/15-page site/i);
-    expect(page?.pricingQualify).toMatch(/sitemap/i);
+    expect(page?.pricingQualify).toBe("Free call, no obligation. Final price is set in your proposal. You own the site, code, and domain.");
+    expect(page?.pricingDetailsLabel).toBe("Pricing details");
+    expect(page?.pricingDetails).toHaveLength(7);
     expect(page?.pricingCloser).toMatch(/Choose Basic/);
     expect(page?.pricingCompare?.find((row) => row.label === "Pages")?.basic).toMatch(
       /Up to 4/,
@@ -189,15 +189,15 @@ describe("get-a-website landing page", () => {
     expect(page?.pricing?.[0]?.items).toEqual([]);
     expect(page?.pricing?.[1]?.body).toMatch(/stronger search setup/i);
     expect(page?.pricing?.[1]?.body).not.toMatch(/15\+/);
-    expect(page?.pricingNote).toMatch(/domain is registered in your name/i);
+    expect(page?.pricingNote).toBe("Domains, stock photos, and paid tools at cost. Monthly care is optional.");
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
     expect(page?.pricingDelivery).toBeUndefined();
     expect(page?.processIntro).toMatch(/2 to 6 weeks/);
     expect(page?.processIntro?.toLowerCase()).not.toMatch(/scope and the price/);
-    expect(page?.pricingQualify?.toLowerCase()).toMatch(/six-page site/);
+    expect(page?.pricingDetails?.join(" ")).toMatch(/six pages or more/);
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/plumbing/);
-    expect(page?.pricingNote?.toLowerCase()).toMatch(/call is free/);
-    expect(page?.pricingNote?.toLowerCase()).toMatch(/cloudflare pages/);
+    expect(page?.pricingQualify?.toLowerCase()).toMatch(/free call/);
+    expect(page?.pricingDetails?.join(" ").toLowerCase()).toMatch(/cloudflare pages/);
     expect(page?.pricingNote?.toLowerCase()).not.toMatch(/anywhere|any host/);
     expect(page?.pricingHighlights).toEqual([
       "Milestone-based payment option",
@@ -253,7 +253,6 @@ describe("get-a-website landing page", () => {
     expect(page?.transformAfter?.items.length).toBeGreaterThanOrEqual(4);
     expect(page?.outcomes?.map((item) => item.title)).toEqual([
       "Custom coded",
-      "Services are clear",
       "Number easy to tap",
       "Fast on the phone",
       "You own it",

@@ -30,7 +30,7 @@ const softPricing = localeContent({
     pricingTitle: "Pick the option that fits",
     pricingAnchor: "From $500",
     pricingQualify:
-      "Basic stops at four pages, from $500: Home, About, Services, and Contact. It uses your logo, colors, and the notes you send, with a call button, titles, descriptions, and indexing.\n\nCustom starts at $2,000. The page count is set in the proposal. A six-page site can be Custom. So can a larger site. A 15-page site with writing on each page costs more. The exact price comes after the call, from the pages, the writing, and what the site has to do.\n\nCustom adds a contact form and writing for each page. Search setup can include a page for each service, titles and descriptions, local structure, a sitemap, and indexing. Booking, payments, a login for your clients, and photos are priced only if you need them. You approve the pages and the look before we build. You own the site, the content, and the code once the last payment clears. Most sites go live in 2 to 6 weeks, once photos and feedback come back.",
+      "Free call, no obligation. Final price is set in your proposal. You own the site, code, and domain.",
     pricingDelivery: DELIVERY,
     pricingIntro:
       "Basic starts from a proven layout, with your logo, colors, and services. Custom is designed and coded around your business. The proposal sets how many pages that takes.",
@@ -50,7 +50,17 @@ const softPricing = localeContent({
       { label: "After launch", basic: "Optional care", custom: "Optional care" },
     ],
     pricingNote:
-      "The call is free. You only pay if you decide to build.\n\nYour site runs on Cloudflare Pages. Managed care is optional. The monthly rate is in the proposal, and it covers watching the site and fixing problems. If you want the account in your name, we'll move the site to your own Cloudflare account when you ask. The domain is registered in your name.\n\nThe domain name, stock photos, and paid fonts or tools are charged at what they cost us. Ongoing search work, Google Business Profile, and ads stay optional. None of that is required to launch, or to keep the site.",
+      "Domains, stock photos, and paid tools at cost. Monthly care is optional.",
+    pricingDetailsLabel: "Pricing details",
+    pricingDetails: [
+      "Basic: up to 4 pages (Home, About, Services, Contact), from $500.",
+      "Custom: from $2,000; six pages or more, with writing per page and a contact form. More pages and writing cost more.",
+      "Booking, payments, client logins, and photos are quoted only if needed.",
+      "You approve pages and design before we build. Ownership transfers at final payment.",
+      "Most sites launch in 2–6 weeks, depending on photos and feedback.",
+      "Hosted on Cloudflare Pages; we'll move it to your own account on request.",
+      "Ongoing SEO, Google Business Profile, and ads are optional.",
+    ],
     pricingHighlights: [
       "Milestone-based payment option",
     ] as string[],
@@ -366,10 +376,6 @@ const baseGetAWebsite: LandingPageEntry = {
       body: "Hand-coded, not a page builder.",
     },
     {
-      title: "Services are clear",
-      body: "Your logo, colors, and the work you do are on the page. A Custom site is designed around the company.",
-    },
-    {
       title: "Number easy to tap",
       body: "The phone number sits where a thumb can find it.",
     },
@@ -547,6 +553,8 @@ const baseGetAWebsite: LandingPageEntry = {
   pricingCompareTitle: softPricing.en.pricingCompareTitle,
   pricingCompare: softPricing.en.pricingCompare,
   pricingNote: softPricing.en.pricingNote,
+  pricingDetailsLabel: softPricing.en.pricingDetailsLabel,
+  pricingDetails: softPricing.en.pricingDetails,
   pricingHighlights: softPricing.en.pricingHighlights,
   pricingAddOns: [],
   pricing: [
@@ -673,6 +681,8 @@ export function getAWebsiteForLocale(locale: Locale): LandingPageEntry {
         pricingCompareTitle: softPricing.en.pricingCompareTitle,
         pricingCompare: softPricing.en.pricingCompare,
         pricingNote: softPricing.en.pricingNote,
+        pricingDetailsLabel: softPricing.en.pricingDetailsLabel,
+        pricingDetails: softPricing.en.pricingDetails,
         pricingHighlights: softPricing.en.pricingHighlights,
         pricingAddOns: [],
         pricing: baseGetAWebsite.pricing,

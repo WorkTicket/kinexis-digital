@@ -13,6 +13,21 @@ const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20261010ll";
 /** Short hero/sticky label. Header uses a shorter label. */
 const CTA = "Reservar llamada de 15 min";
 
+export const spanishPricingFinePrint = {
+  "pricingQualify": "Llamada gratis, sin compromiso. El precio final se fija en tu propuesta. El sitio, el código y el dominio son tuyos.",
+  "pricingNote": "Dominios, fotos de stock y herramientas de pago al costo. El mantenimiento mensual es opcional.",
+  "pricingDetailsLabel": "Detalles de precios",
+  "pricingDetails": [
+    "Básico: hasta 4 páginas (Inicio, Nosotros, Servicios y Contacto), desde $500.",
+    "A medida: desde $2,000; seis páginas o más, con redacción por página y un formulario de contacto. Más páginas y redacción tienen un costo adicional.",
+    "Reservas, pagos, acceso para clientes y fotos se cotizan solo si los necesitas.",
+    "Apruebas las páginas y el diseño antes de que construyamos el sitio. La propiedad se transfiere con el pago final.",
+    "La mayoría de los sitios se lanzan en 2–6 semanas, según las fotos y tus comentarios.",
+    "Alojado en Cloudflare Pages; lo trasladamos a tu propia cuenta si lo solicitas.",
+    "El SEO continuo, el Perfil de Negocio de Google y los anuncios son opcionales.",
+  ],
+};
+
 export type SoftPricingCopy = {
   pricingTitle: string;
   pricingAnchor: string;
@@ -244,10 +259,6 @@ export function buildSpanishGetAWebsite(
         body: "Código a mano, sin page builder.",
       },
       {
-        title: "Nombre y servicios",
-        body: "El logo, los colores y el trabajo que haces están en la página. Un sitio a medida se diseña alrededor de la empresa.",
-      },
-      {
         title: "Número a un toque",
         body: "El teléfono queda donde un pulgar lo encuentra.",
       },
@@ -439,12 +450,11 @@ export function buildSpanishGetAWebsite(
 
     pricingTitle: pricing.pricingTitle,
     pricingAnchor: pricing.pricingAnchor,
-    pricingQualify: pricing.pricingQualify,
+    ...spanishPricingFinePrint,
     pricingIntro: pricing.pricingIntro,
     pricingCloser: pricing.pricingCloser,
     pricingCompareTitle: pricing.pricingCompareTitle,
     pricingCompare: pricing.pricingCompare,
-    pricingNote: pricing.pricingNote,
     pricingHighlights: pricing.pricingHighlights,
     pricingAddOns: [],
     pricing: [

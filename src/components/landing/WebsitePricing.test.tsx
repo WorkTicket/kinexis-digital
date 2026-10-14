@@ -1,0 +1,29 @@
+import { renderToStaticMarkup } from "react-dom/server";
+import { describe, expect, it, vi } from "vitest";
+import { getLandingPage } from "@/content/registry/landing-pages";
+import { WebsitePricing } from "./WebsiteSections";
+
+vi.mock("@/components/landing/PlanCta", () => ({ PlanCta: ({ children }: { children: React.ReactNode }) => <a href="#plan">{children}</a> }));
+vi.mock("@/components/landing/LazyGreenfieldExamples", () => ({ LazyGreenfieldExamples: () => null }));
+vi.mock("@/components/landing/WebsitePlanForm", () => ({ WebsitePlanForm: () => null }));
+
+describe("website pricing fine print", () => {
+  it.each(["en", "es-419"] as const)("renders short copy and a closed native disclosure in %s", (locale) => {
+    const page = getLandingPage("get-a-website", locale)!;
+    const html = renderToStaticMarkup(<WebsitePricing title={page.pricingTitle!} anchor={page.pricingAnchor!} qualify={page.pricingQualify} note={page.pricingNote} highlights={page.pricingHighlights} details={page.pricingDetails} detailsLabel={page.pricingDetailsLabel} closer={page.pricingCloser} tiers={page.pricing} compare={page.pricingCompare} ctaLabel="Call" landingSlug={page.slug} />);
+    expect(html).toContain('<details class="lp-web-pricing__disclosure">');
+    expect(html).not.toMatch(/<details[^>]*\bopen\b/);
+    expect(html).toContain(`<summary>${page.pricingDetailsLabel}<svg`);
+    expect(html).toContain('aria-hidden="true"');
+    expect(html).toContain(page.pricingQualify!);
+    expect(html).toContain(page.pricingNote!);
+    expect(html).toContain(page.pricingHighlights![0]);
+    expect(html).not.toContain(page.pricingCloser!);
+    expect(page.pricingDetails).toHaveLength(7);
+    const details = html.slice(html.indexOf('<details'), html.indexOf('</details>'));
+    expect(details.match(/<li>/g)).toHaveLength(7);
+    expect(html).toContain('role="table"');
+    expect(html).toContain(page.pricing![0].price);
+    expect(html).toContain(page.pricing![1].price);
+  });
+});

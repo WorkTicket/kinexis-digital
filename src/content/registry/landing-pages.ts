@@ -385,6 +385,8 @@ export type LandingPageEntry = {
   pricingDelivery?: string;
   /** Bullet points under the price anchor. */
   pricingHighlights?: string[];
+  pricingDetailsLabel?: string;
+  pricingDetails?: string[];
   /** Optional addon rows in the pricing panel (omit for soft pricing). */
   pricingAddOns?: LandingPagePricingAddOn[];
   pricingPaths?: string[];

@@ -54,13 +54,6 @@ const OUTCOME_MARKS: ReactNode[] = [
     <path d="m9 7.5-4.25 4.5L9 16.5" />
     <path d="m15 7.5 4.25 4.5L15 16.5" />
   </svg>,
-  // Looks like your company — a storefront, not a gem.
-  <svg key="established" {...markProps}>
-    <path d="M3.5 10.5 12 4l8.5 6.5" />
-    <path d="M6 10v9.5h12V10" />
-    <path d="M10 19.5V14h4v5.5" />
-    <path d="M8 12.25h1.75M14.25 12.25H16" />
-  </svg>,
   // Call and quote in reach — a phone that's ringing.
   <svg key="inquiries" {...markProps}>
     <rect x="3.25" y="2.75" width="9" height="18.5" rx="2" />
@@ -628,6 +621,8 @@ export function WebsitePricing({
   landingSlug,
   kicker = "Pricing",
   startingLabel = "starting",
+  detailsLabel,
+  details,
 }: {
   title: string;
   intro?: string;
@@ -645,6 +640,8 @@ export function WebsitePricing({
   landingSlug: string;
   kicker?: string;
   startingLabel?: string;
+  detailsLabel?: string;
+  details?: string[];
 }) {
   const soft = !addOns?.length;
 
@@ -748,7 +745,7 @@ export function WebsitePricing({
             ) : null}
             {qualify || closer || highlights?.length || note ? (
               <div className="lp-web-pricing__foot">
-                {closer ? (
+                {closer && !details?.length ? (
                   <p className="lp-web-pricing__closer">{closer}</p>
                 ) : null}
                 {highlights?.length ? (
@@ -759,7 +756,7 @@ export function WebsitePricing({
                   </ul>
                 ) : null}
                 {qualify || note ? (
-                  <div className="lp-web-pricing__details">
+                  <div className={`lp-web-pricing__details${details?.length ? " lp-web-pricing__details--compact" : ""}`}>
                     {qualify ? (
                       <div className="lp-web-pricing__qualify">
                         {finePrintParagraphs(qualify).map((paragraph) => (
@@ -773,6 +770,15 @@ export function WebsitePricing({
                           <p key={paragraph}>{paragraph}</p>
                         ))}
                       </div>
+                    ) : null}
+                    {details?.length ? (
+                      <details className="lp-web-pricing__disclosure">
+                        <summary>
+                          {detailsLabel}
+                          <svg {...markProps}><path d="m6 9 6 6 6-6" /></svg>
+                        </summary>
+                        <ul>{details.map((item) => <li key={item}>{item}</li>)}</ul>
+                      </details>
                     ) : null}
                   </div>
                 ) : null}

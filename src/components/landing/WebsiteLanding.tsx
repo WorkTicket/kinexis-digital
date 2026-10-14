@@ -89,6 +89,8 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
           tiers={page.pricing}
           addOns={page.pricingAddOns}
           note={page.pricingNote}
+          detailsLabel={page.pricingDetailsLabel}
+          details={page.pricingDetails}
           ctaLabel={cta}
           landingSlug={page.slug}
           kicker={chrome.pricingKicker}
