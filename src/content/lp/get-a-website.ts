@@ -382,7 +382,7 @@ const baseGetAWebsite: LandingPageEntry = {
       body: "Pages stay light, so people don't leave while the site is still loading.",
     },
     {
-      title: "You own it",
+      title: "You own the site",
       body: "The site stays yours. It is not locked in a builder.",
     },
   ],
