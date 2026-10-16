@@ -25,6 +25,7 @@
       "optional": "(opcional)",
       "serverError": "Algo salió mal de nuestro lado y tu solicitud no se envió. Tus respuestas siguen aquí. Intenta de nuevo o llámanos al",
       "rateError": "Demasiados intentos. Espera unos minutos o llámanos al",
+      "spamError": "Eso fue demasiado rápido. Espera un momento e intenta de nuevo, o llámanos al",
       "errors": {
         "role": "Elige tu rol.",
         "industry": "Elige el tipo de trabajo.",

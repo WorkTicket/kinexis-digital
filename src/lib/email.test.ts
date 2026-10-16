@@ -1,5 +1,17 @@
-import { describe, it, expect } from "vitest";
-import { wrapKinexisEmailHtml, emailRow, emailMessageRow } from "@/lib/email";
+import { beforeEach, describe, it, expect, vi } from "vitest";
+
+const emailEnv = vi.hoisted(() => ({ value: {} as Record<string, unknown> }));
+vi.mock("@opennextjs/cloudflare", () => ({
+  getCloudflareContext: vi.fn(async () => ({ env: emailEnv.value })),
+}));
+
+import {
+  wrapKinexisEmailHtml,
+  emailRow,
+  emailMessageRow,
+  sendKinexisMail,
+  getRecipientEmails,
+} from "@/lib/email";
 
 describe("wrapKinexisEmailHtml", () => {
   it("renders title escaped", () => {
@@ -51,5 +63,58 @@ describe("emailMessageRow", () => {
   it("escapes HTML in message", () => {
     const row = emailMessageRow("<b>bold</b>");
     expect(row).toContain("&lt;b&gt;bold&lt;/b&gt;");
+  });
+});
+
+describe("getRecipientEmails", () => {
+  it("falls back to the default inbox for empty or comma-only values", () => {
+    expect(getRecipientEmails("")).toEqual(["hello@kinexisdigital.com"]);
+    expect(getRecipientEmails("   ")).toEqual(["hello@kinexisdigital.com"]);
+    expect(getRecipientEmails(" , ")).toEqual(["hello@kinexisdigital.com"]);
+  });
+
+  it("splits and trims a comma-separated list", () => {
+    expect(getRecipientEmails(" a@x.com , b@y.com ")).toEqual(["a@x.com", "b@y.com"]);
+  });
+});
+
+describe("sendKinexisMail", () => {
+  const payload = {
+    fromName: "KINEXIS Digital Leads",
+    replyTo: "lead@example.com",
+    subject: "New Lead",
+    title: "New Lead Captured",
+    rows: "",
+    text: "text",
+  };
+
+  beforeEach(() => {
+    emailEnv.value = {};
+  });
+
+  it("fails closed with send_failed when the transport rejects", async () => {
+    const send = vi.fn().mockRejectedValue(new Error("destination address not allowed"));
+    emailEnv.value = {
+      EMAIL: { send },
+      CONTACT_TO_EMAIL: "hello@kinexisdigital.com",
+      CONTACT_FROM_EMAIL: "forms@kinexisdigital.com",
+    };
+    await expect(sendKinexisMail(payload, "Test")).resolves.toEqual({
+      ok: false,
+      reason: "send_failed",
+    });
+    expect(send).toHaveBeenCalledWith(
+      expect.objectContaining({ to: "hello@kinexisdigital.com", replyTo: "lead@example.com" }),
+    );
+  });
+
+  it("reports sent true on success", async () => {
+    const send = vi.fn().mockResolvedValue(undefined);
+    emailEnv.value = {
+      EMAIL: { send },
+      CONTACT_TO_EMAIL: "hello@kinexisdigital.com",
+      CONTACT_FROM_EMAIL: "forms@kinexisdigital.com",
+    };
+    await expect(sendKinexisMail(payload, "Test")).resolves.toEqual({ ok: true, sent: true });
   });
 });

@@ -169,6 +169,15 @@ describe("website project form (single step)", () => {
     expect(screen.getByLabelText(/^Phone/)).toHaveValue("(919) 555-1234");
   });
 
+  it("shows a friendly retry message when the server flags a spam code", async () => {
+    vi.mocked(fetch).mockResolvedValue({ ok: false, status: 400, json: async () => ({ code: "spam", error: "Please wait a moment and try again." }) } as Response);
+    setup(); fill(); fireEvent.submit(currentForm());
+    await waitFor(() => expect(screen.getByRole("alert")).toHaveTextContent("That went through a little too fast"));
+    expect(screen.getByRole("link", { name: "Call +1 (307) 500-3371" })).toHaveAttribute("href", "tel:+13075003371");
+    expect(screen.getByLabelText(/^Name/)).toHaveValue("Alex");
+    expect(currentForm().querySelector('button[type="submit"]')).not.toBeDisabled();
+  });
+
   it("tracks a view once including tall forms and abandons once with codes", () => {
     setup();
     act(() => { observed([{ isIntersecting: true, intersectionRatio: .25, intersectionRect: { height: 400 }, rootBounds: { height: 667 } }] as IntersectionObserverEntry[], {} as IntersectionObserver); });

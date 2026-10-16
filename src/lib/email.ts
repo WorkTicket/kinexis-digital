@@ -25,10 +25,12 @@ export type EmailEnv = {
 
 export function getRecipientEmails(raw?: string | null): string[] {
   const source = raw?.trim() || DEFAULT_CONTACT_TO_EMAIL;
-  return source
+  const emails = source
     .split(",")
     .map((email) => email.trim())
     .filter(Boolean);
+  // A stray comma or whitespace-only value must never leave zero recipients.
+  return emails.length > 0 ? emails : [DEFAULT_CONTACT_TO_EMAIL];
 }
 
 export async function getEmailEnv(): Promise<EmailEnv> {
@@ -78,7 +80,7 @@ export type KinexisMailPayload = {
 
 export type SendKinexisMailResult =
   | { ok: true; sent: boolean }
-  | { ok: false; reason: "missing_credentials" };
+  | { ok: false; reason: "missing_credentials" | "send_failed" };
 
 /**
  * Shared team-notification send used by contact, booking, and lead forms.
@@ -103,14 +105,24 @@ export async function sendKinexisMail(
   const toEmails = getRecipientEmails(env.CONTACT_TO_EMAIL);
   const fromEmail = env.CONTACT_FROM_EMAIL?.trim() || DEFAULT_CONTACT_FROM_EMAIL;
 
-  await env.EMAIL.send({
-    to: toEmails.length === 1 ? toEmails[0] : toEmails,
-    from: { email: fromEmail, name: payload.fromName },
-    subject: payload.subject,
-    html: wrapKinexisEmailHtml(payload.title, payload.rows, payload.footer),
-    text: payload.text,
-    ...(payload.replyTo ? { replyTo: payload.replyTo } : {}),
-  });
+  try {
+    await env.EMAIL.send({
+      to: toEmails.length === 1 ? toEmails[0] : toEmails,
+      from: { email: fromEmail, name: payload.fromName },
+      subject: payload.subject,
+      html: wrapKinexisEmailHtml(payload.title, payload.rows, payload.footer),
+      text: payload.text,
+      ...(payload.replyTo ? { replyTo: payload.replyTo } : {}),
+    });
+  } catch (error) {
+    // Fail closed: never report a captured lead the team did not receive.
+    // The most common cause is CONTACT_TO_EMAIL not matching the binding's
+    // `allowed_destination_addresses` in wrangler.jsonc.
+    console.error(
+      `${logLabel}: email send failed to ${toEmails.join(", ")} — ${describeMailError(error)}`,
+    );
+    return { ok: false, reason: "send_failed" };
+  }
 
   return { ok: true, sent: true };
 }

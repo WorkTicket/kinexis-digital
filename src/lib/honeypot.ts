@@ -1,5 +1,11 @@
-/** Minimum time (ms) a human would take to fill and submit a form. */
-const MIN_FORM_TIME_MS = 3000;
+/**
+ * Minimum time (ms) a human would take to fill and submit a form.
+ * Kept deliberately low: the timing value is client-supplied and a real bot
+ * can backdate it, so this only catches naive instant posts. A high value
+ * (3s+) mostly false-positives fast users and autofill, so we keep it well
+ * under the time needed to type three required fields.
+ */
+const MIN_FORM_TIME_MS = 1500;
 
 export interface HoneypotResult {
   blocked: boolean;

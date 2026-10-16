@@ -25,6 +25,7 @@
       "optional": "(optional)",
       "serverError": "Something went wrong on our side and your request didn't go through. Your answers are still here. Try again, or call us at",
       "rateError": "Too many attempts. Wait a few minutes or call us at",
+      "spamError": "That went through a little too fast. Wait a moment and try again, or call us at",
       "errors": {
         "role": "Choose your role.",
         "industry": "Choose the type of work.",

@@ -45,4 +45,10 @@ describe("validateHoneypot", () => {
     expect(validateHoneypot({}, Date.now() - 1000).blocked).toBe(true);
     expect(validateHoneypot({}, Date.now() - 10000).blocked).toBe(false);
   });
+
+  it("keeps the floor low enough for fast humans but blocks instant posts", () => {
+    // ~1.8s passes (autofill + quick submit), ~1.2s is an instant post.
+    expect(validateHoneypot({}, Date.now() - 1800).blocked).toBe(false);
+    expect(validateHoneypot({}, Date.now() - 1200).blocked).toBe(true);
+  });
 });

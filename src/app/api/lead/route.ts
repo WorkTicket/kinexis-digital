@@ -67,7 +67,12 @@ export async function POST(request: Request) {
       typeof _ts === "number" ? _ts : undefined,
     );
     if (honeypot.blocked) {
-      return NextResponse.json({ error: "Invalid submission." }, { status: 400 });
+      // `code: "spam"` lets clients show a friendly, retryable message instead
+      // of a scary server error. Fast (but human) submits pass after a moment.
+      return NextResponse.json(
+        { error: "Please wait a moment and try again.", code: "spam" },
+        { status: 400 },
+      );
     }
 
     if (!name || !String(name).trim()) {
@@ -285,7 +290,7 @@ export async function POST(request: Request) {
       contentCategory: String(source) === "landing-page" ? "landing-page" : "lead",
     } as const;
     await sendMetaCapiEvent(metaInput);
-    if (isQualifiedLead(safeRole, budget, safeTimeline, safeLandingSlug)) {
+    if (isQualifiedLead(safeRole, safeBudget, safeTimeline, safeLandingSlug)) {
       await sendMetaCapiEvent({
         ...metaInput,
         eventName: "QualifiedLead",

@@ -1,6 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import type { HoneypotResult } from "@/lib/honeypot";
 
 const sendMock = vi.fn();
+const honeypotMock = vi.hoisted(() => vi.fn((): HoneypotResult => ({ blocked: false })));
 
 vi.mock("@/lib/rate-limit", () => ({
   getClientIp: () => "127.0.0.1",
@@ -12,7 +14,7 @@ vi.mock("@/lib/csrf", () => ({
 }));
 
 vi.mock("@/lib/honeypot", () => ({
-  validateHoneypot: () => ({ blocked: false }),
+  validateHoneypot: honeypotMock,
 }));
 
 vi.mock("@opennextjs/cloudflare", () => ({
@@ -29,6 +31,7 @@ describe("POST /api/lead", () => {
   beforeEach(() => {
     vi.unstubAllEnvs();
     vi.stubEnv("NODE_ENV", "development");
+    honeypotMock.mockReset().mockReturnValue({ blocked: false });
   });
 
   afterEach(() => {
@@ -59,6 +62,21 @@ describe("POST /api/lead", () => {
   it("returns 400 when name is missing", async () => {
     const res = await postLead({ email: "john@example.com" });
     expect(res.status).toBe(400);
+  });
+
+  it("returns a retryable spam code when the honeypot blocks", async () => {
+    honeypotMock.mockReturnValueOnce({ blocked: true, reason: "too_fast" });
+    const res = await postLead({ name: "John", email: "john@example.com" });
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({ code: "spam" });
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it("fails closed when the email transport rejects the send", async () => {
+    sendMock.mockRejectedValueOnce(new Error("destination address not allowed"));
+    const res = await postLead({ name: "John", email: "john@example.com" });
+    expect(res.status).toBe(500);
+    expect(sendMock).toHaveBeenCalled();
   });
 
   it("sends email via Cloudflare Email binding", async () => {

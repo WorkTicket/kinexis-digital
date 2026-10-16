@@ -84,7 +84,7 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   >("idle");
   const [errors, setErrors] = useState<LeadErrors>({});
   const [showSummary, setShowSummary] = useState(false);
-  const [formError, setFormError] = useState<"server" | "rate" | "">("");
+  const [formError, setFormError] = useState<"server" | "rate" | "spam" | "">("");
   const { name, email, phone, businessName, website, role, industry, budget, timeline } =
     values;
 
@@ -301,6 +301,7 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
         const data = (await res.json().catch(() => ({}))) as {
           error?: string;
           field?: string;
+          code?: string;
         };
         trackLandingFunnel("form_submit_error", {
           landingSlug: page.slug,
@@ -311,7 +312,13 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
           const field = data.field as LeadField;
           reportErrors({ [field]: data.error ?? LEAD_MESSAGES[field] });
         } else {
-          setFormError(res.status === 429 ? "rate" : "server");
+          setFormError(
+            res.status === 429
+              ? "rate"
+              : res.status === 400 && data.code === "spam"
+                ? "spam"
+                : "server",
+          );
           setStatus("error");
           requestAnimationFrame(() =>
             document
@@ -581,7 +588,13 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
             >
               <AlertCircle size={18} aria-hidden />
               <p>
-                {t(formError === "rate" ? "rateError" : "serverError")}{" "}
+                {t(
+                  formError === "rate"
+                    ? "rateError"
+                    : formError === "spam"
+                      ? "spamError"
+                      : "serverError",
+                )}{" "}
                 <CallLink dataCta="call-dock" ariaLabel="Call +1 (307) 500-3371">
                   +1 (307) 500-3371
                 </CallLink>
