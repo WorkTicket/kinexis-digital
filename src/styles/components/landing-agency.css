@@ -5746,6 +5746,27 @@ html.lp-chrome .site-header .btn--header,
   text-wrap: pretty;
 }
 
+@media (min-width: 1024px) {
+  .lp-web .lp-web-plan__layout {
+    grid-template-rows: auto 1fr;
+  }
+
+  .lp-web .lp-web-plan__form {
+    display: flex;
+    align-self: stretch;
+  }
+
+  .lp-web .lp-web-plan__form > .lp-web-form {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .lp-web .lp-web-plan__paths {
+    align-self: stretch;
+    align-content: stretch;
+  }
+}
+
 /* Pricing notes: three clear assurances, with supporting terms on demand. */
 .lp-web .lp-web-pricing__foot--editorial {
   padding: 1.5rem;

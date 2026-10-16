@@ -280,18 +280,14 @@ const baseGetAWebsite: LandingPageEntry = {
 
   planHasSiteTitle: "If you already have a website",
   planHasSiteItems: [
-    "Whether the company is obvious",
-    "How it works on a phone",
-    "Whether the number is easy",
-    "Speed and search basics",
+    "Clear services and easy contact",
+    "Mobile, speed and search basics",
     "What we'd change first",
   ],
   planNoSiteTitle: "If you don't have a website",
   planNoSiteItems: [
-    "Which pages you need",
-    "How to group the services",
-    "Path to a call",
-    "Mobile and search setup",
+    "Pages and service structure",
+    "Mobile setup and path to a call",
     "Recommendation and price",
   ],
   formSteps: [
