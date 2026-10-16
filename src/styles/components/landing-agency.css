@@ -5623,19 +5623,21 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-auto-rows: 1fr;
+    width: min(100%, 21rem);
     gap: .5rem;
   }
   .lp-web .lp-web-hero .lp-web-outcomes__list li {
     width: 100%;
     min-height: 2.75rem;
     height: 100%;
-    justify-content: flex-start;
-    padding: .5rem .625rem .5rem .375rem;
+    justify-content: center;
+    padding: .5rem .625rem;
     gap: .375rem;
     border-radius: 999px;
   }
   .lp-web .lp-web-hero .lp-web-outcomes__mark { width: 1.5rem; height: 1.5rem; border-radius: 999px; }
   .lp-web .lp-web-hero .lp-web-outcomes__mark svg { width: .875rem; height: .875rem; }
+  .lp-web .lp-web-hero .lp-web-outcomes__title { text-align: center; }
 }
 @media (max-width: 479px) {
   .lp-web .lp-web-hero__stage { padding-inline: 1.25rem; }
