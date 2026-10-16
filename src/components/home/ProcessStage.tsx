@@ -16,7 +16,6 @@ export function ProcessStage({ steps, ariaLabel }: Props) {
         return (
           <li key={step.id} className="process-overview__step">
             <div className="process-overview__meta" aria-hidden="true">
-              <span>{String(index + 1).padStart(2, "0")}</span>
               {index < steps.length - 1 ? <ArrowRight size={20} /> : null}
             </div>
             <div className="process-overview__art" aria-hidden="true">
