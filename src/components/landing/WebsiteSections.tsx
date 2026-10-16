@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { FileText, MessageSquare, Phone } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker";
 import { PlanCta } from "@/components/landing/PlanCta";
@@ -28,6 +29,8 @@ const markProps = {
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
 };
+
+const INTAKE_ICONS = [MessageSquare, Phone, FileText];
 
 function CheckMark() {
   return (
@@ -1107,17 +1110,20 @@ export function WebsitePlan({
               <p>{page.formSubtitle}</p>
               {page.formSteps?.length ? (
                 <ol className="lp-web-plan__next">
-                  {page.formSteps.map((step, index) => (
-                    <li key={step.title}>
-                      <span className="lp-web-plan__step-number" aria-hidden="true">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div className="lp-web-plan__step-copy">
-                        <strong>{step.title}</strong>
-                        <span>{step.detail}</span>
-                      </div>
-                    </li>
-                  ))}
+                  {page.formSteps.map((step, index) => {
+                    const Icon = INTAKE_ICONS[index] ?? FileText;
+                    return (
+                      <li key={step.title}>
+                        <span className="lp-web-plan__step-icon" aria-hidden="true">
+                          <Icon size={18} strokeWidth={1.75} />
+                        </span>
+                        <div className="lp-web-plan__step-copy">
+                          <strong>{step.title}</strong>
+                          <span>{step.detail}</span>
+                        </div>
+                      </li>
+                    );
+                  })}
                 </ol>
               ) : null}
             </div>

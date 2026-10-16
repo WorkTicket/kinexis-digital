@@ -5707,19 +5707,19 @@ html.lp-chrome .site-header .btn--header,
   background: color-mix(in oklab, var(--lp-accent) 22%, transparent);
 }
 
-.lp-web .lp-web-plan__next .lp-web-plan__step-number {
+.lp-web .lp-web-plan__next .lp-web-plan__step-icon {
   display: grid;
   place-items: center;
   inline-size: 2.5rem;
   block-size: 2.5rem;
-  border: 1px solid color-mix(in oklab, var(--lp-accent) 22%, transparent);
   border-radius: 50%;
-  background: color-mix(in oklab, var(--lp-accent) 7%, var(--background));
-  color: var(--lp-accent);
-  font-size: .75rem;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: .04em;
+  background: #0575f5;
+  color: #fff;
+}
+
+.lp-web .lp-web-plan__step-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .lp-web .lp-web-plan__step-copy {
