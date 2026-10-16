@@ -264,10 +264,10 @@ describe("get-a-website landing page", () => {
       "Custom coded",
       "Number easy to tap",
       "Fast on the phone",
-      "You own it",
+      "You own the site",
     ]);
     expect(page?.fitGoodItems?.length).toBe(6);
-    expect(page?.fitNotItems?.length).toBe(3);
+    expect(page?.fitNotItems?.length).toBe(6);
     expect(page?.imagineItems).toBeUndefined();
     expect(page?.whyItems).toBeUndefined();
     expect(page?.samples?.length).toBe(2);
@@ -534,7 +534,7 @@ describe("get-a-website landing page", () => {
     expect(page?.marketLine).toBe(
       "Working with contractors and home-service crews",
     );
-    expect(page?.planHasSiteItems?.length).toBeGreaterThanOrEqual(4);
-    expect(page?.planNoSiteItems?.length).toBeGreaterThanOrEqual(4);
+    expect(page?.planHasSiteItems?.length).toBe(3);
+    expect(page?.planNoSiteItems?.length).toBe(3);
   });
 });
