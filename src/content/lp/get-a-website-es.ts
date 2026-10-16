@@ -5,10 +5,10 @@
 
 import type { LandingPageEntry } from "@/content/registry/landing-pages";
 
-const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261010ll";
+const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261015opt";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20261010ll";
-const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261010ll";
-const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20261010ll";
+const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261015opt";
+const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20261015opt";
 
 /** Short hero/sticky label. Header uses a shorter label. */
 const CTA = "Solicitar mi llamada gratis";

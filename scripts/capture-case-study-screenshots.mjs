@@ -125,11 +125,11 @@ async function capture() {
       const webpPath = path.join(outDir, `${site.slug}.webp`);
       const thumbPath = path.join(outDir, `${site.slug}-card.webp`);
 
-      await sharp(pngBuffer).webp({ quality: 90, effort: 6 }).toFile(webpPath);
+      await sharp(pngBuffer).webp({ quality: 78, effort: 6 }).toFile(webpPath);
 
       await sharp(pngBuffer)
         .resize(1600, 1000, { fit: "cover" })
-        .webp({ quality: 82, effort: 6 })
+        .webp({ quality: 78, effort: 6 })
         .toFile(thumbPath);
 
       const meta = await sharp(webpPath).metadata();

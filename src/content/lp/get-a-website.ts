@@ -12,9 +12,9 @@ import { applyLocalePricing, formatEsInteger } from "@/i18n/currency";
 import { isSpanishLocale } from "@/i18n/spanish";
 import { getBusinessTelHref, getBusinessWhatsAppHref } from "@/lib/business";
 
-const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261010ll";
+const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261015opt";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20261010ll";
-const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261010ll";
+const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261015opt";
 
 /** One request label for the hero, header, and sticky CTA. */
 // Enable only after the original result sources have been verified.

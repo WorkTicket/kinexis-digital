@@ -3,6 +3,7 @@ import path from "node:path";
 import postcss from "postcss";
 
 const html = await fs.readFile(".next/server/app/en/lp/get-a-website.html", "utf8");
+const buildId = (await fs.readFile(".next/BUILD_ID", "utf8")).trim();
 const stylesheets = [...html.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="([^"]+)"[^>]*>/g)].map((match) => match[1]);
 if (!stylesheets.length) throw new Error("Landing page stylesheets were not found in the production build");
 
@@ -77,6 +78,7 @@ postcss.parse(css).walkAtRules("font-face", rule => {
 if (!textFontPreload) throw new Error("The primary text font was not found in the critical CSS");
 await fs.writeFile("cloudflare/website-critical-css.generated.js", `// Generated from the production CSS by scripts/generate-landing-critical-css.mjs.\nexport const WEBSITE_CRITICAL_CSS = ${JSON.stringify(css)};\nexport const WEBSITE_PRELOAD_HTML = ${JSON.stringify(imagePreloads)};\n`);
 console.log(`Landing first-paint CSS: ${(Buffer.byteLength(css) / 1024).toFixed(1)} KiB`);
+await fs.appendFile("cloudflare/website-critical-css.generated.js", `export const WEBSITE_BUILD_ID = ${JSON.stringify(buildId)};\n`);
 
 const homeHtml = await fs.readFile(".next/server/app/en.html", "utf8");
 const homeMarkup = [homeHtml.match(/<html\b[^>]*>/)?.[0], homeHtml.match(/<body\b[^>]*>/)?.[0],

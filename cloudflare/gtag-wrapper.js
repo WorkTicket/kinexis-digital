@@ -23,7 +23,9 @@ import {
 import { buildEarlyMetaPixelHtml } from "../src/lib/analytics/meta-pixel.ts";
 import { shouldLoadGoogleTracking } from "../src/lib/analytics/google-tracking.ts";
 import { isMetaTrackingPath } from "../src/lib/analytics/meta-tracking.ts";
-import { WEBSITE_CRITICAL_CSS, WEBSITE_PRELOAD_HTML, HOME_CRITICAL_CSS, TEXT_FONT_PRELOAD_HTML } from "./website-critical-css.generated.js";
+import { WEBSITE_CRITICAL_CSS, WEBSITE_PRELOAD_HTML, HOME_CRITICAL_CSS, TEXT_FONT_PRELOAD_HTML, WEBSITE_BUILD_ID } from "./website-critical-css.generated.js";
+import { fetchWebsiteDocument } from "./website-html-cache.js";
+import { isCrawlerRequest } from "../src/i18n/geo.ts";
 export { BucketCachePurge, DOQueueHandler, DOShardedTagCache };
 
 const EARLY_GTAG_HTML = buildEarlyGoogleTagHtml(
@@ -54,7 +56,13 @@ function withCountryHeader(request) {
 export default {
   async fetch(request, env, ctx) {
     const localizedRequest = withCountryHeader(request);
-    const response = await openNextWorker.fetch(localizedRequest, env, ctx);
+    const response = await fetchWebsiteDocument(localizedRequest, {
+      cache: globalThis.caches?.default,
+      buildId: WEBSITE_BUILD_ID,
+      fetchOrigin: () => openNextWorker.fetch(localizedRequest, env, ctx),
+      waitUntil: promise => ctx.waitUntil(promise),
+      isCrawler: isCrawlerRequest(localizedRequest),
+    });
     const contentType = response.headers.get("content-type") ?? "";
     if (!contentType.includes("text/html")) {
       return response;
