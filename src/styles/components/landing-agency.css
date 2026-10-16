@@ -5622,6 +5622,7 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
   .lp-web .lp-web-hero .lp-web-outcomes__list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
     gap: .5rem;
   }
   .lp-web .lp-web-hero .lp-web-outcomes__list li {
