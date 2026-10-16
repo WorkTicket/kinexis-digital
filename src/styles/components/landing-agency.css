@@ -5107,8 +5107,13 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
   }
 }
 
-.lp-web .lp-web-process__rail {
+.lp-web .lp-web-process__rail,
+.lp-web .lp-web-plan__next {
   --lp-process-mark: 2.75rem;
+  --lp-process-icon: 1.4rem;
+}
+
+.lp-web .lp-web-process__rail {
   --lp-process-line: 2px;
   position: relative;
   max-width: 40rem;
@@ -5170,8 +5175,8 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
 }
 
 .lp-web .lp-web-process__rail .lp-web-mark svg {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: var(--lp-process-icon);
+  height: var(--lp-process-icon);
 }
 
 @media (max-width: 899px) {
@@ -5687,7 +5692,7 @@ html.lp-chrome .site-header .btn--header,
 
 .lp-web .lp-web-plan__next li {
   position: relative;
-  grid-template-columns: 2.5rem minmax(0, 1fr);
+  grid-template-columns: var(--lp-process-mark) minmax(0, 1fr);
   gap: 1rem;
   padding: 0 0 1.5rem;
   box-shadow: none;
@@ -5700,9 +5705,9 @@ html.lp-chrome .site-header .btn--header,
 .lp-web .lp-web-plan__next li:not(:last-child)::before {
   content: "";
   position: absolute;
-  top: 2.75rem;
+  top: calc(var(--lp-process-mark) + .25rem);
   bottom: .25rem;
-  left: calc(1.25rem - .5px);
+  left: calc(var(--lp-process-mark) / 2 - .5px);
   width: 1px;
   background: color-mix(in oklab, var(--lp-accent) 22%, transparent);
 }
@@ -5710,16 +5715,16 @@ html.lp-chrome .site-header .btn--header,
 .lp-web .lp-web-plan__next .lp-web-plan__step-icon {
   display: grid;
   place-items: center;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
+  inline-size: var(--lp-process-mark);
+  block-size: var(--lp-process-mark);
   border-radius: 50%;
   background: var(--lp-accent);
   color: #fff;
 }
 
 .lp-web .lp-web-plan__step-icon svg {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: var(--lp-process-icon);
+  height: var(--lp-process-icon);
 }
 
 .lp-web .lp-web-plan__step-copy {
