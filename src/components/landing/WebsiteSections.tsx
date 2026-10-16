@@ -1107,10 +1107,15 @@ export function WebsitePlan({
               <p>{page.formSubtitle}</p>
               {page.formSteps?.length ? (
                 <ol className="lp-web-plan__next">
-                  {page.formSteps.map((step) => (
+                  {page.formSteps.map((step, index) => (
                     <li key={step.title}>
-                      <strong>{step.title}</strong>
-                      <span>{step.detail}</span>
+                      <span className="lp-web-plan__step-number" aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="lp-web-plan__step-copy">
+                        <strong>{step.title}</strong>
+                        <span>{step.detail}</span>
+                      </div>
                     </li>
                   ))}
                 </ol>
