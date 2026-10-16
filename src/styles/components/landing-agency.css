@@ -5620,13 +5620,16 @@ html.lp-chrome .lp-web .landing-sticky-cta .btn {
 @media (max-width: 767px) {
   .lp-web .lp-web-hero__layout { gap: 1.125rem; }
   .lp-web .lp-web-hero .lp-web-outcomes__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: .5rem;
   }
   .lp-web .lp-web-hero .lp-web-outcomes__list li {
+    width: auto;
     min-height: 2.75rem;
-    padding: .5rem .625rem;
-    gap: .5rem;
+    padding: .5rem .625rem .5rem .375rem;
+    gap: .375rem;
     border-radius: 999px;
   }
   .lp-web .lp-web-hero .lp-web-outcomes__mark { width: 1.5rem; height: 1.5rem; border-radius: 999px; }
