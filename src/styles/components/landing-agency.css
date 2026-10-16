@@ -5713,7 +5713,7 @@ html.lp-chrome .site-header .btn--header,
   inline-size: 2.5rem;
   block-size: 2.5rem;
   border-radius: 50%;
-  background: #0575f5;
+  background: var(--lp-accent);
   color: #fff;
 }
 
