@@ -600,11 +600,6 @@ function finePrintParagraphs(text: string) {
     .filter(Boolean);
 }
 
-function PricingCopy({ compact, expanded }: { compact: string; expanded?: string }) {
-  if (!expanded) return compact;
-  return <><span className="lp-web-pricing__copy-compact">{compact}</span><span className="lp-web-pricing__copy-expanded">{expanded}</span></>;
-}
-
 /* ------------------------------------------------------------------ */
 /*  Pricing — two starting prices, or a single soft panel              */
 /* ------------------------------------------------------------------ */
@@ -628,7 +623,8 @@ export function WebsitePricing({
   startingLabel = "starting",
   detailsLabel,
   details,
-  expanded,
+  summary,
+  detailTitles,
 }: {
   title: string;
   intro?: string;
@@ -648,7 +644,8 @@ export function WebsitePricing({
   startingLabel?: string;
   detailsLabel?: string;
   details?: string[];
-  expanded?: LandingPageEntry["pricingExpanded"];
+  summary?: LandingPageEntry["pricingSummary"];
+  detailTitles?: string[];
 }) {
   const soft = !addOns?.length;
 
@@ -751,7 +748,7 @@ export function WebsitePricing({
               <p className="lp-web-pricing__delivery">{delivery}</p>
             ) : null}
             {qualify || closer || highlights?.length || note ? (
-              <div className="lp-web-pricing__foot">
+              <div className={`lp-web-pricing__foot${summary?.length ? " lp-web-pricing__foot--editorial" : ""}`}>
                 {closer && !details?.length ? (
                   <p className="lp-web-pricing__closer">{closer}</p>
                 ) : null}
@@ -762,19 +759,29 @@ export function WebsitePricing({
                     ))}
                   </ul>
                 ) : null}
-                {qualify || note ? (
+                {qualify || note || summary?.length ? (
                   <div className={`lp-web-pricing__details${details?.length ? " lp-web-pricing__details--compact" : ""}`}>
-                    {qualify ? (
-                      <div className="lp-web-pricing__qualify">
-                        {finePrintParagraphs(qualify).map((paragraph, index) => (
-                          <p key={paragraph}><PricingCopy compact={paragraph} expanded={expanded && finePrintParagraphs(expanded.qualify)[index]} /></p>
+                    {summary?.length ? (
+                      <div className="lp-web-pricing__summary">
+                        {summary.map((item) => (
+                          <div key={item.title}>
+                            <h3>{item.title}</h3>
+                            <p>{item.body}</p>
+                          </div>
                         ))}
                       </div>
                     ) : null}
-                    {note ? (
+                    {!summary?.length && qualify ? (
+                      <div className="lp-web-pricing__qualify">
+                        {finePrintParagraphs(qualify).map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
+                        ))}
+                      </div>
+                    ) : null}
+                    {!summary?.length && note ? (
                       <div className="lp-web-pricing__note">
-                        {finePrintParagraphs(note).map((paragraph, index) => (
-                          <p key={paragraph}><PricingCopy compact={paragraph} expanded={expanded && finePrintParagraphs(expanded.note)[index]} /></p>
+                        {finePrintParagraphs(note).map((paragraph) => (
+                          <p key={paragraph}>{paragraph}</p>
                         ))}
                       </div>
                     ) : null}
@@ -784,7 +791,15 @@ export function WebsitePricing({
                           {detailsLabel}
                           <svg {...markProps}><path d="m6 9 6 6 6-6" /></svg>
                         </summary>
-                        <ul>{details.map((item, index) => <li key={item}><PricingCopy compact={item} expanded={expanded?.details[index]} /></li>)}</ul>
+                        <ul>{details.map((item, index) => (
+                          <li key={item}>
+                            {detailTitles?.[index] ? <h4>{detailTitles[index]}</h4> : null}
+                            <p>{item}</p>
+                          </li>
+                        ))}</ul>
+                        {summary?.length && note ? (
+                          <p className="lp-web-pricing__cost-note">{finePrintParagraphs(note).at(-1)}</p>
+                        ) : null}
                       </details>
                     ) : null}
                   </div>

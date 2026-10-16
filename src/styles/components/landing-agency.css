@@ -5664,6 +5664,7 @@ html.lp-chrome .site-header .btn--header,
 .lp-web-pricing__disclosure[open] summary svg { transform: rotate(180deg); }
 .lp-web-pricing__disclosure ul { margin: 0; padding-left: 1.2rem; list-style: disc; }
 .lp-web-pricing__disclosure li + li { margin-top: 0.4rem; }
+.lp-web-pricing__disclosure li p { margin: 0; }
 .lp-web-pricing__details.lp-web-pricing__details--compact { grid-template-columns: 1fr; gap: 0.4rem; }
 .lp-web-pricing__details--compact .lp-web-pricing__qualify,
 .lp-web-pricing__details--compact .lp-web-pricing__note { margin: 0; padding: 0; border: 0; }
@@ -5677,34 +5678,6 @@ html.lp-chrome .site-header .btn--header,
 .lp-web .lp-web-work__copy > p:not(.lp-web-kicker) {
   max-inline-size: 44ch;
   text-wrap: balance;
-}
-
-.lp-web .lp-web-pricing__details--compact {
-  font-size: .8125rem;
-  line-height: 1.5;
-  gap: .65rem;
-}
-
-.lp-web .lp-web-pricing__details--compact p {
-  max-inline-size: 50ch;
-  text-wrap: balance;
-}
-
-.lp-web .lp-web-pricing__disclosure li {
-  max-inline-size: 46ch;
-  text-wrap: balance;
-}
-
-.lp-web-pricing__copy-expanded { display: none; }
-
-@media (min-width: 768px) {
-  .lp-web .lp-web-pricing__details--compact p,
-  .lp-web .lp-web-pricing__disclosure li {
-    max-inline-size: none;
-  }
-
-  .lp-web-pricing__copy-compact { display: none; }
-  .lp-web-pricing__copy-expanded { display: inline; }
 }
 
 .lp-web .lp-web-plan__next {
@@ -5729,8 +5702,95 @@ html.lp-chrome .site-header .btn--header,
   text-wrap: balance;
 }
 
-@media (max-width: 359px) {
-  .lp-web .lp-web-pricing__foot {
-    padding-inline: .25rem;
-  }
+/* Pricing notes: three clear assurances, with supporting terms on demand. */
+.lp-web .lp-web-pricing__foot--editorial {
+  padding: 1.5rem;
+  background: transparent;
+  box-shadow: none;
+  gap: 1.25rem;
+}
+
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__details {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  gap: 1.5rem;
+}
+
+.lp-web-pricing__summary {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.lp-web .lp-web-pricing__summary h3 {
+  margin: 0 0 .45rem;
+  font-size: .9375rem;
+  font-weight: 650;
+  letter-spacing: -.015em;
+  line-height: 1.35;
+  color: var(--lp-ink);
+}
+
+.lp-web .lp-web-pricing__summary p,
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure p {
+  margin: 0;
+  max-inline-size: none;
+  font-size: .875rem;
+  line-height: 1.65;
+  text-wrap: pretty;
+  color: var(--lp-muted);
+}
+
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure {
+  border-top: 1px solid var(--lp-border);
+}
+
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure summary {
+  width: 100%;
+  min-height: 52px;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: .875rem;
+  font-weight: 600;
+  color: var(--lp-ink);
+}
+
+.lp-web-pricing__disclosure summary:focus-visible {
+  outline: 2px solid var(--lp-accent);
+  outline-offset: 4px;
+}
+
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure ul {
+  display: grid;
+  gap: 1.25rem 2rem;
+  padding: .75rem 0 .25rem;
+  list-style: none;
+}
+
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure li {
+  margin: 0;
+  max-inline-size: none;
+  text-wrap: pretty;
+}
+
+.lp-web-pricing__disclosure h4 {
+  margin: 0 0 .35rem;
+  font-size: .8125rem;
+  font-weight: 650;
+  line-height: 1.4;
+  color: var(--lp-ink);
+}
+
+.lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure .lp-web-pricing__cost-note {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--lp-border);
+  font-size: .8125rem;
+}
+
+@media (min-width: 768px) {
+  .lp-web .lp-web-pricing__foot--editorial { padding: 1.75rem; }
+  .lp-web-pricing__summary { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.75rem; }
+  .lp-web-pricing__summary > div + div { border-left: 1px solid var(--lp-border); padding-left: 1.75rem; }
+  .lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

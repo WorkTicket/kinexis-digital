@@ -387,8 +387,8 @@ export type LandingPageEntry = {
   pricingHighlights?: string[];
   pricingDetailsLabel?: string;
   pricingDetails?: string[];
-  /** Fuller fine print for wide layouts; concise copy remains available on phones. */
-  pricingExpanded?: { qualify: string; note: string; details: string[] };
+  pricingSummary?: { title: string; body: string }[];
+  pricingDetailTitles?: string[];
   /** Optional addon rows in the pricing panel (omit for soft pricing). */
   pricingAddOns?: LandingPagePricingAddOn[];
   pricingPaths?: string[];

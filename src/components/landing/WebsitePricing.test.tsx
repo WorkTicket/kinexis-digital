@@ -8,16 +8,17 @@ vi.mock("@/components/landing/LazyGreenfieldExamples", () => ({ LazyGreenfieldEx
 vi.mock("@/components/landing/WebsitePlanForm", () => ({ WebsitePlanForm: () => null }));
 
 describe("website pricing fine print", () => {
-  it("pairs the full desktop explanations with concise phone copy", () => {
+  it("shows three assurances with labeled terms inside a closed disclosure", () => {
     const page = getLandingPage("get-a-website", "en")!;
-    const expanded = page.pricingExpanded!;
-    expect(expanded.details).toHaveLength(page.pricingDetails!.length);
-    expect(expanded.note.split(/\n\s*\n/)).toHaveLength(page.pricingNote!.split(/\n\s*\n/).length);
-    const html = renderToStaticMarkup(<WebsitePricing title={page.pricingTitle!} anchor={page.pricingAnchor!} qualify={page.pricingQualify} note={page.pricingNote} details={page.pricingDetails} expanded={expanded} ctaLabel="Call" landingSlug={page.slug} />);
-    expect(html.match(/class="lp-web-pricing__copy-expanded"/g)).toHaveLength(10);
-    expect(html.match(/class="lp-web-pricing__copy-compact"/g)).toHaveLength(10);
-    expect(html).toContain(expanded.qualify);
-    for (const detail of expanded.details) expect(html).toContain(detail);
+    expect(page.pricingSummary).toHaveLength(3);
+    expect(page.pricingDetailTitles).toHaveLength(page.pricingDetails!.length);
+    const html = renderToStaticMarkup(<WebsitePricing title={page.pricingTitle!} anchor={page.pricingAnchor!} qualify={page.pricingQualify} note={page.pricingNote} details={page.pricingDetails} summary={page.pricingSummary} detailTitles={page.pricingDetailTitles} ctaLabel="Call" landingSlug={page.slug} />);
+    expect(html).toContain("lp-web-pricing__foot--editorial");
+    for (const item of page.pricingSummary!) expect(html).toContain(renderToStaticMarkup(<h3>{item.title}</h3>));
+    for (const title of page.pricingDetailTitles!) expect(html).toContain(renderToStaticMarkup(<h4>{title}</h4>));
+    expect(html).not.toContain("copy-expanded");
+    expect(html).not.toMatch(/<details[^>]*\bopen\b/);
+    expect(html).not.toContain(page.pricingQualify!);
   });
 
   it.each(["en", "es-419"] as const)("renders short copy and a closed native disclosure in %s", (locale) => {
