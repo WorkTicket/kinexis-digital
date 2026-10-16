@@ -241,7 +241,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   formTitle: "Request a free project call",
   formSubtitle:
-    "Tell us about the business and the site you have now. Owners starting within 3 months get a same-day call. Otherwise we send a note.",
+    "Tell us about the business and the site you have now. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   submitLabel: "Request my call",
   continueLabel: "Continue",
   formCtaHint: `No obligation. ${PRICE_LINE}`,
@@ -271,9 +271,9 @@ const baseGetAWebsite: LandingPageEntry = {
   privacyMicrocopy: "Your information is used to follow up on this call.",
   successTitle: "You're in",
   successCopy:
-    "Your details are in. If you own the company and want to start within 3 months, we call the same day. Otherwise we send a note.",
+    "Your details are in. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   calendarTitle: "Prefer to pick a time?",
-  calendarSubtitle: "Choose a slot below. Otherwise we'll call you.",
+  calendarSubtitle: "Choose a slot below. Otherwise we'll call you. Your details are in. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   inlineThankYou: true,
   bookingHref: "/contact",
   bookingCtaLabel: CTA,
@@ -302,7 +302,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       title: "We call you",
-      detail: "Owners starting within 3 months get a same-day call to talk through the site.",
+      detail: "Within 1 business day (Mon–Fri, 9 AM–6 PM ET), from +1 (307) 500-3371.",
     },
     {
       title: "Get your scope and price",
@@ -312,7 +312,7 @@ const baseGetAWebsite: LandingPageEntry = {
   ],
   formTrust: [
     "No obligation",
-    "A note or a call",
+    "We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
     "Works with or without a current site",
     "You own the website",
   ],
@@ -543,7 +543,7 @@ const baseGetAWebsite: LandingPageEntry = {
   fitNotItems: [
     "Projects start at $500.",
     "Most sites launch in 2–6 weeks.",
-    "You send photos and notes about your services; we handle the writing and design, and you review drafts.",
+    "You provide photos and service notes. Basic uses your notes for the content; Custom includes writing for each page. You review drafts before launch.",
   ],
 
   pricingTitle: softPricing.en.pricingTitle,
@@ -597,7 +597,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   closingTitle: "Request a free project call",
   closingCopy:
-    "If the current site is underselling the crew, send the details. We follow up the same day.",
+    "If the current site is underselling the crew, send the details. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   closingFinePrint: `No obligation. ${PRICE_LINE}`,
 
   faqs: [
@@ -608,7 +608,7 @@ const baseGetAWebsite: LandingPageEntry = {
     {
       question: "How soon will I hear back?",
       answer:
-        "If you own the company and want to start within 3 months, we call the same day. Otherwise we send a note. We'll look at the current site, or the notes you sent, and say what a rebuild should fix first.",
+        "Within 1 business day (Mon–Fri, 9 AM–6 PM ET). We'll call from +1 (307) 500-3371, look at your current site or notes, and tell you what a rebuild should fix first.",
     },
     {
       question: "Is this a WordPress template?",

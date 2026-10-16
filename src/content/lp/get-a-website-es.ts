@@ -122,7 +122,7 @@ export function buildSpanishGetAWebsite(
 
     formTitle: "Solicita una llamada de proyecto de 15 minutos",
     formSubtitle:
-      "Cuéntanos del negocio y del sitio que tienes ahora. Si eres el dueño y empiezas en 3 meses, te llamamos el mismo día. Si no, te escribimos.",
+      "Cuéntanos del negocio y del sitio que tienes ahora. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     submitLabel: "Solicitar mi llamada",
     continueLabel: "Continuar",
     formCtaHint: `Sin compromiso. ${pricing.heroPrice}`,
@@ -152,10 +152,10 @@ export function buildSpanishGetAWebsite(
     privacyMicrocopy: "Usamos tu información para dar seguimiento a esta llamada.",
     successTitle: "Listo",
     successCopy:
-      "Tus datos ya están. Si eres el dueño y quieres empezar en 3 meses, te llamamos el mismo día. Si no, te escribimos.",
+      "Tus datos ya están. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     calendarTitle: "¿Prefieres elegir un horario?",
     calendarSubtitle:
-      "Elige un horario abajo. Si no, te llamaremos.",
+      "Elige un horario abajo. Si no, te llamaremos. Tus datos ya están. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     inlineThankYou: true,
     bookingHref: "/contact",
     bookingCtaLabel: CTA,
@@ -184,7 +184,7 @@ export function buildSpanishGetAWebsite(
       },
       {
         title: "Te llamamos",
-        detail: "Si eres dueño y quieres empezar en los próximos 3 meses, te llamamos el mismo día para hablar del sitio.",
+        detail: "En 1 día hábil (lun–vie, 9 AM–6 PM hora del Este), desde el +1 (307) 500-3371.",
       },
       {
         title: "Recibes el alcance y el precio",
@@ -194,7 +194,7 @@ export function buildSpanishGetAWebsite(
     ],
     formTrust: [
       "Sin compromiso",
-      "Una nota o una llamada",
+      "Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
       "Sirve con o sin sitio actual",
       "El sitio es tuyo",
     ],
@@ -445,7 +445,7 @@ export function buildSpanishGetAWebsite(
     fitNotItems: [
       `Los proyectos empiezan ${pricing.basicPrice.charAt(0).toLowerCase()}${pricing.basicPrice.slice(1)}.`,
       "La mayoría de los sitios se lanzan en 2–6 semanas.",
-      "Nos envías fotos y notas sobre tus servicios; nos encargamos de los textos y el diseño, y tú revisas los borradores.",
+      "Tú nos das fotos y notas de tus servicios. Básico usa tus notas para el contenido; Personalizado incluye la redacción de cada página. Revisas los borradores antes del lanzamiento.",
     ],
 
     pricingTitle: pricing.pricingTitle,
@@ -496,7 +496,7 @@ export function buildSpanishGetAWebsite(
 
     closingTitle: "Solicita una llamada de proyecto de 15 minutos",
     closingCopy:
-      "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te respondemos el mismo día.",
+      "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     closingFinePrint: `Sin compromiso. ${pricing.heroPrice}`,
 
     faqs: [
@@ -507,7 +507,7 @@ export function buildSpanishGetAWebsite(
       {
         question: "¿Qué tan pronto me responden?",
         answer:
-          "Si eres el dueño y quieres empezar en 3 meses, te llamamos el mismo día. Si no, te escribimos. Revisamos el sitio actual, o las notas que enviaste, y te decimos qué debería arreglar primero una reconstrucción.",
+          "En 1 día hábil (lun–vie, 9 AM–6 PM hora del Este). Te llamaremos desde el +1 (307) 500-3371, revisaremos tu sitio actual o tus notas y te diremos qué debería arreglar primero una reconstrucción.",
       },
       {
         question: "¿Es una plantilla de WordPress?",
