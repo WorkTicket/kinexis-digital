@@ -600,6 +600,11 @@ function finePrintParagraphs(text: string) {
     .filter(Boolean);
 }
 
+function PricingCopy({ compact, expanded }: { compact: string; expanded?: string }) {
+  if (!expanded) return compact;
+  return <><span className="lp-web-pricing__copy-compact">{compact}</span><span className="lp-web-pricing__copy-expanded">{expanded}</span></>;
+}
+
 /* ------------------------------------------------------------------ */
 /*  Pricing — two starting prices, or a single soft panel              */
 /* ------------------------------------------------------------------ */
@@ -623,6 +628,7 @@ export function WebsitePricing({
   startingLabel = "starting",
   detailsLabel,
   details,
+  expanded,
 }: {
   title: string;
   intro?: string;
@@ -642,6 +648,7 @@ export function WebsitePricing({
   startingLabel?: string;
   detailsLabel?: string;
   details?: string[];
+  expanded?: LandingPageEntry["pricingExpanded"];
 }) {
   const soft = !addOns?.length;
 
@@ -759,15 +766,15 @@ export function WebsitePricing({
                   <div className={`lp-web-pricing__details${details?.length ? " lp-web-pricing__details--compact" : ""}`}>
                     {qualify ? (
                       <div className="lp-web-pricing__qualify">
-                        {finePrintParagraphs(qualify).map((paragraph) => (
-                          <p key={paragraph}>{paragraph}</p>
+                        {finePrintParagraphs(qualify).map((paragraph, index) => (
+                          <p key={paragraph}><PricingCopy compact={paragraph} expanded={expanded && finePrintParagraphs(expanded.qualify)[index]} /></p>
                         ))}
                       </div>
                     ) : null}
                     {note ? (
                       <div className="lp-web-pricing__note">
-                        {finePrintParagraphs(note).map((paragraph) => (
-                          <p key={paragraph}>{paragraph}</p>
+                        {finePrintParagraphs(note).map((paragraph, index) => (
+                          <p key={paragraph}><PricingCopy compact={paragraph} expanded={expanded && finePrintParagraphs(expanded.note)[index]} /></p>
                         ))}
                       </div>
                     ) : null}
@@ -777,7 +784,7 @@ export function WebsitePricing({
                           {detailsLabel}
                           <svg {...markProps}><path d="m6 9 6 6 6-6" /></svg>
                         </summary>
-                        <ul>{details.map((item) => <li key={item}>{item}</li>)}</ul>
+                        <ul>{details.map((item, index) => <li key={item}><PricingCopy compact={item} expanded={expanded?.details[index]} /></li>)}</ul>
                       </details>
                     ) : null}
                   </div>

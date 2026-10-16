@@ -8,6 +8,18 @@ vi.mock("@/components/landing/LazyGreenfieldExamples", () => ({ LazyGreenfieldEx
 vi.mock("@/components/landing/WebsitePlanForm", () => ({ WebsitePlanForm: () => null }));
 
 describe("website pricing fine print", () => {
+  it("pairs the full desktop explanations with concise phone copy", () => {
+    const page = getLandingPage("get-a-website", "en")!;
+    const expanded = page.pricingExpanded!;
+    expect(expanded.details).toHaveLength(page.pricingDetails!.length);
+    expect(expanded.note.split(/\n\s*\n/)).toHaveLength(page.pricingNote!.split(/\n\s*\n/).length);
+    const html = renderToStaticMarkup(<WebsitePricing title={page.pricingTitle!} anchor={page.pricingAnchor!} qualify={page.pricingQualify} note={page.pricingNote} details={page.pricingDetails} expanded={expanded} ctaLabel="Call" landingSlug={page.slug} />);
+    expect(html.match(/class="lp-web-pricing__copy-expanded"/g)).toHaveLength(10);
+    expect(html.match(/class="lp-web-pricing__copy-compact"/g)).toHaveLength(10);
+    expect(html).toContain(expanded.qualify);
+    for (const detail of expanded.details) expect(html).toContain(detail);
+  });
+
   it.each(["en", "es-419"] as const)("renders short copy and a closed native disclosure in %s", (locale) => {
     const page = getLandingPage("get-a-website", locale)!;
     const html = renderToStaticMarkup(<WebsitePricing title={page.pricingTitle!} anchor={page.pricingAnchor!} qualify={page.pricingQualify} note={page.pricingNote} highlights={page.pricingHighlights} details={page.pricingDetails} detailsLabel={page.pricingDetailsLabel} closer={page.pricingCloser} tiers={page.pricing} compare={page.pricingCompare} ctaLabel="Call" landingSlug={page.slug} />);

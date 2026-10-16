@@ -5695,6 +5695,18 @@ html.lp-chrome .site-header .btn--header,
   text-wrap: balance;
 }
 
+.lp-web-pricing__copy-expanded { display: none; }
+
+@media (min-width: 768px) {
+  .lp-web .lp-web-pricing__details--compact p,
+  .lp-web .lp-web-pricing__disclosure li {
+    max-inline-size: none;
+  }
+
+  .lp-web-pricing__copy-compact { display: none; }
+  .lp-web-pricing__copy-expanded { display: inline; }
+}
+
 .lp-web .lp-web-plan__next {
   gap: .7rem;
   margin-top: .85rem;
