@@ -124,15 +124,15 @@ export function buildSpanishGetAWebsite(
     formSubtitle:
       "Cuéntanos del negocio y del sitio que tienes ahora. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     submitLabel: "Solicitar mi llamada",
-    continueLabel: "Continuar",
+    continueLabel: "Siguiente: ¿dónde te llamamos?",
     formCtaHint: `Sin compromiso. ${pricing.heroPrice}`,
     formFootnote:
       "Usamos tu información para dar seguimiento a esta llamada.",
     formAsideTitle: "Qué cubre la llamada",
     formAsideSubtitle:
       "Si ya tienes un sitio, revisamos las páginas que la gente realmente usa: cómo se siente en el teléfono, si los servicios están claros, y si el número se toca fácil.",
-    formStep1Title: "Sobre el negocio",
-    formStep2Title: "Sobre el proyecto",
+    formStep1Title: "Cuéntanos sobre tu proyecto",
+    formStep2Title: "¿Dónde te llamamos?",
     formStep3Title: "¿Cómo te contactamos?",
     noWebsiteLabel: "Todavía no tengo un sitio web",
     noWebsiteStatus:
@@ -206,7 +206,7 @@ export function buildSpanishGetAWebsite(
     threeStepQualify: true,
     phoneRequired: true,
     phoneOptional: false,
-    businessNameRequired: true,
+    businessNameRequired: false,
     conversionKind: "audit",
     auditLayout: true,
     hideServiceLink: true,

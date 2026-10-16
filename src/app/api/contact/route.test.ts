@@ -49,6 +49,13 @@ describe("POST /api/contact", () => {
     return POST(request);
   }
 
+  it("accepts an email copied with surrounding whitespace", async () => {
+    sendMock.mockResolvedValue(undefined);
+    const res = await postContact({ name: "John", email: " john@example.com " });
+    expect(res.status).toBe(200);
+    expect(sendMock).toHaveBeenCalled();
+  });
+
   it("returns 400 when name is missing", async () => {
     const res = await postContact({ email: "john@example.com" });
     expect(res.status).toBe(400);

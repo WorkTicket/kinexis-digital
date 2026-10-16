@@ -9,7 +9,33 @@
     "logoAlt": "KINEXIS Digital home",
     "preloaderLogoAlt": "KINEXIS Digital logo",
     "loadingSite": "Loading KINEXIS Digital",
-    "backToTop": "Back to top"
+    "backToTop": "Back to top",
+    "websiteLeadForm": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "businessName": "Business name (optional)",
+      "website": "Current website (optional)",
+      "websitePlaceholder": "yoursite.com, or leave blank",
+      "back": "Back",
+      "progress": "Step {step} of 2",
+      "summary": "Please fix {count} things:",
+      "sending": "Sending…",
+      "select": "Select",
+      "serverError": "Something went wrong on our side and your request didn't go through. Your answers are still here. Try again, or call us at",
+      "rateError": "Too many attempts. Wait a few minutes or call us at",
+      "errors": {
+        "role": "Choose your role.",
+        "industry": "Choose the type of work.",
+        "budget": "Choose a budget range.",
+        "timeline": "Choose when you want to start.",
+        "name": "Enter your name.",
+        "phone": "Enter a 10-digit phone number, like (919) 555-1234.",
+        "email": "Enter an email like name@company.com.",
+        "website": "That website doesn't look right. Check it, or leave it blank.",
+        "businessName": "Business name must be 200 characters or fewer."
+      }
+    }
   },
   "nav": {
     "home": "Home",

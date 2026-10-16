@@ -20,7 +20,7 @@ export function validateHoneypot(
   }
 
   const elapsed = Date.now() - submittedAt;
-  if (elapsed < MIN_FORM_TIME_MS) {
+  if (elapsed >= 0 && elapsed < MIN_FORM_TIME_MS) {
     return { blocked: true, reason: "too_fast" };
   }
 

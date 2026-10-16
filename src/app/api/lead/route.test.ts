@@ -49,6 +49,13 @@ describe("POST /api/lead", () => {
     return POST(request);
   }
 
+  it("accepts an email copied with surrounding whitespace", async () => {
+    sendMock.mockResolvedValue(undefined);
+    const res = await postLead({ name: "John", email: " john@example.com " });
+    expect(res.status).toBe(200);
+    expect(sendMock).toHaveBeenCalled();
+  });
+
   it("returns 400 when name is missing", async () => {
     const res = await postLead({ email: "john@example.com" });
     expect(res.status).toBe(400);
@@ -106,5 +113,38 @@ describe("POST /api/lead", () => {
       source: "landing-page",
     });
     expect(res.status).toBe(200);
+  });
+
+  it("normalizes email and phone and allows empty optional contractor fields", async () => {
+    sendMock.mockResolvedValue(undefined);
+    const res = await postLead({ name: "Alex", email: " <Alex@EXAMPLE.COM>. ", phone: "(919) 555-1234 ext 123", businessName: "", website: "", websiteRequired: false, landingSlug: "get-a-website", role: "Owner", industry: "Roofing", budget: "$500–$1,999", timeline: "Next 30 days" });
+    expect(res.status).toBe(200);
+    expect(sendMock).toHaveBeenCalledWith(expect.objectContaining({ replyTo: "Alex@example.com" }));
+    const message = JSON.stringify(sendMock.mock.calls);
+    expect(message).toContain("+19195551234 ext 123");
+    expect(message).toContain("Not provided");
+  });
+
+  it.each(["555-1234", "29195551234", "letters"])("returns a phone field error for %s", async phone => {
+    const res = await postLead({ name: "Alex", email: "alex@example.com", phone });
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({ field: "phone" });
+    expect(sendMock).not.toHaveBeenCalled();
+  });
+
+  it("keeps phone optional for existing callers", async () => {
+    sendMock.mockResolvedValue(undefined);
+    expect((await postLead({ name: "Alex", email: "alex@example.com", source: "lead-magnet", websiteRequired: true, website: "example.com" })).status).toBe(200);
+  });
+
+  it.each([
+    { name: "", field: "name" }, { email: "bad", field: "email" },
+    { website: "bad", field: "website" }, { businessName: "a".repeat(201), field: "businessName" },
+    { budget: "a".repeat(51), field: "budget" }, { timeline: "a".repeat(81), field: "timeline" },
+    { role: "a".repeat(81), field: "role" }, { industry: "a".repeat(81), field: "industry" },
+    { websiteStatus: "a".repeat(81), field: "websiteStatus" },
+  ])("includes field in validation errors: $field", async ({ field, ...values }) => {
+    const res = await postLead({ name: "Alex", email: "alex@example.com", ...values });
+    expect(res.status).toBe(400); expect(await res.json()).toMatchObject({ field });
   });
 });

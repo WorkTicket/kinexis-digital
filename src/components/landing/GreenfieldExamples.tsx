@@ -1382,6 +1382,11 @@ export function GreenfieldExamples({
   return (
     <div className="lp-web-pain__stage lp-web-pain__stage--overlap lp-ex-stage lp-ex-stage--phone lp-ex-stage--switch">
       <div className="lp-ex__switch">
+        <p className="lp-ex__disclaimer">
+          {locale === "en"
+            ? "Illustrative demo, not a client site"
+            : "Demo ilustrativa, no es el sitio de un cliente"}
+        </p>
         <p className="lp-ex__hint">{copy.hint}</p>
         <div className="lp-ex__views" role="radiogroup" aria-label={copy.switchLabel}>
           <button

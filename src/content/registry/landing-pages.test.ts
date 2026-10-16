@@ -132,7 +132,7 @@ describe("get-a-website landing page", () => {
     expect(page?.successHref).toBeUndefined();
     expect(page?.phoneRequired).toBe(true);
     expect(page?.phoneOptional).toBeFalsy();
-    expect(page?.businessNameRequired).toBe(true);
+    expect(page?.businessNameRequired).toBe(false);
     expect(page?.consentLabel).toMatch(/agree to be contacted/i);
     expect(page?.privacyMicrocopy?.toLowerCase()).toMatch(
       /follow up on this call/,
@@ -527,8 +527,8 @@ describe("get-a-website landing page", () => {
     expect(page?.formCtaDetail).toBeUndefined();
     expect(page?.formCtaHint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.formSteps?.length).toBe(3);
-    expect(page?.formStep1Title?.toLowerCase()).toMatch(/about the business/);
-    expect(page?.formStep2Title?.toLowerCase()).toMatch(/about the project/);
+    expect(page?.formStep1Title).toBe("Tell us about your project");
+    expect(page?.formStep2Title).toBe("Where should we call you?");
     expect(page?.closingTitle?.toLowerCase()).toMatch(/request a free project call/);
     expect(page?.closingFinePrint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.marketLine).toBe(

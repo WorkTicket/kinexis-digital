@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     }
 
     const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!EMAIL_RE.test(String(email))) {
+    if (!EMAIL_RE.test(String(email).trim())) {
       return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
     }
 
@@ -73,7 +73,7 @@ export async function POST(request: Request) {
     }
 
     const safeName = String(name);
-    const safeEmail = String(email);
+    const safeEmail = String(email).trim();
     const attributionHtml = attributionEmailRows(attribution, emailRow);
     const attributionText = attributionTextLines(attribution);
     const rows = [

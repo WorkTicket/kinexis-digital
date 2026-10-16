@@ -16,6 +16,7 @@ import {
 } from "@/lib/analytics/click-ids";
 import { sendMetaCapiEvent } from "@/lib/analytics/meta-capi";
 import { isWebsiteValue } from "@/lib/website-url";
+import { LEAD_LIMITS, LEAD_MESSAGES, normalizeEmail, normalizePhone, isValidEmail } from "@/lib/lead-validation";
 
 export async function POST(request: Request) {
   try {
@@ -69,92 +70,95 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invalid submission." }, { status: 400 });
     }
 
-    if (!name || !email) {
-      return NextResponse.json({ error: "Name and email are required" }, { status: 400 });
+    if (!name || !String(name).trim()) {
+      return NextResponse.json({ error: LEAD_MESSAGES.name, field: "name" }, { status: 400 });
+    }
+    const normalizedEmail = normalizeEmail(String(email ?? ""));
+    if (!isValidEmail(normalizedEmail)) {
+      return NextResponse.json({ error: LEAD_MESSAGES.email, field: "email" }, { status: 400 });
+    }
+    const normalizedPhone = phone ? normalizePhone(String(phone)) : null;
+    if (phone && !normalizedPhone) {
+      return NextResponse.json({ error: LEAD_MESSAGES.phone, field: "phone" }, { status: 400 });
     }
 
-    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!EMAIL_RE.test(String(email))) {
-      return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
+    if (String(name).length > LEAD_LIMITS.name) {
+      return NextResponse.json({ error: "Name is too long.", field: "name" }, { status: 400 });
     }
-
-    if (String(name).length > 200) {
-      return NextResponse.json({ error: "Name is too long." }, { status: 400 });
+    if (phone && String(phone).length > LEAD_LIMITS.phone) {
+      return NextResponse.json({ error: "Phone number is too long.", field: "phone" }, { status: 400 });
     }
-    if (phone && String(phone).length > 50) {
-      return NextResponse.json({ error: "Phone number is too long." }, { status: 400 });
-    }
-    if (website && String(website).length > 500) {
-      return NextResponse.json({ error: "Website URL is too long." }, { status: 400 });
+    if (website && String(website).length > LEAD_LIMITS.website) {
+      return NextResponse.json({ error: "Website URL is too long.", field: "website" }, { status: 400 });
     }
     if (websiteRequired) {
       if (!website || !isWebsiteValue(String(website))) {
         return NextResponse.json(
-          { error: "A valid website URL is required." },
+          { error: "A valid website URL is required.", field: "website" },
           { status: 400 },
         );
       }
     } else if (website && String(website).trim() && !isWebsiteValue(String(website))) {
       return NextResponse.json(
-        { error: "Enter a valid website URL." },
+        { error: "Enter a valid website URL.", field: "website" },
         { status: 400 },
       );
     }
     if (service && String(service).length > 200) {
-      return NextResponse.json({ error: "Service value is too long." }, { status: 400 });
+      return NextResponse.json({ error: "Service value is too long.", field: "service" }, { status: 400 });
     }
     if (revenue && String(revenue).length > 50) {
-      return NextResponse.json({ error: "Revenue value is too long." }, { status: 400 });
+      return NextResponse.json({ error: "Revenue value is too long.", field: "revenue" }, { status: 400 });
     }
-    if (budget && String(budget).length > 50) {
-      return NextResponse.json({ error: "Budget value is too long." }, { status: 400 });
+    if (budget && String(budget).length > LEAD_LIMITS.budget) {
+      return NextResponse.json({ error: "Budget value is too long.", field: "budget" }, { status: 400 });
     }
     if (need && String(need).length > 80) {
-      return NextResponse.json({ error: "Need value is too long." }, { status: 400 });
+      return NextResponse.json({ error: "Need value is too long.", field: "need" }, { status: 400 });
     }
-    if (timeline && String(timeline).length > 80) {
-      return NextResponse.json({ error: "Timeline value is too long." }, { status: 400 });
+    if (timeline && String(timeline).length > LEAD_LIMITS.timeline) {
+      return NextResponse.json({ error: "Timeline value is too long.", field: "timeline" }, { status: 400 });
     }
-    if (role && String(role).length > 80) {
-      return NextResponse.json({ error: "Role value is too long." }, { status: 400 });
+    if (role && String(role).length > LEAD_LIMITS.role) {
+      return NextResponse.json({ error: "Role value is too long.", field: "role" }, { status: 400 });
     }
-    if (industry && String(industry).length > 80) {
-      return NextResponse.json({ error: "Industry value is too long." }, { status: 400 });
+    if (industry && String(industry).length > LEAD_LIMITS.industry) {
+      return NextResponse.json({ error: "Industry value is too long.", field: "industry" }, { status: 400 });
     }
-    if (websiteStatus && String(websiteStatus).length > 80) {
+    if (websiteStatus && String(websiteStatus).length > LEAD_LIMITS.websiteStatus) {
       return NextResponse.json(
-        { error: "Website status is too long." },
+        { error: "Website status is too long.", field: "websiteStatus" },
         { status: 400 },
       );
     }
-    if (businessName && String(businessName).length > 200) {
+    if (businessName && String(businessName).length > LEAD_LIMITS.businessName) {
       return NextResponse.json(
-        { error: "Business name is too long." },
+        { error: "Business name is too long.", field: "businessName" },
         { status: 400 },
       );
     }
     if (goal && String(goal).length > 1000) {
-      return NextResponse.json({ error: "Goal is too long." }, { status: 400 });
+      return NextResponse.json({ error: "Goal is too long.", field: "goal" }, { status: 400 });
     }
     if (score && !/^\d{1,3}$/.test(String(score))) {
-      return NextResponse.json({ error: "Invalid score value." }, { status: 400 });
+      return NextResponse.json({ error: "Invalid score value.", field: "score" }, { status: 400 });
     }
     if (source && !["website", "lead-magnet", "landing-page", "referral", "other"].includes(String(source))) {
-      return NextResponse.json({ error: "Invalid source value." }, { status: 400 });
+      return NextResponse.json({ error: "Invalid source value.", field: "source" }, { status: 400 });
     }
     if (auditType && String(auditType).length > 100) {
-      return NextResponse.json({ error: "Audit type value is too long." }, { status: 400 });
+      return NextResponse.json({ error: "Audit type value is too long.", field: "auditType" }, { status: 400 });
     }
     if (
       landingSlug &&
       !/^[a-z0-9-]{1,80}$/.test(String(landingSlug))
     ) {
-      return NextResponse.json({ error: "Invalid landing page." }, { status: 400 });
+      return NextResponse.json({ error: "Invalid landing page.", field: "landingSlug" }, { status: 400 });
     }
 
-    const safeName = String(name);
-    const safeEmail = String(email);
-    const safePhone = phone ? String(phone).trim() : "";
+    const safeName = String(name).trim();
+    const safeEmail = normalizedEmail;
+    const safePhone = normalizedPhone ? normalizedPhone.e164 + (normalizedPhone.ext ? ` ext ${normalizedPhone.ext}` : "") : "";
     const safeWebsite = website ? String(website).trim() : "";
     const safeBusinessName = businessName ? String(businessName).trim() : "";
     const safeNeed = need ? String(need) : "";
@@ -168,10 +172,10 @@ export async function POST(request: Request) {
         : "";
     const leadData = {
       name: safeName,
-      businessName: safeBusinessName || "Not specified",
+      businessName: safeBusinessName || "Not provided",
       email: safeEmail,
       phone: safePhone || "Not specified",
-      website: safeWebsite || "Not specified",
+      website: safeWebsite || "Not provided",
       service: service ? String(service) : auditType ? String(auditType) : "Not specified",
       landingPage: safeLandingSlug || "Not specified",
       revenue: revenue ? String(revenue) : "Not specified",
@@ -189,12 +193,11 @@ export async function POST(request: Request) {
     const rows = [
       emailRow("Name", leadData.name),
       emailRow("Email", leadData.email, true),
-      safeBusinessName ? emailRow("Business", safeBusinessName) : "",
+      emailRow("Business", safeBusinessName || "Not provided"),
       safePhone ? emailRow("Phone", safePhone) : "",
       emailRow(
         "Website",
-        safeWebsite ||
-          (String(source) === "landing-page" ? "New site (no URL yet)" : "Not specified"),
+        safeWebsite || "Not provided",
       ),
       emailRow("Service", leadData.service),
       safeLandingSlug ? emailRow("Landing page", `/lp/${safeLandingSlug}`) : "",
@@ -224,9 +227,9 @@ export async function POST(request: Request) {
           "",
           `Name: ${leadData.name}`,
           `Email: ${leadData.email}`,
-          safeBusinessName ? `Business: ${safeBusinessName}` : "",
+          `Business: ${safeBusinessName || "Not provided"}`,
           safePhone ? `Phone: ${safePhone}` : "",
-          `Website: ${safeWebsite || (String(source) === "landing-page" ? "New site (no URL yet)" : "Not specified")}`,
+          `Website: ${safeWebsite || "Not provided"}`,
           `Service: ${leadData.service}`,
           safeLandingSlug ? `Landing page: /lp/${safeLandingSlug}` : "",
           `Revenue: ${leadData.revenue}`,

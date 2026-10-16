@@ -3278,12 +3278,50 @@ html[data-theme=dark] .lp-web .lp-web-pain {
   background:color-mix(in oklab,var(--lp-accent) 14%,var(--lp-card));
 }
 
+.lp-web-form { --lp-form-error:#b42318; }
+.lp-web :is(a,button,summary,input,select):focus-visible {
+  outline:2px solid var(--lp-accent);
+  outline-offset:3px;
+}
+.lp-ex__disclaimer {
+  color:var(--lp-ink);
+  font-size:.875rem;
+  font-weight:600;
+  line-height:1.5;
+  margin:0 0 .5rem;
+}
+html[data-theme=dark] .lp-web-form { --lp-form-error:#f97066; }
 .lp-web-form__error {
   margin:.4rem 0 0;
-  font-size:.8125rem;
+  font-size:.875rem;
   line-height:1.4;
-  color:#f97066;
+  color:var(--lp-form-error);
 }
+
+.lp-web-form .form-input,.lp-web-form .form-select { font-size:16px; }
+.lp-web-form__choice { width:100%; cursor:pointer; }
+.lp-web-form__choice-check { margin-left:auto; flex-shrink:0; visibility:hidden; color:var(--lp-accent); }
+.lp-web-form__choice:has(input:checked) .lp-web-form__choice-check { visibility:visible; }
+.lp-web-form [aria-invalid="true"].form-input,
+.lp-web-form [aria-invalid="true"].form-select,
+.lp-web-form__fieldset[aria-invalid="true"] .lp-web-form__choice { border-color:var(--lp-form-error); }
+.lp-web-form__fieldset[aria-invalid="true"] legend.form-label { color:var(--lp-form-error); }
+.lp-web-form__error { display:flex; align-items:flex-start; gap:.4rem; }
+.lp-web-form__error > svg { flex-shrink:0; margin-top:.15rem; }
+.lp-web-form__summary,.lp-web-form__error--form {
+  border:1px solid var(--lp-form-error); border-radius:var(--lp-radius); padding:1rem;
+  background:color-mix(in oklab,#f97066 8%,var(--lp-card));
+  scroll-margin-top:7rem;
+}
+.lp-web-form__summary p,.lp-web-form__error--form p { margin:0; }
+.lp-web-form__summary ul { margin:.5rem 0 0; padding-left:1.25rem; }
+.lp-web-form__summary button,.lp-web-form__error--form a { text-decoration:underline; text-underline-offset:3px; }
+.lp-web-form__summary button { min-height:44px; text-align:left; cursor:pointer; }
+.lp-web-form__submit .btn__label { display:inline-flex; align-items:center; justify-content:center; gap:.5rem; }
+.lp-web-form__spinner { animation:lp-form-spin 1s linear infinite; }
+@keyframes lp-form-spin { to { transform:rotate(360deg); } }
+html.lp-lead-form-visible .lp-contact-dock,html.lp-lead-form-visible .landing-sticky-cta,html.lp-lead-form-visible .back-to-top { visibility:hidden; pointer-events:none; opacity:0; }
+@media (prefers-reduced-motion:reduce) { .lp-web-form__spinner { animation:none; } }
 
 .lp-web-form__status {
   min-height:0;

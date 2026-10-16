@@ -36,4 +36,13 @@ describe("validateHoneypot", () => {
     const result = validateHoneypot({}, timestamp);
     expect(result.blocked).toBe(false);
   });
+
+  it("allows a client clock five minutes ahead", () => {
+    expect(validateHoneypot({ _hp: "" }, Date.now() + 300000).blocked).toBe(false);
+  });
+
+  it("blocks 1000ms and allows 10000ms", () => {
+    expect(validateHoneypot({}, Date.now() - 1000).blocked).toBe(true);
+    expect(validateHoneypot({}, Date.now() - 10000).blocked).toBe(false);
+  });
 });

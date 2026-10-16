@@ -243,15 +243,15 @@ const baseGetAWebsite: LandingPageEntry = {
   formSubtitle:
     "Tell us about the business and the site you have now. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   submitLabel: "Request my call",
-  continueLabel: "Continue",
+  continueLabel: "Next: where should we call you?",
   formCtaHint: `No obligation. ${PRICE_LINE}`,
   formFootnote:
     "Your information is used to follow up on this call.",
   formAsideTitle: "What the call covers",
   formAsideSubtitle:
     "If you already have a website, we look at the pages people actually use: how it feels on a phone, whether services are clear, and whether the number is easy to tap.",
-  formStep1Title: "About the business",
-  formStep2Title: "About the project",
+  formStep1Title: "Tell us about your project",
+  formStep2Title: "Where should we call you?",
   formStep3Title: "How should we reach you?",
   noWebsiteLabel: "I don't have a website yet",
   noWebsiteStatus:
@@ -320,7 +320,7 @@ const baseGetAWebsite: LandingPageEntry = {
   threeStepQualify: true,
   phoneRequired: true,
   phoneOptional: false,
-  businessNameRequired: true,
+  businessNameRequired: false,
   conversionKind: "audit",
   auditLayout: true,
   hideServiceLink: true,

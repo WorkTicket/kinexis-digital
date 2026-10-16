@@ -9,7 +9,33 @@
     "logoAlt": "Inicio de KINEXIS Digital",
     "preloaderLogoAlt": "Logo de KINEXIS Digital",
     "loadingSite": "Cargando KINEXIS Digital",
-    "backToTop": "Volver arriba"
+    "backToTop": "Volver arriba",
+    "websiteLeadForm": {
+      "name": "Nombre",
+      "phone": "Teléfono",
+      "email": "Correo electrónico",
+      "businessName": "Nombre del negocio (opcional)",
+      "website": "Sitio web actual (opcional)",
+      "websitePlaceholder": "tusitio.com, o déjalo en blanco",
+      "back": "Atrás",
+      "progress": "Paso {step} de 2",
+      "summary": "Corrige {count} cosas:",
+      "sending": "Enviando…",
+      "select": "Selecciona",
+      "serverError": "Algo salió mal de nuestro lado y tu solicitud no se envió. Tus respuestas siguen aquí. Intenta de nuevo o llámanos al",
+      "rateError": "Demasiados intentos. Espera unos minutos o llámanos al",
+      "errors": {
+        "role": "Elige tu rol.",
+        "industry": "Elige el tipo de trabajo.",
+        "budget": "Elige un rango de presupuesto.",
+        "timeline": "Elige cuándo quieres empezar.",
+        "name": "Escribe tu nombre.",
+        "phone": "Escribe un teléfono de 10 dígitos, como (919) 555-1234.",
+        "email": "Escribe un correo como nombre@empresa.com.",
+        "website": "Ese sitio no parece correcto. Revísalo o déjalo en blanco.",
+        "businessName": "El nombre del negocio debe tener 200 caracteres o menos."
+      }
+    }
   },
   "nav": {
     "home": "Inicio",

@@ -1,11 +1,36 @@
 // Cache only the public, static English campaign document, before the wrapper
-// adds country-specific consent scripts. Never share RSC or cookie-bearing HTML.
+// adds country-specific consent scripts. Never share RSC or personalized HTML.
+import { CLICK_ID_STORAGE_KEY } from "../src/lib/analytics/click-ids.ts";
+import { PENDING_CONVERSION_KEY, META_FIRED_PREFIX } from "../src/lib/analytics/pending-conversion.ts";
+import { CONSENT_STORAGE_KEY } from "../src/lib/analytics/consent.ts";
+
+// These cookies do not affect the English document body. The wrapper still
+// applies visitor-specific consent after this cache; its browser response is private.
+// The fired-ID cookie uses the exported session-key prefix without its final '-'.
+const PUBLIC_DOCUMENT_COOKIES = new Set([
+  "_fbp", "_fbc", "_ga", "_gid", "_gcl_au", "_gcl_aw", "_gcl_gb",
+  CLICK_ID_STORAGE_KEY, PENDING_CONVERSION_KEY, META_FIRED_PREFIX.slice(0, -1), CONSENT_STORAGE_KEY,
+]);
+
+function hasOnlyPublicDocumentCookies(header) {
+  if (!header) return true;
+  return header.split(";").every(part => {
+    const separator = part.indexOf("=");
+    if (separator <= 0) return false;
+    const name = part.slice(0, separator).trim();
+    const value = part.slice(separator + 1).trim();
+    if (name === "NEXT_LOCALE") return value === "en";
+    return PUBLIC_DOCUMENT_COOKIES.has(name) || /^_ga_[A-Za-z0-9_]+$/.test(name);
+  });
+}
+
 export function websiteCacheKey(request, buildId) {
   const url = new URL(request.url);
   if (request.method !== "GET" || url.protocol !== "https:" ||
       url.hostname !== "www.kinexisdigital.com" || url.pathname !== "/lp/get-a-website" ||
       !request.headers.get("accept")?.includes("text/html")) return null;
-  for (const header of ["cookie", "authorization", "rsc", "next-router-state-tree", "next-router-prefetch", "next-action", "range"]) {
+  if (!hasOnlyPublicDocumentCookies(request.headers.get("cookie"))) return null;
+  for (const header of ["authorization", "rsc", "next-router-state-tree", "next-router-prefetch", "next-action", "range"]) {
     if (request.headers.has(header)) return null;
   }
   for (const name of url.searchParams.keys()) {
@@ -33,7 +58,7 @@ export async function fetchWebsiteDocument(request, { cache, buildId, fetchOrigi
     // copy may be shared; never let browsers/proxies cache the rewritten HTML.
     headers.set("cache-control", "private, no-store");
     // The middleware persists English on new campaign visits. These are the
-    // only cookies allowed into this cache, and contain no visitor identity.
+    // only response cookies allowed into this cache, with no visitor identity.
     if (!isCrawler && headers.has("x-website-locale-cookie")) headers.set("set-cookie", headers.get("x-website-locale-cookie"));
     headers.delete("x-website-locale-cookie");
     headers.set("x-website-cache", "HIT");
@@ -54,7 +79,7 @@ export async function fetchWebsiteDocument(request, { cache, buildId, fetchOrigi
   // (whose middleware emits no cookie) populated the cache first.
   headers.set("x-website-locale-cookie", cookie || "NEXT_LOCALE=en; Path=/; Max-Age=31536000; Secure; SameSite=Lax");
   headers.delete("set-cookie");
-  headers.set("cache-control", "public, max-age=3600");
+  headers.set("cache-control", "public, max-age=86400");
   waitUntil(cache.put(key, new Response(stored.body, { status: 200, headers })).catch(() => {}));
   const result = new Response(response.body, response);
   result.headers.set("cache-control", "private, no-store");

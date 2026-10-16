@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { FileText, MessageSquare, Phone } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
 import { CaseStudyViewTracker } from "@/components/landing/CaseStudyViewTracker";
+import { InAppExampleLink } from "@/components/landing/InAppExampleLink";
 import { PlanCta } from "@/components/landing/PlanCta";
 import { LazyGreenfieldExamples as GreenfieldExamples } from "@/components/landing/LazyGreenfieldExamples";
 import { WebsitePlanForm } from "@/components/landing/WebsitePlanForm";
@@ -272,7 +273,7 @@ function renderQuote(quote: string) {
   const lines = quoteLines(quote);
   return lines.map((line, index) => (
     <span key={line} className="lp-web-quote__line">
-      {index === 0 ? "“" : null}
+      {index === 0 ? "“" : " "}
       {renderQuoteLine(line, String(index))}
       {index === lines.length - 1 ? "”" : null}
     </span>
@@ -384,14 +385,12 @@ export function WebsiteWork({
                     <p>{sample.challenge}</p>
                   ) : null}
                   {sample.liveUrl ? (
-                    <a
+                    <InAppExampleLink
                       href={sample.liveUrl}
                       className="lp-web-work__live"
-                      target="_blank"
-                      rel="noopener noreferrer"
                     >
                       {viewLiveLabel}
-                    </a>
+                    </InAppExampleLink>
                   ) : null}
                 </div>
               </article>
@@ -568,10 +567,8 @@ export function WebsiteProofStrip({
             const paired = parts.length === 2;
             return (
               <li key={sample.client}>
-                <a
+                <InAppExampleLink
                   href={sample.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
                 >
                   <p className="lp-web-proofstrip__client">{sample.client}</p>
                   <p className="lp-web-proofstrip__metric">
@@ -587,7 +584,7 @@ export function WebsiteProofStrip({
                   </p>
                   <p className="lp-web-proofstrip__label">{sample.label}</p>
                   <span className="lp-web-proofstrip__go">{viewLiveLabel}</span>
-                </a>
+                </InAppExampleLink>
               </li>
             );
           })}
