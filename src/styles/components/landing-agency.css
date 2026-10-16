@@ -5939,3 +5939,241 @@ html.lp-chrome .site-header .btn--header,
   .lp-web-pricing__summary > div + div { border-left: 1px solid var(--lp-border); padding-left: 1.75rem; }
   .lp-web .lp-web-pricing__foot--editorial .lp-web-pricing__disclosure ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ── Project-call form card (get-a-website): refined layout ── */
+
+.lp-web .lp-web-plan__form .lp-web-form {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 1.15rem;
+  padding: 1.5rem 1.4rem 1.55rem;
+  border: 1px solid color-mix(in oklab, var(--lp-accent) 26%, var(--lp-border));
+  border-radius: var(--lp-radius-lg);
+  background:
+    radial-gradient(ellipse at 100% 0%, color-mix(in oklab, var(--lp-accent) 14%, transparent), transparent 58%),
+    linear-gradient(165deg, var(--lp-bg), var(--lp-card));
+  box-shadow:
+    0 30px 60px -36px color-mix(in oklab, var(--lp-accent) 40%, transparent),
+    inset 0 1px 0 color-mix(in oklab, var(--lp-ink) 7%, transparent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__intro {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__title {
+  font-size: 1.4rem;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__hint {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--lp-muted);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0;
+  min-height: 0;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-label,
+.lp-web .lp-web-plan__form .lp-web-form legend.form-label {
+  margin-bottom: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  color: var(--lp-ink);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__req {
+  color: var(--lp-accent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-input,
+.lp-web .lp-web-plan__form .lp-web-form .form-select,
+.lp-web .lp-web-plan__form .lp-web-form .form-textarea {
+  padding: 0.78rem 0.9rem;
+  border: 1px solid var(--lp-border);
+  border-radius: 0.7rem;
+  background: var(--lp-input);
+  color: var(--lp-ink);
+  font-size: 16px;
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-input::placeholder,
+.lp-web .lp-web-plan__form .lp-web-form .form-textarea::placeholder {
+  color: color-mix(in oklab, var(--lp-muted) 80%, transparent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-input:hover,
+.lp-web .lp-web-plan__form .lp-web-form .form-select:hover,
+.lp-web .lp-web-plan__form .lp-web-form .form-textarea:hover {
+  border-color: color-mix(in oklab, var(--lp-ink) 28%, var(--lp-border));
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-input:focus-visible,
+.lp-web .lp-web-plan__form .lp-web-form .form-select:focus-visible,
+.lp-web .lp-web-plan__form .lp-web-form .form-textarea:focus-visible {
+  outline: none;
+  border-color: var(--lp-accent);
+  background: color-mix(in oklab, var(--lp-accent) 3%, var(--lp-input));
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--lp-accent) 24%, transparent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-input[aria-invalid="true"],
+.lp-web .lp-web-plan__form .lp-web-form .form-select[aria-invalid="true"],
+.lp-web .lp-web-plan__form .lp-web-form .form-textarea[aria-invalid="true"] {
+  border-color: var(--lp-form-error);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form .form-input[aria-invalid="true"]:focus-visible,
+.lp-web .lp-web-plan__form .lp-web-form .form-select[aria-invalid="true"]:focus-visible {
+  border-color: var(--lp-form-error);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--lp-form-error) 24%, transparent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__choices--chips {
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__choice--chip {
+  min-height: 46px;
+  padding: 0.55rem 0.7rem;
+  border-radius: 0.65rem;
+  font-weight: 600;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__choice--chip:hover {
+  border-color: color-mix(in oklab, var(--lp-ink) 28%, var(--lp-border));
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__choice--chip:has(input:checked) {
+  border-color: var(--lp-accent);
+  background: color-mix(in oklab, var(--lp-accent) 12%, var(--lp-card));
+  color: var(--lp-ink);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__choices--chips > .lp-web-form__choice--chip:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__trust {
+  list-style: none;
+  margin: 0.35rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__trust li {
+  position: static;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding-left: 0;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--lp-muted);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__trust li::before {
+  content: none;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__trust svg {
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+  color: var(--lp-accent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__actions {
+  display: grid;
+  gap: 0.85rem;
+  margin-top: auto;
+  padding-top: 0.35rem;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__submit {
+  width: 100%;
+  min-height: 3.2rem;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__privacy {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--lp-muted);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__privacy svg {
+  flex-shrink: 0;
+  margin-top: 0.12rem;
+  color: var(--lp-accent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__privacy a {
+  color: var(--lp-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__success {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__success-icon {
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--lp-accent) 14%, transparent);
+  color: var(--lp-accent);
+}
+
+.lp-web .lp-web-plan__form .lp-web-form__success-title {
+  font-size: 1.6rem;
+  letter-spacing: -0.035em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lp-web .lp-web-plan__form .lp-web-form__success-icon {
+    animation: lp-web-form-pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+}
+
+@keyframes lp-web-form-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

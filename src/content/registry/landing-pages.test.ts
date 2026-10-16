@@ -412,9 +412,6 @@ describe("get-a-website landing page", () => {
     expect(getLandingPage("get-a-website", "es-419")?.subheadline).toMatch(
       /visitas en llamadas/i,
     );
-    expect(getLandingPage("get-a-website", "es-419")?.subheadline).toMatch(
-      /sitio a medida/i,
-    );
     expect(getLandingPage("get-a-website", "es-419")?.heroCtaLabel).toMatch(
       /solicitar mi llamada gratis/i,
     );

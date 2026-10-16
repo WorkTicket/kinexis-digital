@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { AlertCircle, Check, LoaderCircle } from "lucide-react";
+import { AlertCircle, Check, LoaderCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { CallLink } from "@/components/analytics/CallLink";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
@@ -413,6 +413,9 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
     if (!showCalendar) {
       return (
         <div className="lp-web-form__success" role="status" aria-live="polite">
+          <span className="lp-web-form__success-icon" aria-hidden>
+            <Check size={26} strokeWidth={2.5} />
+          </span>
           <h3 className="lp-web-form__success-title">
             {page.successTitle ?? "Thanks"}
           </h3>
@@ -458,7 +461,10 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       <div key={field} className="lp-web-form__field">
         <label className="form-label" htmlFor={fieldId(field)}>
           {fieldLabel(field)}
-          <span aria-hidden> *</span>
+          <span className="lp-web-form__req" aria-hidden>
+            {" "}
+            *
+          </span>
         </label>
         <input
           id={fieldId(field)}
@@ -544,6 +550,9 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
         <h3 className="lp-web-form__title">
           {page.formStep2Title ?? "Where should we call you?"}
         </h3>
+        {page.formCtaHint ? (
+          <p className="lp-web-form__hint">{page.formCtaHint}</p>
+        ) : null}
       </div>
 
       <form
@@ -593,6 +602,17 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
             : choices("timeline", page.timelineOptions),
         )}
 
+        {page.formTrust?.length ? (
+          <ul className="lp-web-form__trust">
+            {page.formTrust.map((item) => (
+              <li key={item}>
+                <Check size={15} strokeWidth={2.5} aria-hidden />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
         <div className="lp-web-form__status" aria-live="assertive" id={liveId}>
           {formError ? (
             <div
@@ -611,33 +631,38 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
           ) : null}
         </div>
 
-        <Button
-          type="submit"
-          size="lg"
-          className="lp-web-form__submit"
-          disabled={status === "submitting"}
-          aria-busy={status === "submitting"}
-          enterKeyHint="go"
-          arrow={status !== "submitting"}
-        >
-          {status === "submitting" ? (
-            <>
-              <LoaderCircle
-                className="lp-web-form__spinner"
-                size={18}
-                aria-hidden
-              />
-              {t("sending")}
-            </>
-          ) : (
-            page.submitLabel
-          )}
-        </Button>
+        <div className="lp-web-form__actions">
+          <Button
+            type="submit"
+            size="lg"
+            className="lp-web-form__submit"
+            disabled={status === "submitting"}
+            aria-busy={status === "submitting"}
+            enterKeyHint="go"
+            arrow={status !== "submitting"}
+          >
+            {status === "submitting" ? (
+              <>
+                <LoaderCircle
+                  className="lp-web-form__spinner"
+                  size={18}
+                  aria-hidden
+                />
+                {t("sending")}
+              </>
+            ) : (
+              page.submitLabel
+            )}
+          </Button>
 
-        <p className="lp-web-form__privacy">
-          {page.privacyMicrocopy ?? page.formFootnote}{" "}
-          <Link href="/privacy">Privacy Policy</Link>.
-        </p>
+          <p className="lp-web-form__privacy">
+            <Lock size={13} aria-hidden />
+            <span>
+              {page.privacyMicrocopy ?? page.formFootnote}{" "}
+              <Link href="/privacy">Privacy Policy</Link>.
+            </span>
+          </p>
+        </div>
       </form>
     </div>
   );

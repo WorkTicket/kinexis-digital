@@ -79,7 +79,7 @@ export function buildSpanishGetAWebsite(
     ],
     marketLine: "Trabajamos con contratistas y equipos de servicios del hogar.",
     subheadline:
-      "Sitios para contratistas y negocios de servicios del hogar. Rápidos, pensados para el teléfono, listos para búsqueda, y hechos para convertir visitas en llamadas. Las solicitudes van en un sitio a medida.",
+      "Sitios para contratistas y negocios de servicios del hogar. Rápidos, pensados para el teléfono, listos para búsqueda, y hechos para convertir visitas en llamadas.",
     heroCtaLabel: CTA,
     headerCtaLabel: CTA,
     heroPrice: pricing.heroPrice,

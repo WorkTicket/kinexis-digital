@@ -198,7 +198,7 @@ const baseGetAWebsite: LandingPageEntry = {
   ],
   marketLine: "Working with contractors and home-service crews",
   subheadline:
-    "Websites for contractors and home-service businesses. Fast, mobile-first, SEO-ready, and built to turn visitors into calls. Quote requests are part of a Custom site.",
+    "Websites for contractors and home-service businesses. Fast, mobile-first, SEO-ready, and built to turn visitors into calls.",
   heroCtaLabel: CTA,
   headerCtaLabel: CTA,
   heroPrice: softPricing.en.heroPrice,
