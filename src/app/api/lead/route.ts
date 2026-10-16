@@ -285,7 +285,7 @@ export async function POST(request: Request) {
       contentCategory: String(source) === "landing-page" ? "landing-page" : "lead",
     } as const;
     await sendMetaCapiEvent(metaInput);
-    if (isQualifiedLead(safeRole, budget, safeTimeline)) {
+    if (isQualifiedLead(safeRole, budget, safeTimeline, safeLandingSlug)) {
       await sendMetaCapiEvent({
         ...metaInput,
         eventName: "QualifiedLead",

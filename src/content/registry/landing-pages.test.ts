@@ -127,8 +127,8 @@ describe("get-a-website landing page", () => {
     expect(page?.websiteRequired).toBeFalsy();
     expect(page?.hideWebsite).toBeFalsy();
     expect(page?.essentialsOnly).toBeFalsy();
-    expect(page?.twoStepQualify).toBe(true);
-    expect(page?.threeStepQualify).toBe(true);
+    expect(page?.twoStepQualify).toBeUndefined();
+    expect(page?.threeStepQualify).toBeUndefined();
     expect(page?.successHref).toBeUndefined();
     expect(page?.phoneRequired).toBe(true);
     expect(page?.phoneOptional).toBeFalsy();
@@ -519,13 +519,16 @@ describe("get-a-website landing page", () => {
     expect(page?.submitLabel).toBe("Request my call");
     expect(page?.formTitle.toLowerCase()).toMatch(/request a free project call/);
     expect(page?.formSubtitle.toLowerCase()).toMatch(
-      /tell us about the business/,
+      /leave your name and number/,
     );
     expect(page?.formCtaDetail).toBeUndefined();
     expect(page?.formCtaHint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.formSteps?.length).toBe(3);
-    expect(page?.formStep1Title).toBe("Tell us about your project");
+    expect(page?.formStep1Title).toBeUndefined();
     expect(page?.formStep2Title).toBe("Where should we call you?");
+    expect(page?.formStep3Title).toBeUndefined();
+    expect(page?.calendarTitle).toBeUndefined();
+    expect(page?.calendarSubtitle).toBeUndefined();
     expect(page?.closingTitle?.toLowerCase()).toMatch(/request a free project call/);
     expect(page?.closingFinePrint?.toLowerCase()).toMatch(/no obligation/);
     expect(page?.marketLine).toBe(

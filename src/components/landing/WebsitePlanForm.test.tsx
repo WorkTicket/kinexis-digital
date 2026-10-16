@@ -14,7 +14,6 @@ vi.mock("next-intl", () => ({ useLocale: () => mocks.locale, useTranslations: ()
   return String(value).replace(/\{(\w+)\}/g, (_, field) => String(args?.[field]));
 } }));
 vi.mock("@/i18n/navigation", () => ({ Link: ({ children }: { children: React.ReactNode }) => <span>{children}</span> }));
-vi.mock("next/dynamic", () => ({ default: () => () => <div>Calendar</div> }));
 vi.mock("@/lib/analytics/landing-funnel", async importOriginal => ({ ...await importOriginal<typeof import("@/lib/analytics/landing-funnel")>(), trackLandingFunnel: mocks.funnel }));
 vi.mock("@/lib/analytics/events", () => ({ trackLead: mocks.lead, trackAuditLead: mocks.audit, trackCallClick: vi.fn() }));
 vi.mock("@/lib/analytics/click-ids", () => ({ getAttributionPayload: () => ({ utm_source: "test" }) }));
@@ -196,6 +195,15 @@ describe("website project form (single step)", () => {
     await waitFor(() => expect(mocks.audit).toHaveBeenCalled());
     fireEvent(window, new Event("pagehide"));
     expect(mocks.funnel).not.toHaveBeenCalledWith("form_abandon", expect.anything());
+  });
+
+  it("shows the success message after submit and no calendar", async () => {
+    setup(); fill(); fireEvent.submit(currentForm());
+    await waitFor(() => expect(mocks.audit).toHaveBeenCalledTimes(1));
+    expect(screen.getByText("You're in")).toBeInTheDocument();
+    expect(screen.getByText(/Your details are in/)).toBeInTheDocument();
+    expect(screen.queryByText("Calendar")).not.toBeInTheDocument();
+    expect(screen.queryByText(/pick a time/i)).not.toBeInTheDocument();
   });
 
   it("renders the same single-step layout in Spanish", () => {

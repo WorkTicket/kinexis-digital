@@ -122,26 +122,20 @@ export function buildSpanishGetAWebsite(
 
     formTitle: "Solicita una llamada de proyecto de 15 minutos",
     formSubtitle:
-      "Cuéntanos del negocio y del sitio que tienes ahora. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
+      "Deja tu nombre y número. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     submitLabel: "Solicitar mi llamada",
-    continueLabel: "Siguiente: ¿dónde te llamamos?",
     formCtaHint: `Sin compromiso. ${pricing.heroPrice}`,
     formFootnote:
       "Usamos tu información para dar seguimiento a esta llamada.",
     formAsideTitle: "Qué cubre la llamada",
     formAsideSubtitle:
       "Si ya tienes un sitio, revisamos las páginas que la gente realmente usa: cómo se siente en el teléfono, si los servicios están claros, y si el número se toca fácil.",
-    formStep1Title: "Cuéntanos sobre tu proyecto",
     formStep2Title: "¿Dónde te llamamos?",
-    formStep3Title: "¿Cómo te contactamos?",
     noWebsiteLabel: "Todavía no tengo un sitio web",
     noWebsiteStatus:
       "Sitio omitido. Indicaste que todavía no tienes un sitio web.",
     investmentLabel: "¿Cuál es tu presupuesto?",
     timelineLabel: "¿Cuándo quieres empezar?",
-    roleLabel: "Tu rol",
-    industryLabel: "Tipo de trabajo",
-    websiteStatusLabel: "Sitio actual",
     goalLabel: "¿Qué debería lograr este sitio primero?",
     contactMethodLabel: "Mejor forma de contactarte",
     notesLabel: "¿Algo más que debamos saber?",
@@ -153,12 +147,7 @@ export function buildSpanishGetAWebsite(
     successTitle: "Listo",
     successCopy:
       "Tus datos ya están. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
-    calendarTitle: "¿Prefieres elegir un horario?",
-    calendarSubtitle:
-      "Elige un horario abajo. Si no, te llamaremos. Tus datos ya están. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
     inlineThankYou: true,
-    bookingHref: "/contact",
-    bookingCtaLabel: CTA,
 
     planHasSiteTitle: "Si ya tienes un sitio web",
     planHasSiteItems: [
@@ -178,9 +167,9 @@ export function buildSpanishGetAWebsite(
     ],
     formSteps: [
       {
-        title: "Cuéntanos a qué te dedicas",
+        title: "Deja tu número",
         detail:
-          "Comparte tus servicios, tus clientes y tus objetivos para el sitio.",
+          "Nombre, teléfono y correo. El presupuesto y el plazo son opcionales.",
       },
       {
         title: "Te llamamos",
@@ -202,8 +191,6 @@ export function buildSpanishGetAWebsite(
     websiteRequired: false,
     hideWebsite: false,
     essentialsOnly: false,
-    twoStepQualify: true,
-    threeStepQualify: true,
     phoneRequired: true,
     phoneOptional: false,
     businessNameRequired: false,

@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { AlertCircle, Check, LoaderCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { CallLink } from "@/components/analytics/CallLink";
@@ -16,7 +15,6 @@ import {
   createMetaEventId,
   stashPendingConversion,
 } from "@/lib/analytics/pending-conversion";
-import { qualifiesForProjectCall } from "@/lib/project-call";
 import {
   LEAD_LIMITS,
   LEAD_MESSAGES,
@@ -27,19 +25,10 @@ import {
   type LeadErrors,
   type LeadField,
 } from "@/lib/lead-validation";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useEffect, useId, useRef, useState } from "react";
 import type { LandingPageOption } from "@/content/registry/landing-pages";
 import type { WebsitePlanFormPage } from "@/lib/website-plan-form-page";
-import type { Locale } from "@/i18n/routing";
-
-const ProjectCallCalendar = dynamic(
-  () =>
-    import("@/components/landing/WebsiteProjectCall").then(
-      (mod) => mod.WebsiteProjectCall,
-    ),
-  { ssr: false },
-);
 
 /** Required contact fields, in order. Enter moves along this list. */
 const CONTACT: LeadField[] = ["name", "phone", "email"];
@@ -77,7 +66,6 @@ type Props = {
 };
 
 export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
-  const locale = useLocale() as Locale;
   const t = useTranslations("a11y.websiteLeadForm");
   const liveId = useId();
   const summaryRef = useRef<HTMLDivElement>(null);
@@ -105,8 +93,8 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   const fieldId = (field: LeadField) => `${id}-${field}`;
   const fieldLabel = (field: LeadField): string =>
     ({
-      role: page.roleLabel ?? "Your role",
-      industry: page.industryLabel ?? "Type of work",
+      role: "Your role",
+      industry: "Type of work",
       budget: page.investmentLabel ?? "Budget",
       timeline: page.timelineLabel ?? "Timeline",
       name: t("name"),
@@ -409,45 +397,17 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   };
 
   if (status === "success") {
-    const showCalendar = qualifiesForProjectCall(role, timeline);
-    if (!showCalendar) {
-      return (
-        <div className="lp-web-form__success" role="status" aria-live="polite">
-          <span className="lp-web-form__success-icon" aria-hidden>
-            <Check size={26} strokeWidth={2.5} />
-          </span>
-          <h3 className="lp-web-form__success-title">
-            {page.successTitle ?? "Thanks"}
-          </h3>
-          <p className="lp-web-form__success-copy">
-            {page.successCopy ?? "We'll be in touch."}
-          </p>
-        </div>
-      );
-    }
-
-    const notes = [
-      businessName.trim() ? `Business: ${businessName.trim()}` : "",
-      `Role: ${optionLabel(page.roleOptions, role)}`,
-      `Type of work: ${optionLabel(page.industryOptions, industry)}`,
-      `Current website: ${optionLabel(page.websiteStatusOptions, websiteStatus)}`,
-      websiteStatus !== "none" && website.trim() ? `URL: ${website.trim()}` : "",
-      `Budget: ${optionLabel(page.budgetOptions, budget)}`,
-      `Start: ${optionLabel(page.timelineOptions, timeline)}`,
-      phone.trim() ? `Phone: ${phone.trim()}` : "",
-    ]
-      .filter(Boolean)
-      .join("\n");
-
     return (
       <div className="lp-web-form__success" role="status" aria-live="polite">
-        <ProjectCallCalendar
-          locale={locale}
-          landingSlug={page.slug}
-          preset={{ name: name.trim(), email: email.trim(), notes }}
-          title={page.calendarTitle ?? "Pick a 15-minute time"}
-          subtitle={page.calendarSubtitle ?? "Central Time. Weekdays. 15 minutes."}
-        />
+        <span className="lp-web-form__success-icon" aria-hidden>
+          <Check size={26} strokeWidth={2.5} />
+        </span>
+        <h3 className="lp-web-form__success-title">
+          {page.successTitle ?? "Thanks"}
+        </h3>
+        <p className="lp-web-form__success-copy">
+          {page.successCopy ?? "We'll be in touch."}
+        </p>
       </div>
     );
   }

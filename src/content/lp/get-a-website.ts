@@ -241,26 +241,20 @@ const baseGetAWebsite: LandingPageEntry = {
 
   formTitle: "Request a free project call",
   formSubtitle:
-    "Tell us about the business and the site you have now. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
+    "Leave your name and number. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   submitLabel: "Request my call",
-  continueLabel: "Next: where should we call you?",
   formCtaHint: `No obligation. ${PRICE_LINE}`,
   formFootnote:
     "Your information is used to follow up on this call.",
   formAsideTitle: "What the call covers",
   formAsideSubtitle:
     "If you already have a website, we look at the pages people actually use: how it feels on a phone, whether services are clear, and whether the number is easy to tap.",
-  formStep1Title: "Tell us about your project",
   formStep2Title: "Where should we call you?",
-  formStep3Title: "How should we reach you?",
   noWebsiteLabel: "I don't have a website yet",
   noWebsiteStatus:
     "Website skipped. You indicated you do not have a website yet.",
   investmentLabel: "What's your budget?",
   timelineLabel: "When do you want to start?",
-  roleLabel: "Your role",
-  industryLabel: "Type of work",
-  websiteStatusLabel: "Current website",
   goalLabel: "What should this site do first?",
   contactMethodLabel: "Best way to reach you",
   notesLabel: "Anything else we should know?",
@@ -272,11 +266,7 @@ const baseGetAWebsite: LandingPageEntry = {
   successTitle: "You're in",
   successCopy:
     "Your details are in. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
-  calendarTitle: "Prefer to pick a time?",
-  calendarSubtitle: "Choose a slot below. Otherwise we'll call you. Your details are in. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
   inlineThankYou: true,
-  bookingHref: "/contact",
-  bookingCtaLabel: CTA,
 
   planHasSiteTitle: "If you already have a website",
   planHasSiteItems: [
@@ -292,9 +282,9 @@ const baseGetAWebsite: LandingPageEntry = {
   ],
   formSteps: [
     {
-      title: "Tell us what you do",
+      title: "Leave your number",
       detail:
-        "Share your services, customers and goals for the site.",
+        "Name, phone and email. Budget and timeline are optional.",
     },
     {
       title: "We call you",
@@ -316,8 +306,6 @@ const baseGetAWebsite: LandingPageEntry = {
   websiteRequired: false,
   hideWebsite: false,
   essentialsOnly: false,
-  twoStepQualify: true,
-  threeStepQualify: true,
   phoneRequired: true,
   phoneOptional: false,
   businessNameRequired: false,
