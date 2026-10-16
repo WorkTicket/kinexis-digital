@@ -28,12 +28,13 @@ export async function HomeProcess({
       className="process-section chapter chapter--void relative"
     >
       <div className="shell chapter-shell--standard relative">
-        <Reveal variant="rise" when="chapter" className="mb-12 md:mb-16 lg:mb-20">
+        <Reveal variant="rise" when="chapter" className="process-section__lead">
           <ChapterLead
             eyebrow={t("processEyebrow")}
             headingId={headingId}
             title={t("processTitle")}
             headingClassName="max-w-[20ch]"
+            className="process-section__heading"
             dek={t("processDek")}
           >
             <Button href={ctaHref} variant="link" arrow>
