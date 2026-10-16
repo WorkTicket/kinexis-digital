@@ -256,7 +256,7 @@ const baseGetAWebsite: LandingPageEntry = {
   noWebsiteLabel: "I don't have a website yet",
   noWebsiteStatus:
     "Website skipped. You indicated you do not have a website yet.",
-  investmentLabel: "Budget",
+  investmentLabel: "What's your budget?",
   timelineLabel: "When do you want to start?",
   roleLabel: "Your role",
   industryLabel: "Type of work",

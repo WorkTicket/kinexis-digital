@@ -22,6 +22,7 @@
       "summary": "Corrige {count} cosas:",
       "sending": "Enviando…",
       "select": "Selecciona",
+      "optional": "(opcional)",
       "serverError": "Algo salió mal de nuestro lado y tu solicitud no se envió. Tus respuestas siguen aquí. Intenta de nuevo o llámanos al",
       "rateError": "Demasiados intentos. Espera unos minutos o llámanos al",
       "errors": {

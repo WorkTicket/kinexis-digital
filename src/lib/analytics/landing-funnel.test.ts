@@ -9,8 +9,8 @@ beforeEach(() => {
 afterEach(() => { delete window.gtag; delete window.fbq; });
 
 describe("custom landing funnel events", () => {
-  it.each<LandingFunnelEvent>(["cta_click", "form_start", "form_step1_complete", "form_step2_view", "form_validation_error", "form_abandon", "form_view", "form_submit_error", "case_study_view"])("sends %s as a custom event only", event => {
-    const params = { landingSlug: "get-a-website", form_step: "2", step: "2", fields: "f_contact_b|f_site_url", error_fields: "f_contact_b|f_site_url", error_count: "2", last_field: "f_contact_a", filled_count: "5", status: "500" };
+  it.each<LandingFunnelEvent>(["cta_click", "form_start", "form_step1_complete", "form_step2_view", "form_validation_error", "form_abandon", "form_view", "form_submit_error", "form_submit_success", "case_study_view"])("sends %s as a custom event only", event => {
+    const params = { landingSlug: "get-a-website", form_step: "1", step: "1", fields: "f_budget", error_fields: "f_budget", error_count: "1", last_field: "f_contact_a", filled_count: "3", status: "500", budget_given: "yes", timeline_given: "no" };
     trackLandingFunnel(event, params);
     const payload = { ...params, landing_page: params.landingSlug } as Record<string, string>;
     delete payload.landingSlug;

@@ -3302,6 +3302,12 @@ html[data-theme=dark] .lp-web-form { --lp-form-error:#f97066; }
 .lp-web-form__choice { width:100%; cursor:pointer; }
 .lp-web-form__choice-check { margin-left:auto; flex-shrink:0; visibility:hidden; color:var(--lp-accent); }
 .lp-web-form__choice:has(input:checked) .lp-web-form__choice-check { visibility:visible; }
+/* Compact one-tap chips: two columns, 44px targets, tap again to unselect. */
+.lp-web-form__choices--chips { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.4rem; }
+.lp-web-form__choice--chip { position:relative; min-height:44px; padding:.5rem .6rem; gap:.4rem; font-size:.875rem; }
+.lp-web-form__choice--chip span { line-height:1.2; }
+.lp-web-form__choice--chip input { position:absolute; width:1px; height:1px; margin:0; opacity:0; pointer-events:none; }
+.lp-web-form__optional { font-weight:500; color:var(--lp-muted); }
 .lp-web-form [aria-invalid="true"].form-input,
 .lp-web-form [aria-invalid="true"].form-select,
 .lp-web-form__fieldset[aria-invalid="true"] .lp-web-form__choice { border-color:var(--lp-form-error); }

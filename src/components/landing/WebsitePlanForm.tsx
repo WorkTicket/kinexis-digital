@@ -23,7 +23,6 @@ import {
   formatPhoneForDisplay,
   normalizeEmail,
   normalizePhone,
-  validateLeadStep1,
   validateLeadStep2,
   type LeadErrors,
   type LeadField,
@@ -42,9 +41,10 @@ const ProjectCallCalendar = dynamic(
   { ssr: false },
 );
 
-const STEP1: LeadField[] = ["role", "industry", "budget", "timeline"];
-const STEP2: LeadField[] = ["name", "phone", "email", "businessName", "website"];
-const REQUIRED_CONTACT: LeadField[] = ["name", "phone", "email"];
+/** Required contact fields, in order. Enter moves along this list. */
+const CONTACT: LeadField[] = ["name", "phone", "email"];
+/** Budget and timeline are optional; they never block submit. */
+const CHOICES: ("budget" | "timeline")[] = ["budget", "timeline"];
 const EMPTY = {
   role: "",
   industry: "",
@@ -88,10 +88,8 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   const abandoned = useRef(false);
   const viewed = useRef(false);
   const lastField = useRef<LeadField | null>(null);
-  const [step, setStep] = useState<1 | 2>(1);
   const [values, setValues] = useState(EMPTY);
   const valuesRef = useRef(values);
-  const stepRef = useRef(step);
   const touched = useRef(new Set<LeadField>());
   const [status, setStatus] = useState<
     "idle" | "submitting" | "success" | "error"
@@ -126,10 +124,16 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
           : message,
       ]),
     );
-  const validate = (next = values) => ({
-    ...validateLeadStep1(next),
-    ...validateLeadStep2(next),
-  });
+  const validate = (next = values) => validateLeadStep2(next);
+
+  const markStarted = () => {
+    if (started.current) return;
+    started.current = true;
+    trackLandingFunnel("form_start", {
+      landingSlug: page.slug,
+      placement: "plan-form",
+    });
+  };
 
   const focusField = (field: LeadField) => {
     const node = document.getElementById(fieldId(field));
@@ -141,19 +145,13 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
 
   const update = (field: LeadField, value: string) => {
     lastField.current = field;
+    markStarted();
     const next = { ...values, [field]: value };
     valuesRef.current = next;
     setValues(next);
     if (errors[field] || touched.current.has(field)) {
       const message = localizedErrors(validate(next))[field];
       setErrors((prev) => ({ ...prev, [field]: message }));
-    }
-    if (STEP1.includes(field) && !started.current) {
-      started.current = true;
-      trackLandingFunnel("form_start", {
-        landingSlug: page.slug,
-        placement: "plan-form",
-      });
     }
   };
 
@@ -214,8 +212,8 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       abandoned.current = true;
       trackLandingFunnel("form_abandon", {
         landingSlug: page.slug,
-        form_step: String(stepRef.current),
-        step: String(stepRef.current),
+        form_step: "1",
+        step: "1",
         last_field: lastField.current
           ? LEAD_FIELD_CODES[lastField.current]
           : "none",
@@ -243,18 +241,16 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       ?.scrollIntoView({ block: "start", behavior: "smooth" });
   }, [status]);
 
-  const reportErrors = (next: LeadErrors, errorStep = step) => {
-    const fields = [...STEP1, ...STEP2].filter((field) => next[field]);
+  const reportErrors = (next: LeadErrors) => {
+    const fields = CONTACT.filter((field) => next[field]);
     setErrors(localizedErrors(next));
     setShowSummary(true);
     setStatus("error");
-    setStep(errorStep);
-    stepRef.current = errorStep;
     const codes = fields.map((field) => LEAD_FIELD_CODES[field]).join("|");
     trackLandingFunnel("form_validation_error", {
       landingSlug: page.slug,
-      form_step: String(errorStep),
-      step: String(errorStep),
+      form_step: "1",
+      step: "1",
       error_fields: codes,
       fields: codes,
       error_count: String(fields.length),
@@ -267,14 +263,9 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
 
   const submitLead = async () => {
     if (submitLock.current) return;
-    const firstErrors = validateLeadStep1(values);
-    if (Object.keys(firstErrors).length) {
-      reportErrors(firstErrors, 1);
-      return;
-    }
-    const next = validateLeadStep2(values);
+    const next = validate(values);
     if (Object.keys(next).length) {
-      reportErrors(next, 2);
+      reportErrors(next);
       return;
     }
 
@@ -325,15 +316,12 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
         };
         trackLandingFunnel("form_submit_error", {
           landingSlug: page.slug,
-          form_step: "2",
+          form_step: "1",
           status: responseStatus,
         });
         if (res.status === 400 && data.field && data.field in LEAD_FIELD_CODES) {
           const field = data.field as LeadField;
-          reportErrors(
-            { [field]: data.error ?? LEAD_MESSAGES[field] },
-            STEP1.includes(field) ? 1 : 2,
-          );
+          reportErrors({ [field]: data.error ?? LEAD_MESSAGES[field] });
         } else {
           setFormError(res.status === 429 ? "rate" : "server");
           setStatus("error");
@@ -371,6 +359,11 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       } else {
         trackLead({ ...conversionOpts, formType: "landing-page" });
       }
+      // Custom funnel signal only. Never carries personal info or Meta standard events.
+      trackLandingFunnel("form_submit_success", {
+        budget_given: budget.trim() ? "yes" : "no",
+        timeline_given: timeline.trim() ? "yes" : "no",
+      });
       submitted.current = true;
       setStatus("success");
     } catch {
@@ -379,7 +372,7 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
       setStatus("error");
       trackLandingFunnel("form_submit_error", {
         landingSlug: page.slug,
-        form_step: "2",
+        form_step: "1",
         status: responseStatus,
       });
       requestAnimationFrame(() =>
@@ -393,28 +386,6 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (submitLock.current) return;
-    if (step === 1) {
-      const next = validateLeadStep1(values);
-      if (Object.keys(next).length) {
-        reportErrors(next);
-        return;
-      }
-      setErrors({});
-      setShowSummary(false);
-      setFormError("");
-      setStatus("idle");
-      setStep(2);
-      stepRef.current = 2;
-      trackLandingFunnel("form_step1_complete", { landingSlug: page.slug });
-      trackLandingFunnel("form_step2_view", { landingSlug: page.slug });
-      requestAnimationFrame(() => {
-        document
-          .getElementById("lp-form")
-          ?.scrollIntoView({ block: "start", behavior: "smooth" });
-        focusField("name");
-      });
-      return;
-    }
     await submitLead();
   };
 
@@ -423,17 +394,17 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
     field: LeadField,
   ) => {
     if (event.key !== "Enter" || event.nativeEvent.isComposing) return;
-    const requiredMissing = REQUIRED_CONTACT.some(
-      (key) => !values[key].trim(),
-    );
-    if (requiredMissing || field !== "website") {
+    if (field !== "email") {
       event.preventDefault();
-      const next =
-        STEP2[STEP2.indexOf(field) + 1] ??
-        STEP2.find(
-          (key) => !values[key].trim() && REQUIRED_CONTACT.includes(key),
-        );
+      const next = CONTACT[CONTACT.indexOf(field) + 1];
       if (next) focusField(next);
+      return;
+    }
+    // Enter on email only submits when all three required fields are valid.
+    const next = validate(values);
+    if (Object.keys(next).length) {
+      event.preventDefault();
+      reportErrors(next);
     }
   };
 
@@ -478,32 +449,83 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
     );
   }
 
-  const errorFields = (step === 1 ? STEP1 : STEP2).filter(
-    (field) => errors[field],
-  );
+  const errorFields = CONTACT.filter((field) => errors[field]);
+
+  const textField = (field: LeadField) => {
+    const isPhone = field === "phone";
+    const isEmail = field === "email";
+    return (
+      <div key={field} className="lp-web-form__field">
+        <label className="form-label" htmlFor={fieldId(field)}>
+          {fieldLabel(field)}
+          <span aria-hidden> *</span>
+        </label>
+        <input
+          id={fieldId(field)}
+          name={field}
+          className="form-input"
+          type={isPhone ? "tel" : isEmail ? "email" : "text"}
+          inputMode={isPhone ? "tel" : isEmail ? "email" : "text"}
+          autoComplete={
+            field === "name" ? "name" : isPhone ? "tel" : "email"
+          }
+          autoCapitalize={field === "name" ? "words" : "none"}
+          autoCorrect="off"
+          spellCheck={false}
+          enterKeyHint={isEmail ? "go" : "next"}
+          required
+          maxLength={LEAD_LIMITS[field]}
+          placeholder={
+            isPhone ? "(919) 555-1234" : isEmail ? "you@company.com" : undefined
+          }
+          value={values[field]}
+          onFocus={() => {
+            lastField.current = field;
+            markStarted();
+          }}
+          onChange={(event) => update(field, event.target.value)}
+          onBlur={() => blur(field)}
+          onKeyDown={(event) => onInputKeyDown(event, field)}
+          aria-invalid={Boolean(errors[field])}
+          aria-describedby={errors[field] ? `${fieldId(field)}-error` : undefined}
+        />
+        <FieldError id={`${fieldId(field)}-error`} message={errors[field]} />
+      </div>
+    );
+  };
+
   const choices = (
-    field: "role" | "industry" | "budget" | "timeline",
+    field: "budget" | "timeline",
     options: LandingPageOption[] = [],
   ) => (
     <fieldset
+      key={field}
       className="form-choice-set lp-web-form__fieldset"
-      aria-invalid={Boolean(errors[field])}
-      aria-describedby={errors[field] ? `${fieldId(field)}-error` : undefined}
+      aria-describedby={undefined}
     >
       <legend className="form-label">
-        {fieldLabel(field)} <span aria-hidden>*</span>
+        {fieldLabel(field)}{" "}
+        <span className="lp-web-form__optional">{t("optional")}</span>
       </legend>
-      <div className="lp-web-form__choices" id={fieldId(field)}>
+      <div
+        className="lp-web-form__choices lp-web-form__choices--chips"
+        id={fieldId(field)}
+      >
         {options.map((option) => (
-          <label key={option.value} className="lp-web-form__choice">
+          <label
+            key={option.value}
+            className="lp-web-form__choice lp-web-form__choice--chip"
+          >
             <input
               type="radio"
               name={`${id}-${field}`}
               value={option.value}
               checked={values[field] === option.value}
-              required
               onFocus={() => {
                 lastField.current = field;
+              }}
+              onClick={() => {
+                if (values[field] === option.value) update(field, "");
               }}
               onBlur={() => blur(field)}
               onChange={() => update(field, option.value)}
@@ -513,18 +535,14 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
           </label>
         ))}
       </div>
-      <FieldError id={`${fieldId(field)}-error`} message={errors[field]} />
     </fieldset>
   );
 
   return (
     <div className="lp-web-form">
       <div className="lp-web-form__intro">
-        <p className="lp-web-form__progress">{t("progress", { step })}</p>
         <h3 className="lp-web-form__title">
-          {step === 1
-            ? (page.formStep1Title ?? "Tell us about your project")
-            : (page.formStep2Title ?? "Where should we call you?")}
+          {page.formStep2Title ?? "Where should we call you?"}
         </h3>
       </div>
 
@@ -567,135 +585,12 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
           </div>
         ) : null}
 
-        {step === 1 ? (
-          <>
-            {choices("role", page.roleOptions)}
-            {(page.industryOptions?.length ?? 0) <= 8 ? (
-              choices("industry", page.industryOptions)
-            ) : (
-              <div className="lp-web-form__field">
-                <label className="form-label" htmlFor={fieldId("industry")}>
-                  {fieldLabel("industry")} *
-                </label>
-                <select
-                  id={fieldId("industry")}
-                  className="form-select"
-                  required
-                  value={industry}
-                  onBlur={() => blur("industry")}
-                  onChange={(event) => update("industry", event.target.value)}
-                  aria-invalid={Boolean(errors.industry)}
-                  aria-describedby={
-                    errors.industry ? `${fieldId("industry")}-error` : undefined
-                  }
-                >
-                  <option value="">{t("select")}</option>
-                  {page.industryOptions?.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-                <FieldError
-                  id={`${fieldId("industry")}-error`}
-                  message={errors.industry}
-                />
-              </div>
-            )}
-            {choices("budget", page.budgetOptions)}
-            {choices("timeline", page.timelineOptions)}
-          </>
-        ) : (
-          <>
-            <button
-              type="button"
-              className="lp-web-form__back"
-              disabled={status === "submitting"}
-              onClick={() => {
-                setStep(1);
-                stepRef.current = 1;
-                setErrors({});
-                setShowSummary(false);
-                setFormError("");
-                setStatus("idle");
-                requestAnimationFrame(() => focusField("role"));
-              }}
-            >
-              {t("back")}
-            </button>
-            {STEP2.map((field) => (
-              <div key={field} className="lp-web-form__field">
-                <label className="form-label" htmlFor={fieldId(field)}>
-                  {fieldLabel(field)}
-                  {REQUIRED_CONTACT.includes(field) ? (
-                    <span aria-hidden> *</span>
-                  ) : null}
-                </label>
-                <input
-                  id={fieldId(field)}
-                  name={field}
-                  className="form-input"
-                  type={
-                    field === "phone"
-                      ? "tel"
-                      : field === "email"
-                        ? "email"
-                        : "text"
-                  }
-                  inputMode={
-                    field === "phone"
-                      ? "tel"
-                      : field === "email"
-                        ? "email"
-                        : field === "website"
-                          ? "url"
-                          : "text"
-                  }
-                  autoComplete={
-                    field === "businessName"
-                      ? "organization"
-                      : field === "website"
-                        ? "url"
-                        : field === "phone"
-                          ? "tel"
-                          : field
-                  }
-                  autoCapitalize={
-                    field === "name" || field === "businessName"
-                      ? "words"
-                      : "none"
-                  }
-                  autoCorrect="off"
-                  spellCheck={false}
-                  enterKeyHint={field === "website" ? "send" : "next"}
-                  required={REQUIRED_CONTACT.includes(field)}
-                  maxLength={LEAD_LIMITS[field]}
-                  placeholder={
-                    field === "phone"
-                      ? "(919) 555-1234"
-                      : field === "website"
-                        ? t("websitePlaceholder")
-                        : undefined
-                  }
-                  value={values[field]}
-                  onFocus={() => {
-                    lastField.current = field;
-                  }}
-                  onChange={(event) => update(field, event.target.value)}
-                  onBlur={() => blur(field)}
-                  onKeyDown={(event) => onInputKeyDown(event, field)}
-                  aria-invalid={Boolean(errors[field])}
-                  aria-describedby={
-                    errors[field] ? `${fieldId(field)}-error` : undefined
-                  }
-                />
-                <FieldError
-                  id={`${fieldId(field)}-error`}
-                  message={errors[field]}
-                />
-              </div>
-            ))}
-          </>
+        {CONTACT.map((field) => textField(field))}
+
+        {CHOICES.map((field) =>
+          field === "budget"
+            ? choices("budget", page.budgetOptions)
+            : choices("timeline", page.timelineOptions),
         )}
 
         <div className="lp-web-form__status" aria-live="assertive" id={liveId}>
@@ -734,21 +629,15 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
               />
               {t("sending")}
             </>
-          ) : step === 1 ? (
-            (page.continueLabel ?? "Next: where should we call you?")
           ) : (
             page.submitLabel
           )}
         </Button>
 
-        {step === 2 ? (
-          <p className="lp-web-form__privacy">
-            {page.privacyMicrocopy ?? page.formFootnote}{" "}
-            <Link href="/privacy">Privacy Policy</Link>.
-          </p>
-        ) : (
-          <p className="lp-web-form__hint">{page.formCtaHint}</p>
-        )}
+        <p className="lp-web-form__privacy">
+          {page.privacyMicrocopy ?? page.formFootnote}{" "}
+          <Link href="/privacy">Privacy Policy</Link>.
+        </p>
       </form>
     </div>
   );

@@ -22,6 +22,7 @@
       "summary": "Please fix {count} things:",
       "sending": "Sending…",
       "select": "Select",
+      "optional": "(optional)",
       "serverError": "Something went wrong on our side and your request didn't go through. Your answers are still here. Try again, or call us at",
       "rateError": "Too many attempts. Wait a few minutes or call us at",
       "errors": {

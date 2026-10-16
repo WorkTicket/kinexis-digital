@@ -13,6 +13,7 @@ export type LandingFunnelEvent =
   | "form_abandon"
   | "form_view"
   | "form_submit_error"
+  | "form_submit_success"
   | "case_study_view";
 
 export type LandingFunnelParams = {
@@ -27,6 +28,8 @@ export type LandingFunnelParams = {
   last_field?: string;
   filled_count?: string;
   status?: string;
+  budget_given?: string;
+  timeline_given?: string;
 };
 
 // Codes only: never send entered values, names, email addresses or phone numbers.
@@ -57,7 +60,7 @@ export function trackLandingFunnel(
   if (params.step) payload.step = params.step;
   if (params.fields) payload.fields = params.fields;
   if (params.client) payload.client = params.client;
-  for (const key of ["form_step", "error_fields", "error_count", "last_field", "filled_count", "status"] as const) {
+  for (const key of ["form_step", "error_fields", "error_count", "last_field", "filled_count", "status", "budget_given", "timeline_given"] as const) {
     if (params[key] !== undefined) payload[key] = params[key];
   }
 

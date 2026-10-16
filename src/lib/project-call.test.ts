@@ -14,4 +14,11 @@ describe("qualifiesForProjectCall", () => {
     expect(qualifiesForProjectCall("manager", "researching")).toBe(false);
     expect(qualifiesForProjectCall("employee", "researching")).toBe(false);
   });
+
+  it("does not throw and returns false for empty role or timeline", () => {
+    expect(() => qualifiesForProjectCall("", "")).not.toThrow();
+    expect(qualifiesForProjectCall("", "")).toBe(false);
+    expect(qualifiesForProjectCall("", "30-days")).toBe(false);
+    expect(qualifiesForProjectCall("owner", "")).toBe(false);
+  });
 });

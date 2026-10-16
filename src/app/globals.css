@@ -5527,10 +5527,6 @@ html[data-theme="dark"] .hero-shell--film {
   .hero-shell--film .hero-enter-2 {
     font-size: clamp(2.15rem, 4.8vw, 2.85rem);
   }
-
-  .hero-shell--film .hero-engine {
-    width: min(100%, 16.5rem);
-  }
 }
 
 @media (min-width: 1024px) {

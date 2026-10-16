@@ -162,6 +162,7 @@ export async function POST(request: Request) {
     const safeWebsite = website ? String(website).trim() : "";
     const safeBusinessName = businessName ? String(businessName).trim() : "";
     const safeNeed = need ? String(need) : "";
+    const safeBudget = budget ? String(budget) : "";
     const safeTimeline = timeline ? String(timeline) : "";
     const safeRole = role ? String(role) : "";
     const safeIndustry = industry ? String(industry) : "";
@@ -193,21 +194,19 @@ export async function POST(request: Request) {
     const rows = [
       emailRow("Name", leadData.name),
       emailRow("Email", leadData.email, true),
+      emailRow("Phone", safePhone || "Not provided"),
+      // Budget and timeline sit near the top so they are seen before calling.
+      emailRow("Budget", safeBudget || "Not provided"),
+      emailRow("Timeline", safeTimeline || "Not provided"),
       emailRow("Business", safeBusinessName || "Not provided"),
-      safePhone ? emailRow("Phone", safePhone) : "",
-      emailRow(
-        "Website",
-        safeWebsite || "Not provided",
-      ),
+      emailRow("Website", safeWebsite || "Not provided"),
       emailRow("Service", leadData.service),
       safeLandingSlug ? emailRow("Landing page", `/lp/${safeLandingSlug}`) : "",
+      emailRow("Role", safeRole || "Not provided"),
+      emailRow("Type of work", safeIndustry || "Not provided"),
+      emailRow("Current website", safeWebsiteStatus || "Not provided"),
       emailRow("Revenue", leadData.revenue),
-      emailRow("Budget", leadData.budget),
-      safeRole ? emailRow("Role", safeRole) : "",
-      safeIndustry ? emailRow("Type of work", safeIndustry) : "",
-      safeWebsiteStatus ? emailRow("Current website", safeWebsiteStatus) : "",
-      safeNeed ? emailRow("Need", safeNeed) : "",
-      safeTimeline ? emailRow("Timeline", safeTimeline) : "",
+      emailRow("Need", safeNeed || "Not provided"),
       emailRow("Goal", leadData.goal),
       emailRow("Score", leadData.score),
       emailRow("Source", leadData.source),
@@ -227,18 +226,18 @@ export async function POST(request: Request) {
           "",
           `Name: ${leadData.name}`,
           `Email: ${leadData.email}`,
+          `Phone: ${safePhone || "Not provided"}`,
+          `Budget: ${safeBudget || "Not provided"}`,
+          `Timeline: ${safeTimeline || "Not provided"}`,
           `Business: ${safeBusinessName || "Not provided"}`,
-          safePhone ? `Phone: ${safePhone}` : "",
           `Website: ${safeWebsite || "Not provided"}`,
           `Service: ${leadData.service}`,
           safeLandingSlug ? `Landing page: /lp/${safeLandingSlug}` : "",
+          `Role: ${safeRole || "Not provided"}`,
+          `Type of work: ${safeIndustry || "Not provided"}`,
+          `Current website: ${safeWebsiteStatus || "Not provided"}`,
           `Revenue: ${leadData.revenue}`,
-          `Budget: ${leadData.budget}`,
-          safeRole ? `Role: ${safeRole}` : "",
-          safeIndustry ? `Type of work: ${safeIndustry}` : "",
-          safeWebsiteStatus ? `Current website: ${safeWebsiteStatus}` : "",
-          safeNeed ? `Need: ${safeNeed}` : "",
-          safeTimeline ? `Timeline: ${safeTimeline}` : "",
+          `Need: ${safeNeed || "Not provided"}`,
           `Goal: ${leadData.goal}`,
           `Score: ${leadData.score}`,
           `Source: ${leadData.source}`,

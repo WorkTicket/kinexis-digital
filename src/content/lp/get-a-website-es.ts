@@ -137,7 +137,7 @@ export function buildSpanishGetAWebsite(
     noWebsiteLabel: "Todavía no tengo un sitio web",
     noWebsiteStatus:
       "Sitio omitido. Indicaste que todavía no tienes un sitio web.",
-    investmentLabel: "Presupuesto",
+    investmentLabel: "¿Cuál es tu presupuesto?",
     timelineLabel: "¿Cuándo quieres empezar?",
     roleLabel: "Tu rol",
     industryLabel: "Tipo de trabajo",

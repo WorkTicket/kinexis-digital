@@ -125,6 +125,23 @@ describe("POST /api/lead", () => {
     expect(message).toContain("Not provided");
   });
 
+  it("accepts a get-a-website lead with every optional field empty and lists budget/timeline near the top", async () => {
+    sendMock.mockResolvedValue(undefined);
+    const res = await postLead({ name: "Alex", email: "alex@example.com", phone: "9195551234", role: "", industry: "", businessName: "", website: "", budget: "", timeline: "", websiteStatus: "None", landingSlug: "get-a-website", source: "landing-page", websiteRequired: false });
+    expect(res.status).toBe(200);
+    const message = sendMock.mock.calls[0][0] as { text: string; html: string };
+    expect(message.text).toContain("Budget: Not provided");
+    expect(message.text).toContain("Timeline: Not provided");
+    expect(message.text.indexOf("Budget:")).toBeLessThan(message.text.indexOf("Business:"));
+    expect(message.text.indexOf("Timeline:")).toBeLessThan(message.text.indexOf("Business:"));
+  });
+
+  it("still rejects a site-review caller without a website", async () => {
+    const res = await postLead({ name: "John", email: "john@example.com", websiteRequired: true, source: "landing-page" });
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({ field: "website" });
+  });
+
   it.each(["555-1234", "29195551234", "letters"])("returns a phone field error for %s", async phone => {
     const res = await postLead({ name: "Alex", email: "alex@example.com", phone });
     expect(res.status).toBe(400);
