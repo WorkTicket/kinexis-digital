@@ -41,10 +41,10 @@
       "slim": false
     },
     "get-a-website": {
-      "ctaLabel": "Book a 15-Minute Project Call",
-      "headerCtaLabel": "Book a 15-Min Call",
+      "ctaLabel": "Request My Free Project Call",
+      "headerCtaLabel": "Request My Free Project Call",
       "formHref": "#lp-form",
-      "closingTitle": "Book a 15-minute project call",
+      "closingTitle": "Request a free project call",
       "closingCopy": "If the current site is underselling the crew, send the details. We follow up the same day.",
       "slim": true
     }
@@ -91,10 +91,10 @@
       "slim": false
     },
     "get-a-website": {
-      "ctaLabel": "Reservar llamada de 15 min",
-      "headerCtaLabel": "Llamada de 15 min",
+      "ctaLabel": "Solicitar mi llamada gratis",
+      "headerCtaLabel": "Solicitar mi llamada gratis",
       "formHref": "#lp-form",
-      "closingTitle": "Reserva una llamada de proyecto de 15 minutos",
+      "closingTitle": "Solicita una llamada de proyecto de 15 minutos",
       "closingCopy": "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te respondemos el mismo día.",
       "slim": true
     }
@@ -141,10 +141,10 @@
       "slim": false
     },
     "get-a-website": {
-      "ctaLabel": "Reservar llamada de 15 min",
-      "headerCtaLabel": "Llamada de 15 min",
+      "ctaLabel": "Solicitar mi llamada gratis",
+      "headerCtaLabel": "Solicitar mi llamada gratis",
       "formHref": "#lp-form",
-      "closingTitle": "Reserva una llamada de proyecto de 15 minutos",
+      "closingTitle": "Solicita una llamada de proyecto de 15 minutos",
       "closingCopy": "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te respondemos el mismo día.",
       "slim": true
     }

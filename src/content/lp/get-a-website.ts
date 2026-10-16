@@ -1,6 +1,6 @@
 /**
  * Live production content for /lp/get-a-website.
- * Basic sites from $500. Custom multi-page sites from $2,000+.
+ * Basic sites from $500. Custom multi-page sites from $2,000.
  * No $200/$120 sticker addon board.
  */
 
@@ -16,11 +16,13 @@ const A1_DESKTOP = "/assets/images/lp/a1-desktop.webp?v=20261010ll";
 const A1_MOBILE = "/assets/images/lp/a1-mobile-3x.webp?v=20261010ll";
 const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=20261010ll";
 
-/** Sticky and header keep the call. The hero button names the free plan. */
-const CTA = "Book a 15-Minute Project Call";
+/** One request label for the hero, header, and sticky CTA. */
+// Enable only after the original result sources have been verified.
+export const showResultNumbers = false;
+const CTA = "Request My Free Project Call";
 const DELIVERY = "Most sites go live in 2 to 6 weeks.";
 const PRICE_LINE =
-  "Basic websites from $500. Custom websites from $2,000+.";
+  "Basic websites from $500. Custom websites from $2,000.";
 const LOW_ES = formatEsInteger(500);
 const HIGH_ES = formatEsInteger(2000);
 
@@ -38,8 +40,8 @@ const softPricing = localeContent({
       "Choose Basic if you need a short site people can call. Choose Custom for written pages, a contact form, and a fuller search setup. The proposal sets the page count.",
     pricingCompareTitle: "Side by side",
     pricingCompare: [
-      { label: "Price", basic: "From $500", custom: "From $2,000+" },
-      { label: "Pages", basic: "Up to 4", custom: "Set in the proposal" },
+      { label: "Price", basic: "From $500", custom: "From $2,000" },
+      { label: "Pages", basic: "Up to 4", custom: "5 pages or more" },
       { label: "Build", basic: "Proven layout", custom: "Designed and coded" },
       { label: "Page copy", basic: "From your notes", custom: "Written per page" },
       { label: "Design", basic: "Logo and colors", custom: "Custom design" },
@@ -50,11 +52,11 @@ const softPricing = localeContent({
       { label: "After launch", basic: "Optional care", custom: "Optional care" },
     ],
     pricingNote:
-      "Domains, stock photos, and paid tools at cost. Monthly care is optional.",
+      "Hosting is typically $0/month on Cloudflare's free plan; you only pay for your domain (about $10–20/year). Domains, stock photos, and paid tools at cost. Monthly care is optional.",
     pricingDetailsLabel: "Pricing details",
     pricingDetails: [
       "Basic: up to 4 pages (Home, About, Services, Contact), from $500.",
-      "Custom: from $2,000; six pages or more, with writing per page and a contact form. More pages and writing cost more.",
+      "Custom: from $2,000; 5 pages or more, with writing per page and a contact form. More pages and writing cost more.",
       "Booking, payments, client logins, and photos are quoted only if needed.",
       "You approve pages and design before we build. Ownership transfers at final payment.",
       "Most sites launch in 2–6 weeks, depending on photos and feedback.",
@@ -69,7 +71,7 @@ const softPricing = localeContent({
     basicFit: "Best for getting online",
     basicItems: [] as string[],
     customName: "Custom",
-    customPrice: "From $2,000+",
+    customPrice: "From $2,000",
     customFit: "Best for bringing in work",
     customItems: [] as string[],
     monthlyTitle: "Keep us on after launch if you want to",
@@ -78,9 +80,9 @@ const softPricing = localeContent({
     heroPrice: PRICE_LINE,
     proofSupportLabel: "ongoing support",
     costFaqAnswer:
-      "Basic websites start at $500 and stop at four pages: Home, About, Services, and Contact. Custom websites start at $2,000. The page count is set on the call. A six-page site can start at that price. A 15-page site with writing on each page costs more. Booking, payments, and client portals are quoted only if the project needs them.",
+      "Basic websites start at $500 and stop at four pages: Home, About, Services, and Contact. Custom websites start at $2,000. The page count is set on the call. Custom covers 5 pages or more. A 15-page site with writing on each page costs more. Booking, payments, and client portals are quoted only if the project needs them.",
     hostingFaqAnswer:
-      "The site runs on Cloudflare Pages. Managed care is optional, and the monthly rate is in the proposal. It covers monitoring and fixes. The domain stays in your name. If you want to run it yourself, we'll move the site to your own Cloudflare account.",
+      "Hosting is typically $0/month on Cloudflare's free plan; you only pay for your domain (about $10–20/year). The site runs on Cloudflare Pages. Managed care is optional, and the monthly rate is in the proposal. It covers monitoring and fixes. The domain stays in your name. If you want to run it yourself, we'll move the site to your own Cloudflare account.",
     maintenanceFaqAnswer:
       "A monthly plan is optional. It can cover monitoring, fixes, and help with changes after launch. You still own the site without it. The proposal spells out the fee if you want that help.",
   },
@@ -88,7 +90,7 @@ const softPricing = localeContent({
     pricingTitle: "Elige la opción que encaja",
     pricingAnchor: `Desde ${LOW_ES}`,
     pricingQualify:
-      `El básico se queda en cuatro páginas, desde ${LOW_ES}: Inicio, Nosotros, Servicios y Contacto. Usa tu logo, tus colores y el texto que envías, con un botón de llamada, títulos, descripciones e indexación.\n\nEl a medida empieza en ${HIGH_ES}. El número de páginas va en la propuesta. Un sitio de seis páginas puede ser a medida. Uno más grande también. Un sitio de 15 páginas, con texto en cada una, cuesta más. El precio exacto sale después de la llamada, según las páginas, el texto y lo que el sitio tiene que hacer.\n\nEl a medida suma un formulario y el texto escrito para cada página. La base de SEO puede incluir una página por servicio, títulos y descripciones, estructura local, un sitemap e indexación. Reservas, pagos, un acceso para tus clientes y fotos se cotizan solo si los necesitas. Apruebas las páginas y el aspecto antes de que construyamos. El sitio, el contenido y el código son tuyos cuando se liquida el último pago. La mayoría sale en vivo en 2 a 6 semanas, cuando vuelven las fotos y los comentarios.`,
+      `El básico se queda en cuatro páginas, desde ${LOW_ES}: Inicio, Nosotros, Servicios y Contacto. Usa tu logo, tus colores y el texto que envías, con un botón de llamada, títulos, descripciones e indexación.\n\nEl a medida empieza en ${HIGH_ES}. El número de páginas va en la propuesta. El sitio a medida cubre 5 páginas o más. Uno más grande también. Un sitio de 15 páginas, con texto en cada una, cuesta más. El precio exacto sale después de la llamada, según las páginas, el texto y lo que el sitio tiene que hacer.\n\nEl a medida suma un formulario y el texto escrito para cada página. La base de SEO puede incluir una página por servicio, títulos y descripciones, estructura local, un sitemap e indexación. Reservas, pagos, un acceso para tus clientes y fotos se cotizan solo si los necesitas. Apruebas las páginas y el aspecto antes de que construyamos. El sitio, el contenido y el código son tuyos cuando se liquida el último pago. La mayoría sale en vivo en 2 a 6 semanas, cuando vuelven las fotos y los comentarios.`,
     pricingDelivery: "La mayoría de los sitios sale en vivo en 2 a 6 semanas.",
     pricingIntro:
       "El básico parte de un diseño ya probado, con tu logo, tus colores y tus servicios. El a medida se diseña y se codifica alrededor de tu negocio. La propuesta fija cuántas páginas hacen falta.",
@@ -96,8 +98,8 @@ const softPricing = localeContent({
       "Elige el básico si necesitas un sitio corto al que se pueda llamar. Elige el a medida para páginas escritas, un formulario y una base de SEO más completa. La propuesta fija las páginas.",
     pricingCompareTitle: "Lado a lado",
     pricingCompare: [
-      { label: "Precio", basic: `Desde ${LOW_ES}`, custom: `Desde ${HIGH_ES}+` },
-      { label: "Páginas", basic: "Hasta 4", custom: "En la propuesta" },
+      { label: "Precio", basic: `Desde ${LOW_ES}`, custom: `Desde ${HIGH_ES}` },
+      { label: "Páginas", basic: "Hasta 4", custom: "5 páginas o más" },
       { label: "Base", basic: "Diseño probado", custom: "Diseño y código" },
       { label: "Texto", basic: "Desde tus notas", custom: "Cada página" },
       { label: "Diseño", basic: "Logo y colores", custom: "Diseño a medida" },
@@ -117,17 +119,17 @@ const softPricing = localeContent({
     basicFit: "Para salir en línea",
     basicItems: [],
     customName: "A medida",
-    customPrice: `Desde ${HIGH_ES}+`,
+    customPrice: `Desde ${HIGH_ES}`,
     customFit: "Para traer trabajo",
     customItems: [],
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, el sitio se queda en Cloudflare Pages. El cuidado mensual es opcional. La propuesta cotiza una tarifa por monitoreo, correcciones y ayuda con cambios.",
-    heroPrice: `Sitios básicos desde ${LOW_ES}. Sitios a medida desde ${HIGH_ES}+.`,
+    heroPrice: `Sitios básicos desde ${LOW_ES}. Sitios a medida desde ${HIGH_ES}.`,
     proofSupportLabel: "soporte continuo",
-    costFaqAnswer: `Sitios básicos desde ${LOW_ES}. Se quedan en cuatro páginas: Inicio, Nosotros, Servicios y Contacto. Los sitios a medida empiezan en ${HIGH_ES}. Las páginas se fijan en la llamada. Un sitio de seis páginas puede empezar en ese precio. Un sitio de 15 páginas, con texto en cada una, cuesta más. Reservas, pagos y portales se cotizan solo si el proyecto los necesita.`,
+    costFaqAnswer: `Sitios básicos desde ${LOW_ES}. Se quedan en cuatro páginas: Inicio, Nosotros, Servicios y Contacto. Los sitios a medida empiezan en ${HIGH_ES}. Las páginas se fijan en la llamada. El sitio a medida cubre 5 páginas o más. Un sitio de 15 páginas, con texto en cada una, cuesta más. Reservas, pagos y portales se cotizan solo si el proyecto los necesita.`,
     hostingFaqAnswer:
-      "El sitio corre en Cloudflare Pages. El cuidado mensual es opcional, y la tarifa va en la propuesta. Cubre monitoreo y correcciones. El dominio queda a tu nombre. Si quieres operarlo tú, lo movemos a tu propia cuenta de Cloudflare.",
+      "El hosting normalmente cuesta $0/mes en el plan gratuito de Cloudflare; solo pagas tu dominio (unos $10–20/año). El sitio corre en Cloudflare Pages. El cuidado mensual es opcional, y la tarifa va en la propuesta. Cubre monitoreo y correcciones. El dominio queda a tu nombre. Si quieres operarlo tú, lo movemos a tu propia cuenta de Cloudflare.",
     maintenanceFaqAnswer:
       "Un plan mensual es opcional. Puede cubrir monitoreo, correcciones y ayuda con cambios después del lanzamiento. El sitio sigue siendo tuyo sin ese plan. Si quieres esa ayuda, el costo va en la propuesta.",
   },
@@ -135,7 +137,7 @@ const softPricing = localeContent({
     pricingTitle: "Elige la opción que encaja",
     pricingAnchor: `Desde ${LOW_ES} €`,
     pricingQualify:
-      `El básico se queda en cuatro páginas, desde ${LOW_ES} €: Inicio, Nosotros, Servicios y Contacto. Usa tu logo, tus colores y el texto que envías, con un botón de llamada, títulos, descripciones e indexación.\n\nEl a medida empieza en ${HIGH_ES} €. El número de páginas va en la propuesta. Un sitio de seis páginas puede ser a medida. Uno más grande también. Un sitio de 15 páginas, con texto en cada una, cuesta más. El precio exacto sale después de la llamada, según las páginas, el texto y lo que el sitio tiene que hacer.\n\nEl a medida suma un formulario y el texto escrito para cada página. La base de SEO puede incluir una página por servicio, títulos y descripciones, estructura local, un sitemap e indexación. Reservas, pagos, un acceso para tus clientes y fotos se presupuestan solo si los necesitas. Apruebas las páginas y el aspecto antes de que construyamos. El sitio, el contenido y el código son tuyos cuando se liquida el último pago. La mayoría sale en vivo en 2 a 6 semanas, cuando vuelven las fotos y los comentarios.`,
+      `El básico se queda en cuatro páginas, desde ${LOW_ES} €: Inicio, Nosotros, Servicios y Contacto. Usa tu logo, tus colores y el texto que envías, con un botón de llamada, títulos, descripciones e indexación.\n\nEl a medida empieza en ${HIGH_ES} €. El número de páginas va en la propuesta. El sitio a medida cubre 5 páginas o más. Uno más grande también. Un sitio de 15 páginas, con texto en cada una, cuesta más. El precio exacto sale después de la llamada, según las páginas, el texto y lo que el sitio tiene que hacer.\n\nEl a medida suma un formulario y el texto escrito para cada página. La base de SEO puede incluir una página por servicio, títulos y descripciones, estructura local, un sitemap e indexación. Reservas, pagos, un acceso para tus clientes y fotos se presupuestan solo si los necesitas. Apruebas las páginas y el aspecto antes de que construyamos. El sitio, el contenido y el código son tuyos cuando se liquida el último pago. La mayoría sale en vivo en 2 a 6 semanas, cuando vuelven las fotos y los comentarios.`,
     pricingDelivery: "La mayoría de los sitios sale en vivo en 2 a 6 semanas.",
     pricingIntro:
       "El básico parte de un diseño ya probado, con tu logo, tus colores y tus servicios. El a medida se diseña y se codifica alrededor de tu negocio. La propuesta fija cuántas páginas hacen falta.",
@@ -143,8 +145,8 @@ const softPricing = localeContent({
       "Elige el básico si necesitas un sitio corto al que se pueda llamar. Elige el a medida para páginas escritas, un formulario y una base de SEO más completa. La propuesta fija las páginas.",
     pricingCompareTitle: "Lado a lado",
     pricingCompare: [
-      { label: "Precio", basic: `Desde ${LOW_ES} €`, custom: `Desde ${HIGH_ES} €+` },
-      { label: "Páginas", basic: "Hasta 4", custom: "En la propuesta" },
+      { label: "Precio", basic: `Desde ${LOW_ES} €`, custom: `Desde ${HIGH_ES} €` },
+      { label: "Páginas", basic: "Hasta 4", custom: "5 páginas o más" },
       { label: "Base", basic: "Diseño probado", custom: "Diseño y código" },
       { label: "Texto", basic: "Desde tus notas", custom: "Cada página" },
       { label: "Diseño", basic: "Logo y colores", custom: "Diseño a medida" },
@@ -164,17 +166,17 @@ const softPricing = localeContent({
     basicFit: "Para salir en línea",
     basicItems: [],
     customName: "A medida",
-    customPrice: `Desde ${HIGH_ES} €+`,
+    customPrice: `Desde ${HIGH_ES} €`,
     customFit: "Para traer trabajo",
     customItems: [],
     monthlyTitle: "Puedes seguir con nosotros después del lanzamiento",
     monthlyCopy:
       "Después del lanzamiento, el sitio se queda en Cloudflare Pages. El cuidado mensual es opcional. La propuesta presupuesta una tarifa por monitorización, correcciones y ayuda con cambios.",
-    heroPrice: `Sitios básicos desde ${LOW_ES} €. Sitios a medida desde ${HIGH_ES} €+.`,
+    heroPrice: `Sitios básicos desde ${LOW_ES} €. Sitios a medida desde ${HIGH_ES} €.`,
     proofSupportLabel: "soporte continuo",
-    costFaqAnswer: `Sitios básicos desde ${LOW_ES} €. Se quedan en cuatro páginas: Inicio, Nosotros, Servicios y Contacto. Los sitios a medida empiezan en ${HIGH_ES} €. Las páginas se fijan en la llamada. Un sitio de seis páginas puede empezar en ese precio. Un sitio de 15 páginas, con texto en cada una, cuesta más. Reservas, pagos y portales se presupuestan solo si el proyecto los necesita.`,
+    costFaqAnswer: `Sitios básicos desde ${LOW_ES} €. Se quedan en cuatro páginas: Inicio, Nosotros, Servicios y Contacto. Los sitios a medida empiezan en ${HIGH_ES} €. Las páginas se fijan en la llamada. El sitio a medida cubre 5 páginas o más. Un sitio de 15 páginas, con texto en cada una, cuesta más. Reservas, pagos y portales se presupuestan solo si el proyecto los necesita.`,
     hostingFaqAnswer:
-      "El sitio corre en Cloudflare Pages. El cuidado mensual es opcional, y la tarifa va en la propuesta. Cubre la monitorización y las correcciones. El dominio queda a tu nombre. Si quieres gestionarlo tú, lo movemos a tu propia cuenta de Cloudflare.",
+      "El hosting normalmente cuesta $0/mes en el plan gratuito de Cloudflare; solo pagas tu dominio (unos $10–20/año). El sitio corre en Cloudflare Pages. El cuidado mensual es opcional, y la tarifa va en la propuesta. Cubre la monitorización y las correcciones. El dominio queda a tu nombre. Si quieres gestionarlo tú, lo movemos a tu propia cuenta de Cloudflare.",
     maintenanceFaqAnswer:
       "Un plan mensual es opcional. Puede cubrir la monitorización, las correcciones y la ayuda con cambios después del lanzamiento. El sitio sigue siendo tuyo sin ese plan. Si quieres esa ayuda, el coste va en la propuesta.",
   },
@@ -186,7 +188,7 @@ const baseGetAWebsite: LandingPageEntry = {
   serviceLabel: "Web design & development",
   metaTitle: "Contractor Websites",
   metaDescription:
-    "Contractor websites from $500. Basic starts from a proven layout. Custom is designed and coded around the business, from $2,000+.",
+    "Contractor websites from $500. Basic starts from a proven layout. Custom is designed and coded around the business, from $2,000.",
   badge: "Websites for contractors",
   headline: "Get a Website Built to Bring You More Business",
   headlineAccent: "",
@@ -198,7 +200,7 @@ const baseGetAWebsite: LandingPageEntry = {
   subheadline:
     "Websites for contractors and home-service businesses. Fast, mobile-first, SEO-ready, and built to turn visitors into calls. Quote requests are part of a Custom site.",
   heroCtaLabel: CTA,
-  headerCtaLabel: "Book a 15-Min Call",
+  headerCtaLabel: CTA,
   heroPrice: softPricing.en.heroPrice,
   heroPortrait: {
     src: "/assets/images/lp/optimized/colton-wehr-819.webp?v=20261010perf2",
@@ -211,7 +213,7 @@ const baseGetAWebsite: LandingPageEntry = {
     name: "Colton Wehr",
     role: "Lead Web Designer & Developer",
   },
-  heroCredit: "Talk to Colton.",
+  heroCredit: "Talk directly with Colton about your site, pages and price. No obligation.",
   heroDevices: {
     src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
     srcSet:
@@ -237,10 +239,10 @@ const baseGetAWebsite: LandingPageEntry = {
     alt: "A1 Property Services website on a laptop, built by KINEXIS",
   },
 
-  formTitle: "Book a 15-minute project call",
+  formTitle: "Request a free project call",
   formSubtitle:
     "Tell us about the business and the site you have now. Owners starting within 3 months get a same-day call. Otherwise we send a note.",
-  submitLabel: "Book my call",
+  submitLabel: "Request my call",
   continueLabel: "Continue",
   formCtaHint: `No obligation. ${PRICE_LINE}`,
   formFootnote:
@@ -418,9 +420,11 @@ const baseGetAWebsite: LandingPageEntry = {
   samplesTitle: "Sites already working for home-service companies",
   samplesIntro:
     "These are live websites, not mockups. Open them. Both companies needed the site to look as solid as the crews already were.",
+  // TODO: Link the original source for this existing testimonial before enabling result numbers.
   testimonial: {
-    quote:
-      "The quote button used to disappear on a phone. After the rebuild, conversion went from 1.8% to 3.9%.",
+    quote: showResultNumbers
+      ? "The quote button used to disappear on a phone. After the rebuild, conversion went from 1.8% to 3.9%."
+      : "The quote button used to disappear on a phone.",
     name: "Mac Christensen",
     role: "Owner, A1 Property Services",
   },
@@ -441,11 +445,11 @@ const baseGetAWebsite: LandingPageEntry = {
       challenge:
         "A Cedar Falls landscaping company had outgrown a brochure site. Services were buried, and requesting a quote on a phone took too much work.",
       work: "We rebuilt it around clear service pages, local search structure, and a quote path that stays usable with one thumb.",
-      result: "Qualified leads went from 10 a month to 28.",
+      result: showResultNumbers ? "Qualified leads went from 10 a month to 28." : "Rebuilt around clear service pages, local search structure, and a mobile quote path.",
       summary:
         "A Cedar Falls landscaping company had outgrown a brochure site. We rebuilt it around service pages, local structure, and a quote path that works on a phone.",
-      metric: "10 → 28",
-      label: "leads/mo",
+      metric: showResultNumbers ? "10 → 28" : "Rebuilt",
+      label: showResultNumbers ? "leads/mo" : "Service pages and mobile quote path",
     },
     {
       image: PLUMBING_DESKTOP,
@@ -462,11 +466,11 @@ const baseGetAWebsite: LandingPageEntry = {
       challenge:
         "A plumbing company needed a site that made the work obvious and made calling from a phone feel like the natural next step.",
       work: "The rebuild put service clarity and trust first, then kept the call button in reach on mobile.",
-      result: "Emergency calls went from 22 a month to 52.",
+      result: showResultNumbers ? "Emergency calls went from 22 a month to 52." : "Rebuilt around clear services and a call button within reach on mobile.",
       summary:
         "A plumbing company needed a site that made services obvious and made calling from a phone the natural next step.",
-      metric: "22 → 52",
-      label: "emergency calls/mo",
+      metric: showResultNumbers ? "22 → 52" : "Rebuilt",
+      label: showResultNumbers ? "emergency calls/mo" : "Clear services and mobile call button",
     },
   ],
 
@@ -535,14 +539,11 @@ const baseGetAWebsite: LandingPageEntry = {
     "You're ready to invest, starting at $500",
     "You can send photos and review the drafts",
   ],
-  fitNotTitle: "Probably not a fit if",
+  fitNotTitle: "What to expect",
   fitNotItems: [
-    "You want a website for free",
-    "You need it live this weekend",
-    "You're shopping for the cheapest price",
-    "You can't make time to review drafts",
-    "You won't send photos or notes",
-    "You want to stay in a page builder",
+    "Projects start at $500.",
+    "Most sites launch in 2–6 weeks.",
+    "You send photos and notes about your services; we handle the writing and design, and you review drafts.",
   ],
 
   pricingTitle: softPricing.en.pricingTitle,
@@ -569,7 +570,7 @@ const baseGetAWebsite: LandingPageEntry = {
       name: softPricing.en.customName,
       price: softPricing.en.customPrice,
       tag: softPricing.en.customFit,
-      body: "Written pages, a form, and a stronger search setup.",
+      body: "5 pages or more, written copy, a form, and a stronger search setup.",
       items: softPricing.en.customItems,
       featured: true,
     },
@@ -583,7 +584,7 @@ const baseGetAWebsite: LandingPageEntry = {
     "Reasonable content updates",
   ],
 
-  proofIntro: "Published KINEXIS client work. Individual results vary.",
+  proofIntro: showResultNumbers ? "Published KINEXIS client work. Individual results vary." : "Published KINEXIS client work.",
   proofTitle: "",
   proof: [
     { metric: "Our code", label: "Not a bought theme" },
@@ -594,7 +595,7 @@ const baseGetAWebsite: LandingPageEntry = {
   bulletsTitle: "What you actually get",
   bullets: [],
 
-  closingTitle: "Book a 15-minute project call",
+  closingTitle: "Request a free project call",
   closingCopy:
     "If the current site is underselling the crew, send the details. We follow up the same day.",
   closingFinePrint: `No obligation. ${PRICE_LINE}`,
@@ -650,8 +651,8 @@ export const getAWebsite: LandingPageEntry = baseGetAWebsite;
 
 /** Full Spanish bodies — LatAm soft numbers; Spain euros via softPricing.es-ES. */
 const spanishByLocale = {
-  "es-419": buildSpanishGetAWebsite(softPricing["es-419"]),
-  "es-ES": buildSpanishGetAWebsite(softPricing["es-ES"]),
+  "es-419": buildSpanishGetAWebsite(softPricing["es-419"], showResultNumbers),
+  "es-ES": buildSpanishGetAWebsite(softPricing["es-ES"], showResultNumbers),
 } as const;
 
 /** English gets the corner call button. Spanish gets WhatsApp only. */

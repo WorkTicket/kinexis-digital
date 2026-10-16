@@ -121,7 +121,7 @@ export function WebsiteHero({
                       decoding="async"
                     />
                   )}
-                  <span>{credit}</span>
+                  <span className="min-w-0 whitespace-normal">{credit}</span>
                 </p>
               ) : null}
             </div>

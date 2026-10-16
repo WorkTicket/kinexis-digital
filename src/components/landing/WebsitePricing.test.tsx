@@ -16,7 +16,7 @@ describe("website pricing fine print", () => {
     expect(html).toContain(`<summary>${page.pricingDetailsLabel}<svg`);
     expect(html).toContain('aria-hidden="true"');
     expect(html).toContain(page.pricingQualify!);
-    expect(html).toContain(page.pricingNote!);
+    expect(html).toContain(renderToStaticMarkup(<p>{page.pricingNote}</p>));
     expect(html).toContain(page.pricingHighlights![0]);
     expect(html).not.toContain(page.pricingCloser!);
     expect(page.pricingDetails).toHaveLength(7);

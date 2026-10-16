@@ -11,15 +11,15 @@ const PLUMBING_DESKTOP = "/assets/images/lp/plumbing-desktop-still.webp?v=202610
 const MANOS_DESKTOP = "/assets/images/lp/manos-desktop.webp?v=20261010ll";
 
 /** Short hero/sticky label. Header uses a shorter label. */
-const CTA = "Reservar llamada de 15 min";
+const CTA = "Solicitar mi llamada gratis";
 
 export const spanishPricingFinePrint = {
   "pricingQualify": "Llamada gratis, sin compromiso. El precio final se fija en tu propuesta. El sitio, el código y el dominio son tuyos.",
-  "pricingNote": "Dominios, fotos de stock y herramientas de pago al costo. El mantenimiento mensual es opcional.",
+  "pricingNote": "El hosting normalmente cuesta $0/mes en el plan gratuito de Cloudflare; solo pagas tu dominio (unos $10–20/año). Dominios, fotos de stock y herramientas de pago al costo. El mantenimiento mensual es opcional.",
   "pricingDetailsLabel": "Detalles de precios",
   "pricingDetails": [
     "Básico: hasta 4 páginas (Inicio, Nosotros, Servicios y Contacto), desde $500.",
-    "A medida: desde $2,000; seis páginas o más, con redacción por página y un formulario de contacto. Más páginas y redacción tienen un costo adicional.",
+    "A medida: desde $2,000; 5 páginas o más, con redacción por página y un formulario de contacto. Más páginas y redacción tienen un costo adicional.",
     "Reservas, pagos, acceso para clientes y fotos se cotizan solo si los necesitas.",
     "Apruebas las páginas y el diseño antes de que construyamos el sitio. La propiedad se transfiere con el pago final.",
     "La mayoría de los sitios se lanzan en 2–6 semanas, según las fotos y tus comentarios.",
@@ -58,6 +58,7 @@ export type SoftPricingCopy = {
 
 export function buildSpanishGetAWebsite(
   pricing: SoftPricingCopy,
+  showResultNumbers: boolean,
 ): LandingPageEntry {
   const euros = pricing.customPrice.includes("€");
   const money = (amount: string, plus = false) =>
@@ -80,7 +81,7 @@ export function buildSpanishGetAWebsite(
     subheadline:
       "Sitios para contratistas y negocios de servicios del hogar. Rápidos, pensados para el teléfono, listos para búsqueda, y hechos para convertir visitas en llamadas. Las solicitudes van en un sitio a medida.",
     heroCtaLabel: CTA,
-    headerCtaLabel: "Llamada de 15 min",
+    headerCtaLabel: CTA,
     heroPrice: pricing.heroPrice,
     heroPortrait: {
       src: "/assets/images/lp/optimized/colton-wehr-819.webp?v=20261010perf2",
@@ -93,7 +94,7 @@ export function buildSpanishGetAWebsite(
       name: "Colton Wehr",
       role: "Diseñador y desarrollador web principal",
     },
-    heroCredit: "Habla con Colton.",
+    heroCredit: "Habla directamente con Colton sobre tu sitio, las páginas y el precio. Sin compromiso.",
     heroDevices: {
       src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
       srcSet:
@@ -119,10 +120,10 @@ export function buildSpanishGetAWebsite(
       alt: "Sitio de A1 Property Services en una laptop, construido por KINEXIS",
     },
 
-    formTitle: "Reserva una llamada de proyecto de 15 minutos",
+    formTitle: "Solicita una llamada de proyecto de 15 minutos",
     formSubtitle:
       "Cuéntanos del negocio y del sitio que tienes ahora. Si eres el dueño y empiezas en 3 meses, te llamamos el mismo día. Si no, te escribimos.",
-    submitLabel: "Reservar mi llamada",
+    submitLabel: "Solicitar mi llamada",
     continueLabel: "Continuar",
     formCtaHint: `Sin compromiso. ${pricing.heroPrice}`,
     formFootnote:
@@ -301,9 +302,11 @@ export function buildSpanishGetAWebsite(
     samplesTitle: "Sitios que ya funcionan para negocios reales",
     samplesIntro:
       "Estos son sitios en vivo, no maquetas. Ábrelos. Cada negocio necesitaba que el sitio se viera tan sólido como el trabajo que ya hacía.",
+    // TODO: Vincular la fuente original de este testimonio antes de activar las cifras.
     testimonial: {
-      quote:
-        "El botón de cotización desaparecía en el teléfono. Después de la reconstrucción, la conversión pasó de 1,8% a 3,9%.",
+      quote: showResultNumbers
+        ? "El botón de cotización desaparecía en el teléfono. Después de la reconstrucción, la conversión pasó de 1,8% a 3,9%."
+        : "El botón de cotización desaparecía en el teléfono.",
       name: "Mac Christensen",
       role: "Dueño, A1 Property Services",
     },
@@ -324,11 +327,11 @@ export function buildSpanishGetAWebsite(
         challenge:
           "Una empresa de paisajismo en Cedar Falls había superado un sitio de folleto. Los servicios estaban enterrados, y pedir una cotización en el teléfono costaba demasiado.",
         work: "Lo reconstruimos alrededor de páginas de servicio claras, estructura de búsqueda local, y un camino de cotización usable con un solo pulgar.",
-        result: "Los leads calificados pasaron de 10 al mes a 28.",
+        result: showResultNumbers ? "Los leads calificados pasaron de 10 al mes a 28." : "Sitio reconstruido con páginas de servicio, estructura local y un camino de cotización para móvil.",
         summary:
           "Una empresa de paisajismo en Cedar Falls había superado un sitio de folleto. Lo reconstruimos alrededor de páginas de servicio, estructura local, y un camino de cotización que funciona en el teléfono.",
-        metric: "10 → 28",
-        label: "leads/mes",
+        metric: showResultNumbers ? "10 → 28" : "Rediseño",
+        label: showResultNumbers ? "leads/mes" : "Servicios y cotización móvil",
       },
       {
         image: PLUMBING_DESKTOP,
@@ -345,11 +348,11 @@ export function buildSpanishGetAWebsite(
         challenge:
           "Una empresa de plomería necesitaba un sitio que dejara el trabajo claro y hiciera que llamar desde el teléfono se sintiera como el siguiente paso natural.",
         work: "La reconstrucción priorizó claridad de servicios y confianza, y mantuvo el botón de llamada a mano en móvil.",
-        result: "Las llamadas de emergencia pasaron de 22 al mes a 52.",
+        result: showResultNumbers ? "Las llamadas de emergencia pasaron de 22 al mes a 52." : "Sitio reconstruido con servicios claros y un botón de llamada a mano en móvil.",
         summary:
           "Una empresa de plomería necesitaba un sitio que dejara los servicios claros y hiciera de llamar desde el teléfono el siguiente paso natural.",
-        metric: "22 → 52",
-        label: "llamadas de emergencia/mes",
+        metric: showResultNumbers ? "22 → 52" : "Rediseño",
+        label: showResultNumbers ? "llamadas de emergencia/mes" : "Servicios y llamada móvil",
       },
       {
         image: MANOS_DESKTOP,
@@ -365,11 +368,11 @@ export function buildSpanishGetAWebsite(
         challenge:
           "Una marca de patrones de crochet digitales vendía entre marketplaces y un sitio flojo. Las fichas hablaban del archivo, no del resultado, y el checkout vivía fuera del sitio.",
         work: "Reconstruimos la tienda alrededor de colecciones claras, fichas orientadas a conversión y un camino de compra usable en el teléfono.",
-        result: "Los pedidos mensuales pasaron de 32 a 78.",
+        result: showResultNumbers ? "Los pedidos mensuales pasaron de 32 a 78." : "Tienda reconstruida con colecciones, fichas de producto y un camino de compra para móvil.",
         summary:
           "Una marca de patrones digitales necesitaba una tienda propia. La reconstruimos alrededor de colecciones, fichas de producto y un checkout que funciona en el teléfono.",
-        metric: "32 → 78",
-        label: "pedidos / mes",
+        metric: showResultNumbers ? "32 → 78" : "Rediseño",
+        label: showResultNumbers ? "pedidos / mes" : "Colecciones y compra móvil",
       },
     ],
 
@@ -438,14 +441,11 @@ export function buildSpanishGetAWebsite(
       `Estás listo para invertir, ${pricing.basicPrice.charAt(0).toLowerCase()}${pricing.basicPrice.slice(1)}`,
       "Puedes enviar fotos y revisar los borradores",
     ],
-    fitNotTitle: "Probablemente no es encaje si",
+    fitNotTitle: "Qué puedes esperar",
     fitNotItems: [
-      "Quieres un sitio web gratis",
-      "Lo necesitas en línea este fin de semana",
-      "Estás buscando el precio más bajo",
-      "No tienes tiempo para revisar borradores",
-      "No vas a enviar fotos ni notas",
-      "Quieres quedarte en un constructor",
+      `Los proyectos empiezan ${pricing.basicPrice.charAt(0).toLowerCase()}${pricing.basicPrice.slice(1)}.`,
+      "La mayoría de los sitios se lanzan en 2–6 semanas.",
+      "Nos envías fotos y notas sobre tus servicios; nos encargamos de los textos y el diseño, y tú revisas los borradores.",
     ],
 
     pricingTitle: pricing.pricingTitle,
@@ -469,7 +469,7 @@ export function buildSpanishGetAWebsite(
         name: pricing.customName,
         price: pricing.customPrice,
         tag: pricing.customFit,
-        body: "Páginas escritas, un formulario y mejor SEO.",
+        body: "5 páginas o más, textos, un formulario y mejor SEO.",
         items: pricing.customItems,
         featured: true,
       },
@@ -483,7 +483,7 @@ export function buildSpanishGetAWebsite(
       "Actualizaciones de contenido razonables",
     ],
 
-    proofIntro: "Trabajo publicado de clientes KINEXIS. Los resultados individuales varían.",
+    proofIntro: showResultNumbers ? "Trabajo publicado de clientes KINEXIS. Los resultados individuales varían." : "Trabajo publicado de clientes KINEXIS.",
     proofTitle: "",
     proof: [
       { metric: "Código nuestro", label: "No un tema comprado" },
@@ -494,7 +494,7 @@ export function buildSpanishGetAWebsite(
     bulletsTitle: "Lo que realmente obtienes",
     bullets: [],
 
-    closingTitle: "Reserva una llamada de proyecto de 15 minutos",
+    closingTitle: "Solicita una llamada de proyecto de 15 minutos",
     closingCopy:
       "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te respondemos el mismo día.",
     closingFinePrint: `Sin compromiso. ${pricing.heroPrice}`,
