@@ -443,7 +443,7 @@ const baseGetAWebsite: LandingPageEntry = {
       work: "We rebuilt it around clear service pages, local search structure, and a quote path that stays usable with one thumb.",
       result: showResultNumbers ? "Qualified leads went from 10 a month to 28." : "Rebuilt around clear service pages, local search structure, and a mobile quote path.",
       summary:
-        "A landscaping company had outgrown a brochure site. We rebuilt it around service pages, local structure, and a quote path that works on a phone.",
+        "A landscaping company needed more than a brochure site. We rebuilt it around service pages, local search, and a quote path that works on a phone.",
       metric: showResultNumbers ? "10 → 28" : "Rebuilt",
       label: showResultNumbers ? "leads/mo" : "Service pages and mobile quote path",
     },
@@ -464,7 +464,7 @@ const baseGetAWebsite: LandingPageEntry = {
       work: "The rebuild put service clarity and trust first, then kept the call button in reach on mobile.",
       result: showResultNumbers ? "Emergency calls went from 22 a month to 52." : "Rebuilt around clear services and a call button within reach on mobile.",
       summary:
-        "A plumbing company. Clear services, easy mobile calls.",
+        "A plumbing company needed a clearer path to calls. We rebuilt it around service pages, customer trust, and a call button that works on a phone.",
       metric: showResultNumbers ? "22 → 52" : "Rebuilt",
       label: showResultNumbers ? "emergency calls/mo" : "Clear services and mobile call button",
     },

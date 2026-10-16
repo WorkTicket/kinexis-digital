@@ -2095,13 +2095,15 @@ html[data-theme=dark] .lp-web {
 
 .lp-web-quote blockquote {
   margin:0;
-  padding:.85rem 1.15rem .7rem;
+  padding:1.25rem 1.5rem 1.15rem;
   background:
     radial-gradient(ellipse 80% 120% at 50% 0%, rgba(0,102,255,.2), transparent 68%);
 }
 
 .lp-web-quote blockquote p {
   margin:0;
+  margin-inline:auto;
+  max-inline-size:28ch;
   font-family:var(--font-display),system-ui,sans-serif;
   font-size:clamp(1.12rem,1.45vw,1.4rem);
   font-weight:650;
