@@ -153,9 +153,9 @@ export function buildSpanishGetAWebsite(
     successTitle: "Listo",
     successCopy:
       "Tus datos ya están. Si eres el dueño y quieres empezar en 3 meses, te llamamos el mismo día. Si no, te escribimos.",
-    calendarTitle: "Elige un horario de 15 minutos",
+    calendarTitle: "¿Prefieres elegir un horario?",
     calendarSubtitle:
-      "Hora del Centro, días de semana. Si ninguno te sirve, te llamamos el mismo día.",
+      "Elige un horario abajo. Si no, te llamaremos.",
     inlineThankYou: true,
     bookingHref: "/contact",
     bookingCtaLabel: CTA,
@@ -178,18 +178,18 @@ export function buildSpanishGetAWebsite(
     ],
     formSteps: [
       {
-        title: "Cuéntanos del negocio",
+        title: "Cuéntanos a qué te dedicas",
         detail:
-          "El trabajo que haces, quiénes son tus clientes y qué deben hacer en el sitio.",
+          "Comparte tus servicios, tus clientes y tus objetivos para el sitio.",
       },
       {
-        title: "Elige un horario si estás listo",
-        detail: "Toma un espacio del calendario si alguno te sirve.",
+        title: "Te llamamos",
+        detail: "Si eres dueño y quieres empezar en los próximos 3 meses, te llamamos el mismo día para hablar del sitio.",
       },
       {
         title: "Recibes el alcance y el precio",
         detail:
-          "Escribimos el alcance y el precio antes de empezar cualquier trabajo.",
+          "Revisa el alcance y el precio por escrito antes de que empiece cualquier trabajo.",
       },
     ],
     formTrust: [
@@ -325,11 +325,11 @@ export function buildSpanishGetAWebsite(
         industry: "Paisajismo",
         liveUrl: "https://a1pslandscape.com/",
         challenge:
-          "Una empresa de paisajismo en Cedar Falls había superado un sitio de folleto. Los servicios estaban enterrados, y pedir una cotización en el teléfono costaba demasiado.",
+          "Una empresa de paisajismo había superado un sitio de folleto. Los servicios estaban enterrados, y pedir una cotización en el teléfono costaba demasiado.",
         work: "Lo reconstruimos alrededor de páginas de servicio claras, estructura de búsqueda local, y un camino de cotización usable con un solo pulgar.",
         result: showResultNumbers ? "Los leads calificados pasaron de 10 al mes a 28." : "Sitio reconstruido con páginas de servicio, estructura local y un camino de cotización para móvil.",
         summary:
-          "Una empresa de paisajismo en Cedar Falls había superado un sitio de folleto. Lo reconstruimos alrededor de páginas de servicio, estructura local, y un camino de cotización que funciona en el teléfono.",
+          "Una empresa de paisajismo había superado un sitio de folleto. Lo reconstruimos alrededor de páginas de servicio, estructura local, y un camino de cotización que funciona en el teléfono.",
         metric: showResultNumbers ? "10 → 28" : "Rediseño",
         label: showResultNumbers ? "leads/mes" : "Servicios y cotización móvil",
       },

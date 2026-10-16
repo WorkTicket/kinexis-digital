@@ -52,7 +52,7 @@ const softPricing = localeContent({
       { label: "After launch", basic: "Optional care", custom: "Optional care" },
     ],
     pricingNote:
-      "Cloudflare hosting is typically $0/month. Domains cost about $10–20/year.\n\nDomains, stock photos, and paid tools at cost. Monthly care is optional.",
+      "Cloudflare hosting is typically $0/month. Domains cost about $10–20/year.\n\nDomains, stock photos, and paid tools at cost.",
     pricingDetailsLabel: "Pricing details",
     pricingDetails: [
       "From $500 for up to 4 pages: Home, About, Services, and Contact.",
@@ -272,8 +272,8 @@ const baseGetAWebsite: LandingPageEntry = {
   successTitle: "You're in",
   successCopy:
     "Your details are in. If you own the company and want to start within 3 months, we call the same day. Otherwise we send a note.",
-  calendarTitle: "Pick a 15-minute time",
-  calendarSubtitle: "Central Time, weekdays. If none of these work, we call the same day.",
+  calendarTitle: "Prefer to pick a time?",
+  calendarSubtitle: "Choose a slot below. Otherwise we'll call you.",
   inlineThankYou: true,
   bookingHref: "/contact",
   bookingCtaLabel: CTA,
@@ -301,13 +301,13 @@ const baseGetAWebsite: LandingPageEntry = {
         "Share your services, customers and goals for the site.",
     },
     {
-      title: "Pick a time to talk",
-      detail: "Choose a calendar slot that works for your schedule.",
+      title: "We call you",
+      detail: "Owners starting within 3 months get a same-day call to talk through the site.",
     },
     {
       title: "Get your scope and price",
       detail:
-        "Review the scope and price before work on your site.",
+        "Review the scope and price in writing before any work starts.",
     },
   ],
   formTrust: [
@@ -443,11 +443,11 @@ const baseGetAWebsite: LandingPageEntry = {
       industry: "Landscaping",
       liveUrl: "https://a1pslandscape.com/",
       challenge:
-        "A Cedar Falls landscaping company had outgrown a brochure site. Services were buried, and requesting a quote on a phone took too much work.",
+        "A landscaping company had outgrown a brochure site. Services were buried, and requesting a quote on a phone took too much work.",
       work: "We rebuilt it around clear service pages, local search structure, and a quote path that stays usable with one thumb.",
       result: showResultNumbers ? "Qualified leads went from 10 a month to 28." : "Rebuilt around clear service pages, local search structure, and a mobile quote path.",
       summary:
-        "A Cedar Falls landscaping company had outgrown a brochure site. We rebuilt it around service pages, local structure, and a quote path that works on a phone.",
+        "A landscaping company had outgrown a brochure site. We rebuilt it around service pages, local structure, and a quote path that works on a phone.",
       metric: showResultNumbers ? "10 → 28" : "Rebuilt",
       label: showResultNumbers ? "leads/mo" : "Service pages and mobile quote path",
     },
@@ -468,7 +468,7 @@ const baseGetAWebsite: LandingPageEntry = {
       work: "The rebuild put service clarity and trust first, then kept the call button in reach on mobile.",
       result: showResultNumbers ? "Emergency calls went from 22 a month to 52." : "Rebuilt around clear services and a call button within reach on mobile.",
       summary:
-        "A Spirit Lake plumbing company. Clear services, easy mobile calls.",
+        "A plumbing company. Clear services, easy mobile calls.",
       metric: showResultNumbers ? "22 → 52" : "Rebuilt",
       label: showResultNumbers ? "emergency calls/mo" : "Clear services and mobile call button",
     },

@@ -198,7 +198,7 @@ describe("get-a-website landing page", () => {
     expect(page?.pricing?.[0]?.items).toEqual([]);
     expect(page?.pricing?.[1]?.body).toMatch(/stronger search setup/i);
     expect(page?.pricing?.[1]?.body).not.toMatch(/15\+/);
-    expect(page?.pricingNote).toBe("Cloudflare hosting is typically $0/month. Domains cost about $10–20/year.\n\nDomains, stock photos, and paid tools at cost. Monthly care is optional.");
+    expect(page?.pricingNote).toBe("Cloudflare hosting is typically $0/month. Domains cost about $10–20/year.\n\nDomains, stock photos, and paid tools at cost.");
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
     expect(page?.pricingDelivery).toBeUndefined();
     expect(page?.processIntro).toMatch(/2 to 6 weeks/);

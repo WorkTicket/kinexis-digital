@@ -395,7 +395,7 @@ function Dated({ layout }: { layout: ShowcaseLayout }) {
           <p className="lp-site__dated-foot">
             {phone
               ? "Call for more information"
-              : "A1 Property Services · Cedar Falls, IA"}
+              : "A1 Property Services"}
           </p>
         </div>
       </div>
