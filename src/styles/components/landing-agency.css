@@ -5667,3 +5667,58 @@ html.lp-chrome .site-header .btn--header,
 .lp-web-pricing__details.lp-web-pricing__details--compact { grid-template-columns: 1fr; gap: 0.4rem; }
 .lp-web-pricing__details--compact .lp-web-pricing__qualify,
 .lp-web-pricing__details--compact .lp-web-pricing__note { margin: 0; padding: 0; border: 0; }
+
+/* Keep supporting copy compact, with evenly balanced lines at each width. */
+.lp-web .lp-web-hero__byline > span:last-child {
+  max-inline-size: 29ch;
+  text-wrap: balance;
+}
+
+.lp-web .lp-web-work__copy > p:not(.lp-web-kicker) {
+  max-inline-size: 44ch;
+  text-wrap: balance;
+}
+
+.lp-web .lp-web-pricing__details--compact {
+  font-size: .8125rem;
+  line-height: 1.5;
+  gap: .65rem;
+}
+
+.lp-web .lp-web-pricing__details--compact p {
+  max-inline-size: 50ch;
+  text-wrap: balance;
+}
+
+.lp-web .lp-web-pricing__disclosure li {
+  max-inline-size: 46ch;
+  text-wrap: balance;
+}
+
+.lp-web .lp-web-plan__next {
+  gap: .7rem;
+  margin-top: .85rem;
+}
+
+.lp-web .lp-web-plan__next li {
+  gap: .15rem;
+  padding-left: .7rem;
+}
+
+.lp-web .lp-web-plan__next strong {
+  font-size: .875rem;
+  line-height: 1.4;
+}
+
+.lp-web .lp-web-plan__next span {
+  max-inline-size: 32ch;
+  font-size: .8125rem;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+@media (max-width: 359px) {
+  .lp-web .lp-web-pricing__foot {
+    padding-inline: .25rem;
+  }
+}

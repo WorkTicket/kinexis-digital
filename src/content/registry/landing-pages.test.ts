@@ -163,7 +163,7 @@ describe("get-a-website landing page", () => {
     expect(page?.pricingTitle).toBe("Pick the option that fits");
     expect(page?.pricingIntro).toMatch(/proven layout/i);
     expect(page?.pricingIntro).toMatch(/designed and coded/i);
-    expect(page?.pricingQualify).toBe("Free call, no obligation. Final price is set in your proposal. You own the site, code, and domain.");
+    expect(page?.pricingQualify).toBe("Free call. No obligation. Price agreed up front. You own the site, code, and domain.");
     expect(page?.pricingDetailsLabel).toBe("Pricing details");
     expect(page?.pricingDetails).toHaveLength(7);
     expect(page?.pricingCloser).toMatch(/Choose Basic/);
@@ -198,7 +198,7 @@ describe("get-a-website landing page", () => {
     expect(page?.pricing?.[0]?.items).toEqual([]);
     expect(page?.pricing?.[1]?.body).toMatch(/stronger search setup/i);
     expect(page?.pricing?.[1]?.body).not.toMatch(/15\+/);
-    expect(page?.pricingNote).toBe("Hosting is typically $0/month on Cloudflare's free plan; you only pay for your domain (about $10–20/year). Domains, stock photos, and paid tools at cost. Monthly care is optional.");
+    expect(page?.pricingNote).toBe("Cloudflare hosting is typically $0/month. Domains cost about $10–20/year.\n\nDomains, stock photos, and paid tools at cost. Monthly care is optional.");
     expect(page?.pricingQualify?.toLowerCase()).not.toMatch(/\$200/);
     expect(page?.pricingDelivery).toBeUndefined();
     expect(page?.processIntro).toMatch(/2 to 6 weeks/);
@@ -240,7 +240,7 @@ describe("get-a-website landing page", () => {
     expect(page?.heroPortrait?.name).toBe("Colton Wehr");
     expect(page?.heroPortrait?.role).toBe("Lead Web Designer & Developer");
     expect(page?.heroPortrait?.src).toMatch(/colton-wehr-819\.webp/);
-    expect(page?.heroCredit).toBe("Talk directly with Colton about your site, pages and price. No obligation.");
+    expect(page?.heroCredit).toBe("Talk sites and pricing with Colton. No obligation.");
     expect(page?.heroDevices?.src).toMatch(/hero-devices\.webp/);
     expect(page?.directIntro?.title).toBe(
       "You'll work with me, not a call center.",

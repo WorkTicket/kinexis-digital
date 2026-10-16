@@ -32,7 +32,7 @@ const softPricing = localeContent({
     pricingTitle: "Pick the option that fits",
     pricingAnchor: "From $500",
     pricingQualify:
-      "Free call, no obligation. Final price is set in your proposal. You own the site, code, and domain.",
+      "Free call. No obligation. Price agreed up front. You own the site, code, and domain.",
     pricingDelivery: DELIVERY,
     pricingIntro:
       "Basic starts from a proven layout, with your logo, colors, and services. Custom is designed and coded around your business. The proposal sets how many pages that takes.",
@@ -52,16 +52,16 @@ const softPricing = localeContent({
       { label: "After launch", basic: "Optional care", custom: "Optional care" },
     ],
     pricingNote:
-      "Hosting is typically $0/month on Cloudflare's free plan; you only pay for your domain (about $10–20/year). Domains, stock photos, and paid tools at cost. Monthly care is optional.",
+      "Cloudflare hosting is typically $0/month. Domains cost about $10–20/year.\n\nDomains, stock photos, and paid tools at cost. Monthly care is optional.",
     pricingDetailsLabel: "Pricing details",
     pricingDetails: [
-      "Basic: up to 4 pages (Home, About, Services, Contact), from $500.",
-      "Custom: from $2,000; 5 pages or more, with writing per page and a contact form. More pages and writing cost more.",
-      "Booking, payments, client logins, and photos are quoted only if needed.",
-      "You approve pages and design before we build. Ownership transfers at final payment.",
-      "Most sites launch in 2–6 weeks, depending on photos and feedback.",
-      "Hosted on Cloudflare Pages; we'll move it to your own account on request.",
-      "Ongoing SEO, Google Business Profile, and ads are optional.",
+      "Basic from $500: up to 4 pages (Home, About, Services, Contact).",
+      "Custom from $2,000: 5 pages or more, copy and form. Extra pages cost more.",
+      "Booking, payments, logins and photos: quoted when needed.",
+      "Approve pages and design before the build. Own it at final payment.",
+      "Launch in 2–6 weeks, depending on your photos and feedback.",
+      "Cloudflare Pages hosting. Move to your own account on request.",
+      "Ongoing SEO, Google Business Profile and ads are optional.",
     ],
     pricingHighlights: [
       "Milestone-based payment option",
@@ -213,7 +213,7 @@ const baseGetAWebsite: LandingPageEntry = {
     name: "Colton Wehr",
     role: "Lead Web Designer & Developer",
   },
-  heroCredit: "Talk directly with Colton about your site, pages and price. No obligation.",
+  heroCredit: "Talk sites and pricing with Colton. No obligation.",
   heroDevices: {
     src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
     srcSet:
@@ -296,18 +296,18 @@ const baseGetAWebsite: LandingPageEntry = {
   ],
   formSteps: [
     {
-      title: "Tell us about the business",
+      title: "Tell us what you do",
       detail:
-        "The work you do, your customers, and what they should do on the site.",
+        "Share your services, customers and goals for the site.",
     },
     {
-      title: "Pick a time if you're ready",
-      detail: "Grab a slot on the calendar if one of them works.",
+      title: "Pick a time to talk",
+      detail: "Choose a calendar slot that works for your schedule.",
     },
     {
-      title: "You'll get the scope and price",
+      title: "Get your scope and price",
       detail:
-        "We write the scope and the price down before any work on the site starts.",
+        "Review the scope and price before work on your site.",
     },
   ],
   formTrust: [
@@ -468,7 +468,7 @@ const baseGetAWebsite: LandingPageEntry = {
       work: "The rebuild put service clarity and trust first, then kept the call button in reach on mobile.",
       result: showResultNumbers ? "Emergency calls went from 22 a month to 52." : "Rebuilt around clear services and a call button within reach on mobile.",
       summary:
-        "A plumbing company needed a site that made services obvious and made calling from a phone the natural next step.",
+        "A Spirit Lake plumbing company. Clear services, easy mobile calls.",
       metric: showResultNumbers ? "22 → 52" : "Rebuilt",
       label: showResultNumbers ? "emergency calls/mo" : "Clear services and mobile call button",
     },
