@@ -539,7 +539,10 @@ const baseGetAWebsite: LandingPageEntry = {
   fitNotItems: [
     "Projects start at $500.",
     "Most sites launch in 2–6 weeks.",
-    "You provide photos and service notes. Basic uses your notes for the content; Custom includes writing for each page. You review drafts before launch.",
+    "You provide photos and service notes.",
+    "Basic uses your notes for the page content.",
+    "Custom includes writing for each page.",
+    "You review and approve drafts before launch.",
   ],
 
   pricingTitle: softPricing.en.pricingTitle,

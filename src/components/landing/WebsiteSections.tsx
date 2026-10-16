@@ -41,11 +41,12 @@ function CheckMark() {
   );
 }
 
-function CrossMark() {
+function ExpectationsMark() {
   return (
     <svg {...markProps}>
-      <circle cx="12" cy="12" r="8.25" />
-      <path d="M9 9l6 6M15 9l-6 6" />
+      <rect x="5" y="4" width="14" height="17" rx="2" />
+      <rect x="9" y="2" width="6" height="4" rx="1" />
+      <path d="M9 11h6M9 15h6" />
     </svg>
   );
 }
@@ -888,7 +889,7 @@ export function WebsiteFit({
           {notItems?.length ? (
             <article className="lp-web-fit__col lp-web-fit__col--not">
               <span className="lp-web-mark" aria-hidden>
-                <CrossMark />
+                <ExpectationsMark />
               </span>
               <h3>{notTitle ?? "Probably not a fit if"}</h3>
               <ul>

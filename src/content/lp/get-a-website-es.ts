@@ -445,7 +445,10 @@ export function buildSpanishGetAWebsite(
     fitNotItems: [
       `Los proyectos empiezan ${pricing.basicPrice.charAt(0).toLowerCase()}${pricing.basicPrice.slice(1)}.`,
       "La mayoría de los sitios se lanzan en 2–6 semanas.",
-      "Tú nos das fotos y notas de tus servicios. Básico usa tus notas para el contenido; Personalizado incluye la redacción de cada página. Revisas los borradores antes del lanzamiento.",
+      "Tú nos das fotos y notas de tus servicios.",
+      "Básico usa tus notas para el contenido de las páginas.",
+      "Personalizado incluye la redacción de cada página.",
+      "Revisas y apruebas los borradores antes del lanzamiento.",
     ],
 
     pricingTitle: pricing.pricingTitle,
