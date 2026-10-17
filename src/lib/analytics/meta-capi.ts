@@ -15,7 +15,12 @@ import { getSiteUrl } from "@/lib/metadata";
 const GRAPH_VERSION = "v21.0";
 const CAPI_TIMEOUT_MS = 2500;
 
-export type MetaCapiEventName = "Lead" | "Schedule" | "Purchase" | "QualifiedLead";
+export type MetaCapiEventName =
+  | "Lead"
+  | "Contact"
+  | "Schedule"
+  | "Purchase"
+  | "QualifiedLead";
 
 export type MetaCapiEventInput = {
   eventName?: MetaCapiEventName;
@@ -32,12 +37,37 @@ export type MetaCapiEventInput = {
   eventSourceUrl?: string;
   contentName?: string;
   contentCategory?: string;
+  value?: number;
+  currency?: string;
 };
 
 export type MetaCapiResult = {
   sent: boolean;
   reason?: "missing_credentials" | "http_error" | "network";
 };
+
+type MetaResponseBody = {
+  events_received?: number;
+  fbtrace_id?: string;
+  error?: {
+    message?: string;
+    code?: number | string;
+    error_subcode?: number | string;
+    fbtrace_id?: string;
+  };
+};
+
+async function readMetaResponseBody(
+  res: Response,
+): Promise<MetaResponseBody | undefined> {
+  try {
+    const body = (await res.json()) as unknown;
+    if (body && typeof body === "object") return body as MetaResponseBody;
+  } catch {
+    // Meta can return an empty or non-JSON body; logging must never throw.
+  }
+  return undefined;
+}
 
 function sha256(value: string): string {
   return createHash("sha256").update(value).digest("hex");
@@ -62,7 +92,11 @@ export function hashMetaUserValue(value: string): string {
 export function sanitizeMetaEventId(raw: unknown): string | undefined {
   if (typeof raw !== "string") return undefined;
   const value = raw.trim();
-  if (!/^(Lead|Schedule|Purchase|QualifiedLead)\.[A-Za-z0-9._-]{6,80}$/.test(value)) {
+  if (
+    !/^(Lead|Contact|Schedule|Purchase|QualifiedLead)\.[A-Za-z0-9._-]{6,80}$/.test(
+      value,
+    )
+  ) {
     return undefined;
   }
   return value;
@@ -176,12 +210,18 @@ export async function sendMetaCapiEvent(
   const sourceUrl = absoluteEventSourceUrl(input.eventSourceUrl);
   if (sourceUrl) event.event_source_url = sourceUrl;
 
-  const customData: Record<string, string> = {};
+  const customData: Record<string, string | number> = {};
   if (input.contentName) {
     customData.content_name = input.contentName.slice(0, 100);
   }
   if (input.contentCategory) {
     customData.content_category = input.contentCategory.slice(0, 100);
+  }
+  if (typeof input.value === "number" && Number.isFinite(input.value)) {
+    customData.value = input.value;
+  }
+  if (input.currency) {
+    customData.currency = input.currency.slice(0, 10);
   }
   if (Object.keys(customData).length > 0) {
     event.custom_data = customData;
@@ -207,13 +247,45 @@ export async function sendMetaCapiEvent(
       },
     );
     if (!res.ok) {
-      console.error(`Meta CAPI HTTP ${res.status}`);
+      const body = await readMetaResponseBody(res);
+      const metaError = body?.error;
+      const details: string[] = [];
+      if (typeof metaError?.message === "string" && metaError.message) {
+        details.push(metaError.message);
+      }
+      if (metaError?.code !== undefined) {
+        details.push(`code ${String(metaError.code)}`);
+      }
+      const fbtraceId =
+        (typeof metaError?.fbtrace_id === "string" && metaError.fbtrace_id) ||
+        body?.fbtrace_id;
+      if (fbtraceId) details.push(`fbtrace_id ${fbtraceId}`);
+      console.error(
+        `Meta CAPI HTTP ${res.status}${details.length ? `: ${details.join(", ")}` : ""}`,
+      );
       return { sent: false, reason: "http_error" };
     }
-    console.info(`Meta CAPI ${String(event.event_name)} sent`);
+    const body = await readMetaResponseBody(res);
+    const eventsReceived =
+      typeof body?.events_received === "number" ? body.events_received : undefined;
+    const testSuffix = testCode ? " (TEST MODE)" : "";
+    const receivedSuffix =
+      eventsReceived !== undefined ? ` events_received=${eventsReceived}` : "";
+    console.info(
+      `Meta CAPI ${String(event.event_name)} sent${testSuffix}${receivedSuffix}`,
+    );
     return { sent: true };
-  } catch {
-    console.error("Meta CAPI request failed");
+  } catch (error) {
+    const isTimeout =
+      error instanceof Error &&
+      (error.name === "TimeoutError" || error.name === "AbortError");
+    if (isTimeout) {
+      console.error(
+        `Meta CAPI request failed: timeout after ${CAPI_TIMEOUT_MS}ms`,
+      );
+    } else {
+      console.error("Meta CAPI request failed: network error");
+    }
     return { sent: false, reason: "network" };
   }
 }

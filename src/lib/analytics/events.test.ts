@@ -102,6 +102,68 @@ describe("analytics events", () => {
     expect(gtag).toHaveBeenCalledWith("event", "click_to_call", {});
   });
 
+  it("trackCallClick fires a browser + server Contact with a shared eventID", async () => {
+    vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
+    const gtag = vi.fn();
+    const fbq = vi.fn();
+    const store = new Map<string, string>();
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.stubGlobal("window", {
+      location: { pathname: "/lp/get-a-website", search: "" },
+      gtag,
+      fbq,
+      sessionStorage: {
+        getItem: (k: string) => store.get(k) ?? null,
+        setItem: (k: string, v: string) => {
+          store.set(k, v);
+        },
+        removeItem: (k: string) => {
+          store.delete(k);
+        },
+      },
+    });
+
+    const { trackCallClick } = await import("@/lib/analytics/events");
+    trackCallClick();
+
+    const call = fbq.mock.calls.find(
+      ([kind, name]) => kind === "track" && name === "Contact",
+    );
+    expect(call).toBeDefined();
+    const eventId = (call![3] as { eventID: string }).eventID;
+    expect(eventId).toMatch(/^Contact\./);
+
+    expect(fetchMock).toHaveBeenCalledWith(
+      "/api/meta-contact",
+      expect.objectContaining({
+        method: "POST",
+        body: expect.stringContaining(eventId),
+      }),
+    );
+  });
+
+  it("trackCallClick skips the server Contact off the funnel", async () => {
+    vi.stubEnv("NEXT_PUBLIC_META_PIXEL_ID", "2080705549212381");
+    const gtag = vi.fn();
+    const fbq = vi.fn();
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    vi.stubGlobal("window", {
+      location: { pathname: "/about", search: "" },
+      gtag,
+      fbq,
+    });
+
+    const { trackCallClick } = await import("@/lib/analytics/events");
+    trackCallClick();
+
+    expect(fetchMock).not.toHaveBeenCalled();
+    expect(
+      fbq.mock.calls.some(([kind, name]) => kind === "track" && name === "Contact"),
+    ).toBe(false);
+  });
+
   it("trackLead also fires a Meta Lead event when fbq is present", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_ADS_ID", "AW-123456789");
     vi.stubEnv("NEXT_PUBLIC_GADS_LABEL_LEAD", "AbCdEfGh");
@@ -118,6 +180,8 @@ describe("analytics events", () => {
     });
     expect(fbq).toHaveBeenCalledWith("track", "Lead", {
       content_category: "landing-page",
+      value: 0,
+      currency: "USD",
     });
     expect(clarity).toHaveBeenCalledWith("event", "generate_lead");
   });
@@ -156,6 +220,8 @@ describe("analytics events", () => {
     expect(fbq).toHaveBeenCalledWith("track", "Lead", {
       content_name: "web-design",
       content_category: "lead-magnet",
+      value: 0,
+      currency: "USD",
     });
     expect(clarity).toHaveBeenCalledWith("set", "landing_page", "web-design");
     expect(clarity).toHaveBeenCalledWith("event", "generate_lead");

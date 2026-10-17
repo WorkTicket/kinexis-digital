@@ -288,6 +288,8 @@ export async function POST(request: Request) {
         (safeLandingSlug ? `/lp/${safeLandingSlug}` : request.headers.get("referer") || request.url),
       contentName: safeLandingSlug || leadData.service,
       contentCategory: String(source) === "landing-page" ? "landing-page" : "lead",
+      value: 0,
+      currency: "USD",
     } as const;
     await sendMetaCapiEvent(metaInput);
     if (isQualifiedLead(safeRole, safeBudget, safeTimeline, safeLandingSlug)) {

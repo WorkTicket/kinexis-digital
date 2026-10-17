@@ -9,6 +9,8 @@ import {
   getLeadConversionLabel,
 } from "@/lib/analytics/ads-config";
 import { shouldLoadGoogleTracking } from "@/lib/analytics/google-tracking";
+import { isMetaTrackingPath } from "@/lib/analytics/meta-tracking";
+import { getAttributionPayload } from "@/lib/analytics/click-ids";
 import {
   trackMetaEvent,
   trackMetaLead,
@@ -233,6 +235,33 @@ export function trackAuditLead(options: ConversionOptions = {}): boolean {
   return fired;
 }
 
+/** True only on funnel pages where the Meta Pixel is loaded. */
+function canTrackMetaServer(): boolean {
+  return (
+    typeof window !== "undefined" &&
+    isMetaTrackingPath(window.location?.pathname ?? "") &&
+    typeof window.fbq === "function"
+  );
+}
+
+/** Fire-and-forget server Contact so Events Manager shows Browser + Server. */
+function sendMetaContactServer(metaEventId: string): void {
+  try {
+    const attribution = getAttributionPayload();
+    void fetch("/api/meta-contact", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ metaEventId, ...attribution }),
+      keepalive: true,
+    }).catch(() => {
+      // Measurement must never block the call.
+    });
+  } catch {
+    // Measurement must never block the call.
+  }
+}
+
 /** Click-to-call conversion. */
 export function trackCallClick(): boolean {
   const label = getCallLabel();
@@ -242,7 +271,13 @@ export function trackCallClick(): boolean {
     window.gtag!("event", "click_to_call", {});
   }
 
-  trackMetaEvent("Contact");
+  // Contact is browser + server with one shared eventID (Meta dedupes).
+  // Only fires where the Pixel is active (the landing funnel).
+  if (canTrackMetaServer()) {
+    const metaEventId = createMetaEventId("Contact");
+    trackMetaEvent("Contact", { eventId: metaEventId });
+    sendMetaContactServer(metaEventId);
+  }
 
   return fired;
 }

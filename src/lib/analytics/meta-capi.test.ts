@@ -40,6 +40,9 @@ describe("Meta CAPI helpers", () => {
     expect(sanitizeMetaEventId("Lead.abc-def-123456")).toBe(
       "Lead.abc-def-123456",
     );
+    expect(sanitizeMetaEventId("Contact.abc-def-123456")).toBe(
+      "Contact.abc-def-123456",
+    );
     expect(sanitizeMetaEventId("nope")).toBeUndefined();
     expect(sanitizeMetaFbp("fb.1.1710000000.1234567890")).toBe(
       "fb.1.1710000000.1234567890",
@@ -151,6 +154,31 @@ describe("sendMetaCapiEvent", () => {
     infoSpy.mockRestore();
   });
 
+  it("includes value and currency in Lead custom_data", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true });
+    vi.stubGlobal("fetch", fetchMock);
+    const infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    const result = await sendMetaCapiEvent({
+      eventId: "Lead.abc-def-123456",
+      contentName: "get-a-website",
+      value: 0,
+      currency: "USD",
+    });
+
+    expect(result.sent).toBe(true);
+    const body = JSON.parse(
+      (fetchMock.mock.calls[0] as [string, RequestInit])[1].body as string,
+    ) as { data: Array<{ custom_data: Record<string, unknown> }> };
+    expect(body.data[0].custom_data).toEqual({
+      content_name: "get-a-website",
+      value: 0,
+      currency: "USD",
+    });
+    infoSpy.mockRestore();
+  });
+
   it("reads the token and test code from Cloudflare runtime secrets", async () => {
     vi.stubEnv("META_CAPI_ACCESS_TOKEN", "");
     vi.stubEnv("META_CAPI_TEST_EVENT_CODE", "");
@@ -186,5 +214,106 @@ describe("sendMetaCapiEvent", () => {
     expect(fetchMock).toHaveBeenCalledOnce();
     const [url] = fetchMock.mock.calls[0] as [string];
     expect(url).toContain("/2080705549212381/events");
+  });
+
+  it("logs status plus Meta error message, code and fbtrace_id on non-OK", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 400,
+      json: async () => ({
+        error: {
+          message: "Invalid parameter",
+          code: 100,
+          fbtrace_id: "AbCdEf123",
+        },
+      }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    const result = await sendMetaCapiEvent({
+      eventId: "Lead.abc-def-123456",
+      email: "a@b.com",
+    });
+
+    expect(result.sent).toBe(false);
+    expect(result.reason).toBe("http_error");
+    expect(errorSpy).toHaveBeenCalledWith(
+      "Meta CAPI HTTP 400: Invalid parameter, code 100, fbtrace_id AbCdEf123",
+    );
+    const logged = errorSpy.mock.calls.flat().join(" ");
+    expect(logged).not.toContain("test-token");
+    expect(logged).not.toContain("a@b.com");
+    errorSpy.mockRestore();
+  });
+
+  it("logs events_received on success", async () => {
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ events_received: 1, fbtrace_id: "AbCdEf123" }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    const infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    const result = await sendMetaCapiEvent({ email: "lead@example.com" });
+
+    expect(result.sent).toBe(true);
+    expect(infoSpy).toHaveBeenCalledWith("Meta CAPI Lead sent events_received=1");
+    infoSpy.mockRestore();
+  });
+
+  it("marks TEST MODE when a test code is set", async () => {
+    vi.stubEnv("META_CAPI_TEST_EVENT_CODE", "TEST123");
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ events_received: 1 }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+    const infoSpy = vi.spyOn(console, "info").mockImplementation(() => {});
+
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    const result = await sendMetaCapiEvent({ email: "lead@example.com" });
+
+    expect(result.sent).toBe(true);
+    expect(infoSpy).toHaveBeenCalledWith(
+      "Meta CAPI Lead sent (TEST MODE) events_received=1",
+    );
+    infoSpy.mockRestore();
+  });
+
+  it("distinguishes a timeout from a network error", async () => {
+    const timeout = new Error("The operation was aborted due to timeout");
+    timeout.name = "TimeoutError";
+    const fetchMock = vi.fn().mockRejectedValue(timeout);
+    vi.stubGlobal("fetch", fetchMock);
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    const result = await sendMetaCapiEvent({ email: "lead@example.com" });
+
+    expect(result.sent).toBe(false);
+    expect(result.reason).toBe("network");
+    expect(errorSpy).toHaveBeenCalledWith(
+      "Meta CAPI request failed: timeout after 2500ms",
+    );
+    errorSpy.mockRestore();
+  });
+
+  it("reports a network error when fetch rejects", async () => {
+    const fetchMock = vi.fn().mockRejectedValue(new TypeError("fetch failed"));
+    vi.stubGlobal("fetch", fetchMock);
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const { sendMetaCapiEvent } = await import("@/lib/analytics/meta-capi");
+    const result = await sendMetaCapiEvent({ email: "lead@example.com" });
+
+    expect(result.sent).toBe(false);
+    expect(result.reason).toBe("network");
+    expect(errorSpy).toHaveBeenCalledWith(
+      "Meta CAPI request failed: network error",
+    );
+    errorSpy.mockRestore();
   });
 });
