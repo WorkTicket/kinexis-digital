@@ -53,9 +53,22 @@ describe("buildEarlyMetaPixelHtml", () => {
     const html = buildEarlyMetaPixelHtml(PRODUCTION_META_PIXEL_ID);
     expect(html.startsWith("<script>")).toBe(true);
     expect(html).toContain("fbevents.js");
-    expect(html).toContain("fbq('track','Lead')");
+    expect(html).toContain("fbq('track','Lead'");
     expect(html).not.toContain('id="');
     expect(html).not.toContain("createElement(e)");
+  });
+
+  it("fetches fbevents.js right away when loadScript is set", () => {
+    const html = buildEarlyMetaPixelHtml(PRODUCTION_META_PIXEL_ID, {
+      landingOnly: true,
+      loadScript: true,
+    });
+    expect(html).toContain("createElement(e)");
+    expect(html).toContain("t.async=!0");
+    expect(html).toContain("https://connect.facebook.net/en_US/fbevents.js");
+    // Still exactly one base init / PageView, and still funnel-guarded.
+    expect(html.match(/fbq\('track','PageView'\)/g)).toHaveLength(1);
+    expect(html).toContain("__kinexisMetaTrackingPath");
   });
 });
 
@@ -72,9 +85,10 @@ describe("buildMetaConversionSnippet", () => {
     expect(snippet).toContain(PENDING_CONVERSION_KEY);
     expect(snippet).toContain("if(!raw)return");
     expect(snippet).toContain("conversionAlreadyFired");
-    expect(snippet).toContain("fbq('track','Lead')");
+    expect(snippet).toContain("fbq('track','Lead'");
     expect(snippet).toContain("fbq('track','Schedule')");
     expect(snippet).toContain("fbq('track','Purchase'");
+    expect(snippet).toContain("{value:0,currency:'USD'}");
     expect(snippet).toContain("currency:p.purchaseCurrency||'USD'");
     expect(snippet).toContain(`fbq('init','${PRODUCTION_META_PIXEL_ID}',ud)`);
   });
@@ -113,6 +127,8 @@ describe("trackMetaLead", () => {
     expect(fbq).toHaveBeenCalledWith("track", "Lead", {
       content_name: "Web design & development",
       content_category: "lead-magnet",
+      value: 0,
+      currency: "USD",
     });
   });
 

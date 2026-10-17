@@ -62,15 +62,7 @@ export default function AnalyticsScripts() {
   const { consent, ready } = useCookieConsent();
   const lastTrackedUrl = useRef<string | null>(null);
   const metaBootstrappedPath = useRef<string | null>(null);
-  const [metaReady, setMetaReady] = useState(false);
-  const [metaLibraryReady, setMetaLibraryReady] = useState(false);
-
-  // Keep the early fbq queue, but allow the hero to paint before Meta's DOM
-  // inspection and configuration script consume the main thread.
-  useEffect(() => {
-    if (!metaReady || metaLibraryReady) return;
-    return afterPrimaryPaint(() => setMetaLibraryReady(true));
-  }, [metaReady, metaLibraryReady]);
+  const [needsMetaLibrary, setNeedsMetaLibrary] = useState(false);
 
   // Capture gclid / fbclid / UTMs on every landing (before consent — URL params only)
   useEffect(() => {
@@ -90,12 +82,15 @@ export default function AnalyticsScripts() {
       // Revoke an already loaded pixel when navigating out of the funnel.
       if (typeof window.fbq === "function") window.fbq("consent", "revoke");
       delete window.__kinexisMetaTrackingPath;
-      setMetaReady(false);
+      setNeedsMetaLibrary(false);
       return;
     }
     if (typeof window.fbq === "function") {
       updateMetaPixelConsent(consent === "accepted" || (consent === "pending" && window.__kinexisMetaDefaultConsent === "grant"));
-      setMetaReady(true);
+      // The worker early head already fetched fbevents.js async from the stub,
+      // so only fall back to a React-managed load when no loader exists yet
+      // (preview / dev without the worker).
+      setNeedsMetaLibrary(!document.querySelector('script[src*="connect.facebook.net"][src*="fbevents.js"]'));
       return;
     }
     window.__kinexisMetaTrackingPath = pathname;
@@ -106,7 +101,7 @@ export default function AnalyticsScripts() {
       defaultConsent: consent === "pending" ? window.__kinexisMetaDefaultConsent ?? "revoke" : consent === "accepted" ? "grant" : "revoke",
     });
     document.head.appendChild(script);
-    setMetaReady(Boolean(getMetaPixelId()));
+    setNeedsMetaLibrary(Boolean(getMetaPixelId()));
   }, [pathname, consent]);
 
   const trackPageView = () => {
@@ -160,7 +155,10 @@ export default function AnalyticsScripts() {
     trackMetaPageView();
   }, [pathname, consent]);
 
-  return metaReady && metaLibraryReady ? (
+  // Fallback loader only: the worker early head fetches fbevents.js async with
+  // the document, so PageView is not gated on hero decode, animation frames, or
+  // idle. This path covers preview / dev where no early head exists.
+  return needsMetaLibrary ? (
     <Script
       id="meta-pixel-library"
       src="https://connect.facebook.net/en_US/fbevents.js"

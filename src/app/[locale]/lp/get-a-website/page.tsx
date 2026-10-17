@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { MetaPixelPreconnect } from "@/components/analytics/MetaPixelPreconnect";
 import { WebsiteLanding } from "@/components/landing/WebsiteLanding";
 import { getLandingPage } from "@/content/registry/landing-pages";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -20,5 +21,10 @@ export async function generateMetadata({ params }: { params: LocaleParams }): Pr
 
 export default async function GetAWebsitePage({ params }: { params: LocaleParams }) {
   const locale = await resolveLocale(params);
-  return <WebsiteLanding page={getLandingPage("get-a-website", locale)!} />;
+  return (
+    <>
+      <MetaPixelPreconnect />
+      <WebsiteLanding page={getLandingPage("get-a-website", locale)!} />
+    </>
+  );
 }

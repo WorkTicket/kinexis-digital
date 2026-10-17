@@ -1,0 +1,5 @@
+On /lp/get-a-website only, make the Meta pixel PageView fire as early as possible without double-counting:
+1. Stop gating fbevents.js on hero image decode, animation frames and the idle callback (the gate around the `meta-pixel-library` script). Load fbevents.js right away, async. Keep exactly one fbq init and one PageView; don't change event IDs, consent logic, funnel events or Lead.
+2. Add <link rel="preconnect" href="https://connect.facebook.net" crossorigin> and dns-prefetch for www.facebook.com on that page.
+3. Mobile hero: serve the two laptop images at <=640w on phones (sizes attribute); keep the hero preload.
+Add tests, run them, deploy, and report how many ms after load the first facebook.com/tr request happens on a throttled Pixel 7 (Playwright, with facebook.com/tr blocked so no real event is sent).

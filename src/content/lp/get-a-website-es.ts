@@ -99,7 +99,7 @@ export function buildSpanishGetAWebsite(
       src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
       srcSet:
         "/assets/images/lp/optimized/hero-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/hero-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/hero-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/hero-devices-2048.webp?v=20261010perf2 2048w",
-      sizes: "(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) 36rem, min(41rem, 50vw)",
+      sizes: "(max-width: 640px) 200px, (max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) 36rem, min(41rem, 50vw)",
       alt: "Sitios de A1 Property Services y Preferred Plumbing en laptops y teléfonos, hechos por KINEXIS",
       width: 2048,
       height: 726,

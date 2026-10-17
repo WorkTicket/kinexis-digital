@@ -60,7 +60,11 @@ function canTrackMeta(): boolean {
 
 export type MetaPixelInitOptions = {
   landingOnly?: boolean;
-  /** Queue events immediately; let next/script fetch the library after hydration. */
+  /**
+   * Fetch fbevents.js from inside the stub (official snippet). Used by the
+   * worker early head so the library loads with the document; the React copy
+   * stays a fallback when no early head exists (preview / dev).
+   */
   loadScript?: boolean;
   /**
    * GDPR countries should start revoked so PageView waits for the banner.
@@ -92,12 +96,18 @@ export function buildMetaPixelInitScript(
 /**
  * Early <head> HTML for the Cloudflare worker prepend (no element ids).
  * React layout copies use id="meta-pixel-init" so the worker can strip dupes.
+ *
+ * Pass `loadScript: true` to also fetch fbevents.js right away (async) from the
+ * stub; the loader lives inside the landing guard so it only runs on the funnel.
  */
 export function buildEarlyMetaPixelHtml(
   pixelId?: string,
   options: MetaPixelInitOptions = {},
 ): string {
-  const init = buildMetaPixelInitScript(pixelId, { ...options, loadScript: false });
+  const init = buildMetaPixelInitScript(pixelId, {
+    ...options,
+    loadScript: options.loadScript === true,
+  });
   if (!init) return "";
   const conversion = buildMetaConversionSnippet(pixelId);
   const scoped = (script: string) => options.landingOnly ? guardMetaTrackingScript(script) : script;
@@ -143,7 +153,8 @@ export function buildMetaConversionSnippet(pixelId?: string): string {
     "}else if(event==='Schedule'){",
     "opts?fbq('track','Schedule',{},opts):fbq('track','Schedule');",
     "}else{",
-    "opts?fbq('track','Lead',{},opts):fbq('track','Lead');",
+    "var cd={value:0,currency:'USD'};if(p.landingSlug)cd.content_name=String(p.landingSlug);",
+    "opts?fbq('track','Lead',cd,opts):fbq('track','Lead',cd);",
     "}",
     `if(eid)${MARK_META_FIRED_JS}(eid);`,
     "}catch(e){}",
@@ -207,7 +218,12 @@ export function trackMetaEvent(
 }
 
 export function trackMetaLead(options: MetaEventOptions = {}): boolean {
-  return trackMetaEvent("Lead", options);
+  // Spec: Lead always reports {value:0, currency:'USD'} unless callers override.
+  return trackMetaEvent("Lead", {
+    ...options,
+    value: options.value ?? 0,
+    currency: options.currency || "USD",
+  });
 }
 
 export function trackMetaSchedule(options: MetaEventOptions = {}): boolean {

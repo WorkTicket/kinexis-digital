@@ -218,7 +218,9 @@ const baseGetAWebsite: LandingPageEntry = {
     src: "/assets/images/lp/optimized/hero-devices.webp?v=20261010perf2",
     srcSet:
       "/assets/images/lp/optimized/hero-devices-640.webp?v=20261010perf2 640w, /assets/images/lp/optimized/hero-devices-960.webp?v=20261010perf2 960w, /assets/images/lp/optimized/hero-devices-1440.webp?v=20261010perf2 1440w, /assets/images/lp/optimized/hero-devices-2048.webp?v=20261010perf2 2048w",
-    sizes: "(max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) 36rem, min(41rem, 50vw)",
+    // Phones keep the 640w AVIF: 200px × ~2.6 DPR maps to the 640w candidate
+    // without serving the 1024w+ file the full-width hero would otherwise pick.
+    sizes: "(max-width: 640px) 200px, (max-width: 767px) calc(100vw - 3rem), (max-width: 1023px) 36rem, min(41rem, 50vw)",
     alt: "A1 Property Services and Preferred Plumbing websites on laptops and phones, built by KINEXIS",
     width: 2048,
     height: 726,

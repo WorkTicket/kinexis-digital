@@ -71,6 +71,7 @@ export default {
     const country = request.cf?.country;
     const metaHtml = isMetaTrackingPath(new URL(request.url).pathname) ? buildEarlyMetaPixelHtml(PRODUCTION_META_PIXEL_ID, {
       landingOnly: true,
+      loadScript: true,
       defaultConsent: isGdprConsentRegion(country) ? "revoke" : "grant",
     }) : "";
     const websiteLanding = /\/lp\/get-a-website\/?$/.test(new URL(request.url).pathname) && Boolean(WEBSITE_CRITICAL_CSS);
