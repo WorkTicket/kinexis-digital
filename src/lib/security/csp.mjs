@@ -58,6 +58,8 @@ export function googleWwwImgSrcHosts() {
 export const META_GATEWAY_ORIGINS = [
   "https://8b-ffbbe167ddcc42afb5f860276d91024e.ecs.us-west-2.on.aws",
   "https://bded8a3c6ae-1-1053047382554.us-central1.run.app",
+  "https://mpc2-prod-24-is5qnl632q-uw.a.run.app",
+  "https://5z-2b6b7616f94640c2840d1841e1ac24c3.ecs.us-east-1.on.aws",
 ].join(" ");
 
 /**
