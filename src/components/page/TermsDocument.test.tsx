@@ -1,0 +1,35 @@
+// @vitest-environment jsdom
+import { describe, expect, it, vi } from "vitest";
+import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
+import { TermsDocument } from "./TermsDocument";
+import { getTermsContent } from "@/content/legal/terms";
+
+vi.mock("@/i18n/navigation", () => ({
+  Link: ({ locale: _locale, prefetch: _prefetch, ...props }: Record<string, unknown>) => <a {...props} />,
+}));
+
+describe("/terms document", () => {
+  it.each(["en", "es-419", "es-ES"] as const)("renders the complete %s document with working contents and placeholders", (locale) => {
+    const doc = document.implementation.createHTMLDocument();
+    doc.body.innerHTML = renderToStaticMarkup(<TermsDocument locale={locale} />);
+    const { headings } = getTermsContent(locale);
+    expect(doc.querySelector("h1")?.textContent).toContain(locale === "en" ? "Terms of Service" : "Términos del Servicio");
+    expect(headings.filter(({ depth }) => depth === 2)).toHaveLength(31);
+    expect(headings.filter(({ depth }) => depth === 3)).toHaveLength(3);
+    for (const heading of headings) {
+      expect(doc.getElementById(heading.id)?.textContent).toBe(heading.text);
+      expect(doc.querySelector(`a[href="#${heading.id}"]`)).not.toBeNull();
+    }
+    for (const alias of ["guarantee", "cancellation", "edits"]) {
+      expect(doc.getElementById(alias)).not.toBeNull();
+    }
+    expect(doc.querySelector(".terms-updated")?.textContent).toContain("2026");
+    const source = readFileSync(`docs/legal/terms-of-service${locale === "en" ? "" : "_es"}.md`, "utf8");
+    const placeholders = source.match(/\[[^\]\n]+\]/g) ?? [];
+    expect([...doc.querySelectorAll("mark")].map((mark) => mark.textContent)).toEqual(placeholders);
+    expect(doc.querySelectorAll("article table")).toHaveLength(2);
+    expect(doc.querySelectorAll("article ul ul").length).toBeGreaterThan(0);
+    expect(doc.querySelector("article")?.textContent).not.toContain("Standard fine print");
+  });
+});
