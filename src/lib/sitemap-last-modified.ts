@@ -38,8 +38,8 @@ const TEMPLATE_DEFAULTS: Record<string, string> = {
   "/resources": "2026-05-15",
   "/audit": "2026-10-09",
   "/thank-you": "2026-07-03",
-  "/privacy": "2026-03-01",
-  "/terms": "2026-03-01",
+  "/privacy": "2026-10-19",
+  "/terms": "2026-10-19",
 };
 
 const SERVICE_LAST_MODIFIED = "2026-09-28";

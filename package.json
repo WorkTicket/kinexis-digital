@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "node scripts/generate-landing-chrome.mjs",
+    "prebuild": "node scripts/generate-landing-chrome.mjs && node scripts/generate-legal-terms.mjs",
     "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
@@ -47,6 +47,7 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
     "lucide-react": "^1.45.0",
+    "marked": "^18.1.1",
     "next": "^15.5.25",
     "next-intl": "^4.14.4",
     "ogl": "^1.0.11",
