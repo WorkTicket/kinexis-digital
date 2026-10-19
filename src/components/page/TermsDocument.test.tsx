@@ -11,7 +11,7 @@ vi.mock("@/i18n/navigation", () => ({
 }));
 
 describe("/terms document", () => {
-  it.each(["en", "es-419", "es-ES"] as const)("renders the complete %s document with working contents and placeholders", (locale) => {
+  it.each(["en", "es-419", "es-ES"] as const)("renders the complete %s document with working contents and completed business details", (locale) => {
     const doc = document.implementation.createHTMLDocument();
     doc.body.innerHTML = renderToStaticMarkup(<TermsDocument locale={locale} />);
     const { headings } = getTermsContent(locale);
@@ -29,7 +29,11 @@ describe("/terms document", () => {
     const source = readFileSync(`docs/legal/terms-of-service${locale === "en" ? "" : "_es"}.md`, "utf8");
     expect(getTermsContent(locale)).toEqual(renderTermsMarkdown(source));
     const placeholders = source.match(/\[[^\]\n]+\]/g) ?? [];
+    expect(placeholders).toEqual([]);
     expect([...doc.querySelectorAll("mark")].map((mark) => mark.textContent)).toEqual(placeholders);
+    expect(doc.body.textContent).not.toMatch(/DRAFT|BORRADOR|OWNER TO CONFIRM|ATTORNEY|ABOGADO|ACCOUNTANT|CONTADOR/);
+    expect(doc.body.textContent).toContain("+1 (307) 500-3371");
+    expect(doc.querySelector('article a[href="https://www.kinexisdigital.com/privacy"]')).not.toBeNull();
     expect(doc.querySelectorAll("article table")).toHaveLength(2);
     expect(doc.querySelectorAll("article ul ul").length).toBeGreaterThan(0);
     expect(doc.querySelector("article")?.textContent).not.toContain("Standard fine print");

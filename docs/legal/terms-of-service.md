@@ -1,10 +1,7 @@
 # Kinexis Digital Terms of Service
 
-> ## ⚠ DRAFT. NOT LEGAL ADVICE. DO NOT PUBLISH YET.
-> This draft was written to match the Kinexis offer approved on Oct 18, 2026 and to follow common industry practice (see `research.md`). **A licensed attorney in Texas/the US must review it before it goes live at kinexisdigital.com/terms**, especially §§ 6, 7, 10, 11, 12, 22, 23, 24 and 25. Items in **[BRACKETS]** must be filled in. The owner approved the definitions and tightenings in `offer-recommendations.md` on Oct 18, 2026; items still marked **[OWNER TO CONFIRM]** (legal entity, address, tax, disputes) need the owner and attorney. Delete this box before publishing.
-
-**Effective date:** [EFFECTIVE DATE] · **Version:** 2.0
-**Who we are:** [LEGAL ENTITY NAME], a [ENTITY TYPE AND STATE OF FORMATION], doing business as **Kinexis Digital** ("Kinexis", "we", "us"). Mailing address: [ADDRESS]. We're a remote team; we are not based in Houston. Phone/text: [TEXAS BUSINESS NUMBER] · Email: hello@kinexisdigital.com · Hours: 8 am–8 pm Central, 7 days.
+**Effective date:** October 19, 2026 · **Version:** 2.0
+**Who we are:** **Kinexis Digital** ("Kinexis", "we", "us"). We're a remote team; we are not based in Houston. Phone/text: +1 (307) 500-3371 · Email: hello@kinexisdigital.com · Hours: 8 am–8 pm Central, 7 days.
 
 ---
 
@@ -27,7 +24,7 @@
 ---
 
 ## 1. Agreement and acceptance
-1.1 These Terms, your **Order Confirmation** (the signup summary we send you showing your plan, price and launch details), and our Privacy Policy at [PRIVACY POLICY URL] make up the whole agreement (the "Agreement"). If your Order Confirmation and these Terms conflict, the Order Confirmation controls for that order.
+1.1 These Terms, your **Order Confirmation** (the signup summary we send you showing your plan, price and launch details), and our Privacy Policy at https://www.kinexisdigital.com/privacy make up the whole agreement (the "Agreement"). If your Order Confirmation and these Terms conflict, the Order Confirmation controls for that order.
 1.2 You accept by signing electronically (typing your name and checking the box at signup) or by approving your preview for launch in writing (text, email or Messenger) after you've been shown these Terms. Electronic acceptance has the same effect as a signature on paper (federal E-SIGN Act; Texas Uniform Electronic Transactions Act).
 1.3 You confirm that you're at least 18, that you're signing up for a business (not personal or household use), and that you're authorized to sign for the business named in your Order Confirmation ("you", "Client").
 1.4 Anything a salesperson says that isn't in the Agreement doesn't bind either of us unless it's written in your Order Confirmation or an email from us.
@@ -80,7 +77,7 @@
 6.1 **$0 down.** Nothing is charged for the preview or before your launch date.
 6.2 **Monthly plans** are charged in advance on your launch date and then on each billing date, to the card or bank account you authorize at signup, through our payment processor (Stripe). **You authorize these recurring charges until you cancel as described in §7.** Charges appear on your statement as "KINEXIS DIGITAL".
 6.3 **Own It** is charged in full when you approve your preview and sign up. Optional Site Care ($39/mo) and the texting add-on ($97/mo) are monthly plans under these Terms, without a minimum.
-6.4 **Taxes.** Prices don't include any sales or other taxes that may apply. If tax applies, it's shown on your invoice. **[ACCOUNTANT: confirm Texas data-processing tax treatment and whether Kinexis must collect]**
+6.4 **Taxes.** Prices don't include any sales or other taxes that may apply. If tax applies, it's shown on your invoice.
 6.5 **Receipts.** You'll get a receipt by email for every charge.
 6.6 **Failed payments.** If a payment fails, we'll tell you and retry for 7 days. If it's still unpaid after **14 days**, we may suspend the service: your site shows a neutral "temporarily unavailable" page and texting pauses. If it's unpaid after **30 days**, we may end the service under §7.6. **We don't charge late fees or interest.** Amounts owed stay owed.
 6.7 **Billing questions and chargebacks.** If you think a charge is wrong, tell us within 60 days and we'll fix real errors within 10 business days. Please contact us before disputing a charge with your bank. If you dispute a charge that wasn't in error without contacting us first, we may suspend the service while the dispute is open and recover the processor's dispute fee from you if the dispute is decided in our favor.
@@ -89,7 +86,7 @@
 7.1 **Before launch:** you can cancel any time before your launch date by text, email or Messenger and **owe nothing**.
 7.2 **Minimum term:** monthly plans have a **3-month minimum starting on your launch date** (three monthly charges).
 7.3 **Renewal:** after the minimum, your plan **continues month to month and is charged on each billing date until you cancel.** There's no new contract term.
-7.4 **How to cancel (after the minimum):** send "cancel" with your business name by **text** to [TEXAS BUSINESS NUMBER], by **email** to hello@kinexisdigital.com, or by **Messenger** to our Facebook Page. No phone call or form is required. We'll confirm in writing within 1 business day. If we get your request **before your next billing date**, you won't be charged again; your service runs to the end of the month you've paid for. No cancellation fee.
+7.4 **How to cancel (after the minimum):** send "cancel" with your business name by **text** to +1 (307) 500-3371, by **email** to hello@kinexisdigital.com, or by **Messenger** to our Facebook Page. No phone call or form is required. We'll confirm in writing within 1 business day. If we get your request **before your next billing date**, you won't be charged again; your service runs to the end of the month you've paid for. No cancellation fee.
 7.5 **Cancelling during the minimum:** you can give notice any time, but the remaining charges of the minimum are still due on their normal billing dates (or, if you prefer, at once), **unless** (a) the 60-day lead guarantee applies (§10.2), (b) §5.4 applies, or (c) we've materially breached the Agreement and not fixed it within 15 days of your written notice.
 7.6 **When we can end the service:**
   - (a) **for cause:** non-payment under §6.6; a serious breach of §18 (for example unlawful content or misuse of texting); or abusive or threatening conduct toward our team. Where we can, we'll give you notice and 7 days to fix it first.
@@ -131,7 +128,7 @@
 
 ## 11. Texting, calls and your customers
 11.1 **What we send:** missed-call text-back sends **one** informational reply to a person who just called your tracking number and wasn't answered. Review requests go only to **your customers** that you give us, after a job.
-11.2 **Your promise:** you confirm that every customer you give us for review requests has given you permission to contact them by text and/or email about their job, and you'll tell us right away about anyone who asks not to be contacted. A simple line on your estimate or invoice works ("By giving us your mobile number, you agree to receive texts about your job, including a review request. Reply STOP to opt out."). **[ATTORNEY: confirm consent language under TCPA and Texas Bus. & Com. Code chs. 302/304]**
+11.2 **Your promise:** you confirm that every customer you give us for review requests has given you permission to contact them by text and/or email about their job, and you'll tell us right away about anyone who asks not to be contacted. A simple line on your estimate or invoice works ("By giving us your mobile number, you agree to receive texts about your job, including a review request. Reply STOP to opt out.").
 11.3 **How messages are sent:** every text names your business, honors STOP and any other reasonable opt-out request, and is sent only between **9 am and 8 pm** in the recipient's local time (noon to 8 pm on Sundays). We don't add promotions to text-back messages, and we don't send marketing blasts under any plan. Any future marketing texts would need a separate written agreement and proof of consent.
 11.4 **Registration:** we register your business for A2P 10DLC texting in your business's name. You agree to give accurate information (legal name, EIN, address, website) and to cooperate with carrier requests.
 11.5 **Call recording:** we don't record calls unless you ask in writing. If you do, a recording notice plays at the start of each call, and you're responsible for any consent needed where your callers are.
@@ -158,7 +155,7 @@
 
 ## 16. Tracking number
 16.1 The tracking number is provided through our phone provider and isn't owned by you. While your plan is active it rings the phone number you choose.
-16.2 When you leave, we forward it to your phone for **30 days** at no charge. If you'd like to keep it, we'll help with a port request where the provider allows. **[CONFIRM with GoHighLevel/LC Phone whether numbers can be ported out]**
+16.2 When you leave, we forward it to your phone for **30 days** at no charge. If you'd like to keep it, we'll help with a port request where the provider allows.
 
 ## 17. What happens when you leave
 At the end of your last paid month:
@@ -184,37 +181,37 @@ At the end of your last paid month:
 
 ## 21. Refunds
 21.1 Monthly fees already paid aren't refundable, except under §10.2 (guarantee), §7.6(b) (if we end the service), or for our billing errors, or where the law requires.
-21.2 **Own It:** if we don't launch within 30 days of your approval for reasons on our side, you can cancel for a full refund. After launch, Own It isn't refundable. **[ATTORNEY to review]**
+21.2 **Own It:** if we don't launch within 30 days of your approval for reasons on our side, you can cancel for a full refund. After launch, Own It isn't refundable.
 
 ## 22. Privacy and your customers' data
-22.1 Our Privacy Policy at [PRIVACY POLICY URL] explains how we handle information about you.
+22.1 Our Privacy Policy at https://www.kinexisdigital.com/privacy explains how we handle information about you.
 22.2 For information about **your** customers (calls, texts, form submissions, review recipients), we act as your service provider: we use it only to provide the services to you, keep it confidential, protect it with reasonable security, and don't sell it. We'll add a basic privacy notice to your website describing the forms, call tracking and texting.
 
 ## 23. Warranties and disclaimers
 23.1 We'll perform the services with reasonable skill and care, consistent with these Terms.
-23.2 Except as stated in these Terms, and to the extent the law allows, the services are provided "as is", and we disclaim implied warranties of merchantability, fitness for a particular purpose and non-infringement. **This doesn't limit any rights you have that can't be waived by law, including under the Texas Deceptive Trade Practices-Consumer Protection Act.** **[ATTORNEY: confirm DTPA interaction]**
+23.2 Except as stated in these Terms, and to the extent the law allows, the services are provided "as is", and we disclaim implied warranties of merchantability, fitness for a particular purpose and non-infringement. **This doesn't limit any rights you have that can't be waived by law, including under the Texas Deceptive Trade Practices-Consumer Protection Act.**
 
 ## 24. Limitation of liability
 24.1 To the extent the law allows, neither of us is liable for indirect, incidental, special or consequential damages, or for lost profits, revenue, jobs or data, even if advised they were possible.
 24.2 To the extent the law allows, our total liability for all claims under the Agreement is limited to **the fees you paid us in the 3 months before the event giving rise to the claim**.
-24.3 These limits don't apply to fraud, wilful misconduct, or your obligation to pay fees owed. **[ATTORNEY: confirm cap and Texas conspicuousness requirements]**
+24.3 These limits don't apply to fraud, wilful misconduct, or your obligation to pay fees owed.
 
 ## 25. Indemnification
 25.1 You'll defend and indemnify Kinexis against third-party claims arising from: your content; your licences or the claims you make about your business; texts or emails sent to contacts you gave us without the consent required by law; or the work you perform for your customers.
 25.2 We'll defend and indemnify you against third-party claims that the design or code **we created** for your site (not your content or third-party components) infringes their copyright.
-25.3 The indemnified party must promptly notify the other, let them control the defense, and cooperate. **[ATTORNEY: Texas fair-notice/express-negligence requirements]**
+25.3 The indemnified party must promptly notify the other, let them control the defense, and cooperate.
 
 ## 26. Disputes
 26.1 **Talk first:** before filing anything, send the other party a written description of the problem, and give 30 days to try to resolve it.
-26.2 **Governing law:** Texas law governs the Agreement, without regard to conflict-of-laws rules. **[OWNER TO CONFIRM + ATTORNEY]**
-26.3 **Where:** the state or federal courts in **Harris County, Texas**, except that either of us may bring a claim in a Texas justice court (small claims) with jurisdiction. **[ATTORNEY: decide whether to add individual arbitration instead]**
-26.4 **WAIVER OF JURY TRIAL AND CLASS ACTIONS.** TO THE EXTENT THE LAW ALLOWS, YOU AND KINEXIS EACH WAIVE THE RIGHT TO A JURY TRIAL AND AGREE TO BRING CLAIMS ONLY ON AN INDIVIDUAL BASIS, NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY CLASS OR REPRESENTATIVE PROCEEDING. **[ATTORNEY: confirm enforceability and formatting]**
+26.2 **Governing law:** Texas law governs the Agreement, without regard to conflict-of-laws rules.
+26.3 **Where:** the state or federal courts in **Harris County, Texas**, except that either of us may bring a claim in a Texas justice court (small claims) with jurisdiction.
+26.4 **WAIVER OF JURY TRIAL AND CLASS ACTIONS.** TO THE EXTENT THE LAW ALLOWS, YOU AND KINEXIS EACH WAIVE THE RIGHT TO A JURY TRIAL AND AGREE TO BRING CLAIMS ONLY ON AN INDIVIDUAL BASIS, NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY CLASS OR REPRESENTATIVE PROCEEDING.
 
 ## 27. Changes to these Terms
 We'll give you at least **30 days' notice** of changes by email or text. Changes can't raise your price during your price lock, and they don't apply to a dispute that arose before the change. If a change materially reduces your rights or the services, you may cancel before it takes effect without owing the rest of your minimum.
 
 ## 28. Notices and communications
-28.1 We'll send notices to the email and mobile number in your Order Confirmation. You can send notices to hello@kinexisdigital.com or by text to [TEXAS BUSINESS NUMBER].
+28.1 We'll send notices to the email and mobile number in your Order Confirmation. You can send notices to hello@kinexisdigital.com or by text to +1 (307) 500-3371.
 28.2 You agree we may contact you by call, text or email about your account, your site and service updates. Marketing messages from us are optional; reply STOP to opt out of texts.
 
 ## 29. General
@@ -227,4 +224,4 @@ We'll give you at least **30 days' notice** of changes by email or text. Changes
 29.7 **Language:** we may provide these Terms in Spanish for convenience. **If the English and Spanish versions differ, the English version controls.**
 
 ## 30. Contact
-Kinexis Digital · [LEGAL ENTITY NAME] · [ADDRESS] · [TEXAS BUSINESS NUMBER] · hello@kinexisdigital.com
+Kinexis Digital · +1 (307) 500-3371 · hello@kinexisdigital.com

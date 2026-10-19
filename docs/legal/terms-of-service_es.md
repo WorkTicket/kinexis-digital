@@ -1,10 +1,9 @@
 # Términos del Servicio de Kinexis Digital
 
-> ## ⚠ BORRADOR. NO ES ASESORÍA LEGAL. TODAVÍA NO PUBLICAR.
-> **Traducción de cortesía. La versión en inglés (`terms-of-service.md`) es la que rige; si hay diferencias, prevalece el inglés.** Un abogado con licencia en Texas/EE. UU. debe revisar ambas versiones antes de publicarlas en kinexisdigital.com/terms. Los textos entre **[CORCHETES]** se deben completar. El dueño aprobó las definiciones de `offer-recommendations.md` el 18 oct 2026; lo que sigue marcado **[POR CONFIRMAR POR EL DUEÑO]** (empresa, dirección, impuestos, disputas) lo deben definir el dueño y el abogado. Borre este recuadro antes de publicar.
+**Traducción de cortesía. Si hay diferencias, prevalece la versión en inglés.**
 
-**Fecha de vigencia:** [FECHA] · **Versión:** 2.0
-**Quiénes somos:** [NOMBRE LEGAL DE LA EMPRESA], una [TIPO DE ENTIDAD Y ESTADO DE CONSTITUCIÓN], que opera como **Kinexis Digital** ("Kinexis", "nosotros"). Dirección postal: [DIRECCIÓN]. Somos un equipo remoto; no estamos ubicados en Houston. Teléfono/texto: [NÚMERO DE TEXAS] · Correo: hello@kinexisdigital.com · Horario: 8 am–8 pm hora del centro, los 7 días.
+**Fecha de vigencia:** 19 de octubre de 2026 · **Versión:** 2.0
+**Quiénes somos:** **Kinexis Digital** ("Kinexis", "nosotros"). Somos un equipo remoto; no estamos ubicados en Houston. Teléfono/texto: +1 (307) 500-3371 · Correo: hello@kinexisdigital.com · Horario: 8 am–8 pm hora del centro, los 7 días.
 
 ---
 
@@ -27,7 +26,7 @@
 ---
 
 ## 1. Acuerdo y aceptación
-1.1 Estos Términos, su **Confirmación de Orden** (el resumen de inscripción que le enviamos con su plan, precio y datos de publicación) y nuestra Política de Privacidad en [URL DE PRIVACIDAD] forman el acuerdo completo (el "Acuerdo"). Si su Confirmación de Orden y estos Términos se contradicen, la Confirmación de Orden prevalece para esa orden.
+1.1 Estos Términos, su **Confirmación de Orden** (el resumen de inscripción que le enviamos con su plan, precio y datos de publicación) y nuestra Política de Privacidad en https://www.kinexisdigital.com/privacy forman el acuerdo completo (el "Acuerdo"). Si su Confirmación de Orden y estos Términos se contradicen, la Confirmación de Orden prevalece para esa orden.
 1.2 Usted acepta al firmar electrónicamente (escribiendo su nombre y marcando la casilla al inscribirse) o al aprobar por escrito (texto, correo o Messenger) la publicación de su vista previa después de haber visto estos Términos. La aceptación electrónica tiene el mismo efecto que una firma en papel (ley federal E-SIGN; Ley Uniforme de Transacciones Electrónicas de Texas).
 1.3 Usted confirma que tiene al menos 18 años, que se inscribe para un negocio (no para uso personal o del hogar) y que está autorizado para firmar por el negocio indicado en su Confirmación de Orden ("usted", "Cliente").
 1.4 Lo que diga un vendedor y no esté en el Acuerdo no obliga a ninguna de las partes, salvo que conste en su Confirmación de Orden o en un correo nuestro.
@@ -80,7 +79,7 @@
 6.1 **$0 de entrada.** No se cobra nada por la vista previa ni antes de la fecha de publicación.
 6.2 **Los planes mensuales** se cobran por adelantado el día de publicación y luego en cada fecha de cobro, a la tarjeta o cuenta bancaria que usted autorice al inscribirse, a través de nuestro procesador de pagos (Stripe). **Usted autoriza estos cobros recurrentes hasta que cancele según la §7.** En su estado de cuenta aparecerán como "KINEXIS DIGITAL".
 6.3 **El plan Suya** se cobra completo al aprobar la vista previa e inscribirse. El mantenimiento opcional ($39/mes) y el extra de textos ($97/mes) son planes mensuales bajo estos Términos, sin mínimo.
-6.4 **Impuestos.** Los precios no incluyen impuestos sobre ventas ni otros que puedan aplicar. Si aplican, aparecerán en su factura. **[CONTADOR: confirmar el tratamiento en Texas como procesamiento de datos y si Kinexis debe cobrarlo]**
+6.4 **Impuestos.** Los precios no incluyen impuestos sobre ventas ni otros que puedan aplicar. Si aplican, aparecerán en su factura.
 6.5 **Recibos.** Recibirá un recibo por correo con cada cobro.
 6.6 **Pagos rechazados.** Si un pago falla, le avisamos y reintentamos durante 7 días. Si sigue sin pagarse después de **14 días**, podemos suspender el servicio: su sitio muestra una página neutral de "temporalmente no disponible" y los textos se pausan. Si sigue sin pagarse después de **30 días**, podemos terminar el servicio según la §7.6. **No cobramos recargos por mora ni intereses.** Los montos adeudados se siguen debiendo.
 6.7 **Preguntas de cobro y contracargos.** Si cree que un cobro está mal, avísenos dentro de 60 días y corregimos los errores reales en 10 días hábiles. Por favor contáctenos antes de disputar un cobro con su banco. Si disputa un cobro que no tenía error sin contactarnos primero, podemos suspender el servicio mientras la disputa siga abierta y cobrarle la comisión de disputa del procesador si la disputa se resuelve a nuestro favor.
@@ -89,7 +88,7 @@
 7.1 **Antes de publicar:** puede cancelar en cualquier momento antes de la fecha de publicación por texto, correo o Messenger y **no debe nada**.
 7.2 **Plazo mínimo:** los planes mensuales tienen un **mínimo de 3 meses desde la fecha de publicación** (tres cobros mensuales).
 7.3 **Renovación:** después del mínimo, su plan **continúa mes a mes y se cobra en cada fecha de cobro hasta que cancele.** No hay un nuevo plazo de contrato.
-7.4 **Cómo cancelar (después del mínimo):** mande "cancelar" con el nombre de su negocio por **texto** al [NÚMERO DE TEXAS], por **correo** a hello@kinexisdigital.com o por **Messenger** a nuestra página de Facebook. No hace falta llamar ni llenar formularios. Le confirmamos por escrito en 1 día hábil. Si recibimos su solicitud **antes de la siguiente fecha de cobro**, no se le vuelve a cobrar; el servicio sigue hasta el final del mes ya pagado. Sin cargo por cancelación.
+7.4 **Cómo cancelar (después del mínimo):** mande "cancelar" con el nombre de su negocio por **texto** al +1 (307) 500-3371, por **correo** a hello@kinexisdigital.com o por **Messenger** a nuestra página de Facebook. No hace falta llamar ni llenar formularios. Le confirmamos por escrito en 1 día hábil. Si recibimos su solicitud **antes de la siguiente fecha de cobro**, no se le vuelve a cobrar; el servicio sigue hasta el final del mes ya pagado. Sin cargo por cancelación.
 7.5 **Cancelar durante el mínimo:** puede avisar en cualquier momento, pero los cobros restantes del mínimo se siguen debiendo en sus fechas normales (o de una vez, si lo prefiere), **salvo que** (a) aplique la garantía de 60 días (§10.2), (b) aplique la §5.4, o (c) hayamos incumplido gravemente el Acuerdo y no lo hayamos corregido en 15 días desde su aviso por escrito.
 7.6 **Cuándo podemos terminar el servicio:**
   - (a) **con causa:** falta de pago según la §6.6; una violación grave de la §18 (por ejemplo, contenido ilegal o mal uso de los textos); o trato abusivo o amenazante hacia nuestro equipo. Cuando sea posible, le avisaremos y le daremos 7 días para corregirlo.
@@ -131,7 +130,7 @@
 
 ## 11. Textos, llamadas y sus clientes
 11.1 **Qué enviamos:** el texto automático a llamadas perdidas envía **una** respuesta informativa a la persona que acaba de llamar a su número de seguimiento y no fue atendida. Las solicitudes de reseñas van solo a **sus clientes** que usted nos da, después de un trabajo.
-11.2 **Su compromiso:** usted confirma que cada cliente que nos da para pedir reseñas le dio permiso para contactarlo por texto y/o correo sobre su trabajo, y nos avisará de inmediato si alguien pide que no lo contacten. Basta con una línea en su cotización o factura ("Al darnos su número de celular, acepta recibir textos sobre su trabajo, incluida una solicitud de reseña. Responda STOP para no recibir más."). **[ABOGADO: confirmar el texto de consentimiento según la TCPA y los caps. 302/304 del Código de Negocios y Comercio de Texas]**
+11.2 **Su compromiso:** usted confirma que cada cliente que nos da para pedir reseñas le dio permiso para contactarlo por texto y/o correo sobre su trabajo, y nos avisará de inmediato si alguien pide que no lo contacten. Basta con una línea en su cotización o factura ("Al darnos su número de celular, acepta recibir textos sobre su trabajo, incluida una solicitud de reseña. Responda STOP para no recibir más.").
 11.3 **Cómo se envían:** cada texto lleva el nombre de su negocio, respeta STOP y cualquier otra forma razonable de pedir que no le escriban, y se envía solo entre las **9 am y las 8 pm** hora local de quien lo recibe (del mediodía a las 8 pm los domingos). No agregamos promociones a los textos de llamadas perdidas y no enviamos mensajes masivos de publicidad en ningún plan. Cualquier texto publicitario futuro requeriría un acuerdo aparte por escrito y prueba de consentimiento.
 11.4 **Registro:** registramos su negocio para textos A2P 10DLC a nombre de su negocio. Usted se compromete a dar información correcta (nombre legal, EIN, dirección, sitio web) y a cooperar con lo que pidan las compañías telefónicas.
 11.5 **Grabación de llamadas:** no grabamos llamadas a menos que usted lo pida por escrito. Si lo pide, se reproduce un aviso de grabación al inicio de cada llamada, y usted es responsable de obtener el consentimiento que se requiera donde estén quienes llaman.
@@ -158,7 +157,7 @@
 
 ## 16. Número de seguimiento
 16.1 El número de seguimiento lo provee nuestro proveedor de telefonía y no es de su propiedad. Mientras su plan esté activo, timbra al teléfono que usted elija.
-16.2 Cuando se va, lo desviamos a su teléfono por **30 días** sin costo. Si quiere quedarse con él, le ayudamos con una solicitud de portabilidad si el proveedor lo permite. **[CONFIRMAR con GoHighLevel/LC Phone si los números se pueden portar]**
+16.2 Cuando se va, lo desviamos a su teléfono por **30 días** sin costo. Si quiere quedarse con él, le ayudamos con una solicitud de portabilidad si el proveedor lo permite.
 
 ## 17. Qué pasa cuando se va
 Al final de su último mes pagado:
@@ -184,37 +183,37 @@ Al final de su último mes pagado:
 
 ## 21. Reembolsos
 21.1 Las mensualidades ya pagadas no se reembolsan, salvo según la §10.2 (garantía), la §7.6(b) (si nosotros terminamos el servicio), por errores de cobro nuestros, o cuando la ley lo exija.
-21.2 **Plan Suya:** si no publicamos en 30 días desde su aprobación por razones de nuestro lado, puede cancelar con reembolso completo. Después de publicado, el plan Suya no es reembolsable. **[revisión del ABOGADO]**
+21.2 **Plan Suya:** si no publicamos en 30 días desde su aprobación por razones de nuestro lado, puede cancelar con reembolso completo. Después de publicado, el plan Suya no es reembolsable.
 
 ## 22. Privacidad y datos de sus clientes
-22.1 Nuestra Política de Privacidad en [URL DE PRIVACIDAD] explica cómo manejamos su información.
+22.1 Nuestra Política de Privacidad en https://www.kinexisdigital.com/privacy explica cómo manejamos su información.
 22.2 Para la información de **sus** clientes (llamadas, textos, formularios, destinatarios de reseñas), actuamos como su proveedor de servicios: la usamos solo para prestarle los servicios, la mantenemos confidencial, la protegemos con seguridad razonable y no la vendemos. Agregaremos a su sitio un aviso básico de privacidad que describe los formularios, el seguimiento de llamadas y los textos.
 
 ## 23. Garantías legales y exclusiones
 23.1 Prestaremos los servicios con habilidad y cuidado razonables, de acuerdo con estos Términos.
-23.2 Salvo lo indicado en estos Términos, y en la medida que la ley lo permita, los servicios se prestan "tal como están", y excluimos las garantías implícitas de comerciabilidad, idoneidad para un fin particular y no infracción. **Esto no limita los derechos que la ley no permite renunciar, incluidos los de la Ley de Prácticas Comerciales Engañosas y Protección al Consumidor de Texas (DTPA).** **[ABOGADO: confirmar relación con la DTPA]**
+23.2 Salvo lo indicado en estos Términos, y en la medida que la ley lo permita, los servicios se prestan "tal como están", y excluimos las garantías implícitas de comerciabilidad, idoneidad para un fin particular y no infracción. **Esto no limita los derechos que la ley no permite renunciar, incluidos los de la Ley de Prácticas Comerciales Engañosas y Protección al Consumidor de Texas (DTPA).**
 
 ## 24. Límite de responsabilidad
 24.1 En la medida que la ley lo permita, ninguna de las partes responde por daños indirectos, incidentales, especiales o consecuentes, ni por pérdida de ganancias, ingresos, trabajos o datos, aunque se haya advertido de esa posibilidad.
 24.2 En la medida que la ley lo permita, nuestra responsabilidad total por todos los reclamos bajo el Acuerdo se limita a **lo que usted nos pagó en los 3 meses anteriores al hecho que dio origen al reclamo**.
-24.3 Estos límites no aplican en caso de fraude, conducta dolosa, ni a su obligación de pagar lo que deba. **[ABOGADO: confirmar el límite y los requisitos de visibilidad en Texas]**
+24.3 Estos límites no aplican en caso de fraude, conducta dolosa, ni a su obligación de pagar lo que deba.
 
 ## 25. Indemnización
 25.1 Usted defenderá e indemnizará a Kinexis frente a reclamos de terceros que surjan de: su contenido; sus licencias o lo que usted afirma sobre su negocio; textos o correos enviados a contactos que usted nos dio sin el consentimiento que exige la ley; o los trabajos que usted hace para sus clientes.
 25.2 Nosotros lo defenderemos e indemnizaremos frente a reclamos de terceros de que el diseño o el código **que nosotros creamos** para su sitio (no su contenido ni componentes de terceros) viola sus derechos de autor.
-25.3 La parte indemnizada debe avisar pronto a la otra, dejarle controlar la defensa y cooperar. **[ABOGADO: requisitos de aviso claro en Texas]**
+25.3 La parte indemnizada debe avisar pronto a la otra, dejarle controlar la defensa y cooperar.
 
 ## 26. Disputas
 26.1 **Primero hablar:** antes de presentar cualquier reclamo, envíe a la otra parte una descripción por escrito del problema y dé 30 días para intentar resolverlo.
-26.2 **Ley aplicable:** el Acuerdo se rige por las leyes de Texas, sin aplicar sus reglas de conflicto de leyes. **[POR CONFIRMAR POR EL DUEÑO + ABOGADO]**
-26.3 **Dónde:** los tribunales estatales o federales del **Condado de Harris, Texas**, aunque cualquiera de las partes puede presentar un reclamo ante un tribunal de justicia de paz de Texas (reclamos menores) competente. **[ABOGADO: decidir si se agrega arbitraje individual]**
-26.4 **RENUNCIA A JUICIO CON JURADO Y A DEMANDAS COLECTIVAS.** EN LA MEDIDA QUE LA LEY LO PERMITA, USTED Y KINEXIS RENUNCIAN AL DERECHO A UN JUICIO CON JURADO Y ACEPTAN PRESENTAR RECLAMOS SOLO DE FORMA INDIVIDUAL, NO COMO DEMANDANTE NI MIEMBRO DE UNA DEMANDA COLECTIVA O REPRESENTATIVA. **[ABOGADO: confirmar validez y formato]**
+26.2 **Ley aplicable:** el Acuerdo se rige por las leyes de Texas, sin aplicar sus reglas de conflicto de leyes.
+26.3 **Dónde:** los tribunales estatales o federales del **Condado de Harris, Texas**, aunque cualquiera de las partes puede presentar un reclamo ante un tribunal de justicia de paz de Texas (reclamos menores) competente.
+26.4 **RENUNCIA A JUICIO CON JURADO Y A DEMANDAS COLECTIVAS.** EN LA MEDIDA QUE LA LEY LO PERMITA, USTED Y KINEXIS RENUNCIAN AL DERECHO A UN JUICIO CON JURADO Y ACEPTAN PRESENTAR RECLAMOS SOLO DE FORMA INDIVIDUAL, NO COMO DEMANDANTE NI MIEMBRO DE UNA DEMANDA COLECTIVA O REPRESENTATIVA.
 
 ## 27. Cambios a estos Términos
 Le daremos al menos **30 días de aviso** de cualquier cambio por correo o texto. Los cambios no pueden subir su precio durante el plazo de precio congelado, y no aplican a una disputa que haya surgido antes del cambio. Si un cambio reduce de forma importante sus derechos o los servicios, puede cancelar antes de que entre en vigor sin pagar el resto del mínimo.
 
 ## 28. Avisos y comunicaciones
-28.1 Enviaremos los avisos al correo y celular de su Confirmación de Orden. Usted puede enviar avisos a hello@kinexisdigital.com o por texto al [NÚMERO DE TEXAS].
+28.1 Enviaremos los avisos al correo y celular de su Confirmación de Orden. Usted puede enviar avisos a hello@kinexisdigital.com o por texto al +1 (307) 500-3371.
 28.2 Usted acepta que lo contactemos por llamada, texto o correo sobre su cuenta, su sitio y novedades del servicio. Los mensajes publicitarios nuestros son opcionales; responda STOP para no recibir más textos.
 
 ## 29. Disposiciones generales
@@ -227,4 +226,4 @@ Le daremos al menos **30 días de aviso** de cualquier cambio por correo o texto
 29.7 **Idioma:** podemos ofrecer estos Términos en español por cortesía. **Si la versión en inglés y la versión en español no coinciden, prevalece la versión en inglés.**
 
 ## 30. Contacto
-Kinexis Digital · [NOMBRE LEGAL DE LA EMPRESA] · [DIRECCIÓN] · [NÚMERO DE TEXAS] · hello@kinexisdigital.com
+Kinexis Digital · +1 (307) 500-3371 · hello@kinexisdigital.com
