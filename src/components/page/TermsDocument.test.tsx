@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { readFileSync } from "node:fs";
 import { TermsDocument } from "./TermsDocument";
 import { getTermsContent } from "@/content/legal/terms";
+import { renderTermsMarkdown } from "@/lib/legal-markdown";
 
 vi.mock("@/i18n/navigation", () => ({
   Link: ({ locale: _locale, prefetch: _prefetch, ...props }: Record<string, unknown>) => <a {...props} />,
@@ -26,6 +27,7 @@ describe("/terms document", () => {
     }
     expect(doc.querySelector(".terms-updated")?.textContent).toContain("2026");
     const source = readFileSync(`docs/legal/terms-of-service${locale === "en" ? "" : "_es"}.md`, "utf8");
+    expect(getTermsContent(locale)).toEqual(renderTermsMarkdown(source));
     const placeholders = source.match(/\[[^\]\n]+\]/g) ?? [];
     expect([...doc.querySelectorAll("mark")].map((mark) => mark.textContent)).toEqual(placeholders);
     expect(doc.querySelectorAll("article table")).toHaveLength(2);

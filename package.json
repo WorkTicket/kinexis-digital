@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "node scripts/generate-landing-chrome.mjs",
+    "prebuild": "node scripts/generate-landing-chrome.mjs && node scripts/generate-legal-terms.mjs",
     "dev": "node scripts/dev.mjs",
     "build": "next build",
     "start": "next start",
