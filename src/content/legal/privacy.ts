@@ -18,7 +18,7 @@ export type LegalPageContent = {
 export const privacyContent = localeContent({
   en: {
     title: "Privacy Policy",
-    lastUpdated: "August 30, 2026",
+    lastUpdated: "October 19, 2026",
     intro:
       "KINEXIS Digital (\"KINEXIS,\" \"we,\" \"us,\" or \"our\") operates kinexisdigital.com. This Privacy Policy explains how we collect, use, disclose, and protect personal information when you visit our website, submit forms, or communicate with us.",
     contactLabel: "hello@kinexisdigital.com",
@@ -94,7 +94,7 @@ export const privacyContent = localeContent({
       {
         title: "Contact Us",
         paragraphs: [
-          "For privacy questions or requests, email hello@kinexisdigital.com.",
+          "For privacy questions or requests, email hello@kinexisdigital.com or call/text +1 (307) 500-3371.",
         ],
       },
     ],
@@ -102,7 +102,7 @@ export const privacyContent = localeContent({
 
   "es-419": {
     title: "Política de Privacidad",
-    lastUpdated: "30 de agosto de 2026",
+    lastUpdated: "19 de octubre de 2026",
     intro:
       "KINEXIS Digital (\"KINEXIS,\" \"nosotros\" o \"nuestro\") opera kinexisdigital.com. Esta Política de Privacidad explica cómo recopilamos, usamos, divulgamos y protegemos la información personal cuando visitas nuestro sitio, envías formularios o te comunicas con nosotros.",
     contactLabel: "hello@kinexisdigital.com",
@@ -177,7 +177,7 @@ export const privacyContent = localeContent({
       },
       {
         title: "Contáctanos",
-        paragraphs: ["Para preguntas o solicitudes de privacidad, escribe a hello@kinexisdigital.com."],
+        paragraphs: ["Para preguntas o solicitudes de privacidad, escribe a hello@kinexisdigital.com o llama/envía un mensaje de texto al +1 (307) 500-3371."],
       },
     ],
   },
