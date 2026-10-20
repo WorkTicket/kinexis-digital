@@ -111,7 +111,7 @@ const softPricing = localeContent({
       { label: "Después", basic: "Cuidado opcional", custom: "Cuidado opcional" },
     ],
     pricingNote:
-      "La llamada es gratis. Solo pagas si decides construir.\n\nTu sitio corre en Cloudflare Pages. El cuidado mensual es opcional. La tarifa va en la propuesta, y cubre vigilar el sitio y arreglar lo que falle. Si quieres la cuenta a tu nombre, movemos el sitio a tu propia cuenta de Cloudflare cuando lo pidas. El dominio queda registrado a tu nombre.\n\nEl dominio, las fotos de stock y las fuentes o herramientas de pago se cobran a lo que nos cuestan. El SEO continuo, el Perfil de Empresa en Google y los anuncios siguen siendo opcionales. No hacen falta para lanzar, ni para conservar el sitio.",
+      "La llamada es gratis. Solo pagas si decides construir.\n\nTu sitio corre en Cloudflare Pages. El cuidado mensual es opcional. La tarifa va en la propuesta, y cubre vigilar el sitio y arreglar lo que falle. Si quieres la cuenta a tu nombre, movemos el sitio a tu propia cuenta de Cloudflare cuando lo pidas. El dominio queda registrado a tu nombre.\n\nEl dominio, las fotos de stock y las fuentes o herramientas de pago se cobran a lo que nos cuestan. El SEO continuo, el Perfil de Negocio de Google y los anuncios siguen siendo opcionales. No hacen falta para lanzar, ni para conservar el sitio.",
     pricingHighlights: [
       "Opción de pago por hitos",
     ],
@@ -158,7 +158,7 @@ const softPricing = localeContent({
       { label: "Después", basic: "Cuidado opcional", custom: "Cuidado opcional" },
     ],
     pricingNote:
-      "La llamada es gratis. Solo pagas si decides construir.\n\nTu sitio corre en Cloudflare Pages. El cuidado mensual es opcional. La tarifa va en la propuesta, y cubre vigilar el sitio y arreglar lo que falle. Si quieres la cuenta a tu nombre, movemos el sitio a tu propia cuenta de Cloudflare cuando lo pidas. El dominio queda registrado a tu nombre.\n\nEl dominio, las fotos de stock y las fuentes o herramientas de pago se cobran a lo que nos cuestan. El SEO continuo, el Perfil de Empresa en Google y los anuncios siguen siendo opcionales. No hacen falta para lanzar, ni para conservar el sitio.",
+      "La llamada es gratis. Solo pagas si decides construir.\n\nTu sitio corre en Cloudflare Pages. El cuidado mensual es opcional. La tarifa va en la propuesta, y cubre vigilar el sitio y arreglar lo que falle. Si quieres la cuenta a tu nombre, movemos el sitio a tu propia cuenta de Cloudflare cuando lo pidas. El dominio queda registrado a tu nombre.\n\nEl dominio, las fotos de stock y las fuentes o herramientas de pago se cobran a lo que nos cuestan. El SEO continuo, el Perfil de Negocio de Google y los anuncios siguen siendo opcionales. No hacen falta para lanzar, ni para conservar el sitio.",
     pricingHighlights: [
       "Opción de pago por hitos",
     ],

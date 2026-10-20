@@ -93,7 +93,7 @@ export function PlanCheckout({ locale }: { locale: Locale }) {
               </div>
               <div className="pay-payment">
                 {ownIt ? <>
-                  <a className={`pay-own ${!agreed ? "pointer-events-none" : ""}`} href={agreed ? OWN_IT_PAYMENT_URL : undefined} aria-disabled={!agreed} tabIndex={agreed ? 0 : -1} target="_blank" rel="noopener noreferrer">{c.payOwn}<ArrowUpRight size={17} aria-hidden /></a>
+                  <a role="link" className={`pay-own ${!agreed ? "pointer-events-none" : ""}`} href={agreed ? OWN_IT_PAYMENT_URL : undefined} aria-disabled={!agreed} tabIndex={agreed ? 0 : -1} target="_blank" rel="noopener noreferrer">{c.payOwn}<ArrowUpRight size={17} aria-hidden /></a>
                   <p className="pay-tab-note">{c.newTab}</p>
                 </> : <PayPalSubscribeButtons key={selected} planKey={selected} locale={locale} agreed={agreed} content={c} />}
               </div>

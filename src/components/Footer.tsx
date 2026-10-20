@@ -95,7 +95,7 @@ export async function Footer() {
     ["/services/web-design", es ? "Páginas web para contratistas" : "Websites for contractors"],
     ["/lp/get-a-website#pricing", es ? "Respuesta por texto a llamadas perdidas" : "Missed-call text-back"],
     ["/lp/get-a-website#pricing", es ? "Solicitudes de reseñas de Google" : "Google review requests"],
-    ["/services/seo", es ? "Mejora de su Perfil de Google" : "Google Business Profile tune-up"],
+    ["/services/seo", es ? "Mejora de su Perfil de Negocio de Google" : "Google Business Profile tune-up"],
     ["/lp/get-a-website#pricing", es ? "Precios" : "Pricing"],
   ];
   const markets = [

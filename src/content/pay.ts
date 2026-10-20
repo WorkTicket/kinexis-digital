@@ -88,19 +88,19 @@ const payContent = localeContent<PayContent>({
     cancelledBack: "Return to payment",
   },
   "es-419": {
-    metaTitle: "Paga una factura o un anticipo",
+    metaTitle: "Paga una factura o un depósito",
     metaDescription:
-      "Paga una factura o un anticipo de KINEXIS con PayPal. Terminas el pago en PayPal y el recibo llega a la cuenta con la que pagaste.",
+      "Paga una factura o un depósito de KINEXIS con PayPal. Terminas el pago en PayPal y el recibo llega a la cuenta con la que pagaste.",
     eyebrow: "Facturas",
     title: "Paga una factura",
-    signal: "o un anticipo",
+    signal: "o un depósito",
     copy: "Escribe el monto que acordamos. Terminas en PayPal con tarjeta o saldo, y PayPal manda el recibo.",
     formTitle: "Datos del pago",
-    formSubtitle: "Usa el monto de tu factura o el anticipo que confirmamos.",
+    formSubtitle: "Usa el monto de tu factura o el depósito que confirmamos.",
     amountLabel: "Monto",
     amountHint: "USD, de $1 a $75,000.",
     descriptionLabel: "Para qué es este pago",
-    descriptionPlaceholder: "Anticipo del sitio, marzo",
+    descriptionPlaceholder: "Depósito del sitio, marzo",
     nameLabel: "Tu nombre",
     namePlaceholder: "Jordan Lee",
     emailLabel: "Tu correo",
@@ -116,7 +116,7 @@ const payContent = localeContent<PayContent>({
     steps: [
       {
         title: "Confirma el monto",
-        desc: "Nombra la factura o el anticipo para que podamos identificarlo.",
+        desc: "Nombra la factura o el depósito para que podamos identificarlo.",
       },
       {
         title: "Paga en PayPal",

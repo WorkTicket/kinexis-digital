@@ -9,11 +9,9 @@ import { PageHero } from "@/components/page/PageHero";
 import { PlanCheckout } from "@/components/pay/PlanCheckout";
 import { getPlanContent } from "@/content/pay-plans";
 import "@/styles/routes/pay.css";
-import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { getPayContent } from "@/content/pay";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildPageMetadata } from "@/lib/metadata";
-import { duration } from "@/lib/motion";
 
 type Props = {
   params: LocaleParams;
@@ -68,7 +66,7 @@ export default async function PayPage({ params, searchParams }: Props) {
         <div className="shell relative py-16 md:py-24">
           <h2 id="pay-invoice-heading" className="type-section mb-8">{plans.invoice}</h2>
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_300px]">
-            <Reveal variant="fadeUp">
+            <div>
               <PayForm
                 content={c}
                 defaults={{
@@ -79,24 +77,21 @@ export default async function PayPage({ params, searchParams }: Props) {
                   company: clip(query.company, 120),
                 }}
               />
-            </Reveal>
+            </div>
 
-            <Reveal variant="fadeUp" delay={0.08}>
+            <div>
               <aside className="contact-aside">
                 <div>
                   <h2 className="contact-aside__title">{c.asideTitle}</h2>
                   <p className="contact-aside__subtitle">{c.asideSubtitle}</p>
-                  <RevealGroup
-                    as="ol"
+                  <ol
                     className="contact-aside__steps"
-                    stagger={duration.staggerTight}
-                    delayChildren={0.06}
                     aria-label={c.asideTitle}
                   >
                     {c.steps.map((step, index) => {
                       const Icon = STEP_ICONS[index] ?? Receipt;
                       return (
-                        <RevealItem key={step.title} as="li" variant="fadeUp">
+                        <li key={step.title}>
                           <div className="contact-aside__step">
                             <span className="icon-well icon-well--sm" aria-hidden>
                               <Icon strokeWidth={1.5} />
@@ -106,10 +101,10 @@ export default async function PayPage({ params, searchParams }: Props) {
                               <p className="contact-aside__step-desc">{step.desc}</p>
                             </div>
                           </div>
-                        </RevealItem>
+                        </li>
                       );
                     })}
-                  </RevealGroup>
+                  </ol>
                 </div>
                 <ul className="contact-aside__trust">
                   {c.trust.map((label) => (
@@ -119,7 +114,7 @@ export default async function PayPage({ params, searchParams }: Props) {
                   ))}
                 </ul>
               </aside>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>

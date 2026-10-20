@@ -5,12 +5,28 @@ import { PlanCheckout } from "./PlanCheckout";
 import { getPlanContent } from "@/content/pay-plans";
 import { PayPalSubscribeButtons } from "./PayPalSubscribeButtons";
 import { loadPayPalSDK, type PayPalOptions } from "@/lib/paypal-subscriptions";
-import { PAYPAL_PLANS } from "@/config/paypal-plans";
+import { OWN_IT_PAYMENT_URL, PAYPAL_PLANS } from "@/config/paypal-plans";
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/lib/paypal-subscriptions", async importOriginal => ({ ...await importOriginal<object>(), loadPayPalSDK: vi.fn() }));
 const router = { push: vi.fn() };
 afterEach(() => { cleanup(); vi.clearAllMocks(); });
 describe("plan agreement", () => {
+  it.each(["en", "es-419", "es-ES"] as const)("keeps Own It disabled until terms are accepted in %s", locale => {
+    vi.mocked(loadPayPalSDK).mockReturnValue(new Promise(() => {}));
+    render(<PlanCheckout locale={locale} />);
+    fireEvent.click(screen.getByRole("radio", { name: /Own It/ }));
+    const payment = screen.getByRole("link", { name: getPlanContent(locale).payOwn });
+    expect(payment).toHaveAttribute("aria-disabled", "true");
+    expect(payment).not.toHaveAttribute("href");
+    expect(payment).toHaveAttribute("tabindex", "-1");
+    fireEvent.click(screen.getByRole("checkbox"));
+    expect(payment).toHaveAttribute("aria-disabled", "false");
+    expect(payment).toHaveAttribute("href", OWN_IT_PAYMENT_URL);
+    expect(payment).toHaveAttribute("tabindex", "0");
+    fireEvent.click(screen.getByRole("checkbox"));
+    expect(payment).not.toHaveAttribute("href");
+    expect(payment).toHaveAttribute("aria-disabled", "true");
+  });
   it("gates the selected checkout and preserves agreement when choosing Own It", () => {
     vi.mocked(loadPayPalSDK).mockReturnValue(new Promise(() => {}));
     render(<PlanCheckout locale="en" />);

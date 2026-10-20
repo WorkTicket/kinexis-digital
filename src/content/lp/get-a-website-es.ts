@@ -517,7 +517,7 @@ export function buildSpanishGetAWebsite(
       {
         question: "¿El SEO está incluido?",
         answer:
-          "El básico cubre títulos, descripciones e indexación en un sitio de hasta 4 páginas. El a medida suma una base más completa cuando el proyecto lo pide: una página por servicio, títulos y descripciones, estructura local, un sitemap e indexación. El posicionamiento, el Perfil de Empresa en Google y el SEO mensual siguen siendo opcionales después del lanzamiento.",
+          "El básico cubre títulos, descripciones e indexación en un sitio de hasta 4 páginas. El a medida suma una base más completa cuando el proyecto lo pide: una página por servicio, títulos y descripciones, estructura local, un sitemap e indexación. El posicionamiento, el Perfil de Negocio de Google y el SEO mensual siguen siendo opcionales después del lanzamiento.",
       },
       {
         question: "¿Pueden rediseñar mi sitio actual?",

@@ -8,10 +8,14 @@ export function getTermsContent(locale: Locale, privacy = false) {
   const es = locale !== "en";
   let source = documents[`${privacy ? "privacy-policy" : "terms-of-service"}-${es ? "es" : "en"}`];
   const operator = LEGAL_OPERATOR_NAME ? (es ? `es operada por ${LEGAL_OPERATOR_NAME}, empresa individual,` : `is operated by ${LEGAL_OPERATOR_NAME}, a sole proprietorship,`) : "";
-  source = source.replaceAll("{{OPERATOR_SENTENCE}}", operator)
+  const effectiveDate = privacy ? PRIVACY_EFFECTIVE_DATE : TERMS_EFFECTIVE_DATE;
+  const displayDate = privacy
+    ? new Intl.DateTimeFormat(es ? "es-MX" : "en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${effectiveDate}T00:00:00Z`))
+    : effectiveDate;
+  source = source.replaceAll("{{OPERATOR_SENTENCE}} ", operator ? `${operator} ` : "")
     .replaceAll("{{MAILING_ADDRESS_SENTENCE}}", MAILING_ADDRESS ? ` · ${es ? "Dirección postal" : "Mailing address"}: ${MAILING_ADDRESS}` : "")
     .replaceAll("{{BUSINESS_PHONE_DISPLAY}}", getBusinessPhoneDisplay() ?? "")
-    .replaceAll("{{EFFECTIVE_DATE}}", privacy ? PRIVACY_EFFECTIVE_DATE : TERMS_EFFECTIVE_DATE)
+    .replaceAll("{{EFFECTIVE_DATE}}", displayDate)
     .replaceAll("hello@kinexisdigital.com", BUSINESS_EMAIL);
   if (!privacy) {
     source = source.replace(/\*\*(Who we are|Quiénes somos)\.\*\*[^\n]*/i, es

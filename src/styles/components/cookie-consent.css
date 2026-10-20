@@ -2,6 +2,16 @@ html:not(.cookie-pending) .cookie-banner {
   display: none;
 }
 
+/* Reserve the actual banner height, including wrapped translations and safe areas.
+   :root also takes precedence over the inline first-paint padding fallback. */
+html.cookie-pending:root body {
+  padding-bottom: 0;
+}
+
+html.cookie-pending:root .site-footer {
+  padding-bottom: var(--cookie-banner-height, 22rem);
+}
+
 .cookie-banner {
   position: fixed;
   inset-inline: 0;
@@ -21,7 +31,6 @@ html:not(.cookie-pending) .cookie-banner {
     backdrop-filter: blur(85px) saturate(180%);
   }
 }
-
 @media (min-width: 640px) {
   .cookie-banner {
     padding: 1.25rem 1.5rem;
@@ -132,15 +141,5 @@ html.cookie-pending.in-app-browser .landing-sticky-cta {
 @media (min-width: 640px) {
   html.cookie-pending.in-app-browser .landing-sticky-cta {
     bottom: calc(6.5rem + var(--in-app-chrome-bottom));
-  }
-}
-
-html.in-app-browser.cookie-pending body {
-  padding-bottom: calc(6.5rem + var(--in-app-chrome-bottom, 0px));
-}
-
-@media (min-width: 640px) {
-  html.in-app-browser.cookie-pending body {
-    padding-bottom: calc(5.5rem + var(--in-app-chrome-bottom, 0px));
   }
 }

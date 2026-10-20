@@ -3,6 +3,7 @@ import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { getPlanContent } from "@/content/pay-plans";
 import { PAYPAL_PLANS, type PlanKey } from "@/config/paypal-plans";
 import { BUSINESS_PHONE_E164 } from "@/config/business-identity";
+import { formatBusinessPhone } from "@/lib/business";
 import { sanitizeSubscriptionId } from "@/lib/paypal-subscriptions";
 import { buildPageMetadata } from "@/lib/metadata";
 import { SubscriptionConversion } from "@/components/pay/SubscriptionConversion";
@@ -24,7 +25,7 @@ export default async function SubscriptionThanks({ params, searchParams }: Props
   return <main className="pay-thanks">
     <h1>{c.thanks}</h1><p>{index >= 0 ? c.names[index] : c.unknownPlan}</p>
     <p>{c.sidLabel}: <code>{sid ?? c.sidFallback}</code></p>
-    <ol>{c.next.map(step => <li key={step}>{step}</li>)}<li><a href={`sms:${BUSINESS_PHONE_E164}`}>{c.questions} {BUSINESS_PHONE_E164}</a></li></ol>
+    <ol>{c.next.map(step => <li key={step}>{step}</li>)}<li><a href={`sms:${BUSINESS_PHONE_E164}`}>{c.questions} {formatBusinessPhone(BUSINESS_PHONE_E164)}</a></li></ol>
     {plan && sid && <SubscriptionConversion plan={plan} sid={sid} />}
   </main>;
 }

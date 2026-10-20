@@ -1,4 +1,6 @@
 import type { Locale } from "@/i18n/routing";
+const subscriptionTimingEn = "Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe.";
+const subscriptionTimingEs = "Suscríbase el día del lanzamiento, después de aprobar su página. El primer cobro se hace cuando se suscribe.";
 const en = {
   eyebrow: "Plans & payment",
   checkoutLabel: "Choose a plan and check out",
@@ -11,7 +13,7 @@ const en = {
   billing: "Billing",
   monthlyBilling: "Monthly",
   firstCharge: "First charge",
-  onLaunch: "On your launch day",
+  onLaunch: "When you subscribe",
   whenPaid: "When you pay",
   commitment: "Minimum term",
   minimum: "3 months, then monthly",
@@ -28,7 +30,7 @@ const en = {
   "metaTitle": "Plans & Checkout",
   "metaDescription": "Choose your Kinexis Digital website plan and check out securely with PayPal. Already have an invoice or deposit? Pay your agreed amount here.",
   "title": "Pick your plan",
-  "intro": "Approved your free preview? Subscribe here. Nothing is charged before your site goes live.",
+  "intro": subscriptionTimingEn,
   "preview": "Haven't seen your free preview yet?",
   "previewLink": "Get your free preview",
   "first": "first.",
@@ -36,7 +38,7 @@ const en = {
   "monthly": "/mo",
   "once": "one time",
   "down": "$0 down",
-  "timing": "Subscribe once you've approved your preview. Your first charge happens on your launch day, and we'll confirm the date with you. If you subscribe early, we'll line up your billing with your launch date.",
+  "timing": subscriptionTimingEn,
   "agree": "I agree to the",
   "terms": "Terms of Service",
   "and": "and",
@@ -45,7 +47,7 @@ const en = {
   "payOwn": "Pay $1,497 with PayPal",
   "newTab": "Opens PayPal's secure page in a new tab.",
   "trust": "Secure checkout by PayPal. Pay with your PayPal account or a debit/credit card. We never see your full card number.",
-  "monthlyTerms": "3-month minimum, then month to month · Price locked 24 months · Domain renewal included when we registered your domain · First charge the day your site goes live · Plus tax, if any",
+  "monthlyTerms": "3-month minimum, then month to month · Price locked 24 months · Domain renewal included when we registered your domain · First charge when you subscribe · Plus tax, if any",
   "guarantee": "60-day tracked-lead guarantee",
   "ownTerms": "One payment · Full refund if we don't launch within 30 days of your approval for reasons on our side · Plus tax, if any",
   "invoice": "Paying an invoice or deposit?",
@@ -110,7 +112,7 @@ const en = {
     ],
     [
       "When am I charged?",
-      "Monthly plans: on your launch day, then the same day each month. Own It: when you pay."
+      `${subscriptionTimingEn} Subsequent charges follow your PayPal billing schedule. Own It: when you pay.`
     ],
     [
       "Is there a contract?",
@@ -144,7 +146,7 @@ const es = {
   billing: "Facturación",
   monthlyBilling: "Mensual",
   firstCharge: "Primer cobro",
-  onLaunch: "El día de su publicación",
+  onLaunch: "Cuando se suscribe",
   whenPaid: "Al pagar",
   commitment: "Plazo mínimo",
   minimum: "3 meses, luego mes a mes",
@@ -161,15 +163,15 @@ const es = {
   "metaTitle": "Planes y pago",
   "metaDescription": "Escoja su plan de sitio web con Kinexis Digital y pague de forma segura con PayPal. También puede pagar aquí una factura o un depósito acordado.",
   "title": "Escoja su plan",
-  "intro": "¿Ya aprobó su vista previa gratis? Inscríbase aquí. No se cobra nada antes de que su página se publique.",
+  "intro": subscriptionTimingEs,
   "preview": "¿Aún no ve su vista previa gratis?",
   "previewLink": "Pídala aquí",
   "first": "primero.",
   "popular": "★ El más popular",
   "monthly": "/mes",
   "once": "un solo pago",
-  "down": "$0 de anticipo",
-  "timing": "Inscríbase cuando haya aprobado su vista previa. El primer cobro es el día de su publicación; le confirmamos la fecha. Si se inscribe antes, ajustamos el cobro a la fecha de publicación.",
+  "down": "$0 de entrada",
+  "timing": subscriptionTimingEs,
   "agree": "Acepto los",
   "terms": "Términos del Servicio",
   "and": "y la",
@@ -178,7 +180,7 @@ const es = {
   "payOwn": "Pagar $1,497 con PayPal",
   "newTab": "Abre la página segura de PayPal en otra pestaña.",
   "trust": "Pago seguro con PayPal. Pague con su cuenta PayPal o con tarjeta de débito/crédito. Nunca vemos el número completo de su tarjeta.",
-  "monthlyTerms": "Mínimo de 3 meses, luego mes a mes · Precio fijo por 24 meses · Renovación del dominio incluida si lo registramos por usted · Primer cobro el día que su página se publica · Más impuestos, si aplican",
+  "monthlyTerms": "Mínimo de 3 meses, luego mes a mes · Precio fijo por 24 meses · Renovación del dominio incluida si lo registramos por usted · Primer cobro cuando se suscribe · Más impuestos, si aplican",
   "guarantee": "Garantía de 60 días por contactos registrados",
   "ownTerms": "Un solo pago · Reembolso completo si no publicamos en 30 días desde su aprobación por causas nuestras · Más impuestos, si aplican",
   "invoice": "¿Va a pagar una factura o un depósito?",
@@ -207,7 +209,7 @@ const es = {
       "1 página nueva al mes",
       "Respuesta por texto a llamadas perdidas",
       "Solicitud de reseña de Google a cada cliente",
-      "Optimización del Perfil de Empresa de Google",
+      "Optimización del Perfil de Negocio de Google",
       "Seguimiento de llamadas e informe mensual",
       "Garantía de 60 días por contactos registrados"
     ],
@@ -216,7 +218,7 @@ const es = {
       "Sitio completo en inglés y español, hasta 20 páginas",
       "Cambios el mismo día si llegan antes del mediodía, hora Central",
       "2 páginas nuevas al mes",
-      "2 publicaciones en Google al mes"
+      "2 publicaciones en su Perfil de Negocio de Google al mes"
     ],
     [
       "El mismo sitio de Lead System, hasta 10 páginas",
@@ -243,7 +245,7 @@ const es = {
     ],
     [
       "¿Cuándo se cobra?",
-      "Planes mensuales: el día de su publicación y luego el mismo día de cada mes. Own It: al pagar."
+      `${subscriptionTimingEs} Los siguientes cobros siguen el calendario de pagos de PayPal. Own It: al pagar.`
     ],
     [
       "¿Hay contrato?",

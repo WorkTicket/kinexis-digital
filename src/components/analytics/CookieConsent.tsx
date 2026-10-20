@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { Button } from "@/components/ui/Button";
 import {
@@ -105,9 +105,26 @@ function CookieBanner({
   onReject: () => void;
 }) {
   const t = useTranslations("cookies");
+  const bannerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const banner = bannerRef.current;
+    if (!banner) return;
+    const updateHeight = () => {
+      document.documentElement.style.setProperty("--cookie-banner-height", `${banner.getBoundingClientRect().height}px`);
+    };
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(banner);
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--cookie-banner-height");
+    };
+  }, []);
 
   return (
     <div
+      ref={bannerRef}
       role="region"
       aria-label={t("title")}
       aria-describedby="cookie-consent-desc"

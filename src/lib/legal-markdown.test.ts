@@ -3,6 +3,16 @@ import { getTermsContent } from "@/content/legal/terms";
 import { renderTermsMarkdown } from "@/lib/legal-markdown";
 
 describe("supplied legal documents", () => {
+  it.each([
+    ["en", "October 19, 2026"],
+    ["es-419", "19 de octubre de 2026"],
+    ["es-ES", "19 de octubre de 2026"],
+  ] as const)("formats the privacy date and omits empty operator spacing in %s", (locale, date) => {
+    const privacy = getTermsContent(locale, true);
+    expect(privacy.html).toContain(date);
+    expect(privacy.html).not.toContain("2026-10-19");
+    expect(privacy.html).not.toMatch(/\) {2,}/);
+  });
   it.each(["en", "es-419", "es-ES"] as const)("renders complete terms and privacy for %s without draft notes", locale => {
     for (const privacy of [false, true]) {
       const doc = getTermsContent(locale, privacy);
