@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Check, ChevronDown, FolderCheck, Globe2, Languages, LockKeyhole, MessageCircle, ShieldCheck, TrendingUp } from "lucide-react";
+import { ArrowUpRight, Check, ChevronDown, FolderCheck, Globe2, Languages, LayoutGrid, LockKeyhole, MessageCircle, ShieldCheck, TrendingUp } from "lucide-react";
 import Card from "@/components/ui/Card";
 import type { Locale } from "@/i18n/routing";
 import { getPlanContent } from "@/content/pay-plans";
@@ -33,7 +33,7 @@ export function PlanCheckout({ locale }: { locale: Locale }) {
         <div className="pay-checkout-grid">
           <div className="pay-selection">
             <fieldset className="pay-plan-fieldset">
-              <legend className="pay-step-heading"><span className="pay-step-number" aria-hidden>01</span>{c.choosePlan}</legend>
+              <legend className="pay-step-heading"><LayoutGrid className="pay-heading-icon" strokeWidth={1.5} aria-hidden />{c.choosePlan}</legend>
               <p className="pay-step-copy">{c.chooseHint}</p>
               <div className="pay-grid">
                 {plans.map(({ key, icon: Icon }, index) => (
@@ -75,7 +75,7 @@ export function PlanCheckout({ locale }: { locale: Locale }) {
 
           <aside className="pay-checkout" aria-labelledby="pay-checkout-heading">
             <Card hover={false} className="pay-summary">
-              <h2 id="pay-checkout-heading" className="pay-step-heading"><span className="pay-step-number" aria-hidden>02</span>{c.checkoutTitle}</h2>
+              <h2 id="pay-checkout-heading" className="pay-step-heading"><LockKeyhole className="pay-heading-icon" strokeWidth={1.5} aria-hidden />{c.checkoutTitle}</h2>
               <div className="pay-summary-plan" aria-live="polite" aria-atomic="true">
                 <span className="icon-well"><SelectedIcon strokeWidth={1.5} aria-hidden /></span>
                 <div><p className="pay-summary-name">{c.names[selectedIndex]}{selected === "leadSystem" && <span className="pay-down">{c.down}</span>}</p><p className="pay-summary-description">{c.descriptions[selectedIndex]}</p></div>
