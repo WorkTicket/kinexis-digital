@@ -34,6 +34,7 @@ Implemented directly on `main`, as requested. The initial implementation was rev
 - Only one non-test source declaration contains the default phone digits. No public legal placeholders, old payment-provider wording or incorrect brand casing remain. Legacy casing strings used to normalize metadata and a design-reference comment are not public copy.
 - Read-only browser checks and screenshots use `scripts/check-site-fixes.mjs`. It blocks every external request, every `/api/` request and every non-GET request. It checks all three pages in all three locales, desktop/mobile overflow, conditional license fields, optional SMS consent, language buttons, Spanish redirects and the Pixel consent queue. See `browser-checks.json` for the final result.
 - Final browser run passed: 12 screenshots, all locale/consent checks successful, and zero POST attempts. The production queue begins revoked, grants after Accept, and Cookie settings reopens the banner for rejection. A legacy CSS rule hiding the landing-page banner was removed.
+- Intake header follow-up: replaced the text brand link with the existing white logo and a two-option English / Español switch. Verified the logo, both switch directions, and layout at 320, 390 and 1440px without submitting the form. Intake screenshots were refreshed.
 
 **No forms were submitted, no live API POSTs were made, and no Meta test events were sent.** API tests invoke handlers with mocked email and Meta delivery only. Browser QA does not click any submit button.
 

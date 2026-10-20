@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocale } from "next-intl";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Link } from "@/i18n/navigation";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
 import { QUICK_FIELDS, LAUNCH_FIELDS, SMS_CONSENT_TEXT, SMS_CONSENT_VERSION, INTAKE_AUTHORIZATION, requiresTradeLicense, type ContractorField } from "@/content/contractor-intake";
@@ -52,7 +53,18 @@ export function ClientIntakeForm() {
     finally { lock.current = false; }
   }
   return <div className="intake" lang={es ? "es" : "en"}>
-    <header className="intake-hero"><div className="intake-wrap intake-hero__inner"><Link href="/">Kinexis Digital</Link><LanguageSwitcher /><h1>{es ? "Empecemos: su vista previa gratis" : "Get started: your free homepage preview"}</h1><p className="intake-lede">{es ? "Toma unos 5 minutos. Hacemos su vista previa gratis en 2 días hábiles después de su llamada. Sin tarjeta y sin compromiso. ¿No sabe alguna respuesta? Déjela en blanco y le preguntamos por texto." : "Takes about 5 minutes. We build your free homepage preview within 2 business days of your call. No card, nothing owed to look. Not sure about an answer? Skip it and we'll ask by text."}</p></div></header>
+    <header className="intake-hero">
+      <div className="intake-wrap intake-hero__inner">
+        <div className="intake-hero__topbar">
+          <Link href="/" className="intake-hero__brand" aria-label={es ? "Kinexis Digital — inicio" : "Kinexis Digital — home"}>
+            <BrandLogo height={32} />
+          </Link>
+          <LanguageSwitcher compact />
+        </div>
+        <h1>{es ? "Empecemos: su vista previa gratis" : "Get started: your free homepage preview"}</h1>
+        <p className="intake-lede">{es ? "Toma unos 5 minutos. Hacemos su vista previa gratis en 2 días hábiles después de su llamada. Sin tarjeta y sin compromiso. ¿No sabe alguna respuesta? Déjela en blanco y le preguntamos por texto." : "Takes about 5 minutes. We build your free homepage preview within 2 business days of your call. No card, nothing owed to look. Not sure about an answer? Skip it and we'll ask by text."}</p>
+      </div>
+    </header>
     <div className="intake-wrap intake-body"><p className="intake-note">{es ? "Nunca escriba contraseñas, accesos ni números de tarjeta aquí." : "Never write passwords, logins or card numbers here."}</p>
     {status === "success" ? <p className="intake-success" role="status">{es ? "Recibimos sus respuestas. Nos pondremos en contacto con usted." : "We have your answers. We'll be in touch."}</p> : <form onSubmit={submit}>
       <section className="intake-section"><h2>{es ? "1. Para empezar (para su vista previa gratis)" : "1. Quick start (for your free preview)"}</h2><div className="intake-fields">{QUICK_FIELDS.map(field)}</div>

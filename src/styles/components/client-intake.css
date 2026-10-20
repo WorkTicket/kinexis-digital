@@ -560,10 +560,63 @@ html.intake-page .site-atmosphere {
 
 .intake-field select { width:100%; padding:12px; border:1px solid #9ca3af; border-radius:6px; background:#fff; color:#16181d; }
 .intake fieldset { min-width:0; border:0; padding:0; }
-.intake-hero .language-switcher { margin-top:12px; }
 .intake a { text-decoration:underline; text-underline-offset:3px; }
 .intake-section h2 { padding:12px 14px; }
-.intake-hero .site-footer__lang-btn { color:#e2e8f0; }
-.intake-hero .site-footer__lang-btn--active { background:#fff; color:#16181d; }
 .intake-field input:not([type=checkbox]):not([type=radio]), .intake-field textarea { background:#fff; border:1px solid #9ca3af; border-radius:5px; padding:10px; }
 .intake-field input[type=radio], .intake-field input[type=checkbox] { width:18px; height:18px; flex-shrink:0; }
+
+.intake-hero__inner { padding-block:28px 40px; }
+.intake-hero__topbar {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:24px;
+  margin-bottom:32px;
+  border-bottom:1px solid rgb(255 255 255 / 16%);
+}
+.intake .intake-hero__brand { display:inline-flex; flex-shrink:0; text-decoration:none; }
+.intake-hero__brand .brand-logo--on-light { display:none; }
+.intake-hero__brand .brand-logo--on-dark { display:block; }
+.intake-hero h1 { max-width:22ch; margin:0; font-size:clamp(2rem,4.6vw,3rem); line-height:1.12; }
+.intake-hero .intake-lede { max-width:66ch; margin-top:20px; color:#d1d5db; line-height:1.7; }
+.intake-hero .language-toggle {
+  display:inline-flex;
+  flex-shrink:0;
+  gap:4px;
+  padding:4px;
+  border:1px solid rgb(255 255 255 / 22%);
+  border-radius:999px;
+  background:rgb(255 255 255 / 6%);
+}
+.intake-hero .language-toggle__button {
+  min-height:40px;
+  padding:0 16px;
+  border:0;
+  border-radius:999px;
+  color:#e2e8f0;
+  background:transparent;
+  font:inherit;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  transition:background-color .15s,color .15s;
+}
+.intake-hero .language-toggle__button:hover { background:rgb(255 255 255 / 12%); color:#fff; }
+.intake-hero .language-toggle__button--active,
+.intake-hero .language-toggle__button--active:hover { background:#fff; color:#111827; }
+.intake-hero__brand:focus-visible,
+.intake-hero .language-toggle__button:focus-visible { outline:3px solid #60a5fa; outline-offset:4px; }
+@media(max-width:480px) {
+  .intake-hero__inner { padding-block:20px 32px; }
+  .intake-hero__topbar { gap:12px; padding-bottom:20px; margin-bottom:28px; }
+  .intake-hero__brand .brand-logo { width:140px; height:auto; }
+  .intake-hero .language-toggle__button { padding-inline:12px; min-height:38px; font-size:12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .intake-hero .language-toggle__button { transition:none; }
+}
+@media(max-width:360px) {
+  .intake-hero__brand .brand-logo { width:116px; }
+  .intake-hero .language-toggle__button { padding-inline:10px; }
+}
