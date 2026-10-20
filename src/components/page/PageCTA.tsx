@@ -64,12 +64,12 @@ export async function PageCTA({
   const resolvedId = id ?? (isInline ? "mid-cta" : "get-started");
   const resolvedEyebrow =
     eyebrow ?? (isInline || isMinimal ? t("ready") : tNav("contact"));
-  const resolvedPrimaryLabel = primaryLabel ?? t("bookStrategyCall");
+  const resolvedPrimaryLabel = primaryLabel ?? t("messageMessenger");
   const resolvedSecondaryLabel =
     secondaryLabel === undefined
       ? isInline || isMinimal
         ? null
-        : t("sendMessage")
+        : t("seePlans")
       : secondaryLabel;
   const resolvedMeta =
     meta === undefined

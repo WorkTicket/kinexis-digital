@@ -4,6 +4,7 @@ import { HeroParallax, HeroScrollRoot } from "@/components/home/HeroParallax";
 import { HeroHeading } from "@/components/page/HeroHeading";
 import { PageHeroAtmosphere } from "@/components/page/PageHeroAtmosphere";
 import { Button } from "@/components/ui/Button";
+import { CTA_PRIMARY_HREF } from "@/lib/site-cta";
 import { cn } from "@/lib/cn";
 import "@/styles/components/page-stages.css";
 
@@ -45,7 +46,7 @@ export async function PageHero({
   title,
   signal,
   copy,
-  primaryHref = "/contact",
+  primaryHref = CTA_PRIMARY_HREF,
   primaryLabel,
   secondaryHref,
   secondaryLabel,
@@ -61,7 +62,7 @@ export async function PageHero({
   className,
 }: PageHeroProps) {
   const t = await getTranslations("common");
-  const resolvedPrimaryLabel = primaryLabel ?? t("bookStrategyCall");
+  const resolvedPrimaryLabel = primaryLabel ?? t("messageMessenger");
   const hasPhotoAtmosphere = Boolean(atmosphere || atmosphereSrc);
   const sectionClass = cn(
     "hero-shell page-hero chapter chapter--void relative flex flex-col overflow-x-clip",

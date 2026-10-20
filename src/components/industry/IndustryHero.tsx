@@ -86,8 +86,8 @@ export async function IndustryHero({ industry, className }: IndustryHeroProps) {
                   </Button>
                 </div>
                 <div className="hero-enter hero-enter-4b">
-                  <Button href="/case-studies" variant="link" arrow>
-                    {t("viewOurWork")}
+                  <Button href="/pay" variant="link" arrow>
+                    {t("seePlans")}
                   </Button>
                 </div>
               </div>

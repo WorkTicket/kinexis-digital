@@ -1,0 +1,111 @@
+[
+  {
+    "browser": "chromium",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "locale": "en",
+    "theme": "dark",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "locale": "es-419",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "locale": "es-419",
+    "theme": "dark",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "locale": "es-ES",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "locale": "es-ES",
+    "theme": "dark",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "firefox",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "webkit",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "path": "/contact",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "path": "/audit",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "path": "/lp/get-a-website",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "path": "/services/web-design",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  },
+  {
+    "browser": "chromium",
+    "path": "/industries/plumbing",
+    "locale": "en",
+    "theme": "light",
+    "errors": [],
+    "serious": [],
+    "violations": []
+  }
+]

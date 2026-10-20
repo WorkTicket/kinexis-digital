@@ -1,0 +1,1016 @@
+[
+  {
+    "name": "home",
+    "route": "/",
+    "device": "mobile",
+    "url": "https://www.kinexisdigital.com/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 79,
+      "accessibility": 96,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 3377.9180000000006,
+      "cumulative-layout-shift": 0.16987554458269244,
+      "total-blocking-time": 162
+    },
+    "issues": [
+      {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "score": 0.7,
+        "displayValue": "0.17"
+      },
+      {
+        "id": "server-response-time",
+        "title": "Reduce initial server response time",
+        "score": 0,
+        "displayValue": "Root document took 2,080 ms"
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "layout-shifts",
+        "title": "Avoid large layout shifts",
+        "score": 0,
+        "displayValue": "3 layout shifts found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "cls-culprits-insight",
+        "title": "Layout shift culprits",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 1,980 ms"
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "home",
+    "route": "/",
+    "device": "desktop",
+    "url": "https://www.kinexisdigital.com/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 92,
+      "accessibility": 96,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 975.3205,
+      "cumulative-layout-shift": 0.11975834488169675,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "score": 0.84,
+        "displayValue": "0.12"
+      },
+      {
+        "id": "server-response-time",
+        "title": "Reduce initial server response time",
+        "score": 0,
+        "displayValue": "Root document took 1,110 ms"
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "layout-shifts",
+        "title": "Avoid large layout shifts",
+        "score": 0,
+        "displayValue": "2 layout shifts found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "cls-culprits-insight",
+        "title": "Layout shift culprits",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 1,010 ms"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "services",
+    "route": "/services",
+    "device": "mobile",
+    "url": "https://www.kinexisdigital.com/services",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 60,
+      "accessibility": 97,
+      "best-practices": 77,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 7950.578000000001,
+      "cumulative-layout-shift": 0.002742759024858737,
+      "total-blocking-time": 168.50000000000045
+    },
+    "issues": [
+      {
+        "id": "server-response-time",
+        "title": "Reduce initial server response time",
+        "score": 0,
+        "displayValue": "Root document took 2,040 ms"
+      },
+      {
+        "id": "image-aspect-ratio",
+        "title": "Displays images with incorrect aspect ratio",
+        "score": 0
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 1,940 ms"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 1,233 KiB"
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 300 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "services",
+    "route": "/services",
+    "device": "desktop",
+    "url": "https://www.kinexisdigital.com/services",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 86,
+      "accessibility": 97,
+      "best-practices": 77,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 2306.4979999999996,
+      "cumulative-layout-shift": 0.009760392995413036,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "image-aspect-ratio",
+        "title": "Displays images with incorrect aspect ratio",
+        "score": 0
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "total-byte-weight",
+        "title": "Avoid enormous network payloads",
+        "score": 0.5,
+        "displayValue": "Total size was 3,207 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0,
+        "displayValue": "Est savings of 1,964 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "case-study",
+    "route": "/case-studies/landscaping-company-growth",
+    "device": "mobile",
+    "url": "https://www.kinexisdigital.com/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 82,
+      "accessibility": 96,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 2668.5879999999993,
+      "cumulative-layout-shift": 0.2704272082458903,
+      "total-blocking-time": 16
+    },
+    "issues": [
+      {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "score": 0.45,
+        "displayValue": "0.27"
+      },
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "score": 0,
+        "displayValue": "Est savings of 950 ms"
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "layout-shifts",
+        "title": "Avoid large layout shifts",
+        "score": 0,
+        "displayValue": "3 layout shifts found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "cls-culprits-insight",
+        "title": "Layout shift culprits",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 710 ms"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "warnings": [
+      "The page may not be loading as expected because your test URL (https://www.kinexisdigital.com/case-studies/landscaping-company-growth) was redirected to https://www.kinexisdigital.com/. Try testing the second URL directly."
+    ]
+  },
+  {
+    "name": "case-study",
+    "route": "/case-studies/landscaping-company-growth",
+    "device": "desktop",
+    "url": "https://www.kinexisdigital.com/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 88,
+      "accessibility": 96,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 1073.8749999999998,
+      "cumulative-layout-shift": 0.20929788114486342,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "score": 0.59,
+        "displayValue": "0.209"
+      },
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "score": 0,
+        "displayValue": "Est savings of 430 ms"
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "layout-shifts",
+        "title": "Avoid large layout shifts",
+        "score": 0,
+        "displayValue": "3 layout shifts found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "cls-culprits-insight",
+        "title": "Layout shift culprits",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 490 ms"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "warnings": [
+      "The page may not be loading as expected because your test URL (https://www.kinexisdigital.com/case-studies/landscaping-company-growth) was redirected to https://www.kinexisdigital.com/. Try testing the second URL directly."
+    ]
+  },
+  {
+    "name": "contact",
+    "route": "/contact",
+    "device": "mobile",
+    "url": "https://www.kinexisdigital.com/contact",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 43,
+      "accessibility": 97,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 5735.672499999999,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 1808.000000000001
+    },
+    "issues": [
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0,
+        "displayValue": "3.3 s"
+      },
+      {
+        "id": "bootup-time",
+        "title": "Reduce JavaScript execution time",
+        "score": 0,
+        "displayValue": "2.3 s"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 490 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "contact",
+    "route": "/contact",
+    "device": "desktop",
+    "url": "https://www.kinexisdigital.com/contact",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 86,
+      "accessibility": 97,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 1040.9889999999998,
+      "cumulative-layout-shift": 0.007667025065115533,
+      "total-blocking-time": 280.9999999999998
+    },
+    "issues": [
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "audit",
+    "route": "/audit",
+    "device": "mobile",
+    "url": "https://www.kinexisdigital.com/audit",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 67,
+      "accessibility": 97,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 7160.9755000000005,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 34.5
+    },
+    "issues": [
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "displayValue": "Est savings of 63 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 594 KiB"
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 410 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "audit",
+    "route": "/audit",
+    "device": "desktop",
+    "url": "https://www.kinexisdigital.com/audit",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 89,
+      "accessibility": 97,
+      "best-practices": 81,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 1664.0439999999999,
+      "cumulative-layout-shift": 0.00781053953893994,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "server-response-time",
+        "title": "Reduce initial server response time",
+        "score": 0,
+        "displayValue": "Root document took 1,180 ms"
+      },
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 1,080 ms"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 559 KiB"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 10 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "website",
+    "route": "/lp/get-a-website",
+    "device": "mobile",
+    "url": "https://www.kinexisdigital.com/lp/get-a-website",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 73,
+      "accessibility": 100,
+      "best-practices": 81,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": 4781.952500000001,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 199
+    },
+    "issues": [
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 11 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "displayValue": "Est savings of 54 KiB"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0,
+        "displayValue": "Est savings of 113 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 23 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "website",
+    "route": "/lp/get-a-website",
+    "device": "desktop",
+    "url": "https://www.kinexisdigital.com/lp/get-a-website",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 98,
+      "accessibility": 97,
+      "best-practices": 81,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": 1102.714,
+      "cumulative-layout-shift": 0.0002998881090246086,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "deprecations",
+        "title": "Uses deprecated APIs",
+        "score": 0,
+        "displayValue": "3 warnings found"
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 11 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 54 KiB"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0,
+        "displayValue": "Est savings of 113 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0,
+        "displayValue": "Est savings of 23 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      }
+    ],
+    "warnings": []
+  }
+]

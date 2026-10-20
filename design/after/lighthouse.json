@@ -1,0 +1,682 @@
+[
+  {
+    "name": "home",
+    "route": "/",
+    "device": "mobile",
+    "url": "http://localhost:3095/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 82,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 4628.30535,
+      "cumulative-layout-shift": 0.0002310839114345587,
+      "total-blocking-time": 17
+    },
+    "issues": [
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 960 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "home",
+    "route": "/",
+    "device": "desktop",
+    "url": "http://localhost:3095/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 955.1297499999998,
+      "cumulative-layout-shift": 0.00837043743581341,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 7 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 190 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "services",
+    "route": "/services",
+    "device": "mobile",
+    "url": "http://localhost:3095/services",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 76,
+      "accessibility": 97,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 6196.95585,
+      "cumulative-layout-shift": 0.002129858588461556,
+      "total-blocking-time": 15.5
+    },
+    "issues": [
+      {
+        "id": "image-aspect-ratio",
+        "title": "Displays images with incorrect aspect ratio",
+        "score": 0
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 11 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 1,233 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 1,170 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "services",
+    "route": "/services",
+    "device": "desktop",
+    "url": "http://localhost:3095/services",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 91,
+      "accessibility": 97,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 2023.8906000000002,
+      "cumulative-layout-shift": 0.01031223558706052,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "image-aspect-ratio",
+        "title": "Displays images with incorrect aspect ratio",
+        "score": 0
+      },
+      {
+        "id": "color-contrast",
+        "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+        "score": 0
+      },
+      {
+        "id": "total-byte-weight",
+        "title": "Avoid enormous network payloads",
+        "score": 0.5,
+        "displayValue": "Total size was 3,502 KiB"
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 11 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 1,964 KiB"
+      },
+      {
+        "id": "lcp-discovery-insight",
+        "title": "LCP request discovery",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 190 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "case-study",
+    "route": "/case-studies/landscaping-company-growth",
+    "device": "mobile",
+    "url": "http://localhost:3095/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 81,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 4771.725199999999,
+      "cumulative-layout-shift": 0.0002310839114345587,
+      "total-blocking-time": 18
+    },
+    "issues": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "score": 0,
+        "displayValue": "Est savings of 610 ms"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 30 ms"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 960 ms"
+      }
+    ],
+    "warnings": [
+      "The page may not be loading as expected because your test URL (http://localhost:3095/case-studies/landscaping-company-growth) was redirected to http://localhost:3095/. Try testing the second URL directly."
+    ]
+  },
+  {
+    "name": "case-study",
+    "route": "/case-studies/landscaping-company-growth",
+    "device": "desktop",
+    "url": "http://localhost:3095/",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 989.5499999999998,
+      "cumulative-layout-shift": 0.00837043743581341,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "redirects",
+        "title": "Avoid multiple page redirects",
+        "score": 0,
+        "displayValue": "Est savings of 160 ms"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 64 KiB"
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0,
+        "displayValue": "Est savings of 70 ms"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 7 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 190 ms"
+      }
+    ],
+    "warnings": [
+      "The page may not be loading as expected because your test URL (http://localhost:3095/case-studies/landscaping-company-growth) was redirected to http://localhost:3095/. Try testing the second URL directly."
+    ]
+  },
+  {
+    "name": "contact",
+    "route": "/contact",
+    "device": "mobile",
+    "url": "http://localhost:3095/contact",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 85,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 4180.6882000000005,
+      "cumulative-layout-shift": 0.001733368727989196,
+      "total-blocking-time": 13.5
+    },
+    "issues": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 63 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 1,060 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "contact",
+    "route": "/contact",
+    "device": "desktop",
+    "url": "http://localhost:3095/contact",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 864.0474,
+      "cumulative-layout-shift": 0.008552819660414322,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 63 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 210 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "audit",
+    "route": "/audit",
+    "device": "mobile",
+    "url": "http://localhost:3095/audit",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 83,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 4411.7295,
+      "cumulative-layout-shift": 0.003937129106042987,
+      "total-blocking-time": 30
+    },
+    "issues": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 62 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 594 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 1,190 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "audit",
+    "route": "/audit",
+    "device": "desktop",
+    "url": "http://localhost:3095/audit",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "largest-contentful-paint": 929.1977499999998,
+      "cumulative-layout-shift": 0.008716129234076577,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 62 KiB"
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 559 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 200 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "website",
+    "route": "/lp/get-a-website",
+    "device": "mobile",
+    "url": "http://localhost:3095/lp/get-a-website",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 76,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": 5399.65525,
+      "cumulative-layout-shift": 0.00960899750328557,
+      "total-blocking-time": 16.00000000000091
+    },
+    "issues": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 54 KiB"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5,
+        "displayValue": "Est savings of 101 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 1,340 ms"
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "name": "website",
+    "route": "/lp/get-a-website",
+    "device": "desktop",
+    "url": "http://localhost:3095/lp/get-a-website",
+    "version": "13.5.0",
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 69
+    },
+    "metrics": {
+      "largest-contentful-paint": 1595.0409,
+      "cumulative-layout-shift": 0.0002998881090246086,
+      "total-blocking-time": 0
+    },
+    "issues": [
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5,
+        "displayValue": "Est savings of 12 KiB"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "displayValue": "Est savings of 54 KiB"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0,
+        "displayValue": "Est savings of 101 KiB"
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5,
+        "displayValue": "Est savings of 25 KiB"
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0.5,
+        "displayValue": "Est savings of 13 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0,
+        "displayValue": "Est savings of 260 ms"
+      }
+    ],
+    "warnings": []
+  }
+]

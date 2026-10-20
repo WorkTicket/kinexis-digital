@@ -1,4 +1,5 @@
 import type { CSSProperties } from "react";
+import { OfferAssuranceStrip } from "@/components/home/OfferAssuranceStrip";
 import "@/styles/routes/industry.css";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -124,6 +125,7 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         ]}
       />
       <IndustryHero industry={industry} />
+      {slug === "plumbing" && <OfferAssuranceStrip locale={locale} />}
 
       <IndustryPainPoints
         title={industry.problemTitle}

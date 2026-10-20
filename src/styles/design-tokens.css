@@ -1,0 +1,57 @@
+/* Foundation tokens. Semantic aliases preserve the current rendered values. */
+:root {
+  --kx-cobalt: #0066ff;
+  --kx-cobalt-pressed: #004ecc;
+  --kx-cobalt-tint: #edf4ff;
+  --kx-cobalt-surface: #0759d8;
+  --kx-navy: #060f24;
+  --kx-navy-raised: #0d1a34;
+  --kx-yellow: #facc15;
+  --kx-gray-50: #f8fafc;
+  --kx-gray-100: #f1f5f9;
+  --kx-gray-200: #e2e8f0;
+  --kx-gray-300: #cbd5e1;
+  --kx-gray-400: #94a3b8;
+  --kx-gray-500: #64748b;
+  --kx-gray-600: #475569;
+  --kx-gray-700: #334155;
+  --kx-gray-900: #0f172a;
+  --kx-offer-text: #f3f5f8;
+  --kx-offer-muted: #afb8c5;
+  --kx-offer-line: rgb(255 255 255 / 18%);
+  --kx-font-display: var(--font-display), system-ui, sans-serif;
+  --kx-font-text: var(--font-text), system-ui, sans-serif;
+  --kx-type-display: clamp(2.5rem, 4.7vw, 4.3rem);
+  --kx-type-section: clamp(2.1rem, 4.2vw, 3.4rem);
+  --kx-type-lead: clamp(1.05rem, 1.4vw, 1.2rem);
+  --kx-type-body: 1.125rem;
+  --kx-leading-display: 1.08;
+  --kx-leading-body: 1.6;
+  --kx-space-1: 0.5rem;
+  --kx-space-2: 1rem;
+  --kx-space-3: 1.5rem;
+  --kx-space-4: 2rem;
+  --kx-space-5: 2.5rem;
+  --kx-space-6: 3rem;
+  --kx-space-8: 4rem;
+  --kx-space-10: 5rem;
+  --kx-space-12: 6rem;
+  --kx-space-15: 7.5rem;
+  --kx-section-space: clamp(3.5rem, 7vw, 7.5rem);
+  --kx-content-max: 75rem;
+  --kx-frame-max: 80rem;
+  --kx-radius-control: 0.75rem;
+  --kx-radius-card: 1.25rem;
+  --kx-shadow-soft: 0 8px 24px rgb(6 15 36 / 8%), 0 2px 6px rgb(6 15 36 / 4%);
+  --kx-shadow-raised: 0 20px 56px rgb(6 15 36 / 14%), 0 4px 12px rgb(6 15 36 / 6%);
+  --kx-motion-fast: 150ms;
+  --kx-motion-default: 200ms;
+  --kx-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --kx-motion-fast: 0ms;
+    --kx-motion-default: 0ms;
+  }
+}

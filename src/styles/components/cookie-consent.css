@@ -70,7 +70,7 @@ html.cookie-pending:root .site-footer {
 }
 
 .cookie-banner__link {
-  color: var(--accent);
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
   transition: opacity 0.18s ease;

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OfferAssuranceStrip } from "@/components/home/OfferAssuranceStrip";
 import { notFound, permanentRedirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { PageCTA } from "@/components/page/PageCTA";
@@ -95,10 +96,11 @@ export default async function ServiceDetailPage({ params }: PageProps) {
         title={service.heroTitle}
         signal={service.heroSignal}
         copy={service.heroCopy}
-        secondaryHref="/case-studies"
-        secondaryLabel={tCommon("seeTheWork")}
+        secondaryHref="/pay"
+        secondaryLabel={tCommon("seePlans")}
         visual={<ServiceMark slug={service.slug} />}
       />
+      {slug === "web-design" && <OfferAssuranceStrip locale={locale} />}
 
       <section
         className="svc-program chapter chapter--studio relative"

@@ -18,9 +18,10 @@ import {
   mainNavLinks,
   megaDestinations,
   activeMegaHref,
-  NAV_CONTACT_HREF,
   type MainNavItem,
 } from "@/lib/site-nav";
+import { CTA_PRIMARY_HREF } from "@/lib/site-cta";
+import "@/styles/components/offer-chrome.css";
 import { cn } from "@/lib/cn";
 import {
   getBusinessPhoneDisplay,
@@ -49,7 +50,7 @@ export function Header() {
   const t = useTranslations("nav");
   const tA11y = useTranslations("a11y");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [headerHidden, setHeaderHidden] = useState(false);
+  const [headerCompact, setHeaderCompact] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileOpenHref, setMobileOpenHref] = useState<string | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
@@ -66,8 +67,8 @@ export function Header() {
       )
     : null;
   const showWhatsApp = Boolean(whatsappHref);
-  const contactHref = NAV_CONTACT_HREF;
-  const contactLabel = t("contact");
+  const contactHref = CTA_PRIMARY_HREF;
+  const contactLabel = t("messageMessenger");
   const landing = getLandingChrome(pathname, locale);
   const isSlimLanding = Boolean(landing?.slim);
 
@@ -147,12 +148,12 @@ export function Header() {
         const delta = y - lastScrollY.current;
 
         if (menuOpen || y <= SCROLL_TOP_REVEAL) {
-          setHeaderHidden(false);
+          setHeaderCompact(false);
         } else if (delta > SCROLL_DELTA) {
-          setHeaderHidden(true);
+          setHeaderCompact(true);
           setOpenDropdown(null);
         } else if (delta < -SCROLL_DELTA) {
-          setHeaderHidden(false);
+          setHeaderCompact(false);
         }
 
         lastScrollY.current = y;
@@ -169,7 +170,7 @@ export function Header() {
   useFocusTrap(mobilePanelRef, menuOpen, () => {
     setMenuOpen(false);
     setMobileOpenHref(null);
-    menuButtonRef.current?.focus();
+    requestAnimationFrame(() => menuButtonRef.current?.focus());
   });
 
   useEffect(() => {
@@ -243,7 +244,7 @@ export function Header() {
       <div
         className={cn(
           "site-header__frost chrome-glass",
-          headerHidden && !menuOpen && !openDropdown && !isSlimLanding && "site-header__frost--hidden",
+          headerCompact && !menuOpen && !openDropdown && !isSlimLanding && "site-header__frost--compact",
           (menuOpen || openDropdown) && "site-header__frost--solid",
         )}
         aria-hidden
@@ -251,7 +252,7 @@ export function Header() {
       <header
         className={cn(
           "site-header pt-[env(safe-area-inset-top,0px)]",
-          headerHidden && !menuOpen && !openDropdown && !isSlimLanding && "site-header--hidden",
+          headerCompact && !menuOpen && !openDropdown && !isSlimLanding && "site-header--compact",
           openDropdown && "site-header--open",
         )}
       >

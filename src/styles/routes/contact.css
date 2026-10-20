@@ -1,5 +1,21 @@
 /* Route CSS split from globals.css — loaded only with the components that use it. */
 
+.contact-page .page-hero--compact { min-height: 0; }
+.contact-page .page-hero .hero-stage { padding-block: clamp(2rem, 5vw, 4rem); }
+.contact-page .page-hero h1 { font-size: clamp(3rem, 7vw, 5rem); }
+.contact-page .hero-line, .contact-page .hero-line__text { white-space: normal; }
+.contact-page > section > .shell { max-width: var(--kx-frame-max, 80rem); }
+.contact-intake { padding: .5rem; border: 1px solid var(--line); border-radius: var(--kx-radius-card, 1.25rem); background: var(--background); box-shadow: var(--kx-shadow-soft); }
+.contact-intake__tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .35rem; padding: .35rem; background: color-mix(in oklab, var(--foreground) 4%, transparent); border-radius: var(--kx-radius-control, .75rem); }
+.contact-intake__tab { min-height: 3rem; padding: .65rem .8rem; border-radius: .55rem; color: var(--muted); font-size: .85rem; font-weight: 600; cursor: pointer; }
+.contact-intake__tab--active { background: var(--kx-cobalt); color: #fff; }
+.contact-intake__tab:focus-visible { outline: 3px solid var(--kx-cobalt); outline-offset: 3px; }
+.contact-intake__body { padding: clamp(1rem, 3vw, 2rem); }
+.contact-page .contact-aside { padding-left: 1.75rem; border-left: 1px solid var(--line); }
+@media (max-width: 1023px) {
+  .contact-page .contact-aside { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; padding-top: 2rem; }
+}
+
 /* ── Contact sidebar ── */
 
 .contact-aside {

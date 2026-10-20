@@ -1,129 +1,45 @@
 "use client";
 
 import "@/styles/routes/contact.css";
-
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type KeyboardEvent } from "react";
+import { useTranslations } from "next-intl";
+import { ContactForm } from "./ContactForm";
 import type { ContactContent } from "@/content/contact";
 import { cn } from "@/lib/cn";
 
 function BookingSkeleton() {
-  return (
-    <div className="contact-booking-skeleton" aria-busy="true">
-      <span className="sr-only">Loading the calendar</span>
-      <div className="contact-booking-skeleton__title" />
-      <div className="contact-booking-skeleton__line" />
-      <div className="contact-booking-skeleton__cols">
-        <div className="contact-booking-skeleton__cal" />
-        <div className="contact-booking-skeleton__side" />
-      </div>
-    </div>
-  );
+  const t = useTranslations("a11y");
+  return <div className="contact-booking-skeleton" aria-busy="true"><span className="sr-only">{t("loadingSite")}</span><div className="contact-booking-skeleton__title" /><div className="contact-booking-skeleton__line" /><div className="contact-booking-skeleton__cols"><div className="contact-booking-skeleton__cal" /><div className="contact-booking-skeleton__side" /></div></div>;
 }
 
-const StrategyCallBooking = dynamic(
-  () =>
-    import("@/components/contact/StrategyCallBooking").then(
-      (mod) => mod.StrategyCallBooking,
-    ),
-  { ssr: false, loading: () => <BookingSkeleton /> },
-);
+const StrategyCallBooking = dynamic(() => import("@/components/contact/StrategyCallBooking").then(mod => mod.StrategyCallBooking), { ssr: false, loading: () => <BookingSkeleton /> });
+type Tab = "message" | "book";
+const tabFromHash = (): Tab => typeof window !== "undefined" && window.location.hash === "#book-call" ? "book" : "message";
 
-const ContactForm = dynamic(
-  () =>
-    import("@/components/contact/ContactForm").then((mod) => mod.ContactForm),
-  { ssr: false },
-);
-
-type Props = { content: ContactContent };
-type Tab = "book" | "message";
-
-function tabFromHash(): Tab {
-  if (typeof window === "undefined") return "book";
-  return window.location.hash === "#contact-form" ? "message" : "book";
-}
-
-export function ContactIntake({ content: c }: Props) {
-  const [tab, setTab] = useState<Tab>("book");
-  const [hydrateMessage, setHydrateMessage] = useState(false);
-
+export function ContactIntake({ content: c }: { content: ContactContent }) {
+  const [tab, setTab] = useState<Tab>("message");
   useEffect(() => {
-    const sync = () => {
-      const next = tabFromHash();
-      setTab(next);
-      if (next === "message") setHydrateMessage(true);
-    };
+    const sync = () => setTab(tabFromHash());
     sync();
     window.addEventListener("hashchange", sync);
     return () => window.removeEventListener("hashchange", sync);
   }, []);
-
-  return (
-    <div id="contact-form" className="overflow-hidden rounded-2xl bg-[color-mix(in_oklab,var(--foreground)_4%,transparent)]">
-      <div className="p-2">
-        <div
-          role="tablist"
-          aria-label={c.optionsAria}
-          className="grid grid-cols-2 gap-1 rounded-[var(--radius-md)] bg-foreground/[0.04] p-1"
-        >
-          <button
-            type="button"
-            role="tab"
-            aria-selected={tab === "book"}
-            id="contact-tab-book"
-            aria-controls="contact-panel-book"
-            onClick={() => setTab("book")}
-            className={cn(
-              "min-h-11 rounded-[var(--radius-sm)] px-3 py-2.5 text-sm font-semibold transition-colors",
-              tab === "book"
-                ? "bg-foreground text-background"
-                : "text-muted hover:bg-foreground/[0.04] hover:text-foreground",
-            )}
-          >
-            {c.booking.tabLabel}
-          </button>
-          <button
-            type="button"
-            role="tab"
-            aria-selected={tab === "message"}
-            id="contact-tab-message"
-            aria-controls="contact-panel-message"
-            onClick={() => {
-              setTab("message");
-              setHydrateMessage(true);
-            }}
-            className={cn(
-              "min-h-11 rounded-[var(--radius-sm)] px-3 py-2.5 text-sm font-semibold transition-colors",
-              tab === "message"
-                ? "bg-foreground text-background"
-                : "text-muted hover:bg-foreground/[0.04] hover:text-foreground",
-            )}
-          >
-            {c.booking.messageTabLabel}
-          </button>
-        </div>
-      </div>
-
-      <div className="p-4 sm:p-5 md:p-6 lg:p-7">
-        <div
-          role="tabpanel"
-          id="contact-panel-book"
-          aria-labelledby="contact-tab-book"
-          hidden={tab !== "book"}
-        >
-          {tab === "book" ? <StrategyCallBooking content={c} /> : null}
-        </div>
-        <div
-          role="tabpanel"
-          id="contact-panel-message"
-          aria-labelledby="contact-tab-message"
-          hidden={tab !== "message"}
-        >
-          {tab === "message" && hydrateMessage ? (
-            <ContactForm content={c} />
-          ) : null}
-        </div>
-      </div>
+  const tabs = [{ id: "message", label: c.booking.messageTabLabel }, { id: "book", label: c.booking.tabLabel }] as const;
+  function onTabKey(event: KeyboardEvent<HTMLDivElement>) {
+    if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+    event.preventDefault();
+    const next = event.key === "Home" ? "message" : event.key === "End" ? "book" : tab === "message" ? "book" : "message";
+    setTab(next);
+    document.getElementById(`contact-tab-${next}`)?.focus();
+  }
+  return <div id="contact-form" className="contact-intake">
+    <div className="contact-intake__tabs" role="tablist" aria-label={c.optionsAria} onKeyDown={onTabKey}>
+      {tabs.map(item => <button key={item.id} type="button" role="tab" tabIndex={tab === item.id ? 0 : -1} aria-selected={tab === item.id} id={`contact-tab-${item.id}`} aria-controls={`contact-panel-${item.id}`} onClick={() => setTab(item.id)} className={cn("contact-intake__tab", tab === item.id && "contact-intake__tab--active")}>{item.label}</button>)}
     </div>
-  );
+    <div className="contact-intake__body">
+      <div role="tabpanel" id="contact-panel-message" aria-labelledby="contact-tab-message" hidden={tab !== "message"}><ContactForm content={c} /></div>
+      <div role="tabpanel" id="contact-panel-book" aria-labelledby="contact-tab-book" hidden={tab !== "book"}>{tab === "book" ? <StrategyCallBooking content={c} /> : null}</div>
+    </div>
+  </div>;
 }

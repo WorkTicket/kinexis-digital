@@ -30,6 +30,7 @@ export function ContactForm({ content: c }: Props) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    website: "",
     company: "",
     phone: "",
     service: "",
@@ -62,7 +63,7 @@ export function ContactForm({ content: c }: Props) {
           ...formData,
           company: formData.company.trim() || undefined,
           phone: formData.phone.trim() || undefined,
-          message: formData.message.trim() || undefined,
+          message: [formData.website.trim() ? `${c.websiteLabel}: ${formData.website.trim()}` : "", formData.message.trim()].filter(Boolean).join("\n\n") || undefined,
           metaEventId,
           ...honeypotPayload,
           ...attribution,
@@ -166,18 +167,8 @@ export function ContactForm({ content: c }: Props) {
 
         <div className="grid gap-5 md:grid-cols-2">
           <div>
-            <label htmlFor="contact-company" className="form-label">
-              {c.companyLabel}
-            </label>
-            <input
-              type="text"
-              id="contact-company"
-              value={formData.company}
-              onChange={set("company")}
-              className="form-input"
-              placeholder={c.companyPlaceholder}
-              autoComplete="organization"
-            />
+            <label htmlFor="contact-website" className="form-label">{c.websiteLabel}</label>
+            <input type="url" id="contact-website" value={formData.website} onChange={set("website")} className="form-input" placeholder={c.websitePlaceholder} autoComplete="url" maxLength={500} />
           </div>
 
           <div>
@@ -196,26 +187,7 @@ export function ContactForm({ content: c }: Props) {
           </div>
         </div>
 
-        <div>
-          <label htmlFor="contact-service" className="form-label">
-            {c.serviceLabel}
-          </label>
-          <select
-            id="contact-service"
-            value={formData.service}
-            onChange={set("service")}
-            className="form-select"
-          >
-            <option value="">{c.servicePlaceholder}</option>
-            {c.serviceOptions.map((opt) => (
-              <option key={opt} value={opt}>
-                {opt}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
+<div>
           <label htmlFor="contact-message" className="form-label">
             {c.messageLabel}
           </label>
@@ -225,8 +197,8 @@ export function ContactForm({ content: c }: Props) {
             onChange={set("message")}
             className="form-textarea"
             placeholder={c.messagePlaceholder}
-            rows={6}
-            maxLength={5000}
+            rows={4}
+            maxLength={4400}
           />
         </div>
 

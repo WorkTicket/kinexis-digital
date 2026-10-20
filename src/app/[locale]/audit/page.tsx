@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { AuditBoard } from "@/components/audit/AuditBoard";
+import { OfferAssuranceStrip } from "@/components/home/OfferAssuranceStrip";
 import { MarketingAuditForm } from "@/components/audit/MarketingAuditForm";
 import { PageHero } from "@/components/page/PageHero";
 import JsonLd from "@/components/seo/JsonLd";
@@ -49,9 +50,10 @@ export default async function AuditPage({ params }: Props) {
         copy={content.copy}
         primaryHref="#audit-request"
         primaryLabel={content.primaryLabel}
-        secondaryHref="/case-studies"
-        secondaryLabel={tCommon("seeTheWork")}
+        secondaryHref="/pay"
+        secondaryLabel={tCommon("seePlans")}
       />
+      <OfferAssuranceStrip locale={locale} />
 
       <section
         aria-labelledby="audit-layers-heading"
