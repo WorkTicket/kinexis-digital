@@ -1,4 +1,5 @@
 import { getLocale } from "next-intl/server";
+import { OfferAssuranceStrip } from "@/components/home/OfferAssuranceStrip";
 import { WebsiteDirect } from "@/components/landing/WebsiteDirect";
 import { WebsiteHero } from "@/components/landing/WebsiteHero";
 import {
@@ -55,6 +56,7 @@ export async function WebsiteLanding({ page }: { page: LandingPageEntry }) {
         benefits={chrome.heroBenefits}
         outcomesLabel={chrome.outcomesAria}
       />
+      <OfferAssuranceStrip locale={locale} />
       {samples.length ? (
         <WebsiteProofStrip
           samples={samples}

@@ -93,10 +93,10 @@ export async function Footer() {
   const es = locale !== "en";
   const services = [
     ["/services/web-design", es ? "Páginas web para contratistas" : "Websites for contractors"],
-    ["/lp/get-a-website#pricing", es ? "Respuesta por texto a llamadas perdidas" : "Missed-call text-back"],
-    ["/lp/get-a-website#pricing", es ? "Solicitudes de reseñas de Google" : "Google review requests"],
+    ["/pay", es ? "Respuesta por texto a llamadas perdidas" : "Missed-call text-back"],
+    ["/pay", es ? "Solicitudes de reseñas de Google" : "Google review requests"],
     ["/services/seo", es ? "Mejora de su Perfil de Negocio de Google" : "Google Business Profile tune-up"],
-    ["/lp/get-a-website#pricing", es ? "Precios" : "Pricing"],
+    ["/pay", es ? "Precios" : "Pricing"],
   ];
   const markets = [
     ["/industries/plumbing", es ? "Plomería" : "Plumbing"], ["/industries/hvac", "HVAC"],
@@ -139,7 +139,7 @@ export async function Footer() {
                 eyebrow={t("ctaEyebrow")}
                 title={t("ctaTitle")}
                 dek={t("ctaDek")}
-                buttonLabel={tCommon("bookStrategyCall")}
+                buttonLabel={tCommon("messageMessenger")}
               />
             </div>
           }

@@ -1,4 +1,4 @@
-export const CTA_LABEL = "Book a strategy call";
+export const CTA_LABEL = "Message us on Messenger";
 export const NAV_CONTACT_HREF = "/contact";
 export const NAV_CONTACT_LABEL = "Contact";
 
@@ -34,9 +34,10 @@ export type MainNavItem = {
  * (Google Ads, Meta, local SEO) stay on that service page.
  */
 export const mainNavLinks: MainNavItem[] = [
+  { href: "/services", key: "services", label: "Services" },
   { href: "/pay", key: "plans", label: "Plans" },
   { href: "/industries/home-services", key: "contractors", label: "Contractors" },
-  { href: "/contact", key: "contact", label: "Contact" },
+  { href: "/about", key: "about", label: "About" },
 ];
 
 export function megaDestinations(item: MainNavItem): string[] {

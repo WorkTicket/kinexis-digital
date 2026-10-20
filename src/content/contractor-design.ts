@@ -1,0 +1,128 @@
+import type { Locale } from "@/i18n/routing";
+
+const en = {
+  headline: "Websites for Houston contractors.",
+  priceLine: "$0 down, $197/mo.",
+  heroNote: "Your preview comes before your commitment.",
+  heroTerms: "3-month minimum from launch, then month-to-month.",
+  preview: {
+    label: "Your free homepage preview",
+    business: "Your business",
+    trade: "Landscaping · Houston, TX",
+    title: "A yard worth coming home to.",
+    copy: "Your services. Your neighborhood. A clear way to get in touch.",
+    action: "Request an estimate",
+    imageAlt: "Landscaped garden used in an illustrative contractor website design",
+    services: ["Lawn care", "Patios", "Landscaping"],
+    note: "Illustrative design. Not a client site or result.",
+    caption: "Built for a phone. Built around your business.",
+  },
+  promises: ["Free homepage preview", "$0 down on monthly plans", "You approve before launch"],
+  services: {
+    eyebrow: "More than a website",
+    title: "The next call starts with the right first impression.",
+    copy: "Lead System brings your website and follow-up tools together. So homeowners can find you, understand what you do, and get in touch.",
+    note: "These features are included in Lead System and Plus. Bilingual websites are included in Plus.",
+    items: [
+      { title: "A site that works on a phone", copy: "Clear services, simple navigation, and a direct path to your business." },
+      { title: "Missed call? Keep the conversation going.", copy: "Automatic text-back gives callers another way to reach you. Texting starts after carrier approval." },
+      { title: "Make your Google profile work harder", copy: "A Google Business Profile tune-up and review requests to every customer." },
+      { title: "Know where contacts come from", copy: "Call tracking and a monthly report make the contact path visible." },
+      { title: "Keep your website up to date", copy: "Unlimited small edits within one business day and a new page each month." },
+    ],
+  },
+  pricing: {
+    eyebrow: "Straightforward plans",
+    title: "A professional website. A practical monthly price.",
+    copy: "See your homepage first, free. Choose your plan after you approve the preview.",
+    fullFeatures: "See everything included",
+    oneTime: "One payment. Yours from launch.",
+    monthly: "$0 down · from launch day",
+    minimum: "3-month minimum",
+    compare: "Compare plans & billing details",
+    featured: "For a website and follow-up tools",
+    lock: "Price locked for 24 months",
+    domain: "Domain renewal included on monthly plans when we registered it for you",
+  },
+  process: {
+    eyebrow: "Simple from the first message",
+    title: "See it. Love it. Then launch it.",
+    copy: "No paying for a homepage you have not seen. We start with a conversation and build your preview before you commit.",
+    labels: ["Tell us about your trade", "Meet your new homepage", "Give it the green light"],
+  },
+  guarantee: { eyebrow: "A commitment we put in writing", link: "Read the full guarantee" },
+  trades: {
+    eyebrow: "Built around your trade",
+    title: "You know your craft. We’ll make it clear online.",
+    copy: "Websites for the people who keep Houston homes working and looking their best.",
+    items: ["Plumbing", "HVAC", "Roofing", "Electrical", "Landscaping", "Remodeling"],
+  },
+  closing: { eyebrow: "Your next first impression", title: "See your new homepage. Before you pay.", copy: "Send us your trade on Messenger. We’ll take it from there." },
+  call: "Call us",
+};
+
+const es: typeof en = {
+  headline: "Páginas web para contratistas de Houston.",
+  priceLine: "$0 de entrada, $197/mes.",
+  heroNote: "Primero ve su página. Después decide.",
+  heroTerms: "Mínimo de 3 meses desde el lanzamiento, luego mes a mes.",
+  preview: {
+    label: "Su vista previa gratis",
+    business: "Su negocio",
+    trade: "Jardinería · Houston, TX",
+    title: "Un jardín que invita a volver a casa.",
+    copy: "Sus servicios. Su comunidad. Una forma clara de contactarle.",
+    action: "Solicitar presupuesto",
+    imageAlt: "Jardín cuidado en un ejemplo ilustrativo de diseño web para contratistas",
+    services: ["Césped", "Patios", "Jardinería"],
+    note: "Diseño ilustrativo. No es un sitio ni un resultado de cliente.",
+    caption: "Pensado para el móvil. Creado para su negocio.",
+  },
+  promises: ["Vista previa gratis", "$0 de entrada en planes mensuales", "Usted aprueba antes de publicar"],
+  services: {
+    eyebrow: "Más que una página web",
+    title: "La próxima llamada empieza con una buena primera impresión.",
+    copy: "Lead System reúne su página y las herramientas de seguimiento para que los propietarios le encuentren, entiendan su oficio y puedan contactarle.",
+    note: "Estas funciones están incluidas en Lead System y Plus. Los sitios bilingües están incluidos en Plus.",
+    items: [
+      { title: "Una página que funciona en el móvil", copy: "Servicios claros, navegación sencilla y contacto directo con su negocio." },
+      { title: "¿Llamada perdida? Siga la conversación.", copy: "La respuesta automática por texto ofrece otra forma de contactarle. Los mensajes empiezan después de la aprobación del operador." },
+      { title: "Aproveche su presencia en Google", copy: "Optimización de su Perfil de Negocio de Google y solicitudes de reseña a cada cliente." },
+      { title: "Sepa de dónde llegan sus contactos", copy: "Seguimiento de llamadas e informe mensual para entender el camino del contacto." },
+      { title: "Mantenga su página al día", copy: "Cambios pequeños ilimitados en un día hábil y una página nueva al mes." },
+    ],
+  },
+  pricing: {
+    eyebrow: "Planes claros",
+    title: "Una página profesional. Un precio mensual práctico.",
+    copy: "Vea su página de inicio primero, gratis. Escoja su plan después de aprobar la vista previa.",
+    fullFeatures: "Ver todo lo incluido",
+    oneTime: "Un solo pago. Suya desde el lanzamiento.",
+    monthly: "$0 de entrada · desde el lanzamiento",
+    minimum: "Mínimo de 3 meses",
+    compare: "Comparar planes y condiciones de pago",
+    featured: "Su página y herramientas de seguimiento",
+    lock: "Precio fijo por 24 meses",
+    domain: "Renovación de dominio incluida en planes mensuales si lo registramos por usted",
+  },
+  process: {
+    eyebrow: "Sencillo desde el primer mensaje",
+    title: "Véala. Apruébela. Publíquela.",
+    copy: "No paga por una página que no ha visto. Empezamos con una conversación y creamos su vista previa antes del compromiso.",
+    labels: ["Cuéntenos su oficio", "Conozca su nueva página", "Dé el visto bueno"],
+  },
+  guarantee: { eyebrow: "Un compromiso por escrito", link: "Leer la garantía completa" },
+  trades: {
+    eyebrow: "Diseñada para su oficio",
+    title: "Usted conoce su oficio. Nosotros lo mostramos en la web.",
+    copy: "Páginas para quienes mantienen y mejoran los hogares de Houston.",
+    items: ["Plomería", "HVAC", "Techos", "Electricidad", "Jardinería", "Remodelación"],
+  },
+  closing: { eyebrow: "Su próxima primera impresión", title: "Vea su nueva página. Antes de pagar.", copy: "Envíenos su oficio por Messenger. Nosotros le guiamos desde ahí." },
+  call: "Llámenos",
+};
+
+export type ContractorDesignContent = typeof en;
+export function getContractorDesign(locale: Locale): ContractorDesignContent {
+  return locale === "en" ? en : es;
+}

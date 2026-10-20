@@ -333,7 +333,7 @@
   font-weight: 700;
   line-height: 0.86;
   letter-spacing: -0.06em;
-  color: color-mix(in oklab, var(--foreground) 12%, transparent);
+  color: var(--kx-gray-500, #64748b);
   white-space: nowrap;
 }
 

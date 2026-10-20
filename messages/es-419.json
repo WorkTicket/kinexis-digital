@@ -248,7 +248,8 @@
       }
     },
     "plans": "Planes",
-    "contractors": "Contratistas"
+    "contractors": "Contratistas",
+    "messageMessenger": "Escríbanos por Messenger"
   },
   "services": {
     "pricing": "Precios",
@@ -307,7 +308,7 @@
     "ctaEyebrow": "Hablemos",
     "ctaTitle": "¿Prefieres empezar con un mensaje?",
     "ctaDek": "Escríbenos cuando quieras. Respondemos en un día hábil con una respuesta directa sobre si podemos ayudarte.",
-    "blurb": "Páginas web que traen llamadas para contratistas de Houston. Vista previa gratis, $0 de entrada, lista en 7 días.",
+    "blurb": "Páginas web para contratistas de Houston. Primero su vista previa gratis. Después, $0 de entrada para publicar con un plan mensual.",
     "lpBlurb": "Sitios para contratistas y negocios de servicios del hogar.",
     "replies": "Respondemos en un día hábil",
     "explore": "Explorar",
@@ -321,7 +322,7 @@
     "sendMessage": "Enviar un mensaje",
     "ready": "¿Listo?",
     "letsTalk": "Hablemos.",
-    "ctaMeta": "15 minutos · Próximos pasos claros",
+    "ctaMeta": "Mínimo de 3 meses desde el lanzamiento, luego mes a mes.",
     "scheduleStrategyCall": "Agendar una llamada estratégica",
     "learnAboutUs": "Conócenos",
     "viewAllServices": "Ver todos los servicios",
@@ -356,7 +357,9 @@
     "seeServices": "Ver servicios",
     "seeCaseStudies": "Ver casos",
     "readTheBlog": "Leer el blog",
-    "contactOptions": "Opciones de contacto"
+    "contactOptions": "Opciones de contacto",
+    "messageMessenger": "Escríbanos por Messenger",
+    "seePlans": "Ver planes"
   },
   "pages": {
     "services": {

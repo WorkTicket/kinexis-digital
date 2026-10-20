@@ -48,6 +48,8 @@ export type ContactContent = {
   namePlaceholder: string;
   emailLabel: string;
   emailPlaceholder: string;
+  websiteLabel: string;
+  websitePlaceholder: string;
   companyLabel: string;
   companyPlaceholder: string;
   phoneLabel: string;
@@ -98,12 +100,14 @@ export const contactContentI18n = localeContent({
     namePlaceholder: "Your name",
     emailLabel: "Email Address",
     emailPlaceholder: "you@company.com",
+    websiteLabel: "Website (optional)",
+    websitePlaceholder: "https://yourbusiness.com",
     companyLabel: "Company",
     companyPlaceholder: "Your company (optional)",
     phoneLabel: "Phone Number",
     phonePlaceholder: "+1 (555) 000-0000 (optional)",
     serviceLabel: "What are you looking for?",
-    messageLabel: "Comments",
+    messageLabel: "What do you need?",
     messagePlaceholder:
       "What's the biggest leak in your marketing right now? What does a good next 12 months look like?",
     submitButton: "Send Message",
@@ -119,7 +123,7 @@ export const contactContentI18n = localeContent({
     step3Title: "Clear next steps",
     step3Desc:
       "On the call we map what's broken, what to fix first, and whether we're the right fit.",
-    trustLabel1: "< 24hr response",
+    trustLabel1: "Reply within 1 business day",
     trustLabel2: "3-month minimum, then monthly",
     trustLabel3: "Free initial consultation",
     servicePlaceholder: "Select a service…",
@@ -183,12 +187,14 @@ export const contactContentI18n = localeContent({
     namePlaceholder: "Tu nombre",
     emailLabel: "Correo electrónico",
     emailPlaceholder: "tu@empresa.com",
+    websiteLabel: "Sitio web (opcional)",
+    websitePlaceholder: "https://sunegocio.com",
     companyLabel: "Empresa",
     companyPlaceholder: "Tu empresa (opcional)",
     phoneLabel: "Teléfono",
     phonePlaceholder: "+1 (555) 000-0000 (opcional)",
     serviceLabel: "¿Qué necesitas?",
-    messageLabel: "Comentarios",
+    messageLabel: "¿Qué necesita?",
     messagePlaceholder:
       "¿Dónde se está perdiendo ahora mismo tu marketing? ¿Cómo se ve un buen próximo año?",
     submitButton: "Enviar mensaje",
@@ -268,12 +274,14 @@ export const contactContentI18n = localeContent({
     namePlaceholder: "Tu nombre",
     emailLabel: "Correo electrónico",
     emailPlaceholder: "tu@empresa.com",
+    websiteLabel: "Sitio web (opcional)",
+    websitePlaceholder: "https://sunegocio.com",
     companyLabel: "Empresa",
     companyPlaceholder: "Tu empresa (opcional)",
     phoneLabel: "Teléfono",
     phonePlaceholder: "+34 600 000 000 (opcional)",
     serviceLabel: "¿Qué necesitas?",
-    messageLabel: "Comentarios",
+    messageLabel: "¿Qué necesita?",
     messagePlaceholder:
       "¿Dónde se está perdiendo ahora mismo tu marketing? ¿Cómo se ve un buen próximo año?",
     submitButton: "Enviar mensaje",

@@ -1,0 +1,916 @@
+[
+  {
+    "path": "/",
+    "title": "Websites for Houston contractors | $0 down, $197/mo",
+    "description": "We build your new homepage first, free. Love it? Launch with $0 down.",
+    "canonical": "https://www.kinexisdigital.com/",
+    "social": [
+      [
+        "og:title",
+        "Websites for Houston contractors | $0 down, $197/mo"
+      ],
+      [
+        "og:description",
+        "We build your new homepage first, free. Love it? Launch with $0 down."
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "Websites for Houston contractors | $0 down, $197/mo"
+      ],
+      [
+        "twitter:description",
+        "We build your new homepage first, free. Love it? Launch with $0 down."
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is there a minimum term?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "3-month minimum from launch, then month-to-month. Cancel anytime after that by text, email or Messenger."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I cancel?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After the 3-month minimum, by text, email or Messenger. No call or form needed. Billing stops at the end of the month you've paid for. Cancelling inside PayPal alone doesn't end the minimum. See Terms §7."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does the guarantee work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Lead System and Plus: zero tracked leads in your first 60 days live means your 3rd and 4th monthly charges are waived and the minimum is dropped. Once per business. See Terms §10.2."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "When am I charged?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe. Subsequent charges follow your PayPal billing schedule. Own It: when you pay."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Taxes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Prices don't include sales tax, if any applies."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/services",
+    "title": "SEO, Ads, and Web Design Services | Kinexis Digital",
+    "description": "Web design, SEO, branding, paid ads, and content as one demand program. Built for home services and ecommerce brands that need booked work and orders.",
+    "canonical": "https://www.kinexisdigital.com/services",
+    "social": [
+      [
+        "og:title",
+        "SEO, Ads, and Web Design Services | Kinexis Digital"
+      ],
+      [
+        "og:description",
+        "Web design, SEO, branding, paid ads, and content as one demand program. Built for home services and ecommerce brands that need booked work and orders."
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com/services"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "SEO, Ads, and Web Design Services | Kinexis Digital"
+      ],
+      [
+        "twitter:description",
+        "Web design, SEO, branding, paid ads, and content as one demand program. Built for home services and ecommerce brands that need booked work and orders."
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.kinexisdigital.com/#organization",
+        "name": "Kinexis Digital",
+        "url": "https://www.kinexisdigital.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.kinexisdigital.com/assets/logos/KINEXIS_icon_logo.webp?v=20261010ll",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
+        "sameAs": [
+          "https://www.linkedin.com/company/kinexisdigital",
+          "https://www.facebook.com/profile.php?id=61591998497960"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@kinexisdigital.com",
+          "availableLanguage": [
+            "English",
+            "Spanish"
+          ],
+          "telephone": "+13075003371"
+        },
+        "telephone": "+13075003371"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kinexisdigital.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://www.kinexisdigital.com/services"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.kinexisdigital.com/services/web-design#service",
+        "name": "Web Design",
+        "description": "Phone-first websites built to convert. Fast load, clear paths, and CTAs that stay obvious on every screen. Built for home services and ecommerce.",
+        "provider": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        },
+        "url": "https://www.kinexisdigital.com/services/web-design",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.kinexisdigital.com/services/seo#service",
+        "name": "SEO",
+        "description": "Technical SEO, local search, and content architecture for brands that need qualified organic demand, not empty traffic charts that never ring the phone.",
+        "provider": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        },
+        "url": "https://www.kinexisdigital.com/services/seo",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.kinexisdigital.com/services/branding#service",
+        "name": "Branding",
+        "description": "Brand strategy, verbal identity, and visual systems home services and ecommerce teams can actually run across site, ads, and sales.",
+        "provider": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        },
+        "url": "https://www.kinexisdigital.com/services/branding",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.kinexisdigital.com/services/paid-media#service",
+        "name": "Paid Ads",
+        "description": "Google and Meta ads managed like a budget. Campaign structure, creative testing, and reporting tied to leads you can defend.",
+        "provider": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        },
+        "url": "https://www.kinexisdigital.com/services/paid-media",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "@id": "https://www.kinexisdigital.com/services/content-marketing#service",
+        "name": "Content Marketing",
+        "description": "Content strategy, service pages, guides, and email that answer buyer questions and keep pipeline moving after the first click.",
+        "provider": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        },
+        "url": "https://www.kinexisdigital.com/services/content-marketing",
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide"
+        }
+      }
+    ]
+  },
+  {
+    "path": "/contact",
+    "title": "Schedule a Marketing Strategy Call | Kinexis Digital",
+    "description": "Tell us what's broken in your marketing. Book a strategy call. We respond within one business day with clear next steps, not a generic pitch deck.",
+    "canonical": "https://www.kinexisdigital.com/contact",
+    "social": [
+      [
+        "og:title",
+        "Schedule a Marketing Strategy Call | Kinexis Digital"
+      ],
+      [
+        "og:description",
+        "Tell us what's broken in your marketing. Book a strategy call. We respond within one business day with clear next steps, not a generic pitch deck."
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com/contact"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "Schedule a Marketing Strategy Call | Kinexis Digital"
+      ],
+      [
+        "twitter:description",
+        "Tell us what's broken in your marketing. Book a strategy call. We respond within one business day with clear next steps, not a generic pitch deck."
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.kinexisdigital.com/#organization",
+        "name": "Kinexis Digital",
+        "url": "https://www.kinexisdigital.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.kinexisdigital.com/assets/logos/KINEXIS_icon_logo.webp?v=20261010ll",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
+        "sameAs": [
+          "https://www.linkedin.com/company/kinexisdigital",
+          "https://www.facebook.com/profile.php?id=61591998497960"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@kinexisdigital.com",
+          "availableLanguage": [
+            "English",
+            "Spanish"
+          ],
+          "telephone": "+13075003371"
+        },
+        "telephone": "+13075003371"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://www.kinexisdigital.com/#localbusiness",
+        "name": "Kinexis Digital",
+        "url": "https://www.kinexisdigital.com/contact",
+        "image": "https://www.kinexisdigital.com/assets/logos/KINEXIS_icon_logo.webp?v=20261010ll",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.kinexisdigital.com/assets/logos/KINEXIS_icon_logo.webp?v=20261010ll",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
+        "email": "hello@kinexisdigital.com",
+        "areaServed": [
+          {
+            "@type": "Place",
+            "name": "Houston, TX"
+          },
+          {
+            "@type": "Place",
+            "name": "United States"
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "hello@kinexisdigital.com",
+          "availableLanguage": [
+            "English",
+            "Spanish"
+          ],
+          "telephone": "+13075003371"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/kinexisdigital",
+          "https://www.facebook.com/profile.php?id=61591998497960"
+        ],
+        "parentOrganization": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        },
+        "telephone": "+13075003371"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kinexisdigital.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": "https://www.kinexisdigital.com/contact"
+          }
+        ]
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "@id": "https://www.kinexisdigital.com/contact#webpage",
+        "url": "https://www.kinexisdigital.com/contact",
+        "name": "Book a Strategy Call",
+        "description": "Contact Kinexis Digital to book a strategy call or send a project inquiry.",
+        "isPartOf": {
+          "@id": "https://www.kinexisdigital.com/#website"
+        },
+        "about": {
+          "@id": "https://www.kinexisdigital.com/#organization"
+        }
+      }
+    ]
+  },
+  {
+    "path": "/audit",
+    "title": "Free Marketing Audit of Your Site | Kinexis Digital",
+    "description": "Send your site. We review the pages, search, ads, and how fast a lead gets a person, then write what to fix first. One business day.",
+    "canonical": "https://www.kinexisdigital.com/audit",
+    "social": [
+      [
+        "og:title",
+        "Free Marketing Audit of Your Site | Kinexis Digital"
+      ],
+      [
+        "og:description",
+        "Send your site. We review the pages, search, ads, and how fast a lead gets a person, then write what to fix first. One business day."
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com/audit"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "Free Marketing Audit of Your Site | Kinexis Digital"
+      ],
+      [
+        "twitter:description",
+        "Send your site. We review the pages, search, ads, and how fast a lead gets a person, then write what to fix first. One business day."
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "@id": "https://www.kinexisdigital.com/#organization",
+        "name": "Kinexis Digital",
+        "url": "https://www.kinexisdigital.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.kinexisdigital.com/assets/logos/KINEXIS_icon_logo.webp?v=20261010ll",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
+        "sameAs": [
+          "https://www.linkedin.com/company/kinexisdigital",
+          "https://www.facebook.com/profile.php?id=61591998497960"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "sales",
+          "email": "hello@kinexisdigital.com",
+          "availableLanguage": [
+            "English",
+            "Spanish"
+          ],
+          "telephone": "+13075003371"
+        },
+        "telephone": "+13075003371"
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.kinexisdigital.com"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Audit",
+            "item": "https://www.kinexisdigital.com/audit"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/lp/get-a-website",
+    "title": "Contractor Websites | Kinexis Digital",
+    "description": "Contractor websites from $500. Basic starts from a proven layout. Custom is designed and coded around the business, from $2,000.",
+    "canonical": "https://www.kinexisdigital.com/lp/get-a-website",
+    "social": [
+      [
+        "og:title",
+        "Contractor Websites | Kinexis Digital"
+      ],
+      [
+        "og:description",
+        "Contractor websites from $500. Basic starts from a proven layout. Custom is designed and coded around the business, from $2,000."
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com/lp/get-a-website"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "Contractor Websites | Kinexis Digital"
+      ],
+      [
+        "twitter:description",
+        "Contractor websites from $500. Basic starts from a proven layout. Custom is designed and coded around the business, from $2,000."
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": [
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How much does a website cost?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Basic websites start at $500 and stop at four pages: Home, About, Services, and Contact. Custom websites start at $2,000. The page count is set on the call. Custom covers 5 pages or more. A 15-page site with writing on each page costs more. Booking, payments, and client portals are quoted only if the project needs them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How soon will I hear back?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Within 1 business day (Mon–Fri, 9 AM–6 PM ET). We'll call from +1 (307) 500-3371, look at your current site or notes, and tell you what a rebuild should fix first."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this a WordPress template?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Basic starts from a proven layout we already coded, then we fit your logo, colors, and services onto it. It is custom coded, not a WordPress theme, and not a page builder. Custom is designed and coded around your business."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will I own my website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. You own the finished site, its content, and its code once the final payment clears. It's deployed on Cloudflare, and we'll move it to your own Cloudflare account whenever you ask. The domain stays in your name."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is hosting included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Hosting is typically $0/month on Cloudflare's free plan; you only pay for your domain (about $10–20/year). The site runs on Cloudflare Pages. Managed care is optional, and the monthly rate is in the proposal. It covers monitoring and fixes. The domain stays in your name. If you want to run it yourself, we'll move the site to your own Cloudflare account."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is SEO included?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Basic covers titles, descriptions, and indexing on a site of up to 4 pages. Custom adds a fuller setup where the project needs it: a page for each service, titles and descriptions, local structure, a sitemap, and indexing. Rankings, Google Business Profile, and monthly SEO stay optional after launch."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you redesign my existing website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. That's most of the work on this page. If the business has outgrown the current site, that's the starting point."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does a project take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most sites go live in 2 to 6 weeks. That depends on how quickly photos and feedback come back."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need monthly maintenance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A monthly plan is optional. It can cover monitoring, fixes, and help with changes after launch. You still own the site without it. The proposal spells out the fee if you want that help."
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/privacy",
+    "title": "Privacy Policy | Kinexis Digital",
+    "description": "Kinexis Digital — Privacy Policy / Política de Privacidad",
+    "canonical": "https://www.kinexisdigital.com/privacy",
+    "social": [
+      [
+        "og:title",
+        "Privacy Policy | Kinexis Digital"
+      ],
+      [
+        "og:description",
+        "Kinexis Digital — Privacy Policy / Política de Privacidad"
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com/privacy"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "Privacy Policy | Kinexis Digital"
+      ],
+      [
+        "twitter:description",
+        "Kinexis Digital — Privacy Policy / Política de Privacidad"
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": []
+  },
+  {
+    "path": "/terms",
+    "title": "Terms of Service | Kinexis Digital",
+    "description": "Kinexis Digital — Terms of Service / Términos del Servicio",
+    "canonical": "https://www.kinexisdigital.com/terms",
+    "social": [
+      [
+        "og:title",
+        "Terms of Service | Kinexis Digital"
+      ],
+      [
+        "og:description",
+        "Kinexis Digital — Terms of Service / Términos del Servicio"
+      ],
+      [
+        "og:url",
+        "https://www.kinexisdigital.com/terms"
+      ],
+      [
+        "og:site_name",
+        "Kinexis Digital"
+      ],
+      [
+        "og:locale",
+        "en_US"
+      ],
+      [
+        "og:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "og:image:width",
+        "1200"
+      ],
+      [
+        "og:image:height",
+        "630"
+      ],
+      [
+        "og:image:alt",
+        "Kinexis Digital"
+      ],
+      [
+        "og:type",
+        "website"
+      ],
+      [
+        "twitter:card",
+        "summary_large_image"
+      ],
+      [
+        "twitter:site",
+        "@kinexisdigital"
+      ],
+      [
+        "twitter:title",
+        "Terms of Service | Kinexis Digital"
+      ],
+      [
+        "twitter:description",
+        "Kinexis Digital — Terms of Service / Términos del Servicio"
+      ],
+      [
+        "twitter:image",
+        "https://www.kinexisdigital.com/assets/images/kinexis_OG_image.webp?v=20261010ll"
+      ],
+      [
+        "twitter:image:alt",
+        "Kinexis Digital"
+      ]
+    ],
+    "structuredData": []
+  }
+]

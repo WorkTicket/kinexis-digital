@@ -42,7 +42,7 @@ export default async function ContactPage({ params }: Props) {
   const trust = [c.trustLabel1, c.trustLabel2, c.trustLabel3];
 
   return (
-    <main className="relative flex flex-1 flex-col">
+    <main className="contact-page relative flex flex-1 flex-col">
       <JsonLd
         data={[
           organizationSchema(),

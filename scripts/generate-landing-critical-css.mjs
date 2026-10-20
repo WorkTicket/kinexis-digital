@@ -81,9 +81,9 @@ console.log(`Landing first-paint CSS: ${(Buffer.byteLength(css) / 1024).toFixed(
 await fs.appendFile("cloudflare/website-critical-css.generated.js", `export const WEBSITE_BUILD_ID = ${JSON.stringify(buildId)};\n`);
 
 const homeHtml = await fs.readFile(".next/server/app/en.html", "utf8");
-const homeMarkup = [homeHtml.match(/<html\b[^>]*>/)?.[0], homeHtml.match(/<body\b[^>]*>/)?.[0],
+const homeMarkup = [homeHtml.match(/<html\b[^>]*>/)?.[0], homeHtml.match(/<body\b[^>]*>/)?.[0], homeHtml.match(/<main\b[^>]*>/)?.[0],
   homeHtml.match(/<header\b[^>]*class="site-header[^]*?<\/header>/)?.[0],
-  homeHtml.match(/<section\b[^>]*class="hero-shell[^]*?<\/section>/)?.[0]].join("");
+  homeHtml.match(/<section\b[^>]*class="(?:hero-shell|home-offer__hero)[^]*?<\/section>/)?.[0]].join("");
 const homeClasses = new Set([...homeMarkup.matchAll(/class="([^"]+)"/g)].flatMap(match => match[1].split(/\s+/)));
 for (const name of ["site-shell", "flex", "min-h-full", "flex-1", "flex-col", "skip-link"]) homeClasses.add(name);
 for (const name of ["cookie-pending", "site-header__frost", "site-header--hidden", "site-header__frost--hidden"]) homeClasses.add(name);

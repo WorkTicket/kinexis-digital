@@ -1,0 +1,8 @@
+.offer-assurance { color: var(--foreground); background: color-mix(in oklab, var(--kx-cobalt, #0066ff) 4%, var(--background)); border-bottom: 1px solid var(--line); }
+.offer-assurance ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: 1.5rem; max-width: var(--kx-frame-max, 80rem); padding-block: 1.5rem; }
+.offer-assurance li { display: flex; justify-content: center; align-items: center; gap: .7rem; font-size: .8rem; line-height: 1.6; font-weight: 500; }
+.offer-assurance svg { flex: 0 0 auto; color: var(--kx-cobalt, #0066ff); }
+@media (max-width: 767px) {
+  .offer-assurance ul { grid-template-columns: 1fr; gap: 1rem; }
+  .offer-assurance li { justify-content: flex-start; }
+}

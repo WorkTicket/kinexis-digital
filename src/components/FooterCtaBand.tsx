@@ -23,6 +23,8 @@ export function FooterCtaBand({ eyebrow, title, dek, buttonLabel }: Props) {
   const locale = useLocale() as Locale;
   const landing = getLandingChrome(pathname, locale);
 
+  if (pathname === "/") return null;
+
   if (landing) {
     return (
       <div className="shell site-footer__cta-row">

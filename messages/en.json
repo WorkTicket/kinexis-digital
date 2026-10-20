@@ -248,7 +248,8 @@
       }
     },
     "plans": "Plans",
-    "contractors": "Contractors"
+    "contractors": "Contractors",
+    "messageMessenger": "Message us on Messenger"
   },
   "services": {
     "pricing": "Pricing",
@@ -307,7 +308,7 @@
     "ctaEyebrow": "Get in touch",
     "ctaTitle": "Prefer to start with a message?",
     "ctaDek": "Send it anytime. We reply within one business day with a straight read on whether we can help.",
-    "blurb": "Websites that bring calls for Houston contractors. Free homepage preview, $0 down, live in 7 days.",
+    "blurb": "Websites for Houston contractors. Your free preview first. Then launch with $0 down on a monthly plan.",
     "lpBlurb": "Websites for contractors and home-service businesses.",
     "replies": "Replies within one business day",
     "explore": "Explore",
@@ -321,7 +322,7 @@
     "sendMessage": "Send a message",
     "ready": "Ready?",
     "letsTalk": "Let's talk.",
-    "ctaMeta": "15 minutes · Clear next steps",
+    "ctaMeta": "3-month minimum from launch, then month-to-month.",
     "scheduleStrategyCall": "Schedule a Strategy Call",
     "learnAboutUs": "Learn About Us",
     "viewAllServices": "View All Services",
@@ -356,7 +357,9 @@
     "seeServices": "See services",
     "seeCaseStudies": "See case studies",
     "readTheBlog": "Read the blog",
-    "contactOptions": "Contact options"
+    "contactOptions": "Contact options",
+    "messageMessenger": "Message us on Messenger",
+    "seePlans": "See plans"
   },
   "pages": {
     "services": {
