@@ -3,7 +3,9 @@ import "@/styles/routes/contact.css";
 import { CreditCard, Landmark, Receipt } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PayForm } from "@/components/pay/PayForm";
-import { PageHero } from "@/components/page/PageHero";
+import { PlanCheckout } from "@/components/pay/PlanCheckout";
+import { getPlanContent } from "@/content/pay-plans";
+import "@/styles/routes/pay.css";
 import { Reveal, RevealGroup, RevealItem } from "@/components/ui/Reveal";
 import { getPayContent } from "@/content/pay";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
@@ -29,7 +31,7 @@ function clip(value: string | undefined, max: number): string {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = await resolveLocale(params);
-  const c = getPayContent(locale);
+  const c = getPlanContent(locale);
   return buildPageMetadata({
     locale,
     path: "/pay",
@@ -47,17 +49,11 @@ export default async function PayPage({ params, searchParams }: Props) {
 
   return (
     <main className="relative flex flex-1 flex-col">
-      <PageHero
-        eyebrow={c.eyebrow}
-        title={c.title}
-        signal={c.signal}
-        copy={c.copy}
-        compact
-        hideActions
-      />
+      <PlanCheckout locale={locale} />
 
       <section className="chapter chapter--studio relative">
-        <div className="shell relative py-24 md:py-32 lg:py-40">
+        <div className="shell relative py-16 md:py-24">
+          <h2 className="mb-8 text-3xl font-bold">{getPlanContent(locale).invoice}</h2>
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_300px]">
             <Reveal variant="fadeUp">
               <PayForm

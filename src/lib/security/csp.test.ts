@@ -9,6 +9,17 @@ import {
 } from "./csp.mjs";
 
 describe("buildContentSecurityPolicy", () => {
+  it("allows production PayPal scripts, frames, connections, images and forms", () => {
+    for (const csp of [buildContentSecurityPolicy(), buildAssetContentSecurityPolicy()]) {
+      for (const directive of ["script-src", "script-src-elem", "connect-src", "frame-src", "form-action"]) {
+        expect(csp.split("; ").find(part => part.startsWith(`${directive} `))).toContain("https://www.paypal.com");
+      }
+      for (const directive of ["script-src", "script-src-elem", "connect-src", "img-src"]) {
+        expect(csp.split("; ").find(part => part.startsWith(`${directive} `))).toContain("https://www.paypalobjects.com");
+      }
+      expect(csp).not.toContain("sandbox.paypal");
+    }
+  });
   it("allows the configured Meta gateways only for connections", () => {
     for (const csp of [buildContentSecurityPolicy(), buildAssetContentSecurityPolicy()]) {
       const directives = csp.split("; ");

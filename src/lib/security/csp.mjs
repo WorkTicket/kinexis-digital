@@ -79,17 +79,17 @@ export function buildContentSecurityPolicy({
 
   return [
     "default-src 'self'",
-    `script-src 'self' 'unsafe-inline'${evalDirective} https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com`,
-    `script-src-elem 'self' 'unsafe-inline'${evalDirective} https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com`,
+    `script-src 'self' 'unsafe-inline'${evalDirective} https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com https://www.paypal.com https://www.paypalobjects.com`,
+    `script-src-elem 'self' 'unsafe-inline'${evalDirective} https://www.googletagmanager.com https://tagassistant.google.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com https://www.paypal.com https://www.paypalobjects.com`,
     "style-src 'self' 'unsafe-inline'",
-    `img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://www.facebook.com https://facebook.com https://connect.facebook.net ${googleImgHosts}`,
+    `img-src 'self' https://www.paypalobjects.com data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://www.facebook.com https://facebook.com https://connect.facebook.net ${googleImgHosts}`,
     "media-src 'self' blob:",
     "font-src 'self' data:",
-    `connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://analytics.google.com https://www.google.com https://google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://td.doubleclick.net https://ad.doubleclick.net https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.facebook.com https://facebook.com https://connect.facebook.net https://graph.facebook.com ${META_GATEWAY_ORIGINS} https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
-    "frame-src 'self' https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com https://tagassistant.google.com https://www.facebook.com https://web.facebook.com",
+    `connect-src 'self' https://www.paypal.com https://www.paypalobjects.com https://www.google-analytics.com https://region1.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com https://*.googletagmanager.com https://tagassistant.google.com https://analytics.google.com https://www.google.com https://google.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://td.doubleclick.net https://ad.doubleclick.net https://googleads.g.doubleclick.net https://stats.g.doubleclick.net https://www.facebook.com https://facebook.com https://connect.facebook.net https://graph.facebook.com ${META_GATEWAY_ORIGINS} https://www.clarity.ms https://*.clarity.ms ${cloudflareInsightsConnect}`,
+    "frame-src 'self' https://www.paypal.com https://td.doubleclick.net https://bid.g.doubleclick.net https://www.googletagmanager.com https://tagassistant.google.com https://www.facebook.com https://web.facebook.com",
     "object-src 'none'",
     "base-uri 'self'",
-    "form-action 'self'",
+    "form-action 'self' https://www.paypal.com",
     "frame-ancestors 'self' https://tagassistant.google.com https://www.googletagmanager.com https://ads.google.com",
     "report-uri https://kinexisdigital.report-uri.com/r/d/csp/enforce",
   ].join("; ");
@@ -101,21 +101,21 @@ export function buildAssetContentSecurityPolicy({
   cloudflareInsightsConnect = "https://cloudflareinsights.com",
 } = {}) {
   const evalDirective = isDev ? " 'unsafe-eval'" : "";
-  const scripts = `'self' 'unsafe-inline'${evalDirective} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com`;
+  const scripts = `'self' 'unsafe-inline'${evalDirective} https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.clarity.ms https://static.cloudflareinsights.com https://www.paypal.com https://www.paypalobjects.com`;
 
   return [
     "default-src 'self'",
     `script-src ${scripts}`,
     `script-src-elem ${scripts}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.facebook.com https://connect.facebook.net",
+    "img-src 'self' https://www.paypalobjects.com data: blob: https://www.google-analytics.com https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.facebook.com https://connect.facebook.net",
     "media-src 'self' blob:",
     "font-src 'self' data:",
-    `connect-src 'self' https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.googleadservices.com https://*.g.doubleclick.net https://td.doubleclick.net https://www.facebook.com https://connect.facebook.net https://graph.facebook.com ${META_GATEWAY_ORIGINS} https://*.clarity.ms ${cloudflareInsightsConnect}`,
-    "frame-src 'self' https://td.doubleclick.net https://www.googletagmanager.com https://www.facebook.com",
+    `connect-src 'self' https://www.paypal.com https://www.paypalobjects.com https://*.google-analytics.com https://*.googletagmanager.com https://www.google.com https://www.googleadservices.com https://*.g.doubleclick.net https://td.doubleclick.net https://www.facebook.com https://connect.facebook.net https://graph.facebook.com ${META_GATEWAY_ORIGINS} https://*.clarity.ms ${cloudflareInsightsConnect}`,
+    "frame-src 'self' https://www.paypal.com https://td.doubleclick.net https://www.googletagmanager.com https://www.facebook.com",
     "object-src 'none'",
     "base-uri 'self'",
-    "form-action 'self'",
+    "form-action 'self' https://www.paypal.com",
     "frame-ancestors 'self'",
     "report-uri https://kinexisdigital.report-uri.com/r/d/csp/enforce",
   ].join("; ");

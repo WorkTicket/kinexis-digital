@@ -89,7 +89,7 @@ export function buildMetaPixelInitScript(
     `fbq('consent','${defaultConsent}');`,
     `try{var c=${READ_STORED_CONSENT_JS};if(c==='rejected')fbq('consent','revoke');else if(c==='accepted')fbq('consent','grant');}catch(e){}`,
     `fbq('init','${id}');`,
-    "fbq('track','PageView');",
+    `if(!/\\/pay\\/thanks\\/?$/.test(window.location?.pathname||'')||${READ_STORED_CONSENT_JS}==='accepted')fbq('track','PageView');`,
   ].join("");
 }
 

@@ -1,0 +1,32 @@
+[
+  {
+    "locale": "en",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "en",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "es-419",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "es-419",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "es-ES",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "es-ES",
+    "device": "mobile",
+    "status": "passed"
+  }
+]
