@@ -6,9 +6,9 @@
   },
   "a11y": {
     "skipToMain": "Saltar al contenido principal",
-    "logoAlt": "Inicio de KINEXIS Digital",
-    "preloaderLogoAlt": "Logo de KINEXIS Digital",
-    "loadingSite": "Cargando KINEXIS Digital",
+    "logoAlt": "Inicio de Kinexis Digital",
+    "preloaderLogoAlt": "Logo de Kinexis Digital",
+    "loadingSite": "Cargando Kinexis Digital",
     "backToTop": "Volver arriba",
     "websiteLeadForm": {
       "name": "Nombre",
@@ -305,7 +305,7 @@
     "ctaEyebrow": "Hablemos",
     "ctaTitle": "¿Prefieres empezar con un mensaje?",
     "ctaDek": "Escríbenos cuando quieras. Respondemos en un día laborable con una respuesta directa sobre si podemos ayudarte.",
-    "blurb": "Marketing digital para marcas de servicios del hogar y e-commerce. Estrategia, campañas y conversión, con resultados medibles.",
+    "blurb": "PÃ¡ginas web que traen llamadas para contratistas de Houston. Vista previa gratis, $0 de entrada, lista en 7 dÃ­as.",
     "lpBlurb": "Sitios para contratistas y negocios de servicios del hogar.",
     "replies": "Respondemos en un día laborable",
     "explore": "Explorar",
@@ -314,7 +314,7 @@
     "logoHome": "Inicio de Kinexis Digital"
   },
   "common": {
-    "bookStrategyCall": "Reservar una llamada",
+    "bookStrategyCall": "Quiero mi vista previa gratis",
     "seeTheWork": "Ver el trabajo",
     "sendMessage": "Enviar un mensaje",
     "ready": "¿Listo?",
@@ -713,7 +713,7 @@
   },
   "cookies": {
     "title": "Usamos cookies",
-    "description": "Usamos cookies esenciales para operar este sitio y, con tu consentimiento, cookies de analítica y publicidad (Google Analytics, Google Ads, Microsoft Clarity) para medir tráfico y atribuir campañas. Consulta nuestra",
+    "description": "Usamos cookies esenciales para que funcione este sitio y, con su consentimiento, cookies de anÃ¡lisis y publicidad (Google Analytics, Google Ads, Meta Pixel, Microsoft Clarity) para medir el trÃ¡fico y los anuncios. Vea nuestra",
     "privacyLink": "Política de Privacidad",
     "accept": "Aceptar",
     "reject": "Rechazar no esenciales"

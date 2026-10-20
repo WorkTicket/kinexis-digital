@@ -26,12 +26,13 @@ function isConsentChoice(value: string | null | undefined): value is ConsentChoi
  * first-party cookie. WebViews (Instagram/Facebook) often block storage.
  */
 export const READ_STORED_CONSENT_JS =
-  "(function(){try{var c=localStorage.getItem('kinexis-cookie-consent');if(c==='accepted'||c==='rejected')return c}catch(e){}try{var m=document.cookie.match(/(?:^|; )kinexis-cookie-consent=(accepted|rejected)/);if(m)return m[1]}catch(e){}return null})()";
+  "(function(){try{if(navigator.globalPrivacyControl===true&&!/(?:^|; )kinexis-gpc-override=accepted(?:;|$)/.test(document.cookie))return 'rejected'}catch(e){}try{var c=localStorage.getItem('kinexis-cookie-consent');if(c==='accepted'||c==='rejected')return c}catch(e){}try{var m=document.cookie.match(/(?:^|; )kinexis-cookie-consent=(accepted|rejected)/);if(m)return m[1]}catch(e){}return null})()";
 
 /** Inline: apply a stored banner choice before gtag.js flushes the queue. */
 export const GTAG_CONSENT_RESTORE_SCRIPT = `try{var c=${READ_STORED_CONSENT_JS};if(c==='accepted')gtag('consent','update',{analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});else if(c==='rejected')gtag('consent','update',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});}catch(e){}`;
 
 export function readStoredConsent(): ConsentChoice | null {
+  if (typeof navigator !== "undefined" && (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true && readDocumentCookie("kinexis-gpc-override") !== "accepted") return "rejected";
   try {
     if (typeof localStorage !== "undefined") {
       const stored = localStorage.getItem(CONSENT_STORAGE_KEY);
@@ -45,7 +46,8 @@ export function readStoredConsent(): ConsentChoice | null {
 }
 
 /** Mirror the banner choice to a first-party cookie so the edge can gate tags. */
-export function persistConsentChoice(value: ConsentChoice): void {
+export function persistConsentChoice(value: ConsentChoice, explicit = false): void {
+  if (explicit) writeDocumentCookie("kinexis-gpc-override", value, CONSENT_COOKIE_MAX_AGE);
   try {
     localStorage.setItem(CONSENT_STORAGE_KEY, value);
   } catch {

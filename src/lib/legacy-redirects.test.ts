@@ -254,14 +254,9 @@ describe("getLegacyRedirects", () => {
     );
   });
 
-  it("strips es-ES and es-419 prefixes onto unprefixed dests", () => {
+  it("leaves generic locale-prefix redirects to cookie-aware middleware", () => {
     const redirects = getLegacyRedirects();
-    expect(redirects).toEqual(
-      expect.arrayContaining([
-        { source: "/es-ES", destination: "/", permanent: true },
-        { source: "/es-419/:path*", destination: "/:path*", permanent: true },
-      ]),
-    );
+    expect(redirects.some(rule => /^\/(?:en|es|es-419|es-ES)(?:\/:path\*)?$/.test(rule.source))).toBe(false);
   });
 });
 

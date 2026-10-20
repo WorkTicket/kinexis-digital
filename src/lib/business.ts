@@ -1,3 +1,4 @@
+import { BUSINESS_PHONE_E164, BUSINESS_EMAIL, BRAND_NAME } from "@/config/business-identity";
 /**
  * Canonical on-page business facts for schema and site metadata.
  * Remote-first agency — no public storefront; schema uses service-area address only.
@@ -8,7 +9,7 @@
  */
 
 /** E.164 — public click-to-call number. */
-export const DEFAULT_BUSINESS_PHONE = "+13075003371";
+export const DEFAULT_BUSINESS_PHONE = BUSINESS_PHONE_E164;
 
 function resolveBusinessPhone(): string | undefined {
   const raw = process.env.NEXT_PUBLIC_BUSINESS_PHONE;
@@ -17,21 +18,20 @@ function resolveBusinessPhone(): string | undefined {
 }
 
 export const businessProfile = {
-  name: "KINEXIS Digital",
-  legalName: "KINEXIS Digital",
-  email: "hello@kinexisdigital.com",
+  name: BRAND_NAME,
+  legalName: BRAND_NAME,
+  email: BUSINESS_EMAIL,
   description:
     "Digital marketing agency for home services and ecommerce. SEO, paid media, web design, CRO, and analytics scored on leads and revenue.",
   linkedIn: "https://www.linkedin.com/company/kinexisdigital",
   facebook: "https://www.facebook.com/profile.php?id=61591998497960",
   /** ISO 3166-1 alpha-2 — primary market; no street address published on site. */
-  addressCountry: "CA",
-  areaServed: ["Canada", "United States"],
+  areaServed: ["Houston, TX", "United States"],
   languages: ["English", "Spanish"] as const,
   phone: resolveBusinessPhone(),
 } as const;
 
-/** NANP display, e.g. +1 (307) 500-3371. */
+/** Format the configured NANP number for display. */
 export function formatBusinessPhone(raw?: string): string | undefined {
   if (!raw) return undefined;
   const digits = raw.replace(/\D/g, "");

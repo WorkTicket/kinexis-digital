@@ -9,7 +9,7 @@
  */
 
 import { getMetaPixelId } from "@/lib/analytics/ads-config";
-import { READ_STORED_CONSENT_JS } from "@/lib/analytics/consent";
+import { readStoredConsent, READ_STORED_CONSENT_JS } from "@/lib/analytics/consent";
 import { guardMetaTrackingScript, isMetaTrackingPath, shouldLoadMetaTracking } from "./meta-tracking";
 import {
   claimMetaEventFire,
@@ -55,7 +55,7 @@ function validPixelId(id: string | undefined): string | undefined {
 }
 
 function canTrackMeta(): boolean {
-  return typeof window !== "undefined" && isMetaTrackingPath(window.location?.pathname ?? "") && typeof window.fbq === "function";
+  return readStoredConsent() === "accepted" && typeof window !== "undefined" && isMetaTrackingPath(window.location?.pathname ?? "") && typeof window.fbq === "function";
 }
 
 export type MetaPixelInitOptions = {
@@ -67,8 +67,8 @@ export type MetaPixelInitOptions = {
    */
   loadScript?: boolean;
   /**
-   * GDPR countries should start revoked so PageView waits for the banner.
-   * Elsewhere matches Google Consent Mode (granted until the visitor rejects).
+   * Legacy caller option. Initialization always starts revoked; only stored
+   * acceptance can grant consent, regardless of country or this option.
    */
   defaultConsent?: "grant" | "revoke";
 };
@@ -80,7 +80,7 @@ export function buildMetaPixelInitScript(
 ): string {
   const id = validPixelId(pixelId);
   if (!id) return "";
-  const defaultConsent = options.defaultConsent === "revoke" ? "revoke" : "grant";
+  const defaultConsent = "revoke";
 
   return [
     "!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];"
@@ -130,7 +130,7 @@ export function buildMetaConversionSnippet(pixelId?: string): string {
     "if(!/(^|\\/)thank-you(\\/|$)/.test(location.pathname))return;",
     "try{",
     `var c=${READ_STORED_CONSENT_JS};`,
-    "if(c==='rejected'){fbq('consent','revoke');return;}",
+    "if(c!=='accepted'){fbq('consent','revoke');return;}",
     "if(c==='accepted')fbq('consent','grant');",
     `var raw=${READ_PENDING_CONVERSION_JS};`,
     "if(!raw)return;",
@@ -163,7 +163,7 @@ export function buildMetaConversionSnippet(pixelId?: string): string {
 }
 
 export function updateMetaPixelConsent(granted: boolean): void {
-  if (!canTrackMeta()) return;
+  if (typeof window === "undefined" || typeof window.fbq !== "function") return;
   if (granted && !shouldLoadMetaTracking(window.location.pathname, peekPendingConversion())
     && window.__kinexisMetaTrackingPath !== window.location.pathname) return;
   window.fbq!("consent", granted ? "grant" : "revoke");

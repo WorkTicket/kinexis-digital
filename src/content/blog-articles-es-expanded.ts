@@ -7,7 +7,7 @@ export const blogArticlesEsExpanded = {
     category: "Crecimiento de Negocios Locales",
     publishedAt: "15 de junio de 2026",
     body: `<p>El algoritmo de búsqueda local de Google ha tenido actualizaciones importantes en el último año. Si sigues haciendo SEO local como en 2024, es probable que ya no veas los mismos resultados. Los fundamentos siguen importando, pero Google pondera las señales de otra forma y necesitas adaptarte para mantenerte competitivo en el local pack.</p>
-<p>En KINEXIS Digital trabajamos cada semana con negocios de servicios locales, y el patrón se repite. Las empresas que posicionan bien en 2026 no son necesariamente las que tienen el presupuesto más grande. Son las que tratan la búsqueda local como un sistema continuo, no como un proyecto de configuración que se hace una vez y se olvida.</p>
+<p>En Kinexis Digital trabajamos cada semana con negocios de servicios locales, y el patrón se repite. Las empresas que posicionan bien en 2026 no son necesariamente las que tienen el presupuesto más grande. Son las que tratan la búsqueda local como un sistema continuo, no como un proyecto de configuración que se hace una vez y se olvida.</p>
 <h2>Los Tres Pilares Que No Han Cambiado</h2>
 <p>Antes de hablar de lo nuevo, conviene aclarar qué sigue moviendo el ranking local. Estos tres pilares han resistido varias actualizaciones del algoritmo, y no esperamos que cambien pronto.</p>
 <h3>Optimización de Google Business Profile</h3>
@@ -36,7 +36,7 @@ export const blogArticlesEsExpanded = {
 <h2>Qué Hacer Este Trimestre</h2>
 <p>¿Qué deberías hacer este trimestre? Primero, audita tu GBP por completo: todos los campos completos, publicaciones programadas para las próximas 8 semanas y una plantilla lista para responder reseñas. Segundo, ejecuta una auditoría de citaciones y corrige cada inconsistencia NAP. Tercero, monta un proceso simple de solicitud de reseñas ligado a trabajos completados, no a un email masivo genérico.</p>
 <p>Cuarto, crea al menos tres piezas de contenido local relevante: una página de servicio por barrio, una página de preguntas frecuentes con inquietudes locales y una entrada de blog ligada a un evento comunitario o una necesidad estacional. Combina estas cuatro cosas de forma consistente durante los próximos 90 días y estarás muy por delante de la mayoría de negocios locales que siguen intentando ponerse al día.</p>
-<p>El SEO local en 2026 premia la constancia por encima de los atajos. Los negocios que aparecen cada semana, en su perfil, en sus reseñas y en su sitio, son los que los clientes encuentran primero. Si quieres ayuda para construir ese sistema, es exactamente lo que hacemos en KINEXIS Digital.</p>`,
+<p>El SEO local en 2026 premia la constancia por encima de los atajos. Los negocios que aparecen cada semana, en su perfil, en sus reseñas y en su sitio, son los que los clientes encuentran primero. Si quieres ayuda para construir ese sistema, es exactamente lo que hacemos en Kinexis Digital.</p>`,
   },
   "website-conversion-optimization": {
     title: "7 Cambios en el Sitio Web que Aumentaron las Conversiones un 340%",
@@ -76,7 +76,7 @@ export const blogArticlesEsExpanded = {
 <h2>Lo Que Aprendimos</h2>
 <p>La optimización de conversión no va de trucos, pop-ups ni contadores regresivos. Va de quitar fricción y hacer obvio el siguiente paso. Este cliente no necesitaba más tráfico. Necesitaba un sitio que convirtiera el tráfico que ya tenía.</p>
 <p>Si tu sitio recibe visitas pero no leads, empieza con estos siete cambios antes de subir el gasto en anuncios. Mide tu tasa de conversión base, haz un cambio a la vez y sigue el impacto durante 2 a 4 semanas. El efecto acumulado de mejoras pequeñas es cómo conviertes un sitio del 1,2% en una máquina del 5%.</p>
-<p>En KINEXIS Digital construimos sitios diseñados para convertir desde el primer día. Pero si ya tienes un sitio que se ve bien y rinde mal, estas son las correcciones exactas que desplegamos primero.</p>`,
+<p>En Kinexis Digital construimos sitios diseñados para convertir desde el primer día. Pero si ya tienes un sitio que se ve bien y rinde mal, estas son las correcciones exactas que desplegamos primero.</p>`,
   },
   "google-business-profile-tips": {
     title: "Google Business Profile: La Lista Completa de Optimización",
@@ -84,7 +84,7 @@ export const blogArticlesEsExpanded = {
     publishedAt: "25 de mayo de 2026",
     body: `<p>Tu Google Business Profile es el activo de marketing local más poderoso que tienes. Es gratis. Aparece en Google Maps, en el local pack y en resultados de búsqueda de marca. Y la mayoría de negocios completa lo básico, verifica la ficha y nunca la vuelve a tocar.</p>
 <p>Esa es una oportunidad perdida. Un GBP totalmente optimizado puede generar llamadas, solicitudes de indicaciones y visitas al sitio sin gastar un dólar en publicidad. Hemos gestionado perfiles de clínicas dentales, contratistas, bufetes de abogados y restaurantes, y la diferencia entre una ficha descuidada y una activa es enorme.</p>
-<p>Esta es la lista completa que aplicamos con cada cliente de KINEXIS Digital. Trabájala sección por sección.</p>
+<p>Esta es la lista completa que aplicamos con cada cliente de Kinexis Digital. Trabájala sección por sección.</p>
 <h2>Fundamentos: Haz Bien lo Básico</h2>
 <p>Antes de preocuparte por tácticas avanzadas, asegúrate de que la base sea sólida. Google no posicionará una ficha en la que no confía, y la confianza empieza con información precisa y completa.</p>
 <h3>Verifica tu ficha</h3>
@@ -127,7 +127,7 @@ export const blogArticlesEsExpanded = {
     title: "SEO vs. Google Ads: ¿Dónde Deberías Invertir Primero?",
     category: "Marketing",
     publishedAt: "12 de mayo de 2026",
-    body: `<p>Esta es la pregunta más común que recibimos de dueños de negocio: ¿debería invertir primero en SEO o en Google Ads? La respuesta honesta depende de tu cronograma, tu presupuesto y lo que vendes realmente. Pero "depende" no ayuda sin contexto, así que vamos a desglosar cómo asesoramos a clientes en KINEXIS Digital.</p>
+    body: `<p>Esta es la pregunta más común que recibimos de dueños de negocio: ¿debería invertir primero en SEO o en Google Ads? La respuesta honesta depende de tu cronograma, tu presupuesto y lo que vendes realmente. Pero "depende" no ayuda sin contexto, así que vamos a desglosar cómo asesoramos a clientes en Kinexis Digital.</p>
 <p>Ambos canales funcionan. Hemos visto negocios construir flujos de ingresos de siete cifras solo con búsqueda orgánica, y hemos visto campañas de Google Ads generar leads cualificados en las 48 horas posteriores al lanzamiento. La pregunta no es qué canal es mejor. Es qué canal encaja con tu situación ahora mismo.</p>
 <h2>Entender el Intercambio Fundamental</h2>
 <p>El SEO es una inversión a largo plazo. Construyes activos (contenido, autoridad, posiciones) que se acumulan con el tiempo. Google Ads es un acelerador a corto plazo. Pagas por visibilidad inmediata, y esa visibilidad se detiene en el momento en que dejas de pagar.</p>
@@ -162,14 +162,14 @@ export const blogArticlesEsExpanded = {
 <h2>Qué No Hacer</h2>
 <p>No pongas todo el presupuesto en anuncios e ignores el SEO para siempre. Pagarás CPCs crecientes sin construir activos. No inviertas en SEO y esperes leads en 30 días. Te quemarás y abandonarás antes de que funcione. No repartas un presupuesto pequeño entre ambos canales tan fino que ninguno reciba datos suficientes para optimizar.</p>
 <p>Elige un canal principal según tu cronograma, comprométete al menos 90 días y apóyalo con el canal secundario al nivel que permita tu presupuesto. Mide coste por lead, no solo tráfico o impresiones.</p>
-<p>En KINEXIS Digital construimos estrategias de búsqueda integradas para negocios que quieren crecimiento predecible. Si no sabes por dónde empezar, ese suele ser el mejor punto: una conversación sobre tus números, tu cronograma y qué significa ganar para tu negocio.</p>`,
+<p>En Kinexis Digital construimos estrategias de búsqueda integradas para negocios que quieren crecimiento predecible. Si no sabes por dónde empezar, ese suele ser el mejor punto: una conversación sobre tus números, tu cronograma y qué significa ganar para tu negocio.</p>`,
   },
   "technical-seo-fundamentals": {
     title: "Fundamentos de SEO Técnico que Todo Propietario de Sitio Debe Conocer",
     category: "SEO",
     publishedAt: "28 de abril de 2026",
     body: `<p>El SEO técnico es la base sobre la que descansa todo lo demás. Puedes publicar el mejor contenido de tu industria y construir cientos de backlinks, pero si Google no puede rastrear, indexar y renderizar tu sitio correctamente, nada de eso importa. Tus páginas simplemente no posicionarán.</p>
-<p>Auditamos decenas de sitios web cada trimestre en KINEXIS Digital, y los mismos problemas técnicos aparecen una y otra vez. La buena noticia es que la mayoría se pueden corregir sin una reconstrucción completa. Esta guía cubre los fundamentos que todo propietario de sitio debería entender, ya gestiones tu propio sitio o trabajes con una agencia.</p>
+<p>Auditamos decenas de sitios web cada trimestre en Kinexis Digital, y los mismos problemas técnicos aparecen una y otra vez. La buena noticia es que la mayoría se pueden corregir sin una reconstrucción completa. Esta guía cubre los fundamentos que todo propietario de sitio debería entender, ya gestiones tu propio sitio o trabajes con una agencia.</p>
 <h2>Core Web Vitals: Velocidad y Estabilidad</h2>
 <p>Google usa Core Web Vitals como señal de ranking. Estas métricas miden qué tan rápido carga tu página, qué tan rápido responde a la interacción del usuario y qué tan estable es el diseño mientras carga. Puedes revisar tus puntuaciones en Google PageSpeed Insights o Search Console.</p>
 <h3>Largest Contentful Paint (LCP)</h3>
@@ -215,7 +215,7 @@ export const blogArticlesEsExpanded = {
     category: "Crecimiento de Negocios Locales",
     publishedAt: "15 de abril de 2026",
     body: `<p>Después de trabajar con decenas de negocios de servicios locales en los últimos tres años, dejamos de recomendar marketing disperso. Los dueños que prueban un poco de todo (un anuncio de Facebook aquí, un folleto allá, una táctica de SEO aleatoria que leyeron) casi siempre queman presupuesto sin construir momentum.</p>
-<p>Los negocios que crecen de forma predecible se centran en cinco canales. No quince. Cinco. Los ejecutan con constancia, miden resultados y acumulan esfuerzos con el tiempo. Este es el playbook que usamos en KINEXIS Digital en cada proyecto con clientes locales.</p>
+<p>Los negocios que crecen de forma predecible se centran en cinco canales. No quince. Cinco. Los ejecutan con constancia, miden resultados y acumulan esfuerzos con el tiempo. Este es el playbook que usamos en Kinexis Digital en cada proyecto con clientes locales.</p>
 <h2>Canal 1: Google Business Profile</h2>
 <p>Coste: gratis. Inversión de tiempo: 2 a 3 horas por semana. Impacto en visibilidad local: muy alto.</p>
 <p>Tu Google Business Profile es la puerta de entrada a la búsqueda local. Aparece en Google Maps, en el local pack de 3 y en resultados de búsqueda de marca. Ningún otro activo te da tanta visibilidad a coste cero.</p>
@@ -254,14 +254,14 @@ export const blogArticlesEsExpanded = {
 <h2>Mide lo Que Importa</h2>
 <p>Sigue coste por lead y coste por cliente adquirido por canal. No impresiones. No sesiones del sitio. No seguidores en redes sociales. ¿Cuánto gastaste y cuántos clientes de pago produjo cada canal?</p>
 <p>Revisa estos números cada mes. Desplaza presupuesto hacia canales que rinden y aleja de los que no. El playbook funciona cuando te comprometes el tiempo suficiente para ver datos reales.</p>
-<p>Cinco canales. Ejecución constante. Resultados medidos. Así crecen los negocios locales de forma predecible, y es el sistema que construimos para cada cliente en KINEXIS Digital.</p>`,
+<p>Cinco canales. Ejecución constante. Resultados medidos. Así crecen los negocios locales de forma predecible, y es el sistema que construimos para cada cliente en Kinexis Digital.</p>`,
   },
   "seo-pricing-guide": {
     title: "Precios de SEO: ¿Cuánto Deberías Presupuestar para SEO en 2026?",
     category: "SEO",
     publishedAt: "14 de julio de 2026",
     body: `<p>Los precios de SEO son de los temas más opacos del marketing digital. Las agencias cobran entre 500 y 30.000 dólares al mes, y casi nunca queda claro qué separa la opción barata de la premium. Si estás presupuestando SEO, el rango es confuso a propósito.</p>
-<p>En KINEXIS Digital trabajamos con negocios que ya se quemaron con retainers de 500 dólares al mes que no produjeron nada, y con otros que pagaron de más a agencias que no sabían explicar su proceso. Esta guía desglosa qué compras en cada tramo, cómo saber si la inversión es razonable para tu mercado y qué esperar en cada nivel.</p>
+<p>En Kinexis Digital trabajamos con negocios que ya se quemaron con retainers de 500 dólares al mes que no produjeron nada, y con otros que pagaron de más a agencias que no sabían explicar su proceso. Esta guía desglosa qué compras en cada tramo, cómo saber si la inversión es razonable para tu mercado y qué esperar en cada nivel.</p>
 <h2>Los Tres Niveles de Precio</h2>
 <h3>Nivel 1: SEO básico / local (500 a 1.500 dólares al mes)</h3>
 <p>A este precio sueles recibir optimización de Google Business Profile, ajustes on-page básicos, citaciones y quizá un par de artículos al mes. Encaja en negocios locales muy pequeños con poca competencia: un fontanero de un solo local, un restaurante de barrio, un dentista autónomo.</p>
@@ -270,7 +270,7 @@ export const blogArticlesEsExpanded = {
 <h3>Nivel 2: SEO profesional (2.000 a 5.000 dólares al mes)</h3>
 <p>Es el punto dulce para la mayoría de negocios de servicios, B2B y tiendas ecommerce en mercados de competencia media. Aquí deberías tener un estratega o account manager dedicado, research de keywords a medida, correcciones técnicas priorizadas por impacto, contenido regular y un programa de enlaces.</p>
 <p>La diferencia con el Nivel 1 es la estrategia. En vez de parches de plantilla, la agencia debería analizar tu mercado, tus competidores y tu sitio para armar un plan concreto. También deberías recibir reporting que conecte el SEO con métricas de negocio, no solo rankings y tráfico.</p>
-<p>En KINEXIS Digital los programas empiezan en este rango. Incluyen auditorías técnicas, keywords de intención de compra, clusters de contenido, on-page y link building. La mayoría de clientes en este nivel ve crecimiento medible de leads en 4 a 6 meses.</p>
+<p>En Kinexis Digital los programas empiezan en este rango. Incluyen auditorías técnicas, keywords de intención de compra, clusters de contenido, on-page y link building. La mayoría de clientes en este nivel ve crecimiento medible de leads en 4 a 6 meses.</p>
 <p>Mejor para: negocios locales en mercados competitivos, empresas de servicios regionales, B2B de 5 a 50 empleados y tiendas con 50 a 500 productos.</p>
 <h3>Nivel 3: SEO enterprise (6.000 a 30.000 dólares o más al mes)</h3>
 <p>El SEO enterprise implica varios estrategas, equipos de contenido, ingenieros técnicos y, a menudo, trabajo conjunto con marketing e ingeniería internos. Este nivel es para sitios grandes (más de 10.000 páginas), marcas nacionales o internacionales e industrias muy competitivas.</p>
@@ -301,14 +301,14 @@ export const blogArticlesEsExpanded = {
 <p>Empieza por saber lo que vale un cliente y lo que puedes invertir al mes. Para la mayoría de negocios, 2.000 a 5.000 dólares al mes es el rango donde el SEO profesional es posible y el ROI se puede medir.</p>
 <p>Comprométete al menos 6 meses. El SEO se acumula. Tres meses casi nunca bastan. Entre seis y nueve es donde coge ritmo. A los doce suele ser tu canal más eficiente.</p>
 <p>Si no sabes por dónde empezar, pide una llamada de estrategia y pregunta: cómo es el proceso, cómo priorizan, qué han conseguido con negocios como el tuyo y cómo miden. La calidad de las respuestas dice más que la cifra.</p>
-<p>En KINEXIS Digital somos claros con lo que entregamos en cada nivel de inversión. <a href="/services#seo">Mira cómo funcionan nuestros programas de SEO →</a></p>`,
+<p>En Kinexis Digital somos claros con lo que entregamos en cada nivel de inversión. <a href="/services#seo">Mira cómo funcionan nuestros programas de SEO →</a></p>`,
   },
   "how-long-does-seo-take": {
     title: "¿Cuánto Tiempo Toma el SEO? Plazos Realistas para Resultados Reales",
     category: "SEO",
     publishedAt: "14 de julio de 2026",
     body: `<p>¿Cuánto tarda el SEO? Si preguntas a una agencia, oirás "cuatro a seis meses." Si preguntas a un dueño que lo probó una vez y lo dejó, oirás "no funcionó." La respuesta real tiene matices, y esos matices importan si estás decidiendo si invertir o cómo fijar expectativas.</p>
-<p>En KINEXIS Digital hemos llevado programas de SEO para decenas de negocios de servicios del hogar, B2B, ecommerce y profesionales. Los plazos cambian con la competencia, el presupuesto y el punto de partida. El patrón es lo bastante estable para darte una hoja de ruta realista.</p>
+<p>En Kinexis Digital hemos llevado programas de SEO para decenas de negocios de servicios del hogar, B2B, ecommerce y profesionales. Los plazos cambian con la competencia, el presupuesto y el punto de partida. El patrón es lo bastante estable para darte una hoja de ruta realista.</p>
 <h2>La Respuesta Corta</h2>
 <h3>Correcciones técnicas: 2 a 4 semanas</h3>
 <p>Si el sitio tiene problemas de indexación, errores de crawl o bloqueos técnicos obvios, esas son las piezas más rápidas de arreglar y suelen dar la señal más temprana. Hemos visto clientes pasar de "no indexado" a "página 3" en menos de 30 días solo limpiando lo que impedía a Google encontrar sus mejores páginas.</p>
@@ -363,7 +363,7 @@ export const blogArticlesEsExpanded = {
 <p>No puedes saltarte el SEO, pero sí puedes dejar de frenarlo. No cambies URLs cuando empiezan a rankear. No rediseñes sin preservar redirecciones. No pauses el programa a los tres meses porque aún no estás en primera página.</p>
 <p>Prioriza lo técnico primero (impacto más rápido). Publica con constancia (efecto compuesto). Gana enlaces de sitios relevantes (autoridad). Mide leads e ingresos, no solo rankings.</p>
 <p>El SEO no es una campaña. Es una capacidad que se construye. Los negocios que lo tratan así son los que aparecen primero cuando su cliente ideal busca.</p>
-<p>Si quieres un plazo realista para tu negocio y tu mercado, esa es la conversación que tenemos cada semana en KINEXIS Digital. <a href="/services#seo">Habla con el equipo sobre tu caso →</a></p>`,
+<p>Si quieres un plazo realista para tu negocio y tu mercado, esa es la conversación que tenemos cada semana en Kinexis Digital. <a href="/services#seo">Habla con el equipo sobre tu caso →</a></p>`,
   },
   "email-nurture-sequences-that-book-calls": {
     title: "Secuencias de Email que Realmente Reservan Llamadas",
@@ -371,7 +371,7 @@ export const blogArticlesEsExpanded = {
     publishedAt: "20 de junio de 2026",
     body: `<p>La mayoría trata el email nurture como una newsletter: un envío periódico sin camino claro a ingresos. Los suscriptores reciben un email de bienvenida, quizá una actualización mensual, y luego silencio hasta la próxima promoción. Eso no es nurture. Es ruido.</p>
 <p>Las secuencias que realmente agendan llamadas están estructuradas de otra forma. Se construyen con un solo objetivo: llevar al suscriptor de la curiosidad a una conversación. Cada email tiene una función. Cada envío está programado según dónde está el lector en su proceso de decisión.</p>
-<p>Hemos construido secuencias de nurture para bufetes de abogados, empresas de servicios para el hogar, startups SaaS y consultores B2B en KINEXIS Digital. Los frameworks de abajo son los que producen llamadas de descubrimiento reservadas de forma consistente, no solo aperturas y clics.</p>
+<p>Hemos construido secuencias de nurture para bufetes de abogados, empresas de servicios para el hogar, startups SaaS y consultores B2B en Kinexis Digital. Los frameworks de abajo son los que producen llamadas de descubrimiento reservadas de forma consistente, no solo aperturas y clics.</p>
 <h2>Empieza con Segmentación, No con un Envío Masivo</h2>
 <p>Antes de escribir un solo email, segmenta por intención. Quien descargó una guía de precios no es igual a quien leyó un artículo de la parte alta del embudo. Quien visitó tu página de casos de estudio tres veces está más avanzado que quien se suscribió desde un popup genérico de la página de inicio.</p>
 <p>Usamos tres tracks principales para negocios de servicios:</p>
@@ -417,6 +417,6 @@ export const blogArticlesEsExpanded = {
 <h2>Errores Comunes que Vemos</h2>
 <p>Enviar la misma secuencia a todos sin importar cómo se registraron. Esperar demasiado para pedir la llamada (si esperas 30 días, ya olvidaron quién eres). Incluir múltiples CTAs por email (un email, una acción). Escribir emails que suenan generados por máquina (si no dirías "sinergiza tus esfuerzos de marketing" en persona, no lo pongas en un email).</p>
 <p>El email nurture no va de volumen. Va de relevancia, timing y un camino claro de suscriptor a conversación. Construye la secuencia una vez, mídela cada mes y refina según lo que digan los datos.</p>
-<p>Si quieres ayuda para construir un sistema de nurture que convierta tu lista de email en un motor de llamadas reservadas, es trabajo que hacemos cada semana en KINEXIS Digital.</p>`,
+<p>Si quieres ayuda para construir un sistema de nurture que convierta tu lista de email en un motor de llamadas reservadas, es trabajo que hacemos cada semana en Kinexis Digital.</p>`,
   },
 };

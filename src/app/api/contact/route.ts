@@ -1,3 +1,4 @@
+import { hasAcceptedWebsiteConsent } from "@/lib/analytics/server-consent";
 import { NextResponse } from "next/server";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 import {
@@ -88,14 +89,14 @@ export async function POST(request: Request) {
 
     const mail = await sendKinexisMail(
       {
-        fromName: "KINEXIS Digital Contact",
+        fromName: "Kinexis Digital Contact",
         replyTo: safeEmail,
         subject: `New Inquiry from ${safeName}${company ? ` \u2014 ${company}` : ""}`,
         title: "New Contact Form Submission",
         rows,
         footer: `Reply directly to this email to respond to ${safeName}.`,
         text: [
-          "New Contact Form Submission \u2014 KINEXIS Digital",
+          "New Contact Form Submission \u2014 Kinexis Digital",
           "",
           `Name: ${safeName}`,
           `Email: ${safeEmail}`,
@@ -126,7 +127,7 @@ export async function POST(request: Request) {
       });
     }
 
-    await sendMetaCapiEvent({
+    if (hasAcceptedWebsiteConsent(request)) await sendMetaCapiEvent({
       eventName: "Lead",
       eventId: typeof metaEventId === "string" ? metaEventId : undefined,
       email: safeEmail,

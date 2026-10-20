@@ -35,7 +35,8 @@ const lead = {
 function submit(extra = {}) {
   return POST(new Request("https://www.kinexisdigital.com/api/lead", {
     method: "POST",
-    headers: { "content-type": "application/json", "user-agent": "Test browser" },
+    headers: { "content-type": "application/json",
+        cookie: "kinexis-cookie-consent=accepted", "user-agent": "Test browser" },
     body: JSON.stringify({ ...lead, ...extra }),
   }));
 }

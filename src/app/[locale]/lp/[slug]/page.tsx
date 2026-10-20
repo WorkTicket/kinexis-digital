@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path: `/lp/${slug}`,
       title: "Landing page",
-      description: "KINEXIS Digital paid campaign landing page.",
+      description: "Kinexis Digital paid campaign landing page.",
       noIndex: true,
       noFollow: true,
     });

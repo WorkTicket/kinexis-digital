@@ -1,3 +1,4 @@
+import { getBusinessPhoneDisplay } from "@/lib/business";
 /**
  * Live production content for /lp/get-a-website.
  * Basic sites from $500. Custom multi-page sites from $2,000.
@@ -243,7 +244,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   formTitle: "Request a free project call",
   formSubtitle:
-    "Leave your name and number. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
+    `Leave your name and number. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from ${getBusinessPhoneDisplay() ?? ""}.`,
   submitLabel: "Request my call",
   formCtaHint: `No obligation. ${PRICE_LINE}`,
   formFootnote:
@@ -267,7 +268,7 @@ const baseGetAWebsite: LandingPageEntry = {
   privacyMicrocopy: "Your information is used to follow up on this call.",
   successTitle: "You're in",
   successCopy:
-    "Your details are in. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
+    `Your details are in. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from ${getBusinessPhoneDisplay() ?? ""}.`,
   inlineThankYou: true,
 
   planHasSiteTitle: "If you already have a website",
@@ -290,7 +291,7 @@ const baseGetAWebsite: LandingPageEntry = {
     },
     {
       title: "We call you",
-      detail: "Within 1 business day (Mon–Fri, 9 AM–6 PM ET), from +1 (307) 500-3371.",
+      detail: `Within 1 business day (Mon–Fri, 9 AM–6 PM ET), from ${getBusinessPhoneDisplay() ?? ""}.`,
     },
     {
       title: "Get your scope and price",
@@ -300,7 +301,7 @@ const baseGetAWebsite: LandingPageEntry = {
   ],
   formTrust: [
     "No obligation",
-    "We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
+    `We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from ${getBusinessPhoneDisplay() ?? ""}.`,
     "Works with or without a current site",
     "You own the website",
   ],
@@ -586,7 +587,7 @@ const baseGetAWebsite: LandingPageEntry = {
 
   closingTitle: "Request a free project call",
   closingCopy:
-    "If the current site is underselling the crew, send the details. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from +1 (307) 500-3371.",
+    `If the current site is underselling the crew, send the details. We call you back within 1 business day (Mon–Fri, 9 AM–6 PM ET) from ${getBusinessPhoneDisplay() ?? ""}.`,
   closingFinePrint: `No obligation. ${PRICE_LINE}`,
 
   faqs: [
@@ -597,7 +598,7 @@ const baseGetAWebsite: LandingPageEntry = {
     {
       question: "How soon will I hear back?",
       answer:
-        "Within 1 business day (Mon–Fri, 9 AM–6 PM ET). We'll call from +1 (307) 500-3371, look at your current site or notes, and tell you what a rebuild should fix first.",
+        `Within 1 business day (Mon–Fri, 9 AM–6 PM ET). We'll call from ${getBusinessPhoneDisplay() ?? ""}, look at your current site or notes, and tell you what a rebuild should fix first.`,
     },
     {
       question: "Is this a WordPress template?",

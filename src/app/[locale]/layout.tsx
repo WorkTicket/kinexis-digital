@@ -106,7 +106,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: getOgLocale(locale),
-      siteName: "KINEXIS Digital",
+      siteName: "Kinexis Digital",
       title,
       description,
       images: [
@@ -114,7 +114,7 @@ export async function generateMetadata({
           url: DEFAULT_OG_IMAGE_PATH,
           width: 1200,
           height: 630,
-          alt: "KINEXIS Digital",
+          alt: "Kinexis Digital",
         },
       ],
     },

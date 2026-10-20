@@ -18,7 +18,6 @@ import {
 } from "../src/lib/analytics/ads-config.ts";
 import {
   buildEarlyGoogleTagHtml,
-  isGdprConsentRegion,
 } from "../src/lib/analytics/conversion-snippet.ts";
 import { buildEarlyMetaPixelHtml } from "../src/lib/analytics/meta-pixel.ts";
 import { shouldLoadGoogleTracking } from "../src/lib/analytics/google-tracking.ts";
@@ -68,11 +67,10 @@ export default {
       return response;
     }
 
-    const country = request.cf?.country;
     const metaHtml = isMetaTrackingPath(new URL(request.url).pathname) ? buildEarlyMetaPixelHtml(PRODUCTION_META_PIXEL_ID, {
       landingOnly: true,
       loadScript: true,
-      defaultConsent: isGdprConsentRegion(country) ? "revoke" : "grant",
+      defaultConsent: "revoke",
     }) : "";
     const websiteLanding = /\/lp\/get-a-website\/?$/.test(new URL(request.url).pathname) && Boolean(WEBSITE_CRITICAL_CSS);
     const homepage = /^\/(?:(?:en|es-419|es-ES)\/?)?$/.test(new URL(request.url).pathname);
@@ -80,7 +78,7 @@ export default {
     const googleHtml = shouldLoadGoogleTracking(new URL(request.url).pathname)
       ? homepage ? EARLY_GTAG_QUEUE_HTML : EARLY_GTAG_HTML
       : "";
-    const metaConsentDefault = isGdprConsentRegion(country) ? "revoke" : "grant";
+    const metaConsentDefault = "revoke";
     const earlyHead = `<script>window.__kinexisMetaDefaultConsent='${metaConsentDefault}';</script>${googleHtml}${metaHtml}`;
 
     return new HTMLRewriter()

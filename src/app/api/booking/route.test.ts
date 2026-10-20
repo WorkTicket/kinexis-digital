@@ -55,6 +55,7 @@ describe("POST /api/booking", () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        cookie: "kinexis-cookie-consent=accepted",
         origin: "https://www.kinexisdigital.com",
       },
       body: JSON.stringify(body),

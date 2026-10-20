@@ -1,3 +1,4 @@
+vi.mock("@/lib/analytics/consent", async (importOriginal) => ({ ...await importOriginal<typeof import("@/lib/analytics/consent")>(), readStoredConsent: () => "accepted" }));
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { LEAD_FIELD_CODES, trackLandingFunnel, type LandingFunnelEvent } from "./landing-funnel";

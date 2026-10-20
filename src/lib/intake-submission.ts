@@ -1,3 +1,4 @@
+import { QUICK_FIELDS, LAUNCH_FIELDS, requiresTradeLicense, SMS_CONSENT_VERSION, SMS_CONSENT_TEXT } from "@/content/contractor-intake";
 import {
   COMPETITOR_COUNT,
   INTAKE_SECTIONS,
@@ -102,7 +103,11 @@ export function parseIntakeAnswers(raw: unknown): ParseResult {
   let phone = "";
   let signature = "";
 
-  for (const section of INTAKE_SECTIONS) {
+  const newFields = [...QUICK_FIELDS, ...LAUNCH_FIELDS];
+  const newIds = new Set(newFields.map(f => f.id));
+  // Older request keys stay optional and continue to reach the same inbox.
+  const legacySections = INTAKE_SECTIONS.map(section => ({ ...section, rows: section.rows.map(row => row.filter(f => !("id" in f) || !newIds.has(f.id))) }));
+  for (const section of legacySections) {
     const rows: IntakeMailRow[] = [];
     for (const row of section.rows) {
       for (const field of row) {
@@ -135,10 +140,46 @@ export function parseIntakeAnswers(raw: unknown): ParseResult {
     }
   }
 
-  if (!companyName || !contactName || !email || !signature) {
+  const currentRows: IntakeMailRow[] = [];
+  for (const field of newFields) {
+    const rawValue = input[field.id];
+    if (field.required && (typeof rawValue !== "string" || !rawValue.trim())) return { ok: false, error: `${field.en} is required.` };
+    if (field.type === "checks") {
+      if (rawValue == null) continue;
+      if (!Array.isArray(rawValue) || rawValue.some(v => typeof v !== "string" || !field.options?.some(o => o[0] === v))) return { ok: false, error: `${field.en} has an invalid selection.` };
+      if (rawValue.length) currentRows.push({ label: field.en, value: [...new Set(rawValue)].join(", ") });
+      continue;
+    }
+    const read = readString(input, field.id, field.type === "textarea" ? AREA_MAX : TEXT_MAX, field.en);
+    if (!read.ok) return read;
+    if (read.value && field.options && !field.options.some(o => o[0] === read.value)) return { ok: false, error: `${field.en} has an invalid selection.` };
+    if (field.id === "companyName") companyName = read.value;
+    if (field.id === "primaryContact") contactName = read.value;
+    if (field.id === "email") email = read.value;
+    if (field.id === "phone") phone = read.value;
+    if (read.value) currentRows.push({ label: field.en, value: read.value });
+  }
+  if (requiresTradeLicense(input.trade) && (typeof input.licenseNumber !== "string" || !input.licenseNumber.trim())) return { ok: false, error: "Texas license number is required for this trade." };
+  if (input.smsConsent != null && typeof input.smsConsent !== "boolean") return { ok: false, error: "SMS consent must be a boolean." };
+  const locale = input.locale === "es-419" || input.locale === "es-ES" ? input.locale : "en";
+  const timestamp = new Date().toISOString();
+  const page = readString(input, "pageUrl", 2000, "Page URL");
+  if (!page.ok) return page;
+  if (page.value && !/^https?:\/\//.test(page.value)) return { ok: false, error: "Invalid page URL." };
+  currentRows.push(
+    { label: "SMS consent", value: input.smsConsent === true ? "Yes" : "No" },
+    { label: "Consent recorded at (server)", value: timestamp },
+    { label: "Consent text version", value: SMS_CONSENT_VERSION },
+    { label: "Consent text", value: SMS_CONSENT_TEXT[locale === "en" ? "en" : "es"] + (locale === "en" ? " See our Privacy Policy (/privacy) and Terms (/terms)." : " Vea la Política de Privacidad (/privacy) y los Términos (/terms).") },
+    { label: "Locale", value: locale },
+    { label: "Page URL", value: page.value },
+    { label: "Signature date (server, America/Chicago)", value: new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()) },
+  );
+  sections.unshift({ number: "01", title: "Contractor preview", rows: currentRows });
+  if (!companyName || !contactName || !email || !phone || !signature) {
     return {
       ok: false,
-      error: "Company name, contact name, email, and signature are required.",
+      error: "Company name, contact name, email, phone, trade, plan, and signature are required.",
     };
   }
   if (!EMAIL_RE.test(email)) {
@@ -162,7 +203,7 @@ export function formatIntakeMail(submission: IntakeSubmission): {
 } {
   const subject = `Website intake: ${submission.companyName} — ${submission.contactName}`.slice(0, 180);
   const textParts = [
-    "Website intake questionnaire — KINEXIS Digital",
+    "Website intake questionnaire — Kinexis Digital",
     "",
     `Company: ${submission.companyName}`,
     `Contact: ${submission.contactName}`,

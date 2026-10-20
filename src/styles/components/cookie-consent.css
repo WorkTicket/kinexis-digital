@@ -97,10 +97,6 @@ html:not(.cookie-pending) .cookie-banner {
   }
 }
 
-html.lp-chrome .cookie-banner {
-  display: none;
-}
-
 /* Keep LP sticky CTA above the cookie banner while consent is pending. */
 html.cookie-pending .landing-sticky-cta {
   bottom: 9.75rem;

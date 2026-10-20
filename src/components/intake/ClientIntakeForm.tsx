@@ -1,528 +1,67 @@
 "use client";
-
-import { useEffect, useId, useMemo, useRef, useState } from "react";
-import {
-  COMPETITOR_COUNT,
-  INTAKE_FACTS,
-  INTAKE_HOWTO,
-  INTAKE_NEXT,
-  INTAKE_SECTIONS,
-  INTAKE_STORAGE_KEY,
-  competitorKey,
-  eachIntakeField,
-  type IntakeCheckField,
-  type IntakeField,
-  type IntakeTextField,
-} from "@/content/client-intake";
+import { useEffect, useRef, useState } from "react";
+import { useLocale } from "next-intl";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { Link } from "@/i18n/navigation";
 import { useFormHoneypot } from "@/hooks/useFormHoneypot";
+import { QUICK_FIELDS, LAUNCH_FIELDS, SMS_CONSENT_TEXT, SMS_CONSENT_VERSION, INTAKE_AUTHORIZATION, requiresTradeLicense, type ContractorField } from "@/content/contractor-intake";
+import { businessProfile, getBusinessPhoneDisplay, getBusinessTelHref } from "@/lib/business";
 
-type Answers = Record<string, string | string[]>;
-
-function todayLabel() {
-  return new Date().toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-}
-
-function emptyAnswers(): Answers {
-  const answers: Answers = {};
-  eachIntakeField((field) => {
-    if (field.type === "checks") answers[field.id] = [];
-    else if (field.type === "text" || field.type === "textarea") {
-      if (answers[field.id] == null) answers[field.id] = "";
-    } else if (field.type === "competitors") {
-      for (let index = 1; index <= COMPETITOR_COUNT; index += 1) {
-        answers[competitorKey(index, "name")] = "";
-        answers[competitorKey(index, "url")] = "";
-        answers[competitorKey(index, "notes")] = "";
-      }
-    }
-  });
-  return answers;
-}
-
-function readDraft(): Answers | null {
-  try {
-    const raw = localStorage.getItem(INTAKE_STORAGE_KEY);
-    if (!raw) return null;
-    const parsed = JSON.parse(raw) as unknown;
-    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return null;
-    const draft: Answers = {};
-    for (const [key, value] of Object.entries(parsed)) {
-      if (typeof value === "string" && value.length <= 4000) draft[key] = value;
-      else if (
-        Array.isArray(value) &&
-        value.every((item) => typeof item === "string") &&
-        value.length <= 40
-      ) {
-        draft[key] = value;
-      }
-    }
-    return draft;
-  } catch {
-    return null;
-  }
-}
-
-function isFilled(field: IntakeField, answers: Answers): boolean {
-  if (field.type === "note") return false;
-  if (field.type === "competitors") {
-    for (let index = 1; index <= COMPETITOR_COUNT; index += 1) {
-      if (
-        String(answers[competitorKey(index, "name")] ?? "").trim() ||
-        String(answers[competitorKey(index, "url")] ?? "").trim() ||
-        String(answers[competitorKey(index, "notes")] ?? "").trim()
-      ) {
-        return true;
-      }
-    }
-    return false;
-  }
-  const value = answers[field.id];
-  if (Array.isArray(value)) return value.length > 0;
-  return String(value ?? "").trim().length > 0;
-}
-
-function progressCount(answers: Answers) {
-  let total = 0;
-  let filled = 0;
-  eachIntakeField((field) => {
-    if (field.type === "note") return;
-    total += 1;
-    if (isFilled(field, answers)) filled += 1;
-  });
-  return { total, filled };
-}
-
-function NextSteps() {
-  return (
-    <section className="intake-next" aria-labelledby="intake-next-title">
-      <h2 id="intake-next-title">What happens next</h2>
-      <div className="intake-next__grid">
-        {INTAKE_NEXT.map((step) => (
-          <article key={step.number} className="intake-next__card">
-            <div className="intake-next__num">{step.number}</div>
-            <h3>{step.title}</h3>
-            <p>{step.text}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
+type Answers = Record<string, string | string[] | boolean>;
 export function ClientIntakeForm() {
-  const { honeypotProps, honeypotPayload } = useFormHoneypot();
-  const [answers, setAnswers] = useState<Answers>(emptyAnswers);
-  const [ready, setReady] = useState(false);
-  const [saved, setSaved] = useState(false);
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
-  const dirty = useRef(false);
+  const locale = useLocale();
+  const es = locale !== "en";
+  const lang = es ? "es" : "en";
+  const [answers, setAnswers] = useState<Answers>({});
+  const [smsConsent, setSmsConsent] = useState(false);
+  const [date, setDate] = useState("");
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
   const lock = useRef(false);
-  const baseId = useId();
-
+  const { honeypotProps, honeypotPayload } = useFormHoneypot();
   useEffect(() => {
     document.documentElement.classList.add("intake-page");
-    const draft = readDraft();
-    setAnswers((current) => ({
-      ...current,
-      ...(draft ?? {}),
-      signatureDate:
-        (typeof draft?.signatureDate === "string" && draft.signatureDate) ||
-        current.signatureDate ||
-        todayLabel(),
-    }));
-    setReady(true);
+    setDate(new Intl.DateTimeFormat("en-CA", { timeZone: "America/Chicago", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date()));
     return () => document.documentElement.classList.remove("intake-page");
   }, []);
-
-  useEffect(() => {
-    if (!ready || !dirty.current) return;
-    const timer = window.setTimeout(() => {
-      try {
-        localStorage.setItem(INTAKE_STORAGE_KEY, JSON.stringify(answers));
-        setSaved(true);
-      } catch {
-        /* private mode or a full disk should not block the form */
-      }
-    }, 400);
-    return () => window.clearTimeout(timer);
-  }, [answers, ready]);
-
-  const { total, filled } = useMemo(() => progressCount(answers), [answers]);
-  const pct = total ? Math.round((filled / total) * 100) : 0;
-
-  function setText(id: string, value: string) {
-    dirty.current = true;
-    setAnswers((prev) => ({ ...prev, [id]: value }));
-  }
-
-  function toggleCheck(field: IntakeCheckField, option: string) {
-    dirty.current = true;
-    setAnswers((prev) => {
-      const current = Array.isArray(prev[field.id]) ? (prev[field.id] as string[]) : [];
-      if (current.includes(option)) {
-        return { ...prev, [field.id]: current.filter((item) => item !== option) };
-      }
-      if (field.max && current.length >= field.max) return prev;
-      return { ...prev, [field.id]: [...current, option] };
-    });
-  }
-
-  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (lock.current) return;
-    if (!event.currentTarget.reportValidity()) return;
-    lock.current = true;
-    setStatus("submitting");
-    setErrorMsg("");
-    try {
-      const res = await fetch("/api/intake", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ answers, ...honeypotPayload }),
-      });
-      const data = (await res.json().catch(() => ({}))) as { error?: string };
-      if (!res.ok) {
-        lock.current = false;
-        setErrorMsg(data.error || "We couldn't send that. Please try again.");
-        setStatus("error");
-        return;
-      }
-      try {
-        localStorage.removeItem(INTAKE_STORAGE_KEY);
-      } catch {
-        /* ignore */
-      }
-      setStatus("success");
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch {
-      lock.current = false;
-      setErrorMsg("We couldn't send that. Check your connection and try again.");
-      setStatus("error");
+  const setValue = (id: string, value: string | string[]) => setAnswers(a => ({ ...a, [id]: value }));
+  function field(f: ContractorField) {
+    const label = es ? f.es : f.en;
+    const required = f.required || (f.id === "licenseNumber" && requiresTradeLicense(answers.trade));
+    const hint = f.hint?.[es ? 1 : 0];
+    const id = `intake-${f.id}`;
+    const shared = { id, name: f.id, required, "aria-describedby": hint ? `${id}-hint` : undefined };
+    const value = String(answers[f.id] ?? "");
+    if (f.type === "radio" || f.type === "checks") {
+      return <fieldset className="intake-field" key={f.id}><legend className="intake-label">{label}{required ? " *" : ""}</legend>{hint && <p className="intake-hint" id={`${id}-hint`}>{hint}</p>}<div className="intake-checks">{f.options?.map(([en, translation]) => <label className="intake-check" key={en}><input type={f.type === "radio" ? "radio" : "checkbox"} name={f.id} value={en} required={f.type === "radio" && required} checked={f.type === "radio" ? value === en : Array.isArray(answers[f.id]) && (answers[f.id] as string[]).includes(en)} onChange={() => {
+        if (f.type === "radio") setValue(f.id, en);
+        else { const previous = Array.isArray(answers[f.id]) ? answers[f.id] as string[] : []; setValue(f.id, previous.includes(en) ? previous.filter(v => v !== en) : [...previous, en]); }
+      }} /><span>{es ? translation : en}</span></label>)}</div></fieldset>;
     }
+    return <div className="intake-field" key={f.id}><label className="intake-label" htmlFor={id}>{label}{required ? " *" : ""}</label>{hint && <p className="intake-hint" id={`${id}-hint`}>{hint}</p>}{f.type === "select" ? <select {...shared} value={value} onChange={e => setValue(f.id, e.target.value)}><option value="">{es ? "Seleccione" : "Choose one"}</option>{f.options?.map(([en, translation]) => <option key={en} value={en}>{es ? translation : en}</option>)}</select> : f.type === "textarea" ? <textarea {...shared} rows={3} maxLength={4000} value={value} placeholder={f.placeholder?.[es ? 1 : 0]} onChange={e => setValue(f.id, e.target.value)} /> : <input {...shared} type={f.type ?? "text"} maxLength={500} value={value} placeholder={f.placeholder?.[es ? 1 : 0]} onChange={e => setValue(f.id, e.target.value)} />}</div>;
   }
-
-  return (
-    <div className="intake">
-      <header className="intake-hero">
-        <div className="intake-wrap intake-hero__inner">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="intake-hero__logo"
-            src="/assets/logos/kinexis-logo-on-dark.webp?v=20261010ll"
-            alt="Kinexis"
-            width={180}
-            height={28}
-          />
-          <p className="intake-kicker">Website Design &amp; SEO</p>
-          <h1>Client Intake Questionnaire</h1>
-          <p className="intake-lede">
-            Tell us about your business, your customers and your goals so we can build a
-            website that wins you more business and gets found on Google.
-          </p>
-        </div>
-      </header>
-
-      {status !== "success" ? (
-        <div
-          className="intake-progress"
-          role="progressbar"
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={pct}
-          aria-label="Questionnaire progress"
-        >
-          <span style={{ width: `${pct}%` }} />
-        </div>
-      ) : null}
-
-      <div className="intake-wrap intake-body">
-        {status === "success" ? (
-          <>
-            <div className="intake-success">
-              <h2>We have your questionnaire.</h2>
-              <p>
-                Your project contact will read through it, then set a discovery call to
-                fill any gaps and line up scope and timing. You can close this page.
-              </p>
-            </div>
-            <NextSteps />
-          </>
-        ) : (
-          <form onSubmit={onSubmit}>
-            <ul className="intake-facts">
-              {INTAKE_FACTS.map((fact) => (
-                <li key={fact}>{fact}</li>
-              ))}
-            </ul>
-
-            <section className="intake-howto" aria-labelledby="intake-howto-title">
-              <h2 id="intake-howto-title">How to complete this form</h2>
-              <ol>
-                {INTAKE_HOWTO.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ol>
-              {saved ? <p className="intake-saved">Saved on this device until you submit.</p> : null}
-            </section>
-
-            {INTAKE_SECTIONS.map((section) => (
-              <section key={section.number} className="intake-section" aria-labelledby={`${baseId}-${section.number}`}>
-                <h2 id={`${baseId}-${section.number}`}>
-                  <span className="intake-section__num">{section.number}</span>
-                  <span>{section.title}</span>
-                </h2>
-                {section.intro ? <p className="intake-section__intro">{section.intro}</p> : null}
-                <div className="intake-fields">
-                  {section.rows.map((row, rowIndex) => (
-                    <FieldRow
-                      key={`${section.number}-${rowIndex}`}
-                      row={row}
-                      answers={answers}
-                      onText={setText}
-                      onToggle={toggleCheck}
-                    />
-                  ))}
-                </div>
-              </section>
-            ))}
-
-            <NextSteps />
-
-            <div className="intake-submit">
-              {errorMsg ? (
-                <p className="intake-error" role="alert">
-                  {errorMsg}
-                </p>
-              ) : null}
-              <button type="submit" disabled={status === "submitting"}>
-                {status === "submitting" ? "Sending…" : "Submit questionnaire"}
-              </button>
-            </div>
-            <input type="text" {...honeypotProps} />
-          </form>
-        )}
-        <p className="intake-confidential">Confidential — prepared for Kinexis project use only</p>
-      </div>
-    </div>
-  );
-}
-
-function FieldRow({
-  row,
-  answers,
-  onText,
-  onToggle,
-}: {
-  row: IntakeField[];
-  answers: Answers;
-  onText: (id: string, value: string) => void;
-  onToggle: (field: IntakeCheckField, option: string) => void;
-}) {
-  if (row.length === 1) {
-    return <FieldBlock field={row[0]} answers={answers} onText={onText} onToggle={onToggle} />;
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (lock.current || !event.currentTarget.reportValidity()) return;
+    lock.current = true; setStatus("sending"); setError("");
+    try {
+      const res = await fetch("/api/intake", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ answers: { ...answers, smsConsent, smsConsentTimestamp: new Date().toISOString(), smsConsentVersion: SMS_CONSENT_VERSION, pageUrl: window.location.href, locale, signatureDate: date }, ...honeypotPayload }) });
+      if (!res.ok) throw new Error("intake");
+      setStatus("success");
+    } catch { setStatus("error"); setError(es ? "No pudimos enviar sus respuestas. Inténtelo de nuevo." : "We couldn't send your answers. Please try again."); }
+    finally { lock.current = false; }
   }
-  return (
-    <div className="intake-row">
-      {row.map((field) => (
-        <FieldBlock
-          key={"id" in field ? field.id : field.type}
-          field={field}
-          answers={answers}
-          onText={onText}
-          onToggle={onToggle}
-        />
-      ))}
-    </div>
-  );
-}
-
-function FieldBlock({
-  field,
-  answers,
-  onText,
-  onToggle,
-}: {
-  field: IntakeField;
-  answers: Answers;
-  onText: (id: string, value: string) => void;
-  onToggle: (field: IntakeCheckField, option: string) => void;
-}) {
-  if (field.type === "note") {
-    return <p className="intake-note">{field.text}</p>;
-  }
-  if (field.type === "competitors") {
-    return <Competitors answers={answers} onText={onText} />;
-  }
-  if (field.type === "checks") {
-    return <CheckGroup field={field} answers={answers} onToggle={onToggle} />;
-  }
-  return <TextField field={field} value={String(answers[field.id] ?? "")} onText={onText} />;
-}
-
-function TextField({
-  field,
-  value,
-  onText,
-}: {
-  field: IntakeTextField;
-  value: string;
-  onText: (id: string, value: string) => void;
-}) {
-  const inputId = `intake-${field.id}`;
-  const hintId = field.hint ? `${inputId}-hint` : undefined;
-  const shared = {
-    id: inputId,
-    name: field.id,
-    value,
-    required: field.required,
-    autoComplete: field.autoComplete,
-    "aria-describedby": hintId,
-    onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      onText(field.id, event.target.value),
-  };
-  return (
-    <div className="intake-field">
-      <label className="intake-label" htmlFor={inputId}>
-        {field.label}
-        {field.required ? (
-          <span className="intake-req" aria-hidden="true">
-            {" "}
-            *
-          </span>
-        ) : null}
-      </label>
-      {field.hint ? (
-        <span className="intake-hint" id={hintId}>
-          {field.hint}
-        </span>
-      ) : null}
-      {field.type === "textarea" ? (
-        <textarea {...shared} rows={field.rows ?? 4} maxLength={4000} />
-      ) : (
-        <input
-          {...shared}
-          type={field.inputMode === "email" ? "email" : field.inputMode === "tel" ? "tel" : "text"}
-          inputMode={field.inputMode}
-          maxLength={500}
-        />
-      )}
-    </div>
-  );
-}
-
-function CheckGroup({
-  field,
-  answers,
-  onToggle,
-}: {
-  field: IntakeCheckField;
-  answers: Answers;
-  onToggle: (field: IntakeCheckField, option: string) => void;
-}) {
-  const labelId = `intake-${field.id}-label`;
-  const selected = Array.isArray(answers[field.id]) ? (answers[field.id] as string[]) : [];
-  const atMax = Boolean(field.max && selected.length >= field.max);
-  return (
-    <div className="intake-group" role="group" aria-labelledby={labelId}>
-      <div className="intake-labelbar" id={labelId}>
-        <span className="intake-label">{field.label}</span>
-        {field.hint ? <span className="intake-hint">{field.hint}</span> : null}
-      </div>
-      <div className={field.layout === "wrap" ? "intake-checks intake-checks--wrap" : "intake-checks"}>
-        {field.options.map((option) => {
-          const checked = selected.includes(option);
-          return (
-            <label key={option} className="intake-check">
-              <input
-                type="checkbox"
-                name={field.id}
-                value={option}
-                checked={checked}
-                disabled={!checked && atMax}
-                onChange={() => onToggle(field, option)}
-              />
-              <span>{option}</span>
-            </label>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
-function Competitors({
-  answers,
-  onText,
-}: {
-  answers: Answers;
-  onText: (id: string, value: string) => void;
-}) {
-  return (
-    <div className="intake-comp">
-      <div className="intake-comp__head">
-        <span>#</span>
-        <span>Competitor name</span>
-        <span>Website URL</span>
-        <span>What they do well / where you beat them</span>
-      </div>
-      {Array.from({ length: COMPETITOR_COUNT }, (_, index) => {
-        const row = index + 1;
-        return (
-          <div className="intake-comp__row" key={row}>
-            <div className="intake-comp__index" aria-hidden="true">
-              {row}
-            </div>
-            <CompetitorCell
-              label={`Competitor ${row} name`}
-              id={competitorKey(row, "name")}
-              value={String(answers[competitorKey(row, "name")] ?? "")}
-              onText={onText}
-            />
-            <CompetitorCell
-              label={`Competitor ${row} website`}
-              id={competitorKey(row, "url")}
-              value={String(answers[competitorKey(row, "url")] ?? "")}
-              onText={onText}
-            />
-            <CompetitorCell
-              label={`Competitor ${row} advantage`}
-              id={competitorKey(row, "notes")}
-              value={String(answers[competitorKey(row, "notes")] ?? "")}
-              onText={onText}
-            />
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function CompetitorCell({
-  label,
-  id,
-  value,
-  onText,
-}: {
-  label: string;
-  id: string;
-  value: string;
-  onText: (id: string, value: string) => void;
-}) {
-  return (
-    <label className="intake-comp__cell">
-      <span className="intake-comp__label-text">{label}</span>
-      <input
-        name={id}
-        value={value}
-        maxLength={300}
-        autoComplete="off"
-        onChange={(event) => onText(id, event.target.value)}
-      />
-    </label>
-  );
+  return <div className="intake" lang={es ? "es" : "en"}>
+    <header className="intake-hero"><div className="intake-wrap intake-hero__inner"><Link href="/">Kinexis Digital</Link><LanguageSwitcher /><h1>{es ? "Empecemos: su vista previa gratis" : "Get started: your free homepage preview"}</h1><p className="intake-lede">{es ? "Toma unos 5 minutos. Hacemos su vista previa gratis en 2 días hábiles después de su llamada. Sin tarjeta y sin compromiso. ¿No sabe alguna respuesta? Déjela en blanco y le preguntamos por texto." : "Takes about 5 minutes. We build your free homepage preview within 2 business days of your call. No card, nothing owed to look. Not sure about an answer? Skip it and we'll ask by text."}</p></div></header>
+    <div className="intake-wrap intake-body"><p className="intake-note">{es ? "Nunca escriba contraseñas, accesos ni números de tarjeta aquí." : "Never write passwords, logins or card numbers here."}</p>
+    {status === "success" ? <p className="intake-success" role="status">{es ? "Recibimos sus respuestas. Nos pondremos en contacto con usted." : "We have your answers. We'll be in touch."}</p> : <form onSubmit={submit}>
+      <section className="intake-section"><h2>{es ? "1. Para empezar (para su vista previa gratis)" : "1. Quick start (for your free preview)"}</h2><div className="intake-fields">{QUICK_FIELDS.map(field)}</div>
+      {answers.trade === "Roofing" && <p className="intake-note">{es ? "Regla de Texas para techeros: no podemos anunciar que maneja reclamos de seguro por el cliente, ni que quita o paga el deducible. Sí podemos decir que da inspecciones de techo gratis." : "Texas rule for roofers: we can't advertise handling insurance claims for customers, or waiving or paying deductibles. We can say you give free roof inspections."}</p>}
+      <p className="intake-hint">{es ? "Envíe su logo y fotos por texto o correo:" : "Text or email your logo and photos:"} <a href={`mailto:${businessProfile.email}`}>{businessProfile.email}</a>{getBusinessTelHref() && <> · <a href={getBusinessTelHref()!}>{getBusinessPhoneDisplay()}</a></>}</p></section>
+      <section className="intake-section"><h2>{es ? "2. Antes del lanzamiento (opcional ahora, después de aprobar su vista previa)" : "2. Before launch (optional now, after you approve your preview)"}</h2><div className="intake-fields">{LAUNCH_FIELDS.map(field)}</div></section>
+      <section className="intake-section"><h2>{es ? "Consentimiento y firma" : "Consent and signature"}</h2><label className="intake-check"><input type="checkbox" name="smsConsent" checked={smsConsent} onChange={e => setSmsConsent(e.target.checked)} /><span>{SMS_CONSENT_TEXT[lang]} {es ? "Vea la " : "See our "}<Link href="/privacy">{es ? "Política de Privacidad" : "Privacy Policy"}</Link>{es ? " y los " : " and "}<Link href="/terms">{es ? "Términos" : "Terms"}</Link>.</span></label><p className="intake-note">{INTAKE_AUTHORIZATION[lang]}</p>{field({ id: "signature", en: "Type your full name", es: "Escriba su nombre completo", required: true })}<div className="intake-field"><label htmlFor="signature-date">{es ? "Fecha (hora Central)" : "Date (Central time)"}</label><input id="signature-date" name="signatureDate" value={date} readOnly /></div></section>
+      {error && <p role="alert" className="intake-error">{error}</p>}<div className="intake-submit"><button type="submit" disabled={status === "sending"}>{status === "sending" ? (es ? "Enviando…" : "Sending…") : es ? "Enviar mis respuestas" : "Send my answers"}</button></div><input type="text" {...honeypotProps} />
+    </form>}
+    <section className="intake-next"><h2>{es ? "Qué sigue" : "What happens next"}</h2><div className="intake-next__grid">{(es ? [["Hacemos su vista previa gratis", "en 2 días hábiles después de su llamada."], ["Usted la revisa.", "Sin tarjeta y sin compromiso."], ["¿Le gusta? Apruébela", "y su página queda lista en 7 días cuando tengamos su información. Los planes mensuales empiezan el día que se publica."]] : [["We build your free preview", "within 2 business days of your call."], ["You look at it.", "No card, nothing owed."], ["Love it? Approve it", "and your site goes live within 7 days once we have your info. Monthly plans start the day it goes live."]]).map(([title, text], i) => <article className="intake-next__card" key={title}><span className="intake-next__num">{i + 1}</span><h3>{title}</h3><p>{text}</p></article>)}</div></section>
+    </div></div>;
 }

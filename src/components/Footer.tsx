@@ -1,4 +1,5 @@
-import { getTranslations } from "next-intl/server";
+import { CookieSettings } from "@/components/analytics/CookieSettings";
+import { getTranslations, getLocale } from "next-intl/server";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { FooterCtaBand } from "@/components/FooterCtaBand";
 import { LandingChromeGate } from "@/components/landing/LandingChromeGate";
@@ -7,9 +8,7 @@ import { CallLink } from "@/components/analytics/CallLink";
 import { CONTACT_EMAIL } from "@/content/contact";
 import { Link } from "@/i18n/navigation";
 import {
-  footerIndustryLinks,
   footerNavLinks,
-  footerServiceLinks,
 } from "@/lib/site-nav";
 import { businessProfile, getBusinessPhoneDisplay } from "@/lib/business";
 
@@ -90,7 +89,20 @@ export async function Footer() {
   const year = new Date().getFullYear();
   const t = await getTranslations("footer");
   const tNav = await getTranslations("nav");
-  const tServices = await getTranslations("services");
+  const locale = await getLocale();
+  const es = locale !== "en";
+  const services = [
+    ["/services/web-design", es ? "Páginas web para contratistas" : "Websites for contractors"],
+    ["/lp/get-a-website#pricing", es ? "Respuesta por texto a llamadas perdidas" : "Missed-call text-back"],
+    ["/lp/get-a-website#pricing", es ? "Solicitudes de reseñas de Google" : "Google review requests"],
+    ["/services/seo", es ? "Mejora de su Perfil de Google" : "Google Business Profile tune-up"],
+    ["/lp/get-a-website#pricing", es ? "Precios" : "Pricing"],
+  ];
+  const markets = [
+    ["/industries/plumbing", es ? "Plomería" : "Plumbing"], ["/industries/hvac", "HVAC"],
+    ["/industries/roofing", es ? "Techos" : "Roofing"], ["", es ? "Electricidad" : "Electrical"],
+    ["/industries/landscaping", es ? "Jardinería" : "Landscaping"], ["", es ? "Remodelación" : "Remodeling"],
+  ];
   const tCommon = await getTranslations("common");
 
   const navLabels: Record<string, string> = {
@@ -177,10 +189,10 @@ export async function Footer() {
                       {t("services")}
                     </h2>
                     <ul className="site-footer__list">
-                      {footerServiceLinks.map((link) => (
-                        <li key={link.href}>
-                          <Link href={link.href} className="site-footer__link">
-                            {tServices(link.key)}
+                      {services.map(([href, label]) => (
+                        <li key={label}>
+                          <Link href={href} className="site-footer__link">
+                            {label}
                           </Link>
                         </li>
                       ))}
@@ -207,13 +219,7 @@ export async function Footer() {
                       {t("markets")}
                     </h2>
                     <ul className="site-footer__list">
-                      {footerIndustryLinks.map((link) => (
-                        <li key={link.href}>
-                          <Link href={link.href} className="site-footer__link">
-                            {tNav.has(link.key) ? tNav(link.key) : link.label}
-                          </Link>
-                        </li>
-                      ))}
+                      {markets.map(([href, label]) => <li key={label}>{href ? <Link href={href} className="site-footer__link">{label}</Link> : <span className="site-footer__link">{label}</span>}</li>)}
                       <li>
                         <Link
                           href="/industries"
@@ -244,7 +250,7 @@ export async function Footer() {
             <p className="site-footer__legal">
               <LandingChromeGate
                 slimOnly
-                onLanding={<>© {year} KINEXIS Digital</>}
+                onLanding={<>© {year} Kinexis Digital</>}
                 offLanding={
                   <>
                     © {year} {t("copyright")}
@@ -252,7 +258,7 @@ export async function Footer() {
                 }
               />
             </p>
-            <div className="site-footer__bar-links">
+            <div className="site-footer__bar-links"><CookieSettings />
               <LandingChromeGate
                 onLanding={
                   <>

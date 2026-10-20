@@ -33,16 +33,17 @@ export function useCookieConsent() {
 export function CookieConsentProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [requiresMetaConsent, setRequiresMetaConsent] = useState(false);
-  const hideBanner = isCookieBannerExemptPath(pathname) && !requiresMetaConsent;
+  const [settingsOpen, setSettingsOpen] = useState(false);
+  const hideBanner = isCookieBannerExemptPath(pathname) && !requiresMetaConsent && !settingsOpen;
   const [consent, setConsent] = useState<ConsentState>("pending");
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setRequiresMetaConsent(/\/lp\/get-a-website\/?$/.test(pathname)
-      && window.__kinexisMetaDefaultConsent === "revoke");
+    setRequiresMetaConsent(/\/lp\/get-a-website\/?$/.test(pathname));
   }, [pathname]);
 
   useEffect(() => {
+    if (settingsOpen) { document.documentElement.classList.add("cookie-pending"); return; }
     const stored = readStoredConsent();
     if (hideBanner) {
       document.documentElement.classList.remove("cookie-pending");
@@ -62,16 +63,24 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
       document.documentElement.classList.add("cookie-pending");
     }
     setReady(true);
-  }, [hideBanner]);
+  }, [hideBanner, settingsOpen]);
+
+  useEffect(() => {
+    const reopen = () => { setSettingsOpen(true); document.documentElement.classList.add("cookie-pending"); };
+    window.addEventListener("kinexis:cookie-settings", reopen);
+    return () => window.removeEventListener("kinexis:cookie-settings", reopen);
+  }, []);
 
   const accept = useCallback(() => {
-    persistConsentChoice("accepted");
+    setSettingsOpen(false);
+    persistConsentChoice("accepted", true);
     document.documentElement.classList.remove("cookie-pending");
     setConsent("accepted");
   }, []);
 
   const reject = useCallback(() => {
-    persistConsentChoice("rejected");
+    setSettingsOpen(false);
+    persistConsentChoice("rejected", true);
     document.documentElement.classList.remove("cookie-pending");
     setConsent("rejected");
   }, []);

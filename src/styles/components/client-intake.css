@@ -18,8 +18,7 @@ html.intake-page .site-shell {
 html.intake-page .site-header,
 html.intake-page .site-header__frost,
 html.intake-page .site-footer,
-html.intake-page .site-atmosphere,
-html.intake-page .cookie-banner {
+html.intake-page .site-atmosphere {
   display: none !important;
 }
 
@@ -558,3 +557,13 @@ html.intake-page .cookie-banner {
     text-transform: uppercase;
   }
 }
+
+.intake-field select { width:100%; padding:12px; border:1px solid #9ca3af; border-radius:6px; background:#fff; color:#16181d; }
+.intake fieldset { min-width:0; border:0; padding:0; }
+.intake-hero .language-switcher { margin-top:12px; }
+.intake a { text-decoration:underline; text-underline-offset:3px; }
+.intake-section h2 { padding:12px 14px; }
+.intake-hero .site-footer__lang-btn { color:#e2e8f0; }
+.intake-hero .site-footer__lang-btn--active { background:#fff; color:#16181d; }
+.intake-field input:not([type=checkbox]):not([type=radio]), .intake-field textarea { background:#fff; border:1px solid #9ca3af; border-radius:5px; padding:10px; }
+.intake-field input[type=radio], .intake-field input[type=checkbox] { width:18px; height:18px; flex-shrink:0; }

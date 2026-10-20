@@ -130,7 +130,7 @@ describe("articleSchema", () => {
     expect(result["@type"]).toBe("Article");
     expect(result.author).toMatchObject({
       "@type": "Organization",
-      name: "KINEXIS Digital",
+      name: "Kinexis Digital",
     });
   });
 });
@@ -176,6 +176,6 @@ describe("serviceSchema with areaServed", () => {
 
   it("includes country-level areaServed when not provided", () => {
     const result = serviceSchema("Worldwide Service", "Global", "https://example.com/global");
-    expect(result.areaServed).toEqual({ "@type": "Country", name: "Worldwide" });
+    expect(result.areaServed).toEqual({ "@type": "Place", name: "Worldwide" });
   });
 });

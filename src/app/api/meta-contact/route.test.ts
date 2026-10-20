@@ -19,12 +19,13 @@ vi.mock("@/lib/rate-limit", () => ({
 
 import { POST } from "./route";
 
-function tap(body: Record<string, unknown>) {
+function tap(body: Record<string, unknown>, cookie = "kinexis-cookie-consent=accepted") {
   return POST(
     new Request("https://www.kinexisdigital.com/api/meta-contact", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        cookie,
         "user-agent": "Test browser",
         origin: "https://www.kinexisdigital.com",
       },
@@ -34,6 +35,10 @@ function tap(body: Record<string, unknown>) {
 }
 
 describe("POST /api/meta-contact", () => {
+  it.each(["", "kinexis-cookie-consent=rejected"])("does not send website CAPI without acceptance (%s)", async cookie => {
+    expect((await tap({ metaEventId: "Contact.abc-def-123456" }, cookie)).status).toBe(200);
+    expect(mocks.meta).not.toHaveBeenCalled();
+  });
   beforeEach(() => {
     vi.resetAllMocks();
     mocks.origin.mockReturnValue(true);

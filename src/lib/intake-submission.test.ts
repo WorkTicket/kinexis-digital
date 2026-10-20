@@ -4,12 +4,31 @@ import { formatIntakeMail, parseIntakeAnswers } from "@/lib/intake-submission";
 
 const required = {
   companyName: "Acme Plumbing",
+        phone: "7135550123", trade: "Other", plan: "Not sure yet",
   primaryContact: "Jane Roe",
   email: "jane@acme.test",
   signature: "Jane Roe",
 };
 
 describe("parseIntakeAnswers", () => {
+  it.each(["phone", "trade", "plan"])("requires %s for the contractor preview", key => {
+    expect(parseIntakeAnswers({ ...required, [key]: "" }).ok).toBe(false);
+  });
+  it.each(["Plumbing", "AC / HVAC", "Electrical"])("requires a license for %s", trade => {
+    expect(parseIntakeAnswers({ ...required, trade }).ok).toBe(false);
+    expect(parseIntakeAnswers({ ...required, trade, licenseNumber: "M12345" }).ok).toBe(true);
+  });
+  it("keeps optional SMS consent false and stamps a server record", () => {
+    const result = parseIntakeAnswers({ ...required, smsConsent: false, locale: "es-419", pageUrl: "https://www.kinexisdigital.com/intake", signatureDate: "1900-01-01" });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    const mail = formatIntakeMail(result.submission);
+    expect(mail.text).toContain("SMS consent\nNo");
+    expect(mail.text).toContain("sms-consent-v1");
+    expect(mail.text).toContain("es-419");
+    expect(mail.text).toContain("https://www.kinexisdigital.com/intake");
+    expect(mail.text).toContain("Consent recorded at (server)");
+  });
   it("keeps field ids unique", () => {
     const ids: string[] = [];
     eachIntakeField((field) => {

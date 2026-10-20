@@ -58,7 +58,7 @@ export default async function ContactPage({ params }: Props) {
             url: buildAbsoluteUrl(locale, "/contact"),
             name: "Book a Strategy Call",
             description:
-              "Contact KINEXIS Digital to book a strategy call or send a project inquiry.",
+              "Contact Kinexis Digital to book a strategy call or send a project inquiry.",
             isPartOf: { "@id": `${getSiteUrl()}/#website` },
             about: { "@id": `${getSiteUrl()}/#organization` },
           },

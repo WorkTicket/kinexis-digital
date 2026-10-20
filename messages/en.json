@@ -6,9 +6,9 @@
   },
   "a11y": {
     "skipToMain": "Skip to main content",
-    "logoAlt": "KINEXIS Digital home",
-    "preloaderLogoAlt": "KINEXIS Digital logo",
-    "loadingSite": "Loading KINEXIS Digital",
+    "logoAlt": "Kinexis Digital home",
+    "preloaderLogoAlt": "Kinexis Digital logo",
+    "loadingSite": "Loading Kinexis Digital",
     "backToTop": "Back to top",
     "websiteLeadForm": {
       "name": "Name",
@@ -305,7 +305,7 @@
     "ctaEyebrow": "Get in touch",
     "ctaTitle": "Prefer to start with a message?",
     "ctaDek": "Send it anytime. We reply within one business day with a straight read on whether we can help.",
-    "blurb": "Digital marketing for home services and e-commerce brands. Strategy, campaigns, and conversion, kept on the books.",
+    "blurb": "Websites that bring calls for Houston contractors. Free homepage preview, $0 down, live in 7 days.",
     "lpBlurb": "Websites for contractors and home-service businesses.",
     "replies": "Replies within one business day",
     "explore": "Explore",
@@ -314,7 +314,7 @@
     "logoHome": "Kinexis Digital home"
   },
   "common": {
-    "bookStrategyCall": "Book a strategy call",
+    "bookStrategyCall": "Get my free preview",
     "seeTheWork": "See the work",
     "sendMessage": "Send a message",
     "ready": "Ready?",
@@ -713,7 +713,7 @@
   },
   "cookies": {
     "title": "We use cookies",
-    "description": "We use essential cookies to run this site and, with your consent, analytics and advertising cookies (Google Analytics, Google Ads, Microsoft Clarity) to measure traffic and attribute campaigns. See our",
+    "description": "We use essential cookies to run this site and, with your consent, analytics and advertising cookies (Google Analytics, Google Ads, Meta Pixel, Microsoft Clarity) to measure traffic and ads. See our",
     "privacyLink": "Privacy Policy",
     "accept": "Accept",
     "reject": "Reject non-essential"

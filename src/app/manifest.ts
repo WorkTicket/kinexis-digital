@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "KINEXIS Digital",
+    name: "Kinexis Digital",
     short_name: "KINEXIS",
     description:
       "SEO, paid media, and web design for home services and ecommerce brands that need measurable growth.",

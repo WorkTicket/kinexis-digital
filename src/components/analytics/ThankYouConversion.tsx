@@ -25,9 +25,9 @@ export function ThankYouConversion() {
   const { consent, ready } = useCookieConsent();
 
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || consent !== "accepted") return;
 
-    if (consent !== "pending") {
+    {
       const granted = consent === "accepted";
       updateGtagConsent(granted);
       updateMetaPixelConsent(granted);

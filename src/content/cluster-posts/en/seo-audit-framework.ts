@@ -1,6 +1,6 @@
 import { L } from "./_links";
 
-export const body = `<p>An SEO audit without priorities is just a long list of problems. The job is to find what blocks revenue today, estimate fix effort, and sequence work so rankings move while the team still has bandwidth. At KINEXIS Digital, we run audits in three layers: technical, content, and authority. Each layer has its own checklist, but the output is one ranked roadmap tied to business goals.</p>
+export const body = `<p>An SEO audit without priorities is just a long list of problems. The job is to find what blocks revenue today, estimate fix effort, and sequence work so rankings move while the team still has bandwidth. At Kinexis Digital, we run audits in three layers: technical, content, and authority. Each layer has its own checklist, but the output is one ranked roadmap tied to business goals.</p>
 <p>We audited a multi-location dental group last year. Their agency had been publishing four blog posts monthly, yet organic leads were flat. Technical review found 23% of location pages excluded by a rogue noindex tag. Content review showed keyword cannibalization between "Invisalign" pages. Authority review revealed spammy directory links from 2019. Fixing indexation alone recovered 40% of lost visibility in six weeks. Content consolidation and disavow work followed. Leads rose 58% quarter over quarter.</p>
 <h2>Phase 1: Technical Layer</h2>
 <p>Start with crawlability and indexation. If Google cannot access or trust your URLs, nothing else matters.</p>

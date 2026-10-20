@@ -16,6 +16,8 @@ import {
   resolveLegacyRedirect,
 } from "./lib/legacy-redirects.mjs";
 
+import { LOCALE_CHOICE_COOKIE_NAME } from "./i18n/routing";
+
 const intlMiddleware = createMiddleware(routing);
 
 const WWW_HOST = "www.kinexisdigital.com";
@@ -122,7 +124,10 @@ export default function middleware(request: NextRequest) {
       forceWww: needsWww,
       hash: resolved?.hash,
     });
-    if (pathLocale) persistLocaleCookie(response, request, pathLocale);
+    if (pathLocale) {
+      persistLocaleCookie(response, request, pathLocale);
+      response.cookies.set(LOCALE_CHOICE_COOKIE_NAME, "1", localeCookieOptions(!isLocalHost));
+    }
     return response;
   }
 

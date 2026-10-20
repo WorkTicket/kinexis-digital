@@ -1,3 +1,4 @@
+vi.mock("@/lib/analytics/consent", async (importOriginal) => ({ ...await importOriginal<typeof import("@/lib/analytics/consent")>(), readStoredConsent: () => "accepted" }));
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { PRODUCTION_META_PIXEL_ID } from "@/lib/analytics/ads-config";
 import { PENDING_CONVERSION_KEY } from "@/lib/analytics/pending-conversion";

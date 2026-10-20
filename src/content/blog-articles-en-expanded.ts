@@ -9,7 +9,7 @@ export const blogArticlesEnExpanded = {
     category: "Local Business Growth",
     publishedAt: "June 15, 2026",
     body: `<p>Google's local search algorithm has gone through some serious updates over the past year. If you've been doing local SEO the same way you did in 2024, there's a good chance you're not seeing the same results. The fundamentals still matter, sure, but Google is weighting things differently now, and you need to adapt if you want to stay competitive in the local pack.</p>
-<p>We work with local service businesses every week at KINEXIS Digital, and the pattern is consistent. The companies that rank well in 2026 are not necessarily the ones with the biggest budgets. They're the ones treating local search like an ongoing system, not a one-time setup project.</p>
+<p>We work with local service businesses every week at Kinexis Digital, and the pattern is consistent. The companies that rank well in 2026 are not necessarily the ones with the biggest budgets. They're the ones treating local search like an ongoing system, not a one-time setup project.</p>
 <h2>The Three Pillars That Haven't Changed</h2>
 <p>Before we talk about what's new, let's be clear about what still drives local rankings. These three pillars have held steady through multiple algorithm updates, and we don't expect that to change anytime soon.</p>
 <h3>Google Business Profile Optimization</h3>
@@ -38,7 +38,7 @@ export const blogArticlesEnExpanded = {
 <h2>What to Do This Quarter</h2>
 <p>So what should you actually do this quarter? First, audit your GBP completely: every field filled, weekly posts scheduled for the next 8 weeks, and a review response template ready. Second, run a citation audit and fix every NAP inconsistency you find. Third, build a simple review request process tied to completed jobs, not a generic email blast.</p>
 <p>Fourth, create at least three locally relevant content pieces: a neighborhood service page, a FAQ page addressing local concerns, and one blog post tied to a community event or seasonal need. Combine these four things consistently over the next 90 days, and you'll be well ahead of most local businesses that are still playing catch-up.</p>
-<p>Local SEO in 2026 rewards consistency over shortcuts. The businesses that show up every week, on their profile, in their reviews, and on their site, are the ones customers find first. If you want help building that system, that's exactly what we do at KINEXIS Digital.</p>`,
+<p>Local SEO in 2026 rewards consistency over shortcuts. The businesses that show up every week, on their profile, in their reviews, and on their site, are the ones customers find first. If you want help building that system, that's exactly what we do at Kinexis Digital.</p>`,
   },
   "website-conversion-optimization": {
     title: "7 Website Changes That Increased Conversions by 340%",
@@ -78,7 +78,7 @@ export const blogArticlesEnExpanded = {
 <h2>What We Learned</h2>
 <p>Conversion optimization isn't about tricks or pop-ups or countdown timers. It's about removing friction and making the next step obvious. This client didn't need more traffic. They needed a site that converted the traffic they already had.</p>
 <p>If your site gets visitors but not leads, start with these seven changes before you increase ad spend. Measure your baseline conversion rate, make one change at a time, and track the impact over 2-4 weeks. The compounding effect of small improvements is how you turn a 1.2% site into a 5% machine.</p>
-<p>At KINEXIS Digital, we build websites designed to convert from day one. But if you already have a site that looks good and performs poorly, these are the exact fixes we deploy first.</p>`,
+<p>At Kinexis Digital, we build websites designed to convert from day one. But if you already have a site that looks good and performs poorly, these are the exact fixes we deploy first.</p>`,
   },
   "google-business-profile-tips": {
     title: "Google Business Profile: The Complete Optimization Checklist",
@@ -86,7 +86,7 @@ export const blogArticlesEnExpanded = {
     publishedAt: "May 25, 2026",
     body: `<p>Your Google Business Profile is the most powerful local marketing asset you own. It's free. It shows up in Google Maps, the local pack, and branded search results. And most businesses fill in the basics, verify their listing, and never touch it again.</p>
 <p>That's a missed opportunity. A fully optimized GBP can generate calls, direction requests, and website visits without a dollar of ad spend. We've managed profiles for dental offices, contractors, law firms, and restaurants, and the difference between a neglected listing and an active one is dramatic.</p>
-<p>This is the complete checklist we run for every KINEXIS Digital client. Work through it section by section.</p>
+<p>This is the complete checklist we run for every Kinexis Digital client. Work through it section by section.</p>
 <h2>Foundation: Get the Basics Right</h2>
 <p>Before you worry about advanced tactics, make sure your foundation is solid. Google won't rank a listing it doesn't trust, and trust starts with accurate, complete information.</p>
 <h3>Verify your listing</h3>
@@ -129,7 +129,7 @@ export const blogArticlesEnExpanded = {
     title: "SEO vs. Google Ads: Where Should You Invest First?",
     category: "Marketing",
     publishedAt: "May 12, 2026",
-    body: `<p>This is the most common question we hear from business owners: should I invest in SEO or Google Ads first? The honest answer is that it depends on your timeline, your budget, and what you're actually selling. But "it depends" isn't helpful without context, so let's break down how we advise clients at KINEXIS Digital.</p>
+    body: `<p>This is the most common question we hear from business owners: should I invest in SEO or Google Ads first? The honest answer is that it depends on your timeline, your budget, and what you're actually selling. But "it depends" isn't helpful without context, so let's break down how we advise clients at Kinexis Digital.</p>
 <p>Both channels work. We've seen businesses build seven-figure revenue streams from organic search alone, and we've seen Google Ads campaigns generate qualified leads within 48 hours of launch. The question isn't which channel is better. It's which channel fits your situation right now.</p>
 <h2>Understanding the Core Tradeoff</h2>
 <p>SEO is a long-term investment. You're building assets (content, authority, rankings) that compound over time. Google Ads is a short-term accelerator. You're paying for immediate visibility, and that visibility stops the moment you stop paying.</p>
@@ -164,14 +164,14 @@ export const blogArticlesEnExpanded = {
 <h2>What Not to Do</h2>
 <p>Don't put all your budget into ads and ignore SEO forever. You'll pay increasing CPCs with no asset building. Don't invest in SEO and expect leads in 30 days. You'll burn out and quit before it works. Don't spread a small budget across both channels so thinly that neither gets enough data to optimize.</p>
 <p>Pick a primary channel based on your timeline, commit to it for at least 90 days, and support it with the secondary channel at a level your budget allows. Measure cost per lead, not just traffic or impressions.</p>
-<p>At KINEXIS Digital, we build integrated search strategies for businesses that want predictable growth. If you're not sure where to start, that's usually the best place to begin: a conversation about your numbers, your timeline, and what winning looks like for your business.</p>`,
+<p>At Kinexis Digital, we build integrated search strategies for businesses that want predictable growth. If you're not sure where to start, that's usually the best place to begin: a conversation about your numbers, your timeline, and what winning looks like for your business.</p>`,
   },
   "technical-seo-fundamentals": {
     title: "Technical SEO Fundamentals Every Site Owner Should Know",
     category: "SEO",
     publishedAt: "April 28, 2026",
     body: `<p>Technical SEO is the foundation every other SEO effort rests on. You can publish the best content in your industry and build hundreds of backlinks, but if Google can't crawl, index, and render your site properly, none of it matters. Your pages simply won't rank.</p>
-<p>We audit dozens of websites every quarter at KINEXIS Digital, and the same technical issues show up again and again. The good news is that most of them are fixable without a full rebuild. This guide covers the fundamentals every site owner should understand, whether you manage your own site or work with an agency.</p>
+<p>We audit dozens of websites every quarter at Kinexis Digital, and the same technical issues show up again and again. The good news is that most of them are fixable without a full rebuild. This guide covers the fundamentals every site owner should understand, whether you manage your own site or work with an agency.</p>
 <h2>Core Web Vitals: Speed and Stability</h2>
 <p>Google uses Core Web Vitals as a ranking signal. These metrics measure how fast your page loads, how quickly it responds to user input, and how stable the layout is while loading. You can check your scores in Google PageSpeed Insights or Search Console.</p>
 <h3>Largest Contentful Paint (LCP)</h3>
@@ -217,7 +217,7 @@ export const blogArticlesEnExpanded = {
     category: "Local Business Growth",
     publishedAt: "April 15, 2026",
     body: `<p>After working with dozens of local service businesses over the past three years, we've stopped recommending scattershot marketing. The owners who try a little bit of everything (a Facebook ad here, a flyer there, a random SEO tactic they read about) almost always burn budget without building momentum.</p>
-<p>The businesses that grow predictably focus on five channels. Not fifteen. Five. They execute them consistently, measure results, and compound their efforts over time. This is the playbook we use at KINEXIS Digital for every local client engagement.</p>
+<p>The businesses that grow predictably focus on five channels. Not fifteen. Five. They execute them consistently, measure results, and compound their efforts over time. This is the playbook we use at Kinexis Digital for every local client engagement.</p>
 <h2>Channel 1: Google Business Profile</h2>
 <p>Cost: free. Time investment: 2-3 hours per week. Impact on local visibility: very high.</p>
 <p>Your Google Business Profile is the front door to local search. It appears in Google Maps, the local 3-pack, and branded search results. No other single asset gives you this much visibility at zero cost.</p>
@@ -256,14 +256,14 @@ export const blogArticlesEnExpanded = {
 <h2>Measure What Matters</h2>
 <p>Track cost per lead and cost per acquired customer by channel. Not impressions. Not website sessions. Not social media followers. How much did you spend, and how many paying customers did each channel produce?</p>
 <p>Review these numbers monthly. Shift budget toward channels that perform and away from channels that don't. The playbook works when you commit to it long enough to see real data.</p>
-<p>Five channels. Consistent execution. Measured results. That's how local businesses grow predictably, and it's the system we build for every client at KINEXIS Digital.</p>`,
+<p>Five channels. Consistent execution. Measured results. That's how local businesses grow predictably, and it's the system we build for every client at Kinexis Digital.</p>`,
   },
   "seo-pricing-guide": {
     title: "SEO Pricing: How Much Should You Budget for SEO in 2026?",
     category: "SEO",
     publishedAt: "July 14, 2026",
     body: `<p>Search engine optimization pricing is one of the most opaque topics in digital marketing. Agencies charge anywhere from $500 to $30,000 per month, and it's rarely obvious what separates the cheap option from the premium one. If you're a business owner trying to budget for SEO, the range is confusing by design.</p>
-<p>At KINEXIS Digital, we work with clients who have been burned by $500/month retainers that produced nothing and clients who overpaid for agencies that couldn't explain their process. This guide breaks down what different price points actually buy you, how to evaluate whether an investment is reasonable for your market, and what to expect at each tier.</p>
+<p>At Kinexis Digital, we work with clients who have been burned by $500/month retainers that produced nothing and clients who overpaid for agencies that couldn't explain their process. This guide breaks down what different price points actually buy you, how to evaluate whether an investment is reasonable for your market, and what to expect at each tier.</p>
 <h2>The Three Pricing Tiers</h2>
 <h3>Tier 1: Basic / Local SEO ($500 to $1,500 per month)</h3>
 <p>At this price point, you're typically getting Google Business Profile optimization, basic on-page fixes, citation building, and maybe a few blog posts per month. This tier works best for very small local businesses with limited competition: a single-location plumber, a local restaurant, a solo practitioner dentist.</p>
@@ -272,7 +272,7 @@ export const blogArticlesEnExpanded = {
 <h3>Tier 2: Professional SEO ($2,000 to $5,000 per month)</h3>
 <p>This is the sweet spot for most service businesses, B2B companies, and ecommerce stores in moderately competitive markets. At this tier, you should expect a dedicated strategist or account manager, custom keyword research, technical SEO fixes prioritized by impact, regular content creation, and a link building program.</p>
 <p>The key difference from Tier 1 is strategy. Instead of templated fixes, the agency should be analyzing your specific market, competitors, and website to build a custom roadmap. You should also get regular reporting that ties SEO activity to business metrics, not just rankings and traffic.</p>
-<p>At KINEXIS Digital, our programs start in this range. We include technical audits, buyer-intent keyword research, content clusters, on-page optimization, and link building. Most clients in this tier start seeing measurable lead growth within 4 to 6 months.</p>
+<p>At Kinexis Digital, our programs start in this range. We include technical audits, buyer-intent keyword research, content clusters, on-page optimization, and link building. Most clients in this tier start seeing measurable lead growth within 4 to 6 months.</p>
 <p>Best for: local businesses in competitive markets, regional service companies, B2B firms with 5 to 50 employees, and ecommerce stores with 50 to 500 products.</p>
 <h3>Tier 3: Enterprise SEO ($6,000 to $30,000+ per month)</h3>
 <p>Enterprise SEO involves multiple strategists, dedicated content teams, technical SEO engineers, and often a partnership with the client's internal marketing and engineering teams. This tier is for large websites (10,000+ pages), national or international brands, and highly competitive industries.</p>
@@ -303,14 +303,14 @@ export const blogArticlesEnExpanded = {
 <p>Start with a clear understanding of what a customer is worth to you and what you can afford to invest per month. For most businesses, $2,000 to $5,000 per month is the range where professional SEO becomes possible and ROI becomes measurable.</p>
 <p>Commit to at least 6 months. SEO compounds. Three months is rarely enough to see meaningful results. Six to nine months is where the momentum builds. Twelve months is where SEO often becomes your most cost-effective channel.</p>
 <p>If you're not sure where to start, request a strategy call and ask specific questions: what does your process look like, how do you prioritize fixes, what results have you achieved for businesses similar to mine, and how do you measure and report progress. The quality of the answers will tell you more than the price tag.</p>
-<p>At KINEXIS Digital, we're transparent about what we deliver at each investment level. <a href="/services#seo">See how our SEO programs work →</a></p>`,
+<p>At Kinexis Digital, we're transparent about what we deliver at each investment level. <a href="/services#seo">See how our SEO programs work →</a></p>`,
   },
   "how-long-does-seo-take": {
     title: "How Long Does SEO Take? Realistic Timelines for Real Results",
     category: "SEO",
     publishedAt: "July 14, 2026",
     body: `<p>How long does SEO take? If you ask an agency, you'll usually hear "four to six months." If you ask a business owner who tried SEO once and quit, you'll hear "it didn't work." The real answer is more nuanced, but that nuance matters if you're deciding whether to invest or how to set expectations with stakeholders.</p>
-<p>At KINEXIS Digital, we've run SEO programs for dozens of businesses across home services, B2B, ecommerce, and professional services. The timelines vary by competition, budget, and starting point. But the pattern is consistent enough that we can give you a realistic roadmap.</p>
+<p>At Kinexis Digital, we've run SEO programs for dozens of businesses across home services, B2B, ecommerce, and professional services. The timelines vary by competition, budget, and starting point. But the pattern is consistent enough that we can give you a realistic roadmap.</p>
 <h2>The Short Answer</p>
 <h3>Technical fixes: 2 to 4 weeks</h3>
 <p>If your site has indexation problems, crawl errors, or obvious technical blockers, those are the fastest to fix and often produce the earliest signal. We've seen clients move from "not indexed" to "ranking on page 3" in under 30 days just by cleaning up technical issues that were blocking Google from finding their best pages.</p>
@@ -365,7 +365,7 @@ export const blogArticlesEnExpanded = {
 <p>You cannot shortcut SEO, but you can avoid slowing it down. Don't change URLs after they start ranking. Don't redesign your site without preserving redirects. Don't pause your program after three months because you haven't hit page one yet.</p>
 <p>Do prioritize technical fixes first (fastest impact). Do publish content consistently (compounding effect). Do earn backlinks from relevant sites (authority acceleration). Do track leads and revenue, not just rankings.</p>
 <p>SEO is not a campaign. It's a capability you build over time. The businesses that treat it that way are the ones that show up first when their ideal customers search.</p>
-<p>If you want a realistic timeline for your specific business and market, that's the kind of conversation we have every day at KINEXIS Digital. <a href="/services#seo">Talk to our team about your situation →</a></p>`,
+<p>If you want a realistic timeline for your specific business and market, that's the kind of conversation we have every day at Kinexis Digital. <a href="/services#seo">Talk to our team about your situation →</a></p>`,
   },
   "email-nurture-sequences-that-book-calls": {
     title: "Email Nurture Sequences That Actually Book Calls",
@@ -373,7 +373,7 @@ export const blogArticlesEnExpanded = {
     publishedAt: "June 20, 2026",
     body: `<p>Most businesses treat email nurture like a newsletter: a periodic blast with no clear path to revenue. Subscribers get a welcome email, maybe a monthly update, and then silence until the next promotion. That's not nurture. That's noise.</p>
 <p>The sequences that actually book calls are structured differently. They're built around one goal: move a subscriber from curiosity to a conversation. Every email has a job. Every send is timed to match where the reader is in their decision process.</p>
-<p>We've built nurture sequences for law firms, home service companies, SaaS startups, and B2B consultants at KINEXIS Digital. The frameworks below are what consistently produce booked discovery calls, not just opens and clicks.</p>
+<p>We've built nurture sequences for law firms, home service companies, SaaS startups, and B2B consultants at Kinexis Digital. The frameworks below are what consistently produce booked discovery calls, not just opens and clicks.</p>
 <h2>Start With Segmentation, Not a Blast</h2>
 <p>Before you write a single email, segment by intent. Someone who downloaded a pricing guide is not the same as someone who read a top-of-funnel blog post. Someone who visited your case studies page three times is further along than someone who subscribed from a generic homepage popup.</p>
 <p>We typically run three core tracks for service businesses:</p>
@@ -419,6 +419,6 @@ export const blogArticlesEnExpanded = {
 <h2>Common Mistakes We See</h2>
 <p>Sending the same sequence to everyone regardless of how they opted in. Waiting too long to ask for the call (if you wait 30 days, they've forgotten who you are). Including multiple CTAs per email (one email, one action). Writing emails that sound like they were generated by a machine (if you wouldn't say "synergize your marketing efforts" in person, don't put it in an email).</p>
 <p>Email nurture works when messages match relevance, timing, and a clear path from subscriber to conversation. Build the sequence once, measure it monthly, and refine based on what the data tells you.</p>
-<p>If you want help building a nurture system that turns your email list into a booked-call engine, that's work we do every week at KINEXIS Digital.</p>`,
+<p>If you want help building a nurture system that turns your email list into a booked-call engine, that's work we do every week at Kinexis Digital.</p>`,
   },
 };

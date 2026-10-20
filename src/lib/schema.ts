@@ -88,12 +88,8 @@ export function localBusinessSchema(pageUrl?: string): JsonLdEntity {
     logo: organizationLogoObject(),
     description: businessProfile.description,
     email: businessProfile.email,
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: businessProfile.addressCountry,
-    },
     areaServed: businessProfile.areaServed.map((name) => ({
-      "@type": "Country",
+      "@type": "Place",
       name,
     })),
     contactPoint,
@@ -145,7 +141,7 @@ export function serviceSchema(
             containedInPlace: { "@type": "State", name: areaServed.region },
           }),
         }
-      : { "@type": "Country", name: "Worldwide" },
+      : { "@type": "Place", name: "Worldwide" },
   };
 }
 

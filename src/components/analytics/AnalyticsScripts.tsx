@@ -86,7 +86,7 @@ export default function AnalyticsScripts() {
       return;
     }
     if (typeof window.fbq === "function") {
-      updateMetaPixelConsent(consent === "accepted" || (consent === "pending" && window.__kinexisMetaDefaultConsent === "grant"));
+      updateMetaPixelConsent(consent === "accepted");
       // The worker early head already fetched fbevents.js async from the stub,
       // so only fall back to a React-managed load when no loader exists yet
       // (preview / dev without the worker).
@@ -151,7 +151,7 @@ export default function AnalyticsScripts() {
       metaBootstrappedPath.current = null;
       return;
     }
-    if (consent === "rejected") return;
+    if (consent !== "accepted") return;
     trackMetaPageView();
   }, [pathname, consent]);
 

@@ -1,3 +1,4 @@
+vi.mock("@/lib/analytics/consent", async (importOriginal) => ({ ...await importOriginal<typeof import("@/lib/analytics/consent")>(), readStoredConsent: () => "accepted" }));
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 describe("analytics events", () => {

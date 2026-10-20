@@ -53,6 +53,7 @@ describe("POST /api/intake", () => {
     const res = await postIntake({
       answers: {
         companyName: "Acme Plumbing",
+        phone: "7135550123", trade: "Other", plan: "Not sure yet",
         primaryContact: "Jane Roe",
         email: "jane@acme.test",
       },
@@ -67,6 +68,7 @@ describe("POST /api/intake", () => {
     const res = await postIntake({
       answers: {
         companyName: "Acme Plumbing",
+        phone: "7135550123", trade: "Other", plan: "Not sure yet",
         primaryContact: "Jane Roe",
         email: "jane@acme.test",
         signature: "Jane Roe",
@@ -81,6 +83,9 @@ describe("POST /api/intake", () => {
     expect(message.subject).toContain("Acme Plumbing");
     expect(message.replyTo).toBe("jane@acme.test");
     expect(message.text).toContain("Rank higher on Google");
+    expect(message.text).toContain("Not sure yet");
+    expect(message.text).toContain("sms-consent-v1");
+    expect(message.text).toContain("Consent recorded at (server)");
     expect(message.to).toContain("hello@kinexisdigital.com");
   });
 });

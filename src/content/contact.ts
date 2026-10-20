@@ -1,3 +1,4 @@
+import { BUSINESS_EMAIL } from "@/config/business-identity";
 import type { Locale } from "@/i18n/routing";
 import { localeContent } from "@/i18n/locale-content";
 
@@ -331,7 +332,7 @@ export const contactContentI18n = localeContent({
   },
 });
 
-export const CONTACT_EMAIL = "hello@kinexisdigital.com";
+export const CONTACT_EMAIL = BUSINESS_EMAIL;
 
 const en = contactContentI18n.en;
 

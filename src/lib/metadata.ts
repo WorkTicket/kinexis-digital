@@ -189,15 +189,16 @@ export function buildPageMetadata({
         },
     alternates: {
       canonical: url,
+      ...(["/terms", "/privacy", "/intake"].includes(path) ? { languages: { en: url, "es-419": `${getSiteUrl()}/es${path}`, "es-ES": `${getSiteUrl()}/es-ES${path}`, "x-default": url } } : {}),
     },
     openGraph: {
       title: fullTitle,
       description: safeDescription,
       url,
       type: ogType ?? "website",
-      siteName: "KINEXIS Digital",
+      siteName: "Kinexis Digital",
       locale: getOgLocale(locale),
-      images: [{ url: imageUrl, width: 1200, height: 630, alt: "KINEXIS Digital" }],
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: "Kinexis Digital" }],
       ...(publishedTime ? { publishedTime } : {}),
       ...(modifiedTime ? { modifiedTime } : {}),
     },
@@ -206,7 +207,7 @@ export function buildPageMetadata({
       site: "@kinexisdigital",
       title: fullTitle,
       description: safeDescription,
-      images: [{ url: imageUrl, alt: "KINEXIS Digital" }],
+      images: [{ url: imageUrl, alt: "Kinexis Digital" }],
     },
   };
 }

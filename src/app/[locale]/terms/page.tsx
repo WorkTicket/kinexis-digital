@@ -1,23 +1,12 @@
 import type { Metadata } from "next";
-import { LegalPage } from "@/components/page/LegalPage";
-import { getTermsContent } from "@/content/legal/terms";
+import { TermsDocument } from "@/components/page/TermsDocument";
 import { resolveLocale, type LocaleParams } from "@/i18n/locale";
 import { buildPageMetadata } from "@/lib/metadata";
-
 type Props = { params: LocaleParams };
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const locale = await resolveLocale(params);
-  return buildPageMetadata({
-    locale,
-    path: "/terms",
-    title: "Terms of Service",
-    description:
-      "Terms governing your use of the KINEXIS Digital website, marketing services, and client engagements. Covers data, billing, and intellectual property.",
-  });
+ const locale = await resolveLocale(params);
+ return buildPageMetadata({ locale, path: "/terms", title: locale === "en" ? "Terms of Service" : "Términos del Servicio", description: "Kinexis Digital — Terms of Service / Términos del Servicio" });
 }
-
-export default async function TermsPage({ params }: Props) {
-  const locale = await resolveLocale(params);
-  return <LegalPage content={getTermsContent(locale)} />;
+export default async function Page({ params }: Props) {
+ return <TermsDocument locale={await resolveLocale(params)} privacy={false} />;
 }

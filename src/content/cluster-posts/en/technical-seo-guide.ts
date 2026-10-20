@@ -1,6 +1,6 @@
 import { L } from "./_links";
 
-export const body = `<p>Google cannot rank what it cannot crawl, render, and index cleanly. Technical SEO is the infrastructure layer that makes every content investment and link acquisition effort actually count. At KINEXIS Digital, we start most engagements with a technical baseline because fixing indexation and speed problems often produces ranking movement before a single new blog post goes live.</p>
+export const body = `<p>Google cannot rank what it cannot crawl, render, and index cleanly. Technical SEO is the infrastructure layer that makes every content investment and link acquisition effort actually count. At Kinexis Digital, we start most engagements with a technical baseline because fixing indexation and speed problems often produces ranking movement before a single new blog post goes live.</p>
 <p>A mid-size B2B SaaS client came to us ranking on page three for high-intent terms despite strong content. Crawl logs showed Google spending 40% of its budget on filtered product URLs and legacy blog tags. After consolidating duplicates, tightening robots rules, and submitting a prioritized sitemap, indexed pages dropped by 18% while organic sessions rose 31% in ninety days. That is what technical SEO looks like when it is done with intent.</p>
 <h2>Crawl Budget and Indexation</h2>
 <p>Crawl budget matters most on large sites, ecommerce catalogs, and publishers with years of archived content. Your goal is simple: send crawlers to money pages first and keep low-value URLs out of the index.</p>

@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { PRODUCTION_GOOGLE_ADS_ID, PRODUCTION_GADS_LABEL_LEAD } from "@/lib/analytics/ads-config";
 import {
-  GDPR_CONSENT_REGIONS,
   buildEarlyGoogleTagHtml,
   buildGtagInitScript,
   buildGtagLoaderSnippet,
@@ -53,9 +52,8 @@ describe("buildEarlyGoogleTagHtml", () => {
     );
     expect(html).toContain("url_passthrough");
     expect(html).toContain("ads_data_redaction");
-    expect(html).toContain("region:[");
-    expect(html).toContain("'GB'");
-    expect(html).toContain(
+    expect(html).not.toContain("region:[");
+    expect(html).not.toContain(
       "gtag('consent','default',{analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'})",
     );
   });
@@ -66,12 +64,10 @@ describe("buildEarlyGoogleTagHtml", () => {
 });
 
 describe("buildGtagInitScript", () => {
-  it("denies consent only in GDPR regions and grants elsewhere", () => {
+  it("denies consent everywhere until explicit acceptance", () => {
     const init = buildGtagInitScript(PRODUCTION_GOOGLE_ADS_ID, "G-Z8245BRX2L");
-    expect(init).toContain("wait_for_update:500,region:[");
-    for (const region of GDPR_CONSENT_REGIONS) {
-      expect(init).toContain(`'${region}'`);
-    }
+    expect(init).toContain("wait_for_update:500");
+    expect(init).not.toContain("region:[");
     expect(init.indexOf("denied")).toBeLessThan(init.indexOf("granted"));
   });
 });

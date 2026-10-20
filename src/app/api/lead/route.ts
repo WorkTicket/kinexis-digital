@@ -1,3 +1,4 @@
+import { hasAcceptedWebsiteConsent } from "@/lib/analytics/server-consent";
 import { NextResponse } from "next/server";
 import { randomUUID } from "node:crypto";
 import { isQualifiedLead } from "@/lib/analytics/qualified-lead";
@@ -220,14 +221,14 @@ export async function POST(request: Request) {
 
     const mail = await sendKinexisMail(
       {
-        fromName: "KINEXIS Digital Leads",
+        fromName: "Kinexis Digital Leads",
         replyTo: leadData.email,
         subject: `New Lead: ${leadData.name}${safeLandingSlug ? ` \u2014 /lp/${safeLandingSlug}` : leadData.service !== "Not specified" ? ` \u2014 ${leadData.service}` : ""} (Score: ${leadData.score})`,
         title: "New Lead Captured",
         rows,
         footer: `Reply directly to this email to contact ${leadData.name} at ${leadData.email}.`,
         text: [
-          `New Lead \u2014 KINEXIS Digital`,
+          `New Lead \u2014 Kinexis Digital`,
           "",
           `Name: ${leadData.name}`,
           `Email: ${leadData.email}`,
@@ -291,9 +292,9 @@ export async function POST(request: Request) {
       value: 0,
       currency: "USD",
     } as const;
-    await sendMetaCapiEvent(metaInput);
+    if (hasAcceptedWebsiteConsent(request)) await sendMetaCapiEvent(metaInput);
     if (isQualifiedLead(safeRole, safeBudget, safeTimeline, safeLandingSlug)) {
-      await sendMetaCapiEvent({
+      if (hasAcceptedWebsiteConsent(request)) await sendMetaCapiEvent({
         ...metaInput,
         eventName: "QualifiedLead",
         eventId: `QualifiedLead.${randomUUID()}`,

@@ -1,3 +1,4 @@
+import { hasAcceptedWebsiteConsent } from "@/lib/analytics/server-consent";
 import { NextResponse } from "next/server";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 import { validateOrigin } from "@/lib/csrf";
@@ -44,7 +45,7 @@ export async function POST(request: Request) {
       }),
     );
 
-    await sendMetaCapiEvent({
+    if (hasAcceptedWebsiteConsent(request)) await sendMetaCapiEvent({
       eventName: "Contact",
       eventId,
       fbp: cookies.get("_fbp") || attribution.fbp,

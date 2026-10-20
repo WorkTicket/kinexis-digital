@@ -6,9 +6,8 @@ const SEND_TO_PATTERN = /^AW-\d+\/[A-Za-z0-9_-]+$/;
 const TAG_ID_PATTERN = /^(AW|G)-[A-Z0-9]+$/i;
 
 /**
- * EEA + UK + CH. Consent Mode stays denied here until the banner updates;
- * everywhere else defaults to granted so Google Ads can set first-party
- * `_gcl_*` cookies (sitewide tagging / conversion tracking compatibility).
+ * EEA + UK + CH lookup retained for callers. Consent Mode defaults are denied
+ * in every country until the visitor explicitly accepts.
  */
 export const GDPR_CONSENT_REGIONS = [
   "AT",
@@ -45,7 +44,7 @@ export const GDPR_CONSENT_REGIONS = [
   "SK",
 ] as const;
 
-const GDPR_REGION_LITERAL = `[${GDPR_CONSENT_REGIONS.map((code) => `'${code}'`).join(",")}]`;
+
 
 const GDPR_REGION_SET = new Set<string>(GDPR_CONSENT_REGIONS);
 
@@ -88,8 +87,7 @@ export function buildGtagInitScript(adsId?: string, gaId?: string): string {
     "window.dataLayer=window.dataLayer||[];",
     "function gtag(){dataLayer.push(arguments);}",
     "window.gtag=gtag;",
-    `gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500,region:${GDPR_REGION_LITERAL}});`,
-    "gtag('consent','default',{analytics_storage:'granted',ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted'});",
+    `gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});`,
     GTAG_CONSENT_RESTORE_SCRIPT,
     "gtag('set','url_passthrough',true);",
     "gtag('set','ads_data_redaction',true);",

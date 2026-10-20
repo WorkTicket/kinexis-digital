@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const mailBody = formatIntakeMail(parsed.submission);
     const mail = await sendKinexisMail(
       {
-        fromName: "KINEXIS Digital Intake",
+        fromName: "Kinexis Digital Intake",
         replyTo: parsed.submission.email,
         subject: mailBody.subject,
         title: "Website Intake Questionnaire",

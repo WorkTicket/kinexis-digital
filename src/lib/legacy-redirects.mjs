@@ -366,16 +366,9 @@ export function getLegacyRedirects() {
     );
   }
 
-  redirects.push(
-    rule("/en", "/"),
-    rule("/es", "/"),
-    rule("/es-ES", "/"),
-    rule("/es-419", "/"),
-    rule("/en/:path*", "/:path*"),
-    rule("/es/:path*", "/:path*"),
-    rule("/es-ES/:path*", "/:path*"),
-    rule("/es-419/:path*", "/:path*"),
-  );
+  // Middleware owns generic locale-prefix redirects so it can persist the
+  // locale cookie. Config-level catch-alls also match internal intl rewrites
+  // on Next's local server, redirecting /terms back to itself.
 
   return redirects;
 }

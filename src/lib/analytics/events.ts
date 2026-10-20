@@ -1,3 +1,4 @@
+import { readStoredConsent } from "@/lib/analytics/consent";
 /**
  * Typed Google Ads / GA4 conversion helpers via gtag.js.
  * No-ops when IDs or labels are unset so builds stay green before credentials exist.
@@ -238,6 +239,7 @@ export function trackAuditLead(options: ConversionOptions = {}): boolean {
 /** True only on funnel pages where the Meta Pixel is loaded. */
 function canTrackMetaServer(): boolean {
   return (
+    readStoredConsent() === "accepted" &&
     typeof window !== "undefined" &&
     isMetaTrackingPath(window.location?.pathname ?? "") &&
     typeof window.fbq === "function"

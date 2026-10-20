@@ -1,6 +1,15 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 describe("business phone", () => {
+  it("uses the configured brand and service area without inventing a public address", async () => {
+    const { businessProfile } = await import("@/lib/business");
+    const { BRAND_NAME, BUSINESS_EMAIL } = await import("@/config/business-identity");
+    expect(businessProfile.name).toBe(BRAND_NAME);
+    expect(businessProfile.legalName).toBe(BRAND_NAME);
+    expect(businessProfile.email).toBe(BUSINESS_EMAIL);
+    expect(businessProfile.areaServed).toEqual(["Houston, TX", "United States"]);
+    expect(businessProfile).not.toHaveProperty("addressCountry");
+  });
   afterEach(() => {
     vi.unstubAllEnvs();
     vi.resetModules();

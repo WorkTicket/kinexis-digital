@@ -4,7 +4,7 @@ import { applySpainEuros } from "@/i18n/currency";
 import { getBusinessPhoneDisplay } from "@/lib/business";
 
 const CAMPAIGN_PHONE =
-  getBusinessPhoneDisplay() ?? "+1 (307) 500-3371";
+  getBusinessPhoneDisplay() ?? "";
 
 export type LandingPageProof = {
   metric: string;

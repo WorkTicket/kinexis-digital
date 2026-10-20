@@ -1,4 +1,5 @@
 "use client";
+import { getBusinessPhoneDisplay } from "@/lib/business";
 
 import { AlertCircle, Check, LoaderCircle, Lock } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -595,8 +596,8 @@ export function WebsitePlanForm({ page, id = "lp-plan" }: Props) {
                       ? "spamError"
                       : "serverError",
                 )}{" "}
-                <CallLink dataCta="call-dock" ariaLabel="Call +1 (307) 500-3371">
-                  +1 (307) 500-3371
+                <CallLink dataCta="call-dock" ariaLabel={`Call ${getBusinessPhoneDisplay() ?? ""}`}>
+                  {getBusinessPhoneDisplay()}
                 </CallLink>
                 .
               </p>

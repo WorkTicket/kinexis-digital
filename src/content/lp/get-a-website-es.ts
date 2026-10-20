@@ -1,3 +1,4 @@
+import { getBusinessPhoneDisplay } from "@/lib/business";
 /**
  * Full Spanish (LatAm base) body for /lp/get-a-website.
  * Pricing strings come from softPricing overlays in get-a-website.ts.
@@ -122,7 +123,7 @@ export function buildSpanishGetAWebsite(
 
     formTitle: "Solicita una llamada de proyecto de 15 minutos",
     formSubtitle:
-      "Deja tu nombre y número. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
+      `Deja tu nombre y número. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el ${getBusinessPhoneDisplay() ?? ""}.`,
     submitLabel: "Solicitar mi llamada",
     formCtaHint: `Sin compromiso. ${pricing.heroPrice}`,
     formFootnote:
@@ -146,7 +147,7 @@ export function buildSpanishGetAWebsite(
     privacyMicrocopy: "Usamos tu información para dar seguimiento a esta llamada.",
     successTitle: "Listo",
     successCopy:
-      "Tus datos ya están. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
+      `Tus datos ya están. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el ${getBusinessPhoneDisplay() ?? ""}.`,
     inlineThankYou: true,
 
     planHasSiteTitle: "Si ya tienes un sitio web",
@@ -173,7 +174,7 @@ export function buildSpanishGetAWebsite(
       },
       {
         title: "Te llamamos",
-        detail: "En 1 día hábil (lun–vie, 9 AM–6 PM hora del Este), desde el +1 (307) 500-3371.",
+        detail: `En 1 día hábil (lun–vie, 9 AM–6 PM hora del Este), desde el ${getBusinessPhoneDisplay() ?? ""}.`,
       },
       {
         title: "Recibes el alcance y el precio",
@@ -183,7 +184,7 @@ export function buildSpanishGetAWebsite(
     ],
     formTrust: [
       "Sin compromiso",
-      "Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
+      `Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el ${getBusinessPhoneDisplay() ?? ""}.`,
       "Sirve con o sin sitio actual",
       "El sitio es tuyo",
     ],
@@ -486,7 +487,7 @@ export function buildSpanishGetAWebsite(
 
     closingTitle: "Solicita una llamada de proyecto de 15 minutos",
     closingCopy:
-      "Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el +1 (307) 500-3371.",
+      `Si el sitio actual está vendiendo de menos al equipo, envía los detalles. Te devolvemos la llamada en 1 día hábil (lun–vie, 9 AM–6 PM hora del Este) desde el ${getBusinessPhoneDisplay() ?? ""}.`,
     closingFinePrint: `Sin compromiso. ${pricing.heroPrice}`,
 
     faqs: [
@@ -497,7 +498,7 @@ export function buildSpanishGetAWebsite(
       {
         question: "¿Qué tan pronto me responden?",
         answer:
-          "En 1 día hábil (lun–vie, 9 AM–6 PM hora del Este). Te llamaremos desde el +1 (307) 500-3371, revisaremos tu sitio actual o tus notas y te diremos qué debería arreglar primero una reconstrucción.",
+          `En 1 día hábil (lun–vie, 9 AM–6 PM hora del Este). Te llamaremos desde el ${getBusinessPhoneDisplay() ?? ""}, revisaremos tu sitio actual o tus notas y te diremos qué debería arreglar primero una reconstrucción.`,
       },
       {
         question: "¿Es una plantilla de WordPress?",

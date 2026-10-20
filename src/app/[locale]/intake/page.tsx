@@ -11,9 +11,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path: "/intake",
-    title: "Client Intake Questionnaire",
+    title: locale === "en" ? "Get started: your free homepage preview" : "Empecemos: su vista previa gratis",
     description:
-      "Tell us about your business, your customers, and your goals so we can plan a website that wins more work and gets found on Google.",
+      locale === "en" ? "Send your business details for your free homepage preview." : "Envíe los datos de su negocio para su vista previa gratis.",
     noIndex: true,
     noFollow: true,
   });

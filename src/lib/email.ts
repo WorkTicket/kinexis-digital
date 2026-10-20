@@ -67,7 +67,7 @@ export function describeMailError(error: unknown): string {
 }
 
 export type KinexisMailPayload = {
-  /** Display name in the From header, e.g. "KINEXIS Digital Contact". */
+  /** Display name in the From header, e.g. "Kinexis Digital Contact". */
   fromName: string;
   replyTo: string;
   subject: string;
@@ -132,7 +132,7 @@ export function wrapKinexisEmailHtml(title: string, rows: string, footer?: strin
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#05060a;color:#fff;border-radius:12px;overflow:hidden;">
       <div style="background:linear-gradient(135deg,#0099cc,#00d4ff);padding:32px 40px;">
         <h1 style="margin:0;font-size:22px;font-weight:700;color:#fff;">${escapeHtml(title)}</h1>
-        <p style="margin:8px 0 0;font-size:14px;opacity:0.85;">KINEXIS Digital · kinexisdigital.com</p>
+        <p style="margin:8px 0 0;font-size:14px;opacity:0.85;">Kinexis Digital · kinexisdigital.com</p>
       </div>
       <div style="padding:40px;">
         <table style="width:100%;border-collapse:collapse;">${rows}</table>

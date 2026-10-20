@@ -19,9 +19,9 @@ describe("wrapKinexisEmailHtml", () => {
     expect(html).toContain("&lt;h1&gt;Test&lt;/h1&gt;");
   });
 
-  it("includes KINEXIS Digital branding", () => {
+  it("includes Kinexis Digital branding", () => {
     const html = wrapKinexisEmailHtml("Test", "");
-    expect(html).toContain("KINEXIS Digital");
+    expect(html).toContain("Kinexis Digital");
     expect(html).toContain("kinexisdigital.com");
   });
 
@@ -80,7 +80,7 @@ describe("getRecipientEmails", () => {
 
 describe("sendKinexisMail", () => {
   const payload = {
-    fromName: "KINEXIS Digital Leads",
+    fromName: "Kinexis Digital Leads",
     replyTo: "lead@example.com",
     subject: "New Lead",
     title: "New Lead Captured",
