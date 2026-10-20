@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Local SEO for service businesses is not one tactic. It is five systems working together: Google Business Profile, citations, reviews, location content, and rank tracking. Skip one pillar and map pack visibility stalls even if the others look fine. We use this checklist on every local client engagement because it catches the gaps that generic SEO audits miss.</p>
-<p>A plumbing company serving four counties had a verified GBP, 200 reviews, and a decent website. They still lost map pack share to a competitor with half their reviews. Citations showed NAP inconsistencies on 14 directories, and their city pages were copy-paste templates. Fixing NAP, rewriting two priority city pages with local proof points, and posting weekly GBP updates moved them from map position six to two for "emergency plumber [city]" in eleven weeks.</p>
+
 <h2>Google Business Profile Optimization</h2>
 <p>Your GBP is the front door for local search. Complete every field: categories, services, attributes, hours, photos, and products where relevant.</p>
 <h3>Weekly GBP Habits</h3>
@@ -24,7 +24,7 @@ export const body = `<p>Local SEO for service businesses is not one tactic. It i
 <p>Track rankings weekly for core "service + city" terms in a grid across your service area. Separate map pack from local organic results. Correlate ranking shifts with GBP changes, review velocity, and citation updates so you know what actually moved the needle.</p>
 <h2>Local SEO Checklist Summary</h2>
 <p><strong>GBP:</strong> complete profile, weekly posts, all reviews answered.<br><strong>Citations:</strong> consistent NAP, claimed listings, relevant directories.<br><strong>Reviews:</strong> automated requests, steady flow, professional responses.<br><strong>Content:</strong> unique city or county pages with real local detail.<br><strong>Tracking:</strong> grid rank reports tied to actions taken.</p>
-<p>Most service businesses see meaningful map pack movement in 60 to 90 days when all five pillars run together. Treat local SEO as operations plus marketing, not a set-and-forget listing setup.</p>
+
 <h2>Local Link Building and Community Presence</h2>
 <p>Sponsor local events, join chamber of commerce directories, and earn links from community organizations. Local news coverage of projects (with client permission) builds geographic relevance. Pair offline activity with online mentions that include your city and service keywords naturally.</p>
 <h3>Multi-Location Management</h3>

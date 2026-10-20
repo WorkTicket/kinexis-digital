@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Segmented email campaigns routinely generate several times more revenue per send than one-message-fits-all blasts. Segmentation is how you match offer, tone, and timing to what you know about the subscriber. The depth of your segments depends on data quality, but even basic splits beat batch-and-blast.</p>
-<p>An online retailer mailed the same promo to 120,000 subscribers. We split by purchase recency and category affinity: lapsed buyers who purchased outdoor gear got a win-back with new arrivals; active apparel buyers got early access; non-purchasers got education and first-order incentive. Overall campaign revenue rose 2.8x versus the prior flat send with identical discount depth.</p>
+
 <h2>Types of Segmentation</h2>
 <p><strong>Demographic/firmographic:</strong> role, industry, company size.<br><strong>Behavioral:</strong> purchase history, browse behavior, email engagement.<br><strong>Lifecycle:</strong> trial, active, at-risk, churned.<br><strong>Psychographic:</strong> preferences stated in surveys or preference centers.</p>
 <h3>Start With High-Impact Splits</h3>
@@ -24,7 +24,7 @@ export const body = `<p>Segmented email campaigns routinely generate several tim
 <h2>Building Segments Over Time</h2>
 <p>Month one: customers vs. prospects. Month two: add recency and category splits. Month three: layer engagement tiers and predicted LTV if your platform supports it. Progressive complexity beats a six-month data project that delays any send improvements.</p>
 <h3>Segment-Specific Offers</h3>
-<p>Same discount depth performs differently by segment. VIPs may want early access instead of 20% off. Lapsed buyers may need free shipping. Prospects may need education before any offer. Match incentive type to relationship stage.</p>
+
 <h2>Operational Checklist</h2>
 <p>Before each major send: verify segment logic in SQL or platform UI, send test emails to internal inboxes, confirm exclusion of recent purchasers for acquisition promos, and schedule send times per timezone when data supports it.</p>
 <h2>Advanced Segmentation Patterns</h2>

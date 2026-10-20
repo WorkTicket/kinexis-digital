@@ -1138,9 +1138,15 @@ export function getLandingPage(
   locale: Locale = "en",
 ): LandingPageEntry | undefined {
   if (slug === "get-a-website") {
-    return getAWebsiteForLocale(locale);
+    return withoutClaims(getAWebsiteForLocale(locale));
   }
   const page = landingPages.find((p) => p.slug === slug);
   if (!page) return undefined;
-  return applySpainEuros(page, locale);
+  return withoutClaims(applySpainEuros(page, locale));
+}
+
+function withoutClaims(page: LandingPageEntry): LandingPageEntry {
+  return { ...page, proof: [], heroStats: [], testimonial: undefined, logos: [],
+    spotlight: page.spotlight ? { ...page.spotlight, metric: undefined, metricLabel: undefined } : undefined,
+    samples: page.samples?.map(sample => ({ ...sample, metric: "", label: "", result: undefined })) };
 }

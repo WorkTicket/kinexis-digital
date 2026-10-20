@@ -8,10 +8,12 @@ describe("supplied legal documents", () => {
     ["es-419", "19 de octubre de 2026"],
     ["es-ES", "19 de octubre de 2026"],
   ] as const)("formats the privacy date and omits empty operator spacing in %s", (locale, date) => {
-    const privacy = getTermsContent(locale, true);
-    expect(privacy.html).toContain(date);
-    expect(privacy.html).not.toContain("2026-10-19");
-    expect(privacy.html).not.toMatch(/\) {2,}/);
+    for (const isPrivacy of [true, false]) {
+      const document = getTermsContent(locale, isPrivacy);
+      expect(document.html).toContain(date);
+      expect(document.html).not.toContain("2026-10-19");
+      expect(document.html).not.toMatch(/\) {2,}/);
+    }
   });
   it.each(["en", "es-419", "es-ES"] as const)("renders complete terms and privacy for %s without draft notes", locale => {
     for (const privacy of [false, true]) {

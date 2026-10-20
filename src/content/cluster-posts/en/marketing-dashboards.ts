@@ -22,7 +22,7 @@ export const body = `<p>Dashboards should answer whether marketing is generating
 <p>Usually tracking gaps, not tool choice. Fix attribution and event naming before adding another chart. Run a monthly "dashboard trust" review comparing dashboard totals to source systems.</p>
 <p>Marketing dashboards work when they drive weekly decisions. Build an executive lens for profit and efficiency, a channel lens for daily optimization, and protect clarity ruthlessly. Less noise, more action.</p>
 <h2>Alerting and Thresholds</h2>
-<p>Set automated alerts for CPA spikes, conversion rate drops, and spend pacing beyond 110% of weekly plan. Alerts should name an owner and link to the drill-down dashboard. Unowned alerts become noise.</p>
+
 <h3>Benchmarks and Targets</h3>
 <p>Show targets as bands, not single lines. YoY comparisons account for seasonality better than MoM alone for retail and B2B with fiscal cycles. Document how targets were set so teams do not chase arbitrary numbers.</p>
 <h2>Dashboard Rollout Process</h2>

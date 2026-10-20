@@ -120,7 +120,7 @@ export const contactContentI18n = localeContent({
     step3Desc:
       "On the call we map what's broken, what to fix first, and whether we're the right fit.",
     trustLabel1: "< 24hr response",
-    trustLabel2: "No lock-in contracts",
+    trustLabel2: "3-month minimum, then monthly",
     trustLabel3: "Free initial consultation",
     servicePlaceholder: "Select a service…",
     serviceOptions: [
@@ -134,7 +134,7 @@ export const contactContentI18n = localeContent({
       "Growth Consulting",
       "Other / Not Sure Yet",
     ],
-    formFootnote: "No long-term contracts. Month to month. We'll never share your details.",
+    formFootnote: "3-month minimum from launch, then month-to-month. Cancel anytime after that by text, email or Messenger.",
     booking: {
       title: "Book a strategy call",
       subtitle:
@@ -205,7 +205,7 @@ export const contactContentI18n = localeContent({
     step3Desc:
       "En la llamada identificamos qué está fallando, qué conviene arreglar primero y si somos la opción correcta.",
     trustLabel1: "Respuesta < 24 h",
-    trustLabel2: "Sin contratos de permanencia",
+    trustLabel2: "Mínimo de 3 meses, luego mes a mes",
     trustLabel3: "Consulta inicial gratuita",
     servicePlaceholder: "Selecciona un servicio…",
     serviceOptions: [
@@ -219,7 +219,7 @@ export const contactContentI18n = localeContent({
       "Consultoría de crecimiento",
       "Otro / Aún no lo tengo claro",
     ],
-    formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
+    formFootnote: "Mínimo de 3 meses desde el lanzamiento, luego mes a mes. Después puede cancelar en cualquier momento por texto, correo o Messenger.",
     booking: {
       title: "Agendar una llamada estratégica",
       subtitle:
@@ -290,7 +290,7 @@ export const contactContentI18n = localeContent({
     step3Desc:
       "En la llamada identificamos qué está fallando, qué conviene arreglar primero y si somos la opción correcta.",
     trustLabel1: "Respuesta < 24 h",
-    trustLabel2: "Sin contratos de permanencia",
+    trustLabel2: "Mínimo de 3 meses, luego mes a mes",
     trustLabel3: "Consulta inicial gratuita",
     servicePlaceholder: "Selecciona un servicio…",
     serviceOptions: [
@@ -304,7 +304,7 @@ export const contactContentI18n = localeContent({
       "Consultoría de crecimiento",
       "Otro / Aún no lo tengo claro",
     ],
-    formFootnote: "Sin contratos a largo plazo. Mes a mes. Nunca compartiremos tus datos.",
+    formFootnote: "Mínimo de 3 meses desde el lanzamiento, luego mes a mes. Después puede cancelar en cualquier momento por texto, correo o Messenger.",
     booking: {
       title: "Reservar una llamada estratégica",
       subtitle:

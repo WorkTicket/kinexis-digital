@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Attribution decides how credit for a conversion gets split across touchpoints. The model you choose shapes budget allocation, creative strategy, and how channels fight or cooperate. No model is perfect; each answers a different question. The mistake is optimizing to one dashboard number without knowing what that number assumes.</p>
-<p>A B2B company credited LinkedIn with zero pipeline because last-touch GA4 reports ignored early awareness clicks. Implementing a defined multi-touch model in their CRM plus GA4 path exploration showed LinkedIn influenced 38% of closed deals within 90 days, even when search got the last click. Budget shifted modestly; pipeline forecasting improved more than raw lead volume.</p>
+
 <h2>Single-Touch Models</h2>
 <p><strong>First-touch</strong> credits acquisition channels; good for understanding awareness drivers.<br><strong>Last-touch</strong> credits closers; common default but misleading for long cycles.<br>Both ignore everything in between.</p>
 <h3>When Single-Touch Is Enough</h3>
@@ -26,14 +26,14 @@ export const body = `<p>Attribution decides how credit for a conversion gets spl
 <h3>Incrementality Testing Playbook</h3>
 <p>Run geo holdouts: pause spend in selected regions while holding others constant. Measure lift difference after four to six weeks. Use for channels where last-click shows zero but brand search correlates with display spend.</p>
 <h2>Reporting Attribution Honestly</h2>
-<p>Present ranges and multiple models in leadership reviews. "Last-touch says search wins; position-based says LinkedIn assists 35% of pipeline" is more useful than false precision. Document known blind spots like dark social and word of mouth.</p>
+
 <h2>Offline and Online Joined Attribution</h2>
 <p>Phone calls, store visits, and sales-assist deals need CRM fields capturing first touch and influencing campaigns. Train reps to ask "how did you hear about us?" and log consistently. Digital attribution improves when offline inputs feed the same model.</p>
 <h3>Attribution for Long Sales Cycles</h3>
 <p>B2B deals closing six months after first touch require opportunity-level attribution in CRM, not only session-based GA4 reports. Sync ad click IDs to CRM where possible for clearer path reconstruction.</p>
 <p>Revisit attribution policy when you add a major channel or change average deal size. Models that worked at $2K ACV often break at $20K.</p>
 <h2>Weighted Attribution Custom Models</h2>
-<p>Some teams build spreadsheet models weighting touchpoints by channel role: paid search last touch weighted 40%, first-touch content 30%, mid-funnel email 30%. Custom weights beat default linear when you have clear hypotheses about your funnel.</p>
+
 <h2>Board-Level Attribution Summaries</h2>
 <p>Executives need one slide on assisted pipeline and one on sourced revenue, with footnotes on model assumptions. Depth lives in appendix tabs; the meeting stays focused on budget decisions.</p>
 <p>Update the attribution doc when sales cycle length changes. Stale assumptions misallocate budget faster than stale creative.</p>

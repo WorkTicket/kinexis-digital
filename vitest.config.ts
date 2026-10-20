@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: "node",
-    include: ["**/*.test.{ts,tsx}"],
+    include: ["src/**/*.test.{ts,tsx}"],
     setupFiles: ["./vitest-setup.ts"],
     env: {
       NEXT_PUBLIC_SITE_URL: "http://localhost:3000",

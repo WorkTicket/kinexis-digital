@@ -12,7 +12,7 @@ const L = {
 
 export const clusterPostBodiesEs: Record<string, string> = {
   "technical-seo-guide": `<p>Google no puede posicionar lo que no puede rastrear, renderizar e indexar correctamente. El SEO técnico es la capa de infraestructura que hace que cada inversión en contenido y cada esfuerzo de link building cuente de verdad. En Kinexis Digital empezamos la mayoría de proyectos con una línea base técnica porque corregir problemas de indexación y velocidad suele mover rankings antes de que se publique una sola entrada nueva.</p>
-<p>Un cliente B2B SaaS de tamaño medio llegó a nosotros posicionando en la página tres para términos de alta intención a pesar de tener buen contenido. Los logs de rastreo mostraban que Google gastaba el 40% de su presupuesto en URLs de producto filtradas y etiquetas de blog heredadas. Tras consolidar duplicados, ajustar reglas de robots y enviar un sitemap priorizado, las páginas indexadas bajaron un 18% mientras las sesiones orgánicas subieron un 31% en noventa días. Eso es SEO técnico hecho con intención.</p>
+
 <h2>Presupuesto de Rastreo e Indexación</h2>
 <p>El presupuesto de rastreo importa sobre todo en sitios grandes, catálogos de ecommerce y editores con años de contenido archivado. Tu objetivo es simple: enviar rastreadores primero a las páginas que generan ingresos y mantener fuera del índice las URLs de poco valor.</p>
 <h3>Robots.txt, Sitemaps y Canónicas</h3>
@@ -22,7 +22,7 @@ export const clusterPostBodiesEs: Record<string, string> = {
 <h2>Core Web Vitals y Velocidad de Página</h2>
 <p>El rendimiento es señal de ranking y factor de conversión. Las páginas lentas pierden tráfico de pago y orgánico por igual.</p>
 <h3>Objetivos que Siguen Vigentes en 2026</h3>
-<p>Apunta a <strong>LCP por debajo de 2,5 segundos</strong>, <strong>INP por debajo de 200 ms</strong> y <strong>CLS por debajo de 0,1</strong> en el percentil 75 de usuarios reales. Las puntuaciones de laboratorio de Lighthouse ayudan, pero los datos de campo en CrUX y Search Console dicen la verdad. Victorias habituales: comprimir imágenes hero a WebP o AVIF, diferir scripts no críticos y eliminar cambios de diseño por fuentes o embeds que cargan tarde.</p>
+
 <h3>Renderizado y SEO con JavaScript</h3>
 <p>Los sitios React y Next.js necesitan atención especial. Confirma que el contenido crítico aparece en la respuesta HTML inicial, no solo tras la hidratación del cliente. Prueba con Inspección de URL y revisa el código renderizado, no solo el HTML en bruto.</p>
 <h2>Arquitectura del Sitio y Diseño de URLs</h2>
@@ -42,7 +42,7 @@ export const clusterPostBodiesEs: Record<string, string> = {
 ${L.seo}`,
 
   "internal-linking-guide": `<p>Los backlinks se llevan la atención, pero los enlaces internos hacen el trabajo diario de mover autoridad donde la necesitas. Un sistema deliberado de enlazado interno es una de las inversiones SEO de mayor retorno porque controlas cada ancla, cada ubicación y cada actualización. Tratamos el enlazado interno como arquitectura, no como algo que se añade cuando el artículo ya está publicado.</p>
-<p>Piensa en una empresa de HVAC regional con páginas separadas para instalación, reparación y mantenimiento. Antes de reestructurar enlaces, su página de reparación posicionaba en la página dos mientras la página de inicio acaparaba la mayor parte del equity interno entrante. Construimos una página hub de "servicios de aire acondicionado," enlazamos hacia cada subservicio con anclas descriptivas y añadimos enlaces contextuales desde 12 entradas de blog por ciudad. Las posiciones de reparación pasaron al puesto cuatro en diez semanas sin backlinks nuevos.</p>
+
 <h2>Por Qué Importan los Enlaces Internos para SEO</h2>
 <p>Los enlaces internos ayudan a los rastreadores a descubrir URLs, pasan señales estilo PageRank y establecen relaciones temáticas. También guían a usuarios hacia rutas de conversión. Google usa el contexto del enlace para entender qué páginas consideras más importantes. Si solo posiciona tu blog, tus páginas de servicio probablemente carecen de apoyo interno.</p>
 <h2>El Modelo Hub y Spoke</h2>
@@ -67,7 +67,7 @@ ${L.seo}`,
 ${L.seo}`,
 
   "seo-audit-framework": `<p>Una auditoría SEO sin prioridades es solo una lista larga de problemas. El trabajo es encontrar qué bloquea ingresos hoy, estimar el esfuerzo de corrección y secuenciar el trabajo para que los rankings se muevan mientras el equipo aún tiene capacidad. En Kinexis Digital ejecutamos auditorías en tres capas: técnica, contenido y autoridad. Cada capa tiene su checklist, pero el resultado es una hoja de ruta única ordenada ligada a objetivos de negocio.</p>
-<p>Auditamos un grupo dental multiubicación el año pasado. Su agencia publicaba cuatro entradas de blog al mes, pero los leads orgánicos estaban planos. La revisión técnica encontró el 23% de páginas de ubicación excluidas por una etiqueta noindex errónea. La revisión de contenido mostró canibalización de palabras clave entre páginas de "Invisalign." La revisión de autoridad reveló enlaces de directorios spam de 2019. Solo corregir indexación recuperó el 40% de visibilidad perdida en seis semanas. La consolidación de contenido y el trabajo de desautorización siguieron. Los leads subieron un 58% trimestre contra trimestre.</p>
+
 <h2>Fase 1: Capa Técnica</h2>
 <p>Empieza con rastreabilidad e indexación. Si Google no puede acceder o confiar en tus URLs, nada más importa.</p>
 <h3>Checklist Técnico</h3>
@@ -97,12 +97,12 @@ ${L.seo}`,
 <p>Presenta hallazgos en sesión de trabajo con marketing, desarrollo y ventas. Ventas escucha objeciones que pertenecen a contenido FAQ. Desarrollo entiende por qué las cadenas de redirección importan para ingresos. Marketing recibe un backlog priorizado en lugar de un PDF que queda en una carpeta. Las auditorías se convierten en acción cuando la propiedad es clara.</p>
 ${L.seo}`,
 
-  "link-building-strategies": `<p>El link building en 2026 premia sitios que ganan citas porque son genuinamente útiles, no porque enviaron más emails de outreach. Los sistemas antispam de Google detectan mejor patrones manipulativos, y los compradores confían en marcas referenciadas por publicaciones que ya leen. Las estrategias que siguen funcionando se centran en valor original, relaciones y activos que merecen un enlace.</p>
+  "link-building-strategies": `
 <p>Ayudamos a una startup fintech a lanzar un informe anual de "flujo de caja para pequeñas empresas" usando datos anonimizados de su plataforma. Un comunicado de prensa, tres briefings con periodistas y un PDF metodológico descargable generaron 47 dominios referentes en sesenta días, incluidos dos medios del sector con tráfico real. Sin PBNs ni colocaciones pagadas disfrazadas de editorial. El informe sigue generando enlaces cada año cuando actualizan los datos.</p>
 <h2>PR Digital y Activos con Noticias</h2>
 <p>El PR digital convierte datos, encuestas y comentarios oportunos en historias que los periodistas quieren cubrir. El enlace es subproducto de la cobertura, no el pitch.</p>
 <h3>Qué Hace una Historia Digna de Enlace</h3>
-<p>Estadísticas originales, posturas contrarias pero defendibles, recortes de datos localizados y activos visuales que los periodistas pueden embeber. Empaqueta hallazgos con titulares claros: "El 68% de minoristas aún carece de sincronización de inventario en tiempo real" supera a "encuestamos minoristas sobre tecnología."</p>
+
 <h3>Outreach que Respeta a Editores</h3>
 <p>Personaliza por beat, ofrece ventanas de datos exclusivos cuando sea posible y facilita la extracción: viñetas con estadísticas clave, disponibilidad de portavoz e imágenes en CDN rápido. Haz un solo seguimiento. El spam persistente quema dominios para campañas futuras.</p>
 <h2>Link Building con Recursos y Guías</h2>
@@ -114,9 +114,9 @@ ${L.seo}`,
 <h2>Qué Evitar</h2>
 <p>Evita esquemas de enlaces pagados, guest posts irrelevantes en blogs genéricos, spam en comentarios y ráfagas de outreach automatizado. Evita manipulación de anclas de coincidencia exacta a escala. Si una táctica parece existir solo para Google y no para usuarios, asume que fallará o nunca moverá la aguja.</p>
 <h2>Medir ROI del Link Building</h2>
-<p>Sigue dominios referentes mensualmente, pero vincula enlaces a resultados: movimiento de ranking en URLs objetivo, tráfico orgánico a páginas enlazadas y conversiones asistidas desde tráfico de referencia. Usa el informe de enlaces de GSC y Ahrefs o Moz para velocidad. Establece plazos realistas: los enlaces editoriales suelen tardar 60 a 90 días en influir rankings.</p>
+
 <h3>Higiene de Anclas y Relevancia</h3>
-<p>Un perfil sano mezcla anclas de marca, URL desnuda y temáticas. Picos repentinos de anclas comerciales desde sitios de baja calidad activan revisión. Prioriza páginas que ya posicionan entre el puesto 5 y 15; enlaces a esas URLs frecuentemente las empujan a la página uno.</p>
+
 <p>El link building sostenible es función de marketing, no ejercicio de hoja de cálculo. Construye activos que tu audiencia y los periodistas quieren de verdad, promociónalos con respeto y deja que los enlaces se acumulen como señal de autoridad real. Ese enfoque sobrevive actualizaciones de algoritmo porque refleja cómo la web estaba pensada para funcionar.</p>
 <h2>Broken Link Building y Menciones Sin Enlace</h2>
 <p>Encuentra recursos rotos en sitios autoritarios de tu nicho y ofrece tu guía actualizada como reemplazo. Herramientas como Ahrefs Site Explorer muestran enlaces salientes muertos en dominios relevantes. Del mismo modo, monitoriza menciones de marca sin enlace y solicita una cita cuando el contexto encaje. Las tasas de conversión son modestas pero los enlaces son muy relevantes.</p>
@@ -150,7 +150,7 @@ ${L.seo}`,
 <p>Sigue rankings semanalmente para términos core "servicio + ciudad" en una cuadrícula de tu zona de servicio. Separa map pack de resultados orgánicos locales. Correlaciona cambios de ranking con cambios en GBP, velocidad de reseñas y actualizaciones de citaciones para saber qué movió realmente la aguja.</p>
 <h2>Resumen de la Lista SEO Local</h2>
 <p><strong>GBP:</strong> perfil completo, publicaciones semanales, todas las reseñas respondidas.<br><strong>Citaciones:</strong> NAP consistente, listados reclamados, directorios relevantes.<br><strong>Reseñas:</strong> solicitudes automatizadas, flujo constante, respuestas profesionales.<br><strong>Contenido:</strong> páginas únicas de ciudad o condado con detalle local real.<br><strong>Seguimiento:</strong> informes de ranking en cuadrícula ligados a acciones tomadas.</p>
-<p>La mayoría de negocios de servicios ven movimiento significativo en el map pack en 60 a 90 días cuando los cinco pilares funcionan juntos. Trata el SEO local como operaciones más marketing, no como configuración de ficha que se hace una vez.</p>
+
 <h2>Link Building Local y Presencia Comunitaria</h2>
 <p>Patrocina eventos locales, únete a directorios de cámaras de comercio y gana enlaces de organizaciones comunitarias. Cobertura de noticias locales de proyectos (con permiso del cliente) construye relevancia geográfica. Combina actividad offline con menciones online que incluyan tu ciudad y palabras clave de servicio de forma natural.</p>
 <h3>Gestión Multi-Ubicación</h3>
@@ -160,13 +160,13 @@ ${L.seo}`,
 ${L.localSeo}`,
 
   "quality-score-guide": `<p>Quality Score es la forma de Google de estimar si tus anuncios, palabras clave y landing pages satisfacen a quien busca. Puntuaciones más altas significan CPCs más bajos y mejores posiciones de anuncio con la misma puja. No es una métrica de vanidad. Una mejora de un punto en campañas de alto gasto puede ahorrar miles al mes y liberar presupuesto para prospección.</p>
-<p>Heredamos una cuenta de Google Ads que gastaba 45.000 dólares al mes en búsqueda de marca y no marca. El Quality Score medio era 5,2. Ajustar grupos de anuncios, reescribir anuncios para coincidir con clusters de intención y corregir message match en landing pages subió la media de cuenta a 7,8 en seis semanas. El CPC bajó un 22% mientras el volumen de conversiones se mantuvo. Mismas pujas, mejores subastas.</p>
+
 <h2>Componentes de Quality Score</h2>
-<p>Google evalúa tres factores: CTR esperado, relevancia del anuncio y experiencia de landing page. Cada palabra clave recibe calificación por debajo del promedio, promedio o por encima del promedio por componente. La puntuación combinada es de 1 a 10 a nivel de palabra clave.</p>
+
 <h3>CTR Esperado</h3>
 <p>Google compara tu CTR esperado con competidores en la misma subasta. Mejóralo con titulares convincentes, diferenciación clara y extensiones de anuncio que añaden superficie: sitelinks, callouts, snippets estructurados y extensiones de precio cuando aplique.</p>
 <h3>Relevancia del Anuncio</h3>
-<p>Los anuncios deben reflejar el tema de palabras clave del grupo. Grupos temáticos únicos con 5 a 15 variantes cercanas superan a grupos inflados donde un anuncio intenta cubrir cada sinónimo. Usa Inserción Dinámica de Palabra Clave con moderación; ayuda a relevancia solo cuando las landing pages también coinciden.</p>
+
 <h3>Experiencia de Landing Page</h3>
 <p>Envía clics a páginas que cargan rápido, cumplen la promesa del anuncio y hacen obvio el siguiente paso. Páginas finas, muros de pop-up y diseños móviles rotos arrastran este componente hacia abajo.</p>
 <h2>Mejorar Quality Score en la Práctica</h2>
@@ -174,7 +174,7 @@ ${L.localSeo}`,
 <h3>Ritmo de Pruebas de Copy de Anuncio</h3>
 <p>Ejecuta dos o tres variantes RSA por grupo, fijando titulares solo cuando los datos lo respalden. Prueba especificidad: "Reparación de AC el Mismo Día en Austin" vs genérico "Expertos en HVAC." Incluye prueba social: valoraciones, años en el negocio, garantías. Refresca anuncios antes de que la fatiga se note en CTR descendente.</p>
 <h3>Alineación de Landing Page</h3>
-<p>El titular de la página debe hacer eco del gancho del anuncio. Elimina desorden de navegación en páginas dedicadas de campaña. Mantén formularios arriba del fold en móvil. Velocidad de página por debajo de tres segundos en 4G es umbral práctico para tráfico de pago.</p>
+
 <h2>Quality Score y Smart Bidding</h2>
 <p>La puja automatizada sigue beneficiándose de Quality Score porque influye en Ad Rank. Puntuaciones bajas obligan pujas más altas para mantener posición, lo que confunde fases de aprendizaje del algoritmo. Limpia estructura antes de escalar campañas tROAS o tCPA.</p>
 <h2>Errores Comunes</h2>
@@ -187,13 +187,13 @@ ${L.localSeo}`,
 <h3>Estrategia de Extensiones</h3>
 <p>Las extensiones de anuncio mejoran CTR esperado sin cambiar copy principal. Sitelinks a landing pages específicas, callouts de garantías y snippets estructurados de tipos de servicio añaden señales de relevancia. Revisa rendimiento de extensiones mensualmente y pausa las que rinden mal y saturan el anuncio.</p>
 <h2>Diagnosticar Palabras Clave con Quality Score Bajo</h2>
-<p>Pasa el cursor sobre la puntuación en Google Ads para ver qué componente rezaga. Experiencia de landing page por debajo del promedio con relevancia de anuncio fuerte suele significar correcciones de velocidad o UX móvil, no más pruebas de copy. Exporta palabras clave con Quality Score por debajo de 5 y cuota de impresiones por encima del 10% para una lista de revisión semanal enfocada.</p>
+
 <h2>Campañas Estacionales y Promocionales</h2>
 <p>Quality Score puede bajar en promociones cortas cuando el copy cambia rápido. Pre-construye variantes de anuncio y módulos de landing page para empujes estacionales y mantén relevancia ajustada desde el día uno. Revierte o refresca tras promociones para evitar ofertas obsoletas que arrastran CTR.</p>
 ${L.googleAds}`,
 
   "negative-keywords-guide": `<p>Las palabras clave negativas son la palanca más rápida en PPC para frenar gasto desperdiciado. Cada dólar en búsquedas irrelevantes es un dólar que no escala ganadores. Sin embargo, la mayoría de cuentas trata negativas como limpieza reactiva en lugar de un sistema proactivo. Las revisiones semanales de términos de búsqueda deberían ser innegociables, respaldadas por listas compartidas y propiedad clara.</p>
-<p>Un anunciante de servicios para el hogar quemó 3.200 dólares en un mes en consultas como "empleos HVAC," "revisión AC gratis" y "reparación horno bricolaje" antes de que auditáramos términos de búsqueda. Negativas a nivel de campaña para intención laboral y DIY, más negativas a nivel de grupo para separar temas de reparación e instalación, redujeron gasto desperdiciado un 18% la primera semana sin perder leads válidos.</p>
+
 <h2>Cómo Funcionan las Palabras Clave Negativas</h2>
 <p>Las negativas impiden que los anuncios se muestren cuando las consultas contienen términos especificados. Los tipos de concordancia importan: negativas amplias bloquean variantes que contienen el término, negativas de frase requieren la frase intacta, negativas exactas bloquean solo esa consulta. Google Ads carece de concordancia negativa exacta verdadera en todos los casos, así que monitoriza términos de búsqueda tras añadir negativas.</p>
 <h2>Negativas a Nivel de Campaña</h2>
@@ -224,7 +224,7 @@ ${L.googleAds}`,
 ${L.ppc}`,
 
   "landing-page-best-practices": `<p>Enviar tráfico de pago a una página de inicio genérica desperdicia presupuesto. Las homepages sirven a muchas audiencias; los anuncios hablan a una intención. Las landing pages dedicadas con message match ajustado convierten rutinariamente entre dos y tres veces más que destinos de propósito general porque reducen carga cognitiva y mantienen al visitante en un solo camino.</p>
-<p>Una campaña de prueba de software enviaba clics a una homepage con seis rutas de navegación y un botón de registro enterrado. Construimos una página dedicada que reflejaba el copy del anuncio, añadimos prueba social arriba del fold y eliminamos navegación superior. Los registros de prueba subieron un 142% con el mismo CPC. Sin cambios de puja ni palabras clave nuevas. Solo una página construida para el clic.</p>
+
 <h2>Message Match del Anuncio a la Página</h2>
 <p>El titular debe hacer eco del gancho del anuncio en segundos. Si el anuncio promete "envío gratis en el primer pedido," el hero de la página debe decir lo mismo, no un eslogan genérico de marca. La continuidad visual también ayuda: imágenes y acentos de color similares señalan que el usuario llegó al lugar correcto.</p>
 <h3>Alineación con Intención de Búsqueda</h3>
@@ -232,11 +232,11 @@ ${L.ppc}`,
 <h2>Un Solo CTA Principal</h2>
 <p>Una acción principal por página: reservar llamada, iniciar prueba, solicitar cotización. Los enlaces secundarios diluyen foco. Elimina navegación principal en páginas de tráfico frío cuando sea posible. Repite el CTA tras secciones de prueba para que usuarios no hagan scroll hacia atrás buscándolo.</p>
 <h3>Copy de CTA que Aclara el Riesgo</h3>
-<p>"Obtén mi auditoría gratis" supera a "Enviar." Especifica compromiso de tiempo: "llamada de 15 minutos," "PDF instantáneo." Reduce ansiedad con microcopy junto al botón sobre no spam o cancelar cuando quieras.</p>
+
 <h2>Esenciales Arriba del Fold</h2>
 <p>Los visitantes deben ver propuesta de valor, indicador de credibilidad y CTA sin hacer scroll en móvil. Usa subtítulos cortos para expandir la promesa. Evita heroes en carrusel que esconden el mensaje detrás de rotación.</p>
 <h3>Ubicación de Prueba Social</h3>
-<p>Logos, valoraciones con estrellas, recuentos de reseñas y testimonios cortos cerca del punto de decisión aumentan confianza. Lo específico supera lo vago: "Ayudamos a 340 minoristas a reducir abandono de carrito" supera a "Con la confianza de muchas empresas."</p>
+
 <h2>Equilibrio entre Formulario y Fricción</h2>
 <p>Cada campo debe ganarse su lugar. Pide solo lo que el enrutamiento requiere. Formularios multi-paso pueden superar páginas largas de un solo paso cuando el progreso es visible. Autocompletado y estados de error claros reducen abandono en móvil.</p>
 <h2>Velocidad y Básicos Técnicos</h2>
@@ -257,19 +257,19 @@ ${L.ppc}`,
 ${L.funnels}`,
 
   "roas-calculations": `<p>ROAS parece simple hasta que intentas tomar decisiones con él. Ingresos divididos entre gasto en anuncios no dice nada sobre beneficio si los márgenes varían por producto, canal o tipo de cliente. Equipos que optimizan solo a ROAS combinado suelen escalar prospección no rentable mientras el retargeting enmascara el daño. Calcula primero el ROAS de equilibrio, luego segmenta rendimiento para que decisiones de escala protejan margen.</p>
-<p>Una marca ecommerce celebraba 4,2x ROAS en Meta mientras perdía dinero en cada pedido. Su margen medio tras envío y devoluciones era del 28%. El ROAS de equilibrio era 3,57x. Las campañas de prospección corrían realmente a 2,1x; el retargeting subía la mezcla. Separar campañas reveló la verdad y redirigió presupuesto a búsqueda y email donde la economía unitaria funcionaba.</p>
+
 <h2>Fórmula de ROAS y Qué Omite</h2>
 <p><strong>ROAS = Ingresos de Anuncios / Gasto en Anuncios.</strong> Ignora COGS, fulfillment, devoluciones, comisiones de pago y valor de vida. Usa ROAS para ritmo y comparación de canales solo cuando los márgenes sean consistentes.</p>
 <h3>ROAS de Equilibrio</h3>
-<p><strong>ROAS de equilibrio = 1 / Margen de Beneficio.</strong> Un margen del 40% necesita 2,5x ROAS para empatar en ingresos impulsados por anuncios. Un margen del 20% necesita 5x. Incluye costes variables que no puedes ignorar; márgenes de fantasía producen decisiones de escala de fantasía.</p>
+
 <h2>ROAS de Margen de Contribución</h2>
 <p>Equipos más inteligentes usan margen de contribución tras costes de producto y fulfillment. <strong>CM-ROAS = Margen de Contribución / Gasto en Anuncios.</strong> Esto alinea marketing con finanzas y evita celebrar ingresos que cuestan dinero entregar.</p>
 <h3>Consideraciones de LTV</h3>
-<p>Modelos de suscripción y recompra pueden aceptar ROAS frontal más bajo si el periodo de recuperación está definido. Establece horizontes explícitos: objetivos de LTV ROAS a 30, 90 y 12 meses. No financies adquisición con suposiciones de LTV infinito sin datos de cohorte.</p>
+
 <h2>ROAS Combinado vs. por Canal</h2>
 <p>ROAS combinado entre prospección y retargeting esconde rendimiento débil en la parte alta del embudo. Repórtalos por separado. La búsqueda de marca suele inflar ROAS de búsqueda de pago; separa marca para una vista más clara de eficiencia no marca.</p>
 <h3>ROAS de Plataforma vs. de Negocio</h3>
-<p>Las plataformas de anuncios atribuyen de forma distinta. Compara ROAS de plataforma con ingresos de Shopify o CRM en pedidos etiquetados semanalmente. Discrepancias por encima del 15% significan problemas de atribución o seguimiento, no necesariamente malos anuncios.</p>
+
 <h2>Establecer Objetivos de ROAS por Tipo de Campaña</h2>
 <p>La prospección tolera ROAS más bajo si LTV lo respalda; el retargeting debe superar cómodamente el equilibrio. Campañas de cliente nuevo merecen umbrales más estrictos que campañas catch-all que mezclan compradores recurrentes.</p>
 <h3>Comprobaciones de Incrementalidad</h3>
@@ -280,7 +280,7 @@ ${L.funnels}`,
 <h2>Alineación Finanzas y Marketing</h2>
 <p>Comparte un glosario de ROAS de una página con finanzas: definiciones de ingresos brutos vs. netos, qué costes entran en margen y ventanas de recuperación para modelos LTV. Cuando ambos equipos usan el mismo número de ROAS de equilibrio, las conversaciones de presupuesto son más cortas y productivas.</p>
 <h3>Planificación de Escenarios</h3>
-<p>Modela qué pasa si CPC sube un 15% o la tasa de conversión cae durante un rediseño del sitio. Escenarios pre-construidos evitan recortes de pánico a campañas de prospección que realmente impulsan ingresos futuros. La simplicidad de hoja de cálculo supera dashboards caja negra para decisiones estratégicas.</p>
+
 <h2>Plantillas de Reportes</h2>
 <p>Construye una hoja semanal de ROAS con columnas de gasto, ingresos, margen, umbral de equilibrio y bandera de estado (escalar, mantener, cortar). Codifica por color por segmento. Ejecutivos escanean banderas; media buyers profundizan en pestañas de campaña. La consistencia semana a semana importa más que visualizaciones novedosas.</p>
 <h2>Errores Comunes de ROAS</h2>
@@ -293,11 +293,11 @@ ${L.funnels}`,
 ${L.analytics}`,
 
   "heatmap-analysis": `<p>Los mapas de calor muestran dónde hacen clic los usuarios, hasta dónde hacen scroll y qué ignoran. Eso supera debatir rediseños solo con opiniones. Grabaciones de sesión más datos de heatmap revelan fricción en landing pages, flujos de checkout y páginas de venta largas. El objetivo no son gráficos bonitos; es encontrar problemas corregibles que suban la tasa de conversión.</p>
-<p>Una página de solicitud de demo B2B se veía bien en revisiones de diseño. Los mapas de clic mostraban que el 34% de toques caían en una imagen hero no clicable que usuarios asumían era video. Los mapas de scroll mostraban que solo el 22% llegaba a testimonios colocados demasiado abajo. Hacer el hero reproducible y mover prueba arriba del fold subió solicitudes de demo un 27% en tres semanas sin tráfico nuevo.</p>
+
 <h2>Tipos de Mapas de Calor</h2>
 <p><strong>Mapas de clic</strong> agregan dónde hacen clic o tocan usuarios. <strong>Mapas de scroll</strong> muestran hasta dónde bajan antes de abandonar. <strong>Mapas de movimiento</strong> (escritorio) trazan movimiento del ratón como proxy de atención. Cada uno responde preguntas distintas; úsalos juntos.</p>
 <h3>Elegir Tamaños de Muestra</h3>
-<p>Los heatmaps necesitan suficientes sesiones para estabilizar patrones. Para la mayoría de páginas B2B, 500 a 1.000 sesiones por variante es punto de partida. Segmenta móvil y escritorio; mapas combinados esconden problemas específicos por dispositivo.</p>
+
 <h2>Leer Mapas de Clic</h2>
 <p>Busca rage clicks en elementos no interactivos, CTAs principales ignorados y hotspots inesperados en navegación que sacan usuarios del embudo. Clics muertos en imágenes suelen significar que usuarios esperan funcionalidad que no has construido.</p>
 <h3>Problemas de Visibilidad del CTA</h3>
@@ -307,13 +307,13 @@ ${L.analytics}`,
 <h3>Pruebas de Página Larga vs. Corta</h3>
 <p>Los heatmaps resuelven debates largo vs corto con evidencia. Compradores de alta intención suelen hacer scroll profundo si las secciones son escaneables. Tráfico de baja intención puede rebotar pronto de todos modos; combina datos de scroll con fuente de tráfico.</p>
 <h2>Combinar Heatmaps con Otros Datos</h2>
-<p>Superpone heatmaps con analítica de formularios, pasos de embudo en GA4 y pruebas A/B. Un área caliente de clic que no convierte sugiere UI engañosa. Scroll profundo con baja conversión sugiere problemas de oferta o confianza, no solo diseño.</p>
+
 <h3>Grabaciones de Sesión</h3>
 <p>Mira grabaciones de segmentos que casi convirtieron: formularios abandonados, salidas de carrito, navegación atrás repetida. Los heatmaps dicen dónde; las grabaciones suelen mostrar por qué.</p>
 <h2>Herramientas y Privacidad</h2>
 <p>Hotjar, Microsoft Clarity, Crazy Egg y FullStory tienen tradeoffs distintos. Enmascara campos sensibles, divulga seguimiento en políticas de privacidad y muestrea en páginas de alto tráfico si el rendimiento es preocupación.</p>
 <h2>De Insight a Prueba</h2>
-<p>Convierte observaciones en hipótesis: "Mover prueba social por encima de la línea de scroll del 40% aumentará inicios de formulario." Prueba un cambio mayor a la vez cuando sea posible. Vuelve a ejecutar heatmaps tras implementar ganadores para confirmar que el comportamiento cambió.</p>
+
 <p>El análisis de heatmaps funciona cuando alimenta un backlog de pruebas priorizado, no cuando se convierte en decoración para stakeholders. Encuentra los clics muertos, arregla el fold y alinea CTAs con donde la atención ya va.</p>
 <h2>Segmentar Datos de Heatmap</h2>
 <p>Filtra por fuente de tráfico, dispositivo y visitantes nuevos vs. recurrentes. Usuarios de redes sociales de pago se comportan distinto a búsqueda de marca. Un heatmap que mezcla todo el tráfico esconde las correcciones segmentadas que más moverían conversión.</p>
@@ -324,12 +324,12 @@ ${L.analytics}`,
 <h2>Comparación de Herramientas de Heatmap</h2>
 <p>Microsoft Clarity es gratis y combina bien con GA4. Hotjar ofrece compartición pulida para stakeholders. Equipos enterprise pueden necesitar replay de sesión con enmascaramiento PII para industrias reguladas. Elige una herramienta principal; apilar varios rastreadores ralentiza páginas y duplica insights.</p>
 <h2>De Heatmaps a Tickets de Desarrollo</h2>
-<p>Traduce hallazgos en especificaciones accionables: "Mover CTA principal a 400px de scroll en plantilla móvil" supera a "mejorar CTA." Adjunta capturas con porcentajes de clic. Los desarrolladores entregan más rápido con notas de ubicación precisas que con feedback UX abstracto.</p>
+
 <p>Programa revisiones trimestrales de heatmap en las tres páginas de mayor ingreso aunque no haya rediseño planificado. El comportamiento cambia cuando la mezcla de tráfico cambia.</p>
 ${L.funnels}`,
 
   "conversion-psychology": `<p>La optimización de conversión no es solo colores de botón y recuento de campos de formulario. Es cómo la gente evalúa riesgo, procesa información y decide actuar bajo incertidumbre. Los principios de psicología explican por qué el mismo tráfico convierte distinto en dos páginas con ofertas idénticas. Entender esos disparadores te ayuda a escribir copy, colocar prueba y secuenciar peticiones para que más visitantes se sientan seguros diciendo sí.</p>
-<p>Probamos dos titulares para una página de consulta legal. Un titular orientado a ganancia enfatizaba "maximiza tu indemnización." Uno orientado a pérdida decía "no dejes dinero sobre la mesa tras un accidente." El marco de pérdida ganó un 19% en inicios de formulario, consistente con investigación de aversión a la pérdida, aunque los abogados preferían el wording positivo. La psicología superó la preferencia.</p>
+
 <h2>Prueba Social y Autoridad</h2>
 <p>La gente mira a otros cuando los resultados son inciertos. Reseñas, logos de clientes, métricas de casos, certificaciones y menciones en medios cerca de puntos de decisión reducen riesgo percibido. La prueba específica supera afirmaciones genéricas.</p>
 <h3>Tipos que Funcionan Online</h3>
@@ -354,7 +354,7 @@ ${L.funnels}`,
 <h3>Reciprocidad en Generación de Leads</h3>
 <p>Herramientas gratis, auditorías y plantillas crean obligación de interactuar más cuando el valor es real. Contenido gated vacío destruye confianza. Ajusta profundidad del recurso gratis al precio del ofrecimiento final.</p>
 <h2>Reducir Ansiedad en Checkout</h2>
-<p>Garantías de devolución, plazos de envío claros y visibilidad de contacto de soporte reducen abandono en el último paso. Iconos de seguridad ayudan en páginas de pago. En B2B, account managers nombrados y cronogramas de implementación responden "¿qué pasa después de firmar?"</p>
+
 <h2>Sesgos Cognitivos en Compra B2B</h2>
 <p>Los comités amplifican aversión al riesgo. Páginas dirigidas a múltiples stakeholders necesitan prueba para finanzas (ROI), evaluadores técnicos (especificaciones) y ejecutivos (resultados). Páginas de un solo mensaje suelen fallar en embudos enterprise porque hablan solo a un rol.</p>
 <h3>Probar Ganchos Psicológicos con Ética</h3>
@@ -375,7 +375,7 @@ ${L.funnels}`,
 <h3>Qué Pertenece al Backlog</h3>
 <p>Áreas de alto impacto primero: titular, oferta, CTA, longitud de formulario, presentación de precios, ubicación de confianza. Páginas de bajo tráfico necesitan tiempos de ejecución más largos; encólalas con conciencia del calendario real.</p>
 <h2>Tamaño de Muestra y Significancia Estadística</h2>
-<p>No declares ganadores al 80% de confianza porque el lunes se vio bien. Pre-calcula tamaño de muestra requerido según conversión base y efecto mínimo detectable. Ejecuta hasta alcanzar el objetivo o un fin de calendario fijo con análisis marcado como no concluyente.</p>
+
 <h3>Errores Estadísticos Comunes</h3>
 <p>Mirar a diario y parar pronto infla falsos positivos. Probar múltiples métricas sin corrección invita a cherry-picking. Ignorar estacionalidad (caídas B2B en fines de semana) sesga resultados. Usa herramientas de prueba adecuadas o calculadoras estadísticas, no intuición.</p>
 <h2>Mejores Prácticas de Diseño de Prueba</h2>
@@ -401,7 +401,7 @@ ${L.funnels}`,
 ${L.funnels}`,
 
   "landing-page-optimization": `<p>La optimización de landing pages es un sistema, no un rediseño de una sola vez. Mejoras pequeñas y secuenciales acumulan tasa de conversión durante meses mientras los costes de pago se mantienen. El playbook de abajo es cómo abordamos CRO continuo tras message match base y seguimiento sólidos.</p>
-<p>Un embudo de cotización de seguros convertía al 4,1% en móvil. Durante ocho semanas optimizamos claridad arriba del fold, redujimos campos de formulario de nueve a cinco con revelación progresiva, añadimos logos de aseguradoras y probamos especificidad de titular. La conversión móvil llegó al 6,3%. Anualizado, eran cientos de cotizaciones adicionales sin aumentar gasto en medios.</p>
+
 <h2>Optimización Arriba del Fold</h2>
 <p>Los visitantes deciden en segundos. Necesitan propuesta de valor, credibilidad y un siguiente paso claro visible sin scroll en móvil.</p>
 <h3>Checklist del Hero</h3>
@@ -430,7 +430,7 @@ ${L.funnels}`,
 <h2>Optimización Específica por Dispositivo</h2>
 <p>Móvil y escritorio suelen necesitar longitud de copy hero y ubicación de CTA distintas. Ejecuta informes por dispositivo en analítica antes de declarar una página "optimizada." Un ganador en escritorio puede perder en móvil si formularios quedan bajo cuatro pantallas de contenido.</p>
 <h2>Pruebas de Velocidad como Parte de CRO</h2>
-<p>Cada mejora de 100 ms en LPs móviles puede importar tanto como pruebas de titular en tráfico de pago. Ejecuta Lighthouse en la URL en vivo tras cada despliegue. Detecta regresiones por píxeles o widgets de chat nuevos antes de que el gasto en anuncios escale contra una página más lenta.</p>
+
 <h2>Optimización Post-Conversión</h2>
 <p>Páginas de agradecimiento y emails de onboarding extienden el trabajo de landing page. Confirma que enlaces de reserva funcionen, establece expectativas de próximos pasos y activa nurture en minutos. Una página de alta conversión con thank-you page muerta sigue perdiendo valor de pipeline.</p>
 <h3>Accesibilidad y Legibilidad</h3>
@@ -441,7 +441,7 @@ ${L.funnels}`,
 ${L.funnels}`,
 
   "lifecycle-marketing": `<p>El marketing de ciclo de vida mapea mensajes a dónde están realmente los clientes: primer contacto, primer valor, uso repetido, expansión y riesgo de churn. El email masivo ignora esas etapas y se pregunta por qué el engagement decae. Alinear email (y canales adyacentes) a etapas del ciclo de vida convierte tu lista en un sistema coordinado que apoya ingresos en cada transición.</p>
-<p>Un SaaS de gestión de proyectos trataba a todos los suscriptores igual. Los emails de onboarding promocionaban funciones que usuarios avanzados querían mientras usuarios de prueba aún configuraban espacios de trabajo. Reconstruimos tracks de ciclo de vida: secuencias de activación para días 1 a 14, empujones de adopción ligados a triggers de uso, recordatorios de renovación a 60/30/7 días y ofertas de expansión cuando utilización de asientos superó el 80%. Prueba a pago mejoró un 24% e ingresos por expansión subieron un 17% en dos trimestres.</p>
+
 <h2>Etapas del Ciclo de Vida del Cliente</h2>
 <p><strong>Adquisición:</strong> captura de leads y bienvenida.<br><strong>Activación:</strong> primer resultado significativo.<br><strong>Retención:</strong> uso habitual y satisfacción.<br><strong>Expansión:</strong> upsell, cross-sell, referidos.<br><strong>Win-back:</strong> re-engagement de usuarios inactivos.</p>
 <h3>Definir Transiciones de Etapa</h3>
@@ -468,7 +468,7 @@ ${L.funnels}`,
 <h2>Alinear Etapas de Ventas con Email</h2>
 <p>Mapea etapas CRM a tracks de email para que reps sepan qué automatizaciones recibió un prospecto antes de una llamada. Evita pitch duplicado en temas que nurture ya cubrió. Snippets de enablement de ventas extraídos de emails de ciclo de vida mantienen mensajes consistentes.</p>
 <h3>Timing de Renovación y Expansión</h3>
-<p>Inicia conversaciones de renovación 90 días antes del fin de contrato con emails de recapitulación de valor, no descuentos de pánico de última semana. Las ofertas de expansión funcionan mejor tras hitos de éxito documentados que en fechas de calendario arbitrarias.</p>
+
 <p>Revisa rendimiento de ciclo de vida por cohorte mensualmente. Una tasa de activación en caída te avisa antes de que el churn aparezca en ingresos.</p>
 <h2>Esenciales de Email de Onboarding</h2>
 <p>El email del día cero debe confirmar registro, establecer una siguiente acción y enlazar recursos de ayuda. Días dos a siete introducen flujos de trabajo core con capturas, no volcados de funciones. Equipos de product-led growth atan cada email a un hito in-app que dispara el mensaje siguiente.</p>
@@ -479,7 +479,7 @@ ${L.funnels}`,
 ${L.email}`,
 
   "automated-nurture-sequences": `<p>Las secuencias de nurture guían suscriptores de awareness a acción con valor creciente y llamadas a la acción claras. Bien hechas, construyen confianza con calendario. Mal hechas, spamean el mismo pitch seis veces y entrenan a la gente a ignorarte. La arquitectura importa tanto como el copy.</p>
-<p>Una empresa de techos comerciales capturaba leads con un PDF checklist de mantenimiento. Su secuencia antigua eran tres emails de "llámanos." La reconstruimos: bienvenida con entrega del checklist, email educativo sobre señales de daño estacional, caso de estudio de un tipo de edificio similar, CTA suave para inspección, oferta más fuerte con nota de financiación, email de despedida reconociendo silencio. Inspecciones reservadas subieron un 41% con el mismo volumen de leads.</p>
+
 <h2>Arquitectura de Secuencia</h2>
 <p>Una columna vertebral probada: <strong>bienvenida → entrega de valor → prueba social → oferta → despedida.</strong> Ajusta longitud al ciclo de ventas. Ventas B2B complejas pueden necesitar ocho toques en seis semanas; B2C transaccional puede convertir en tres días.</p>
 <h3>Bienvenida y Establecimiento de Expectativas</h3>
@@ -511,14 +511,14 @@ ${L.email}`,
 <p>Ofrece niveles de preferencia solo contenido vs promocional. Suscriptores que bajan de promos pero se quedan por educación siguen siendo valiosos para confianza a largo plazo y conversiones futuras.</p>
 <p>Refresca copy de nurture cada seis meses. Estadísticas obsoletas y ofertas caducadas erosionan confianza más rápido que enviar ligeramente menos emails.</p>
 <h2>Longitud y Cadencia por Oferta</h2>
-<p>Ofertas B2B de alta consideración pueden necesitar diez toques en ocho semanas. Ofertas B2C commodity pueden convertir en tres emails en cinco días. Ajusta cadencia a longitud del ciclo de ventas y vigila bajas por email como señal de verdad sobre ritmo.</p>
+
 <h2>Probar Variantes de Nurture</h2>
 <p>Divide asuntos y ganchos del primer párrafo antes de reescribir secuencias enteras. Pruebas de copy pequeñas en el email uno suelen levantar rendimiento de toda la serie porque las aperturas condicionan todo lo posterior.</p>
 <p>Asigna un dueño a cada secuencia activa con fecha de revisión de contenido trimestral en el calendario.</p>
 ${L.email}`,
 
   "email-segmentation": `<p>Las campañas de email segmentadas generan rutinariamente varias veces más ingresos por envío que envíos masivos de un solo mensaje. La segmentación es cómo igualas oferta, tono y timing a lo que sabes del suscriptor. La profundidad de tus segmentos depende de calidad de datos, pero incluso divisiones básicas superan batch-and-blast.</p>
-<p>Un minorista online enviaba la misma promo a 120.000 suscriptores. Dividimos por recencia de compra y afinidad de categoría: compradores inactivos que compraron equipo outdoor recibieron win-back con novedades; compradores activos de ropa recibieron acceso anticipado; no compradores recibieron educación e incentivo de primer pedido. Los ingresos totales de campaña subieron 2,8x frente al envío plano anterior con la misma profundidad de descuento.</p>
+
 <h2>Tipos de Segmentación</h2>
 <p><strong>Demográfica/firmográfica:</strong> rol, industria, tamaño de empresa.<br><strong>Conductual:</strong> historial de compra, comportamiento de navegación, engagement con email.<br><strong>Ciclo de vida:</strong> prueba, activo, en riesgo, churned.<br><strong>Psicográfica:</strong> preferencias declaradas en encuestas o centros de preferencias.</p>
 <h3>Empieza con Divisiones de Alto Impacto</h3>
@@ -541,7 +541,7 @@ ${L.email}`,
 <h2>Construir Segmentos con el Tiempo</h2>
 <p>Mes uno: clientes vs. prospectos. Mes dos: añade recencia y divisiones por categoría. Mes tres: capa tiers de engagement y LTV predicho si tu plataforma lo soporta. Complejidad progresiva supera un proyecto de datos de seis meses que retrasa cualquier mejora de envío.</p>
 <h3>Ofertas Específicas por Segmento</h3>
-<p>La misma profundidad de descuento rinde distinto por segmento. VIPs pueden querer acceso anticipado en lugar de 20% off. Compradores inactivos pueden necesitar envío gratis. Prospectos pueden necesitar educación antes de cualquier oferta. Iguala tipo de incentivo a etapa de relación.</p>
+
 <h2>Checklist Operacional</h2>
 <p>Antes de cada envío mayor: verifica lógica de segmento en SQL o UI de plataforma, envía emails de prueba a bandejas internas, confirma exclusión de compradores recientes para promos de adquisición y programa horas de envío por zona horaria cuando los datos lo respalden.</p>
 <h2>Patrones Avanzados de Segmentación</h2>
@@ -559,7 +559,7 @@ ${L.email}`,
 ${L.email}`,
 
   "attribution-models": `<p>La atribución decide cómo se reparte el crédito de una conversión entre puntos de contacto. El modelo que elijas moldea asignación de presupuesto, estrategia creativa y cómo cooperan o compiten los canales. Ningún modelo es perfecto; cada uno responde una pregunta distinta. El error es optimizar a un solo número de dashboard sin saber qué asume ese número.</p>
-<p>Una empresa B2B acreditaba cero pipeline a LinkedIn porque informes last-touch de GA4 ignoraban clics tempranos de awareness. Implementar un modelo multi-touch definido en su CRM más exploración de rutas en GA4 mostró que LinkedIn influenció el 38% de deals cerrados en 90 días, aunque búsqueda recibiera el último clic. El presupuesto se desplazó modestamente; la previsión de pipeline mejoró más que el volumen bruto de leads.</p>
+
 <h2>Modelos de Un Solo Toque</h2>
 <p><strong>Primer toque</strong> acredita canales de adquisición; bueno para entender drivers de awareness.<br><strong>Último toque</strong> acredita cerradores; default común pero engañoso en ciclos largos.<br>Ambos ignoran todo lo intermedio.</p>
 <h3>Cuándo Basta un Solo Toque</h3>
@@ -584,14 +584,14 @@ ${L.email}`,
 <h3>Playbook de Pruebas de Incrementalidad</h3>
 <p>Ejecuta holdouts geográficos: pausa gasto en regiones seleccionadas mientras mantienes otras constantes. Mide diferencia de lift tras cuatro a seis semanas. Usa para canales donde último clic muestra cero pero búsqueda de marca correlaciona con gasto en display.</p>
 <h2>Reportar Atribución con Honestidad</h2>
-<p>Presenta rangos y múltiples modelos en revisiones de liderazgo. "Último toque dice que gana búsqueda; basado en posición dice que LinkedIn asiste 35% del pipeline" es más útil que precisión falsa. Documenta puntos ciegos conocidos como dark social y boca a boca.</p>
+
 <h2>Atribución Offline y Online Unida</h2>
 <p>Llamadas, visitas a tienda y deals con asistencia de ventas necesitan campos CRM capturando primer touch y campañas influyentes. Entrena reps a preguntar "¿cómo nos conociste?" y registrar con consistencia. La atribución digital mejora cuando inputs offline alimentan el mismo modelo.</p>
 <h3>Atribución para Ciclos de Venta Largos</h3>
 <p>Deals B2B que cierran seis meses tras primer touch requieren atribución a nivel de oportunidad en CRM, no solo informes basados en sesión de GA4. Sincroniza click IDs de anuncios a CRM cuando sea posible para reconstrucción de ruta más clara.</p>
 <p>Revisa política de atribución cuando añadas un canal mayor o cambies tamaño medio de deal. Modelos que funcionaron a ACV de 2.000 dólares suelen romperse a 20.000.</p>
 <h2>Modelos de Atribución Ponderados Personalizados</h2>
-<p>Algunos equipos construyen modelos en hoja de cálculo ponderando touchpoints por rol de canal: último touch de búsqueda de pago 40%, contenido primer touch 30%, email mid-funnel 30%. Pesos personalizados superan lineal por defecto cuando tienes hipótesis claras sobre tu embudo.</p>
+
 <h2>Resúmenes de Atribución para Junta</h2>
 <p>Ejecutivos necesitan una diapositiva de pipeline asistido y una de ingresos sourced, con notas al pie de suposiciones del modelo. La profundidad vive en pestañas de apéndice; la reunión se centra en decisiones de presupuesto.</p>
 <p>Actualiza el documento de atribución cuando cambie la longitud del ciclo de ventas. Suposiciones obsoletas desasignan presupuesto más rápido que creativos obsoletos.</p>
@@ -599,7 +599,7 @@ ${L.email}`,
 ${L.analytics}`,
 
   "ga4-reporting": `<p>El modelo de datos basado en eventos de GA4 cambia cómo los equipos de marketing reportan rendimiento. Las pageviews solas ya no cuentan la historia; eventos, parámetros e identidad de usuario unen viajes entre sesiones. Equipos que se aferran a modelos mentales de Universal Analytics pierden conversiones escondidas en exploraciones y malinterpretan métricas de engagement.</p>
-<p>Tras migrar un sitio de generación de leads a GA4, las conversiones reportadas cayeron un 30% de la noche a la mañana. El problema no era tráfico; el nombre de eventos cambió y un envío clave de formulario no estaba mapeado como conversión. Reconstruir eventos en GTM, marcar conversiones en Admin y crear exploración de embudo restauró visibilidad. En un mes tenían datos de abandono más claros que UA jamás proporcionó.</p>
+
 <h2>Conceptos Core de GA4</h2>
 <p><strong>Eventos</strong> son cualquier interacción que rastreas. <strong>Parámetros</strong> añaden contexto (valor, moneda, ID de ítem). <strong>Conversiones</strong> son eventos clave que marcas para reportes. <strong>Exploraciones</strong> son espacios de análisis flexibles que reemplazan muchos informes personalizados de UA.</p>
 <h3>Planificación de Eventos</h3>
@@ -615,7 +615,7 @@ ${L.analytics}`,
 <h3>Exportación BigQuery</h3>
 <p>Sitios de alto volumen se benefician de BigQuery para atribución personalizada y cohortes LTV. Requiere configuración pero elimina límites de muestreo en consultas complejas.</p>
 <h2>Hábitos de Calidad de Datos</h2>
-<p>DebugView durante cambios de GTM. Anota lanzamientos en analítica. Monitoriza filtros de tráfico interno. Compara totales GA4 con CRM semanalmente; varianza dentro del 10% es objetivo sano para lead gen.</p>
+
 <h2>Cadencia de Reportes para Equipos</h2>
 <p>Semanal: rendimiento de canal y recuento de conversiones. Mensual: cambios de embudo, ganadores/perdedores de landing page, completitud de parámetros de evento. Trimestral: revisión de taxonomía y exploraciones profundas para estrategas.</p>
 <p>GA4 premia equipos que piensan en eventos y viajes, no solo en pageviews. Construye taxonomía limpia, apóyate en exploraciones para diagnóstico y ata informes a decisiones que el standup del lunes realmente usa.</p>
@@ -624,7 +624,7 @@ ${L.analytics}`,
 <h3>Consent Mode y Brechas de Datos</h3>
 <p>Con banners de consentimiento, conversiones modeladas llenan brechas en GA4 y Google Ads. Monitoriza tasas de consentimiento por región. Caídas repentinas en conversiones reportadas pueden ser configuración de consentimiento, no fallo de campaña.</p>
 <h2>Formar al Equipo en GA4</h2>
-<p>Ejecuta labs mensuales de 30 minutos: construyan juntos un embudo, una audiencia, una exploración. Fluidez compartida reduce hilos de Slack pidiendo exportaciones puntuales y reparte responsabilidad de calidad de datos.</p>
+
 <h2>GA4 vs. Reportes Looker Studio</h2>
 <p>Informes nativos de GA4 sirven para exploración; Looker Studio sirve para vistas recurrentes de stakeholders. Construye exploraciones primero para validar métricas, luego cristaliza definiciones estables en dashboards. Cambiar widgets de dashboard sin validar lógica de eventos crea desconfianza ejecutiva rápido.</p>
 <h3>Seguimiento Cross-Domain y Subdominio</h3>
@@ -662,9 +662,9 @@ ${L.analytics}`,
 <p>Normalmente brechas de seguimiento, no elección de herramienta. Arregla atribución y nomenclatura de eventos antes de añadir otro gráfico. Ejecuta revisión mensual de "confianza en dashboard" comparando totales de dashboard con sistemas fuente.</p>
 <p>Los dashboards de marketing funcionan cuando impulsan decisiones semanales. Construye una lente ejecutiva para beneficio y eficiencia, una lente de canal para optimización diaria y protege claridad sin piedad. Menos ruido, más acción.</p>
 <h2>Alertas y Umbrales</h2>
-<p>Configura alertas automáticas para picos de CPA, caídas de tasa de conversión y ritmo de gasto por encima del 110% del plan semanal. Las alertas deben nombrar un dueño y enlazar al dashboard de drill-down. Alertas sin dueño se convierten en ruido.</p>
+
 <h3>Benchmarks y Objetivos</h3>
-<p>Muestra objetivos como bandas, no líneas únicas. Comparaciones YoY cuentan estacionalidad mejor que solo MoM para retail y B2B con ciclos fiscales. Documenta cómo se fijaron objetivos para que equipos no persigan números arbitrarios.</p>
+
 <h2>Proceso de Despliegue de Dashboard</h2>
 <p>Pilota con liderazgo de marketing dos semanas, recoge feedback de "qué falta," luego publica al equipo más amplio. Versiona dashboards en notas de changelog cuando definiciones de métricas cambien. La confianza se erosiona cuando números cambian sin explicación.</p>
 <h2>Vistas de Dashboard por Rol</h2>

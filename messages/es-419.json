@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Kinexis Digital | Marketing para hogar y ecommerce",
-    "description": "Marketing digital para servicios del hogar y ecommerce. SEO, anuncios, diseño web y branding medidos en leads e ingresos, no en métricas vanidosas. Reserva una llamada.",
-    "ogDescription": "Marketing digital para servicios del hogar y ecommerce. SEO, anuncios, diseño web y branding medidos en leads e ingresos."
+    "title": "Páginas web para contratistas de Houston | $0 de entrada, $197/mes",
+    "description": "Primero creamos su nueva página de inicio, gratis. ¿Le gusta? Publique con $0 de entrada.",
+    "ogDescription": "Primero creamos su nueva página de inicio, gratis. ¿Le gusta? Publique con $0 de entrada."
   },
   "a11y": {
     "skipToMain": "Saltar al contenido principal",
@@ -246,7 +246,9 @@
           "secondary": "O empieza por el checklist local"
         }
       }
-    }
+    },
+    "plans": "Planes",
+    "contractors": "Contratistas"
   },
   "services": {
     "pricing": "Precios",
@@ -305,7 +307,7 @@
     "ctaEyebrow": "Hablemos",
     "ctaTitle": "¿Prefieres empezar con un mensaje?",
     "ctaDek": "Escríbenos cuando quieras. Respondemos en un día hábil con una respuesta directa sobre si podemos ayudarte.",
-    "blurb": "PÃ¡ginas web que traen llamadas para contratistas de Houston. Vista previa gratis, $0 de entrada, lista en 7 dÃ­as.",
+    "blurb": "Páginas web que traen llamadas para contratistas de Houston. Vista previa gratis, $0 de entrada, lista en 7 días.",
     "lpBlurb": "Sitios para contratistas y negocios de servicios del hogar.",
     "replies": "Respondemos en un día hábil",
     "explore": "Explorar",
@@ -713,7 +715,7 @@
   },
   "cookies": {
     "title": "Usamos cookies",
-    "description": "Usamos cookies esenciales para que funcione este sitio y, con su consentimiento, cookies de anÃ¡lisis y publicidad (Google Analytics, Google Ads, Meta Pixel, Microsoft Clarity) para medir el trÃ¡fico y los anuncios. Vea nuestra",
+    "description": "Usamos cookies esenciales para que funcione este sitio y, con su consentimiento, cookies de análisis y publicidad (Google Analytics, Google Ads, Meta Pixel, Microsoft Clarity) para medir el tráfico y los anuncios. Vea nuestra",
     "privacyLink": "Política de Privacidad",
     "accept": "Aceptar",
     "reject": "Rechazar no esenciales"
@@ -728,6 +730,6 @@
     "services": "Servicios",
     "contact": "Contacto",
     "cta": "Agendar llamada de estrategia",
-    "footnote": "Sin contratos a largo plazo. Mes a mes."
+    "footnote": "Mínimo de 3 meses desde el lanzamiento, luego mes a mes. Después puede cancelar en cualquier momento por texto, correo o Messenger."
   }
 }

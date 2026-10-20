@@ -11,7 +11,7 @@ export const body = `<p>Random tweaks waste traffic and confuse stakeholders. A 
 <h3>What Belongs in the Backlog</h3>
 <p>High-impact areas first: headline, offer, CTA, form length, pricing presentation, trust placement. Low-traffic pages need longer run times; queue them with awareness of calendar reality.</p>
 <h2>Sample Size and Statistical Significance</h2>
-<p>Do not call winners at 80% confidence because Monday looked good. Pre-calculate required sample size based on baseline conversion and minimum detectable effect. Run until you hit the target or a fixed calendar end with analysis noted as inconclusive.</p>
+
 <h3>Common Statistical Mistakes</h3>
 <p>Peeking daily and stopping early inflates false positives. Testing multiple metrics without correction invites cherry-picking. Ignoring seasonality (B2B dips on weekends) skews results. Use proper test tools or stats calculators, not gut feel.</p>
 <h2>Test Design Best Practices</h2>

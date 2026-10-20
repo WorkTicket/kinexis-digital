@@ -34,99 +34,9 @@ export type MainNavItem = {
  * (Google Ads, Meta, local SEO) stay on that service page.
  */
 export const mainNavLinks: MainNavItem[] = [
-  { href: "/case-studies", key: "caseStudies", label: "Work" },
-  {
-    href: "/services",
-    key: "services",
-    label: "Services",
-    menu: "services",
-    groups: [
-      {
-        key: "program",
-        links: [
-          { href: "/services/seo", key: "seo" },
-          { href: "/services/paid-media", key: "paidAds" },
-          { href: "/services/web-design", key: "webDesign" },
-          { href: "/services/branding", key: "branding" },
-          { href: "/services/content-marketing", key: "content" },
-        ],
-      },
-      {
-        key: "proof",
-        links: [
-          { href: "/case-studies/landscaping-company-growth", key: "a1" },
-          { href: "/case-studies/plumbing-company-growth", key: "preferred" },
-          { href: "/case-studies/ecommerce-store-growth", key: "manos" },
-        ],
-      },
-    ],
-    feature: {
-      href: "/contact",
-      secondaryHref: "/audit",
-    },
-  },
-  {
-    href: "/industries",
-    key: "industries",
-    label: "Industries",
-    menu: "industries",
-    groups: [
-      {
-        key: "contractors",
-        links: [
-          { href: "/industries/home-services", key: "homeServices" },
-          { href: "/industries/plumbing", key: "plumbing" },
-          { href: "/industries/hvac", key: "hvac" },
-          { href: "/industries/roofing", key: "roofing" },
-          { href: "/industries/landscaping", key: "landscaping" },
-        ],
-      },
-      {
-        key: "commerce",
-        links: [
-          { href: "/industries/ecommerce", key: "ecommerce" },
-          { href: "/industries/saas", key: "saas" },
-          { href: "/industries/fintech", key: "fintech" },
-        ],
-      },
-    ],
-    feature: {
-      href: "/industries/home-services",
-      secondaryHref: "/case-studies",
-    },
-  },
-  { href: "/about", key: "about", label: "About" },
-  { href: "/blog", key: "blog", label: "Blog" },
-  {
-    href: "/resources",
-    key: "resources",
-    label: "Resources",
-    menu: "resources",
-    groups: [
-      {
-        key: "guides",
-        links: [
-          { href: "/blog/local-seo-checklist", key: "localSeoChecklist" },
-          { href: "/blog/seo-audit-framework", key: "seoAuditFramework" },
-          { href: "/blog/landing-page-best-practices", key: "landingPageBestPractices" },
-          { href: "/blog/ab-testing-framework", key: "abTestingFramework" },
-          { href: "/blog/local-seo-strategy-2026", key: "localSeoStrategy" },
-        ],
-      },
-      {
-        key: "read",
-        links: [
-          { href: "/blog", key: "blog" },
-          { href: "/case-studies", key: "work" },
-          { href: "/blog/website-conversion-optimization", key: "conversion" },
-        ],
-      },
-    ],
-    feature: {
-      href: "/audit",
-      secondaryHref: "/blog/local-seo-checklist",
-    },
-  },
+  { href: "/pay", key: "plans", label: "Plans" },
+  { href: "/industries/home-services", key: "contractors", label: "Contractors" },
+  { href: "/contact", key: "contact", label: "Contact" },
 ];
 
 export function megaDestinations(item: MainNavItem): string[] {
@@ -177,7 +87,6 @@ export const footerServiceLinks = [
 
 export const footerNavLinks = [
   { href: "/services", label: "Services" },
-  { href: "/case-studies", label: "Work" },
   { href: "/industries", label: "Industries" },
   { href: "/about", label: "About" },
   { href: "/resources", label: "Resources" },
@@ -191,5 +100,4 @@ export const footerIndustryLinks = [
   { href: "/industries/landscaping", label: "Landscaping", key: "landscaping" },
   { href: "/industries/hvac", label: "HVAC", key: "hvac" },
   { href: "/industries/roofing", label: "Roofing", key: "roofing" },
-  { href: "/industries/ecommerce", label: "E-commerce", key: "ecommerce" },
 ];

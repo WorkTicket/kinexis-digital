@@ -9,7 +9,7 @@ export type BlogPost = {
   excerpt: string;
   publishedAt: string;
   featured: boolean;
-  metric: { label: string; value: string } | null;
+  metric: null | null;
   layout: string;
 };
 
@@ -219,13 +219,13 @@ export const blogContent = localeContent({
       },
       {
         slug: "website-conversion-optimization",
-        title: "7 Website Changes That Increased Conversions by 340%",
+        title: "Website Changes for a Clearer Contact Path",
         category: "Web Design",
         excerpt:
-          "We took a client's site from a 1.2% conversion rate to over 5% in 60 days with seven specific changes. A complete breakdown of exactly what we did, why it worked, and how much each change contributed.",
+          "A practical guide to clear calls to action, simpler forms and mobile contact paths.",
         publishedAt: "June 8, 2026",
         featured: false,
-        metric: { label: "Conversion Lift", value: "+340%" },
+        metric: null,
         layout: "metric-card",
       },
       {
@@ -483,8 +483,8 @@ export const blogContent = localeContent({
       },
     ],
     trendingItems: [
-      { label: "Most Read", value: "Local SEO Strategy 2026", slug: "local-seo-strategy-2026", reads: "2.4K" },
-      { label: "Most Shared", value: "7 Website Changes 340%", slug: "website-conversion-optimization", shares: "847" },
+      { label: "Most Read", value: "Local SEO Strategy 2026", slug: "local-seo-strategy-2026" },
+      { label: "Most Shared", value: "Website Contact Paths", slug: "website-conversion-optimization" },
       { label: "Editor's Pick", value: "Technical SEO Fundamentals", slug: "technical-seo-fundamentals", note: "Staff favorite" },
       { label: "Newest", value: "Local SEO Strategy 2026", slug: "local-seo-strategy-2026", date: "June 15" },
     ],
@@ -654,13 +654,13 @@ export const blogContent = localeContent({
       },
       {
         slug: "website-conversion-optimization",
-        title: "7 Cambios en el Sitio Web que Aumentaron las Conversiones un 340%",
+        title: "Cambios para facilitar el contacto en su sitio web",
         category: "Diseño Web",
         excerpt:
-          "Llevamos el sitio de un cliente de una tasa de conversión del 1,2% a más del 5% en 60 días con siete cambios específicos. Un desglose completo de exactamente qué hicimos, por qué funcionó y cuánto aportó cada cambio.",
+          "Una guía práctica de llamadas a la acción, formularios sencillos y contacto desde el móvil.",
         publishedAt: "8 de junio de 2026",
         featured: false,
-        metric: { label: "Aumento de Conversión", value: "+340%" },
+        metric: null,
         layout: "metric-card",
       },
       {
@@ -918,8 +918,8 @@ export const blogContent = localeContent({
       },
     ],
     trendingItems: [
-      { label: "Más Leído", value: "Estrategia de SEO Local 2026", slug: "local-seo-strategy-2026", reads: "2,4K" },
-      { label: "Más Compartido", value: "7 Cambios en el Sitio 340%", slug: "website-conversion-optimization", shares: "847" },
+      { label: "Más Leído", value: "Estrategia de SEO Local 2026", slug: "local-seo-strategy-2026" },
+      { label: "Más Compartido", value: "Contacto en su sitio web", slug: "website-conversion-optimization" },
       { label: "Selección del Editor", value: "Fundamentos de SEO Técnico", slug: "technical-seo-fundamentals", note: "Favorito del equipo" },
       { label: "Más Reciente", value: "Estrategia de SEO Local 2026", slug: "local-seo-strategy-2026", date: "15 de junio" },
     ],

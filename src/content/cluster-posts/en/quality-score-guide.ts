@@ -1,13 +1,13 @@
 import { L } from "./_links";
 
 export const body = `<p>Quality Score is Google's way of estimating whether your ads, keywords, and landing pages satisfy searchers. Higher scores mean lower CPCs and better ad positions for the same bid. It is not a vanity metric. A one-point improvement across high-spend campaigns can save thousands monthly and free budget for prospecting.</p>
-<p>We inherited a Google Ads account spending $45K monthly on branded and non-branded search. Average Quality Score was 5.2. Tightening ad groups, rewriting ads to match intent clusters, and fixing landing page message match raised the account average to 7.8 in six weeks. CPC dropped 22% while conversion volume held steady. Same bids, better auctions.</p>
+
 <h2>Quality Score Components</h2>
-<p>Google evaluates three factors: expected click-through rate, ad relevance, and landing page experience. Each keyword gets a below average, average, or above average rating per component. The combined score is 1 to 10 at the keyword level.</p>
+
 <h3>Expected CTR</h3>
 <p>Google compares your expected CTR against competitors for the same auction. Improve it with compelling headlines, clear differentiation, and ad extensions that add surface area: sitelinks, callouts, structured snippets, and price extensions where appropriate.</p>
 <h3>Ad Relevance</h3>
-<p>Ads should mirror the keyword theme in the ad group. Single-theme ad groups with 5 to 15 close variants outperform bloated groups where one ad tries to cover every synonym. Use Dynamic Keyword Insertion sparingly; it helps relevance only when landing pages match too.</p>
+
 <h3>Landing Page Experience</h3>
 <p>Send clicks to pages that load fast, match ad promise, and make the next step obvious. Thin pages, pop-up walls, and mobile layout breaks drag this component down.</p>
 <h2>Improving Quality Score in Practice</h2>
@@ -28,7 +28,7 @@ export const body = `<p>Quality Score is Google's way of estimating whether your
 <h3>Extension Strategy</h3>
 <p>Ad extensions improve expected CTR without changing core copy. Sitelinks to specific landing pages, callouts for guarantees, and structured snippets for service types all add relevance signals. Review extension performance monthly and pause underperformers that clutter the ad.</p>
 <h2>Diagnosing Low Quality Score Keywords</h2>
-<p>Hover over the score in Google Ads to see which component lags. Below average landing page experience with strong ad relevance usually means speed or mobile UX fixes, not more ad copy tests. Export keywords with Quality Score below 5 and impression share above 10% for a focused weekly review list.</p>
+
 <h2>Seasonal and Promotional Campaigns</h2>
 <p>Quality Score can dip during short promotions when ad copy changes fast. Pre-build ad variants and landing page modules for seasonal pushes so relevance stays tight on day one. Revert or refresh after promotions end to avoid stale offers dragging CTR.</p>
 ${L.googleAds}`;

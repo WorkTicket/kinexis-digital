@@ -35,7 +35,7 @@ export function isStandaloneIndustry(slug: string): slug is IndustrySlug {
 
 export function getIndustryBySlug(slug: string, locale: Locale = "en") {
   const industry = industries.find((item) => item.slug === slug);
-  return industry ? localizeIndustry(industry, locale) : undefined;
+  return industry ? withoutClaims(localizeIndustry(industry, locale)) : undefined;
 }
 
 export function getAllIndustrySlugs(): IndustrySlug[] {
@@ -50,7 +50,11 @@ export function getStandaloneIndustrySlugs(): IndustrySlug[] {
 export function getHubIndustries(locale: Locale = "en"): Industry[] {
   return industries
     .filter((industry) => !isVerticalIndustry(industry.slug))
-    .map((industry) => localizeIndustry(industry, locale));
+    .map((industry) => withoutClaims(localizeIndustry(industry, locale)));
+}
+
+function withoutClaims(industry: Industry): Industry {
+  return { ...industry, statCallout: undefined, caseStudy: undefined, testimonials: undefined };
 }
 
 /** Detail pages for standalone markets; everyone else anchors on the hub. */

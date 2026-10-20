@@ -1,11 +1,11 @@
 import { L } from "./_links";
 
 export const body = `<p>ROAS looks simple until you try to make decisions with it. Revenue divided by ad spend tells you nothing about profit if margins vary by product, channel, or customer type. Teams that optimize to blended ROAS alone often scale unprofitable prospecting while retargeting masks the damage. Calculate break-even ROAS first, then segment performance so scaling decisions protect margin.</p>
-<p>An ecommerce brand celebrated 4.2x ROAS on Meta while losing money on every order. Their average margin after shipping and returns was 28%. Break-even ROAS was 3.57x. Prospecting campaigns actually ran at 2.1x; retargeting pulled the blend up. Separating campaigns revealed the truth and redirected budget to search and email where unit economics worked.</p>
+
 <h2>ROAS Formula and What It Omits</h2>
 <p><strong>ROAS = Revenue from Ads / Ad Spend.</strong> It ignores COGS, fulfillment, returns, payment fees, and lifetime value. Use ROAS for pacing and channel comparison only when margins are consistent.</p>
 <h3>Break-Even ROAS</h3>
-<p><strong>Break-even ROAS = 1 / Profit Margin.</strong> A 40% margin needs 2.5x ROAS to break even on ad-driven revenue. A 20% margin needs 5x. Include variable costs you cannot ignore; fantasy margins produce fantasy scaling decisions.</p>
+
 <h2>Contribution Margin ROAS</h2>
 <p>Smarter teams use contribution margin after product and fulfillment costs. <strong>CM-ROAS = Contribution Margin / Ad Spend.</strong> This aligns marketing with finance and prevents celebrating revenue that costs money to deliver.</p>
 <h3>LTV Considerations</h3>
@@ -13,7 +13,7 @@ export const body = `<p>ROAS looks simple until you try to make decisions with i
 <h2>Blended vs. Channel ROAS</h2>
 <p>Blended ROAS across prospecting and retargeting hides weak top-of-funnel performance. Report them separately. Brand search often inflates paid search ROAS; strip brand for a clearer view of non-brand efficiency.</p>
 <h3>Platform vs. Business ROAS</h3>
-<p>Ad platforms attribute differently. Compare platform ROAS to Shopify or CRM revenue on tagged orders weekly. Discrepancies over 15% mean attribution or tracking issues, not necessarily bad ads.</p>
+
 <h2>Setting ROAS Targets by Campaign Type</h2>
 <p>Prospecting tolerates lower ROAS if LTV supports it; retargeting should exceed break-even comfortably. New customer campaigns deserve stricter thresholds than catch-all campaigns mixing returning buyers.</p>
 <h3>Incrementality Checks</h3>
@@ -24,7 +24,7 @@ export const body = `<p>ROAS looks simple until you try to make decisions with i
 <h2>Finance and Marketing Alignment</h2>
 <p>Share a one-page ROAS glossary with finance: definitions of gross vs. net revenue, which costs are in margin, and payback windows for LTV models. When both teams use the same break-even ROAS number, budget conversations get shorter and more productive.</p>
 <h3>Scenario Planning</h3>
-<p>Model what happens if CPC rises 15% or conversion rate dips during a site redesign. Pre-built scenarios prevent panic cuts to prospecting campaigns that actually drive future revenue. Spreadsheet simplicity beats black-box dashboards for strategic decisions.</p>
+
 <h2>Reporting Templates</h2>
 <p>Build a weekly ROAS sheet with columns for spend, revenue, margin, break-even threshold, and status flag (scale, hold, cut). Color-code by segment. Executives scan flags; media buyers drill into campaign tabs. Consistency week over week matters more than novel visualizations.</p>
 <h2>Common ROAS Mistakes</h2>

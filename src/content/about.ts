@@ -1,3 +1,4 @@
+import { getContractorHome } from "./contractor-home";
 import type { Locale } from "@/i18n/routing";
 import { localeContent } from "@/i18n/locale-content";
 import { isSpanishLocale } from "@/i18n/spanish";
@@ -108,7 +109,7 @@ export const aboutContentI18n = localeContent({
       {
         title: "A small roster on purpose",
         description:
-          "We keep 8–10 active clients. That cap exists so your account gets senior attention, not a junior handoff after the sales call.",
+          "Direct support for Houston contractors, from preview through launch.",
       },
       {
         title: "Direct strategist access",
@@ -234,7 +235,7 @@ export const aboutContentI18n = localeContent({
       {
         statement: "Depth over scale.",
         explanation:
-          "We keep 8–10 active clients. When you're one of ten instead of one of fifty, your business gets the attention the work actually needs.",
+          "Direct support for Houston contractors, from preview through launch.",
         accent: "Focus",
       },
     ],
@@ -249,7 +250,7 @@ export const aboutContentI18n = localeContent({
         status: "done",
         items: [
           "Launched as a full-service digital marketing agency",
-          "First 10 client growth engagements delivered",
+          "Direct support for Houston contractors, from preview through launch.",
           "Built reporting workflows for every account",
         ],
       },
@@ -260,7 +261,7 @@ export const aboutContentI18n = localeContent({
         items: [
           "Deepen SEO, paid media, and web design capabilities",
           "Grow content and email marketing teams",
-          "25+ businesses with measurable revenue growth",
+          "Direct support for Houston contractors, from preview through launch.",
         ],
       },
       {
@@ -320,7 +321,7 @@ export const aboutContentI18n = localeContent({
       {
         title: "Una cartera pequeña a propósito",
         description:
-          "Mantenemos 8–10 clientes activos. Ese límite existe para que tu cuenta reciba atención senior, no un traspaso a un junior después de la venta.",
+          "Atención directa para contratistas de Houston, desde la vista previa hasta el lanzamiento.",
       },
       {
         title: "Acceso directo al estratega",
@@ -446,7 +447,7 @@ export const aboutContentI18n = localeContent({
       {
         statement: "Profundidad sobre escala.",
         explanation:
-          "Mantenemos entre 8 y 10 clientes activos en todo momento. Los resultados reales requieren enfoque real. Cuando es uno de diez en lugar de uno de cincuenta, podemos preocuparnos de verdad por tu negocio. Tu éxito es nuestro éxito.",
+          "Atención directa para contratistas de Houston, desde la vista previa hasta el lanzamiento.",
         accent: "Enfoque",
       },
     ],
@@ -461,7 +462,7 @@ export const aboutContentI18n = localeContent({
         status: "done",
         items: [
           "Lanzamiento como agencia de marketing digital de servicio completo",
-          "Primeros 10 compromisos de crecimiento con clientes entregados",
+          "Atención directa para contratistas de Houston, desde la vista previa hasta el lanzamiento.",
           "Flujos de trabajo de reporting construidos para cada cuenta",
         ],
       },
@@ -472,7 +473,7 @@ export const aboutContentI18n = localeContent({
         items: [
           "Profundizar capacidades en SEO, medios pagados y diseño web",
           "Ampliar equipos de contenido y email marketing",
-          "Más de 25 empresas con crecimiento de ingresos medible",
+          "Atención directa para contratistas de Houston, desde la vista previa hasta el lanzamiento.",
         ],
       },
       {
@@ -508,68 +509,13 @@ export type FaqItem = {
   answer: string;
 };
 
-const faqItemsByLocale = localeContent({
-  en: [
-    {
-      question: "How is Kinexis different from other agencies?",
-      answer:
-        "We run one program across brand, site, search, paid, and content. Most agencies sell channels in isolation. We measure on leads and revenue, not impressions or rankings alone.",
-    },
-    {
-      question: "What markets do you work in?",
-      answer:
-        "Home services and e-commerce are our deepest verticals. We also take on healthcare, legal, SaaS, and adjacent markets when the fit is right.",
-    },
-    {
-      question: "How long does an engagement last?",
-      answer:
-        "Month to month. No lock-in contracts. Most clients stay because the numbers move, not because a clause says they have to.",
-    },
-    {
-      question: "What does a first phase look like?",
-      answer:
-        "We audit where demand dies, fix the highest-leak point first, then layer in the channels that compound. Work usually starts with site and search, then paid and content.",
-    },
-    {
-      question: "How do you measure success?",
-      answer:
-        "Leads, calls, orders, and revenue. Not vanity metrics. Every report starts with pipeline and cost per lead.",
-    },
-  ],
-  "es-419": [
-    {
-      question: "¿En qué se diferencia Kinexis de otras agencias?",
-      answer:
-        "Llevamos un solo programa de marca, web, búsqueda, anuncios y contenido. La mayoría vende canales sueltos. Nosotros medimos en leads e ingresos, no en impresiones o rankings por sí solos.",
-    },
-    {
-      question: "¿En qué mercados trabajas?",
-      answer:
-        "Servicios del hogar y e-commerce son los verticales que más profundizamos. También entramos en salud, legal, SaaS y mercados cercanos cuando el encaje es real.",
-    },
-    {
-      question: "¿Cuánto dura un proyecto?",
-      answer:
-        "Mes a mes. Sin contratos de permanencia. La mayoría se queda porque se mueven los números, no porque una cláusula se lo imponga.",
-    },
-    {
-      question: "¿Cómo es la primera fase?",
-      answer:
-        "Auditamos dónde muere la demanda, arreglamos primero el punto que más pierde y luego sumamos los canales que se refuerzan. El trabajo suele empezar por la web y la búsqueda; después, anuncios y contenido.",
-    },
-    {
-      question: "¿Cómo medimos el éxito?",
-      answer:
-        "Leads, llamadas, pedidos e ingresos. No métricas vanidosas. Cada informe empieza por el pipeline y el coste por lead.",
-    },
-  ],
-});
+
 
 /** English default for callers that have not switched to getFaqItems(locale). */
-export const faqItems: FaqItem[] = faqItemsByLocale.en;
+export const faqItems: FaqItem[] = getContractorHome("en").faq;
 
 export function getFaqItems(locale: Locale): FaqItem[] {
-  return faqItemsByLocale[locale] ?? faqItemsByLocale.en;
+  return getContractorHome(locale).faq;
 }
 
 function flattenAbout(locale: Locale) {

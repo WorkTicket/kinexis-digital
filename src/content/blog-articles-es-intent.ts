@@ -5,11 +5,11 @@ export const blogArticlesEsIntent = {
     category: "Diseño web",
     publishedAt: "6 de septiembre de 2026",
     body: `<p>El dueño pide un número. La agencia se esconde. Aquí va el rango que vemos en 2026 para webs de oficios y ecommerce pequeño, qué mueve el precio y qué es tirar el dinero.</p>
-<p>Una web útil no es un logo sobre una plantilla. Es la página donde un desconocido llega desde Google o un anuncio, en el móvil, y decide llamar. Ese trabajo tiene un coste. También lo tiene fingir que un tema de 500 dólares lo resuelve.</p>
+
 <h2>Qué pagan de verdad las empresas</h2>
-<p>Para un oficio pequeño (plomería, HVAC, paisajismo, contratista) un sitio profesional que pueda tomar llamadas suele quedar entre 6.000 y 25.000 dólares de construcción, más unos cientos al mes si alguien hospeda, mantiene e itera. Ecommerce con catálogo y checkout real sube, a menudo 15.000 a 60.000 según integraciones.</p>
-<p>Por debajo de 3.000 dólares casi siempre compras plantilla, stock y un formulario. Sirve para abrir algo este mes. Es un mal destino para tráfico de pago.</p>
-<p>Por encima de 40.000 deberías recibir diseño a medida, trabajo serio de conversión y un CMS que el equipo pueda usar sin llamar a un desarrollador por cada titular. Si pagas eso y en el móvil no se puede tocar el teléfono, compraste el proyecto equivocado.</p>
+
+
+
 <h2>Qué cambia el coste</h2>
 <p>El alcance. Cinco páginas de folleto es más barato que páginas de servicio, zonas, un flujo de cotización y plantillas de blog que no se pudran. Checkouts, cuentas e inventario añaden ingeniería de verdad.</p>
 <p>El contenido. Si hay que inventar cada página de servicio desde un PDF, eso es redacción, no solo diseño. Quien llega con fotos, horarios y los trabajos que quiere vender, gasta menos.</p>
@@ -82,7 +82,7 @@ export const blogArticlesEsIntent = {
 <h2>El stack es un pasivo</h2>
 <p>Builders abandonados, pilas de plugins, temas que no pasan Core Web Vitals en datos móviles. Algo se puede exprimir con rendimiento. Si cada mejora pelea con el tema, reconstruye.</p>
 <h2>Ya no coincide con cómo vendes</h2>
-<p>La empresa añadió comercial, soltó un oficio o empezó a financiar. La web sigue hablando como en 2019. La arquitectura de contenido debe seguir los trabajos que quieres, por eso las páginas de <a href="/industries/home-services">servicios del hogar</a> no deberían clonarse entre sí.</p>
+
 <h2>Cuándo el rediseño es la jugada equivocada</h2>
 <p>Si el layout ya funciona en el móvil y el problema son rankings informativos, no revientes el sitio por un color nuevo. Arregla el targeting. Si el problema es el seguimiento, arregla la oficina. Reconstruir para evitar un problema de ventas es teatro caro.</p>
 <h2>Rediseño frente a reconstrucción</h2>
@@ -137,7 +137,7 @@ export const blogArticlesEsIntent = {
 <h2>3. Prueba en la decisión, no en un museo</h2>
 <p>Tres reseñas específicas junto al formulario ganan a un carrusel en /testimonios. Fotos del trabajo con el barrio ganan a atardeceres de stock. El trabajo de <a href="/case-studies/landscaping-company-growth">paisajismo</a> y <a href="/case-studies/plumbing-company-growth">plomería</a> que hemos publicado empezó aquí, no con un logo nuevo.</p>
 <h2>4. Formularios cortos, llamadas rastreadas</h2>
-<p>Nombre, teléfono, trabajo, código postal. Call tracking atado a la página. Si la oficina no puede contestar, no generes el lead a la 1 a.m. salvo que alguien esté de guardia. Los leads que ignoras te enseñan que "el marketing no funciona".</p>
+
 <h2>5. Haz coincidir anuncios y búsqueda con esas páginas</h2>
 <p>No mandes Google Ads a la home. No escribas blogs de SEO que nunca enlazan la URL de servicio. La web, el <a href="/services/seo">SEO</a> y los <a href="/services/paid-media">anuncios</a> deben argumentar el mismo trabajo. Eso es el programa de demanda, no tres proveedores.</p>
 <h2>6. Velocidad y objetivos para el pulgar</h2>

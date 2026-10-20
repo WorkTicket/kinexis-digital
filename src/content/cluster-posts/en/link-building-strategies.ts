@@ -5,7 +5,7 @@ export const body = `<p>Link building in 2026 rewards sites that earn citations 
 <h2>Digital PR and Newsworthy Assets</h2>
 <p>Digital PR turns data, surveys, and timely commentary into stories journalists want to cover. The link is a byproduct of coverage, not the pitch.</p>
 <h3>What Makes a Story Link-Worthy</h3>
-<p>Original statistics, contrarian but defensible takes, localized data cuts, and visual assets journalists can embed. Package findings with clear headlines: "68% of retailers still lack real-time inventory sync" beats "we surveyed retailers about technology."</p>
+
 <h3>Outreach That Respects Editors</h3>
 <p>Personalize by beat, offer exclusive data windows when possible, and make extraction easy: bullet key stats, provide spokesperson availability, and host images on a fast CDN. Follow up once. Persistent spam burns domains for future campaigns.</p>
 <h2>Resource and Guide Link Building</h2>
@@ -17,9 +17,9 @@ export const body = `<p>Link building in 2026 rewards sites that earn citations 
 <h2>What to Avoid</h2>
 <p>Skip paid link schemes, irrelevant guest posts on generic blogs, comment spam, and automated outreach blasts. Avoid exact-match anchor manipulation at scale. If a tactic feels like it only exists for Google and not users, assume it will eventually fail or never move the needle.</p>
 <h2>Measuring Link Building ROI</h2>
-<p>Track referring domains monthly, but tie links to outcomes: ranking movement for target URLs, organic traffic to linked pages, and assisted conversions from referral traffic. Use GSC links report and Ahrefs or Moz for velocity. Set realistic timelines: editorial links often take 60 to 90 days to influence rankings.</p>
+
 <h3>Anchor and Relevance Hygiene</h3>
-<p>A healthy profile mixes branded, naked URL, and topical anchors. Sudden spikes of commercial anchors from low-quality sites trigger review. Prioritize pages that already rank positions 5 to 15; links to those URLs frequently push them to page one.</p>
+
 <p>Sustainable link building is a marketing function, not a spreadsheet exercise. Build assets your audience and journalists actually want, promote them with respect, and let links accumulate as a signal of real authority. That approach survives algorithm updates because it mirrors how the web was meant to work.</p>
 <h2>Broken Link Building and Unlinked Mentions</h2>
 <p>Find broken resources on authoritative sites in your niche and offer your updated guide as a replacement. Tools like Ahrefs Site Explorer surface dead outbound links on relevant domains. Similarly, monitor brand mentions without links and request a citation when the context fits. Conversion rates are modest but the links are highly relevant.</p>

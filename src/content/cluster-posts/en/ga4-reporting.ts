@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>GA4's event-based data model changes how marketing teams report performance. Pageviews alone no longer tell the story; events, parameters, and user identity stitch journeys across sessions. Teams that cling to Universal Analytics mental models miss conversions hidden in explorations and misread engagement metrics.</p>
-<p>After migrating a lead-gen site to GA4, reported conversions dropped 30% overnight. The issue was not traffic; event naming changed and a key form submit was not mapped as a conversion. Rebuilding events in GTM, marking conversions in Admin, and creating a funnel exploration restored visibility. Within a month they had clearer drop-off data than UA ever provided.</p>
+
 <h2>Core GA4 Concepts</h2>
 <p><strong>Events</strong> are any interaction you track. <strong>Parameters</strong> add context (value, currency, item ID). <strong>Conversions</strong> are key events you flag for reporting. <strong>Explorations</strong> are flexible analysis workspaces replacing many UA custom reports.</p>
 <h3>Event Planning</h3>
@@ -17,7 +17,7 @@ export const body = `<p>GA4's event-based data model changes how marketing teams
 <h3>BigQuery Export</h3>
 <p>High-volume sites benefit from BigQuery for custom attribution and LTV cohorts. Requires setup but removes sampling limits on complex queries.</p>
 <h2>Data Quality Habits</h2>
-<p>DebugView during GTM changes. Annotate launches in analytics. Monitor internal traffic filters. Compare GA4 totals to CRM weekly; variance within 10% is a healthy target for lead gen.</p>
+
 <h2>Reporting Cadence for Teams</h2>
 <p>Weekly: channel performance and conversion count. Monthly: funnel shifts, landing page winners/losers, event parameter completeness. Quarterly: taxonomy review and exploration deep dives for strategists.</p>
 <p>GA4 rewards teams that think in events and journeys, not pageviews alone. Build a clean taxonomy, lean on explorations for diagnosis, and tie reports to decisions every Monday standup actually uses.</p>
@@ -26,7 +26,7 @@ export const body = `<p>GA4's event-based data model changes how marketing teams
 <h3>Consent Mode and Data Gaps</h3>
 <p>With consent banners, modelled conversions fill gaps in GA4 and Google Ads. Monitor consent rates by region. Sudden drops in reported conversions may be consent configuration, not campaign failure.</p>
 <h2>Training Your Team on GA4</h2>
-<p>Run monthly 30-minute labs: build one funnel, one audience, one exploration together. Shared fluency reduces Slack threads asking for one-off exports and spreads accountability for data quality.</p>
+
 <h2>GA4 vs. Looker Studio Reporting</h2>
 <p>Native GA4 reports suit exploration; Looker Studio suits recurring stakeholder views. Build explorations first to validate metrics, then crystallize stable definitions into dashboards. Changing dashboard widgets without validating event logic creates executive distrust fast.</p>
 <h3>Cross-Domain and Subdomain Tracking</h3>

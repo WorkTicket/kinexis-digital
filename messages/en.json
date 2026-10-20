@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "title": "Kinexis Digital | Marketing for Home Services & Ecommerce",
-    "description": "Digital marketing for home services and ecommerce. SEO, paid ads, web design, and branding scored on leads and revenue, not vanity metrics. Book a call.",
-    "ogDescription": "Digital marketing for home services and ecommerce. SEO, paid ads, web design, and branding scored on leads and revenue."
+    "title": "Websites for Houston contractors | $0 down, $197/mo",
+    "description": "We build your new homepage first, free. Love it? Launch with $0 down.",
+    "ogDescription": "We build your new homepage first, free. Love it? Launch with $0 down."
   },
   "a11y": {
     "skipToMain": "Skip to main content",
@@ -246,7 +246,9 @@
           "secondary": "Or start with the local checklist"
         }
       }
-    }
+    },
+    "plans": "Plans",
+    "contractors": "Contractors"
   },
   "services": {
     "pricing": "Pricing",
@@ -728,6 +730,6 @@
     "services": "Services",
     "contact": "Contact",
     "cta": "Book a strategy call",
-    "footnote": "No long-term contracts. Month to month."
+    "footnote": "3-month minimum from launch, then month-to-month. Cancel anytime after that by text, email or Messenger."
   }
 }

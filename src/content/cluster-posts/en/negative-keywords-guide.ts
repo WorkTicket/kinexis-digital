@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Negative keywords are the fastest lever in PPC to stop wasted spend. Every dollar on irrelevant searches is a dollar not scaling winners. Yet most accounts treat negatives as reactive cleanup instead of a proactive system. Weekly search term reviews should be non-negotiable, backed by shared lists and clear ownership.</p>
-<p>A home services advertiser burned $3,200 in one month on queries like "HVAC jobs," "free AC check," and "DIY furnace repair" before we audited search terms. Campaign-level negatives for employment and DIY intent, plus ad group negatives to separate repair from installation themes, cut wasted spend by 18% in the first week without losing valid leads.</p>
+
 <h2>How Negative Keywords Work</h2>
 <p>Negatives prevent ads from showing when queries contain specified terms. Match types matter: broad negatives block variants containing the term, phrase negatives require the phrase intact, exact negatives block only that query. Google Ads lacks true exact negative match for all cases, so monitor search terms after adding negatives.</p>
 <h2>Campaign-Level Negatives</h2>

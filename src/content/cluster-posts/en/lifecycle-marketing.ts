@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Lifecycle marketing maps messages to where customers actually are: first touch, first value, repeat use, expansion, and risk of churn. Batch-and-blast email ignores those stages and wonders why engagement fades. Aligning email (and adjacent channels) to lifecycle stages turns your list into a coordinated system that supports revenue at each transition.</p>
-<p>A project management SaaS treated all subscribers the same. Onboarding emails pitched features power users wanted while trial users were still setting up workspaces. We rebuilt lifecycle tracks: activation sequences for days 1 to 14, adoption nudges tied to usage triggers, renewal reminders at 60/30/7 days, and expansion offers when seat utilization crossed 80%. Trial-to-paid improved 24% and expansion revenue rose 17% in two quarters.</p>
+
 <h2>Stages of the Customer Lifecycle</h2>
 <p><strong>Acquisition:</strong> lead capture and welcome.<br><strong>Activation:</strong> first meaningful outcome.<br><strong>Retention:</strong> habitual use and satisfaction.<br><strong>Expansion:</strong> upsell, cross-sell, referrals.<br><strong>Win-back:</strong> re-engage lapsed users.</p>
 <h3>Defining Stage Transitions</h3>

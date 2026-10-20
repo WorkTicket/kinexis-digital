@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Landing page optimization is a system, not a one-time redesign. Small, sequential improvements compound conversion rate over months while paid costs stay flat. The playbook below is how we approach ongoing CRO after baseline message match and tracking are solid.</p>
-<p>An insurance quote funnel converted at 4.1% on mobile. Over eight weeks we optimized above-the-fold clarity, reduced form fields from nine to five with progressive disclosure, added carrier logos, and tested headline specificity. Mobile conversion reached 6.3%. Annualized, that was hundreds of additional quotes without increasing media spend.</p>
+
 <h2>Above-the-Fold Optimization</h2>
 <p>Visitors decide in seconds. They need value proposition, credibility, and a clear next step visible without scrolling on mobile.</p>
 <h3>Hero Checklist</h3>
@@ -30,7 +30,7 @@ export const body = `<p>Landing page optimization is a system, not a one-time re
 <h2>Device-Specific Optimization</h2>
 <p>Mobile and desktop often need different hero copy length and CTA placement. Run device reports in analytics before declaring a page "optimized." A winner on desktop may lose on mobile if forms sit below four screens of content.</p>
 <h2>Speed Tests as Part of CRO</h2>
-<p>Every 100ms improvement on mobile LPs can matter as much as headline tests on paid traffic. Run Lighthouse on the live URL after each deploy. Catch regressions from new pixels or chat widgets before ad spend scales against a slower page.</p>
+
 <h2>Post-Conversion Optimization</h2>
 <p>Thank-you pages and onboarding emails extend landing page work. Confirm booking links work, set expectations for next steps, and trigger nurture within minutes. A high-converting page with a dead-end thank-you page still leaks pipeline value.</p>
 <h3>Accessibility and Readability</h3>

@@ -1,0 +1,53 @@
+.contractor-home {
+  --background: #060f24;
+  --foreground: #f3f5f8;
+  --muted: #afb8c5;
+  --accent: #facc15;
+  --accent-ink: #060f24;
+  --line: rgb(255 255 255 / 18%);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.contractor-home__hero h1 {
+  max-width: 19ch;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.contractor-home .chapter--studio {
+  background: #0d1a34;
+}
+
+.contractor-home .section-eyebrow {
+  color: var(--accent);
+}
+
+.contractor-home .btn--primary,
+.contractor-home .btn--primary .btn__label {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.contractor-home .btn--outline {
+  color: var(--foreground);
+  border-color: var(--line);
+  background: transparent;
+}
+
+.contractor-home .contractor-home__popular {
+  border-color: var(--accent);
+}
+
+.contractor-home .motion-section,
+.contractor-home .motion-stagger,
+.contractor-home .motion-item {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}

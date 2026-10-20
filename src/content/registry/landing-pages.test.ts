@@ -34,8 +34,8 @@ describe("web-design landing page", () => {
     expect(page?.scopeItems?.length).toBeGreaterThanOrEqual(4);
     expect(page?.formSteps?.length).toBe(3);
     expect(page?.closingTitle).toBeTruthy();
-    expect(page?.logos?.length).toBeGreaterThanOrEqual(3);
-    expect(page?.testimonial?.name).toBe("A1 Property Services");
+    expect(page?.logos).toEqual([]);
+    expect(page?.testimonial).toBeUndefined();
     expect(page?.spotlight).toBeUndefined();
   });
 });
@@ -63,7 +63,7 @@ describe("facebook-web-design landing page", () => {
     expect(page?.spotlight?.title).toBeTruthy();
     expect(page?.spotlight?.framed).toBe(false);
     expect(page?.spotlight?.image).toMatch(/spotlight-ads-running/);
-    expect(page?.testimonial?.name).toBe("Preferred Plumbing");
+    expect(page?.testimonial).toBeUndefined();
     expect(page?.samples?.length).toBe(3);
     expect(page?.samples?.every((sample) => sample.framed !== false)).toBe(true);
     expect(
@@ -90,9 +90,9 @@ describe("facebook-web-design landing page", () => {
     expect(page?.formFootnote.toLowerCase()).toMatch(/written notes/);
     expect(page?.essentialsOnly).toBe(true);
     expect(page?.campaignLayout).toBe(true);
-    expect(page?.heroStats?.length).toBe(3);
+    expect(page?.heroStats).toEqual([]);
     expect(page?.formCtaHint).toBeTruthy();
-    expect(page?.spotlight?.metric).toBeTruthy();
+    expect(page?.spotlight?.metric).toBeUndefined();
     expect(page?.faqs.some((faq) => /call instead/i.test(faq.question))).toBe(
       true,
     );
@@ -115,7 +115,7 @@ describe("get-a-website landing page", () => {
     expect(proofCopy).not.toMatch(/10\s*→\s*28|22\s*→\s*52|32\s*→\s*78|1[.,]8%|3[.,]9%/);
     expect(localized.proofIntro).not.toMatch(/individual results vary|resultados individuales varían/i);
     expect(localized.samples?.every((sample) => sample.liveUrl?.startsWith("https://"))).toBe(true);
-    expect(localized.testimonial?.name).toBe("Mac Christensen");
+    expect(localized.testimonial).toBeUndefined();
   });
 
   it("matches live contractor lander content with soft pricing (no addon sticker board)", () => {
@@ -314,9 +314,9 @@ describe("get-a-website landing page", () => {
     expect(page?.fitTitle?.toLowerCase()).not.toMatch(/dallas|boise/);
     expect(page?.fitClose).toBeUndefined();
     expect(page?.serviceArea).toBeUndefined();
-    expect(page?.logos).toBeUndefined();
-    expect(page?.testimonial?.name).toBe("Mac Christensen");
-    expect(page?.testimonial?.role).toBe("Owner, A1 Property Services");
+    expect(page?.logos).toEqual([]);
+    expect(page?.testimonial).toBeUndefined();
+    expect(page?.testimonial).toBeUndefined();
     expect(page?.directIntro?.body.toLowerCase()).toMatch(/from the first call through launch/);
     expect(page?.directIntro?.body.toLowerCase()).not.toMatch(/written scope/);
     expect(
@@ -357,8 +357,8 @@ describe("get-a-website landing page", () => {
       expect(spanish?.marketLine).toBe(
         "Trabajamos con contratistas y equipos de servicios del hogar.",
       );
-      expect(spanish?.testimonial?.name).toBe("Mac Christensen");
-      expect(spanish?.testimonial?.role).toBe("Dueño, A1 Property Services");
+      expect(spanish?.testimonial).toBeUndefined();
+      expect(spanish?.testimonial).toBeUndefined();
       expect(spanish?.pricingIntro).toMatch(/diseño ya probado/i);
       expect(spanish?.pricingIntro).toMatch(/se codifica alrededor/i);
       expect(spanish?.pricingCompare?.find((row) => row.label === "Páginas")?.custom).toBe(
@@ -466,12 +466,7 @@ describe("get-a-website landing page", () => {
     );
 
     expect(page?.proofIntro.toLowerCase()).not.toMatch(/individual results vary/);
-    expect(page?.proof.map((item) => item.metric)).toEqual([
-      "Our code",
-      "You own it",
-      "Short roster",
-      "Optional",
-    ]);
+    expect(page?.proof).toEqual([]);
     expect(page?.proof.map((item) => item.label).join(" ").toLowerCase()).not.toMatch(
       /\$200/,
     );

@@ -14,9 +14,9 @@ export const blogArticlesEnExpanded = {
 <p>Before we talk about what's new, let's be clear about what still drives local rankings. These three pillars have held steady through multiple algorithm updates, and we don't expect that to change anytime soon.</p>
 <h3>Google Business Profile Optimization</h3>
 <p>This is still the single most important thing you can do for local rankings. Your GBP is essentially Google's snapshot of your business, and if it's incomplete or outdated, you're fighting uphill. Fill out every single field, post updates at least weekly, and respond to every review, good or bad.</p>
-<p>Businesses that actively manage their GBP see 2-3x more engagement than those that set it and forget it. We had a plumbing client in Phoenix who went from 12 direction requests per month to 47 just by posting weekly updates and adding service-specific photos. No new backlinks, no major site rebuild. Just consistent GBP management.</p>
+
 <h3>Citation Consistency</h3>
-<p>Google still cross-references your name, address, and phone number across the web. If your NAP data shows up differently on Yelp versus Facebook versus your own site, Google gets confused, and your rankings take a hit. We've seen cases where cleaning up inconsistent citations alone moved a business from page 3 to page 1 within 60 days.</p>
+
 <p>Use a tool like Moz Local or BrightLocal to audit and fix your citations across the major directories. Pay special attention to your suite number, abbreviations (St. vs Street), and whether your phone number uses a local area code or a toll-free number. Small inconsistencies add up.</p>
 <h3>Review Signals</h3>
 <p>Reviews aren't just social proof for potential customers. They're a direct ranking signal. Google looks at the quantity of reviews, how recent they are, and how diverse they are (not all from one week). A steady stream of genuine reviews over time signals to Google that your business is active and trusted.</p>
@@ -41,44 +41,17 @@ export const blogArticlesEnExpanded = {
 <p>Local SEO in 2026 rewards consistency over shortcuts. The businesses that show up every week, on their profile, in their reviews, and on their site, are the ones customers find first. If you want help building that system, that's exactly what we do at Kinexis Digital.</p>`,
   },
   "website-conversion-optimization": {
-    title: "7 Website Changes That Increased Conversions by 340%",
+    title: "Website Changes for a Clearer Contact Path",
     category: "Web Design",
     publishedAt: "June 8, 2026",
-    body: `<p>When we took on a home services client last fall, their website looked fine. Clean design, professional photos, all the right pages. But their conversion rate sat at 1.2%. For every 100 visitors, barely one person filled out their contact form or called. They were spending $4,200 a month on Google Ads to feed traffic into a site that wasn't doing its job.</p>
-<p>We didn't rebuild from scratch. We made seven specific changes over 60 days. By the end of that period, their conversion rate hit 5.3%. That's a 340% increase from the same traffic volume. No additional ad spend required.</p>
-<p>Here's exactly what we changed and why each one mattered.</p>
-<h2>1. Simplified Navigation</h2>
-<p>The original site had 14 items in the main menu. Services split across three dropdowns. A resources section with six sub-pages. About us with team bios, company history, and community involvement all as separate links.</p>
-<p>Visitors were paralyzed by choice before they ever reached a CTA. We cut the main navigation to five items: Services, About, Reviews, Service Areas, and Contact. Everything else moved to the footer or contextual links within pages.</p>
-<p>Bounce rate on the homepage dropped 28% in the first two weeks. Average session duration went up because people were actually clicking into service pages instead of scanning a crowded menu and leaving.</p>
-<h2>2. Prominent CTAs Above the Fold</h2>
-<p>The old homepage led with a full-width hero image and a tagline: "Quality Service You Can Trust." Nice sentiment. Zero urgency. The actual call-to-action button sat below the fold, under three paragraphs of company history.</p>
-<p>We moved a high-contrast CTA button above the fold on every key landing page. The copy changed from "Learn More" to "Get a Free Estimate in 24 Hours." Click-through on that button increased 210%.</p>
-<p>Specific beats vague every time. Tell visitors exactly what happens when they click.</p>
-<h2>3. Social Proof at Decision Points</h2>
-<p>Testimonials existed on the site, but they lived on a separate reviews page that almost nobody visited. We pulled short testimonial snippets and placed them directly next to contact forms and CTA buttons.</p>
-<p>One testimonial highlighted a same-day response. Another mentioned a specific dollar amount saved on a repair. A third named the neighborhood. These weren't generic five-star quotes. They were decision-stage proof that mirrored the visitor's situation.</p>
-<p>Form completion rates on service pages improved 34% after we added testimonials within two scroll lengths of each form.</p>
-<h2>4. Form Field Reduction</h2>
-<p>The contact form asked for nine fields: first name, last name, email, phone, address, city, zip code, service type, and a message box. Completion rate was 12%.</p>
-<p>We cut it to four: name, phone, service needed, and zip code. That's it. We moved email collection to a follow-up text or call. Completion rate jumped to 47%.</p>
-<p>Every field you add is a friction point. Ask for the minimum you need to start a conversation. You can collect the rest on the phone.</p>
-<h2>5. Mobile-First Redesign</h2>
-<p>68% of this client's traffic came from mobile devices, but the site was designed desktop-first. Buttons were too small. Phone numbers weren't click-to-call. Forms required pinch-zooming to fill out.</p>
-<p>We rebuilt the mobile experience with thumb-friendly buttons (minimum 48px tap targets), sticky click-to-call headers, and single-column forms. Mobile conversion improved 180% while desktop conversion stayed flat. The opportunity was entirely on mobile.</p>
-<h2>6. Speed Optimization</h2>
-<p>Page load time averaged 4.2 seconds on mobile. Google PageSpeed Insights scored the site at 34 out of 100. We compressed images, deferred non-critical JavaScript, switched to a faster hosting plan, and implemented lazy loading on below-fold content.</p>
-<p>Load time dropped to 1.1 seconds. Pages that load in under 2 seconds convert at roughly twice the rate of pages that take 4+ seconds. Our client's data matched that pattern exactly.</p>
-<h3>What we fixed under the hood</h3>
-<p>The biggest wins came from three changes: converting hero images from PNG to WebP (saved 1.8 seconds alone), removing an unused chat widget that loaded 12 external scripts, and enabling browser caching for static assets. None of these required design changes. They were technical fixes with immediate impact.</p>
-<h2>7. Clear Value Propositions on Every Page</h2>
-<p>We applied a simple test to every page: can a visitor answer "Why should I stay here?" within 3 seconds? Most pages failed. They opened with company history or generic industry language instead of a clear benefit.</p>
-<p>We rewrote page headers to lead with outcomes. "Same-Day AC Repair in Dallas" replaced "Welcome to Our HVAC Company." "Licensed, Insured, and Backed by a 2-Year Warranty" replaced "We are a family-owned business since 1998."</p>
-<p>Both messages can be true. One of them sells. The other just exists.</p>
-<h2>What We Learned</h2>
-<p>Conversion optimization isn't about tricks or pop-ups or countdown timers. It's about removing friction and making the next step obvious. This client didn't need more traffic. They needed a site that converted the traffic they already had.</p>
-<p>If your site gets visitors but not leads, start with these seven changes before you increase ad spend. Measure your baseline conversion rate, make one change at a time, and track the impact over 2-4 weeks. The compounding effect of small improvements is how you turn a 1.2% site into a 5% machine.</p>
-<p>At Kinexis Digital, we build websites designed to convert from day one. But if you already have a site that looks good and performs poorly, these are the exact fixes we deploy first.</p>`,
+    body: `<p>A contractor website should make it easy to understand the service area, choose the right service and reach the business. Review the contact path on a phone before changing your advertising budget. These are practical checks, not a promise of results.</p>
+<h2>Simplify navigation</h2><p>Put services, service areas and contact information where visitors expect them. Use familiar labels. Keep less common questions in supporting pages so the main menu stays easy to scan.</p>
+<h2>Make the next step clear</h2><p>Show a clear call or message button near the service description. Explain what happens after someone contacts you. Use an honest response-time expectation that your team can meet.</p>
+<h2>Use accurate business information</h2><p>Show your trade, service area, hours and contact details consistently. Only publish licenses, insurance details or other credentials that you can verify. Use your own job photos with permission.</p>
+<h2>Keep forms focused</h2><p>Ask for the information needed to reply and understand the job. Label each field clearly. Explain how contact details will be used, and make consent choices clear.</p>
+<h2>Review the mobile experience</h2><p>Read the page on a phone. Check that text wraps naturally, buttons are easy to tap and the phone link points to the correct number. Visitors should be able to contact you without searching through the menu.</p>
+<h2>Check page performance</h2><p>Resize and compress photographs, avoid unnecessary scripts and reserve space for images. Use performance tools to find problems, then check the experience on an actual phone.</p>
+<h2>Explain the service plainly</h2><p>Lead with what you do and where you work. Describe the next step and any limits clearly. Keep pricing, cancellation terms and guarantees consistent across your homepage, checkout and legal pages.</p>`,
   },
   "google-business-profile-tips": {
     title: "Google Business Profile: The Complete Optimization Checklist",
@@ -97,7 +70,7 @@ export const blogArticlesEnExpanded = {
 <h3>Choose the right categories</h3>
 <p>Your primary category is the single most important classification Google uses for your listing. Pick the one that best matches your core revenue service. Add secondary categories for other services you offer, but don't add categories for things you don't actually do. We see this mistake constantly with general contractors who list 12 trade categories and confuse Google's matching algorithm.</p>
 <h2>Photos: Your Silent Sales Team</h2>
-<p>Businesses with 50 or more photos receive 47% more direction requests than businesses with fewer than 10. Photos are not decoration. They're proof that your business is real, active, and professional.</p>
+
 <h3>What to upload</h3>
 <p>Exterior shots of your building or branded vehicles. Interior photos of your office, showroom, or workspace. Team photos (real employees, not stock images). Before-and-after shots for applicable services. Product photos if you sell physical goods. Photos of completed projects.</p>
 <p>Upload at least 50 high-quality images. Add 3-5 new photos every month to keep your profile fresh. Google favors listings that show recent activity.</p>
@@ -112,7 +85,7 @@ export const blogArticlesEnExpanded = {
 <p>Reviews influence both customer decisions and local rankings. A business with 4.8 stars and 200 reviews will outperform a competitor with 3.9 stars and 30 reviews in most local searches, even if the lower-rated business has a better website.</p>
 <h3>Set up a review request process</h3>
 <p>Don't wait for reviews to happen organically. Build a simple system: after every completed job or appointment, send a text or email with a direct link to your Google review page. Timing matters. Ask within 24-48 hours of service while the experience is fresh.</p>
-<p>One dental practice we work with went from 42 Google reviews to 187 in eight months using a post-appointment text sequence. Their local pack ranking for "dentist near me" moved from position 5 to position 2.</p>
+
 <h3>Respond to every review</h3>
 <p>Respond to every review within 24 hours, positive and negative. Thank positive reviewers by name and mention the specific service. For negative reviews, acknowledge the concern, apologize if appropriate, and invite the customer to contact you directly to resolve the issue. Never argue in public.</p>
 <h2>Products, Services, and Q&A</h2>
@@ -141,7 +114,7 @@ export const blogArticlesEnExpanded = {
 <p>If your average job value is $500 and your cost per click is $35, paid search gets expensive fast. Organic clicks cost nothing once you rank. For businesses with lower ticket sizes or thin margins, SEO often delivers better unit economics over time.</p>
 <h3>Your industry has high organic search volume</h3>
 <p>Some industries get thousands of monthly searches for service-related keywords. Home services, legal, medical, and financial services often have strong organic demand. If people in your market are actively searching for what you sell, ranking organically puts you in front of buyers without paying per click.</p>
-<p>We had an immigration law firm client spending $8,000/month on Google Ads with a $120 cost per lead. After 10 months of SEO investment ($3,500/month), organic leads matched paid lead volume and their blended cost per lead dropped to $41.</p>
+
 <h2>Invest in Google Ads First When</h2>
 <h3>You need leads this week</h3>
 <p>Google Ads can go live in days and generate calls within hours. If you're launching a new business, entering a new market, or filling a seasonal gap, paid search delivers immediate visibility while your organic presence builds.</p>
@@ -156,14 +129,14 @@ export const blogArticlesEnExpanded = {
 <h3>Months 4-9: Balanced investment</h3>
 <p>Maintain ad spend at a level that keeps your pipeline full. Increase SEO investment in content creation, link building, and conversion rate optimization. Start tracking how organic traffic and leads grow month over month.</p>
 <h3>Months 10-18: Organic carries more weight</h3>
-<p>As organic rankings improve, you can reduce ad spend without losing total lead volume. Many of our clients shift from a 70/30 ads-to-SEO budget split to 30/70 over an 18-month period. Organic leads cost less per acquisition, so the blended ROI improves even as total marketing spend stays flat or decreases.</p>
+
 <h2>How to Decide for Your Business</h2>
 <p>Run this quick assessment. Answer yes or no to each question.</p>
 <p>Do you need leads within the next 30 days? Do you have at least $2,000/month to invest in marketing for 6+ months? Is your average customer worth more than $1,000? Are competitors actively running Google Ads in your market? Do people search for your services on Google (check Google Keyword Planner)?</p>
 <p>If you answered yes to needing immediate leads and yes to high customer value, start with Google Ads and add SEO in parallel. If you have time but tighter margins, start with SEO and add modest ads for your highest-intent terms. If you answered yes to everything, invest in both from day one with a clear budget split.</p>
 <h2>What Not to Do</h2>
-<p>Don't put all your budget into ads and ignore SEO forever. You'll pay increasing CPCs with no asset building. Don't invest in SEO and expect leads in 30 days. You'll burn out and quit before it works. Don't spread a small budget across both channels so thinly that neither gets enough data to optimize.</p>
-<p>Pick a primary channel based on your timeline, commit to it for at least 90 days, and support it with the secondary channel at a level your budget allows. Measure cost per lead, not just traffic or impressions.</p>
+
+
 <p>At Kinexis Digital, we build integrated search strategies for businesses that want predictable growth. If you're not sure where to start, that's usually the best place to begin: a conversation about your numbers, your timeline, and what winning looks like for your business.</p>`,
   },
   "technical-seo-fundamentals": {
@@ -228,7 +201,7 @@ export const blogArticlesEnExpanded = {
 <p>Local SEO is how you show up when someone searches "plumber near me" or "best dentist in [your city]." It includes on-page optimization, location-specific content, citation building, review generation, and technical site health.</p>
 <h3>What moves the needle</h3>
 <p>Service area pages for every neighborhood you cover. A blog that publishes 2-4 locally relevant posts per month. Consistent NAP data across 40+ directories. A review velocity of 3-5 new Google reviews per month. Internal linking between service pages, location pages, and blog content.</p>
-<p>One HVAC client we work with in a mid-size Texas market went from 200 organic sessions per month to 1,400 over 14 months. Their cost per organic lead is now $12 compared to $67 from Google Ads. SEO takes patience, but the economics are hard to beat once it kicks in.</p>
+
 <h2>Channel 3: Google Ads (Local)</h2>
 <p>Cost: $1,000-5,000/month in ad spend plus management. Time to results: days to weeks. Impact: immediate lead flow.</p>
 <p>Local Google Ads put you at the top of search results while your SEO builds. For service businesses, Search campaigns targeting high-intent keywords ("emergency water heater repair," "criminal defense lawyer [city]") generate calls within hours of launch.</p>
@@ -236,11 +209,11 @@ export const blogArticlesEnExpanded = {
 <p>Geo-fence your campaigns to your actual service area. Use call-only ads or call extensions so mobile users can tap to call. Send traffic to dedicated landing pages, not your homepage. Track calls with call tracking numbers so you know which keywords generate revenue, not just clicks.</p>
 <p>Set a monthly budget you can sustain for at least 90 days. Google Ads needs data to optimize. Quitting after three weeks because you "didn't see results" is like closing a store after its first slow Tuesday.</p>
 <h2>Channel 4: Referral Programs</h2>
-<p>Cost: variable (typically 10-15% of referred job value). Time to results: immediate once activated. Impact: highest close rate of any channel.</p>
-<p>Referred customers close at 2-3x the rate of cold leads. They trust you before the first conversation because someone they know vouched for you. Yet most local businesses have no formal referral system.</p>
+
+
 <h3>Build a simple referral engine</h3>
 <p>Ask every satisfied customer at job completion: "Do you know anyone else who might need [your service]?" Offer a tangible incentive: $50 off their next service, a gift card, or a donation to a local charity in their name. Make it easy with a referral card, a text link, or a dedicated page on your site.</p>
-<p>Track referrals in your CRM or even a simple spreadsheet. Know who refers the most business and thank them personally. One landscaping client generates 22% of their revenue from referrals alone because they systematized the ask and follow-up.</p>
+
 <h2>Channel 5: Community Presence</h2>
 <p>Cost: $500-3,000/year. Time to results: 3-6 months. Impact: brand authority and local trust signals.</p>
 <p>Google can't measure everything. When your business name appears on the Little League sponsor board, in the local chamber of commerce directory, and in the newspaper covering your charity event, it builds real-world authority that translates to online trust.</p>
@@ -272,11 +245,11 @@ export const blogArticlesEnExpanded = {
 <h3>Tier 2: Professional SEO ($2,000 to $5,000 per month)</h3>
 <p>This is the sweet spot for most service businesses, B2B companies, and ecommerce stores in moderately competitive markets. At this tier, you should expect a dedicated strategist or account manager, custom keyword research, technical SEO fixes prioritized by impact, regular content creation, and a link building program.</p>
 <p>The key difference from Tier 1 is strategy. Instead of templated fixes, the agency should be analyzing your specific market, competitors, and website to build a custom roadmap. You should also get regular reporting that ties SEO activity to business metrics, not just rankings and traffic.</p>
-<p>At Kinexis Digital, our programs start in this range. We include technical audits, buyer-intent keyword research, content clusters, on-page optimization, and link building. Most clients in this tier start seeing measurable lead growth within 4 to 6 months.</p>
-<p>Best for: local businesses in competitive markets, regional service companies, B2B firms with 5 to 50 employees, and ecommerce stores with 50 to 500 products.</p>
+
+
 <h3>Tier 3: Enterprise SEO ($6,000 to $30,000+ per month)</h3>
 <p>Enterprise SEO involves multiple strategists, dedicated content teams, technical SEO engineers, and often a partnership with the client's internal marketing and engineering teams. This tier is for large websites (10,000+ pages), national or international brands, and highly competitive industries.</p>
-<p>You're paying for scale: more content production (8 to 20 pieces per month), aggressive link building (DA research, digital PR, guest posting at scale), technical architecture reviews, and often dedicated tools and custom reporting dashboards.</p>
+
 <p>Best for: ecommerce stores with 1,000+ products, national service chains, SaaS companies with enterprise sales cycles, and any business competing for keywords where the top 10 results all have 500+ backlinks.</p>
 <h2>What Pricing Actually Buys You</h2>
 <table>
@@ -293,8 +266,8 @@ export const blogArticlesEnExpanded = {
 <p>But SEO is fundamentally a monthly investment because it requires ongoing work: publishing content, building links, monitoring rankings, and adapting to algorithm changes. If an agency tells you they can "fix your SEO" in one month for a flat fee, they are selling you an audit and calling it SEO.</p>
 <h2>How to Evaluate Whether Pricing Is Fair</h2>
 <p>Fair SEO pricing depends on three factors: the value of a customer to your business, the level of competition in your market, and the quality of the agency's process.</p>
-<p>Calculate your customer lifetime value. If you close $5,000 deals and SEO generates 10 new customers per year at a cost of $36,000 ($3,000/mo), your ROI is $50,000 in revenue for $36,000 in spend. That's a 38% return. If the same spend generates 20 customers, your ROI jumps to 177%.</p>
-<p>Compare against your cost per lead from other channels. If you're paying $50 per lead from Google Ads, and SEO produces leads at $25 per lead, the SEO investment pays for itself in unit economics even before you factor in compounding growth.</p>
+
+
 <p>Ask the agency for case studies in your industry or a similar competitive landscape. General testimonials are easy. Specific results from a business with similar dynamics are harder to fake.</p>
 <h2>Common Pricing Traps</h2>
 <p>Beware of agencies that guarantee #1 rankings. Nobody can guarantee this because Google controls the algorithm. Beware of contracts longer than 6 months with no performance terms. Beware of pricing that seems too good to be true; $500/month SEO for a competitive market is almost certainly automated spam that will get your site penalized.</p>
@@ -314,9 +287,9 @@ export const blogArticlesEnExpanded = {
 <h2>The Short Answer</p>
 <h3>Technical fixes: 2 to 4 weeks</h3>
 <p>If your site has indexation problems, crawl errors, or obvious technical blockers, those are the fastest to fix and often produce the earliest signal. We've seen clients move from "not indexed" to "ranking on page 3" in under 30 days just by cleaning up technical issues that were blocking Google from finding their best pages.</p>
-<p>Example: a B2B SaaS client had 40% of their crawl budget wasted on filtered product URLs. After consolidating duplicates and tightening robots rules, organic sessions rose 31% in 90 days with no new content.</p>
+
 <h3>On-page and content: 2 to 4 months</h3>
-<p>Keyword research, content creation, and on-page optimization take longer to compound. Google needs to find your new pages, crawl them, evaluate relevance, and decide where to place them in search results. For a new piece of content targeting a low-competition keyword, you might see movement in 6 to 8 weeks. For competitive terms, expect 4 to 6 months before you see meaningful ranking changes.</p>
+
 <h3>Link building and authority: 6 to 12 months</h3>
 <p>This is the longest timeline because you don't control it. Earning backlinks from reputable sites takes outreach, relationship building, and content worth linking to. Domain authority accumulates slowly. A new site with zero backlinks cannot outrank a 10-year-old competitor with 500 referring domains in three months.</p>
 <p>That doesn't mean link building is optional. It means you need to start early and stay consistent.</p>
@@ -352,15 +325,6 @@ export const blogArticlesEnExpanded = {
 <li>Months 7 to 12: Core service pages gain traction. Organic lead volume should grow month over month. SEO becomes a predictable channel in your marketing mix.</li>
 <li>Beyond 12 months: Compounding effects kick in. Existing content ranks for more keywords, backlinks accumulate, and organic becomes a primary lead source.</li>
 </ul>
-<h2>What Realistic Growth Looks Like</h2>
-<p>We track actual results across our client portfolio. Here's what typical SEO growth looks like:</p>
-<ul>
-<li>Month 0 to 3: 0 to 200 organic sessions per month (new site).</li>
-<li>Month 3 to 6: 200 to 800 organic sessions per month.</li>
-<li>Month 6 to 12: 800 to 3,000 organic sessions per month.</li>
-<li>Year 2: 3,000 to 10,000+ organic sessions per month.</li>
-</ul>
-<p>These numbers vary widely by industry and geography. A local plumber with 500 sessions per month might generate more revenue than a B2B SaaS company with 5,000 sessions. Traffic is context. Leads and revenue are what matter.</p>
 <h2>How to Speed Things Up</h2>
 <p>You cannot shortcut SEO, but you can avoid slowing it down. Don't change URLs after they start ranking. Don't redesign your site without preserving redirects. Don't pause your program after three months because you haven't hit page one yet.</p>
 <p>Do prioritize technical fixes first (fastest impact). Do publish content consistently (compounding effect). Do earn backlinks from relevant sites (authority acceleration). Do track leads and revenue, not just rankings.</p>
@@ -391,7 +355,7 @@ export const blogArticlesEnExpanded = {
 <p>Example for a marketing agency: "The 3 numbers every local business owner should check in Google Analytics every Monday." Example for a law firm: "What to document immediately after a car accident (most people miss #3)."</p>
 <p>One actionable insight per email. Not a lecture. Not a list of 20 tips. One thing they can do right now.</p>
 <h3>Email 3: Social proof</h3>
-<p>Share a client result, testimonial, or before-and-after that mirrors the reader's situation. Specificity is everything. "We helped a 12-person plumbing company in Denver increase their Google calls from 15 to 52 per month in 90 days" beats "Our clients love us!"</p>
+
 <p>Include a photo if possible. Real client names and real numbers build more trust than anonymous quotes.</p>
 <h3>Email 4: Objection handling</h3>
 <p>Address the top three reasons people don't book: cost, timing, and trust. You don't need to name them explicitly. Structure the email to naturally dissolve each concern.</p>
@@ -412,10 +376,10 @@ export const blogArticlesEnExpanded = {
 <p>Keep emails under 200 words when possible. Busy people skim on their phones between meetings. Respect their time.</p>
 <h2>What to Measure</h2>
 <p>Ignore open rates as your north star. Apple Mail Privacy Protection and other tools have made open rates unreliable. Track these instead:</p>
-<p><strong>Click-to-book rate:</strong> what percentage of email clickers actually schedule a call? Target 15-25% for high-intent segments.</p>
+
 <p><strong>Call show rate:</strong> what percentage of booked calls actually happen? If people book but don't show, your Email 5 promise might be overhyped or your reminder system needs work.</p>
 <p><strong>Cost per booked call from email:</strong> total email platform cost plus any content creation time, divided by calls booked. Compare this to your cost per lead from ads or other channels.</p>
-<p>A sequence that books 3-5% of engaged subscribers into discovery calls is doing its job for most B2B and local service businesses. If you're hitting that benchmark, scale by driving more opt-ins. If you're below 2%, audit your segmentation, subject lines, and CTA clarity before rewriting the whole sequence.</p>
+
 <h2>Common Mistakes We See</h2>
 <p>Sending the same sequence to everyone regardless of how they opted in. Waiting too long to ask for the call (if you wait 30 days, they've forgotten who you are). Including multiple CTAs per email (one email, one action). Writing emails that sound like they were generated by a machine (if you wouldn't say "synergize your marketing efforts" in person, don't put it in an email).</p>
 <p>Email nurture works when messages match relevance, timing, and a clear path from subscriber to conversation. Build the sequence once, measure it monthly, and refine based on what the data tells you.</p>

@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Nurture sequences guide subscribers from awareness to action with escalating value and clear calls to action. Done well, they build trust on a schedule. Done poorly, they spam the same pitch six times and train people to ignore you. The architecture matters as much as the copy.</p>
-<p>A commercial roofing company captured leads with a maintenance checklist PDF. Their old sequence was three "call us" emails. We rebuilt it: welcome with checklist delivery, educational email on seasonal damage signs, case study from a similar building type, soft CTA for inspection, stronger offer with financing note, break-up email acknowledging silence. Booked inspections rose 41% from the same lead volume.</p>
+
 <h2>Sequence Architecture</h2>
 <p>A proven backbone: <strong>welcome → value delivery → social proof → offer → break-up.</strong> Adjust length to sales cycle. B2B complex sales may need eight touches over six weeks; transactional B2C may convert in three days.</p>
 <h3>Welcome and Expectation Setting</h3>

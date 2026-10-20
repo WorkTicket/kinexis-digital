@@ -14,9 +14,7 @@ import {
 import { ChapterLead } from "@/components/ui/ChapterLead";
 import { IndustryHero } from "@/components/industry/IndustryHero";
 import { IndustryPainPoints } from "@/components/industry/IndustryPainPoints";
-import { IndustryCaseStudyCard } from "@/components/industry/IndustryCaseStudyCard";
 import { IndustryProcessSteps } from "@/components/industry/IndustryProcessSteps";
-import { IndustryTestimonialBlock } from "@/components/industry/IndustryTestimonialBlock";
 import { IndustryVisual } from "@/components/industry/IndustryVisual";
 import JsonLd from "@/components/seo/JsonLd";
 import {
@@ -183,21 +181,9 @@ export default async function IndustryDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {industry.caseStudy && industry.proofTitle ? (
-        <IndustryCaseStudyCard
-          title={industry.proofTitle}
-          caseStudy={industry.caseStudy}
-        />
-      ) : null}
 
-      {industry.testimonials &&
-      industry.testimonials.length > 0 &&
-      industry.testimonialsTitle ? (
-        <IndustryTestimonialBlock
-          title={industry.testimonialsTitle}
-          testimonials={industry.testimonials}
-        />
-      ) : null}
+
+
 
       {industry.processSteps &&
       industry.processSteps.length > 0 &&

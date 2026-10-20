@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Conversion optimization is not only button colors and form field counts. It is how people assess risk, process information, and decide to act under uncertainty. Psychology principles explain why the same traffic converts differently on two pages with identical offers. Understanding those triggers helps you write copy, place proof, and sequence asks so more visitors feel safe saying yes.</p>
-<p>We tested two headlines for a legal consultation page. A gain-framed headline emphasized "maximize your settlement." A loss-framed headline read "don't leave money on the table after an accident." The loss frame won by 19% on form starts, consistent with loss aversion research, even though attorneys preferred the positive wording. Psychology beat preference.</p>
+
 <h2>Social Proof and Authority</h2>
 <p>People look to others when outcomes are uncertain. Reviews, client logos, case metrics, certifications, and media mentions near decision points reduce perceived risk. Specific proof beats generic claims.</p>
 <h3>Types That Work Online</h3>
@@ -26,7 +26,7 @@ export const body = `<p>Conversion optimization is not only button colors and fo
 <h3>Reciprocity in Lead Gen</h3>
 <p>Free tools, audits, and templates create obligation to engage further when the value is real. Gated fluff destroys trust. Match free resource depth to the price point of the eventual offer.</p>
 <h2>Reducing Anxiety at Checkout</h2>
-<p>Money-back guarantees, clear shipping timelines, and support contact visibility reduce last-step abandonment. Security icons help on payment pages. For B2B, named account managers and implementation timelines answer "what happens after I sign?"</p>
+
 <h2>Cognitive Biases in B2B Buying</h2>
 <p>Committees amplify risk aversion. Pages aimed at multiple stakeholders need proof for finance (ROI), technical evaluators (specs), and executives (outcomes). Single-message pages often fail in enterprise funnels because they speak to only one role.</p>
 <h3>Testing Psychological Hooks Ethically</h3>

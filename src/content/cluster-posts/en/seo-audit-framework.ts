@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>An SEO audit without priorities is just a long list of problems. The job is to find what blocks revenue today, estimate fix effort, and sequence work so rankings move while the team still has bandwidth. At Kinexis Digital, we run audits in three layers: technical, content, and authority. Each layer has its own checklist, but the output is one ranked roadmap tied to business goals.</p>
-<p>We audited a multi-location dental group last year. Their agency had been publishing four blog posts monthly, yet organic leads were flat. Technical review found 23% of location pages excluded by a rogue noindex tag. Content review showed keyword cannibalization between "Invisalign" pages. Authority review revealed spammy directory links from 2019. Fixing indexation alone recovered 40% of lost visibility in six weeks. Content consolidation and disavow work followed. Leads rose 58% quarter over quarter.</p>
+
 <h2>Phase 1: Technical Layer</h2>
 <p>Start with crawlability and indexation. If Google cannot access or trust your URLs, nothing else matters.</p>
 <h3>Technical Checklist</h3>
@@ -11,7 +11,7 @@ export const body = `<p>An SEO audit without priorities is just a long list of p
 <h2>Phase 2: Content Layer</h2>
 <p>Content audits answer whether your pages match search intent, cover priority topics, and demonstrate expertise.</p>
 <h3>Keyword and Intent Mapping</h3>
-<p>Pull GSC queries and map them to landing pages. Identify gaps where you rank positions 8 to 20 with meaningful impressions; those are stretch targets. Find cannibalization: multiple URLs competing for the same term. Merge or differentiate with clear keyword assignments per page.</p>
+
 <h3>Quality and E-E-A-T Signals</h3>
 <p>Thin location pages, outdated stats, and missing author bios hurt trust. Upgrade top money pages with original proof: case metrics, process detail, and real client outcomes. Add FAQ sections targeting long-tail questions surfaced in People Also Ask and support tickets.</p>
 <h2>Phase 3: Authority Layer</h2>

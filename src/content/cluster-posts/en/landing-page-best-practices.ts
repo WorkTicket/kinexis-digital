@@ -1,7 +1,7 @@
 import { L } from "./_links";
 
 export const body = `<p>Paid traffic sent to a generic homepage wastes budget. Homepages serve many audiences; ads speak to one intent. Dedicated landing pages with tight message match routinely convert at two to three times the rate of all-purpose destinations because they reduce cognitive load and keep the visitor on a single path.</p>
-<p>A software trial campaign was sending clicks to a homepage with six navigation paths and a buried signup button. We built a dedicated page mirroring ad copy, added social proof above the fold, and removed top navigation. Trial signups rose 142% at the same CPC. No bid changes, no new keywords. Just a page built for the click.</p>
+
 <h2>Message Match From Ad to Page</h2>
 <p>The headline should echo the ad hook within seconds. If the ad promises "free shipping on first order," the page hero must say the same, not a generic brand slogan. Visual continuity helps too: similar imagery and color accents signal the user landed in the right place.</p>
 <h3>Search Intent Alignment</h3>
@@ -9,11 +9,11 @@ export const body = `<p>Paid traffic sent to a generic homepage wastes budget. H
 <h2>Single Primary CTA</h2>
 <p>One primary action per page: book a call, start trial, request quote. Secondary links dilute focus. Remove main navigation on cold traffic pages when possible. Repeat the CTA after proof sections so users do not scroll back hunting for it.</p>
 <h3>CTA Copy That Clarifies Risk</h3>
-<p>"Get my free audit" beats "Submit." Specify time commitment: "15-minute call," "instant PDF." Reduce anxiety with microcopy near the button about no spam or cancel anytime.</p>
+
 <h2>Above-the-Fold Essentials</h2>
 <p>Visitors should see value proposition, credibility indicator, and CTA without scrolling on mobile. Use short subheads to expand the promise. Avoid carousel heroes that hide the message behind rotation.</p>
 <h3>Social Proof Placement</h3>
-<p>Logos, star ratings, review counts, and short testimonials near the decision point increase trust. Specific beats vague: "Helped 340 retailers cut cart abandonment" outperforms "Trusted by many companies."</p>
+
 <h2>Form and Friction Balance</h2>
 <p>Every field must earn its place. Ask only what routing requires. Multi-step forms can outperform long single pages when progress is visible. Auto-fill and clear error states reduce abandonment on mobile.</p>
 <h2>Speed and Technical Basics</h2>

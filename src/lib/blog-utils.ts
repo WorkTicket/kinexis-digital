@@ -167,7 +167,7 @@ export const BLOG_SERP_META: Record<string, { title: string; description: string
       "Most nurture flows die in the inbox. The sequence structure, timing, and messaging that turn cold subscribers into booked calls without burning the list.",
   },
   "website-conversion-optimization": {
-    title: "7 Site Changes That Lifted CR 340%",
+    title: "Website Changes for a Clearer Contact Path",
     description:
       "A client site went from 1.2% conversion to over 5% in 60 days. Seven specific changes, why they worked, and how much each one contributed.",
   },

@@ -5,13 +5,12 @@ import { getStandaloneIndustrySlugs } from "@/content/industries";
 import {
   staticPageRoutes,
   blogSlugs,
-  caseStudySlugs,
 } from "@/content/registry/site-routes";
 import { FLAGSHIP_SERVICE_SLUGS } from "@/lib/legacy-redirects.mjs";
 
 /** Indexable static routes only — excludes thank-you (noindex). */
 const sitemapStaticRoutes = staticPageRoutes.filter(
-  (path) => path !== "/thank-you",
+  (path) => path !== "/thank-you" && path !== "/case-studies",
 );
 
 function pageUrl(
@@ -37,7 +36,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path === "/" ||
       path === "/services" ||
       path === "/industries" ||
-      path === "/case-studies" ||
       path === "/blog";
     entries.push(
       pageUrl(
@@ -70,10 +68,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "case-studies",
   ]) {
     entries.push(pageUrl(`/blog/category/${category}`, 0.5, "monthly"));
-  }
-
-  for (const slug of caseStudySlugs) {
-    entries.push(pageUrl(`/case-studies/${slug}`, 0.75, "monthly"));
   }
 
   return entries;

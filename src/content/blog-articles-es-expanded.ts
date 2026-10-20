@@ -7,7 +7,7 @@ export const blogArticlesEsExpanded = {
     category: "Crecimiento de Negocios Locales",
     publishedAt: "15 de junio de 2026",
     body: `<p>El algoritmo de búsqueda local de Google ha tenido actualizaciones importantes en el último año. Si sigues haciendo SEO local como en 2024, es probable que ya no veas los mismos resultados. Los fundamentos siguen importando, pero Google pondera las señales de otra forma y necesitas adaptarte para mantenerte competitivo en el local pack.</p>
-<p>En Kinexis Digital trabajamos cada semana con negocios de servicios locales, y el patrón se repite. Las empresas que posicionan bien en 2026 no son necesariamente las que tienen el presupuesto más grande. Son las que tratan la búsqueda local como un sistema continuo, no como un proyecto de configuración que se hace una vez y se olvida.</p>
+
 <h2>Los Tres Pilares Que No Han Cambiado</h2>
 <p>Antes de hablar de lo nuevo, conviene aclarar qué sigue moviendo el ranking local. Estos tres pilares han resistido varias actualizaciones del algoritmo, y no esperamos que cambien pronto.</p>
 <h3>Optimización de Google Business Profile</h3>
@@ -34,49 +34,22 @@ export const blogArticlesEsExpanded = {
 <p>Eso no significa bloguear por bloguear. Significa crear páginas y publicaciones que conecten tus servicios con tu comunidad. ¿Patrocinas una carrera local? Escríbelo. ¿Contrataste dos técnicos nuevos? Anúncialo en tu sitio y en tu GBP. ¿Notas un patrón estacional en tus llamadas? Publica una guía breve al respecto.</p>
 <p>Un cliente de jardinería con el que trabajamos publica dos entradas cortas al mes sobre cuidado estacional del césped en su condado. Esas publicaciones posicionan para consultas de cola larga, envían tráfico a su página de reservas y dan a Google señales frescas de que el negocio está activo.</p>
 <h2>Qué Hacer Este Trimestre</h2>
-<p>¿Qué deberías hacer este trimestre? Primero, audita tu GBP por completo: todos los campos completos, publicaciones programadas para las próximas 8 semanas y una plantilla lista para responder reseñas. Segundo, ejecuta una auditoría de citaciones y corrige cada inconsistencia NAP. Tercero, monta un proceso simple de solicitud de reseñas ligado a trabajos completados, no a un email masivo genérico.</p>
+
 <p>Cuarto, crea al menos tres piezas de contenido local relevante: una página de servicio por barrio, una página de preguntas frecuentes con inquietudes locales y una entrada de blog ligada a un evento comunitario o una necesidad estacional. Combina estas cuatro cosas de forma consistente durante los próximos 90 días y estarás muy por delante de la mayoría de negocios locales que siguen intentando ponerse al día.</p>
 <p>El SEO local en 2026 premia la constancia por encima de los atajos. Los negocios que aparecen cada semana, en su perfil, en sus reseñas y en su sitio, son los que los clientes encuentran primero. Si quieres ayuda para construir ese sistema, es exactamente lo que hacemos en Kinexis Digital.</p>`,
   },
   "website-conversion-optimization": {
-    title: "7 Cambios en el Sitio Web que Aumentaron las Conversiones un 340%",
+    title: "Cambios para facilitar el contacto en su sitio web",
     category: "Diseño Web",
     publishedAt: "8 de junio de 2026",
-    body: `<p>Cuando asumimos un cliente de servicios para el hogar el otoño pasado, su sitio se veía bien. Diseño limpio, fotos profesionales, todas las páginas necesarias. Pero su tasa de conversión rondaba el 1,2%. De cada 100 visitantes, apenas uno completaba el formulario de contacto o llamaba. Gastaban 4.200 dólares al mes en Google Ads para enviar tráfico a un sitio que no cumplía su función.</p>
-<p>No reconstruimos desde cero. Hicimos siete cambios específicos en 60 días. Al final de ese periodo, su tasa de conversión llegó al 5,3%. Eso es un aumento del 340% con el mismo volumen de tráfico. Sin gasto adicional en publicidad.</p>
-<p>Esto es exactamente lo que cambiamos y por qué cada punto importó.</p>
-<h2>1. Navegación Simplificada</h2>
-<p>El sitio original tenía 14 ítems en el menú principal. Servicios repartidos en tres desplegables. Una sección de recursos con seis subpáginas. Sobre nosotros con biografías del equipo, historia de la empresa y participación comunitaria como enlaces separados.</p>
-<p>Los visitantes quedaban paralizados por las opciones antes de llegar a un CTA. Redujimos el menú principal a cinco ítems: Servicios, Nosotros, Reseñas, Zonas de Servicio y Contacto. Todo lo demás pasó al pie de página o a enlaces contextuales dentro de las páginas.</p>
-<p>La tasa de rebote en la página de inicio bajó un 28% en las primeras dos semanas. La duración media de sesión subió porque la gente sí entraba a las páginas de servicio en lugar de escanear un menú saturado y marcharse.</p>
-<h2>2. CTAs Prominentes Arriba del Fold</h2>
-<p>La página de inicio anterior abría con una imagen hero a ancho completo y un eslogan: "Servicio de Calidad en el que Puedes Confiar." Buen sentimiento. Cero urgencia. El botón de llamada a la acción estaba debajo del fold, bajo tres párrafos de historia de la empresa.</p>
-<p>Movimos un botón CTA de alto contraste arriba del fold en cada landing page clave. El copy pasó de "Saber Más" a "Obtén una Cotización Gratis en 24 Horas." Los clics en ese botón aumentaron un 210%.</p>
-<p>Lo específico gana a lo vago siempre. Dile al visitante exactamente qué pasa cuando hace clic.</p>
-<h2>3. Prueba Social en Puntos de Decisión</h2>
-<p>Los testimonios existían en el sitio, pero vivían en una página de reseñas separada que casi nadie visitaba. Sacamos fragmentos cortos y los colocamos directamente junto a formularios de contacto y botones CTA.</p>
-<p>Un testimonio destacaba una respuesta el mismo día. Otro mencionaba un monto concreto ahorrado en una reparación. Un tercero nombraba el barrio. No eran citas genéricas de cinco estrellas. Eran pruebas de decisión que reflejaban la situación del visitante.</p>
-<p>Las tasas de completado de formularios en páginas de servicio mejoraron un 34% después de añadir testimonios a menos de dos scrolls de cada formulario.</p>
-<h2>4. Reducción de Campos en Formularios</h2>
-<p>El formulario de contacto pedía nueve campos: nombre, apellido, email, teléfono, dirección, ciudad, código postal, tipo de servicio y un cuadro de mensaje. La tasa de completado era del 12%.</p>
-<p>Lo redujimos a cuatro: nombre, teléfono, servicio necesario y código postal. Eso es todo. El email lo recogemos en una llamada o mensaje de seguimiento. La tasa de completado saltó al 47%.</p>
-<p>Cada campo que añades es un punto de fricción. Pide el mínimo para iniciar una conversación. El resto lo recoges por teléfono.</p>
-<h2>5. Rediseño Mobile-First</h2>
-<p>El 68% del tráfico de este cliente venía de móvil, pero el sitio estaba diseñado primero para escritorio. Los botones eran demasiado pequeños. Los teléfonos no tenían clic para llamar. Los formularios obligaban a hacer zoom con los dedos.</p>
-<p>Reconstruimos la experiencia móvil con botones cómodos para el pulgar (mínimo 48px de área táctil), cabeceras fijas con clic para llamar y formularios en una sola columna. La conversión móvil mejoró un 180% mientras la de escritorio se mantuvo estable. La oportunidad estaba enteramente en móvil.</p>
-<h2>6. Optimización de Velocidad</h2>
-<p>El tiempo de carga promedio en móvil era de 4,2 segundos. PageSpeed Insights puntuaba el sitio en 34 sobre 100. Comprimimos imágenes, diferimos JavaScript no crítico, cambiamos a un hosting más rápido e implementamos carga diferida en contenido bajo el fold.</p>
-<p>El tiempo de carga bajó a 1,1 segundos. Las páginas que cargan en menos de 2 segundos convierten aproximadamente al doble que las que tardan más de 4. Los datos de nuestro cliente siguieron ese patrón al pie de la letra.</p>
-<h3>Lo que arreglamos bajo el capó</h3>
-<p>Los mayores avances vinieron de tres cambios: convertir imágenes hero de PNG a WebP (ahorró 1,8 segundos solo), eliminar un widget de chat sin uso que cargaba 12 scripts externos y activar caché del navegador para recursos estáticos. Ninguno requirió cambios de diseño. Fueron correcciones técnicas con impacto inmediato.</p>
-<h2>7. Propuestas de Valor Claras en Cada Página</h2>
-<p>Aplicamos una prueba simple a cada página: ¿puede un visitante responder "¿Por qué debería quedarme?" en 3 segundos? La mayoría fallaba. Abrían con historia de la empresa o lenguaje genérico del sector en lugar de un beneficio claro.</p>
-<p>Reescribimos los encabezados para liderar con resultados. "Reparación de AC el Mismo Día en Dallas" reemplazó a "Bienvenido a Nuestra Empresa de HVAC." "Con Licencia, Asegurados y con Garantía de 2 Años" reemplazó a "Somos una empresa familiar desde 1998."</p>
-<p>Ambos mensajes pueden ser ciertos. Uno vende. El otro solo existe.</p>
-<h2>Lo Que Aprendimos</h2>
-<p>La optimización de conversión no va de trucos, pop-ups ni contadores regresivos. Va de quitar fricción y hacer obvio el siguiente paso. Este cliente no necesitaba más tráfico. Necesitaba un sitio que convirtiera el tráfico que ya tenía.</p>
-<p>Si tu sitio recibe visitas pero no leads, empieza con estos siete cambios antes de subir el gasto en anuncios. Mide tu tasa de conversión base, haz un cambio a la vez y sigue el impacto durante 2 a 4 semanas. El efecto acumulado de mejoras pequeñas es cómo conviertes un sitio del 1,2% en una máquina del 5%.</p>
-<p>En Kinexis Digital construimos sitios diseñados para convertir desde el primer día. Pero si ya tienes un sitio que se ve bien y rinde mal, estas son las correcciones exactas que desplegamos primero.</p>`,
+    body: `<p>El sitio de un contratista debe facilitar que el visitante entienda el área de servicio, encuentre el trabajo que necesita y contacte al negocio. Revise el recorrido desde un teléfono antes de cambiar su presupuesto de anuncios. Estas son recomendaciones prácticas, no una promesa de resultados.</p>
+<h2>Simplifique la navegación</h2><p>Muestre servicios, áreas de atención y datos de contacto donde el visitante espera encontrarlos. Use etiquetas claras y deje las preguntas menos frecuentes en páginas de apoyo.</p>
+<h2>Aclare el siguiente paso</h2><p>Coloque un botón para llamar o escribir cerca de la descripción del servicio. Explique qué ocurre después del contacto. Indique un plazo de respuesta que su equipo pueda cumplir.</p>
+<h2>Publique información verificable</h2><p>Mantenga el oficio, el área de servicio, el horario y los datos de contacto actualizados. Publique solo licencias, seguros y credenciales que pueda verificar. Use fotografías propias con permiso.</p>
+<h2>Enfoque los formularios</h2><p>Pida los datos necesarios para responder y entender el trabajo. Identifique cada campo claramente. Explique cómo se usarán los datos y presente las opciones de consentimiento de forma clara.</p>
+<h2>Revise la experiencia móvil</h2><p>Lea la página desde un teléfono. Compruebe que el texto se ajuste a la pantalla, los botones sean fáciles de tocar y el enlace para llamar tenga el número correcto.</p>
+<h2>Compruebe el rendimiento</h2><p>Ajuste y comprima las fotografías, evite scripts innecesarios y reserve espacio para las imágenes. Use herramientas de rendimiento y compruebe la experiencia desde un teléfono real.</p>
+<h2>Explique su servicio con claridad</h2><p>Empiece por lo que hace y dónde trabaja. Describa el siguiente paso y sus límites. Mantenga precios, cancelaciones y garantías coherentes entre la página de inicio, el pago y los términos.</p>`,
   },
   "google-business-profile-tips": {
     title: "Google Business Profile: La Lista Completa de Optimización",
@@ -93,24 +66,24 @@ export const blogArticlesEsExpanded = {
 <p>Nombre del negocio (nombre legal exacto, sin rellenar de palabras clave), dirección o zona de servicio, teléfono, URL del sitio web, horario (incluidos festivos), categoría del negocio (principal más categorías adicionales) y descripción. Google te da 750 caracteres para la descripción. Úsalos.</p>
 <p>Escribe una descripción que incluya tus servicios principales, zonas de cobertura y qué te diferencia. No rellenes de palabras clave. Escribe para humanos que están decidiendo si llamarte.</p>
 <h3>Elige las categorías correctas</h3>
-<p>Tu categoría principal es la clasificación más importante que Google usa para tu ficha. Elige la que mejor coincida con tu servicio que más ingresos genera. Añade categorías secundarias para otros servicios que ofreces, pero no añadas categorías de cosas que no haces realmente. Vemos este error constantemente con contratistas generales que listan 12 categorías de oficios y confunden el algoritmo de Google.</p>
+
 <h2>Fotos: Tu Equipo de Ventas Silencioso</h2>
-<p>Los negocios con 50 o más fotos reciben un 47% más de solicitudes de indicaciones que los que tienen menos de 10. Las fotos no son decoración. Son prueba de que tu negocio es real, activo y profesional.</p>
+
 <h3>Qué subir</h3>
 <p>Exteriores de tu edificio o vehículos con marca. Interiores de oficina, showroom o espacio de trabajo. Fotos del equipo (empleados reales, no imágenes de stock). Antes y después para servicios aplicables. Fotos de productos si vendes bienes físicos. Fotos de proyectos completados.</p>
 <p>Sube al menos 50 imágenes de calidad. Añade entre 3 y 5 fotos nuevas cada mes para mantener el perfil fresco. Google favorece fichas que muestran actividad reciente.</p>
 <h3>Buenas prácticas con fotos</h3>
-<p>Usa luz natural cuando sea posible. Incluye tu marca en vehículos y uniformes. Geolocaliza las fotos si tu cámara o teléfono lo permite. Nombra los archivos de forma descriptiva antes de subirlos (por ejemplo, "remodelacion-cocina-dallas-tx.jpg" y no "IMG_4521.jpg").</p>
+
 <h2>Publicaciones: Mantente Visible en Búsqueda</h2>
 <p>Las publicaciones de GBP aparecen directamente en tu ficha y le dicen a Google que tu negocio está activo. Publica al menos una vez por semana. Recomendamos programar publicaciones cada lunes para que se convierta en hábito.</p>
 <h3>Tipos de publicación que funcionan</h3>
 <p>Ofertas especiales con fechas de vencimiento claras. Anuncios de eventos (puertas abiertas, eventos comunitarios, talleres). Lanzamientos de productos o servicios nuevos. Consejos estacionales relacionados con tu industria. Enlaces a nuevas entradas del blog o casos de estudio en tu sitio.</p>
 <p>Mantén las publicaciones cortas, incluye un botón CTA (Llamar, Saber Más, Reservar u Ordenar) y añade una imagen relevante. Las ofertas y eventos caducan a los 7 días, así que la constancia importa más que la perfección.</p>
 <h2>Reseñas: Construye Confianza y Rankings</h2>
-<p>Las reseñas influyen tanto en decisiones de clientes como en rankings locales. Un negocio con 4,8 estrellas y 200 reseñas superará en la mayoría de búsquedas locales a un competidor con 3,9 estrellas y 30 reseñas, aunque el de peor valoración tenga un sitio web mejor.</p>
+
 <h3>Configura un proceso de solicitud de reseñas</h3>
-<p>No esperes a que las reseñas lleguen solas. Monta un sistema simple: después de cada trabajo o cita completada, envía un mensaje o email con enlace directo a tu página de reseñas de Google. El momento importa. Pide dentro de las 24 a 48 horas posteriores al servicio, mientras la experiencia está fresca.</p>
-<p>Una clínica dental con la que trabajamos pasó de 42 reseñas en Google a 187 en ocho meses usando una secuencia de mensajes post-cita. Su posición en el local pack para "dentista cerca de mí" pasó del puesto 5 al 2.</p>
+
+
 <h3>Responde a cada reseña</h3>
 <p>Responde a todas en menos de 24 horas, positivas y negativas. Agradece a los positivos por nombre y menciona el servicio concreto. En las negativas, reconoce la preocupación, discúlpate si corresponde e invita al cliente a contactarte directamente para resolver el asunto. Nunca discutas en público.</p>
 <h2>Productos, Servicios y Preguntas y Respuestas</h2>
@@ -128,7 +101,7 @@ export const blogArticlesEsExpanded = {
     category: "Marketing",
     publishedAt: "12 de mayo de 2026",
     body: `<p>Esta es la pregunta más común que recibimos de dueños de negocio: ¿debería invertir primero en SEO o en Google Ads? La respuesta honesta depende de tu cronograma, tu presupuesto y lo que vendes realmente. Pero "depende" no ayuda sin contexto, así que vamos a desglosar cómo asesoramos a clientes en Kinexis Digital.</p>
-<p>Ambos canales funcionan. Hemos visto negocios construir flujos de ingresos de siete cifras solo con búsqueda orgánica, y hemos visto campañas de Google Ads generar leads cualificados en las 48 horas posteriores al lanzamiento. La pregunta no es qué canal es mejor. Es qué canal encaja con tu situación ahora mismo.</p>
+
 <h2>Entender el Intercambio Fundamental</h2>
 <p>El SEO es una inversión a largo plazo. Construyes activos (contenido, autoridad, posiciones) que se acumulan con el tiempo. Google Ads es un acelerador a corto plazo. Pagas por visibilidad inmediata, y esa visibilidad se detiene en el momento en que dejas de pagar.</p>
 <p>Piensa en el SEO como comprar una casa y en Google Ads como alquilar un apartamento. Ambos te dan un lugar donde estar. Uno construye patrimonio. El otro te da flexibilidad sin retorno a largo plazo.</p>
@@ -136,10 +109,10 @@ export const blogArticlesEsExpanded = {
 <h3>Tienes un horizonte de 6 meses o más</h3>
 <p>El SEO suele tardar entre 4 y 6 meses en mostrar resultados significativos para palabras clave competitivas, y entre 8 y 12 meses en alcanzar su potencial completo en un mercado local. Si necesitas leads este mes para cubrir nómina, el SEO solo no te salvará. Pero si puedes invertir de forma constante durante dos trimestres, los retornos empiezan a acumularse.</p>
 <h3>Tus márgenes son ajustados</h3>
-<p>Si el valor medio de tu trabajo es de 500 dólares y tu coste por clic es de 35, la búsqueda de pago se encarece rápido. Los clics orgánicos no cuestan nada una vez que posicionas. Para negocios con tickets bajos o márgenes finos, el SEO suele ofrecer mejor economía unitaria con el tiempo.</p>
+
 <h3>Tu industria tiene alto volumen de búsqueda orgánica</h3>
 <p>Algunas industrias reciben miles de búsquedas mensuales por palabras clave relacionadas con servicios. Servicios para el hogar, legal, médico y financiero suelen tener demanda orgánica fuerte. Si la gente en tu mercado busca activamente lo que vendes, posicionarte orgánicamente te pone delante de compradores sin pagar por clic.</p>
-<p>Tuvimos un cliente de bufete de inmigración que gastaba 8.000 dólares al mes en Google Ads con un coste por lead de 120 dólares. Tras 10 meses de inversión en SEO (3.500 dólares al mes), los leads orgánicos igualaron el volumen de pago y su coste por lead combinado bajó a 41 dólares.</p>
+
 <h2>Invierte Primero en Google Ads Cuando</h2>
 <h3>Necesitas leads esta semana</h3>
 <p>Google Ads puede activarse en días y generar llamadas en horas. Si lanzas un negocio nuevo, entras en un mercado nuevo o cubres un hueco estacional, la búsqueda de pago ofrece visibilidad inmediata mientras tu presencia orgánica crece.</p>
@@ -150,18 +123,18 @@ export const blogArticlesEsExpanded = {
 <h2>El Enfoque Híbrido que la Mayoría Necesita</h2>
 <p>Para la mayoría de negocios con los que trabajamos, la respuesta no es SEO o Google Ads. Es ambos, con presupuestos distintos en distintas etapas.</p>
 <h3>Meses 1-3: Los anuncios lideran, el SEO arranca</h3>
-<p>Lanza una campaña de Google Ads enfocada en tus palabras clave de mayor intención. Al mismo tiempo, empieza los fundamentos de SEO: auditoría técnica, optimización de GBP, limpieza de citaciones y tus primeras 4 a 6 piezas de contenido. Los anuncios generan leads e ingresos mientras el SEO construye la base.</p>
+
 <h3>Meses 4-9: Inversión equilibrada</h3>
 <p>Mantén el gasto en anuncios a un nivel que mantenga tu pipeline lleno. Aumenta la inversión en SEO en creación de contenido, link building y optimización de conversión. Empieza a seguir cómo crecen el tráfico y los leads orgánicos mes a mes.</p>
 <h3>Meses 10-18: Lo orgánico carga más peso</h3>
-<p>A medida que mejoran las posiciones orgánicas, puedes reducir el gasto en anuncios sin perder volumen total de leads. Muchos clientes pasan de una división 70/30 anuncios-SEO a 30/70 en un periodo de 18 meses. Los leads orgánicos cuestan menos por adquisición, así que el ROI combinado mejora aunque el gasto total en marketing se mantenga o baje.</p>
+
 <h2>Cómo Decidir para Tu Negocio</h2>
 <p>Haz esta evaluación rápida. Responde sí o no a cada pregunta.</p>
 <p>¿Necesitas leads en los próximos 30 días? ¿Tienes al menos 2.000 dólares al mes para invertir en marketing durante 6 meses o más? ¿Vale tu cliente medio más de 1.000 dólares? ¿Competidores activos en Google Ads en tu mercado? ¿La gente busca tus servicios en Google (revisa el Planificador de Palabras Clave)?</p>
 <p>Si respondiste sí a necesitar leads inmediatos y sí a alto valor de cliente, empieza con Google Ads y añade SEO en paralelo. Si tienes tiempo pero márgenes ajustados, empieza con SEO y añade anuncios modestos para tus términos de mayor intención. Si respondiste sí a todo, invierte en ambos desde el día uno con una división de presupuesto clara.</p>
 <h2>Qué No Hacer</h2>
-<p>No pongas todo el presupuesto en anuncios e ignores el SEO para siempre. Pagarás CPCs crecientes sin construir activos. No inviertas en SEO y esperes leads en 30 días. Te quemarás y abandonarás antes de que funcione. No repartas un presupuesto pequeño entre ambos canales tan fino que ninguno reciba datos suficientes para optimizar.</p>
-<p>Elige un canal principal según tu cronograma, comprométete al menos 90 días y apóyalo con el canal secundario al nivel que permita tu presupuesto. Mide coste por lead, no solo tráfico o impresiones.</p>
+
+
 <p>En Kinexis Digital construimos estrategias de búsqueda integradas para negocios que quieren crecimiento predecible. Si no sabes por dónde empezar, ese suele ser el mejor punto: una conversación sobre tus números, tu cronograma y qué significa ganar para tu negocio.</p>`,
   },
   "technical-seo-fundamentals": {
@@ -217,40 +190,40 @@ export const blogArticlesEsExpanded = {
     body: `<p>Después de trabajar con decenas de negocios de servicios locales en los últimos tres años, dejamos de recomendar marketing disperso. Los dueños que prueban un poco de todo (un anuncio de Facebook aquí, un folleto allá, una táctica de SEO aleatoria que leyeron) casi siempre queman presupuesto sin construir momentum.</p>
 <p>Los negocios que crecen de forma predecible se centran en cinco canales. No quince. Cinco. Los ejecutan con constancia, miden resultados y acumulan esfuerzos con el tiempo. Este es el playbook que usamos en Kinexis Digital en cada proyecto con clientes locales.</p>
 <h2>Canal 1: Google Business Profile</h2>
-<p>Coste: gratis. Inversión de tiempo: 2 a 3 horas por semana. Impacto en visibilidad local: muy alto.</p>
+
 <p>Tu Google Business Profile es la puerta de entrada a la búsqueda local. Aparece en Google Maps, en el local pack de 3 y en resultados de búsqueda de marca. Ningún otro activo te da tanta visibilidad a coste cero.</p>
 <p>Qué hacer: completa cada campo, publica actualizaciones semanales, sube fotos frescas cada mes, responde a cada reseña en menos de 24 horas y sigue llamadas y solicitudes de indicaciones en GBP Insights. Una empresa de techos pasó de 8 llamadas de Google al mes a 34 solo por publicar fotos de antes y después cada semana y pedir reseñas a clientes satisfechos por mensaje.</p>
 <p>Este canal solo no construirá todo tu negocio, pero ignorarlo mientras gastas dinero en otros sitios es uno de los errores más comunes que vemos.</p>
 <h2>Canal 2: SEO Local</h2>
-<p>Coste: 1.500 a 4.000 dólares al mes (agencia o tiempo interno). Tiempo hasta resultados: 4 a 8 meses. Impacto: acumulativo, a largo plazo.</p>
+
 <p>El SEO local es cómo apareces cuando alguien busca "fontanero cerca de mí" o "mejor dentista en [tu ciudad]." Incluye optimización on-page, contenido por ubicación, construcción de citaciones, generación de reseñas y salud técnica del sitio.</p>
 <h3>Lo que mueve la aguja</h3>
-<p>Páginas de zona de servicio para cada barrio que cubres. Un blog que publica entre 2 y 4 entradas locales relevantes al mes. Datos NAP consistentes en más de 40 directorios. Velocidad de reseñas de 3 a 5 reseñas nuevas en Google al mes. Enlaces internos entre páginas de servicio, páginas de ubicación y contenido del blog.</p>
-<p>Un cliente de HVAC en un mercado mediano de Texas pasó de 200 sesiones orgánicas al mes a 1.400 en 14 meses. Su coste por lead orgánico es ahora de 12 dólares frente a 67 de Google Ads. El SEO requiere paciencia, pero la economía es difícil de superar una vez que arranca.</p>
+
+
 <h2>Canal 3: Google Ads (Local)</h2>
-<p>Coste: 1.000 a 5.000 dólares al mes en gasto publicitario más gestión. Tiempo hasta resultados: días a semanas. Impacto: flujo inmediato de leads.</p>
+
 <p>Google Ads local te coloca arriba en resultados de búsqueda mientras tu SEO crece. Para negocios de servicios, campañas de Búsqueda orientadas a palabras clave de alta intención ("reparación urgente de calentador de agua," "abogado penalista [ciudad]") generan llamadas en horas desde el lanzamiento.</p>
 <h3>Cómo ejecutar anuncios locales sin desperdiciar dinero</h3>
 <p>Delimita geográficamente tus campañas a tu zona de servicio real. Usa anuncios solo de llamada o extensiones de llamada para que usuarios móviles puedan tocar para llamar. Envía tráfico a landing pages dedicadas, no a tu página de inicio. Rastrea llamadas con números de seguimiento para saber qué palabras clave generan ingresos, no solo clics.</p>
 <p>Establece un presupuesto mensual que puedas sostener al menos 90 días. Google Ads necesita datos para optimizar. Abandonar a las tres semanas porque "no viste resultados" es como cerrar una tienda tras su primer martes flojo.</p>
 <h2>Canal 4: Programas de Referidos</h2>
-<p>Coste: variable (típicamente 10-15% del valor del trabajo referido). Tiempo hasta resultados: inmediato una vez activado. Impacto: mayor tasa de cierre de cualquier canal.</p>
+
 <p>Los clientes referidos cierran entre 2 y 3 veces más que los leads fríos. Confían en ti antes de la primera conversación porque alguien que conocen te recomendó. Sin embargo, la mayoría de negocios locales no tienen un sistema formal de referidos.</p>
 <h3>Construye un motor de referidos simple</h3>
-<p>Pregunta a cada cliente satisfecho al terminar el trabajo: "¿Conoces a alguien más que pueda necesitar [tu servicio]?" Ofrece un incentivo tangible: 50 dólares de descuento en su próximo servicio, una tarjeta regalo o una donación a una organización local en su nombre. Hazlo fácil con una tarjeta de referido, un enlace por mensaje o una página dedicada en tu sitio.</p>
-<p>Rastrea referidos en tu CRM o incluso en una hoja de cálculo simple. Sabe quién refiere más negocio y agradécele personalmente. Un cliente de jardinería genera el 22% de sus ingresos solo con referidos porque sistematizó la petición y el seguimiento.</p>
+
+
 <h2>Canal 5: Presencia Comunitaria</h2>
-<p>Coste: 500 a 3.000 dólares al año. Tiempo hasta resultados: 3 a 6 meses. Impacto: autoridad de marca y señales de confianza local.</p>
+
 <p>Google no puede medirlo todo. Cuando el nombre de tu negocio aparece en el cartel de patrocinador de la liga infantil, en el directorio de la cámara de comercio local y en el periódico cubriendo tu evento benéfico, construyes autoridad en el mundo real que se traduce en confianza online.</p>
 <h3>Dónde aparecer</h3>
 <p>Membresía en la cámara de comercio local. Patrocinios de deportes juveniles (camisetas, banners, derechos de nombre de torneos). Eventos comunitarios (mercados de agricultores, ferias del hogar, carreras benéficas). Grupos de networking de negocios locales. Alianzas con negocios complementarios (un pintor con una inmobiliaria, un dentista con un ortodoncista).</p>
 <p>Cada punto de contacto comunitario es una cita potencial, un backlink y una impresión de marca. Haz fotos en eventos y publícalas en tu GBP y redes sociales. Menciona alianzas locales en tu sitio web.</p>
 <h2>Cómo Fasear Estos Cinco Canales</h2>
 <p>No necesitas lanzar los cinco a la vez. Esta es la secuencia que recomendamos para la mayoría de negocios locales que empiezan desde cero.</p>
-<p><strong>Mes 1:</strong> optimiza tu GBP y configura un proceso de solicitud de reseñas. Lanza Google Ads con un presupuesto enfocado. Empieza a pedir referidos en cada trabajo completado.</p>
+
 <p><strong>Meses 2-3:</strong> inicia SEO local (auditoría técnica, citaciones, primeras páginas de ubicación). Únete a una organización comunitaria o patrocina un evento local. Refina campañas de anuncios según datos de seguimiento de llamadas.</p>
-<p><strong>Meses 4-6:</strong> publica contenido local con constancia. Formaliza tu programa de incentivos por referidos. Evalúa el crecimiento orgánico y ajusta el gasto en anuncios según el volumen de leads por canal.</p>
-<p><strong>Meses 7-12:</strong> refuerza los dos canales que ofrezcan el mejor coste por cliente adquirido. Para la mayoría de negocios, eso acaba siendo SEO local y referidos, con Google Ads a nivel de mantenimiento y GBP gestionado semanalmente.</p>
+
+
 <h2>Mide lo Que Importa</h2>
 <p>Sigue coste por lead y coste por cliente adquirido por canal. No impresiones. No sesiones del sitio. No seguidores en redes sociales. ¿Cuánto gastaste y cuántos clientes de pago produjo cada canal?</p>
 <p>Revisa estos números cada mes. Desplaza presupuesto hacia canales que rinden y aleja de los que no. El playbook funciona cuando te comprometes el tiempo suficiente para ver datos reales.</p>
@@ -261,21 +234,21 @@ export const blogArticlesEsExpanded = {
     category: "SEO",
     publishedAt: "14 de julio de 2026",
     body: `<p>Los precios de SEO son de los temas más opacos del marketing digital. Las agencias cobran entre 500 y 30.000 dólares al mes, y casi nunca queda claro qué separa la opción barata de la premium. Si estás presupuestando SEO, el rango es confuso a propósito.</p>
-<p>En Kinexis Digital trabajamos con negocios que ya se quemaron con retainers de 500 dólares al mes que no produjeron nada, y con otros que pagaron de más a agencias que no sabían explicar su proceso. Esta guía desglosa qué compras en cada tramo, cómo saber si la inversión es razonable para tu mercado y qué esperar en cada nivel.</p>
+
 <h2>Los Tres Niveles de Precio</h2>
 <h3>Nivel 1: SEO básico / local (500 a 1.500 dólares al mes)</h3>
 <p>A este precio sueles recibir optimización de Google Business Profile, ajustes on-page básicos, citaciones y quizá un par de artículos al mes. Encaja en negocios locales muy pequeños con poca competencia: un fontanero de un solo local, un restaurante de barrio, un dentista autónomo.</p>
 <p>Lo que no entra: link building serio, auditorías técnicas profundas, investigación competitiva de keywords ni estrategia dedicada. La agencia reparte el tiempo entre muchos clientes y te da un servicio estandarizado.</p>
-<p>Mejor para: mercados locales poco competitivos con un presupuesto de marketing total por debajo de 2.000 dólares al mes. Si eres techador en un pueblo donde el resto no tiene web, este nivel puede funcionar.</p>
+
 <h3>Nivel 2: SEO profesional (2.000 a 5.000 dólares al mes)</h3>
 <p>Es el punto dulce para la mayoría de negocios de servicios, B2B y tiendas ecommerce en mercados de competencia media. Aquí deberías tener un estratega o account manager dedicado, research de keywords a medida, correcciones técnicas priorizadas por impacto, contenido regular y un programa de enlaces.</p>
 <p>La diferencia con el Nivel 1 es la estrategia. En vez de parches de plantilla, la agencia debería analizar tu mercado, tus competidores y tu sitio para armar un plan concreto. También deberías recibir reporting que conecte el SEO con métricas de negocio, no solo rankings y tráfico.</p>
-<p>En Kinexis Digital los programas empiezan en este rango. Incluyen auditorías técnicas, keywords de intención de compra, clusters de contenido, on-page y link building. La mayoría de clientes en este nivel ve crecimiento medible de leads en 4 a 6 meses.</p>
-<p>Mejor para: negocios locales en mercados competitivos, empresas de servicios regionales, B2B de 5 a 50 empleados y tiendas con 50 a 500 productos.</p>
+
+
 <h3>Nivel 3: SEO enterprise (6.000 a 30.000 dólares o más al mes)</h3>
-<p>El SEO enterprise implica varios estrategas, equipos de contenido, ingenieros técnicos y, a menudo, trabajo conjunto con marketing e ingeniería internos. Este nivel es para sitios grandes (más de 10.000 páginas), marcas nacionales o internacionales e industrias muy competitivas.</p>
-<p>Pagas escala: más contenido (8 a 20 piezas al mes), link building agresivo (PR digital, guest posting a escala), revisiones de arquitectura y reporting a medida.</p>
-<p>Mejor para: ecommerce con más de 1.000 productos, cadenas nacionales, SaaS con ciclo enterprise y cualquier negocio que compita por keywords donde los 10 primeros resultados tienen 500 o más backlinks.</p>
+
+
+
 <h2>Qué Compras Realmente con el Precio</h2>
 <table>
 <tr><th>Servicio</th><th>Nivel 1</th><th>Nivel 2</th><th>Nivel 3</th></tr>
@@ -286,19 +259,19 @@ export const blogArticlesEsExpanded = {
 <tr><td>Reporting</td><td>PDF mensual de rankings</td><td>Dashboard + seguimiento de leads</td><td>Dashboard en tiempo real + pipeline</td></tr>
 </table>
 <h2>Auditoría Puntual vs Inversión Mensual</h2>
-<p>Algunas agencias venden auditorías o proyectos. Una auditoría (1.500 a 5.000 dólares) te da una foto de lo que falla y una lista priorizada. Sirve como punto de partida. Sola no cambia tus rankings.</p>
-<p>El SEO por proyecto (migración, refresco de contenido, limpieza técnica) suele ir de 3.000 a 15.000 dólares según el alcance.</p>
+
+
 <p>El SEO de verdad es inversión mensual: publicar, enlazar, vigilar rankings y adaptarse al algoritmo. Si una agencia dice que puede "arreglar tu SEO" en un mes a tanto alzado, te está vendiendo una auditoría con otro nombre.</p>
 <h2>Cómo Saber Si el Precio Es Justo</h2>
 <p>Un precio justo depende de tres cosas: lo que vale un cliente para tu negocio, el nivel de competencia y la calidad del proceso de la agencia.</p>
-<p>Calcula el valor de vida del cliente. Si cierras tratos de 5.000 dólares y el SEO genera 10 clientes nuevos al año a un coste de 36.000 (3.000 al mes), son 50.000 en ingresos frente a 36.000 de gasto. Un 38% de retorno. Si el mismo gasto genera 20 clientes, el ROI salta al 177%.</p>
-<p>Compara con tu coste por lead en otros canales. Si pagas 50 dólares por lead en Google Ads y el SEO produce leads a 25, la inversión se paga en economía unitaria antes de contar el crecimiento compuesto.</p>
+
+
 <p>Pide casos en tu sector o en un mercado parecido. Los testimonios genéricos son fáciles. Resultados concretos de un negocio con la misma dinámica, no.</p>
 <h2>Trampas Habituales</h2>
 <p>Desconfía de quien garantiza el nº 1. Nadie puede, Google controla el algoritmo. Desconfía de contratos de más de 6 meses sin condiciones de rendimiento. Desconfía del precio demasiado bueno: 500 dólares al mes de SEO en un mercado competitivo casi siempre es spam automatizado que te puede penalizar.</p>
 <p>Desconfía también de quien reporta solo rankings y tráfico sin ligarlos a leads o ingresos. Un ranking en primera página de una keyword que nadie busca no vale nada.</p>
 <h2>Qué Recomendamos</h2>
-<p>Empieza por saber lo que vale un cliente y lo que puedes invertir al mes. Para la mayoría de negocios, 2.000 a 5.000 dólares al mes es el rango donde el SEO profesional es posible y el ROI se puede medir.</p>
+
 <p>Comprométete al menos 6 meses. El SEO se acumula. Tres meses casi nunca bastan. Entre seis y nueve es donde coge ritmo. A los doce suele ser tu canal más eficiente.</p>
 <p>Si no sabes por dónde empezar, pide una llamada de estrategia y pregunta: cómo es el proceso, cómo priorizan, qué han conseguido con negocios como el tuyo y cómo miden. La calidad de las respuestas dice más que la cifra.</p>
 <p>En Kinexis Digital somos claros con lo que entregamos en cada nivel de inversión. <a href="/services#seo">Mira cómo funcionan nuestros programas de SEO →</a></p>`,
@@ -311,10 +284,10 @@ export const blogArticlesEsExpanded = {
 <p>En Kinexis Digital hemos llevado programas de SEO para decenas de negocios de servicios del hogar, B2B, ecommerce y profesionales. Los plazos cambian con la competencia, el presupuesto y el punto de partida. El patrón es lo bastante estable para darte una hoja de ruta realista.</p>
 <h2>La Respuesta Corta</h2>
 <h3>Correcciones técnicas: 2 a 4 semanas</h3>
-<p>Si el sitio tiene problemas de indexación, errores de crawl o bloqueos técnicos obvios, esas son las piezas más rápidas de arreglar y suelen dar la señal más temprana. Hemos visto clientes pasar de "no indexado" a "página 3" en menos de 30 días solo limpiando lo que impedía a Google encontrar sus mejores páginas.</p>
-<p>Ejemplo: un cliente SaaS B2B tiraba el 40% del crawl budget en URLs filtradas de producto. Tras consolidar duplicados y ajustar robots, las sesiones orgánicas subieron un 31% en 90 días sin contenido nuevo.</p>
+
+
 <h3>On-page y contenido: 2 a 4 meses</h3>
-<p>El research de keywords, el contenido y el on-page tardan más en acumularse. Google tiene que encontrar las páginas nuevas, rastrearlas, evaluar relevancia y decidir dónde colocarlas. Una pieza nueva para una keyword poco competitiva puede moverse en 6 a 8 semanas. En términos competitivos, espera 4 a 6 meses antes de ver cambios de ranking de verdad.</p>
+
 <h3>Link building y autoridad: 6 a 12 meses</h3>
 <p>Es el tramo más largo porque no lo controlas tú. Ganar enlaces de sitios serios pide outreach, relaciones y contenido que merezca el enlace. La autoridad de dominio se acumula despacio. Un sitio nuevo sin backlinks no adelanta en tres meses a un competidor de 10 años con 500 dominios de referencia.</p>
 <p>Eso no hace el link building opcional. Significa que hay que empezar pronto y no parar.</p>
@@ -339,7 +312,7 @@ export const blogArticlesEsExpanded = {
 </ul>
 <h2>Qué Afecta la Velocidad</h2>
 <p><strong>Competencia.</strong> Un fontanero en un pueblo rankea "fontanero cerca de mí" más rápido de lo que un SaaS nacional rankea "software de gestión de proyectos." El SEO local se mueve antes porque la superficie competitiva es más pequeña.</p>
-<p><strong>Presupuesto.</strong> Más contenido, más recursos técnicos, más outreach de enlaces. Todo se acumula antes. Un programa de 2.000 dólares al mes tarda más que uno de 8.000. Hay rendimientos decrecientes: duplicar el gasto no recorta el plazo a la mitad.</p>
+
 <p><strong>Punto de partida.</strong> Un sitio con contenido, algunos backlinks y sin fallos técnicos sale por delante de un dominio nuevo. Si tu web lleva años pero nunca tuvo SEO, tienes activos sobre los que construir.</p>
 <p><strong>Ritmo de contenido.</strong> Publicar 4 piezas al mes da resultados antes que 1. La constancia pesa más que el volumen. Un sitio que publica cada semana durante 12 meses casi siempre gana a uno que suelta 20 posts en un mes y para.</p>
 <h2>Cuándo Esperar Ingresos</h2>
@@ -350,15 +323,6 @@ export const blogArticlesEsExpanded = {
 <li>Meses 7 a 12: las páginas de servicio core ganan tracción. El volumen de leads orgánicos debería crecer mes a mes. El SEO pasa a ser un canal predecible.</li>
 <li>Más de 12 meses: entra el efecto compuesto. El contenido existente rankea para más keywords, los backlinks se acumulan y el orgánico se convierte en una fuente principal de leads.</li>
 </ul>
-<h2>Cómo Se Ve un Crecimiento Realista</h2>
-<p>Seguimos resultados reales en la cartera de clientes. Un crecimiento típico de SEO se parece a esto:</p>
-<ul>
-<li>Mes 0 a 3: 0 a 200 sesiones orgánicas al mes (sitio nuevo).</li>
-<li>Mes 3 a 6: 200 a 800 sesiones orgánicas al mes.</li>
-<li>Mes 6 a 12: 800 a 3.000 sesiones orgánicas al mes.</li>
-<li>Año 2: 3.000 a 10.000+ sesiones orgánicas al mes.</li>
-</ul>
-<p>Los números varían mucho por sector y geografía. Un fontanero local con 500 sesiones al mes puede facturar más que un SaaS B2B con 5.000. El tráfico es contexto. Los leads y los ingresos son lo que cuenta.</p>
 <h2>Cómo Acelerar Sin Atajos</h2>
 <p>No puedes saltarte el SEO, pero sí puedes dejar de frenarlo. No cambies URLs cuando empiezan a rankear. No rediseñes sin preservar redirecciones. No pauses el programa a los tres meses porque aún no estás en primera página.</p>
 <p>Prioriza lo técnico primero (impacto más rápido). Publica con constancia (efecto compuesto). Gana enlaces de sitios relevantes (autoridad). Mide leads e ingresos, no solo rankings.</p>
@@ -371,7 +335,7 @@ export const blogArticlesEsExpanded = {
     publishedAt: "20 de junio de 2026",
     body: `<p>La mayoría trata el email nurture como una newsletter: un envío periódico sin camino claro a ingresos. Los suscriptores reciben un email de bienvenida, quizá una actualización mensual, y luego silencio hasta la próxima promoción. Eso no es nurture. Es ruido.</p>
 <p>Las secuencias que realmente agendan llamadas están estructuradas de otra forma. Se construyen con un solo objetivo: llevar al suscriptor de la curiosidad a una conversación. Cada email tiene una función. Cada envío está programado según dónde está el lector en su proceso de decisión.</p>
-<p>Hemos construido secuencias de nurture para bufetes de abogados, empresas de servicios para el hogar, startups SaaS y consultores B2B en Kinexis Digital. Los frameworks de abajo son los que producen llamadas de descubrimiento reservadas de forma consistente, no solo aperturas y clics.</p>
+
 <h2>Empieza con Segmentación, No con un Envío Masivo</h2>
 <p>Antes de escribir un solo email, segmenta por intención. Quien descargó una guía de precios no es igual a quien leyó un artículo de la parte alta del embudo. Quien visitó tu página de casos de estudio tres veces está más avanzado que quien se suscribió desde un popup genérico de la página de inicio.</p>
 <p>Usamos tres tracks principales para negocios de servicios:</p>
@@ -389,11 +353,11 @@ export const blogArticlesEsExpanded = {
 <p>Ejemplo para una agencia de marketing: "Los 3 números que todo dueño de negocio local debería revisar en Google Analytics cada lunes." Ejemplo para un bufete: "Qué documentar inmediatamente después de un accidente de tráfico (la mayoría se salta el punto 3)."</p>
 <p>Un insight accionable por email. No una clase magistral. No una lista de 20 consejos. Una cosa que puedan hacer ahora mismo.</p>
 <h3>Email 3: Prueba social</h3>
-<p>Comparte un resultado de cliente, testimonio o antes/después que refleje la situación del lector. La especificidad lo es todo. "Ayudamos a una empresa de fontanería de 12 personas en Denver a pasar de 15 a 52 llamadas de Google al mes en 90 días" supera a "¡A nuestros clientes les encantamos!"</p>
+
 <p>Incluye una foto si es posible. Nombres reales de clientes y cifras reales generan más confianza que citas anónimas.</p>
 <h3>Email 4: Manejo de objeciones</h3>
 <p>Aborda las tres razones principales por las que la gente no agenda: coste, timing y confianza. No necesitas nombrarlas explícitamente. Estructura el email para disolver cada preocupación de forma natural.</p>
-<p>Coste: explica qué incluye tu precio y cómo se ve el ROI. Timing: explica cómo son los primeros 30 días trabajando juntos. Confianza: comparte credenciales, garantías u oferta de reversión de riesgo (auditoría gratis, consulta sin compromiso).</p>
+
 <h3>Email 5: CTA directo</h3>
 <p>Una sola petición clara: agendar una llamada. Enlaza a una herramienta de calendario (Calendly, HubSpot Meetings, etc.), no a un formulario de contacto genérico. Los formularios añaden fricción. Los enlaces de calendario la quitan.</p>
 <p>Mantén el email corto. Tres frases máximo antes del botón. "Si [problema] te está costando [consecuencia], hablemos. Tengo huecos de 15 minutos esta semana. Elige el que te venga bien."</p>
@@ -407,13 +371,13 @@ export const blogArticlesEsExpanded = {
 <h2>Escribir Emails que Suenen Humanos</h2>
 <p>Escribe como hablas. Párrafos cortos. Lenguaje claro. Sin relleno corporativo. Lee el email en voz alta antes de enviarlo. Si no lo dirías a un cliente sentado frente a ti, reescríbelo.</p>
 <p>Los asuntos deben generar curiosidad o prometer un resultado concreto. "Una pregunta rápida sobre tus rankings en Google" supera a "Newsletter de junio." "La página de tu sitio que te está costando leads" supera a "Consejos de Optimización Web."</p>
-<p>Mantén los emails por debajo de 200 palabras cuando sea posible. La gente ocupada hace lectura rápida en el móvil entre reuniones. Respeta su tiempo.</p>
+
 <h2>Qué Medir</h2>
 <p>No uses la tasa de apertura como métrica principal. Apple Mail Privacy Protection y otras herramientas han hecho las aperturas poco fiables. Sigue esto en su lugar:</p>
-<p><strong>Tasa de clic a reserva:</strong> ¿qué porcentaje de quienes hacen clic en email realmente agenda una llamada? Objetivo 15-25% para segmentos de alta intención.</p>
-<p><strong>Tasa de asistencia a llamadas:</strong> ¿qué porcentaje de llamadas reservadas realmente ocurre? Si la gente reserva pero no aparece, tu promesa en el Email 5 puede estar exagerada o tu sistema de recordatorios necesita trabajo.</p>
+
+
 <p><strong>Coste por llamada reservada desde email:</strong> coste total de la plataforma de email más tiempo de creación de contenido, dividido entre llamadas reservadas. Compáralo con tu coste por lead de anuncios u otros canales.</p>
-<p>Una secuencia que agenda entre el 3% y el 5% de suscriptores activos en llamadas de descubrimiento está cumpliendo su trabajo para la mayoría de negocios B2B y de servicios locales. Si alcanzas ese benchmark, escala impulsando más opt-ins. Si estás por debajo del 2%, audita segmentación, asuntos y claridad del CTA antes de reescribir toda la secuencia.</p>
+
 <h2>Errores Comunes que Vemos</h2>
 <p>Enviar la misma secuencia a todos sin importar cómo se registraron. Esperar demasiado para pedir la llamada (si esperas 30 días, ya olvidaron quién eres). Incluir múltiples CTAs por email (un email, una acción). Escribir emails que suenan generados por máquina (si no dirías "sinergiza tus esfuerzos de marketing" en persona, no lo pongas en un email).</p>
 <p>El email nurture no va de volumen. Va de relevancia, timing y un camino claro de suscriptor a conversación. Construye la secuencia una vez, mídela cada mes y refina según lo que digan los datos.</p>
