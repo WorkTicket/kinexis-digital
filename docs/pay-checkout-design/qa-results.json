@@ -1,0 +1,74 @@
+[
+  {
+    "locale": "en",
+    "theme": "light",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "en",
+    "theme": "light",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "en",
+    "theme": "dark",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "es-419",
+    "theme": "light",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "es-419",
+    "theme": "light",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "es-419",
+    "theme": "dark",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "es-419",
+    "theme": "dark",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "es-ES",
+    "theme": "light",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "es-ES",
+    "theme": "light",
+    "device": "mobile",
+    "status": "passed"
+  },
+  {
+    "locale": "es-ES",
+    "theme": "dark",
+    "device": "desktop",
+    "status": "passed"
+  },
+  {
+    "locale": "es-ES",
+    "theme": "dark",
+    "device": "mobile",
+    "status": "passed"
+  }
+]

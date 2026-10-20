@@ -3,6 +3,9 @@ import "@/styles/routes/contact.css";
 import { CreditCard, Landmark, Receipt } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PayForm } from "@/components/pay/PayForm";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { PageHero } from "@/components/page/PageHero";
 import { PlanCheckout } from "@/components/pay/PlanCheckout";
 import { getPlanContent } from "@/content/pay-plans";
 import "@/styles/routes/pay.css";
@@ -46,14 +49,24 @@ export default async function PayPage({ params, searchParams }: Props) {
   const locale = await resolveLocale(params);
   const query = await searchParams;
   const c = getPayContent(locale);
+  const plans = getPlanContent(locale);
 
   return (
-    <main className="relative flex flex-1 flex-col">
+    <main className="pay-page relative flex flex-1 flex-col">
+      <PageHero
+        eyebrow={plans.eyebrow}
+        title={plans.title}
+        copy={plans.intro}
+        compact
+        hideActions
+        className="pay-page-hero"
+        meta={<div className="pay-hero-meta"><p>{plans.preview} <Link href="/contact">{plans.previewLink}<ArrowUpRight size={14} aria-hidden /></Link> {plans.first}</p><a href="#pay-invoice">{plans.invoiceLink}<ArrowUpRight size={14} aria-hidden /></a></div>}
+      />
       <PlanCheckout locale={locale} />
 
-      <section className="chapter chapter--studio relative">
+      <section id="pay-invoice" className="pay-invoice chapter chapter--studio relative" aria-labelledby="pay-invoice-heading">
         <div className="shell relative py-16 md:py-24">
-          <h2 className="mb-8 text-3xl font-bold">{getPlanContent(locale).invoice}</h2>
+          <h2 id="pay-invoice-heading" className="type-section mb-8">{plans.invoice}</h2>
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_300px]">
             <Reveal variant="fadeUp">
               <PayForm

@@ -5,22 +5,42 @@ import { PlanCheckout } from "./PlanCheckout";
 import { getPlanContent } from "@/content/pay-plans";
 import { PayPalSubscribeButtons } from "./PayPalSubscribeButtons";
 import { loadPayPalSDK, type PayPalOptions } from "@/lib/paypal-subscriptions";
+import { PAYPAL_PLANS } from "@/config/paypal-plans";
 vi.mock("next/navigation", () => ({ useRouter: () => router }));
 vi.mock("@/lib/paypal-subscriptions", async importOriginal => ({ ...await importOriginal<object>(), loadPayPalSDK: vi.fn() }));
 const router = { push: vi.fn() };
 afterEach(() => { cleanup(); vi.clearAllMocks(); });
 describe("plan agreement", () => {
-  it("gates every subscription button and Own It link, including after unchecking", () => {
+  it("gates the selected checkout and preserves agreement when choosing Own It", () => {
     vi.mocked(loadPayPalSDK).mockReturnValue(new Promise(() => {}));
     render(<PlanCheckout locale="en" />);
+    expect(screen.getByRole("radio", { name: /Lead System/ })).toBeChecked();
+    expect(document.querySelectorAll('.pay-button-wrap[aria-disabled="true"]')).toHaveLength(1);
+    fireEvent.click(screen.getByRole("checkbox"));
+    expect(document.querySelector('.pay-button-wrap')).toHaveAttribute("aria-disabled", "false");
+    fireEvent.click(screen.getByRole("radio", { name: /Own It/ }));
     const own = screen.getByText("Pay $1,497 with PayPal");
-    expect(own).not.toHaveAttribute("href");
-    expect(document.querySelectorAll('.pay-button-wrap[aria-disabled="true"]')).toHaveLength(3);
-    fireEvent.click(screen.getByRole("checkbox"));
     expect(own).toHaveAttribute("href", "https://www.paypal.com/ncp/payment/24TVQPFTKBCGW");
-    expect(document.querySelectorAll('.pay-button-wrap[aria-disabled="false"]')).toHaveLength(3);
+    expect(document.querySelector('.pay-summary-price')).toHaveTextContent("$1,497");
+    expect(document.querySelector('.pay-button-wrap')).toBeNull();
     fireEvent.click(screen.getByRole("checkbox"));
     expect(own).not.toHaveAttribute("href");
+    expect(own).toHaveAttribute("aria-disabled", "true");
+    fireEvent.click(screen.getByRole("radio", { name: /Website/ }));
+    expect(document.querySelector('.pay-button-wrap')).toHaveAttribute("aria-disabled", "true");
+  });
+  it("updates features, price and PayPal plan together when another plan is selected", async () => {
+    let options!: PayPalOptions;
+    vi.mocked(loadPayPalSDK).mockResolvedValue({ Buttons: config => { options = config; return { render: vi.fn().mockResolvedValue(undefined), close: vi.fn().mockResolvedValue(undefined) }; } });
+    render(<PlanCheckout locale="es-ES" />);
+    fireEvent.click(screen.getByRole("checkbox"));
+    fireEvent.click(screen.getByRole("radio", { name: /Plus/ }));
+    await waitFor(() => expect(document.querySelector('.pay-loading')).toBeNull());
+    expect(document.querySelector('.pay-summary-price')).toHaveTextContent("$297 /mes");
+    expect(screen.getByText("Sitio completo en inglés y español, hasta 20 páginas")).toBeInTheDocument();
+    const create = vi.fn().mockResolvedValue("mock-subscription");
+    await options.createSubscription({}, { subscription: { create }, reject: vi.fn() });
+    expect(create).toHaveBeenCalledExactlyOnceWith({ plan_id: PAYPAL_PLANS.plus.planId });
   });
   it("uses PayPal controls and rejects attempts without agreement", async () => {
     let options!: PayPalOptions;
