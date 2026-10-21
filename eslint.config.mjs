@@ -1,31 +1,17 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  {
-    ignores: ["kinexis-houston-demo-sites/**",".next/**", "node_modules/**", "sanity/**", "**/next-env.d.ts", "**/.wrangler/**", ".open-next/**", "cloudflare/gtag-wrapper.js", ".tmp-*/**", ".tmp-*", "tmp/**", "tmp-*.mjs", "scripts/fonts-src/**"],
-  },
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  {
-    rules: {
-      "@typescript-eslint/no-unused-vars": [
-        "warn",
-        {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
-          caughtErrorsIgnorePattern: "^_",
-        },
-      ],
-    },
-  },
-];
-
-export default eslintConfig;
+export default defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  globalIgnores([
+    ".next/**",
+    ".open-next/**",
+    ".wrangler/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    "cloudflare-env.d.ts",
+  ]),
+]);

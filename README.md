@@ -1,152 +1,66 @@
-# KINEXIS Digital — Website
+# Kinexis Digital
 
-Production marketing website for [KINEXIS Digital](https://www.kinexisdigital.com) — a premium growth agency focused on strategic websites, SEO, paid media, and measurable business growth.
+Marketing site for Kinexis Digital, built with Next.js 16 (App Router) and
+deployed to Cloudflare Workers through the OpenNext adapter.
 
-Built with Next.js 15, TypeScript, and Tailwind CSS. English-only redesign with unprefixed routes across services, industries, blog, case studies, and resources.
+## Requirements
 
-## Tech stack
+- Node.js 22+ (Node 24 LTS recommended)
+- npm 11+
+- A Cloudflare account for deploys (`npx wrangler login`)
 
-- **Framework:** Next.js 15 (App Router), React 19, TypeScript
-- **Styling:** Tailwind CSS, Framer Motion
-- **Forms & API:** Nodemailer (contact, lead), rate limiting, sanitization
-- **Analytics:** Google Analytics, Microsoft Clarity (cookie-consent gated)
-- **Monitoring:** Sentry (optional)
-- **Deployment:** Cloudflare Workers via [@opennextjs/cloudflare](https://opennext.js.org/cloudflare)
-- **CMS schemas:** Sanity schema definitions in `sanity/` (content is file-based in `src/content/`)
+## Commands
 
-## Features
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Local dev server at http://localhost:3000 |
+| `npm run build` | Production Next.js build |
+| `npm run lint` | ESLint (flat config) |
+| `npm run typecheck` | TypeScript, no emit |
+| `npm run preview` | Build for Workers and serve locally in the Workers runtime |
+| `npm run deploy` | Build and deploy to Cloudflare Workers |
+| `npm run upload` | Build and upload a new version without deploying it |
+| `npm run cf-typegen` | Regenerate `cloudflare-env.d.ts` from `wrangler.jsonc` |
 
-- Homepage, about, contact, resources, audit scorecard, and thank-you flows
-- Five-pillar services hub with legacy service URLs redirected to anchors
-- Industry hub with category detail pages
-- Blog and case studies
-- JSON-LD, sitemap, robots.txt, security headers, and OG metadata
-- Legacy `/en/*` and `/es/*` URLs 301 to the redesign
-- Pre-rendered production build committed in `.next/` (webpack cache excluded)
+## Deploy
 
-## Getting started
+1. `npx wrangler login`
+2. `npm run deploy`
 
-```bash
-git clone https://github.com/WorkTicket/kinexis-digital.git
-cd kinexis-digital
-npm install
-cp .env.example .env.local
-npm run dev
-```
+The Worker name is `kinexis-digital` (see `wrangler.jsonc`). The first deploy
+creates it and prints a `*.workers.dev` URL.
 
-Open [http://localhost:3000](http://localhost:3000).
+### Custom domain
 
-For a production-like local test in the Workers runtime:
+Attach the zone to the Cloudflare account, then uncomment the `routes` block in
+`wrangler.jsonc` and redeploy. Both `kinexisdigital.com` and
+`www.kinexisdigital.com` are pre-filled.
 
-```bash
-cp .env.example .dev.vars   # fill in secrets (gitignored)
-npm run preview             # http://localhost:8787
-```
+### CI (Workers Builds)
 
-### Environment variables
+Connect the repository in the Cloudflare dashboard:
 
-Copy `.env.example` to `.env.local` and fill in:
+- Build command: `npm run deploy`
+- Deploy command: leave empty (the build script deploys)
+- `NODE_VERSION`: `24`
 
-| Variable | Purpose |
-|---|---|
-| `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` | Form notification inbox + sender (Cloudflare Email Service; also in `wrangler.jsonc`) |
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL (e.g. `https://www.kinexisdigital.com`) |
-| `NEXT_PUBLIC_GA_ID` | Google Analytics 4 measurement ID (Consent Mode v2) |
-| `NEXT_PUBLIC_GOOGLE_ADS_ID` | Google Ads tag ID (`AW-18409243306`; baked into production builds) |
-| `NEXT_PUBLIC_GSC_VERIFICATION` | Google Search Console HTML tag verification token |
-| `NEXT_PUBLIC_CLARITY_ID` | Microsoft Clarity (optional, loads after consent) |
-| `SENTRY_*` | Error monitoring (optional) |
+Add secrets with `npx wrangler secret put <NAME>`. Local values belong in
+`.env.local` (Next.js) or `.dev.vars` (Wrangler).
 
-For local Workers preview, copy the same values into `.dev.vars` (see `.env.example`).
-
-## Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Local development server (Next.js) |
-| `npm run build` | Production build (395 static pages) |
-| `npm run preview` | Build + serve in Cloudflare Workers runtime locally |
-| `npm run deploy` | Build + deploy to Cloudflare Workers |
-| `npm run upload` | Build + upload a new Worker version (no traffic switch) |
-| `npm start` | Serve the production build |
-| `npm run lint` | ESLint |
-| `npm run optimize-images` | Compress images in `public/assets/` |
-| `npm run generate-favicons` | Regenerate favicon assets |
-
-## Project structure
+## Structure
 
 ```
-public/assets/           Logos, hero images, OG image
-messages/                UI copy (en.json, es.json)
-src/app/                 Next.js App Router pages and API routes
-src/components/          Layout, sections, pages, services, UI
-src/content/             Page copy, blog posts, case studies, pricing
-src/i18n/                Locale routing and request config
-src/lib/                 Metadata, schema, email, motion, utilities
-sanity/                  Sanity Studio schema definitions
-scripts/                 Image optimization, QA, migration helpers
-docs/                    Brand guidelines and site map reference
+public/assets/          Brand kit: logos, photos, illustrations, video
+src/app/                App Router routes, layout, global CSS
+src/fonts/              Kinexis Display / Kinexis Text (woff2)
+docs/                   Brand guidelines and photography notes
+wrangler.jsonc          Worker config (assets, bindings, routes)
+open-next.config.ts     OpenNext adapter config
 ```
 
-## Deployment
+## Images
 
-**Live:** [https://www.kinexisdigital.com](https://www.kinexisdigital.com) — hosted on **Cloudflare Workers** (Paid plan) via OpenNext.
-
-> **Workers Paid required.** This app uses OpenNext with SSR and API routes; the free plan’s 10 ms CPU limit causes Error 1102. Paid plan + `limits.cpu_ms` in `wrangler.jsonc` are configured for production.
-
-### One-time setup
-
-```bash
-npx wrangler login
-npx wrangler secret bulk .dev.vars   # upload production secrets
-npm run deploy
-```
-
-Custom domain and routes are configured in [`wrangler.jsonc`](wrangler.jsonc).
-
-### Environment variables (Cloudflare)
-
-| Variable | Where to set |
-|---|---|
-| `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | `wrangler.jsonc` `vars` (runtime) |
-| Email delivery | `send_email` binding named `EMAIL` in `wrangler.jsonc` |
-| `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_GSC_VERIFICATION`, `NEXT_PUBLIC_CLARITY_ID` | **Build Variables and secrets** + runtime |
-| `SENTRY_*` | Optional — build + runtime |
-
-Form email uses **Cloudflare Email Service** (`env.EMAIL.send`) — same as callpreferredplumbing / a1pslandscape. Onboard `kinexisdigital.com` under Email Service and verify destination addresses listed in `allowed_destination_addresses`. `NEXT_PUBLIC_*` vars must be present at build time or OG URLs, sitemap, and analytics will break.
-
-### Google Analytics & Search Console
-
-**Analytics (GA4):** Set `NEXT_PUBLIC_GA_ID=G-Z8245BRX2L` in build env, redeploy, then in GA4 go to **Admin → Data streams → your web stream → Enhanced measurement** and confirm it is on. Real-time data appears even before cookie accept (Consent Mode cookieless pings); full session data requires accepting the cookie banner. Disable ad blockers when testing.
-
-**Search Console:** Add a **URL prefix** property for `https://www.kinexisdigital.com` (not the bare apex). Verification uses the meta tag from `NEXT_PUBLIC_GSC_VERIFICATION` (already in `src/app/layout.tsx`). After verifying:
-
-1. **Sitemaps** → submit `https://www.kinexisdigital.com/sitemap.xml` (~51 unprefixed URLs after cutover)
-2. **URL inspection** → test `https://www.kinexisdigital.com/` → **Request indexing**
-3. Allow 3–14 days for first pages to appear; a new domain is normal to show zero indexed URLs at first
-
-If you use a **Domain** property (`kinexisdigital.com`), verify via DNS TXT in Cloudflare instead of the HTML tag.
-
-### CI/CD (GitHub Actions)
-
-Pushes to `main` deploy via [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). Add these repository secrets:
-
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
-- Email is configured in `wrangler.jsonc` (`send_email` + `CONTACT_*` vars) — no Gmail secrets
-
-### DNS
-
-- **www** → custom domain on the Worker (configured in `wrangler.jsonc`)
-- **apex** → add a Redirect Rule: `kinexisdigital.com/*` → `https://www.kinexisdigital.com/$1` (301)
-
-The repo includes a committed `.next/` production build so `npm start` works immediately after `npm install` without rebuilding.
-
-## Documentation
-
-- [`docs/BRAND_GUIDELINES.md`](docs/BRAND_GUIDELINES.md) — colors, typography, logo usage
-- [`docs/SITE_MAP.md`](docs/SITE_MAP.md) — page-by-page section breakdown
-
-## License
-
-Private — © KINEXIS Digital.
+Cloudflare Images is not enabled, so `next/image` runs with
+`unoptimized: true`. All stills in `public/assets` are already encoded to
+WebP/AVIF at the sizes the design needs. Enable the `IMAGES` binding and drop
+`unoptimized` once Cloudflare Images is available on the account.

@@ -1,14 +1,10 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "account_id": "6972c532d902c84b1793316ed3497124",
   "name": "kinexis-digital",
-  "main": "cloudflare/gtag-wrapper.js",
-  "workers_dev": false,
-  "compatibility_date": "2025-04-01",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  "limits": {
-    "cpu_ms": 300000
-  },
+  "workers_dev": true,
   "observability": {
     "enabled": true
   },
@@ -21,40 +17,11 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "kinexis-digital"
     }
-  ],
-  "routes": [
-    {
-      "pattern": "kinexisdigital.com",
-      "custom_domain": true
-    },
-    {
-      "pattern": "www.kinexisdigital.com",
-      "custom_domain": true
-    }
-  ],
-  // Rate limiter KV namespace — enables persistent rate limiting across Worker instances.
-  // 1. Create KV namespace in Cloudflare Dashboard: Workers & Pages > KV > Create namespace
-  // 2. Copy the namespace ID below
-  // 3. Run: npm run cf-typegen  (regenerates cloudflare-env.d.ts)
-  "kv_namespaces": [
-    {
-      "binding": "RATE_LIMIT_KV",
-      "id": "e9a0644375534bad892eccb5b1f13ba7"
-    }
-  ],
-  // Cloudflare Email Sending — same pattern as callpreferredplumbing / a1pslandscape.
-  // TO addresses must be verified destinations (Email Service → Destination Addresses).
-  // Do NOT enable Email Routing on this zone — MX stays on Zoho for hello@.
-  "send_email": [
-    {
-      "name": "EMAIL",
-      "allowed_destination_addresses": [
-        "hello@kinexisdigital.com"
-      ]
-    }
-  ],
-  "vars": {
-    "CONTACT_TO_EMAIL": "hello@kinexisdigital.com",
-    "CONTACT_FROM_EMAIL": "forms@kinexisdigital.com"
-  }
+  ]
+
+  // Custom domains (enable once the zone is attached to this account):
+  // "routes": [
+  //   { "pattern": "kinexisdigital.com", "custom_domain": true },
+  //   { "pattern": "www.kinexisdigital.com", "custom_domain": true }
+  // ]
 }
