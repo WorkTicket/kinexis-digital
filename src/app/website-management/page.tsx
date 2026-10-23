@@ -9,17 +9,17 @@ export default function Page() {
   return (
     <>
       <PageSchema page="website-management" />
-      <PageHero h1="Website Management" mark="Management" sub="Hosting, updates, and security for business websites across the United States." image="maintenance" imageAlt="Website care panels with a gear and a shield" />
+      <PageHero h1="Keep Your Website Current" mark="Website Current" sub="We handle the hosting, routine changes, backups, and security your business site needs." image="maintenance" imageAlt="Website care panels with a gear and a shield" />
       <Section>
         <div className="grid grid--4">
-          <IconCard level={2} title="Hosting" text="Fast, reliable hosting so your site stays online." icon="hosting" />
-          <IconCard level={2} title="Updates" text="Content and software updates handled for you." icon="updates" />
-          <IconCard level={2} title="Security" text="Security monitoring and regular backups." icon="security" />
-          <IconCard level={2} title="Support" text="A real person to contact when you need a change." icon="support" />
+          <IconCard level={2} title="Reliable Hosting" text="Your site has a dependable place to run, without you managing a server." icon="hosting" />
+          <IconCard level={2} title="Requested Changes" text="Send us the new text or details and we’ll update the page for you." icon="updates" />
+          <IconCard level={2} title="Backups And Security" text="We monitor the site and keep regular backups in case something goes wrong." icon="security" />
+          <IconCard level={2} title="A Person To Ask" text="When you need a change, you can contact someone who knows the site." icon="support" />
         </div>
       </Section>
       <Section tint><div className="center"><Link className="btn btn--primary" href="/update" prefetch={false}>Request a Site Update</Link></div></Section>
-      <CtaBand h="Want Us to Handle It?" mark="Handle It" sub="Tell us what you need and we'll take it off your plate." btn="Get Started" />
+      <CtaBand h="Want The Upkeep Off Your List?" mark="Off Your List" sub="Tell us what the site needs, and we’ll explain how we can take care of it." btn="Tell Us What Needs Care" />
     </>
   );
 }

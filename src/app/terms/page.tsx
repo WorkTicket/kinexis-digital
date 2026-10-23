@@ -50,7 +50,7 @@ export default function Page() {
           <h2>9. Questions</h2>
           <p>Text or call <a href="tel:+13075003371">(307) 500-3371</a> or email <a href="mailto:hello@kinexisdigital.com">hello@kinexisdigital.com</a>. We will answer plan questions before you pay.</p>
 
-          <h2>10. 30-day money back guarantee</h2>
+          <h2>10. Refund requests during the first 30 days</h2>
           <p>If you are not satisfied with your website within 30 days of launch, we will refund your most recent payment in full. The guarantee applies to monthly plans and Own It. Requests must be made in writing by text, email or Messenger within 30 days of launch. Refunds do not apply to third-party costs (including domain renewals, paid stock images, paid advertising or other third-party services) that we have already paid on your behalf.</p>
         </div>
       </section>

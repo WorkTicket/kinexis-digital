@@ -293,7 +293,7 @@ export function ProjectSchema({ name, description, path, image, trade }: {
       {
         "@type": "CreativeWork",
         "@id": `${url}#work`,
-        name: `Web design for ${name}`,
+        name: `Website concept for ${name}`,
         description,
         url,
         image: image.startsWith("http") ? image : `${SITE.url}${image}`,
@@ -305,7 +305,7 @@ export function ProjectSchema({ name, description, path, image, trade }: {
         "@type": "WebPage",
         "@id": `${url}#page`,
         url,
-        name: `Web Design For ${name}`,
+        name: `Website Concept For ${name}`,
         description,
         inLanguage: "en-US",
         isPartOf: { "@id": websiteId() },

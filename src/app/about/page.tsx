@@ -12,49 +12,49 @@ export default function Page() {
     <>
       <PageSchema page="about" faqs={[FAQS[5], FAQS[3], FAQS[4]]} />
       <PageHero
-        h1="A Digital Marketing Agency for US Businesses"
+        h1="A Small Team For Service Businesses Nationwide"
         mark="US Businesses"
-        sub="SEO, websites, missed-call text-back, and Google review requests for service businesses across the United States. Free homepage preview first."
+        sub="We build websites, improve search visibility, text missed callers, and request Google reviews for service businesses across the United States."
         image="about"
         imageAlt="Laptop, website layout, and a notebook sketch of a homepage"
       />
       <section className="section"><div className="container two-col">
         <div>
-          <h2><HL text="Who we work with" mark="work with" /></h2>
-          <p>Kinexis Digital is a digital marketing agency for plumbing, HVAC, electrical, roofing, landscaping, and other service businesses across the United States. Customers find you on Google and call when something needs fixing. The site, the follow-up, and the reviews are built around that.</p>
-          <p>Every plan starts with a homepage concept for your trade. You see the design before you pay, with no card and no obligation. After you approve it, we confirm what is included and your launch date in writing.</p>
+          <h2><HL text="Built for businesses that depend on the phone" mark="depend on the phone" /></h2>
+          <p>Kinexis works with plumbers, HVAC companies, electricians, roofers, landscapers, and other service businesses across the United States. Your customers search when they need help, so the website and follow-up are designed around clear, useful next steps.</p>
+          <p>We begin with a homepage concept for your trade. You can review it without a card or obligation. If you approve it, we put the plan details and launch date in writing.</p>
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Work With Us</Link>
         </div>
         <div>
-          <h2><HL text="What you can expect" mark="can expect" /></h2>
+          <h2><HL text="What stays straightforward" mark="straightforward" /></h2>
           <ul className="ticks ticks--orange">
-            <li><b>Four plans for your trade</b><span>Website, text-back, and review requests</span></li>
-            <li><b>Hosting handled for you</b><span>SSL and small edits on the monthly plans</span></li>
-            <li><b>A straight answer up front</b><span>We’ll tell you if a plan is a poor fit for you</span></li>
+            <li><b>Four clearly defined plans</b><span>Choose the website and follow-up you need</span></li>
+            <li><b>The technical upkeep is covered</b><span>Monthly plans include hosting, SSL, and small edits</span></li>
+            <li><b>Honest advice before you start</b><span>We’ll say so if a plan isn’t right for your business</span></li>
           </ul>
         </div>
       </div></section>
       <Section tint>
-        <h2 className="center"><HL text="How We Work" mark="We Work" /></h2>
+        <h2 className="center"><HL text="A Practical Way To Get Started" mark="Get Started" /></h2>
         <div className="grid grid--3">
-          <IconCard title="See it first" text="The free homepage preview is the starting point. You can approve it, ask for changes, or walk away." icon="preview" />
-          <IconCard title="Follow-up included" text="On Lead System and Plus, missed-call text-back and Google review requests go out after the job." icon="better-follow-up" />
-          <IconCard title="Plain pricing" text="Website, Lead System, Plus, or Own It. The price and the minimum are on the pricing page before you start." icon="better-pricing" />
+          <IconCard title="Review A Homepage First" text="The free preview comes before payment. Approve it, request changes, or decide not to continue." icon="preview" />
+          <IconCard title="Choose Your Follow-Up" text="Lead System and Plus can text missed callers and send Google review requests after completed jobs." icon="better-follow-up" />
+          <IconCard title="Know The Terms Up Front" text="The price, minimum, and included work for Website, Lead System, Plus, and Own It are listed before you begin." icon="better-pricing" />
         </div>
       </Section>
       <Section>
-        <h2 className="center"><HL text="From Preview to Launch" mark="to Launch" /></h2>
-        <p className="center muted">Text-back starts after carrier approval, typically 10–15 days.</p>
+        <h2 className="center"><HL text="How Your Site Gets Launched" mark="Gets Launched" /></h2>
+        <p className="center muted">Text-back begins after carrier approval, which typically takes 10–15 days.</p>
         <Stepper steps={STEPS} />
       </Section>
       <Section tint narrow>
-        <h2 className="center"><HL text="Process Questions" mark="Questions" /></h2>
+        <h2 className="center"><HL text="Questions Before You Begin" mark="Before You Begin" /></h2>
         <Faq items={[FAQS[5], FAQS[3], FAQS[4]]} />
       </Section>
       <Section>
         <div className="center">
-          <h2><HL text="Talk to us before you pay" mark="before you pay" /></h2>
-          <p className="muted">Call, email, or send a message. We will answer plan questions before you commit.</p>
+          <h2><HL text="Ask Anything Before You Decide" mark="Before You Decide" /></h2>
+          <p className="muted">Call, email, or send a message. We’ll explain the plans before you make a commitment.</p>
           <p><Link className="btn btn--primary" href="/contact" prefetch={false}>Contact Us</Link></p>
         </div>
       </Section>

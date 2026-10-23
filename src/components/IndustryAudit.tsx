@@ -1,37 +1,42 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { kitSrc } from "@/lib/site";
 import { HL } from "./mark";
 
 const CHECKS = [
   {
     title: "Speed",
-    text: "How fast each page loads for visitors on phones and desktop computers.",
+    titleDisplay: <>Page<br />Speed</>,
+    text: <>How quickly each page loads<br />for visitors using phones<br />and desktop computers.</>,
     icon: "speed",
   },
   {
     title: "Search Visibility",
-    text: "How headings and pages help search engines read and understand the website.",
+    titleDisplay: <>Search<br />Visibility</>,
+    text: <>How headings and page structure<br />help search engines read<br />and understand the website.</>,
     icon: "search",
   },
   {
     title: "Mobile Experience",
-    text: "How well the site fits phones, from readable type to reachable controls.",
+    titleDisplay: <>Mobile<br />Experience</>,
+    text: <>How comfortably the site works<br />on phones, with readable type<br />and easy-to-reach controls.</>,
     icon: "mobile",
   },
   {
     title: "Calls & Quote Requests",
-    text: "How phone numbers, buttons and forms guide visitors to the next step.",
+    titleDisplay: <>Calls &amp; Quote<br />Requests</>,
+    text: <>How phone numbers, buttons,<br />and forms guide each visitor<br />toward the right next step.</>,
     icon: "conversion",
   },
 ] as const;
 
 /** Reused on every industry page. The artwork is the audit hero, not the trade collage. */
 export default function IndustryAudit({
-  eyebrow = "Free site audit",
-  heading = "Get a Free Site Audit & Increase Your Profitability.",
-  mark = "Your Profitability",
-  text = "Let us show you areas for dramatic improvement on your website. We offer free and paid website audit services.",
-  cta = "Get A Free Site Audit",
+  eyebrow = "A clear place to begin",
+  heading = "See What Is Holding Your Website Back",
+  mark = "Holding Your Website Back",
+  text = "We’ll point out what is working, what is getting in the way, and which fixes deserve attention first. Free and paid audits are available.",
+  cta = "Review My Website",
   href = "/audit",
   alt = "Laptop, phone, magnifying glass and an audit card",
   checks = CHECKS,
@@ -43,7 +48,7 @@ export default function IndustryAudit({
   cta?: string;
   href?: string;
   alt?: string;
-  checks?: readonly { title: string; text: string; icon: string }[];
+  checks?: readonly { title: string; titleDisplay?: ReactNode; text: ReactNode; icon: string }[];
 } = {}) {
   return (
     <section className="industry-audit" aria-labelledby="industry-audit-heading">
@@ -79,7 +84,7 @@ export default function IndustryAudit({
           {checks.map((item) => (
             <article className="card center" key={item.icon}>
               <img className="icon icon--kit" src={kitSrc(`/assets/audit/icons/${item.icon}.svg`)} alt="" width={72} height={72} decoding="async" loading="lazy" fetchPriority="low" />
-              <h3>{item.title}</h3>
+              <h3>{item.titleDisplay ?? item.title}</h3>
               <p>{item.text}</p>
             </article>
           ))}

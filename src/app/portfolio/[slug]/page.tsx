@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = clipDescription(detail?.about[0] ?? `Web design by Kinexis Digital for ${project.name}, a ${project.trade.toLowerCase()} business in the United States.`);
   return contentMetadata({
     path: `/portfolio/${project.slug}`,
-    title: `Web Design For ${project.name}`,
+    title: `${project.name} Website Concept`,
     description,
     image: portfolioFile(project.image),
     imageAlt: `${project.name} website design`,
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: Props) {
     <article className="project-page">
       <ProjectSchema
         name={project.name}
-        description={detail?.about[0] ?? `Web design by Kinexis Digital for ${project.name}.`}
+        description={detail?.about[0] ?? `A Kinexis Digital concept design for ${project.name}.`}
         path={`/portfolio/${project.slug}`}
         image={portfolioFile(project.image)}
         trade={project.trade}
@@ -69,17 +69,17 @@ export default async function ProjectPage({ params }: Props) {
       {/* 1. Title */}
       <header className="page-hero project-hero">
         <div className="container center">
-          <p className="eyebrow">{project.trade}</p>
-          <h1 className={h1Track?.className} style={h1Track?.style}><HL text={`Web Design For ${project.name}`} mark={project.name} /></h1>
-          <p className="muted lead">A fast, modern website built to help {project.name} stand out and turn searches into booked work.</p>
+          <p className="eyebrow">Concept design · {project.trade}</p>
+          <h1 className={h1Track?.className} style={h1Track?.style}><HL text={`A Website Concept For ${project.name}`} mark={project.name} /></h1>
+          <p className="muted lead">A fictional design study showing how a {project.trade.toLowerCase()} site could make services clear and give visitors an easy next step.</p>
         </div>
       </header>
 
       {/* 2. About */}
       <section className="section">
         <div className="container container--narrow prose project-about">
-          <h2 className={h2Track?.className} style={h2Track?.style}><HL text={`About The ${project.name} Project`} mark={project.name} /></h2>
-          {(detail?.about ?? [`A recent website project for ${project.name}, a ${project.trade.toLowerCase()} business.`]).map((paragraph, index) => (
+          <h2 className={h2Track?.className} style={h2Track?.style}><HL text={`Inside The ${project.name} Concept`} mark={project.name} /></h2>
+          {(detail?.about ?? [`A fictional website concept for ${project.name}, a ${project.trade.toLowerCase()} business.`]).map((paragraph, index) => (
             <p key={paragraph.slice(0, 48)} className={index === 1 ? aboutTrack?.className : undefined} style={index === 1 ? aboutTrack?.style : undefined}>{paragraph}</p>
           ))}
         </div>

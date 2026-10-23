@@ -17,7 +17,7 @@ const TABLE: { group: string; rows: [string, string, string, string, string][] }
       ["Hosting, SSL, backups", "Included", "Included", "Included", "12 months"],
       ["Small edits", "2 / month, 2 days", "Unlimited, 1 day", "Unlimited, same day", "30 min / month"],
       ["New pages", "$99 each", "1 / month included", "2 / month included", "Quoted"],
-      ["You own the site files", "—", "—", "—", "Yes"],
+      ["Site-file ownership", "—", "—", "—", "Yes"],
     ],
   },
   {
@@ -88,9 +88,9 @@ export default function Page() {
     <>
       <PageSchema page="pricing" faqs={FAQS} />
       <PageHero
-        h1="Four Plans. One Free Preview."
+        h1="Choose The Website Plan That Fits"
         mark="Free Preview"
-        sub="A site built for your trade, then as much lead follow-up as you want. Every plan starts with a free homepage preview — no card, no obligation."
+        sub="Start with the site your trade needs, then add the level of follow-up you want. Every plan begins with a free homepage preview, with no card or obligation."
         image="pricing"
         imageAlt="Pricing artwork with a payment card and checkmarks"
       />
@@ -100,8 +100,8 @@ export default function Page() {
           <div className="free-preview__copy">
             <span className="free-preview__mark" aria-hidden="true" />
             <div>
-              <b>See your homepage before you pay.</b>
-              <span>Every plan starts with a free homepage preview. No card, no obligation.</span>
+              <b>Review the homepage before paying.</b>
+              <span>Every plan begins with a free preview. You don’t need a card and there’s no obligation.</span>
             </div>
           </div>
           <span className="free-preview__tag">Free preview first</span>
@@ -147,7 +147,7 @@ export default function Page() {
         <div className="guarantee-band">
           <GuaranteeBadge />
           <div>
-            <h3><HL text="Zero tracked leads in 60 days? We waive two months." mark="two months" /></h3>
+            <h3><HL text="No tracked leads in 60 days? Two charges are waived." mark="Two charges" /></h3>
             <p>
               If Lead System or Plus produces <b>zero tracked leads in your first 60 days live</b>, your{" "}
               <b>3rd and 4th monthly charges are waived</b> and the <b>minimum is dropped</b>. A tracked lead is a
@@ -161,18 +161,18 @@ export default function Page() {
         </div>
 
         <div className="fineprint pricing-fineprint">
-          <b>The fine print, in plain English:</b>
+          <b>The terms, stated clearly:</b>
           <ul className="fineprint-list">
             {PLAN_TERMS.slice(1).map((term) => <li key={term}>{term}</li>)}
-            <li><b>30-day money-back guarantee</b> on all plans.</li>
+            <li>Every plan includes a <b>30-day refund period</b>.</li>
           </ul>
           <Link href="/terms" prefetch={false}>Full plan terms →</Link>
         </div>
       </Section>
 
       <Section tint>
-        <h2 className="center"><HL text="Compare the Plans" mark="the Plans" /></h2>
-        <p className="center muted">Everything included, side by side. No surprise setup fees.</p>
+        <h2 className="center"><HL text="See What Each Plan Covers" mark="Each Plan" /></h2>
+        <p className="center muted">Compare the included work side by side. There are no surprise setup fees.</p>
         <MobilePlanComparison
           plans={PLANS.map((plan, index) => ({ ...plan, price: TABLE[2].rows[3][index + 1] }))}
           sections={TABLE}
@@ -212,7 +212,7 @@ export default function Page() {
       </Section>
 
       <Section id="faq" narrow>
-        <h2 className="center"><HL text="Pricing Questions" mark="Questions" /></h2>
+        <h2 className="center"><HL text="Questions About Plans And Billing" mark="Plans And Billing" /></h2>
         <Faq items={FAQS} />
       </Section>
     </>

@@ -21,7 +21,7 @@ export default function Page() {
             <>
               <h2 className="card-title">Client Portal</h2>
               <p className="muted">Logins are sent to active clients. If you need access, contact us and we will send the link.</p>
-              <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Contact Us</Link>
+              <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Request My Login Link</Link>
             </>
           )}
         </div></div>

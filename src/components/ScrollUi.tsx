@@ -23,7 +23,7 @@ export default function ScrollUi() {
   return (
     <div className="float-cta" inert>
       <span>{es ? <>Auditoría <b>gratis de sitio y SEO</b></> : <>Free <b>Website &amp; SEO Audit</b></>}</span>
-      <Link className="btn btn--primary" href={spanish("/audit")} prefetch={false}>{es ? "Pedir auditoría" : "Request Audit"}</Link>
+      <Link className="btn btn--primary" href={spanish("/audit")} prefetch={false}>{es ? "Revisar mi sitio" : "Review My Website"}</Link>
       <Link className="btn btn--ghost" href={spanish("/strategy-call")} prefetch={false}>{es ? "Agendar llamada" : "Book a Call"}</Link>
     </div>
   );

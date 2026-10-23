@@ -8,28 +8,28 @@ export const metadata = pageMetadata("services");
 const offerings = [
   {
     title: "Website Design",
-    text: "A site for the jobs your trade actually gets, with tap-to-call, quote forms, and a homepage preview before you pay.",
+    text: "A clear site for the work you want, with tap-to-call, short quote forms, and a homepage you can review before paying.",
     href: "/web-design",
     cta: "See Website Design",
     icon: "well-designed",
   },
   {
     title: "SEO Services",
-    text: "Technical fixes, page titles, and content so customers across the United States can find the business on Google.",
+    text: "Technical cleanup, useful page titles, and content that helps the right customers find you through Google.",
     href: "/seo-services",
     cta: "Explore SEO",
     icon: "search-optimized",
   },
   {
     title: "Website Management",
-    text: "Hosting, updates, backups, and a person to call when a page needs to change.",
+    text: "Hosting, updates, and backups are covered, with a real person available when something needs to change.",
     href: "/website-management",
     cta: "See Site Care",
     icon: "managed-for-you",
   },
   {
     title: "Free Audit",
-    text: "A look at speed, indexing, titles, and whether the current site is set up to earn calls.",
+    text: "A practical review of speed, indexing, page titles, and whether your current site makes it easy to contact you.",
     href: "/audit",
     cta: "Get a Free Audit",
     icon: "preview",
@@ -45,15 +45,15 @@ export default function Page() {
       />
       <PageHero
         eyebrow="Services"
-        h1="Website and SEO Services for the Whole Country"
+        h1="Website Help For Service Businesses Nationwide"
         mark="Whole Country"
-        sub="Kinexis Digital works with service businesses in every state. The offer is the same nationwide: a site people can call from, and search setup Google can read."
+        sub="We work with service businesses in every state. You get a site that is easy to call from and a clean search setup Google can understand."
         image="homepage"
         imageAlt="Contractor showing a trade website on a laptop and phone"
       />
       <Section>
-        <h2 className="center"><HL text="What You Can Hire Us For" mark="Hire Us For" /></h2>
-        <p className="center muted">Website design, SEO, site care, and a free audit. Open the one that matches the job.</p>
+        <h2 className="center"><HL text="Ways We Can Help" mark="We Can Help" /></h2>
+        <p className="center muted">Choose website design, SEO, ongoing site care, or a free audit of what you already have.</p>
         <div className="grid grid--2">
           {offerings.map((item) => (
             <ServiceCard key={item.href} {...item} />
@@ -61,15 +61,15 @@ export default function Page() {
         </div>
       </Section>
       <Section tint narrow>
-        <h2 className="center"><HL text="One Site, Not a Page for Every City" mark="Every City" /></h2>
-        <p>A nationwide company does not need fifty copies of the homepage with the city name swapped. That pattern gets ignored. We write the services you sell, name the areas you actually cover, and keep a single English URL for each page.</p>
-        <p>Plans start at $97/mo with a free homepage preview. Ongoing SEO is quoted on its own. It is not hidden inside the website plans.</p>
+        <h2 className="center"><HL text="A Clear Site Without Duplicate City Pages" mark="Duplicate City Pages" /></h2>
+        <p>You don’t need dozens of copies of the same page with a different city name. We write about the services you actually offer, name the areas you cover, and give each English page one useful URL.</p>
+        <p>Plans start at $97/mo and include a free homepage preview. Ongoing SEO is a separate quote, not a hidden part of a website plan.</p>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
           <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse Industries</Link>
         </p>
       </Section>
-      <CtaBand h="Not Sure Which Service You Need?" mark="You Need" sub="Start with a free look at the site you have, or the one you wish you had." btn="Get a Free Audit" href="/audit" />
+      <CtaBand h="Not Sure Where To Start?" mark="Where To Start" sub="We can review your current site or talk through the one you want to build." btn="Get a Free Audit" href="/audit" />
     </>
   );
 }

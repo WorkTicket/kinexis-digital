@@ -28,8 +28,8 @@ function PlanSticker({ sticker }: { sticker: Sticker }) {
 
 /** The same four plans, with the same prices, on the homepage and every industry page. */
 export default function PlanOffer({
-  heading = "Websites Built For Your Trade Starting At Only",
-  mark = "Your Trade",
+  heading = "Choose The Right Starting Point For Your Site",
+  mark = "Starting Point",
   href = "/pricing",
   eyebrow = "Four Plans · One Free Preview",
   chip = "$0 down",

@@ -171,7 +171,7 @@ export function Section({ tint, narrow, id, decor, accent, children }: { tint?: 
     </section>
   );
 }
-export function CtaBand({ h = "Ready to Get Started?", mark, sub, btn = "Let’s Talk", href = "/contact", secondary = "Schedule A Strategy Call", secondaryHref = "/strategy-call" }: { h?: string; mark?: string; sub: string; btn?: string; href?: string; secondary?: string; secondaryHref?: string }) {
+export function CtaBand({ h = "Ready to Get Started?", mark, sub, btn = "Let’s Talk", href = "/contact", secondary = "Talk Through Your Options", secondaryHref = "/strategy-call" }: { h?: string; mark?: string; sub: string; btn?: string; href?: string; secondary?: string; secondaryHref?: string }) {
   return (
     <section className="cta-band">
       <div className="container center">
@@ -183,13 +183,13 @@ export function CtaBand({ h = "Ready to Get Started?", mark, sub, btn = "Let’s
     </div></section>
   );
 }
-export function IconCard({ title, text, icon, src, level = 3, iconClass = "" }: { title: string; text: string; icon?: string; src?: string; level?: 2 | 3; iconClass?: string }) {
+export function IconCard({ title, iconAlt, text, icon, src, level = 3, iconClass = "" }: { title: ReactNode; iconAlt?: string; text: string; icon?: string; src?: string; level?: 2 | 3; iconClass?: string }) {
   const Heading = level === 2 ? "h2" : "h3";
   const size = /icon--(service|problem)/.test(iconClass) ? 104 : 72;
   const mark = src
     ? <img className={`icon icon--kit${iconClass ? ` ${iconClass}` : ""}`} src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'%3E%3C/svg%3E`} data-src={src} alt="" width={size} height={size} decoding="async" />
     : icon
-      ? <Icon name={icon} alt={title} />
+      ? <Icon name={icon} alt={iconAlt ?? (typeof title === "string" ? title : "")} />
       : <div className="icon ph" />;
   return <article className="card center">{mark}<Heading className={level === 2 ? "card-title" : undefined}>{title}</Heading><p>{text}</p></article>;
 }

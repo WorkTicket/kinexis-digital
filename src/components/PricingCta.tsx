@@ -7,11 +7,11 @@ export default function PricingCta() {
   return (
     <section className="price price--portfolio">
       <div className="container center">
-        <p className="eyebrow">Spend less, get more</p>
-        <h2><HL text="Websites Starting at Only" mark="Starting at Only" /></h2>
+        <p className="eyebrow">A practical starting point</p>
+        <h2><HL text="Start With The Website Plan" mark="Website Plan" /></h2>
         <p className="price__num">{PLANS[0].price}<small>/mo</small></p>
-        <p>Everything you need to look professional, get found and turn visitors into leads.</p>
-        <Link className="btn btn--primary btn--lg" href="/pricing" prefetch={false}>Start Getting More Leads</Link>
+        <p>A professional site, reliable hosting, search-ready structure, and a clear path for calls and forms.</p>
+        <Link className="btn btn--primary btn--lg" href="/pricing" prefetch={false}>Compare Plans And Features</Link>
       </div>
     </section>
   );

@@ -7,7 +7,7 @@ export const LEAD_FIELDS: Field[] = [
   { label: "Website / Business Name", name: "business" },
 ];
 
-export default function Form({ fields, button, note, fast, fastText = "Expect a fast response from us xD" }: { fields: Field[]; button: string; note?: string; fast?: boolean; fastText?: string }) {
+export default function Form({ fields, button, note, fast, fastText = "Send it over and we'll get back to you soon." }: { fields: Field[]; button: string; note?: string; fast?: boolean; fastText?: string }) {
   return (
     <form className="form" noValidate data-lead="">
       {fields.map((f) => f.kind === "file" ? (

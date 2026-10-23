@@ -21,7 +21,7 @@ export default function Home() {
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">Websites and SEO, Nationwide</p>
-          <h1><HL text="Nationwide Websites That Turn Searches Into Booked Work" mark="Booked Work" /></h1>
+          <h1><HL text="Websites That Turn Searches Into Booked Work" mark="Booked Work" /></h1>
           <ul className="ticks">
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
@@ -57,21 +57,21 @@ export default function Home() {
       {/* 2. Helps you scale: artwork sits here so the hero can keep the video */}
       <Section tint>
         <MediaSplit image="homepage" alt="Contractor showing a trade website on a laptop and phone">
-          <h2><HL text="Kinexis Digital Helps You Scale Your Business" mark="Your Business" /></h2>
-          <p>SEO, fast websites, and follow-up for service businesses across the United States. Four clear plans from $97/mo.</p>
+          <h2><HL text="What You Get With Kinexis" mark="With Kinexis" /></h2>
+          <p>A fast website, practical SEO, and follow-up that keeps working when you’re busy. Plans start at $97/mo.</p>
         </MediaSplit>
         <div className="grid grid--3">
-          <IconCard title="Better Design" text="Fast, modern websites you'll be proud to show customers, built around turning visitors into calls and quote requests." icon="better-design" />
-          <IconCard title="Better Follow-Up" text="Missed-call text-back, review requests and lead tracking do the follow-up when you are on the job." icon="better-follow-up" />
-          <IconCard title="Better Pricing" text="Four clear plans from $97/mo. Free homepage preview first, $0 down, and a 3-month minimum instead of a long contract." icon="better-pricing" />
+          <IconCard title={<>A Website That<br />Brings In More<br />Calls</>} iconAlt="A Website That Brings In More Calls" text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details." icon="better-design" />
+          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="Missed callers get a text, happy customers get a review request, and every new lead is tracked for you." icon="better-follow-up" />
+          <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and a 3-month minimum." icon="better-pricing" />
         </div>
       </Section>
 
       {/* 3. Portfolio: 8 scrollable frames */}
       <Section>
         <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
-          <h2><HL text="We Build Great-Looking, High-Converting Websites. Let’s Build Yours Next!" mark="High-Converting" /></h2>
-          <p className="muted">Hover to preview a site, click to open the project.</p>
+          <h2><HL text="Websites Made For Your Trade" mark="Your Trade" /></h2>
+          <p className="muted">These are concept designs. Hover to preview one, then click to see the full project.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center"><Link className="btn btn--primary" href="/portfolio" prefetch={false}>View Our Portfolio</Link></p>
@@ -79,8 +79,9 @@ export default function Home() {
 
       {/* 4. Comparison */}
       <Section tint>
-        <h2 className="center"><HL text="Don’t Settle for Either Service or Price… Get Both" mark="Get Both" /></h2>
+        <h2 className="center"><HL text="Why Business Owners Choose Kinexis" mark="Choose Kinexis" /></h2>
         <Compare />
+        <p className="center muted small">Typical offerings; individual providers vary.</p>
       </Section>
 
       {/* 5. Google reviews, handled */}
@@ -94,7 +95,7 @@ export default function Home() {
 
       {/* 6. Four reasons */}
       <Section tint>
-        <h2 className="center"><HL text="Four Reasons You’ll Love Working With Us" mark="You’ll Love" /></h2>
+        <h2 className="center"><HL text="What Every Kinexis Site Includes" mark="Kinexis Site" /></h2>
         <ReasonBoard />
         <p className="center btn-row spaced"><Link className="btn btn--primary" href="/web-design" prefetch={false}>See Website Design</Link><Link className="btn btn--ghost" href="/seo-services" prefetch={false}>Explore SEO Services</Link></p>
       </Section>
@@ -114,8 +115,8 @@ export default function Home() {
 
       {/* 8. Process stepper */}
       <Section tint>
-        <h2 className="center"><HL text="Working With Kinexis Digital Couldn’t Be Easier" mark="Couldn’t Be Easier" /></h2>
-        <p className="center muted">Free preview first, then a clear launch plan and a 3-month minimum instead of a long contract.</p>
+        <h2 className="center"><HL text="From Free Preview To Launch" mark="To Launch" /></h2>
+        <p className="center muted">See the homepage first. If it feels right, choose a plan and we’ll map out the launch in writing.</p>
         <Stepper steps={STEPS} />
         <p className="center btn-row spaced"><Link className="btn btn--ghost" href="/about" prefetch={false}>See Our Full Process</Link></p>
       </Section>

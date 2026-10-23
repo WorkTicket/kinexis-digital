@@ -12,7 +12,7 @@ export default async function Page() {
   return (
     <>
       <PageSchema page="reviews" />
-      <PageHero h1="Reviews" mark="Reviews" sub="Recommendations clients have left on our Facebook page." image="reviews" imageAlt="Symbolic review cards beside a business owner" />
+      <PageHero h1="What Clients Have Shared" mark="Clients Have Shared" sub="Read the recommendations posted directly to our Facebook page." image="reviews" imageAlt="Symbolic review cards beside a business owner" />
       <Section>
         <div className="review-cards">
           {reviews.map((review) => <FacebookReviewCard key={review.id} review={review} />)}
@@ -21,7 +21,7 @@ export default async function Page() {
           <LeaveFacebookReview />
         </div>
       </Section>
-      <CtaBand h="Want a Site That Brings in Work?" mark="in Work" sub="Start with a free homepage preview for your trade. No card and no obligation." btn="Get Started" />
+      <CtaBand h="Want To See Your Own Homepage?" mark="Your Own Homepage" sub="Start with a free preview written for your trade. No card and no obligation." btn="See My Homepage First" />
     </>
   );
 }

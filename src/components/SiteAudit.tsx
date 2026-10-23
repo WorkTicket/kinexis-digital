@@ -14,11 +14,11 @@ const HIDE = new Set([
 ]);
 
 const ES = {
-  eyebrow: "Auditoría gratis del sitio",
-  heading: "Obtén una auditoría gratis y aumenta tu rentabilidad.",
-  mark: "tu rentabilidad",
-  text: "Te mostramos dónde tu sitio puede mejorar de forma clara. Ofrecemos auditorías gratis y de pago.",
-  cta: "Quiero mi auditoría gratis",
+  eyebrow: "Un punto de partida claro",
+  heading: "Descubre qué está frenando tu sitio.",
+  mark: "frenando tu sitio",
+  text: "Te decimos qué funciona, qué estorba y qué cambios conviene hacer primero. Hay revisiones gratis y de pago.",
+  cta: "Revisar mi sitio",
   alt: "Laptop, teléfono, lupa y una ficha de auditoría",
   checks: [
     {

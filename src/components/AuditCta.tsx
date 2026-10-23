@@ -4,11 +4,11 @@ import { HL } from "./ui";
 
 /** Free site audit band. The laptop-and-rocket graphic straddles the section above it. */
 export default function AuditCta({
-  eyebrow = "Free site audit",
-  heading = "Get a Free Site Audit & Increase Your Profitability",
-  mark = "Your Profitability",
-  text = "Let us show you areas for dramatic improvement on your website. We offer free and paid website audit services.",
-  cta = "Get A Free Site Audit",
+  eyebrow = "A clear place to begin",
+  heading = "See What Is Holding Your Website Back",
+  mark = "Holding Your Website Back",
+  text = "We’ll point out what is working, what is getting in the way, and which fixes deserve attention first. Free and paid audits are available.",
+  cta = "Review My Website",
   href = "/audit",
   alt = "A rocket launches upward from a laptop screen",
 }: {

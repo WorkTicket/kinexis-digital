@@ -24,27 +24,27 @@ export default function Page() {
       <PageSchema page="portfolio" items={PROJECTS.filter((project) => !project.placeholder).map((project) => ({ name: project.name, path: `/portfolio/${project.slug}` }))} />
       <PageHero
         className="portfolio-hero"
-        eyebrow="Real websites for local service businesses"
-        h1="View Our Work"
-        mark="Our Work"
-        sub="Cheap sites function terribly, and high quality sites are expensive. We help you avoid this dilemma, so you can have the website of your dreams without breaking the bank."
+        eyebrow="Website concepts for local service businesses"
+        h1="Explore Our Design Work"
+        mark="Design Work"
+        sub="These concept sites show how we approach different trades, from the first screen to the quote path. Live client websites are listed separately below."
         image="portfolio"
         imageAlt="Trade websites shown on desktop and phone screens"
       >
         <div className="btn-row spaced">
-          <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Try Us Risk Free</Link>
-          <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>See Pricing</Link>
+          <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>See My Homepage First</Link>
+          <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>View The Four Plans</Link>
         </div>
-        <p className="muted small trust">Websites for pool care, HVAC, plumbing, roofing, and other local trades.</p>
+        <p className="muted small trust">Concept designs for pool care, HVAC, plumbing, roofing, and other local trades.</p>
       </PageHero>
 
       <Section>
         <div className="container">
           <div className="showcase__head">
             <div>
-              <p className="eyebrow">Our Work</p>
-              <h2><HL text="Custom & Template Sites" mark="Template Sites" /></h2>
-              <p className="muted">Hover or tap any screenshot to scroll the full page.</p>
+              <p className="eyebrow">Concept designs</p>
+              <h2><HL text="Custom And Template Concepts" mark="Template Concepts" /></h2>
+              <p className="muted">These are fictional examples, not client results. Hover or tap a screenshot to view the full design.</p>
             </div>
             <Link className="link-btn" href="/contact" prefetch={false}>Reach out to see more</Link>
           </div>
@@ -106,7 +106,7 @@ export default function Page() {
       </Section>
 
       <AuditCta />
-      <CtaBand h="Want a Site Like These?" mark="Like These" sub="Tell us about your trade and we will build your free homepage preview." btn="Get My Free Preview" />
+      <CtaBand h="Want To See A Direction For Your Site?" mark="Your Site" sub="Tell us about your trade and we’ll prepare a free homepage preview for your business." btn="Get My Free Preview" />
     </>
   );
 }
