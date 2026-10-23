@@ -13,11 +13,20 @@ coverage/
 .wrangler/
 *.tsbuildinfo
 next-env.d.ts
+cloudflare-env.d.ts
 
 # local env
 .env
 .env*.local
 .dev.vars
+
+# local scratch
+.audit/
+.tmp-*
+*.tmp
+*.opt
+scripts/_*.mjs
+scripts/_poster-b64.txt
 
 # editor / OS
 .DS_Store

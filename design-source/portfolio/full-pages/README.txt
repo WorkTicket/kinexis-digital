@@ -1,0 +1,1 @@
+36 complete full-page WebP screenshots: 18 desktop and 18 mobile. Updated distinct cities and states. No wrapped service vehicles in the heroes; one larger vehicle in its dedicated lower section. Open the images directly; no HTML, CSS or assets are needed.

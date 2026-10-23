@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
-
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kinexisdigital.com";
+import { SITE } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [{ userAgent: "*", allow: "/" }],
-    sitemap: `${siteUrl}/sitemap.xml`,
-    host: siteUrl,
+    rules: {
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/pay/thanks"],
+    },
+    sitemap: `${SITE.url}/sitemap.xml`,
   };
 }

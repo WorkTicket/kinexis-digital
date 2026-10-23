@@ -1,0 +1,24 @@
+18 website designs in the exact supplied four-device frame.
+1536 x 1024 pixels, transparent background, lossless WebP.
+Every WebP decodes to precisely the same RGBA pixels as its master PNG.
+Desktop screens use desktop layouts; tablet and phone screens use their individually composed portrait layouts. The original device hardware, overlaps and phone camera island are retained. Wrapped service vehicles are absent from all heroes.
+Each brand now has its own city and state:
+COPPERLINE — Richmond, Virginia
+VOLTERRA — Columbus, Ohio
+HAPPY YARD — Overland Park, Kansas
+BREEZEWAY — Tampa, Florida
+HARLAN’S — Knoxville, Tennessee
+CLEARPEAK — Boise, Idaho
+RINSEWORKS — Greenville, South Carolina
+LIFTLINE — Fort Collins, Colorado
+BLUEHAVEN — Gilbert, Arizona
+BRUSH & CO. — Madison, Wisconsin
+ROOT & STONE — Asheville, North Carolina
+OAK & FORM — Bend, Oregon
+AFTERGLOW — Lexington, Kentucky
+GOOD RIDDANCE — Omaha, Nebraska
+GROUNDWORK — Grand Rapids, Michigan
+SUNDAY — Lancaster, Pennsylvania
+STILLWATER — Tulsa, Oklahoma
+GOODHAND — Des Moines, Iowa
+All businesses are fictional portfolio concepts.

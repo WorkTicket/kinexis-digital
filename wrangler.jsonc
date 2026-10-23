@@ -17,11 +17,10 @@
       "binding": "WORKER_SELF_REFERENCE",
       "service": "kinexis-digital"
     }
-  ]
-
+  ],
   // Custom domains (enable once the zone is attached to this account):
-  // "routes": [
-  //   { "pattern": "kinexisdigital.com", "custom_domain": true },
-  //   { "pattern": "www.kinexisdigital.com", "custom_domain": true }
-  // ]
+  "routes": [
+    { "pattern": "kinexisdigital.com", "custom_domain": true },
+    { "pattern": "www.kinexisdigital.com", "custom_domain": true }
+  ]
 }
