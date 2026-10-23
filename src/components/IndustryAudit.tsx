@@ -5,22 +5,22 @@ import { HL } from "./mark";
 const CHECKS = [
   {
     title: "Speed",
-    text: "How fast the pages load on a phone and on a desktop.",
+    text: "How fast each page loads for visitors on phones and desktop computers.",
     icon: "speed",
   },
   {
     title: "Search Visibility",
-    text: "Whether the headings, structure and pages are set up so search engines can read them.",
+    text: "How headings and pages help search engines read and understand the website.",
     icon: "search",
   },
   {
     title: "Mobile Experience",
-    text: "How the site fits a phone, including type size and what a thumb can reach.",
+    text: "How well the site fits phones, from readable type to reachable controls.",
     icon: "mobile",
   },
   {
     title: "Calls & Quote Requests",
-    text: "Whether the number, buttons and forms give a visitor a clear next step.",
+    text: "How phone numbers, buttons and forms guide visitors to the next step.",
     icon: "conversion",
   },
 ] as const;
