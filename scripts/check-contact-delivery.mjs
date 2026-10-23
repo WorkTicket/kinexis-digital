@@ -12,7 +12,7 @@ const originalTransport = mailer.createTransport;
 const keys = ["MAILGUN_API_KEY", "MAILGUN_DOMAIN", "FORM_ENDPOINT", "GMAIL_USER", "GMAIL_APP_PASSWORD", "CONTACT_TO", "CONTACT_TO_EMAIL"];
 const previous = Object.fromEntries(keys.map(key => [key, process.env[key]]));
 try {
-  await build({ entryPoints: ["src/app/api/contact/route.ts"], outfile: path.join(temporary, "route.cjs"), bundle: true, platform: "node", format: "cjs", external: ["nodemailer"] });
+  await build({ entryPoints: ["src/app/api/contact/route.ts"], outfile: path.join(temporary, "route.cjs"), bundle: true, platform: "node", format: "cjs", conditions: ["react-server"], external: ["nodemailer"] });
   for (const key of keys) delete process.env[key];
   process.env.GMAIL_USER = "sender@example.com";
   process.env.GMAIL_APP_PASSWORD = "test-only";
@@ -46,6 +46,12 @@ try {
   assert.match(delivery.subject, /Site update/);
   assert.equal((await submit({ email: "invalid" })).status, 400);
   assert.equal((await submit({ file: new File([new Uint8Array(5 * 1024 * 1024 + 1)], "large.bin") })).status, 400);
+  const crossSite = new FormData();
+  crossSite.set("name", "Client");
+  crossSite.set("email", "client@example.com");
+  assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { Origin: "https://attacker.example" }, body: crossSite }))).status, 403);
+  assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { "Content-Type": "text/plain" }, body: "name=Client" }))).status, 415);
+  assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", headers: { "Content-Type": "multipart/form-data", "Content-Length": String(7 * 1024 * 1024) }, body: "x" }))).status, 413);
   delivery = undefined;
   assert.equal((await submit({ _gotcha: "bot" })).status, 200);
   assert.equal(delivery, undefined);

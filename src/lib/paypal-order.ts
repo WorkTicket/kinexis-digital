@@ -1,3 +1,4 @@
+import "server-only";
 import { SITE } from "@/lib/site";
 import { PAYPAL_CLIENT_ID } from "@/lib/paypal";
 
@@ -21,7 +22,13 @@ function config(): PayPalConfig | null {
   if (!secret) return null;
   const id = process.env.PAYPAL_CLIENT_ID || PAYPAL_CLIENT_ID;
   const base = (process.env.PAYPAL_API_BASE || "https://api-m.paypal.com").replace(/\/$/, "");
-  return { id, secret, base };
+  try {
+    const url = new URL(base);
+    if (url.protocol !== "https:" || !["api-m.paypal.com", "api-m.sandbox.paypal.com"].includes(url.hostname)) return null;
+    return { id, secret, base: url.origin };
+  } catch {
+    return null;
+  }
 }
 
 function clean(value: string, max: number) {
@@ -61,6 +68,7 @@ async function accessToken(cfg: PayPalConfig): Promise<string | null> {
       "Content-Type": "application/x-www-form-urlencoded",
     },
     body: "grant_type=client_credentials",
+    signal: AbortSignal.timeout(15_000),
   });
   if (!res.ok) return null;
   const data = await res.json() as { access_token?: string };
@@ -84,7 +92,6 @@ export async function createInvoiceOrder(input: {
   name: string;
   email: string;
   company: string;
-  origin: string;
   requestId: string;
 }): Promise<{ url: string } | { error: string } | { unconfigured: true }> {
   const cfg = config();
@@ -114,10 +121,11 @@ export async function createInvoiceOrder(input: {
         landing_page: "NO_PREFERENCE",
         shipping_preference: "NO_SHIPPING",
         user_action: "PAY_NOW",
-        return_url: `${input.origin}/api/checkout/capture`,
-        cancel_url: `${input.origin}/pay?invoice=cancelled#invoice`,
+        return_url: `${SITE.url}/api/checkout/capture`,
+        cancel_url: `${SITE.url}/pay?invoice=cancelled#invoice`,
       },
     }),
+    signal: AbortSignal.timeout(15_000),
   });
   const data = await res.json().catch(() => ({})) as { links?: PayPalLink[] };
   if (!res.ok) return { error: "PayPal couldn't start that payment. Check the amount and try again." };
@@ -137,7 +145,7 @@ export async function captureInvoiceOrder(orderId: string): Promise<"paid" | "fa
   if (!token) return "failed";
 
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
-  const existing = await fetch(`${cfg.base}/v2/checkout/orders/${orderId}`, { headers });
+  const existing = await fetch(`${cfg.base}/v2/checkout/orders/${orderId}`, { headers, signal: AbortSignal.timeout(15_000) });
   const order = await existing.json().catch(() => ({})) as {
     status?: string;
     purchase_units?: { amount?: { currency_code?: string } }[];
@@ -150,6 +158,7 @@ export async function captureInvoiceOrder(orderId: string): Promise<"paid" | "fa
   const res = await fetch(`${cfg.base}/v2/checkout/orders/${orderId}/capture`, {
     method: "POST",
     headers: { ...headers, "PayPal-Request-Id": `capture-${orderId}` },
+    signal: AbortSignal.timeout(15_000),
   });
   const data = await res.json().catch(() => ({})) as { status?: string; details?: { issue?: string }[] };
   if (data.status === "COMPLETED" || data.details?.some((detail) => detail.issue === "ORDER_ALREADY_CAPTURED")) return "paid";

@@ -1,13 +1,22 @@
 import { SITE } from "@/lib/site";
+import { hasContentType, privateJson, rejectCrossSite, rejectOversize } from "@/lib/request-security";
 import nodemailer from "nodemailer";
 
 const MAX_FILE = 5 * 1024 * 1024;
+const MAX_REQUEST = 6 * 1024 * 1024;
+const MAX_TEXT = 20_000;
 
 function visitorError(message: string, status: number) {
-  return Response.json({ error: message }, { status });
+  return privateJson({ error: message }, { status });
 }
 
 export async function POST(request: Request) {
+  const rejected = rejectCrossSite(request) || rejectOversize(request, MAX_REQUEST);
+  if (rejected) return rejected;
+  if (!hasContentType(request, "multipart/form-data")) {
+    return visitorError("That form could not be read. Please try again.", 415);
+  }
+
   let form: FormData;
   try {
     form = await request.formData();
@@ -15,11 +24,11 @@ export async function POST(request: Request) {
     return visitorError("That form could not be read. Please try again.", 400);
   }
 
-  if (String(form.get("_gotcha") ?? "").trim()) return Response.json({ ok: true });
+  if (String(form.get("_gotcha") ?? "").trim()) return privateJson({ ok: true });
 
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
-  if (!name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!name || name.length > 120 || email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return visitorError("Please add your name and a valid email.", 400);
   }
 
@@ -29,10 +38,16 @@ export async function POST(request: Request) {
   }
 
   const lines: string[] = [];
+  let textLength = 0;
   for (const [key, value] of form.entries()) {
     if (key === "_gotcha" || key === "file" || value instanceof File) continue;
-    const text = String(value).trim();
-    if (text) lines.push(`${key}: ${text}`);
+    const label = key.replace(/[^a-z0-9 _-]/gi, "").slice(0, 50);
+    const raw = String(value);
+    if (raw.length > 5_000) return visitorError("That message is too long.", 400);
+    const entry = raw.replace(/[\r\n\t\f\v]+/g, " ").replace(/\s+/g, " ").trim();
+    textLength += label.length + entry.length;
+    if (textLength > MAX_TEXT) return visitorError("That message is too long.", 400);
+    if (label && entry) lines.push(`${label}: ${entry}`);
   }
   const text = lines.join("\n");
   const safeName = name.replace(/[\r\n]+/g, " ").slice(0, 120);
@@ -41,7 +56,7 @@ export async function POST(request: Request) {
 
   try {
     const sent = await sendMail({ name: safeName, email, text, isUpdate, isCall, file });
-    if (sent === "sent") return Response.json({ ok: true });
+    if (sent === "sent") return privateJson({ ok: true });
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);
     }
@@ -61,6 +76,9 @@ async function sendMail({
   isCall: boolean;
   file: FormDataEntryValue | null;
 }): Promise<"sent" | "unconfigured" | "failed"> {
+  const filename = file instanceof File
+    ? file.name.replace(/[\x00-\x1f\x7f\\/:*?"<>|]+/g, "-").trim().slice(0, 180) || "attachment"
+    : "attachment";
   const key = process.env.MAILGUN_API_KEY;
   const domain = process.env.MAILGUN_DOMAIN;
   if (key && domain) {
@@ -73,11 +91,12 @@ async function sendMail({
     body.append("h:Reply-To", email);
     body.append("subject", isCall ? `Strategy call request from ${name}` : isUpdate ? `Site update from ${name}` : `New message from ${name}`);
     body.append("text", text);
-    if (file instanceof File && file.size > 0) body.append("attachment", file, file.name || "attachment");
+    if (file instanceof File && file.size > 0) body.append("attachment", file, filename);
     const res = await fetch(`${region}/v3/${encodeURIComponent(domain)}/messages`, {
       method: "POST",
       headers: { Authorization: `Basic ${btoa(`api:${key}`)}` },
       body,
+      signal: AbortSignal.timeout(15_000),
     });
     return res.ok ? "sent" : "failed";
   }
@@ -88,11 +107,12 @@ async function sendMail({
     forwarded.append("name", name);
     forwarded.append("email", email);
     forwarded.append("message", text);
-    if (file instanceof File && file.size > 0) forwarded.append("file", file, file.name || "attachment");
+    if (file instanceof File && file.size > 0) forwarded.append("file", file, filename);
     const res = await fetch(endpoint, {
       method: "POST",
       headers: { Accept: "application/json" },
       body: forwarded,
+      signal: AbortSignal.timeout(15_000),
     });
     return res.ok ? "sent" : "failed";
   }
@@ -116,7 +136,7 @@ async function sendMail({
       subject: isCall ? `Strategy call request from ${name}` : isUpdate ? `Site update from ${name}` : `New message from ${name}`,
       text,
       attachments: file instanceof File && file.size > 0
-        ? [{ filename: file.name || "attachment", content: Buffer.from(await file.arrayBuffer()) }]
+        ? [{ filename, content: Buffer.from(await file.arrayBuffer()) }]
         : [],
       disableFileAccess: true,
       disableUrlAccess: true,
