@@ -136,8 +136,9 @@ export const PAGES = {
     path: "/pay",
     title: "Plans and Secure Checkout",
     crumb: "Checkout",
-    indexable: true,
-    priority: 0.4,
+    // Checkout is a utility step, not a search landing page. Keep authority on
+    // the pricing page instead of asking Google to index near-duplicate intent.
+    indexable: false,
     description: "Choose a Kinexis Digital website plan and check out securely with PayPal. Already have an invoice or deposit? Pay your agreed amount here.",
   },
   blog: {

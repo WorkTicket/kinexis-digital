@@ -20,7 +20,7 @@ const USER_AGENT = "Mozilla/5.0 (compatible; KinexisSearchDeploy/1.0; +https://w
 
 // Paths that must stay out of the sitemap. Keep these aligned with robots.ts
 // and pages that set indexable: false.
-const NON_INDEXABLE = [/^\/api(?:\/|$)/, /^\/pay\/thanks(?:\/|$)/, /^\/client-login(?:\/|$)/];
+const NON_INDEXABLE = [/^\/api(?:\/|$)/, /^\/pay(?:\/|$)/, /^\/client-login(?:\/|$)/];
 
 const failures = [];
 const warnings = [];
@@ -217,13 +217,6 @@ async function textFrom(url, attempts) {
   return { response, text };
 }
 
-async function statusOf(url) {
-  const response = await request(url, 2);
-  const { status } = response;
-  await response.body?.cancel().catch(() => {});
-  return status;
-}
-
 async function pool(items, limit, fn) {
   const results = new Array(items.length);
   let next = 0;
@@ -315,6 +308,56 @@ function checkHomepage(html, canonicalOrigin) {
   else fail("homepage JSON-LD is missing Organization");
 }
 
+function indexabilityProblems(html, expectedUrl) {
+  const problems = [];
+  const metas = tags(html, "meta");
+  const links = tags(html, "link");
+  const title = decodeXml(html.match(/<title>([^<]*)<\/title>/i)?.[1] ?? "").replace(/\s+/g, " ").trim();
+  const description = metas
+    .filter((tag) => attr(tag, "name").toLowerCase() === "description")
+    .map((tag) => attr(tag, "content").replace(/\s+/g, " ").trim())
+    .find(Boolean);
+  const robots = metas
+    .filter((tag) => ["robots", "googlebot"].includes(attr(tag, "name").toLowerCase()))
+    .map((tag) => attr(tag, "content").toLowerCase());
+  const canonicals = links
+    .filter((tag) => attr(tag, "rel").toLowerCase().split(/\s+/).includes("canonical"))
+    .map((tag) => attr(tag, "href"))
+    .filter(Boolean);
+  const lang = html.match(/<html\b[^>]*\blang\s*=\s*("([^"]*)"|'([^']*)')/i);
+  const h1Count = (html.match(/<h1\b/gi) ?? []).length;
+
+  if (!title) problems.push("missing title");
+  if (!description) problems.push("missing meta description");
+  if (!lang?.[2] && !lang?.[3]) problems.push("missing html lang");
+  if (h1Count !== 1) problems.push(`${h1Count} h1 elements`);
+  if (robots.some((value) => value.split(",").some((part) => part.trim() === "noindex"))) problems.push("noindex");
+  if (canonicals.length !== 1) {
+    problems.push(`${canonicals.length} canonical links`);
+  } else {
+    try {
+      const expected = new URL(expectedUrl);
+      const canonical = new URL(canonicals[0], expected);
+      const clean = (url) => `${url.origin}${url.pathname === "/" ? "/" : url.pathname.replace(/\/$/, "")}`;
+      if (clean(canonical) !== clean(expected)) problems.push(`canonical is ${canonical.href}`);
+    } catch {
+      problems.push("invalid canonical URL");
+    }
+  }
+
+  let jsonLdCount = 0;
+  for (const match of html.matchAll(/<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)) {
+    jsonLdCount += 1;
+    try {
+      JSON.parse(match[1]);
+    } catch {
+      problems.push("invalid JSON-LD");
+    }
+  }
+  if (jsonLdCount === 0) problems.push("missing JSON-LD");
+  return problems;
+}
+
 function checkRobots(text, canonicalOrigin, key) {
   if (Buffer.byteLength(text) > 500 * 1024) fail("robots.txt is over Google's 500 KiB limit");
   const expected = `${canonicalOrigin}/sitemap.xml`;
@@ -381,14 +424,28 @@ async function checkUrls(locs, fetchOrigin, limit) {
   await pool(locs, limit, async (loc) => {
     const target = onHost(loc, fetchOrigin);
     try {
-      const status = await statusOf(target);
-      if (status !== 200) bad.push(`${status} ${loc}`);
+      const response = await request(target, 2);
+      const status = response.status;
+      if (status !== 200) {
+        await response.body?.cancel().catch(() => {});
+        bad.push(`${status} ${loc}`);
+        return;
+      }
+      const contentType = response.headers.get("content-type") ?? "";
+      if (!contentType.includes("text/html")) {
+        await response.body?.cancel().catch(() => {});
+        bad.push(`non-HTML ${loc} (${contentType || "no content-type"})`);
+        return;
+      }
+      const html = await response.text();
+      const problems = indexabilityProblems(html, loc);
+      if (problems.length) bad.push(`${loc} (${problems.join(", ")})`);
     } catch (error) {
       const message = error instanceof Error ? error.message : "request failed";
       bad.push(`error ${loc} (${message.slice(0, 160)})`);
     }
   });
-  if (bad.length === 0) pass(`${locs.length} sitemap URLs returned 200`);
+  if (bad.length === 0) pass(`${locs.length} sitemap URLs are indexable with complete on-page signals`);
   else {
     const sample = bad.slice(0, 8).join("; ");
     const extra = bad.length > 8 ? `; and ${bad.length - 8} more` : "";

@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-import { INDUSTRIES, RETIRED_INDUSTRY_SLUGS } from "./src/data/industries";
-import { POSTS } from "./src/lib/content";
+import { RETIRED_INDUSTRY_SLUGS } from "./src/data/industries";
 import { LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
 import { PAGES } from "./src/lib/pages";
 
@@ -63,47 +62,7 @@ const nextConfig: NextConfig = {
 
   async headers() {
     const cache = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
-    const lcp = (source: string, image: string) => ({
-      source,
-      headers: [{ key: "Link", value: `<${image}>; rel=preload; as=image; type=\"image/avif\"; fetchpriority=high` }],
-    });
-    const sharedHero: Record<string, string> = {
-      "/": "/assets/video/hero-rLicrajNvqM-poster.avif",
-      "/services": "/assets/kinexis/heroes/homepage-720.avif",
-      "/web-design": "/assets/kinexis/heroes/web-design-720.avif",
-      "/seo-services": "/assets/kinexis/heroes/local-seo-720.avif",
-      "/audit": "/assets/kinexis/heroes/website-audit-720.avif",
-      "/contact": "/assets/kinexis/heroes/contact-720.avif",
-      "/website-management": "/assets/kinexis/heroes/maintenance-720.avif",
-      "/about": "/assets/kinexis/heroes/about-720.avif",
-      "/portfolio": "/assets/kinexis/heroes/portfolio-720.avif",
-      "/reviews": "/assets/kinexis/heroes/reviews-720.avif",
-      "/upgrades": "/assets/kinexis/heroes/upgrades-720.avif",
-      "/pricing": "/assets/kinexis/heroes/pricing-720.avif",
-      "/pay": "/assets/kinexis/heroes/pricing-720.avif",
-      "/blog": "/assets/kinexis/heroes/blog-720.avif",
-      "/faqs": "/assets/kinexis/heroes/faqs-720.avif",
-    };
-    const lcpHeaders = Object.entries(sharedHero).flatMap(([path, image]) => [
-      lcp(path, image),
-      lcp(path === "/" ? "/es" : `/es${path}`, path === "/" ? image : image),
-      lcp(path === "/" ? "/es-es" : `/es-es${path}`, path === "/" ? image : image),
-    ]);
-    for (const industry of INDUSTRIES) {
-      const path = `/industries/${industry.slug}`;
-      const image = `/assets/industries/${industry.slug}/hero-768.avif`;
-      lcpHeaders.push(lcp(path, image), lcp(`/es${path}`, image), lcp(`/es-es${path}`, image));
-    }
-    for (const post of POSTS) {
-      const path = `/blog/${post.slug}`;
-      lcpHeaders.push(
-        lcp(path, post.image.replace(".webp", ".avif")),
-        lcp(`/es${path}`, "/assets/kinexis/heroes/blog-720.avif"),
-        lcp(`/es-es${path}`, "/assets/kinexis/heroes/blog-720.avif"),
-      );
-    }
     return [
-      ...lcpHeaders,
       { source: "/assets/:path*", headers: cache },
       { source: "/portfolio/:file(.*\\.(?:webp|jpe?g|png|avif))", headers: cache },
       { source: "/blog/:file(.*\\.webp)", headers: cache },

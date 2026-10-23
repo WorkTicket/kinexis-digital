@@ -3,8 +3,7 @@ import Link from "next/link";
 import localFont from "next/font/local";
 import "./globals.css";
 import { chromeFor } from "@/i18n/chrome";
-import { contentLanguage, getLocale, getRequestPath, localeBootScript, withLocale } from "@/lib/i18n";
-import { heroPreload } from "@/lib/lcp";
+import { contentLanguage, getLocale, localeBootScript, withLocale } from "@/lib/i18n";
 import { ogImage } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import Header from "@/components/Header";
@@ -73,7 +72,6 @@ export const viewport: Viewport = { themeColor: "#0b3dff", width: "device-width"
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = await getLocale();
   const chrome = chromeFor(locale);
-  const preload = heroPreload(await getRequestPath());
   return (
     <html lang={contentLanguage(locale)} data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
       <head>
@@ -81,17 +79,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             external stylesheet is in flight. The full mobile menu still opens
             normally because this rule stops matching as soon as it is open. */}
         <style>{`@media(max-width:1024px){.nav:not(.is-open){display:none}}`}</style>
-        {preload && (
-          <link
-            rel="preload"
-            as="image"
-            href={preload.href}
-            imageSrcSet={preload.srcSet}
-            imageSizes={preload.sizes}
-            type={preload.type}
-            fetchPriority="high"
-          />
-        )}
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />
         <script
           id="route-chrome"

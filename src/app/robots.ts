@@ -6,7 +6,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/api/", "/pay/thanks"],
+      // Let crawlers read noindex on utility pages. Blocking a noindex URL here
+      // can leave an unhelpful URL-only result in a search index.
+      disallow: "/api/",
     },
     sitemap: `${SITE.url}/sitemap.xml`,
   };

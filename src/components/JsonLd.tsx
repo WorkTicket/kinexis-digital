@@ -267,7 +267,7 @@ export function ArticleSchema({ title, description, path, image, date, section, 
         url,
         name: title,
         description,
-        inLanguage: "en-US",
+        inLanguage,
         isPartOf: { "@id": websiteId() },
       },
       crumbs([
