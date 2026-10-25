@@ -109,6 +109,16 @@ function hideFb(node) {
   fbTimers.set(node, setTimeout(() => setFb(node, false), 140));
 }
 
+function lockScroll() {
+  if (document.documentElement.dataset.scrollLock === "1") return;
+  document.documentElement.dataset.scrollLock = "1";
+  document.documentElement.style.overflow = "hidden";
+}
+function unlockScroll() {
+  if (document.querySelector("dialog.dlg[open]")) return;
+  delete document.documentElement.dataset.scrollLock;
+  document.documentElement.style.overflow = "";
+}
 function openDialog(id, src) {
   const dlg = document.getElementById(id === "video" ? "dlg-video" : "dlg-guarantee");
   if (!(dlg instanceof HTMLDialogElement)) return;
@@ -135,11 +145,13 @@ function openDialog(id, src) {
             if (playing instanceof HTMLVideoElement) playing.pause();
             const loop = document.querySelector("video.hero__film");
             if (loop instanceof HTMLVideoElement && loop.querySelector("source") && !reduce()) loop.play().catch(() => {});
+            unlockScroll();
           });
         }
         video.muted = false;
         video.volume = 1;
         try { video.currentTime = 0; } catch {}
+        lockScroll();
         if (!dlg.open) dlg.showModal();
         video.play().catch(() => {});
         const hero = document.querySelector("video.hero__film");
@@ -155,10 +167,12 @@ function openDialog(id, src) {
       }
     }
   }
+  lockScroll();
   if (!dlg.open) dlg.showModal();
 }
 function closeDialogs() {
   document.querySelectorAll("dialog.dlg[open]").forEach((dlg) => dlg.close());
+  unlockScroll();
 }
 
 function armMarks() {
@@ -764,7 +778,10 @@ document.addEventListener("input", (event) => {
   if (target instanceof HTMLElement && target.closest("form[data-lead]")) target.classList.remove("invalid");
 });
 document.querySelectorAll("dialog.dlg").forEach((dlg) => {
-  dlg.addEventListener("close", () => dlg.querySelector("iframe")?.remove());
+  dlg.addEventListener("close", () => {
+    dlg.querySelector("iframe")?.remove();
+    if (!document.querySelector("dialog.dlg[open]")) unlockScroll();
+  });
 });
 
 if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
