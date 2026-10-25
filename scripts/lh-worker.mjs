@@ -5,7 +5,7 @@ import lighthouse from "lighthouse";
 
 const jobsPath = process.argv[2];
 const worker = Number(process.argv[3] || 0);
-const BASE = process.env.LH_BASE || "http://127.0.0.1:3491";
+const BASE = process.env.LH_BASE || "http://localhost:3491";
 const OUT = ".audit/lh";
 const jobs = JSON.parse(readFileSync(jobsPath, "utf8"));
 
@@ -70,7 +70,20 @@ for (const job of jobs) {
     if (!result) throw new Error("no result");
     const report = result.lhr;
     writeFileSync(jsonPath, JSON.stringify(report));
+    if (report.runtimeError) {
+      throw new Error(`${report.runtimeError.code}: ${report.runtimeError.message}`);
+    }
     const a = report.audits;
+    const metrics = {
+      fcp: a["first-contentful-paint"]?.numericValue,
+      lcp: a["largest-contentful-paint"]?.numericValue,
+      tbt: a["total-blocking-time"]?.numericValue,
+      cls: a["cumulative-layout-shift"]?.numericValue,
+      si: a["speed-index"]?.numericValue,
+    };
+    if (Object.values(metrics).some((value) => !Number.isFinite(value))) {
+      throw new Error("Lighthouse did not return a complete set of performance metrics");
+    }
     emit({
       ok: true,
       worker,
@@ -78,11 +91,7 @@ for (const job of jobs) {
       mode,
       path,
       score: Math.round((report.categories.performance.score ?? 0) * 100),
-      fcp: a["first-contentful-paint"]?.numericValue,
-      lcp: a["largest-contentful-paint"]?.numericValue,
-      tbt: a["total-blocking-time"]?.numericValue,
-      cls: a["cumulative-layout-shift"]?.numericValue,
-      si: a["speed-index"]?.numericValue,
+      ...metrics,
       lcpElement:
         a["largest-contentful-paint-element"]?.details?.items?.[0]?.items?.[0]?.node?.snippet ||
         a["largest-contentful-paint-element"]?.details?.items?.[0]?.items?.[0]?.node?.nodeLabel ||

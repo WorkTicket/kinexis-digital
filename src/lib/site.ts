@@ -16,9 +16,9 @@ export const SITE = {
   announce: { text: "Free homepage preview first — no card, no obligation. See the four plans →", href: "/pricing" } as null | { text: string; href: string }, // set to null to hide
   areaServed: "United States",
   languages: ["English", "Spanish"] as const,
-  updated: "2026-10-22",
+  updated: "2026-10-25",
   clientPortalUrl: process.env.NEXT_PUBLIC_CLIENT_PORTAL_URL ?? "",
-  videoUrl: process.env.NEXT_PUBLIC_VIDEO_URL ?? "/assets/video/kinexis-explainer-v5e-sticker.mp4",
+  videoUrl: process.env.NEXT_PUBLIC_VIDEO_URL ?? "/assets/video/kinexis-explainer-v5f-sticker.mp4",
   ogImage: "/OGimage-sm.webp",
 };
 export const telHref = (p: string) => "tel:" + p.replace(/[^0-9+]/g, "");

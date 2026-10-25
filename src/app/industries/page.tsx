@@ -14,7 +14,7 @@ export default function Page() {
       <PageHero
         eyebrow="Industries"
         h1="A Website That Fits Your Trade"
-        mark="Trades You Run"
+        mark="Your Trade"
         sub="Choose your trade to see how the site can cover its common jobs, useful pages, and day-to-day follow-up."
       >
         <p className="btn-row">

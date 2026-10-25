@@ -6,6 +6,7 @@ import { SITE } from "@/lib/site";
 import { ArticleSchema } from "@/components/JsonLd";
 import { PageHero, Section, CtaBand } from "@/components/ui";
 import { EN_POST_CONTENT } from "@/data/posts-en";
+import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -65,9 +66,11 @@ export default async function BlogPostPage({ params }: Props) {
           <article className="blog-post">
             <figure className="blog-post__hero">
               <picture>
-                <source type="image/avif" srcSet={post.image.replace(".webp", ".avif")} />
+                <source type="image/avif" srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} sizes="(max-width: 840px) 100vw, 800px" />
                 <img
-                  src={post.image}
+                  src={imageVariant(post.image, 640, "webp")}
+                  srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
+                  sizes="(max-width: 840px) 100vw, 800px"
                   alt={post.title}
                   width={post.width}
                   height={post.height}

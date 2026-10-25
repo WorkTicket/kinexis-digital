@@ -31,10 +31,10 @@ export const STEPS = [
   { tab: "Grow", title: "We keep things current", text: "We make edits, track calls and forms, and send review requests after each job. Your leads are shown in one report." },
 ];
 export const UPGRADES = [
-  ["Extra Page", "Add a service, location or landing page to a Website, Lead System or Plus plan.", "$99 each"],
-  ["Site Care", "Hosting, SSL and up to 30 minutes of edits each month after year one on Own It.", "$39 / mo"],
-  ["Missed-Call Text-Back", "Add text-back to an Own It site after carrier approval, typically in 10 to 15 days.", "$97 / mo"],
-  ["New Pages on Own It", "Extra pages for an Own It site are quoted in writing before we start any work.", "Quoted"],
+  ["Extra Page", "Add a service, location or landing page to any Website, Lead System or Plus plan.", "$99 each"],
+  ["Site Care", "Keep an Own It site hosted, secure and updated with 30 minutes of edits each month.", "$39 / mo"],
+  ["Missed-Call Text-Back", "Add text-back to an Own It site after carrier approval, usually within 10 to 15 days.", "$97 / mo"],
+  ["New Pages on Own It", "Add new pages to an Own It site with a written quote provided before any work begins.", "Quoted"],
 ];
 
 export type Plan = {

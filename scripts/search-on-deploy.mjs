@@ -8,7 +8,7 @@
 //   SEARCH_NOTIFY=0                                 skip the live step
 //   SEARCH_BASE_URL                                 fetch this host instead of the canonical origin
 
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -17,6 +17,7 @@ const dryRun = process.argv.includes("--dry-run");
 const preflight = process.argv.includes("--preflight");
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 const USER_AGENT = "Mozilla/5.0 (compatible; KinexisSearchDeploy/1.0; +https://www.kinexisdigital.com)";
+const CLOUDFLARE_ASSET_LIMIT = 25 * 1024 * 1024;
 
 // Paths that must stay out of the sitemap. Keep these aligned with robots.ts
 // and pages that set indexable: false.
@@ -81,6 +82,28 @@ function loadKey() {
     );
   }
   return matches[0];
+}
+
+function checkCloudflareAssetSizes() {
+  const publicDir = join(root, "public");
+  const oversized = [];
+  const visit = (directory) => {
+    for (const entry of readdirSync(directory, { withFileTypes: true })) {
+      const path = join(directory, entry.name);
+      if (entry.isDirectory()) visit(path);
+      else if (entry.isFile()) {
+        const size = statSync(path).size;
+        if (size > CLOUDFLARE_ASSET_LIMIT) {
+          oversized.push(`${path.slice(root.length + 1)} (${(size / 1024 / 1024).toFixed(1)} MiB)`);
+        }
+      }
+    }
+  };
+  visit(publicDir);
+  if (oversized.length) {
+    throw new Error(`Cloudflare's 25 MiB asset limit is exceeded by: ${oversized.join(", ")}`);
+  }
+  pass("public assets are within Cloudflare's 25 MiB limit");
 }
 
 function originOf(value, label) {
@@ -491,6 +514,7 @@ async function run() {
   const key = loadKey();
   if (preflight) {
     pass(`IndexNow key file public/${key}.txt`);
+    checkCloudflareAssetSizes();
     return;
   }
   if (process.env.SEARCH_NOTIFY === "0") {

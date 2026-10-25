@@ -5,6 +5,7 @@ import { DeferredImg } from "@/components/DeferredImg";
 import { PageSchema } from "@/components/JsonLd";
 import { CtaBand, PageHero, Section } from "@/components/ui";
 import Link from "next/link";
+import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("blog");
 
@@ -20,7 +21,15 @@ export default function Page() {
             <article className="card post" key={post.slug} data-cat={post.category}>
               <Link href={`/blog/${post.slug}`} className="post__link" prefetch={false}>
                 <div className="post__img">
-                  <DeferredImg src={post.image} alt={post.title} width={post.width} height={post.height} sizes="(max-width: 900px) 92vw, 380px" />
+                  <DeferredImg
+                    src={imageVariant(post.image, 640, "webp")}
+                    srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
+                    avifSrcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")}
+                    alt={post.title}
+                    width={post.width}
+                    height={post.height}
+                    sizes="(max-width: 900px) 92vw, 380px"
+                  />
                 </div>
               </Link>
               <div className="post__body">

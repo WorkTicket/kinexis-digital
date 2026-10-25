@@ -14,8 +14,8 @@ export function ShotFrame({
   hrefLang,
   ctaLabel = "View This Project",
   clickToScroll = false,
+  scrollOnHover = true,
   className = "",
-  scrollDuration = 5000,
   showCtaOnHover = false,
 }: {
   project: Project;
@@ -24,8 +24,8 @@ export function ShotFrame({
   hrefLang?: string;
   ctaLabel?: string;
   clickToScroll?: boolean;
+  scrollOnHover?: boolean;
   className?: string;
-  scrollDuration?: number;
   showCtaOnHover?: boolean;
 }) {
   const shot = portfolioFile(project.image, 640);
@@ -45,7 +45,7 @@ export function ShotFrame({
       </div>
     </div>
   );
-  const cls = `shot shot--hero${clickToScroll ? " shot--click" : ""}${className ? ` ${className}` : ""}`;
+  const cls = `shot shot--hero${clickToScroll ? " shot--click" : ""}${scrollOnHover ? "" : " shot--static"}${className ? ` ${className}` : ""}`;
   const ctaOverlay = showCtaOnHover ? (
     <span className="btn btn--primary shot__cta-overlay" aria-hidden="true">
       {ctaLabel}
@@ -61,7 +61,6 @@ export function ShotFrame({
         prefetch={false}
         aria-label={label ?? `View ${project.name}`}
         data-name={project.name}
-        data-duration={scrollDuration}
       >
         {inner}
         {ctaOverlay}
@@ -76,7 +75,6 @@ export function ShotFrame({
         tabIndex={0}
         aria-label={`Scroll the ${project.name} website screenshot`}
         data-name={project.name}
-        data-duration={scrollDuration}
       >
         {inner}
         <span className="shot__hint" aria-hidden="true">Click to scroll</span>
@@ -85,7 +83,7 @@ export function ShotFrame({
     );
   }
   return (
-    <div className={cls} data-name={project.name} data-duration={scrollDuration}>
+    <div className={cls} data-name={project.name}>
       {inner}
     </div>
   );

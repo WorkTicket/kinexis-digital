@@ -1,0 +1,578 @@
+[
+  {
+    "slug": "Copperline-Plumbing",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Volterra-Electric",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Volterra-Electric",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Copperline-Plumbing",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Copperline-Plumbing",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Volterra-Electric",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Happy-Yard",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Happy-Yard",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Happy-Yard",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "ClearPeak",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "ClearPeak",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "ClearPeak",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Rinseworks",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Rinseworks",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Rinseworks",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Brush-and-Co",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Brush-and-Co",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Brush-and-Co",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Root-and-Stone",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Root-and-Stone",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Oak-and-Form",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Oak-and-Form",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Root-and-Stone",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Oak-and-Form",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Highline-Pest",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Highline-Pest",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Highline-Pest",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Northstar-Moving",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Northstar-Moving",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Northstar-Moving",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "mode": "Desktop",
+    "width": 1440,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "mode": "Tablet",
+    "width": 768,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "mode": "Mobile",
+    "width": 390,
+    "main_sections": 9,
+    "overflow": false,
+    "missing_images": []
+  }
+]

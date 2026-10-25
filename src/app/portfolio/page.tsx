@@ -24,10 +24,10 @@ export default function Page() {
       <PageSchema page="portfolio" items={PROJECTS.filter((project) => !project.placeholder).map((project) => ({ name: project.name, path: `/portfolio/${project.slug}` }))} />
       <PageHero
         className="portfolio-hero"
-        eyebrow="Website concepts for local service businesses"
+        eyebrow="Website templates for local service businesses"
         h1="Explore Our Design Work"
         mark="Design Work"
-        sub="These concept sites show how we approach different trades, from the first screen to the quote path. Live client websites are listed separately below."
+        sub="Choose a website template you like and we’ll customize it for your business, from the first screen to the quote path. Live client websites are listed separately below."
         image="portfolio"
         imageAlt="Trade websites shown on desktop and phone screens"
       >
@@ -35,21 +35,21 @@ export default function Page() {
           <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>See My Homepage First</Link>
           <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>View The Four Plans</Link>
         </div>
-        <p className="muted small trust">Concept designs for pool care, HVAC, plumbing, roofing, and other local trades.</p>
+        <p className="muted small trust">Professionally designed templates for pool care, HVAC, plumbing, roofing, and other local trades.</p>
       </PageHero>
 
       <Section>
         <div className="container">
           <div className="showcase__head">
             <div>
-              <p className="eyebrow">Concept designs</p>
-              <h2><HL text="Custom And Template Concepts" mark="Template Concepts" /></h2>
-              <p className="muted">These are fictional examples, not client results. Hover or tap a screenshot to view the full design.</p>
+              <p className="eyebrow">Choose your starting design</p>
+              <h2><HL text="Professionally Designed Website Templates" mark="Website Templates" /></h2>
+              <p className="muted">Choose a template you like and we’ll tailor the design, content, services, and calls to action for your business. Hover or tap a screenshot to view the full template.</p>
             </div>
             <Link className="link-btn" href="/contact" prefetch={false}>Reach out to see more</Link>
           </div>
           <div className="portfolio portfolio--main">
-            {PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} />)}
+            {PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} label={`View the ${project.name} template`} ctaLabel="View This Template" scrollOnHover={false} />)}
           </div>
 
           <div className="showcase__head showcase__head--follow">
@@ -66,7 +66,7 @@ export default function Page() {
               const host = siteHost(site.url);
               return (
                 <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                  <div className="shot" data-name={site.name} data-duration={12000}>
+                  <div className="shot" data-name={site.name}>
                     <div className="shot__page">
                       <div className="shot__track">
                         <DeferredImg

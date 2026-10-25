@@ -9,8 +9,33 @@ import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
 import { Compare, Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
+import { imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("home");
+
+function SectionGraphic({ name, alt, className }: { name: string; alt: string; className: string }) {
+  const base = `/assets/home/${name}`;
+  const src = `${base}.webp`;
+  const widths = [640, 768, 1120] as const;
+  const sizes = "(max-width: 720px) 92vw, 600px";
+
+  return (
+    <picture className={`home-section-art ${className}`}>
+      <source type="image/avif" srcSet={imageSrcSet(src, widths, "avif")} sizes={sizes} />
+      <img
+        src={imageVariant(src, 640, "webp")}
+        srcSet={imageSrcSet(src, widths)}
+        sizes={sizes}
+        alt={alt}
+        width={1536}
+        height={1024}
+        loading="lazy"
+        decoding="async"
+        fetchPriority="low"
+      />
+    </picture>
+  );
+}
 
 export default function Home() {
   return (
@@ -71,7 +96,7 @@ export default function Home() {
       <Section>
         <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
           <h2><HL text="Websites Made For Your Trade" mark="Your Trade" /></h2>
-          <p className="muted">These are concept designs. Hover to preview one, then click to see the full project.</p>
+          <p className="muted">Choose a website template you like and we’ll customize it for your business. Hover to preview one, then click to see the full design.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center"><Link className="btn btn--primary" href="/portfolio" prefetch={false}>View Our Portfolio</Link></p>
@@ -86,24 +111,53 @@ export default function Home() {
 
       {/* 5. Google reviews, handled */}
       <Section>
-        <p className="eyebrow center">Google reviews, handled</p>
-        <h2 className="center"><HL text="Ask Every Happy Customer. Automatically." mark="Automatically" /></h2>
-        <p className="center muted">Part of the Lead System. After every job, a review request goes out by text with a direct link to your Google page.</p>
+        <div className="home-visual-intro home-visual-intro--reviews">
+          <div className="home-visual-intro__copy">
+            <p className="eyebrow">Google reviews, handled</p>
+            <h2><HL text="Ask Every Happy Customer. Automatically." mark="Automatically" /></h2>
+            <p className="muted">Part of the Lead System. After every job, a review request goes out by text with a direct link to your Google page.</p>
+          </div>
+          <SectionGraphic
+            name="google-reviews-handled"
+            alt="A completed job leading to a text message and a Google review"
+            className="home-section-art--reviews"
+          />
+        </div>
         <ReviewRail />
         <p className="center btn-row spaced reviews-ctas"><Link className="btn btn--primary" href="/pricing" prefetch={false}>See the Lead System</Link><Link className="btn btn--ghost" href="/contact" prefetch={false}>Ask a Question</Link></p>
       </Section>
 
       {/* 6. Four reasons */}
       <Section tint>
-        <h2 className="center"><HL text="What Every Kinexis Site Includes" mark="Kinexis Site" /></h2>
+        <div className="home-visual-intro home-visual-intro--includes">
+          <div className="home-visual-intro__copy">
+            <p className="eyebrow">Built into every plan</p>
+            <h2><HL text="What Every Kinexis Site Includes" mark="Kinexis Site" /></h2>
+            <p className="muted">The essentials for looking credible, getting found, and turning more visits into real conversations—with the upkeep handled for you.</p>
+          </div>
+          <SectionGraphic
+            name="what-every-site-includes"
+            alt="A responsive service-business website shown across desktop, tablet, and phone"
+            className="home-section-art--includes"
+          />
+        </div>
         <ReasonBoard />
         <p className="center btn-row spaced"><Link className="btn btn--primary" href="/web-design" prefetch={false}>See Website Design</Link><Link className="btn btn--ghost" href="/seo-services" prefetch={false}>Explore SEO Services</Link></p>
       </Section>
 
       {/* 7. Trades */}
       <Section>
-        <h2 className="center"><HL text="Built for the Trade You Actually Run" mark="Trade You Actually Run" /></h2>
-        <p className="center muted">The plans are the same. The site is written for the calls that trade gets, from a no-cool emergency to a kitchen consult.</p>
+        <div className="home-visual-intro home-visual-intro--trades">
+          <div className="home-visual-intro__copy">
+            <h2><HL text="Built for the Trade You Actually Run" mark="Trade You Actually Run" /></h2>
+            <p className="muted">The plans are the same. The site is written for the calls that trade gets, from a no-cool emergency to a kitchen consult.</p>
+          </div>
+          <SectionGraphic
+            name="built-for-your-trade"
+            alt="A contractor website surrounded by tools and materials from multiple home-service trades"
+            className="home-section-art--trades"
+          />
+        </div>
         <IndustryGrid layout="index" />
         <p className="center btn-row spaced"><Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse Industries</Link></p>
       </Section>

@@ -19,7 +19,10 @@ export default function Page() {
             <p className="muted">Share what you do and what you need from the site. We’ll get back to you soon.</p>
             <p className="muted small">A phone number and service area help us give you a more useful answer.</p>
             <Form fields={LEAD_FIELDS} button="Let’s Chat!" fast />
-            <p className="center" style={{ marginTop: "24px" }}><strong>Prefer to talk it through?</strong> <Link className="btn btn--primary" href="/strategy-call" prefetch={false}>Book a Strategy Call</Link></p>
+            <div className="inline-action center">
+              <p>Prefer to talk it through?</p>
+              <Link className="btn btn--ghost" href="/strategy-call" prefetch={false}>Book a Strategy Call</Link>
+            </div>
           </div>
         </div>
       </Section>

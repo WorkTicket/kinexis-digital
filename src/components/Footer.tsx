@@ -70,7 +70,7 @@ export default async function Footer() {
   return (
     <div className="site-foot">
       <FooterGate>
-        <div className="bg-[linear-gradient(to_bottom,transparent_50%,var(--accent)_50%)] px-6">
+        <div className="footer-cta-bridge px-6">
           <section
             id="footer-cta"
             aria-labelledby="footer-cta-heading"

@@ -1,6 +1,7 @@
 type Props = {
   src: string;
   srcSet?: string;
+  avifSrcSet?: string;
   sizes?: string;
   alt: string;
   width: number;
@@ -21,9 +22,9 @@ function placeholder(width: number, height: number) {
  * Off-screen artwork stays on `data-src` until `DeferImages` sees it near the viewport.
  * The reserved box is the only thing in the first HTML, so the file cannot delay the largest paint.
  */
-export function DeferredImg({ src, srcSet, sizes, alt, width, height, className, eager = false, onError, fallback }: Props) {
+export function DeferredImg({ src, srcSet, avifSrcSet, sizes, alt, width, height, className, eager = false, onError, fallback }: Props) {
   if (eager) {
-    return (
+    const image = (
       <img
         src={src}
         srcSet={srcSet}
@@ -40,8 +41,9 @@ export function DeferredImg({ src, srcSet, sizes, alt, width, height, className,
         onError={onError}
       />
     );
+    return avifSrcSet ? <picture><source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />{image}</picture> : image;
   }
-  return (
+  const image = (
     <img
       src={placeholder(width, height)}
       data-src={src}
@@ -59,4 +61,5 @@ export function DeferredImg({ src, srcSet, sizes, alt, width, height, className,
       onError={onError}
     />
   );
+  return avifSrcSet ? <picture><source type="image/avif" data-srcset={avifSrcSet} sizes={sizes} />{image}</picture> : image;
 }

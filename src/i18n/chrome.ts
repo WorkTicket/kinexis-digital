@@ -45,7 +45,7 @@ const EN: Chrome = {
   allIndustries: "All industries",
   menu: "Menu",
   close: "Close",
-  chat: "Share Your Website Plans",
+  chat: "Talk With Us",
   strategy: "Talk Through Your Options",
   footerCta: "Ready To See Your Homepage?",
   footerCtaMark: "Your Homepage",

@@ -10,6 +10,7 @@ import { PLANS, POSTS } from "@/lib/content";
 import { esPost } from "@/i18n/posts-es";
 import { localizedIndustries, localizeIndustry } from "@/i18n/industries-es";
 import { contentLanguage, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
+import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { contentMetadata } from "@/lib/seo";
 import { kitSrc, SITE, telHref } from "@/lib/site";
 import AuditCta from "@/components/AuditCta";
@@ -48,7 +49,7 @@ const PAGE_META: Record<string, Meta> = {
   "/contact": { title: "Habla con Kinexis sobre tu sitio", description: "Cuéntanos sobre tu negocio y lo que necesitas del sitio. Envía un mensaje, llama o agenda una conversación sobre los planes." },
   "/website-management": { title: "Cuidado web para negocios en EE. UU.", description: "Mantén el sitio al día sin administrarlo tú. Kinexis resuelve hosting, cambios chicos, respaldos, seguridad y soporte." },
   "/about": { title: "Cómo trabaja Kinexis con los oficios", description: "Conoce para quién trabaja Kinexis y cómo un sitio pasa de una vista previa gratis a una fecha de lanzamiento confirmada." },
-  "/portfolio": { title: "Conceptos web y sitios reales de clientes", description: "Explora conceptos para oficios claramente identificados y, aparte, una colección de sitios reales creados para clientes de Kinexis." },
+  "/portfolio": { title: "Plantillas web y sitios reales de clientes", description: "Explora plantillas profesionales para distintos oficios, elige un diseño inicial y mira sitios reales creados para clientes de Kinexis." },
   "/industries": { title: "Ideas de sitio para cada oficio", description: "Mira cómo puede funcionar un sitio para plomería, HVAC, electricidad, techos, jardinería y otros oficios en Estados Unidos." },
   "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee recomendaciones publicadas por clientes en Facebook. El texto de cada reseña se muestra tal como fue escrito." },
   "/upgrades": { title: "Extras opcionales para el sitio", description: "Agrega una página, cuidado continuo o texto para llamadas perdidas cuando lo necesites. Consulta precios y tiempos por escrito." },
@@ -175,7 +176,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
       </Section>
       <Section>
         <h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2>
-        <p className="muted">{tx("Son diseños conceptuales. Pasa el cursor para ver uno y abre el proyecto completo en inglés.")}</p>
+        <p className="muted">{tx("Elige una plantilla web que te guste y la personalizamos para tu negocio. Pasa el cursor para verla y abre el diseño completo en inglés.")}</p>
         <div className="portfolio"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link></p>
       </Section>
@@ -491,7 +492,7 @@ function Blog({ tx, href, lang, band }: PageBits) {
         <div className="grid grid--3">
           {posts.map((post) => (
             <article className="card post" key={post.slug} data-cat={post.category}>
-              <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={post.image} alt={post.title} width={post.width} height={post.height} sizes="(max-width: 900px) 92vw, 380px" /></div></Link>
+              <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} avifSrcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} alt={post.title} width={post.width} height={post.height} sizes="(max-width: 900px) 92vw, 380px" /></div></Link>
               <div className="post__body"><Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link><p>{post.excerpt}</p></div>
             </article>
           ))}
@@ -681,13 +682,13 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/portfolio")} title={tx(PAGE_META["/portfolio"].title)} description={tx(PAGE_META["/portfolio"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Portafolio"), path: href("/portfolio") }]} inLanguage={lang} />
-      <PageHero className="portfolio-hero" eyebrow={tx("Conceptos de sitio para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Estos conceptos muestran cómo planteamos distintos oficios, desde la primera pantalla hasta la cotización. Los sitios reales de clientes aparecen aparte más abajo.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
+      <PageHero className="portfolio-hero" eyebrow={tx("Plantillas web para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Elige una plantilla que te guste y la personalizamos para tu negocio, desde la primera pantalla hasta la cotización. Los sitios reales de clientes aparecen aparte más abajo.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
         <div className="btn-row spaced"><Link className="btn btn--primary btn--lg" href={href("/contact")} prefetch={false}>{tx("Ver primero mi página de inicio")}</Link><Link className="btn btn--ghost btn--lg" href={href("/pricing")} prefetch={false}>{tx("Ver los cuatro planes")}</Link></div>
       </PageHero>
       <Section>
         <div className="container">
-          <div className="showcase__head"><div><p className="eyebrow">{tx("Diseños conceptuales")}</p><h2><HL text={tx("Conceptos a la medida y de plantilla")} mark={tx("de plantilla")} /></h2><p className="muted">{tx("Son ejemplos ficticios, no resultados de clientes. Pasa el cursor o toca para ver el diseño completo; el estudio abre en inglés.")}</p></div></div>
-          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este proyecto")} />)}</div>
+          <div className="showcase__head"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Plantillas web diseñadas profesionalmente")} mark={tx("Plantillas web")} /></h2><p className="muted">{tx("Elige una plantilla que te guste y personalizamos el diseño, el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver la plantilla completa en inglés.")}</p></div></div>
+          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver esta plantilla")} scrollOnHover={false} />)}</div>
           <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
           <div className="portfolio--live">{LIVE_SITES.map((site) => {
             const shot = portfolioFile(site.image, 640);
@@ -696,7 +697,7 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
             try { host = new URL(site.url).host.replace(/^www\./, ""); } catch { /* keep url */ }
             return (
               <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot" data-name={site.name} data-duration={12000}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} srcSet={`${shot} 640w, ${full} 1100w`} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={Math.round((site.height * 640) / site.width)} className="shot__img" /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
+                <div className="shot" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} srcSet={`${shot} 640w, ${full} 1100w`} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={Math.round((site.height * 640) / site.width)} className="shot__img" /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
                 <span className="live-site__copy"><span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />{tx("En vivo")}</span><span className="live-site__id"><span className="live-site__name">{site.name}</span><span className="live-site__meta"><span>{site.trade}</span><span className="live-site__host">{host}</span></span></span></span>
               </a>
             );
@@ -727,7 +728,6 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
   const related = relatedIndustries(base).map((item) => localizeIndustry(item, locale));
   const hero = `/assets/industries/${industry.slug}/hero.webp`;
   const heroMobile = `/assets/industries/${industry.slug}/hero-768.webp`;
-  const article = /^(hvac|electrical)$/i.test(industry.slug) ? tx("Un") : tx("Una");
   return (
     <>
       <ContentSchema path={path} title={industry.metaTitle} description={industry.metaDescription} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }, { name: industry.name, path }]} faqs={[...industry.faqs]} serviceType={tx(`Diseño web de ${industry.name}`)} inLanguage={lang} />
@@ -767,10 +767,10 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
         <Section>
           <div className="media-split">
             <div className="media-split__copy">
-              <h2><HL text={tx(`${article} muestra de ${industry.name}, en la práctica`)} mark={tx("en la práctica")} /></h2>
-              <p>{tx("Mira")} <Link href={`/portfolio/${project.slug}`} hrefLang="en-US" prefetch={false}>{project.name}</Link> {tx("para ver el tipo de página que armamos. El caso de estudio está en inglés.")}</p>
+              <h2><HL text={tx(`Ejemplo de plantilla web para ${industry.name}`)} mark={tx("plantilla web")} /></h2>
+              <p>{tx("¿Te gusta el diseño de")} <Link href={`/portfolio/${project.slug}`} hrefLang="en-US" prefetch={false}>{project.name}</Link>? {tx("Elige esta plantilla profesional como punto de partida y la personalizamos según tus servicios, tu marca y tus clientes. La página de la plantilla está en inglés.")}</p>
             </div>
-            <ShotFrame project={project} href={`/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este proyecto")} />
+            <ShotFrame project={project} href={`/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver la plantilla web de ${project.name}`)} ctaLabel={tx("Ver esta plantilla")} />
           </div>
         </Section>
       )}

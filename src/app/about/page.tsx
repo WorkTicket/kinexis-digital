@@ -13,7 +13,7 @@ export default function Page() {
       <PageSchema page="about" faqs={[FAQS[5], FAQS[3], FAQS[4]]} />
       <PageHero
         h1="A Small Team For Service Businesses Nationwide"
-        mark="US Businesses"
+        mark="Service Businesses"
         sub="We build websites, improve search visibility, text missed callers, and request Google reviews for service businesses across the United States."
         image="about"
         imageAlt="Laptop, website layout, and a notebook sketch of a homepage"

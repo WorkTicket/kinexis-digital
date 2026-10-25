@@ -91,12 +91,12 @@ export const PAGES = {
   },
   portfolio: {
     path: "/portfolio",
-    title: "Website Concepts and Live Client Sites",
+    title: "Website Templates and Live Client Sites",
     crumb: "Portfolio",
     pageType: "CollectionPage",
     indexable: true,
     priority: 0.8,
-    description: "Explore clearly labeled concept designs for US trades, then browse a separate collection of live websites built for Kinexis clients.",
+    description: "Explore professionally designed website templates for US trades, choose a starting design, and browse live websites built for Kinexis clients.",
   },
   industries: {
     path: "/industries",

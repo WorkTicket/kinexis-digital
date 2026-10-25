@@ -89,7 +89,7 @@ export default function Page() {
       <PageSchema page="pricing" faqs={FAQS} />
       <PageHero
         h1="Choose The Website Plan That Fits"
-        mark="Free Preview"
+        mark="Plan That Fits"
         sub="Start with the site your trade needs, then add the level of follow-up you want. Every plan begins with a free homepage preview, with no card or obligation."
         image="pricing"
         imageAlt="Pricing artwork with a payment card and checkmarks"

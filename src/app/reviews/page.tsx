@@ -2,7 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 import { getFacebookReviews } from "@/lib/facebook";
 import { FacebookReviewCard, LeaveFacebookReview } from "@/components/FacebookReviews";
 import { PageSchema } from "@/components/JsonLd";
-import { CtaBand, PageHero, Section } from "@/components/ui";
+import { CtaBand, HL, PageHero, Section } from "@/components/ui";
 
 export const metadata = pageMetadata("reviews");
 export const revalidate = 3600;
@@ -14,6 +14,8 @@ export default async function Page() {
       <PageSchema page="reviews" />
       <PageHero h1="What Clients Have Shared" mark="Clients Have Shared" sub="Read the recommendations posted directly to our Facebook page." image="reviews" imageAlt="Symbolic review cards beside a business owner" />
       <Section>
+        <h2 className="center"><HL text="Client Recommendations" mark="Recommendations" /></h2>
+        <p className="center muted">Read what business owners have shared about working with Kinexis Digital, in their own words.</p>
         <div className="review-cards">
           {reviews.map((review) => <FacebookReviewCard key={review.id} review={review} />)}
         </div>

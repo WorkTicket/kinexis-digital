@@ -25,7 +25,8 @@ export default function Stepper({ steps }: { steps: Step[] }) {
             tabIndex={k === 0 ? 0 : -1}
             className={k === 0 ? "is-active" : ""}
           >
-            {s.label ?? s.tab}
+            <span className="stepper__number" aria-hidden="true">{k + 1}</span>
+            <span>{s.label ?? s.tab}</span>
           </button>
         ))}
       </div>

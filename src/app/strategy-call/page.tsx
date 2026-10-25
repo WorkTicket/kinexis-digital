@@ -22,7 +22,10 @@ export default function Page() {
             <li><span className="tick__mark" aria-hidden="true">✓</span><span>Which plan makes sense, including when none of them is a good fit</span></li>
           </ul>
           <p>Choose a time on the calendar and we’ll confirm it by email. You can also call <a href={telHref(SITE.phone)}>{SITE.phone}</a> or email <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
-          <p className="muted"><strong>Prefer to write it out first?</strong> <Link className="btn btn--primary" href="/contact" prefetch={false}>Send us a message</Link>.</p>
+          <div className="inline-action inline-action--left">
+            <p>Prefer to write it out first?</p>
+            <Link className="btn btn--ghost" href="/contact" prefetch={false}>Send Us a Message</Link>
+          </div>
         </div>
         <div className="rounded-[22px] border-2 border-[var(--brand-navy)] p-4 shadow-[8px_8px_0_var(--brand-navy)]"><BookingCalendar /></div>
       </div></section>

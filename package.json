@@ -7,10 +7,11 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/defer-chunks.mjs",
+    "build": "node scripts/build.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "images:optimize": "node scripts/optimize-content-images.mjs",
     "check:contact": "node scripts/check-contact-delivery.mjs",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build && opennextjs-cloudflare deploy && node scripts/search-on-deploy.mjs",
@@ -39,6 +40,7 @@
     "eslint-config-next": "^16.4.2",
     "lighthouse": "^13.5.0",
     "postcss": "^8.5.31",
+    "sharp": "^0.35.5",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "wrangler": "^4.152.0"

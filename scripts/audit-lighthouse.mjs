@@ -5,7 +5,7 @@
 import { spawn } from "node:child_process";
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const BASE = process.env.LH_BASE || "http://127.0.0.1:3491";
+const BASE = process.env.LH_BASE || "http://localhost:3491";
 const OUT = ".audit/lh";
 const argv = process.argv.slice(2);
 const onlyArg = argv.find((a) => a.startsWith("--only="));
@@ -75,6 +75,7 @@ jobs.forEach((job, i) => buckets[i % workers].push(job));
 const started = Date.now();
 const outcomes = await Promise.all(buckets.map((bucket, i) => runWorker(i, bucket)));
 const results = outcomes.flatMap((o) => o.results).sort((a, b) => a.mode.localeCompare(b.mode) || a.path.localeCompare(b.path));
+const failures = results.filter((result) => !result.ok);
 
 writeFileSync(".audit/lh-summary.json", JSON.stringify({ base: BASE, timestamp: new Date().toISOString(), results }, null, 2));
 
@@ -90,10 +91,22 @@ for (const mode of modes) {
   }
   lines.push("");
 }
+if (failures.length) {
+  lines.push("## Failed runs", "", "| Mode | Page | Error |", "| --- | --- | --- |");
+  for (const result of failures) {
+    lines.push(`| ${result.mode} | ${result.path} | ${result.error.replaceAll("|", "\\|")} |`);
+  }
+  lines.push("");
+}
 writeFileSync(".audit/lh-summary.md", lines.join("\n"));
 
 for (const mode of modes) {
   const rows = results.filter((r) => r.mode === mode && r.ok);
-  console.log(`${mode}: ${rows.filter((r) => r.score === 100).length}/${rows.length} at 100, min ${Math.min(...rows.map((r) => r.score))}`);
+  const minimum = rows.length ? Math.min(...rows.map((r) => r.score)) : "n/a";
+  console.log(`${mode}: ${rows.filter((r) => r.score === 100).length}/${rows.length} at 100, min ${minimum}`);
 }
 console.log(`elapsed ${Math.round((Date.now() - started) / 1000)}s — wrote .audit/lh-summary.md`);
+if (failures.length || outcomes.some((outcome) => outcome.code !== 0)) {
+  console.error(`${failures.length} Lighthouse run(s) failed`);
+  process.exitCode = 1;
+}

@@ -10,7 +10,7 @@ function englishPath(pathname: string): string {
   return pathname || "/";
 }
 
-const HIDDEN_PATHS = new Set(["/contact", "/strategy-call"]);
+const HIDDEN_PATHS = new Set(["/contact", "/strategy-call", "/upgrades"]);
 
 export default function ScrollUi() {
   const pathname = usePathname();

@@ -7,5 +7,6 @@ export {
   CUSTOM_PROJECTS,
   TEMPLATE_PROJECTS,
   getProject,
+  portfolioDeviceFile,
   portfolioFile,
 } from "@/data/portfolio";

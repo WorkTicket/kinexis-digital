@@ -195,13 +195,13 @@ export default async function IndustryPage({ params }: Props) {
         <Section>
           <div className="media-split">
             <div className="media-split__copy">
-              <h2><HL text={`${/^(hvac|electrical)$/i.test(industry.slug) ? "An" : "A"} ${industry.name} Layout, In Practice`} mark="In Practice" /></h2>
+              <h2><HL text={`See ${/^(hvac|electrical)$/i.test(industry.slug) ? "an" : "a"} ${industry.name} Website Template`} mark="Website Template" /></h2>
               <p>
-                See <Link href={`/portfolio/${project.slug}`} prefetch={false}>{project.name}</Link> for the kind of {project.trade.toLowerCase()} page we build: the jobs up front, and a next step that matches the call.
+                Like the <Link href={`/portfolio/${project.slug}`} prefetch={false}>{project.name}</Link> design? Choose this professionally designed template as the starting point for your website, and we’ll customize it around your services, brand, and customers.
               </p>
-              <p className="btn-row"><Link className="btn btn--ghost" href={`/portfolio/${project.slug}`} prefetch={false}>View the Project</Link></p>
+              <p className="btn-row"><Link className="btn btn--ghost" href={`/portfolio/${project.slug}`} prefetch={false}>View the Template</Link></p>
             </div>
-            <ShotFrame project={project} href={`/portfolio/${project.slug}`} label={`View ${project.name}`} />
+            <ShotFrame project={project} href={`/portfolio/${project.slug}`} label={`View the ${project.name} website template`} />
           </div>
         </Section>
       )}

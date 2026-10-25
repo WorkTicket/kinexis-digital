@@ -236,7 +236,7 @@ function armHero() {
   const play = () => { el.muted = true; el.play().catch(() => {}); };
   const start = () => {
     if (el.querySelector("source")) return;
-    for (const [src, type] of [["/assets/video/hero-rLicrajNvqM.mp4", "video/mp4"]]) {
+    for (const [src, type] of [["/assets/video/kinexis-explainer-v5f-preview.mp4", "video/mp4"]]) {
       const source = document.createElement("source");
       source.src = src;
       source.type = type;
@@ -274,6 +274,7 @@ function armHero() {
 
 const shots = new WeakMap();
 const live = new Set();
+const SHOT_SCROLL_SPEED = 540;
 function motion(shot) {
   let state = shots.get(shot);
   if (!state) {
@@ -298,15 +299,17 @@ function place(shot, y) {
   if (track) track.style.transform = "translate3d(0, " + (-y) + "px, 0)";
 }
 function startShot(shot) {
-  if (reduce()) return;
+  if (reduce() || shot.classList.contains("shot--static")) return;
   const state = motion(shot);
   cancelAnimationFrame(state.raf);
-  const duration = Number(shot.getAttribute("data-duration")) || 5000;
-  const step = () => {
+  let previous = performance.now();
+  const step = (now) => {
     if (!shot.isConnected) return;
     const total = distance(shot);
     if (total <= 1) return;
-    const px = Math.max(1.5, total / (duration / 16.67));
+    const elapsed = Math.min(50, now - previous);
+    previous = now;
+    const px = SHOT_SCROLL_SPEED * elapsed / 1000;
     place(shot, Math.min(total, state.offset + px));
     if (state.offset < total - 0.5) state.raf = requestAnimationFrame(step);
   };
@@ -380,6 +383,10 @@ function showImg(img) {
     const source = picture.querySelector("source[media]");
     const media = source && source.getAttribute("media");
     if (media && matchMedia(media).matches) return;
+    picture.querySelectorAll("source[data-srcset]").forEach((source) => {
+      const sourceSet = source.getAttribute("data-srcset");
+      if (sourceSet) source.setAttribute("srcset", sourceSet);
+    });
   }
   const next = img.getAttribute("data-src");
   if (!next || img.getAttribute("src") === next) return;
@@ -442,6 +449,7 @@ function paintNew() {
   armMarks();
   scheduleImages();
 }
+let measureFloat = () => {};
 function resetFloat() {
   const bar = document.querySelector(".float-cta");
   bar?.classList.remove("is-in");
@@ -461,10 +469,16 @@ function onNavigate() {
   resetMarks();
   syncChrome();
   paintNew();
+  requestAnimationFrame(measureFloat);
 }
 
 const bar = document.querySelector(".float-cta");
 if (bar) {
+  // A short page would flash the bar for a moment before the footer arrives.
+  // Only show it when there is enough content left to keep it on screen for a
+  // useful stretch of scrolling. Add-ons, FAQ and similar summary pages sit
+  // under this floor and get no floating CTA at all.
+  const MIN_ROOM_SCREENS = 2.5;
   let frame = 0;
   const measure = () => {
     frame = 0;
@@ -475,16 +489,27 @@ if (bar) {
     }
     const sentinel = document.querySelector(".hero__btns, .page-hero");
     const footer = document.querySelector("footer");
-    const past = sentinel ? sentinel.getBoundingClientRect().bottom <= 1 : scrollY > 320;
-    const covered = !!footer && footer.getBoundingClientRect().top < innerHeight - 80;
-    const shown = past && !covered;
+    const vh = innerHeight;
+    const sentinelBottom = sentinel ? sentinel.getBoundingClientRect().bottom : 0;
+    const footerTop = (footer ? footer.getBoundingClientRect().top : document.documentElement.scrollHeight) + scrollY;
+    const heroBottom = sentinelBottom + scrollY;
+    const past = sentinel ? sentinelBottom <= 1 : scrollY > 320;
+    const covered = !!footer && footer.getBoundingClientRect().top < vh - 80;
+    // Scroll distance available while the bar is on screen, before the footer
+    // takes over the bottom of the viewport.
+    const room = footerTop - heroBottom - vh + 80;
+    const roomy = room >= vh * MIN_ROOM_SCREENS;
+    const shown = past && roomy && !covered;
     bar.classList.toggle("is-in", shown);
     if (shown) bar.removeAttribute("inert");
     else bar.setAttribute("inert", "");
   };
+  measureFloat = measure;
   const onScroll = () => { if (!frame) frame = requestAnimationFrame(measure); };
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", onScroll);
+  addEventListener("load", measure, { once: true });
+  measure();
 }
 
 addEventListener("scroll", stuck, { passive: true });
@@ -658,8 +683,8 @@ function selectTab(stepper, index, focus) {
   });
   panels.forEach((panel, k) => panel.classList.toggle("is-active", k === index));
 }
-document.addEventListener("mouseover", (event) => { const shot = entered(event); if (shot) startShot(shot); });
-document.addEventListener("mouseout", (event) => { const shot = entered(event); if (shot) stopShot(shot); });
+document.addEventListener("mouseover", (event) => { const shot = entered(event); if (shot && !shot.classList.contains("shot--static")) startShot(shot); });
+document.addEventListener("mouseout", (event) => { const shot = entered(event); if (shot && !shot.classList.contains("shot--static")) stopShot(shot); });
 document.addEventListener("click", (event) => {
   const shot = shotOf(event);
   if (!shot || shot.matches("a")) return;

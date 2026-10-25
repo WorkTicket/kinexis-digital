@@ -46,7 +46,7 @@ export default function Page() {
       <PageHero
         eyebrow="Services"
         h1="Website Help For Service Businesses Nationwide"
-        mark="Whole Country"
+        mark="Service Businesses"
         sub="We work with service businesses in every state. You get a site that is easy to call from and a clean search setup Google can understand."
         image="homepage"
         imageAlt="Contractor showing a trade website on a laptop and phone"

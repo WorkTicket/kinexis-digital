@@ -24,6 +24,9 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  experimental: {
+    cpus: 4,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
   // Old URLs 301 to the current English pages so crawl signals stay on one address.
@@ -65,7 +68,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/assets/:path*", headers: cache },
       { source: "/portfolio/:file(.*\\.(?:webp|jpe?g|png|avif))", headers: cache },
-      { source: "/blog/:file(.*\\.webp)", headers: cache },
+      { source: "/blog/:file(.*\\.(?:webp|avif))", headers: cache },
       { source: "/favicon-:size.webp", headers: cache },
       { source: "/apple-icon.png", headers: cache },
       { source: "/OGimage-sm.webp", headers: cache },
@@ -94,4 +97,6 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 
 // Makes Cloudflare bindings available to server code during `next dev`.
-initOpenNextCloudflareForDev();
+if (isDev) {
+  initOpenNextCloudflareForDev();
+}
