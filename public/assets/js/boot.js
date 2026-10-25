@@ -212,7 +212,7 @@ function armReveal() {
       el.classList.remove("reveal", "in", "from-left", "from-right");
       el.style.transitionDelay = "";
     }, 1100));
-  }), { threshold: 0.12 });
+  }), { threshold: 0.05, rootMargin: "0px 0px 120px 0px" });
   document.querySelectorAll(REVEAL).forEach((el) => {
     if (el.querySelector(".hl") || el.closest(".stepper") || el.closest("[data-island]")) return;
     el.classList.add("reveal");
@@ -813,6 +813,7 @@ if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
 
 syncChrome();
 resetReveal();
+startReveal();
 paintNew();
 new MutationObserver(() => {
   if (location.pathname !== path) {

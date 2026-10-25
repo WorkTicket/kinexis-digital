@@ -1,7 +1,7 @@
 const POSTER = "/assets/video/kinexis-explainer-v5f-preview-poster.webp";
 const POSTER_SRCSET = "/assets/video/kinexis-explainer-v5f-preview-poster-640.webp 640w, /assets/video/kinexis-explainer-v5f-preview-poster.webp 768w";
 const POSTER_AVIF_SRCSET = "/assets/video/kinexis-explainer-v5f-preview-poster-640.avif 640w, /assets/video/kinexis-explainer-v5f-preview-poster.avif 768w";
-const POSTER_SIZES = "(max-width: 860px) 100vw, 560px";
+const POSTER_SIZES = "768px";
 
 /** Homepage hero film. The poster paints first. The boot script attaches sources after that paint, or after the first input. */
 export default function HeroFilm() {
