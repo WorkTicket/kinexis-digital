@@ -109,15 +109,30 @@ function hideFb(node) {
   fbTimers.set(node, setTimeout(() => setFb(node, false), 140));
 }
 
+let scrollY = 0;
 function lockScroll() {
   if (document.documentElement.dataset.scrollLock === "1") return;
+  scrollY = window.scrollY || window.pageYOffset;
   document.documentElement.dataset.scrollLock = "1";
   document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${scrollY}px`;
+  document.body.style.left = "0";
+  document.body.style.right = "0";
+  document.body.style.width = "100%";
 }
 function unlockScroll() {
   if (document.querySelector("dialog.dlg[open]")) return;
   delete document.documentElement.dataset.scrollLock;
   document.documentElement.style.overflow = "";
+  document.body.style.overflow = "";
+  document.body.style.position = "";
+  document.body.style.top = "";
+  document.body.style.left = "";
+  document.body.style.right = "";
+  document.body.style.width = "";
+  window.scrollTo(0, scrollY);
 }
 function openDialog(id, src) {
   const dlg = document.getElementById(id === "video" ? "dlg-video" : "dlg-guarantee");
