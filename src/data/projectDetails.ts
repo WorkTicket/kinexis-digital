@@ -100,72 +100,84 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       "Afterglow Outdoor Lighting is a website template designed around the hours after sunset. It begins with the finished glow of a home, then explains pathway lighting, landscape accents, and a visit that can be requested without a long form.",
       "The wording stays specific to outdoor lighting, while the phone number and quote path remain close on every screen. The focused template feels tailored to evening work.",
     ],
+    pagespeedImage: pagespeed("afterglow-outdoor-lighting"),
   },
   "good-riddance-junk": {
     about: [
       "The Good Riddance Junk template uses a bold, straightforward layout without adding to the clutter. Clear job types help someone with a garage, rental, or full-house cleanout understand what happens next.",
       "The request form and phone number appear early. Short sections explain hauling and cleanouts in the practical terms people use when they are ready to clear a space.",
     ],
+    pagespeedImage: pagespeed("good-riddance-junk"),
   },
   "goodhand-home-services": {
     about: [
       "Goodhand Home Services is a professionally designed handyman template for jobs that do not fit neatly into one trade. It organizes repairs, fittings, and finish work so a homeowner can see what is covered before calling.",
       "Close-up craft photography, a clear process, and a short way to describe the job do the trust-building work. The design stays light enough to load quickly on the phone where many of these searches begin.",
     ],
+    pagespeedImage: pagespeed("goodhand-home-services"),
   },
   "groundwork-coatings": {
     about: [
       "Groundwork Coatings is a professionally designed template for a service people need to see. The layout gives the floor plenty of room, with space for prepared concrete, finished coatings, and a plain explanation of the process.",
       "A consultation path sits beside the work so a garage or shop owner can ask about the space without searching through menus. The structure can hold more real project photos as a coatings business builds its library.",
     ],
+    pagespeedImage: pagespeed("groundwork-coatings"),
   },
   "stillwater-auto-detail": {
     about: [
       "Stillwater Auto Detail is a website template with a quieter look than the category usually uses. It focuses on the finished car, interior work, and repeat care instead of filling the first screen with packages.",
       "A mobile visitor can reach the shop in a tap. Separate exterior, interior, and detail sections answer the basic questions without making the page feel crowded.",
     ],
+    pagespeedImage: pagespeed("stillwater-auto-detail"),
   },
   "sunday-house-cleaning": {
     about: [
       "Sunday House Cleaning is a website template built around recurring visits rather than a one-time clean. Familiar rooms and a simple schedule request help explain what regular service could look like.",
       "The design stays bright and uncluttered. Short forms, scannable headings, and a clear service-area structure provide a practical base for local search as a route grows.",
     ],
+    pagespeedImage: pagespeed("sunday-house-cleaning"),
   },
   "juniper-tree-co": {
     about: [
       "Juniper Tree Co is a professionally designed tree-care template that balances the urgency of hazardous work with the care expected around a home. Strong local imagery and clear service paths separate pruning, removal, plant health, and storm response.",
       "The page gives safety, planning, and cleanup room to build trust before the estimate request. Its responsive structure keeps those details readable for customers searching from a phone after spotting a problem outside.",
     ],
+    pagespeedImage: pagespeed("juniper-tree-co"),
   },
   "ember-and-flue": {
     about: [
       "Ember & Flue is a professionally designed chimney and fireplace template with a warm editorial style. Sweeping, inspections, repairs, and fireplace care are organized around the questions a homeowner has before inviting a technician inside.",
       "Seasonal reminders and a straightforward booking path make the next step clear without relying on alarm. The design leaves useful space for real project photos, service areas, and educational content.",
     ],
+    pagespeedImage: pagespeed("ember-and-flue"),
   },
   "cedarline-fence": {
     about: [
       "Cedarline Fence is a professionally designed fences-and-gates template that shows materials and finished boundaries clearly. The layout separates new installations, replacements, gates, and repairs while keeping consultation details close to the work.",
       "Project photography and a simple planning guide help homeowners compare directions before requesting an estimate. The mobile presentation keeps styles, process, and contact options easy to scan on site.",
     ],
+    pagespeedImage: pagespeed("cedarline-fence"),
   },
   "highline-pest": {
     about: [
       "Highline Pest is a professionally designed pest-management template built around calm, useful guidance. Common pest concerns, treatment steps, and ongoing protection are easy to find without turning the page into a wall of warnings.",
       "A direct inspection path supports urgent visitors while the surrounding sections explain preparation and follow-up. The structure can grow with seasonal services and focused local-search pages.",
     ],
+    pagespeedImage: pagespeed("highline-pest"),
   },
   "northstar-moving": {
     about: [
       "Northstar Moving is a professionally designed local-moving template that makes a complicated day feel more organized. Residential moves, apartments, packing help, and specialty items each lead toward a clear quote path.",
       "The page uses practical planning details and visible next steps to answer questions before a call. Its responsive design keeps the checklist and estimate flow useful while customers are away from a desk.",
     ],
+    pagespeedImage: pagespeed("northstar-moving"),
   },
   "harborline-gutters": {
     about: [
       "Harborline Gutters is a professionally designed gutter-systems template focused on protecting the home rather than selling a generic exterior service. Installation, guards, drainage, and repair are shown with clear visual context.",
       "The design pairs project photography with a concise assessment path so homeowners can understand the likely next step. Service-area and educational sections provide room to support local search without cluttering the main page.",
     ],
+    pagespeedImage: pagespeed("harborline-gutters"),
   },
 };
 
