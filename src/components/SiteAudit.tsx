@@ -4,8 +4,6 @@ import { englishPath, getLocale, getRequestPath, spainizeData, withLocale } from
 /** Pages that already render this offer, or that are the audit form, checkout, or legal copy. */
 const HIDE = new Set([
   "/audit",
-  "/contact",
-  "/strategy-call",
   "/privacy",
   "/terms",
   "/client-login",
@@ -46,8 +44,8 @@ const ES = {
 
 function alreadyHasAudit(path: string) {
   if (HIDE.has(path) || path.startsWith("/pay/")) return true;
-  if (path.startsWith("/industries/") && path !== "/industries") return true;
-  return path === "/portfolio" || path.startsWith("/portfolio/");
+  return false;
+
 }
 
 /** The industry free-site-audit band, on every page that does not already include it. */

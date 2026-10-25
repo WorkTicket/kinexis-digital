@@ -7,7 +7,6 @@ import { contentMetadata } from "@/lib/seo";
 import { kitSrc } from "@/lib/site";
 import { ContentSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
-import IndustryAudit from "@/components/IndustryAudit";
 import PlanOffer from "@/components/PlanOffer";
 import { ShotFrame } from "@/components/ShotFrame";
 import { CtaBand, Faq, HL, IconCard, PageHero, Section } from "@/components/ui";
@@ -206,7 +205,7 @@ export default async function IndustryPage({ params }: Props) {
         </Section>
       )}
 
-      <IndustryAudit />
+
 
       <Section id="plans">
         <PlanOffer />
