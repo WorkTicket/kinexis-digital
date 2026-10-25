@@ -4,7 +4,6 @@ import { PROJECTS, portfolioFile } from "@/data/portfolio";
 import { LIVE_SITES } from "@/data/liveSites";
 import ProjectCard from "@/components/ProjectCard";
 import { DeferredImg } from "@/components/DeferredImg";
-import AuditCta from "@/components/AuditCta";
 import { PageSchema } from "@/components/JsonLd";
 import { CtaBand, HL, PageHero, Section } from "@/components/ui";
 
@@ -105,7 +104,6 @@ export default function Page() {
         </div>
       </Section>
 
-      <AuditCta />
       <CtaBand h="Want To See A Direction For Your Site?" mark="Your Site" sub="Tell us about your trade and we’ll prepare a free homepage preview for your business." btn="Get My Free Preview" />
     </>
   );

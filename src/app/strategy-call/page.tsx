@@ -3,7 +3,6 @@ import { pageMetadata } from "@/lib/seo";
 import { SITE, telHref } from "@/lib/site";
 import BookingCalendar from "@/components/BookingCalendar";
 import { PageSchema } from "@/components/JsonLd";
-import IndustryAudit from "@/components/IndustryAudit";
 import { HL, PageHero } from "@/components/ui";
 
 export const metadata = pageMetadata("strategy-call");
@@ -29,7 +28,6 @@ export default function Page() {
         </div>
         <div className="rounded-[22px] border-2 border-[var(--brand-navy)] p-4 shadow-[8px_8px_0_var(--brand-navy)]"><BookingCalendar /></div>
       </div></section>
-      <IndustryAudit />
     </>
   );
 }

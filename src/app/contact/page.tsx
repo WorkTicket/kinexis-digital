@@ -3,7 +3,6 @@ import { pageMetadata } from "@/lib/seo";
 import Form, { LEAD_FIELDS } from "@/components/Form";
 import { HL, PageHero, Section } from "@/components/ui";
 import { PageSchema } from "@/components/JsonLd";
-import IndustryAudit from "@/components/IndustryAudit";
 
 export const metadata = pageMetadata("contact");
 
@@ -26,7 +25,6 @@ export default function Page() {
           </div>
         </div>
       </Section>
-      <IndustryAudit />
     </>
   );
 }
