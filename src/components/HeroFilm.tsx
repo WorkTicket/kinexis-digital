@@ -1,7 +1,7 @@
 const POSTER = "/assets/video/kinexis-explainer-v5f-preview-poster.webp";
-const POSTER_SRCSET = "/assets/video/kinexis-explainer-v5f-preview-poster-640.webp 640w, /assets/video/kinexis-explainer-v5f-preview-poster.webp 768w";
-const POSTER_AVIF_SRCSET = "/assets/video/kinexis-explainer-v5f-preview-poster-640.avif 640w, /assets/video/kinexis-explainer-v5f-preview-poster.avif 768w";
-const POSTER_SIZES = "768px";
+const POSTER_SRCSET = "/assets/video/kinexis-explainer-v5f-preview-poster-640.webp 640w, /assets/video/kinexis-explainer-v5f-preview-poster-768.webp 768w, /assets/video/kinexis-explainer-v5f-preview-poster-960.webp 960w";
+const POSTER_AVIF_SRCSET = "/assets/video/kinexis-explainer-v5f-preview-poster-640.avif 640w, /assets/video/kinexis-explainer-v5f-preview-poster-768.avif 768w, /assets/video/kinexis-explainer-v5f-preview-poster-960.avif 960w";
+const POSTER_SIZES = "(max-width: 720px) 100vw, 768px";
 
 /** Homepage hero film. The poster paints first. The boot script attaches sources after that paint, or after the first input. */
 export default function HeroFilm() {
@@ -16,8 +16,8 @@ export default function HeroFilm() {
             srcSet={POSTER_SRCSET}
             sizes={POSTER_SIZES}
             alt=""
-            width={768}
-            height={432}
+            width={960}
+            height={540}
             fetchPriority="high"
             decoding="auto"
           />
