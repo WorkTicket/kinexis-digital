@@ -286,7 +286,7 @@ function armHero() {
   };
 }
 
-const shots = new WeakMap(); function isMobile(){try{return matchMedia("(max-width: 1024px)").matches || matchMedia("(hover: none) and (pointer: coarse)").matches;}catch(e){return false;}}
+const shots = new WeakMap(); function isMobile(){try{return matchMedia("(max-width: 1024px)").matches || matchMedia("(hover: none) and (pointer: coarse)").matches;}catch{return false;}}
 const live = new Set();
 const SHOT_SCROLL_SPEED = 540;
 function motion(shot) {

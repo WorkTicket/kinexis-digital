@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { pageMetadata } from "@/lib/seo";
 import { checkoutPlanFromQuery, PAY_FAQS } from "@/lib/pay";
 import { PageSchema } from "@/components/JsonLd";
@@ -23,7 +24,8 @@ function PaymentIcon({ kind }: { kind: "plan" | "receipt" | "card" | "notificati
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ plan?: string | string[]; invoice?: string | string[] }> }) {
   const query = await searchParams;
-  const initialPlan = checkoutPlanFromQuery(typeof query.plan === "string" ? query.plan : null).key;
+  const { plan: initialPlan, found } = checkoutPlanFromQuery(typeof query.plan === "string" ? query.plan : null);
+  if (!found) redirect("/pricing");
   const invoiceStatus = query.invoice === "cancelled" || query.invoice === "error" ? query.invoice : null;
 
   return (
@@ -51,7 +53,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
             <span><PaymentIcon kind="receipt" /> Review your total</span>
             <span><PaymentIcon kind="card" /> Continue with PayPal</span>
           </div>
-          <PayCheckout key={initialPlan} initialPlan={initialPlan} />
+          <PayCheckout key={initialPlan.key} initialPlan={initialPlan.key} />
 
           <div className="pay-after">
             <div className="pay-after__head">

@@ -21,6 +21,7 @@ function config(): PayPalConfig | null {
   const secret = process.env.PAYPAL_CLIENT_SECRET;
   if (!secret) return null;
   const id = process.env.PAYPAL_CLIENT_ID || PAYPAL_CLIENT_ID;
+  if (!id) return null;
   const base = (process.env.PAYPAL_API_BASE || "https://api-m.paypal.com").replace(/\/$/, "");
   try {
     const url = new URL(base);

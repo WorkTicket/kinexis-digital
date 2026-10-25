@@ -113,13 +113,15 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
     const host = hostRef.current;
     if (!host) return;
     const planId = PAYPAL_PLANS[plan.key].planId;
+    if (!planId) return;
     const planKey = plan.key;
     let dead = false;
     let buttons: PayPalButtons | null = null;
     const slot = document.createElement("div");
     host.appendChild(slot);
-    setSdk("loading");
-    loadPayPal()
+    queueMicrotask(() => {
+      setSdk("loading");
+      loadPayPal()
       .then(async (paypal) => {
         if (dead) return;
         buttons = paypal.Buttons({
@@ -150,6 +152,7 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
       .catch(() => {
         if (!dead) setSdk("failed");
       });
+    });
     return () => {
       dead = true;
       buttons?.close().catch(() => {});

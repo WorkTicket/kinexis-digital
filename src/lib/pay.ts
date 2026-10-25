@@ -123,9 +123,11 @@ const SLUGS: Record<string, CheckoutKey> = {
   ownit: "ownIt",
 };
 
-export function checkoutPlanFromQuery(value: string | null | undefined): CheckoutPlan {
+export function checkoutPlanFromQuery(value: string | null | undefined): { plan: CheckoutPlan; found: boolean } {
   const key = value ? SLUGS[value.toLowerCase()] : undefined;
-  return CHECKOUT_PLANS.find((plan) => plan.key === key) ?? CHECKOUT_PLANS[1];
+  const plan = CHECKOUT_PLANS.find((item) => item.key === key);
+  if (!plan) return { plan: CHECKOUT_PLANS[1], found: false };
+  return { plan, found: true };
 }
 
 export function money(amount: number) {
