@@ -8,7 +8,6 @@ import { contentMetadata, clipDescription } from "@/lib/seo";
 import { ProjectSchema } from "@/components/JsonLd";
 import SafeImage from "@/components/SafeImage";
 import ProjectCard from "@/components/ProjectCard";
-import AuditCta from "@/components/AuditCta";
 import ReviewsSection from "@/components/ReviewsSection";
 import PricingCta from "@/components/PricingCta";
 import { HL, fallbackTrack } from "@/components/ui";
@@ -167,7 +166,7 @@ export default async function ProjectPage({ params }: Props) {
         </section>
 
         {/* Free site audit */}
-        <AuditCta />
+
       </div>
 
       {/* 7. Other projects */}
