@@ -272,7 +272,7 @@ function armHero() {
   };
 }
 
-const shots = new WeakMap();
+const shots = new WeakMap(); function isMobile(){try{return matchMedia("(max-width: 1024px)").matches || matchMedia("(hover: none) and (pointer: coarse)").matches;}catch(e){return false;}}
 const live = new Set();
 const SHOT_SCROLL_SPEED = 540;
 function motion(shot) {
@@ -683,8 +683,7 @@ function selectTab(stepper, index, focus) {
   });
   panels.forEach((panel, k) => panel.classList.toggle("is-active", k === index));
 }
-document.addEventListener("mouseover", (event) => { const shot = entered(event); if (shot && !shot.classList.contains("shot--static")) startShot(shot); });
-document.addEventListener("mouseout", (event) => { const shot = entered(event); if (shot && !shot.classList.contains("shot--static")) stopShot(shot); });
+if(!isMobile()){document.addEventListener("mouseover",(event)=>{const shot=entered(event); if(shot&&!shot.classList.contains("shot--static")) startShot(shot);}); document.addEventListener("mouseout",(event)=>{const shot=entered(event); if(shot&&!shot.classList.contains("shot--static")) stopShot(shot);});}
 document.addEventListener("click", (event) => {
   const shot = shotOf(event);
   if (!shot || shot.matches("a")) return;
@@ -828,3 +827,6 @@ addEventListener("popstate", () => {
 new MutationObserver(syncChrome).observe(root, { attributes: true, attributeFilter: ["class"] });
 requestAnimationFrame(() => requestAnimationFrame(syncChrome));
 })();
+
+
+

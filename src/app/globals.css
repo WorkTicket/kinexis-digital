@@ -90,7 +90,7 @@ html:not(.fonts-on) .project-hero .eyebrow.fb-track{letter-spacing:var(--fb-m,0)
 body:has(.announce){--announce-h:40px}
 @media (max-width:640px){body:has(.announce){--announce-h:64px}}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:manipulation}
+html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:manipulation;overscroll-behavior-y:contain}
 body{margin:0;font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 main{min-height:calc(100svh - var(--header-h) - var(--announce-h))}
 img{max-width:100%;display:block}
@@ -305,7 +305,7 @@ p{margin:0 0 1em}
 @media(max-width:640px){.tick__copy span{white-space:normal}}
 
 /* Sections / grids / cards */
-.section{position:relative;padding:80px 0;content-visibility:auto;contain-intrinsic-size:auto 720px}
+.section{position:relative;padding:80px 0;content-visibility:auto;contain-intrinsic-size:auto 720px}@media(max-width:1024px){.section{content-visibility:visible;contain-intrinsic-size:none}}
 .page-hero + .section{content-visibility:visible;contain-intrinsic-size:none}
 .section>.container{position:relative;z-index:2}
 .section--tint{background:var(--bg-tint)}
@@ -481,7 +481,7 @@ p{margin:0 0 1em}
 .shot{height:380px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;background:#fff;position:relative;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;touch-action:pan-y}
 .shot:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
 .shot__page{height:100%;overflow:hidden;background:#f4f7ff}
-.shot:not(.shot--static):hover .shot__track,.shot:not(.shot--static):focus-within .shot__track,.shot--click .shot__track{will-change:transform}
+.shot:not(.shot--static):hover .shot__track,.shot:not(.shot--static):focus-within .shot__track,.shot--click .shot__track{will-change:transform}@media(max-width:1024px){.shot:not(.shot--static):hover .shot__track{will-change:auto}.shot{touch-action:pan-y pinch-zoom}}
 .shot__img{display:block;width:100%;height:auto;max-width:none}
 
 /* Comparison */
@@ -1967,3 +1967,6 @@ p,li,blockquote{ text-wrap:pretty }
   .section-outro--action .btn{white-space:normal}
   .inline-action,.inline-action--left{justify-content:center}
 }
+
+
+
