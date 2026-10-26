@@ -216,7 +216,10 @@ function resetMarks() {
 }
 
 function armReveal() {
-  if (reduce() || !("IntersectionObserver" in window)) return () => {};
+  // Scroll reveals can make touch scrolling feel as if content is waiting to
+  // render. Keep the effect for precise-pointer devices and paint immediately
+  // on phones and tablets.
+  if (reduce() || matchMedia("(hover: none), (pointer: coarse)").matches || !("IntersectionObserver" in window)) return () => {};
   const timers = [];
   const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
@@ -260,15 +263,16 @@ function armHero() {
   if (!el || heroArmed.has(el)) return;
   heroArmed.add(el);
   if (reduce()) return;
-  const events = ["pointerdown", "keydown", "touchstart", "scroll"];
+  // The loop is decorative. Mobile devices keep the lightweight poster;
+  // visitors can still open the full video explicitly with the play button.
+  if (!matchMedia("(min-width: 861px) and (hover: hover) and (pointer: fine)").matches) return;
+  const conn = navigator.connection;
+  if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
+  const events = ["pointerdown", "keydown", "scroll"];
   const onPlaying = () => el.classList.add("is-playing");
   const play = () => { el.muted = true; el.play().catch(() => {}); };
   const start = () => {
     if (el.querySelector("source")) return;
-    // The loop is decorative. Keep the poster instead of downloading the
-    // multi-megabyte film on data-saver or very slow connections.
-    const conn = navigator.connection;
-    if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
     for (const [src, type] of [["/assets/video/kinexis-explainer-v5f-preview.mp4", "video/mp4"]]) {
       const source = document.createElement("source");
       source.src = src;
@@ -437,7 +441,7 @@ function watchImages() {
         showImg(entry.target);
         io.unobserve(entry.target);
       }
-    }, { rootMargin: "0px 0px 800px 0px" });
+    }, { rootMargin: "0px 0px 1200px 0px" });
     imageIo = io;
   }
   nodes.forEach((img) => {
@@ -446,34 +450,20 @@ function watchImages() {
     else showImg(img);
   });
 }
-function whenPainted(done) {
-  let fired = false;
-  const go = () => {
-    if (fired) return;
-    fired = true;
-    requestAnimationFrame(() => requestAnimationFrame(done));
-  };
-  let wait = 0;
-  const settle = () => {
-    clearTimeout(wait);
-    wait = setTimeout(go, 200);
-  };
-  try {
-    const po = new PerformanceObserver((list) => {
-      if (list.getEntries().length) settle();
-    });
-    po.observe({ type: "largest-contentful-paint", buffered: true });
-  } catch {
-    go();
-  }
-  setTimeout(go, 1500);
-}
 function scheduleImages() {
   if (imagePending) return;
   imagePending = true;
   requestAnimationFrame(() => {
-    imagePending = false;
-    if ([...document.querySelectorAll("img[data-src]")].some((img) => !armedImgs.has(img))) whenPainted(watchImages);
+    requestAnimationFrame(() => {
+      const run = () => {
+        imagePending = false;
+        watchImages();
+      };
+      // Start observing after the first paint instead of waiting for LCP to
+      // settle. Requests remain low priority, but nearby art is ready sooner.
+      if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 600 });
+      else setTimeout(run, 0);
+    });
   });
 }
 
