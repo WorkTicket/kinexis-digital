@@ -78,7 +78,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Prevent the desktop navigation from painting unstyled while the
             external stylesheet is in flight. The full mobile menu still opens
             normally because this rule stops matching as soon as it is open. */}
-        <style>{`@media(max-width:1024px){.nav:not(.is-open){display:none}}`}</style>
+        <style>{`@media(max-width:1180px){.nav:not(.is-open){display:none}}`}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />
         <script
           id="route-chrome"

@@ -11,7 +11,7 @@
 - `tsconfig.json` - `@/*` -> `./src/*`, strict
 - `wrangler.jsonc` - Worker config (assets/bindings/routes)
 - `open-next.config.ts` - OpenNext adapter config
-- `package.json` scripts: dev/build/start/lint/typecheck/images:optimize/check:contact/preview/deploy/search:notify/upload/cf-typegen
+- `package.json` scripts: dev/build/start/lint/typecheck/images:optimize/images:heroes/check:contact/preview/deploy/search:notify/upload/cf-typegen
 
 ## App structure (from repo)
 ```
@@ -47,7 +47,7 @@ Top-level routes include: `/`, `/about`, `/api/*`, `/audit`, `/blog`, `/client-l
 - `src/lib/i18n/*` - Locale handling (en/es/es-es)
 
 ## Notes
-- Images: `next/image` uses `unoptimized: true` (Cloudflare Images not enabled). Stills in `public/` pre-encoded.
+- Images: `next/image` uses `unoptimized: true` (Cloudflare Images not enabled). Stills in `public/` pre-encoded, with AVIF served first and WebP fallback where variants exist. Run `npm run images:heroes` after replacing page hero artwork.
 - SEO: `robots.ts`, `sitemap.ts` present. `next.config.ts` does many 301 redirects.
 - Security headers set in `next.config.ts` (CSP, HSTS, etc.)
 - Contact forms/checkout use Mailgun/forwarding/Gmail SMTP/PayPal (see README). Invoice checkout may offer contact fallback if PayPal secret missing.

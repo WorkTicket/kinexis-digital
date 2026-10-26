@@ -21,6 +21,7 @@ cloudflare-env.d.ts
 .dev.vars
 
 # local scratch
+/New folder/
 .audit/
 .tmp-*
 *.tmp

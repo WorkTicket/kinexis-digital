@@ -9,23 +9,81 @@ import { ShotFrame } from "./ShotFrame";
 
 export { Icon, Illustration, HL, Phrase };
 
-/** Hero artwork names map to /assets/kinexis/heroes/{name}-{width}.webp */
+/** Hero artwork names map to the numbered files in /assets/heroes/. */
 export type ArtName =
   | "homepage" | "portfolio" | "about" | "process" | "reviews" | "pricing"
   | "web-design" | "local-seo" | "website-audit" | "maintenance" | "faqs"
   | "blog" | "contact" | "upgrades";
 
-/** Responsive hero artwork. Source files are pre-sized WebP, so the intrinsic ratio stays 1:1. */
+const HERO_FILES: Record<ArtName, string> = {
+  homepage: "01-homepage",
+  portfolio: "02-portfolio",
+  about: "03-about",
+  process: "04-process",
+  reviews: "05-reviews",
+  pricing: "06-pricing",
+  "web-design": "07-web-design",
+  "local-seo": "08-local-seo",
+  "website-audit": "09-website-audit",
+  maintenance: "10-maintenance",
+  faqs: "11-faqs",
+  blog: "12-blog",
+  contact: "13-contact",
+  upgrades: "14-upgrades",
+};
+
+type HeroImageProps = {
+  name: string;
+  alt: string;
+};
+
+/** Primary hero artwork. AVIF is served first, with pre-sized WebP as the fallback. */
+export function HeroImage({ name, alt }: HeroImageProps) {
+  const base = `/assets/heroes/${name}`;
+  const sizes = "(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 50vw, 627px";
+  const avifSrcSet = [
+    `${base}-640.avif 640w`,
+    `${base}-960.avif 960w`,
+    `${base}-1254.avif 1254w`,
+  ].join(", ");
+  const webpSrcSet = [
+    `${base}-640.webp 640w`,
+    `${base}-960.webp 960w`,
+    `${base}-1254.webp 1254w`,
+  ].join(", ");
+
+  return (
+    <picture>
+      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+      <img
+        src={`${base}-1254.webp`}
+        srcSet={webpSrcSet}
+        sizes={sizes}
+        width={1254}
+        height={1254}
+        alt={alt}
+        loading="eager"
+        fetchPriority="high"
+        decoding="async"
+        className="hero-art mx-auto block h-auto w-full max-w-[627px]"
+      />
+    </picture>
+  );
+}
+
+/** Responsive hero artwork. Source files are pre-sized WebP/AVIF, so the intrinsic ratio stays 1:1. */
 export function Art({
   name, alt = "", className = "", priority = false, deferMobile = false, sizes = "(max-width: 860px) 88vw, 520px",
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; deferMobile?: boolean; sizes?: string }) {
-  const base = `/assets/kinexis/heroes/${name}`;
-  const src = `${base}-720.webp`;
-  const srcSet = `${base}-560.webp 560w, ${base}-720.webp 720w, ${base}-1120.webp 1120w`;
-  const avifSrcSet = `${base}-560.avif 560w, ${base}-720.avif 720w, ${base}-1120.avif 1120w`;
+  const file = HERO_FILES[name];
+  const base = `/assets/heroes/${file}`;
+  const src = `${base}-1254.webp`;
+  const srcSet = `${base}-640.webp 640w, ${base}-960.webp 960w, ${base}-1254.webp 1254w`;
+  const avifSrcSet = `${base}-640.avif 640w, ${base}-960.avif 960w, ${base}-1254.avif 1254w`;
   if (priority && deferMobile) {
     return (
       <picture>
+        <source type="image/avif" media="(min-width: 861px)" srcSet={avifSrcSet} sizes={sizes} />
         <source media="(min-width: 861px)" srcSet={srcSet} sizes={sizes} />
         <img
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1254' height='1254'%3E%3C/svg%3E"
@@ -43,11 +101,13 @@ export function Art({
       </picture>
     );
   }
+  if (priority && className === "hero-art") return <HeroImage name={file} alt={alt} />;
   if (!priority) {
     return (
       <DeferredImg
         src={src}
         srcSet={srcSet}
+        avifSrcSet={avifSrcSet}
         sizes={sizes}
         alt={alt}
         className={className}
@@ -56,24 +116,7 @@ export function Art({
       />
     );
   }
-  return (
-    <picture>
-      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
-      <img
-        src={src}
-        srcSet={srcSet}
-        sizes={sizes}
-        alt={alt}
-        aria-hidden={alt === "" ? true : undefined}
-        className={className}
-        width={1254}
-        height={1254}
-        loading="eager"
-        fetchPriority="high"
-        decoding="async"
-      />
-    </picture>
-  );
+  return <HeroImage name={file} alt={alt} />;
 }
 
 export type DecorName =

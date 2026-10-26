@@ -32,14 +32,14 @@ function syncChrome() {
 }
 
 function desktopMega() {
-  return matchMedia("(hover: hover) and (pointer: fine)").matches && matchMedia("(min-width: 1025px)").matches;
+  return matchMedia("(hover: hover) and (pointer: fine)").matches && matchMedia("(min-width: 1181px)").matches;
 }
 function setMega(open) {
   if (open && performance.now() < megaShutUntil) return;
   if (open) clearTimeout(megaTimer);
   const mega = document.querySelector("[data-mega]");
   if (!mega) return;
-  const mobile = matchMedia("(max-width: 1024px)").matches;
+  const mobile = matchMedia("(max-width: 1180px)").matches;
   if (mega.classList.contains("is-open") !== open) {
     mega.classList.toggle("is-open", open);
     const btn = mega.querySelector(".mega__btn");
@@ -76,7 +76,7 @@ function setOpen(open) {
     event.preventDefault();
   };
   const onMq = () => { if (!mq.matches) setOpen(false); };
-  const mq = matchMedia("(max-width: 1024px)");
+  const mq = matchMedia("(max-width: 1180px)");
   addEventListener("scroll", hold, { passive: true });
   document.addEventListener("touchmove", block, { passive: false });
   document.addEventListener("wheel", block, { passive: false });
@@ -265,6 +265,10 @@ function armHero() {
   const play = () => { el.muted = true; el.play().catch(() => {}); };
   const start = () => {
     if (el.querySelector("source")) return;
+    // The loop is decorative. Keep the poster instead of downloading the
+    // multi-megabyte film on data-saver or very slow connections.
+    const conn = navigator.connection;
+    if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
     for (const [src, type] of [["/assets/video/kinexis-explainer-v5f-preview.mp4", "video/mp4"]]) {
       const source = document.createElement("source");
       source.src = src;
@@ -661,7 +665,7 @@ document.addEventListener("focusout", (event) => {
   clearTimeout(megaTimer);
   megaTimer = setTimeout(() => setMega(false), 120);
 });
-matchMedia("(max-width: 1024px)").addEventListener("change", () => setMega(false));
+matchMedia("(max-width: 1180px)").addEventListener("change", () => setMega(false));
 document.addEventListener("keydown", (event) => {
   const megaOpen = document.querySelector("[data-mega].is-open");
   if (event.key === "Escape" && megaOpen) {

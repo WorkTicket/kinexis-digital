@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "images:optimize": "node scripts/optimize-content-images.mjs",
+    "images:heroes": "node scripts/optimize-hero-images.mjs",
     "check:contact": "node scripts/check-contact-delivery.mjs",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build && opennextjs-cloudflare deploy && node scripts/search-on-deploy.mjs",

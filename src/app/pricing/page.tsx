@@ -93,6 +93,7 @@ export default function Page() {
         sub="Start with the site your trade needs, then add the level of follow-up you want. Every plan begins with a free homepage preview, with no card or obligation."
         image="pricing"
         imageAlt="Pricing artwork with a payment card and checkmarks"
+        fallbackTrack={{ mobile: "-0.05em" }}
       />
 
       <Section>

@@ -17,6 +17,13 @@ export type FacebookReview = {
  */
 const PUBLISHED_REVIEWS: FacebookReview[] = [
   {
+    id: "mac-christensen",
+    name: "Mac Christensen",
+    quote: "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can go wrong with this company.",
+    date: "October 25, 2026",
+    recommends: true,
+  },
+  {
     id: "preferred-plumbing-solutions",
     name: "Preferred Plumbing Solutions",
     quote: "So grateful to Kinexis Digital! They captured the essence of our plumbing business right away and created a modern website that builds instant trust. 10/10 team!",
@@ -52,6 +59,7 @@ function formatDate(iso: string) {
 }
 
 const KNOWN_REVIEWERS = [
+  { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen" },
   { quote: "So grateful to Kinexis Digital", name: "Preferred Plumbing Solutions" },
   { quote: "Great work! They designed my website", name: "Manos Creativas Bynmw" },
 ];
@@ -62,7 +70,7 @@ function fromGraph(review: GraphReview): FacebookReview | null {
   const created = review.created_time ?? "";
   const given = review.reviewer?.name?.trim();
   const known = KNOWN_REVIEWERS.find((item) => quote.startsWith(item.quote));
-  const name = given || known?.name || "Facebook reviewer";
+  const name = given || known?.name || "Facebook User";
   return {
     id: review.id || `${name}-${created}`,
     name,
