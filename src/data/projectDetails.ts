@@ -3,7 +3,7 @@
 // Website" button will render automatically. PageSpeed images are optional; the section stays hidden until a path is supplied.
 export type ProjectDetail = {
   /** Paragraphs used under "About The {name} Project". */
-  about: string[];
+  about?: string[];
   liveUrl?: string;
   pagespeedImage?: string;
 };
@@ -178,6 +178,24 @@ export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
       "The design pairs project photography with a concise assessment path so homeowners can understand the likely next step. Service-area and educational sections provide room to support local search without cluttering the main page.",
     ],
     pagespeedImage: pagespeed("harborline-gutters"),
+  },
+  "brass-and-bell-plumbing": {
+    pagespeedImage: pagespeed("brass-and-bell-plumbing"),
+  },
+  "red-oak-roofing": {
+    pagespeedImage: pagespeed("red-oak-roofing"),
+  },
+  "union-electric-co": {
+    pagespeedImage: pagespeed("union-electric-co"),
+  },
+  "fieldstone-masonry": {
+    pagespeedImage: pagespeed("fieldstone-masonry"),
+  },
+  "pitstop-auto-works": {
+    pagespeedImage: pagespeed("pitstop-auto-works"),
+  },
+  "clover-and-sons-lawn": {
+    pagespeedImage: pagespeed("clover-and-sons-lawn"),
   },
 };
 

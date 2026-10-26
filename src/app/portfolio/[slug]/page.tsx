@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject(slug);
   if (!project || project.placeholder) return { title: "Project Not Found", robots: { index: false, follow: false } };
   const detail = getProjectDetail(slug);
-  const description = clipDescription(detail?.about[0] ?? `Web design by Kinexis Digital for ${project.name}, a ${project.trade.toLowerCase()} business in the United States.`);
+  const description = clipDescription(detail?.about?.[0] ?? `Web design by Kinexis Digital for ${project.name}, a ${project.trade.toLowerCase()} business in the United States.`);
   return contentMetadata({
     path: `/portfolio/${project.slug}`,
     title: `${project.name} Website Template`,
@@ -61,7 +61,7 @@ export default async function ProjectPage({ params }: Props) {
     <article className="project-page">
       <ProjectSchema
         name={project.name}
-        description={detail?.about[0] ?? `A Kinexis Digital website template for ${project.name}.`}
+        description={detail?.about?.[0] ?? `A Kinexis Digital website template for ${project.name}.`}
         path={`/portfolio/${project.slug}`}
         image={portfolioFile(project.image)}
         trade={project.trade}
