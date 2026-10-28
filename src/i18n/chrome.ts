@@ -58,7 +58,7 @@ const EN: Chrome = {
   support: "Support",
   helpfulLinks: [["/about", "About Us"], ["/faqs", "FAQs"], ["/reviews", "Reviews"], ["/upgrades", "Upgrades"]],
   serviceLinks: [["/services", "Services"], ["/web-design", "Web Design"], ["/seo-services", "SEO Services"], ["/website-management", "Website Care"], ["/audit", "Site Reviews"], ["/pricing", "Pricing"]],
-  supportLinks: [["/update", "Send A Site Change"], ["/strategy-call", "Talk Through Your Options"], ["/pay", "Plans & Payment"]],
+  supportLinks: [["/update", "Send A Site Change"], ["/strategy-call", "Talk Through Your Options"], ["/pay", "Pay"]],
   legal: "Legal",
   pay: "Pay",
   terms: "Terms & Conditions",

@@ -24,8 +24,9 @@ function PaymentIcon({ kind }: { kind: "plan" | "receipt" | "card" | "notificati
 
 export default async function Page({ searchParams }: { searchParams: Promise<{ plan?: string | string[]; invoice?: string | string[] }> }) {
   const query = await searchParams;
-  const { plan: initialPlan, found } = checkoutPlanFromQuery(typeof query.plan === "string" ? query.plan : null);
-  if (!found) redirect("/pricing");
+  const requestedPlan = typeof query.plan === "string" ? query.plan : null;
+  const { plan: initialPlan, found } = checkoutPlanFromQuery(requestedPlan);
+  if (requestedPlan && !found) redirect("/pricing");
   const invoiceStatus = query.invoice === "cancelled" || query.invoice === "error" ? query.invoice : null;
 
   return (
