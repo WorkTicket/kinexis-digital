@@ -7,10 +7,12 @@
 ## Lint/typecheck
 - `npm run lint` - ESLint (flat config)
 - `npm run typecheck` - TypeScript no emit
+- `npm run check` - Lint, typecheck, and mocked contact-delivery checks
 
 ## Build
 - `npm run build` - Runs `node scripts/build.mjs` (custom build script). Check script if build behavior differs from default Next build.
 - `npm run preview` - `opennextjs-cloudflare build && opennextjs-cloudflare preview` (Workers runtime locally)
+- `npm run build:worker` - Asset preflight plus the full OpenNext Worker build
 - `npm run upload` - Build and upload version without deploying
 - `npm run deploy` - `node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build && opennextjs-cloudflare deploy && node scripts/search-on-deploy.mjs` (builds, deploys to Workers, checks Search Console readiness/sitemap, submits IndexNow). Set `SEARCH_NOTIFY=0` to skip post-deploy checks.
 
@@ -22,9 +24,10 @@
 
 ## Deployment notes (from README)
 - Worker name: `kinexis-digital` (see `wrangler.jsonc`)
-- Custom domain: attach zone to Cloudflare account, uncomment routes in `wrangler.jsonc`, redeploy
+- Custom domains: `kinexisdigital.com` and `www.kinexisdigital.com` are configured in `wrangler.jsonc`; keep the zone attached to the deploying account
 - Secrets via `npx wrangler secret put <NAME>`. Local: `.env.local` (Next) or `.dev.vars` (Wrangler)
-- CI (Workers Builds): build command `npm run deploy`, deploy command empty, NODE_VERSION 24. Needs outbound access for post-deploy checks.
+- CI (Workers Builds): build command `npm run check && npm run build:worker`; deploy command `npm run deploy:worker && npm run search:notify`; NODE_VERSION 24. The deploy phase needs outbound access for post-deploy checks.
+- GitHub Actions runs checks and a Worker build for pull requests and `main`; it never deploys.
 
 ## Verification advice
 - Run targeted checks first (`npm run lint`, `npm run typecheck`) for changes.

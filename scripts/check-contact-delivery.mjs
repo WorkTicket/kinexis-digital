@@ -16,7 +16,7 @@ try {
   for (const key of keys) delete process.env[key];
   process.env.GMAIL_USER = "sender@example.com";
   process.env.GMAIL_APP_PASSWORD = "test-only";
-  process.env.CONTACT_TO = "inbox@example.com";
+  process.env.CONTACT_TO = "inbox@example.com, owner@example.com; inbox@example.com";
   let delivery;
   mailer.createTransport = options => {
     assert.equal(options.host, "smtp.gmail.com");
@@ -33,7 +33,7 @@ try {
     return POST(new Request("http://localhost/api/contact", { method: "POST", body: form }));
   };
   assert.equal((await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt") })).status, 200);
-  assert.equal(delivery.to, "inbox@example.com");
+  assert.deepEqual(delivery.to, ["inbox@example.com", "owner@example.com"]);
   assert.equal(delivery.replyTo.address, "client@example.com");
   assert.match(delivery.subject, /Strategy call/);
   assert.equal(delivery.attachments[0].content.toString(), "drawing");
@@ -42,7 +42,7 @@ try {
   delete process.env.CONTACT_TO;
   process.env.CONTACT_TO_EMAIL = "legacy-inbox@example.com";
   assert.equal((await submit({ request: "Update the homepage" })).status, 200);
-  assert.equal(delivery.to, "legacy-inbox@example.com");
+  assert.deepEqual(delivery.to, ["legacy-inbox@example.com"]);
   assert.match(delivery.subject, /Site update/);
   assert.equal((await submit({ email: "invalid" })).status, 400);
   assert.equal((await submit({ file: new File([new Uint8Array(5 * 1024 * 1024 + 1)], "large.bin") })).status, 400);

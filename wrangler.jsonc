@@ -8,6 +8,19 @@
   "observability": {
     "enabled": true
   },
+  "vars": {
+    "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com"
+  },
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "allowed_destination_addresses": [
+        "hello@kinexisdigital.com",
+        "coltonwehr@kinexisdigital.com",
+        "coltondwehr@icloud.com"
+      ]
+    }
+  ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"

@@ -16,7 +16,7 @@ export const metadata = pageMetadata("home");
 function SectionGraphic({ name, alt, className }: { name: string; alt: string; className: string }) {
   const base = `/assets/home/${name}`;
   const src = `${base}.webp`;
-  const widths = [640, 768, 1120] as const;
+  const widths = [640, 768, 1120, 1280] as const;
   const sizes = "(max-width: 720px) 92vw, 600px";
 
   return (

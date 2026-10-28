@@ -64,14 +64,7 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
-    const cache = [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }];
     return [
-      { source: "/assets/:path*", headers: cache },
-      { source: "/portfolio/:file(.*\\.(?:webp|jpe?g|png|avif))", headers: cache },
-      { source: "/blog/:file(.*\\.(?:webp|avif))", headers: cache },
-      { source: "/favicon-:size.webp", headers: cache },
-      { source: "/apple-icon.png", headers: cache },
-      { source: "/OGimage-sm.webp", headers: cache },
       {
         source: "/:path*",
         headers: [

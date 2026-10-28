@@ -9,7 +9,9 @@ const HOME = [
   "public/assets/home/what-every-site-includes.webp",
   "public/assets/home/google-reviews-handled.webp",
 ];
-const HOME_WIDTHS = [640, 768, 1120];
+// 1280w keeps 600px-wide artwork crisp on 2x displays without sending the
+// original 1536w file. Smaller candidates preserve mobile performance.
+const HOME_WIDTHS = [640, 768, 1120, 1280];
 
 const BLOG = [
   "public/blog/website-mistakes-that-cost-you-calls.webp",
@@ -21,8 +23,11 @@ const BLOG = [
 ];
 const BLOG_WIDTHS = [640, 960];
 
-const WEBP = { quality: 80, effort: 5 };
-const AVIF = { quality: 55, effort: 5 };
+// These images contain UI text and hard illustration edges. The previous AVIF
+// quality of 55 visibly softened them; these settings retain edge detail while
+// remaining substantially smaller than the source files.
+const WEBP = { quality: 86, effort: 5, smartSubsample: true };
+const AVIF = { quality: 65, effort: 5, chromaSubsampling: "4:4:4" };
 
 const kb = (bytes) => `${Math.round(bytes / 1024)}KB`;
 

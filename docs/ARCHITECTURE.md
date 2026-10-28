@@ -7,7 +7,7 @@
 - Node >=22.0.0 (see package.json)
 
 ## Config
-- `next.config.ts` - CSP, redirects (legacy/html/industry routes), headers (long cache for assets), `images.unoptimized: true`, Cloudflare dev init
+- `next.config.ts` - CSP, redirects (legacy/html/industry routes), security headers, `images.unoptimized: true`, Cloudflare dev init
 - `tsconfig.json` - `@/*` -> `./src/*`, strict
 - `wrangler.jsonc` - Worker config (assets/bindings/routes)
 - `open-next.config.ts` - OpenNext adapter config

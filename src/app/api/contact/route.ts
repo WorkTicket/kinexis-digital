@@ -1,10 +1,12 @@
 import { SITE } from "@/lib/site";
 import { hasContentType, privateJson, rejectCrossSite, rejectOversize } from "@/lib/request-security";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import nodemailer from "nodemailer";
 
 const MAX_FILE = 5 * 1024 * 1024;
 const MAX_REQUEST = 6 * 1024 * 1024;
 const MAX_TEXT = 20_000;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function visitorError(message: string, status: number) {
   return privateJson({ error: message }, { status });
@@ -28,7 +30,7 @@ export async function POST(request: Request) {
 
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
-  if (!name || name.length > 120 || email.length > 200 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  if (!name || name.length > 120 || email.length > 200 || !EMAIL_PATTERN.test(email)) {
     return visitorError("Please add your name and a valid email.", 400);
   }
 
@@ -76,20 +78,46 @@ async function sendMail({
   isCall: boolean;
   file: FormDataEntryValue | null;
 }): Promise<"sent" | "unconfigured" | "failed"> {
+  const recipients = contactRecipients();
+  const subject = isCall ? `Strategy call request from ${name}` : isUpdate ? `Site update from ${name}` : `New message from ${name}`;
   const filename = file instanceof File
     ? file.name.replace(/[\x00-\x1f\x7f\\/:*?"<>|]+/g, "-").trim().slice(0, 180) || "attachment"
     : "attachment";
+
+  const cloudflareEmail = contactEmailBinding();
+  if (cloudflareEmail) {
+    try {
+      await cloudflareEmail.send({
+        from: { email: SITE.email, name: SITE.name },
+        to: recipients,
+        replyTo: { email, name },
+        subject,
+        text,
+        attachments: file instanceof File && file.size > 0
+          ? [{
+            filename,
+            content: await file.arrayBuffer(),
+            type: file.type || "application/octet-stream",
+            disposition: "attachment",
+          }]
+          : [],
+      });
+      return "sent";
+    } catch (error) {
+      logDeliveryFailure("Cloudflare Email", error);
+    }
+  }
+
   const key = process.env.MAILGUN_API_KEY;
   const domain = process.env.MAILGUN_DOMAIN;
   if (key && domain) {
-    const to = process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email;
     const from = process.env.MAILGUN_FROM || `${SITE.name} <${SITE.email}>`;
     const region = process.env.MAILGUN_REGION === "eu" ? "https://api.eu.mailgun.net" : "https://api.mailgun.net";
     const body = new FormData();
     body.append("from", from);
-    body.append("to", to);
+    for (const recipient of recipients) body.append("to", recipient);
     body.append("h:Reply-To", email);
-    body.append("subject", isCall ? `Strategy call request from ${name}` : isUpdate ? `Site update from ${name}` : `New message from ${name}`);
+    body.append("subject", subject);
     body.append("text", text);
     if (file instanceof File && file.size > 0) body.append("attachment", file, filename);
     const res = await fetch(`${region}/v3/${encodeURIComponent(domain)}/messages`, {
@@ -98,7 +126,9 @@ async function sendMail({
       body,
       signal: AbortSignal.timeout(15_000),
     });
-    return res.ok ? "sent" : "failed";
+    if (res.ok) return "sent";
+    console.error("Contact delivery failed", { provider: "Mailgun", status: res.status });
+    return "failed";
   }
 
   const endpoint = process.env.FORM_ENDPOINT;
@@ -114,7 +144,9 @@ async function sendMail({
       body: forwarded,
       signal: AbortSignal.timeout(15_000),
     });
-    return res.ok ? "sent" : "failed";
+    if (res.ok) return "sent";
+    console.error("Contact delivery failed", { provider: "form endpoint", status: res.status });
+    return "failed";
   }
 
   const gmailUser = process.env.GMAIL_USER;
@@ -131,9 +163,9 @@ async function sendMail({
     });
     const result = await transport.sendMail({
       from: { name: SITE.name, address: gmailUser },
-      to: process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email,
+      to: recipients,
       replyTo: { name, address: email },
-      subject: isCall ? `Strategy call request from ${name}` : isUpdate ? `Site update from ${name}` : `New message from ${name}`,
+      subject,
       text,
       attachments: file instanceof File && file.size > 0
         ? [{ filename, content: Buffer.from(await file.arrayBuffer()) }]
@@ -145,4 +177,53 @@ async function sendMail({
   }
 
   return "unconfigured";
+}
+
+function contactRecipients() {
+  const configured = process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email;
+  const recipients = configured
+    .split(/[;,]/)
+    .map((address) => address.trim().toLowerCase())
+    .filter((address, index, all) => EMAIL_PATTERN.test(address) && all.indexOf(address) === index);
+
+  return recipients.length > 0 ? recipients : [SITE.email];
+}
+
+type ContactEmailBinding = {
+  send(message: {
+    from: { email: string; name: string };
+    to: string[];
+    replyTo: { email: string; name: string };
+    subject: string;
+    text: string;
+    attachments: Array<{
+      filename: string;
+      content: ArrayBuffer;
+      type: string;
+      disposition: "attachment";
+    }>;
+  }): Promise<unknown>;
+};
+
+function contactEmailBinding(): ContactEmailBinding | undefined {
+  try {
+    const env = getCloudflareContext().env as CloudflareEnv & { CONTACT_EMAIL?: ContactEmailBinding };
+    return env.CONTACT_EMAIL;
+  } catch {
+    // The binding is unavailable in a plain Node.js development or test process.
+    return undefined;
+  }
+}
+
+function logDeliveryFailure(provider: string, error: unknown) {
+  const details = error && typeof error === "object"
+    ? error as { name?: unknown; code?: unknown; command?: unknown; responseCode?: unknown }
+    : {};
+  console.error("Contact delivery failed", {
+    provider,
+    name: typeof details.name === "string" ? details.name : undefined,
+    code: typeof details.code === "string" ? details.code : undefined,
+    command: typeof details.command === "string" ? details.command : undefined,
+    responseCode: typeof details.responseCode === "number" ? details.responseCode : undefined,
+  });
 }
