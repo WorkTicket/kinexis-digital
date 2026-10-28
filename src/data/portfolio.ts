@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "20";
+export const PORTFOLIO_ASSET_VERSION = "21";
 
 export function portfolioFile(image: string, width: 640 | 1100 = 1100) {
   const file = width === 640 ? image.replace(/\.webp$/, "-640.webp") : image;
