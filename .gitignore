@@ -28,6 +28,7 @@ cloudflare-env.d.ts
 *.opt
 scripts/_*.mjs
 scripts/_poster-b64.txt
+/design-source/Updated-Layouts/
 
 # editor / OS
 .DS_Store

@@ -6,8 +6,17 @@ const suppliedRoot = path.resolve(process.argv[2] ?? "design-source/portfolio-up
 const suppliedWebp = path.join(suppliedRoot, "webp");
 const legacyRoot = path.resolve("design-source/portfolio/full-pages");
 const hasSuppliedPackage = await access(suppliedWebp).then(() => true, () => false);
-const screenshotsRoot = hasSuppliedPackage ? suppliedWebp : path.join(legacyRoot, "Desktop");
-const mobileRoot = hasSuppliedPackage ? suppliedWebp : path.join(legacyRoot, "Mobile");
+const hasFlatScreenshots = !hasSuppliedPackage && await access(suppliedRoot).then(() => true, () => false);
+const screenshotsRoot = hasSuppliedPackage
+  ? suppliedWebp
+  : hasFlatScreenshots
+    ? suppliedRoot
+    : path.join(legacyRoot, "Desktop");
+const mobileRoot = hasSuppliedPackage
+  ? suppliedWebp
+  : hasFlatScreenshots
+    ? suppliedRoot
+    : path.join(legacyRoot, "Mobile");
 const devicesRoot = hasSuppliedPackage ? path.join(suppliedRoot, "device-webp") : undefined;
 const dataPath = "src/data/portfolio.ts";
 let data = await readFile(dataPath, "utf8");
@@ -33,16 +42,17 @@ for (const { line, slug, source, deviceSource } of inputs) {
   const small = await sharp(source).resize({ width: 640 }).webp({ quality: 85 }).toBuffer();
   await writeFile(`public/portfolio/${slug}.webp`, full.data);
   await writeFile(`public/portfolio/${slug}-640.webp`, small);
-  const deviceInput = deviceSource ?? `public/portfolio/${slug}-devices.webp`;
-  const [deviceFull, deviceSmall] = await Promise.all([
-    sharp(deviceInput).resize({ width: 1536, withoutEnlargement: true }).webp({ quality: 88, alphaQuality: 90, smartSubsample: true }).toBuffer(),
-    sharp(deviceInput).resize({ width: 768 }).webp({ quality: 85, alphaQuality: 90, smartSubsample: true }).toBuffer(),
-  ]);
-  await writeFile(`public/portfolio/${slug}-devices.webp`, deviceFull);
-  await writeFile(`public/portfolio/${slug}-devices-sm.webp`, deviceSmall);
+  if (deviceSource) {
+    const [deviceFull, deviceSmall] = await Promise.all([
+      sharp(deviceSource).resize({ width: 1536, withoutEnlargement: true }).webp({ quality: 88, alphaQuality: 90, smartSubsample: true }).toBuffer(),
+      sharp(deviceSource).resize({ width: 768 }).webp({ quality: 85, alphaQuality: 90, smartSubsample: true }).toBuffer(),
+    ]);
+    await writeFile(`public/portfolio/${slug}-devices.webp`, deviceFull);
+    await writeFile(`public/portfolio/${slug}-devices-sm.webp`, deviceSmall);
+  }
   data = data.replace(line, line.replace(/width: \d+, height: \d+/, `width: ${full.info.width}, height: ${full.info.height}`));
   console.log(`${slug}: ${full.info.width} x ${full.info.height}`);
 }
 data = data.replace(/PORTFOLIO_ASSET_VERSION = "(\d+)"/, (_, version) => `PORTFOLIO_ASSET_VERSION = "${Number(version) + 1}"`);
 await writeFile(dataPath, data);
-console.log(`Updated ${inputs.length} projects and ${inputs.length * 4} responsive assets.`);
+console.log(`Updated ${inputs.length} projects and ${inputs.length * (devicesRoot ? 4 : 2)} responsive assets.`);

@@ -17,7 +17,7 @@ export const LIVE_SITES: LiveSite[] = [
     url: "https://bynmwcreative.com/",
     image: "/portfolio/live-manos-creativas.webp",
     width: 1100,
-    height: 8534,
+    height: 7265,
   },
   {
     slug: "preferred-plumbing",
@@ -26,7 +26,7 @@ export const LIVE_SITES: LiveSite[] = [
     url: "https://www.callpreferredplumbing.com/",
     image: "/portfolio/live-preferred-plumbing.webp",
     width: 1100,
-    height: 9659,
+    height: 8332,
   },
   {
     slug: "a1-landscaping",
