@@ -21,7 +21,7 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
-  { slug: "bluehaven-pool-care", name: "Bluehaven Pool Care", trade: "Pool Care", group: "Outdoor Living", kind: "custom", image: "/portfolio/bluehaven-pool-care.webp", deviceImage: "/portfolio/bluehaven-pool-care-devices.webp", width: 1100, height: 7596 },
+  { slug: "bluehaven-pool-care", name: "Bluehaven Pool Care", trade: "Pool Care", group: "Outdoor Living", kind: "custom", image: "/portfolio/bluehaven-pool-care.webp", deviceImage: "/portfolio/bluehaven-pool-care-devices.webp", width: 1100, height: 7651 },
   { slug: "breezeway-hvac", name: "Breezeway HVAC", trade: "Heating & Cooling", group: "Home Services", kind: "custom", image: "/portfolio/breezeway-hvac.webp", deviceImage: "/portfolio/breezeway-hvac-devices.webp", width: 1100, height: 6822 },
   { slug: "copperline-plumbing", name: "Copperline Plumbing", trade: "Plumbing", group: "Home Services", kind: "custom", image: "/portfolio/copperline-plumbing.webp", deviceImage: "/portfolio/copperline-plumbing-devices.webp", width: 1100, height: 7213 },
   { slug: "volterra-electric", name: "Volterra Electric", trade: "Electrical", group: "Home Services", kind: "custom", image: "/portfolio/volterra-electric.webp", deviceImage: "/portfolio/volterra-electric-devices.webp", width: 1100, height: 6229 },
@@ -45,7 +45,7 @@ export const PROJECTS: Project[] = [
   { slug: "highline-pest", name: "Highline Pest", trade: "Pest Management", group: "Home Services", kind: "template", image: "/portfolio/highline-pest.webp", deviceImage: "/portfolio/highline-pest-devices.webp", width: 1100, height: 6440 },
   { slug: "northstar-moving", name: "Northstar Moving", trade: "Local Moving", group: "Home Services", kind: "template", image: "/portfolio/northstar-moving.webp", deviceImage: "/portfolio/northstar-moving-devices.webp", width: 1100, height: 6602 },
   { slug: "harborline-gutters", name: "Harborline Gutters", trade: "Gutter Systems", group: "Home Services", kind: "template", image: "/portfolio/harborline-gutters.webp", deviceImage: "/portfolio/harborline-gutters-devices.webp", width: 1100, height: 6200 },
-  { slug: "brass-and-bell-plumbing", name: "Brass & Bell", trade: "Plumbing", group: "Home Services", kind: "template", image: "/portfolio/brass-and-bell-plumbing.webp", deviceImage: "/portfolio/brass-and-bell-plumbing-devices.webp", width: 1100, height: 4650 },
+  { slug: "brass-and-bell-plumbing", name: "Brass & Bell", trade: "Plumbing", group: "Home Services", kind: "template", image: "/portfolio/brass-and-bell-plumbing.webp", deviceImage: "/portfolio/brass-and-bell-plumbing-devices.webp", width: 1100, height: 4639 },
   { slug: "red-oak-roofing", name: "Red Oak Roofing", trade: "Roofing", group: "Home Services", kind: "template", image: "/portfolio/red-oak-roofing.webp", deviceImage: "/portfolio/red-oak-roofing-devices.webp", width: 1100, height: 4699 },
   { slug: "union-electric-co", name: "Union Electric Co.", trade: "Electrical", group: "Home Services", kind: "template", image: "/portfolio/union-electric-co.webp", deviceImage: "/portfolio/union-electric-co-devices.webp", width: 1100, height: 4623 },
   { slug: "fieldstone-masonry", name: "Fieldstone Masonry", trade: "Masonry", group: "Design & Build", kind: "template", image: "/portfolio/fieldstone-masonry.webp", deviceImage: "/portfolio/fieldstone-masonry-devices.webp", width: 1100, height: 4926 },
@@ -56,7 +56,7 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "22";
+export const PORTFOLIO_ASSET_VERSION = "23";
 
 export function portfolioFile(image: string, width: 640 | 1100 = 1100) {
   const file = width === 640 ? image.replace(/\.webp$/, "-640.webp") : image;

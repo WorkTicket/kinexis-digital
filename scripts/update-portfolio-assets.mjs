@@ -23,7 +23,15 @@ let data = await readFile(dataPath, "utf8");
 const projects = [...data.matchAll(/\{ slug: "([^"]+)"[^\n]+/g)];
 const screenshots = await readdir(screenshotsRoot);
 const devices = devicesRoot ? await readdir(devicesRoot) : [];
-const inputs = await Promise.all(projects.map(async ([line, slug]) => {
+const suppliedSlugs = screenshots
+  .map((name) => name.match(/^(.+)-desktop-full\.webp$/i)?.[1].toLowerCase())
+  .filter(Boolean);
+const knownSlugs = new Set(projects.map(([, slug]) => slug));
+const unknownSlugs = suppliedSlugs.filter((slug) => !knownSlugs.has(slug));
+if (unknownSlugs.length) throw new Error(`Unknown portfolio project${unknownSlugs.length === 1 ? "" : "s"}: ${unknownSlugs.join(", ")}`);
+if (!suppliedSlugs.length) throw new Error(`No desktop portfolio screenshots found in ${screenshotsRoot}`);
+const suppliedSlugSet = new Set(suppliedSlugs);
+const inputs = await Promise.all(projects.filter(([, slug]) => suppliedSlugSet.has(slug)).map(async ([line, slug]) => {
   const file = screenshots.find((name) => name.toLowerCase() === `${slug}-desktop-full.webp`);
   if (!file) throw new Error(`Missing desktop screenshot: ${slug}`);
   const mobileFile = screenshots.find((name) => name.toLowerCase() === `${slug}-mobile-full.webp`)
