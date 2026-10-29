@@ -6,6 +6,16 @@ function go(source: string, destination: string) {
   return [rule, { source: `${source}.html`, destination, permanent: true as const }];
 }
 
+/** Preserve retired English and Spanish URLs without redirect chains. */
+function localized(source: string, destination: string) {
+  return [
+    ...go(source, destination),
+    ...go(`/en${source}`, destination),
+    ...go(`/es${source}`, `/es${destination}`),
+    ...go(`/es-es${source}`, `/es-es${destination}`),
+  ];
+}
+
 /** Old article slugs mapped to the closest current page. */
 const BLOG: Record<string, string> = {
   "small-business-website-cost": "/blog/small-business-marketing-budget",
@@ -46,16 +56,30 @@ const BLOG: Record<string, string> = {
 };
 
 export const LEGACY_REDIRECTS = [
-  ...go("/services/web-design", "/web-design"),
-  ...go("/services/seo", "/seo-services"),
-  ...go("/services/branding", "/web-design"),
-  ...go("/services/paid-media", "/services"),
-  ...go("/services/content-marketing", "/blog"),
-  ...go("/blog/posts", "/blog"),
-  ...go("/resources", "/blog"),
+  ...localized("/services/web-design", "/web-design"),
+  ...localized("/services/seo", "/seo-services"),
+  ...localized("/services/branding", "/web-design"),
+  ...localized("/services/paid-media", "/services"),
+  ...localized("/services/content-marketing", "/blog"),
+  ...localized("/blog/posts", "/blog"),
+  ...localized("/case-studies", "/portfolio"),
+  { source: "/case-studies/:path*", destination: "/portfolio", permanent: true as const },
+  { source: "/en/case-studies/:path*", destination: "/portfolio", permanent: true as const },
+  { source: "/es/case-studies/:path*", destination: "/es/portfolio", permanent: true as const },
+  { source: "/es-es/case-studies/:path*", destination: "/es-es/portfolio", permanent: true as const },
+  ...localized("/resources", "/blog"),
   { source: "/resources/:path*", destination: "/blog", permanent: true as const },
+  { source: "/en/resources/:path*", destination: "/blog", permanent: true as const },
+  { source: "/es/resources/:path*", destination: "/es/blog", permanent: true as const },
+  { source: "/es-es/resources/:path*", destination: "/es-es/blog", permanent: true as const },
   { source: "/blog/category/:slug", destination: "/blog", permanent: true as const },
-  ...Object.entries(BLOG).flatMap(([slug, destination]) => go(`/blog/${slug}`, destination)),
+  ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
+  // The old site nested trade pages under /home-services. Current pages cover
+  // the same trade directly and are the only equivalent industry destinations.
+  { source: "/industries/home-services/:slug", destination: "/industries/:slug", permanent: true as const },
+  { source: "/en/industries/home-services/:slug", destination: "/industries/:slug", permanent: true as const },
+  { source: "/es/industries/home-services/:slug", destination: "/es/industries/:slug", permanent: true as const },
+  { source: "/es-es/industries/home-services/:slug", destination: "/es-es/industries/:slug", permanent: true as const },
   ...go("/en", "/"),
   { source: "/en/:path*", destination: "/:path*", permanent: true as const },
 ];

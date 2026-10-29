@@ -11,6 +11,7 @@ export const SITE = {
   social: {
     Facebook: "https://www.facebook.com/profile.php?id=61591998497960",
     "Facebook ES": "https://www.facebook.com/profile.php?id=61594479191212",
+    X: "https://x.com/KINEXISDigital",
     YouTube: "https://www.youtube.com/@KinexisDigital",
   } as Record<string, string>,
   announce: { text: "Free homepage preview first — no card, no obligation. See the four plans →", href: "/pricing" } as null | { text: string; href: string }, // set to null to hide

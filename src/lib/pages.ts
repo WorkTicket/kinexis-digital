@@ -164,7 +164,8 @@ export const PAGES = {
     path: "/update",
     title: "Request a Website Update",
     crumb: "Site Updates",
-    indexable: true,
+    // Existing-client utility form, not a search landing page.
+    indexable: false,
     priority: 0.3,
     changeFrequency: "yearly",
     description: "Tell Kinexis which page needs a small change and attach any helpful file. Requests are handled one at a time within your plan timing.",

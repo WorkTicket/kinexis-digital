@@ -7,6 +7,7 @@ import { getIndustry, relatedIndustries, type FeatureKey } from "@/data/industri
 import { getProject, portfolioFile, PROJECTS } from "@/data/portfolio";
 import { LIVE_SITES } from "@/data/liveSites";
 import { PLANS, POSTS } from "@/lib/content";
+import { PAGES } from "@/lib/pages";
 import { esPost } from "@/i18n/posts-es";
 import { localizedIndustries, localizeIndustry } from "@/i18n/industries-es";
 import { contentLanguage, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
@@ -66,6 +67,7 @@ export function spanishMetadata(locale: Locale, slug?: string[]) {
   const en = pathFromSlug(slug);
   const localized = metaFor(en, locale);
   if (!localized) return { title: "Página no encontrada", robots: { index: false, follow: false } };
+  const page = Object.values(PAGES).find((candidate) => candidate.path === en);
   return contentMetadata({
     path: withLocale(locale, en),
     title: localized.title,
@@ -76,6 +78,7 @@ export function spanishMetadata(locale: Locale, slug?: string[]) {
     ogType: localized.article ? "article" : "website",
     publishedTime: localized.date,
     section: localized.section,
+    index: page?.indexable ?? true,
   });
 }
 
