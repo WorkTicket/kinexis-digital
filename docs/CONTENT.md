@@ -9,7 +9,7 @@
 - Languages: English, Spanish
 
 ## Key messaging (from pages/site)
-- Home: "Trade Websites With Practical Follow-Up | Kinexis Digital" - Websites, SEO, missed-call texts, review requests for US service businesses. Free homepage preview first.
+- Home: "Professional Web Design for Businesses | Kinexis Digital" - Fast, professional websites for US businesses, with a free homepage preview before choosing a plan.
 - Plans/pricing: Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, Own It at $1,497 (see `src/lib/pages.ts` pricing description). Every plan starts with free preview.
 - Free audit, strategy call available.
 - 60-day lead guarantee mentioned in FAQs/terms (do not invent specifics beyond what's in repo).
@@ -19,7 +19,7 @@ See `src/lib/pages.ts` for full metadata (titles/descriptions/indexable/priority
 
 ## Copy rules
 - Do not invent product claims, pricing, offers, guarantees, or features. Only use what's in repo (`src/lib/pages.ts`, `src/lib/content.ts`, `src/data/*`, components).
-- Preserve approved messaging tone (pragmatic for trades).
+- Preserve the pragmatic messaging tone for business owners. Contractors and home-service businesses are important examples, not the only audience.
 - For Spanish content, follow existing patterns in `src/app/es/*`, `src/app/es-es/*` and i18n.
 - Announce bar controlled by `SITE.announce` in `src/lib/site.ts`.
 - OG image: `SITE.ogImage` (`/OGimage-sm.webp`)

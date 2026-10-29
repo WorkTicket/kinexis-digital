@@ -46,7 +46,7 @@ const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim() || SITE.googleSiteV
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "Websites and SEO for US Service Businesses | Kinexis Digital", template: `%s | ${SITE.name}` },
+  title: { default: "Professional Web Design Agency | Kinexis Digital", template: `%s | ${SITE.name}` },
   description: SITE.description,
   applicationName: SITE.name,
   authors: [{ name: SITE.name, url: `${SITE.url}/about` }],

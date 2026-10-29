@@ -5,7 +5,7 @@ export const SITE = {
   phone: "(307) 500-3371",
   phoneE164: "+13075003371",
   email: "hello@kinexisdigital.com",
-  description: "Websites, search support, and practical follow-up for service businesses across the United States.",
+  description: "Professional web design, SEO, and website management for businesses across the United States.",
   /** Public Search Console token already published on the live homepage. Env overrides it. */
   googleSiteVerification: "7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q",
   social: {
