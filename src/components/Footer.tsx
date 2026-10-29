@@ -67,6 +67,7 @@ export default async function Footer() {
     ...chrome.supportLinks,
     [SITE.clientPortalUrl, locale === "en" ? "Client Portal" : "Portal de clientes"],
     [SITE.missedCallPortalUrl, locale === "en" ? "Missed-Call Text-Back" : "Texto para llamadas perdidas"],
+    ["/pay", locale === "en" ? "Pay" : "Planes y pago"],
   ] as [string, string][];
 
   return (
