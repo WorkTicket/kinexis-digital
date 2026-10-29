@@ -55,7 +55,7 @@ export default async function Footer() {
   const locale = await getLocale();
   const path = await getRequestPath();
   const chrome = chromeFor(locale);
-  const hrefFor = (href: string) => (href === "/pay" || href === "/client-login" ? href : withLocale(locale, href));
+  const hrefFor = (href: string) => (href === "/pay" || /^https?:\/\//.test(href) ? href : withLocale(locale, href));
   const fields = locale === "en" ? LEAD_FIELDS : [
     { label: "Nombre", name: "name", required: true, auto: "given-name" },
     { label: "Correo", name: "email", kind: "email" as const, required: true, auto: "email" },
@@ -63,9 +63,11 @@ export default async function Footer() {
     { label: "Sitio o negocio", name: "business" },
   ];
   const otherSocial = Object.entries(SITE.social).filter(([name]) => !name.startsWith("Facebook") && name !== "YouTube");
-  const helpful = SITE.clientPortalUrl
-    ? [...chrome.helpfulLinks, ["/client-login", locale === "en" ? "Client Login" : "Acceso de clientes"] as [string, string]]
-    : chrome.helpfulLinks;
+  const support = [
+    ...chrome.supportLinks,
+    [SITE.clientPortalUrl, locale === "en" ? "Client Portal" : "Portal de clientes"],
+    [SITE.missedCallPortalUrl, locale === "en" ? "Missed-Call Text-Back" : "Texto para llamadas perdidas"],
+  ] as [string, string][];
 
   return (
     <div className="site-foot">
@@ -135,9 +137,9 @@ export default async function Footer() {
             </div>
 
             <div className="footer-navigation">
-              <LinkColumn title={chrome.helpful} links={helpful.map(([href, label]) => ({ href: hrefFor(href), label }))} />
+              <LinkColumn title={chrome.helpful} links={chrome.helpfulLinks.map(([href, label]) => ({ href: hrefFor(href), label }))} />
               <LinkColumn title={chrome.services} links={chrome.serviceLinks.map(([href, label]) => ({ href: hrefFor(href), label }))} />
-              <LinkColumn title={chrome.support} links={chrome.supportLinks.map(([href, label]) => ({ href: href === "/pay" ? "/pay" : hrefFor(href), label }))} />
+              <LinkColumn title={chrome.support} links={support.map(([href, label]) => ({ href: hrefFor(href), label }))} />
             </div>
           </div>
 
@@ -145,7 +147,6 @@ export default async function Footer() {
             <p className="footer-copyright">© {new Date().getFullYear()} {SITE.name}</p>
             <LanguageSwitch className="footer-language shrink-0" locale={locale} path={path} label={chrome.language} />
             <nav aria-label={chrome.legal} className="footer-policies">
-              <Link className={legalLink} href="/pay" hrefLang={locale === "en" ? undefined : "en-US"} prefetch={false}>{chrome.pay}</Link>
               <Link className={legalLink} href={hrefFor("/terms")} prefetch={false}>{chrome.terms}</Link>
               <Link className={legalLink} href={hrefFor("/privacy")} prefetch={false}>{chrome.privacy}</Link>
             </nav>

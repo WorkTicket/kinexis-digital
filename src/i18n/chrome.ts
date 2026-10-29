@@ -27,7 +27,6 @@ export type Chrome = {
   serviceLinks: [string, string][];
   supportLinks: [string, string][];
   legal: string;
-  pay: string;
   terms: string;
   privacy: string;
   region: string;
@@ -60,7 +59,6 @@ const EN: Chrome = {
   serviceLinks: [["/services", "Services"], ["/web-design", "Web Design"], ["/seo-services", "SEO Services"], ["/website-management", "Website Care"], ["/audit", "Site Reviews"], ["/pricing", "Pricing"]],
   supportLinks: [["/update", "Send A Site Change"], ["/strategy-call", "Talk Through Your Options"], ["/pay", "Pay"]],
   legal: "Legal",
-  pay: "Pay",
   terms: "Terms & Conditions",
   privacy: "Privacy Policy",
   region: "",
@@ -93,7 +91,6 @@ const ES: Chrome = {
   serviceLinks: [["/services", "Servicios"], ["/web-design", "Diseño web"], ["/seo-services", "SEO"], ["/website-management", "Cuidado del sitio"], ["/audit", "Revisión del sitio"], ["/pricing", "Precios"]],
   supportLinks: [["/update", "Enviar un cambio"], ["/strategy-call", "Hablar de tus opciones"], ["/pay", "Planes y pago"]],
   legal: "Legal",
-  pay: "Pagar",
   terms: "Términos y condiciones",
   privacy: "Política de privacidad",
   region: "Este texto está en español de Latinoamérica. El servicio es para negocios en Estados Unidos.",

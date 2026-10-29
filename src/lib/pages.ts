@@ -195,11 +195,5 @@ export const PAGES = {
     changeFrequency: "yearly",
     description: "Read what Kinexis collects from website forms, calls, email, server logs, and analytics, plus how that information is used and shared.",
   },
-  "client-login": {
-    path: "/client-login",
-    title: "Open the Kinexis Client Portal",
-    indexable: false,
-    description: "Active Kinexis clients can open the project portal here. Contact us if your emailed access link has not arrived or no longer works.",
-  },
 } satisfies Record<string, PageMeta>;
 export type PageKey = keyof typeof PAGES;

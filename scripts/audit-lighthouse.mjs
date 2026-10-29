@@ -21,7 +21,7 @@ async function getPaths() {
   const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map((m) => new URL(m[1]).pathname)
     .filter((p) => !/\.(xml|txt|webp|png|jpe?g|avif)$/.test(p));
-  for (const extra of ["/client-login", "/pay/thanks"]) {
+  for (const extra of ["/pay/thanks"]) {
     if (!paths.includes(extra)) paths.push(extra);
   }
   return [...new Set(paths)].sort();

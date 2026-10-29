@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject(slug);
   if (!project || project.placeholder) return { title: "Project Not Found", robots: { index: false, follow: false } };
   const detail = getProjectDetail(slug);
-  const description = clipDescription(detail?.about?.[0] ?? `Web design by Kinexis Digital for ${project.name}, a ${project.trade.toLowerCase()} business in the United States.`);
+  const description = clipDescription(detail?.about?.[0] ?? `Explore the ${project.name} website template by Kinexis Digital, designed for ${project.trade.toLowerCase()} businesses across the United States with clear service and contact paths.`);
   return contentMetadata({
     path: `/portfolio/${project.slug}`,
     title: `${project.name} Website Template`,
@@ -40,7 +40,11 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProject(slug);
   if (!project || project.placeholder) notFound();
   const detail = getProjectDetail(slug);
-  const related = PROJECTS.filter((p) => p.slug !== project.slug).slice(0, 5);
+  const currentIndex = PROJECTS.findIndex((item) => item.slug === project.slug);
+  const related = Array.from(
+    { length: Math.min(5, PROJECTS.length - 1) },
+    (_, offset) => PROJECTS[(currentIndex + offset + 1) % PROJECTS.length],
+  );
   const h1Track = fallbackTrack({
     "liftline-garage-doors": "-0.015em",
     "happy-yard": "-0.015em",
@@ -65,6 +69,7 @@ export default async function ProjectPage({ params }: Props) {
         path={`/portfolio/${project.slug}`}
         image={portfolioFile(project.image)}
         trade={project.trade}
+        isTemplate={project.kind === "template"}
       />
       {/* 1. Title */}
       <header className="page-hero project-hero">

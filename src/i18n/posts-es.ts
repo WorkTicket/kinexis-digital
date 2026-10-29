@@ -13,7 +13,7 @@ export const ES_POSTS: EsPost[] = [
     slug: "website-mistakes-that-cost-you-calls",
     category: "Consejos",
     title: "Errores del sitio que te cuestan llamadas",
-    seoTitle: "Errores de sitio web que les cuestan llamadas a los negocios de servicios",
+    seoTitle: "Errores web que cuestan llamadas",
     excerpt: "El sitio debería vender cuando tú estás en el trabajo. Estos errores hacen que la gente vuelva a Google antes de marcar.",
     lead: "Un sitio de un oficio tiene que contestar tres cosas en el celular: qué haces, dónde lo haces y cómo te llaman. Si eso no está en la primera pantalla, la visita se va.",
     sections: [
@@ -91,7 +91,7 @@ export const ES_POSTS: EsPost[] = [
     slug: "make-your-website-mobile-ready",
     category: "Diseño",
     title: "Deja el sitio listo para el celular",
-    seoTitle: "Cómo dejar listo para el celular el sitio de un negocio de servicios",
+    seoTitle: "Sitio móvil para negocios de servicios",
     excerpt: "La búsqueda de un oficio ocurre en la entrada de la casa o en la cocina. La página tiene que cargar y mostrar el siguiente paso.",
     lead: "Si el sitio se ve bien en la computadora y se rompe en el celular, se rompe donde está el cliente. La mayoría de estas búsquedas no empiezan en un escritorio.",
     sections: [
@@ -117,7 +117,7 @@ export const ES_POSTS: EsPost[] = [
     slug: "local-seo-get-found-get-called",
     category: "SEO",
     title: "SEO local para que te encuentren y te llamen",
-    seoTitle: "SEO local para negocios de servicios en Estados Unidos",
+    seoTitle: "SEO local para negocios de servicios en EE. UU.",
     excerpt: "El SEO local no es repetir el nombre de la ciudad en cincuenta páginas. Es una zona real, páginas de servicio y un perfil de Google que coincide.",
     lead: "Google tiene que entender qué oficio tienes y dónde trabajas. El cliente tiene que poder llamarte cuando te encuentra. Las dos cosas fallan cuando el sitio es una plantilla con el nombre del pueblo cambiado.",
     sections: [
@@ -143,7 +143,7 @@ export const ES_POSTS: EsPost[] = [
     slug: "build-trust-with-reviews",
     category: "Consejos",
     title: "Consigue reseñas sin perseguir a la gente",
-    seoTitle: "Cómo un negocio de servicios consigue más reseñas de Google",
+    seoTitle: "Cómo conseguir más reseñas de Google",
     excerpt: "La reseña se pide cuando el trabajo salió bien, con un enlace directo. No depende de que te acuerdes en la camioneta.",
     lead: "La siguiente cotización mira las reseñas antes de llamar. Pedirlas en la puerta funciona a veces. Un texto con el enlace, enviado cuando tú eliges, funciona aunque ya estés en el siguiente trabajo.",
     sections: [

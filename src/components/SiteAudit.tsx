@@ -6,7 +6,6 @@ const HIDE = new Set([
   "/audit",
   "/privacy",
   "/terms",
-  "/client-login",
   "/update",
   "/pay",
 ]);

@@ -172,7 +172,7 @@ export const POSTS = [
     slug: "small-business-marketing-budget",
     category: "Tips",
     title: "Small Business Marketing Budget: Where to Spend",
-    seoTitle: "Small Business Marketing Budget for Service Companies",
+    seoTitle: "Marketing Budgets for Service Businesses",
     excerpt: "Build the website and follow-up first, then add search work, pages, or ads when the business is ready for them.",
     image: "/blog/small-business-marketing-budget.webp",
     width: 1200,

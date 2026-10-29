@@ -11,7 +11,7 @@ export const LOCALE_HEADER = "x-kd-locale";
 export const PATH_HEADER = "x-kd-path";
 export const LANG_COOKIE = "kd_lang";
 
-const UNMIRRORED = new Set(["/pay", "/client-login"]);
+const UNMIRRORED = new Set(["/pay"]);
 
 /** English paths that have a real Spanish page. Portfolio case studies stay English. */
 export const MIRROR_PATHS: readonly string[] = [
@@ -36,8 +36,9 @@ export function localeFromPath(pathname: string): Locale {
 }
 
 export function contentLanguage(locale: Locale): string {
-  if (locale === "es-ES") return "es-ES";
-  if (locale === "es-419") return "es-419";
+  // Use the universally recognized primary language subtag in HTML and
+  // Content-Language. Regional targeting remains explicit in hreflang and OG.
+  if (locale !== "en") return "es";
   return "en-US";
 }
 

@@ -77,7 +77,6 @@ export function SiteSchema() {
         priceRange: "$97-$1497",
         areaServed: country,
         address: { "@type": "PostalAddress", addressCountry: "US" },
-        provider: { "@id": orgId() },
         parentOrganization: { "@id": orgId() },
         ...(sameAs.length ? { sameAs } : {}),
         hasOfferCatalog: {
@@ -214,6 +213,37 @@ export function PageSchema({ page, faqs, items }: {
       ...(page === "pricing" ? { hasOfferCatalog: offerCatalog(url) } : {}),
     });
   }
+  if (page === "pricing") {
+    graph.push(...PLANS.map((plan) => {
+      const price = plan.price.replace(/[^0-9.]/g, "");
+      const monthly = plan.suffix.startsWith("/");
+      return {
+        "@type": "Product",
+        "@id": `${url}#${plan.slug}`,
+        name: `${plan.name} website plan`,
+        description: plan.tagline,
+        image: `${SITE.url}${SITE.ogImage}`,
+        category: "Website design plan",
+        brand: { "@id": orgId() },
+        offers: {
+          "@type": "Offer",
+          price,
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+          url,
+          ...(monthly ? {
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price,
+              priceCurrency: "USD",
+              unitCode: "MON",
+            },
+          } : {}),
+        },
+      };
+    }));
+  }
   if (items?.length) {
     graph.push({
       "@type": "ItemList",
@@ -279,28 +309,51 @@ export function ArticleSchema({ title, description, path, image, date, section, 
   }} />;
 }
 
-export function ProjectSchema({ name, description, path, image, trade }: {
+export function ProjectSchema({ name, description, path, image, trade, isTemplate }: {
   name: string;
   description: string;
   path: string;
   image: string;
   trade: string;
+  isTemplate: boolean;
 }) {
   const url = absolute(path);
+  const project = {
+    "@type": isTemplate ? ["Product", "CreativeWork"] : "CreativeWork",
+    "@id": `${url}#work`,
+    name: `Website template for ${name}`,
+    description,
+    url,
+    image: image.startsWith("http") ? image : `${SITE.url}${image}`,
+    about: trade,
+    category: `${trade} website template`,
+    creator: { "@id": orgId() },
+    ...(isTemplate ? {
+      brand: { "@id": orgId() },
+      offers: PLANS.map((plan) => ({
+        "@type": "Offer",
+        name: `${plan.name} website plan`,
+        price: plan.price.replace(/[^0-9.]/g, ""),
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+        itemCondition: "https://schema.org/NewCondition",
+        url: `${SITE.url}/pricing`,
+        ...(plan.suffix.startsWith("/") ? {
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: plan.price.replace(/[^0-9.]/g, ""),
+            priceCurrency: "USD",
+            unitCode: "MON",
+          },
+        } : {}),
+      })),
+    } : {}),
+    inLanguage: "en-US",
+  };
   return <Script data={{
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "CreativeWork",
-        "@id": `${url}#work`,
-        name: `Website template for ${name}`,
-        description,
-        url,
-        image: image.startsWith("http") ? image : `${SITE.url}${image}`,
-        about: trade,
-        creator: { "@id": orgId() },
-        inLanguage: "en-US",
-      },
+      project,
       {
         "@type": "WebPage",
         "@id": `${url}#page`,

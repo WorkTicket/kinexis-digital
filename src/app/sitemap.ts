@@ -9,6 +9,8 @@ import { SITE } from "@/lib/site";
 const updated = new Date(`${SITE.updated}T00:00:00.000Z`);
 const LOCALES: Locale[] = ["en", "es-419", "es-ES"];
 
+export const revalidate = 86400;
+
 function absolute(path: string) {
   return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
 }

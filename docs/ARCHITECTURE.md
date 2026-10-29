@@ -36,7 +36,7 @@ scripts/                Search Console/IndexNow on deploy, optimizations, checks
 ```
 
 ## Routes (observed)
-Top-level routes include: `/`, `/about`, `/api/*`, `/audit`, `/blog`, `/client-login`, `/contact`, `/es/*`, `/es-es/*`, `/faqs`, `/industries`, `/pay`, `/portfolio`, `/pricing`, `/privacy`, `/process`, `/reviews`, `/seo-services`, `/services`, `/strategy-call`, `/terms`, `/update`, `/upgrades`, `/video-reviews`, `/web-design`, `/website-management`. See `src/app/` and `src/lib/pages.ts` for canonical metadata.
+Top-level routes include: `/`, `/about`, `/api/*`, `/audit`, `/blog`, `/contact`, `/es/*`, `/es-es/*`, `/faqs`, `/industries`, `/pay`, `/portfolio`, `/pricing`, `/privacy`, `/process`, `/reviews`, `/seo-services`, `/services`, `/strategy-call`, `/terms`, `/update`, `/upgrades`, `/video-reviews`, `/web-design`, `/website-management`. See `src/app/` and `src/lib/pages.ts` for canonical metadata.
 
 ## Key files
 - `src/app/layout.tsx` - Root layout, fonts (Inter/Poppins), locale boot, chrome, schema, global UI components
