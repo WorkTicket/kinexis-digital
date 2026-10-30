@@ -87,8 +87,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 var p=location.pathname,r=document.documentElement;
 if(p==="/es"||p.indexOf("/es/")===0)p=p==="/es"?"/":p.slice(3);
 else if(p==="/es-es"||p.indexOf("/es-es/")===0)p=p==="/es-es"?"/":p.slice(6);
-if(p==="/contact"||p==="/audit"||p==="/strategy-call"||p.indexOf("/pay")===0)r.classList.add("no-lead");
-if(p.indexOf("/pay")===0||p==="/strategy-call")r.classList.add("no-float");
+if(p==="/contact"||p==="/audit"||p==="/strategy-call"||p.indexOf("/pay")===0||p.indexOf("/lp/")===0)r.classList.add("no-lead");
+if(p.indexOf("/pay")===0||p==="/strategy-call"||p.indexOf("/lp/")===0)r.classList.add("no-float");
+if(p.indexOf("/lp/")===0)r.classList.add("lp-route");
 var started=false;
 var start=function(){
   if(started)return;started=true;
