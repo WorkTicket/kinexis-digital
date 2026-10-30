@@ -71,7 +71,7 @@ export default function Home() {
             </li>
           </ul>
           <div className="hero__btns">
-            <Link className="btn btn--primary btn--lg" href="/audit" prefetch={false}>Get a Free Audit</Link>
+            <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Get My Free Preview</Link>
             <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
             <OpenDialog id="guarantee" className="link-btn">60-Day Lead Guarantee</OpenDialog>
           </div>

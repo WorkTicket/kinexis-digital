@@ -12,12 +12,12 @@ export default function Page() {
       <PageHero
         h1="Plans & Billing Terms"
         mark="Billing Terms"
-        sub="Last updated October 20, 2026. These are the offer terms for the four Kinexis Digital plans. The agreement you approve at checkout controls if anything differs."
+        sub="Last updated October 30, 2026. These are the offer terms for the four Kinexis Digital plans. The agreement you approve at checkout controls if anything differs."
       />
       <section className="section">
         <div className="container container--narrow prose">
           <h2>1. Free homepage preview</h2>
-          <p>{PLAN_TERMS[0]} We will show you a homepage concept for your trade. You can approve it, ask for changes, or walk away without paying.</p>
+          <p>{PLAN_TERMS[0]} Free homepage previews are delivered within 2 business days of receiving your business details. We will show you a homepage concept for your trade. You can approve it, ask for changes, or walk away without paying.</p>
 
           <h2>2. Monthly plans</h2>
           <p>Website is {PLANS[0].price}/mo. Lead System is {PLANS[1].price}/mo. Plus (Bilingual) is {PLANS[2].price}/mo. All three monthly plans are $0 down and begin on launch day.</p>

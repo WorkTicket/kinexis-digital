@@ -231,6 +231,6 @@ export const REVIEWS: { quote: string; name: string; company: string }[] = [
 ];
 export const COMPARE_ROWS: [string, boolean, boolean][] = [
   ["Free homepage preview before you pay", false, false], ["Missed-call texts and review requests", false, false],
-  ["Hosting and updates handled", false, true], ["Monthly payments, no long contract", true, false],
+  ["Hosting and updates handled", false, true], ["3-month minimum, then month-to-month", true, false],
   ["English and Spanish sites", false, true],
 ];

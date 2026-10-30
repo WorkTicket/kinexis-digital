@@ -101,7 +101,7 @@ export default function Page() {
           <div className="free-preview__copy">
             <span className="free-preview__mark" aria-hidden="true" />
             <div>
-              <b>Review the homepage before paying.</b>
+              <b>Free homepage preview in 2 business days.</b>
               <span>Every plan begins with a free preview. You don’t need a card and there’s no obligation.</span>
             </div>
           </div>
