@@ -185,7 +185,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx("Por qué los negocios eligen Kinexis")} mark={tx("eligen Kinexis")} /></h2>
-        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Pagos mensuales, sin contrato largo"), true, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
+        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Mínimo de 3 meses, luego mes a mes"), true, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
         <p className="center muted small">{tx("Son ofertas habituales; cada proveedor puede variar.")}</p>
       </Section>
       <Section>
@@ -338,6 +338,16 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
       <ContentSchema path={href("/pricing")} title={tx(PAGE_META["/pricing"].title)} description={tx(PAGE_META["/pricing"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} inLanguage={lang} />
       <PageHero h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu oficio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
       <Section>
+        <div className="free-preview">
+          <div className="free-preview__copy">
+            <span className="free-preview__mark" aria-hidden="true" />
+            <div>
+              <b>{tx("Vista previa gratis de la página principal en 2 días hábiles.")}</b>
+              <span>{tx("Cada plan empieza con una vista previa gratis. Sin tarjeta y sin obligación.")}</span>
+            </div>
+          </div>
+          <span className="free-preview__tag">{tx("Vista previa gratis primero")}</span>
+        </div>
         <div className="plans">
           {plans.map((plan) => (
             <article className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
@@ -469,7 +479,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
 }
 
 function Faqs({ tx, href, lang, band }: PageBits) {
-  const faqs = homeFaqs(tx);
+  const faqs = [{ q: tx("¿Qué tan rápido recibo mi vista previa gratis?"), a: tx("Su vista previa gratis de la página principal está lista en 2 días hábiles después de recibir la información de su negocio, sin tarjeta.") }, ...homeFaqs(tx)];
   return (
     <>
       <ContentSchema path={href("/faqs")} title={tx(PAGE_META["/faqs"].title)} description={tx(PAGE_META["/faqs"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Preguntas"), path: href("/faqs") }]} faqs={faqs} inLanguage={lang} />
@@ -627,7 +637,7 @@ function Terms({ tx, href, lang }: { tx: (s: string) => string; href: (p: string
       <PageHero h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 20 de octubre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("1. Vista previa gratis")}</h2>
-        <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu oficio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
+        <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Las vistas previas gratis de la página principal se entregan dentro de 2 días hábiles después de recibir los datos de su negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu oficio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
         <h2>{tx("2. Planes mensuales")}</h2>
         <p>{tx("Website es $97 al mes. Lead System es $197 al mes. Plus (bilingüe) es $297 al mes. Los tres son $0 de enganche y empiezan el día del lanzamiento. Cada uno tiene un mínimo de 3 meses. Después sigue mes a mes. Puedes cancelar después del mínimo por texto, correo o Messenger. No hay cargo por cancelar. El precio queda fijo 24 meses. Después avisamos al menos 30 días antes de un cambio.")}</p>
         <h2>{tx("3. Qué incluye")}</h2>
