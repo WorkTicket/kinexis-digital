@@ -35,25 +35,25 @@ const nextConfig: NextConfig = {
       .filter((page) => page.path !== "/");
     return [
       ...LEGACY_REDIRECTS,
-      { source: "/index.html", destination: "/", permanent: true },
-      { source: "/process", destination: "/about", permanent: true },
-      { source: "/process.html", destination: "/about", permanent: true },
+      { source: "/index.html", destination: "/", statusCode: 301 },
+      { source: "/process", destination: "/about", statusCode: 301 },
+      { source: "/process.html", destination: "/about", statusCode: 301 },
       ...pages.map((page) => ({
         source: `${page.path}.html`,
         destination: page.path,
-        permanent: true,
+        statusCode: 301,
       })),
-      { source: "/industry", destination: "/industries", permanent: true },
-      { source: "/industry/:slug", destination: "/industries/:slug", permanent: true },
-      { source: "/en/industries", destination: "/industries", permanent: true },
-      { source: "/en/industries/:slug", destination: "/industries/:slug", permanent: true },
+      { source: "/industry", destination: "/industries", statusCode: 301 },
+      { source: "/industry/:slug", destination: "/industries/:slug", statusCode: 301 },
+      { source: "/en/industries", destination: "/industries", statusCode: 301 },
+      { source: "/en/industries/:slug", destination: "/industries/:slug", statusCode: 301 },
       ...RETIRED_INDUSTRY_SLUGS.flatMap((slug) => [
-        { source: `/industries/${slug}`, destination: "/industries", permanent: true },
-        { source: `/industries/${slug}.html`, destination: "/industries", permanent: true },
-        { source: `/es/industries/${slug}`, destination: "/es/industries", permanent: true },
-        { source: `/es-es/industries/${slug}`, destination: "/es-es/industries", permanent: true },
+        { source: `/industries/${slug}`, destination: "/industries", statusCode: 301 },
+        { source: `/industries/${slug}.html`, destination: "/industries", statusCode: 301 },
+        { source: `/es/industries/${slug}`, destination: "/es/industries", statusCode: 301 },
+        { source: `/es-es/industries/${slug}`, destination: "/es-es/industries", statusCode: 301 },
       ]),
-      { source: "/industries/:slug.html", destination: "/industries/:slug", permanent: true },
+      { source: "/industries/:slug.html", destination: "/industries/:slug", statusCode: 301 },
     ];
   },
 

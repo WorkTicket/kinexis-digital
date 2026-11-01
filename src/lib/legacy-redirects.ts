@@ -1,9 +1,9 @@
 /** Live URLs that this site no longer serves. Permanent redirects keep one English URL. */
 
 function go(source: string, destination: string) {
-  const rule = { source, destination, permanent: true as const };
+  const rule = { source, destination, statusCode: 301 as const };
   if (source.includes(":")) return [rule];
-  return [rule, { source: `${source}.html`, destination, permanent: true as const }];
+  return [rule, { source: `${source}.html`, destination, statusCode: 301 as const }];
 }
 
 /** Preserve retired English and Spanish URLs without redirect chains. */
@@ -13,6 +13,15 @@ function localized(source: string, destination: string) {
     ...go(`/en${source}`, destination),
     ...go(`/es${source}`, `/es${destination}`),
     ...go(`/es-es${source}`, `/es-es${destination}`),
+  ];
+}
+
+function localizedWildcard(source: string, destination: string) {
+  return [
+    { source, destination, statusCode: 301 as const },
+    { source: `/en${source}`, destination, statusCode: 301 as const },
+    { source: `/es${source}`, destination: `/es${destination}`, statusCode: 301 as const },
+    { source: `/es-es${source}`, destination: `/es-es${destination}`, statusCode: 301 as const },
   ];
 }
 
@@ -56,6 +65,12 @@ const BLOG: Record<string, string> = {
 };
 
 export const LEGACY_REDIRECTS = [
+  // Retired landing-page and information-architecture families. These have
+  // no live detail routes, so send them to the closest useful hub in one hop.
+  ...localized("/services/landing-pages", "/web-design"),
+  ...localizedWildcard("/locations/:path*", "/industries"),
+  ...localizedWildcard("/pricing/:path*", "/pricing"),
+  ...localizedWildcard("/solutions/:path*", "/services"),
   ...localized("/services/web-design", "/web-design"),
   ...localized("/services/seo", "/seo-services"),
   ...localized("/services/branding", "/web-design"),
@@ -63,23 +78,23 @@ export const LEGACY_REDIRECTS = [
   ...localized("/services/content-marketing", "/blog"),
   ...localized("/blog/posts", "/blog"),
   ...localized("/case-studies", "/portfolio"),
-  { source: "/case-studies/:path*", destination: "/portfolio", permanent: true as const },
-  { source: "/en/case-studies/:path*", destination: "/portfolio", permanent: true as const },
-  { source: "/es/case-studies/:path*", destination: "/es/portfolio", permanent: true as const },
-  { source: "/es-es/case-studies/:path*", destination: "/es-es/portfolio", permanent: true as const },
+  { source: "/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },
+  { source: "/en/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },
+  { source: "/es/case-studies/:path*", destination: "/es/portfolio", statusCode: 301 as const },
+  { source: "/es-es/case-studies/:path*", destination: "/es-es/portfolio", statusCode: 301 as const },
   ...localized("/resources", "/blog"),
-  { source: "/resources/:path*", destination: "/blog", permanent: true as const },
-  { source: "/en/resources/:path*", destination: "/blog", permanent: true as const },
-  { source: "/es/resources/:path*", destination: "/es/blog", permanent: true as const },
-  { source: "/es-es/resources/:path*", destination: "/es-es/blog", permanent: true as const },
-  { source: "/blog/category/:slug", destination: "/blog", permanent: true as const },
+  { source: "/resources/:path*", destination: "/blog", statusCode: 301 as const },
+  { source: "/en/resources/:path*", destination: "/blog", statusCode: 301 as const },
+  { source: "/es/resources/:path*", destination: "/es/blog", statusCode: 301 as const },
+  { source: "/es-es/resources/:path*", destination: "/es-es/blog", statusCode: 301 as const },
+  { source: "/blog/category/:slug", destination: "/blog", statusCode: 301 as const },
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
   // The old site nested trade pages under /home-services. Current pages cover
   // the same trade directly and are the only equivalent industry destinations.
-  { source: "/industries/home-services/:slug", destination: "/industries/:slug", permanent: true as const },
-  { source: "/en/industries/home-services/:slug", destination: "/industries/:slug", permanent: true as const },
-  { source: "/es/industries/home-services/:slug", destination: "/es/industries/:slug", permanent: true as const },
-  { source: "/es-es/industries/home-services/:slug", destination: "/es-es/industries/:slug", permanent: true as const },
+  { source: "/industries/home-services/:slug", destination: "/industries/:slug", statusCode: 301 as const },
+  { source: "/en/industries/home-services/:slug", destination: "/industries/:slug", statusCode: 301 as const },
+  { source: "/es/industries/home-services/:slug", destination: "/es/industries/:slug", statusCode: 301 as const },
+  { source: "/es-es/industries/home-services/:slug", destination: "/es-es/industries/:slug", statusCode: 301 as const },
   ...go("/en", "/"),
-  { source: "/en/:path*", destination: "/:path*", permanent: true as const },
+  { source: "/en/:path*", destination: "/:path*", statusCode: 301 as const },
 ];

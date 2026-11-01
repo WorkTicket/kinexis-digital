@@ -10,14 +10,14 @@ const robotsIndex: Metadata["robots"] = {
 };
 
 export const ogImage = {
-  url: SITE.ogImage,
+  url: SITE.ogImage.startsWith("http") ? SITE.ogImage : `${SITE.url}${SITE.ogImage}`,
   width: 1730,
   height: 909,
   alt: `${SITE.name}, digital marketing agency for US businesses`,
 };
 
-/** Keep meta descriptions inside the length Google usually displays in full. */
-export function clipDescription(text: string, max = 160) {
+/** Keep meta descriptions inside the useful 120–155 character range. */
+export function clipDescription(text: string, max = 155) {
   const clean = text.replace(/\s+/g, " ").trim();
   if (clean.length <= max) return clean;
   const cut = clean.slice(0, max - 1);
@@ -26,13 +26,32 @@ export function clipDescription(text: string, max = 160) {
   return `${base}.`;
 }
 
+/**
+ * Descriptions should be written per page, but this guard prevents a short
+ * translated excerpt or newly added content page from shipping a weak tag.
+ * The suffix is deliberately supplied by the caller so it remains localized
+ * and relevant instead of being a generic repeated padding string.
+ */
+export function descriptionWithFallback(text: string, suffix: string) {
+  const clean = text.replace(/\s+/g, " ").trim();
+  return clipDescription(clean.length < 120 ? `${clean} ${suffix}` : clean);
+}
+
+export function absoluteUrl(path: string) {
+  return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
+}
+
 export function pageMetadata(key: PageKey): Metadata {
   const p = PAGES[key] as PageMeta;
   const full = p.absolute ? p.title : `${p.title} | ${SITE.name}`;
+  const description = descriptionWithFallback(
+    p.description,
+    " Learn how Kinexis Digital can help your business grow online.",
+  );
   const languages = hreflangLanguages(p.path);
   return {
     title: p.absolute ? { absolute: p.title } : p.title,
-    description: p.description,
+    description,
     alternates: p.indexable ? { canonical: p.path, ...(languages ? { languages } : {}) } : undefined,
     robots: p.indexable ? robotsIndex : { index: false, follow: true },
     openGraph: {
@@ -40,11 +59,11 @@ export function pageMetadata(key: PageKey): Metadata {
       siteName: SITE.name,
       locale: "en_US",
       title: full,
-      description: p.description,
-      url: p.path,
+      description,
+      url: absoluteUrl(p.path),
       images: [ogImage],
     },
-    twitter: { card: "summary_large_image", title: full, description: p.description, images: [SITE.ogImage] },
+    twitter: { card: "summary_large_image", title: full, description, images: [absoluteUrl(SITE.ogImage)] },
   };
 }
 
@@ -64,11 +83,18 @@ type ContentMeta = {
 
 /** Metadata for routes that are not in the PAGES map, such as posts and projects. */
 export function contentMetadata(input: ContentMeta): Metadata {
-  const description = clipDescription(input.description);
+  const description = descriptionWithFallback(
+    input.description,
+    input.locale === "es-ES" || input.locale === "es-419"
+      ? " Encuentra consejos prácticos y próximos pasos para mejorar tu presencia digital."
+      : " Find practical guidance and next steps to improve your digital presence.",
+  );
   const index = input.index !== false;
   const branded = input.absolute || input.title.includes(SITE.name);
   const full = branded ? input.title : `${input.title} | ${SITE.name}`;
-  const image = input.image ? [{ url: input.image, alt: input.imageAlt ?? input.title }] : [ogImage];
+  const image = input.image
+    ? [{ url: input.image.startsWith("http") ? input.image : absoluteUrl(input.image), alt: input.imageAlt ?? input.title }]
+    : [ogImage];
   const article = input.ogType === "article";
   const locale = input.locale ?? "en";
   const languages = hreflangLanguages(input.path);
@@ -84,7 +110,7 @@ export function contentMetadata(input: ContentMeta): Metadata {
       locale: ogLocale(locale),
       title: full,
       description,
-      url: input.path,
+      url: absoluteUrl(input.path),
       images: image,
       ...(article && input.publishedTime ? { publishedTime: input.publishedTime } : {}),
       ...(article ? { authors: [SITE.name] } : {}),
@@ -94,7 +120,7 @@ export function contentMetadata(input: ContentMeta): Metadata {
       card: "summary_large_image",
       title: full,
       description,
-      images: [input.image ?? SITE.ogImage],
+      images: [input.image?.startsWith("http") ? input.image : absoluteUrl(input.image ?? SITE.ogImage)],
     },
   };
 }

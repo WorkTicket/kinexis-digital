@@ -69,7 +69,7 @@ export const PAGES = {
     pageType: "ContactPage",
     indexable: true,
     priority: 0.8,
-    description: "Contact Kinexis Digital to discuss a new website, redesign, SEO, or ongoing website management for your business.",
+    description: "Contact Kinexis Digital to discuss a new website, redesign, SEO, or ongoing website management for your business. Get a clear next step.",
   },
   "website-management": {
     path: "/website-management",
@@ -139,7 +139,7 @@ export const PAGES = {
     // Checkout is a utility step, not a search landing page. Keep authority on
     // the pricing page instead of asking Google to index near-duplicate intent.
     indexable: false,
-    description: "Use PayPal to start the Kinexis plan you approved or pay an agreed invoice or deposit through the secure checkout page.",
+    description: "Use PayPal to start the Kinexis plan you approved or pay an agreed invoice or deposit through the secure checkout page with confidence.",
   },
   blog: {
     path: "/blog",
@@ -185,7 +185,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.2,
     changeFrequency: "yearly",
-    description: "Read the current Kinexis website plan, billing, cancellation, ownership, texting, and 60-day lead guarantee terms.",
+    description: "Read the current Kinexis website plan, billing, cancellation, ownership, texting, and 60-day lead guarantee terms before you begin.",
   },
   privacy: {
     path: "/privacy",

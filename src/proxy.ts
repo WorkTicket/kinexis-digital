@@ -5,15 +5,35 @@ import { contentLanguage, localeFromPath, LOCALE_HEADER, PATH_HEADER } from "@/l
 const APEX = "kinexisdigital.com";
 const CANONICAL_HOST = "www.kinexisdigital.com";
 
-/** Send the apex host to www, and label each URL with the language of that URL. */
+// These are the legacy paths most likely to be requested with the retired
+// /en/ prefix. Resolve them here so host, locale and legacy cleanup never
+// become a redirect chain.
+const DIRECT_LEGACY_PATHS: Record<string, string> = {
+  "/services/landing-pages": "/web-design",
+};
+
+/** Canonicalize host and retired English URLs before handing the request on. */
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0]?.toLowerCase();
-  if (host === APEX) {
+  const forwardedProtocol = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim().toLowerCase();
+  const originalPath = request.nextUrl.pathname;
+  const withoutEnglishPrefix = originalPath === "/en"
+    ? "/"
+    : originalPath.startsWith("/en/")
+      ? originalPath.slice(3)
+      : originalPath;
+  const pathWithoutTrailingSlash = withoutEnglishPrefix === "/"
+    ? "/"
+    : withoutEnglishPrefix.replace(/\/+$/, "");
+  const canonicalPath = DIRECT_LEGACY_PATHS[pathWithoutTrailingSlash] ?? pathWithoutTrailingSlash;
+  const needsHttps = forwardedProtocol === "http";
+  if (host === APEX || needsHttps || canonicalPath !== originalPath) {
     const url = request.nextUrl.clone();
     url.protocol = "https:";
     url.hostname = CANONICAL_HOST;
     url.port = "";
-    return NextResponse.redirect(url, 308);
+    url.pathname = canonicalPath;
+    return NextResponse.redirect(url, 301);
   }
   const locale = localeFromPath(request.nextUrl.pathname);
   const requestHeaders = new Headers(request.headers);
