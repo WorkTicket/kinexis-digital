@@ -6,7 +6,6 @@ import { hreflangLanguages, isMirrored, withLocale, type Locale } from "@/lib/i1
 import { PAGES, type PageMeta } from "@/lib/pages";
 import { SITE } from "@/lib/site";
 
-const updated = new Date(`${SITE.updated}T00:00:00.000Z`);
 const LOCALES: Locale[] = ["en", "es-419", "es-ES"];
 
 export const revalidate = 86400;
@@ -32,11 +31,12 @@ function localized<T extends { url: string }>(path: string, entry: T): T[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Do not emit a shared deploy date for static pages. A lastModified value is
+  // only useful here when it reflects that URL's actual content change date.
   const pages = (Object.values(PAGES) as PageMeta[])
     .filter((page) => page.indexable)
     .flatMap((page) => localized(page.path, {
       url: absolute(page.path),
-      lastModified: updated,
       changeFrequency: page.changeFrequency ?? "monthly",
       priority: page.priority ?? 0.6,
       ...(page.path === "/" ? { images: [`${SITE.url}${SITE.ogImage}`] } : {}),
@@ -44,7 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const industries = INDUSTRIES.flatMap((industry) => localized(`/industries/${industry.slug}`, {
     url: `${SITE.url}/industries/${industry.slug}`,
-    lastModified: updated,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
@@ -62,7 +61,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // sitemap until a page has a real, distinct search purpose.
   const projects = PROJECTS.filter((project) => project.indexable && !project.placeholder).map((project) => ({
     url: `${SITE.url}/portfolio/${project.slug}`,
-    lastModified: updated,
     changeFrequency: "monthly" as const,
     priority: 0.6,
     images: [`${SITE.url}${portfolioFile(project.image)}`],

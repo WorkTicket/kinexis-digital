@@ -79,6 +79,9 @@ export const LEGACY_REDIRECTS = [
   ...localized("/services/branding", "/web-design"),
   ...localized("/services/paid-media", "/services"),
   ...localized("/services/content-marketing", "/blog"),
+  // The client update form is singular internally; preserve the plural URL
+  // used in older references and send each locale straight to its form.
+  ...localized("/updates", "/update"),
   ...localized("/blog/posts", "/blog"),
   ...localized("/case-studies", "/portfolio"),
   { source: "/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },

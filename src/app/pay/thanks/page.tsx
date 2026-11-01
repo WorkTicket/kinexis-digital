@@ -1,13 +1,15 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { CHECKOUT_PLANS, money } from "@/lib/pay";
 import { SITE, telHref } from "@/lib/site";
 import { PageHero } from "@/components/ui";
+import { contentMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Checkout",
-  robots: { index: false, follow: false },
-};
+export const metadata = contentMetadata({
+  path: "/pay/thanks",
+  title: "Checkout Confirmation",
+  description: "Review your Kinexis checkout status and next steps. Return to secure checkout or contact the team if you need help with a plan or payment.",
+  index: false,
+});
 
 const thanksScript = `(function(){var q=new URLSearchParams(location.search);var plan=q.get("plan")||"";var sid=q.get("sid")||"";var invoice=q.get("kind")==="invoice"&&q.get("status")==="paid";var known={website:1,leadSystem:1,plus:1,ownIt:1};var subscribed=!!known[plan]&&/^I-[A-Z0-9]{6,}$/.test(sid);var root=document.documentElement;if(invoice){root.classList.add("thanks-invoice");document.title="Your PayPal payment was received";}else if(subscribed){root.classList.add("thanks-sub","thanks-plan-"+plan);document.title="Your website subscription is active";}else{root.classList.add("thanks-none");document.title="This checkout was not completed";}})()`;
 

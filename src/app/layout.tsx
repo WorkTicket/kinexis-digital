@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { chromeFor } from "@/i18n/chrome";
 import { getLocale, htmlLang, localeBootScript, withLocale } from "@/lib/i18n";
-import { ogImage } from "@/lib/seo";
+import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import Header from "@/components/Header";
 import SiteAudit from "@/components/SiteAudit";
@@ -43,18 +43,31 @@ const poppinsDisplay = localFont({
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
 const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim() || SITE.googleSiteVerification;
+const defaultTitle = "Professional Web Design Agency | Kinexis Digital";
+const defaultDescription = descriptionWithFallback(
+  SITE.description,
+  " Get a free homepage preview before choosing a plan.",
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: { default: "Professional Web Design Agency | Kinexis Digital", template: `%s | ${SITE.name}` },
-  description: SITE.description,
+  title: { default: defaultTitle, template: `%s | ${SITE.name}` },
+  description: defaultDescription,
   applicationName: SITE.name,
   authors: [{ name: SITE.name, url: `${SITE.url}/about` }],
   creator: SITE.name,
   publisher: SITE.name,
   category: "Digital Marketing",
-  openGraph: { type: "website", locale: "en_US", siteName: SITE.name, images: [ogImage] },
-  twitter: { card: "summary_large_image", images: [SITE.ogImage] },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: SITE.name,
+    title: defaultTitle,
+    description: defaultDescription,
+    url: SITE.url,
+    images: [ogImage],
+  },
+  twitter: { card: "summary_large_image", title: defaultTitle, description: defaultDescription, images: [ogImage.url] },
   ...(gsc ? { verification: { google: gsc } } : {}),
   icons: {
     icon: [

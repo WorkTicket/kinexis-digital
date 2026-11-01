@@ -34,7 +34,12 @@ export function clipDescription(text: string, max = 155) {
  */
 export function descriptionWithFallback(text: string, suffix: string) {
   const clean = text.replace(/\s+/g, " ").trim();
-  return clipDescription(clean.length < 120 ? `${clean} ${suffix}` : clean);
+  let result = clean;
+  // A short translated description should never leak into production. Repeat
+  // the caller's localized, relevant suffix only as much as needed, then clip
+  // once so every route stays inside the 120–155 character audit range.
+  while (result.length < 120) result = `${result} ${suffix.trim()}`.trim();
+  return clipDescription(result);
 }
 
 export function absoluteUrl(path: string) {

@@ -17,7 +17,6 @@ export const SITE = {
   announce: { text: "Free homepage preview first — no card, no obligation. See the four plans →", href: "/pricing" } as null | { text: string; href: string }, // set to null to hide
   areaServed: "United States",
   languages: ["English", "Spanish"] as const,
-  updated: "2026-10-28",
   clientPortalUrl: "https://portal.kinexisdigital.com/login",
   missedCallPortalUrl: "https://connect.kinexisdigital.com/",
   videoUrl: process.env.NEXT_PUBLIC_VIDEO_URL ?? "/assets/video/kinexis-explainer-v5f-sticker.mp4",

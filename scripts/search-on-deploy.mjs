@@ -266,8 +266,8 @@ function onHost(loc, origin) {
 function checkHomepage(html, canonicalOrigin) {
   const lang = html.match(/<html\b[^>]*\blang\s*=\s*("([^"]*)"|'([^']*)')/i);
   const language = lang?.[2] || lang?.[3] || "";
-  if (language.toLowerCase().startsWith("en")) pass(`html lang ${language}`);
-  else fail("homepage html lang must start with en");
+  if (/^(en|es|es-ES)$/.test(language)) pass(`html lang ${language}`);
+  else fail("homepage html lang must be en, es, or es-ES");
 
   const title = decodeXml(html.match(/<title>([^<]*)<\/title>/i)?.[1] ?? "").replace(/\s+/g, " ").trim();
   if (title) pass(`title ${title.slice(0, 90)}`);
@@ -352,7 +352,9 @@ function indexabilityProblems(html, expectedUrl) {
 
   if (!title) problems.push("missing title");
   if (!description) problems.push("missing meta description");
-  if (!lang?.[2] && !lang?.[3]) problems.push("missing html lang");
+  else if (description.length < 120 || description.length > 155) problems.push(`description is ${description.length} characters`);
+  const language = lang?.[2] || lang?.[3] || "";
+  if (!/^(en|es|es-ES)$/.test(language)) problems.push(`invalid html lang ${language || "missing"}`);
   if (h1Count !== 1) problems.push(`${h1Count} h1 elements`);
   if (robots.some((value) => value.split(",").some((part) => part.trim() === "noindex"))) problems.push("noindex");
   if (canonicals.length !== 1) {
@@ -378,6 +380,29 @@ function indexabilityProblems(html, expectedUrl) {
     }
   }
   if (jsonLdCount === 0) problems.push("missing JSON-LD");
+
+  const requiredOpenGraph = ["og:title", "og:description", "og:image", "og:url"];
+  for (const property of requiredOpenGraph) {
+    if (!metas.some((tag) => attr(tag, "property").toLowerCase() === property && attr(tag, "content"))) {
+      problems.push(`missing ${property}`);
+    }
+  }
+  const twitterCard = metas.find((tag) => attr(tag, "name").toLowerCase() === "twitter:card" && attr(tag, "content"));
+  if (!twitterCard) problems.push("missing twitter:card");
+
+  const internalLinks = [...html.matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(.*?)\1/gi)]
+    .map((match) => match[2])
+    .filter((href) => href.startsWith("/") || href.startsWith(expectedUrl));
+  if (internalLinks.length === 0) problems.push("no outgoing internal links");
+  const redirectingLinks = internalLinks.filter((href) => {
+    try {
+      const path = new URL(href, expectedUrl).pathname;
+      return /^\/(?:updates|process|industry)(?:\/|$)/.test(path) || /\.html$/.test(path);
+    } catch {
+      return false;
+    }
+  });
+  if (redirectingLinks.length) problems.push(`links to redirecting URL ${redirectingLinks[0]}`);
   return problems;
 }
 
@@ -426,13 +451,18 @@ function checkSitemap(xml, canonicalOrigin) {
     if (url.origin !== canonicalOrigin) problems.push(`outside ${canonicalOrigin}`);
     if (url.protocol !== "https:") problems.push("must be https");
     if (NON_INDEXABLE.some((pattern) => pattern.test(url.pathname))) problems.push("non-indexable path");
-    if (!entry.lastmod || Number.isNaN(Date.parse(entry.lastmod))) problems.push("missing a valid lastmod");
+    // lastmod is optional. When present, it must be a real date; omitting it
+    // is preferable to publishing a shared deploy date that is not content-accurate.
+    if (entry.lastmod && Number.isNaN(Date.parse(entry.lastmod))) problems.push("invalid lastmod");
     if (seen.has(entry.loc)) problems.push("duplicated");
     seen.add(entry.loc);
     if (problems.length) fail(`sitemap loc ${entry.loc} is ${problems.join(", ")}`);
     else locs.push(entry.loc);
   }
-  if (entries.length && locs.length === entries.length) pass(`sitemap.xml ${locs.length} URLs with lastmod`);
+  if (entries.length && locs.length === entries.length) {
+    const dated = entries.filter((entry) => entry.lastmod).length;
+    pass(`sitemap.xml ${locs.length} URLs (${dated} with lastmod; lastmod is optional)`);
+  }
   return locs;
 }
 

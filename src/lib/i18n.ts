@@ -36,16 +36,16 @@ export function localeFromPath(pathname: string): Locale {
 }
 
 export function contentLanguage(locale: Locale): string {
-  // Use the universally recognized primary language subtag in HTML and
-  // Content-Language. Regional targeting remains explicit in hreflang and OG.
-  if (locale !== "en") return "es";
-  return "en-US";
+  // Keep the response header deliberately simple too. Regional targeting is
+  // explicit in hreflang and Open Graph, while crawlers consistently accept
+  // these primary language values.
+  return locale === "en" ? "en" : "es";
 }
 
 export function htmlLang(locale: Locale): string {
   if (locale === "es-ES") return "es-ES";
-  if (locale === "es-419") return "es-419";
-  return "en-US";
+  if (locale === "es-419") return "es";
+  return "en";
 }
 
 export function ogLocale(locale: Locale): string {
