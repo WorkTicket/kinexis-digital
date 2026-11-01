@@ -531,7 +531,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   const tx = (text: string) => (locale === "es-ES" ? spainize(text) : text);
   return (
     <>
-      <ArticleSchema title={post.seoTitle} description={post.excerpt} path={href(`/blog/${post.slug}`)} image={source.image} date={source.date} section={post.category} inLanguage={lang} />
+      <ArticleSchema title={post.seoTitle} description={post.excerpt} path={href(`/blog/${post.slug}`)} image={source.image} date={source.date} modified={source.modified} section={post.category} inLanguage={lang} />
       <PageHero h1={post.title} mark={post.title.split(" ").slice(-1)[0]} sub={post.lead} image="blog" imageAlt={post.title} />
       <section className="section"><div className="container container--narrow prose">
         {post.sections.map((section) => <div key={section.h2}><h2>{section.h2}</h2><div dangerouslySetInnerHTML={{ __html: section.html }} /></div>)}

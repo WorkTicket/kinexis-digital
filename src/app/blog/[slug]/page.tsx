@@ -58,6 +58,7 @@ export default async function BlogPostPage({ params }: Props) {
         path={`/blog/${post.slug}`}
         image={post.image}
         date={post.date}
+        modified={post.modified}
         section={post.category}
       />
       <PageHero h1={post.title} sub={`${formattedDate} · ${post.readTime} · ${post.category} · ${SITE.name}`} />

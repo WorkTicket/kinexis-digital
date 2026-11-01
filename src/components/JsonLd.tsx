@@ -208,7 +208,7 @@ function productEntity(url: string, plan: { slug: string; name: string; tagline:
   return {
     "@type": "Product",
     "@id": `${url}#plan-${plan.slug}`,
-    name: `${plan.name} plan`,
+    name: locale === "en" ? `${plan.name} plan` : `Plan ${plan.name}`,
     description: plan.tagline,
     image: `${SITE.url}${SITE.ogImage}`,
     category: "Website design plan",
@@ -288,12 +288,13 @@ export function PageSchema({ page, faqs, items }: {
   return <Script data={{ "@context": "https://schema.org", "@graph": graph }} />;
 }
 
-export function ArticleSchema({ title, description, path, image, date, section, inLanguage = "en-US" }: {
+export function ArticleSchema({ title, description, path, image, date, modified, section, inLanguage = "en-US" }: {
   title: string;
   description: string;
   path: string;
   image: string;
   date: string;
+  modified?: string;
   section: string;
   inLanguage?: string;
 }) {
@@ -302,6 +303,7 @@ export function ArticleSchema({ title, description, path, image, date, section, 
   const blogPath = locale === "en" ? "/blog" : locale === "es-ES" ? "/es-es/blog" : "/es/blog";
   const homePath = locale === "en" ? "/" : locale === "es-ES" ? "/es-es" : "/es";
   const dateTime = date.includes("T") ? date : `${date}T09:00:00-05:00`;
+  const modifiedTime = modified ? (modified.includes("T") ? modified : `${modified}T09:00:00-05:00`) : undefined;
   return <Script data={{
     "@context": "https://schema.org",
     "@graph": [
@@ -312,6 +314,7 @@ export function ArticleSchema({ title, description, path, image, date, section, 
         description,
         image: [image.startsWith("http") ? image : `${SITE.url}${image}`],
          datePublished: dateTime,
+         ...(modifiedTime ? { dateModified: modifiedTime } : {}),
          inLanguage: schemaLanguage(locale),
         articleSection: section,
          author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },

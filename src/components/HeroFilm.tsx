@@ -22,7 +22,7 @@ export default function HeroFilm() {
             alt=""
             width={960}
             height={540}
-            fetchPriority="high"
+             fetchPriority="auto"
             decoding="auto"
           />
         </picture>

@@ -63,7 +63,7 @@ export function HeroImage({ name, alt }: HeroImageProps) {
         height={1254}
         alt={alt}
         loading="eager"
-        fetchPriority="high"
+        fetchPriority="auto"
         decoding="async"
         className="hero-art mx-auto block h-auto w-full max-w-[627px]"
       />
@@ -96,7 +96,7 @@ export function Art({
           width={1254}
           height={1254}
           decoding="async"
-          fetchPriority="high"
+          fetchPriority="auto"
         />
       </picture>
     );
@@ -170,6 +170,7 @@ export function PageHero({
   }
   return (
     <>
+      {image && <link rel="preload" as="image" href={`/assets/heroes/${HERO_FILES[image]}-640.avif`} imageSrcSet={`/assets/heroes/${HERO_FILES[image]}-640.avif 640w, /assets/heroes/${HERO_FILES[image]}-960.avif 960w, /assets/heroes/${HERO_FILES[image]}-1254.avif 1254w`} imageSizes="(max-width: 860px) 86vw, 500px" type="image/avif" />}
       <section className={`page-hero page-hero--split${className ? ` ${className}` : ""}`}>
       <div className="container page-hero__grid">
         <div className="page-hero__copy">
