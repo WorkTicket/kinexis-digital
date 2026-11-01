@@ -23,6 +23,18 @@ function localeDescription(locale: Locale) {
   return "Sitios web rápidos y profesionales para negocios de servicios en Estados Unidos, con una vista previa gratis antes de elegir un plan.";
 }
 
+function localeForPath(path: string, fallback: string): Locale {
+  if (path === "/es-es" || path.startsWith("/es-es/")) return "es-ES";
+  if (path === "/es" || path.startsWith("/es/")) return "es-419";
+  if (fallback === "es-ES") return "es-ES";
+  if (fallback.startsWith("es")) return "es-419";
+  return "en";
+}
+
+function schemaLanguage(locale: Locale) {
+  return locale === "en" ? "en-US" : locale === "es-ES" ? "es-ES" : "es-419";
+}
+
 function faqEntities(faqs: QA[]) {
   return faqs.map((faq) => ({
     "@type": "Question",
@@ -129,7 +141,7 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
   inLanguage?: string;
   products?: { slug: string; name: string; tagline: string; price: string; suffix: string }[];
 }) {
-  const locale: Locale = inLanguage === "es-ES" ? "es-ES" : inLanguage.startsWith("es") ? "es-419" : "en";
+  const locale = localeForPath(path, inLanguage);
   const url = absolute(path);
   const graph: unknown[] = [
     {
@@ -140,7 +152,7 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
       description,
        isPartOf: { "@id": websiteId(locale) },
        about: { "@id": `${localeUrl(locale)}#service` },
-      inLanguage,
+       inLanguage: schemaLanguage(locale),
     },
     crumbs(trail),
   ];
@@ -286,7 +298,7 @@ export function ArticleSchema({ title, description, path, image, date, section, 
   inLanguage?: string;
 }) {
   const url = absolute(path);
-  const locale: Locale = inLanguage === "es-ES" ? "es-ES" : inLanguage.startsWith("es") ? "es-419" : "en";
+  const locale = localeForPath(path, inLanguage);
   const blogPath = locale === "en" ? "/blog" : locale === "es-ES" ? "/es-es/blog" : "/es/blog";
   const homePath = locale === "en" ? "/" : locale === "es-ES" ? "/es-es" : "/es";
   const dateTime = date.includes("T") ? date : `${date}T09:00:00-05:00`;
@@ -300,7 +312,7 @@ export function ArticleSchema({ title, description, path, image, date, section, 
         description,
         image: [image.startsWith("http") ? image : `${SITE.url}${image}`],
          datePublished: dateTime,
-        inLanguage,
+         inLanguage: schemaLanguage(locale),
         articleSection: section,
          author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },
          publisher: { "@id": orgId(locale) },
@@ -313,7 +325,7 @@ export function ArticleSchema({ title, description, path, image, date, section, 
         url,
         name: title,
         description,
-        inLanguage,
+         inLanguage: schemaLanguage(locale),
          isPartOf: { "@id": websiteId(locale) },
       },
       crumbs([

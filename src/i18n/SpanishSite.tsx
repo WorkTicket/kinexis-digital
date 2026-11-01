@@ -231,6 +231,12 @@ function homeFaqs(tx: (s: string) => string) {
 }
 
 function spanishPlans(tx: (s: string) => string) {
+  const names: Record<string, string> = {
+    website: "Sitio web",
+    "lead-system": "Sistema de clientes",
+    plus: "Plus (Bilingüe)",
+    "own-it": "Hazlo tuyo",
+  };
   const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
     website: { tagline: tx("Una casa profesional para tu negocio."), kicker: tx("$0 de enganche, luego"), note: tx("Mínimo de 3 meses, luego mes a mes"), features: [[tx("Sitio para celular"), tx("Hasta 5 páginas")], [tx("Hosting + SSL"), tx("Seguridad y respaldos")], [tx("Cambios chicos*"), tx("Hasta 2 al mes, en 2 días hábiles")], [tx("Leads de formulario"), tx("Sabes cuándo llega una cotización")], [tx("Páginas nuevas"), tx("$99 cada una")]] },
     "lead-system": { tagline: tx("Tu sitio y las herramientas que traen llamadas."), kicker: tx("$0 de enganche, luego"), note: tx("Mínimo de 3 meses, luego mes a mes"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas, hosting y respaldos")], [tx("Texto si no contestas**"), tx("En tu número de seguimiento")], [tx("Reseñas de Google"), tx("Después de cada trabajo")], [tx("Ajuste del perfil"), tx("En el lanzamiento")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("En 1 día hábil")], [tx("Páginas nuevas"), tx("1 al mes incluida")]] },
@@ -240,8 +246,8 @@ function spanishPlans(tx: (s: string) => string) {
   return PLANS.map((plan) => ({
     ...plan,
     ...copy[plan.slug],
-    name: tx(plan.slug === "plus" ? "Plus" : plan.name),
-    cta: tx(plan.slug === "plus" ? "Plus" : plan.name),
+    name: names[plan.slug],
+    cta: names[plan.slug],
     suffix: plan.suffix === "/mo" ? tx("/mes") : plan.suffix === "one-time" ? tx("una vez") : plan.suffix,
   }));
 }

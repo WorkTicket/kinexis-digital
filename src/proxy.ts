@@ -47,6 +47,9 @@ export function proxy(request: NextRequest) {
   requestHeaders.set(PATH_HEADER, request.nextUrl.pathname);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Language", contentLanguage(locale));
+  if (request.nextUrl.pathname.startsWith("/assets/")) {
+    response.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+  }
   return response;
 }
 
@@ -55,6 +58,7 @@ export const config = {
   // files on the apex host. List them so they 308 to www with everything else.
   matcher: [
     "/((?!_next/static|_next/image|.*\\..*).*)",
+    "/assets/:path*",
     "/robots.txt",
     "/sitemap.xml",
   ],

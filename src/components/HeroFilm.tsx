@@ -8,7 +8,9 @@ const POSTER_SIZES = "(max-width: 720px) calc(100vw - 32px), 560px";
 /** Homepage hero film. The poster paints first. The boot script attaches sources after that paint, or after the first input. */
 export default function HeroFilm() {
   return (
-    <div className="hero__media">
+    <>
+      <link rel="preload" as="image" href="/assets/video/kinexis-explainer-v5f-preview-poster-640.avif" imageSrcSet={POSTER_AVIF_SRCSET} imageSizes={POSTER_SIZES} type="image/avif" />
+      <div className="hero__media">
       <div className="hero__frame">
         <picture>
           <source type="image/avif" srcSet={POSTER_AVIF_SRCSET} sizes={POSTER_SIZES} />
@@ -44,6 +46,7 @@ export default function HeroFilm() {
           </span>
         </button>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

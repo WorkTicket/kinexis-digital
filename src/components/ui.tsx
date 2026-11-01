@@ -170,7 +170,6 @@ export function PageHero({
   }
   return (
     <>
-      {image && <link rel="preload" as="image" href={`/assets/heroes/${HERO_FILES[image]}-640.avif`} imageSrcSet={`/assets/heroes/${HERO_FILES[image]}-640.avif 640w, /assets/heroes/${HERO_FILES[image]}-960.avif 960w, /assets/heroes/${HERO_FILES[image]}-1254.avif 1254w`} imageSizes="(max-width: 860px) 86vw, 500px" type="image/avif" />}
       <section className={`page-hero page-hero--split${className ? ` ${className}` : ""}`}>
       <div className="container page-hero__grid">
         <div className="page-hero__copy">

@@ -65,6 +65,10 @@ const BLOG: Record<string, string> = {
 };
 
 export const LEGACY_REDIRECTS = [
+  // Preserve old nested industry URLs that were published before the hub was
+  // flattened. These are real legacy pages, not catch-all redirects.
+  ...localized("/industries/home-services/landscaping", "/industries/landscaping"),
+  ...localized("/industries/home-services/plumbing", "/industries/plumbing"),
   // Retired landing-page and information-architecture families. These have
   // no live detail routes, so send them to the closest useful hub in one hop.
   ...localized("/services/landing-pages", "/web-design"),
