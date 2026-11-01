@@ -67,7 +67,7 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
         height={1254}
         alt={alt}
         loading="eager"
-        fetchPriority="high"
+        fetchPriority="auto"
         decoding="async"
         className="hero-art mx-auto block h-auto w-full max-w-[627px]"
       />

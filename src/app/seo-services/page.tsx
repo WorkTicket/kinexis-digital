@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <>
       <PageSchema page="seo-services" faqs={SEO_FAQS} />
-      <PageHero className="seo-hero" h1="SEO That Helps The Right People Find You" mark="Find You" sub="We improve the technical setup, pages, and content that help customers discover your business through Google." image="local-seo" imageAlt="Map pins and a local search panel" fallbackTrack={{ mobile: "-0.05em", desktop: "-0.05em" }} />
+      <PageHero className="seo-hero" h1="SEO That Helps The Right People Find You" mark="Find You" sub="We improve the technical setup, pages, and content that help customers discover your business through Google." image="local-seo" imageAlt="Map pins and a local search panel" />
       <Section>
         <h2 className="center"><HL text="What We Work On" mark="Work On" /></h2>
         <div className="grid grid--3">
