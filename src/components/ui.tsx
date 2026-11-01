@@ -54,10 +54,17 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
     `${base}-960.webp 960w`,
     `${base}-1254.webp 1254w`,
   ].join(", ");
-  preload(`${base}-640.avif`, { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
+  // Keep the reviews hero deterministic across the three route trees. React's
+  // server preload registration was omitted for this async page in the last
+  // deploy, while the explicit tag is still deduplicated by the browser.
+  const reviewsPreload = name === "05-reviews";
+  if (!reviewsPreload) {
+    preload(`${base}-640.avif`, { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
+  }
 
   return (
     <>
+      {reviewsPreload && <link rel="preload" as="image" href={`${base}-640.avif`} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
       <picture>
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
       <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />

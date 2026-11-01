@@ -99,7 +99,7 @@ export default async function IndustryPage({ params }: Props) {
         mark={industry.mark}
         sub={industry.sub}
         fallbackTrack={HERO_TRACK[industry.slug]}
-        className="industry-hero"
+        className={`industry-hero industry-hero--${industry.slug}`}
         art={(
           <picture>
             <source type="image/avif" srcSet={`${heroMobile.replace(".webp", ".avif")} 768w, ${hero.replace(".webp", ".avif")} 1536w`} sizes="(max-width: 860px) 86vw, 620px" />

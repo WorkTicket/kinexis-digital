@@ -1770,6 +1770,17 @@ html.nav-open{overflow-x:clip}
 .industry-hero__intro{margin-top:16px}
 .industry-hero__intro p{margin:0 0 .8em}
 .industry-hero__intro p:last-child{margin-bottom:0}
+/* Keep the long industry copy box stable while the metric-matched fallback
+   face swaps to Inter. These two pages cross a mobile line-wrap boundary. */
+@media (max-width:860px){
+  .industry-hero--hvac .industry-hero__intro p:first-child,
+  .industry-hero--yard-care .industry-hero__intro p:first-child{min-height:9.6em}
+}
+/* Yard Care's desktop copy is taller than its artwork and used to resize the
+   hero row after the webfont loaded, moving the first section below it. */
+@media (min-width:861px){
+  .industry-hero--yard-care .page-hero__copy{min-height:540px}
+}
 .phrase-mark{background-repeat:no-repeat;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 .phrase-mark--orange{color:var(--brand-navy);padding:0 .1em .04em;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='100' viewBox='0 0 520 100' fill='none'%3E%3Cg stroke='%230A1230' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 32C118 12 230 21 342 13L498 18 494 53C332 47 182 65 15 63Z' fill='%23FF8A32' stroke='none'/%3E%3Cpath opacity='.55' d='M37 60C187 44 325 54 481 44L477 70C324 69 186 77 35 82Z' fill='%23FF8A32' stroke='none'/%3E%3C/g%3E%3C/svg%3E");background-position:center 78%;background-size:104% 1.45em}
 .phrase-mark--cobalt{color:#fff;padding:.06em .22em .1em;background-color:var(--accent);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='100' viewBox='0 0 520 100' fill='none'%3E%3Cg stroke='%230A1230' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 32C118 12 230 21 342 13L498 18 494 53C332 47 182 65 15 63Z' fill='%230B3DFF' stroke='none'/%3E%3Cpath opacity='.55' d='M37 60C187 44 325 54 481 44L477 70C324 69 186 77 35 82Z' fill='%230B3DFF' stroke='none'/%3E%3C/g%3E%3C/svg%3E");background-position:center;background-size:128% 230%;border-radius:.12em}

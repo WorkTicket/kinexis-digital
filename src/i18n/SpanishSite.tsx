@@ -750,7 +750,7 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
   return (
     <>
       <ContentSchema path={path} title={industry.metaTitle} description={industry.metaDescription} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }, { name: industry.name, path }]} faqs={[...industry.faqs]} serviceType={tx(`Diseño web de ${industry.name}`)} inLanguage={lang} />
-      <PageHero eyebrow={tx("Industrias")} h1={industry.h1} mark={industry.mark} sub={industry.sub} fallbackTrack={HERO_TRACK[industry.slug]} className="industry-hero" art={(
+      <PageHero eyebrow={tx("Industrias")} h1={industry.h1} mark={industry.mark} sub={industry.sub} fallbackTrack={HERO_TRACK[industry.slug]} className={`industry-hero industry-hero--${industry.slug}`} art={(
         <picture>
           <source type="image/avif" srcSet={`${heroMobile.replace(".webp", ".avif")} 768w, ${hero.replace(".webp", ".avif")} 1536w`} sizes="(max-width: 860px) 86vw, 620px" />
           <source media="(min-width: 861px)" srcSet={`${heroMobile} 768w, ${hero} 1536w`} sizes="620px" />
