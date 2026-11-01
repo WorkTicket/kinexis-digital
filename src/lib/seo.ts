@@ -38,7 +38,7 @@ export function descriptionWithFallback(text: string, suffix: string) {
 }
 
 export function absoluteUrl(path: string) {
-  return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
+  return path === "/" ? SITE.url : `${SITE.url}${path}`;
 }
 
 function absoluteLanguages(languages?: Record<string, string>) {

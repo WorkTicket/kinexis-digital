@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { contentLanguage, localeFromPath, LOCALE_HEADER, PATH_HEADER } from "@/lib/i18n";
+import { contentLanguage, isMirrored, localeFromPath, LOCALE_HEADER, PATH_HEADER } from "@/lib/i18n";
 
 const APEX = "kinexisdigital.com";
 const CANONICAL_HOST = "www.kinexisdigital.com";
@@ -12,6 +12,12 @@ const DIRECT_LEGACY_PATHS: Record<string, string> = {
   "/services/landing-pages": "/web-design",
 };
 
+function canNormalizeEnglishPath(path: string) {
+  if (path === "/") return true;
+  if (DIRECT_LEGACY_PATHS[path]) return true;
+  return isMirrored(path);
+}
+
 /** Canonicalize host and retired English URLs before handing the request on. */
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0]?.toLowerCase();
@@ -22,10 +28,14 @@ export function proxy(request: NextRequest) {
     : originalPath.startsWith("/en/")
       ? originalPath.slice(3)
       : originalPath;
+  const normalizeEnglishPath = originalPath === "/en" ||
+    (originalPath.startsWith("/en/") && canNormalizeEnglishPath(withoutEnglishPrefix));
   const pathWithoutTrailingSlash = withoutEnglishPrefix === "/"
     ? "/"
     : withoutEnglishPrefix.replace(/\/+$/, "");
-  const canonicalPath = DIRECT_LEGACY_PATHS[pathWithoutTrailingSlash] ?? pathWithoutTrailingSlash;
+  const canonicalPath = normalizeEnglishPath
+    ? (DIRECT_LEGACY_PATHS[pathWithoutTrailingSlash] ?? pathWithoutTrailingSlash)
+    : originalPath;
   const needsHttps = forwardedProtocol === "http";
   if (host === APEX || needsHttps || canonicalPath !== originalPath) {
     const query = request.nextUrl.search;

@@ -88,12 +88,5 @@ export const LEGACY_REDIRECTS = [
   { source: "/es-es/resources/:path*", destination: "/es-es/blog", statusCode: 301 as const },
   { source: "/blog/category/:slug", destination: "/blog", statusCode: 301 as const },
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
-  // The old site nested trade pages under /home-services. Current pages cover
-  // the same trade directly and are the only equivalent industry destinations.
-  { source: "/industries/home-services/:slug", destination: "/industries/:slug", statusCode: 301 as const },
-  { source: "/en/industries/home-services/:slug", destination: "/industries/:slug", statusCode: 301 as const },
-  { source: "/es/industries/home-services/:slug", destination: "/es/industries/:slug", statusCode: 301 as const },
-  { source: "/es-es/industries/home-services/:slug", destination: "/es-es/industries/:slug", statusCode: 301 as const },
   ...go("/en", "/"),
-  { source: "/en/:path*", destination: "/:path*", statusCode: 301 as const },
 ];

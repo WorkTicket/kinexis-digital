@@ -12,7 +12,7 @@ const LOCALES: Locale[] = ["en", "es-419", "es-ES"];
 export const revalidate = 86400;
 
 function absolute(path: string) {
-  return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
+  return path === "/" ? SITE.url : `${SITE.url}${path}`;
 }
 
 function languagesFor(path: string) {
