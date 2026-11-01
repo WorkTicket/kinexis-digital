@@ -9,7 +9,7 @@ const POSTER_SIZES = "(max-width: 720px) calc(100vw - 32px), 560px";
 export default function HeroFilm() {
   return (
     <>
-      <link rel="preload" as="image" href="/assets/video/kinexis-explainer-v5f-preview-poster-640.avif" imageSrcSet={POSTER_AVIF_SRCSET} imageSizes={POSTER_SIZES} type="image/avif" />
+      <link rel="preload" as="image" href="/assets/video/kinexis-explainer-v5f-preview-poster-640.avif" imageSrcSet={POSTER_AVIF_SRCSET} imageSizes={POSTER_SIZES} type="image/avif" fetchPriority="high" />
       <div className="hero__media">
       <div className="hero__frame">
         <picture>

@@ -6,7 +6,7 @@ import sharp from "sharp";
 
 const directory = "public/assets/heroes";
 const pageHeroes = (await readdir(directory))
-  .filter((file) => /-(?:640|960|1254)\.webp$/.test(file))
+  .filter((file) => /-(?:480|640|960|1254)\.webp$/.test(file))
   .map((file) => path.join(directory, file));
 const industryDirectory = "public/assets/industries";
 const industryHeroes = (await readdir(industryDirectory, { recursive: true, withFileTypes: true }))

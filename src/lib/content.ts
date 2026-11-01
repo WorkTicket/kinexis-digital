@@ -154,7 +154,7 @@ export const POSTS = [
     width: 1200,
     height: 768,
     date: "2026-01-15",
-    modified: "2026-11-01",
+    modified: "2026-10-23T09:44:12-05:00",
     readTime: "2 min read",
   },
   {
@@ -167,7 +167,7 @@ export const POSTS = [
     width: 1200,
     height: 772,
     date: "2026-02-10",
-    modified: "2026-11-01",
+    modified: "2026-10-23T09:44:12-05:00",
     readTime: "2 min read",
   },
   {
@@ -180,7 +180,7 @@ export const POSTS = [
     width: 1200,
     height: 769,
     date: "2026-03-05",
-    modified: "2026-11-01",
+    modified: "2026-10-28T22:38:12-05:00",
     readTime: "2 min read",
   },
   {
@@ -193,7 +193,7 @@ export const POSTS = [
     width: 1200,
     height: 769,
     date: "2026-03-28",
-    modified: "2026-11-01",
+    modified: "2026-10-23T09:44:12-05:00",
     readTime: "2 min read",
   },
   {
@@ -206,7 +206,7 @@ export const POSTS = [
     width: 1567,
     height: 1004,
     date: "2026-04-18",
-    modified: "2026-11-01",
+    modified: "2026-10-23T09:44:12-05:00",
     readTime: "2 min read",
   },
   {
@@ -219,7 +219,7 @@ export const POSTS = [
     width: 1200,
     height: 769,
     date: "2026-05-12",
-    modified: "2026-11-01",
+    modified: "2026-10-23T09:44:12-05:00",
     readTime: "2 min read",
   },
 ];

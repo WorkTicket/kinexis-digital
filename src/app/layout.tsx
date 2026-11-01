@@ -3,7 +3,7 @@ import Link from "next/link";
 import localFont from "next/font/local";
 import "./globals.css";
 import { chromeFor } from "@/i18n/chrome";
-import { contentLanguage, getLocale, localeBootScript, withLocale } from "@/lib/i18n";
+import { getLocale, htmlLang, localeBootScript, withLocale } from "@/lib/i18n";
 import { ogImage } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import Header from "@/components/Header";
@@ -73,7 +73,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = await getLocale();
   const chrome = chromeFor(locale);
   return (
-    <html lang={contentLanguage(locale)} data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
+    <html lang={htmlLang(locale)} data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
       <head>
         {/* Prevent the desktop navigation from painting unstyled while the
             external stylesheet is in flight. The full mobile menu still opens

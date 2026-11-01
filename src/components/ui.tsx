@@ -35,25 +35,29 @@ const HERO_FILES: Record<ArtName, string> = {
 type HeroImageProps = {
   name: string;
   alt: string;
+  sizes: string;
 };
 
 /** Primary hero artwork. AVIF is served first, with pre-sized WebP as the fallback. */
-export function HeroImage({ name, alt }: HeroImageProps) {
+export function HeroImage({ name, alt, sizes }: HeroImageProps) {
   const base = `/assets/heroes/${name}`;
-  const sizes = "(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 50vw, 627px";
   const avifSrcSet = [
+    `${base}-480.avif 480w`,
     `${base}-640.avif 640w`,
     `${base}-960.avif 960w`,
     `${base}-1254.avif 1254w`,
   ].join(", ");
   const webpSrcSet = [
+    `${base}-480.webp 480w`,
     `${base}-640.webp 640w`,
     `${base}-960.webp 960w`,
     `${base}-1254.webp 1254w`,
   ].join(", ");
 
   return (
-    <picture>
+    <>
+      <link rel="preload" as="image" href={`${base}-640.avif`} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />
+      <picture>
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
       <img
         src={`${base}-1254.webp`}
@@ -63,11 +67,12 @@ export function HeroImage({ name, alt }: HeroImageProps) {
         height={1254}
         alt={alt}
         loading="eager"
-        fetchPriority="auto"
+        fetchPriority="high"
         decoding="async"
         className="hero-art mx-auto block h-auto w-full max-w-[627px]"
       />
-    </picture>
+      </picture>
+    </>
   );
 }
 
@@ -78,8 +83,8 @@ export function Art({
   const file = HERO_FILES[name];
   const base = `/assets/heroes/${file}`;
   const src = `${base}-1254.webp`;
-  const srcSet = `${base}-640.webp 640w, ${base}-960.webp 960w, ${base}-1254.webp 1254w`;
-  const avifSrcSet = `${base}-640.avif 640w, ${base}-960.avif 960w, ${base}-1254.avif 1254w`;
+  const srcSet = `${base}-480.webp 480w, ${base}-640.webp 640w, ${base}-960.webp 960w, ${base}-1254.webp 1254w`;
+  const avifSrcSet = `${base}-480.avif 480w, ${base}-640.avif 640w, ${base}-960.avif 960w, ${base}-1254.avif 1254w`;
   if (priority && deferMobile) {
     return (
       <picture>
@@ -101,7 +106,7 @@ export function Art({
       </picture>
     );
   }
-  if (priority && className === "hero-art") return <HeroImage name={file} alt={alt} />;
+  if (priority && className === "hero-art") return <HeroImage name={file} alt={alt} sizes={sizes} />;
   if (!priority) {
     return (
       <DeferredImg
@@ -116,7 +121,7 @@ export function Art({
       />
     );
   }
-  return <HeroImage name={file} alt={alt} />;
+  return <HeroImage name={file} alt={alt} sizes={sizes} />;
 }
 
 export type DecorName =
@@ -170,7 +175,6 @@ export function PageHero({
   }
   return (
     <>
-      {image && <link rel="preload" as="image" href={`/assets/heroes/${HERO_FILES[image]}-640.avif`} imageSrcSet={`/assets/heroes/${HERO_FILES[image]}-640.avif 640w, /assets/heroes/${HERO_FILES[image]}-960.avif 960w, /assets/heroes/${HERO_FILES[image]}-1254.avif 1254w`} imageSizes="(max-width: 860px) 86vw, 500px" type="image/avif" />}
       <section className={`page-hero page-hero--split${className ? ` ${className}` : ""}`}>
       <div className="container page-hero__grid">
         <div className="page-hero__copy">
@@ -182,7 +186,7 @@ export function PageHero({
         <div className="page-hero__art">
           <div className="art-wrap">
             {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-            {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority deferMobile={deferMobile} sizes="(max-width: 860px) 86vw, 500px" /> : null)}
+            {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority deferMobile={deferMobile} sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 50vw, 627px" /> : null)}
           </div>
         </div>
       </div>

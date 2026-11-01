@@ -43,7 +43,9 @@ export function contentLanguage(locale: Locale): string {
 }
 
 export function htmlLang(locale: Locale): string {
-  return contentLanguage(locale);
+  if (locale === "es-ES") return "es-ES";
+  if (locale === "es-419") return "es-419";
+  return "en-US";
 }
 
 export function ogLocale(locale: Locale): string {
