@@ -18,6 +18,8 @@ export type Project = {
   height: number;
   /** Indicates a placeholder card with no detail page. */
   placeholder?: boolean;
+  /** Opt in only when this is a real, distinct indexable case study. */
+  indexable?: boolean;
 };
 
 export const PROJECTS: Project[] = [

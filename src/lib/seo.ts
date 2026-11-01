@@ -41,6 +41,11 @@ export function absoluteUrl(path: string) {
   return path === "/" ? `${SITE.url}/` : `${SITE.url}${path}`;
 }
 
+function absoluteLanguages(languages?: Record<string, string>) {
+  if (!languages) return undefined;
+  return Object.fromEntries(Object.entries(languages).map(([code, path]) => [code, absoluteUrl(path)]));
+}
+
 export function pageMetadata(key: PageKey): Metadata {
   const p = PAGES[key] as PageMeta;
   const full = p.absolute ? p.title : `${p.title} | ${SITE.name}`;
@@ -52,7 +57,7 @@ export function pageMetadata(key: PageKey): Metadata {
   return {
     title: p.absolute ? { absolute: p.title } : p.title,
     description,
-    alternates: p.indexable ? { canonical: p.path, ...(languages ? { languages } : {}) } : undefined,
+    alternates: p.indexable ? { canonical: absoluteUrl(p.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) } : undefined,
     robots: p.indexable ? robotsIndex : { index: false, follow: true },
     openGraph: {
       type: "website",
@@ -102,8 +107,8 @@ export function contentMetadata(input: ContentMeta): Metadata {
     title: branded ? { absolute: input.title } : input.title,
     description,
     authors: article ? [{ name: SITE.name, url: `${SITE.url}${withLocale(locale, "/about")}` }] : undefined,
-    alternates: index ? { canonical: input.path, ...(languages ? { languages } : {}) } : undefined,
-    robots: index ? robotsIndex : { index: false, follow: false },
+    alternates: index ? { canonical: absoluteUrl(input.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) } : undefined,
+    robots: index ? robotsIndex : { index: false, follow: true },
     openGraph: {
       type: input.ogType ?? "website",
       siteName: SITE.name,

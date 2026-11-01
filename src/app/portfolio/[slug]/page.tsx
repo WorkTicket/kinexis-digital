@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     image: portfolioFile(project.image),
     imageAlt: `${project.name} website design`,
+    index: false,
   });
 }
 

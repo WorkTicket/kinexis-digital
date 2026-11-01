@@ -57,7 +57,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: [`${SITE.url}${post.image}`],
   }));
 
-  const projects = PROJECTS.filter((project) => !project.placeholder).map((project) => ({
+  // Detail pages are demonstration templates, not standalone client case
+  // studies. Keep the portfolio hub indexable, but keep demo URLs out of the
+  // sitemap until a page has a real, distinct search purpose.
+  const projects = PROJECTS.filter((project) => project.indexable && !project.placeholder).map((project) => ({
     url: `${SITE.url}/portfolio/${project.slug}`,
     lastModified: updated,
     changeFrequency: "monthly" as const,
