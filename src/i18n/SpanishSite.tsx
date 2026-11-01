@@ -240,8 +240,8 @@ function spanishPlans(tx: (s: string) => string) {
   return PLANS.map((plan) => ({
     ...plan,
     ...copy[plan.slug],
-    name: plan.slug === "plus" ? "Plus" : plan.name,
-    cta: plan.slug === "plus" ? "Plus" : plan.name,
+    name: tx(plan.slug === "plus" ? "Plus" : plan.name),
+    cta: tx(plan.slug === "plus" ? "Plus" : plan.name),
     suffix: plan.suffix === "/mo" ? tx("/mes") : plan.suffix === "one-time" ? tx("una vez") : plan.suffix,
   }));
 }
@@ -335,7 +335,7 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
   ];
   return (
     <>
-      <ContentSchema path={href("/pricing")} title={tx(PAGE_META["/pricing"].title)} description={tx(PAGE_META["/pricing"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} inLanguage={lang} />
+      <ContentSchema path={href("/pricing")} title={tx(PAGE_META["/pricing"].title)} description={tx(PAGE_META["/pricing"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} products={plans} inLanguage={lang} />
       <PageHero h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu oficio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
       <Section>
         <div className="free-preview">

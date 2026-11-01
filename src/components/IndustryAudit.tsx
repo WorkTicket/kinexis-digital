@@ -66,10 +66,13 @@ export default function IndustryAudit({
           </div>
           <div className="industry-audit__art">
             <picture>
-              <source media="(max-width: 860px)" srcSet="/assets/audit/hero-768.webp" />
-              <img
+               <source type="image/avif" srcSet="/assets/audit/hero-480.avif 480w, /assets/audit/hero-768.avif 768w, /assets/audit/hero-960.avif 960w" sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
+               <source srcSet="/assets/audit/hero-480.webp 480w, /assets/audit/hero-768.webp 768w, /assets/audit/hero-960.webp 960w" sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
+               <img
                 className="industry-audit__img"
-                src="/assets/audit/hero.webp"
+                 src="/assets/audit/hero-960.webp"
+                 srcSet="/assets/audit/hero-480.webp 480w, /assets/audit/hero-768.webp 768w, /assets/audit/hero-960.webp 960w"
+                 sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px"
                 alt={alt}
                 width={1536}
                 height={1024}

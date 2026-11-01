@@ -1777,7 +1777,7 @@ html.nav-open{overflow-x:clip}
 .industry-audit__top{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(260px,.92fr);grid-template-areas:"copy art" "cta art";column-gap:clamp(24px,4vw,56px);row-gap:16px;align-items:center}
 .industry-audit__copy{grid-area:copy}
 .industry-audit__cta{grid-area:cta}
-.industry-audit__art{grid-area:art;position:relative;min-width:0}
+.industry-audit__art{grid-area:art;position:relative;min-width:0;aspect-ratio:3/2}
 .industry-audit__copy h2{font-size:clamp(1.8rem,3.4vw,2.7rem);line-height:1.12;margin:0 0 .45em}
 .industry-audit__copy p{margin:0;color:var(--muted);font-size:1.08rem;max-width:40rem}
 .industry-audit .eyebrow{margin-bottom:.55em}
@@ -1977,5 +1977,4 @@ p,li,blockquote{ text-wrap:pretty }
   .section-outro--action .btn{white-space:normal}
   .inline-action,.inline-action--left{justify-content:center}
 }
-
 

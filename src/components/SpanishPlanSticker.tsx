@@ -22,5 +22,9 @@ export const SPANISH_PLAN_STICKERS: Record<string, {
 
 export default function SpanishPlanSticker({ slug, kind }: { slug: string; kind: "name" | "offer" }) {
   const sticker = SPANISH_PLAN_STICKERS[slug][kind];
-  return <img className={`plan-sticker plan-sticker--${kind}`} {...sticker} alt={sticker.alt} loading="lazy" decoding="async" />;
+  const base = sticker.src.replace(/\.webp$/, "");
+  return <picture>
+    <source type="image/avif" srcSet={`${base}-400.avif 400w, ${base}-800.avif 800w`} sizes={kind === "offer" ? "232px" : "240px"} />
+    <img {...sticker} className={`plan-sticker plan-sticker--${kind}`} src={`${base}-400.webp`} srcSet={`${base}-400.webp 400w, ${base}-800.webp 800w`} sizes={kind === "offer" ? "232px" : "240px"} alt={sticker.alt} loading="lazy" decoding="async" />
+  </picture>;
 }

@@ -69,17 +69,12 @@ const STICKERS: Record<string, { name: Sticker; offer: Sticker }> = {
 };
 
 function PlanSticker({ sticker, kind }: { sticker: Sticker; kind: "name" | "offer" }) {
+  const base = sticker.src.replace(/\.webp$/, "");
   return (
-    <img
-      className={`plan-sticker plan-sticker--${kind}`}
-      src={sticker.src}
-      alt={sticker.alt}
-      width={sticker.width}
-      height={sticker.height}
-      loading="lazy"
-      decoding="async"
-      fetchPriority="low"
-    />
+    <picture>
+      <source type="image/avif" srcSet={`${base}-400.avif 400w, ${base}-800.avif 800w`} sizes={kind === "offer" ? "232px" : "240px"} />
+      <img className={`plan-sticker plan-sticker--${kind}`} src={`${base}-400.webp`} srcSet={`${base}-400.webp 400w, ${base}-800.webp 800w`} sizes={kind === "offer" ? "232px" : "240px"} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" fetchPriority="low" />
+    </picture>
   );
 }
 

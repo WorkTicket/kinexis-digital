@@ -23,6 +23,30 @@ const BLOG = [
 ];
 const BLOG_WIDTHS = [640, 960];
 
+const AUDIT = ["public/assets/audit/hero.webp"];
+const AUDIT_WIDTHS = [480, 768, 960];
+
+const STICKERS = [
+  "public/assets/kinexis/stickers/60-day_tracked-lead_guarantee_badge.webp",
+  "public/assets/kinexis/stickers/zero-down-website-97.webp",
+  "public/assets/kinexis/stickers/zero-down-lead-system-197.webp",
+  "public/assets/kinexis/stickers/zero-down-plus-297.webp",
+  "public/assets/kinexis/stickers/zero-down-own-it-1497.webp",
+  "public/assets/kinexis/stickers/plan-name-website-97.webp",
+  "public/assets/kinexis/stickers/plan-name-lead-system-197.webp",
+  "public/assets/kinexis/stickers/plan-name-plus-297.webp",
+  "public/assets/kinexis/stickers/plan-name-own-it-1497.webp",
+  "public/assets/kinexis/stickers/sin-anticipo-sitio-web-97.webp",
+  "public/assets/kinexis/stickers/sin-anticipo-sistema-clientes-197.webp",
+  "public/assets/kinexis/stickers/sin-anticipo-plus-297.webp",
+  "public/assets/kinexis/stickers/sin-anticipo-hazlo-tuyo-1497.webp",
+  "public/assets/kinexis/stickers/planes-sitio-web-97.webp",
+  "public/assets/kinexis/stickers/planes-sistema-clientes-197.webp",
+  "public/assets/kinexis/stickers/planes-plus-297.webp",
+  "public/assets/kinexis/stickers/planes-hazlo-tuyo-1497.webp",
+];
+const STICKER_WIDTHS = [400, 800];
+
 // These images contain UI text and hard illustration edges. The previous AVIF
 // quality of 55 visibly softened them; these settings retain edge detail while
 // remaining substantially smaller than the source files.
@@ -66,5 +90,14 @@ for (const input of BLOG) {
     const webp = await emit(input, w, "webp");
     const avif = await emit(input, w, "avif");
     console.log(`${input}: ${w}w ${kb(webp.size)} webp / ${kb(avif.size)} avif`);
+  }
+}
+
+for (const input of [...AUDIT, ...STICKERS]) {
+  const widths = AUDIT.includes(input) ? AUDIT_WIDTHS : STICKER_WIDTHS;
+  for (const width of widths) {
+    const webp = await emit(input, width, "webp");
+    const avif = await emit(input, width, "avif");
+    console.log(`${input}: ${width}w ${kb(webp.size)} webp / ${kb(avif.size)} avif`);
   }
 }

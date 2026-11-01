@@ -106,7 +106,7 @@ else start();
 })()`,
           }}
         />
-        <SiteSchema />
+        <SiteSchema locale={locale} />
       </head>
       <body>
         <div className="page-veil" aria-hidden="true" />

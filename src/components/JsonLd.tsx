@@ -2,14 +2,26 @@ import { PLANS } from "@/lib/content";
 import { PAGES, type PageKey, type PageMeta } from "@/lib/pages";
 import type { QA } from "@/lib/content";
 import { SITE } from "@/lib/site";
+import type { Locale } from "@/lib/i18n";
 
 const Script = ({ data }: { data: unknown }) => (
   <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }} />
 );
 
 const country = { "@type": "Country", name: SITE.areaServed };
-const orgId = () => `${SITE.url}/#org`;
-const websiteId = () => `${SITE.url}/#website`;
+const orgId = (locale: Locale = "en") => `${localeUrl(locale)}#org`;
+const websiteId = (locale: Locale = "en") => `${localeUrl(locale)}#website`;
+
+function localeUrl(locale: Locale) {
+  if (locale === "es-ES") return `${SITE.url}/es-es`;
+  if (locale === "es-419") return `${SITE.url}/es`;
+  return `${SITE.url}/`;
+}
+
+function localeDescription(locale: Locale) {
+  if (locale === "en") return SITE.description;
+  return "Sitios web rápidos y profesionales para negocios de servicios en Estados Unidos, con una vista previa gratis antes de elegir un plan.";
+}
 
 function faqEntities(faqs: QA[]) {
   return faqs.map((faq) => ({
@@ -36,20 +48,23 @@ function absolute(path: string) {
 }
 
 /** Sitewide entities (rendered once in the root layout). */
-export function SiteSchema() {
+export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
   const u = SITE.url;
   const sameAs = Object.values(SITE.social).filter(Boolean);
+  const siteUrl = localeUrl(locale);
+  const language = locale === "en" ? "en-US" : locale === "es-ES" ? "es-ES" : "es-419";
+  const description = localeDescription(locale);
   return <Script data={{
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "Organization",
-        "@id": orgId(),
+         "@id": orgId(locale),
         name: SITE.name,
-        url: `${u}/`,
+         url: siteUrl,
         logo: { "@type": "ImageObject", url: `${u}/favicon-512.webp`, width: 512, height: 512 },
         image: `${u}${SITE.ogImage}`,
-        description: SITE.description,
+         description,
         email: SITE.email,
         telephone: SITE.phoneE164,
         areaServed: country,
@@ -67,17 +82,17 @@ export function SiteSchema() {
       },
       {
         "@type": "ProfessionalService",
-        "@id": `${u}/#service`,
+         "@id": `${siteUrl}#service`,
         name: SITE.name,
-        url: `${u}/`,
+         url: siteUrl,
         image: `${u}${SITE.ogImage}`,
-        description: SITE.description,
+         description,
         telephone: SITE.phoneE164,
         email: SITE.email,
         priceRange: "$97-$1497",
         areaServed: country,
         address: { "@type": "PostalAddress", addressCountry: "US" },
-        parentOrganization: { "@id": orgId() },
+         parentOrganization: { "@id": orgId(locale) },
         ...(sameAs.length ? { sameAs } : {}),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -92,19 +107,19 @@ export function SiteSchema() {
       },
       {
         "@type": "WebSite",
-        "@id": websiteId(),
-        url: `${u}/`,
+         "@id": websiteId(locale),
+         url: siteUrl,
         name: SITE.name,
-        description: SITE.description,
-        inLanguage: "en-US",
-        publisher: { "@id": orgId() },
+         description,
+         inLanguage: language,
+         publisher: { "@id": orgId(locale) },
       },
     ],
   }} />;
 }
 
 /** Schema for pages that are not in the PAGES map, such as industry details. */
-export function ContentSchema({ path, title, description, crumbs: trail, faqs, serviceType, inLanguage = "en-US" }: {
+export function ContentSchema({ path, title, description, crumbs: trail, faqs, serviceType, inLanguage = "en-US", products }: {
   path: string;
   title: string;
   description: string;
@@ -112,7 +127,9 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
   faqs?: QA[];
   serviceType?: string;
   inLanguage?: string;
+  products?: { slug: string; name: string; tagline: string; price: string; suffix: string }[];
 }) {
+  const locale: Locale = inLanguage === "es-ES" ? "es-ES" : inLanguage.startsWith("es") ? "es-419" : "en";
   const url = absolute(path);
   const graph: unknown[] = [
     {
@@ -121,8 +138,8 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
       url,
       name: title,
       description,
-      isPartOf: { "@id": websiteId() },
-      about: { "@id": `${SITE.url}/#service` },
+       isPartOf: { "@id": websiteId(locale) },
+       about: { "@id": `${localeUrl(locale)}#service` },
       inLanguage,
     },
     crumbs(trail),
@@ -135,10 +152,11 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
       serviceType,
       description,
       url,
-      provider: { "@id": orgId() },
+       provider: { "@id": orgId(locale) },
       areaServed: country,
     });
   }
+  if (products?.length) graph.push(...products.map((plan) => productEntity(url, plan, locale)));
   if (faqs?.length) graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: faqEntities(faqs) });
   return <Script data={{ "@context": "https://schema.org", "@graph": graph }} />;
 }
@@ -153,7 +171,7 @@ function offerCatalog(url: string) {
       const monthly = plan.suffix.startsWith("/");
       return {
         "@type": "Offer",
-        name: `${plan.name} plan`,
+         name: `${plan.name} plan`,
         description: plan.tagline,
         price,
         priceCurrency: "USD",
@@ -169,6 +187,29 @@ function offerCatalog(url: string) {
         } : {}),
       };
     }),
+  };
+}
+
+function productEntity(url: string, plan: { slug: string; name: string; tagline: string; price: string; suffix: string }, locale: Locale = "en") {
+  const price = plan.price.replace(/[^0-9.]/g, "");
+  const monthly = plan.suffix.startsWith("/") || plan.suffix.startsWith("mes");
+  return {
+    "@type": "Product",
+    "@id": `${url}#plan-${plan.slug}`,
+    name: `${plan.name} plan`,
+    description: plan.tagline,
+    image: `${SITE.url}${SITE.ogImage}`,
+    category: "Website design plan",
+    brand: { "@id": orgId(locale) },
+    offers: {
+      "@type": "Offer",
+      price,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      url,
+      ...(monthly ? { priceSpecification: { "@type": "UnitPriceSpecification", price, priceCurrency: "USD", unitCode: "MON" } } : {}),
+    },
   };
 }
 
@@ -188,7 +229,7 @@ export function PageSchema({ page, faqs, items }: {
     name: p.title,
     description: p.description,
     isPartOf: { "@id": websiteId() },
-    about: { "@id": `${SITE.url}/#service` },
+     about: { "@id": `${SITE.url}/#service` },
     inLanguage: "en-US",
     primaryImageOfPage: { "@type": "ImageObject", url: `${SITE.url}${SITE.ogImage}` },
   };
@@ -214,35 +255,7 @@ export function PageSchema({ page, faqs, items }: {
     });
   }
   if (page === "pricing") {
-    graph.push(...PLANS.map((plan) => {
-      const price = plan.price.replace(/[^0-9.]/g, "");
-      const monthly = plan.suffix.startsWith("/");
-      return {
-        "@type": "Product",
-        "@id": `${url}#${plan.slug}`,
-        name: `${plan.name} website plan`,
-        description: plan.tagline,
-        image: `${SITE.url}${SITE.ogImage}`,
-        category: "Website design plan",
-        brand: { "@id": orgId() },
-        offers: {
-          "@type": "Offer",
-          price,
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-          itemCondition: "https://schema.org/NewCondition",
-          url,
-          ...(monthly ? {
-            priceSpecification: {
-              "@type": "UnitPriceSpecification",
-              price,
-              priceCurrency: "USD",
-              unitCode: "MON",
-            },
-          } : {}),
-        },
-      };
-    }));
+    graph.push(...PLANS.map((plan) => productEntity(url, plan)));
   }
   if (items?.length) {
     graph.push({
@@ -273,6 +286,10 @@ export function ArticleSchema({ title, description, path, image, date, section, 
   inLanguage?: string;
 }) {
   const url = absolute(path);
+  const locale: Locale = inLanguage === "es-ES" ? "es-ES" : inLanguage.startsWith("es") ? "es-419" : "en";
+  const blogPath = locale === "en" ? "/blog" : locale === "es-ES" ? "/es-es/blog" : "/es/blog";
+  const homePath = locale === "en" ? "/" : locale === "es-ES" ? "/es-es" : "/es";
+  const dateTime = date.includes("T") ? date : `${date}T09:00:00-05:00`;
   return <Script data={{
     "@context": "https://schema.org",
     "@graph": [
@@ -282,14 +299,13 @@ export function ArticleSchema({ title, description, path, image, date, section, 
         headline: title,
         description,
         image: [image.startsWith("http") ? image : `${SITE.url}${image}`],
-        datePublished: date,
-        dateModified: date,
+         datePublished: dateTime,
         inLanguage,
         articleSection: section,
-        author: { "@id": orgId() },
-        publisher: { "@id": orgId() },
+         author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },
+         publisher: { "@id": orgId(locale) },
         mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#page` },
-        isPartOf: { "@id": websiteId() },
+         isPartOf: { "@id": websiteId(locale) },
       },
       {
         "@type": "WebPage",
@@ -298,11 +314,11 @@ export function ArticleSchema({ title, description, path, image, date, section, 
         name: title,
         description,
         inLanguage,
-        isPartOf: { "@id": websiteId() },
+         isPartOf: { "@id": websiteId(locale) },
       },
       crumbs([
-        { name: "Home", path: "/" },
-        { name: "Blog", path: "/blog" },
+         { name: locale === "en" ? "Home" : "Inicio", path: homePath },
+         { name: "Blog", path: blogPath },
         { name: title, path },
       ]),
     ],

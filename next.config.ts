@@ -68,6 +68,14 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // Public assets are versioned by filename (or query string) and can
+        // safely stay at the edge and in browser caches for a year.
+        source: "/assets/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
         source: "/:path*",
         headers: [
           { key: "X-Content-Type-Options", value: "nosniff" },

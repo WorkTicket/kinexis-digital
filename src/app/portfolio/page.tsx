@@ -20,7 +20,7 @@ function siteHost(url: string) {
 export default function Page() {
   return (
     <>
-      <PageSchema page="portfolio" items={PROJECTS.filter((project) => !project.placeholder).map((project) => ({ name: project.name, path: `/portfolio/${project.slug}` }))} />
+      <PageSchema page="portfolio" />
       <PageHero
         className="portfolio-hero"
         eyebrow="Website templates for local service businesses"
