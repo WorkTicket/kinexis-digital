@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { preload } from "react-dom";
 import type { CSSProperties, ReactNode } from "react";
 import { COMPARE_ROWS } from "@/lib/content";
 import { PROJECTS } from "@/lib/projects";
@@ -53,21 +54,18 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
     `${base}-960.webp 960w`,
     `${base}-1254.webp 1254w`,
   ].join(", ");
+  preload(`${base}-640.avif`, { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
 
   return (
     <>
-      <link rel="preload" as="image" href={`${base}-640.avif`} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />
       <picture>
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+      <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
       <img
         src={`${base}-1254.webp`}
-        srcSet={webpSrcSet}
-        sizes={sizes}
         width={1254}
         height={1254}
         alt={alt}
-        loading="eager"
-        fetchPriority="auto"
         decoding="async"
         className="hero-art mx-auto block h-auto w-full max-w-[627px]"
       />
