@@ -28,12 +28,8 @@ export function proxy(request: NextRequest) {
   const canonicalPath = DIRECT_LEGACY_PATHS[pathWithoutTrailingSlash] ?? pathWithoutTrailingSlash;
   const needsHttps = forwardedProtocol === "http";
   if (host === APEX || needsHttps || canonicalPath !== originalPath) {
-    const url = request.nextUrl.clone();
-    url.protocol = "https:";
-    url.hostname = CANONICAL_HOST;
-    url.port = "";
-    url.pathname = canonicalPath;
-    return NextResponse.redirect(url, 301);
+    const query = request.nextUrl.search;
+    return NextResponse.redirect(`https://${CANONICAL_HOST}${canonicalPath}${query}`, 301);
   }
   const locale = localeFromPath(request.nextUrl.pathname);
   const requestHeaders = new Headers(request.headers);
