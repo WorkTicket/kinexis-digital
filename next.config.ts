@@ -29,6 +29,8 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  // Let proxy.ts issue the site's explicit 301 for trailing-slash variants.
+  skipTrailingSlashRedirect: true,
   // Old URLs 301 to the current English pages so crawl signals stay on one address.
   async redirects() {
     const pages = Object.values(PAGES as Record<string, { path: string }>)

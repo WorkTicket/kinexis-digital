@@ -68,7 +68,6 @@ export const LEGACY_REDIRECTS = [
   // Retired landing-page and information-architecture families. These have
   // no live detail routes, so send them to the closest useful hub in one hop.
   ...localized("/services/landing-pages", "/web-design"),
-  ...localizedWildcard("/locations/:path+", "/industries"),
   ...localizedWildcard("/pricing/:path+", "/pricing"),
   ...localizedWildcard("/solutions/:path+", "/services"),
   ...localized("/services/web-design", "/web-design"),
