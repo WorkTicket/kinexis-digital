@@ -36,7 +36,10 @@ export function proxy(request: NextRequest) {
   const canonicalPath = normalizeEnglishPath
     ? (DIRECT_LEGACY_PATHS[pathWithoutTrailingSlash] ?? pathWithoutTrailingSlash)
     : originalPath;
-  const needsHttps = forwardedProtocol === "http";
+  // Do not force local HTTP dev requests onto the production domain. The
+  // forwarded protocol is commonly `http` in local preview environments.
+  const isProductionHost = host === APEX || host === CANONICAL_HOST;
+  const needsHttps = isProductionHost && forwardedProtocol === "http";
   if (host === APEX || needsHttps || canonicalPath !== originalPath) {
     const query = request.nextUrl.search;
     return NextResponse.redirect(`https://${CANONICAL_HOST}${canonicalPath}${query}`, 301);
