@@ -1998,11 +1998,16 @@ p,li,blockquote{ text-wrap:pretty }
 /* Button feedback: hover adds depth, while the press shine stays CSS-only and
    isolated to the button surface. No event handlers or layout work required. */
 .btn{
+  border-radius:11px 13px 10px 12px;
   background-image:linear-gradient(112deg,transparent 30%,rgba(255,255,255,.5) 47%,transparent 64%);
   background-repeat:no-repeat;
   background-size:250% 100%;
   background-position:-125% 0;
-  transition:box-shadow .16s cubic-bezier(.2,.8,.2,1),background-color .16s ease;
+  transition:transform .24s cubic-bezier(.2,.8,.2,1),box-shadow .24s cubic-bezier(.2,.8,.2,1),background-color .24s ease;
+}
+.btn--ghost,.btn--light{
+  /* Keep the hit area stable so hover cannot flicker when the cursor is still. */
+  transform:none;
 }
 .btn:active{
   transform:none;
@@ -2023,14 +2028,21 @@ p,li,blockquote{ text-wrap:pretty }
 .price .btn:active,.audit-cta .btn:active{
   box-shadow:5px 6px 0 var(--brand-cobalt);
 }
+.btn.btn--primary:active,.btn.btn--warm:active{
+  transform:none;
+  box-shadow:var(--shadow-sticker);
+  background-color:var(--warm-hot);
+  background-image:none;
+  animation:none;
+}
 @media (hover:hover) and (pointer:fine){
   .btn:not(.btn--ghost):not(.btn--light):not(:active):hover{
-    transform:translate3d(2px,2px,0);
+    transform:none;
     box-shadow:none;
   }
   .btn--ghost:hover,.btn--light:hover{
-    transform:translate3d(0,-3px,0);
-    box-shadow:4px 7px 0 var(--brand-navy);
+    transform:none;
+    box-shadow:5px 7px 0 var(--brand-navy);
   }
 }
 @media (hover:none), (pointer:coarse){
@@ -2047,4 +2059,60 @@ p,li,blockquote{ text-wrap:pretty }
 @keyframes btn-press-shine{
   0%{background-position:-125% 0}
   100%{background-position:125% 0}
+}
+
+/* Final CTA system: confident, tactile and unmistakably KinexIS. */
+.btn{
+  min-height:3.15rem;
+  padding:.82rem 1.45rem;
+  border:3px solid var(--brand-navy);
+  border-radius:9px 14px 10px 12px;
+  background:var(--brand-orange);
+  background-image:none;
+  color:var(--brand-navy);
+  box-shadow:4px 4px 0 var(--brand-navy),inset 0 -3px 0 rgba(232,74,10,.34);
+  transform:none;
+  transition:transform .16s ease,box-shadow .16s ease,background-color .16s ease;
+}
+.btn:hover:not(:disabled){
+  transform:translate(-2px,-2px);
+  box-shadow:6px 6px 0 var(--brand-navy),inset 0 -3px 0 rgba(232,74,10,.2);
+  background-color:var(--warm-light);
+}
+.btn:active:not(:disabled),.btn.btn:active:not(:disabled){
+  transform:translate(2px,2px);
+  box-shadow:1px 1px 0 var(--brand-navy),inset 0 -1px 0 rgba(232,74,10,.34);
+  background-color:var(--warm-hot);
+  animation:none;
+}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.btn:disabled{cursor:not-allowed}
+.btn--primary,.btn--warm{background-color:var(--brand-orange);color:var(--brand-navy)}
+.btn--ghost,.btn--light{
+  background:#fff;
+  background-image:none;
+  color:var(--brand-navy);
+  box-shadow:3px 3px 0 var(--brand-navy);
+  transform:none;
+}
+.btn--ghost:hover:not(:disabled),.btn--light:hover:not(:disabled){
+  background:var(--accent-soft);
+  color:var(--brand-navy);
+  box-shadow:5px 5px 0 var(--brand-navy);
+}
+.btn--ghost:active:not(:disabled),.btn--light:active:not(:disabled){
+  background:#fff;
+  box-shadow:1px 1px 0 var(--brand-navy);
+}
+.btn--outline-light{box-shadow:4px 4px 0 var(--accent-2)}
+.btn--outline-light:hover:not(:disabled){box-shadow:6px 6px 0 var(--accent-2)}
+.btn--sm{min-height:0}
+.btn--lg{min-height:3.5rem;padding:1rem 1.7rem}
+.header__cta{animation:none;transform:none}
+.price .btn:hover,.audit-cta .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--brand-cobalt)}
+.price .btn:active,.audit-cta .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--brand-cobalt)}
+
+@media (prefers-reduced-motion:reduce){
+  .btn{transition:none}
+  .btn:hover:not(:disabled){transform:none}
 }
