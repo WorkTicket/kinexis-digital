@@ -1995,45 +1995,42 @@ p,li,blockquote{ text-wrap:pretty }
   .inline-action,.inline-action--left{justify-content:center}
 }
 
-/* Button feedback: hover adds lift, while the actual press snaps into the
-   sticker shadow. These are compositor-friendly properties and need no JS. */
+/* Button feedback: hover adds depth, while the press shine stays CSS-only and
+   isolated to the button surface. No event handlers or layout work required. */
 .btn{
-  isolation:isolate;
-  transition:transform .16s cubic-bezier(.2,.8,.2,1),box-shadow .16s ease,background-color .16s ease;
-}
-.btn::after{
-  content:"";
-  position:absolute;
-  z-index:0;
-  inset:0;
-  border-radius:inherit;
-  background:linear-gradient(112deg,transparent 30%,rgba(255,255,255,.5) 47%,transparent 64%);
-  opacity:0;
-  transform:translateX(-125%) skewX(-12deg);
-  pointer-events:none;
+  background-image:linear-gradient(112deg,transparent 30%,rgba(255,255,255,.5) 47%,transparent 64%);
+  background-repeat:no-repeat;
+  background-size:250% 100%;
+  background-position:-125% 0;
+  transition:box-shadow .16s cubic-bezier(.2,.8,.2,1),background-color .16s ease;
 }
 .btn:active{
-  transform:translate3d(2px,2px,0) rotate(-.6deg) scale(.97);
-  box-shadow:none;
-  transition-duration:.07s;
-}
-.btn:active::after{
+  transform:none;
+  box-shadow:5px 6px 0 var(--brand-navy);
   animation:btn-press-shine .34s ease-out;
+  transition-duration:.12s;
 }
-/* Mouse clicks leave focus on the control long enough to give non-navigating
-   actions a brief confirmation without adding a React state or event handler. */
-.btn:focus:not(:focus-visible)::after{
-  animation:btn-press-shine .34s ease-out;
+.btn.btn:active,.price .btn:active,.audit-cta .btn:active{
+  transform:none;
 }
-@keyframes btn-press-shine{
-  0%{opacity:0;transform:translateX(-125%) skewX(-12deg)}
-  18%{opacity:.8}
-  100%{opacity:0;transform:translateX(125%) skewX(-12deg)}
+.btn.btn:active{
+  box-shadow:5px 6px 0 var(--brand-navy);
+  background-image:linear-gradient(112deg,transparent 30%,rgba(255,255,255,.5) 47%,transparent 64%);
+  background-repeat:no-repeat;
+  background-size:250% 100%;
+  background-position:-125% 0;
+}
+.price .btn:active,.audit-cta .btn:active{
+  box-shadow:5px 6px 0 var(--brand-cobalt);
 }
 @media (hover:hover) and (pointer:fine){
   .btn:not(.btn--ghost):not(.btn--light):not(:active):hover{
-    transform:translateY(-2px);
-    box-shadow:4px 6px 0 var(--brand-navy);
+    transform:translate3d(2px,2px,0);
+    box-shadow:none;
+  }
+  .btn--ghost:hover,.btn--light:hover{
+    transform:translate3d(0,-3px,0);
+    box-shadow:4px 7px 0 var(--brand-navy);
   }
 }
 @media (hover:none), (pointer:coarse){
@@ -2043,8 +2040,11 @@ p,li,blockquote{ text-wrap:pretty }
     box-shadow:var(--shadow-sticker);
   }
   .btn--ghost:hover,.btn--light:hover{
-    background:#fff;
-    transform:translate(2px,2px);
+    transform:none;
     box-shadow:none;
   }
+}
+@keyframes btn-press-shine{
+  0%{background-position:-125% 0}
+  100%{background-position:125% 0}
 }
