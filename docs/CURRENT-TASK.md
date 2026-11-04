@@ -4,7 +4,7 @@
 Fix Ahrefs site-audit SEO issues from crawl 2026-11-01 (project 10038104); deploy to live.
 
 ## Status
-deploying
+complete
 
 ## Changed files
 - `src/components/JsonLd.tsx` — schema `inLanguage` uses `es` not `es-419`; FAQ URLs emit FAQPage as page type; articles use `BlogPosting` + `Article`
@@ -16,21 +16,21 @@ deploying
 - `docs/CURRENT-TASK.md` — this file
 
 ## Completed
-- Confirmed Nov 1 crawl predates `9cb86999` (htmlLang no longer emits invalid `es-419`)
-- Live spot-check: lang/robots/OG/Twitter/descriptions OK on main + Spanish URLs
-- Schema/FAQ/Article/redirect/meta length fixes above
-- `npm run typecheck` and `npm run lint` pass
+- Schema/FAQ/Article/redirect/meta length fixes
+- Committed `0a5ab775` and pushed to `main`
+- Deployed to Cloudflare Workers (live: kinexisdigital.com / www.kinexisdigital.com)
+- Post-deploy checks passed (SEO, sitemap 102 URLs, IndexNow 200)
+- Live verified: `/es` schema uses `es`, `/video-reviews` → `/reviews`, FAQPage + Article present
+- Version ID: e9c9f8d4-70f2-4e5c-bc7c-b51e19091931
 
 ## Unfinished
-- Finish Cloudflare deploy + post-deploy IndexNow
-- Re-run Ahrefs site audit after deploy
+- Re-run Ahrefs site audit so the report clears stale Nov 1 findings
 
 ## Errors/blockers
-- Ahrefs MCP / API not available in this session (no per-URL issue export)
+none
 
 ## Next action
-Complete `npm run deploy`, then re-crawl in Ahrefs.
+Trigger a new Ahrefs crawl and confirm Error-severity issues drop.
 
 ## Notes
 - Intentional noindex remains on `/pay`, `/update`, `/privacy`, `/terms`, `/lp/*`, portfolio demos
-- Sitemap URL count drop vs prior crawl is expected (demos removed from sitemap)
