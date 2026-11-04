@@ -40,6 +40,10 @@ const nextConfig: NextConfig = {
       { source: "/index.html", destination: "/", statusCode: 301 },
       { source: "/process", destination: "/about", statusCode: 301 },
       { source: "/process.html", destination: "/about", statusCode: 301 },
+      { source: "/video-reviews", destination: "/reviews", statusCode: 301 },
+      { source: "/video-reviews.html", destination: "/reviews", statusCode: 301 },
+      { source: "/es/video-reviews", destination: "/es/reviews", statusCode: 301 },
+      { source: "/es-es/video-reviews", destination: "/es-es/reviews", statusCode: 301 },
       ...pages.map((page) => ({
         source: `${page.path}.html`,
         destination: page.path,

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Form from "@/components/Form";
+import { ContentSchema } from "@/components/JsonLd";
 import { Art, ArtDecor, Faq, HL } from "@/components/ui";
 import { contentMetadata } from "@/lib/seo";
 
@@ -20,6 +21,13 @@ const FAQS = [
 export default function GetAWebsitePage() {
   return (
     <div className="lp-page">
+      <ContentSchema
+        path="/lp/get-a-website"
+        title="Get a Professional Website for Your Business"
+        description="Get a fast, professional website built around your business. Review a free homepage preview before choosing a Kinexis plan."
+        crumbs={[{ name: "Home", path: "/" }, { name: "Get a Website", path: "/lp/get-a-website" }]}
+        faqs={FAQS}
+      />
       <section className="lp-hero"><ArtDecor name="cobalt-dot-grid" className="lp-hero__dots" /><ArtDecor name="orange-plus" className="lp-hero__plus" /><div className="container lp-hero__grid"><div className="lp-hero__copy"><p className="lp-kicker">Professional web design for businesses</p><h1>Get a website that makes the <span>next step obvious.</span></h1><p className="lp-hero__lead">A fast, professional website built around your business, your services, and the customers you want to reach.</p><div className="lp-hero__actions"><a className="btn btn--primary btn--lg" href="#start">Get My Free Homepage Preview</a><span className="lp-reassurance">No card required to review it</span></div><ul className="lp-proof" aria-label="What is included"><li>Built around your work</li><li>Clear on a phone</li><li>Plans for different stages</li></ul></div><div className="lp-hero__visual" aria-label="Website preview artwork"><div className="lp-art-card"><div className="lp-art-card__bar"><i /><i /><i /><b>yourbusiness.com</b></div><Art name="web-design" alt="Professional business website preview" priority sizes="(max-width: 860px) 86vw, 540px" /></div><div className="lp-sticker lp-sticker--preview">FREE<br /><strong>PREVIEW</strong></div></div></div></section>
 
       <section className="lp-form-band" id="start"><div className="container lp-form-grid"><div className="lp-form-copy"><p className="eyebrow">Start with your business</p><h2>Let’s make your first impression work harder.</h2><p>Tell us a little about what you do. We’ll use it to prepare a homepage direction you can actually react to—not a mystery quote or a generic sales pitch.</p><div className="lp-form-note"><span aria-hidden="true">✓</span><p><strong>See the homepage first.</strong><br />Review it before choosing a plan.</p></div></div><div className="lp-form-card"><p className="lp-form-card__title">Get your free homepage preview</p><p className="lp-form-card__sub">A few details is all we need to get started.</p><Form button="Show Me My Homepage" fields={[{ label: "Your Name", name: "name", required: true, auto: "name" }, { label: "Email", name: "email", kind: "email", required: true }, { label: "Phone", name: "phone", kind: "tel", auto: "tel" }, { label: "Business Name or Website", name: "business" }]} note="We’ll only use this to follow up about your website." fast fastText="A real person reviews every request." /></div></div></section>

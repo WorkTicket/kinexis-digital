@@ -31,8 +31,9 @@ function localeForPath(path: string, fallback: string): Locale {
   return "en";
 }
 
+/** Ahrefs and similar auditors only accept ISO 3166-1 Alpha-2 regions, so Latam uses `es` (not `es-419`). */
 function schemaLanguage(locale: Locale) {
-  return locale === "en" ? "en-US" : locale === "es-ES" ? "es-ES" : "es-419";
+  return locale === "en" ? "en-US" : locale === "es-ES" ? "es-ES" : "es";
 }
 
 function faqEntities(faqs: QA[]) {
@@ -64,7 +65,7 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
   const u = SITE.url;
   const sameAs = Object.values(SITE.social).filter(Boolean);
   const siteUrl = localeUrl(locale);
-  const language = locale === "en" ? "en-US" : locale === "es-ES" ? "es-ES" : "es-419";
+  const language = schemaLanguage(locale);
   const description = localeDescription(locale);
   return <Script data={{
     "@context": "https://schema.org",
@@ -143,19 +144,20 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
 }) {
   const locale = localeForPath(path, inLanguage);
   const url = absolute(path);
-  const graph: unknown[] = [
-    {
-      "@type": "WebPage",
-      "@id": `${url}#page`,
-      url,
-      name: title,
-      description,
-       isPartOf: { "@id": websiteId(locale) },
-       about: { "@id": `${localeUrl(locale)}#service` },
-       inLanguage: schemaLanguage(locale),
-    },
-    crumbs(trail),
-  ];
+  const isFaqPage = /\/faqs\/?$/.test(path);
+  const pageType = isFaqPage && faqs?.length ? "FAQPage" : "WebPage";
+  const pageNode: Record<string, unknown> = {
+    "@type": pageType,
+    "@id": `${url}#page`,
+    url,
+    name: title,
+    description,
+    isPartOf: { "@id": websiteId(locale) },
+    about: { "@id": `${localeUrl(locale)}#service` },
+    inLanguage: schemaLanguage(locale),
+  };
+  if (pageType === "FAQPage" && faqs?.length) pageNode.mainEntity = faqEntities(faqs);
+  const graph: unknown[] = [pageNode, crumbs(trail)];
   if (serviceType) {
     graph.push({
       "@type": "Service",
@@ -164,12 +166,15 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
       serviceType,
       description,
       url,
-       provider: { "@id": orgId(locale) },
+      provider: { "@id": orgId(locale) },
       areaServed: country,
     });
   }
   if (products?.length) graph.push(...products.map((plan) => productEntity(url, plan, locale)));
-  if (faqs?.length) graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: faqEntities(faqs) });
+  // Extra FAQPage node only when FAQs appear on a non-FAQ URL (service pages, etc.).
+  if (faqs?.length && pageType !== "FAQPage") {
+    graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: faqEntities(faqs) });
+  }
   return <Script data={{ "@context": "https://schema.org", "@graph": graph }} />;
 }
 
@@ -308,19 +313,20 @@ export function ArticleSchema({ title, description, path, image, date, modified,
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "BlogPosting",
+        // Include Article so auditors that look for that type still match BlogPosting pages.
+        "@type": ["BlogPosting", "Article"],
         "@id": `${url}#article`,
         headline: title,
         description,
         image: [image.startsWith("http") ? image : `${SITE.url}${image}`],
-         datePublished: dateTime,
-         ...(modifiedTime ? { dateModified: modifiedTime } : {}),
-         inLanguage: schemaLanguage(locale),
+        datePublished: dateTime,
+        ...(modifiedTime ? { dateModified: modifiedTime } : {}),
+        inLanguage: schemaLanguage(locale),
         articleSection: section,
-         author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },
-         publisher: { "@id": orgId(locale) },
+        author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },
+        publisher: { "@id": orgId(locale) },
         mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#page` },
-         isPartOf: { "@id": websiteId(locale) },
+        isPartOf: { "@id": websiteId(locale) },
       },
       {
         "@type": "WebPage",

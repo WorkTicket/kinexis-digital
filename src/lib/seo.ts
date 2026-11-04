@@ -68,6 +68,7 @@ export function pageMetadata(key: PageKey): Metadata {
       type: "website",
       siteName: SITE.name,
       locale: "en_US",
+      alternateLocale: languages ? ["es_MX", "es_ES"] : undefined,
       title: full,
       description,
       url: absoluteUrl(p.path),
@@ -108,6 +109,9 @@ export function contentMetadata(input: ContentMeta): Metadata {
   const article = input.ogType === "article";
   const locale = input.locale ?? "en";
   const languages = hreflangLanguages(input.path);
+  const alternateLocale = languages
+    ? (["en_US", "es_MX", "es_ES"] as const).filter((code) => code !== ogLocale(locale))
+    : undefined;
   return {
     title: branded ? { absolute: input.title } : input.title,
     description,
@@ -118,6 +122,7 @@ export function contentMetadata(input: ContentMeta): Metadata {
       type: input.ogType ?? "website",
       siteName: SITE.name,
       locale: ogLocale(locale),
+      alternateLocale,
       title: full,
       description,
       url: absoluteUrl(input.path),

@@ -1,40 +1,36 @@
 # CURRENT-TASK.md
 
 ## Goal
-Improve homepage hero poster and section art image quality; fix scroll lock when video popups are open; deploy to live site.
+Fix Ahrefs site-audit SEO issues from crawl 2026-11-01 (project 10038104); deploy to live.
 
 ## Status
-complete
+deploying
 
 ## Changed files
-- src/components/HeroFilm.tsx - Updated poster srcset to 640/768/960 widths, sizes to responsive, dimensions to 960x540
-- public/assets/video/kinexis-explainer-v5f-preview-poster.* - Replaced with 960x540 HQ versions
-- public/assets/video/kinexis-explainer-v5f-preview-poster-640/768/960.* - New HQ variants (WebP + AVIF)
-- public/assets/home/built-for-your-trade.* - Re-encoded at higher quality (quality 90 src / 85 variants)
-- public/assets/home/google-reviews-handled.* - Re-encoded at higher quality
-- public/assets/home/what-every-site-includes.* - Re-encoded at higher quality
-- public/assets/js/boot.js - Fixed scroll lock: save/restore scroll position, apply overflow+position to html+body
-- docs/CURRENT-TASK.md - Updated
+- `src/components/JsonLd.tsx` — schema `inLanguage` uses `es` not `es-419`; FAQ URLs emit FAQPage as page type; articles use `BlogPosting` + `Article`
+- `src/lib/seo.ts` — Open Graph `alternateLocale` for mirrored pages
+- `src/i18n/SpanishSite.tsx` — Spanish meta descriptions lengthened to ≥120 chars
+- `src/app/lp/get-a-website/page.tsx` — FAQPage schema on landing FAQ block
+- `next.config.ts` — `/video-reviews` → `/reviews` (en/es/es-es)
+- `scripts/search-on-deploy.mjs` — treat privacy/terms/lp as non-indexable in deploy checks
+- `docs/CURRENT-TASK.md` — this file
 
 ## Completed
-- Hero poster: 7.6KB → 27.7KB at full res (~3.6x quality improvement), mobile 640w stays at 17.4KB
-- Section art sources re-encoded at higher WebP quality
-- Scroll lock fixed for video/guarantee dialogs
-- Committed and pushed to copy/differentiate branch
-- Deployed to Cloudflare Workers (live site: kinexisdigital.com, www.kinexisdigital.com)
-- All post-deploy checks passed (SEO, sitemap, IndexNow, 135 URLs)
-- Typecheck and lint pass
+- Confirmed Nov 1 crawl predates `9cb86999` (htmlLang no longer emits invalid `es-419`)
+- Live spot-check: lang/robots/OG/Twitter/descriptions OK on main + Spanish URLs
+- Schema/FAQ/Article/redirect/meta length fixes above
+- `npm run typecheck` and `npm run lint` pass
 
 ## Unfinished
-none
+- Finish Cloudflare deploy + post-deploy IndexNow
+- Re-run Ahrefs site audit after deploy
 
 ## Errors/blockers
-none
+- Ahrefs MCP / API not available in this session (no per-URL issue export)
 
 ## Next action
-none
+Complete `npm run deploy`, then re-crawl in Ahrefs.
 
 ## Notes
-- All assets use WebP + AVIF with responsive srcset; mobile hero poster under 20KB
-- Scroll lock now applies position:fixed to body with saved scrollY to prevent background scroll during dialogs
-- Version ID: 2cb548ea-038c-4ae0-b4fb-ada0bc590824
+- Intentional noindex remains on `/pay`, `/update`, `/privacy`, `/terms`, `/lp/*`, portfolio demos
+- Sitemap URL count drop vs prior crawl is expected (demos removed from sitemap)

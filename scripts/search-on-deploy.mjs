@@ -21,7 +21,12 @@ const CLOUDFLARE_ASSET_LIMIT = 25 * 1024 * 1024;
 
 // Paths that must stay out of the sitemap. Keep these aligned with robots.ts
 // and pages that set indexable: false.
-const NON_INDEXABLE = [/^\/api(?:\/|$)/, /^\/pay(?:\/|$)/, /^\/(?:es\/|es-es\/)?update(?:\/|$)/];
+const NON_INDEXABLE = [
+  /^\/api(?:\/|$)/,
+  /^\/pay(?:\/|$)/,
+  /^\/lp(?:\/|$)/,
+  /^\/(?:es\/|es-es\/)?(?:update|privacy|terms)(?:\/|$)/,
+];
 
 const failures = [];
 const warnings = [];
