@@ -73,7 +73,7 @@ export default async function IndustryPage({ params }: Props) {
   const { slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) notFound();
-  const project = getProject(industry.projectSlug);
+  const project = industry.projectSlug ? getProject(industry.projectSlug) : undefined;
   const path = `/industries/${industry.slug}`;
   const related = relatedIndustries(industry);
   const hero = `/assets/industries/${industry.slug}/hero.webp`;

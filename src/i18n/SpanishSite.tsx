@@ -701,14 +701,12 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/portfolio")} title={tx(PAGE_META["/portfolio"].title)} description={tx(PAGE_META["/portfolio"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Portafolio"), path: href("/portfolio") }]} inLanguage={lang} />
-      <PageHero className="portfolio-hero" eyebrow={tx("Plantillas web para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Elige una plantilla que te guste y la personalizamos para tu negocio, desde la primera pantalla hasta la cotización. Los sitios reales de clientes aparecen aparte más abajo.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
+      <PageHero className="portfolio-hero" eyebrow={tx("Plantillas web para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo elige una plantilla y la personalizamos para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
         <div className="btn-row spaced"><Link className="btn btn--primary btn--lg" href={href("/contact")} prefetch={false}>{tx("Ver primero mi página de inicio")}</Link><Link className="btn btn--ghost btn--lg" href={href("/pricing")} prefetch={false}>{tx("Ver los cuatro planes")}</Link></div>
       </PageHero>
       <Section>
         <div className="container">
-          <div className="showcase__head"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Plantillas web diseñadas profesionalmente")} mark={tx("Plantillas web")} /></h2><p className="muted">{tx("Elige una plantilla que te guste y personalizamos el diseño, el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver la plantilla completa en inglés.")}</p></div></div>
-          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver esta plantilla")} scrollOnHover={false} />)}</div>
-          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
+          <div className="showcase__head"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
           <div className="portfolio--live">{LIVE_SITES.map((site) => {
             const shot = portfolioFile(site.image, 640);
             const full = portfolioFile(site.image);
@@ -721,6 +719,8 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
               </a>
             );
           })}</div>
+          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Plantillas web diseñadas profesionalmente")} mark={tx("Plantillas web")} /></h2><p className="muted">{tx("Elige una plantilla que te guste y personalizamos el diseño, el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver la plantilla completa en inglés.")}</p></div></div>
+          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver esta plantilla")} scrollOnHover={false} />)}</div>
         </div>
       </Section>
       <AuditCta eyebrow={tx("Un punto de partida claro")} heading={tx("Descubre qué está frenando tu sitio")} mark={tx("frenando tu sitio")} text={tx("Te decimos qué funciona, qué estorba y qué cambios conviene hacer primero. Hay revisiones gratis y de pago.")} cta={tx("Revisar mi sitio")} href={href("/audit")} alt={tx("Un cohete sale de una computadora")} />
@@ -741,7 +741,7 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
   const base = getIndustry(slug);
   if (!base) notFound();
   const industry = localizeIndustry(base, locale);
-  const project = getProject(industry.projectSlug);
+  const project = industry.projectSlug ? getProject(industry.projectSlug) : undefined;
   const path = withLocale(locale, `/industries/${industry.slug}`);
   const href = (item: string) => withLocale(locale, item);
   const related = relatedIndustries(base).map((item) => localizeIndustry(item, locale));

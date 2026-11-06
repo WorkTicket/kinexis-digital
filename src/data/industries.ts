@@ -9,7 +9,8 @@ export type Industry = {
   name: string;
   /** One line on the hub and homepage cards. */
   card: string;
-  projectSlug: string;
+  /** Portfolio template shown on the industry page, when one matches this trade. */
+  projectSlug?: string;
   metaTitle: string;
   metaDescription: string;
   h1: string;
@@ -36,7 +37,6 @@ export const INDUSTRIES: Industry[] = [
     slug: "plumbing",
     name: "Plumbing",
     card: "Leak calls, drains and water heaters",
-    projectSlug: "copperline-plumbing",
     metaTitle: "Plumbing Website Design | Kinexis Digital",
     metaDescription: "Plumbing website design for service businesses across the United States. Pages for leaks, drains, and water heaters, with tap-to-call and review requests.",
     h1: "Plumbing Website Design That Gets the Call",
@@ -74,7 +74,6 @@ export const INDUSTRIES: Industry[] = [
     slug: "hvac",
     name: "HVAC",
     card: "No-cool repair and system replacement",
-    projectSlug: "breezeway-hvac",
     metaTitle: "HVAC Websites for US Businesses | Kinexis Digital",
     metaDescription: "HVAC website design for service businesses across the United States. Separate paths for no-cool repair and system replacement, plus text-back and reviews.",
     h1: "HVAC Website Design for Repair and Replacement",
@@ -112,7 +111,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "electrical",
     name: "Electrical",
     card: "Panels, EV chargers and troubleshooting",
-    projectSlug: "volterra-electric",
+    projectSlug: "union-electric",
     metaTitle: "Electrician Website Design | Kinexis Digital",
     metaDescription: "Electrician website design for service businesses across the United States. Panel upgrades, EV chargers, and troubleshooting with tap-to-call follow-up.",
     h1: "Electrician Website Design People Trust Enough to Call",
@@ -150,7 +149,7 @@ export const INDUSTRIES: Industry[] = [
     slug: "roofing",
     name: "Roofing",
     card: "Repairs, replacements and storm calls",
-    projectSlug: "harlans-roofing",
+    projectSlug: "red-oak-roofing",
     metaTitle: "Roofing Website Design | Kinexis Digital",
     metaDescription: "Roofing website design for service businesses across the United States. Repair and replacement pages with a clear way to request an inspection.",
     h1: "Roofing Website Design for Inspections That Are Real",
@@ -226,7 +225,6 @@ export const INDUSTRIES: Industry[] = [
     slug: "painting",
     name: "Painting",
     card: "Interior, exterior and cabinet finishes",
-    projectSlug: "brush-and-co",
     metaTitle: "Painter Website Design | Kinexis Digital",
     metaDescription: "Painter website design for service businesses across the United States. Interior, exterior, and cabinet pages with a clear estimate path and review requests.",
     h1: "Painter Website Design That Wins the Estimate",
@@ -265,7 +263,6 @@ export const INDUSTRIES: Industry[] = [
     slug: "remodeling",
     name: "Remodeling",
     card: "Kitchens, baths and the longer quote",
-    projectSlug: "oak-and-form",
     metaTitle: "Remodeling Website Design | Kinexis Digital",
     metaDescription: "Remodeling website design for service businesses across the United States. Kitchen and bath galleries with a consult path that fits a longer sales cycle.",
     h1: "Remodeling Website Design for Kitchens and Baths",
@@ -303,7 +300,6 @@ export const INDUSTRIES: Industry[] = [
     slug: "landscaping",
     name: "Landscaping",
     card: "Maintenance routes and design-build work",
-    projectSlug: "root-and-stone",
     metaTitle: "Landscaping Website Design | Kinexis Digital",
     metaDescription: "Landscaping website design for service businesses across the United States. Weekly maintenance and design-build kept on separate pages.",
     h1: "Landscaping Website Design for Routes and Projects",
@@ -341,7 +337,6 @@ export const INDUSTRIES: Industry[] = [
     slug: "pool-care",
     name: "Pool Care",
     card: "Weekly service, repairs and equipment",
-    projectSlug: "bluehaven-pool-care",
     metaTitle: "Pool Service Website Design | Kinexis Digital",
     metaDescription: "Pool service website design for businesses across the United States. Weekly routes, repairs, and equipment, with a clear service area and review requests.",
     h1: "Pool Service Website Design for Routes and Repairs",

@@ -52,14 +52,11 @@ export default async function ProjectPage({ params }: Props) {
   }[slug]);
   const eyebrowTrack = fallbackTrack(slug === "happy-yard" ? "0.07em" : undefined);
   const h2Track = fallbackTrack({
-    "brush-and-co": "-0.015em",
-    "oak-and-form": "-0.025em",
     "rinseworks": "-0.015em",
     "happy-yard": "-0.025em",
   }[slug]);
   const aboutTrack = fallbackTrack({
     "happy-yard": "-0.015em",
-    "oak-and-form": "-0.02em",
   }[slug]);
 
   return (
