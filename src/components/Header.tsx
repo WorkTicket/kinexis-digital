@@ -3,6 +3,7 @@ import { INDUSTRIES } from "@/data/industries";
 import { chromeFor } from "@/i18n/chrome";
 import { localizeIndustry } from "@/i18n/industries-es";
 import { getLocale, withLocale } from "@/lib/i18n";
+import { imageVariant } from "@/lib/image-sources";
 import { MenuButton, NavLinks } from "./HeaderMenu";
 
 export default async function Header() {
@@ -17,7 +18,7 @@ export default async function Header() {
         <Link className="logo" href={hrefFor("/")} aria-label={chrome.home} prefetch={false}>
           <img
             src="/assets/logos/header-nav.webp"
-            srcSet="/assets/logos/header-nav-360.webp 360w, /assets/logos/header-nav.webp 480w"
+            srcSet={`${imageVariant("/assets/logos/header-nav.webp", 360, "webp")} 360w, /assets/logos/header-nav.webp 480w`}
             sizes="180px"
             alt="Kinexis Digital"
             width={480}

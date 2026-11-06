@@ -11,6 +11,7 @@ import ProjectCard from "@/components/ProjectCard";
 import ReviewsSection from "@/components/ReviewsSection";
 import PricingCta from "@/components/PricingCta";
 import { HL, fallbackTrack } from "@/components/ui";
+import { still } from "@/lib/image-sources";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -147,7 +148,7 @@ export default async function ProjectPage({ params }: Props) {
               <HL text="Looks Great On All Devices" mark="All Devices" />
               <DeferredImg
                 className="devices-arrow"
-                src="/assets/brand/cobalt-brushstroke-arrow-sm.webp"
+                src={still("/assets/brand/cobalt-brushstroke-arrow-sm.webp")}
                 alt=""
                 width={480}
                 height={480}

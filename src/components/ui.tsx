@@ -2,6 +2,7 @@ import Link from "next/link";
 import { preload } from "react-dom";
 import type { CSSProperties, ReactNode } from "react";
 import { COMPARE_ROWS } from "@/lib/content";
+import { still } from "@/lib/image-sources";
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
@@ -39,37 +40,33 @@ type HeroImageProps = {
   sizes: string;
 };
 
+const HERO_WIDTHS = [480, 640, 960, 1254] as const;
+
+function heroSet(base: string, format: "avif" | "webp") {
+  return HERO_WIDTHS.map((width) => `${still(`${base}-${width}.${format}`)} ${width}w`).join(", ");
+}
+
 /** Primary hero artwork. AVIF is served first, with pre-sized WebP as the fallback. */
 export function HeroImage({ name, alt, sizes }: HeroImageProps) {
   const base = `/assets/heroes/${name}`;
-  const avifSrcSet = [
-    `${base}-480.avif 480w`,
-    `${base}-640.avif 640w`,
-    `${base}-960.avif 960w`,
-    `${base}-1254.avif 1254w`,
-  ].join(", ");
-  const webpSrcSet = [
-    `${base}-480.webp 480w`,
-    `${base}-640.webp 640w`,
-    `${base}-960.webp 960w`,
-    `${base}-1254.webp 1254w`,
-  ].join(", ");
+  const avifSrcSet = heroSet(base, "avif");
+  const webpSrcSet = heroSet(base, "webp");
   // Keep the reviews hero deterministic across the three route trees. React's
   // server preload registration was omitted for this async page in the last
   // deploy, while the explicit tag is still deduplicated by the browser.
   const reviewsPreload = name === "05-reviews";
   if (!reviewsPreload) {
-    preload(`${base}-640.avif`, { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
+    preload(still(`${base}-640.avif`), { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
   }
 
   return (
     <>
-      {reviewsPreload && <link rel="preload" as="image" href={`${base}-640.avif`} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
+      {reviewsPreload && <link rel="preload" as="image" href={still(`${base}-640.avif`)} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
       <picture>
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
       <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
       <img
-        src={`${base}-1254.webp`}
+        src={still(`${base}-1254.webp`)}
         width={1254}
         height={1254}
         alt={alt}
@@ -87,9 +84,9 @@ export function Art({
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; deferMobile?: boolean; sizes?: string }) {
   const file = HERO_FILES[name];
   const base = `/assets/heroes/${file}`;
-  const src = `${base}-1254.webp`;
-  const srcSet = `${base}-480.webp 480w, ${base}-640.webp 640w, ${base}-960.webp 960w, ${base}-1254.webp 1254w`;
-  const avifSrcSet = `${base}-480.avif 480w, ${base}-640.avif 640w, ${base}-960.avif 960w, ${base}-1254.avif 1254w`;
+  const src = still(`${base}-1254.webp`);
+  const srcSet = heroSet(base, "webp");
+  const avifSrcSet = heroSet(base, "avif");
   if (priority && deferMobile) {
     return (
       <picture>

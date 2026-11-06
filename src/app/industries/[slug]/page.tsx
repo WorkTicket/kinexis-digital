@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { INDUSTRIES, getIndustry, relatedIndustries, type FeatureKey, type Industry } from "@/data/industries";
 import { getProject, portfolioFile } from "@/data/portfolio";
+import { imageVariant, still } from "@/lib/image-sources";
 import { contentMetadata } from "@/lib/seo";
 import { kitSrc } from "@/lib/site";
 import { ContentSchema } from "@/components/JsonLd";
@@ -76,8 +77,10 @@ export default async function IndustryPage({ params }: Props) {
   const project = industry.projectSlug ? getProject(industry.projectSlug) : undefined;
   const path = `/industries/${industry.slug}`;
   const related = relatedIndustries(industry);
-  const hero = `/assets/industries/${industry.slug}/hero.webp`;
-  const heroMobile = `/assets/industries/${industry.slug}/hero-768.webp`;
+  const heroFile = `/assets/industries/${industry.slug}/hero.webp`;
+  const hero = still(heroFile);
+  const heroMobile = imageVariant(heroFile, 768, "webp");
+  const heroAvif = `${imageVariant(heroFile, 768, "avif")} 768w, ${still(heroFile.replace(".webp", ".avif"))} 1536w`;
 
   return (
     <>
@@ -102,7 +105,7 @@ export default async function IndustryPage({ params }: Props) {
         className={`industry-hero industry-hero--${industry.slug}`}
         art={(
           <picture>
-            <source type="image/avif" srcSet={`${heroMobile.replace(".webp", ".avif")} 768w, ${hero.replace(".webp", ".avif")} 1536w`} sizes="(max-width: 860px) 86vw, 620px" />
+            <source type="image/avif" srcSet={heroAvif} sizes="(max-width: 860px) 86vw, 620px" />
             <source media="(min-width: 861px)" srcSet={`${heroMobile} 768w, ${hero} 1536w`} sizes="620px" />
             <img
               className="hero-art industry-hero__img"

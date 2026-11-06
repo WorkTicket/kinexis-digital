@@ -1,8 +1,9 @@
 // Generates the responsive AVIF/WebP variants used by the homepage section art
 // and the blog cards. Run with: node scripts/optimize-content-images.mjs
-import { readFile, writeFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+import { rebuildFromMaster } from "./still-encode.mjs";
 
 const HOME = [
   "public/assets/home/built-for-your-trade.webp",
@@ -47,27 +48,12 @@ const STICKERS = [
 ];
 const STICKER_WIDTHS = [400, 800];
 
-// These images contain UI text and hard illustration edges. The previous AVIF
-// quality of 55 visibly softened them; these settings retain edge detail while
-// remaining substantially smaller than the source files.
-const WEBP = { quality: 86, effort: 5, smartSubsample: true };
-const AVIF = { quality: 65, effort: 5, chromaSubsampling: "4:4:4" };
-
 const kb = (bytes) => `${Math.round(bytes / 1024)}KB`;
 
 async function emit(input, width, format) {
-  const output = width
-    ? input.replace(/\.webp$/, `-${width}.${format}`)
-    : input.replace(/\.webp$/, `.${format}`);
-  // Read first so Sharp does not keep the input file open while replacing it
-  // on Windows.
-  const source = await readFile(input);
-  const buffer = await sharp(source)
-    .resize({ width: width || undefined, withoutEnlargement: true })
-    [format](format === "webp" ? WEBP : AVIF)
-    .toBuffer();
-  await writeFile(output, buffer);
-  return { output, size: buffer.length };
+  const output = input.replace(/\.webp$/, `-${width}.${format}`);
+  const size = await rebuildFromMaster(input, output, { format, width });
+  return { output, size: size ?? 0 };
 }
 
 for (const input of HOME) {
@@ -101,3 +87,31 @@ for (const input of [...AUDIT, ...STICKERS]) {
     console.log(`${input}: ${width}w ${kb(webp.size)} webp / ${kb(avif.size)} avif`);
   }
 }
+
+// Portfolio cards and device previews are downscaled from the full export.
+// Quality 86 matches the previous transfer size while keeping screenshot text.
+const portfolioDir = "public/portfolio";
+const portfolioFiles = (await readdir(portfolioDir)).filter((file) => file.endsWith(".webp"));
+for (const file of portfolioFiles.filter((name) => !name.endsWith("-640.webp") && !name.includes("-devices"))) {
+  const master = path.join(portfolioDir, file);
+  await rebuildFromMaster(master, master.replace(/\.webp$/, "-640.webp"), { width: 640, webpQuality: 86 });
+}
+for (const file of portfolioFiles.filter((name) => name.endsWith("-devices.webp"))) {
+  const master = path.join(portfolioDir, file);
+  await rebuildFromMaster(master, master.replace(/\.webp$/, "-sm.webp"), { width: 768, webpQuality: 86 });
+}
+
+const brand = [
+  ["public/assets/brand/rocket-launch-laptop.webp", "public/assets/brand/rocket-launch-laptop-sm.webp"],
+  ["public/assets/brand/cobalt-brushstroke-arrow.webp", "public/assets/brand/cobalt-brushstroke-arrow-sm.webp"],
+];
+for (const [master, output] of brand) {
+  const { width } = await sharp(await readFile(output)).metadata();
+  await rebuildFromMaster(master, output, { width, webpQuality: 92 });
+}
+
+await rebuildFromMaster(
+  "public/assets/logos/header-nav.webp",
+  "public/assets/logos/header-nav-360.webp",
+  { width: 360, webpQuality: 92 },
+);

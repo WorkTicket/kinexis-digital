@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { still } from "@/lib/image-sources";
 import { DeferredImg } from "./DeferredImg";
 import { HL } from "./ui";
 
@@ -25,7 +26,7 @@ export default function AuditCta({
       <div className="container audit-cta__inner">
         <div className="audit-cta__art">
           <DeferredImg
-            src="/assets/brand/rocket-launch-laptop-sm.webp"
+            src={still("/assets/brand/rocket-launch-laptop-sm.webp")}
             alt={alt}
             width={800}
             height={1200}
