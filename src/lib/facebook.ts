@@ -8,6 +8,10 @@ export type FacebookReview = {
   name: string;
   role?: string;
   company?: string;
+  /** Business type shown on review cards (e.g. Plumbing). */
+  trade?: string;
+  /** City / region shown on review cards. */
+  city?: string;
   quote: string;
   date: string;
   recommends: boolean;
@@ -16,6 +20,7 @@ export type FacebookReview = {
 /**
  * Recommendations currently public on the Facebook page.
  * Replaced by the Graph API when FACEBOOK_PAGE_ACCESS_TOKEN is set.
+ * Trade/city match live client sites in `src/data/liveSites.ts`.
  */
 const PUBLISHED_REVIEWS: FacebookReview[] = [
   {
@@ -23,6 +28,8 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     name: "Mac Christensen",
     role: "Owner",
     company: "A1 Property Services",
+    trade: "Landscaping",
+    city: "Cedar Falls, Iowa",
     quote:
       "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can't go wrong with this company.",
     date: "October 25, 2026",
@@ -33,7 +40,10 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     name: "Hunter Norris",
     role: "Owner",
     company: "Preferred Plumbing Solutions",
-    quote: "They got our plumbing business right away. Site looks clean and customers trust it.",
+    trade: "Plumbing",
+    city: "Spirit Lake, Idaho",
+    quote:
+      "So grateful to Kinexis Digital! They captured the essence of our plumbing business right away and created a modern website that builds instant trust. 10/10 team!",
     date: "September 22, 2026",
     recommends: true,
   },
@@ -42,8 +52,10 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     name: "Natalia Moreno",
     role: "Owner",
     company: "Manos Creativas Bynmw",
+    trade: "Crochet patterns",
+    city: "Valencia, Spain",
     quote:
-      "So happy with my new site. They listened, stayed professional, and made something that actually feels like us. Check it out on my page.",
+      "Great work! They designed my website exceeding all expectations. Highly recommended for their professionalism. You can see an example of their work on my site",
     date: "September 22, 2026",
     recommends: true,
   },
@@ -69,11 +81,11 @@ function formatDate(iso: string) {
 }
 
 const KNOWN_REVIEWERS = [
-  { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen", role: "Owner", company: "A1 Property Services" },
-  { quote: "They got our plumbing business right away", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions" },
-  { quote: "So grateful to Kinexis Digital", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions" },
-  { quote: "So happy with my new site", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw" },
-  { quote: "Great work! They designed my website", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw" },
+  { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen", role: "Owner", company: "A1 Property Services", trade: "Landscaping", city: "Cedar Falls, Iowa" },
+  { quote: "They got our plumbing business right away", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions", trade: "Plumbing", city: "Spirit Lake, Idaho" },
+  { quote: "So grateful to Kinexis Digital", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions", trade: "Plumbing", city: "Spirit Lake, Idaho" },
+  { quote: "So happy with my new site", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw", trade: "Crochet patterns", city: "Valencia, Spain" },
+  { quote: "Great work! They designed my website", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw", trade: "Crochet patterns", city: "Valencia, Spain" },
 ];
 
 function fromGraph(review: GraphReview): FacebookReview | null {
@@ -88,6 +100,8 @@ function fromGraph(review: GraphReview): FacebookReview | null {
     name,
     role: known?.role,
     company: known?.company,
+    trade: known?.trade,
+    city: known?.city,
     quote,
     date: created ? formatDate(created) : "",
     recommends: review.recommendation_type !== "negative",

@@ -9,6 +9,8 @@ export type DisplayReview = {
   name: string;
   role?: string;
   company?: string;
+  trade?: string;
+  city?: string;
   quote: string;
   date: string;
   stars: number;
@@ -16,6 +18,8 @@ export type DisplayReview = {
   /** ISO-ish stamp for sorting; empty dates sort last. */
   sortKey: string;
 };
+
+export { REVIEW_QUOTE_MAX, REVIEW_QUOTE_MIN, clipReviewQuote } from "./review-limits";
 
 const MONTHS: Record<string, string> = {
   january: "01",
@@ -80,6 +84,8 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
       name: review.name,
       role: review.role,
       company: review.company,
+      trade: review.trade,
+      city: review.city,
       quote: review.quote,
       date: review.date,
       stars: review.recommends ? 5 : 1,
@@ -89,4 +95,11 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
   ];
 
   return reviews.sort((a, b) => b.sortKey.localeCompare(a.sortKey));
+}
+
+/** Average star rating for a review list (0 when empty). */
+export function averageReviewStars(reviews: DisplayReview[]): number {
+  if (reviews.length === 0) return 0;
+  const total = reviews.reduce((sum, review) => sum + review.stars, 0);
+  return total / reviews.length;
 }

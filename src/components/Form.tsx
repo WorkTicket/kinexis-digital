@@ -1,10 +1,10 @@
 export type Field = { label: string; name: string; kind?: "text" | "email" | "tel" | "url" | "textarea" | "file"; required?: boolean; auto?: string };
 
+/** Three-field preview form: name required; phone or email required (enforced in boot.js + API). */
 export const LEAD_FIELDS: Field[] = [
   { label: "First Name", name: "name", required: true, auto: "given-name" },
-  { label: "Email", name: "email", kind: "email", required: true, auto: "email" },
+  { label: "Email", name: "email", kind: "email", auto: "email" },
   { label: "Phone", name: "phone", kind: "tel", auto: "tel" },
-  { label: "Website / Business Name", name: "business" },
 ];
 
 export default function Form({
@@ -23,7 +23,7 @@ export default function Form({
   slim?: boolean;
 }) {
   return (
-    <form className={slim ? "form form--slim" : "form"} noValidate data-lead="">
+    <form className={slim ? "form form--slim" : "form"} noValidate data-lead="" data-contact-or="">
       {fields.map((f) => f.kind === "file" ? (
         <label className="field field--file" key={f.name}><span>{f.label}</span><input type="file" name={f.name} /></label>
       ) : (

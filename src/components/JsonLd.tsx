@@ -90,7 +90,7 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
           areaServed: "US",
           availableLanguage: [...SITE.languages],
         }],
-        knowsAbout: ["Search engine optimization", "Digital marketing", "Web design", "Website management", "Local SEO"],
+        knowsAbout: ["Website plans", "Web design", "Search engine optimization", "Website management", "Local SEO", "Missed-call text-back"],
         ...(sameAs.length ? { sameAs } : {}),
       },
       {
@@ -109,10 +109,11 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
         ...(sameAs.length ? { sameAs } : {}),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
-          name: "Digital marketing services",
+          name: "Website plans and services",
           itemListElement: [
-            { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO Services", url: `${u}/seo-services` } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Plans", url: `${u}/pricing` } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Web Design", url: `${u}/web-design` } },
+            { "@type": "Offer", itemOffered: { "@type": "Service", name: "SEO Services", url: `${u}/seo-services` } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Website Management", url: `${u}/website-management` } },
             { "@type": "Offer", itemOffered: { "@type": "Service", name: "Free SEO Audit", url: `${u}/audit` } },
           ],

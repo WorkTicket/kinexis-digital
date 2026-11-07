@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
+import { REVIEW_QUOTE_MAX, REVIEW_QUOTE_MIN } from "@/lib/review-limits";
 
 type Copy = {
   title: string;
@@ -13,13 +14,15 @@ type Copy = {
   button: string;
   thanks: string;
   fill: string;
+  tooShort: string;
+  tooLong: string;
   error: string;
   network: string;
 };
 
 const EN: Copy = {
   title: "Leave a review on this site",
-  sub: "Your words show up here after you send them. Prefer Trustpilot or Facebook? Use the buttons above.",
+  sub: `Your words show up here after you send them. Keep it to a few sentences (${REVIEW_QUOTE_MAX} characters max). Prefer Trustpilot or Facebook? Use the buttons above.`,
   name: "Your name",
   email: "Email",
   stars: "Star rating",
@@ -27,6 +30,8 @@ const EN: Copy = {
   button: "Post my review",
   thanks: "Thanks — your review is live on this page.",
   fill: "Please fill in the highlighted fields.",
+  tooShort: `Please write at least ${REVIEW_QUOTE_MIN} characters.`,
+  tooLong: `Please keep your review to ${REVIEW_QUOTE_MAX} characters or fewer.`,
   error: "Something went wrong. Please try again.",
   network: "Network error. Please try again.",
 };
@@ -35,6 +40,7 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
   const text = { ...EN, ...copy };
   const router = useRouter();
   const [stars, setStars] = useState(5);
+  const [quoteLen, setQuoteLen] = useState(0);
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [msg, setMsg] = useState("");
@@ -49,6 +55,28 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
       el.setAttribute("aria-invalid", String(!ok));
       if (!ok && !firstBad) firstBad = el;
     });
+
+    const quoteField = form.querySelector<HTMLTextAreaElement>('textarea[name="quote"]');
+    const quoteValue = quoteField?.value.trim() ?? "";
+    if (quoteField) {
+      if (quoteValue.length > 0 && quoteValue.length < REVIEW_QUOTE_MIN) {
+        quoteField.classList.add("invalid");
+        quoteField.setAttribute("aria-invalid", "true");
+        if (!firstBad) firstBad = quoteField;
+        setMsg(text.tooShort);
+        firstBad.focus();
+        return;
+      }
+      if (quoteValue.length > REVIEW_QUOTE_MAX) {
+        quoteField.classList.add("invalid");
+        quoteField.setAttribute("aria-invalid", "true");
+        if (!firstBad) firstBad = quoteField;
+        setMsg(text.tooLong);
+        firstBad.focus();
+        return;
+      }
+    }
+
     if (firstBad) {
       setMsg(text.fill);
       (firstBad as HTMLElement).focus();
@@ -72,6 +100,7 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
         setDone(true);
         form.reset();
         setStars(5);
+        setQuoteLen(0);
         router.refresh();
         return;
       }
@@ -131,10 +160,21 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
         <input type="email" name="email" placeholder=" " autoComplete="email" required maxLength={200} />
         <span>{text.email}</span>
       </label>
-      <label className="field">
-        <textarea name="quote" rows={4} placeholder=" " required minLength={12} maxLength={1200} />
+      <label className="field field--quote">
+        <textarea
+          name="quote"
+          rows={4}
+          placeholder=" "
+          required
+          minLength={REVIEW_QUOTE_MIN}
+          maxLength={REVIEW_QUOTE_MAX}
+          onInput={(event) => setQuoteLen(event.currentTarget.value.length)}
+        />
         <span>{text.quote}</span>
       </label>
+      <p className={`site-review-form__count${quoteLen >= REVIEW_QUOTE_MAX ? " is-max" : ""}`} aria-live="polite">
+        {quoteLen}/{REVIEW_QUOTE_MAX}
+      </p>
 
       <div hidden>
         <label>

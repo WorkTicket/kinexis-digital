@@ -1,4 +1,5 @@
 import { SITE } from "@/lib/site";
+import { REVIEW_QUOTE_MAX, REVIEW_QUOTE_MIN } from "@/lib/review-limits";
 import { addSiteReview, reviewRateLimited } from "@/lib/site-reviews";
 import { hasContentType, privateJson, rejectCrossSite, rejectOversize } from "@/lib/request-security";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
@@ -88,8 +89,8 @@ export async function POST(request: Request) {
   if (!email || email.length > 200 || !EMAIL_PATTERN.test(email)) {
     return visitorError("Please add a valid email.", 400);
   }
-  if (!quote || quote.length < 12 || quote.length > 1200) {
-    return visitorError("Please write a short review (at least a sentence).", 400);
+  if (!quote || quote.length < REVIEW_QUOTE_MIN || quote.length > REVIEW_QUOTE_MAX) {
+    return visitorError(`Please keep your review between ${REVIEW_QUOTE_MIN} and ${REVIEW_QUOTE_MAX} characters.`, 400);
   }
   if (stars < 1 || stars > 5) return visitorError("Please choose a star rating.", 400);
 
@@ -109,8 +110,11 @@ export async function POST(request: Request) {
 
   void notifyTeam({ name: saved.name, email, stars: saved.stars, quote: saved.quote });
 
+  revalidatePath("/");
   revalidatePath("/reviews");
+  revalidatePath("/es");
   revalidatePath("/es/reviews");
+  revalidatePath("/es-es");
   revalidatePath("/es-es/reviews");
 
   return privateJson({ ok: true, review: saved });

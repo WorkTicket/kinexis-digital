@@ -9,12 +9,14 @@ import IndustryGrid from "@/components/IndustryGrid";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
 import PreviewBar from "@/components/PreviewBar";
+import ReviewsSection from "@/components/ReviewsSection";
 import TrustStrip from "@/components/TrustStrip";
 import { Compare, Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 import { imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("home");
+export const revalidate = 3600;
 
 function SectionGraphic({ name, alt, className }: { name: string; alt: string; className: string }) {
   const base = `/assets/home/${name}`;
@@ -49,7 +51,7 @@ function SectionCta({ primaryHref = "/contact", secondaryHref = "/pricing" }: { 
   );
 }
 
-export default function Home() {
+export default async function Home() {
   return (
     <>
       <PageSchema page="home" faqs={FAQS} />
@@ -58,7 +60,7 @@ export default function Home() {
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">Website plans for local businesses</p>
-          <h1><HL text="A Website Built to Bring In More Calls" mark="More Calls" /></h1>
+          <h1><HL text="A Website Plan Built to Book More Work" mark="Book More Work" /></h1>
           <ul className="ticks">
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
@@ -98,7 +100,18 @@ export default function Home() {
       </div></section>
       <PreviewBar />
 
-      {/* 2. What you get */}
+      {/* 2. Client reviews — real quotes right after the hero */}
+      <ReviewsSection
+        variant="home"
+        eyebrow="Client reviews"
+        title="What Local Business Owners Say"
+        mark="Business Owners Say"
+        sub="Real feedback from owners who launched with a Kinexis website plan."
+        ctaLabel="Read More Reviews"
+        ctaHref="/reviews"
+      />
+
+      {/* 3. What you get */}
       <Section tint>
         <MediaSplit image="homepage" alt="Contractor showing a trade website on a laptop and phone">
           <h2><HL text="What You Get With a Kinexis Website Plan" mark="Website Plan" /></h2>
@@ -112,20 +125,20 @@ export default function Home() {
         <SectionCta />
       </Section>
 
-      {/* 3. Portfolio */}
+      {/* 4. Portfolio */}
       <Section>
         <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
-          <h2><HL text="Website Templates Built for Your Trade" mark="Your Trade" /></h2>
-          <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hover to preview, then open the full template.</p>
+          <h2><HL text="Websites Made for Your Trade" mark="Your Trade" /></h2>
+          <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hover to preview, then open the full site.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-          <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Browse website templates</Link>
+          <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Browse our work</Link>
         </p>
       </Section>
 
-      {/* 4. Comparison */}
+      {/* 5. Comparison */}
       <Section tint>
         <h2 className="center"><HL text="Why Business Owners Choose Kinexis Over Freelancers and Agencies" mark="Over Freelancers and Agencies" /></h2>
         <p className="center muted">A clearer plan than hiring a freelancer or a full web design agency for a small business.</p>
@@ -134,7 +147,7 @@ export default function Home() {
         <SectionCta />
       </Section>
 
-      {/* 5. Lead System — cobalt feature band; art + steps tell one story */}
+      {/* 6. Lead System — cobalt feature band; art + steps tell one story */}
       <Section band="lead">
         <div className="lead-feature">
           <div className="lead-feature__copy">
@@ -155,7 +168,7 @@ export default function Home() {
         <ReviewRail />
       </Section>
 
-      {/* 6. Includes — checklist sheet is the visual; no duplicate hero art */}
+      {/* 7. Includes — checklist sheet is the visual; no duplicate hero art */}
       <Section tint>
         <div className="section-head">
           <p className="eyebrow">Built into every plan</p>
@@ -170,7 +183,7 @@ export default function Home() {
         </p>
       </Section>
 
-      {/* 7. Trades — short featured list; full directory lives on /industries */}
+      {/* 8. Trades — short featured list; full directory lives on /industries */}
       <Section>
         <div className="trades-feature">
           <div className="trades-feature__copy">
@@ -197,12 +210,12 @@ export default function Home() {
         />
       </Section>
 
-      {/* 8. Plans */}
+      {/* 9. Plans */}
       <Section id="plans">
         <PlanOffer />
       </Section>
 
-      {/* 9. Process */}
+      {/* 10. Process */}
       <Section>
         <h2 className="center"><HL text="From Free Preview to Launch" mark="to Launch" /></h2>
         <p className="center muted">See the homepage first. If it feels right, choose a plan and we’ll map out the launch in writing.</p>
@@ -213,7 +226,7 @@ export default function Home() {
         </p>
       </Section>
 
-      {/* 10. Guarantee — final offer block above FAQs */}
+      {/* 11. Guarantee — final offer block above FAQs */}
       <Section tint>
         <h2 className="center"><HL text="60-Day Lead Guarantee" mark="Lead Guarantee" /></h2>
         <p className="center muted">Lead System and Plus include a written lead guarantee. If you get zero tracked leads in your first 60 days live, we waive the 3rd and 4th monthly charges.</p>
@@ -224,7 +237,7 @@ export default function Home() {
         <TrustStrip className="center" />
       </Section>
 
-      {/* 11. FAQ */}
+      {/* 12. FAQ */}
       <Section narrow>
         <h2 className="center"><HL text="Frequently Asked Questions" mark="Questions" /></h2>
         <Faq items={FAQS} />

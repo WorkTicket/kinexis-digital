@@ -14,7 +14,7 @@ export const FAQS: QA[] = [
 ];
 export const WEB_FAQS: QA[] = [
   { q: "How does the free preview work?", a: "Tell us about your trade and the look you want. We prepare a homepage concept you can review before choosing a plan. No card is required, and we reply within 2 business days." },
-  { q: "What do I need to send you?", a: "A design direction helps most—examples from our templates, portfolio, or screenshots of sites you like. Send your logo if you have one, plus any job photos, truck shots, or team pictures. If you are still gathering photos, we can start the preview with realistic trade copy and placeholders." },
+  { q: "What do I need to send you?", a: "A design direction helps most—examples from our portfolio, or screenshots of sites you like. Send your logo if you have one, plus any job photos, truck shots, or team pictures. If you are still gathering photos, we can start the preview with realistic trade copy and placeholders." },
   { q: "What if I don’t like the first design?", a: "Say what you want changed. We revise the homepage until it feels right for your business, then you choose a plan and we finish the full site." },
   { q: "What pages and features will I get?", a: "Your site includes a homepage, pages for the services you want calls for, and a simple way to phone you or send details for an estimate. It also has clear titles, organized headings, fast pages, and a structure Google can read. You see the homepage before paying." },
   { q: "What are the website prices?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option begins with a free homepage preview, with no card and no obligation." },
@@ -23,7 +23,7 @@ export const WEB_FAQS: QA[] = [
 
 /** Design process steps for /web-design (not the company-wide launch STEPS). */
 export const DESIGN_PROCESS_STEPS = [
-  { title: "Share a direction", text: "Pick a look from our templates or portfolio, or send screenshots of sites you like as a clear starting point." },
+  { title: "Share a direction", text: "Pick a look from our portfolio, or send screenshots of sites you like as a clear starting point." },
   { title: "Send brand basics", text: "Share your logo if you have one, your business name, and any colors you already use. We work with what you have." },
   { title: "Add photos if you have them", text: "Job photos, your truck, or your team help the preview feel real. If you don’t have them yet, we can still start." },
   { title: "We prepare your homepage preview", text: "Within 2 business days you get a homepage concept for your trade—with no card required and no obligation." },
@@ -287,6 +287,6 @@ export const REVIEWS: { quote: string; name: string; company: string }[] = [
 ];
 export const COMPARE_ROWS: [string, boolean, boolean][] = [
   ["Free homepage preview before you pay", false, false], ["Missed-call texts and review requests", false, false],
-  ["Hosting and updates handled", false, true], ["Month-to-month, cancel anytime", false, false],
+  ["Hosting and updates handled", false, true], ["Price locked for 24 months", false, false],
   ["English and Spanish sites", false, true],
 ];

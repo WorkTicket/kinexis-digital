@@ -13,7 +13,7 @@ export const ogImage = {
   url: SITE.ogImage.startsWith("http") ? SITE.ogImage : `${SITE.url}${SITE.ogImage}`,
   width: 1730,
   height: 909,
-  alt: `${SITE.name}, digital marketing agency for US businesses`,
+  alt: `${SITE.name} — website plans for local businesses from $97/mo`,
 };
 
 /** Keep meta descriptions inside the useful 120–155 character range. */

@@ -1,3 +1,4 @@
+import { clipReviewQuote } from "@/lib/review-limits";
 import { REVIEW_SOURCE_LABEL, type DisplayReview, type ReviewSource } from "@/lib/reviews";
 
 function StarIcon({ filled }: { filled: boolean }) {
@@ -22,17 +23,18 @@ function Stars({ value }: { value: number }) {
   );
 }
 
-function ThumbsUp() {
-  return (
-    <span className="review-card__avatar review-card__avatar--thumb" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="22" height="22">
-        <path
-          fill="currentColor"
-          d="M2 10.5v9A1.5 1.5 0 0 0 3.5 21H7v-12H3.5A1.5 1.5 0 0 0 2 10.5zm18.16-1.13-4.05-1.2V5.5A3.5 3.5 0 0 0 12.61 2l-.5.08a1.5 1.5 0 0 0-1.1 1.79l.7 3.38H9v12h8.56a2.5 2.5 0 0 0 2.44-1.95l1.2-5.5a2.5 2.5 0 0 0-1.04-2.43z"
-        />
-      </svg>
-    </span>
-  );
+function initialsFor(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "K";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return `${parts[0][0] ?? ""}${parts[parts.length - 1][0] ?? ""}`.toUpperCase();
+}
+
+function detailLine(review: DisplayReview) {
+  if (review.trade || review.city) {
+    return [review.trade, review.city].filter(Boolean).join(" · ");
+  }
+  return [review.role, review.company].filter(Boolean).join(" · ");
 }
 
 export function UnifiedReviewCard({
@@ -43,6 +45,9 @@ export function UnifiedReviewCard({
   sourceLabels?: Partial<Record<ReviewSource, string>>;
 }) {
   const source = sourceLabels?.[review.source] ?? REVIEW_SOURCE_LABEL[review.source];
+  const quote = clipReviewQuote(review.quote);
+  const truncated = quote !== review.quote.replace(/\s+/g, " ").trim();
+  const detail = detailLine(review);
 
   return (
     <figure className="review-card">
@@ -51,22 +56,16 @@ export function UnifiedReviewCard({
         <span className={`review-card__source review-card__source--${review.source}`}>{source}</span>
       </header>
 
-      <blockquote className="review-card__quote">
+      <blockquote className="review-card__quote" title={truncated ? review.quote : undefined}>
         <span className="review-card__mark" aria-hidden="true">“</span>
-        <p>{review.quote}</p>
+        <p>{quote}</p>
       </blockquote>
 
       <figcaption className="review-card__person">
-        <ThumbsUp />
+        <span className="review-card__avatar" aria-hidden="true">{initialsFor(review.name)}</span>
         <span className="review-card__meta">
           <b>{review.name}</b>
-          {review.role || review.company ? (
-            <span className="review-card__detail">
-              {review.role ? <span className="review-card__role">{review.role}</span> : null}
-              {review.role && review.company ? <span className="review-card__sep" aria-hidden="true"> · </span> : null}
-              {review.company ? <span className="review-card__company">{review.company}</span> : null}
-            </span>
-          ) : null}
+          {detail ? <span className="review-card__detail">{detail}</span> : null}
           {review.date ? <time dateTime={review.sortKey || undefined}>{review.date}</time> : null}
         </span>
       </figcaption>

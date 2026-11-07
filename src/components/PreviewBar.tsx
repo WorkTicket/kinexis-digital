@@ -12,13 +12,13 @@ const SHOW = new Set([
 
 const SLIM_FIELDS_EN: Field[] = [
   { label: "First Name", name: "name", required: true, auto: "given-name" },
-  { label: "Email", name: "email", kind: "email", required: true, auto: "email" },
+  { label: "Email", name: "email", kind: "email", auto: "email" },
   { label: "Phone", name: "phone", kind: "tel", auto: "tel" },
 ];
 
 const SLIM_FIELDS_ES: Field[] = [
   { label: "Nombre", name: "name", required: true, auto: "given-name" },
-  { label: "Correo", name: "email", kind: "email", required: true, auto: "email" },
+  { label: "Correo", name: "email", kind: "email", auto: "email" },
   { label: "Teléfono", name: "phone", kind: "tel", auto: "tel" },
 ];
 

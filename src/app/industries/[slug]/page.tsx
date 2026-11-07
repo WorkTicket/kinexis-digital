@@ -219,11 +219,11 @@ export default async function IndustryPage({ params }: Props) {
             <div className="media-split__copy">
               <h2><HL text={`See ${articleFor(industry.slug)} ${industry.name} Website Template`} mark="Website Template" /></h2>
               <p>
-                Like the <Link href={`/portfolio/${project.slug}`} prefetch={false}>{project.name}</Link> design? Choose this professionally designed template as the starting point for your website, and we’ll customize it around your services, brand, and customers.
+                Like the <Link href={`/portfolio/${project.slug}`} prefetch={false}>{project.name}</Link> design? Use it as the starting point for your website, and we’ll customize it around your services, brand, and customers.
               </p>
               <p className="btn-row"><Link className="btn btn--ghost" href={`/portfolio/${project.slug}`} prefetch={false}>View the Template</Link></p>
             </div>
-            <ShotFrame project={project} href={`/portfolio/${project.slug}`} label={`View the ${project.name} website template`} />
+            <ShotFrame project={project} href={`/portfolio/${project.slug}`} label={`View the ${project.name} website`} />
           </div>
         </Section>
       )}

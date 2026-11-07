@@ -30,9 +30,17 @@ export async function POST(request: Request) {
 
   const name = String(form.get("name") ?? "").trim();
   const email = String(form.get("email") ?? "").trim();
-  if (!name || name.length > 120 || email.length > 200 || !EMAIL_PATTERN.test(email)) {
-    return visitorError("Please add your name and a valid email.", 400);
+  const phone = String(form.get("phone") ?? "").trim();
+  if (!name || name.length > 120) {
+    return visitorError("Please add your name.", 400);
   }
+  if (!email && !phone) {
+    return visitorError("Please add a phone number or email.", 400);
+  }
+  if (email && (email.length > 200 || !EMAIL_PATTERN.test(email))) {
+    return visitorError("Please add a valid email.", 400);
+  }
+  const replyEmail = email || SITE.email;
 
   const file = form.get("file");
   if (file instanceof File && file.size > MAX_FILE) {
@@ -57,7 +65,7 @@ export async function POST(request: Request) {
   const isCall = String(form.get("topic") ?? "").trim() === "strategy-call";
 
   try {
-    const sent = await sendMail({ name: safeName, email, text, isUpdate, isCall, file });
+    const sent = await sendMail({ name: safeName, email: replyEmail, text, isUpdate, isCall, file });
     if (sent === "sent") return privateJson({ ok: true });
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);

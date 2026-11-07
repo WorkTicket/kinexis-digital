@@ -9,18 +9,14 @@ function FacebookIcon() {
   );
 }
 
-const iconButton =
-  "footer-social__btn grid place-items-center text-white transition hover:text-[#1877F2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright";
-const facebookChoice =
-  "rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.08em] text-brand-navy transition hover:bg-[#1877F2] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright";
-
 export default function FacebookChooser({ english, spanish }: { english?: string; spanish?: string }) {
   if (!english && !spanish) return null;
 
   if (!english || !spanish) {
     return (
-      <a className={iconButton} href={english || spanish} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Facebook">
+      <a className="footer-social__btn footer-social__btn--wide" href={english || spanish} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Facebook">
         <FacebookIcon />
+        <span>Facebook</span>
       </a>
     );
   }
@@ -29,21 +25,36 @@ export default function FacebookChooser({ english, spanish }: { english?: string
     <div className="fb-chooser relative" data-fb="">
       <button
         type="button"
-        className={iconButton}
+        className="footer-social__btn footer-social__btn--wide"
         aria-expanded={false}
         aria-haspopup="menu"
-        aria-label="Kinexis Digital on Facebook"
+        aria-label="Choose a Kinexis Digital Facebook page"
       >
         <FacebookIcon />
+        <span>Facebook</span>
       </button>
       <div className="fb-menu absolute top-full left-0 z-20 pt-2 invisible opacity-0 transition duration-150">
-        <div role="menu" aria-label="Choose a Facebook page" className="flex items-center rounded-full bg-white p-1 shadow-[0_8px_20px_rgba(0,0,0,.22)]">
-          <a className={facebookChoice} role="menuitem" href={english} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Facebook in English">
-            EN
+        <div role="menu" aria-label="Facebook pages" className="flex items-center gap-0.5 rounded-full bg-white p-1 shadow-[0_8px_20px_rgba(0,0,0,.22)]">
+          <a
+            className="rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.04em] text-brand-navy transition hover:bg-[#1877F2] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright"
+            role="menuitem"
+            href={english}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="English Facebook page"
+          >
+            English page
           </a>
           <span className="mx-0.5 h-3 w-px bg-brand-navy/20" aria-hidden="true" />
-          <a className={facebookChoice} role="menuitem" href={spanish} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital en Español on Facebook">
-            ES
+          <a
+            className="rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.04em] text-brand-navy transition hover:bg-[#1877F2] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright"
+            role="menuitem"
+            href={spanish}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Spanish Facebook page"
+          >
+            Spanish page
           </a>
         </div>
       </div>

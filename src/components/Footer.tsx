@@ -78,9 +78,8 @@ export default async function Footer() {
   const hrefFor = (href: string) => (href === "/pay" || /^https?:\/\//.test(href) ? href : withLocale(locale, href));
   const fields = locale === "en" ? LEAD_FIELDS : [
     { label: "Nombre", name: "name", required: true, auto: "given-name" },
-    { label: "Correo", name: "email", kind: "email" as const, required: true, auto: "email" },
+    { label: "Correo", name: "email", kind: "email" as const, auto: "email" },
     { label: "Teléfono", name: "phone", kind: "tel" as const, auto: "tel" },
-    { label: "Sitio o negocio", name: "business" },
   ];
   const otherSocial = Object.entries(SITE.social).filter(
     ([name]) => !name.startsWith("Facebook") && name !== "YouTube" && name !== "X",
@@ -130,12 +129,7 @@ export default async function Footer() {
                 />
               </Link>
               <p className="footer-blurb">
-                {locale === "en" ? (
-                  <>
-                    <span className="block">Digital marketing, SEO, and websites</span>
-                    <span className="block">for businesses across the United States.</span>
-                  </>
-                ) : <span className="block">{chrome.footerBlurb}</span>}
+                <span className="block">{chrome.footerBlurb}</span>
                 {chrome.region ? <span className="footer-blurb__region">{chrome.region}</span> : null}
               </p>
 
@@ -152,15 +146,17 @@ export default async function Footer() {
 
               <div className="footer-social">
                 <FacebookChooser english={SITE.social.Facebook} spanish={SITE.social["Facebook ES"]} />
-                <a className="footer-social__btn footer-social__btn--yt" href={SITE.social.YouTube} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on YouTube">
+                <a className="footer-social__btn footer-social__btn--wide footer-social__btn--yt" href={SITE.social.YouTube} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on YouTube">
                   <YouTubeIcon />
+                  <span>YouTube</span>
                 </a>
-                <a className="footer-social__btn footer-social__btn--tp" href={TRUSTPILOT_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Trustpilot">
+                <a className="footer-social__btn footer-social__btn--wide footer-social__btn--tp" href={TRUSTPILOT_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Trustpilot">
                   <TrustpilotIcon />
+                  <span>Trustpilot</span>
                 </a>
                 {otherSocial.map(([name, url]) => (
-                  <a key={name} className="footer-social__btn" href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
-                    {name}
+                  <a key={name} className="footer-social__btn footer-social__btn--wide" href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
+                    <span>{name}</span>
                   </a>
                 ))}
               </div>

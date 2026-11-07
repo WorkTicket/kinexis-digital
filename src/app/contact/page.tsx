@@ -16,7 +16,7 @@ export default function Page() {
           <div className="contact-form">
             <h2 className="card-title">Tell Us About Your Business</h2>
             <p className="muted">Share what you do and we’ll prepare a free homepage preview. No card required.</p>
-            <p className="muted small">Business name or website, business type, and a phone or email are enough to start.</p>
+            <p className="muted small">Your name and a phone number or email are enough to start.</p>
             <Form
               fields={LEAD_FIELDS}
               button="Show Me My Free Homepage"

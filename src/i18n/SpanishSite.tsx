@@ -31,6 +31,7 @@ import IndustryGrid from "@/components/IndustryGrid";
 import { ArticleSchema, ContentSchema } from "@/components/JsonLd";
 import PlanOffer from "@/components/PlanOffer";
 import PreviewBar from "@/components/PreviewBar";
+import ReviewsSection from "@/components/ReviewsSection";
 import ProjectCard from "@/components/ProjectCard";
 import { ShotFrame } from "@/components/ShotFrame";
 import Stepper, { type Step } from "@/components/Stepper";
@@ -54,7 +55,7 @@ const PAGE_META: Record<string, Meta> = {
   "/contact": { title: "Hablemos de tu proyecto web", description: "Contacta a Kinexis Digital para hablar de un sitio nuevo, rediseño, SEO o mantenimiento web para tu negocio y recibe una orientación clara." },
   "/website-management": { title: "Administración y mantenimiento web", description: "Mantén tu sitio seguro, actualizado y respaldado con hosting administrado, copias de seguridad, cambios pequeños y soporte directo del equipo." },
   "/about": { title: "Conoce nuestra agencia de diseño web", description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios en Estados Unidos." },
-  "/portfolio": { title: "Portafolio y plantillas de diseño web", description: "Explora plantillas profesionales y sitios reales de clientes de Kinexis para elegir la dirección visual adecuada para tu sitio web." },
+  "/portfolio": { title: "Portafolio y sitios de clientes", description: "Explora sitios reales de clientes de Kinexis y diseños para negocios de servicios locales, y elige la dirección visual adecuada para tu sitio." },
   "/industries": { title: "Diseño web para industrias de servicios", description: "Explora ideas de diseño web para plomería, HVAC, electricidad, techos, jardinería y otras industrias de servicios que buscan clientes locales." },
   "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee reseñas de clientes de Kinexis Digital en este sitio, Trustpilot y Facebook, y deja la tuya en unos clics." },
   "/upgrades": { title: "Extras y mejoras para sitios web", description: "Agrega páginas, mantenimiento continuo u otras mejoras cuando tu sitio web y tu negocio las necesiten, sin complicar tu operación diaria." },
@@ -141,7 +142,7 @@ export async function SpanishPage({ locale, slug }: { locale: Exclude<Locale, "e
   notFound();
 }
 
-function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   const faqs = homeFaqs(tx);
   const steps: Step[] = [
     { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu oficio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
@@ -156,7 +157,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">{tx("Planes de sitios web para negocios locales")}</p>
-          <h1><HL text={tx("Un sitio pensado para que te llamen más")} mark={tx("te llamen más")} /></h1>
+          <h1><HL text={tx("Un plan de sitio pensado para conseguir más trabajos")} mark={tx("conseguir más trabajos")} /></h1>
           <ul className="ticks">
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Ves tu inicio gratis")}</b> – {tx("sin tarjeta")}</span><span>{tx("y sin obligación antes de pagar")}</span></span></li>
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Atrapas las llamadas que pierdes")}</b></span><span>{tx("texto automático desde el celular y seguimiento")}</span></span></li>
@@ -177,6 +178,15 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
         <HeroFilm />
       </div></section>
       <PreviewBar />
+      <ReviewsSection
+        variant="home"
+        eyebrow={tx("Reseñas de clientes")}
+        title={tx("Lo que dicen dueños de negocios locales")}
+        mark={tx("dueños de negocios locales")}
+        sub={tx("Comentarios reales de dueños que lanzaron su sitio con un plan de Kinexis.")}
+        ctaLabel={tx("Leer más reseñas")}
+        ctaHref={href("/reviews")}
+      />
       <Section tint>
         <MediaSplit image="homepage" alt={tx("Un oficio mostrando su sitio en una computadora y un celular")}>
           <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
@@ -189,14 +199,14 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
         </div>
       </Section>
       <Section>
-        <h2><HL text={tx("Plantillas web hechas para tu oficio")} mark={tx("tu oficio")} /></h2>
-        <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Pasa el cursor para verla y abre la plantilla completa en inglés.")}</p>
+        <h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2>
+        <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Pasa el cursor para verlo y abre el sitio completo en inglés.")}</p>
         <div className="portfolio"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
-        <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link></p>
+        <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx("Por qué los dueños eligen Kinexis frente a freelancers y agencias")} mark={tx("frente a freelancers y agencias")} /></h2>
-        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Mes a mes, cancela cuando quieras"), false, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
+        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Precio fijo por 24 meses"), false, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
         <p className="center muted small">{tx("Son ofertas habituales; cada proveedor puede variar.")}</p>
       </Section>
       <Section band="lead">
@@ -328,14 +338,14 @@ type PageBits = { tx: (s: string) => string; href: (p: string) => string; lang: 
 function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale }) {
   const faqs = [
     { q: tx("¿Cómo funciona la vista previa gratis?"), a: tx("Cuéntanos sobre tu oficio y el estilo que buscas. Preparamos un concepto de la página de inicio para que lo revises antes de elegir un plan. No se pide tarjeta y respondemos en 2 días hábiles.") },
-    { q: tx("¿Qué necesito enviarte?"), a: tx("Ayuda una dirección de diseño: ejemplos de nuestras plantillas, del portafolio o capturas de sitios que te gusten. Envía tu logo si lo tienes, y fotos de trabajos, la camioneta o el equipo. Si aún estás reuniendo fotos, podemos empezar la vista previa con texto realista del oficio y marcadores de posición.") },
+    { q: tx("¿Qué necesito enviarte?"), a: tx("Ayuda una dirección de diseño: ejemplos de nuestro portafolio o capturas de sitios que te gusten. Envía tu logo si lo tienes, y fotos de trabajos, la camioneta o el equipo. Si aún estás reuniendo fotos, podemos empezar la vista previa con texto realista del oficio y marcadores de posición.") },
     { q: tx("¿Y si no me gusta el primer diseño?"), a: tx("Dinos qué quieres cambiar. Ajustamos la página de inicio hasta que se sienta bien para tu negocio; luego eliges un plan y terminamos el sitio completo.") },
     { q: tx("¿Qué páginas y funciones voy a recibir?"), a: tx("El sitio incluye inicio, páginas para los servicios que quieres promover y una forma sencilla de llamar o cotizar. También lleva títulos claros, encabezados ordenados, páginas rápidas y una estructura que Google puede leer. Ves el inicio antes de pagar.") },
     { q: tx("¿Cuáles son los precios?"), a: tx("Website cuesta $97 al mes, Lead System $197, Plus $297 y Own It $1,497 en un solo pago. Todos empiezan con una vista previa gratis, sin tarjeta y sin obligación.") },
     { q: tx("¿Pueden construir para mi zona?"), a: tx("Sí. Trabajamos con negocios de servicios en Estados Unidos y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad.") },
   ];
   const steps = [
-    { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestras plantillas o del portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio.") },
+    { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestro portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio.") },
     { title: tx("Envía lo básico de tu marca"), text: tx("Comparte tu logo si lo tienes, el nombre del negocio y los colores que ya usas. Trabajamos con lo que tengas.") },
     { title: tx("Agrega fotos si las tienes"), text: tx("Fotos de trabajos, la camioneta o el equipo ayudan a que la vista previa se sienta real. Si aún no las tienes, igual podemos empezar.") },
     { title: tx("Preparamos la vista previa del inicio"), text: tx("En 2 días hábiles recibes un concepto de inicio para tu oficio—sin tarjeta y sin obligación.") },
@@ -370,7 +380,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
         <h2 className="center"><HL text={tx("Qué enviarnos")} mark={tx("enviarnos")} /></h2>
         <p className="center muted">{tx("No necesitas un kit de marca terminado. Envía lo que tengas y completamos el resto para la vista previa.")}</p>
         <div className="grid grid--3">
-          <IconCard title={tx("Dirección de diseño")} text={tx("Ejemplos de nuestras plantillas, del portafolio o capturas de sitios que te gusten. Unas pocas referencias marcan el tono.")} icon="preview" />
+          <IconCard title={tx("Dirección de diseño")} text={tx("Ejemplos de nuestro portafolio, o capturas de sitios que te gusten. Unas pocas referencias marcan el tono.")} icon="preview" />
           <IconCard title={tx("Logo y lo básico de la marca")} text={tx("Tu logo si lo tienes, el nombre del negocio y los colores que ya usas en camionetas, camisas o tarjetas.")} icon="built-for-your-trade" />
           <IconCard title={tx("Fotos (opcional)")} text={tx("Fotos reales de trabajos, tu camioneta o tu equipo. Si aún las estás reuniendo, la vista previa puede empezar sin ellas.")} icon="better-design" />
         </div>
@@ -617,7 +627,7 @@ function Contact({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
       <ContentSchema path={href("/contact")} title={tx(PAGE_META["/contact"].title)} description={tx(PAGE_META["/contact"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Contacto"), path: href("/contact") }]} inLanguage={lang} />
       <PageHero h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
       <Section><div className="contact-grid">
-        <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", required: true, auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Sitio o negocio"), name: "business" }]} button={tx("Hablemos")} fast fastText={tx("Envíalo y te responderemos pronto.")} />
+        <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }]} button={tx("Muéstrame mi página de inicio")} note={tx("Sin tarjeta. Respondemos en un máximo de 2 días hábiles.")} fast fastText={tx("Sin tarjeta. Respondemos en un máximo de 2 días hábiles.")} />
         <aside className="contact-info">
           <div className="card"><h2 className="card-title">{tx("Llamar")}</h2><p><a href={telHref(SITE.phone)}>{SITE.phone}</a></p></div>
           <div className="card"><h2 className="card-title">{tx("Correo")}</h2><p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p></div>
@@ -757,7 +767,7 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
         <div className="site-review-panel spaced">
           <SiteReviewForm copy={{
             title: tx("Deja una reseña en este sitio"),
-            sub: tx("Tus palabras aparecen aquí al enviarlas. ¿Prefieres Trustpilot o Facebook? Usa los botones de arriba."),
+            sub: tx("Tus palabras aparecen aquí al enviarlas. Máximo 280 caracteres. ¿Prefieres Trustpilot o Facebook? Usa los botones de arriba."),
             name: tx("Tu nombre"),
             email: tx("Correo"),
             stars: tx("Calificación"),
@@ -765,6 +775,8 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
             button: tx("Publicar mi reseña"),
             thanks: tx("Gracias — tu reseña ya está en esta página."),
             fill: tx("Completa los campos marcados."),
+            tooShort: tx("Escribe al menos 20 caracteres."),
+            tooLong: tx("La reseña no puede pasar de 280 caracteres."),
             error: tx("Algo salió mal. Inténtalo de nuevo."),
             network: tx("Error de red. Inténtalo de nuevo."),
           }} />
@@ -923,7 +935,7 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/portfolio")} title={tx(PAGE_META["/portfolio"].title)} description={tx(PAGE_META["/portfolio"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Portafolio"), path: href("/portfolio") }]} inLanguage={lang} />
-      <PageHero className="portfolio-hero" eyebrow={tx("Plantillas web para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo elige una plantilla y la personalizamos para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
+      <PageHero className="portfolio-hero" eyebrow={tx("Sitios para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo mira nuestro trabajo y personalizamos una dirección para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
         <div className="btn-row spaced"><Link className="btn btn--primary btn--lg" href={href("/contact")} prefetch={false}>{tx("Ver primero mi página de inicio")}</Link><Link className="btn btn--ghost btn--lg" href={href("/pricing")} prefetch={false}>{tx("Ver los cuatro planes")}</Link></div>
       </PageHero>
       <Section>
@@ -941,8 +953,8 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
               </a>
             );
           })}</div>
-          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Plantillas web diseñadas profesionalmente")} mark={tx("Plantillas web")} /></h2><p className="muted">{tx("Elige una plantilla que te guste y personalizamos el diseño, el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver la plantilla completa en inglés.")}</p></div></div>
-          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver esta plantilla")} scrollOnHover={false} />)}</div>
+          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2><p className="muted">{tx("Elige un diseño que te guste y personalizamos el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver el sitio completo en inglés.")}</p></div></div>
+          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este sitio")} scrollOnHover={false} />)}</div>
         </div>
       </Section>
       <AuditCta eyebrow={tx("Un punto de partida claro")} heading={tx("Descubre qué está frenando tu sitio")} mark={tx("frenando tu sitio")} text={tx("Te decimos qué funciona, qué estorba y qué cambios conviene hacer primero. Hay revisiones gratis y de pago.")} cta={tx("Revisar mi sitio")} href={href("/audit")} alt={tx("Un cohete sale de una computadora")} />
@@ -1015,10 +1027,10 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
         <Section>
           <div className="media-split">
             <div className="media-split__copy">
-              <h2><HL text={tx(`Ejemplo de plantilla web para ${industry.name}`)} mark={tx("plantilla web")} /></h2>
-              <p>{tx("¿Te gusta el diseño de")} <Link href={`/portfolio/${project.slug}`} hrefLang="en-US" prefetch={false}>{project.name}</Link>? {tx("Elige esta plantilla profesional como punto de partida y la personalizamos según tus servicios, tu marca y tus clientes. La página de la plantilla está en inglés.")}</p>
+              <h2><HL text={tx(`Ejemplo de sitio web para ${industry.name}`)} mark={tx("sitio web")} /></h2>
+              <p>{tx("¿Te gusta el diseño de")} <Link href={`/portfolio/${project.slug}`} hrefLang="en-US" prefetch={false}>{project.name}</Link>? {tx("Úsalo como punto de partida y lo personalizamos según tus servicios, tu marca y tus clientes. La página del diseño está en inglés.")}</p>
             </div>
-            <ShotFrame project={project} href={`/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver la plantilla web de ${project.name}`)} ctaLabel={tx("Ver esta plantilla")} />
+            <ShotFrame project={project} href={`/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver el sitio de ${project.name}`)} ctaLabel={tx("Ver este sitio")} />
           </div>
         </Section>
       )}

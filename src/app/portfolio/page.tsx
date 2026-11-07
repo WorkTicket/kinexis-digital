@@ -23,10 +23,10 @@ export default function Page() {
       <PageSchema page="portfolio" />
       <PageHero
         className="portfolio-hero"
-        eyebrow="Website templates for local service businesses"
+        eyebrow="Websites for local service businesses"
         h1="Explore Our Design Work"
         mark="Design Work"
-        sub="Live client websites are listed first. Choose a template further down and we’ll customize it for your business, from the first screen to the quote path."
+        sub="Live client websites are listed first. Browse our work further down and we’ll customize a direction for your business, from the first screen to the quote path."
         image="portfolio"
         imageAlt="Trade websites shown on desktop and phone screens"
       >
@@ -34,7 +34,7 @@ export default function Page() {
           <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>See My Homepage First</Link>
           <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>View The Four Plans</Link>
         </div>
-        <p className="muted small trust">Professionally designed templates for garage doors, roofing, electrical, cleaning, and other local services.</p>
+        <p className="muted small trust">Designs for garage doors, roofing, electrical, cleaning, and other local services.</p>
       </PageHero>
 
       <Section>
@@ -93,13 +93,13 @@ export default function Page() {
           <div className="showcase__head showcase__head--follow">
             <div>
               <p className="eyebrow">Choose your starting design</p>
-              <h2><HL text="Professionally Designed Website Templates" mark="Website Templates" /></h2>
-              <p className="muted">Choose a template you like and we’ll tailor the design, content, services, and calls to action for your business. Hover or tap a screenshot to view the full template.</p>
+              <h2><HL text="Websites Made for Your Trade" mark="Your Trade" /></h2>
+              <p className="muted">Choose a look you like and we’ll tailor the design, content, services, and calls to action for your business. Hover or tap a screenshot to view the full site.</p>
             </div>
             <Link className="link-btn" href="/contact" prefetch={false}>Reach out to see more</Link>
           </div>
           <div className="portfolio portfolio--main">
-            {PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} label={`View the ${project.name} template`} ctaLabel="View This Template" scrollOnHover={false} />)}
+            {PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} label={`View the ${project.name} website`} ctaLabel="View This Site" scrollOnHover={false} />)}
           </div>
         </div>
       </Section>

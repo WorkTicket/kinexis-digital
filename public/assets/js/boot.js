@@ -726,6 +726,7 @@ document.addEventListener("submit", async (event) => {
   if (!(form instanceof HTMLFormElement) || !form.hasAttribute("data-lead")) return;
   event.preventDefault();
   let firstBad = null;
+  let contactMsg = "";
   form.querySelectorAll("[required]").forEach((el) => {
     if (!(el instanceof HTMLInputElement) && !(el instanceof HTMLTextAreaElement)) return;
     const ok = !!el.value.trim() && el.checkValidity();
@@ -733,9 +734,25 @@ document.addEventListener("submit", async (event) => {
     el.setAttribute("aria-invalid", String(!ok));
     if (!ok && !firstBad) firstBad = el;
   });
+  if (form.hasAttribute("data-contact-or")) {
+    const email = form.querySelector('input[name="email"]');
+    const phone = form.querySelector('input[name="phone"]');
+    if (email instanceof HTMLInputElement && phone instanceof HTMLInputElement) {
+      const emailVal = email.value.trim();
+      const phoneVal = phone.value.trim();
+      const emailBad = emailVal ? !email.checkValidity() : !phoneVal;
+      const phoneBad = phoneVal ? phoneVal.replace(/\D/g, "").length < 7 : !emailVal;
+      email.classList.toggle("invalid", emailBad);
+      phone.classList.toggle("invalid", phoneBad);
+      email.setAttribute("aria-invalid", String(emailBad));
+      phone.setAttribute("aria-invalid", String(phoneBad));
+      if ((emailBad || phoneBad) && !firstBad) firstBad = emailBad ? email : phone;
+      if (!emailVal && !phoneVal) contactMsg = "Please add a phone number or email.";
+    }
+  }
   const msg = form.querySelector(".form__msg");
   if (firstBad) {
-    if (msg) msg.textContent = "Please fill in the highlighted fields.";
+    if (msg) msg.textContent = contactMsg || "Please fill in the highlighted fields.";
     firstBad.focus();
     return;
   }

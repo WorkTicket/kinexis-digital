@@ -42,7 +42,7 @@ export default function Page() {
           {/* Placeholder icons: swap for custom “what to send” art when ready */}
           <IconCard
             title="Design direction"
-            text="Examples from our templates, portfolio, or screenshots of sites you like. A few references set the tone."
+            text="Examples from our portfolio, or screenshots of sites you like. A few references set the tone."
             icon="preview"
           />
           <IconCard
