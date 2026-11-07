@@ -1,36 +1,31 @@
 # CURRENT-TASK.md
 
 ## Goal
-Rebuild `/web-design` as a design-process page (direction → assets → 2-day preview → revisions → plan), with EN + Spanish mirrors and image placeholders for new art.
+Ship design/offer refresh + Search Console legacy redirect cleanup to production.
 
 ## Status
-code complete locally — drop in final illustrations when ready
+complete — committed, pushed, deployed
 
-## Changed files
-- `src/app/web-design/page.tsx` — process-led sections, plans, industries, CTA → `/contact`
-- `src/lib/content.ts` — `DESIGN_PROCESS_STEPS`, refreshed `WEB_FAQS`
-- `src/lib/pages.ts` — web-design title/description
-- `src/i18n/SpanishSite.tsx` — `WebDesign` + PAGE_META mirror
-- `src/app/globals.css` — `.design-process` sticker grid
-- `docs/CURRENT-TASK.md` — this file
+## Changed files (commit `82077439`)
+- Home/pricing/web-design/industries + Spanish mirrors, TrustStrip, OpenDialog, globals CSS
+- `src/lib/legacy-redirects.ts`, `next.config.ts`, `src/data/industries.ts` — legacy 301s
+- `scripts/search-on-deploy.mjs` — legacy URL regression probes
+- `src/i18n/chrome.ts` — money-page nav/footer links
+- Docs: CONTENT.md, this file
 
 ## Completed
-- Process steps, what-to-send cards, preview/revisions MediaSplit, plans band, industries, FAQ, closing CTA
-- Spanish `/es` and `/es-es` structure matched
-- Temporary art wired with existing assets
+- Commit + push to `main` (`82077439`)
+- Deployed Cloudflare Workers (Version ID: `af2f316d-9564-4296-a629-b9e5d83bbc63`)
+- Post-deploy: lint/typecheck/contact OK; sitemap 102 URLs; **10/10 legacy probes 301**; IndexNow 200
 
-## Image placeholders (replace later)
-1. **Hero** — still using `Art` `web-design` (`07-web-design`); optional new process-hero if desired
-2. **What to send** — IconCards use kit icons `preview`, `built-for-your-trade`, `better-design`; swap for custom illustrations when ready
-3. **Preview & revisions** — MediaSplit uses `Art` `process` (`04-process`); replace with dedicated preview/revision artwork
-4. After new heroes land in `public/assets/heroes/`, register names in `ui.tsx` `ArtName`/`HERO_FILES` and run `npm run images:heroes`
-
-## Unfinished
-- Final custom illustrations for the three slots above
-- Visual QA in browser at `/web-design`, `/es/web-design`, `/es-es/web-design`
+## Unfinished (manual Search Console)
+1. Confirm sitemap `https://www.kinexisdigital.com/sitemap.xml` on the www property
+2. URL Inspection → Request indexing: `/`, `/web-design`, `/seo-services`, `/pricing`, `/contact`, `/industries`, top trades, 2–3 blog posts
+3. Do not request indexing of redirected `/en/...` or `/locations/...` URLs
+4. Re-check Coverage in 2–4 weeks (404 legacy should drop; impressions should move to live pages)
 
 ## Errors/blockers
 none
 
 ## Next action
-Create/drop final page art for the placeholder slots, wire paths, then spot-check mobile + desktop.
+Run the Search Console indexing requests above.
