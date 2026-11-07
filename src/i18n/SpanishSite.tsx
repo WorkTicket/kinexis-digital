@@ -165,7 +165,6 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
-            <Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
           </div>
           <TrustStrip
             className="hero__trust"
@@ -186,6 +185,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         sub={tx("Comentarios reales de dueños que lanzaron su sitio con un plan de Kinexis.")}
         ctaLabel={tx("Leer más reseñas")}
         ctaHref={href("/reviews")}
+        ratingCopy={tx("de {count} reseñas · Facebook y el sitio")}
       />
       <Section tint>
         <MediaSplit image="homepage" alt={tx("Un oficio mostrando su sitio en una computadora y un celular")}>
@@ -200,7 +200,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       </Section>
       <Section>
         <h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2>
-        <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Pasa el cursor para verlo y abre el sitio completo en inglés.")}</p>
+        <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Toca para verlo y abre el sitio completo en inglés.")}</p>
         <div className="portfolio"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
       </Section>
@@ -751,7 +751,7 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
   const sourceLabels = {
     site: tx("Sitio web"),
     trustpilot: "Trustpilot",
-    facebook: tx("Sitio web"),
+    facebook: "Facebook",
   };
   return (
     <>

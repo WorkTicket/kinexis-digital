@@ -30,8 +30,10 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     company: "A1 Property Services",
     trade: "Landscaping",
     city: "Cedar Falls, Iowa",
+    // Matches the live Facebook recommendation text. Reads like a typo for "can't" —
+    // ask Mac before changing; do not silently rewrite client words.
     quote:
-      "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can't go wrong with this company.",
+      "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can go wrong with this company.",
     date: "October 25, 2026",
     recommends: true,
   },

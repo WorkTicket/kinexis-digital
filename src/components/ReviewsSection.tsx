@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { averageReviewStars, getAllReviews } from "@/lib/reviews";
+import {
+  averageReviewStars,
+  getAllReviews,
+  pickHomeReviews,
+  reviewSourceSummary,
+} from "@/lib/reviews";
 import { LeaveFacebookReview } from "./FacebookReviews";
 import { LeaveTrustpilotReview } from "./TrustpilotReviews";
 import { UnifiedReviewCard } from "./UnifiedReviewCard";
@@ -15,17 +20,36 @@ type ReviewsSectionProps = {
   sub?: string;
   ctaLabel?: string;
   ctaHref?: string;
+  /**
+   * Homepage rating line. Use `{count}` and `{source}` placeholders, or omit for
+   * English “from N reviews · Facebook & website”.
+   */
+  ratingCopy?: string;
 };
 
-function RatingLine({ average, label }: { average: number; label?: string }) {
+function RatingLine({
+  average,
+  count,
+  source,
+  label,
+}: {
+  average: number;
+  count: number;
+  source: string;
+  label?: string;
+}) {
   const display = average.toFixed(1);
+  const unit = count === 1 ? "review" : "reviews";
+  const copy = (label ?? `from {count} ${unit} · {source}`)
+    .replaceAll("{count}", String(count))
+    .replaceAll("{source}", source);
   return (
-    <p className="reviews-rating" aria-label={`${display} out of 5 average`}>
+    <p className="reviews-rating" aria-label={`${display} out of 5 from ${count} reviews on ${source}`}>
       <span className="reviews-rating__stars" aria-hidden="true">
         {"★★★★★"}
       </span>
       <span className="reviews-rating__score">{display}</span>
-      <span className="reviews-rating__copy">{label ?? "average"}</span>
+      <span className="reviews-rating__copy">{copy}</span>
     </p>
   );
 }
@@ -40,13 +64,18 @@ export default async function ReviewsSection({
   sub,
   ctaLabel = "Read More Reviews",
   ctaHref = "/reviews",
+  ratingCopy,
 }: ReviewsSectionProps) {
-  const reviews = (await getAllReviews()).slice(0, limit);
+  const all = await getAllReviews();
+  if (all.length === 0) return null;
+
+  const home = variant === "home";
+  const reviews = home ? pickHomeReviews(all, limit) : all.slice(0, limit);
   if (reviews.length === 0) return null;
 
-  const average = averageReviewStars(reviews);
-  const showRating = variant === "home" && average >= 4.5;
-  const home = variant === "home";
+  const average = averageReviewStars(all);
+  const showRating = home && average >= 4.5;
+  const source = reviewSourceSummary(all);
 
   return (
     <section className={`section section--tint reviews-block${home ? " reviews-block--home" : ""}`}>
@@ -54,7 +83,9 @@ export default async function ReviewsSection({
         <p className="eyebrow center">{eyebrow}</p>
         <h2 className="center"><HL text={title} mark={mark} /></h2>
         {sub ? <p className="center muted">{sub}</p> : null}
-        {showRating ? <RatingLine average={average} /> : null}
+        {showRating ? (
+          <RatingLine average={average} count={all.length} source={source} label={ratingCopy} />
+        ) : null}
         <div className="review-cards">
           {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} />)}
         </div>

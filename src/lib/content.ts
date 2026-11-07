@@ -273,16 +273,41 @@ export const POSTS = [
     readTime: "2 min read",
   },
 ];
-export const REVIEWS: { quote: string; name: string; company: string }[] = [
+/** Curated US trade reviews for on-site display. Do not invent quotes — edit only with client OK. */
+export const REVIEWS: {
+  id: string;
+  quote: string;
+  name: string;
+  role?: string;
+  company: string;
+  trade: string;
+  city: string;
+  date: string;
+  stars: number;
+}[] = [
   {
-    quote: "Kinexis has grown our business. From the content to the look of the page, we have seen a real increase in enquiries. The team is responsive and helps us at every turn, and the monthly report keeps us focused on what is working.",
+    id: "jeremy-main",
+    quote:
+      "Kinexis has grown our business. From the content to the look of the page, we have seen a real increase in enquiries. The team is responsive and helps us at every turn, and the monthly report keeps us focused on what is working.",
     name: "Jeremy Main",
-    company: "Pink Pro Wash - Detroit, MI",
+    role: "Owner",
+    company: "Pink Pro Wash",
+    trade: "Pressure washing",
+    city: "Detroit, MI",
+    date: "",
+    stars: 5,
   },
   {
-    quote: "Kinexis is the best website provider we have worked with. Our site looks professional, loads quickly and the content is worded and optimized for search. We highly recommend the team if you want a site that actually brings in work.",
+    id: "isfel-yrra",
+    quote:
+      "Kinexis is the best website provider we have worked with. Our site looks professional, loads quickly and the content is worded and optimized for search. We highly recommend the team if you want a site that actually brings in work.",
     name: "Isfel Yrra",
-    company: "Xterior Xperts - Houston, TX",
+    role: "Owner",
+    company: "Xterior Xperts",
+    trade: "Exterior services",
+    city: "Houston, TX",
+    date: "",
+    stars: 5,
   },
 ];
 export const COMPARE_ROWS: [string, boolean, boolean][] = [

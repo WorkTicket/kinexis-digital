@@ -1,5 +1,5 @@
+import { REVIEW_SOURCE_LABEL, type DisplayReview, type ReviewSource } from "@/lib/review-display";
 import { clipReviewQuote } from "@/lib/review-limits";
-import { REVIEW_SOURCE_LABEL, type DisplayReview, type ReviewSource } from "@/lib/reviews";
 
 function StarIcon({ filled }: { filled: boolean }) {
   return (

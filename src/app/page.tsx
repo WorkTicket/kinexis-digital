@@ -86,7 +86,6 @@ export default async function Home() {
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-            <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
           </div>
           <TrustStrip className="hero__trust" />
           <p className="hero__call muted small">
@@ -129,7 +128,7 @@ export default async function Home() {
       <Section>
         <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
           <h2><HL text="Websites Made for Your Trade" mark="Your Trade" /></h2>
-          <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hover to preview, then open the full site.</p>
+          <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Tap to preview, then open the full site.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center btn-row spaced">

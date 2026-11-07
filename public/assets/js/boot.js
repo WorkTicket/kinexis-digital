@@ -32,14 +32,14 @@ function syncChrome() {
 }
 
 function desktopMega() {
-  return matchMedia("(hover: hover) and (pointer: fine)").matches && matchMedia("(min-width: 1181px)").matches;
+  return matchMedia("(hover: hover) and (pointer: fine)").matches && matchMedia("(min-width: 1321px)").matches;
 }
 function setMega(open) {
   if (open && performance.now() < megaShutUntil) return;
   if (open) clearTimeout(megaTimer);
   const mega = document.querySelector("[data-mega]");
   if (!mega) return;
-  const mobile = matchMedia("(max-width: 1180px)").matches;
+  const mobile = matchMedia("(max-width: 1320px)").matches;
   if (mega.classList.contains("is-open") !== open) {
     mega.classList.toggle("is-open", open);
     const btn = mega.querySelector(".mega__btn");
@@ -76,7 +76,7 @@ function setOpen(open) {
     event.preventDefault();
   };
   const onMq = () => { if (!mq.matches) setOpen(false); };
-  const mq = matchMedia("(max-width: 1180px)");
+  const mq = matchMedia("(max-width: 1320px)");
   addEventListener("scroll", hold, { passive: true });
   document.addEventListener("touchmove", block, { passive: false });
   document.addEventListener("wheel", block, { passive: false });
@@ -656,7 +656,7 @@ document.addEventListener("focusout", (event) => {
   clearTimeout(megaTimer);
   megaTimer = setTimeout(() => setMega(false), 120);
 });
-matchMedia("(max-width: 1180px)").addEventListener("change", () => setMega(false));
+matchMedia("(max-width: 1320px)").addEventListener("change", () => setMega(false));
 document.addEventListener("keydown", (event) => {
   const megaOpen = document.querySelector("[data-mega].is-open");
   if (event.key === "Escape" && megaOpen) {

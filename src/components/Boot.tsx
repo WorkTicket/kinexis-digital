@@ -13,7 +13,7 @@ export default function Boot({ email, ga, video }: { email: string; ga: string; 
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: `window.__KINEXIS_CFG__=${config}` }}
       />
-      <Script id="kinexis-boot" src="/assets/js/boot.js?v=14" strategy="afterInteractive" />
+      <Script id="kinexis-boot" src="/assets/js/boot.js?v=15" strategy="afterInteractive" />
     </>
   );
 }

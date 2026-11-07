@@ -330,7 +330,9 @@ p{margin:0 0 1em}
 .logo__img--stacked{width:186px;height:auto}
 @media (max-width:680px){:root{--header-h:76px}.logo__img{height:46px;max-width:230px}.logo__img--stacked{width:160px;max-width:none}}
 .nav{display:flex;flex:1 1 auto;flex-wrap:nowrap;justify-content:space-evenly;align-items:center;gap:clamp(16px,2vw,28px);min-width:0;margin-left:0;white-space:nowrap}
-@media (min-width:1181px){
+/* Desktop inline nav needs ~1320px once Spanish labels + the preview CTA are counted.
+   Below that, collapse to the hamburger before links collide with the logo/CTA. */
+@media (min-width:1321px){
   .header__inner{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;column-gap:clamp(18px,1.6vw,26px)}
   .logo{justify-self:start}
   /* Spread the links across the bar. The max-width keeps the rhythm near 40px on wide screens instead of letting the gaps blow out. */
@@ -831,14 +833,14 @@ p{margin:0 0 1em}
   .grid--4{grid-template-columns:repeat(2,1fr)}
   .trade-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width:1180px){
+@media (max-width:1320px){
   .header__cta{display:none}
   /* Match the burger mark height so phone + MENU share one optical row */
   .header__phone--mobile{
     display:inline-flex;align-items:center;justify-content:center;
     min-height:40px;padding:0 6px;line-height:1.1;
   }
-  .header__tools{align-items:center;gap:8px}
+  .header__tools{align-items:center;gap:8px;flex:0 1 auto;min-width:0}
   .burger{align-items:center;min-height:40px;padding:0 2px}
   .nav__extra .header__phone{display:none}
   .dropdown__menu{position:static;display:none;box-shadow:none;border:0;padding:0 0 0 12px}
@@ -890,7 +892,7 @@ p{margin:0 0 1em}
 
 /* ============ Multi-page additions ============ */
 .nav a.is-current,.dropdown__btn.is-current,.mega__btn.is-current{color:var(--accent);background:none;border-radius:0;box-shadow:none}
-@media (max-width:1180px){
+@media (max-width:1320px){
   .nav a.is-current,.dropdown__btn.is-current,.mega__btn.is-current{box-shadow:none;border-radius:8px}
 }
 .dropdown__menu a[aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
@@ -1059,7 +1061,7 @@ code{background:var(--bg-tint);padding:.1em .4em;border-radius:6px;font-size:.9e
 @media (max-width:1024px){
   .two-col,.two-col--book{grid-template-columns:1fr}
 }
-@media (max-width:1180px){
+@media (max-width:1320px){
   .nav__extra{
     display:grid;grid-template-columns:1fr;gap:12px;align-items:stretch;
     padding-top:14px;margin-top:0;border-top:0;
@@ -2086,7 +2088,23 @@ html.nav-open{overflow-x:clip}
 .burger__word--close{opacity:0;transform:translateY(8px)}
 .burger.is-open .burger__word--open{opacity:0;transform:translateY(-8px)}
 .burger.is-open .burger__word--close{opacity:1;transform:none}
-@media (max-width:1180px){
+/* Keep these after the base .burger__label rule so they win on small screens. */
+@media (max-width:520px){
+  .burger__label{display:none}
+  .burger{gap:0;padding:0;margin-left:2px}
+  .header__phone--mobile{font-size:.78rem;padding:0 4px;letter-spacing:-.02em}
+  .header__tools{gap:6px}
+}
+@media (max-width:380px){
+  .header__phone--mobile{display:none}
+  .nav .nav__extra .header__phone{
+    display:flex;align-items:center;justify-content:center;min-height:44px;
+    padding:.65rem .9rem;border:2px solid var(--brand-navy);border-radius:12px;
+    background:#fff;color:var(--brand-navy);font-family:var(--font-head);font-weight:700;
+    font-size:.95rem;text-decoration:none;
+  }
+}
+@media (max-width:1320px){
   .burger{display:inline-flex}
   .logo{position:relative;z-index:90}
   .header{z-index:80}
@@ -2116,7 +2134,7 @@ html.nav-open{overflow-x:clip}
   }
   .nav .nav__extra .nav__preview-title{font-size:clamp(.95rem,2.1svh,1.12rem)}
   .nav .nav__extra .nav__preview-hint{font-size:clamp(.66rem,1.4svh,.74rem)}
-@media (max-width:1180px) and (max-height:520px){
+@media (max-width:1320px) and (max-height:520px){
   .nav{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:minmax(44px,auto);align-content:start;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
   .nav>a{font-size:clamp(.85rem,4.6svh,1.05rem);gap:10px}
   .nav__extra{margin:0;padding-top:6px;gap:8px}
@@ -2152,7 +2170,7 @@ html.nav-open{overflow-x:clip}
 .mega__copy strong{font-family:var(--font-head);font-weight:700;font-size:.95rem;line-height:1.15;letter-spacing:-.015em;color:var(--text)}
 .mega__card{color:var(--muted);font-size:.78rem;font-weight:500;line-height:1.3}
 .mega__btn:focus-visible{outline:3px solid var(--brand-cobalt);outline-offset:3px;border-radius:8px}
-@media (min-width:1181px){
+@media (min-width:1321px){
   .mega.is-open .mega__panel{display:block}
   .mega.is-open .mega__chev{transform:rotate(180deg)}
   .mega.is-open .mega__btn::after{content:"";position:absolute;left:-18px;right:-18px;top:100%;height:48px}
@@ -2160,7 +2178,7 @@ html.nav-open{overflow-x:clip}
   .mega__head{padding:2px 8px 14px;margin-bottom:10px;border-bottom:1px solid var(--border)}
   .mega__grid{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
-@media (max-width:1180px){
+@media (max-width:1320px){
   .nav>.mega{display:flex;flex-direction:column;min-width:0;min-height:0}
   .nav>.mega .mega__btn{display:flex;flex:1;align-items:center;gap:16px;width:100%;min-height:0;padding:clamp(8px,1.2svh,14px) 8px;border:0;border-bottom:1px solid var(--border);border-radius:0;text-align:left;font-family:var(--font-head);font-size:clamp(.95rem,2.5svh,1.7rem);font-weight:700;line-height:1.05;letter-spacing:-.02em;color:var(--text);white-space:nowrap;touch-action:manipulation}
   .nav>.mega .mega__btn::before{content:"";width:11px;height:11px;flex:0 0 auto;border-radius:50%;border:2px solid var(--brand-navy);background:transparent;transform:scale(1);opacity:1;transition:transform .1s ease,background-color .08s ease,border-color .08s ease}
@@ -2189,7 +2207,7 @@ html.nav-open{overflow-x:clip}
   }
   .nav.mega-open>a,.nav.mega-open .mega__btn{font-size:1.05rem;padding-top:11px;padding-bottom:11px}
 }
-@media (max-width:1180px) and (max-height:520px){
+@media (max-width:1320px) and (max-height:520px){
   .nav>.mega .mega__btn{font-size:clamp(.85rem,4.6svh,1.05rem);gap:10px}
 }
 @media (max-width:640px){
