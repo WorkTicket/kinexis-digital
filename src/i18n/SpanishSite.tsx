@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import SpanishPlanSticker, { SPANISH_PLAN_STICKERS } from "@/components/SpanishPlanSticker";
@@ -19,10 +19,13 @@ import BookingCalendar, { type BookingCopy } from "@/components/BookingCalendar"
 import { DeferredImg } from "@/components/DeferredImg";
 import { OpenDialog } from "@/components/OpenDialog";
 import TrustStrip from "@/components/TrustStrip";
-import { FacebookReviewCard, LeaveFacebookReview } from "@/components/FacebookReviews";
+import { LeaveFacebookReview } from "@/components/FacebookReviews";
 import Filterable from "@/components/Filterable";
 import Form from "@/components/Form";
-import { getFacebookReviews } from "@/lib/facebook";
+import SiteReviewForm from "@/components/SiteReviewForm";
+import { LeaveTrustpilotReview } from "@/components/TrustpilotReviews";
+import { UnifiedReviewCard } from "@/components/UnifiedReviewCard";
+import { getAllReviews } from "@/lib/reviews";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import IndustryGrid from "@/components/IndustryGrid";
 import { ArticleSchema, ContentSchema } from "@/components/JsonLd";
@@ -52,7 +55,7 @@ const PAGE_META: Record<string, Meta> = {
   "/about": { title: "Conoce nuestra agencia de diseño web", description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios en Estados Unidos." },
   "/portfolio": { title: "Portafolio y plantillas de diseño web", description: "Explora plantillas profesionales y sitios reales de clientes de Kinexis para elegir la dirección visual adecuada para tu sitio web." },
   "/industries": { title: "Diseño web para industrias de servicios", description: "Explora ideas de diseño web para plomería, HVAC, electricidad, techos, jardinería y otras industrias de servicios que buscan clientes locales." },
-  "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee recomendaciones publicadas por clientes en Facebook. El texto de cada reseña se muestra tal como fue escrito para que conozcas el trabajo real." },
+  "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee reseñas de clientes de Kinexis Digital en este sitio, Trustpilot y Facebook, y deja la tuya en unos clics." },
   "/upgrades": { title: "Extras y mejoras para sitios web", description: "Agrega páginas, mantenimiento continuo u otras mejoras cuando tu sitio web y tu negocio las necesiten, sin complicar tu operación diaria." },
   "/pricing": { title: "¿Cuánto cuesta un sitio web para un pequeño negocio?", description: "Planes desde $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis en 2 días hábiles. Sin tarjeta." },
   "/blog": { title: "Recursos de diseño web y SEO", description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento en Estados Unidos." },
@@ -234,7 +237,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
           limit={5}
           moreHref={href("/industries")}
           moreLabel={tx("y más")}
-          moreMeta={tx("Cualquier negocio de servicios locales: si te llaman tus clientes, podemos ayudarte.")}
+          moreMeta={tx("Cualquier negocio local: si te llaman tus clientes, podemos ayudarte.")}
         />
       </Section>
       <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} plans={spanishPlans(tx)} /></Section>
@@ -683,15 +686,53 @@ function Care({ tx, href, lang, band }: PageBits) {
 }
 
 async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) {
-  const reviews = await getFacebookReviews();
+  const reviews = await getAllReviews();
+  const sourceLabels = {
+    site: tx("Sitio web"),
+    trustpilot: "Trustpilot",
+    facebook: tx("Sitio web"),
+  };
   return (
     <>
       <ContentSchema path={href("/reviews")} title={tx(PAGE_META["/reviews"].title)} description={tx(PAGE_META["/reviews"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Reseñas"), path: href("/reviews") }]} inLanguage={lang} />
-      <PageHero h1={tx("Reseñas")} mark={tx("Reseñas")} sub={tx("Recomendaciones que los clientes dejaron en Facebook. El texto de cada reseña se muestra como lo escribió el cliente.")} image="reviews" imageAlt={tx("Tarjetas de reseñas")} />
+      <PageHero h1={tx("Reseñas")} mark={tx("Reseñas")} sub={tx("Lee lo que han compartido los clientes en este sitio, en Trustpilot y en Facebook.")} image="reviews" imageAlt={tx("Tarjetas de reseñas")} />
       <Section>
-        <div className="review-cards">{reviews.map((review) => <FacebookReviewCard key={review.id} review={review} recommends={tx("Recomienda")} doesNot={tx("No recomienda")} />)}</div>
+        <h2 className="center"><HL text={tx("Comparte tu experiencia")} mark={tx("experiencia")} /></h2>
+        <p className="center muted">{tx("Deja una reseña aquí en el sitio, o abre el formulario de Trustpilot en un clic.")}</p>
         <div className="btn-row spaced justify-center">
-          <LeaveFacebookReview label={tx("Dejar una reseña en Facebook")} />
+          <LeaveTrustpilotReview locale="es-ES" />
+        </div>
+        <div className="site-review-panel spaced">
+          <SiteReviewForm copy={{
+            title: tx("Deja una reseña en este sitio"),
+            sub: tx("Tus palabras aparecen aquí al enviarlas. ¿Prefieres Trustpilot? Usa el botón de arriba."),
+            name: tx("Tu nombre"),
+            email: tx("Correo"),
+            stars: tx("Calificación"),
+            quote: tx("Tu reseña"),
+            button: tx("Publicar mi reseña"),
+            thanks: tx("Gracias — tu reseña ya está en esta página."),
+            fill: tx("Completa los campos marcados."),
+            error: tx("Algo salió mal. Inténtalo de nuevo."),
+            network: tx("Error de red. Inténtalo de nuevo."),
+          }} />
+        </div>
+      </Section>
+      <Section tint>
+        <h2 className="center"><HL text={tx("Lo que cuentan los clientes")} mark={tx("los clientes")} /></h2>
+        <p className="center muted">
+          {reviews.length > 0
+            ? tx("Reseñas de este sitio, Trustpilot y Facebook — mismo formato, las más nuevas primero.")
+            : tx("Aún no hay reseñas. Sé el primero en compartir tu experiencia.")}
+        </p>
+        {reviews.length > 0 ? (
+          <div className="review-cards">
+            {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} sourceLabels={sourceLabels} />)}
+          </div>
+        ) : null}
+        <div className="btn-row spaced justify-center">
+          <LeaveTrustpilotReview locale="es-ES" />
+          <LeaveFacebookReview primary={false} label={tx("Dejar una reseña en Facebook")} />
         </div>
       </Section>
       <CtaBand h={tx("¿Quieres un sitio que traiga trabajo?")} mark={tx("traiga trabajo")} sub={tx("Empieza con una vista previa gratis de tu oficio.")} btn={tx("Empezar")} href={href("/contact")} {...band} />

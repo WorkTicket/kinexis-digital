@@ -9,7 +9,7 @@
 ## Config
 - `next.config.ts` - CSP, redirects (legacy/html/industry routes), security headers, `images.unoptimized: true`, Cloudflare dev init
 - `tsconfig.json` - `@/*` -> `./src/*`, strict
-- `wrangler.jsonc` - Worker config (assets/bindings/routes)
+- `wrangler.jsonc` - Worker config (assets/bindings/routes); `REVIEWS` KV for on-site review posts
 - `open-next.config.ts` - OpenNext adapter config
 - `package.json` scripts: dev/build/start/lint/typecheck/images:optimize/images:heroes/check:contact/preview/deploy/search:notify/upload/cf-typegen
 
@@ -51,3 +51,4 @@ Top-level routes include: `/`, `/about`, `/api/*`, `/audit`, `/blog`, `/contact`
 - SEO: `robots.ts`, `sitemap.ts` present. `next.config.ts` does many 301 redirects.
 - Security headers set in `next.config.ts` (CSP, HSTS, etc.)
 - Contact forms/checkout use Mailgun/forwarding/Gmail SMTP/PayPal (see README). Invoice checkout may offer contact fallback if PayPal secret missing.
+- `/reviews` shows on-site reviews (KV via `POST /api/reviews`), Trustpilot Review Collector widget (free plan; business unit `6aef824c0156593a34415361`), optional Trustpilot API cards when `TRUSTPILOT_API_KEY` is set, and Facebook recommendations.

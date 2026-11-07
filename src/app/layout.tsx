@@ -13,6 +13,7 @@ import ScrollUi from "@/components/ScrollUi";
 import DialogHost from "@/components/DialogHost";
 import Boot from "@/components/Boot";
 import { SiteSchema } from "@/components/JsonLd";
+import Script from "next/script";
 
 const inter = localFont({
   src: "./fonts/inter-latin.woff2",
@@ -132,6 +133,10 @@ else start();
         <ScrollUi />
         <DialogHost />
         <Boot email={SITE.email} ga={/^G-[A-Z0-9]+$/.test(gaId) ? gaId : ""} video={SITE.videoUrl} />
+        <Script
+          src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

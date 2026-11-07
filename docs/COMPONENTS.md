@@ -8,7 +8,7 @@
 - `ShotFrame.tsx` - Portfolio shots
 - `HeroFilm.tsx` - Homepage hero film
 - `HomeBands.tsx` - Homepage sections
-- `ReviewsSection.tsx`, `FacebookReviews.tsx` - Reviews
+- `ReviewsSection.tsx`, `UnifiedReviewCard.tsx`, `FacebookReviews.tsx`, `TrustpilotReviews.tsx`, `SiteReviewForm.tsx` - Reviews (one card format for site + Trustpilot + Facebook)
 - `IndustryGrid.tsx`, `IndustryAudit.tsx` - Industries
 - `PlanOffer.tsx`, `PricingCta.tsx`, `MobilePlanComparison.tsx` - Pricing/offers
 - `BookingCalendar.tsx`, `SiteAudit.tsx` - Audits/booking

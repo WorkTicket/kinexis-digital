@@ -6,6 +6,8 @@ export const FACEBOOK_REVIEW_URL = "https://www.facebook.com/profile.php?id=6159
 export type FacebookReview = {
   id: string;
   name: string;
+  role?: string;
+  company?: string;
   quote: string;
   date: string;
   recommends: boolean;
@@ -19,20 +21,26 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
   {
     id: "mac-christensen",
     name: "Mac Christensen",
-    quote: "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can go wrong with this company.",
+    role: "Owner",
+    company: "A1 Property Services",
+    quote: "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can't go wrong with this company.",
     date: "October 25, 2026",
     recommends: true,
   },
   {
-    id: "preferred-plumbing-solutions",
-    name: "Preferred Plumbing Solutions",
+    id: "hunter-norris",
+    name: "Hunter Norris",
+    role: "Owner",
+    company: "Preferred Plumbing Solutions",
     quote: "So grateful to Kinexis Digital! They captured the essence of our plumbing business right away and created a modern website that builds instant trust. 10/10 team!",
     date: "September 22, 2026",
     recommends: true,
   },
   {
-    id: "manos-creativas-bynmw",
-    name: "Manos Creativas Bynmw",
+    id: "natalia-moreno",
+    name: "Natalia Moreno",
+    role: "Owner",
+    company: "Manos Creativas Bynmw",
     quote: "Great work! They designed my website exceeding all expectations. Highly recommended for their professionalism. You can see an example of their work on my site",
     date: "September 22, 2026",
     recommends: true,
@@ -59,9 +67,9 @@ function formatDate(iso: string) {
 }
 
 const KNOWN_REVIEWERS = [
-  { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen" },
-  { quote: "So grateful to Kinexis Digital", name: "Preferred Plumbing Solutions" },
-  { quote: "Great work! They designed my website", name: "Manos Creativas Bynmw" },
+  { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen", role: "Owner", company: "A1 Property Services" },
+  { quote: "So grateful to Kinexis Digital", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions" },
+  { quote: "Great work! They designed my website", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw" },
 ];
 
 function fromGraph(review: GraphReview): FacebookReview | null {
@@ -70,10 +78,12 @@ function fromGraph(review: GraphReview): FacebookReview | null {
   const created = review.created_time ?? "";
   const given = review.reviewer?.name?.trim();
   const known = KNOWN_REVIEWERS.find((item) => quote.startsWith(item.quote));
-  const name = given || known?.name || "Facebook User";
+  const name = known?.name || given || "Facebook User";
   return {
     id: review.id || `${name}-${created}`,
     name,
+    role: known?.role,
+    company: known?.company,
     quote,
     date: created ? formatDate(created) : "",
     recommends: review.recommendation_type !== "negative",

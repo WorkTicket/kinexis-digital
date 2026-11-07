@@ -113,7 +113,7 @@ export const PAGES = {
     crumb: "Reviews",
     indexable: true,
     priority: 0.6,
-    description: "Read recommendations that clients have posted about Kinexis Digital on Facebook. Review text is shown in the client’s own words.",
+    description: "Read client reviews for Kinexis Digital on this site, Trustpilot, and Facebook — and leave your own review in a few clicks.",
   },
   upgrades: {
     path: "/upgrades",

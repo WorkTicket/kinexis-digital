@@ -11,6 +11,13 @@
   "vars": {
     "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com"
   },
+  "kv_namespaces": [
+    {
+      "binding": "REVIEWS",
+      "id": "a792812e80e749b781bfa5b4bf7b49e1",
+      "preview_id": "57c783f8849a49e9831bcba52f0d311b"
+    }
+  ],
   "send_email": [
     {
       "name": "CONTACT_EMAIL",

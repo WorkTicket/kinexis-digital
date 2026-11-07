@@ -7,18 +7,18 @@ import { PAGES } from "./src/lib/pages";
 const isDev = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com`,
   "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://www.paypal.com https://*.paypal.com`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
   "media-src 'self' https:",
-  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.paypal.com https://*.paypal.com",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self' https://www.paypal.com https://*.paypal.com",
+  "form-action 'self' https://www.paypal.com https://*.paypal.com https://www.trustpilot.com https://*.trustpilot.com",
   "frame-ancestors 'none'",
   ...(isDev ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");

@@ -1,6 +1,9 @@
 import { pageMetadata } from "@/lib/seo";
-import { getFacebookReviews } from "@/lib/facebook";
-import { FacebookReviewCard, LeaveFacebookReview } from "@/components/FacebookReviews";
+import { getAllReviews } from "@/lib/reviews";
+import { LeaveFacebookReview } from "@/components/FacebookReviews";
+import { LeaveTrustpilotReview } from "@/components/TrustpilotReviews";
+import { UnifiedReviewCard } from "@/components/UnifiedReviewCard";
+import SiteReviewForm from "@/components/SiteReviewForm";
 import { PageSchema } from "@/components/JsonLd";
 import { CtaBand, HL, PageHero, Section } from "@/components/ui";
 
@@ -8,21 +11,48 @@ export const metadata = pageMetadata("reviews");
 export const revalidate = 3600;
 
 export default async function Page() {
-  const reviews = await getFacebookReviews();
+  const reviews = await getAllReviews();
+
   return (
     <>
       <PageSchema page="reviews" />
-      <PageHero h1="What Clients Have Shared" mark="Clients Have Shared" sub="Read the recommendations posted directly to our Facebook page." image="reviews" imageAlt="Symbolic review cards beside a business owner" />
+      <PageHero
+        h1="Client Reviews"
+        mark="Client Reviews"
+        sub="Read what clients have shared — on this site, on Trustpilot, and on Facebook."
+        image="reviews"
+        imageAlt="Symbolic review cards beside a business owner"
+      />
+
       <Section>
-        <h2 className="center"><HL text="Client Recommendations" mark="Recommendations" /></h2>
-        <p className="center muted">Read what business owners have shared about working with Kinexis Digital, in their own words.</p>
-        <div className="review-cards">
-          {reviews.map((review) => <FacebookReviewCard key={review.id} review={review} />)}
-        </div>
+        <h2 className="center"><HL text="Share Your Experience" mark="Your Experience" /></h2>
+        <p className="center muted">Leave a review here on the site, or open Trustpilot’s form in one click.</p>
         <div className="btn-row spaced justify-center">
-          <LeaveFacebookReview />
+          <LeaveTrustpilotReview />
+        </div>
+        <div className="site-review-panel spaced">
+          <SiteReviewForm />
         </div>
       </Section>
+
+      <Section tint>
+        <h2 className="center"><HL text="What Clients Have Shared" mark="Have Shared" /></h2>
+        <p className="center muted">
+          {reviews.length > 0
+            ? "Reviews from this site, Trustpilot, and Facebook — same format, newest first."
+            : "No reviews yet. Be the first to share your experience."}
+        </p>
+        {reviews.length > 0 ? (
+          <div className="review-cards">
+            {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} />)}
+          </div>
+        ) : null}
+        <div className="btn-row spaced justify-center">
+          <LeaveTrustpilotReview />
+          <LeaveFacebookReview primary={false} />
+        </div>
+      </Section>
+
       <CtaBand h="Want To See Your Own Homepage?" mark="Your Own Homepage" sub="Start with a free preview written for your trade. No card and no obligation." btn="See My Homepage First" />
     </>
   );
