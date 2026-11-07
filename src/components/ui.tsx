@@ -8,6 +8,7 @@ import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
 import { HL, Phrase } from "./mark";
 import { ShotFrame } from "./ShotFrame";
+import PreviewBar from "./PreviewBar";
 import TrustStrip from "./TrustStrip";
 
 export { Icon, Illustration, HL, Phrase };
@@ -168,32 +169,37 @@ export function PageHero({
   const tracked = fallbackTrack(track?.mobile, track?.desktop);
   if (!image && !art) {
     return (
-      <section className={`page-hero${className ? ` ${className}` : ""}`}>
-        <div className="container center">
-        {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h1 className={tracked?.className} style={tracked?.style}>{title}</h1><p className="muted lead">{sub}</p>
-        {children}
-      </div></section>
+      <>
+        <section className={`page-hero${className ? ` ${className}` : ""}`}>
+          <div className="container center">
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+            <h1 className={tracked?.className} style={tracked?.style}>{title}</h1><p className="muted lead">{sub}</p>
+            {children}
+          </div>
+        </section>
+        <PreviewBar />
+      </>
     );
   }
   return (
     <>
       <section className={`page-hero page-hero--split${className ? ` ${className}` : ""}`}>
-      <div className="container page-hero__grid">
-        <div className="page-hero__copy">
-          {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-          <h1 className={tracked?.className} style={tracked?.style}>{title}</h1>
-          <p className="muted lead">{sub}</p>
-          {children}
-        </div>
-        <div className="page-hero__art">
-          <div className="art-wrap">
-            {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-            {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority deferMobile={deferMobile} sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 50vw, 627px" /> : null)}
+        <div className="container page-hero__grid">
+          <div className="page-hero__copy">
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+            <h1 className={tracked?.className} style={tracked?.style}>{title}</h1>
+            <p className="muted lead">{sub}</p>
+            {children}
+          </div>
+          <div className="page-hero__art">
+            <div className="art-wrap">
+              {decor?.map((name) => <ArtDecor key={name} name={name} />)}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority deferMobile={deferMobile} sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 50vw, 627px" /> : null)}
+            </div>
           </div>
         </div>
-      </div>
       </section>
+      <PreviewBar />
     </>
   );
 }

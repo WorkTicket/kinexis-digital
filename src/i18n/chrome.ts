@@ -14,6 +14,8 @@ export type Chrome = {
   close: string;
   chat: string;
   strategy: string;
+  previewBarTitle: string;
+  previewBarHint: string;
   footerCta: string;
   footerCtaMark: string;
   footerCtaText: string;
@@ -46,6 +48,8 @@ const EN: Chrome = {
   close: "Close",
   chat: "Get My Free Preview",
   strategy: "Book a call",
+  previewBarTitle: "Free homepage preview",
+  previewBarHint: "No card · preview in 2 business days",
   footerCta: "Ready To See Your Homepage?",
   footerCtaMark: "Your Homepage",
   footerCtaText: "Share the basics and we’ll prepare your free homepage preview. No card required.",
@@ -78,6 +82,8 @@ const ES: Chrome = {
   close: "Cerrar",
   chat: "Ver mi vista previa gratis",
   strategy: "Agendar llamada",
+  previewBarTitle: "Vista previa gratis",
+  previewBarHint: "Sin tarjeta · vista previa en 2 días hábiles",
   footerCta: "¿Quieres ver tu página de inicio?",
   footerCtaMark: "página de inicio",
   footerCtaText: "Comparte lo básico y preparamos tu página de inicio gratis. Sin tarjeta.",

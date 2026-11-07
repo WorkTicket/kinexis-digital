@@ -7,9 +7,23 @@ export const LEAD_FIELDS: Field[] = [
   { label: "Website / Business Name", name: "business" },
 ];
 
-export default function Form({ fields, button, note, fast, fastText = "Send it over and we'll get back to you soon." }: { fields: Field[]; button: string; note?: string; fast?: boolean; fastText?: string }) {
+export default function Form({
+  fields,
+  button,
+  note,
+  fast,
+  fastText = "Send it over and we'll get back to you soon.",
+  slim = false,
+}: {
+  fields: Field[];
+  button: string;
+  note?: string;
+  fast?: boolean;
+  fastText?: string;
+  slim?: boolean;
+}) {
   return (
-    <form className="form" noValidate data-lead="">
+    <form className={slim ? "form form--slim" : "form"} noValidate data-lead="">
       {fields.map((f) => f.kind === "file" ? (
         <label className="field field--file" key={f.name}><span>{f.label}</span><input type="file" name={f.name} /></label>
       ) : (
@@ -26,7 +40,7 @@ export default function Form({ fields, button, note, fast, fastText = "Send it o
           <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
-      <button className="btn btn--primary btn--lg" type="submit">{button}</button>
+      <button className={`btn btn--primary${slim ? "" : " btn--lg"}`} type="submit">{button}</button>
       {note && <p className="muted small">{note}</p>}
       {fast && <p className="form__fast"><span className="reply-dot" aria-hidden="true" /> {fastText}</p>}
       <p className="form__msg" role="status"></p>

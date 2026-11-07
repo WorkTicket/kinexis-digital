@@ -26,9 +26,10 @@ export default async function Page() {
 
       <Section>
         <h2 className="center"><HL text="Share Your Experience" mark="Your Experience" /></h2>
-        <p className="center muted">Leave a review here on the site, or open Trustpilot’s form in one click.</p>
-        <div className="btn-row spaced justify-center">
+        <p className="center muted">Leave a review here on the site, or open Trustpilot or Facebook in one click.</p>
+        <div className="review-actions spaced">
           <LeaveTrustpilotReview />
+          <LeaveFacebookReview />
         </div>
         <div className="site-review-panel spaced">
           <SiteReviewForm />
@@ -47,9 +48,9 @@ export default async function Page() {
             {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} />)}
           </div>
         ) : null}
-        <div className="btn-row spaced justify-center">
+        <div className="review-actions spaced">
           <LeaveTrustpilotReview />
-          <LeaveFacebookReview primary={false} />
+          <LeaveFacebookReview />
         </div>
       </Section>
 

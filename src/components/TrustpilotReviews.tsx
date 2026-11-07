@@ -1,68 +1,35 @@
-"use client";
+import { TRUSTPILOT_EVALUATE_URL } from "@/lib/trustpilot";
 
-import { useEffect, useRef } from "react";
-import {
-  TRUSTPILOT_BUSINESS_UNIT_ID,
-  TRUSTPILOT_PROFILE_URL,
-  TRUSTPILOT_REVIEW_COLLECTOR_TEMPLATE_ID,
-} from "@/lib/trustpilot";
-
-declare global {
-  interface Window {
-    Trustpilot?: {
-      loadFromElement: (element: HTMLElement, forceReload?: boolean) => void;
-    };
-  }
+function TrustpilotMark() {
+  return (
+    <svg className="review-cta__icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path
+        fill="#00B67A"
+        d="M12 1.5 14.9 8.4l7.5.7-5.6 4.8 1.8 7.3L12 17.6l-6.6 3.6 1.8-7.3L1.6 9.1l7.5-.7L12 1.5z"
+      />
+    </svg>
+  );
 }
 
-/** Free-plan Trustpilot Review Collector — “Review us on Trustpilot” button. */
+/** Opens Trustpilot’s evaluate form in a new tab — matched to site sticker buttons. */
 export function LeaveTrustpilotReview({
-  locale = "en-US",
+  primary = false,
+  label = "Leave a Review on Trustpilot",
 }: {
+  /** Kept for call-site compatibility. */
   locale?: string;
-  /** Kept for call-site compatibility; the TrustBox supplies its own label. */
   primary?: boolean;
   label?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const load = () => {
-      window.Trustpilot?.loadFromElement(el, true);
-    };
-
-    if (window.Trustpilot) {
-      load();
-      return;
-    }
-
-    const timer = window.setInterval(() => {
-      if (!window.Trustpilot) return;
-      window.clearInterval(timer);
-      load();
-    }, 200);
-
-    return () => window.clearInterval(timer);
-  }, [locale]);
-
   return (
-    <div className="trustpilot-collector">
-      <div
-        ref={ref}
-        className="trustpilot-widget"
-        data-locale={locale}
-        data-template-id={TRUSTPILOT_REVIEW_COLLECTOR_TEMPLATE_ID}
-        data-businessunit-id={TRUSTPILOT_BUSINESS_UNIT_ID}
-        data-style-height="52px"
-        data-style-width="100%"
-      >
-        <a href={TRUSTPILOT_PROFILE_URL} target="_blank" rel="noopener noreferrer">
-          Trustpilot
-        </a>
-      </div>
-    </div>
+    <a
+      className={`btn review-cta${primary ? " btn--primary" : " btn--ghost"}`}
+      href={TRUSTPILOT_EVALUATE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <TrustpilotMark />
+      <span>{label}</span>
+    </a>
   );
 }

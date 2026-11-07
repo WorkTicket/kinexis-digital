@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
 import { chromeFor } from "@/i18n/chrome";
@@ -13,7 +14,6 @@ import ScrollUi from "@/components/ScrollUi";
 import DialogHost from "@/components/DialogHost";
 import Boot from "@/components/Boot";
 import { SiteSchema } from "@/components/JsonLd";
-import Script from "next/script";
 
 const inter = localFont({
   src: "./fonts/inter-latin.woff2",

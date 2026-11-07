@@ -3,7 +3,7 @@ import { imageSrcSet, imageVariant } from "@/lib/image-sources";
 import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import { pageMetadata } from "@/lib/seo";
-import { FAQS, PLANS, PLAN_TERMS } from "@/lib/content";
+import { FAQS, PLANS, PLAN_TERM_GROUPS, PLAN_TEXTBACK_FOOTNOTE } from "@/lib/content";
 import { OpenDialog } from "@/components/OpenDialog";
 import { PageSchema } from "@/components/JsonLd";
 import { Faq, HL, PageHero, Section } from "@/components/ui";
@@ -175,18 +175,30 @@ export default function Page() {
           </div>
         </div>
 
-        <div className="fineprint pricing-fineprint">
-          <b>The terms, stated clearly:</b>
-          <ul className="fineprint-list">
-            {PLAN_TERMS.slice(1).map((term) => <li key={term}>{term}</li>)}
-          </ul>
-          <p className="pricing-footnote">
-            ** Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second
-            tracking number is available for $1/mo. Standard carrier messaging rates may apply. Activation is subject
-            to carrier approval.
-          </p>
-          <Link href="/terms" prefetch={false}>Full plan terms →</Link>
-        </div>
+        <aside className="pricing-terms" aria-labelledby="pricing-terms-heading">
+          <header className="pricing-terms__head">
+            <b id="pricing-terms-heading">The terms, stated clearly</b>
+            <p>Plain-language summary of billing, canceling, text-back, and guarantees. The agreement you approve at checkout controls if anything differs.</p>
+          </header>
+          <div className="pricing-terms__grid">
+            {PLAN_TERM_GROUPS.map((group) => (
+              <section className="pricing-terms__group" key={group.title}>
+                <h3>{group.title}</h3>
+                <ul>
+                  {group.items.map((term) => (
+                    <li key={term}>{term}</li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
+          <div className="pricing-terms__foot">
+            <p className="pricing-footnote">
+              <b>**</b> {PLAN_TEXTBACK_FOOTNOTE}
+            </p>
+            <Link href="/terms" prefetch={false}>Full plan terms →</Link>
+          </div>
+        </aside>
       </Section>
 
       <Section tint>

@@ -3,10 +3,8 @@ export const TRUSTPILOT_EVALUATE_URL = "https://www.trustpilot.com/evaluate/kine
 export const TRUSTPILOT_PROFILE_URL = "https://www.trustpilot.com/review/kinexisdigital.com";
 export const TRUSTPILOT_DOMAIN = "kinexisdigital.com";
 
-/** From Trustpilot Business → TrustBox → Review Collector. */
+/** Trustpilot Business Unit ID (API + profile). */
 export const TRUSTPILOT_BUSINESS_UNIT_ID = "6aef824c0156593a34415361";
-/** Free-plan Review Collector template ("Review us on Trustpilot" button). */
-export const TRUSTPILOT_REVIEW_COLLECTOR_TEMPLATE_ID = "56278e9abfbbba0bdcd568bc";
 
 export type TrustpilotReview = {
   id: string;

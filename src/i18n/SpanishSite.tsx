@@ -30,6 +30,7 @@ import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import IndustryGrid from "@/components/IndustryGrid";
 import { ArticleSchema, ContentSchema } from "@/components/JsonLd";
 import PlanOffer from "@/components/PlanOffer";
+import PreviewBar from "@/components/PreviewBar";
 import ProjectCard from "@/components/ProjectCard";
 import { ShotFrame } from "@/components/ShotFrame";
 import Stepper, { type Step } from "@/components/Stepper";
@@ -175,6 +176,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
         </div>
         <HeroFilm />
       </div></section>
+      <PreviewBar />
       <Section tint>
         <MediaSplit image="homepage" alt={tx("Un oficio mostrando su sitio en una computadora y un celular")}>
           <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
@@ -270,8 +272,8 @@ function homeFaqs(tx: (s: string) => string) {
     { q: tx("¿Esto sirve para mi tipo de negocio?"), a: tx("Trabajamos con oficios y negocios de servicios en Estados Unidos, como plomería, HVAC, electricidad, jardinería, techos y remodelación. Si la gente busca tu servicio y llama cuando necesita ayuda, estos planes están pensados para ese tipo de negocio.") },
     { q: tx("¿Cuánto cuesta?"), a: tx("Hay cuatro opciones: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por un solo pago de $1,497. Puedes ver una página de inicio gratis antes de elegir, sin tarjeta y sin obligación.") },
     { q: tx("¿Cómo se cobra?"), a: tx("Los planes mensuales tienen $0 de enganche y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.") },
-    { q: tx("¿Qué pasa si cancelo?"), a: tx("Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. No hay cargo por cancelar. Si quieres quedarte con el sitio, pide las condiciones de compra por escrito o pasa a Own It antes de que termine el plan.") },
-    { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. Si luego quieres llevártelo, pide por escrito las condiciones de compra.") },
+    { q: tx("¿Qué pasa si cancelo?"), a: tx("Cancela cuando quieras por texto, correo o Messenger—no hay cargo por cancelar. Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Si quieres quedarte con el sitio, pide una compra (un pago único por escrito de los archivos para hospedarlos tú) o pasa a Own It antes de que termine el período pagado.") },
+    { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. Una compra es un pago único por escrito de esos archivos para mover el sitio a tu hosting. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.") },
     { q: tx("¿Qué cubre la garantía de 60 días?"), a: tx("Lead System y Plus incluyen la garantía de 60 días. Si recibes cero leads rastreados durante los primeros 60 días en vivo, condonamos el tercer y cuarto cargo. Se limita a una garantía por negocio y Own It no está incluido.") },
     { q: tx("¿Qué cubre la garantía de devolución en 30 días?"), a: tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Debes pedirlo por escrito. No cubre costos de terceros que ya hayamos pagado.") },
     { q: tx("¿Cuándo estará en línea mi sitio?"), a: tx("Empezamos con la vista previa gratis. Cuando la apruebas y recibimos el contenido necesario, confirmamos por escrito la fecha de lanzamiento. El texto opcional si no contestas empieza tras la aprobación del operador, que suele tardar de 10 a 15 días.") },
@@ -504,10 +506,58 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
             </div>
           </div>
         </div>
-        <p className="pricing-footnote">
-          {tx("** El texto si no contestas es un extra opcional. Se necesita una línea telefónica dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador.")}
-
-        </p>
+        <aside className="pricing-terms" aria-labelledby="pricing-terms-heading">
+          <header className="pricing-terms__head">
+            <b id="pricing-terms-heading">{tx("Los términos, en claro")}</b>
+            <p>{tx("Resumen en lenguaje sencillo de cobro, cancelación, textos y garantías. El acuerdo que apruebas al pagar manda si algo difiere.")}</p>
+          </header>
+          <div className="pricing-terms__grid">
+            <section className="pricing-terms__group">
+              <h3>{tx("Cobro")}</h3>
+              <ul>
+                <li>{tx("Los planes mensuales son $0 de enganche y mes a mes desde el lanzamiento. No hay contrato largo ni cargo por cancelar.")}</li>
+                <li>{tx("Tu precio mensual queda fijo 24 meses desde el lanzamiento; después avisamos al menos 30 días antes de cualquier cambio.")}</li>
+              </ul>
+            </section>
+            <section className="pricing-terms__group">
+              <h3>{tx("Cancelar y quedarte con el sitio")}</h3>
+              <ul>
+                <li>{tx("Cancela cuando quieras por texto, correo o Messenger. El sitio sigue en línea hasta el final del período que ya pagaste.")}</li>
+                <li>{tx("Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Para quedártelo, pide una compra—un pago único por escrito de los archivos para hospedarlos tú—o pasa a Own It antes de que termine el período. Pide las condiciones por escrito antes de cancelar.")}</li>
+              </ul>
+            </section>
+            <section className="pricing-terms__group">
+              <h3>{tx("Texto si no contestas")}</h3>
+              <ul>
+                <li>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada.")}</li>
+              </ul>
+            </section>
+            <section className="pricing-terms__group">
+              <h3>{tx("Garantías")}</h3>
+              <ul>
+                <li>{tx("Lead System y Plus incluyen la garantía de leads de 60 días. Own It no.")}</li>
+                <li>{tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo si lo pides por escrito. No cubre costos de terceros que ya hayamos pagado.")}</li>
+                <li>{tx("Un lead rastreado es una llamada de 30 segundos o más, alguien que responde al texto, o un formulario real. No cuentan spam, números equivocados, solicitantes ni clientes actuales.")}</li>
+                <li>{tx("La garantía de 60 días es una por negocio y aplica solo con la cuenta al corriente.")}</li>
+              </ul>
+            </section>
+            <section className="pricing-terms__group">
+              <h3>{tx("Cambios y Own It")}</h3>
+              <ul>
+                <li>{tx("Un cambio chico toma 30 minutos o menos. Las peticiones se atienden de una en una.")}</li>
+                <li>{tx("En Own It, los cambios chicos se hacen en 2 días hábiles y el tiempo no usado no se acumula. Después de 12 meses, el Cuidado del sitio opcional es $39 al mes por hosting y hasta 30 minutos de cambios.")}</li>
+                <li>{tx("Las renovaciones de dominio posteriores se cobran al costo, las páginas nuevas en Own It se cotizan por escrito y los precios no incluyen impuestos, si los hay.")}</li>
+              </ul>
+            </section>
+          </div>
+          <div className="pricing-terms__foot">
+            <p className="pricing-footnote">
+              <b>**</b>{" "}
+              {tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación; esa aprobación no está garantizada.")}
+            </p>
+            <Link href={href("/terms")} prefetch={false}>{tx("Términos completos del plan →")}</Link>
+          </div>
+        </aside>
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx("Mira qué cubre cada plan")} mark={tx("cada plan")} /></h2>
@@ -698,14 +748,15 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
       <PageHero h1={tx("Reseñas")} mark={tx("Reseñas")} sub={tx("Lee lo que han compartido los clientes en este sitio, en Trustpilot y en Facebook.")} image="reviews" imageAlt={tx("Tarjetas de reseñas")} />
       <Section>
         <h2 className="center"><HL text={tx("Comparte tu experiencia")} mark={tx("experiencia")} /></h2>
-        <p className="center muted">{tx("Deja una reseña aquí en el sitio, o abre el formulario de Trustpilot en un clic.")}</p>
-        <div className="btn-row spaced justify-center">
-          <LeaveTrustpilotReview locale="es-ES" />
+        <p className="center muted">{tx("Deja una reseña aquí en el sitio, o abre Trustpilot o Facebook en un clic.")}</p>
+        <div className="review-actions spaced">
+          <LeaveTrustpilotReview label={tx("Dejar una reseña en Trustpilot")} />
+          <LeaveFacebookReview label={tx("Dejar una reseña en Facebook")} />
         </div>
         <div className="site-review-panel spaced">
           <SiteReviewForm copy={{
             title: tx("Deja una reseña en este sitio"),
-            sub: tx("Tus palabras aparecen aquí al enviarlas. ¿Prefieres Trustpilot? Usa el botón de arriba."),
+            sub: tx("Tus palabras aparecen aquí al enviarlas. ¿Prefieres Trustpilot o Facebook? Usa los botones de arriba."),
             name: tx("Tu nombre"),
             email: tx("Correo"),
             stars: tx("Calificación"),
@@ -730,9 +781,9 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
             {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} sourceLabels={sourceLabels} />)}
           </div>
         ) : null}
-        <div className="btn-row spaced justify-center">
-          <LeaveTrustpilotReview locale="es-ES" />
-          <LeaveFacebookReview primary={false} label={tx("Dejar una reseña en Facebook")} />
+        <div className="review-actions spaced">
+          <LeaveTrustpilotReview label={tx("Dejar una reseña en Trustpilot")} />
+          <LeaveFacebookReview label={tx("Dejar una reseña en Facebook")} />
         </div>
       </Section>
       <CtaBand h={tx("¿Quieres un sitio que traiga trabajo?")} mark={tx("traiga trabajo")} sub={tx("Empieza con una vista previa gratis de tu oficio.")} btn={tx("Empezar")} href={href("/contact")} {...band} />
@@ -744,7 +795,7 @@ function Upgrades({ tx, href, lang, band }: PageBits) {
   const items = [
     ["extra-page", tx("Página extra"), tx("Agrega un servicio, una zona o una landing a Website, Lead System o Plus."), "$99"],
     ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), "$39 / mes"],
-    ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra opcional. Requiere una línea dedicada. El segundo número de seguimiento cuesta $1 al mes; pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días)."), "$97 / mes"],
+    ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada."), "$97 / mes"],
     ["new-pages", tx("Páginas nuevas en Own It"), tx("Las páginas extra de Own It se cotizan por escrito antes de empezar."), tx("Cotizado")],
   ] as const;
   return (
@@ -813,17 +864,23 @@ function Terms({ tx, href, lang }: { tx: (s: string) => string; href: (p: string
         <h2>{tx("3. Qué incluye")}</h2>
         <p>{tx("Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta $99. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es $39 al mes.")}</p>
         <h2>{tx("4. Textos y el operador")}</h2>
-        <p>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. El texto si no contestas y los pedidos de reseña se envían por mensaje. Empiezan después de la aprobación del operador, que suele tardar de 10 a 15 días. Esa aprobación no está garantizada.")}</p>
+        <p>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. El texto si no contestas y los pedidos de reseña se envían por mensaje. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación. Esa aprobación no está garantizada.")}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
         <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados en los primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Una garantía por negocio, con la cuenta al corriente. Un lead rastreado es una llamada de 30 segundos o más, alguien que responde al texto, o un formulario real. No cuentan spam, números equivocados, solicitantes, proveedores ni clientes actuales. No aplica si el seguimiento falla por un cambio que haces tú, o si pausas o cancelas antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>
         <p>{tx("Own It es un pago de $1,497, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es $39 al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. El texto si no contestas se puede agregar por $97 al mes.")}</p>
         <h2>{tx("7. Cancelación y acceso")}</h2>
-        <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea, salvo que compres el sitio o pases a Own It. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.")}</p>
+        <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El cobro se detiene al final del período que ya pagaste y el sitio sigue en línea hasta entonces.")}</p>
+        <p>{tx("Como en los planes mensuales Kinexis hospeda y administra el sitio, cuando termina el período pagado el hosting y la administración se detienen y el sitio sale de línea, salvo que lo conserves de otra forma.")}</p>
+        <p><b>{tx("Compra:")}</b> {tx("un pago único por escrito de los archivos del sitio para moverlos a un hosting que tú controles. Pide las condiciones por escrito antes de cancelar si ese es el camino que quieres.")}</p>
+        <p><b>{tx("Pasar a Own It:")}</b> {tx("cambia de un plan mensual al pago único de Own It antes de que termine el período pagado. Los términos de Own It (archivos, hosting incluido y Cuidado del sitio) están en la sección 6.")}</p>
+        <p>{tx("Si no arreglas una compra ni pasas a Own It antes de que termine el período pagado, el sitio sale de línea cuando se detienen el hosting y la administración.")}</p>
         <h2>{tx("8. Impuestos y terceros")}</h2>
         <p>{tx("Los precios están en dólares de EE. UU. y no incluyen impuestos. Renovaciones de dominio, imágenes de pago, publicidad y otros servicios de terceros no están incluidos salvo que lo pongamos por escrito.")}</p>
         <h2>{tx("9. Preguntas")}</h2>
         <p>{tx("Llama al")} <a href={telHref(SITE.phone)}>{SITE.phone}</a> {tx("o escribe a")} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. {tx("Contestamos dudas del plan antes de que pagues.")}</p>
+        <h2>{tx("10. Pedidos de devolución en los primeros 30 días")}</h2>
+        <p>{tx("Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Aplica a los planes mensuales y a Own It. Debes pedirlo por escrito por texto, correo o Messenger dentro de esos 30 días. No cubre costos de terceros (renovación de dominio, fotos de stock, publicidad u otros servicios de terceros) que ya hayamos pagado.")}</p>
       </div></section>
     </>
   );

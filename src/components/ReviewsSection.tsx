@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getAllReviews } from "@/lib/reviews";
+import { LeaveFacebookReview } from "./FacebookReviews";
 import { LeaveTrustpilotReview } from "./TrustpilotReviews";
 import { UnifiedReviewCard } from "./UnifiedReviewCard";
 import { HL } from "./ui";
@@ -16,9 +17,10 @@ export default async function ReviewsSection() {
         <div className="review-cards">
           {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} />)}
         </div>
-        <div className="btn-row spaced">
+        <div className="review-actions spaced">
           <Link className="btn btn--primary" href="/reviews" prefetch={false}>Read More Reviews</Link>
-          <LeaveTrustpilotReview primary={false} />
+          <LeaveTrustpilotReview />
+          <LeaveFacebookReview />
         </div>
       </div>
     </section>

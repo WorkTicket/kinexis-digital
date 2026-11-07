@@ -3,8 +3,8 @@ export const FAQS: QA[] = [
   { q: "Is this right for my kind of business?", a: "We work with independent trades and local service businesses across the United States, including plumbing, HVAC, electrical, landscaping, roofing, and remodeling. If people search for your service and call when they need help, these plans are built for that kind of business." },
   { q: "What does it cost?", a: "There are four choices: Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for a one-time $1,497. You can see a free homepage preview before choosing. No card is required and there’s no obligation." },
   { q: "How does billing work?", a: "The monthly plans are $0 down and month-to-month from launch, with your price locked for 24 months. Cancel anytime by text, email, or Messenger—no cancellation fee. Own It is a single payment with no monthly plan." },
-  { q: "What happens if I cancel?", a: "Your site stays live through the billing period you’ve already paid for. After that period ends, hosting and management stop and the site comes offline. There is no cancellation fee. If you want to keep the site, ask for buyout terms in writing or move to Own It before the plan ends." },
-  { q: "Who owns the site?", a: "With Own It, the site files belong to you from launch day. On a monthly plan, Kinexis hosts and manages the site while your plan is active. If you later want to move it elsewhere, ask us to provide the buyout terms in writing." },
+  { q: "What happens if I cancel?", a: "Cancel anytime by text, email, or Messenger—there is no cancellation fee. Your site stays live through the billing period you’ve already paid for. When that period ends, hosting and management stop and the site comes offline. If you want to keep the site, arrange a buyout (a written one-time purchase of the site files so you can host them elsewhere) or move to Own It before the paid period ends." },
+  { q: "Who owns the site?", a: "With Own It, the site files belong to you from launch day. On a monthly plan, Kinexis hosts and manages the site while your plan is active. A buyout is a written one-time purchase of those files so you can move the site to your own hosting. Ask us for buyout terms in writing before you cancel if you want to keep the site." },
   { q: "What does the 60-day guarantee cover?", a: "Lead System and Plus include the 60-day lead guarantee. If you receive zero tracked leads during your first 60 days live, we waive the 3rd and 4th monthly charges. It’s limited to one guarantee per business, and Own It is not included." },
   { q: "What does the 30-day money-back guarantee cover?", a: "Every plan includes a 30-day money-back guarantee. If you are not satisfied with your website within 30 days of launch, we refund your most recent payment in full. Requests must be made in writing. Third-party costs already paid on your behalf are not refundable." },
   { q: "When will my site go live?", a: "We start with your free homepage preview. Once you approve it and send the content we need, we’ll confirm the launch date in writing. Optional missed-call text-back begins after carrier approval, which typically takes 10–15 days." },
@@ -47,7 +47,7 @@ export const STEPS = [
 export const UPGRADES = [
   ["Extra Page", "Add a service, location or landing page to any Website, Lead System or Plus plan.", "$99 each"],
   ["Site Care", "Keep an Own It site hosted, secure and updated with 30 minutes of edits each month.", "$39 / mo"],
-  ["Missed-Call Text-Back", "Optional add-on. Requires a dedicated business phone line. A second tracking number is $1/mo; standard carrier messaging rates may apply. Activation is subject to carrier approval (typically 10–15 days).", "$97 / mo"],
+  ["Missed-Call Text-Back", "Optional add-on. A dedicated business phone line is required. A second tracking number is available for $1/mo. Standard carrier messaging rates may apply. Activation is subject to carrier approval (typically 10–15 days); carrier approval is not guaranteed.", "$97 / mo"],
   ["New Pages on Own It", "Add new pages to an Own It site with a written quote provided before any work begins.", "Quoted"],
 ];
 
@@ -144,20 +144,55 @@ export const PLANS: Plan[] = [
   },
 ];
 
-export const PLAN_TERMS = [
-  "Every plan starts with a free homepage preview. No card and no obligation.",
-  "Monthly plans are $0 down and month-to-month from launch. There is no long-term contract and no cancellation fee.",
-  "Your monthly price is locked for 24 months from launch; after that we will give you at least 30 days’ notice of any change.",
-  "Cancel anytime by text, email, or Messenger. Your site stays live through the billing period you’ve already paid for. When that period ends, hosting and management stop and the site comes offline unless you arrange a buyout or move to Own It.",
-  "Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second tracking number is available for $1/mo. Standard carrier messaging rates may apply. Texting starts after carrier approval (typically 10–15 days); carrier approval is not guaranteed.",
-  "Lead System and Plus include the 60-day lead guarantee. Own It does not.",
-  "Every plan includes a 30-day money-back guarantee. If you are not satisfied within 30 days of launch, we refund your most recent payment in full when requested in writing. Third-party costs already paid on your behalf are excluded.",
-  "A tracked lead is a call of 30+ seconds, a missed caller who replies to the text-back, or a real quote form. Spam, wrong numbers, job applicants and existing customers do not count.",
-  "The 60-day lead guarantee is limited to one per business and applies only while the account is in good standing.",
-  "A small edit is a change that takes 30 minutes or less. Requests are handled one at a time.",
-  "On Own It, small edits are done within 2 business days and unused time does not roll over. After 12 months, optional Site Care is $39/mo for hosting and up to 30 minutes of edits a month.",
-  "Later domain renewals are billed at cost, new pages on Own It are quoted in writing, and prices exclude tax, if any.",
+export const PLAN_PREVIEW_TERM =
+  "Every plan starts with a free homepage preview. No card and no obligation.";
+
+/** Grouped plain-language terms shown on /pricing. Keep in sync with /terms. */
+export const PLAN_TERM_GROUPS: { title: string; items: string[] }[] = [
+  {
+    title: "Billing",
+    items: [
+      "Monthly plans are $0 down and month-to-month from launch. There is no long-term contract and no cancellation fee.",
+      "Your monthly price is locked for 24 months from launch; after that we will give you at least 30 days’ notice of any change.",
+    ],
+  },
+  {
+    title: "Canceling & keeping your site",
+    items: [
+      "Cancel anytime by text, email, or Messenger. Your site stays live through the billing period you’ve already paid for.",
+      "When that paid period ends, hosting and management stop and the site comes offline. To keep the site, arrange a buyout—a written one-time purchase of the site files so you can host them elsewhere—or move to Own It before the period ends. Ask us for written terms before you cancel.",
+    ],
+  },
+  {
+    title: "Missed-call text-back",
+    items: [
+      "Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second tracking number is available for $1/mo. Standard carrier messaging rates may apply. Activation is subject to carrier approval (typically 10–15 days); carrier approval is not guaranteed.",
+    ],
+  },
+  {
+    title: "Guarantees",
+    items: [
+      "Lead System and Plus include the 60-day lead guarantee. Own It does not.",
+      "Every plan includes a 30-day money-back guarantee. If you are not satisfied within 30 days of launch, we refund your most recent payment in full when requested in writing. Third-party costs already paid on your behalf are excluded.",
+      "A tracked lead is a call of 30+ seconds, a missed caller who replies to the text-back, or a real quote form. Spam, wrong numbers, job applicants and existing customers do not count.",
+      "The 60-day lead guarantee is limited to one per business and applies only while the account is in good standing.",
+    ],
+  },
+  {
+    title: "Edits & Own It",
+    items: [
+      "A small edit is a change that takes 30 minutes or less. Requests are handled one at a time.",
+      "On Own It, small edits are done within 2 business days and unused time does not roll over. After 12 months, optional Site Care is $39/mo for hosting and up to 30 minutes of edits a month.",
+      "Later domain renewals are billed at cost, new pages on Own It are quoted in writing, and prices exclude tax, if any.",
+    ],
+  },
 ];
+
+export const PLAN_TEXTBACK_FOOTNOTE =
+  "Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second tracking number is available for $1/mo. Standard carrier messaging rates may apply. Activation is subject to carrier approval. Texting typically begins 10–15 days after approval; carrier approval is not guaranteed.";
+
+/** Flat list for /terms intro and any consumers that need a single array. */
+export const PLAN_TERMS = [PLAN_PREVIEW_TERM, ...PLAN_TERM_GROUPS.flatMap((group) => group.items)];
 export const POSTS = [
   {
     slug: "website-mistakes-that-cost-you-calls",

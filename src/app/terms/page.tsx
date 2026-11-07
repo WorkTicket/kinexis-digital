@@ -31,7 +31,7 @@ export default function Page() {
 
           <h2>4. Texting and carrier approval</h2>
           <p>Missed-call text-back is an <b>optional add-on</b>. A dedicated business phone line is required. A second tracking number is available for <b>$1/mo</b>. Standard carrier messaging rates may apply.</p>
-          <p>Missed-call text-back and Google review requests are sent by text. Texting starts after carrier approval, which typically takes 10–15 days. Carrier approval is not guaranteed, and messaging rates or carrier requirements may change.</p>
+          <p>Missed-call text-back and Google review requests are sent by text. <b>Activation is subject to carrier approval.</b> Texting typically begins 10–15 days after approval. Carrier approval is not guaranteed, and messaging rates or carrier requirements may change.</p>
 
           <h2>5. 60-day lead guarantee</h2>
           <p><b>Lead System and Plus only.</b> If you have zero tracked leads in your first 60 days live, we waive your 3rd and 4th monthly charges. One guarantee per business, and the account must be in good standing.</p>
@@ -44,7 +44,10 @@ export default function Page() {
 
           <h2>7. Cancellation and access</h2>
           <p>Cancel a monthly plan anytime by text, email, or Messenger. There is no cancellation fee. Billing stops at the end of the period you have already paid for, and your site stays live through that period.</p>
-          <p>Because the site is hosted and managed by Kinexis on monthly plans, when the paid period ends, hosting and management stop and the site comes offline unless you buy the site or move to Own It. Ask us for buyout terms in writing before you cancel if you want to keep the site.</p>
+          <p>Because the site is hosted and managed by Kinexis on monthly plans, when the paid period ends, hosting and management stop and the site comes offline unless you keep it another way.</p>
+          <p><b>Buyout:</b> a written one-time purchase of the site files so you can move them to hosting you control. Ask us for buyout terms in writing before you cancel if that is the path you want.</p>
+          <p><b>Move to Own It:</b> switch from a monthly plan to the Own It one-time purchase before your paid period ends. Own It terms (files, included hosting, and Site Care) are in section 6.</p>
+          <p>If you do not arrange a buyout or move to Own It before the paid period ends, the site comes offline when hosting and management stop.</p>
 
           <h2>8. Taxes and third-party costs</h2>
           <p>Prices are in U.S. dollars and exclude applicable taxes. Domain renewals, paid stock images, paid advertising and other third-party services are not included unless we list them in writing.</p>

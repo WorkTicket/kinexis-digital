@@ -8,6 +8,7 @@ import { PageSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
+import PreviewBar from "@/components/PreviewBar";
 import TrustStrip from "@/components/TrustStrip";
 import { Compare, Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
@@ -95,6 +96,7 @@ export default function Home() {
         </div>
         <HeroFilm />
       </div></section>
+      <PreviewBar />
 
       {/* 2. What you get */}
       <Section tint>
