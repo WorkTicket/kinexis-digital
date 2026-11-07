@@ -37,9 +37,9 @@ export default function Page() {
       <Section tint>
         <h2 className="center"><HL text="A Practical Way To Get Started" mark="Get Started" /></h2>
         <div className="grid grid--3">
-          <IconCard title="Review A Homepage First" text="The free preview comes before payment. Approve it, request changes, or decide not to continue." icon="preview" />
+          <IconCard title="Review A Homepage First" text="The free preview comes before payment. Approve it, request changes, or walk away with no charge." icon="preview" />
           <IconCard title="Choose Your Follow-Up" text="Lead System and Plus can text missed callers and send Google review requests after completed jobs." icon="better-follow-up" />
-          <IconCard title="Know The Terms Up Front" text="The price, cancel terms, and included work for Website, Lead System, Plus, and Own It are listed before you begin." icon="better-pricing" />
+          <IconCard title="Know The Terms Up Front" text="Price, cancel terms, and what’s included for Website, Lead System, Plus, and Own It are listed up front." icon="better-pricing" />
         </div>
       </Section>
       <Section>

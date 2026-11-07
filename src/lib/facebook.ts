@@ -23,7 +23,8 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     name: "Mac Christensen",
     role: "Owner",
     company: "A1 Property Services",
-    quote: "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can't go wrong with this company.",
+    quote:
+      "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can't go wrong with this company.",
     date: "October 25, 2026",
     recommends: true,
   },
@@ -32,7 +33,7 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     name: "Hunter Norris",
     role: "Owner",
     company: "Preferred Plumbing Solutions",
-    quote: "So grateful to Kinexis Digital! They captured the essence of our plumbing business right away and created a modern website that builds instant trust. 10/10 team!",
+    quote: "They got our plumbing business right away. Site looks clean and customers trust it.",
     date: "September 22, 2026",
     recommends: true,
   },
@@ -41,7 +42,8 @@ const PUBLISHED_REVIEWS: FacebookReview[] = [
     name: "Natalia Moreno",
     role: "Owner",
     company: "Manos Creativas Bynmw",
-    quote: "Great work! They designed my website exceeding all expectations. Highly recommended for their professionalism. You can see an example of their work on my site",
+    quote:
+      "So happy with my new site. They listened, stayed professional, and made something that actually feels like us. Check it out on my page.",
     date: "September 22, 2026",
     recommends: true,
   },
@@ -68,7 +70,9 @@ function formatDate(iso: string) {
 
 const KNOWN_REVIEWERS = [
   { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen", role: "Owner", company: "A1 Property Services" },
+  { quote: "They got our plumbing business right away", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions" },
   { quote: "So grateful to Kinexis Digital", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions" },
+  { quote: "So happy with my new site", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw" },
   { quote: "Great work! They designed my website", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw" },
 ];
 

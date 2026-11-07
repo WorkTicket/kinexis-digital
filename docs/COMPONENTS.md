@@ -1,7 +1,7 @@
 # COMPONENTS.md
 
 ## Core UI components (src/components)
-- `Header.tsx`, `Footer.tsx`, `PreviewBar.tsx` - Site chrome (slim free-preview form on the hero / first-section border; also rendered from `PageHero`)
+- `Header.tsx`, `Footer.tsx`, `PreviewBar.tsx` - Site chrome (slim free-preview form on the hero / first-section divider on `/`, `/web-design`, `/seo-services`, `/pricing`)
 - `ui.tsx` - Shared primitives: `Art`, `ArtDecor`, `PageHero`, `MediaSplit`, `Section`, `CtaBand`, `IconCard`, `ServiceCard`, `ReviewCard`, `Faq`, `Compare`, `Shots`, `Prose`, `HL/Phrase` exports
 - `artwork.tsx` - `Icon`, `Illustration` components
 - `mark.tsx` - Highlighting utilities

@@ -8,6 +8,7 @@ import { chromeFor } from "@/i18n/chrome";
 import { getLocale, getRequestPath, withLocale } from "@/lib/i18n";
 import LanguageSwitch from "./LanguageSwitch";
 import { SITE, telHref } from "@/lib/site";
+import { TRUSTPILOT_PROFILE_URL } from "@/lib/trustpilot";
 
 const link =
   "footer-link inline-flex min-h-10 items-center text-[0.95rem] leading-snug text-white/78 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-bright";
@@ -20,6 +21,17 @@ function YouTubeIcon() {
       <path
         fill="currentColor"
         d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+      />
+    </svg>
+  );
+}
+
+function TrustpilotIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 1.5 14.9 8.4l7.5.7-5.6 4.8 1.8 7.3L12 17.6l-6.6 3.6 1.8-7.3L1.6 9.1l7.5-.7L12 1.5z"
       />
     </svg>
   );
@@ -142,6 +154,9 @@ export default async function Footer() {
                 <FacebookChooser english={SITE.social.Facebook} spanish={SITE.social["Facebook ES"]} />
                 <a className="footer-social__btn footer-social__btn--yt" href={SITE.social.YouTube} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on YouTube">
                   <YouTubeIcon />
+                </a>
+                <a className="footer-social__btn footer-social__btn--tp" href={TRUSTPILOT_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Trustpilot">
+                  <TrustpilotIcon />
                 </a>
                 {otherSocial.map(([name, url]) => (
                   <a key={name} className="footer-social__btn" href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>

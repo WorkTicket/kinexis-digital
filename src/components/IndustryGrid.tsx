@@ -35,6 +35,7 @@ export default function IndustryGrid({
   moreHref,
   moreLabel = "& more",
   moreMeta = "Any local business — if customers call you, we can help.",
+  moreLayout = "outro",
 }: {
   industries?: Industry[];
   layout?: "cards" | "index";
@@ -44,32 +45,47 @@ export default function IndustryGrid({
   moreHref?: string;
   moreLabel?: string;
   moreMeta?: string;
+  /** `cell` fills a grid slot (home). `outro` sits centered under the list. */
+  moreLayout?: "cell" | "outro";
 }) {
   const list = typeof limit === "number" ? industries.slice(0, limit) : industries;
   if (layout === "index") {
+    const moreInGrid = Boolean(moreHref) && moreLayout === "cell";
+    const moreAsOutro = Boolean(moreHref) && moreLayout === "outro";
     return (
-      <ul className="trade-index">
-        {list.map((industry) => (
-          <li key={industry.slug}>
-            <Link className="trade-index__item" href={`${base}/${industry.slug}`} prefetch={false}>
-              <TradeIcon slug={industry.slug} />
-              <span className="trade-index__name">{industry.name}</span>
-              <span className="trade-index__meta">{industry.card}</span>
-              <TradeArrow />
-            </Link>
-          </li>
-        ))}
-        {moreHref ? (
-          <li>
-            <Link className="trade-index__item trade-index__item--more" href={moreHref} prefetch={false}>
+      <div className="trade-index-wrap">
+        <ul className="trade-index">
+          {list.map((industry) => (
+            <li key={industry.slug}>
+              <Link className="trade-index__item" href={`${base}/${industry.slug}`} prefetch={false}>
+                <TradeIcon slug={industry.slug} />
+                <span className="trade-index__name">{industry.name}</span>
+                <span className="trade-index__meta">{industry.card}</span>
+                <TradeArrow />
+              </Link>
+            </li>
+          ))}
+          {moreInGrid ? (
+            <li>
+              <Link className="trade-index__item trade-index__item--more" href={moreHref!} prefetch={false}>
+                <span className="trade-index__more-mark" aria-hidden="true">+</span>
+                <span className="trade-index__name">{moreLabel}</span>
+                <span className="trade-index__meta">{moreMeta}</span>
+                <TradeArrow />
+              </Link>
+            </li>
+          ) : null}
+        </ul>
+        {moreAsOutro ? (
+          <p className="trade-index__outro">
+            <Link className="trade-index__outro-link" href={moreHref!} prefetch={false}>
               <span className="trade-index__more-mark" aria-hidden="true">+</span>
-              <span className="trade-index__name">{moreLabel}</span>
-              <span className="trade-index__meta">{moreMeta}</span>
-              <TradeArrow />
+              <span className="trade-index__outro-label">{moreLabel}</span>
             </Link>
-          </li>
+            <span className="trade-index__outro-meta">{moreMeta}</span>
+          </p>
         ) : null}
-      </ul>
+      </div>
     );
   }
   return (

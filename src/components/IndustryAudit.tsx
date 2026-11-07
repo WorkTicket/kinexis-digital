@@ -8,25 +8,25 @@ const CHECKS = [
   {
     title: "Speed",
     titleDisplay: <>Page<br />Speed</>,
-    text: <>How quickly each page loads<br />for visitors using phones<br />and desktop computers.</>,
+    text: <>How quickly each page loads<br />on phones and desktops for<br />visitors who arrive.</>,
     icon: "speed",
   },
   {
     title: "Search Visibility",
     titleDisplay: <>Search<br />Visibility</>,
-    text: <>How headings and page structure<br />help search engines read<br />and understand the website.</>,
+    text: <>How headings and structure<br />help search engines read<br />and understand the site.</>,
     icon: "search",
   },
   {
     title: "Mobile Experience",
     titleDisplay: <>Mobile<br />Experience</>,
-    text: <>How comfortably the site works<br />on phones, with readable type<br />and easy-to-reach controls.</>,
+    text: <>How comfortably the site<br />works on phones, with clear<br />type and easy controls.</>,
     icon: "mobile",
   },
   {
     title: "Calls & Quote Requests",
     titleDisplay: <>Calls &amp; Quote<br />Requests</>,
-    text: <>How phone numbers, buttons,<br />and forms guide each visitor<br />toward the right next step.</>,
+    text: <>How phone numbers, buttons,<br />and forms guide visitors<br />to the right next step.</>,
     icon: "conversion",
   },
 ] as const;

@@ -13,12 +13,12 @@ export default function Page() {
       <Section>
         <h2 className="center"><HL text="What We Work On" mark="Work On" /></h2>
         <div className="grid grid--3">
-          <IconCard title="Technical Setup" text="We check crawling, indexing, speed, mobile use, sitemaps, and structured data so search engines can read the site." icon="technical-seo" />
-          <IconCard title="Page Improvements" text="We refine titles, descriptions, headings, and internal links around the way your customers search." icon="on-page-optimization" />
-          <IconCard title="Search Research" text="We look for real demand and useful intent, then match each search to the page that can answer it." icon="keyword-research" />
+          <IconCard title="Technical Setup" text="We check crawling, indexing, speed, mobile use, sitemaps, and structured data so Google can read the site." icon="technical-seo" />
+          <IconCard title="Page Improvements" text="We refine titles, descriptions, headings, and internal links around how your customers actually search." icon="on-page-optimization" />
+          <IconCard title="Search Research" text="We look for real demand and useful intent, then match each search to the page that can answer it clearly." icon="keyword-research" />
           <IconCard title="Useful Content" text="We plan service pages and articles that answer real questions instead of adding words just to fill a page." icon="content-strategy" />
-          <IconCard title="Local Or Nationwide Reach" text="The work can focus on the towns you serve, broader national searches, or a practical mix of both." icon="local-seo" />
-          <IconCard title="Reports You Can Read" text="You see impressions, clicks, positions, and leads from Search Console and analytics in a clear report." icon="reporting" />
+          <IconCard title="Local Or Nationwide Reach" text="The work can focus on the towns you serve, broader national searches, or a practical mix of both areas." icon="local-seo" />
+          <IconCard title="Reports You Can Read" text="You see impressions, clicks, positions, and leads from Search Console and analytics in one clear report." icon="reporting" />
         </div>
       </Section>
       <Section tint narrow>

@@ -117,7 +117,7 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
               onClick={() => setStars(value)}
             >
               <span aria-hidden="true">★</span>
-              <span className="sr-only">{value} star{value === 1 ? "" : "s"}</span>
+              <span className="sr-only">{`${value} star${value === 1 ? "" : "s"}`}</span>
             </button>
           ))}
         </div>

@@ -5,10 +5,10 @@ import { PageSchema } from "@/components/JsonLd";
 
 export const metadata = pageMetadata("audit");
 const ASIDE = [
-  ["Page Speed", "We check how quickly the main pages open on phones and computers.", "audit-speed"],
+  ["Page Speed", "We check how quickly main pages open for visitors on phones and computers.", "audit-speed"],
   ["Search Setup", "We review titles, headings, indexing, and the basic signals Google reads.", "search-optimized"],
-  ["Phone Experience", "We look at how the site fits, reads, and works on a smaller screen.", "audit-mobile"],
-  ["Calls And Forms", "We check whether visitors can tell how to call, ask a question, or request a quote.", "audit-conversion"],
+  ["Phone Experience", "We look at how the site fits, reads, and works on a smaller phone screen.", "audit-mobile"],
+  ["Calls And Forms", "We check whether visitors can tell how to call, ask a question, or get a quote.", "audit-conversion"],
 ];
 
 export default function Page() {

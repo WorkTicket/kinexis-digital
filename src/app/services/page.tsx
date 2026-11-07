@@ -8,21 +8,21 @@ export const metadata = pageMetadata("services");
 const offerings = [
   {
     title: "Website Design",
-    text: "A clear site for the work you want, with tap-to-call, short quote forms, and a homepage you can review before paying.",
+    text: "A clear site for the work you want, with tap-to-call, short quote forms, and a homepage preview before you pay.",
     href: "/web-design",
     cta: "See Website Design",
     icon: "well-designed",
   },
   {
     title: "SEO Services",
-    text: "Technical cleanup, useful page titles, and content that helps the right customers find you through Google.",
+    text: "Technical cleanup, useful page titles, and content that helps the right customers find you through Google search.",
     href: "/seo-services",
     cta: "Explore SEO",
     icon: "search-optimized",
   },
   {
     title: "Website Management",
-    text: "Hosting, updates, and backups are covered, with a real person available when something needs to change.",
+    text: "Hosting, updates, and backups are covered, with a real person available when something on the site needs to change.",
     href: "/website-management",
     cta: "See Site Care",
     icon: "managed-for-you",

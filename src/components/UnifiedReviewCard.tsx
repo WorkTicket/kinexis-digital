@@ -35,11 +35,6 @@ function ThumbsUp() {
   );
 }
 
-function detailLine(review: DisplayReview) {
-  const bits = [review.role, review.company].filter(Boolean);
-  return bits.length > 0 ? bits.join(" · ") : null;
-}
-
 export function UnifiedReviewCard({
   review,
   sourceLabels,
@@ -48,7 +43,6 @@ export function UnifiedReviewCard({
   sourceLabels?: Partial<Record<ReviewSource, string>>;
 }) {
   const source = sourceLabels?.[review.source] ?? REVIEW_SOURCE_LABEL[review.source];
-  const detail = detailLine(review);
 
   return (
     <figure className="review-card">
@@ -66,7 +60,13 @@ export function UnifiedReviewCard({
         <ThumbsUp />
         <span className="review-card__meta">
           <b>{review.name}</b>
-          {detail ? <span className="review-card__detail">{detail}</span> : null}
+          {review.role || review.company ? (
+            <span className="review-card__detail">
+              {review.role ? <span className="review-card__role">{review.role}</span> : null}
+              {review.role && review.company ? <span className="review-card__sep" aria-hidden="true"> · </span> : null}
+              {review.company ? <span className="review-card__company">{review.company}</span> : null}
+            </span>
+          ) : null}
           {review.date ? <time dateTime={review.sortKey || undefined}>{review.date}</time> : null}
         </span>
       </figcaption>

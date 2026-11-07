@@ -184,7 +184,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>{tx("Un sitio que")}<br />{tx("facilita recibir")}<br />{tx("llamadas")}</>} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
-          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Quien llama recibe un texto, los clientes reciben la solicitud de reseña y cada lead queda registrado.")} icon="better-follow-up" />
+          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Quien llama recibe un texto, el cliente recibe la solicitud de reseña y cada lead queda registrado.")} icon="better-follow-up" />
           <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx("Elige entre cuatro planes desde $97 al mes, con vista previa gratis, $0 de enganche y cobro mes a mes.")} icon="better-pricing" />
         </div>
       </Section>
@@ -214,7 +214,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
         <ReviewRail steps={[
           { n: "1", title: tx("Llamada perdida, texto automático"), titleDisplay: <>{tx("Llamada perdida,")}<br />{tx("texto automático")}</>, text: <>{tx("Si no puedes contestar, sale un texto")}<br />{tx("en tu número de seguimiento para")}<br />{tx("que el lead no se enfríe.")}</>, icon: "missed-call-text-back" },
           { n: "2", title: tx("Después de cada trabajo"), titleDisplay: <>{tx("Después de")}<br />{tx("cada trabajo")}</>, text: <>{tx("El cliente recibe un texto con el")}<br />{tx("enlace directo a tu reseña en Google.")}<br />{tx("No tienes que pedirlo en persona.")}</>, icon: "after-every-job" },
-          { n: "3", title: tx("Directo a tu perfil"), titleDisplay: <>{tx("Directo a")}<br />{tx("tu perfil")}</>, text: <>{tx("El enlace abre tu perfil de Google.")}<br />{tx("Las reseñas llegan listas para que")}<br />{tx("respondas.")}</>, icon: "one-tap-to-google" },
+          { n: "3", title: tx("Directo a tu perfil"), titleDisplay: <>{tx("Directo a")}<br />{tx("tu perfil")}</>, text: <>{tx("El enlace abre tu perfil de Google.")}<br />{tx("Las reseñas llegan listas para")}<br />{tx("que puedas responderlas.")}</>, icon: "one-tap-to-google" },
         ]} />
       </Section>
       <Section tint>
@@ -223,7 +223,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
           <h2 className="center"><HL text={tx("Lo que incluye cada sitio de Kinexis")} mark={tx("sitio de Kinexis")} /></h2>
           <p className="center muted">{tx("Lo esencial para verse serio, aparecer en búsquedas y convertir visitas en llamadas, con el hosting y los cambios a cargo nuestro.")}</p>
         </div>
-        <ReasonBoard reasons={[{ title: tx("Se ve bien en cada pantalla"), text: tx("Un diseño moderno y adaptable presenta bien tu negocio en celulares, tabletas y computadoras."), icon: "well-designed" }, { title: tx("Pensado para recibir llamadas"), text: tx("Cada página deja claro si el siguiente paso es llamar o enviar los datos del trabajo."), icon: "sales-focused" }, { title: tx("Fácil de leer para Google"), text: tx("Una estructura limpia, títulos útiles y páginas rápidas ayudan a que el buscador entienda el sitio."), icon: "search-optimized" }, { title: tx("El hosting y los cambios son nuestros"), text: tx("Administramos el hosting, los cambios de rutina, los respaldos y la seguridad sin devolverte ese trabajo."), icon: "hassle-free" }]} />
+        <ReasonBoard reasons={[{ title: tx("Se ve bien en cada pantalla"), text: tx("Un diseño moderno y adaptable presenta bien tu negocio en celulares, tabletas y computadoras."), icon: "well-designed" }, { title: tx("Pensado para recibir llamadas"), text: tx("Cada página deja claro si el siguiente paso es llamar ahora o enviar los datos del trabajo."), icon: "sales-focused" }, { title: tx("Fácil de leer para Google"), text: tx("Una estructura limpia, títulos útiles y páginas rápidas ayudan a que el buscador entienda el sitio."), icon: "search-optimized" }, { title: tx("El hosting y los cambios son nuestros"), text: tx("Administramos hosting, cambios de rutina, respaldos y seguridad sin devolverte ese trabajo."), icon: "hassle-free" }]} />
       </Section>
       <Section>
         <div className="trades-feature">
@@ -240,6 +240,7 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
           moreHref={href("/industries")}
           moreLabel={tx("y más")}
           moreMeta={tx("Cualquier negocio local: si te llaman tus clientes, podemos ayudarte.")}
+          moreLayout="cell"
         />
       </Section>
       <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} plans={spanishPlans(tx)} /></Section>
@@ -307,9 +308,9 @@ function spanishPlans(tx: (s: string) => string) {
 
 function Services({ tx, href, lang, band }: PageBits) {
   const items = [
-    [tx("Diseño web"), tx("Un sitio claro para el trabajo que quieres, con llamada desde el celular, formularios cortos y una vista previa antes de pagar."), "/web-design", tx("Ver diseño web"), "well-designed"],
+    [tx("Diseño web"), tx("Un sitio claro para el trabajo que quieres, con llamada desde el celular, formularios cortos y vista previa antes de pagar."), "/web-design", tx("Ver diseño web"), "well-designed"],
     [tx("SEO"), tx("Mejoras técnicas, títulos útiles y contenido que ayuda a que los clientes correctos te encuentren en Google."), "/seo-services", tx("Ver SEO"), "search-optimized"],
-    [tx("Mantenimiento"), tx("Hosting, cambios y respaldos resueltos, con una persona disponible cuando algo necesita actualizarse."), "/website-management", tx("Ver el cuidado"), "managed-for-you"],
+    [tx("Mantenimiento"), tx("Hosting, cambios y respaldos resueltos, con una persona disponible cuando el sitio necesita un cambio."), "/website-management", tx("Ver el cuidado"), "managed-for-you"],
     [tx("Revisión gratis"), tx("Una revisión práctica de velocidad, indexación, títulos y qué tan fácil es ponerse en contacto contigo."), "/audit", tx("Revisar mi sitio"), "preview"],
   ] as const;
   return (
@@ -369,9 +370,9 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
         <h2 className="center"><HL text={tx("Qué enviarnos")} mark={tx("enviarnos")} /></h2>
         <p className="center muted">{tx("No necesitas un kit de marca terminado. Envía lo que tengas y completamos el resto para la vista previa.")}</p>
         <div className="grid grid--3">
-          <IconCard title={tx("Dirección de diseño")} text={tx("Ejemplos de nuestras plantillas, del portafolio o capturas de sitios que te gusten. Unas pocas referencias bastan para marcar el tono.")} icon="preview" />
+          <IconCard title={tx("Dirección de diseño")} text={tx("Ejemplos de nuestras plantillas, del portafolio o capturas de sitios que te gusten. Unas pocas referencias marcan el tono.")} icon="preview" />
           <IconCard title={tx("Logo y lo básico de la marca")} text={tx("Tu logo si lo tienes, el nombre del negocio y los colores que ya usas en camionetas, camisas o tarjetas.")} icon="built-for-your-trade" />
-          <IconCard title={tx("Fotos (opcional)")} text={tx("Fotos reales de trabajos, tu camioneta o tu equipo. Si aún las estás reuniendo, podemos empezar la vista previa sin ellas.")} icon="better-design" />
+          <IconCard title={tx("Fotos (opcional)")} text={tx("Fotos reales de trabajos, tu camioneta o tu equipo. Si aún las estás reuniendo, la vista previa puede empezar sin ellas.")} icon="better-design" />
         </div>
       </Section>
       <Section>
@@ -428,12 +429,12 @@ function Seo({ tx, href, lang, band }: PageBits) {
       <PageHero h1={tx("SEO para que te encuentre la gente correcta")} mark={tx("gente correcta")} sub={tx("Mejoramos la parte técnica, las páginas y el contenido que ayudan a descubrir tu negocio en Google.")} image="local-seo" imageAlt={tx("Pines de mapa y un panel de búsqueda")} />
       <Section>
         <div className="grid grid--3">
-          <IconCard title={tx("Base técnica")} text={tx("Revisamos rastreo, indexación, velocidad, celular, mapa del sitio y datos estructurados.")} icon="technical-seo" />
-          <IconCard title={tx("Mejoras en cada página")} text={tx("Ajustamos títulos, descripciones, encabezados y enlaces según la forma en que buscan tus clientes.")} icon="on-page-optimization" />
-          <IconCard title={tx("Búsquedas reales")} text={tx("Buscamos demanda e intención útiles y conectamos cada búsqueda con la página que puede responderla.")} icon="keyword-research" />
+          <IconCard title={tx("Base técnica")} text={tx("Revisamos rastreo, indexación, velocidad, celular, mapa del sitio y datos estructurados para Google.")} icon="technical-seo" />
+          <IconCard title={tx("Mejoras en cada página")} text={tx("Ajustamos títulos, descripciones, encabezados y enlaces según cómo buscan de verdad tus clientes.")} icon="on-page-optimization" />
+          <IconCard title={tx("Búsquedas reales")} text={tx("Buscamos demanda e intención útiles y conectamos cada búsqueda con la página que puede responderla bien.")} icon="keyword-research" />
           <IconCard title={tx("Contenido útil")} text={tx("Planeamos servicios y artículos que responden dudas reales, sin agregar texto solo para llenar espacio.")} icon="content-strategy" />
-          <IconCard title={tx("Alcance local o nacional")} text={tx("El trabajo puede enfocarse en tu zona, en búsquedas nacionales o en una mezcla razonable de ambas.")} icon="local-seo" />
-          <IconCard title={tx("Informes fáciles de leer")} text={tx("Ves impresiones, clics, posiciones y leads de Search Console y analítica en un informe claro.")} icon="reporting" />
+          <IconCard title={tx("Alcance local o nacional")} text={tx("El trabajo puede enfocarse en tu zona, en búsquedas nacionales o en una mezcla razonable de ambas áreas.")} icon="local-seo" />
+          <IconCard title={tx("Informes fáciles de leer")} text={tx("Ves impresiones, clics, posiciones y leads de Search Console y analítica en un solo informe claro.")} icon="reporting" />
         </div>
       </Section>
       <Section tint narrow>
@@ -629,7 +630,7 @@ function Contact({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
 }
 
 function Audit({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
-  const aside = [[tx("Velocidad de las páginas"), tx("Revisamos qué tan rápido abren las páginas principales en el celular y la computadora."), "audit-speed"], [tx("Configuración de búsqueda"), tx("Revisamos títulos, encabezados, indexación y las señales básicas que lee Google."), "search-optimized"], [tx("Uso en el celular"), tx("Vemos cómo cabe, se lee y funciona el sitio en una pantalla pequeña."), "audit-mobile"], [tx("Llamadas y formularios"), tx("Comprobamos si queda claro cómo llamar, preguntar o pedir una cotización."), "audit-conversion"]] as const;
+  const aside = [[tx("Velocidad de las páginas"), tx("Revisamos qué tan rápido abren las páginas principales en celular y computadora."), "audit-speed"], [tx("Configuración de búsqueda"), tx("Revisamos títulos, encabezados, indexación y las señales básicas que lee Google."), "search-optimized"], [tx("Uso en el celular"), tx("Vemos cómo cabe, se lee y funciona el sitio en una pantalla de teléfono."), "audit-mobile"], [tx("Llamadas y formularios"), tx("Comprobamos si queda claro cómo llamar, preguntar o pedir una cotización."), "audit-conversion"]] as const;
   return (
     <>
       <ContentSchema path={href("/audit")} title={tx(PAGE_META["/audit"].title)} description={tx(PAGE_META["/audit"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Auditoría"), path: href("/audit") }]} inLanguage={lang} serviceType={tx("Auditoría de sitio y SEO")} />
@@ -725,9 +726,9 @@ function Care({ tx, href, lang, band }: PageBits) {
       <PageHero h1={tx("Mantén tu sitio al día")} mark={tx("al día")} sub={tx("Nos encargamos del hosting, los cambios de rutina, los respaldos y la seguridad.")} image="maintenance" imageAlt={tx("Paneles de cuidado con un engrane")} />
       <Section><div className="grid grid--4">
         <IconCard level={2} title={tx("Hosting confiable")} text={tx("El sitio tiene un lugar estable donde funcionar sin que administres un servidor.")} icon="hosting" />
-        <IconCard level={2} title={tx("Cambios solicitados")} text={tx("Envíanos el texto o los datos nuevos y actualizamos la página por ti.")} icon="updates" />
+        <IconCard level={2} title={tx("Cambios solicitados")} text={tx("Envíanos el texto o los datos nuevos y actualizamos la página por ti al momento.")} icon="updates" />
         <IconCard level={2} title={tx("Respaldos y seguridad")} text={tx("Vigilamos el sitio y guardamos respaldos por si algo sale mal.")} icon="security" />
-        <IconCard level={2} title={tx("Una persona que responde")} text={tx("Cuando necesitas un cambio, contactas a alguien que conoce el sitio.")} icon="support" />
+        <IconCard level={2} title={tx("Una persona que responde")} text={tx("Cuando necesitas un cambio, contactas a alguien que ya conoce el sitio.")} icon="support" />
       </div></Section>
       <Section tint><div className="center"><Link className="btn btn--primary" href={href("/update")} prefetch={false}>{tx("Pedir un cambio")}</Link></div></Section>
       <CtaBand h={tx("¿Quieres sacar el cuidado de tu lista?")} mark={tx("de tu lista")} sub={tx("Dinos qué necesita el sitio y te explicamos cómo podemos encargarnos.")} btn={tx("Empezar")} href={href("/contact")} {...band} />
@@ -953,7 +954,7 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
 const FEATURES: Record<FeatureKey, { title: string; text: string; icon: string }> = {
   calls: { title: "Fácil de llamar", text: "Toque para llamar y un número visible mientras la persona decide, también en el celular.", icon: "calls" },
   "quote-requests": { title: "Cotizaciones", text: "Un formulario que pide los datos del trabajo, y nada que no necesitas.", icon: "quote-requests" },
-  reviews: { title: "Confianza", text: "En Lead System y Plus, después del trabajo sale un texto con el enlace a tu perfil de Google.", icon: "reviews" },
+  reviews: { title: "Confianza", text: "En Lead System y Plus, después del trabajo sale un texto con el enlace a Google.", icon: "reviews" },
   bookings: { title: "Reservas", text: "Una forma directa de pedir una visita recurrente, un lugar en la ruta o el siguiente hueco.", icon: "bookings" },
   "service-area": { title: "Dónde trabajas", text: "", icon: "service-area" },
 };

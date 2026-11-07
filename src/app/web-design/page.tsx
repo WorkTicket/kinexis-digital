@@ -42,17 +42,17 @@ export default function Page() {
           {/* Placeholder icons: swap for custom “what to send” art when ready */}
           <IconCard
             title="Design direction"
-            text="Examples from our templates, portfolio, or screenshots of sites you like. A few references are enough to set the tone."
+            text="Examples from our templates, portfolio, or screenshots of sites you like. A few references set the tone."
             icon="preview"
           />
           <IconCard
             title="Logo and brand basics"
-            text="Your logo if you have one, business name, and any colors you already use on trucks, shirts, or cards."
+            text="Your logo if you have one, the business name, and any colors you already use on trucks, shirts, or cards."
             icon="built-for-your-trade"
           />
           <IconCard
             title="Photos (optional)"
-            text="Real job photos, your truck, or your crew. If you’re still gathering them, we can start the preview without them."
+            text="Real job photos, your truck, or your crew. If you’re still gathering them, the preview can start without them."
             icon="better-design"
           />
         </div>

@@ -34,7 +34,7 @@ const FEATURES: Record<FeatureKey, { title: string; text: string; icon: string }
   },
   reviews: {
     title: "Build Customer Confidence",
-    text: "On Lead System and Plus, a review request goes out after the job with a direct link to your Google profile.",
+    text: "On Lead System and Plus, review requests go out after the job with a Google link.",
     icon: "reviews",
   },
   bookings: {

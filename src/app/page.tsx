@@ -193,6 +193,7 @@ export default function Home() {
           moreHref="/industries"
           moreLabel="& more"
           moreMeta="Any local business — if customers call you, we can help."
+          moreLayout="cell"
         />
       </Section>
 

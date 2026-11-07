@@ -20,7 +20,7 @@ const REVIEW_STEPS = [
     n: "3",
     title: "Straight to your profile",
     titleDisplay: <>Straight to<br />your profile</>,
-    text: <>The link opens your Google Business<br />Profile. New reviews land ready for<br />you to reply.</>,
+    text: <>The link opens your Google Business<br />Profile. New reviews land ready<br />for you to reply to them.</>,
     icon: "one-tap-to-google",
   },
 ] as const;
@@ -33,17 +33,17 @@ const REASONS = [
   },
   {
     title: "Designed To Bring In Calls",
-    text: "Every page makes the next step clear, whether someone wants to call now or request a quote.",
+    text: "Every page makes the next step clear, whether someone wants to call now or request a quote online.",
     icon: "sales-focused",
   },
   {
     title: "Easy For Google To Find",
-    text: "Clean page structure, useful headings, and fast load times help search engines read your site.",
+    text: "Clean page structure, useful headings, and fast load times help search engines read your site clearly.",
     icon: "search-optimized",
   },
   {
     title: "Hosting And Updates Stay With Us",
-    text: "We manage the hosting, routine changes, backups, and security instead of handing that work back to you.",
+    text: "We manage hosting, routine changes, backups, and security instead of handing that work back to you.",
     icon: "hassle-free",
   },
 ] as const;

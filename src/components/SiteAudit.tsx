@@ -20,22 +20,22 @@ const ES = {
   checks: [
     {
       title: "Velocidad",
-      text: "Qué tan rápido cargan las páginas en un celular y en una computadora.",
+      text: "Qué tan rápido cargan las páginas en celular y computadora para cada visita.",
       icon: "speed",
     },
     {
       title: "Visibilidad en búsquedas",
-      text: "Si los títulos, la estructura y las páginas están listos para que los buscadores los lean.",
+      text: "Si títulos, estructura y páginas están listos para que los buscadores los lean.",
       icon: "search",
     },
     {
       title: "Experiencia en el celular",
-      text: "Cómo se ve el sitio en un teléfono, el tamaño del texto y lo que alcanza el pulgar.",
+      text: "Cómo se ve y usa el sitio en el teléfono, con texto legible y controles claros.",
       icon: "mobile",
     },
     {
       title: "Llamadas y cotizaciones",
-      text: "Si el número, los botones y los formularios dejan claro el siguiente paso.",
+      text: "Si el número, botones y formularios dejan claro cuál será el siguiente paso.",
       icon: "conversion",
     },
   ],

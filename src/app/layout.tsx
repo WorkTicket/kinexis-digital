@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
-import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
 import { chromeFor } from "@/i18n/chrome";
@@ -133,10 +132,6 @@ else start();
         <ScrollUi />
         <DialogHost />
         <Boot email={SITE.email} ga={/^G-[A-Z0-9]+$/.test(gaId) ? gaId : ""} video={SITE.videoUrl} />
-        <Script
-          src="https://widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
-          strategy="afterInteractive"
-        />
       </body>
     </html>
   );

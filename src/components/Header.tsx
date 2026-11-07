@@ -34,7 +34,10 @@ export default async function Header() {
           <NavLinks chrome={chrome} industries={industries} hrefFor={hrefFor} />
           <div className="nav__extra">
             <a className="header__phone" href={telHref(SITE.phone)}>{SITE.phone}</a>
-            <Link className="btn btn--primary" href={hrefFor("/contact")} prefetch={false}>{chrome.chat}</Link>
+            <Link className="btn btn--primary nav__preview" href={hrefFor("/contact")} prefetch={false}>
+              <span className="nav__preview-title">{chrome.chat}</span>
+              <span className="nav__preview-hint">{chrome.previewBarHint}</span>
+            </Link>
             <Link className="header__call-link" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
           </div>
         </nav>
