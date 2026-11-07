@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import {
   TRUSTPILOT_BUSINESS_UNIT_ID,
   TRUSTPILOT_PROFILE_URL,
@@ -25,14 +25,8 @@ export function LeaveTrustpilotReview({
   label?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!mounted) return;
     const el = ref.current;
     if (!el) return;
 
@@ -52,11 +46,7 @@ export function LeaveTrustpilotReview({
     }, 200);
 
     return () => window.clearInterval(timer);
-  }, [locale, mounted]);
-
-  if (!mounted) {
-    return <div className="trustpilot-collector" aria-hidden="true" />;
-  }
+  }, [locale]);
 
   return (
     <div className="trustpilot-collector">
