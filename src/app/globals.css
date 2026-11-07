@@ -201,7 +201,7 @@ p{margin:0 0 1em}
 }
 @media (max-width:560px){
   .preview-bar__inner{padding:12px 14px}
-  .preview-bar__hint{display:none}
+  .preview-bar__hint{display:block}
   .preview-bar .form--slim .field{flex:1 1 100%}
   .preview-bar .form--slim .btn{width:100%}
 }
