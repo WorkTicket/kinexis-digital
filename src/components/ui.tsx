@@ -8,6 +8,7 @@ import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
 import { HL, Phrase } from "./mark";
 import { ShotFrame } from "./ShotFrame";
+import TrustStrip from "./TrustStrip";
 
 export { Icon, Illustration, HL, Phrase };
 
@@ -215,15 +216,15 @@ export function MediaSplit({
     </div>
   );
 }
-export function Section({ tint, narrow, id, decor, accent, children }: { tint?: boolean; narrow?: boolean; id?: string; decor?: "light" | "dark"; accent?: string; children: ReactNode }) {
+export function Section({ tint, narrow, id, decor, accent, band, children }: { tint?: boolean; narrow?: boolean; id?: string; decor?: "light" | "dark"; accent?: string; band?: "lead"; children: ReactNode }) {
   return (
-    <section id={id} className={`section${tint ? " section--tint" : ""}${decor ? ` section--decor-${decor}` : ""}${accent ? " section--trade-accent" : ""}`}>
+    <section id={id} className={`section${tint ? " section--tint" : ""}${band ? ` section--${band}` : ""}${decor ? ` section--decor-${decor}` : ""}${accent ? " section--trade-accent" : ""}`}>
       {accent ? <img className="section-accent" src={accent} alt="" width={1200} height={700} loading="lazy" decoding="async" fetchPriority="low" /> : null}
       <div className={`container${narrow ? " container--narrow" : ""}`}>{children}</div>
     </section>
   );
 }
-export function CtaBand({ h = "Ready to Get Started?", mark, sub, btn = "Let’s Talk", href = "/contact", secondary = "Talk Through Your Options", secondaryHref = "/strategy-call" }: { h?: string; mark?: string; sub: string; btn?: string; href?: string; secondary?: string; secondaryHref?: string }) {
+export function CtaBand({ h = "Ready to See Your Homepage?", mark, sub, btn = "Get My Free Preview", href = "/contact", secondary = "See Plans & Pricing", secondaryHref = "/pricing" }: { h?: string; mark?: string; sub: string; btn?: string; href?: string; secondary?: string; secondaryHref?: string }) {
   return (
     <section className="cta-band">
       <div className="container center">
@@ -232,6 +233,7 @@ export function CtaBand({ h = "Ready to Get Started?", mark, sub, btn = "Let’s
         <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{btn}</Link>
         <Link className="btn btn--ghost btn--lg" href={secondaryHref} prefetch={false}>{secondary}</Link>
       </div>
+      <TrustStrip className="cta-trust" />
     </div></section>
   );
 }
@@ -263,7 +265,12 @@ export function ReviewCard({ quote, name, company }: { quote: string; name: stri
   );
 }
 export function Faq({ items, openFirst = true }: { items: { q: string; a: string }[]; openFirst?: boolean }) {
-  return <>{items.map((f, i) => <details className="faq" key={f.q} open={openFirst && i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}</>;
+  return <>{items.map((f, i) => (
+    <details className="faq" key={f.q} open={openFirst && i === 0}>
+      <summary><h3 className="faq__q">{f.q}</h3></summary>
+      <p>{f.a}</p>
+    </details>
+  ))}</>;
 }
 function KinexisCheck({ yesLabel = "Yes" }: { yesLabel?: string }) {
   return (

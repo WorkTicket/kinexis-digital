@@ -43,10 +43,10 @@ const poppinsDisplay = localFont({
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
 const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim() || SITE.googleSiteVerification;
-const defaultTitle = "Professional Web Design Agency | Kinexis Digital";
+const defaultTitle = "Website Plans From $97/mo for Local Businesses | Kinexis Digital";
 const defaultDescription = descriptionWithFallback(
   SITE.description,
-  " Get a free homepage preview before choosing a plan.",
+  " See your free homepage preview first. No card required.",
 );
 
 export const metadata: Metadata = {

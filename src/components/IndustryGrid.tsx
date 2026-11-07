@@ -27,11 +27,29 @@ function TradeArrow() {
   );
 }
 
-export default function IndustryGrid({ industries = INDUSTRIES, layout = "cards", base = "/industries" }: { industries?: Industry[]; layout?: "cards" | "index"; base?: string }) {
+export default function IndustryGrid({
+  industries = INDUSTRIES,
+  layout = "cards",
+  base = "/industries",
+  limit,
+  moreHref,
+  moreLabel = "& more",
+  moreMeta = "Any local service business — if customers call you, we can help.",
+}: {
+  industries?: Industry[];
+  layout?: "cards" | "index";
+  base?: string;
+  /** When set, only the first N industries are shown. */
+  limit?: number;
+  moreHref?: string;
+  moreLabel?: string;
+  moreMeta?: string;
+}) {
+  const list = typeof limit === "number" ? industries.slice(0, limit) : industries;
   if (layout === "index") {
     return (
       <ul className="trade-index">
-        {industries.map((industry) => (
+        {list.map((industry) => (
           <li key={industry.slug}>
             <Link className="trade-index__item" href={`${base}/${industry.slug}`} prefetch={false}>
               <TradeIcon slug={industry.slug} />
@@ -41,6 +59,16 @@ export default function IndustryGrid({ industries = INDUSTRIES, layout = "cards"
             </Link>
           </li>
         ))}
+        {moreHref ? (
+          <li>
+            <Link className="trade-index__item trade-index__item--more" href={moreHref} prefetch={false}>
+              <span className="trade-index__more-mark" aria-hidden="true">+</span>
+              <span className="trade-index__name">{moreLabel}</span>
+              <span className="trade-index__meta">{moreMeta}</span>
+              <TradeArrow />
+            </Link>
+          </li>
+        ) : null}
       </ul>
     );
   }

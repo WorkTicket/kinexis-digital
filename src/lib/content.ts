@@ -2,19 +2,33 @@ export type QA = { q: string; a: string };
 export const FAQS: QA[] = [
   { q: "Is this right for my kind of business?", a: "We work with independent trades and local service businesses across the United States, including plumbing, HVAC, electrical, landscaping, roofing, and remodeling. If people search for your service and call when they need help, these plans are built for that kind of business." },
   { q: "What does it cost?", a: "There are four choices: Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for a one-time $1,497. You can see a free homepage preview before choosing. No card is required and there’s no obligation." },
-  { q: "How does billing work?", a: "The monthly plans have $0 down and a 3-month minimum from the launch date. After that, they continue month-to-month, with your price locked for 24 months. Own It is a single payment with no monthly plan or minimum." },
+  { q: "How does billing work?", a: "The monthly plans are $0 down and month-to-month from launch, with your price locked for 24 months. Cancel anytime by text, email, or Messenger—no cancellation fee. Own It is a single payment with no monthly plan." },
+  { q: "What happens if I cancel?", a: "Your site stays live through the billing period you’ve already paid for. After that period ends, hosting and management stop and the site comes offline. There is no cancellation fee. If you want to keep the site, ask for buyout terms in writing or move to Own It before the plan ends." },
   { q: "Who owns the site?", a: "With Own It, the site files belong to you from launch day. On a monthly plan, Kinexis hosts and manages the site while your plan is active. If you later want to move it elsewhere, ask us to provide the buyout terms in writing." },
-  { q: "What does the 60-day guarantee cover?", a: "Lead System and Plus include the 60-day lead guarantee. If you receive zero tracked leads during your first 60 days live, we waive the 3rd and 4th monthly charges and remove the minimum. It’s limited to one guarantee per business, and Own It is not included." },
-  { q: "When will my site go live?", a: "We start with your free homepage preview. Once you approve it and send the content we need, we’ll confirm the launch date in writing. Texting features begin after carrier approval, which typically takes 10–15 days." },
+  { q: "What does the 60-day guarantee cover?", a: "Lead System and Plus include the 60-day lead guarantee. If you receive zero tracked leads during your first 60 days live, we waive the 3rd and 4th monthly charges. It’s limited to one guarantee per business, and Own It is not included." },
+  { q: "What does the 30-day money-back guarantee cover?", a: "Every plan includes a 30-day money-back guarantee. If you are not satisfied with your website within 30 days of launch, we refund your most recent payment in full. Requests must be made in writing. Third-party costs already paid on your behalf are not refundable." },
+  { q: "When will my site go live?", a: "We start with your free homepage preview. Once you approve it and send the content we need, we’ll confirm the launch date in writing. Optional missed-call text-back begins after carrier approval, which typically takes 10–15 days." },
   { q: "Will Google be able to find my site?", a: "Every site has a clean structure, fast pages, and the basic setup Google needs to read it. Ongoing SEO work is not part of the four plans, but we can quote that separately if you want it." },
   { q: "What about photos and video?", a: "We can build with photos you already have, or quote photography and video separately. We won’t use stock photos of someone else’s work and present them as yours." },
   { q: "Who writes the text?", a: "We can work with copy you already have or quote the writing separately. For the free preview, we use realistic text for your trade so you can judge the design before making a decision." },
 ];
 export const WEB_FAQS: QA[] = [
-  { q: "Can you build for my service area?", a: "Yes. We work with service businesses across the United States and name the cities you actually serve. We don’t make copies of the same page for every city in the country." },
+  { q: "How does the free preview work?", a: "Tell us about your trade and the look you want. We prepare a homepage concept you can review before choosing a plan. No card is required, and we reply within 2 business days." },
+  { q: "What do I need to send you?", a: "A design direction helps most—examples from our templates, portfolio, or screenshots of sites you like. Send your logo if you have one, plus any job photos, truck shots, or team pictures. If you are still gathering photos, we can start the preview with realistic trade copy and placeholders." },
+  { q: "What if I don’t like the first design?", a: "Say what you want changed. We revise the homepage until it feels right for your business, then you choose a plan and we finish the full site." },
   { q: "What pages and features will I get?", a: "Your site includes a homepage, pages for the services you want calls for, and a simple way to phone you or send details for an estimate. It also has clear titles, organized headings, fast pages, and a structure Google can read. You see the homepage before paying." },
-  { q: "Does the plan cover ongoing SEO?", a: "The site is set up so search engines can read it. Ongoing monthly SEO is quoted separately and is not included in the four website plans." },
   { q: "What are the website prices?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option begins with a free homepage preview, with no card and no obligation." },
+  { q: "Can you build for my service area?", a: "Yes. We work with service businesses across the United States and name the cities you actually serve. We don’t make copies of the same page for every city in the country." },
+];
+
+/** Design process steps for /web-design (not the company-wide launch STEPS). */
+export const DESIGN_PROCESS_STEPS = [
+  { title: "Share a direction", text: "Pick a look from our templates or portfolio, or send screenshots of sites you like. That gives us a clear starting point for your homepage." },
+  { title: "Send brand basics", text: "Share your logo if you have one, your business name, and any colors you already use. We work with what you have." },
+  { title: "Add photos if you have them", text: "Job photos, your truck, or your team help the preview feel real. If you don’t have them yet, we can still start." },
+  { title: "We prepare your homepage preview", text: "Within 2 business days you get a homepage concept for your trade—no card and no obligation." },
+  { title: "You review and request changes", text: "Tell us what to adjust. We revise until the design feels right before you decide on a plan." },
+  { title: "Choose a plan and we finish the site", text: "Once you approve the direction, pick Website, Lead System, Plus, or Own It. We build out the full site and confirm launch in writing." },
 ];
 export const SEO_FAQS: QA[] = [
   { q: "When should I expect SEO progress?", a: "SEO is long-term work. Technical fixes may show movement within a few weeks, while meaningful gains in positions and traffic often take three to six months or longer. Competition and your starting point both matter." },
@@ -33,7 +47,7 @@ export const STEPS = [
 export const UPGRADES = [
   ["Extra Page", "Add a service, location or landing page to any Website, Lead System or Plus plan.", "$99 each"],
   ["Site Care", "Keep an Own It site hosted, secure and updated with 30 minutes of edits each month.", "$39 / mo"],
-  ["Missed-Call Text-Back", "Add text-back to an Own It site after carrier approval, usually within 10 to 15 days.", "$97 / mo"],
+  ["Missed-Call Text-Back", "Optional add-on. Requires a dedicated business phone line. A second tracking number is $1/mo; standard carrier messaging rates may apply. Activation is subject to carrier approval (typically 10–15 days).", "$97 / mo"],
   ["New Pages on Own It", "Add new pages to an Own It site with a written quote provided before any work begins.", "Quoted"],
 ];
 
@@ -59,7 +73,7 @@ export const PLANS: Plan[] = [
     price: "$97",
     suffix: "/mo",
     kicker: "$0 down, then",
-    note: "3-month minimum, then month-to-month",
+    note: "Month-to-month · cancel anytime",
     features: [
       ["Mobile website", "Up to 5 pages"],
       ["Hosting + SSL", "Security and backups included"],
@@ -67,7 +81,7 @@ export const PLANS: Plan[] = [
       ["Form-lead tracking", "Know when a quote form comes in"],
       ["New pages", "$99 each"],
     ],
-    cta: "Website",
+    cta: "Start with a free preview",
   },
   {
     slug: "lead-system",
@@ -76,10 +90,10 @@ export const PLANS: Plan[] = [
     price: "$197",
     suffix: "/mo",
     kicker: "$0 down, then",
-    note: "3-month minimum, then month-to-month",
+    note: "Month-to-month · cancel anytime",
     features: [
       ["Mobile website", "Up to 10 pages, hosting + backups"],
-      ["Missed-call text-back**", "On your tracking number"],
+      ["Missed-call text-back**", "Optional add-on · dedicated line required"],
       ["Google review requests", "After every job"],
       ["Google profile tune-up", "At launch"],
       ["Call tracking + report", "One monthly report"],
@@ -88,7 +102,7 @@ export const PLANS: Plan[] = [
     ],
     popular: true,
     guarantee: true,
-    cta: "Lead System",
+    cta: "Start with a free preview",
   },
   {
     slug: "plus",
@@ -97,10 +111,10 @@ export const PLANS: Plan[] = [
     price: "$297",
     suffix: "/mo",
     kicker: "$0 down, then",
-    note: "3-month minimum, then month-to-month",
+    note: "Month-to-month · cancel anytime",
     features: [
       ["Bilingual website", "Up to 20 pages, English + Spanish"],
-      ["Missed-call text-back**", "English + Spanish"],
+      ["Missed-call text-back**", "Optional add-on · English + Spanish"],
       ["Google review requests", "English + Spanish"],
       ["Google profile tune-up", "+ 2 posts a month"],
       ["Call tracking + report", "One monthly report"],
@@ -108,7 +122,7 @@ export const PLANS: Plan[] = [
       ["New pages", "2 per month included"],
     ],
     guarantee: true,
-    cta: "Plus",
+    cta: "Start with a free preview",
   },
   {
     slug: "own-it",
@@ -117,26 +131,27 @@ export const PLANS: Plan[] = [
     price: "$1,497",
     suffix: "one-time",
     kicker: "One payment",
-    note: "Paid when you approve your preview · no minimum · no lead guarantee",
+    note: "Paid when you approve your preview · no monthly plan · no lead guarantee",
     features: [
       ["Mobile website", "Up to 10 pages"],
       ["Site files yours", "From launch day"],
       ["Hosting + SSL", "12 months included"],
       ["Small edits*", "12 months, up to 30 min a month"],
       ["Domain", "First year included"],
-      ["No minimum", "No monthly plan"],
+      ["One payment", "No monthly plan"],
     ],
-    cta: "Own It",
+    cta: "Start with a free preview",
   },
 ];
 
 export const PLAN_TERMS = [
   "Every plan starts with a free homepage preview. No card and no obligation.",
-  "Monthly plans are $0 down with a 3-month minimum from launch, then month-to-month.",
+  "Monthly plans are $0 down and month-to-month from launch. There is no long-term contract and no cancellation fee.",
   "Your monthly price is locked for 24 months from launch; after that we will give you at least 30 days’ notice of any change.",
-  "Cancel after the minimum by text, email or Messenger. No long contract and no cancellation fee.",
-  "Text-back and review-request texting start after carrier approval, typically 10–15 days. Carrier approval is not guaranteed.",
+  "Cancel anytime by text, email, or Messenger. Your site stays live through the billing period you’ve already paid for. When that period ends, hosting and management stop and the site comes offline unless you arrange a buyout or move to Own It.",
+  "Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second tracking number is available for $1/mo. Standard carrier messaging rates may apply. Texting starts after carrier approval (typically 10–15 days); carrier approval is not guaranteed.",
   "Lead System and Plus include the 60-day lead guarantee. Own It does not.",
+  "Every plan includes a 30-day money-back guarantee. If you are not satisfied within 30 days of launch, we refund your most recent payment in full when requested in writing. Third-party costs already paid on your behalf are excluded.",
   "A tracked lead is a call of 30+ seconds, a missed caller who replies to the text-back, or a real quote form. Spam, wrong numbers, job applicants and existing customers do not count.",
   "The 60-day lead guarantee is limited to one per business and applies only while the account is in good standing.",
   "A small edit is a change that takes 30 minutes or less. Requests are handled one at a time.",
@@ -237,6 +252,6 @@ export const REVIEWS: { quote: string; name: string; company: string }[] = [
 ];
 export const COMPARE_ROWS: [string, boolean, boolean][] = [
   ["Free homepage preview before you pay", false, false], ["Missed-call texts and review requests", false, false],
-  ["Hosting and updates handled", false, true], ["3-month minimum, then month-to-month", true, false],
+  ["Hosting and updates handled", false, true], ["Month-to-month, cancel anytime", false, false],
   ["English and Spanish sites", false, true],
 ];

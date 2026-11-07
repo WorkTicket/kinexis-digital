@@ -61,7 +61,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
               <div>
                 <p className="eyebrow">Billing</p>
                 <h2>Before you pay</h2>
-                <p className="muted">The short version of canceling, the guarantee, and when the first charge happens.</p>
+                <p className="muted">The short version of canceling, both guarantees, missed-call text-back requirements, and when the first charge happens.</p>
               </div>
               <a className="pay-jump" href="#invoice">Pay an existing invoice →</a>
             </div>

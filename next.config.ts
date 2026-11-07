@@ -55,6 +55,8 @@ const nextConfig: NextConfig = {
       ...RETIRED_INDUSTRY_SLUGS.flatMap((slug) => [
         { source: `/industries/${slug}`, destination: "/industries", statusCode: 301 },
         { source: `/industries/${slug}.html`, destination: "/industries", statusCode: 301 },
+        { source: `/en/industries/${slug}`, destination: "/industries", statusCode: 301 },
+        { source: `/en/industries/${slug}.html`, destination: "/industries", statusCode: 301 },
         { source: `/es/industries/${slug}`, destination: "/es/industries", statusCode: 301 },
         { source: `/es-es/industries/${slug}`, destination: "/es-es/industries", statusCode: 301 },
       ]),

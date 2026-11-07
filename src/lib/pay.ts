@@ -29,7 +29,8 @@ export const CHECKOUT_PLANS: CheckoutPlan[] = [
       "2 small edits a month, in 2 business days",
       "Contact form leads",
       "Domain in your name",
-      "No texting, reviews or guarantee",
+      "30-day money-back guarantee",
+      "No texting or lead guarantee",
     ],
   },
   {
@@ -45,11 +46,12 @@ export const CHECKOUT_PLANS: CheckoutPlan[] = [
       "Up to 10 pages",
       "Unlimited small edits within 1 business day",
       "1 new page a month",
-      "Missed-call text-back",
+      "Optional missed-call text-back add-on",
       "Google review requests to every customer",
       "Google Business Profile tune-up",
       "Call tracking and monthly report",
       "60-day tracked-lead guarantee",
+      "30-day money-back guarantee",
     ],
   },
   {
@@ -66,6 +68,7 @@ export const CHECKOUT_PLANS: CheckoutPlan[] = [
       "Same-day edits if sent by noon Central",
       "2 new pages a month",
       "2 Google profile posts a month",
+      "30-day money-back guarantee",
     ],
   },
   {
@@ -81,8 +84,9 @@ export const CHECKOUT_PLANS: CheckoutPlan[] = [
       "12 months of hosting and up to 30 min of edits a month",
       "Domain year 1 included",
       "Optional Site Care $39/mo after",
-      "Texting and reviews add-on $97/mo",
-      "No minimum, no guarantee",
+      "Optional missed-call text-back add-on $97/mo",
+      "30-day money-back guarantee",
+      "No monthly plan, no lead guarantee",
     ],
   },
 ];
@@ -90,11 +94,19 @@ export const CHECKOUT_PLANS: CheckoutPlan[] = [
 export const PAY_FAQS: QA[] = [
   {
     q: "How do I cancel?",
-    a: "After the 3-month minimum, by text, email or Messenger. No call or form needed. Billing stops at the end of the month you've paid for. Cancelling inside PayPal alone doesn't end the minimum. See section 7 of the Terms.",
+    a: "Anytime by text, email, or Messenger. No cancellation fee. Your site stays live through the billing period you’ve already paid for. After that, hosting stops and the site comes offline unless you arrange a buyout or Own It. Cancelling inside PayPal alone may not stop the plan—tell us directly. See section 7 of the Terms.",
   },
   {
-    q: "How does the guarantee work?",
-    a: "Lead System and Plus: zero tracked leads in your first 60 days live means your 3rd and 4th monthly charges are waived and the minimum is dropped. Once per business. See section 5 of the Terms.",
+    q: "How does the 60-day lead guarantee work?",
+    a: "Lead System and Plus: zero tracked leads in your first 60 days live means your 3rd and 4th monthly charges are waived. Once per business. See section 5 of the Terms.",
+  },
+  {
+    q: "How does the 30-day money-back guarantee work?",
+    a: "Every plan includes it. If you are not satisfied within 30 days of launch, we refund your most recent payment in full when you request it in writing. Third-party costs already paid on your behalf are not refundable. See section 10 of the Terms.",
+  },
+  {
+    q: "What do I need for missed-call text-back?",
+    a: "Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second tracking number is available for $1/mo, and standard carrier messaging rates may apply. Activation is subject to carrier approval, typically within 10–15 days. See section 4 of the Terms.",
   },
   {
     q: "Can I pay by card without a PayPal account?",
@@ -106,7 +118,7 @@ export const PAY_FAQS: QA[] = [
   },
   {
     q: "Is there a contract?",
-    a: "Monthly plans have a 3-month minimum, then month to month. Your price is locked for 24 months. Own It is one payment with no minimum.",
+    a: "Monthly plans are month-to-month with no long-term contract. Your price is locked for 24 months. Own It is one payment.",
   },
   {
     q: "Taxes?",

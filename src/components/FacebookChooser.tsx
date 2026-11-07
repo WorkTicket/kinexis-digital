@@ -10,7 +10,7 @@ function FacebookIcon() {
 }
 
 const iconButton =
-  "grid size-11 place-items-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white hover:text-[#1877F2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright";
+  "footer-social__btn grid place-items-center text-white transition hover:text-[#1877F2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright";
 const facebookChoice =
   "rounded-full px-2.5 py-1 text-xs font-semibold tracking-[0.08em] text-brand-navy transition hover:bg-[#1877F2] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-bright";
 

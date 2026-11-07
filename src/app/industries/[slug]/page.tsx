@@ -63,11 +63,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/industries/${industry.slug}`,
     title: industry.metaTitle,
     description: industry.metaDescription,
+    absolute: true,
   });
 }
 
 function featureText(industry: Industry, key: FeatureKey) {
   return industry.featureText?.[key] ?? (key === "service-area" ? industry.serviceArea : FEATURES[key].text);
+}
+
+function articleFor(name: string) {
+  return /^(hvac|electrical)$/i.test(name) ? "an" : "a";
 }
 
 export default async function IndustryPage({ params }: Props) {
@@ -81,6 +86,10 @@ export default async function IndustryPage({ params }: Props) {
   const hero = still(heroFile);
   const heroMobile = imageVariant(heroFile, 768, "webp");
   const heroAvif = `${imageVariant(heroFile, 768, "avif")} 768w, ${still(heroFile.replace(".webp", ".avif"))} 1536w`;
+  const callsTitle = `The Calls ${industry.name} Businesses Get`;
+  const includesTitle = `What Your ${industry.name} Website Includes`;
+  const textBackTitle = `Missed-Call Text-Back for ${industry.name}`;
+  const faqTitle = `FAQs for ${industry.name} Owners`;
 
   return (
     <>
@@ -127,13 +136,27 @@ export default async function IndustryPage({ params }: Props) {
           <p>{industry.intro[1]}</p>
         </div>
         <p className="btn-row">
-          <Link className="btn btn--primary" href="/audit" prefetch={false}>Get a Free Audit</Link>
+          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
         </p>
+        <p className="muted small">60-Day Lead Guarantee · $0 down · Free preview in 2 business days</p>
       </PageHero>
 
       <Section tint>
-        <h2 className="center"><HL text={industry.problemsTitle} mark={industry.problemsMark} /></h2>
+        <h2 className="center"><HL text={callsTitle} mark={industry.name} /></h2>
+        <p className="center muted">These are the searches and jobs {industry.name.toLowerCase()} owners need the site to handle clearly.</p>
+        <div className="grid grid--3">
+          {industry.services.map((point) => (
+            <IconCard
+              key={point.title}
+              title={point.title}
+              text={point.text}
+              iconClass="icon--service"
+              src={kitSrc(`/assets/industries/${industry.slug}/icons/${point.icon}.svg`)}
+            />
+          ))}
+        </div>
+        <p className="center muted" style={{ marginTop: "1.5rem" }}>{industry.problemsTitle}</p>
         <div className="grid grid--3">
           {industry.problems.map((point) => (
             <IconCard
@@ -148,31 +171,17 @@ export default async function IndustryPage({ params }: Props) {
       </Section>
 
       <Section accent={`/assets/industries/${industry.slug}/section-accent.svg`}>
-        <h2 className="center"><HL text={industry.servicesTitle} mark={industry.servicesMark} /></h2>
-        <div className="grid grid--3">
-          {industry.services.map((point) => (
-            <IconCard
-              key={point.title}
-              title={point.title}
-              text={point.text}
-              iconClass="icon--service"
-              src={kitSrc(`/assets/industries/${industry.slug}/icons/${point.icon}.svg`)}
-            />
-          ))}
-        </div>
-      </Section>
-
-      <Section tint>
+        <h2 className="center"><HL text={includesTitle} mark="Website Includes" /></h2>
         <div className="media-split industry-screens">
           <div className="media-split__copy">
-            <h2><HL text="Works on Every Screen" mark="Every Screen" /></h2>
+            <h3>Works on every screen</h3>
             <p>The site is laid out for a phone in the driveway and a laptop on the desk. The number, the form and the service area stay usable without pinching or scrolling sideways.</p>
           </div>
           <div className="screen-art">
             <img
               className="screen-art__img"
               src={project ? portfolioFile(`/portfolio/${project.slug}-devices-sm.webp`) : "/assets/shared/responsive-design.svg"}
-              alt={project ? `${project.name} website on a desktop monitor, laptop, tablet, and phone` : "A website shown on a desktop monitor, laptop, tablet, and phone"}
+              alt={project ? `${project.name} website on a desktop monitor, laptop, tablet, and phone` : `A ${industry.name.toLowerCase()} website shown on a desktop monitor, laptop, tablet, and phone`}
               width={project ? 1536 : 680}
               height={project ? 1024 : 400}
               loading="lazy"
@@ -193,11 +202,22 @@ export default async function IndustryPage({ params }: Props) {
         </div>
       </Section>
 
+      <Section tint>
+        <h2 className="center"><HL text={textBackTitle} mark="Text-Back" /></h2>
+        <p className="center muted" style={{ maxWidth: "42rem", marginInline: "auto" }}>
+          When a {industry.name.toLowerCase()} crew is on a job and misses a call, Lead System and Plus send an automatic text-back on your tracking number. After the work is done, a Google review request goes out with a direct link to your profile.
+        </p>
+        <p className="center btn-row spaced">
+          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
+          <Link className="btn btn--ghost" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
+        </p>
+      </Section>
+
       {project && (
         <Section>
           <div className="media-split">
             <div className="media-split__copy">
-              <h2><HL text={`See ${/^(hvac|electrical)$/i.test(industry.slug) ? "an" : "a"} ${industry.name} Website Template`} mark="Website Template" /></h2>
+              <h2><HL text={`See ${articleFor(industry.slug)} ${industry.name} Website Template`} mark="Website Template" /></h2>
               <p>
                 Like the <Link href={`/portfolio/${project.slug}`} prefetch={false}>{project.name}</Link> design? Choose this professionally designed template as the starting point for your website, and we’ll customize it around your services, brand, and customers.
               </p>
@@ -208,14 +228,12 @@ export default async function IndustryPage({ params }: Props) {
         </Section>
       )}
 
-
-
       <Section id="plans">
         <PlanOffer />
       </Section>
 
       <Section tint narrow>
-        <h2 className="center"><HL text={`${industry.name} Questions`} mark="Questions" /></h2>
+        <h2 className="center"><HL text={faqTitle} mark="Owners" /></h2>
         <Faq items={[...industry.faqs]} />
       </Section>
 
@@ -226,11 +244,13 @@ export default async function IndustryPage({ params }: Props) {
       </Section>
 
       <CtaBand
-        h={`See ${/^(hvac|electrical)/i.test(industry.name) ? "an" : "a"} ${industry.name} Homepage Before You Pay`}
-        mark="Before You Pay"
-        sub="Free preview, no card and no obligation. Then pick Website, Lead System, Plus or Own It."
-        btn="Get a Free Audit"
-        href="/audit"
+        h="Get Your Free Preview"
+        mark="Free Preview"
+        sub={`See ${articleFor(industry.name)} ${industry.name.toLowerCase()} homepage before you pay. Free preview, no card, and no obligation.`}
+        btn="Get My Free Preview"
+        href="/contact"
+        secondary="See Plans & Pricing"
+        secondaryHref="/pricing"
       />
     </>
   );

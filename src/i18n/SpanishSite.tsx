@@ -17,13 +17,13 @@ import { kitSrc, SITE, telHref } from "@/lib/site";
 import AuditCta from "@/components/AuditCta";
 import BookingCalendar, { type BookingCopy } from "@/components/BookingCalendar";
 import { DeferredImg } from "@/components/DeferredImg";
-import { OpenDialog } from "@/components/DialogHost";
+import { OpenDialog } from "@/components/OpenDialog";
+import TrustStrip from "@/components/TrustStrip";
 import { FacebookReviewCard, LeaveFacebookReview } from "@/components/FacebookReviews";
 import Filterable from "@/components/Filterable";
 import Form from "@/components/Form";
 import { getFacebookReviews } from "@/lib/facebook";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
-import IndustryAudit from "@/components/IndustryAudit";
 import IndustryGrid from "@/components/IndustryGrid";
 import { ArticleSchema, ContentSchema } from "@/components/JsonLd";
 import PlanOffer from "@/components/PlanOffer";
@@ -42,9 +42,9 @@ const HERO_TRACK: Record<string, { mobile?: string; desktop?: string }> = {
 type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string };
 
 const PAGE_META: Record<string, Meta> = {
-  "/": { title: "Diseño web profesional para negocios | Kinexis Digital", absolute: true, description: "Kinexis Digital crea sitios web rápidos y profesionales para negocios en EE. UU. Mira una página de inicio gratis antes de elegir un plan." },
+  "/": { title: "Planes de sitios web desde $97/mes para negocios locales | Kinexis Digital", absolute: true, description: "Sitio profesional desde $97/mes, con respuesta a llamadas perdidas y pedidos de reseñas en Google. Mira tu página de inicio gratis primero. Sin tarjeta." },
   "/services": { title: "Diseño web, SEO y mantenimiento", description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios en Estados Unidos, con apoyo claro en cada paso." },
-  "/web-design": { title: "Diseño web profesional para negocios", description: "Obtén un sitio web rápido y profesional creado según tu marca, servicios y objetivos. Revisa la página de inicio antes de elegir un plan o pagar." },
+  "/web-design": { title: "Proceso de diseño web — Vista previa gratis del inicio", description: "Comparte una dirección de diseño, logo y fotos. Preparamos una vista previa gratis del inicio en 2 días hábiles—sin tarjeta—y la ajustamos hasta que encaje antes de elegir un plan." },
   "/seo-services": { title: "SEO para sitios web de negocios", description: "Mejora la visibilidad de tu sitio con SEO técnico, optimización de páginas, contenido útil e informes claros pensados para atraer más clientes." },
   "/audit": { title: "Auditoría web gratis de SEO, velocidad y UX", description: "Recibe una auditoría web gratuita de SEO, velocidad, uso en celular, indexación y conversión, con una lista clara de mejoras recomendadas." },
   "/contact": { title: "Hablemos de tu proyecto web", description: "Contacta a Kinexis Digital para hablar de un sitio nuevo, rediseño, SEO o mantenimiento web para tu negocio y recibe una orientación clara." },
@@ -54,7 +54,7 @@ const PAGE_META: Record<string, Meta> = {
   "/industries": { title: "Diseño web para industrias de servicios", description: "Explora ideas de diseño web para plomería, HVAC, electricidad, techos, jardinería y otras industrias de servicios que buscan clientes locales." },
   "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee recomendaciones publicadas por clientes en Facebook. El texto de cada reseña se muestra tal como fue escrito para que conozcas el trabajo real." },
   "/upgrades": { title: "Extras y mejoras para sitios web", description: "Agrega páginas, mantenimiento continuo u otras mejoras cuando tu sitio web y tu negocio las necesiten, sin complicar tu operación diaria." },
-  "/pricing": { title: "Planes y precios de diseño web", description: "Compara Website $97/mes, Lead System $197/mes, Plus $297/mes y Own It $1,497. Todos empiezan con una vista previa gratis para decidir." },
+  "/pricing": { title: "¿Cuánto cuesta un sitio web para un pequeño negocio?", description: "Planes desde $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis en 2 días hábiles. Sin tarjeta." },
   "/blog": { title: "Recursos de diseño web y SEO", description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento en Estados Unidos." },
   "/faqs": { title: "Preguntas frecuentes de diseño web", description: "Respuestas claras sobre precios, cobro, propiedad del sitio, lanzamiento, SEO, fotos, redacción y mantenimiento web antes de empezar." },
   "/update": { title: "Solicita una actualización del sitio", description: "Indica qué página necesita un cambio y adjunta cualquier archivo útil. Atendemos cada solicitud según el alcance y los tiempos de tu plan." },
@@ -151,62 +151,108 @@ function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => s
       <ContentSchema path={href("/")} title={tx(PAGE_META["/"].title)} description={tx(PAGE_META["/"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }]} faqs={faqs} inLanguage={lang} />
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
-          <p className="eyebrow">{tx("Sitios y SEO, en todo el país")}</p>
-          <h1><HL text={tx("Sitios que convierten búsquedas en trabajo agendado")} mark={tx("trabajo agendado")} /></h1>
+          <p className="eyebrow">{tx("Planes de sitios web para negocios locales")}</p>
+          <h1><HL text={tx("Un sitio pensado para que te llamen más")} mark={tx("te llamen más")} /></h1>
           <ul className="ticks">
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Ves tu inicio gratis")}</b> – {tx("sin tarjeta")}</span><span>{tx("y sin obligación antes de pagar")}</span></span></li>
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Atrapas las llamadas que pierdes")}</b></span><span>{tx("texto automático desde el celular y seguimiento")}</span></span></li>
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Tu reputación en Google")}</b></span><span>{tx("pedidos de reseña enviados por ti, no dejados al azar")}</span></span></li>
           </ul>
           <div className="hero__btns">
-            <Link className="btn btn--primary btn--lg" href={href("/audit")} prefetch={false}>{tx("Revisar mi sitio gratis")}</Link>
-            <Link className="btn btn--ghost btn--lg" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
-            <OpenDialog id="guarantee" className="link-btn">{tx("Garantía de 60 días")}</OpenDialog>
+            <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
+            <Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
           </div>
+          <TrustStrip
+            className="hero__trust"
+            leadLabel={tx("Garantía de 60 días")}
+            refundLabel={tx("Devolución en 30 días")}
+            downLabel={tx("$0 de enganche")}
+            previewLabel={tx("Vista previa en 2 días hábiles")}
+          />
         </div>
         <HeroFilm />
       </div></section>
       <Section tint>
         <MediaSplit image="homepage" alt={tx("Un oficio mostrando su sitio en una computadora y un celular")}>
-          <h2><HL text={tx("Lo que recibes con Kinexis")} mark={tx("con Kinexis")} /></h2>
+          <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
           <p>{tx("Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde $97 al mes.")}</p>
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>{tx("Un sitio que")}<br />{tx("facilita recibir")}<br />{tx("llamadas")}</>} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
           <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Quien llama recibe un texto, los clientes reciben la solicitud de reseña y cada lead queda registrado.")} icon="better-follow-up" />
-          <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx("Elige entre cuatro planes desde $97 al mes, con vista previa gratis, $0 de enganche y un mínimo de 3 meses.")} icon="better-pricing" />
+          <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx("Elige entre cuatro planes desde $97 al mes, con vista previa gratis, $0 de enganche y cobro mes a mes.")} icon="better-pricing" />
         </div>
       </Section>
       <Section>
-        <h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2>
-        <p className="muted">{tx("Elige una plantilla web que te guste y la personalizamos para tu negocio. Pasa el cursor para verla y abre el diseño completo en inglés.")}</p>
+        <h2><HL text={tx("Plantillas web hechas para tu oficio")} mark={tx("tu oficio")} /></h2>
+        <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Pasa el cursor para verla y abre la plantilla completa en inglés.")}</p>
         <div className="portfolio"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link></p>
       </Section>
       <Section tint>
-        <h2 className="center"><HL text={tx("Por qué los negocios eligen Kinexis")} mark={tx("eligen Kinexis")} /></h2>
-        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Mínimo de 3 meses, luego mes a mes"), true, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
+        <h2 className="center"><HL text={tx("Por qué los dueños eligen Kinexis frente a freelancers y agencias")} mark={tx("frente a freelancers y agencias")} /></h2>
+        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Mes a mes, cancela cuando quieras"), false, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
         <p className="center muted small">{tx("Son ofertas habituales; cada proveedor puede variar.")}</p>
       </Section>
-      <Section>
-        <p className="eyebrow center">{tx("Reseñas de Google, resueltas")}</p>
-        <h2 className="center"><HL text={tx("Pídele reseña a cada cliente contento. En automático.")} mark={tx("En automático")} /></h2>
-        <p className="center muted">{tx("Parte de Lead System. Después de cada trabajo sale un texto con el enlace a tu página de Google.")}</p>
-        <ReviewRail steps={[{ n: "1", title: tx("Después de cada trabajo"), titleDisplay: <>{tx("Después de")}<br />{tx("cada trabajo")}</>, text: <>{tx("Sale un texto con el enlace")}<br />{tx("directo. No tienes que pedirlo")}<br />{tx("ni crear otra cuenta.")}</>, icon: "after-every-job" }, { n: "2", title: tx("Un toque a Google"), titleDisplay: <>{tx("Un toque")}<br />{tx("a Google")}</>, text: <>{tx("El enlace abre tu perfil")}<br />{tx("de Google y dejar la reseña")}<br />{tx("toma solo unos segundos.")}</>, icon: "one-tap-to-google" }, { n: "3", title: tx("Sin perseguir"), titleDisplay: <>{tx("Sin tener que")}<br />{tx("perseguir")}</>, text: <>{tx("El pedido sale por ti.")}<br />{tx("Las reseñas llegan al perfil")}<br />{tx("y respondes desde tu cuenta.")}</>, icon: "no-chasing" }]} />
+      <Section band="lead">
+        <div className="lead-feature">
+          <div className="lead-feature__copy">
+            <p className="eyebrow">{tx("Incluido en Lead System y Plus")}</p>
+            <h2><HL text={tx("Respuesta a llamadas perdidas y pedidos de reseña en Google")} mark={tx("pedidos de reseña en Google")} /></h2>
+            <p>{tx("Si no contestas, un texto mantiene el lead. Después del trabajo sale el pedido de reseña con el enlace a tu perfil de Google.")}</p>
+            <p className="btn-row">
+              <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
+              <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
+            </p>
+          </div>
+        </div>
+        <ReviewRail steps={[
+          { n: "1", title: tx("Llamada perdida, texto automático"), titleDisplay: <>{tx("Llamada perdida,")}<br />{tx("texto automático")}</>, text: <>{tx("Si no puedes contestar, sale un texto")}<br />{tx("en tu número de seguimiento para")}<br />{tx("que el lead no se enfríe.")}</>, icon: "missed-call-text-back" },
+          { n: "2", title: tx("Después de cada trabajo"), titleDisplay: <>{tx("Después de")}<br />{tx("cada trabajo")}</>, text: <>{tx("El cliente recibe un texto con el")}<br />{tx("enlace directo a tu reseña en Google.")}<br />{tx("No tienes que pedirlo en persona.")}</>, icon: "after-every-job" },
+          { n: "3", title: tx("Directo a tu perfil"), titleDisplay: <>{tx("Directo a")}<br />{tx("tu perfil")}</>, text: <>{tx("El enlace abre tu perfil de Google.")}<br />{tx("Las reseñas llegan listas para que")}<br />{tx("respondas.")}</>, icon: "one-tap-to-google" },
+        ]} />
       </Section>
       <Section tint>
-        <h2 className="center"><HL text={tx("Lo que incluye cada sitio de Kinexis")} mark={tx("sitio de Kinexis")} /></h2>
+        <div className="section-head">
+          <p className="eyebrow">{tx("Incluido en cada plan")}</p>
+          <h2 className="center"><HL text={tx("Lo que incluye cada sitio de Kinexis")} mark={tx("sitio de Kinexis")} /></h2>
+          <p className="center muted">{tx("Lo esencial para verse serio, aparecer en búsquedas y convertir visitas en llamadas, con el hosting y los cambios a cargo nuestro.")}</p>
+        </div>
         <ReasonBoard reasons={[{ title: tx("Se ve bien en cada pantalla"), text: tx("Un diseño moderno y adaptable presenta bien tu negocio en celulares, tabletas y computadoras."), icon: "well-designed" }, { title: tx("Pensado para recibir llamadas"), text: tx("Cada página deja claro si el siguiente paso es llamar o enviar los datos del trabajo."), icon: "sales-focused" }, { title: tx("Fácil de leer para Google"), text: tx("Una estructura limpia, títulos útiles y páginas rápidas ayudan a que el buscador entienda el sitio."), icon: "search-optimized" }, { title: tx("El hosting y los cambios son nuestros"), text: tx("Administramos el hosting, los cambios de rutina, los respaldos y la seguridad sin devolverte ese trabajo."), icon: "hassle-free" }]} />
       </Section>
       <Section>
-        <h2 className="center"><HL text={tx("Hecho para el oficio que sí manejas")} mark={tx("oficio que sí manejas")} /></h2>
-        <p className="center muted">{tx("Los planes son los mismos. El sitio se escribe para las llamadas de ese oficio.")}</p>
-        <IndustryGrid layout="index" industries={localizedIndustries(locale)} base={href("/industries")} />
+        <div className="trades-feature">
+          <div className="trades-feature__copy">
+            <h2><HL text={tx("Hecho para negocios de servicios locales")} mark={tx("servicios locales")} /></h2>
+            <p className="muted">{tx("Plomería, HVAC, techos y más: si tus clientes buscan lo que haces y llaman cuando te necesitan, te tenemos cubierto. ¿No ves tu oficio? Igual puedes empezar.")}</p>
+          </div>
+        </div>
+        <IndustryGrid
+          layout="index"
+          industries={localizedIndustries(locale)}
+          base={href("/industries")}
+          limit={5}
+          moreHref={href("/industries")}
+          moreLabel={tx("y más")}
+          moreMeta={tx("Cualquier negocio de servicios locales: si te llaman tus clientes, podemos ayudarte.")}
+        />
       </Section>
-      <Section id="plans"><PlanOffer heading={tx("Elige el punto de partida para tu sitio")} mark={tx("punto de partida")} href={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa del inicio, sin tarjeta y sin obligación.")} badge={tx("El más elegido")} cta={tx("Ver los cuatro planes")} plans={spanishPlans(tx)} /></Section>
-      <Section tint>
+      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} plans={spanishPlans(tx)} /></Section>
+      <Section>
         <h2 className="center"><HL text={tx("De la vista previa al lanzamiento")} mark={tx("al lanzamiento")} /></h2>
         <Stepper steps={steps} />
+      </Section>
+      <Section tint>
+        <h2 className="center"><HL text={tx("Garantía de clientes en 60 días")} mark={tx("60 días")} /></h2>
+        <p className="center muted">{tx("Lead System y Plus incluyen una garantía por escrito. Si no hay leads rastreados en los primeros 60 días en línea, condonamos el tercer y cuarto cargo.")}</p>
+        <p className="center btn-row spaced"><OpenDialog id="guarantee" className="btn btn--ghost">{tx("Leer la garantía")}</OpenDialog><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link></p>
+        <TrustStrip
+          className="center"
+          leadLabel={tx("Garantía de 60 días")}
+          refundLabel={tx("Devolución en 30 días")}
+          downLabel={tx("$0 de enganche")}
+          previewLabel={tx("Vista previa gratis en 2 días hábiles")}
+        />
       </Section>
       <Section narrow>
         <h2 className="center"><HL text={tx("Preguntas frecuentes")} mark={tx("Preguntas")} /></h2>
@@ -220,10 +266,12 @@ function homeFaqs(tx: (s: string) => string) {
   return [
     { q: tx("¿Esto sirve para mi tipo de negocio?"), a: tx("Trabajamos con oficios y negocios de servicios en Estados Unidos, como plomería, HVAC, electricidad, jardinería, techos y remodelación. Si la gente busca tu servicio y llama cuando necesita ayuda, estos planes están pensados para ese tipo de negocio.") },
     { q: tx("¿Cuánto cuesta?"), a: tx("Hay cuatro opciones: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por un solo pago de $1,497. Puedes ver una página de inicio gratis antes de elegir, sin tarjeta y sin obligación.") },
-    { q: tx("¿Cómo se cobra?"), a: tx("Los planes mensuales tienen $0 de enganche y un mínimo de 3 meses desde el lanzamiento. Después siguen mes a mes y el precio queda fijo durante 24 meses. Own It es un solo pago, sin mensualidad ni mínimo.") },
+    { q: tx("¿Cómo se cobra?"), a: tx("Los planes mensuales tienen $0 de enganche y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.") },
+    { q: tx("¿Qué pasa si cancelo?"), a: tx("Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. No hay cargo por cancelar. Si quieres quedarte con el sitio, pide las condiciones de compra por escrito o pasa a Own It antes de que termine el plan.") },
     { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. Si luego quieres llevártelo, pide por escrito las condiciones de compra.") },
-    { q: tx("¿Qué cubre la garantía de 60 días?"), a: tx("Lead System y Plus incluyen la garantía de 60 días. Si recibes cero leads rastreados durante los primeros 60 días en vivo, condonamos el tercer y cuarto cargo y quitamos el mínimo. Se limita a una garantía por negocio y Own It no está incluido.") },
-    { q: tx("¿Cuándo estará en línea mi sitio?"), a: tx("Empezamos con la vista previa gratis. Cuando la apruebas y recibimos el contenido necesario, confirmamos por escrito la fecha de lanzamiento. Los textos empiezan tras la aprobación del operador, que suele tardar de 10 a 15 días.") },
+    { q: tx("¿Qué cubre la garantía de 60 días?"), a: tx("Lead System y Plus incluyen la garantía de 60 días. Si recibes cero leads rastreados durante los primeros 60 días en vivo, condonamos el tercer y cuarto cargo. Se limita a una garantía por negocio y Own It no está incluido.") },
+    { q: tx("¿Qué cubre la garantía de devolución en 30 días?"), a: tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Debes pedirlo por escrito. No cubre costos de terceros que ya hayamos pagado.") },
+    { q: tx("¿Cuándo estará en línea mi sitio?"), a: tx("Empezamos con la vista previa gratis. Cuando la apruebas y recibimos el contenido necesario, confirmamos por escrito la fecha de lanzamiento. El texto opcional si no contestas empieza tras la aprobación del operador, que suele tardar de 10 a 15 días.") },
     { q: tx("¿Google podrá encontrar mi sitio?"), a: tx("Cada sitio tiene una estructura limpia, páginas rápidas y la configuración básica que Google necesita para leerlo. El SEO continuo no está incluido en los cuatro planes, pero podemos cotizarlo aparte.") },
     { q: tx("¿Qué pasa con las fotos y el video?"), a: tx("Podemos trabajar con tus propias fotos o cotizar fotografía y video por separado. No mostramos trabajos ajenos de una biblioteca de imágenes como si fueran tuyos.") },
     { q: tx("¿Quién escribe el texto?"), a: tx("Podemos usar el texto que ya tienes o cotizar la redacción aparte. Para la vista previa usamos un texto realista de tu oficio, así puedes evaluar el diseño antes de decidir.") },
@@ -238,10 +286,10 @@ function spanishPlans(tx: (s: string) => string) {
     "own-it": "Hazlo tuyo",
   };
   const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
-    website: { tagline: tx("Una casa profesional para tu negocio."), kicker: tx("$0 de enganche, luego"), note: tx("Mínimo de 3 meses, luego mes a mes"), features: [[tx("Sitio para celular"), tx("Hasta 5 páginas")], [tx("Hosting + SSL"), tx("Seguridad y respaldos")], [tx("Cambios chicos*"), tx("Hasta 2 al mes, en 2 días hábiles")], [tx("Leads de formulario"), tx("Sabes cuándo llega una cotización")], [tx("Páginas nuevas"), tx("$99 cada una")]] },
-    "lead-system": { tagline: tx("Tu sitio y las herramientas que traen llamadas."), kicker: tx("$0 de enganche, luego"), note: tx("Mínimo de 3 meses, luego mes a mes"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas, hosting y respaldos")], [tx("Texto si no contestas**"), tx("En tu número de seguimiento")], [tx("Reseñas de Google"), tx("Después de cada trabajo")], [tx("Ajuste del perfil"), tx("En el lanzamiento")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("En 1 día hábil")], [tx("Páginas nuevas"), tx("1 al mes incluida")]] },
-    plus: { tagline: tx("Llega a clientes en inglés y en español."), kicker: tx("$0 de enganche, luego"), note: tx("Mínimo de 3 meses, luego mes a mes"), features: [[tx("Sitio bilingüe"), tx("Hasta 20 páginas, inglés y español")], [tx("Texto si no contestas**"), tx("Inglés y español")], [tx("Reseñas de Google"), tx("Inglés y español")], [tx("Ajuste del perfil"), tx("+ 2 publicaciones al mes")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("El mismo día hábil si pides antes del mediodía CT")], [tx("Páginas nuevas"), tx("2 al mes incluidas")]] },
-    "own-it": { tagline: tx("Un pago. Un sitio que es tuyo."), kicker: tx("Un pago"), note: tx("Se paga al aprobar la vista previa · sin mínimo · sin garantía de leads"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas")], [tx("Archivos tuyos"), tx("Desde el lanzamiento")], [tx("Hosting + SSL"), tx("12 meses incluidos")], [tx("Cambios chicos*"), tx("12 meses, hasta 30 min al mes")], [tx("Dominio"), tx("El primer año incluido")], [tx("Sin mínimo"), tx("Sin plan mensual")]] },
+    website: { tagline: tx("Una casa profesional para tu negocio."), kicker: tx("$0 de enganche, luego"), note: tx("Mes a mes · cancela cuando quieras"), features: [[tx("Sitio para celular"), tx("Hasta 5 páginas")], [tx("Hosting + SSL"), tx("Seguridad y respaldos")], [tx("Cambios chicos*"), tx("Hasta 2 al mes, en 2 días hábiles")], [tx("Leads de formulario"), tx("Sabes cuándo llega una cotización")], [tx("Páginas nuevas"), tx("$99 cada una")]] },
+    "lead-system": { tagline: tx("Tu sitio y las herramientas que traen llamadas."), kicker: tx("$0 de enganche, luego"), note: tx("Mes a mes · cancela cuando quieras"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas, hosting y respaldos")], [tx("Texto si no contestas**"), tx("Extra opcional · requiere línea dedicada")], [tx("Reseñas de Google"), tx("Después de cada trabajo")], [tx("Ajuste del perfil"), tx("En el lanzamiento")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("En 1 día hábil")], [tx("Páginas nuevas"), tx("1 al mes incluida")]] },
+    plus: { tagline: tx("Llega a clientes en inglés y en español."), kicker: tx("$0 de enganche, luego"), note: tx("Mes a mes · cancela cuando quieras"), features: [[tx("Sitio bilingüe"), tx("Hasta 20 páginas, inglés y español")], [tx("Texto si no contestas**"), tx("Extra opcional · inglés y español")], [tx("Reseñas de Google"), tx("Inglés y español")], [tx("Ajuste del perfil"), tx("+ 2 publicaciones al mes")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("El mismo día hábil si pides antes del mediodía CT")], [tx("Páginas nuevas"), tx("2 al mes incluidas")]] },
+    "own-it": { tagline: tx("Un pago. Un sitio que es tuyo."), kicker: tx("Un pago"), note: tx("Se paga al aprobar la vista previa · sin plan mensual · sin garantía de leads"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas")], [tx("Archivos tuyos"), tx("Desde el lanzamiento")], [tx("Hosting + SSL"), tx("12 meses incluidos")], [tx("Cambios chicos*"), tx("12 meses, hasta 30 min al mes")], [tx("Dominio"), tx("El primer año incluido")], [tx("Un pago"), tx("Sin plan mensual")]] },
   };
   return PLANS.map((plan) => ({
     ...plan,
@@ -273,29 +321,90 @@ type PageBits = { tx: (s: string) => string; href: (p: string) => string; lang: 
 
 function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale }) {
   const faqs = [
-    { q: tx("¿Pueden construir para mi zona?"), a: tx("Sí. Trabajamos con negocios de servicios en Estados Unidos y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad.") },
+    { q: tx("¿Cómo funciona la vista previa gratis?"), a: tx("Cuéntanos sobre tu oficio y el estilo que buscas. Preparamos un concepto de la página de inicio para que lo revises antes de elegir un plan. No se pide tarjeta y respondemos en 2 días hábiles.") },
+    { q: tx("¿Qué necesito enviarte?"), a: tx("Ayuda una dirección de diseño: ejemplos de nuestras plantillas, del portafolio o capturas de sitios que te gusten. Envía tu logo si lo tienes, y fotos de trabajos, la camioneta o el equipo. Si aún estás reuniendo fotos, podemos empezar la vista previa con texto realista del oficio y marcadores de posición.") },
+    { q: tx("¿Y si no me gusta el primer diseño?"), a: tx("Dinos qué quieres cambiar. Ajustamos la página de inicio hasta que se sienta bien para tu negocio; luego eliges un plan y terminamos el sitio completo.") },
     { q: tx("¿Qué páginas y funciones voy a recibir?"), a: tx("El sitio incluye inicio, páginas para los servicios que quieres promover y una forma sencilla de llamar o cotizar. También lleva títulos claros, encabezados ordenados, páginas rápidas y una estructura que Google puede leer. Ves el inicio antes de pagar.") },
-    { q: tx("¿El plan cubre SEO continuo?"), a: tx("El sitio queda preparado para que los buscadores lo lean. El trabajo mensual de SEO se cotiza aparte y no forma parte de los cuatro planes.") },
     { q: tx("¿Cuáles son los precios?"), a: tx("Website cuesta $97 al mes, Lead System $197, Plus $297 y Own It $1,497 en un solo pago. Todos empiezan con una vista previa gratis, sin tarjeta y sin obligación.") },
+    { q: tx("¿Pueden construir para mi zona?"), a: tx("Sí. Trabajamos con negocios de servicios en Estados Unidos y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad.") },
+  ];
+  const steps = [
+    { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestras plantillas o del portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio.") },
+    { title: tx("Envía lo básico de tu marca"), text: tx("Comparte tu logo si lo tienes, el nombre del negocio y los colores que ya usas. Trabajamos con lo que tengas.") },
+    { title: tx("Agrega fotos si las tienes"), text: tx("Fotos de trabajos, la camioneta o el equipo ayudan a que la vista previa se sienta real. Si aún no las tienes, igual podemos empezar.") },
+    { title: tx("Preparamos la vista previa del inicio"), text: tx("En 2 días hábiles recibes un concepto de inicio para tu oficio—sin tarjeta y sin obligación.") },
+    { title: tx("Revisas y pides cambios"), text: tx("Dinos qué ajustar. Revisamos el diseño hasta que se sienta bien antes de que elijas un plan.") },
+    { title: tx("Elige un plan y terminamos el sitio"), text: tx("Cuando apruebes la dirección, elige Website, Lead System, Plus u Own It. Armamos el sitio completo y confirmamos el lanzamiento por escrito.") },
   ];
   return (
     <>
       <ContentSchema path={href("/web-design")} title={tx(PAGE_META["/web-design"].title)} description={tx(PAGE_META["/web-design"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Diseño web"), path: href("/web-design") }]} faqs={faqs} serviceType={tx("Diseño web")} inLanguage={lang} />
-      <PageHero eyebrow={tx("Diseño web")} h1={tx("Sitios pensados para el trabajo que haces")} mark={tx("trabajo que haces")} sub={tx("Para plomería, HVAC, electricidad, techos y otros oficios donde el teléfono importa. Ves el inicio antes de pagar.")} image="web-design" imageAlt={tx("Diseño web en un monitor y un celular")} />
+      <PageHero
+        eyebrow={tx("Diseño web")}
+        h1={tx("Mira el diseño de tu inicio antes de comprometerte")}
+        mark={tx("antes de comprometerte")}
+        sub={tx("Para plomería, HVAC, electricidad, techos y otros negocios de servicios. Comparte un estilo que te guste—o envía tus ideas—y preparamos una vista previa gratis del inicio en 2 días hábiles. Sin tarjeta.")}
+        image="web-design"
+        imageAlt={tx("Diseño web en un monitor y un celular")}
+      />
       <Section>
-        <h2 className="center"><HL text={tx("Lo que tu sitio debe hacer")} mark={tx("debe hacer")} /></h2>
+        <h2 className="center"><HL text={tx("Así funciona el diseño web aquí")} mark={tx("aquí")} /></h2>
+        <p className="center muted">{tx("Un camino claro desde las primeras ideas hasta un inicio que puedes revisar—y el sitio completo cuando estés listo.")}</p>
+        <ol className="design-process">
+          {steps.map((step, i) => (
+            <li key={step.title}>
+              <b aria-hidden="true">{i + 1}</b>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+      <Section tint>
+        <h2 className="center"><HL text={tx("Qué enviarnos")} mark={tx("enviarnos")} /></h2>
+        <p className="center muted">{tx("No necesitas un kit de marca terminado. Envía lo que tengas y completamos el resto para la vista previa.")}</p>
         <div className="grid grid--3">
-          <IconCard title={tx("Mostrar el trabajo que quieres")} text={tx("Cada servicio tiene su espacio, para que una reparación y un proyecto grande no compitan por atención.")} icon="built-for-your-trade" />
-          <IconCard title={tx("Hacer sencillo el contacto")} text={tx("El número es fácil de tocar y los formularios son cortos. Lead System y Plus también pueden escribir a quien llamó.")} icon="made-for-calls" />
-          <IconCard title={tx("Ordenar la información para Google")} text={tx("Títulos útiles, encabezados claros, páginas rápidas y un mapa ayudan al buscador a entender lo que ofreces.")} icon="search-optimized" />
-          <IconCard title={tx("Cargar rápido en el celular")} text={tx("El cliente puede buscar desde la entrada o la cocina. La página debe abrir rápido y mostrar el siguiente paso.")} icon="fast-and-secure" />
-          <IconCard title={tx("Decir dónde trabajas")} text={tx("Nombramos las ciudades que sí cubres en una página útil, sin copiar el mismo texto para cada pueblo.")} icon="location" />
-          <IconCard title={tx("Revisar el inicio primero")} text={tx("Preparamos la página de inicio antes de cobrar una tarjeta. La revisas, pides cambios y luego eliges el plan.")} icon="preview" />
+          <IconCard title={tx("Dirección de diseño")} text={tx("Ejemplos de nuestras plantillas, del portafolio o capturas de sitios que te gusten. Unas pocas referencias bastan para marcar el tono.")} icon="preview" />
+          <IconCard title={tx("Logo y lo básico de la marca")} text={tx("Tu logo si lo tienes, el nombre del negocio y los colores que ya usas en camionetas, camisas o tarjetas.")} icon="built-for-your-trade" />
+          <IconCard title={tx("Fotos (opcional)")} text={tx("Fotos reales de trabajos, tu camioneta o tu equipo. Si aún las estás reuniendo, podemos empezar la vista previa sin ellas.")} icon="better-design" />
         </div>
       </Section>
-      <Section><h2 className="center"><HL text={tx("Elige tu oficio")} mark={tx("tu oficio")} /></h2><IndustryGrid layout="index" industries={localizedIndustries(locale)} base={href("/industries")} /></Section>
-      <Section narrow><h2 className="center"><HL text={tx("Preguntas sobre tu sitio")} mark={tx("tu sitio")} /></h2><Faq items={faqs} /></Section>
-      <CtaBand h={tx("Mira el inicio antes de decidir")} mark={tx("antes de decidir")} sub={tx("Cuéntanos sobre el oficio y preparamos una vista previa. Sin tarjeta ni obligación.")} btn={tx("Revisar mi sitio")} href={href("/audit")} {...band} />
+      <Section>
+        <MediaSplit image="process" alt={tx("Vista previa del proceso de diseño para un sitio de servicios")}>
+          <h2><HL text={tx("Revisa el inicio primero")} mark={tx("primero")} /></h2>
+          <p>{tx("Preparamos un concepto de inicio para tu oficio para que juzgues el diseño, el texto y la llamada a la acción antes de pagar.")}</p>
+          <p>{tx("Pide cambios hasta que se sienta bien. Cuando estés listo, elige Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497—y terminamos el sitio completo.")}</p>
+          <p className="btn-row spaced">
+            <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Quiero mi vista previa gratis")}</Link>
+            <Link className="btn btn--ghost" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link>
+          </p>
+        </MediaSplit>
+      </Section>
+      <Section tint narrow>
+        <h2 className="center"><HL text={tx("Los mismos cuatro planes en todo el país")} mark={tx("planes")} /></h2>
+        <p>{tx("Negocios de servicios en cualquier parte de Estados Unidos pueden elegir Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497.")}</p>
+        <p>{tx("El texto se adapta a tu oficio y zona. La base técnica de búsqueda se mantiene consistente, y el SEO continuo se cotiza aparte después de construir el sitio.")}</p>
+        <p className="center btn-row spaced">
+          <Link className="btn btn--primary" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
+          <Link className="btn btn--ghost" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link>
+        </p>
+      </Section>
+      <Section>
+        <h2 className="center"><HL text={tx("Elige tu oficio")} mark={tx("tu oficio")} /></h2>
+        <IndustryGrid layout="index" industries={localizedIndustries(locale)} base={href("/industries")} />
+      </Section>
+      <Section narrow>
+        <h2 className="center"><HL text={tx("Preguntas sobre tu sitio")} mark={tx("tu sitio")} /></h2>
+        <Faq items={faqs} />
+      </Section>
+      <CtaBand
+        h={tx("¿Listo para ver tu inicio?")}
+        mark={tx("tu inicio")}
+        sub={tx("Cuéntanos tu oficio, una dirección de diseño y lo que tengas de marca. Preparamos tu vista previa gratis del inicio—sin tarjeta.")}
+        btn={tx("Quiero mi vista previa gratis")}
+        href={href("/contact")}
+        {...band}
+      />
     </>
   );
 }
@@ -336,8 +445,8 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
   const faqs = homeFaqs(tx);
   const table = [
     { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), "$99", tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
-    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas"), "—", tx("Sí"), tx("Inglés y español"), "—"], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
-    { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Mínimo"), tx("3 meses"), tx("3 meses"), tx("3 meses"), tx("Ninguno")], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), "$97 / mes", "$197 / mes", "$297 / mes", "$1,497"]] },
+    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas**"), "—", tx("Extra opcional"), tx("Opcional · EN + ES"), tx("Extra $97 / mes")], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
+    { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Devolución en 30 días"), tx("Sí"), tx("Sí"), tx("Sí"), tx("Sí")], [tx("Cobro"), tx("Mes a mes"), tx("Mes a mes"), tx("Mes a mes"), tx("Un pago")], [tx("Cancela cuando quieras"), tx("Sí"), tx("Sí"), tx("Sí"), "—"], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), "$97 / mes", "$197 / mes", "$297 / mes", "$1,497"]] },
   ];
   return (
     <>
@@ -364,6 +473,7 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
                 <SpanishPlanSticker slug={plan.slug} kind="offer" />
                 <p className="plan__note">{plan.note}</p>
                 {plan.guarantee && <p className="plan__guarantee">{tx("Incluye la garantía de 60 días")}</p>}
+                <p className="plan__guarantee plan__guarantee--refund">{tx("Garantía de devolución en 30 días")}</p>
                 <Link className="btn plan__cta btn--primary" href={`${href("/contact")}?plan=${plan.slug}`} prefetch={false}>{plan.cta}</Link>
               </div>
               <div className="plan__body">
@@ -374,19 +484,32 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
           ))}
         </div>
         <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link href="/pay" hrefLang="en-US" prefetch={false}>{tx("Seguir al pago")}</Link>. {tx("La caja está en inglés.")}</p>
-        <div className="guarantee-band">
-          <GuaranteeBadge alt={tx("Garantía de leads rastreados de 60 días")} />
-          <div>
-            <h3><HL text={tx("¿Cero leads rastreados en 60 días? Condonamos dos cargos.")} mark={tx("dos cargos")} /></h3>
-            <p>{tx("Si Lead System o Plus no produce leads rastreados en los primeros 60 días en vivo, se condonan el tercer y cuarto cargo y se quita el mínimo. Un lead rastreado es una llamada de 30 segundos o más, una respuesta al texto, o un formulario real. Una garantía por negocio.")}</p>
-            <OpenDialog id="guarantee" className="link-btn">{tx("Leer la garantía")}</OpenDialog>
+        <div className="guarantee-stack">
+          <div className="guarantee-band">
+            <GuaranteeBadge alt={tx("Garantía de leads rastreados de 60 días")} />
+            <div>
+              <h3><HL text={tx("¿Cero leads rastreados en 60 días? Condonamos dos cargos.")} mark={tx("dos cargos")} /></h3>
+              <p>{tx("Si Lead System o Plus no produce leads rastreados en los primeros 60 días en vivo, se condonan el tercer y cuarto cargo. Un lead rastreado es una llamada de 30 segundos o más, una respuesta al texto, o un formulario real. Una garantía por negocio.")}</p>
+              <OpenDialog id="guarantee" className="link-btn">{tx("Leer la garantía")}</OpenDialog>
+            </div>
+          </div>
+          <div className="guarantee-band guarantee-band--refund">
+            <div>
+              <h3><HL text={tx("Garantía de devolución en 30 días")} mark={tx("devolución")} /></h3>
+              <p>{tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Debes pedirlo por escrito. No cubre costos de terceros que ya hayamos pagado.")}</p>
+              <OpenDialog id="refund" className="link-btn">{tx("Leer los detalles de la devolución")}</OpenDialog>
+            </div>
           </div>
         </div>
+        <p className="pricing-footnote">
+          {tx("** El texto si no contestas es un extra opcional. Se necesita una línea telefónica dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador.")}
+
+        </p>
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx("Mira qué cubre cada plan")} mark={tx("cada plan")} /></h2>
         <MobilePlanComparison
-          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[3][index + 1], sticker: SPANISH_PLAN_STICKERS[plan.slug].name }))}
+          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1], sticker: SPANISH_PLAN_STICKERS[plan.slug].name }))}
           sections={table}
           hint={tx("Toca un plan para ver qué incluye. Abre dos para comparar.")}
           popularLabel={tx("El más elegido")}
@@ -580,7 +703,7 @@ function Upgrades({ tx, href, lang, band }: PageBits) {
   const items = [
     ["extra-page", tx("Página extra"), tx("Agrega un servicio, una zona o una landing a Website, Lead System o Plus."), "$99"],
     ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), "$39 / mes"],
-    ["missed-call-text-back", tx("Texto si no contestas"), tx("Agrégalo a un sitio Own It después de la aprobación del operador, normalmente en 10 a 15 días."), "$97 / mes"],
+    ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra opcional. Requiere una línea dedicada. El segundo número de seguimiento cuesta $1 al mes; pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días)."), "$97 / mes"],
     ["new-pages", tx("Páginas nuevas en Own It"), tx("Las páginas extra de Own It se cotizan por escrito antes de empezar."), tx("Cotizado")],
   ] as const;
   return (
@@ -640,22 +763,22 @@ function Terms({ tx, href, lang }: { tx: (s: string) => string; href: (p: string
   return (
     <>
       <ContentSchema path={href("/terms")} title={tx(PAGE_META["/terms"].title)} description={tx(PAGE_META["/terms"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Términos"), path: href("/terms") }]} inLanguage={lang} />
-      <PageHero h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 30 de octubre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
+      <PageHero h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 7 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("1. Vista previa gratis")}</h2>
         <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Las vistas previas gratis de la página principal se entregan dentro de 2 días hábiles después de recibir los datos de su negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu oficio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
         <h2>{tx("2. Planes mensuales")}</h2>
-        <p>{tx("Website es $97 al mes. Lead System es $197 al mes. Plus (bilingüe) es $297 al mes. Los tres son $0 de enganche y empiezan el día del lanzamiento. Cada uno tiene un mínimo de 3 meses. Después sigue mes a mes. Puedes cancelar después del mínimo por texto, correo o Messenger. No hay cargo por cancelar. El precio queda fijo 24 meses. Después avisamos al menos 30 días antes de un cambio.")}</p>
+        <p>{tx("Website es $97 al mes. Lead System es $197 al mes. Plus (bilingüe) es $297 al mes. Los tres son $0 de enganche y empiezan el día del lanzamiento. Son mes a mes, sin contrato largo y sin cargo por cancelar. Puedes cancelar cuando quieras por texto, correo o Messenger. El precio queda fijo 24 meses. Después avisamos al menos 30 días antes de un cambio.")}</p>
         <h2>{tx("3. Qué incluye")}</h2>
         <p>{tx("Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta $99. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es $39 al mes.")}</p>
         <h2>{tx("4. Textos y el operador")}</h2>
-        <p>{tx("El texto si no contestas y los pedidos de reseña se envían por mensaje. Empiezan después de la aprobación del operador, que suele tardar de 10 a 15 días. Esa aprobación no está garantizada.")}</p>
+        <p>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. El texto si no contestas y los pedidos de reseña se envían por mensaje. Empiezan después de la aprobación del operador, que suele tardar de 10 a 15 días. Esa aprobación no está garantizada.")}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
-        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados en los primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual y se quita el mínimo. Una garantía por negocio, con la cuenta al corriente. Un lead rastreado es una llamada de 30 segundos o más, alguien que responde al texto, o un formulario real. No cuentan spam, números equivocados, solicitantes, proveedores ni clientes actuales. No aplica si el seguimiento falla por un cambio que haces tú, o si pausas o cancelas antes del día 60. Own It no incluye esta garantía.")}</p>
+        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados en los primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Una garantía por negocio, con la cuenta al corriente. Un lead rastreado es una llamada de 30 segundos o más, alguien que responde al texto, o un formulario real. No cuentan spam, números equivocados, solicitantes, proveedores ni clientes actuales. No aplica si el seguimiento falla por un cambio que haces tú, o si pausas o cancelas antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>
-        <p>{tx("Own It es un pago de $1,497, al aprobar la vista previa. No hay plan mensual ni mínimo. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es $39 al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. El texto si no contestas se puede agregar por $97 al mes.")}</p>
+        <p>{tx("Own It es un pago de $1,497, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es $39 al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. El texto si no contestas se puede agregar por $97 al mes.")}</p>
         <h2>{tx("7. Cancelación y acceso")}</h2>
-        <p>{tx("Cancela un plan mensual después del mínimo por texto, correo o Messenger. Paramos los cargos futuros. En los planes mensuales el sitio lo hospeda Kinexis, así que el acceso termina cuando termina el plan, salvo que compres el sitio o pases a Own It. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.")}</p>
+        <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea, salvo que compres el sitio o pases a Own It. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.")}</p>
         <h2>{tx("8. Impuestos y terceros")}</h2>
         <p>{tx("Los precios están en dólares de EE. UU. y no incluyen impuestos. Renovaciones de dominio, imágenes de pago, publicidad y otros servicios de terceros no están incluidos salvo que lo pongamos por escrito.")}</p>
         <h2>{tx("9. Preguntas")}</h2>
@@ -760,20 +883,20 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
         </picture>
       )}>
         <div className="industry-hero__intro"><p>{industry.intro[0]}</p><p>{industry.intro[1]}</p></div>
-        <p className="btn-row"><Link className="btn btn--primary" href={href("/audit")} prefetch={false}>{tx("Revisar mi sitio")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
+        <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link></p>
+        <p className="muted small">{tx("Garantía de 60 días · $0 de enganche · Vista previa en 2 días hábiles")}</p>
       </PageHero>
       <Section tint>
-        <h2 className="center"><HL text={industry.problemsTitle} mark={industry.problemsMark} /></h2>
+        <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industry.name}`)} mark={industry.name} /></h2>
+        <div className="grid grid--3">{industry.services.map((point) => <IconCard key={point.icon} title={point.title} text={point.text} iconClass="icon--service" src={kitSrc(`/assets/industries/${industry.slug}/icons/${point.icon}.svg`)} />)}</div>
+        <p className="center muted" style={{ marginTop: "1.5rem" }}>{industry.problemsTitle}</p>
         <div className="grid grid--3">{industry.problems.map((point) => <IconCard key={point.icon} title={point.title} text={point.text} iconClass="icon--problem" src={kitSrc(`/assets/kinexis/icons/industries/${industry.slug}/${point.icon}.svg`)} />)}</div>
       </Section>
       <Section accent={`/assets/industries/${industry.slug}/section-accent.svg`}>
-        <h2 className="center"><HL text={industry.servicesTitle} mark={industry.servicesMark} /></h2>
-        <div className="grid grid--3">{industry.services.map((point) => <IconCard key={point.icon} title={point.title} text={point.text} iconClass="icon--service" src={kitSrc(`/assets/industries/${industry.slug}/icons/${point.icon}.svg`)} />)}</div>
-      </Section>
-      <Section tint>
+        <h2 className="center"><HL text={tx(`Lo que incluye tu sitio de ${industry.name}`)} mark={tx("incluye")} /></h2>
         <div className="media-split industry-screens">
           <div className="media-split__copy">
-            <h2><HL text={tx("Funciona en cada pantalla")} mark={tx("cada pantalla")} /></h2>
+            <h3>{tx("Funciona en cada pantalla")}</h3>
             <p>{tx("El sitio está pensado para el celular en la entrada y la computadora en el escritorio. El número, el formulario y la zona se usan sin pellizcar.")}</p>
           </div>
           <div className="screen-art">
@@ -783,6 +906,11 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
         <div className="feature-grid">
           {industry.features.map((key) => <IconCard key={key} title={tx(FEATURES[key].title)} text={industry.featureText?.[key] ?? (key === "service-area" ? industry.serviceArea : tx(FEATURES[key].text))} src={kitSrc(`/assets/shared/icons/${FEATURES[key].icon}.svg`)} />)}
         </div>
+      </Section>
+      <Section tint>
+        <h2 className="center"><HL text={tx(`Respuesta a llamadas perdidas para ${industry.name}`)} mark={tx("llamadas perdidas")} /></h2>
+        <p className="center muted" style={{ maxWidth: "42rem", marginInline: "auto" }}>{tx("Si tu equipo está en un trabajo y no contesta, Lead System y Plus envían un texto automático. Después del trabajo, sale el pedido de reseña en Google.")}</p>
+        <p className="center btn-row spaced"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link></p>
       </Section>
       {project && (
         <Section>
@@ -795,16 +923,10 @@ function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string
           </div>
         </Section>
       )}
-      <IndustryAudit eyebrow={tx("Un punto de partida claro")} heading={tx("Descubre qué está frenando tu sitio")} mark={tx("frenando tu sitio")} text={tx("Te decimos qué funciona, qué estorba y qué cambios conviene hacer primero. Hay revisiones gratis y de pago.")} cta={tx("Revisar mi sitio")} href={href("/audit")} alt={tx("Computadora, celular y una lupa")} checks={[
-        { title: tx("Velocidad"), text: tx("Qué tan rápido carga en el celular y en la computadora."), icon: "speed" },
-        { title: tx("Visibilidad"), text: tx("Si los encabezados y las páginas están listos para que un buscador los lea."), icon: "search" },
-        { title: tx("Celular"), text: tx("Cómo cabe en el teléfono y qué alcanza el pulgar."), icon: "mobile" },
-        { title: tx("Llamadas"), text: tx("Si el número, los botones y los formularios dejan un paso claro."), icon: "conversion" },
-      ]} />
-      <Section id="plans"><PlanOffer heading={tx("Elige el punto de partida para tu sitio")} mark={tx("punto de partida")} href={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa, sin tarjeta y sin obligación.")} badge={tx("El más elegido")} cta={tx("Ver los cuatro planes")} plans={spanishPlans(tx)} /></Section>
-      <Section tint narrow><h2 className="center"><HL text={tx(`Preguntas de ${industry.name}`)} mark={tx("Preguntas")} /></h2><Faq items={[...industry.faqs]} /></Section>
+      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} plans={spanishPlans(tx)} /></Section>
+      <Section tint narrow><h2 className="center"><HL text={tx(`Preguntas para dueños de ${industry.name}`)} mark={tx("dueños")} /></h2><Faq items={[...industry.faqs]} /></Section>
       <Section><h2 className="center"><HL text={tx("Otros oficios")} mark={tx("Otros oficios")} /></h2><IndustryGrid industries={related} base={href("/industries")} /></Section>
-      <CtaBand h={tx(`Ve un inicio de ${industry.name} antes de pagar`)} mark={tx("antes de pagar")} sub={tx("Vista previa gratis, sin tarjeta. Luego eliges Website, Lead System, Plus u Own It.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} />
+      <CtaBand h={tx("Consigue tu vista previa gratis")} mark={tx("vista previa gratis")} sub={tx("Vista previa gratis, sin tarjeta. Luego eliges Website, Lead System, Plus u Own It.")} btn={tx("Ver mi vista previa gratis")} href={href("/contact")} secondary={tx("Ver planes y precios")} secondaryHref={href("/pricing")} />
     </>
   );
 }

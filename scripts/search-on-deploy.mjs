@@ -477,6 +477,61 @@ function concurrency() {
   return Math.min(12, Math.max(1, Math.floor(parsed)));
 }
 
+/**
+ * High-impression legacy URLs from Search Console that must 301 (not 404).
+ * Kept as permanent regression probes so a site migration cleanup cannot regress.
+ */
+const LEGACY_REDIRECT_PROBES = [
+  { path: "/en/industries/technology/fintech", expect: "/industries" },
+  { path: "/en/industries/home-services/hvac", expect: "/industries/hvac" },
+  { path: "/en/locations/dallas/ppc-management", expect: "/seo-services" },
+  { path: "/locations/cedar-falls", expect: "/seo-services" },
+  { path: "/en/blog/local-seo-checklist", expect: "/blog/local-seo-get-found-get-called" },
+  { path: "/en/solutions/saas-marketing-agency", expect: "/services" },
+  { path: "/digital-marketing-agency", expect: "/services" },
+  { path: "/en/services/google-ads", expect: "/services" },
+  { path: "/team/sarah-mitchell", expect: "/about" },
+  { path: "/wordpress-vs-webflow", expect: "/web-design" },
+];
+
+async function checkLegacyRedirects(fetchOrigin) {
+  const results = await pool(LEGACY_REDIRECT_PROBES, Math.min(4, LEGACY_REDIRECT_PROBES.length), async (probe) => {
+    const url = `${fetchOrigin}${probe.path}`;
+    try {
+      const response = await request(url, 3);
+      const location = response.headers.get("location") ?? "";
+      let pathname = "";
+      try {
+        pathname = new URL(location, fetchOrigin).pathname.replace(/\/$/, "") || "/";
+      } catch {
+        pathname = location;
+      }
+      const expect = probe.expect.replace(/\/$/, "") || "/";
+      return { probe, status: response.status, pathname, expect };
+    } catch (error) {
+      return {
+        probe,
+        status: 0,
+        pathname: "",
+        expect: probe.expect,
+        error: error instanceof Error ? error.message : String(error),
+      };
+    }
+  });
+
+  const bad = results.filter((row) => row.status !== 301 || row.pathname !== row.expect);
+  if (bad.length === 0) {
+    pass(`${LEGACY_REDIRECT_PROBES.length} legacy Search Console URLs 301 to the current site`);
+    return;
+  }
+  for (const row of bad) {
+    const detail = row.error
+      ? row.error
+      : `got ${row.status}${row.pathname ? ` → ${row.pathname}` : ""} (expected 301 → ${row.expect})`;
+    fail(`legacy ${row.probe.path}: ${detail}`);
+  }
+}
+
 async function checkUrls(locs, fetchOrigin, limit) {
   const bad = [];
   await pool(locs, limit, async (loc) => {
@@ -607,6 +662,7 @@ async function run() {
   }
 
   if (locs.length) await checkUrls(locs, fetchOrigin, concurrency());
+  await checkLegacyRedirects(fetchOrigin);
 
   const ready = failures.length === 0;
   const liveCanonical = fetchOrigin === canonicalOrigin;

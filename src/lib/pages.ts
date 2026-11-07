@@ -19,12 +19,12 @@ export type PageMeta = {
 export const PAGES = {
   home: {
     path: "/",
-    title: "Professional Web Design for Businesses | Kinexis Digital",
+    title: "Website Plans From $97/mo for Local Businesses | Kinexis Digital",
     absolute: true,
     indexable: true,
     priority: 1,
     changeFrequency: "weekly",
-    description: "Kinexis Digital builds fast, professional websites for businesses across the US. See a free homepage preview before choosing a website plan.",
+    description: "Get a professional website from $97/mo, plus missed-call text-back and Google review requests. See your free homepage preview first. No card required.",
   },
   services: {
     path: "/services",
@@ -37,12 +37,12 @@ export const PAGES = {
   },
   "web-design": {
     path: "/web-design",
-    title: "Professional Website Design for Businesses",
+    title: "Website Design Process — Free Homepage Preview",
     crumb: "Web Design",
     service: "Web design",
     indexable: true,
     priority: 0.9,
-    description: "Get a fast, professional website built around your brand, services, and goals. Review your homepage before choosing a plan or paying.",
+    description: "Share a design direction, logo, and photos. We prepare a free homepage preview in 2 business days—no card required—then revise until it fits before you choose a plan.",
   },
   "seo-services": {
     path: "/seo-services",
@@ -125,12 +125,12 @@ export const PAGES = {
   },
   pricing: {
     path: "/pricing",
-    title: "Website Design Plans & Pricing",
+    title: "How Much Does a Small Business Website Cost?",
     crumb: "Pricing",
     service: "Web design",
     indexable: true,
     priority: 0.9,
-    description: "Compare Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, and Own It at $1,497. Every plan starts with a free preview.",
+    description: "Website plans from $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for $1,497. Free homepage preview in 2 business days. No card required.",
   },
   pay: {
     path: "/pay",

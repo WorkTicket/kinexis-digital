@@ -135,7 +135,8 @@ function unlockScroll() {
   window.scrollTo(0, scrollY);
 }
 function openDialog(id, src) {
-  const dlg = document.getElementById(id === "video" ? "dlg-video" : "dlg-guarantee");
+  const dlgId = id === "video" ? "dlg-video" : id === "refund" ? "dlg-refund" : "dlg-guarantee";
+  const dlg = document.getElementById(dlgId);
   if (!(dlg instanceof HTMLDialogElement)) return;
   if (id === "video") {
     const url = src || dlg.getAttribute("data-video") || "";
@@ -756,7 +757,7 @@ document.addEventListener("submit", async (event) => {
         check.setAttribute("aria-hidden", "true");
         check.textContent = "✓";
         const strong = document.createElement("b");
-        strong.textContent = "Thanks! We’ll be in touch soon.";
+        strong.textContent = "Thanks. We’ll send your preview within 2 business days.";
         msg.append(check, strong);
       }
       return;

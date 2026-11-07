@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { SITE, telHref } from "@/lib/site";
 
 function englishPath(pathname: string): string {
   if (pathname === "/es" || pathname === "/es-es") return "/";
@@ -22,9 +23,14 @@ export default function ScrollUi() {
   if (HIDDEN_PATHS.has(en) || en.startsWith("/pay")) return null;
   return (
     <div className="float-cta" inert>
-      <span>{es ? <>Auditoría <b>gratis de sitio y SEO</b></> : <>Free <b>Website &amp; SEO Audit</b></>}</span>
-      <Link className="btn btn--primary" href={spanish("/audit")} prefetch={false}>{es ? "Revisar mi sitio" : "Review My Website"}</Link>
-      <Link className="btn btn--ghost" href={spanish("/strategy-call")} prefetch={false}>{es ? "Agendar llamada" : "Book a Call"}</Link>
+      <span className="float-cta__label">
+        {es ? <>Vista previa <b>gratis</b></> : <>Free <b>homepage preview</b></>}
+      </span>
+      <a className="btn btn--ghost float-cta__call" href={telHref(SITE.phone)}>{es ? "Llamar" : "Call"}</a>
+      <Link className="btn btn--primary float-cta__preview" href={spanish("/contact")} prefetch={false}>
+        <span className="float-cta__preview-full">{es ? "Ver mi vista previa gratis" : "Get My Free Preview"}</span>
+        <span className="float-cta__preview-short">{es ? "Vista previa" : "Free Preview"}</span>
+      </Link>
     </div>
   );
 }

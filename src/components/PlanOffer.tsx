@@ -28,14 +28,14 @@ function PlanSticker({ sticker }: { sticker: Sticker }) {
 
 /** The same four plans, with the same prices, on the homepage and every industry page. */
 export default function PlanOffer({
-  heading = "Choose The Right Starting Point For Your Site",
-  mark = "Starting Point",
-  href = "/pricing",
+  heading = "Website Plans and Pricing",
+  mark = "Plans and Pricing",
+  href = "/contact",
   eyebrow = "Four Plans · One Free Preview",
   chip = "$0 down",
-  note = "Every plan starts with a free homepage preview — no card, no obligation.",
+  note = "Every plan starts with a free homepage preview in 2 business days — no card, no obligation. Month-to-month, cancel anytime.",
   badge = "Most popular",
-  cta = "See the Four Plans",
+  cta = "Get My Free Preview",
   plans = PLANS,
 }: {
   heading?: string;
@@ -60,15 +60,25 @@ export default function PlanOffer({
       <ul className="offer__plans">
         {plans.map((plan) => (
           <li key={plan.slug}>
-            <Link className={`offer__plan${plan.popular ? " is-pop" : ""}`} href={href} prefetch={false}>
+            <Link
+              className={`offer__plan${plan.popular ? " is-pop" : ""}`}
+              href={`${href}?plan=${plan.slug}`}
+              prefetch={false}
+            >
               {plan.popular ? <span className="offer__badge">{badge}</span> : null}
               <PlanSticker sticker={PLAN_NAME_STICKERS[plan.slug]} />
-              <span className="offer__line">{plan.tagline}</span>
+              <h3 className="offer__line">{plan.name}</h3>
+              <span className="offer__tagline">{plan.tagline}</span>
+              <span className="offer__plan-cta">Start with a free preview</span>
             </Link>
           </li>
         ))}
       </ul>
-      <p className="center btn-row spaced"><Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{cta}</Link></p>
+      <p className="center btn-row spaced">
+        <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{cta}</Link>
+        <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
+      </p>
+      <p className="center muted small">60-Day Lead Guarantee · $0 down · Free preview in 2 business days</p>
     </>
   );
 }

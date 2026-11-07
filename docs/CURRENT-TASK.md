@@ -1,36 +1,36 @@
 # CURRENT-TASK.md
 
 ## Goal
-Fix Ahrefs site-audit SEO issues from crawl 2026-11-01 (project 10038104); deploy to live.
+Rebuild `/web-design` as a design-process page (direction → assets → 2-day preview → revisions → plan), with EN + Spanish mirrors and image placeholders for new art.
 
 ## Status
-complete
+code complete locally — drop in final illustrations when ready
 
 ## Changed files
-- `src/components/JsonLd.tsx` — schema `inLanguage` uses `es` not `es-419`; FAQ URLs emit FAQPage as page type; articles use `BlogPosting` + `Article`
-- `src/lib/seo.ts` — Open Graph `alternateLocale` for mirrored pages
-- `src/i18n/SpanishSite.tsx` — Spanish meta descriptions lengthened to ≥120 chars
-- `src/app/lp/get-a-website/page.tsx` — FAQPage schema on landing FAQ block
-- `next.config.ts` — `/video-reviews` → `/reviews` (en/es/es-es)
-- `scripts/search-on-deploy.mjs` — treat privacy/terms/lp as non-indexable in deploy checks
+- `src/app/web-design/page.tsx` — process-led sections, plans, industries, CTA → `/contact`
+- `src/lib/content.ts` — `DESIGN_PROCESS_STEPS`, refreshed `WEB_FAQS`
+- `src/lib/pages.ts` — web-design title/description
+- `src/i18n/SpanishSite.tsx` — `WebDesign` + PAGE_META mirror
+- `src/app/globals.css` — `.design-process` sticker grid
 - `docs/CURRENT-TASK.md` — this file
 
 ## Completed
-- Schema/FAQ/Article/redirect/meta length fixes
-- Committed `0a5ab775` and pushed to `main`
-- Deployed to Cloudflare Workers (live: kinexisdigital.com / www.kinexisdigital.com)
-- Post-deploy checks passed (SEO, sitemap 102 URLs, IndexNow 200)
-- Live verified: `/es` schema uses `es`, `/video-reviews` → `/reviews`, FAQPage + Article present
-- Version ID: e9c9f8d4-70f2-4e5c-bc7c-b51e19091931
+- Process steps, what-to-send cards, preview/revisions MediaSplit, plans band, industries, FAQ, closing CTA
+- Spanish `/es` and `/es-es` structure matched
+- Temporary art wired with existing assets
+
+## Image placeholders (replace later)
+1. **Hero** — still using `Art` `web-design` (`07-web-design`); optional new process-hero if desired
+2. **What to send** — IconCards use kit icons `preview`, `built-for-your-trade`, `better-design`; swap for custom illustrations when ready
+3. **Preview & revisions** — MediaSplit uses `Art` `process` (`04-process`); replace with dedicated preview/revision artwork
+4. After new heroes land in `public/assets/heroes/`, register names in `ui.tsx` `ArtName`/`HERO_FILES` and run `npm run images:heroes`
 
 ## Unfinished
-- Re-run Ahrefs site audit so the report clears stale Nov 1 findings
+- Final custom illustrations for the three slots above
+- Visual QA in browser at `/web-design`, `/es/web-design`, `/es-es/web-design`
 
 ## Errors/blockers
 none
 
 ## Next action
-Trigger a new Ahrefs crawl and confirm Error-severity issues drop.
-
-## Notes
-- Intentional noindex remains on `/pay`, `/update`, `/privacy`, `/terms`, `/lp/*`, portfolio demos
+Create/drop final page art for the placeholder slots, wire paths, then spot-check mobile + desktop.

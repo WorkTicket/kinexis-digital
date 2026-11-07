@@ -4,24 +4,24 @@ import type { ReactNode } from "react";
 const REVIEW_STEPS = [
   {
     n: "1",
-    title: "When the job is done",
-    titleDisplay: <>When the job<br />is done</>,
-    text: <>After each job, your customer<br />gets a text with a direct review<br />link. You don’t have to ask.</>,
-    icon: "after-every-job",
+    title: "Missed call, automatic text",
+    titleDisplay: <>Missed call,<br />automatic text</>,
+    text: <>When you cannot pick up, a text goes<br />out on your tracking number so the<br />lead does not go cold.</>,
+    icon: "missed-call-text-back",
   },
   {
     n: "2",
-    title: "Straight to your profile",
-    titleDisplay: <>Straight to<br />your profile</>,
-    text: <>The link opens your Google<br />Business Profile, where a review<br />takes just a few taps.</>,
-    icon: "one-tap-to-google",
+    title: "After the job is done",
+    titleDisplay: <>After the job<br />is done</>,
+    text: <>Your customer gets a text with a<br />direct Google review link. You do<br />not have to ask in person.</>,
+    icon: "after-every-job",
   },
   {
     n: "3",
-    title: "No extra follow-up",
-    titleDisplay: <>No extra<br />follow-up</>,
-    text: <>The request goes out for you.<br />New reviews reach your profile,<br />ready for you to reply.</>,
-    icon: "no-chasing",
+    title: "Straight to your profile",
+    titleDisplay: <>Straight to<br />your profile</>,
+    text: <>The link opens your Google Business<br />Profile. New reviews land ready for<br />you to reply.</>,
+    icon: "one-tap-to-google",
   },
 ] as const;
 
@@ -48,10 +48,10 @@ const REASONS = [
   },
 ] as const;
 
-type ReviewStep = { n: string; title: string; titleDisplay?: ReactNode; text: ReactNode; icon: (typeof REVIEW_STEPS)[number]["icon"] };
+type ReviewStep = { n: string; title: string; titleDisplay?: ReactNode; text: ReactNode; icon: (typeof REVIEW_STEPS)[number]["icon"] | string };
 type Reason = { title: string; text: string; icon: (typeof REASONS)[number]["icon"] };
 
-/** A connected sequence: job, tap, review. One instrument, not three cards. */
+/** Lead System sequence: missed-call text-back, then Google review request. */
 export function ReviewRail({ steps = REVIEW_STEPS }: { steps?: readonly ReviewStep[] }) {
   return (
     <ol className="review-rail">

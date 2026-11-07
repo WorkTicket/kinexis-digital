@@ -4,6 +4,7 @@ import { chromeFor } from "@/i18n/chrome";
 import { localizeIndustry } from "@/i18n/industries-es";
 import { getLocale, withLocale } from "@/lib/i18n";
 import { imageVariant } from "@/lib/image-sources";
+import { SITE, telHref } from "@/lib/site";
 import { MenuButton, NavLinks } from "./HeaderMenu";
 
 export default async function Header() {
@@ -32,11 +33,13 @@ export default async function Header() {
         <nav className="nav" id="nav" aria-label="Main">
           <NavLinks chrome={chrome} industries={industries} hrefFor={hrefFor} />
           <div className="nav__extra">
+            <a className="header__phone" href={telHref(SITE.phone)}>{SITE.phone}</a>
             <Link className="btn btn--primary" href={hrefFor("/contact")} prefetch={false}>{chrome.chat}</Link>
-            <Link className="btn btn--ghost" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
+            <Link className="header__call-link" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
           </div>
         </nav>
         <div className="header__tools">
+          <a className="header__phone header__phone--mobile" href={telHref(SITE.phone)} aria-label={SITE.phone}>{SITE.phone}</a>
           <Link className="btn btn--primary header__cta" href={hrefFor("/contact")} prefetch={false}>{chrome.chat}</Link>
           <MenuButton menu={chrome.menu} close={chrome.close} />
         </div>

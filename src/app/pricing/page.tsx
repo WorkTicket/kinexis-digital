@@ -4,7 +4,7 @@ import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import { pageMetadata } from "@/lib/seo";
 import { FAQS, PLANS, PLAN_TERMS } from "@/lib/content";
-import { OpenDialog } from "@/components/DialogHost";
+import { OpenDialog } from "@/components/OpenDialog";
 import { PageSchema } from "@/components/JsonLd";
 import { Faq, HL, PageHero, Section } from "@/components/ui";
 
@@ -24,7 +24,7 @@ const TABLE: { group: string; rows: [string, string, string, string, string][] }
   {
     group: "Lead follow-up",
     rows: [
-      ["Missed-call text-back", "—", "Yes", "English + Spanish", "—"],
+      ["Missed-call text-back**", "—", "Optional add-on", "Optional · EN + ES", "Add-on $97/mo"],
       ["Google review requests", "—", "After every job", "English + Spanish", "—"],
       ["Google Business Profile", "—", "Tune-up", "Tune-up + 2 posts / mo", "—"],
       ["Call tracking + report", "—", "Monthly", "Monthly", "—"],
@@ -35,7 +35,9 @@ const TABLE: { group: string; rows: [string, string, string, string, string][] }
     group: "The deal",
     rows: [
       ["60-day lead guarantee", "—", "Yes", "Yes", "—"],
-      ["Minimum", "3 months", "3 months", "3 months", "None"],
+      ["30-day money-back", "Yes", "Yes", "Yes", "Yes"],
+      ["Billing", "Month-to-month", "Month-to-month", "Month-to-month", "One payment"],
+      ["Cancel anytime", "Yes", "Yes", "Yes", "—"],
       ["Price locked", "24 months", "24 months", "24 months", "One payment"],
       ["Price", "$97 / mo", "$197 / mo", "$297 / mo", "$1,497 once"],
     ],
@@ -115,6 +117,7 @@ export default function Page() {
                 {plan.guarantee && (
                   <p className="plan__guarantee">60-day lead guarantee included</p>
                 )}
+                <p className="plan__guarantee plan__guarantee--refund">30-day money-back guarantee</p>
                 <Link
                   className="btn plan__cta btn--primary"
                   href={`/contact?plan=${plan.slug}`}
@@ -140,19 +143,35 @@ export default function Page() {
 
         <p className="pay-bridge">Already approved your preview? <Link href="/pay" prefetch={false}>Continue to checkout</Link>.</p>
 
-        <div className="guarantee-band">
-          <GuaranteeBadge />
-          <div>
-            <h3><HL text="No tracked leads in 60 days? Two charges are waived." mark="Two charges" /></h3>
-            <p>
-              If Lead System or Plus produces <b>zero tracked leads in your first 60 days live</b>, your{" "}
-              <b>3rd and 4th monthly charges are waived</b> and the <b>minimum is dropped</b>. A tracked lead is a
-              call of 30+ seconds, a missed caller who replies to the text-back, or a real quote form. One guarantee
-              per business.
-            </p>
-            <p className="fineprint">
-              <OpenDialog id="guarantee" className="link-btn">Read the full guarantee</OpenDialog>
-            </p>
+        <div className="guarantee-stack">
+          <div className="guarantee-band">
+            <GuaranteeBadge />
+            <div>
+              <h3><HL text="No tracked leads in 60 days? Two charges are waived." mark="Two charges" /></h3>
+              <p>
+                If Lead System or Plus produces <b>zero tracked leads in your first 60 days live</b>, your{" "}
+                <b>3rd and 4th monthly charges are waived</b>. A tracked lead is a
+                call of 30+ seconds, a missed caller who replies to the text-back, or a real quote form. One guarantee
+                per business.
+              </p>
+              <p className="fineprint">
+                <OpenDialog id="guarantee" className="link-btn">Read the full guarantee</OpenDialog>
+              </p>
+            </div>
+          </div>
+
+          <div className="guarantee-band guarantee-band--refund">
+            <div>
+              <h3><HL text="30-Day Money-Back Guarantee" mark="Money-Back" /></h3>
+              <p>
+                Every plan includes a <b>30-day money-back guarantee</b>. If you are not satisfied with your website
+                within <b>30 days of launch</b>, we refund your <b>most recent payment in full</b>. Requests must be
+                made in writing. Third-party costs already paid on your behalf are not refundable.
+              </p>
+              <p className="fineprint">
+                <OpenDialog id="refund" className="link-btn">Read the refund details</OpenDialog>
+              </p>
+            </div>
           </div>
         </div>
 
@@ -160,8 +179,12 @@ export default function Page() {
           <b>The terms, stated clearly:</b>
           <ul className="fineprint-list">
             {PLAN_TERMS.slice(1).map((term) => <li key={term}>{term}</li>)}
-            <li>Every plan includes a <b>30-day refund period</b>.</li>
           </ul>
+          <p className="pricing-footnote">
+            ** Missed-call text-back is an optional add-on. A dedicated business phone line is required. A second
+            tracking number is available for $1/mo. Standard carrier messaging rates may apply. Activation is subject
+            to carrier approval.
+          </p>
           <Link href="/terms" prefetch={false}>Full plan terms →</Link>
         </div>
       </Section>
@@ -170,7 +193,7 @@ export default function Page() {
         <h2 className="center"><HL text="See What Each Plan Covers" mark="Each Plan" /></h2>
         <p className="center muted">Compare the included work side by side. There are no surprise setup fees.</p>
         <MobilePlanComparison
-          plans={PLANS.map((plan, index) => ({ ...plan, price: TABLE[2].rows[3][index + 1] }))}
+          plans={PLANS.map((plan, index) => ({ ...plan, price: TABLE[2].rows[5][index + 1] }))}
           sections={TABLE}
           hint="Tap a plan to see everything included. Open two to compare."
           popularLabel="Most Popular"

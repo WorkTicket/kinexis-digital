@@ -5,16 +5,15 @@ export const SITE = {
   phone: "(307) 500-3371",
   phoneE164: "+13075003371",
   email: "hello@kinexisdigital.com",
-  description: "Professional web design, SEO, and website management for businesses across the United States.",
+  description: "Website plans for local businesses from $97/mo, with a free homepage preview, missed-call text-back, and Google review requests.",
   /** Public Search Console token already published on the live homepage. Env overrides it. */
   googleSiteVerification: "7uGCkyYE9LslqA7saQP7jpc0HrzVlVZvds1YX02sr6Q",
   social: {
     Facebook: "https://www.facebook.com/profile.php?id=61591998497960",
     "Facebook ES": "https://www.facebook.com/profile.php?id=61594479191212",
-    X: "https://x.com/KINEXISDigital",
     YouTube: "https://www.youtube.com/@KinexisDigital",
   } as Record<string, string>,
-  announce: { text: "Free homepage preview first — no card, no obligation. See the four plans →", href: "/pricing" } as null | { text: string; href: string }, // set to null to hide
+  announce: { text: "Free homepage preview in 2 business days — no card, no obligation. Get yours →", href: "/contact" } as null | { text: string; href: string }, // set to null to hide
   areaServed: "United States",
   languages: ["English", "Spanish"] as const,
   clientPortalUrl: "https://portal.kinexisdigital.com/login",

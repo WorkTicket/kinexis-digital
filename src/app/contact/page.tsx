@@ -15,12 +15,18 @@ export default function Page() {
         <div className="contact-grid">
           <div className="contact-form">
             <h2 className="card-title">Tell Us About Your Business</h2>
-            <p className="muted">Share what you do and what you need from the site. We’ll get back to you soon.</p>
-            <p className="muted small">A phone number and service area help us give you a more useful answer.</p>
-            <Form fields={LEAD_FIELDS} button="Let’s Chat!" fast />
+            <p className="muted">Share what you do and we’ll prepare a free homepage preview. No card required.</p>
+            <p className="muted small">Business name or website, business type, and a phone or email are enough to start.</p>
+            <Form
+              fields={LEAD_FIELDS}
+              button="Show Me My Free Homepage"
+              note="No card required. We’ll reply within 2 business days."
+              fast
+              fastText="No card required. We’ll reply within 2 business days."
+            />
             <div className="inline-action center">
               <p>Prefer to talk it through?</p>
-              <Link className="btn btn--ghost" href="/strategy-call" prefetch={false}>Book a Strategy Call</Link>
+              <Link className="btn btn--ghost" href="/strategy-call" prefetch={false}>Book a call</Link>
             </div>
           </div>
         </div>

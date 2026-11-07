@@ -39,7 +39,7 @@ export default function Page() {
         <div className="grid grid--3">
           <IconCard title="Review A Homepage First" text="The free preview comes before payment. Approve it, request changes, or decide not to continue." icon="preview" />
           <IconCard title="Choose Your Follow-Up" text="Lead System and Plus can text missed callers and send Google review requests after completed jobs." icon="better-follow-up" />
-          <IconCard title="Know The Terms Up Front" text="The price, minimum, and included work for Website, Lead System, Plus, and Own It are listed before you begin." icon="better-pricing" />
+          <IconCard title="Know The Terms Up Front" text="The price, cancel terms, and included work for Website, Lead System, Plus, and Own It are listed before you begin." icon="better-pricing" />
         </div>
       </Section>
       <Section>

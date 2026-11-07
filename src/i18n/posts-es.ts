@@ -75,7 +75,7 @@ export const ES_POSTS: EsPost[] = [
       },
       {
         h2: "El seguimiento vale más que otro logo",
-        html: `<p>Lead System agrega texto cuando no contestas, pedido de reseña después del trabajo y un reporte mensual. Eso atiende el hueco entre la visita y la llamada.</p><p>Plus hace ese seguimiento en inglés y en español, y el sitio también. Own It es un pago, sin mínimo y sin la garantía de leads.</p>`,
+        html: `<p>Lead System agrega texto cuando no contestas, pedido de reseña después del trabajo y un reporte mensual. Eso atiende el hueco entre la visita y la llamada.</p><p>Plus hace ese seguimiento en inglés y en español, y el sitio también. Own It es un pago, sin plan mensual y sin la garantía de leads.</p>`,
       },
       {
         h2: "El SEO no es un interruptor",

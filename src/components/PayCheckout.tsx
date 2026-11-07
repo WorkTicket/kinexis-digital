@@ -92,10 +92,10 @@ function PlanMark({ id }: { id: CheckoutKey }) {
 
 function termsFor(plan: CheckoutPlan) {
   if (!plan.monthly) {
-    return "One payment when you approve your preview · No monthly plan and no minimum · Site files are yours from launch · Plus tax, if any";
+    return "One payment when you approve your preview · No monthly plan · 30-day money-back guarantee · Site files are yours from launch · Plus tax, if any";
   }
   const guarantee = plan.guarantee ? " · 60-day tracked-lead guarantee" : "";
-  return `3-month minimum, then month to month · Price locked 24 months · First charge when you subscribe · Later domain renewals at cost · Plus tax, if any${guarantee}`;
+  return `Month-to-month · Cancel anytime · Price locked 24 months · 30-day money-back guarantee · First charge when you subscribe · Later domain renewals at cost · Plus tax, if any${guarantee}`;
 }
 
 export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey }) {
@@ -229,7 +229,7 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
           <dl className="pay-breakdown">
             <div><dt>Billing</dt><dd>{plan.monthly ? "Monthly" : "One time"}</dd></div>
             <div><dt>First charge</dt><dd>{plan.monthly ? "When you subscribe" : "When you pay"}</dd></div>
-            {plan.monthly && <div><dt>Minimum term</dt><dd>3 months, then monthly</dd></div>}
+            {plan.monthly && <div><dt>Billing</dt><dd>Month-to-month · cancel anytime</dd></div>}
           </dl>
           <div className="pay-total">
             <span>{plan.monthly ? "Monthly total" : "One-time total"}</span>

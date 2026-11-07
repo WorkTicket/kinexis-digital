@@ -25,6 +25,18 @@ function localizedWildcard(source: string, destination: string) {
   ];
 }
 
+/**
+ * Old nested industry paths that still have a live flattened trade page.
+ * Must be registered before the nested industries catch-all.
+ */
+const NESTED_LIVE_INDUSTRY: Record<string, string> = {
+  "/industries/home-services/landscaping": "/industries/landscaping",
+  "/industries/home-services/plumbing": "/industries/plumbing",
+  "/industries/home-services/hvac": "/industries/hvac",
+  "/industries/home-services/electrical": "/industries/electrical",
+  "/industries/home-services/roofing": "/industries/roofing",
+};
+
 /** Old article slugs mapped to the closest current page. */
 const BLOG: Record<string, string> = {
   "small-business-website-cost": "/blog/small-business-marketing-budget",
@@ -64,21 +76,46 @@ const BLOG: Record<string, string> = {
   "marketing-dashboards": "/blog",
 };
 
+/** Retired top-level comparison / marketing pages from the previous site. */
+const ORPHANS: Record<string, string> = {
+  "/digital-marketing-agency": "/services",
+  "/google-ads-vs-seo": "/seo-services",
+  "/seo-vs-ppc": "/seo-services",
+  "/local-seo-vs-google-ads": "/seo-services",
+  "/wordpress-vs-webflow": "/web-design",
+  "/login": "/contact",
+  "/signup": "/contact",
+  "/team": "/about",
+};
+
 export const LEGACY_REDIRECTS = [
-  // Preserve old nested industry URLs that were published before the hub was
-  // flattened. These are real legacy pages, not catch-all redirects.
-  ...localized("/industries/home-services/landscaping", "/industries/landscaping"),
-  ...localized("/industries/home-services/plumbing", "/industries/plumbing"),
-  // Retired landing-page and information-architecture families. These have
-  // no live detail routes, so send them to the closest useful hub in one hop.
+  // Nested industry URLs that map 1:1 onto live flattened trade pages.
+  ...Object.entries(NESTED_LIVE_INDUSTRY).flatMap(([source, destination]) =>
+    localized(source, destination),
+  ),
+  // Every other nested industry tree (technology/fintech, manufacturing/*, …)
+  // consolidates onto the industries hub in one hop.
+  ...localizedWildcard("/industries/:category/:slug", "/industries"),
+  ...localizedWildcard("/industries/:category/:slug/:path*", "/industries"),
+  // Retired location × service microsites. Local SEO intent lands on SEO services.
+  ...localized("/locations", "/seo-services"),
+  ...localizedWildcard("/locations/:path*", "/seo-services"),
+  // Specific service detail pages before the services catch-all.
   ...localized("/services/landing-pages", "/web-design"),
-  ...localizedWildcard("/pricing/:path+", "/pricing"),
-  ...localizedWildcard("/solutions/:path+", "/services"),
   ...localized("/services/web-design", "/web-design"),
   ...localized("/services/seo", "/seo-services"),
+  ...localized("/services/local-seo", "/seo-services"),
   ...localized("/services/branding", "/web-design"),
   ...localized("/services/paid-media", "/services"),
   ...localized("/services/content-marketing", "/blog"),
+  ...localizedWildcard("/services/:path+", "/services"),
+  // Retired landing-page and information-architecture families.
+  ...localizedWildcard("/pricing/:path+", "/pricing"),
+  ...localizedWildcard("/solutions/:path+", "/services"),
+  // Old team profile URLs.
+  ...localizedWildcard("/team/:path*", "/about"),
+  // Root orphans from the previous marketing site.
+  ...Object.entries(ORPHANS).flatMap(([source, destination]) => localized(source, destination)),
   // The client update form is singular internally; preserve the plural URL
   // used in older references and send each locale straight to its form.
   ...localized("/updates", "/update"),
@@ -93,7 +130,7 @@ export const LEGACY_REDIRECTS = [
   { source: "/en/resources/:path*", destination: "/blog", statusCode: 301 as const },
   { source: "/es/resources/:path*", destination: "/es/blog", statusCode: 301 as const },
   { source: "/es-es/resources/:path*", destination: "/es-es/blog", statusCode: 301 as const },
-  { source: "/blog/category/:slug", destination: "/blog", statusCode: 301 as const },
+  ...localizedWildcard("/blog/category/:slug", "/blog"),
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
   ...go("/en", "/"),
 ];

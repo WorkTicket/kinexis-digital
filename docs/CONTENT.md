@@ -9,10 +9,12 @@
 - Languages: English, Spanish
 
 ## Key messaging (from pages/site)
-- Home: "Professional Web Design for Businesses | Kinexis Digital" - Fast, professional websites for US businesses, with a free homepage preview before choosing a plan.
-- Plans/pricing: Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, Own It at $1,497 (see `src/lib/pages.ts` pricing description). Every plan starts with free preview.
-- Free audit, strategy call available.
-- 60-day lead guarantee mentioned in FAQs/terms (do not invent specifics beyond what's in repo).
+- Home title: "Website Plans From $97/mo for Local Businesses | Kinexis Digital". Offer: website plans for local businesses from $97/mo, free homepage preview first (no card), missed-call text-back, Google review requests. Prefer “website plan(s)” / “from $97/mo” over “monthly website(s).”
+- Primary CTA everywhere: "Get My Free Preview" → `/contact`. Secondary: "See Plans & Pricing". Tertiary text: "Book a call" + phone.
+- Form button: "Show Me My Free Homepage". Trust: "No card required. We'll reply within 2 business days." / "Free preview in 2 business days."
+- Plans/pricing: Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, Own It at $1,497. Pricing page owns cost/intent searches.
+- Industry pages own "[trade] website" searches. Free audit is a secondary path for people who already have a site.
+- Billing: monthly plans are month-to-month (no 3-month minimum). Cancel anytime; site stays live through the paid period, then hosting ends unless buyout/Own It. Guarantees: 60-day lead (Lead System/Plus; waive 3rd/4th charges); 30-day money-back on every plan. Missed-call text-back is an optional add-on requiring a dedicated business phone line; second tracking number $1/mo; carrier messaging rates may apply; carrier approval required. Do not invent testimonials.
 
 ## Canonical pages
 See `src/lib/pages.ts` for full metadata (titles/descriptions/indexable/priority). Key: home, services, web-design, seo-services, audit, pricing, contact, industries, portfolio, reviews, blog, faqs, about, terms, privacy.
