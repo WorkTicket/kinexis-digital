@@ -83,7 +83,12 @@ export default function Page() {
 
       <Section>
         <h2 className="center"><HL text="Choose Your Trade" mark="Your Trade" /></h2>
-        <IndustryGrid layout="index" />
+        <IndustryGrid
+          layout="index"
+          moreHref="/industries"
+          moreLabel="& more"
+          moreMeta="Any local business — if customers call you, we can help."
+        />
       </Section>
 
       <Section narrow>

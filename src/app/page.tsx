@@ -190,7 +190,7 @@ export default function Home() {
           limit={5}
           moreHref="/industries"
           moreLabel="& more"
-          moreMeta="Any local service business — if customers call you, we can help."
+          moreMeta="Any local business — if customers call you, we can help."
         />
       </Section>
 

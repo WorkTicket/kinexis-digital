@@ -34,7 +34,7 @@ export default function IndustryGrid({
   limit,
   moreHref,
   moreLabel = "& more",
-  moreMeta = "Any local service business — if customers call you, we can help.",
+  moreMeta = "Any local business — if customers call you, we can help.",
 }: {
   industries?: Industry[];
   layout?: "cards" | "index";
