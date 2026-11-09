@@ -3,23 +3,13 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const VARIANTS = ["bounce", "tap", "pulse", "rise", "glint", "knock"] as const;
-type Variant = (typeof VARIANTS)[number];
-
-const PLAY_MS = 1200;
-const GAP_MIN_MS = 2800;
-const GAP_MAX_MS = 5600;
+const PLAY_MS = 1400;
+const GAP_MIN_MS = 3200;
+const GAP_MAX_MS = 7800;
+const FIRST_DELAY_MS = 1800;
 
 function nextGap() {
   return GAP_MIN_MS + Math.floor(Math.random() * (GAP_MAX_MS - GAP_MIN_MS + 1));
-}
-
-function pickVariant(last: Variant | ""): Variant {
-  let next = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
-  while (next === last) {
-    next = VARIANTS[Math.floor(Math.random() * VARIANTS.length)];
-  }
-  return next;
 }
 
 export default function HeaderCta({ href, label }: { href: string; label: string }) {
@@ -31,7 +21,6 @@ export default function HeaderCta({ href, label }: { href: string; label: string
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (window.matchMedia("(hover: none)").matches) return;
 
-    let last: Variant | "" = "";
     let gapTimer = 0;
     let clearTimer = 0;
     let stopped = false;
@@ -50,12 +39,9 @@ export default function HeaderCta({ href, label }: { href: string; label: string
         schedule(nextGap());
         return;
       }
-      const variant = pickVariant(last);
-      last = variant;
       clearNudge();
-      // Retrigger CSS even if the same attribute value is reused later.
       void el.offsetWidth;
-      el.dataset.ctaNudge = variant;
+      el.dataset.ctaNudge = "1";
       clearTimer = window.setTimeout(() => {
         clearNudge();
         schedule(nextGap());
@@ -73,7 +59,7 @@ export default function HeaderCta({ href, label }: { href: string; label: string
     };
 
     document.addEventListener("visibilitychange", onVisibility);
-    schedule(1600);
+    schedule(FIRST_DELAY_MS);
 
     return () => {
       stopped = true;
