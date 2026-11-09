@@ -67,18 +67,28 @@ export default async function BlogPostPage({ params }: Props) {
           <article className="blog-post">
             <figure className="blog-post__hero">
               <picture>
-                {/* Keep article art off the mobile LCP path so the title paints first. */}
-                <source type="image/avif" srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} sizes="(max-width: 840px) 360px, 800px" />
-                <img
-                  src={imageVariant(post.image, 640, "webp")}
+                {/* Desktop keeps the article still; mobile waits for boot so the title is LCP. */}
+                <source
+                  type="image/avif"
+                  media="(min-width: 861px)"
+                  srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")}
+                  sizes="(max-width: 840px) 360px, 800px"
+                />
+                <source
+                  media="(min-width: 861px)"
                   srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
+                  sizes="(max-width: 840px) 360px, 800px"
+                />
+                <img
+                  src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${post.width}' height='${post.height}'%3E%3C/svg%3E`}
+                  data-src={imageVariant(post.image, 640, "webp")}
+                  data-srcset={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
                   sizes="(max-width: 840px) 360px, 800px"
                   alt={post.title}
                   width={post.width}
                   height={post.height}
-                  loading="lazy"
-                  fetchPriority="low"
                   decoding="async"
+                  fetchPriority="low"
                 />
               </picture>
             </figure>
