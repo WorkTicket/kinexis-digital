@@ -67,7 +67,7 @@ export default async function BlogPostPage({ params }: Props) {
           <article className="blog-post">
             <figure className="blog-post__hero">
               <picture>
-                {/* 360px slot → DPR 1.75 picks 640w instead of stepping up to 960w. */}
+                {/* Keep article art off the mobile LCP path so the title paints first. */}
                 <source type="image/avif" srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} sizes="(max-width: 840px) 360px, 800px" />
                 <img
                   src={imageVariant(post.image, 640, "webp")}
@@ -76,8 +76,9 @@ export default async function BlogPostPage({ params }: Props) {
                   alt={post.title}
                   width={post.width}
                   height={post.height}
-                  fetchPriority="high"
-                  decoding="sync"
+                  loading="lazy"
+                  fetchPriority="low"
+                  decoding="async"
                 />
               </picture>
             </figure>
