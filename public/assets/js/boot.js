@@ -812,6 +812,10 @@ document.addEventListener("submit", async (event) => {
         strong.textContent = "Thanks. We’ll send your preview within 2 business days.";
         msg.append(check, strong);
       }
+      track("generate_lead", {
+        form_id: form.getAttribute("name") || form.id || "lead",
+        page_path: location.pathname,
+      });
       return;
     }
     if (res.status === 503) {
@@ -846,6 +850,19 @@ document.querySelectorAll("dialog.dlg").forEach((dlg) => {
   });
 });
 
+function track(name, params) {
+  if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(["event", name, params || {}]);
+}
+
+function englishPath(pathname) {
+  if (pathname === "/es" || pathname === "/es-es") return "/";
+  if (pathname.startsWith("/es-es/")) return pathname.slice(6) || "/";
+  if (pathname.startsWith("/es/")) return pathname.slice(3) || "/";
+  return pathname;
+}
+
 if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
   let loaded = false;
   const loadGa = () => {
@@ -857,8 +874,10 @@ if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
     removeEventListener("scroll", onGaScroll);
     clearTimeout(gaTimer);
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push(["js", new Date()]);
-    window.dataLayer.push(["config", cfg.ga]);
+    function gtag(){ window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", cfg.ga);
     const script = document.createElement("script");
     script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
     script.async = true;
@@ -871,6 +890,29 @@ if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
   addEventListener("touchstart", loadGa, { once: true, passive: true });
   addEventListener("scroll", onGaScroll, { passive: true });
   const gaTimer = setTimeout(loadGa, 45000);
+
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    if (!(link instanceof HTMLAnchorElement)) return;
+    const href = link.getAttribute("href") || "";
+    if (href.startsWith("tel:")) {
+      loadGa();
+      track("phone_tap", { link_url: href, page_path: location.pathname });
+      return;
+    }
+    let path = "";
+    try { path = new URL(link.href, location.origin).pathname; } catch { return; }
+    const en = englishPath(path);
+    if (en === "/strategy-call" || en.startsWith("/strategy-call/")) {
+      loadGa();
+      track("strategy_call_click", { link_url: path, page_path: location.pathname });
+      return;
+    }
+    if (en === "/pricing" || en.startsWith("/pricing")) {
+      loadGa();
+      track("pricing_click", { link_url: path, page_path: location.pathname });
+    }
+  });
 }
 
 syncChrome();

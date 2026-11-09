@@ -29,10 +29,11 @@ export const PATH_HEADER = "x-kd-path";
 export const LANG_COOKIE = "kd_lang";
 
 export function contentLanguage(locale: Locale): string {
-  // Keep the response header deliberately simple too. Regional targeting is
-  // explicit in hreflang and Open Graph, while crawlers consistently accept
-  // these primary language values.
-  return locale === "en" ? "en" : "es";
+  // Match the HTML lang attribute so Search Console and crawlers see the same
+  // language signal in Content-Language and the document.
+  if (locale === "es-ES") return "es-ES";
+  if (locale === "es-419") return "es";
+  return "en";
 }
 
 export function htmlLang(locale: Locale): string {

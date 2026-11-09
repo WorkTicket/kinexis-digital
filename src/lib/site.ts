@@ -12,6 +12,7 @@ export const SITE = {
     Facebook: "https://www.facebook.com/profile.php?id=61591998497960",
     "Facebook ES": "https://www.facebook.com/profile.php?id=61594479191212",
     YouTube: "https://www.youtube.com/@KinexisDigital",
+    Trustpilot: "https://www.trustpilot.com/review/kinexisdigital.com",
   } as Record<string, string>,
   announce: { text: "Free homepage preview in 2 business days — no card, no obligation. Get yours →", href: "/contact" } as null | { text: string; href: string }, // set to null to hide
   areaServed: "United States",

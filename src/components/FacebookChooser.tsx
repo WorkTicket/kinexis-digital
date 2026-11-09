@@ -14,9 +14,8 @@ export default function FacebookChooser({ english, spanish }: { english?: string
 
   if (!english || !spanish) {
     return (
-      <a className="footer-social__btn footer-social__btn--wide" href={english || spanish} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Facebook">
+      <a className="footer-social__btn" href={english || spanish} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Facebook">
         <FacebookIcon />
-        <span>Facebook</span>
       </a>
     );
   }
@@ -25,13 +24,12 @@ export default function FacebookChooser({ english, spanish }: { english?: string
     <div className="fb-chooser relative" data-fb="">
       <button
         type="button"
-        className="footer-social__btn footer-social__btn--wide"
+        className="footer-social__btn"
         aria-expanded={false}
         aria-haspopup="menu"
         aria-label="Choose a Kinexis Digital Facebook page"
       >
         <FacebookIcon />
-        <span>Facebook</span>
       </button>
       <div className="fb-menu absolute top-full left-0 z-20 pt-2 invisible opacity-0 transition duration-150">
         <div role="menu" aria-label="Facebook pages" className="flex items-center gap-0.5 rounded-full bg-white p-1 shadow-[0_8px_20px_rgba(0,0,0,.22)]">

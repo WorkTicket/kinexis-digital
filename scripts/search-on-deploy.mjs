@@ -492,6 +492,8 @@ const LEGACY_REDIRECT_PROBES = [
   { path: "/en/services/google-ads", expect: "/services" },
   { path: "/team/sarah-mitchell", expect: "/about" },
   { path: "/wordpress-vs-webflow", expect: "/web-design" },
+  { path: "/mo", expect: "/pricing" },
+  { path: "/assets/logos/KINEXIS_icon_mark.avif", expect: "/favicon-512.webp" },
 ];
 
 async function checkLegacyRedirects(fetchOrigin) {
@@ -605,6 +607,14 @@ async function run() {
   if (preflight) {
     pass(`IndexNow key file public/${key}.txt`);
     checkCloudflareAssetSizes();
+    const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
+    if (/^G-[A-Z0-9]+$/.test(gaId)) {
+      pass(`NEXT_PUBLIC_GA_ID is set for build-time inlining (${gaId})`);
+    } else {
+      fail(
+        "NEXT_PUBLIC_GA_ID is missing or invalid. Set it in Workers Builds → Build variables and secrets (and in .env.local for local deploys). A runtime Worker secret alone ships an empty GA tag.",
+      );
+    }
     return;
   }
   if (process.env.SEARCH_NOTIFY === "0") {

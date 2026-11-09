@@ -14,7 +14,12 @@ export type PageMeta = {
   service?: string;
   priority?: number;
   changeFrequency?: "weekly" | "monthly" | "yearly";
+  /** ISO date (YYYY-MM-DD) for sitemap lastmod. */
+  updatedAt?: string;
 };
+
+/** Default sitemap lastmod when a page has no more specific content date. */
+export const SITE_CONTENT_UPDATED = "2026-11-09";
 
 export const PAGES = {
   home: {

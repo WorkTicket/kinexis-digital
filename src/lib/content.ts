@@ -13,7 +13,7 @@ export const FAQS: QA[] = [
   { q: "Who writes the text?", a: "We can work with copy you already have or quote the writing separately. For the free preview, we use realistic text for your trade so you can judge the design before making a decision." },
 ];
 export const WEB_FAQS: QA[] = [
-  { q: "How does the free preview work?", a: "Tell us about your trade and the look you want. We prepare a homepage concept you can review before choosing a plan. No card is required, and we reply within 2 business days." },
+  { q: "How does the free preview work?", a: "Tell us your business name, trade, and city. We prepare a homepage concept you can review before choosing a plan. No card is required, and we reply fast." },
   { q: "What do I need to send you?", a: "A design direction helps most—examples from our portfolio, or screenshots of sites you like. Send your logo if you have one, plus any job photos, truck shots, or team pictures. If you are still gathering photos, we can start the preview with realistic trade copy and placeholders." },
   { q: "What if I don’t like the first design?", a: "Say what you want changed. We revise the homepage until it feels right for your business, then you choose a plan and we finish the full site." },
   { q: "What pages and features will I get?", a: "Your site includes a homepage, pages for the services you want calls for, and a simple way to phone you or send details for an estimate. It also has clear titles, organized headings, fast pages, and a structure Google can read. You see the homepage before paying." },

@@ -12,7 +12,6 @@ export default function ErrorBoundary({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log unexpected errors for observability
     console.error("Unhandled client error:", error);
   }, [error]);
 

@@ -1,24 +1,23 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
-import { localeBootScript } from "@/lib/i18n";
+import Boot from "@/components/Boot";
+import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { SITE } from "@/lib/site";
-import Boot from "@/components/Boot";
+import "@/app/globals.css";
 
 const inter = localFont({
-  src: "./fonts/inter-latin.woff2",
+  src: "../app/fonts/inter-latin.woff2",
   variable: "--font-inter",
   weight: "100 900",
-  // optional = no late swap (avoids the visible size jump on load).
   display: "optional",
   adjustFontFallback: "Arial",
   preload: false,
 });
 const poppins = localFont({
   src: [
-    { path: "./fonts/poppins-latin-600.woff2", weight: "600", style: "normal" },
-    { path: "./fonts/poppins-latin-700.woff2", weight: "700", style: "normal" },
+    { path: "../app/fonts/poppins-latin-600.woff2", weight: "600", style: "normal" },
+    { path: "../app/fonts/poppins-latin-700.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-poppins",
   display: "optional",
@@ -26,12 +25,11 @@ const poppins = localFont({
   preload: false,
 });
 const poppinsDisplay = localFont({
-  src: "./fonts/poppins-latin-800.woff2",
+  src: "../app/fonts/poppins-latin-800.woff2",
   variable: "--font-poppins-display",
   weight: "800",
   display: "optional",
   adjustFontFallback: "Arial",
-  // Preload so heroes share the same bold face as the homepage from first paint.
   preload: true,
 });
 
@@ -43,7 +41,7 @@ const defaultDescription = descriptionWithFallback(
   " See your free homepage preview first. No card required.",
 );
 
-export const metadata: Metadata = {
+export const documentMetadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: defaultTitle, template: `%s | ${SITE.name}` },
   description: defaultDescription,
@@ -74,12 +72,21 @@ export const metadata: Metadata = {
     apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
 };
-export const viewport: Viewport = { themeColor: "#0b3dff", width: "device-width", initialScale: 1 };
 
-/** Shell only — locale chrome lives in route-group layouts so HTML can prerender. */
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export const documentViewport: Viewport = { themeColor: "#0b3dff", width: "device-width", initialScale: 1 };
+
+/** Shared document shell. Each locale tree owns `<html lang>` so crawlers see the right language without JS. */
+export default function DocumentShell({
+  locale,
+  children,
+}: {
+  locale: Locale;
+  children: React.ReactNode;
+}) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
+    <html lang={htmlLang(locale)} data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
+      {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
+      {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         {/* Prevent the desktop navigation from painting unstyled while the
             external stylesheet is in flight. The full mobile menu still opens

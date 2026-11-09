@@ -86,9 +86,15 @@ const ORPHANS: Record<string, string> = {
   "/login": "/contact",
   "/signup": "/contact",
   "/team": "/about",
+  // Search Console: crawlers sometimes turn "$97/mo" into a bare /mo path.
+  "/mo": "/pricing",
 };
 
 export const LEGACY_REDIRECTS = [
+  // Retired icon mark still requested by Search Console → current schema logo.
+  { source: "/assets/logos/KINEXIS_icon_mark.avif", destination: "/favicon-512.webp", statusCode: 301 as const },
+  { source: "/assets/logos/KINEXIS_icon_mark.webp", destination: "/favicon-512.webp", statusCode: 301 as const },
+  { source: "/assets/logos/KINEXIS_icon_mark.png", destination: "/favicon-512.webp", statusCode: 301 as const },
   // Nested industry URLs that map 1:1 onto live flattened trade pages.
   ...Object.entries(NESTED_LIVE_INDUSTRY).flatMap(([source, destination]) =>
     localized(source, destination),

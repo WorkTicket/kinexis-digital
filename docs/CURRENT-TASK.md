@@ -1,25 +1,31 @@
 # CURRENT-TASK.md
 
 ## Goal
-Site-wide speed optimization (LCP/TTFB/JS) without changing design, visuals, or animations.
+Ship Search Console / Analytics follow-ups: GA4 events, Spanish lang + meta, sitemap lastmod, Trustpilot sameAs.
 
 ## Status
-done (local) — `npm run typecheck` and `npm run lint` pass. Hero derivatives regenerated via `npm run images:heroes`.
+in progress — code done locally; deploy + GSC/GA account steps + exact 404/500 URL fixes still open
 
-## Changed files (this pass)
-- Perf: locale `revalidate`, `IndustryHeroArt`, capped industry 480/768/960 stills, portfolio card 640-only srcSets
-- JS: `LanguageSwitch` → server; dynamic islands (pay/calendar/review form); minified `boot.min.js` (+ build minify step)
-- Config/docs: `next.config.ts` removeConsole, eslint ignore for boot.min, `DECISIONS.md`, `Boot.tsx` v=20
+## Changed files
+- `src/components/DocumentShell.tsx` + locale root layouts — SSR `lang="es"` / `lang="es-ES"`
+- `public/assets/js/boot.js` (+ min) — `generate_lead`, `phone_tap`, `strategy_call_click`, `pricing_click`
+- `src/app/sitemap.ts`, `src/lib/pages.ts` — lastmod on every sitemap URL
+- `src/lib/site.ts` — Trustpilot in schema `sameAs`
+- `src/i18n/SpanishSite.tsx` — distinct `/es-es` homepage title/description
+- `src/lib/i18n.ts` — Content-Language `es-ES` for Spain routes
+- `.env.example` — note that `NEXT_PUBLIC_GA_ID` must be in the Cloudflare *build* env
 
 ## Completed
-- Stop industry pages from offering multi-hundred-KB master WebP as LCP candidates
-- ISR cache window on all locale layouts for OpenNext KV interception
-- Cut client hydration on chrome (language switch) and defer heavy route islands
-- Ship ~40% smaller interaction boot script
+- Legacy high-impression redirects already live (HVAC hub, locations → SEO, aerospace/SaaS → industries)
+- GA event wiring (measurement ID still must be present at build time)
+- Spanish document language + distinct Spain home meta
+- Sitemap lastmod + Trustpilot sameAs
 
 ## Unfinished
-1. Deploy + spot-check industry heroes, menu/reveal animations, and pay/calendar pages
-2. Optional: full `npm run build` + lighthouse audit (`scripts/audit-lighthouse.mjs`) against preview
+1. Add `NEXT_PUBLIC_GA_ID=G-Z8245BRX2L` in Cloudflare dashboard → Worker → Settings → Build → Build variables (API blocked: OAuth lacks Workers CI scope). Local `.env.local` is set for wrangler deploys.
+2. Deploy so `/mo` and `KINEXIS_icon_mark.avif` 301s go live, then Validate fix in GSC
+3. BIMI `email-protection` 404 is on Pages project `kinexis-card` (not this repo) — optional: disable Email Obfuscation there
+4. Resubmit sitemap; request indexing for `/pricing` + trade hubs; mark key events in GA
 
 ## Next action
-Deploy, then smoke-test homepage film fade-in, industry LCP art, and Spanish route JS weight.
+Set the Workers Builds GA build variable, deploy this branch, then Validate the three Coverage URLs in GSC.

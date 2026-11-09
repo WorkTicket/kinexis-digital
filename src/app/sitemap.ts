@@ -3,7 +3,7 @@ import { POSTS } from "@/lib/content";
 import { INDUSTRIES } from "@/data/industries";
 import { portfolioFile, PROJECTS } from "@/data/portfolio";
 import { hreflangLanguages, isMirrored, withLocale, type Locale } from "@/lib/i18n";
-import { PAGES, type PageMeta } from "@/lib/pages";
+import { PAGES, SITE_CONTENT_UPDATED, type PageMeta } from "@/lib/pages";
 import { SITE } from "@/lib/site";
 
 const LOCALES: Locale[] = ["en", "es-419", "es-ES"];
@@ -20,6 +20,10 @@ function languagesFor(path: string) {
   return Object.fromEntries(Object.entries(languages).map(([code, href]) => [code, absolute(href)]));
 }
 
+function day(date: string) {
+  return new Date(`${date}T00:00:00.000Z`);
+}
+
 function localized<T extends { url: string }>(path: string, entry: T): T[] {
   const languages = languagesFor(path);
   const withLang = languages ? { ...entry, alternates: { languages } } : entry;
@@ -31,12 +35,11 @@ function localized<T extends { url: string }>(path: string, entry: T): T[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Do not emit a shared deploy date for static pages. A lastModified value is
-  // only useful here when it reflects that URL's actual content change date.
   const pages = (Object.values(PAGES) as PageMeta[])
     .filter((page) => page.indexable)
     .flatMap((page) => localized(page.path, {
       url: absolute(page.path),
+      lastModified: day(page.updatedAt ?? SITE_CONTENT_UPDATED),
       changeFrequency: page.changeFrequency ?? "monthly",
       priority: page.priority ?? 0.6,
       ...(page.path === "/" ? { images: [`${SITE.url}${SITE.ogImage}`] } : {}),
@@ -44,13 +47,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const industries = INDUSTRIES.flatMap((industry) => localized(`/industries/${industry.slug}`, {
     url: `${SITE.url}/industries/${industry.slug}`,
+    lastModified: day(SITE_CONTENT_UPDATED),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const posts = POSTS.flatMap((post) => localized(`/blog/${post.slug}`, {
     url: `${SITE.url}/blog/${post.slug}`,
-    lastModified: new Date(`${post.date}T00:00:00.000Z`),
+    lastModified: day(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
     images: [`${SITE.url}${post.image}`],
@@ -61,6 +65,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // sitemap until a page has a real, distinct search purpose.
   const projects = PROJECTS.filter((project) => project.indexable && !project.placeholder).map((project) => ({
     url: `${SITE.url}/portfolio/${project.slug}`,
+    lastModified: day(SITE_CONTENT_UPDATED),
     changeFrequency: "monthly" as const,
     priority: 0.6,
     images: [`${SITE.url}${portfolioFile(project.image)}`],

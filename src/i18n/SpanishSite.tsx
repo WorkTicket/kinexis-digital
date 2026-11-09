@@ -68,6 +68,15 @@ const PAGE_META: Record<string, Meta> = {
   "/privacy": { title: "Cómo cuida Kinexis tu información", description: "Lee qué recoge Kinexis de formularios, llamadas, correo, registros del servidor y analítica, además de cómo usa y comparte esa información." },
 };
 
+/** Spain homepage needs its own title/description — spainize() alone does not change this copy. */
+const PAGE_META_ES_ES: Partial<Record<string, Meta>> = {
+  "/": {
+    title: "Planes web desde $97/mes para negocios locales en EE. UU. | Kinexis Digital",
+    absolute: true,
+    description: "Web profesional para negocios de servicios en Estados Unidos, con vista previa gratis de la página de inicio, respuesta a llamadas perdidas y peticiones de reseñas. Sin tarjeta.",
+  },
+};
+
 export function spanishMetadata(locale: Locale, slug?: string[]) {
   const en = pathFromSlug(slug);
   const localized = metaFor(en, locale);
@@ -103,7 +112,11 @@ function metaFor(en: string, locale: Locale): Meta | undefined {
   }
   const page = PAGE_META[en];
   if (!page) return undefined;
-  return locale === "es-ES" ? spainizeData(page) : page;
+  if (locale === "es-ES") {
+    const spainOverride = PAGE_META_ES_ES[en];
+    return spainOverride ? spainOverride : spainizeData(page);
+  }
+  return page;
 }
 
 function L(locale: Locale, path: string) {
@@ -585,7 +598,7 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <ContentSchema path={href("/contact")} title={tx(PAGE_META["/contact"].title)} description={tx(PAGE_META["/contact"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Contacto"), path: href("/contact") }]} inLanguage={lang} />
       <PageHero locale={locale} h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
       <Section><div className="contact-grid">
-        <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }]} button={tx("Muéstrame mi página de inicio")} note={tx("Sin tarjeta. Respondemos en un máximo de 2 días hábiles.")} fast fastText={tx("Sin tarjeta. Respondemos en un máximo de 2 días hábiles.")} />
+        <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Oficio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} note={tx("Sin tarjeta. Respondemos rápido. 😊")} fast fastText={tx("Sin tarjeta. Respondemos rápido. 😊")} />
         <aside className="contact-info">
           <div className="card"><h2 className="card-title">{tx("Llamar")}</h2><p><a href={telHref(SITE.phone)}>{SITE.phone}</a></p></div>
           <div className="card"><h2 className="card-title">{tx("Correo")}</h2><p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p></div>

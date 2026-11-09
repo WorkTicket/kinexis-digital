@@ -62,7 +62,7 @@ Connect the repository in the Cloudflare dashboard:
 - Build command: `npm run check && npm run build:worker`
 - Deploy command: `npm run deploy:worker && npm run search:notify`
 - `NODE_VERSION`: `24`
-- Build variables: `NEXT_PUBLIC_SITE_URL` and, for URL-prefix verification, `NEXT_PUBLIC_GSC_VERIFICATION`
+- Build variables: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID` (GA4 measurement ID — runtime secrets alone are not enough), and, for URL-prefix verification, `NEXT_PUBLIC_GSC_VERIFICATION`
 
 This keeps validation/build and deployment as separate Workers Builds phases.
 Enable preview builds for non-production branches in the Cloudflare dashboard.

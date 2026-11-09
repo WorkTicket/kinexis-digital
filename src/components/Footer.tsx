@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DeferredImg } from "./DeferredImg";
-import Form, { LEAD_FIELDS } from "./Form";
+import Form, { LEAD_FIELDS, LEAD_FIELDS_ES } from "./Form";
 import FacebookChooser from "./FacebookChooser";
 import FooterGate from "./FooterGate";
 import { HL } from "./mark";
@@ -12,9 +12,9 @@ import { SITE, telHref } from "@/lib/site";
 import { TRUSTPILOT_PROFILE_URL } from "@/lib/trustpilot";
 
 const link =
-  "footer-link inline-flex min-h-10 items-center text-[0.95rem] leading-snug text-white/78 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-bright";
+  "footer-link inline-flex min-h-10 items-center text-[0.92rem] leading-snug text-white/78 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-bright";
 const legalLink =
-  "rounded-sm text-sm text-white/72 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-bright";
+  "rounded-sm text-sm text-white/65 transition-colors hover:text-white focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-bright";
 
 function YouTubeIcon() {
   return (
@@ -40,7 +40,7 @@ function TrustpilotIcon() {
 
 function MailIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="size-4 shrink-0" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" className="size-[1.05rem] shrink-0" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="5" width="18" height="14" rx="2" />
       <path d="m4 7 8 6 8-6" />
     </svg>
@@ -49,7 +49,7 @@ function MailIcon() {
 
 function PhoneIcon() {
   return (
-    <svg viewBox="0 0 24 24" className="size-4 shrink-0" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg viewBox="0 0 24 24" className="size-[1.05rem] shrink-0" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M22 16.92v2.2a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h2.2a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.6a2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l.57-.57a2 2 0 0 1 2.11-.45c.83.29 1.7.5 2.6.62A2 2 0 0 1 22 16.92z" />
     </svg>
   );
@@ -75,14 +75,7 @@ function LinkColumn({ title, links }: { title: string; links: { href: string; la
 export default function Footer({ locale }: { locale: Locale }) {
   const chrome = chromeFor(locale);
   const hrefFor = (href: string) => (href === "/pay" || /^https?:\/\//.test(href) ? href : withLocale(locale, href));
-  const fields = locale === "en" ? LEAD_FIELDS : [
-    { label: "Nombre", name: "name", required: true, auto: "given-name" },
-    { label: "Correo", name: "email", kind: "email" as const, auto: "email" },
-    { label: "Teléfono", name: "phone", kind: "tel" as const, auto: "tel" },
-  ];
-  const otherSocial = Object.entries(SITE.social).filter(
-    ([name]) => !name.startsWith("Facebook") && name !== "YouTube" && name !== "X",
-  );
+  const fields = locale === "en" ? LEAD_FIELDS : LEAD_FIELDS_ES;
   const support = [
     ...chrome.supportLinks,
     [SITE.clientPortalUrl, locale === "en" ? "Client Portal" : "Portal de clientes"],
@@ -97,13 +90,13 @@ export default function Footer({ locale }: { locale: Locale }) {
           <section
             id="footer-cta"
             aria-labelledby="footer-cta-heading"
-            className="relative z-10 mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-9 rounded-[22px] border-2 border-[var(--brand-navy)] bg-white px-[22px] pt-[30px] pb-[26px] shadow-[8px_8px_0_var(--brand-navy)] md:grid-cols-[1fr_1.15fr] md:px-[50px] md:pt-[50px] md:pb-9"
+            className="relative z-10 mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-8 rounded-[22px] border-2 border-[var(--brand-navy)] bg-white px-[22px] pt-[30px] pb-[26px] shadow-[8px_8px_0_var(--brand-navy)] md:grid-cols-[1fr_1.1fr] md:gap-12 md:px-[48px] md:pt-[46px] md:pb-10"
           >
-            <div>
-              <h2 id="footer-cta-heading" className="mb-3 font-display text-[clamp(1.9rem,3.6vw,2.6rem)] leading-[1.08] font-semibold tracking-[-0.01em] text-ink">
+            <div className="min-w-0">
+              <h2 id="footer-cta-heading" className="mb-3 font-display text-[clamp(1.85rem,3.4vw,2.55rem)] leading-[1.08] font-semibold tracking-[-0.01em] text-ink">
                 <HL text={chrome.footerCta} mark={chrome.footerCtaMark} />
               </h2>
-              <p className="text-[1.15rem] leading-[1.45] text-ink">
+              <p className="max-w-[36ch] text-[1.08rem] leading-[1.5] text-ink/90 md:text-[1.12rem]">
                 {chrome.footerCtaText}
               </p>
             </div>
@@ -115,6 +108,7 @@ export default function Footer({ locale }: { locale: Locale }) {
       </FooterGate>
 
       <footer className="site-footer">
+        <div className="site-footer__glow" aria-hidden="true" />
         <div className="site-footer__inner">
           <div className="footer-main">
             <div className="footer-brand">
@@ -124,7 +118,7 @@ export default function Footer({ locale }: { locale: Locale }) {
                   alt="Kinexis Digital"
                   width={420}
                   height={420}
-                  className="h-auto w-[132px] lg:w-[168px]"
+                  className="h-auto w-[128px] sm:w-[148px] lg:w-[168px]"
                 />
               </Link>
               <p className="footer-blurb">
@@ -132,32 +126,25 @@ export default function Footer({ locale }: { locale: Locale }) {
                 {chrome.region ? <span className="footer-blurb__region">{chrome.region}</span> : null}
               </p>
 
-              <div className="footer-contact">
-                <a className="footer-contact__chip" href={`mailto:${SITE.email}`}>
+              <div className="footer-contact" aria-label="Contact">
+                <a className="footer-contact__link" href={`mailto:${SITE.email}`}>
                   <MailIcon />
                   <span>{SITE.email}</span>
                 </a>
-                <a className="footer-contact__chip footer-contact__chip--warm" href={telHref(SITE.phone)}>
+                <a className="footer-contact__link" href={telHref(SITE.phone)}>
                   <PhoneIcon />
                   <span>{SITE.phone}</span>
                 </a>
               </div>
 
-              <div className="footer-social">
+              <div className="footer-social" aria-label="Social">
                 <FacebookChooser english={SITE.social.Facebook} spanish={SITE.social["Facebook ES"]} />
-                <a className="footer-social__btn footer-social__btn--wide footer-social__btn--yt" href={SITE.social.YouTube} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on YouTube">
+                <a className="footer-social__btn footer-social__btn--yt" href={SITE.social.YouTube} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on YouTube">
                   <YouTubeIcon />
-                  <span>YouTube</span>
                 </a>
-                <a className="footer-social__btn footer-social__btn--wide footer-social__btn--tp" href={TRUSTPILOT_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Trustpilot">
+                <a className="footer-social__btn footer-social__btn--tp" href={TRUSTPILOT_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on Trustpilot">
                   <TrustpilotIcon />
-                  <span>Trustpilot</span>
                 </a>
-                {otherSocial.map(([name, url]) => (
-                  <a key={name} className="footer-social__btn footer-social__btn--wide" href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
-                    <span>{name}</span>
-                  </a>
-                ))}
               </div>
             </div>
 
@@ -170,12 +157,12 @@ export default function Footer({ locale }: { locale: Locale }) {
 
           <div id="footer-legal" className="footer-legal">
             <p className="footer-copyright">© {new Date().getFullYear()} {SITE.name}</p>
-            <LanguageSwitch className="footer-language shrink-0" locale={locale} label={chrome.language} />
             <nav aria-label={chrome.legal} className="footer-policies">
               <Link className={legalLink} href={hrefFor("/terms")} prefetch={false}>{chrome.terms}</Link>
               <span className="footer-policies__dot" aria-hidden="true" />
               <Link className={legalLink} href={hrefFor("/privacy")} prefetch={false}>{chrome.privacy}</Link>
             </nav>
+            <LanguageSwitch className="footer-language shrink-0" locale={locale} label={chrome.language} />
           </div>
         </div>
       </footer>

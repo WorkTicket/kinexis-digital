@@ -31,23 +31,25 @@ export default function Header({ locale }: { locale: Locale }) {
             style={{ transform: "translateY(-6px)" }}
           />
         </Link>
-        <nav className="nav" id="nav" aria-label="Main">
-          <NavLinks chrome={chrome} industries={industries} hrefFor={hrefFor} />
-          <div className="nav__extra">
-            <a className="header__phone" href={telHref(SITE.phone)}>{SITE.phone}</a>
-            <Link className="btn btn--primary nav__preview" href={hrefFor("/contact")} prefetch={false}>
-              <span className="nav__preview-title">{chrome.chat}</span>
-              <span className="nav__preview-hint">{chrome.previewBarHint}</span>
+        <div className="header__end">
+          <nav className="nav" id="nav" aria-label="Main">
+            <NavLinks chrome={chrome} industries={industries} hrefFor={hrefFor} />
+            <div className="nav__extra">
+              <a className="header__phone" href={telHref(SITE.phone)}>{SITE.phone}</a>
+              <Link className="btn btn--primary nav__preview" href={hrefFor("/contact")} prefetch={false}>
+                <span className="nav__preview-title">{chrome.chat}</span>
+                <span className="nav__preview-hint">{chrome.previewBarHint}</span>
+              </Link>
+              <Link className="btn btn--ghost" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
+            </div>
+          </nav>
+          <div className="header__tools">
+            <a className="header__phone header__phone--mobile" href={telHref(SITE.phone)} aria-label={SITE.phone}>{SITE.phone}</a>
+            <Link className="btn btn--primary header__cta" href={hrefFor("/contact")} prefetch={false}>
+              <span className="header__cta-label">{chrome.chat}</span>
             </Link>
-            <Link className="btn btn--ghost" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
+            <MenuButton menu={chrome.menu} close={chrome.close} />
           </div>
-        </nav>
-        <div className="header__tools">
-          <a className="header__phone header__phone--mobile" href={telHref(SITE.phone)} aria-label={SITE.phone}>{SITE.phone}</a>
-          <Link className="btn btn--primary header__cta" href={hrefFor("/contact")} prefetch={false}>
-            <span className="header__cta-label">{chrome.chat}</span>
-          </Link>
-          <MenuButton menu={chrome.menu} close={chrome.close} />
         </div>
       </div>
     </header>

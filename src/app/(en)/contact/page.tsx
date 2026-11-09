@@ -15,14 +15,13 @@ export default function Page() {
         <div className="contact-grid">
           <div className="contact-form">
             <h2 className="card-title">Tell Us About Your Business</h2>
-            <p className="muted">Share what you do and we’ll prepare a free homepage preview. No card required.</p>
-            <p className="muted small">Your name and a phone number or email are enough to start.</p>
+            <p className="muted">Share what you do and where you work—we use that to prepare a free homepage preview. No card required.</p>
             <Form
               fields={LEAD_FIELDS}
               button="Show Me My Free Homepage"
-              note="No card required. We’ll reply within 2 business days."
+              note="No card required. We reply fast. 😊"
               fast
-              fastText="No card required. We’ll reply within 2 business days."
+              fastText="No card required. We reply fast. 😊"
             />
             <div className="inline-action center">
               <p>Prefer to talk it through?</p>
