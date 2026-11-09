@@ -71,9 +71,9 @@ const PAGE_META: Record<string, Meta> = {
 /** Spain homepage needs its own title/description — spainize() alone does not change this copy. */
 const PAGE_META_ES_ES: Partial<Record<string, Meta>> = {
   "/": {
-    title: "Planes web desde $97/mes para negocios locales en EE. UU. | Kinexis Digital",
+    title: "Diseño web para negocios locales en España | Kinexis Digital",
     absolute: true,
-    description: "Web profesional para negocios de servicios en Estados Unidos, con vista previa gratis de la página de inicio, respuesta a llamadas perdidas y peticiones de reseñas. Sin tarjeta.",
+    description: "Web profesional para negocios de servicios locales en España, con vista previa gratis de la página de inicio. Sin tarjeta.",
   },
 };
 
