@@ -1,5 +1,6 @@
 import { POSTS } from "@/lib/content";
 import { INDUSTRIES } from "@/data/industries";
+import { esPost } from "@/i18n/posts-es";
 import { PAGES, type PageMeta } from "@/lib/pages";
 
 /** Cookie values. `es-419` is Latam Spanish. `es-ES` is Spain. */
@@ -19,7 +20,8 @@ export const MIRROR_PATHS: readonly string[] = [
     .filter((page) => !UNMIRRORED.has(page.path) && (page.indexable || MIRRORED_UTILITY.has(page.path)))
     .map((page) => page.path),
   ...INDUSTRIES.map((industry) => `/industries/${industry.slug}`),
-  ...POSTS.map((post) => `/blog/${post.slug}`),
+  // Only mirror posts that already have Spanish copy — EN-only drafts 404 on /es|/es-es.
+  ...POSTS.filter((post) => esPost(post.slug)).map((post) => `/blog/${post.slug}`),
 ];
 
 const MIRROR = new Set(MIRROR_PATHS);
