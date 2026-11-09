@@ -1,20 +1,23 @@
 # CURRENT-TASK.md
 
 ## Goal
-Pre-deploy checks: Spain Own It post (no USD on `/es-es`) + decide live vs hold for hubs without client proof.
+SEO polish + pre-deploy Spain/hub checks → live.
 
 ## Status
-ready to deploy
+live on Workers
 
 ## Completed
-- `/es-es` monthly-vs-Own-It uses price-free override via `esPostForLocale`
-- Reviewed HVAC / electrical / roofing / garage-doors / pressure-washing: trade-specific copy, keep `live`
-- Industry hub guide links cleaned (not button piles); portfolio hover-scroll hardened (`boot` v34)
+- Commit `dc298d6d` pushed to `origin/main`
+- Local deploy → Worker version `0ef094c6-a938-4191-9e4b-f8de9bb1349f` (IndexNow 166 URLs)
+- Spain Own It post: no USD on `/es-es`
+- HVAC / electrical / roofing / garage-doors / pressure-washing kept `live` (trade-specific copy)
 
-## Unfinished
-1. Deploy
-2. Manual: Rich Results + GSC URL Inspection + sitemap resubmit + GA4 calculator events
-3. Tomorrow ~10 AM Bogotá: request new URLs with the four hubs already scheduled
+## Unfinished (manual — Colton)
+1. Rich Results Test on a hub, a cost post, and the calculator
+2. URL Inspection on the new pages
+3. Resubmit sitemap in Google and Bing
+4. GA4 Realtime: calculator events
+5. Tomorrow ~10 AM Bogotá: request new URLs with the four hubs already scheduled
 
 ## Next action
-`npm run deploy`, then hand off manual search-console checks.
+Run the manual search-console / GA4 checks above.
