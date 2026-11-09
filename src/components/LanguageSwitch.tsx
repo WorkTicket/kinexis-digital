@@ -1,4 +1,6 @@
-import { getRequestPath } from "@/lib/i18n";
+"use client";
+
+import { usePathname } from "next/navigation";
 import { switchHref, type Locale } from "@/lib/locale-path";
 
 const LANGS = [
@@ -8,12 +10,12 @@ const LANGS = [
 ] as const;
 
 /** Full document links preserve the correct document language on navigation. */
-export default async function LanguageSwitch({ locale, label, className }: {
+export default function LanguageSwitch({ locale, label, className }: {
   locale: Locale;
   label: string;
   className?: string;
 }) {
-  const path = await getRequestPath();
+  const path = usePathname() || "/";
   const current = LANGS.find((item) => item.locale === locale) ?? LANGS[0];
   return (
     <details className={className ?? "footer-language"}>

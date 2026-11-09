@@ -41,4 +41,4 @@
 - Industry LCP art uses capped 480/768/960 WebP+AVIF derivatives only (never the multi-hundred-KB master WebP)
 - Interaction boot ships as minified `boot.min.js` (source remains `public/assets/js/boot.js`; `scripts/minify-boot.mjs` runs in build)
 - Heavy client islands (checkout, calendar, review form) load via `next/dynamic` so Spanish monolith routes stay light
-- Language switch is a server component (no client hydration on every page)
+- Language switch stays a tiny client component (`usePathname`) so layouts never call `headers()` and pages can stay statically generated for OpenNext cache + defer-chunks
