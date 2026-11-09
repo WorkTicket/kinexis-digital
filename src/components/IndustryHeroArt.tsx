@@ -28,7 +28,7 @@ export default function IndustryHeroArt({
         width={1536}
         height={1024}
         loading="eager"
-        decoding="async"
+        decoding="sync"
         fetchPriority="high"
       />
     </picture>

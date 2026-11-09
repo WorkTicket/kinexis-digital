@@ -201,7 +201,7 @@ export default async function IndustryPage({ params }: Props) {
             </li>
             <li>
               <Link href={industryPagesPostPath(industry.slug)} prefetch={false}>
-                <span className="industry-reads__title">Pages This Trade Needs</span>
+                <span className="industry-reads__title">Pages This Business Needs</span>
                 <span className="industry-reads__arrow" aria-hidden="true">→</span>
               </Link>
             </li>

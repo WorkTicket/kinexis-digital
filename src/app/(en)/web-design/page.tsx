@@ -54,7 +54,7 @@ export default function Page() {
       <Section>
         <MediaSplit image="process" alt="Design process preview for a service business website">
           <h2><HL text="Review The Homepage First" mark="Homepage First" /></h2>
-          <p>We prepare a homepage concept for your trade so you can judge the layout, wording, and call-to-action before paying.</p>
+          <p>We prepare a homepage concept for your business so you can judge the layout, wording, and call-to-action before paying.</p>
           <p>Request changes until it feels right. When you’re ready, choose Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for $1,497—and we finish the full site.</p>
           <p className="btn-row spaced">
             <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
@@ -66,7 +66,7 @@ export default function Page() {
       <Section tint narrow>
         <h2 className="center"><HL text="The Same Four Plans Nationwide" mark="Plans Nationwide" /></h2>
         <p>Service businesses anywhere in the United States can choose Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for $1,497.</p>
-        <p>The wording is tailored to your trade and service area. The technical search setup stays consistent, and any ongoing SEO is scoped separately after the site is built.</p>
+        <p>The wording is tailored to your business and service area. The technical search setup stays consistent, and any ongoing SEO is scoped separately after the site is built.</p>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
           <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>View the Portfolio</Link>
@@ -74,7 +74,7 @@ export default function Page() {
       </Section>
 
       <Section>
-        <h2 className="center"><HL text="Choose Your Trade" mark="Your Trade" /></h2>
+        <h2 className="center"><HL text="Choose Your Industry" mark="Your Industry" /></h2>
         <IndustryGrid
           layout="index"
           moreHref="/industries"
@@ -91,7 +91,7 @@ export default function Page() {
       <CtaBand
         h="Ready To See Your Homepage?"
         mark="Your Homepage"
-        sub="Share your trade, a design direction, and whatever brand assets you have. We’ll prepare your free homepage preview—no card required."
+        sub="Share your business, a design direction, and whatever brand assets you have. We’ll prepare your free homepage preview—no card required."
         btn="Get My Free Preview"
         href="/contact"
       />

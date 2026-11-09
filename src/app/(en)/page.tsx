@@ -114,7 +114,7 @@ export default async function Home() {
 
       {/* 3. What you get */}
       <Section tint>
-        <MediaSplit image="homepage" alt="Contractor showing a trade website on a laptop and phone">
+        <MediaSplit image="homepage" alt="Contractor showing a business website on a laptop and phone">
           <h2><HL text="What You Get With a Kinexis Website Plan" mark="Website Plan" /></h2>
           <p>A website plan built for local service businesses: a fast site, practical SEO structure, and follow-up that keeps working when you are on a job. Plans start at $97/mo.</p>
         </MediaSplit>
@@ -129,7 +129,7 @@ export default async function Home() {
       {/* 4. Portfolio */}
       <Section>
         <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
-          <h2><HL text="Websites Made for Your Trade" mark="Your Trade" /></h2>
+          <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
           <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Tap to preview, then open the full site.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
@@ -185,7 +185,7 @@ export default async function Home() {
         <div className="trades-feature">
           <div className="trades-feature__copy">
             <h2><HL text="Built for Local Service Businesses" mark="Local Service Businesses" /></h2>
-            <p className="muted">Plumbing, HVAC, roofing, and more — if customers search for what you do and call when they need help, we have you covered. Don’t see your trade? You’re still included.</p>
+            <p className="muted">Plumbing, HVAC, roofing, and more — if customers search for what you do and call when they need help, we have you covered. Don’t see your business? You’re still included.</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
               <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
@@ -193,7 +193,7 @@ export default async function Home() {
           </div>
           <SectionGraphic
             name="built-for-your-trade"
-            alt="A contractor website surrounded by tools and materials from multiple home-service trades"
+            alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
             className="home-section-art--trades"
           />
         </div>

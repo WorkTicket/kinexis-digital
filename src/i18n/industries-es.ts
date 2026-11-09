@@ -210,7 +210,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El cliente puede pedir un estimado desde el sitio?", a: "Sí. El formulario pide el tipo de trabajo, cómo contactarlo y fotos si las tiene. Te llega como un lead de formulario." },
       { q: "Pinto en inglés y en español. ¿Hay un plan para eso?", a: "Plus es el plan bilingüe: el sitio y las reseñas en inglés y en español. El texto opcional si no contestas también está en ambos idiomas." },
-      { q: "¿Ustedes escriben el texto?", a: "Podemos usar el texto que ya tienes, o cotizar la redacción aparte. La vista previa usa un texto realista del oficio para que juzgues el diseño." },
+      { q: "¿Ustedes escriben el texto?", a: "Podemos usar el texto que ya tienes, o cotizar la redacción aparte. La vista previa usa un texto realista del negocio para que juzgues el diseño." },
     ],
   },
   remodeling: {
@@ -312,7 +312,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio puede vender servicio semanal y reparaciones de una vez?", a: "Sí. Son páginas con pasos distintos, para que una alberca verde no tenga que unirse primero a la ruta." },
       { q: "¿Hacen sitios de construcción de albercas?", a: "Esta página es para servicio, reparación y equipo. Si también remodelas albercas, lo decimos solo donde ese trabajo es real." },
-      { q: "¿Qué incluye la vista previa gratis?", a: "Un concepto de inicio para tu oficio. Sin tarjeta y sin obligación. El sitio completo empieza cuando lo apruebas y eliges un plan." },
+      { q: "¿Qué incluye la vista previa gratis?", a: "Un concepto de inicio para tu negocio. Sin tarjeta y sin obligación. El sitio completo empieza cuando lo apruebas y eliges un plan." },
     ],
   },
   "pressure-washing": {
@@ -322,7 +322,7 @@ const ES: Record<string, Copy> = {
     metaDescription: "Sitios de lavado a presión para negocios en Estados Unidos. Casas, concreto y techos, con un formulario corto de cotización.",
     h1: "Sitios de lavado a presión que muestran el antes y el después",
     mark: "el antes y el después",
-    sub: "Este oficio se gana con fotos y una cotización rápida. Un sitio que habla de “soluciones” y nunca muestra una entrada le pide a la gente que imagine el resultado.",
+    sub: "Este negocio se gana con fotos y una cotización rápida. Un sitio que habla de “soluciones” y nunca muestra una entrada le pide a la gente que imagine el resultado.",
     intro: [
       "Casa, concreto, cercas y techo usan químicos, riesgos y precios distintos. El cliente los junta hasta que el sitio le enseña la diferencia.",
       "Cada superficie tiene su página, el diseño espera fotos de antes y después, y el formulario pide dirección, superficie y una foto si la tiene. Esa página de inicio se ve gratis primero, en el celular o en la computadora.",

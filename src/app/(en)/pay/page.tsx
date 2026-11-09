@@ -51,7 +51,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
 
       <section className="section pay-pick">
         <div className="container">
-          <div className="pay-route" aria-label="Payment process">
+          <div className="pay-route" role="group" aria-label="Payment process">
             <span><PaymentIcon kind="plan" /> Choose your plan</span>
             <span><PaymentIcon kind="receipt" /> Review your total</span>
             <span><PaymentIcon kind="card" /> Continue with PayPal</span>

@@ -15,7 +15,7 @@ export const ES_POSTS: EsPost[] = [
     title: "Errores del sitio que te cuestan llamadas",
     seoTitle: "Errores web que cuestan llamadas",
     excerpt: "El sitio debería vender cuando tú estás en el trabajo. Estos errores hacen que la gente vuelva a Google antes de marcar.",
-    lead: "Un sitio de un oficio tiene que contestar tres cosas en el celular: qué haces, dónde lo haces y cómo te llaman. Si eso no está en la primera pantalla, la visita se va.",
+    lead: "Un sitio de un negocio tiene que contestar tres cosas en el celular: qué haces, dónde lo haces y cómo te llaman. Si eso no está en la primera pantalla, la visita se va.",
     sections: [
       {
         h2: "El titular no dice el trabajo",
@@ -41,7 +41,7 @@ export const ES_POSTS: EsPost[] = [
     title: "Convierte las visitas en llamadas",
     seoTitle: "Cómo convertir visitas del sitio en llamadas",
     excerpt: "El tráfico no reserva el trabajo. La página tiene que darle a la persona una forma obvia de llamarte o pedir una cotización.",
-    lead: "Que te encuentren es la mitad. La otra mitad es que, ya en la página, sepan qué tocar. En un oficio, ese toque casi siempre es el teléfono.",
+    lead: "Que te encuentren es la mitad. La otra mitad es que, ya en la página, sepan qué tocar. En un negocio, ese toque casi siempre es el teléfono.",
     sections: [
       {
         h2: "Un siguiente paso, no cinco",
@@ -92,7 +92,7 @@ export const ES_POSTS: EsPost[] = [
     category: "Diseño",
     title: "Deja el sitio listo para el celular",
     seoTitle: "Sitio móvil para negocios de servicios",
-    excerpt: "La búsqueda de un oficio ocurre en la entrada de la casa o en la cocina. La página tiene que cargar y mostrar el siguiente paso.",
+    excerpt: "La búsqueda de un negocio ocurre en la entrada de la casa o en la cocina. La página tiene que cargar y mostrar el siguiente paso.",
     lead: "Si el sitio se ve bien en la computadora y se rompe en el celular, se rompe donde está el cliente. La mayoría de estas búsquedas no empiezan en un escritorio.",
     sections: [
       {
@@ -119,7 +119,7 @@ export const ES_POSTS: EsPost[] = [
     title: "SEO local para que te encuentren y te llamen",
     seoTitle: "SEO local para negocios de servicios en EE. UU.",
     excerpt: "El SEO local no es repetir el nombre de la ciudad en cincuenta páginas. Es una zona real, páginas de servicio y un perfil de Google que coincide.",
-    lead: "Google tiene que entender qué oficio tienes y dónde trabajas. El cliente tiene que poder llamarte cuando te encuentra. Las dos cosas fallan cuando el sitio es una plantilla con el nombre del pueblo cambiado.",
+    lead: "Google tiene que entender qué negocio tienes y dónde trabajas. El cliente tiene que poder llamarte cuando te encuentra. Las dos cosas fallan cuando el sitio es una plantilla con el nombre del pueblo cambiado.",
     sections: [
       {
         h2: "Una zona, no un clon por ciudad",
@@ -168,8 +168,8 @@ export const ES_POSTS: EsPost[] = [
   {
     "slug": "monthly-website-vs-own-it",
     "category": "Consejos",
-    "title": "Plan mensual u Own It para oficios",
-    "seoTitle": "Sitio web mensual vs Own It para oficios | Kinexis Digital",
+    "title": "Plan mensual u Own It para negocios",
+    "seoTitle": "Sitio web mensual vs Own It para negocios | Kinexis Digital",
     "excerpt": "Compara Website, Lead System y Plus con Own It: cancelación, compra de archivos y qué incluye cada plan.",
     "lead": "Los planes mensuales y Own It son opciones válidas. Depende del flujo de caja y si quieres herramientas de llamada perdida.",
     "sections": [
@@ -194,9 +194,9 @@ export const ES_POSTS: EsPost[] = [
   {
     "slug": "missed-call-text-back-templates",
     "category": "Consejos",
-    "title": "Plantillas de texto por llamada perdida para 12 oficios",
+    "title": "Plantillas de texto por llamada perdida para 12 negocios",
     "seoTitle": "Plantillas de texto por llamada perdida | Kinexis Digital",
-    "excerpt": "Borradores de SMS por oficio y tiempos honestos de aprobación del operador.",
+    "excerpt": "Borradores de SMS por negocio y tiempos honestos de aprobación del operador.",
     "lead": "El texto de llamada perdida es opcional y requiere línea dedicada. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
     "sections": [
       {

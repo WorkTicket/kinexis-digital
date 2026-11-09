@@ -163,7 +163,7 @@ export default async function BlogPostPage({ params }: Props) {
       <CtaBand
         h="Want This Applied to Your Site?"
         mark="Your Site"
-        sub="Get a free homepage preview built for your trade. No card, no obligation."
+        sub="Get a free homepage preview built for your business. No card, no obligation."
         btn="Get My Free Preview"
         href="/contact"
       />

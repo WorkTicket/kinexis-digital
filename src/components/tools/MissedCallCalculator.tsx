@@ -38,7 +38,7 @@ export default function MissedCallCalculator({ initialTrade = "plumbing" }: { in
     <div className="missed-call-calc">
       <div className="missed-call-calc__grid">
         <label>
-          Trade
+          Business type
           <select value={trade} onChange={(e) => setTrade(e.target.value)}>
             {INDUSTRIES.map((industry) => (
               <option key={industry.slug} value={industry.slug}>

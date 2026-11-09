@@ -290,7 +290,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Can customers request an estimate from the site?", a: "Yes. The form asks for the kind of work, a way to reach them, and photos if they have them. You see it as a tracked form lead." },
       { q: "I paint in English and Spanish. Is there a plan for that?", a: "Plus is the bilingual plan: the site and review requests in English and Spanish. Optional text-back is available in both languages too." },
-      { q: "Do you write the page copy?", a: "We can use copy you already have, or quote writing separately. The free preview uses realistic copy for the trade so you can judge the layout." },
+      { q: "Do you write the page copy?", a: "We can use copy you already have, or quote writing separately. The free preview uses realistic copy for the business so you can judge the layout." },
     ],
     related: ["remodeling", "pressure-washing", "roofing", "window-cleaning"],
   },
@@ -307,7 +307,7 @@ export const INDUSTRIES: Industry[] = [
     sub: "A remodel is a long sale. The site should show finished rooms, explain how a project starts, and not shout like a drain-cleaning ad.",
     intro: [
       "Kitchen and bath leads do not convert on the first visit the way a no-heat call does. People look at photos, check that you pull permits if that is your work, and then request a consult. A site built like an emergency plumber throws that lead away.",
-      "We lead with the rooms, the process and what you need from them before a number exists. Service pages stay specific: kitchens, baths, and the other remodels you want, not a junk drawer of every trade you have ever touched.",
+      "We lead with the rooms, the process and what you need from them before a number exists. Service pages stay specific: kitchens, baths, and the other remodels you want, not a junk drawer of every service you have ever touched.",
     ],
     problemsTitle: "Remodeling sites that scare off the consult",
     problemsMark: "scare off",
@@ -419,7 +419,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Can the site sell weekly service and one-time repairs?", a: "Yes. They are separate pages with separate next steps, so a green-pool call is not asked to join a route first." },
       { q: "Do you build pool construction sites?", a: "This page is for service, repair and equipment. If you also remodel pools, we will say so only where that work is real." },
-      { q: "What does the free preview include?", a: "A homepage concept for your trade. No card and no obligation. The full site starts after you approve it and choose a plan." },
+      { q: "What does the free preview include?", a: "A homepage concept for your business. No card and no obligation. The full site starts after you approve it and choose a plan." },
     ],
     related: ["landscaping", "pressure-washing", "yard-care", "window-cleaning"],
   },

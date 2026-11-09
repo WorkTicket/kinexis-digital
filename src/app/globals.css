@@ -521,9 +521,13 @@ p{margin:0 0 1em}
   margin-left:auto;margin-right:auto;text-align:center;max-width:40rem;
 }
 .trust-fineprint__row{margin:0;text-wrap:pretty}
-.trust-fineprint__row + .trust-fineprint__row{margin-top:.15em}
+.trust-fineprint__row + .trust-fineprint__row{margin-top:8px}
 .trust-fineprint__sep{color:var(--muted)}
-.trust-fineprint .link-btn{padding:0;font-size:inherit;font-weight:600}
+.trust-fineprint .link-btn{
+  display:inline-flex;align-items:center;
+  min-height:24px;padding:2px 0;
+  font-size:inherit;font-weight:600;
+}
 .hero__trust{margin-top:12px;max-width:34rem}
 .cta-trust{margin:14px 0 0}
 .hero__call{margin-top:10px}
@@ -2668,9 +2672,20 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .burger__word--close{opacity:0;transform:translateY(8px)}
 .burger.is-open .burger__word--open{opacity:0;transform:translateY(-8px)}
 .burger.is-open .burger__word--close{opacity:1;transform:none}
-/* Keep these after the base .burger__label rule so they win on small screens. */
+/* Keep these after the base .burger__label rule so they win on small screens.
+   Visually hide (don't display:none) so the Menu/Close words stay the accessible name. */
 @media (max-width:520px){
-  .burger__label{display:none}
+  .burger__label{
+    position:absolute;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+    display:block;
+    min-width:0;
+  }
   .burger{gap:0;padding:0;margin-left:2px}
   .header__phone--mobile{font-size:.78rem;padding:0 4px;letter-spacing:-.02em}
   .header__tools{gap:6px}

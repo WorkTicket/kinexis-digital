@@ -10,9 +10,12 @@ const contentSecurityPolicy = [
   `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com`,
   "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https:",
+  // https: already covers GTM pixels; keep googletagmanager explicit for GA4 beacons.
+  "img-src 'self' data: blob: https: https://*.googletagmanager.com",
   "font-src 'self' data:",
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
+  // GA4 posts to google-analytics.com, analytics.google.com (apex + subs), and googletagmanager.com.
+  // CSP *.host does not match the apex host itself — keep both forms.
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
   "media-src 'self' https:",
   "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
   "worker-src 'self' blob:",

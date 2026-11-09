@@ -3,14 +3,14 @@ export type Field = { label: string; name: string; kind?: "text" | "email" | "te
 /**
  * Homepage-preview lead form.
  * Name required; phone or email required (enforced in boot.js + API).
- * Business + trade/city give enough context to draft a homepage.
+ * Business + business-type/city give enough context to draft a homepage.
  */
 export const LEAD_FIELDS: Field[] = [
   { label: "First Name", name: "name", required: true, auto: "given-name" },
   { label: "Email", name: "email", kind: "email", auto: "email" },
   { label: "Phone", name: "phone", kind: "tel", auto: "tel" },
   { label: "Business Name", name: "business", required: true, auto: "organization" },
-  { label: "Trade and city (e.g. HVAC in Phoenix)", name: "trade", required: true },
+  { label: "Business type and city (e.g. HVAC in Phoenix)", name: "trade", required: true },
   { label: "Current website (optional)", name: "website", auto: "url" },
 ];
 
@@ -20,7 +20,7 @@ export const LEAD_FIELDS_ES: Field[] = [
   { label: "Correo", name: "email", kind: "email", auto: "email" },
   { label: "Teléfono", name: "phone", kind: "tel", auto: "tel" },
   { label: "Nombre del negocio", name: "business", required: true, auto: "organization" },
-  { label: "Oficio y ciudad (ej. HVAC en Phoenix)", name: "trade", required: true },
+  { label: "Tipo de negocio y ciudad (ej. HVAC en Phoenix)", name: "trade", required: true },
   { label: "Sitio web actual (opcional)", name: "website", auto: "url" },
 ];
 

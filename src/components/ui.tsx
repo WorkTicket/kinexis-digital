@@ -310,7 +310,7 @@ export function ReviewCard({ quote, name, company }: { quote: string; name: stri
   return (
     <figure className="review-card">
       <header className="review-card__top">
-        <p className="review-card__label review-card__label--stars" aria-label="5 out of 5">★★★★★</p>
+        <p className="review-card__label review-card__label--stars" role="img" aria-label="5 out of 5">★★★★★</p>
       </header>
       <blockquote>&ldquo;{quote}&rdquo;</blockquote>
       <figcaption><b>{name}</b><span>{company}</span></figcaption>

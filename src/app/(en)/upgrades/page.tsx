@@ -27,25 +27,27 @@ export default function Page() {
         <div className="grid grid--4 upgrades">
           {UPGRADES.map(([t, d, p]) => {
             const video = UPGRADE_VIDEOS[t];
-            const base = `/assets/video/addons/${video}`;
+            const base = video ? `/assets/video/addons/${video}` : null;
             return (
               <article className="card center" key={t}>
                 <div className="upgrade__heading">
                   <h2 className="card-title">{t}</h2>
                   <p className="upgrade__price">{p}</p>
                 </div>
-                <button className="upgrade__preview" type="button" data-dialog="video" data-video-src={`${base}.mp4`} aria-label={`Play the ${t} video`}>
-                  <span className="upgrade__frame">
-                    <img src={`${base}-poster.webp`} alt="" width="960" height="540" loading="lazy" decoding="async" />
-                    <span className="upgrade__play" aria-hidden="true">
-                      <span className="play">
-                        <svg width="26" height="26" viewBox="0 0 64 64" focusable="false" aria-hidden="true">
-                          <path d="M18 12 50 32 18 52Z" fill="currentColor" />
-                        </svg>
+                {base ? (
+                  <button className="upgrade__preview" type="button" data-dialog="video" data-video-src={`${base}.mp4`} aria-label={`Play the ${t} video`}>
+                    <span className="upgrade__frame">
+                      <img src={`${base}-poster.webp`} alt="" width="960" height="540" loading="lazy" decoding="async" />
+                      <span className="upgrade__play" aria-hidden="true">
+                        <span className="play">
+                          <svg width="26" height="26" viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+                            <path d="M18 12 50 32 18 52Z" fill="currentColor" />
+                          </svg>
+                        </span>
                       </span>
                     </span>
-                  </span>
-                </button>
+                  </button>
+                ) : null}
                 <p className="upgrade__description">{d}</p>
               </article>
             );
@@ -59,7 +61,7 @@ export default function Page() {
       <Section tint>
         <h2 className="center"><HL text="The Basics Are Already Covered" mark="Already Covered" /></h2>
         <div className="grid grid--4 included">
-          <IconCard title="Written For Your Trade" text="Service pages use the language your customers expect instead of generic template copy." icon="built-for-your-trade" />
+          <IconCard title="Written For Your Business" text="Service pages use the language your customers expect instead of generic template copy." icon="built-for-your-trade" />
           <IconCard title="Easy To Call Or Ask" text="Tap-to-call, short forms, and clear next steps are available wherever someone enters the site." icon="made-for-calls" />
           <IconCard title="Quick And Protected" text="Pages load quickly on phones, while hosting, SSL, and security are handled in the background." icon="fast-and-secure" />
           <IconCard title="Small Edits Handled" text="Send routine changes to our team so you can stay focused on the work in front of you." icon="managed-for-you" />

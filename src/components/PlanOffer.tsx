@@ -31,29 +31,40 @@ export default function PlanOffer({
   heading = "Website Plans and Pricing",
   mark = "Plans and Pricing",
   href = "/contact",
+  pricingHref = "/pricing",
   eyebrow = "Four Plans · One Free Preview",
   chip = "$0 down",
   note = "Every plan starts with a free homepage preview in 2 business days — no card, no obligation. Month-to-month, cancel anytime.",
   badge = "Most popular",
   cta = "Get My Free Preview",
+  planCta = "Start with a free preview",
+  secondary = "See Plans & Pricing",
+  trust = "60-Day Lead Guarantee · $0 down · Free preview in 2 business days",
   plans = PLANS,
+  // Priced stickers bake USD into the art — hide them on Spain chrome.
+  showStickers = true,
 }: {
   heading?: string;
   mark?: string;
   href?: string;
+  pricingHref?: string;
   eyebrow?: string;
   chip?: string;
   note?: string;
   badge?: string;
   cta?: string;
+  planCta?: string;
+  secondary?: string;
+  trust?: string;
   plans?: typeof PLANS;
+  showStickers?: boolean;
 }) {
   return (
     <>
       <p className="eyebrow center">{eyebrow}</p>
       <h2 className="center"><HL text={heading} mark={mark} /></h2>
       <div className="offer__lockup">
-        <p className="offer__num">{plans[0].price}<small>{plans[0].suffix}</small></p>
+        <p className="offer__num">{plans[0].price}{plans[0].suffix ? <small>{plans[0].suffix}</small> : null}</p>
         <p className="offer__chip">{chip}</p>
       </div>
       <p className="center muted offer__note">{note}</p>
@@ -66,19 +77,19 @@ export default function PlanOffer({
               prefetch={false}
             >
               {plan.popular ? <span className="offer__badge">{badge}</span> : null}
-              <PlanSticker sticker={PLAN_NAME_STICKERS[plan.slug]} />
+              {showStickers ? <PlanSticker sticker={PLAN_NAME_STICKERS[plan.slug]} /> : null}
               <h3 className="offer__line">{plan.name}</h3>
               <span className="offer__tagline">{plan.tagline}</span>
-              <span className="offer__plan-cta">Start with a free preview</span>
+              <span className="offer__plan-cta">{planCta}</span>
             </Link>
           </li>
         ))}
       </ul>
       <p className="center btn-row spaced">
         <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{cta}</Link>
-        <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
+        <Link className="btn btn--ghost btn--lg" href={pricingHref} prefetch={false}>{secondary}</Link>
       </p>
-      <p className="center muted small">60-Day Lead Guarantee · $0 down · Free preview in 2 business days</p>
+      <p className="center muted small">{trust}</p>
     </>
   );
 }

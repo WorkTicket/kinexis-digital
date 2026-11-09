@@ -22,7 +22,7 @@ export default function Page() {
         <div>
           <h2><HL text="Built for businesses that depend on the phone" mark="depend on the phone" /></h2>
           <p>Kinexis works with plumbers, HVAC companies, electricians, roofers, landscapers, and other service businesses across the United States. Your customers search when they need help, so the website and follow-up are designed around clear, useful next steps.</p>
-          <p>We begin with a homepage concept for your trade. You can review it without a card or obligation. If you approve it, we put the plan details and launch date in writing.</p>
+          <p>We begin with a homepage concept for your business in 2 business days. You can review it without a card or obligation. If you approve it and send the content we need, the full site typically launches in 5 business days — confirmed in writing with your plan details.</p>
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Work With Us</Link>
         </div>
         <div>

@@ -28,9 +28,8 @@ export default function HeroFilm() {
             width={960}
             height={540}
             fetchPriority="high"
-            // async lets text FCP without waiting on poster decode; the 480w AVIF
-            // is already preloaded so LCP still lands in the same paint window.
-            decoding="async"
+            // sync decode: poster is the LCP element and is already preloaded as AVIF.
+            decoding="sync"
           />
         </picture>
         <video

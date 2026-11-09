@@ -158,17 +158,20 @@ export async function SpanishPage({ locale, slug }: { locale: Exclude<Locale, "e
 }
 
 async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
-  const faqs = homeFaqs(tx);
+  const spainChrome = locale === "es-ES";
+  const faqs = spanishHomeFaqs(tx, { hideUsd: spainChrome });
+  const homeMeta = metaFor("/", locale) ?? PAGE_META["/"];
+  const plans = spanishPlans(tx, { hideUsd: spainChrome });
   const steps: Step[] = [
-    { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu oficio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
-    { tab: "Plan", label: tx("Plan"), title: tx("Escoge el plan que te sirve"), text: tx("Elige Website, Lead System, Plus u Own It. Dejamos por escrito lo que incluye y la fecha de lanzamiento.") },
+    { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu negocio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
+    { tab: "Plan", label: tx("Plan"), title: tx("Escoge el plan que te sirve"), text: tx("Elige Website, Lead System, Plus u Own It. Dejamos por escrito lo que incluye y la fecha de lanzamiento — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("Terminamos el sitio completo"), text: tx("Sumamos tus servicios, zona, fotos y texto, conectamos el dominio y te enviamos todo para aprobarlo.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea. En Lead System y Plus, las reseñas y el texto opcional empiezan tras la aprobación del operador, normalmente en 10 a 15 días.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea, normalmente en 5 días hábiles tras la aprobación y el contenido. En Lead System y Plus, las reseñas y el texto opcional empiezan tras la aprobación del operador, normalmente en 10 a 15 días.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y en Lead System y Plus enviamos la solicitud de reseña después de cada trabajo.") },
   ];
   return (
     <>
-      <ContentSchema path={href("/")} title={tx(PAGE_META["/"].title)} description={tx(PAGE_META["/"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }]} faqs={faqs} inLanguage={lang} />
+      <ContentSchema path={href("/")} title={homeMeta.title} description={homeMeta.description} crumbs={[{ name: tx("Inicio"), path: href("/") }]} faqs={faqs} inLanguage={lang} />
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">{tx("Planes de sitios web para negocios locales")}</p>
@@ -203,18 +206,22 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         ratingCopy={tx("de {count} reseñas · Facebook y el sitio")}
       />
       <Section tint>
-        <MediaSplit image="homepage" alt={tx("Un oficio mostrando su sitio en una computadora y un celular")}>
+        <MediaSplit image="homepage" alt={tx("Un negocio mostrando su sitio en una computadora y un celular")}>
           <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
-          <p>{tx("Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde $97 al mes.")}</p>
+          <p>{spainChrome
+            ? tx("Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay cuatro planes con vista previa gratis.")
+            : tx("Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde $97 al mes.")}</p>
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>{tx("Un sitio que")}<br />{tx("facilita recibir")}<br />{tx("llamadas")}</>} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
           <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("En Lead System y Plus, el texto opcional puede alcanzar a quien no contestaste, salen los pedidos de reseña y cada lead queda registrado.")} icon="better-follow-up" />
-          <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx("Elige entre cuatro planes desde $97 al mes, con vista previa gratis, $0 de enganche y cobro mes a mes.")} icon="better-pricing" />
+          <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={spainChrome
+            ? tx("Elige entre cuatro planes con vista previa gratis, sin enganche y cobro mes a mes.")
+            : tx("Elige entre cuatro planes desde $97 al mes, con vista previa gratis, $0 de enganche y cobro mes a mes.")} icon="better-pricing" />
         </div>
       </Section>
       <Section>
-        <h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2>
+        <h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2>
         <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Toca para verlo y abre el sitio completo en inglés.")}</p>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
@@ -254,7 +261,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <div className="trades-feature">
           <div className="trades-feature__copy">
             <h2><HL text={tx("Hecho para negocios de servicios locales")} mark={tx("servicios locales")} /></h2>
-            <p className="muted">{tx("Plomería, HVAC, techos y más: si tus clientes buscan lo que haces y llaman cuando te necesitan, te tenemos cubierto. ¿No ves tu oficio? Igual puedes empezar.")}</p>
+            <p className="muted">{tx("Plomería, HVAC, techos y más: si tus clientes buscan lo que haces y llaman cuando te necesitan, te tenemos cubierto. ¿No ves tu negocio? Igual puedes empezar.")}</p>
           </div>
         </div>
         <IndustryGrid
@@ -268,7 +275,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           moreLayout="cell"
         />
       </Section>
-      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} plans={spanishPlans(tx)} /></Section>
+      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={spainChrome ? tx("Garantía de 60 días · Sin enganche · Vista previa en 2 días hábiles") : tx("Garantía de 60 días · $0 de enganche · Vista previa en 2 días hábiles")} plans={plans} showStickers={!spainChrome} /></Section>
       <Section>
         <h2 className="center"><HL text={tx("De la vista previa al lanzamiento")} mark={tx("al lanzamiento")} /></h2>
         <Stepper steps={steps} />
@@ -293,8 +300,8 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
   );
 }
 
-function homeFaqs(tx: (s: string) => string) {
-  return spanishHomeFaqs(tx);
+function homeFaqs(tx: (s: string) => string, hideUsd = false) {
+  return spanishHomeFaqs(tx, { hideUsd });
 }
 
 function Services({ locale, tx, href, lang, band }: PageBits) {
@@ -307,7 +314,7 @@ function Services({ locale, tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/services")} title={tx(PAGE_META["/services"].title)} description={tx(PAGE_META["/services"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Servicios"), path: href("/services") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Ayuda web para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Elige diseño web, SEO, cuidado continuo o una revisión gratis del sitio que ya tienes.")} image="homepage" imageAlt={tx("Sitio de un oficio en una computadora y un celular")} />
+      <PageHero locale={locale} h1={tx("Ayuda web para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Elige diseño web, SEO, cuidado continuo o una revisión gratis del sitio que ya tienes.")} image="homepage" imageAlt={tx("Sitio de un negocio en una computadora y un celular")} />
       <Section><div className="grid grid--2">{items.map(([title, text, path, cta, icon]) => <ServiceCard key={path} title={title} text={text} href={href(path)} cta={cta} icon={icon} />)}</div></Section>
       <CtaBand h={tx("¿No sabes por dónde empezar?")} mark={tx("por dónde empezar")} sub={tx("Podemos revisar tu sitio actual o hablar del que quieres construir.")} btn={tx("Escríbenos")} href={href("/contact")} {...band} />
     </>
@@ -318,8 +325,8 @@ type PageBits = { locale: Locale; tx: (s: string) => string; href: (p: string) =
 
 function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale }) {
   const faqs = [
-    { q: tx("¿Cómo funciona la vista previa gratis?"), a: tx("Cuéntanos sobre tu oficio y el estilo que buscas. Preparamos un concepto de la página de inicio para que lo revises antes de elegir un plan. No se pide tarjeta y respondemos en 2 días hábiles.") },
-    { q: tx("¿Qué necesito enviarte?"), a: tx("Ayuda una dirección de diseño: ejemplos de nuestro portafolio o capturas de sitios que te gusten. Envía tu logo si lo tienes, y fotos de trabajos, la camioneta o el equipo. Si aún estás reuniendo fotos, podemos empezar la vista previa con texto realista del oficio y marcadores de posición.") },
+    { q: tx("¿Cómo funciona la vista previa gratis?"), a: tx("Cuéntanos sobre tu negocio y el estilo que buscas. Preparamos un concepto de la página de inicio para que lo revises antes de elegir un plan. No se pide tarjeta y respondemos en 2 días hábiles.") },
+    { q: tx("¿Qué necesito enviarte?"), a: tx("Ayuda una dirección de diseño: ejemplos de nuestro portafolio o capturas de sitios que te gusten. Envía tu logo si lo tienes, y fotos de trabajos, la camioneta o el equipo. Si aún estás reuniendo fotos, podemos empezar la vista previa con texto realista del negocio y marcadores de posición.") },
     { q: tx("¿Y si no me gusta el primer diseño?"), a: tx("Dinos qué quieres cambiar. Ajustamos la página de inicio hasta que se sienta bien para tu negocio; luego eliges un plan y terminamos el sitio completo.") },
     { q: tx("¿Qué páginas y funciones voy a recibir?"), a: tx("El sitio incluye inicio, páginas para los servicios que quieres promover y una forma sencilla de llamar o cotizar. También lleva títulos claros, encabezados ordenados, páginas rápidas y una estructura que Google puede leer. Ves el inicio antes de pagar.") },
     { q: tx("¿Cuáles son los precios?"), a: tx("Website cuesta $97 al mes, Lead System $197, Plus $297 y Own It $1,497 en un solo pago. Todos empiezan con una vista previa gratis, sin tarjeta y sin obligación.") },
@@ -329,9 +336,9 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
     { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestro portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio."), icon: "layers", phase: "share" as const },
     { title: tx("Envía lo básico de tu marca"), text: tx("Comparte tu logo si lo tienes, el nombre del negocio y los colores que ya usas. Trabajamos con lo que tengas."), icon: "built-for-your-trade", phase: "share" as const },
     { title: tx("Agrega fotos si las tienes"), text: tx("Fotos de trabajos, la camioneta o el equipo ayudan a que la vista previa se sienta real. Si aún no las tienes, igual podemos empezar."), icon: "gallery", phase: "share" as const },
-    { title: tx("Preparamos la vista previa del inicio"), text: tx("En 2 días hábiles recibes un concepto de inicio para tu oficio—sin tarjeta y sin obligación."), icon: "preview", phase: "deliver" as const },
+    { title: tx("Preparamos la vista previa del inicio"), text: tx("En 2 días hábiles recibes un concepto de inicio para tu negocio—sin tarjeta y sin obligación."), icon: "preview", phase: "deliver" as const },
     { title: tx("Revisas y pides cambios"), text: tx("Dinos qué ajustar. Revisamos el diseño hasta que se sienta bien antes de que elijas un plan."), icon: "edit", phase: "deliver" as const },
-    { title: tx("Elige un plan y terminamos el sitio"), text: tx("Cuando apruebes la dirección, elige Website, Lead System, Plus u Own It. Armamos el sitio completo y confirmamos el lanzamiento por escrito."), icon: "better-pricing", phase: "deliver" as const },
+    { title: tx("Elige un plan y terminamos el sitio"), text: tx("Cuando apruebes la dirección, elige Website, Lead System, Plus u Own It. Armamos el sitio completo y normalmente lo lanzamos en 5 días hábiles — confirmado por escrito."), icon: "better-pricing", phase: "deliver" as const },
   ];
   return (
     <>
@@ -361,7 +368,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
       <Section>
         <MediaSplit image="process" alt={tx("Vista previa del proceso de diseño para un sitio de servicios")}>
           <h2><HL text={tx("Revisa el inicio primero")} mark={tx("primero")} /></h2>
-          <p>{tx("Preparamos un concepto de inicio para tu oficio para que juzgues el diseño, el texto y la llamada a la acción antes de pagar.")}</p>
+          <p>{tx("Preparamos un concepto de inicio para tu negocio para que juzgues el diseño, el texto y la llamada a la acción antes de pagar.")}</p>
           <p>{tx("Pide cambios hasta que se sienta bien. Cuando estés listo, elige Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497—y terminamos el sitio completo.")}</p>
           <p className="btn-row spaced">
             <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Quiero mi vista previa gratis")}</Link>
@@ -372,14 +379,14 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
       <Section tint narrow>
         <h2 className="center"><HL text={tx("Los mismos cuatro planes en todo el país")} mark={tx("planes")} /></h2>
         <p>{tx("Negocios de servicios en cualquier parte de Estados Unidos pueden elegir Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497.")}</p>
-        <p>{tx("El texto se adapta a tu oficio y zona. La base técnica de búsqueda se mantiene consistente, y el SEO continuo se cotiza aparte después de construir el sitio.")}</p>
+        <p>{tx("El texto se adapta a tu negocio y zona. La base técnica de búsqueda se mantiene consistente, y el SEO continuo se cotiza aparte después de construir el sitio.")}</p>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
           <Link className="btn btn--ghost" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link>
         </p>
       </Section>
       <Section>
-        <h2 className="center"><HL text={tx("Elige tu oficio")} mark={tx("tu oficio")} /></h2>
+        <h2 className="center"><HL text={tx("Elige tu industria")} mark={tx("tu industria")} /></h2>
         <IndustryGrid layout="index" industries={localizedIndustries(locale)} base={href("/industries")} />
       </Section>
       <Section narrow>
@@ -389,7 +396,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
       <CtaBand
         h={tx("¿Listo para ver tu inicio?")}
         mark={tx("tu inicio")}
-        sub={tx("Cuéntanos tu oficio, una dirección de diseño y lo que tengas de marca. Preparamos tu vista previa gratis del inicio—sin tarjeta.")}
+        sub={tx("Cuéntanos tu negocio, una dirección de diseño y lo que tengas de marca. Preparamos tu vista previa gratis del inicio—sin tarjeta.")}
         btn={tx("Quiero mi vista previa gratis")}
         href={href("/contact")}
         {...band}
@@ -440,7 +447,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   return (
     <>
       <ContentSchema path={href("/pricing")} title={tx(PAGE_META["/pricing"].title)} description={tx(PAGE_META["/pricing"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} products={plans} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu oficio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
+      <PageHero locale={locale} h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu negocio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
       <Section>
         <div className="free-preview">
           <div className="free-preview__copy">
@@ -561,12 +568,12 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
 }
 
 function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
-  const faqs = homeFaqs(tx).slice(0, 4);
+  const faqs = homeFaqs(tx, locale === "es-ES").slice(0, 4);
   const steps: Step[] = [
     { tab: "Preview", label: tx("Vista previa"), title: tx("Lo ves primero"), text: tx("La vista previa es el punto de partida. La apruebas, pides cambios o te vas.") },
-    { tab: "Plan", label: tx("Plan"), title: tx("Queda por escrito"), text: tx("Qué incluye el plan y la fecha de lanzamiento se confirman por escrito.") },
+    { tab: "Plan", label: tx("Plan"), title: tx("Queda por escrito"), text: tx("Qué incluye el plan y la fecha de lanzamiento se confirman por escrito — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("El sitio completo"), text: tx("Servicios, zona, fotos y el dominio, con tu aprobación antes de publicar.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio sale. En Lead System y Plus, las reseñas y el texto opcional esperan la aprobación del operador.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio sale, normalmente en 5 días hábiles. En Lead System y Plus, las reseñas y el texto opcional esperan la aprobación del operador.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Se mantiene"), text: tx("Cambios, llamadas y reseñas en Lead System y Plus, para que veas los leads en un reporte.") },
   ];
   return (
@@ -576,7 +583,7 @@ function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
       <section className="section"><div className="container two-col">
         <div>
           <h2><HL text={tx("Para negocios que dependen del teléfono")} mark={tx("dependen del teléfono")} /></h2>
-          <p>{tx("Kinexis trabaja con plomería, HVAC, electricidad, techos, jardinería y otros oficios en Estados Unidos. Tus clientes buscan cuando necesitan ayuda, así que el sitio y el seguimiento dejan claro qué hacer después.")}</p>
+          <p>{tx("Kinexis trabaja con plomería, HVAC, electricidad, techos, jardinería y otros negocios en Estados Unidos. Tus clientes buscan cuando necesitan ayuda, así que el sitio y el seguimiento dejan claro qué hacer después.")}</p>
           <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Cuéntanos sobre tu sitio")}</Link>
         </div>
         <div>
@@ -600,7 +607,7 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <ContentSchema path={href("/contact")} title={tx(PAGE_META["/contact"].title)} description={tx(PAGE_META["/contact"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Contacto"), path: href("/contact") }]} inLanguage={lang} />
       <PageHero locale={locale} h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
       <Section><div className="contact-grid">
-        <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Oficio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} note={tx("Sin tarjeta. Respondemos rápido. 😊")} fast fastText={tx("Sin tarjeta. Respondemos rápido. 😊")} />
+        <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} note={tx("Sin tarjeta. Respondemos rápido. 😊")} fast fastText={tx("Sin tarjeta. Respondemos rápido. 😊")} />
         <aside className="contact-info">
           <div className="card"><h2 className="card-title">{tx("Llamar")}</h2><p><a href={telHref(SITE.phone)}>{SITE.phone}</a></p></div>
           <div className="card"><h2 className="card-title">{tx("Correo")}</h2><p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p></div>
@@ -634,21 +641,23 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
   return (
     <>
       <ContentSchema path={href("/industries")} title={tx(PAGE_META["/industries"].title)} description={tx(PAGE_META["/industries"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }]} inLanguage={lang} />
-      <PageHero locale={locale} eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu oficio")} mark={tx("tu oficio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")}>
+      <PageHero locale={locale} eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu negocio")} mark={tx("tu negocio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")}>
         <p className="btn-row"><Link className="btn btn--primary" href={href("/audit")} prefetch={false}>{tx("Revisar mi sitio")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
       </PageHero>
       <Section><IndustryGrid industries={industries} base={href("/industries")} /></Section>
       <Section tint narrow>
-        <p>{tx("La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por $1,497.")}</p>
+        <p>{locale === "es-ES"
+          ? tx("La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website, Lead System, Plus u Own It.")
+          : tx("La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por $1,497.")}</p>
         <p>{tx("Lead System y Plus incluyen pedidos de reseña en Google. El texto si no contestas es un extra opcional en esos planes. El SEO continuo se cotiza aparte.")}</p>
       </Section>
-      <CtaBand h={tx("Mira cómo podría verse tu oficio")} mark={tx("tu oficio")} sub={tx("Preparamos la página de inicio antes de que pagues, sin tarjeta ni obligación.")} btn={tx("Revisar mi sitio")} href={href("/audit")} {...band} />
+      <CtaBand h={tx("Mira cómo podría verse tu negocio")} mark={tx("tu negocio")} sub={tx("Preparamos la página de inicio antes de que pagues, sin tarjeta ni obligación.")} btn={tx("Revisar mi sitio")} href={href("/audit")} {...band} />
     </>
   );
 }
 
 function Faqs({ locale, tx, href, lang, band }: PageBits) {
-  const faqs = [{ q: tx("¿Qué tan rápido recibo mi vista previa gratis?"), a: tx("Su vista previa gratis de la página principal está lista en 2 días hábiles después de recibir la información de su negocio, sin tarjeta.") }, ...homeFaqs(tx)];
+  const faqs = [{ q: tx("¿Qué tan rápido recibo mi vista previa gratis?"), a: tx("Su vista previa gratis de la página principal está lista en 2 días hábiles después de recibir la información de su negocio, sin tarjeta.") }, ...homeFaqs(tx, locale === "es-ES")];
   return (
     <>
       <ContentSchema path={href("/faqs")} title={tx(PAGE_META["/faqs"].title)} description={tx(PAGE_META["/faqs"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Preguntas"), path: href("/faqs") }]} faqs={faqs} inLanguage={lang} />
@@ -821,7 +830,7 @@ async function Reviews({ locale, tx, href, lang, band }: PageBits) {
           <LeaveFacebookReview label={tx("Dejar una reseña en Facebook")} />
         </div>
       </Section>
-      <CtaBand h={tx("¿Quieres un sitio que traiga trabajo?")} mark={tx("traiga trabajo")} sub={tx("Empieza con una vista previa gratis de tu oficio.")} btn={tx("Empezar")} href={href("/contact")} {...band} />
+      <CtaBand h={tx("¿Quieres un sitio que traiga trabajo?")} mark={tx("traiga trabajo")} sub={tx("Empieza con una vista previa gratis de tu negocio.")} btn={tx("Empezar")} href={href("/contact")} {...band} />
     </>
   );
 }
@@ -832,6 +841,7 @@ function Upgrades({ locale, tx, href, lang, band }: PageBits) {
     ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), "$39 / mes"],
     ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra para Website u Own It. Requiere línea dedicada. Un segundo número cuesta $1/mes si lo usas. Pueden aplicar tarifas del operador. La aprobación del operador suele tardar 10 a 15 días y no está garantizada."), "$97 / mes"],
     ["new-pages", tx("Páginas nuevas en Own It"), tx("Las páginas extra de Own It se cotizan por escrito antes de empezar."), tx("Cotizado")],
+    ["better-design", tx("Mejora de diseño a medida"), tx("Diseño único cuando una plantilla no alcanza. Empieza con cualquier plan; cotizamos la mejora por escrito antes de trabajar."), tx("Tarifa de mercado · cotizado")],
   ] as const;
   return (
     <>
@@ -861,7 +871,7 @@ function Strategy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) 
     firstName: tx("Nombre"),
     email: tx("Correo"),
     phone: tx("Teléfono"),
-    business: tx("Oficio o negocio"),
+    business: tx("Tipo de negocio"),
     book: tx("Reservar este horario"),
     days: "DLMXJVS",
     dateLocale: locale === "es-ES" ? "es-ES" : "es-MX",
@@ -893,7 +903,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
       <PageHero locale={locale} h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 7 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("1. Vista previa gratis")}</h2>
-        <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Las vistas previas gratis de la página principal se entregan dentro de 2 días hábiles después de recibir los datos de su negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu oficio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
+        <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Las vistas previas gratis de la página principal se entregan dentro de 2 días hábiles después de recibir los datos de su negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu negocio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
         <h2>{tx("2. Planes mensuales")}</h2>
         <p>{tx("Website es $97 al mes. Lead System es $197 al mes. Plus (bilingüe) es $297 al mes. Los tres son $0 de enganche y empiezan el día del lanzamiento. Son mes a mes, sin contrato largo y sin cargo por cancelar. Puedes cancelar cuando quieras por texto, correo o Messenger. El precio queda fijo 24 meses. Después avisamos al menos 30 días antes de un cambio.")}</p>
         <h2>{tx("3. Qué incluye")}</h2>
@@ -957,7 +967,7 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/portfolio")} title={tx(PAGE_META["/portfolio"].title)} description={tx(PAGE_META["/portfolio"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Portafolio"), path: href("/portfolio") }]} inLanguage={lang} />
-      <PageHero locale={locale} className="portfolio-hero" eyebrow={tx("Sitios para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo mira nuestro trabajo y personalizamos una dirección para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
+      <PageHero locale={locale} className="portfolio-hero" eyebrow={tx("Sitios para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo mira nuestro trabajo y personalizamos una dirección para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de negocios en pantallas")}>
         <div className="btn-row spaced"><Link className="btn btn--primary btn--lg" href={href("/contact")} prefetch={false}>{tx("Ver primero mi página de inicio")}</Link><Link className="btn btn--ghost btn--lg" href={href("/pricing")} prefetch={false}>{tx("Ver los cuatro planes")}</Link></div>
       </PageHero>
       <Section>
@@ -974,7 +984,7 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
               </a>
             );
           })}</div>
-          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2><p className="muted">{tx("Elige un diseño que te guste y personalizamos el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver el sitio completo en inglés.")}</p></div></div>
+          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2><p className="muted">{tx("Elige un diseño que te guste y personalizamos el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver el sitio completo en inglés.")}</p></div></div>
           <div className="portfolio portfolio--main">{PROJECTS.map((project) => (
             <article key={project.slug} className="work-card">
               <ProjectCard project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este proyecto")} scrollOnHover={false} />
@@ -990,7 +1000,7 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
         </div>
       </Section>
       <AuditCta eyebrow={tx("Un punto de partida claro")} heading={tx("Descubre qué está frenando tu sitio")} mark={tx("frenando tu sitio")} text={tx("Te decimos qué funciona, qué estorba y qué cambios conviene hacer primero. Hay revisiones gratis y de pago.")} cta={tx("Revisar mi sitio")} href={href("/audit")} alt={tx("Un cohete sale de una computadora")} />
-      <CtaBand h={tx("¿Quieres ver una idea para tu sitio?")} mark={tx("tu sitio")} sub={tx("Cuéntanos sobre tu oficio y preparamos una vista previa gratis para tu negocio.")} btn={tx("Quiero la vista previa")} href={href("/contact")} {...band} />
+      <CtaBand h={tx("¿Quieres ver una idea para tu sitio?")} mark={tx("tu sitio")} sub={tx("Cuéntanos sobre tu negocio y preparamos una vista previa gratis para tu negocio.")} btn={tx("Quiero la vista previa")} href={href("/contact")} {...band} />
     </>
   );
 }

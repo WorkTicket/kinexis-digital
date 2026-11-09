@@ -126,7 +126,7 @@ export default function Footer({ locale }: { locale: Locale }) {
                 {chrome.region ? <span className="footer-blurb__region">{chrome.region}</span> : null}
               </p>
 
-              <div className="footer-contact" aria-label="Contact">
+              <div className="footer-contact" role="group" aria-label="Contact">
                 <a className="footer-contact__link" href={`mailto:${SITE.email}`}>
                   <MailIcon />
                   <span>{SITE.email}</span>
@@ -137,7 +137,7 @@ export default function Footer({ locale }: { locale: Locale }) {
                 </a>
               </div>
 
-              <div className="footer-social" aria-label="Social">
+              <div className="footer-social" role="group" aria-label="Social">
                 <FacebookChooser english={SITE.social.Facebook} spanish={SITE.social["Facebook ES"]} />
                 <a className="footer-social__btn footer-social__btn--yt" href={SITE.social.YouTube} target="_blank" rel="noopener noreferrer" aria-label="Kinexis Digital on YouTube">
                   <YouTubeIcon />

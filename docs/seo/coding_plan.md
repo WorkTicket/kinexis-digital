@@ -47,11 +47,11 @@ Trades without real proof/content stay `status: hold` → `noindex` + out of sit
 
 - `$1,497` — monthly-plan site-file buyout $
 - `On Lead System and Plus: $1/mo second tracking number (if used) plus carrier rates — no $97 text-back fee` — Own It table shows $97/mo; LS/Plus public $ unknown
-- `[COLTON: preview-to-launch days]` — site only says launch date confirmed in writing
-- `[COLTON: paid audit price]`
-- `[COLTON: custom design upgrade price]`
-- `[COLTON: client results + permission]` — numeric case studies
-- `[COLTON: annotate Preferred Plumbing]` / `[COLTON: annotate A1 landscaping]`
+- Preview: **2 business days**. Launch: **5 business days** after preview approval + needed content (confirmed in writing).
+- `[COLTON: paid audit price]` — still open; do not invent
+- Custom design upgrade: **industry-standard rates**, quoted in writing (no fixed $ on-site)
+- `[COLTON: client results + permission]` — numeric case studies still open
+- Preferred Plumbing / A1: text proof annotations live; optional richer screenshot callouts still open
 
 ---
 

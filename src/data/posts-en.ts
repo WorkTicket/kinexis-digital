@@ -181,7 +181,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -194,7 +194,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Plumbing Site",
-              "html": "<p>You’re paying for pages built around leaks, drains, and water heaters — not a generic template with the trade name swapped. See <a href=\"/industries/plumbing\">website design for plumbers</a> and <a href=\"/blog/plumbing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around leaks, drains, and water heaters — not a generic template with the business name swapped. See <a href=\"/industries/plumbing\">website design for plumbers</a> and <a href=\"/blog/plumbing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -212,7 +212,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -247,7 +247,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -260,7 +260,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a HVAC Site",
-              "html": "<p>You’re paying for pages built around no-cool repair, replacement, and maintenance — not a generic template with the trade name swapped. See <a href=\"/industries/hvac\">website design for HVACs</a> and <a href=\"/blog/hvac-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around no-cool repair, replacement, and maintenance — not a generic template with the business name swapped. See <a href=\"/industries/hvac\">website design for HVACs</a> and <a href=\"/blog/hvac-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -278,7 +278,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -313,7 +313,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -326,7 +326,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Electrical Site",
-              "html": "<p>You’re paying for pages built around panels, EV chargers, and troubleshooting — not a generic template with the trade name swapped. See <a href=\"/industries/electrical\">website design for electricians</a> and <a href=\"/blog/electrician-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around panels, EV chargers, and troubleshooting — not a generic template with the business name swapped. See <a href=\"/industries/electrical\">website design for electricians</a> and <a href=\"/blog/electrician-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -344,7 +344,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -379,7 +379,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -392,7 +392,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Roofing Site",
-              "html": "<p>You’re paying for pages built around repairs, replacements, and storm calls — not a generic template with the trade name swapped. See <a href=\"/industries/roofing\">website design for roofings</a> and <a href=\"/blog/roofing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around repairs, replacements, and storm calls — not a generic template with the business name swapped. See <a href=\"/industries/roofing\">website design for roofings</a> and <a href=\"/blog/roofing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -410,7 +410,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -445,7 +445,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -458,7 +458,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Garage Doors Site",
-              "html": "<p>You’re paying for pages built around broken springs, openers, and new doors — not a generic template with the trade name swapped. See <a href=\"/industries/garage-doors\">website design for garage door companys</a> and <a href=\"/blog/garage-door-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around broken springs, openers, and new doors — not a generic template with the business name swapped. See <a href=\"/industries/garage-doors\">website design for garage door companys</a> and <a href=\"/blog/garage-door-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -476,7 +476,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -511,7 +511,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -524,7 +524,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Painting Site",
-              "html": "<p>You’re paying for pages built around interior, exterior, and cabinet finishes — not a generic template with the trade name swapped. See <a href=\"/industries/painting\">website design for painting contractors</a> and <a href=\"/blog/painting-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around interior, exterior, and cabinet finishes — not a generic template with the business name swapped. See <a href=\"/industries/painting\">website design for painting contractors</a> and <a href=\"/blog/painting-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -542,7 +542,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -577,7 +577,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -590,7 +590,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Remodeling Site",
-              "html": "<p>You’re paying for pages built around kitchens, baths, and longer consults — not a generic template with the trade name swapped. See <a href=\"/industries/remodeling\">website design for remodeling contractors</a> and <a href=\"/blog/remodeling-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around kitchens, baths, and longer consults — not a generic template with the business name swapped. See <a href=\"/industries/remodeling\">website design for remodeling contractors</a> and <a href=\"/blog/remodeling-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -608,7 +608,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -643,7 +643,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -656,7 +656,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Landscaping Site",
-              "html": "<p>You’re paying for pages built around maintenance routes and design-build — not a generic template with the trade name swapped. See <a href=\"/industries/landscaping\">website design for landscapings</a> and <a href=\"/blog/landscaping-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around maintenance routes and design-build — not a generic template with the business name swapped. See <a href=\"/industries/landscaping\">website design for landscapings</a> and <a href=\"/blog/landscaping-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -674,7 +674,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -709,7 +709,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -722,7 +722,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Pool Care Site",
-              "html": "<p>You’re paying for pages built around weekly routes, repairs, and equipment — not a generic template with the trade name swapped. See <a href=\"/industries/pool-care\">website design for pool services</a> and <a href=\"/blog/pool-service-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around weekly routes, repairs, and equipment — not a generic template with the business name swapped. See <a href=\"/industries/pool-care\">website design for pool services</a> and <a href=\"/blog/pool-service-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -740,7 +740,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -775,7 +775,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -788,7 +788,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Pressure Washing Site",
-              "html": "<p>You’re paying for pages built around houses, concrete, and roof soft washes — not a generic template with the trade name swapped. See <a href=\"/industries/pressure-washing\">website design for pressure washings</a> and <a href=\"/blog/pressure-washing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around houses, concrete, and roof soft washes — not a generic template with the business name swapped. See <a href=\"/industries/pressure-washing\">website design for pressure washings</a> and <a href=\"/blog/pressure-washing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -806,7 +806,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -841,7 +841,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -854,7 +854,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Window Cleaning Site",
-              "html": "<p>You’re paying for pages built around home routes and storefront schedules — not a generic template with the trade name swapped. See <a href=\"/industries/window-cleaning\">website design for window cleanings</a> and <a href=\"/blog/window-cleaning-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around home routes and storefront schedules — not a generic template with the business name swapped. See <a href=\"/industries/window-cleaning\">website design for window cleanings</a> and <a href=\"/blog/window-cleaning-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -872,7 +872,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {
@@ -907,7 +907,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Kinexis Prices for Trade Websites",
+              "h2": "Kinexis Prices for Business Websites",
               "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
           },
           {
@@ -920,7 +920,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
               "h2": "What You’re Paying For on a Yard Care Site",
-              "html": "<p>You’re paying for pages built around weekly lawn routes and pet-waste stops — not a generic template with the trade name swapped. See <a href=\"/industries/yard-care\">website design for lawn cares</a> and <a href=\"/blog/lawn-care-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
+              "html": "<p>You’re paying for pages built around weekly lawn routes and pet-waste stops — not a generic template with the business name swapped. See <a href=\"/industries/yard-care\">website design for lawn cares</a> and <a href=\"/blog/lawn-care-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
   },
@@ -938,7 +938,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ],
       "sections": [
           {
-              "h2": "Core Pages Every Trade Site Needs",
+              "h2": "Core Pages Every Business Site Needs",
               "html": "<ul><li><strong>Home</strong> — name the work, show the phone, and make the next step obvious.</li><li><strong>Services</strong> — separate pages for the jobs you sell, not one junk drawer.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew.</li><li><strong>About</strong> — license, insurance, and who shows up.</li><li><strong>Reviews</strong> — proof from real jobs.</li><li><strong>Contact</strong> — form + click-to-call on every device.</li></ul>"
           },
           {

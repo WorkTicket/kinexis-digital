@@ -15,7 +15,7 @@ function StarIcon({ filled }: { filled: boolean }) {
 function Stars({ value }: { value: number }) {
   const safe = Math.min(5, Math.max(0, Math.round(value)));
   return (
-    <div className="review-card__stars" aria-label={`${safe} out of 5 stars`}>
+    <div className="review-card__stars" role="img" aria-label={`${safe} out of 5 stars`}>
       {[1, 2, 3, 4, 5].map((n) => (
         <StarIcon key={n} filled={n <= safe} />
       ))}

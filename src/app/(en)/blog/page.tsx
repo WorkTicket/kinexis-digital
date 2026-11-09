@@ -50,7 +50,7 @@ export default function Page() {
       <CtaBand
         h="Want These Tips Applied to Your Site?"
         mark="Your Site"
-        sub="Start with a free homepage preview built for your trade. No card, no obligation."
+        sub="Start with a free homepage preview built for your business. No card, no obligation."
         btn="Get My Free Preview"
         href="/contact"
       />

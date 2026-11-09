@@ -56,7 +56,7 @@ export default async function Page() {
         </div>
       </Section>
 
-      <CtaBand h="Want To See Your Own Homepage?" mark="Your Own Homepage" sub="Start with a free preview written for your trade. No card and no obligation." btn="See My Homepage First" />
+      <CtaBand h="Want To See Your Own Homepage?" mark="Your Own Homepage" sub="Start with a free preview written for your business. No card and no obligation." btn="See My Homepage First" />
     </>
   );
 }

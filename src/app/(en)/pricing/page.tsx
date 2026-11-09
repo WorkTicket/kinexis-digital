@@ -14,8 +14,8 @@ export const metadata = pageMetadata("pricing");
 const TABLE = PRICING_COMPARISON;
 
 function Cell({ value }: { value: string }) {
-  if (value === "Yes") return <span className="yes" aria-label="Included">✓</span>;
-  if (value === "—") return <span className="no" aria-label="Not included">—</span>;
+  if (value === "Yes") return <span className="yes" role="img" aria-label="Included">✓</span>;
+  if (value === "—") return <span className="no" role="img" aria-label="Not included">—</span>;
   return <>{value}</>;
 }
 
@@ -56,7 +56,7 @@ export default function Page() {
       <PageHero
         h1="Choose The Website Plan That Fits"
         mark="Plan That Fits"
-        sub="Start with the site your trade needs, then add the level of follow-up you want. Every plan begins with a free homepage preview, with no card or obligation."
+        sub="Start with the site your business needs, then add the level of follow-up you want. Every plan begins with a free homepage preview, with no card or obligation."
         image="pricing"
         imageAlt="Pricing artwork with a payment card and checkmarks"
       />

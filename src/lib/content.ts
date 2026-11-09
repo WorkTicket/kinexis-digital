@@ -1,16 +1,16 @@
 export type QA = { q: string; a: string };
 export const FAQS: QA[] = [
-  { q: "Is this right for my kind of business?", a: "We work with independent trades and local service businesses across the United States, including plumbing, HVAC, electrical, landscaping, roofing, and remodeling. If people search for your service and call when they need help, these plans are built for that kind of business." },
+  { q: "Is this right for my kind of business?", a: "We work with local service businesses across the United States, including plumbing, HVAC, electrical, landscaping, roofing, and remodeling. If people search for your service and call when they need help, these plans are built for that kind of business." },
   { q: "What does it cost?", a: "There are four choices: Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for a one-time $1,497. You can see a free homepage preview before choosing. No card is required and there’s no obligation." },
   { q: "How does billing work?", a: "The monthly plans are $0 down and month-to-month from launch, with your price locked for 24 months. Cancel anytime by text, email, or Messenger—no cancellation fee. Own It is a single payment with no monthly plan." },
   { q: "What happens if I cancel?", a: "Cancel anytime by text, email, or Messenger—there is no cancellation fee. Your site stays live through the billing period you’ve already paid for. When that period ends, hosting and management stop and the site comes offline. If you want to keep the site, arrange a buyout (a written one-time $1,497 purchase of the site files so you can host them elsewhere) or move to Own It before the paid period ends." },
   { q: "Who owns the site?", a: "With Own It, the site files belong to you from launch day. On a monthly plan, Kinexis hosts and manages the site while your plan is active. A buyout is a written one-time $1,497 purchase of those files so you can move the site to your own hosting. Ask us for buyout terms in writing before you cancel if you want to keep the site." },
   { q: "What does the 60-day guarantee cover?", a: "Lead System and Plus include the 60-day lead guarantee. If you receive zero tracked leads during your first 60 days live, we waive the 3rd and 4th monthly charges. It’s limited to one guarantee per business, and Own It is not included." },
   { q: "What does the 30-day money-back guarantee cover?", a: "Every plan includes a 30-day money-back guarantee. If you are not satisfied with your website within 30 days of launch, we refund your most recent payment in full. Requests must be made in writing. Third-party costs already paid on your behalf are not refundable." },
-  { q: "When will my site go live?", a: "We start with your free homepage preview. Once you approve it and send the content we need, we’ll confirm the launch date in writing. Optional missed-call text-back begins after carrier approval, which typically takes 10–15 days." },
+  { q: "When will my site go live?", a: "We start with your free homepage preview (ready in 2 business days). Once you approve it and send the content we need, the full site typically launches in 5 business days — we’ll confirm that date in writing. Optional missed-call text-back begins after carrier approval, which typically takes 10–15 days." },
   { q: "Will Google be able to find my site?", a: "Every site has a clean structure, fast pages, and the basic setup Google needs to read it. Ongoing SEO work is not part of the four plans, but we can quote that separately if you want it." },
   { q: "What about photos and video?", a: "We can build with photos you already have, or quote photography and video separately. We won’t use stock photos of someone else’s work and present them as yours." },
-  { q: "Who writes the text?", a: "We can work with copy you already have or quote the writing separately. For the free preview, we use realistic text for your trade so you can judge the design before making a decision." },
+  { q: "Who writes the text?", a: "We can work with copy you already have or quote the writing separately. For the free preview, we use realistic text for your business so you can judge the design before making a decision." },
 ];
 export const WEB_FAQS: QA[] = [
   { q: "How does the free preview work?", a: "Tell us your business name, trade, and city. We prepare a homepage concept you can review before choosing a plan. No card is required, and we reply fast." },
@@ -26,9 +26,9 @@ export const DESIGN_PROCESS_STEPS = [
   { title: "Share a direction", text: "Pick a look from our portfolio, or send screenshots of sites you like as a clear starting point.", icon: "layers", phase: "share" as const },
   { title: "Send brand basics", text: "Share your logo if you have one, your business name, and any colors you already use. We work with what you have.", icon: "built-for-your-trade", phase: "share" as const },
   { title: "Add photos if you have them", text: "Job photos, your truck, or your team help the preview feel real. If you don’t have them yet, we can still start.", icon: "gallery", phase: "share" as const },
-  { title: "We prepare your homepage preview", text: "Within 2 business days you get a homepage concept for your trade—with no card required and no obligation.", icon: "preview", phase: "deliver" as const },
+  { title: "We prepare your homepage preview", text: "Within 2 business days you get a homepage concept for your business—with no card required and no obligation.", icon: "preview", phase: "deliver" as const },
   { title: "You review and request changes", text: "Tell us what to adjust. We revise until the design feels right for your business before you pick a plan.", icon: "edit", phase: "deliver" as const },
-  { title: "Choose a plan and we finish the site", text: "Once you approve, pick Website, Lead System, Plus, or Own It. We build the full site and confirm launch in writing.", icon: "better-pricing", phase: "deliver" as const },
+  { title: "Choose a plan and we finish the site", text: "Once you approve, pick Website, Lead System, Plus, or Own It. We finish the full site and typically launch in 5 business days — confirmed in writing.", icon: "better-pricing", phase: "deliver" as const },
 ];
 export const SEO_FAQS: QA[] = [
   { q: "When should I expect SEO progress?", a: "SEO is long-term work. Technical fixes may show movement within a few weeks, while meaningful gains in positions and traffic often take three to six months or longer. Competition and your starting point both matter." },
@@ -38,10 +38,10 @@ export const SEO_FAQS: QA[] = [
   { q: "What will you measure?", a: "We track impressions, clicks, search positions, and leads through Google Search Console and analytics, then share the results on a clear schedule." },
 ];
 export const STEPS = [
-  { tab: "Preview", title: "Start with a free preview", text: "We put together a homepage concept for your trade. You can review it before paying, with no card and no obligation." },
-  { tab: "Plan", title: "Pick the plan that fits", text: "Choose Website, Lead System, Plus, or Own It. We’ll confirm what’s included and put your launch date in writing." },
+  { tab: "Preview", title: "Start with a free preview", text: "We put together a homepage concept for your business. You can review it before paying, with no card and no obligation." },
+  { tab: "Plan", title: "Pick the plan that fits", text: "Choose Website, Lead System, Plus, or Own It. We’ll confirm what’s included and put your launch date in writing — typically 5 business days after you approve the preview and send the content we need." },
   { tab: "Build", title: "We finish the full site", text: "We add your services, service area, photos, and copy, connect the domain, and send everything to you for approval." },
-  { tab: "Launch", title: "Your site goes live", text: "We publish the site. On Lead System and Plus, review requests and optional text-back begin after carrier approval, typically within 10–15 days." },
+  { tab: "Launch", title: "Your site goes live", text: "We publish the site, typically within 5 business days of approval and content. On Lead System and Plus, review requests and optional text-back begin after carrier approval, typically within 10–15 days." },
   { tab: "Grow", title: "We keep things current", text: "We make edits, track calls and forms, and on Lead System and Plus send review requests after each job. Your leads are shown in one report." },
 ];
 export const UPGRADES = [
@@ -49,6 +49,7 @@ export const UPGRADES = [
   ["Site Care", "Keep an Own It site hosted, secure and updated with 30 minutes of edits each month.", "$39 / mo"],
   ["Missed-Call Text-Back", "Add-on for Website or Own It. Needs a dedicated business phone line. A second tracking number is $1/mo if you use one. Carrier text rates may apply. Carrier approval usually takes 10–15 days and is not guaranteed.", "$97 / mo"],
   ["New Pages on Own It", "Add new pages to an Own It site with a written quote provided before any work begins.", "Quoted"],
+  ["Custom Design Upgrade", "One-of-a-kind design when a template direction is not enough. Start on any plan; we quote the upgrade in writing before work begins.", "Industry-standard · quoted"],
 ];
 
 export type Plan = {
@@ -276,8 +277,8 @@ export const POSTS = [
   {
     slug: "monthly-website-vs-own-it",
     category: "Tips",
-    title: "Monthly Website Plan or Own It — Which Fits Your Trade Business?",
-    seoTitle: "Monthly Website vs Own It for Trade Businesses | Kinexis Digital",
+    title: "Monthly Website Plan or Own It — Which Fits Your Business?",
+    seoTitle: "Monthly Website vs Own It for Service Businesses | Kinexis Digital",
     excerpt: "Compare Website, Lead System, and Plus monthly plans with Own It — including cancel rules, buyout, and who has the site files.",
     image: "/blog/monthly-website-vs-own-it.webp",
     width: 1200,

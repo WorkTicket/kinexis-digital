@@ -46,7 +46,7 @@ const EN: Chrome = {
   navBefore: [["/about", "About"], ["/portfolio", "Portfolio"]],
   navAfter: [["/pricing", "Pricing"], ["/reviews", "Reviews"], ["/blog", "Blog"], ["/contact", "Contact"]],
   industries: "Industries",
-  industriesTitle: "Websites built for the trades you run",
+  industriesTitle: "Websites built for the businesses you run",
   allIndustries: "All industries",
   allServices: "All services",
   webDesign: "Web Design",
@@ -84,7 +84,7 @@ const ES: Chrome = {
   navBefore: [["/about", "Nosotros"], ["/portfolio", "Portafolio"]],
   navAfter: [["/pricing", "Precios"], ["/reviews", "Reseñas"], ["/blog", "Blog"], ["/contact", "Contacto"]],
   industries: "Industrias",
-  industriesTitle: "Sitios para el oficio que sí manejas",
+  industriesTitle: "Sitios para el negocio que sí manejas",
   allIndustries: "Todas las industrias",
   allServices: "Todos los servicios",
   webDesign: "Diseño web",
@@ -120,7 +120,7 @@ export function chromeFor(locale: Locale): Chrome {
     return {
       ...ES,
       footerCtaText: "Comparte lo básico y te respondemos con un siguiente paso útil, aunque ninguno de los planes te convenga.",
-      industriesTitle: "Sitios para el oficio que sí llevas",
+      industriesTitle: "Sitios para el negocio que sí llevas",
       // Spain-facing chrome stays free of USD figures (same rule as homepage meta).
       footerBlurb: "Planes de sitios web para negocios de servicios locales en Estados Unidos.",
       region: "Este texto está en español de España. El servicio es para negocios en Estados Unidos.",

@@ -44,7 +44,7 @@ function RatingLine({
     .replaceAll("{count}", String(count))
     .replaceAll("{source}", source);
   return (
-    <p className="reviews-rating" aria-label={`${display} out of 5 from ${count} reviews on ${source}`}>
+    <p className="reviews-rating">
       <span className="reviews-rating__stars" aria-hidden="true">
         {"★★★★★"}
       </span>

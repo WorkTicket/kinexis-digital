@@ -49,7 +49,7 @@ export default function Page() {
         mark="Service Businesses"
         sub="We work with service businesses in every state. You get a site that is easy to call from and a clean search setup Google can understand."
         image="homepage"
-        imageAlt="Contractor showing a trade website on a laptop and phone"
+        imageAlt="Contractor showing a business website on a laptop and phone"
       />
       <Section>
         <h2 className="center"><HL text="Ways We Can Help" mark="We Can Help" /></h2>

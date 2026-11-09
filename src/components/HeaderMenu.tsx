@@ -28,7 +28,7 @@ function IndustriesMenu({ chrome, industries, industriesHref }: { chrome: Chrome
           <path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      <div className="mega__panel" id="industries-menu" aria-label={chrome.industries}>
+      <div className="mega__panel" id="industries-menu" role="region" aria-label={chrome.industries}>
         <div className="mega__head">
           <p className="mega__title">{chrome.industriesTitle}</p>
           <Link className="mega__all" href={industriesHref} prefetch={false} data-nav="">
@@ -87,7 +87,7 @@ function ServicesMenu({ chrome, hrefFor }: { chrome: Chrome; hrefFor: (path: str
           <path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </button>
-      <div className="mega__panel services-dropdown" id="services-menu" aria-label={chrome.services}>
+      <div className="mega__panel services-dropdown" id="services-menu" role="region" aria-label={chrome.services}>
         <ul className="services-dropdown__list">
           {links.map(([href, label]) => (
             <li key={href}>

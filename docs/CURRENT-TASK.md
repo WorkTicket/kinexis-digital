@@ -1,23 +1,22 @@
 # CURRENT-TASK.md
 
 ## Goal
-SEO polish + pre-deploy Spain/hub checks → live.
+Customer-facing “trade” → “business”; wire confirmed timeline + custom design.
 
 ## Status
-live on Workers
+live (`07233ede-e1e1-427b-955a-d12928435578`)
 
 ## Completed
-- Commit `dc298d6d` pushed to `origin/main`
-- Local deploy → Worker version `0ef094c6-a938-4191-9e4b-f8de9bb1349f` (IndexNow 166 URLs)
-- Spain Own It post: no USD on `/es-es`
-- HVAC / electrical / roofing / garage-doors / pressure-washing kept `live` (trade-specific copy)
+- Preview **2 business days**; launch **5 business days** after approval + content
+- Custom design upgrade: industry-standard · quoted (EN/ES upgrades + portfolio FAQ)
+- Sitewide copy: prefer “your business” (form field `name="trade"` kept for submissions)
+- Spanish parallel: `tu oficio` → `tu negocio` in customer-facing lines
+- ES web-design picker: **Elige tu industria** (redeployed)
 
-## Unfinished (manual — Colton)
-1. Rich Results Test on a hub, a cost post, and the calculator
-2. URL Inspection on the new pages
-3. Resubmit sitemap in Google and Bing
-4. GA4 Realtime: calculator events
-5. Tomorrow ~10 AM Bogotá: request new URLs with the four hubs already scheduled
+## Still open (Colton)
+- Paid audit price
+- Client results + permission
+- Optional richer Preferred Plumbing / A1 screenshot callouts
 
 ## Next action
-Run the manual search-console / GA4 checks above.
+Colton supplies remaining open facts if he wants them on-page.

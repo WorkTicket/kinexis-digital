@@ -17,7 +17,7 @@ const PORTFOLIO_FAQS = [
   },
   {
     q: "Can you build me a fully custom site?",
-    a: "Yes. Start with any plan and we can quote a one-time custom design upgrade when you want a direction that is not based on a template.",
+    a: "Yes. Start with any plan and we can quote a one-time custom design upgrade when you want a direction that is not based on a template. Custom upgrades are priced at industry-standard rates and confirmed in writing before work starts.",
   },
   {
     q: "If I show you a website I love, can you make something similar?",
@@ -44,7 +44,7 @@ export default function Page() {
         mark="Design Work"
         sub="Live client websites are listed first. Browse our work further down and we’ll customize a direction for your business, from the first screen to the quote path."
         image="portfolio"
-        imageAlt="Trade websites shown on desktop and phone screens"
+        imageAlt="Service business websites shown on desktop and phone screens"
       >
         <div className="btn-row spaced">
           <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>See My Homepage First</Link>
@@ -106,7 +106,7 @@ export default function Page() {
         <div className="showcase__head showcase__head--follow">
           <div>
             <p className="eyebrow">Template sites</p>
-            <h2><HL text="Websites Made for Your Trade" mark="Your Trade" /></h2>
+            <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
             <p className="muted">Choose a look you like and we’ll tailor the design, content, services, and calls to action for your business.</p>
           </div>
           <Link className="link-btn" href="/contact" prefetch={false}>Reach out to see more</Link>
@@ -152,7 +152,7 @@ export default function Page() {
         <Faq items={[...PORTFOLIO_FAQS]} />
       </Section>
 
-      <CtaBand h="Want To See A Direction For Your Site?" mark="Your Site" sub="Tell us about your trade and we’ll prepare a free homepage preview for your business." btn="Get My Free Preview" />
+      <CtaBand h="Want To See A Direction For Your Site?" mark="Your Site" sub="Tell us about your business and we’ll prepare a free homepage preview for your business." btn="Get My Free Preview" />
     </>
   );
 }

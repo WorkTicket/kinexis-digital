@@ -17,7 +17,7 @@ export default function Page() {
       <section className="section">
         <div className="container container--narrow prose">
           <h2>1. Free homepage preview</h2>
-          <p>{PLAN_TERMS[0]} Free homepage previews are delivered within 2 business days of receiving your business details. We will show you a homepage concept for your trade. You can approve it, ask for changes, or walk away without paying.</p>
+          <p>{PLAN_TERMS[0]} Free homepage previews are delivered within 2 business days of receiving your business details. We will show you a homepage concept for your business. You can approve it, ask for changes, or walk away without paying.</p>
 
           <h2>2. Monthly plans</h2>
           <p>Website is {PLANS[0].price}/mo. Lead System is {PLANS[1].price}/mo. Plus (Bilingual) is {PLANS[2].price}/mo. All three monthly plans are $0 down and begin on launch day.</p>
