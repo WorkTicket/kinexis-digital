@@ -47,6 +47,11 @@ const BLOG = [
   "public/blog/window-cleaning-website-pages.webp",
   "public/blog/lawn-care-website-cost.webp",
   "public/blog/lawn-care-website-pages.webp",
+  "public/blog/how-to-ask-for-google-reviews-contractor.webp",
+  "public/blog/missed-call-text-delayed-10dlc.webp",
+  "public/blog/google-business-profile-vs-website.webp",
+  "public/blog/freelancer-vs-agency-vs-subscription-website.webp",
+  "public/blog/wix-vs-squarespace-vs-managed-website-contractors.webp",
 ];
 const BLOG_WIDTHS = [640, 960];
 

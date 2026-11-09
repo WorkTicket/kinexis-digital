@@ -165,6 +165,15 @@ export const PAGES = {
     priority: 0.7,
     description: "Estimate missed-call revenue at risk with your own calls, miss rate, job value, and close rate. Planning math only — no invented benchmarks.",
   },
+  "google-review-link-qr": {
+    path: "/tools/google-review-link-qr",
+    title: "Google Review Link & QR Generator | Kinexis Digital",
+    crumb: "Review Link & QR",
+    absolute: true,
+    indexable: true,
+    priority: 0.7,
+    description: "Paste a Google Place ID to get a direct review link and downloadable QR code. Client-side only — no API key, no secrets stored.",
+  },
   faqs: {
     path: "/faqs",
     title: "Website Design FAQs",

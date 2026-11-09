@@ -955,4 +955,195 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
+  "how-to-ask-for-google-reviews-contractor": {
+    lead: "The next customer often reads your Google reviews before they call. Asking at the door works sometimes. A clear request with a direct link, sent when the job is done, works more often—and it does not require a long speech.",
+    faqs: [
+      {
+        q: "Do reviews affect my ranking?",
+        a: "Reviews are one of many local signals. Nobody outside Google can promise a position. Focus on real customers and a site that makes the phone number easy to use.",
+      },
+      {
+        q: "Is review automation included on every plan?",
+        a: "No. Google review requests after every job are part of Lead System and Plus. Website and base Own It do not include them.",
+      },
+      {
+        q: "Can Plus send requests in Spanish?",
+        a: "Yes. Plus includes Google review requests in English and Spanish.",
+      },
+    ],
+    sections: [
+      {
+        h2: "Ask at the Right Time",
+        html: `<p>This post gives plain scripts for the job site, text, and email. Use them as written, or swap in your company name. Do not invent reviews, buy reviews, or post photos of someone else’s work as yours.</p><p>Send or ask after the work is finished and the customer can see the result. That is usually:</p><ul><li>At the truck when you walk them through what you fixed</li><li>By text the same day the job closed</li><li>By email if that is how they already communicate with you</li></ul><p>For recurring routes (lawn, pool, cleaning), ask after a strong visit—not every week to the same person.</p><p>On <strong>Lead System</strong> ($197/mo) and <strong>Plus</strong> ($297/mo), Kinexis can send a Google review request after the job with a direct link to your profile. The Website plan ($97/mo) and base Own It ($1,497) do not include automated review requests.</p>`,
+      },
+      {
+        h2: "Job-Site Script (Say It Out Loud)",
+        html: `<p>Keep it short. One ask, one next step.</p><blockquote><p>“Thanks for having us out today. If you’re happy with the work, a Google review helps the next customer find us. I can text you a link—what’s the best number?”</p></blockquote><p>If they say yes, send the link before you leave the driveway. If they hesitate, stop. Do not pressure them.</p><p><strong>If they ask why:</strong></p><blockquote><p>“New customers check Google before they call. A short review from a real job is the most useful thing you can leave.”</p></blockquote>`,
+      },
+      {
+        h2: "Text Scripts (Copy and Send)",
+        html: `<p>Replace the brackets. Keep one link that opens your Google Business Profile review flow—not a vague “search for us on Google.” Build a direct link with the <a href="/tools/google-review-link-qr">review link &amp; QR tool</a>.</p><p><strong>Same day, after the job</strong></p><blockquote><p>Hi [Name]—this is [Your Name] at [Company]. Thanks again for the work today. If you’re willing, here’s our Google review link: [link]. Reply STOP to opt out of texts.</p></blockquote><p><strong>Next morning (only if they said yes on site but you forgot the link)</strong></p><blockquote><p>Hi [Name]—following up with the Google review link I mentioned: [link]. No pressure if you’re busy. —[Company]</p></blockquote><p><strong>Route / recurring service</strong></p><blockquote><p>Hi [Name]—thanks for another visit this season. If our crew made things easier, a Google review helps neighbors find us: [link].</p></blockquote><p>Do not send a review ask in the same text as an invoice dispute or a complaint follow-up.</p>`,
+      },
+      {
+        h2: "Email Scripts",
+        html: `<p><strong>Subject:</strong> Quick favor if you’re happy with the work</p><blockquote><p>Hi [Name],<br />Thanks for choosing [Company] for [job type] on [date].<br />If the work met your expectations, a Google review helps other homeowners decide who to call. Here’s a direct link: [link].<br />Appreciate your time either way.<br />[Your Name]<br />[Company] · [phone]</p></blockquote>`,
+      },
+      {
+        h2: "What Not to Do",
+        html: `<ul><li>Do not write the review for them and ask them to paste it.</li><li>Do not offer payment, discounts, or free work in exchange for a five-star review.</li><li>Do not use stock photos of someone else’s job on the website and present them as yours.</li><li>Do not advertise 24/7 on Google if nobody answers after hours.</li></ul><p>A few honest reviews beat a pile of fake ones. If you only have a few reviews today, keep asking after completed jobs—the count grows with real work.</p>`,
+      },
+      {
+        h2: "Make the Link Easy",
+        html: `<p>Customers skip requests that force them to search. Use a direct review link (or a QR code that opens it). Lead System and Plus send that kind of request after the job. You can also keep a short link on the invoice and the truck.</p><p>See also <a href="/blog/build-trust-with-reviews">Build Trust With Reviews</a>, <a href="/reviews">our reviews page</a>, and <a href="/industries/plumbing">website design for plumbers</a>.</p><p><a href="/contact">Get a free homepage preview</a> or compare plans on <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
+  },
+  "missed-call-text-delayed-10dlc": {
+    lead: "Missed-call text-back sounds simple: someone calls while you’re under a sink, a text goes out, they reply, you book the job. The part people underestimate is the wait before the first automated text can legally and reliably leave the carrier network.",
+    faqs: [
+      {
+        q: "Is carrier approval guaranteed?",
+        a: "No. The live pricing terms state carrier approval is not guaranteed.",
+      },
+      {
+        q: "When do texts start?",
+        a: "Typically 10–15 days after approval, per the published terms—not 10–15 days from signup alone.",
+      },
+      {
+        q: "Does the 60-day lead guarantee require text-back?",
+        a: "Tracked leads include a call of 30+ seconds, a missed caller who replies to the text-back, or a real quote form. Lead System and Plus include the 60-day lead guarantee; Own It does not. Spam, wrong numbers, applicants, and existing customers do not count.",
+      },
+    ],
+    sections: [
+      {
+        h2: "What the Site Says Today",
+        html: `<p>This post explains that delay in plain language using how Kinexis describes the feature on the live site—not software marketing promises.</p><p>On Kinexis plans, missed-call text-back is an <strong>optional add-on</strong>. A <strong>dedicated business phone line</strong> is required. A second tracking number is available for <strong>$1/mo</strong>. Standard carrier messaging rates may apply.</p><p><strong>Activation is subject to carrier approval (typically 10–15 days). Carrier approval is not guaranteed.</strong> Texting typically begins <strong>10–15 days after approval</strong>.</p><p>That wording matters. The feature is not “flip a switch and text tomorrow” for every number.</p>`,
+      },
+      {
+        h2: "Why Carriers Care",
+        html: `<p>Carriers and messaging platforms try to limit spam. Business texts that look like mass marketing, use shared numbers incorrectly, or lack clear business identity get delayed, filtered, or blocked.</p><p>Registration and approval steps exist so the network can see who is sending what. Exact registration paperwork and brand names vary by provider.</p><p>What you can tell a customer today, from published terms: expect a carrier approval window measured in <strong>days</strong>, not minutes, and do not promise a start date until approval lands.</p>`,
+      },
+      {
+        h2: "What to Tell a Trade Owner Before Go-Live",
+        html: `<ol><li><strong>Budget calendar time.</strong> If the website launches Monday, text-back may still be waiting on carriers.</li><li><strong>Use a dedicated business line.</strong> Shared or personal lines create approval and tracking problems.</li><li><strong>Do not advertise “instant text-back”</strong> on Google or the homepage until texts are actually sending.</li><li><strong>Keep answering the phone.</strong> Text-back helps when you miss a call. It does not replace pickup.</li></ol>`,
+      },
+      {
+        h2: "How This Fits the Plans",
+        html: `<ul><li><strong>Website</strong> ($97/mo) and <strong>Own It</strong> ($1,497): text-back is an add-on at <strong>$97/mo</strong>.</li><li><strong>Lead System</strong> ($197/mo) and <strong>Plus</strong> ($297/mo): text-back is not priced at $97/mo. A second tracking number is <strong>$1/mo</strong>, and standard carrier messaging rates may apply. Plus can run English + Spanish.</li></ul><p>Copy-ready SMS drafts live in <a href="/blog/missed-call-text-back-templates">missed-call text-back templates</a>. Estimate at-risk revenue with the <a href="/tools/missed-call-calculator">missed-call calculator</a>. Add-on details also appear on <a href="/upgrades">upgrades</a> and <a href="/faqs">FAQs</a>.</p><p><a href="/pricing">See plans</a> or <a href="/contact">get a free homepage preview</a> — free preview in 2 business days, no card, no obligation.</p>`,
+      },
+    ],
+  },
+  "google-business-profile-vs-website": {
+    lead: "Many one-truck businesses run for a while on Google Business Profile alone: hours, photos, reviews, and a phone number. Then a bigger job shows up, a competitor’s site looks clearer, or ads need a landing page. The question becomes: is the profile enough, or do you need a website too?",
+    faqs: [
+      {
+        q: "Will a website replace my Google reviews?",
+        a: "No. Reviews stay on the profile. The site should make it easy to call and, on Lead System/Plus, can help request reviews after jobs.",
+      },
+      {
+        q: "Do I need dozens of city pages?",
+        a: "No. One honest service-area page beats doorway pages with the town name swapped.",
+      },
+      {
+        q: "Is GBP setup included?",
+        a: "Lead System and Plus include a Google profile tune-up at launch. Plus adds two posts a month.",
+      },
+    ],
+    sections: [
+      {
+        h2: "Short Answer",
+        html: `<p>For most home-service businesses: <strong>the profile and the website do different jobs.</strong> Plenty of owners need both. A few can wait on a full site. Almost nobody should treat the profile as a place to hide a weak phone number.</p>`,
+      },
+      {
+        h2: "What Google Business Profile Is Good At",
+        html: `<ul><li>Showing you in the local map pack when someone searches nearby</li><li>Collecting and displaying Google reviews</li><li>Publishing hours, service area, and photos that match the real business</li><li>Letting someone call in one tap from search results</li></ul><p>Lead System and Plus at Kinexis include a Google profile tune-up at launch. Plus also includes two posts a month. That work supports the profile—it does not replace a website.</p>`,
+      },
+      {
+        h2: "What a Website Is Still For",
+        html: `<ul><li>Separate pages for different jobs (leak vs water heater; no-cool repair vs system replacement)</li><li>An honest service-area page for the cities you actually cover—not a stack of near-duplicate town pages</li><li>Space for process, financing notes you really offer, licenses, and project photos that are yours</li><li>A quote form that asks for the details you need</li><li>A place paid search, referrals, and email can send people when the map pack is crowded</li></ul><p>Every Kinexis site is built with a clean structure and fast pages Google can read. <strong>Ongoing SEO is not part of the four website plans</strong>; it is quoted separately. No honest provider can promise a particular ranking. See <a href="/seo-services">SEO services</a> and <a href="/blog/local-seo-get-found-get-called">local SEO that connects searches to calls</a>.</p>`,
+      },
+      {
+        h2: "When the Profile Alone Can Wait",
+        html: `<p>You might postpone a full site if:</p><ul><li>You already get more calls than you can book from the map pack</li><li>Your hours, area, and phone on the profile are accurate</li><li>You are not running ads that need a landing page</li></ul><p>Even then, keep the profile honest. Do not list 24/7 if the shop closes at six.</p>`,
+      },
+      {
+        h2: "When You Need Both",
+        html: `<p>Add or upgrade a website when:</p><ul><li>Different jobs need different pages and next steps</li><li>You want review requests and missed-call follow-up tied to a tracking number (Lead System / Plus options)</li><li>You need English and Spanish pages (Plus)</li><li>You want a free homepage preview before you pay, then a plan that fits—Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497</li></ul><p>Keep the <strong>name, phone, hours, and service area consistent</strong> between the profile and the site. Mismatches create angry calls.</p><p>Browse <a href="/industries">industry hubs</a>, compare <a href="/pricing">plans</a>, or <a href="/contact">request a free homepage preview</a>.</p>`,
+      },
+    ],
+  },
+  "freelancer-vs-agency-vs-subscription-website": {
+    lead: "If you run one truck—or a small crew—you do not need a 40-page marketing department. You need a site that loads on a phone, shows the work you do, and makes the next call easy. The choice is usually between a freelancer, a full agency, or a structured website plan with hosting and edits included.",
+    faqs: [
+      {
+        q: "Is a monthly plan a trap?",
+        a: "No. Treat it like any service: read cancel terms. Kinexis monthly plans cancel anytime with no cancellation fee; the site stays live through the period you already paid.",
+      },
+      {
+        q: "Does Kinexis include ongoing SEO in the four plans?",
+        a: "No. Foundation structure yes; ongoing SEO quoted separately.",
+      },
+      {
+        q: "Can I see the design before I pay?",
+        a: "Yes. Free homepage preview, no card, no obligation.",
+      },
+    ],
+    sections: [
+      {
+        h2: "What a One-Truck Site Actually Needs",
+        html: `<p>This is a decision guide, not a takedown. Freelancers and agencies can be the right fit. So can a month-to-month plan. Match the option to your cash flow, how often the site needs changes, and who you want answering when something breaks.</p><ul><li>Mobile layout with a visible click-to-call number</li><li>Pages for the jobs people search (not one mashed “services” blob)</li><li>An honest service area</li><li>Hosting, SSL, and a way to request small edits</li><li>Optional follow-up later: missed-call text-back, review requests, call tracking</li></ul>`,
+      },
+      {
+        h2: "Freelancer",
+        html: `<p><strong>Often fits when:</strong> you have a clear scope, a designer you trust, and someone on your side who can handle hosting later.</p><p><strong>Ask in writing:</strong> who registers the domain, who hosts, how edits are billed, and what you get if the project ends.</p><p><strong>Watch for:</strong> long waits for small changes; hosting left for you to figure out; no missed-call or review follow-up unless you add other tools.</p>`,
+      },
+      {
+        h2: "Agency",
+        html: `<p><strong>Often fits when:</strong> you need a large custom build, many locations, or a broader marketing retainer.</p><p><strong>Ask in writing:</strong> what the monthly retainer includes, minimum term, and reporting.</p><p><strong>Watch for:</strong> paying for a team you do not need yet; contracts that are hard to exit; SEO promises of a specific ranking (no one controls Google’s results).</p>`,
+      },
+      {
+        h2: "Structured Website Plan (Example: Kinexis)",
+        html: `<p>Kinexis publishes four options for local service businesses in the United States:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Notes</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>Up to 5 pages; hosting + SSL; small edits; form-lead tracking</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Up to 10 pages; optional text-back; review requests; GBP tune-up; call tracking + report; 60-day lead guarantee</td></tr><tr><td>Plus (Bilingual)</td><td>$297/mo</td><td>Up to 20 pages EN+ES; bilingual follow-up options; 60-day lead guarantee</td></tr><tr><td>Own It</td><td>$1,497 once</td><td>Up to 10 pages; site files yours from launch day; 12 months hosting/edits; no monthly plan; no lead guarantee</td></tr></tbody></table><p>Monthly plans are <strong>$0 down</strong>, <strong>month-to-month</strong>, <strong>cancel anytime</strong>, <strong>no cancellation fee</strong>, with price <strong>locked for 24 months</strong> from launch. Every plan includes a <strong>30-day money-back</strong> guarantee (written request; third-party costs already paid are excluded). Every plan starts with a <strong>free homepage preview in 2 business days</strong>—no card, no obligation.</p><p>Kinexis also publishes a comparison table noting typical gaps vs freelancers and agencies (preview before pay, missed-call texts and review requests, hosting handled, 24-month price lock, English/Spanish). Individual providers vary—that table is a planning aid, not a claim that every freelancer fails those rows. See <a href="/web-design">web design</a> and <a href="/faqs">FAQs</a>.</p>`,
+      },
+      {
+        h2: "How to Choose Without Fear Language",
+        html: `<ul><li><strong>Need cash-light launch + hosting handled:</strong> a monthly plan can fit.</li><li><strong>Want a one-time build and will manage hosting:</strong> a freelancer or Own It-style purchase can fit.</li><li><strong>Need a big custom program:</strong> an agency may fit—get scope in writing.</li></ul><p>On monthly plans, Kinexis hosts and manages while the plan is active. To keep the site after canceling, arrange a <strong>buyout</strong> (written one-time purchase of the site files) or move to <strong>Own It</strong> before the paid period ends. Ask for buyout terms in writing. On Own It, the site files belong to you from launch day.</p><p>Compare the four plans at <a href="/pricing">/pricing</a>, or <a href="/contact">start a free preview</a> and decide after you see the homepage.</p>`,
+      },
+    ],
+  },
+  "wix-vs-squarespace-vs-managed-website-contractors": {
+    lead: "DIY builders are popular because the first login feels cheap and fast. A managed website plan costs a monthly fee (or a one-time Own It payment) but hands hosting, edits, and optional follow-up to someone else. Neither path is automatically “wrong.” The useful question is who will keep the phone number easy to tap after the logo looks good.",
+    faqs: [
+      {
+        q: "Is a builder “bad” for plumbers or HVAC?",
+        a: "No. A finished, fast, honest builder site beats an unfinished managed project. Choose the path you will complete.",
+      },
+      {
+        q: "Will Kinexis bash monthly plans?",
+        a: "No. Monthly and Own It are both published options. Pick by cash flow and who you want managing hosting.",
+      },
+      {
+        q: "Can I switch later?",
+        a: "Start with a free preview, then choose Website, Lead System, Plus, or Own It. Preview first reduces the chance you pay for a direction you dislike.",
+      },
+    ],
+    sections: [
+      {
+        h2: "What DIY Builders Do Well",
+        html: `<ul><li>You can experiment in the evening without waiting on a designer</li><li>Templates get a page online quickly</li><li>You control the account day to day</li></ul>`,
+      },
+      {
+        h2: "Where Trade Owners Get Stuck",
+        html: `<ul><li>Building service pages, service area, and mobile call paths still takes hours</li><li>Hosting renewals, plugins, and design tweaks fall on you during busy seasons</li><li>Missed-call text-back, review requests after jobs, and call reporting usually mean extra tools</li><li>Ads and SEO still need a clear page; the builder alone does not book the job</li></ul><p>This is not an argument against builders. It is a reminder that the calendar time is real.</p>`,
+      },
+      {
+        h2: "What a Managed Plan Is For",
+        html: `<p>A managed option fits when you would rather stay on jobs than inside a website editor. Using Kinexis as a concrete example (not the only vendor in the market):</p><ul><li>Free homepage preview in <strong>2 business days</strong>, no card, no obligation</li><li>Website <strong>$97/mo</strong>, Lead System <strong>$197/mo</strong>, Plus <strong>$297/mo</strong>, or Own It <strong>$1,497</strong> once</li><li>Hosting, SSL, and small edits on monthly plans</li><li>Lead System / Plus can add review requests and optional missed-call text-back (carrier approval typically <strong>10–15 days</strong>; not guaranteed)</li><li>Month-to-month cancel on monthly plans; Own It delivers site files from launch day</li></ul><p>Ongoing SEO is quoted separately from those four plans. No ranking guarantees.</p>`,
+      },
+      {
+        h2: "Decision Checklist",
+        html: `<ol><li><strong>Time:</strong> Will you finish service pages this month, or will the draft sit?</li><li><strong>Mobile call path:</strong> Can someone tap-to-call above the fold today?</li><li><strong>Follow-up:</strong> Do you need text-back or review requests, or only a brochure site?</li><li><strong>Exit:</strong> If you stop paying a builder or a plan, what happens to the domain and files? Get it in writing. For Kinexis monthly plans, ask for <strong>written buyout terms</strong> before you cancel if you want to keep the site files; or choose Own It when that model fits.</li><li><strong>Language:</strong> Do you need English and Spanish (Plus)?</li></ol><p>Related reading: <a href="/blog/freelancer-vs-agency-vs-subscription-website">freelancer vs agency vs a website plan</a> and <a href="/web-design">web design</a>.</p><p>Compare options at <a href="/pricing">/pricing</a> and <a href="/contact">request a free homepage preview</a> before you commit.</p>`,
+      },
+    ],
+  },
 };

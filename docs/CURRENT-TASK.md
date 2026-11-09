@@ -1,22 +1,27 @@
 # CURRENT-TASK.md
 
 ## Goal
-Customer-facing “trade” → “business”; wire confirmed timeline + custom design.
+Ship batch: 5 EN blog posts + Google review link/QR tool.
 
 ## Status
-live (`07233ede-e1e1-427b-955a-d12928435578`)
+implemented locally (not deployed)
 
 ## Completed
-- Preview **2 business days**; launch **5 business days** after approval + content
-- Custom design upgrade: industry-standard · quoted (EN/ES upgrades + portfolio FAQ)
-- Sitewide copy: prefer “your business” (form field `name="trade"` kept for submissions)
-- Spanish parallel: `tu oficio` → `tu negocio` in customer-facing lines
-- ES web-design picker: **Elige tu industria** (redeployed)
+- Posts in `POSTS` + `EN_POST_CONTENT`:
+  - `/blog/how-to-ask-for-google-reviews-contractor`
+  - `/blog/missed-call-text-delayed-10dlc` (Website/Own It $97 text-back add-on; Lead System/Plus $1/mo + carrier)
+  - `/blog/google-business-profile-vs-website`
+  - `/blog/freelancer-vs-agency-vs-subscription-website`
+  - `/blog/wix-vs-squarespace-vs-managed-website-contractors`
+- Tool `/tools/google-review-link-qr` (client-only Place ID → writereview URL + PNG QR)
+- Sitemap/pages registry, EN-only tool (unmirrored), GA `tool_generate`, form `source=review_qr_tool`
+- Blog hero stills + 640/960 variants
+- `npm run typecheck` + `npm run lint` pass
 
-## Still open (Colton)
-- Paid audit price
-- Client results + permission
-- Optional richer Preferred Plumbing / A1 screenshot callouts
+## Still open
+- Spanish translations for the five new posts
+- Deploy + Rich Results / GA4 DebugView check
+- Optional: richer custom blog hero art (current stills are branded placeholders)
 
 ## Next action
-Colton supplies remaining open facts if he wants them on-page.
+Preview locally, then deploy when ready.

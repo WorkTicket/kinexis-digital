@@ -10,9 +10,6 @@ let heroStop = () => {};
 let markIo = null;
 const marked = new WeakSet();
 let revealStop = () => {};
-let revealOn = false;
-const revealEvents = ["pointerdown", "keydown", "touchstart", "scroll"];
-const REVEAL = "main h2, main .card, main .tier, main .faq, main .work, main a.shot, main .compare, main .panel, main .logo-ph, main .video-thumb, main .lead__copy, main .lead__card, main .two-col > *";
 const fbTimers = new WeakMap();
 
 function syncChrome() {
@@ -279,46 +276,11 @@ function resetMarks() {
   markIo = null;
 }
 
-function armReveal() {
-  // Scroll reveals can make touch scrolling feel as if content is waiting to
-  // render. Keep the effect for precise-pointer devices and paint immediately
-  // on phones and tablets.
-  if (reduce() || matchMedia("(hover: none), (pointer: coarse)").matches || !("IntersectionObserver" in window)) return () => {};
-  const timers = [];
-  const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    io.unobserve(el);
-    el.classList.add("in");
-    timers.push(setTimeout(() => {
-      el.classList.remove("reveal", "in", "from-left", "from-right");
-      el.style.transitionDelay = "";
-    }, 1100));
-  }), { threshold: 0.05, rootMargin: "0px 0px 120px 0px" });
-  document.querySelectorAll(REVEAL).forEach((el) => {
-    if (el.querySelector(".hl") || el.closest(".stepper") || el.closest("[data-island]")) return;
-    el.classList.add("reveal");
-    if (el.matches(".two-col > *, .lead__copy, .lead__card")) el.classList.add(el.matches(".two-col > :first-child, .lead__copy") ? "from-left" : "from-right");
-    const idx = el.parentElement ? Array.from(el.parentElement.children).indexOf(el) : 0;
-    el.style.transitionDelay = Math.min(idx, 5) * 70 + "ms";
-    io.observe(el);
-  });
-  return () => {
-    io.disconnect();
-    timers.forEach(clearTimeout);
-  };
-}
-function startReveal() {
-  if (revealOn) return;
-  revealOn = true;
-  revealStop = armReveal();
-}
 function resetReveal() {
+  // Scroll-reveal used to set opacity:0 on matched nodes as soon as boot ran.
+  // That left cards/shots blank on first load. Keep nodes painted.
   revealStop();
   revealStop = () => {};
-  revealOn = false;
-  for (const name of revealEvents) removeEventListener(name, startReveal);
-  for (const name of revealEvents) addEventListener(name, startReveal, { once: true, passive: true });
 }
 
 const heroArmed = new WeakSet();
@@ -920,6 +882,8 @@ document.addEventListener("submit", async (event) => {
       track("generate_lead", {
         form_id: form.getAttribute("name") || form.id || "lead",
         page_path: location.pathname,
+        source: String(data.get("source") || ""),
+        landing_page: String(data.get("landing_page") || location.pathname),
       });
       return;
     }
@@ -1022,7 +986,6 @@ if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
 
 syncChrome();
 resetReveal();
-startReveal();
 paintNew();
 new MutationObserver(() => {
   if (location.pathname !== path) {

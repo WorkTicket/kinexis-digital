@@ -88,10 +88,14 @@ export default function DocumentShell({
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
-        {/* Prevent the desktop navigation from painting unstyled while the
-            external stylesheet is in flight. The full mobile menu still opens
-            normally because this rule stops matching as soon as it is open. */}
-        <style>{`@media(max-width:1320px){.nav:not(.is-open){display:none}}`}</style>
+        {/* First-paint guards only. Do NOT unlayer-hide .mega__panel /
+            .dropdown__menu — design CSS lives in @layer components, so an
+            unlayered display:none permanently beats .is-open and kills menus. */}
+        <style>{`
+html,body{background:#fff;color:#0a1230}
+body{margin:0;font-family:system-ui,sans-serif;line-height:1.6}
+@media(max-width:1320px){.nav:not(.is-open){display:none}}
+`}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />
         <script
           id="route-chrome"

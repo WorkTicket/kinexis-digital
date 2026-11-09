@@ -31,6 +31,7 @@ export default function Form({
   fast,
   fastText = "Send it over and we'll get back to you soon.",
   slim = false,
+  hiddenFields,
 }: {
   fields: Field[];
   button: string;
@@ -38,6 +39,7 @@ export default function Form({
   fast?: boolean;
   fastText?: string;
   slim?: boolean;
+  hiddenFields?: Record<string, string>;
 }) {
   return (
     <form className={slim ? "form form--slim" : "form"} noValidate data-lead="" data-contact-or="">
@@ -56,6 +58,11 @@ export default function Form({
           Leave blank
           <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
         </label>
+        {hiddenFields
+          ? Object.entries(hiddenFields).map(([name, value]) => (
+              <input key={name} type="hidden" name={name} value={value} />
+            ))
+          : null}
       </div>
       <button className={`btn btn--primary${slim ? "" : " btn--lg"}`} type="submit">{button}</button>
       {note && <p className="muted small">{note}</p>}

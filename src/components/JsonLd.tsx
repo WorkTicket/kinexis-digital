@@ -370,40 +370,57 @@ export function WebApplicationSchema({
   description,
   path,
   applicationCategory = "BusinessApplication",
+  trail,
+  faqs,
 }: {
   name: string;
   description: string;
   path: string;
   applicationCategory?: string;
+  trail?: { name: string; path: string }[];
+  faqs?: QA[];
 }) {
   const url = absolute(path);
+  const breadcrumb = trail?.length
+    ? trail
+    : path.startsWith("/tools/")
+      ? [
+          { name: "Home", path: "/" },
+          { name: "Tools", path },
+          { name, path },
+        ]
+      : [
+          { name: "Home", path: "/" },
+          { name, path },
+        ];
+  const graph: unknown[] = [
+    {
+      "@type": "WebApplication",
+      "@id": `${url}#app`,
+      name,
+      description,
+      url,
+      applicationCategory,
+      operatingSystem: "Any",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      provider: { "@id": orgId() },
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${url}#page`,
+      url,
+      name,
+      description,
+      isPartOf: { "@id": websiteId() },
+    },
+    crumbs(breadcrumb),
+  ];
+  if (faqs?.length) {
+    graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: faqEntities(faqs) });
+  }
   return <Script data={{
     "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebApplication",
-        "@id": `${url}#app`,
-        name,
-        description,
-        url,
-        applicationCategory,
-        operatingSystem: "Any",
-        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        provider: { "@id": orgId() },
-      },
-      {
-        "@type": "WebPage",
-        "@id": `${url}#page`,
-        url,
-        name,
-        description,
-        isPartOf: { "@id": websiteId() },
-      },
-      crumbs([
-        { name: "Home", path: "/" },
-        { name, path },
-      ]),
-    ],
+    "@graph": graph,
   }} />;
 }
 

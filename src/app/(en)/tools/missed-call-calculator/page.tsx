@@ -29,7 +29,7 @@ export default function MissedCallCalculatorPage() {
       <Section narrow>
         <MissedCallCalculator />
         <p className="muted" style={{ marginTop: "1.25rem" }}>
-          Missed-call text-back is an optional add-on on Lead System and Plus. Carrier approval typically takes 10–15 days and is not guaranteed. See{" "}
+          Missed-call text-back is optional. On Website or Own It it is a $97/mo add-on; on Lead System or Plus a second tracking number is $1/mo if used, plus carrier rates. Carrier approval typically takes 10–15 days and is not guaranteed. See{" "}
           <Link href="/blog/missed-call-text-back-templates" prefetch={false}>templates by trade</Link>
           {" "}and{" "}
           <Link href="/pricing" prefetch={false}>plans</Link>.
