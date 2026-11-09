@@ -1451,32 +1451,86 @@ html.no-audit [data-site-audit]{display:none!important}
 /* Desktop-only header CTA — mobile/tablet tools stay phone + hamburger. */
 .header__cta{
   display:none;flex:0 0 auto;min-height:44px;white-space:nowrap;padding:.7em 1.2em;font-size:.9rem;line-height:1.2;letter-spacing:.02em;
-  transform-origin:center center;touch-action:manipulation;
+  transform-origin:center center;touch-action:manipulation;isolation:isolate;
 }
 @media (min-width:1321px){
   .header__cta{
     display:inline-flex;
-    animation:cta-nudge 4.2s cubic-bezier(.34,1.3,.64,1) infinite;
+    animation:cta-nudge 5s cubic-bezier(.22,1.15,.36,1) infinite;
   }
+  .header__cta::after{animation:cta-sheen 5s linear infinite}
 }
 .header__cta-label{position:relative;z-index:1;display:block}
+.header__cta::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(
+    115deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(255,255,255,.4) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  background-size:240% 100%;background-position:125% 0;opacity:0;
+}
 .header__cta:hover,.header__cta:active,.header__cta:focus-visible{animation:none}
+.header__cta:hover::after,.header__cta:active::after,.header__cta:focus-visible::after{
+  animation:none;opacity:0;background-position:125% 0;
+}
 .nav__preview-title,.nav__preview-hint{position:relative;z-index:1}
-/* Soft attention nudge about every 4s — rest most of the cycle. */
+/* ~5s attention cycle: rest → crouch → spring pop → settle wiggle + sheen. */
 @keyframes cta-nudge{
-  0%,76%,100%{transform:translateY(0)}
-  80%{transform:translateY(-3px)}
-  84%{transform:translateY(0)}
-  88%{transform:translateY(-1.5px)}
-  92%{transform:translateY(0)}
+  0%,62%,100%{
+    transform:translate3d(0,0,0) scale(1) rotate(0deg);
+    box-shadow:0 6px 24px rgba(0,0,0,.2);
+    filter:brightness(1);
+  }
+  68%{
+    transform:translate3d(0,2px,0) scale(.965) rotate(-.55deg);
+    box-shadow:0 3px 12px rgba(0,0,0,.18);
+    filter:brightness(.98);
+  }
+  74%{
+    transform:translate3d(0,-8px,0) scale(1.07) rotate(1.35deg);
+    box-shadow:0 16px 34px rgba(255,106,0,.32),0 8px 18px rgba(10,18,48,.18);
+    filter:brightness(1.08);
+  }
+  80%{
+    transform:translate3d(0,-2px,0) scale(1.015) rotate(-.7deg);
+    box-shadow:0 10px 26px rgba(255,106,0,.18),0 6px 16px rgba(10,18,48,.16);
+    filter:brightness(1.03);
+  }
+  86%{
+    transform:translate3d(0,-5px,0) scale(1.04) rotate(.85deg);
+    box-shadow:0 12px 28px rgba(255,106,0,.22),0 6px 16px rgba(10,18,48,.16);
+    filter:brightness(1.05);
+  }
+  92%{
+    transform:translate3d(0,0,0) scale(1.01) rotate(-.25deg);
+    box-shadow:0 7px 22px rgba(0,0,0,.2);
+    filter:brightness(1.01);
+  }
+  96%{
+    transform:translate3d(0,0,0) scale(1) rotate(0deg);
+    box-shadow:0 6px 24px rgba(0,0,0,.2);
+    filter:brightness(1);
+  }
+}
+@keyframes cta-sheen{
+  0%,66%{opacity:0;background-position:125% 0}
+  72%{opacity:.95;background-position:70% 0}
+  82%{opacity:.4;background-position:15% 0}
+  90%,100%{opacity:0;background-position:-25% 0}
 }
 @media (prefers-reduced-motion:reduce){
   .header__cta{animation:none!important}
+  .header__cta::after{animation:none!important;opacity:0!important}
 }
 /* Only disable sticky-hover fill when the device truly can't hover.
    Do not key off pointer:coarse — hybrid touch laptops still have a mouse. */
 @media (hover:none){
   .header__cta{animation:none}
+  .header__cta::after{animation:none;opacity:0}
   .header__cta:hover:not(:focus-visible){color:#fff;--btn-fill:0}
 }
 .float-cta .btn{padding:.55em 1.05em;font-size:.95rem}
@@ -2809,6 +2863,12 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .services-dropdown__list a{display:block;padding:10px 12px;border-radius:8px;font-weight:700;color:var(--text);white-space:nowrap}
 .services-dropdown__list a:hover,.services-dropdown__list a:focus-visible{background:var(--bg-tint);color:var(--accent-dark)}
 .services-dropdown__list a.is-current{background:var(--accent-soft);color:var(--accent-dark)}
+.services-dropdown__all{
+  display:inline-flex;align-items:center;gap:6px;margin:4px 4px 0;padding:10px 8px 6px;
+  border-top:1px solid var(--border);font-size:.9rem;font-weight:700;color:var(--accent);white-space:nowrap;
+}
+.services-dropdown__all:hover,.services-dropdown__all:focus-visible{color:var(--accent-dark)}
+.services-dropdown__all.is-current{color:var(--accent-dark)}
 .mega__head{display:flex;align-items:center;justify-content:space-between;gap:16px}
 .mega__title{margin:0;font-family:var(--font-head);font-weight:700;font-size:1.15rem;letter-spacing:-.02em;line-height:1.2}
 .mega__panel .mega__all{display:inline-flex;align-items:center;gap:6px;padding:8px 0;font-size:.95rem;font-weight:700;color:var(--accent);white-space:nowrap}
@@ -2871,7 +2931,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
       padding .3s ease,
       visibility 0s;
   }
-  .nav>.mega--services.is-open .mega__panel{max-height:220px}
+  .nav>.mega--services.is-open .mega__panel{max-height:280px}
   .mega__head{align-items:flex-start;flex-direction:column;gap:2px;padding:6px 8px 8px}
   .mega__title{font-size:.92rem;font-weight:600;color:var(--muted)}
   .mega__grid{grid-template-columns:1fr 1fr;gap:2px}
@@ -2883,6 +2943,10 @@ html.nav-open .mega__panel::-webkit-scrollbar,
     border-bottom:1px solid var(--border);font-weight:700;
   }
   .mega--services .services-dropdown__list li:last-child a{border-bottom:0}
+  .mega--services .services-dropdown__all{
+    margin:0;padding:12px 8px 4px;width:100%;box-sizing:border-box;
+    font-size:clamp(.9rem,2.2svh,1.05rem);
+  }
   .nav.mega-open{
     display:flex;flex-direction:column;align-content:start;
     overflow:auto;overscroll-behavior:contain;touch-action:pan-y;
