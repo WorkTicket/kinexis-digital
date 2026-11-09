@@ -165,7 +165,9 @@ export function fallbackTrack(mobile?: string, desktop?: string): { className: s
 
 /** Page header with optional split artwork. Text-only pages keep the existing centered layout. */
 export function PageHero({
-  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", locale = "en", fallbackTrack: track, deferMobile = false, children,
+  // Default deferMobile for kit heroes so mobile LCP is the H1 (homepage pattern),
+  // not a 260px illustration that lands after throttled image time.
+  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", locale = "en", fallbackTrack: track, deferMobile = true, children,
 }: {
   h1: ReactNode; sub: ReactNode; mark?: string; eyebrow?: string;
   image?: ArtName; imageAlt?: string; art?: ReactNode; decor?: DecorName[]; className?: string;
