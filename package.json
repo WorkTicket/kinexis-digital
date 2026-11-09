@@ -24,7 +24,7 @@
     "images:heroes": "node scripts/optimize-hero-images.mjs",
     "images:posters": "node scripts/optimize-video-posters.mjs",
     "check:contact": "node scripts/check-contact-delivery.mjs",
-    "build:worker": "node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build",
+    "build:worker": "node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build && node scripts/defer-chunks.mjs --opennext-cache",
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
     "deploy:worker": "opennextjs-cloudflare deploy",
     "deploy": "npm run check && npm run build:worker && npm run deploy:worker && npm run search:notify",
