@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
-/* Must stay outside @layer — Lightning CSS drops @property inside layers, which
-   breaks the orange fill hover (transition on --btn-fill needs a registered type). */
+/* Must stay outside @layer — Lightning CSS drops @property inside layers.
+   Use <number> 0→1 (not <percentage>): production minify turns `0%` into `0`,
+   which invalidates a percentage @property and kills the blue→orange wipe on live. */
 @property --btn-fill{
-  syntax:"<percentage>";
+  syntax:"<number>";
   inherits:false;
-  initial-value:0%;
+  initial-value:0;
 }
 
 /* Tailwind v4 theme: brand tokens become utilities (bg-accent, text-muted, rounded-brand, max-w-site ...) */
@@ -114,10 +115,9 @@ p{margin:0 0 1em}
 .ph-label{font-size:.8rem;color:var(--muted)}
 
 /* Buttons — Uiverse fill sweep (navy face, orange wipe, brand colors).
-   One gradient + --btn-fill (no overflow clip / no ::before layer) so no navy hairline.
-   @property --btn-fill is registered at file top (outside this layer). */
+   --btn-fill is 0→1; stop position is calc(...* 100%). */
 .btn{
-  --btn-fill:0%;
+  --btn-fill:0;
   --btn-face:var(--brand-navy);
   --btn-wipe:var(--brand-orange);
   position:relative;display:inline-flex;justify-content:center;align-items:center;gap:.4em;
@@ -128,26 +128,26 @@ p{margin:0 0 1em}
     linear-gradient(
       to right,
       var(--btn-wipe) 0%,
-      var(--btn-wipe) var(--btn-fill),
-      var(--btn-face) var(--btn-fill),
+      var(--btn-wipe) calc(var(--btn-fill) * 100%),
+      var(--btn-face) calc(var(--btn-fill) * 100%),
       var(--btn-face) 100%
     );
   box-shadow:0 6px 24px rgba(0,0,0,.2);
   transition:color .2s ease-in-out,--btn-fill .32s cubic-bezier(.2,.7,.2,1),transform .15s ease,box-shadow .15s ease;
 }
 .btn::before{content:none;display:none}
-.btn:hover:not(:disabled),.btn:focus-visible{--btn-fill:100%;color:var(--brand-navy)}
+.btn:hover:not(:disabled),.btn:focus-visible{--btn-fill:1;color:var(--brand-navy)}
 .btn:focus-visible{outline:3px solid var(--brand-cobalt);outline-offset:4px}
 .btn:active:not(:disabled):not(.btn--ghost):not(.btn--light){transform:scale(.98);box-shadow:0 4px 16px rgba(0,0,0,.22)}
 .btn:disabled{cursor:not-allowed;opacity:.7}
 .btn--primary,.btn--warm{--btn-face:var(--brand-navy)}
 .btn.btn--primary:hover:not(:disabled),.btn.btn--warm:hover:not(:disabled),
 .btn.btn--primary:focus-visible,.btn.btn--warm:focus-visible{
-  --btn-fill:100%;color:var(--brand-navy);
+  --btn-fill:1;color:var(--brand-navy);
 }
 /* Secondary — Uiverse.io adamgiebl hard-shadow sticker (white / navy). */
 .btn.btn--ghost,.btn.btn--light{
-  --btn-fill:0%;
+  --btn-fill:0;
   background:#fff;
   color:var(--brand-navy);
   border:3px solid var(--brand-navy);
@@ -157,7 +157,7 @@ p{margin:0 0 1em}
 }
 .btn.btn--ghost:hover:not(:disabled),.btn.btn--light:hover:not(:disabled),
 .btn.btn--ghost:focus-visible,.btn.btn--light:focus-visible{
-  --btn-fill:0%;
+  --btn-fill:0;
   background:#fff;
   color:var(--brand-navy);
   transform:translate(-.05em,-.05em);
@@ -181,11 +181,11 @@ p{margin:0 0 1em}
 .link-btn{background:none;border:0;color:var(--accent);font:inherit;font-weight:600;text-decoration:underline;cursor:pointer;padding:.6em 0}
 @media (prefers-reduced-motion:reduce){
   .btn{transition:none;animation:none}
-  .btn:hover:not(:disabled),.btn:focus-visible{animation:none;--btn-fill:100%}
+  .btn:hover:not(:disabled),.btn:focus-visible{animation:none;--btn-fill:1}
   .btn.btn--ghost:hover:not(:disabled),.btn.btn--light:hover:not(:disabled),
   .btn.btn--ghost:focus-visible,.btn.btn--light:focus-visible,
   .btn.btn--ghost:active:not(:disabled),.btn.btn--light:active:not(:disabled){
-    --btn-fill:0%;transform:none;box-shadow:.1em .1em;
+    --btn-fill:0;transform:none;box-shadow:.1em .1em;
   }
 }
 
@@ -538,7 +538,7 @@ p{margin:0 0 1em}
 .hero .hero__video .ph-label{color:rgba(255,255,255,.72)}
 /* Play control — same navy / orange fill sweep as .btn */
 .play{
-  --btn-fill:0%;
+  --btn-fill:0;
   --btn-face:var(--brand-navy);
   --btn-wipe:var(--brand-orange);
   width:64px;height:64px;border:none;border-radius:50%;padding:0;
@@ -547,8 +547,8 @@ p{margin:0 0 1em}
     linear-gradient(
       to right,
       var(--btn-wipe) 0%,
-      var(--btn-wipe) var(--btn-fill),
-      var(--btn-face) var(--btn-fill),
+      var(--btn-wipe) calc(var(--btn-fill) * 100%),
+      var(--btn-face) calc(var(--btn-fill) * 100%),
       var(--btn-face) 100%
     );
   box-shadow:0 6px 24px rgba(0,0,0,.2);
@@ -558,7 +558,7 @@ p{margin:0 0 1em}
 .hero__video:hover .play,.video-thumb:hover .play,
 .hero__play:hover .play,.hero__play:focus-visible .play,
 .upgrade__preview:hover .play,.upgrade__preview:focus-visible .play{
-  --btn-fill:100%;color:var(--brand-navy);
+  --btn-fill:1;color:var(--brand-navy);
 }
 .hero__video:active .play,.video-thumb:active .play,
 .hero__play:active .play,.upgrade__preview:active .play{
@@ -581,7 +581,7 @@ p{margin:0 0 1em}
   .play{transition:none}
   .hero__video:hover .play,.video-thumb:hover .play,
   .hero__play:hover .play,.hero__play:focus-visible .play,
-  .upgrade__preview:hover .play,.upgrade__preview:focus-visible .play{--btn-fill:100%}
+  .upgrade__preview:hover .play,.upgrade__preview:focus-visible .play{--btn-fill:1}
 }
 
 /* First screen: the whole offer stays inside the initial viewport, the way a sales hero should. */
@@ -1332,7 +1332,7 @@ code{background:var(--bg-tint);padding:.1em .4em;border-radius:6px;font-size:.9e
   }
   .nav .nav__extra .btn:not(.btn--ghost):not(.btn--light),
   .nav .nav__extra .nav__preview{
-    border:none;--btn-face:var(--brand-navy);--btn-wipe:var(--brand-orange);--btn-fill:0%;color:#fff;
+    border:none;--btn-face:var(--brand-navy);--btn-wipe:var(--brand-orange);--btn-fill:0;color:#fff;
     box-shadow:0 6px 24px rgba(0,0,0,.2);border-radius:5px;
   }
   .nav .nav__extra .nav__preview{
@@ -1408,7 +1408,7 @@ html.no-audit [data-site-audit]{display:none!important}
    Do not key off pointer:coarse — hybrid touch laptops still have a mouse. */
 @media (hover:none){
   .header__cta{animation:none}
-  .header__cta:hover:not(:focus-visible){color:#fff;--btn-fill:0%}
+  .header__cta:hover:not(:focus-visible){color:#fff;--btn-fill:0}
 }
 .float-cta .btn{padding:.55em 1.05em;font-size:.95rem}
 @media (max-width:860px){
@@ -1419,7 +1419,7 @@ html.no-audit [data-site-audit]{display:none!important}
 .link-btn:hover{text-underline-offset:7px;color:var(--accent-dark)}
 
 /* Loading state for submit buttons */
-.btn.is-loading{pointer-events:none;opacity:.85;--btn-fill:0%}
+.btn.is-loading{pointer-events:none;opacity:.85;--btn-fill:0}
 .btn--primary.is-loading::after{content:"";width:1em;height:1em;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
@@ -2855,7 +2855,7 @@ p,li,blockquote{ text-wrap:pretty }
 
 /* Final button reinforce — keep the Uiverse fill system above older sticker overrides. */
 .btn{
-  --btn-fill:0%;
+  --btn-fill:0;
   --btn-face:var(--brand-navy);
   --btn-wipe:var(--brand-orange);
   min-height:3rem;
@@ -2866,8 +2866,8 @@ p,li,blockquote{ text-wrap:pretty }
     linear-gradient(
       to right,
       var(--btn-wipe) 0%,
-      var(--btn-wipe) var(--btn-fill),
-      var(--btn-face) var(--btn-fill),
+      var(--btn-wipe) calc(var(--btn-fill) * 100%),
+      var(--btn-face) calc(var(--btn-fill) * 100%),
       var(--btn-face) 100%
     );
   color:#fff;
@@ -2879,7 +2879,7 @@ p,li,blockquote{ text-wrap:pretty }
 .btn:focus-visible:not(.btn--ghost):not(.btn--light),
 .btn.btn--primary:hover:not(:disabled),.btn.btn--warm:hover:not(:disabled),
 .btn.btn--primary:focus-visible,.btn.btn--warm:focus-visible{
-  --btn-fill:100%;
+  --btn-fill:1;
   color:var(--brand-navy);
   box-shadow:0 6px 24px rgba(0,0,0,.2);
   transform:none;
@@ -2893,7 +2893,7 @@ p,li,blockquote{ text-wrap:pretty }
 .btn--primary,.btn--warm{--btn-face:var(--brand-navy)}
 /* Secondary — exact Uiverse.io adamgiebl press (no transition). */
 .btn.btn--ghost,.btn.btn--light{
-  --btn-fill:0%;
+  --btn-fill:0;
   background:#fff;
   color:var(--brand-navy);
   border:3px solid var(--brand-navy);
@@ -2904,7 +2904,7 @@ p,li,blockquote{ text-wrap:pretty }
 }
 .btn.btn--ghost:hover:not(:disabled),.btn.btn--light:hover:not(:disabled),
 .btn.btn--ghost:focus-visible,.btn.btn--light:focus-visible{
-  --btn-fill:0%;
+  --btn-fill:0;
   background:#fff;
   color:var(--brand-navy);
   transform:translate(-.05em,-.05em);
@@ -2926,7 +2926,7 @@ p,li,blockquote{ text-wrap:pretty }
   box-shadow:0 6px 24px rgba(0,0,0,.2);
 }
 .btn--outline-light:hover:not(:disabled),.btn--outline-light:focus-visible{
-  --btn-fill:100%;
+  --btn-fill:1;
   color:var(--brand-navy);
 }
 .btn--sm{min-height:0}
