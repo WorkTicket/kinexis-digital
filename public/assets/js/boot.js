@@ -34,20 +34,45 @@ function syncChrome() {
 function desktopMega() {
   return matchMedia("(hover: hover) and (pointer: fine)").matches && matchMedia("(min-width: 1321px)").matches;
 }
-function setMega(open) {
+function allMegas() {
+  return [...document.querySelectorAll("[data-mega]")];
+}
+function syncMegaNav() {
+  const nav = document.getElementById("nav");
+  if (!nav) return;
+  const mobile = matchMedia("(max-width: 1320px)").matches;
+  // Any open mega (Services or Industries) collapses the bottom CTAs so panels don't overlap.
+  const anyOpen = !!document.querySelector("[data-mega].is-open");
+  nav.classList.toggle("mega-open", mobile && anyOpen);
+}
+function setMega(open, target = null) {
   if (open && performance.now() < megaShutUntil) return;
   if (open) clearTimeout(megaTimer);
-  const mega = document.querySelector("[data-mega]");
-  if (!mega) return;
-  const mobile = matchMedia("(max-width: 1320px)").matches;
-  if (mega.classList.contains("is-open") !== open) {
-    mega.classList.toggle("is-open", open);
-    const btn = mega.querySelector(".mega__btn");
-    if (btn) btn.setAttribute("aria-expanded", String(open));
+  const megas = allMegas();
+  if (!megas.length) return;
+  if (!open) {
+    megas.forEach((mega) => {
+      mega.classList.remove("is-open");
+      mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "false");
+    });
+    syncMegaNav();
+    clearTimeout(megaTimer);
+    return;
   }
-  const nav = document.getElementById("nav");
-  if (nav) nav.classList.toggle("mega-open", open && mobile);
-  if (!open) clearTimeout(megaTimer);
+  const active = target instanceof Element ? target.closest("[data-mega]") : null;
+  if (!active) return;
+  megas.forEach((mega) => {
+    const on = mega === active;
+    mega.classList.toggle("is-open", on);
+    mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", String(on));
+  });
+  syncMegaNav();
+  if (matchMedia("(max-width: 1320px)").matches && !reduce()) {
+    // Wait for accordion + CTA exit so scroll doesn't fight the animation.
+    setTimeout(() => {
+      active.querySelector(".mega__btn")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }, 220);
+  }
 }
 
 function setOpen(open) {
@@ -66,8 +91,15 @@ function setOpen(open) {
   header.classList.toggle("is-open", open);
   nav.classList.toggle("is-open", open);
   root.classList.toggle("nav-open", open);
-  if (!open) { setMega(false); return; }
+  if (!open) {
+    root.style.overflow = "";
+    document.body.style.overflow = "";
+    setMega(false);
+    return;
+  }
   const y = window.scrollY;
+  root.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
   root.style.setProperty("--header-bottom", Math.round(header.getBoundingClientRect().bottom) + "px");
   const hold = () => { if (window.scrollY !== y) window.scrollTo(0, y); };
   const block = (event) => {
@@ -83,6 +115,8 @@ function setOpen(open) {
   mq.addEventListener("change", onMq);
   unlock = () => {
     root.classList.remove("nav-open");
+    root.style.overflow = "";
+    document.body.style.overflow = "";
     removeEventListener("scroll", hold);
     document.removeEventListener("touchmove", block);
     document.removeEventListener("wheel", block);
@@ -545,9 +579,10 @@ document.addEventListener("click", (event) => {
   if (burger) { setOpen(!menuOpen); return; }
   const megaBtn = target.closest(".mega__btn");
   if (megaBtn) {
-    if (!desktopMega()) {
-      const mega = megaBtn.closest("[data-mega]");
-      setMega(!(mega && mega.classList.contains("is-open")));
+    const mega = megaBtn.closest("[data-mega]");
+    if (mega) {
+      // Mobile/tablet: tap toggles. Desktop uses hover/focus (below).
+      if (!desktopMega()) setMega(!mega.classList.contains("is-open"), mega);
     }
     return;
   }
@@ -631,7 +666,7 @@ document.addEventListener("pointerover", (event) => {
   const from = event.relatedTarget;
   if (from instanceof Node && mega.contains(from)) return;
   clearTimeout(megaTimer);
-  setMega(true);
+  setMega(true, mega);
 });
 document.addEventListener("pointerout", (event) => {
   if (!desktopMega() || event.pointerType === "touch") return;
@@ -646,7 +681,7 @@ document.addEventListener("focusin", (event) => {
   const mega = event.target instanceof Element ? event.target.closest("[data-mega]") : null;
   if (!mega || !desktopMega()) return;
   clearTimeout(megaTimer);
-  setMega(true);
+  setMega(true, mega);
 });
 document.addEventListener("focusout", (event) => {
   const mega = event.target instanceof Element ? event.target.closest("[data-mega]") : null;
@@ -666,10 +701,10 @@ document.addEventListener("keydown", (event) => {
   }
   if (event.key === "ArrowDown" && event.target instanceof Element && event.target.closest(".mega__btn")) {
     const mega = event.target.closest("[data-mega]");
-    const first = mega && mega.querySelector(".mega__grid a");
+    const first = mega && mega.querySelector(".mega__panel a");
     if (first instanceof HTMLElement) {
       event.preventDefault();
-      setMega(true);
+      setMega(true, mega);
       first.focus();
     }
   }

@@ -927,7 +927,7 @@ p{margin:0 0 1em}
   .trade-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:1320px){
-  .header__cta{display:none}
+  .header__cta{display:none!important}
   /* Match the burger mark height so phone + MENU share one optical row */
   .header__phone--mobile{
     display:inline-flex;align-items:center;justify-content:center;
@@ -1295,7 +1295,11 @@ html.no-audit [data-site-audit]{display:none!important}
 .fb-chooser.is-open>button{background:#fff!important;color:#1877F2!important}
 .fb-chooser.is-open .fb-menu{visibility:visible!important;opacity:1!important}
 
-.header__cta{flex:0 0 auto;min-height:44px;white-space:nowrap;padding:.65em 1.15em;font-size:.92rem;line-height:1.2;letter-spacing:.025em;transform-origin:center bottom;animation:cta-wiggle 5s ease-in-out infinite;touch-action:manipulation}
+/* Desktop-only header CTA — mobile/tablet tools stay phone + hamburger. */
+.header__cta{display:none;flex:0 0 auto;min-height:44px;white-space:nowrap;padding:.65em 1.15em;font-size:.92rem;line-height:1.2;letter-spacing:.025em;transform-origin:center bottom;animation:cta-wiggle 5s ease-in-out infinite;touch-action:manipulation}
+@media (min-width:1321px){
+  .header__cta{display:inline-flex}
+}
 .header__cta-label{position:relative;z-index:1;display:block}
 .header__cta:hover,.header__cta:active,.header__cta:focus-visible{animation:none}
 .nav__preview-title,.nav__preview-hint{position:relative;z-index:1}
@@ -2242,35 +2246,51 @@ html.thanks-plan-ownIt .thanks-plan--ownIt{display:block}
 }
 
 /* Mobile menu — full sheet from the Menu control, with a kinetic mark */
-html.nav-open{overflow:hidden}
-/* Keep menu/mega scrollable without visible scrollbars (avoids layout pop + slider fights). */
+html.nav-open,
+html.nav-open body{
+  overflow:hidden!important;
+  overscroll-behavior:none;
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+html.nav-open::-webkit-scrollbar,
+html.nav-open body::-webkit-scrollbar{
+  width:0!important;height:0!important;display:none!important;
+}
+/* Menu sheet can still scroll; never show a side scrollbar while open. */
+html.nav-open .nav,
+html.nav-open .nav.mega-open,
+html.nav-open .mega__panel,
 .nav,
 .nav.mega-open,
 .mega__panel{
   scrollbar-width:none;
   -ms-overflow-style:none;
 }
+html.nav-open .nav::-webkit-scrollbar,
+html.nav-open .nav.mega-open::-webkit-scrollbar,
+html.nav-open .mega__panel::-webkit-scrollbar,
 .nav::-webkit-scrollbar,
-.mega__panel::-webkit-scrollbar{width:0;height:0;display:none}
+.mega__panel::-webkit-scrollbar{width:0!important;height:0!important;display:none!important}
 .burger{position:relative;z-index:90;align-items:center;gap:10px;margin-left:0;padding:4px 2px;border:0;background:none;color:var(--brand-navy);cursor:pointer;touch-action:manipulation;font-family:var(--font-poppins-display),var(--font-head);font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;flex:0 0 auto}
 .burger__mark,.burger__label,.burger__ring,.burger__bars{pointer-events:none}
 .burger:focus-visible{outline:3px solid var(--brand-cobalt);outline-offset:3px;border-radius:10px}
 .burger__mark{position:relative;width:40px;height:40px;display:grid;place-items:center;flex:0 0 auto}
 .burger__ring{position:absolute;inset:0;width:40px;height:40px;transform:rotate(-90deg)}
-.burger__ring circle{fill:none;stroke:var(--brand-orange);stroke-width:2;stroke-linecap:round;stroke-dasharray:107;stroke-dashoffset:107;transition:stroke-dashoffset .14s ease}
+.burger__ring circle{fill:none;stroke:var(--brand-orange);stroke-width:2;stroke-linecap:round;stroke-dasharray:107;stroke-dashoffset:107;transition:stroke-dashoffset .32s cubic-bezier(.16,1,.3,1)}
 .burger:focus-visible .burger__ring circle{stroke-dashoffset:72}
 @media(hover:hover) and (pointer:fine){.burger:hover .burger__ring circle{stroke-dashoffset:72}}
 .burger.is-open .burger__ring circle{stroke-dashoffset:0}
 .burger__bars{display:block;position:relative;width:22px;height:16px;flex:0 0 auto}
-.burger__bars span{display:block;position:absolute;left:0;height:2px;border-radius:2px;background:var(--brand-navy);transform-origin:center;transition:transform .16s ease,opacity .1s ease,top .16s ease}
+.burger__bars span{display:block;position:absolute;left:0;height:2px;border-radius:2px;background:var(--brand-navy);transform-origin:center;transition:transform .3s cubic-bezier(.34,1.35,.64,1),opacity .18s ease,top .3s cubic-bezier(.34,1.35,.64,1),width .24s ease}
 .burger__bars span:nth-child(1){top:0;width:22px}
 .burger__bars span:nth-child(2){top:7px;left:8px;width:14px;background:var(--brand-orange)}
 .burger__bars span:nth-child(3){top:14px;width:22px}
 .burger.is-open .burger__bars span:nth-child(1){top:7px;transform:rotate(45deg)}
-.burger.is-open .burger__bars span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.is-open .burger__bars span:nth-child(2){opacity:0;transform:scaleX(0);width:0}
 .burger.is-open .burger__bars span:nth-child(3){top:7px;transform:rotate(-45deg)}
 .burger__label{display:grid;min-width:4.8em;text-align:left}
-.burger__word{grid-area:1 / 1;transition:opacity .12s ease,transform .16s ease}
+.burger__word{grid-area:1 / 1;transition:opacity .18s ease,transform .26s cubic-bezier(.16,1,.3,1)}
 .burger__word--close{opacity:0;transform:translateY(8px)}
 .burger.is-open .burger__word--open{opacity:0;transform:translateY(-8px)}
 .burger.is-open .burger__word--close{opacity:1;transform:none}
@@ -2310,8 +2330,19 @@ html.nav-open{overflow:hidden}
   .nav__extra{
     min-height:0;margin:0;grid-template-columns:1fr;align-items:stretch;
     padding:clamp(10px,1.8svh,18px) 4px 4px 0;gap:clamp(10px,1.6svh,14px);border-top:0;
-    max-height:220px;opacity:1;transform:none;visibility:visible;overflow:hidden;
-    transition:opacity .2s ease,transform .22s cubic-bezier(.16,1,.3,1),max-height .22s ease,padding .22s ease,margin .22s ease,visibility 0s;
+    max-height:240px;opacity:1;transform:none;visibility:visible;overflow:hidden;
+    transition:
+      opacity .28s cubic-bezier(.16,1,.3,1),
+      transform .32s cubic-bezier(.16,1,.3,1),
+      max-height .34s cubic-bezier(.16,1,.3,1),
+      padding .28s ease,
+      gap .28s ease,
+      margin .28s ease,
+      visibility 0s;
+  }
+  .nav__extra > *{
+    transition:opacity .24s ease,transform .28s cubic-bezier(.16,1,.3,1);
+    opacity:1;transform:none;
   }
   .nav.is-open .nav__extra{animation:none}
   .nav .nav__extra .nav__preview{
@@ -2379,14 +2410,42 @@ html.nav-open{overflow:hidden}
   .nav>.mega .mega__btn:focus-visible::before,.nav>.mega .mega__btn.is-current::before{background:var(--brand-orange);border-color:var(--brand-orange);transform:scale(1.08)}
   @media(hover:hover) and (pointer:fine){.nav>.mega .mega__btn:hover{color:var(--brand-navy)}.nav>.mega .mega__btn:hover::before{background:var(--brand-orange);border-color:var(--brand-orange);transform:scale(1.08)}}
   .nav>.mega .mega__btn.is-current{color:var(--brand-navy);background:none;box-shadow:none;border-radius:0}
-  .nav>.mega .mega__chev{width:18px;height:18px;margin-left:auto}
+  .nav>.mega .mega__chev{width:18px;height:18px;margin-left:auto;transition:transform .32s cubic-bezier(.16,1,.3,1)}
   .mega.is-open .mega__chev{transform:rotate(180deg)}
-   .mega.is-open .mega__panel{display:block}
-   .mega__panel{position:static;width:auto;max-height:none;overflow:visible;transform:none;background:transparent;border:0;box-shadow:none;border-radius:0;padding:4px 0 8px 27px}
-  .mega__head{align-items:flex-start;flex-direction:column;gap:2px;padding:10px 8px 4px}
+  .nav>.mega.is-open{background:linear-gradient(180deg,#f7f9ff 0%,#fff 42%);transition:background .28s ease}
+  .nav>.mega.is-open .mega__btn{border-bottom-color:transparent;color:var(--brand-navy)}
+  .nav>.mega.is-open .mega__btn::before{background:var(--brand-orange);border-color:var(--brand-orange)}
+  /* Keep panels in the flow and animate height — display:none snaps and fights the CTAs. */
+  .nav>.mega .mega__panel{
+    display:block;position:static;width:auto;max-height:0;
+    overflow:hidden;transform:none;background:transparent;border:0;box-shadow:none;border-radius:0;
+    padding:0 0 0 27px;opacity:0;pointer-events:none;visibility:hidden;
+    transition:
+      max-height .38s cubic-bezier(.16,1,.3,1),
+      opacity .26s ease,
+      padding .3s ease,
+      visibility 0s linear .3s;
+  }
+  .nav>.mega.is-open .mega__panel{
+    max-height:min(70vh,720px);opacity:1;pointer-events:auto;visibility:visible;
+    padding:2px 0 14px 27px;transition:
+      max-height .42s cubic-bezier(.16,1,.3,1),
+      opacity .28s ease .04s,
+      padding .3s ease,
+      visibility 0s;
+  }
+  .nav>.mega--services.is-open .mega__panel{max-height:220px}
+  .mega__head{align-items:flex-start;flex-direction:column;gap:2px;padding:6px 8px 8px}
   .mega__title{font-size:.92rem;font-weight:600;color:var(--muted)}
-  .mega__grid{grid-template-columns:1fr 1fr}
-  .mega--services .services-dropdown__list a{padding:10px 8px;font-size:clamp(.9rem,2.2svh,1.1rem);border-radius:0}
+  .mega__grid{grid-template-columns:1fr 1fr;gap:2px}
+  .mega--services .mega__panel{padding-left:27px}
+  .nav>.mega--services.is-open .mega__panel{padding-bottom:10px}
+  .mega--services .services-dropdown__list{gap:0}
+  .mega--services .services-dropdown__list a{
+    padding:12px 8px;font-size:clamp(.9rem,2.2svh,1.1rem);border-radius:0;
+    border-bottom:1px solid var(--border);font-weight:700;
+  }
+  .mega--services .services-dropdown__list li:last-child a{border-bottom:0}
   .nav.mega-open{
     display:flex;flex-direction:column;align-content:start;
     overflow:auto;overscroll-behavior:contain;touch-action:pan-y;
@@ -2394,12 +2453,25 @@ html.nav-open{overflow:hidden}
   .nav.mega-open>a,
   .nav.mega-open>.mega{flex:0 0 auto}
   .nav.mega-open>.nav__extra{
-    max-height:0;opacity:0;transform:translateY(14px) scale(.98);
+    max-height:0;opacity:0;transform:translateY(18px) scale(.97);
     margin:0;padding-top:0;padding-bottom:0;gap:0;
     pointer-events:none;visibility:hidden;border:0;box-shadow:none;
-    transition:opacity .18s ease,transform .2s ease,max-height .2s ease,padding .2s ease,margin .2s ease,visibility 0s linear .2s;
+    transition:
+      opacity .22s ease,
+      transform .28s cubic-bezier(.4,0,.2,1),
+      max-height .3s cubic-bezier(.4,0,.2,1),
+      padding .24s ease,
+      gap .24s ease,
+      margin .24s ease,
+      visibility 0s linear .28s;
   }
-  .nav.mega-open>a,.nav.mega-open .mega__btn{font-size:1.05rem;padding-top:11px;padding-bottom:11px}
+  .nav.mega-open>.nav__extra > *{
+    opacity:0;transform:translateY(10px);
+  }
+  .nav.mega-open>a,.nav.mega-open .mega__btn{
+    font-size:1.05rem;padding-top:11px;padding-bottom:11px;
+    transition:font-size .28s ease,padding .28s ease;
+  }
 }
 @media (max-width:1320px) and (max-height:520px){
   .nav>.mega .mega__btn{font-size:clamp(.85rem,4.6svh,1.05rem);gap:10px}
