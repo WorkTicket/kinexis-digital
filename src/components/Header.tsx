@@ -39,7 +39,7 @@ export default function Header({ locale }: { locale: Locale }) {
               <span className="nav__preview-title">{chrome.chat}</span>
               <span className="nav__preview-hint">{chrome.previewBarHint}</span>
             </Link>
-            <Link className="header__call-link" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
+            <Link className="btn btn--ghost" href={hrefFor("/strategy-call")} prefetch={false}>{chrome.strategy}</Link>
           </div>
         </nav>
         <div className="header__tools">
