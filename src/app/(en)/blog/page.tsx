@@ -16,7 +16,7 @@ export default function Page() {
       <PageHero h1="Digital Marketing Blog" mark="Blog" sub="SEO, web design, and marketing guides for service businesses across the United States." image="blog" imageAlt="Article cards for guides and resources" />
       <Section>
         <Filterable cats={["Tips", "SEO", "Design"]} />
-        <div className="grid grid--3">
+        <div className="grid grid--3 blog-index">
           {POSTS.map((post) => (
             <article className="card post" key={post.slug} data-cat={post.category}>
               <Link href={`/blog/${post.slug}`} className="post__link" prefetch={false}>
@@ -37,7 +37,7 @@ export default function Page() {
                   <p className="eyebrow">{post.category}</p>
                   <h2 className="card-title">{post.title}</h2>
                 </Link>
-                <p className="muted">{post.excerpt}</p>
+                <p className="post__excerpt muted">{post.excerpt}</p>
                 <div className="post__meta">
                   <span>{post.readTime}</span>
                   <Link href={`/blog/${post.slug}`} className="btn btn--ghost btn--sm" aria-label={`Read ${post.title}`} prefetch={false}>Read the guide</Link>

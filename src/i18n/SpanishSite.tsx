@@ -8,7 +8,7 @@ import { portfolioFile, PROJECTS } from "@/data/portfolio";
 import { LIVE_SITES } from "@/data/liveSites";
 import { POSTS } from "@/lib/content";
 import { PAGES } from "@/lib/pages";
-import { esPost } from "@/i18n/posts-es";
+import { esPost, esPostForLocale } from "@/i18n/posts-es";
 import { localizedIndustries, localizeIndustry } from "@/i18n/industries-es";
 import SpanishIndustry from "@/i18n/SpanishIndustry";
 import { spanishHomeFaqs, spanishPlans } from "@/i18n/spanish-plans";
@@ -105,7 +105,8 @@ function metaFor(en: string, locale: Locale): Meta | undefined {
     return { title: copy.metaTitle, description: copy.metaDescription, hold: industry.status === "hold" };
   }
   if (en.startsWith("/blog/") && en !== "/blog") {
-    const post = esPost(en.split("/")[2] ?? "");
+    const slug = en.split("/")[2] ?? "";
+    const post = locale === "es-ES" || locale === "es-419" ? esPostForLocale(slug, locale) : esPost(slug);
     const source = POSTS.find((item) => item.slug === post?.slug);
     if (!post || !source) return undefined;
     const text = locale === "es-ES" ? spainizeData(post) : post;
@@ -660,7 +661,7 @@ function Faqs({ locale, tx, href, lang, band }: PageBits) {
 
 function Blog({ locale, tx, href, lang, band }: PageBits) {
   const posts = POSTS.map((post) => {
-    const es = esPost(post.slug);
+    const es = locale === "es-ES" || locale === "es-419" ? esPostForLocale(post.slug, locale) : esPost(post.slug);
     const text = es ?? null;
     return { ...post, title: text ? tx(text.title) : post.title, excerpt: text ? tx(text.excerpt) : post.excerpt, category: text ? tx(text.category) : post.category };
   });
@@ -670,11 +671,18 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
       <PageHero locale={locale} h1={tx("Blog de marketing digital")} mark="Blog" sub={tx("Guías de SEO, diseño y marketing para negocios de servicios en Estados Unidos.")} image="blog" imageAlt={tx("Tarjetas de artículos")} />
       <Section>
         <Filterable cats={[tx("Consejos"), "SEO", tx("Diseño")]} allLabel={tx("Todo")} />
-        <div className="grid grid--3">
+        <div className="grid grid--3 blog-index">
           {posts.map((post) => (
             <article className="card post" key={post.slug} data-cat={post.category}>
               <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} avifSrcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} alt={post.title} width={post.width} height={post.height} sizes="(max-width: 900px) 92vw, 380px" /></div></Link>
-              <div className="post__body"><Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link><p>{post.excerpt}</p></div>
+              <div className="post__body">
+                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link>
+                <p className="post__excerpt muted">{post.excerpt}</p>
+                <div className="post__meta">
+                  <span>{post.readTime}</span>
+                  <Link href={href(`/blog/${post.slug}`)} className="btn btn--ghost btn--sm" aria-label={tx(`Leer ${post.title}`)} prefetch={false}>{tx("Leer la guía")}</Link>
+                </div>
+              </div>
             </article>
           ))}
         </div>
@@ -685,20 +693,57 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
 }
 
 function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: string }) {
-  const raw = esPost(slug);
+  const raw = locale === "es-ES" || locale === "es-419" ? esPostForLocale(slug, locale) : esPost(slug);
   const source = POSTS.find((post) => post.slug === slug);
   if (!raw || !source) notFound();
   const post = locale === "es-ES" ? spainizeData(raw) : raw;
   const href = (path: string) => L(locale, path);
   const tx = (text: string) => (locale === "es-ES" ? spainize(text) : text);
+  const formattedDate = new Date(source.date).toLocaleDateString(locale === "es-ES" ? "es-ES" : "es-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
   return (
     <>
       <ArticleSchema title={post.seoTitle} description={post.excerpt} path={href(`/blog/${post.slug}`)} image={source.image} date={source.date} modified={source.modified} section={post.category} inLanguage={lang} />
-      <PageHero locale={locale} h1={post.title} mark={post.title.split(" ").slice(-1)[0]} sub={post.lead} image="blog" imageAlt={post.title} />
-      <section className="section"><div className="container container--narrow prose">
-        {post.sections.map((section) => <div key={section.h2}><h2>{section.h2}</h2><div dangerouslySetInnerHTML={{ __html: section.html }} /></div>)}
-        <p><Link href={href("/blog")} prefetch={false}>{tx("Volver al blog")}</Link></p>
-      </div></section>
+      <PageHero
+        locale={locale}
+        className="page-hero--article"
+        eyebrow={post.category}
+        h1={post.title}
+        sub={
+          <span className="blog-post__byline">
+            <time dateTime={source.date}>{formattedDate}</time>
+            <span aria-hidden="true">·</span>
+            <span>{source.readTime}</span>
+          </span>
+        }
+      />
+      <Section>
+        <div className="container container--narrow">
+          <article className="blog-post">
+            <nav className="blog-post__crumb" aria-label={tx("Miga de pan")}>
+              <Link href={href("/blog")} prefetch={false}>{tx("Blog")}</Link>
+              <span aria-hidden="true">/</span>
+              <span>{post.category}</span>
+            </nav>
+            <div className="blog-post__content prose">
+              <p className="blog-post__lead">{post.lead}</p>
+              {post.sections.map((section) => (
+                <section key={section.h2} className="blog-section">
+                  <h2>{section.h2}</h2>
+                  <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: section.html }} />
+                </section>
+              ))}
+            </div>
+            <footer className="blog-post__footer">
+              <Link className="blog-post__back" href={href("/blog")} prefetch={false}>{tx("← Todas las guías")}</Link>
+              <Link className="btn btn--ghost btn--sm" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
+            </footer>
+          </article>
+        </div>
+      </Section>
       <CtaBand h={tx("¿Quieres esto en tu sitio?")} mark={tx("tu sitio")} sub={tx("La revisión es gratis. La vista previa también, antes de pagar.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} />
     </>
   );

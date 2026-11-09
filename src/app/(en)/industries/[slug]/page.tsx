@@ -159,9 +159,12 @@ export default async function IndustryPage({ params }: Props) {
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
-          <Link className="btn btn--ghost" href="/blog/missed-call-text-back-templates" prefetch={false}>Text-Back Templates</Link>
-          <Link className="btn btn--ghost" href="/tools/missed-call-calculator" prefetch={false}>Revenue Calculator</Link>
         </p>
+        <nav className="industry-reads" aria-label="Text-back resources">
+          <Link href="/blog/missed-call-text-back-templates" prefetch={false}><span className="industry-reads__title">Text-Back Templates</span></Link>
+          <span className="industry-reads__sep" aria-hidden="true">·</span>
+          <Link href="/tools/missed-call-calculator" prefetch={false}><span className="industry-reads__title">Revenue Calculator</span></Link>
+        </nav>
       </Section>
 
       {project && (
@@ -181,19 +184,29 @@ export default async function IndustryPage({ params }: Props) {
 
       <Section id="plans">
         <PlanOffer />
-        <p className="center muted industry-section-lead" style={{ marginTop: "1.5rem" }}>
-          Compare monthly plans and Own It, or read what a {industry.name.toLowerCase()} site should include.
-        </p>
-        <p className="center btn-row">
-          <Link className="btn btn--ghost" href="/blog/monthly-website-vs-own-it" prefetch={false}>Monthly vs Own It</Link>
-          <Link className="btn btn--ghost" href={industryCostPostPath(industry.slug)} prefetch={false}>
-            {industry.name} Website Cost
-          </Link>
-          <Link className="btn btn--ghost" href={industryPagesPostPath(industry.slug)} prefetch={false}>
-            Pages This Trade Needs
-          </Link>
-          <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
-        </p>
+        <nav className="industry-reads industry-reads--stack" aria-label={`${industry.name} guides`}>
+          <p className="industry-reads__label">Guides for {industry.name.toLowerCase()} owners</p>
+          <ul className="industry-reads__list">
+            <li>
+              <Link href="/blog/monthly-website-vs-own-it" prefetch={false}>
+                <span className="industry-reads__title">Monthly vs Own It</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={industryCostPostPath(industry.slug)} prefetch={false}>
+                <span className="industry-reads__title">{industry.name} Website Cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={industryPagesPostPath(industry.slug)} prefetch={false}>
+                <span className="industry-reads__title">Pages This Trade Needs</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </Section>
 
       <Section tint narrow>

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { POSTS } from "@/lib/content";
 import { contentMetadata } from "@/lib/seo";
-import { SITE } from "@/lib/site";
 import { ArticleSchema } from "@/components/JsonLd";
 import { PageHero, Section, CtaBand, Faq } from "@/components/ui";
 import { EN_POST_CONTENT } from "@/data/posts-en";
@@ -50,6 +50,8 @@ export default async function BlogPostPage({ params }: Props) {
     day: "numeric",
   });
 
+  const related = POSTS.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
+
   return (
     <>
       <ArticleSchema
@@ -62,10 +64,27 @@ export default async function BlogPostPage({ params }: Props) {
         section={post.category}
         faqs={content.faqs}
       />
-      <PageHero h1={post.title} sub={`${formattedDate} · ${post.readTime} · ${post.category} · ${SITE.name}`} />
+      <PageHero
+        className="page-hero--article"
+        eyebrow={post.category}
+        h1={post.title}
+        sub={
+          <span className="blog-post__byline">
+            <time dateTime={post.date}>{formattedDate}</time>
+            <span aria-hidden="true">·</span>
+            <span>{post.readTime}</span>
+          </span>
+        }
+      />
       <Section>
-        <div className="container container--narrow prose">
+        <div className="container container--narrow">
           <article className="blog-post">
+            <nav className="blog-post__crumb" aria-label="Breadcrumb">
+              <Link href="/blog" prefetch={false}>Blog</Link>
+              <span aria-hidden="true">/</span>
+              <span>{post.category}</span>
+            </nav>
+
             <figure className="blog-post__hero">
               <picture>
                 {/* Desktop keeps the article still; mobile waits for boot so the title is LCP. */}
@@ -73,18 +92,18 @@ export default async function BlogPostPage({ params }: Props) {
                   type="image/avif"
                   media="(min-width: 861px)"
                   srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")}
-                  sizes="(max-width: 840px) 360px, 800px"
+                  sizes="(max-width: 840px) 92vw, 760px"
                 />
                 <source
                   media="(min-width: 861px)"
                   srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
-                  sizes="(max-width: 840px) 360px, 800px"
+                  sizes="(max-width: 840px) 92vw, 760px"
                 />
                 <img
                   src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${post.width}' height='${post.height}'%3E%3C/svg%3E`}
                   data-src={imageVariant(post.image, 640, "webp")}
                   data-srcset={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
-                  sizes="(max-width: 840px) 360px, 800px"
+                  sizes="(max-width: 840px) 92vw, 760px"
                   alt={post.title}
                   width={post.width}
                   height={post.height}
@@ -94,25 +113,49 @@ export default async function BlogPostPage({ params }: Props) {
               </picture>
             </figure>
 
-            <div className="blog-post__content">
-              <p className="blog-post__lead">
-                {content.lead}
-              </p>
+            <div className="blog-post__content prose">
+              <p className="blog-post__lead">{content.lead}</p>
 
               {content.sections.map((section, idx) => (
                 <section key={idx} className="blog-section">
                   <h2>{section.h2}</h2>
-                  <div dangerouslySetInnerHTML={{ __html: section.html }} />
+                  <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: section.html }} />
                 </section>
               ))}
+
               {content.faqs?.length ? (
-                <section className="blog-section">
+                <section className="blog-section blog-section--faq">
                   <h2>FAQs</h2>
                   <Faq items={content.faqs} />
                 </section>
               ) : null}
             </div>
+
+            <footer className="blog-post__footer">
+              <Link className="blog-post__back" href="/blog" prefetch={false}>
+                ← All guides
+              </Link>
+              <Link className="btn btn--ghost btn--sm" href="/pricing" prefetch={false}>
+                See plans &amp; pricing
+              </Link>
+            </footer>
           </article>
+
+          {related.length > 0 ? (
+            <aside className="blog-related" aria-labelledby="blog-related-heading">
+              <h2 id="blog-related-heading">More in {post.category}</h2>
+              <ul className="blog-related__list">
+                {related.map((item) => (
+                  <li key={item.slug}>
+                    <Link href={`/blog/${item.slug}`} prefetch={false}>
+                      <span className="blog-related__title">{item.title}</span>
+                      <span className="blog-related__meta">{item.readTime}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          ) : null}
         </div>
       </Section>
       <CtaBand

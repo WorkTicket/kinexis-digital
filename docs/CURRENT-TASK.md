@@ -1,21 +1,20 @@
 # CURRENT-TASK.md
 
 ## Goal
-SEO coding plan + lock buyout/text-back pricing + proof annotations.
+Pre-deploy checks: Spain Own It post (no USD on `/es-es`) + decide live vs hold for hubs without client proof.
 
 ## Status
-done for code — deploy + GSC still manual
+ready to deploy
 
 ## Completed
-- Buyout published at **$1,497** (terms, FAQs, posts, PLAN_TERM_GROUPS)
-- LS/Plus text-back: **no $97 fee** — only **$1/mo** second tracking number (if used) + carrier rates; Website/Own It remain **$97/mo**
-- Preferred Plumbing + A1 proof annotations drafted from live homepages (Colton can edit)
-- SEO program content from prior session
+- `/es-es` monthly-vs-Own-It uses price-free override via `esPostForLocale`
+- Reviewed HVAC / electrical / roofing / garage-doors / pressure-washing: trade-specific copy, keep `live`
+- Industry hub guide links cleaned (not button piles); portfolio hover-scroll hardened (`boot` v34)
 
 ## Unfinished
-1. Colton deploy
-2. Rich Results + GSC sitemap/URL Inspection after deploy
-3. Optional: Colton polish on annotation wording
+1. Deploy
+2. Manual: Rich Results + GSC URL Inspection + sitemap resubmit + GA4 calculator events
+3. Tomorrow ~10 AM Bogotá: request new URLs with the four hubs already scheduled
 
 ## Next action
-Deploy when ready.
+`npm run deploy`, then hand off manual search-console checks.

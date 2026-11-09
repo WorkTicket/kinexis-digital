@@ -373,13 +373,24 @@ function armHero() {
   };
 }
 
-const shots = new WeakMap(); function isMobile(){try{return matchMedia("(max-width: 1024px)").matches || matchMedia("(hover: none) and (pointer: coarse)").matches;}catch{return false;}}
+const shots = new WeakMap();
+// Hover-scroll needs a real mouse/trackpad. Do not key off viewport width —
+// a narrow desktop window still has hover.
+function canHoverScroll() {
+  try { return matchMedia("(hover: hover) and (pointer: fine)").matches; }
+  catch { return true; }
+}
 const live = new Set();
 const SHOT_SCROLL_SPEED = 540;
+let hotShot = null;
+let pointerX = 0;
+let pointerY = 0;
+let pointerSeen = false;
+let hotScrollRaf = 0;
 function motion(shot) {
   let state = shots.get(shot);
   if (!state) {
-    state = { offset: 0, raf: 0 };
+    state = { offset: 0, raf: 0, playing: false };
     shots.set(shot, state);
     live.add(shot);
   }
@@ -391,7 +402,8 @@ function parts(shot) {
 function distance(shot) {
   const box = parts(shot);
   if (!box.frame || !box.track) return 0;
-  return Math.max(0, box.track.offsetHeight - box.frame.clientHeight);
+  const trackH = Math.max(box.track.offsetHeight, box.track.scrollHeight);
+  return Math.max(0, trackH - box.frame.clientHeight);
 }
 function place(shot, y) {
   const state = motion(shot);
@@ -403,35 +415,77 @@ function startShot(shot) {
   if (reduce() || shot.classList.contains("shot--static")) return;
   const state = motion(shot);
   cancelAnimationFrame(state.raf);
+  state.playing = true;
   let previous = performance.now();
+  let waits = 0;
   const step = (now) => {
-    if (!shot.isConnected) return;
+    if (!shot.isConnected || hotShot !== shot) {
+      state.playing = false;
+      return;
+    }
     const total = distance(shot);
-    if (total <= 1) return;
+    // After content-visibility resumes (or before the image lays out), height
+    // can briefly read as 0. Keep trying instead of dying on the first frame.
+    if (total <= 1) {
+      if (waits++ < 45) state.raf = requestAnimationFrame(step);
+      else state.playing = false;
+      return;
+    }
+    waits = 0;
     const elapsed = Math.min(50, now - previous);
     previous = now;
     const px = SHOT_SCROLL_SPEED * elapsed / 1000;
     place(shot, Math.min(total, state.offset + px));
     if (state.offset < total - 0.5) state.raf = requestAnimationFrame(step);
+    else state.playing = false;
   };
   state.raf = requestAnimationFrame(step);
 }
 function stopShot(shot) {
   const state = motion(shot);
+  state.playing = false;
   cancelAnimationFrame(state.raf);
   if (!parts(shot).track) return;
   if (reduce()) { place(shot, 0); return; }
   const from = state.offset;
   const started = performance.now();
   const back = (now) => {
+    if (hotShot === shot) return;
     const progress = Math.min(1, (now - started) / 320);
     place(shot, from * (1 - progress));
     if (progress < 1) state.raf = requestAnimationFrame(back);
   };
   state.raf = requestAnimationFrame(back);
 }
+function syncHotShot(shot) {
+  const next = shot && !shot.classList.contains("shot--static") && shot.isConnected ? shot : null;
+  if (next === hotShot) {
+    // Resume only if scroll/content-visibility killed the loop while still hovered.
+    if (next && !motion(next).playing) startShot(next);
+    return;
+  }
+  const prev = hotShot;
+  hotShot = next;
+  if (prev) stopShot(prev);
+  if (next) startShot(next);
+}
+function shotFromPoint(x, y) {
+  const el = document.elementFromPoint(x, y);
+  if (!(el instanceof Element)) return null;
+  const shot = el.closest(".shot");
+  return shot && !shot.classList.contains("shot--static") ? shot : null;
+}
+function refreshHotShot() {
+  hotScrollRaf = 0;
+  if (!canHoverScroll() || reduce() || !pointerSeen) return;
+  const under = shotFromPoint(pointerX, pointerY);
+  // Only restart when a shot is under the pointer. Never clear from scroll —
+  // stale coordinates after a long scroll were killing an active hover.
+  if (under) syncHotShot(under);
+}
 function clickStart(shot) {
   if (distance(shot) - motion(shot).offset <= 2) place(shot, 0);
+  hotShot = shot;
   startShot(shot);
 }
 function shotOf(event) {
@@ -551,6 +605,7 @@ function onNavigate() {
   document.querySelectorAll("[data-fb].is-open").forEach((node) => setFb(node, false));
   live.forEach((shot) => cancelAnimationFrame(motion(shot).raf));
   live.clear();
+  hotShot = null;
   resetFloat();
   resetReveal();
   resetMarks();
@@ -771,7 +826,28 @@ function selectTab(stepper, index, focus) {
   });
   panels.forEach((panel, k) => panel.classList.toggle("is-active", k === index));
 }
-if(!isMobile()){document.addEventListener("mouseover",(event)=>{const shot=entered(event); if(shot&&!shot.classList.contains("shot--static")) startShot(shot);}); document.addEventListener("mouseout",(event)=>{const shot=entered(event); if(shot&&!shot.classList.contains("shot--static")) stopShot(shot);});}
+if (canHoverScroll()) {
+  document.addEventListener("pointermove", (event) => {
+    pointerSeen = true;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+  }, { passive: true });
+  document.addEventListener("mouseover", (event) => {
+    const shot = entered(event);
+    if (shot && !shot.classList.contains("shot--static")) syncHotShot(shot);
+  });
+  document.addEventListener("mouseout", (event) => {
+    const shot = entered(event);
+    if (!shot || shot !== hotShot) return;
+    syncHotShot(null);
+  });
+  // After a long scroll, a shot can sit back under the cursor with no new
+  // mouseover. Re-hit-test to restart; mouseout still owns clearing.
+  addEventListener("scroll", () => {
+    if (hotScrollRaf) return;
+    hotScrollRaf = requestAnimationFrame(refreshHotShot);
+  }, { passive: true });
+}
 document.addEventListener("click", (event) => {
   const shot = shotOf(event);
   if (!shot || shot.matches("a")) return;

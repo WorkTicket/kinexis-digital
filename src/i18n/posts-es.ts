@@ -791,6 +791,44 @@ export const ES_POSTS: EsPost[] = [
   },
 ];
 
+/**
+ * Spain (`/es-es`) keeps this shared post indexable, but without USD figures —
+ * same rule as the Spain homepage meta (no US pricing in Spain-facing copy).
+ */
+const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
+  "monthly-website-vs-own-it": {
+    excerpt: "Compara Website, Lead System y Plus con Own It: cancelación, archivos del sitio y qué incluye cada plan.",
+    lead: "Los planes mensuales y Own It son opciones válidas. Depende del flujo de caja y de si quieres herramientas de llamada perdida.",
+    sections: [
+      {
+        h2: "Las dos opciones son válidas",
+        html: "<p>Algunos prefieren empezar sin enganche y pagar mes a mes. Otros un solo pago y los archivos desde el día uno.</p>",
+      },
+      {
+        h2: "Comparación",
+        html: "<p>Website, Lead System y Plus son planes mensuales. Own It es un pago único con los archivos tuyos desde el lanzamiento. El detalle de cada plan está en <a href=\"/pricing\">/pricing</a>.</p>",
+      },
+      {
+        h2: "Quién se queda con el sitio si cancelas",
+        html: "<p>Cancelas cuando quieras. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos o pasar a Own It. En Own It, los archivos son tuyos desde el lanzamiento.</p>",
+      },
+      {
+        h2: "Own It desde el día uno",
+        html: "<p>Un pago, archivos tuyos, 12 meses de hosting y cambios chicos. Luego puedes añadir el cuidado opcional del sitio si quieres seguir con hosting y ediciones.</p>",
+      },
+    ],
+  },
+};
+
 export function esPost(slug: string) {
   return ES_POSTS.find((post) => post.slug === slug);
+}
+
+/** Latam keeps priced copy; Spain merges overrides that remove USD figures. */
+export function esPostForLocale(slug: string, locale: "es-419" | "es-ES") {
+  const base = esPost(slug);
+  if (!base) return undefined;
+  if (locale !== "es-ES") return base;
+  const override = ES_ES_POST_OVERRIDES[slug];
+  return override ? { ...base, ...override } : base;
 }
