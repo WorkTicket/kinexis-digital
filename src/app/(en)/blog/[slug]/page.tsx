@@ -70,6 +70,8 @@ export default async function BlogPostPage({ params }: Props) {
         h1={post.title}
         sub={
           <span className="blog-post__byline">
+            <span className="blog-post__author">Kinexis Digital</span>
+            <span aria-hidden="true">·</span>
             <time dateTime={post.date}>{formattedDate}</time>
             <span aria-hidden="true">·</span>
             <span>{post.readTime}</span>

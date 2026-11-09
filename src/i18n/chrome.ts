@@ -121,6 +121,8 @@ export function chromeFor(locale: Locale): Chrome {
       ...ES,
       footerCtaText: "Comparte lo básico y te respondemos con un siguiente paso útil, aunque ninguno de los planes te convenga.",
       industriesTitle: "Sitios para el oficio que sí llevas",
+      // Spain-facing chrome stays free of USD figures (same rule as homepage meta).
+      footerBlurb: "Planes de sitios web para negocios de servicios locales en Estados Unidos.",
       region: "Este texto está en español de España. El servicio es para negocios en Estados Unidos.",
     };
   }

@@ -2124,6 +2124,7 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
   font-weight:600;
   letter-spacing:.01em;
 }
+.blog-post__author{color:var(--text);font-weight:700}
 
 .blog-post{
   display:grid;

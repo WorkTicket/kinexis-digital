@@ -243,7 +243,41 @@ export function Section({ tint, narrow, id, decor, accent, band, children }: { t
     </section>
   );
 }
-export function CtaBand({ h = "Ready to See Your Homepage?", mark, sub, btn = "Get My Free Preview", href = "/contact", secondary = "See Plans & Pricing", secondaryHref = "/pricing" }: { h?: string; mark?: string; sub: string; btn?: string; href?: string; secondary?: string; secondaryHref?: string }) {
+export function CtaBand({
+  h = "Ready to See Your Homepage?",
+  mark,
+  sub,
+  btn = "Get My Free Preview",
+  href = "/contact",
+  secondary = "See Plans & Pricing",
+  secondaryHref = "/pricing",
+  locale = "en",
+}: {
+  h?: string;
+  mark?: string;
+  sub: string;
+  btn?: string;
+  href?: string;
+  secondary?: string;
+  secondaryHref?: string;
+  locale?: Locale;
+}) {
+  const trust =
+    locale === "es-ES"
+      ? {
+          leadLabel: "Garantía de clientes en 60 días",
+          refundLabel: "Garantía de devolución en 30 días",
+          downLabel: "Sin enganche",
+          previewLabel: "Vista previa gratis en 2 días hábiles",
+        }
+      : locale === "es-419"
+        ? {
+            leadLabel: "Garantía de clientes en 60 días",
+            refundLabel: "Garantía de devolución en 30 días",
+            downLabel: "$0 de enganche",
+            previewLabel: "Vista previa gratis en 2 días hábiles",
+          }
+        : undefined;
   return (
     <section className="cta-band">
       <div className="container center">
@@ -252,7 +286,7 @@ export function CtaBand({ h = "Ready to See Your Homepage?", mark, sub, btn = "G
         <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{btn}</Link>
         <Link className="btn btn--ghost btn--lg" href={secondaryHref} prefetch={false}>{secondary}</Link>
       </div>
-      <TrustStrip className="cta-trust" />
+      <TrustStrip className="cta-trust" {...trust} />
     </div></section>
   );
 }

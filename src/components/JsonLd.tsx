@@ -309,22 +309,35 @@ export function ArticleSchema({ title, description, path, image, date, modified,
   const locale = localeForPath(path, inLanguage);
   const blogPath = locale === "en" ? "/blog" : locale === "es-ES" ? "/es-es/blog" : "/es/blog";
   const homePath = locale === "en" ? "/" : locale === "es-ES" ? "/es-es" : "/es";
-  const dateTime = date.includes("T") ? date : `${date}T09:00:00-05:00`;
-  const modifiedTime = modified ? (modified.includes("T") ? modified : `${modified}T09:00:00-05:00`) : undefined;
+  const published = date.includes("T") ? date : `${date}T08:00:00-05:00`;
+  let modifiedTime = modified ? (modified.includes("T") ? modified : `${modified}T08:00:00-05:00`) : undefined;
+  // Google rejects Article when dateModified is earlier than datePublished.
+  if (modifiedTime && new Date(modifiedTime).getTime() < new Date(published).getTime()) {
+    modifiedTime = published;
+  }
+  const logoUrl = `${SITE.url}/favicon-512.webp`;
+  const publisher = {
+    "@type": "Organization",
+    "@id": orgId(locale),
+    name: SITE.name,
+    url: localeUrl(locale),
+    logo: { "@type": "ImageObject", url: logoUrl, width: 512, height: 512 },
+  };
   const graph: Record<string, unknown>[] = [
       {
-        // Include Article so auditors that look for that type still match BlogPosting pages.
+        // BlogPosting is the primary type; Article is included for auditors that look for it.
         "@type": ["BlogPosting", "Article"],
         "@id": `${url}#article`,
         headline: title,
         description,
         image: [image.startsWith("http") ? image : `${SITE.url}${image}`],
-        datePublished: dateTime,
-        ...(modifiedTime ? { dateModified: modifiedTime } : {}),
+        datePublished: published,
+        dateModified: modifiedTime ?? published,
         inLanguage: schemaLanguage(locale),
         articleSection: section,
         author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },
-        publisher: { "@id": orgId(locale) },
+        // Publisher must be self-contained (name + logo) for Article rich results.
+        publisher,
         mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#page` },
         isPartOf: { "@id": websiteId(locale) },
       },

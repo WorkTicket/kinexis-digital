@@ -133,7 +133,7 @@ export async function SpanishPage({ locale, slug }: { locale: Exclude<Locale, "e
   if (en.startsWith("/blog/") && en !== "/blog") return <PostView locale={locale} slug={en.split("/")[2] ?? ""} lang={lang} />;
   if (!PAGE_META[en]) notFound();
   const href = (path: string) => L(locale, path);
-  const band = { secondary: tx("Hablar de tus opciones"), secondaryHref: href("/strategy-call") };
+  const band = { secondary: tx("Hablar de tus opciones"), secondaryHref: href("/strategy-call"), locale };
 
   if (en === "/") return <Home locale={locale} tx={tx} href={href} lang={lang} />;
   if (en === "/services") return <Services locale={locale} tx={tx} href={href} lang={lang} band={band} />;
@@ -185,7 +185,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             className="hero__trust"
             leadLabel={tx("Garantía de 60 días")}
             refundLabel={tx("Devolución en 30 días")}
-            downLabel={tx("$0 de enganche")}
+            downLabel={locale === "es-ES" ? tx("Sin enganche") : tx("$0 de enganche")}
             previewLabel={tx("Vista previa en 2 días hábiles")}
           />
         </div>
@@ -281,7 +281,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           className="center"
           leadLabel={tx("Garantía de 60 días")}
           refundLabel={tx("Devolución en 30 días")}
-          downLabel={tx("$0 de enganche")}
+          downLabel={locale === "es-ES" ? tx("Sin enganche") : tx("$0 de enganche")}
           previewLabel={tx("Vista previa gratis en 2 días hábiles")}
         />
       </Section>
@@ -314,7 +314,7 @@ function Services({ locale, tx, href, lang, band }: PageBits) {
   );
 }
 
-type PageBits = { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string; band: { secondary: string; secondaryHref: string } };
+type PageBits = { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string; band: { secondary: string; secondaryHref: string; locale: Locale } };
 
 function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale }) {
   const faqs = [
@@ -714,6 +714,8 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
         h1={post.title}
         sub={
           <span className="blog-post__byline">
+            <span className="blog-post__author">{SITE.name}</span>
+            <span aria-hidden="true">·</span>
             <time dateTime={source.date}>{formattedDate}</time>
             <span aria-hidden="true">·</span>
             <span>{source.readTime}</span>
@@ -744,7 +746,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
           </article>
         </div>
       </Section>
-      <CtaBand h={tx("¿Quieres esto en tu sitio?")} mark={tx("tu sitio")} sub={tx("La revisión es gratis. La vista previa también, antes de pagar.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} />
+      <CtaBand h={tx("¿Quieres esto en tu sitio?")} mark={tx("tu sitio")} sub={tx("La revisión es gratis. La vista previa también, antes de pagar.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} locale={locale} />
     </>
   );
 }
