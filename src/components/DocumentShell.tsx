@@ -93,7 +93,9 @@ export default function DocumentShell({
             unlayered display:none permanently beats .is-open and kills menus. */}
         <style>{`
 html,body{background:#fff;color:#0a1230}
-body{margin:0;font-family:system-ui,sans-serif;line-height:1.6}
+body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;font-weight:500;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.btn,button{font-weight:700}
+h1{font-weight:800}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 `}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />

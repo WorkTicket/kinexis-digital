@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 
-const PLAY_MS = 1400;
+const PLAY_MS = 1600;
 const GAP_MIN_MS = 3200;
 const GAP_MAX_MS = 7800;
 const FIRST_DELAY_MS = 1800;
