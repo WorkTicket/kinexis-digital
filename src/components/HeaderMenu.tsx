@@ -64,6 +64,44 @@ function IndustriesMenu({ chrome, industries, industriesHref }: { chrome: Chrome
   );
 }
 
+function ServicesMenu({ chrome, hrefFor }: { chrome: Chrome; hrefFor: (path: string) => string }) {
+  const links: [string, string][] = [
+    ["/web-design", chrome.webDesign],
+    ["/seo-services", chrome.seo],
+    ["/upgrades", chrome.addons],
+  ];
+
+  return (
+    <div className="mega mega--services" data-mega="">
+      <button
+        type="button"
+        className="mega__btn"
+        aria-expanded={false}
+        aria-haspopup="true"
+        aria-controls="services-menu"
+        data-nav-match={hrefFor("/services")}
+        data-nav-prefix=""
+      >
+        {chrome.services}
+        <svg className="mega__chev" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M3.5 6 8 10.5 12.5 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      <div className="mega__panel services-dropdown" id="services-menu" aria-label={chrome.services}>
+        <ul className="services-dropdown__list">
+          {links.map(([href, label]) => (
+            <li key={href}>
+              <Link href={hrefFor(href)} prefetch={false} data-nav="">
+                {label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 /** The boot script marks the current page after hydration and on navigation. */
 export function NavLinks({ chrome, industries, hrefFor }: { chrome: Chrome; industries: Industry[]; hrefFor: (path: string) => string }) {
   const industriesHref = hrefFor("/industries");
@@ -72,6 +110,7 @@ export function NavLinks({ chrome, industries, hrefFor }: { chrome: Chrome; indu
       {chrome.navBefore.map(([href, label]) => (
         <NavLink key={href} href={hrefFor(href)} label={label} />
       ))}
+      <ServicesMenu chrome={chrome} hrefFor={hrefFor} />
       <IndustriesMenu chrome={chrome} industries={industries} industriesHref={industriesHref} />
       {chrome.navAfter.map(([href, label]) => (
         <NavLink key={href} href={hrefFor(href)} label={label} />

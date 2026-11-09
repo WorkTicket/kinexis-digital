@@ -7,6 +7,8 @@ const nodeOptions = `${process.env.NODE_OPTIONS || ""} --require "${patchPath}"`
 
 const MAX_ATTEMPTS = 5;
 
+execSync("node scripts/minify-boot.mjs", { stdio: "inherit" });
+
 let built = false;
 for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
   ensureSkeleton();

@@ -1,12 +1,26 @@
 import { SITE } from "@/lib/site";
-import { hasContentType, privateJson, rejectCrossSite, rejectOversize } from "@/lib/request-security";
-import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { clientIp } from "@/lib/client-ip";
+import {
+  EMAIL_PATTERN,
+  contactEmailBinding,
+  contactRecipients,
+  logDeliveryFailure,
+} from "@/lib/contact-mail";
+import { isRateLimited } from "@/lib/rate-limit";
+import {
+  attachmentAllowed,
+  formEndpointAllowed,
+  hasContentType,
+  phoneLooksValid,
+  privateJson,
+  rejectCrossSite,
+  rejectOversize,
+} from "@/lib/request-security";
 import nodemailer from "nodemailer";
 
 const MAX_FILE = 5 * 1024 * 1024;
 const MAX_REQUEST = 6 * 1024 * 1024;
 const MAX_TEXT = 20_000;
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function visitorError(message: string, status: number) {
   return privateJson({ error: message }, { status });
@@ -17,6 +31,10 @@ export async function POST(request: Request) {
   if (rejected) return rejected;
   if (!hasContentType(request, "multipart/form-data")) {
     return visitorError("That form could not be read. Please try again.", 415);
+  }
+
+  if (await isRateLimited("contact", clientIp(request), 120)) {
+    return visitorError("Please wait a moment before sending another message.", 429);
   }
 
   let form: FormData;
@@ -40,11 +58,20 @@ export async function POST(request: Request) {
   if (email && (email.length > 200 || !EMAIL_PATTERN.test(email))) {
     return visitorError("Please add a valid email.", 400);
   }
-  const replyEmail = email || SITE.email;
+  if (phone && !phoneLooksValid(phone)) {
+    return visitorError("Please add a valid phone number.", 400);
+  }
+  // Phone-only leads must not Reply-To SITE.email (staff reply would bounce to ourselves).
+  const replyTo = email || undefined;
 
   const file = form.get("file");
-  if (file instanceof File && file.size > MAX_FILE) {
-    return visitorError("Attachments must be 5 MB or smaller.", 400);
+  if (file instanceof File && file.size > 0) {
+    if (file.size > MAX_FILE) {
+      return visitorError("Attachments must be 5 MB or smaller.", 400);
+    }
+    if (!attachmentAllowed(file)) {
+      return visitorError("Attachments must be a PDF, Word document, text file, or image.", 400);
+    }
   }
 
   const lines: string[] = [];
@@ -65,7 +92,7 @@ export async function POST(request: Request) {
   const isCall = String(form.get("topic") ?? "").trim() === "strategy-call";
 
   try {
-    const sent = await sendMail({ name: safeName, email: replyEmail, text, isUpdate, isCall, file });
+    const sent = await sendMail({ name: safeName, replyTo, text, isUpdate, isCall, file });
     if (sent === "sent") return privateJson({ ok: true });
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);
@@ -77,10 +104,10 @@ export async function POST(request: Request) {
 }
 
 async function sendMail({
-  name, email, text, isUpdate, isCall, file,
+  name, replyTo, text, isUpdate, isCall, file,
 }: {
   name: string;
-  email: string;
+  replyTo?: string;
   text: string;
   isUpdate: boolean;
   isCall: boolean;
@@ -98,7 +125,7 @@ async function sendMail({
       await cloudflareEmail.send({
         from: { email: SITE.email, name: SITE.name },
         to: recipients,
-        replyTo: { email, name },
+        ...(replyTo ? { replyTo: { email: replyTo, name } } : {}),
         subject,
         text,
         attachments: file instanceof File && file.size > 0
@@ -124,7 +151,7 @@ async function sendMail({
     const body = new FormData();
     body.append("from", from);
     for (const recipient of recipients) body.append("to", recipient);
-    body.append("h:Reply-To", email);
+    if (replyTo) body.append("h:Reply-To", replyTo);
     body.append("subject", subject);
     body.append("text", text);
     if (file instanceof File && file.size > 0) body.append("attachment", file, filename);
@@ -141,9 +168,13 @@ async function sendMail({
 
   const endpoint = process.env.FORM_ENDPOINT;
   if (endpoint) {
+    if (!formEndpointAllowed(endpoint)) {
+      console.error("Contact delivery failed", { provider: "form endpoint", reason: "disallowed URL" });
+      return "failed";
+    }
     const forwarded = new FormData();
     forwarded.append("name", name);
-    forwarded.append("email", email);
+    if (replyTo) forwarded.append("email", replyTo);
     forwarded.append("message", text);
     if (file instanceof File && file.size > 0) forwarded.append("file", file, filename);
     const res = await fetch(endpoint, {
@@ -172,7 +203,7 @@ async function sendMail({
     const result = await transport.sendMail({
       from: { name: SITE.name, address: gmailUser },
       to: recipients,
-      replyTo: { name, address: email },
+      ...(replyTo ? { replyTo: { name, address: replyTo } } : {}),
       subject,
       text,
       attachments: file instanceof File && file.size > 0
@@ -185,53 +216,4 @@ async function sendMail({
   }
 
   return "unconfigured";
-}
-
-function contactRecipients() {
-  const configured = process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email;
-  const recipients = configured
-    .split(/[;,]/)
-    .map((address) => address.trim().toLowerCase())
-    .filter((address, index, all) => EMAIL_PATTERN.test(address) && all.indexOf(address) === index);
-
-  return recipients.length > 0 ? recipients : [SITE.email];
-}
-
-type ContactEmailBinding = {
-  send(message: {
-    from: { email: string; name: string };
-    to: string[];
-    replyTo: { email: string; name: string };
-    subject: string;
-    text: string;
-    attachments: Array<{
-      filename: string;
-      content: ArrayBuffer;
-      type: string;
-      disposition: "attachment";
-    }>;
-  }): Promise<unknown>;
-};
-
-function contactEmailBinding(): ContactEmailBinding | undefined {
-  try {
-    const env = getCloudflareContext().env as CloudflareEnv & { CONTACT_EMAIL?: ContactEmailBinding };
-    return env.CONTACT_EMAIL;
-  } catch {
-    // The binding is unavailable in a plain Node.js development or test process.
-    return undefined;
-  }
-}
-
-function logDeliveryFailure(provider: string, error: unknown) {
-  const details = error && typeof error === "object"
-    ? error as { name?: unknown; code?: unknown; command?: unknown; responseCode?: unknown }
-    : {};
-  console.error("Contact delivery failed", {
-    provider,
-    name: typeof details.name === "string" ? details.name : undefined,
-    code: typeof details.code === "string" ? details.code : undefined,
-    command: typeof details.command === "string" ? details.command : undefined,
-    responseCode: typeof details.responseCode === "number" ? details.responseCode : undefined,
-  });
 }

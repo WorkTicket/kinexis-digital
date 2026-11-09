@@ -9,6 +9,72 @@ export type ProjectDetail = {
 };
 
 export const PROJECT_DETAILS: Record<string, ProjectDetail> = {
+  "earthform-grading": {
+    about: [
+      "Earthform Grading is a website template for site grading, drainage prep, and outdoor earthwork. The layout shows finished grades and keeps the project request close.",
+      "Residential and larger site work stay readable so a property owner can describe the job without a long form.",
+    ],
+  },
+  "lockwell-door-hardware": {
+    about: [
+      "Lockwell Door Hardware is a website template for locks, hardware upgrades, and door repairs. Product-led imagery and a short quote path keep the page practical.",
+      "Emergency and planned upgrade work stay easy to separate so a visitor can call now or request a measured quote.",
+    ],
+  },
+  "docklight-marine-detail": {
+    about: [
+      "Docklight Marine Detail is a website template for boat cleaning and detailing. Bright waterfront photography carries the offer while booking stays simple.",
+      "Wash, polish, and interior packages stay distinct so a boat owner can request the right service without digging through menus.",
+    ],
+  },
+  "honeycomb-attic": {
+    about: [
+      "Honeycomb Attic Co. is a website template for insulation upgrades and attic air sealing. The page explains comfort and energy benefits without burying the estimate request.",
+      "Service sections leave room for before-and-after photos and a short way to ask about the attic from a phone.",
+    ],
+  },
+  "kiln-hearth-chimney": {
+    about: [
+      "Kiln Hearth & Chimney is a website template for inspections, sweeps, and fireplace repairs. The work sits up front with a clear path to schedule a visit.",
+      "Seasonal maintenance and repair calls stay easy to tell apart, which helps a homeowner prepare before lighting the first fire of the season.",
+    ],
+  },
+  "riverstone-basement": {
+    about: [
+      "Riverstone Basement Co. is a website template for waterproofing, sump systems, and finished basements. The page leads with dry-space proof and keeps the inspection request easy to spot.",
+      "Repair and finishing paths stay separate so someone dealing with moisture can choose the next step without scanning the whole site.",
+    ],
+  },
+  "brightburrow-wildlife": {
+    about: [
+      "Brightburrow Wildlife is a website template for humane wildlife removal and exclusion. The tone stays calm while the phone and visit request stay close.",
+      "Service sections explain attic, chimney, and yard problems in plain language so a homeowner can act the same day.",
+    ],
+  },
+  "tileline-bath-tile": {
+    about: [
+      "Tileline Bath & Tile is a website template for bathroom remodeling and tile installation. Finished rooms get the room they need, with a consultation path beside the work.",
+      "The layout keeps material and project types readable so a visitor planning a shower, floor, or full bath can ask about the space without a long form.",
+    ],
+  },
+  "graft-tree-care": {
+    about: [
+      "Graft Tree Care is a website template for pruning, removals, and storm work. Large outdoor photography carries the page while the next step stays easy to find.",
+      "Job types stay distinct so a homeowner comparing a trim, a removal, or an emergency call can pick the right path quickly.",
+    ],
+  },
+  "switchyard-heating-air": {
+    about: [
+      "Switchyard Heating & Air is a website template built for repair, replacement, and seasonal maintenance. The page separates same-day comfort calls from planned system upgrades.",
+      "Clear headings, a strong phone path, and room for service-area towns keep the design useful for a local HVAC company.",
+    ],
+  },
+  "undertow-drainage": {
+    about: [
+      "Undertow Drainage is a website template for foundation drains, downspouts, and wet-yard fixes. The layout leads with the problem a homeowner can see, then shows the repair path without burying the phone number.",
+      "Service sections stay short and practical so someone dealing with standing water can choose a call or a quote from a phone.",
+    ],
+  },
   "liftline-garage-doors": {
     about: [
       "The Liftline Garage Doors template separates urgent repairs from the slower decision of choosing a new door. A crisp, product-led layout shows repair options, door styles, and a direct path to a call or quote.",

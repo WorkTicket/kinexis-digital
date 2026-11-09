@@ -1,26 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import Link from "next/link";
 import localFont from "next/font/local";
 import "./globals.css";
-import { chromeFor } from "@/i18n/chrome";
-import { getLocale, htmlLang, localeBootScript, withLocale } from "@/lib/i18n";
+import { localeBootScript } from "@/lib/i18n";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { SITE } from "@/lib/site";
-import Header from "@/components/Header";
-import SiteAudit from "@/components/SiteAudit";
-import Footer from "@/components/Footer";
-import ScrollUi from "@/components/ScrollUi";
-import DialogHost from "@/components/DialogHost";
 import Boot from "@/components/Boot";
-import { SiteSchema } from "@/components/JsonLd";
 
 const inter = localFont({
   src: "./fonts/inter-latin.woff2",
   variable: "--font-inter",
   weight: "100 900",
-  display: "swap",
+  // optional = no late swap (avoids the visible size jump on load).
+  display: "optional",
   adjustFontFallback: "Arial",
-  preload: true,
+  preload: false,
 });
 const poppins = localFont({
   src: [
@@ -28,16 +21,17 @@ const poppins = localFont({
     { path: "./fonts/poppins-latin-700.woff2", weight: "700", style: "normal" },
   ],
   variable: "--font-poppins",
-  display: "swap",
+  display: "optional",
   adjustFontFallback: "Arial",
-  preload: true,
+  preload: false,
 });
 const poppinsDisplay = localFont({
   src: "./fonts/poppins-latin-800.woff2",
   variable: "--font-poppins-display",
   weight: "800",
-  display: "swap",
+  display: "optional",
   adjustFontFallback: "Arial",
+  // Preload so heroes share the same bold face as the homepage from first paint.
   preload: true,
 });
 
@@ -82,11 +76,10 @@ export const metadata: Metadata = {
 };
 export const viewport: Viewport = { themeColor: "#0b3dff", width: "device-width", initialScale: 1 };
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await getLocale();
-  const chrome = chromeFor(locale);
+/** Shell only — locale chrome lives in route-group layouts so HTML can prerender. */
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang={htmlLang(locale)} data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
       <head>
         {/* Prevent the desktop navigation from painting unstyled while the
             external stylesheet is in flight. The full mobile menu still opens
@@ -98,39 +91,18 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{
             __html: `(function(){
 var p=location.pathname,r=document.documentElement;
-if(p==="/es"||p.indexOf("/es/")===0)p=p==="/es"?"/":p.slice(3);
-else if(p==="/es-es"||p.indexOf("/es-es/")===0)p=p==="/es-es"?"/":p.slice(6);
+if(p==="/es"||p.indexOf("/es/")===0){r.lang="es";p=p==="/es"?"/":p.slice(3)}
+else if(p==="/es-es"||p.indexOf("/es-es/")===0){r.lang="es-ES";p=p==="/es-es"?"/":p.slice(6)}
 if(p==="/contact"||p==="/audit"||p==="/strategy-call"||p.indexOf("/pay")===0||p.indexOf("/lp/")===0)r.classList.add("no-lead");
-if(p.indexOf("/pay")===0||p==="/strategy-call"||p.indexOf("/lp/")===0)r.classList.add("no-float");
+if(p==="/contact"||p==="/upgrades"||p.indexOf("/pay")===0||p==="/strategy-call"||p.indexOf("/lp/")===0)r.classList.add("no-float");
+if(p==="/audit"||p==="/privacy"||p==="/terms"||p==="/update"||p.indexOf("/pay")===0)r.classList.add("no-audit");
 if(p.indexOf("/lp/")===0)r.classList.add("lp-route");
-var started=false;
-var start=function(){
-  if(started)return;started=true;
-  if(!document.fonts||!document.fonts.load){r.classList.add("fonts-on");return}
-  Promise.all([
-    document.fonts.load("800 16px poppinsDisplay"),
-    document.fonts.load("700 16px poppins"),
-    document.fonts.load("600 16px poppins"),
-    document.fonts.load("16px inter")
-  ]).then(function(){r.classList.add("fonts-on")},function(){r.classList.add("fonts-on")});
-};
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",start,{once:true});
-else start();
 })()`,
           }}
         />
-        <SiteSchema locale={locale} />
       </head>
       <body>
-        <div className="page-veil" aria-hidden="true" />
-        <a className="skip" href="#content">{chrome.skip}</a>
-        {SITE.announce && <div className="announce"><Link href={withLocale(locale, SITE.announce.href)} prefetch={false}>{chrome.announce}</Link></div>}
-        <Header />
-        <main id="content">{children}</main>
-        <SiteAudit />
-        <Footer />
-        <ScrollUi />
-        <DialogHost />
+        {children}
         <Boot email={SITE.email} ga={/^G-[A-Z0-9]+$/.test(gaId) ? gaId : ""} video={SITE.videoUrl} />
       </body>
     </html>

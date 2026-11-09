@@ -9,4 +9,5 @@ export {
   getProject,
   portfolioDeviceFile,
   portfolioFile,
+  portfolioScoresFile,
 } from "@/data/portfolio";

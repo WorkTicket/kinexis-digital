@@ -27,6 +27,10 @@ const nextConfig: NextConfig = {
   experimental: {
     cpus: 4,
   },
+  // Production builds drop debug noise from client bundles.
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
   // Let proxy.ts issue the site's explicit 301 for trailing-slash variants.
@@ -71,15 +75,20 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
+    const yearCache = [
+      { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+    ];
     return [
       {
         // Public assets are versioned by filename (or query string) and can
         // safely stay at the edge and in browser caches for a year.
         source: "/assets/:path*",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
+        headers: yearCache,
       },
+      { source: "/blog/:path*", headers: yearCache },
+      { source: "/portfolio/:path*", headers: yearCache },
+      { source: "/favicon-:size.webp", headers: yearCache },
+      { source: "/apple-icon.png", headers: yearCache },
       {
         source: "/:path*",
         headers: [

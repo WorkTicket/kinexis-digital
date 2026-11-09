@@ -50,7 +50,15 @@ export function proxy(request: NextRequest) {
   requestHeaders.set(PATH_HEADER, request.nextUrl.pathname);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Language", contentLanguage(locale));
-  if (request.nextUrl.pathname.startsWith("/assets/")) {
+  const path = request.nextUrl.pathname;
+  if (
+    path.startsWith("/assets/") ||
+    path.startsWith("/_next/static/") ||
+    path.startsWith("/blog/") ||
+    path.startsWith("/portfolio/") ||
+    /^\/favicon-\d+\.webp$/.test(path) ||
+    path === "/apple-icon.png"
+  ) {
     response.headers.set("Cache-Control", "public, max-age=31536000, immutable");
   }
   return response;

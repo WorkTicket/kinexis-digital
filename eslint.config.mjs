@@ -22,5 +22,7 @@ export default defineConfig([
     "build/**",
     "next-env.d.ts",
     "cloudflare-env.d.ts",
+    // Generated minify of public/assets/js/boot.js
+    "public/assets/js/boot.min.js",
   ]),
 ]);

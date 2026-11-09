@@ -1,14 +1,6 @@
 import Form, { type Field } from "./Form";
 import { chromeFor } from "@/i18n/chrome";
-import { englishPath, getLocale, getRequestPath } from "@/lib/i18n";
-
-/** High-intent pages where a slim preview form under the header can close a lead. */
-const SHOW = new Set([
-  "/",
-  "/web-design",
-  "/seo-services",
-  "/pricing",
-]);
+import type { Locale } from "@/lib/i18n";
 
 const SLIM_FIELDS_EN: Field[] = [
   { label: "First Name", name: "name", required: true, auto: "given-name" },
@@ -22,12 +14,8 @@ const SLIM_FIELDS_ES: Field[] = [
   { label: "Teléfono", name: "phone", kind: "tel", auto: "tel" },
 ];
 
-/** Slim free-preview lead form on the hero / first-section divider (key pages only). */
-export default async function PreviewBar() {
-  const path = englishPath(await getRequestPath());
-  if (!SHOW.has(path)) return null;
-
-  const locale = await getLocale();
+/** Slim free-preview lead form. Only mount on pages that should show it. */
+export default function PreviewBar({ locale = "en" }: { locale?: Locale }) {
   const chrome = chromeFor(locale);
   const fields = locale === "en" ? SLIM_FIELDS_EN : SLIM_FIELDS_ES;
 

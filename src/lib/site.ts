@@ -23,8 +23,8 @@ export const SITE = {
 };
 export const telHref = (p: string) => "tel:" + p.replace(/[^0-9+]/g, "");
 
-/** Bump when industry, audit, or shared kit SVGs are replaced. /assets/* is cached for a year. */
-export const KIT_ASSET_VERSION = "2";
+/** Bump when industry, audit, shared kit, or custom icons are replaced. /assets/* is cached for a year. */
+export const KIT_ASSET_VERSION = "4";
 
 export function kitSrc(path: string) {
   return `${path}?v=${KIT_ASSET_VERSION}`;

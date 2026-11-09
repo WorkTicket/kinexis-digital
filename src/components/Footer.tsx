@@ -5,7 +5,8 @@ import FacebookChooser from "./FacebookChooser";
 import FooterGate from "./FooterGate";
 import { HL } from "./mark";
 import { chromeFor } from "@/i18n/chrome";
-import { getLocale, getRequestPath, withLocale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import { withLocale } from "@/lib/i18n";
 import LanguageSwitch from "./LanguageSwitch";
 import { SITE, telHref } from "@/lib/site";
 import { TRUSTPILOT_PROFILE_URL } from "@/lib/trustpilot";
@@ -71,9 +72,7 @@ function LinkColumn({ title, links }: { title: string; links: { href: string; la
   );
 }
 
-export default async function Footer() {
-  const locale = await getLocale();
-  const path = await getRequestPath();
+export default function Footer({ locale }: { locale: Locale }) {
   const chrome = chromeFor(locale);
   const hrefFor = (href: string) => (href === "/pay" || /^https?:\/\//.test(href) ? href : withLocale(locale, href));
   const fields = locale === "en" ? LEAD_FIELDS : [
@@ -171,7 +170,7 @@ export default async function Footer() {
 
           <div id="footer-legal" className="footer-legal">
             <p className="footer-copyright">© {new Date().getFullYear()} {SITE.name}</p>
-            <LanguageSwitch className="footer-language shrink-0" locale={locale} path={path} label={chrome.language} />
+            <LanguageSwitch className="footer-language shrink-0" locale={locale} label={chrome.language} />
             <nav aria-label={chrome.legal} className="footer-policies">
               <Link className={legalLink} href={hrefFor("/terms")} prefetch={false}>{chrome.terms}</Link>
               <span className="footer-policies__dot" aria-hidden="true" />

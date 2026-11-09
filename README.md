@@ -82,6 +82,10 @@ Invoice checkout requires `PAYPAL_CLIENT_SECRET`; until
 it is configured, the payment page offers a contact link for a secure invoice
 payment link instead of a checkout form that cannot complete.
 
+On-site reviews (`/api/reviews`) are stored pending until staff approve them.
+The team notification email includes one-click approve and reject links to
+`/api/reviews/moderate`. Published reviews live in the `REVIEWS` KV binding.
+
 Workers commands run the full OpenNext build so Next.js produces standalone
 output. `scripts/prepare-cloudflare-traces.mjs` includes OpenTelemetry's ESM
 files in the middleware trace because OpenNext selects the module entry while

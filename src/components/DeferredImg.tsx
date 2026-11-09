@@ -14,13 +14,9 @@ type Props = {
   fallback?: string;
 };
 
-function placeholder(width: number, height: number) {
-  return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${width}' height='${height}'%3E%3C/svg%3E`;
-}
-
 /**
- * Off-screen artwork stays on `data-src` until `DeferImages` sees it near the viewport.
- * The reserved box is the only thing in the first HTML, so the file cannot delay the largest paint.
+ * Let the browser's native lazy loader handle off-screen artwork. Keeping the
+ * real URL in the HTML means images still load if the optional boot script is delayed.
  */
 export function DeferredImg({ src, srcSet, avifSrcSet, sizes, alt, width, height, className, eager = false, onError, fallback }: Props) {
   if (eager) {
@@ -44,10 +40,9 @@ export function DeferredImg({ src, srcSet, avifSrcSet, sizes, alt, width, height
     return avifSrcSet ? <picture><source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />{image}</picture> : image;
   }
   const image = (
-    <img
-      src={placeholder(width, height)}
-      data-src={src}
-      data-srcset={srcSet}
+      <img
+        src={src}
+        srcSet={srcSet}
       sizes={sizes}
       alt={alt}
       width={width}
@@ -61,5 +56,5 @@ export function DeferredImg({ src, srcSet, avifSrcSet, sizes, alt, width, height
       onError={onError}
     />
   );
-  return avifSrcSet ? <picture><source type="image/avif" data-srcset={avifSrcSet} sizes={sizes} />{image}</picture> : image;
+  return avifSrcSet ? <picture><source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />{image}</picture> : image;
 }

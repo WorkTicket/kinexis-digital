@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteChrome from "@/components/SiteChrome";
 import { PageHero } from "@/components/ui";
 import { contentMetadata } from "@/lib/seo";
 
@@ -11,9 +12,9 @@ export const metadata = contentMetadata({
 
 export default function NotFound() {
   return (
-    <>
+    <SiteChrome locale="en">
       <PageHero h1="Page Not Found" sub="That page doesn’t exist or has moved." />
       <section className="section"><div className="container center"><Link className="btn btn--primary btn--lg" href="/" prefetch={false}>Back to Home</Link> <Link className="btn btn--ghost btn--lg" href="/contact" prefetch={false}>Contact Kinexis</Link></div></section>
-    </>
+    </SiteChrome>
   );
 }

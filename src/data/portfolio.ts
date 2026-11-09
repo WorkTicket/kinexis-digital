@@ -23,6 +23,17 @@ export type Project = {
 };
 
 export const PROJECTS: Project[] = [
+  { slug: "undertow-drainage", name: "Undertow Drainage", trade: "Drainage", group: "Home Services", kind: "template", image: "/portfolio/undertow-drainage.webp", deviceImage: "/portfolio/undertow-drainage-devices.webp", width: 1100, height: 4973 },
+  { slug: "switchyard-heating-air", name: "Switchyard Heating & Air", trade: "HVAC", group: "Home Services", kind: "template", image: "/portfolio/switchyard-heating-air.webp", deviceImage: "/portfolio/switchyard-heating-air-devices.webp", width: 1100, height: 5634 },
+  { slug: "graft-tree-care", name: "Graft Tree Care", trade: "Tree Care", group: "Outdoor Living", kind: "template", image: "/portfolio/graft-tree-care.webp", deviceImage: "/portfolio/graft-tree-care-devices.webp", width: 1100, height: 5175 },
+  { slug: "tileline-bath-tile", name: "Tileline Bath & Tile", trade: "Bath & Tile", group: "Design & Build", kind: "template", image: "/portfolio/tileline-bath-tile.webp", deviceImage: "/portfolio/tileline-bath-tile-devices.webp", width: 1100, height: 5371 },
+  { slug: "brightburrow-wildlife", name: "Brightburrow Wildlife", trade: "Wildlife Control", group: "Home Services", kind: "template", image: "/portfolio/brightburrow-wildlife.webp", deviceImage: "/portfolio/brightburrow-wildlife-devices.webp", width: 1100, height: 5246 },
+  { slug: "riverstone-basement", name: "Riverstone Basement Co.", trade: "Basement Waterproofing", group: "Home Services", kind: "template", image: "/portfolio/riverstone-basement.webp", deviceImage: "/portfolio/riverstone-basement-devices.webp", width: 1100, height: 5495 },
+  { slug: "kiln-hearth-chimney", name: "Kiln Hearth & Chimney", trade: "Chimney & Fireplace", group: "Home Services", kind: "template", image: "/portfolio/kiln-hearth-chimney.webp", deviceImage: "/portfolio/kiln-hearth-chimney-devices.webp", width: 1100, height: 6327 },
+  { slug: "honeycomb-attic", name: "Honeycomb Attic Co.", trade: "Attic Insulation", group: "Home Services", kind: "template", image: "/portfolio/honeycomb-attic.webp", deviceImage: "/portfolio/honeycomb-attic-devices.webp", width: 1100, height: 5641 },
+  { slug: "docklight-marine-detail", name: "Docklight Marine Detail", trade: "Marine Detailing", group: "Specialty", kind: "template", image: "/portfolio/docklight-marine-detail.webp", deviceImage: "/portfolio/docklight-marine-detail-devices.webp", width: 1100, height: 5194 },
+  { slug: "lockwell-door-hardware", name: "Lockwell Door Hardware", trade: "Door Hardware", group: "Home Services", kind: "template", image: "/portfolio/lockwell-door-hardware.webp", deviceImage: "/portfolio/lockwell-door-hardware-devices.webp", width: 1100, height: 5205 },
+  { slug: "earthform-grading", name: "Earthform Grading", trade: "Grading & Excavation", group: "Outdoor Living", kind: "template", image: "/portfolio/earthform-grading.webp", deviceImage: "/portfolio/earthform-grading-devices.webp", width: 1100, height: 5256 },
   { slug: "liftline-garage-doors", name: "Liftline Garage Doors", trade: "Garage Doors", group: "Home Services", kind: "template", image: "/portfolio/liftline-garage-doors.webp", deviceImage: "/portfolio/liftline-garage-doors-devices.webp", width: 1100, height: 7870 },
   { slug: "afterglow-outdoor-lighting", name: "Afterglow Outdoor Lighting", trade: "Outdoor Lighting", group: "Outdoor Living", kind: "template", image: "/portfolio/afterglow-outdoor-lighting.webp", deviceImage: "/portfolio/afterglow-outdoor-lighting-devices.webp", width: 1100, height: 9460 },
   { slug: "rinseworks", name: "Rinseworks", trade: "Pressure Washing", group: "Cleaning", kind: "template", image: "/portfolio/rinseworks.webp", deviceImage: "/portfolio/rinseworks-devices.webp", width: 1100, height: 8381 },
@@ -49,7 +60,7 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning", "Events", "Specialty"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "25";
+export const PORTFOLIO_ASSET_VERSION = "32";
 
 export function portfolioFile(image: string, width: 640 | 1100 = 1100) {
   const file = width === 640 ? image.replace(/\.webp$/, "-640.webp") : image;
@@ -59,6 +70,11 @@ export function portfolioFile(image: string, width: 640 | 1100 = 1100) {
 export function portfolioDeviceFile(image: string, width: 768 | 1536 = 1536) {
   const file = width === 768 ? image.replace(/\.webp$/, "-sm.webp") : image;
   return `${file}?v=${PORTFOLIO_ASSET_VERSION}`;
+}
+
+/** Lighthouse 100 template with this project's homepage hero baked into the gray panel. */
+export function portfolioScoresFile(image: string) {
+  return `${image.replace(/\.webp$/, "-scores.webp")}?v=${PORTFOLIO_ASSET_VERSION}`;
 }
 
 export const CUSTOM_PROJECTS = PROJECTS.filter((p) => p.kind === "custom");

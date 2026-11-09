@@ -13,7 +13,9 @@ export default function Boot({ email, ga, video }: { email: string; ga: string; 
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: `window.__KINEXIS_CFG__=${config}` }}
       />
-      <Script id="kinexis-boot" src="/assets/js/boot.js?v=15" strategy="afterInteractive" />
+      {/* lazyOnload avoids a head preload that contends with LCP; boot still
+          wires menus, forms, marks, and film after the window load event. */}
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=20" strategy="lazyOnload" />
     </>
   );
 }

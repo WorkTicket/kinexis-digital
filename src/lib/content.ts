@@ -23,12 +23,12 @@ export const WEB_FAQS: QA[] = [
 
 /** Design process steps for /web-design (not the company-wide launch STEPS). */
 export const DESIGN_PROCESS_STEPS = [
-  { title: "Share a direction", text: "Pick a look from our portfolio, or send screenshots of sites you like as a clear starting point." },
-  { title: "Send brand basics", text: "Share your logo if you have one, your business name, and any colors you already use. We work with what you have." },
-  { title: "Add photos if you have them", text: "Job photos, your truck, or your team help the preview feel real. If you don’t have them yet, we can still start." },
-  { title: "We prepare your homepage preview", text: "Within 2 business days you get a homepage concept for your trade—with no card required and no obligation." },
-  { title: "You review and request changes", text: "Tell us what to adjust. We revise until the design feels right for your business before you pick a plan." },
-  { title: "Choose a plan and we finish the site", text: "Once you approve, pick Website, Lead System, Plus, or Own It. We build the full site and confirm launch in writing." },
+  { title: "Share a direction", text: "Pick a look from our portfolio, or send screenshots of sites you like as a clear starting point.", icon: "layers", phase: "share" as const },
+  { title: "Send brand basics", text: "Share your logo if you have one, your business name, and any colors you already use. We work with what you have.", icon: "built-for-your-trade", phase: "share" as const },
+  { title: "Add photos if you have them", text: "Job photos, your truck, or your team help the preview feel real. If you don’t have them yet, we can still start.", icon: "gallery", phase: "share" as const },
+  { title: "We prepare your homepage preview", text: "Within 2 business days you get a homepage concept for your trade—with no card required and no obligation.", icon: "preview", phase: "deliver" as const },
+  { title: "You review and request changes", text: "Tell us what to adjust. We revise until the design feels right for your business before you pick a plan.", icon: "edit", phase: "deliver" as const },
+  { title: "Choose a plan and we finish the site", text: "Once you approve, pick Website, Lead System, Plus, or Own It. We build the full site and confirm launch in writing.", icon: "better-pricing", phase: "deliver" as const },
 ];
 export const SEO_FAQS: QA[] = [
   { q: "When should I expect SEO progress?", a: "SEO is long-term work. Technical fixes may show movement within a few weeks, while meaningful gains in positions and traffic often take three to six months or longer. Competition and your starting point both matter." },
@@ -307,6 +307,18 @@ export const REVIEWS: {
     trade: "Exterior services",
     city: "Houston, TX",
     date: "",
+    stars: 5,
+  },
+  {
+    id: "hunter-norris",
+    quote:
+      "So grateful to Kinexis Digital! They captured the essence of our plumbing business right away and created a modern website that builds instant trust. 10/10 team!",
+    name: "Hunter Norris",
+    role: "Owner",
+    company: "Preferred Plumbing Solutions",
+    trade: "Plumbing",
+    city: "Spirit Lake, Idaho",
+    date: "September 22, 2026",
     stars: 5,
   },
 ];

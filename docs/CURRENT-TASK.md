@@ -1,31 +1,25 @@
 # CURRENT-TASK.md
 
 ## Goal
-Ship design/offer refresh + Search Console legacy redirect cleanup to production.
+Site-wide speed optimization (LCP/TTFB/JS) without changing design, visuals, or animations.
 
 ## Status
-complete — committed, pushed, deployed
+done (local) — `npm run typecheck` and `npm run lint` pass. Hero derivatives regenerated via `npm run images:heroes`.
 
-## Changed files (commit `82077439`)
-- Home/pricing/web-design/industries + Spanish mirrors, TrustStrip, OpenDialog, globals CSS
-- `src/lib/legacy-redirects.ts`, `next.config.ts`, `src/data/industries.ts` — legacy 301s
-- `scripts/search-on-deploy.mjs` — legacy URL regression probes
-- `src/i18n/chrome.ts` — money-page nav/footer links
-- Docs: CONTENT.md, this file
+## Changed files (this pass)
+- Perf: locale `revalidate`, `IndustryHeroArt`, capped industry 480/768/960 stills, portfolio card 640-only srcSets
+- JS: `LanguageSwitch` → server; dynamic islands (pay/calendar/review form); minified `boot.min.js` (+ build minify step)
+- Config/docs: `next.config.ts` removeConsole, eslint ignore for boot.min, `DECISIONS.md`, `Boot.tsx` v=20
 
 ## Completed
-- Commit + push to `main` (`82077439`)
-- Deployed Cloudflare Workers (Version ID: `af2f316d-9564-4296-a629-b9e5d83bbc63`)
-- Post-deploy: lint/typecheck/contact OK; sitemap 102 URLs; **10/10 legacy probes 301**; IndexNow 200
+- Stop industry pages from offering multi-hundred-KB master WebP as LCP candidates
+- ISR cache window on all locale layouts for OpenNext KV interception
+- Cut client hydration on chrome (language switch) and defer heavy route islands
+- Ship ~40% smaller interaction boot script
 
-## Unfinished (manual Search Console)
-1. Confirm sitemap `https://www.kinexisdigital.com/sitemap.xml` on the www property
-2. URL Inspection → Request indexing: `/`, `/web-design`, `/seo-services`, `/pricing`, `/contact`, `/industries`, top trades, 2–3 blog posts
-3. Do not request indexing of redirected `/en/...` or `/locations/...` URLs
-4. Re-check Coverage in 2–4 weeks (404 legacy should drop; impressions should move to live pages)
-
-## Errors/blockers
-none
+## Unfinished
+1. Deploy + spot-check industry heroes, menu/reveal animations, and pay/calendar pages
+2. Optional: full `npm run build` + lighthouse audit (`scripts/audit-lighthouse.mjs`) against preview
 
 ## Next action
-Run the Search Console indexing requests above.
+Deploy, then smoke-test homepage film fade-in, industry LCP art, and Spanish route JS weight.

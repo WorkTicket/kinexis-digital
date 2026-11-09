@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { getLocale, spainize, withLocale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import { spainize, withLocale } from "@/lib/i18n";
 import { SITE } from "@/lib/site";
 
 export { OpenDialog } from "./OpenDialog";
@@ -15,8 +16,7 @@ function CloseDialog({ label }: { label: string }) {
 }
 
 /** Closed until the boot script opens one. The video frame is added on open so it does not load with the page. */
-export default async function DialogHost() {
-  const locale = await getLocale();
+export default function DialogHost({ locale }: { locale: Locale }) {
   const es = locale !== "en";
   const t = (text: string) => (locale === "es-ES" ? spainize(text) : text);
   const close = es ? "Cerrar" : "Close";

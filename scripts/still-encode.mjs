@@ -6,17 +6,18 @@ import { readFile, writeFile } from "node:fs/promises";
 import sharp from "sharp";
 
 const AVIF_DETAIL = { effort: 7, chromaSubsampling: "4:4:4" };
+const AVIF_PHOTO = { effort: 7, chromaSubsampling: "4:2:0" };
 const WEBP_BASE = { alphaQuality: 100, effort: 5, smartSubsample: false };
 
 function avifQuality(width) {
   return width && width <= 960 ? 80 : 86;
 }
 
-async function encode(source, { width, format, webpQuality, avifQuality: quality }) {
+async function encode(source, { width, format, webpQuality, avifQuality: quality, photo = false }) {
   let pipeline = sharp(source);
   if (width) pipeline = pipeline.resize({ width, withoutEnlargement: true, kernel: "lanczos3" });
   if (format === "webp") return pipeline.webp({ ...WEBP_BASE, quality: webpQuality }).toBuffer();
-  return pipeline.avif({ ...AVIF_DETAIL, quality }).toBuffer();
+  return pipeline.avif({ ...(photo ? AVIF_PHOTO : AVIF_DETAIL), quality }).toBuffer();
 }
 
 async function writeReplace(output, buffer) {
@@ -39,7 +40,11 @@ async function writeReplace(output, buffer) {
  * same-aspect version of the master, it is resized to that width.
  * Pass `width` to force a target width (used when creating a new size).
  */
-export async function rebuildFromMaster(master, output, { format, webpQuality = 90, width: forcedWidth } = {}) {
+export async function rebuildFromMaster(
+  master,
+  output,
+  { format, webpQuality = 90, width: forcedWidth, photo = false, maxBytes } = {},
+) {
   format = format ?? (output.endsWith(".avif") ? "avif" : "webp");
   const source = await readFile(master);
   const masterMeta = await sharp(source).metadata();
@@ -61,19 +66,23 @@ export async function rebuildFromMaster(master, output, { format, webpQuality = 
   let width = forcedWidth && forcedWidth < masterMeta.width ? forcedWidth : undefined;
   if (!width && current?.width && current.width < masterMeta.width) width = current.width;
 
-  const budgeted = format === "avif" && width && width <= 960 && previous > 0;
+  const budgeted = format === "avif" && width && width <= 960 && previous > 0 && !maxBytes;
   const limit = previous + Math.max(Math.round(previous * 0.45), 20 * 1024);
-  let quality = format === "avif" ? avifQuality(width) : webpQuality;
-  let buffer = await encode(source, { width, format, webpQuality, avifQuality: quality });
-  while (budgeted && buffer.length > limit && quality > 72) {
+  let quality = format === "avif" ? (photo ? 62 : avifQuality(width)) : webpQuality;
+  let buffer = await encode(source, { width, format, webpQuality, avifQuality: quality, photo });
+  const floor = photo ? 40 : 72;
+  while (
+    ((budgeted && buffer.length > limit) || (maxBytes && buffer.length > maxBytes)) &&
+    quality > floor
+  ) {
     quality -= 4;
-    buffer = await encode(source, { width, format, webpQuality, avifQuality: quality });
+    buffer = await encode(source, { width, format, webpQuality, avifQuality: quality, photo });
   }
 
   const encoded = await sharp(buffer).metadata();
   if (masterMeta.hasAlpha && !encoded.hasAlpha) throw new Error(`Alpha dropped: ${output}`);
   await writeReplace(output, buffer);
-  const note = format === "avif" ? ` q${quality}` : "";
+  const note = format === "avif" ? ` q${quality}${photo ? " photo" : ""}` : "";
   console.log(`${output}: ${Math.round(previous / 1024)}KB -> ${Math.round(buffer.length / 1024)}KB${note}`);
   return buffer.length;
 }

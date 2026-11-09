@@ -113,7 +113,13 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
     const host = hostRef.current;
     if (!host) return;
     const planId = PAYPAL_PLANS[plan.key].planId;
-    if (!planId) return;
+    if (!planId) {
+      queueMicrotask(() => {
+        setSdk("failed");
+        setNotice("Checkout is not configured for this plan yet. Text or email us and we’ll finish payment with you.");
+      });
+      return;
+    }
     const planKey = plan.key;
     let dead = false;
     let buttons: PayPalButtons | null = null;
@@ -227,9 +233,8 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
         </header>
         <div className="pay-summary__body">
           <dl className="pay-breakdown">
-            <div><dt>Billing</dt><dd>{plan.monthly ? "Monthly" : "One time"}</dd></div>
+            <div><dt>Billing</dt><dd>{plan.monthly ? "Monthly · cancel anytime" : "One time"}</dd></div>
             <div><dt>First charge</dt><dd>{plan.monthly ? "When you subscribe" : "When you pay"}</dd></div>
-            {plan.monthly && <div><dt>Billing</dt><dd>Month-to-month · cancel anytime</dd></div>}
           </dl>
           <div className="pay-total">
             <span>{plan.monthly ? "Monthly total" : "One-time total"}</span>

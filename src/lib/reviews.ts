@@ -1,8 +1,10 @@
+import "server-only";
+
 import { REVIEWS } from "@/lib/content";
-import { getFacebookReviews } from "@/lib/facebook";
+import { getFacebookReviews } from "@/lib/facebook-api";
 import { type DisplayReview } from "@/lib/review-display";
 import { getSiteReviews } from "@/lib/site-reviews";
-import { getTrustpilotReviews } from "@/lib/trustpilot";
+import { getTrustpilotReviews } from "@/lib/trustpilot-api";
 
 export type { DisplayReview, ReviewSource } from "@/lib/review-display";
 export { REVIEW_SOURCE_LABEL } from "@/lib/review-display";
@@ -84,6 +86,23 @@ export function reviewSourceSummary(reviews: DisplayReview[]): string {
   return `${parts.slice(0, -1).join(", ")}, & ${parts[parts.length - 1]}`;
 }
 
+/** Build-time curated site reviews. No network — safe for LCP paths like home. */
+export function getCuratedReviews(): DisplayReview[] {
+  return REVIEWS.map((review) => ({
+    id: `site-${review.id}`,
+    name: review.name,
+    role: review.role,
+    company: review.company,
+    trade: review.trade,
+    city: review.city,
+    quote: review.quote,
+    date: review.date,
+    stars: review.stars,
+    source: "site" as const,
+    sortKey: sortKeyFromLabel(review.date, review.id),
+  }));
+}
+
 /** All client reviews in one list, newest first, same shape for every source. */
 export async function getAllReviews(): Promise<DisplayReview[]> {
   const [facebook, trustpilot, site] = await Promise.all([
@@ -95,19 +114,7 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
   const curatedIds = new Set(REVIEWS.map((review) => `site-${review.id}`));
 
   const reviews: DisplayReview[] = [
-    ...REVIEWS.map((review) => ({
-      id: `site-${review.id}`,
-      name: review.name,
-      role: review.role,
-      company: review.company,
-      trade: review.trade,
-      city: review.city,
-      quote: review.quote,
-      date: review.date,
-      stars: review.stars,
-      source: "site" as const,
-      sortKey: sortKeyFromLabel(review.date, review.id),
-    })),
+    ...getCuratedReviews(),
     ...site
       .filter((review) => !curatedIds.has(`site-${review.id}`))
       .map((review) => ({

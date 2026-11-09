@@ -1,39 +1,32 @@
 import { cache } from "react";
 import { headers } from "next/headers";
-import { POSTS } from "@/lib/content";
-import { INDUSTRIES } from "@/data/industries";
-import { PAGES, type PageMeta } from "@/lib/pages";
+import {
+  type Locale,
+  MIRROR_PATHS,
+  englishPath,
+  isLocale,
+  isMirrored,
+  localeFromPath,
+  pathFromSlug,
+  switchHref,
+  withLocale,
+} from "@/lib/locale-path";
 
-/** Cookie values. `es-419` is Latam Spanish. `es-ES` is Spain. */
-export type Locale = "en" | "es-419" | "es-ES";
+export type { Locale };
+export {
+  MIRROR_PATHS,
+  englishPath,
+  isLocale,
+  isMirrored,
+  localeFromPath,
+  pathFromSlug,
+  switchHref,
+  withLocale,
+};
 
 export const LOCALE_HEADER = "x-kd-locale";
 export const PATH_HEADER = "x-kd-path";
 export const LANG_COOKIE = "kd_lang";
-
-const UNMIRRORED = new Set(["/pay"]);
-
-/** English paths that have a real Spanish page. Portfolio case studies stay English. */
-export const MIRROR_PATHS: readonly string[] = [
-  ...(Object.values(PAGES) as PageMeta[])
-    .filter((page) => page.indexable && !UNMIRRORED.has(page.path))
-    .map((page) => page.path),
-  ...INDUSTRIES.map((industry) => `/industries/${industry.slug}`),
-  ...POSTS.map((post) => `/blog/${post.slug}`),
-];
-
-const MIRROR = new Set(MIRROR_PATHS);
-
-export function isLocale(value: string | null | undefined): value is Locale {
-  return value === "en" || value === "es-419" || value === "es-ES";
-}
-
-/** Locale comes from the URL only. Accept-Language never changes the HTML. */
-export function localeFromPath(pathname: string): Locale {
-  if (pathname === "/es-es" || pathname.startsWith("/es-es/")) return "es-ES";
-  if (pathname === "/es" || pathname.startsWith("/es/")) return "es-419";
-  return "en";
-}
 
 export function contentLanguage(locale: Locale): string {
   // Keep the response header deliberately simple too. Regional targeting is
@@ -54,34 +47,10 @@ export function ogLocale(locale: Locale): string {
   return "en_US";
 }
 
-export function englishPath(pathname: string): string {
-  if (pathname === "/es" || pathname === "/es-es") return "/";
-  if (pathname.startsWith("/es-es/")) return pathname.slice("/es-es".length) || "/";
-  if (pathname.startsWith("/es/")) return pathname.slice("/es".length) || "/";
-  return pathname || "/";
-}
-
-export function isMirrored(pathname: string): boolean {
-  return MIRROR.has(englishPath(pathname));
-}
-
-export function withLocale(locale: Locale, pathname: string): string {
-  const en = englishPath(pathname);
-  if (locale === "en") return en;
-  const prefix = locale === "es-ES" ? "/es-es" : "/es";
-  return en === "/" ? prefix : `${prefix}${en}`;
-}
-
-/** Same-page language link, or the locale home when that path has no translation. */
-export function switchHref(locale: Locale, pathname: string): string {
-  const en = englishPath(pathname);
-  return withLocale(locale, isMirrored(en) ? en : "/");
-}
-
 /** hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid hreflang code. */
 export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
   const en = englishPath(pathname);
-  if (!MIRROR.has(en)) return undefined;
+  if (!isMirrored(en)) return undefined;
   const es = withLocale("es-419", en);
   return {
     "en-US": en,
@@ -90,11 +59,6 @@ export function hreflangLanguages(pathname: string): Record<string, string> | un
     "es-ES": withLocale("es-ES", en),
     "x-default": en,
   };
-}
-
-export function pathFromSlug(slug?: string[]): string {
-  if (!slug?.length) return "/";
-  return `/${slug.join("/")}`;
 }
 
 export const getLocale = cache(async (): Promise<Locale> => {

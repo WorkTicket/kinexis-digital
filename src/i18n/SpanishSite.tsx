@@ -3,29 +3,32 @@ import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import SpanishPlanSticker, { SPANISH_PLAN_STICKERS } from "@/components/SpanishPlanSticker";
 import { notFound } from "next/navigation";
-import { getIndustry, relatedIndustries, type FeatureKey } from "@/data/industries";
-import { getProject, portfolioFile, PROJECTS } from "@/data/portfolio";
+import { getIndustry } from "@/data/industries";
+import { portfolioFile, PROJECTS } from "@/data/portfolio";
 import { LIVE_SITES } from "@/data/liveSites";
-import { PLANS, POSTS } from "@/lib/content";
+import { POSTS } from "@/lib/content";
 import { PAGES } from "@/lib/pages";
 import { esPost } from "@/i18n/posts-es";
 import { localizedIndustries, localizeIndustry } from "@/i18n/industries-es";
+import SpanishIndustry from "@/i18n/SpanishIndustry";
+import { spanishHomeFaqs, spanishPlans } from "@/i18n/spanish-plans";
 import { contentLanguage, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
-import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant, still } from "@/lib/image-sources";
+import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { contentMetadata } from "@/lib/seo";
-import { kitSrc, SITE, telHref } from "@/lib/site";
+import { SITE, telHref } from "@/lib/site";
+import dynamic from "next/dynamic";
 import AuditCta from "@/components/AuditCta";
-import BookingCalendar, { type BookingCopy } from "@/components/BookingCalendar";
+import type { BookingCopy } from "@/components/BookingCalendar";
 import { DeferredImg } from "@/components/DeferredImg";
 import { OpenDialog } from "@/components/OpenDialog";
 import TrustStrip from "@/components/TrustStrip";
 import { LeaveFacebookReview } from "@/components/FacebookReviews";
 import Filterable from "@/components/Filterable";
 import Form from "@/components/Form";
-import SiteReviewForm from "@/components/SiteReviewForm";
 import { LeaveTrustpilotReview } from "@/components/TrustpilotReviews";
 import { UnifiedReviewCard } from "@/components/UnifiedReviewCard";
 import { getAllReviews } from "@/lib/reviews";
+import DesignProcess from "@/components/DesignProcess";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import IndustryGrid from "@/components/IndustryGrid";
 import { ArticleSchema, ContentSchema } from "@/components/JsonLd";
@@ -33,16 +36,13 @@ import PlanOffer from "@/components/PlanOffer";
 import PreviewBar from "@/components/PreviewBar";
 import ReviewsSection from "@/components/ReviewsSection";
 import ProjectCard from "@/components/ProjectCard";
-import { ShotFrame } from "@/components/ShotFrame";
 import Stepper, { type Step } from "@/components/Stepper";
 import { Compare, CtaBand, Faq, HL, Icon, IconCard, Illustration, MediaSplit, PageHero, Section, ServiceCard, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 
-const HERO_TRACK: Record<string, { mobile?: string; desktop?: string }> = {
-  painting: { mobile: "-0.015em" },
-  "pressure-washing": { desktop: "-0.03em" },
-  "yard-care": { desktop: "-0.03em" },
-};
+// Keep calendar / review-form client JS off every Spanish route's critical path.
+const BookingCalendar = dynamic(() => import("@/components/BookingCalendar"));
+const SiteReviewForm = dynamic(() => import("@/components/SiteReviewForm"));
 
 type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string };
 
@@ -114,31 +114,31 @@ export async function SpanishPage({ locale, slug }: { locale: Exclude<Locale, "e
   const en = pathFromSlug(slug);
   const tx = (text: string) => (locale === "es-ES" ? spainize(text) : text);
   const lang = contentLanguage(locale);
-  if (en.startsWith("/industries/") && en !== "/industries") return <IndustryView locale={locale} slug={en.split("/")[2] ?? ""} tx={tx} lang={lang} />;
+  if (en.startsWith("/industries/") && en !== "/industries") return <SpanishIndustry locale={locale} slug={en.split("/")[2] ?? ""} tx={tx} lang={lang} />;
   if (en.startsWith("/blog/") && en !== "/blog") return <PostView locale={locale} slug={en.split("/")[2] ?? ""} lang={lang} />;
   if (!PAGE_META[en]) notFound();
   const href = (path: string) => L(locale, path);
   const band = { secondary: tx("Hablar de tus opciones"), secondaryHref: href("/strategy-call") };
 
   if (en === "/") return <Home locale={locale} tx={tx} href={href} lang={lang} />;
-  if (en === "/services") return <Services tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/services") return <Services locale={locale} tx={tx} href={href} lang={lang} band={band} />;
   if (en === "/web-design") return <WebDesign locale={locale} tx={tx} href={href} lang={lang} band={band} />;
-  if (en === "/seo-services") return <Seo tx={tx} href={href} lang={lang} band={band} />;
-  if (en === "/pricing") return <Pricing tx={tx} href={href} lang={lang} />;
-  if (en === "/about") return <About tx={tx} href={href} lang={lang} />;
-  if (en === "/contact") return <Contact tx={tx} href={href} lang={lang} />;
-  if (en === "/audit") return <Audit tx={tx} href={href} lang={lang} />;
+  if (en === "/seo-services") return <Seo locale={locale} tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/pricing") return <Pricing locale={locale} tx={tx} href={href} lang={lang} />;
+  if (en === "/about") return <About locale={locale} tx={tx} href={href} lang={lang} />;
+  if (en === "/contact") return <Contact locale={locale} tx={tx} href={href} lang={lang} />;
+  if (en === "/audit") return <Audit locale={locale} tx={tx} href={href} lang={lang} />;
   if (en === "/industries") return <Industries locale={locale} tx={tx} href={href} lang={lang} band={band} />;
-  if (en === "/faqs") return <Faqs tx={tx} href={href} lang={lang} band={band} />;
-  if (en === "/blog") return <Blog tx={tx} href={href} lang={lang} band={band} />;
-  if (en === "/website-management") return <Care tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/faqs") return <Faqs locale={locale} tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/blog") return <Blog locale={locale} tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/website-management") return <Care locale={locale} tx={tx} href={href} lang={lang} band={band} />;
   if (en === "/reviews") return <Reviews locale={locale} tx={tx} href={href} lang={lang} band={band} />;
-  if (en === "/upgrades") return <Upgrades tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/upgrades") return <Upgrades locale={locale} tx={tx} href={href} lang={lang} band={band} />;
   if (en === "/strategy-call") return <Strategy locale={locale} tx={tx} href={href} lang={lang} />;
-  if (en === "/terms") return <Terms tx={tx} href={href} lang={lang} />;
-  if (en === "/privacy") return <Privacy tx={tx} href={href} lang={lang} />;
-  if (en === "/update") return <Update tx={tx} href={href} lang={lang} />;
-  if (en === "/portfolio") return <Portfolio tx={tx} href={href} lang={lang} band={band} />;
+  if (en === "/terms") return <Terms locale={locale} tx={tx} href={href} lang={lang} />;
+  if (en === "/privacy") return <Privacy locale={locale} tx={tx} href={href} lang={lang} />;
+  if (en === "/update") return <Update locale={locale} tx={tx} href={href} lang={lang} />;
+  if (en === "/portfolio") return <Portfolio locale={locale} tx={tx} href={href} lang={lang} band={band} />;
   notFound();
 }
 
@@ -176,7 +176,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         </div>
         <HeroFilm />
       </div></section>
-      <PreviewBar />
+      <PreviewBar locale={locale} />
       <ReviewsSection
         variant="home"
         eyebrow={tx("Reseñas de clientes")}
@@ -201,7 +201,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       <Section>
         <h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2>
         <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Toca para verlo y abre el sitio completo en inglés.")}</p>
-        <div className="portfolio"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
+        <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
       </Section>
       <Section tint>
@@ -279,44 +279,10 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
 }
 
 function homeFaqs(tx: (s: string) => string) {
-  return [
-    { q: tx("¿Esto sirve para mi tipo de negocio?"), a: tx("Trabajamos con oficios y negocios de servicios en Estados Unidos, como plomería, HVAC, electricidad, jardinería, techos y remodelación. Si la gente busca tu servicio y llama cuando necesita ayuda, estos planes están pensados para ese tipo de negocio.") },
-    { q: tx("¿Cuánto cuesta?"), a: tx("Hay cuatro opciones: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por un solo pago de $1,497. Puedes ver una página de inicio gratis antes de elegir, sin tarjeta y sin obligación.") },
-    { q: tx("¿Cómo se cobra?"), a: tx("Los planes mensuales tienen $0 de enganche y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.") },
-    { q: tx("¿Qué pasa si cancelo?"), a: tx("Cancela cuando quieras por texto, correo o Messenger—no hay cargo por cancelar. Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Si quieres quedarte con el sitio, pide una compra (un pago único por escrito de los archivos para hospedarlos tú) o pasa a Own It antes de que termine el período pagado.") },
-    { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. Una compra es un pago único por escrito de esos archivos para mover el sitio a tu hosting. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.") },
-    { q: tx("¿Qué cubre la garantía de 60 días?"), a: tx("Lead System y Plus incluyen la garantía de 60 días. Si recibes cero leads rastreados durante los primeros 60 días en vivo, condonamos el tercer y cuarto cargo. Se limita a una garantía por negocio y Own It no está incluido.") },
-    { q: tx("¿Qué cubre la garantía de devolución en 30 días?"), a: tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Debes pedirlo por escrito. No cubre costos de terceros que ya hayamos pagado.") },
-    { q: tx("¿Cuándo estará en línea mi sitio?"), a: tx("Empezamos con la vista previa gratis. Cuando la apruebas y recibimos el contenido necesario, confirmamos por escrito la fecha de lanzamiento. El texto opcional si no contestas empieza tras la aprobación del operador, que suele tardar de 10 a 15 días.") },
-    { q: tx("¿Google podrá encontrar mi sitio?"), a: tx("Cada sitio tiene una estructura limpia, páginas rápidas y la configuración básica que Google necesita para leerlo. El SEO continuo no está incluido en los cuatro planes, pero podemos cotizarlo aparte.") },
-    { q: tx("¿Qué pasa con las fotos y el video?"), a: tx("Podemos trabajar con tus propias fotos o cotizar fotografía y video por separado. No mostramos trabajos ajenos de una biblioteca de imágenes como si fueran tuyos.") },
-    { q: tx("¿Quién escribe el texto?"), a: tx("Podemos usar el texto que ya tienes o cotizar la redacción aparte. Para la vista previa usamos un texto realista de tu oficio, así puedes evaluar el diseño antes de decidir.") },
-  ];
+  return spanishHomeFaqs(tx);
 }
 
-function spanishPlans(tx: (s: string) => string) {
-  const names: Record<string, string> = {
-    website: "Sitio web",
-    "lead-system": "Sistema de clientes",
-    plus: "Plus (Bilingüe)",
-    "own-it": "Hazlo tuyo",
-  };
-  const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
-    website: { tagline: tx("Una casa profesional para tu negocio."), kicker: tx("$0 de enganche, luego"), note: tx("Mes a mes · cancela cuando quieras"), features: [[tx("Sitio para celular"), tx("Hasta 5 páginas")], [tx("Hosting + SSL"), tx("Seguridad y respaldos")], [tx("Cambios chicos*"), tx("Hasta 2 al mes, en 2 días hábiles")], [tx("Leads de formulario"), tx("Sabes cuándo llega una cotización")], [tx("Páginas nuevas"), tx("$99 cada una")]] },
-    "lead-system": { tagline: tx("Tu sitio y las herramientas que traen llamadas."), kicker: tx("$0 de enganche, luego"), note: tx("Mes a mes · cancela cuando quieras"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas, hosting y respaldos")], [tx("Texto si no contestas**"), tx("Extra opcional · requiere línea dedicada")], [tx("Reseñas de Google"), tx("Después de cada trabajo")], [tx("Ajuste del perfil"), tx("En el lanzamiento")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("En 1 día hábil")], [tx("Páginas nuevas"), tx("1 al mes incluida")]] },
-    plus: { tagline: tx("Llega a clientes en inglés y en español."), kicker: tx("$0 de enganche, luego"), note: tx("Mes a mes · cancela cuando quieras"), features: [[tx("Sitio bilingüe"), tx("Hasta 20 páginas, inglés y español")], [tx("Texto si no contestas**"), tx("Extra opcional · inglés y español")], [tx("Reseñas de Google"), tx("Inglés y español")], [tx("Ajuste del perfil"), tx("+ 2 publicaciones al mes")], [tx("Llamadas y reporte"), tx("Un reporte al mes")], [tx("Cambios chicos sin tope*"), tx("El mismo día hábil si pides antes del mediodía CT")], [tx("Páginas nuevas"), tx("2 al mes incluidas")]] },
-    "own-it": { tagline: tx("Un pago. Un sitio que es tuyo."), kicker: tx("Un pago"), note: tx("Se paga al aprobar la vista previa · sin plan mensual · sin garantía de leads"), features: [[tx("Sitio para celular"), tx("Hasta 10 páginas")], [tx("Archivos tuyos"), tx("Desde el lanzamiento")], [tx("Hosting + SSL"), tx("12 meses incluidos")], [tx("Cambios chicos*"), tx("12 meses, hasta 30 min al mes")], [tx("Dominio"), tx("El primer año incluido")], [tx("Un pago"), tx("Sin plan mensual")]] },
-  };
-  return PLANS.map((plan) => ({
-    ...plan,
-    ...copy[plan.slug],
-    name: names[plan.slug],
-    cta: names[plan.slug],
-    suffix: plan.suffix === "/mo" ? tx("/mes") : plan.suffix === "one-time" ? tx("una vez") : plan.suffix,
-  }));
-}
-
-function Services({ tx, href, lang, band }: PageBits) {
+function Services({ locale, tx, href, lang, band }: PageBits) {
   const items = [
     [tx("Diseño web"), tx("Un sitio claro para el trabajo que quieres, con llamada desde el celular, formularios cortos y vista previa antes de pagar."), "/web-design", tx("Ver diseño web"), "well-designed"],
     [tx("SEO"), tx("Mejoras técnicas, títulos útiles y contenido que ayuda a que los clientes correctos te encuentren en Google."), "/seo-services", tx("Ver SEO"), "search-optimized"],
@@ -326,14 +292,14 @@ function Services({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/services")} title={tx(PAGE_META["/services"].title)} description={tx(PAGE_META["/services"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Servicios"), path: href("/services") }]} inLanguage={lang} />
-      <PageHero h1={tx("Ayuda web para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Elige diseño web, SEO, cuidado continuo o una revisión gratis del sitio que ya tienes.")} image="homepage" imageAlt={tx("Sitio de un oficio en una computadora y un celular")} />
+      <PageHero locale={locale} h1={tx("Ayuda web para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Elige diseño web, SEO, cuidado continuo o una revisión gratis del sitio que ya tienes.")} image="homepage" imageAlt={tx("Sitio de un oficio en una computadora y un celular")} />
       <Section><div className="grid grid--2">{items.map(([title, text, path, cta, icon]) => <ServiceCard key={path} title={title} text={text} href={href(path)} cta={cta} icon={icon} />)}</div></Section>
       <CtaBand h={tx("¿No sabes por dónde empezar?")} mark={tx("por dónde empezar")} sub={tx("Podemos revisar tu sitio actual o hablar del que quieres construir.")} btn={tx("Escríbenos")} href={href("/contact")} {...band} />
     </>
   );
 }
 
-type PageBits = { tx: (s: string) => string; href: (p: string) => string; lang: string; band: { secondary: string; secondaryHref: string } };
+type PageBits = { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string; band: { secondary: string; secondaryHref: string } };
 
 function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale }) {
   const faqs = [
@@ -345,17 +311,17 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
     { q: tx("¿Pueden construir para mi zona?"), a: tx("Sí. Trabajamos con negocios de servicios en Estados Unidos y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad.") },
   ];
   const steps = [
-    { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestro portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio.") },
-    { title: tx("Envía lo básico de tu marca"), text: tx("Comparte tu logo si lo tienes, el nombre del negocio y los colores que ya usas. Trabajamos con lo que tengas.") },
-    { title: tx("Agrega fotos si las tienes"), text: tx("Fotos de trabajos, la camioneta o el equipo ayudan a que la vista previa se sienta real. Si aún no las tienes, igual podemos empezar.") },
-    { title: tx("Preparamos la vista previa del inicio"), text: tx("En 2 días hábiles recibes un concepto de inicio para tu oficio—sin tarjeta y sin obligación.") },
-    { title: tx("Revisas y pides cambios"), text: tx("Dinos qué ajustar. Revisamos el diseño hasta que se sienta bien antes de que elijas un plan.") },
-    { title: tx("Elige un plan y terminamos el sitio"), text: tx("Cuando apruebes la dirección, elige Website, Lead System, Plus u Own It. Armamos el sitio completo y confirmamos el lanzamiento por escrito.") },
+    { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestro portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio."), icon: "layers", phase: "share" as const },
+    { title: tx("Envía lo básico de tu marca"), text: tx("Comparte tu logo si lo tienes, el nombre del negocio y los colores que ya usas. Trabajamos con lo que tengas."), icon: "built-for-your-trade", phase: "share" as const },
+    { title: tx("Agrega fotos si las tienes"), text: tx("Fotos de trabajos, la camioneta o el equipo ayudan a que la vista previa se sienta real. Si aún no las tienes, igual podemos empezar."), icon: "gallery", phase: "share" as const },
+    { title: tx("Preparamos la vista previa del inicio"), text: tx("En 2 días hábiles recibes un concepto de inicio para tu oficio—sin tarjeta y sin obligación."), icon: "preview", phase: "deliver" as const },
+    { title: tx("Revisas y pides cambios"), text: tx("Dinos qué ajustar. Revisamos el diseño hasta que se sienta bien antes de que elijas un plan."), icon: "edit", phase: "deliver" as const },
+    { title: tx("Elige un plan y terminamos el sitio"), text: tx("Cuando apruebes la dirección, elige Website, Lead System, Plus u Own It. Armamos el sitio completo y confirmamos el lanzamiento por escrito."), icon: "better-pricing", phase: "deliver" as const },
   ];
   return (
     <>
       <ContentSchema path={href("/web-design")} title={tx(PAGE_META["/web-design"].title)} description={tx(PAGE_META["/web-design"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Diseño web"), path: href("/web-design") }]} faqs={faqs} serviceType={tx("Diseño web")} inLanguage={lang} />
-      <PageHero
+      <PageHero locale={locale}
         eyebrow={tx("Diseño web")}
         h1={tx("Mira el diseño de tu inicio antes de comprometerte")}
         mark={tx("antes de comprometerte")}
@@ -366,15 +332,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
       <Section>
         <h2 className="center"><HL text={tx("Así funciona el diseño web aquí")} mark={tx("aquí")} /></h2>
         <p className="center muted">{tx("Un camino claro desde las primeras ideas hasta un inicio que puedes revisar—y el sitio completo cuando estés listo.")}</p>
-        <ol className="design-process">
-          {steps.map((step, i) => (
-            <li key={step.title}>
-              <b aria-hidden="true">{i + 1}</b>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </li>
-          ))}
-        </ol>
+        <DesignProcess steps={steps} shareLabel={tx("Tú envías")} deliverLabel={tx("Nosotros entregamos")} />
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx("Qué enviarnos")} mark={tx("enviarnos")} /></h2>
@@ -425,7 +383,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
   );
 }
 
-function Seo({ tx, href, lang, band }: PageBits) {
+function Seo({ locale, tx, href, lang, band }: PageBits) {
   const faqs = [
     { q: tx("¿Cuándo debería notar avance con el SEO?"), a: tx("Es un trabajo de largo plazo. Los ajustes técnicos pueden mostrar movimiento en unas semanas, pero una mejora importante en posiciones y tráfico suele tardar de tres a seis meses o más. La competencia y el punto de partida influyen.") },
     { q: tx("¿Prometen el primer lugar en Google?"), a: tx("No. Una agencia no controla los resultados de Google, así que no puede prometer el número uno de forma responsable. Trabajamos lo que mejora la visibilidad y reportamos impresiones, clics y leads.") },
@@ -436,7 +394,7 @@ function Seo({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/seo-services")} title={tx(PAGE_META["/seo-services"].title)} description={tx(PAGE_META["/seo-services"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: "SEO", path: href("/seo-services") }]} faqs={faqs} serviceType="SEO" inLanguage={lang} />
-      <PageHero h1={tx("SEO para que te encuentre la gente correcta")} mark={tx("gente correcta")} sub={tx("Mejoramos la parte técnica, las páginas y el contenido que ayudan a descubrir tu negocio en Google.")} image="local-seo" imageAlt={tx("Pines de mapa y un panel de búsqueda")} />
+      <PageHero locale={locale} h1={tx("SEO para que te encuentre la gente correcta")} mark={tx("gente correcta")} sub={tx("Mejoramos la parte técnica, las páginas y el contenido que ayudan a descubrir tu negocio en Google.")} image="local-seo" imageAlt={tx("Pines de mapa y un panel de búsqueda")} />
       <Section>
         <div className="grid grid--3">
           <IconCard title={tx("Base técnica")} text={tx("Revisamos rastreo, indexación, velocidad, celular, mapa del sitio y datos estructurados para Google.")} icon="technical-seo" />
@@ -456,7 +414,7 @@ function Seo({ tx, href, lang, band }: PageBits) {
   );
 }
 
-function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   const plans = spanishPlans(tx);
   const faqs = homeFaqs(tx);
   const table = [
@@ -467,7 +425,7 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
   return (
     <>
       <ContentSchema path={href("/pricing")} title={tx(PAGE_META["/pricing"].title)} description={tx(PAGE_META["/pricing"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} products={plans} inLanguage={lang} />
-      <PageHero h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu oficio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
+      <PageHero locale={locale} h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu oficio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
       <Section>
         <div className="free-preview">
           <div className="free-preview__copy">
@@ -587,7 +545,7 @@ function Pricing({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
   );
 }
 
-function About({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   const faqs = homeFaqs(tx).slice(0, 4);
   const steps: Step[] = [
     { tab: "Preview", label: tx("Vista previa"), title: tx("Lo ves primero"), text: tx("La vista previa es el punto de partida. La apruebas, pides cambios o te vas.") },
@@ -599,7 +557,7 @@ function About({ tx, href, lang }: { tx: (s: string) => string; href: (p: string
   return (
     <>
       <ContentSchema path={href("/about")} title={tx(PAGE_META["/about"].title)} description={tx(PAGE_META["/about"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Nosotros"), path: href("/about") }]} faqs={faqs} inLanguage={lang} />
-      <PageHero h1={tx("Un equipo pequeño para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Creamos sitios, mejoramos la visibilidad, escribimos a llamadas perdidas y pedimos reseñas para negocios en Estados Unidos.")} image="about" imageAlt={tx("Computadora y un boceto de una página de inicio")} />
+      <PageHero locale={locale} h1={tx("Un equipo pequeño para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Creamos sitios, mejoramos la visibilidad, escribimos a llamadas perdidas y pedimos reseñas para negocios en Estados Unidos.")} image="about" imageAlt={tx("Computadora y un boceto de una página de inicio")} />
       <section className="section"><div className="container two-col">
         <div>
           <h2><HL text={tx("Para negocios que dependen del teléfono")} mark={tx("dependen del teléfono")} /></h2>
@@ -621,11 +579,11 @@ function About({ tx, href, lang }: { tx: (s: string) => string; href: (p: string
   );
 }
 
-function Contact({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   return (
     <>
       <ContentSchema path={href("/contact")} title={tx(PAGE_META["/contact"].title)} description={tx(PAGE_META["/contact"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Contacto"), path: href("/contact") }]} inLanguage={lang} />
-      <PageHero h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
+      <PageHero locale={locale} h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
       <Section><div className="contact-grid">
         <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }]} button={tx("Muéstrame mi página de inicio")} note={tx("Sin tarjeta. Respondemos en un máximo de 2 días hábiles.")} fast fastText={tx("Sin tarjeta. Respondemos en un máximo de 2 días hábiles.")} />
         <aside className="contact-info">
@@ -639,12 +597,12 @@ function Contact({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
   );
 }
 
-function Audit({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function Audit({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   const aside = [[tx("Velocidad de las páginas"), tx("Revisamos qué tan rápido abren las páginas principales en celular y computadora."), "audit-speed"], [tx("Configuración de búsqueda"), tx("Revisamos títulos, encabezados, indexación y las señales básicas que lee Google."), "search-optimized"], [tx("Uso en el celular"), tx("Vemos cómo cabe, se lee y funciona el sitio en una pantalla de teléfono."), "audit-mobile"], [tx("Llamadas y formularios"), tx("Comprobamos si queda claro cómo llamar, preguntar o pedir una cotización."), "audit-conversion"]] as const;
   return (
     <>
       <ContentSchema path={href("/audit")} title={tx(PAGE_META["/audit"].title)} description={tx(PAGE_META["/audit"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Auditoría"), path: href("/audit") }]} inLanguage={lang} serviceType={tx("Auditoría de sitio y SEO")} />
-      <PageHero h1={tx("Recibe una lista clara de cambios")} mark={tx("lista clara")} sub={tx("Mándanos el enlace. Lo revisamos y te decimos qué cambios merecen atención primero.")} image="website-audit" imageAlt={tx("Tablero de auditoría con una lupa")} />
+      <PageHero locale={locale} h1={tx("Recibe una lista clara de cambios")} mark={tx("lista clara")} sub={tx("Mándanos el enlace. Lo revisamos y te decimos qué cambios merecen atención primero.")} image="website-audit" imageAlt={tx("Tablero de auditoría con una lupa")} />
       <Section><div className="contact-grid">
         <div>
           <Illustration name="free-site-audit" format="webp" alt={tx("Auditoría gratis")} className="audit-hero-img" width={560} height={400} />
@@ -661,7 +619,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
   return (
     <>
       <ContentSchema path={href("/industries")} title={tx(PAGE_META["/industries"].title)} description={tx(PAGE_META["/industries"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }]} inLanguage={lang} />
-      <PageHero eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu oficio")} mark={tx("tu oficio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")}>
+      <PageHero locale={locale} eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu oficio")} mark={tx("tu oficio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")}>
         <p className="btn-row"><Link className="btn btn--primary" href={href("/audit")} prefetch={false}>{tx("Revisar mi sitio")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
       </PageHero>
       <Section><IndustryGrid industries={industries} base={href("/industries")} /></Section>
@@ -671,19 +629,19 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
   );
 }
 
-function Faqs({ tx, href, lang, band }: PageBits) {
+function Faqs({ locale, tx, href, lang, band }: PageBits) {
   const faqs = [{ q: tx("¿Qué tan rápido recibo mi vista previa gratis?"), a: tx("Su vista previa gratis de la página principal está lista en 2 días hábiles después de recibir la información de su negocio, sin tarjeta.") }, ...homeFaqs(tx)];
   return (
     <>
       <ContentSchema path={href("/faqs")} title={tx(PAGE_META["/faqs"].title)} description={tx(PAGE_META["/faqs"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Preguntas"), path: href("/faqs") }]} faqs={faqs} inLanguage={lang} />
-      <PageHero h1={tx("Preguntas que nos hacen los negocios")} mark={tx("nos hacen")} sub={tx("Consulta los detalles de planes, propiedad, garantía de 60 días y cancelación. Si falta tu duda, escríbenos.")} image="faqs" imageAlt={tx("Signos de interrogación")} />
+      <PageHero locale={locale} h1={tx("Preguntas que nos hacen los negocios")} mark={tx("nos hacen")} sub={tx("Consulta los detalles de planes, propiedad, garantía de 60 días y cancelación. Si falta tu duda, escríbenos.")} image="faqs" imageAlt={tx("Signos de interrogación")} />
       <Section narrow><Faq items={faqs} /></Section>
       <CtaBand h={tx("¿Necesitas una respuesta más concreta?")} mark={tx("más concreta")} sub={tx("Escribe o llama. Te explicamos los detalles del plan antes de que pagues.")} btn={tx("Contacto")} href={href("/contact")} {...band} />
     </>
   );
 }
 
-function Blog({ tx, href, lang, band }: PageBits) {
+function Blog({ locale, tx, href, lang, band }: PageBits) {
   const posts = POSTS.map((post) => {
     const es = esPost(post.slug);
     const text = es ?? null;
@@ -692,7 +650,7 @@ function Blog({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/blog")} title={tx(PAGE_META["/blog"].title)} description={tx(PAGE_META["/blog"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: "Blog", path: href("/blog") }]} inLanguage={lang} />
-      <PageHero h1={tx("Blog de marketing digital")} mark="Blog" sub={tx("Guías de SEO, diseño y marketing para negocios de servicios en Estados Unidos.")} image="blog" imageAlt={tx("Tarjetas de artículos")} />
+      <PageHero locale={locale} h1={tx("Blog de marketing digital")} mark="Blog" sub={tx("Guías de SEO, diseño y marketing para negocios de servicios en Estados Unidos.")} image="blog" imageAlt={tx("Tarjetas de artículos")} />
       <Section>
         <Filterable cats={[tx("Consejos"), "SEO", tx("Diseño")]} allLabel={tx("Todo")} />
         <div className="grid grid--3">
@@ -719,7 +677,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   return (
     <>
       <ArticleSchema title={post.seoTitle} description={post.excerpt} path={href(`/blog/${post.slug}`)} image={source.image} date={source.date} modified={source.modified} section={post.category} inLanguage={lang} />
-      <PageHero h1={post.title} mark={post.title.split(" ").slice(-1)[0]} sub={post.lead} image="blog" imageAlt={post.title} />
+      <PageHero locale={locale} h1={post.title} mark={post.title.split(" ").slice(-1)[0]} sub={post.lead} image="blog" imageAlt={post.title} />
       <section className="section"><div className="container container--narrow prose">
         {post.sections.map((section) => <div key={section.h2}><h2>{section.h2}</h2><div dangerouslySetInnerHTML={{ __html: section.html }} /></div>)}
         <p><Link href={href("/blog")} prefetch={false}>{tx("Volver al blog")}</Link></p>
@@ -729,11 +687,11 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   );
 }
 
-function Care({ tx, href, lang, band }: PageBits) {
+function Care({ locale, tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/website-management")} title={tx(PAGE_META["/website-management"].title)} description={tx(PAGE_META["/website-management"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Mantenimiento"), path: href("/website-management") }]} serviceType={tx("Mantenimiento web")} inLanguage={lang} />
-      <PageHero h1={tx("Mantén tu sitio al día")} mark={tx("al día")} sub={tx("Nos encargamos del hosting, los cambios de rutina, los respaldos y la seguridad.")} image="maintenance" imageAlt={tx("Paneles de cuidado con un engrane")} />
+      <PageHero locale={locale} h1={tx("Mantén tu sitio al día")} mark={tx("al día")} sub={tx("Nos encargamos del hosting, los cambios de rutina, los respaldos y la seguridad.")} image="maintenance" imageAlt={tx("Paneles de cuidado con un engrane")} />
       <Section><div className="grid grid--4">
         <IconCard level={2} title={tx("Hosting confiable")} text={tx("El sitio tiene un lugar estable donde funcionar sin que administres un servidor.")} icon="hosting" />
         <IconCard level={2} title={tx("Cambios solicitados")} text={tx("Envíanos el texto o los datos nuevos y actualizamos la página por ti al momento.")} icon="updates" />
@@ -746,7 +704,7 @@ function Care({ tx, href, lang, band }: PageBits) {
   );
 }
 
-async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) {
+async function Reviews({ locale, tx, href, lang, band }: PageBits) {
   const reviews = await getAllReviews();
   const sourceLabels = {
     site: tx("Sitio web"),
@@ -756,7 +714,7 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
   return (
     <>
       <ContentSchema path={href("/reviews")} title={tx(PAGE_META["/reviews"].title)} description={tx(PAGE_META["/reviews"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Reseñas"), path: href("/reviews") }]} inLanguage={lang} />
-      <PageHero h1={tx("Reseñas")} mark={tx("Reseñas")} sub={tx("Lee lo que han compartido los clientes en este sitio, en Trustpilot y en Facebook.")} image="reviews" imageAlt={tx("Tarjetas de reseñas")} />
+      <PageHero locale={locale} h1={tx("Reseñas")} mark={tx("Reseñas")} sub={tx("Lee lo que han compartido los clientes en este sitio, en Trustpilot y en Facebook.")} image="reviews" imageAlt={tx("Tarjetas de reseñas")} />
       <Section>
         <h2 className="center"><HL text={tx("Comparte tu experiencia")} mark={tx("experiencia")} /></h2>
         <p className="center muted">{tx("Deja una reseña aquí en el sitio, o abre Trustpilot o Facebook en un clic.")}</p>
@@ -767,13 +725,13 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
         <div className="site-review-panel spaced">
           <SiteReviewForm copy={{
             title: tx("Deja una reseña en este sitio"),
-            sub: tx("Tus palabras aparecen aquí al enviarlas. Máximo 280 caracteres. ¿Prefieres Trustpilot o Facebook? Usa los botones de arriba."),
+            sub: tx("Envía una reseña corta (máximo 280 caracteres). La revisamos antes de publicarla aquí. ¿Prefieres Trustpilot o Facebook? Usa los botones de arriba."),
             name: tx("Tu nombre"),
             email: tx("Correo"),
             stars: tx("Calificación"),
             quote: tx("Tu reseña"),
-            button: tx("Publicar mi reseña"),
-            thanks: tx("Gracias — tu reseña ya está en esta página."),
+            button: tx("Enviar mi reseña"),
+            thanks: tx("Gracias — recibimos tu reseña y la publicaremos tras una revisión rápida."),
             fill: tx("Completa los campos marcados."),
             tooShort: tx("Escribe al menos 20 caracteres."),
             tooLong: tx("La reseña no puede pasar de 280 caracteres."),
@@ -804,7 +762,7 @@ async function Reviews({ tx, href, lang, band }: PageBits & { locale: Locale }) 
   );
 }
 
-function Upgrades({ tx, href, lang, band }: PageBits) {
+function Upgrades({ locale, tx, href, lang, band }: PageBits) {
   const items = [
     ["extra-page", tx("Página extra"), tx("Agrega un servicio, una zona o una landing a Website, Lead System o Plus."), "$99"],
     ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), "$39 / mes"],
@@ -814,7 +772,7 @@ function Upgrades({ tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/upgrades")} title={tx(PAGE_META["/upgrades"].title)} description={tx(PAGE_META["/upgrades"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Extras"), path: href("/upgrades") }]} inLanguage={lang} />
-      <PageHero h1={tx("Agrega más cuando lo necesites")} mark={tx("cuando lo necesites")} sub={tx("Empieza con el plan correcto y suma páginas, cuidado o textos cuando cambie el negocio.")} image="upgrades" imageAlt={tx("Extras alrededor de un sitio")} />
+      <PageHero locale={locale} h1={tx("Agrega más cuando lo necesites")} mark={tx("cuando lo necesites")} sub={tx("Empieza con el plan correcto y suma páginas, cuidado o textos cuando cambie el negocio.")} image="upgrades" imageAlt={tx("Extras alrededor de un sitio")} />
       <Section><div className="grid grid--4 upgrades">{items.map(([icon, title, text, price]) => <article className="card center" key={icon}><Icon name={icon} alt={title} /><h2 className="card-title">{title}</h2><p>{text}</p><p className="upgrade__price">{price}</p></article>)}</div></Section>
       <CtaBand h={tx("¿Necesitas ayuda para elegir un extra?")} mark={tx("elegir un extra")} sub={tx("Te decimos qué incluye tu plan y qué puedes agregar después, antes de cobrarlo.")} btn={tx("Escríbenos")} href={href("/contact")} {...band} />
     </>
@@ -847,7 +805,7 @@ function Strategy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) 
   return (
     <>
       <ContentSchema path={href("/strategy-call")} title={tx(PAGE_META["/strategy-call"].title)} description={tx(PAGE_META["/strategy-call"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Llamada"), path: href("/strategy-call") }]} inLanguage={lang} />
-      <PageHero h1={tx("Hablemos de tus planes para el sitio")} mark={tx("planes para el sitio")} sub={tx("En una llamada corta puedes mostrar el sitio actual, explicar el negocio y ver qué plan encaja.")} />
+      <PageHero locale={locale} h1={tx("Hablemos de tus planes para el sitio")} mark={tx("planes para el sitio")} sub={tx("En una llamada corta puedes mostrar el sitio actual, explicar el negocio y ver qué plan encaja.")} />
       <section className="section"><div className="container two-col two-col--book">
         <div>
           <h2><HL text={tx("Lo que vamos a revisar")} mark={tx("vamos a revisar")} /></h2>
@@ -864,11 +822,11 @@ function Strategy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) 
   );
 }
 
-function Terms({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   return (
     <>
       <ContentSchema path={href("/terms")} title={tx(PAGE_META["/terms"].title)} description={tx(PAGE_META["/terms"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Términos"), path: href("/terms") }]} inLanguage={lang} />
-      <PageHero h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 7 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
+      <PageHero locale={locale} h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 7 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("1. Vista previa gratis")}</h2>
         <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Las vistas previas gratis de la página principal se entregan dentro de 2 días hábiles después de recibir los datos de su negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu oficio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
@@ -899,11 +857,11 @@ function Terms({ tx, href, lang }: { tx: (s: string) => string; href: (p: string
   );
 }
 
-function Privacy({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function Privacy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   return (
     <>
       <ContentSchema path={href("/privacy")} title={tx(PAGE_META["/privacy"].title)} description={tx(PAGE_META["/privacy"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Privacidad"), path: href("/privacy") }]} inLanguage={lang} />
-      <PageHero h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 21 de octubre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
+      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 21 de octubre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("Qué recogemos")}</h2>
         <p>{tx("Si envías un formulario, recogemos lo que escribes: nombre, correo, teléfono, negocio o sitio, la página que quieres cambiar, tu mensaje y cualquier archivo. Si llamas o escribes, guardamos esa correspondencia para responder y hacer el trabajo.")}</p>
@@ -921,21 +879,21 @@ function Privacy({ tx, href, lang }: { tx: (s: string) => string; href: (p: stri
   );
 }
 
-function Update({ tx, href, lang }: { tx: (s: string) => string; href: (p: string) => string; lang: string }) {
+function Update({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
   return (
     <>
       <ContentSchema path={href("/update")} title={tx(PAGE_META["/update"].title)} description={tx(PAGE_META["/update"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Cambios"), path: href("/update") }]} inLanguage={lang} />
-      <PageHero h1={tx("Pide un cambio en el sitio")} mark={tx("cambio")} sub={tx("Dinos la página y el cambio. Los cambios chicos se hacen uno a la vez, dentro del tiempo de tu plan.")} />
+      <PageHero locale={locale} h1={tx("Pide un cambio en el sitio")} mark={tx("cambio")} sub={tx("Dinos la página y el cambio. Los cambios chicos se hacen uno a la vez, dentro del tiempo de tu plan.")} />
       <Section narrow><Form button={tx("Enviar solicitud")} note={tx("Website: dos días hábiles. Lead System: un día hábil. Plus: el mismo día hábil si lo pides antes del mediodía, hora del Centro.")} fields={[{ label: tx("Tu nombre"), name: "name", required: true, auto: "name" }, { label: tx("Correo"), name: "email", kind: "email", required: true, auto: "email" }, { label: tx("URL de la página"), name: "page", kind: "url" }, { label: tx("¿Qué debemos cambiar?"), name: "request", kind: "textarea", required: true }, { label: tx("Adjuntar un archivo (opcional)"), name: "file", kind: "file" }]} /></Section>
     </>
   );
 }
 
-function Portfolio({ tx, href, lang, band }: PageBits) {
+function Portfolio({ locale, tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/portfolio")} title={tx(PAGE_META["/portfolio"].title)} description={tx(PAGE_META["/portfolio"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Portafolio"), path: href("/portfolio") }]} inLanguage={lang} />
-      <PageHero className="portfolio-hero" eyebrow={tx("Sitios para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo mira nuestro trabajo y personalizamos una dirección para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
+      <PageHero locale={locale} className="portfolio-hero" eyebrow={tx("Sitios para negocios de servicios")} h1={tx("Mira nuestros diseños")} mark={tx("nuestros diseños")} sub={tx("Los sitios reales de clientes aparecen primero. Más abajo mira nuestro trabajo y personalizamos una dirección para tu negocio, desde la primera pantalla hasta la cotización.")} image="portfolio" imageAlt={tx("Sitios de oficios en pantallas")}>
         <div className="btn-row spaced"><Link className="btn btn--primary btn--lg" href={href("/contact")} prefetch={false}>{tx("Ver primero mi página de inicio")}</Link><Link className="btn btn--ghost btn--lg" href={href("/pricing")} prefetch={false}>{tx("Ver los cuatro planes")}</Link></div>
       </PageHero>
       <Section>
@@ -943,101 +901,32 @@ function Portfolio({ tx, href, lang, band }: PageBits) {
           <div className="showcase__head"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
           <div className="portfolio--live">{LIVE_SITES.map((site) => {
             const shot = portfolioFile(site.image, 640);
-            const full = portfolioFile(site.image);
             let host = site.url;
             try { host = new URL(site.url).host.replace(/^www\./, ""); } catch { /* keep url */ }
             return (
               <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} srcSet={`${shot} 640w, ${full} 1100w`} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={Math.round((site.height * 640) / site.width)} className="shot__img" /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
+                <div className="shot" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={Math.round((site.height * 640) / site.width)} className="shot__img" /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
                 <span className="live-site__copy"><span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />{tx("En vivo")}</span><span className="live-site__id"><span className="live-site__name">{site.name}</span><span className="live-site__meta"><span>{site.trade}</span><span className="live-site__host">{host}</span></span></span></span>
               </a>
             );
           })}</div>
           <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Sitios hechos para tu oficio")} mark={tx("tu oficio")} /></h2><p className="muted">{tx("Elige un diseño que te guste y personalizamos el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o toca para ver el sitio completo en inglés.")}</p></div></div>
-          <div className="portfolio portfolio--main">{PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este sitio")} scrollOnHover={false} />)}</div>
+          <div className="portfolio portfolio--main">{PROJECTS.map((project) => (
+            <article key={project.slug} className="work-card">
+              <ProjectCard project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este proyecto")} scrollOnHover={false} />
+              <div className="work-card__meta">
+                <h3>{project.trade}</h3>
+                <p className="muted small">{project.name}</p>
+                {!project.placeholder && (
+                  <Link className="btn btn--ghost btn--sm" href={`/portfolio/${project.slug}`} hrefLang="en-US" prefetch={false}>{tx("Ver este proyecto")}</Link>
+                )}
+              </div>
+            </article>
+          ))}</div>
         </div>
       </Section>
       <AuditCta eyebrow={tx("Un punto de partida claro")} heading={tx("Descubre qué está frenando tu sitio")} mark={tx("frenando tu sitio")} text={tx("Te decimos qué funciona, qué estorba y qué cambios conviene hacer primero. Hay revisiones gratis y de pago.")} cta={tx("Revisar mi sitio")} href={href("/audit")} alt={tx("Un cohete sale de una computadora")} />
       <CtaBand h={tx("¿Quieres ver una idea para tu sitio?")} mark={tx("tu sitio")} sub={tx("Cuéntanos sobre tu oficio y preparamos una vista previa gratis para tu negocio.")} btn={tx("Quiero la vista previa")} href={href("/contact")} {...band} />
-    </>
-  );
-}
-
-const FEATURES: Record<FeatureKey, { title: string; text: string; icon: string }> = {
-  calls: { title: "Fácil de llamar", text: "Toque para llamar y un número visible mientras la persona decide, también en el celular.", icon: "calls" },
-  "quote-requests": { title: "Cotizaciones", text: "Un formulario que pide los datos del trabajo, y nada que no necesitas.", icon: "quote-requests" },
-  reviews: { title: "Confianza", text: "En Lead System y Plus, después del trabajo sale un texto con el enlace a Google.", icon: "reviews" },
-  bookings: { title: "Reservas", text: "Una forma directa de pedir una visita recurrente, un lugar en la ruta o el siguiente hueco.", icon: "bookings" },
-  "service-area": { title: "Dónde trabajas", text: "", icon: "service-area" },
-};
-
-function IndustryView({ locale, slug, tx, lang }: { locale: Locale; slug: string; tx: (s: string) => string; lang: string }) {
-  const base = getIndustry(slug);
-  if (!base) notFound();
-  const industry = localizeIndustry(base, locale);
-  const project = industry.projectSlug ? getProject(industry.projectSlug) : undefined;
-  const path = withLocale(locale, `/industries/${industry.slug}`);
-  const href = (item: string) => withLocale(locale, item);
-  const related = relatedIndustries(base).map((item) => localizeIndustry(item, locale));
-  const heroFile = `/assets/industries/${industry.slug}/hero.webp`;
-  const hero = still(heroFile);
-  const heroMobile = imageVariant(heroFile, 768, "webp");
-  const heroAvif = `${imageVariant(heroFile, 768, "avif")} 768w, ${still(heroFile.replace(".webp", ".avif"))} 1536w`;
-  return (
-    <>
-      <ContentSchema path={path} title={industry.metaTitle} description={industry.metaDescription} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }, { name: industry.name, path }]} faqs={[...industry.faqs]} serviceType={tx(`Diseño web de ${industry.name}`)} inLanguage={lang} />
-      <PageHero eyebrow={tx("Industrias")} h1={industry.h1} mark={industry.mark} sub={industry.sub} fallbackTrack={HERO_TRACK[industry.slug]} className={`industry-hero industry-hero--${industry.slug}`} art={(
-        <picture>
-          <source type="image/avif" srcSet={heroAvif} sizes="(max-width: 860px) 86vw, 620px" />
-          <source media="(min-width: 861px)" srcSet={`${heroMobile} 768w, ${hero} 1536w`} sizes="620px" />
-          <img className="hero-art industry-hero__img" src={heroMobile} srcSet={`${heroMobile} 768w, ${hero} 1536w`} sizes="(max-width: 860px) 86vw, 620px" alt={industry.heroAlt} width={1536} height={1024} loading="eager" decoding="async" fetchPriority="high" />
-        </picture>
-      )}>
-        <div className="industry-hero__intro"><p>{industry.intro[0]}</p><p>{industry.intro[1]}</p></div>
-        <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link></p>
-        <p className="muted small">{tx("Garantía de 60 días · $0 de enganche · Vista previa en 2 días hábiles")}</p>
-      </PageHero>
-      <Section tint>
-        <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industry.name}`)} mark={industry.name} /></h2>
-        <div className="grid grid--3">{industry.services.map((point) => <IconCard key={point.icon} title={point.title} text={point.text} iconClass="icon--service" src={kitSrc(`/assets/industries/${industry.slug}/icons/${point.icon}.svg`)} />)}</div>
-        <p className="center muted" style={{ marginTop: "1.5rem" }}>{industry.problemsTitle}</p>
-        <div className="grid grid--3">{industry.problems.map((point) => <IconCard key={point.icon} title={point.title} text={point.text} iconClass="icon--problem" src={kitSrc(`/assets/kinexis/icons/industries/${industry.slug}/${point.icon}.svg`)} />)}</div>
-      </Section>
-      <Section accent={`/assets/industries/${industry.slug}/section-accent.svg`}>
-        <h2 className="center"><HL text={tx(`Lo que incluye tu sitio de ${industry.name}`)} mark={tx("incluye")} /></h2>
-        <div className="media-split industry-screens">
-          <div className="media-split__copy">
-            <h3>{tx("Funciona en cada pantalla")}</h3>
-            <p>{tx("El sitio está pensado para el celular en la entrada y la computadora en el escritorio. El número, el formulario y la zona se usan sin pellizcar.")}</p>
-          </div>
-          <div className="screen-art">
-            <img className="screen-art__img" src={project ? portfolioFile(`/portfolio/${project.slug}-devices-sm.webp`) : "/assets/shared/responsive-design.svg"} alt={project ? tx(`${project.name} en monitor, laptop, tableta y celular`) : tx("Un sitio en varias pantallas")} width={project ? 1536 : 680} height={project ? 1024 : 400} loading="lazy" decoding="async" />
-          </div>
-        </div>
-        <div className="feature-grid">
-          {industry.features.map((key) => <IconCard key={key} title={tx(FEATURES[key].title)} text={industry.featureText?.[key] ?? (key === "service-area" ? industry.serviceArea : tx(FEATURES[key].text))} src={kitSrc(`/assets/shared/icons/${FEATURES[key].icon}.svg`)} />)}
-        </div>
-      </Section>
-      <Section tint>
-        <h2 className="center"><HL text={tx(`Respuesta a llamadas perdidas para ${industry.name}`)} mark={tx("llamadas perdidas")} /></h2>
-        <p className="center muted" style={{ maxWidth: "42rem", marginInline: "auto" }}>{tx("Si tu equipo está en un trabajo y no contesta, Lead System y Plus envían un texto automático. Después del trabajo, sale el pedido de reseña en Google.")}</p>
-        <p className="center btn-row spaced"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link></p>
-      </Section>
-      {project && (
-        <Section>
-          <div className="media-split">
-            <div className="media-split__copy">
-              <h2><HL text={tx(`Ejemplo de sitio web para ${industry.name}`)} mark={tx("sitio web")} /></h2>
-              <p>{tx("¿Te gusta el diseño de")} <Link href={`/portfolio/${project.slug}`} hrefLang="en-US" prefetch={false}>{project.name}</Link>? {tx("Úsalo como punto de partida y lo personalizamos según tus servicios, tu marca y tus clientes. La página del diseño está en inglés.")}</p>
-            </div>
-            <ShotFrame project={project} href={`/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver el sitio de ${project.name}`)} ctaLabel={tx("Ver este sitio")} />
-          </div>
-        </Section>
-      )}
-      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} plans={spanishPlans(tx)} /></Section>
-      <Section tint narrow><h2 className="center"><HL text={tx(`Preguntas para dueños de ${industry.name}`)} mark={tx("dueños")} /></h2><Faq items={[...industry.faqs]} /></Section>
-      <Section><h2 className="center"><HL text={tx("Otros oficios")} mark={tx("Otros oficios")} /></h2><IndustryGrid industries={related} base={href("/industries")} /></Section>
-      <CtaBand h={tx("Consigue tu vista previa gratis")} mark={tx("vista previa gratis")} sub={tx("Vista previa gratis, sin tarjeta. Luego eliges Website, Lead System, Plus u Own It.")} btn={tx("Ver mi vista previa gratis")} href={href("/contact")} secondary={tx("Ver planes y precios")} secondaryHref={href("/pricing")} />
     </>
   );
 }

@@ -1,14 +1,6 @@
 import IndustryAudit from "./IndustryAudit";
-import { englishPath, getLocale, getRequestPath, spainizeData, withLocale } from "@/lib/i18n";
-
-/** Pages that already render this offer, or that are the audit form, checkout, or legal copy. */
-const HIDE = new Set([
-  "/audit",
-  "/privacy",
-  "/terms",
-  "/update",
-  "/pay",
-]);
+import type { Locale } from "@/lib/i18n";
+import { spainizeData, withLocale } from "@/lib/i18n";
 
 const ES = {
   eyebrow: "Un punto de partida claro",
@@ -21,37 +13,31 @@ const ES = {
     {
       title: "Velocidad",
       text: "Qué tan rápido cargan las páginas en celular y computadora para cada visita.",
-      icon: "speed",
+      icon: "audit-speed",
     },
     {
       title: "Visibilidad en búsquedas",
       text: "Si títulos, estructura y páginas están listos para que los buscadores los lean.",
-      icon: "search",
+      icon: "search-optimized",
     },
     {
       title: "Experiencia en el celular",
       text: "Cómo se ve y usa el sitio en el teléfono, con texto legible y controles claros.",
-      icon: "mobile",
+      icon: "audit-mobile",
     },
     {
       title: "Llamadas y cotizaciones",
       text: "Si el número, botones y formularios dejan claro cuál será el siguiente paso.",
-      icon: "conversion",
+      icon: "audit-conversion",
     },
   ],
 };
 
-function alreadyHasAudit(path: string) {
-  if (HIDE.has(path) || path.startsWith("/pay/")) return true;
-  return false;
-
-}
-
-/** The industry free-site-audit band, on every page that does not already include it. */
-export default async function SiteAudit() {
-  const path = englishPath(await getRequestPath());
-  if (alreadyHasAudit(path)) return null;
-  const locale = await getLocale();
+/**
+ * Industry free-site-audit band. Hidden on audit/legal/pay via `html.no-audit`
+ * (set by the route-chrome boot script) so this stays fully static.
+ */
+export default function SiteAudit({ locale }: { locale: Locale }) {
   const href = withLocale(locale, "/audit");
   if (locale === "en") return <IndustryAudit href={href} />;
   const copy = locale === "es-ES" ? spainizeData(ES) : ES;

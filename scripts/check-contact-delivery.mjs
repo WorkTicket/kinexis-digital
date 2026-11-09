@@ -39,6 +39,13 @@ try {
   assert.equal(delivery.attachments[0].content.toString(), "drawing");
   assert.equal(delivery.disableFileAccess, true);
   assert.equal(delivery.disableUrlAccess, true);
+  delivery = undefined;
+  const phoneOnly = new FormData();
+  phoneOnly.set("name", "Client");
+  phoneOnly.set("phone", "3075551234");
+  assert.equal((await POST(new Request("http://localhost/api/contact", { method: "POST", body: phoneOnly }))).status, 200);
+  assert.equal(delivery.replyTo, undefined);
+  assert.match(delivery.text, /3075551234|phone/i);
   delete process.env.CONTACT_TO;
   process.env.CONTACT_TO_EMAIL = "legacy-inbox@example.com";
   assert.equal((await submit({ request: "Update the homepage" })).status, 200);

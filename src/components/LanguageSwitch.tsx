@@ -1,4 +1,5 @@
-import { switchHref, type Locale } from "@/lib/i18n";
+import { getRequestPath } from "@/lib/i18n";
+import { switchHref, type Locale } from "@/lib/locale-path";
 
 const LANGS = [
   { locale: "en", hrefLang: "en-US", name: "English" },
@@ -7,13 +8,13 @@ const LANGS = [
 ] as const;
 
 /** Full document links preserve the correct document language on navigation. */
-export default function LanguageSwitch({ locale, path, label, className }: {
+export default async function LanguageSwitch({ locale, label, className }: {
   locale: Locale;
-  path: string;
   label: string;
   className?: string;
 }) {
-  const current = LANGS.find((item) => item.locale === locale)!;
+  const path = await getRequestPath();
+  const current = LANGS.find((item) => item.locale === locale) ?? LANGS[0];
   return (
     <details className={className ?? "footer-language"}>
       <summary aria-label={`${label}: ${current.name}`}>

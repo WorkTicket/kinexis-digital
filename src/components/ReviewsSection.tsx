@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   averageReviewStars,
   getAllReviews,
+  getCuratedReviews,
   pickHomeReviews,
   reviewSourceSummary,
 } from "@/lib/reviews";
@@ -22,7 +23,7 @@ type ReviewsSectionProps = {
   ctaHref?: string;
   /**
    * Homepage rating line. Use `{count}` and `{source}` placeholders, or omit for
-   * English “from N reviews · Facebook & website”.
+   * the concise English “client reviews” label.
    */
   ratingCopy?: string;
 };
@@ -39,8 +40,7 @@ function RatingLine({
   label?: string;
 }) {
   const display = average.toFixed(1);
-  const unit = count === 1 ? "review" : "reviews";
-  const copy = (label ?? `from {count} ${unit} · {source}`)
+  const copy = (label ?? "client reviews")
     .replaceAll("{count}", String(count))
     .replaceAll("{source}", source);
   return (
@@ -66,10 +66,12 @@ export default async function ReviewsSection({
   ctaHref = "/reviews",
   ratingCopy,
 }: ReviewsSectionProps) {
-  const all = await getAllReviews();
+  // Homepage keeps curated quotes only so the first paint never waits on
+  // Facebook / Trustpilot / KV. Live aggregation stays on /reviews.
+  const home = variant === "home";
+  const all = home ? getCuratedReviews() : await getAllReviews();
   if (all.length === 0) return null;
 
-  const home = variant === "home";
   const reviews = home ? pickHomeReviews(all, limit) : all.slice(0, limit);
   if (reviews.length === 0) return null;
 

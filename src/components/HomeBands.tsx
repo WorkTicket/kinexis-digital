@@ -48,21 +48,32 @@ const REASONS = [
   },
 ] as const;
 
-type ReviewStep = { n: string; title: string; titleDisplay?: ReactNode; text: ReactNode; icon: (typeof REVIEW_STEPS)[number]["icon"] | string };
+type ReviewStep = { n: string; title: string; titleDisplay?: ReactNode; text: ReactNode; icon?: string };
 type Reason = { title: string; text: string; icon: (typeof REASONS)[number]["icon"] };
 
 /** Lead System sequence: missed-call text-back, then Google review request. */
-export function ReviewRail({ steps = REVIEW_STEPS }: { steps?: readonly ReviewStep[] }) {
+export function ReviewRail({
+  steps = REVIEW_STEPS,
+  numbersOnly = false,
+}: {
+  steps?: readonly ReviewStep[];
+  /** Industry pages: big step numbers, no icons. Homepage keeps icons + badge. */
+  numbersOnly?: boolean;
+}) {
   return (
-    <ol className="review-rail">
+    <ol className={`review-rail${numbersOnly ? " review-rail--numbers" : ""}`}>
       {steps.map((step) => (
         <li key={step.title} className="review-rail__step">
-          <div className="review-rail__mark">
-            <span className="review-rail__icon">
-              <Icon name={step.icon} alt="" size={84} className="icon--bare" />
-            </span>
-            <span className="review-rail__num" aria-hidden="true">{step.n}</span>
-          </div>
+          {numbersOnly ? (
+            <span className="review-rail__index" aria-hidden="true">{step.n}</span>
+          ) : (
+            <div className="review-rail__mark">
+              <span className="review-rail__icon">
+                <Icon name={step.icon ?? "missed-call-text-back"} alt="" size={84} className="icon--bare" />
+              </span>
+              <span className="review-rail__num" aria-hidden="true">{step.n}</span>
+            </div>
+          )}
           <h3>{step.titleDisplay ?? step.title}</h3>
           <p>{step.text}</p>
         </li>

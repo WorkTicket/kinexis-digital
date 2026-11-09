@@ -1,18 +1,23 @@
+import { CUSTOM_ICON_KEYS } from "@/lib/custom-icons";
 import { kitSrc } from "@/lib/site";
 import { DeferredImg } from "./DeferredImg";
 
 /** Decorative artwork lives in /assets/kinexis/decorative, illustrations in /assets/kinexis/illustrations. */
 const DECORATIVE = /^(curved-arrow|loop-arrow|underline-swoosh|marker-highlight|pricing-brush|pricing-burst|emphasis-rays|section-background|dot-grid|brand-backdrop|cobalt-|cyan-oval|navy-outline-ring|orange-|pale-dot-grid)/;
 
-/** Loads an SVG icon from /assets/kinexis/icons/{name}.svg once it is near the viewport.
+/** Loads a site icon from /assets/kinexis/icons once it is near the viewport.
+ *  Custom illustrated icons ship as WebP; older keys fall back to SVG.
  *  Pass alt="" when a heading already names the icon, so it is not announced twice. */
 export function Icon({ name, className = "", alt, size = 84 }: { name: string; className?: string; alt?: string; size?: number }) {
+  const custom = CUSTOM_ICON_KEYS.has(name);
+  const ext = custom ? "webp" : "svg";
+  const classes = `icon${custom ? " icon--custom" : ""}${className ? ` ${className}` : ""}`;
   return (
     <img
       src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'%3E%3C/svg%3E`}
-      data-src={kitSrc(`/assets/kinexis/icons/${name}.svg`)}
+      data-src={kitSrc(`/assets/kinexis/icons/${name}.${ext}`)}
       alt={alt === undefined ? name : alt}
-      className={`icon ${className}`}
+      className={classes}
       width={size}
       height={size}
       decoding="async"

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { preload } from "react-dom";
 import type { CSSProperties, ReactNode } from "react";
 import { COMPARE_ROWS } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 import { still } from "@/lib/image-sources";
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
@@ -57,22 +58,27 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
   // server preload registration was omitted for this async page in the last
   // deploy, while the explicit tag is still deduplicated by the browser.
   const reviewsPreload = name === "05-reviews";
+  // Preload the 480w AVIF that mobile Lighthouse actually selects (~260–270 CSS px slot).
   if (!reviewsPreload) {
-    preload(still(`${base}-640.avif`), { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
+    preload(still(`${base}-480.avif`), { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
   }
 
   return (
     <>
-      {reviewsPreload && <link rel="preload" as="image" href={still(`${base}-640.avif`)} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
+      {reviewsPreload && <link rel="preload" as="image" href={still(`${base}-480.avif`)} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
       <picture>
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
       <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
       <img
-        src={still(`${base}-1254.webp`)}
+        src={still(`${base}-640.webp`)}
+        srcSet={webpSrcSet}
+        sizes={sizes}
         width={1254}
         height={1254}
         alt={alt}
-        decoding="async"
+        decoding="sync"
+        loading="eager"
+        fetchPriority="high"
         className="hero-art mx-auto block h-auto w-full max-w-[627px]"
       />
       </picture>
@@ -159,25 +165,30 @@ export function fallbackTrack(mobile?: string, desktop?: string): { className: s
 
 /** Page header with optional split artwork. Text-only pages keep the existing centered layout. */
 export function PageHero({
-  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", fallbackTrack: track, deferMobile = false, children,
+  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", locale = "en", fallbackTrack: track, deferMobile = false, children,
 }: {
   h1: ReactNode; sub: ReactNode; mark?: string; eyebrow?: string;
   image?: ArtName; imageAlt?: string; art?: ReactNode; decor?: DecorName[]; className?: string;
-  fallbackTrack?: { mobile?: string; desktop?: string }; deferMobile?: boolean; children?: ReactNode;
+  locale?: Locale;
+  fallbackTrack?: { mobile?: string; desktop?: string; leadMobile?: string; leadDesktop?: string };
+  deferMobile?: boolean; children?: ReactNode;
 }) {
   const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} /> : h1;
   const tracked = fallbackTrack(track?.mobile, track?.desktop);
+  const leadTracked = fallbackTrack(track?.leadMobile, track?.leadDesktop);
+  const leadClass = ["muted", "lead", leadTracked?.className].filter(Boolean).join(" ");
   if (!image && !art) {
     return (
       <>
         <section className={`page-hero${className ? ` ${className}` : ""}`}>
           <div className="container center">
             {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-            <h1 className={tracked?.className} style={tracked?.style}>{title}</h1><p className="muted lead">{sub}</p>
+            <h1 className={tracked?.className} style={tracked?.style}>{title}</h1>
+            <p className={leadClass} style={leadTracked?.style}>{sub}</p>
             {children}
           </div>
         </section>
-        <PreviewBar />
+        <PreviewBar locale={locale} />
       </>
     );
   }
@@ -188,18 +199,18 @@ export function PageHero({
           <div className="page-hero__copy">
             {eyebrow && <p className="eyebrow">{eyebrow}</p>}
             <h1 className={tracked?.className} style={tracked?.style}>{title}</h1>
-            <p className="muted lead">{sub}</p>
+            <p className={leadClass} style={leadTracked?.style}>{sub}</p>
             {children}
           </div>
           <div className="page-hero__art">
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority deferMobile={deferMobile} sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1279px) 50vw, 627px" /> : null)}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority deferMobile={deferMobile} sizes="(max-width: 860px) 260px, (max-width: 1279px) 50vw, 627px" /> : null)}
             </div>
           </div>
         </div>
       </section>
-      <PreviewBar />
+      <PreviewBar locale={locale} />
     </>
   );
 }
@@ -304,10 +315,10 @@ export function Compare({ rows = COMPARE_ROWS, freelancers = "Freelancers", agen
     </div>
   );
 }
-export function Shots({ n, mode, hrefFor, labelFor, hrefLang }: { n: number; mode: "link" | "work"; hrefFor?: (slug: string) => string; labelFor?: (name: string) => string; hrefLang?: string }) {
+export function Shots({ n, mode, hrefFor, labelFor, hrefLang, scrollOnHover = true }: { n: number; mode: "link" | "work"; hrefFor?: (slug: string) => string; labelFor?: (name: string) => string; hrefLang?: string; scrollOnHover?: boolean }) {
   return <>{PROJECTS.slice(0, n).map((project) => {
     return mode === "link"
-      ? <ShotFrame key={project.slug} project={project} href={hrefFor ? hrefFor(project.slug) : `/portfolio/${project.slug}`} label={labelFor ? labelFor(project.name) : `View ${project.name}`} hrefLang={hrefLang} ctaLabel={labelFor ? labelFor(project.name) : undefined} />
+      ? <ShotFrame key={project.slug} project={project} href={hrefFor ? hrefFor(project.slug) : `/portfolio/${project.slug}`} label={labelFor ? labelFor(project.name) : `View ${project.name}`} hrefLang={hrefLang} ctaLabel={labelFor ? labelFor(project.name) : undefined} scrollOnHover={scrollOnHover} />
       : null;
   })}</>;
 }

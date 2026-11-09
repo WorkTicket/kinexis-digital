@@ -18,6 +18,8 @@
 
 ## Utilities
 - `npm run images:optimize` - `node scripts/optimize-content-images.mjs`
+- `npm run images:heroes` - rebuild page + industry hero WebP/AVIF derivatives (run after replacing masters)
+- `node scripts/minify-boot.mjs` - regenerate `public/assets/js/boot.min.js` from `boot.js` (also runs at the start of `npm run build`)
 - `npm run check:contact` - `node scripts/check-contact-delivery.mjs` (mock transport, no email sent)
 - `npm run search:notify` - Run live check + IndexNow without deploying
 - `npm run cf-typegen` - `wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts`

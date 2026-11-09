@@ -1,4 +1,6 @@
+import { clientIp } from "@/lib/client-ip";
 import { createInvoiceOrder, parseInvoice } from "@/lib/paypal-order";
+import { isRateLimited } from "@/lib/rate-limit";
 import { hasContentType, privateJson, rejectCrossSite, rejectOversize } from "@/lib/request-security";
 import { SITE } from "@/lib/site";
 
@@ -11,6 +13,10 @@ export async function POST(request: Request) {
   if (rejected) return rejected;
   if (!hasContentType(request, "application/json")) {
     return fail("That form could not be read. Please try again.", 415);
+  }
+
+  if (await isRateLimited("checkout", clientIp(request), 60)) {
+    return fail("Please wait a moment before trying checkout again.", 429);
   }
 
   let body: {
@@ -28,7 +34,7 @@ export async function POST(request: Request) {
     return fail("That form could not be read. Please try again.", 400);
   }
 
-  if (String(body._hp ?? "").trim()) return Response.json({ ok: true });
+  if (String(body._hp ?? "").trim()) return privateJson({ ok: true });
 
   const parsed = parseInvoice({
     amount: String(body.amount ?? ""),

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { imageSrcSet, imageVariant } from "@/lib/image-sources";
-import { kitSrc } from "@/lib/site";
+import { Icon } from "./artwork";
 import { HL } from "./mark";
 
 const CHECKS = [
@@ -9,25 +9,25 @@ const CHECKS = [
     title: "Speed",
     titleDisplay: <>Page<br />Speed</>,
     text: <>How quickly each page loads<br />on phones and desktops for<br />visitors who arrive.</>,
-    icon: "speed",
+    icon: "audit-speed",
   },
   {
     title: "Search Visibility",
     titleDisplay: <>Search<br />Visibility</>,
     text: <>How headings and structure<br />help search engines read<br />and understand the site.</>,
-    icon: "search",
+    icon: "search-optimized",
   },
   {
     title: "Mobile Experience",
     titleDisplay: <>Mobile<br />Experience</>,
     text: <>How comfortably the site<br />works on phones, with clear<br />type and easy controls.</>,
-    icon: "mobile",
+    icon: "audit-mobile",
   },
   {
     title: "Calls & Quote Requests",
     titleDisplay: <>Calls &amp; Quote<br />Requests</>,
     text: <>How phone numbers, buttons,<br />and forms guide visitors<br />to the right next step.</>,
-    icon: "conversion",
+    icon: "audit-conversion",
   },
 ] as const;
 
@@ -71,7 +71,7 @@ export default function IndustryAudit({
                <source srcSet={imageSrcSet("/assets/audit/hero.webp", [480, 768, 960])} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
                <img
                 className="industry-audit__img"
-                 src={imageVariant("/assets/audit/hero.webp", 960, "webp")}
+                 src={imageVariant("/assets/audit/hero.webp", 640, "webp")}
                  srcSet={imageSrcSet("/assets/audit/hero.webp", [480, 768, 960])}
                  sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px"
                 alt={alt}
@@ -87,7 +87,7 @@ export default function IndustryAudit({
         <div className="industry-audit__checks">
           {checks.map((item) => (
             <article className="card center" key={item.icon}>
-              <img className="icon icon--kit" src={kitSrc(`/assets/audit/icons/${item.icon}.svg`)} alt="" width={72} height={72} decoding="async" loading="lazy" fetchPriority="low" />
+              <Icon name={item.icon} alt="" size={72} />
               <h3>{item.titleDisplay ?? item.title}</h3>
               <p>{item.text}</p>
             </article>

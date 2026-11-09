@@ -1,5 +1,6 @@
 import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { SITE } from "@/lib/site";
 
 export type SiteReview = {
   id: string;
@@ -10,8 +11,16 @@ export type SiteReview = {
   createdAt: string;
 };
 
+export type PendingSiteReview = SiteReview & {
+  email: string;
+  approveKey: string;
+  rejectKey: string;
+};
+
 const LIST_KEY = "site-reviews:v1";
+const PENDING_KEY = "site-reviews:pending:v1";
 const MAX_STORED = 100;
+const MAX_PENDING = 50;
 
 type ReviewsEnv = CloudflareEnv & { REVIEWS?: KVNamespace };
 
@@ -50,6 +59,28 @@ function normalizeList(value: unknown): SiteReview[] {
   });
 }
 
+function normalizePending(value: unknown): PendingSiteReview[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter((item): item is PendingSiteReview => {
+    if (!item || typeof item !== "object") return false;
+    const review = item as PendingSiteReview;
+    return (
+      typeof review.id === "string" &&
+      typeof review.name === "string" &&
+      typeof review.quote === "string" &&
+      typeof review.stars === "number" &&
+      typeof review.createdAt === "string" &&
+      typeof review.email === "string" &&
+      typeof review.approveKey === "string" &&
+      typeof review.rejectKey === "string"
+    );
+  });
+}
+
+function randomKey() {
+  return `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 14)}`;
+}
+
 /** Published on-site reviews from KV (newest first). */
 export async function getSiteReviews(): Promise<SiteReview[]> {
   const kv = reviewsKv();
@@ -62,41 +93,94 @@ export async function getSiteReviews(): Promise<SiteReview[]> {
   }
 }
 
-export async function addSiteReview(input: {
+async function getPendingRaw(): Promise<PendingSiteReview[]> {
+  const kv = reviewsKv();
+  if (!kv) return [];
+  try {
+    const raw = await kv.get(PENDING_KEY, "json");
+    return normalizePending(raw).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  } catch {
+    return [];
+  }
+}
+
+/** Queue a review for staff approval before it appears on the site. */
+export async function queueSiteReview(input: {
   name: string;
+  email: string;
   quote: string;
   stars: number;
-}): Promise<SiteReview | null> {
+}): Promise<PendingSiteReview | null> {
   const kv = reviewsKv();
   if (!kv) return null;
 
   const createdAt = new Date().toISOString();
-  const review: SiteReview = {
+  const review: PendingSiteReview = {
     id: `site-${createdAt}-${Math.random().toString(36).slice(2, 10)}`,
     name: input.name,
+    email: input.email,
     quote: input.quote,
     stars: input.stars,
     createdAt,
     date: formatDate(createdAt),
+    approveKey: randomKey(),
+    rejectKey: randomKey(),
   };
 
-  const existing = await getSiteReviews();
-  const next = [review, ...existing].slice(0, MAX_STORED);
-  await kv.put(LIST_KEY, JSON.stringify(next));
+  const existing = await getPendingRaw();
+  const next = [review, ...existing].slice(0, MAX_PENDING);
+  await kv.put(PENDING_KEY, JSON.stringify(next));
   return review;
 }
 
-/** Simple IP throttle: at most one review every `windowSeconds`. */
-export async function reviewRateLimited(ip: string, windowSeconds = 3600): Promise<boolean> {
+export function moderationLinks(review: PendingSiteReview, origin = SITE.url) {
+  const base = origin.replace(/\/$/, "");
+  return {
+    approve: `${base}/api/reviews/moderate?action=approve&id=${encodeURIComponent(review.id)}&key=${encodeURIComponent(review.approveKey)}`,
+    reject: `${base}/api/reviews/moderate?action=reject&id=${encodeURIComponent(review.id)}&key=${encodeURIComponent(review.rejectKey)}`,
+  };
+}
+
+export async function approvePendingReview(id: string, key: string): Promise<"ok" | "missing" | "bad-key" | "unavailable"> {
   const kv = reviewsKv();
-  if (!kv || !ip) return false;
-  const key = `rate:review:${ip}`;
-  try {
-    const hit = await kv.get(key);
-    if (hit) return true;
-    await kv.put(key, "1", { expirationTtl: windowSeconds });
-    return false;
-  } catch {
-    return false;
-  }
+  if (!kv) return "unavailable";
+
+  const pending = await getPendingRaw();
+  const index = pending.findIndex((item) => item.id === id);
+  if (index < 0) return "missing";
+  const review = pending[index];
+  if (review.approveKey !== key) return "bad-key";
+
+  const published: SiteReview = {
+    id: review.id,
+    name: review.name,
+    quote: review.quote,
+    date: review.date,
+    stars: review.stars,
+    createdAt: review.createdAt,
+  };
+
+  const existing = await getSiteReviews();
+  const nextPublished = [published, ...existing.filter((item) => item.id !== published.id)].slice(0, MAX_STORED);
+  const nextPending = pending.filter((_, i) => i !== index);
+
+  await Promise.all([
+    kv.put(LIST_KEY, JSON.stringify(nextPublished)),
+    kv.put(PENDING_KEY, JSON.stringify(nextPending)),
+  ]);
+  return "ok";
+}
+
+export async function rejectPendingReview(id: string, key: string): Promise<"ok" | "missing" | "bad-key" | "unavailable"> {
+  const kv = reviewsKv();
+  if (!kv) return "unavailable";
+
+  const pending = await getPendingRaw();
+  const index = pending.findIndex((item) => item.id === id);
+  if (index < 0) return "missing";
+  if (pending[index].rejectKey !== key) return "bad-key";
+
+  const nextPending = pending.filter((_, i) => i !== index);
+  await kv.put(PENDING_KEY, JSON.stringify(nextPending));
+  return "ok";
 }

@@ -65,9 +65,9 @@ export default function IndustryGrid({
               </Link>
             </li>
           ))}
-          {moreInGrid ? (
+          {moreInGrid && moreHref ? (
             <li>
-              <Link className="trade-index__item trade-index__item--more" href={moreHref!} prefetch={false}>
+              <Link className="trade-index__item trade-index__item--more" href={moreHref} prefetch={false}>
                 <span className="trade-index__more-mark" aria-hidden="true">+</span>
                 <span className="trade-index__name">{moreLabel}</span>
                 <span className="trade-index__meta">{moreMeta}</span>
@@ -76,9 +76,9 @@ export default function IndustryGrid({
             </li>
           ) : null}
         </ul>
-        {moreAsOutro ? (
+        {moreAsOutro && moreHref ? (
           <p className="trade-index__outro">
-            <Link className="trade-index__outro-link" href={moreHref!} prefetch={false}>
+            <Link className="trade-index__outro-link" href={moreHref} prefetch={false}>
               <span className="trade-index__more-mark" aria-hidden="true">+</span>
               <span className="trade-index__outro-label">{moreLabel}</span>
             </Link>

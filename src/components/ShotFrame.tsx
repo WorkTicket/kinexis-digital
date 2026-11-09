@@ -28,14 +28,13 @@ export function ShotFrame({
   className?: string;
   showCtaOnHover?: boolean;
 }) {
+  // Card slots are ≤280 CSS px; 640w covers 2x/3x without the multi-hundred-KB master.
   const shot = portfolioFile(project.image, 640);
-  const full = portfolioFile(project.image);
   const inner = (
     <div className="shot__page">
       <div className="shot__track">
         <DeferredImg
           src={shot}
-          srcSet={`${shot} 640w, ${full} 1100w`}
           sizes="(max-width: 720px) 46vw, (max-width: 1100px) 30vw, 280px"
           alt={`${project.name} website design`}
           width={640}

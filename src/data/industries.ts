@@ -61,7 +61,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Drain Cleaning", text: "A separate path for clogs and camera work so it does not read like a water-heater ad.", icon: "drain-cleaning" },
       { title: "Water Heaters", text: "Repair versus replacement, the brands you install, and a straight way to ask for a quote.", icon: "water-heaters" },
     ],
-    serviceArea: "One page for the cities you cover. Not a stack of thin city pages that all say the same thing.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["calls", "quote-requests", "reviews", "service-area"],
     faqs: [
       { q: "Should a plumber advertise 24/7 if the shop closes at six?", a: "Only if someone answers. We write the hours you keep. A page that promises a night tech you do not have creates angry calls, not booked work." },
@@ -98,7 +98,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "System Replacement", text: "Options, what a consult includes, and financing only if you actually offer it.", icon: "system-replacement" },
       { title: "Maintenance", text: "A quieter offer for tune-ups and memberships, sold as fewer emergency visits.", icon: "maintenance" },
     ],
-    serviceArea: "The cities your techs already drive. One clear page, not a copy of the homepage for every ZIP code.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["calls", "quote-requests", "reviews", "service-area"],
     faqs: [
       { q: "Will the site push replacement when the caller needs a repair?", a: "No. Repair and replacement get separate pages and separate calls to action. Mixing them trains the wrong person to fill out the wrong form." },
@@ -136,7 +136,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "EV Chargers", text: "When a panel is the job, what the visit includes, and how to ask for a quote.", icon: "ev-chargers" },
       { title: "Troubleshooting", text: "Home chargers you install, what the site visit checks, and a form that is not twelve fields.", icon: "troubleshooting" },
     ],
-    serviceArea: "Where you roll a truck. Named once, clearly, instead of spun out into empty city pages.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["calls", "quote-requests", "reviews", "service-area"],
     faqs: [
       { q: "Can you show my license number on the site?", a: "Yes. Send the number and the state. We put it where people look, not in a footer nobody opens." },
@@ -174,7 +174,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Roof Replacement", text: "Materials you install, what an inspection includes, and a short quote form.", icon: "replacements" },
       { title: "Storm Calls", text: "How you triage after weather, written so it does not read like a script from a call center.", icon: "storm-calls" },
     ],
-    serviceArea: "The towns you will drive to for an inspection. One page, specific, not a city cloned fifty times.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["calls", "quote-requests", "reviews", "service-area"],
     faqs: [
       { q: "Will you write insurance-claim copy?", a: "We will explain how you document a roof and what the homeowner should ask their carrier. We will not promise that a claim will be approved." },
@@ -212,7 +212,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Opener Repair", text: "Repair versus a new operator, including the brands you actually stock.", icon: "opener-repair" },
       { title: "New Doors", text: "Style, insulation and a request for a measure. Built for someone comparing two quotes.", icon: "new-doors" },
     ],
-    serviceArea: "How far you drive for a same-day repair, which is often tighter than your install radius.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["calls", "quote-requests", "reviews", "service-area"],
     faqs: [
       { q: "Should repair and new doors be different pages?", a: "Yes. Repair is a phone call. A new door is a measure and a quote. One page trying to do both usually does neither." },
@@ -249,9 +249,9 @@ export const INDUSTRIES: Industry[] = [
       { title: "Exterior Painting", text: "Siding, trim and the season you will and will not schedule.", icon: "exterior" },
       { title: "Cabinet Finishes", text: "The finer work, priced and described apart from a whole-house repaint.", icon: "cabinet-finishes" },
     ],
-    serviceArea: "The neighborhoods you will drive to for a walkthrough. One page, not a cloned city for every ZIP code.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["quote-requests", "calls", "reviews", "service-area"],
-    featureText: { "quote-requests": "Photos, walkthrough, and when they should expect a number. One page, in plain language." },
+    featureText: { "quote-requests": "A short form for project photos, walkthroughs, and when to expect an estimate." },
     faqs: [
       { q: "Can customers request an estimate from the site?", a: "Yes. The form asks for the kind of work, a way to reach them, and photos if they have them. You see it as a tracked form lead." },
       { q: "I paint in English and Spanish. Is there a plan for that?", a: "Plus is the bilingual plan: the site, text-back and review requests in English and Spanish." },
@@ -287,7 +287,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Bathrooms", text: "Separate from kitchens. Different budget, different photos, different questions.", icon: "bathrooms" },
       { title: "Detailed Estimates", text: "Design, selections, build, and how change orders work. This is the trust page.", icon: "detailed-estimates" },
     ],
-    serviceArea: "How far you will drive for a consult. Remodel radiuses are smaller than people assume.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["quote-requests", "calls", "reviews", "service-area"],
     faqs: [
       { q: "Will the site promise a project price?", a: "Only if you give us a range you are willing to say in public. Otherwise we explain what the consult covers and how a quote is built." },
@@ -324,7 +324,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Landscape Design", text: "Patios, plantings and the other projects you want photos to sell.", icon: "landscape-design" },
       { title: "Design-Build", text: "Cleanups, mulch and the offers that belong in spring and fall, not in January copy.", icon: "design-build" },
     ],
-    serviceArea: "Neighborhoods and towns on the route. Specific, and short enough to be true.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["bookings", "quote-requests", "service-area", "reviews"],
     faqs: [
       { q: "Should weekly mowing and hardscape be on the same site?", a: "Same site, different pages. The calls to action stay different so a mowing lead is not asked to book a design consult." },
@@ -361,7 +361,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Pool Repairs", text: "Green pools, equipment failures and the calls that cannot wait for the next route day.", icon: "repairs" },
       { title: "Equipment", text: "Pumps, heaters and the brands you install, separate from the weekly visit.", icon: "equipment" },
     ],
-    serviceArea: "The neighborhoods on the route, written as one page you can stand behind.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["bookings", "calls", "service-area", "reviews"],
     faqs: [
       { q: "Can the site sell weekly service and one-time repairs?", a: "Yes. They are separate pages with separate next steps, so a green-pool call is not asked to join a route first." },
@@ -399,7 +399,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Concrete Cleaning", text: "Oil, rust and the flatwork jobs that are a different search than a house wash.", icon: "concrete-cleaning" },
       { title: "Roof Washing", text: "Soft wash only if that is what you do, with the safety limits written down.", icon: "roof-washing" },
     ],
-    serviceArea: "How far you will drive a rig. Washing routes die when the area is a wish list.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["quote-requests", "calls", "service-area", "reviews"],
     faqs: [
       { q: "What if I do not wash roofs?", a: "Then the site will not offer roof washing. We would rather miss a keyword than book a job you do not want." },
@@ -437,7 +437,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Storefronts", text: "A commercial path with a schedule, not a coupon meant for a three-bed house.", icon: "storefronts" },
       { title: "Recurring Routes", text: "Monthly or quarterly, written as the normal next step after the first visit.", icon: "recurring-routes" },
     ],
-    serviceArea: "The neighborhoods on the route. Tight and true, so the drive time still works.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["bookings", "calls", "service-area", "reviews"],
     faqs: [
       { q: "Can the site offer one-time and recurring cleans?", a: "Yes. The first clean and the route are both on the site, with the route presented as the thing most customers should be on." },
@@ -475,7 +475,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Pet-Waste Service", text: "Leaf and seasonal work, offered when you have the crew, not as a permanent emergency.", icon: "pet-waste" },
       { title: "Recurring Bookings", text: "A straight page for the service: frequency, yards you will take, and how to start.", icon: "recurring-bookings" },
     ],
-    serviceArea: "One service-area page for the streets you run. Not a cloned page per subdivision.",
+    serviceArea: "One clear page for the areas you serve, not repetitive pages for each city.",
     features: ["bookings", "calls", "service-area", "reviews"],
     faqs: [
       { q: "Should I have a separate page for every neighborhood?", a: "No. One honest service-area page beats twenty thin pages that swap the town name. Thin city pages are how sites get ignored, not how they rank." },

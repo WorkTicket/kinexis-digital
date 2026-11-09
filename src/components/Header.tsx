@@ -1,14 +1,14 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { INDUSTRIES } from "@/data/industries";
 import { chromeFor } from "@/i18n/chrome";
 import { localizeIndustry } from "@/i18n/industries-es";
-import { getLocale, withLocale } from "@/lib/i18n";
+import type { Locale } from "@/lib/i18n";
+import { withLocale } from "@/lib/i18n";
 import { imageVariant } from "@/lib/image-sources";
 import { SITE, telHref } from "@/lib/site";
 import { MenuButton, NavLinks } from "./HeaderMenu";
 
-export default async function Header() {
-  const locale = await getLocale();
+export default function Header({ locale }: { locale: Locale }) {
   const chrome = chromeFor(locale);
   const hrefFor = (href: string) => withLocale(locale, href);
   const industries = INDUSTRIES.map((industry) => localizeIndustry(industry, locale));
@@ -28,6 +28,7 @@ export default async function Header() {
             decoding="async"
             fetchPriority="low"
             className="logo__img"
+            style={{ transform: "translateY(-6px)" }}
           />
         </Link>
         <nav className="nav" id="nav" aria-label="Main">
@@ -43,7 +44,9 @@ export default async function Header() {
         </nav>
         <div className="header__tools">
           <a className="header__phone header__phone--mobile" href={telHref(SITE.phone)} aria-label={SITE.phone}>{SITE.phone}</a>
-          <Link className="btn btn--primary header__cta" href={hrefFor("/contact")} prefetch={false}>{chrome.chat}</Link>
+          <Link className="btn btn--primary header__cta" href={hrefFor("/contact")} prefetch={false}>
+            <span className="header__cta-label">{chrome.chat}</span>
+          </Link>
           <MenuButton menu={chrome.menu} close={chrome.close} />
         </div>
       </div>

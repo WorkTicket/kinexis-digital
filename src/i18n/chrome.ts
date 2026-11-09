@@ -10,6 +10,10 @@ export type Chrome = {
   industries: string;
   industriesTitle: string;
   allIndustries: string;
+  allServices: string;
+  webDesign: string;
+  seo: string;
+  addons: string;
   menu: string;
   close: string;
   chat: string;
@@ -39,11 +43,15 @@ const EN: Chrome = {
   home: "Kinexis Digital home",
   language: "Language",
   announce: "Free homepage preview in 2 business days — no card, no obligation. Get yours →",
-  navBefore: [["/about", "About"], ["/web-design", "Web Design"], ["/seo-services", "SEO"], ["/portfolio", "Portfolio"]],
+  navBefore: [["/about", "About"], ["/portfolio", "Portfolio"]],
   navAfter: [["/pricing", "Pricing"], ["/reviews", "Reviews"], ["/blog", "Blog"], ["/contact", "Contact"]],
   industries: "Industries",
   industriesTitle: "Websites built for the trades you run",
   allIndustries: "All industries",
+  allServices: "All services",
+  webDesign: "Web Design",
+  seo: "SEO",
+  addons: "Addons",
   menu: "Menu",
   close: "Close",
   chat: "Get My Free Preview",
@@ -73,11 +81,15 @@ const ES: Chrome = {
   home: "Inicio de Kinexis Digital",
   language: "Idioma",
   announce: "Vista previa gratis en 2 días hábiles — sin tarjeta. Pídela aquí →",
-  navBefore: [["/about", "Nosotros"], ["/web-design", "Diseño web"], ["/seo-services", "SEO"], ["/portfolio", "Portafolio"]],
+  navBefore: [["/about", "Nosotros"], ["/portfolio", "Portafolio"]],
   navAfter: [["/pricing", "Precios"], ["/reviews", "Reseñas"], ["/blog", "Blog"], ["/contact", "Contacto"]],
   industries: "Industrias",
   industriesTitle: "Sitios para el oficio que sí manejas",
   allIndustries: "Todas las industrias",
+  allServices: "Todos los servicios",
+  webDesign: "Diseño web",
+  seo: "SEO",
+  addons: "Extras",
   menu: "Menú",
   close: "Cerrar",
   chat: "Ver mi vista previa gratis",

@@ -1,65 +1,51 @@
 import { SITE } from "@/lib/site";
 import { REVIEW_QUOTE_MAX, REVIEW_QUOTE_MIN } from "@/lib/review-limits";
-import { addSiteReview, reviewRateLimited } from "@/lib/site-reviews";
+import { clientIp } from "@/lib/client-ip";
+import {
+  EMAIL_PATTERN,
+  contactEmailBinding,
+  contactRecipients,
+} from "@/lib/contact-mail";
+import { isRateLimited } from "@/lib/rate-limit";
+import { moderationLinks, queueSiteReview } from "@/lib/site-reviews";
 import { hasContentType, privateJson, rejectCrossSite, rejectOversize } from "@/lib/request-security";
-import { getCloudflareContext } from "@opennextjs/cloudflare";
-import { revalidatePath } from "next/cache";
 
 const MAX_REQUEST = 32_000;
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-type ContactEmailBinding = {
-  send(message: {
-    from: { email: string; name: string };
-    to: string[];
-    replyTo: { email: string; name: string };
-    subject: string;
-    text: string;
-    attachments: Array<{
-      filename: string;
-      content: ArrayBuffer;
-      type: string;
-      disposition: "attachment";
-    }>;
-  }): Promise<unknown>;
-};
 
 function visitorError(message: string, status: number) {
   return privateJson({ error: message }, { status });
 }
 
-function clientIp(request: Request) {
-  return (
-    request.headers.get("cf-connecting-ip")?.trim() ||
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    ""
-  );
-}
-
-function contactRecipients() {
-  const configured = process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email;
-  const recipients = configured
-    .split(/[;,]/)
-    .map((address) => address.trim().toLowerCase())
-    .filter((address, index, all) => EMAIL_PATTERN.test(address) && all.indexOf(address) === index);
-  return recipients.length > 0 ? recipients : [SITE.email];
-}
-
-async function notifyTeam(review: { name: string; email: string; stars: number; quote: string }) {
+async function notifyTeam(review: {
+  name: string;
+  email: string;
+  stars: number;
+  quote: string;
+  approve: string;
+  reject: string;
+}) {
   try {
-    const env = getCloudflareContext().env as CloudflareEnv & { CONTACT_EMAIL?: ContactEmailBinding };
-    const mail = env.CONTACT_EMAIL;
+    const mail = contactEmailBinding();
     if (!mail) return;
     await mail.send({
       from: { email: SITE.email, name: SITE.name },
       to: contactRecipients(),
       replyTo: { email: review.email, name: review.name },
-      subject: `New website review from ${review.name}`,
-      text: [`Name: ${review.name}`, `Email: ${review.email}`, `Stars: ${review.stars}/5`, "", review.quote].join("\n"),
+      subject: `Review pending approval from ${review.name}`,
+      text: [
+        `Name: ${review.name}`,
+        `Email: ${review.email}`,
+        `Stars: ${review.stars}/5`,
+        "",
+        review.quote,
+        "",
+        `Approve: ${review.approve}`,
+        `Reject: ${review.reject}`,
+      ].join("\n"),
       attachments: [],
     });
   } catch {
-    // Notification is best-effort; the review is already saved.
+    // Notification is best-effort; the review is already queued.
   }
 }
 
@@ -95,12 +81,13 @@ export async function POST(request: Request) {
   if (stars < 1 || stars > 5) return visitorError("Please choose a star rating.", 400);
 
   const ip = clientIp(request);
-  if (await reviewRateLimited(ip)) {
+  if (await isRateLimited("review", ip, 3600)) {
     return visitorError("Please wait a bit before posting another review.", 429);
   }
 
-  const saved = await addSiteReview({
+  const saved = await queueSiteReview({
     name: name.replace(/[\r\n]+/g, " ").slice(0, 80),
+    email,
     quote: quote.replace(/\s+/g, " ").trim(),
     stars,
   });
@@ -108,14 +95,15 @@ export async function POST(request: Request) {
     return visitorError("Reviews are temporarily unavailable. Please try Trustpilot, or try again later.", 503);
   }
 
-  void notifyTeam({ name: saved.name, email, stars: saved.stars, quote: saved.quote });
+  const links = moderationLinks(saved, new URL(request.url).origin);
+  void notifyTeam({
+    name: saved.name,
+    email,
+    stars: saved.stars,
+    quote: saved.quote,
+    approve: links.approve,
+    reject: links.reject,
+  });
 
-  revalidatePath("/");
-  revalidatePath("/reviews");
-  revalidatePath("/es");
-  revalidatePath("/es/reviews");
-  revalidatePath("/es-es");
-  revalidatePath("/es-es/reviews");
-
-  return privateJson({ ok: true, review: saved });
+  return privateJson({ ok: true, pending: true });
 }
