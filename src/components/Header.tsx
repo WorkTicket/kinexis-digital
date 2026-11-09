@@ -6,6 +6,7 @@ import type { Locale } from "@/lib/i18n";
 import { withLocale } from "@/lib/i18n";
 import { imageVariant } from "@/lib/image-sources";
 import { SITE, telHref } from "@/lib/site";
+import HeaderCta from "./HeaderCta";
 import { MenuButton, NavLinks } from "./HeaderMenu";
 
 export default function Header({ locale }: { locale: Locale }) {
@@ -45,9 +46,7 @@ export default function Header({ locale }: { locale: Locale }) {
           </nav>
           <div className="header__tools">
             <a className="header__phone header__phone--mobile" href={telHref(SITE.phone)} aria-label={SITE.phone}>{SITE.phone}</a>
-            <Link className="btn btn--primary header__cta" href={hrefFor("/contact")} prefetch={false}>
-              <span className="header__cta-label">{chrome.chat}</span>
-            </Link>
+            <HeaderCta href={hrefFor("/contact")} label={chrome.chat} />
             <MenuButton menu={chrome.menu} close={chrome.close} />
           </div>
         </div>
