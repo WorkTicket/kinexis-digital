@@ -44,10 +44,10 @@ import HeroFilm from "@/components/HeroFilm";
 const BookingCalendar = dynamic(() => import("@/components/BookingCalendar"));
 const SiteReviewForm = dynamic(() => import("@/components/SiteReviewForm"));
 
-type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string };
+type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string; hold?: boolean };
 
 const PAGE_META: Record<string, Meta> = {
-  "/": { title: "Planes de sitios web desde $97/mes para negocios locales | Kinexis Digital", absolute: true, description: "Sitio profesional desde $97/mes, con respuesta a llamadas perdidas y pedidos de reseñas en Google. Mira tu página de inicio gratis primero. Sin tarjeta." },
+  "/": { title: "Planes de sitios web desde $97/mes para negocios locales | Kinexis Digital", absolute: true, description: "Sitio profesional desde $97/mes, con pedidos de reseñas en Google y texto opcional si no contestas. Mira tu página de inicio gratis primero. Sin tarjeta." },
   "/services": { title: "Diseño web, SEO y mantenimiento", description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios en Estados Unidos, con apoyo claro en cada paso." },
   "/web-design": { title: "Proceso de diseño web — Vista previa gratis del inicio", description: "Comparte una dirección de diseño, logo y fotos. Preparamos una vista previa gratis del inicio en 2 días hábiles—sin tarjeta—y la ajustamos hasta que encaje antes de elegir un plan." },
   "/seo-services": { title: "SEO para sitios web de negocios", description: "Mejora la visibilidad de tu sitio con SEO técnico, optimización de páginas, contenido útil e informes claros pensados para atraer más clientes." },
@@ -82,6 +82,7 @@ export function spanishMetadata(locale: Locale, slug?: string[]) {
   const localized = metaFor(en, locale);
   if (!localized) return { title: "Página no encontrada", robots: { index: false, follow: false } };
   const page = Object.values(PAGES).find((candidate) => candidate.path === en);
+  const indexable = localized.hold ? false : (page?.indexable ?? true);
   return contentMetadata({
     path: withLocale(locale, en),
     title: localized.title,
@@ -92,7 +93,7 @@ export function spanishMetadata(locale: Locale, slug?: string[]) {
     ogType: localized.article ? "article" : "website",
     publishedTime: localized.date,
     section: localized.section,
-    index: page?.indexable ?? true,
+    index: indexable,
   });
 }
 
@@ -101,7 +102,7 @@ function metaFor(en: string, locale: Locale): Meta | undefined {
     const industry = getIndustry(en.split("/")[2] ?? "");
     if (!industry) return undefined;
     const copy = localizeIndustry(industry, locale);
-    return { title: copy.metaTitle, description: copy.metaDescription };
+    return { title: copy.metaTitle, description: copy.metaDescription, hold: industry.status === "hold" };
   }
   if (en.startsWith("/blog/") && en !== "/blog") {
     const post = esPost(en.split("/")[2] ?? "");
@@ -161,8 +162,8 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
     { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu oficio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Escoge el plan que te sirve"), text: tx("Elige Website, Lead System, Plus u Own It. Dejamos por escrito lo que incluye y la fecha de lanzamiento.") },
     { tab: "Build", label: tx("Construcción"), title: tx("Terminamos el sitio completo"), text: tx("Sumamos tus servicios, zona, fotos y texto, conectamos el dominio y te enviamos todo para aprobarlo.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea. Los textos y las reseñas empiezan tras la aprobación del operador, normalmente en 10 a 15 días.") },
-    { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y enviamos la solicitud de reseña después de cada trabajo.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea. En Lead System y Plus, las reseñas y el texto opcional empiezan tras la aprobación del operador, normalmente en 10 a 15 días.") },
+    { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y en Lead System y Plus enviamos la solicitud de reseña después de cada trabajo.") },
   ];
   return (
     <>
@@ -173,7 +174,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <h1><HL text={tx("Un plan de sitio pensado para conseguir más trabajos")} mark={tx("conseguir más trabajos")} /></h1>
           <ul className="ticks">
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Ves tu inicio gratis")}</b> – {tx("sin tarjeta")}</span><span>{tx("y sin obligación antes de pagar")}</span></span></li>
-            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Atrapas las llamadas que pierdes")}</b></span><span>{tx("texto automático desde el celular y seguimiento")}</span></span></li>
+            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Atrapas las llamadas que pierdes")}</b></span><span>{tx("texto opcional y seguimiento después del trabajo")}</span></span></li>
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Tu reputación en Google")}</b></span><span>{tx("pedidos de reseña enviados por ti, no dejados al azar")}</span></span></li>
           </ul>
           <div className="hero__btns">
@@ -207,7 +208,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>{tx("Un sitio que")}<br />{tx("facilita recibir")}<br />{tx("llamadas")}</>} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
-          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Quien llama recibe un texto, el cliente recibe la solicitud de reseña y cada lead queda registrado.")} icon="better-follow-up" />
+          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("En Lead System y Plus, el texto opcional puede alcanzar a quien no contestaste, salen los pedidos de reseña y cada lead queda registrado.")} icon="better-follow-up" />
           <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx("Elige entre cuatro planes desde $97 al mes, con vista previa gratis, $0 de enganche y cobro mes a mes.")} icon="better-pricing" />
         </div>
       </Section>
@@ -225,9 +226,9 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       <Section band="lead">
         <div className="lead-feature">
           <div className="lead-feature__copy">
-            <p className="eyebrow">{tx("Incluido en Lead System y Plus")}</p>
+            <p className="eyebrow">{tx("Disponible en Lead System y Plus")}</p>
             <h2><HL text={tx("Respuesta a llamadas perdidas y pedidos de reseña en Google")} mark={tx("pedidos de reseña en Google")} /></h2>
-            <p>{tx("Si no contestas, un texto mantiene el lead. Después del trabajo sale el pedido de reseña con el enlace a tu perfil de Google.")}</p>
+            <p>{tx("Si no contestas, el texto opcional mantiene el lead. Después del trabajo sale el pedido de reseña con el enlace a tu perfil de Google.")}</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
               <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
@@ -432,7 +433,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   const faqs = homeFaqs(tx);
   const table = [
     { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), "$99", tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
-    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas**"), "—", tx("Extra opcional"), tx("Opcional · EN + ES"), tx("Extra $97 / mes")], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
+    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas**"), "—", tx("$1/mes 2.º número + operador"), tx("$1/mes 2.º número + operador · EN/ES"), tx("Extra $97 / mes")], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
     { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Devolución en 30 días"), tx("Sí"), tx("Sí"), tx("Sí"), tx("Sí")], [tx("Cobro"), tx("Mes a mes"), tx("Mes a mes"), tx("Mes a mes"), tx("Un pago")], [tx("Cancela cuando quieras"), tx("Sí"), tx("Sí"), tx("Sí"), "—"], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), "$97 / mes", "$197 / mes", "$297 / mes", "$1,497"]] },
   ];
   return (
@@ -505,7 +506,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
               <h3>{tx("Cancelar y quedarte con el sitio")}</h3>
               <ul>
                 <li>{tx("Cancela cuando quieras por texto, correo o Messenger. El sitio sigue en línea hasta el final del período que ya pagaste.")}</li>
-                <li>{tx("Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Para quedártelo, pide una compra—un pago único por escrito de los archivos para hospedarlos tú—o pasa a Own It antes de que termine el período. Pide las condiciones por escrito antes de cancelar.")}</li>
+                <li>{tx("Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Para quedártelo, pide una compra de $1,497 por escrito de los archivos para hospedarlos tú—o pasa a Own It antes de que termine el período. Pide las condiciones por escrito antes de cancelar.")}</li>
               </ul>
             </section>
             <section className="pricing-terms__group">
@@ -564,13 +565,13 @@ function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
     { tab: "Preview", label: tx("Vista previa"), title: tx("Lo ves primero"), text: tx("La vista previa es el punto de partida. La apruebas, pides cambios o te vas.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Queda por escrito"), text: tx("Qué incluye el plan y la fecha de lanzamiento se confirman por escrito.") },
     { tab: "Build", label: tx("Construcción"), title: tx("El sitio completo"), text: tx("Servicios, zona, fotos y el dominio, con tu aprobación antes de publicar.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio sale. Los textos esperan la aprobación del operador.") },
-    { tab: "Grow", label: tx("Crecer"), title: tx("Se mantiene"), text: tx("Cambios, llamadas y reseñas, para que veas los leads en un reporte.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio sale. En Lead System y Plus, las reseñas y el texto opcional esperan la aprobación del operador.") },
+    { tab: "Grow", label: tx("Crecer"), title: tx("Se mantiene"), text: tx("Cambios, llamadas y reseñas en Lead System y Plus, para que veas los leads en un reporte.") },
   ];
   return (
     <>
       <ContentSchema path={href("/about")} title={tx(PAGE_META["/about"].title)} description={tx(PAGE_META["/about"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Nosotros"), path: href("/about") }]} faqs={faqs} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Un equipo pequeño para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Creamos sitios, mejoramos la visibilidad, escribimos a llamadas perdidas y pedimos reseñas para negocios en Estados Unidos.")} image="about" imageAlt={tx("Computadora y un boceto de una página de inicio")} />
+      <PageHero locale={locale} h1={tx("Un equipo pequeño para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Creamos sitios, mejoramos la visibilidad, pedimos reseñas en Google y ofrecemos texto opcional si no contestas, para negocios en Estados Unidos.")} image="about" imageAlt={tx("Computadora y un boceto de una página de inicio")} />
       <section className="section"><div className="container two-col">
         <div>
           <h2><HL text={tx("Para negocios que dependen del teléfono")} mark={tx("dependen del teléfono")} /></h2>
@@ -636,7 +637,10 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
         <p className="btn-row"><Link className="btn btn--primary" href={href("/audit")} prefetch={false}>{tx("Revisar mi sitio")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
       </PageHero>
       <Section><IndustryGrid industries={industries} base={href("/industries")} /></Section>
-      <Section tint narrow><p>{tx("La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por $1,497. El SEO continuo se cotiza aparte.")}</p></Section>
+      <Section tint narrow>
+        <p>{tx("La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a $97 al mes, Lead System a $197, Plus a $297, u Own It por $1,497.")}</p>
+        <p>{tx("Lead System y Plus incluyen pedidos de reseña en Google. El texto si no contestas es un extra opcional en esos planes. El SEO continuo se cotiza aparte.")}</p>
+      </Section>
       <CtaBand h={tx("Mira cómo podría verse tu oficio")} mark={tx("tu oficio")} sub={tx("Preparamos la página de inicio antes de que pagues, sin tarjeta ni obligación.")} btn={tx("Revisar mi sitio")} href={href("/audit")} {...band} />
     </>
   );
@@ -779,7 +783,7 @@ function Upgrades({ locale, tx, href, lang, band }: PageBits) {
   const items = [
     ["extra-page", tx("Página extra"), tx("Agrega un servicio, una zona o una landing a Website, Lead System o Plus."), "$99"],
     ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), "$39 / mes"],
-    ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada."), "$97 / mes"],
+    ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra para Website u Own It. Requiere línea dedicada. Un segundo número cuesta $1/mes si lo usas. Pueden aplicar tarifas del operador. La aprobación del operador suele tardar 10 a 15 días y no está garantizada."), "$97 / mes"],
     ["new-pages", tx("Páginas nuevas en Own It"), tx("Las páginas extra de Own It se cotizan por escrito antes de empezar."), tx("Cotizado")],
   ] as const;
   return (
@@ -852,7 +856,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("5. Garantía de 60 días")}</h2>
         <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados en los primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Una garantía por negocio, con la cuenta al corriente. Un lead rastreado es una llamada de 30 segundos o más, alguien que responde al texto, o un formulario real. No cuentan spam, números equivocados, solicitantes, proveedores ni clientes actuales. No aplica si el seguimiento falla por un cambio que haces tú, o si pausas o cancelas antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>
-        <p>{tx("Own It es un pago de $1,497, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es $39 al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. El texto si no contestas se puede agregar por $97 al mes.")}</p>
+        <p>{tx("Own It es un pago de $1,497, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es $39 al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. En Own It, el texto si no contestas se puede agregar por $97 al mes. En Lead System o Plus, un segundo número cuesta $1 al mes si lo usas, más tarifas del operador.")}</p>
         <h2>{tx("7. Cancelación y acceso")}</h2>
         <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El cobro se detiene al final del período que ya pagaste y el sitio sigue en línea hasta entonces.")}</p>
         <p>{tx("Como en los planes mensuales Kinexis hospeda y administra el sitio, cuando termina el período pagado el hosting y la administración se detienen y el sitio sale de línea, salvo que lo conserves de otra forma.")}</p>

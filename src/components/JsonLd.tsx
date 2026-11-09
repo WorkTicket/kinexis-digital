@@ -294,7 +294,7 @@ export function PageSchema({ page, faqs, items }: {
   return <Script data={{ "@context": "https://schema.org", "@graph": graph }} />;
 }
 
-export function ArticleSchema({ title, description, path, image, date, modified, section, inLanguage = "en-US" }: {
+export function ArticleSchema({ title, description, path, image, date, modified, section, faqs, inLanguage = "en-US" }: {
   title: string;
   description: string;
   path: string;
@@ -302,6 +302,7 @@ export function ArticleSchema({ title, description, path, image, date, modified,
   date: string;
   modified?: string;
   section: string;
+  faqs?: QA[];
   inLanguage?: string;
 }) {
   const url = absolute(path);
@@ -310,9 +311,7 @@ export function ArticleSchema({ title, description, path, image, date, modified,
   const homePath = locale === "en" ? "/" : locale === "es-ES" ? "/es-es" : "/es";
   const dateTime = date.includes("T") ? date : `${date}T09:00:00-05:00`;
   const modifiedTime = modified ? (modified.includes("T") ? modified : `${modified}T09:00:00-05:00`) : undefined;
-  return <Script data={{
-    "@context": "https://schema.org",
-    "@graph": [
+  const graph: Record<string, unknown>[] = [
       {
         // Include Article so auditors that look for that type still match BlogPosting pages.
         "@type": ["BlogPosting", "Article"],
@@ -342,6 +341,54 @@ export function ArticleSchema({ title, description, path, image, date, modified,
          { name: locale === "en" ? "Home" : "Inicio", path: homePath },
          { name: "Blog", path: blogPath },
         { name: title, path },
+      ]),
+  ];
+  if (faqs?.length) {
+    graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: faqEntities(faqs) });
+  }
+  return <Script data={{
+    "@context": "https://schema.org",
+    "@graph": graph,
+  }} />;
+}
+
+export function WebApplicationSchema({
+  name,
+  description,
+  path,
+  applicationCategory = "BusinessApplication",
+}: {
+  name: string;
+  description: string;
+  path: string;
+  applicationCategory?: string;
+}) {
+  const url = absolute(path);
+  return <Script data={{
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "@id": `${url}#app`,
+        name,
+        description,
+        url,
+        applicationCategory,
+        operatingSystem: "Any",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        provider: { "@id": orgId() },
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${url}#page`,
+        url,
+        name,
+        description,
+        isPartOf: { "@id": websiteId() },
+      },
+      crumbs([
+        { name: "Home", path: "/" },
+        { name, path },
       ]),
     ],
   }} />;

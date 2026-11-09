@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { INDUSTRIES, getIndustry, relatedIndustries, type FeatureKey, type Industry } from "@/data/industries";
+import { INDUSTRIES, getIndustry, industryCostPostPath, industryPagesPostPath, relatedIndustries, type FeatureKey, type Industry } from "@/data/industries";
 import { INDUSTRY_FEATURES_EN } from "@/data/industry-features";
 import { getProject, portfolioFile } from "@/data/portfolio";
 import { contentMetadata } from "@/lib/seo";
 import { ReviewRail } from "@/components/HomeBands";
 import IndustryHeroArt from "@/components/IndustryHeroArt";
 import IndustryIncludes, { industryFeatureBody } from "@/components/IndustryIncludes";
+import IndustryProof from "@/components/IndustryProof";
 import { ContentSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
 import PlanOffer from "@/components/PlanOffer";
@@ -31,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: industry.metaTitle,
     description: industry.metaDescription,
     absolute: true,
+    index: industry.status !== "hold",
   });
 }
 
@@ -109,6 +111,12 @@ export default async function IndustryPage({ params }: Props) {
         </div>
       </Section>
 
+      {industry.proof ? (
+        <Section>
+          <IndustryProof industry={industry} />
+        </Section>
+      ) : null}
+
       <Section accent={`/assets/industries/${industry.slug}/section-accent.svg`}>
         <h2 className="center"><HL text={includesTitle} mark="Website Includes" /></h2>
         {project ? (
@@ -146,11 +154,13 @@ export default async function IndustryPage({ params }: Props) {
       <Section tint>
         <h2 className="center"><HL text={textBackTitle} mark="Text-Back" /></h2>
         <p className="center muted" style={{ maxWidth: "42rem", marginInline: "auto" }}>
-          When a {industry.name.toLowerCase()} crew is on a job and misses a call, Lead System and Plus send an automatic text-back on your tracking number. After the work is done, a Google review request goes out with a direct link to your profile.
+          When a {industry.name.toLowerCase()} crew is on a job and misses a call, optional missed-call text-back on Lead System and Plus can reply on your tracking number. After the work is done, a Google review request goes out with a direct link to your profile.
         </p>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
+          <Link className="btn btn--ghost" href="/blog/missed-call-text-back-templates" prefetch={false}>Text-Back Templates</Link>
+          <Link className="btn btn--ghost" href="/tools/missed-call-calculator" prefetch={false}>Revenue Calculator</Link>
         </p>
       </Section>
 
@@ -171,6 +181,19 @@ export default async function IndustryPage({ params }: Props) {
 
       <Section id="plans">
         <PlanOffer />
+        <p className="center muted industry-section-lead" style={{ marginTop: "1.5rem" }}>
+          Compare monthly plans and Own It, or read what a {industry.name.toLowerCase()} site should include.
+        </p>
+        <p className="center btn-row">
+          <Link className="btn btn--ghost" href="/blog/monthly-website-vs-own-it" prefetch={false}>Monthly vs Own It</Link>
+          <Link className="btn btn--ghost" href={industryCostPostPath(industry.slug)} prefetch={false}>
+            {industry.name} Website Cost
+          </Link>
+          <Link className="btn btn--ghost" href={industryPagesPostPath(industry.slug)} prefetch={false}>
+            Pages This Trade Needs
+          </Link>
+          <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
+        </p>
       </Section>
 
       <Section tint narrow>

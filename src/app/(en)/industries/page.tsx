@@ -30,7 +30,7 @@ export default function Page() {
       <Section tint narrow>
         <h2 className="center"><HL text="What Stays The Same In Every Plan" mark="Every Plan" /></h2>
         <p>You see a free homepage preview first, with no card and no obligation. Once it is approved, choose Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for $1,497.</p>
-        <p>Lead System and Plus include missed-call text-back and a Google review request after the job. Every site is fast and organized so Google can read it. Ongoing SEO is quoted separately.</p>
+        <p>Lead System and Plus include Google review requests after the job. Missed-call text-back is an optional add-on on those plans. Every site is fast and organized so Google can read it. Ongoing SEO is quoted separately.</p>
       </Section>
       <CtaBand h="See How Your Trade Could Look" mark="Your Trade" sub="We’ll prepare the homepage before you pay. No card and no obligation." btn="Get a Free Audit" href="/audit" />
     </>

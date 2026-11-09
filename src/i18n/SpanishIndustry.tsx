@@ -7,6 +7,7 @@ import { localizeIndustry } from "@/i18n/industries-es";
 import { spanishPlans } from "@/i18n/spanish-plans";
 import IndustryGrid from "@/components/IndustryGrid";
 import IndustryIncludes, { industryFeatureBody } from "@/components/IndustryIncludes";
+import IndustryProof from "@/components/IndustryProof";
 import { ContentSchema } from "@/components/JsonLd";
 import { ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
@@ -64,6 +65,11 @@ export default function SpanishIndustry({
           ))}
         </div>
       </Section>
+      {base.proof ? (
+        <Section>
+          <IndustryProof industry={base} />
+        </Section>
+      ) : null}
       <Section accent={`/assets/industries/${industry.slug}/section-accent.svg`}>
         <h2 className="center"><HL text={tx(`Lo que incluye tu sitio de ${industry.name}`)} mark={tx("incluye")} /></h2>
         {project ? (
@@ -90,7 +96,7 @@ export default function SpanishIndustry({
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx(`Respuesta a llamadas perdidas para ${industry.name}`)} mark={tx("llamadas perdidas")} /></h2>
-        <p className="center muted" style={{ maxWidth: "42rem", marginInline: "auto" }}>{tx("Si tu equipo está en un trabajo y no contesta, Lead System y Plus envían un texto automático. Después del trabajo, sale el pedido de reseña en Google.")}</p>
+        <p className="center muted" style={{ maxWidth: "42rem", marginInline: "auto" }}>{tx("Si tu equipo está en un trabajo y no contesta, el texto opcional en Lead System y Plus puede responder en tu número de seguimiento. Después del trabajo, sale el pedido de reseña en Google.")}</p>
         <p className="center btn-row spaced"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link></p>
       </Section>
       {project && (

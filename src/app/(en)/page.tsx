@@ -74,7 +74,7 @@ export default async function Home() {
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Catch the calls you miss</b> – automatic</span>
+                <span><b>Catch the calls you miss</b> – optional</span>
                 <span>text-back and follow-up after every job</span>
               </span>
             </li>
@@ -120,7 +120,7 @@ export default async function Home() {
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>A Website That<br />Brings In More<br />Calls</>} iconAlt="A Website That Brings In More Calls" text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details." icon="better-design" />
-          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="Missed callers get a text, happy customers get a review request, and every new lead is tracked for you." icon="better-follow-up" />
+          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="On Lead System and Plus, optional text-back can reach missed callers, review requests go out after the job, and every new lead is tracked for you." icon="better-follow-up" />
           <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
         </div>
         <SectionCta />
@@ -152,7 +152,7 @@ export default async function Home() {
       <Section band="lead">
         <div className="lead-feature">
           <div className="lead-feature__copy">
-            <p className="eyebrow">Included on Lead System and Plus</p>
+            <p className="eyebrow">Available on Lead System and Plus</p>
             <h2><HL text="Missed-Call Text-Back and Google Review Requests" mark="Google Review Requests" /></h2>
             <p>When you miss a call, text-back keeps the lead warm. After the job, a Google review request goes out with a direct link to your profile.</p>
             <p className="btn-row">

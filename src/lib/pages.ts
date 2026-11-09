@@ -29,7 +29,7 @@ export const PAGES = {
     indexable: true,
     priority: 1,
     changeFrequency: "weekly",
-    description: "Get a professional website from $97/mo, plus missed-call text-back and Google review requests. See your free homepage preview first. No card required.",
+    description: "Get a professional website from $97/mo, with Google review requests and optional missed-call text-back. See your free homepage preview first. No card required.",
   },
   services: {
     path: "/services",
@@ -155,6 +155,15 @@ export const PAGES = {
     priority: 0.7,
     changeFrequency: "weekly",
     description: "Read practical guides on web design, SEO, website performance, online reviews, and digital marketing for growing businesses.",
+  },
+  "missed-call-calculator": {
+    path: "/tools/missed-call-calculator",
+    title: "Missed-Call Text-Back Calculator | Kinexis Digital",
+    crumb: "Missed-Call Calculator",
+    absolute: true,
+    indexable: true,
+    priority: 0.7,
+    description: "Estimate missed-call revenue at risk with your own calls, miss rate, job value, and close rate. Planning math only — no invented benchmarks.",
   },
   faqs: {
     path: "/faqs",

@@ -46,7 +46,7 @@ const ES: Record<string, Copy> = {
     name: "HVAC",
     card: "Reparación sin aire y cambio de equipo",
     metaTitle: "Sitios web de HVAC para negocios en EE. UU.",
-    metaDescription: "Diseño web de HVAC para negocios en Estados Unidos. Caminos separados para reparación y cambio de equipo, más texto de vuelta y reseñas.",
+    metaDescription: "Diseño web de HVAC para negocios en Estados Unidos. Caminos separados para reparación y cambio de equipo, con reseñas y texto opcional si no contestas.",
     h1: "Sitios de HVAC para reparación y reemplazo",
     mark: "reparación y reemplazo",
     sub: "Una casa sin aire no es una cotización de sistema nuevo. El sitio debe mandar cada caso por su camino, también en las semanas en que el clima no apura.",
@@ -73,7 +73,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio va a empujar un reemplazo si la persona necesita una reparación?", a: "No. Reparación y reemplazo tienen páginas y llamados a la acción distintos." },
       { q: "¿Se puede mencionar financiamiento?", a: "Sí, en el camino de instalación, y solo el financiamiento que sí ofreces. No inventamos plazos." },
-      { q: "¿Qué pasa si nadie contesta en una ola de calor?", a: "Lead System y Plus le escriben a quien llamó y no contestaste, después de la aprobación del operador. Ese es el seguimiento cuando la agenda está llena." },
+      { q: "¿Qué pasa si nadie contesta en una ola de calor?", a: "En Lead System y Plus, el texto opcional si no contestas puede responder en tu número de seguimiento, después de la aprobación del operador. Ese es el seguimiento cuando la agenda está llena." },
     ],
   },
   electrical: {
@@ -141,7 +141,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿Van a escribir textos de reclamos de seguro?", a: "Explicamos cómo documentas el techo y qué debe preguntarle el dueño a su aseguradora. No prometemos que aprueben el reclamo." },
       { q: "Todavía no tengo fotos. ¿Pueden armar el sitio?", a: "Sí. La vista previa usa un texto realista para que juzgues el diseño. Tus fotos reemplazan los espacios antes del lanzamiento. No hacemos pasar trabajos de archivo como tuyos." },
-      { q: "¿Los techeros usan los mismos cuatro planes?", a: "Sí. Website, Lead System, Plus u Own It. Lead System y Plus agregan el texto si no contestas y una reseña después del trabajo." },
+      { q: "¿Los techeros usan los mismos cuatro planes?", a: "Sí. Website, Lead System, Plus u Own It. Lead System y Plus incluyen una reseña después del trabajo. El texto si no contestas es un extra opcional." },
     ],
   },
   "garage-doors": {
@@ -209,7 +209,7 @@ const ES: Record<string, Copy> = {
     featureText: { "quote-requests": "Fotos, visita y cuándo deben esperar un número. Una página, en lenguaje claro." },
     faqs: [
       { q: "¿El cliente puede pedir un estimado desde el sitio?", a: "Sí. El formulario pide el tipo de trabajo, cómo contactarlo y fotos si las tiene. Te llega como un lead de formulario." },
-      { q: "Pinto en inglés y en español. ¿Hay un plan para eso?", a: "Plus es el plan bilingüe: el sitio, el texto de vuelta y las reseñas en inglés y en español." },
+      { q: "Pinto en inglés y en español. ¿Hay un plan para eso?", a: "Plus es el plan bilingüe: el sitio y las reseñas en inglés y en español. El texto opcional si no contestas también está en ambos idiomas." },
       { q: "¿Ustedes escriben el texto?", a: "Podemos usar el texto que ya tienes, o cotizar la redacción aparte. La vista previa usa un texto realista del oficio para que juzgues el diseño." },
     ],
   },
@@ -244,7 +244,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio va a prometer un precio de proyecto?", a: "Solo si nos das un rango que estés dispuesto a decir en público. Si no, explicamos qué cubre la consulta y cómo se arma la cotización." },
       { q: "¿Puedo empezar con pocas fotos?", a: "Sí. El diseño está hecho para cuartos reales. Unos proyectos buenos ganan a una cuadrícula de imágenes ajenas." },
-      { q: "¿Una remodelación cabe en los planes mensuales?", a: "Sí. Son los mismos cuatro planes. Lead System y Plus siguen ayudando: texto si no contestas en la obra, y una reseña cuando el proyecto termina." },
+      { q: "¿Una remodelación cabe en los planes mensuales?", a: "Sí. Son los mismos cuatro planes. Lead System y Plus siguen ayudando: una reseña cuando el proyecto termina, y el texto opcional si no contestas mientras estás en la obra." },
     ],
   },
   landscaping: {
@@ -414,7 +414,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿Debo tener una página por cada barrio?", a: "No. Una página honesta de zona le gana a veinte páginas delgadas que solo cambian el nombre del pueblo. Esas páginas hacen que el sitio se ignore, no que posicione." },
       { q: "¿Un cliente de mascotas puede inscribirse sin llamar?", a: "Sí. Basta un formulario corto: nombre, dirección, cada cuánto y cómo contactarlo." },
-      { q: "¿Qué plan le queda a una ruta?", a: "Website si solo necesitas el sitio. Lead System si también quieres texto cuando no contestas, reseñas y un reporte mensual. Plus agrega español." },
+      { q: "¿Qué plan le queda a una ruta?", a: "Website si solo necesitas el sitio. Lead System si también quieres reseñas, un reporte mensual y el texto opcional si no contestas. Plus agrega español." },
     ],
   },
 };

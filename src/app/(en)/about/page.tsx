@@ -14,7 +14,7 @@ export default function Page() {
       <PageHero
         h1="A Small Team For Service Businesses Nationwide"
         mark="Service Businesses"
-        sub="We build websites, improve search visibility, text missed callers, and request Google reviews for service businesses across the United States."
+        sub="We build websites, improve search visibility, send Google review requests, and offer optional missed-call text-back for service businesses across the United States."
         image="about"
         imageAlt="Laptop, website layout, and a notebook sketch of a homepage"
       />
@@ -38,13 +38,13 @@ export default function Page() {
         <h2 className="center"><HL text="A Practical Way To Get Started" mark="Get Started" /></h2>
         <div className="grid grid--3">
           <IconCard title="Review A Homepage First" text="The free preview comes before payment. Approve it, request changes, or walk away with no charge." icon="preview" />
-          <IconCard title="Choose Your Follow-Up" text="Lead System and Plus can text missed callers and send Google review requests after completed jobs." icon="better-follow-up" />
+          <IconCard title="Choose Your Follow-Up" text="Lead System and Plus include Google review requests after completed jobs. Missed-call text-back is an optional add-on." icon="better-follow-up" />
           <IconCard title="Know The Terms Up Front" text="Price, cancel terms, and what’s included for Website, Lead System, Plus, and Own It are listed up front." icon="better-pricing" />
         </div>
       </Section>
       <Section>
         <h2 className="center"><HL text="How Your Site Gets Launched" mark="Gets Launched" /></h2>
-        <p className="center muted">Text-back begins after carrier approval, which typically takes 10–15 days.</p>
+        <p className="center muted">Optional text-back and review requests begin after carrier approval, which typically takes 10–15 days.</p>
         <Stepper steps={STEPS} />
       </Section>
       <Section tint narrow>

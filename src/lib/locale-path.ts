@@ -5,7 +5,7 @@ import { PAGES, type PageMeta } from "@/lib/pages";
 /** Cookie values. `es-419` is Latam Spanish. `es-ES` is Spain. */
 export type Locale = "en" | "es-419" | "es-ES";
 
-const UNMIRRORED = new Set(["/pay"]);
+const UNMIRRORED = new Set(["/pay", "/tools/missed-call-calculator"]);
 
 /**
  * Linked from Spanish chrome/footer but kept `indexable: false` in PAGES

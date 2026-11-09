@@ -9,8 +9,18 @@ export type Industry = {
   name: string;
   /** One line on the hub and homepage cards. */
   card: string;
+  /** live = indexable; hold = noindex and out of sitemap until proof/content is ready. */
+  status: "live" | "hold";
+  /** One primary keyword for this hub URL (cannibalization lock). */
+  primaryKeyword: string;
   /** Portfolio template shown on the industry page, when one matches this trade. */
   projectSlug?: string;
+  /** Live client proof block on the hub (from LIVE_SITES). */
+  proof?: {
+    liveSiteSlug: string;
+    annotations: { title: string; text: string }[];
+    quoteId?: string;
+  };
   metaTitle: string;
   metaDescription: string;
   h1: string;
@@ -28,7 +38,7 @@ export type Industry = {
   features: [FeatureKey, FeatureKey, FeatureKey, FeatureKey];
   /** Replaces the shared feature sentence when this trade needs a more specific line. */
   featureText?: Partial<Record<FeatureKey, string>>;
-  faqs: [QA, QA, QA];
+  faqs: QA[];
   related: [string, string, string, string];
 };
 
@@ -37,9 +47,21 @@ export const INDUSTRIES: Industry[] = [
     slug: "plumbing",
     name: "Plumbing",
     card: "Leak calls, drains and water heaters",
-    metaTitle: "Website Design for Plumbing | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Plumbing website design from $97/mo. Pages for leaks, drains, and water heaters, plus missed-call text-back and Google review requests. Free homepage preview first.",
-    h1: "Websites for Plumbing That Turn Searches Into Booked Jobs",
+    status: "live",
+    primaryKeyword: "website design for plumbers",
+    proof: {
+      liveSiteSlug: "preferred-plumbing",
+      annotations: [
+        { title: "Local hero + phone", text: "Spirit Lake / North Idaho headline with tap-to-call and free-estimate CTA above the fold — not a slogan-only hero." },
+        { title: "Trust strip early", text: "Licensed & insured, owner-operated, and free estimates sit under the hero so emergency callers see proof before scrolling." },
+        { title: "Job-type paths", text: "Separate cards for repairs, radiant heat, tankless heaters, drains, hydronics, and new construction instead of one generic services dump." },
+        { title: "Honest hours in FAQ", text: "Urgent-repair FAQ states staffed hours (Sun–Fri 7am–5pm, Saturday closed) instead of promising 24/7 the shop cannot cover." },
+      ],
+      quoteId: "hunter-norris",
+    },
+    metaTitle: "Website Design for Plumbers | From $97/mo | Kinexis Digital",
+    metaDescription: "Plumbing website design from $97/mo. Pages for leaks, drains, and water heaters, plus Google review requests and optional missed-call text-back. Free homepage preview — no card.",
+    h1: "Website Design for Plumbers That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "A plumbing site has to work while someone is standing in a puddle. Emergency repair, a slow drain and a water-heater quote are three different jobs.",
     intro: [
@@ -67,6 +89,9 @@ export const INDUSTRIES: Industry[] = [
       { q: "Should a plumber advertise 24/7 if the shop closes at six?", a: "Only if someone answers. We write the hours you keep. A page that promises a night tech you do not have creates angry calls, not booked work." },
       { q: "Do the website plans include monthly SEO?", a: "Every site is built fast, with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
       { q: "Can review requests go out after a plumbing job?", a: "On Lead System and Plus, a text goes out after the job with a direct link to your Google profile. You are not chasing people from the truck." },
+      { q: "How much does a plumber website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation. See the pricing page for what each plan includes." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop and the site comes offline unless you arrange a buyout (a written one-time $1,497 purchase of the site files) or move to Own It before the paid period ends." },
+      { q: "Is Own It better than a monthly plan for plumbers?", a: "Both are valid. Monthly plans are $0 down and month-to-month. Own It is one payment of $1,497 with the site files yours from launch day. Choose based on cash flow and whether you want Lead System tools like review requests and optional missed-call text-back." },
     ],
     related: ["hvac", "electrical", "remodeling", "garage-doors"],
   },
@@ -74,9 +99,11 @@ export const INDUSTRIES: Industry[] = [
     slug: "hvac",
     name: "HVAC",
     card: "No-cool repair and system replacement",
-    metaTitle: "Website Design for HVAC | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "HVAC website design from $97/mo. Separate paths for no-cool repair and system replacement, plus missed-call text-back and Google reviews. Free preview first.",
-    h1: "Websites for HVAC That Turn Searches Into Booked Jobs",
+    status: "live",
+    primaryKeyword: "website design for hvac",
+    metaTitle: "Website Design for HVAC | From $97/mo | Kinexis Digital",
+    metaDescription: "HVAC website design from $97/mo. Separate paths for no-cool repair and system replacement, plus Google reviews and optional missed-call text-back. Free preview first.",
+    h1: "Website Design for HVAC That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "A no-cool call is not a system quote. The site should send each one down its own path, and stay honest in the weeks when the weather is boring.",
     intro: [
@@ -103,7 +130,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Will the site push replacement when the caller needs a repair?", a: "No. Repair and replacement get separate pages and separate calls to action. Mixing them trains the wrong person to fill out the wrong form." },
       { q: "Can the site mention financing?", a: "Yes, on the install path, and only for financing you really offer. We do not invent terms." },
-      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "Lead System and Plus text the missed caller back on your tracking number, after carrier approval. That is the follow-up while the board is full." },
+      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "On Lead System and Plus, optional missed-call text-back can reply on your tracking number after carrier approval. That is the follow-up while the board is full." },
     ],
     related: ["plumbing", "electrical", "roofing", "garage-doors"],
   },
@@ -111,10 +138,12 @@ export const INDUSTRIES: Industry[] = [
     slug: "electrical",
     name: "Electrical",
     card: "Panels, EV chargers and troubleshooting",
+    status: "live",
+    primaryKeyword: "website design for electrician",
     projectSlug: "union-electric",
-    metaTitle: "Website Design for Electrical | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Electrician website design from $97/mo. Panel upgrades, EV chargers, and troubleshooting with missed-call text-back and review requests. Free homepage preview.",
-    h1: "Websites for Electrical That Turn Searches Into Booked Jobs",
+    metaTitle: "Website Design for Electricians | From $97/mo | Kinexis Digital",
+    metaDescription: "Electrician website design from $97/mo. Panel upgrades, EV chargers, and troubleshooting with Google review requests and optional missed-call text-back. Free homepage preview.",
+    h1: "Website Design for Electricians That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "Electrical work is a trust sale. The site has to show the license, the kind of jobs you take, and a way to reach you that does not feel like a lead mill.",
     intro: [
@@ -149,10 +178,12 @@ export const INDUSTRIES: Industry[] = [
     slug: "roofing",
     name: "Roofing",
     card: "Repairs, replacements and storm calls",
+    status: "live",
+    primaryKeyword: "website design for roofers",
     projectSlug: "red-oak-roofing",
-    metaTitle: "Website Design for Roofing | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Roofing website design from $97/mo. Repair and replacement pages, missed-call text-back, and Google review requests. Free homepage preview first.",
-    h1: "Websites for Roofing That Turn Searches Into Booked Jobs",
+    metaTitle: "Website Design for Roofers | From $97/mo | Kinexis Digital",
+    metaDescription: "Roofing website design from $97/mo. Repair and replacement pages, Google review requests, and optional missed-call text-back. Free homepage preview first.",
+    h1: "Website Design for Roofers That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "After a storm, every roofer sounds the same. The site should say what you repair, what you replace, and how an inspection actually works.",
     intro: [
@@ -179,7 +210,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Will you write insurance-claim copy?", a: "We will explain how you document a roof and what the homeowner should ask their carrier. We will not promise that a claim will be approved." },
       { q: "I do not have job photos yet. Can you still build the site?", a: "Yes. The free preview uses realistic layout copy so you can judge the design. Your photos replace placeholders before launch. We do not pass off stock jobs as yours." },
-      { q: "Do roofers get the same four plans?", a: "Yes. Website, Lead System, Plus or Own It. Lead System and Plus add missed-call text-back and a review request after the job." },
+      { q: "Do roofers get the same four plans?", a: "Yes. Website, Lead System, Plus or Own It. Lead System and Plus include a review request after the job. Missed-call text-back is an optional add-on." },
     ],
     related: ["pressure-washing", "painting", "remodeling", "window-cleaning"],
   },
@@ -187,10 +218,12 @@ export const INDUSTRIES: Industry[] = [
     slug: "garage-doors",
     name: "Garage Doors",
     card: "Broken springs, openers and new doors",
+    status: "live",
+    primaryKeyword: "website design for garage door companies",
     projectSlug: "liftline-garage-doors",
-    metaTitle: "Website Design for Garage Doors | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Garage door website design from $97/mo. Repair and new-door paths, missed-call text-back, and Google review requests. Free homepage preview first.",
-    h1: "Websites for Garage Doors That Turn Searches Into Booked Jobs",
+    metaTitle: "Website Design for Garage Door Companies | From $97/mo | Kinexis Digital",
+    metaDescription: "Garage door website design from $97/mo. Repair and new-door paths, Google review requests, and optional missed-call text-back. Free homepage preview first.",
+    h1: "Website Design for Garage Door Companies That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "A broken spring is a same-day search. A new door is a style and price conversation. The site should not make those people fill out the same form.",
     intro: [
@@ -225,8 +258,10 @@ export const INDUSTRIES: Industry[] = [
     slug: "painting",
     name: "Painting",
     card: "Interior, exterior and cabinet finishes",
+    status: "hold",
+    primaryKeyword: "website design for painters",
     metaTitle: "Website Design for Painting | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Painter website design from $97/mo. Interior, exterior, and cabinet pages with a clear estimate path, text-back, and review requests. Free preview first.",
+    metaDescription: "Painter website design from $97/mo. Interior, exterior, and cabinet pages with a clear estimate path, Google review requests, and optional text-back. Free preview first.",
     h1: "Websites for Painting That Turn Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "Painting is judged on photos and how easy it is to book a walkthrough. A site that looks like a handyman coupon page underprices you before the first call.",
@@ -254,7 +289,7 @@ export const INDUSTRIES: Industry[] = [
     featureText: { "quote-requests": "A short form for project photos, walkthroughs, and when to expect an estimate." },
     faqs: [
       { q: "Can customers request an estimate from the site?", a: "Yes. The form asks for the kind of work, a way to reach them, and photos if they have them. You see it as a tracked form lead." },
-      { q: "I paint in English and Spanish. Is there a plan for that?", a: "Plus is the bilingual plan: the site, text-back and review requests in English and Spanish." },
+      { q: "I paint in English and Spanish. Is there a plan for that?", a: "Plus is the bilingual plan: the site and review requests in English and Spanish. Optional text-back is available in both languages too." },
       { q: "Do you write the page copy?", a: "We can use copy you already have, or quote writing separately. The free preview uses realistic copy for the trade so you can judge the layout." },
     ],
     related: ["remodeling", "pressure-washing", "roofing", "window-cleaning"],
@@ -263,8 +298,10 @@ export const INDUSTRIES: Industry[] = [
     slug: "remodeling",
     name: "Remodeling",
     card: "Kitchens, baths and the longer quote",
+    status: "hold",
+    primaryKeyword: "website design for remodeling contractors",
     metaTitle: "Website Design for Remodeling | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Remodeling website design from $97/mo. Kitchen and bath pages with a consult path, missed-call text-back, and review requests. Free homepage preview first.",
+    metaDescription: "Remodeling website design from $97/mo. Kitchen and bath pages with a consult path, Google review requests, and optional missed-call text-back. Free homepage preview first.",
     h1: "Websites for Remodeling That Turn Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "A remodel is a long sale. The site should show finished rooms, explain how a project starts, and not shout like a drain-cleaning ad.",
@@ -292,7 +329,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Will the site promise a project price?", a: "Only if you give us a range you are willing to say in public. Otherwise we explain what the consult covers and how a quote is built." },
       { q: "Can I start with a handful of project photos?", a: "Yes. The layout is built for real rooms. A few strong projects beat a grid of borrowed images." },
-      { q: "Is a remodel a fit for the monthly plans?", a: "Yes. The site is the same four plans. Lead System and Plus still help: missed-call text-back while you are on a jobsite, and a review request when the project is done." },
+      { q: "Is a remodel a fit for the monthly plans?", a: "Yes. The site is the same four plans. Lead System and Plus still help: a review request when the project is done, and optional missed-call text-back while you are on a jobsite." },
     ],
     related: ["painting", "plumbing", "electrical", "roofing"],
   },
@@ -300,9 +337,20 @@ export const INDUSTRIES: Industry[] = [
     slug: "landscaping",
     name: "Landscaping",
     card: "Maintenance routes and design-build work",
-    metaTitle: "Website Design for Landscaping | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Landscaping website design from $97/mo. Weekly maintenance and design-build on separate pages, plus text-back and Google review requests. Free preview first.",
-    h1: "Websites for Landscaping That Turn Searches Into Booked Jobs",
+    status: "live",
+    primaryKeyword: "website design for landscapers",
+    proof: {
+      liveSiteSlug: "a1-landscaping",
+      annotations: [
+        { title: "Place-first headline", text: "Cedar Falls / Iowa positioning and a free-quote CTA sit in the hero so local searchers know the crew covers their market." },
+        { title: "Maintenance vs projects", text: "Service list separates lawn care and maintenance from retaining walls, paver patios, and driveways — different buyers, different next steps." },
+        { title: "Before/after proof", text: "Homepage gallery uses slider comparisons of real Cedar Falls jobs instead of stock landscaping photos." },
+        { title: "Clear service area", text: "Cedar Falls, Waterloo, and Black Hawk County are named up front so route density stays honest." },
+      ],
+    },
+    metaTitle: "Website Design for Landscapers | From $97/mo | Kinexis Digital",
+    metaDescription: "Landscaping website design from $97/mo. Weekly maintenance and design-build on separate pages, plus Google review requests and optional text-back. Free preview first.",
+    h1: "Website Design for Landscapers That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "Mowing routes and a patio install are different businesses that often share a truck. The site should not pretend they are the same lead.",
     intro: [
@@ -330,6 +378,9 @@ export const INDUSTRIES: Industry[] = [
       { q: "Should weekly mowing and hardscape be on the same site?", a: "Same site, different pages. The calls to action stay different so a mowing lead is not asked to book a design consult." },
       { q: "Can the site talk about seasons?", a: "Yes. We write what you sell in spring, summer and fall, and we do not leave a winter cleanup offer up as if it were July." },
       { q: "How do reviews work for a route business?", a: "Lead System and Plus send a review request by text after a job. For weekly accounts, you choose when that ask goes out so you are not texting the same lawn every Tuesday." },
+      { q: "How much does a landscaping website cost with Kinexis?", a: "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is a one-time $1,497. Every option starts with a free homepage preview — no card and no obligation." },
+      { q: "What happens if I cancel a monthly plan?", a: "Cancel anytime by text, email, or Messenger — there is no cancellation fee. Your site stays live through the billing period you already paid for. When that period ends, hosting and management stop unless you arrange a buyout ($1,497) or move to Own It before the paid period ends." },
+      { q: "Do the website plans include monthly SEO?", a: "Every site is built with clear service pages and a structure Google can read. Ongoing SEO is quoted separately. It is not bundled into the four plans." },
     ],
     related: ["yard-care", "pressure-washing", "pool-care", "window-cleaning"],
   },
@@ -337,8 +388,10 @@ export const INDUSTRIES: Industry[] = [
     slug: "pool-care",
     name: "Pool Care",
     card: "Weekly service, repairs and equipment",
+    status: "hold",
+    primaryKeyword: "website design for pool service",
     metaTitle: "Website Design for Pool Service | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Pool service website design from $97/mo. Weekly routes, repairs, and equipment with text-back and Google review requests. Free homepage preview first.",
+    metaDescription: "Pool service website design from $97/mo. Weekly routes, repairs, and equipment with Google review requests and optional text-back. Free homepage preview first.",
     h1: "Websites for Pool Service That Turn Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "Weekly pool routes are won on reliability and the map you cover. A green pool or a dead pump is a different call, and it should not wait behind a membership pitch.",
@@ -374,10 +427,12 @@ export const INDUSTRIES: Industry[] = [
     slug: "pressure-washing",
     name: "Pressure Washing",
     card: "Houses, concrete and roof soft washes",
+    status: "live",
+    primaryKeyword: "website design for pressure washing",
     projectSlug: "rinseworks",
-    metaTitle: "Website Design for Pressure Washing | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Pressure washing website design from $97/mo. Houses, concrete, and roof washes with a short quote form, text-back, and review requests. Free preview first.",
-    h1: "Websites for Pressure Washing That Turn Searches Into Booked Jobs",
+    metaTitle: "Website Design for Pressure Washing | From $97/mo | Kinexis Digital",
+    metaDescription: "Pressure washing website design from $97/mo. Houses, concrete, and roof washes with a short quote form, Google review requests, and optional text-back. Free preview first.",
+    h1: "Website Design for Pressure Washing That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "This trade is won with photos and a fast quote. A site that talks about “solutions” and never shows a driveway is asking people to imagine the result.",
     intro: [
@@ -412,9 +467,11 @@ export const INDUSTRIES: Industry[] = [
     slug: "window-cleaning",
     name: "Window Cleaning",
     card: "Home routes and storefront schedules",
+    status: "hold",
+    primaryKeyword: "website design for window cleaning",
     projectSlug: "clearpeak",
     metaTitle: "Website Design for Window Cleaning | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Window cleaning website design from $97/mo. Home routes and storefronts with text-back and Google review requests. Free homepage preview first.",
+    metaDescription: "Window cleaning website design from $97/mo. Home routes and storefronts with Google review requests and optional text-back. Free homepage preview first.",
     h1: "Websites for Window Cleaning That Turn Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "A house and a storefront are both glass, and they are not the same sale. One is a route. The other is a schedule a manager has to approve.",
@@ -450,9 +507,11 @@ export const INDUSTRIES: Industry[] = [
     slug: "yard-care",
     name: "Yard Care",
     card: "Weekly lawn routes and pet-waste stops",
+    status: "hold",
+    primaryKeyword: "website design for lawn care",
     projectSlug: "happy-yard",
     metaTitle: "Website Design for Lawn Care | Monthly Plans From $97 | Kinexis Digital",
-    metaDescription: "Lawn care website design from $97/mo. Recurring routes with a simple signup path, missed-call text-back, and review requests. Free homepage preview first.",
+    metaDescription: "Lawn care website design from $97/mo. Recurring routes with a simple signup path, Google review requests, and optional missed-call text-back. Free homepage preview first.",
     h1: "Websites for Lawn Care That Turn Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "Yard care is won street by street. The site should say what the visit includes, which neighborhoods you run, and how someone gets on the route.",
@@ -480,7 +539,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Should I have a separate page for every neighborhood?", a: "No. One honest service-area page beats twenty thin pages that swap the town name. Thin city pages are how sites get ignored, not how they rank." },
       { q: "Can pet-waste customers sign up without calling?", a: "Yes. A short form is enough: name, address, how often, and how to reach them. You see it as a form lead." },
-      { q: "Which plan fits a route business?", a: "Website if you only need the site. Lead System if you also want missed-call text-back, review requests and a monthly report. Plus adds Spanish." },
+      { q: "Which plan fits a route business?", a: "Website if you only need the site. Lead System if you also want review requests, a monthly report, and optional missed-call text-back. Plus adds Spanish." },
     ],
     related: ["landscaping", "pool-care", "pressure-washing", "window-cleaning"],
   },
@@ -518,4 +577,28 @@ export function relatedIndustries(industry: Industry): Industry[] {
     const match = getIndustry(slug);
     return match ? [match] : [];
   });
+}
+
+/** Blog slug stems from the SEO coding plan (cost + pages posts). */
+const SEO_POST_STEM: Record<string, { cost: string; pages: string }> = {
+  plumbing: { cost: "plumber-website-cost", pages: "plumbing-website-pages" },
+  hvac: { cost: "hvac-website-cost", pages: "hvac-website-pages" },
+  electrical: { cost: "electrician-website-cost", pages: "electrician-website-pages" },
+  roofing: { cost: "roofing-website-cost", pages: "roofing-website-pages" },
+  "garage-doors": { cost: "garage-door-website-cost", pages: "garage-door-website-pages" },
+  painting: { cost: "painting-website-cost", pages: "painting-website-pages" },
+  remodeling: { cost: "remodeling-website-cost", pages: "remodeling-website-pages" },
+  landscaping: { cost: "landscaping-website-cost", pages: "landscaping-website-pages" },
+  "pool-care": { cost: "pool-service-website-cost", pages: "pool-service-website-pages" },
+  "pressure-washing": { cost: "pressure-washing-website-cost", pages: "pressure-washing-website-pages" },
+  "window-cleaning": { cost: "window-cleaning-website-cost", pages: "window-cleaning-website-pages" },
+  "yard-care": { cost: "lawn-care-website-cost", pages: "lawn-care-website-pages" },
+};
+
+export function industryCostPostPath(slug: string): string {
+  return `/blog/${SEO_POST_STEM[slug]?.cost ?? `${slug}-website-cost`}`;
+}
+
+export function industryPagesPostPath(slug: string): string {
+  return `/blog/${SEO_POST_STEM[slug]?.pages ?? `${slug}-website-pages`}`;
 }

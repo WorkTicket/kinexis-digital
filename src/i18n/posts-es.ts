@@ -165,6 +165,630 @@ export const ES_POSTS: EsPost[] = [
       },
     ],
   },
+  {
+    "slug": "monthly-website-vs-own-it",
+    "category": "Consejos",
+    "title": "Plan mensual u Own It para oficios",
+    "seoTitle": "Sitio web mensual vs Own It para oficios | Kinexis Digital",
+    "excerpt": "Compara Website, Lead System y Plus con Own It: cancelación, compra de archivos y qué incluye cada plan.",
+    "lead": "Los planes mensuales y Own It son opciones válidas. Depende del flujo de caja y si quieres herramientas de llamada perdida.",
+    "sections": [
+      {
+        "h2": "Las dos opciones son válidas",
+        "html": "<p>Algunos prefieren $0 de enganche y mes a mes. Otros un solo pago y los archivos desde el día uno.</p>"
+      },
+      {
+        "h2": "Comparación",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Detalle en <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "Quién se queda con el sitio si cancelas",
+        "html": "<p>Cancelas cuando quieras. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo compra por escrito de los archivos ($1,497) o pasar a Own It. En Own It, los archivos son tuyos desde el lanzamiento.</p>"
+      },
+      {
+        "h2": "Own It desde el día uno",
+        "html": "<p>Un pago, archivos tuyos, 12 meses de hosting y cambios chicos. Luego Site Care opcional a $39/mes.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "missed-call-text-back-templates",
+    "category": "Consejos",
+    "title": "Plantillas de texto por llamada perdida para 12 oficios",
+    "seoTitle": "Plantillas de texto por llamada perdida | Kinexis Digital",
+    "excerpt": "Borradores de SMS por oficio y tiempos honestos de aprobación del operador.",
+    "lead": "El texto de llamada perdida es opcional y requiere línea dedicada. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
+    "sections": [
+      {
+        "h2": "Cómo funciona",
+        "html": "<p>Tras la aprobación del operador, Lead System y Plus pueden responder por SMS a quien llamó a tu número de seguimiento. Calculadora: <a href=\"/tools/missed-call-calculator\">/tools/missed-call-calculator</a>.</p>"
+      },
+      {
+        "h2": "Plomería",
+        "html": "<p id=\"plumbing\">Plantillas en la versión en inglés de esta guía; adapta el tono a tu negocio y pide revisión de cumplimiento antes de publicar.</p>"
+      },
+      {
+        "h2": "Nota de cumplimiento",
+        "html": "<p>Revisa consentimiento, identificación y baja antes de enviar. Ver <a href=\"/pricing\">planes</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "plumber-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de plumbing en 2026?",
+    "seoTitle": "Costo de sitio web de plumbing | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de plumber empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Plumbing",
+        "html": "<p>Páginas para leaks, drains, and water heaters. Hub: <a href=\"/industries/plumbing\">/industries/plumbing</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "plumbing-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de plumbing",
+    "seoTitle": "Páginas para sitio de plumbing | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para plumbing, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para leaks, drains, and water heaters.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Plumbing",
+        "html": "<p>leaks, drains, and water heaters.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "hvac-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de hvac en 2026?",
+    "seoTitle": "Costo de sitio web de hvac | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de HVAC empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en HVAC",
+        "html": "<p>Páginas para no-cool repair, replacement, and maintenance. Hub: <a href=\"/industries/hvac\">/industries/hvac</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "hvac-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de hvac",
+    "seoTitle": "Páginas para sitio de hvac | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para hvac, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para no-cool repair, replacement, and maintenance.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de HVAC",
+        "html": "<p>no-cool repair, replacement, and maintenance.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "electrician-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de electrical en 2026?",
+    "seoTitle": "Costo de sitio web de electrical | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de electrician empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Electrical",
+        "html": "<p>Páginas para panels, EV chargers, and troubleshooting. Hub: <a href=\"/industries/electrical\">/industries/electrical</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "electrician-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de electrical",
+    "seoTitle": "Páginas para sitio de electrical | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para electrical, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para panels, EV chargers, and troubleshooting.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Electrical",
+        "html": "<p>panels, EV chargers, and troubleshooting.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "roofing-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de roofing en 2026?",
+    "seoTitle": "Costo de sitio web de roofing | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de roofing empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Roofing",
+        "html": "<p>Páginas para repairs, replacements, and storm calls. Hub: <a href=\"/industries/roofing\">/industries/roofing</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "roofing-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de roofing",
+    "seoTitle": "Páginas para sitio de roofing | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para roofing, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para repairs, replacements, and storm calls.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Roofing",
+        "html": "<p>repairs, replacements, and storm calls.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "garage-door-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de garage doors en 2026?",
+    "seoTitle": "Costo de sitio web de garage doors | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de garage door company empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Garage Doors",
+        "html": "<p>Páginas para broken springs, openers, and new doors. Hub: <a href=\"/industries/garage-doors\">/industries/garage-doors</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "garage-door-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de garage doors",
+    "seoTitle": "Páginas para sitio de garage doors | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para garage doors, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para broken springs, openers, and new doors.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Garage Doors",
+        "html": "<p>broken springs, openers, and new doors.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "painting-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de painting en 2026?",
+    "seoTitle": "Costo de sitio web de painting | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de painting contractor empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Painting",
+        "html": "<p>Páginas para interior, exterior, and cabinet finishes. Hub: <a href=\"/industries/painting\">/industries/painting</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "painting-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de painting",
+    "seoTitle": "Páginas para sitio de painting | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para painting, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para interior, exterior, and cabinet finishes.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Painting",
+        "html": "<p>interior, exterior, and cabinet finishes.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "remodeling-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de remodeling en 2026?",
+    "seoTitle": "Costo de sitio web de remodeling | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de remodeling contractor empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Remodeling",
+        "html": "<p>Páginas para kitchens, baths, and longer consults. Hub: <a href=\"/industries/remodeling\">/industries/remodeling</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "remodeling-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de remodeling",
+    "seoTitle": "Páginas para sitio de remodeling | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para remodeling, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para kitchens, baths, and longer consults.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Remodeling",
+        "html": "<p>kitchens, baths, and longer consults.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "landscaping-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de landscaping en 2026?",
+    "seoTitle": "Costo de sitio web de landscaping | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de landscaping empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Landscaping",
+        "html": "<p>Páginas para maintenance routes and design-build. Hub: <a href=\"/industries/landscaping\">/industries/landscaping</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "landscaping-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de landscaping",
+    "seoTitle": "Páginas para sitio de landscaping | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para landscaping, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para maintenance routes and design-build.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Landscaping",
+        "html": "<p>maintenance routes and design-build.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "pool-service-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de pool care en 2026?",
+    "seoTitle": "Costo de sitio web de pool care | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de pool service empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Pool Care",
+        "html": "<p>Páginas para weekly routes, repairs, and equipment. Hub: <a href=\"/industries/pool-care\">/industries/pool-care</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "pool-service-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de pool care",
+    "seoTitle": "Páginas para sitio de pool care | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para pool care, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para weekly routes, repairs, and equipment.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Pool Care",
+        "html": "<p>weekly routes, repairs, and equipment.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "pressure-washing-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de pressure washing en 2026?",
+    "seoTitle": "Costo de sitio web de pressure washing | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de pressure washing empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Pressure Washing",
+        "html": "<p>Páginas para houses, concrete, and roof soft washes. Hub: <a href=\"/industries/pressure-washing\">/industries/pressure-washing</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "pressure-washing-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de pressure washing",
+    "seoTitle": "Páginas para sitio de pressure washing | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para pressure washing, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para houses, concrete, and roof soft washes.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Pressure Washing",
+        "html": "<p>houses, concrete, and roof soft washes.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "window-cleaning-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de window cleaning en 2026?",
+    "seoTitle": "Costo de sitio web de window cleaning | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de window cleaning empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Window Cleaning",
+        "html": "<p>Páginas para home routes and storefront schedules. Hub: <a href=\"/industries/window-cleaning\">/industries/window-cleaning</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "window-cleaning-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de window cleaning",
+    "seoTitle": "Páginas para sitio de window cleaning | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para window cleaning, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para home routes and storefront schedules.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Window Cleaning",
+        "html": "<p>home routes and storefront schedules.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "lawn-care-website-cost",
+    "category": "Consejos",
+    "title": "¿Cuánto cuesta un sitio web de yard care en 2026?",
+    "seoTitle": "Costo de sitio web de yard care | Kinexis Digital",
+    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
+    "lead": "Con Kinexis, un sitio de lawn care empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
+    "sections": [
+      {
+        "h2": "Precios de Kinexis",
+        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "DIY, freelancer o agencia",
+        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+      },
+      {
+        "h2": "Costos aparte",
+        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+      },
+      {
+        "h2": "Qué pagas en Yard Care",
+        "html": "<p>Páginas para weekly lawn routes and pet-waste stops. Hub: <a href=\"/industries/yard-care\">/industries/yard-care</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "lawn-care-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio de yard care",
+    "seoTitle": "Páginas para sitio de yard care | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para yard care, sin spam de ciudades.",
+    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para weekly lawn routes and pet-waste stops.",
+    "sections": [
+      {
+        "h2": "Páginas base",
+        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+      },
+      {
+        "h2": "Servicios de Yard Care",
+        "html": "<p>weekly lawn routes and pet-waste stops.</p>"
+      },
+      {
+        "h2": "Sin spam de ciudades",
+        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
+      }
+    ]
+  },
 ];
 
 export function esPost(slug: string) {

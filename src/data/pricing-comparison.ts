@@ -13,7 +13,7 @@ export const PRICING_COMPARISON: { group: string; rows: [string, string, string,
   {
     group: "Lead follow-up",
     rows: [
-      ["Missed-call text-back**", "—", "Optional add-on", "Optional · EN + ES", "Add-on $97/mo"],
+      ["Missed-call text-back**", "—", "$1/mo 2nd number + carrier", "$1/mo 2nd number + carrier · EN/ES", "Add-on $97/mo"],
       ["Google review requests", "—", "After every job", "English + Spanish", "—"],
       ["Google Business Profile", "—", "Tune-up", "Tune-up + 2 posts / mo", "—"],
       ["Call tracking + report", "—", "Monthly", "Monthly", "—"],

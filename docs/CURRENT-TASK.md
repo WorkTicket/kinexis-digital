@@ -1,23 +1,21 @@
 # CURRENT-TASK.md
 
 ## Goal
-Fix `/es-es` homepage title/description (Spain, no prices); user finishing GSC validate/resubmit/indexing.
+SEO coding plan + lock buyout/text-back pricing + proof annotations.
 
 ## Status
-done for code/deploy — user finishing GSC validate/resubmit/indexing
+done for code — deploy + GSC still manual
 
-## Changed files
-- `src/i18n/SpanishSite.tsx` — `/es-es` home title/description: Spain focus, no $97 / EE. UU.
-
-## Completed (live)
-- GA tag on `/`, `/es`, `/es-es`
-- Spanish pages as `es` / `es-ES`
-- `/mo`, old `.avif` logo, old HVAC address 301s
-- Sitemap lastmod on all URLs; Trustpilot in schema
-- `/es-es` title: Diseño web para negocios locales en España | Kinexis Digital (deployed)
+## Completed
+- Buyout published at **$1,497** (terms, FAQs, posts, PLAN_TERM_GROUPS)
+- LS/Plus text-back: **no $97 fee** — only **$1/mo** second tracking number (if used) + carrier rates; Website/Own It remain **$97/mo**
+- Preferred Plumbing + A1 proof annotations drafted from live homepages (Colton can edit)
+- SEO program content from prior session
 
 ## Unfinished
-1. User: Validate fix on GSC 404/5xx; resubmit sitemap; request indexing for `/pricing` + trade hubs
+1. Colton deploy
+2. Rich Results + GSC sitemap/URL Inspection after deploy
+3. Optional: Colton polish on annotation wording
 
 ## Next action
-Finish Search Console steps and report back.
+Deploy when ready.

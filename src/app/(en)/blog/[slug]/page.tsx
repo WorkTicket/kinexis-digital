@@ -4,7 +4,7 @@ import { POSTS } from "@/lib/content";
 import { contentMetadata } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 import { ArticleSchema } from "@/components/JsonLd";
-import { PageHero, Section, CtaBand } from "@/components/ui";
+import { PageHero, Section, CtaBand, Faq } from "@/components/ui";
 import { EN_POST_CONTENT } from "@/data/posts-en";
 import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
@@ -60,6 +60,7 @@ export default async function BlogPostPage({ params }: Props) {
         date={post.date}
         modified={post.modified}
         section={post.category}
+        faqs={content.faqs}
       />
       <PageHero h1={post.title} sub={`${formattedDate} · ${post.readTime} · ${post.category} · ${SITE.name}`} />
       <Section>
@@ -104,6 +105,12 @@ export default async function BlogPostPage({ params }: Props) {
                   <div dangerouslySetInnerHTML={{ __html: section.html }} />
                 </section>
               ))}
+              {content.faqs?.length ? (
+                <section className="blog-section">
+                  <h2>FAQs</h2>
+                  <Faq items={content.faqs} />
+                </section>
+              ) : null}
             </div>
           </article>
         </div>

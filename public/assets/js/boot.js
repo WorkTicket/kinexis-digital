@@ -92,16 +92,31 @@ function setOpen(open) {
   nav.classList.toggle("is-open", open);
   root.classList.toggle("nav-open", open);
   if (!open) {
-    root.style.overflow = "";
-    document.body.style.overflow = "";
+    root.style.removeProperty("--header-bottom");
     setMega(false);
     return;
   }
-  const y = window.scrollY;
-  root.style.overflow = "hidden";
-  document.body.style.overflow = "hidden";
-  root.style.setProperty("--header-bottom", Math.round(header.getBoundingClientRect().bottom) + "px");
-  const hold = () => { if (window.scrollY !== y) window.scrollTo(0, y); };
+  // Measure sticky header + scroll Y before any lock/DOM pin. Overflow and
+  // position locks break sticky; pinning the header can also nudge window.scrollY.
+  const y = window.scrollY || window.pageYOffset;
+  const pre = header.getBoundingClientRect();
+  const pinTop = Math.max(0, Math.round(pre.top));
+  const spacer = document.createElement("div");
+  spacer.setAttribute("data-nav-header-spacer", "");
+  spacer.style.cssText = "height:" + Math.round(pre.height) + "px;margin:0;padding:0;border:0;pointer-events:none;";
+  header.after(spacer);
+  header.style.position = "fixed";
+  header.style.top = pinTop + "px";
+  header.style.left = "0";
+  header.style.right = "0";
+  header.style.width = "100%";
+  header.style.zIndex = "80";
+  lockScroll();
+  // lockScroll reads scrollY after the pin; keep the pre-pin value for restore.
+  scrollY = y;
+  document.body.style.top = "-" + y + "px";
+  const headerBottom = Math.round(header.getBoundingClientRect().bottom);
+  root.style.setProperty("--header-bottom", Math.max(headerBottom, pinTop + Math.round(pre.height)) + "px");
   const block = (event) => {
     const sheet = document.getElementById("nav");
     if (sheet && sheet.scrollHeight > sheet.clientHeight && event.target instanceof Node && sheet.contains(event.target)) return;
@@ -109,18 +124,32 @@ function setOpen(open) {
   };
   const onMq = () => { if (!mq.matches) setOpen(false); };
   const mq = matchMedia("(max-width: 1320px)");
-  addEventListener("scroll", hold, { passive: true });
   document.addEventListener("touchmove", block, { passive: false });
   document.addEventListener("wheel", block, { passive: false });
   mq.addEventListener("change", onMq);
   unlock = () => {
     root.classList.remove("nav-open");
-    root.style.overflow = "";
-    document.body.style.overflow = "";
-    removeEventListener("scroll", hold);
+    root.style.removeProperty("--header-bottom");
     document.removeEventListener("touchmove", block);
     document.removeEventListener("wheel", block);
     mq.removeEventListener("change", onMq);
+    const restoreY = y;
+    // Prevent scroll anchoring from shifting the page when the sticky header
+    // re-enters normal flow after the fixed pin + spacer are removed.
+    root.style.overflowAnchor = "none";
+    unlockScroll();
+    header.style.position = "";
+    header.style.top = "";
+    header.style.left = "";
+    header.style.right = "";
+    header.style.width = "";
+    header.style.zIndex = "";
+    document.querySelector("[data-nav-header-spacer]")?.remove();
+    window.scrollTo(0, restoreY);
+    requestAnimationFrame(() => {
+      window.scrollTo(0, restoreY);
+      root.style.overflowAnchor = "";
+    });
   };
 }
 

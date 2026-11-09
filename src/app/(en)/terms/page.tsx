@@ -30,7 +30,7 @@ export default function Page() {
           <p>Hosting, SSL, security and backups are included while a monthly plan is active. On Own It, hosting and SSL are included for the first 12 months; optional Site Care is $39/mo after that.</p>
 
           <h2>4. Texting and carrier approval</h2>
-          <p>Missed-call text-back is an <b>optional add-on</b>. A dedicated business phone line is required. A second tracking number is available for <b>$1/mo</b>. Standard carrier messaging rates may apply.</p>
+          <p>Missed-call text-back is <b>optional</b> and needs a dedicated business phone line. On <b>Lead System or Plus</b>, a second tracking number is <b>$1/mo</b> if you use one, plus carrier text rates. On <b>Website or Own It</b>, text-back can be added for <b>$97/mo</b>.</p>
           <p>Missed-call text-back and Google review requests are sent by text. <b>Activation is subject to carrier approval.</b> Texting typically begins 10–15 days after approval. Carrier approval is not guaranteed, and messaging rates or carrier requirements may change.</p>
 
           <h2>5. 60-day lead guarantee</h2>
@@ -40,12 +40,12 @@ export default function Page() {
 
           <h2>6. Own It</h2>
           <p>Own It is a one-time {PLANS[3].price} payment, due when you approve your preview. There is no monthly plan. The site files are yours from launch. Hosting and SSL are included for 12 months, the domain is registered for year one, and small edits are included for 12 months up to 30 minutes per month.</p>
-          <p>Own It small edits are done within 2 business days, and unused edit time does not roll over. After the first 12 months, hosting and edits are optional through Site Care at $39/mo for hosting and up to 30 minutes of edits a month. Domain renewals after year one are at cost. New pages are quoted in writing before work starts. Missed-call text-back can be added for $97/mo after carrier approval.</p>
+          <p>Own It small edits are done within 2 business days, and unused edit time does not roll over. After the first 12 months, hosting and edits are optional through Site Care at $39/mo for hosting and up to 30 minutes of edits a month. Domain renewals after year one are at cost. New pages are quoted in writing before work starts. Missed-call text-back can be added to Own It for $97/mo (see section 4).</p>
 
           <h2>7. Cancellation and access</h2>
           <p>Cancel a monthly plan anytime by text, email, or Messenger. There is no cancellation fee. Billing stops at the end of the period you have already paid for, and your site stays live through that period.</p>
           <p>Because the site is hosted and managed by Kinexis on monthly plans, when the paid period ends, hosting and management stop and the site comes offline unless you keep it another way.</p>
-          <p><b>Buyout:</b> a written one-time purchase of the site files so you can move them to hosting you control. Ask us for buyout terms in writing before you cancel if that is the path you want.</p>
+          <p><b>Buyout:</b> a written one-time <b>$1,497</b> purchase of the site files so you can move them to hosting you control. Ask us for buyout terms in writing before you cancel if that is the path you want.</p>
           <p><b>Move to Own It:</b> switch from a monthly plan to the Own It one-time purchase before your paid period ends. Own It terms (files, included hosting, and Site Care) are in section 6.</p>
           <p>If you do not arrange a buyout or move to Own It before the paid period ends, the site comes offline when hosting and management stop.</p>
 
