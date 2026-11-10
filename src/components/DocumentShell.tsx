@@ -62,6 +62,8 @@ export const documentMetadata: Metadata = {
     images: [ogImage],
   },
   twitter: { card: "summary_large_image", title: defaultTitle, description: defaultDescription, images: [ogImage.url] },
+  // Keep phone/email tappable in iOS Safari and Meta in-app browsers; avoid auto-linking street addresses.
+  formatDetection: { telephone: true, email: true, address: false },
   ...(gsc ? { verification: { google: gsc } } : {}),
   icons: {
     icon: [
@@ -75,7 +77,17 @@ export const documentMetadata: Metadata = {
   },
 };
 
-export const documentViewport: Viewport = { themeColor: "#0b3dff", width: "device-width", initialScale: 1 };
+/** viewport-fit=cover unlocks env(safe-area-*); interactive-widget helps Android keyboards. */
+export const documentViewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#0b3dff" },
+    { media: "(prefers-color-scheme: dark)", color: "#031b4e" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  interactiveWidget: "resizes-content",
+};
 
 /** Shared document shell. Each locale tree owns `<html lang>` so crawlers see the right language without JS. */
 export default function DocumentShell({

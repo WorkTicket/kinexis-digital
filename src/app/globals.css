@@ -75,6 +75,16 @@
   --font-head:var(--font-poppins),var(--font-inter),system-ui,sans-serif;
   --max:1180px;
   --announce-h:0px;
+  /* Notch / home-indicator / Meta in-app chrome. --vv-bottom is set from visualViewport in boot.js.
+     --chrome-top applies the top inset once: to the announce bar when present, else the header. */
+  --sat:env(safe-area-inset-top,0px);
+  --sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px);
+  --sar:env(safe-area-inset-right,0px);
+  --vv-bottom:0px;
+  --iab-extra:0px;
+  --float-gap:16px;
+  --chrome-top:var(--sat);
 }
 /* Heroes use real Poppins Display 800 (preloaded, font-display:swap).
    Body/UI stay on Next's size-matched fallback faces so Inter/Poppins files
@@ -83,13 +93,23 @@ html{
   --font-inter:"inter Fallback",Arial,sans-serif!important;
   --font-poppins:"poppins Fallback",Arial,sans-serif!important;
 }
-body:has(.announce){--announce-h:40px}
-@media (max-width:640px){body:has(.announce){--announce-h:64px}}
+html.is-meta-webview{--iab-extra:14px}
+body:has(.announce){--announce-h:calc(40px + var(--sat));--chrome-top:0px}
+@media (max-width:640px){body:has(.announce){--announce-h:calc(64px + var(--sat))}}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);-webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:manipulation;overscroll-behavior-y:contain}
-body{margin:0;font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{
+  scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + var(--announce-h) + var(--chrome-top));
+  -webkit-text-size-adjust:100%;text-size-adjust:100%;touch-action:manipulation;overscroll-behavior-y:contain;
+  overflow-x:clip;max-width:100%;
+}
+body{
+  margin:0;font-family:var(--font-body);color:var(--text);background:var(--bg);line-height:1.6;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  -webkit-text-size-adjust:100%;text-size-adjust:100%;
+  overflow-x:clip;max-width:100%;
+}
 main{min-height:calc(100svh - var(--header-h) - var(--announce-h))}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3,h4{font-family:var(--font-head);line-height:1.2;margin:0 0 .6em;text-wrap:balance}
 h1{font-family:var(--font-poppins-display),var(--font-head);font-size:clamp(2rem,5vw,3.4rem);font-weight:800}
@@ -97,7 +117,7 @@ h2{font-size:clamp(1.6rem,3.4vw,2.4rem);font-weight:700;margin-bottom:1.2rem}
 h3{font-size:1.2rem;font-weight:600}
 h2.card-title{font-size:1.2rem;font-weight:600;margin:0 0 .6em}
 p{margin:0 0 1em}
-.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 20px}
+.container{width:100%;max-width:var(--max);margin:0 auto;padding:0 max(20px, var(--sal)) 0 max(20px, var(--sar))}
 .container--narrow{max-width:800px}
 .center{text-align:center}
 .muted{color:var(--muted)}
@@ -214,9 +234,16 @@ p{margin:0 0 1em}
 }
 
 /* Announcement + header */
-.announce{background:var(--accent);color:#fff;text-align:center;font-size:.9rem;padding:8px 12px}
+.announce{
+  background:var(--accent);color:#fff;text-align:center;font-size:.9rem;
+  padding:calc(8px + var(--sat)) max(12px, var(--sar)) 8px max(12px, var(--sal));
+}
 .announce a{text-decoration:none;font-weight:500}
-.header{position:sticky;top:0;z-index:50;overflow-anchor:none;background:#fff;border-bottom:1px solid var(--border);transition:box-shadow .2s}
+.header{
+  position:sticky;top:0;z-index:50;overflow-anchor:none;background:#fff;border-bottom:1px solid var(--border);
+  padding-top:var(--chrome-top);padding-left:var(--sal);padding-right:var(--sar);
+  transition:box-shadow .2s;
+}
 .header.is-stuck{box-shadow:var(--shadow)}
 .header__inner{display:flex;align-items:center;justify-content:space-between;gap:clamp(16px,2vw,28px);height:var(--header-h);flex-wrap:nowrap}
 .header__end{display:flex;align-items:center;justify-content:flex-end;gap:clamp(12px,1.4vw,20px);min-width:0;flex:1 1 auto}
@@ -258,7 +285,8 @@ p{margin:0 0 1em}
   flex:1 1 132px;min-width:0;margin:0;
 }
 .preview-bar .form--slim .field input{
-  padding:1.15em .85em .4em;border-radius:10px;border-width:1.5px;font-size:.9rem;
+  /* 16px minimum avoids iOS Safari / Meta WebView focus zoom. */
+  padding:1.15em .85em .4em;border-radius:10px;border-width:1.5px;font-size:16px;
   background:#fff;min-height:46px;
 }
 .preview-bar .form--slim .field span{
@@ -1173,27 +1201,33 @@ p{margin:0 0 1em}
 /* Form */
 .form{display:grid;gap:14px;text-align:left;margin-top:24px;background:#fff;padding:28px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow)}
 .form label{display:grid;gap:6px;font-weight:500;font-size:.9rem}
-.form input{font:inherit;padding:.8em 1em;border:1px solid var(--border);border-radius:10px;background:#fff}
+.form input{font:inherit;font-size:16px;padding:.8em 1em;border:1px solid var(--border);border-radius:10px;background:#fff}
 .form input:focus{outline:2px solid var(--accent);border-color:transparent}
 .form input.invalid{border-color:var(--danger)}
 .form__msg{margin:0;text-align:center;font-weight:500;min-height:1.4em}
 
-/* Floating CTA — hidden until the hero CTAs leave, then eased up. Slides back out over the footer. */
-.float-cta{position:fixed;left:50%;bottom:max(16px, env(safe-area-inset-bottom));z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;background:#fff;border:1px solid var(--border);border-radius:20px;padding:10px 14px 12px;white-space:normal;
+/* Floating CTA — hidden until the hero CTAs leave, then eased up. Slides back out over the footer.
+   Bottom clears home indicator + Meta/IG in-app chrome (--iab-extra) + visualViewport keyboard inset. */
+.float-cta{
+  position:fixed;left:50%;z-index:45;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;
+  bottom:calc(max(var(--float-gap), var(--sab)) + var(--vv-bottom) + var(--iab-extra));
+  width:min(420px, calc(100% - 24px - var(--sal) - var(--sar)));
+  background:#fff;border:1px solid var(--border);border-radius:20px;padding:10px 14px 12px;white-space:normal;
   transform:translate3d(-50%, calc(100% + 24px), 0) scale(.98);opacity:0;pointer-events:none;
   box-shadow:0 10px 28px rgba(10,18,48,0);
-  transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease, box-shadow .7s ease}
+  transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease, box-shadow .7s ease, bottom .2s ease;
+}
 .float-cta.is-in{transform:translate3d(-50%, 0, 0) scale(1);opacity:1;pointer-events:auto;box-shadow:0 18px 44px rgba(10,18,48,.18)}
 .float-cta__label{width:100%;text-align:center;font-size:.95rem;line-height:1.3}
 .float-cta .btn{padding:.55em 1.1em}
 .float-cta__preview-short{display:none}
 
 /* Dialogs — same sticker as the hero film: white mat, navy edge, inner frame */
-.dlg{position:fixed;inset:0;margin:auto;height:fit-content;max-height:calc(100dvh - 48px);overflow:visible;
+.dlg{position:fixed;inset:0;margin:auto;height:fit-content;max-height:calc(100dvh - 48px - var(--sat) - var(--sab));overflow:visible;
   background:#fff;border:3px solid var(--brand-navy);border-radius:22px;padding:12px;
-  max-width:520px;width:min(520px,calc(100% - 56px));box-shadow:8px 8px 0 var(--brand-navy)}
+  max-width:520px;width:min(520px,calc(100% - 56px - var(--sal) - var(--sar)));box-shadow:8px 8px 0 var(--brand-navy)}
 .dlg::backdrop{background:rgba(10,18,48,.94)}
-.dlg__sheet{max-height:calc(100dvh - 96px);overflow-y:auto;overscroll-behavior:contain;border-radius:14px;border:3px solid var(--brand-navy);background:#fff;padding:20px 18px 16px}
+.dlg__sheet{max-height:calc(100dvh - 96px - var(--sat) - var(--sab));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;border-radius:14px;border:3px solid var(--brand-navy);background:#fff;padding:20px 18px 16px}
 .dlg--video{max-width:920px;width:min(920px,calc(100% - 56px),calc((100dvh - 96px)*16/9 + 30px))}
 .dlg .btn{display:flex;width:fit-content;margin:4px auto 0}
 .dlg__terms{text-align:center}
@@ -1248,7 +1282,7 @@ p{margin:0 0 1em}
   .panel{grid-template-columns:1fr}
   .grid--2,.grid--3{grid-template-columns:1fr}
   .logos{grid-template-columns:repeat(2,1fr)}
-  .float-cta{width:calc(100% - 24px);max-width:420px;gap:6px 8px;padding:10px 12px}
+  .float-cta{gap:6px 8px;padding:10px 12px}
   .float-cta__label{font-size:.88rem}
   .float-cta .btn{padding:.42em .85em;font-size:.82rem;line-height:1.2}
   .float-cta__preview-full{display:none}
@@ -1499,7 +1533,7 @@ a.shot:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .trust{margin:22px 0 0;opacity:.95}
 .trust span{color:var(--star-on-dark);letter-spacing:2px}
 .small{font-size:.85rem}
-textarea,select{font:inherit;padding:.8em 1em;border:1px solid var(--border);border-radius:10px;background:#fff;width:100%;resize:vertical}
+textarea,select{font:inherit;font-size:16px;padding:.8em 1em;border:1px solid var(--border);border-radius:10px;background:#fff;width:100%;resize:vertical}
 .form textarea:focus,.form select:focus{outline:2px solid var(--accent);border-color:transparent}
 .form textarea.invalid{border-color:var(--danger)}
 .form input[type=file]{padding:.6em}
@@ -1777,7 +1811,7 @@ html.no-audit [data-site-audit]{display:none!important}
 
 /* ---------- Floating-label fields ---------- */
 .form .field{position:relative;display:block;gap:0;font-size:1rem;font-weight:400}
-.field input,.field textarea{width:100%;padding:1.45em 1em .55em;border:1.5px solid var(--border);border-radius:12px;background:#fff;font:inherit;
+.field input,.field textarea{width:100%;padding:1.45em 1em .55em;border:1.5px solid var(--border);border-radius:12px;background:#fff;font:inherit;font-size:16px;
   transition:border-color .2s ease,box-shadow .2s ease}
 .field span{position:absolute;left:1em;top:1.05em;color:var(--muted);pointer-events:none;font-size:1rem;font-weight:400;transition:top .2s ease,font-size .2s ease,color .2s ease}
 .form .field input:focus,.form .field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 15%,transparent)}
@@ -2924,7 +2958,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .header{z-index:80}
   .header:has(.nav.is-open){background:#fff;box-shadow:none}
   .header:has(.nav.is-open)::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:linear-gradient(90deg,var(--brand-cobalt),var(--brand-orange));transform-origin:right center;pointer-events:none;animation:menu-rule .18s ease both}
-  .nav{position:fixed;z-index:70;top:var(--header-bottom,calc(var(--announce-h) + var(--header-h)));right:0;bottom:0;left:0;height:auto;max-height:none;max-width:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:minmax(64px,auto);justify-content:stretch;align-items:stretch;align-content:start;gap:0;margin:0;padding:20px clamp(22px,5.5vw,40px) calc(clamp(12px,2svh,20px) + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y;background:#fff;white-space:normal;box-shadow:none;border:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-12px);transition:opacity .12s ease,transform .16s ease,visibility 0s linear .16s}
+  .nav{position:fixed;z-index:70;top:var(--header-bottom,calc(var(--announce-h) + var(--header-h) + var(--chrome-top)));right:0;bottom:0;left:0;height:auto;max-height:none;max-width:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:minmax(64px,auto);justify-content:stretch;align-items:stretch;align-content:start;gap:0;margin:0;padding:20px max(clamp(22px,5.5vw,40px), var(--sal)) calc(clamp(12px,2svh,20px) + var(--sab) + var(--iab-extra)) max(clamp(22px,5.5vw,40px), var(--sar));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;background:#fff;white-space:normal;box-shadow:none;border:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-12px);transition:opacity .12s ease,transform .16s ease,visibility 0s linear .16s}
   .nav::before{content:"";position:absolute;top:0;right:0;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,106,0,.18),rgba(10,60,255,.05) 42%,transparent 70%);pointer-events:none}
   .nav.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .16s ease,transform .18s ease,visibility 0s}
   .nav:focus{outline:none}
@@ -3041,7 +3075,8 @@ html.nav-open .mega__panel::-webkit-scrollbar,
       visibility 0s linear .3s;
   }
   .nav>.mega.is-open .mega__panel{
-    max-height:min(70vh,720px);opacity:1;pointer-events:auto;visibility:visible;
+    /* Tall enough for all 12 industries (1-col phones). Nav sheet scrolls; do not clip mid-list. */
+    max-height:min(220vh,1600px);opacity:1;pointer-events:auto;visibility:visible;
     padding:2px 0 14px 27px;transition:
       max-height .42s cubic-bezier(.16,1,.3,1),
       opacity .28s ease .04s,

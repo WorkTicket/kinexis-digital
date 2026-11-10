@@ -1,6 +1,10 @@
 (()=>{const cfg=window.__KINEXIS_CFG__||{};
 const root = document.documentElement;
 const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const ua = navigator.userAgent || "";
+/** Facebook / Instagram in-app browsers need extra bottom clearance for their chrome. */
+const isMetaWebview = /FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Line\//i.test(ua);
+if (isMetaWebview) root.classList.add("is-meta-webview");
 let path = location.pathname;
 let menuOpen = false;
 let megaTimer = 0;
@@ -12,6 +16,24 @@ let markIo = null;
 const marked = new WeakSet();
 let revealStop = () => {};
 const fbTimers = new WeakMap();
+
+/** Keep fixed chrome clear of the soft keyboard and Meta/IG bottom bars. */
+function syncVisualViewport() {
+  const vv = window.visualViewport;
+  if (!vv) {
+    root.style.setProperty("--vv-bottom", "0px");
+    return;
+  }
+  const inset = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
+  root.style.setProperty("--vv-bottom", inset + "px");
+}
+syncVisualViewport();
+if (window.visualViewport) {
+  visualViewport.addEventListener("resize", syncVisualViewport, { passive: true });
+  visualViewport.addEventListener("scroll", syncVisualViewport, { passive: true });
+}
+addEventListener("resize", syncVisualViewport, { passive: true });
+addEventListener("orientationchange", () => setTimeout(syncVisualViewport, 120));
 
 function syncChrome() {
   // Match DocumentShell route-chrome: strip locale, then toggle every chrome

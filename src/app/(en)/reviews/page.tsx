@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import { pageMetadata } from "@/lib/seo";
 import { getAllReviews } from "@/lib/reviews";
-import { LeaveFacebookReview } from "@/components/FacebookReviews";
 import { LeaveTrustpilotReview } from "@/components/TrustpilotReviews";
 import { UnifiedReviewCard } from "@/components/UnifiedReviewCard";
 import { PageSchema } from "@/components/JsonLd";
@@ -28,10 +27,9 @@ export default async function Page() {
 
       <Section>
         <h2 className="center"><HL text="Share Your Experience" mark="Your Experience" /></h2>
-        <p className="center muted">Leave a review here on the site, or open Trustpilot or Facebook in one click.</p>
+        <p className="center muted">Leave a review here on the site, or open Trustpilot in one click.</p>
         <div className="review-actions spaced">
           <LeaveTrustpilotReview />
-          <LeaveFacebookReview />
         </div>
         <div className="site-review-panel spaced">
           <SiteReviewForm />
@@ -52,7 +50,6 @@ export default async function Page() {
         ) : null}
         <div className="review-actions spaced">
           <LeaveTrustpilotReview />
-          <LeaveFacebookReview />
         </div>
       </Section>
 

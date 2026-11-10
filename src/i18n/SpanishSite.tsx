@@ -22,7 +22,6 @@ import type { BookingCopy } from "@/components/BookingCalendar";
 import { DeferredImg } from "@/components/DeferredImg";
 import { OpenDialog } from "@/components/OpenDialog";
 import TrustStrip from "@/components/TrustStrip";
-import { LeaveFacebookReview } from "@/components/FacebookReviews";
 import Filterable from "@/components/Filterable";
 import Form from "@/components/Form";
 import { LeaveTrustpilotReview } from "@/components/TrustpilotReviews";
@@ -790,15 +789,14 @@ async function Reviews({ locale, tx, href, lang, band }: PageBits) {
       <PageHero locale={locale} h1={tx("Reseñas")} mark={tx("Reseñas")} sub={tx("Lee lo que han compartido los clientes en este sitio, en Trustpilot y en Facebook.")} image="reviews" imageAlt={tx("Tarjetas de reseñas")} />
       <Section>
         <h2 className="center"><HL text={tx("Comparte tu experiencia")} mark={tx("experiencia")} /></h2>
-        <p className="center muted">{tx("Deja una reseña aquí en el sitio, o abre Trustpilot o Facebook en un clic.")}</p>
+        <p className="center muted">{tx("Deja una reseña aquí en el sitio, o abre Trustpilot en un clic.")}</p>
         <div className="review-actions spaced">
           <LeaveTrustpilotReview label={tx("Dejar una reseña en Trustpilot")} />
-          <LeaveFacebookReview label={tx("Dejar una reseña en Facebook")} />
         </div>
         <div className="site-review-panel spaced">
           <SiteReviewForm copy={{
             title: tx("Deja una reseña en este sitio"),
-            sub: tx("Envía una reseña corta (máximo 280 caracteres). La revisamos antes de publicarla aquí. ¿Prefieres Trustpilot o Facebook? Usa los botones de arriba."),
+            sub: tx("Envía una reseña corta (máximo 280 caracteres). La revisamos antes de publicarla aquí. ¿Prefieres Trustpilot? Usa el botón de arriba."),
             name: tx("Tu nombre"),
             email: tx("Correo"),
             stars: tx("Calificación"),
@@ -827,7 +825,6 @@ async function Reviews({ locale, tx, href, lang, band }: PageBits) {
         ) : null}
         <div className="review-actions spaced">
           <LeaveTrustpilotReview label={tx("Dejar una reseña en Trustpilot")} />
-          <LeaveFacebookReview label={tx("Dejar una reseña en Facebook")} />
         </div>
       </Section>
       <CtaBand h={tx("¿Quieres un sitio que traiga trabajo?")} mark={tx("traiga trabajo")} sub={tx("Empieza con una vista previa gratis de tu negocio.")} btn={tx("Empezar")} href={href("/contact")} {...band} />

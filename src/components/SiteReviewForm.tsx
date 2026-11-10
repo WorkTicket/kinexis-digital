@@ -22,7 +22,7 @@ type Copy = {
 
 const EN: Copy = {
   title: "Leave a review on this site",
-  sub: `Send a short review (${REVIEW_QUOTE_MAX} characters max). We read every submission before it appears here. Prefer Trustpilot or Facebook? Use the buttons above.`,
+  sub: `Send a short review (${REVIEW_QUOTE_MAX} characters max). We read every submission before it appears here. Prefer Trustpilot? Use the button above.`,
   name: "Your name",
   email: "Email",
   stars: "Star rating",
