@@ -86,6 +86,8 @@ const ORPHANS: Record<string, string> = {
   "/login": "/contact",
   "/signup": "/contact",
   "/team": "/about",
+  // Retired offer page; pricing replaced it.
+  "/lead-magnet": "/pricing",
   // Search Console: crawlers sometimes turn "$97/mo" into a bare /mo path.
   "/mo": "/pricing",
 };
@@ -117,6 +119,8 @@ export const LEGACY_REDIRECTS = [
   ...localizedWildcard("/services/:path+", "/services"),
   // Retired landing-page and information-architecture families.
   ...localizedWildcard("/pricing/:path+", "/pricing"),
+  // Bare /solutions index (Search Console still has the old hubs) plus detail slugs.
+  ...localized("/solutions", "/services"),
   ...localizedWildcard("/solutions/:path+", "/services"),
   // Old team profile URLs.
   ...localizedWildcard("/team/:path*", "/about"),
