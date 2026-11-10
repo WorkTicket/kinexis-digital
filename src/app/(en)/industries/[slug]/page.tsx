@@ -13,6 +13,7 @@ import { ContentSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
 import PlanOffer from "@/components/PlanOffer";
 import { ShotFrame } from "@/components/ShotFrame";
+import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -86,7 +87,7 @@ export default async function IndustryPage({ params }: Props) {
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
         </p>
-        <p className="muted small">60-Day Lead Guarantee · $0 down · Free preview in 2 business days</p>
+        <TrustStrip className="industry-hero__trust" />
       </PageHero>
 
       <Section tint>

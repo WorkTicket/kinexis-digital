@@ -123,7 +123,7 @@ export default function Page() {
                 per business.
               </p>
               <p className="fineprint">
-                <OpenDialog id="guarantee" className="link-btn">Read the full guarantee</OpenDialog>
+                <OpenDialog id="guarantee" className="trust-mark">Read the full guarantee</OpenDialog>
               </p>
             </div>
           </div>
@@ -137,7 +137,7 @@ export default function Page() {
                 made in writing. Third-party costs already paid on your behalf are not refundable.
               </p>
               <p className="fineprint">
-                <OpenDialog id="refund" className="link-btn">Read the refund details</OpenDialog>
+                <OpenDialog id="refund" className="trust-mark">Read the refund details</OpenDialog>
               </p>
             </div>
           </div>

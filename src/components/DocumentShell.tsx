@@ -28,7 +28,9 @@ const poppinsDisplay = localFont({
   src: "../app/fonts/poppins-latin-800.woff2",
   variable: "--font-poppins-display",
   weight: "800",
-  display: "optional",
+  // swap (not optional): optional skips the ExtraBold face on cold loads when
+  // the preloaded file misses the ~100ms block window, so H1s look thin until refresh.
+  display: "swap",
   adjustFontFallback: "Arial",
   preload: true,
 });
@@ -95,6 +97,8 @@ export default function DocumentShell({
 html,body{background:#fff;color:#0a1230}
 body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;font-weight:500;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,.btn,button{font-weight:700}
+button.link-btn,.link-btn{font-weight:600}
+.trust-hl,.trust-mark{font-weight:700}
 h1{font-weight:800}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 `}</style>

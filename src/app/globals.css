@@ -8,6 +8,11 @@
   inherits:false;
   initial-value:0;
 }
+@property --mark-fill{
+  syntax:"<number>";
+  inherits:false;
+  initial-value:0;
+}
 
 /* Tailwind v4 theme: brand tokens become utilities (bg-accent, text-muted, rounded-brand, max-w-site ...) */
 @theme inline {
@@ -80,7 +85,7 @@
   --max:1180px;
   --announce-h:0px;
 }
-/* Heroes use real Poppins Display 800 (preloaded, font-display:optional).
+/* Heroes use real Poppins Display 800 (preloaded, font-display:swap).
    Body/UI stay on Next's size-matched fallback faces so Inter/Poppins files
    never contend with LCP and never swap mid-load. */
 html{
@@ -243,7 +248,7 @@ p{margin:0 0 1em}
   flex:0 0 auto;width:28px;height:28px;
   background:var(--check-sticker) center/contain no-repeat;
 }
-.preview-bar__label > span{
+.preview-bar__copy{
   /* Title sets width; hint wraps under it */
   width:min-content;max-width:100%;
 }
@@ -511,9 +516,51 @@ p{margin:0 0 1em}
   .header__tools{flex:0 0 auto;margin-left:0;gap:12px}
 }
 .nav a,.dropdown__btn,.mega__btn{text-decoration:none;font-family:var(--font-head);font-weight:700;font-size:.92rem;letter-spacing:0;white-space:nowrap;background:none;border:0;cursor:pointer;color:var(--text);padding:9px 11px;border-radius:10px;transition:background-color .16s ease,color .16s ease,transform .16s ease}
-.mega__btn:focus-visible,.nav a:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 32%,transparent);outline-offset:2px;color:var(--accent-dark)}
-@media(hover:hover) and (pointer:fine){.nav>a:hover,.mega__btn:hover{color:var(--accent-dark)}}
 .nav a:hover,.nav a:focus-visible,.nav .mega__btn:hover,.nav .mega__btn:focus-visible{text-decoration:none}
+/* Desktop top-level nav: orange underline wipe (same --mark-fill as trust links).
+   Uses background (not ::after) so Industries mega can keep its hover-bridge ::after. */
+@media (min-width:1321px){
+  .nav>a,
+  .nav>.mega>.mega__btn{
+    --mark-fill:0;
+    position:relative;
+    border-radius:0;
+    background-color:transparent;
+    background-image:linear-gradient(
+      to right,
+      var(--warm) 0%,
+      var(--warm) calc(var(--mark-fill) * 100%),
+      transparent calc(var(--mark-fill) * 100%),
+      transparent 100%
+    );
+    background-repeat:no-repeat;
+    background-position:left 11px bottom 5px;
+    background-size:calc(100% - 22px) 2px;
+    transition:color .32s cubic-bezier(.2,.7,.2,1),--mark-fill .32s cubic-bezier(.2,.7,.2,1);
+  }
+  .nav>a.is-current,
+  .nav>.mega>.mega__btn.is-current{
+    --mark-fill:1;
+    color:var(--warm);
+    background-color:transparent;box-shadow:none;
+  }
+  .nav>a:focus-visible,
+  .nav>.mega>.mega__btn:focus-visible{
+    --mark-fill:1;
+    color:var(--warm);
+    outline:3px solid color-mix(in srgb,var(--accent) 32%,transparent);outline-offset:2px;
+  }
+  @media (hover:hover) and (pointer:fine){
+    .nav>a:hover,
+    .nav>.mega>.mega__btn:hover{
+      --mark-fill:1;
+      color:var(--warm);
+    }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .nav>a,.nav>.mega>.mega__btn{transition:none}
+  }
+}
 .dropdown{position:relative}
 .dropdown__menu{position:absolute;top:100%;left:-12px;min-width:210px;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:var(--shadow);padding:8px;display:none}
 .dropdown__menu a{display:block;padding:10px 12px;border-radius:8px}
@@ -541,29 +588,100 @@ p{margin:0 0 1em}
 .hero__btns{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .hero__btns .btn{padding:.62rem 1.15rem;font-size:.98rem;line-height:1.2;min-height:0}
 .trust-fineprint{
-  margin:12px 0 0;padding:0;max-width:36rem;
-  color:var(--muted);font-size:.9rem;line-height:1.45;
+  margin:12px 0 0;padding:0;max-width:40rem;
+  color:var(--muted);font-size:.88rem;line-height:1.4;
 }
-.trust-fineprint.center,.cta-trust.trust-fineprint{
-  margin-left:auto;margin-right:auto;text-align:center;max-width:40rem;
+.trust-fineprint.center,.cta-trust.trust-fineprint,.offer__trust.trust-fineprint{
+  margin-left:auto;margin-right:auto;text-align:center;max-width:44rem;
 }
-.trust-fineprint__row{margin:0;text-wrap:pretty}
-.trust-fineprint__row + .trust-fineprint__row{margin-top:8px}
-.trust-fineprint__sep{color:var(--muted)}
-.trust-fineprint .link-btn{
-  display:inline-flex;align-items:center;
-  min-height:24px;padding:2px 0;
-  font-size:inherit;font-weight:600;
+.trust-fineprint__guarantees,
+.trust-fineprint__meta{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+  margin:0;text-wrap:pretty;
 }
-.hero__trust{margin-top:12px;max-width:34rem}
-.cta-trust{margin:14px 0 0}
-.hero__call{margin-top:10px}
-.hero__call .link-btn{padding:0}
+.trust-fineprint.center .trust-fineprint__guarantees,
+.trust-fineprint.center .trust-fineprint__meta,
+.cta-trust .trust-fineprint__guarantees,
+.cta-trust .trust-fineprint__meta,
+.offer__trust .trust-fineprint__guarantees,
+.offer__trust .trust-fineprint__meta{
+  justify-content:center;
+}
+.trust-fineprint__meta{margin-top:8px;font-size:.94em;gap:2px 8px}
+.trust-fineprint__sep{color:var(--muted);opacity:.72;user-select:none}
+
+/* Navy text at rest; thin orange underline wipes L→R on hover like .btn --btn-fill */
+.trust-hl,
+.trust-mark{
+  --mark-fill:0;
+  --mark-color:var(--warm);
+  appearance:none;display:inline;margin:0;padding:0 0 3px;border:0;
+  background-image:linear-gradient(
+    to right,
+    var(--mark-color) 0%,
+    var(--mark-color) calc(var(--mark-fill) * 100%),
+    transparent calc(var(--mark-fill) * 100%),
+    transparent 100%
+  );
+  background-repeat:no-repeat;background-position:left calc(100% - 1px);background-size:100% 2px;
+  color:var(--brand-navy);font:inherit;font-family:var(--font-head);
+  font-weight:700;letter-spacing:-.015em;line-height:1.35;
+  text-decoration:none;text-wrap:balance;cursor:pointer;
+  transition:color .32s cubic-bezier(.2,.7,.2,1),--mark-fill .32s cubic-bezier(.2,.7,.2,1);
+}
+.trust-hl{font-size:.95em}
+.trust-mark{letter-spacing:-.01em}
+.trust-hl:focus-visible,
+.trust-mark:focus-visible{
+  --mark-fill:1;
+  color:var(--warm);
+  outline:3px solid var(--accent);outline-offset:3px;border-radius:4px;
+}
+@media (hover:hover) and (pointer:fine){
+  .trust-hl:hover,
+  .trust-mark:hover{
+    --mark-fill:1;
+    color:var(--warm);
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .trust-hl,.trust-mark{transition:none}
+  .trust-hl:focus-visible,.trust-mark:focus-visible{--mark-fill:1}
+  @media (hover:hover) and (pointer:fine){
+    .trust-hl:hover,.trust-mark:hover{--mark-fill:1}
+  }
+}
+
+.hero__reassure{margin-top:14px;max-width:36rem}
+.hero__reassure .trust-fineprint{margin-top:0;max-width:none}
+.hero__trust{margin-top:0;max-width:none}
+.cta-trust,.offer__trust{margin:16px 0 0}
+.industry-hero__trust{margin-top:16px;max-width:40rem}
+.hero__call{
+  display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;
+  margin:10px 0 0;
+}
+@media (max-width:860px){
+  .page-hero--split .industry-hero__trust{
+    margin-inline:auto;text-align:center;
+  }
+  .page-hero--split .industry-hero__trust .trust-fineprint__guarantees,
+  .page-hero--split .industry-hero__trust .trust-fineprint__meta{
+    justify-content:center;
+  }
+}
 @media (max-width:720px){
-  .trust-fineprint,.hero__trust{max-width:none;font-size:.86rem}
+  .trust-fineprint,.hero__reassure,.industry-hero__trust{max-width:none;font-size:.86rem}
+  .trust-fineprint__guarantees{gap:4px 12px}
+  .trust-fineprint__meta{margin-top:6px;justify-content:flex-start}
+  .trust-fineprint.center .trust-fineprint__meta,
+  .cta-trust .trust-fineprint__meta,
+  .offer__trust .trust-fineprint__meta,
+  .page-hero--split .industry-hero__trust .trust-fineprint__meta{
+    justify-content:center;
+  }
+  .hero__call{margin-top:8px}
 }
-.hero .link-btn{color:var(--accent)}
-.hero .link-btn:hover{color:var(--accent-dark)}
 .hero__video,.video-thumb{position:relative;aspect-ratio:16/9;border-radius:var(--radius);border:1px dashed #c8d0dc;background:repeating-linear-gradient(45deg,#eef1f6,#eef1f6 10px,#e6eaf1 10px,#e6eaf1 20px);display:grid;place-items:center;cursor:pointer;box-shadow:var(--shadow);width:100%;padding:0}
 .hero .hero__video{border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.08);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
 .hero .hero__video .ph-label{color:rgba(255,255,255,.72)}
@@ -972,7 +1090,6 @@ p{margin:0 0 1em}
 .offer__badge::before{content:"★";font-size:.95em;line-height:1;letter-spacing:0}
 @media (max-width:980px){.offer__plans{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.offer__plans{grid-template-columns:1fr}}
-.hero__call{margin-top:10px}
 .header__phone{font-family:var(--font-head);font-weight:700;font-size:.95rem;color:var(--brand-navy);text-decoration:none;white-space:nowrap}
 .header__phone:hover{color:var(--accent)}
 .header__phone--mobile{display:none;font-size:.82rem}
@@ -1107,14 +1224,7 @@ p{margin:0 0 1em}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 
 /* ============ Multi-page additions ============ */
-.nav a.is-current,.dropdown__btn.is-current,.mega__btn.is-current{color:var(--accent-dark);background:var(--accent-soft);border-radius:10px;box-shadow:none}
-.nav>a.is-current{position:relative;font-weight:700}
-.nav>a.is-current::after{position:absolute;right:12px;bottom:4px;left:12px;height:2px;border-radius:2px;background:var(--brand-orange);content:""}
-.nav>.mega>.mega__btn.is-current{font-weight:750}
-@media (max-width:1320px){
-  .nav a.is-current,.dropdown__btn.is-current,.mega__btn.is-current{box-shadow:none;border-radius:8px}
-  .nav>a.is-current::after{display:none}
-}
+.dropdown__btn.is-current{color:var(--warm);background:none;box-shadow:none}
 .dropdown__menu a[aria-current="page"]{background:var(--accent-soft);color:var(--accent)}
 .lead{font-size:1.15rem;max-width:640px;margin:0 auto}
 .spaced{margin-top:28px}
@@ -1640,9 +1750,6 @@ html.no-audit [data-site-audit]{display:none!important}
 /* Same white-to-page fade (0.45s ease). It sits on a veil so the document
    itself stays opaque and the first paint can be measured. */
 body.is-leaving{opacity:0;transition:opacity .2s ease}
-.nav>a{position:relative}
-.nav>a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
-.nav>a.is-current::after{transform:scaleX(1)}
 .icon{transition:transform .3s ease}
 .card:hover .icon{transform:translateY(-5px) rotate(-3deg)}
 .faq summary::after{transition:transform .3s ease}
@@ -1662,7 +1769,6 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
   .lead__inner{grid-template-columns:1fr;gap:36px}
   .lead-section{padding:72px 0}
   .lead__card{padding:24px}
-  .nav>a::after{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -3451,16 +3557,12 @@ p,li,blockquote{ text-wrap:pretty }
   .icon.icon--kit.icon--service,
   .icon.icon--kit.icon--problem{width:88px;height:88px}
 
-  /* Hero secondary links need real tap targets without reshaping copy blocks */
-  .trust-fineprint__row .link-btn,
-  .hero__call .link-btn{
-    display:inline-flex;
-    align-items:center;
-    min-height:44px;
-    padding:8px 2px;
+  .trust-hl,
+  .hero__call .trust-mark{
+    display:inline-flex;align-items:center;min-height:44px;
+    padding:8px 0 10px;background-position:left calc(100% - 9px);
   }
-  .trust-fineprint__row + .trust-fineprint__row{margin-top:0}
-  .hero__call{line-height:1.6}
+  .hero__call{line-height:1.55}
 
   /* Comparison table stays inside the viewport; labels wrap instead of scrolling. */
   .compare{

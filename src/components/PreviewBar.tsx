@@ -24,7 +24,7 @@ export default function PreviewBar({ locale = "en" }: { locale?: Locale }) {
       <div className="container preview-bar__inner">
         <p className="preview-bar__label">
           <span className="preview-bar__mark" aria-hidden="true" />
-          <span>
+          <span className="preview-bar__copy">
             <b>{chrome.previewBarTitle}</b>
             <span className="preview-bar__hint">{chrome.previewBarHint}</span>
           </span>

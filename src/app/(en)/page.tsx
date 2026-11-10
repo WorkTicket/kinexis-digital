@@ -89,13 +89,15 @@ export default async function Home() {
           <div className="hero__btns">
             <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Get My Free Preview</Link>
           </div>
-          <TrustStrip className="hero__trust" />
-          <p className="hero__call muted small">
-            Prefer to talk?{" "}
-            <Link className="link-btn" href="/strategy-call" prefetch={false}>Book a call</Link>
-            {" · "}
-            <a className="link-btn" href={telHref(SITE.phone)}>{SITE.phone}</a>
-          </p>
+          <div className="hero__reassure">
+            <TrustStrip className="hero__trust" />
+            <p className="hero__call muted small">
+              Prefer to talk?{" "}
+              <Link className="trust-mark" href="/strategy-call" prefetch={false}>Book a call</Link>
+              <span className="trust-fineprint__sep" aria-hidden="true">·</span>
+              <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a>
+            </p>
+          </div>
         </div>
         <HeroFilm />
       </div></section>

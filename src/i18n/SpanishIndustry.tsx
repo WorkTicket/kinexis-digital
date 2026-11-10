@@ -13,6 +13,7 @@ import { ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
 import IndustryHeroArt from "@/components/IndustryHeroArt";
 import { ShotFrame } from "@/components/ShotFrame";
+import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
 import { withLocale, type Locale } from "@/lib/i18n";
 
@@ -36,9 +37,12 @@ export default function SpanishIndustry({
   const related = relatedIndustries(base).map((item) => localizeIndustry(item, locale));
   const features = localizedIndustryFeatures(tx);
   const spainChrome = locale === "es-ES";
-  const trustLine = spainChrome
-    ? tx("Garantía de 60 días · Sin enganche · Vista previa en 2 días hábiles")
-    : tx("Garantía de 60 días · $0 de enganche · Vista previa en 2 días hábiles");
+  const trust = {
+    leadLabel: tx("Garantía de 60 días"),
+    refundLabel: tx("Devolución en 30 días"),
+    downLabel: spainChrome ? tx("Sin enganche") : tx("$0 de enganche"),
+    previewLabel: tx("Vista previa en 2 días hábiles"),
+  };
 
   return (
     <>
@@ -46,7 +50,7 @@ export default function SpanishIndustry({
       <PageHero locale={locale} eyebrow={tx("Industrias")} h1={industry.h1} mark={industry.mark} sub={industry.sub} className={`industry-hero industry-hero--${industry.slug}`} art={<IndustryHeroArt slug={industry.slug} alt={industry.heroAlt} />}>
         <div className="industry-hero__intro"><p>{industry.intro[0]}</p><p>{industry.intro[1]}</p></div>
         <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link></p>
-        <p className="muted small">{trustLine}</p>
+        <TrustStrip className="industry-hero__trust" {...trust} />
       </PageHero>
       <Section tint>
         <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industry.name}`)} mark={industry.name} /></h2>
@@ -114,7 +118,7 @@ export default function SpanishIndustry({
           </div>
         </Section>
       )}
-      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trustLine} plans={spanishPlans(tx, { hideUsd: spainChrome })} showStickers={!spainChrome} /></Section>
+      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { hideUsd: spainChrome })} showStickers={!spainChrome} /></Section>
       <Section tint narrow><h2 className="center"><HL text={tx(`Preguntas para dueños de ${industry.name}`)} mark={tx("dueños")} /></h2><Faq items={[...industry.faqs]} /></Section>
       <Section><h2 className="center"><HL text={tx("Otros negocios")} mark={tx("Otros negocios")} /></h2><IndustryGrid industries={related} base={href("/industries")} /></Section>
       <CtaBand h={tx("Consigue tu vista previa gratis")} mark={tx("vista previa gratis")} sub={tx("Vista previa gratis, sin tarjeta. Luego eliges Website, Lead System, Plus u Own It.")} btn={tx("Ver mi vista previa gratis")} href={href("/contact")} secondary={tx("Ver planes y precios")} secondaryHref={href("/pricing")} locale={locale} />

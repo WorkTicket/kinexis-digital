@@ -275,7 +275,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           moreLayout="cell"
         />
       </Section>
-      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={spainChrome ? tx("Garantía de 60 días · Sin enganche · Vista previa en 2 días hábiles") : tx("Garantía de 60 días · $0 de enganche · Vista previa en 2 días hábiles")} plans={plans} showStickers={!spainChrome} /></Section>
+      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: spainChrome ? tx("Sin enganche") : tx("$0 de enganche"), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} /></Section>
       <Section>
         <h2 className="center"><HL text={tx("De la vista previa al lanzamiento")} mark={tx("al lanzamiento")} /></h2>
         <Stepper steps={steps} />
@@ -486,14 +486,14 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             <div>
               <h3><HL text={tx("¿Cero leads rastreados en 60 días? Condonamos dos cargos.")} mark={tx("dos cargos")} /></h3>
               <p>{tx("Si Lead System o Plus no produce leads rastreados en los primeros 60 días en vivo, se condonan el tercer y cuarto cargo. Un lead rastreado es una llamada de 30 segundos o más, una respuesta al texto, o un formulario real. Una garantía por negocio.")}</p>
-              <OpenDialog id="guarantee" className="link-btn">{tx("Leer la garantía")}</OpenDialog>
+              <OpenDialog id="guarantee" className="trust-mark">{tx("Leer la garantía")}</OpenDialog>
             </div>
           </div>
           <div className="guarantee-band guarantee-band--refund">
             <div>
               <h3><HL text={tx("Garantía de devolución en 30 días")} mark={tx("devolución")} /></h3>
               <p>{tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Debes pedirlo por escrito. No cubre costos de terceros que ya hayamos pagado.")}</p>
-              <OpenDialog id="refund" className="link-btn">{tx("Leer los detalles de la devolución")}</OpenDialog>
+              <OpenDialog id="refund" className="trust-mark">{tx("Leer los detalles de la devolución")}</OpenDialog>
             </div>
           </div>
         </div>

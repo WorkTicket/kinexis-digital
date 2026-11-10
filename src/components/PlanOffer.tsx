@@ -1,6 +1,8 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { PLANS } from "@/lib/content";
 import { HL } from "./mark";
+import TrustStrip from "./TrustStrip";
 
 type Sticker = { src: string; alt: string; width: number; height: number };
 
@@ -26,6 +28,13 @@ function PlanSticker({ sticker }: { sticker: Sticker }) {
   );
 }
 
+type TrustLabels = {
+  leadLabel?: ReactNode;
+  refundLabel?: ReactNode;
+  downLabel?: ReactNode;
+  previewLabel?: ReactNode;
+};
+
 /** The same four plans, with the same prices, on the homepage and every industry page. */
 export default function PlanOffer({
   heading = "Website Plans and Pricing",
@@ -39,7 +48,7 @@ export default function PlanOffer({
   cta = "Get My Free Preview",
   planCta = "Start with a free preview",
   secondary = "See Plans & Pricing",
-  trust = "60-Day Lead Guarantee · $0 down · Free preview in 2 business days",
+  trust,
   plans = PLANS,
   // Priced stickers bake USD into the art — hide them on Spain chrome.
   showStickers = true,
@@ -55,7 +64,7 @@ export default function PlanOffer({
   cta?: string;
   planCta?: string;
   secondary?: string;
-  trust?: string;
+  trust?: TrustLabels;
   plans?: typeof PLANS;
   showStickers?: boolean;
 }) {
@@ -89,7 +98,7 @@ export default function PlanOffer({
         <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{cta}</Link>
         <Link className="btn btn--ghost btn--lg" href={pricingHref} prefetch={false}>{secondary}</Link>
       </p>
-      <p className="center muted small">{trust}</p>
+      <TrustStrip className="offer__trust" {...trust} />
     </>
   );
 }

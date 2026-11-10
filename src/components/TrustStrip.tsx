@@ -9,7 +9,7 @@ type Props = {
   previewLabel?: ReactNode;
 };
 
-/** Fine-print risk reversal under CTAs. Matches the hero “Book a call” link style. */
+/** Fine-print risk reversal under CTAs — highlighter guarantee marks + $0 / preview line. */
 export default function TrustStrip({
   className = "",
   leadLabel = "60-Day Lead Guarantee",
@@ -19,15 +19,13 @@ export default function TrustStrip({
 }: Props) {
   return (
     <div className={`trust-fineprint${className ? ` ${className}` : ""}`}>
-      <p className="trust-fineprint__row">
-        <OpenDialog id="guarantee" className="link-btn">{leadLabel}</OpenDialog>
+      <p className="trust-fineprint__guarantees">
+        <OpenDialog id="guarantee" className="trust-hl">{leadLabel}</OpenDialog>
+        <OpenDialog id="refund" className="trust-hl">{refundLabel}</OpenDialog>
       </p>
-      <p className="trust-fineprint__row">
-        <OpenDialog id="refund" className="link-btn">{refundLabel}</OpenDialog>
-      </p>
-      <p className="trust-fineprint__row trust-fineprint__meta">
+      <p className="trust-fineprint__meta">
         <span>{downLabel}</span>
-        {" · "}
+        <span className="trust-fineprint__sep" aria-hidden="true">·</span>
         <span>{previewLabel}</span>
       </p>
     </div>
