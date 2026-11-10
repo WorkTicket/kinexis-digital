@@ -1,18 +1,9 @@
 @import "tailwindcss";
 
-/* Must stay outside @layer — Lightning CSS drops @property inside layers.
-   Use <number> 0→1 (not <percentage>): production minify turns `0%` into `0`,
-   which invalidates a percentage @property and kills the blue→orange wipe on live. */
-@property --btn-fill{
-  syntax:"<number>";
-  inherits:false;
-  initial-value:0;
-}
-@property --mark-fill{
-  syntax:"<number>";
-  inherits:false;
-  initial-value:0;
-}
+/* Wipe vars (--btn-fill / --mark-fill) are registered in DocumentShell via
+   CSS.registerProperty before paint. Do not declare @property here: Lightning CSS
+   can mangle syntax:"<number>" in the built stylesheet, and a broken registration
+   blocks the JS fallback (registerProperty throws if the name already exists). */
 
 /* Tailwind v4 theme: brand tokens become utilities (bg-accent, text-muted, rounded-brand, max-w-site ...) */
 @theme inline {
@@ -1714,9 +1705,12 @@ html.no-audit [data-site-audit]{display:none!important}
   color:var(--text);padding:0 .1em;margin:0 -.04em;border-radius:.08em;
   -webkit-box-decoration-break:clone;box-decoration-break:clone;
   transition:background-size .9s .15s cubic-bezier(.2,.8,.2,1)}
-/* Marks paint filled by default. Boot may still re-sweep below-fold marks when
-   it loads; never leave phrases looking un-highlighted before JS. */
-.hl.is-marked{background-size:100% .72em}
+/* No-JS: marks stay filled. With JS, below-fold marks start empty and sweep in. */
+@media (scripting:enabled){
+  .hl{background-size:0% .72em}
+  .hl.is-marked{background-size:100% .72em}
+  .hero .hl,.page-hero .hl{background-size:100% .72em}
+}
 /* Underline sits below a short phrase; it is not paired with the marker. */
 .hl--u{position:relative;display:inline-block;padding-bottom:.1em;color:inherit}
 .hl--u::after{content:"";position:absolute;left:0;right:0;bottom:-.16em;height:clamp(12px,.2em,22px);pointer-events:none;

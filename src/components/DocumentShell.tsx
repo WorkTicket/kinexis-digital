@@ -102,11 +102,13 @@ h1{font-weight:800}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 `}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />
-        {/* Inline before paint: App Router forbids next/script beforeInteractive outside pages/_document. */}
+        {/* Inline before paint: App Router forbids next/script beforeInteractive outside pages/_document.
+            Lightning CSS can mangle @property syntax:"<number>" in the built stylesheet; register both
+            wipe variables here so button + trust-link orange fills still interpolate on live. */}
         <script
-          id="kinexis-btn-fill"
+          id="kinexis-fill-props"
           dangerouslySetInnerHTML={{
-            __html: `try{CSS.registerProperty({name:"--btn-fill",syntax:"<number>",inherits:!1,initialValue:"0"})}catch(e){}`,
+            __html: `try{CSS.registerProperty({name:"--btn-fill",syntax:"<number>",inherits:!1,initialValue:"0"})}catch(e){}try{CSS.registerProperty({name:"--mark-fill",syntax:"<number>",inherits:!1,initialValue:"0"})}catch(e){}`,
           }}
         />
         <script
