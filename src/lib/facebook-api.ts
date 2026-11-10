@@ -14,11 +14,10 @@ type GraphReview = {
   reviewer?: { name?: string };
 };
 
+/** Enrich Graph API rows when we already know the reviewer from curated Website reviews. */
 const KNOWN_REVIEWERS = [
   { quote: "Would Highly recommend Kinexis Digital", name: "Mac Christensen", role: "Owner", company: "A1 Property Services", trade: "Landscaping", city: "Cedar Falls, Iowa" },
-  { quote: "They got our plumbing business right away", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions", trade: "Plumbing", city: "Spirit Lake, Idaho" },
   { quote: "So grateful to Kinexis Digital", name: "Hunter Norris", role: "Owner", company: "Preferred Plumbing Solutions", trade: "Plumbing", city: "Spirit Lake, Idaho" },
-  { quote: "So happy with my new site", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw", trade: "Crochet patterns", city: "Valencia, Spain" },
   { quote: "Great work! They designed my website", name: "Natalia Moreno", role: "Owner", company: "Manos Creativas Bynmw", trade: "Crochet patterns", city: "Valencia, Spain" },
 ];
 

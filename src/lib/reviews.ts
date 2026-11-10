@@ -112,6 +112,11 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
   ]);
 
   const curatedIds = new Set(REVIEWS.map((review) => `site-${review.id}`));
+  // Prefer Website cards when the same client also appears on Facebook.
+  const curatedNames = new Set(REVIEWS.map((review) => review.name.trim().toLowerCase()));
+  const curatedQuoteStarts = REVIEWS.map((review) =>
+    review.quote.trim().slice(0, 48).toLowerCase(),
+  );
 
   const reviews: DisplayReview[] = [
     ...getCuratedReviews(),
@@ -135,19 +140,26 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
       source: "trustpilot" as const,
       sortKey: sortKeyFromLabel(review.date, review.id),
     })),
-    ...facebook.map((review) => ({
-      id: `facebook-${review.id}`,
-      name: review.name,
-      role: review.role,
-      company: review.company,
-      trade: review.trade,
-      city: review.city,
-      quote: review.quote,
-      date: review.date,
-      stars: review.recommends ? 5 : 1,
-      source: "facebook" as const,
-      sortKey: sortKeyFromLabel(review.date, review.id),
-    })),
+    ...facebook
+      .filter((review) => {
+        const name = review.name.trim().toLowerCase();
+        if (curatedNames.has(name)) return false;
+        const start = review.quote.trim().slice(0, 48).toLowerCase();
+        return !curatedQuoteStarts.some((prefix) => start.startsWith(prefix) || prefix.startsWith(start));
+      })
+      .map((review) => ({
+        id: `facebook-${review.id}`,
+        name: review.name,
+        role: review.role,
+        company: review.company,
+        trade: review.trade,
+        city: review.city,
+        quote: review.quote,
+        date: review.date,
+        stars: review.recommends ? 5 : 1,
+        source: "facebook" as const,
+        sortKey: sortKeyFromLabel(review.date, review.id),
+      })),
   ];
 
   return reviews.sort((a, b) => b.sortKey.localeCompare(a.sortKey));

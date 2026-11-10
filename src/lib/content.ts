@@ -730,7 +730,7 @@ export const POSTS = [
     readTime: "6 min read",
   },
 ];
-/** Curated US trade reviews for on-site display. Do not invent quotes — edit only with client OK. */
+/** Curated client reviews for on-site display (source: Website). Do not invent quotes — edit only with client OK. */
 export const REVIEWS: {
   id: string;
   quote: string;
@@ -743,27 +743,15 @@ export const REVIEWS: {
   stars: number;
 }[] = [
   {
-    id: "jeremy-main",
+    id: "mac-christensen",
     quote:
-      "Kinexis has grown our business. From the content to the look of the page, we have seen a real increase in enquiries. The team is responsive and helps us at every turn, and the monthly report keeps us focused on what is working.",
-    name: "Jeremy Main",
+      "Would Highly recommend Kinexis Digital! They turned my dull website into a lead generating machine! You can't go wrong with this company.",
+    name: "Mac Christensen",
     role: "Owner",
-    company: "Pink Pro Wash",
-    trade: "Pressure washing",
-    city: "Detroit, MI",
-    date: "August 6, 2026",
-    stars: 5,
-  },
-  {
-    id: "isfel-yrra",
-    quote:
-      "Kinexis is the best website provider we have worked with. Our site looks professional, loads quickly and the content is worded and optimized for search. We highly recommend the team if you want a site that actually brings in work.",
-    name: "Isfel Yrra",
-    role: "Owner",
-    company: "Xterior Xperts",
-    trade: "Exterior services",
-    city: "Houston, TX",
-    date: "September 12, 2026",
+    company: "A1 Property Services",
+    trade: "Landscaping",
+    city: "Cedar Falls, Iowa",
+    date: "October 25, 2026",
     stars: 5,
   },
   {
@@ -776,6 +764,42 @@ export const REVIEWS: {
     trade: "Plumbing",
     city: "Spirit Lake, Idaho",
     date: "September 22, 2026",
+    stars: 5,
+  },
+  {
+    id: "natalia-moreno",
+    quote:
+      "Great work! They designed my website exceeding all expectations. Highly recommended for their professionalism. You can see an example of their work on my site",
+    name: "Natalia Moreno",
+    role: "Owner",
+    company: "Manos Creativas Bynmw",
+    trade: "Crochet patterns",
+    city: "Valencia, Spain",
+    date: "September 22, 2026",
+    stars: 5,
+  },
+  {
+    id: "israel-ybarra",
+    quote:
+      "Kinexis is the best website provider we have worked with. Our site looks professional, loads quickly and the content is worded and optimized for search. We highly recommend the team if you want a site that actually brings in work.",
+    name: "Israel Ybarra",
+    role: "Owner",
+    company: "Xterior Xperts",
+    trade: "Exterior services",
+    city: "Houston, TX",
+    date: "September 12, 2026",
+    stars: 5,
+  },
+  {
+    id: "jeremy-main",
+    quote:
+      "Kinexis has grown our business. From the content to the look of the page, we have seen a real increase in enquiries. The team is responsive and helps us at every turn, and the monthly report keeps us focused on what is working.",
+    name: "Jeremy Main",
+    role: "Owner",
+    company: "Pink Pro Wash",
+    trade: "Pressure washing",
+    city: "Detroit, MI",
+    date: "August 6, 2026",
     stars: 5,
   },
 ];
