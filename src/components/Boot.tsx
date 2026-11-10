@@ -8,14 +8,6 @@ export default function Boot({ email, ga, video }: { email: string; ga: string; 
   const config = JSON.stringify({ email, ga, video }).replace(/</g, "\\u003c");
   return (
     <>
-      {/* Register before paint so production CSS minify can't invalidate the fill wipe. */}
-      <Script
-        id="kinexis-btn-fill"
-        strategy="beforeInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `try{CSS.registerProperty({name:"--btn-fill",syntax:"<number>",inherits:!1,initialValue:"0"})}catch(e){}`,
-        }}
-      />
       <Script
         id="kinexis-cfg"
         strategy="afterInteractive"
@@ -23,7 +15,7 @@ export default function Boot({ email, ga, video }: { email: string; ga: string; 
       />
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}
-      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=35" strategy="lazyOnload" />
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=48" strategy="lazyOnload" />
     </>
   );
 }

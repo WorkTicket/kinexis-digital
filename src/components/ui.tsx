@@ -167,13 +167,16 @@ export function fallbackTrack(mobile?: string, desktop?: string): { className: s
 export function PageHero({
   // Default deferMobile for kit heroes so mobile LCP is the H1 (homepage pattern),
   // not a 260px illustration that lands after throttled image time.
-  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", locale = "en", fallbackTrack: track, deferMobile = true, children,
+  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", locale = "en", fallbackTrack: track, deferMobile = true, previewBar = true, children,
 }: {
   h1: ReactNode; sub: ReactNode; mark?: string; eyebrow?: string;
   image?: ArtName; imageAlt?: string; art?: ReactNode; decor?: DecorName[]; className?: string;
   locale?: Locale;
   fallbackTrack?: { mobile?: string; desktop?: string; leadMobile?: string; leadDesktop?: string };
-  deferMobile?: boolean; children?: ReactNode;
+  deferMobile?: boolean;
+  /** Slim free-preview bar under the hero. Off on pages that already have a lead form. */
+  previewBar?: boolean;
+  children?: ReactNode;
 }) {
   const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} /> : h1;
   const tracked = fallbackTrack(track?.mobile, track?.desktop);
@@ -190,7 +193,7 @@ export function PageHero({
             {children}
           </div>
         </section>
-        <PreviewBar locale={locale} />
+        {previewBar ? <PreviewBar locale={locale} /> : null}
       </>
     );
   }
@@ -212,7 +215,7 @@ export function PageHero({
           </div>
         </div>
       </section>
-      <PreviewBar locale={locale} />
+      {previewBar ? <PreviewBar locale={locale} /> : null}
     </>
   );
 }

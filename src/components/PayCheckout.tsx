@@ -250,7 +250,7 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
               onChange={(event) => { setAgreed(event.target.checked); setNotice(""); }}
             />
             <span>
-              I agree to the <Link href="/terms" prefetch={false}>Terms of Service</Link> and <Link href="/privacy" prefetch={false}>Privacy Policy</Link>.
+              I agree to the <Link className="trust-mark" href="/terms" prefetch={false}>Terms of Service</Link> and <Link className="trust-mark" href="/privacy" prefetch={false}>Privacy Policy</Link>.
             </span>
           </label>
 
@@ -261,8 +261,8 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
                   {sdk === "loading" && <p className="pay-wait" role="status">Loading secure PayPal checkout…</p>}
                   {sdk === "failed" && (
                     <p className="pay-alert" role="alert">
-                      PayPal didn’t load. Text us at <a href={telHref(SITE.phone)}>{SITE.phone}</a> and we’ll send a payment link.{" "}
-                      <button type="button" className="link-btn" onClick={() => { setNotice(""); setRetry((n) => n + 1); }}>Try again</button>
+                      PayPal didn’t load. Text us at <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a> and we’ll send a payment link.{" "}
+                      <button type="button" className="trust-mark" onClick={() => { setNotice(""); setRetry((n) => n + 1); }}>Try again</button>
                     </p>
                   )}
                   <div ref={hostRef} className="pay-paypal" />
@@ -296,7 +296,7 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
             <summary>Plan terms &amp; billing details</summary>
             <p>{termsFor(plan)}</p>
           </details>
-          <a className="pay-help" href={telHref(SITE.phone)}>Need a hand? Call or text {SITE.phone}</a>
+          <a className="pay-help trust-mark" href={telHref(SITE.phone)}>Need a hand? Call or text {SITE.phone}</a>
         </footer>
       </aside>
     </div>

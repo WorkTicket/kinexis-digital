@@ -16,7 +16,7 @@ function rateKv(): KVNamespace | null {
 /**
  * Returns true when the caller should be rejected.
  * Missing KV (local Node / tests) fails open so forms still work.
- * With KV: empty IP or read/write errors fail closed.
+ * With KV: empty IP fails open (logged); read/write errors fail closed.
  */
 export async function isRateLimited(
   bucket: string,
@@ -25,7 +25,12 @@ export async function isRateLimited(
 ): Promise<boolean> {
   const kv = rateKv();
   if (!kv) return false;
-  if (!ip) return true;
+  // Missing client IP: fail open so a misconfigured proxy cannot 429 every form.
+  // Legitimate Cloudflare traffic always has cf-connecting-ip.
+  if (!ip) {
+    console.error("Rate limit skipped: empty client IP", { bucket });
+    return false;
+  }
   const key = `rate:${bucket}:${ip}`;
   try {
     const hit = await kv.get(key);

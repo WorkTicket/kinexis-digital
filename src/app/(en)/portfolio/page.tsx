@@ -109,7 +109,7 @@ export default function Page() {
             <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
             <p className="muted">Choose a look you like and we’ll tailor the design, content, services, and calls to action for your business.</p>
           </div>
-          <Link className="link-btn" href="/contact" prefetch={false}>Reach out to see more</Link>
+          <Link className="trust-mark" href="/contact" prefetch={false}>Reach out to see more</Link>
         </div>
         <div className="portfolio portfolio--main">
           {PROJECTS.map((project) => (

@@ -51,12 +51,18 @@ export async function getTrustpilotReviews(): Promise<TrustpilotReview[]> {
       headers: { apikey: apiKey },
       next: { revalidate: 3600 },
     });
-    if (!response.ok) return [];
+    if (!response.ok) {
+      console.error("Trustpilot reviews fetch failed", { status: response.status });
+      return [];
+    }
     const body = (await response.json()) as { reviews?: ApiReview[] };
     return (body.reviews ?? [])
       .map(fromApi)
       .filter((review): review is TrustpilotReview => review !== null);
-  } catch {
+  } catch (error) {
+    console.error("Trustpilot reviews fetch failed", {
+      message: error instanceof Error ? error.message : "unknown",
+    });
     return [];
   }
 }

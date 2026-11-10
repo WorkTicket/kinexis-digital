@@ -3,7 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { FAQS, STEPS } from "@/lib/content";
 import Stepper from "@/components/Stepper";
 import { PageSchema } from "@/components/JsonLd";
-import { Faq, HL, IconCard, PageHero, Section } from "@/components/ui";
+import { CtaBand, Faq, HL, IconCard, PageHero, Section } from "@/components/ui";
 
 export const metadata = pageMetadata("about");
 
@@ -51,13 +51,13 @@ export default function Page() {
         <h2 className="center"><HL text="Questions Before You Begin" mark="Before You Begin" /></h2>
         <Faq items={[FAQS[5], FAQS[3], FAQS[4]]} />
       </Section>
-      <Section>
-        <div className="center">
-          <h2><HL text="Ask Anything Before You Decide" mark="Before You Decide" /></h2>
-          <p className="muted">Call, email, or send a message. We’ll explain the plans before you make a commitment.</p>
-          <p><Link className="btn btn--primary" href="/contact" prefetch={false}>Contact Us</Link></p>
-        </div>
-      </Section>
+      <CtaBand
+        h="Ready To See Your Homepage?"
+        mark="Your Homepage"
+        sub="Start with a free preview. No card and no obligation — we’ll explain the plans before you commit."
+        btn="Get My Free Preview"
+        href="/contact"
+      />
     </>
   );
 }

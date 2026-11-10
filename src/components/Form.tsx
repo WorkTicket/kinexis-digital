@@ -42,7 +42,15 @@ export default function Form({
   hiddenFields?: Record<string, string>;
 }) {
   return (
-    <form className={slim ? "form form--slim" : "form"} noValidate data-lead="" data-contact-or="">
+    <form
+      className={slim ? "form form--slim" : "form"}
+      noValidate
+      data-lead=""
+      data-contact-or=""
+      action="/api/contact"
+      method="post"
+      encType="multipart/form-data"
+    >
       {fields.map((f) => f.kind === "file" ? (
         <label className="field field--file" key={f.name}><span>{f.label}</span><input type="file" name={f.name} /></label>
       ) : (

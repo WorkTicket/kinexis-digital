@@ -44,8 +44,8 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
         sub="Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe."
       >
         <p className="pay-hero-links">
-          Haven’t seen your free preview yet? <Link href="/contact" prefetch={false}>Get your free preview</Link> first.{" "}
-          <a className="pay-hero-links__invoice" href="#invoice">Pay an existing invoice</a>
+          Haven’t seen your free preview yet? <Link className="trust-mark" href="/contact" prefetch={false}>Get your free preview</Link> first.{" "}
+          <a className="pay-hero-links__invoice trust-mark" href="#invoice">Pay an existing invoice</a>
         </p>
       </PageHero>
 
@@ -65,7 +65,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
                 <h2>Before you pay</h2>
                 <p className="muted">The short version of canceling, both guarantees, missed-call text-back requirements, and when the first charge happens.</p>
               </div>
-              <a className="pay-jump" href="#invoice">Pay an existing invoice →</a>
+              <a className="pay-jump trust-mark" href="#invoice">Pay an existing invoice →</a>
             </div>
             <div className="pay-after__faqs">
               <Faq items={PAY_FAQS} openFirst={false} />

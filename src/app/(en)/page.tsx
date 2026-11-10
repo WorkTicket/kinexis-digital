@@ -44,15 +44,6 @@ function SectionGraphic({ name, alt, className }: { name: string; alt: string; c
   );
 }
 
-function SectionCta({ primaryHref = "/contact", secondaryHref = "/pricing" }: { primaryHref?: string; secondaryHref?: string }) {
-  return (
-    <p className="center btn-row spaced">
-      <Link className="btn btn--primary" href={primaryHref} prefetch={false}>Get My Free Preview</Link>
-      <Link className="btn btn--ghost" href={secondaryHref} prefetch={false}>See Plans &amp; Pricing</Link>
-    </p>
-  );
-}
-
 export default async function Home() {
   return (
     <>
@@ -62,7 +53,7 @@ export default async function Home() {
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">Website plans for local businesses</p>
-          <h1><HL text="A Website Plan Built to Book More Work" mark="Book More Work" /></h1>
+          <h1><HL text="A Website That Brings In More Calls" mark="More Calls" /></h1>
           <ul className="ticks">
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
@@ -125,7 +116,10 @@ export default async function Home() {
           <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="On Lead System and Plus, optional text-back can reach missed callers, review requests go out after the job, and every new lead is tracked for you." icon="better-follow-up" />
           <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
         </div>
-        <SectionCta />
+        <p className="center btn-row spaced">
+          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
+          <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
+        </p>
       </Section>
 
       {/* 4. Portfolio */}
@@ -136,21 +130,45 @@ export default async function Home() {
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Browse our work</Link>
         </p>
       </Section>
 
-      {/* 5. Comparison */}
+      {/* 5. Trades — qualification before differentiation and pricing */}
       <Section tint>
+        <div className="trades-feature">
+          <div className="trades-feature__copy">
+            <h2><HL text="Built for Local Service Businesses" mark="Local Service Businesses" /></h2>
+            <p className="muted">Plumbing, HVAC, roofing, and more — if customers search for what you do and call when they need help, we have you covered. Don’t see your business? You’re still included.</p>
+            <p className="btn-row">
+              <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
+            </p>
+          </div>
+          <SectionGraphic
+            name="built-for-your-trade"
+            alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
+            className="home-section-art--trades"
+          />
+        </div>
+        <IndustryGrid
+          layout="index"
+          limit={5}
+          moreHref="/industries"
+          moreLabel="& more"
+          moreMeta="Any local business — if customers call you, we can help."
+          moreLayout="cell"
+        />
+      </Section>
+
+      {/* 6. Comparison */}
+      <Section>
         <h2 className="center"><HL text="Why Business Owners Choose Kinexis Over Freelancers and Agencies" mark="Over Freelancers and Agencies" /></h2>
         <p className="center muted">A clearer plan than hiring a freelancer or a full web design agency for a small business.</p>
         <Compare />
         <p className="center muted small">Typical offerings; individual providers vary.</p>
-        <SectionCta />
       </Section>
 
-      {/* 6. Lead System — cobalt feature band; art + steps tell one story */}
+      {/* 7. Lead System — cobalt feature band; art + steps tell one story */}
       <Section band="lead">
         <div className="lead-feature">
           <div className="lead-feature__copy">
@@ -171,7 +189,7 @@ export default async function Home() {
         <ReviewRail />
       </Section>
 
-      {/* 7. Includes — checklist sheet is the visual; no duplicate hero art */}
+      {/* 8. Includes — checklist sheet is the visual; no duplicate hero art */}
       <Section tint>
         <div className="section-head">
           <p className="eyebrow">Built into every plan</p>
@@ -179,34 +197,6 @@ export default async function Home() {
           <p className="center muted">The essentials for looking credible, getting found, and turning visits into calls—with hosting and updates handled for you.</p>
         </div>
         <ReasonBoard />
-        <SectionCta />
-      </Section>
-
-      {/* 8. Trades — short featured list; full directory lives on /industries */}
-      <Section>
-        <div className="trades-feature">
-          <div className="trades-feature__copy">
-            <h2><HL text="Built for Local Service Businesses" mark="Local Service Businesses" /></h2>
-            <p className="muted">Plumbing, HVAC, roofing, and more — if customers search for what you do and call when they need help, we have you covered. Don’t see your business? You’re still included.</p>
-            <p className="btn-row">
-              <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-              <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
-            </p>
-          </div>
-          <SectionGraphic
-            name="built-for-your-trade"
-            alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
-            className="home-section-art--trades"
-          />
-        </div>
-        <IndustryGrid
-          layout="index"
-          limit={5}
-          moreHref="/industries"
-          moreLabel="& more"
-          moreMeta="Any local business — if customers call you, we can help."
-          moreLayout="cell"
-        />
       </Section>
 
       {/* 9. Plans */}
@@ -215,7 +205,7 @@ export default async function Home() {
       </Section>
 
       {/* 10. Process */}
-      <Section>
+      <Section tint>
         <h2 className="center"><HL text="From Free Preview to Launch" mark="to Launch" /></h2>
         <p className="center muted">See the homepage first. If it feels right, choose a plan and we’ll map out the launch in writing.</p>
         <Stepper steps={STEPS} />
@@ -226,7 +216,7 @@ export default async function Home() {
       </Section>
 
       {/* 11. Guarantee — final offer block above FAQs */}
-      <Section tint>
+      <Section>
         <h2 className="center"><HL text="60-Day Lead Guarantee" mark="Lead Guarantee" /></h2>
         <p className="center muted">Lead System and Plus include a written lead guarantee. If you get zero tracked leads in your first 60 days live, we waive the 3rd and 4th monthly charges.</p>
         <p className="center btn-row spaced">
@@ -236,7 +226,7 @@ export default async function Home() {
         <TrustStrip className="center" />
       </Section>
 
-      {/* 12. FAQ */}
+      {/* 12. FAQ — global SiteAudit band follows after main */}
       <Section narrow>
         <h2 className="center"><HL text="Frequently Asked Questions" mark="Questions" /></h2>
         <Faq items={FAQS} />

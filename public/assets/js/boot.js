@@ -4,6 +4,7 @@ const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 let path = location.pathname;
 let menuOpen = false;
 let megaTimer = 0;
+let megaCtaTimer = 0;
 let megaShutUntil = 0;
 let unlock = () => {};
 let heroStop = () => {};
@@ -13,15 +14,22 @@ let revealStop = () => {};
 const fbTimers = new WeakMap();
 
 function syncChrome() {
-  const p = location.pathname;
-  const noLead = p === "/contact" || p === "/audit" || p === "/strategy-call" || p.startsWith("/pay");
-  const noFloat = p.startsWith("/pay") || p === "/strategy-call";
+  // Match DocumentShell route-chrome: strip locale, then toggle every chrome
+  // class on each navigation so add-only first-paint classes cannot stick.
+  const raw = location.pathname;
+  const p = englishPath(raw);
+  const noLead = p === "/contact" || p === "/audit" || p === "/strategy-call" || p.startsWith("/pay") || p.startsWith("/lp/");
+  const noFloat = p === "/contact" || p === "/upgrades" || p.startsWith("/pay") || p === "/strategy-call" || p.startsWith("/lp/");
+  const noAudit = p === "/contact" || p === "/audit" || p === "/privacy" || p === "/terms" || p === "/update" || p.startsWith("/pay");
+  const lpRoute = p.startsWith("/lp/");
   root.classList.toggle("no-lead", noLead);
   root.classList.toggle("no-float", noFloat);
+  root.classList.toggle("no-audit", noAudit);
+  root.classList.toggle("lp-route", lpRoute);
   document.querySelectorAll("[data-nav],[data-nav-match]").forEach((el) => {
     const href = el.getAttribute("href") || el.getAttribute("data-nav-match") || "";
     const prefix = el.hasAttribute("data-nav-prefix");
-    const on = !!href && (prefix ? p === href || p.startsWith(href + "/") : href === p);
+    const on = !!href && (prefix ? raw === href || raw.startsWith(href + "/") : href === raw);
     el.classList.toggle("is-current", on);
     if (on) el.setAttribute("aria-current", el.tagName === "A" ? "page" : "true");
     else el.removeAttribute("aria-current");
@@ -38,9 +46,44 @@ function syncMegaNav() {
   const nav = document.getElementById("nav");
   if (!nav) return;
   const mobile = matchMedia("(max-width: 1320px)").matches;
-  // Any open mega (Services or Industries) collapses the bottom CTAs so panels don't overlap.
-  const anyOpen = !!document.querySelector("[data-mega].is-open");
+  // Any open (non-closing) mega collapses bottom CTAs so the full dropdown can show.
+  const anyOpen = !!document.querySelector("[data-mega].is-open:not(.is-closing)");
   nav.classList.toggle("mega-open", mobile && anyOpen);
+}
+function finishMegaClose(mega) {
+  mega.classList.remove("is-open", "is-closing");
+  mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "false");
+}
+/** Fade out, then snap shut — avoids the choppy height-squash close. */
+function closeMega(mega, onDone) {
+  if (!mega.classList.contains("is-open")) {
+    if (typeof onDone === "function") onDone();
+    return;
+  }
+  const soft = matchMedia("(max-width: 1320px)").matches && !reduce() && !desktopMega();
+  if (!soft) {
+    finishMegaClose(mega);
+    if (typeof onDone === "function") onDone();
+    return;
+  }
+  if (mega.classList.contains("is-closing")) return;
+  mega.classList.add("is-closing");
+  const panel = mega.querySelector(".mega__panel");
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    finishMegaClose(mega);
+    if (typeof onDone === "function") onDone();
+  };
+  const fallback = setTimeout(finish, 180);
+  if (panel instanceof HTMLElement) {
+    panel.addEventListener("transitionend", (event) => {
+      if (event.target !== panel || event.propertyName !== "opacity") return;
+      clearTimeout(fallback);
+      finish();
+    }, { once: true });
+  }
 }
 function setMega(open, target = null) {
   if (open && performance.now() < megaShutUntil) return;
@@ -48,27 +91,41 @@ function setMega(open, target = null) {
   const megas = allMegas();
   if (!megas.length) return;
   if (!open) {
-    megas.forEach((mega) => {
-      mega.classList.remove("is-open");
-      mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "false");
-    });
-    syncMegaNav();
     clearTimeout(megaTimer);
+    clearTimeout(megaCtaTimer);
+    const openMegas = megas.filter((mega) => mega.classList.contains("is-open"));
+    if (!openMegas.length) {
+      syncMegaNav();
+      return;
+    }
+    let left = openMegas.length;
+    openMegas.forEach((mega) => {
+      closeMega(mega, () => {
+        left -= 1;
+        if (left <= 0) syncMegaNav();
+      });
+    });
     return;
   }
   const active = target instanceof Element ? target.closest("[data-mega]") : null;
   if (!active) return;
+  clearTimeout(megaCtaTimer);
   megas.forEach((mega) => {
-    const on = mega === active;
-    mega.classList.toggle("is-open", on);
-    mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", String(on));
+    if (mega === active) {
+      mega.classList.remove("is-closing");
+      mega.classList.add("is-open");
+      mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "true");
+    } else if (mega.classList.contains("is-open")) {
+      closeMega(mega);
+    } else {
+      mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "false");
+    }
   });
   syncMegaNav();
   if (matchMedia("(max-width: 1320px)").matches && !reduce()) {
-    // Wait for accordion + CTA exit so scroll doesn't fight the animation.
     setTimeout(() => {
-      active.querySelector(".mega__btn")?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    }, 220);
+      active.querySelector(".mega__btn")?.scrollIntoView({ block: "nearest", behavior: "auto" });
+    }, 320);
   }
 }
 
@@ -823,10 +880,32 @@ addEventListener("error", (event) => {
   if (shot) showShotFallback(shot);
   else if (target.hasAttribute("data-fallback")) showImageFallback(target);
 }, true);
+function formCopy() {
+  const es = String(document.documentElement.lang || "").toLowerCase().startsWith("es");
+  return es ? {
+    contactOr: "Agrega un teléfono o un correo.",
+    fill: "Completa los campos marcados.",
+    thanks: "Gracias. Te enviaremos tu vista previa en un máximo de 2 días hábiles.",
+    mailOpen: "Debería abrirse tu correo con este mensaje. Si no, escribe a ",
+    mailSubject: "Mensaje desde el sitio de Kinexis Digital",
+    error: "Algo salió mal. Inténtalo de nuevo.",
+    network: "Error de red. Inténtalo de nuevo.",
+  } : {
+    contactOr: "Please add a phone number or email.",
+    fill: "Please fill in the highlighted fields.",
+    thanks: "Thanks. We’ll send your preview within 2 business days.",
+    mailOpen: "Your email app should open with this message. If it does not, email ",
+    mailSubject: "Message from the Kinexis Digital website",
+    error: "Something went wrong. Please try again.",
+    network: "Network error. Please try again.",
+  };
+}
+
 document.addEventListener("submit", async (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement) || !form.hasAttribute("data-lead")) return;
   event.preventDefault();
+  const copy = formCopy();
   let firstBad = null;
   let contactMsg = "";
   form.querySelectorAll("[required]").forEach((el) => {
@@ -849,12 +928,12 @@ document.addEventListener("submit", async (event) => {
       email.setAttribute("aria-invalid", String(emailBad));
       phone.setAttribute("aria-invalid", String(phoneBad));
       if ((emailBad || phoneBad) && !firstBad) firstBad = emailBad ? email : phone;
-      if (!emailVal && !phoneVal) contactMsg = "Please add a phone number or email.";
+      if (!emailVal && !phoneVal) contactMsg = copy.contactOr;
     }
   }
   const msg = form.querySelector(".form__msg");
   if (firstBad) {
-    if (msg) msg.textContent = contactMsg || "Please fill in the highlighted fields.";
+    if (msg) msg.textContent = contactMsg || copy.fill;
     firstBad.focus();
     return;
   }
@@ -876,7 +955,7 @@ document.addEventListener("submit", async (event) => {
         check.setAttribute("aria-hidden", "true");
         check.textContent = "✓";
         const strong = document.createElement("b");
-        strong.textContent = "Thanks. We’ll send your preview within 2 business days.";
+        strong.textContent = copy.thanks;
         msg.append(check, strong);
       }
       track("generate_lead", {
@@ -889,10 +968,10 @@ document.addEventListener("submit", async (event) => {
     }
     if (res.status === 503) {
       const lines = [...data.entries()].filter((entry) => entry[0] !== "_gotcha" && typeof entry[1] === "string" && entry[1].trim() !== "").map(([key, value]) => key + ": " + value).join("\n");
-      location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent("Message from the Kinexis Digital website") + "&body=" + encodeURIComponent(lines);
+      location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent(copy.mailSubject) + "&body=" + encodeURIComponent(lines);
       if (msg) {
         msg.replaceChildren();
-        msg.append("Your email app should open with this message. If it does not, email ");
+        msg.append(copy.mailOpen);
         const link = document.createElement("a");
         link.href = "mailto:" + cfg.email;
         link.textContent = cfg.email;
@@ -900,9 +979,9 @@ document.addEventListener("submit", async (event) => {
       }
       return;
     }
-    if (msg) msg.textContent = typeof body.error === "string" && body.error ? body.error : "Something went wrong. Please try again.";
+    if (msg) msg.textContent = typeof body.error === "string" && body.error ? body.error : copy.error;
   } catch {
-    if (msg) msg.textContent = "Network error. Please try again.";
+    if (msg) msg.textContent = copy.network;
   } finally {
     button?.classList.remove("is-loading");
     if (button) button.disabled = false;

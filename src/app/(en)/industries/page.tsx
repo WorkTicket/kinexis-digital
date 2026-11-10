@@ -18,7 +18,7 @@ export default function Page() {
         sub="Choose your industry to see how the site can cover its common jobs, useful pages, and day-to-day follow-up."
       >
         <p className="btn-row">
-          <Link className="btn btn--primary" href="/audit" prefetch={false}>Get a Free Audit</Link>
+          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
         </p>
       </PageHero>
@@ -32,7 +32,7 @@ export default function Page() {
         <p>You see a free homepage preview first, with no card and no obligation. Once it is approved, choose Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for $1,497.</p>
         <p>Lead System and Plus include Google review requests after the job. Missed-call text-back is an optional add-on on those plans. Every site is fast and organized so Google can read it. Ongoing SEO is quoted separately.</p>
       </Section>
-      <CtaBand h="See How Your Business Could Look" mark="Your Business" sub="We’ll prepare the homepage before you pay. No card and no obligation." btn="Get a Free Audit" href="/audit" />
+      <CtaBand h="See How Your Business Could Look" mark="Your Business" sub="We’ll prepare the homepage before you pay. No card and no obligation." btn="Get My Free Preview" href="/contact" />
     </>
   );
 }

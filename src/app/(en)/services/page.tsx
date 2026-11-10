@@ -69,7 +69,7 @@ export default function Page() {
           <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse Industries</Link>
         </p>
       </Section>
-      <CtaBand h="Not Sure Where To Start?" mark="Where To Start" sub="We can review your current site or talk through the one you want to build." btn="Get a Free Audit" href="/audit" />
+      <CtaBand h="Not Sure Where To Start?" mark="Where To Start" sub="Start with a free homepage preview, or talk through the site you want to build." btn="Get My Free Preview" href="/contact" />
     </>
   );
 }

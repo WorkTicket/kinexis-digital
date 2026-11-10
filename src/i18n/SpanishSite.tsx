@@ -479,7 +479,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             </article>
           ))}
         </div>
-        <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link href="/pay" hrefLang="en-US" prefetch={false}>{tx("Seguir al pago")}</Link>. {tx("La caja está en inglés.")}</p>
+        <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link className="trust-mark" href="/pay" hrefLang="en-US" prefetch={false}>{tx("Seguir al pago")}</Link>. {tx("La caja está en inglés.")}</p>
         <div className="guarantee-stack">
           <div className="guarantee-band">
             <GuaranteeBadge alt={tx("Garantía de leads rastreados de 60 días")} />

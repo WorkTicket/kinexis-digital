@@ -13,7 +13,7 @@ export default function Page() {
   return (
     <>
       <PageSchema page="strategy-call" />
-      <PageHero h1="Talk Through Your Website Plans" mark="Website Plans" sub="Use a short call to show us your current site, explain the business, and see which plan fits." />
+      <PageHero previewBar={false} h1="Talk Through Your Website Plans" mark="Website Plans" sub="Use a short call to show us your current site, explain the business, and see which plan fits." />
       <section className="section"><div className="container two-col two-col--book">
         <div>
           <h2><HL text="What We’ll Cover" mark="We’ll Cover" /></h2>

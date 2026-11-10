@@ -97,12 +97,18 @@ export default function DocumentShell({
 html,body{background:#fff;color:#0a1230}
 body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;font-weight:500;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,.btn,button{font-weight:700}
-button.link-btn,.link-btn{font-weight:600}
-.trust-hl,.trust-mark{font-weight:700}
+.trust-hl,.trust-mark,.link-btn{font-weight:700}
 h1{font-weight:800}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 `}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />
+        {/* Inline before paint: App Router forbids next/script beforeInteractive outside pages/_document. */}
+        <script
+          id="kinexis-btn-fill"
+          dangerouslySetInnerHTML={{
+            __html: `try{CSS.registerProperty({name:"--btn-fill",syntax:"<number>",inherits:!1,initialValue:"0"})}catch(e){}`,
+          }}
+        />
         <script
           id="route-chrome"
           dangerouslySetInnerHTML={{
@@ -112,7 +118,7 @@ if(p==="/es"||p.indexOf("/es/")===0){r.lang="es";p=p==="/es"?"/":p.slice(3)}
 else if(p==="/es-es"||p.indexOf("/es-es/")===0){r.lang="es-ES";p=p==="/es-es"?"/":p.slice(6)}
 if(p==="/contact"||p==="/audit"||p==="/strategy-call"||p.indexOf("/pay")===0||p.indexOf("/lp/")===0)r.classList.add("no-lead");
 if(p==="/contact"||p==="/upgrades"||p.indexOf("/pay")===0||p==="/strategy-call"||p.indexOf("/lp/")===0)r.classList.add("no-float");
-if(p==="/audit"||p==="/privacy"||p==="/terms"||p==="/update"||p.indexOf("/pay")===0)r.classList.add("no-audit");
+if(p==="/contact"||p==="/audit"||p==="/privacy"||p==="/terms"||p==="/update"||p.indexOf("/pay")===0)r.classList.add("no-audit");
 if(p.indexOf("/lp/")===0)r.classList.add("lp-route");
 })()`,
           }}

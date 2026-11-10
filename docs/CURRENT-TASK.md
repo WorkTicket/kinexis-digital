@@ -15,13 +15,12 @@ implemented locally (not deployed)
   - `/blog/wix-vs-squarespace-vs-managed-website-contractors`
 - Tool `/tools/google-review-link-qr` (client-only Place ID → writereview URL + PNG QR)
 - Sitemap/pages registry, EN-only tool (unmirrored), GA `tool_generate`, form `source=review_qr_tool`
-- Blog hero stills + 640/960 variants
-- `npm run typecheck` + `npm run lint` pass
+- Custom blog hero art for all five posts (navy/orange sticker style, matching existing covers)
+- Masters + 640/960 WebP/AVIF; `STILL_VERSION` → `12`
 
 ## Still open
 - Spanish translations for the five new posts
 - Deploy + Rich Results / GA4 DebugView check
-- Optional: richer custom blog hero art (current stills are branded placeholders)
 
 ## Next action
 Preview locally, then deploy when ready.

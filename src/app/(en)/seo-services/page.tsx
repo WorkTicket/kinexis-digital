@@ -30,7 +30,7 @@ export default function Page() {
         <h2 className="center"><HL text="Common SEO Questions" mark="SEO Questions" /></h2>
         <Faq items={SEO_FAQS} />
       </Section>
-      <CtaBand h="Want To Know What Google Sees?" mark="Google Sees" sub="Start with a free review of your website and search setup." btn="Get a Free Audit" href="/audit" />
+      <CtaBand h="Want A Site Built To Get Found?" mark="Built To Get Found" sub="Start with a free homepage preview built for search and local calls." btn="Get My Free Preview" href="/contact" />
     </>
   );
 }

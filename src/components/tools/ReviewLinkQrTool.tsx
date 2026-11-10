@@ -21,6 +21,7 @@ export default function ReviewLinkQrTool({ initialTrade = "" }: { initialTrade?:
   const [placeId, setPlaceId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState<"url" | "script" | null>(null);
+  const [copyError, setCopyError] = useState<string | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const link = placeId ? reviewUrl(placeId) : null;
@@ -44,6 +45,7 @@ export default function ReviewLinkQrTool({ initialTrade = "" }: { initialTrade?:
       return;
     }
     setError(null);
+    setCopyError(null);
     setPlaceId(id);
     setCopied(null);
     if (typeof window !== "undefined" && typeof window.gtag === "function") {
@@ -58,8 +60,10 @@ export default function ReviewLinkQrTool({ initialTrade = "" }: { initialTrade?:
     try {
       await navigator.clipboard.writeText(value);
       setCopied(kind);
+      setCopyError(null);
     } catch {
       setCopied(null);
+      setCopyError("Couldn’t copy automatically — select the text and copy it manually.");
     }
   }
 
@@ -110,6 +114,12 @@ export default function ReviewLinkQrTool({ initialTrade = "" }: { initialTrade?:
       {error ? (
         <p className="review-qr-tool__error" role="alert">
           {error}
+        </p>
+      ) : null}
+
+      {copyError ? (
+        <p className="review-qr-tool__error" role="alert">
+          {copyError}
         </p>
       ) : null}
 

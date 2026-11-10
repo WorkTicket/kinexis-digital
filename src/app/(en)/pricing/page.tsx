@@ -109,7 +109,7 @@ export default function Page() {
           ))}
         </div>
 
-        <p className="pay-bridge">Already approved your preview? <Link href="/pay" prefetch={false}>Continue to checkout</Link>.</p>
+        <p className="pay-bridge">Already approved your preview? <Link className="trust-mark" href="/pay" prefetch={false}>Continue to checkout</Link>.</p>
 
         <div className="guarantee-stack">
           <div className="guarantee-band">

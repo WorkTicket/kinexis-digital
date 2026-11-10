@@ -135,7 +135,23 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
 
       <fieldset className="site-review-form__stars">
         <legend>{text.stars}</legend>
-        <div className="site-review-form__star-row" role="radiogroup" aria-label={text.stars}>
+        <div
+          className="site-review-form__star-row"
+          role="radiogroup"
+          aria-label={text.stars}
+          onKeyDown={(event) => {
+            if (event.key !== "ArrowRight" && event.key !== "ArrowLeft" && event.key !== "Home" && event.key !== "End") return;
+            event.preventDefault();
+            const next =
+              event.key === "Home" ? 1 :
+              event.key === "End" ? 5 :
+              event.key === "ArrowRight" ? Math.min(5, stars + 1) :
+              Math.max(1, stars - 1);
+            setStars(next);
+            const buttons = event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]');
+            buttons[next - 1]?.focus();
+          }}
+        >
           {[1, 2, 3, 4, 5].map((value) => (
             <button
               key={value}
@@ -143,6 +159,7 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
               className={`site-review-form__star${stars >= value ? " is-on" : ""}`}
               aria-checked={stars === value}
               role="radio"
+              tabIndex={stars === value ? 0 : -1}
               onClick={() => setStars(value)}
             >
               <span aria-hidden="true">★</span>

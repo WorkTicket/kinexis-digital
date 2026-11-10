@@ -11,6 +11,10 @@ export async function GET(request: Request) {
   try {
     const result = await captureInvoiceOrder(token);
     if (result === "paid") return destination(request, "/pay/thanks?kind=invoice&status=paid");
+    console.error("PayPal invoice capture unfinished", {
+      tokenPrefix: token.slice(0, 8),
+      result,
+    });
   } catch (error) {
     console.error("PayPal invoice capture failed", {
       tokenPrefix: token.slice(0, 8),

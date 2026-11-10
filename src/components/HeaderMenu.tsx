@@ -29,36 +29,38 @@ function IndustriesMenu({ chrome, industries, industriesHref }: { chrome: Chrome
         </svg>
       </button>
       <div className="mega__panel" id="industries-menu" role="region" aria-label={chrome.industries}>
-        <div className="mega__head">
-          <p className="mega__title">{chrome.industriesTitle}</p>
-          <Link className="mega__all" href={industriesHref} prefetch={false} data-nav="">
-            {chrome.allIndustries}
-            <svg className="mega__arrow" viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
+        <div className="mega__clip">
+          <div className="mega__head">
+            <p className="mega__title">{chrome.industriesTitle}</p>
+            <Link className="mega__all" href={industriesHref} prefetch={false} data-nav="">
+              {chrome.allIndustries}
+              <svg className="mega__arrow" viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </Link>
+          </div>
+          <ul className="mega__grid">
+            {industries.map((industry) => (
+              <li key={industry.slug}>
+                <Link href={`${industriesHref}/${industry.slug}`} prefetch={false} data-nav="">
+                  <img
+                    className="mega__icon"
+                    src={kitSrc(`/assets/industries/${industry.slug}/icons/industry.svg`)}
+                    alt=""
+                    width={40}
+                    height={40}
+                    decoding="async"
+                    loading="lazy"
+                  />
+                  <span className="mega__copy">
+                    <strong>{industry.name}</strong>
+                    <span className="mega__card">{industry.card}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="mega__grid">
-          {industries.map((industry) => (
-            <li key={industry.slug}>
-              <Link href={`${industriesHref}/${industry.slug}`} prefetch={false} data-nav="">
-                <img
-                  className="mega__icon"
-                  src={kitSrc(`/assets/industries/${industry.slug}/icons/industry.svg`)}
-                  alt=""
-                  width={40}
-                  height={40}
-                  decoding="async"
-                  loading="lazy"
-                />
-                <span className="mega__copy">
-                  <strong>{industry.name}</strong>
-                  <span className="mega__card">{industry.card}</span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );
@@ -88,21 +90,23 @@ function ServicesMenu({ chrome, hrefFor }: { chrome: Chrome; hrefFor: (path: str
         </svg>
       </button>
       <div className="mega__panel services-dropdown" id="services-menu" role="region" aria-label={chrome.services}>
-        <ul className="services-dropdown__list">
-          {links.map(([href, label]) => (
-            <li key={href}>
-              <Link href={hrefFor(href)} prefetch={false} data-nav="">
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <Link className="mega__all services-dropdown__all" href={hrefFor("/services")} prefetch={false} data-nav="">
-          {chrome.allServices}
-          <svg className="mega__arrow" viewBox="0 0 16 16" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
-        </Link>
+        <div className="mega__clip">
+          <ul className="services-dropdown__list">
+            {links.map(([href, label]) => (
+              <li key={href}>
+                <Link href={hrefFor(href)} prefetch={false} data-nav="">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link className="mega__all services-dropdown__all" href={hrefFor("/services")} prefetch={false} data-nav="">
+            {chrome.allServices}
+            <svg className="mega__arrow" viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </div>
       </div>
     </div>
   );
