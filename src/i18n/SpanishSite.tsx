@@ -67,12 +67,28 @@ const PAGE_META: Record<string, Meta> = {
   "/privacy": { title: "Cómo cuida Kinexis tu información", description: "Lee qué recoge Kinexis de formularios, llamadas, correo, registros del servidor y analítica, además de cómo usa y comparte esa información." },
 };
 
-/** Spain homepage needs its own title/description — spainize() alone does not change this copy. */
+/** Spain pages that need their own title/description — spainize() alone does not strip USD or US geo. */
 const PAGE_META_ES_ES: Partial<Record<string, Meta>> = {
   "/": {
     title: "Diseño web para negocios locales en España | Kinexis Digital",
     absolute: true,
     description: "Web profesional para negocios de servicios locales en España, con vista previa gratis de la página de inicio. Sin tarjeta.",
+  },
+  "/pricing": {
+    title: "Planes de sitios web para negocios locales | Kinexis Digital",
+    description: "Website, Lead System, Plus u Own It. Vista previa gratis de la página de inicio en 2 días hábiles. Sin tarjeta.",
+  },
+  "/about": {
+    title: "Conoce nuestra agencia de diseño web",
+    description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios locales.",
+  },
+  "/services": {
+    title: "Diseño web, SEO y mantenimiento",
+    description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios locales, con apoyo claro en cada paso.",
+  },
+  "/blog": {
+    title: "Recursos de diseño web y SEO",
+    description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento.",
   },
 };
 
@@ -323,13 +339,24 @@ function Services({ locale, tx, href, lang, band }: PageBits) {
 type PageBits = { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string; band: { secondary: string; secondaryHref: string; locale: Locale } };
 
 function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale }) {
+  const spainChrome = locale === "es-ES";
   const faqs = [
     { q: tx("¿Cómo funciona la vista previa gratis?"), a: tx("Cuéntanos sobre tu negocio y el estilo que buscas. Preparamos un concepto de la página de inicio para que lo revises antes de elegir un plan. No se pide tarjeta y respondemos en 2 días hábiles.") },
     { q: tx("¿Qué necesito enviarte?"), a: tx("Ayuda una dirección de diseño: ejemplos de nuestro portafolio o capturas de sitios que te gusten. Envía tu logo si lo tienes, y fotos de trabajos, la camioneta o el equipo. Si aún estás reuniendo fotos, podemos empezar la vista previa con texto realista del negocio y marcadores de posición.") },
     { q: tx("¿Y si no me gusta el primer diseño?"), a: tx("Dinos qué quieres cambiar. Ajustamos la página de inicio hasta que se sienta bien para tu negocio; luego eliges un plan y terminamos el sitio completo.") },
     { q: tx("¿Qué páginas y funciones voy a recibir?"), a: tx("El sitio incluye inicio, páginas para los servicios que quieres promover y una forma sencilla de llamar o cotizar. También lleva títulos claros, encabezados ordenados, páginas rápidas y una estructura que Google puede leer. Ves el inicio antes de pagar.") },
-    { q: tx("¿Cuáles son los precios?"), a: tx("Website cuesta $97 al mes, Lead System $197, Plus $297 y Own It $1,497 en un solo pago. Todos empiezan con una vista previa gratis, sin tarjeta y sin obligación.") },
-    { q: tx("¿Pueden construir para mi zona?"), a: tx("Sí. Trabajamos con negocios de servicios en Estados Unidos y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad.") },
+    {
+      q: tx("¿Cuáles son los precios?"),
+      a: spainChrome
+        ? tx("Hay cuatro opciones: Website, Lead System, Plus u Own It. Todos empiezan con una vista previa gratis, sin tarjeta y sin obligación. El detalle de cada plan está en Precios.")
+        : tx("Website cuesta $97 al mes, Lead System $197, Plus $297 y Own It $1,497 en un solo pago. Todos empiezan con una vista previa gratis, sin tarjeta y sin obligación."),
+    },
+    {
+      q: tx("¿Pueden construir para mi zona?"),
+      a: spainChrome
+        ? tx("Sí. Trabajamos con negocios de servicios locales y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad.")
+        : tx("Sí. Trabajamos con negocios de servicios en Estados Unidos y nombramos las ciudades que de verdad atiendes. No hacemos una copia de la misma página para cada ciudad."),
+    },
   ];
   const steps = [
     { title: tx("Comparte una dirección"), text: tx("Elige un estilo de nuestro portafolio, o envía capturas de sitios que te gusten. Así tenemos un punto de partida claro para tu inicio."), icon: "layers", phase: "share" as const },
@@ -368,7 +395,9 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
         <MediaSplit image="process" alt={tx("Vista previa del proceso de diseño para un sitio de servicios")}>
           <h2><HL text={tx("Revisa el inicio primero")} mark={tx("primero")} /></h2>
           <p>{tx("Preparamos un concepto de inicio para tu negocio para que juzgues el diseño, el texto y la llamada a la acción antes de pagar.")}</p>
-          <p>{tx("Pide cambios hasta que se sienta bien. Cuando estés listo, elige Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497—y terminamos el sitio completo.")}</p>
+          <p>{spainChrome
+            ? tx("Pide cambios hasta que se sienta bien. Cuando estés listo, elige Website, Lead System, Plus u Own It—y terminamos el sitio completo.")
+            : tx("Pide cambios hasta que se sienta bien. Cuando estés listo, elige Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497—y terminamos el sitio completo.")}</p>
           <p className="btn-row spaced">
             <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Quiero mi vista previa gratis")}</Link>
             <Link className="btn btn--ghost" href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio")}</Link>
@@ -376,8 +405,10 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
         </MediaSplit>
       </Section>
       <Section tint narrow>
-        <h2 className="center"><HL text={tx("Los mismos cuatro planes en todo el país")} mark={tx("planes")} /></h2>
-        <p>{tx("Negocios de servicios en cualquier parte de Estados Unidos pueden elegir Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497.")}</p>
+        <h2 className="center"><HL text={spainChrome ? tx("Los mismos cuatro planes") : tx("Los mismos cuatro planes en todo el país")} mark={tx("planes")} /></h2>
+        <p>{spainChrome
+          ? tx("Negocios de servicios locales pueden elegir Website, Lead System, Plus u Own It. El detalle de cada plan está en Precios.")
+          : tx("Negocios de servicios en cualquier parte de Estados Unidos pueden elegir Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497.")}</p>
         <p>{tx("El texto se adapta a tu negocio y zona. La base técnica de búsqueda se mantiene consistente, y el SEO continuo se cotiza aparte después de construir el sitio.")}</p>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link>
@@ -427,7 +458,9 @@ function Seo({ locale, tx, href, lang, band }: PageBits) {
         </div>
       </Section>
       <Section tint narrow>
-        <p>{tx("Trabajamos con negocios de servicios en Estados Unidos, cubras una ciudad o una zona más amplia. Primero va la base: un sitio rápido, rastreable, con títulos claros y contenido útil. Nadie puede garantizar posiciones.")}</p>
+        <p>{locale === "es-ES"
+          ? tx("Trabajamos con negocios de servicios locales, cubras una ciudad o una zona más amplia. Primero va la base: un sitio rápido, rastreable, con títulos claros y contenido útil. Nadie puede garantizar posiciones.")
+          : tx("Trabajamos con negocios de servicios en Estados Unidos, cubras una ciudad o una zona más amplia. Primero va la base: un sitio rápido, rastreable, con títulos claros y contenido útil. Nadie puede garantizar posiciones.")}</p>
       </Section>
       <Section narrow><Faq items={faqs} /></Section>
       <CtaBand h={tx("¿Quieres saber qué ve Google?")} mark={tx("qué ve Google")} sub={tx("Empieza con una revisión gratis del sitio y su configuración de búsqueda.")} btn={tx("Revisar mi sitio")} href={href("/audit")} {...band} />
@@ -436,16 +469,18 @@ function Seo({ locale, tx, href, lang, band }: PageBits) {
 }
 
 function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => string; href: (p: string) => string; lang: string }) {
-  const plans = spanishPlans(tx);
-  const faqs = homeFaqs(tx);
+  const spainChrome = locale === "es-ES";
+  const plans = spanishPlans(tx, { hideUsd: spainChrome });
+  const faqs = homeFaqs(tx, spainChrome);
+  const pricingMeta = metaFor("/pricing", locale) ?? PAGE_META["/pricing"];
   const table = [
-    { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), "$99", tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
-    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas**"), "—", tx("$1/mes 2.º número + operador"), tx("$1/mes 2.º número + operador · EN/ES"), tx("Extra $97 / mes")], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
-    { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Devolución en 30 días"), tx("Sí"), tx("Sí"), tx("Sí"), tx("Sí")], [tx("Cobro"), tx("Mes a mes"), tx("Mes a mes"), tx("Mes a mes"), tx("Un pago")], [tx("Cancela cuando quieras"), tx("Sí"), tx("Sí"), tx("Sí"), "—"], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), "$97 / mes", "$197 / mes", "$297 / mes", "$1,497"]] },
+    { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), spainChrome ? tx("Se cotizan") : "$99", tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
+    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas**"), "—", spainChrome ? tx("Opcional · 2.º número + operador") : tx("$1/mes 2.º número + operador"), spainChrome ? tx("Opcional · EN/ES · 2.º número + operador") : tx("$1/mes 2.º número + operador · EN/ES"), spainChrome ? tx("Extra opcional") : tx("Extra $97 / mes")], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
+    { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Devolución en 30 días"), tx("Sí"), tx("Sí"), tx("Sí"), tx("Sí")], [tx("Cobro"), tx("Mes a mes"), tx("Mes a mes"), tx("Mes a mes"), tx("Un pago")], [tx("Cancela cuando quieras"), tx("Sí"), tx("Sí"), tx("Sí"), "—"], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), spainChrome ? tx("Mensual") : "$97 / mes", spainChrome ? tx("Mensual") : "$197 / mes", spainChrome ? tx("Mensual") : "$297 / mes", spainChrome ? tx("Un pago") : "$1,497"]] },
   ];
   return (
     <>
-      <ContentSchema path={href("/pricing")} title={tx(PAGE_META["/pricing"].title)} description={tx(PAGE_META["/pricing"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} products={plans} inLanguage={lang} />
+      <ContentSchema path={href("/pricing")} title={pricingMeta.title} description={pricingMeta.description} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} products={plans} inLanguage={lang} />
       <PageHero locale={locale} h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu negocio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
       <Section>
         <div className="free-preview">
@@ -465,7 +500,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
               <div className="plan__intro">
                 <h2 className="plan-title">{plan.name}</h2>
                 <p className="plan__tagline">{plan.tagline}</p>
-                <SpanishPlanSticker slug={plan.slug} kind="offer" />
+                {!spainChrome && <SpanishPlanSticker slug={plan.slug} kind="offer" />}
                 <p className="plan__note">{plan.note}</p>
                 {plan.guarantee && <p className="plan__guarantee">{tx("Incluye la garantía de 60 días")}</p>}
                 <p className="plan__guarantee plan__guarantee--refund">{tx("Garantía de devolución en 30 días")}</p>
@@ -505,7 +540,9 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             <section className="pricing-terms__group">
               <h3>{tx("Cobro")}</h3>
               <ul>
-                <li>{tx("Los planes mensuales son $0 de enganche y mes a mes desde el lanzamiento. No hay contrato largo ni cargo por cancelar.")}</li>
+                <li>{spainChrome
+                  ? tx("Los planes mensuales empiezan sin enganche y son mes a mes desde el lanzamiento. No hay contrato largo ni cargo por cancelar.")
+                  : tx("Los planes mensuales son $0 de enganche y mes a mes desde el lanzamiento. No hay contrato largo ni cargo por cancelar.")}</li>
                 <li>{tx("Tu precio mensual queda fijo 24 meses desde el lanzamiento; después avisamos al menos 30 días antes de cualquier cambio.")}</li>
               </ul>
             </section>
@@ -513,13 +550,17 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
               <h3>{tx("Cancelar y quedarte con el sitio")}</h3>
               <ul>
                 <li>{tx("Cancela cuando quieras por texto, correo o Messenger. El sitio sigue en línea hasta el final del período que ya pagaste.")}</li>
-                <li>{tx("Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Para quedártelo, pide una compra de $1,497 por escrito de los archivos para hospedarlos tú—o pasa a Own It antes de que termine el período. Pide las condiciones por escrito antes de cancelar.")}</li>
+                <li>{spainChrome
+                  ? tx("Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Para quedártelo, pide una compra por escrito de los archivos para hospedarlos tú—o pasa a Own It antes de que termine el período. Pide las condiciones por escrito antes de cancelar.")
+                  : tx("Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Para quedártelo, pide una compra de $1,497 por escrito de los archivos para hospedarlos tú—o pasa a Own It antes de que termine el período. Pide las condiciones por escrito antes de cancelar.")}</li>
               </ul>
             </section>
             <section className="pricing-terms__group">
               <h3>{tx("Texto si no contestas")}</h3>
               <ul>
-                <li>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada.")}</li>
+                <li>{spainChrome
+                  ? tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Puede haber un segundo número de seguimiento y tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada.")
+                  : tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada.")}</li>
               </ul>
             </section>
             <section className="pricing-terms__group">
@@ -535,7 +576,9 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
               <h3>{tx("Cambios y Own It")}</h3>
               <ul>
                 <li>{tx("Un cambio chico toma 30 minutos o menos. Las peticiones se atienden de una en una.")}</li>
-                <li>{tx("En Own It, los cambios chicos se hacen en 2 días hábiles y el tiempo no usado no se acumula. Después de 12 meses, el Cuidado del sitio opcional es $39 al mes por hosting y hasta 30 minutos de cambios.")}</li>
+                <li>{spainChrome
+                  ? tx("En Own It, los cambios chicos se hacen en 2 días hábiles y el tiempo no usado no se acumula. Después de 12 meses, el Cuidado del sitio opcional incluye hosting y hasta 30 minutos de cambios al mes.")
+                  : tx("En Own It, los cambios chicos se hacen en 2 días hábiles y el tiempo no usado no se acumula. Después de 12 meses, el Cuidado del sitio opcional es $39 al mes por hosting y hasta 30 minutos de cambios.")}</li>
                 <li>{tx("Las renovaciones de dominio posteriores se cobran al costo, las páginas nuevas en Own It se cotizan por escrito y los precios no incluyen impuestos, si los hay.")}</li>
               </ul>
             </section>
@@ -543,7 +586,9 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
           <div className="pricing-terms__foot">
             <p className="pricing-footnote">
               <b>**</b>{" "}
-              {tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación; esa aprobación no está garantizada.")}
+              {spainChrome
+                ? tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Puede haber un segundo número de seguimiento y tarifas del operador. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación; esa aprobación no está garantizada.")
+                : tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1 al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación; esa aprobación no está garantizada.")}
             </p>
             <Link href={href("/terms")} prefetch={false}>{tx("Términos completos del plan →")}</Link>
           </div>
@@ -552,12 +597,13 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <Section tint>
         <h2 className="center"><HL text={tx("Mira qué cubre cada plan")} mark={tx("cada plan")} /></h2>
         <MobilePlanComparison
-          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1], sticker: SPANISH_PLAN_STICKERS[plan.slug].name }))}
+          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1], sticker: spainChrome ? undefined : SPANISH_PLAN_STICKERS[plan.slug].name }))}
           sections={table}
           hint={tx("Toca un plan para ver qué incluye. Abre dos para comparar.")}
           popularLabel={tx("El más elegido")}
+          hideStickers={spainChrome}
         />
-        <div className="table-scroll pricing-comparison-table"><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}><SpanishPlanSticker slug={plan.slug} kind="name" /></th>)}</tr></thead>
+        <div className="table-scroll pricing-comparison-table"><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
           {table.map((section) => <tbody key={section.group}><tr className="plan-table__group"><th colSpan={5}><span>{section.group}</span></th></tr>{section.rows.map(([label, ...values]) => <tr key={label}><th scope="row">{label}</th>{values.map((value, i) => <td className={i === 1 ? "is-pop" : undefined} key={`${label}-${i}`}>{value}</td>)}</tr>)}</tbody>)}
         </table></div>
       </Section>
@@ -577,12 +623,16 @@ function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
   ];
   return (
     <>
-      <ContentSchema path={href("/about")} title={tx(PAGE_META["/about"].title)} description={tx(PAGE_META["/about"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Nosotros"), path: href("/about") }]} faqs={faqs} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Un equipo pequeño para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Creamos sitios, mejoramos la visibilidad, pedimos reseñas en Google y ofrecemos texto opcional si no contestas, para negocios en Estados Unidos.")} image="about" imageAlt={tx("Computadora y un boceto de una página de inicio")} />
+      <ContentSchema path={href("/about")} title={(metaFor("/about", locale) ?? PAGE_META["/about"]).title} description={(metaFor("/about", locale) ?? PAGE_META["/about"]).description} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Nosotros"), path: href("/about") }]} faqs={faqs} inLanguage={lang} />
+      <PageHero locale={locale} h1={tx("Un equipo pequeño para negocios de servicios")} mark={tx("negocios de servicios")} sub={locale === "es-ES"
+        ? tx("Creamos sitios, mejoramos la visibilidad, pedimos reseñas en Google y ofrecemos texto opcional si no contestas, para negocios de servicios locales.")
+        : tx("Creamos sitios, mejoramos la visibilidad, pedimos reseñas en Google y ofrecemos texto opcional si no contestas, para negocios en Estados Unidos.")} image="about" imageAlt={tx("Computadora y un boceto de una página de inicio")} />
       <section className="section"><div className="container two-col">
         <div>
           <h2><HL text={tx("Para negocios que dependen del teléfono")} mark={tx("dependen del teléfono")} /></h2>
-          <p>{tx("Kinexis trabaja con plomería, HVAC, electricidad, techos, jardinería y otros negocios en Estados Unidos. Tus clientes buscan cuando necesitan ayuda, así que el sitio y el seguimiento dejan claro qué hacer después.")}</p>
+          <p>{locale === "es-ES"
+            ? tx("Kinexis trabaja con fontanería, HVAC, electricidad, techos, jardinería y otros negocios de servicios locales. Tus clientes buscan cuando necesitan ayuda, así que el sitio y el seguimiento dejan claro qué hacer después.")
+            : tx("Kinexis trabaja con plomería, HVAC, electricidad, techos, jardinería y otros negocios en Estados Unidos. Tus clientes buscan cuando necesitan ayuda, así que el sitio y el seguimiento dejan claro qué hacer después.")}</p>
           <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Cuéntanos sobre tu sitio")}</Link>
         </div>
         <div>
@@ -610,7 +660,9 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         <aside className="contact-info">
           <div className="card"><h2 className="card-title">{tx("Llamar")}</h2><p><a href={telHref(SITE.phone)}>{SITE.phone}</a></p></div>
           <div className="card"><h2 className="card-title">{tx("Correo")}</h2><p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p></div>
-          <div className="card"><h2 className="card-title">{tx("Zona")}</h2><p>{tx("Negocios en Estados Unidos. Inglés y español en el plan Plus.")}</p></div>
+          <div className="card"><h2 className="card-title">{tx("Zona")}</h2><p>{locale === "es-ES"
+            ? tx("Negocios de servicios locales. Inglés y español en el plan Plus.")
+            : tx("Negocios en Estados Unidos. Inglés y español en el plan Plus.")}</p></div>
           <div className="card"><h2 className="card-title">{tx("Agenda")}</h2><p className="muted">{tx("¿Prefieres hablarlo? Agenda una llamada corta.")}</p><Link className="btn btn--ghost" href={href("/strategy-call")} prefetch={false}>{tx("Agendar")}</Link></div>
         </aside>
       </div></Section>
@@ -668,15 +720,19 @@ function Faqs({ locale, tx, href, lang, band }: PageBits) {
 }
 
 function Blog({ locale, tx, href, lang, band }: PageBits) {
-  const posts = POSTS.map((post) => {
-    const es = locale === "es-ES" || locale === "es-419" ? esPostForLocale(post.slug, locale) : esPost(post.slug);
-    const text = es ?? null;
-    return { ...post, title: text ? tx(text.title) : post.title, excerpt: text ? tx(text.excerpt) : post.excerpt, category: text ? tx(text.category) : post.category };
+  // Only list posts that have Spanish bodies — EN-only drafts 404 on /es|/es-es.
+  const posts = POSTS.filter((post) => esPost(post.slug)).map((post) => {
+    const es = locale === "es-ES" || locale === "es-419" ? esPostForLocale(post.slug, locale)! : esPost(post.slug)!;
+    const text = locale === "es-ES" ? spainizeData(es) : es;
+    return { ...post, title: text.title, excerpt: text.excerpt, category: text.category };
   });
+  const blogSub = locale === "es-ES"
+    ? tx("Guías de SEO, diseño y marketing para negocios de servicios locales.")
+    : tx("Guías de SEO, diseño y marketing para negocios de servicios en Estados Unidos.");
   return (
     <>
       <ContentSchema path={href("/blog")} title={tx(PAGE_META["/blog"].title)} description={tx(PAGE_META["/blog"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: "Blog", path: href("/blog") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Blog de marketing digital")} mark="Blog" sub={tx("Guías de SEO, diseño y marketing para negocios de servicios en Estados Unidos.")} image="blog" imageAlt={tx("Tarjetas de artículos")} />
+      <PageHero locale={locale} h1={tx("Blog de marketing digital")} mark="Blog" sub={blogSub} image="blog" imageAlt={tx("Tarjetas de artículos")} />
       <Section>
         <Filterable cats={[tx("Consejos"), "SEO", tx("Diseño")]} allLabel={tx("Todo")} />
         <div className="grid grid--3 blog-index">

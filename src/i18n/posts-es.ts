@@ -1,3 +1,5 @@
+import { ES_CLUSTER_ES_ES_OVERRIDES, ES_CLUSTER_POSTS } from "@/i18n/posts-es-cluster";
+
 export type EsPost = {
   slug: string;
   category: string;
@@ -192,74 +194,94 @@ export const ES_POSTS: EsPost[] = [
     ]
   },
   {
-    "slug": "missed-call-text-back-templates",
-    "category": "Consejos",
-    "title": "Plantillas de texto por llamada perdida para 12 negocios",
-    "seoTitle": "Plantillas de texto por llamada perdida | Kinexis Digital",
-    "excerpt": "Borradores de SMS por negocio y tiempos honestos de aprobación del operador.",
-    "lead": "El texto de llamada perdida es opcional y requiere línea dedicada. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
-    "sections": [
+    slug: "missed-call-text-back-templates",
+    category: "Consejos",
+    title: "Plantillas de texto por llamada perdida para 12 negocios",
+    seoTitle: "Plantillas de texto por llamada perdida | Kinexis Digital",
+    excerpt: "Borradores de SMS por oficio y tiempos honestos de aprobación del operador.",
+    lead: "El texto de llamada perdida es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
+    sections: [
       {
-        "h2": "Cómo funciona",
-        "html": "<p>Tras la aprobación del operador, Lead System y Plus pueden responder por SMS a quien llamó a tu número de seguimiento. Calculadora: <a href=\"/tools/missed-call-calculator\">/tools/missed-call-calculator</a>.</p>"
+        h2: "Cómo funciona aquí",
+        html: `<p>Lead System y Plus pueden enviar un SMS a quien llamó a tu número de seguimiento, después de la aprobación del operador. Se necesita una línea dedicada. Un segundo número cuesta $1/mes. Pueden aplicar tarifas del operador. Esta página son plantillas — no una comparación de software.</p><p>Estima ingresos en riesgo con la <a href="/tools/missed-call-calculator">calculadora de llamada perdida</a>.</p>`,
       },
       {
-        "h2": "Plomería",
-        "html": "<p id=\"plumbing\">Plantillas en la versión en inglés de esta guía; adapta el tono a tu negocio y pide revisión de cumplimiento antes de publicar.</p>"
+        h2: "Plantillas de plomería",
+        html: `<p id="plumbing">Úsalas como borrador. Pide una revisión de cumplimiento (TCPA u otras reglas) antes de publicar.</p><ul><li><code>Hola, habla {Business}. Acabamos de perder tu llamada de plomería. Responde FUGA, DRENAJE o CALENTADOR y el mejor número/hora para localizarte.</code></li><li><code>Gracias por llamar a {Business}. Estamos en un trabajo y te devolvemos la llamada pronto. Si no hay agua o hay una rotura, responde URGENTE.</code></li><li><code>Vimos tu llamada perdida. Para cotizar un calentador, responde con marca/edad si la sabes. Te mandamos una ventana de visita.</code></li><li><code>Nota fuera de horario de {Business}: deja el problema en un texto y confirmamos a primera hora en horario de atención.</code></li><li><code>Si llamaste por un tapón, responde DRENAJE y tu ciudad. Confirmamos si podemos llegar hoy.</code></li></ul>`,
       },
       {
-        "h2": "Nota de cumplimiento",
-        "html": "<p>Revisa consentimiento, identificación y baja antes de enviar. Ver <a href=\"/pricing\">planes</a>.</p>"
-      }
-    ]
+        h2: "Plantillas de HVAC",
+        html: `<p id="hvac">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business} — perdimos tu llamada. Responde SIN AIRE, SIN CALOR o COTIZACIÓN y tu código postal.</code></li><li><code>Estamos en un servicio. Responde URGENTE si no hay aire/calor y priorizamos la devolución.</code></li><li><code>Para cotizar un cambio de equipo, responde con tamaño/edad de la casa si lo tienes. Agendamos una consulta.</code></li><li><code>Fuera de horario: escribe el síntoma y confirmamos la primera ventana del técnico.</code></li><li><code>Temporada de mantenimiento: responde TUNEUP para preguntar por servicio de entretemporada.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de electricidad",
+        html: `<p id="electrical">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola, {Business} perdió tu llamada. Responde TABLERO, EV o TOMA y tu ciudad.</code></li><li><code>Si huele a quemado o los breakers no reinician, responde URGENTE — no esperes al correo.</code></li><li><code>Cargadores EV: responde con los amperios del tablero si los sabes y agendamos una visita.</code></li><li><code>Fuera de horario: escribe el problema; confirmamos en horario de atención.</code></li><li><code>Solo trabajo eléctrico con licencia — responde con el tipo de trabajo y confirmamos si encaja.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de techos",
+        html: `<p id="roofing">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde FUGA, CAMBIO o TORMENTA.</code></li><li><code>¿Fuga activa? Responde URGENTE y tu zona. Buscamos una inspección el mismo día cuando la cuadrilla lo permita.</code></li><li><code>Cotizaciones de cambio: responde con edad/material del techo si lo sabes.</code></li><li><code>Seguimiento de tormenta: documentamos el techo; no prometemos resultados de seguro.</code></li><li><code>Fuera de horario: manda fotos del daño si es seguro, y confirmamos los siguientes pasos.</code></li></ul>`,
+      },
+      {
+        h2: "Otras industrias",
+        html: `<p>Las plantillas de puertas de garaje, pintura, remodelación, jardinería, albercas, lavado a presión, vidrios y césped siguen en progreso. Pide una vista previa y afinamos el SMS a los trabajos que corres. Mientras, mira el hub de tu industria y la <a href="/tools/missed-call-calculator">calculadora</a>.</p>`,
+      },
+      {
+        h2: "Nota de cumplimiento",
+        html: `<p>Las plantillas de SMS necesitan una revisión de cumplimiento calificada antes de enviarlas a clientes. Siguen aplicando consentimiento, identificación y baja.</p><p><a href="/pricing">Ver Lead System y Plus</a> o <a href="/contact">pide una vista previa gratis</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "plumber-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de plumbing en 2026?",
-    "seoTitle": "Costo de sitio web de plumbing | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de plumber empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "plumber-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de plomería en 2026?",
+    seoTitle: "Costo de un sitio web de plomería | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de plomería: $97, $197, $297 al mes u Own It $1,497 — más costos aparte.",
+    lead: "Con Kinexis, un sitio de plomería empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto con estrategia, diseño y revisiones — los rangos cambian por mercado, así que trata cualquier “costo promedio” público como comentario fechado, no como cotización de Kinexis.</p><p>Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Plumbing",
-        "html": "<p>Páginas para leaks, drains, and water heaters. Hub: <a href=\"/industries/plumbing\">/industries/plumbing</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de plomería",
+        html: `<p>Pagas por páginas armadas alrededor de fugas, drenajes y calentadores — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/plumbing">hub de plomería</a> y <a href="/blog/plumbing-website-pages">qué páginas necesita un sitio de plomería</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "plumbing-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de plumbing",
-    "seoTitle": "Páginas para sitio de plumbing | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para plumbing, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para leaks, drains, and water heaters.",
-    "sections": [
+    slug: "plumbing-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de plomería",
+    seoTitle: "Qué páginas necesita un sitio de plomería | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de plomería — sin spam de ciudades clonadas.",
+    lead: "Un sitio de plomería necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Separa fugas, drenajes y calentadores para no mezclar emergencia y cotización.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Plumbing",
-        "html": "<p>leaks, drains, and water heaters.</p>"
+        h2: "Páginas de servicio de plomería",
+        html: `<p>Arma el sitio alrededor de fugas, drenajes y calentadores. Páginas separadas para que la emergencia y la cotización no se mezclen.</p><p>Detalle y ejemplos en el <a href="/industries/plumbing">hub de plomería</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Inicio anotado cuando hay prueba",
+        html: `<p>Preferred Plumbing Solutions es un sitio de cliente de plomería en vivo. En el inicio: héroe local de Spirit Lake con teléfono + CTA de estimado gratis, franja de confianza (licencia, dueño-operado, estimados gratis), caminos separados para reparaciones / radiante / sin tanque / drenajes / obra nueva, y FAQs con horario real. Mira el bloque de prueba del <a href="/industries/plumbing">hub de plomería</a>.</p>`,
+      },
+      {
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
     "slug": "hvac-website-cost",
@@ -789,6 +811,7 @@ export const ES_POSTS: EsPost[] = [
       }
     ]
   },
+  ...ES_CLUSTER_POSTS,
 ];
 
 /**
@@ -818,6 +841,64 @@ const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
       },
     ],
   },
+  "plumber-website-cost": {
+    seoTitle: "Costo de un sitio web de plomería | Kinexis Digital",
+    excerpt: "Planes de Kinexis para un sitio de plomería: Website, Lead System, Plus u Own It — más costos aparte.",
+    lead: "Con Kinexis, un sitio de plomería empieza con Website, Lead System, Plus u Own It. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
+      {
+        h2: "Planes de Kinexis para sitios de negocios",
+        html: `<p>Cuatro opciones en vivo: Website, Lead System (texto opcional, reseñas, seguimiento de llamadas), Plus (inglés y español) y Own It (un pago, archivos tuyos desde el lanzamiento). El detalle está en <a href="/pricing">/pricing</a>. Compara en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
+      },
+      {
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros planes para que compares sin adivinar.</p>`,
+      },
+      {
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada).</p>`,
+      },
+      {
+        h2: "Qué estás pagando en un sitio de plomería",
+        html: `<p>Pagas por páginas armadas alrededor de fugas, drenajes y calentadores. Mira el <a href="/industries/plumbing">hub de plomería</a> y <a href="/blog/plumbing-website-pages">qué páginas necesita un sitio de plomería</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
+  },
+  "missed-call-text-back-templates": {
+    excerpt: "Borradores de SMS por oficio y tiempos honestos de aprobación del operador.",
+    lead: "El texto de llamada perdida es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus puede haber un segundo número de seguimiento y tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
+    sections: [
+      {
+        h2: "Cómo funciona aquí",
+        html: `<p>Lead System y Plus pueden enviar un SMS a quien llamó a tu número de seguimiento, después de la aprobación del operador. Se necesita una línea dedicada. Esta página son plantillas — no una comparación de software.</p><p>Estima ingresos en riesgo con la <a href="/tools/missed-call-calculator">calculadora de llamada perdida</a>.</p>`,
+      },
+      {
+        h2: "Plantillas de plomería",
+        html: `<p id="plumbing">Úsalas como borrador. Pide una revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola, habla {Business}. Acabamos de perder tu llamada de plomería. Responde FUGA, DRENAJE o CALENTADOR y el mejor número/hora para localizarte.</code></li><li><code>Gracias por llamar a {Business}. Estamos en un trabajo y te devolvemos la llamada pronto. Si no hay agua o hay una rotura, responde URGENTE.</code></li><li><code>Vimos tu llamada perdida. Para cotizar un calentador, responde con marca/edad si la sabes.</code></li><li><code>Nota fuera de horario de {Business}: deja el problema en un texto y confirmamos a primera hora.</code></li><li><code>Si llamaste por un tapón, responde DRENAJE y tu ciudad.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de HVAC",
+        html: `<p id="hvac">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business} — perdimos tu llamada. Responde SIN AIRE, SIN CALOR o COTIZACIÓN y tu código postal.</code></li><li><code>Estamos en un servicio. Responde URGENTE si no hay aire/calor.</code></li><li><code>Para cotizar un cambio de equipo, responde con tamaño/edad de la casa si lo tienes.</code></li><li><code>Fuera de horario: escribe el síntoma y confirmamos la primera ventana.</code></li><li><code>Temporada de mantenimiento: responde TUNEUP.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de electricidad",
+        html: `<p id="electrical">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola, {Business} perdió tu llamada. Responde TABLERO, EV o TOMA y tu ciudad.</code></li><li><code>Si huele a quemado o los breakers no reinician, responde URGENTE.</code></li><li><code>Cargadores EV: responde con los amperios del tablero si los sabes.</code></li><li><code>Fuera de horario: escribe el problema; confirmamos en horario de atención.</code></li><li><code>Solo trabajo eléctrico con licencia — responde con el tipo de trabajo.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de techos",
+        html: `<p id="roofing">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde FUGA, CAMBIO o TORMENTA.</code></li><li><code>¿Fuga activa? Responde URGENTE y tu zona.</code></li><li><code>Cotizaciones de cambio: responde con edad/material del techo si lo sabes.</code></li><li><code>Seguimiento de tormenta: documentamos el techo; no prometemos resultados de seguro.</code></li><li><code>Fuera de horario: manda fotos del daño si es seguro.</code></li></ul>`,
+      },
+      {
+        h2: "Otras industrias",
+        html: `<p>Las plantillas del resto de oficios siguen en progreso. Pide una vista previa y afinamos el SMS. Mira el hub de tu industria y la <a href="/tools/missed-call-calculator">calculadora</a>.</p>`,
+      },
+      {
+        h2: "Nota de cumplimiento",
+        html: `<p>Las plantillas de SMS necesitan una revisión de cumplimiento calificada antes de enviarlas. Siguen aplicando consentimiento, identificación y baja.</p><p><a href="/pricing">Ver Lead System y Plus</a> o <a href="/contact">pide una vista previa gratis</a>.</p>`,
+      },
+    ],
+  },
+  ...ES_CLUSTER_ES_ES_OVERRIDES,
 };
 
 export function esPost(slug: string) {

@@ -1146,4 +1146,152 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       },
     ],
   },
+  "diseno-web-para-contratistas": {
+    lead: "When someone searches for a contractor, they are not browsing portfolios. They are comparing a few results on a phone and picking the one that is clearest: what you do, where you go, and how to call. Web design for contractors starts there—not with the logo.",
+    faqs: [
+      {
+        q: "Do I need a page for every town?",
+        a: "No. One honest service-area page for the cities you actually cover beats thin doorway pages.",
+      },
+      {
+        q: "Can I see the design before I pay?",
+        a: "Yes. Free homepage preview in 2 business days, no card, no obligation.",
+      },
+      {
+        q: "What do the plans cost?",
+        a: "Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497 once.",
+      },
+    ],
+    sections: [
+      {
+        h2: "What Searchers Look For First",
+        html: `<p>Most of those searches happen on a phone. Sometimes it is urgent. Sometimes it is a quote for next week. Either way, the visitor decides in seconds whether to stay or go back to Google.</p><p>Your homepage has to answer three things without scrolling: the work you actually do, the cities you actually cover, and a number they can tap. If that is missing, “professional” design does not matter.</p>`,
+      },
+      {
+        h2: "One Page Per Job, Not an Endless Menu",
+        html: `<p>“Construction services” does not help someone looking for a bathroom remodel, a roof, or a fence. Each job you want to sell deserves its own page, with real photos and a clear next step.</p><p>That also helps Google understand what you offer. You do not need a cloned page for every town. You do need to be specific about the work your crew already delivers.</p>`,
+      },
+      {
+        h2: "Proof That Feels Real",
+        html: `<p>License and insurance, when they apply in your state, belong where people can see them. Your own job photos beat stock hard hats. Google reviews near the phone close the doubt before the call.</p><p>If the customer is planning a project, keep the form short: name, phone, job type, and city. Photos can follow by text. If it is an emergency, the call button beats the form.</p>`,
+      },
+      {
+        h2: "How We Build It at Kinexis",
+        html: `<p>We start with a free homepage preview in 2 business days—no card, no obligation. After you approve and send the content we need, the full site typically launches in 5 business days (confirmed in writing).</p><p>Website is $97/mo. Lead System at $197/mo adds Google review requests and optional missed-call text-back. Plus at $297/mo runs that follow-up in English and Spanish. Own It is $1,497 once, with site files yours from launch day.</p><p>See <a href="/web-design">web design</a>, <a href="/industries">industries</a>, or request a preview at <a href="/contact">/contact</a>. Compare plans on <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
+  },
+  "pagina-web-para-plomeros": {
+    lead: "Half the people who land on a plumbing page have water where it should not be. The other half are planning a water heater or a drain job and will read. A good plumber website serves both without making either wait.",
+    faqs: [
+      {
+        q: "Should I advertise 24/7?",
+        a: "Only if someone answers. Honest hours beat angry overnight calls.",
+      },
+      {
+        q: "Do plans include ongoing SEO?",
+        a: "No. Sites launch with a clean structure Google can read. Ongoing SEO is quoted separately.",
+      },
+      {
+        q: "Where do I see plumbing page structure?",
+        a: "See the plumbing hub and the plumbing pages guide linked in this article.",
+      },
+    ],
+    sections: [
+      {
+        h2: "First Screen: Work, Area, Phone",
+        html: `<p>On a phone, the headline names the work—leaks, drains, water heaters—not a generic slogan. The number sits up top with one-tap calling. Next to it: the cities you really cover and the hours you actually keep.</p><p>If you advertise 24/7 and nobody answers at night, the reviews will say so. Honest hours beat a promise that angers someone at 2 a.m.</p>`,
+      },
+      {
+        h2: "Separate Emergency From Estimate",
+        html: `<p>A burst pipe and a water-heater swap are not the same buyer. Mixing them on one page makes both searches harder.</p><ul><li><strong>Leaks and emergencies</strong> — large phone, what to do while someone is on the way, real hours.</li><li><strong>Drains</strong> — a separate path for clogs and camera work, not mixed with heaters.</li><li><strong>Water heaters</strong> — repair or replace, brands you install, a clear estimate path.</li></ul><p>More detail lives in <a href="/blog/plumbing-website-pages">what pages a plumbing website needs</a> and the <a href="/industries/plumbing">plumbing hub</a>.</p>`,
+      },
+      {
+        h2: "Trust Before They Dial",
+        html: `<p>License and insurance, when they apply, sit near the phone. Photos of your jobs—not a stock library. Google reviews visible, not buried.</p><p>The form asks for little: name, phone, and the problem. Someone standing in a puddle is not uploading plans. Someone planning a heater can send photos later.</p>`,
+      },
+      {
+        h2: "Price and Next Step",
+        html: `<p>With Kinexis, a plumber website starts at Website $97/mo. Lead System at $197/mo includes review requests after the job and optional missed-call text-back. Plus at $297/mo does that in English and Spanish. Own It is $1,497 once.</p><p>You see a free homepage preview first (2 business days, no card). Cost breakdown: <a href="/blog/plumber-website-cost">how much a plumber website costs</a>. <a href="/contact">Request your preview</a> or compare on <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
+  },
+  "como-pedir-resenas-en-google": {
+    lead: "The next call almost always checks your Google reviews before they dial. Asking at the door sometimes works. Sending a direct link when the finished work is visible works more often—and it does not need a long speech.",
+    faqs: [
+      {
+        q: "Can I pay for reviews?",
+        a: "No. Google forbids incentives for reviews. Ask real customers with a direct link.",
+      },
+      {
+        q: "Are automated review requests on every plan?",
+        a: "No. Lead System and Plus include review requests after jobs. Website and base Own It do not.",
+      },
+      {
+        q: "Where do I get the direct link?",
+        a: "From your Google Business Profile (“Get more reviews”) or the review link & QR tool on this site.",
+      },
+    ],
+    sections: [
+      {
+        h2: "Get the Link (or QR Code)",
+        html: `<p>Do not ask customers to “search for you on Google.” Give a link that opens your Business Profile review form directly.</p><p>Open the profile with the managing account → <strong>Read reviews</strong> → <strong>Get more reviews</strong>. Copy the link. Per Google, the QR downloads from a computer browser (right-click → save image).</p><p>You can also build the link from your Place ID with the <a href="/tools/google-review-link-qr">review link &amp; QR tool</a>. Test it on a phone that is not signed in as the owner.</p>`,
+      },
+      {
+        h2: "When to Ask",
+        html: `<p>When the job is finished and the customer can see the result:</p><ul><li>At the truck after you walk through the work</li><li>By text the same day the job closed</li><li>By email if that is how you already communicate</li></ul><p>On weekly routes (lawn, pool, cleaning), ask after a strong visit—not every week to the same house.</p><p>On <strong>Lead System</strong> ($197/mo) and <strong>Plus</strong> ($297/mo), Kinexis can send the review request after the job. Website ($97/mo) and base Own It ($1,497) do not include automated requests. Plus can send in English and Spanish.</p>`,
+      },
+      {
+        h2: "Door Script",
+        html: `<p>Short. One ask. One next step.</p><blockquote><p>“Thanks for having us out today. If you’re happy with the work, a Google review helps the next customer find us. Can I text you the link?”</p></blockquote><p>If they say yes, send it before you leave the driveway. If they hesitate, stop.</p>`,
+      },
+      {
+        h2: "Text Scripts",
+        html: `<p>Replace the brackets. One link. Do not mix a review ask with an invoice dispute.</p><p><strong>Same day</strong></p><blockquote><p>Hi [Name]—this is [Your Name] at [Company]. Thanks again for the work today. If you’re willing, here’s our Google review link: [link]. Reply STOP to opt out of texts.</p></blockquote><p><strong>Next morning (only if they said yes on site and you forgot the link)</strong></p><blockquote><p>Hi [Name]—following up with the Google review link I mentioned: [link]. No pressure if you’re busy. —[Company]</p></blockquote>`,
+      },
+      {
+        h2: "What Not to Do",
+        html: `<ul><li>Do not write the review for them and ask them to paste it.</li><li>Do not offer payment, discounts, or free work for five stars.</li><li>Do not ask only for positive reviews or discourage negative ones.</li><li>Do not use someone else’s job photos as yours.</li></ul><p>See also <a href="/blog/build-trust-with-reviews">Build Trust With Reviews</a> and <a href="/blog/how-to-ask-for-google-reviews-contractor">contractor review scripts</a>. <a href="/contact">Free homepage preview</a> or <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
+  },
+  "google-business-profile-checklist": {
+    lead: "Claiming your Google Business Profile is step one. Keeping it accurate—and knowing when a website still helps—is the rest of the job. This checklist is built for plumbers and other home-service trades that get found on Maps before they get found on a homepage.",
+    faqs: [
+      {
+        q: "Is a tune-up included on Kinexis plans?",
+        a: "Lead System and Plus include a Google profile tune-up at launch. Plus adds two posts a month.",
+      },
+      {
+        q: "Do I still need a website?",
+        a: "Often yes—for separate service pages, an honest service area, and a landing page for ads. See Google Business Profile vs website.",
+      },
+      {
+        q: "Can I buy reviews?",
+        a: "No. Ask real customers with a direct link after completed jobs.",
+      },
+    ],
+    sections: [
+      {
+        h2: "Claim and Verify",
+        html: `<p>Search your business name on Google. If a profile exists, request ownership. If not, create one. Finish verification before you spend time on photos or posts—an unverified listing is easy to lose or duplicate.</p><p>Use the same legal or DBA name customers will search. Match the phone number you answer on the truck.</p>`,
+      },
+      {
+        h2: "Categories, Hours, and Service Area",
+        html: `<ul><li><strong>Primary category</strong> — pick the closest trade (e.g. Plumber). Add secondary categories only if you really offer that work.</li><li><strong>Hours</strong> — list the hours someone can reach you. Do not mark 24/7 unless a human answers.</li><li><strong>Service area</strong> — cities and neighborhoods you can actually crew. Inflating the map creates quotes you cannot schedule.</li></ul><p>Keep name, phone, hours, and area consistent with your website when you have one.</p>`,
+      },
+      {
+        h2: "Photos and Services",
+        html: `<p>Upload real job photos: truck, crew, finished work. Skip stock hard hats. Add the services people search—leak repair, drain cleaning, water heaters for plumbers; mirror that honesty for HVAC, electrical, and other trades.</p><p>A short description that names the work and the cities beats a slogan about “quality since forever.”</p>`,
+      },
+      {
+        h2: "Reviews and a Direct Link",
+        html: `<p>Turn on messaging only if you will reply. Get your direct review link from the profile (<strong>Get more reviews</strong>) or the <a href="/tools/google-review-link-qr">review link &amp; QR tool</a>. Ask after completed jobs—see <a href="/blog/how-to-ask-for-google-reviews-contractor">how to ask for Google reviews</a>.</p><p>On Lead System and Plus, Kinexis can send that request after the job. Website and base Own It do not include automated review requests.</p>`,
+      },
+      {
+        h2: "When the Profile Is Not Enough",
+        html: `<p>The profile wins the map pack tap-to-call. A website still earns its keep when different jobs need different pages, ads need a landing URL, or you want English and Spanish (Plus). Read <a href="/blog/google-business-profile-vs-website">Google Business Profile vs website</a> and the <a href="/industries/plumbing">plumbing hub</a>.</p><p>Lead System and Plus include a profile tune-up at launch. Compare plans on <a href="/pricing">/pricing</a> or <a href="/contact">request a free homepage preview</a>—2 business days, no card.</p>`,
+      },
+    ],
+  },
 };

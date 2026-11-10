@@ -3,7 +3,12 @@ import { PLANS } from "@/lib/content";
 export function spanishHomeFaqs(tx: (s: string) => string, opts?: { hideUsd?: boolean }) {
   const hideUsd = opts?.hideUsd === true;
   return [
-    { q: tx("¿Esto sirve para mi tipo de negocio?"), a: tx("Trabajamos con negocios de servicios en Estados Unidos, como plomería, HVAC, electricidad, jardinería, techos y remodelación. Si la gente busca tu servicio y llama cuando necesita ayuda, estos planes están pensados para ese tipo de negocio.") },
+    {
+      q: tx("¿Esto sirve para mi tipo de negocio?"),
+      a: hideUsd
+        ? tx("Trabajamos con negocios de servicios locales, como fontanería, HVAC, electricidad, jardinería, techos y reforma. Si la gente busca tu servicio y llama cuando necesita ayuda, estos planes están pensados para ese tipo de negocio.")
+        : tx("Trabajamos con negocios de servicios en Estados Unidos, como plomería, HVAC, electricidad, jardinería, techos y remodelación. Si la gente busca tu servicio y llama cuando necesita ayuda, estos planes están pensados para ese tipo de negocio."),
+    },
     {
       q: tx("¿Cuánto cuesta?"),
       a: hideUsd

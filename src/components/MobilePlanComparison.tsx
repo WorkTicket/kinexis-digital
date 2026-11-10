@@ -8,11 +8,13 @@ const PLAN_STICKERS: Record<string, { file: string; width: number; height: numbe
   "own-it": { file: "plan-name-own-it-1497.webp", width: 753, height: 345 },
 };
 
-export default function MobilePlanComparison({ plans, sections, hint, popularLabel }: {
+export default function MobilePlanComparison({ plans, sections, hint, popularLabel, hideStickers = false }: {
   plans: ComparisonPlan[];
   sections: ComparisonSection[];
   hint: string;
   popularLabel: string;
+  /** Spain chrome: plan names without dollar sticker art. */
+  hideStickers?: boolean;
 }) {
   return (
     <div className="mobile-plan-compare">
@@ -22,15 +24,19 @@ export default function MobilePlanComparison({ plans, sections, hint, popularLab
           <summary>
             {plan.popular && <span className="mobile-plan-compare__badge"><span aria-hidden="true">★</span>{popularLabel}<span aria-hidden="true">★</span></span>}
             <span className="mobile-plan-compare__title">
-              <img
-                className="mobile-plan-compare__sticker"
-                src={plan.sticker?.src ?? `/assets/kinexis/stickers/${PLAN_STICKERS[plan.slug].file}`}
-                alt={plan.sticker?.alt ?? `${plan.name} ${plan.price}`}
-                width={plan.sticker?.width ?? PLAN_STICKERS[plan.slug].width}
-                height={plan.sticker?.height ?? PLAN_STICKERS[plan.slug].height}
-                loading="lazy"
-                decoding="async"
-              />
+              {hideStickers ? (
+                <span className="mobile-plan-compare__name">{plan.name}<span className="mobile-plan-compare__price">{plan.price}</span></span>
+              ) : (
+                <img
+                  className="mobile-plan-compare__sticker"
+                  src={plan.sticker?.src ?? `/assets/kinexis/stickers/${PLAN_STICKERS[plan.slug].file}`}
+                  alt={plan.sticker?.alt ?? `${plan.name} ${plan.price}`}
+                  width={plan.sticker?.width ?? PLAN_STICKERS[plan.slug].width}
+                  height={plan.sticker?.height ?? PLAN_STICKERS[plan.slug].height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
             </span>
             <span className="mobile-plan-compare__toggle" aria-hidden="true" />
           </summary>
