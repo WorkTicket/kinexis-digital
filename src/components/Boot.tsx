@@ -15,7 +15,7 @@ export default function Boot({ email, ga, video }: { email: string; ga: string; 
       />
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}
-      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=49" strategy="lazyOnload" />
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=50" strategy="lazyOnload" />
     </>
   );
 }

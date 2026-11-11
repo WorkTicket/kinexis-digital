@@ -68,44 +68,22 @@ function syncMegaNav() {
   const nav = document.getElementById("nav");
   if (!nav) return;
   const mobile = matchMedia("(max-width: 1320px)").matches;
-  // Any open (non-closing) mega collapses bottom CTAs so the full dropdown can show.
-  const anyOpen = !!document.querySelector("[data-mega].is-open:not(.is-closing)");
+  // An open mega collapses the bottom CTAs so the dropdown has room.
+  const anyOpen = !!document.querySelector("[data-mega].is-open");
   nav.classList.toggle("mega-open", mobile && anyOpen);
 }
 function finishMegaClose(mega) {
-  mega.classList.remove("is-open", "is-closing");
+  mega.classList.remove("is-open");
   mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "false");
 }
-/** Fade out, then snap shut — avoids the choppy height-squash close. */
+/** Drop .is-open immediately. Mobile height eases in CSS; desktop panels just hide. */
 function closeMega(mega, onDone) {
   if (!mega.classList.contains("is-open")) {
     if (typeof onDone === "function") onDone();
     return;
   }
-  const soft = matchMedia("(max-width: 1320px)").matches && !reduce() && !desktopMega();
-  if (!soft) {
-    finishMegaClose(mega);
-    if (typeof onDone === "function") onDone();
-    return;
-  }
-  if (mega.classList.contains("is-closing")) return;
-  mega.classList.add("is-closing");
-  const panel = mega.querySelector(".mega__panel");
-  let done = false;
-  const finish = () => {
-    if (done) return;
-    done = true;
-    finishMegaClose(mega);
-    if (typeof onDone === "function") onDone();
-  };
-  const fallback = setTimeout(finish, 180);
-  if (panel instanceof HTMLElement) {
-    panel.addEventListener("transitionend", (event) => {
-      if (event.target !== panel || event.propertyName !== "opacity") return;
-      clearTimeout(fallback);
-      finish();
-    }, { once: true });
-  }
+  finishMegaClose(mega);
+  if (typeof onDone === "function") onDone();
 }
 function setMega(open, target = null) {
   if (open && performance.now() < megaShutUntil) return;
@@ -134,7 +112,6 @@ function setMega(open, target = null) {
   clearTimeout(megaCtaTimer);
   megas.forEach((mega) => {
     if (mega === active) {
-      mega.classList.remove("is-closing");
       mega.classList.add("is-open");
       mega.querySelector(".mega__btn")?.setAttribute("aria-expanded", "true");
     } else if (mega.classList.contains("is-open")) {
@@ -144,11 +121,6 @@ function setMega(open, target = null) {
     }
   });
   syncMegaNav();
-  if (matchMedia("(max-width: 1320px)").matches && !reduce()) {
-    setTimeout(() => {
-      active.querySelector(".mega__btn")?.scrollIntoView({ block: "nearest", behavior: "auto" });
-    }, 320);
-  }
 }
 
 function setOpen(open) {

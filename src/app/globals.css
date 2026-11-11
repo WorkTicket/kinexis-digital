@@ -2958,11 +2958,11 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .header{z-index:80}
   .header:has(.nav.is-open){background:#fff;box-shadow:none}
   .header:has(.nav.is-open)::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:linear-gradient(90deg,var(--brand-cobalt),var(--brand-orange));transform-origin:right center;pointer-events:none;animation:menu-rule .18s ease both}
-  .nav{position:fixed;z-index:70;top:var(--header-bottom,calc(var(--announce-h) + var(--header-h) + var(--chrome-top)));right:0;bottom:0;left:0;height:auto;max-height:none;max-width:100%;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:minmax(64px,auto);justify-content:stretch;align-items:stretch;align-content:start;gap:0;margin:0;padding:20px max(clamp(22px,5.5vw,40px), var(--sal)) calc(clamp(12px,2svh,20px) + var(--sab) + var(--iab-extra)) max(clamp(22px,5.5vw,40px), var(--sar));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;background:#fff;white-space:normal;box-shadow:none;border:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-12px);transition:opacity .12s ease,transform .16s ease,visibility 0s linear .16s}
+  .nav{position:fixed;z-index:70;top:var(--header-bottom,calc(var(--announce-h) + var(--header-h) + var(--chrome-top)));right:0;bottom:0;left:0;height:auto;max-height:none;max-width:100%;display:flex;flex-direction:column;align-items:stretch;gap:0;margin:0;padding:20px max(clamp(22px,5.5vw,40px), var(--sal)) calc(clamp(12px,2svh,20px) + var(--sab) + var(--iab-extra)) max(clamp(22px,5.5vw,40px), var(--sar));overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-y;background:#fff;white-space:normal;box-shadow:none;border:0;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-12px);transition:opacity .12s ease,transform .16s ease,visibility 0s linear .16s}
   .nav::before{content:"";position:absolute;top:0;right:0;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(255,106,0,.18),rgba(10,60,255,.05) 42%,transparent 70%);pointer-events:none}
   .nav.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity .16s ease,transform .18s ease,visibility 0s}
   .nav:focus{outline:none}
-  .nav>a{position:relative;display:flex;align-items:center;gap:16px;width:100%;height:64px;min-height:64px;box-sizing:border-box;padding:12px 8px;border:0;border-bottom:1px solid var(--border);border-radius:0;text-align:left;font-family:var(--font-head);font-size:clamp(.95rem,2.5svh,1.35rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;white-space:nowrap;touch-action:manipulation}
+  .nav>a{position:relative;display:flex;flex:0 0 auto;align-items:center;gap:16px;width:100%;height:64px;min-height:64px;box-sizing:border-box;padding:12px 8px;border:0;border-bottom:1px solid var(--border);border-radius:0;text-align:left;font-family:var(--font-head);font-size:clamp(.95rem,2.5svh,1.35rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;white-space:nowrap;touch-action:manipulation}
   .nav>a::before{content:"";width:11px;height:11px;flex:0 0 auto;border-radius:50%;border:2px solid var(--brand-navy);background:transparent;transform:scale(1);opacity:1;transition:transform .1s ease,background-color .08s ease,border-color .08s ease}
   .nav>a::after{display:none}
   .nav>a:focus-visible{color:var(--brand-navy);outline:3px solid var(--brand-cobalt);outline-offset:-3px}
@@ -2970,21 +2970,20 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   @media(hover:hover) and (pointer:fine){.nav>a:hover{color:var(--brand-navy)}.nav>a:hover::before{background:var(--brand-orange);border-color:var(--brand-orange);transform:scale(1.08)}}
   .nav>a.is-current{color:var(--brand-navy);background:none;box-shadow:none;border-radius:0}
   .nav__extra{
-    min-height:0;margin:0;grid-template-columns:1fr;align-items:stretch;
+    flex:0 0 auto;min-height:0;margin:0;grid-template-columns:1fr;align-items:stretch;
     padding:clamp(10px,1.8svh,18px) 4px 4px 0;gap:clamp(10px,1.6svh,14px);border-top:0;
-    max-height:240px;opacity:1;transform:none;visibility:visible;overflow:hidden;
+    max-height:240px;opacity:1;visibility:visible;overflow:hidden;
     transition:
-      opacity .28s cubic-bezier(.16,1,.3,1),
-      transform .32s cubic-bezier(.16,1,.3,1),
-      max-height .34s cubic-bezier(.16,1,.3,1),
-      padding .28s ease,
-      gap .28s ease,
-      margin .28s ease,
+      opacity .32s ease,
+      max-height .36s cubic-bezier(.16,1,.3,1),
+      padding .36s cubic-bezier(.16,1,.3,1),
+      gap .36s cubic-bezier(.16,1,.3,1),
+      margin .36s cubic-bezier(.16,1,.3,1),
       visibility 0s;
   }
   .nav__extra > *{
-    transition:opacity .24s ease,transform .28s cubic-bezier(.16,1,.3,1);
-    opacity:1;transform:none;
+    transition:opacity .28s ease;
+    opacity:1;
   }
   .nav.is-open .nav__extra{animation:none}
   .nav .nav__extra .nav__preview{
@@ -2994,7 +2993,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .nav .nav__extra .nav__preview-title{font-size:clamp(.95rem,2.1svh,1.12rem)}
   .nav .nav__extra .nav__preview-hint{font-size:clamp(.66rem,1.4svh,.74rem)}
 @media (max-width:1320px) and (max-height:520px){
-  .nav{grid-template-columns:minmax(0,1fr);grid-template-rows:none;grid-auto-rows:minmax(44px,auto);align-content:start;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
+  .nav{align-content:start;overflow-y:auto;overscroll-behavior:contain;touch-action:pan-y}
   .nav>a{font-size:clamp(.85rem,4.6svh,1.05rem);gap:10px}
   .nav__extra{margin:0;padding-top:6px;gap:8px}
   .nav .nav__extra .nav__preview{padding:.55rem .7rem;min-height:48px}
@@ -3050,8 +3049,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .mega--services.is-open .mega__btn::after{left:-8px;right:-8px;height:20px}
 }
 @media (max-width:1320px){
-  .nav>.mega{display:flex;flex-direction:column;min-width:0;min-height:0}
-  .nav>.mega{min-height:64px}
+  .nav>.mega{display:flex;flex:0 0 auto;flex-direction:column;min-width:0;min-height:64px}
   .nav>.mega .mega__btn{display:flex;flex:0 0 64px;align-items:center;gap:16px;width:100%;height:64px;min-height:64px;box-sizing:border-box;padding:12px 8px;border:0;border-bottom:1px solid var(--border);border-radius:0;text-align:left;font-family:var(--font-head);font-size:clamp(.95rem,2.5svh,1.35rem);font-weight:700;line-height:1.15;letter-spacing:-.02em;color:var(--text);white-space:nowrap;touch-action:manipulation}
   .nav>.mega .mega__btn::before{content:"";width:11px;height:11px;flex:0 0 auto;border-radius:50%;border:2px solid var(--brand-navy);background:transparent;transform:scale(1);opacity:1;transition:transform .1s ease,background-color .08s ease,border-color .08s ease}
   .nav>.mega .mega__btn:focus-visible{color:var(--brand-navy)}
@@ -3063,32 +3061,27 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .nav>.mega.is-open{background:linear-gradient(180deg,#f7f9ff 0%,#fff 42%);transition:background .28s ease}
   .nav>.mega.is-open .mega__btn{border-bottom-color:transparent;color:var(--brand-navy)}
   .nav>.mega.is-open .mega__btn::before{background:var(--brand-orange);border-color:var(--brand-orange)}
-  /* Keep panels in the flow and animate height — display:none snaps and fights the CTAs. */
+  /* 0fr/1fr tracks the real list height, so open and close move together instead of
+     waiting through a huge max-height before the rows actually collapse. */
   .nav>.mega .mega__panel{
-    display:block;position:static;width:auto;max-height:0;
-    overflow:hidden;transform:none;background:transparent;border:0;box-shadow:none;border-radius:0;
-    padding:0 0 0 27px;opacity:0;pointer-events:none;visibility:hidden;
+    display:grid;grid-template-rows:0fr;flex:0 0 auto;position:static;width:auto;max-height:none;
+    overflow:visible;transform:none;background:transparent;border:0;box-shadow:none;border-radius:0;
+    padding:0 0 0 27px;opacity:1;pointer-events:none;visibility:hidden;
     transition:
-      max-height .38s cubic-bezier(.16,1,.3,1),
-      opacity .26s ease,
-      padding .3s ease,
-      visibility 0s linear .3s;
+      grid-template-rows .36s cubic-bezier(.16,1,.3,1),
+      visibility 0s linear .36s;
   }
   .nav>.mega.is-open .mega__panel{
-    /* Tall enough for all 12 industries (1-col phones). Nav sheet scrolls; do not clip mid-list. */
-    max-height:min(220vh,1600px);opacity:1;pointer-events:auto;visibility:visible;
-    padding:2px 0 14px 27px;transition:
-      max-height .42s cubic-bezier(.16,1,.3,1),
-      opacity .28s ease .04s,
-      padding .3s ease,
+    grid-template-rows:1fr;pointer-events:auto;visibility:visible;
+    transition:
+      grid-template-rows .36s cubic-bezier(.16,1,.3,1),
       visibility 0s;
   }
-  .nav>.mega--services.is-open .mega__panel{max-height:280px}
+  .nav>.mega .mega__clip{min-height:0;overflow:hidden}
+  .nav>.mega .mega__clip > :last-child{margin-bottom:12px}
   .mega__head{align-items:flex-start;flex-direction:column;gap:2px;padding:6px 8px 8px}
   .mega__title{font-size:.92rem;font-weight:600;color:var(--muted)}
   .mega__grid{grid-template-columns:1fr 1fr;gap:2px}
-  .mega--services .mega__panel{padding-left:27px}
-  .nav>.mega--services.is-open .mega__panel{padding-bottom:10px}
   .mega--services .services-dropdown__list{gap:0}
   .mega--services .services-dropdown__list a{
     padding:12px 8px;font-size:clamp(.9rem,2.2svh,1.1rem);border-radius:0;
@@ -3099,32 +3092,19 @@ html.nav-open .mega__panel::-webkit-scrollbar,
     margin:0;padding:12px 8px 4px;width:100%;box-sizing:border-box;
     font-size:clamp(.9rem,2.2svh,1.05rem);
   }
-  .nav.mega-open{
-    display:flex;flex-direction:column;align-content:start;
-    overflow:auto;overscroll-behavior:contain;touch-action:pan-y;
-  }
-  .nav.mega-open>a,
-  .nav.mega-open>.mega{flex:0 0 auto}
   .nav.mega-open>.nav__extra{
-    max-height:0;opacity:0;transform:translateY(18px) scale(.97);
+    max-height:0;opacity:0;
     margin:0;padding-top:0;padding-bottom:0;gap:0;
     pointer-events:none;visibility:hidden;border:0;box-shadow:none;
     transition:
-      opacity .22s ease,
-      transform .28s cubic-bezier(.4,0,.2,1),
-      max-height .3s cubic-bezier(.4,0,.2,1),
-      padding .24s ease,
-      gap .24s ease,
-      margin .24s ease,
-      visibility 0s linear .28s;
+      opacity .24s ease,
+      max-height .36s cubic-bezier(.16,1,.3,1),
+      padding .36s cubic-bezier(.16,1,.3,1),
+      gap .36s cubic-bezier(.16,1,.3,1),
+      margin .36s cubic-bezier(.16,1,.3,1),
+      visibility 0s linear .32s;
   }
-  .nav.mega-open>.nav__extra > *{
-    opacity:0;transform:translateY(10px);
-  }
-  .nav.mega-open>a,.nav.mega-open .mega__btn{
-    font-size:1.05rem;padding-top:11px;padding-bottom:11px;
-    transition:font-size .28s ease,padding .28s ease;
-  }
+  .nav.mega-open>.nav__extra > *{opacity:0}
 }
 @media (max-width:1320px) and (max-height:520px){
   .nav>.mega .mega__btn{font-size:clamp(.85rem,4.6svh,1.05rem);gap:10px}
