@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import { FAQS, STEPS } from "@/lib/content";
-import Stepper from "@/components/Stepper";
+import ProcessFlow from "@/components/ProcessFlow";
 import { PageSchema } from "@/components/JsonLd";
 import { CtaBand, Faq, HL, IconCard, PageHero, Section } from "@/components/ui";
 
@@ -34,7 +34,7 @@ export default function Page() {
           </ul>
         </div>
       </div></section>
-      <Section tint>
+      <Section>
         <h2 className="center"><HL text="A Practical Way To Get Started" mark="Get Started" /></h2>
         <div className="grid grid--3">
           <IconCard title="Review A Homepage First" text="The free preview comes before payment. Approve it, request changes, or walk away with no charge." icon="preview" />
@@ -42,10 +42,10 @@ export default function Page() {
           <IconCard title="Know The Terms Up Front" text="Price, cancel terms, and what’s included for Website, Lead System, Plus, and Own It are listed up front." icon="better-pricing" />
         </div>
       </Section>
-      <Section>
+      <Section tint>
         <h2 className="center"><HL text="How Your Site Gets Launched" mark="Gets Launched" /></h2>
         <p className="center muted">Optional text-back and review requests begin after carrier approval, which typically takes 10–15 days.</p>
-        <Stepper steps={STEPS} />
+        <ProcessFlow steps={STEPS} />
       </Section>
       <Section tint narrow>
         <h2 className="center"><HL text="Questions Before You Begin" mark="Before You Begin" /></h2>

@@ -15,7 +15,7 @@
 - `Form.tsx` - Forms
 - `InvoicePay.tsx`, `PayCheckout.tsx` - Payments
 - `HeaderMenu.tsx`, `LanguageSwitch.tsx` - Navigation/i18n
-- `FooterGate.tsx`, `DialogHost.tsx`, `ScrollUi.tsx`, `Boot.tsx`, `SafeImage.tsx`, `DeferredImg.tsx`, `Filterable.tsx`, `Stepper.tsx`, `JsonLd.tsx`, `ProjectCard.tsx`, `GuaranteeBadge.tsx`, `SpanishPlanSticker.tsx`
+- `FooterGate.tsx`, `DialogHost.tsx`, `ScrollUi.tsx`, `Boot.tsx`, `SafeImage.tsx`, `DeferredImg.tsx`, `Filterable.tsx`, `Stepper.tsx`, `ProcessFlow.tsx`, `JsonLd.tsx`, `ProjectCard.tsx`, `GuaranteeBadge.tsx`, `SpanishPlanSticker.tsx`
 
 ## When to reuse
 - Use `PageHero` for page headers (split with `Art` or text-only). Prefer `Art` with approved `ArtName` from `ui.tsx`.
