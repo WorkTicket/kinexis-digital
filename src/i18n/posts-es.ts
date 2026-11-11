@@ -146,7 +146,7 @@ export const ES_POSTS: EsPost[] = [
     category: "Consejos",
     title: "Consigue reseñas sin perseguir a la gente",
     seoTitle: "Cómo conseguir más reseñas de Google",
-    excerpt: "La reseña se pide cuando el trabajo salió bien, con un enlace directo. No depende de que te acuerdes en la camioneta.",
+    excerpt: "La reseña se pide cuando el trabajo salió bien, con un enlace directo. No depende de que te acuerdes de pedirla desde la camioneta.",
     lead: "La siguiente cotización mira las reseñas antes de llamar. Pedirlas en la puerta funciona a veces. Un texto con el enlace, enviado cuando tú eliges, funciona aunque ya estés en el siguiente trabajo.",
     sections: [
       {
@@ -172,7 +172,7 @@ export const ES_POSTS: EsPost[] = [
     "category": "Consejos",
     "title": "Plan mensual u Own It para negocios",
     "seoTitle": "Sitio web mensual vs Own It para negocios | Kinexis Digital",
-    "excerpt": "Compara Website, Lead System y Plus con Own It: cancelación, compra de archivos y qué incluye cada plan.",
+    "excerpt": "Compara Website, Lead System y Plus con Own It: cancelación, compra de archivos y qué incluye cada uno de los cuatro planes.",
     "lead": "Los planes mensuales y Own It son opciones válidas. Depende del flujo de caja y si quieres herramientas de llamada perdida.",
     "sections": [
       {
@@ -198,7 +198,7 @@ export const ES_POSTS: EsPost[] = [
     category: "Consejos",
     title: "Plantillas de texto por llamada perdida para 12 negocios",
     seoTitle: "Plantillas de texto por llamada perdida | Kinexis Digital",
-    excerpt: "Borradores de SMS por oficio y tiempos honestos de aprobación del operador.",
+    excerpt: "Borradores de SMS por oficio para la llamada perdida, con tiempos honestos de aprobación del operador antes de enviarlos.",
     lead: "El texto de llamada perdida es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
     sections: [
       {
@@ -893,7 +893,7 @@ const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
     ],
   },
   "missed-call-text-back-templates": {
-    excerpt: "Borradores de SMS por oficio y tiempos honestos de aprobación del operador.",
+    excerpt: "Borradores de SMS por oficio para la llamada perdida, con tiempos honestos de aprobación del operador antes de enviarlos.",
     lead: "El texto de llamada perdida es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus puede haber un segundo número de seguimiento y tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
     sections: [
       {

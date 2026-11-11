@@ -257,7 +257,7 @@ const ES: Record<string, Copy> = {
     name: "Paisajismo",
     card: "Rutas de mantenimiento y obra",
     metaTitle: "Sitios de paisajismo en EE. UU.",
-    metaDescription: "Sitios de paisajismo para negocios en Estados Unidos. Mantenimiento semanal y diseño-obra en páginas separadas.",
+    metaDescription: "Sitios de paisajismo para negocios en Estados Unidos. El mantenimiento semanal y el diseño-obra van en páginas separadas.",
     h1: "Sitios de paisajismo para rutas y proyectos",
     mark: "rutas y proyectos",
     sub: "Una ruta de corte y un patio nuevo son negocios distintos que a veces comparten camioneta. El sitio no debe fingir que son el mismo lead.",
