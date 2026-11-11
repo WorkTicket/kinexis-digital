@@ -3390,7 +3390,7 @@ p,li,blockquote{ text-wrap:pretty }
   .inline-action,.inline-action--left{justify-content:center}
 }
 
-/* About process — stacked step cards. */
+/* About process — zigzag on desktop; uniform stack on mobile. */
 .process-flow{margin-top:40px}
 .process-flow__steps{
   position:relative;display:grid;gap:clamp(28px,4vw,40px);
@@ -3406,7 +3406,7 @@ p,li,blockquote{ text-wrap:pretty }
 .process-flow__step--reverse{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr)}
 .process-flow__step--reverse .process-flow__copy{order:2}
 .process-flow__step--reverse .process-flow__art{order:1}
-.process-flow__meta{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.process-flow__meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px}
 .process-flow__badge{
   display:grid;place-items:center;min-width:48px;height:48px;padding:0 10px;
   border-radius:14px;background:var(--brand-navy);
@@ -3424,7 +3424,8 @@ p,li,blockquote{ text-wrap:pretty }
   font-weight:800;letter-spacing:-.03em;line-height:1.08;text-wrap:balance;
 }
 .process-flow__copy>p{margin:0;max-width:40ch;color:var(--copy);font-size:1.05rem;line-height:1.62}
-.process-flow__copy .btn-row{margin-top:22px}
+.process-flow__btn-row{margin-top:22px;justify-content:flex-start}
+.process-flow__btn-row .btn{max-width:100%;white-space:normal;text-align:center}
 .process-flow__art{display:grid;place-items:center}
 .process-flow__frame{
   position:relative;display:grid;place-items:center;width:100%;aspect-ratio:5/4;
@@ -3453,12 +3454,15 @@ p,li,blockquote{ text-wrap:pretty }
   .process-flow__step--reverse{grid-template-columns:1fr;gap:18px;padding:18px}
   .process-flow__step--reverse .process-flow__copy,
   .process-flow__step--reverse .process-flow__art{order:initial}
-  .process-flow__art{order:-1}
   .process-flow__frame{aspect-ratio:16/11}
   .process-flow__step{scroll-margin-top:88px}
+  .process-flow__copy>p{max-width:none}
+  .process-flow__btn-row{justify-content:stretch}
+  .process-flow__btn-row .btn{width:100%}
 }
 @media (max-width:520px){
   .process-flow__badge{min-width:42px;height:42px;font-size:1rem}
+  .process-flow__copy h3{font-size:clamp(1.35rem,7vw,1.75rem)}
 }
 
 /* Final button reinforce — keep the Uiverse fill system above older sticker overrides.

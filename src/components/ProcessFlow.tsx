@@ -39,7 +39,7 @@ export default function ProcessFlow({
                 <h3>{s.title}</h3>
                 <p>{s.text}</p>
                 {k === 0 || k === steps.length - 1 ? (
-                  <p className="btn-row">
+                  <p className="btn-row process-flow__btn-row">
                     <Link className="btn btn--primary" href={ctaHref} prefetch={false}>
                       {ctaLabel}
                     </Link>
