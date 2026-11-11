@@ -218,7 +218,6 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         sub={tx("Comentarios reales de dueños que lanzaron su sitio con un plan de Kinexis.")}
         ctaLabel={tx("Leer más reseñas")}
         ctaHref={href("/reviews")}
-        ratingCopy={tx("de {count} reseñas · Facebook y el sitio")}
       />
       <Section tint>
         <MediaSplit image="homepage" alt={tx("Un negocio mostrando su sitio en una computadora y un celular")}>

@@ -86,10 +86,10 @@ export function reviewSourceSummary(reviews: DisplayReview[]): string {
   return `${parts.slice(0, -1).join(", ")}, & ${parts[parts.length - 1]}`;
 }
 
-/** Build-time curated site reviews. No network — safe for LCP paths like home. */
+/** Build-time curated reviews. No network — safe for LCP paths like home. */
 export function getCuratedReviews(): DisplayReview[] {
   return REVIEWS.map((review) => ({
-    id: `site-${review.id}`,
+    id: `${review.source}-${review.id}`,
     name: review.name,
     role: review.role,
     company: review.company,
@@ -98,7 +98,7 @@ export function getCuratedReviews(): DisplayReview[] {
     quote: review.quote,
     date: review.date,
     stars: review.stars,
-    source: "site" as const,
+    source: review.source,
     sortKey: sortKeyFromLabel(review.date, review.id),
   }));
 }
@@ -111,8 +111,8 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
     getSiteReviews(),
   ]);
 
-  const curatedIds = new Set(REVIEWS.map((review) => `site-${review.id}`));
-  // Prefer Website cards when the same client also appears on Facebook.
+  const curatedIds = new Set(REVIEWS.map((review) => review.id));
+  // Prefer curated cards when the same client also appears on Facebook / KV.
   const curatedNames = new Set(REVIEWS.map((review) => review.name.trim().toLowerCase()));
   const curatedQuoteStarts = REVIEWS.map((review) =>
     review.quote.trim().slice(0, 48).toLowerCase(),
@@ -121,7 +121,7 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
   const reviews: DisplayReview[] = [
     ...getCuratedReviews(),
     ...site
-      .filter((review) => !curatedIds.has(`site-${review.id}`))
+      .filter((review) => !curatedIds.has(review.id))
       .map((review) => ({
         id: `site-${review.id}`,
         name: review.name,
@@ -142,6 +142,7 @@ export async function getAllReviews(): Promise<DisplayReview[]> {
     })),
     ...facebook
       .filter((review) => {
+        if (curatedIds.has(review.id)) return false;
         const name = review.name.trim().toLowerCase();
         if (curatedNames.has(name)) return false;
         const start = review.quote.trim().slice(0, 48).toLowerCase();

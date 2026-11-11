@@ -730,7 +730,7 @@ export const POSTS = [
     readTime: "6 min read",
   },
 ];
-/** Curated client reviews for on-site display (source: Website). Do not invent quotes — edit only with client OK. */
+/** Curated client reviews for on-site display (Website). Facebook Graph is unreliable here — keep these as Website so they always show. Do not invent quotes — edit only with client OK. */
 export const REVIEWS: {
   id: string;
   quote: string;
@@ -741,6 +741,8 @@ export const REVIEWS: {
   city: string;
   date: string;
   stars: number;
+  /** Card label on /reviews. Curated quotes use Website. */
+  source: "facebook" | "site";
 }[] = [
   {
     id: "mac-christensen",
@@ -753,6 +755,7 @@ export const REVIEWS: {
     city: "Cedar Falls, Iowa",
     date: "October 25, 2026",
     stars: 5,
+    source: "site",
   },
   {
     id: "hunter-norris",
@@ -765,6 +768,7 @@ export const REVIEWS: {
     city: "Spirit Lake, Idaho",
     date: "September 22, 2026",
     stars: 5,
+    source: "site",
   },
   {
     id: "natalia-moreno",
@@ -777,6 +781,7 @@ export const REVIEWS: {
     city: "Valencia, Spain",
     date: "September 22, 2026",
     stars: 5,
+    source: "site",
   },
   {
     id: "israel-ybarra",
@@ -789,6 +794,7 @@ export const REVIEWS: {
     city: "Houston, TX",
     date: "September 12, 2026",
     stars: 5,
+    source: "site",
   },
   {
     id: "jeremy-main",
@@ -801,6 +807,7 @@ export const REVIEWS: {
     city: "Detroit, MI",
     date: "August 6, 2026",
     stars: 5,
+    source: "site",
   },
 ];
 export const COMPARE_ROWS: [string, boolean, boolean][] = [

@@ -19,7 +19,7 @@ export type FacebookReview = {
 
 /**
  * Fallback Facebook recommendations when Graph API is unavailable.
- * Client quotes shown on /reviews live in `REVIEWS` (Website source) — keep this
- * empty so the same people are not listed twice under Facebook.
+ * Client quotes shown on /reviews live in `REVIEWS` (Website) — keep this
+ * empty so the same people are not listed twice.
  */
 export const PUBLISHED_FACEBOOK_REVIEWS: FacebookReview[] = [];
