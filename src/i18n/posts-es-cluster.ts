@@ -11,7 +11,7 @@ type EsPost = {
 /** Native Spanish posts + ES mirrors for the five newest EN posts (Spanish cluster). */
 export const ES_CLUSTER_POSTS: EsPost[] = [
   {
-    slug: "diseno-web-para-contratistas",
+    slug: "web-design-for-contractors",
     category: "Diseño",
     title: "Diseño web para contratistas que sí trae llamadas",
     seoTitle: "Diseño web para contratistas | Desde $97/mes | Kinexis",
@@ -276,7 +276,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
 
 /** Spain-facing bodies: same topics, no USD figures. */
 export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
-  "diseno-web-para-contratistas": {
+  "web-design-for-contractors": {
     seoTitle: "Diseño web para contratistas | Kinexis Digital",
     sections: [
       {

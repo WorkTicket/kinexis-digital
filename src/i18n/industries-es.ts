@@ -211,6 +211,9 @@ const ES: Record<string, Copy> = {
       { q: "¿El cliente puede pedir un estimado desde el sitio?", a: "Sí. El formulario pide el tipo de trabajo, cómo contactarlo y fotos si las tiene. Te llega como un lead de formulario." },
       { q: "Pinto en inglés y en español. ¿Hay un plan para eso?", a: "Plus es el plan bilingüe: el sitio y las reseñas en inglés y en español. El texto opcional si no contestas también está en ambos idiomas." },
       { q: "¿Ustedes escriben el texto?", a: "Podemos usar el texto que ya tienes, o cotizar la redacción aparte. La vista previa usa un texto realista del negocio para que juzgues el diseño." },
+      { q: "¿Cuánto cuesta un sitio de pintura con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
+      { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
+      { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
     ],
   },
   remodeling: {
@@ -245,6 +248,9 @@ const ES: Record<string, Copy> = {
       { q: "¿El sitio va a prometer un precio de proyecto?", a: "Solo si nos das un rango que estés dispuesto a decir en público. Si no, explicamos qué cubre la consulta y cómo se arma la cotización." },
       { q: "¿Puedo empezar con pocas fotos?", a: "Sí. El diseño está hecho para cuartos reales. Unos proyectos buenos ganan a una cuadrícula de imágenes ajenas." },
       { q: "¿Una remodelación cabe en los planes mensuales?", a: "Sí. Son los mismos cuatro planes. Lead System y Plus siguen ayudando: una reseña cuando el proyecto termina, y el texto opcional si no contestas mientras estás en la obra." },
+      { q: "¿Cuánto cuesta un sitio de remodelación con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
+      { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
+      { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
     ],
   },
   landscaping: {
@@ -313,6 +319,9 @@ const ES: Record<string, Copy> = {
       { q: "¿El sitio puede vender servicio semanal y reparaciones de una vez?", a: "Sí. Son páginas con pasos distintos, para que una alberca verde no tenga que unirse primero a la ruta." },
       { q: "¿Hacen sitios de construcción de albercas?", a: "Esta página es para servicio, reparación y equipo. Si también remodelas albercas, lo decimos solo donde ese trabajo es real." },
       { q: "¿Qué incluye la vista previa gratis?", a: "Un concepto de inicio para tu negocio. Sin tarjeta y sin obligación. El sitio completo empieza cuando lo apruebas y eliges un plan." },
+      { q: "¿Cuánto cuesta un sitio de albercas con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
+      { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
+      { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
     ],
   },
   "pressure-washing": {
@@ -381,6 +390,9 @@ const ES: Record<string, Copy> = {
       { q: "¿El sitio puede ofrecer limpieza de una vez y recurrente?", a: "Sí. La primera visita y la ruta están en el sitio, y la ruta se presenta como lo que la mayoría debería tener." },
       { q: "También lavo canaletas o hago un lavado ligero. ¿Va en este sitio?", a: "Si es un servicio real con su precio, tiene su página. Si es un extra que casi no quieres, lo dejamos fuera." },
       { q: "¿Cómo consigo reseñas sin pedirlas en la puerta?", a: "Lead System y Plus envían un enlace de Google después del trabajo. Tú eliges el momento, para que la primera limpieza pueda ganar la reseña antes de vender la ruta." },
+      { q: "¿Cuánto cuesta un sitio de limpieza de vidrios con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
+      { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
+      { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
     ],
   },
   "yard-care": {
@@ -415,6 +427,9 @@ const ES: Record<string, Copy> = {
       { q: "¿Debo tener una página por cada barrio?", a: "No. Una página honesta de zona le gana a veinte páginas delgadas que solo cambian el nombre del pueblo. Esas páginas hacen que el sitio se ignore, no que posicione." },
       { q: "¿Un cliente de mascotas puede inscribirse sin llamar?", a: "Sí. Basta un formulario corto: nombre, dirección, cada cuánto y cómo contactarlo." },
       { q: "¿Qué plan le queda a una ruta?", a: "Website si solo necesitas el sitio. Lead System si también quieres reseñas, un reporte mensual y el texto opcional si no contestas. Plus agrega español." },
+      { q: "¿Cuánto cuesta un sitio de césped con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
+      { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
+      { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
     ],
   },
 };
@@ -427,5 +442,5 @@ export function localizeIndustry(industry: Industry, locale: Locale): Industry {
 }
 
 export function localizedIndustries(locale: Locale): Industry[] {
-  return INDUSTRIES.map((industry) => localizeIndustry(industry, locale));
+  return INDUSTRIES.filter((industry) => industry.status === "live").map((industry) => localizeIndustry(industry, locale));
 }

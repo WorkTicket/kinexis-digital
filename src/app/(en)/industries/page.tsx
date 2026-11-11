@@ -10,7 +10,7 @@ export const metadata = pageMetadata("industries");
 export default function Page() {
   return (
     <>
-      <PageSchema page="industries" items={INDUSTRIES.map((industry) => ({ name: industry.name, path: `/industries/${industry.slug}` }))} />
+      <PageSchema page="industries" items={INDUSTRIES.filter((industry) => industry.status === "live").map((industry) => ({ name: industry.name, path: `/industries/${industry.slug}` }))} />
       <PageHero
         eyebrow="Industries"
         h1="A Website That Fits Your Business"

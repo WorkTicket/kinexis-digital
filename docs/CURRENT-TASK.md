@@ -1,23 +1,27 @@
 # CURRENT-TASK.md
 
 ## Goal
-Finish Spain polish + upgrade thin Spanish plumbing/template posts.
+Finish the SEO/code batch locally (Spain+Latam off Google, cache, snippets, trailing slash, cost posts, hold industries, titles/contractor URL, Spanish cost rewrites, SMS stubs).
 
 ## Status
-implemented locally (not deployed)
+implemented locally (not committed / not deployed)
 
 ## Completed
-- Spanish cluster (3 native + 5 EN mirrors + GBP checklist) from prior batch
-- A1 landscaping hub proof stays public (confirmed)
-- `/es-es/pricing`: `hideUsd` plans, comparison table, terms, FAQs, meta; USD stickers hidden
-- Spain chrome on web-design, about, contact zone, SEO intro, pricing/services/blog/about meta
-- Native ES upgrades: `plumber-website-cost`, `plumbing-website-pages`, `missed-call-text-back-templates` (plumbing/HVAC/electrical/roofing SMS) + Spain USD-free overrides
+- `/es` and `/es-es` noindex, out of sitemap and hreflang; pages still work; Latam keeps US prices; Spain omits USD on visitor-facing pages
+- Year cache limited to images/static (`public/_headers` + `src/proxy.ts`); blog/portfolio HTML uses short cache
+- Meta descriptions rewritten to full 120–155 char sentences (homepage, plumbing, cost posts, Spanish trade posts)
+- Trailing slash 301 keeps query string
+- Homepage features plumbing/HVAC/roofing cost guides; EN + ES industry pages link cost + pages posts
+- Hold industries (painting, remodeling, pool-care, window-cleaning, yard-care): `status: "hold"`, noindex, out of grids/header/sitemap/related
+- Title brand doubling fixed; contractor slug `/blog/web-design-for-contractors` + Spanish legacy 301
+- Spanish HVAC→lawn cost/pages posts rewritten (full native bodies + excerpts)
+- SMS templates complete for all 12 trades in EN + ES (Latam + Spain overrides), including garage / landscaping / pressure washing
 
 ## Still open
 - Custom hero art for newer slugs (reuse stills for now)
+- Speed work (later)
 - Deploy + Rich Results / GA4 DebugView
-- Thin ES stubs remain for other trade cost/pages posts (HVAC→yard) — next EN hold still applies; upgrade when touching those trades
-- `/es-es` terms/upgrades still carry some USD in long legal/add-on copy
+- `/es-es` long legal/add-on copy may still mention USD in places
 
 ## Next action
-Preview `/es-es/pricing`, `/es/blog/plumber-website-cost`, `/es/blog/missed-call-text-back-templates`. Deploy Spanish work when ready. Hold new English articles.
+Preview hold industries stay unlinked, Spanish cost posts, and SMS templates. Commit/deploy when ready.

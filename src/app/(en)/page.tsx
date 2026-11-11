@@ -6,6 +6,7 @@ import { OpenDialog } from "@/components/OpenDialog";
 import Stepper from "@/components/Stepper";
 import { PageSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
+import { industryCostPostPath } from "@/data/industries";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
 import PreviewBar from "@/components/PreviewBar";
@@ -158,6 +159,29 @@ export default async function Home() {
           moreMeta="Any local business — if customers call you, we can help."
           moreLayout="cell"
         />
+        <nav className="industry-reads industry-reads--stack" aria-label="Website cost guides">
+          <p className="industry-reads__label">What a website costs for these trades</p>
+          <ul className="industry-reads__list">
+            <li>
+              <Link href={industryCostPostPath("plumbing")} prefetch={false}>
+                <span className="industry-reads__title">How much does a plumber website cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={industryCostPostPath("hvac")} prefetch={false}>
+                <span className="industry-reads__title">How much does an HVAC website cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={industryCostPostPath("roofing")} prefetch={false}>
+                <span className="industry-reads__title">How much does a roofing website cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </Section>
 
       {/* 6. Comparison */}

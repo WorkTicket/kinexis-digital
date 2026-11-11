@@ -12,7 +12,7 @@ import { MenuButton, NavLinks } from "./HeaderMenu";
 export default function Header({ locale }: { locale: Locale }) {
   const chrome = chromeFor(locale);
   const hrefFor = (href: string) => withLocale(locale, href);
-  const industries = INDUSTRIES.map((industry) => localizeIndustry(industry, locale));
+  const industries = INDUSTRIES.filter((industry) => industry.status === "live").map((industry) => localizeIndustry(industry, locale));
 
   return (
     <header className="header">

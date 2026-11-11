@@ -2,11 +2,11 @@ import type { MetadataRoute } from "next";
 import { POSTS } from "@/lib/content";
 import { INDUSTRIES } from "@/data/industries";
 import { portfolioFile, PROJECTS } from "@/data/portfolio";
-import { hreflangLanguages, isMirrored, withLocale, type Locale } from "@/lib/i18n";
+import { hreflangLanguages, isMirrored, localeIndexable, withLocale, type Locale } from "@/lib/i18n";
 import { PAGES, SITE_CONTENT_UPDATED, type PageMeta } from "@/lib/pages";
 import { SITE } from "@/lib/site";
 
-const LOCALES: Locale[] = ["en", "es-419", "es-ES"];
+const LOCALES: Locale[] = (["en", "es-419", "es-ES"] as const).filter(localeIndexable);
 
 export const revalidate = 86400;
 

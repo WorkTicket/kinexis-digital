@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getIndustry, relatedIndustries, type FeatureKey } from "@/data/industries";
+import { getIndustry, industryCostPostPath, industryPagesPostPath, relatedIndustries, type FeatureKey } from "@/data/industries";
 import { INDUSTRY_FEATURES_ES, localizedIndustryFeatures } from "@/data/industry-features";
 import { getProject, portfolioFile } from "@/data/portfolio";
 import { localizeIndustry } from "@/i18n/industries-es";
@@ -118,7 +118,32 @@ export default function SpanishIndustry({
           </div>
         </Section>
       )}
-      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { hideUsd: spainChrome })} showStickers={!spainChrome} /></Section>
+      <Section id="plans">
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { hideUsd: spainChrome })} showStickers={!spainChrome} />
+        <nav className="industry-reads industry-reads--stack" aria-label={tx(`Guías para ${industry.name}`)}>
+          <p className="industry-reads__label">{tx(`Guías para dueños de ${industry.name}`)}</p>
+          <ul className="industry-reads__list">
+            <li>
+              <Link href={href("/blog/monthly-website-vs-own-it")} prefetch={false}>
+                <span className="industry-reads__title">{tx("Plan mensual u Own It")}</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={href(industryCostPostPath(base.slug))} prefetch={false}>
+                <span className="industry-reads__title">{tx(`Costo de un sitio de ${industry.name}`)}</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href={href(industryPagesPostPath(base.slug))} prefetch={false}>
+                <span className="industry-reads__title">{tx("Páginas que este negocio necesita")}</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </Section>
       <Section tint narrow><h2 className="center"><HL text={tx(`Preguntas para dueños de ${industry.name}`)} mark={tx("dueños")} /></h2><Faq items={[...industry.faqs]} /></Section>
       <Section><h2 className="center"><HL text={tx("Otros negocios")} mark={tx("Otros negocios")} /></h2><IndustryGrid industries={related} base={href("/industries")} /></Section>
       <CtaBand h={tx("Consigue tu vista previa gratis")} mark={tx("vista previa gratis")} sub={tx("Vista previa gratis, sin tarjeta. Luego eliges Website, Lead System, Plus u Own It.")} btn={tx("Ver mi vista previa gratis")} href={href("/contact")} secondary={tx("Ver planes y precios")} secondaryHref={href("/pricing")} locale={locale} />

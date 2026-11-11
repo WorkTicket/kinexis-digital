@@ -48,18 +48,23 @@ export function ogLocale(locale: Locale): string {
   return "en_US";
 }
 
-/** hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid hreflang code. */
+/**
+ * Google should see English only. `/es` is US Spanish for visitors and uses
+ * the same prices as the US site. `/es-es` is Spain. Neither is a search market.
+ */
+export function localeIndexable(locale: Locale): boolean {
+  return locale === "en";
+}
+
+/**
+ * hreflang set. Spanish URLs stay on the site for visitors, but they are
+ * noindex, so they are not alternates. English is the only indexable
+ * language, and a single URL does not need an hreflang set.
+ */
 export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
   const en = englishPath(pathname);
-  if (!isMirrored(en)) return undefined;
-  const es = withLocale("es-419", en);
-  return {
-    "en-US": en,
-    es,
-    "es-US": es,
-    "es-ES": withLocale("es-ES", en),
-    "x-default": en,
-  };
+  if (!isMirrored(en) || !localeIndexable("en")) return undefined;
+  return { "en-US": en, "x-default": en };
 }
 
 export const getLocale = cache(async (): Promise<Locale> => {

@@ -222,8 +222,36 @@ export const ES_POSTS: EsPost[] = [
         html: `<p id="roofing">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde FUGA, CAMBIO o TORMENTA.</code></li><li><code>¿Fuga activa? Responde URGENTE y tu zona. Buscamos una inspección el mismo día cuando la cuadrilla lo permita.</code></li><li><code>Cotizaciones de cambio: responde con edad/material del techo si lo sabes.</code></li><li><code>Seguimiento de tormenta: documentamos el techo; no prometemos resultados de seguro.</code></li><li><code>Fuera de horario: manda fotos del daño si es seguro, y confirmamos los siguientes pasos.</code></li></ul>`,
       },
       {
-        h2: "Otras industrias",
-        html: `<p>Las plantillas de puertas de garaje, pintura, remodelación, jardinería, albercas, lavado a presión, vidrios y césped siguen en progreso. Pide una vista previa y afinamos el SMS a los trabajos que corres. Mientras, mira el hub de tu industria y la <a href="/tools/missed-call-calculator">calculadora</a>.</p>`,
+        h2: "Plantillas de puertas de garaje",
+        html: `<p id="garage-doors">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde RESORTE, MOTOR o PUERTA NUEVA y tu ciudad.</code></li><li><code>Estamos en un servicio. Responde URGENTE si la puerta no abre o no cierra y priorizamos la devolución.</code></li><li><code>Resorte o cable roto: responde RESORTE y si la puerta quedó abierta o cerrada.</code></li><li><code>Cotizaciones de puerta nueva: responde sencilla/doble y el material si lo sabes.</code></li><li><code>Fuera de horario: escribe el problema; confirmamos la primera ventana del técnico.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de pintura",
+        html: `<p id="painting">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde INTERIOR, EXTERIOR o GABINETES y el mejor número/hora.</code></li><li><code>Gracias por llamar a {Business}. Estamos en un trabajo y te devolvemos la llamada pronto. Responde COTIZACIÓN si quieres una ventana de estimado.</code></li><li><code>Para un estimado de exterior, responde con pisos/tipo de revestimiento si lo sabes y tu ciudad.</code></li><li><code>Fuera de horario: manda los cuartos o fotos y confirmamos una visita en horario de atención.</code></li><li><code>Gabinetes: responde GABINETES y si las puertas siguen en los muebles.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de remodelación",
+        html: `<p id="remodeling">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde COCINA, BAÑO u OTRO y un buen horario para hablar.</code></li><li><code>Estamos en una obra. Responde CONSULTA si quieres agendar una visita, y tu ciudad.</code></li><li><code>Baños: responde con la edad aproximada del baño si la sabes.</code></li><li><code>Fuera de horario: escribe una nota corta del proyecto; confirmamos en horario de atención.</code></li><li><code>Las fotos ayudan — responde FOTO y manda un par cuando puedas.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de paisajismo",
+        html: `<p id="landscaping">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde MANTENIMIENTO, DISEÑO o LIMPIEZA y tu código postal.</code></li><li><code>Estamos en cuadrilla. Responde COTIZACIÓN si quieres una ventana de estimado y tu ciudad.</code></li><li><code>Mantenimiento semanal: responde RUTA y tu barrio para checar cobertura.</code></li><li><code>Diseño/instalación: responde DISEÑO y una nota corta del proyecto.</code></li><li><code>Fuera de horario: escribe la dirección y el tipo de trabajo; confirmamos en horario de atención.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de albercas",
+        html: `<p id="pool-care">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde RUTA, VERDE o REPARACIÓN y tu código postal.</code></li><li><code>Estamos en una ruta. Responde URGENTE por alberca verde o bomba muerta y priorizamos la devolución.</code></li><li><code>Servicio semanal: responde RUTA y tu barrio para checar cobertura.</code></li><li><code>Equipo: responde BOMBA o CALENTADOR y la marca si la sabes.</code></li><li><code>Fuera de horario: escribe el problema; confirmamos la primera ventana abierta.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de lavado a presión",
+        html: `<p id="pressure-washing">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde CASA, CONCRETO o TECHO y tu ciudad.</code></li><li><code>Estamos en un trabajo. Responde COTIZACIÓN para un estimado y qué hay que lavar.</code></li><li><code>Entradas/aceras: responde CONCRETO y tu código postal.</code></li><li><code>Lavado suave / algas en techo: responde TECHO — confirmamos el método antes de agendar.</code></li><li><code>Fuera de horario: manda fotos si tienes y confirmamos los siguientes pasos.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de vidrios",
+        html: `<p id="window-cleaning">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde CASA, APARADOR o RUTA y tu ciudad.</code></li><li><code>Estamos en una ruta. Responde COTIZACIÓN para un estimado de primera limpieza y cuántos vidrios si lo sabes.</code></li><li><code>Aparadores: responde con la dirección del negocio y el día preferido.</code></li><li><code>Limpiezas recurrentes: responde MENSUAL o TRIMESTRAL y confirmamos espacios.</code></li><li><code>Fuera de horario: escribe la dirección; confirmamos en horario de atención.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de jardín",
+        html: `<p id="yard-care">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde CORTE, LIMPIEZA o MASCOTAS y tu calle/zona.</code></li><li><code>Estamos en una ruta. Responde RUTA si quieres servicio semanal de césped y tu código postal.</code></li><li><code>Mascotas: responde MASCOTAS y cada cuánto necesitas visitas.</code></li><li><code>Limpieza de temporada: responde LIMPIEZA y confirmamos el siguiente día abierto.</code></li><li><code>Fuera de horario: escribe la dirección y el servicio; confirmamos a primera hora.</code></li></ul>`,
       },
       {
         h2: "Nota de cumplimiento",
@@ -236,7 +264,7 @@ export const ES_POSTS: EsPost[] = [
     category: "Consejos",
     title: "¿Cuánto cuesta un sitio web de plomería en 2026?",
     seoTitle: "Costo de un sitio web de plomería | Kinexis Digital",
-    excerpt: "Precios reales de Kinexis para un sitio de plomería: $97, $197, $297 al mes u Own It $1,497 — más costos aparte.",
+    excerpt: "Precios reales de Kinexis para un sitio de plomería: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     lead: "Con Kinexis, un sitio de plomería empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
     sections: [
       {
@@ -262,7 +290,7 @@ export const ES_POSTS: EsPost[] = [
     category: "Consejos",
     title: "Qué páginas necesita un sitio de plomería",
     seoTitle: "Qué páginas necesita un sitio de plomería | Kinexis Digital",
-    excerpt: "Páginas base y de servicio para un sitio de plomería — sin spam de ciudades clonadas.",
+    excerpt: "Páginas base y de servicio para un sitio de plomería, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     lead: "Un sitio de plomería necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Separa fugas, drenajes y calentadores para no mezclar emergencia y cotización.",
     sections: [
       {
@@ -284,539 +312,539 @@ export const ES_POSTS: EsPost[] = [
     ],
   },
   {
-    "slug": "hvac-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de hvac en 2026?",
-    "seoTitle": "Costo de sitio web de hvac | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de HVAC empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "hvac-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de HVAC en 2026?",
+    seoTitle: "Costo de un sitio web de HVAC | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de HVAC: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de HVAC empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en HVAC",
-        "html": "<p>Páginas para no-cool repair, replacement, and maintenance. Hub: <a href=\"/industries/hvac\">/industries/hvac</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de HVAC",
+        html: `<p>Pagas por páginas armadas alrededor de reparación sin aire, cambio de equipo y mantenimiento — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/hvac">hub de HVAC</a> y <a href="/blog/hvac-website-pages">qué páginas necesita un sitio de HVAC</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "hvac-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de hvac",
-    "seoTitle": "Páginas para sitio de hvac | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para hvac, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para no-cool repair, replacement, and maintenance.",
-    "sections": [
+    slug: "hvac-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de HVAC",
+    seoTitle: "Qué páginas necesita un sitio de HVAC | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de HVAC, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de HVAC necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de reparación sin aire, cambio de equipo y mantenimiento.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de HVAC",
-        "html": "<p>no-cool repair, replacement, and maintenance.</p>"
+        h2: "Páginas de servicio de HVAC",
+        html: `<p>Arma el sitio alrededor de reparación sin aire, cambio de equipo y mantenimiento. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/hvac">hub de HVAC</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "electrician-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de electrical en 2026?",
-    "seoTitle": "Costo de sitio web de electrical | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de electrician empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "electrician-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de electricidad en 2026?",
+    seoTitle: "Costo de un sitio web de electricidad | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de electricidad: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de electricista empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Electrical",
-        "html": "<p>Páginas para panels, EV chargers, and troubleshooting. Hub: <a href=\"/industries/electrical\">/industries/electrical</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de electricidad",
+        html: `<p>Pagas por páginas armadas alrededor de tableros, cargadores EV y diagnóstico — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/electrical">hub de electricidad</a> y <a href="/blog/electrician-website-pages">qué páginas necesita un sitio de electricidad</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "electrician-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de electrical",
-    "seoTitle": "Páginas para sitio de electrical | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para electrical, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para panels, EV chargers, and troubleshooting.",
-    "sections": [
+    slug: "electrician-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de electricidad",
+    seoTitle: "Qué páginas necesita un sitio de electricidad | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de electricidad, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de electricista necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de tableros, cargadores EV y diagnóstico.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Electrical",
-        "html": "<p>panels, EV chargers, and troubleshooting.</p>"
+        h2: "Páginas de servicio de electricidad",
+        html: `<p>Arma el sitio alrededor de tableros, cargadores EV y diagnóstico. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/electrical">hub de electricidad</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "roofing-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de roofing en 2026?",
-    "seoTitle": "Costo de sitio web de roofing | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de roofing empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "roofing-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de techos en 2026?",
+    seoTitle: "Costo de un sitio web de techos | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de techos: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de techos empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Roofing",
-        "html": "<p>Páginas para repairs, replacements, and storm calls. Hub: <a href=\"/industries/roofing\">/industries/roofing</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de techos",
+        html: `<p>Pagas por páginas armadas alrededor de reparaciones, cambios y llamadas por tormenta — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/roofing">hub de techos</a> y <a href="/blog/roofing-website-pages">qué páginas necesita un sitio de techos</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "roofing-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de roofing",
-    "seoTitle": "Páginas para sitio de roofing | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para roofing, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para repairs, replacements, and storm calls.",
-    "sections": [
+    slug: "roofing-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de techos",
+    seoTitle: "Qué páginas necesita un sitio de techos | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de techos, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de techos necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de reparaciones, cambios y llamadas por tormenta.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Roofing",
-        "html": "<p>repairs, replacements, and storm calls.</p>"
+        h2: "Páginas de servicio de techos",
+        html: `<p>Arma el sitio alrededor de reparaciones, cambios y llamadas por tormenta. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/roofing">hub de techos</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "garage-door-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de garage doors en 2026?",
-    "seoTitle": "Costo de sitio web de garage doors | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de garage door company empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "garage-door-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de puertas de garaje en 2026?",
+    seoTitle: "Costo de un sitio web de puertas de garaje | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de puertas de garaje: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de puertas de garaje empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Garage Doors",
-        "html": "<p>Páginas para broken springs, openers, and new doors. Hub: <a href=\"/industries/garage-doors\">/industries/garage-doors</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de puertas de garaje",
+        html: `<p>Pagas por páginas armadas alrededor de resortes rotos, motores y puertas nuevas — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/garage-doors">hub de puertas de garaje</a> y <a href="/blog/garage-door-website-pages">qué páginas necesita un sitio de puertas de garaje</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "garage-door-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de garage doors",
-    "seoTitle": "Páginas para sitio de garage doors | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para garage doors, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para broken springs, openers, and new doors.",
-    "sections": [
+    slug: "garage-door-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de puertas de garaje",
+    seoTitle: "Qué páginas necesita un sitio de puertas de garaje | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de puertas de garaje, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de puertas de garaje necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de resortes rotos, motores y puertas nuevas.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Garage Doors",
-        "html": "<p>broken springs, openers, and new doors.</p>"
+        h2: "Páginas de servicio de puertas de garaje",
+        html: `<p>Arma el sitio alrededor de resortes rotos, motores y puertas nuevas. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/garage-doors">hub de puertas de garaje</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "painting-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de painting en 2026?",
-    "seoTitle": "Costo de sitio web de painting | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de painting contractor empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "painting-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de pintura en 2026?",
+    seoTitle: "Costo de un sitio web de pintura | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de pintura: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de pintura empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Painting",
-        "html": "<p>Páginas para interior, exterior, and cabinet finishes. Hub: <a href=\"/industries/painting\">/industries/painting</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de pintura",
+        html: `<p>Pagas por páginas armadas alrededor de interior, exterior y gabinetes — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/painting">hub de pintura</a> y <a href="/blog/painting-website-pages">qué páginas necesita un sitio de pintura</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "painting-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de painting",
-    "seoTitle": "Páginas para sitio de painting | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para painting, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para interior, exterior, and cabinet finishes.",
-    "sections": [
+    slug: "painting-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de pintura",
+    seoTitle: "Qué páginas necesita un sitio de pintura | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de pintura, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de pintura necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de interior, exterior y gabinetes.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Painting",
-        "html": "<p>interior, exterior, and cabinet finishes.</p>"
+        h2: "Páginas de servicio de pintura",
+        html: `<p>Arma el sitio alrededor de interior, exterior y gabinetes. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/painting">hub de pintura</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "remodeling-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de remodeling en 2026?",
-    "seoTitle": "Costo de sitio web de remodeling | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de remodeling contractor empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "remodeling-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de remodelación en 2026?",
+    seoTitle: "Costo de un sitio web de remodelación | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de remodelación: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de remodelación empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Remodeling",
-        "html": "<p>Páginas para kitchens, baths, and longer consults. Hub: <a href=\"/industries/remodeling\">/industries/remodeling</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de remodelación",
+        html: `<p>Pagas por páginas armadas alrededor de cocinas, baños y consultas más largas — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/remodeling">hub de remodelación</a> y <a href="/blog/remodeling-website-pages">qué páginas necesita un sitio de remodelación</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "remodeling-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de remodeling",
-    "seoTitle": "Páginas para sitio de remodeling | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para remodeling, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para kitchens, baths, and longer consults.",
-    "sections": [
+    slug: "remodeling-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de remodelación",
+    seoTitle: "Qué páginas necesita un sitio de remodelación | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de remodelación, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de remodelación necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de cocinas, baños y consultas más largas.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Remodeling",
-        "html": "<p>kitchens, baths, and longer consults.</p>"
+        h2: "Páginas de servicio de remodelación",
+        html: `<p>Arma el sitio alrededor de cocinas, baños y consultas más largas. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/remodeling">hub de remodelación</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "landscaping-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de landscaping en 2026?",
-    "seoTitle": "Costo de sitio web de landscaping | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de landscaping empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "landscaping-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de paisajismo en 2026?",
+    seoTitle: "Costo de un sitio web de paisajismo | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de paisajismo: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de paisajismo empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Landscaping",
-        "html": "<p>Páginas para maintenance routes and design-build. Hub: <a href=\"/industries/landscaping\">/industries/landscaping</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de paisajismo",
+        html: `<p>Pagas por páginas armadas alrededor de rutas de mantenimiento y diseño-obra — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/landscaping">hub de paisajismo</a> y <a href="/blog/landscaping-website-pages">qué páginas necesita un sitio de paisajismo</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "landscaping-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de landscaping",
-    "seoTitle": "Páginas para sitio de landscaping | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para landscaping, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para maintenance routes and design-build.",
-    "sections": [
+    slug: "landscaping-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de paisajismo",
+    seoTitle: "Qué páginas necesita un sitio de paisajismo | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de paisajismo, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de paisajismo necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de rutas de mantenimiento y diseño-obra.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Landscaping",
-        "html": "<p>maintenance routes and design-build.</p>"
+        h2: "Páginas de servicio de paisajismo",
+        html: `<p>Arma el sitio alrededor de rutas de mantenimiento y diseño-obra. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/landscaping">hub de paisajismo</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "pool-service-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de pool care en 2026?",
-    "seoTitle": "Costo de sitio web de pool care | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de pool service empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "pool-service-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de albercas en 2026?",
+    seoTitle: "Costo de un sitio web de albercas | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de albercas: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de servicio de albercas empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Pool Care",
-        "html": "<p>Páginas para weekly routes, repairs, and equipment. Hub: <a href=\"/industries/pool-care\">/industries/pool-care</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de albercas",
+        html: `<p>Pagas por páginas armadas alrededor de rutas semanales, reparaciones y equipo — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/pool-care">hub de albercas</a> y <a href="/blog/pool-service-website-pages">qué páginas necesita un sitio de albercas</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "pool-service-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de pool care",
-    "seoTitle": "Páginas para sitio de pool care | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para pool care, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para weekly routes, repairs, and equipment.",
-    "sections": [
+    slug: "pool-service-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de albercas",
+    seoTitle: "Qué páginas necesita un sitio de albercas | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de albercas, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de servicio de albercas necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de rutas semanales, reparaciones y equipo.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Pool Care",
-        "html": "<p>weekly routes, repairs, and equipment.</p>"
+        h2: "Páginas de servicio de albercas",
+        html: `<p>Arma el sitio alrededor de rutas semanales, reparaciones y equipo. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/pool-care">hub de albercas</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "pressure-washing-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de pressure washing en 2026?",
-    "seoTitle": "Costo de sitio web de pressure washing | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de pressure washing empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "pressure-washing-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de lavado a presión en 2026?",
+    seoTitle: "Costo de un sitio web de lavado a presión | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de lavado a presión: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de lavado a presión empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Pressure Washing",
-        "html": "<p>Páginas para houses, concrete, and roof soft washes. Hub: <a href=\"/industries/pressure-washing\">/industries/pressure-washing</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de lavado a presión",
+        html: `<p>Pagas por páginas armadas alrededor de casas, concreto y lavado suave de techos — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/pressure-washing">hub de lavado a presión</a> y <a href="/blog/pressure-washing-website-pages">qué páginas necesita un sitio de lavado a presión</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "pressure-washing-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de pressure washing",
-    "seoTitle": "Páginas para sitio de pressure washing | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para pressure washing, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para houses, concrete, and roof soft washes.",
-    "sections": [
+    slug: "pressure-washing-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de lavado a presión",
+    seoTitle: "Qué páginas necesita un sitio de lavado a presión | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de lavado a presión, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de lavado a presión necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de casas, concreto y lavado suave de techos.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Pressure Washing",
-        "html": "<p>houses, concrete, and roof soft washes.</p>"
+        h2: "Páginas de servicio de lavado a presión",
+        html: `<p>Arma el sitio alrededor de casas, concreto y lavado suave de techos. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/pressure-washing">hub de lavado a presión</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "window-cleaning-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de window cleaning en 2026?",
-    "seoTitle": "Costo de sitio web de window cleaning | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de window cleaning empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "window-cleaning-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de limpieza de vidrios en 2026?",
+    seoTitle: "Costo de un sitio web de limpieza de vidrios | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de limpieza de vidrios: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de limpieza de vidrios empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Window Cleaning",
-        "html": "<p>Páginas para home routes and storefront schedules. Hub: <a href=\"/industries/window-cleaning\">/industries/window-cleaning</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de limpieza de vidrios",
+        html: `<p>Pagas por páginas armadas alrededor de rutas de casa y aparadores — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/window-cleaning">hub de limpieza de vidrios</a> y <a href="/blog/window-cleaning-website-pages">qué páginas necesita un sitio de limpieza de vidrios</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "window-cleaning-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de window cleaning",
-    "seoTitle": "Páginas para sitio de window cleaning | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para window cleaning, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para home routes and storefront schedules.",
-    "sections": [
+    slug: "window-cleaning-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de limpieza de vidrios",
+    seoTitle: "Qué páginas necesita un sitio de limpieza de vidrios | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de limpieza de vidrios, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de limpieza de vidrios necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de rutas de casa y aparadores.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Window Cleaning",
-        "html": "<p>home routes and storefront schedules.</p>"
+        h2: "Páginas de servicio de limpieza de vidrios",
+        html: `<p>Arma el sitio alrededor de rutas de casa y aparadores. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/window-cleaning">hub de limpieza de vidrios</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   {
-    "slug": "lawn-care-website-cost",
-    "category": "Consejos",
-    "title": "¿Cuánto cuesta un sitio web de yard care en 2026?",
-    "seoTitle": "Costo de sitio web de yard care | Kinexis Digital",
-    "excerpt": "Precios reales de Kinexis: $97, $197, $297 al mes u Own It $1,497.",
-    "lead": "Con Kinexis, un sitio de lawn care empieza en Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis, sin tarjeta.",
-    "sections": [
+    slug: "lawn-care-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de césped en 2026?",
+    seoTitle: "Costo de un sitio web de césped | Kinexis Digital",
+    excerpt: "Precios reales de Kinexis para un sitio de césped: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
+    lead: "Con Kinexis, un sitio de cuidado de césped empieza en Website a $97/mes, Lead System a $197/mes, Plus a $297/mes u Own It por $1,497 de una vez. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
+    sections: [
       {
-        "h2": "Precios de Kinexis",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497. Ver <a href=\"/pricing\">/pricing</a>.</p>"
+        h2: "Precios de Kinexis para sitios de negocios",
+        html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        "h2": "DIY, freelancer o agencia",
-        "html": "<p>Comparación cualitativa. No inventamos rangos de mercado.</p>"
+        h2: "DIY, freelancer o agencia — solo cualitativo",
+        html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
-        "h2": "Costos aparte",
-        "html": "<p>SEO continuo aparte. Texto de llamada perdida opcional (10–15 días; no garantizado). El extra cuesta $97 al mes.</p>"
+        h2: "Costos aparte a planear",
+        html: `<p>El SEO continuo va aparte. Fotos y redacción a medida se cotizan si las necesitas. El texto de llamada perdida requiere línea dedicada y aprobación del operador (normalmente 10–15 días; no garantizada). En Lead System o Plus, un segundo número es $1/mes si lo usas, más tarifas del operador.</p>`,
       },
       {
-        "h2": "Qué pagas en Yard Care",
-        "html": "<p>Páginas para weekly lawn routes and pet-waste stops. Hub: <a href=\"/industries/yard-care\">/industries/yard-care</a>.</p>"
-      }
-    ]
+        h2: "Qué estás pagando en un sitio de césped",
+        html: `<p>Pagas por páginas armadas alrededor de rutas semanales de césped y desechos de mascotas — no una plantilla genérica con el nombre cambiado. Mira el <a href="/industries/yard-care">hub de césped</a> y <a href="/blog/lawn-care-website-pages">qué páginas necesita un sitio de césped</a>.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> antes de elegir plan.</p>`,
+      },
+    ],
   },
   {
-    "slug": "lawn-care-website-pages",
-    "category": "Consejos",
-    "title": "Qué páginas necesita un sitio de yard care",
-    "seoTitle": "Páginas para sitio de yard care | Kinexis Digital",
-    "excerpt": "Páginas base y de servicio para yard care, sin spam de ciudades.",
-    "lead": "Inicio, zona, nosotros, reseñas, contacto y servicios claros para weekly lawn routes and pet-waste stops.",
-    "sections": [
+    slug: "lawn-care-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio de césped",
+    seoTitle: "Qué páginas necesita un sitio de césped | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para un sitio de césped, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
+    lead: "Un sitio de cuidado de césped necesita un inicio claro, zona honesta, nosotros, reseñas y contacto — más páginas de servicio para lo que la gente busca. Arma el sitio alrededor de rutas semanales de césped y desechos de mascotas.",
+    sections: [
       {
-        "h2": "Páginas base",
-        "html": "<p>Inicio, servicios, zona, nosotros, reseñas y contacto.</p>"
+        h2: "Páginas base de cualquier sitio de servicios",
+        html: `<ul><li><strong>Inicio</strong> — nombra el trabajo, muestra el teléfono y deja claro el siguiente paso.</li><li><strong>Servicios</strong> — páginas separadas para los trabajos que vendes, no un cajón de sastre.</li><li><strong>Zona de servicio</strong> — ciudades y barrios que tu cuadrilla sí cubre.</li><li><strong>Nosotros</strong> — licencia, seguro y quién llega.</li><li><strong>Reseñas</strong> — prueba de trabajos reales.</li><li><strong>Contacto</strong> — formulario + llamada con un toque en cada dispositivo.</li></ul>`,
       },
       {
-        "h2": "Servicios de Yard Care",
-        "html": "<p>weekly lawn routes and pet-waste stops.</p>"
+        h2: "Páginas de servicio de césped",
+        html: `<p>Arma el sitio alrededor de rutas semanales de césped y desechos de mascotas. Páginas separadas para que cada tipo de comprador tenga un siguiente paso claro.</p><p>Detalle y ejemplos en el <a href="/industries/yard-care">hub de césped</a>.</p>`,
       },
       {
-        "h2": "Sin spam de ciudades",
-        "html": "<p>Una página honesta de zona supera decenas de páginas casi iguales.</p>"
-      }
-    ]
+        h2: "Sin spam de ciudades",
+        html: `<p>No publiques páginas casi iguales que solo cambian el nombre del pueblo. Eso gasta rastreo y no ayuda a quien llama. Una página clara de zona es el enfoque honesto.</p><p><a href="/contact">Pide una vista previa gratis del inicio</a> o compara planes en <a href="/pricing">/pricing</a>.</p>`,
+      },
+    ],
   },
   ...ES_CLUSTER_POSTS,
 ];
 
 /**
- * Spain (`/es-es`) keeps this shared post indexable, but without USD figures —
- * same rule as the Spain homepage meta (no US pricing in Spain-facing copy).
+ * Spain copy omits USD figures. `/es` keeps the same US prices as the English
+ * site. Both locales stay noindex; this override is for visitors, not Google.
  */
 const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
   "monthly-website-vs-own-it": {
@@ -843,7 +871,7 @@ const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
   },
   "plumber-website-cost": {
     seoTitle: "Costo de un sitio web de plomería | Kinexis Digital",
-    excerpt: "Planes de Kinexis para un sitio de plomería: Website, Lead System, Plus u Own It — más costos aparte.",
+    excerpt: "Planes de Kinexis para un sitio de plomería: Website, Lead System, Plus u Own It. Vista previa gratis del inicio, sin tarjeta ni obligación.",
     lead: "Con Kinexis, un sitio de plomería empieza con Website, Lead System, Plus u Own It. Todas las opciones empiezan con una vista previa gratis del inicio — sin tarjeta y sin obligación.",
     sections: [
       {
@@ -889,8 +917,36 @@ const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
         html: `<p id="roofing">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde FUGA, CAMBIO o TORMENTA.</code></li><li><code>¿Fuga activa? Responde URGENTE y tu zona.</code></li><li><code>Cotizaciones de cambio: responde con edad/material del techo si lo sabes.</code></li><li><code>Seguimiento de tormenta: documentamos el techo; no prometemos resultados de seguro.</code></li><li><code>Fuera de horario: manda fotos del daño si es seguro.</code></li></ul>`,
       },
       {
-        h2: "Otras industrias",
-        html: `<p>Las plantillas del resto de oficios siguen en progreso. Pide una vista previa y afinamos el SMS. Mira el hub de tu industria y la <a href="/tools/missed-call-calculator">calculadora</a>.</p>`,
+        h2: "Plantillas de puertas de garaje",
+        html: `<p id="garage-doors">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde RESORTE, MOTOR o PUERTA NUEVA y tu ciudad.</code></li><li><code>Estamos en un servicio. Responde URGENTE si la puerta no abre o no cierra.</code></li><li><code>Resorte o cable roto: responde RESORTE y si quedó abierta o cerrada.</code></li><li><code>Puerta nueva: responde sencilla/doble y el material si lo sabes.</code></li><li><code>Fuera de horario: escribe el problema; confirmamos la primera ventana.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de pintura",
+        html: `<p id="painting">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde INTERIOR, EXTERIOR o GABINETES y el mejor número/hora.</code></li><li><code>Gracias por llamar a {Business}. Estamos en un trabajo. Responde COTIZACIÓN si quieres una ventana de estimado.</code></li><li><code>Para un estimado de exterior, responde con pisos/tipo de revestimiento si lo sabes.</code></li><li><code>Fuera de horario: manda los cuartos o fotos y confirmamos una visita.</code></li><li><code>Gabinetes: responde GABINETES.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de remodelación",
+        html: `<p id="remodeling">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde COCINA, BAÑO u OTRO.</code></li><li><code>Estamos en una obra. Responde CONSULTA si quieres agendar una visita.</code></li><li><code>Baños: responde con la edad aproximada si la sabes.</code></li><li><code>Fuera de horario: escribe una nota corta del proyecto.</code></li><li><code>Las fotos ayudan — responde FOTO.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de paisajismo",
+        html: `<p id="landscaping">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde MANTENIMIENTO, DISEÑO o LIMPIEZA.</code></li><li><code>Estamos en cuadrilla. Responde COTIZACIÓN si quieres una ventana de estimado.</code></li><li><code>Mantenimiento semanal: responde RUTA y tu barrio.</code></li><li><code>Diseño/instalación: responde DISEÑO y una nota corta.</code></li><li><code>Fuera de horario: escribe la dirección y el tipo de trabajo.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de albercas",
+        html: `<p id="pool-care">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde RUTA, VERDE o REPARACIÓN.</code></li><li><code>Estamos en una ruta. Responde URGENTE por alberca verde o bomba muerta.</code></li><li><code>Servicio semanal: responde RUTA y tu barrio.</code></li><li><code>Equipo: responde BOMBA o CALENTADOR.</code></li><li><code>Fuera de horario: escribe el problema.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de lavado a presión",
+        html: `<p id="pressure-washing">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde CASA, CONCRETO o TECHO.</code></li><li><code>Estamos en un trabajo. Responde COTIZACIÓN y qué hay que lavar.</code></li><li><code>Entradas/aceras: responde CONCRETO.</code></li><li><code>Lavado suave / techo: responde TECHO — confirmamos el método antes.</code></li><li><code>Fuera de horario: manda fotos si tienes.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de vidrios",
+        html: `<p id="window-cleaning">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde CASA, APARADOR o RUTA.</code></li><li><code>Estamos en una ruta. Responde COTIZACIÓN para un estimado de primera limpieza.</code></li><li><code>Aparadores: responde con la dirección y el día preferido.</code></li><li><code>Limpiezas recurrentes: responde MENSUAL o TRIMESTRAL.</code></li><li><code>Fuera de horario: escribe la dirección.</code></li></ul>`,
+      },
+      {
+        h2: "Plantillas de jardín",
+        html: `<p id="yard-care">Úsalas como borrador. Pide revisión de cumplimiento antes de publicar.</p><ul><li><code>Hola de {Business}. Perdimos tu llamada — responde CORTE, LIMPIEZA o MASCOTAS.</code></li><li><code>Estamos en una ruta. Responde RUTA si quieres servicio semanal.</code></li><li><code>Mascotas: responde MASCOTAS y cada cuánto.</code></li><li><code>Limpieza de temporada: responde LIMPIEZA.</code></li><li><code>Fuera de horario: escribe la dirección y el servicio.</code></li></ul>`,
       },
       {
         h2: "Nota de cumplimiento",

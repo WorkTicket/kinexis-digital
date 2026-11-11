@@ -48,7 +48,8 @@ export default function IndustryGrid({
   /** `cell` fills a grid slot (home). `outro` sits centered under the list. */
   moreLayout?: "cell" | "outro";
 }) {
-  const list = typeof limit === "number" ? industries.slice(0, limit) : industries;
+  const published = industries.filter((industry) => industry.status === "live");
+  const list = typeof limit === "number" ? published.slice(0, limit) : published;
   if (layout === "index") {
     const moreInGrid = Boolean(moreHref) && moreLayout === "cell";
     const moreAsOutro = Boolean(moreHref) && moreLayout === "outro";
@@ -90,7 +91,7 @@ export default function IndustryGrid({
   }
   return (
     <div className="trade-grid">
-      {industries.map((industry) => (
+      {list.map((industry) => (
         <Link key={industry.slug} className="trade-card" href={`${base}/${industry.slug}`} prefetch={false}>
           <span className="trade-card__name">
             <TradeIcon slug={industry.slug} />

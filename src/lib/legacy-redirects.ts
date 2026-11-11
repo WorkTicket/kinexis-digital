@@ -39,6 +39,7 @@ const NESTED_LIVE_INDUSTRY: Record<string, string> = {
 
 /** Old article slugs mapped to the closest current page. */
 const BLOG: Record<string, string> = {
+  "diseno-web-para-contratistas": "/blog/web-design-for-contractors",
   "small-business-website-cost": "/blog/small-business-marketing-budget",
   "website-not-generating-leads": "/blog/turn-clicks-into-calls",
   "website-traffic-no-calls": "/blog/turn-clicks-into-calls",

@@ -127,35 +127,35 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           },
           {
                 "h2": "Garage Doors Templates",
-                "html": "<p id=\"garage-doors\">Templates for garage doors are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/garage-doors\">garage doors hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"garage-doors\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply SPRING, OPENER, or NEW DOOR and your city.</code></li><li><code>We’re on a service call. Reply URGENT if the door won’t open or close and we’ll prioritize a callback.</code></li><li><code>Broken spring or cable: reply SPRING and whether the door is stuck open or closed.</code></li><li><code>New door quotes: reply with single/double and material if you know it.</code></li><li><code>After hours: text the issue; we’ll confirm the first open tech window.</code></li></ul>"
           },
           {
                 "h2": "Painting Templates",
-                "html": "<p id=\"painting\">Templates for painting are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/painting\">painting hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"painting\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply INTERIOR, EXTERIOR, or CABINETS and the best number/time.</code></li><li><code>Thanks for calling {Business}. We’re on a job and will call back shortly. Reply QUOTE if you want an estimate window.</code></li><li><code>For an exterior estimate, reply with stories/siding type if you know it and your city.</code></li><li><code>After hours: text the rooms or photos and we’ll confirm a walkthrough during staffed hours.</code></li><li><code>Cabinet refinishing: reply CABINETS and whether doors are still on the boxes.</code></li></ul>"
           },
           {
                 "h2": "Remodeling Templates",
-                "html": "<p id=\"remodeling\">Templates for remodeling are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/remodeling\">remodeling hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"remodeling\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply KITCHEN, BATH, or OTHER and a good time to talk.</code></li><li><code>We’re on a jobsite. Reply CONSULT if you want to book a walkthrough, and your city.</code></li><li><code>Bathroom remodels: reply with roughly how old the bath is if you know it.</code></li><li><code>After hours: text a short note about the project; we’ll confirm next steps during staffed hours.</code></li><li><code>Photos help — reply PHOTO and send a couple when you can.</code></li></ul>"
           },
           {
                 "h2": "Landscaping Templates",
-                "html": "<p id=\"landscaping\">Templates for landscaping are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/landscaping\">landscaping hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"landscaping\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply MAINT, DESIGN, or CLEANUP and your zip.</code></li><li><code>We’re on a crew. Reply QUOTE if you want an estimate window and your city.</code></li><li><code>Weekly maintenance: reply ROUTE and your neighborhood so we can check coverage.</code></li><li><code>Design/install: reply DESIGN and a short note about the project.</code></li><li><code>After hours: text the address and job type; we’ll confirm during staffed hours.</code></li></ul>"
           },
           {
                 "h2": "Pool Care Templates",
-                "html": "<p id=\"pool-care\">Templates for pool care are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/pool-care\">pool care hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"pool-care\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply ROUTE, GREEN, or REPAIR and your zip.</code></li><li><code>We’re on a route. Reply URGENT for a green pool or dead pump and we’ll prioritize a callback.</code></li><li><code>Weekly service: reply ROUTE and your neighborhood so we can check coverage.</code></li><li><code>Equipment: reply PUMP or HEATER and the brand if you know it.</code></li><li><code>After hours: text the issue; we’ll confirm the first open window.</code></li></ul>"
           },
           {
                 "h2": "Pressure Washing Templates",
-                "html": "<p id=\"pressure-washing\">Templates for pressure washing are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/pressure-washing\">pressure washing hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"pressure-washing\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply HOUSE, CONCRETE, or ROOF and your city.</code></li><li><code>We’re on a job. Reply QUOTE for an estimate and roughly what needs washing.</code></li><li><code>Driveways/sidewalks: reply CONCRETE and your zip.</code></li><li><code>Soft wash / roof algae: reply ROOF — we confirm method before booking.</code></li><li><code>After hours: text photos if you have them and we’ll confirm next steps.</code></li></ul>"
           },
           {
                 "h2": "Window Cleaning Templates",
-                "html": "<p id=\"window-cleaning\">Templates for window cleaning are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/window-cleaning\">window cleaning hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"window-cleaning\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply HOME, STOREFRONT, or ROUTE and your city.</code></li><li><code>We’re on a route. Reply QUOTE for a first-clean estimate and roughly how many panes if you know.</code></li><li><code>Storefronts: reply with the business address and preferred clean day.</code></li><li><code>Recurring cleans: reply MONTHLY or QUARTERLY and we’ll confirm openings.</code></li><li><code>After hours: text the address; we’ll confirm during staffed hours.</code></li></ul>"
           },
           {
                 "h2": "Yard Care Templates",
-                "html": "<p id=\"yard-care\">Templates for yard care are in progress. Request a preview and we will tune SMS copy to the jobs you run. Meanwhile see the <a href=\"/industries/yard-care\">yard care hub</a> and the <a href=\"/tools/missed-call-calculator\">missed-call calculator</a>.</p>"
+                "html": "<p id=\"yard-care\">Use these as drafts. Have a qualified review for TCPA/compliance before publish.</p><ul><li><code>Hi from {Business}. Missed your call — reply MOW, CLEANUP, or PET and your street/area.</code></li><li><code>We’re on a route. Reply ROUTE if you want weekly lawn service and your zip.</code></li><li><code>Pet-waste: reply PET and how often you need stops.</code></li><li><code>Seasonal cleanup: reply CLEANUP and we’ll confirm the next open day.</code></li><li><code>After hours: text the address and service; we’ll confirm first thing.</code></li></ul>"
           },
           {
                 "h2": "Compliance Note",
@@ -230,10 +230,10 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ]
   },
   "hvac-website-cost": {
-      "lead": "With Kinexis, a HVAC website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
+      "lead": "With Kinexis, an HVAC website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
       "faqs": [
           {
-              "q": "How much is a HVAC website with Kinexis?",
+              "q": "How much is an HVAC website with Kinexis?",
               "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
           },
           {
@@ -259,7 +259,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
               "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
           },
           {
-              "h2": "What You’re Paying For on a HVAC Site",
+              "h2": "What You’re Paying For on an HVAC Site",
               "html": "<p>You’re paying for pages built around no-cool repair, replacement, and maintenance — not a generic template with the business name swapped. See <a href=\"/industries/hvac\">website design for HVACs</a> and <a href=\"/blog/hvac-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
           }
       ]
@@ -268,7 +268,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       "lead": "A HVAC website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Keep repair, system replacement, and maintenance on separate paths so shoulder-season work stays visible.",
       "faqs": [
           {
-              "q": "What pages should a HVAC website have?",
+              "q": "What pages should an HVAC website have?",
               "a": "Home, services for no-cool repair, replacement, and maintenance, service area, about, reviews, and contact. Avoid thin city doorway pages."
           },
           {
@@ -296,10 +296,10 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       ]
   },
   "electrician-website-cost": {
-      "lead": "With Kinexis, a electrician website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
+      "lead": "With Kinexis, an electrician website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
       "faqs": [
           {
-              "q": "How much is a electrician website with Kinexis?",
+              "q": "How much is an electrician website with Kinexis?",
               "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
           },
           {
@@ -334,7 +334,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       "lead": "A electrician website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Show licensing trust early, and give EV chargers their own page when that work is real.",
       "faqs": [
           {
-              "q": "What pages should a electrician website have?",
+              "q": "What pages should an electrician website have?",
               "a": "Home, services for panels, EV chargers, and troubleshooting, service area, about, reviews, and contact. Avoid thin city doorway pages."
           },
           {
@@ -1146,7 +1146,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       },
     ],
   },
-  "diseno-web-para-contratistas": {
+  "web-design-for-contractors": {
     lead: "When someone searches for a contractor, they are not browsing portfolios. They are comparing a few results on a phone and picking the one that is clearest: what you do, where you go, and how to call. Web design for contractors starts there—not with the logo.",
     faqs: [
       {

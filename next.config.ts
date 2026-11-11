@@ -88,8 +88,8 @@ const nextConfig: NextConfig = {
         source: "/assets/:path*",
         headers: yearCache,
       },
-      { source: "/blog/:path*", headers: yearCache },
-      { source: "/portfolio/:path*", headers: yearCache },
+      { source: "/blog/:file(.*\\.(?:webp|avif|png|jpe?g|gif|svg|ico))", headers: yearCache },
+      { source: "/portfolio/:file(.*\\.(?:webp|avif|png|jpe?g|gif|svg|ico))", headers: yearCache },
       { source: "/favicon-:size.webp", headers: yearCache },
       { source: "/apple-icon.png", headers: yearCache },
       {

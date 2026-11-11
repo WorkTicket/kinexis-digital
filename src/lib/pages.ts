@@ -29,7 +29,7 @@ export const PAGES = {
     indexable: true,
     priority: 1,
     changeFrequency: "weekly",
-    description: "Get a professional website from $97/mo, with Google review requests and optional missed-call text-back. See your free homepage preview first. No card required.",
+    description: "Get a professional website from $97/mo, with Google review requests and optional missed-call text-back. Free homepage preview first. No card required.",
   },
   services: {
     path: "/services",
@@ -47,7 +47,7 @@ export const PAGES = {
     service: "Web design",
     indexable: true,
     priority: 0.9,
-    description: "Share a design direction, logo, and photos. We prepare a free homepage preview in 2 business days—no card required—then revise until it fits before you choose a plan.",
+    description: "Share a design direction, logo, and photos. We prepare a free homepage preview in 2 business days, no card required, then revise until it fits.",
   },
   "seo-services": {
     path: "/seo-services",
