@@ -49,22 +49,27 @@ export function ogLocale(locale: Locale): string {
 }
 
 /**
- * Google should see English only. `/es` is US Spanish for visitors and uses
- * the same prices as the US site. `/es-es` is Spain. Neither is a search market.
+ * Indexable locales for Google. `/es` (Latam / US Spanish) stays in search.
+ * `/es-es` (Spain) is visitors-only: noindex, out of sitemap and hreflang.
  */
 export function localeIndexable(locale: Locale): boolean {
-  return locale === "en";
+  return locale === "en" || locale === "es-419";
 }
 
 /**
- * hreflang set. Spanish URLs stay on the site for visitors, but they are
- * noindex, so they are not alternates. English is the only indexable
- * language, and a single URL does not need an hreflang set.
+ * hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid
+ * hreflang code. Spain (`es-ES`) is omitted because that locale is noindex.
  */
 export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
   const en = englishPath(pathname);
   if (!isMirrored(en) || !localeIndexable("en")) return undefined;
-  return { "en-US": en, "x-default": en };
+  const es = withLocale("es-419", en);
+  return {
+    "en-US": en,
+    es,
+    "es-US": es,
+    "x-default": en,
+  };
 }
 
 export const getLocale = cache(async (): Promise<Locale> => {

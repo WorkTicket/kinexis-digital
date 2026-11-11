@@ -1,13 +1,13 @@
 # CURRENT-TASK.md
 
 ## Goal
-Finish the SEO/code batch locally (Spain+Latam off Google, cache, snippets, trailing slash, cost posts, hold industries, titles/contractor URL, Spanish cost rewrites, SMS stubs).
+Keep Latam `/es` indexable; Spain `/es-es` stays noindex. Prior SEO batch already live.
 
 ## Status
-implemented locally (not committed / not deployed)
+ship `/es` index restore
 
 ## Completed
-- `/es` and `/es-es` noindex, out of sitemap and hreflang; pages still work; Latam keeps US prices; Spain omits USD on visitor-facing pages
+- `/es-es` noindex, out of sitemap and hreflang; `/es` indexable with hreflang (`es` / `es-US`); Latam keeps US prices; Spain omits USD on visitor-facing pages
 - Year cache limited to images/static (`public/_headers` + `src/proxy.ts`); blog/portfolio HTML uses short cache
 - Meta descriptions rewritten to full 120–155 char sentences (homepage, plumbing, cost posts, Spanish trade posts)
 - Trailing slash 301 keeps query string

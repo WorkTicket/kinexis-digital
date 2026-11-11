@@ -844,7 +844,7 @@ export const ES_POSTS: EsPost[] = [
 
 /**
  * Spain copy omits USD figures. `/es` keeps the same US prices as the English
- * site. Both locales stay noindex; this override is for visitors, not Google.
+ * site and stays indexable. `/es-es` is noindex; this override is for visitors.
  */
 const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
   "monthly-website-vs-own-it": {
