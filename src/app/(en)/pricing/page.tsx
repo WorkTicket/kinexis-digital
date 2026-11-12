@@ -4,10 +4,21 @@ import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import { pageMetadata } from "@/lib/seo";
 import { PRICING_COMPARISON } from "@/data/pricing-comparison";
+import { industryCostPostPath } from "@/data/industries";
 import { FAQS, PLANS, PLAN_TERM_GROUPS, PLAN_TEXTBACK_FOOTNOTE } from "@/lib/content";
 import { OpenDialog } from "@/components/OpenDialog";
 import { PageSchema } from "@/components/JsonLd";
 import { Faq, HL, PageHero, Section } from "@/components/ui";
+
+const TRADE_COST_LINKS = [
+  { slug: "plumbing", label: "plumber website cost" },
+  { slug: "hvac", label: "HVAC website cost" },
+  { slug: "electrical", label: "electrician website cost" },
+  { slug: "roofing", label: "roofing website cost" },
+  { slug: "landscaping", label: "landscaping website cost" },
+  { slug: "garage-doors", label: "garage door website cost" },
+  { slug: "pressure-washing", label: "pressure washing website cost" },
+] as const;
 
 export const metadata = pageMetadata("pricing");
 
@@ -208,6 +219,21 @@ export default function Page() {
             ))}
           </table>
         </div>
+      </Section>
+
+      <Section>
+        <h2 className="center"><HL text="Website Cost by Trade" mark="by Trade" /></h2>
+        <p className="center muted">Same four plans. Trade pages explain what changes for each job type.</p>
+        <ul className="industry-reads__list" style={{ maxWidth: "36rem", marginInline: "auto" }}>
+          {TRADE_COST_LINKS.map((item) => (
+            <li key={item.slug}>
+              <Link href={industryCostPostPath(item.slug)} prefetch={false}>
+                <span className="industry-reads__title">{item.label}</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section id="faq" narrow>

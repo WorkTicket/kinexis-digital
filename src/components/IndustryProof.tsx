@@ -5,20 +5,30 @@ import type { Industry } from "@/data/industries";
 import { DeferredImg } from "./DeferredImg";
 import { HL } from "./ui";
 
-export default function IndustryProof({ industry }: { industry: Industry }) {
+export default function IndustryProof({
+  industry,
+  locale = "en",
+}: {
+  industry: Industry;
+  locale?: "en" | "es";
+}) {
   if (!industry.proof) return null;
   const site = LIVE_SITES.find((item) => item.slug === industry.proof!.liveSiteSlug);
   if (!site) return null;
   const quote = industry.proof.quoteId
     ? REVIEWS.find((review) => review.id === industry.proof!.quoteId)
     : undefined;
+  const heading =
+    locale === "es"
+      ? `Sitio de ${industry.name.toLowerCase()} en vivo: ${site.name}`
+      : `Live ${industry.name} Site: ${site.name}`;
 
   return (
     <section className="industry-proof">
       <div className="media-split">
         <div className="media-split__copy">
           <h2>
-            <HL text={`Live ${industry.name} Site: ${site.name}`} mark={site.name} />
+            <HL text={heading} mark={site.name} />
           </h2>
           <p className="muted">{site.trade}</p>
           <ul className="industry-proof__annotations">

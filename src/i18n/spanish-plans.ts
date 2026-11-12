@@ -18,8 +18,8 @@ export function spanishHomeFaqs(tx: (s: string) => string, opts?: { hideUsd?: bo
     {
       q: tx("¿Cómo se cobra?"),
       a: hideUsd
-        ? tx("Los planes mensuales empiezan sin enganche y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.")
-        : tx("Los planes mensuales tienen $0 de enganche y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual."),
+        ? tx("Los planes mensuales empiezan sin entrada y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.")
+        : tx("Los planes mensuales tienen $0 de entrada y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual."),
     },
     { q: tx("¿Qué pasa si cancelo?"), a: tx("Cancela cuando quieras por texto, correo o Messenger—no hay cargo por cancelar. Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Si quieres quedarte con el sitio, pide una compra (un pago único por escrito de los archivos para hospedarlos tú) o pasa a Own It antes de que termine el período pagado.") },
     { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. Una compra es un pago único por escrito de esos archivos para mover el sitio a tu hosting. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.") },
@@ -34,7 +34,7 @@ export function spanishHomeFaqs(tx: (s: string) => string, opts?: { hideUsd?: bo
 
 export function spanishPlans(tx: (s: string) => string, opts?: { hideUsd?: boolean }) {
   const hideUsd = opts?.hideUsd === true;
-  const monthlyKicker = hideUsd ? tx("Sin enganche, luego") : tx("$0 de enganche, luego");
+  const monthlyKicker = hideUsd ? tx("Sin entrada, luego") : tx("$0 de entrada, luego");
   const names: Record<string, string> = {
     website: "Sitio web",
     "lead-system": "Sistema de clientes",

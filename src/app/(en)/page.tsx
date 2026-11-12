@@ -162,21 +162,28 @@ export default async function Home() {
         <nav className="industry-reads industry-reads--stack" aria-label="Website cost guides">
           <p className="industry-reads__label">What a website costs for these trades</p>
           <ul className="industry-reads__list">
+            {(["plumbing", "hvac", "electrical", "roofing", "landscaping", "garage-doors", "pressure-washing"] as const).map((slug) => {
+              const labels: Record<string, string> = {
+                plumbing: "How much does a plumber website cost",
+                hvac: "How much does an HVAC website cost",
+                electrical: "How much does an electrician website cost",
+                roofing: "How much does a roofing website cost",
+                landscaping: "How much does a landscaping website cost",
+                "garage-doors": "How much does a garage door website cost",
+                "pressure-washing": "How much does a pressure washing website cost",
+              };
+              return (
+                <li key={slug}>
+                  <Link href={industryCostPostPath(slug)} prefetch={false}>
+                    <span className="industry-reads__title">{labels[slug]}</span>
+                    <span className="industry-reads__arrow" aria-hidden="true">→</span>
+                  </Link>
+                </li>
+              );
+            })}
             <li>
-              <Link href={industryCostPostPath("plumbing")} prefetch={false}>
-                <span className="industry-reads__title">How much does a plumber website cost</span>
-                <span className="industry-reads__arrow" aria-hidden="true">→</span>
-              </Link>
-            </li>
-            <li>
-              <Link href={industryCostPostPath("hvac")} prefetch={false}>
-                <span className="industry-reads__title">How much does an HVAC website cost</span>
-                <span className="industry-reads__arrow" aria-hidden="true">→</span>
-              </Link>
-            </li>
-            <li>
-              <Link href={industryCostPostPath("roofing")} prefetch={false}>
-                <span className="industry-reads__title">How much does a roofing website cost</span>
+              <Link href="/web-design" prefetch={false}>
+                <span className="industry-reads__title">contractor website design</span>
                 <span className="industry-reads__arrow" aria-hidden="true">→</span>
               </Link>
             </li>

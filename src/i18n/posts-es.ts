@@ -177,7 +177,7 @@ export const ES_POSTS: EsPost[] = [
     "sections": [
       {
         "h2": "Las dos opciones son válidas",
-        "html": "<p>Algunos prefieren $0 de enganche y mes a mes. Otros un solo pago y los archivos desde el día uno.</p>"
+        "html": "<p>Algunos prefieren $0 de entrada y mes a mes. Otros un solo pago y los archivos desde el día uno.</p>"
       },
       {
         "h2": "Comparación",
@@ -272,7 +272,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto con estrategia, diseño y revisiones — los rangos cambian por mercado, así que trata cualquier “costo promedio” público como comentario fechado, no como cotización de Kinexis.</p><p>Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -324,7 +328,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -372,7 +380,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -420,7 +432,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -468,7 +484,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -516,7 +536,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -564,7 +588,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -612,7 +640,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -660,7 +692,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -708,7 +744,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -756,7 +796,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -804,7 +848,11 @@ export const ES_POSTS: EsPost[] = [
         html: `<p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional ($1/mes 2.º número si lo usas + operador), pedidos de reseña, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos</td></tr></tbody></table><p>El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "Cuánto cuesta en 24 meses",
+        html: "<p>Calculado solo con los términos vigentes de Kinexis ($0 de entrada, precio fijo 24 meses en planes mensuales):</p><table><thead><tr><th>Plan</th><th>Año 1</th><th>24 meses</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 de entrada, precio fijo 24 meses</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Incluye garantía de leads de 60 días</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>Inglés + español</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + Site Care opcional $39/mes en meses 13–24 ($468) = $1,965</td><td>Dominio se factura al costo</td></tr></tbody></table><p><em>Precios sin impuestos, si aplican. Las tarifas del operador de texto y el segundo número opcional de $1/mes son aparte.</em></p>"
+      },
+      {
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros precios de plan para que compares sin adivinar.</p>`,
       },
       {
@@ -853,7 +901,7 @@ const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
     sections: [
       {
         h2: "Las dos opciones son válidas",
-        html: "<p>Algunos prefieren empezar sin enganche y pagar mes a mes. Otros un solo pago y los archivos desde el día uno.</p>",
+        html: "<p>Algunos prefieren empezar sin entrada y pagar mes a mes. Otros un solo pago y los archivos desde el día uno.</p>",
       },
       {
         h2: "Comparación",
@@ -879,7 +927,7 @@ const ES_ES_POST_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
         html: `<p>Cuatro opciones en vivo: Website, Lead System (texto opcional, reseñas, seguimiento de llamadas), Plus (inglés y español) y Own It (un pago, archivos tuyos desde el lanzamiento). El detalle está en <a href="/pricing">/pricing</a>. Compara en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p>`,
       },
       {
-        h2: "DIY, freelancer o agencia — solo cualitativo",
+        h2: "DIY vs freelancer vs agencia vs un plan mensual: qué cambia el precio",
         html: `<p>Los constructores DIY se ven baratos hasta que sumas hosting, texto, fotos y las horas de aprender la herramienta. Los freelancers varían mucho. Las agencias suelen cotizar por proyecto. Publicamos nuestros planes para que compares sin adivinar.</p>`,
       },
       {

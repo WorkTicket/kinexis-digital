@@ -1399,6 +1399,20 @@ html.lp-route body{--announce-h:0px}
 .industry-proof__quote footer{margin-top:.65rem;color:var(--muted);font-size:.95rem}
 .industry-proof__shot{max-width:480px;width:100%;margin-inline:auto;aspect-ratio:3/4;border:3px solid var(--brand-navy);border-radius:18px;overflow:hidden;box-shadow:4px 4px 0 rgba(3,27,78,.25)}
 .industry-proof__shot .shot__page{height:100%}
+.industry-seo-depth{margin:2.5rem 0 0}
+.industry-seo-depth__examples{display:grid;gap:1.25rem;margin-top:1.25rem}
+@media (min-width:860px){.industry-seo-depth__examples{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.industry-seo-depth__card{border:2px solid var(--brand-navy);border-radius:16px;overflow:hidden;background:#fff;box-shadow:3px 3px 0 rgba(3,27,78,.18)}
+.industry-seo-depth__shot{max-height:220px;overflow:hidden;border-bottom:2px solid var(--brand-navy);background:var(--bg-tint)}
+.industry-seo-depth__img{display:block;width:100%;height:auto}
+.industry-seo-depth__copy{padding:1rem 1.1rem 1.15rem}
+.industry-seo-depth__copy h3{margin:0 0 .5rem;font-size:1.05rem}
+.industry-seo-depth__demo{display:inline-block;margin-left:.35rem;padding:.1rem .45rem;border:1px solid var(--brand-navy);border-radius:999px;font-size:.72rem;font-weight:700;vertical-align:middle}
+.industry-seo-depth__list{display:grid;gap:.45rem;max-width:36rem;margin:1rem auto;padding-left:1.2rem}
+.industry-seo-depth__steps{list-style:none;margin:1.25rem auto 0;padding:0;display:grid;gap:.9rem;max-width:40rem}
+.industry-seo-depth__steps li{display:grid;grid-template-columns:auto 1fr;gap:.75rem;align-items:start}
+.industry-seo-depth__n{display:inline-grid;place-items:center;width:1.75rem;height:1.75rem;border:2px solid var(--brand-navy);border-radius:999px;font-weight:800;background:var(--warm)}
+.industry-seo-depth .table-wrap{overflow-x:auto;margin:1rem auto;max-width:44rem}
 .missed-call-calc{border:3px solid var(--brand-navy);border-radius:18px;padding:1.25rem;background:#fff;box-shadow:4px 4px 0 rgba(3,27,78,.22);display:grid;gap:1rem}
 .missed-call-calc__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
 .missed-call-calc label{display:grid;gap:.35rem;font-weight:600}

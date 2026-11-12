@@ -13,8 +13,8 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
   {
     slug: "web-design-for-contractors",
     category: "Diseño",
-    title: "Diseño web para contratistas que sí trae llamadas",
-    seoTitle: "Diseño web para contratistas | Desde $97/mes | Kinexis",
+    title: "Lista para el sitio web de un contratista que sí trae llamadas",
+    seoTitle: "Lista para el sitio web de un contratista",
     excerpt: "Un sitio de contratista no es un catálogo bonito. Tiene que nombrar el trabajo, la zona y el teléfono en la primera pantalla del celular.",
     lead: "Cuando alguien busca un contratista, no está ojeando portfolios. Está comparando tres resultados en el celular y elige al que se entiende más rápido: qué haces, dónde llegas y cómo te marcan. El diseño web para contratistas empieza ahí, no en el logo.",
     sections: [
@@ -32,15 +32,15 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Cómo lo armamos en Kinexis",
-        html: `<p>Empezamos con una vista previa gratis de la página de inicio en 2 días hábiles, sin tarjeta y sin obligación. Cuando apruebas y envías el contenido que falta, el sitio completo suele salir en 5 días hábiles — lo confirmamos por escrito.</p><p>Website es $97 al mes. Lead System $197 al mes agrega pedidos de reseña en Google y texto opcional si no contestas. Plus $297 al mes hace ese seguimiento en inglés y español. Own It es $1,497 de una vez, con los archivos tuyos desde el lanzamiento.</p><p>Mira <a href="/web-design">diseño web</a>, las <a href="/industries">industrias</a> o pide tu vista previa en <a href="/contact">/contact</a>. Compara planes en <a href="/pricing">/pricing</a>.</p>`,
+        html: `<p>Empezamos con una vista previa gratis de la página de inicio en 2 días hábiles, sin tarjeta y sin obligación. Cuando apruebas y envías el contenido que falta, el sitio completo suele salir en 5 días hábiles — lo confirmamos por escrito.</p><p>Website es $97 al mes. Lead System $197 al mes agrega pedidos de reseña en Google y texto opcional si no contestas. Plus $297 al mes hace ese seguimiento en inglés y español. Own It es $1,497 de una vez, con los archivos tuyos desde el lanzamiento.</p><p>La página de servicio para <a href="/web-design">diseño web para contratistas</a> es la dueña de esa búsqueda. Mira las <a href="/industries">industrias</a> o pide tu vista previa en <a href="/contact">/contact</a>. Compara planes en <a href="/pricing">/pricing</a>.</p>`,
       },
     ],
   },
   {
     slug: "pagina-web-para-plomeros",
     category: "Diseño",
-    title: "Página web para plomeros hecha para la llamada",
-    seoTitle: "Página web para plomeros | Desde $97/mes | Kinexis",
+    title: "Qué debe tener una página web para plomeros",
+    seoTitle: "Qué debe tener una página web para plomeros",
     excerpt: "Quien tiene una fuga no lee párrafos. Necesita tu número, tu zona y si puedes ir hoy. Así se arma una página web para plomeros que sí convierte.",
     lead: "La mitad de quien entra a una página de plomería tiene agua donde no debería. La otra mitad planea un calentador o un destape y sí lee. Una buena página web para plomeros atiende a los dos sin hacer esperar a ninguno.",
     sections: [
@@ -72,7 +72,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     sections: [
       {
         h2: "Consigue el enlace (o el código QR)",
-        html: `<p>No le pidas al cliente que “te busque en Google”. Dale un enlace que abra directo el formulario de reseña de tu Perfil de Empresa.</p><p>Entra al perfil con la cuenta que lo administra → <strong>Leer reseñas</strong> → <strong>Consigue más reseñas</strong>. Copia el enlace. El código QR, según Google, se descarga desde la computadora (clic derecho → guardar imagen).</p><p>También puedes armar el enlace con tu Place ID en la <a href="/tools/google-review-link-qr">herramienta de enlace y QR de reseñas</a> (disponible en inglés en el sitio). Prueba el enlace en un celular que no sea el tuyo de propietario.</p>`,
+        html: `<p>No le pidas al cliente que “te busque en Google”. Dale un enlace que abra directo el formulario de reseña de tu Perfil de Negocio de Google.</p><p>Entra al perfil con la cuenta que lo administra → <strong>Leer reseñas</strong> → <strong>Consigue más reseñas</strong>. Copia el enlace. El código QR, según Google, se descarga desde la computadora (clic derecho → guardar imagen).</p><p>También puedes armar el enlace con tu Place ID en la <a href="/tools/google-review-link-qr">herramienta de enlace y QR de reseñas</a> (disponible en inglés en el sitio). Prueba el enlace en un celular que no sea el tuyo de propietario.</p>`,
       },
       {
         h2: "Cuándo pedirlo",
@@ -114,7 +114,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Textos para copiar y enviar",
-        html: `<p>Cambia lo que está entre corchetes. Un solo enlace que abra el flujo de reseña de tu Perfil de Empresa — no un “búscanos en Google”. Arma el enlace con la <a href="/tools/google-review-link-qr">herramienta de enlace y QR</a>.</p><p><strong>El mismo día, después del trabajo</strong></p><blockquote><p>Hola [Nombre], soy [Tu nombre] de [Empresa]. Gracias otra vez por el trabajo de hoy. Si te parece, aquí va el enlace de reseña en Google: [enlace]. Responde STOP para no recibir más textos.</p></blockquote><p><strong>A la mañana siguiente (solo si en la obra dijo que sí y se te olvidó el enlace)</strong></p><blockquote><p>Hola [Nombre], te dejo el enlace de reseña en Google que te comenté: [enlace]. Sin presión si estás ocupado. —[Empresa]</p></blockquote><p><strong>Ruta / servicio recurrente</strong></p><blockquote><p>Hola [Nombre], gracias por otra visita esta temporada. Si el equipo te facilitó las cosas, una reseña en Google ayuda a los vecinos a encontrarnos: [enlace].</p></blockquote><p>No mandes el pedido de reseña en el mismo mensaje que una disputa de factura o un reclamo.</p>`,
+        html: `<p>Cambia lo que está entre corchetes. Un solo enlace que abra el flujo de reseña de tu Perfil de Negocio de Google — no un “búscanos en Google”. Arma el enlace con la <a href="/tools/google-review-link-qr">herramienta de enlace y QR</a>.</p><p><strong>El mismo día, después del trabajo</strong></p><blockquote><p>Hola [Nombre], soy [Tu nombre] de [Empresa]. Gracias otra vez por el trabajo de hoy. Si te parece, aquí va el enlace de reseña en Google: [enlace]. Responde STOP para no recibir más textos.</p></blockquote><p><strong>A la mañana siguiente (solo si en la obra dijo que sí y se te olvidó el enlace)</strong></p><blockquote><p>Hola [Nombre], te dejo el enlace de reseña en Google que te comenté: [enlace]. Sin presión si estás ocupado. —[Empresa]</p></blockquote><p><strong>Ruta / servicio recurrente</strong></p><blockquote><p>Hola [Nombre], gracias por otra visita esta temporada. Si el equipo te facilitó las cosas, una reseña en Google ayuda a los vecinos a encontrarnos: [enlace].</p></blockquote><p>No mandes el pedido de reseña en el mismo mensaje que una disputa de factura o un reclamo.</p>`,
       },
       {
         h2: "Correo",
@@ -159,17 +159,17 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
   {
     slug: "google-business-profile-vs-website",
     category: "SEO",
-    title: "Perfil de Empresa en Google vs sitio web — ¿necesitas los dos?",
-    seoTitle: "Perfil de Google vs sitio web — ¿un contratista necesita ambos?",
-    excerpt: "Respuesta práctica para dueños de oficios: qué hace bien el Perfil de Empresa, qué sigue cubriendo el sitio y cuándo necesitas los dos.",
-    lead: "Muchos negocios de una camioneta viven un tiempo solo con el Perfil de Empresa en Google: horario, fotos, reseñas y teléfono. Luego aparece un trabajo más grande, el sitio de un competidor se ve más claro o los anuncios piden una página de aterrizaje. La pregunta es: ¿alcanza el perfil, o también necesitas un sitio?",
+    title: "Perfil de Negocio de Google vs sitio web — ¿necesitas los dos?",
+    seoTitle: "Perfil de Negocio de Google vs sitio web — ¿un contratista necesita ambos?",
+    excerpt: "Respuesta práctica para dueños de oficios: qué hace bien el Perfil de Negocio de Google, qué sigue cubriendo el sitio y cuándo necesitas los dos.",
+    lead: "Muchos negocios de una camioneta viven un tiempo solo con el Perfil de Negocio de Google: horario, fotos, reseñas y teléfono. Luego aparece un trabajo más grande, el sitio de un competidor se ve más claro o los anuncios piden una página de aterrizaje. La pregunta es: ¿alcanza el perfil, o también necesitas un sitio?",
     sections: [
       {
         h2: "Respuesta corta",
         html: `<p>Para la mayoría de negocios de servicios al hogar: <strong>el perfil y el sitio hacen trabajos distintos.</strong> Bastantes dueños necesitan los dos. Algunos pueden esperar el sitio completo. Casi nadie debería usar el perfil para esconder un teléfono difícil de marcar.</p>`,
       },
       {
-        h2: "En qué es bueno el Perfil de Empresa",
+        h2: "En qué es bueno el Perfil de Negocio de Google",
         html: `<ul><li>Mostrarte en el paquete de mapas cuando alguien busca cerca</li><li>Recibir y mostrar reseñas de Google</li><li>Publicar horario, zona y fotos que coinciden con el negocio real</li><li>Dejar llamar con un toque desde los resultados</li></ul><p>Lead System y Plus en Kinexis incluyen un ajuste del perfil de Google en el lanzamiento. Plus también incluye dos publicaciones al mes. Eso apoya el perfil — no reemplaza un sitio.</p>`,
       },
       {
@@ -208,7 +208,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Plan de sitio estructurado (ejemplo: Kinexis)",
-        html: `<p>Kinexis publica cuatro opciones para negocios de servicios locales en Estados Unidos:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Hasta 5 páginas; hosting + SSL; cambios chicos; leads de formulario</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Hasta 10 páginas; texto opcional; pedidos de reseña; ajuste del perfil; llamadas + reporte; garantía de 60 días</td></tr><tr><td>Plus (bilingüe)</td><td>$297/mes</td><td>Hasta 20 páginas EN+ES; seguimiento bilingüe; garantía de 60 días</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Hasta 10 páginas; archivos tuyos desde el lanzamiento; 12 meses de hosting/cambios; sin plan mensual; sin garantía de leads</td></tr></tbody></table><p>Los planes mensuales son <strong>$0 de enganche</strong>, <strong>mes a mes</strong>, <strong>cancela cuando quieras</strong>, <strong>sin cargo por cancelar</strong>, con precio <strong>fijo 24 meses</strong> desde el lanzamiento. Todos incluyen <strong>devolución en 30 días</strong> (pedido por escrito; costos de terceros ya pagados quedan fuera). Todos empiezan con una <strong>vista previa gratis del inicio en 2 días hábiles</strong> — sin tarjeta, sin obligación.</p><p>Kinexis también publica una tabla de comparación con huecos habituales frente a freelancers y agencias (vista previa antes de pagar, textos y reseñas, hosting resuelto, precio fijo 24 meses, inglés/español). Cada proveedor varía — esa tabla es una ayuda para decidir, no una afirmación de que todo freelancer falla esas filas. Mira <a href="/web-design">diseño web</a> y <a href="/faqs">preguntas</a>.</p>`,
+        html: `<p>Kinexis publica cuatro opciones para negocios de servicios locales en Estados Unidos:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Notas</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Hasta 5 páginas; hosting + SSL; cambios chicos; leads de formulario</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Hasta 10 páginas; texto opcional; pedidos de reseña; ajuste del perfil; llamadas + reporte; garantía de 60 días</td></tr><tr><td>Plus (bilingüe)</td><td>$297/mes</td><td>Hasta 20 páginas EN+ES; seguimiento bilingüe; garantía de 60 días</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Hasta 10 páginas; archivos tuyos desde el lanzamiento; 12 meses de hosting/cambios; sin plan mensual; sin garantía de leads</td></tr></tbody></table><p>Los planes mensuales son <strong>$0 de entrada</strong>, <strong>mes a mes</strong>, <strong>cancela cuando quieras</strong>, <strong>sin cargo por cancelar</strong>, con precio <strong>fijo 24 meses</strong> desde el lanzamiento. Todos incluyen <strong>devolución en 30 días</strong> (pedido por escrito; costos de terceros ya pagados quedan fuera). Todos empiezan con una <strong>vista previa gratis del inicio en 2 días hábiles</strong> — sin tarjeta, sin obligación.</p><p>Kinexis también publica una tabla de comparación con huecos habituales frente a freelancers y agencias (vista previa antes de pagar, textos y reseñas, hosting resuelto, precio fijo 24 meses, inglés/español). Cada proveedor varía — esa tabla es una ayuda para decidir, no una afirmación de que todo freelancer falla esas filas. Mira <a href="/web-design">diseño web</a> y <a href="/faqs">preguntas</a>.</p>`,
       },
       {
         h2: "Cómo elegir sin lenguaje de miedo",
@@ -219,10 +219,10 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
   {
     slug: "google-business-profile-checklist",
     category: "SEO",
-    title: "Lista del Perfil de Empresa en Google para oficios",
-    seoTitle: "Lista del Perfil de Google para plomeros y oficios | Kinexis",
+    title: "Lista del Perfil de Negocio de Google para oficios",
+    seoTitle: "Lista del Perfil de Negocio de Google para plomeros y oficios",
     excerpt: "Reclama el perfil, corrige horario y zona, sube fotos reales y arma el enlace de reseña — luego decide cuándo el sitio todavía ayuda.",
-    lead: "Reclamar tu Perfil de Empresa en Google es el primer paso. Mantenerlo exacto — y saber cuándo un sitio todavía ayuda — es el resto del trabajo. Esta lista está pensada para plomeros y otros oficios que aparecen en Maps antes que en una página de inicio.",
+    lead: "Reclamar tu Perfil de Negocio de Google es el primer paso. Mantenerlo exacto — y saber cuándo un sitio todavía ayuda — es el resto del trabajo. Esta lista está pensada para plomeros y otros oficios que aparecen en Maps antes que en una página de inicio.",
     sections: [
       {
         h2: "Reclama y verifica",
@@ -242,7 +242,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Cuándo el perfil no alcanza",
-        html: `<p>El perfil gana el toque para llamar desde el mapa. Un sitio sigue valiendo cuando trabajos distintos necesitan páginas distintas, los anuncios necesitan una URL de aterrizaje o quieres inglés y español (Plus). Lee <a href="/blog/google-business-profile-vs-website">Perfil de Google vs sitio web</a> y el <a href="/industries/plumbing">hub de plomería</a>.</p><p>Lead System y Plus incluyen un ajuste del perfil en el lanzamiento. Compara planes en <a href="/pricing">/pricing</a> o <a href="/contact">pide una vista previa gratis del inicio</a> — 2 días hábiles, sin tarjeta.</p>`,
+        html: `<p>El perfil gana el toque para llamar desde el mapa. Un sitio sigue valiendo cuando trabajos distintos necesitan páginas distintas, los anuncios necesitan una URL de aterrizaje o quieres inglés y español (Plus). Lee <a href="/blog/google-business-profile-vs-website">Perfil de Negocio de Google vs sitio web</a> y el <a href="/industries/plumbing">hub de plomería</a>.</p><p>Lead System y Plus incluyen un ajuste del perfil en el lanzamiento. Compara planes en <a href="/pricing">/pricing</a> o <a href="/contact">pide una vista previa gratis del inicio</a> — 2 días hábiles, sin tarjeta.</p>`,
       },
     ],
   },
@@ -277,7 +277,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
 /** Spain-facing bodies: same topics, no USD figures. */
 export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>> = {
   "web-design-for-contractors": {
-    seoTitle: "Diseño web para contratistas | Kinexis Digital",
+    seoTitle: "Lista para el sitio web de un contratista",
     sections: [
       {
         h2: "Qué busca quien te encuentra",
@@ -298,7 +298,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
     ],
   },
   "pagina-web-para-plomeros": {
-    seoTitle: "Página web para plomeros | Kinexis Digital",
+    seoTitle: "Qué debe tener una página web para plomeros",
     sections: [
       {
         h2: "Primera pantalla: trabajo, zona, teléfono",
@@ -322,7 +322,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
     sections: [
       {
         h2: "Consigue el enlace (o el código QR)",
-        html: `<p>No le pidas al cliente que “te busque en Google”. Dale un enlace que abra directo el formulario de reseña de tu Perfil de Empresa.</p><p>Entra al perfil con la cuenta que lo administra → <strong>Leer reseñas</strong> → <strong>Consigue más reseñas</strong>. Copia el enlace. El código QR, según Google, se descarga desde la computadora (clic derecho → guardar imagen).</p><p>También puedes armar el enlace con tu Place ID en la <a href="/tools/google-review-link-qr">herramienta de enlace y QR de reseñas</a> (disponible en inglés en el sitio). Prueba el enlace en un celular que no sea el tuyo de propietario.</p>`,
+        html: `<p>No le pidas al cliente que “te busque en Google”. Dale un enlace que abra directo el formulario de reseña de tu Perfil de Negocio de Google.</p><p>Entra al perfil con la cuenta que lo administra → <strong>Leer reseñas</strong> → <strong>Consigue más reseñas</strong>. Copia el enlace. El código QR, según Google, se descarga desde la computadora (clic derecho → guardar imagen).</p><p>También puedes armar el enlace con tu Place ID en la <a href="/tools/google-review-link-qr">herramienta de enlace y QR de reseñas</a> (disponible en inglés en el sitio). Prueba el enlace en un celular que no sea el tuyo de propietario.</p>`,
       },
       {
         h2: "Cuándo pedirlo",
@@ -403,7 +403,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
         html: `<p>Para la mayoría de negocios de servicios al hogar: <strong>el perfil y el sitio hacen trabajos distintos.</strong> Bastantes dueños necesitan los dos.</p>`,
       },
       {
-        h2: "En qué es bueno el Perfil de Empresa",
+        h2: "En qué es bueno el Perfil de Negocio de Google",
         html: `<ul><li>Mostrarte en el paquete de mapas cuando alguien busca cerca</li><li>Recibir y mostrar reseñas de Google</li><li>Publicar horario, zona y fotos reales</li><li>Dejar llamar con un toque desde los resultados</li></ul><p>Lead System y Plus incluyen un ajuste del perfil en el lanzamiento. Plus también incluye dos publicaciones al mes.</p>`,
       },
       {
@@ -436,7 +436,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
       },
       {
         h2: "Plan de sitio estructurado (ejemplo: Kinexis)",
-        html: `<p>Kinexis publica cuatro opciones: Website, Lead System, Plus (bilingüe) y Own It. Los planes mensuales son sin enganche, mes a mes, cancela cuando quieras, sin cargo por cancelar, con precio fijo 24 meses. Todos incluyen devolución en 30 días y empiezan con una vista previa gratis del inicio en 2 días hábiles.</p><p>Mira <a href="/web-design">diseño web</a> y <a href="/faqs">preguntas</a>.</p>`,
+        html: `<p>Kinexis publica cuatro opciones: Website, Lead System, Plus (bilingüe) y Own It. Los planes mensuales son sin entrada, mes a mes, cancela cuando quieras, sin cargo por cancelar, con precio fijo 24 meses. Todos incluyen devolución en 30 días y empiezan con una vista previa gratis del inicio en 2 días hábiles.</p><p>Mira <a href="/web-design">diseño web</a> y <a href="/faqs">preguntas</a>.</p>`,
       },
       {
         h2: "Cómo elegir sin lenguaje de miedo",
@@ -484,7 +484,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
       },
       {
         h2: "Cuándo el perfil no alcanza",
-        html: `<p>Suma un sitio cuando trabajos distintos necesitan páginas distintas, los anuncios necesitan una URL o quieres inglés y español. Lee <a href="/blog/google-business-profile-vs-website">Perfil de Google vs sitio web</a>.</p><p>Compara planes en <a href="/pricing">/pricing</a> o <a href="/contact">pide una vista previa gratis</a>.</p>`,
+        html: `<p>Suma un sitio cuando trabajos distintos necesitan páginas distintas, los anuncios necesitan una URL o quieres inglés y español. Lee <a href="/blog/google-business-profile-vs-website">Perfil de Negocio de Google vs sitio web</a>.</p><p>Compara planes en <a href="/pricing">/pricing</a> o <a href="/contact">pide una vista previa gratis</a>.</p>`,
       },
     ],
   },

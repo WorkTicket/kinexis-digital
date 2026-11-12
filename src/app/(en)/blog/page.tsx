@@ -15,6 +15,41 @@ export default function Page() {
       <PageSchema page="blog" items={POSTS.map((post) => ({ name: post.title, path: `/blog/${post.slug}` }))} />
       <PageHero h1="Digital Marketing Blog" mark="Blog" sub="SEO, web design, and marketing guides for service businesses across the United States." image="blog" imageAlt="Article cards for guides and resources" />
       <Section>
+        <nav className="industry-reads industry-reads--stack" aria-label="Start here cost and pages guides">
+          <p className="industry-reads__label">Start Here: Cost and Pages Guides by Trade</p>
+          <ul className="industry-reads__list">
+            <li>
+              <Link href="/blog/plumber-website-cost" prefetch={false}>
+                <span className="industry-reads__title">plumber website cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/hvac-website-cost" prefetch={false}>
+                <span className="industry-reads__title">HVAC website cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/roofing-website-cost" prefetch={false}>
+                <span className="industry-reads__title">roofing website cost</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/plumbing-website-pages" prefetch={false}>
+                <span className="industry-reads__title">pages a plumbing website needs</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/web-design" prefetch={false}>
+                <span className="industry-reads__title">contractor website design</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          </ul>
+        </nav>
         <Filterable cats={["Tips", "SEO", "Design"]} />
         <div className="grid grid--3 blog-index">
           {POSTS.map((post) => (

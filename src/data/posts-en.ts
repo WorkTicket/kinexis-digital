@@ -1,4 +1,5 @@
 import type { QA } from "@/lib/content";
+import { GENERATED_COST_POSTS } from "@/data/cost-post-bodies";
 
 export type EnglishPostBody = {
   lead: string;
@@ -7,6 +8,7 @@ export type EnglishPostBody = {
 };
 
 export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
+  ...GENERATED_COST_POSTS,
   "website-mistakes-that-cost-you-calls": {
     lead: "A service website needs to answer three questions on a phone: what you do, where you work, and how someone can reach you. If those answers are hard to find, the visitor goes back to the search results.",
     sections: [
@@ -163,42 +165,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
     ],
   },
-  "plumber-website-cost": {
-      "lead": "With Kinexis, a plumber website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a plumber website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Plumbing Site",
-              "html": "<p>You’re paying for pages built around leaks, drains, and water heaters — not a generic template with the business name swapped. See <a href=\"/industries/plumbing\">website design for plumbers</a> and <a href=\"/blog/plumbing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "plumbing-website-pages": {
+    "plumbing-website-pages": {
       "lead": "A plumber website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Separate leak repair, drain cleaning, and water heater pages so emergency and quote traffic are not mixed.",
       "faqs": [
           {
@@ -229,42 +196,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "hvac-website-cost": {
-      "lead": "With Kinexis, an HVAC website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is an HVAC website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on an HVAC Site",
-              "html": "<p>You’re paying for pages built around no-cool repair, replacement, and maintenance — not a generic template with the business name swapped. See <a href=\"/industries/hvac\">website design for HVACs</a> and <a href=\"/blog/hvac-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "hvac-website-pages": {
+    "hvac-website-pages": {
       "lead": "A HVAC website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Keep repair, system replacement, and maintenance on separate paths so shoulder-season work stays visible.",
       "faqs": [
           {
@@ -295,42 +227,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "electrician-website-cost": {
-      "lead": "With Kinexis, an electrician website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is an electrician website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Electrical Site",
-              "html": "<p>You’re paying for pages built around panels, EV chargers, and troubleshooting — not a generic template with the business name swapped. See <a href=\"/industries/electrical\">website design for electricians</a> and <a href=\"/blog/electrician-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "electrician-website-pages": {
+    "electrician-website-pages": {
       "lead": "A electrician website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Show licensing trust early, and give EV chargers their own page when that work is real.",
       "faqs": [
           {
@@ -361,42 +258,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "roofing-website-cost": {
-      "lead": "With Kinexis, a roofing website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a roofing website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Roofing Site",
-              "html": "<p>You’re paying for pages built around repairs, replacements, and storm calls — not a generic template with the business name swapped. See <a href=\"/industries/roofing\">website design for roofings</a> and <a href=\"/blog/roofing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "roofing-website-pages": {
+    "roofing-website-pages": {
       "lead": "A roofing website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Split repair and replacement, and describe insurance process without promising claim outcomes.",
       "faqs": [
           {
@@ -427,42 +289,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "garage-door-website-cost": {
-      "lead": "With Kinexis, a garage door company website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a garage door company website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Garage Doors Site",
-              "html": "<p>You’re paying for pages built around broken springs, openers, and new doors — not a generic template with the business name swapped. See <a href=\"/industries/garage-doors\">website design for garage door companys</a> and <a href=\"/blog/garage-door-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "garage-door-website-pages": {
+    "garage-door-website-pages": {
       "lead": "A garage door company website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Emergency spring/opener paths should lead with the phone; new-door pages can use a short measure form.",
       "faqs": [
           {
@@ -493,42 +320,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "painting-website-cost": {
-      "lead": "With Kinexis, a painting contractor website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a painting contractor website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Painting Site",
-              "html": "<p>You’re paying for pages built around interior, exterior, and cabinet finishes — not a generic template with the business name swapped. See <a href=\"/industries/painting\">website design for painting contractors</a> and <a href=\"/blog/painting-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "painting-website-pages": {
+    "painting-website-pages": {
       "lead": "A painting contractor website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Separate interior, exterior, and cabinet work, and keep the estimate form short.",
       "faqs": [
           {
@@ -559,42 +351,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "remodeling-website-cost": {
-      "lead": "With Kinexis, a remodeling contractor website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a remodeling contractor website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Remodeling Site",
-              "html": "<p>You’re paying for pages built around kitchens, baths, and longer consults — not a generic template with the business name swapped. See <a href=\"/industries/remodeling\">website design for remodeling contractors</a> and <a href=\"/blog/remodeling-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "remodeling-website-pages": {
+    "remodeling-website-pages": {
       "lead": "A remodeling contractor website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Lead with finished rooms and a consult path instead of emergency-call language.",
       "faqs": [
           {
@@ -625,42 +382,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "landscaping-website-cost": {
-      "lead": "With Kinexis, a landscaping website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a landscaping website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Landscaping Site",
-              "html": "<p>You’re paying for pages built around maintenance routes and design-build — not a generic template with the business name swapped. See <a href=\"/industries/landscaping\">website design for landscapings</a> and <a href=\"/blog/landscaping-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "landscaping-website-pages": {
+    "landscaping-website-pages": {
       "lead": "A landscaping website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Split weekly maintenance from design-build so mowing leads are not forced into a patio consult.",
       "faqs": [
           {
@@ -691,42 +413,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "pool-service-website-cost": {
-      "lead": "With Kinexis, a pool service website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a pool service website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Pool Care Site",
-              "html": "<p>You’re paying for pages built around weekly routes, repairs, and equipment — not a generic template with the business name swapped. See <a href=\"/industries/pool-care\">website design for pool services</a> and <a href=\"/blog/pool-service-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "pool-service-website-pages": {
+    "pool-service-website-pages": {
       "lead": "A pool service website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Give green-pool and equipment repairs a phone path that is not buried under membership copy.",
       "faqs": [
           {
@@ -757,42 +444,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "pressure-washing-website-cost": {
-      "lead": "With Kinexis, a pressure washing website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a pressure washing website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Pressure Washing Site",
-              "html": "<p>You’re paying for pages built around houses, concrete, and roof soft washes — not a generic template with the business name swapped. See <a href=\"/industries/pressure-washing\">website design for pressure washings</a> and <a href=\"/blog/pressure-washing-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "pressure-washing-website-pages": {
+    "pressure-washing-website-pages": {
       "lead": "A pressure washing website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Separate surfaces and leave room for before-and-after photos that prove the result.",
       "faqs": [
           {
@@ -823,42 +475,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "window-cleaning-website-cost": {
-      "lead": "With Kinexis, a window cleaning website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a window cleaning website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Window Cleaning Site",
-              "html": "<p>You’re paying for pages built around home routes and storefront schedules — not a generic template with the business name swapped. See <a href=\"/industries/window-cleaning\">website design for window cleanings</a> and <a href=\"/blog/window-cleaning-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "window-cleaning-website-pages": {
+    "window-cleaning-website-pages": {
       "lead": "A window cleaning website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Split residential and commercial glass, and offer recurring cleans as the normal next step.",
       "faqs": [
           {
@@ -889,42 +506,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
           }
       ]
   },
-  "lawn-care-website-cost": {
-      "lead": "With Kinexis, a lawn care website starts at Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for a one-time $1,497. Every option begins with a free homepage preview — no card and no obligation.",
-      "faqs": [
-          {
-              "q": "How much is a lawn care website with Kinexis?",
-              "a": "Website is $97/mo, Lead System is $197/mo, Plus is $297/mo, and Own It is $1,497 one-time. See /pricing for inclusions."
-          },
-          {
-              "q": "Is SEO included in those prices?",
-              "a": "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans."
-          },
-          {
-              "q": "What if I cancel a monthly plan?",
-              "a": "Cancel anytime with no cancellation fee. The site stays live through the paid period, then hosting ends unless you arrange a buyout ($1,497) or move to Own It before the period ends."
-          }
-      ],
-      "sections": [
-          {
-              "h2": "Kinexis Prices for Business Websites",
-              "html": "<p>Here are the four live options:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>A professional site with hosting, SSL, and up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, and unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day, with 12 months of hosting and small edits included</td></tr></tbody></table><p>Full inclusions live on <a href=\"/pricing\">/pricing</a>. Compare monthly vs Own It in <a href=\"/blog/monthly-website-vs-own-it\">Monthly Website vs Own It</a>.</p>"
-          },
-          {
-              "h2": "DIY, Freelancer, or Agency — Qualitative Only",
-              "html": "<p>DIY builders can look cheap until you add hosting, copy, photos, and the hours you spend learning the tool. Freelancers vary widely by experience and availability. Agencies often quote project fees that include strategy, design, and revisions — ranges differ by market and scope, so treat any public “average cost” posts as dated market commentary, not a Kinexis quote.</p><p>We publish our own plan prices so you can compare without guessing.</p>"
-          },
-          {
-              "h2": "Hidden Costs to Plan For",
-              "html": "<p>Ongoing SEO is separate. Photos and custom copy may be quoted if you need them. Missed-call text-back needs a dedicated business line and carrier approval (usually 10–15 days; not guaranteed). On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.</p>"
-          },
-          {
-              "h2": "What You’re Paying For on a Yard Care Site",
-              "html": "<p>You’re paying for pages built around weekly lawn routes and pet-waste stops — not a generic template with the business name swapped. See <a href=\"/industries/yard-care\">website design for lawn cares</a> and <a href=\"/blog/lawn-care-website-pages\">the pages checklist</a>.</p><p><a href=\"/contact\">Get a free homepage preview</a> before you choose a plan.</p>"
-          }
-      ]
-  },
-  "lawn-care-website-pages": {
+    "lawn-care-website-pages": {
       "lead": "A lawn care website needs a clear home page, honest service area, about, reviews, and contact — plus service pages for the jobs people actually search. Publish an honest service area and give pet-waste its own page only when that offer is real.",
       "faqs": [
           {
@@ -1147,7 +729,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
     ],
   },
   "web-design-for-contractors": {
-    lead: "When someone searches for a contractor, they are not browsing portfolios. They are comparing a few results on a phone and picking the one that is clearest: what you do, where you go, and how to call. Web design for contractors starts there—not with the logo.",
+    lead: "A contractor website checklist starts on the first mobile screen: name the work, the service area, and the phone. Then give each job its own page and show real proof. This is support content for <a href=\"/web-design\">contractor website design</a>—not a second service page.",
     faqs: [
       {
         q: "Do I need a page for every town?",
@@ -1164,7 +746,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
     ],
     sections: [
       {
-        h2: "What Searchers Look For First",
+        h2: "Contractor Website Checklist: First Mobile Screen",
         html: `<p>Most of those searches happen on a phone. Sometimes it is urgent. Sometimes it is a quote for next week. Either way, the visitor decides in seconds whether to stay or go back to Google.</p><p>Your homepage has to answer three things without scrolling: the work you actually do, the cities you actually cover, and a number they can tap. If that is missing, “professional” design does not matter.</p>`,
       },
       {
@@ -1177,7 +759,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
       },
       {
         h2: "How We Build It at Kinexis",
-        html: `<p>We start with a free homepage preview in 2 business days—no card, no obligation. After you approve and send the content we need, the full site typically launches in 5 business days (confirmed in writing).</p><p>Website is $97/mo. Lead System at $197/mo adds Google review requests and optional missed-call text-back. Plus at $297/mo runs that follow-up in English and Spanish. Own It is $1,497 once, with site files yours from launch day.</p><p>See <a href="/web-design">web design</a>, <a href="/industries">industries</a>, or request a preview at <a href="/contact">/contact</a>. Compare plans on <a href="/pricing">/pricing</a>.</p>`,
+        html: `<p>We start with a free homepage preview in 2 business days—no card, no obligation. After you approve and send the content we need, the full site typically launches in 5 business days (confirmed in writing).</p><p>Website is $97/mo. Lead System at $197/mo adds Google review requests and optional missed-call text-back. Plus at $297/mo runs that follow-up in English and Spanish. Own It is $1,497 once, with site files yours from launch day.</p><p>The service page for <a href="/web-design">contractor website design</a> owns that query. Browse <a href="/industries">industries</a>, or request a preview at <a href="/contact">/contact</a>. Compare plans on <a href="/pricing">/pricing</a>. If you are weighing DIY builders, see <a href="/blog/wix-vs-squarespace-vs-managed-website-contractors">Wix vs Squarespace vs a managed website</a>.</p>`,
       },
     ],
   },

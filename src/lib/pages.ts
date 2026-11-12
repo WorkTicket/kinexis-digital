@@ -19,17 +19,17 @@ export type PageMeta = {
 };
 
 /** Default sitemap lastmod when a page has no more specific content date. */
-export const SITE_CONTENT_UPDATED = "2026-11-09";
+export const SITE_CONTENT_UPDATED = "2026-11-12";
 
 export const PAGES = {
   home: {
     path: "/",
-    title: "Website Plans From $97/mo for Local Businesses | Kinexis Digital",
+    title: "Contractor & Home Service Websites From $97/mo | Kinexis Digital",
     absolute: true,
     indexable: true,
     priority: 1,
     changeFrequency: "weekly",
-    description: "Get a professional website from $97/mo, with Google review requests and optional missed-call text-back. Free homepage preview first. No card required.",
+    description: "Contractor and home service websites from $97/mo, $0 down. Google review requests, optional missed-call text-back, and a free homepage preview.",
   },
   services: {
     path: "/services",
@@ -42,12 +42,12 @@ export const PAGES = {
   },
   "web-design": {
     path: "/web-design",
-    title: "Website Design Process — Free Homepage Preview",
+    title: "Contractor Website Design With a Free Preview",
     crumb: "Web Design",
-    service: "Web design",
+    service: "Contractor website design",
     indexable: true,
     priority: 0.9,
-    description: "Share a design direction, logo, and photos. We prepare a free homepage preview in 2 business days, no card required, then revise until it fits.",
+    description: "Contractor website design from $97/mo, $0 down. See a free homepage preview in 2 business days, no card required, before you choose a plan.",
   },
   "seo-services": {
     path: "/seo-services",
@@ -105,12 +105,12 @@ export const PAGES = {
   },
   industries: {
     path: "/industries",
-    title: "Website Design for Service Industries",
+    title: "Websites for Contractors, by Trade",
     crumb: "Industries",
     pageType: "CollectionPage",
     indexable: true,
     priority: 0.9,
-    description: "Explore website design ideas for plumbing, HVAC, electrical, roofing, landscaping, and other service industries across the United States.",
+    description: "Website design for plumbers, HVAC, electricians, roofers, garage door, landscaping, and pressure washing companies nationwide. Plans from $97/mo.",
   },
   reviews: {
     path: "/reviews",

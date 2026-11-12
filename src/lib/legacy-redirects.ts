@@ -40,11 +40,11 @@ const NESTED_LIVE_INDUSTRY: Record<string, string> = {
 /** Old article slugs mapped to the closest current page. */
 const BLOG: Record<string, string> = {
   "diseno-web-para-contratistas": "/blog/web-design-for-contractors",
-  "small-business-website-cost": "/blog/small-business-marketing-budget",
+  "small-business-website-cost": "/pricing",
   "website-not-generating-leads": "/blog/turn-clicks-into-calls",
   "website-traffic-no-calls": "/blog/turn-clicks-into-calls",
   "website-redesign-signs": "/blog/website-mistakes-that-cost-you-calls",
-  "website-builder-vs-professional": "/web-design",
+  "website-builder-vs-professional": "/blog/wix-vs-squarespace-vs-managed-website-contractors",
   "google-ads-vs-facebook-ads": "/services",
   "more-leads-from-service-website": "/blog/turn-clicks-into-calls",
   "seo-pricing-guide": "/seo-services",
@@ -52,7 +52,7 @@ const BLOG: Record<string, string> = {
   "local-seo-strategy-2026": "/blog/local-seo-get-found-get-called",
   "email-nurture-sequences-that-book-calls": "/blog",
   "website-conversion-optimization": "/blog/turn-clicks-into-calls",
-  "google-business-profile-tips": "/blog/local-seo-get-found-get-called",
+  "google-business-profile-tips": "/blog/google-business-profile-checklist",
   "seo-vs-google-ads": "/seo-services",
   "technical-seo-fundamentals": "/seo-services",
   "local-business-growth-playbook": "/blog",
@@ -106,8 +106,9 @@ export const LEGACY_REDIRECTS = [
   // consolidates onto the industries hub in one hop.
   ...localizedWildcard("/industries/:category/:slug", "/industries"),
   ...localizedWildcard("/industries/:category/:slug/:path*", "/industries"),
-  // Retired location × service microsites. Local SEO intent lands on SEO services.
+  // Retired location × service microsites. Web-design city URLs keep design intent.
   ...localized("/locations", "/seo-services"),
+  ...localizedWildcard("/locations/:city/web-design", "/web-design"),
   ...localizedWildcard("/locations/:path*", "/seo-services"),
   // Specific service detail pages before the services catch-all.
   ...localized("/services/landing-pages", "/web-design"),
@@ -132,6 +133,9 @@ export const LEGACY_REDIRECTS = [
   ...localized("/updates", "/update"),
   ...localized("/blog/posts", "/blog"),
   ...localized("/case-studies", "/portfolio"),
+  // Live trade proof pages beat the generic portfolio hub for these case URLs.
+  ...localized("/case-studies/plumbing-company-growth", "/industries/plumbing"),
+  ...localized("/case-studies/landscaping-company-growth", "/industries/landscaping"),
   { source: "/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },
   { source: "/en/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },
   { source: "/es/case-studies/:path*", destination: "/es/portfolio", statusCode: 301 as const },
@@ -143,5 +147,10 @@ export const LEGACY_REDIRECTS = [
   { source: "/es-es/resources/:path*", destination: "/es-es/blog", statusCode: 301 as const },
   ...localizedWildcard("/blog/category/:slug", "/blog"),
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
+  // English-locale Spanish slugs: keep /es copies live, retire EN duplicates.
+  ...go("/blog/pagina-web-para-plomeros", "/industries/plumbing"),
+  ...go("/en/blog/pagina-web-para-plomeros", "/industries/plumbing"),
+  ...go("/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
+  ...go("/en/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
   ...go("/en", "/"),
 ];

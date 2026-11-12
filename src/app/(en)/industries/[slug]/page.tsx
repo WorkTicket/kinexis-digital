@@ -9,12 +9,14 @@ import { ReviewRail } from "@/components/HomeBands";
 import IndustryHeroArt from "@/components/IndustryHeroArt";
 import IndustryIncludes, { industryFeatureBody } from "@/components/IndustryIncludes";
 import IndustryProof from "@/components/IndustryProof";
+import IndustrySeoDepth from "@/components/IndustrySeoDepth";
 import { ContentSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
 import PlanOffer from "@/components/PlanOffer";
 import { ShotFrame } from "@/components/ShotFrame";
 import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
+import { INDUSTRY_SEO_DEPTH } from "@/data/industry-seo-depth";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -32,7 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/industries/${industry.slug}`,
     title: industry.metaTitle,
     description: industry.metaDescription,
-    absolute: true,
     index: industry.status !== "hold",
   });
 }
@@ -52,6 +53,7 @@ export default async function IndustryPage({ params }: Props) {
   const project = industry.projectSlug ? getProject(industry.projectSlug) : undefined;
   const path = `/industries/${industry.slug}`;
   const related = relatedIndustries(industry);
+  const depth = INDUSTRY_SEO_DEPTH[industry.slug];
   const callsTitle = `The Calls ${industry.name} Businesses Get`;
   const includesTitle = `What Your ${industry.name} Website Includes`;
   const textBackTitle = `Missed-Call Text-Back for ${industry.name}`;
@@ -70,6 +72,10 @@ export default async function IndustryPage({ params }: Props) {
         ]}
         faqs={industry.faqs}
         serviceType={`${industry.name} website design`}
+        audienceType={`${industry.name} companies`}
+        exampleItems={depth?.examples
+          .filter((example) => !example.demo)
+          .map((example) => ({ name: example.name, url: example.url }))}
       />
       <PageHero
         eyebrow="Industries"
@@ -82,6 +88,9 @@ export default async function IndustryPage({ params }: Props) {
         <div className="industry-hero__intro">
           <p>{industry.intro[0]}</p>
           <p>{industry.intro[1]}</p>
+          <p>
+            Looking for broader <Link href="/web-design" prefetch={false}>contractor website design</Link>? Start there, then come back to this trade page.
+          </p>
         </div>
         <p className="btn-row">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
@@ -150,6 +159,11 @@ export default async function IndustryPage({ params }: Props) {
           copy={INDUSTRY_FEATURES_EN}
           featureText={(key) => featureText(industry, key)}
         />
+        {depth ? (
+          <div className="industry-seo-depth-wrap">
+            <IndustrySeoDepth industry={industry} />
+          </div>
+        ) : null}
       </Section>
 
       <Section tint>
@@ -203,6 +217,12 @@ export default async function IndustryPage({ params }: Props) {
             <li>
               <Link href={industryPagesPostPath(industry.slug)} prefetch={false}>
                 <span className="industry-reads__title">Pages This Business Needs</span>
+                <span className="industry-reads__arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/blog/wix-vs-squarespace-vs-managed-website-contractors" prefetch={false}>
+                <span className="industry-reads__title">Wix vs Squarespace vs a managed website</span>
                 <span className="industry-reads__arrow" aria-hidden="true">→</span>
               </Link>
             </li>

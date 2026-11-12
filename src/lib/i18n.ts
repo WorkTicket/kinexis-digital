@@ -2,6 +2,7 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import {
   type Locale,
+  EN_REDIRECTED_BLOG_SLUGS,
   MIRROR_PATHS,
   englishPath,
   isLocale,
@@ -14,6 +15,7 @@ import {
 
 export type { Locale };
 export {
+  EN_REDIRECTED_BLOG_SLUGS,
   MIRROR_PATHS,
   englishPath,
   isLocale,
@@ -64,6 +66,15 @@ export function hreflangLanguages(pathname: string): Record<string, string> | un
   const en = englishPath(pathname);
   if (!isMirrored(en) || !localeIndexable("en")) return undefined;
   const es = withLocale("es-419", en);
+  const blogSlug = en.startsWith("/blog/") ? en.slice("/blog/".length) : "";
+  // Retired English Spanish-slug posts: Spanish-only hreflang (no EN alternate).
+  if (blogSlug && EN_REDIRECTED_BLOG_SLUGS.has(blogSlug)) {
+    return {
+      es,
+      "es-US": es,
+      "x-default": es,
+    };
+  }
   return {
     "en-US": en,
     es,

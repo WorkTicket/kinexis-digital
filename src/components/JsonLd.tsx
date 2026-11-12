@@ -133,7 +133,7 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
 }
 
 /** Schema for pages that are not in the PAGES map, such as industry details. */
-export function ContentSchema({ path, title, description, crumbs: trail, faqs, serviceType, inLanguage = "en-US", products }: {
+export function ContentSchema({ path, title, description, crumbs: trail, faqs, serviceType, inLanguage = "en-US", products, audienceType, exampleItems }: {
   path: string;
   title: string;
   description: string;
@@ -142,6 +142,10 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
   serviceType?: string;
   inLanguage?: string;
   products?: { slug: string; name: string; tagline: string; price: string; suffix: string }[];
+  /** BusinessAudience.audienceType, e.g. "Plumbing companies". */
+  audienceType?: string;
+  /** Live/demo example cards for ItemList on industry pages. */
+  exampleItems?: { name: string; url: string }[];
 }) {
   const locale = localeForPath(path, inLanguage);
   const url = absolute(path);
@@ -160,6 +164,18 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
   if (pageType === "FAQPage" && faqs?.length) pageNode.mainEntity = faqEntities(faqs);
   const graph: unknown[] = [pageNode, crumbs(trail)];
   if (serviceType) {
+    const monthlyOffer = {
+      "@type": "Offer",
+      url: `${SITE.url}/pricing`,
+      priceCurrency: "USD",
+      price: "97",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "97",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+    };
     graph.push({
       "@type": "Service",
       "@id": `${url}#service`,
@@ -169,6 +185,23 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
       url,
       provider: { "@id": orgId(locale) },
       areaServed: country,
+      offers: monthlyOffer,
+      ...(audienceType
+        ? { audience: { "@type": "BusinessAudience", audienceType } }
+        : {}),
+    });
+  }
+  if (exampleItems?.length) {
+    graph.push({
+      "@type": "ItemList",
+      "@id": `${url}#examples`,
+      name: `${serviceType ?? title} examples`,
+      itemListElement: exampleItems.map((item, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.name,
+        url: item.url.startsWith("http") ? item.url : absolute(item.url),
+      })),
     });
   }
   if (products?.length) graph.push(...products.map((plan) => productEntity(url, plan, locale)));
@@ -260,6 +293,18 @@ export function PageSchema({ page, faqs, items }: {
     ]));
   }
   if (p.service) {
+    const monthlyOffer = {
+      "@type": "Offer",
+      url: `${SITE.url}/pricing`,
+      priceCurrency: "USD",
+      price: "97",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: "97",
+        priceCurrency: "USD",
+        unitText: "MONTH",
+      },
+    };
     graph.push({
       "@type": "Service",
       "@id": `${url}#service`,
@@ -269,6 +314,12 @@ export function PageSchema({ page, faqs, items }: {
       url,
       provider: { "@id": orgId() },
       areaServed: country,
+      ...(page === "web-design"
+        ? {
+            offers: monthlyOffer,
+            audience: { "@type": "BusinessAudience", audienceType: "Contractor companies" },
+          }
+        : {}),
       ...(page === "pricing" ? { hasOfferCatalog: offerCatalog(url) } : {}),
     });
   }

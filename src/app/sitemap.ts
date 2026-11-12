@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { POSTS } from "@/lib/content";
 import { INDUSTRIES } from "@/data/industries";
 import { portfolioFile, PROJECTS } from "@/data/portfolio";
-import { hreflangLanguages, isMirrored, localeIndexable, withLocale, type Locale } from "@/lib/i18n";
+import { EN_REDIRECTED_BLOG_SLUGS, hreflangLanguages, isMirrored, localeIndexable, withLocale, type Locale } from "@/lib/i18n";
 import { PAGES, SITE_CONTENT_UPDATED, type PageMeta } from "@/lib/pages";
 import { SITE } from "@/lib/site";
 
@@ -52,13 +52,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const posts = POSTS.flatMap((post) => localized(`/blog/${post.slug}`, {
-    url: `${SITE.url}/blog/${post.slug}`,
-    lastModified: day((post.modified ?? post.date).slice(0, 10)),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
-    images: [`${SITE.url}${post.image}`],
-  }));
+  const posts = POSTS.flatMap((post) => {
+    const path = `/blog/${post.slug}`;
+    const entry = {
+      url: `${SITE.url}${path}`,
+      lastModified: day((post.modified ?? post.date).slice(0, 10)),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+      images: [`${SITE.url}${post.image}`],
+    };
+    // EN Spanish-slug duplicates 301 away — keep Spanish sitemap rows only.
+    if (EN_REDIRECTED_BLOG_SLUGS.has(post.slug)) {
+      if (!isMirrored(path) || !localeIndexable("es-419")) return [];
+      const languages = languagesFor(path);
+      return [{
+        ...entry,
+        url: absolute(withLocale("es-419", path)),
+        ...(languages ? { alternates: { languages } } : {}),
+      }];
+    }
+    return localized(path, entry);
+  });
 
   // Detail pages are demonstration templates, not standalone client case
   // studies. Keep the portfolio hub indexable, but keep demo URLs out of the

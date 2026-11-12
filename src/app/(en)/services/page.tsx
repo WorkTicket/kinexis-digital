@@ -17,14 +17,14 @@ const offerings = [
     title: "SEO Services",
     text: "Technical cleanup, useful page titles, and content that helps the right customers find you through Google search.",
     href: "/seo-services",
-    cta: "Explore SEO",
+    cta: "SEO services for business websites",
     icon: "search-optimized",
   },
   {
     title: "Website Management",
     text: "Hosting, updates, and backups are covered, with a real person available when something on the site needs to change.",
     href: "/website-management",
-    cta: "See Site Care",
+    cta: "Website management and maintenance",
     icon: "managed-for-you",
   },
   {

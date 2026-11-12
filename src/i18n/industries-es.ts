@@ -11,9 +11,9 @@ const ES: Record<string, Copy> = {
   plumbing: {
     name: "Plomería",
     card: "Fugas, drenajes y calentadores",
-    metaTitle: "Diseño web para plomeros en EE. UU.",
-    metaDescription: "Sitios para plomeros en Estados Unidos. Páginas de fugas, drenajes y calentadores, con llamada desde el celular y pedidos de reseñas.",
-    h1: "Sitios de plomería que consiguen la llamada",
+    metaTitle: "Página web para plomeros en EE. UU. desde $97/mes",
+    metaDescription: "Diseño de página web para plomeros en EE. UU. desde $97/mes, $0 de entrada. Páginas de fugas, drenajes y calentadores. Vista previa gratis.",
+    h1: "Diseño de página web para plomeros que consigue la llamada",
     mark: "la llamada",
     sub: "Un sitio de plomería tiene que funcionar mientras alguien está parado en un charco. Una fuga, un drenaje lento y un calentador son tres trabajos distintos.",
     intro: [
@@ -45,9 +45,9 @@ const ES: Record<string, Copy> = {
   hvac: {
     name: "HVAC",
     card: "Reparación sin aire y cambio de equipo",
-    metaTitle: "Sitios web de HVAC para negocios en EE. UU.",
-    metaDescription: "Diseño web de HVAC para negocios en Estados Unidos. Caminos separados para reparación y cambio de equipo, con reseñas y texto opcional si no contestas.",
-    h1: "Sitios de HVAC para reparación y reemplazo",
+    metaTitle: "Página web para empresas de HVAC desde $97/mes",
+    metaDescription: "Página web para empresas de HVAC en EE. UU. desde $97/mes, $0 de entrada. Reparación y reemplazo en páginas separadas. Vista previa gratis.",
+    h1: "Página web para empresas de HVAC: reparación y reemplazo",
     mark: "reparación y reemplazo",
     sub: "Una casa sin aire no es una cotización de sistema nuevo. El sitio debe mandar cada caso por su camino, también en las semanas en que el clima no apura.",
     intro: [
@@ -79,9 +79,9 @@ const ES: Record<string, Copy> = {
   electrical: {
     name: "Electricidad",
     card: "Tableros, cargadores y diagnóstico",
-    metaTitle: "Sitios web para electricistas en EE. UU.",
-    metaDescription: "Diseño web para electricistas en Estados Unidos. Tableros, cargadores para autos y diagnóstico, con seguimiento desde el celular.",
-    h1: "Sitios de electricidad en los que la gente confía para llamar",
+    metaTitle: "Página web para electricistas desde $97/mes",
+    metaDescription: "Página web para electricistas en EE. UU. desde $97/mes, $0 de entrada. Paneles, cargadores EV y reparaciones con llamada directa. Vista previa gratis.",
+    h1: "Página web para electricistas en la que la gente confía para llamar",
     mark: "confía para llamar",
     sub: "El trabajo eléctrico se vende con confianza. El sitio tiene que mostrar la licencia, el tipo de trabajos que tomas y una forma de contactarte que no parezca una fábrica de leads.",
     intro: [
@@ -113,9 +113,9 @@ const ES: Record<string, Copy> = {
   roofing: {
     name: "Techos",
     card: "Reparaciones, cambios y tormentas",
-    metaTitle: "Diseño web para techos en EE. UU.",
-    metaDescription: "Sitios de techos para negocios en Estados Unidos. Páginas de reparación y reemplazo, con una forma clara de pedir una inspección.",
-    h1: "Sitios de techos para inspecciones de verdad",
+    metaTitle: "Página web para compañías de techos (roofing)",
+    metaDescription: "Página web para compañías de techos (roofing) desde $97/mes, $0 de entrada. Reparación, reemplazo e inspecciones. Vista previa gratis del inicio.",
+    h1: "Página web para compañías de techos que consigue inspecciones",
     mark: "inspecciones de verdad",
     sub: "Después de una tormenta, todos los techeros suenan igual. El sitio debe decir qué reparas, qué cambias y cómo funciona la inspección.",
     intro: [
@@ -147,8 +147,8 @@ const ES: Record<string, Copy> = {
   "garage-doors": {
     name: "Puertas de garaje",
     card: "Resortes, motores y puertas nuevas",
-    metaTitle: "Sitios para puertas de garaje en EE. UU.",
-    metaDescription: "Sitios de puertas de garaje para negocios en Estados Unidos. Un camino de reparación y otro de cotización para puertas nuevas.",
+    metaTitle: "Página web para puertas de garaje desde $97/mes",
+    metaDescription: "Página web para compañías de puertas de garaje desde $97/mes, $0 de entrada. Resortes, abridores y puertas nuevas. Vista previa gratis del inicio.",
     h1: "Sitios de puertas de garaje para reparación y puertas nuevas",
     mark: "reparación y puertas nuevas",
     sub: "Un resorte roto es una búsqueda del mismo día. Una puerta nueva es una conversación de estilo y precio. No deberían llenar el mismo formulario.",
@@ -256,9 +256,9 @@ const ES: Record<string, Copy> = {
   landscaping: {
     name: "Paisajismo",
     card: "Rutas de mantenimiento y obra",
-    metaTitle: "Sitios de paisajismo en EE. UU.",
-    metaDescription: "Sitios de paisajismo para negocios en Estados Unidos. El mantenimiento semanal y el diseño-obra van en páginas separadas.",
-    h1: "Sitios de paisajismo para rutas y proyectos",
+    metaTitle: "Página web para paisajismo (landscaping)",
+    metaDescription: "Página web para paisajismo y jardinería (landscaping) desde $97/mes, $0 de entrada. Mantenimiento y proyectos por separado. Vista previa gratis.",
+    h1: "Página web para paisajismo: rutas y proyectos",
     mark: "rutas y proyectos",
     sub: "Una ruta de corte y un patio nuevo son negocios distintos que a veces comparten camioneta. El sitio no debe fingir que son el mismo lead.",
     intro: [
@@ -327,8 +327,8 @@ const ES: Record<string, Copy> = {
   "pressure-washing": {
     name: "Lavado a presión",
     card: "Casas, concreto y techos",
-    metaTitle: "Sitios de lavado a presión en EE. UU.",
-    metaDescription: "Sitios de lavado a presión para negocios en Estados Unidos. Casas, concreto y techos, con un formulario corto de cotización.",
+    metaTitle: "Página web para lavado a presión (pressure washing)",
+    metaDescription: "Página web para lavado a presión (pressure washing) desde $97/mes, $0 de entrada. Casas, concreto y techos con cotización corta. Vista previa gratis.",
     h1: "Sitios de lavado a presión que muestran el antes y el después",
     mark: "el antes y el después",
     sub: "Este negocio se gana con fotos y una cotización rápida. Un sitio que habla de “soluciones” y nunca muestra una entrada le pide a la gente que imagine el resultado.",

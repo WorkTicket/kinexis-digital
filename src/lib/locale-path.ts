@@ -9,6 +9,15 @@ export type Locale = "en" | "es-419" | "es-ES";
 const UNMIRRORED = new Set(["/pay", "/tools/missed-call-calculator", "/tools/google-review-link-qr"]);
 
 /**
+ * English URLs that 301 away (Spanish-slug duplicates). Keep Spanish copies
+ * indexable, but do not advertise the retired English URL in hreflang/sitemap.
+ */
+export const EN_REDIRECTED_BLOG_SLUGS = new Set([
+  "pagina-web-para-plomeros",
+  "como-pedir-resenas-en-google",
+]);
+
+/**
  * Linked from Spanish chrome/footer but kept `indexable: false` in PAGES
  * (legal/utility). Still need static Spanish routes — otherwise /es/terms etc. 404.
  */

@@ -8,7 +8,9 @@ import { spanishPlans } from "@/i18n/spanish-plans";
 import IndustryGrid from "@/components/IndustryGrid";
 import IndustryIncludes, { industryFeatureBody } from "@/components/IndustryIncludes";
 import IndustryProof from "@/components/IndustryProof";
+import IndustrySeoDepth from "@/components/IndustrySeoDepth";
 import { ContentSchema } from "@/components/JsonLd";
+import { INDUSTRY_SEO_DEPTH } from "@/data/industry-seo-depth";
 import { ReviewRail } from "@/components/HomeBands";
 import PlanOffer from "@/components/PlanOffer";
 import IndustryHeroArt from "@/components/IndustryHeroArt";
@@ -36,24 +38,45 @@ export default function SpanishIndustry({
   const href = (item: string) => withLocale(locale, item);
   const related = relatedIndustries(base).map((item) => localizeIndustry(item, locale));
   const features = localizedIndustryFeatures(tx);
+  const depth = INDUSTRY_SEO_DEPTH[industry.slug];
   const spainChrome = locale === "es-ES";
   const trust = {
     leadLabel: tx("Garantía de 60 días"),
     refundLabel: tx("Devolución en 30 días"),
-    downLabel: spainChrome ? tx("Sin enganche") : tx("$0 de enganche"),
+    downLabel: spainChrome ? tx("Sin entrada") : tx("$0 de entrada"),
     previewLabel: tx("Vista previa en 2 días hábiles"),
   };
 
   return (
     <>
-      <ContentSchema path={path} title={industry.metaTitle} description={industry.metaDescription} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }, { name: industry.name, path }]} faqs={[...industry.faqs]} serviceType={tx(`Diseño web de ${industry.name}`)} inLanguage={lang} />
+      <ContentSchema
+        path={path}
+        title={industry.metaTitle}
+        description={industry.metaDescription}
+        crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }, { name: industry.name, path }]}
+        faqs={[...industry.faqs]}
+        serviceType={tx(`Diseño web de ${industry.name}`)}
+        inLanguage={lang}
+        audienceType={tx(`Empresas de ${industry.name.toLowerCase()}`)}
+        exampleItems={depth?.examples
+          .filter((example) => !example.demo)
+          .map((example) => ({ name: example.name, url: example.url }))}
+      />
       <PageHero locale={locale} eyebrow={tx("Industrias")} h1={industry.h1} mark={industry.mark} sub={industry.sub} className={`industry-hero industry-hero--${industry.slug}`} art={<IndustryHeroArt slug={industry.slug} alt={industry.heroAlt} />}>
-        <div className="industry-hero__intro"><p>{industry.intro[0]}</p><p>{industry.intro[1]}</p></div>
+        <div className="industry-hero__intro">
+          <p>{industry.intro[0]}</p>
+          <p>{industry.intro[1]}</p>
+          <p>
+            {tx("¿Buscas")}{" "}
+            <Link href={href("/web-design")} prefetch={false}>{tx("diseño web para contratistas")}</Link>
+            {tx("? Empieza ahí y vuelve a esta página de oficio.")}
+          </p>
+        </div>
         <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link></p>
         <TrustStrip className="industry-hero__trust" {...trust} />
       </PageHero>
       <Section tint>
-        <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industry.name}`)} mark={industry.name} /></h2>
+        <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industry.name.toLowerCase()}`)} mark={industry.name} /></h2>
         <p className="center muted industry-section-lead">{tx("Estas son las búsquedas y trabajos que el sitio debe dejar claros.")}</p>
         <ReviewRail
           numbersOnly
@@ -75,7 +98,7 @@ export default function SpanishIndustry({
       </Section>
       {base.proof ? (
         <Section>
-          <IndustryProof industry={base} />
+          <IndustryProof industry={{ ...base, name: industry.name }} locale="es" />
         </Section>
       ) : null}
       <Section accent={`/assets/industries/${industry.slug}/section-accent.svg`}>
@@ -101,6 +124,11 @@ export default function SpanishIndustry({
           copy={features}
           featureText={(key: FeatureKey) => industryFeatureBody(industry, key, tx(INDUSTRY_FEATURES_ES[key].text))}
         />
+        {depth ? (
+          <div className="industry-seo-depth-wrap">
+            <IndustrySeoDepth industry={{ ...base, name: industry.name }} locale="es" />
+          </div>
+        ) : null}
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx(`Respuesta a llamadas perdidas para ${industry.name}`)} mark={tx("llamadas perdidas")} /></h2>
@@ -119,7 +147,7 @@ export default function SpanishIndustry({
         </Section>
       )}
       <Section id="plans">
-        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin enganche") : tx("$0 de enganche")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { hideUsd: spainChrome })} showStickers={!spainChrome} />
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={spainChrome ? tx("Sin entrada") : tx("$0 de entrada")} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { hideUsd: spainChrome })} showStickers={!spainChrome} />
         <nav className="industry-reads industry-reads--stack" aria-label={tx(`Guías para ${industry.name}`)}>
           <p className="industry-reads__label">{tx(`Guías para dueños de ${industry.name}`)}</p>
           <ul className="industry-reads__list">
