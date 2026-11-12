@@ -36,6 +36,7 @@ const poppinsDisplay = localFont({
 });
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
+const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
 const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim() || SITE.googleSiteVerification;
 const defaultTitle = "Website Plans From $97/mo for Local Businesses | Kinexis Digital";
 const defaultDescription = descriptionWithFallback(
@@ -127,20 +128,26 @@ h1{font-weight:800}
           id="route-chrome"
           dangerouslySetInnerHTML={{
             __html: `(function(){
-var p=location.pathname,r=document.documentElement;
+var p=location.pathname,r=document.documentElement,ua=navigator.userAgent||"";
 if(p==="/es"||p.indexOf("/es/")===0){r.lang="es";p=p==="/es"?"/":p.slice(3)}
 else if(p==="/es-es"||p.indexOf("/es-es/")===0){r.lang="es-ES";p=p==="/es-es"?"/":p.slice(6)}
 if(p==="/contact"||p==="/audit"||p==="/strategy-call"||p.indexOf("/pay")===0||p.indexOf("/lp/")===0)r.classList.add("no-lead");
 if(p==="/contact"||p==="/upgrades"||p.indexOf("/pay")===0||p==="/strategy-call"||p.indexOf("/lp/")===0)r.classList.add("no-float");
-if(p==="/contact"||p==="/audit"||p==="/privacy"||p==="/terms"||p==="/update"||p.indexOf("/pay")===0)r.classList.add("no-audit");
+if(p==="/contact"||p==="/audit"||p==="/privacy"||p==="/terms"||p==="/update"||p.indexOf("/pay")===0||p.indexOf("/lp/")===0)r.classList.add("no-audit");
 if(p.indexOf("/lp/")===0)r.classList.add("lp-route");
+if(/FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\\//i.test(ua))r.classList.add("is-meta-webview");
 })()`,
           }}
         />
       </head>
       <body>
         {children}
-        <Boot email={SITE.email} ga={/^G-[A-Z0-9]+$/.test(gaId) ? gaId : ""} video={SITE.videoUrl} />
+        <Boot
+          email={SITE.email}
+          ga={/^G-[A-Z0-9]+$/.test(gaId) ? gaId : ""}
+          metaPixel={/^\d{5,20}$/.test(metaPixelId) ? metaPixelId : ""}
+          video={SITE.videoUrl}
+        />
       </body>
     </html>
   );

@@ -2,8 +2,8 @@
 const root = document.documentElement;
 const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 const ua = navigator.userAgent || "";
-/** Facebook / Instagram in-app browsers need extra bottom clearance for their chrome. */
-const isMetaWebview = /FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Line\//i.test(ua);
+/** Facebook / Instagram / Messenger in-app browsers need extra bottom clearance for their chrome. */
+const isMetaWebview = /FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\//i.test(ua);
 if (isMetaWebview) root.classList.add("is-meta-webview");
 let path = location.pathname;
 let menuOpen = false;
@@ -42,7 +42,7 @@ function syncChrome() {
   const p = englishPath(raw);
   const noLead = p === "/contact" || p === "/audit" || p === "/strategy-call" || p.startsWith("/pay") || p.startsWith("/lp/");
   const noFloat = p === "/contact" || p === "/upgrades" || p.startsWith("/pay") || p === "/strategy-call" || p.startsWith("/lp/");
-  const noAudit = p === "/contact" || p === "/audit" || p === "/privacy" || p === "/terms" || p === "/update" || p.startsWith("/pay");
+  const noAudit = p === "/contact" || p === "/audit" || p === "/privacy" || p === "/terms" || p === "/update" || p.startsWith("/pay") || p.startsWith("/lp/");
   const lpRoute = p.startsWith("/lp/");
   root.classList.toggle("no-lead", noLead);
   root.classList.toggle("no-float", noFloat);
@@ -625,6 +625,8 @@ function onNavigate() {
   syncChrome();
   paintNew();
   requestAnimationFrame(measureFloat);
+  // Soft navigations need a fresh PageView for Meta Events Manager.
+  trackMeta("PageView");
 }
 
 const bar = document.querySelector(".float-cta");
@@ -952,11 +954,16 @@ document.addEventListener("submit", async (event) => {
         strong.textContent = copy.thanks;
         msg.append(check, strong);
       }
-      track("generate_lead", {
+      const leadPayload = {
         form_id: form.getAttribute("name") || form.id || "lead",
         page_path: location.pathname,
         source: String(data.get("source") || ""),
         landing_page: String(data.get("landing_page") || location.pathname),
+      };
+      track("generate_lead", leadPayload);
+      trackMeta("Lead", {
+        content_name: "homepage_preview",
+        content_category: leadPayload.landing_page,
       });
       return;
     }
@@ -996,6 +1003,16 @@ function track(name, params) {
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(["event", name, params || {}]);
+}
+
+function trackMeta(name, params) {
+  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
+  if (typeof window.fbq !== "function") return;
+  try {
+    window.fbq("track", name, params || {});
+  } catch {
+    /* Pixel blocked or unavailable — ignore. */
+  }
 }
 
 function englishPath(pathname) {
@@ -1054,6 +1071,16 @@ if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
       loadGa();
       track("pricing_click", { link_url: path, page_path: location.pathname });
     }
+  });
+}
+
+if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
+  document.addEventListener("click", (event) => {
+    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+    if (!(link instanceof HTMLAnchorElement)) return;
+    const href = link.getAttribute("href") || "";
+    if (!href.startsWith("tel:")) return;
+    trackMeta("Contact", { content_name: "phone_tap", content_category: location.pathname });
   });
 }
 

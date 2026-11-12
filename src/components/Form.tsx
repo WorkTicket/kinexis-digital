@@ -35,7 +35,7 @@ export default function Form({
 }: {
   fields: Field[];
   button: string;
-  note?: string;
+  note?: React.ReactNode;
   fast?: boolean;
   fastText?: string;
   slim?: boolean;

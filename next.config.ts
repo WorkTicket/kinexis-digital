@@ -7,17 +7,18 @@ import { PAGES } from "./src/lib/pages";
 const isDev = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://connect.facebook.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com`,
   "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
-  // https: already covers GTM pixels; keep googletagmanager explicit for GA4 beacons.
-  "img-src 'self' data: blob: https: https://*.googletagmanager.com",
+  // https: already covers GTM + Meta pixels; keep googletagmanager / facebook explicit.
+  "img-src 'self' data: blob: https: https://*.googletagmanager.com https://www.facebook.com https://*.facebook.com",
   "font-src 'self' data:",
   // GA4 posts to google-analytics.com, analytics.google.com (apex + subs), and googletagmanager.com.
+  // Meta Pixel posts to connect.facebook.net / facebook.com (apex + subs).
   // CSP *.host does not match the apex host itself — keep both forms.
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
   "media-src 'self' https:",
-  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",

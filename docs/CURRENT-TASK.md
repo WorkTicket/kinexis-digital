@@ -1,27 +1,20 @@
 # CURRENT-TASK.md
 
 ## Goal
-Keep Latam `/es` indexable; Spain `/es-es` stays noindex. Prior SEO batch already live.
+Meta Pixel `2080705549212381` on the site for ad conversion tracking.
 
 ## Status
-ship `/es` index restore
+Pixel ID set in `.env.local`, `.dev.vars`, and Worker secret `NEXT_PUBLIC_META_PIXEL_ID`
 
 ## Completed
-- `/es-es` noindex, out of sitemap and hreflang; `/es` indexable with hreflang (`es` / `es-US`); Latam keeps US prices; Spain omits USD on visitor-facing pages
-- Year cache limited to images/static (`public/_headers` + `src/proxy.ts`); blog/portfolio HTML uses short cache
-- Meta descriptions rewritten to full 120–155 char sentences (homepage, plumbing, cost posts, Spanish trade posts)
-- Trailing slash 301 keeps query string
-- Homepage features plumbing/HVAC/roofing cost guides; EN + ES industry pages link cost + pages posts
-- Hold industries (painting, remodeling, pool-care, window-cleaning, yard-care): `status: "hold"`, noindex, out of grids/header/sitemap/related
-- Title brand doubling fixed; contractor slug `/blog/web-design-for-contractors` + Spanish legacy 301
-- Spanish HVAC→lawn cost/pages posts rewritten (full native bodies + excerpts)
-- SMS templates complete for all 12 trades in EN + ES (Latam + Spain overrides), including garage / landscaping / pressure washing
+- Meta Pixel PageView + Lead (+ Contact on tel)
+- Live ID in local env files
+- `npx wrangler secret put NEXT_PUBLIC_META_PIXEL_ID` uploaded to Worker `kinexis-digital`
+- Deploy preflight checks Pixel ID; README lists it as a Builds var
 
 ## Still open
-- Custom hero art for newer slugs (reuse stills for now)
-- Speed work (later)
-- Deploy + Rich Results / GA4 DebugView
-- `/es-es` long legal/add-on copy may still mention USD in places
+- Workers Builds **Build variables** dashboard entry (CI) if deploys go through Cloudflare Builds — same name/value
+- Deploy + Meta Events Manager Test Events (PageView, Lead)
 
 ## Next action
-Preview hold industries stay unlinked, Spanish cost posts, and SMS templates. Commit/deploy when ready.
+Deploy (local deploy already has `.env.local` for inlining). For CI Builds, add the same build variable in the Cloudflare dashboard if not already mirrored.

@@ -35,6 +35,16 @@ type TrustLabels = {
   previewLabel?: ReactNode;
 };
 
+/** Build a plan deep-link that keeps hash targets working on landing pages. */
+function planHref(base: string, slug: string) {
+  if (base.startsWith("#")) return base;
+  const hashAt = base.indexOf("#");
+  if (hashAt === -1) return `${base}${base.includes("?") ? "&" : "?"}plan=${slug}`;
+  const path = base.slice(0, hashAt);
+  const hash = base.slice(hashAt);
+  return `${path}${path.includes("?") ? "&" : "?"}plan=${slug}${hash}`;
+}
+
 /** The same four plans, with the same prices, on the homepage and every industry page. */
 export default function PlanOffer({
   heading = "Website Plans and Pricing",
@@ -82,7 +92,7 @@ export default function PlanOffer({
           <li key={plan.slug}>
             <Link
               className={`offer__plan${plan.popular ? " is-pop" : ""}`}
-              href={`${href}?plan=${plan.slug}`}
+              href={planHref(href, plan.slug)}
               prefetch={false}
             >
               {plan.popular ? <span className="offer__badge">{badge}</span> : null}

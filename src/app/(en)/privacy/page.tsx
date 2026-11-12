@@ -18,7 +18,7 @@ export default function Page() {
         <div className="container container--narrow prose">
           <h2>What we collect</h2>
           <p>If you send a form, we collect the details you type: your name, email, phone, business or website name, the page you want changed, your message, and any file you attach. If you call or email us, we keep that correspondence so we can reply and do the work.</p>
-          <p {...fallbackTrack("-0.02em")}>The site is hosted on Cloudflare. Server logs may include your IP address, browser, and the pages you request. If analytics is enabled, it may record pages visited, a general location, and device type. You can block analytics in your browser.</p>
+          <p {...fallbackTrack("-0.02em")}>The site is hosted on Cloudflare. Server logs may include your IP address, browser, and the pages you request. If analytics is enabled, it may record pages visited, a general location, and device type. If the Meta (Facebook) Pixel is enabled, Meta may receive page-view and lead signals used to measure and improve ads. You can limit analytics and ad measurement in your browser or Meta settings.</p>
 
           <h2>How we use it</h2>
           <p>We use this information to answer you, prepare a homepage preview, provide the plan you buy, and send messages about that work. We do not sell personal information.</p>

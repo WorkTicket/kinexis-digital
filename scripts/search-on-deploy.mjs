@@ -621,6 +621,14 @@ async function run() {
         "NEXT_PUBLIC_GA_ID is missing or invalid. Set it in Workers Builds → Build variables and secrets (and in .env.local for local deploys). A runtime Worker secret alone ships an empty GA tag.",
       );
     }
+    const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+    if (/^\d{5,20}$/.test(metaPixelId)) {
+      pass(`NEXT_PUBLIC_META_PIXEL_ID is set for build-time inlining (${metaPixelId})`);
+    } else {
+      fail(
+        "NEXT_PUBLIC_META_PIXEL_ID is missing or invalid. Set it in Workers Builds → Build variables and secrets (and in .env.local for local deploys). A runtime Worker secret alone ships an empty Meta Pixel.",
+      );
+    }
     return;
   }
   if (process.env.SEARCH_NOTIFY === "0") {

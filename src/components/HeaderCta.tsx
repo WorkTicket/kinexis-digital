@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
 
 const PLAY_MS = 1600;
@@ -13,6 +14,10 @@ function nextGap() {
 }
 
 export default function HeaderCta({ href, label }: { href: string; label: string }) {
+  const pathname = usePathname() || "";
+  const onLp = pathname.startsWith("/lp/");
+  const resolvedHref = onLp ? "#start" : href;
+  const resolvedLabel = onLp ? "Free Preview" : label;
   const ref = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
@@ -71,8 +76,8 @@ export default function HeaderCta({ href, label }: { href: string; label: string
   }, []);
 
   return (
-    <Link ref={ref} className="btn btn--primary header__cta" href={href} prefetch={false}>
-      <span className="header__cta-label">{label}</span>
+    <Link ref={ref} className="btn btn--primary header__cta" href={resolvedHref} prefetch={false}>
+      <span className="header__cta-label">{resolvedLabel}</span>
     </Link>
   );
 }
