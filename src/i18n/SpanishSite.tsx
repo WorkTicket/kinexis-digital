@@ -46,7 +46,7 @@ const SiteReviewForm = dynamic(() => import("@/components/SiteReviewForm"));
 type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string; hold?: boolean };
 
 const PAGE_META: Record<string, Meta> = {
-  "/": { title: "Sitios web para contratistas y servicios del hogar desde $97/mes | Kinexis Digital", absolute: true, description: "Sitios web para contratistas y servicios del hogar desde $97/mes, $0 de entrada. Pedidos de reseñas en Google, texto opcional si no contestas y vista previa gratis del inicio." },
+  "/": { title: "Sitios web para contratistas y servicios del hogar desde $97/mes | Kinexis Digital", absolute: true, description: "Sitios web para contratistas desde $97/mes, $0 de entrada. Reseñas de Google, texto opcional y vista previa gratis del inicio." },
   "/services": { title: "Diseño web, SEO y mantenimiento", description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios en Estados Unidos, con apoyo claro en cada paso." },
   "/web-design": { title: "Diseño web para contratistas en EE. UU.", description: "Diseño web para contratistas en EE. UU. desde $97/mes, $0 de entrada. Vista previa gratis de tu página de inicio en 2 días hábiles, sin tarjeta." },
   "/seo-services": { title: "SEO para sitios web de negocios", description: "Mejora la visibilidad de tu sitio con SEO técnico, optimización de páginas, contenido útil e informes claros pensados para atraer más clientes." },
