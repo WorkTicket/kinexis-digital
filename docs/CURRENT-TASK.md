@@ -4,7 +4,7 @@
 Ship `seo/high-intent-depth`: deepen money pages, fix cannibalization, rebuild cost posts, retarget `/web-design`, Spanish terminology, redirects, schema, internal links.
 
 ## Status
-Implemented on branch `seo/high-intent-depth`. `npm run typecheck` + `npm run lint` + `node scripts/check-meta-length.mjs` pass. No deploy until Colton reviews.
+Shipped. Commits `851267ab` + `70681666` on `main`. Live Worker Version ID `95e2569a…` then redeploy after ES meta fix (search:notify exit 0).
 
 ## Defaults used
 - Homepage title → Contractor & Home Service Websites From $97/mo
