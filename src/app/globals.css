@@ -2566,8 +2566,12 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .live-site__go{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-head);font-weight:700;font-size:.92rem;color:var(--accent-dark);white-space:nowrap}
 .live-site__go svg{width:16px;height:16px;flex:none;transition:transform .2s ease}
 .live-site:hover .live-site__go svg{transform:translate(2px,-2px)}
+@media (min-width:720px){
+  .portfolio--live.portfolio--live--pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media (min-width:960px){
   .portfolio--live{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+  .portfolio--live.portfolio--live--pair{grid-template-columns:repeat(2,minmax(0,1fr))}
   .live-site__copy{grid-template-columns:1fr;align-items:start;gap:8px;padding:14px 16px 16px}
   .live-site__name{font-size:1.02rem}
   .live-site__meta{flex-direction:column;align-items:flex-start;gap:2px;font-size:.84rem}

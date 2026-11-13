@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Form, { LEAD_FIELDS } from "@/components/Form";
+import { DeferredImg } from "@/components/DeferredImg";
 import { ReasonBoard, ReviewRail } from "@/components/HomeBands";
 import HeroFilm from "@/components/HeroFilm";
 import { ContentSchema } from "@/components/JsonLd";
@@ -9,11 +10,26 @@ import PlanOffer from "@/components/PlanOffer";
 import ReviewsSection from "@/components/ReviewsSection";
 import Stepper from "@/components/Stepper";
 import TrustStrip from "@/components/TrustStrip";
-import { Compare, CtaBand, Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
+import { Compare, CtaBand, Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui";
+import { LIVE_SITES } from "@/data/liveSites";
+import { portfolioFile } from "@/data/portfolio";
 import { FAQS as SITE_FAQS, STEPS } from "@/lib/content";
 import { imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { SITE, telHref } from "@/lib/site";
 import { contentMetadata } from "@/lib/seo";
+
+/** Contractor proof sites for this LP (Preferred Plumbing + A1 Landscaping). */
+const CONTRACTOR_LIVE = LIVE_SITES.filter((site) =>
+  site.slug === "preferred-plumbing" || site.slug === "a1-landscaping",
+);
+
+function siteHost(url: string) {
+  try {
+    return new URL(url).host.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+}
 
 function SectionGraphic({ name, alt, className }: { name: string; alt: string; className: string }) {
   const base = `/assets/home/${name}`;
@@ -216,8 +232,58 @@ export default async function PhoenixPreviewLp() {
             request a quote.
           </p>
         </MediaSplit>
-        <div className="portfolio portfolio--home">
-          <Shots n={8} mode="work" />
+        <div className="portfolio--live portfolio--live--pair">
+          {CONTRACTOR_LIVE.map((site) => {
+            const shot = portfolioFile(site.image, 640);
+            const host = siteHost(site.url);
+            return (
+              <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
+                <div className="shot shot--static" data-name={site.name}>
+                  <div className="shot__page">
+                    <div className="shot__track">
+                      <DeferredImg
+                        src={shot}
+                        sizes="(max-width: 960px) 92vw, 380px"
+                        alt=""
+                        width={640}
+                        height={Math.round((site.height * 640) / site.width)}
+                        className="shot__img"
+                      />
+                    </div>
+                  </div>
+                  <span className="btn btn--primary shot__cta-overlay" aria-hidden="true">
+                    Visit Site
+                  </span>
+                </div>
+                <span className="live-site__copy">
+                  <span className="live-site__status">
+                    <span className="live-site__dot" aria-hidden="true" />
+                    Live
+                  </span>
+                  <span className="live-site__id">
+                    <span className="live-site__name">{site.name}</span>
+                    <span className="live-site__meta">
+                      <span>{site.trade}</span>
+                      <span className="live-site__host">{host}</span>
+                    </span>
+                  </span>
+                  <span className="live-site__go">
+                    Visit site
+                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                      <path
+                        d="M4.5 11.5 11.5 4.5M6.5 4.5h5v5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </a>
+            );
+          })}
         </div>
       </Section>
 
