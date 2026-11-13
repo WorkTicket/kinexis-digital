@@ -49,3 +49,5 @@
 - Interaction boot ships as minified `boot.min.js` (source remains `public/assets/js/boot.js`; `scripts/minify-boot.mjs` runs in build)
 - Heavy client islands (checkout, calendar, review form) load via `next/dynamic` so Spanish monolith routes stay light
 - Language switch stays a tiny client component (`usePathname`) so layouts never call `headers()` and pages can stay statically generated for OpenNext cache + defer-chunks
+- Meta Pixel loads from `boot.min.js` on first input (or 45s fallback), same idea as GA — keeps fbevents off the Lighthouse critical path; CSP allows Meta openbridge hosts (`*.a.run.app`, `*.on.aws`)
+- Do not re-enable async/deferred Next CSS injects in `defer-chunks.mjs` — that caused FOUC and hydration failures before

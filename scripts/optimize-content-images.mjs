@@ -144,5 +144,5 @@ for (const [master, output] of brand) {
 await rebuildFromMaster(
   "public/assets/logos/header-nav.webp",
   "public/assets/logos/header-nav-360.webp",
-  { width: 360, webpQuality: 92 },
+  { width: 360, webpQuality: 78 },
 );

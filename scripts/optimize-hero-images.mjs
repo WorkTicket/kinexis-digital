@@ -15,7 +15,7 @@ for (const file of heroes) {
     // Never let the LCP AVIF grow past what already scores 100 in lab.
     await rebuildFromMaster(master, `${base}-${width}.avif`, {
       format: "avif",
-      maxBytes: width <= 480 ? 32 * 1024 : width <= 640 ? 55 * 1024 : 110 * 1024,
+      maxBytes: width <= 480 ? 28 * 1024 : width <= 640 ? 32 * 1024 : 100 * 1024,
     });
   }
   await rebuildFromMaster(master, `${base}-1254.avif`, { format: "avif" });

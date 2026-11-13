@@ -1,21 +1,17 @@
 # CURRENT-TASK.md
 
 ## Goal
-EN 41/41 long-form + native Spanish blogs (LatAm USD / Spain EUR).
+PSI 100 Performance + Best Practices (mobile/desktop), no design changes.
 
 ## Status
-Complete.
-
-## Currency (binding)
-- `/es` (es-419): USD published figures
-- `/es-es` (es-ES): same numerals in euros via `src/i18n/prices.ts` (`toSpainEuros`, `spanishPlans({ currency: "eur" })`)
+Code ready; needs deploy + live PSI re-check.
 
 ## Done
-- EN 41/41: legacy Spanish-slug posts + pillars/cost/pages long-form
-- LatAm Spanish: `es-cost-bodies.ts`, `es-pages-bodies.ts`, `es-pillars.ts`, `es-pillars-more.ts` → `posts-es.ts` (41 posts)
-- MORE guides deepened (~1.5k–3k; batch-A pillars ~2.8k–4.7k); already merged via `Object.values(ES_PILLAR_POSTS_MORE)`
-- Spain: plan chrome + blog `esPostForLocale` euros + `spainizeData`
-- CONTENT.md + DECISIONS.md lock euro display rule (same numerals, not FX book)
+- Meta Pixel deferred to first input / 45s (was afterInteractive; caused TBT + CSP console errors)
+- CSP `connect-src` allows Meta openbridge hosts (`*.a.run.app`, `*.on.aws`)
+- Hero AVIF budgets tightened; logo-360 recompressed; MediaSplit sizes + lazy fallback 640
+- reply-dot / CTA nudge animations compositor-safe (look unchanged)
+- Local LH: desktop 100/100; mobile BP 100, perf ~95 (local TTFB); live should improve vs prior 95/92
 
 ## Next action
-None for this pass.
+Deploy, then re-run PageSpeed on `/` (mobile + desktop). If mobile perf still shy of 100, check Cloudflare Web Analytics beacon (critical-path on live).

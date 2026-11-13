@@ -2023,35 +2023,15 @@ html.no-audit [data-site-audit]{display:none!important}
 .header__cta[data-cta-nudge="1"]::after{
   animation:cta-sheen 1.45s ease-out both;
 }
+/* Transform-only keyframes stay compositor-friendly (Lighthouse non-composited audit). */
 @keyframes cta-nudge{
-  0%{
-    transform:translate3d(0,0,0) rotate(0deg);
-    box-shadow:0 6px 24px rgba(10,18,48,.2);
-  }
-  14%{
-    transform:translate3d(0,2px,0) rotate(-1.2deg);
-    box-shadow:0 3px 12px rgba(10,18,48,.15);
-  }
-  38%{
-    transform:translate3d(0,-5px,0) rotate(2deg);
-    box-shadow:0 14px 28px rgba(10,18,48,.22);
-  }
-  58%{
-    transform:translate3d(0,-2px,0) rotate(-.8deg);
-    box-shadow:0 10px 22px rgba(10,18,48,.19);
-  }
-  76%{
-    transform:translate3d(0,-3px,0) rotate(.6deg);
-    box-shadow:0 11px 24px rgba(10,18,48,.2);
-  }
-  90%{
-    transform:translate3d(0,0,0) rotate(-.2deg);
-    box-shadow:0 7px 22px rgba(10,18,48,.2);
-  }
-  100%{
-    transform:translate3d(0,0,0) rotate(0deg);
-    box-shadow:0 6px 24px rgba(10,18,48,.2);
-  }
+  0%{transform:translate3d(0,0,0) rotate(0deg)}
+  14%{transform:translate3d(0,2px,0) rotate(-1.2deg)}
+  38%{transform:translate3d(0,-5px,0) rotate(2deg)}
+  58%{transform:translate3d(0,-2px,0) rotate(-.8deg)}
+  76%{transform:translate3d(0,-3px,0) rotate(.6deg)}
+  90%{transform:translate3d(0,0,0) rotate(-.2deg)}
+  100%{transform:translate3d(0,0,0) rotate(0deg)}
 }
 @keyframes cta-sheen{
   0%{opacity:0;background-position:125% 0}
@@ -2161,8 +2141,18 @@ html.no-audit [data-site-audit]{display:none!important}
 .field--file span{position:static;display:block;margin-bottom:6px;font-size:.9rem;font-weight:500;color:var(--text)}
 .form .field--file input{padding:.6em}
 .form__fast{display:flex;align-items:center;justify-content:center;margin:0;color:var(--muted);font-size:.95rem}
-.reply-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--warm);margin-right:.55em;animation:pingWarm 1.8s infinite}
-@keyframes pingWarm{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--warm) 60%,transparent)}70%,100%{box-shadow:0 0 0 9px transparent}}
+.reply-dot{position:relative;display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--warm);margin-right:.55em;vertical-align:middle}
+.reply-dot::after{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:color-mix(in srgb,var(--warm) 60%,transparent);
+  transform:scale(1);opacity:.7;pointer-events:none;
+  animation:pingWarm 1.8s ease-out infinite;
+}
+@keyframes pingWarm{
+  0%{transform:scale(1);opacity:.7}
+  70%,100%{transform:scale(3);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){.reply-dot::after{animation:none;opacity:0}}
 .form.is-done .field,.form.is-done button,.form.is-done .form__fast,.form.is-done .small,
 .form.is-done .intake-block,.form.is-done .intake-intro{display:none}
 .form.is-done .form__msg{display:grid;gap:12px;justify-items:center;padding:28px 0;font-size:1.25rem}

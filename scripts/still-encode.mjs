@@ -70,7 +70,8 @@ export async function rebuildFromMaster(
   const limit = previous + Math.max(Math.round(previous * 0.45), 20 * 1024);
   let quality = format === "avif" ? (photo ? 62 : avifQuality(width)) : webpQuality;
   let buffer = await encode(source, { width, format, webpQuality, avifQuality: quality, photo });
-  const floor = photo ? 40 : 72;
+  // Hard maxBytes (lab LCP budgets) may need to dip below the usual detail floor.
+  const floor = maxBytes ? (photo ? 32 : 48) : photo ? 40 : 72;
   while (
     ((budgeted && buffer.length > limit) || (maxBytes && buffer.length > maxBytes)) &&
     quality > floor

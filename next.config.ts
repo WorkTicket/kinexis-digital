@@ -15,8 +15,10 @@ const contentSecurityPolicy = [
   "font-src 'self' data:",
   // GA4 posts to google-analytics.com, analytics.google.com (apex + subs), and googletagmanager.com.
   // Meta Pixel posts to connect.facebook.net / facebook.com (apex + subs).
+  // Meta also POSTs browser events to its Cloud Run / AWS openbridge hosts
+  // (*.a.run.app, *.on.aws) — blocking those logs CSP errors in Lighthouse.
   // CSP *.host does not match the apex host itself — keep both forms.
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://*.a.run.app https://*.on.aws https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
   "media-src 'self' https:",
   "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
   "worker-src 'self' blob:",

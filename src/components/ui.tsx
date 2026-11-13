@@ -92,7 +92,8 @@ export function Art({
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string }) {
   const file = HERO_FILES[name];
   const base = `/assets/heroes/${file}`;
-  const src = still(`${base}-1254.webp`);
+  // Lazy art falls back to 640w so a missing srcset pick never downloads the 1254 master.
+  const src = still(`${base}-640.webp`);
   const srcSet = heroSet(base, "webp");
   const avifSrcSet = heroSet(base, "avif");
   if (priority) return <HeroImage name={file} alt={alt} sizes={sizes} />;
@@ -204,7 +205,7 @@ export function MediaSplit({
       <div className="media-split__art">
         <div className="art-wrap">
           {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-          <Art name={image} alt={alt} className="hero-art" sizes="(max-width: 860px) 86vw, 540px" />
+          <Art name={image} alt={alt} className="hero-art" sizes="(max-width: 860px) 380px, 540px" />
         </div>
       </div>
       <div className="media-split__copy">{children}</div>

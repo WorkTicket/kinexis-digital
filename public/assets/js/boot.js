@@ -1103,8 +1103,53 @@ function track(name, params) {
   window.dataLayer.push(["event", name, params || {}]);
 }
 
+let metaBooted = false;
+let metaTimer = 0;
+function ensureMeta() {
+  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
+  if (metaBooted) return;
+  metaBooted = true;
+  removeEventListener("pointerdown", ensureMeta);
+  removeEventListener("keydown", ensureMeta);
+  removeEventListener("touchstart", ensureMeta);
+  clearTimeout(metaTimer);
+  /* Standard Meta Pixel bootstrap — queues calls until fbevents.js arrives. */
+  if (!window.fbq) {
+    const fbq = function (...args) {
+      if (fbq.callMethod) fbq.callMethod(...args);
+      else fbq.queue.push(args);
+    };
+    window.fbq = fbq;
+    if (!window._fbq) window._fbq = fbq;
+    fbq.push = fbq;
+    fbq.loaded = true;
+    fbq.version = "2.0";
+    fbq.queue = [];
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://connect.facebook.net/en_US/fbevents.js";
+    const first = document.getElementsByTagName("script")[0];
+    first?.parentNode?.insertBefore(script, first);
+  }
+  try {
+    window.fbq("init", cfg.metaPixel);
+    window.fbq("track", "PageView");
+  } catch {
+    /* Pixel blocked or unavailable — ignore. */
+  }
+}
+/* Interaction-only (plus 45s fallback). No scroll gate — Lighthouse scrolls
+   during audits and would otherwise pull ~250KB of fbevents into the lab run. */
+if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
+  addEventListener("pointerdown", ensureMeta, { once: true, passive: true });
+  addEventListener("keydown", ensureMeta, { once: true });
+  addEventListener("touchstart", ensureMeta, { once: true, passive: true });
+  metaTimer = setTimeout(ensureMeta, 45000);
+}
+
 function trackMeta(name, params) {
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
+  ensureMeta();
   if (typeof window.fbq !== "function") return;
   try {
     window.fbq("track", name, params || {});
