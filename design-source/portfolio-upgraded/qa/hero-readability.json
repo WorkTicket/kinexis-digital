@@ -1,0 +1,4070 @@
+[
+  {
+    "slug": "Copperline-Plumbing",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PLUMBING / RICHMOND, VIRGINIA",
+        "font_px": 12,
+        "min_contrast": 10.51,
+        "pass": true
+      },
+      {
+        "text": "Plumbing, without",
+        "font_px": 97.92,
+        "min_contrast": 9.09,
+        "pass": true
+      },
+      {
+        "text": "the runaround.",
+        "font_px": 97.92,
+        "min_contrast": 5.63,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful repairs. Better bathrooms. A plumbing plan that starts with your home.",
+        "font_px": 18,
+        "min_contrast": 9.35,
+        "pass": true
+      },
+      {
+        "text": "Tell us what\u2019s happening",
+        "font_px": 14,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "Fixtures \u00b7 Water heaters \u00b7 Everyday repairs",
+        "font_px": 13,
+        "min_contrast": 9.35,
+        "pass": true
+      },
+      {
+        "text": "COPPERLINE",
+        "font_px": 11,
+        "min_contrast": 10.51,
+        "pass": true
+      },
+      {
+        "text": "Richmond / VA",
+        "font_px": 11,
+        "min_contrast": 10.51,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Volterra-Electric",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "ELECTRICAL / COLUMBUS, OHIO",
+        "font_px": 12,
+        "min_contrast": 9.48,
+        "pass": true
+      },
+      {
+        "text": "A brighter way",
+        "font_px": 126,
+        "min_contrast": 9.48,
+        "pass": true
+      },
+      {
+        "text": "to",
+        "font_px": 126,
+        "min_contrast": 11.4,
+        "pass": true
+      },
+      {
+        "text": "power home.",
+        "font_px": 126,
+        "min_contrast": 7.33,
+        "pass": true
+      },
+      {
+        "text": "Residential electrical work for the rooms, routines, and possibilities ahead.",
+        "font_px": 18,
+        "min_contrast": 9.48,
+        "pass": true
+      },
+      {
+        "text": "Plan your electrical work",
+        "font_px": 14,
+        "min_contrast": 11.63,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 11.63,
+        "pass": true
+      },
+      {
+        "text": "Light the room. Power the everyday.",
+        "font_px": 13,
+        "min_contrast": 11.4,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Volterra-Electric",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "ELECTRICAL / COLUMBUS, OHIO",
+        "font_px": 11,
+        "min_contrast": 18.79,
+        "pass": true
+      },
+      {
+        "text": "A brighter way",
+        "font_px": 72,
+        "min_contrast": 15.84,
+        "pass": true
+      },
+      {
+        "text": "to",
+        "font_px": 72,
+        "min_contrast": 15.99,
+        "pass": true
+      },
+      {
+        "text": "power home.",
+        "font_px": 72,
+        "min_contrast": 12.24,
+        "pass": true
+      },
+      {
+        "text": "Residential electrical work for the rooms, routines, and possibilities ahead.",
+        "font_px": 16,
+        "min_contrast": 15.59,
+        "pass": true
+      },
+      {
+        "text": "Plan your electrical work",
+        "font_px": 13,
+        "min_contrast": 11.63,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 11.63,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Copperline-Plumbing",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PLUMBING / RICHMOND, VIRGINIA",
+        "font_px": 11,
+        "min_contrast": 10.51,
+        "pass": true
+      },
+      {
+        "text": "Plumbing, without",
+        "font_px": 57,
+        "min_contrast": 9.68,
+        "pass": true
+      },
+      {
+        "text": "the runaround.",
+        "font_px": 57,
+        "min_contrast": 5.63,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful repairs. Better bathrooms. A plumbing plan that starts with your home.",
+        "font_px": 16,
+        "min_contrast": 9.09,
+        "pass": true
+      },
+      {
+        "text": "Tell us what\u2019s happening",
+        "font_px": 13,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "COPPERLINE",
+        "font_px": 10,
+        "min_contrast": 10.51,
+        "pass": true
+      },
+      {
+        "text": "Richmond / VA",
+        "font_px": 10,
+        "min_contrast": 10.51,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Copperline-Plumbing",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PLUMBING / RICHMOND, VIRGINIA",
+        "font_px": 11,
+        "min_contrast": 10.51,
+        "pass": true
+      },
+      {
+        "text": "Plumbing, without",
+        "font_px": 57,
+        "min_contrast": 9.35,
+        "pass": true
+      },
+      {
+        "text": "the runaround.",
+        "font_px": 57,
+        "min_contrast": 5.63,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful repairs. Better bathrooms. A plumbing plan that starts with your home.",
+        "font_px": 16,
+        "min_contrast": 9.09,
+        "pass": true
+      },
+      {
+        "text": "Tell us what\u2019s happening",
+        "font_px": 13,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "COPPERLINE",
+        "font_px": 10,
+        "min_contrast": 10.51,
+        "pass": true
+      },
+      {
+        "text": "Richmond / VA",
+        "font_px": 10,
+        "min_contrast": 10.51,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Volterra-Electric",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "ELECTRICAL / COLUMBUS, OHIO",
+        "font_px": 11,
+        "min_contrast": 18.64,
+        "pass": true
+      },
+      {
+        "text": "A brighter way",
+        "font_px": 72,
+        "min_contrast": 15.64,
+        "pass": true
+      },
+      {
+        "text": "to",
+        "font_px": 72,
+        "min_contrast": 15.79,
+        "pass": true
+      },
+      {
+        "text": "power home.",
+        "font_px": 72,
+        "min_contrast": 12.36,
+        "pass": true
+      },
+      {
+        "text": "Residential electrical work for the rooms, routines, and possibilities ahead.",
+        "font_px": 16,
+        "min_contrast": 11.66,
+        "pass": true
+      },
+      {
+        "text": "Plan your electrical work",
+        "font_px": 13,
+        "min_contrast": 11.63,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 11.63,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Happy-Yard",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PET WASTE REMOVAL / OVERLAND PARK, KANSAS",
+        "font_px": 12,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "A backyard worth",
+        "font_px": 102,
+        "min_contrast": 6.94,
+        "pass": true
+      },
+      {
+        "text": "running into.",
+        "font_px": 102,
+        "min_contrast": 6.94,
+        "pass": true
+      },
+      {
+        "text": "Dog waste cleanup for a yard that\u2019s ready for the good part of having a dog.",
+        "font_px": 18,
+        "min_contrast": 7.92,
+        "pass": true
+      },
+      {
+        "text": "Get your yard back",
+        "font_px": 14,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "Less pickup. More playtime.",
+        "font_px": 13,
+        "min_contrast": 8.03,
+        "pass": true
+      },
+      {
+        "text": "HAPPY YARD",
+        "font_px": 11,
+        "min_contrast": 8.22,
+        "pass": true
+      },
+      {
+        "text": "Overland Park / KS",
+        "font_px": 11,
+        "min_contrast": 7.98,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Happy-Yard",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PET WASTE REMOVAL / OVERLAND PARK, KANSAS",
+        "font_px": 11,
+        "min_contrast": 8.22,
+        "pass": true
+      },
+      {
+        "text": "A backyard worth",
+        "font_px": 62,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "running into.",
+        "font_px": 62,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Dog waste cleanup for a yard that\u2019s ready for the good part of having a dog.",
+        "font_px": 16,
+        "min_contrast": 7.92,
+        "pass": true
+      },
+      {
+        "text": "Get your yard back",
+        "font_px": 13,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "HAPPY YARD",
+        "font_px": 10,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Overland Park / KS",
+        "font_px": 10,
+        "min_contrast": 7.98,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Happy-Yard",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PET WASTE REMOVAL / OVERLAND PARK, KANSAS",
+        "font_px": 11,
+        "min_contrast": 8.22,
+        "pass": true
+      },
+      {
+        "text": "A backyard worth",
+        "font_px": 62,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "running into.",
+        "font_px": 62,
+        "min_contrast": 7.92,
+        "pass": true
+      },
+      {
+        "text": "Dog waste cleanup for a yard that\u2019s ready for the good part of having a dog.",
+        "font_px": 16,
+        "min_contrast": 7.92,
+        "pass": true
+      },
+      {
+        "text": "Get your yard back",
+        "font_px": 13,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "HAPPY YARD",
+        "font_px": 10,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Overland Park / KS",
+        "font_px": 10,
+        "min_contrast": 7.17,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "ClearPeak",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "WINDOW CLEANING / BOISE, IDAHO",
+        "font_px": 12,
+        "min_contrast": 12.74,
+        "pass": true
+      },
+      {
+        "text": "Your home.",
+        "font_px": 86,
+        "min_contrast": 12.4,
+        "pass": true
+      },
+      {
+        "text": "In a whole new light.",
+        "font_px": 86,
+        "min_contrast": 5.53,
+        "pass": true
+      },
+      {
+        "text": "Window and exterior cleaning that brings the beauty of your property back into focus.",
+        "font_px": 18,
+        "min_contrast": 10.91,
+        "pass": true
+      },
+      {
+        "text": "Bring back the bright",
+        "font_px": 14,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "CLEARPEAK",
+        "font_px": 11,
+        "min_contrast": 11.44,
+        "pass": true
+      },
+      {
+        "text": "Boise / ID",
+        "font_px": 11,
+        "min_contrast": 11.44,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "ClearPeak",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "WINDOW CLEANING / BOISE, IDAHO",
+        "font_px": 11,
+        "min_contrast": 12.74,
+        "pass": true
+      },
+      {
+        "text": "Your home.",
+        "font_px": 57,
+        "min_contrast": 12.4,
+        "pass": true
+      },
+      {
+        "text": "In a whole new light.",
+        "font_px": 57,
+        "min_contrast": 5.53,
+        "pass": true
+      },
+      {
+        "text": "Window and exterior cleaning that brings the beauty of your property back into focus.",
+        "font_px": 16,
+        "min_contrast": 10.91,
+        "pass": true
+      },
+      {
+        "text": "Bring back the bright",
+        "font_px": 13,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "CLEARPEAK",
+        "font_px": 10,
+        "min_contrast": 11.44,
+        "pass": true
+      },
+      {
+        "text": "Boise / ID",
+        "font_px": 10,
+        "min_contrast": 11.44,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "ClearPeak",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "WINDOW CLEANING / BOISE, IDAHO",
+        "font_px": 11,
+        "min_contrast": 12.74,
+        "pass": true
+      },
+      {
+        "text": "Your home.",
+        "font_px": 57,
+        "min_contrast": 12.4,
+        "pass": true
+      },
+      {
+        "text": "In a whole new light.",
+        "font_px": 57,
+        "min_contrast": 5.53,
+        "pass": true
+      },
+      {
+        "text": "Window and exterior cleaning that brings the beauty of your property back into focus.",
+        "font_px": 16,
+        "min_contrast": 10.91,
+        "pass": true
+      },
+      {
+        "text": "Bring back the bright",
+        "font_px": 13,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.37,
+        "pass": true
+      },
+      {
+        "text": "CLEARPEAK",
+        "font_px": 10,
+        "min_contrast": 11.44,
+        "pass": true
+      },
+      {
+        "text": "Boise / ID",
+        "font_px": 10,
+        "min_contrast": 11.44,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Rinseworks",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PRESSURE WASHING / GREENVILLE, SOUTH CAROLINA",
+        "font_px": 12,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "A clean break",
+        "font_px": 132,
+        "min_contrast": 10.86,
+        "pass": true
+      },
+      {
+        "text": "from the grime.",
+        "font_px": 132,
+        "min_contrast": 11.5,
+        "pass": true
+      },
+      {
+        "text": "Fresh driveways, brighter siding, and outside spaces worth stepping into.",
+        "font_px": 18,
+        "min_contrast": 11.18,
+        "pass": true
+      },
+      {
+        "text": "Show us your surfaces",
+        "font_px": 14,
+        "min_contrast": 16.36,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 16.36,
+        "pass": true
+      },
+      {
+        "text": "Pressure washing / Soft washing / Exterior care",
+        "font_px": 13,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "RINSEWORKS",
+        "font_px": 11,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "Greenville / SC",
+        "font_px": 11,
+        "min_contrast": 12.65,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Rinseworks",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PRESSURE WASHING / GREENVILLE, SOUTH CAROLINA",
+        "font_px": 11,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "A clean break",
+        "font_px": 79,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "from the grime.",
+        "font_px": 79,
+        "min_contrast": 10.86,
+        "pass": true
+      },
+      {
+        "text": "Fresh driveways, brighter siding, and outside spaces worth stepping into.",
+        "font_px": 16,
+        "min_contrast": 10.86,
+        "pass": true
+      },
+      {
+        "text": "Show us your surfaces",
+        "font_px": 13,
+        "min_contrast": 16.36,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 16.36,
+        "pass": true
+      },
+      {
+        "text": "RINSEWORKS",
+        "font_px": 10,
+        "min_contrast": 13.03,
+        "pass": true
+      },
+      {
+        "text": "Greenville / SC",
+        "font_px": 10,
+        "min_contrast": 13.03,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "GARAGE DOORS / FORT COLLINS, COLORADO",
+        "font_px": 12,
+        "min_contrast": 12.3,
+        "pass": true
+      },
+      {
+        "text": "A better entrance.",
+        "font_px": 90,
+        "min_contrast": 10.58,
+        "pass": true
+      },
+      {
+        "text": "Every day.",
+        "font_px": 90,
+        "min_contrast": 5.16,
+        "pass": true
+      },
+      {
+        "text": "Garage door repair and replacement, planned around the way you come home.",
+        "font_px": 18,
+        "min_contrast": 10.58,
+        "pass": true
+      },
+      {
+        "text": "Explore your next door",
+        "font_px": 14,
+        "min_contrast": 5.6,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.6,
+        "pass": true
+      },
+      {
+        "text": "LIFTLINE",
+        "font_px": 11,
+        "min_contrast": 12.63,
+        "pass": true
+      },
+      {
+        "text": "Fort Collins / CO",
+        "font_px": 11,
+        "min_contrast": 12.3,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "GARAGE DOORS / FORT COLLINS, COLORADO",
+        "font_px": 11,
+        "min_contrast": 12.3,
+        "pass": true
+      },
+      {
+        "text": "A better entrance.",
+        "font_px": 64,
+        "min_contrast": 10.58,
+        "pass": true
+      },
+      {
+        "text": "Every day.",
+        "font_px": 64,
+        "min_contrast": 5.16,
+        "pass": true
+      },
+      {
+        "text": "Garage door repair and replacement, planned around the way you come home.",
+        "font_px": 16,
+        "min_contrast": 10.58,
+        "pass": true
+      },
+      {
+        "text": "Explore your next door",
+        "font_px": 13,
+        "min_contrast": 5.6,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.6,
+        "pass": true
+      },
+      {
+        "text": "LIFTLINE",
+        "font_px": 10,
+        "min_contrast": 12.3,
+        "pass": true
+      },
+      {
+        "text": "Fort Collins / CO",
+        "font_px": 10,
+        "min_contrast": 12.3,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Rinseworks",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PRESSURE WASHING / GREENVILLE, SOUTH CAROLINA",
+        "font_px": 11,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "A clean break",
+        "font_px": 79,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "from the grime.",
+        "font_px": 79,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "Fresh driveways, brighter siding, and outside spaces worth stepping into.",
+        "font_px": 16,
+        "min_contrast": 11.58,
+        "pass": true
+      },
+      {
+        "text": "Show us your surfaces",
+        "font_px": 13,
+        "min_contrast": 16.36,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 16.36,
+        "pass": true
+      },
+      {
+        "text": "RINSEWORKS",
+        "font_px": 10,
+        "min_contrast": 12.65,
+        "pass": true
+      },
+      {
+        "text": "Greenville / SC",
+        "font_px": 10,
+        "min_contrast": 12.65,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "GARAGE DOORS / FORT COLLINS, COLORADO",
+        "font_px": 11,
+        "min_contrast": 12.3,
+        "pass": true
+      },
+      {
+        "text": "A better entrance.",
+        "font_px": 64,
+        "min_contrast": 10.88,
+        "pass": true
+      },
+      {
+        "text": "Every day.",
+        "font_px": 64,
+        "min_contrast": 5.16,
+        "pass": true
+      },
+      {
+        "text": "Garage door repair and replacement, planned around the way you come home.",
+        "font_px": 16,
+        "min_contrast": 10.88,
+        "pass": true
+      },
+      {
+        "text": "Explore your next door",
+        "font_px": 13,
+        "min_contrast": 5.6,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.6,
+        "pass": true
+      },
+      {
+        "text": "LIFTLINE",
+        "font_px": 10,
+        "min_contrast": 12.3,
+        "pass": true
+      },
+      {
+        "text": "Fort Collins / CO",
+        "font_px": 10,
+        "min_contrast": 12.3,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "POOL CARE / GILBERT, ARIZONA",
+        "font_px": 12,
+        "min_contrast": 13.8,
+        "pass": true
+      },
+      {
+        "text": "The weekend",
+        "font_px": 120,
+        "min_contrast": 10.85,
+        "pass": true
+      },
+      {
+        "text": "starts here.",
+        "font_px": 120,
+        "min_contrast": 9.31,
+        "pass": true
+      },
+      {
+        "text": "Pool care that gives you more time in the water and less on your to-do list.",
+        "font_px": 18,
+        "min_contrast": 12.03,
+        "pass": true
+      },
+      {
+        "text": "Find your pool care plan",
+        "font_px": 14,
+        "min_contrast": 4.54,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 4.54,
+        "pass": true
+      },
+      {
+        "text": "Pool care / Equipment / A clearer kind of week",
+        "font_px": 13,
+        "min_contrast": 13.18,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "POOL CARE / GILBERT, ARIZONA",
+        "font_px": 11,
+        "min_contrast": 13.42,
+        "pass": true
+      },
+      {
+        "text": "The weekend",
+        "font_px": 71,
+        "min_contrast": 12.05,
+        "pass": true
+      },
+      {
+        "text": "starts here.",
+        "font_px": 71,
+        "min_contrast": 9.86,
+        "pass": true
+      },
+      {
+        "text": "Pool care that gives you more time in the water and less on your to-do list.",
+        "font_px": 16,
+        "min_contrast": 11.71,
+        "pass": true
+      },
+      {
+        "text": "Find your pool care plan",
+        "font_px": 13,
+        "min_contrast": 4.54,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 4.54,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Brush-and-Co",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PAINTING / MADISON, WISCONSIN",
+        "font_px": 12,
+        "min_contrast": 10.41,
+        "pass": true
+      },
+      {
+        "text": "Color changes",
+        "font_px": 88,
+        "min_contrast": 9.65,
+        "pass": true
+      },
+      {
+        "text": "everything.",
+        "font_px": 88,
+        "min_contrast": 6.16,
+        "pass": true
+      },
+      {
+        "text": "Considered painting for rooms that feel a little more like you.",
+        "font_px": 18,
+        "min_contrast": 9.81,
+        "pass": true
+      },
+      {
+        "text": "Let\u2019s talk color",
+        "font_px": 14,
+        "min_contrast": 4.86,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 4.86,
+        "pass": true
+      },
+      {
+        "text": "A fresh perspective, one surface at a time.",
+        "font_px": 13,
+        "min_contrast": 10.41,
+        "pass": true
+      },
+      {
+        "text": "BRUSH & CO.",
+        "font_px": 11,
+        "min_contrast": 9.07,
+        "pass": true
+      },
+      {
+        "text": "Madison / WI",
+        "font_px": 11,
+        "min_contrast": 10.21,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Brush-and-Co",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PAINTING / MADISON, WISCONSIN",
+        "font_px": 11,
+        "min_contrast": 10.41,
+        "pass": true
+      },
+      {
+        "text": "Color changes",
+        "font_px": 56,
+        "min_contrast": 10.21,
+        "pass": true
+      },
+      {
+        "text": "everything.",
+        "font_px": 56,
+        "min_contrast": 6.51,
+        "pass": true
+      },
+      {
+        "text": "Considered painting for rooms that feel a little more like you.",
+        "font_px": 16,
+        "min_contrast": 9.07,
+        "pass": true
+      },
+      {
+        "text": "Let\u2019s talk color",
+        "font_px": 13,
+        "min_contrast": 4.86,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 4.86,
+        "pass": true
+      },
+      {
+        "text": "BRUSH & CO.",
+        "font_px": 10,
+        "min_contrast": 10.21,
+        "pass": true
+      },
+      {
+        "text": "Madison / WI",
+        "font_px": 10,
+        "min_contrast": 10.21,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "POOL CARE / GILBERT, ARIZONA",
+        "font_px": 11,
+        "min_contrast": 13.42,
+        "pass": true
+      },
+      {
+        "text": "The weekend",
+        "font_px": 71,
+        "min_contrast": 11.85,
+        "pass": true
+      },
+      {
+        "text": "starts here.",
+        "font_px": 71,
+        "min_contrast": 9.89,
+        "pass": true
+      },
+      {
+        "text": "Pool care that gives you more time in the water and less on your to-do list.",
+        "font_px": 16,
+        "min_contrast": 11.19,
+        "pass": true
+      },
+      {
+        "text": "Find your pool care plan",
+        "font_px": 13,
+        "min_contrast": 4.54,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 4.54,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Brush-and-Co",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PAINTING / MADISON, WISCONSIN",
+        "font_px": 11,
+        "min_contrast": 10.41,
+        "pass": true
+      },
+      {
+        "text": "Color changes",
+        "font_px": 56,
+        "min_contrast": 10.21,
+        "pass": true
+      },
+      {
+        "text": "everything.",
+        "font_px": 56,
+        "min_contrast": 5.79,
+        "pass": true
+      },
+      {
+        "text": "Considered painting for rooms that feel a little more like you.",
+        "font_px": 16,
+        "min_contrast": 8.95,
+        "pass": true
+      },
+      {
+        "text": "Let\u2019s talk color",
+        "font_px": 13,
+        "min_contrast": 4.86,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 4.86,
+        "pass": true
+      },
+      {
+        "text": "BRUSH & CO.",
+        "font_px": 10,
+        "min_contrast": 10.41,
+        "pass": true
+      },
+      {
+        "text": "Madison / WI",
+        "font_px": 10,
+        "min_contrast": 10.41,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Root-and-Stone",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "LANDSCAPING / ASHEVILLE, NORTH CAROLINA",
+        "font_px": 12,
+        "min_contrast": 8.35,
+        "pass": true
+      },
+      {
+        "text": "Outside,",
+        "font_px": 88,
+        "min_contrast": 8.27,
+        "pass": true
+      },
+      {
+        "text": "beautifully considered.",
+        "font_px": 88,
+        "min_contrast": 5.91,
+        "pass": true
+      },
+      {
+        "text": "Landscapes shaped around your home, the seasons, and the way you want to live.",
+        "font_px": 18,
+        "min_contrast": 7.88,
+        "pass": true
+      },
+      {
+        "text": "Make room for outside",
+        "font_px": 14,
+        "min_contrast": 5.04,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.04,
+        "pass": true
+      },
+      {
+        "text": "Planting / Places to gather / Room to grow",
+        "font_px": 13,
+        "min_contrast": 8.27,
+        "pass": true
+      },
+      {
+        "text": "ROOT & STONE",
+        "font_px": 11,
+        "min_contrast": 8.05,
+        "pass": true
+      },
+      {
+        "text": "Asheville / NC",
+        "font_px": 11,
+        "min_contrast": 8.35,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Root-and-Stone",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "LANDSCAPING / ASHEVILLE, NORTH CAROLINA",
+        "font_px": 11,
+        "min_contrast": 8.35,
+        "pass": true
+      },
+      {
+        "text": "Outside,",
+        "font_px": 56,
+        "min_contrast": 8.35,
+        "pass": true
+      },
+      {
+        "text": "beautifully considered.",
+        "font_px": 56,
+        "min_contrast": 5.79,
+        "pass": true
+      },
+      {
+        "text": "Landscapes shaped around your home, the seasons, and the way you want to live.",
+        "font_px": 16,
+        "min_contrast": 7.29,
+        "pass": true
+      },
+      {
+        "text": "Make room for outside",
+        "font_px": 13,
+        "min_contrast": 5.04,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.04,
+        "pass": true
+      },
+      {
+        "text": "ROOT & STONE",
+        "font_px": 10,
+        "min_contrast": 8.53,
+        "pass": true
+      },
+      {
+        "text": "Asheville / NC",
+        "font_px": 10,
+        "min_contrast": 8.53,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Oak-and-Form",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "REMODELING / BEND, OREGON",
+        "font_px": 12,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "Space for",
+        "font_px": 88,
+        "min_contrast": 8.55,
+        "pass": true
+      },
+      {
+        "text": "the way you live.",
+        "font_px": 88,
+        "min_contrast": 5.42,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful remodeling. Honest materials. A home with your life in mind.",
+        "font_px": 18,
+        "min_contrast": 8.55,
+        "pass": true
+      },
+      {
+        "text": "Tell us about your home",
+        "font_px": 14,
+        "min_contrast": 6.91,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 6.91,
+        "pass": true
+      },
+      {
+        "text": "Considered spaces. Beautifully resolved.",
+        "font_px": 13,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "OAK & FORM",
+        "font_px": 11,
+        "min_contrast": 9.92,
+        "pass": true
+      },
+      {
+        "text": "Bend / OR",
+        "font_px": 11,
+        "min_contrast": 9.92,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Oak-and-Form",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "REMODELING / BEND, OREGON",
+        "font_px": 11,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "Space for",
+        "font_px": 56,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "the way you live.",
+        "font_px": 56,
+        "min_contrast": 5.42,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful remodeling. Honest materials. A home with your life in mind.",
+        "font_px": 16,
+        "min_contrast": 8.55,
+        "pass": true
+      },
+      {
+        "text": "Tell us about your home",
+        "font_px": 13,
+        "min_contrast": 6.91,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 6.91,
+        "pass": true
+      },
+      {
+        "text": "OAK & FORM",
+        "font_px": 10,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "Bend / OR",
+        "font_px": 10,
+        "min_contrast": 9.9,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Root-and-Stone",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "LANDSCAPING / ASHEVILLE, NORTH CAROLINA",
+        "font_px": 11,
+        "min_contrast": 8.35,
+        "pass": true
+      },
+      {
+        "text": "Outside,",
+        "font_px": 56,
+        "min_contrast": 8.27,
+        "pass": true
+      },
+      {
+        "text": "beautifully considered.",
+        "font_px": 56,
+        "min_contrast": 5.91,
+        "pass": true
+      },
+      {
+        "text": "Landscapes shaped around your home, the seasons, and the way you want to live.",
+        "font_px": 16,
+        "min_contrast": 7.95,
+        "pass": true
+      },
+      {
+        "text": "Make room for outside",
+        "font_px": 13,
+        "min_contrast": 5.04,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.04,
+        "pass": true
+      },
+      {
+        "text": "ROOT & STONE",
+        "font_px": 10,
+        "min_contrast": 8.35,
+        "pass": true
+      },
+      {
+        "text": "Asheville / NC",
+        "font_px": 10,
+        "min_contrast": 8.35,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Oak-and-Form",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "REMODELING / BEND, OREGON",
+        "font_px": 11,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "Space for",
+        "font_px": 56,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "the way you live.",
+        "font_px": 56,
+        "min_contrast": 5.43,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful remodeling. Honest materials. A home with your life in mind.",
+        "font_px": 16,
+        "min_contrast": 9.3,
+        "pass": true
+      },
+      {
+        "text": "Tell us about your home",
+        "font_px": 13,
+        "min_contrast": 6.91,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 6.91,
+        "pass": true
+      },
+      {
+        "text": "OAK & FORM",
+        "font_px": 10,
+        "min_contrast": 9.9,
+        "pass": true
+      },
+      {
+        "text": "Bend / OR",
+        "font_px": 10,
+        "min_contrast": 9.9,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "OUTDOOR LIGHTING / LEXINGTON, KENTUCKY",
+        "font_px": 12,
+        "min_contrast": 11.84,
+        "pass": true
+      },
+      {
+        "text": "There\u2019s more",
+        "font_px": 115,
+        "min_contrast": 10.85,
+        "pass": true
+      },
+      {
+        "text": "to your evening.",
+        "font_px": 115,
+        "min_contrast": 8.68,
+        "pass": true
+      },
+      {
+        "text": "Outdoor lighting that makes familiar spaces feel extraordinary after sunset.",
+        "font_px": 18,
+        "min_contrast": 13.1,
+        "pass": true
+      },
+      {
+        "text": "Plan your lighting consultation",
+        "font_px": 14,
+        "min_contrast": 7.82,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 7.82,
+        "pass": true
+      },
+      {
+        "text": "Architecture / Landscape / After dark",
+        "font_px": 13,
+        "min_contrast": 14.67,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "JUNK REMOVAL / OMAHA, NEBRASKA",
+        "font_px": 12,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "SPACE.",
+        "font_px": 142,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "RECLAIMED.",
+        "font_px": 142,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Room to move. Room to breathe. Junk removal that starts with what needs to go.",
+        "font_px": 18,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Show us what needs to go",
+        "font_px": 14,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "Clear the garage. Take back the room.",
+        "font_px": 13,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "GOOD RIDDANCE",
+        "font_px": 11,
+        "min_contrast": 8.21,
+        "pass": true
+      },
+      {
+        "text": "Omaha / NE",
+        "font_px": 11,
+        "min_contrast": 9.2,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "OUTDOOR LIGHTING / LEXINGTON, KENTUCKY",
+        "font_px": 11,
+        "min_contrast": 14.25,
+        "pass": true
+      },
+      {
+        "text": "There\u2019s more",
+        "font_px": 73,
+        "min_contrast": 12.2,
+        "pass": true
+      },
+      {
+        "text": "to your evening.",
+        "font_px": 73,
+        "min_contrast": 10.32,
+        "pass": true
+      },
+      {
+        "text": "Outdoor lighting that makes familiar spaces feel extraordinary after sunset.",
+        "font_px": 16,
+        "min_contrast": 12.44,
+        "pass": true
+      },
+      {
+        "text": "Plan your lighting consultation",
+        "font_px": 13,
+        "min_contrast": 7.82,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 7.82,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "JUNK REMOVAL / OMAHA, NEBRASKA",
+        "font_px": 11,
+        "min_contrast": 9.2,
+        "pass": true
+      },
+      {
+        "text": "SPACE.",
+        "font_px": 104,
+        "min_contrast": 8.21,
+        "pass": true
+      },
+      {
+        "text": "RECLAIMED.",
+        "font_px": 104,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Room to move. Room to breathe. Junk removal that starts with what needs to go.",
+        "font_px": 16,
+        "min_contrast": 8.21,
+        "pass": true
+      },
+      {
+        "text": "Show us what needs to go",
+        "font_px": 13,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "GOOD RIDDANCE",
+        "font_px": 10,
+        "min_contrast": 9.2,
+        "pass": true
+      },
+      {
+        "text": "Omaha / NE",
+        "font_px": 10,
+        "min_contrast": 9.2,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "OUTDOOR LIGHTING / LEXINGTON, KENTUCKY",
+        "font_px": 11,
+        "min_contrast": 14.25,
+        "pass": true
+      },
+      {
+        "text": "There\u2019s more",
+        "font_px": 73,
+        "min_contrast": 13.37,
+        "pass": true
+      },
+      {
+        "text": "to your evening.",
+        "font_px": 73,
+        "min_contrast": 9.0,
+        "pass": true
+      },
+      {
+        "text": "Outdoor lighting that makes familiar spaces feel extraordinary after sunset.",
+        "font_px": 16,
+        "min_contrast": 12.71,
+        "pass": true
+      },
+      {
+        "text": "Plan your lighting consultation",
+        "font_px": 13,
+        "min_contrast": 7.82,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 7.82,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "JUNK REMOVAL / OMAHA, NEBRASKA",
+        "font_px": 11,
+        "min_contrast": 9.2,
+        "pass": true
+      },
+      {
+        "text": "SPACE.",
+        "font_px": 104,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "RECLAIMED.",
+        "font_px": 104,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Room to move. Room to breathe. Junk removal that starts with what needs to go.",
+        "font_px": 16,
+        "min_contrast": 7.98,
+        "pass": true
+      },
+      {
+        "text": "Show us what needs to go",
+        "font_px": 13,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 12.16,
+        "pass": true
+      },
+      {
+        "text": "GOOD RIDDANCE",
+        "font_px": 10,
+        "min_contrast": 9.2,
+        "pass": true
+      },
+      {
+        "text": "Omaha / NE",
+        "font_px": 10,
+        "min_contrast": 9.2,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "CONCRETE COATINGS / GRAND RAPIDS, MICHIGAN",
+        "font_px": 12,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Give your floor",
+        "font_px": 118,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "a stronger finish.",
+        "font_px": 118,
+        "min_contrast": 5.38,
+        "pass": true
+      },
+      {
+        "text": "Concrete coatings built around surface preparation, practical use, and a considered finish.",
+        "font_px": 18,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Talk about your floor",
+        "font_px": 14,
+        "min_contrast": 5.25,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.25,
+        "pass": true
+      },
+      {
+        "text": "The difference is in the layers.",
+        "font_px": 13,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "GROUNDWORK",
+        "font_px": 11,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Grand Rapids / MI",
+        "font_px": 11,
+        "min_contrast": 10.03,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HOUSE CLEANING / LANCASTER, PENNSYLVANIA",
+        "font_px": 12,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "Less on your list.",
+        "font_px": 82,
+        "min_contrast": 8.26,
+        "pass": true
+      },
+      {
+        "text": "More of your Sunday.",
+        "font_px": 82,
+        "min_contrast": 6.1,
+        "pass": true
+      },
+      {
+        "text": "A thoughtful clean for the home you live in, and the time you want back.",
+        "font_px": 18,
+        "min_contrast": 8.09,
+        "pass": true
+      },
+      {
+        "text": "Find your kind of clean",
+        "font_px": 14,
+        "min_contrast": 4.57,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 4.57,
+        "pass": true
+      },
+      {
+        "text": "Regular cleaning / Deep cleaning / Fresh starts",
+        "font_px": 13,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "SUNDAY",
+        "font_px": 11,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "Lancaster / PA",
+        "font_px": 11,
+        "min_contrast": 9.23,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HOUSE CLEANING / LANCASTER, PENNSYLVANIA",
+        "font_px": 11,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "Less on your list.",
+        "font_px": 53,
+        "min_contrast": 8.99,
+        "pass": true
+      },
+      {
+        "text": "More of your Sunday.",
+        "font_px": 53,
+        "min_contrast": 6.78,
+        "pass": true
+      },
+      {
+        "text": "A thoughtful clean for the home you live in, and the time you want back.",
+        "font_px": 16,
+        "min_contrast": 8.99,
+        "pass": true
+      },
+      {
+        "text": "Find your kind of clean",
+        "font_px": 13,
+        "min_contrast": 4.57,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 4.57,
+        "pass": true
+      },
+      {
+        "text": "SUNDAY",
+        "font_px": 10,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "Lancaster / PA",
+        "font_px": 10,
+        "min_contrast": 9.23,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "CONCRETE COATINGS / GRAND RAPIDS, MICHIGAN",
+        "font_px": 11,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Give your floor",
+        "font_px": 73,
+        "min_contrast": 9.09,
+        "pass": true
+      },
+      {
+        "text": "a stronger finish.",
+        "font_px": 73,
+        "min_contrast": 5.82,
+        "pass": true
+      },
+      {
+        "text": "Concrete coatings built around surface preparation, practical use, and a considered finish.",
+        "font_px": 16,
+        "min_contrast": 9.26,
+        "pass": true
+      },
+      {
+        "text": "Talk about your floor",
+        "font_px": 13,
+        "min_contrast": 5.25,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.25,
+        "pass": true
+      },
+      {
+        "text": "GROUNDWORK",
+        "font_px": 10,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Grand Rapids / MI",
+        "font_px": 10,
+        "min_contrast": 10.03,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HOUSE CLEANING / LANCASTER, PENNSYLVANIA",
+        "font_px": 11,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "Less on your list.",
+        "font_px": 53,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "More of your Sunday.",
+        "font_px": 53,
+        "min_contrast": 6.79,
+        "pass": true
+      },
+      {
+        "text": "A thoughtful clean for the home you live in, and the time you want back.",
+        "font_px": 16,
+        "min_contrast": 9.0,
+        "pass": true
+      },
+      {
+        "text": "Find your kind of clean",
+        "font_px": 13,
+        "min_contrast": 4.57,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 4.57,
+        "pass": true
+      },
+      {
+        "text": "SUNDAY",
+        "font_px": 10,
+        "min_contrast": 9.23,
+        "pass": true
+      },
+      {
+        "text": "Lancaster / PA",
+        "font_px": 10,
+        "min_contrast": 9.23,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "CONCRETE COATINGS / GRAND RAPIDS, MICHIGAN",
+        "font_px": 11,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Give your floor",
+        "font_px": 73,
+        "min_contrast": 9.09,
+        "pass": true
+      },
+      {
+        "text": "a stronger finish.",
+        "font_px": 73,
+        "min_contrast": 5.38,
+        "pass": true
+      },
+      {
+        "text": "Concrete coatings built around surface preparation, practical use, and a considered finish.",
+        "font_px": 16,
+        "min_contrast": 8.41,
+        "pass": true
+      },
+      {
+        "text": "Talk about your floor",
+        "font_px": 13,
+        "min_contrast": 5.25,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.25,
+        "pass": true
+      },
+      {
+        "text": "GROUNDWORK",
+        "font_px": 10,
+        "min_contrast": 10.03,
+        "pass": true
+      },
+      {
+        "text": "Grand Rapids / MI",
+        "font_px": 10,
+        "min_contrast": 10.03,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HANDYMAN / DES MOINES, IOWA",
+        "font_px": 12,
+        "min_contrast": 11.33,
+        "pass": true
+      },
+      {
+        "text": "The list",
+        "font_px": 120,
+        "min_contrast": 10.79,
+        "pass": true
+      },
+      {
+        "text": "ends here.",
+        "font_px": 120,
+        "min_contrast": 5.39,
+        "pass": true
+      },
+      {
+        "text": "Small repairs. Finishing touches. Practical help for the home projects you keep putting off.",
+        "font_px": 18,
+        "min_contrast": 11.22,
+        "pass": true
+      },
+      {
+        "text": "Bring us your job list",
+        "font_px": 14,
+        "min_contrast": 5.1,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.1,
+        "pass": true
+      },
+      {
+        "text": "Repair it. Fit it. Finish it.",
+        "font_px": 13,
+        "min_contrast": 11.22,
+        "pass": true
+      },
+      {
+        "text": "GOODHAND",
+        "font_px": 11,
+        "min_contrast": 11.33,
+        "pass": true
+      },
+      {
+        "text": "Des Moines / IA",
+        "font_px": 11,
+        "min_contrast": 11.33,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "AUTO DETAILING / TULSA, OKLAHOMA",
+        "font_px": 12,
+        "min_contrast": 17.85,
+        "pass": true
+      },
+      {
+        "text": "Obsessively clean.",
+        "font_px": 92,
+        "min_contrast": 13.82,
+        "pass": true
+      },
+      {
+        "text": "Quietly impressive.",
+        "font_px": 92,
+        "min_contrast": 12.76,
+        "pass": true
+      },
+      {
+        "text": "A considered detail for the car you drive every day. Every surface gets its moment.",
+        "font_px": 18,
+        "min_contrast": 15.6,
+        "pass": true
+      },
+      {
+        "text": "Find your detail",
+        "font_px": 14,
+        "min_contrast": 11.4,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 11.4,
+        "pass": true
+      },
+      {
+        "text": "Interior / Exterior / Finish care",
+        "font_px": 13,
+        "min_contrast": 18.25,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HANDYMAN / DES MOINES, IOWA",
+        "font_px": 11,
+        "min_contrast": 11.66,
+        "pass": true
+      },
+      {
+        "text": "The list",
+        "font_px": 86,
+        "min_contrast": 10.92,
+        "pass": true
+      },
+      {
+        "text": "ends here.",
+        "font_px": 86,
+        "min_contrast": 5.39,
+        "pass": true
+      },
+      {
+        "text": "Small repairs. Finishing touches. Practical help for the home projects you keep putting off.",
+        "font_px": 16,
+        "min_contrast": 9.83,
+        "pass": true
+      },
+      {
+        "text": "Bring us your job list",
+        "font_px": 13,
+        "min_contrast": 5.1,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.1,
+        "pass": true
+      },
+      {
+        "text": "GOODHAND",
+        "font_px": 10,
+        "min_contrast": 11.33,
+        "pass": true
+      },
+      {
+        "text": "Des Moines / IA",
+        "font_px": 10,
+        "min_contrast": 11.33,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "AUTO DETAILING / TULSA, OKLAHOMA",
+        "font_px": 11,
+        "min_contrast": 16.81,
+        "pass": true
+      },
+      {
+        "text": "Obsessively clean.",
+        "font_px": 56,
+        "min_contrast": 16.25,
+        "pass": true
+      },
+      {
+        "text": "Quietly impressive.",
+        "font_px": 56,
+        "min_contrast": 11.27,
+        "pass": true
+      },
+      {
+        "text": "A considered detail for the car you drive every day. Every surface gets its moment.",
+        "font_px": 16,
+        "min_contrast": 14.04,
+        "pass": true
+      },
+      {
+        "text": "Find your detail",
+        "font_px": 13,
+        "min_contrast": 11.4,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 11.4,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "AUTO DETAILING / TULSA, OKLAHOMA",
+        "font_px": 11,
+        "min_contrast": 17.2,
+        "pass": true
+      },
+      {
+        "text": "Obsessively clean.",
+        "font_px": 56,
+        "min_contrast": 13.47,
+        "pass": true
+      },
+      {
+        "text": "Quietly impressive.",
+        "font_px": 56,
+        "min_contrast": 12.12,
+        "pass": true
+      },
+      {
+        "text": "A considered detail for the car you drive every day. Every surface gets its moment.",
+        "font_px": 16,
+        "min_contrast": 15.81,
+        "pass": true
+      },
+      {
+        "text": "Find your detail",
+        "font_px": 13,
+        "min_contrast": 11.4,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 11.4,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HANDYMAN / DES MOINES, IOWA",
+        "font_px": 11,
+        "min_contrast": 11.66,
+        "pass": true
+      },
+      {
+        "text": "The list",
+        "font_px": 86,
+        "min_contrast": 11.22,
+        "pass": true
+      },
+      {
+        "text": "ends here.",
+        "font_px": 86,
+        "min_contrast": 5.46,
+        "pass": true
+      },
+      {
+        "text": "Small repairs. Finishing touches. Practical help for the home projects you keep putting off.",
+        "font_px": 16,
+        "min_contrast": 9.83,
+        "pass": true
+      },
+      {
+        "text": "Bring us your job list",
+        "font_px": 13,
+        "min_contrast": 5.1,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.1,
+        "pass": true
+      },
+      {
+        "text": "GOODHAND",
+        "font_px": 10,
+        "min_contrast": 11.33,
+        "pass": true
+      },
+      {
+        "text": "Des Moines / IA",
+        "font_px": 10,
+        "min_contrast": 11.33,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "CHIMNEY & FIREPLACE CARE / BURLINGTON, VERMONT",
+        "font_px": 12,
+        "min_contrast": 11.99,
+        "pass": true
+      },
+      {
+        "text": "A warmer home.",
+        "font_px": 90,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "A clearer chimney.",
+        "font_px": 90,
+        "min_contrast": 6.42,
+        "pass": true
+      },
+      {
+        "text": "Chimney and fireplace care, with a closer look at the details between the hearth and the roof.",
+        "font_px": 18,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "Plan a chimney visit",
+        "font_px": 14,
+        "min_contrast": 5.3,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.3,
+        "pass": true
+      },
+      {
+        "text": "From the first spark to the final sweep.",
+        "font_px": 13,
+        "min_contrast": 11.99,
+        "pass": true
+      },
+      {
+        "text": "EMBER & FLUE",
+        "font_px": 11,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "Burlington / VT",
+        "font_px": 11,
+        "min_contrast": 11.99,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "TREE CARE / SPOKANE, WASHINGTON",
+        "font_px": 12,
+        "min_contrast": 13.94,
+        "pass": true
+      },
+      {
+        "text": "Good roots.",
+        "font_px": 124,
+        "min_contrast": 12.35,
+        "pass": true
+      },
+      {
+        "text": "Clear skies.",
+        "font_px": 124,
+        "min_contrast": 10.63,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful tree care for the landscape you live with. From a careful prune to a considered removal.",
+        "font_px": 18,
+        "min_contrast": 13.38,
+        "pass": true
+      },
+      {
+        "text": "Talk about your trees",
+        "font_px": 14,
+        "min_contrast": 9.46,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 9.46,
+        "pass": true
+      },
+      {
+        "text": "Tree care, with the whole landscape in mind.",
+        "font_px": 13,
+        "min_contrast": 14.5,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "CHIMNEY & FIREPLACE CARE / BURLINGTON, VERMONT",
+        "font_px": 11,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "A warmer home.",
+        "font_px": 58,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "A clearer chimney.",
+        "font_px": 58,
+        "min_contrast": 5.5,
+        "pass": true
+      },
+      {
+        "text": "Chimney and fireplace care, with a closer look at the details between the hearth and the roof.",
+        "font_px": 16,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "Plan a chimney visit",
+        "font_px": 13,
+        "min_contrast": 5.3,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.3,
+        "pass": true
+      },
+      {
+        "text": "EMBER & FLUE",
+        "font_px": 10,
+        "min_contrast": 11.99,
+        "pass": true
+      },
+      {
+        "text": "Burlington / VT",
+        "font_px": 10,
+        "min_contrast": 11.99,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "TREE CARE / SPOKANE, WASHINGTON",
+        "font_px": 11,
+        "min_contrast": 14.48,
+        "pass": true
+      },
+      {
+        "text": "Good roots.",
+        "font_px": 80,
+        "min_contrast": 13.52,
+        "pass": true
+      },
+      {
+        "text": "Clear skies.",
+        "font_px": 80,
+        "min_contrast": 11.07,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful tree care for the landscape you live with. From a careful prune to a considered removal.",
+        "font_px": 16,
+        "min_contrast": 12.77,
+        "pass": true
+      },
+      {
+        "text": "Talk about your trees",
+        "font_px": 13,
+        "min_contrast": 9.46,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 9.46,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "CHIMNEY & FIREPLACE CARE / BURLINGTON, VERMONT",
+        "font_px": 11,
+        "min_contrast": 11.99,
+        "pass": true
+      },
+      {
+        "text": "A warmer home.",
+        "font_px": 58,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "A clearer chimney.",
+        "font_px": 58,
+        "min_contrast": 5.5,
+        "pass": true
+      },
+      {
+        "text": "Chimney and fireplace care, with a closer look at the details between the hearth and the roof.",
+        "font_px": 16,
+        "min_contrast": 10.27,
+        "pass": true
+      },
+      {
+        "text": "Plan a chimney visit",
+        "font_px": 13,
+        "min_contrast": 5.3,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.3,
+        "pass": true
+      },
+      {
+        "text": "EMBER & FLUE",
+        "font_px": 10,
+        "min_contrast": 11.99,
+        "pass": true
+      },
+      {
+        "text": "Burlington / VT",
+        "font_px": 10,
+        "min_contrast": 11.99,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "TREE CARE / SPOKANE, WASHINGTON",
+        "font_px": 11,
+        "min_contrast": 14.27,
+        "pass": true
+      },
+      {
+        "text": "Good roots.",
+        "font_px": 80,
+        "min_contrast": 12.93,
+        "pass": true
+      },
+      {
+        "text": "Clear skies.",
+        "font_px": 80,
+        "min_contrast": 10.44,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful tree care for the landscape you live with. From a careful prune to a considered removal.",
+        "font_px": 16,
+        "min_contrast": 11.68,
+        "pass": true
+      },
+      {
+        "text": "Talk about your trees",
+        "font_px": 13,
+        "min_contrast": 9.46,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 9.46,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "FENCES & GATES / PORTLAND, MAINE",
+        "font_px": 12,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "A little privacy.",
+        "font_px": 115,
+        "min_contrast": 8.31,
+        "pass": true
+      },
+      {
+        "text": "A lot of possibility.",
+        "font_px": 115,
+        "min_contrast": 5.12,
+        "pass": true
+      },
+      {
+        "text": "Fences and gates that bring the whole property together. Thoughtful lines, useful spaces, and materials with character.",
+        "font_px": 18,
+        "min_contrast": 8.31,
+        "pass": true
+      },
+      {
+        "text": "Plan your fence",
+        "font_px": 14,
+        "min_contrast": 5.83,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.83,
+        "pass": true
+      },
+      {
+        "text": "Good boundaries. Better outside spaces.",
+        "font_px": 13,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "CEDARLINE FENCE",
+        "font_px": 11,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "Portland / ME",
+        "font_px": 11,
+        "min_contrast": 9.57,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Highline-Pest",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PEST MANAGEMENT / SALT LAKE CITY, UTAH",
+        "font_px": 12,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Keep your",
+        "font_px": 118,
+        "min_contrast": 6.42,
+        "pass": true
+      },
+      {
+        "text": "home yours.",
+        "font_px": 118,
+        "min_contrast": 5.61,
+        "pass": true
+      },
+      {
+        "text": "A practical pest management plan starts with understanding your property, the activity you\u2019ve noticed, and what matters to your household.",
+        "font_px": 18,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Tell us what you\u2019re seeing",
+        "font_px": 14,
+        "min_contrast": 5.96,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.96,
+        "pass": true
+      },
+      {
+        "text": "Look closely. Plan carefully. Follow through.",
+        "font_px": 13,
+        "min_contrast": 6.21,
+        "pass": true
+      },
+      {
+        "text": "HIGHLINE PEST",
+        "font_px": 11,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Salt Lake City / UT",
+        "font_px": 11,
+        "min_contrast": 7.12,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "FENCES & GATES / PORTLAND, MAINE",
+        "font_px": 11,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "A little privacy.",
+        "font_px": 75,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "A lot of possibility.",
+        "font_px": 75,
+        "min_contrast": 5.71,
+        "pass": true
+      },
+      {
+        "text": "Fences and gates that bring the whole property together. Thoughtful lines, useful spaces, and materials with character.",
+        "font_px": 16,
+        "min_contrast": 8.31,
+        "pass": true
+      },
+      {
+        "text": "Plan your fence",
+        "font_px": 13,
+        "min_contrast": 5.83,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.83,
+        "pass": true
+      },
+      {
+        "text": "CEDARLINE FENCE",
+        "font_px": 10,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "Portland / ME",
+        "font_px": 10,
+        "min_contrast": 9.57,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Highline-Pest",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PEST MANAGEMENT / SALT LAKE CITY, UTAH",
+        "font_px": 11,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Keep your",
+        "font_px": 76,
+        "min_contrast": 6.42,
+        "pass": true
+      },
+      {
+        "text": "home yours.",
+        "font_px": 76,
+        "min_contrast": 5.43,
+        "pass": true
+      },
+      {
+        "text": "A practical pest management plan starts with understanding your property, the activity you\u2019ve noticed, and what matters to your household.",
+        "font_px": 16,
+        "min_contrast": 6.42,
+        "pass": true
+      },
+      {
+        "text": "Tell us what you\u2019re seeing",
+        "font_px": 13,
+        "min_contrast": 5.96,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.96,
+        "pass": true
+      },
+      {
+        "text": "HIGHLINE PEST",
+        "font_px": 10,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Salt Lake City / UT",
+        "font_px": 10,
+        "min_contrast": 7.12,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Highline-Pest",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "PEST MANAGEMENT / SALT LAKE CITY, UTAH",
+        "font_px": 11,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Keep your",
+        "font_px": 76,
+        "min_contrast": 6.42,
+        "pass": true
+      },
+      {
+        "text": "home yours.",
+        "font_px": 76,
+        "min_contrast": 5.43,
+        "pass": true
+      },
+      {
+        "text": "A practical pest management plan starts with understanding your property, the activity you\u2019ve noticed, and what matters to your household.",
+        "font_px": 16,
+        "min_contrast": 6.42,
+        "pass": true
+      },
+      {
+        "text": "Tell us what you\u2019re seeing",
+        "font_px": 13,
+        "min_contrast": 5.96,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.96,
+        "pass": true
+      },
+      {
+        "text": "HIGHLINE PEST",
+        "font_px": 10,
+        "min_contrast": 7.12,
+        "pass": true
+      },
+      {
+        "text": "Salt Lake City / UT",
+        "font_px": 10,
+        "min_contrast": 7.12,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "FENCES & GATES / PORTLAND, MAINE",
+        "font_px": 11,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "A little privacy.",
+        "font_px": 75,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "A lot of possibility.",
+        "font_px": 75,
+        "min_contrast": 5.12,
+        "pass": true
+      },
+      {
+        "text": "Fences and gates that bring the whole property together. Thoughtful lines, useful spaces, and materials with character.",
+        "font_px": 16,
+        "min_contrast": 8.31,
+        "pass": true
+      },
+      {
+        "text": "Plan your fence",
+        "font_px": 13,
+        "min_contrast": 5.83,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.83,
+        "pass": true
+      },
+      {
+        "text": "CEDARLINE FENCE",
+        "font_px": 10,
+        "min_contrast": 9.57,
+        "pass": true
+      },
+      {
+        "text": "Portland / ME",
+        "font_px": 10,
+        "min_contrast": 9.57,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Northstar-Moving",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "LOCAL MOVING / WORCESTER, MASSACHUSETTS",
+        "font_px": 12,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "New address.",
+        "font_px": 124,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "A clear way forward.",
+        "font_px": 124,
+        "min_contrast": 7.8,
+        "pass": true
+      },
+      {
+        "text": "A moving plan around your home, your belongings, and the day everything changes.",
+        "font_px": 18,
+        "min_contrast": 11.39,
+        "pass": true
+      },
+      {
+        "text": "Plan your move",
+        "font_px": 14,
+        "min_contrast": 8.04,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 8.04,
+        "pass": true
+      },
+      {
+        "text": "Packed with care. Planned around you.",
+        "font_px": 13,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "NORTHSTAR MOVING",
+        "font_px": 11,
+        "min_contrast": 11.39,
+        "pass": true
+      },
+      {
+        "text": "Worcester / MA",
+        "font_px": 11,
+        "min_contrast": 13.29,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "GUTTER SYSTEMS / PRINCETON, NEW JERSEY",
+        "font_px": 12,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Rain happens.",
+        "font_px": 112,
+        "min_contrast": 9.01,
+        "pass": true
+      },
+      {
+        "text": "We plan for it.",
+        "font_px": 112,
+        "min_contrast": 5.32,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful gutter work for the roofline above you and the water moving around your home.",
+        "font_px": 18,
+        "min_contrast": 9.01,
+        "pass": true
+      },
+      {
+        "text": "Talk about your gutters",
+        "font_px": 14,
+        "min_contrast": 5.87,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.87,
+        "pass": true
+      },
+      {
+        "text": "HARBORLINE GUTTERS",
+        "font_px": 11,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Princeton / NJ",
+        "font_px": 11,
+        "min_contrast": 9.91,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Northstar-Moving",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "LOCAL MOVING / WORCESTER, MASSACHUSETTS",
+        "font_px": 11,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "New address.",
+        "font_px": 82,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "A clear way forward.",
+        "font_px": 82,
+        "min_contrast": 9.1,
+        "pass": true
+      },
+      {
+        "text": "A moving plan around your home, your belongings, and the day everything changes.",
+        "font_px": 16,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "Plan your move",
+        "font_px": 13,
+        "min_contrast": 8.04,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 8.04,
+        "pass": true
+      },
+      {
+        "text": "NORTHSTAR MOVING",
+        "font_px": 10,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "Worcester / MA",
+        "font_px": 10,
+        "min_contrast": 13.29,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "GUTTER SYSTEMS / PRINCETON, NEW JERSEY",
+        "font_px": 11,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Rain happens.",
+        "font_px": 79,
+        "min_contrast": 9.01,
+        "pass": true
+      },
+      {
+        "text": "We plan for it.",
+        "font_px": 79,
+        "min_contrast": 5.57,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful gutter work for the roofline above you and the water moving around your home.",
+        "font_px": 16,
+        "min_contrast": 8.61,
+        "pass": true
+      },
+      {
+        "text": "Talk about your gutters",
+        "font_px": 13,
+        "min_contrast": 5.87,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 5.87,
+        "pass": true
+      },
+      {
+        "text": "HARBORLINE GUTTERS",
+        "font_px": 10,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Princeton / NJ",
+        "font_px": 10,
+        "min_contrast": 9.91,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Northstar-Moving",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "LOCAL MOVING / WORCESTER, MASSACHUSETTS",
+        "font_px": 11,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "New address.",
+        "font_px": 82,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "A clear way forward.",
+        "font_px": 82,
+        "min_contrast": 7.8,
+        "pass": true
+      },
+      {
+        "text": "A moving plan around your home, your belongings, and the day everything changes.",
+        "font_px": 16,
+        "min_contrast": 11.39,
+        "pass": true
+      },
+      {
+        "text": "Plan your move",
+        "font_px": 13,
+        "min_contrast": 8.04,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 8.04,
+        "pass": true
+      },
+      {
+        "text": "NORTHSTAR MOVING",
+        "font_px": 10,
+        "min_contrast": 13.29,
+        "pass": true
+      },
+      {
+        "text": "Worcester / MA",
+        "font_px": 10,
+        "min_contrast": 13.29,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "GUTTER SYSTEMS / PRINCETON, NEW JERSEY",
+        "font_px": 11,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Rain happens.",
+        "font_px": 79,
+        "min_contrast": 9.01,
+        "pass": true
+      },
+      {
+        "text": "We plan for it.",
+        "font_px": 79,
+        "min_contrast": 5.32,
+        "pass": true
+      },
+      {
+        "text": "Thoughtful gutter work for the roofline above you and the water moving around your home.",
+        "font_px": 16,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Talk about your gutters",
+        "font_px": 13,
+        "min_contrast": 5.87,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 5.87,
+        "pass": true
+      },
+      {
+        "text": "HARBORLINE GUTTERS",
+        "font_px": 10,
+        "min_contrast": 9.91,
+        "pass": true
+      },
+      {
+        "text": "Princeton / NJ",
+        "font_px": 10,
+        "min_contrast": 9.91,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "ROOFING / KNOXVILLE, TENNESSEE",
+        "font_px": 12,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "The right roof.",
+        "font_px": 92,
+        "min_contrast": 9.3,
+        "pass": true
+      },
+      {
+        "text": "Over everything.",
+        "font_px": 92,
+        "min_contrast": 5.52,
+        "pass": true
+      },
+      {
+        "text": "A closer look at your roof. A clear plan for what comes next.",
+        "font_px": 18,
+        "min_contrast": 9.3,
+        "pass": true
+      },
+      {
+        "text": "Start with a roof conversation",
+        "font_px": 14,
+        "min_contrast": 6.47,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 6.47,
+        "pass": true
+      },
+      {
+        "text": "Roofing with a clear view of the details.",
+        "font_px": 13,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "HARLAN\u2019S",
+        "font_px": 11,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "Knoxville / TN",
+        "font_px": 11,
+        "min_contrast": 9.33,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "ROOFING / KNOXVILLE, TENNESSEE",
+        "font_px": 11,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "The right roof.",
+        "font_px": 56,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "Over everything.",
+        "font_px": 56,
+        "min_contrast": 5.52,
+        "pass": true
+      },
+      {
+        "text": "A closer look at your roof. A clear plan for what comes next.",
+        "font_px": 16,
+        "min_contrast": 9.3,
+        "pass": true
+      },
+      {
+        "text": "Start with a roof conversation",
+        "font_px": 13,
+        "min_contrast": 6.47,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 6.47,
+        "pass": true
+      },
+      {
+        "text": "HARLAN\u2019S",
+        "font_px": 10,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "Knoxville / TN",
+        "font_px": 10,
+        "min_contrast": 9.33,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "ROOFING / KNOXVILLE, TENNESSEE",
+        "font_px": 11,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "The right roof.",
+        "font_px": 56,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "Over everything.",
+        "font_px": 56,
+        "min_contrast": 5.52,
+        "pass": true
+      },
+      {
+        "text": "A closer look at your roof. A clear plan for what comes next.",
+        "font_px": 16,
+        "min_contrast": 9.3,
+        "pass": true
+      },
+      {
+        "text": "Start with a roof conversation",
+        "font_px": 13,
+        "min_contrast": 6.47,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 6.47,
+        "pass": true
+      },
+      {
+        "text": "HARLAN\u2019S",
+        "font_px": 10,
+        "min_contrast": 9.33,
+        "pass": true
+      },
+      {
+        "text": "Knoxville / TN",
+        "font_px": 10,
+        "min_contrast": 9.33,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "mode": "Desktop",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HVAC / TAMPA, FLORIDA",
+        "font_px": 12,
+        "min_contrast": 9.97,
+        "pass": true
+      },
+      {
+        "text": "Make yourself",
+        "font_px": 104,
+        "min_contrast": 9.97,
+        "pass": true
+      },
+      {
+        "text": "comfortable.",
+        "font_px": 104,
+        "min_contrast": 5.41,
+        "pass": true
+      },
+      {
+        "text": "Heating and cooling care that makes the whole house feel more like home.",
+        "font_px": 18,
+        "min_contrast": 9.97,
+        "pass": true
+      },
+      {
+        "text": "Find your comfort plan",
+        "font_px": 14,
+        "min_contrast": 6.19,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 6.19,
+        "pass": true
+      },
+      {
+        "text": "Cooling \u00b7 Heating \u00b7 A little peace of mind",
+        "font_px": 13,
+        "min_contrast": 10.19,
+        "pass": true
+      },
+      {
+        "text": "BREEZEWAY",
+        "font_px": 11,
+        "min_contrast": 11.08,
+        "pass": true
+      },
+      {
+        "text": "Tampa / FL",
+        "font_px": 11,
+        "min_contrast": 11.08,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "mode": "Tablet",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HVAC / TAMPA, FLORIDA",
+        "font_px": 11,
+        "min_contrast": 10.8,
+        "pass": true
+      },
+      {
+        "text": "Make yourself",
+        "font_px": 57,
+        "min_contrast": 10.8,
+        "pass": true
+      },
+      {
+        "text": "comfortable.",
+        "font_px": 57,
+        "min_contrast": 5.41,
+        "pass": true
+      },
+      {
+        "text": "Heating and cooling care that makes the whole house feel more like home.",
+        "font_px": 16,
+        "min_contrast": 9.97,
+        "pass": true
+      },
+      {
+        "text": "Find your comfort plan",
+        "font_px": 13,
+        "min_contrast": 6.19,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 22,
+        "min_contrast": 6.19,
+        "pass": true
+      },
+      {
+        "text": "BREEZEWAY",
+        "font_px": 10,
+        "min_contrast": 11.08,
+        "pass": true
+      },
+      {
+        "text": "Tampa / FL",
+        "font_px": 10,
+        "min_contrast": 11.08,
+        "pass": true
+      }
+    ]
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "mode": "Mobile",
+    "overflow": false,
+    "missing_images": [],
+    "sections": 9,
+    "checks": [
+      {
+        "text": "HVAC / TAMPA, FLORIDA",
+        "font_px": 11,
+        "min_contrast": 10.8,
+        "pass": true
+      },
+      {
+        "text": "Make yourself",
+        "font_px": 57,
+        "min_contrast": 10.8,
+        "pass": true
+      },
+      {
+        "text": "comfortable.",
+        "font_px": 57,
+        "min_contrast": 5.41,
+        "pass": true
+      },
+      {
+        "text": "Heating and cooling care that makes the whole house feel more like home.",
+        "font_px": 16,
+        "min_contrast": 9.97,
+        "pass": true
+      },
+      {
+        "text": "Find your comfort plan",
+        "font_px": 13,
+        "min_contrast": 6.19,
+        "pass": true
+      },
+      {
+        "text": "\u2197",
+        "font_px": 20,
+        "min_contrast": 6.19,
+        "pass": true
+      },
+      {
+        "text": "BREEZEWAY",
+        "font_px": 10,
+        "min_contrast": 11.08,
+        "pass": true
+      },
+      {
+        "text": "Tampa / FL",
+        "font_px": 10,
+        "min_contrast": 11.08,
+        "pass": true
+      }
+    ]
+  }
+]

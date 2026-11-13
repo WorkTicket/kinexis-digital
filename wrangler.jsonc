@@ -1,0 +1,65 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kinexis-digital",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "REVIEWS",
+      "id": "a792812e80e749b781bfa5b4bf7b49e1",
+      "preview_id": "57c783f8849a49e9831bcba52f0d311b"
+    },
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "e27eeb06cb014f2193285774f49cbd9b",
+      "preview_id": "3b472da9db2b4518b4cc1a7beff1695f"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1-next-cache-queue",
+      "new_sqlite_classes": ["DOQueueHandler"]
+    }
+  ],
+  "send_email": [
+    {
+      "name": "CONTACT_EMAIL",
+      "allowed_destination_addresses": [
+        "hello@kinexisdigital.com",
+        "coltonwehr@kinexisdigital.com",
+        "coltondwehr@icloud.com"
+      ]
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "kinexis-digital"
+    }
+  ],
+  // Custom domains (enable once the zone is attached to this account):
+  "routes": [
+    { "pattern": "kinexisdigital.com", "custom_domain": true },
+    { "pattern": "www.kinexisdigital.com", "custom_domain": true }
+  ]
+}

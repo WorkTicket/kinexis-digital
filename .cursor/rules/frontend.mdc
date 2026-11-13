@@ -1,0 +1,23 @@
+---
+description: Frontend rules for Kinexis Digital (Next.js App Router, Tailwind v4)
+globs:
+  - "src/app/**/*.tsx"
+  - "src/app/**/*.ts"
+  - "src/components/**/*.tsx"
+  - "src/components/**/*.ts"
+alwaysApply: false
+---
+
+# Kinexis Digital - Frontend
+
+## Quick rules
+- Read `AGENTS.md` and `docs/ARCHITECTURE.md` first if unsure.
+- Use `@/*` imports. Follow existing patterns in neighboring files.
+- Reuse components from `src/components/` and `src/components/ui.tsx`. Don't rebuild existing UI.
+- Follow `docs/DESIGN-SYSTEM.md` (sticker/navy/orange/cobalt, hard shadows). Use existing button/card styles.
+- Don't invent claims/pricing - use `docs/CONTENT.md` and repo sources.
+- Preserve responsive/layout/accessibility. Use Tailwind patterns already in use.
+- Don't add deps without clear need. Don't modify unrelated files.
+- Run `npm run lint` and `npm run typecheck` for relevant changes; fix errors you introduce.
+- For visuals, prefer `Art`/`ArtDecor`/`Icon`/`Illustration` from `src/components/ui.tsx`/`artwork.tsx`.
+- Images: `next/image` is unoptimized; use existing image patterns.

@@ -1,0 +1,440 @@
+[
+  {
+    "slug": "Copperline-Plumbing",
+    "ink": "#163e37",
+    "accent": "#c2794a",
+    "art_direction": "copper",
+    "files": [
+      "assets/Copperline-Plumbing/v8/hero-art.svg",
+      "assets/Copperline-Plumbing/v8/pattern.svg",
+      "assets/Copperline-Plumbing/v8/section-edge.svg",
+      "assets/Copperline-Plumbing/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Fixture connections",
+      "Water supply",
+      "Shutoff valves",
+      "Drain path"
+    ]
+  },
+  {
+    "slug": "Volterra-Electric",
+    "ink": "#171d26",
+    "accent": "#ffd138",
+    "art_direction": "electric",
+    "files": [
+      "assets/Volterra-Electric/v8/hero-art.svg",
+      "assets/Volterra-Electric/v8/pattern.svg",
+      "assets/Volterra-Electric/v8/section-edge.svg",
+      "assets/Volterra-Electric/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Task lighting",
+      "Living lighting",
+      "Dedicated circuits",
+      "Useful outlets"
+    ]
+  },
+  {
+    "slug": "Happy-Yard",
+    "ink": "#25382e",
+    "accent": "#ffb72d",
+    "art_direction": "happy",
+    "files": [
+      "assets/Happy-Yard/v8/hero-art.svg",
+      "assets/Happy-Yard/v8/pattern.svg",
+      "assets/Happy-Yard/v8/section-edge.svg",
+      "assets/Happy-Yard/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Gate access",
+      "Play space",
+      "Cleanup route",
+      "Yard boundaries"
+    ]
+  },
+  {
+    "slug": "Breezeway-HVAC",
+    "ink": "#143e58",
+    "accent": "#f06e54",
+    "art_direction": "breeze",
+    "files": [
+      "assets/Breezeway-HVAC/v8/hero-art.svg",
+      "assets/Breezeway-HVAC/v8/pattern.svg",
+      "assets/Breezeway-HVAC/v8/section-edge.svg",
+      "assets/Breezeway-HVAC/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Air supply",
+      "Room comfort",
+      "Return path",
+      "Equipment zone"
+    ]
+  },
+  {
+    "slug": "Harlans-Roofing",
+    "ink": "#172c46",
+    "accent": "#dc383b",
+    "art_direction": "roof",
+    "files": [
+      "assets/Harlans-Roofing/v8/hero-art.svg",
+      "assets/Harlans-Roofing/v8/pattern.svg",
+      "assets/Harlans-Roofing/v8/section-edge.svg",
+      "assets/Harlans-Roofing/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Roof covering",
+      "Underlayment",
+      "Roof deck",
+      "Edge detail"
+    ]
+  },
+  {
+    "slug": "ClearPeak",
+    "ink": "#112e54",
+    "accent": "#1761e8",
+    "art_direction": "glass",
+    "files": [
+      "assets/ClearPeak/v8/hero-art.svg",
+      "assets/ClearPeak/v8/pattern.svg",
+      "assets/ClearPeak/v8/section-edge.svg",
+      "assets/ClearPeak/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Exterior glass",
+      "Window frames",
+      "Edges & corners",
+      "Screens"
+    ]
+  },
+  {
+    "slug": "Rinseworks",
+    "ink": "#28254b",
+    "accent": "#d7f15c",
+    "art_direction": "rinse",
+    "files": [
+      "assets/Rinseworks/v8/hero-art.svg",
+      "assets/Rinseworks/v8/pattern.svg",
+      "assets/Rinseworks/v8/section-edge.svg",
+      "assets/Rinseworks/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Driveway surface",
+      "Exterior siding",
+      "Deck finish",
+      "Access & planting"
+    ]
+  },
+  {
+    "slug": "Liftline-Garage-Doors",
+    "ink": "#242d32",
+    "accent": "#ee8b36",
+    "art_direction": "doors",
+    "files": [
+      "assets/Liftline-Garage-Doors/v8/hero-art.svg",
+      "assets/Liftline-Garage-Doors/v8/pattern.svg",
+      "assets/Liftline-Garage-Doors/v8/section-edge.svg",
+      "assets/Liftline-Garage-Doors/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Panel style",
+      "Window options",
+      "Door tracks",
+      "Opening details"
+    ]
+  },
+  {
+    "slug": "Bluehaven-Pool-Care",
+    "ink": "#084e61",
+    "accent": "#49c7cc",
+    "art_direction": "pool",
+    "files": [
+      "assets/Bluehaven-Pool-Care/v8/hero-art.svg",
+      "assets/Bluehaven-Pool-Care/v8/pattern.svg",
+      "assets/Bluehaven-Pool-Care/v8/section-edge.svg",
+      "assets/Bluehaven-Pool-Care/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Water surface",
+      "Skimmer zone",
+      "Return circulation",
+      "Equipment plan"
+    ]
+  },
+  {
+    "slug": "Brush-and-Co",
+    "ink": "#74323e",
+    "accent": "#ba7058",
+    "art_direction": "paint",
+    "files": [
+      "assets/Brush-and-Co/v8/hero-art.svg",
+      "assets/Brush-and-Co/v8/pattern.svg",
+      "assets/Brush-and-Co/v8/section-edge.svg",
+      "assets/Brush-and-Co/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Wall color",
+      "Trim finish",
+      "Surface preparation",
+      "Accent direction"
+    ]
+  },
+  {
+    "slug": "Root-and-Stone",
+    "ink": "#274b35",
+    "accent": "#b5bf8f",
+    "art_direction": "root",
+    "files": [
+      "assets/Root-and-Stone/v8/hero-art.svg",
+      "assets/Root-and-Stone/v8/pattern.svg",
+      "assets/Root-and-Stone/v8/section-edge.svg",
+      "assets/Root-and-Stone/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Gathering space",
+      "Planting layers",
+      "Garden route",
+      "Stone & texture"
+    ]
+  },
+  {
+    "slug": "Oak-and-Form",
+    "ink": "#3c362c",
+    "accent": "#b79a75",
+    "art_direction": "oak",
+    "files": [
+      "assets/Oak-and-Form/v8/hero-art.svg",
+      "assets/Oak-and-Form/v8/pattern.svg",
+      "assets/Oak-and-Form/v8/section-edge.svg",
+      "assets/Oak-and-Form/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Material palette",
+      "Useful storage",
+      "Room movement",
+      "Finishing details"
+    ]
+  },
+  {
+    "slug": "Afterglow-Outdoor-Lighting",
+    "ink": "#162d2b",
+    "accent": "#d6bb83",
+    "art_direction": "light",
+    "files": [
+      "assets/Afterglow-Outdoor-Lighting/v8/hero-art.svg",
+      "assets/Afterglow-Outdoor-Lighting/v8/pattern.svg",
+      "assets/Afterglow-Outdoor-Lighting/v8/section-edge.svg",
+      "assets/Afterglow-Outdoor-Lighting/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Architecture",
+      "Landscape accents",
+      "Path lighting",
+      "Warmth & aiming"
+    ]
+  },
+  {
+    "slug": "Good-Riddance-Junk",
+    "ink": "#123e36",
+    "accent": "#b4ed43",
+    "art_direction": "junk",
+    "files": [
+      "assets/Good-Riddance-Junk/v8/hero-art.svg",
+      "assets/Good-Riddance-Junk/v8/pattern.svg",
+      "assets/Good-Riddance-Junk/v8/section-edge.svg",
+      "assets/Good-Riddance-Junk/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Keep zone",
+      "Items to remove",
+      "Clear access",
+      "Loading route"
+    ]
+  },
+  {
+    "slug": "Groundwork-Coatings",
+    "ink": "#242d35",
+    "accent": "#df8a4d",
+    "art_direction": "coatings",
+    "files": [
+      "assets/Groundwork-Coatings/v8/hero-art.svg",
+      "assets/Groundwork-Coatings/v8/pattern.svg",
+      "assets/Groundwork-Coatings/v8/section-edge.svg",
+      "assets/Groundwork-Coatings/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Prepared surface",
+      "Base coat",
+      "Flake blend",
+      "Finish layer"
+    ]
+  },
+  {
+    "slug": "Sunday-House-Cleaning",
+    "ink": "#31554d",
+    "accent": "#efb39d",
+    "art_direction": "sunday",
+    "files": [
+      "assets/Sunday-House-Cleaning/v8/hero-art.svg",
+      "assets/Sunday-House-Cleaning/v8/pattern.svg",
+      "assets/Sunday-House-Cleaning/v8/section-edge.svg",
+      "assets/Sunday-House-Cleaning/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Living areas",
+      "Kitchen surfaces",
+      "Bathroom details",
+      "Priority rooms"
+    ]
+  },
+  {
+    "slug": "Stillwater-Auto-Detail",
+    "ink": "#10191c",
+    "accent": "#b9d5c9",
+    "art_direction": "detail",
+    "files": [
+      "assets/Stillwater-Auto-Detail/v8/hero-art.svg",
+      "assets/Stillwater-Auto-Detail/v8/pattern.svg",
+      "assets/Stillwater-Auto-Detail/v8/section-edge.svg",
+      "assets/Stillwater-Auto-Detail/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Cabin surfaces",
+      "Glass care",
+      "Exterior finish",
+      "Material details"
+    ]
+  },
+  {
+    "slug": "Goodhand-Home-Services",
+    "ink": "#233c63",
+    "accent": "#e7a24e",
+    "art_direction": "hand",
+    "files": [
+      "assets/Goodhand-Home-Services/v8/hero-art.svg",
+      "assets/Goodhand-Home-Services/v8/pattern.svg",
+      "assets/Goodhand-Home-Services/v8/section-edge.svg",
+      "assets/Goodhand-Home-Services/v8/service-guide.svg"
+    ],
+    "service_guide_labels": [
+      "Small repairs",
+      "Mounting details",
+      "Trim & finish",
+      "Project priorities"
+    ]
+  },
+  {
+    "slug": "Juniper-Tree-Co",
+    "ink": "#153d34",
+    "accent": "#d7f067",
+    "art_direction": "juniper",
+    "files": [
+      "assets/Juniper-Tree-Co/v8/hero-art.svg",
+      "assets/Juniper-Tree-Co/v8/pattern.svg",
+      "assets/Juniper-Tree-Co/v8/section-edge.svg",
+      "assets/Juniper-Tree-Co/v8/service-guide.svg",
+      "assets/Juniper-Tree-Co/v8/logo.svg"
+    ],
+    "service_guide_labels": [
+      "Crown balance",
+      "Branch structure",
+      "Root zone",
+      "Site access"
+    ]
+  },
+  {
+    "slug": "Ember-and-Flue",
+    "ink": "#262522",
+    "accent": "#ef5635",
+    "art_direction": "ember",
+    "files": [
+      "assets/Ember-and-Flue/v8/hero-art.svg",
+      "assets/Ember-and-Flue/v8/pattern.svg",
+      "assets/Ember-and-Flue/v8/section-edge.svg",
+      "assets/Ember-and-Flue/v8/service-guide.svg",
+      "assets/Ember-and-Flue/v8/logo.svg"
+    ],
+    "service_guide_labels": [
+      "Chimney cap",
+      "Flue route",
+      "Masonry",
+      "Hearth"
+    ]
+  },
+  {
+    "slug": "Cedarline-Fence",
+    "ink": "#1b3442",
+    "accent": "#dca356",
+    "art_direction": "cedar",
+    "files": [
+      "assets/Cedarline-Fence/v8/hero-art.svg",
+      "assets/Cedarline-Fence/v8/pattern.svg",
+      "assets/Cedarline-Fence/v8/section-edge.svg",
+      "assets/Cedarline-Fence/v8/service-guide.svg",
+      "assets/Cedarline-Fence/v8/logo.svg"
+    ],
+    "service_guide_labels": [
+      "Posts",
+      "Rails",
+      "Panel spacing",
+      "Gate access"
+    ]
+  },
+  {
+    "slug": "Highline-Pest",
+    "ink": "#164ccd",
+    "accent": "#d8f3c7",
+    "art_direction": "highline",
+    "files": [
+      "assets/Highline-Pest/v8/hero-art.svg",
+      "assets/Highline-Pest/v8/pattern.svg",
+      "assets/Highline-Pest/v8/section-edge.svg",
+      "assets/Highline-Pest/v8/service-guide.svg",
+      "assets/Highline-Pest/v8/logo.svg"
+    ],
+    "service_guide_labels": [
+      "Roofline details",
+      "Entry points",
+      "Landscaping",
+      "Storage areas"
+    ]
+  },
+  {
+    "slug": "Northstar-Moving",
+    "ink": "#39235f",
+    "accent": "#ffbe43",
+    "art_direction": "northstar",
+    "files": [
+      "assets/Northstar-Moving/v8/hero-art.svg",
+      "assets/Northstar-Moving/v8/pattern.svg",
+      "assets/Northstar-Moving/v8/section-edge.svg",
+      "assets/Northstar-Moving/v8/service-guide.svg",
+      "assets/Northstar-Moving/v8/logo.svg"
+    ],
+    "service_guide_labels": [
+      "Room inventory",
+      "Packing plan",
+      "Access route",
+      "Fragile items"
+    ]
+  },
+  {
+    "slug": "Harborline-Gutters",
+    "ink": "#123f58",
+    "accent": "#77c6e8",
+    "art_direction": "harbor",
+    "files": [
+      "assets/Harborline-Gutters/v8/hero-art.svg",
+      "assets/Harborline-Gutters/v8/pattern.svg",
+      "assets/Harborline-Gutters/v8/section-edge.svg",
+      "assets/Harborline-Gutters/v8/service-guide.svg",
+      "assets/Harborline-Gutters/v8/logo.svg"
+    ],
+    "service_guide_labels": [
+      "Roof edge",
+      "Gutter run",
+      "Downspout",
+      "Drainage route"
+    ]
+  }
+]

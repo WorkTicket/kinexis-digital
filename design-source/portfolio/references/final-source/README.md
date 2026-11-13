@@ -1,0 +1,1 @@
+The layouts directory contains the authoritative final responsive HTML, CSS, images and fonts. Install Playwright and its Chromium browser, then run node final-source/render.cjs from this package to export desktop, tablet and phone screenshots. No original generator is required. The vehicle-baseline.json is retained only for size comparisons; it does not overwrite layouts.

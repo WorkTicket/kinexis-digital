@@ -1,0 +1,343 @@
+import Link from "next/link";
+import { preload } from "react-dom";
+import type { CSSProperties, ReactNode } from "react";
+import { COMPARE_ROWS } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
+import { still } from "@/lib/image-sources";
+import { PROJECTS } from "@/lib/projects";
+import { Icon, Illustration } from "./artwork";
+import { DeferredImg } from "./DeferredImg";
+import { HL, Phrase } from "./mark";
+import { ShotFrame } from "./ShotFrame";
+import PreviewBar from "./PreviewBar";
+import TrustStrip from "./TrustStrip";
+
+export { Icon, Illustration, HL, Phrase };
+
+/** Hero artwork names map to the numbered files in /assets/heroes/. */
+export type ArtName =
+  | "homepage" | "portfolio" | "about" | "process" | "reviews" | "pricing"
+  | "web-design" | "local-seo" | "website-audit" | "maintenance" | "faqs"
+  | "blog" | "contact" | "upgrades";
+
+const HERO_FILES: Record<ArtName, string> = {
+  homepage: "01-homepage",
+  portfolio: "02-portfolio",
+  about: "03-about",
+  process: "04-process",
+  reviews: "05-reviews",
+  pricing: "06-pricing",
+  "web-design": "07-web-design",
+  "local-seo": "08-local-seo",
+  "website-audit": "09-website-audit",
+  maintenance: "10-maintenance",
+  faqs: "11-faqs",
+  blog: "12-blog",
+  contact: "13-contact",
+  upgrades: "14-upgrades",
+};
+
+type HeroImageProps = {
+  name: string;
+  alt: string;
+  sizes: string;
+};
+
+const HERO_WIDTHS = [480, 640, 960, 1254] as const;
+
+function heroSet(base: string, format: "avif" | "webp") {
+  return HERO_WIDTHS.map((width) => `${still(`${base}-${width}.${format}`)} ${width}w`).join(", ");
+}
+
+/** Primary hero artwork. AVIF is served first, with pre-sized WebP as the fallback. */
+export function HeroImage({ name, alt, sizes }: HeroImageProps) {
+  const base = `/assets/heroes/${name}`;
+  const avifSrcSet = heroSet(base, "avif");
+  const webpSrcSet = heroSet(base, "webp");
+  // Keep the reviews hero deterministic across the three route trees. React's
+  // server preload registration was omitted for this async page in the last
+  // deploy, while the explicit tag is still deduplicated by the browser.
+  const reviewsPreload = name === "05-reviews";
+  // Preload the 480w AVIF that mobile Lighthouse actually selects (~260–270 CSS px slot).
+  if (!reviewsPreload) {
+    preload(still(`${base}-480.avif`), { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
+  }
+
+  return (
+    <>
+      {reviewsPreload && <link rel="preload" as="image" href={still(`${base}-480.avif`)} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
+      <picture>
+      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+      <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
+      <img
+        src={still(`${base}-640.webp`)}
+        srcSet={webpSrcSet}
+        sizes={sizes}
+        width={1254}
+        height={1254}
+        alt={alt}
+        decoding="sync"
+        loading="eager"
+        fetchPriority="high"
+        className="hero-art mx-auto block h-auto w-full max-w-[627px]"
+      />
+      </picture>
+    </>
+  );
+}
+
+/** Responsive hero artwork. Source files are pre-sized WebP/AVIF, so the intrinsic ratio stays 1:1. */
+export function Art({
+  name, alt = "", className = "", priority = false, sizes = "(max-width: 860px) 88vw, 520px",
+}: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string }) {
+  const file = HERO_FILES[name];
+  const base = `/assets/heroes/${file}`;
+  const src = still(`${base}-1254.webp`);
+  const srcSet = heroSet(base, "webp");
+  const avifSrcSet = heroSet(base, "avif");
+  if (priority) return <HeroImage name={file} alt={alt} sizes={sizes} />;
+  return (
+    <DeferredImg
+      src={src}
+      srcSet={srcSet}
+      avifSrcSet={avifSrcSet}
+      sizes={sizes}
+      alt={alt}
+      className={className}
+      width={1254}
+      height={1254}
+    />
+  );
+}
+
+export type DecorName =
+  | "brand-backdrop" | "cobalt-circle" | "cobalt-dot-grid" | "cyan-oval"
+  | "navy-outline-ring" | "orange-plus" | "orange-semicircle" | "pale-dot-grid";
+
+/** Position presets keep the eight decorative SVGs coherent across sections. */
+const DECOR_POSITION: Record<DecorName, string> = {
+  "brand-backdrop": "decor--backdrop",
+  "cobalt-circle": "decor--circle",
+  "cobalt-dot-grid": "decor--grid",
+  "cyan-oval": "decor--oval",
+  "navy-outline-ring": "decor--ring",
+  "orange-plus": "decor--plus",
+  "orange-semicircle": "decor--semicircle",
+  "pale-dot-grid": "decor--dots",
+};
+
+export function ArtDecor({ name, className = "" }: { name: DecorName; className?: string }) {
+  return <Illustration name={name} alt="" folder="decorative" className={`decor ${DECOR_POSITION[name]} ${className}`.trim()} width={220} height={220} />;
+}
+
+/** Letter-spacing used only before the real type swaps in. Keeps a boundary line from jumping. */
+export function fallbackTrack(mobile?: string, desktop?: string): { className: string; style: CSSProperties } | undefined {
+  if (!mobile && !desktop) return undefined;
+  const style: CSSProperties & { "--fb-m"?: string; "--fb-d"?: string } = {};
+  if (mobile) style["--fb-m"] = mobile;
+  if (desktop) style["--fb-d"] = desktop;
+  return { className: "fb-track", style };
+}
+
+/** Page header with optional split artwork. Text-only pages keep the existing centered layout. */
+export function PageHero({
+  h1, sub, mark, eyebrow, image, imageAlt = "", art, decor, className = "", locale = "en", fallbackTrack: track, previewBar = true, children,
+}: {
+  h1: ReactNode; sub: ReactNode; mark?: string; eyebrow?: string;
+  image?: ArtName; imageAlt?: string; art?: ReactNode; decor?: DecorName[]; className?: string;
+  locale?: Locale;
+  fallbackTrack?: { mobile?: string; desktop?: string; leadMobile?: string; leadDesktop?: string };
+  /** Slim free-preview bar under the hero. Off on pages that already have a lead form. */
+  previewBar?: boolean;
+  children?: ReactNode;
+}) {
+  const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} /> : h1;
+  const tracked = fallbackTrack(track?.mobile, track?.desktop);
+  const leadTracked = fallbackTrack(track?.leadMobile, track?.leadDesktop);
+  const leadClass = ["muted", "lead", leadTracked?.className].filter(Boolean).join(" ");
+  if (!image && !art) {
+    return (
+      <>
+        <section className={`page-hero${className ? ` ${className}` : ""}`}>
+          <div className="container center">
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+            <h1 className={tracked?.className} style={tracked?.style}>{title}</h1>
+            <p className={leadClass} style={leadTracked?.style}>{sub}</p>
+            {children}
+          </div>
+        </section>
+        {previewBar ? <PreviewBar locale={locale} /> : null}
+      </>
+    );
+  }
+  return (
+    <>
+      <section className={`page-hero page-hero--split${className ? ` ${className}` : ""}`}>
+        <div className="container page-hero__grid">
+          <div className="page-hero__copy">
+            {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+            <h1 className={tracked?.className} style={tracked?.style}>{title}</h1>
+            <p className={leadClass} style={leadTracked?.style}>{sub}</p>
+            {children}
+          </div>
+          <div className="page-hero__art">
+            <div className="art-wrap">
+              {decor?.map((name) => <ArtDecor key={name} name={name} />)}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes="(max-width: 860px) 260px, (max-width: 1279px) 50vw, 627px" /> : null)}
+            </div>
+          </div>
+        </div>
+      </section>
+      {previewBar ? <PreviewBar locale={locale} /> : null}
+    </>
+  );
+}
+
+/** Image + copy section used for service introductions and story blocks. */
+export function MediaSplit({
+  image, alt = "", decor, reverse, className = "", id, children,
+}: {
+  image: ArtName; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; children: ReactNode;
+}) {
+  return (
+    <div id={id} className={`media-split${reverse ? " media-split--reverse" : ""}${className ? ` ${className}` : ""}`}>
+      <div className="media-split__art">
+        <div className="art-wrap">
+          {decor?.map((name) => <ArtDecor key={name} name={name} />)}
+          <Art name={image} alt={alt} className="hero-art" sizes="(max-width: 860px) 86vw, 540px" />
+        </div>
+      </div>
+      <div className="media-split__copy">{children}</div>
+    </div>
+  );
+}
+export function Section({ tint, narrow, id, decor, accent, band, children }: { tint?: boolean; narrow?: boolean; id?: string; decor?: "light" | "dark"; accent?: string; band?: "lead"; children: ReactNode }) {
+  return (
+    <section id={id} className={`section${tint ? " section--tint" : ""}${band ? ` section--${band}` : ""}${decor ? ` section--decor-${decor}` : ""}${accent ? " section--trade-accent" : ""}`}>
+      {accent ? <img className="section-accent" src={accent} alt="" width={1200} height={700} loading="lazy" decoding="async" fetchPriority="low" /> : null}
+      <div className={`container${narrow ? " container--narrow" : ""}`}>{children}</div>
+    </section>
+  );
+}
+export function CtaBand({
+  h = "Ready to See Your Homepage?",
+  mark,
+  sub,
+  btn = "Get My Free Preview",
+  href = "/contact",
+  secondary = "See Plans & Pricing",
+  secondaryHref = "/pricing",
+  locale = "en",
+}: {
+  h?: string;
+  mark?: string;
+  sub: string;
+  btn?: string;
+  href?: string;
+  secondary?: string;
+  secondaryHref?: string;
+  locale?: Locale;
+}) {
+  const trust =
+    locale === "es-ES"
+      ? {
+          leadLabel: "Garantía de clientes en 60 días",
+          refundLabel: "Garantía de devolución en 30 días",
+          downLabel: "Sin enganche",
+          previewLabel: "Vista previa gratis en 2 días hábiles",
+        }
+      : locale === "es-419"
+        ? {
+            leadLabel: "Garantía de clientes en 60 días",
+            refundLabel: "Garantía de devolución en 30 días",
+            downLabel: "$0 de enganche",
+            previewLabel: "Vista previa gratis en 2 días hábiles",
+          }
+        : undefined;
+  return (
+    <section className="cta-band">
+      <div className="container center">
+      <h2>{mark ? <HL text={h} mark={mark} /> : h}</h2><p>{sub}</p>
+      <div className="btn-row">
+        <Link className="btn btn--primary btn--lg" href={href} prefetch={false}>{btn}</Link>
+        <Link className="btn btn--light btn--lg" href={secondaryHref} prefetch={false}>{secondary}</Link>
+      </div>
+      <TrustStrip className="cta-trust" {...trust} />
+    </div></section>
+  );
+}
+export function IconCard({ title, iconAlt, text, icon, src, level = 3, iconClass = "" }: { title: ReactNode; iconAlt?: string; text: string; icon?: string; src?: string; level?: 2 | 3; iconClass?: string }) {
+  const Heading = level === 2 ? "h2" : "h3";
+  const size = /icon--(service|problem)/.test(iconClass) ? 104 : 72;
+  const mark = src
+    ? <img className={`icon icon--kit${iconClass ? ` ${iconClass}` : ""}`} src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${size}' height='${size}'%3E%3C/svg%3E`} data-src={src} alt="" width={size} height={size} decoding="async" />
+    : icon
+      ? <Icon name={icon} alt={iconAlt ?? (typeof title === "string" ? title : "")} />
+      : <div className="icon ph" />;
+  return <article className="card center">{mark}<Heading className={level === 2 ? "card-title" : undefined}>{title}</Heading><p>{text}</p></article>;
+}
+export function ServiceCard({ title, text, href, cta, icon }: { title: string; text: string; href: string; cta: string; icon?: string }) {
+  return (
+    <article className="card center">{icon && <Icon name={icon} alt={title} />}{!icon && <div className="icon ph" />}<h3>{title}</h3><p>{text}</p>
+      <p><Link className="btn btn--ghost" href={href} prefetch={false}>{cta}</Link></p></article>
+  );
+}
+export function ReviewCard({ quote, name, company }: { quote: string; name: string; company: string }) {
+  return (
+    <figure className="review-card">
+      <header className="review-card__top">
+        <p className="review-card__label review-card__label--stars" role="img" aria-label="5 out of 5">★★★★★</p>
+      </header>
+      <blockquote>&ldquo;{quote}&rdquo;</blockquote>
+      <figcaption><b>{name}</b><span>{company}</span></figcaption>
+    </figure>
+  );
+}
+export function Faq({ items, openFirst = true }: { items: { q: string; a: string }[]; openFirst?: boolean }) {
+  return <>{items.map((f, i) => (
+    <details className="faq" key={f.q} open={openFirst && i === 0}>
+      <summary><h3 className="faq__q">{f.q}</h3></summary>
+      <p>{f.a}</p>
+    </details>
+  ))}</>;
+}
+function KinexisCheck({ yesLabel = "Yes" }: { yesLabel?: string }) {
+  return (
+    <div role="cell" className="us">
+      <span className="compare__sticker" aria-hidden="true" />
+      <span className="sr-only">{yesLabel}</span>
+    </div>
+  );
+}
+export function Compare({ rows = COMPARE_ROWS, freelancers = "Freelancers", agencies = "Agencies", label = "Comparison", feature = "Feature", yesLabel = "Yes" }: { rows?: [string, boolean, boolean][]; freelancers?: string; agencies?: string; label?: string; feature?: string; yesLabel?: string }) {
+  const yes = (v: boolean) => <div role="cell" className={v ? "yes" : "no"}>{v ? "✓" : "✕"}</div>;
+  return (
+    <div className="compare" role="table" aria-label={label}>
+      <div className="compare__row compare__head" role="row">
+        <div role="columnheader"><span className="sr-only">{feature}</span></div>
+        <div role="columnheader">{freelancers}</div>
+        <div role="columnheader">{agencies}</div>
+        <div role="columnheader" className="us">
+          <img className="compare__logo" src="/assets/logos/header-nav.webp" alt="Kinexis Digital" width={480} height={160} decoding="async" loading="lazy" fetchPriority="low" />
+        </div>
+      </div>
+      {rows.map(([rowLabel, f, a]) => (
+        <div className="compare__row" role="row" key={rowLabel}><div role="cell">{rowLabel}</div>{yes(f)}{yes(a)}<KinexisCheck yesLabel={yesLabel} /></div>
+      ))}
+    </div>
+  );
+}
+export function Shots({ n, mode, hrefFor, labelFor, hrefLang, scrollOnHover = true }: { n: number; mode: "link" | "work"; hrefFor?: (slug: string) => string; labelFor?: (name: string) => string; hrefLang?: string; scrollOnHover?: boolean }) {
+  return <>{PROJECTS.slice(0, n).map((project) => {
+    return mode === "link"
+      ? <ShotFrame key={project.slug} project={project} href={hrefFor ? hrefFor(project.slug) : `/portfolio/${project.slug}`} label={labelFor ? labelFor(project.name) : `View ${project.name}`} hrefLang={hrefLang} ctaLabel={labelFor ? labelFor(project.name) : undefined} scrollOnHover={scrollOnHover} />
+      : null;
+  })}</>;
+}
+export function Prose({ sections }: { sections: [string, string][] }) {
+  return (
+    <section className="section"><div className="container container--narrow prose">
+      {sections.map(([h, p]) => <div key={h}><h2>{h}</h2><p>{p}</p></div>)}
+    </div></section>
+  );
+}

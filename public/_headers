@@ -1,0 +1,65 @@
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+
+/blog/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.avif
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.gif
+  Cache-Control: public, max-age=31536000, immutable
+
+/portfolio/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-16.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-32.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-48.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-192.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/favicon-512.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/apple-icon.png
+  Cache-Control: public, max-age=31536000, immutable

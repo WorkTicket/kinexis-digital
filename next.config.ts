@@ -1,0 +1,123 @@
+import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+import { RETIRED_INDUSTRY_SLUGS } from "./src/data/industries";
+import { LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
+import { PAGES } from "./src/lib/pages";
+
+const isDev = process.env.NODE_ENV === "development";
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://connect.facebook.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com`,
+  "script-src-attr 'none'",
+  "style-src 'self' 'unsafe-inline'",
+  // https: already covers GTM + Meta pixels; keep googletagmanager / facebook explicit.
+  "img-src 'self' data: blob: https: https://*.googletagmanager.com https://www.facebook.com https://*.facebook.com",
+  "font-src 'self' data:",
+  // GA4 posts to google-analytics.com, analytics.google.com (apex + subs), and googletagmanager.com.
+  // Meta Pixel posts to connect.facebook.net / facebook.com (apex + subs).
+  // CSP *.host does not match the apex host itself — keep both forms.
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
+  "media-src 'self' https:",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
+  "worker-src 'self' blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self' https://www.paypal.com https://*.paypal.com https://www.trustpilot.com https://*.trustpilot.com",
+  "frame-ancestors 'none'",
+  ...(isDev ? [] : ["upgrade-insecure-requests"]),
+].join("; ");
+
+const nextConfig: NextConfig = {
+  experimental: {
+    cpus: 4,
+  },
+  // Production builds drop debug noise from client bundles.
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+  },
+  poweredByHeader: false,
+  reactStrictMode: true,
+  // Let proxy.ts issue the site's explicit 301 for trailing-slash variants.
+  skipTrailingSlashRedirect: true,
+  // Old URLs 301 to the current English pages so crawl signals stay on one address.
+  async redirects() {
+    const pages = Object.values(PAGES as Record<string, { path: string }>)
+      .filter((page) => page.path !== "/");
+    return [
+      ...LEGACY_REDIRECTS,
+      { source: "/index.html", destination: "/", statusCode: 301 },
+      { source: "/process", destination: "/about", statusCode: 301 },
+      { source: "/process.html", destination: "/about", statusCode: 301 },
+      { source: "/video-reviews", destination: "/reviews", statusCode: 301 },
+      { source: "/video-reviews.html", destination: "/reviews", statusCode: 301 },
+      { source: "/es/video-reviews", destination: "/es/reviews", statusCode: 301 },
+      { source: "/es-es/video-reviews", destination: "/es-es/reviews", statusCode: 301 },
+      ...pages.map((page) => ({
+        source: `${page.path}.html`,
+        destination: page.path,
+        statusCode: 301,
+      })),
+      { source: "/industry", destination: "/industries", statusCode: 301 },
+      { source: "/industry/:slug", destination: "/industries/:slug", statusCode: 301 },
+      { source: "/en/industries", destination: "/industries", statusCode: 301 },
+      ...RETIRED_INDUSTRY_SLUGS.flatMap((slug) => [
+        { source: `/industries/${slug}`, destination: "/industries", statusCode: 301 },
+        { source: `/industries/${slug}.html`, destination: "/industries", statusCode: 301 },
+        { source: `/en/industries/${slug}`, destination: "/industries", statusCode: 301 },
+        { source: `/en/industries/${slug}.html`, destination: "/industries", statusCode: 301 },
+        { source: `/es/industries/${slug}`, destination: "/es/industries", statusCode: 301 },
+        { source: `/es-es/industries/${slug}`, destination: "/es-es/industries", statusCode: 301 },
+      ]),
+      { source: "/industries/:slug.html", destination: "/industries/:slug", statusCode: 301 },
+    ];
+  },
+
+  // Cloudflare Images is not enabled on the account yet, so every still is
+  // served from public/ exactly as encoded.
+  images: {
+    unoptimized: true,
+  },
+
+  async headers() {
+    const yearCache = [
+      { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+    ];
+    return [
+      {
+        // Public assets are versioned by filename (or query string) and can
+        // safely stay at the edge and in browser caches for a year.
+        source: "/assets/:path*",
+        headers: yearCache,
+      },
+      { source: "/blog/:file(.*\\.(?:webp|avif|png|jpe?g|gif|svg|ico))", headers: yearCache },
+      { source: "/portfolio/:file(.*\\.(?:webp|avif|png|jpe?g|gif|svg|ico))", headers: yearCache },
+      { source: "/favicon-:size.webp", headers: yearCache },
+      { source: "/apple-icon.png", headers: yearCache },
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Content-Security-Policy", value: contentSecurityPolicy },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+          { key: "Cross-Origin-Resource-Policy", value: "same-site" },
+          { key: "Strict-Transport-Security", value: "max-age=31536000; includeSubDomains" },
+          { key: "X-DNS-Prefetch-Control", value: "off" },
+          { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+        ],
+      },
+    ];
+  },
+};
+
+export default nextConfig;
+
+// Makes Cloudflare bindings available to server code during `next dev`.
+if (isDev) {
+  initOpenNextCloudflareForDev();
+}
