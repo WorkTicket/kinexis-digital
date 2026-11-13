@@ -4,7 +4,7 @@
 PSI 100 Performance + Best Practices (mobile/desktop), no design changes.
 
 ## Status
-Code ready; needs deploy + live PSI re-check.
+Shipped to live (`e6c8b59`); re-run PSI on `/`.
 
 ## Done
 - Meta Pixel deferred to first input / 45s (was afterInteractive; caused TBT + CSP console errors)

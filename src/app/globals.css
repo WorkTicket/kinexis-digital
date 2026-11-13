@@ -832,7 +832,9 @@ html.lp-route body{--announce-h:0px}
 .contact-info .contact-block a{
   --mark-fill:0;
   --mark-color:var(--warm);
-  appearance:none;display:inline;margin:0;padding:0 0 3px;border:0;
+  /* Inline by default; fit-content keeps the wipe on the glyphs if a layout
+     context blockifies / stretches the element (flex item, display:block, etc.). */
+  appearance:none;display:inline;width:fit-content;max-width:100%;margin:0;padding:0 0 3px;border:0;
   background-image:linear-gradient(
     to right,
     var(--mark-color) 0%,
@@ -2500,7 +2502,7 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .showcase__head h2{margin-bottom:.25em}
 .showcase__head p{margin-bottom:0;max-width:660px}
 .showcase__head .link-btn,
-.showcase__head .trust-mark{flex:0 0 auto;white-space:nowrap}
+.showcase__head .trust-mark{flex:0 0 auto;align-self:flex-end;width:fit-content;white-space:nowrap}
 .showcase__head--follow{margin-top:72px}
 
 /* Portfolio grid — home page: 4 / 2 / 2 columns, preview moves on hover, page still scrolls */
@@ -3216,7 +3218,7 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .pay-details{margin-top:12px}
 .pay-details summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--accent)}
 .pay-details p{color:var(--muted);font-size:.84rem;margin:8px 0 0}
-.pay-help{display:inline-block;margin-top:12px;font-size:.9rem}
+.pay-help{display:inline-block;width:fit-content;margin-top:12px;font-size:.9rem}
 .pay-paypal{min-height:45px}
 .pay-wait{font-size:.9rem;color:var(--muted);margin:0}
 .pay-alert{font-size:.9rem;margin:0}
@@ -3225,7 +3227,7 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .pay-after__head .eyebrow{margin:0 0 6px}
 .pay-after__head h2{margin:0 0 6px;font-size:clamp(1.45rem,2.2vw,1.75rem)}
 .pay-after__head p.muted{margin:0;max-width:52ch}
-.pay-jump{white-space:nowrap;margin-bottom:2px}
+.pay-jump{display:inline-block;width:fit-content;white-space:nowrap;margin-bottom:2px;align-self:flex-start}
 .pay-after__faqs{border:1px solid var(--border);border-radius:16px;background:#fff;overflow:hidden;box-shadow:var(--shadow)}
 .pay-after__faqs .faq{margin:0;border:0;border-radius:0;border-bottom:1px solid var(--border);background:transparent}
 .pay-after__faqs .faq:last-child{border-bottom:0}
@@ -3281,7 +3283,7 @@ html.thanks-plan-ownIt .thanks-plan--ownIt{display:block}
   .pay-tick{grid-row:1 / span 2}
   .pay-option__price{grid-column:2;text-align:left;margin-top:4px}
   .pay-option__price small{display:inline;margin:0 0 0 4px}
-  .pay-hero-links__invoice{display:block;margin:10px 0 0}
+  .pay-hero-links__invoice{display:block;width:fit-content;margin:10px 0 0}
   .pay-after__head{flex-direction:column;align-items:flex-start;gap:12px}
   .pay-jump{white-space:normal}
   .pay-sheet,.pay-next{padding:20px}
@@ -3889,7 +3891,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   display:grid;place-items:center;width:28px;height:28px;border-radius:999px;
   background:var(--brand-orange);border:1px solid var(--border);color:var(--brand-navy);font-weight:800;
 }
-.industry-reads__title{border-bottom:2px solid currentColor;padding-bottom:2px;line-height:1.35}
+.industry-reads__title{display:inline;width:fit-content;border-bottom:2px solid currentColor;padding-bottom:2px;line-height:1.35}
 .industry-reads__arrow{flex:0 0 auto;color:inherit;text-decoration:none}
 .industry-plan-bridge{
   padding:clamp(22px,3vw,34px);background:#fff;
@@ -4013,7 +4015,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .pay-page .pay-hero .lead{font-size:1.1rem;max-width:48ch}
 .pay-page .pay-hero .hero-art{max-height:330px;object-fit:contain}
 .pay-page .pay-hero-links{font-size:.9rem;line-height:1.8;max-width:48ch;margin:20px 0 0}
-.pay-page .pay-hero-links__invoice{display:block;margin:8px 0 0}
+.pay-page .pay-hero-links__invoice{display:block;width:fit-content;margin:8px 0 0}
 .pay-page .pay-pick{padding-block:40px 72px}
 .pay-route{display:flex;justify-content:space-between;gap:20px;padding:0 0 28px;margin-bottom:32px;border-bottom:1px solid var(--border)}
 .pay-route span{display:flex;align-items:center;gap:12px;font-weight:700;font-size:.92rem}
@@ -4438,8 +4440,8 @@ p,li,blockquote{ text-wrap:pretty }
 
   .trust-hl,
   .hero__call .trust-mark{
-    display:inline-flex;align-items:center;min-height:44px;
-    padding:8px 0 10px;background-position:left calc(100% - 9px);
+    display:inline-flex;align-items:center;width:fit-content;max-width:100%;
+    min-height:44px;padding:8px 0 10px;background-position:left calc(100% - 9px);
   }
   .hero__call{line-height:1.55}
 
