@@ -24,10 +24,17 @@ export async function bundleServer(entry, outfile) {
         });
         esbuild.onResolve({ filter: /^server-only$/ }, () => ({ path: "server-only", namespace: "stub" }));
         esbuild.onResolve({ filter: /^@opennextjs\/cloudflare$/ }, () => ({ path: "cloudflare", namespace: "stub" }));
+        esbuild.onResolve({ filter: /^next\/cache$/ }, () => ({ path: "next-cache", namespace: "stub" }));
         esbuild.onLoad({ filter: /.*/, namespace: "stub" }, (args) => {
           if (args.path === "cloudflare") {
             return {
               contents: "export function getCloudflareContext(){ throw new Error('no cloudflare context'); }",
+              loader: "js",
+            };
+          }
+          if (args.path === "next-cache") {
+            return {
+              contents: "export function revalidatePath(){} export function revalidateTag(){}",
               loader: "js",
             };
           }

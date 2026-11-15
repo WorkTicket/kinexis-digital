@@ -46,17 +46,21 @@ There is **no** single `src/app/layout.tsx`. Each locale tree owns a full docume
 Indexable EN marketing routes live under `src/app/(en)/` and are listed in `src/lib/pages.ts`. Spanish mirrors are driven by `MIRROR_PATHS` in `src/lib/locale-path.ts` and rendered by `SpanishPage` / `SpanishIndustry`. Utility examples: `/`, `/about`, `/api/*`, `/audit`, `/blog`, `/contact`, `/es/*`, `/es-es/*`, `/faqs`, `/industries`, `/pay`, `/portfolio`, `/pricing`, `/privacy`, `/reviews`, `/seo-services`, `/services`, `/strategy-call`, `/terms`, `/update`, `/upgrades`, `/web-design`, `/website-management`. Process UI is embedded (home Stepper, about ProcessFlow, web-design DesignProcess) — there is no `/process` route.
 
 ## Key files
-- `src/components/DocumentShell.tsx` - Shared `<html>`/`<head>`/`<body>`, fonts, chrome
+- `src/components/DocumentShell.tsx` - Shared `<html>`/`<head>`/`<body>`, fonts, chrome; mounts `ConferbotWidget` (flag off by default)
 - `src/app/(en)/layout.tsx`, `src/app/es/layout.tsx`, `src/app/es-es/layout.tsx` - Locale roots
 - `src/app/globals.css` - Tailwind v4 theme tokens, design system classes (buttons/stickers/cards), responsive rules
 - `src/lib/site.ts` - SITE config (name/url/phone/email/social/announce/video/ogImage)
 - `src/lib/pages.ts` - Canonical page metadata/sitemap/redirect source of truth
 - `src/components/Header.tsx`, `Footer.tsx`, `ui.tsx`, `artwork.tsx` - Core UI
+- `src/components/CookieConsent.tsx` - Consent dock; analytics/ads gates for third-party scripts
+- `src/components/ConferbotWidget.tsx` - Lazy Conferbot live chat after analytics consent + idle/input
+- `src/app/api/integrations/conferbot/webhook/route.ts` - HMAC webhook (flagged; see `docs/CONFERBOT-INTEGRATION.md`)
 - `src/i18n/SpanishSite.tsx` - Spanish static page router + `PAGE_META`
 
 ## Notes
 - Images: `next/image` uses `unoptimized: true` (Cloudflare Images not enabled). Stills in `public/` pre-encoded, with AVIF served first and WebP fallback where variants exist. Run `npm run images:heroes` after replacing page hero artwork.
-- SEO: `robots.ts`, `sitemap.ts` present. `next.config.ts` does many 301 redirects.
-- Security headers set in `next.config.ts` (CSP, HSTS, etc.)
-- Contact forms/checkout use Mailgun/forwarding/Gmail SMTP/PayPal (see README). Invoice checkout may offer contact fallback if PayPal secret missing.
+- SEO: `robots.ts`, `sitemap.ts` present. `next.config.ts` does many 301 redirects. Preview (`NEXT_PUBLIC_IS_PREVIEW=1`) is noindex / empty sitemap.
+- Security headers set in `next.config.ts` (CSP, HSTS, etc.), including Conferbot CDN/WDT hosts.
+- Contact forms/checkout use Mailgun/forwarding/Gmail SMTP/PayPal (see README). Invoice checkout may offer contact fallback if PayPal secret missing. Preview team mail uses `CONTACT_PREVIEW_TO` only.
 - `/reviews` shows on-site reviews (KV via `POST /api/reviews`), matched Trustpilot/Facebook review CTAs (evaluate + Facebook review URLs), optional Trustpilot API cards when `TRUSTPILOT_API_KEY` is set, and Facebook recommendations.
+- Payments: D1 `INVOICE_DB` ledger + PayPal webhook. Conferbot leads: separate `LEAD_DB` (omitted from `wrangler.jsonc` until owner creates real DBs; schema in `migrations-lead/`).

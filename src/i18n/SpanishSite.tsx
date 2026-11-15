@@ -520,7 +520,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   const pricingMeta = metaFor("/pricing", locale) ?? PAGE_META["/pricing"];
   const table = [
     { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Dominio (año 1)"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("Incluido")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), p("newPage", currency), tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
-    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas"), "—", tx(`Opcional · ${p("secondNumberMo", currency)}/mes 2.º número + operador`), tx(`Opcional · EN/ES · ${p("secondNumberMo", currency)}/mes 2.º número + operador`), tx(`Extra ${p("textBackAddonMo", currency)} / mes`)], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Negocio de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
+    { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas"), tx(`Extra ${p("textBackAddonMo", currency)} / mes`), tx(`Opcional · ${p("secondNumberMo", currency)}/mes 2.º número + operador`), tx(`Opcional · EN/ES · ${p("secondNumberMo", currency)}/mes 2.º número + operador`), tx(`Extra ${p("textBackAddonMo", currency)} / mes`)], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Negocio de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
     { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Devolución en 30 días"), tx("Sí"), tx("Sí"), tx("Sí"), tx("Sí")], [tx("Cobro"), tx("Mes a mes"), tx("Mes a mes"), tx("Mes a mes"), tx("Un pago")], [tx("Cancela cuando quieras"), tx("Sí"), tx("Sí"), tx("Sí"), "—"], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), `${p("websiteMo", currency)} / mes`, `${p("leadMo", currency)} / mes`, `${p("plusMo", currency)} / mes`, p("ownIt", currency)]] },
   ];
   return (
@@ -1015,10 +1015,14 @@ async function Reviews({ locale, tx, href, lang, band }: PageBits) {
 }
 
 function Upgrades({ locale, tx, href, lang, band }: PageBits) {
+  const currency = locale === "es-ES" ? ("eur" as const) : ("usd" as const);
+  const secondNumberNote = tx(
+    `Extra para Website u Own It. Requiere línea dedicada. Un segundo número cuesta ${p("secondNumberMo", currency)}/mes si lo usas. Pueden aplicar tarifas del operador. La aprobación del operador suele tardar 10 a 15 días y no está garantizada.`,
+  );
   const items = [
-    ["extra-page", tx("Página extra"), tx("Agrega un servicio, una zona o una landing a Website, Lead System o Plus."), "$99"],
-    ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), "$39 / mes"],
-    ["missed-call-text-back", tx("Texto si no contestas"), tx("Extra para Website u Own It. Requiere línea dedicada. Un segundo número cuesta $1/mes si lo usas. Pueden aplicar tarifas del operador. La aprobación del operador suele tardar 10 a 15 días y no está garantizada."), "$97 / mes"],
+    ["extra-page", tx("Página extra"), tx("Agrega un servicio, una zona o una landing a Website, Lead System o Plus."), p("newPage", currency)],
+    ["site-care", tx("Cuidado del sitio"), tx("Hosting, SSL y hasta 30 minutos de cambios al mes después del primer año en Own It."), `${p("siteCareMo", currency)} / mes`],
+    ["missed-call-text-back", tx("Texto si no contestas"), secondNumberNote, `${p("textBackAddonMo", currency)} / mes`],
     ["new-pages", tx("Páginas nuevas en Own It"), tx("Las páginas extra de Own It se cotizan por escrito antes de empezar."), tx("Cotizado")],
   ] as const;
   return (

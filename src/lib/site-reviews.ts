@@ -1,6 +1,7 @@
 import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { SITE } from "@/lib/site";
+import { getReviewsTestKv } from "@/lib/reviews-test-kv";
 
 export type SiteReview = {
   id: string;
@@ -32,6 +33,8 @@ type ReviewsKv = {
 type ReviewsEnv = CloudflareEnv & { REVIEWS?: ReviewsKv };
 
 function reviewsKv(): ReviewsKv | null {
+  const test = getReviewsTestKv();
+  if (test) return test;
   try {
     const env = getCloudflareContext().env as ReviewsEnv;
     return env.REVIEWS ?? null;
@@ -39,6 +42,8 @@ function reviewsKv(): ReviewsKv | null {
     return null;
   }
 }
+
+export { setReviewsTestKv, createMemoryReviewsKv } from "@/lib/reviews-test-kv";
 
 function formatDate(iso: string) {
   const date = new Date(iso);

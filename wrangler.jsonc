@@ -32,6 +32,9 @@
       "database_id": "077c8e46-2ea8-4997-8b6a-c06902194575",
       "migrations_dir": "migrations"
     }
+    // LEAD_DB is intentionally omitted until the owner creates real D1 databases
+    // and binds them. Schema lives in migrations-lead/0001_conferbot_lead_intel.sql.
+    // Do not reintroduce placeholder database_id values — they break Workers Builds.
   ],
   "durable_objects": {
     "bindings": [
@@ -82,7 +85,12 @@
         { "pattern": "preview.kinexisdigital.com", "custom_domain": true }
       ],
       "vars": {
-        "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com"
+        // Preview never uses CONTACT_TO / production inboxes. Set CONTACT_PREVIEW_TO
+        // to a sink address that is also listed under send_email.allowed_destination_addresses.
+        // Empty CONTACT_PREVIEW_TO fail-closes contact and review team mail (no send).
+        "NEXT_PUBLIC_IS_PREVIEW": "1",
+        "CONTACT_TO": "",
+        "CONTACT_PREVIEW_TO": ""
       },
       "kv_namespaces": [
         {
@@ -102,6 +110,8 @@
           "database_id": "5a474f5a-4ac9-4d4c-8309-943c3d52981b",
           "migrations_dir": "migrations"
         }
+        // Preview LEAD_DB omitted until owner creates kinexis-lead-intel-preview
+        // and binds it. Apply migrations-lead/ with --env preview only then.
       ],
       "durable_objects": {
         "bindings": [

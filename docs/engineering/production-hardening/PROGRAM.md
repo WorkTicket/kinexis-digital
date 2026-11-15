@@ -31,7 +31,7 @@ Retain Next.js App Router, React, strict TypeScript, Tailwind CSS, OpenNext and 
 8. Isolated staging and independent QA; no production changes.
 9. Release readiness documentation only; stop for explicit approval.
 
-Each phase independently verifies its scope, records exact test commands/results and risks, updates status and phase report, and hands off. Do not proceed automatically. A skipped/unavailable verification is NOT RUN, not PASS. Production is never deployed without explicit approval.
+Each phase independently verifies its scope, records exact test commands/results and risks, updates status and phase report, and hands off. Owner supersession (2026-11-15): continue Phases 2–9 including chatbot without waiting for per-phase approval; one PR per phase; stacking OK when CI is green; agent still must not merge to `main` or deploy (Workers Builds). A skipped/unavailable verification is NOT RUN, not PASS. Production is never deployed without explicit approval. Chatbot fold-in: `phases/phase-chatbot-fold-in.md`.
 
 ## Required records
 

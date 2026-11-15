@@ -23,9 +23,17 @@ Strict PayPal order and capture checks, stable per-invoice PayPal request ids, f
 10. Subscription SDK ready/loading was not observed. Measurement-id E2E stays skipped without GA/Meta build variables. `e2e/smoke.spec.ts` still allows HTTP 429 on one older invoice tamper test; that assertion was already in the tree and was not loosened.
 11. A verified capture webhook must include both `invoice_id` and `custom_id`, equal to each other. That matches the orders this app creates. A payload that drops `custom_id` is rejected.
 
+## Phase 2 — route integration tests
+
+1. `/api/reviews` and `/api/reviews/moderate` had no handler-level suite. Contact and invoice routes already used esbuild harnesses; reviews now match that pattern via `scripts/check-reviews-routes.mjs`.
+2. Reviews and rate-limit both read `REVIEWS` KV. Tests inject a Map KV only when `REVIEWS_TEST_MEMORY=1`, same safety model as `INVOICE_TEST_MEMORY`.
+3. Moderation imports `next/cache`. The shared `bundle-server.mjs` stub now no-ops `revalidatePath` / `revalidateTag` so Node harnesses can load the real handler.
+4. GET on `/api/reviews/moderate` remains confirm-only (mail scanners must not mutate). Tests assert pending state is unchanged after GET and that approve is one-shot.
+
 ## Phase 0 risks retained
 
-- Preview `CONTACT_TO` still lists production recipients. Not changed.
+- Preview `CONTACT_TO` still lists production recipients. Not changed in Phase 2 (Phase 3 scope).
 - Text-back, second-number, and Spain EUR pricing were not changed.
+- Conferbot is not in the application yet; fold-in map is in `phases/phase-chatbot-fold-in.md`.
 
 No production deployment, production data migration, real payment, or customer notification was performed.

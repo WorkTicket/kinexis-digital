@@ -66,7 +66,30 @@ try {
   assert.equal((await submit()).status, 502);
   delete process.env.GMAIL_APP_PASSWORD;
   assert.equal((await submit()).status, 503);
-  console.log("Contact delivery checks passed: SMTP routing, attachment, validation, honeypot, failure and missing configuration.");
+
+  // Preview isolation: never fall back to CONTACT_TO / SITE.email.
+  process.env.GMAIL_USER = "sender@example.com";
+  process.env.GMAIL_APP_PASSWORD = "test-only";
+  process.env.CONTACT_TO = "production@example.com";
+  process.env.NEXT_PUBLIC_IS_PREVIEW = "1";
+  delete process.env.CONTACT_PREVIEW_TO;
+  delivery = undefined;
+  mailer.createTransport = () => ({
+    sendMail: async (message) => {
+      delivery = message;
+      return { accepted: message.to };
+    },
+  });
+  assert.equal((await submit({ topic: "strategy-call" })).status, 503);
+  assert.equal(delivery, undefined);
+  process.env.CONTACT_PREVIEW_TO = "preview-sink@example.com";
+  assert.equal((await submit({ topic: "strategy-call" })).status, 200);
+  assert.deepEqual(delivery.to, ["preview-sink@example.com"]);
+  assert.ok(!delivery.to.includes("production@example.com"));
+  delete process.env.NEXT_PUBLIC_IS_PREVIEW;
+  delete process.env.CONTACT_PREVIEW_TO;
+
+  console.log("Contact delivery checks passed: SMTP routing, attachment, validation, honeypot, failure, missing configuration, and preview email isolation.");
 } finally {
   mailer.createTransport = originalTransport;
   for (const key of keys) {

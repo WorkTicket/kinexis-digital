@@ -1,18 +1,9 @@
-# CURRENT-TASK.md
+# Current task
 
-## Goal
-Close the four remaining production polish items from the 92/100 audit.
+**STOPPED at Phase 9** for explicit owner release approval.
 
-## Status
-**Shipped to production** (`3a517f4`).
+Stacked engineering PRs: #7 (Phase 1 docs), #8–#14 (Phases 2–7), Phase 8 and Phase 9 PRs on this tip.
 
-## Live
-- Organization `@id`: `https://www.kinexisdigital.com/#org`
-- OG cards under `/og/*.webp`
-- Portfolio listing card crops live
-- PayPal sandbox positive capture verified locally before ship
-- Search notify: 131 IndexNow URLs accepted
+Conferbot: widget + webhook shipped behind flags (off). Starter upgrade, LEAD_DB, secrets, and production merges are owner actions.
 
-## Next
-- Spot-check OG in Facebook/X share debugger (cache refresh may be needed).
-- Optional: mobile Lighthouse on `/portfolio` to confirm the card-crop win.
+See `docs/engineering/production-hardening/FINAL-REPORT.md`.

@@ -2,6 +2,7 @@ import { SITE } from "@/lib/site";
 import { clientIp } from "@/lib/client-ip";
 import {
   EMAIL_PATTERN,
+  contactDeliveryBlocked,
   contactEmailBinding,
   contactRecipients,
   logDeliveryFailure,
@@ -160,7 +161,12 @@ async function sendMail({
   isIntake: boolean;
   files: File[];
 }): Promise<"sent" | "unconfigured" | "failed"> {
+  if (contactDeliveryBlocked()) {
+    console.error("Contact delivery blocked: preview has no CONTACT_PREVIEW_TO");
+    return "unconfigured";
+  }
   const recipients = contactRecipients();
+  if (recipients.length === 0) return "unconfigured";
   const subject = isIntake
     ? `Website intake from ${name}`
     : isCall

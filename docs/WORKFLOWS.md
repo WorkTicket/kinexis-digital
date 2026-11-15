@@ -7,7 +7,9 @@
 ## Lint/typecheck
 - `npm run lint` - ESLint (flat config)
 - `npm run typecheck` - TypeScript no emit
-- `npm run check` - Lint, typecheck, and mocked contact-delivery checks
+- `npm run check` - Lint, typecheck, mocked contact-delivery, reviews route handlers, and Spanish mirror
+- `npm run check:reviews` - Real `/api/reviews` and `/api/reviews/moderate` handlers with in-memory KV (no Cloudflare/SMTP)
+- `npm run check:route-integration` - Contact + reviews + invoice-security handler suites
 
 ## Build
 - `npm run build` - Runs `node scripts/build.mjs` (custom build script). Check script if build behavior differs from default Next build.
