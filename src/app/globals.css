@@ -1016,9 +1016,11 @@ html.lp-route body{--announce-h:0px}
 .hero__trust{margin-top:0;max-width:none}
 .cta-trust,.offer__trust{margin:16px 0 0}
 .industry-hero__trust{margin-top:16px;max-width:40rem}
+/* Keep Prefer to talk? + Book a call + phone on one row under the trust strip. */
 .hero__call{
-  display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;
-  margin:10px 0 0;
+  display:flex;flex-wrap:nowrap;align-items:center;gap:2px 8px;
+  margin:10px 0 0;max-width:100%;
+  white-space:nowrap;
 }
 @media (max-width:860px){
   .page-hero--split .industry-hero__trust{
@@ -4820,12 +4822,21 @@ p,li,blockquote{ text-wrap:pretty }
   .icon.icon--kit.icon--service,
   .icon.icon--kit.icon--problem{width:88px;height:88px}
 
-  .trust-hl,
-  .hero__call .trust-mark{
+  .trust-hl{
     display:inline-flex;align-items:center;width:fit-content;max-width:100%;
     min-height:44px;padding:8px 0 10px;background-position:left calc(100% - 9px);
   }
-  .hero__call{line-height:1.55}
+  /* Prefer to talk row stays one line; vertical padding grows the hit area without wrapping. */
+  .hero__call{
+    flex-wrap:nowrap;white-space:nowrap;line-height:1.35;gap:2px 6px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .hero__call::-webkit-scrollbar{display:none}
+  .hero__call .trust-mark{
+    display:inline-flex;align-items:center;flex:0 0 auto;
+    min-height:44px;padding:10px 0;background-position:left calc(100% - 9px);
+  }
+  .hero__call .trust-fineprint__sep{flex:0 0 auto}
 
   /* Comparison table stays inside the viewport; labels wrap instead of scrolling. */
   .compare{
