@@ -66,4 +66,4 @@ Residual risk to accept before release: a capture webhook without `custom_id` is
 
 ## Deploy safety
 
-GitHub Actions (`.github/workflows/ci.yml`) runs `npm run check` and `npm run build:worker` on pull requests and on pushes to `main`. It does not deploy. This branch is not `main`. Workers Builds, as documented in `README.md`, deploys the repository's protected production branch. Pushing `codex/production-hardening-v1` does not match that branch. Preview builds for other branches are a dashboard setting this repo cannot prove are off. No deploy command was run.
+GitHub Actions (`.github/workflows/ci.yml`) runs `npm run check` and `npm run build:worker` on pull requests and on pushes to `main`. It does not deploy. Production ships are manual via `npm run deploy` (`scripts/deploy-production.mjs`); Workers Builds is not connected for Worker `kinexis-digital`. Pushing a non-`main` branch never publishes production. No deploy command was run from this agent.

@@ -12,7 +12,7 @@
 | PayPal merchant identity | Checked against a sandbox order, value not stored in git | A created sandbox order's payee matched the supplied merchant id. The id is not written in the repo. |
 | Sandbox evidence | PASS for create, capture, mismatch, and forged signatures. Signed webhook SUCCESS NOT RUN | Mocked output stays separate. Calls used `api-m.sandbox.paypal.com` only. |
 | Commercial policy unchanged | Held | No pricing, package terms, chatbot, or customer-facing marketing copy changes. The staff invoice API error now says invoice storage is unavailable instead of naming KV. |
-| Phase 2 proceeds under owner supersession | Done | Owner instructed finishing Phases 2–9 including chatbot without waiting. Earlier “Do not start Phase 2” is lifted for engineering PRs. Agent still does not merge to `main` (Workers Builds deploys production). |
+| Phase 2 proceeds under owner supersession | Done | Owner instructed finishing Phases 2–9 including chatbot without waiting. Earlier “Do not start Phase 2” is lifted for engineering PRs. Merging to `main` does not deploy — production ships are manual (`npm run deploy`); Workers Builds is not connected for this Worker. |
 | Reviews route tests use injectable Map KV | Done | Mirrors invoice `INVOICE_TEST_MEMORY`. Flag `REVIEWS_TEST_MEMORY=1` required. Production isolates never set it. |
 | Conferbot folded into Phases 2–9 | Planned | See `phases/phase-chatbot-fold-in.md`. Prefer separate `LEAD_DB` D1. Flags off by default. Starter upgrade is an owner blocker; no agent upgrade. |
 | Chatbot runtime deferred past Phase 2 | Held | Phase 2 only adds the harness pattern and the fold-in doc. Widget/webhook land in Phase 5. |

@@ -17,7 +17,7 @@ See `phases/phase-08-staging-qa.md` for the full isolation and Conferbot Starter
 
 ## LEAD_DB (later — not part of the flags-off production ship)
 
-Placeholder `LEAD_DB` bindings were removed from `wrangler.jsonc` so Workers Builds can deploy. When ready:
+Placeholder `LEAD_DB` bindings were removed from `wrangler.jsonc` so manual `npm run deploy` / `deploy:preview` do not fail on missing D1 ids. When ready:
 
 1. Create preview D1 (e.g. `kinexis-lead-intel-preview`).
 2. Add a real `LEAD_DB` binding under `env.preview` with `migrations_dir: "migrations-lead"`.

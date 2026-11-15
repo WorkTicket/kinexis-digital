@@ -2,36 +2,35 @@
 
 **Date:** 2026-11-15  
 **Branch:** `cursor/phase9-release-readiness-67c1`  
-**Verdict:** Documentation complete. **Not authorized to merge to `main` or deploy production.** Waiting for explicit owner release approval.
+**Verdict:** Stack #7–#16 merged to `main`. Flags stay **OFF**. Production publish is a **manual** owner step (`npm run deploy`), not an automatic merge side-effect.
 
-## What is ready in code (on the stacked PR tip)
+## What is ready in code (on `main`)
 
 - Phase 1 payment/invoice integrity (already live from PR #6).
-- Phase 2–7 engineering on stacked PRs #8–#14 (+ this branch).
-- Conferbot: CSP, consent-gated lazy widget (flag off), HMAC webhook, redaction, LEAD_DB migration file, lead score + notify outbox MVPs (flags off).
+- Phase 2–9 engineering from stacked PRs #7–#16.
+- Conferbot: CSP, consent-gated lazy widget (flag off), HMAC webhook, redaction, LEAD_DB migration file, lead score + notify outbox MVPs (flags off). `LEAD_DB` bindings omitted until real D1 ids exist.
 
-## Explicit stop
+## Explicit stop (still)
 
 Do **not**:
 
-- Merge this stack to `main` (Workers Builds deploys production).
 - Flip `NEXT_PUBLIC_CONFERBOT_ENABLED`, `CONFERBOT_INTEGRATION_ENABLED`, or `CONFERBOT_NOTIFY_ENABLED` in production.
-- Apply production D1 migration `0002`, create production LEAD_DB, or register production Conferbot webhooks.
+- Apply production lead migrations, create production LEAD_DB, or register production Conferbot webhooks.
 - Charge live PayPal, send real lead alerts, or upgrade Conferbot without owner action.
 
-## Release approval checklist (owner)
+## Deploy model
 
-When approving a release, tick in writing:
+Merging to `main` does **not** deploy. Workers Builds is not connected for Worker `kinexis-digital`. Ship with `npm run deploy` (`scripts/deploy-production.mjs`) from a wrangler-authenticated owner machine.
 
-1. [ ] Review and merge stacked PRs in order (or squash strategy agreed) knowing `main` deploys.
-2. [ ] Production LEAD_DB created; placeholders replaced; migration `0002` applied.
-3. [ ] Conferbot Starter upgraded; production webhook registered to `https://www.kinexisdigital.com/api/integrations/conferbot/webhook` (or apex→www equivalent).
-4. [ ] Secrets set on production Worker (never committed): `CONFERBOT_WEBHOOK_SECRET`, optional expected bot id.
-5. [ ] Build vars: `NEXT_PUBLIC_CONFERBOT_ENABLED` only when widget should go live; bot id public.
-6. [ ] Runtime vars: `CONFERBOT_INTEGRATION_ENABLED=1` only after webhook secret + DB ready; `CONFERBOT_NOTIFY_ENABLED=1` only when lead email is wanted.
+## Release checklist (owner)
+
+1. [x] Stack #7–#16 merged to `main` (flags off; LEAD_DB placeholders removed).
+2. [ ] Owner PC: `git pull` on `main`, then `npm run deploy`. Note new Worker version; keep prior (`87e26f40-…` / `a610e135-…`) for rollback.
+3. [ ] Post-deploy smoke: home 200, unsigned PayPal webhook 400, Conferbot unsigned **503** while integration flag/secret off, no `conferbot-js` on the homepage, no unexpected customer email.
+4. [ ] Later (not this ship): create LEAD_DB with real ids, bind, apply `migrations-lead`.
+5. [ ] Later: Conferbot Starter + webhook secret + register URL (preview first).
+6. [ ] Separate written approval before any Conferbot/lead flag flip.
 7. [ ] Scoring weights marked OWNER_DECISION_REQUIRED reviewed.
-8. [ ] Rollback Worker version noted (`5c5690e8-…` was Phase 1 rollback target; refresh after each deploy).
-9. [ ] Post-deploy smoke: home 200, unsigned PayPal webhook 400, Conferbot unsigned 401/503 as configured, no unexpected customer email.
 
 ## Verification this phase
 
