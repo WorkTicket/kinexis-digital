@@ -19,12 +19,24 @@ Pass non-PII context only, for example:
 
 Do not put email, phone, IP, or pricing overrides in `customData`. Pricing answers must match `docs/CONTENT.md` and `src/i18n/prices.ts` (USD on `/` and `/es`; same numerals in euros on `/es-es`). Never invent FX rates or EUR-only packages.
 
+## Widget logo + profile photo
+
+Appearance (launcher icon + in-chat avatar) is controlled in the **Conferbot dashboard**, not by the site embed. Repo hosts the brand files for upload:
+
+| Use in Conferbot | File in repo | After production deploy |
+|---|---|---|
+| Profile / chat avatar (robot thumbs-up) | `public/assets/conferbot/profile.jpg` (also `.webp`) | `https://www.kinexisdigital.com/assets/conferbot/profile.jpg` |
+| Logo / launcher bubble (K mark) | `public/assets/conferbot/logo.jpg` (also `.webp`) | `https://www.kinexisdigital.com/assets/conferbot/logo.jpg` |
+
+**Owner action (required for the live widget to show these):** Conferbot → bot `6afa0edabbad567d637ee189` → **Publish → Widget Settings** (or Customize) → upload the profile photo and logo / bubble icon. Changes apply to the embedded widget without a site redeploy. Prefer uploading the local JPG/PNG from this repo if the dashboard rejects remote URLs.
+
 ## Owner steps (not done by the agent)
 
-1. Confirm flow variables in Conferbot for structured lead fields (name, email, phone, business, consent).
-2. Upgrade to Starter only when ready for webhooks (Phase 8+).
-3. Register webhook URL after secrets and migration exist (see production-hardening Phase 5/8/9).
-4. Keep `NEXT_PUBLIC_CONFERBOT_ENABLED` and `CONFERBOT_INTEGRATION_ENABLED` off until release approval.
+1. Upload widget logo + profile photo (see above).
+2. Confirm flow variables in Conferbot for structured lead fields (name, email, phone, business, consent).
+3. Upgrade to Starter only when ready for webhooks (Phase 8+).
+4. Register webhook URL after secrets and migration exist (see production-hardening Phase 5/8/9).
+5. Widget public flag is already on in production; keep `CONFERBOT_INTEGRATION_ENABLED` / `CONFERBOT_NOTIFY_ENABLED` off until Starter + approval.
 
 ## Privacy
 
