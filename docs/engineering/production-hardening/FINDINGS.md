@@ -30,29 +30,10 @@ Strict PayPal order and capture checks, stable per-invoice PayPal request ids, f
 3. Moderation imports `next/cache`. The shared `bundle-server.mjs` stub now no-ops `revalidatePath` / `revalidateTag` so Node harnesses can load the real handler.
 4. GET on `/api/reviews/moderate` remains confirm-only (mail scanners must not mutate). Tests assert pending state is unchanged after GET and that approve is one-shot.
 
-## Phase 3 — CI and preview email
-
-1. Preview `CONTACT_TO` previously mirrored production inboxes. Preview now sets empty `CONTACT_TO` / `CONTACT_PREVIEW_TO` and `NEXT_PUBLIC_IS_PREVIEW=1`. Runtime uses only `CONTACT_PREVIEW_TO` on preview; empty fail-closes.
-2. GitHub Actions `validate` did not run invoice-security. It now does (mocked PayPal only).
-3. Conferbot env placeholders are documented in `.env.example` but remain disabled.
-
-## Phase 4 — Spanish / commercial
-
-1. Spanish pricing comparison showed Website text-back as `—` while EN matrix is `Add-on $97/mo`. Aligned Website cell to Extra `$97` / `97 €`.
-2. Spanish `/upgrades` hardcoded `$99` / `$39` / `$97` even on `es-ES`. Switched to `p(..., currency)`.
-3. `check:commercial` locks catalog amounts, TEXTBACK_MATRIX, and `PRICES` usd/eur numerals.
-4. Owner policy ambiguity retained: `content.ts` UPGRADES / text-back footnote still mention `$1/mo` in Website/Own It addon prose; CONTENT + matrix use `$97` addon and `$1` only for LS/Plus. Not rewritten.
-
-## Phase 5 — Conferbot security backend
-
-1. Webhook at `/api/integrations/conferbot/webhook` verifies bare hex HMAC (Web Crypto), redacts visitor IP/geo/ISP/UA, persists via `LEAD_DB` with derived `provider_event_key` idempotency, then MVP lead sync/outbox. Integration and notify flags default off.
-2. `LEAD_DB` wrangler ids are placeholders (`…00c1` / `…00c2`). Migration `0002` is for LEAD_DB only; owner applies remotely.
-3. React widget not in this PR. CSP allowlists `cdn.conferbot.com` / `wdt.conferbot.com` ahead of widget enable.
-4. Scoring weights for budget / service fit / verified business remain `OWNER_DECISION_REQUIRED` (0 points).
-
 ## Phase 0 risks retained
 
-- Conferbot public widget still disabled; fold-in map + `docs/CONFERBOT-BOT-SETUP.md` + `docs/CONFERBOT-INTEGRATION.md`.
-- Preview `send_email.allowed_destination_addresses` still lists production addresses so an owner-set sink that reuses one of those addresses can deliver; code will not select production `CONTACT_TO` on preview.
+- Preview `CONTACT_TO` still lists production recipients. Not changed in Phase 2 (Phase 3 scope).
+- Text-back, second-number, and Spain EUR pricing were not changed.
+- Conferbot is not in the application yet; fold-in map is in `phases/phase-chatbot-fold-in.md`.
 
 No production deployment, production data migration, real payment, or customer notification was performed.

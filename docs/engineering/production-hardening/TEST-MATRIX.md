@@ -1,26 +1,5 @@
 # Test matrix
 
-## Phase 4 pass (2026-11-15)
-
-| Check | Result |
-|---|---|
-| `npm run check:commercial` | PASS |
-| `npm run check:spanish-mirror` | PASS (73 paths) |
-| `npm run check` | PASS |
-| `npm run test:e2e` | NOT RUN |
-| `npm run build:worker` | NOT RUN |
-
-## Phase 3 pass (2026-11-15)
-
-| Check | Result |
-|---|---|
-| `npm run check:contact` | PASS including preview isolation (no CONTACT_PREVIEW_TO → 503; sink only → preview inbox) |
-| `npm run check` | PASS |
-| `npm run check:invoice-security` | PASS (PayPal mocked; sandbox NOT RUN) |
-| `npm run test:e2e` | NOT RUN |
-| `npm run build:worker` | NOT RUN |
-| Preview Worker deploy with new vars | NOT RUN (owner) |
-
 ## Phase 2 pass (2026-11-15)
 
 Local runtime: Node v22.23.4, npm 10.9.9 (engine warning: repo asks npm >= 11).
