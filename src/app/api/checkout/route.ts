@@ -1,6 +1,6 @@
 import { clientIp } from "@/lib/client-ip";
 import { rejectClientAmount } from "@/lib/invoice-core";
-import { loadPayableInvoice, putInvoice } from "@/lib/invoices";
+import { associateInvoiceOrder, loadPayableInvoice } from "@/lib/invoices";
 import { createInvoiceOrder } from "@/lib/paypal-order";
 import { isRateLimited } from "@/lib/rate-limit";
 import { logApiError } from "@/lib/api-log";
@@ -52,7 +52,6 @@ export async function POST(request: Request) {
     email?: unknown;
     company?: unknown;
     _hp?: unknown;
-    idempotencyKey?: unknown;
   };
   try {
     body = await request.json();
@@ -71,10 +70,16 @@ export async function POST(request: Request) {
     return fail("Open your invoice payment link to pay. Amounts cannot be entered manually.", 400);
   }
 
-  const gated = await loadPayableInvoice(
-    typeof body.invoiceId === "string" ? body.invoiceId : null,
-    typeof body.token === "string" ? body.token : null,
-  );
+  let gated: Awaited<ReturnType<typeof loadPayableInvoice>>;
+  try {
+    gated = await loadPayableInvoice(
+      typeof body.invoiceId === "string" ? body.invoiceId : null,
+      typeof body.token === "string" ? body.token : null,
+    );
+  } catch (error) {
+    logApiError("checkout", error);
+    return fail(gateMessage("storage"), 503);
+  }
   if ("error" in gated) return fail(gateMessage(gated.error), gated.error === "storage" ? 503 : 400);
 
   const { invoice } = gated;
@@ -84,10 +89,6 @@ export async function POST(request: Request) {
   if (name.length < 2) return fail("Add your name.", 400);
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return fail("Add a valid email.", 400);
 
-  const requestId = typeof body.idempotencyKey === "string" && /^[0-9a-f-]{16,80}$/i.test(body.idempotencyKey)
-    ? body.idempotencyKey
-    : crypto.randomUUID();
-
   try {
     const order = await createInvoiceOrder({
       amount: invoice.amount,
@@ -95,7 +96,9 @@ export async function POST(request: Request) {
       name,
       email,
       company,
-      requestId,
+      // Stable per invoice: a retry after a lost response cannot create an
+      // unrelated second PayPal order for the same invoice.
+      requestId: invoice.id,
       invoiceId: invoice.id,
     });
     if ("unconfigured" in order) {
@@ -103,11 +106,12 @@ export async function POST(request: Request) {
     }
     if ("error" in order) return fail(order.error, 502);
 
-    // Store order linkage without logging PII or secrets.
-    await putInvoice({
-      ...invoice,
-      paypalOrderId: order.orderId,
-    });
+    // Link the PayPal order only if this invoice is still unpaid and does not
+    // already point at a different order. The ledger update is conditional.
+    const linked = await associateInvoiceOrder(invoice.id, order.orderId);
+    if (!linked.ok) {
+      return fail(`Online invoice checkout isn’t available right now. Call ${SITE.phone} or email ${SITE.email}.`, 503);
+    }
 
     return privateJson({ url: order.url });
   } catch (error) {

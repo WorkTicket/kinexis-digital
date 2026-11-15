@@ -2,95 +2,143 @@ import "server-only";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import {
   evaluateStoredInvoice,
+  INVOICE_DEFAULT_EXPIRY_DAYS,
   isInvoiceId,
+  MS_PER_DAY,
   signInvoiceToken,
   tokensMatch,
   type InvoiceGateError,
+  type InvoiceTokenVerifyOptions,
   type StoredInvoice,
 } from "@/lib/invoice-core";
+import {
+  associatePayPalOrder,
+  createInvoiceRecord,
+  getInvoiceRecord,
+  markInvoicePaid,
+  recordUnappliedPaymentEvent,
+  type InvoiceDatabase,
+  type LedgerWrite,
+  type PaidTransition,
+  type UnappliedEvent,
+} from "@/lib/invoice-ledger";
 
 export type { InvoiceGateError, InvoiceStatus, StoredInvoice } from "@/lib/invoice-core";
+export type { InvoiceDatabase, LedgerWrite } from "@/lib/invoice-ledger";
 
-type KvEnv = CloudflareEnv & { REVIEWS?: KVNamespace };
+type BoundStatement = object;
 
-const PREFIX = "invoice:v1:";
-const memoryStore = new Map<string, string>();
+type D1Like = {
+  prepare(query: string): {
+    bind(...values: Array<string | number | null>): BoundStatement;
+  };
+  batch(statements: BoundStatement[]): Promise<Array<{
+    results?: Array<Record<string, unknown>>;
+    meta?: { changes?: number };
+  }>>;
+};
+
+let testDatabase: InvoiceDatabase | null = null;
 
 function invoiceTestMemory() {
   return process.env.INVOICE_TEST_MEMORY === "1";
 }
 
-function kv(): KVNamespace | null {
-  if (invoiceTestMemory()) return null;
+/**
+ * Route tests inject a database that speaks the same batch transaction API as D1.
+ * The flag is required so a production isolate cannot be pointed at the test double.
+ */
+export function setInvoiceTestDatabase(db: InvoiceDatabase | null) {
+  if (!invoiceTestMemory()) {
+    throw new Error("Invoice test database requires INVOICE_TEST_MEMORY=1");
+  }
+  testDatabase = db;
+}
+
+function cloudflareDatabase(): InvoiceDatabase | null {
   try {
-    const env = getCloudflareContext().env as KvEnv;
-    return env.REVIEWS ?? null;
+    const env: unknown = getCloudflareContext().env;
+    if (!env || typeof env !== "object" || !("INVOICE_DB" in env)) return null;
+    const binding = (env as { INVOICE_DB?: unknown }).INVOICE_DB;
+    if (!binding || typeof binding !== "object" || !("prepare" in binding) || !("batch" in binding)) return null;
+    const d1 = binding as D1Like;
+    return {
+      async batch(statements) {
+        const bound = statements.map((statement) => d1.prepare(statement.sql).bind(...statement.params));
+        const results = await d1.batch(bound);
+        return results.map((result) => ({
+          changes: result.meta?.changes ?? 0,
+          rows: result.results ?? [],
+        }));
+      },
+    };
   } catch {
     return null;
   }
 }
 
-function key(id: string) {
-  return `${PREFIX}${id}`;
+function database(): InvoiceDatabase | null {
+  if (invoiceTestMemory()) return testDatabase;
+  return cloudflareDatabase();
 }
 
-function linkSecret() {
-  return process.env.INVOICE_LINK_SECRET || process.env.PAYPAL_CLIENT_SECRET || "";
+function linkSecrets() {
+  return {
+    current: process.env.INVOICE_LINK_SECRET || "",
+    previous: process.env.INVOICE_LINK_SECRET_PREVIOUS || "",
+  };
 }
 
-export function resetInvoiceTestStore() {
-  memoryStore.clear();
+/** Missing or blank means the previous key stays valid until it is removed. An unparseable value closes it. */
+function previousValidUntilMs(): number | null {
+  const raw = (process.env.INVOICE_LINK_SECRET_PREVIOUS_UNTIL || "").trim();
+  if (!raw) return null;
+  const parsed = Date.parse(raw);
+  return Number.isFinite(parsed) ? parsed : Number.NaN;
+}
+
+function verifyOptions(nowMs = Date.now()): InvoiceTokenVerifyOptions {
+  return { nowMs, previousValidUntilMs: previousValidUntilMs() };
 }
 
 export async function invoiceToken(id: string): Promise<string | null> {
-  return signInvoiceToken(id, linkSecret());
+  return signInvoiceToken(id, linkSecrets().current);
 }
 
 export async function verifyInvoiceToken(id: string, token: string): Promise<boolean> {
-  return tokensMatch(id, token, linkSecret());
-}
-
-function isInvoice(value: unknown): value is StoredInvoice {
-  if (!value || typeof value !== "object") return false;
-  const inv = value as StoredInvoice;
-  return (
-    typeof inv.id === "string" &&
-    typeof inv.amount === "string" &&
-    inv.currency === "USD" &&
-    typeof inv.description === "string" &&
-    (inv.status === "unpaid" || inv.status === "paid" || inv.status === "void") &&
-    typeof inv.expiresAt === "string" &&
-    typeof inv.createdAt === "string"
-  );
+  const secrets = linkSecrets();
+  return tokensMatch(id, token, secrets.current, secrets.previous, verifyOptions());
 }
 
 export async function getInvoice(id: string): Promise<StoredInvoice | null> {
   if (!isInvoiceId(id)) return null;
-  if (invoiceTestMemory()) {
-    const raw = memoryStore.get(key(id));
-    if (!raw) return null;
-    try {
-      const parsed = JSON.parse(raw) as unknown;
-      return isInvoice(parsed) ? parsed : null;
-    } catch {
-      return null;
-    }
-  }
-  const store = kv();
-  if (!store) return null;
-  const raw = await store.get(key(id), "json");
-  return isInvoice(raw) ? raw : null;
+  const db = database();
+  if (!db) return null;
+  return getInvoiceRecord(db, id);
 }
 
-export async function putInvoice(invoice: StoredInvoice): Promise<boolean> {
-  if (invoiceTestMemory()) {
-    memoryStore.set(key(invoice.id), JSON.stringify(invoice));
-    return true;
-  }
-  const store = kv();
-  if (!store) return false;
-  await store.put(key(invoice.id), JSON.stringify(invoice));
-  return true;
+export async function createStoredInvoice(invoice: StoredInvoice): Promise<LedgerWrite> {
+  const db = database();
+  if (!db) return { ok: false, reason: "storage" };
+  return createInvoiceRecord(db, invoice);
+}
+
+export async function associateInvoiceOrder(invoiceId: string, orderId: string): Promise<LedgerWrite> {
+  const db = database();
+  if (!db) return { ok: false, reason: "storage" };
+  return associatePayPalOrder(db, invoiceId, orderId, new Date().toISOString());
+}
+
+export async function recordInvoicePayment(input: PaidTransition): Promise<LedgerWrite> {
+  const db = database();
+  if (!db) return { ok: false, reason: "storage" };
+  return markInvoicePaid(db, input);
+}
+
+export async function recordUnappliedInvoiceEvent(input: UnappliedEvent): Promise<LedgerWrite> {
+  const db = database();
+  if (!db) return { ok: false, reason: "storage" };
+  return recordUnappliedPaymentEvent(db, input);
 }
 
 export async function loadPayableInvoice(
@@ -99,8 +147,8 @@ export async function loadPayableInvoice(
 ): Promise<{ invoice: StoredInvoice } | { error: InvoiceGateError }> {
   if (!id || !token) return { error: "missing" };
   if (!(await verifyInvoiceToken(id, token))) return { error: "token" };
+  const storageAvailable = database() !== null;
   const invoice = await getInvoice(id);
-  const storageAvailable = invoiceTestMemory() || Boolean(kv());
   return evaluateStoredInvoice(invoice, Date.now(), storageAvailable);
 }
 
@@ -108,6 +156,6 @@ export function newInvoiceId() {
   return crypto.randomUUID();
 }
 
-export function defaultExpiryDays(days = 14) {
-  return new Date(Date.now() + days * 86_400_000).toISOString();
+export function defaultExpiryDays(days = INVOICE_DEFAULT_EXPIRY_DAYS) {
+  return new Date(Date.now() + days * MS_PER_DAY).toISOString();
 }

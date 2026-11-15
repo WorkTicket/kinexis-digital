@@ -116,29 +116,44 @@ test.describe("PayPal checkout wiring", () => {
     await expect(agree).toBeVisible();
     await agree.check();
 
-    // SDK iframe / buttons host appears after agree — never click Pay.
-    await expect.poll(async () => page.evaluate(() => {
-      const host = document.querySelector(".pay-paypal");
-      if (!host) return "no-host";
-      const iframe = host.querySelector("iframe");
-      if (iframe) return "iframe";
-      const script = document.querySelector("#kinexis-paypal-subscriptions");
-      if (script) return "script";
-      return host.childElementCount > 0 ? "children" : "empty";
-    }), { timeout: 25_000 }).not.toBe("no-host");
-
-    await expect.poll(async () => page.evaluate(() => {
+    const readState = () => page.evaluate(() => {
+      const script = document.querySelector("#kinexis-paypal-subscriptions") as HTMLScriptElement | null;
+      let clientId = "";
+      if (script?.src) {
+        try {
+          clientId = new URL(script.src).searchParams.get("client-id") ?? "";
+        } catch {
+          clientId = "";
+        }
+      }
+      if (document.querySelector(".pay-alert")) return { state: "failed", clientId };
       const host = document.querySelector(".pay-paypal");
       const iframe = host?.querySelector("iframe");
-      const script = document.querySelector("#kinexis-paypal-subscriptions");
-      const failed = document.querySelector(".pay-alert");
-      if (failed) return "failed";
-      if (iframe || (host && host.childElementCount > 0)) return "ready";
-      if (script) return "loading";
-      return "pending";
-    }), { timeout: 35_000 }).toMatch(/ready|loading/);
+      if (iframe || (host && host.childElementCount > 0)) return { state: "ready", clientId };
+      if (script) return { state: "loading", clientId };
+      return { state: "pending", clientId };
+    });
 
-    // Explicitly do not approve a subscription.
-    await expect(page.locator(".pay-paypal")).toBeVisible();
+    let settled = await readState();
+    try {
+      await expect.poll(async () => {
+        settled = await readState();
+        return settled.state === "failed" || settled.state === "ready" ? settled.state : "pending";
+      }, { timeout: 35_000 }).toMatch(/failed|ready/);
+      settled = await readState();
+    } catch (error) {
+      settled = await readState();
+      if (settled.state !== "loading") throw error;
+    }
+
+    // No public client id: fail closed. A configured client id must reach loading or ready.
+    // This does not approve or capture a payment.
+    if (settled.state === "failed") {
+      expect(settled.clientId, "a configured PayPal client id must not stop at the fail-closed alert").toBe("");
+      await expect(page.locator(".pay-alert")).toBeVisible();
+    } else {
+      expect(settled.clientId, "SDK load requires the public PayPal client id").not.toBe("");
+      expect(settled.state).toMatch(/ready|loading/);
+    }
   });
 });

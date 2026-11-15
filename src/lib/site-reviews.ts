@@ -22,9 +22,16 @@ const PENDING_KEY = "site-reviews:pending:v1";
 const MAX_STORED = 100;
 const MAX_PENDING = 50;
 
-type ReviewsEnv = CloudflareEnv & { REVIEWS?: KVNamespace };
+/** Structural KV surface. Avoids the generated `KVNamespace` global, which CI does not have. */
+type ReviewsKv = {
+  get(key: string): Promise<string | null>;
+  get(key: string, type: "json"): Promise<unknown>;
+  put(key: string, value: string): Promise<void>;
+};
 
-function reviewsKv(): KVNamespace | null {
+type ReviewsEnv = CloudflareEnv & { REVIEWS?: ReviewsKv };
+
+function reviewsKv(): ReviewsKv | null {
   try {
     const env = getCloudflareContext().env as ReviewsEnv;
     return env.REVIEWS ?? null;
