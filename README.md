@@ -71,9 +71,11 @@ GitHub Actions validates pull requests and `main` (`check` + `build:worker`)
 but never deploys and needs no Cloudflare credentials.
 
 Add runtime secrets with `npx wrangler secret put <NAME>`. Build-time
-`NEXT_PUBLIC_*` values must be present in the local env (or `.env.local`) when
-you run `npm run deploy`, because Next inlines them at build time. Local Wrangler
-values belong in `.dev.vars`; never commit `.env.local` or `.dev.vars`.
+`NEXT_PUBLIC_*` values must be present when you run `npm run deploy`, because
+Next inlines them at build time. Public production-only flags (for example the
+Conferbot widget) belong in committed `.env.production`. Other build-time values
+belong in `.env.local` for local deploys. Local Wrangler values belong in
+`.dev.vars`; never commit `.env.local` or `.dev.vars`.
 
 Optional later: Cloudflare Workers Builds can be connected in the dashboard
 (build `npm run check && npm run build:worker`, deploy

@@ -32,6 +32,7 @@
 - **Merging to `main` does not deploy.** Workers Builds is not connected for this Worker; production ships are manual via `npm run deploy` (`scripts/deploy-production.mjs`) from a logged-in wrangler session. Preview: `npm run deploy:preview`.
 - Secrets via `npx wrangler secret put <NAME>`. Local: `.env.local` (Next) or `.dev.vars` (Wrangler)
 - `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_META_PIXEL_ID` must be in the local env / `.env.local` when running `npm run deploy` (Next inlines `NEXT_PUBLIC_*` at build time). A runtime Worker secret alone leaves the tags empty.
+- Conferbot widget public flags live in committed `.env.production` (`NEXT_PUBLIC_CONFERBOT_ENABLED=1`, public bot id). CI forces the flag to `0` so checks/e2e stay off-by-default. Webhook/notify runtime flags stay off until Starter.
 - GitHub Actions runs checks and a Worker build for pull requests and `main`; it never deploys.
 
 ## Verification advice

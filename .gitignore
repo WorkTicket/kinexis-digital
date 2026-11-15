@@ -18,9 +18,10 @@ cloudflare-env.d.ts
 /playwright-report/
 /blob-report/
 
-# local env (only the documented template is safe to commit)
+# local env (only the documented template and public production build vars are safe to commit)
 .env*
 !.env.example
+!.env.production
 .dev.vars
 
 # local scratch

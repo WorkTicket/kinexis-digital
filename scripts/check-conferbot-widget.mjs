@@ -1,13 +1,19 @@
 /**
- * Widget flag and mount contract checks (no browser). Ensures the public
- * widget stays off by default and the DocumentShell mount stays present.
+ * Widget flag and mount contract checks (no browser). Ensures CI / `next dev`
+ * keep the public widget off by default while DocumentShell still mounts the
+ * component. Production ships via committed `.env.production` (and CI overrides
+ * that flag to 0 so this assert and e2e stay meaningful).
  */
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const enabled = process.env.NEXT_PUBLIC_CONFERBOT_ENABLED;
-assert.notEqual(enabled, "1", "CI/local default must not force the public widget on");
+assert.notEqual(
+  enabled,
+  "1",
+  "CI/local/test must not force NEXT_PUBLIC_CONFERBOT_ENABLED=1 (production uses .env.production; CI workflow sets 0)",
+);
 
 const shell = readFileSync(resolve("src/components/DocumentShell.tsx"), "utf8");
 assert.match(shell, /ConferbotWidget/);
