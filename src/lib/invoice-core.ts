@@ -12,6 +12,7 @@ export type StoredInvoice = {
   createdAt: string;
   company?: string;
   paypalOrderId?: string;
+  paypalCaptureId?: string;
   paidAt?: string;
 };
 
@@ -29,11 +30,11 @@ export function isInvoiceId(id: string) {
 }
 
 export function isInvoiceTokenShape(token: string) {
-  return /^[0-9a-f]{32,128}$/i.test(token);
+  return /^(?:v2\.)?[0-9a-f]{64}$/i.test(token);
 }
 
-export async function signInvoiceToken(id: string, secret: string): Promise<string | null> {
-  if (!secret || secret.length < 16) return null;
+async function invoiceDigest(id: string, secret: string, minimumKeyBytes: number): Promise<string | null> {
+  if (!secret || new TextEncoder().encode(secret).byteLength < minimumKeyBytes || !isInvoiceId(id)) return null;
   const keyBytes = await crypto.subtle.importKey(
     "raw",
     new TextEncoder().encode(secret),
@@ -45,13 +46,37 @@ export async function signInvoiceToken(id: string, secret: string): Promise<stri
   return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-export async function tokensMatch(id: string, token: string, secret: string): Promise<boolean> {
+export async function signInvoiceToken(id: string, secret: string): Promise<string | null> {
+  const digest = await invoiceDigest(id, secret, 32);
+  return digest ? `v2.${digest}` : null;
+}
+
+function constantTimeHexMatch(expected: string, supplied: string): boolean {
+  const normalized = supplied.toLowerCase();
+  if (expected.length !== normalized.length) return false;
+  let difference = 0;
+  for (let index = 0; index < expected.length; index++) {
+    difference |= expected.charCodeAt(index) ^ normalized.charCodeAt(index);
+  }
+  return difference === 0;
+}
+
+export async function tokensMatch(
+  id: string,
+  token: string,
+  currentSecret: string,
+  previousSecret?: string,
+): Promise<boolean> {
   if (!isInvoiceTokenShape(token)) return false;
-  const expected = await signInvoiceToken(id, secret);
-  if (!expected || expected.length !== token.length) return false;
-  let ok = 0;
-  for (let i = 0; i < expected.length; i++) ok |= expected.charCodeAt(i) ^ token.charCodeAt(i);
-  return ok === 0;
+  const versioned = token.toLowerCase().startsWith("v2.");
+  const suppliedDigest = versioned ? token.slice(3) : token;
+  const candidates = [currentSecret, previousSecret ?? ""];
+  let matched = false;
+  for (const secret of candidates) {
+    const expectedDigest = await invoiceDigest(id, secret, versioned ? 32 : 16);
+    if (expectedDigest) matched = constantTimeHexMatch(expectedDigest, suppliedDigest) || matched;
+  }
+  return matched;
 }
 
 export function evaluateStoredInvoice(
@@ -62,7 +87,8 @@ export function evaluateStoredInvoice(
   if (!invoice) return { error: storageAvailable ? "not_found" : "storage" };
   if (invoice.status === "paid") return { error: "paid" };
   if (invoice.status === "void") return { error: "void" };
-  if (Date.parse(invoice.expiresAt) <= nowMs) return { error: "expired" };
+  const expiresAt = Date.parse(invoice.expiresAt);
+  if (!Number.isFinite(expiresAt) || expiresAt <= nowMs) return { error: "expired" };
   if (invoice.currency !== "USD") return { error: "void" };
   return { invoice };
 }

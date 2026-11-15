@@ -1,8 +1,8 @@
 /**
  * PayPal invoice/order verification.
  *
- * Without PAYPAL_CLIENT_ID + PAYPAL_CLIENT_SECRET:
- *   - runs local capture / duplicate-reject logic mirrors only
+ * Production response validation is exercised by check-payment-integrity.mjs.
+ * This script only validates the external sandbox provider flow.
  *
  * With credentials (prefer PAYPAL_API_BASE=https://api-m.sandbox.paypal.com):
  *   - OAuth token
@@ -42,30 +42,6 @@ function loadEnvFiles() {
 
 loadEnvFiles();
 
-/** Mirror of captureInvoiceOrder duplicate handling. */
-function interpretCapturePayload(data) {
-  if (data.status === "COMPLETED") return "paid";
-  if (data.details?.some((detail) => detail.issue === "ORDER_ALREADY_CAPTURED")) return "paid";
-  return "failed";
-}
-
-assert.equal(interpretCapturePayload({ status: "COMPLETED" }), "paid");
-assert.equal(
-  interpretCapturePayload({ details: [{ issue: "ORDER_ALREADY_CAPTURED" }] }),
-  "paid",
-  "duplicate capture must count as paid (idempotent)",
-);
-assert.equal(interpretCapturePayload({ status: "APPROVED" }), "failed");
-assert.equal(interpretCapturePayload({ status: "CREATED" }), "failed");
-console.log("OK  local capture / duplicate-reject logic");
-
-function isPayPalOrderId(value) {
-  return /^[A-Z0-9]{10,20}$/.test(value);
-}
-assert.equal(isPayPalOrderId("5O190127TN364715T"), true);
-assert.equal(isPayPalOrderId("bad"), false);
-console.log("OK  order id shape checks");
-
 function isSubscriptionId(value) {
   return /^I-[A-Z0-9]{6,}$/.test(value);
 }
@@ -80,7 +56,7 @@ const isSandbox = apiBase.includes("sandbox.paypal.com");
 
 if (!clientId || !secret) {
   console.log("SKIP live PayPal API — set PAYPAL_CLIENT_ID + PAYPAL_CLIENT_SECRET (sandbox preferred).");
-  console.log("    Local logic checks passed. Wire sandbox secrets to exercise create/capture.");
+  console.log("    Live sandbox NOT RUN. Configure sandbox credentials to exercise provider create/capture.");
   process.exit(0);
 }
 
@@ -145,7 +121,7 @@ if (!createRes.ok || !order.id) {
   console.error("FAIL create order", createRes.status, order);
   process.exit(1);
 }
-assert.ok(isPayPalOrderId(String(order.id).toUpperCase()) || typeof order.id === "string");
+assert.equal(typeof order.id, "string");
 console.log(`OK  sandbox order created (${order.id}, status=${order.status})`);
 
 const getRes = await fetch(`${apiBase}/v2/checkout/orders/${order.id}`, {
@@ -167,8 +143,7 @@ const captureRes = await fetch(`${apiBase}/v2/checkout/orders/${order.id}/captur
   signal: AbortSignal.timeout(15_000),
 });
 const captured = await captureRes.json().catch(() => ({}));
-const interpreted = interpretCapturePayload(captured);
-assert.equal(interpreted, "failed", "capture of CREATED order must fail (no fake paid)");
+  assert.notEqual(captured.status, "COMPLETED", "capture of CREATED order must fail (no fake paid)");
 console.log("OK  capture of non-APPROVED order rejected (no charge)");
 
 /** Positive path: capture a buyer-approved sandbox order, or create+capture via sandbox test card. */
@@ -184,8 +159,7 @@ if (preApproved) {
     signal: AbortSignal.timeout(20_000),
   });
   const approvedBody = await approvedCapture.json().catch(() => ({}));
-  const approvedStatus = interpretCapturePayload(approvedBody);
-  assert.equal(approvedStatus, "paid", `approved order capture must complete (got ${approvedCapture.status})`);
+  assert.equal(approvedBody.status, "COMPLETED", `approved order capture must complete (got ${approvedCapture.status})`);
   console.log(`OK  positive capture of APPROVED order ${preApproved} → paid`);
 } else {
   const cardCreate = await fetch(`${apiBase}/v2/checkout/orders`, {
@@ -243,13 +217,13 @@ if (preApproved) {
     });
     cardCaptureBody = await cardCapture.json().catch(() => ({}));
     cardStatus = cardCaptureBody.status || cardStatus;
-    if (!cardCapture.ok && interpretCapturePayload(cardCaptureBody) !== "paid") {
+    if (!cardCapture.ok && cardStatus !== "COMPLETED") {
       console.error("FAIL sandbox card capture", cardCapture.status, cardCaptureBody);
       process.exit(1);
     }
   }
 
-  const paid = interpretCapturePayload(cardCaptureBody) === "paid" || cardStatus === "COMPLETED";
+  const paid = cardCaptureBody.status === "COMPLETED" || cardStatus === "COMPLETED";
   assert.equal(paid, true, "sandbox card path must produce a completed capture");
   console.log(`OK  positive sandbox capture (${cardOrder.id}, status=${cardStatus})`);
 }

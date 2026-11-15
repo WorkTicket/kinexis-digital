@@ -69,7 +69,7 @@ export async function POST(request: Request) {
   const id = newInvoiceId();
   const token = await invoiceToken(id);
   if (!token) {
-    return privateJson({ error: "INVOICE_LINK_SECRET (or PAYPAL_CLIENT_SECRET) is required to sign links." }, { status: 503 });
+    return privateJson({ error: "INVOICE_LINK_SECRET with at least 32 bytes is required to sign links." }, { status: 503 });
   }
 
   const invoice: StoredInvoice = {

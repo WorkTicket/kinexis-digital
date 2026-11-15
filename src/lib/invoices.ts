@@ -8,6 +8,7 @@ import {
   type InvoiceGateError,
   type StoredInvoice,
 } from "@/lib/invoice-core";
+import { usdMinorUnits } from "@/lib/payment-verification";
 
 export type { InvoiceGateError, InvoiceStatus, StoredInvoice } from "@/lib/invoice-core";
 
@@ -34,8 +35,11 @@ function key(id: string) {
   return `${PREFIX}${id}`;
 }
 
-function linkSecret() {
-  return process.env.INVOICE_LINK_SECRET || process.env.PAYPAL_CLIENT_SECRET || "";
+function linkSecrets() {
+  return {
+    current: process.env.INVOICE_LINK_SECRET || "",
+    previous: process.env.INVOICE_LINK_SECRET_PREVIOUS || "",
+  };
 }
 
 export function resetInvoiceTestStore() {
@@ -43,11 +47,12 @@ export function resetInvoiceTestStore() {
 }
 
 export async function invoiceToken(id: string): Promise<string | null> {
-  return signInvoiceToken(id, linkSecret());
+  return signInvoiceToken(id, linkSecrets().current);
 }
 
 export async function verifyInvoiceToken(id: string, token: string): Promise<boolean> {
-  return tokensMatch(id, token, linkSecret());
+  const secrets = linkSecrets();
+  return tokensMatch(id, token, secrets.current, secrets.previous);
 }
 
 function isInvoice(value: unknown): value is StoredInvoice {
@@ -55,12 +60,18 @@ function isInvoice(value: unknown): value is StoredInvoice {
   const inv = value as StoredInvoice;
   return (
     typeof inv.id === "string" &&
+    isInvoiceId(inv.id) &&
     typeof inv.amount === "string" &&
+    usdMinorUnits(inv.amount) !== null &&
     inv.currency === "USD" &&
     typeof inv.description === "string" &&
     (inv.status === "unpaid" || inv.status === "paid" || inv.status === "void") &&
     typeof inv.expiresAt === "string" &&
-    typeof inv.createdAt === "string"
+    typeof inv.createdAt === "string" &&
+    Number.isFinite(Date.parse(inv.createdAt)) &&
+    Number.isFinite(Date.parse(inv.expiresAt)) &&
+    (inv.paypalOrderId === undefined || (typeof inv.paypalOrderId === "string" && /^[A-Z0-9]{10,20}$/.test(inv.paypalOrderId))) &&
+    (inv.paypalCaptureId === undefined || (typeof inv.paypalCaptureId === "string" && /^[A-Z0-9]{10,20}$/.test(inv.paypalCaptureId)))
   );
 }
 
