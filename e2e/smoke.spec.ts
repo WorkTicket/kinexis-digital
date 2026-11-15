@@ -231,5 +231,21 @@ test.describe("marketing journeys", () => {
     await expect(page.locator(".case-study__shot, figure").first()).toBeVisible();
     await expect(page.getByText(/verified project details|Live site|callpreferredplumbing/i).first()).toBeVisible();
   });
+
+  test("Conferbot widget stays unloaded while public flag is off", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => {
+      document.cookie = `kinexis_consent=${encodeURIComponent("v1|a=1|d=0")}; Path=/; Max-Age=86400; SameSite=Lax`;
+      window.dispatchEvent(new Event("kinexis:consent"));
+    });
+    await page.waitForTimeout(1_200);
+    const loaded = await page.evaluate(() => ({
+      script: Boolean(document.getElementById("conferbot-js")),
+      flag: (window as unknown as { process?: unknown }).process,
+      srcHits: [...document.scripts].some((s) => (s.src || "").includes("cdn.conferbot.com")),
+    }));
+    expect(loaded.script).toBe(false);
+    expect(loaded.srcHits).toBe(false);
+  });
 });
 

@@ -1,5 +1,23 @@
 # Test matrix
 
+## Phase 6 pass (2026-11-15)
+
+| Check | Result |
+|---|---|
+| `npx playwright test e2e/smoke.spec.ts -g "Conferbot" --workers=1` | PASS (2) |
+| `npm run check` | PASS |
+| `npm run lighthouse:budget` | NOT RUN |
+| `npm run check:structured-data` | NOT RUN |
+
+## Phase 5 pass (2026-11-15)
+
+| Check | Result |
+|---|---|
+| `npm run check:conferbot` | PASS |
+| `npm run check` | PASS |
+| `npm run build:worker` | PASS (no deploy) |
+| `npm run test:e2e` full suite | NOT RUN this phase |
+
 ## Phase 4 pass (2026-11-15)
 
 | Check | Result |

@@ -1,16 +1,17 @@
 # Programme handoff
 
-- **Phase:** 4 — Spanish localization and commercial consistency
+- **Phase:** 6 — Performance, accessibility, SEO
 - **Date:** 2026-11-15
-- **Branch:** `cursor/phase4-spanish-commercial-67c1`
-- **Status:** Complete. Next: Phase 5 (CSP, Conferbot widget/webhook flags off).
+- **Branch:** `cursor/phase6-perf-a11y-seo-67c1`
+- **Status:** Complete. Next Phase 7 docs/repo quality.
 
 ## Commands
 
 | Command | Result |
 |---|---|
-| `npm run check:commercial` | PASS |
+| `npx playwright test e2e/smoke.spec.ts -g "Conferbot" --workers=1` | PASS (2) |
 | `npm run check` | PASS |
-| `npm run test:e2e` / `build:worker` | NOT RUN |
+| `npm run lighthouse:budget` | NOT RUN (no local URL budget pass requested) |
+| `npm run check:structured-data` | NOT RUN |
 
-Report: `phases/phase-04-spanish-commercial.md`. Bot doc: `docs/CONFERBOT-BOT-SETUP.md`.
+Report: `phases/phase-06-perf-a11y-seo.md`.
