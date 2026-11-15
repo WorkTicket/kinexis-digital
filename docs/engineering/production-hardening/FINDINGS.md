@@ -43,9 +43,16 @@ Strict PayPal order and capture checks, stable per-invoice PayPal request ids, f
 3. `check:commercial` locks catalog amounts, TEXTBACK_MATRIX, and `PRICES` usd/eur numerals.
 4. Owner policy ambiguity retained: `content.ts` UPGRADES / text-back footnote still mention `$1/mo` in Website/Own It addon prose; CONTENT + matrix use `$97` addon and `$1` only for LS/Plus. Not rewritten.
 
+## Phase 5 — Conferbot security backend
+
+1. Webhook at `/api/integrations/conferbot/webhook` verifies bare hex HMAC (Web Crypto), redacts visitor IP/geo/ISP/UA, persists via `LEAD_DB` with derived `provider_event_key` idempotency, then MVP lead sync/outbox. Integration and notify flags default off.
+2. `LEAD_DB` wrangler ids are placeholders (`…00c1` / `…00c2`). Migration `0002` is for LEAD_DB only; owner applies remotely.
+3. React widget not in this PR. CSP allowlists `cdn.conferbot.com` / `wdt.conferbot.com` ahead of widget enable.
+4. Scoring weights for budget / service fit / verified business remain `OWNER_DECISION_REQUIRED` (0 points).
+
 ## Phase 0 risks retained
 
-- Conferbot runtime not shipped yet; fold-in map + `docs/CONFERBOT-BOT-SETUP.md`.
+- Conferbot public widget still disabled; fold-in map + `docs/CONFERBOT-BOT-SETUP.md` + `docs/CONFERBOT-INTEGRATION.md`.
 - Preview `send_email.allowed_destination_addresses` still lists production addresses so an owner-set sink that reuses one of those addresses can deliver; code will not select production `CONTACT_TO` on preview.
 
 No production deployment, production data migration, real payment, or customer notification was performed.

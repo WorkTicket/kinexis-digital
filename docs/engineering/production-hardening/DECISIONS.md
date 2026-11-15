@@ -16,6 +16,8 @@
 | Reviews route tests use injectable Map KV | Done | Mirrors invoice `INVOICE_TEST_MEMORY`. Flag `REVIEWS_TEST_MEMORY=1` required. Production isolates never set it. |
 | Conferbot folded into Phases 2–9 | Planned | See `phases/phase-chatbot-fold-in.md`. Prefer separate `LEAD_DB` D1. Flags off by default. Starter upgrade is an owner blocker; no agent upgrade. |
 | Chatbot runtime deferred past Phase 2 | Held | Phase 2 only adds the harness pattern and the fold-in doc. Widget/webhook land in Phase 5. |
+| Conferbot backend on LEAD_DB + HMAC webhook | Done (flags off) | See `phases/phase-05-security-conferbot.md` and `docs/CONFERBOT-INTEGRATION.md`. Widget deferred. No production deploy. |
+| Conferbot webhook returns 503 when disabled | Done | Prefer retries after enable over 200-drain during build-out. Wrong bot stays 200 ignored. |
 | Preview team mail uses CONTACT_PREVIEW_TO only | Done | `isPreviewSite()` never falls back to CONTACT_TO or SITE.email. Empty preview list fail-closes contact/review notify. |
 | CI runs check:invoice-security | Done | Strengthens PR gate without claiming sandbox evidence. E2E stays out of CI for duration. |
 | Spanish Website text-back matches EN matrix | Done | Comparison cell was `—`; set to Extra text-back addon price via `p()`. Same numerals, no new pricing. |

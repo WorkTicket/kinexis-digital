@@ -31,6 +31,13 @@
       "database_name": "kinexis-invoice-ledger",
       "database_id": "077c8e46-2ea8-4997-8b6a-c06902194575",
       "migrations_dir": "migrations"
+    },
+    // Owner creates LEAD_DB databases. Placeholder ids are not provisioned.
+    // Apply migrations/0002_conferbot_lead_intel.sql to LEAD_DB only (not INVOICE_DB).
+    {
+      "binding": "LEAD_DB",
+      "database_name": "kinexis-lead-intel",
+      "database_id": "00000000-0000-0000-0000-0000000000c1"
     }
   ],
   "durable_objects": {
@@ -106,6 +113,12 @@
           "database_name": "kinexis-invoice-ledger-preview",
           "database_id": "5a474f5a-4ac9-4d4c-8309-943c3d52981b",
           "migrations_dir": "migrations"
+        },
+        // Owner creates preview LEAD_DB. Placeholder id is not provisioned.
+        {
+          "binding": "LEAD_DB",
+          "database_name": "kinexis-lead-intel-preview",
+          "database_id": "00000000-0000-0000-0000-0000000000c2"
         }
       ],
       "durable_objects": {

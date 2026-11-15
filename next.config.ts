@@ -7,7 +7,7 @@ import { PAGES } from "./src/lib/pages";
 const isDev = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://connect.facebook.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://static.cloudflareinsights.com https://www.googletagmanager.com https://connect.facebook.net https://www.paypal.com https://*.paypal.com https://www.paypalobjects.com https://*.paypalobjects.com https://widget.trustpilot.com https://cdn.conferbot.com`,
   "script-src-attr 'none'",
   "style-src 'self' 'unsafe-inline'",
   // https: already covers GTM + Meta pixels; keep googletagmanager / facebook explicit.
@@ -18,9 +18,9 @@ const contentSecurityPolicy = [
   // Meta also POSTs browser events to its Cloud Run / AWS openbridge hosts
   // (*.a.run.app, *.on.aws) — blocking those logs CSP errors in Lighthouse.
   // CSP *.host does not match the apex host itself — keep both forms.
-  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://*.a.run.app https://*.on.aws https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com`,
+  `connect-src 'self'${isDev ? " ws: wss:" : ""} https://cloudflareinsights.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://*.googletagmanager.com https://connect.facebook.net https://*.facebook.net https://www.facebook.com https://*.facebook.com https://*.a.run.app https://*.on.aws https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com https://wdt.conferbot.com wss://wdt.conferbot.com`,
   "media-src 'self' https:",
-  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com",
+  "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://www.facebook.com https://*.facebook.com https://www.paypal.com https://*.paypal.com https://widget.trustpilot.com https://*.trustpilot.com https://wdt.conferbot.com",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",

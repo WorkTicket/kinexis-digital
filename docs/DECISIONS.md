@@ -29,8 +29,13 @@
 - Coverage guard: `npm run check:spanish-mirror` asserts `MIRROR_PATHS` ⊆ static `SPANISH_STATIC_META_PATHS` + industry/blog data.
 - **Deferred (do not start in a drive-by):** split Spanish into shared locale-aware section components, unify metadata with `PAGES`, dedupe industry + home markup. Track as its own epic when EN/ES drift becomes costly.
 
+## Conferbot / lead intel
+- Separate Cloudflare D1 binding `LEAD_DB` (not `INVOICE_DB`) for chat/leads/outbox; migration `migrations/0002_conferbot_lead_intel.sql`
+- Webhook HMAC + redaction + feature flags; see `docs/CONFERBOT-INTEGRATION.md`
+- Integration and notify flags default off; no production secrets in git
+
 ## Security/headers
-- CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts`
+- CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)
 - Powered-by header disabled
 - Contact/checkout/reviews share KV rate limits (`src/lib/rate-limit.ts`); missing KV fails open for local/tests; KV errors fail closed
 - On-site reviews are queued pending staff approval; moderation email links open a **confirm page** (GET), then mutate via **POST** with CSPRNG keys (`/api/reviews/moderate`) — avoids mail-scanner prefetch publishes
