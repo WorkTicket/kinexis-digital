@@ -49,14 +49,77 @@ assert.equal(isSubscriptionId("I-1AB2CD3EF4GH"), true);
 assert.equal(isSubscriptionId("SUB-1"), false);
 console.log("OK  subscription id shape checks");
 
+function mockResponse(body, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "content-type": "application/json" },
+  });
+}
+
+async function runMockedProviderContract() {
+  const calls = [];
+  const fetcher = async (input, init = {}) => {
+    const url = String(input);
+    const method = init.method ?? "GET";
+    calls.push({ url, method });
+    if (url.endsWith("/v1/oauth2/token")) return mockResponse({ access_token: "mock-token" });
+    if (url.endsWith("/v2/checkout/orders") && method === "POST") {
+      return mockResponse({ id: "5O190127TN364715T", status: "CREATED" }, 201);
+    }
+    if (url.endsWith("/v2/checkout/orders/5O190127TN364715T") && method === "GET") {
+      return mockResponse({ id: "5O190127TN364715T", status: "CREATED" });
+    }
+    if (url.endsWith("/capture")) return mockResponse({ name: "ORDER_NOT_APPROVED" }, 422);
+    if (url.endsWith("/v1/notifications/verify-webhook-signature")) {
+      const body = JSON.parse(String(init.body));
+      assert.equal(body.webhook_id, "WHID1234567890");
+      assert.equal(body.webhook_event.id, "WH-MOCK");
+      return mockResponse({ verification_status: body.transmission_id === "good" ? "SUCCESS" : "FAILURE" });
+    }
+    throw new Error(`unexpected mock request ${method} ${url}`);
+  };
+  const tokenRes = await fetcher("https://api-m.sandbox.paypal.com/v1/oauth2/token", { method: "POST" });
+  assert.equal((await tokenRes.json()).access_token, "mock-token");
+  const created = await fetcher("https://api-m.sandbox.paypal.com/v2/checkout/orders", { method: "POST" });
+  const order = await created.json();
+  assert.equal(order.status, "CREATED");
+  const fetched = await fetcher(`https://api-m.sandbox.paypal.com/v2/checkout/orders/${order.id}`);
+  assert.equal((await fetched.json()).status, "CREATED");
+  const capture = await fetcher(`https://api-m.sandbox.paypal.com/v2/checkout/orders/${order.id}/capture`, { method: "POST" });
+  assert.equal(capture.ok, false);
+  const verified = await fetcher("https://api-m.sandbox.paypal.com/v1/notifications/verify-webhook-signature", {
+    method: "POST",
+    body: JSON.stringify({
+      webhook_id: "WHID1234567890",
+      transmission_id: "good",
+      webhook_event: { id: "WH-MOCK" },
+    }),
+  });
+  assert.equal((await verified.json()).verification_status, "SUCCESS");
+  const rejected = await fetcher("https://api-m.sandbox.paypal.com/v1/notifications/verify-webhook-signature", {
+    method: "POST",
+    body: JSON.stringify({
+      webhook_id: "WHID1234567890",
+      transmission_id: "bad",
+      webhook_event: { id: "WH-MOCK" },
+    }),
+  });
+  assert.equal((await rejected.json()).verification_status, "FAILURE");
+  assert.equal(calls.length, 6);
+  console.log("MOCKED provider contract PASS (not sandbox evidence).");
+}
+
+await runMockedProviderContract();
+
 const clientId = (process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "").trim();
 const secret = (process.env.PAYPAL_CLIENT_SECRET || "").trim();
 const apiBase = (process.env.PAYPAL_API_BASE || "https://api-m.paypal.com").replace(/\/$/, "");
 const isSandbox = apiBase.includes("sandbox.paypal.com");
 
-if (!clientId || !secret) {
-  console.log("SKIP live PayPal API — set PAYPAL_CLIENT_ID + PAYPAL_CLIENT_SECRET (sandbox preferred).");
-  console.log("    Live sandbox NOT RUN. Configure sandbox credentials to exercise provider create/capture.");
+if (!clientId || !secret || process.env.PAYPAL_SANDBOX_CONFIRM !== "1") {
+  console.log("SANDBOX EVIDENCE: NOT RUN");
+  console.log("    Set sandbox PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_API_BASE=https://api-m.sandbox.paypal.com, and PAYPAL_SANDBOX_CONFIRM=1.");
+  console.log("    Mocked results above are not sandbox evidence.");
   process.exit(0);
 }
 

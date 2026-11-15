@@ -28,7 +28,7 @@
     "check:contact": "node scripts/check-contact-delivery.mjs",
     "check:spanish-mirror": "node scripts/check-spanish-mirror.mjs",
     "smoke": "node scripts/smoke-routes.mjs",
-    "check:invoice-security": "node scripts/check-invoice-security.mjs && node scripts/check-payment-integrity.mjs && node scripts/check-paypal-order-service.mjs",
+    "check:invoice-security": "node scripts/check-invoice-security.mjs && node scripts/check-payment-integrity.mjs && node scripts/check-paypal-order-service.mjs && node scripts/check-invoice-ledger.mjs && node scripts/check-invoice-routes.mjs",
     "check:structured-data": "node scripts/check-structured-data.mjs",
     "check:paypal-sandbox": "node scripts/check-paypal-sandbox.mjs",
     "test:e2e": "playwright test",

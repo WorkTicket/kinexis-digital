@@ -1,11 +1,12 @@
 import { clientIp } from "@/lib/client-ip";
 import {
+  createStoredInvoice,
   defaultExpiryDays,
   invoiceToken,
   newInvoiceId,
-  putInvoice,
   type StoredInvoice,
 } from "@/lib/invoices";
+import { INVOICE_DEFAULT_EXPIRY_DAYS, INVOICE_MAX_EXPIRY_DAYS, INVOICE_MIN_EXPIRY_DAYS } from "@/lib/invoice-core";
 import { parseInvoice } from "@/lib/paypal-order";
 import { isRateLimited } from "@/lib/rate-limit";
 import { logApiError } from "@/lib/api-log";
@@ -62,9 +63,9 @@ export async function POST(request: Request) {
   });
   if ("error" in parsed) return privateJson({ error: parsed.error }, { status: 400 });
 
-  const days = typeof body.expiresInDays === "number" && body.expiresInDays >= 1 && body.expiresInDays <= 90
+  const days = typeof body.expiresInDays === "number" && body.expiresInDays >= INVOICE_MIN_EXPIRY_DAYS && body.expiresInDays <= INVOICE_MAX_EXPIRY_DAYS
     ? body.expiresInDays
-    : 14;
+    : INVOICE_DEFAULT_EXPIRY_DAYS;
 
   const id = newInvoiceId();
   const token = await invoiceToken(id);
@@ -83,9 +84,9 @@ export async function POST(request: Request) {
     company: parsed.company || undefined,
   };
 
-  const saved = await putInvoice(invoice);
-  if (!saved) {
-    return privateJson({ error: "KV storage unavailable." }, { status: 503 });
+  const saved = await createStoredInvoice(invoice);
+  if (!saved.ok) {
+    return privateJson({ error: "Invoice storage is unavailable." }, { status: 503 });
   }
 
   const path = `/pay?inv=${encodeURIComponent(id)}&t=${encodeURIComponent(token)}#invoice`;

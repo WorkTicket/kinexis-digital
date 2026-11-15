@@ -37,6 +37,27 @@ const legacyKey = await crypto.subtle.importKey(
 const legacySignature = await crypto.subtle.sign("HMAC", legacyKey, new TextEncoder().encode(`invoice:${id}`));
 const legacyToken = [...new Uint8Array(legacySignature)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
 assert.equal(await core.tokensMatch(id, legacyToken, secret, previousSecret), true, "legacy token verifies with previous key");
+const rotationClosesAt = Date.now() + 60_000;
+assert.equal(
+  await core.tokensMatch(id, token, "another-invoice-link-secret-32chars!", secret, { nowMs: rotationClosesAt - 1, previousValidUntilMs: rotationClosesAt }),
+  true,
+  "previous key verifies inside the rotation window",
+);
+assert.equal(
+  await core.tokensMatch(id, token, "another-invoice-link-secret-32chars!", secret, { nowMs: rotationClosesAt, previousValidUntilMs: rotationClosesAt }),
+  false,
+  "previous key is refused when the rotation window has closed",
+);
+assert.equal(
+  await core.tokensMatch(id, legacyToken, "another-invoice-link-secret-32chars!", previousSecret, { nowMs: rotationClosesAt, previousValidUntilMs: rotationClosesAt }),
+  false,
+  "legacy token is refused after the rotation window",
+);
+assert.equal(
+  await core.tokensMatch(id, legacyToken, previousSecret, secret, { previousValidUntilMs: Number.NaN }),
+  true,
+  "current key still verifies when an unparseable window closes the previous key",
+);
 
 const base = {
   id,

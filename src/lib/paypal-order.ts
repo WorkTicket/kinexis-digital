@@ -2,14 +2,12 @@ import "server-only";
 import { SITE } from "@/lib/site";
 import { PAYPAL_CLIENT_ID } from "@/lib/paypal";
 import { usdMinorUnits, paypalInvoiceId, verifyCompletedCapture, verifyOrderBeforeCapture, type InvoicePaymentExpectation } from "@/lib/payment-verification";
-import type { StoredInvoice } from "@/lib/invoice-core";
+import { INVOICE_MAX_AMOUNT_MINOR, INVOICE_MIN_AMOUNT_MINOR, isPayPalResourceId, type StoredInvoice } from "@/lib/invoice-core";
 
-const MIN_INVOICE_AMOUNT_MINOR = 100;
-const MAX_INVOICE_AMOUNT_MINOR = 7_500_000;
 const PAYPAL_REQUEST_TIMEOUT_MS = 15_000;
 const PAYPAL_API_HOSTS = ["api-m.paypal.com", "api-m.sandbox.paypal.com"] as const;
 
-type PayPalConfig = { id: string; secret: string; base: string; merchantId: string };
+export type PayPalConfig = { id: string; secret: string; base: string; merchantId: string };
 
 export type InvoiceInput = {
   amount: string;
@@ -19,7 +17,7 @@ export type InvoiceInput = {
   company?: string;
 };
 
-function config(): PayPalConfig | null {
+export function readPayPalConfig(): PayPalConfig | null {
   const secret = process.env.PAYPAL_CLIENT_SECRET;
   const id = process.env.PAYPAL_CLIENT_ID || PAYPAL_CLIENT_ID;
   const merchantId = process.env.PAYPAL_MERCHANT_ID;
@@ -44,7 +42,7 @@ function invoiceAmount(value: string): string | null {
   if (!/^\d{1,5}(\.\d{1,2})?$/.test(raw)) return null;
   const [whole, fraction = ""] = raw.split(".");
   const minor = Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
-  if (!Number.isSafeInteger(minor) || minor < MIN_INVOICE_AMOUNT_MINOR || minor > MAX_INVOICE_AMOUNT_MINOR) return null;
+  if (!Number.isSafeInteger(minor) || minor < INVOICE_MIN_AMOUNT_MINOR || minor > INVOICE_MAX_AMOUNT_MINOR) return null;
   return `${Math.floor(minor / 100)}.${String(minor % 100).padStart(2, "0")}`;
 }
 
@@ -67,21 +65,25 @@ export function parseInvoice(input: InvoiceInput): { error: string } | {
   return { amount, description, name, email, company };
 }
 
-async function accessToken(cfg: PayPalConfig, fetcher: typeof fetch): Promise<string | null> {
-  const res = await fetcher(`${cfg.base}/v1/oauth2/token`, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${btoa(`${cfg.id}:${cfg.secret}`)}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials",
-    signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
-  });
-  if (!res.ok) return null;
-  const data: unknown = await res.json().catch(() => null);
-  if (!data || typeof data !== "object" || !("access_token" in data)) return null;
-  const token = data.access_token;
-  return typeof token === "string" && token.length > 0 ? token : null;
+export async function payPalAccessToken(cfg: PayPalConfig, fetcher: typeof fetch): Promise<string | null> {
+  try {
+    const res = await fetcher(`${cfg.base}/v1/oauth2/token`, {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${btoa(`${cfg.id}:${cfg.secret}`)}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+      signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
+    });
+    if (!res.ok) return null;
+    const data: unknown = await res.json().catch(() => null);
+    if (!data || typeof data !== "object" || !("access_token" in data)) return null;
+    const token = data.access_token;
+    return typeof token === "string" && token.length > 0 ? token : null;
+  } catch {
+    return null;
+  }
 }
 
 function paypalUrl(href: string | undefined) {
@@ -108,7 +110,7 @@ export async function createInvoiceOrder(input: {
   requestId: string;
   invoiceId: string;
 }, fetcher: typeof fetch = fetch): Promise<{ url: string; orderId: string } | { error: string } | { unconfigured: true }> {
-  const cfg = config();
+  const cfg = readPayPalConfig();
   if (!cfg) return { unconfigured: true };
   const amount = invoiceAmount(input.amount);
   const amountMinor = usdMinorUnits(amount ?? "");
@@ -116,11 +118,13 @@ export async function createInvoiceOrder(input: {
     return { error: "The invoice could not be verified. Please contact us." };
   }
   if (!/^[\w-]{16,38}$/.test(input.requestId)) return { error: "The invoice could not be verified. Please contact us." };
-  const token = await accessToken(cfg, fetcher);
+  const token = await payPalAccessToken(cfg, fetcher);
   if (!token) return { error: "PayPal didn't accept the checkout. Call us and we'll send a payment link." };
 
   const description = clean(input.description, 127);
-  const res = await fetcher(`${cfg.base}/v2/checkout/orders`, {
+  let res: Response;
+  try {
+    res = await fetcher(`${cfg.base}/v2/checkout/orders`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -148,6 +152,9 @@ export async function createInvoiceOrder(input: {
     }),
     signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
   });
+  } catch {
+    return { error: "PayPal couldn't start that payment. Check the invoice and try again." };
+  }
   const data: unknown = await res.json().catch(() => null);
   if (!res.ok || !isRecord(data)) return { error: "PayPal couldn't start that payment. Check the invoice and try again." };
   const orderId = typeof data.id === "string" ? data.id : "";
@@ -161,16 +168,16 @@ export async function createInvoiceOrder(input: {
 }
 
 export function isPayPalOrderId(value: string) {
-  return /^[A-Z0-9]{10,20}$/.test(value);
+  return isPayPalResourceId(value);
 }
 
 type PayPalCall = { cfg: PayPalConfig; token: string; headers: HeadersInit };
 
-async function connect(fetcher: typeof fetch): Promise<PayPalCall | { error: "failed" | "unconfigured" }> {
-  const cfg = config();
+async function connect(fetcher: typeof fetch): Promise<PayPalCall | { error: "unavailable" | "unconfigured" }> {
+  const cfg = readPayPalConfig();
   if (!cfg) return { error: "unconfigured" };
-  const token = await accessToken(cfg, fetcher);
-  if (!token) return { error: "failed" };
+  const token = await payPalAccessToken(cfg, fetcher);
+  if (!token) return { error: "unavailable" };
   return {
     cfg,
     token,
@@ -179,33 +186,38 @@ async function connect(fetcher: typeof fetch): Promise<PayPalCall | { error: "fa
 }
 
 async function getOrder(call: PayPalCall, orderId: string, fetcher: typeof fetch): Promise<unknown | null> {
-  const res = await fetcher(`${call.cfg.base}/v2/checkout/orders/${orderId}`, {
-    headers: call.headers,
-    signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
-  });
-  if (!res.ok) return null;
   try {
+    const res = await fetcher(`${call.cfg.base}/v2/checkout/orders/${orderId}`, {
+      headers: call.headers,
+      signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
+    });
+    if (!res.ok) return null;
     return await res.json() as unknown;
   } catch {
     return null;
   }
 }
 
+export type PayPalOrderLookup =
+  | { status: "ok"; invoiceId: string }
+  | { status: "failed" | "unavailable" | "unconfigured" };
+
 /** Reads the candidate invoice ID only; callers must match it to persisted invoice state. */
-export async function invoiceIdForPayPalOrder(orderId: string, fetcher: typeof fetch = fetch): Promise<
-  { status: "ok"; invoiceId: string } | { status: "failed" | "unconfigured" }
-> {
+export async function invoiceIdForPayPalOrder(orderId: string, fetcher: typeof fetch = fetch): Promise<PayPalOrderLookup> {
   if (!isPayPalOrderId(orderId)) return { status: "failed" };
   const call = await connect(fetcher);
   if ("error" in call) return { status: call.error };
   const order = await getOrder(call, orderId, fetcher);
-  const invoiceId = order ? paypalInvoiceId(orderId, order) : null;
+  if (!order) return { status: "unavailable" };
+  const invoiceId = paypalInvoiceId(orderId, order);
   return invoiceId ? { status: "ok", invoiceId } : { status: "failed" };
 }
 
-export async function captureInvoiceOrder(orderId: string, invoice: StoredInvoice, fetcher: typeof fetch = fetch): Promise<
-  { status: "paid"; captureId: string } | { status: "failed" | "unconfigured" }
-> {
+export type PayPalCaptureResult =
+  | { status: "paid"; captureId: string }
+  | { status: "failed" | "unavailable" | "unconfigured" };
+
+export async function captureInvoiceOrder(orderId: string, invoice: StoredInvoice, fetcher: typeof fetch = fetch): Promise<PayPalCaptureResult> {
   if (!isPayPalOrderId(orderId) || invoice.paypalOrderId !== orderId) return { status: "failed" };
   const call = await connect(fetcher);
   if ("error" in call) return { status: call.error };
@@ -218,7 +230,7 @@ export async function captureInvoiceOrder(orderId: string, invoice: StoredInvoic
     merchantId: call.cfg.merchantId,
   };
   const initial = await getOrder(call, orderId, fetcher);
-  if (!initial) return { status: "failed" };
+  if (!initial) return { status: "unavailable" };
   const beforeCapture = verifyOrderBeforeCapture(initial, expected);
   if (!beforeCapture.ok) return { status: "failed" };
   if (beforeCapture.status === "paid") {
@@ -228,24 +240,31 @@ export async function captureInvoiceOrder(orderId: string, invoice: StoredInvoic
     return { status: "failed" };
   }
 
-  const capture = await fetcher(`${call.cfg.base}/v2/checkout/orders/${orderId}/capture`, {
-    method: "POST",
-    headers: { ...call.headers, "PayPal-Request-Id": `capture-${orderId}` },
-    signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
-  });
+  let capture: Response;
+  try {
+    capture = await fetcher(`${call.cfg.base}/v2/checkout/orders/${orderId}/capture`, {
+      method: "POST",
+      headers: { ...call.headers, "PayPal-Request-Id": `capture-${orderId}` },
+      signal: AbortSignal.timeout(PAYPAL_REQUEST_TIMEOUT_MS),
+    });
+  } catch {
+    return { status: "unavailable" };
+  }
   if (!capture.ok) {
     // A concurrent/retried request may have captured the same order. Only the
     // authoritative GET below can establish that it is a valid completed payment.
     const afterConflict = await getOrder(call, orderId, fetcher);
-    const completed = afterConflict ? verifyCompletedCapture(afterConflict, expected) : null;
-    return completed?.ok && completed.status === "paid"
+    if (!afterConflict) return { status: "unavailable" };
+    const completed = verifyCompletedCapture(afterConflict, expected);
+    return completed.ok && completed.status === "paid"
       ? { status: "paid", captureId: completed.captureId }
       : { status: "failed" };
   }
 
   const capturedOrder = await getOrder(call, orderId, fetcher);
-  const completed = capturedOrder ? verifyCompletedCapture(capturedOrder, expected) : null;
-  return completed?.ok && completed.status === "paid"
+  if (!capturedOrder) return { status: "unavailable" };
+  const completed = verifyCompletedCapture(capturedOrder, expected);
+  return completed.ok && completed.status === "paid"
     ? { status: "paid", captureId: completed.captureId }
     : { status: "failed" };
 }

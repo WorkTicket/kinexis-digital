@@ -1,9 +1,8 @@
-import { NextResponse } from "next/server";
-import { getInvoice, putInvoice } from "@/lib/invoices";
+import { getInvoice, recordInvoicePayment } from "@/lib/invoices";
 import { captureInvoiceOrder, invoiceIdForPayPalOrder, isPayPalOrderId } from "@/lib/paypal-order";
 
 function destination(request: Request, path: string) {
-  return NextResponse.redirect(new URL(path, new URL(request.url).origin), 303);
+  return Response.redirect(new URL(path, new URL(request.url).origin), 303);
 }
 
 export async function GET(request: Request) {
@@ -20,21 +19,25 @@ export async function GET(request: Request) {
 
     const result = await captureInvoiceOrder(token, invoice);
     if (result.status === "paid") {
-      if (invoice.status !== "paid" || !invoice.paypalCaptureId) {
-        const persisted = await putInvoice({
-          ...invoice,
-          status: "paid",
-          paidAt: invoice.paidAt ?? new Date().toISOString(),
-          paypalCaptureId: result.captureId,
+      const now = new Date().toISOString();
+      const persisted = await recordInvoicePayment({
+        eventId: `capture:${result.captureId}`,
+        eventType: "CHECKOUT.CAPTURE",
+        invoiceId: invoice.id,
+        orderId: token,
+        captureId: result.captureId,
+        amount: invoice.amount,
+        paidAt: invoice.paidAt ?? now,
+        receivedAt: now,
+      });
+      if (!persisted.ok) {
+        console.error("PayPal capture verified but invoice state persistence failed", {
+          invoiceId: invoice.id,
+          orderIdPrefix: token.slice(0, 8),
+          captureIdPrefix: result.captureId.slice(0, 8),
+          reason: persisted.reason,
         });
-        if (!persisted) {
-          console.error("PayPal capture verified but invoice state persistence failed", {
-            invoiceId: invoice.id,
-            orderIdPrefix: token.slice(0, 8),
-            captureIdPrefix: result.captureId.slice(0, 8),
-          });
-          return destination(request, "/pay?invoice=error#invoice");
-        }
+        return destination(request, "/pay?invoice=error#invoice");
       }
       return destination(request, "/pay/thanks?kind=invoice&status=paid");
     }
