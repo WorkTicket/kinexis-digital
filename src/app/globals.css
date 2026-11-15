@@ -171,12 +171,13 @@ p{margin:0 0 1em}
   padding:1rem 1.55rem;border:none;border-radius:5px;
   color:#fff;font-family:inherit;font-weight:700;font-size:1.125rem;
   line-height:1.25;letter-spacing:.04em;text-decoration:none;cursor:pointer;white-space:nowrap;
+  /* Wipe starts off-canvas at fill 0 so a 0% hard-stop never paints a 1px orange fringe. */
   background:
     linear-gradient(
       to right,
-      var(--btn-wipe) 0%,
+      var(--btn-wipe) calc((var(--btn-fill) - 1) * 100%),
       var(--btn-wipe) calc(var(--btn-fill) * 100%),
-      var(--btn-face) calc(var(--btn-fill) * 100%),
+      var(--btn-face) calc(var(--btn-fill) * 100% + 0.01%),
       var(--btn-face) 100%
     );
   box-shadow:0 6px 24px rgba(0,0,0,.2);
@@ -2931,24 +2932,12 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 
 /* Hover overlay uses the shared fill button. Centering stays on translate. */
 .shot__cta-overlay{position:absolute;left:50%;top:50%;z-index:2;translate:-50% -50%;
-  opacity:0;pointer-events:none;
-  transition:opacity .2s ease,color .2s ease,background-color .2s ease,box-shadow .2s ease}
-/* Solid navy at rest (wipe hard-stop at 0% left a 1px orange fringe). Orange + dark text on hover. */
-.btn.btn--primary.shot__cta-overlay{
-  --btn-fill:0;
-  background:var(--brand-navy);
-  color:#fff;
-  transform:none;
-}
+  opacity:0;pointer-events:none;transition:opacity .2s ease,color .3s ease-in-out,box-shadow .2s ease}
+/* Live cards: overlay is non-interactive (pointer-events none) — wipe on parent hover like primary buttons. */
 .live-site:hover .btn.btn--primary.shot__cta-overlay,
-.live-site:focus-visible .btn.btn--primary.shot__cta-overlay,
-.btn.btn--primary.shot__cta-overlay:hover,
-.btn.btn--primary.shot__cta-overlay:active,
-.btn.btn--primary.shot__cta-overlay:focus-visible{
-  --btn-fill:0;
-  background:var(--brand-orange);
+.live-site:focus-visible .btn.btn--primary.shot__cta-overlay{
+  --btn-fill:1;
   color:var(--brand-navy);
-  transform:none;
 }
 .shot:hover .shot__cta-overlay,.shot:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
 .shot__cta-overlay:hover,.shot__cta-overlay:active{transform:none}
@@ -4580,9 +4569,9 @@ p,li,blockquote{ text-wrap:pretty }
   background:
     linear-gradient(
       to right,
-      var(--btn-wipe) 0%,
+      var(--btn-wipe) calc((var(--btn-fill) - 1) * 100%),
       var(--btn-wipe) calc(var(--btn-fill) * 100%),
-      var(--btn-face) calc(var(--btn-fill) * 100%),
+      var(--btn-face) calc(var(--btn-fill) * 100% + 0.01%),
       var(--btn-face) 100%
     );
   color:#fff;
@@ -4615,22 +4604,11 @@ p,li,blockquote{ text-wrap:pretty }
   animation:none;
 }
 .btn--primary,.btn--warm{--btn-face:var(--brand-navy)}
-/* Portfolio “Visit Site” overlays: solid navy → orange + dark text (no wipe fringe). */
-.btn.btn--primary.shot__cta-overlay{
-  --btn-fill:0;
-  background:var(--brand-navy);
-  color:#fff;
-  transform:none;
-}
+/* Live-site Visit Site overlays share the primary wipe; parent hover drives fill. */
 .live-site:hover .btn.btn--primary.shot__cta-overlay,
-.live-site:focus-visible .btn.btn--primary.shot__cta-overlay,
-.btn.btn--primary.shot__cta-overlay:hover,
-.btn.btn--primary.shot__cta-overlay:active,
-.btn.btn--primary.shot__cta-overlay:focus-visible{
-  --btn-fill:0;
-  background:var(--brand-orange);
+.live-site:focus-visible .btn.btn--primary.shot__cta-overlay{
+  --btn-fill:1;
   color:var(--brand-navy);
-  transform:none;
 }
 /* Secondary — exact Uiverse.io adamgiebl press (no transition). */
 .btn.btn--ghost,.btn.btn--light{
