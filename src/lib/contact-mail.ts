@@ -1,6 +1,6 @@
 import "server-only";
 
-import { SITE } from "@/lib/site";
+import { isPreviewSite, SITE } from "@/lib/site";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -21,14 +21,32 @@ export type ContactEmailBinding = {
   }): Promise<unknown>;
 };
 
-export function contactRecipients() {
-  const configured = process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email;
-  const recipients = configured
+function parseRecipients(configured: string) {
+  return configured
     .split(/[;,]/)
     .map((address) => address.trim().toLowerCase())
     .filter((address, index, all) => EMAIL_PATTERN.test(address) && all.indexOf(address) === index);
+}
 
+/**
+ * Team inboxes for contact/review/lead alerts.
+ * On the preview Worker, only CONTACT_PREVIEW_TO is used — never CONTACT_TO /
+ * SITE.email — so preview form traffic cannot reach production inboxes.
+ * Empty preview list means "do not send" (callers fail closed).
+ */
+export function contactRecipients() {
+  if (isPreviewSite()) {
+    return parseRecipients(process.env.CONTACT_PREVIEW_TO || "");
+  }
+
+  const configured = process.env.CONTACT_TO || process.env.CONTACT_TO_EMAIL || SITE.email;
+  const recipients = parseRecipients(configured);
   return recipients.length > 0 ? recipients : [SITE.email];
+}
+
+/** True when preview isolation left no deliverable inbox. */
+export function contactDeliveryBlocked() {
+  return isPreviewSite() && contactRecipients().length === 0;
 }
 
 export function contactEmailBinding(): ContactEmailBinding | undefined {

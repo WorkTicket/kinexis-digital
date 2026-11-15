@@ -30,10 +30,16 @@ Strict PayPal order and capture checks, stable per-invoice PayPal request ids, f
 3. Moderation imports `next/cache`. The shared `bundle-server.mjs` stub now no-ops `revalidatePath` / `revalidateTag` so Node harnesses can load the real handler.
 4. GET on `/api/reviews/moderate` remains confirm-only (mail scanners must not mutate). Tests assert pending state is unchanged after GET and that approve is one-shot.
 
+## Phase 3 — CI and preview email
+
+1. Preview `CONTACT_TO` previously mirrored production inboxes. Preview now sets empty `CONTACT_TO` / `CONTACT_PREVIEW_TO` and `NEXT_PUBLIC_IS_PREVIEW=1`. Runtime uses only `CONTACT_PREVIEW_TO` on preview; empty fail-closes.
+2. GitHub Actions `validate` did not run invoice-security. It now does (mocked PayPal only).
+3. Conferbot env placeholders are documented in `.env.example` but remain disabled.
+
 ## Phase 0 risks retained
 
-- Preview `CONTACT_TO` still lists production recipients. Not changed in Phase 2 (Phase 3 scope).
 - Text-back, second-number, and Spain EUR pricing were not changed.
 - Conferbot is not in the application yet; fold-in map is in `phases/phase-chatbot-fold-in.md`.
+- Preview `send_email.allowed_destination_addresses` still lists production addresses so an owner-set sink that reuses one of those addresses can deliver; code will not select production `CONTACT_TO` on preview.
 
 No production deployment, production data migration, real payment, or customer notification was performed.

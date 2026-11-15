@@ -3,6 +3,7 @@ import { REVIEW_QUOTE_MAX, REVIEW_QUOTE_MIN } from "@/lib/review-limits";
 import { clientIp } from "@/lib/client-ip";
 import {
   EMAIL_PATTERN,
+  contactDeliveryBlocked,
   contactEmailBinding,
   contactRecipients,
 } from "@/lib/contact-mail";
@@ -26,11 +27,17 @@ async function notifyTeam(review: {
   reject: string;
 }) {
   try {
+    if (contactDeliveryBlocked()) {
+      console.error("Review notify blocked: preview has no CONTACT_PREVIEW_TO");
+      return;
+    }
+    const recipients = contactRecipients();
+    if (recipients.length === 0) return;
     const mail = contactEmailBinding();
     if (!mail) return;
     await mail.send({
       from: { email: SITE.email, name: SITE.name },
-      to: contactRecipients(),
+      to: recipients,
       replyTo: { email: review.email, name: review.name },
       subject: `Review pending approval from ${review.name}`,
       text: [

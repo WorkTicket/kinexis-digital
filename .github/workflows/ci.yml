@@ -24,4 +24,6 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
+      # Handler-level payment/invoice suites (PayPal HTTP mocked). Not sandbox evidence.
+      - run: npm run check:invoice-security
       - run: npm run build:worker

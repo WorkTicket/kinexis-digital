@@ -82,7 +82,12 @@
         { "pattern": "preview.kinexisdigital.com", "custom_domain": true }
       ],
       "vars": {
-        "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com"
+        // Preview never uses CONTACT_TO / production inboxes. Set CONTACT_PREVIEW_TO
+        // to a sink address that is also listed under send_email.allowed_destination_addresses.
+        // Empty CONTACT_PREVIEW_TO fail-closes contact and review team mail (no send).
+        "NEXT_PUBLIC_IS_PREVIEW": "1",
+        "CONTACT_TO": "",
+        "CONTACT_PREVIEW_TO": ""
       },
       "kv_namespaces": [
         {
