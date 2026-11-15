@@ -1,17 +1,12 @@
 # Programme handoff
 
-- **Phase:** 6 — Performance, accessibility, SEO
-- **Date:** 2026-11-15
-- **Branch:** `cursor/phase6-perf-a11y-seo-67c1`
-- **Status:** Complete. Next Phase 7 docs/repo quality.
-
-## Commands
+- **Phase:** 7 — Repository quality
+- **Branch:** `cursor/phase7-repo-quality-67c1`
+- **Status:** Complete. Docs aligned for DocumentShell / CookieConsent / Conferbot / dual D1.
 
 | Command | Result |
 |---|---|
-| `npx playwright test e2e/smoke.spec.ts -g "Conferbot" --workers=1` | PASS (2) |
 | `npm run check` | PASS |
-| `npm run lighthouse:budget` | NOT RUN (no local URL budget pass requested) |
-| `npm run check:structured-data` | NOT RUN |
+| `npm run test:e2e` / `build:worker` | NOT RUN |
 
-Report: `phases/phase-06-perf-a11y-seo.md`.
+Next: Phase 8.

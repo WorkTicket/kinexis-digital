@@ -16,6 +16,9 @@
 - `InvoicePay.tsx`, `PayCheckout.tsx` - Payments
 - `HeaderMenu.tsx`, `LanguageSwitch.tsx` - Navigation/i18n
 - `FooterGate.tsx`, `DialogHost.tsx`, `ScrollUi.tsx`, `Boot.tsx`, `SafeImage.tsx`, `DeferredImg.tsx`, `Filterable.tsx`, `Stepper.tsx`, `ProcessFlow.tsx`, `JsonLd.tsx`, `ProjectCard.tsx`, `GuaranteeBadge.tsx`, `SpanishPlanSticker.tsx`
+- `DocumentShell.tsx` - Locale document shell (fonts, head boot, mounts Boot + ConferbotWidget)
+- `CookieConsent.tsx` - Cookie / analytics / ads preference dock (`kinexis_consent`)
+- `ConferbotWidget.tsx` - Client-only; no UI of its own; loads Conferbot after flag + analytics consent + idle/input
 
 ## When to reuse
 - Use `PageHero` for page headers (split with `Art` or text-only). Prefer `Art` with approved `ArtName` from `ui.tsx`.

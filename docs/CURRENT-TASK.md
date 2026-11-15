@@ -1,18 +1,21 @@
-# CURRENT-TASK.md
+# Current task
 
-## Goal
-Close the four remaining production polish items from the 92/100 audit.
+**Programme:** Production hardening Phases 2–9 + Conferbot fold-in.  
+**Latest engineering branch tip:** `cursor/phase7-repo-quality-67c1` (stack continues from Phase 6).  
+**Do not merge to `main` without owner approval** (Workers Builds deploys production).
 
-## Status
-**Shipped to production** (`3a517f4`).
+## Stack (open PRs)
 
-## Live
-- Organization `@id`: `https://www.kinexisdigital.com/#org`
-- OG cards under `/og/*.webp`
-- Portfolio listing card crops live
-- PayPal sandbox positive capture verified locally before ship
-- Search notify: 131 IndexNow URLs accepted
+| Phase | PR |
+|---|---|
+| 1 live evidence docs | https://github.com/WorkTicket/kinexis-digital/pull/7 |
+| 2 route tests | https://github.com/WorkTicket/kinexis-digital/pull/8 |
+| 3 CI + preview email | https://github.com/WorkTicket/kinexis-digital/pull/9 |
+| 4 Spanish/commercial | https://github.com/WorkTicket/kinexis-digital/pull/11 |
+| 5 Conferbot security | https://github.com/WorkTicket/kinexis-digital/pull/12 |
+| 6 perf/a11y | https://github.com/WorkTicket/kinexis-digital/pull/13 |
+| 7–9 | opening after this commit |
 
 ## Next
-- Spot-check OG in Facebook/X share debugger (cache refresh may be needed).
-- Optional: mobile Lighthouse on `/portfolio` to confirm the card-crop win.
+
+Phase 8 staging/QA docs → Phase 9 release readiness (stop for explicit release approval). Conferbot flags remain off.
