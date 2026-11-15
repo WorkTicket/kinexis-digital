@@ -19,12 +19,12 @@ export default function Header({ locale }: { locale: Locale }) {
       <div className="container header__inner">
         <Link className="logo" href={hrefFor("/")} aria-label={chrome.home} prefetch={false}>
           <img
-            src="/assets/logos/header-nav.webp"
-            srcSet={`${imageVariant("/assets/logos/header-nav.webp", 360, "webp")} 360w, /assets/logos/header-nav.webp 480w`}
+            src={imageVariant("/assets/logos/header-nav.webp", 360, "webp")}
+            srcSet={`${imageVariant("/assets/logos/header-nav.webp", 360, "webp")} 360w`}
             sizes="180px"
             alt="Kinexis Digital"
-            width={480}
-            height={160}
+            width={360}
+            height={120}
             loading="eager"
             decoding="async"
             fetchPriority="low"

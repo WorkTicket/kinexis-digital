@@ -5,6 +5,42 @@
    can mangle syntax:"<number>" in the built stylesheet, and a broken registration
    blocks the JS fallback (registerProperty throws if the name already exists). */
 
+/* Fonts live here (not next/font) so we do not ship a second render-blocking CSS
+   chunk, and so preload href matches @font-face src exactly.
+   Body/UI stay on size-matched Arial fallbacks; only Display 800 downloads. */
+@font-face{
+  font-family:"inter Fallback";
+  src:local("Arial");
+  ascent-override:89.79%;
+  descent-override:22.36%;
+  line-gap-override:0%;
+  size-adjust:107.89%;
+}
+@font-face{
+  font-family:"poppins Fallback";
+  src:local("Arial");
+  ascent-override:90.85%;
+  descent-override:30.28%;
+  line-gap-override:8.65%;
+  size-adjust:115.57%;
+}
+@font-face{
+  font-family:"poppinsDisplay Fallback";
+  src:local("Arial");
+  ascent-override:88.85%;
+  descent-override:29.62%;
+  line-gap-override:8.46%;
+  size-adjust:118.17%;
+}
+@font-face{
+  font-family:"poppinsDisplay";
+  src:url("/assets/fonts/poppins-latin-800.woff2") format("woff2");
+  font-weight:800;
+  font-style:normal;
+  /* block (not swap): with preload, H1s paint in ExtraBold without shifting page-hero art. */
+  font-display:block;
+}
+
 /* Tailwind v4 theme: brand tokens become utilities (bg-accent, text-muted, rounded-brand, max-w-site ...) */
 @theme inline {
   --color-accent: var(--accent);
@@ -89,12 +125,13 @@
   --chrome-top:var(--sat);
 }
 html:not(.no-float){--consent-fab-slot:52px}
-/* Heroes use real Poppins Display 800 (preloaded, font-display:swap).
-   Body/UI stay on Next's size-matched fallback faces so Inter/Poppins files
+/* Heroes use real Poppins Display 800 (preloaded, font-display:block).
+   Body/UI stay on size-matched fallback faces so Inter/Poppins files
    never contend with LCP and never swap mid-load. */
 html{
   --font-inter:"inter Fallback",Arial,sans-serif!important;
   --font-poppins:"poppins Fallback",Arial,sans-serif!important;
+  --font-poppins-display:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;
 }
 html.is-meta-webview{--iab-extra:14px}
 /* Meta/IG/Messenger in-app browsers: safer viewport math + sticky header insets. */

@@ -1,39 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
+import { preload } from "react-dom";
 import Boot from "@/components/Boot";
 import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { isPreviewSite, SITE } from "@/lib/site";
 import "@/app/globals.css";
-
-const inter = localFont({
-  src: "../app/fonts/inter-latin.woff2",
-  variable: "--font-inter",
-  weight: "100 900",
-  display: "optional",
-  adjustFontFallback: "Arial",
-  preload: false,
-});
-const poppins = localFont({
-  src: [
-    { path: "../app/fonts/poppins-latin-600.woff2", weight: "600", style: "normal" },
-    { path: "../app/fonts/poppins-latin-700.woff2", weight: "700", style: "normal" },
-  ],
-  variable: "--font-poppins",
-  display: "optional",
-  adjustFontFallback: "Arial",
-  preload: false,
-});
-const poppinsDisplay = localFont({
-  src: "../app/fonts/poppins-latin-800.woff2",
-  variable: "--font-poppins-display",
-  weight: "800",
-  // swap (not optional): optional skips the ExtraBold face on cold loads when
-  // the preloaded file misses the ~100ms block window, so H1s look thin until refresh.
-  display: "swap",
-  adjustFontFallback: "Arial",
-  preload: true,
-});
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
 const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
@@ -43,6 +14,9 @@ const defaultDescription = descriptionWithFallback(
   SITE.description,
   " See your free homepage preview first. No card required.",
 );
+
+/** Stable public URL so preload and @font-face share one cacheable file. */
+const DISPLAY_FONT_HREF = "/assets/fonts/poppins-latin-800.woff2";
 
 export const documentMetadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -102,8 +76,12 @@ export default function DocumentShell({
   locale: Locale;
   children: React.ReactNode;
 }) {
+  // Same URL as @font-face. Without this, Display 800 is discovered late via CSS and
+  // swapping it in shifts page-hero art (CLS ~0.15 on about/portfolio).
+  preload(DISPLAY_FONT_HREF, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+
   return (
-    <html lang={htmlLang(locale)} data-scroll-behavior="smooth" className={`${inter.variable} ${poppins.variable} ${poppinsDisplay.variable}`} suppressHydrationWarning>
+    <html lang={htmlLang(locale)} data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>

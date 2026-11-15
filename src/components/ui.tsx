@@ -184,7 +184,8 @@ export function PageHero({
           <div className="page-hero__art">
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes="(max-width: 860px) 260px, (max-width: 1279px) 50vw, 627px" /> : null)}
+              {/* sizes 200px on small screens keeps DPR≤2.6 on the 480w LCP AVIF (~22KB), not 640w. */}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes="(max-width: 860px) 200px, (max-width: 1279px) 50vw, 627px" /> : null)}
             </div>
           </div>
         </div>

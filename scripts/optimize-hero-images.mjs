@@ -15,7 +15,8 @@ for (const file of heroes) {
     // Never let the LCP AVIF grow past what already scores 100 in lab.
     await rebuildFromMaster(master, `${base}-${width}.avif`, {
       format: "avif",
-      maxBytes: width <= 480 ? 28 * 1024 : width <= 640 ? 32 * 1024 : 100 * 1024,
+      // Keep mobile LCP AVIFs lean; 480w is the common lab pick for page-hero art.
+      maxBytes: width <= 480 ? 22 * 1024 : width <= 640 ? 28 * 1024 : 90 * 1024,
     });
   }
   await rebuildFromMaster(master, `${base}-1254.avif`, { format: "avif" });
