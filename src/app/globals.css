@@ -2874,11 +2874,12 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 
 /* Portfolio grid — /portfolio page: 2 columns desktop, static preview + center CTA.
    The slightly taller 4:3 frame keeps the complete hero visible without hover scrolling. */
+.portfolio--live .live-site-wrap,.portfolio--main .work-card{content-visibility:auto;contain-intrinsic-size:auto 420px}
 .portfolio--main{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin:32px 0;align-items:start}
 .portfolio--main .shot.shot--hero{height:auto;aspect-ratio:4/3;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;background:#fff;position:relative;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
 .portfolio--main .shot:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
 .portfolio--main .shot__page{height:100%;overflow:hidden;background:#f4f7ff}
-.portfolio--main .shot__img{display:block;width:100%;height:auto;max-width:none}
+.portfolio--main .shot__img,.portfolio--live .shot__img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;max-width:none}
 @media (max-width:560px){
   .portfolio--main{grid-template-columns:1fr}
 }
@@ -2898,7 +2899,8 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .portfolio--live .shot .shot__page{position:absolute;inset:0;height:auto;overflow:hidden}
 .portfolio--live .shot:hover{transform:none;box-shadow:none}
 .portfolio--live .shot.shot--static .shot__track{transform:none!important}
-.live-site:hover .shot__cta-overlay,.live-site:focus-visible .shot__cta-overlay{opacity:1;pointer-events:none}
+/* Match template “View This Project”: navy on card hover, orange only on button hover. */
+.live-site:hover .shot__cta-overlay,.live-site:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
 .live-site__copy{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px 18px;padding:16px 20px;border-top:1px solid var(--border)}
 .live-site__status{display:inline-flex;align-items:center;gap:6px;width:max-content;padding:3px 8px 3px 7px;border-radius:999px;background:var(--brand-orange);color:var(--brand-navy);font-family:var(--font-head);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
 .live-site__dot{width:6px;height:6px;border-radius:50%;background:var(--brand-navy);box-shadow:none}
@@ -2906,9 +2908,18 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .live-site__name{font-family:var(--font-head);font-weight:700;font-size:1.12rem;line-height:1.25;color:var(--text);letter-spacing:-.015em}
 .live-site__meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 0;color:var(--muted);font-size:.9rem;line-height:1.35}
 .live-site__host::before{content:"·";margin:0 8px;color:var(--faint)}
-.live-site__go{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-head);font-weight:700;font-size:.92rem;color:var(--accent-dark);white-space:nowrap}
-.live-site__go svg{width:16px;height:16px;flex:none;transition:transform .2s ease}
-.live-site:hover .live-site__go svg{transform:translate(2px,-2px)}
+/* Same ghost sticker as template “View This Project” — lift on card hover, press on button hover. */
+.live-site__go.btn.btn--ghost{
+  margin-top:2px;
+  width:fit-content;
+  justify-self:start;
+}
+@media (hover:hover) and (pointer:fine){
+  .live-site:hover .live-site__go.btn.btn--ghost:not(:hover){
+    transform:translate(-.05em,-.05em);
+    box-shadow:.15em .15em;
+  }
+}
 @media (min-width:720px){
   .portfolio--live.portfolio--live--pair{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
@@ -2924,21 +2935,23 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 }
 @media (max-width:640px){
   .portfolio--live{gap:18px;margin-bottom:0}
-  .live-site__copy{grid-template-columns:auto minmax(0,1fr);padding:14px 16px 16px}
+  /* Stack badge above title — centered two-col put the orange LIVE pill
+     mid-title and read as a thin orange line on Preferred / A1. */
+  .live-site__copy{
+    grid-template-columns:1fr;
+    align-items:start;
+    gap:8px;
+    padding:14px 16px 16px;
+  }
   .live-site__meta{flex-direction:column;align-items:flex-start;gap:2px}
   .live-site__host::before{content:none}
-  .live-site__go{grid-column:1 / -1;justify-self:start;margin-top:2px}
+  .live-site__go{grid-column:auto;justify-self:start;margin-top:2px}
 }
 
-/* Hover overlay uses the shared fill button. Centering stays on translate. */
+/* Hover overlay uses the shared fill button. Centering stays on translate.
+   Card/shot hover reveals the navy face; orange wipe only on .btn:hover. */
 .shot__cta-overlay{position:absolute;left:50%;top:50%;z-index:2;translate:-50% -50%;
   opacity:0;pointer-events:none;transition:opacity .2s ease,color .3s ease-in-out,box-shadow .2s ease}
-/* Live cards: overlay is non-interactive (pointer-events none) — wipe on parent hover like primary buttons. */
-.live-site:hover .btn.btn--primary.shot__cta-overlay,
-.live-site:focus-visible .btn.btn--primary.shot__cta-overlay{
-  --btn-fill:1;
-  color:var(--brand-navy);
-}
 .shot:hover .shot__cta-overlay,.shot:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
 .shot__cta-overlay:hover,.shot__cta-overlay:active{transform:none}
 .portfolio--related .shot__cta-overlay{padding:.5rem .85rem;font-size:.8rem}
@@ -4604,12 +4617,6 @@ p,li,blockquote{ text-wrap:pretty }
   animation:none;
 }
 .btn--primary,.btn--warm{--btn-face:var(--brand-navy)}
-/* Live-site Visit Site overlays share the primary wipe; parent hover drives fill. */
-.live-site:hover .btn.btn--primary.shot__cta-overlay,
-.live-site:focus-visible .btn.btn--primary.shot__cta-overlay{
-  --btn-fill:1;
-  color:var(--brand-navy);
-}
 /* Secondary — exact Uiverse.io adamgiebl press (no transition). */
 .btn.btn--ghost,.btn.btn--light{
   --btn-fill:0;
@@ -4856,7 +4863,9 @@ p,li,blockquote{ text-wrap:pretty }
   .two-col__img,.booking{padding:18px}
 }
 
-/* Touch: portfolio CTAs stay discoverable without hover */
+/* Touch: portfolio CTAs stay discoverable without hover.
+   Live cards keep the footer Visit site ghost button — hide overlays so the
+   primary wipe never shows a 1px orange fringe at rest on coarse pointers. */
 @media (hover:none), (pointer:coarse){
   .shot.shot--hero .shot__cta-overlay,
   .portfolio--main .shot__cta-overlay,
@@ -4864,6 +4873,10 @@ p,li,blockquote{ text-wrap:pretty }
   .portfolio--related .shot__cta-overlay{
     opacity:.92;
     pointer-events:auto;
+  }
+  .portfolio--live .shot__cta-overlay{
+    opacity:0 !important;
+    pointer-events:none !important;
   }
   .shot__hint{opacity:1}
   .shot--click:hover .shot__hint{opacity:1}

@@ -9,7 +9,8 @@ const Script = ({ data }: { data: unknown }) => (
 );
 
 const country = { "@type": "Country", name: SITE.areaServed };
-const orgId = (locale: Locale = "en") => `${localeUrl(locale)}#org`;
+/** One Organization entity for the brand — always the www English home @id. */
+const orgId = () => `${SITE.url}/#org`;
 const websiteId = (locale: Locale = "en") => `${localeUrl(locale)}#website`;
 
 function localeUrl(locale: Locale) {
@@ -72,12 +73,12 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
     "@graph": [
       {
         "@type": "Organization",
-         "@id": orgId(locale),
+        "@id": orgId(),
         name: SITE.name,
-         url: siteUrl,
+        url: `${u}/`,
         logo: { "@type": "ImageObject", url: `${u}/favicon-512.webp`, width: 512, height: 512 },
         image: `${u}${SITE.ogImage}`,
-         description,
+        description: localeDescription("en"),
         email: SITE.email,
         telephone: SITE.phoneE164,
         areaServed: country,
@@ -95,17 +96,17 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
       },
       {
         "@type": "ProfessionalService",
-         "@id": `${siteUrl}#service`,
+        "@id": `${u}/#service`,
         name: SITE.name,
-         url: siteUrl,
+        url: `${u}/`,
         image: `${u}${SITE.ogImage}`,
-         description,
+        description,
         telephone: SITE.phoneE164,
         email: SITE.email,
         priceRange: "$97-$1497",
         areaServed: country,
         address: { "@type": "PostalAddress", addressCountry: "US" },
-         parentOrganization: { "@id": orgId(locale) },
+        parentOrganization: { "@id": orgId() },
         ...(sameAs.length ? { sameAs } : {}),
         hasOfferCatalog: {
           "@type": "OfferCatalog",
@@ -121,12 +122,12 @@ export function SiteSchema({ locale = "en" }: { locale?: Locale }) {
       },
       {
         "@type": "WebSite",
-         "@id": websiteId(locale),
-         url: siteUrl,
+        "@id": websiteId(locale),
+        url: siteUrl,
         name: SITE.name,
-         description,
-         inLanguage: language,
-         publisher: { "@id": orgId(locale) },
+        description,
+        inLanguage: language,
+        publisher: { "@id": orgId() },
       },
     ],
   }} />;
@@ -158,7 +159,7 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
     name: title,
     description,
     isPartOf: { "@id": websiteId(locale) },
-    about: { "@id": `${localeUrl(locale)}#service` },
+    about: { "@id": `${SITE.url}/#service` },
     inLanguage: schemaLanguage(locale),
   };
   if (pageType === "FAQPage" && faqs?.length) pageNode.mainEntity = faqEntities(faqs);
@@ -183,7 +184,7 @@ export function ContentSchema({ path, title, description, crumbs: trail, faqs, s
       serviceType,
       description,
       url,
-      provider: { "@id": orgId(locale) },
+      provider: { "@id": orgId() },
       areaServed: country,
       offers: monthlyOffer,
       ...(audienceType
@@ -251,7 +252,7 @@ function productEntity(url: string, plan: { slug: string; name: string; tagline:
     description: plan.tagline,
     image: `${SITE.url}${SITE.ogImage}`,
     category: "Website design plan",
-    brand: { "@id": orgId(locale) },
+    brand: { "@id": orgId() },
     offers: {
       "@type": "Offer",
       price,
@@ -273,6 +274,7 @@ export function PageSchema({ page, faqs, items }: {
   const p = PAGES[page] as PageMeta;
   if (!p.indexable) return null;
   const url = absolute(p.path);
+  const pageImage = p.ogImage ? `${SITE.url}${p.ogImage}` : `${SITE.url}${SITE.ogImage}`;
   const pageNode: Record<string, unknown> = {
     "@type": p.pageType ?? "WebPage",
     "@id": `${url}#page`,
@@ -280,9 +282,9 @@ export function PageSchema({ page, faqs, items }: {
     name: p.title,
     description: p.description,
     isPartOf: { "@id": websiteId() },
-     about: { "@id": `${SITE.url}/#service` },
+    about: { "@id": `${SITE.url}/#service` },
     inLanguage: "en-US",
-    primaryImageOfPage: { "@type": "ImageObject", url: `${SITE.url}${SITE.ogImage}` },
+    primaryImageOfPage: { "@type": "ImageObject", url: pageImage },
   };
   if (p.pageType === "FAQPage" && faqs?.length) pageNode.mainEntity = faqEntities(faqs);
   const graph: unknown[] = [pageNode];
@@ -369,9 +371,9 @@ export function ArticleSchema({ title, description, path, image, date, modified,
   const logoUrl = `${SITE.url}/favicon-512.webp`;
   const publisher = {
     "@type": "Organization",
-    "@id": orgId(locale),
+    "@id": orgId(),
     name: SITE.name,
-    url: localeUrl(locale),
+    url: `${SITE.url}/`,
     logo: { "@type": "ImageObject", url: logoUrl, width: 512, height: 512 },
   };
   const graph: Record<string, unknown>[] = [
@@ -386,7 +388,7 @@ export function ArticleSchema({ title, description, path, image, date, modified,
         dateModified: modifiedTime ?? published,
         inLanguage: schemaLanguage(locale),
         articleSection: section,
-        author: { "@type": "Organization", "@id": orgId(locale), name: SITE.name, url: localeUrl(locale) },
+        author: { "@type": "Organization", "@id": orgId(), name: SITE.name, url: `${SITE.url}/` },
         // Publisher must be self-contained (name + logo) for Article rich results.
         publisher,
         mainEntityOfPage: { "@type": "WebPage", "@id": `${url}#page` },

@@ -4,7 +4,7 @@ test.describe("marketing journeys", () => {
   test("homepage loads and shows plan comparison", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByText("One Website. Four Ways to Grow.")).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Website Plans and Pricing|A Website That Brings In More Calls/i }).first()).toBeVisible();
     await expect(page.getByRole("columnheader", { name: "Lead System" })).toBeVisible();
   });
 
@@ -90,10 +90,20 @@ test.describe("marketing journeys", () => {
   test("cookie consent: accept arms trackers when IDs configured", async ({ page, context, baseURL }) => {
     await context.clearCookies();
     const trackerHits: string[] = [];
+    const gaCollect: string[] = [];
+    const metaTr: string[] = [];
     page.on("request", (req) => {
       const url = req.url();
       if (url.includes("googletagmanager.com") || url.includes("connect.facebook.net") || url.includes("google-analytics.com")) {
         trackerHits.push(url);
+      }
+      if (url.includes("/g/collect") || url.includes("analytics.google.com/g/collect")) gaCollect.push(url);
+      if (
+        url.includes("facebook.com/tr") ||
+        (url.includes("facebook.net") && url.includes("/tr")) ||
+        (url.includes("connect.facebook.net") && url.includes("signals/config"))
+      ) {
+        metaTr.push(url);
       }
     });
 
@@ -105,21 +115,32 @@ test.describe("marketing journeys", () => {
       path: "/",
     }]);
     await page.goto("/", { waitUntil: "load" });
-    await page.waitForFunction(() => Boolean(window.__KINEXIS_CFG__), null, { timeout: 20_000 });
-    // Boot arms GA/Meta on first input (or 45s). Trigger after boot is live.
-    await page.waitForTimeout(800);
+    await page.waitForFunction(() => {
+      const scripts = [...document.scripts].some((s) => (s.src || "").includes("boot.min.js"));
+      return scripts && Boolean(window.__KINEXIS_CFG__);
+    }, null, { timeout: 30_000 });
+    await page.waitForTimeout(400);
     await page.evaluate(() => window.dispatchEvent(new Event("kinexis:consent")));
-    await page.mouse.click(40, 40);
+    await page.locator("main").click({ position: { x: 20, y: 20 }, force: true }).catch(() => {});
     await page.dispatchEvent("body", "pointerdown");
-    await page.waitForTimeout(4000);
 
-    const hasIds = await page.evaluate(() => {
+    const ids = await page.evaluate(() => {
       const cfg = (window as Window & { __KINEXIS_CFG__?: { ga?: string; metaPixel?: string } }).__KINEXIS_CFG__;
-      const gaOk = Boolean(cfg?.ga && /^G-[A-Z0-9]+$/.test(cfg.ga));
-      const metaOk = Boolean(cfg?.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel));
-      return gaOk || metaOk;
+      return {
+        ga: Boolean(cfg?.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)),
+        meta: Boolean(cfg?.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)),
+      };
     });
-    if (hasIds) expect(trackerHits.length).toBeGreaterThan(0);
+    if (ids.ga || ids.meta) {
+      await expect.poll(() => trackerHits.length, { timeout: 20_000 }).toBeGreaterThan(0);
+    }
+    if (ids.ga) await expect.poll(() => gaCollect.length, { timeout: 20_000 }).toBeGreaterThan(0);
+    if (ids.meta) {
+      await expect.poll(
+        () => metaTr.length || trackerHits.some((u) => u.includes("fbevents") || u.includes("signals/config")),
+        { timeout: 20_000 },
+      ).toBeTruthy();
+    }
   });
 
   test("cookie consent: analytics-only does not load Meta", async ({ page, context, baseURL }) => {
@@ -140,12 +161,15 @@ test.describe("marketing journeys", () => {
       path: "/",
     }]);
     await page.goto("/", { waitUntil: "load" });
-    await page.waitForFunction(() => Boolean(window.__KINEXIS_CFG__), null, { timeout: 20_000 });
-    await page.waitForTimeout(800);
+    await page.waitForFunction(() => {
+      const scripts = [...document.scripts].some((s) => (s.src || "").includes("boot.min.js"));
+      return scripts && Boolean(window.__KINEXIS_CFG__);
+    }, null, { timeout: 30_000 });
+    await page.waitForTimeout(400);
     await page.evaluate(() => window.dispatchEvent(new Event("kinexis:consent")));
-    await page.mouse.click(40, 40);
+    await page.locator("main").click({ position: { x: 20, y: 20 }, force: true }).catch(() => {});
     await page.dispatchEvent("body", "pointerdown");
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(3000);
 
     const ids = await page.evaluate(() => {
       const cfg = (window as Window & { __KINEXIS_CFG__?: { ga?: string; metaPixel?: string } }).__KINEXIS_CFG__;
@@ -155,7 +179,7 @@ test.describe("marketing journeys", () => {
       };
     });
     expect(metaHits, "ads rejected → Meta must not load").toEqual([]);
-    if (ids.ga) expect(gaHits.length).toBeGreaterThan(0);
+    if (ids.ga) await expect.poll(() => gaHits.length, { timeout: 15_000 }).toBeGreaterThan(0);
   });
 
   test("checkout page loads without taking payment", async ({ page }) => {

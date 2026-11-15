@@ -23,8 +23,8 @@ function pageRobots(indexable: boolean): Metadata["robots"] {
 
 export const ogImage = {
   url: SITE.ogImage.startsWith("http") ? SITE.ogImage : `${SITE.url}${SITE.ogImage}`,
-  width: 1730,
-  height: 909,
+  width: 1200,
+  height: 630,
   alt: `${SITE.name} — website plans for local businesses from $97/mo`,
 };
 
@@ -104,7 +104,7 @@ export function pageMetadata(key: PageKey): Metadata {
   );
   const languages = hreflangLanguages(p.path);
   const shareImage = p.ogImage
-    ? { url: absoluteUrl(p.ogImage), alt: full }
+    ? { url: absoluteUrl(p.ogImage), width: 1200, height: 630, alt: full }
     : ogImage;
   return {
     title: branded ? { absolute: p.title } : p.title,

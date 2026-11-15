@@ -268,19 +268,7 @@ export default async function PhoenixPreviewLp() {
                       <span className="live-site__host">{host}</span>
                     </span>
                   </span>
-                  <span className="live-site__go">
-                    Visit site
-                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                      <path
-                        d="M4.5 11.5 11.5 4.5M6.5 4.5h5v5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
+                  <span className="btn btn--ghost btn--sm live-site__go">Visit site</span>
                 </span>
               </a>
             );

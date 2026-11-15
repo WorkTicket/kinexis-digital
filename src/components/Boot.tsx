@@ -32,7 +32,7 @@ export default function Boot({
           fire without consent. */}
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}
-      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=56" strategy="lazyOnload" />
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=57" strategy="lazyOnload" />
     </>
   );
 }

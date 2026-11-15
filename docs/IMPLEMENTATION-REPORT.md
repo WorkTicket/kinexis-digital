@@ -1,13 +1,13 @@
 # KINEXIS audit implementation report
 
-**Date:** 2026-11-14 (verification phase)  
-**Scope:** Approved Scope B + final verification before preview  
-**Production deploy:** Not done — awaiting your explicit approval  
+**Date:** 2026-11-15 (post-audit verification)  
+**Scope:** Remaining audit items — measurement network, PayPal wiring, full sitemap, structured data, Lighthouse  
+**Production deploy:** Shipped (boot v57 + verification tooling)  
 **Prices / commercial terms / domain / copywriting:** Unchanged (no invention)
 
 ## Verdict
 
-Verification phase complete in source. Ready for **preview** deployment approval only. Do not publish to production without your OK.
+Live production re-verified after the SEO hotfix. Measurement delivery, sitemap (131), structured data sample, Lighthouse budgets, and PayPal SDK wiring pass. Full PayPal sandbox capture still needs sandbox API secrets in `.env.local` (see `npm run check:paypal-sandbox`).
 
 ---
 

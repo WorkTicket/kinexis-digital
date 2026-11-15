@@ -95,6 +95,7 @@ const nextConfig: NextConfig = {
         headers: yearCache,
       },
       { source: "/blog/:file(.*\\.(?:webp|avif|png|jpe?g|gif|svg|ico))", headers: yearCache },
+      { source: "/og/:file(.*\\.webp)", headers: yearCache },
       { source: "/portfolio/:file(.*\\.(?:webp|avif|png|jpe?g|gif|svg|ico))", headers: yearCache },
       { source: "/favicon-:size.webp", headers: yearCache },
       { source: "/apple-icon.png", headers: yearCache },

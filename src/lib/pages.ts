@@ -17,8 +17,8 @@ export type PageMeta = {
   /** ISO date (YYYY-MM-DD) for sitemap lastmod. */
   updatedAt?: string;
   /**
-   * Social preview image path. Interim: page hero 960w WebP until dedicated
-   * 1200×630 OG artwork is produced (see docs/OG-IMAGES.md).
+   * Social preview image path. Dedicated 1200×630 cards live under /og/
+   * (see docs/OG-IMAGES.md).
    */
   ogImage?: string;
 };
@@ -35,7 +35,7 @@ export const PAGES = {
     priority: 1,
     changeFrequency: "weekly",
     description: "Contractor and home service websites from $97/mo, $0 down. Google review requests, optional missed-call text-back, and a free homepage preview.",
-    ogImage: "/assets/heroes/01-homepage-960.webp",
+    ogImage: "/og/home.webp",
   },
   services: {
     path: "/services",
@@ -45,6 +45,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Explore professional web design, SEO, website management, and free website audits for businesses across the United States.",
+    ogImage: "/og/services.webp",
   },
   "web-design": {
     path: "/web-design",
@@ -54,7 +55,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Contractor website design from $97/mo, $0 down. See a free homepage preview in 2 business days, no card required, before you choose a plan.",
-    ogImage: "/assets/heroes/07-web-design-960.webp",
+    ogImage: "/og/web-design.webp",
   },
   "seo-services": {
     path: "/seo-services",
@@ -64,7 +65,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Improve your website’s search visibility with technical SEO, page optimization, useful content, and straightforward reporting.",
-    ogImage: "/assets/heroes/08-local-seo-960.webp",
+    ogImage: "/og/seo-services.webp",
   },
   audit: {
     path: "/audit",
@@ -74,6 +75,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Get a free website audit covering SEO, speed, mobile usability, indexing, and conversion paths, with a clear list of recommended improvements.",
+    ogImage: "/og/audit.webp",
   },
   contact: {
     path: "/contact",
@@ -83,6 +85,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.8,
     description: "Contact Kinexis Digital to discuss a new website, redesign, SEO, or ongoing website management for your business. Get a clear next step.",
+    ogImage: "/og/contact.webp",
   },
   "website-management": {
     path: "/website-management",
@@ -92,6 +95,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.8,
     description: "Keep your business website secure, current, and supported with managed hosting, backups, routine updates, small edits, and direct help.",
+    ogImage: "/og/website-management.webp",
   },
   about: {
     path: "/about",
@@ -101,6 +105,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.7,
     description: "Learn how Kinexis Digital plans, designs, launches, and supports professional business websites across the United States.",
+    ogImage: "/og/about.webp",
   },
   portfolio: {
     path: "/portfolio",
@@ -110,7 +115,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.8,
     description: "Explore live Kinexis client sites and design work for local service businesses to find the right direction for your website.",
-    ogImage: "/assets/heroes/02-portfolio-960.webp",
+    ogImage: "/og/portfolio.webp",
   },
   industries: {
     path: "/industries",
@@ -120,7 +125,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Website design for plumbers, HVAC, electricians, roofers, garage door, landscaping, and pressure washing companies nationwide. Plans from $97/mo.",
-    ogImage: "/assets/heroes/01-homepage-960.webp",
+    ogImage: "/og/industries.webp",
   },
   reviews: {
     path: "/reviews",
@@ -129,6 +134,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.6,
     description: "Read client reviews for Kinexis Digital on this site, Trustpilot, and Facebook — and leave your own review in a few clicks.",
+    ogImage: "/og/reviews.webp",
   },
   upgrades: {
     path: "/upgrades",
@@ -137,6 +143,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.5,
     description: "Expand your website with extra pages and ongoing site care as your business grows. See available add-ons, pricing, and turnaround times.",
+    ogImage: "/og/upgrades.webp",
   },
   pricing: {
     path: "/pricing",
@@ -146,7 +153,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Website plans from $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for $1,497. Free homepage preview in 2 business days. No card required.",
-    ogImage: "/assets/heroes/06-pricing-960.webp",
+    ogImage: "/og/pricing.webp",
   },
   pay: {
     path: "/pay",
@@ -166,6 +173,7 @@ export const PAGES = {
     priority: 0.7,
     changeFrequency: "weekly",
     description: "Read practical guides on web design, SEO, website performance, online reviews, and digital marketing for growing businesses.",
+    ogImage: "/og/blog.webp",
   },
   "missed-call-calculator": {
     path: "/tools/missed-call-calculator",
@@ -175,6 +183,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.7,
     description: "Estimate missed-call revenue at risk with your own calls, miss rate, job value, and close rate. Planning math only — no invented benchmarks.",
+    ogImage: "/og/tools.webp",
   },
   "google-review-link-qr": {
     path: "/tools/google-review-link-qr",
@@ -184,6 +193,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.7,
     description: "Paste a Google Place ID to get a direct review link and downloadable QR code. Client-side only — no API key, no secrets stored.",
+    ogImage: "/og/tools.webp",
   },
   faqs: {
     path: "/faqs",
@@ -193,6 +203,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.6,
     description: "Get clear answers about pricing, billing, site ownership, launch timing, SEO, photos, writing, and the 60-day lead guarantee.",
+    ogImage: "/og/faqs.webp",
   },
   update: {
     path: "/update",
@@ -221,6 +232,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.7,
     description: "Choose a time to discuss your current website, the services you want to promote, and whether one of the four Kinexis plans fits.",
+    ogImage: "/og/strategy-call.webp",
   },
   terms: {
     path: "/terms",

@@ -1,7 +1,19 @@
+/** Production apex must always resolve to the www canonical host. */
+function canonicalSiteUrl(raw: string) {
+  const cleaned = raw.trim().replace(/\/$/, "");
+  try {
+    const url = new URL(cleaned);
+    if (url.hostname === "kinexisdigital.com") url.hostname = "www.kinexisdigital.com";
+    return url.origin;
+  } catch {
+    return cleaned || "https://www.kinexisdigital.com";
+  }
+}
+
 // Edit these (or set env vars), then rebuild.
 export const SITE = {
   name: "Kinexis Digital",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kinexisdigital.com").replace(/\/$/, ""),
+  url: canonicalSiteUrl(process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.kinexisdigital.com"),
   phone: "(307) 500-3371",
   phoneE164: "+13075003371",
   email: "hello@kinexisdigital.com",
@@ -20,7 +32,7 @@ export const SITE = {
   clientPortalUrl: "https://portal.kinexisdigital.com/login",
   missedCallPortalUrl: "https://connect.kinexisdigital.com/",
   videoUrl: process.env.NEXT_PUBLIC_VIDEO_URL ?? "/assets/video/kinexis-explainer-v5f-sticker.mp4",
-  ogImage: "/OGimage-sm.webp",
+  ogImage: "/og/home.webp",
 };
 export const telHref = (p: string) => "tel:" + p.replace(/[^0-9+]/g, "");
 

@@ -28,8 +28,8 @@ export function ShotFrame({
   className?: string;
   showCtaOnHover?: boolean;
 }) {
-  // Card slots are ≤280 CSS px; 640w covers 2x/3x without the multi-hundred-KB master.
-  const shot = portfolioFile(project.image, 640);
+  // Listing cards use a top 4:3 crop so we never download the full scroll capture.
+  const shot = portfolioFile(project.image, "card");
   const inner = (
     <div className="shot__page">
       <div className="shot__track">
@@ -38,7 +38,7 @@ export function ShotFrame({
           sizes="(max-width: 720px) 46vw, (max-width: 1100px) 30vw, 280px"
           alt={`${project.name} website design`}
           width={640}
-          height={Math.round((project.height * 640) / project.width)}
+          height={480}
           className="shot__img"
         />
       </div>

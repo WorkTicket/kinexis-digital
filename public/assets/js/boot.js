@@ -1125,6 +1125,12 @@ function consentAllowsAds() {
 function track(name, params) {
   if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
+  // Ensure the gtag stub exists so events queue before/after script load.
+  loadGa();
+  if (typeof window.gtag === "function") {
+    window.gtag("event", name, params || {});
+    return;
+  }
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(["event", name, params || {}]);
 }

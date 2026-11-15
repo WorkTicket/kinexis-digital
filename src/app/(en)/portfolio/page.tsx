@@ -64,8 +64,8 @@ export default function Page() {
           </div>
         </div>
         <div className="portfolio--live">
-          {LIVE_SITES.map((site) => {
-            const shot = portfolioFile(site.image, 640);
+          {LIVE_SITES.map((site, index) => {
+            const shot = portfolioFile(site.image, "card");
             const host = siteHost(site.url);
             const study = CASE_STUDIES.find((item) => item.liveSiteSlug === site.slug);
             return (
@@ -79,8 +79,9 @@ export default function Page() {
                           sizes="(max-width: 960px) 92vw, 380px"
                           alt=""
                           width={640}
-                          height={Math.round((site.height * 640) / site.width)}
+                          height={480}
                           className="shot__img"
+                          eager={index === 0}
                         />
                       </div>
                     </div>
@@ -95,12 +96,7 @@ export default function Page() {
                         <span className="live-site__host">{host}</span>
                       </span>
                     </span>
-                    <span className="live-site__go">
-                      Visit site
-                      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                        <path d="M4.5 11.5 11.5 4.5M6.5 4.5h5v5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
+                    <span className="btn btn--ghost btn--sm live-site__go">Visit site</span>
                   </span>
                 </a>
                 {study ? (

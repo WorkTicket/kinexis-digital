@@ -114,7 +114,7 @@ export function spanishMetadata(locale: Locale, slug?: string[]) {
     description: localized.description,
     absolute: localized.absolute,
     locale,
-    image: localized.image,
+    image: localized.image ?? (page && "ogImage" in page ? page.ogImage : undefined),
     ogType: localized.article ? "article" : "website",
     publishedTime: localized.date,
     section: localized.section,
@@ -1203,13 +1203,13 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
       <Section>
         <div className="container">
           <div className="showcase__head"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
-          <div className="portfolio--live">{LIVE_SITES.map((site) => {
-            const shot = portfolioFile(site.image, 640);
+          <div className="portfolio--live">{LIVE_SITES.map((site, index) => {
+            const shot = portfolioFile(site.image, "card");
             let host = site.url;
             try { host = new URL(site.url).host.replace(/^www\./, ""); } catch { /* keep url */ }
             return (
               <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={Math.round((site.height * 640) / site.width)} className="shot__img" /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
+                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={480} className="shot__img" eager={index === 0} /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
                 <span className="live-site__copy"><span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />{tx("En vivo")}</span><span className="live-site__id"><span className="live-site__name">{site.name}</span><span className="live-site__meta"><span>{site.trade}</span><span className="live-site__host">{host}</span></span></span></span>
               </a>
             );
