@@ -2932,6 +2932,16 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 /* Hover overlay uses the shared fill button. Centering stays on translate. */
 .shot__cta-overlay{position:absolute;left:50%;top:50%;z-index:2;translate:-50% -50%;
   opacity:0;pointer-events:none;transition:opacity .2s ease,color .3s ease-in-out,box-shadow .2s ease}
+/* Solid face — a 0% wipe hard-stop leaves a 1px orange fringe on the left edge. */
+.btn.btn--primary.shot__cta-overlay,
+.btn.btn--primary.shot__cta-overlay:hover,
+.btn.btn--primary.shot__cta-overlay:active,
+.btn.btn--primary.shot__cta-overlay:focus-visible{
+  --btn-fill:0;
+  background:var(--brand-navy);
+  color:#fff;
+  transform:none;
+}
 .shot:hover .shot__cta-overlay,.shot:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
 .shot__cta-overlay:hover,.shot__cta-overlay:active{transform:none}
 .portfolio--related .shot__cta-overlay{padding:.5rem .85rem;font-size:.8rem}
@@ -4597,6 +4607,16 @@ p,li,blockquote{ text-wrap:pretty }
   animation:none;
 }
 .btn--primary,.btn--warm{--btn-face:var(--brand-navy)}
+/* Portfolio “Visit Site” overlays: no wipe gradient (avoids 1px orange left fringe). */
+.btn.btn--primary.shot__cta-overlay,
+.btn.btn--primary.shot__cta-overlay:hover,
+.btn.btn--primary.shot__cta-overlay:active,
+.btn.btn--primary.shot__cta-overlay:focus-visible{
+  --btn-fill:0;
+  background:var(--brand-navy);
+  color:#fff;
+  transform:none;
+}
 /* Secondary — exact Uiverse.io adamgiebl press (no transition). */
 .btn.btn--ghost,.btn.btn--light{
   --btn-fill:0;
