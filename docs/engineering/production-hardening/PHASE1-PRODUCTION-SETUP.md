@@ -1,5 +1,19 @@
 # Phase 1 production setup
 
+Completed on 2026-11-15. This file stays as the procedure. The live result is below. Do not start Phase 2.
+
+## What shipped
+
+- PR #6 merged to `main` as `a32c39b`.
+- Worker `kinexis-digital` version `87e26f40-6f60-4c83-95c9-33d56e483705`, deployed from that commit. Rollback version `5c5690e8-216f-4441-ab32-fb056b401dd2`.
+- D1 migration 0001 applied to production `kinexis-invoice-ledger` (`077c8e46-2ea8-4997-8b6a-c06902194575`) and preview `kinexis-invoice-ledger-preview` (`5a474f5a-4ac9-4d4c-8309-943c3d52981b`). Both ledger tables had 0 rows. The unrelated database named `kinexis` was left alone.
+- Production KV prefix `invoice:v1:` had 0 keys, so nothing was imported. `INVOICE_LINK_SECRET_PREVIOUS` was not set. The staff route returns a link only after the invoice is stored, and the app never deletes those keys.
+- Production secrets set, values not copied here except the live webhook id the owner recorded: live `PAYPAL_MERCHANT_ID`, `PAYPAL_WEBHOOK_ID` `24N19060893354101` for `https://kinexisdigital.com/api/paypal/webhook`, `PAYPAL_API_BASE` = `https://api-m.paypal.com`, and `INVOICE_LINK_SECRET` (32 random bytes generated on the owner PC and never printed).
+- Smoke, no payment: `www` and apex `/` returned 200, `/pay` returned 200, unsigned `POST /api/paypal/webhook` returned 400 `{"error":"invalid signature headers"}`, and `GET` returned 405.
+- Not verified: a PayPal-signed live webhook. That stays open until the first real payment event. No real payment test was run.
+
+The steps below are the procedure that was used. Re-running database create is skipped when these ids are already in `wrangler.jsonc`.
+
 Run this on the Windows checkout where `npx wrangler` is already logged in. The script is `scripts/phase1-production-setup.ps1`. It pauses before every production change and asks you to type `YES`.
 
 It never runs `wrangler deploy`, `npm run deploy`, or `npm run deploy:worker`. Publishing the new Worker code stays a command you type yourself, after you have read the diff and this runbook.

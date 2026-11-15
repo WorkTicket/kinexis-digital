@@ -4,7 +4,7 @@
 
 - **Phase:** 1 — Payment and Invoice Integrity
 - **Date:** 2026-11-15
-- **Status:** Code complete. Production D1 exists and migration 0001 is applied. KV had no invoices. Secrets and deploy are still waiting. Do not start Phase 2.
+- **Status:** Live in production from `a32c39b` (PR #6). Do not start Phase 2. A real PayPal-signed webhook delivery is still unseen.
 
 ## Git and scope
 
@@ -12,7 +12,9 @@
 - First commit restores the owner's uncommitted Phase 0/1 work unchanged.
 - Later commits add the ledger, webhook verification, route tests, and this record.
 - No chatbot, Conferbot, pricing, package, terms, or guarantee copy changes.
-- No deploy and no secret write from this branch. The owner created the D1 databases and applied migration 0001 from worktree `d123e14`. Production ledger tables are empty. KV `invoice:v1:*` count was 0.
+- Production Worker `kinexis-digital` version `87e26f40-6f60-4c83-95c9-33d56e483705`, deployed 2026-11-15 from `a32c39b`. Rollback version `5c5690e8-216f-4441-ab32-fb056b401dd2`.
+- D1 migration 0001 is applied. Production `kinexis-invoice-ledger` (`077c8e46-2ea8-4997-8b6a-c06902194575`) and preview `kinexis-invoice-ledger-preview` (`5a474f5a-4ac9-4d4c-8309-943c3d52981b`) each had 0 invoice rows. KV `invoice:v1:*` count was 0. The unrelated database named `kinexis` was left alone.
+- Production secrets set, values not copied here: live `PAYPAL_MERCHANT_ID`, live `PAYPAL_WEBHOOK_ID` (`24N19060893354101`) for `https://kinexisdigital.com/api/paypal/webhook`, `PAYPAL_API_BASE` = `https://api-m.paypal.com`, and `INVOICE_LINK_SECRET` (32 random bytes, never printed). `INVOICE_LINK_SECRET_PREVIOUS` was not set.
 
 ## What this phase now does
 
@@ -25,14 +27,10 @@
 
 Runtime: Node v22.23.4, npm 10.9.9. The repo asks for npm >= 11. `node:sqlite` printed an experimental warning during ledger and route tests. See `TEST-MATRIX.md`. Sandbox evidence is in its own section there. Mocked lines are not that evidence.
 
-## Exact owner actions
+## What remains
 
-1. Sandbox order create, unpaid-capture rejection, positive sandbox card capture, amount and currency mismatch, and forged webhook signature rejection are done. Still needed if you want a PayPal-signed `SUCCESS`: deliver a sandbox event to a deployed route, or capture a real sandbox transmission and verify it. Do not post sandbox events at production until that deploy is approved. Keep credential values out of git.
-2. Generate `INVOICE_LINK_SECRET` (at least 32 UTF-8 bytes) and set it only after this code is deployed. `INVOICE_LINK_SECRET_PREVIOUS` is likely unneeded. Both the deployed route and this branch return a payment link only after the invoice row is stored. No other code signs invoice links, and the app never deletes `invoice:v1:*`. Production KV has zero of those keys, so the API has no stored invoice a link could refer to. Set the previous key only if you know a link was copied and its KV row was later removed by hand.
-3. D1 is done. Production `kinexis-invoice-ledger` is `077c8e46-2ea8-4997-8b6a-c06902194575`. Preview `kinexis-invoice-ledger-preview` is `5a474f5a-4ac9-4d4c-8309-943c3d52981b`. Migration 0001 is applied to both. Both ledger tables were empty. Leave the unrelated database named `kinexis` alone. The KV dry run was 0/0/0. `--remote --apply` with zero rows crashed on an empty SQL file (Windows `3221226505`); that execute is now skipped.
-4. The sandbox webhook is registered for `https://kinexisdigital.com/api/paypal/webhook` with the six order and capture events. Set the sandbox webhook id as a Worker secret only with an approved deploy. Production needs its own webhook when that app is configured.
-5. To exercise the subscription button E2E beyond the fail-closed alert, set `NEXT_PUBLIC_PAYPAL_CLIENT_ID` in the test environment and re-run `npx playwright test e2e/production-audit.spec.ts`.
-6. On the Windows checkout, read `PHASE1-PRODUCTION-SETUP.md` and run `scripts/phase1-production-setup.ps1` only after approving each command. The script never deploys. Deploy remains `npm run deploy`, typed separately.
-7. Do not merge or deploy until the setup verification reports `countsMatch: true` and the signing secrets are in place. Phase 2 has not been started.
+1. Watch the first real PayPal payment event. A signed live webhook `SUCCESS` has not been seen. Smoke only: unsigned `POST /api/paypal/webhook` returned 400 `{"error":"invalid signature headers"}`, and `GET` returned 405. No real payment test was run.
+2. Optional: set `NEXT_PUBLIC_PAYPAL_CLIENT_ID` and re-run `npx playwright test e2e/production-audit.spec.ts` if the subscription SDK ready state must be proven. That is not a Phase 2 task.
+3. Do not start Phase 2.
 
 Closure write-up: `phases/phase-01-closure.md`. Setup runbook: `PHASE1-PRODUCTION-SETUP.md`.
