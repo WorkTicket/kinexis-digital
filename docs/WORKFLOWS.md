@@ -7,7 +7,8 @@
 ## Lint/typecheck
 - `npm run lint` - ESLint (flat config)
 - `npm run typecheck` - TypeScript no emit
-- `npm run check` - Lint, typecheck, mocked contact-delivery, reviews route handlers, and Spanish mirror
+- `npm run check` - Lint, typecheck, mocked contact-delivery, reviews route handlers, Spanish mirror, and commercial consistency
+- `npm run check:commercial` - Plan amounts, text-back matrix, USD/EUR numerals vs `prices.ts` / `spanishPlans`
 - `npm run check:reviews` - Real `/api/reviews` and `/api/reviews/moderate` handlers with in-memory KV (no Cloudflare/SMTP)
 - `npm run check:route-integration` - Contact + reviews + invoice-security handler suites
 
