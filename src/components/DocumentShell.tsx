@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import Boot from "@/components/Boot";
+import ConferbotWidget from "@/components/ConferbotWidget";
 import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { isPreviewSite, SITE } from "@/lib/site";
@@ -131,6 +132,8 @@ if(/FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\\//i.test(ua))r.cl
           metaPixel={/^\d{5,20}$/.test(metaPixelId) ? metaPixelId : ""}
           video={SITE.videoUrl}
         />
+        {/* Off unless NEXT_PUBLIC_CONFERBOT_ENABLED=1; loads after analytics consent + idle/input. */}
+        <ConferbotWidget locale={locale} />
       </body>
     </html>
   );

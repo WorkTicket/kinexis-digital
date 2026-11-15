@@ -1,16 +1,16 @@
 # Programme handoff
 
-- **Phase:** 4 — Spanish localization and commercial consistency
+- **Phase:** 5 — Security / Conferbot
 - **Date:** 2026-11-15
-- **Branch:** `cursor/phase4-spanish-commercial-67c1`
-- **Status:** Complete. Next: Phase 5 (CSP, Conferbot widget/webhook flags off).
+- **Branch:** `cursor/phase5-security-conferbot-67c1`
+- **Status:** Complete. Widget + webhook behind flags. Next: Phase 6 perf/a11y/SEO.
 
 ## Commands
 
 | Command | Result |
 |---|---|
-| `npm run check:commercial` | PASS |
+| `npm run check:conferbot` | PASS |
 | `npm run check` | PASS |
-| `npm run test:e2e` / `build:worker` | NOT RUN |
+| `npm run test:e2e` / `build:worker` | NOT RUN this handoff |
 
-Report: `phases/phase-04-spanish-commercial.md`. Bot doc: `docs/CONFERBOT-BOT-SETUP.md`.
+Reports: `phases/phase-05-security-conferbot.md`, `docs/CONFERBOT-INTEGRATION.md`, `docs/CONFERBOT-BOT-SETUP.md`.
