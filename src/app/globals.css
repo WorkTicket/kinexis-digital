@@ -122,9 +122,17 @@
   --float-gap:16px;
   /* Left pocket width for the cookie chip; float shifts/narrows by this amount. */
   --consent-fab-slot:0px;
+  /* Shared bottom band for sticky chrome (float CTA, cookie chip, Conferbot launcher). */
+  --sticky-stack:calc(max(var(--float-gap), var(--sab)) + var(--vv-bottom,0px) + var(--iab-extra,0px));
+  /* Extra lift so the chat launcher clears the centered float bar on phones. */
+  --chat-lift:0px;
   --chrome-top:var(--sat);
 }
 html:not(.no-float){--consent-fab-slot:52px}
+@media (max-width:860px){
+  html:not(.no-float){--chat-lift:76px}
+  html.no-float{--chat-lift:12px}
+}
 /* Heroes use real Poppins Display 800 (preloaded, font-display:block).
    Body/UI stay on size-matched fallback faces so Inter/Poppins files
    never contend with LCP and never swap mid-load. */
@@ -1189,7 +1197,7 @@ html.lp-route body{--announce-h:0px}
 /* Reviews: one connected sequence, not three separate cards. */
 .review-rail{
   --mark:84px;
-  list-style:none;margin:8px 0 0;padding:22px 8px 8px;
+  list-style:none;margin:8px 0 0;padding:18px 8px 8px;
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;
   position:relative;background:#fff;
   border:1px solid var(--border);border-radius:18px;
@@ -1197,16 +1205,22 @@ html.lp-route body{--announce-h:0px}
 }
 .review-rail__step{position:relative;z-index:1;padding:0 26px 22px;text-align:center}
 .review-rail__step + .review-rail__step{box-shadow:inset 1px 0 0 var(--border)}
+/* Number sits above the icon circle — never overlaid on the artwork (sitewide). */
 .review-rail__mark{
-  position:relative;z-index:1;width:var(--mark);height:var(--mark);margin:0 auto 14px;
+  --num:28px;
+  position:relative;z-index:1;width:var(--mark);
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;
+  margin:0 auto 14px;
 }
 .review-rail__icon{
-  display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;background:var(--bg-tint);
+  display:grid;place-items:center;width:var(--mark);height:var(--mark);flex:0 0 auto;
+  border-radius:50%;overflow:hidden;background:var(--bg-tint);
 }
-.review-rail__mark img.icon{width:100%;height:100%;display:block}
+.review-rail__mark img.icon{width:100%;height:100%;display:block;margin:0}
 .review-rail__num{
-  position:absolute;left:-2px;top:-2px;z-index:2;
-  width:28px;height:28px;display:grid;place-items:center;border-radius:50%;
+  position:static;left:auto;top:auto;z-index:1;
+  width:var(--num);height:var(--num);flex:0 0 auto;
+  display:grid;place-items:center;border-radius:50%;
   background:var(--brand-orange);color:var(--brand-navy);
   border:1px solid var(--border);box-shadow:var(--shadow);
   font-family:var(--font-head);font-weight:800;font-size:.78rem;line-height:1;
@@ -1331,7 +1345,10 @@ html.lp-route body{--announce-h:0px}
     align-items:center;text-align:left;padding:16px 18px;
   }
   .review-rail__step + .review-rail__step{box-shadow:none;border-top:1px solid var(--border)}
-  .review-rail__mark{--mark:72px;width:72px;height:72px;margin:0;grid-column:1;grid-row:1 / span 2}
+  .review-rail__mark{
+    --mark:72px;--num:24px;width:72px;margin:0;gap:6px;
+    grid-column:1;grid-row:1 / span 2;align-self:center;
+  }
   .review-rail__step h3{grid-column:2;grid-row:1;align-self:end;margin:0}
   .review-rail__step p{grid-column:2;grid-row:2;align-self:start;margin:0;max-width:none}
   .review-rail--numbers .review-rail__step{
@@ -1543,7 +1560,7 @@ html.no-float{--consent-fab-slot:0px}
 .consent-fab{
   position:fixed;z-index:70;left:max(12px, var(--sal, 0px));
   /* Same bottom band as the sticky bar — never stacked above it. */
-  bottom:calc(max(var(--float-gap), var(--sab)) + var(--vv-bottom,0px) + var(--iab-extra,0px));
+  bottom:var(--sticky-stack);
   display:inline-flex;align-items:center;justify-content:center;gap:0;
   width:42px;height:42px;padding:0;border-radius:999px;
   border:1px solid rgba(3,27,78,.18);
@@ -1769,7 +1786,7 @@ html.no-float .consent-fab__label{
 .float-cta{
   position:fixed;left:50%;z-index:45;
   display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 10px;
-  bottom:calc(max(var(--float-gap), var(--sab)) + var(--vv-bottom) + var(--iab-extra));
+  bottom:var(--sticky-stack);
   width:min(420px, calc(100% - 24px - var(--sal) - var(--sar) - (2 * var(--consent-fab-slot))));
   box-sizing:border-box;
   background:#fff;border:1px solid var(--border);border-radius:20px;padding:10px 14px 12px;white-space:normal;
@@ -1779,6 +1796,20 @@ html.no-float .consent-fab__label{
   pointer-events:none;
   box-shadow:0 10px 28px rgba(10,18,48,0);
   transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease, box-shadow .7s ease, bottom .2s ease;
+}
+/* Conferbot launcher (light DOM). Keep clear of the centered float CTA + cookie chip on phones. */
+.chatbot__icon,
+.chatbot__icon__cta,
+#chatbot__icon__cta{
+  bottom:calc(var(--sticky-stack) + var(--chat-lift)) !important;
+  right:max(12px, var(--sar, 0px)) !important;
+  z-index:46 !important;
+}
+html.consent-open .chatbot__icon,
+html.consent-open .chatbot__icon__cta,
+html.consent-open #chatbot__icon__cta{
+  /* Consent sheet owns the bottom; tuck the launcher out of the way. */
+  bottom:calc(var(--sticky-stack) + min(42vh, 280px)) !important;
 }
 .float-cta.is-in{
   transform:translate3d(-50%, 0, 0) scale(1);
@@ -4270,13 +4301,13 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 }
 .industry-problems__item::before{display:none}
 .industry-problems__icon{
-  display:grid;place-items:center;width:72px;height:72px;margin:0 0 1rem;
+  display:grid;place-items:center;width:72px;height:72px;margin:0 auto 1rem;
 }
 .industry-problems__icon img.icon{
   width:72px;height:72px;margin:0;display:block;object-fit:contain;
 }
-.industry-problems__item h3{margin:0 0 .45em;font-size:1.12rem;line-height:1.25;color:var(--text);text-align:left}
-.industry-problems__item p{margin:0;color:var(--copy);text-align:left}
+.industry-problems__item h3{margin:0 0 .45em;font-size:1.12rem;line-height:1.25;color:var(--text);text-align:center}
+.industry-problems__item p{margin:0;color:var(--copy);text-align:center}
 .industry-screens-lead{max-width:42rem;margin:0 auto 2rem;text-align:center}
 .industry-screens-lead h3{margin:0 0 .45em;font-size:clamp(1.25rem,2.2vw,1.55rem)}
 .industry-screens-lead p{margin:0;color:var(--copy)}
@@ -4866,17 +4897,27 @@ p,li,blockquote{ text-wrap:pretty }
   .reason-sheet__mark,.reason-sheet__mark img.icon{width:68px;height:68px}
 
   .float-cta{
-    padding:10px 12px 12px;
+    padding:8px 10px 10px;
     border-radius:16px;
     gap:6px 8px;
+    /* Leave room for cookie chip (left) and Conferbot launcher (right). */
+    width:min(360px, calc(100% - 28px - var(--sal) - var(--sar) - (2 * max(var(--consent-fab-slot), 56px))));
   }
   .float-cta .btn{
     flex:0 1 auto;
     padding:.42em .8em;
     font-size:.82rem;
+    min-height:44px;
   }
   .float-cta__call{flex:0 0 auto}
-  .float-cta__label{font-size:.86rem}
+  .float-cta__label{font-size:.82rem;line-height:1.25}
+  .consent-fab{
+    width:44px;height:44px;
+    /* Prefer tap target size on phones without colliding with the float bar. */
+  }
+  html.no-float .consent-fab{
+    max-width:calc(100vw - 24px - var(--sal) - var(--sar));
+  }
 
   .chips{gap:8px;margin-bottom:24px;justify-content:flex-start}
   .chip{padding:.55em 1em;font-size:.9rem}

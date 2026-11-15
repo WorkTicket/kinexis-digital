@@ -68,10 +68,10 @@ export function ReviewRail({
             <span className="review-rail__index" aria-hidden="true">{step.n}</span>
           ) : (
             <div className="review-rail__mark">
+              <span className="review-rail__num" aria-hidden="true">{step.n}</span>
               <span className="review-rail__icon">
                 <Icon name={step.icon ?? "missed-call-text-back"} alt="" size={84} className="icon--bare" />
               </span>
-              <span className="review-rail__num" aria-hidden="true">{step.n}</span>
             </div>
           )}
           <h3>{step.titleDisplay ?? step.title}</h3>
