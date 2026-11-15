@@ -4,34 +4,34 @@
 
 - **Phase:** 1 — Payment and Invoice Integrity
 - **Date:** 2026-11-15
-- **Status:** INCOMPLETE / NOT READY for Phase 2 or production release
+- **Status:** Engineering scope closed. NOT READY to merge, deploy, or start Phase 2.
 
 ## Git and scope
 
-- **Branch/worktree:** `codex/production-hardening-v1` at `C:\Users\Slay3r\.local\share\opencode\worktree\1fc06f\production-hardening-v1`.
-- Original checkout changes remain separate and untouched. Phase 1 changes are uncommitted and unpushed.
-- Modified app/build files: `package.json`; `src/app/api/checkout/route.ts`; `src/app/api/checkout/capture/route.ts`; `src/app/api/invoices/route.ts`; `src/lib/invoice-core.ts`; `src/lib/invoices.ts`; `src/lib/paypal-order.ts`.
-- Added tests/helpers: `src/lib/payment-verification.ts`; `scripts/check-payment-integrity.mjs`; `scripts/check-paypal-order-service.mjs`; updated `scripts/check-invoice-security.mjs`, `scripts/check-paypal-sandbox.mjs`; added `e2e/invoice-payment-integrity.spec.ts`.
-- Updated programme docs: `FINDINGS.md`, `DECISIONS.md`, `STATUS.md`, `TEST-MATRIX.md`, this handoff, and `phases/phase-01-payment-invoice-integrity.md`.
-- No chatbot changes, deployment, production data migration, production secrets changes, or real payment.
+- **Branch:** `codex/production-hardening-v1`, based on `c43041d`.
+- First commit restores the owner's uncommitted Phase 0/1 work unchanged.
+- Later commits add the ledger, webhook verification, route tests, and this record.
+- No chatbot, Conferbot, pricing, package, terms, or guarantee copy changes.
+- No deployment, production migration, production secret, or real payment.
 
-## Verification
+## What this phase now does
 
-- `npm run check` — PASS (3 existing lint warnings; typecheck and other checks pass).
-- `npm run check:invoice-security` — PASS (production logic and mocked provider-boundary checks).
-- `npx playwright test e2e/invoice-payment-integrity.spec.ts --project=chromium` — PASS (3 guard tests).
-- `npm run verify` — PARTIAL/FAIL: 27 passed, 4 failed, 3 skipped. The two subscription widget failures and mobile plan-header issue match Phase 0; mobile nav passed; invoice-admin E2E had an unexpected worker process exit. See `TEST-MATRIX.md`.
-- `npm run check:paypal-sandbox` — live sandbox NOT RUN; credentials unavailable.
-- `npm run build:worker` — PASS; preflight reported existing missing GA/Meta build variables; OpenNext completed.
-- `git diff --check` — PASS.
+- New invoice links are `v2.` HMAC signatures from `INVOICE_LINK_SECRET` (minimum 32 UTF-8 bytes). `INVOICE_LINK_SECRET_PREVIOUS` verifies older links only until `INVOICE_LINK_SECRET_PREVIOUS_UNTIL`, when that timestamp is set. Removing the previous secret closes the window immediately. The PayPal client secret is not a signing fallback.
+- Invoice creates, PayPal order association, and paid transitions go through D1 (`INVOICE_DB`) in one batch. The paid transition is a conditional update plus a unique `(provider, event_id)` row. A second capture id, a mismatched amount, or a replayed event does not change the paid invoice.
+- `POST /api/paypal/webhook` calls PayPal `verify-webhook-signature` and accepts only `verification_status: SUCCESS`. Signature failure stores nothing. Provider or storage failure returns 503 so PayPal retries.
+- `npm run check:paypal-sandbox` runs a local mock, then prints `SANDBOX EVIDENCE: NOT RUN` unless sandbox credentials and `PAYPAL_SANDBOX_CONFIRM=1` are both present.
 
-## Blockers and exact next actions
+## Verification on this machine
 
-1. Supply approved PayPal sandbox client ID/secret, `PAYPAL_MERCHANT_ID`, sandbox API base, and test payment method; run a real sandbox order create/approve/capture and inspect provider order/capture response. Do not call mocked tests sandbox verification.
-2. Supply the correct merchant account ID and configure dedicated production `INVOICE_LINK_SECRET` (minimum 32 UTF-8 bytes); preserve the actual prior signing key in `INVOICE_LINK_SECRET_PREVIOUS` during rotation. No secret values in source/docs.
-3. Owner approval is needed to provision/configure D1 and rehearse migration before claiming atomic state transitions or durable deduplication. `REVIEWS` KV is not transactional; no D1 binding exists.
-4. Configure PayPal webhook ID and implement the official PayPal verification API plus D1-unique event IDs in one atomic payment transition. Webhooks are currently absent.
-5. Add full actual-route integration coverage for successful checkout/capture and false/throw persistence failures/replays. The current E2E tests only cover guards; mocked service checks are not route end-to-end coverage.
-6. Reproduce the unexpected invoice-admin E2E worker exit, then rerun full verification. Keep Phase 0 failures separately identified.
+Runtime: Node v22.23.4, npm 10.9.9. The repo asks for npm >= 11. `node:sqlite` printed an experimental warning during ledger and route tests. See `TEST-MATRIX.md` for commands and results. Do not read the mocked PayPal checks as sandbox evidence.
 
-Phase 1 stops here. Do not start Phase 2, deploy, migrate, push, or merge without authorization. See `STATUS.md`, `FINDINGS.md`, `DECISIONS.md`, and the dedicated Phase 1 report for detail.
+## Exact owner actions
+
+1. Supply sandbox PayPal client id, secret, merchant id, webhook id, and API base `https://api-m.sandbox.paypal.com`. Export `PAYPAL_SANDBOX_CONFIRM=1` and run `npm run check:paypal-sandbox`. Keep the values out of git.
+2. Generate `INVOICE_LINK_SECRET` (at least 32 UTF-8 bytes) and set it with `wrangler secret put` only when a deploy is separately approved. If any live links were signed with an older key, copy that key into `INVOICE_LINK_SECRET_PREVIOUS` for the rotation window. Set `INVOICE_LINK_SECRET_PREVIOUS_UNTIL` if the window should end on a timestamp.
+3. Create two empty D1 databases (production and preview). Replace `00000000-0000-4000-8000-000000000001` and `00000000-0000-4000-8000-000000000002` in `wrangler.jsonc`. Review `migrations/0001_invoice_payment_ledger.sql`. Apply it only after approval, to the new databases, not by deploying this branch. Export KV keys prefixed `invoice:v1:` and import them before switching reads. Do not delete the KV keys in the observation window.
+4. Point the PayPal app webhook at `/api/paypal/webhook` and set `PAYPAL_WEBHOOK_ID` to that webhook's id.
+5. To exercise the subscription button E2E beyond the fail-closed alert, set `NEXT_PUBLIC_PAYPAL_CLIENT_ID` in the test environment and re-run `npx playwright test e2e/production-audit.spec.ts`.
+6. Do not merge or deploy until those items are done and reviewed. Phase 2 has not been started.
+
+Closure write-up: `phases/phase-01-closure.md`.

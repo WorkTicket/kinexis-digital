@@ -2,25 +2,30 @@
 
 ## Phase 1 — payment and invoice integrity
 
-### Fixed in this branch (not yet production deployed)
+### In the restored owner commit
 
-1. `src/app/api/checkout/route.ts`: ignores caller-supplied idempotency keys and derives PayPal's request ID from the server-side invoice ID; rejects checkout if the PayPal order association cannot be persisted.
-2. `src/app/api/checkout/capture/route.ts`: resolves the PayPal order's invoice association, loads that exact stored invoice, requires the stored PayPal order ID to match, and only redirects to success after verified capture state and successful persistence.
-3. `src/lib/paypal-order.ts` + `src/lib/payment-verification.ts`: validates expected order/invoice IDs, both correlation IDs, original invoice amount, USD currency, configured merchant ID, approved/completed states, and exactly one completed capture with the full expected amount. An `ORDER_ALREADY_CAPTURED`/conflict response is not trusted; the order is re-fetched and re-validated.
-4. `src/lib/invoices.ts` + `src/lib/invoice-core.ts`: invoice tokens are newly issued as versioned HMAC (`v2.`), use a dedicated `INVOICE_LINK_SECRET` with a 32-byte minimum, and support a configured previous key for versioned and legacy links. The PayPal-secret fallback has been removed. Legacy key migration still requires owner configuration.
-5. `scripts/check-invoice-security.mjs`, `scripts/check-payment-integrity.mjs`, and `scripts/check-paypal-order-service.mjs` exercise production functions (provider HTTP mocked at the boundary) instead of mirroring the core validation logic. Route-guard E2E coverage is added in `e2e/invoice-payment-integrity.spec.ts`.
+Strict PayPal order and capture checks, stable per-invoice PayPal request ids, fail-closed persistence, versioned invoice tokens, and removal of the PayPal-secret signing fallback. Those changes were committed unchanged from the owner's worktree and then extended below.
 
-### Remaining confirmed blockers/risks
+### Added after that commit
 
-6. Invoice state still resides in Cloudflare KV (`REVIEWS` namespace). KV does not provide transactional compare-and-set for an invoice plus unique payment-event ledger. Same-order retries are verified idempotently against PayPal, but concurrent state changes and durable webhook deduplication cannot be guaranteed with the current binding. Do not represent this as a transactional ledger.
-7. No PayPal webhook endpoint or configured webhook ID exists. Official PayPal signature verification requires the configured webhook ID and transmission headers/body to be submitted to PayPal's `POST /v1/notifications/verify-webhook-signature` API (or equivalent cryptographic validation), plus durable event-ID deduplication. The D1/event-ledger blocker and design are recorded in `DECISIONS.md`.
-8. `PAYPAL_MERCHANT_ID` is a new required server setting for invoice order/capture verification. Until configured with the correct account merchant ID, invoice PayPal operations fail closed.
-9. Phase 0 E2E PayPal subscription-widget failures were unrelated to invoice capture/state. They displayed the widget failure state because `NEXT_PUBLIC_PAYPAL_CLIENT_ID` was absent in the isolated test environment. The mobile plan-header and mobile-navigation failures are unrelated. They were not fixed in Phase 1.
-10. Actual live PayPal sandbox confirmation was not available in the isolated worktree. Provider-mocked tests are not sandbox evidence.
+1. Invoice links are signed only with `INVOICE_LINK_SECRET` (minimum 32 UTF-8 bytes) as `v2.` HMAC. `INVOICE_LINK_SECRET_PREVIOUS` is accepted for v2 and legacy tokens during the rotation window. If `INVOICE_LINK_SECRET_PREVIOUS_UNTIL` is a valid timestamp, the previous key stops working at that instant. An unparseable timestamp closes the previous key immediately. The current key keeps working.
+2. Invoice and payment writes no longer use the `REVIEWS` KV namespace. `INVOICE_DB` (D1) runs create, order association, and mark-paid as batched SQL. Mark-paid updates the invoice only when the order, amount, currency, and capture id match, and inserts one payment event. A second capture id, a wrong amount, or an event id already stored as rejected leaves the invoice unpaid. Replaying the same applied event returns success without a second row.
+3. `POST /api/paypal/webhook` sends the transmission headers, configured webhook id, and event body to PayPal `POST /v1/notifications/verify-webhook-signature`. Only `verification_status: SUCCESS` is accepted. The event id is the dedupe key. Storage or provider failure responds 503. A verified event that does not match the stored invoice is recorded as rejected and acknowledged so PayPal does not retry it forever.
+4. Route tests in `scripts/check-invoice-routes.mjs` drive the real handlers. PayPal is mocked. See `TEST-MATRIX.md`.
+5. Playwright: the mobile homepage now asserts the mobile plan card instead of the desktop column header. The PayPal checkout spec asserts the fail-closed alert when no public client id is configured. Invoice route guards use a distinct forwarded address per project so the second project is not rate-limited into a false 429. The full suite completed with no worker crash.
 
-## Phase 0 environment/release risks retained
+### Still open
 
-- `wrangler.jsonc` preview configuration names production recipients in `CONTACT_TO` and `CONTACT_EMAIL.allowed_destination_addresses`; Phase 1 did not modify it. Review/isolate before preview emails.
-- Text-back/second-number commercial relationship and Spain EUR pricing remain owner decisions; no commercial policy changed.
+6. Live PayPal sandbox was not run. `SANDBOX EVIDENCE: NOT RUN`.
+7. D1 database ids in `wrangler.jsonc` are placeholders (`…0001` production, `…0002` preview). The migration file was applied only to an in-memory SQLite database in the ledger test. It was not applied to Cloudflare.
+8. Existing invoice rows, if any, still live under KV prefix `invoice:v1:`. This code does not read them. They must be imported into D1 before a deploy or those links will look missing.
+9. `PAYPAL_MERCHANT_ID`, `PAYPAL_WEBHOOK_ID`, and `INVOICE_LINK_SECRET` are required and were not created here.
+10. Subscription SDK ready/loading was not observed. Measurement-id E2E stays skipped without GA/Meta build variables. `e2e/smoke.spec.ts` still allows HTTP 429 on one older invoice tamper test; that assertion was already in the tree and was not loosened.
+11. A verified capture webhook must include both `invoice_id` and `custom_id`, equal to each other. That matches the orders this app creates. A payload that drops `custom_id` is rejected.
 
-No production deployment, production data migration, real payment, or real customer notification was performed.
+## Phase 0 risks retained
+
+- Preview `CONTACT_TO` still lists production recipients. Not changed.
+- Text-back, second-number, and Spain EUR pricing were not changed.
+
+No production deployment, production data migration, real payment, or customer notification was performed.
