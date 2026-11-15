@@ -235,17 +235,16 @@ test.describe("marketing journeys", () => {
   test("Conferbot widget stays unloaded while public flag is off", async ({ page }) => {
     // Playwright webServer is `npm run dev`, which does not load `.env.production`.
     // Production builds may enable the widget via that file; this suite asserts the
-    // default/dev/CI path stays off.
+    // default/dev/CI path stays off. Chat is not analytics-gated; flag-off alone
+    // must keep the script out even after interaction / idle window.
     test.skip(
       process.env.NEXT_PUBLIC_CONFERBOT_ENABLED === "1",
       "Public widget flag is on in this environment; off-by-default contract N/A",
     );
     await page.goto("/");
-    await page.evaluate(() => {
-      document.cookie = `kinexis_consent=${encodeURIComponent("v1|a=1|d=0")}; Path=/; Max-Age=86400; SameSite=Lax`;
-      window.dispatchEvent(new Event("kinexis:consent"));
-    });
-    await page.waitForTimeout(1_200);
+    await page.mouse.click(40, 40);
+    await page.keyboard.press("Tab");
+    await page.waitForTimeout(3_000);
     const loaded = await page.evaluate(() => ({
       script: Boolean(document.getElementById("conferbot-js")),
       srcHits: [...document.scripts].some((s) => (s.src || "").includes("cdn.conferbot.com")),

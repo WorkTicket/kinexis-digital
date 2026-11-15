@@ -30,7 +30,7 @@
 | Contact form | Submit on preview | Mail only to `CONTACT_PREVIEW_TO` or 503 if unset |
 | Reviews notify | Submit review | Same preview sink rule |
 | Widget flag off | Homepage | No `conferbot-js` script |
-| Widget flag on (preview build var only) | After analytics consent + click | Script loads; launcher appears |
+| Widget flag on (preview build var only) | After idle/input (reject cookies OK) | Script loads; launcher appears |
 | Webhook unsigned | `POST` without signature | 401 (when integration enabled) |
 | Webhook signed fixture | Local/preview with secret | 2xx; redacted rows; replay idempotent |
 | PayPal unsigned webhook | Production smoke only if already live | 400 invalid headers (do not charge) |

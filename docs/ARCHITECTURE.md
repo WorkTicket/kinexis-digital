@@ -53,7 +53,7 @@ Indexable EN marketing routes live under `src/app/(en)/` and are listed in `src/
 - `src/lib/pages.ts` - Canonical page metadata/sitemap/redirect source of truth
 - `src/components/Header.tsx`, `Footer.tsx`, `ui.tsx`, `artwork.tsx` - Core UI
 - `src/components/CookieConsent.tsx` - Consent dock; analytics/ads gates for third-party scripts
-- `src/components/ConferbotWidget.tsx` - Lazy Conferbot live chat after analytics consent + idle/input
+- `src/components/ConferbotWidget.tsx` - Lazy Conferbot live chat (flag on); loads after idle/input for all public visitors — not analytics-gated
 - `src/app/api/integrations/conferbot/webhook/route.ts` - HMAC webhook (flagged; see `docs/CONFERBOT-INTEGRATION.md`)
 - `src/i18n/SpanishSite.tsx` - Spanish static page router + `PAGE_META`
 

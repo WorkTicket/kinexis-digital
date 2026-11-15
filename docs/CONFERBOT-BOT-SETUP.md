@@ -40,4 +40,4 @@ Appearance (launcher icon + in-chat avatar) is controlled in the **Conferbot das
 
 ## Privacy
 
-Conferbot webhook payloads may include visitor IP, approximate location, ISP, and user agent. The site backend must strip those before storage. Prefer consent before loading the widget (cookie/consent pattern already on the site).
+Conferbot webhook payloads may include visitor IP, approximate location, ISP, and user agent. The site backend must strip those before storage. The public widget is a functional chat feature: it loads for every visitor on public pages (not gated on analytics cookie consent). `customData` stays free of PII (`source`, `locale`, `pathname` only).

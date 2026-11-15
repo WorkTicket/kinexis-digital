@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { parseConsentCookie } from "@/lib/invoice-core";
+import { useEffect } from "react";
 import { PUBLIC_CONFERBOT_BOT_ID } from "@/lib/conferbot-config";
 
 const SCRIPT_ID = "conferbot-js";
 const SCRIPT_SRC = "https://cdn.conferbot.com/dist/v1/widget.min.js";
-/** Idle fallback after analytics consent — mirrors boot.js deferred third-party pattern. */
-const IDLE_LOAD_MS = 45_000;
+/** After `load`: idle callback deadline / setTimeout fallback when rIC is missing. */
+const IDLE_FALLBACK_MS = 2_500;
+
+/** Module-level guard so client navigations / remounts never double-init. */
+let widgetBooted = false;
 
 function widgetEnabled() {
   return process.env.NEXT_PUBLIC_CONFERBOT_ENABLED === "1";
@@ -18,14 +20,6 @@ function configuredBotId() {
   return id || PUBLIC_CONFERBOT_BOT_ID;
 }
 
-function analyticsAllowed() {
-  if (typeof document === "undefined") return false;
-  const match = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
-  const raw = match ? match[1] : null;
-  const consent = parseConsentCookie(raw);
-  return consent.decided && consent.analytics;
-}
-
 function localeFromPath(pathname: string) {
   if (pathname === "/es" || pathname.startsWith("/es/")) return "es";
   if (pathname === "/es-es" || pathname.startsWith("/es-es/")) return "es-ES";
@@ -34,24 +28,28 @@ function localeFromPath(pathname: string) {
 
 /**
  * Lazy Conferbot live chat. Off unless NEXT_PUBLIC_CONFERBOT_ENABLED=1.
- * Loads only after analytics consent, then on first input or after 45s.
- * No PII in customData.
+ * Functional feature — loads for every public visitor (not gated on analytics
+ * consent). After page `load`, schedules via requestIdleCallback (or ~2.5s
+ * setTimeout); first scroll / pointer / touch / key also loads immediately.
+ * Skips `/admin`. No PII in customData. Never double-inits.
  */
 export default function ConferbotWidget({ locale }: { locale?: string }) {
-  const started = useRef(false);
-
   useEffect(() => {
     if (!widgetEnabled()) return;
     if (typeof window === "undefined") return;
     if (window.location.pathname.startsWith("/admin")) return;
+    if (widgetBooted) return;
 
     let idleTimer: ReturnType<typeof setTimeout> | undefined;
+    let idleCallbackId: number | undefined;
     let cleaned = false;
+    let armed = false;
+    let waitingForLoad = false;
 
     const load = () => {
-      if (cleaned || started.current) return;
-      if (!analyticsAllowed()) return;
-      started.current = true;
+      if (cleaned || widgetBooted) return;
+      if (window.location.pathname.startsWith("/admin")) return;
+      widgetBooted = true;
       cleanupTriggers();
 
       const botId = configuredBotId();
@@ -88,39 +86,64 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
         "error",
         () => {
           console.error("Conferbot widget script failed to load");
-          started.current = false;
+          widgetBooted = false;
         },
         { once: true },
       );
       document.body.appendChild(script);
     };
 
-    const onConsent = () => {
-      if (!analyticsAllowed()) return;
-      armTriggers();
-    };
-
     const onFirstInput = () => load();
 
+    const scheduleIdle = () => {
+      if (cleaned || widgetBooted) return;
+      if (typeof window.requestIdleCallback === "function") {
+        idleCallbackId = window.requestIdleCallback(() => load(), {
+          timeout: IDLE_FALLBACK_MS,
+        });
+      } else {
+        idleTimer = setTimeout(load, IDLE_FALLBACK_MS);
+      }
+    };
+
     function armTriggers() {
-      if (cleaned || started.current) return;
+      if (cleaned || widgetBooted || armed) return;
+      armed = true;
       window.addEventListener("pointerdown", onFirstInput, { once: true, passive: true });
+      window.addEventListener("touchstart", onFirstInput, { once: true, passive: true });
       window.addEventListener("keydown", onFirstInput, { once: true });
-      idleTimer = setTimeout(load, IDLE_LOAD_MS);
+      window.addEventListener("scroll", onFirstInput, { once: true, passive: true, capture: true });
+
+      if (document.readyState === "complete") {
+        scheduleIdle();
+      } else {
+        waitingForLoad = true;
+        window.addEventListener("load", scheduleIdle, { once: true });
+      }
     }
 
     function cleanupTriggers() {
       window.removeEventListener("pointerdown", onFirstInput);
+      window.removeEventListener("touchstart", onFirstInput);
       window.removeEventListener("keydown", onFirstInput);
+      window.removeEventListener("scroll", onFirstInput, true);
+      if (waitingForLoad) {
+        window.removeEventListener("load", scheduleIdle);
+        waitingForLoad = false;
+      }
       if (idleTimer) clearTimeout(idleTimer);
+      if (
+        idleCallbackId !== undefined &&
+        typeof window.cancelIdleCallback === "function"
+      ) {
+        window.cancelIdleCallback(idleCallbackId);
+      }
     }
 
-    window.addEventListener("kinexis:consent", onConsent);
-    if (analyticsAllowed()) armTriggers();
+    armTriggers();
 
     return () => {
       cleaned = true;
-      window.removeEventListener("kinexis:consent", onConsent);
       cleanupTriggers();
     };
   }, [locale]);
