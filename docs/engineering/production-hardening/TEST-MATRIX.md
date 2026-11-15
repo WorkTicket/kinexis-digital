@@ -14,6 +14,7 @@ Local runtime for this closure pass: Node v22.23.4, npm 10.9.9. npm printed an e
 | `npm run check:structured-data` | NOT RUN. It needs a running site. Production was not requested. |
 | `npm run verify:prod` | NOT RUN. No production access. |
 | `git diff --check` | PASS. |
+| GitHub Actions `validate` on the first push | FAIL. `tsc` could not find the global `KVNamespace` because `cloudflare-env.d.ts` is generated and gitignored. `main` fails the same way. The follow-up types the two KV call sites structurally so check does not need that file. |
 
 ## How to read this
 

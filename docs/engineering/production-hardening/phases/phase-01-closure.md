@@ -33,6 +33,7 @@ The payment path now treats PayPal responses and invoice links as untrusted unti
 | `npx playwright test --workers=1` | 33 passed, 3 skipped, 0 failed |
 | `npm run build:worker` | PASS, exit 0. Preflight warned that GA and Meta build variables are missing. Those warnings are pre-existing and did not fail the build. |
 | `git diff --check` | PASS |
+| GitHub Actions `validate` (first push) | FAIL. Same missing `KVNamespace` global as `main`: the generated `cloudflare-env.d.ts` is gitignored. Follow-up removes that dependency from the two KV call sites. |
 
 Node v22.23.4 and npm 10.9.9 were used. The package asks for npm >= 11, so npm printed an engine warning. `node:sqlite` printed an experimental warning inside the ledger and route scripts.
 
