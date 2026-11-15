@@ -69,11 +69,15 @@ assert.equal(mapped.length, 2);
 assert.equal(failures.length, 1);
 assert.equal(failures[0].reason, "amount");
 assert.equal(importer.insertIgnoreSql(mapped[0]).includes("O''Brien"), true);
+assert.equal(importer.statementsForImport([]), null);
+assert.match(importer.statementsForImport([mapped[0]]), /INSERT OR IGNORE/);
 
 const db = openInvoiceLedger();
 const [empty] = await db.batch([{ sql: "SELECT COUNT(*) AS n FROM invoices", params: [] }]);
 assert.equal(Number(empty.rows[0].n), 0);
 
+const none = await importer.applyMappedInvoices(db, []);
+assert.deepEqual(none, { inserted: 0, alreadyPresent: 0 });
 const first = await importer.applyMappedInvoices(db, mapped);
 assert.deepEqual(first, { inserted: 2, alreadyPresent: 0 });
 const second = await importer.applyMappedInvoices(db, mapped);
@@ -134,4 +138,4 @@ assert.match(dry.stdout, /"valid": 2/);
 assert.doesNotMatch(dry.stdout, /O'Brien/);
 rmSync(dir, { recursive: true, force: true });
 
-console.log("Invoice KV import dry-run, idempotent apply, and verification checks passed.");
+console.log("Invoice KV import dry-run, empty-file skip, idempotent apply, and verification checks passed.");

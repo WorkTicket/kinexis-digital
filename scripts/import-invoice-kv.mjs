@@ -168,14 +168,17 @@ if (remote) {
   const dir = mkdtempSync(join(tmpdir(), "invoice-import-"));
   const file = join(dir, "import.sql");
   try {
-    if (apply) {
-      writeFileSync(file, mapped.map((row) => importer.insertIgnoreSql(row)).join("\n"), "utf8");
+    const sql = importer.statementsForImport(mapped);
+    if (apply && sql) {
+      writeFileSync(file, sql, "utf8");
       wrangler([
         "d1", "execute", "kinexis-invoice-ledger",
         "--remote",
         "--file", file,
         "--yes",
       ]);
+    } else if (apply) {
+      console.log("No valid invoice rows. Skipped D1 execute. KV was not modified.");
     }
     const selected = wrangler([
       "d1", "execute", "kinexis-invoice-ledger",

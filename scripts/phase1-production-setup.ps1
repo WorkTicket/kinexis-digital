@@ -141,6 +141,12 @@ Write-Host "Phase 1 setup. Worker name in wrangler.jsonc is kinexis-digital. Pre
 Write-Host "This script never deploys. Production PayPal stays on the live API (api-m.paypal.com)."
 Write-Host "Sandbox PayPal values are for the preview worker only, and only if you opt in."
 
+$configText = [System.IO.File]::ReadAllText((Join-Path $Root "wrangler.jsonc"))
+$prodReady = $configText.Contains("077c8e46-2ea8-4997-8b6a-c06902194575")
+$previewReady = $configText.Contains("5a474f5a-4ac9-4d4c-8309-943c3d52981b")
+if ($prodReady -and $previewReady) {
+    Write-Host "D1 ids are already in wrangler.jsonc. Skipping database create. The unrelated database named kinexis is not touched."
+} else {
 Confirm-Step @"
 Step A, production database.
 This creates an empty D1 database named $ProdDatabase in the logged-in Cloudflare account.
@@ -161,6 +167,7 @@ Write-Host $previewOutput
 $previewId = Get-CreatedDatabaseId $previewOutput
 Update-PlaceholderId -Placeholder $PreviewPlaceholder -DatabaseId $previewId -Label "preview"
 Write-Host "Rollback A: delete the empty databases in the Cloudflare dashboard if you do not want them, and run: git checkout -- wrangler.jsonc"
+}
 
 Confirm-Step @"
 Step B, preview migration.

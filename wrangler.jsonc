@@ -23,14 +23,13 @@
       "preview_id": "3b472da9db2b4518b4cc1a7beff1695f"
     }
   ],
-  // Placeholder only. Not a provisioned database. Replace database_id after the
-  // owner creates the D1 database and before any deploy. Do not apply
-  // migrations/0001_invoice_payment_ledger.sql to production from this repo.
+  // Created 2026-11-15 in ENAM. Migration 0001 is already applied. Do not recreate.
+  // An older unrelated database named kinexis is not this ledger. Leave it alone.
   "d1_databases": [
     {
       "binding": "INVOICE_DB",
       "database_name": "kinexis-invoice-ledger",
-      "database_id": "00000000-0000-4000-8000-000000000001",
+      "database_id": "077c8e46-2ea8-4997-8b6a-c06902194575",
       "migrations_dir": "migrations"
     }
   ],
@@ -95,12 +94,12 @@
           "id": "3b472da9db2b4518b4cc1a7beff1695f"
         }
       ],
-      // Separate placeholder from production. Replace with a preview database id only.
+      // Preview ledger, created 2026-11-15 in ENAM. Migration 0001 is already applied.
       "d1_databases": [
         {
           "binding": "INVOICE_DB",
           "database_name": "kinexis-invoice-ledger-preview",
-          "database_id": "00000000-0000-4000-8000-000000000002",
+          "database_id": "5a474f5a-4ac9-4d4c-8309-943c3d52981b",
           "migrations_dir": "migrations"
         }
       ],

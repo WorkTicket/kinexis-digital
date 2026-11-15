@@ -138,6 +138,15 @@ export function sqlLiteral(value: string | null): string {
   return `'${value.replaceAll("'", "''")}'`;
 }
 
+/**
+ * SQL for a non-empty import. An empty list returns null so the caller does not
+ * hand wrangler an empty file (`d1 execute --file` crashes on that on Windows).
+ */
+export function statementsForImport(rows: MappedInvoice[]): string | null {
+  if (rows.length === 0) return null;
+  return rows.map((row) => insertIgnoreSql(row)).join("\n");
+}
+
 /** One idempotent statement. A conflicting primary key is left untouched. */
 export function insertIgnoreSql(row: MappedInvoice): string {
   const values = [

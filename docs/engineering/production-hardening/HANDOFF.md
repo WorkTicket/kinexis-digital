@@ -4,7 +4,7 @@
 
 - **Phase:** 1 — Payment and Invoice Integrity
 - **Date:** 2026-11-15
-- **Status:** Code complete. Production setup is written and not executed. NOT READY to deploy or start Phase 2.
+- **Status:** Code complete. Production D1 exists and migration 0001 is applied. KV had no invoices. Secrets and deploy are still waiting. Do not start Phase 2.
 
 ## Git and scope
 
@@ -12,7 +12,7 @@
 - First commit restores the owner's uncommitted Phase 0/1 work unchanged.
 - Later commits add the ledger, webhook verification, route tests, and this record.
 - No chatbot, Conferbot, pricing, package, terms, or guarantee copy changes.
-- No deployment, production migration, production secret, or real payment.
+- No deploy and no secret write from this branch. The owner created the D1 databases and applied migration 0001 from worktree `d123e14`. Production ledger tables are empty. KV `invoice:v1:*` count was 0.
 
 ## What this phase now does
 
@@ -28,8 +28,8 @@ Runtime: Node v22.23.4, npm 10.9.9. The repo asks for npm >= 11. `node:sqlite` p
 ## Exact owner actions
 
 1. Sandbox order create, unpaid-capture rejection, positive sandbox card capture, amount and currency mismatch, and forged webhook signature rejection are done. Still needed if you want a PayPal-signed `SUCCESS`: deliver a sandbox event to a deployed route, or capture a real sandbox transmission and verify it. Do not post sandbox events at production until that deploy is approved. Keep credential values out of git.
-2. Generate `INVOICE_LINK_SECRET` (at least 32 UTF-8 bytes) and set it with `wrangler secret put` only when a deploy is separately approved. If any live links were signed with an older key, copy that key into `INVOICE_LINK_SECRET_PREVIOUS` for the rotation window. Set `INVOICE_LINK_SECRET_PREVIOUS_UNTIL` if the window should end on a timestamp.
-3. Create two empty D1 databases (production and preview). Replace `00000000-0000-4000-8000-000000000001` and `00000000-0000-4000-8000-000000000002` in `wrangler.jsonc`. Review `migrations/0001_invoice_payment_ledger.sql`. Apply it only after approval, to the new databases, not by deploying this branch. Export KV keys prefixed `invoice:v1:` and import them before switching reads. Do not delete the KV keys in the observation window.
+2. Generate `INVOICE_LINK_SECRET` (at least 32 UTF-8 bytes) and set it only after this code is deployed. `INVOICE_LINK_SECRET_PREVIOUS` is likely unneeded. Both the deployed route and this branch return a payment link only after the invoice row is stored. No other code signs invoice links, and the app never deletes `invoice:v1:*`. Production KV has zero of those keys, so the API has no stored invoice a link could refer to. Set the previous key only if you know a link was copied and its KV row was later removed by hand.
+3. D1 is done. Production `kinexis-invoice-ledger` is `077c8e46-2ea8-4997-8b6a-c06902194575`. Preview `kinexis-invoice-ledger-preview` is `5a474f5a-4ac9-4d4c-8309-943c3d52981b`. Migration 0001 is applied to both. Both ledger tables were empty. Leave the unrelated database named `kinexis` alone. The KV dry run was 0/0/0. `--remote --apply` with zero rows crashed on an empty SQL file (Windows `3221226505`); that execute is now skipped.
 4. The sandbox webhook is registered for `https://kinexisdigital.com/api/paypal/webhook` with the six order and capture events. Set the sandbox webhook id as a Worker secret only with an approved deploy. Production needs its own webhook when that app is configured.
 5. To exercise the subscription button E2E beyond the fail-closed alert, set `NEXT_PUBLIC_PAYPAL_CLIENT_ID` in the test environment and re-run `npx playwright test e2e/production-audit.spec.ts`.
 6. On the Windows checkout, read `PHASE1-PRODUCTION-SETUP.md` and run `scripts/phase1-production-setup.ps1` only after approving each command. The script never deploys. Deploy remains `npm run deploy`, typed separately.

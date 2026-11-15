@@ -3,7 +3,7 @@
 **Date:** 2026-11-15
 **Branch:** `codex/production-hardening-v1`
 **Base:** `c43041d` (`Fix half-empty portfolio previews and polish home CTAs.`)
-**Verdict:** The code, tests, sandbox evidence, and production setup runbook are in the branch. Production D1, secrets, and deploy are waiting on the owner. Do not start Phase 2.
+**Verdict:** Code, tests, sandbox evidence, D1 databases, and migration 0001 are done. Production ledger tables are empty because KV had no invoices. Secrets and deploy are still waiting. Do not start Phase 2.
 
 The owner runs `scripts/phase1-production-setup.ps1` from `PHASE1-PRODUCTION-SETUP.md`. That script never deploys. Exit criteria that are met in code, and the ones that wait, are listed in `STATUS.md`.
 
@@ -13,13 +13,14 @@ The payment path now treats PayPal responses and invoice links as untrusted unti
 
 - Signing. New links are `v2.` plus an HMAC from `INVOICE_LINK_SECRET` (32 UTF-8 bytes minimum). The previous key verifies v2 and legacy links only while it is configured and, if `INVOICE_LINK_SECRET_PREVIOUS_UNTIL` is set, only before that time. There is no PayPal-secret fallback.
 - Ledger. `migrations/0001_invoice_payment_ledger.sql` creates `invoices` and `payment_events`. Order association updates a row only when it is unpaid and the order id is empty or already that id. Mark-paid updates only when the order, USD amount, and capture id match, then inserts one event. The primary key is `(provider, event_id)`.
-- Why D1, not a Durable Object. KV has no multi-key transaction. One global Durable Object would funnel every payment through a single object. One object per invoice cannot enforce a unique PayPal order id or webhook event id across invoices. D1's batch is one SQLite transaction and matches the migration the programme already described. The binding ids in `wrangler.jsonc` are placeholders so a deploy cannot attach a real database by accident.
+- Why D1, not a Durable Object. KV has no multi-key transaction. One global Durable Object would funnel every payment through a single object. One object per invoice cannot enforce a unique PayPal order id or webhook event id across invoices. D1's batch is one SQLite transaction and matches the migration the programme already described. `wrangler.jsonc` binds production `077c8e46-2ea8-4997-8b6a-c06902194575` and preview `5a474f5a-4ac9-4d4c-8309-943c3d52981b`. Migration 0001 is already applied. The unrelated database named `kinexis` is not this ledger.
 - Webhooks. `POST /api/paypal/webhook` verifies with PayPal's `verify-webhook-signature` API. `SUCCESS` is the only accept. The handler then re-fetches the order and runs the same capture checks used by the return URL. The event id is stored once.
 - Tests. Route handlers are called directly with PayPal HTTP replaced. Cases include double capture, amount tampering, currency tampering, replay, expired links, forged links, a rejected webhook signature, and a webhook amount mismatch. The full browser suite finished 33 passed / 3 skipped / 0 failed. No worker process exited early.
 
 ## What was deliberately not done
 
-- No `wrangler deploy`, no `npm run deploy`, no preview publish, no production D1 migration, no `wrangler secret put`, and no call to the live PayPal host `api-m.paypal.com`.
+- No `wrangler deploy` and no `wrangler secret put` from this work. The owner applied migration 0001 to preview and production from worktree `d123e14`. KV prefix `invoice:v1:` read 0 keys. Both D1 tables had 0 rows. Empty `--remote --apply` crashed on Windows before verification (`3221226505` from `wrangler d1 execute --file` on an empty file). The importer now skips that execute when there are no rows and still runs verification.
+- Invoice links cannot be issued without a stored row. The staff route returns the URL only after `createStoredInvoice` succeeds. The deployed route did the same with `putInvoice`. No other module signs an invoice token, and the app never deletes those KV keys. With zero KV rows, `INVOICE_LINK_SECRET_PREVIOUS` is unneeded unless a link was saved and its row was removed outside the app.
 - Sandbox script: the mocked contract passed, and the sandbox half also passed. See `TEST-MATRIX.md`. A PayPal-signed webhook SUCCESS was not run.
 - Subscription SDK ready/loading: NOT RUN. The browser test observed the fail-closed alert because `NEXT_PUBLIC_PAYPAL_CLIENT_ID` is empty.
 - `npm run check:structured-data` and `npm run verify:prod`: NOT RUN.
@@ -56,7 +57,7 @@ Reviewed as a separate pass over the diff, not as a second author:
 - Invoice writes cannot fall back to KV. A missing `INVOICE_DB` fails closed, including checkout after a storage exception (503).
 - Mark-paid and order association are single batches. The route tests and the in-memory SQLite rehearsal both saw a second capture and a replayed event id leave one applied row.
 - Webhook signature failure returns 400 and does not write. The route test covers that.
-- The placeholder database ids are the nil-style values `…0001` and `…0002`, not account ids taken from the KV bindings.
+- The D1 ids in `wrangler.jsonc` are the databases created on 2026-11-15, not the old placeholders and not the unrelated `kinexis` database.
 - Playwright's first full run failed two mobile checkout guards with 429 because both projects shared a forwarded IP inside the checkout rate-limit window. The fix gives each project its own test address and still expects HTTP 400. The rerun passed. That is the invoice-admin "worker exit" investigation: the admin route itself returns 503 when unconfigured, and the suite no longer dies mid-run.
 - One older smoke test still treats 429 as success for a client amount post. It was already in the tree. It was not widened.
 - Customer-facing marketing copy was not changed. The staff-only invoice create error no longer says "KV".
