@@ -32,7 +32,7 @@ const ES: Record<string, Copy> = {
     servicesMark: "plomería",
     services: [
       { title: "Fugas", text: "Fugas, roturas y casas sin agua, con el horario que tu cuadrilla sí cubre.", icon: "leak-repair" },
-      { title: "Drenajes", text: "Un camino aparte para tapones y cámara, que no se lea como un anuncio de calentadores.", icon: "drain-cleaning" },
+      { title: "Drenajes", text: "Un camino aparte para tapones y cámara, que no se lea como anuncio de calentador.", icon: "drain-cleaning" },
       { title: "Calentadores", text: "Reparación o cambio, las marcas que instalas y una forma clara de pedir cotización.", icon: "water-heaters" },
     ],
     serviceArea: "Una página para las ciudades que cubres. No una pila de páginas de ciudad que dicen lo mismo.",
@@ -65,7 +65,7 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que ponemos en un sitio de HVAC",
     servicesMark: "HVAC",
     services: [
-      { title: "Reparación sin aire", text: "Rapidez, horario y los síntomas que la gente busca. Escrito para el celular, no para un folleto.", icon: "no-cool-repair" },
+      { title: "Reparación sin aire", text: "Rapidez, horario y síntomas que buscan — escrito para el celular, no un folleto.", icon: "no-cool-repair" },
       { title: "Cambio de equipo", text: "Opciones, qué incluye la visita y financiamiento solo si de verdad lo ofreces.", icon: "system-replacement" },
       { title: "Mantenimiento", text: "Una oferta más quieta para revisiones y membresías, vendida como menos emergencias.", icon: "maintenance" },
     ],
@@ -99,9 +99,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que coinciden con la búsqueda",
     servicesMark: "la búsqueda",
     services: [
-      { title: "Tableros", text: "Contactos, breakers y cortes parciales, con teléfono para lo que parece emergencia.", icon: "panel-upgrades" },
-      { title: "Cargadores", text: "Cuándo el tablero es el trabajo, qué incluye la visita y cómo pedir cotización.", icon: "ev-chargers" },
-      { title: "Diagnóstico", text: "Los cargadores que instalas, qué revisa la visita y un formulario corto.", icon: "troubleshooting" },
+      { title: "Tableros", text: "Cuándo el tablero es el trabajo, qué incluye la visita y cómo pedir cotización.", icon: "panel-upgrades" },
+      { title: "Cargadores", text: "Los cargadores que instalas, qué revisa la visita y un formulario corto.", icon: "ev-chargers" },
+      { title: "Diagnóstico", text: "Contactos, breakers y cortes parciales, con teléfono para lo que parece emergencia.", icon: "troubleshooting" },
     ],
     serviceArea: "Hasta dónde sale la camioneta. Dicho una vez, con claridad, sin páginas vacías de ciudad.",
     faqs: [
@@ -133,7 +133,7 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que va en un sitio de techos",
     servicesMark: "techos",
     services: [
-      { title: "Reparaciones", text: "Gotera, tejas faltantes y las visitas que puedes agendar esta semana.", icon: "roof-repairs" },
+      { title: "Reparaciones", text: "Gotera, tejas faltantes y las visitas que todavía puedes agendar esta semana.", icon: "roof-repairs" },
       { title: "Reemplazo", text: "Materiales que instalas, qué incluye la inspección y un formulario corto.", icon: "replacements" },
       { title: "Tormentas", text: "Cómo organizas el trabajo después del clima, sin que suene a un centro de llamadas.", icon: "storm-calls" },
     ],
@@ -167,8 +167,8 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que necesita una empresa de puertas",
     servicesMark: "puertas",
     services: [
-      { title: "Resortes rotos", text: "Los trabajos peligrosos, con un aviso claro de no hacerlo uno mismo y un toque para llamar.", icon: "broken-springs" },
-      { title: "Motores", text: "Reparar o cambiar el operador, con las marcas que de verdad tienes.", icon: "opener-repair" },
+      { title: "Resortes rotos", text: "Los trabajos peligrosos, con aviso claro de no hacerlo uno mismo y un toque para llamar.", icon: "broken-springs" },
+      { title: "Motores", text: "Reparar o cambiar el operador, con las marcas que de verdad llevas en la camioneta.", icon: "opener-repair" },
       { title: "Puertas nuevas", text: "Estilo, aislamiento y una solicitud de medida para quien compara dos cotizaciones.", icon: "new-doors" },
     ],
     serviceArea: "Hasta dónde manejas el mismo día, que suele ser menos que el radio de instalación.",
@@ -201,9 +201,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que un sitio de pintura debe explicar",
     servicesMark: "pintura",
     services: [
-      { title: "Interior", text: "Cuartos, preparación y cómo proteges pisos y muebles.", icon: "interior" },
-      { title: "Exterior", text: "Revestimiento, molduras y la temporada en la que sí agendas.", icon: "exterior" },
-      { title: "Gabinetes", text: "El trabajo fino, con precio y texto aparte de pintar toda la casa.", icon: "cabinet-finishes" },
+      { title: "Interior", text: "Cuartos, preparación y cómo proteges pisos y muebles en cada trabajo interior.", icon: "interior" },
+      { title: "Exterior", text: "Revestimiento, molduras y la temporada en la que sí agendas pintura exterior.", icon: "exterior" },
+      { title: "Gabinetes", text: "El trabajo fino, con precio y texto aparte de pintar toda la casa de una vez.", icon: "cabinet-finishes" },
     ],
     serviceArea: "Los barrios a los que manejas para una visita. Una página, no una ciudad clonada por cada código postal.",
     featureText: { "quote-requests": "Fotos, visita y cuándo deben esperar un número. Una página, en lenguaje claro." },
@@ -239,8 +239,8 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que un remodelador debe publicar",
     servicesMark: "remodelador",
     services: [
-      { title: "Cocinas", text: "El alcance que tomas, qué cubre la consulta y una galería que sea tu trabajo.", icon: "kitchens" },
-      { title: "Baños", text: "Aparte de las cocinas. Otro presupuesto, otras fotos, otras preguntas.", icon: "bathrooms" },
+      { title: "Cocinas", text: "El alcance que tomas, qué cubre la consulta y una galería que sea tu trabajo real.", icon: "kitchens" },
+      { title: "Baños", text: "Aparte de las cocinas: otro presupuesto, otras fotos y otras preguntas del cliente.", icon: "bathrooms" },
       { title: "Estimados detallados", text: "Diseño, selecciones, obra y cómo funcionan los cambios. Esta es la página de confianza.", icon: "detailed-estimates" },
     ],
     serviceArea: "Hasta dónde manejas para una consulta. El radio de una remodelación suele ser más corto de lo que se cree.",
@@ -276,9 +276,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Cómo armamos un sitio de paisajismo",
     servicesMark: "paisajismo",
     services: [
-      { title: "Rutas de mantenimiento", text: "Corte, camas, limpiezas y qué incluye un acuerdo de ruta.", icon: "maintenance-routes" },
-      { title: "Diseño", text: "Patios, plantas y los proyectos que quieres que vendan las fotos.", icon: "landscape-design" },
-      { title: "Diseño y obra", text: "Limpiezas y mantillo en la temporada que corresponde, no como si siempre fuera julio.", icon: "design-build" },
+      { title: "Rutas de mantenimiento", text: "Corte, camas, limpiezas y qué incluye de verdad un acuerdo de ruta semanal.", icon: "maintenance-routes" },
+      { title: "Diseño", text: "Patios, plantas y los proyectos que quieres que vendan las fotos terminadas.", icon: "landscape-design" },
+      { title: "Diseño y obra", text: "Visita, concepto e instalación en un camino — no tratado como un corte semanal.", icon: "design-build" },
     ],
     serviceArea: "Barrios y pueblos de la ruta. Concretos, y lo bastante cortos para ser verdad.",
     faqs: [
@@ -311,8 +311,8 @@ const ES: Record<string, Copy> = {
     servicesMark: "albercas",
     services: [
       { title: "Servicio semanal", text: "Qué incluye la visita, cada cuánto vas y cómo se pide un lugar en la ruta.", icon: "weekly-service" },
-      { title: "Reparaciones", text: "Agua verde, fallas de equipo y las llamadas que no pueden esperar al siguiente día de ruta.", icon: "repairs" },
-      { title: "Equipo", text: "Bombas, calentadores y las marcas que instalas, aparte de la visita semanal.", icon: "equipment" },
+      { title: "Reparaciones", text: "Agua verde, fallas de equipo y llamadas que no pueden esperar al siguiente día de ruta.", icon: "repairs" },
+      { title: "Equipo", text: "Bombas, calentadores y las marcas que instalas, aparte de la visita semanal de ruta.", icon: "equipment" },
     ],
     serviceArea: "Los barrios de la ruta, escritos en una página que puedes sostener.",
     faqs: [
@@ -347,8 +347,8 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que coinciden con cómo busca la gente",
     servicesMark: "busca la gente",
     services: [
-      { title: "Casas", text: "Revestimientos que sí lavas y los que no, y qué incluye la visita.", icon: "house-washing" },
-      { title: "Concreto", text: "Aceite, óxido y el trabajo plano, que es otra búsqueda que lavar la casa.", icon: "concrete-cleaning" },
+      { title: "Casas", text: "Revestimientos que sí lavas y los que no, y qué incluye cada visita a la casa.", icon: "house-washing" },
+      { title: "Concreto", text: "Aceite, óxido y el trabajo plano: otra búsqueda distinta a lavar la casa.", icon: "concrete-cleaning" },
       { title: "Techos", text: "Lavado suave solo si eso es lo que haces, con los límites de seguridad escritos.", icon: "roof-washing" },
     ],
     serviceArea: "Hasta dónde manejas el equipo. Las rutas se mueren cuando la zona es una lista de deseos.",
@@ -383,7 +383,7 @@ const ES: Record<string, Copy> = {
     services: [
       { title: "Casas", text: "Pisos a los que subes, interior o exterior, y cómo pedir la primera limpieza.", icon: "home-routes" },
       { title: "Aparadores", text: "Un camino comercial con horario, no un cupón pensado para una casa de tres recámaras.", icon: "storefronts" },
-      { title: "Rutas recurrentes", text: "Mensual o trimestral, escrito como el paso normal después de la primera visita.", icon: "recurring-routes" },
+      { title: "Rutas recurrentes", text: "Mensual o trimestral, escrito como el paso normal después de esa primera visita.", icon: "recurring-routes" },
     ],
     serviceArea: "Los barrios de la ruta. Cortos y ciertos, para que el manejo todavía funcione.",
     faqs: [
@@ -418,9 +418,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que necesita una ruta de jardín",
     servicesMark: "jardín",
     services: [
-      { title: "Rutas de césped", text: "Qué incluye cada visita y cada cuánto vas en temporada de crecimiento.", icon: "lawn-routes" },
-      { title: "Mascotas", text: "Una página directa: frecuencia, patios que tomas y cómo empezar.", icon: "pet-waste" },
-      { title: "Reservas recurrentes", text: "El paso para quedarse en la ruta, no un juego de etiquetas por teléfono.", icon: "recurring-bookings" },
+      { title: "Rutas de césped", text: "Qué incluye cada visita y cada cuánto vas en toda la temporada de crecimiento.", icon: "lawn-routes" },
+      { title: "Mascotas", text: "Frecuencia, patios que tomas y un alta directa — no escondida bajo el césped.", icon: "pet-waste" },
+      { title: "Reservas recurrentes", text: "Cómo la primera visita se vuelve un lugar fijo, sin perseguirte por teléfono.", icon: "recurring-bookings" },
     ],
     serviceArea: "Una página de zona para las calles que recorres. No una página clonada por cada fraccionamiento.",
     faqs: [
