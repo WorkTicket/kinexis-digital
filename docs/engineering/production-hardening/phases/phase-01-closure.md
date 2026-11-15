@@ -17,8 +17,8 @@ The payment path now treats PayPal responses and invoice links as untrusted unti
 
 ## What was deliberately not done
 
-- No `wrangler deploy`, no `npm run deploy`, no preview publish, no production D1 migration, no `wrangler secret put`, no live PayPal call.
-- Sandbox script result: mocked contract passed, then `SANDBOX EVIDENCE: NOT RUN`.
+- No `wrangler deploy`, no `npm run deploy`, no preview publish, no production D1 migration, no `wrangler secret put`, and no call to the live PayPal host `api-m.paypal.com`.
+- Sandbox script: the mocked contract passed, and the sandbox half also passed. See `TEST-MATRIX.md`. A PayPal-signed webhook SUCCESS was not run.
 - Subscription SDK ready/loading: NOT RUN. The browser test observed the fail-closed alert because `NEXT_PUBLIC_PAYPAL_CLIENT_ID` is empty.
 - `npm run check:structured-data` and `npm run verify:prod`: NOT RUN.
 - Phase 2 was not started. Conferbot and chatbot files were not edited. Prices, packages, terms, and guarantees were not edited.
@@ -29,7 +29,8 @@ The payment path now treats PayPal responses and invoice links as untrusted unti
 |---|---|
 | `npm run check` | PASS, with the same 3 pre-existing lint warnings |
 | `npm run check:invoice-security` | PASS |
-| `npm run check:paypal-sandbox` | MOCKED PASS; sandbox NOT RUN |
+| `npm run check:paypal-sandbox` | Mocked contract PASS. Sandbox half PASS (exit 0): OAuth, create `7CT01134FB4619833` stayed CREATED, capture of that order rejected, sandbox card capture `5NS738509J696993M` COMPLETED. |
+| Sandbox validator and webhook (same environment, not the mocked suite) | PASS for amount, currency, invoice, and merchant mismatch on a real CREATED order. Forged signature: production helper `failure`, verify API HTTP 200 `FAILURE`. Registered webhook host `kinexisdigital.com` path `/api/paypal/webhook` with the six order and capture events. Live delivery NOT RUN. |
 | `npx playwright test --workers=1` | 33 passed, 3 skipped, 0 failed |
 | `npm run build:worker` | PASS, exit 0. Preflight warned that GA and Meta build variables are missing. Those warnings are pre-existing and did not fail the build. |
 | `git diff --check` | PASS |

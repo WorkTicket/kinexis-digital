@@ -16,10 +16,10 @@ Strict PayPal order and capture checks, stable per-invoice PayPal request ids, f
 
 ### Still open
 
-6. Live PayPal sandbox was not run. `SANDBOX EVIDENCE: NOT RUN`.
+6. Sandbox evidence is in `TEST-MATRIX.md` and is separate from the mocked contract. Create, unpaid-capture rejection, a completed sandbox card capture, and amount, currency, invoice, and merchant mismatch rejection against a real order all passed. A forged webhook signature was `FAILURE` from PayPal's verify API. A PayPal-signed `SUCCESS` was not run, because that would deliver to `kinexisdigital.com` and the route is not deployed.
 7. D1 database ids in `wrangler.jsonc` are placeholders (`…0001` production, `…0002` preview). The migration file was applied only to an in-memory SQLite database in the ledger test. It was not applied to Cloudflare.
 8. Existing invoice rows, if any, still live under KV prefix `invoice:v1:`. This code does not read them. They must be imported into D1 before a deploy or those links will look missing.
-9. `PAYPAL_MERCHANT_ID`, `PAYPAL_WEBHOOK_ID`, and `INVOICE_LINK_SECRET` are required and were not created here.
+9. `INVOICE_LINK_SECRET` is still not set. The sandbox merchant id and webhook id were supplied for the verification run and were not committed. They still have to be set as Worker secrets before a deploy.
 10. Subscription SDK ready/loading was not observed. Measurement-id E2E stays skipped without GA/Meta build variables. `e2e/smoke.spec.ts` still allows HTTP 429 on one older invoice tamper test; that assertion was already in the tree and was not loosened.
 11. A verified capture webhook must include both `invoice_id` and `custom_id`, equal to each other. That matches the orders this app creates. A payload that drops `custom_id` is rejected.
 
