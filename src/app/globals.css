@@ -1009,13 +1009,8 @@ html.lp-route body{--announce-h:0px}
 .cta-trust,.offer__trust{margin:16px 0 0}
 .industry-hero__trust{margin-top:16px;max-width:40rem}
 .hero__call{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  width:fit-content;max-width:100%;
+  display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;
   margin:10px 0 0;
-}
-.hero__call-label{display:block;text-align:center}
-.hero__call-links{
-  display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:2px 8px;
 }
 @media (max-width:860px){
   .page-hero--split .industry-hero__trust{
@@ -1877,7 +1872,6 @@ html.no-float .consent-fab__label{
     white-space:normal;height:auto;text-align:center;
     padding:1.05rem 1.85rem;font-size:1.125rem;line-height:1.25;
   }
-  .hero__call{margin-inline:auto}
 }
 @media (max-width:720px){
   .hero__inner{grid-template-columns:1fr;gap:clamp(12px,1.8svh,16px)}
