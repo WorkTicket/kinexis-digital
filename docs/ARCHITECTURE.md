@@ -63,4 +63,4 @@ Indexable EN marketing routes live under `src/app/(en)/` and are listed in `src/
 - Security headers set in `next.config.ts` (CSP, HSTS, etc.), including Conferbot CDN/WDT hosts.
 - Contact forms/checkout use Mailgun/forwarding/Gmail SMTP/PayPal (see README). Invoice checkout may offer contact fallback if PayPal secret missing. Preview team mail uses `CONTACT_PREVIEW_TO` only.
 - `/reviews` shows on-site reviews (KV via `POST /api/reviews`), matched Trustpilot/Facebook review CTAs (evaluate + Facebook review URLs), optional Trustpilot API cards when `TRUSTPILOT_API_KEY` is set, and Facebook recommendations.
-- Payments: D1 `INVOICE_DB` ledger + PayPal webhook. Conferbot leads: separate `LEAD_DB` (placeholders until owner provisions).
+- Payments: D1 `INVOICE_DB` ledger + PayPal webhook. Conferbot leads: separate `LEAD_DB` (omitted from `wrangler.jsonc` until owner creates real DBs; schema in `migrations-lead/`).

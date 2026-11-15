@@ -41,9 +41,10 @@ Strip: `visitor.ip`, `visitor.location` (entire object), `visitor.isp`, `visitor
 
 ## Storage
 
-- Binding: `LEAD_DB` (separate from `INVOICE_DB`). Placeholder ids in `wrangler.jsonc` — **owner creates DBs**.
-- Migration: `migrations/0002_conferbot_lead_intel.sql` — apply to `LEAD_DB` only.
+- Binding: `LEAD_DB` (separate from `INVOICE_DB`). **Not present in `wrangler.jsonc` until the owner creates real DBs and adds the binding** (placeholder ids were removed — they break Workers Builds).
+- Migration: `migrations-lead/0001_conferbot_lead_intel.sql` — apply to `LEAD_DB` only (`migrations_dir` for invoices stays `migrations/` so lead schema is never applied to `INVOICE_DB`).
 - Local tests: `LEAD_TEST_MEMORY=1` + injectable SQLite adapter (never set in production).
+- Runtime without the binding: webhook stays fail-closed while flags are off; with integration on and no DB, handlers treat storage as unavailable (no silent write to `INVOICE_DB`).
 
 ## Notifications
 

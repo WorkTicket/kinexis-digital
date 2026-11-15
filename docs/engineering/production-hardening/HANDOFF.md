@@ -1,12 +1,11 @@
 # Programme handoff
 
-- **Phase:** 8 — Staging / QA
-- **Branch:** `cursor/phase8-staging-qa-67c1`
-- **Status:** Docs/runbook complete. No preview deploy by agent.
+- **Phase:** 9 — Release (LEAD_DB binding removal + merge/deploy)
+- **Branch:** `cursor/phase9-release-readiness-67c1`
+- **Status:** Placeholder LEAD_DB bindings removed; awaiting CI then stack merge to `main`.
 
 | Command | Result |
 |---|---|
 | `npm run check` | PASS |
-| Preview deploy / Starter upgrade | NOT RUN (owner) |
-
-Next: Phase 9 release readiness (stop for approval).
+| `npx wrangler deploy --dry-run` | PASS (no LEAD_DB binding; real INVOICE_DB/KV ids only) |
+| Production deploy | Pending merge |

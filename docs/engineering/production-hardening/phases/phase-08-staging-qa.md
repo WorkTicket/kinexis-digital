@@ -10,7 +10,7 @@
 2. Confirm `NEXT_PUBLIC_IS_PREVIEW=1` on the preview Worker.
 3. Set `CONTACT_PREVIEW_TO` to a sink address listed in preview `send_email.allowed_destination_addresses`.
 4. Leave production `CONTACT_TO` unset on preview.
-5. Create preview `LEAD_DB` (replace `…00c2` placeholder), apply `migrations/0002_conferbot_lead_intel.sql` with `--env preview` only.
+5. Later (not required for flags-off ship): create preview `LEAD_DB` with a **real** id, add the binding under `env.preview` (`migrations_dir: "migrations-lead"`), apply `migrations-lead/0001_conferbot_lead_intel.sql` with `--env preview` only. Do not use placeholder ids.
 6. Optional preview secrets (values never committed): `CONFERBOT_WEBHOOK_SECRET`, `CONFERBOT_EXPECTED_BOT_ID`. Keep `CONFERBOT_INTEGRATION_ENABLED=0` until webhook test is intentional.
 7. PayPal on preview: sandbox API base + sandbox credentials only.
 

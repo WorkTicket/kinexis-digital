@@ -30,7 +30,7 @@
 - **Deferred (do not start in a drive-by):** split Spanish into shared locale-aware section components, unify metadata with `PAGES`, dedupe industry + home markup. Track as its own epic when EN/ES drift becomes costly.
 
 ## Conferbot / lead intel
-- Separate Cloudflare D1 binding `LEAD_DB` (not `INVOICE_DB`) for chat/leads/outbox; migration `migrations/0002_conferbot_lead_intel.sql`
+- Separate Cloudflare D1 binding `LEAD_DB` (not `INVOICE_DB`) for chat/leads/outbox; migration `migrations-lead/0001_conferbot_lead_intel.sql`. Binding omitted from `wrangler.jsonc` until real DB ids exist (placeholders break Workers Builds).
 - Webhook HMAC + redaction + feature flags; see `docs/CONFERBOT-INTEGRATION.md`
 - Integration and notify flags default off; no production secrets in git
 
