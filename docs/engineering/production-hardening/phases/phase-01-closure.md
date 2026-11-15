@@ -3,9 +3,9 @@
 **Date:** 2026-11-15
 **Branch:** `codex/production-hardening-v1`
 **Base:** `c43041d` (`Fix half-empty portfolio previews and polish home CTAs.`)
-**Verdict:** Code, tests, sandbox evidence, D1 databases, and migration 0001 are done. Production ledger tables are empty because KV had no invoices. Secrets and deploy are still waiting. Do not start Phase 2.
+**Verdict:** Live in production on 2026-11-15 from `a32c39b` (PR #6). Worker version `87e26f40-6f60-4c83-95c9-33d56e483705`. Rollback version `5c5690e8-216f-4441-ab32-fb056b401dd2`. Do not start Phase 2.
 
-The owner runs `scripts/phase1-production-setup.ps1` from `PHASE1-PRODUCTION-SETUP.md`. That script never deploys. Exit criteria that are met in code, and the ones that wait, are listed in `STATUS.md`.
+A real PayPal-signed live webhook has not arrived. Unsigned webhook smoke returned 400. No real payment was run to create one. Exit criteria are in `STATUS.md`.
 
 ## What closed
 

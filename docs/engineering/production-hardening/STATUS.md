@@ -1,9 +1,9 @@
 # Programme status
 
 **Current phase:** Phase 1 — payment and invoice integrity
-**Status:** Code and local checks are complete. Production setup is a separate owner step in `PHASE1-PRODUCTION-SETUP.md`. Do not merge or deploy until that setup is approved. Do not start Phase 2.
-**Branch:** `codex/production-hardening-v1`
-**Production:** D1 databases created and migration 0001 applied. No invoice rows existed in KV. No secrets set. Nothing deployed.
+**Status:** Live in production as of 2026-11-15. Do not start Phase 2. One check remains open: a real PayPal-signed live webhook has not arrived yet.
+**Production commit:** `a32c39b` (merge of PR #6)
+**Worker:** `kinexis-digital` version `87e26f40-6f60-4c83-95c9-33d56e483705`. Rollback target `5c5690e8-216f-4441-ab32-fb056b401dd2`.
 
 ## Phase 0
 
@@ -19,7 +19,15 @@ Code and local evidence are in place for the payment and invoice integrity scope
 - Route-handler tests for checkout, capture, and webhooks, including double capture, amount and currency tampering, replay, and expired or forged links. PayPal HTTP is mocked.
 - Full Playwright suite: 33 passed, 3 skipped, 0 failed. The invoice-admin worker exit was not reproduced.
 
-Sandbox order, capture, mismatch, and forged-signature checks passed against `api-m.sandbox.paypal.com`. A PayPal-signed webhook `SUCCESS` was not observed, because that needs a delivery to the production URL and this route is not deployed.
+Sandbox order, capture, mismatch, and forged-signature checks passed against `api-m.sandbox.paypal.com`. A PayPal-signed live webhook `SUCCESS` has not been observed. No real payment was made to produce one. The route is deployed, and the first real payment event will be the check.
+
+## Production ship (2026-11-15)
+
+- PR #6 merged to `main` as `a32c39b`.
+- Worker `kinexis-digital` deployed from that commit as version `87e26f40-6f60-4c83-95c9-33d56e483705`. Rollback version is `5c5690e8-216f-4441-ab32-fb056b401dd2`.
+- Production secrets set, values not recorded here: live `PAYPAL_MERCHANT_ID`, live `PAYPAL_WEBHOOK_ID` for `https://kinexisdigital.com/api/paypal/webhook` (webhook id `24N19060893354101`), `PAYPAL_API_BASE` = `https://api-m.paypal.com`, and `INVOICE_LINK_SECRET` (32 random bytes generated on the owner PC and never printed).
+- `INVOICE_LINK_SECRET_PREVIOUS` was not set. Production KV had no `invoice:v1:*` keys. The staff route returns a link only after the invoice row is stored, nothing else signs invoice links, and the app never deletes those keys. A previous key would matter only if a link was saved and its row was removed by hand.
+- Smoke, no payment: `https://www.kinexisdigital.com/` and `https://kinexisdigital.com/` returned 200. `/pay` returned 200. An unsigned `POST /api/paypal/webhook` returned 400 `{"error":"invalid signature headers"}`. `GET` on that route returned 405.
 
 Production data steps, run by the owner from a detached worktree at `d123e14` (region ENAM):
 
@@ -39,21 +47,17 @@ Production data steps, run by the owner from a detached worktree at `d123e14` (r
 | PayPal webhook verification and dedupe in code | Met |
 | Route tests for tamper, replay, expiry, and forged links | Met (PayPal HTTP mocked) |
 | Sandbox create, capture, mismatch, forged signature | Met. See `TEST-MATRIX.md`. |
-| PayPal-signed webhook SUCCESS | Waiting. Route is not deployed. |
+| PayPal-signed live webhook SUCCESS | Open. The route is deployed. No real payment event has arrived. Unsigned POST smoke returned 400. |
 | KV-to-D1 import tool, dry-run, idempotent, verify, KV untouched | Met. Production dry run found 0 invoice keys. Empty apply no longer calls `d1 execute`. |
 | Owner runbook and Windows script, no deploy command | Met. `PHASE1-PRODUCTION-SETUP.md` and `scripts/phase1-production-setup.ps1`. |
-| Production D1 databases and migration | Met. Ids are in `wrangler.jsonc`. Secrets are not set. |
-| `INVOICE_LINK_SECRET` generated and stored | Waiting until immediately after deploy. `INVOICE_LINK_SECRET_PREVIOUS` is likely unneeded: the API returns a link only after the invoice row is stored, and production KV has no invoice rows. |
-| Deploy | Waiting. Not part of the setup script. |
+| Production D1 databases and migration | Met. Both databases are in `wrangler.jsonc`. Both ledger tables had 0 rows. |
+| `INVOICE_LINK_SECRET` generated and stored | Met. Set on `kinexis-digital` after deploy. The value was not printed. `INVOICE_LINK_SECRET_PREVIOUS` was not set. |
+| Deploy | Met. Version `87e26f40-6f60-4c83-95c9-33d56e483705` from `a32c39b`. |
 
-## Owner blockers before any release
+## Still open
 
-1. Sandbox API checks are recorded in `TEST-MATRIX.md`. Still open: a real PayPal-signed webhook delivery (`verification_status: SUCCESS`). That was skipped so nothing was posted to `kinexisdigital.com`.
-2. Production `INVOICE_LINK_SECRET` (at least 32 UTF-8 bytes), set only after this code is deployed. `INVOICE_LINK_SECRET_PREVIOUS` is likely unneeded. The staff route signs a token and then stores the invoice, and it returns the link only when that store succeeds. Nothing else in the app creates invoice links, and the app never deletes `invoice:v1:*` keys. With zero KV rows, the API never handed out a link. A link could exist only if someone saved one and the KV row was removed by hand outside the app.
-3. D1 create, migration, and the KV dry run are done. There were no `invoice:v1:*` rows to import. Deploy still has to happen before invoice checkout uses D1. Until then the live Worker keeps using KV, which has no invoices.
-4. The sandbox webhook is already registered for `https://kinexisdigital.com/api/paypal/webhook`. Production still needs its own webhook id when that app is configured. Do not point sandbox events at production until this route is deployed on purpose.
-5. `NEXT_PUBLIC_PAYPAL_CLIENT_ID` if the subscription SDK ready state must be exercised. The sandbox run did not start the browser suite, so that check is still the fail-closed alert only.
+1. A real PayPal-signed live webhook (`verification_status: SUCCESS`) has not been seen. Wait for the first real payment event. Do not run a live charge to manufacture one.
+2. `NEXT_PUBLIC_PAYPAL_CLIENT_ID` if the subscription SDK ready state must be exercised in E2E. That check is still the fail-closed alert when the id is absent.
 
-**Completed phases:** Phase 0, and the Phase 1 engineering scope.
+**Completed phases:** Phase 0, and Phase 1 except the live signed-webhook observation.
 **Do not start Phase 2.**
-**Recommendation:** draft PR for owner review only. Not ready to merge or deploy.
