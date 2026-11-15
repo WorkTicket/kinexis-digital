@@ -347,7 +347,7 @@ export function PageSchema({ page, faqs, items }: {
   return <Script data={{ "@context": "https://schema.org", "@graph": graph }} />;
 }
 
-export function ArticleSchema({ title, description, path, image, date, modified, section, faqs, inLanguage = "en-US" }: {
+export function ArticleSchema({ title, description, path, image, date, modified, section, faqs, inLanguage = "en-US", trail, articleType = ["BlogPosting", "Article"] }: {
   title: string;
   description: string;
   path: string;
@@ -357,6 +357,9 @@ export function ArticleSchema({ title, description, path, image, date, modified,
   section: string;
   faqs?: QA[];
   inLanguage?: string;
+  /** Override default Home → Blog → title crumbs (e.g. case studies). */
+  trail?: { name: string; path: string }[];
+  articleType?: string | string[];
 }) {
   const url = absolute(path);
   const locale = localeForPath(path, inLanguage);
@@ -376,10 +379,15 @@ export function ArticleSchema({ title, description, path, image, date, modified,
     url: `${SITE.url}/`,
     logo: { "@type": "ImageObject", url: logoUrl, width: 512, height: 512 },
   };
+  const crumbTrail = trail ?? [
+    { name: locale === "en" ? "Home" : "Inicio", path: homePath },
+    { name: "Blog", path: blogPath },
+    { name: title, path },
+  ];
   const graph: Record<string, unknown>[] = [
       {
         // BlogPosting is the primary type; Article is included for auditors that look for it.
-        "@type": ["BlogPosting", "Article"],
+        "@type": articleType,
         "@id": `${url}#article`,
         headline: title,
         description,
@@ -403,11 +411,7 @@ export function ArticleSchema({ title, description, path, image, date, modified,
          inLanguage: schemaLanguage(locale),
          isPartOf: { "@id": websiteId(locale) },
       },
-      crumbs([
-         { name: locale === "en" ? "Home" : "Inicio", path: homePath },
-         { name: "Blog", path: blogPath },
-        { name: title, path },
-      ]),
+      crumbs(crumbTrail),
   ];
   if (faqs?.length) {
     graph.push({ "@type": "FAQPage", "@id": `${url}#faq`, url, mainEntity: faqEntities(faqs) });

@@ -94,10 +94,20 @@ function absoluteLanguages(languages?: Record<string, string>) {
   return Object.fromEntries(Object.entries(languages).map(([code, path]) => [code, absoluteUrl(path)]));
 }
 
+/** True when the title already carries a Kinexis brand suffix (avoid "| Kinexis | Kinexis Digital"). */
+function hasBrandSuffix(title: string) {
+  return /\|\s*Kinexis(\s+Digital)?\s*$/i.test(title.trim()) || title.includes(SITE.name);
+}
+
+function brandedTitle(title: string, absolute?: boolean) {
+  if (absolute || hasBrandSuffix(title)) return title.replace(/\|\s*Kinexis\s*$/i, `| ${SITE.name}`);
+  return `${title} | ${SITE.name}`;
+}
+
 export function pageMetadata(key: PageKey): Metadata {
   const p = PAGES[key] as PageMeta;
-  const branded = Boolean(p.absolute) || p.title.includes(SITE.name);
-  const full = branded ? p.title : `${p.title} | ${SITE.name}`;
+  const branded = Boolean(p.absolute) || hasBrandSuffix(p.title);
+  const full = brandedTitle(p.title, p.absolute);
   const description = descriptionWithFallback(
     p.description,
     " Learn how Kinexis Digital can help your business grow online.",
@@ -107,7 +117,7 @@ export function pageMetadata(key: PageKey): Metadata {
     ? { url: absoluteUrl(p.ogImage), width: 1200, height: 630, alt: full }
     : ogImage;
   return {
-    title: branded ? { absolute: p.title } : p.title,
+    title: branded ? { absolute: full } : p.title,
     description,
     alternates: !isPreviewSite() && p.indexable
       ? { canonical: absoluteUrl(p.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) }
@@ -156,16 +166,21 @@ export function contentMetadata(input: ContentMeta): Metadata {
       : " Find practical guidance and next steps to improve your digital presence.",
   );
   const index = !isPreviewSite() && input.index !== false && localeIndexable(locale);
-  const branded = input.absolute || input.title.includes(SITE.name);
-  const full = branded ? input.title : `${input.title} | ${SITE.name}`;
+  const branded = Boolean(input.absolute) || hasBrandSuffix(input.title);
+  const full = brandedTitle(input.title, input.absolute);
   const image = input.image
-    ? [{ url: input.image.startsWith("http") ? input.image : absoluteUrl(input.image), alt: input.imageAlt ?? input.title }]
+    ? [{
+        url: input.image.startsWith("http") ? input.image : absoluteUrl(input.image),
+        width: 1200,
+        height: 630,
+        alt: input.imageAlt ?? input.title,
+      }]
     : [ogImage];
   const article = input.ogType === "article";
   const languages = index ? hreflangLanguages(input.path) : undefined;
   const alternateLocale = ogAlternateLocales(languages, ogLocale(locale));
   return {
-    title: branded ? { absolute: input.title } : input.title,
+    title: branded ? { absolute: full } : input.title,
     description,
     authors: article ? [{ name: SITE.name, url: `${SITE.url}${withLocale(locale, "/about")}` }] : undefined,
     alternates: index ? { canonical: absoluteUrl(input.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) } : undefined,

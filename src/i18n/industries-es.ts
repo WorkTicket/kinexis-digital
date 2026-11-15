@@ -11,7 +11,7 @@ const ES: Record<string, Copy> = {
   plumbing: {
     name: "Plomería",
     card: "Fugas, drenajes y calentadores",
-    metaTitle: "Página web para plomeros en EE. UU. desde $97/mes",
+    metaTitle: "Página web para plomeros desde $97/mes",
     metaDescription: "Diseño de página web para plomeros en EE. UU. desde $97/mes, $0 de entrada. Páginas de fugas, drenajes y calentadores. Vista previa gratis.",
     h1: "Diseño de página web para plomeros que consigue la llamada",
     mark: "la llamada",
@@ -45,7 +45,7 @@ const ES: Record<string, Copy> = {
   hvac: {
     name: "HVAC",
     card: "Reparación sin aire y cambio de equipo",
-    metaTitle: "Página web para empresas de HVAC desde $97/mes",
+    metaTitle: "Página web de HVAC desde $97/mes",
     metaDescription: "Página web para empresas de HVAC en EE. UU. desde $97/mes, $0 de entrada. Reparación y reemplazo en páginas separadas. Vista previa gratis.",
     h1: "Página web para empresas de HVAC: reparación y reemplazo",
     mark: "reparación y reemplazo",
@@ -79,7 +79,7 @@ const ES: Record<string, Copy> = {
   electrical: {
     name: "Electricidad",
     card: "Tableros, cargadores y diagnóstico",
-    metaTitle: "Página web para electricistas desde $97/mes",
+    metaTitle: "Web para electricistas desde $97/mes",
     metaDescription: "Página web para electricistas en EE. UU. desde $97/mes, $0 de entrada. Paneles, cargadores EV y reparaciones con llamada directa. Vista previa gratis.",
     h1: "Página web para electricistas en la que la gente confía para llamar",
     mark: "confía para llamar",
@@ -113,7 +113,7 @@ const ES: Record<string, Copy> = {
   roofing: {
     name: "Techos",
     card: "Reparaciones, cambios y tormentas",
-    metaTitle: "Página web para compañías de techos (roofing)",
+    metaTitle: "Página web para techos desde $97/mes",
     metaDescription: "Página web para compañías de techos (roofing) desde $97/mes, $0 de entrada. Reparación, reemplazo e inspecciones. Vista previa gratis del inicio.",
     h1: "Página web para compañías de techos que consigue inspecciones",
     mark: "inspecciones de verdad",
@@ -147,7 +147,7 @@ const ES: Record<string, Copy> = {
   "garage-doors": {
     name: "Puertas de garaje",
     card: "Resortes, motores y puertas nuevas",
-    metaTitle: "Página web para puertas de garaje desde $97/mes",
+    metaTitle: "Web de puertas de garaje desde $97/mes",
     metaDescription: "Página web para compañías de puertas de garaje desde $97/mes, $0 de entrada. Resortes, abridores y puertas nuevas. Vista previa gratis del inicio.",
     h1: "Sitios de puertas de garaje para reparación y puertas nuevas",
     mark: "reparación y puertas nuevas",
@@ -256,7 +256,7 @@ const ES: Record<string, Copy> = {
   landscaping: {
     name: "Paisajismo",
     card: "Rutas de mantenimiento y obra",
-    metaTitle: "Página web para paisajismo (landscaping)",
+    metaTitle: "Página web de paisajismo desde $97/mes",
     metaDescription: "Página web para paisajismo y jardinería (landscaping) desde $97/mes, $0 de entrada. Mantenimiento y proyectos por separado. Vista previa gratis.",
     h1: "Página web para paisajismo: rutas y proyectos",
     mark: "rutas y proyectos",
@@ -327,7 +327,7 @@ const ES: Record<string, Copy> = {
   "pressure-washing": {
     name: "Lavado a presión",
     card: "Casas, concreto y techos",
-    metaTitle: "Página web para lavado a presión (pressure washing)",
+    metaTitle: "Web de lavado a presión desde $97/mes",
     metaDescription: "Página web para lavado a presión (pressure washing) desde $97/mes, $0 de entrada. Casas, concreto y techos con cotización corta. Vista previa gratis.",
     h1: "Sitios de lavado a presión que muestran el antes y el después",
     mark: "el antes y el después",

@@ -4,6 +4,9 @@ import { imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { Icon } from "./artwork";
 import { HL } from "./mark";
 
+/** Must match AUDIT_WIDTHS in scripts/optimize-content-images.mjs (no 640 variant). */
+const AUDIT_WIDTHS = [480, 768, 960] as const;
+
 const CHECKS = [
   {
     title: "Speed",
@@ -67,12 +70,12 @@ export default function IndustryAudit({
           </div>
           <div className="industry-audit__art">
             <picture>
-               <source type="image/avif" srcSet={imageSrcSet("/assets/audit/hero.webp", [480, 768, 960], "avif")} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
-               <source srcSet={imageSrcSet("/assets/audit/hero.webp", [480, 768, 960])} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
+               <source type="image/avif" srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS, "avif")} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
+               <source srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
                <img
                 className="industry-audit__img"
-                 src={imageVariant("/assets/audit/hero.webp", 640, "webp")}
-                 srcSet={imageSrcSet("/assets/audit/hero.webp", [480, 768, 960])}
+                 src={imageVariant("/assets/audit/hero.webp", 768, "webp")}
+                 srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)}
                  sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px"
                 alt={alt}
                 width={1536}

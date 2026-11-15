@@ -964,7 +964,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "plumbing-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de plomería",
-    "seoTitle": "Qué páginas necesita un sitio de plomería | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de plomería",
     "excerpt": "Páginas base y de servicio para un sitio de plomería, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un plomero ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa fugas, drenajes y calentadores para que el tráfico de emergencia y de cotización no se mezcle.",
     "sections": [
@@ -1026,7 +1026,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "hvac-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de HVAC",
-    "seoTitle": "Qué páginas necesita un sitio de HVAC | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de HVAC",
     "excerpt": "Páginas base y de servicio para un sitio de HVAC, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de HVAC ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Mantén reparación, cambio de equipo y mantenimiento en caminos separados para que el trabajo de temporada baja siga visible.",
     "sections": [
@@ -1088,7 +1088,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "electrician-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de electricidad",
-    "seoTitle": "Qué páginas necesita un sitio de electricidad | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de electricidad",
     "excerpt": "Páginas base y de servicio para un sitio de electricidad, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un electricista ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Muestra confianza de licencia temprano y da a cargadores EV su propia página cuando ese trabajo es real.",
     "sections": [
@@ -1150,7 +1150,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "roofing-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de techos",
-    "seoTitle": "Qué páginas necesita un sitio de techos | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de techos",
     "excerpt": "Páginas base y de servicio para un sitio de techos, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de techos ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa reparación y cambio completo, y describe proceso de seguro sin prometer resultados de reclamación.",
     "sections": [
@@ -1212,7 +1212,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "garage-door-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de puertas de garaje",
-    "seoTitle": "Qué páginas necesita un sitio de puertas de garaje | Kinexis Digital",
+    "seoTitle": "Páginas para un sitio de puertas de garaje",
     "excerpt": "Páginas base y de servicio para un sitio de puertas de garaje, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de puertas de garaje ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Rutas de resorte/motor de emergencia deben liderar con teléfono; páginas de puerta nueva pueden usar formulario corto de medidas.",
     "sections": [
@@ -1274,7 +1274,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "painting-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de pintura",
-    "seoTitle": "Qué páginas necesita un sitio de pintura | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de pintura",
     "excerpt": "Páginas base y de servicio para un sitio de pintura, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un contratista de pintura ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa interior, exterior y gabinetes, y mantén el formulario de estimado corto.",
     "sections": [
@@ -1336,7 +1336,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "remodeling-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de remodelación",
-    "seoTitle": "Qué páginas necesita un sitio de remodelación | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de remodelación",
     "excerpt": "Páginas base y de servicio para un sitio de remodelación, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un contratista de remodelación ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Lidera con cuartos terminados y camino de consulta en lugar de lenguaje de llamada de emergencia.",
     "sections": [
@@ -1398,7 +1398,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "landscaping-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de paisajismo",
-    "seoTitle": "Qué páginas necesita un sitio de paisajismo | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de paisajismo",
     "excerpt": "Páginas base y de servicio para un sitio de paisajismo, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de paisajismo ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa mantenimiento semanal de diseño-obra para no empujar leads de corte a consulta de patio.",
     "sections": [
@@ -1460,7 +1460,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "pool-service-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de albercas",
-    "seoTitle": "Qué páginas necesita un sitio de albercas | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de albercas",
     "excerpt": "Páginas base y de servicio para un sitio de albercas, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un servicio de albercas ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Da a alberca verde y reparaciones de equipo un camino con teléfono que no quede enterrado bajo copy de membresía.",
     "sections": [
@@ -1522,7 +1522,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "pressure-washing-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de lavado a presión",
-    "seoTitle": "Qué páginas necesita un sitio de lavado a presión | Kinexis Digital",
+    "seoTitle": "Páginas para un sitio de lavado a presión",
     "excerpt": "Páginas base y de servicio para un sitio de lavado a presión, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de lavado a presión ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa superficies y deja espacio para antes/después que prueben el resultado.",
     "sections": [
@@ -1584,7 +1584,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "window-cleaning-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de limpieza de vidrios",
-    "seoTitle": "Qué páginas necesita un sitio de limpieza de vidrios | Kinexis Digital",
+    "seoTitle": "Páginas para sitio de limpieza de vidrios",
     "excerpt": "Páginas base y de servicio para un sitio de limpieza de vidrios, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de limpieza de vidrios ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa vidrio residencial y comercial, y ofrece limpiezas recurrentes como siguiente paso normal.",
     "sections": [
@@ -1646,7 +1646,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "lawn-care-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de césped",
-    "seoTitle": "Qué páginas necesita un sitio de césped | Kinexis Digital",
+    "seoTitle": "Qué páginas necesita un sitio de césped",
     "excerpt": "Páginas base y de servicio para un sitio de césped, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de cuidado de césped ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Publica una zona honesta y da a desechos de mascotas su propia página solo cuando esa oferta es real.",
     "sections": [

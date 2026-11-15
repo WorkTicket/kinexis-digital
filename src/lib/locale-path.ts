@@ -54,6 +54,24 @@ export function isMirrored(pathname: string): boolean {
   return MIRROR.has(englishPath(pathname));
 }
 
+/**
+ * Rewrite root-absolute internal hrefs in Spanish HTML bodies so they stay on
+ * the current locale (and avoid EN 301s for Spanish-only blog slugs).
+ * Leaves assets, file URLs, and unmirrored routes (e.g. /tools/*) alone.
+ */
+export function localizeHtmlHrefs(html: string, locale: Locale): string {
+  if (locale === "en") return html;
+  return html.replace(/\bhref=(["'])(\/[^"'#?]*)\1/g, (full, quote: string, path: string) => {
+    if (!path || path === "/") return `href=${quote}${withLocale(locale, "/")}${quote}`;
+    if (path.startsWith("/assets/") || path.startsWith("/og/") || path.startsWith("/portfolio/")) return full;
+    if (/\.[a-z0-9]{2,5}$/i.test(path)) return full;
+    const en = englishPath(path);
+    if (UNMIRRORED.has(en)) return full;
+    if (!isMirrored(en) && !MIRRORED_UTILITY.has(en)) return full;
+    return `href=${quote}${withLocale(locale, en)}${quote}`;
+  });
+}
+
 /** Same-page language link, or the locale home when that path has no translation. */
 export function switchHref(locale: Locale, pathname: string): string {
   return switchHrefWithMirrors(locale, pathname, MIRROR_PATHS);

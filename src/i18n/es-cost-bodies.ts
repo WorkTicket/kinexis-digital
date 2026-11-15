@@ -868,7 +868,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "plumber-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de plomería en 2026?",
-    "seoTitle": "Costo de un sitio web de plomería | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de plomería",
     "excerpt": "Precios reales de Kinexis para un sitio de plomería: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de plomería, empieza con números que puedas verificar — no un “promedio” de foro. Imagina un dueño en el garaje con el piso mojado: no quiere leer tu historia de empresa; quiere saber si atiendes fugas en su ciudad y cómo te marca. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -918,7 +918,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "hvac-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de HVAC en 2026?",
-    "seoTitle": "Costo de un sitio web de HVAC | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de HVAC",
     "excerpt": "Precios reales de Kinexis para un sitio de HVAC: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de HVAC, empieza con números que puedas verificar — no un “promedio” de foro. En agosto, quien busca no quiere un folleto de “soluciones de confort”: quiere saber si mandas técnico sin aire y cuánto tarda en contestar. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -968,7 +968,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "electrician-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de electricidad en 2026?",
-    "seoTitle": "Costo de un sitio web de electricidad | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de electricidad",
     "excerpt": "Precios reales de Kinexis para un sitio de electricidad: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de electricidad, empieza con números que puedas verificar — no un “promedio” de foro. Quien huele a quemado o tiene el breaker que no reinicia no va a leer cinco párrafos de marketing: necesita licencia cerca del teléfono y un siguiente paso obvio. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1018,7 +1018,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "roofing-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de techos en 2026?",
-    "seoTitle": "Costo de un sitio web de techos | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de techos",
     "excerpt": "Precios reales de Kinexis para un sitio de techos: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de techos, empieza con números que puedas verificar — no un “promedio” de foro. Después del granizo, alguien en el celular con dedos mojados quiere ventana de inspección, no un ensayo de marcas de teja. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1068,7 +1068,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "garage-door-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de puertas de garaje en 2026?",
-    "seoTitle": "Costo de un sitio web de puertas de garaje | Kinexis Digital",
+    "seoTitle": "Costo de sitio de puertas de garaje",
     "excerpt": "Precios reales de Kinexis para un sitio de puertas de garaje: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de puertas de garaje, empieza con números que puedas verificar — no un “promedio” de foro. A las 7 a.m., con la puerta atascada abierta, el comprador no es el mismo que cotiza un doble nuevo para la remodelación del garaje. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1118,7 +1118,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "painting-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de pintura en 2026?",
-    "seoTitle": "Costo de un sitio web de pintura | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de pintura",
     "excerpt": "Precios reales de Kinexis para un sitio de pintura: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de pintura, empieza con números que puedas verificar — no un “promedio” de foro. Interior, exterior y gabinetes no se venden igual: quien pinta la fachada quiere prueba de trabajos terminados; quien pide gabinetes quiere fotos de cajones, no un formulario eterno. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1168,7 +1168,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "remodeling-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de remodelación en 2026?",
-    "seoTitle": "Costo de un sitio web de remodelación | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de remodelación",
     "excerpt": "Precios reales de Kinexis para un sitio de remodelación: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de remodelación, empieza con números que puedas verificar — no un “promedio” de foro. Una cocina o un baño rara vez son llamada de la misma hora: el sitio debe vender consulta y prueba de cuartos terminados, no solo un botón de emergencia copiado de plomería. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1218,7 +1218,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "landscaping-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de paisajismo en 2026?",
-    "seoTitle": "Costo de un sitio web de paisajismo | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de paisajismo",
     "excerpt": "Precios reales de Kinexis para un sitio de paisajismo: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de paisajismo, empieza con números que puedas verificar — no un “promedio” de foro. Quien quiere corte semanal no debe toparse con un formulario de patio de $40k; quien quiere hardscape necesita fotos de proyectos, no solo “únete a nuestra ruta”. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1268,7 +1268,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "pool-service-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de albercas en 2026?",
-    "seoTitle": "Costo de un sitio web de albercas | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de albercas",
     "excerpt": "Precios reales de Kinexis para un sitio de albercas: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de albercas, empieza con números que puedas verificar — no un “promedio” de foro. Una alberca verde en agosto no lee tu brochure de membresía: necesita reparación con el teléfono arriba y una ruta aparte para quien solo quiere servicio semanal. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1318,7 +1318,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "pressure-washing-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de lavado a presión en 2026?",
-    "seoTitle": "Costo de un sitio web de lavado a presión | Kinexis Digital",
+    "seoTitle": "Costo de sitio de lavado a presión",
     "excerpt": "Precios reales de Kinexis para un sitio de lavado a presión: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de lavado a presión, empieza con números que puedas verificar — no un “promedio” de foro. Casa, concreto y techo son tres conversaciones distintas — a veces tres métodos. Si mezclas todo, el cliente manda un texto vago y tú pierdes tiempo aclarando. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1368,7 +1368,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "window-cleaning-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de limpieza de vidrios en 2026?",
-    "seoTitle": "Costo de un sitio web de limpieza de vidrios | Kinexis Digital",
+    "seoTitle": "Costo de sitio de limpieza de vidrios",
     "excerpt": "Precios reales de Kinexis para un sitio de limpieza de vidrios: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de limpieza de vidrios, empieza con números que puedas verificar — no un “promedio” de foro. Una casa con vidrios altos y un aparador comercial no reservan igual: uno quiere ruta recurrente, el otro horario que no bloquee la puerta a la apertura. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [
@@ -1418,7 +1418,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
     "slug": "lawn-care-website-cost",
     "category": "Consejos",
     "title": "¿Cuánto cuesta un sitio web de césped en 2026?",
-    "seoTitle": "Costo de un sitio web de césped | Kinexis Digital",
+    "seoTitle": "Costo de un sitio web de césped",
     "excerpt": "Precios reales de Kinexis para un sitio de césped: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
     "lead": "Si estás cotizando un sitio de césped, empieza con números que puedas verificar — no un “promedio” de foro. El trabajo de ruta vive o muere por una zona de servicio honesta: publica los barrios que sí alcanzas o pasarás el día diciendo que no. Con Kinexis, Website es $97/mes, Lead System $197/mes, Plus $297/mes (inglés + español) u Own It $1,497 una vez. Cada opción empieza con vista previa gratis del inicio en 2 días hábiles, sin tarjeta.",
     "sections": [

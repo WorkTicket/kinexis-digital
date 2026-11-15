@@ -462,7 +462,7 @@ export const ES_PILLAR_POSTS: Record<string, EsPost> = {
     "slug": "monthly-website-vs-own-it",
     "category": "Consejos",
     "title": "Plan mensual u Own It para negocios",
-    "seoTitle": "Sitio web mensual vs Own It para negocios | Kinexis Digital",
+    "seoTitle": "Sitio web mensual vs Own It para negocios",
     "excerpt": "Compara Website, Lead System y Plus con Own It: cancelación, compra de archivos y qué incluye cada uno de los cuatro planes.",
     "lead": "Dos dueños pueden querer la misma página de inicio y aun así necesitar papeles distintos. Uno estira un invierno lento y quiere que el sitio se comporte como la factura del teléfono: un número que conoce, sin cheque grande, y una forma de parar si la cuadrilla se achica. El otro acaba de cobrar un trabajo comercial y preferiría pagar una vez y tener los archivos como el título de la camioneta. Ninguno es el prudente. El error es firmar una palabra — renta, propio, mío — que el contrato no usa. Aquí está la diferencia publicada, sin historia de terror sobre que tu negocio desaparece de la noche a la mañana.",
     "sections": [

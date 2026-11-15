@@ -161,7 +161,7 @@ export const ES_GUIDE_STUBS: EsPost[] = [
     "slug": "monthly-website-vs-own-it",
     "category": "Consejos",
     "title": "Plan mensual u Own It para negocios",
-    "seoTitle": "Sitio web mensual vs Own It para negocios | Kinexis Digital",
+    "seoTitle": "Sitio web mensual vs Own It para negocios",
     "excerpt": "Compara Website, Lead System y Plus con Own It: cancelación, compra de archivos y qué incluye cada uno de los cuatro planes.",
     "lead": "Los planes mensuales y Own It son opciones válidas. Depende del flujo de caja y si quieres herramientas de llamada perdida.",
     "sections": [
@@ -187,7 +187,7 @@ export const ES_GUIDE_STUBS: EsPost[] = [
     "slug": "missed-call-text-back-templates",
     "category": "Consejos",
     "title": "Plantillas de texto por llamada perdida para 12 negocios",
-    "seoTitle": "Plantillas de texto por llamada perdida | Kinexis Digital",
+    "seoTitle": "Plantillas de texto por llamada perdida",
     "excerpt": "Borradores de SMS por oficio para la llamada perdida, con tiempos honestos de aprobación del operador antes de enviarlos.",
     "lead": "El texto de llamada perdida es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada.",
     "sections": [

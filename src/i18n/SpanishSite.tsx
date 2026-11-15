@@ -14,7 +14,7 @@ import SpanishIndustry from "@/i18n/SpanishIndustry";
 import { p } from "@/i18n/prices";
 import { spanishHomeFaqs, spanishPlans } from "@/i18n/spanish-plans";
 import { SPANISH_STATIC_META_PATH_SET, type SpanishStaticPath } from "@/i18n/spanish-static-paths";
-import { contentLanguage, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
+import { contentLanguage, localizeHtmlHrefs, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
 import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { contentMetadata } from "@/lib/seo";
 import { SITE, telHref } from "@/lib/site";
@@ -51,11 +51,11 @@ const SiteReviewForm = dynamic(() => import("@/components/SiteReviewForm"));
 type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string; hold?: boolean };
 
 const PAGE_META: Record<SpanishStaticPath, Meta> = {
-  "/": { title: "Sitios web para contratistas y servicios del hogar desde $97/mes | Kinexis Digital", absolute: true, description: "Sitios web para contratistas desde $97/mes, $0 de entrada. Reseñas de Google, texto opcional y vista previa gratis del inicio." },
+  "/": { title: "Sitios web para contratistas desde $97/mes | Kinexis Digital", absolute: true, description: "Sitios web para contratistas desde $97/mes, $0 de entrada. Reseñas de Google, texto opcional y vista previa gratis del inicio." },
   "/services": { title: "Diseño web, SEO y mantenimiento", description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios en Estados Unidos, con apoyo claro en cada paso." },
   "/web-design": { title: "Diseño web para contratistas en EE. UU.", description: "Diseño web para contratistas en EE. UU. desde $97/mes, $0 de entrada. Vista previa gratis de tu página de inicio en 2 días hábiles, sin tarjeta." },
   "/seo-services": { title: "SEO para sitios web de negocios", description: "Mejora la visibilidad de tu sitio con SEO técnico, optimización de páginas, contenido útil e informes claros pensados para atraer más clientes." },
-  "/audit": { title: "Auditoría web gratis de SEO, velocidad y UX", description: "Recibe una auditoría web gratuita de SEO, velocidad, uso en celular, indexación y conversión, con una lista clara de mejoras recomendadas." },
+  "/audit": { title: "Auditoría web gratis de SEO y UX", description: "Recibe una auditoría web gratuita de SEO, velocidad, uso en celular, indexación y conversión, con una lista clara de mejoras recomendadas." },
   "/contact": { title: "Hablemos de tu proyecto web", description: "Contacta a Kinexis Digital para hablar de un sitio nuevo, rediseño, SEO o mantenimiento web para tu negocio y recibe una orientación clara." },
   "/website-management": { title: "Administración y mantenimiento web", description: "Mantén tu sitio seguro, actualizado y respaldado con hosting administrado, copias de seguridad, cambios pequeños y soporte directo del equipo." },
   "/about": { title: "Conoce nuestra agencia de diseño web", description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios en Estados Unidos." },
@@ -63,7 +63,7 @@ const PAGE_META: Record<SpanishStaticPath, Meta> = {
   "/industries": { title: "Sitios web para contratistas, por oficio", description: "Diseño web para plomeros, HVAC, electricistas, techos, puertas de garaje, paisajismo y lavado a presión en todo EE. UU. Planes desde $97/mes." },
   "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee reseñas de clientes de Kinexis Digital en este sitio, Trustpilot y Facebook, y deja la tuya en unos clics cuando quieras." },
   "/upgrades": { title: "Extras y mejoras para sitios web", description: "Agrega páginas, mantenimiento continuo u otras mejoras cuando tu sitio web y tu negocio las necesiten, sin complicar tu operación diaria." },
-  "/pricing": { title: "¿Cuánto cuesta un sitio web para un pequeño negocio?", description: "Planes desde $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis en 2 días hábiles. Sin tarjeta." },
+  "/pricing": { title: "Costo de un sitio web para negocios", description: "Planes desde $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis en 2 días hábiles. Sin tarjeta." },
   "/blog": { title: "Recursos de diseño web y SEO", description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento en Estados Unidos." },
   "/faqs": { title: "Preguntas frecuentes de diseño web", description: "Respuestas claras sobre precios, cobro, propiedad del sitio, lanzamiento, SEO, fotos, redacción y mantenimiento web antes de empezar." },
   "/update": { title: "Solicita una actualización del sitio", description: "Indica qué página necesita un cambio y adjunta cualquier archivo útil. Atendemos cada solicitud según el alcance y los tiempos de tu plan." },
@@ -81,7 +81,7 @@ const PAGE_META_ES_ES: Partial<Record<string, Meta>> = {
     description: "Web profesional para negocios de servicios locales en España, con vista previa gratis de la página de inicio. Sin tarjeta.",
   },
   "/pricing": {
-    title: "Planes de sitios web para negocios locales | Kinexis Digital",
+    title: "Planes de sitios web locales | Kinexis Digital",
     description: "Website desde 97 €/mes, Lead System 197 €/mes, Plus 297 €/mes u Own It 1.497 €. Vista previa gratis en 2 días hábiles. Sin tarjeta.",
   },
   "/web-design": {
@@ -928,7 +928,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
               {post.sections.map((section) => (
                 <section key={section.h2} className="blog-section">
                   <h2>{section.h2}</h2>
-                  <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: section.html }} />
+                  <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: localizeHtmlHrefs(section.html, locale) }} />
                 </section>
               ))}
             </div>

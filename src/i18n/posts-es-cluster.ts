@@ -66,7 +66,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "como-pedir-resenas-en-google",
     category: "Consejos",
     title: "Cómo pedir reseñas en Google sin sonar forzado",
-    seoTitle: "Cómo pedir reseñas en Google | Guión y enlace directo",
+    seoTitle: "Cómo pedir reseñas en Google",
     excerpt: "El momento, un enlace directo y un mensaje corto. Así pides reseñas en Google después de un trabajo real — sin inventar ni pagar por estrellas.",
     lead: "La siguiente llamada casi siempre mira tus reseñas antes de marcar. Pedirlas en la puerta funciona a veces. Mandar un enlace directo cuando el trabajo ya se ve, funciona más — y no necesitas un discurso largo.",
     sections: [
@@ -100,7 +100,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "how-to-ask-for-google-reviews-contractor",
     category: "Consejos",
     title: "Cómo pedir reseñas de Google después de un trabajo",
-    seoTitle: "Cómo pedir reseñas de Google (guiones para contratistas)",
+    seoTitle: "Cómo pedir reseñas de Google",
     excerpt: "Guiones cortos para la obra, el texto y el correo. Pide reseñas reales con un enlace directo, sin inventar opiniones ni poner a nadie en un aprieto.",
     lead: "El siguiente cliente casi siempre lee tus reseñas de Google antes de llamar. Pedirlo en la puerta a veces funciona. Un mensaje claro con enlace directo, cuando el trabajo ya se ve, funciona más — y no hace falta un discurso largo.",
     sections: [
@@ -134,7 +134,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "missed-call-text-delayed-10dlc",
     category: "Consejos",
     title: "Por qué se retrasan los textos de llamada perdida",
-    seoTitle: "Por qué se retrasan los textos de llamada perdida (aprobación del operador)",
+    seoTitle: "Por qué se retrasan los textos de llamada perdida",
     excerpt: "Por qué el texto de llamada perdida suele esperar la aprobación del operador — normalmente 10 a 15 días — y qué significa eso antes de activarlo.",
     lead: "El texto de llamada perdida suena simple: alguien llama mientras estás bajo el lavabo, sale un texto, responden y agendan. Lo que la gente subestima es la espera antes de que el primer mensaje automatizado pueda salir de forma fiable por la red del operador.",
     sections: [
@@ -160,7 +160,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "google-business-profile-vs-website",
     category: "SEO",
     title: "Perfil de Negocio de Google vs sitio web — ¿necesitas los dos?",
-    seoTitle: "Perfil de Negocio de Google vs sitio web — ¿un contratista necesita ambos?",
+    seoTitle: "Perfil de Google vs sitio web",
     excerpt: "Respuesta práctica para dueños de oficios: qué hace bien el Perfil de Negocio de Google, qué sigue cubriendo el sitio y cuándo necesitas los dos.",
     lead: "Muchos negocios de una camioneta viven un tiempo solo con el Perfil de Negocio de Google: horario, fotos, reseñas y teléfono. Luego aparece un trabajo más grande, el sitio de un competidor se ve más claro o los anuncios piden una página de aterrizaje. La pregunta es: ¿alcanza el perfil, o también necesitas un sitio?",
     sections: [
@@ -190,7 +190,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "freelancer-vs-agency-vs-subscription-website",
     category: "Consejos",
     title: "Freelancer, agencia o plan de sitio — ¿qué le sirve a un negocio de una camioneta?",
-    seoTitle: "Freelancer vs agencia vs plan de sitio para un negocio chico",
+    seoTitle: "Freelancer vs agencia vs plan de sitio",
     excerpt: "Comparación clara entre contratar un freelancer, una agencia o un plan de sitio mes a mes — para elegir sin miedo ni presión.",
     lead: "Si manejas una camioneta — o una cuadrilla chica — no necesitas un departamento de marketing de 40 páginas. Necesitas un sitio que cargue en el celular, muestre el trabajo que haces y haga fácil la siguiente llamada. La elección suele ser entre un freelancer, una agencia completa o un plan de sitio con hosting y cambios incluidos.",
     sections: [
@@ -220,7 +220,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "google-business-profile-checklist",
     category: "SEO",
     title: "Lista del Perfil de Negocio de Google para oficios",
-    seoTitle: "Lista del Perfil de Negocio de Google para plomeros y oficios",
+    seoTitle: "Lista del Perfil de Google para oficios",
     excerpt: "Reclama el perfil, corrige horario y zona, sube fotos reales y arma el enlace de reseña — luego decide cuándo el sitio todavía ayuda.",
     lead: "Reclamar tu Perfil de Negocio de Google es el primer paso. Mantenerlo exacto — y saber cuándo un sitio todavía ayuda — es el resto del trabajo. Esta lista está pensada para plomeros y otros oficios que aparecen en Maps antes que en una página de inicio.",
     sections: [
@@ -250,7 +250,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     slug: "wix-vs-squarespace-vs-managed-website-contractors",
     category: "Consejos",
     title: "Wix, Squarespace o un sitio administrado para contratistas",
-    seoTitle: "Wix vs Squarespace vs sitio administrado para contratistas",
+    seoTitle: "Wix vs Squarespace vs sitio administrado",
     excerpt: "Cómo se comparan los constructores DIY con un plan de sitio administrado para oficios — tiempo, seguimiento y salida, sin tácticas de miedo.",
     lead: "Los constructores DIY son populares porque el primer login se siente barato y rápido. Un plan de sitio administrado cobra una cuota mensual (o un pago Own It) pero deja hosting, cambios y seguimiento opcional en otras manos. Ningún camino es automáticamente “malo”. La pregunta útil es quién va a mantener el teléfono fácil de tocar después de que el logo se vea bien.",
     sections: [
@@ -347,7 +347,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
     ],
   },
   "how-to-ask-for-google-reviews-contractor": {
-    seoTitle: "Cómo pedir reseñas de Google (guiones para contratistas)",
+    seoTitle: "Cómo pedir reseñas de Google",
     sections: [
       {
         h2: "Pide en el momento correcto",

@@ -6,7 +6,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "freelancer-vs-agency-vs-subscription-website",
     "category": "Consejos",
     "title": "Freelancer, agencia o plan de sitio: cómo elegir sin adivinar",
-    "seoTitle": "Freelancer vs agencia vs plan de sitio web | Kinexis",
+    "seoTitle": "Freelancer vs agencia vs plan de sitio web",
     "excerpt": "Tres cotizaciones en el banco de la camioneta y un trabajo que empieza a las siete. Ninguna opción es moralmente superior; fallan en lugares distintos.",
     "lead": "Tienes tres cotizaciones en el asiento de la camioneta y un trabajo que arranca a las siete. Una es un freelancer que «te deja algo en línea». Otra es una agencia con presentación y reunión de arranque. La tercera es un plan mensual de sitio con una cifra que puedes poner en la misma hoja que el seguro y la renta del local. Ninguna es mejor en abstracto. Fallan en puntos distintos, y una empresa de una sola cuadrilla siente esas fallas en horas, no en talleres de marca. La pregunta útil es quién hace el trabajo cuando estás debajo de una casa, qué te llevas si te vas, y si alguien responde cuando el teléfono tiene que sonar.",
     "sections": [
@@ -60,7 +60,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "wix-vs-squarespace-vs-managed-website-contractors",
     "category": "Consejos",
     "title": "Wix, Squarespace o sitio administrado: la noche del jueves",
-    "seoTitle": "Wix vs Squarespace vs sitio administrado | Kinexis",
+    "seoTitle": "Wix vs Squarespace vs sitio administrado",
     "excerpt": "La plantilla se ve bien y el número sigue en el pie de página. La pregunta es quién mantiene el teléfono tocable después del logo.",
     "lead": "Son las 9:40 de un jueves. La camioneta descargada, la cena en la estufa y el portátil en la barra porque el sitio debía estar listo «esta semana» hace tres. El logo está puesto. El teléfono sigue en el pie de página, legible en el escritorio y no en la entrada. Los constructores DIY se sienten baratos al primer login. Un plan administrado cuesta $97, $197, $297 al mes u Own It $1,497 de una vez, y delega hosting y cambios. Ningún camino es malo por definición. La pregunta útil es quién mantiene el número fácil de tocar cuando el color del encabezado ya te gusta.",
     "sections": [
@@ -142,7 +142,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "web-design-for-contractors",
     "category": "Diseño",
     "title": "Diseño web para contratistas: lista para la entrada de la casa",
-    "seoTitle": "Diseño web para contratistas | Lista práctica | Kinexis",
+    "seoTitle": "Diseño web para contratistas | Lista práctica",
     "excerpt": "Un pulgar se detiene en la entrada. La página tiene segundos para decir qué haces, dónde vas y cómo llamar. Si falta eso, el diseño es póster.",
     "lead": "Un pulgar se detiene en la entrada de una casa. La búsqueda fue corta, el problema no, y la página tiene unos cinco segundos para contestar tres cosas: qué haces, dónde vas y cómo hablar con una persona. Si faltan, el resto del diseño es cartel. Esta es la lista para ese momento. La página de servicio de diseño web vive en <a href=\"/web-design\">diseño web</a>. Este artículo la apoya, no la duplica.",
     "sections": [
@@ -264,7 +264,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "google-business-profile-vs-website",
     "category": "SEO",
     "title": "Perfil de Google vs sitio web: la ficha no es la página",
-    "seoTitle": "Perfil de Google vs sitio web | Kinexis",
+    "seoTitle": "Perfil de Google vs sitio web",
     "excerpt": "En la entrada casi toca llamar desde el mapa, pero quiere saber si cambias calentadores. La ficha y el sitio hacen trabajos distintos.",
     "lead": "Alguien sin agua caliente busca en el celular en la entrada. El mapa muestra tres fichas. La tuya tiene horas, estrellas y botón de llamada. Casi toca. Luego quiere saber si cambias tanques o solo «haces plomería», y la ficha no alcanza. Abre el enlace del sitio, cae en una página de Facebook, y llama al siguiente, cuyo sitio tiene página de calentador y número arriba. No perdió ranking. Perdió una pregunta que la ficha nunca fue a responder.",
     "sections": [
@@ -394,7 +394,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "missed-call-text-delayed-10dlc",
     "category": "Consejos",
     "title": "Por qué se retrasan los textos de llamada perdida",
-    "seoTitle": "Retraso en textos por llamada perdida (10DLC) | Kinexis",
+    "seoTitle": "Retraso en textos por llamada perdida (10DLC)",
     "excerpt": "El sitio prometió texto por llamada perdida el lunes; el jueves, bajo el fregadero, no llegó nada: el operador de SMS aún no aprobó el envío.",
     "lead": "El sitio salió el lunes. La portada dice que mandas texto si pierdes una llamada. El jueves estás bajo un fregadero, suena el teléfono, no puedes agarrarlo, y no sale nada. La persona marca al siguiente negocio. No se te olvidó activar algo. El texto espera a un operador, y el operador no ha dicho que sí. El texto por llamada perdida es un parche útil en oficios. Lo que subestiman es la espera antes del primer mensaje automático permitido.",
     "sections": [
@@ -516,7 +516,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "missed-call-text-back-templates",
     "category": "Consejos",
     "title": "Plantillas de texto por llamada perdida para 12 negocios",
-    "seoTitle": "Plantillas de texto por llamada perdida | Kinexis Digital",
+    "seoTitle": "Plantillas de texto por llamada perdida",
     "excerpt": "Borradores de SMS por oficio para la llamada perdida, con tiempos honestos de aprobación del operador antes de enviarlos.",
     "lead": "El teléfono suena mientras sostienes una llave ajustable bajo el gabinete. No alcanzas a contestar. En teoría, un mensaje corto le dice quién eres y qué responder. En la práctica, ese mensaje no sale hasta que un operador aprueba tu línea y tu uso. El texto de llamada perdida es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número cuesta $1/mes si lo usas, más tarifas del operador. La aprobación del operador suele tardar 10–15 días y no está garantizada. Esta página son borradores por oficio — no permiso legal ni comparación de software.",
     "sections": [
@@ -594,7 +594,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
     "slug": "pagina-web-para-plomeros",
     "category": "Diseño",
     "title": "Página web para plomeros hecha para la llamada",
-    "seoTitle": "Página web para plomeros | Desde $97/mes | Kinexis",
+    "seoTitle": "Página web para plomeros | Desde $97/mes",
     "excerpt": "Quien tiene una fuga no lee manifiestos. Necesita número, zona y si puedes ir hoy. Así se arma una página que convierte.",
     "lead": "La mitad de quien entra a una página de plomería tiene agua donde no debería. La otra mitad planea un calentador o un destape y sí lee. Una página que funciona atiende a los dos sin esconder el teléfono ni prometer cuadrilla que no tienes a las dos de la mañana.",
     "sections": [

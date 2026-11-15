@@ -2,9 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CASE_STUDIES, caseStudyBySlug } from "@/data/caseStudies";
 import { contentMetadata } from "@/lib/seo";
+import { SITE_CONTENT_UPDATED } from "@/lib/pages";
 import { PageHero, Section, HL } from "@/components/ui";
 import { DeferredImg } from "@/components/DeferredImg";
-import { ContentSchema } from "@/components/JsonLd";
+import { ArticleSchema } from "@/components/JsonLd";
 
 export function generateStaticParams() {
   return CASE_STUDIES.map((study) => ({ slug: study.slug }));
@@ -20,10 +21,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   );
   return contentMetadata({
     path: `/case-studies/${study.slug}`,
-    title: `${study.title} — Case Study`,
+    title: `${study.title} Case Study`,
     description: description.length > 155 ? `${description.slice(0, 152).trimEnd()}…` : description,
     image: study.image,
     imageAlt: `${study.title} website screenshot`,
+    ogType: "article",
   });
 }
 
@@ -34,11 +36,15 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   return (
     <>
-      <ContentSchema
-        path={`/case-studies/${study.slug}`}
-        title={`${study.title} — Case Study`}
+      <ArticleSchema
+        title={`${study.title} Case Study`}
         description={study.problem}
-        crumbs={[
+        path={`/case-studies/${study.slug}`}
+        image={study.image}
+        date={SITE_CONTENT_UPDATED}
+        section={study.trade}
+        articleType="Article"
+        trail={[
           { name: "Home", path: "/" },
           { name: "Portfolio", path: "/portfolio" },
           { name: study.title, path: `/case-studies/${study.slug}` },

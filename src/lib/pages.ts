@@ -29,7 +29,7 @@ export const SITE_CONTENT_UPDATED = "2026-11-12";
 export const PAGES = {
   home: {
     path: "/",
-    title: "Contractor & Home Service Websites From $97/mo | Kinexis Digital",
+    title: "Website Plans From $97/mo for Local Businesses | Kinexis Digital",
     absolute: true,
     indexable: true,
     priority: 1,
@@ -49,7 +49,7 @@ export const PAGES = {
   },
   "web-design": {
     path: "/web-design",
-    title: "Contractor Website Design With a Free Preview",
+    title: "Contractor Website Design, Free Preview",
     crumb: "Web Design",
     service: "Contractor website design",
     indexable: true,
@@ -147,7 +147,7 @@ export const PAGES = {
   },
   pricing: {
     path: "/pricing",
-    title: "How Much Does a Small Business Website Cost?",
+    title: "Small Business Website Cost & Plans",
     crumb: "Pricing",
     service: "Web design",
     indexable: true,
@@ -223,7 +223,7 @@ export const PAGES = {
     indexable: false,
     priority: 0.3,
     changeFrequency: "yearly",
-    description: "Send business details, services, logo, and job photos so Kinexis can build your homepage preview and full site.",
+    description: "Send business details, services, logo, and job photos so Kinexis can build your homepage preview and full site with clear next steps.",
   },
   "strategy-call": {
     path: "/strategy-call",
