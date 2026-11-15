@@ -28,8 +28,11 @@ export function ShotFrame({
   className?: string;
   showCtaOnHover?: boolean;
 }) {
-  // Listing cards use a top 4:3 crop so we never download the full scroll capture.
-  const shot = portfolioFile(project.image, "card");
+  // Scrollable frames need the full-page 640w capture so hover/hold can pan.
+  // Static listing cards keep the lighter top 4:3 crop.
+  const useCard = !scrollOnHover;
+  const shot = portfolioFile(project.image, useCard ? "card" : 640);
+  const height = useCard ? 480 : Math.round((project.height * 640) / project.width);
   const inner = (
     <div className="shot__page">
       <div className="shot__track">
@@ -38,7 +41,7 @@ export function ShotFrame({
           sizes="(max-width: 720px) 46vw, (max-width: 1100px) 30vw, 280px"
           alt={`${project.name} website design`}
           width={640}
-          height={480}
+          height={height}
           className="shot__img"
         />
       </div>

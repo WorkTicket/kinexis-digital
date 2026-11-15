@@ -206,7 +206,7 @@ export default function CookieConsent({
               <>
                 <button
                   type="button"
-                  className="btn btn--primary consent-banner__btn"
+                  className="btn btn--ghost consent-banner__btn"
                   onClick={() => {
                     writeConsent(draftAnalytics, draftAds);
                     setForceOpen(false);
@@ -227,7 +227,7 @@ export default function CookieConsent({
               <>
                 <button
                   type="button"
-                  className="btn btn--primary consent-banner__btn"
+                  className="btn btn--ghost consent-banner__btn"
                   onClick={() => {
                     writeConsent(true, true);
                     setForceOpen(false);
@@ -247,7 +247,7 @@ export default function CookieConsent({
                 </button>
                 <button
                   type="button"
-                  className="consent-banner__linkish"
+                  className="btn btn--ghost consent-banner__btn"
                   onClick={() => {
                     setDraftAnalytics(consent.analytics);
                     setDraftAds(consent.ads);

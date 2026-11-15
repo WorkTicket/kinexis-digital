@@ -156,10 +156,12 @@ export default async function PhoenixPreviewLp() {
             <div className="hero__reassure">
               <TrustStrip className="hero__trust" />
               <p className="hero__call muted small">
-                Prefer to talk?{" "}
-                <a className="trust-mark" href={telHref(SITE.phone)}>
-                  {SITE.phone}
-                </a>
+                <span className="hero__call-label">Prefer to talk?</span>
+                <span className="hero__call-links">
+                  <a className="trust-mark" href={telHref(SITE.phone)}>
+                    {SITE.phone}
+                  </a>
+                </span>
               </p>
             </div>
           </div>
