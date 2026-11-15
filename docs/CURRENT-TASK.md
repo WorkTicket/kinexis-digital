@@ -1,20 +1,25 @@
 # CURRENT-TASK.md
 
 ## Goal
-Ship approved commercial update (domain year 1 on all monthly plans) + fine-print polish to production; tear down preview; verify PayPal.
+Production ship with domain year 1 on all monthly plans; preview torn down; PayPal smoke-tested.
 
 ## Status
-**In progress.** Domain + fine-print code updated; commit → push main → `npm run deploy` → delete preview → PayPal smoke test.
+**Done for this request.**
 
-## Domain (owner-approved)
-Year 1 included on Website / Lead System / Plus / Own It, in the customer’s name; later renewals at cost. Catalog, comparison matrix, checkout line, EN/ES terms updated.
+## Shipped
+- Commit `79d253b` on `main` (pushed)
+- Production Worker deployed: `kinexis-digital` → kinexisdigital.com / www
+- Preview Worker deleted: `kinexis-digital-preview` (preview.kinexisdigital.com unresolved)
+- Domain year 1 included on Website / Lead System / Plus / Own It (catalog, matrix, checkout, EN/ES terms)
+- Fine print: chooser + ownership footnote copy kept; presentation uses labeled text-back bullets (no raw `**`)
 
-## Fine print
-Chooser blurb + ownership footnote copy unchanged (approved). Presentation: no raw `**`; labeled text-back bullets in `plan-notes`.
+## PayPal smoke (live)
+- `/pay?plan=lead-system`: terms check → “Loading secure PayPal checkout…” → PayPal SDK + button iframe (~486×132)
+- Live `paypal.com/sdk` client-id (not sandbox). No capture / no real charge run.
 
-## Still open after this ship
+## Still open
 1. Copywriting inclusion decision (still quoted separately)
-2. Full live PayPal capture only if owner runs a real $1/sandbox path — smoke-test buttons on production first
+2. Optional full live capture only if you intentionally pay / cancel a real subscription
 
 ## Next action
-Commit + push main, production deploy, wrangler delete preview env, then PayPal UI check on live `/pay`.
+None required for this ship. Hard-refresh `/` and `/pricing` if local or CDN still shows old fine-print layout.
