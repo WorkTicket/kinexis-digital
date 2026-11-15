@@ -4,7 +4,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const migration = readFileSync(resolve(root, "migrations/0002_conferbot_lead_intel.sql"), "utf8");
+const migration = readFileSync(resolve(root, "migrations-lead/0001_conferbot_lead_intel.sql"), "utf8");
 
 export function openConferbotLedger() {
   const sqlite = new DatabaseSync(":memory:");

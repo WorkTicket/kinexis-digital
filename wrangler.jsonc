@@ -31,14 +31,10 @@
       "database_name": "kinexis-invoice-ledger",
       "database_id": "077c8e46-2ea8-4997-8b6a-c06902194575",
       "migrations_dir": "migrations"
-    },
-    // Owner creates LEAD_DB databases. Placeholder ids are not provisioned.
-    // Apply migrations/0002_conferbot_lead_intel.sql to LEAD_DB only (not INVOICE_DB).
-    {
-      "binding": "LEAD_DB",
-      "database_name": "kinexis-lead-intel",
-      "database_id": "00000000-0000-0000-0000-0000000000c1"
     }
+    // LEAD_DB is intentionally omitted until the owner creates real D1 databases
+    // and binds them. Schema lives in migrations-lead/0001_conferbot_lead_intel.sql.
+    // Do not reintroduce placeholder database_id values — they break Workers Builds.
   ],
   "durable_objects": {
     "bindings": [
@@ -113,13 +109,9 @@
           "database_name": "kinexis-invoice-ledger-preview",
           "database_id": "5a474f5a-4ac9-4d4c-8309-943c3d52981b",
           "migrations_dir": "migrations"
-        },
-        // Owner creates preview LEAD_DB. Placeholder id is not provisioned.
-        {
-          "binding": "LEAD_DB",
-          "database_name": "kinexis-lead-intel-preview",
-          "database_id": "00000000-0000-0000-0000-0000000000c2"
         }
+        // Preview LEAD_DB omitted until owner creates kinexis-lead-intel-preview
+        // and binds it. Apply migrations-lead/ with --env preview only then.
       ],
       "durable_objects": {
         "bindings": [
