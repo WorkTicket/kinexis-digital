@@ -30,6 +30,9 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  // Playwright and some local tooling hit 127.0.0.1 while Next binds as localhost.
+  // Without this, client chunks / HMR are blocked and React never hydrates.
+  allowedDevOrigins: ["127.0.0.1", "localhost"],
   experimental: {
     cpus: 4,
   },

@@ -22,6 +22,7 @@ type PayPalSDK = {
     onApprove: (data: { subscriptionID?: string }) => void;
     onError: () => void;
     onCancel: () => void;
+    onClick?: () => void;
   }) => PayPalButtons;
 };
 
@@ -95,7 +96,7 @@ function termsFor(plan: CheckoutPlan) {
     return "One payment when you approve your preview · No monthly plan · 30-day money-back guarantee · Site files are yours from launch · Plus tax, if any";
   }
   const guarantee = plan.guarantee ? " · 60-day tracked-lead guarantee" : "";
-  return `Month-to-month · Cancel anytime · Price locked 24 months · 30-day money-back guarantee · First charge when you subscribe · Later domain renewals at cost · Plus tax, if any${guarantee}`;
+  return `Month-to-month · Cancel anytime · Price locked 24 months · Domain year 1 included · Later renewals at cost · 30-day money-back guarantee · First charge when you subscribe · Plus tax, if any${guarantee}`;
 }
 
 export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey }) {
@@ -139,7 +140,15 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
               setNotice("PayPal confirmed something, but the subscription id didn't look right. Check your PayPal email, or text us.");
               return;
             }
+            window.dispatchEvent(new CustomEvent("kinexis:track", {
+              detail: { name: "subscription_created", params: { plan: planKey } },
+            }));
             router.push(`/pay/thanks?plan=${planKey}&sid=${encodeURIComponent(sid)}`);
+          },
+          onClick: () => {
+            window.dispatchEvent(new CustomEvent("kinexis:track", {
+              detail: { name: "checkout_started", params: { plan: planKey } },
+            }));
           },
           onError: () => {
             if (!dead) setNotice("Something went wrong with PayPal. Please try again or text us.");
@@ -187,7 +196,13 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
                   name="website-plan"
                   value={item.key}
                   checked={selected === item.key}
-                  onChange={() => { setSelected(item.key); setNotice(""); }}
+                  onChange={() => {
+                    setSelected(item.key);
+                    setNotice("");
+                    window.dispatchEvent(new CustomEvent("kinexis:track", {
+                      detail: { name: "plan_selected", params: { plan: item.slug } },
+                    }));
+                  }}
                 />
                 <span className="pay-option__art" aria-hidden="true"><PlanMark id={item.key} /><span className="pay-tick" /></span>
                 <span className="pay-option__copy">

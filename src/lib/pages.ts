@@ -16,6 +16,11 @@ export type PageMeta = {
   changeFrequency?: "weekly" | "monthly" | "yearly";
   /** ISO date (YYYY-MM-DD) for sitemap lastmod. */
   updatedAt?: string;
+  /**
+   * Social preview image path. Interim: page hero 960w WebP until dedicated
+   * 1200×630 OG artwork is produced (see docs/OG-IMAGES.md).
+   */
+  ogImage?: string;
 };
 
 /** Default sitemap lastmod when a page has no more specific content date. */
@@ -30,6 +35,7 @@ export const PAGES = {
     priority: 1,
     changeFrequency: "weekly",
     description: "Contractor and home service websites from $97/mo, $0 down. Google review requests, optional missed-call text-back, and a free homepage preview.",
+    ogImage: "/assets/heroes/01-homepage-960.webp",
   },
   services: {
     path: "/services",
@@ -48,6 +54,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Contractor website design from $97/mo, $0 down. See a free homepage preview in 2 business days, no card required, before you choose a plan.",
+    ogImage: "/assets/heroes/07-web-design-960.webp",
   },
   "seo-services": {
     path: "/seo-services",
@@ -57,6 +64,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Improve your website’s search visibility with technical SEO, page optimization, useful content, and straightforward reporting.",
+    ogImage: "/assets/heroes/08-local-seo-960.webp",
   },
   audit: {
     path: "/audit",
@@ -102,6 +110,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.8,
     description: "Explore live Kinexis client sites and design work for local service businesses to find the right direction for your website.",
+    ogImage: "/assets/heroes/02-portfolio-960.webp",
   },
   industries: {
     path: "/industries",
@@ -111,6 +120,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Website design for plumbers, HVAC, electricians, roofers, garage door, landscaping, and pressure washing companies nationwide. Plans from $97/mo.",
+    ogImage: "/assets/heroes/01-homepage-960.webp",
   },
   reviews: {
     path: "/reviews",
@@ -136,6 +146,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Website plans from $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for $1,497. Free homepage preview in 2 business days. No card required.",
+    ogImage: "/assets/heroes/06-pricing-960.webp",
   },
   pay: {
     path: "/pay",

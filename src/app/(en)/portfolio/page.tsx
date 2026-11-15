@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import { PROJECTS, portfolioFile } from "@/data/portfolio";
+import { CASE_STUDIES } from "@/data/caseStudies";
 import { LIVE_SITES } from "@/data/liveSites";
 import ProjectCard from "@/components/ProjectCard";
 import { DeferredImg } from "@/components/DeferredImg";
 import { PageSchema } from "@/components/JsonLd";
 import ReviewsSection from "@/components/ReviewsSection";
-import { Compare, CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
+import PlanCompare from "@/components/PlanCompare";
+import { CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
 
 export const metadata = pageMetadata("portfolio");
 
@@ -58,47 +60,55 @@ export default function Page() {
           <div>
             <p className="eyebrow">Live Sites</p>
             <h2><HL text="Client Websites" mark="Websites" /></h2>
-            <p className="muted">Open any live site to see the finished homepage.</p>
+            <p className="muted">Open any live site to see the finished homepage, or read the verified case study.</p>
           </div>
         </div>
         <div className="portfolio--live">
           {LIVE_SITES.map((site) => {
             const shot = portfolioFile(site.image, 640);
             const host = siteHost(site.url);
+            const study = CASE_STUDIES.find((item) => item.liveSiteSlug === site.slug);
             return (
-              <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot shot--static" data-name={site.name}>
-                  <div className="shot__page">
-                    <div className="shot__track">
-                      <DeferredImg
-                        src={shot}
-                        sizes="(max-width: 960px) 92vw, 380px"
-                        alt=""
-                        width={640}
-                        height={Math.round((site.height * 640) / site.width)}
-                        className="shot__img"
-                      />
+              <div key={site.slug} className="live-site-wrap">
+                <a className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
+                  <div className="shot shot--static" data-name={site.name}>
+                    <div className="shot__page">
+                      <div className="shot__track">
+                        <DeferredImg
+                          src={shot}
+                          sizes="(max-width: 960px) 92vw, 380px"
+                          alt=""
+                          width={640}
+                          height={Math.round((site.height * 640) / site.width)}
+                          className="shot__img"
+                        />
+                      </div>
                     </div>
+                    <span className="btn btn--primary shot__cta-overlay" aria-hidden="true">Visit Site</span>
                   </div>
-                  <span className="btn btn--primary shot__cta-overlay" aria-hidden="true">Visit Site</span>
-                </div>
-                <span className="live-site__copy">
-                  <span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />Live</span>
-                  <span className="live-site__id">
-                    <span className="live-site__name">{site.name}</span>
-                    <span className="live-site__meta">
-                      <span>{site.trade}</span>
-                      <span className="live-site__host">{host}</span>
+                  <span className="live-site__copy">
+                    <span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />Live</span>
+                    <span className="live-site__id">
+                      <span className="live-site__name">{site.name}</span>
+                      <span className="live-site__meta">
+                        <span>{site.trade}</span>
+                        <span className="live-site__host">{host}</span>
+                      </span>
+                    </span>
+                    <span className="live-site__go">
+                      Visit site
+                      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+                        <path d="M4.5 11.5 11.5 4.5M6.5 4.5h5v5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </span>
                   </span>
-                  <span className="live-site__go">
-                    Visit site
-                    <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-                      <path d="M4.5 11.5 11.5 4.5M6.5 4.5h5v5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </span>
-                </span>
-              </a>
+                </a>
+                {study ? (
+                  <Link className="trust-mark live-site__case" href={`/case-studies/${study.slug}`} prefetch={false}>
+                    Read case study →
+                  </Link>
+                ) : null}
+              </div>
             );
           })}
         </div>
@@ -141,10 +151,7 @@ export default function Page() {
       />
 
       <Section tint>
-        <h2 className="center"><HL text="Why Business Owners Choose Kinexis Over Freelancers and Agencies" mark="Over Freelancers and Agencies" /></h2>
-        <p className="center muted">A clearer plan than hiring a freelancer or a full web design agency for a small business.</p>
-        <Compare />
-        <p className="center muted small">Typical offerings; individual providers vary.</p>
+        <PlanCompare />
       </Section>
 
       <Section narrow>

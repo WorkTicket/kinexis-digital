@@ -94,13 +94,15 @@ export async function createInvoiceOrder(input: {
   email: string;
   company: string;
   requestId: string;
-}): Promise<{ url: string } | { error: string } | { unconfigured: true }> {
+  invoiceId?: string;
+}): Promise<{ url: string; orderId: string } | { error: string } | { unconfigured: true }> {
   const cfg = config();
   if (!cfg) return { unconfigured: true };
   const token = await accessToken(cfg);
   if (!token) return { error: "PayPal didn't accept the checkout. Call us and we'll send a payment link." };
 
-  const custom = clean([input.name, input.company, input.email].filter(Boolean).join(" | "), 127);
+  // custom_id: invoice id when present (no email/PII). Keep under PayPal length limits.
+  const custom = clean(input.invoiceId || [input.name, input.company].filter(Boolean).join(" | "), 127);
   const res = await fetch(`${cfg.base}/v2/checkout/orders`, {
     method: "POST",
     headers: {
@@ -113,6 +115,7 @@ export async function createInvoiceOrder(input: {
       purchase_units: [{
         description: input.description,
         custom_id: custom,
+        invoice_id: input.invoiceId?.slice(0, 127),
         soft_descriptor: "KINEXIS DIGITAL",
         amount: { currency_code: "USD", value: input.amount },
       }],
@@ -128,33 +131,36 @@ export async function createInvoiceOrder(input: {
     }),
     signal: AbortSignal.timeout(15_000),
   });
-  const data = await res.json().catch(() => ({})) as { links?: PayPalLink[] };
+  const data = await res.json().catch(() => ({})) as { id?: string; links?: PayPalLink[] };
   if (!res.ok) return { error: "PayPal couldn't start that payment. Check the amount and try again." };
   const url = paypalUrl(data.links?.find((link) => link.rel === "payer-action" || link.rel === "approve")?.href);
-  if (!url) return { error: "PayPal didn't return a checkout link. Call us and we'll send one." };
-  return { url };
+  if (!url || !data.id) return { error: "PayPal didn't return a checkout link. Call us and we'll send one." };
+  return { url, orderId: data.id };
 }
 
 export function isPayPalOrderId(value: string) {
   return /^[A-Z0-9]{10,20}$/.test(value);
 }
 
-export async function captureInvoiceOrder(orderId: string): Promise<"paid" | "failed" | "unconfigured"> {
+export async function captureInvoiceOrder(orderId: string): Promise<
+  { status: "paid"; invoiceId?: string } | { status: "failed" | "unconfigured" }
+> {
   const cfg = config();
-  if (!cfg) return "unconfigured";
+  if (!cfg) return { status: "unconfigured" };
   const token = await accessToken(cfg);
-  if (!token) return "failed";
+  if (!token) return { status: "failed" };
 
   const headers = { Authorization: `Bearer ${token}`, "Content-Type": "application/json" };
   const existing = await fetch(`${cfg.base}/v2/checkout/orders/${orderId}`, { headers, signal: AbortSignal.timeout(15_000) });
   const order = await existing.json().catch(() => ({})) as {
     status?: string;
-    purchase_units?: { amount?: { currency_code?: string } }[];
+    purchase_units?: { amount?: { currency_code?: string; value?: string }; invoice_id?: string; custom_id?: string }[];
   };
-  if (!existing.ok) return "failed";
-  if (order.purchase_units?.[0]?.amount?.currency_code !== "USD") return "failed";
-  if (order.status === "COMPLETED") return "paid";
-  if (order.status !== "APPROVED") return "failed";
+  if (!existing.ok) return { status: "failed" };
+  if (order.purchase_units?.[0]?.amount?.currency_code !== "USD") return { status: "failed" };
+  const invoiceId = order.purchase_units?.[0]?.invoice_id || order.purchase_units?.[0]?.custom_id;
+  if (order.status === "COMPLETED") return { status: "paid", invoiceId };
+  if (order.status !== "APPROVED") return { status: "failed" };
 
   const res = await fetch(`${cfg.base}/v2/checkout/orders/${orderId}/capture`, {
     method: "POST",
@@ -162,6 +168,8 @@ export async function captureInvoiceOrder(orderId: string): Promise<"paid" | "fa
     signal: AbortSignal.timeout(15_000),
   });
   const data = await res.json().catch(() => ({})) as { status?: string; details?: { issue?: string }[] };
-  if (data.status === "COMPLETED" || data.details?.some((detail) => detail.issue === "ORDER_ALREADY_CAPTURED")) return "paid";
-  return "failed";
+  if (data.status === "COMPLETED" || data.details?.some((detail) => detail.issue === "ORDER_ALREADY_CAPTURED")) {
+    return { status: "paid", invoiceId };
+  }
+  return { status: "failed" };
 }

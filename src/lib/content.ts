@@ -1,3 +1,5 @@
+import { CATALOG_PLANS } from "@/lib/plans-catalog";
+
 export type QA = { q: string; a: string };
 export const FAQS: QA[] = [
   { q: "Is this right for my kind of business?", a: "We work with local service businesses across the United States, including plumbing, HVAC, electrical, landscaping, roofing, and remodeling. If people search for your service and call when they need help, these plans are built for that kind of business." },
@@ -65,84 +67,20 @@ export type Plan = {
   cta: string;
 };
 
-export const PLANS: Plan[] = [
-  {
-    slug: "website",
-    name: "Website",
-    tagline: "A professional home for your business.",
-    price: "$97",
-    suffix: "/mo",
-    kicker: "$0 down, then",
-    note: "Month-to-month · cancel anytime",
-    features: [
-      ["Mobile website", "Up to 5 pages"],
-      ["Hosting + SSL", "Security and backups included"],
-      ["Small edits*", "Up to 2 a month, in 2 business days"],
-      ["Form-lead tracking", "Know when a quote form comes in"],
-      ["New pages", "$99 each"],
-    ],
-    cta: "Start with a free preview",
-  },
-  {
-    slug: "lead-system",
-    name: "Lead System",
-    tagline: "Your website + the tools that bring calls.",
-    price: "$197",
-    suffix: "/mo",
-    kicker: "$0 down, then",
-    note: "Month-to-month · cancel anytime",
-    features: [
-      ["Mobile website", "Up to 10 pages, hosting + backups"],
-      ["Missed-call text-back**", "Optional · $1/mo 2nd number + carrier"],
-      ["Google review requests", "After every job"],
-      ["Google profile tune-up", "At launch"],
-      ["Call tracking + report", "One monthly report"],
-      ["Unlimited small edits*", "In 1 business day"],
-      ["New pages", "1 per month included"],
-    ],
-    popular: true,
-    guarantee: true,
-    cta: "Start with a free preview",
-  },
-  {
-    slug: "plus",
-    name: "Plus (Bilingual)",
-    tagline: "Reach customers in English and Spanish.",
-    price: "$297",
-    suffix: "/mo",
-    kicker: "$0 down, then",
-    note: "Month-to-month · cancel anytime",
-    features: [
-      ["Bilingual website", "Up to 20 pages, English + Spanish"],
-      ["Missed-call text-back**", "Optional · EN/ES · $1/mo 2nd number + carrier"],
-      ["Google review requests", "English + Spanish"],
-      ["Google profile tune-up", "+ 2 posts a month"],
-      ["Call tracking + report", "One monthly report"],
-      ["Unlimited small edits*", "Same business day by noon CT"],
-      ["New pages", "2 per month included"],
-    ],
-    guarantee: true,
-    cta: "Start with a free preview",
-  },
-  {
-    slug: "own-it",
-    name: "Own It",
-    tagline: "One payment. A website you own.",
-    price: "$1,497",
-    suffix: "one-time",
-    kicker: "One payment",
-    note: "Paid when you approve your preview · no monthly plan · no lead guarantee",
-    features: [
-      ["Mobile website", "Up to 10 pages"],
-      ["Site files yours", "From launch day"],
-      ["Hosting + SSL", "12 months included"],
-      ["Small edits*", "12 months, up to 30 min a month"],
-      ["Domain", "First year included"],
-      ["One payment", "No monthly plan"],
-    ],
-    cta: "Start with a free preview",
-  },
-];
+/** Card plans — sourced from the canonical catalog. */
+export const PLANS: Plan[] = CATALOG_PLANS.map((plan) => ({
+  slug: plan.slug,
+  name: plan.name,
+  tagline: plan.tagline,
+  price: plan.priceLabel,
+  suffix: plan.suffix,
+  kicker: plan.kicker,
+  note: plan.note,
+  features: plan.features,
+  popular: plan.popular,
+  guarantee: plan.guarantee,
+  cta: plan.cta,
+}));
 
 export const PLAN_PREVIEW_TERM =
   "Every plan starts with a free homepage preview. No card and no obligation.";
@@ -154,6 +92,7 @@ export const PLAN_TERM_GROUPS: { title: string; items: string[] }[] = [
     items: [
       "Monthly plans are $0 down and month-to-month from launch. There is no long-term contract and no cancellation fee.",
       "Your monthly price is locked for 24 months from launch; after that we will give you at least 30 days’ notice of any change.",
+      "Domain year 1 is included on every monthly plan and on Own It, registered in your name. Later renewals are billed at cost.",
     ],
   },
   {
@@ -166,7 +105,9 @@ export const PLAN_TERM_GROUPS: { title: string; items: string[] }[] = [
   {
     title: "Missed-call text-back",
     items: [
-      "Missed-call text-back is optional and needs a dedicated business phone line. On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates. Carrier approval usually takes 10–15 days and is not guaranteed.",
+      "Missed-call text-back is optional and needs a dedicated business phone line.",
+      "On Lead System or Plus, a second tracking number is $1/mo if you use one, plus carrier text rates.",
+      "Carrier approval usually takes 10–15 days and is not guaranteed.",
       "On Website or Own It, you can add text-back for $97/mo (same dedicated-line and carrier rules).",
     ],
   },
@@ -189,8 +130,15 @@ export const PLAN_TERM_GROUPS: { title: string; items: string[] }[] = [
   },
 ];
 
-export const PLAN_TEXTBACK_FOOTNOTE =
-  "Missed-call text-back is optional and needs a dedicated business phone line. A second tracking number is $1/mo if you use one. Carrier text rates may apply. Carrier approval usually takes 10–15 days and is not guaranteed.";
+/** Footnote for ** on pricing / plan tables — keep as discrete bullets. */
+export const PLAN_TEXTBACK_FOOTNOTE_ITEMS = [
+  "Missed-call text-back is optional and needs a dedicated business phone line.",
+  "A second tracking number is $1/mo if you use one.",
+  "Carrier text rates may apply.",
+  "Carrier approval usually takes 10–15 days and is not guaranteed.",
+] as const;
+
+export const PLAN_TEXTBACK_FOOTNOTE = PLAN_TEXTBACK_FOOTNOTE_ITEMS.join(" ");
 
 /** Flat list for /terms intro and any consumers that need a single array. */
 export const PLAN_TERMS = [PLAN_PREVIEW_TERM, ...PLAN_TERM_GROUPS.flatMap((group) => group.items)];

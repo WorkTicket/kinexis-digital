@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CHECKOUT_PLANS, money, type CheckoutKey } from "@/lib/pay";
 import { isSubscriptionId } from "@/lib/paypal";
 import { SITE, telHref } from "@/lib/site";
+import CheckoutTrack from "@/components/CheckoutTrack";
 import { PageHero } from "@/components/ui";
 import { contentMetadata } from "@/lib/seo";
 
@@ -61,6 +62,7 @@ export default async function Page({
   if (kind === "invoice") {
     return (
       <div className="thanks-view">
+        <CheckoutTrack name="purchase" params={{ kind: "invoice", currency: "USD" }} />
         <PageHero
           eyebrow="Checkout"
           h1="Payment received"
@@ -86,6 +88,7 @@ export default async function Page({
   if (kind === "sub" && selected) {
     return (
       <div className="thanks-view">
+        <CheckoutTrack name="purchase" params={{ kind: "subscription", plan: selected.slug, currency: "USD" }} />
         <PageHero
           eyebrow="Checkout"
           h1="You’re subscribed"

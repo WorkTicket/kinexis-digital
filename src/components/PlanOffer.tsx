@@ -79,7 +79,7 @@ export default function PlanOffer({
   showStickers?: boolean;
 }) {
   return (
-    <>
+    <div className="offer">
       <p className="eyebrow center">{eyebrow}</p>
       <h2 className="center"><HL text={heading} mark={mark} /></h2>
       <div className="offer__lockup">
@@ -109,6 +109,6 @@ export default function PlanOffer({
         <Link className="btn btn--ghost btn--lg" href={pricingHref} prefetch={false}>{secondary}</Link>
       </p>
       <TrustStrip className="offer__trust" {...trust} />
-    </>
+    </div>
   );
 }

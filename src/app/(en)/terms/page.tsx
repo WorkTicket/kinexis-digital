@@ -27,7 +27,7 @@ export default function Page() {
           <h2>3. What is included</h2>
           <p>Page counts and included work are listed on the pricing page for each plan. An extra page on Website is $99. Lead System includes one new page a month, and Plus includes two. Unused page allowances do not roll over.</p>
           <p>A small edit is a change that takes 30 minutes or less, handled one at a time. Website includes up to two small edits a month in two business days. Lead System includes unlimited small edits in one business day. Plus includes unlimited small edits by the same business day when requested by noon Central.</p>
-          <p>Hosting, SSL, security and backups are included while a monthly plan is active. On Own It, hosting and SSL are included for the first 12 months; optional Site Care is $39/mo after that.</p>
+          <p>Hosting, SSL, security and backups are included while a monthly plan is active. Domain year 1 is included on every monthly plan and on Own It, registered in your name; later renewals are billed at cost. On Own It, hosting and SSL are included for the first 12 months; optional Site Care is $39/mo after that.</p>
 
           <h2>4. Texting and carrier approval</h2>
           <p>Missed-call text-back is <b>optional</b> and needs a dedicated business phone line. On <b>Lead System or Plus</b>, a second tracking number is <b>$1/mo</b> if you use one, plus carrier text rates. On <b>Website or Own It</b>, text-back can be added for <b>$97/mo</b>.</p>

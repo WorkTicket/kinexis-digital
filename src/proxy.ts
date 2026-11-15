@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { contentLanguage, isMirrored, localeFromPath, LOCALE_HEADER, PATH_HEADER } from "@/lib/i18n";
+import { isPreviewHost } from "@/lib/site";
 
 const APEX = "kinexisdigital.com";
 const CANONICAL_HOST = "www.kinexisdigital.com";
@@ -67,6 +68,9 @@ export function proxy(request: NextRequest) {
   requestHeaders.set(PATH_HEADER, request.nextUrl.pathname);
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set("Content-Language", contentLanguage(locale));
+  if (isPreviewHost(host)) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
+  }
   if (immutableAsset(request.nextUrl.pathname)) {
     response.headers.set("Cache-Control", "public, max-age=31536000, immutable");
   }

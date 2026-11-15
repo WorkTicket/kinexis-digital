@@ -40,7 +40,8 @@ import PreviewBar from "@/components/PreviewBar";
 import ReviewsSection from "@/components/ReviewsSection";
 import ProjectCard from "@/components/ProjectCard";
 import Stepper, { type Step } from "@/components/Stepper";
-import { Compare, CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard, Shots } from "@/components/ui";
+import PlanCompare from "@/components/PlanCompare";
+import { CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 
 // Keep calendar / review-form client JS off every Spanish route's critical path.
@@ -247,10 +248,15 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
       </Section>
-      <Section tint>
-        <h2 className="center"><HL text={tx("Por qué los dueños eligen Kinexis frente a freelancers y agencias")} mark={tx("frente a freelancers y agencias")} /></h2>
-        <Compare rows={[[tx("Vista previa gratis antes de pagar"), false, false], [tx("Texto si no contestas y pedidos de reseña"), false, false], [tx("Hosting y cambios resueltos"), false, true], [tx("Precio fijo por 24 meses"), false, false], [tx("Sitios en inglés y español"), false, true]]} freelancers={tx("Freelancers")} agencies={tx("Agencias")} label={tx("Comparación")} feature={tx("Función")} yesLabel={tx("Sí")} />
-        <p className="center muted small">{tx("Son ofertas habituales; cada proveedor puede variar.")}</p>
+      <Section id="plans">
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} />
+        <PlanCompare
+          labels={{
+            feature: tx("Función"),
+            ownershipHeading: tx("Own It frente a planes mensuales administrados"),
+            ownershipMark: tx("planes mensuales administrados"),
+          }}
+        />
       </Section>
       <Section band="lead">
         <div className="lead-feature">
@@ -297,7 +303,6 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           moreLayout="cell"
         />
       </Section>
-      <Section id="plans"><PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} /></Section>
       <Section>
         <h2 className="center"><HL text={tx("De la vista previa al lanzamiento")} mark={tx("al lanzamiento")} /></h2>
         <Stepper steps={steps} />
@@ -514,7 +519,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   const faqs = homeFaqs(tx, spainChrome);
   const pricingMeta = metaFor("/pricing", locale) ?? PAGE_META["/pricing"];
   const table = [
-    { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), p("newPage", currency), tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
+    { group: tx("El sitio"), rows: [[tx("Páginas incluidas"), tx("Hasta 5"), tx("Hasta 10"), tx("Hasta 20"), tx("Hasta 10")], [tx("Hosting, SSL, respaldos"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("12 meses")], [tx("Dominio (año 1)"), tx("Incluido"), tx("Incluido"), tx("Incluido"), tx("Incluido")], [tx("Cambios chicos"), tx("2 / mes, 2 días"), tx("Sin tope, 1 día"), tx("Sin tope, el mismo día"), tx("30 min / mes")], [tx("Páginas nuevas"), p("newPage", currency), tx("1 / mes"), tx("2 / mes"), tx("Cotizado")], [tx("Los archivos son tuyos"), "—", "—", "—", tx("Sí")]] },
     { group: tx("Seguimiento"), rows: [[tx("Texto si no contestas**"), "—", tx(`Opcional · ${p("secondNumberMo", currency)}/mes 2.º número + operador`), tx(`Opcional · EN/ES · ${p("secondNumberMo", currency)}/mes 2.º número + operador`), tx(`Extra ${p("textBackAddonMo", currency)} / mes`)], [tx("Reseñas de Google"), "—", tx("Después de cada trabajo"), tx("Inglés y español"), "—"], [tx("Perfil de Negocio de Google"), "—", tx("Ajuste"), tx("Ajuste + 2 publicaciones"), "—"], [tx("Llamadas y reporte"), "—", tx("Mensual"), tx("Mensual"), "—"], [tx("Sitio bilingüe"), "—", "—", tx("Sí"), "—"]] },
     { group: tx("El acuerdo"), rows: [[tx("Garantía de 60 días"), "—", tx("Sí"), tx("Sí"), "—"], [tx("Devolución en 30 días"), tx("Sí"), tx("Sí"), tx("Sí"), tx("Sí")], [tx("Cobro"), tx("Mes a mes"), tx("Mes a mes"), tx("Mes a mes"), tx("Un pago")], [tx("Cancela cuando quieras"), tx("Sí"), tx("Sí"), tx("Sí"), "—"], [tx("Precio fijo"), tx("24 meses"), tx("24 meses"), tx("24 meses"), tx("Un pago")], [tx("Precio"), `${p("websiteMo", currency)} / mes`, `${p("leadMo", currency)} / mes`, `${p("plusMo", currency)} / mes`, p("ownIt", currency)]] },
   ];
@@ -582,6 +587,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
               <ul>
                 <li>{tx(`Los planes mensuales son ${p("zeroDown", currency)} de entrada y mes a mes desde el lanzamiento. No hay contrato largo ni cargo por cancelar.`)}</li>
                 <li>{tx("Tu precio mensual queda fijo 24 meses desde el lanzamiento; después avisamos al menos 30 días antes de cualquier cambio.")}</li>
+                <li>{tx("El dominio del año 1 va incluido en todos los planes mensuales y en Own It, a tu nombre. Las renovaciones posteriores se cobran al costo.")}</li>
               </ul>
             </section>
             <section className="pricing-terms__group">
@@ -594,7 +600,10 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             <section className="pricing-terms__group">
               <h3>{tx("Texto si no contestas")}</h3>
               <ul>
-                <li>{tx(`El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador (normalmente 10 a 15 días); esa aprobación no está garantizada.`)}</li>
+                <li>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa.")}</li>
+                <li>{tx(`En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes, más tarifas del operador.`)}</li>
+                <li>{tx("La aprobación del operador suele tardar 10 a 15 días y no está garantizada.")}</li>
+                <li>{tx(`En Website u Own It, puedes agregar el texto si no contestas por ${p("textBackAddonMo", currency)} al mes (mismas reglas de línea dedicada y operador).`)}</li>
               </ul>
             </section>
             <section className="pricing-terms__group">
@@ -616,10 +625,17 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             </section>
           </div>
           <div className="pricing-terms__foot">
-            <p className="pricing-footnote">
-              <b>**</b>{" "}
-              {tx(`El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes. Pueden aplicar tarifas del operador. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación; esa aprobación no está garantizada.`)}
-            </p>
+            <div className="plan-notes plan-notes--compact" aria-label={tx("Detalles del texto si no contestas")}>
+              <p className="plan-notes__label">{tx("Texto si no contestas")}</p>
+              <div className="pricing-footnote pricing-footnote--bullets plan-notes__footnote">
+                <ul>
+                  <li>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa.")}</li>
+                  <li>{tx(`Un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes.`)}</li>
+                  <li>{tx("Pueden aplicar tarifas del operador.")}</li>
+                  <li>{tx("La aprobación del operador suele tardar 10 a 15 días y no está garantizada.")}</li>
+                </ul>
+              </div>
+            </div>
             <Link href={href("/terms")} prefetch={false}>{tx("Términos completos del plan →")}</Link>
           </div>
         </aside>
@@ -1093,7 +1109,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("2. Planes mensuales")}</h2>
         <p>{tx(`Website es ${p("websiteMo", currency)} al mes. Lead System es ${p("leadMo", currency)} al mes. Plus (bilingüe) es ${p("plusMo", currency)} al mes. Los tres son ${p("zeroDown", currency)} de entrada y empiezan el día del lanzamiento. Son mes a mes, sin contrato largo y sin cargo por cancelar. Puedes cancelar cuando quieras por texto, correo o Messenger. El precio queda fijo 24 meses. Después avisamos al menos 30 días antes de un cambio.`)}</p>
         <h2>{tx("3. Qué incluye")}</h2>
-        <p>{tx(`Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta ${p("newPage", currency)}. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es ${p("siteCareMo", currency)} al mes.`)}</p>
+        <p>{tx(`Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta ${p("newPage", currency)}. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. El dominio del año 1 va incluido en todos los planes mensuales y en Own It, a tu nombre; las renovaciones posteriores se cobran al costo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es ${p("siteCareMo", currency)} al mes.`)}</p>
         <h2>{tx("4. Textos y el operador")}</h2>
         <p>{tx(`El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes. Pueden aplicar tarifas del operador. El texto si no contestas y los pedidos de reseña se envían por mensaje. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación. Esa aprobación no está garantizada.`)}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>

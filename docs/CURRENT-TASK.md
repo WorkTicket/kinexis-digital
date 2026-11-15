@@ -1,17 +1,20 @@
 # CURRENT-TASK.md
 
 ## Goal
-PSI 100 Performance + Best Practices (mobile/desktop), no design changes.
+Ship approved commercial update (domain year 1 on all monthly plans) + fine-print polish to production; tear down preview; verify PayPal.
 
 ## Status
-Shipped to live (`e6c8b59`); re-run PSI on `/`.
+**In progress.** Domain + fine-print code updated; commit → push main → `npm run deploy` → delete preview → PayPal smoke test.
 
-## Done
-- Meta Pixel deferred to first input / 45s (was afterInteractive; caused TBT + CSP console errors)
-- CSP `connect-src` allows Meta openbridge hosts (`*.a.run.app`, `*.on.aws`)
-- Hero AVIF budgets tightened; logo-360 recompressed; MediaSplit sizes + lazy fallback 640
-- reply-dot / CTA nudge animations compositor-safe (look unchanged)
-- Local LH: desktop 100/100; mobile BP 100, perf ~95 (local TTFB); live should improve vs prior 95/92
+## Domain (owner-approved)
+Year 1 included on Website / Lead System / Plus / Own It, in the customer’s name; later renewals at cost. Catalog, comparison matrix, checkout line, EN/ES terms updated.
+
+## Fine print
+Chooser blurb + ownership footnote copy unchanged (approved). Presentation: no raw `**`; labeled text-back bullets in `plan-notes`.
+
+## Still open after this ship
+1. Copywriting inclusion decision (still quoted separately)
+2. Full live PayPal capture only if owner runs a real $1/sandbox path — smoke-test buttons on production first
 
 ## Next action
-Deploy, then re-run PageSpeed on `/` (mobile + desktop). If mobile perf still shy of 100, check Cloudflare Web Analytics beacon (critical-path on live).
+Commit + push main, production deploy, wrangler delete preview env, then PayPal UI check on live `/pay`.

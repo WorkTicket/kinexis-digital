@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getInvoice, putInvoice } from "@/lib/invoices";
 import { captureInvoiceOrder, isPayPalOrderId } from "@/lib/paypal-order";
 
 function destination(request: Request, path: string) {
@@ -10,10 +11,23 @@ export async function GET(request: Request) {
   if (!isPayPalOrderId(token)) return destination(request, "/pay?invoice=error#invoice");
   try {
     const result = await captureInvoiceOrder(token);
-    if (result === "paid") return destination(request, "/pay/thanks?kind=invoice&status=paid");
+    if (result.status === "paid") {
+      if (result.invoiceId && /^[0-9a-f-]{8,64}$/i.test(result.invoiceId)) {
+        const invoice = await getInvoice(result.invoiceId);
+        if (invoice && invoice.status === "unpaid") {
+          await putInvoice({
+            ...invoice,
+            status: "paid",
+            paidAt: new Date().toISOString(),
+            paypalOrderId: token,
+          });
+        }
+      }
+      return destination(request, "/pay/thanks?kind=invoice&status=paid");
+    }
     console.error("PayPal invoice capture unfinished", {
       tokenPrefix: token.slice(0, 8),
-      result,
+      result: result.status,
     });
   } catch (error) {
     console.error("PayPal invoice capture failed", {

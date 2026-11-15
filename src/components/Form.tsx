@@ -1,4 +1,12 @@
-export type Field = { label: string; name: string; kind?: "text" | "email" | "tel" | "url" | "textarea" | "file"; required?: boolean; auto?: string };
+export type Field = {
+  label: string;
+  name: string;
+  kind?: "text" | "email" | "tel" | "url" | "textarea" | "file";
+  required?: boolean;
+  auto?: string;
+  multiple?: boolean;
+  accept?: string;
+};
 
 /**
  * Homepage-preview lead form.
@@ -57,7 +65,15 @@ export default function Form({
       encType="multipart/form-data"
     >
       {fields.map((f) => f.kind === "file" ? (
-        <label className="field field--file" key={f.name}><span>{f.label}</span><input type="file" name={f.name} /></label>
+        <label className="field field--file" key={f.name}>
+          <span>{f.label}</span>
+          <input
+            type="file"
+            name={f.name}
+            accept={f.accept}
+            multiple={f.multiple}
+          />
+        </label>
       ) : (
         <label className="field" key={f.name}>
           {f.kind === "textarea"

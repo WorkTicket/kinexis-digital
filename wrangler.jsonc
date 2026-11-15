@@ -61,5 +61,53 @@
   "routes": [
     { "pattern": "kinexisdigital.com", "custom_domain": true },
     { "pattern": "www.kinexisdigital.com", "custom_domain": true }
-  ]
+  ],
+  // Preview-only Worker — deploy with: opennextjs-cloudflare deploy --env preview
+  // Never use this env for production DNS (apex/www).
+  "env": {
+    "preview": {
+      "name": "kinexis-digital-preview",
+      "workers_dev": true,
+      "routes": [
+        { "pattern": "preview.kinexisdigital.com", "custom_domain": true }
+      ],
+      "vars": {
+        "CONTACT_TO": "hello@kinexisdigital.com,coltonwehr@kinexisdigital.com,coltondwehr@icloud.com"
+      },
+      "kv_namespaces": [
+        {
+          "binding": "REVIEWS",
+          "id": "57c783f8849a49e9831bcba52f0d311b"
+        },
+        {
+          "binding": "NEXT_INC_CACHE_KV",
+          "id": "3b472da9db2b4518b4cc1a7beff1695f"
+        }
+      ],
+      "durable_objects": {
+        "bindings": [
+          {
+            "name": "NEXT_CACHE_DO_QUEUE",
+            "class_name": "DOQueueHandler"
+          }
+        ]
+      },
+      "services": [
+        {
+          "binding": "WORKER_SELF_REFERENCE",
+          "service": "kinexis-digital-preview"
+        }
+      ],
+      "send_email": [
+        {
+          "name": "CONTACT_EMAIL",
+          "allowed_destination_addresses": [
+            "hello@kinexisdigital.com",
+            "coltonwehr@kinexisdigital.com",
+            "coltondwehr@icloud.com"
+          ]
+        }
+      ]
+    }
+  }
 }

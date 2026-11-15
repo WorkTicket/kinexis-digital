@@ -36,8 +36,8 @@ export type CostGuideItem = {
 };
 
 const FEATURED_DEFAULTS: Record<"cost" | "design", CostGuideItem> = {
-  cost: { href: "/web-design", name: "All trades", title: "contractor website design" },
-  design: { href: "/industries", name: "& more", title: "every local trade" },
+  cost: { href: "/web-design", name: "All trades", title: "contractor website design", featured: true },
+  design: { href: "/industries", name: "& more", title: "every local trade", featured: true },
 };
 
 export default function CostGuides({
@@ -97,9 +97,6 @@ export default function CostGuides({
               {guide.badge ? <span className="cost-guides__badge">{guide.badge}</span> : null}
               <span className="cost-guides__name">{guide.name}</span>
               <span className="cost-guides__meta trust-hl">{guide.title}</span>
-              {guide.badge || guide.featured ? (
-                <span className="cost-guides__go" aria-hidden="true">→</span>
-              ) : null}
             </Link>
           </li>
         ))}

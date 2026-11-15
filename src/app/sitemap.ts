@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next";
 import { POSTS } from "@/lib/content";
 import { INDUSTRIES } from "@/data/industries";
+import { CASE_STUDIES } from "@/data/caseStudies";
 import { portfolioFile, PROJECTS } from "@/data/portfolio";
 import { EN_REDIRECTED_BLOG_SLUGS, hreflangLanguages, isMirrored, localeIndexable, withLocale, type Locale } from "@/lib/i18n";
 import { PAGES, SITE_CONTENT_UPDATED, type PageMeta } from "@/lib/pages";
-import { SITE } from "@/lib/site";
+import { isPreviewSite, SITE } from "@/lib/site";
 
 const LOCALES: Locale[] = (["en", "es-419", "es-ES"] as const).filter(localeIndexable);
 
@@ -35,6 +36,9 @@ function localized<T extends { url: string }>(path: string, entry: T): T[] {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Preview builds must not publish crawlable URL lists (production sitemap stays on www).
+  if (isPreviewSite()) return [];
+
   const pages = (Object.values(PAGES) as PageMeta[])
     .filter((page) => page.indexable)
     .flatMap((page) => localized(page.path, {
@@ -85,5 +89,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     images: [`${SITE.url}${portfolioFile(project.image)}`],
   }));
 
-  return [...pages, ...industries, ...posts, ...projects];
+  const caseStudies = CASE_STUDIES.map((study) => ({
+    url: `${SITE.url}/case-studies/${study.slug}`,
+    lastModified: day(SITE_CONTENT_UPDATED),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+    images: [`${SITE.url}${study.image}`],
+  }));
+
+  return [...pages, ...industries, ...posts, ...projects, ...caseStudies];
 }

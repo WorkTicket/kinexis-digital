@@ -1058,7 +1058,9 @@ document.addEventListener("submit", async (event) => {
         source: String(data.get("source") || ""),
         landing_page: String(data.get("landing_page") || location.pathname),
       };
+      const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
       track("generate_lead", leadPayload);
+      track("preview_form_submit", { form_variant: formVariant, page_path: location.pathname });
       trackMeta("Lead", {
         content_name: "homepage_preview",
         content_category: leadPayload.landing_page,
@@ -1097,7 +1099,31 @@ document.querySelectorAll("dialog.dlg").forEach((dlg) => {
   });
 });
 
+/** Cookie: kinexis_consent=v1|a=0|d=0 — a=analytics, d=ads. Undecided/reject → no trackers. */
+function readConsent() {
+  const m = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
+  if (!m) return { decided: false, analytics: false, ads: false };
+  try {
+    const v = decodeURIComponent(m[1]);
+    if (!v.startsWith("v1|")) return { decided: false, analytics: false, ads: false };
+    const analytics = /(?:^|\|)a=1(?:\||$)/.test(v);
+    const ads = /(?:^|\|)d=1(?:\||$)/.test(v);
+    return { decided: true, analytics, ads };
+  } catch {
+    return { decided: false, analytics: false, ads: false };
+  }
+}
+function consentAllowsAnalytics() {
+  const c = readConsent();
+  return c.decided && c.analytics;
+}
+function consentAllowsAds() {
+  const c = readConsent();
+  return c.decided && c.ads;
+}
+
 function track(name, params) {
+  if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(["event", name, params || {}]);
@@ -1105,15 +1131,20 @@ function track(name, params) {
 
 let metaBooted = false;
 let metaTimer = 0;
-function ensureMeta() {
-  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  if (metaBooted) return;
-  metaBooted = true;
+let metaArmed = false;
+function clearMetaArm() {
   removeEventListener("pointerdown", ensureMeta);
   removeEventListener("keydown", ensureMeta);
   removeEventListener("touchstart", ensureMeta);
   clearTimeout(metaTimer);
-  /* Standard Meta Pixel bootstrap — queues calls until fbevents.js arrives. */
+  metaArmed = false;
+}
+function ensureMeta() {
+  if (!consentAllowsAds()) return;
+  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
+  if (metaBooted) return;
+  metaBooted = true;
+  clearMetaArm();
   if (!window.fbq) {
     const fbq = function (...args) {
       if (fbq.callMethod) fbq.callMethod(...args);
@@ -1138,9 +1169,13 @@ function ensureMeta() {
     /* Pixel blocked or unavailable — ignore. */
   }
 }
-/* Interaction-only (plus 45s fallback). No scroll gate — Lighthouse scrolls
-   during audits and would otherwise pull ~250KB of fbevents into the lab run. */
-if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
+function armMeta() {
+  if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) {
+    clearMetaArm();
+    return;
+  }
+  if (metaBooted || metaArmed) return;
+  metaArmed = true;
   addEventListener("pointerdown", ensureMeta, { once: true, passive: true });
   addEventListener("keydown", ensureMeta, { once: true });
   addEventListener("touchstart", ensureMeta, { once: true, passive: true });
@@ -1148,6 +1183,7 @@ if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
 }
 
 function trackMeta(name, params) {
+  if (!consentAllowsAds()) return;
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
   ensureMeta();
   if (typeof window.fbq !== "function") return;
@@ -1165,34 +1201,89 @@ function englishPath(pathname) {
   return pathname;
 }
 
-if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
-  let loaded = false;
-  const loadGa = () => {
-    if (loaded) return;
-    loaded = true;
-    removeEventListener("pointerdown", loadGa);
-    removeEventListener("keydown", loadGa);
-    removeEventListener("touchstart", loadGa);
-    removeEventListener("scroll", onGaScroll);
-    clearTimeout(gaTimer);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ window.dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag("js", new Date());
-    gtag("config", cfg.ga);
-    const script = document.createElement("script");
-    script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
-    script.async = true;
-    document.head.appendChild(script);
-  };
-  const started = performance.now();
-  const onGaScroll = () => { if (performance.now() - started >= 2500) loadGa(); };
+let gaLoaded = false;
+let gaTimer = 0;
+let gaArmed = false;
+function clearGaArm() {
+  removeEventListener("pointerdown", loadGa);
+  removeEventListener("keydown", loadGa);
+  removeEventListener("touchstart", loadGa);
+  removeEventListener("scroll", onGaScroll);
+  clearTimeout(gaTimer);
+  gaArmed = false;
+}
+function loadGa() {
+  if (!consentAllowsAnalytics()) return;
+  if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
+  if (gaLoaded) return;
+  gaLoaded = true;
+  clearGaArm();
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag("js", new Date());
+  gtag("config", cfg.ga);
+  const script = document.createElement("script");
+  script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
+  script.async = true;
+  document.head.appendChild(script);
+}
+const gaStarted = performance.now();
+function onGaScroll() { if (performance.now() - gaStarted >= 2500) loadGa(); }
+function armGa() {
+  if (!consentAllowsAnalytics() || !cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) {
+    clearGaArm();
+    return;
+  }
+  if (gaLoaded || gaArmed) return;
+  gaArmed = true;
   addEventListener("pointerdown", loadGa, { once: true, passive: true });
   addEventListener("keydown", loadGa, { once: true });
   addEventListener("touchstart", loadGa, { once: true, passive: true });
   addEventListener("scroll", onGaScroll, { passive: true });
-  const gaTimer = setTimeout(loadGa, 45000);
+  gaTimer = setTimeout(loadGa, 45000);
+}
 
+function armTrackersFromConsent() {
+  armGa();
+  armMeta();
+}
+armTrackersFromConsent();
+addEventListener("kinexis:consent", armTrackersFromConsent);
+addEventListener("kinexis:track", (event) => {
+  const detail = event instanceof CustomEvent ? event.detail : null;
+  if (!detail || typeof detail.name !== "string") return;
+  track(detail.name, detail.params || {});
+});
+
+/* Preview funnel (PII-free). Fires only when analytics consent allows tracking. */
+(function previewFunnel() {
+  const seen = new WeakSet();
+  const started = new WeakSet();
+  function variant(form) {
+    return form.classList.contains("form--slim") ? "slim" : "full";
+  }
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        const form = entry.target;
+        if (!(form instanceof HTMLFormElement) || seen.has(form)) continue;
+        seen.add(form);
+        track("preview_form_view", { form_variant: variant(form), page_path: location.pathname });
+      }
+    }, { threshold: 0.4 });
+    document.querySelectorAll("form[data-lead]").forEach((form) => io.observe(form));
+  }
+  document.addEventListener("focusin", (event) => {
+    const form = event.target instanceof Element ? event.target.closest("form[data-lead]") : null;
+    if (!(form instanceof HTMLFormElement) || started.has(form)) return;
+    started.add(form);
+    track("preview_form_start", { form_variant: variant(form), page_path: location.pathname });
+  });
+})();
+
+if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
   document.addEventListener("click", (event) => {
     const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
     if (!(link instanceof HTMLAnchorElement)) return;

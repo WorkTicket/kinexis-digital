@@ -24,6 +24,21 @@ export const SITE = {
 };
 export const telHref = (p: string) => "tel:" + p.replace(/[^0-9+]/g, "");
 
+/** Preview Worker / preview subdomain — never index, never emit a crawlable sitemap. */
+export function isPreviewSite() {
+  if (process.env.NEXT_PUBLIC_IS_PREVIEW === "1") return true;
+  const url = SITE.url.toLowerCase();
+  return url.includes("preview.kinexisdigital.com") || url.includes("kinexis-digital-preview");
+}
+
+/** Runtime host check (proxy headers). Covers custom domain + workers.dev preview. */
+export function isPreviewHost(host: string | null | undefined) {
+  const h = (host ?? "").split(":")[0]?.toLowerCase() ?? "";
+  if (!h) return false;
+  if (h === "preview.kinexisdigital.com") return true;
+  return h.includes("kinexis-digital-preview") && h.endsWith(".workers.dev");
+}
+
 /** Bump when industry, audit, shared kit, or custom icons are replaced. /assets/* is cached for a year. */
 export const KIT_ASSET_VERSION = "4";
 

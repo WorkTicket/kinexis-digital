@@ -8,6 +8,7 @@ import SiteAudit from "@/components/SiteAudit";
 import Footer from "@/components/Footer";
 import ScrollUi from "@/components/ScrollUi";
 import DialogHost from "@/components/DialogHost";
+import CookieConsent from "@/components/CookieConsent";
 import { SiteSchema } from "@/components/JsonLd";
 
 /** Locale-scoped chrome. Kept out of the root layout so pages can prerender. */
@@ -38,6 +39,10 @@ export default function SiteChrome({
       <Footer locale={locale} />
       <ScrollUi locale={locale} />
       <DialogHost locale={locale} />
+      <CookieConsent
+        privacyHref={withLocale(locale, "/privacy")}
+        lang={locale === "en" ? "en" : "es"}
+      />
     </>
   );
 }

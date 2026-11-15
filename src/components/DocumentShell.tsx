@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import Boot from "@/components/Boot";
 import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
-import { SITE } from "@/lib/site";
+import { isPreviewSite, SITE } from "@/lib/site";
 import "@/app/globals.css";
 
 const inter = localFont({
@@ -53,6 +53,9 @@ export const documentMetadata: Metadata = {
   creator: SITE.name,
   publisher: SITE.name,
   category: "Digital Marketing",
+  ...(isPreviewSite()
+    ? { robots: { index: false, follow: false, nocache: true, googleBot: { index: false, follow: false, noimageindex: true } } }
+    : {}),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -65,7 +68,8 @@ export const documentMetadata: Metadata = {
   twitter: { card: "summary_large_image", title: defaultTitle, description: defaultDescription, images: [ogImage.url] },
   // Keep phone/email tappable in iOS Safari and Meta in-app browsers; avoid auto-linking street addresses.
   formatDetection: { telephone: true, email: true, address: false },
-  ...(gsc ? { verification: { google: gsc } } : {}),
+  // Skip GSC verification meta on preview so it cannot look like a production property claim.
+  ...(!isPreviewSite() && gsc ? { verification: { google: gsc } } : {}),
   icons: {
     icon: [
       { url: "/favicon-32.webp", sizes: "32x32", type: "image/webp" },

@@ -12,7 +12,8 @@ import PlanOffer from "@/components/PlanOffer";
 import PreviewBar from "@/components/PreviewBar";
 import ReviewsSection from "@/components/ReviewsSection";
 import TrustStrip from "@/components/TrustStrip";
-import { Compare, Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
+import PlanCompare from "@/components/PlanCompare";
+import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 import { imageSrcSet, imageVariant } from "@/lib/image-sources";
 
@@ -130,8 +131,10 @@ export default async function Home() {
           <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hold to preview, then open the full site.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
+        <p className="center muted">Design concepts above. Live client websites and case studies are separate.</p>
         <p className="center btn-row spaced">
-          <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Browse our work</Link>
+          <Link className="btn btn--primary" href="/case-studies/preferred-plumbing" prefetch={false}>Preferred Plumbing case study</Link>
+          <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Live sites &amp; portfolio</Link>
         </p>
       </Section>
 
@@ -163,12 +166,10 @@ export default async function Home() {
         <CostGuides />
       </Section>
 
-      {/* 6. Comparison */}
-      <Section>
-        <h2 className="center"><HL text="Why Business Owners Choose Kinexis Over Freelancers and Agencies" mark="Over Freelancers and Agencies" /></h2>
-        <p className="center muted">A clearer plan than hiring a freelancer or a full web design agency for a small business.</p>
-        <Compare />
-        <p className="center muted small">Typical offerings; individual providers vary.</p>
+      {/* 6. Plans offer, then comparison detail (one flow — no duplicate recommended card) */}
+      <Section id="plans">
+        <PlanOffer />
+        <PlanCompare />
       </Section>
 
       {/* 7. Lead System — cobalt feature band; art + steps tell one story */}
@@ -200,11 +201,6 @@ export default async function Home() {
           <p className="center muted">The essentials for looking credible, getting found, and turning visits into calls—with hosting and updates handled for you.</p>
         </div>
         <ReasonBoard />
-      </Section>
-
-      {/* 9. Plans */}
-      <Section id="plans">
-        <PlanOffer />
       </Section>
 
       {/* 10. Process */}

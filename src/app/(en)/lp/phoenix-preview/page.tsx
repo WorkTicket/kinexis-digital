@@ -10,7 +10,8 @@ import PlanOffer from "@/components/PlanOffer";
 import ReviewsSection from "@/components/ReviewsSection";
 import Stepper from "@/components/Stepper";
 import TrustStrip from "@/components/TrustStrip";
-import { Compare, CtaBand, Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui";
+import PlanCompare from "@/components/PlanCompare";
+import { CtaBand, Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui";
 import { LIVE_SITES } from "@/data/liveSites";
 import { portfolioFile } from "@/data/portfolio";
 import { FAQS as SITE_FAQS, STEPS } from "@/lib/content";
@@ -385,15 +386,7 @@ export default async function PhoenixPreviewLp() {
           eyebrow="Four Plans · One Free Preview"
           note="Every plan starts with a free homepage preview in 2 business days — no card, no obligation. Month-to-month, cancel anytime."
         />
-      </Section>
-
-      <Section tint>
-        <h2 className="center">
-          <HL text="Why Business Owners Choose Kinexis Over Freelancers and Agencies" mark="Over Freelancers and Agencies" />
-        </h2>
-        <p className="center muted">A clearer plan than hiring a freelancer or a full web design agency for a small business.</p>
-        <Compare />
-        <p className="center muted small">Typical offerings; individual providers vary.</p>
+        <PlanCompare />
       </Section>
 
       <Section>

@@ -1,19 +1,36 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
-import { SITE } from "@/lib/site";
+import { SITE, telHref } from "@/lib/site";
 
-export default function InvoicePay({ status }: { status: "cancelled" | "error" | null }) {
+export type InvoicePayProps = {
+  status: "cancelled" | "error" | null;
+  invoiceId: string | null;
+  token: string | null;
+  amount: string | null;
+  description: string | null;
+  gateError: string | null;
+};
+
+export default function InvoicePay({
+  status,
+  invoiceId,
+  token,
+  amount,
+  description,
+  gateError,
+}: InvoicePayProps) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!status) return;
+    if (!status && !gateError && !invoiceId) return;
     document.getElementById("invoice")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, [status]);
+  }, [status, gateError, invoiceId]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (!invoiceId || !token || !amount) return;
     const form = event.currentTarget;
     setError("");
     let firstBad: HTMLInputElement | undefined;
@@ -36,8 +53,8 @@ export default function InvoicePay({ status }: { status: "cancelled" | "error" |
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          amount: String(data.get("amount") ?? ""),
-          description: String(data.get("description") ?? ""),
+          invoiceId,
+          token,
           name: String(data.get("name") ?? ""),
           email: String(data.get("email") ?? ""),
           company: String(data.get("organization") ?? ""),
@@ -59,10 +76,41 @@ export default function InvoicePay({ status }: { status: "cancelled" | "error" |
     }
   }
 
+  if (gateError) {
+    return (
+      <div className="pay-sheet" data-island="">
+        <h2>Payment link needed</h2>
+        <p className="pay-banner is-alert" role="alert">{gateError}</p>
+        <p className="muted">
+          Open the secure link from your invoice email, or contact us at{" "}
+          <a href={telHref(SITE.phone)}>{SITE.phone}</a> /{" "}
+          <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+        </p>
+      </div>
+    );
+  }
+
+  if (!invoiceId || !token || !amount || !description) {
+    return (
+      <div className="pay-sheet" data-island="">
+        <h2>Pay with your invoice link</h2>
+        <p className="muted">
+          Amounts are locked to an approved invoice. Use the payment link we sent you, or ask us for a new one.
+          Manual amount entry is no longer available.
+        </p>
+        <p>
+          <a className="btn btn--primary" href={`mailto:${SITE.email}?subject=Invoice%20payment%20link`}>
+            Request a payment link
+          </a>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="pay-sheet" data-island="">
       <h2>Payment details</h2>
-      <p className="muted">Use the amount from your invoice or the deposit we confirmed.</p>
+      <p className="muted">The amount and description come from your approved invoice and cannot be changed here.</p>
       {status === "cancelled" && <p className="pay-banner" role="status">PayPal checkout was cancelled. Your card was not charged.</p>}
       {status === "error" && (
         <p className="pay-banner is-alert" role="alert">
@@ -72,13 +120,13 @@ export default function InvoicePay({ status }: { status: "cancelled" | "error" |
       <form className="form pay-form" noValidate onSubmit={submit} onInput={(event) => (event.target as HTMLElement).classList.remove("invalid")}>
         <input type="text" name="_hp" tabIndex={-1} autoComplete="off" aria-hidden="true" className="pay-hp" />
         <label>
-          <span>Amount <span aria-hidden="true">*</span></span>
-          <input id="pay-amount" name="amount" inputMode="decimal" autoComplete="transaction-amount" required placeholder="2500" />
-          <span className="hint">USD, from $1 to $75,000.</span>
+          <span>Amount</span>
+          <input id="pay-amount" value={`$${amount} USD`} readOnly disabled />
+          <span className="hint">Set by your invoice. Not editable.</span>
         </label>
         <label>
-          <span>What this payment is for <span aria-hidden="true">*</span></span>
-          <input id="pay-description" name="description" required maxLength={140} placeholder="Site deposit, March" />
+          <span>What this payment is for</span>
+          <input id="pay-description" value={description} readOnly disabled />
         </label>
         <div className="pay-form__row">
           <label>

@@ -1,9 +1,18 @@
 import type { MetadataRoute } from "next";
-import { SITE } from "@/lib/site";
+import { isPreviewSite, SITE } from "@/lib/site";
 
 export const revalidate = 86400;
 
 export default function robots(): MetadataRoute.Robots {
+  if (isPreviewSite()) {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    };
+  }
+
   return {
     rules: {
       userAgent: "*",

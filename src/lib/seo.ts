@@ -1,13 +1,25 @@
 import type { Metadata } from "next";
 import { hreflangLanguages, localeIndexable, ogLocale, withLocale, type Locale } from "./i18n";
 import { PAGES, type PageKey, type PageMeta } from "./pages";
-import { SITE } from "./site";
+import { isPreviewSite, SITE } from "./site";
 
 const robotsIndex: Metadata["robots"] = {
   index: true,
   follow: true,
   googleBot: { "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
 };
+
+const robotsNoIndex: Metadata["robots"] = {
+  index: false,
+  follow: false,
+  nocache: true,
+  googleBot: { index: false, follow: false, noimageindex: true },
+};
+
+function pageRobots(indexable: boolean): Metadata["robots"] {
+  if (isPreviewSite()) return robotsNoIndex;
+  return indexable ? robotsIndex : { index: false, follow: true };
+}
 
 export const ogImage = {
   url: SITE.ogImage.startsWith("http") ? SITE.ogImage : `${SITE.url}${SITE.ogImage}`,
@@ -84,17 +96,23 @@ function absoluteLanguages(languages?: Record<string, string>) {
 
 export function pageMetadata(key: PageKey): Metadata {
   const p = PAGES[key] as PageMeta;
-  const full = p.absolute ? p.title : `${p.title} | ${SITE.name}`;
+  const branded = Boolean(p.absolute) || p.title.includes(SITE.name);
+  const full = branded ? p.title : `${p.title} | ${SITE.name}`;
   const description = descriptionWithFallback(
     p.description,
     " Learn how Kinexis Digital can help your business grow online.",
   );
   const languages = hreflangLanguages(p.path);
+  const shareImage = p.ogImage
+    ? { url: absoluteUrl(p.ogImage), alt: full }
+    : ogImage;
   return {
-    title: p.absolute ? { absolute: p.title } : p.title,
+    title: branded ? { absolute: p.title } : p.title,
     description,
-    alternates: p.indexable ? { canonical: absoluteUrl(p.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) } : undefined,
-    robots: p.indexable ? robotsIndex : { index: false, follow: true },
+    alternates: !isPreviewSite() && p.indexable
+      ? { canonical: absoluteUrl(p.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) }
+      : undefined,
+    robots: pageRobots(p.indexable),
     openGraph: {
       type: "website",
       siteName: SITE.name,
@@ -103,9 +121,14 @@ export function pageMetadata(key: PageKey): Metadata {
       title: full,
       description,
       url: absoluteUrl(p.path),
-      images: [ogImage],
+      images: [shareImage],
     },
-    twitter: { card: "summary_large_image", title: full, description, images: [absoluteUrl(SITE.ogImage)] },
+    twitter: {
+      card: "summary_large_image",
+      title: full,
+      description,
+      images: [p.ogImage ? absoluteUrl(p.ogImage) : absoluteUrl(SITE.ogImage)],
+    },
   };
 }
 
@@ -132,7 +155,7 @@ export function contentMetadata(input: ContentMeta): Metadata {
       ? " Encuentra consejos prácticos y próximos pasos para mejorar tu presencia digital."
       : " Find practical guidance and next steps to improve your digital presence.",
   );
-  const index = input.index !== false && localeIndexable(locale);
+  const index = !isPreviewSite() && input.index !== false && localeIndexable(locale);
   const branded = input.absolute || input.title.includes(SITE.name);
   const full = branded ? input.title : `${input.title} | ${SITE.name}`;
   const image = input.image
@@ -146,7 +169,7 @@ export function contentMetadata(input: ContentMeta): Metadata {
     description,
     authors: article ? [{ name: SITE.name, url: `${SITE.url}${withLocale(locale, "/about")}` }] : undefined,
     alternates: index ? { canonical: absoluteUrl(input.path), ...(languages ? { languages: absoluteLanguages(languages) } : {}) } : undefined,
-    robots: index ? robotsIndex : { index: false, follow: true },
+    robots: pageRobots(index),
     openGraph: {
       type: input.ogType ?? "website",
       siteName: SITE.name,

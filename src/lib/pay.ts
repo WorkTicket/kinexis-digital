@@ -1,7 +1,7 @@
 import type { QA } from "@/lib/content";
-import { PAYPAL_PLANS } from "@/lib/paypal";
+import { CATALOG_PLANS, type CheckoutKey } from "@/lib/plans-catalog";
 
-export type CheckoutKey = "website" | "leadSystem" | "plus" | "ownIt";
+export type { CheckoutKey };
 
 export type CheckoutPlan = {
   key: CheckoutKey;
@@ -15,81 +15,17 @@ export type CheckoutPlan = {
   features: string[];
 };
 
-export const CHECKOUT_PLANS: CheckoutPlan[] = [
-  {
-    key: "website",
-    slug: "website",
-    name: "Website",
-    description: "A professional home for your business.",
-    price: PAYPAL_PLANS.website.price,
-    monthly: true,
-    features: [
-      "Up to 5 pages",
-      "Hosting, SSL and backups",
-      "2 small edits a month, in 2 business days",
-      "Contact form leads",
-      "Domain in your name",
-      "30-day money-back guarantee",
-      "No texting or lead guarantee",
-    ],
-  },
-  {
-    key: "leadSystem",
-    slug: "lead-system",
-    name: "Lead System",
-    description: "Your website, built to bring in leads.",
-    price: PAYPAL_PLANS.leadSystem.price,
-    monthly: true,
-    popular: true,
-    guarantee: true,
-    features: [
-      "Up to 10 pages",
-      "Unlimited small edits within 1 business day",
-      "1 new page a month",
-      "Optional missed-call text-back add-on",
-      "Google review requests to every customer",
-      "Google Business Profile tune-up",
-      "Call tracking and monthly report",
-      "60-day tracked-lead guarantee",
-      "30-day money-back guarantee",
-    ],
-  },
-  {
-    key: "plus",
-    slug: "plus",
-    name: "Plus (Bilingual)",
-    description: "Reach customers in English and Spanish.",
-    price: PAYPAL_PLANS.plus.price,
-    monthly: true,
-    guarantee: true,
-    features: [
-      "Everything in Lead System",
-      "Full English + Spanish site, up to 20 pages",
-      "Same-day edits if sent by noon Central",
-      "2 new pages a month",
-      "2 Google profile posts a month",
-      "30-day money-back guarantee",
-    ],
-  },
-  {
-    key: "ownIt",
-    slug: "own-it",
-    name: "Own It",
-    description: "One payment. A website you own.",
-    price: 1497,
-    monthly: false,
-    features: [
-      "Same site as Lead System, up to 10 pages",
-      "Site files are yours from launch on full payment",
-      "12 months of hosting and up to 30 min of edits a month",
-      "Domain year 1 included",
-      "Optional Site Care $39/mo after",
-      "Optional missed-call text-back add-on $97/mo",
-      "30-day money-back guarantee",
-      "No monthly plan, no lead guarantee",
-    ],
-  },
-];
+export const CHECKOUT_PLANS: CheckoutPlan[] = CATALOG_PLANS.map((plan) => ({
+  key: plan.checkoutKey,
+  slug: plan.slug,
+  name: plan.name,
+  description: plan.tagline,
+  price: plan.amount,
+  monthly: plan.monthly,
+  popular: plan.popular,
+  guarantee: plan.guarantee,
+  features: plan.checkoutFeatures,
+}));
 
 export const PAY_FAQS: QA[] = [
   {

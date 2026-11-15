@@ -37,6 +37,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: industry.metaTitle,
     description: industry.metaDescription,
     index: industry.status !== "hold",
+    image: `/assets/industries/${industry.slug}/hero-960.webp`,
+    imageAlt: `${industry.name} website design`,
   });
 }
 

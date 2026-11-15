@@ -14,6 +14,9 @@ coverage/
 *.tsbuildinfo
 next-env.d.ts
 cloudflare-env.d.ts
+/test-results/
+/playwright-report/
+/blob-report/
 
 # local env (only the documented template is safe to commit)
 .env*

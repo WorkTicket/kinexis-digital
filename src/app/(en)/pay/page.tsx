@@ -3,8 +3,10 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { pageMetadata } from "@/lib/seo";
 import { checkoutPlanFromQuery, PAY_FAQS } from "@/lib/pay";
+import { loadPayableInvoice } from "@/lib/invoices";
 import { PageSchema } from "@/components/JsonLd";
 import { Faq, PageHero } from "@/components/ui";
+import { SITE } from "@/lib/site";
 
 const PayCheckout = dynamic(() => import("@/components/PayCheckout"));
 const InvoicePay = dynamic(() => import("@/components/InvoicePay"));
@@ -24,12 +26,53 @@ function PaymentIcon({ kind }: { kind: "plan" | "receipt" | "card" | "notificati
   );
 }
 
-export default async function Page({ searchParams }: { searchParams: Promise<{ plan?: string | string[]; invoice?: string | string[] }> }) {
+function gateCopy(error: string) {
+  switch (error) {
+    case "expired":
+      return "That invoice link has expired. Contact us for a new payment link.";
+    case "paid":
+      return "This invoice is already paid. Thank you.";
+    case "void":
+      return "This invoice is no longer payable. Contact us if you need a new link.";
+    case "token":
+    case "not_found":
+      return "That payment link is invalid. Use the link from your invoice email.";
+    case "storage":
+      return `Invoice checkout isn’t available right now. Call ${SITE.phone} or email ${SITE.email}.`;
+    default:
+      return "Open your invoice payment link to continue.";
+  }
+}
+
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    plan?: string | string[];
+    invoice?: string | string[];
+    inv?: string | string[];
+    t?: string | string[];
+  }>;
+}) {
   const query = await searchParams;
   const requestedPlan = typeof query.plan === "string" ? query.plan : null;
   const { plan: initialPlan, found } = checkoutPlanFromQuery(requestedPlan);
   if (requestedPlan && !found) redirect("/pricing");
   const invoiceStatus = query.invoice === "cancelled" || query.invoice === "error" ? query.invoice : null;
+
+  const invId = typeof query.inv === "string" ? query.inv : null;
+  const invToken = typeof query.t === "string" ? query.t : null;
+  let amount: string | null = null;
+  let description: string | null = null;
+  let gateError: string | null = null;
+  if (invId || invToken) {
+    const gated = await loadPayableInvoice(invId, invToken);
+    if ("error" in gated) gateError = gateCopy(gated.error);
+    else {
+      amount = gated.invoice.amount;
+      description = gated.invoice.description;
+    }
+  }
 
   return (
     <div className="pay-page">
@@ -78,22 +121,33 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
         <div className="container">
           <p className="eyebrow center">One-time payments</p>
           <h2 className="center">Paying an invoice or a deposit?</h2>
-          <p className="center muted pay-invoice-lead">You leave this page only to pay on PayPal. Use the amount we already confirmed.</p>
+          <p className="center muted pay-invoice-lead">
+            Use the secure link from your invoice email. The amount is fixed on our side and cannot be changed in the browser.
+          </p>
           <div className="pay-invoice">
-          {process.env.PAYPAL_CLIENT_SECRET ? <InvoicePay status={invoiceStatus} /> : (
-            <div className="pay-invoice">
-              <h2>Pay an invoice or deposit</h2>
-              <p>Contact us for a secure payment link with the amount from your invoice.</p>
-              <Link className="btn btn--primary" href="/contact" prefetch={false}>Request a payment link</Link>
-            </div>
-          )}
+            {process.env.PAYPAL_CLIENT_SECRET ? (
+              <InvoicePay
+                status={invoiceStatus}
+                invoiceId={invId}
+                token={invToken}
+                amount={amount}
+                description={description}
+                gateError={gateError}
+              />
+            ) : (
+              <div className="pay-invoice">
+                <h2>Pay an invoice or deposit</h2>
+                <p>Contact us for a secure payment link with the amount from your invoice.</p>
+                <Link className="btn btn--primary" href="/contact" prefetch={false}>Request a payment link</Link>
+              </div>
+            )}
             <aside className="pay-next">
               <h2>What happens next</h2>
               <ol className="pay-steps">
                 <li>
                   <PaymentIcon kind="receipt" />
-                  <b>Confirm the amount</b>
-                  <span>Name the invoice or deposit so we can match it.</span>
+                  <b>Confirm the locked amount</b>
+                  <span>Your invoice link shows the approved amount and description.</span>
                 </li>
                 <li>
                   <PaymentIcon kind="card" />
@@ -103,7 +157,7 @@ export default async function Page({ searchParams }: { searchParams: Promise<{ p
                 <li>
                   <PaymentIcon kind="notification" />
                   <b>We get notified</b>
-                  <span>PayPal tells us when the payment is complete. The name and note you entered are how we match it.</span>
+                  <span>PayPal tells us when the payment is complete and we mark the invoice paid.</span>
                 </li>
               </ol>
               <ul className="pay-pills">

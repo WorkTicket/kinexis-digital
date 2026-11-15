@@ -4,8 +4,10 @@ import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import { pageMetadata } from "@/lib/seo";
 import { PRICING_COMPARISON } from "@/data/pricing-comparison";
-import { FAQS, PLANS, PLAN_TERM_GROUPS, PLAN_TEXTBACK_FOOTNOTE } from "@/lib/content";
+import { FAQS, PLANS, PLAN_TERM_GROUPS, PLAN_TEXTBACK_FOOTNOTE_ITEMS } from "@/lib/content";
+import { PLAN_CHOOSER_BLURB } from "@/lib/plans-catalog";
 import CostGuides from "@/components/CostGuides";
+import OwnershipCompare from "@/components/OwnershipCompare";
 import { OpenDialog } from "@/components/OpenDialog";
 import { PageSchema } from "@/components/JsonLd";
 import { Faq, HL, PageHero, Section } from "@/components/ui";
@@ -162,19 +164,27 @@ export default function Page() {
             ))}
           </div>
           <div className="pricing-terms__foot">
-            <p className="pricing-footnote">
-              <b>**</b> {PLAN_TEXTBACK_FOOTNOTE}
-            </p>
+            <div className="plan-notes plan-notes--compact" aria-label="Missed-call text-back details">
+              <p className="plan-notes__label">Missed-call text-back</p>
+              <div className="pricing-footnote pricing-footnote--bullets plan-notes__footnote">
+                <ul>
+                  {PLAN_TEXTBACK_FOOTNOTE_ITEMS.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
             <Link href="/terms" prefetch={false}>Full plan terms →</Link>
           </div>
         </aside>
       </Section>
 
       <Section tint>
-        <h2 className="center"><HL text="See What Each Plan Covers" mark="Each Plan" /></h2>
-        <p className="center muted">Compare the included work side by side. There are no surprise setup fees.</p>
         <MobilePlanComparison
-          plans={PLANS.map((plan, index) => ({ ...plan, price: TABLE[2].rows[5][index + 1] }))}
+          plans={PLANS.map((plan, index) => {
+            const priceRow = TABLE.find((s) => s.group === "The deal")?.rows.find((r) => r[0] === "Price");
+            return { ...plan, price: priceRow?.[index + 1] ?? plan.price };
+          })}
           sections={TABLE}
           hint="Tap a plan to see everything included. Open two to compare."
           popularLabel="Most Popular"
@@ -209,6 +219,19 @@ export default function Page() {
             ))}
           </table>
         </div>
+        <aside className="plan-notes" aria-label="Plan guidance and text-back details">
+          <p className="plan-notes__lead">{PLAN_CHOOSER_BLURB}</p>
+          <div className="plan-notes__rule" aria-hidden="true" />
+          <p className="plan-notes__label">Missed-call text-back</p>
+          <div className="pricing-footnote pricing-footnote--bullets plan-notes__footnote">
+            <ul>
+              {PLAN_TEXTBACK_FOOTNOTE_ITEMS.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </aside>
+        <OwnershipCompare />
       </Section>
 
       <Section>
