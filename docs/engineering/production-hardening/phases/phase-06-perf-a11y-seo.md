@@ -13,12 +13,12 @@
 
 ## Changes
 
-- `e2e/smoke.spec.ts` — Conferbot script/id absent after analytics consent when `NEXT_PUBLIC_CONFERBOT_ENABLED` is unset.
+- `e2e/smoke.spec.ts` — Conferbot script/id absent after interaction/idle when `NEXT_PUBLIC_CONFERBOT_ENABLED` is unset.
 - This phase report + STATUS/HANDOFF/TEST-MATRIX updates.
 
 ## Widget / consent note (owner QA when enabling)
 
-Consent dock uses `z-index: 80`. Conferbot’s floating launcher may sit in the same corner. Before flipping `NEXT_PUBLIC_CONFERBOT_ENABLED=1`, check mobile overlap with the consent FAB / banner and skip-link focus order. Lazy load already waits for analytics consent + first input / 45s.
+Consent dock uses `z-index: 80`. Conferbot’s floating launcher may sit in the same corner. With the widget on, check mobile overlap with the consent FAB / banner and skip-link focus order. Lazy load uses idle/input (not analytics consent).
 
 ## Verification
 

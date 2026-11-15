@@ -33,6 +33,7 @@
 - Separate Cloudflare D1 binding `LEAD_DB` (not `INVOICE_DB`) for chat/leads/outbox; migration `migrations-lead/0001_conferbot_lead_intel.sql`. Binding omitted from `wrangler.jsonc` until real DB ids exist (placeholders break `wrangler` / OpenNext deploys). Merging to `main` does not deploy; production ships are manual (`npm run deploy`).
 - Webhook HMAC + redaction + feature flags; see `docs/CONFERBOT-INTEGRATION.md`
 - Integration and notify flags default off; no production secrets in git
+- **Widget load (owner 2026-11-15):** live chat is a functional feature, not analytics. `ConferbotWidget` loads for every public visitor when `NEXT_PUBLIC_CONFERBOT_ENABLED=1` (skips `/admin`), regardless of `kinexis_consent` analytics choice. Deferred via `requestIdleCallback` (~2.5s timeout) or first scroll/pointer/touch/key; module-level guard prevents double-init across client navigations. Privacy / cookie banner copy already describes only GA4 + Meta as consent-gated — no chat-waits-for-consent wording found, so no privacy copy change in that PR (owner can still review if product wants chat named under Necessary).
 
 ## Security/headers
 - CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)

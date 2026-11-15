@@ -18,7 +18,7 @@
 - `FooterGate.tsx`, `DialogHost.tsx`, `ScrollUi.tsx`, `Boot.tsx`, `SafeImage.tsx`, `DeferredImg.tsx`, `Filterable.tsx`, `Stepper.tsx`, `ProcessFlow.tsx`, `JsonLd.tsx`, `ProjectCard.tsx`, `GuaranteeBadge.tsx`, `SpanishPlanSticker.tsx`
 - `DocumentShell.tsx` - Locale document shell (fonts, head boot, mounts Boot + ConferbotWidget)
 - `CookieConsent.tsx` - Cookie / analytics / ads preference dock (`kinexis_consent`)
-- `ConferbotWidget.tsx` - Client-only; no UI of its own; loads Conferbot after flag + analytics consent + idle/input
+- `ConferbotWidget.tsx` - Client-only; no UI of its own; loads Conferbot after flag + idle/input (every public page; not analytics-gated; no double-init)
 
 ## When to reuse
 - Use `PageHero` for page headers (split with `Art` or text-only). Prefer `Art` with approved `ArtName` from `ui.tsx`.

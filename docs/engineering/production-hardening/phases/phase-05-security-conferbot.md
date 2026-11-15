@@ -15,7 +15,7 @@
 | No `rejectCrossSite` on webhook | Conferbot delivers cross-site; auth is HMAC + bot id + flag. |
 | Notify default OFF (`CONFERBOT_NOTIFY_ENABLED`) | No accidental team mail; still enqueues outbox when leads qualify. |
 | Owner-decision scoring weights award 0 | Budget floor / service fit / business verification not invented. |
-| Widget after analytics consent + idle/input | Third-party script; respects cookie banner; 45s/first input like boot.js. |
+| Widget after idle/input (not analytics-gated) | Functional chat; rIC/~2.5s or first scroll/pointer/touch/key; skips `/admin`. |
 | Flat `src/lib/conferbot-*.ts` modules | Match invoice Web Crypto + injectable DB pattern. |
 
 ## Findings
@@ -23,7 +23,7 @@
 1. Kit Phase 0 “no D1” claim is obsolete — invoice D1 already exists; Conferbot uses a second binding.
 2. Conferbot payloads have no event id — `provider_event_key` is derived (see `docs/CONFERBOT-INTEGRATION.md`).
 3. `x-webhook-timestamp` is unsigned — not used as a security control.
-4. Widget mounts from DocumentShell; inert unless `NEXT_PUBLIC_CONFERBOT_ENABLED=1`, then only after analytics consent + first input / 45s.
+4. Widget mounts from DocumentShell; inert unless `NEXT_PUBLIC_CONFERBOT_ENABLED=1`, then after idle/input for all public visitors (not analytics-gated).
 5. Placeholder `LEAD_DB` ids (`…00c1` / `…00c2`) must be replaced before any Worker deploy that needs persistence.
 
 ## Verification (this phase)

@@ -1,9 +1,7 @@
 # Current task
 
-**STOPPED at Phase 9** for explicit owner release approval.
+**Done (pending owner deploy):** Conferbot widget loads without analytics consent — idle/input deferral only. Prefer-to-talk one-line (#23) already on `main`.
 
-Stacked engineering PRs: #7 (Phase 1 docs), #8–#14 (Phases 2–7), Phase 8 and Phase 9 PRs on this tip.
+**Do not deploy from agents** — owner ships from PC via `npm run deploy`.
 
-Conferbot: widget + webhook shipped behind flags (off). Starter upgrade, LEAD_DB, secrets, and production merges are owner actions.
-
-See `docs/engineering/production-hardening/FINAL-REPORT.md`.
+See `docs/DECISIONS.md` (Conferbot widget load) and `docs/engineering/production-hardening/FINAL-REPORT.md`.

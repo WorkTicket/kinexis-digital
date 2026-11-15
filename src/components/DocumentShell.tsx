@@ -132,7 +132,7 @@ if(/FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\\//i.test(ua))r.cl
           metaPixel={/^\d{5,20}$/.test(metaPixelId) ? metaPixelId : ""}
           video={SITE.videoUrl}
         />
-        {/* Off unless NEXT_PUBLIC_CONFERBOT_ENABLED=1; loads after analytics consent + idle/input. */}
+        {/* Off unless NEXT_PUBLIC_CONFERBOT_ENABLED=1; loads after idle/input (not analytics-gated). */}
         <ConferbotWidget locale={locale} />
       </body>
     </html>
