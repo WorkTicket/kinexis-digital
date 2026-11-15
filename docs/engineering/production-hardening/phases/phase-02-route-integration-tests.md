@@ -39,4 +39,4 @@ See `phases/phase-chatbot-fold-in.md`. Phase 2 lands the harness pattern Conferb
 
 - Live PayPal-signed webhook SUCCESS remains open from Phase 1 (wait for real payment event).
 - Conferbot implementation deferred to Phases 3–9 per fold-in map.
-- No merge to `main` from the agent (Workers Builds deploys production).
+- Merging to `main` does not deploy; production ships are manual (`npm run deploy`).

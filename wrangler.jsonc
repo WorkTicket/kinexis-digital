@@ -34,7 +34,7 @@
     }
     // LEAD_DB is intentionally omitted until the owner creates real D1 databases
     // and binds them. Schema lives in migrations-lead/0001_conferbot_lead_intel.sql.
-    // Do not reintroduce placeholder database_id values — they break Workers Builds.
+    // Do not reintroduce placeholder database_id values — they break wrangler deploy.
   ],
   "durable_objects": {
     "bindings": [

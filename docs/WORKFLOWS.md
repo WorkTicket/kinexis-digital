@@ -29,9 +29,9 @@
 ## Deployment notes (from README)
 - Worker name: `kinexis-digital` (see `wrangler.jsonc`)
 - Custom domains: `kinexisdigital.com` and `www.kinexisdigital.com` are configured in `wrangler.jsonc`; keep the zone attached to the deploying account
+- **Merging to `main` does not deploy.** Workers Builds is not connected for this Worker; production ships are manual via `npm run deploy` (`scripts/deploy-production.mjs`) from a logged-in wrangler session. Preview: `npm run deploy:preview`.
 - Secrets via `npx wrangler secret put <NAME>`. Local: `.env.local` (Next) or `.dev.vars` (Wrangler)
-- `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_META_PIXEL_ID` must be in Workers Builds **Build variables and secrets** (and in `.env.local` for local `npm run deploy`). A runtime Worker secret alone leaves the tags empty because Next inlines `NEXT_PUBLIC_*` at build time.
-- CI (Workers Builds): build command `npm run check && npm run build:worker`; deploy command `npm run deploy:worker && npm run search:notify`; NODE_VERSION 24. The deploy phase needs outbound access for post-deploy checks.
+- `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_META_PIXEL_ID` must be in the local env / `.env.local` when running `npm run deploy` (Next inlines `NEXT_PUBLIC_*` at build time). A runtime Worker secret alone leaves the tags empty.
 - GitHub Actions runs checks and a Worker build for pull requests and `main`; it never deploys.
 
 ## Verification advice

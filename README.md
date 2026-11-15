@@ -54,25 +54,31 @@ Both `kinexisdigital.com` and `www.kinexisdigital.com` are configured as custom
 domains in `wrangler.jsonc`. Keep the zone attached to the deploying Cloudflare
 account.
 
-### CI (Workers Builds)
+### Production deploy (manual)
 
-Connect the repository in the Cloudflare dashboard:
+Merging to `main` does **not** deploy. Workers Builds is not connected for
+this Worker (`wrangler deployments list` shows only manual CLI deploys).
 
-- Production branch: the repository's protected production branch
-- Build command: `npm run check && npm run build:worker`
-- Deploy command: `npm run deploy:worker && npm run search:notify`
-- `NODE_VERSION`: `24`
-- Build variables: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GA_ID` (GA4 measurement ID — runtime secrets alone are not enough), `NEXT_PUBLIC_META_PIXEL_ID` (Meta Pixel ID — same build-time rule), and, for URL-prefix verification, `NEXT_PUBLIC_GSC_VERIFICATION`
+Ship production from a machine with `wrangler` logged in:
 
-This keeps validation/build and deployment as separate Workers Builds phases.
-Enable preview builds for non-production branches in the Cloudflare dashboard.
-The deploy command calls the live canonical host after publish, so it needs
-outbound access to that host. GitHub Actions also validates pull requests but
-does not deploy or require Cloudflare credentials.
+1. `git checkout main && git pull`
+2. `npm run deploy` — runs `scripts/deploy-production.mjs` (`check` →
+   `build:worker` → `deploy:worker` → `search:notify`)
 
-Add runtime secrets with `npx wrangler secret put <NAME>`. Build-time values
-belong in Workers Builds settings. Local values belong in `.env.local` (Next.js)
-or `.dev.vars` (Wrangler); never commit either file.
+Preview: `npm run deploy:preview` (never for apex/www).
+
+GitHub Actions validates pull requests and `main` (`check` + `build:worker`)
+but never deploys and needs no Cloudflare credentials.
+
+Add runtime secrets with `npx wrangler secret put <NAME>`. Build-time
+`NEXT_PUBLIC_*` values must be present in the local env (or `.env.local`) when
+you run `npm run deploy`, because Next inlines them at build time. Local Wrangler
+values belong in `.dev.vars`; never commit `.env.local` or `.dev.vars`.
+
+Optional later: Cloudflare Workers Builds can be connected in the dashboard
+(build `npm run check && npm run build:worker`, deploy
+`npm run deploy:worker && npm run search:notify`, `NODE_VERSION` 24). Until that
+is wired and verified, treat all production ships as manual CLI deploys.
 
 Contact, booking, and update forms use the restricted Cloudflare Email Service
 binding in production, with Mailgun, a forwarding endpoint, and Gmail SMTP as
