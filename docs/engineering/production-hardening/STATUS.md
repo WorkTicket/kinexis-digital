@@ -1,13 +1,15 @@
 # Programme status
 
-**Current phase:** Phase 9 — release complete (flags off)  
-**Production:** Live from owner `npm run deploy` at git `8b78de17` (stack tip #16).
+**Current phase:** Phase 9 — production live; Conferbot **widget on** (free plan)  
+**Webhook / notify:** still **OFF** (need Conferbot Starter). `LEAD_DB` still unbound.
 
 | Field | Value |
 |---|---|
-| Worker version | `4e7ffb77-d236-47b8-a6c6-5a196add4f66` |
-| Rollback target | `87e26f40` |
+| Worker version (widget ship) | `19235f28-4018-4bbe-96c5-ecc0216b915c` |
+| Rollback target | `87e26f40` (or prior `4e7ffb77…` if preferred) |
 | Deployed git SHA | `8b78de178a573dd0fe9abfbae02466ad55ee352f` |
-| Docs follow-ups on `main` | #17 (manual-deploy correction) at `535e1fdb…` |
+| Widget build flags | `NEXT_PUBLIC_CONFERBOT_ENABLED=1`, bot id `6afa0edabbad567d637ee189` (committed `.env.production` for next ships) |
+| `CONFERBOT_INTEGRATION_ENABLED` | OFF |
+| `CONFERBOT_NOTIFY_ENABLED` | OFF |
 
-`LEAD_DB` placeholders remain omitted. Conferbot/lead flags stay **OFF**. No secrets, lead migrations, or Conferbot upgrade in this ship. See `FINAL-REPORT.md`.
+See `FINAL-REPORT.md` / `HANDOFF.md`.
