@@ -1,29 +1,35 @@
 # Programme status
 
-**Current phase:** Phase 3 — CI enforcement and preview-email isolation  
-**Status:** Phase 2 PR #8 open. Phase 3 complete on `cursor/phase3-ci-preview-email-67c1`. Continue Phases 4–9 including chatbot without waiting. **Do not merge to `main` without owner approval** (Workers Builds deploys production).  
+**Current phase:** Phase 2 — real route integration tests (complete on branch; PR open)  
+**Status:** Phase 0 and Phase 1 live. Phase 2 engineering complete on `cursor/phase2-route-integration-tests-67c1`. Owner supersession: finish all phases including chatbot; do not wait for approval between phases. **Do not merge to `main` without owner approval** (Workers Builds deploys production).  
 **Production commit:** `a32c39b` (merge of PR #6)  
-**Worker:** `kinexis-digital` version `87e26f40-6f60-4c83-95c9-33d56e483705`. Rollback `5c5690e8-216f-4441-ab32-fb056b401dd2`.
+**Worker:** `kinexis-digital` version `87e26f40-6f60-4c83-95c9-33d56e483705`. Rollback target `5c5690e8-216f-4441-ab32-fb056b401dd2`.
 
-## Completed
+## Phase 0
 
-| Phase | State |
+Complete. See `phases/phase-00-baseline.md`.
+
+## Phase 1
+
+Live in production. Open check: PayPal-signed live webhook `SUCCESS` not yet observed (wait for first real payment event). Docs evidence PR: https://github.com/WorkTicket/kinexis-digital/pull/7 (CI green; left unmerged by agent to avoid production deploy). See `STATUS` history in that PR and `phases/phase-01-closure.md`.
+
+## Phase 2
+
+Route integration coverage for `/api/reviews` and `/api/reviews/moderate` via the same esbuild harness pattern as invoices/contact. `npm run check` now includes `check:reviews`. Chatbot fold-in map: `phases/phase-chatbot-fold-in.md` (plan only; no Conferbot runtime in this phase).
+
+| Criterion | State |
 |---|---|
-| 0 Baseline | Complete |
-| 1 Payment/invoice | Live; open: signed live webhook SUCCESS |
-| 2 Route integration tests | PR #8 — reviews handlers + harness |
-| 3 CI + preview email | This branch — invoice-security in CI; preview mail isolated |
+| Reviews POST validation, honeypot, cross-site, rate limit | Met (local KV double) |
+| Moderate GET confirm-only; POST approve/reject/bad-key/replay | Met |
+| Shared harness stubs `next/cache` | Met |
+| `check:route-integration` script | Met |
+| Conferbot implementation | Not this phase — see fold-in map |
 
-## In flight / next
+## Still open (programme)
 
-- Phase 4 Spanish/commercial consistency
-- Phase 5 Security + Conferbot widget/CSP/webhook (flags off)
-- Phases 6–9 per PROGRAM + `phases/phase-chatbot-fold-in.md`
+1. Phase 1 live signed PayPal webhook observation.
+2. Phases 3–9 + Conferbot implementation per fold-in map.
+3. Owner: Conferbot Starter upgrade before webhooks; secrets; LEAD_DB; production merges/deploys.
 
-## Owner blockers (accumulating)
-
-1. Merge PRs to `main` only when ready to accept a Workers Builds production deploy.
-2. Phase 1 docs PR #7 (CI green) — docs-only evidence.
-3. Set `CONTACT_PREVIEW_TO` (+ allowlist) before relying on preview form mail.
-4. Conferbot Starter upgrade before webhooks; Pro only if API needed; secrets; LEAD_DB — later phases.
-5. Live PayPal-signed webhook observation (wait for real payment).
+**Completed phases:** Phase 0, Phase 1 (except live signed-webhook observation), Phase 2 (this branch).  
+**Next:** Phase 3 — CI enforcement, deploy gates, preview-email isolation.
