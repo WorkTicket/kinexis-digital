@@ -132,11 +132,13 @@ export default function CookieConsent({
         aria-label={t.prefs}
       >
         <span className="consent-fab__icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
-            <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2" />
-            <circle cx="9" cy="10" r="1.4" fill="currentColor" />
-            <circle cx="14.5" cy="9" r="1.1" fill="currentColor" />
-            <circle cx="13" cy="14.5" r="1.5" fill="currentColor" />
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none">
+            <circle cx="12" cy="12" r="8.25" fill="currentColor" fillOpacity=".18" stroke="currentColor" strokeWidth="1.6" />
+            <path d="M12 3.75c.2 1.55 1.35 2.7 2.9 2.9.55.07 1.05.35 1.35.8.95.2 1.7.9 1.95 1.85.55.2 1 .65 1.15 1.2" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" opacity=".55" />
+            <circle cx="9.1" cy="10.2" r="1.35" fill="currentColor" />
+            <circle cx="14.6" cy="8.9" r="1.05" fill="currentColor" />
+            <circle cx="15.2" cy="14.1" r="1.45" fill="currentColor" />
+            <circle cx="10.4" cy="15.3" r="1.1" fill="currentColor" />
           </svg>
         </span>
         <span className="consent-fab__label">{t.prefs}</span>
