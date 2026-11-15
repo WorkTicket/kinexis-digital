@@ -1,6 +1,7 @@
 import "server-only";
 
 import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { getReviewsTestKv } from "@/lib/reviews-test-kv";
 
 /** Structural KV surface. Avoids the generated `KVNamespace` global, which CI does not have. */
 type ReviewsKv = {
@@ -11,6 +12,8 @@ type ReviewsKv = {
 type ReviewsEnv = CloudflareEnv & { REVIEWS?: ReviewsKv };
 
 function rateKv(): ReviewsKv | null {
+  const test = getReviewsTestKv();
+  if (test) return test;
   try {
     const env = getCloudflareContext().env as ReviewsEnv;
     return env.REVIEWS ?? null;

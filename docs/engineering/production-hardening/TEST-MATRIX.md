@@ -1,8 +1,23 @@
 # Test matrix
 
-Local runtime for this closure pass: Node v22.23.4, npm 10.9.9. npm printed an engine warning because the repo asks for npm >= 11. Ledger tests used `node:sqlite` and printed its experimental warning. That warning is not a failure.
+## Phase 2 pass (2026-11-15)
 
-| Check | Result on this pass |
+Local runtime: Node v22.23.4, npm 10.9.9 (engine warning: repo asks npm >= 11).
+
+| Check | Result |
+|---|---|
+| `node scripts/check-reviews-routes.mjs` | PASS. Queue, validation, cross-site, honeypot, rate limit, confirm-only GET, approve, reject, bad key, replay. |
+| `npm run check` | PASS. Includes new `check:reviews`. ESLint: 3 pre-existing warnings, 0 errors. Contact + Spanish mirror (73 paths) PASS. |
+| `node scripts/check-invoice-routes.mjs` | PASS (PayPal HTTP mocked; sandbox NOT RUN). |
+| `npm run test:e2e` | NOT RUN (no UI change this phase). |
+| `npm run build:worker` | NOT RUN (test-hook only; no Worker feature change). |
+| PayPal-signed live webhook SUCCESS | NOT RUN (Phase 1 open; wait for real payment event). |
+
+## Phase 1 closure pass (retained)
+
+Local runtime for that pass: Node v22.23.4, npm 10.9.9. npm printed an engine warning because the repo asks for npm >= 11. Ledger tests used `node:sqlite` and printed its experimental warning. That warning is not a failure.
+
+| Check | Result on that pass |
 |---|---|
 | `npm run check` | PASS. ESLint: 3 pre-existing warnings, 0 errors (`scripts/es-pillars-core/local-seo.mjs`, `scripts/es-pillars-more-payload.mjs`, `scripts/generate-es-trade-bodies.mjs`). `tsc --noEmit` passed. Contact delivery passed. Spanish mirror passed (73 paths). |
 | `npm run check:invoice-security` | PASS. Includes invoice-core (rotation window), payment-integrity, PayPal order service with mocked HTTP, ledger migration on local SQLite, and route handlers with mocked PayPal. |
