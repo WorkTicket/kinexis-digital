@@ -81,7 +81,7 @@ export const CATALOG_PLANS: CatalogPlan[] = [
     features: [
       ["Mobile website", "Up to 10 pages, hosting + backups"],
       ["Domain", "Year 1 included · in your name"],
-      ["Missed-call text-back**", "Optional · $1/mo 2nd number + carrier"],
+      ["Missed-call text-back", "Optional · $1/mo 2nd number + carrier"],
       ["Google review requests", "After every job"],
       ["Google profile tune-up", "At launch"],
       ["Call tracking + report", "One monthly report"],
@@ -117,7 +117,7 @@ export const CATALOG_PLANS: CatalogPlan[] = [
     features: [
       ["Bilingual website", "Up to 20 pages, English + Spanish"],
       ["Domain", "Year 1 included · in your name"],
-      ["Missed-call text-back**", "Optional · EN/ES · $1/mo 2nd number + carrier"],
+      ["Missed-call text-back", "Optional · EN/ES · $1/mo 2nd number + carrier"],
       ["Google review requests", "English + Spanish"],
       ["Google profile tune-up", "+ 2 posts a month"],
       ["Call tracking + report", "One monthly report"],
@@ -196,7 +196,7 @@ export const PLAN_COMPARISON: { group: string; rows: [string, string, string, st
   {
     group: "Lead follow-up",
     rows: [
-      ["Missed-call text-back**", TEXTBACK_MATRIX.website, TEXTBACK_MATRIX.leadSystem, TEXTBACK_MATRIX.plus, TEXTBACK_MATRIX.ownIt],
+      ["Missed-call text-back", TEXTBACK_MATRIX.website, TEXTBACK_MATRIX.leadSystem, TEXTBACK_MATRIX.plus, TEXTBACK_MATRIX.ownIt],
       ["Google review requests", "—", "Yes", "Yes", "—"],
       ["Google Business Profile tune-up", "—", "Yes", "Yes", "—"],
       ["Call tracking and monthly reports", "—", "Yes", "Yes", "—"],

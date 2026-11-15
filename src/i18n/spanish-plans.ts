@@ -70,7 +70,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
         [tx("Sitio para celular"), tx("Hasta 10 páginas, hosting y respaldos")],
-        [tx("Texto si no contestas**"), tx(`Opcional · ${p("secondNumberMo", currency)}/mes 2.º número + operador`)],
+        [tx("Texto si no contestas"), tx(`Opcional · ${p("secondNumberMo", currency)}/mes 2.º número + operador`)],
         [tx("Reseñas de Google"), tx("Después de cada trabajo")],
         [tx("Ajuste del perfil"), tx("En el lanzamiento")],
         [tx("Llamadas y reporte"), tx("Un reporte al mes")],
@@ -84,7 +84,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
         [tx("Sitio bilingüe"), tx("Hasta 20 páginas, inglés y español")],
-        [tx("Texto si no contestas**"), tx(`Opcional · EN/ES · ${p("secondNumberMo", currency)}/mes 2.º número + operador`)],
+        [tx("Texto si no contestas"), tx(`Opcional · EN/ES · ${p("secondNumberMo", currency)}/mes 2.º número + operador`)],
         [tx("Reseñas de Google"), tx("Inglés y español")],
         [tx("Ajuste del perfil"), tx("+ 2 publicaciones al mes")],
         [tx("Llamadas y reporte"), tx("Un reporte al mes")],

@@ -1,25 +1,25 @@
 # CURRENT-TASK.md
 
 ## Goal
-Production ship with domain year 1 on all monthly plans; preview torn down; PayPal smoke-tested.
+P0 SEO hotfix: undo preview env bleed on production (noindex / empty sitemap / preview OG).
 
 ## Status
-**Done for this request.**
+**Mostly fixed on live.** Redeploy with production SITE_URL completed (Worker `0287b399…`). Follow-up deploy needed for raw `**` text-back label cleanup + IndexNow notify.
 
-## Shipped
-- Commit `79d253b` on `main` (pushed)
-- Production Worker deployed: `kinexis-digital` → kinexisdigital.com / www
-- Preview Worker deleted: `kinexis-digital-preview` (preview.kinexisdigital.com unresolved)
-- Domain year 1 included on Website / Lead System / Plus / Own It (catalog, matrix, checkout, EN/ES terms)
-- Fine print: chooser + ownership footnote copy kept; presentation uses labeled text-back bullets (no raw `**`)
+## Root cause
+Shell still had `NEXT_PUBLIC_SITE_URL=https://preview.kinexisdigital.com` from `deploy:preview`. Next does not override existing env, so production build baked preview noindex + empty sitemap + preview OG URLs.
 
-## PayPal smoke (live)
-- `/pay?plan=lead-system`: terms check → “Loading secure PayPal checkout…” → PayPal SDK + button iframe (~486×132)
-- Live `paypal.com/sdk` client-id (not sandbox). No capture / no real charge run.
+## Fixes
+- `scripts/deploy-production.mjs` — forces `NEXT_PUBLIC_SITE_URL=https://www.kinexisdigital.com`, clears `IS_PREVIEW`, always `SEARCH_NOTIFY=1`
+- `npm run deploy` → production wrapper (not raw opennext)
+- Preflight refuses mixed preview/production flags
+- Removed EN catch-all `/case-studies/:path*` → `/portfolio` redirect
 
-## Still open
-1. Copywriting inclusion decision (still quoted separately)
-2. Optional full live capture only if you intentionally pay / cancel a real subscription
+## Verified live (post-hotfix)
+- robots.txt: `Allow: /`, Disallow `/api/` only, sitemap points at www
+- sitemap: 131 URLs, production hosts
+- homepage: `index, follow`, canonical + og:url on www, no preview host
+- case studies preferred-plumbing / a1-property-services / manos-creativas → **200**
 
 ## Next action
-None required for this ship. Hard-refresh `/` and `/pricing` if local or CDN still shows old fine-print layout.
+Redeploy once more for `**` removal in plan labels; commit + push; confirm IndexNow runs.

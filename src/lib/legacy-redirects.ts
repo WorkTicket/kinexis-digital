@@ -132,12 +132,12 @@ export const LEGACY_REDIRECTS = [
   // used in older references and send each locale straight to its form.
   ...localized("/updates", "/update"),
   ...localized("/blog/posts", "/blog"),
+  // Index /case-studies → portfolio; live EN case studies are App Router pages.
   ...localized("/case-studies", "/portfolio"),
   // Live trade proof pages beat the generic portfolio hub for these case URLs.
   ...localized("/case-studies/plumbing-company-growth", "/industries/plumbing"),
   ...localized("/case-studies/landscaping-company-growth", "/industries/landscaping"),
-  { source: "/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },
-  { source: "/en/case-studies/:path*", destination: "/portfolio", statusCode: 301 as const },
+  // Spanish mirrors have no case-study pages yet — keep locale catch-alls.
   { source: "/es/case-studies/:path*", destination: "/es/portfolio", statusCode: 301 as const },
   { source: "/es-es/case-studies/:path*", destination: "/es-es/portfolio", statusCode: 301 as const },
   ...localized("/resources", "/blog"),

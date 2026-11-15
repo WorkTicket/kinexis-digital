@@ -34,7 +34,7 @@
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
     "deploy:worker": "opennextjs-cloudflare deploy",
     "deploy:preview": "node scripts/deploy-preview.mjs",
-    "deploy": "npm run check && npm run build:worker && npm run deploy:worker && npm run search:notify",
+    "deploy": "node scripts/deploy-production.mjs",
     "search:notify": "node scripts/search-on-deploy.mjs",
     "upload": "npm run check && npm run build:worker && opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"

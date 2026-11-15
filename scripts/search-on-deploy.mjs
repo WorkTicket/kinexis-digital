@@ -613,6 +613,21 @@ async function run() {
   if (preflight) {
     pass(`IndexNow key file public/${key}.txt`);
     checkCloudflareAssetSizes();
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "").trim().toLowerCase();
+    const previewFlag = process.env.NEXT_PUBLIC_IS_PREVIEW === "1";
+    const previewUrl =
+      siteUrl.includes("preview.kinexisdigital.com") || siteUrl.includes("kinexis-digital-preview");
+    if (previewFlag || previewUrl) {
+      if (previewFlag && previewUrl) {
+        pass(`Preview build: SITE_URL=${process.env.NEXT_PUBLIC_SITE_URL} (noindex expected)`);
+      } else {
+        fail(
+          `Preview/production SITE_URL mismatch. NEXT_PUBLIC_IS_PREVIEW=${process.env.NEXT_PUBLIC_IS_PREVIEW ?? "(unset)"} SITE_URL=${process.env.NEXT_PUBLIC_SITE_URL ?? "(unset)"}. Use npm run deploy (production) or npm run deploy:preview — never mix.`,
+        );
+      }
+    } else {
+      pass(`Production SITE_URL=${process.env.NEXT_PUBLIC_SITE_URL || "https://www.kinexisdigital.com (default)"}`);
+    }
     const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
     if (/^G-[A-Z0-9]+$/.test(gaId)) {
       pass(`NEXT_PUBLIC_GA_ID is set for build-time inlining (${gaId})`);
