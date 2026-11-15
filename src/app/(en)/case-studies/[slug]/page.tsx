@@ -14,10 +14,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const study = caseStudyBySlug(slug);
   if (!study) return {};
+  const description = `${study.problem} See the live site and what we changed—verified details only, no invented metrics.`.replace(
+    /\s+/g,
+    " ",
+  );
   return contentMetadata({
     path: `/case-studies/${study.slug}`,
     title: `${study.title} — Case Study`,
-    description: `${study.title}: verified project details and live site screenshots. No invented metrics.`,
+    description: description.length > 155 ? `${description.slice(0, 152).trimEnd()}…` : description,
     image: study.image,
     imageAlt: `${study.title} website screenshot`,
   });

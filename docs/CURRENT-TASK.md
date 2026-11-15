@@ -1,25 +1,27 @@
 # CURRENT-TASK.md
 
 ## Goal
-P0 SEO hotfix: undo preview env bleed on production (noindex / empty sitemap / preview OG).
+P0 SEO hotfix after preview env bled into production.
 
 ## Status
-**Mostly fixed on live.** Redeploy with production SITE_URL completed (Worker `0287b399…`). Follow-up deploy needed for raw `**` text-back label cleanup + IndexNow notify.
+**Fixed on live.** Indexing restored; case studies 200; IndexNow accepted 131 URLs.
 
 ## Root cause
-Shell still had `NEXT_PUBLIC_SITE_URL=https://preview.kinexisdigital.com` from `deploy:preview`. Next does not override existing env, so production build baked preview noindex + empty sitemap + preview OG URLs.
+`deploy:preview` left `NEXT_PUBLIC_SITE_URL=https://preview.kinexisdigital.com` in the shell. Next does not override existing env, so production baked noindex + empty sitemap + preview OG.
 
-## Fixes
-- `scripts/deploy-production.mjs` — forces `NEXT_PUBLIC_SITE_URL=https://www.kinexisdigital.com`, clears `IS_PREVIEW`, always `SEARCH_NOTIFY=1`
-- `npm run deploy` → production wrapper (not raw opennext)
-- Preflight refuses mixed preview/production flags
-- Removed EN catch-all `/case-studies/:path*` → `/portfolio` redirect
+## Guardrails now
+- `npm run deploy` → `scripts/deploy-production.mjs` (forces www SITE_URL, clears IS_PREVIEW, SEARCH_NOTIFY=1)
+- Preflight fails on mixed preview/production flags
+- EN catch-all `/case-studies/:path*` redirect removed
 
-## Verified live (post-hotfix)
-- robots.txt: `Allow: /`, Disallow `/api/` only, sitemap points at www
-- sitemap: 131 URLs, production hosts
-- homepage: `index, follow`, canonical + og:url on www, no preview host
-- case studies preferred-plumbing / a1-property-services / manos-creativas → **200**
+## Live verification
+- robots.txt: Allow `/`, Disallow `/api/` only
+- sitemap: 131 production URLs
+- meta robots: `index, follow` on home/pricing/portfolio/es/case studies
+- og:url / canonical: www.kinexisdigital.com (no preview host)
+- case studies: all three → 200 with unique titles
+- pricing: no raw `text-back**`
+- IndexNow: 131 URLs accepted (200)
 
 ## Next action
-Redeploy once more for `**` removal in plan labels; commit + push; confirm IndexNow runs.
+Optional: sandbox PayPal capture test. Request Search Console re-inspection if Google still shows the brief noindex window.
