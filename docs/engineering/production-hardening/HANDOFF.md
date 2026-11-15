@@ -4,7 +4,7 @@
 
 - **Phase:** 1 — Payment and Invoice Integrity
 - **Date:** 2026-11-15
-- **Status:** Engineering scope closed. NOT READY to merge, deploy, or start Phase 2.
+- **Status:** Code complete. Production setup is written and not executed. NOT READY to deploy or start Phase 2.
 
 ## Git and scope
 
@@ -32,6 +32,7 @@ Runtime: Node v22.23.4, npm 10.9.9. The repo asks for npm >= 11. `node:sqlite` p
 3. Create two empty D1 databases (production and preview). Replace `00000000-0000-4000-8000-000000000001` and `00000000-0000-4000-8000-000000000002` in `wrangler.jsonc`. Review `migrations/0001_invoice_payment_ledger.sql`. Apply it only after approval, to the new databases, not by deploying this branch. Export KV keys prefixed `invoice:v1:` and import them before switching reads. Do not delete the KV keys in the observation window.
 4. The sandbox webhook is registered for `https://kinexisdigital.com/api/paypal/webhook` with the six order and capture events. Set the sandbox webhook id as a Worker secret only with an approved deploy. Production needs its own webhook when that app is configured.
 5. To exercise the subscription button E2E beyond the fail-closed alert, set `NEXT_PUBLIC_PAYPAL_CLIENT_ID` in the test environment and re-run `npx playwright test e2e/production-audit.spec.ts`.
-6. Do not merge or deploy until those items are done and reviewed. Phase 2 has not been started.
+6. On the Windows checkout, read `PHASE1-PRODUCTION-SETUP.md` and run `scripts/phase1-production-setup.ps1` only after approving each command. The script never deploys. Deploy remains `npm run deploy`, typed separately.
+7. Do not merge or deploy until the setup verification reports `countsMatch: true` and the signing secrets are in place. Phase 2 has not been started.
 
-Closure write-up: `phases/phase-01-closure.md`.
+Closure write-up: `phases/phase-01-closure.md`. Setup runbook: `PHASE1-PRODUCTION-SETUP.md`.

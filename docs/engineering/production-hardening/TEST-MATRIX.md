@@ -38,6 +38,8 @@ Recorded 2026-11-15. Host was `api-m.sandbox.paypal.com` only. No request was se
 | Read the registered sandbox webhook | PASS. Host `kinexisdigital.com`, path `/api/paypal/webhook`. Events: `CHECKOUT.ORDER.APPROVED`, `CHECKOUT.ORDER.COMPLETED`, `PAYMENT.CAPTURE.COMPLETED`, `PAYMENT.CAPTURE.DENIED`, `PAYMENT.CAPTURE.REFUNDED`, `PAYMENT.CAPTURE.REVERSED`. |
 | Live webhook delivery to that URL | NOT RUN. The route is not deployed, so a PayPal-signed `SUCCESS` was not observed. |
 
+A later `npm run check:paypal-sandbox` without credentials printed `SANDBOX EVIDENCE: NOT RUN`. That line is the mocked-script gate. It does not replace the sandbox table above.
+
 ## How to read this
 
 Mocked PayPal checks and the local SQLite ledger rehearsal are not sandbox evidence and not a production D1 migration. The table above is the sandbox evidence. The route tests call the real checkout, capture, invoice, and webhook handlers. They cover a client-supplied amount, a missing or forged token, an expired invoice, a repeated checkout and a repeated capture, a capture whose PayPal amount or currency does not match the invoice, a webhook with a failed signature, a webhook replay, and a webhook whose amount does not match. A first full Playwright run failed two mobile checkout guards with HTTP 429 because both projects reused the same forwarded address inside the rate-limit window. The rerun above uses a distinct address per project and keeps the 400 assertion.

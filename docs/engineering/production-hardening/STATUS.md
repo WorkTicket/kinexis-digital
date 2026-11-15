@@ -1,7 +1,7 @@
 # Programme status
 
 **Current phase:** Phase 1 — payment and invoice integrity
-**Status:** Engineering scope closed. Release acceptance is BLOCKED. Do not merge, deploy, or start Phase 2.
+**Status:** Code and local checks are complete. Production setup is a separate owner step in `PHASE1-PRODUCTION-SETUP.md`. Do not merge or deploy until that setup is approved. Do not start Phase 2.
 **Branch:** `codex/production-hardening-v1`
 **Production:** untouched. No deployment, production migration, secret write, or real payment.
 
@@ -20,6 +20,22 @@ Code and local evidence are in place for the payment and invoice integrity scope
 - Full Playwright suite: 33 passed, 3 skipped, 0 failed. The invoice-admin worker exit was not reproduced.
 
 Sandbox order, capture, mismatch, and forged-signature checks passed against `api-m.sandbox.paypal.com`. A PayPal-signed webhook `SUCCESS` was not observed, because that needs a delivery to the production URL and this route is not deployed. The D1 binding ids in `wrangler.jsonc` are still placeholders. No signing secret was created.
+
+## Exit criteria
+
+| Criterion | State |
+|---|---|
+| Signing rotation window in code | Met |
+| Atomic idempotent invoice transitions and migration file | Met. Not applied to Cloudflare. |
+| PayPal webhook verification and dedupe in code | Met |
+| Route tests for tamper, replay, expiry, and forged links | Met (PayPal HTTP mocked) |
+| Sandbox create, capture, mismatch, forged signature | Met. See `TEST-MATRIX.md`. |
+| PayPal-signed webhook SUCCESS | Waiting. Route is not deployed. |
+| KV-to-D1 import tool, dry-run, idempotent, verify, KV untouched | Met in code and in a local Miniflare plus SQLite rehearsal. Not run against production. |
+| Owner runbook and Windows script, no deploy command | Met. `PHASE1-PRODUCTION-SETUP.md` and `scripts/phase1-production-setup.ps1`. |
+| Production D1 databases, migration, import, and Worker secrets | Waiting on the owner. |
+| `INVOICE_LINK_SECRET` generated and stored | Waiting on the owner. The setup script generates it and does not print it. |
+| Deploy | Waiting. Not part of the setup script. |
 
 ## Owner blockers before any release
 

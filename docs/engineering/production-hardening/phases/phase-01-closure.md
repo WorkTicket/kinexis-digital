@@ -3,7 +3,9 @@
 **Date:** 2026-11-15
 **Branch:** `codex/production-hardening-v1`
 **Base:** `c43041d` (`Fix half-empty portfolio previews and polish home CTAs.`)
-**Verdict:** Engineering scope is closed. Do not merge, deploy, or start Phase 2 until the owner reviews this PR and supplies the items in `HANDOFF.md`.
+**Verdict:** The code, tests, sandbox evidence, and production setup runbook are in the branch. Production D1, secrets, and deploy are waiting on the owner. Do not start Phase 2.
+
+The owner runs `scripts/phase1-production-setup.ps1` from `PHASE1-PRODUCTION-SETUP.md`. That script never deploys. Exit criteria that are met in code, and the ones that wait, are listed in `STATUS.md`.
 
 ## What closed
 
@@ -37,6 +39,15 @@ The payment path now treats PayPal responses and invoice links as untrusted unti
 | GitHub Actions `validate` (first push) | FAIL. Same missing `KVNamespace` global as `main`: the generated `cloudflare-env.d.ts` is gitignored. Follow-up removes that dependency from the two KV call sites. |
 
 Node v22.23.4 and npm 10.9.9 were used. The package asks for npm >= 11, so npm printed an engine warning. `node:sqlite` printed an experimental warning inside the ledger and route scripts.
+
+## Final review
+
+Reviewed the branch diff for signing, ledger idempotency, webhook failure handling, and the new import path:
+
+- KV import uses `INSERT OR IGNORE`. A second run cannot replace an amount, status, or PayPal id. Verification compares every valid KV row and fails if any differ. The dry run is the default. KV writes are not in the tool.
+- The setup script rejects any wrangler argument that deploys. `INVOICE_LINK_SECRET` is generated in memory and is not printed. The script will not set it until the operator types `THE NEW CODE IS DEPLOYED`, because the worker that is live today would start signing with that new key and drop existing links.
+- Production PayPal stays on the live host. The script never writes `PAYPAL_API_BASE` on the production worker. Sandbox values are offered only for the preview worker.
+- Local `--apply` without `--remote` is refused, so a laptop run cannot report a successful import that was never saved.
 
 ## Self-review
 
