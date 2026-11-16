@@ -477,6 +477,8 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
             { href: href("/industries/garage-doors"), name: tx("Puertas de garaje"), title: tx("diseño web de puertas de garaje"), iconSlug: "garage-doors" },
             { href: href("/industries/landscaping"), name: tx("Paisajismo"), title: tx("diseño web de paisajismo"), iconSlug: "landscaping" },
             { href: href("/industries/pressure-washing"), name: tx("Lavado a presión"), title: tx("diseño web de lavado a presión"), iconSlug: "pressure-washing" },
+            { href: href("/industries/junk-removal"), name: tx("Retiro de chatarra"), title: tx("diseño web de retiro de chatarra"), iconSlug: "junk-removal" },
+            { href: href("/industries/tree-care"), name: tx("Cuidado de árboles"), title: tx("diseño web de servicio de árboles"), iconSlug: "tree-care" },
           ]}
         />
       </Section>
@@ -693,6 +695,8 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             { href: href("/blog/landscaping-website-cost"), name: tx("Paisajismo"), title: tx("costo de página web de paisajismo"), iconSlug: "landscaping" },
             { href: href("/blog/garage-door-website-cost"), name: tx("Puertas de garaje"), title: tx("costo de página web de puertas de garaje"), iconSlug: "garage-doors" },
             { href: href("/blog/pressure-washing-website-cost"), name: tx("Lavado a presión"), title: tx("costo de página web de lavado a presión"), iconSlug: "pressure-washing" },
+            { href: href("/blog/junk-removal-website-cost"), name: tx("Retiro de chatarra"), title: tx("costo de página web de retiro de chatarra"), iconSlug: "junk-removal" },
+            { href: href("/blog/tree-service-website-cost"), name: tx("Cuidado de árboles"), title: tx("costo de página web de servicio de árboles"), iconSlug: "tree-care" },
           ]}
         />
       </Section>
