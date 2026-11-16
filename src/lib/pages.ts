@@ -29,12 +29,12 @@ export const SITE_CONTENT_UPDATED = "2026-11-12";
 export const PAGES = {
   home: {
     path: "/",
-    title: "Website Plans From $97/mo for Local Businesses | Kinexis Digital",
+    title: "Kinexis Digital | Contractor Websites From $97/mo",
     absolute: true,
     indexable: true,
     priority: 1,
     changeFrequency: "weekly",
-    description: "Contractor and home service websites from $97/mo, $0 down. Google review requests, optional missed-call text-back, and a free homepage preview.",
+    description: "Kinexis Digital builds contractor and home-service websites from $97/mo, $0 down—with Google review requests, optional missed-call text-back, and a free homepage preview.",
     ogImage: "/og/home.webp",
   },
   services: {
@@ -147,12 +147,12 @@ export const PAGES = {
   },
   pricing: {
     path: "/pricing",
-    title: "Small Business Website Cost & Plans",
+    title: "Contractor Website Cost & Plans | From $97/mo",
     crumb: "Pricing",
     service: "Web design",
     indexable: true,
     priority: 0.9,
-    description: "Website plans from $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for $1,497. Free homepage preview in 2 business days. No card required.",
+    description: "Contractor website cost for small service businesses: Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497. Free homepage preview in 2 business days—no card required.",
     ogImage: "/og/pricing.webp",
   },
   pay: {

@@ -1,9 +1,11 @@
 # Current task
 
-**Done:** Conferbot lift #28; CONTENT-PLAN #29; master plan #30; release gates #31 → `889f774b`; Spanish #32 → `b6f6ed55`; SEC-03 #33 → `6f0f6bbc`; SEC-02 #34 → `967dcf7e`.
+**Done:** Conferbot lift #28; CONTENT-PLAN #29; master plan #30; release gates #31 → `889f774b`; Spanish #32 → `b6f6ed55`; SEC-03 #33 → `6f0f6bbc`; SEC-02 #34 → `967dcf7e`; SEC-01 blocker #35 → `a4f0abaa`; SEO T5 #36 → `7967dc3d`.
 
-**Done (N5):** SEC-01 blocker documented #35 → `a4f0abaa` (no CSP change).
+**In progress:** Tech-0 SEO indexing PR (`cursor/seo-gsc-indexing-meta-67c1`): fold GSC + Ahrefs DR 9 into CONTENT-PLAN / NEXT-PHASES; 301 dead case studies → `/portfolio`; homepage brand title; pricing owns “contractor website cost”; local SEO checklist retitle. Connect noindex N/A (not in this repo).
 
-**In progress:** SEO T5 redesign checklist article (`cursor/seo-article-redesign-checklist-67c1`); then T6, T7, then trade rewrites in batches.
+**Owner actions (not code):** Cloudflare Always Use HTTPS (I1); approve/reject P1–P4 (BIMI, `/es-es`→`/es`, painting/remodeling live, Connect homepage).
 
-**Hard rules:** Manual deploy only (owner PC). No prod DB migrations / secrets / paid upgrades without approval. No delete/noindex/redirect. No pricing/terms changes. Ready-to-deploy SHAs through `a4f0abaa` (includes gates, Spanish, SEC-03, SEC-02, SEC-01 blocker) — deploy when you choose.
+**Next after Tech-0 merge:** T6 choose-designer article → T7 quote-form → trade rewrite batches.
+
+**Hard rules:** Manual deploy only (owner PC). No prod DB migrations / secrets / paid upgrades without approval. No delete/noindex/redirect of live indexable content. No pricing/terms figure changes. Agents do not deploy.

@@ -57,9 +57,9 @@ export default function Page() {
     <>
       <PageSchema page="pricing" faqs={FAQS} />
       <PageHero
-        h1="Choose The Website Plan That Fits"
-        mark="Plan That Fits"
-        sub="Start with the site your business needs, then add the level of follow-up you want. Every plan begins with a free homepage preview, with no card or obligation."
+        h1="Contractor Website Cost: Plans That Fit the Work"
+        mark="Plans That Fit the Work"
+        sub="See what a contractor website costs with Kinexis—Website, Lead System, Plus, or Own It—then pick the follow-up level you need. Every plan starts with a free homepage preview, no card and no obligation."
         image="pricing"
         imageAlt="Pricing artwork with a payment card and checkmarks"
       />

@@ -1,8 +1,18 @@
 # SEO Content Plan (docs only — do not publish yet)
 
-**Status:** Plan landed (#29). Execution tracked under [`docs/engineering/NEXT-PHASES-PLAN.md`](../engineering/NEXT-PHASES-PLAN.md) (items S1–S7). No delete / noindex / redirect without a separate owner decision after GSC.  
-**Sources:** Owner SEO validation findings (2026-11); repo bodies in `src/data/cost-post-bodies.ts`, `src/data/pages-post-bodies.ts`, `src/data/industries.ts`, `docs/CONTENT.md`; existing `docs/seo/keyword_map_all.csv`.  
+**Status:** Plan landed (#29); GSC + Ahrefs findings folded in (2026-11-15). Execution under [`docs/engineering/NEXT-PHASES-PLAN.md`](../engineering/NEXT-PHASES-PLAN.md). **Technical indexing ahead of content rewrites.** No delete / noindex / redirect of live indexable content without owner approval.  
+**Sources:** Owner SEO validation; GSC Performance export (sc-domain:kinexisdigital.com, Web, ~16 months / Chart 23 Jun–13 Nov 2026); Ahrefs Free (DR only); repo content files; `docs/CONTENT.md`.  
 **Pricing / terms:** Quote only published site numbers from `docs/CONTENT.md` / `/pricing` (Website **$97/mo**, Lead System **$197/mo**, Plus **$297/mo**, Own It **$1,497** one-time; monthly **$0 down**, month-to-month, cancel anytime; **30-day money-back** on every plan; **60-day lead guarantee** on Lead System/Plus; free homepage preview in **2 business days**, no card; extra Website page **$99**; Site Care **$39/mo** after Own It year one; text-back rules as on `/pricing`). **Never invent volumes, KD, or CPC.**
+
+---
+
+## 0. Real data snapshot (do not invent beyond this)
+
+### Google Search Console (official totals)
+**6 clicks · 6,705 impressions · 0.1% CTR · avg position 64.5.** Coverage UI: **114 indexed / 812 not indexed** (redirect 456, discovered-not-indexed 84, crawled-not-indexed 77, robots 71, 404 67, noindex 29, …). Sitemap: 131 live URLs, all 200. Most historical impressions sit on **already-301ing** `/en/...` and legacy `/es` agency paths; **current live 200 URLs ≈ 1 click / 302 impressions** in this export (`/es` is the strongest live page). Brand query `kinexis`: **63 imps, 0 clicks, pos 16.3**. `/pricing`: **12 imps, pos 3.25**. `local seo checklist`: **141 imps, pos 70.59** (historically on `/en/blog/local-seo-checklist` → live `/blog/local-seo-get-found-get-called`).
+
+### Ahrefs (Free plan)
+**Only DR 9.0** (`public-domain-rating-free` for apex and www). Site Explorer, Keywords Explorer, Site Audit, organic keywords, backlinks, competitors: **Insufficient plan**. Volume / KD / CPC remain unavailable — leave blank until a paid Ahrefs plan (owner gate).
 
 ---
 
@@ -10,46 +20,56 @@
 
 | ID | Item | Type | Phase | Primary URL(s) | Status |
 |---|---|---|---|---|---|
-| T1 | Keyword → URL ownership map (no new money pages for owned intents) | Guardrail | 0 | See §3 | Planned |
-| T2 | Cannibalization guard: no generic “contractor website cost” article | Guardrail | 0 | `/pricing` | Planned |
-| T3 | Audit + rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | Planned |
-| T4 | Audit + rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | Planned |
-| T5 | New: Contractor website redesign checklist (+ migration section) | New article | 1 | `/blog/contractor-website-redesign-checklist` | In progress (code) |
-| T6 | New: How to choose a contractor web designer (15 questions) | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | Planned |
-| T7 | New: Contractor website quote form | New article | 1 | `/blog/contractor-website-quote-form` | Planned |
-| T8 | Expand GBP checklist (plumbing troubleshooting hooks) | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |
-| T9 | Expand local SEO guide (plumber Maps troubleshooting section) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Planned |
-| T10 | Industry landing: painting (match live industry pattern) | New landing | 3 | `/industries/painting` | Planned |
-| T11 | Industry landing: remodeling (match live industry pattern) | New landing | 3 | `/industries/remodeling` | Planned |
-| T12 | Portfolio / internal links for painting + remodeling | Supporting | 3 | `/portfolio`, hubs, cost/pages posts | Planned |
-| T13 | Research backlog (landscaping leads without paying per lead; speed benchmark) | Research | 4 | TBD after data | Planned |
-| T14 | Data needed (GSC + KW tool export) | Ops | 0 | — | Blocked on owner |
-| T15 | Writing standard + review checklist | Process | 0 | This doc §11–12 | Planned |
+| I1 | Cloudflare Always Use HTTPS (HTTP→HTTPS 301; stop Pingora 500s) | Infra | **Tech-0** | `http://` apex/www | **Owner dashboard** — see §2 |
+| I2 | 301 dead case studies → `/portfolio` | Redirect (404 repair) | **Tech-0** | 3 retired slugs + `/en/` | In code this PR |
+| I3 | Homepage title leads with **Kinexis Digital** | Meta | **Tech-0** | `/` | In code this PR |
+| I4 | `/pricing` title/meta/H1 own **contractor website cost** | Meta | **Tech-0** | `/pricing` | In code this PR |
+| I5 | Retitle local SEO article for **local SEO checklist** | Meta | **Tech-0** | `/blog/local-seo-get-found-get-called` | In code this PR |
+| I6 | Connect portal: robots + noindex app routes | Subdomain | **Tech-0** | `connect.kinexisdigital.com` | **Not in this repo** — owner on Connect app |
+| P1 | Propose: noindex `bimi.kinexisdigital.com` | Proposal | Gate | bimi subdomain | Needs approval |
+| P2 | Propose: 301 `/es-es/*` → `/es/*` | Proposal | Gate | `/es-es` | Needs approval |
+| P3 | Propose: painting + remodeling off `hold` | Proposal | Gate | `/industries/painting`, `/remodeling` | Needs approval (= T10/T11) |
+| P4 | Propose: Connect homepage as search landing (canonical/sitemap) vs noindex | Proposal | Gate | connect `/` | Needs approval |
+| T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Locked |
+| T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Locked |
+| T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | After Tech-0 |
+| T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | After Tech-0 |
+| T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
+| T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | Planned |
+| T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | Planned |
+| T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |
+| T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Planned |
+| T10 | Industry: painting live | Landing | 3 | `/industries/painting` | **Blocked on P3** |
+| T11 | Industry: remodeling live | Landing | 3 | `/industries/remodeling` | **Blocked on P3** |
+| T12 | Portfolio / internal links painting + remodeling | Supporting | 3 | `/portfolio` | After T10/T11 |
+| T13 | Research backlog | Research | 4 | TBD | After Ahrefs upgrade / more GSC |
+| T14 | Data needed | Ops | 0 | — | GSC received; Ahrefs unpaid |
+| T15 | Writing standard + review checklist | Process | 0 | §11–12 | Locked |
 
 ---
 
-## 2. Phased execution
+## 2. Phased execution (**technical indexing first**)
 
-### Phase 0 — Guardrails & data (before drafting)
-1. Lock ownership map (§3) and cannibalization rules (§4).  
-2. Collect **data needed** (§10): 12–16 month Search Console (Queries + Pages) and Keyword Planner / Ahrefs / Semrush export. Do not invent metrics.  
-3. Before any rewrite or take-down discussion: pull impressions/clicks for each of the 24 trade URLs (and backlinks/leads if available). **No delete / noindex / redirect** in this plan’s execution without a separate owner decision after that check.
+### Phase Tech-0 — Indexing & on-page (before trade rewrites)
+1. **Owner (Cloudflare dashboard):** enable **Always Use HTTPS** (or HTTP→HTTPS 301 rule) so `http://kinexisdigital.com` and `http://www...` stop returning **500** at Pingora. Confirm with `curl -I http://…` → 301 to HTTPS www. Agents cannot change this from the Worker repo.  
+2. **Code (this PR):** 301 three dead case-study 404s (+ `/en/` via `localized`) to `/portfolio`; brand-led homepage title; pricing owns “contractor website cost” in title/meta/H1; local SEO article retitled for checklist intent.  
+3. **Connect app (separate repo):** add `robots.txt` Disallow for `/login`, `/signup`, dashboard; `noindex` those routes. **Do not** noindex the Connect marketing homepage without P4.  
+4. **Proposals only (P1–P4):** wait for owner before noindex BIMI, collapsing `/es-es` → `/es`, flipping painting/remodeling off hold, or treating Connect `/` as a search page.
 
-### Phase 1 — Publish 3 new articles first
-Order: **T5 redesign checklist** → **T6 choose a designer** → **T7 quote form**.  
-Each ships with title, URL, meta, outline, and internal links in §6. Soft-launch; update sitemap/internal links from hubs only after owner approval to publish.
+### Phase 0 — Guardrails
+Ownership map (§3) + cannibalization (§4). No new generic contractor-cost article.
 
-### Phase 2 — Improve existing (differentiate scaled series + local expansions)
-1. Substantially rewrite the 12 cost + 12 pages articles per §5 briefs (trade-specific angles, FAQs, buyer decisions).  
-2. Expand GBP checklist + local SEO plumber troubleshooting (§7).  
-3. Light de-overlap pass on companion pillars (`website-mistakes-that-cost-you-calls`, `turn-clicks-into-calls`, `web-design-for-contractors`) — keep distinct purposes; do not merge URLs.
+### Phase 1 — Three new articles
+**T5** shipped (#36). Next **T6** → **T7**. Human writing standard. Soft-publish messaging is owner gate.
 
-### Phase 3 — Commercial gap: painting & remodeling landings
-1. Flip `/industries/painting` and `/industries/remodeling` from `status: "hold"` to live using the same industry page pattern as plumbing/HVAC (§8).  
-2. Add real portfolio annotations when assets exist; wire internal links from cost/pages posts and `/industries` index.
+### Phase 2 — Improve existing (after Tech-0)
+Trade cost/pages rewrites; GBP + local SEO plumber expansions; light de-overlap on companion pillars.
 
-### Phase 4 — Research backlog
-Only after Phase 0 data: landscaping “leads without paying per lead” (US demand check); original contractor site speed benchmark study. No new generic “plumber not on Google Maps” URL — fold into T8/T9.
+### Phase 3 — Painting & remodeling landings
+Only after **P3** approval: flip `hold` → `live`, portfolio links.
+
+### Phase 4 — Research
+After paid Ahrefs (or Keyword Planner) + fresh GSC: landscaping leads research; speed benchmark. No new generic Maps article.
 
 ---
 
@@ -262,16 +282,15 @@ Both already exist in `src/data/industries.ts` with **`status: "hold"`** and ful
 
 ## 10. Data needed (owner)
 
-Provide before prioritizing rewrites by traffic:
+| Source | Status | Notes |
+|---|---|---|
+| GSC Queries + Pages (~16 mo) | **Received** (2026-11-15) | Official: 6 clicks / 6,705 imps. Coverage example URL lists still missing for the 812 not-indexed bucket. |
+| Ahrefs | **Partial** — Free plan | **DR 9.0** only. Upgrade needed for Site Explorer / Keywords Explorer / Site Audit (owner paid gate). |
+| Keyword Planner / Semrush | Still useful | Optional if Ahrefs stays free. |
 
-1. **Google Search Console** export covering **12–16 months**:  
-   - **Queries** (query, clicks, impressions, CTR, position)  
-   - **Pages** (page, clicks, impressions, CTR, position)  
-2. **Keyword Planner and/or Ahrefs or Semrush** export for the ownership keywords in §3 and `keyword_map_all.csv` (volume, KD/difficulty, CPC if the tool provides them).  
+**Rule:** Leave volume/KD/CPC as unavailable until a real export. **Never invent** those numbers.
 
-**Rule:** Leave cells as “pending export.” **Never invent volumes, KD, or CPC** in drafts or meta experiments.
-
-Optional but useful: call-tracking or form lead counts by landing page; backlink sample for the 24 trade URLs before any removal discussion.
+Still useful after Tech-0 ships: Coverage “404 / robots / alternate canonical” example URL exports; fresh 3-month Performance; Pages×Queries if GSC allows.
 
 ---
 
@@ -302,9 +321,22 @@ Optional but useful: call-tracking or form lead counts by landing page; backlink
 
 ---
 
-## 13. Out of scope for this plan PR
+## 13. Owner-approval proposals (do **not** implement until approved)
 
-- Publishing posts or flipping industry `status` in code.  
-- Deleting, noindexing, or redirecting any URL.  
+| ID | Proposal | Why |
+|---|---|---|
+| P1 | `noindex` + real `robots.txt` on `bimi.kinexisdigital.com` (or host BIMI SVG without HTML card) | 6 imps; HTML “business card,” not a BIMI asset; robots returns HTML |
+| P2 | One-hop 301 `/es-es` and `/es-es/*` → matching `/es` URLs (including legacy maps) | `/es-es` is intentional noindex; leftover equity currently loops inside noindex |
+| P3 | Flip `/industries/painting` and `/industries/remodeling` from `hold` → `live` | Cost/pages posts already indexable; landers exist but noindex. Leave pool-care / window-cleaning / yard-care on hold |
+| P4 | Decide Connect homepage: search landing (canonical + sitemap) **or** noindex/301 to www | App routes should still be blocked; homepage needs an explicit decision |
+| — | Cloudflare **Always Use HTTPS** | Not a code change — owner applies in Cloudflare dashboard (I1) |
+
+Retargeting high-impression “dump to `/blog`” legacy redirects (quality-score, etc.) also needs approval before changing destinations (GSC A9).
+
+## 14. Out of scope without a separate ticket
+
+- Deleting live indexable content.  
 - Inventing search volumes or difficulty.  
-- Spanish drafts (see existing `docs/seo/drafts-es-native-3.md` for separate ES work).
+- Noindexing utilities (`/pay`, `/terms`, …) or `/es` itself.  
+- Changing Connect or BIMI from **this** marketing repo (separate hosts).  
+- Spanish drafts for new EN posts (see `docs/seo/drafts-es-native-3.md` for separate ES work).
