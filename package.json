@@ -24,6 +24,7 @@
     "images:heroes": "node scripts/optimize-hero-images.mjs",
     "images:og": "node scripts/generate-og-images.mjs",
     "images:portfolio-cards": "node scripts/generate-portfolio-cards.mjs",
+    "images:portfolio-shots": "node scripts/generate-portfolio-shot-widths.mjs",
     "images:posters": "node scripts/optimize-video-posters.mjs",
     "check:contact": "node scripts/check-contact-delivery.mjs",
     "check:attachment-security": "node scripts/check-attachment-security.mjs",

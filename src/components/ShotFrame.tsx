@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { DeferredImg } from "./DeferredImg";
-import { portfolioFile, type Project } from "@/lib/projects";
+import { portfolioFile, portfolioShotSrcSet, type Project } from "@/lib/projects";
+
+/** Matches CSS display: ~46vw mobile / ~280px desktop shot frames. */
+const SHOT_SIZES = "(max-width: 720px) 46vw, (max-width: 1100px) 30vw, 280px";
 
 /**
  * Browser frame with a full-page screenshot.
@@ -28,11 +31,15 @@ export function ShotFrame({
   className?: string;
   showCtaOnHover?: boolean;
 }) {
-  // Scrollable frames need the full-page 640w capture so hover/hold can pan.
+  // Scrollable frames need the full-page capture so hover/hold can pan — serve
+  // 320w by default (lab ~280px / 46vw) with 640w for DPR via srcset.
   // Static listing cards keep the lighter top 4:3 crop.
   const useCard = !scrollOnHover;
-  const shot = portfolioFile(project.image, useCard ? "card" : 640);
-  const height = useCard ? 480 : Math.round((project.height * 640) / project.width);
+  const shot = portfolioFile(project.image, useCard ? "card" : 320);
+  const srcSet = useCard ? undefined : portfolioShotSrcSet(project.image, "webp");
+  const avifSrcSet = useCard ? undefined : portfolioShotSrcSet(project.image, "avif");
+  const width = useCard ? 640 : 320;
+  const height = useCard ? 480 : Math.round((project.height * width) / project.width);
   // Named link owns the accessible name; keep the screenshot decorative so
   // label-content-name-mismatch only cares about visible CTA text.
   const imgAlt = href ? "" : `${project.name} website design`;
@@ -44,9 +51,11 @@ export function ShotFrame({
       <div className="shot__track">
         <DeferredImg
           src={shot}
-          sizes="(max-width: 720px) 46vw, (max-width: 1100px) 30vw, 280px"
+          srcSet={srcSet}
+          avifSrcSet={avifSrcSet}
+          sizes={SHOT_SIZES}
           alt={imgAlt}
-          width={640}
+          width={width}
           height={height}
           className="shot__img"
         />
