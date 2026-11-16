@@ -34,6 +34,14 @@ assert.match(widget, /kx-chat-lift/);
 assert.match(widget, /data-cb-own-m-bottom/);
 assert.match(widget, /shadowRoot/);
 assert.match(widget, /\.float-cta/);
+assert.match(widget, /liftArmed/);
+assert.match(widget, /#open-chatbot/);
+assert.match(widget, /setInterval\(schedule,\s*1000\)/);
+assert.doesNotMatch(
+  widget,
+  /clearShadowLift\(host\);\s*\n\s*\};\s*\n\s*\}, \[locale\]/,
+  "effect cleanup must not clear the launcher lift on remount",
+);
 assert.doesNotMatch(widget, /analyticsAllowed/);
 assert.doesNotMatch(widget, /parseConsentCookie/);
 assert.doesNotMatch(widget, /kinexis:consent/);
