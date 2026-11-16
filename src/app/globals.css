@@ -1996,7 +1996,11 @@ button.chatbot__icon__cta{
 .page-hero--split .btn-row{justify-content:flex-start}
 .page-hero__art{min-width:0}
 .art-wrap{position:relative}
-.page-hero__art .art-wrap{aspect-ratio:1/1;width:100%}
+/* Explicit 1:1 box before <picture> decodes — keeps page-hero__art from
+   contributing CLS when H1 metrics settle or the LCP still is late.
+   Industry heroes override to 3/2 below; exclude them here. */
+.page-hero__art .art-wrap{aspect-ratio:1/1;width:100%;max-width:100%}
+.page-hero:not(.industry-hero) .page-hero__art .hero-art{aspect-ratio:1/1;width:100%;height:auto;display:block}
 /* Match homepage hero--fit: first viewport height on desktop/tablet landscape. */
 @media (min-width:861px){
   .page-hero.page-hero--split{
