@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { formatConsentCookie, parseConsentCookie } from "@/lib/invoice-core";
+import { formatConsentCookie, parseConsentCookie } from "@/lib/consent-cookie";
 
 const COOKIE = "kinexis_consent";
 const MAX_AGE = 60 * 60 * 24 * 180; // 180 days

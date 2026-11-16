@@ -602,7 +602,110 @@ function paintNew() {
   armHero();
   armMarks();
   scheduleImages();
+  syncFooterColumns();
 }
+
+/** Coalesce hydration/DOM churn into one paint pass — cuts long main-thread tasks. */
+let paintQueued = false;
+function schedulePaintNew() {
+  if (paintQueued) return;
+  paintQueued = true;
+  requestAnimationFrame(() => {
+    paintQueued = false;
+    paintNew();
+  });
+}
+
+const FOOTER_MQ = "(max-width: 639px)";
+let footerColumnsArmed = false;
+function footerColumns() {
+  return document.querySelectorAll("details.footer-column");
+}
+function syncFooterColumns() {
+  const mq = matchMedia(FOOTER_MQ);
+  footerColumns().forEach((el) => {
+    el.open = !mq.matches;
+  });
+  if (footerColumnsArmed) return;
+  footerColumnsArmed = true;
+  mq.addEventListener("change", () => {
+    footerColumns().forEach((el) => {
+      el.open = !mq.matches;
+    });
+  });
+  document.addEventListener("toggle", (event) => {
+    const el = event.target;
+    if (!(el instanceof HTMLDetailsElement) || !el.classList.contains("footer-column")) return;
+    if (!mq.matches || !el.open) return;
+    const rootCol = el.parentElement;
+    if (!rootCol) return;
+    rootCol.querySelectorAll("details.footer-column").forEach((other) => {
+      if (other !== el) other.open = false;
+    });
+  }, true);
+}
+
+/** Desktop header CTA nudge — same timing as the former HeaderCta effect. */
+(function armHeaderCtaNudge() {
+  const PLAY_MS = 1600;
+  const GAP_MIN_MS = 3200;
+  const GAP_MAX_MS = 7800;
+  const FIRST_DELAY_MS = 1800;
+  function nextGap() {
+    return GAP_MIN_MS + Math.floor(Math.random() * (GAP_MAX_MS - GAP_MIN_MS + 1));
+  }
+  function visibleCta() {
+    return [...document.querySelectorAll(".header__cta")].find((el) => {
+      if (!(el instanceof HTMLElement)) return false;
+      return getComputedStyle(el).display !== "none";
+    }) || null;
+  }
+  function start() {
+    if (reduce()) return;
+    if (matchMedia("(hover: none)").matches) return;
+    let gapTimer = 0;
+    let clearTimer = 0;
+    let stopped = false;
+    const clearNudge = (el) => {
+      el?.removeAttribute("data-cta-nudge");
+    };
+    const schedule = (delay) => {
+      gapTimer = window.setTimeout(play, delay);
+    };
+    const play = () => {
+      if (stopped) return;
+      const el = visibleCta();
+      if (!el) {
+        schedule(nextGap());
+        return;
+      }
+      if (el.matches(":hover, :focus-visible, :active") || document.hidden) {
+        schedule(nextGap());
+        return;
+      }
+      clearNudge(el);
+      void el.offsetWidth;
+      el.dataset.ctaNudge = "1";
+      clearTimer = window.setTimeout(() => {
+        clearNudge(el);
+        schedule(nextGap());
+      }, PLAY_MS);
+    };
+    const onVisibility = () => {
+      if (document.hidden) {
+        window.clearTimeout(gapTimer);
+        window.clearTimeout(clearTimer);
+        clearNudge(visibleCta());
+      } else if (!stopped) {
+        schedule(nextGap());
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    schedule(FIRST_DELAY_MS);
+  }
+  if (document.readyState === "complete") start();
+  else addEventListener("load", start, { once: true });
+})();
 let measureFloat = () => {};
 function resetFloat() {
   const bar = document.querySelector(".float-cta");
@@ -1326,14 +1429,14 @@ if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
 
 syncChrome();
 resetReveal();
-paintNew();
+schedulePaintNew();
 new MutationObserver(() => {
   if (location.pathname !== path) {
     path = location.pathname;
     onNavigate();
     return;
   }
-  paintNew();
+  schedulePaintNew();
 }).observe(document.body, { childList: true, subtree: true });
 const push = history.pushState;
 history.pushState = function () {
