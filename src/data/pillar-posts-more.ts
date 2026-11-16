@@ -932,5 +932,125 @@ export const PILLAR_POSTS_MORE: Record<string, PillarPostBody> = {
         a: `Near the phone number on the homepage and on the service page, not only on a separate reviews page people may never open.`,
       },
     ],
-  }
+  },
+
+  "contractor-website-redesign-checklist": {
+    lead: `A redesign should fix the reasons people bounce—wrong services, a buried phone number, a mobile layout that hides the call button—not give you a prettier way to lose the same jobs. The quiet risk is migration: you launch a clean site and orphan the URLs Google already sends people to, so the next “emergency plumber” click lands on a soft 404 while your competitor’s number still works. This checklist is for trade owners who need the new site without torching rankings, call tracking, or the Google Business Profile website field.`,
+    sections: [
+      {
+        h2: "When a redesign is worth the disruption",
+        html: `<p>Redesign because the site is costing you work, not because a salesperson said your logo looks dated. Typical triggers: the phone number is hard to tap on a phone; service pages still list jobs you stopped doing; the homepage talks about “quality craftsmanship” while callers ask about water heaters and emergency drains; the form asks for a novel before it asks for a phone number; pages take so long on cellular that people bounce back to the map pack.</p>
+<p>If the site already names the work, shows a real phone, and books estimates, a coat of paint is optional. If you are changing hosts, platforms, or domain structure, treat that as a migration even when the design looks the same. The checklist below assumes you are replacing URLs or templates—not swapping a hero photo.</p>
+<p>Pair this with <a href="/blog/website-mistakes-that-cost-you-calls">the mistakes that cost calls</a> when the problem is conversion, and with <a href="/web-design">contractor web design</a> when you are choosing what the new site should include. Plan numbers and terms stay on <a href="/pricing">pricing</a>: Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497 one-time; $0 down on monthly plans; month-to-month; 30-day money-back on every plan; 60-day lead guarantee on Lead System and Plus.</p>`,
+      },
+      {
+        h2: "Inventory what actually earns calls",
+        html: `<p>Before anyone opens a design file, list the pages that already earn work. Use call logs, form notifications, and—when you have it—Search Console landing pages and queries. Do not invent volumes here; pull your own export. Mark each URL as keep, merge, or drop.</p>
+<ul>
+<li><strong>Keep:</strong> service pages that match jobs you still sell; the service-area page that tells the truth; any case study with a live phone path.</li>
+<li><strong>Merge:</strong> thin duplicates that say the same thing with a city name swapped—move unique photos or notes onto the real service page, then retire the clone.</li>
+<li><strong>Drop:</strong> dead promotions, old employee bios, and “coming soon” pages that never came.</li>
+</ul>
+<p>Also inventory non-page assets that break on cutover: tracking numbers in the header, form endpoints, review widgets, PDF rate sheets linked from trucks or ads, and the website URL on your Google Business Profile. The <a href="/blog/google-business-profile-checklist">GBP checklist</a> is the field pass; this article is the site move.</p>`,
+      },
+      {
+        h2: "URL mapping worksheet (example)",
+        html: `<p>Every old path that earns impressions or bookmarks needs a written new path and a 301. Do this in a spreadsheet your dispatcher could read. Example for a plumbing company changing from a DIY builder to a cleaner structure:</p>
+<table>
+<thead><tr><th>Old path</th><th>New path</th><th>301?</th><th>Owner</th></tr></thead>
+<tbody>
+<tr><td>/services.html</td><td>/services</td><td>Yes</td><td>Dev</td></tr>
+<tr><td>/water-heaters</td><td>/services/water-heater-replacement</td><td>Yes</td><td>Dev</td></tr>
+<tr><td>/drain-cleaning-dallas</td><td>/services/drain-cleaning</td><td>Yes (merge; keep unique photos)</td><td>Owner + Dev</td></tr>
+<tr><td>/contact-us</td><td>/contact</td><td>Yes</td><td>Dev</td></tr>
+<tr><td>/blog/old-spring-promo</td><td>—</td><td>410 or 301 to /blog if still useful</td><td>Owner</td></tr>
+</tbody>
+</table>
+<p>Rules of thumb: same intent keeps a dedicated URL; vanity city clones collapse into the real service page; never leave a money page as a soft 404 that returns 200 with “page not found” text. If two old URLs map to one new URL, both get 301s. If you change domains, map apex and www, and plan Search Console property moves after DNS is stable.</p>`,
+      },
+      {
+        h2: "Content that must survive the move",
+        html: `<p>Design can change. These details should not vanish on launch day:</p>
+<ul>
+<li><strong>NAP consistency:</strong> same public name, phone, and hours as the Google profile and the voicemail.</li>
+<li><strong>Service pages for money jobs:</strong> water heater, drain, no-heat, panel upgrade—whatever your trucks actually book—with the job in the first screen and a tap-to-call number.</li>
+<li><strong>Honest service area:</strong> one clear area story, not a farm of near-identical town pages. See <a href="/blog/local-seo-get-found-get-called">local SEO that connects searches to calls</a>.</li>
+<li><strong>Proof:</strong> real job photos and review quotes that match what appears on Google—not stock hard hats.</li>
+<li><strong>Forms that ask for a phone first:</strong> name, phone, job type, city/ZIP beat a required essay.</li>
+</ul>
+<p>If the redesign “simplifies” the site down to a single Services blob, you will feel it in the phone within a week. Page architecture by trade lives in guides like <a href="/blog/plumbing-website-pages">plumbing website pages</a>; use those when deciding what to keep.</p>`,
+      },
+      {
+        h2: "Migration: DNS, 301s, sitemap, and soft 404 traps",
+        html: `<p>Treat launch as a cutover, not a reveal party.</p>
+<ol>
+<li><strong>Staging first.</strong> Build and approve on a preview host. Confirm tap-to-call, forms, and redirects on staging with a hosts file or preview URL before DNS flips.</li>
+<li><strong>Redirect table live before marketing.</strong> Implement every 301 from the worksheet. Spot-check with curl or a browser: old URL → 301 → final URL, one hop when possible. Fix redirect chains and loops.</li>
+<li><strong>DNS cutover window.</strong> Lower TTL a day ahead if you can. After the flip, re-test apex, www, and a sample of mapped paths from a phone on cellular.</li>
+<li><strong>Sitemap.</strong> Submit the new sitemap in Search Console once the live host serves it. Remove or stop generating URLs you intentionally dropped.</li>
+<li><strong>Parameter and platform traps.</strong> Old <code>?PageSpeed=</code>, calendar embeds, or builder preview query strings should not create indexable duplicates. Canonical tags should point at the clean public URL.</li>
+<li><strong>Soft 404s.</strong> A custom “oops” page that returns HTTP 200 for missing paths looks fine in a browser and terrible to search. Missing URLs should 404 (or 410 if permanently gone), and known replacements should 301.</li>
+<li><strong>GBP website field.</strong> Update the Google Business Profile website to the final homepage the day you cut over—not a week later.</li>
+<li><strong>Ads and printed URLs.</strong> Update Google Ads final URLs, Facebook ads, truck wraps, and yard-sign short links that still point at dead paths.</li>
+</ol>
+<p>Google’s documentation on <a href="https://developers.google.com/search/docs/crawling-indexing/301-redirects" rel="noopener noreferrer" target="_blank">redirects</a> and <a href="https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview" rel="noopener noreferrer" target="_blank">sitemaps</a> is the reference; your worksheet is the work.</p>`,
+      },
+      {
+        h2: "Before/after Search Console checks",
+        html: `<p>Do not invent ranking stories. Use your own Search Console property and compare the same date ranges before and after launch.</p>
+<ul>
+<li><strong>Before:</strong> export Pages and Queries for 12–16 months if available; note top landing pages and any coverage errors on money URLs.</li>
+<li><strong>Day 0–3:</strong> confirm the new homepage and key service URLs are reachable, indexed or submitted, and that mapped old URLs 301 correctly.</li>
+<li><strong>Week 1–4:</strong> watch Coverage/Pages for spike in soft 404s or “crawled – currently not indexed” on URLs you care about; watch which landing pages still get clicks.</li>
+<li><strong>Rollback rule:</strong> if a mapped money URL is 404ing or looping, fix the redirect before you rewrite copy. A bad redirect loses the call faster than a plain headline.</li>
+</ul>
+<p>If you do not have Search Console access yet, get it before the next redesign—not after.</p>`,
+      },
+      {
+        h2: "Launch-day checklist",
+        html: `<ul>
+<li>Mobile: tap-to-call in the header works on iOS and Android; nothing covers the number.</li>
+<li>Forms: submit a test lead; notification hits the phone that actually answers.</li>
+<li>Tracking: call-tracking numbers (if any) still ring the shop; Lead System / Plus reports still make sense.</li>
+<li>GBP: website field, hours, and primary category still match the site.</li>
+<li>HTTPS and mixed content: no broken lock icon on service pages.</li>
+<li>404 page: returns a real 404 and offers the phone number anyway.</li>
+<li>Old bookmarks: spot-check five URLs from the mapping sheet on a phone off Wi-Fi.</li>
+</ul>
+<p>Missed-call text-back, when you use it, still needs a dedicated business line; on Lead System or Plus a second tracking number is $1/mo plus carrier rates; carrier approval usually takes 10–15 days and is not guaranteed. Do not assume texts survive a platform change without a re-test.</p>`,
+      },
+      {
+        h2: "First 30 days after launch",
+        html: `<p>Watch calls and form volume the way you watch a new hire—not a vanity dashboard. If a former top landing page dies in Search Console while a soft 404 rises, fix redirects first. If traffic is fine but calls drop, the redesign likely hid the phone or lengthened the form; that is a conversion fix, covered in <a href="/blog/turn-clicks-into-calls">turning clicks into calls</a>.</p>
+<p>Keep a short “known issues” list for the first month: any URL still circulating on ads, any PDF on the truck, any partner site still linking to <code>/services.html</code>. Update those intentionally instead of hoping Google forgets them.</p>`,
+      },
+      {
+        h2: "Start with a homepage you can judge",
+        html: `<p>If you are replacing the site with Kinexis, every plan starts with a free homepage preview in 2 business days, no card and no obligation. Approve it, ask for changes, or walk away before you pay. Then pick Website, Lead System, Plus, or Own It on <a href="/pricing">pricing</a> with the published numbers and terms—no reinvented guarantees on this page.</p>
+<p><a href="/contact">Request your free homepage preview</a> when you are ready to see the first screen on a phone before you bet the map pack on a new URL map.</p>`,
+      },
+    ],
+    faqs: [
+      {
+        q: "Will a redesign tank my Google rankings?",
+        a: "It can if you change URLs without 301s, ship soft 404s, or delete the service pages that earned clicks. A mapped migration with working redirects and the same clear services is how you avoid that. Rankings are never guaranteed.",
+      },
+      {
+        q: "Do I need new URLs for a redesign?",
+        a: "Not always. If paths already match the jobs, keep them and improve the templates. Change paths only when the old structure is confusing or tied to a dead platform.",
+      },
+      {
+        q: "What is a soft 404?",
+        a: "A URL that tells humans the page is missing but still returns HTTP 200. Search engines treat that poorly. Missing pages should 404 or 410; replacements should 301.",
+      },
+      {
+        q: "When should I update Google Business Profile?",
+        a: "Update the website field the day the new homepage is live on the public domain—not while DNS still points at the old host.",
+      },
+      {
+        q: "How do Kinexis plans fit a redesign?",
+        a: "Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497 one-time, with a free homepage preview in 2 business days. Full terms stay on /pricing.",
+      },
+    ],
+  },
 };
