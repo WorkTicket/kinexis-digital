@@ -30,6 +30,8 @@ const DEFAULT_MAX_HITS: Record<string, number> = {
   review: 1,
   "invoice-admin": 20,
   "review-moderate": 40,
+  // First-party RUM beacons — allow a burst, still bound abuse.
+  rum: 40,
 };
 
 type RateState = { hits: number[] };
