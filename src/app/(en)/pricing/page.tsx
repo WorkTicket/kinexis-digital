@@ -45,7 +45,7 @@ const STICKERS: Record<string, { name: Sticker; offer: Sticker }> = {
 
 function PlanSticker({ sticker, kind }: { sticker: Sticker; kind: "name" | "offer" }) {
   // Understate vs ~232–240 CSS so lab DPR prefers 400w; 480w remains available for true 2×.
-  const sizes = "160px";
+  const sizes = "150px";
   return (
     <picture>
       <source type="image/avif" srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS, "avif")} sizes={sizes} />
