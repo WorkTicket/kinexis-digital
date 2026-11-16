@@ -40,6 +40,9 @@
 ## Payments ops
 - Offline reconciliation lives in `src/lib/payment-reconciliation.ts` + `scripts/reconcile-invoice-ledger.mjs`. Remote D1 SELECTs require `RECONCILE_CONFIRM=YES`. Rejected PayPal captures log `kind: "payment_alert"` for Workers Observability; optional SMTP batch alerts are owner-PC only (`RECONCILE_ALERT_MAIL=1`). See `docs/engineering/PAYMENT-RECONCILIATION.md`.
 
+## D1 backups
+- Invoice ledger backups are owner-PC `wrangler d1 export` via `scripts/d1-backup-invoice-ledger.mjs` (`D1_BACKUP_CONFIRM=YES`). Dumps go under gitignored `artifacts/d1-backups/` and must be stored off-repo. Restore is owner-gated; prefer preview binding verification before any production binding change. See `docs/engineering/D1-BACKUP-RESTORE.md`.
+
 ## Security/headers
 - CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)
 - Powered-by header disabled

@@ -24,7 +24,8 @@ cloudflare-env.d.ts
 !.env.production
 .dev.vars
 
-# local scratch
+# local scratch / owner backups (may contain invoice PII)
+/artifacts/
 /New folder/
 .audit/
 .tmp-*
