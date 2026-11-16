@@ -20,6 +20,13 @@ const PANEL_ABOVE_LAUNCHER_PX = 58;
 /** Module-level guard so client navigations / remounts never double-init. */
 let widgetBooted = false;
 
+/**
+ * Page-lifetime positioner. React remounts must NOT tear this down — clearing
+ * the lift on effect cleanup was a regression window where Conferbot sat on the
+ * sticky bar until observers re-armed.
+ */
+let liftArmed = false;
+
 function widgetEnabled() {
   return process.env.NEXT_PUBLIC_CONFERBOT_ENABLED === "1";
 }
@@ -35,22 +42,40 @@ function localeFromPath(pathname: string) {
   return "en";
 }
 
+function cssPx(styles: CSSStyleDeclaration, name: string, fallback: number) {
+  const raw = styles.getPropertyValue(name).trim();
+  if (!raw) return fallback;
+  // Resolve simple `Npx` or leave calc()/max() to measured float path.
+  const n = Number.parseFloat(raw);
+  return Number.isFinite(n) && !raw.includes("(") ? n : fallback;
+}
+
+function viewportHeight() {
+  const vv = window.visualViewport;
+  // Layout viewport height; float getBoundingClientRect is in layout coords.
+  return window.innerHeight || vv?.height || document.documentElement.clientHeight || 0;
+}
+
 /**
  * Conferbot mounts `<conferbot-widget>` with an open shadow root. Launcher
- * `.chatbot__icon` / CTA live inside that shadow with inline bottoms and
+ * `#open-chatbot.chatbot__icon` lives inside that shadow with inline bottoms and
  * widget CSS `bottom:…!important` media queries — light-DOM site CSS never
- * reaches them. Measure the sticky float bar and push the launcher to
- * barHeight + 12px (+ safe-area already reflected in the float's top).
+ * reaches them. Measure `.float-cta` and set bottom = vh - bar.top + 12.
  */
-function startLauncherPositioner(): () => void {
+function startLauncherPositioner() {
+  if (liftArmed || typeof window === "undefined") return;
+  liftArmed = true;
+
   let raf = 0;
-  let pollId = 0;
   let hostObserver: MutationObserver | null = null;
   let classObserver: MutationObserver | null = null;
   let floatObserver: MutationObserver | null = null;
+  let hostAttrObserver: MutationObserver | null = null;
   let shadowObserver: MutationObserver | null = null;
   let resizeObs: ResizeObserver | null = null;
   let watchingHost: Element | null = null;
+  let watchingFloat: Element | null = null;
+  const mobileMq = window.matchMedia(MOBILE_MQ);
 
   const clearShadowLift = (host: HTMLElement) => {
     host.classList.remove(HOST_CLASS);
@@ -60,50 +85,95 @@ function startLauncherPositioner(): () => void {
     host.shadowRoot?.getElementById(STYLE_ID)?.remove();
   };
 
-  const apply = () => {
-    const host = document.querySelector(HOST_SEL) as HTMLElement | null;
-    if (!host?.shadowRoot) return;
+  const bindFloat = (float: Element | null) => {
+    if (float === watchingFloat) return;
+    floatObserver?.disconnect();
+    resizeObs?.disconnect();
+    watchingFloat = float;
+    if (!float) return;
+    floatObserver = new MutationObserver(schedule);
+    floatObserver.observe(float, {
+      attributes: true,
+      attributeFilter: ["class", "style", "inert", "hidden"],
+    });
+    if (typeof ResizeObserver !== "undefined") {
+      resizeObs = new ResizeObserver(schedule);
+      resizeObs.observe(float);
+    }
+  };
 
-    if (watchingHost !== host) {
-      watchingHost = host;
-      shadowObserver?.disconnect();
+  const bindHost = (host: HTMLElement) => {
+    if (watchingHost === host) return;
+    watchingHost = host;
+    shadowObserver?.disconnect();
+    hostAttrObserver?.disconnect();
+
+    if (host.shadowRoot) {
       shadowObserver = new MutationObserver(schedule);
       shadowObserver.observe(host.shadowRoot, {
         childList: true,
         subtree: true,
         attributes: true,
-        attributeFilter: ["style", "class"],
+        attributeFilter: ["style", "class", "id"],
       });
     }
 
-    const mobile = window.matchMedia(MOBILE_MQ).matches;
+    hostAttrObserver = new MutationObserver(schedule);
+    hostAttrObserver.observe(host, {
+      attributes: true,
+      attributeFilter: ["class", "style", "data-cb-own-m-bottom"],
+    });
+  };
+
+  const apply = () => {
+    const host = document.querySelector(HOST_SEL) as HTMLElement | null;
+    if (!host?.shadowRoot) return;
+
+    bindHost(host);
+
+    const mobile = mobileMq.matches;
     if (!mobile) {
       clearShadowLift(host);
       return;
     }
 
     const html = document.documentElement;
+    const htmlStyles = getComputedStyle(html);
     const floatHidden =
       html.classList.contains("no-float") || html.classList.contains("consent-open");
     const float = document.querySelector(".float-cta") as HTMLElement | null;
+    bindFloat(float);
+
     const fr = float?.getBoundingClientRect();
+    const floatCs = float ? getComputedStyle(float) : null;
     // boot.js only adds `.is-in` after the hero; until then the bar is translated
     // off-screen but still has a layout box — require is-in before measuring.
     const floatVisible =
       Boolean(float) &&
       !floatHidden &&
       Boolean(float?.classList.contains("is-in")) &&
-      Boolean(fr && fr.height > 1 && fr.top < window.innerHeight && fr.bottom > 0) &&
-      getComputedStyle(float!).display !== "none" &&
-      getComputedStyle(float!).visibility !== "hidden";
+      Boolean(fr && fr.height > 1 && fr.top < viewportHeight() && fr.bottom > 0) &&
+      floatCs?.display !== "none" &&
+      floatCs?.visibility !== "hidden" &&
+      Number.parseFloat(floatCs?.opacity || "0") > 0.5;
+
+    const stackFloor =
+      cssPx(htmlStyles, "--float-gap", 16) +
+      cssPx(htmlStyles, "--float-bar-h", 96) +
+      GAP_ABOVE_BAR_PX;
 
     let bottomPx: number;
     if (floatVisible && fr) {
       // Distance from viewport bottom to float top, plus ~12px gap.
-      bottomPx = Math.max(GAP_ABOVE_BAR_PX, Math.round(window.innerHeight - fr.top + GAP_ABOVE_BAR_PX));
+      bottomPx = Math.max(
+        GAP_ABOVE_BAR_PX,
+        Math.round(viewportHeight() - fr.top + GAP_ABOVE_BAR_PX),
+      );
+      // Never under-lift relative to the CSS sticky-band floor.
+      bottomPx = Math.max(bottomPx, Math.round(stackFloor));
     } else {
-      const sab = Number.parseFloat(getComputedStyle(html).getPropertyValue("--sab")) || 0;
-      const stackGap = Number.parseFloat(getComputedStyle(html).getPropertyValue("--float-gap")) || 16;
+      const sab = cssPx(htmlStyles, "--sab", 0);
+      const stackGap = cssPx(htmlStyles, "--float-gap", 16);
       bottomPx = Math.round(Math.max(stackGap, sab) + GAP_ABOVE_BAR_PX);
     }
 
@@ -121,9 +191,11 @@ function startLauncherPositioner(): () => void {
     if (!styleEl) {
       styleEl = document.createElement("style");
       styleEl.id = STYLE_ID;
-      host.shadowRoot.appendChild(styleEl);
     }
+    // Always re-append so our rules stay after Conferbot stylesheets it injects later.
+    host.shadowRoot.appendChild(styleEl);
     styleEl.textContent = `
+:host(.${HOST_CLASS}) #open-chatbot.chatbot__icon,
 :host(.${HOST_CLASS}) .chatbot__icon{
   bottom:var(--kx-chat-bottom)!important;
 }
@@ -136,14 +208,15 @@ function startLauncherPositioner(): () => void {
 }
 `.trim();
 
-    const icon = host.shadowRoot.querySelector(".chatbot__icon") as HTMLElement | null;
+    const icon = host.shadowRoot.querySelector(
+      "#open-chatbot.chatbot__icon, .chatbot__icon",
+    ) as HTMLElement | null;
     if (icon) icon.style.setProperty("bottom", bottom, "important");
 
     const cta = host.shadowRoot.querySelector(
       ".chatbot__icon__cta, #chat-cta",
     ) as HTMLElement | null;
     if (cta) {
-      // Greet bubble often uses `inset: … !important`; longhand bottom alone can lose.
       cta.style.setProperty("bottom", ctaBottom, "important");
       const inset = cta.style.inset || cta.getAttribute("style") || "";
       if (/inset\s*:/i.test(inset) || cta.style.getPropertyValue("inset")) {
@@ -159,7 +232,9 @@ function startLauncherPositioner(): () => void {
 
   const schedule = () => {
     cancelAnimationFrame(raf);
-    raf = requestAnimationFrame(apply);
+    raf = requestAnimationFrame(() => {
+      requestAnimationFrame(apply);
+    });
   };
 
   hostObserver = new MutationObserver(schedule);
@@ -168,48 +243,21 @@ function startLauncherPositioner(): () => void {
   classObserver = new MutationObserver(schedule);
   classObserver.observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ["class"],
+    attributeFilter: ["class", "style"],
   });
 
   window.addEventListener("resize", schedule);
+  window.addEventListener("orientationchange", schedule);
   window.visualViewport?.addEventListener("resize", schedule);
   window.visualViewport?.addEventListener("scroll", schedule);
-  window.matchMedia(MOBILE_MQ).addEventListener("change", schedule);
-
-  const float = document.querySelector(".float-cta");
-  if (float) {
-    floatObserver = new MutationObserver(schedule);
-    floatObserver.observe(float, { attributes: true, attributeFilter: ["class", "style", "inert"] });
-    if (typeof ResizeObserver !== "undefined") {
-      resizeObs = new ResizeObserver(schedule);
-      resizeObs.observe(float);
-    }
-  }
-
+  mobileMq.addEventListener("change", schedule);
   window.addEventListener("scroll", schedule, { passive: true });
 
+  bindFloat(document.querySelector(".float-cta"));
   schedule();
-  pollId = window.setInterval(schedule, 500);
-  window.setTimeout(() => {
-    if (pollId) window.clearInterval(pollId);
-    pollId = 0;
-  }, 20_000);
-
-  return () => {
-    if (pollId) window.clearInterval(pollId);
-    cancelAnimationFrame(raf);
-    hostObserver?.disconnect();
-    classObserver?.disconnect();
-    floatObserver?.disconnect();
-    shadowObserver?.disconnect();
-    resizeObs?.disconnect();
-    window.removeEventListener("resize", schedule);
-    window.removeEventListener("scroll", schedule);
-    window.visualViewport?.removeEventListener("resize", schedule);
-    window.visualViewport?.removeEventListener("scroll", schedule);
-    const host = document.querySelector(HOST_SEL) as HTMLElement | null;
-    if (host) clearShadowLift(host);
-  };
+  // Keep syncing for the life of the page — Conferbot rewrites launcher styles
+  // well after first paint; a 20s poll cutoff left a wipe window.
+  window.setInterval(schedule, 1000);
 }
 
 /**
@@ -225,13 +273,10 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
     if (typeof window === "undefined") return;
     if (window.location.pathname.startsWith("/admin")) return;
 
-    const stopPositioner = startLauncherPositioner();
+    // Arm once for the page lifetime (survives React remount / locale changes).
+    startLauncherPositioner();
 
-    if (widgetBooted) {
-      return () => {
-        stopPositioner();
-      };
-    }
+    if (widgetBooted) return;
 
     let idleTimer: ReturnType<typeof setTimeout> | undefined;
     let idleCallbackId: number | undefined;
@@ -261,6 +306,9 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
             message: error instanceof Error ? error.message : "unknown",
           });
         }
+        // Host may appear a tick after boot — nudge the page-lifetime positioner.
+        startLauncherPositioner();
+        window.dispatchEvent(new Event("resize"));
       };
 
       const existing = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
@@ -338,7 +386,8 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
     return () => {
       cleaned = true;
       cleanupTriggers();
-      stopPositioner();
+      // Intentionally do NOT stop the launcher positioner or clear the lift —
+      // remounts must not drop the bubble back onto the sticky bar.
     };
   }, [locale]);
 
