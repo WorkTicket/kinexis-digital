@@ -198,14 +198,14 @@ export const POSTS = [
   {
     slug: "local-seo-get-found-get-called",
     category: "SEO",
-    title: "Local SEO That Connects Searches to Calls",
-    seoTitle: "Local SEO for Service Businesses",
-    excerpt: "Use honest service areas, useful service pages, and consistent business details to help Google and customers understand the business.",
+    title: "Local SEO Checklist for Contractors: Get Found and Get Called",
+    seoTitle: "Local SEO Checklist for Contractors: Get Found and Get Called",
+    excerpt: "A practical local SEO checklist for contractors: honest service areas, clear service pages, matching Google profile details, and a phone that rings.",
     image: "/blog/get-found-and-calls-from-google-new.webp",
     width: 1567,
     height: 1004,
     date: "2026-04-18",
-    modified: "2026-11-13T16:00:00-05:00",
+    modified: "2026-11-16T00:00:00-05:00",
     readTime: "27 min read",
   },
   {

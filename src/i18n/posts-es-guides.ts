@@ -108,9 +108,9 @@ export const ES_GUIDE_STUBS: EsPost[] = [
   {
     "slug": "local-seo-get-found-get-called",
     "category": "SEO",
-    "title": "SEO local para que te encuentren y te llamen",
-    "seoTitle": "SEO local para negocios de servicios en EE. UU.",
-    "excerpt": "El SEO local no es repetir el nombre de la ciudad en cincuenta páginas. Es una zona real, páginas de servicio y un perfil de Google que coincide.",
+    "title": "Lista de SEO local para contratistas: que te encuentren y te llamen",
+    "seoTitle": "Lista de SEO local para contratistas: que te encuentren y te llamen",
+    "excerpt": "Lista práctica de SEO local para contratistas: zona honesta, páginas de servicio claras, perfil de Google alineado y un teléfono que sí suena.",
     "lead": "Google tiene que entender qué negocio tienes y dónde trabajas. El cliente tiene que poder llamarte cuando te encuentra. Las dos cosas fallan cuando el sitio es una plantilla con el nombre del pueblo cambiado.",
     "sections": [
       {
