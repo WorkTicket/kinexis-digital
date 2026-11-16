@@ -6,7 +6,7 @@ export type PillarPostBody = {
 
 export const PILLAR_POSTS: Record<string, PillarPostBody> = {
   "local-seo-get-found-get-called": {
-    lead: `It is 7:40 on a Tuesday. A homeowner is standing in the driveway with a phone in one hand and a hose bib that will not shut off in the other. They type “plumber near me,” tap the first name that looks open, and call. If your number on that listing is the old shop line, or your site says you do not come to that side of town, the job is gone before you finish the call you are already on. Local SEO is the unglamorous work of making that moment land on you: the right category, an honest service area, a page that matches the job they searched, and a phone that actually rings. It is not a stack of town pages with the city name swapped, and it is not a promise that you will sit in position one.`,
+    lead: `It is 7:40 on a Tuesday. A homeowner is standing in the driveway with a phone in one hand and a hose bib that will not shut off in the other. They type “plumber near me,” tap the first name that looks open, and call. If your number on that listing is the old shop line, or your site says you do not come to that side of town, the job is gone before you finish the call you are already on. This local SEO checklist is the unglamorous work of making that moment land on you: the right category, an honest service area, a page that matches the job they searched, and a phone that actually rings. It is not a stack of town pages with the city name swapped, and it is not a promise that you will sit in position one.`,
     sections: [
       {
         h2: "The search happens next to the problem",

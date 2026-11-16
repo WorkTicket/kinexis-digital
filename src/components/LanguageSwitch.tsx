@@ -5,8 +5,7 @@ import { switchHref, type Locale } from "@/lib/locale-core";
 
 const LANGS = [
   { locale: "en", hrefLang: "en-US", name: "English" },
-  { locale: "es-419", hrefLang: "es", name: "Español · Latinoamérica" },
-  { locale: "es-ES", hrefLang: "es-ES", name: "Español · España" },
+  { locale: "es-419", hrefLang: "es", name: "Español" },
 ] as const;
 
 /** Full document links preserve the correct document language on navigation. */

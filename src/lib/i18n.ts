@@ -54,7 +54,7 @@ export function ogLocale(locale: Locale): string {
 
 /**
  * Indexable locales for Google. `/es` (Latam / US Spanish) stays in search.
- * `/es-es` (Spain) is visitors-only: noindex, out of sitemap and hreflang.
+ * `/es-es` permanently redirects to `/es` (owner-approved); do not index it.
  */
 export function localeIndexable(locale: Locale): boolean {
   return locale === "en" || locale === "es-419";
@@ -62,7 +62,7 @@ export function localeIndexable(locale: Locale): boolean {
 
 /**
  * hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid
- * hreflang code. Spain (`es-ES`) is omitted because that locale is noindex.
+ * hreflang code. Spain (`es-ES`) is omitted — `/es-es` 301s to `/es`.
  */
 export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
   const en = englishPath(pathname);
@@ -152,7 +152,7 @@ function target(pathname,locale){
   var en=enPath(pathname);
   if(!mirrored(en))return "";
   if(locale==="en")return en;
-  if(locale==="es-ES")return en==="/"?"/es-es":"/es-es"+en;
+  // Spain and LatAm both land on indexable /es (Spain URLs 301 there).
   return en==="/"?"/es":"/es"+en;
 }
 })();`;
