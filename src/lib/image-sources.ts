@@ -30,8 +30,10 @@ export const IMAGE_SIZES = {
   art: "(max-width: 860px) 240px, 420px",
   /** Industry photo hero — CSS full column ≤560–620. */
   industryHero: "(max-width: 860px) 270px, 480px",
-  /** Homepage film poster — CSS ~360px mobile / ~560 desktop. */
-  heroFilm: "(max-width: 720px) 270px, 560px",
+  /** Homepage film poster — CSS ~full column mobile (~360) / ~560 desktop.
+   *  Keep sizes aligned with the real slot so preload + <picture> pick the same
+   *  candidate (PSI double-fetch / resource-load-delay). */
+  heroFilm: "(max-width: 720px) 360px, 560px",
   /** Home section stickers (trades/reviews) — CSS ≤420–480; variants start at 640w. */
   homeSection: "(max-width: 720px) 300px, 360px",
   /** Blog index cards — CSS ~full column mobile / ~380 desktop. */

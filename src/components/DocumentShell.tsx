@@ -26,8 +26,10 @@ const defaultDescription = descriptionWithFallback(
 
 /** Stable public URL so preload and @font-face share one cacheable file. */
 const DISPLAY_FONT_HREF = "/assets/fonts/poppins-latin-800.woff2";
-/** Home LCP poster — kept out of getRequestPath so DocumentShell stays sync (async shell drops experimental.inlineCss). */
-const HERO_POSTER_PRELOAD_HREF = imageVariant(HERO_POSTER, 280, "avif");
+/** Home LCP poster href — 560w matches desktop sizes; mobile (360×~1.75 DPR) selects 768w via imagesrcset.
+ *  Must go through react-dom preload() so Next emits an early hint WITH href before
+ *  precedence-inlined CSS (plain <link> in DocumentShell lands after the ~240KB stylesheet). */
+const HERO_POSTER_PRELOAD_HREF = imageVariant(HERO_POSTER, 560, "avif");
 
 export const documentMetadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -90,17 +92,28 @@ export default function DocumentShell({
   // Same URL as @font-face. Without this, Display 800 is discovered late via CSS and
   // swapping it in shifts page-hero art (CLS ~0.15 on about/portfolio).
   preload(DISPLAY_FONT_HREF, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+  // Home poster: react-dom preload(href, …) is what lands before <style data-precedence>
+  // with a real href. A head <link> alone is reordered after the inlined CSS (~240KB),
+  // which is the resource-load-delay seen on `/` and `/es` in PSI.
+  preload(HERO_POSTER_PRELOAD_HREF, {
+    as: "image",
+    imageSrcSet: HERO_POSTER_AVIF_SRCSET,
+    imageSizes: HERO_POSTER_SIZES,
+    type: "image/avif",
+    fetchPriority: "high",
+  });
 
   return (
     <html lang={htmlLang(locale)} data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
-        {/* Preloads first — before FOUC CSS / inline scripts — so LCP discovery is not delayed.
-            Home poster is unconditional: path gating via headers() needs an async shell, which
-            drops experimental.inlineCss (<style data-href>) and fails check-css-inlined.
-            Interior page-hero art uses a sync pathname boot (same constraint) so /portfolio,
-            /pricing, /case-studies/*, etc. discover 480w AVIF before the inlined stylesheet. */}
+        {/* Resource hints: react-dom preload() above emits the early font + poster hints
+            (with href) before <style data-precedence>. These explicit <link>s stay as
+            document-order fallbacks (Next may place them after inlined CSS).
+            Home poster is unconditional: path gating via headers() needs an async shell,
+            which drops experimental.inlineCss and fails check-css-inlined.
+            Interior page-hero art uses a sync pathname boot for the same constraint. */}
         <link rel="preload" as="font" href={DISPLAY_FONT_HREF} type="font/woff2" crossOrigin="anonymous" />
         <link
           rel="preload"
