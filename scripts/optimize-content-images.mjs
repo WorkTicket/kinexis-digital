@@ -127,6 +127,14 @@ for (const file of portfolioFiles.filter((name) => !name.endsWith("-640.webp") &
   const master = path.join(portfolioDir, file);
   await rebuildFromMaster(master, master.replace(/\.webp$/, "-640.webp"), { width: 640, webpQuality: 86 });
 }
+// Hover-scroll frames display ~280px / 46vw — keep 320w WebP+AVIF in sync (see generate-portfolio-shot-widths.mjs).
+for (const file of portfolioFiles.filter((name) => name.endsWith("-640.webp") && !name.includes("-scores-"))) {
+  const master = path.join(portfolioDir, file);
+  const stem = master.replace(/-640\.webp$/, "");
+  await rebuildFromMaster(master, `${stem}-320.webp`, { width: 320, webpQuality: 82 });
+  await rebuildFromMaster(master, `${stem}-320.avif`, { width: 320, format: "avif" });
+  await rebuildFromMaster(master, `${stem}-640.avif`, { width: 640, format: "avif" });
+}
 for (const file of portfolioFiles.filter((name) => name.endsWith("-devices.webp"))) {
   const master = path.join(portfolioDir, file);
   await rebuildFromMaster(master, master.replace(/\.webp$/, "-sm.webp"), { width: 768, webpQuality: 86 });

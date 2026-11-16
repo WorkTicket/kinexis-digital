@@ -9,5 +9,7 @@ export {
   getProject,
   portfolioDeviceFile,
   portfolioFile,
+  portfolioShotSrcSet,
   portfolioScoresFile,
 } from "@/data/portfolio";
+export type { PortfolioShotWidth } from "@/data/portfolio";

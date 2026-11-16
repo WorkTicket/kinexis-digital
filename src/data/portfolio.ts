@@ -60,15 +60,28 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning", "Events", "Specialty"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "33";
+export const PORTFOLIO_ASSET_VERSION = "34";
 
-export function portfolioFile(image: string, width: 640 | 1100 | "card" = 1100) {
+export type PortfolioShotWidth = 320 | 640 | 1100 | "card";
+
+export function portfolioFile(
+  image: string,
+  width: PortfolioShotWidth = 1100,
+  format: "webp" | "avif" = "webp",
+) {
+  const stem = image.replace(/\.webp$/, "");
+  const ext = format === "avif" ? ".avif" : ".webp";
   const file = width === "card"
-    ? image.replace(/\.webp$/, "-card.webp")
-    : width === 640
-      ? image.replace(/\.webp$/, "-640.webp")
-      : image;
+    ? `${stem}-card${ext}`
+    : width === 320 || width === 640
+      ? `${stem}-${width}${ext}`
+      : `${stem}${ext}`;
   return `${file}?v=${PORTFOLIO_ASSET_VERSION}`;
+}
+
+/** Hover-scroll frames: lab display ~280px / 46vw — prefer 320w, keep 640w for DPR. */
+export function portfolioShotSrcSet(image: string, format: "webp" | "avif" = "webp") {
+  return `${portfolioFile(image, 320, format)} 320w, ${portfolioFile(image, 640, format)} 640w`;
 }
 
 export function portfolioDeviceFile(image: string, width: 768 | 1536 = 1536) {
