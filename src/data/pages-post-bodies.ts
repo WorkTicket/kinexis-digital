@@ -395,6 +395,46 @@ export const PAGES_TRADE_SPECS: PagesTradeSpec[] = [
       { q: "Do one-time yard cleanups need a different path than weekly mowing?", a: "Yes. Cleanup leads and weekly route members schedule differently. Separate CTAs keep dispatch from treating a leaf-out job like a recurring mow." }
     ],
     proofHtml: `<p>When a live lawn-care client site is annotated on the hub, we call out honest service-area maps and ZIP/frequency signup. Until then, use the service list above and a free homepage preview.</p>`,
+  },
+  {
+    slug: "junk-removal",
+    postSlug: "junk-removal-website-pages",
+    noun: "junk removal company",
+    article: "a",
+    specificH2: "Junk Removal-Specific Service Pages",
+    pagesFaqAnswer: "Home; same-week haul-away; estate/garage cleanouts; recurring property hauls if real; service area; about; reviews; contact with phone + short load form. Avoid thin city doorway pages.",
+    leadFocus: "Curb piles want the phone. Estate cleanouts want volume and access notes. Split the paths so a mattress lead is not forced through a ten-field cleanout form—and keep the dump schedule honest.",
+    servicesHtml: `<p>Junk removal sites fail when every pile shares one “we haul anything” page. A curb mattress wants tap-to-call and a same-week window you can keep. A garage or estate cleanout wants volume, access (stairs, elevator, gate codes), and a quieter estimate form. Landlord or HOA recurring hauls belong only when you actually run those routes.</p><p>Split <strong>same-week haul-away</strong> from <strong>planned cleanouts</strong>. Invite photo estimates where you use them, with a clear note that final price may still need a truck visit. Service-area honesty matters when dump runs are full. Stock before-and-afters without your trucks train the next customer to expect someone else’s crew.</p><p>See <a href="/industries/junk-removal">junk removal website design</a>, <a href="/blog/junk-removal-website-cost">junk removal website cost</a>, and <a href="/pricing">/pricing</a> for Website $97/mo, Lead System $197/mo, Plus $297/mo, and Own It $1,497.</p><p>Ship haul-away and cleanout before tip blogs. Plan ceilings: Website 5 / Lead System 10 / Plus 20 EN+ES / Own It 10.</p>`,
+    journeyH2: "Same-week curb haul vs estate cleanout journeys",
+    journeyHtml: `<p>Urgent curb loads are phone-first journeys. Planned cleanouts are quote journeys: load size, access, optional photos, then a scheduled truck. Recurring property hauls—if real—need a route-style signup, not a panic CTA. Keep those next steps from sharing one button.</p><p>Lead with same-week haul if that pays most weeks. Keep cleanouts visible. Decline outside-area ZIPs early instead of promising a truck you cannot send.</p><ul><li>Same-week: phone first, honest windows</li><li>Cleanouts: volume/access form</li><li>Recurring hauls: only if you run them</li></ul><p>Free homepage preview in 2 business days, no card: <a href="/contact">/contact</a>.</p>`,
+    formH2: "Junk quote forms: load size and access before deep inventories",
+    formHtml: `<p>Keep the first form short: name, phone, city, job type (curb haul / cleanout / recurring), rough load size, and access notes. Optional photos help triage. Do not demand a full room-by-room inventory before someone can dial about a couch on the driveway.</p><p>After submit, say when the office confirms the window—and keep that promise. Build haul-away and cleanout pages first against plan ceilings on <a href="/pricing">/pricing</a>.</p>`,
+    extraFaqs: [
+      { q: "Should curb loads and cleanouts share one junk removal page?", a: "Better as separate paths when you sell both. Urgent haul-away and planned cleanouts need different CTAs and fields. One blob produces mismatched quotes." },
+      { q: "What belongs on a junk removal quote form?", a: "Name, phone, city, job type, rough load size, access notes, and optional photos. Save deep inventories for the truck visit when you need them." },
+      { q: "Can I list same-day junk removal if I only cover certain ZIPs?", a: "Say same-day only where you can keep the promise, and list the area clearly. Overpromising outside your dump route creates no-shows." }
+    ],
+    proofHtml: `<p>When a live junk-removal client site is annotated on the hub, we call out haul vs cleanout splits and phone-first curb CTAs. Until then, use the service list above and a free homepage preview.</p>`,
+  },
+  {
+    slug: "tree-care",
+    postSlug: "tree-service-website-pages",
+    noun: "tree service",
+    article: "a",
+    specificH2: "Tree Service-Specific Service Pages",
+    pagesFaqAnswer: "Home; trimming; removals; storm calls; insurance/safety cues near phone; service area; about; reviews; consult-focused contact for planned work. Avoid thin city doorway pages and fake 24/7 badges.",
+    leadFocus: "Storm limbs want the phone. Planned trims and removals want photos, insurance cues, and a consult. Split the paths so a canopy thin is not forced through a panic storm banner.",
+    servicesHtml: `<p>Tree service websites collapse when storm work, trimming, and full removals share one “tree services” dump. Storm callers need a phone and an honest response window. Trim and removal shoppers need real crew photos, insurance cues near the call button, and a consult that does not feel like a tow truck.</p><p>Give <strong>trimming</strong>, <strong>removals</strong>, and <strong>storm calls</strong> their own pages when you sell them. Stump grinding earns a URL only when you offer it. Service-area honesty matters when you run two trucks—not a fantasy metro radius. Put insurance and safety proof beside the phone, not three scrolls under a stock oak.</p><p>See <a href="/industries/tree-care">tree service website design</a>, <a href="/blog/tree-service-website-cost">tree service website cost</a>, and <a href="/pricing">/pricing</a> for Website $97/mo, Lead System $197/mo, Plus $297/mo, and Own It $1,497.</p><p>Ship trim, removal, and storm before tip blogs. Plan ceilings: Website 5 / Lead System 10 / Plus 20 EN+ES / Own It 10.</p>`,
+    journeyH2: "Storm phone path vs planned trim/removal consult",
+    journeyHtml: `<p>Storm and hazard limbs are urgency journeys: phone first, short symptom, roll when you can. Planned canopy work is a consult journey: photos, insurance cues, site visit, then schedule. If the site only screams emergency, planned shoppers feel oversold. If it only pushes portfolios, storm callers leave.</p><p>After weather, put both paths on the homepage. Keep stump language honest—or leave it off.</p><ul><li>Storm: phone first</li><li>Trim/removal: consult + photos</li><li>Stump: only if offered</li></ul><p>Free homepage preview in 2 business days, no card: <a href="/contact">/contact</a>.</p>`,
+    formH2: "Tree service forms: phone-first storm, short consult for planned work",
+    formHtml: `<p>Storm pages: tap-to-call primary. Backup form—name, phone, symptom (limb on roof / blocking drive / hanging), city. Do not require tree species essays before someone can dial about a limb on the house.</p><p>Trim/removal consult forms: name, phone, city, job type, rough notes, optional photos. After submit, say when the office confirms the site visit. Build against Website 5 / Lead System 10 / Plus 20 EN+ES / Own It 10 ceilings on <a href="/pricing">/pricing</a>.</p>`,
+    extraFaqs: [
+      { q: "Should storm and trim share one tree service page?", a: "Better as separate paths. Storm callers need the phone; planned work needs a consult. One vague page makes both leads messier." },
+      { q: "Where should insurance cues appear?", a: "Near the phone on the homepage and contact areas—not only on About. Bid shoppers look for credentials before long service copy." },
+      { q: "Can I advertise 24/7 storm response if nights are on-call only?", a: "Put the hours you actually answer. If after-hours is limited, say that near the phone. Fake 24/7 claims burn trust faster than a quieter, honest window." }
+    ],
+    proofHtml: `<p>When a live tree-care client site is annotated on the hub, we call out trim/removal/storm splits and insurance cues near the phone. Until then, use the service list above and a free homepage preview.</p>`,
   }];
 
 /** Generated English bodies keyed by blog slug. */
