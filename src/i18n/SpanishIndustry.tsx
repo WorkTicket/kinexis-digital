@@ -112,8 +112,7 @@ export default function SpanishIndustry({
           <p className="center muted industry-section-lead">{tx("Estas son las búsquedas y trabajos que el sitio debe dejar claros.")}</p>
         </div>
         <ReviewRail
-          steps={industry.services.map((point, index) => ({
-            n: String(index + 1),
+          steps={industry.services.map((point) => ({
             title: point.title,
             text: point.text,
             icon: point.icon,

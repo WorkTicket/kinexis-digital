@@ -140,8 +140,7 @@ export default async function IndustryPage({ params }: Props) {
           <p className="center muted industry-section-lead">These are the searches and jobs {industry.name.toLowerCase()} owners need the site to handle clearly.</p>
         </div>
         <ReviewRail
-          steps={industry.services.map((point, index) => ({
-            n: String(index + 1),
+          steps={industry.services.map((point) => ({
             title: point.title,
             text: point.text,
             icon: point.icon,
