@@ -41,6 +41,14 @@ import ReviewsSection from "@/components/ReviewsSection";
 import ProjectCard from "@/components/ProjectCard";
 import Stepper, { type Step } from "@/components/Stepper";
 import PlanCompare from "@/components/PlanCompare";
+import OwnershipCompare from "@/components/OwnershipCompare";
+import {
+  ES_OWNERSHIP,
+  ES_PLAN_CHOOSER_BLURB,
+  ES_PLAN_COMPARISON,
+  ES_TEXTBACK_FOOTNOTE_ITEMS,
+  spanishCatalogPlansForCompare,
+} from "@/i18n/spanish-plan-compare";
 import { CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 
@@ -64,6 +72,7 @@ const PAGE_META: Record<SpanishStaticPath, Meta> = {
   "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee reseñas de clientes de Kinexis Digital en este sitio, Trustpilot y Facebook, y deja la tuya en unos clics cuando quieras." },
   "/upgrades": { title: "Extras y mejoras para sitios web", description: "Agrega páginas, mantenimiento continuo u otras mejoras cuando tu sitio web y tu negocio las necesiten, sin complicar tu operación diaria." },
   "/pricing": { title: "Costo de un sitio web para negocios", description: "Planes desde $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis en 2 días hábiles. Sin tarjeta." },
+  "/pay": { title: "Paga tu plan de sitio web | Kinexis Digital", absolute: true, description: "Elige Website, Lead System, Plus u Own It y paga de forma segura con PayPal. Precios en USD sin cambios: $97, $197, $297 o $1,497." },
   "/blog": { title: "Recursos de diseño web y SEO", description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento en Estados Unidos." },
   "/faqs": { title: "Preguntas frecuentes de diseño web", description: "Respuestas claras sobre precios, cobro, propiedad del sitio, lanzamiento, SEO, fotos, redacción y mantenimiento web antes de empezar." },
   "/update": { title: "Solicita una actualización del sitio", description: "Indica qué página necesita un cambio y adjunta cualquier archivo útil. Atendemos cada solicitud según el alcance y los tiempos de tu plan." },
@@ -255,7 +264,18 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             feature: tx("Función"),
             ownershipHeading: tx("Own It frente a planes mensuales administrados"),
             ownershipMark: tx("planes mensuales administrados"),
+            mobileHint: tx("Toca un plan para ver qué incluye. Abre dos para comparar."),
+            popularLabel: tx("El más elegido"),
+            notesAria: tx("Guía de planes y detalles del texto si no contestas"),
+            textbackLabel: tx("Texto si no contestas"),
           }}
+          comparison={ES_PLAN_COMPARISON}
+          ownership={ES_OWNERSHIP}
+          chooserBlurb={tx(ES_PLAN_CHOOSER_BLURB)}
+          textbackItems={ES_TEXTBACK_FOOTNOTE_ITEMS}
+          plans={spanishCatalogPlansForCompare(tx)}
+          includedLabel={tx("Incluido")}
+          hideStickers={spainChrome}
         />
       </Section>
       <Section band="lead">
@@ -558,7 +578,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             </article>
           ))}
         </div>
-        <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link className="trust-mark" href="/pay" hrefLang="en-US" prefetch={false}>{tx("Seguir al pago")}</Link>. {tx("La caja está en inglés.")}</p>
+        <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link className="trust-mark" href={href("/pay")} prefetch={false}>{tx("Seguir al pago")}</Link>.</p>
         <div className="guarantee-stack">
           <div className="guarantee-band">
             <GuaranteeBadge alt={tx("Garantía de leads rastreados de 60 días")} />
@@ -652,6 +672,11 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         <div className="table-scroll pricing-comparison-table"><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
           {table.map((section) => <tbody key={section.group}><tr className="plan-table__group"><th colSpan={5}><span>{section.group}</span></th></tr>{section.rows.map(([label, ...values]) => <tr key={label}><th scope="row">{label}</th>{values.map((value, i) => <td className={i === 1 ? "is-pop" : undefined} key={`${label}-${i}`}>{value}</td>)}</tr>)}</tbody>)}
         </table></div>
+        <OwnershipCompare
+          heading={tx(ES_OWNERSHIP.headline)}
+          mark={tx("planes mensuales administrados")}
+          data={ES_OWNERSHIP}
+        />
       </Section>
       <Section>
         <h2 className="center"><HL text={tx("Costo del sitio por oficio")} mark={tx("por oficio")} /></h2>

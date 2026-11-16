@@ -16,6 +16,7 @@ export const SPANISH_STATIC_META_PATHS = [
   "/reviews",
   "/upgrades",
   "/pricing",
+  "/pay",
   "/blog",
   "/faqs",
   "/update",

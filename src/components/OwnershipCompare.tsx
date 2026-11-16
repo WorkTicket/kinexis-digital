@@ -1,5 +1,5 @@
-import { OWNERSHIP_COMPARE } from "@/lib/plans-catalog";
 import { HL } from "@/components/ui";
+import { EN_OWNERSHIP, type OwnershipCompareData } from "@/i18n/spanish-plan-compare";
 
 /**
  * Own It vs monthly — desktop table + mobile-first stacked cards.
@@ -7,34 +7,37 @@ import { HL } from "@/components/ui";
 export default function OwnershipCompare({
   heading,
   mark = "monthly managed plans",
+  data = EN_OWNERSHIP,
 }: {
   heading?: string;
   mark?: string;
+  data?: OwnershipCompareData;
 }) {
-  const title = heading ?? OWNERSHIP_COMPARE.headline;
+  const title = heading ?? data.headline;
+  const { labels } = data;
 
   return (
     <div className="plan-compare__ownership">
       <h3 className="center">
         <HL text={title} mark={mark} />
       </h3>
-      <p className="center muted">{OWNERSHIP_COMPARE.intro}</p>
+      <p className="center muted">{data.intro}</p>
 
-      <div className="own-path-cards" aria-label="Ownership comparison">
-        {OWNERSHIP_COMPARE.rows.map((row) => (
+      <div className="own-path-cards" aria-label={labels.aria}>
+        {data.rows.map((row) => (
           <article className="own-path-card" key={row.path}>
             <h4 className="own-path-card__title">{row.path}</h4>
             <dl className="own-path-card__list">
               <div className="own-path-card__row">
-                <dt>24-month illustration</dt>
+                <dt>{labels.cost24}</dt>
                 <dd>{row.cost24}</dd>
               </div>
               <div className="own-path-card__row">
-                <dt>Ownership</dt>
+                <dt>{labels.ownership}</dt>
                 <dd>{row.ownership}</dd>
               </div>
               <div className="own-path-card__row">
-                <dt>If you leave</dt>
+                <dt>{labels.afterCancel}</dt>
                 <dd>{row.afterCancel}</dd>
               </div>
             </dl>
@@ -46,14 +49,14 @@ export default function OwnershipCompare({
         <table className="plan-table plan-compare__own-table">
           <thead>
             <tr>
-              <th scope="col">Path</th>
-              <th scope="col">24-month illustration</th>
-              <th scope="col">Ownership</th>
-              <th scope="col">If you leave</th>
+              <th scope="col">{labels.path}</th>
+              <th scope="col">{labels.cost24}</th>
+              <th scope="col">{labels.ownership}</th>
+              <th scope="col">{labels.afterCancel}</th>
             </tr>
           </thead>
           <tbody>
-            {OWNERSHIP_COMPARE.rows.map((row) => (
+            {data.rows.map((row) => (
               <tr key={row.path}>
                 <th scope="row">{row.path}</th>
                 <td>{row.cost24}</td>
@@ -65,7 +68,7 @@ export default function OwnershipCompare({
         </table>
       </div>
 
-      <p className="plan-notes__legal">{OWNERSHIP_COMPARE.footnote}</p>
+      <p className="plan-notes__legal">{data.footnote}</p>
     </div>
   );
 }
