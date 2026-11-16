@@ -34,6 +34,8 @@ export const KEYWORD_OWNERSHIP: KeywordOwnership[] = [
     owns: "/industries/remodeling",
     notes: "Hub (may be hold until Phase 3)",
   },
+  { intent: "junk removal website design", owns: "/industries/junk-removal", notes: "Hub" },
+  { intent: "tree service website design", owns: "/industries/tree-care", notes: "Hub" },
   {
     intent: "contractor website cost",
     owns: "/pricing",
@@ -56,6 +58,8 @@ export const KEYWORD_OWNERSHIP: KeywordOwnership[] = [
   { intent: "pool service website cost", owns: "/blog/pool-service-website-cost" },
   { intent: "window cleaning website cost", owns: "/blog/window-cleaning-website-cost" },
   { intent: "lawn care website cost", owns: "/blog/lawn-care-website-cost" },
+  { intent: "junk removal website cost", owns: "/blog/junk-removal-website-cost" },
+  { intent: "tree service website cost", owns: "/blog/tree-service-website-cost" },
   {
     intent: "contractor website checklist",
     owns: "/blog/web-design-for-contractors",

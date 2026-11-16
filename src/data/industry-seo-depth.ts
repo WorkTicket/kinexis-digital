@@ -236,6 +236,46 @@ export const INDUSTRY_SEO_DEPTH: Record<string, IndustrySeoDepth> = {
       ),
     ),
   },
+  "junk-removal": {
+    pagesList: [
+      "Same-Week Haul-Away",
+      "Estate / Garage Cleanouts",
+      "Recurring Property Hauls",
+      "Quote Form",
+      "Service Area",
+      "Reviews",
+      "About",
+      "Contact",
+    ],
+    examples: examples(
+      demoExample(
+        "good-riddance-junk",
+        "Demo junk removal template: urgent curb loads and planned cleanouts stay on different paths with a short quote form.",
+      ),
+      demoExample(
+        "haulgood",
+        "Second demo layout emphasizing load size, access notes, and a clear phone path for same-week hauls.",
+      ),
+    ),
+  },
+  "tree-care": {
+    pagesList: [
+      "Tree Trimming",
+      "Tree Removal",
+      "Storm / Emergency Calls",
+      "Insurance / Safety Notes",
+      "Service Area",
+      "Reviews",
+      "About",
+      "Contact",
+    ],
+    examples: examples(
+      demoExample(
+        "graft-tree-care",
+        "Demo tree care template: trimming, removals, and storm work stay distinct, with insurance cues near the first call button.",
+      ),
+    ),
+  },
 };
 
 export function industryProcessStepsEn(tradeNoun: string) {

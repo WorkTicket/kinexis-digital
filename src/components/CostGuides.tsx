@@ -9,6 +9,8 @@ const COST_GUIDES = [
   { slug: "landscaping", name: "Landscaping", title: "landscaping website cost" },
   { slug: "garage-doors", name: "Garage Doors", title: "garage door website cost" },
   { slug: "pressure-washing", name: "Pressure Washing", title: "pressure washing website cost" },
+  { slug: "junk-removal", name: "Junk Removal", title: "junk removal website cost" },
+  { slug: "tree-care", name: "Tree Care", title: "tree service website cost" },
 ] as const;
 
 const DESIGN_GUIDES = [
@@ -19,6 +21,8 @@ const DESIGN_GUIDES = [
   { slug: "garage-doors", name: "Garage Doors", title: "garage door website design" },
   { slug: "landscaping", name: "Landscaping", title: "landscaping website design" },
   { slug: "pressure-washing", name: "Pressure Washing", title: "pressure washing website design" },
+  { slug: "junk-removal", name: "Junk Removal", title: "junk removal website design" },
+  { slug: "tree-care", name: "Tree Care", title: "tree service website design" },
 ] as const;
 
 export type CostGuideItem = {

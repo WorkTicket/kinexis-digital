@@ -352,6 +352,38 @@ export const COST_TRADE_SPECS: CostTradeSpec[] = [
       { q: "Should I list pet-waste removal if I only mow and trim?", a: "No. Only list scoop service you actually run. Fake extras create bad first visits and reviews." },
       { q: "Do one-time yard cleanups need a different path than weekly mowing?", a: "Yes. Cleanup leads and weekly route members schedule differently. Separate CTAs keep dispatch from treating a leaf-out job like a recurring mow." }
     ],
+  },
+  {
+    slug: "junk-removal",
+    noun: "junk removal",
+    article: "a",
+    siteLabel: "a Junk Removal",
+    designAnchor: "junk removal website design",
+    drivesCostHtml: `<p>Junk removal website cost sits in urgency vs planned cleanouts. A couch on the curb wants tap-to-call and a same-week window you can keep. An estate or garage cleanout wants volume notes, access (stairs, elevator, gate codes), and a quieter estimate form. Writing both paths—and declining work outside your dump schedule—takes calendar time beyond Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497.</p><p>Photo-based load estimates help when you use them; say when a truck visit is still required for final price. Fake “any pile, any day” promises create no-shows. Landlord and HOA recurring hauls belong only when you actually run those routes.</p><p>Lead System helps when you are on a haul and miss the next curb call; optional text-back is $1/mo second number + carrier rates (approval usually 10–15 days, not guaranteed). Website fits if the office already catches every ring. Own It buys the files once at $1,497 and skips the 60-day lead guarantee on Lead System and Plus.</p><p>Verify plans on <a href="/pricing">/pricing</a>. Pages: <a href="/blog/junk-removal-website-pages">junk removal website pages</a>. Hub: <a href="/industries/junk-removal">junk removal website design</a>.</p>`,
+    payingForHtml: `<p>You are paying for separate haul-away and cleanout paths, honest same-week language, and quote fields for load size and access—not a stock before-and-after collage with a buried phone number.</p><p>You are not paying a mystery junk surcharge. Same four published plans as every other trade; the spend difference is how specific those pages get and whether missed-call follow-up matters on busy dump days.</p>`,
+    buyerDecisionH2: "Curb pile vs estate cleanout: which path should your junk site lead with?",
+    buyerDecisionHtml: `<p>Someone with a mattress on the driveway is not filling a ten-field form. They need the phone and a window you can keep. Someone pricing a multi-room cleanout has time for photos, volume notes, and a short form: name, phone, city, access, rough load size.</p><p>If those land on one vague “junk services” page, both hesitate. Split the CTAs. Invite photo estimates where you use them, and say when a truck visit is still required.</p><ul><li>Same-week haul: phone first, honest windows</li><li>Cleanouts: volume/access form, optional photos</li><li>Recurring property hauls: only if you run them</li></ul><p>Free homepage preview in 2 business days, no card: <a href="/contact">/contact</a>.</p>`,
+    extraFaqs: [
+      { q: "Should I advertise same-day junk removal on the homepage?", a: "Only where you can keep the promise. Put the windows you actually staff near the phone. Overpromising same-day outside your route creates no-shows and bad reviews." },
+      { q: "Do curb loads and estate cleanouts need separate pages?", a: "Yes when you sell both. Urgent haul-away and planned cleanouts need different next steps and forms. One blob makes both leads messier." },
+      { q: "When does Lead System text-back matter for junk haulers?", a: "On busy dump days when you miss curb calls from the truck. Lead System is $197/mo; optional text-back is $1/mo for a second number plus carrier rates. Carrier approval usually takes 10–15 days and is not guaranteed." }
+    ],
+  },
+  {
+    slug: "tree-care",
+    noun: "tree service",
+    article: "a",
+    siteLabel: "a Tree Care",
+    designAnchor: "tree service website design",
+    drivesCostHtml: `<p>Tree service website cost follows storm urgency vs planned canopy work. A limb on a roof wants a phone and an honest response window. Trimming and full removals want real job photos, insurance cues near the call button, and a consult that does not sound like a tow truck. Writing those forks—and keeping the service area tied to crews you can send—drives calendar cost beyond Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497.</p><p>Stump grinding belongs only when you offer it. Fake 24/7 storm badges burn trust when nobody answers after midnight. Insurance and safety proof next to the phone are the expensive part in writing time, not a mystery “arborist multiplier.”</p><p>Lead System helps when you are in a bucket and miss a storm lead; optional text-back is $1/mo second number + carrier rates (approval usually 10–15 days, not guaranteed). Website fits office-covered phones. Own It at $1,497 buys files once and skips the 60-day lead guarantee on Lead System and Plus.</p><p>Compare on <a href="/pricing">/pricing</a>. Pages: <a href="/blog/tree-service-website-pages">tree service website pages</a>. Hub: <a href="/industries/tree-care">tree service website design</a>.</p>`,
+    payingForHtml: `<p>You are paying for trim, removal, and storm paths with insurance cues near the phone, plus real crew and chipper photos—not a stock oak with a buried number.</p><p>Honest weather windows and stump language only when true are the product. Panic CTAs on every planned prune are not.</p>`,
+    buyerDecisionH2: "Storm call vs planned trim: which tree path should lead?",
+    buyerDecisionHtml: `<p>Storm callers need the phone first and a window you can keep. Planned trim and removal shoppers need photos, insurance cues, and a consult form: name, phone, city, roughly what they need done. Mixing both into one “tree services” paragraph trains the wrong next step.</p><p>Lead with the job that is in season after weather, but keep trim and removal one tap away year-round. Skip stump offers you do not run.</p><ul><li>Storm: phone first, honest windows</li><li>Trim: site-visit request, canopy notes</li><li>Removal: consult, stump only if offered</li></ul><p>Preview free in 2 business days at <a href="/contact">/contact</a>—no card.</p>`,
+    extraFaqs: [
+      { q: "Should my tree site promise 24/7 storm response?", a: "Only if someone answers. Put the windows you actually staff after weather near the phone. Fake overnight promises create angry calls, not booked work." },
+      { q: "Do trimming and removals need separate pages?", a: "Yes when both are major revenue. A canopy thin and a full takedown need different proof and forms. One vague tree page makes both shoppers hesitate." },
+      { q: "Where should insurance cues appear on a tree service site?", a: "Near the phone on the homepage and contact areas—not only on About. Homeowners comparing bids look for credentials before they read long service copy." }
+    ],
   }];
 
 const COST_SLUG_BY_INDUSTRY: Record<string, string> = {
@@ -367,6 +399,8 @@ const COST_SLUG_BY_INDUSTRY: Record<string, string> = {
   "pressure-washing": "pressure-washing-website-cost",
   "window-cleaning": "window-cleaning-website-cost",
   "yard-care": "lawn-care-website-cost",
+  "junk-removal": "junk-removal-website-cost",
+  "tree-care": "tree-service-website-cost",
 };
 
 /** Generated English bodies keyed by blog slug. */
