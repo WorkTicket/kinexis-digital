@@ -1,4 +1,4 @@
-import { imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageVariant } from "@/lib/image-sources";
 
 /** Responsive industry LCP art. Never points at the multi-hundred-KB master WebP. */
 export default function IndustryHeroArt({
@@ -9,9 +9,9 @@ export default function IndustryHeroArt({
   alt: string;
 }) {
   const heroFile = `/assets/industries/${slug}/hero.webp`;
-  // 480 → mobile 2x, 768 → mobile 3x / desktop 1x, 960 → desktop 2x.
+  // 480 → mobile lab DPR, 768 → tablet, 960 → desktop 2x.
   const widths = [480, 768, 960] as const;
-  const sizes = "(max-width: 860px) 92vw, 620px";
+  const sizes = IMAGE_SIZES.industryHero;
   const webpSrcSet = widths.map((width) => `${imageVariant(heroFile, width, "webp")} ${width}w`).join(", ");
   const avifSrcSet = widths.map((width) => `${imageVariant(heroFile, width, "avif")} ${width}w`).join(", ");
   const fallback = imageVariant(heroFile, 768, "webp");

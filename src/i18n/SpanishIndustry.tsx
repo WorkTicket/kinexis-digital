@@ -19,12 +19,12 @@ import { ShotFrame } from "@/components/ShotFrame";
 import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, Icon, PageHero, Section } from "@/components/ui";
 import { withLocale, type Locale } from "@/lib/i18n";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 function LeadArt({ alt }: { alt: string }) {
   const src = "/assets/home/google-reviews-handled.webp";
   const widths = [640, 768, 1120] as const;
-  const sizes = "(max-width: 720px) 92vw, 480px";
+  const sizes = IMAGE_SIZES.homeSection;
   return (
     <picture className="home-section-art home-section-art--reviews">
       <source type="image/avif" srcSet={imageSrcSet(src, widths, "avif")} sizes={sizes} />

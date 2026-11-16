@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { Icon } from "./artwork";
 import { HL } from "./mark";
 
@@ -70,13 +70,13 @@ export default function IndustryAudit({
           </div>
           <div className="industry-audit__art">
             <picture>
-               <source type="image/avif" srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS, "avif")} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
-               <source srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)} sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px" />
+               <source type="image/avif" srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS, "avif")} sizes={IMAGE_SIZES.industryAudit} />
+               <source srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)} sizes={IMAGE_SIZES.industryAudit} />
                <img
                 className="industry-audit__img"
                  src={imageVariant("/assets/audit/hero.webp", 768, "webp")}
                  srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)}
-                 sizes="(max-width: 640px) 92vw, (max-width: 860px) 640px, 520px"
+                 sizes={IMAGE_SIZES.industryAudit}
                 alt={alt}
                 width={1536}
                 height={1024}

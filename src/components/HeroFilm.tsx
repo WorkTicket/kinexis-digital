@@ -1,13 +1,11 @@
 import { preload } from "react-dom";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 const POSTER = "/assets/video/kinexis-explainer-v5f-preview-poster.webp";
 const POSTER_WIDTHS = [480, 640, 768, 960] as const;
 const POSTER_SRCSET = imageSrcSet(POSTER, POSTER_WIDTHS);
 const POSTER_AVIF_SRCSET = imageSrcSet(POSTER, POSTER_WIDTHS, "avif");
-// Mobile slot ~360 CSS px; sizes 270px makes DPR 1.75 pick 480w (~15KB) instead
-// of 640w, which is enough sharpness for the framed film without bloating LCP.
-const POSTER_SIZES = "(max-width: 720px) 270px, 560px";
+const POSTER_SIZES = IMAGE_SIZES.heroFilm;
 
 /** Homepage hero film. The poster paints first. The boot script attaches sources after that paint, or after the first input. */
 export default function HeroFilm() {

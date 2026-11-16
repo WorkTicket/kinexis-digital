@@ -15,7 +15,7 @@ import TrustStrip from "@/components/TrustStrip";
 import PlanCompare from "@/components/PlanCompare";
 import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("home");
 // Homepage is curated (no live review APIs). Keep a long ISR window so the
@@ -26,7 +26,7 @@ function SectionGraphic({ name, alt, className }: { name: string; alt: string; c
   const base = `/assets/home/${name}`;
   const src = `${base}.webp`;
   const widths = [640, 768, 1120, 1280] as const;
-  const sizes = "(max-width: 720px) 92vw, 600px";
+  const sizes = IMAGE_SIZES.homeSection;
 
   return (
     <picture className={`home-section-art ${className}`}>

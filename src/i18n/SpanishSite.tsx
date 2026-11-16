@@ -15,7 +15,7 @@ import { p } from "@/i18n/prices";
 import { spanishHomeFaqs, spanishPlans } from "@/i18n/spanish-plans";
 import { SPANISH_STATIC_META_PATH_SET, type SpanishStaticPath } from "@/i18n/spanish-static-paths";
 import { contentLanguage, localizeHtmlHrefs, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
-import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { contentMetadata } from "@/lib/seo";
 import { SITE, telHref } from "@/lib/site";
 import dynamic from "next/dynamic";
@@ -803,11 +803,11 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
             <p className="muted">{tx("Los cuatro planes son los mismos. Cambian las páginas y el texto para las llamadas que sí recibe tu negocio.")}</p>
           </div>
           <picture className="home-section-art home-section-art--trades">
-            <source type="image/avif" srcSet={imageSrcSet("/assets/home/built-for-your-trade.webp", [640, 768, 1120], "avif")} sizes="(max-width: 720px) 92vw, 420px" />
-            <img
+            <source type="image/avif" srcSet={imageSrcSet("/assets/home/built-for-your-trade.webp", [640, 768, 1120], "avif")} sizes={IMAGE_SIZES.homeSection} />
+              <img
               src={imageVariant("/assets/home/built-for-your-trade.webp", 640, "webp")}
               srcSet={imageSrcSet("/assets/home/built-for-your-trade.webp", [640, 768, 1120])}
-              sizes="(max-width: 720px) 92vw, 420px"
+              sizes={IMAGE_SIZES.homeSection}
               alt={tx("Un sitio de contratista rodeado de herramientas de varios oficios")}
               width={1536}
               height={1024}
@@ -891,7 +891,7 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
           <div className="grid grid--3 blog-index">
             {posts.map((post) => (
               <article className="card post" key={post.slug} data-cat={post.category}>
-                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} avifSrcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} alt={post.title} width={post.width} height={post.height} sizes="(max-width: 900px) 92vw, 380px" /></div></Link>
+                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} avifSrcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} alt={post.title} width={post.width} height={post.height} sizes={IMAGE_SIZES.blogCard} /></div></Link>
                 <div className="post__body">
                   <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link>
                   <p className="post__excerpt muted">{post.excerpt}</p>
@@ -1238,7 +1238,7 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
             try { host = new URL(site.url).host.replace(/^www\./, ""); } catch { /* keep url */ }
             return (
               <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} sizes="(max-width: 960px) 92vw, 380px" alt="" width={640} height={480} className="shot__img" eager={index === 0} /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
+                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} sizes={IMAGE_SIZES.portfolioCard} alt="" width={640} height={480} className="shot__img" eager={index === 0} /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
                 <span className="live-site__copy"><span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />{tx("En vivo")}</span><span className="live-site__id"><span className="live-site__name">{site.name}</span><span className="live-site__meta"><span>{site.trade}</span><span className="live-site__host">{host}</span></span></span></span>
               </a>
             );
