@@ -956,12 +956,10 @@ html.lp-route body{--announce-h:0px}
   transition:color .32s cubic-bezier(.2,.7,.2,1),--mark-fill .32s cubic-bezier(.2,.7,.2,1);
 }
 .trust-hl{font-size:.95em}
-/* Expand guarantee/refund hit targets to ≥24px without shifting the underline. */
+/* LH target-size needs a real ≥24px border box; ::after alone is ignored.
+   inline-flex + min-height keeps the underline math, adds ~3px vertical only. */
 .trust-fineprint__guarantees .trust-hl{
-  position:relative;
-}
-.trust-fineprint__guarantees .trust-hl::after{
-  content:"";position:absolute;left:-2px;right:-2px;top:50%;height:24px;transform:translateY(-50%);
+  display:inline-flex;align-items:center;min-height:24px;padding:2px 0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone;
 }
 .trust-mark,.link-btn{letter-spacing:-.01em}
 .trust-hl:focus-visible,
