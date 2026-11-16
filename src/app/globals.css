@@ -956,6 +956,13 @@ html.lp-route body{--announce-h:0px}
   transition:color .32s cubic-bezier(.2,.7,.2,1),--mark-fill .32s cubic-bezier(.2,.7,.2,1);
 }
 .trust-hl{font-size:.95em}
+/* Expand guarantee/refund hit targets to ≥24px without shifting the underline. */
+.trust-fineprint__guarantees .trust-hl{
+  position:relative;
+}
+.trust-fineprint__guarantees .trust-hl::after{
+  content:"";position:absolute;left:-2px;right:-2px;top:50%;height:24px;transform:translateY(-50%);
+}
 .trust-mark,.link-btn{letter-spacing:-.01em}
 .trust-hl:focus-visible,
 .trust-mark:focus-visible,
@@ -2949,9 +2956,16 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 
 /* Portfolio work cards (trade label under shot, 180sites-style) */
 .work-card{display:flex;flex-direction:column;gap:14px;min-width:0}
-.work-card__meta{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:4px 2px 2px}
+.work-card__meta{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:4px 2px 2px;position:relative;z-index:1}
 .work-card__meta h3{margin:0;font-family:var(--font-head);font-size:1.15rem;font-weight:700;line-height:1.25;letter-spacing:-.015em;color:var(--text)}
 .work-card__meta .btn{margin-top:2px}
+/* LH target-size: `.btn--sm{min-height:0}` can leave ~18px after neighbor overlap.
+   Keep the painted face; expand the hit box with an absolute layer (no layout shift). */
+.work-card__meta .btn.btn--sm{position:relative;min-height:24px}
+.work-card__meta .btn.btn--sm::after{
+  content:"";position:absolute;left:0;right:0;top:50%;height:24px;transform:translateY(-50%);
+  pointer-events:auto;
+}
 .work-card--related .work-card__meta h3{font-size:.95rem}
 .project-media--plain{border:0;border-radius:0;box-shadow:none;background:transparent}
 .showcase__head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:8px}

@@ -33,13 +33,19 @@ export function ShotFrame({
   const useCard = !scrollOnHover;
   const shot = portfolioFile(project.image, useCard ? "card" : 640);
   const height = useCard ? 480 : Math.round((project.height * 640) / project.width);
+  // Named link owns the accessible name; keep the screenshot decorative so
+  // label-content-name-mismatch only cares about visible CTA text.
+  const imgAlt = href ? "" : `${project.name} website design`;
+  const accessibleName = showCtaOnHover
+    ? `${ctaLabel}: ${project.name}`
+    : (label ?? `View ${project.name}`);
   const inner = (
     <div className="shot__page">
       <div className="shot__track">
         <DeferredImg
           src={shot}
           sizes="(max-width: 720px) 46vw, (max-width: 1100px) 30vw, 280px"
-          alt={`${project.name} website design`}
+          alt={imgAlt}
           width={640}
           height={height}
           className="shot__img"
@@ -61,7 +67,7 @@ export function ShotFrame({
         href={href}
         hrefLang={hrefLang}
         prefetch={false}
-        aria-label={label ?? `View ${project.name}`}
+        aria-label={accessibleName}
         data-name={project.name}
       >
         {inner}
