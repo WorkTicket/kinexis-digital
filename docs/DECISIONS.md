@@ -58,6 +58,7 @@
 
 ## Performance
 - Lighthouse budgets (`scripts/lighthouse-budget.mjs`) cover mobile **and** desktop; `verify:prod` and workflow `lighthouse-prod.yml` (main / manual) hit live www read-only. PR CI does not run prod Lighthouse (speed + avoid load).
+- First-party RUM: sampled `rum.js` → `POST /api/rum` → Workers Observability logs (`docs/engineering/RUM.md`). No paid APM; path + vitals only.
 - Locale layouts use `revalidate = 86400` so OpenNext KV cache interception can serve HTML without booting Next
 - Industry LCP art uses capped 480/768/960 WebP+AVIF derivatives only (never the multi-hundred-KB master WebP)
 - Interaction boot ships as minified `boot.min.js` (source remains `public/assets/js/boot.js`; `scripts/minify-boot.mjs` runs in build)
