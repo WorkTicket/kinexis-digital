@@ -54,7 +54,7 @@ export function ogLocale(locale: Locale): string {
 
 /**
  * Indexable locales for Google. `/es` (Latam / US Spanish) stays in search.
- * `/es-es` (Spain) is visitors-only: noindex, out of sitemap and hreflang.
+ * `/es-es` (Spain) permanently redirects to `/es` and is not indexed.
  */
 export function localeIndexable(locale: Locale): boolean {
   return locale === "en" || locale === "es-419";
@@ -62,7 +62,7 @@ export function localeIndexable(locale: Locale): boolean {
 
 /**
  * hreflang set. `es` and `es-US` share the Latam URL. `es-419` is not a valid
- * hreflang code. Spain (`es-ES`) is omitted because that locale is noindex.
+ * hreflang code. Spain (`es-ES`) is omitted — those URLs 301 to `/es`.
  */
 export function hreflangLanguages(pathname: string): Record<string, string> | undefined {
   const en = englishPath(pathname);
@@ -118,9 +118,11 @@ document.addEventListener("click",function(e){
 var path=location.pathname;
 var prefix=path==="/es-es"||path.indexOf("/es-es/")===0?"es-ES":path==="/es"||path.indexOf("/es/")===0?"es-419":"en";
 var saved=read();
+if(saved==="es-ES"){write("es-419");saved="es-419"}
 if(!saved&&prefix!=="en")return;
 var want=saved||detect();
-if(!want||want===prefix)return;
+if(want==="es-ES")want="es-419";
+if(!want||want===prefix||(want==="es-419"&&prefix==="es-ES"))return;
 var next=target(path,want);
 if(!next||next===path)return;
 if(!saved)write(want);
@@ -130,16 +132,10 @@ function detect(){
   var i,low;
   for(i=0;i<langs.length;i++){
     low=String(langs[i]||"").toLowerCase();
-    if(low==="es-es"||low.indexOf("es-es-")===0)return "es-ES";
-    if(low==="es"||low.indexOf("es-")===0)return low==="es"&&spainZone()?"es-ES":"es-419";
+    if(low==="es"||low.indexOf("es-")===0)return "es-419";
     if(low==="en"||low.indexOf("en-")===0)return "en";
   }
   return "";
-}
-function spainZone(){
-  var tz="";
-  try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}
-  return tz==="Europe/Madrid"||tz==="Atlantic/Canary"||tz==="Africa/Ceuta";
 }
 function enPath(pathname){
   if(pathname==="/es"||pathname==="/es-es")return "/";
@@ -152,7 +148,6 @@ function target(pathname,locale){
   var en=enPath(pathname);
   if(!mirrored(en))return "";
   if(locale==="en")return en;
-  if(locale==="es-ES")return en==="/"?"/es-es":"/es-es"+en;
   return en==="/"?"/es":"/es"+en;
 }
 })();`;

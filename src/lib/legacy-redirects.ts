@@ -6,13 +6,15 @@ function go(source: string, destination: string) {
   return [rule, { source: `${source}.html`, destination, statusCode: 301 as const }];
 }
 
-/** Preserve retired English and Spanish URLs without redirect chains. */
+/** Preserve retired English and Spanish URLs without redirect chains.
+ *  `/es-es` is retired: Spain paths consolidate onto indexable `/es` in one hop.
+ */
 function localized(source: string, destination: string) {
   return [
     ...go(source, destination),
     ...go(`/en${source}`, destination),
     ...go(`/es${source}`, `/es${destination}`),
-    ...go(`/es-es${source}`, `/es-es${destination}`),
+    ...go(`/es-es${source}`, `/es${destination}`),
   ];
 }
 
@@ -21,7 +23,7 @@ function localizedWildcard(source: string, destination: string) {
     { source, destination, statusCode: 301 as const },
     { source: `/en${source}`, destination, statusCode: 301 as const },
     { source: `/es${source}`, destination: `/es${destination}`, statusCode: 301 as const },
-    { source: `/es-es${source}`, destination: `/es-es${destination}`, statusCode: 301 as const },
+    { source: `/es-es${source}`, destination: `/es${destination}`, statusCode: 301 as const },
   ];
 }
 
@@ -139,12 +141,12 @@ export const LEGACY_REDIRECTS = [
   ...localized("/case-studies/landscaping-company-growth", "/industries/landscaping"),
   // Spanish mirrors have no case-study pages yet — keep locale catch-alls.
   { source: "/es/case-studies/:path*", destination: "/es/portfolio", statusCode: 301 as const },
-  { source: "/es-es/case-studies/:path*", destination: "/es-es/portfolio", statusCode: 301 as const },
+  { source: "/es-es/case-studies/:path*", destination: "/es/portfolio", statusCode: 301 as const },
   ...localized("/resources", "/blog"),
   { source: "/resources/:path*", destination: "/blog", statusCode: 301 as const },
   { source: "/en/resources/:path*", destination: "/blog", statusCode: 301 as const },
   { source: "/es/resources/:path*", destination: "/es/blog", statusCode: 301 as const },
-  { source: "/es-es/resources/:path*", destination: "/es-es/blog", statusCode: 301 as const },
+  { source: "/es-es/resources/:path*", destination: "/es/blog", statusCode: 301 as const },
   ...localizedWildcard("/blog/category/:slug", "/blog"),
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
   // English-locale Spanish slugs: keep /es copies live, retire EN duplicates.
@@ -153,4 +155,7 @@ export const LEGACY_REDIRECTS = [
   ...go("/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
   ...go("/en/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
   ...go("/en", "/"),
+  // Retired Spain locale: one-hop onto indexable LatAm `/es` (after specific maps above).
+  { source: "/es-es", destination: "/es", statusCode: 301 as const },
+  { source: "/es-es/:path*", destination: "/es/:path*", statusCode: 301 as const },
 ];

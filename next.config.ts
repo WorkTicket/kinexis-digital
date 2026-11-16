@@ -56,7 +56,7 @@ const nextConfig: NextConfig = {
       { source: "/video-reviews", destination: "/reviews", statusCode: 301 },
       { source: "/video-reviews.html", destination: "/reviews", statusCode: 301 },
       { source: "/es/video-reviews", destination: "/es/reviews", statusCode: 301 },
-      { source: "/es-es/video-reviews", destination: "/es-es/reviews", statusCode: 301 },
+      { source: "/es-es/video-reviews", destination: "/es/reviews", statusCode: 301 },
       ...pages.map((page) => ({
         source: `${page.path}.html`,
         destination: page.path,
@@ -71,7 +71,7 @@ const nextConfig: NextConfig = {
         { source: `/en/industries/${slug}`, destination: "/industries", statusCode: 301 },
         { source: `/en/industries/${slug}.html`, destination: "/industries", statusCode: 301 },
         { source: `/es/industries/${slug}`, destination: "/es/industries", statusCode: 301 },
-        { source: `/es-es/industries/${slug}`, destination: "/es-es/industries", statusCode: 301 },
+        { source: `/es-es/industries/${slug}`, destination: "/es/industries", statusCode: 301 },
       ]),
       { source: "/industries/:slug.html", destination: "/industries/:slug", statusCode: 301 },
     ];
