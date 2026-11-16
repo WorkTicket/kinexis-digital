@@ -1840,7 +1840,15 @@ html.no-float .consent-fab__label{
    own bottom:!important media queries — these light-DOM rules do not apply.
    Real lift: ConferbotWidget.tsx injects #kx-chat-lift into the shadow root and
    sets data-cb-own-m-bottom / --cb-o-m-bottom from the measured .float-cta top.
-   Kept here only as a harmless fallback if Conferbot ever drops shadow. */
+   Kept here only as a harmless fallback if Conferbot ever drops shadow.
+   While the cookie banner is open (`html.consent-open`), hide the host entirely
+   (launcher + any proactive CTA). Proactive mobile greeting itself is turned off
+   in the Conferbot dashboard — not via site CSS/JS. */
+html.consent-open conferbot-widget{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
 .chatbot__icon,
 .chatbot__icon__cta,
 #chatbot__icon__cta,
@@ -1849,13 +1857,6 @@ button.chatbot__icon__cta{
   bottom:calc(var(--sticky-stack) + var(--chat-lift)) !important;
   right:max(12px, var(--sar, 0px)) !important;
   z-index:46 !important;
-}
-html.consent-open .chatbot__icon,
-html.consent-open .chatbot__icon__cta,
-html.consent-open #chatbot__icon__cta,
-html.consent-open button.chatbot__icon,
-html.consent-open button.chatbot__icon__cta{
-  bottom:calc(var(--sticky-stack) + min(42vh, 280px)) !important;
 }
 .float-cta.is-in{
   transform:translate3d(-50%, 0, 0) scale(1);
