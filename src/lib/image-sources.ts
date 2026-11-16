@@ -35,8 +35,9 @@ export function footerLogoSrcSet() {
  * (e.g. MediaSplit ~380px slot → 480w, not 960w). Visual size is unchanged.
  */
 export const IMAGE_SIZES = {
-  /** PageHero LCP art — CSS ~260px mobile / ≤627 desktop. */
-  pageHero: "(max-width: 860px) 200px, (max-width: 1279px) 50vw, 627px",
+  /** PageHero LCP art — CSS ~260px mobile / ≤627 desktop.
+   *  ≤180px keeps lab DPR on the preloaded 480w 2× candidate (200px was selecting 640w). */
+  pageHero: "(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px",
   /** MediaSplit / section Art — CSS ~380px mobile / ~0.45 container desktop. */
   mediaSplit: "(max-width: 860px) 240px, 420px",
   /** Default lazy Art when callers omit sizes. */
@@ -53,13 +54,14 @@ export const IMAGE_SIZES = {
   blogCard: "(max-width: 900px) 300px, 380px",
   /** Blog article figure — CSS content column (~758 desktop). */
   blogArticle: "(max-width: 840px) 360px, 758px",
-  /** Portfolio listing / LP shot cards — CSS ~400×300. */
-  portfolioCard: "(max-width: 960px) 300px, 400px",
+  /** Portfolio listing / LP shot cards — CSS ~400×300.
+   *  Understate so lab DPR (~2.625) keeps ≤480w after 800w 2× was added. */
+  portfolioCard: "(max-width: 960px) 180px, 300px",
   /** Portfolio project full-page shot in narrow container. */
   projectShot: "(max-width: 800px) 360px, 720px",
   /** Case-study full-page live screenshot — CSS ~378 mobile / ~662–800 desktop.
-   *  Understate mobile so lab/DPR picks 400w instead of 800/1100. */
-  caseStudyShot: "(max-width: 720px) 360px, (max-width: 1180px) 620px, 800px",
+   *  Understate mobile so density picks 400w (not 800/1100) for the PSI oversized-image save. */
+  caseStudyShot: "(max-width: 720px) 150px, (max-width: 1180px) 520px, 800px",
   /** Footer logo mark. */
   footerLogo: "(max-width: 640px) 112px, 168px",
   /** Industry audit band art — CSS ≤560; 270px keeps lab DPR on 480w. */

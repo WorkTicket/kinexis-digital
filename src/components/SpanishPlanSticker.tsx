@@ -24,7 +24,8 @@ export const SPANISH_PLAN_STICKERS: Record<string, {
 
 export default function SpanishPlanSticker({ slug, kind }: { slug: string; kind: "name" | "offer" }) {
   const sticker = SPANISH_PLAN_STICKERS[slug][kind];
-  const sizes = kind === "offer" ? "232px" : "240px";
+  // Understate vs ~232–240 CSS so lab DPR prefers 400w; 480w remains for true 2×.
+  const sizes = "160px";
   return <picture>
     <source type="image/avif" srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS, "avif")} sizes={sizes} />
     <img {...sticker} className={`plan-sticker plan-sticker--${kind}`} src={imageVariant(sticker.src, 240, "webp")} srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS)} sizes={sizes} alt={sticker.alt} loading="lazy" decoding="async" />
