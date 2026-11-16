@@ -853,9 +853,11 @@ html.lp-route body{--announce-h:0px}
     transition:transform .32s cubic-bezier(.2,.7,.2,1);
     pointer-events:none;
   }
+  /* Brand --warm (#ff6a00) on white is only ~2.87:1. Keep the orange active look
+     with a same-hue darker ink that clears 4.5:1; underline stays --warm. */
   .nav>a.is-current,
   .nav>.mega>.mega__btn.is-current{
-    color:var(--warm);
+    color:#c44e00;
     background-color:transparent;box-shadow:none;
   }
   .nav>a.is-current::before,
@@ -864,7 +866,7 @@ html.lp-route body{--announce-h:0px}
   }
   .nav>a:focus-visible,
   .nav>.mega>.mega__btn:focus-visible{
-    color:var(--warm);
+    color:#c44e00;
     outline:3px solid color-mix(in srgb,var(--accent) 32%,transparent);outline-offset:2px;
   }
   .nav>a:focus-visible::before,
@@ -874,7 +876,7 @@ html.lp-route body{--announce-h:0px}
   @media (hover:hover) and (pointer:fine){
     .nav>a:hover,
     .nav>.mega>.mega__btn:hover{
-      color:var(--warm);
+      color:#c44e00;
     }
     .nav>a:hover::before,
     .nav>.mega>.mega__btn:hover::before{
