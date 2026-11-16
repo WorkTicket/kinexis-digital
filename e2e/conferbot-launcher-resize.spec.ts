@@ -4,7 +4,7 @@ import { expect, test, type Page } from "@playwright/test";
  * Conferbot launcher sticky-bar lift must recalculate across breakpoint
  * changes. CI keeps NEXT_PUBLIC_CONFERBOT_ENABLED off, so tests inject a mock
  * open-shadow host and arm the real page positioner via
- * `window.__kxStartLauncherPositioner` (exposed by ConferbotWidget).
+ * `window.__kxStartLauncherPositioner` (exposed by public/assets/js/conferbot.js).
  */
 
 const MOBILE = { width: 390, height: 844 };
@@ -38,7 +38,7 @@ async function ensureConsentClosed(page: Page) {
 }
 
 async function mountMockConferbot(page: Page) {
-  // ConferbotWidget assigns the arm hook in useEffect (chat flag is off in CI).
+  // conferbot.js (lazyOnload) assigns the arm hook even when chat flag is off in CI.
   await expect
     .poll(
       async () =>
@@ -46,7 +46,7 @@ async function mountMockConferbot(page: Page) {
           typeof (window as Window & { __kxStartLauncherPositioner?: () => void })
             .__kxStartLauncherPositioner === "function",
         ),
-      { timeout: 15_000 },
+      { timeout: 20_000 },
     )
     .toBe(true);
 
