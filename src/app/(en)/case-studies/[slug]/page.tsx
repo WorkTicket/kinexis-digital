@@ -92,13 +92,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <figure className="case-study__shot">
             <DeferredImg
-              src={portfolioFile(study.image, 662)}
+              src={portfolioFile(study.image, 400)}
               srcSet={portfolioCaseStudySrcSet(study.image)}
               avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif")}
               sizes={IMAGE_SIZES.caseStudyShot}
               alt={`${study.title} homepage screenshot`}
-              width={662}
-              height={Math.round((study.height * 662) / study.width)}
+              width={400}
+              height={Math.round((study.height * 400) / study.width)}
             />
             <figcaption>Live homepage screenshot. Mobile and desktop views use the same production page.</figcaption>
           </figure>

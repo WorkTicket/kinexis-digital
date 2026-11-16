@@ -1,9 +1,10 @@
 /**
- * PSI Perf 100 — image-delivery variants (no visual change).
- * Stickers 240w, footer 210/420, blog 768w, portfolio cards 400/480,
- * case-study full-page shots 662/800 (+ keep master as 1100).
+ * PSI Perf 100 — image-delivery variants (historical; superseded for fidelity by
+ * scripts/optimize-image-quality-pass.mjs which re-encodes at WebP q~85 / AVIF q~65–68
+ * and adds sticker 480w, card 800w, and case-study 400w).
  *
- * Run: node scripts/optimize-psi-image-delivery.mjs
+ * Prefer: node scripts/optimize-image-quality-pass.mjs
+ * Legacy: node scripts/optimize-psi-image-delivery.mjs
  */
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
