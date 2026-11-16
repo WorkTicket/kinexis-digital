@@ -11,12 +11,13 @@ for (const file of heroes) {
   const master = path.join(directory, file);
   const base = master.replace(/-1254\.webp$/, "");
   for (const width of [480, 640, 960]) {
-    await rebuildFromMaster(master, `${base}-${width}.webp`);
-    // Never let the LCP AVIF grow past what already scores 100 in lab.
+    await rebuildFromMaster(master, `${base}-${width}.webp`, {
+      webpQuality: width <= 640 ? 85 : 90,
+    });
+    // 480w ≈ mobile 2× for ~260 CSS; allow q~65–70 (visually lossless) instead of a 22KB crush.
     await rebuildFromMaster(master, `${base}-${width}.avif`, {
       format: "avif",
-      // Keep mobile LCP AVIFs lean; 480w is the common lab pick for page-hero art.
-      maxBytes: width <= 480 ? 22 * 1024 : width <= 640 ? 28 * 1024 : 90 * 1024,
+      maxBytes: width <= 480 ? 32 * 1024 : width <= 640 ? 42 * 1024 : 90 * 1024,
     });
   }
   await rebuildFromMaster(master, `${base}-1254.avif`, { format: "avif" });
