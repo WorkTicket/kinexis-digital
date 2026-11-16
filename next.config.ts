@@ -1,8 +1,11 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 import { RETIRED_INDUSTRY_SLUGS } from "./src/data/industries";
 import { LEGACY_REDIRECTS } from "./src/lib/legacy-redirects";
 import { PAGES } from "./src/lib/pages";
+
+const emptyPolyfillModule = path.join(process.cwd(), "src/lib/empty-polyfill-module.js");
 
 const isDev = process.env.NODE_ENV === "development";
 const contentSecurityPolicy = [
@@ -39,6 +42,33 @@ const nextConfig: NextConfig = {
   // Production builds drop debug noise from client bundles.
   compiler: {
     removeConsole: process.env.NODE_ENV === "production" ? { exclude: ["error", "warn"] } : false,
+  },
+  // Browserslist in package.json matches Next 16's modern baseline, but Next still
+  // always imports `polyfill-module` (Array.at / flat / fromEntries / hasOwn / trim*).
+  // Alias it to an empty stub so those helpers are not shipped to modern clients.
+  turbopack: {
+    resolveAlias: {
+      "../build/polyfills/polyfill-module": "./src/lib/empty-polyfill-module.js",
+      "next/dist/build/polyfills/polyfill-module": "./src/lib/empty-polyfill-module.js",
+      "next/dist/build/polyfills/polyfill-module.js": "./src/lib/empty-polyfill-module.js",
+    },
+  },
+  webpack: (config) => {
+    config.resolve = config.resolve ?? {};
+    const alias = config.resolve.alias;
+    const polyfillAliases = {
+      "../build/polyfills/polyfill-module": emptyPolyfillModule,
+      "next/dist/build/polyfills/polyfill-module": emptyPolyfillModule,
+      "next/dist/build/polyfills/polyfill-module.js": emptyPolyfillModule,
+    };
+    if (Array.isArray(alias)) {
+      for (const [name, target] of Object.entries(polyfillAliases)) {
+        alias.push({ name, alias: target });
+      }
+    } else {
+      config.resolve.alias = { ...alias, ...polyfillAliases };
+    }
+    return config;
   },
   poweredByHeader: false,
   reactStrictMode: true,
