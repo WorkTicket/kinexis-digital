@@ -34,6 +34,7 @@
 - Webhook HMAC + redaction + feature flags; see `docs/CONFERBOT-INTEGRATION.md`
 - Integration and notify flags default off; no production secrets in git
 - **Widget load (owner 2026-11-15):** live chat is a functional feature, not analytics. `ConferbotWidget` loads for every public visitor when `NEXT_PUBLIC_CONFERBOT_ENABLED=1` (skips `/admin`), regardless of `kinexis_consent` analytics choice. Deferred via `requestIdleCallback` (~2.5s timeout) or first scroll/pointer/touch/key; module-level guard prevents double-init across client navigations. Privacy / cookie banner copy already describes only GA4 + Meta as consent-gated — no chat-waits-for-consent wording found, so no privacy copy change in that PR (owner can still review if product wants chat named under Necessary).
+- **Widget mobile lift (owner 2026-11-15):** launcher is `#open-chatbot.chatbot__icon` inside `<conferbot-widget>` open shadow DOM (not an iframe). Conferbot sets `bottom` via inline styles + `!important` media queries, so site `globals.css` never wins. `ConferbotWidget` measures `.float-cta`, then sets host `data-cb-own-m-bottom` / `--cb-o-m-bottom` and injects shadow `#kx-chat-lift` + `setProperty(..., "important")` so the bubble sits ~12px above the sticky bar (updates on resize / `no-float` / consent). Desktop (≤860px MQ false) clears the override.
 
 ## Security/headers
 - CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)

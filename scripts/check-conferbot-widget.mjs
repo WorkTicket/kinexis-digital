@@ -29,6 +29,11 @@ assert.match(widget, /requestIdleCallback/);
 assert.match(widget, /widgetBooted/);
 assert.match(widget, /kinexis-digital-site/);
 assert.match(widget, /\/admin/);
+assert.match(widget, /startLauncherPositioner/);
+assert.match(widget, /kx-chat-lift/);
+assert.match(widget, /data-cb-own-m-bottom/);
+assert.match(widget, /shadowRoot/);
+assert.match(widget, /\.float-cta/);
 assert.doesNotMatch(widget, /analyticsAllowed/);
 assert.doesNotMatch(widget, /parseConsentCookie/);
 assert.doesNotMatch(widget, /kinexis:consent/);
@@ -40,5 +45,6 @@ assert.match(csp, /wdt\.conferbot\.com/);
 assert.match(csp, /wss:\/\/wdt\.conferbot\.com/);
 
 console.log(
-  "Conferbot widget contract checks passed: flag off by default, consent-independent idle/input load, no double-init, CSP hosts, DocumentShell mount.",
+  "Conferbot widget contract checks passed: flag off by default, consent-independent idle/input load, shadow launcher lift, no double-init, CSP hosts, DocumentShell mount.",
 );
+

@@ -1816,10 +1816,11 @@ html.no-float .consent-fab__label{
   box-shadow:0 10px 28px rgba(10,18,48,0);
   transition:transform .7s cubic-bezier(.16,1,.3,1), opacity .5s ease, box-shadow .7s ease, bottom .2s ease;
 }
-/* Conferbot launcher (light DOM). Position via CSS — dashboard has no per-page
-   offset API. Lift above the mobile float bar by --chat-lift (~bar + 12px);
-   desktop keeps --chat-lift:0 so the launcher stays in its default corner band.
-   Only the launcher bubble is shifted; open-panel layout stays untouched. */
+/* Conferbot launcher lives inside <conferbot-widget> open shadow DOM with its
+   own bottom:!important media queries — these light-DOM rules do not apply.
+   Real lift: ConferbotWidget.tsx injects #kx-chat-lift into the shadow root and
+   sets data-cb-own-m-bottom / --cb-o-m-bottom from the measured .float-cta top.
+   Kept here only as a harmless fallback if Conferbot ever drops shadow. */
 .chatbot__icon,
 .chatbot__icon__cta,
 #chatbot__icon__cta,
@@ -1834,7 +1835,6 @@ html.consent-open .chatbot__icon__cta,
 html.consent-open #chatbot__icon__cta,
 html.consent-open button.chatbot__icon,
 html.consent-open button.chatbot__icon__cta{
-  /* Consent sheet owns the bottom; tuck the launcher out of the way. */
   bottom:calc(var(--sticky-stack) + min(42vh, 280px)) !important;
 }
 .float-cta.is-in{
