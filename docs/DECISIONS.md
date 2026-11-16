@@ -72,3 +72,4 @@
 - Language switch stays a tiny client component (`usePathname`) so layouts never call `headers()` and pages can stay statically generated for OpenNext cache + defer-chunks
 - Meta Pixel loads from `boot.min.js` on first input (or 45s fallback), same idea as GA — keeps fbevents off the Lighthouse critical path; CSP allows Meta openbridge hosts (`*.a.run.app`, `*.on.aws`)
 - Do not re-enable async/deferred Next CSS injects in `defer-chunks.mjs` — that caused FOUC and hydration failures before
+- Prefer `experimental.inlineCss` (Next 16) to remove the first-load render-blocking stylesheet request without changing painted CSS; keep defer-chunks as a legacy-inject stripper only
