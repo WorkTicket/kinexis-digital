@@ -65,9 +65,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que ponemos en un sitio de HVAC",
     servicesMark: "HVAC",
     services: [
-      { title: "Reparación sin aire", text: "Rapidez, horario y síntomas que buscan — escrito para el celular, no un folleto.", icon: "no-cool-repair" },
+      { title: "Reparación sin aire", text: "Rapidez, horario y síntomas que buscan — escrito para el celular, no un folleto.", icon: "audit-speed" },
       { title: "Cambio de equipo", text: "Opciones, qué incluye la visita y financiamiento solo si de verdad lo ofreces.", icon: "system-replacement" },
-      { title: "Mantenimiento", text: "Una oferta más quieta para revisiones y membresías, vendida como menos emergencias.", icon: "maintenance" },
+      { title: "Mantenimiento", text: "Una oferta más quieta para revisiones y membresías, vendida como menos emergencias.", icon: "calendar" },
     ],
     serviceArea: "Las ciudades que tus técnicos ya recorren. Una página clara, no una copia del inicio por cada código postal.",
     faqs: [
@@ -92,14 +92,14 @@ const ES: Record<string, Copy> = {
     problemsMark: "pierde confianza",
     problems: [
       { title: "Sin prueba de licencia", text: "La licencia, el seguro y el trabajo que no tocas tienen que estar donde se vean.", icon: "license-proof" },
-      { title: "El cargador metido en “servicios”", text: "Instalar un cargador es una visita de investigación. Necesita su página, no una viñeta bajo “cambiar un contacto”.", icon: "ev-charger-page" },
+      { title: "El cargador metido en “servicios”", text: "Instalar un cargador es una visita de investigación. Necesita su página, no una viñeta bajo “cambiar un contacto”.", icon: "extra-page" },
       { title: "Comercial y casa mezclados", text: "Un administrador y una casa sin luz no son el mismo lead. Sepáralos si vendes los dos.", icon: "separate-buyer-paths" },
     ],
     heroAlt: "Electricista, tablero, cargador y pantallas del sitio",
     servicesTitle: "Páginas que coinciden con la búsqueda",
     servicesMark: "la búsqueda",
     services: [
-      { title: "Tableros", text: "Cuándo el tablero es el trabajo, qué incluye la visita y cómo pedir cotización.", icon: "panel-upgrades" },
+      { title: "Tableros", text: "Cuándo el tablero es el trabajo, qué incluye la visita y cómo pedir cotización.", icon: "shield" },
       { title: "Cargadores", text: "Los cargadores que instalas, qué revisa la visita y un formulario corto.", icon: "ev-chargers" },
       { title: "Diagnóstico", text: "Contactos, breakers y cortes parciales, con teléfono para lo que parece emergencia.", icon: "troubleshooting" },
     ],
@@ -133,9 +133,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que va en un sitio de techos",
     servicesMark: "techos",
     services: [
-      { title: "Reparaciones", text: "Gotera, tejas faltantes y las visitas que todavía puedes agendar esta semana.", icon: "roof-repairs" },
+      { title: "Reparaciones", text: "Gotera, tejas faltantes y las visitas que todavía puedes agendar esta semana.", icon: "tools" },
       { title: "Reemplazo", text: "Materiales que instalas, qué incluye la inspección y un formulario corto.", icon: "replacements" },
-      { title: "Tormentas", text: "Cómo organizas el trabajo después del clima, sin que suene a un centro de llamadas.", icon: "storm-calls" },
+      { title: "Tormentas", text: "Cómo organizas el trabajo después del clima, sin que suene a un centro de llamadas.", icon: "bolt" },
     ],
     serviceArea: "Los pueblos a los que sí manejas para una inspección. Una página concreta, no una ciudad clonada cincuenta veces.",
     faqs: [
@@ -168,8 +168,8 @@ const ES: Record<string, Copy> = {
     servicesMark: "puertas",
     services: [
       { title: "Resortes rotos", text: "Los trabajos peligrosos, con aviso claro de no hacerlo uno mismo y un toque para llamar.", icon: "broken-springs" },
-      { title: "Motores", text: "Reparar o cambiar el operador, con las marcas que de verdad llevas en la camioneta.", icon: "opener-repair" },
-      { title: "Puertas nuevas", text: "Estilo, aislamiento y una solicitud de medida para quien compara dos cotizaciones.", icon: "new-doors" },
+      { title: "Motores", text: "Reparar o cambiar el operador, con las marcas que de verdad llevas en la camioneta.", icon: "bolt" },
+      { title: "Puertas nuevas", text: "Estilo, aislamiento y una solicitud de medida para quien compara dos cotizaciones.", icon: "better-design" },
     ],
     serviceArea: "Hasta dónde manejas el mismo día, que suele ser menos que el radio de instalación.",
     faqs: [
@@ -201,9 +201,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que un sitio de pintura debe explicar",
     servicesMark: "pintura",
     services: [
-      { title: "Interior", text: "Cuartos, preparación y cómo proteges pisos y muebles en cada trabajo interior.", icon: "interior" },
+      { title: "Interior", text: "Cuartos, preparación y cómo proteges pisos y muebles en cada trabajo interior.", icon: "palette" },
       { title: "Exterior", text: "Revestimiento, molduras y la temporada en la que sí agendas pintura exterior.", icon: "exterior" },
-      { title: "Gabinetes", text: "El trabajo fino, con precio y texto aparte de pintar toda la casa de una vez.", icon: "cabinet-finishes" },
+      { title: "Gabinetes", text: "El trabajo fino, con precio y texto aparte de pintar toda la casa de una vez.", icon: "sparkle" },
     ],
     serviceArea: "Los barrios a los que manejas para una visita. Una página, no una ciudad clonada por cada código postal.",
     featureText: { "quote-requests": "Fotos, visita y cuándo deben esperar un número. Una página, en lenguaje claro." },
@@ -232,14 +232,14 @@ const ES: Record<string, Copy> = {
     problemsMark: "espantan",
     problems: [
       { title: "Sin fotos en la primera pantalla", text: "La primera pantalla es el portafolio. Si es una cocina de catálogo, las fotos reales nunca se ven.", icon: "first-screen-portfolio" },
-      { title: "Un precio de salida inventado", text: "“Cocinas desde $9,999” atrae al lead equivocado. Explica qué mueve el presupuesto en lugar de inventar un piso.", icon: "honest-budget-context" },
+      { title: "Un precio de salida inventado", text: "“Cocinas desde $9,999” atrae al lead equivocado. Explica qué mueve el presupuesto en lugar de inventar un piso.", icon: "payment" },
       { title: "Lenguaje de emergencia en un proyecto de diseño", text: "“Llama ya” sirve para una fuga. Una remodelación necesita consulta, tiempos y una persona que conteste.", icon: "consultation-path" },
     ],
     heroAlt: "Cocina, muestras, planos y una computadora",
     servicesTitle: "Páginas que un remodelador debe publicar",
     servicesMark: "remodelador",
     services: [
-      { title: "Cocinas", text: "El alcance que tomas, qué cubre la consulta y una galería que sea tu trabajo real.", icon: "kitchens" },
+      { title: "Cocinas", text: "El alcance que tomas, qué cubre la consulta y una galería que sea tu trabajo real.", icon: "preview" },
       { title: "Baños", text: "Aparte de las cocinas: otro presupuesto, otras fotos y otras preguntas del cliente.", icon: "bathrooms" },
       { title: "Estimados detallados", text: "Diseño, selecciones, obra y cómo funcionan los cambios. Esta es la página de confianza.", icon: "detailed-estimates" },
     ],
@@ -269,14 +269,14 @@ const ES: Record<string, Copy> = {
     problemsMark: "trabajo equivocado",
     problems: [
       { title: "El mantenimiento bajo fotos de diseño", text: "Si el inicio es puro adoquín, quien quiere el corte semanal asume que estás caro y se va.", icon: "maintenance-service-page" },
-      { title: "Proyectos sin proceso", text: "Diseño y obra necesitan un camino: visita, concepto, instalación. Un teléfono solo no es un proceso.", icon: "project-process" },
+      { title: "Proyectos sin proceso", text: "Diseño y obra necesitan un camino: visita, concepto, instalación. Un teléfono solo no es un proceso.", icon: "consultation-path" },
       { title: "Una zona que no puedes cubrir", text: "Listar toda la ciudad con dos cuadrillas crea cotizaciones que no puedes agendar.", icon: "realistic-service-area" },
     ],
     heroAlt: "Diseño de jardín, plano y una computadora",
     servicesTitle: "Cómo armamos un sitio de paisajismo",
     servicesMark: "paisajismo",
     services: [
-      { title: "Rutas de mantenimiento", text: "Corte, camas, limpiezas y qué incluye de verdad un acuerdo de ruta semanal.", icon: "maintenance-routes" },
+      { title: "Rutas de mantenimiento", text: "Corte, camas, limpiezas y qué incluye de verdad un acuerdo de ruta semanal.", icon: "calendar" },
       { title: "Diseño", text: "Patios, plantas y los proyectos que quieres que vendan las fotos terminadas.", icon: "landscape-design" },
       { title: "Diseño y obra", text: "Visita, concepto e instalación en un camino — no tratado como un corte semanal.", icon: "design-build" },
     ],
@@ -310,7 +310,7 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que una empresa de albercas debe tener",
     servicesMark: "albercas",
     services: [
-      { title: "Servicio semanal", text: "Qué incluye la visita, cada cuánto vas y cómo se pide un lugar en la ruta.", icon: "weekly-service" },
+      { title: "Servicio semanal", text: "Qué incluye la visita, cada cuánto vas y cómo se pide un lugar en la ruta.", icon: "calendar" },
       { title: "Reparaciones", text: "Agua verde, fallas de equipo y llamadas que no pueden esperar al siguiente día de ruta.", icon: "repairs" },
       { title: "Equipo", text: "Bombas, calentadores y las marcas que instalas, aparte de la visita semanal de ruta.", icon: "equipment" },
     ],
@@ -347,9 +347,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Páginas que coinciden con cómo busca la gente",
     servicesMark: "busca la gente",
     services: [
-      { title: "Casas", text: "Revestimientos que sí lavas y los que no, y qué incluye cada visita a la casa.", icon: "house-washing" },
-      { title: "Concreto", text: "Aceite, óxido y el trabajo plano: otra búsqueda distinta a lavar la casa.", icon: "concrete-cleaning" },
-      { title: "Techos", text: "Lavado suave solo si eso es lo que haces, con los límites de seguridad escritos.", icon: "roof-washing" },
+      { title: "Casas", text: "Revestimientos que sí lavas y los que no, y qué incluye cada visita a la casa.", icon: "sparkle" },
+      { title: "Concreto", text: "Aceite, óxido y el trabajo plano: otra búsqueda distinta a lavar la casa.", icon: "equipment" },
+      { title: "Techos", text: "Lavado suave solo si eso es lo que haces, con los límites de seguridad escritos.", icon: "shield" },
     ],
     serviceArea: "Hasta dónde manejas el equipo. Las rutas se mueren cuando la zona es una lista de deseos.",
     faqs: [
@@ -381,9 +381,9 @@ const ES: Record<string, Copy> = {
     servicesTitle: "Lo que publicamos para limpiadores de vidrios",
     servicesMark: "vidrios",
     services: [
-      { title: "Casas", text: "Pisos a los que subes, interior o exterior, y cómo pedir la primera limpieza.", icon: "home-routes" },
-      { title: "Aparadores", text: "Un camino comercial con horario, no un cupón pensado para una casa de tres recámaras.", icon: "storefronts" },
-      { title: "Rutas recurrentes", text: "Mensual o trimestral, escrito como el paso normal después de esa primera visita.", icon: "recurring-routes" },
+      { title: "Casas", text: "Pisos a los que subes, interior o exterior, y cómo pedir la primera limpieza.", icon: "location" },
+      { title: "Aparadores", text: "Un camino comercial con horario, no un cupón pensado para una casa de tres recámaras.", icon: "desktop" },
+      { title: "Rutas recurrentes", text: "Mensual o trimestral, escrito como el paso normal después de esa primera visita.", icon: "calendar" },
     ],
     serviceArea: "Los barrios de la ruta. Cortos y ciertos, para que el manejo todavía funcione.",
     faqs: [
@@ -411,7 +411,7 @@ const ES: Record<string, Copy> = {
     problemsMark: "la ruta",
     problems: [
       { title: "Una promesa de toda la ciudad", text: "Decir que atiendes en todas partes es cómo agendas un jardín a 40 minutos de la ruta. Publica la zona que quieres.", icon: "route-service-area" },
-      { title: "Las mascotas como un agregado", text: "Si lo vendes, es su propia búsqueda y su propia página. Si no, déjalo fuera.", icon: "pet-waste-service-page" },
+      { title: "Las mascotas como un agregado", text: "Si lo vendes, es su propia búsqueda y su propia página. Si no, déjalo fuera.", icon: "extra-page" },
       { title: "Sin explicar la visita", text: "Corte, orilla, soplado, retiro de desechos: la gente quiere la lista antes de darte el código del portón.", icon: "visit-inclusions" },
     ],
     heroAlt: "Dueño de jardinería, podadora y una tableta",
