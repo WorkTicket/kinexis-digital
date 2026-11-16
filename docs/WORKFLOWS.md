@@ -7,7 +7,8 @@
 ## Lint/typecheck
 - `npm run lint` - ESLint (flat config)
 - `npm run typecheck` - TypeScript no emit
-- `npm run check` - Lint, typecheck, mocked contact-delivery, reviews route handlers, and Spanish mirror
+- `npm run check` - Lint, typecheck, mocked contact-delivery, reviews route handlers, Spanish mirror, commercial consistency, SEO ownership guard, Conferbot checks
+- `npm run check:seo-ownership` - Keyword → URL ownership map + forbidden `/pricing` cannibal slugs
 - `npm run check:reviews` - Real `/api/reviews` and `/api/reviews/moderate` handlers with in-memory KV (no Cloudflare/SMTP)
 - `npm run check:route-integration` - Contact + reviews + invoice-security handler suites
 - `npm run check:payment-reconciliation` - Offline invoice/payment_events consistency fixtures (also part of `check:invoice-security`)
