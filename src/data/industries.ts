@@ -627,7 +627,7 @@ export const INDUSTRIES: Industry[] = [
     primaryKeyword: "tree service website design",
     projectSlug: "graft-tree-care",
     metaTitle: "Tree Service Website Design From $97/mo",
-    metaDescription: "Tree service website design from $97/mo. Separate paths for trimming, removals, and storm work, plus Google review requests and optional missed-call text-back.",
+    metaDescription: "Tree service website design from $97/mo. Separate paths for trimming, removals, and storm work, plus Google review requests and optional text-back.",
     h1: "Website Design for Tree Care That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
     sub: "A hanging limb after a storm is not a canopy thin. The site should send each job down its own path, with insurance and safety cues where a nervous homeowner can see them.",
