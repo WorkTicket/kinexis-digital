@@ -7,16 +7,27 @@
  *   1. npm run check
  *   2. npm run test:e2e          (local Playwright; fails closed)
  *   3. npm run build:worker
- *   4. npm run deploy:worker
- *   5. npm run search:notify
- *   6. npm run verify:prod       (non-destructive live smoke / structured data / Lighthouse budget)
+ *   4. assert Conferbot bot id in .open-next (fails closed)
+ *   5. npm run deploy:worker
+ *   6. npm run search:notify
+ *   7. npm run verify:prod       (non-destructive live smoke / structured data / Lighthouse budget)
+ *
+ * Conferbot env isolation:
+ *   - check + test:e2e force NEXT_PUBLIC_CONFERBOT_ENABLED=0 (same contract as CI).
+ *   - build:worker runs with that var removed so committed .env.production (1)
+ *     applies. Never leave a gate-time 0 on process.env for the Worker build.
  *
  * Usage: node scripts/deploy-production.mjs
  * Requires: wrangler logged in; Playwright browsers installed (`npx playwright install`).
  */
 import { spawnSync } from "node:child_process";
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
+import { join } from "node:path";
 
 const PRODUCTION_SITE_URL = "https://www.kinexisdigital.com";
+/** Public bot id from .env.production — must appear in the Worker build output. */
+const CONFERBOT_BOT_ID = "6afa0edabbad567d637ee189";
+const OPEN_NEXT_DIR = ".open-next";
 
 const leakedPreview =
   process.env.NEXT_PUBLIC_IS_PREVIEW === "1" ||
@@ -31,11 +42,9 @@ process.env.NEXT_PUBLIC_SITE_URL = PRODUCTION_SITE_URL;
 // Always ping search after a production ship (override a leftover SEARCH_NOTIFY=0
 // from preview deploys). Set SEARCH_NOTIFY=0 explicitly only by editing this file.
 process.env.SEARCH_NOTIFY = "1";
-// Keep Conferbot off during the pre-deploy e2e gate (same contract as CI).
-// Production builds still pick up .env.production for the Worker artifact.
-if (process.env.NEXT_PUBLIC_CONFERBOT_ENABLED === undefined) {
-  process.env.NEXT_PUBLIC_CONFERBOT_ENABLED = "0";
-}
+// Never pin Conferbot off on the parent env — that used to leak into build:worker
+// and override .env.production. Gate steps set 0 only on their child env.
+delete process.env.NEXT_PUBLIC_CONFERBOT_ENABLED;
 
 if (leakedPreview) {
   console.warn(
@@ -45,22 +54,110 @@ if (leakedPreview) {
 
 console.log(`Production deploy: NEXT_PUBLIC_SITE_URL=${process.env.NEXT_PUBLIC_SITE_URL}`);
 
+/** @param {"gate" | "build" | "post"} kind */
+function envFor(kind) {
+  const env = { ...process.env };
+  if (kind === "gate") {
+    env.NEXT_PUBLIC_CONFERBOT_ENABLED = "0";
+  } else if (kind === "build") {
+    // Drop any shell leftover so Next loads NEXT_PUBLIC_CONFERBOT_ENABLED=1
+    // from committed .env.production.
+    delete env.NEXT_PUBLIC_CONFERBOT_ENABLED;
+  }
+  return env;
+}
+
+function walkFiles(dir, out = []) {
+  if (!existsSync(dir)) return out;
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    let st;
+    try {
+      st = statSync(full);
+    } catch {
+      continue;
+    }
+    if (st.isDirectory()) walkFiles(full, out);
+    else if (st.isFile()) out.push(full);
+  }
+  return out;
+}
+
+/**
+ * Fail closed if the OpenNext Worker artifact does not embed the public
+ * Conferbot bot id (catches ENABLED=0 / missing .env.production bake-ins).
+ */
+function assertConferbotBotIdInBuild() {
+  if (!existsSync(OPEN_NEXT_DIR)) {
+    console.error(
+      `[deploy-production] Missing ${OPEN_NEXT_DIR}/ after build:worker — cannot verify Conferbot bot id.`,
+    );
+    process.exit(1);
+  }
+
+  const files = walkFiles(OPEN_NEXT_DIR);
+  for (const file of files) {
+    // Skip obvious non-text blobs; bot id is ASCII and lives in JS/JSON/HTML/cache.
+    if (/\.(png|jpe?g|gif|webp|avif|ico|woff2?|ttf|eot|mp4|webm|gz|br|map)$/i.test(file)) {
+      continue;
+    }
+    let text;
+    try {
+      text = readFileSync(file, "utf8");
+    } catch {
+      continue;
+    }
+    if (text.includes(CONFERBOT_BOT_ID)) {
+      console.log(
+        `[deploy-production] Conferbot bot id present in Worker output (${file}).`,
+      );
+      return;
+    }
+  }
+
+  console.error(
+    `[deploy-production] Conferbot bot id ${CONFERBOT_BOT_ID} not found under ${OPEN_NEXT_DIR}/. ` +
+      "Refusing to deploy — production chat would ship without the widget bake-in. " +
+      "Ensure build:worker runs without NEXT_PUBLIC_CONFERBOT_ENABLED=0 so .env.production applies.",
+  );
+  process.exit(1);
+}
+
 const steps = [
-  ["npm", ["run", "check"]],
-  ["npm", ["run", "test:e2e"]],
-  ["npm", ["run", "build:worker"]],
-  ["npm", ["run", "deploy:worker"]],
-  ["npm", ["run", "search:notify"]],
-  ["npm", ["run", "verify:prod"]],
+  { cmd: "npm", args: ["run", "check"], kind: "gate" },
+  { cmd: "npm", args: ["run", "test:e2e"], kind: "gate" },
+  { cmd: "npm", args: ["run", "build:worker"], kind: "build" },
+  { cmd: "npm", args: ["run", "deploy:worker"], kind: "post" },
+  { cmd: "npm", args: ["run", "search:notify"], kind: "post" },
+  { cmd: "npm", args: ["run", "verify:prod"], kind: "post" },
 ];
 
-for (const [cmd, args] of steps) {
+for (const step of steps) {
+  const { cmd, args, kind } = step;
   console.log(`\n[deploy-production] → ${cmd} ${args.join(" ")}`);
-  const result = spawnSync(cmd, args, { stdio: "inherit", env: process.env, shell: true });
+  if (kind === "gate") {
+    console.log("[deploy-production]   (NEXT_PUBLIC_CONFERBOT_ENABLED=0 for this gate)");
+  } else if (kind === "build") {
+    console.log(
+      "[deploy-production]   (NEXT_PUBLIC_CONFERBOT_ENABLED unset → .env.production)",
+    );
+  }
+  const result = spawnSync(cmd, args, {
+    stdio: "inherit",
+    env: envFor(kind),
+    shell: true,
+  });
   if (result.status !== 0) {
-    console.error(`[deploy-production] Failed: ${cmd} ${args.join(" ")} (exit ${result.status ?? 1})`);
+    console.error(
+      `[deploy-production] Failed: ${cmd} ${args.join(" ")} (exit ${result.status ?? 1})`,
+    );
     process.exit(result.status ?? 1);
+  }
+  if (kind === "build") {
+    assertConferbotBotIdInBuild();
   }
 }
 
-console.log("\n[deploy-production] All gates passed (check, e2e, build, deploy, search notify, verify:prod).");
+console.log(
+  "\n[deploy-production] All gates passed (check, e2e, build+conferbot guard, deploy, search notify, verify:prod).",
+);
