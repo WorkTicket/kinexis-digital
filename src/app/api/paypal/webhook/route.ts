@@ -93,6 +93,15 @@ async function handleWebhook(request: Request) {
     amountMinor === storedMinor,
   );
   if (!invoice || !matchesInvoice) {
+    console.error("PayPal webhook payment alert", {
+      kind: "payment_alert",
+      reason: "invoice_mismatch",
+      eventId: notification.eventId,
+      eventType: notification.eventType,
+      invoiceId: notification.invoiceId,
+      orderId: notification.orderId,
+      captureId: notification.captureId,
+    });
     const stored = await remember(notification.eventId, notification.eventType, "rejected", notification);
     if (!stored.ok && stored.reason === "storage") return json({ error: "storage" }, 503);
     return json({ ok: true }, 200);
@@ -103,6 +112,16 @@ async function handleWebhook(request: Request) {
     return json({ error: "provider unavailable" }, 503);
   }
   if (captured.status !== "paid" || captured.captureId !== notification.captureId) {
+    console.error("PayPal webhook payment alert", {
+      kind: "payment_alert",
+      reason: "capture_mismatch",
+      eventId: notification.eventId,
+      eventType: notification.eventType,
+      invoiceId: notification.invoiceId,
+      orderId: notification.orderId,
+      captureId: notification.captureId,
+      capturedStatus: captured.status,
+    });
     const stored = await remember(notification.eventId, notification.eventType, "rejected", notification);
     if (!stored.ok && stored.reason === "storage") return json({ error: "storage" }, 503);
     return json({ ok: true }, 200);
