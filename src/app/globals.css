@@ -1838,9 +1838,10 @@ html.no-float .consent-fab__label{
 }
 /* Conferbot launcher lives inside <conferbot-widget> open shadow DOM with its
    own bottom:!important media queries — these light-DOM rules do not apply.
-   Real lift: ConferbotWidget.tsx injects #kx-chat-lift into the shadow root and
-   sets data-cb-own-m-bottom / --cb-o-m-bottom from the measured .float-cta top.
-   Kept here only as a harmless fallback if Conferbot ever drops shadow.
+   Real lift: ConferbotWidget.tsx injects mobile-MQ-scoped #kx-chat-lift into the
+   shadow root and sets data-cb-own-m-bottom / --cb-o-m-bottom from the measured
+   .float-cta top (no sticky inline bottoms). Kept here only as a harmless
+   fallback if Conferbot ever drops shadow.
    While the cookie banner is open (`html.consent-open`), hide the host entirely
    (launcher + any proactive CTA). Proactive mobile greeting itself is turned off
    in the Conferbot dashboard — not via site CSS/JS. */

@@ -56,11 +56,33 @@ function viewportHeight() {
   return window.innerHeight || vv?.height || document.documentElement.clientHeight || 0;
 }
 
+type KxLiftWindow = Window & {
+  __kxStartLauncherPositioner?: () => void;
+};
+
+/**
+ * Strip leftover inline bottom/inset from shadow launcher nodes.
+ * Conferbot (and older lift code) write `bottom:…!important` inline; those
+ * survive desktop clear if we only remove the host class / stylesheet.
+ */
+function clearInlineLift(root: ShadowRoot | null | undefined) {
+  if (!root) return;
+  const nodes = root.querySelectorAll<HTMLElement>(
+    "#open-chatbot.chatbot__icon, .chatbot__icon, .chatbot__icon__cta, #chat-cta, .live_chat__chat__screen",
+  );
+  nodes.forEach((node) => {
+    node.style.removeProperty("bottom");
+    node.style.removeProperty("inset");
+  });
+}
+
 /**
  * Conferbot mounts `<conferbot-widget>` with an open shadow root. Launcher
  * `#open-chatbot.chatbot__icon` lives inside that shadow with inline bottoms and
  * widget CSS `bottom:…!important` media queries — light-DOM site CSS never
- * reaches them. Measure `.float-cta` and set bottom = vh - bar.top + 12.
+ * reaches them. Measure `.float-cta` and set bottom = vh - bar.top + 12 via
+ * host CSS variables + a mobile-MQ-scoped shadow stylesheet (no sticky inline
+ * bottoms that can survive a desktop resize).
  */
 function startLauncherPositioner() {
   if (liftArmed || typeof window === "undefined") return;
@@ -83,6 +105,7 @@ function startLauncherPositioner() {
     host.style.removeProperty("--kx-chat-bottom");
     host.style.removeProperty("--cb-o-m-bottom");
     host.shadowRoot?.getElementById(STYLE_ID)?.remove();
+    clearInlineLift(host.shadowRoot);
   };
 
   const bindFloat = (float: Element | null) => {
@@ -178,8 +201,6 @@ function startLauncherPositioner() {
     }
 
     const bottom = `${bottomPx}px`;
-    const ctaBottom = `${bottomPx + CTA_ABOVE_LAUNCHER_PX}px`;
-    const panelBottom = `${bottomPx + PANEL_ABOVE_LAUNCHER_PX}px`;
 
     host.classList.add(HOST_CLASS);
     host.style.setProperty("--kx-chat-bottom", bottom);
@@ -194,7 +215,10 @@ function startLauncherPositioner() {
     }
     // Always re-append so our rules stay after Conferbot stylesheets it injects later.
     host.shadowRoot.appendChild(styleEl);
+    // Mobile MQ scopes the lift so leftover host class / vars cannot stick the
+    // launcher raised after a resize past the float-cta breakpoint.
     styleEl.textContent = `
+@media (max-width: 860px) {
 :host(.${HOST_CLASS}) #open-chatbot.chatbot__icon,
 :host(.${HOST_CLASS}) .chatbot__icon{
   bottom:var(--kx-chat-bottom)!important;
@@ -206,28 +230,12 @@ function startLauncherPositioner() {
 :host(.${HOST_CLASS}) .live_chat__chat__screen.show__chat{
   bottom:calc(var(--kx-chat-bottom) + ${PANEL_ABOVE_LAUNCHER_PX}px)!important;
 }
+}
 `.trim();
 
-    const icon = host.shadowRoot.querySelector(
-      "#open-chatbot.chatbot__icon, .chatbot__icon",
-    ) as HTMLElement | null;
-    if (icon) icon.style.setProperty("bottom", bottom, "important");
-
-    const cta = host.shadowRoot.querySelector(
-      ".chatbot__icon__cta, #chat-cta",
-    ) as HTMLElement | null;
-    if (cta) {
-      cta.style.setProperty("bottom", ctaBottom, "important");
-      const inset = cta.style.inset || cta.getAttribute("style") || "";
-      if (/inset\s*:/i.test(inset) || cta.style.getPropertyValue("inset")) {
-        cta.style.setProperty("inset", `auto 8px ${ctaBottom} auto`, "important");
-      }
-    }
-
-    const panel = host.shadowRoot.querySelector(
-      ".live_chat__chat__screen.show__chat",
-    ) as HTMLElement | null;
-    if (panel) panel.style.setProperty("bottom", panelBottom, "important");
+    // Prefer CSS variables over sticky inline bottoms. Strip competing inlines
+    // (Conferbot or prior lift) so the MQ-scoped stylesheet can win.
+    clearInlineLift(host.shadowRoot);
   };
 
   const schedule = () => {
@@ -269,8 +277,12 @@ function startLauncherPositioner() {
  */
 export default function ConferbotWidget({ locale }: { locale?: string }) {
   useEffect(() => {
-    if (!widgetEnabled()) return;
     if (typeof window === "undefined") return;
+    // e2e / diagnostics: arm after injecting a mock `<conferbot-widget>` host
+    // even when NEXT_PUBLIC_CONFERBOT_ENABLED is off in CI.
+    (window as KxLiftWindow).__kxStartLauncherPositioner = startLauncherPositioner;
+
+    if (!widgetEnabled()) return;
     if (window.location.pathname.startsWith("/admin")) return;
 
     // Arm once for the page lifetime (survives React remount / locale changes).
