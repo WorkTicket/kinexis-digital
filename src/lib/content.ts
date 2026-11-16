@@ -702,6 +702,19 @@ export const POSTS = [
     modified: "2026-11-16T14:00:00-05:00",
     readTime: "14 min read",
   },
+  {
+    slug: "contractor-website-quote-form",
+    category: "Tips",
+    title: "The Contractor Website Quote Form: What to Ask, What to Remove, and How to Get More Leads",
+    seoTitle: "Contractor Website Quote Forms That Get More Leads",
+    excerpt: "Build a short trade-aware estimate form: what to ask, what to cut, and how notifications, follow-up, and call tracking support the form without turning the page into a sales pitch.",
+    image: "/blog/contractor-website-quote-form.webp",
+    width: 1200,
+    height: 675,
+    date: "2026-11-16",
+    modified: "2026-11-16T15:00:00-05:00",
+    readTime: "12 min read",
+  },
 ];
 /** Curated client reviews for on-site display (Website). Facebook Graph is unreliable here — keep these as Website so they always show. Do not invent quotes — edit only with client OK. */
 export const REVIEWS: {

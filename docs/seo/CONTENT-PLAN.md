@@ -36,7 +36,7 @@
 | T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | After Tech-0 |
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
 | T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | In progress (code) |
-| T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | Planned |
+| T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | In progress (code) |
 | T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |
 | T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Planned |
 | T10 | Industry: painting live | Landing | 3 | `/industries/painting` | In code this PR |
@@ -46,7 +46,6 @@
 | T14 | Data needed | Ops | 0 | — | GSC received; Ahrefs unpaid |
 | T15 | Writing standard + review checklist | Process | 0 | §11–12 | Locked |
 | T16 | GSC metadata quick wins (titles/descriptions) | Metadata | Tech-0 | `/`, `/pricing`, local SEO post | In #37 (I3–I5) |
-
 ---
 
 ## 2. Phased execution (**technical indexing first**)
