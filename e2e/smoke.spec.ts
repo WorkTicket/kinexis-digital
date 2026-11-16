@@ -69,7 +69,7 @@ test.describe("marketing journeys", () => {
     expect(trackerHits, "undecided must not load GA/Meta").toEqual([]);
 
     // UI reject must persist the cookie contract.
-    await page.locator(".consent-banner").getByRole("button", { name: /Reject non-essential/i }).click();
+    await page.locator(".consent-banner").getByRole("button", { name: /^Reject$/i }).click();
     await expect.poll(async () => page.evaluate(() => {
       const m = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
       return m ? decodeURIComponent(m[1]) : "";
