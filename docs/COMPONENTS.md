@@ -18,7 +18,8 @@
 - `FooterGate.tsx`, `DialogHost.tsx`, `ScrollUi.tsx`, `Boot.tsx`, `SafeImage.tsx`, `DeferredImg.tsx`, `Filterable.tsx`, `Stepper.tsx`, `ProcessFlow.tsx`, `JsonLd.tsx`, `ProjectCard.tsx`, `GuaranteeBadge.tsx`, `SpanishPlanSticker.tsx`
 - `DocumentShell.tsx` - Locale document shell (fonts, head boot, mounts Boot + ConferbotWidget)
 - `CookieConsent.tsx` - Cookie / analytics / ads preference dock (`kinexis_consent`)
-- `ConferbotWidget.tsx` - Client-only; no UI of its own; loads Conferbot after flag, cookie-dock dismiss (`!html.consent-open`), then idle/input (every public page; not analytics-gated; no double-init). Host also hidden while `html.consent-open` via `globals.css`. Mobile proactive greeting is Conferbot-dashboard only.
+- `ConferbotLazy.tsx` / `ConferbotWidget.tsx` - Lazy client mount (async chunk); widget has no UI of its own; loads Conferbot after flag, cookie-dock dismiss (`!html.consent-open`), then idle/input (every public page; not analytics-gated; no double-init). Host also hidden while `html.consent-open` via `globals.css`. Mobile proactive greeting is Conferbot-dashboard only.
+- `HeaderCta.tsx`, `FooterLinkColumn.tsx` - Server chrome; LP CTA swap via CSS (`html.lp-route`); footer accordion + CTA nudge owned by `boot.js`.
 
 ## When to reuse
 - Use `PageHero` for page headers (split with `Art` or text-only). Prefer `Art` with approved `ArtName` from `ui.tsx`.

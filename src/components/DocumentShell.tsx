@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import Boot from "@/components/Boot";
-import ConferbotWidget from "@/components/ConferbotWidget";
+import ConferbotLazy from "@/components/ConferbotLazy";
 import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { isPreviewSite, SITE } from "@/lib/site";
@@ -133,7 +133,7 @@ if(/FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\\//i.test(ua))r.cl
           video={SITE.videoUrl}
         />
         {/* Off unless NEXT_PUBLIC_CONFERBOT_ENABLED=1; after consent-open clears, idle/input (not analytics-gated). */}
-        <ConferbotWidget locale={locale} />
+        <ConferbotLazy locale={locale} />
       </body>
     </html>
   );

@@ -19,8 +19,12 @@ assert.notEqual(
 );
 
 const shell = readFileSync(resolve("src/components/DocumentShell.tsx"), "utf8");
-assert.match(shell, /ConferbotWidget/);
+assert.match(shell, /ConferbotLazy/);
 assert.match(shell, /NEXT_PUBLIC_CONFERBOT_ENABLED/);
+
+const lazy = readFileSync(resolve("src/components/ConferbotLazy.tsx"), "utf8");
+assert.match(lazy, /ConferbotWidget/);
+assert.match(lazy, /ssr:\s*false/);
 
 const widget = readFileSync(resolve("src/components/ConferbotWidget.tsx"), "utf8");
 assert.match(widget, /cdn\.conferbot\.com\/dist\/v1\/widget\.min\.js/);

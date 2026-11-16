@@ -763,15 +763,16 @@ html.lp-route body{--announce-h:0px}
   display:inline-flex!important;align-items:center;justify-content:center;
   min-height:40px;padding:0 6px;line-height:1.1;font-size:.88rem;white-space:nowrap;
 }
-.lp-route .header__cta{display:inline-flex!important;padding:.55em .95rem;font-size:.84rem;flex-shrink:0}
+.lp-route .header__cta--site{display:none!important}
+.lp-route .header__cta--lp{display:inline-flex!important;padding:.55em .95rem;font-size:.84rem;flex-shrink:0}
 @media (max-width:520px){
   .lp-route .header__tools{gap:6px}
   .lp-route .header__phone--mobile{font-size:.72rem;padding:0 2px;letter-spacing:-.02em}
-  .lp-route .header__cta{padding:.5em .7rem;font-size:.76rem}
+  .lp-route .header__cta--lp{padding:.5em .7rem;font-size:.76rem}
 }
 @media (max-width:360px){
   .lp-route .header__phone--mobile{font-size:.68rem}
-  .lp-route .header__cta{padding:.45em .6rem;font-size:.72rem}
+  .lp-route .header__cta--lp{padding:.45em .6rem;font-size:.72rem}
 }
 .lp-page{overflow:hidden;background:#fff;color:var(--text)}
 .lp-foot{padding:52px 0 60px;background:#031b4e;color:#d7e3ff;border-top:1px solid rgba(255,255,255,.12)}
@@ -2409,14 +2410,16 @@ html.no-audit [data-site-audit]{display:none!important}
 .fb-chooser.is-open .fb-menu{visibility:visible!important;opacity:1!important}
 
 /* Desktop-only header CTA — mobile/tablet tools stay phone + hamburger.
-   JS (HeaderCta) triggers the one-shot nudge on a random ~3–8s gap. */
+   boot.js triggers the one-shot nudge on a random ~3–8s gap.
+   `.header__cta--lp` stays hidden off LP routes; `.lp-route` swaps via CSS. */
 .header__cta{
   display:none;flex:0 0 auto;min-height:44px;white-space:nowrap;padding:.7em 1.2em;font-size:.9rem;line-height:1.2;letter-spacing:.02em;
   transform-origin:center center;touch-action:manipulation;isolation:isolate;
   backface-visibility:hidden;-webkit-font-smoothing:antialiased;
 }
+.header__cta--lp{display:none!important}
 @media (min-width:1321px){
-  .header__cta{display:inline-flex}
+  .header__cta--site{display:inline-flex}
 }
 .header__cta-label{position:relative;z-index:1;display:block}
 .header__cta::after{
