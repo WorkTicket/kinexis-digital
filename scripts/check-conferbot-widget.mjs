@@ -52,7 +52,14 @@ assert.match(csp, /cdn\.conferbot\.com/);
 assert.match(csp, /wdt\.conferbot\.com/);
 assert.match(csp, /wss:\/\/wdt\.conferbot\.com/);
 
+const css = readFileSync(resolve("src/app/globals.css"), "utf8");
+assert.match(
+  css,
+  /html\.consent-open\s+conferbot-widget\s*\{[^}]*display\s*:\s*none\s*!important/s,
+  "cookie banner open must hide the Conferbot host (launcher + CTA)",
+);
+
 console.log(
-  "Conferbot widget contract checks passed: flag off by default, consent-independent idle/input load, shadow launcher lift, no double-init, CSP hosts, DocumentShell mount.",
+  "Conferbot widget contract checks passed: flag off by default, consent-independent idle/input load, shadow launcher lift, consent-open host hide, no double-init, CSP hosts, DocumentShell mount.",
 );
 

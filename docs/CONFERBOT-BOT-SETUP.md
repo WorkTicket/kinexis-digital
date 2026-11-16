@@ -30,6 +30,10 @@ Appearance (launcher icon + in-chat avatar) is controlled in the **Conferbot das
 
 **Owner action (required for the live widget to show these):** Conferbot → bot `6afa0edabbad567d637ee189` → **Publish → Widget Settings** (or Customize) → upload the profile photo and logo / bubble icon. Changes apply to the embedded widget without a site redeploy. Prefer uploading the local JPG/PNG from this repo if the dashboard rejects remote URLs.
 
+## Mobile proactive greeting (dashboard only)
+
+The embed API (`ConferbotWidget(botId, embedType, options?)`) only accepts `user` / `customData`. There is **no** site-side switch to hide the proactive welcome/greeting bubble on mobile. Turn that greeting **off for mobile viewports in the Conferbot dashboard** (Customize / proactive prompts / device visibility). Keep the launcher. Site CSS only hides the whole widget host while `html.consent-open` (cookie banner).
+
 ## Owner steps (not done by the agent)
 
 1. Upload widget logo + profile photo (see above).
