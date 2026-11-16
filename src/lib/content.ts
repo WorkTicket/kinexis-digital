@@ -689,6 +689,19 @@ export const POSTS = [
     modified: "2026-11-16T12:00:00-05:00",
     readTime: "16 min read",
   },
+  {
+    slug: "how-to-choose-contractor-web-designer",
+    category: "Tips",
+    title: "How to Choose a Website Designer for Your Contracting Business: 15 Questions to Ask",
+    seoTitle: "15 Questions Before You Hire a Contractor Web Designer",
+    excerpt: "Ask about domain ownership, files, monthly inclusions, cancellation, service pages, SEO, lead delivery, and real mobile examples—before you pay a deposit.",
+    image: "/blog/how-to-choose-contractor-web-designer.webp",
+    width: 1200,
+    height: 675,
+    date: "2026-11-16",
+    modified: "2026-11-16T14:00:00-05:00",
+    readTime: "14 min read",
+  },
 ];
 /** Curated client reviews for on-site display (Website). Facebook Graph is unreliable here — keep these as Website so they always show. Do not invent quotes — edit only with client OK. */
 export const REVIEWS: {
