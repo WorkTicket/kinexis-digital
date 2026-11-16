@@ -4,6 +4,12 @@ import type { CSSProperties, ReactNode } from "react";
 import { COMPARE_ROWS } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { IMAGE_SIZES, still } from "@/lib/image-sources";
+import {
+  PAGE_HERO_SIZES,
+  PAGE_HERO_WIDTHS,
+  pageHeroPreloadHref,
+  pageHeroSrcSet,
+} from "@/lib/page-hero-lcp";
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
@@ -43,29 +49,26 @@ type HeroImageProps = {
   sizes: string;
 };
 
-const HERO_WIDTHS = [480, 640, 960, 1254] as const;
-
 function heroSet(base: string, format: "avif" | "webp") {
-  return HERO_WIDTHS.map((width) => `${still(`${base}-${width}.${format}`)} ${width}w`).join(", ");
+  // base is `/assets/heroes/{file}` — derive file stem for shared srcset helper.
+  const file = base.replace(/^\/assets\/heroes\//, "");
+  return pageHeroSrcSet(file, format);
 }
 
 /** Primary hero artwork. AVIF is served first, with pre-sized WebP as the fallback. */
 export function HeroImage({ name, alt, sizes }: HeroImageProps) {
   const base = `/assets/heroes/${name}`;
-  const avifSrcSet = heroSet(base, "avif");
-  const webpSrcSet = heroSet(base, "webp");
-  // Keep the reviews hero deterministic across the three route trees. React's
-  // server preload registration was omitted for this async page in the last
-  // deploy, while the explicit tag is still deduplicated by the browser.
-  const reviewsPreload = name === "05-reviews";
-  // Preload the 480w AVIF that mobile Lighthouse actually selects (~260–270 CSS px slot).
-  if (!reviewsPreload) {
-    preload(still(`${base}-480.avif`), { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
-  }
+  const avifSrcSet = pageHeroSrcSet(name, "avif");
+  const webpSrcSet = pageHeroSrcSet(name, "webp");
+  const preloadHref = pageHeroPreloadHref(name);
+  // Explicit <link> + react-dom preload: early head boot in DocumentShell starts
+  // the fetch; these keep img candidates identical and cover async route trees
+  // (reviews) where server preload registration was previously omitted.
+  preload(preloadHref, { as: "image", imageSrcSet: avifSrcSet, imageSizes: sizes, type: "image/avif", fetchPriority: "high" });
 
   return (
     <>
-      {reviewsPreload && <link rel="preload" as="image" href={still(`${base}-480.avif`)} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />}
+      <link rel="preload" as="image" href={preloadHref} imageSrcSet={avifSrcSet} imageSizes={sizes} type="image/avif" fetchPriority="high" />
       <picture>
       <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
       <source type="image/webp" srcSet={webpSrcSet} sizes={sizes} />
@@ -73,8 +76,8 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
         src={still(`${base}-640.webp`)}
         srcSet={webpSrcSet}
         sizes={sizes}
-        width={1254}
-        height={1254}
+        width={PAGE_HERO_WIDTHS[PAGE_HERO_WIDTHS.length - 1]}
+        height={PAGE_HERO_WIDTHS[PAGE_HERO_WIDTHS.length - 1]}
         alt={alt}
         decoding="sync"
         loading="eager"
@@ -184,8 +187,8 @@ export function PageHero({
           <div className="page-hero__art">
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-              {/* IMAGE_SIZES.pageHero understates the ~260px slot so mobile picks 480w LCP AVIF. */}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={IMAGE_SIZES.pageHero} /> : null)}
+              {/* PAGE_HERO_SIZES understates the ~260px slot so mobile picks 480w LCP AVIF. */}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={PAGE_HERO_SIZES} /> : null)}
             </div>
           </div>
         </div>

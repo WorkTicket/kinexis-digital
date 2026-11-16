@@ -8,9 +8,12 @@ import {
 } from "@/components/HeroFilm";
 import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { imageVariant } from "@/lib/image-sources";
+import { pageHeroPreloadBootScript } from "@/lib/page-hero-lcp";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { isPreviewSite, SITE } from "@/lib/site";
 import "@/app/globals.css";
+
+const PAGE_HERO_LCP_BOOT = pageHeroPreloadBootScript();
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
 const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
@@ -94,8 +97,10 @@ export default function DocumentShell({
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         {/* Preloads first — before FOUC CSS / inline scripts — so LCP discovery is not delayed.
-            Hero poster is unconditional: path gating needs headers() and an async shell, which
-            drops experimental.inlineCss (<style data-href>) and fails check-css-inlined. */}
+            Home poster is unconditional: path gating via headers() needs an async shell, which
+            drops experimental.inlineCss (<style data-href>) and fails check-css-inlined.
+            Interior page-hero art uses a sync pathname boot (same constraint) so /portfolio,
+            /pricing, /case-studies/*, etc. discover 480w AVIF before the inlined stylesheet. */}
         <link rel="preload" as="font" href={DISPLAY_FONT_HREF} type="font/woff2" crossOrigin="anonymous" />
         <link
           rel="preload"
@@ -106,6 +111,7 @@ export default function DocumentShell({
           type="image/avif"
           fetchPriority="high"
         />
+        <script id="page-hero-lcp" dangerouslySetInnerHTML={{ __html: PAGE_HERO_LCP_BOOT }} />
         {/* First-paint guards only. Do NOT unlayer-hide .mega__panel /
             .dropdown__menu — design CSS lives in @layer components, so an
             unlayered display:none permanently beats .is-open and kills menus. */}
