@@ -147,12 +147,12 @@ export const PAGES = {
   },
   pricing: {
     path: "/pricing",
-    title: "Small Business Website Cost & Plans",
+    title: "Contractor Website Cost & Plans | From $97/mo",
     crumb: "Pricing",
     service: "Web design",
     indexable: true,
     priority: 0.9,
-    description: "Website plans from $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for $1,497. Free homepage preview in 2 business days. No card required.",
+    description: "Small business and contractor website plans from $97/mo, Lead System $197/mo, Plus $297/mo, or Own It for $1,497. Free homepage preview. No card.",
     ogImage: "/og/pricing.webp",
   },
   pay: {
