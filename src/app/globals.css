@@ -826,48 +826,63 @@ html.lp-route body{--announce-h:0px}
 }
 .nav a,.dropdown__btn,.mega__btn{text-decoration:none;font-family:var(--font-head);font-weight:700;font-size:.92rem;letter-spacing:0;white-space:nowrap;background:none;border:0;cursor:pointer;color:var(--text);padding:9px 11px;border-radius:10px;transition:background-color .16s ease,color .16s ease,transform .16s ease}
 .nav a:hover,.nav a:focus-visible,.nav .mega__btn:hover,.nav .mega__btn:focus-visible{text-decoration:none}
-/* Desktop top-level nav: orange underline wipe (same --mark-fill as trust links).
-   Uses background (not ::after) so Industries mega can keep its hover-bridge ::after. */
+/* Desktop top-level nav: orange underline wipe via composited scaleX on ::before
+   (not --mark-fill / background-size — those paint on the main thread).
+   ::after stays free for the Industries mega hover-bridge. */
 @media (min-width:1321px){
   .nav>a,
   .nav>.mega>.mega__btn{
-    --mark-fill:0;
     position:relative;
     border-radius:0;
     background-color:transparent;
-    background-image:linear-gradient(
-      to right,
-      var(--warm) 0%,
-      var(--warm) calc(var(--mark-fill) * 100%),
-      transparent calc(var(--mark-fill) * 100%),
-      transparent 100%
-    );
-    background-repeat:no-repeat;
-    background-position:left 11px bottom 5px;
-    background-size:calc(100% - 22px) 2px;
-    transition:color .32s cubic-bezier(.2,.7,.2,1),--mark-fill .32s cubic-bezier(.2,.7,.2,1);
+    background-image:none;
+    /* Color snaps; underline alone animates (transform) for PSI compositing. */
+    transition:none;
+  }
+  .nav>a::before,
+  .nav>.mega>.mega__btn::before{
+    content:"";
+    position:absolute;
+    left:11px;
+    right:11px;
+    bottom:5px;
+    height:2px;
+    background:var(--warm);
+    transform:scaleX(0);
+    transform-origin:left center;
+    transition:transform .32s cubic-bezier(.2,.7,.2,1);
+    pointer-events:none;
   }
   .nav>a.is-current,
   .nav>.mega>.mega__btn.is-current{
-    --mark-fill:1;
     color:var(--warm);
     background-color:transparent;box-shadow:none;
   }
+  .nav>a.is-current::before,
+  .nav>.mega>.mega__btn.is-current::before{
+    transform:scaleX(1);
+  }
   .nav>a:focus-visible,
   .nav>.mega>.mega__btn:focus-visible{
-    --mark-fill:1;
     color:var(--warm);
     outline:3px solid color-mix(in srgb,var(--accent) 32%,transparent);outline-offset:2px;
+  }
+  .nav>a:focus-visible::before,
+  .nav>.mega>.mega__btn:focus-visible::before{
+    transform:scaleX(1);
   }
   @media (hover:hover) and (pointer:fine){
     .nav>a:hover,
     .nav>.mega>.mega__btn:hover{
-      --mark-fill:1;
       color:var(--warm);
+    }
+    .nav>a:hover::before,
+    .nav>.mega>.mega__btn:hover::before{
+      transform:scaleX(1);
     }
   }
   @media (prefers-reduced-motion:reduce){
-    .nav>a,.nav>.mega>.mega__btn{transition:none}
+    .nav>a::before,.nav>.mega>.mega__btn::before{transition:none}
   }
 }
 .dropdown{position:relative}
@@ -2494,23 +2509,43 @@ html.no-audit [data-site-audit]{display:none!important}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ---------- Marker highlight + hand-drawn underline ---------- */
-.hl{background-image:linear-gradient(var(--hl),var(--hl));background-repeat:no-repeat;
-  background-position:left center;background-size:100% .72em;
+/* Highlight band is a ::before scaled on X (composited) instead of background-size. */
+.hl{
+  position:relative;z-index:0;
   color:var(--text);padding:0 .1em;margin:0 -.04em;border-radius:.08em;
   -webkit-box-decoration-break:clone;box-decoration-break:clone;
-  transition:background-size .9s .15s cubic-bezier(.2,.8,.2,1)}
+  background:none;
+}
+.hl::before{
+  content:"";
+  position:absolute;z-index:-1;
+  left:0;right:0;top:50%;
+  height:.72em;margin-top:-.36em;
+  background:var(--hl);
+  border-radius:.08em;
+  transform:scaleX(1);
+  transform-origin:left center;
+  pointer-events:none;
+}
 /* No-JS: marks stay filled. With JS, below-fold marks start empty and sweep in. */
 @media (scripting:enabled){
-  .hl{background-size:0% .72em}
-  .hl.is-marked{background-size:100% .72em}
-  .hero .hl,.page-hero .hl{background-size:100% .72em}
+  .hl::before{
+    transform:scaleX(0);
+    transition:transform .9s .15s cubic-bezier(.2,.8,.2,1);
+  }
+  .hl.is-marked::before{transform:scaleX(1)}
+  .hero .hl::before,.page-hero .hl::before{
+    transform:scaleX(1);
+    transition:none;
+  }
 }
 /* Underline sits below a short phrase; it is not paired with the marker. */
 .hl--u{position:relative;display:inline-block;padding-bottom:.1em;color:inherit}
 .hl--u::after{content:"";position:absolute;left:0;right:0;bottom:-.16em;height:clamp(12px,.2em,22px);pointer-events:none;
   background:url("/assets/kinexis/decorative/underline-swoosh.svg") no-repeat center/100% 100%}
 /* On cobalt/navy bands the marker flips to a white accent with navy text. */
-.cta-band .hl,.price .hl,.audit-cta .hl,.section--lead .hl{background-image:linear-gradient(#fff,#fff);color:var(--warm-ink)}
+.cta-band .hl,.price .hl,.audit-cta .hl,.section--lead .hl{color:var(--warm-ink)}
+.cta-band .hl::before,.price .hl::before,.audit-cta .hl::before,.section--lead .hl::before{background:#fff}
 
 /* ---------- CTA band (cobalt closer — matches homepage section--lead) ---------- */
 .cta-band{
@@ -2684,7 +2719,7 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .hl{background-size:100% .72em!important}
+  .hl::before{transform:scaleX(1)!important}
 }
 
 /* =====================================================================
@@ -3266,7 +3301,8 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .price--portfolio .price__num{margin-bottom:.25em}
 .price--portfolio .price__num small{opacity:.72}
 .price--portfolio p{max-width:720px;margin-left:auto;margin-right:auto;color:var(--muted)}
-.price--portfolio .hl{background-image:linear-gradient(var(--hl),var(--hl));color:var(--text)}
+.price--portfolio .hl{color:var(--text)}
+.price--portfolio .hl::before{background:var(--hl)}
 .price--portfolio .btn{box-shadow:0 6px 24px rgba(0,0,0,.2)}
 .price--portfolio .btn:focus-visible{outline-color:var(--brand-cobalt)}
 
