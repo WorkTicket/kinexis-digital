@@ -6,15 +6,11 @@ import {
   HERO_POSTER_AVIF_SRCSET,
   HERO_POSTER_SIZES,
 } from "@/components/HeroFilm";
-import { getRequestPath, htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
+import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
 import { imageVariant } from "@/lib/image-sources";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { isPreviewSite, SITE } from "@/lib/site";
 import "@/app/globals.css";
-
-function isHomePath(path: string) {
-  return path === "/" || path === "/es" || path === "/es-es";
-}
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
 const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
@@ -27,6 +23,8 @@ const defaultDescription = descriptionWithFallback(
 
 /** Stable public URL so preload and @font-face share one cacheable file. */
 const DISPLAY_FONT_HREF = "/assets/fonts/poppins-latin-800.woff2";
+/** Home LCP poster — kept out of getRequestPath so DocumentShell stays sync (async shell drops experimental.inlineCss). */
+const HERO_POSTER_PRELOAD_HREF = imageVariant(HERO_POSTER, 280, "avif");
 
 export const documentMetadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -79,15 +77,13 @@ export const documentViewport: Viewport = {
 };
 
 /** Shared document shell. Each locale tree owns `<html lang>` so crawlers see the right language without JS. */
-export default async function DocumentShell({
+export default function DocumentShell({
   locale,
   children,
 }: {
   locale: Locale;
   children: React.ReactNode;
 }) {
-  const path = await getRequestPath();
-  const home = isHomePath(path);
   // Same URL as @font-face. Without this, Display 800 is discovered late via CSS and
   // swapping it in shifts page-hero art (CLS ~0.15 on about/portfolio).
   preload(DISPLAY_FONT_HREF, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
@@ -97,19 +93,19 @@ export default async function DocumentShell({
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
-        {/* Preloads first — before FOUC CSS / inline scripts — so LCP discovery is not delayed. */}
+        {/* Preloads first — before FOUC CSS / inline scripts — so LCP discovery is not delayed.
+            Hero poster is unconditional: path gating needs headers() and an async shell, which
+            drops experimental.inlineCss (<style data-href>) and fails check-css-inlined. */}
         <link rel="preload" as="font" href={DISPLAY_FONT_HREF} type="font/woff2" crossOrigin="anonymous" />
-        {home ? (
-          <link
-            rel="preload"
-            as="image"
-            href={imageVariant(HERO_POSTER, 280, "avif")}
-            imageSrcSet={HERO_POSTER_AVIF_SRCSET}
-            imageSizes={HERO_POSTER_SIZES}
-            type="image/avif"
-            fetchPriority="high"
-          />
-        ) : null}
+        <link
+          rel="preload"
+          as="image"
+          href={HERO_POSTER_PRELOAD_HREF}
+          imageSrcSet={HERO_POSTER_AVIF_SRCSET}
+          imageSizes={HERO_POSTER_SIZES}
+          type="image/avif"
+          fetchPriority="high"
+        />
         {/* First-paint guards only. Do NOT unlayer-hide .mega__panel /
             .dropdown__menu — design CSS lives in @layer components, so an
             unlayered display:none permanently beats .is-open and kills menus. */}
