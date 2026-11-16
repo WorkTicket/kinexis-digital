@@ -4,14 +4,14 @@ import { pageMetadata } from "@/lib/seo";
 import { CtaBand, HL, PageHero, Section } from "@/components/ui";
 import { PageSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("industries");
 
 function TradesArt() {
   const src = "/assets/home/built-for-your-trade.webp";
   const widths = [640, 768, 1120] as const;
-  const sizes = "(max-width: 720px) 92vw, 420px";
+  const sizes = IMAGE_SIZES.homeSection;
   return (
     <picture className="home-section-art home-section-art--trades">
       <source type="image/avif" srcSet={imageSrcSet(src, widths, "avif")} sizes={sizes} />

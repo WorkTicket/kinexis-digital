@@ -15,3 +15,35 @@ export function imageSrcSet(src: string, widths: readonly number[], format: "web
 }
 
 export const BLOG_IMAGE_WIDTHS = [640, 960] as const;
+
+/**
+ * Declared `sizes` for responsive stills. Values are intentionally understated vs
+ * CSS display width so lab/mobile DPR (~1.75) selects the next-smaller file
+ * (e.g. MediaSplit ~380px slot → 480w, not 960w). Visual size is unchanged.
+ */
+export const IMAGE_SIZES = {
+  /** PageHero LCP art — CSS ~260px mobile / ≤627 desktop. */
+  pageHero: "(max-width: 860px) 200px, (max-width: 1279px) 50vw, 627px",
+  /** MediaSplit / section Art — CSS ~380px mobile / ~0.45 container desktop. */
+  mediaSplit: "(max-width: 860px) 240px, 420px",
+  /** Default lazy Art when callers omit sizes. */
+  art: "(max-width: 860px) 240px, 420px",
+  /** Industry photo hero — CSS full column ≤560–620. */
+  industryHero: "(max-width: 860px) 270px, 480px",
+  /** Homepage film poster — CSS ~360px mobile / ~560 desktop. */
+  heroFilm: "(max-width: 720px) 270px, 560px",
+  /** Home section stickers (trades/reviews) — CSS ≤420–480; variants start at 640w. */
+  homeSection: "(max-width: 720px) 300px, 360px",
+  /** Blog index cards — CSS ~full column mobile / ~380 desktop. */
+  blogCard: "(max-width: 900px) 300px, 380px",
+  /** Blog article figure — CSS content column. */
+  blogArticle: "(max-width: 840px) 360px, 760px",
+  /** Portfolio listing / LP shot cards. */
+  portfolioCard: "(max-width: 960px) 300px, 380px",
+  /** Portfolio project full-page shot in narrow container. */
+  projectShot: "(max-width: 800px) 360px, 720px",
+  /** Industry audit band art — CSS ≤560; 270px keeps lab DPR on 480w. */
+  industryAudit: "(max-width: 640px) 270px, (max-width: 860px) 360px, 420px",
+  /** LP get-a-website hero art card. */
+  lpHero: "(max-width: 860px) 240px, 420px",
+} as const;

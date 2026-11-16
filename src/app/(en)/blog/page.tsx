@@ -6,7 +6,7 @@ import { DeferredImg } from "@/components/DeferredImg";
 import { PageSchema } from "@/components/JsonLd";
 import { CtaBand, HL, PageHero, Section } from "@/components/ui";
 import Link from "next/link";
-import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("blog");
 
@@ -65,7 +65,7 @@ export default function Page() {
                       alt={post.title}
                       width={post.width}
                       height={post.height}
-                      sizes="(max-width: 900px) 92vw, 380px"
+                      sizes={IMAGE_SIZES.blogCard}
                     />
                   </div>
                 </Link>

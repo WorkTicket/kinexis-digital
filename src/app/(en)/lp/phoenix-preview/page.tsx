@@ -15,7 +15,7 @@ import { CtaBand, Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui
 import { LIVE_SITES } from "@/data/liveSites";
 import { portfolioFile } from "@/data/portfolio";
 import { FAQS as SITE_FAQS, STEPS } from "@/lib/content";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { SITE, telHref } from "@/lib/site";
 import { contentMetadata } from "@/lib/seo";
 
@@ -36,7 +36,7 @@ function SectionGraphic({ name, alt, className }: { name: string; alt: string; c
   const base = `/assets/home/${name}`;
   const src = `${base}.webp`;
   const widths = [640, 768, 1120, 1280] as const;
-  const sizes = "(max-width: 720px) 92vw, 600px";
+  const sizes = IMAGE_SIZES.homeSection;
 
   return (
     <picture className={`home-section-art ${className}`}>
@@ -244,7 +244,7 @@ export default async function PhoenixPreviewLp() {
                     <div className="shot__track">
                       <DeferredImg
                         src={shot}
-                        sizes="(max-width: 960px) 92vw, 380px"
+                        sizes={IMAGE_SIZES.portfolioCard}
                         alt=""
                         width={640}
                         height={Math.round((site.height * 640) / site.width)}

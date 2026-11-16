@@ -9,6 +9,7 @@ import { PageSchema } from "@/components/JsonLd";
 import ReviewsSection from "@/components/ReviewsSection";
 import PlanCompare from "@/components/PlanCompare";
 import { CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
+import { IMAGE_SIZES } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("portfolio");
 
@@ -76,7 +77,7 @@ export default function Page() {
                       <div className="shot__track">
                         <DeferredImg
                           src={shot}
-                          sizes="(max-width: 960px) 92vw, 380px"
+                          sizes={IMAGE_SIZES.portfolioCard}
                           alt=""
                           width={640}
                           height={480}

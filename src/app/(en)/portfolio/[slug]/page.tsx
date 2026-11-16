@@ -13,7 +13,7 @@ import PreviewBar from "@/components/PreviewBar";
 import ReviewsSection from "@/components/ReviewsSection";
 import PricingCta from "@/components/PricingCta";
 import { HL, fallbackTrack } from "@/components/ui";
-import { still } from "@/lib/image-sources";
+import { IMAGE_SIZES, still } from "@/lib/image-sources";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -121,7 +121,7 @@ export default async function ProjectPage({ params }: Props) {
             alt={`${project.name} website design`}
             width={project.width}
             height={project.height}
-            sizes="(max-width: 800px) 100vw, 800px"
+            sizes={IMAGE_SIZES.projectShot}
             className="project-media project-media--plain"
             fallbackLabel={`${project.name} screenshot coming soon`}
           />
@@ -157,7 +157,7 @@ export default async function ProjectPage({ params }: Props) {
                 height={1024}
                 alt={`${project.name} website shown on a desktop monitor, laptop, tablet, and phone`}
                 className="project-media project-devices-image"
-                sizes="(max-width: 800px) 100vw, 800px"
+                sizes={IMAGE_SIZES.projectShot}
                 fallbackLabel="Device preview coming soon"
               />
             </div>

@@ -3,7 +3,7 @@ import { preload } from "react-dom";
 import type { CSSProperties, ReactNode } from "react";
 import { COMPARE_ROWS } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
-import { still } from "@/lib/image-sources";
+import { IMAGE_SIZES, still } from "@/lib/image-sources";
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
@@ -88,7 +88,7 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
 
 /** Responsive hero artwork. Source files are pre-sized WebP/AVIF, so the intrinsic ratio stays 1:1. */
 export function Art({
-  name, alt = "", className = "", priority = false, sizes = "(max-width: 860px) 88vw, 520px",
+  name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art,
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string }) {
   const file = HERO_FILES[name];
   const base = `/assets/heroes/${file}`;
@@ -184,8 +184,8 @@ export function PageHero({
           <div className="page-hero__art">
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-              {/* sizes 200px on small screens keeps DPR≤2.6 on the 480w LCP AVIF (~22KB), not 640w. */}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes="(max-width: 860px) 200px, (max-width: 1279px) 50vw, 627px" /> : null)}
+              {/* IMAGE_SIZES.pageHero understates the ~260px slot so mobile picks 480w LCP AVIF. */}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={IMAGE_SIZES.pageHero} /> : null)}
             </div>
           </div>
         </div>
@@ -206,7 +206,7 @@ export function MediaSplit({
       <div className="media-split__art">
         <div className="art-wrap">
           {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-          <Art name={image} alt={alt} className="hero-art" sizes="(max-width: 860px) 380px, 540px" />
+          <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} />
         </div>
       </div>
       <div className="media-split__copy">{children}</div>

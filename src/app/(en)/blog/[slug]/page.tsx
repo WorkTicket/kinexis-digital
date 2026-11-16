@@ -6,7 +6,7 @@ import { contentMetadata } from "@/lib/seo";
 import { ArticleSchema } from "@/components/JsonLd";
 import { PageHero, Section, CtaBand, Faq } from "@/components/ui";
 import { EN_POST_CONTENT } from "@/data/posts-en";
-import { BLOG_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -94,18 +94,18 @@ export default async function BlogPostPage({ params }: Props) {
                   type="image/avif"
                   media="(min-width: 861px)"
                   srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")}
-                  sizes="(max-width: 840px) 92vw, 760px"
+                  sizes={IMAGE_SIZES.blogArticle}
                 />
                 <source
                   media="(min-width: 861px)"
                   srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
-                  sizes="(max-width: 840px) 92vw, 760px"
+                  sizes={IMAGE_SIZES.blogArticle}
                 />
                 <img
                   src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='${post.width}' height='${post.height}'%3E%3C/svg%3E`}
                   data-src={imageVariant(post.image, 640, "webp")}
                   data-srcset={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}
-                  sizes="(max-width: 840px) 92vw, 760px"
+                  sizes={IMAGE_SIZES.blogArticle}
                   alt={post.title}
                   width={post.width}
                   height={post.height}
