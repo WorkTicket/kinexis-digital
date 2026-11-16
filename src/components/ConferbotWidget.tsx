@@ -7,6 +7,11 @@ const SCRIPT_ID = "conferbot-js";
 const SCRIPT_SRC = "https://cdn.conferbot.com/dist/v1/widget.min.js";
 /** After `load`: idle callback deadline / setTimeout fallback when rIC is missing. */
 const IDLE_FALLBACK_MS = 2_500;
+/**
+ * If CookieConsent never mounts (broken chrome), still arm idle/input after this
+ * so chat is not permanently blocked. While `html.consent-open` we keep waiting.
+ */
+const CONSENT_CHROME_WAIT_MS = 8_000;
 /** Match site float-cta mobile band (`globals.css` max-width:860px). */
 const MOBILE_MQ = "(max-width: 860px)";
 const HOST_SEL = "conferbot-widget";
@@ -269,10 +274,26 @@ function startLauncherPositioner() {
 }
 
 /**
+ * CookieConsent has painted (dock or preferences FAB). Used so we do not race
+ * ahead of `html.consent-open` being applied on first paint.
+ */
+function consentChromePresent() {
+  return Boolean(document.querySelector(".consent-fab, .consent-dock"));
+}
+
+/** Cookie dock is up — launcher is CSS-hidden; do not inject script/socket yet. */
+function consentDockOpen() {
+  return document.documentElement.classList.contains("consent-open");
+}
+
+/**
  * Lazy Conferbot live chat. Off unless NEXT_PUBLIC_CONFERBOT_ENABLED=1.
  * Functional feature — loads for every public visitor (not gated on analytics
- * consent). After page `load`, schedules via requestIdleCallback (or ~2.5s
- * setTimeout); first scroll / pointer / touch / key also loads immediately.
+ * consent). Waits until the cookie dock is dismissed (`!html.consent-open`), then
+ * after page `load` schedules via requestIdleCallback (or ~2.5s setTimeout);
+ * first scroll / pointer / touch / key also loads immediately. Avoids loading
+ * `widget.min.js` / socket.io while the launcher is hidden (and skips the
+ * Conferbot websocket-upgrade console 400 during typical first-visit audits).
  * Skips `/admin`. No PII in customData. Never double-inits.
  */
 export default function ConferbotWidget({ locale }: { locale?: string }) {
@@ -292,13 +313,29 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
 
     let idleTimer: ReturnType<typeof setTimeout> | undefined;
     let idleCallbackId: number | undefined;
+    let consentWaitTimer: ReturnType<typeof setTimeout> | undefined;
+    let consentObserver: MutationObserver | null = null;
     let cleaned = false;
     let armed = false;
     let waitingForLoad = false;
+    let waitingForConsent = false;
+    /** After CONSENT_CHROME_WAIT_MS with no dock/FAB, allow arm without chrome. */
+    let chromeWaitExpired = false;
+
+    const readyToArm = () => {
+      if (consentDockOpen()) return false;
+      return consentChromePresent() || chromeWaitExpired;
+    };
 
     const load = () => {
       if (cleaned || widgetBooted) return;
       if (window.location.pathname.startsWith("/admin")) return;
+      // Never inject while the cookie dock is open (script would open socket.io
+      // and log Conferbot's websocket-upgrade 400 while the launcher is hidden).
+      if (consentDockOpen()) {
+        waitForConsentThenArm();
+        return;
+      }
       widgetBooted = true;
       cleanupTriggers();
 
@@ -350,6 +387,10 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
 
     const scheduleIdle = () => {
       if (cleaned || widgetBooted) return;
+      if (consentDockOpen()) {
+        waitForConsentThenArm();
+        return;
+      }
       if (typeof window.requestIdleCallback === "function") {
         idleCallbackId = window.requestIdleCallback(() => load(), {
           timeout: IDLE_FALLBACK_MS,
@@ -361,7 +402,12 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
 
     function armTriggers() {
       if (cleaned || widgetBooted || armed) return;
+      if (!readyToArm()) {
+        waitForConsentThenArm();
+        return;
+      }
       armed = true;
+      stopConsentWait();
       window.addEventListener("pointerdown", onFirstInput, { once: true, passive: true });
       window.addEventListener("touchstart", onFirstInput, { once: true, passive: true });
       window.addEventListener("keydown", onFirstInput, { once: true });
@@ -373,6 +419,71 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
         waitingForLoad = true;
         window.addEventListener("load", scheduleIdle, { once: true });
       }
+    }
+
+    function stopConsentWait() {
+      consentObserver?.disconnect();
+      consentObserver = null;
+      if (consentWaitTimer) {
+        clearTimeout(consentWaitTimer);
+        consentWaitTimer = undefined;
+      }
+      waitingForConsent = false;
+    }
+
+    function waitForConsentThenArm() {
+      if (cleaned || widgetBooted) return;
+      if (readyToArm()) {
+        armTriggers();
+        return;
+      }
+      if (waitingForConsent) return;
+      waitingForConsent = true;
+      armed = false;
+      // Drop any idle/input that raced while the dock was open.
+      window.removeEventListener("pointerdown", onFirstInput);
+      window.removeEventListener("touchstart", onFirstInput);
+      window.removeEventListener("keydown", onFirstInput);
+      window.removeEventListener("scroll", onFirstInput, true);
+      if (waitingForLoad) {
+        window.removeEventListener("load", scheduleIdle);
+        waitingForLoad = false;
+      }
+      if (idleTimer) clearTimeout(idleTimer);
+      if (
+        idleCallbackId !== undefined &&
+        typeof window.cancelIdleCallback === "function"
+      ) {
+        window.cancelIdleCallback(idleCallbackId);
+        idleCallbackId = undefined;
+      }
+
+      const tryArm = () => {
+        if (cleaned || widgetBooted) return;
+        if (readyToArm()) armTriggers();
+      };
+
+      consentObserver?.disconnect();
+      consentObserver = new MutationObserver(tryArm);
+      consentObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+        childList: true,
+        subtree: true,
+      });
+
+      if (!consentWaitTimer) {
+        consentWaitTimer = setTimeout(() => {
+          consentWaitTimer = undefined;
+          if (cleaned || widgetBooted) return;
+          // Banner still up: keep observing; never load while hidden.
+          if (consentDockOpen()) return;
+          chromeWaitExpired = true;
+          tryArm();
+        }, CONSENT_CHROME_WAIT_MS);
+      }
+
+      tryArm();
     }
 
     function cleanupTriggers() {
@@ -391,9 +502,10 @@ export default function ConferbotWidget({ locale }: { locale?: string }) {
       ) {
         window.cancelIdleCallback(idleCallbackId);
       }
+      stopConsentWait();
     }
 
-    armTriggers();
+    waitForConsentThenArm();
 
     return () => {
       cleaned = true;
