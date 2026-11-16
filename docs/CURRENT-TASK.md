@@ -1,7 +1,7 @@
 # Current task
 
-**In progress:** Conferbot launcher lift still reported overlapping sticky bar on live after #27 — harden page-lifetime shadow positioner (branch `cursor/conferbot-lift-live-fix-67c1`).
+**Done:** Conferbot launcher lift hardening merged (#28 → `25764f71`). Do not deploy from agents.
 
-**Do not deploy from agents** — owner ships from PC via `npm run deploy`.
+**In progress:** SEO content plan docs-only (`docs/seo/CONTENT-PLAN.md`, branch `cursor/seo-content-plan-67c1`).
 
-See `docs/DECISIONS.md` (widget lift hardening).
+See `docs/DECISIONS.md` (widget lift) and `docs/seo/CONTENT-PLAN.md`.
