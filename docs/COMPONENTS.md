@@ -16,9 +16,10 @@
 - `InvoicePay.tsx`, `PayCheckout.tsx` - Payments
 - `HeaderMenu.tsx`, `LanguageSwitch.tsx` - Navigation/i18n
 - `FooterGate.tsx`, `DialogHost.tsx`, `ScrollUi.tsx`, `Boot.tsx`, `SafeImage.tsx`, `DeferredImg.tsx`, `Filterable.tsx`, `Stepper.tsx`, `ProcessFlow.tsx`, `JsonLd.tsx`, `ProjectCard.tsx`, `GuaranteeBadge.tsx`, `SpanishPlanSticker.tsx`
-- `DocumentShell.tsx` - Locale document shell (fonts, head boot, mounts Boot + ConferbotWidget)
-- `CookieConsent.tsx` - Cookie / analytics / ads preference dock (`kinexis_consent`)
-- `ConferbotLazy.tsx` / `ConferbotWidget.tsx` - Lazy client mount (async chunk); widget has no UI of its own; loads Conferbot after flag, cookie-dock dismiss (`!html.consent-open`), then idle/input (every public page; not analytics-gated; no double-init). Host also hidden while `html.consent-open` via `globals.css`. Mobile proactive greeting is Conferbot-dashboard only.
+- `DocumentShell.tsx` - Locale document shell (fonts, head boot, mounts Boot)
+- `CookieConsent.tsx` - Server markup for cookie dock/FAB (`kinexis_consent`); inline script owns Accept/Reject/Preferences (no React island)
+- `Boot.tsx` + `public/assets/js/conferbot.js` - Conferbot vanilla loader (flag via `__KINEXIS_CFG__.conferbotBotId`); after cookie-dock dismiss (`!html.consent-open`), then idle/input; launcher lift #58; host hidden while `html.consent-open` via `globals.css`. Mobile proactive greeting is Conferbot-dashboard only.
+- `LanguageSwitch.tsx` - Server footer language control; hrefs patched by inline script + `boot.js` (no `usePathname` island)
 - `HeaderCta.tsx`, `FooterLinkColumn.tsx` - Server chrome; LP CTA swap via CSS (`html.lp-route`); footer accordion + CTA nudge owned by `boot.js`.
 
 ## When to reuse

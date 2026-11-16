@@ -1,11 +1,12 @@
 /**
  * Widget flag and mount contract checks (no browser). Ensures CI / `next dev`
- * keep the public widget off by default while DocumentShell still mounts the
- * component. Production ships via committed `.env.production` (and CI overrides
- * that flag to 0 so this assert and e2e stay meaningful).
+ * keep the public widget off by default while Boot still ships conferbot.js.
+ * Production ships via committed `.env.production` (and CI overrides that flag
+ * to 0 so this assert and e2e stay meaningful).
  *
  * Load contract: functional chat (not analytics-gated); idle/input after page
- * load; no double-init; no PII in customData.
+ * load; defer past consent-open; no double-init; no PII in customData.
+ * Vanilla `public/assets/js/conferbot.js` owns the runtime (no React island).
  */
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
@@ -18,15 +19,16 @@ assert.notEqual(
   "CI/local/test must not force NEXT_PUBLIC_CONFERBOT_ENABLED=1 (production uses .env.production; CI workflow sets 0)",
 );
 
+const boot = readFileSync(resolve("src/components/Boot.tsx"), "utf8");
+assert.match(boot, /NEXT_PUBLIC_CONFERBOT_ENABLED/);
+assert.match(boot, /conferbot\.min\.js/);
+assert.match(boot, /conferbotBotId/);
+
 const shell = readFileSync(resolve("src/components/DocumentShell.tsx"), "utf8");
-assert.match(shell, /ConferbotLazy/);
-assert.match(shell, /NEXT_PUBLIC_CONFERBOT_ENABLED/);
+assert.match(shell, /<Boot/);
+assert.doesNotMatch(shell, /ConferbotLazy/);
 
-const lazy = readFileSync(resolve("src/components/ConferbotLazy.tsx"), "utf8");
-assert.match(lazy, /ConferbotWidget/);
-assert.match(lazy, /ssr:\s*false/);
-
-const widget = readFileSync(resolve("src/components/ConferbotWidget.tsx"), "utf8");
+const widget = readFileSync(resolve("public/assets/js/conferbot.js"), "utf8");
 assert.match(widget, /cdn\.conferbot\.com\/dist\/v1\/widget\.min\.js/);
 assert.match(widget, /IDLE_FALLBACK_MS/);
 assert.match(widget, /CONSENT_CHROME_WAIT_MS/);
@@ -46,11 +48,7 @@ assert.match(widget, /consentDockOpen/);
 assert.match(widget, /consent-open/);
 assert.match(widget, /consent-fab/);
 assert.match(widget, /waitForConsentThenArm/);
-assert.doesNotMatch(
-  widget,
-  /clearShadowLift\(host\);\s*\n\s*\};\s*\n\s*\}, \[locale\]/,
-  "effect cleanup must not clear the launcher lift on remount",
-);
+assert.match(widget, /__kxStartLauncherPositioner/);
 assert.doesNotMatch(widget, /analyticsAllowed/);
 assert.doesNotMatch(widget, /parseConsentCookie/);
 assert.doesNotMatch(widget, /kinexis:consent/);
@@ -69,6 +67,5 @@ assert.match(
 );
 
 console.log(
-  "Conferbot widget contract checks passed: flag off by default, defer past consent-open then idle/input (not analytics-gated), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, DocumentShell mount.",
+  "Conferbot widget contract checks passed: flag off by default, vanilla conferbot.js (defer past consent-open then idle/input, not analytics-gated), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, Boot mount.",
 );
-

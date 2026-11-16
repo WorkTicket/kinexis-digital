@@ -726,6 +726,7 @@ function onNavigate() {
   resetReveal();
   resetMarks();
   syncChrome();
+  syncLangSwitch();
   paintNew();
   requestAnimationFrame(measureFloat);
   // Soft navigations need a fresh PageView for Meta Events Manager.
@@ -1202,7 +1203,8 @@ document.querySelectorAll("dialog.dlg").forEach((dlg) => {
   });
 });
 
-/** Cookie: kinexis_consent=v1|a=0|d=0 — a=analytics, d=ads. Undecided/reject → no trackers. */
+/** Cookie: kinexis_consent=v1|a=0|d=0 — a=analytics, d=ads. Undecided/reject → no trackers.
+ *  Dock/FAB UI is wired by the inline script in CookieConsent (before boot). */
 function readConsent() {
   const m = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
   if (!m) return { decided: false, analytics: false, ads: false };
@@ -1215,6 +1217,20 @@ function readConsent() {
   } catch {
     return { decided: false, analytics: false, ads: false };
   }
+}
+function syncLangSwitch() {
+  const mirrors = window.__KINEXIS_MIRRORS__;
+  if (!Array.isArray(mirrors)) return;
+  const path = location.pathname;
+  document.querySelectorAll("[data-lang-switch] a[data-lang-locale]").forEach((a) => {
+    const loc = a.getAttribute("data-lang-locale");
+    if (!loc) return;
+    const en = englishPath(path);
+    const target = mirrors.includes(en) ? en : "/";
+    const href =
+      loc === "en" ? target : target === "/" ? "/es" : `/es${target}`;
+    a.setAttribute("href", href);
+  });
 }
 function consentAllowsAnalytics() {
   const c = readConsent();
@@ -1428,6 +1444,7 @@ if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
 }
 
 syncChrome();
+syncLangSwitch();
 resetReveal();
 schedulePaintNew();
 new MutationObserver(() => {
