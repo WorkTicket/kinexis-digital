@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
-import { PROJECTS, portfolioFile } from "@/data/portfolio";
+import { PROJECTS, portfolioCardFile, portfolioCardSrcSet } from "@/data/portfolio";
 import { CASE_STUDIES } from "@/data/caseStudies";
 import { LIVE_SITES } from "@/data/liveSites";
 import ProjectCard from "@/components/ProjectCard";
@@ -66,7 +66,6 @@ export default function Page() {
         </div>
         <div className="portfolio--live">
           {LIVE_SITES.map((site, index) => {
-            const shot = portfolioFile(site.image, "card");
             const host = siteHost(site.url);
             const study = CASE_STUDIES.find((item) => item.liveSiteSlug === site.slug);
             return (
@@ -76,11 +75,13 @@ export default function Page() {
                     <div className="shot__page">
                       <div className="shot__track">
                         <DeferredImg
-                          src={shot}
+                          src={portfolioCardFile(site.image, 400)}
+                          srcSet={portfolioCardSrcSet(site.image)}
+                          avifSrcSet={portfolioCardSrcSet(site.image, "avif")}
                           sizes={IMAGE_SIZES.portfolioCard}
                           alt=""
-                          width={640}
-                          height={480}
+                          width={400}
+                          height={300}
                           className="shot__img"
                           eager={index === 0}
                         />

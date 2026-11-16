@@ -1,5 +1,5 @@
 /** Bump when pre-encoded stills are replaced. /assets and /blog are cached for a year. */
-export const STILL_VERSION = "15";
+export const STILL_VERSION = "16";
 
 export function still(src: string) {
   return src.includes("?") ? src : `${src}?v=${STILL_VERSION}`;
@@ -14,7 +14,20 @@ export function imageSrcSet(src: string, widths: readonly number[], format: "web
   return widths.map((width) => `${imageVariant(src, width, format)} ${width}w`).join(", ");
 }
 
-export const BLOG_IMAGE_WIDTHS = [640, 960] as const;
+/** Pricing / Spanish plan stickers — CSS ~232–240px; 240w for 1×, 400w for DPR. */
+export const STICKER_IMAGE_WIDTHS = [240, 400] as const;
+
+/** Blog article + cards — 768w matches ~758 CSS display without shipping full 960w. */
+export const BLOG_IMAGE_WIDTHS = [640, 768, 960] as const;
+
+/** Footer mark — CSS ~112–168px. */
+export const FOOTER_LOGO_WIDTHS = [210, 420] as const;
+export function footerLogoSrc(width: (typeof FOOTER_LOGO_WIDTHS)[number] = 210) {
+  return still(`/assets/logos/footer-nav-${width}.webp`);
+}
+export function footerLogoSrcSet() {
+  return FOOTER_LOGO_WIDTHS.map((width) => `${footerLogoSrc(width)} ${width}w`).join(", ");
+}
 
 /**
  * Declared `sizes` for responsive stills. Values are intentionally understated vs
@@ -38,12 +51,16 @@ export const IMAGE_SIZES = {
   homeSection: "(max-width: 720px) 300px, 360px",
   /** Blog index cards — CSS ~full column mobile / ~380 desktop. */
   blogCard: "(max-width: 900px) 300px, 380px",
-  /** Blog article figure — CSS content column. */
-  blogArticle: "(max-width: 840px) 360px, 760px",
-  /** Portfolio listing / LP shot cards. */
-  portfolioCard: "(max-width: 960px) 300px, 380px",
+  /** Blog article figure — CSS content column (~758 desktop). */
+  blogArticle: "(max-width: 840px) 360px, 758px",
+  /** Portfolio listing / LP shot cards — CSS ~400×300. */
+  portfolioCard: "(max-width: 960px) 300px, 400px",
   /** Portfolio project full-page shot in narrow container. */
   projectShot: "(max-width: 800px) 360px, 720px",
+  /** Case-study full-page live screenshot — CSS ~full container (~662). */
+  caseStudyShot: "(max-width: 720px) 100vw, (max-width: 1180px) 90vw, 800px",
+  /** Footer logo mark. */
+  footerLogo: "(max-width: 640px) 112px, 168px",
   /** Industry audit band art — CSS ≤560; 270px keeps lab DPR on 480w. */
   industryAudit: "(max-width: 640px) 270px, (max-width: 860px) 360px, 420px",
   /** LP get-a-website hero art card. */

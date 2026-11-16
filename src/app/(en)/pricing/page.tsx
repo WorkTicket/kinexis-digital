@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { STICKER_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import GuaranteeBadge from "@/components/GuaranteeBadge";
 import MobilePlanComparison from "@/components/MobilePlanComparison";
 import { pageMetadata } from "@/lib/seo";
@@ -44,10 +44,11 @@ const STICKERS: Record<string, { name: Sticker; offer: Sticker }> = {
 };
 
 function PlanSticker({ sticker, kind }: { sticker: Sticker; kind: "name" | "offer" }) {
+  const sizes = kind === "offer" ? "232px" : "240px";
   return (
     <picture>
-      <source type="image/avif" srcSet={imageSrcSet(sticker.src, [400], "avif")} sizes={kind === "offer" ? "232px" : "240px"} />
-      <img className={`plan-sticker plan-sticker--${kind}`} src={imageVariant(sticker.src, 400, "webp")} srcSet={imageSrcSet(sticker.src, [400])} sizes={kind === "offer" ? "232px" : "240px"} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" fetchPriority="low" />
+      <source type="image/avif" srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS, "avif")} sizes={sizes} />
+      <img className={`plan-sticker plan-sticker--${kind}`} src={imageVariant(sticker.src, 240, "webp")} srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS)} sizes={sizes} alt={sticker.alt} width={sticker.width} height={sticker.height} loading="lazy" decoding="async" fetchPriority="low" />
     </picture>
   );
 }

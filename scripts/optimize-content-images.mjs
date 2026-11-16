@@ -53,7 +53,7 @@ const BLOG = [
   "public/blog/freelancer-vs-agency-vs-subscription-website.webp",
   "public/blog/wix-vs-squarespace-vs-managed-website-contractors.webp",
 ];
-const BLOG_WIDTHS = [640, 960];
+const BLOG_WIDTHS = [640, 768, 960];
 
 const AUDIT = ["public/assets/audit/hero.webp"];
 const AUDIT_WIDTHS = [480, 768, 960];
@@ -77,7 +77,7 @@ const STICKERS = [
   "public/assets/kinexis/stickers/planes-plus-297.webp",
   "public/assets/kinexis/stickers/planes-hazlo-tuyo-1497.webp",
 ];
-const STICKER_WIDTHS = [400, 800];
+const STICKER_WIDTHS = [240, 400, 800];
 
 const kb = (bytes) => `${Math.round(bytes / 1024)}KB`;
 

@@ -4,7 +4,7 @@ import MobilePlanComparison from "@/components/MobilePlanComparison";
 import SpanishPlanSticker, { SPANISH_PLAN_STICKERS } from "@/components/SpanishPlanSticker";
 import { notFound } from "next/navigation";
 import { getIndustry } from "@/data/industries";
-import { portfolioFile, PROJECTS } from "@/data/portfolio";
+import { portfolioCardFile, portfolioCardSrcSet, PROJECTS } from "@/data/portfolio";
 import { LIVE_SITES } from "@/data/liveSites";
 import { POSTS } from "@/lib/content";
 import { PAGES } from "@/lib/pages";
@@ -1237,12 +1237,11 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
         <div className="container">
           <div className="showcase__head"><div><p className="eyebrow">{tx("Sitios en vivo")}</p><h2><HL text={tx("Sitios de clientes")} mark={tx("clientes")} /></h2></div></div>
           <div className="portfolio--live">{LIVE_SITES.map((site, index) => {
-            const shot = portfolioFile(site.image, "card");
             let host = site.url;
             try { host = new URL(site.url).host.replace(/^www\./, ""); } catch { /* keep url */ }
             return (
               <a key={site.slug} className="live-site" href={site.url} target="_blank" rel="noopener noreferrer">
-                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={shot} sizes={IMAGE_SIZES.portfolioCard} alt="" width={640} height={480} className="shot__img" eager={index === 0} /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
+                <div className="shot shot--static" data-name={site.name}><div className="shot__page"><div className="shot__track"><DeferredImg src={portfolioCardFile(site.image, 400)} srcSet={portfolioCardSrcSet(site.image)} avifSrcSet={portfolioCardSrcSet(site.image, "avif")} sizes={IMAGE_SIZES.portfolioCard} alt="" width={400} height={300} className="shot__img" eager={index === 0} /></div></div><span className="btn btn--primary shot__cta-overlay" aria-hidden="true">{tx("Visitar sitio")}</span></div>
                 <span className="live-site__copy"><span className="live-site__status"><span className="live-site__dot" aria-hidden="true" />{tx("En vivo")}</span><span className="live-site__id"><span className="live-site__name">{site.name}</span><span className="live-site__meta"><span>{site.trade}</span><span className="live-site__host">{host}</span></span></span></span>
               </a>
             );

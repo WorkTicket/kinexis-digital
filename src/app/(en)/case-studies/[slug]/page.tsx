@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CASE_STUDIES, caseStudyBySlug } from "@/data/caseStudies";
+import { portfolioCaseStudySrcSet, portfolioFile } from "@/data/portfolio";
 import { contentMetadata } from "@/lib/seo";
 import { SITE_CONTENT_UPDATED } from "@/lib/pages";
+import { IMAGE_SIZES } from "@/lib/image-sources";
 import { PageHero, Section, HL } from "@/components/ui";
 import { DeferredImg } from "@/components/DeferredImg";
 import { ArticleSchema } from "@/components/JsonLd";
@@ -90,10 +92,13 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <figure className="case-study__shot">
             <DeferredImg
-              src={study.image}
+              src={portfolioFile(study.image, 662)}
+              srcSet={portfolioCaseStudySrcSet(study.image)}
+              avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif")}
+              sizes={IMAGE_SIZES.caseStudyShot}
               alt={`${study.title} homepage screenshot`}
-              width={study.width}
-              height={study.height}
+              width={662}
+              height={Math.round((study.height * 662) / study.width)}
             />
             <figcaption>Live homepage screenshot. Mobile and desktop views use the same production page.</figcaption>
           </figure>

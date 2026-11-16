@@ -1,4 +1,4 @@
-import { imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { STICKER_IMAGE_WIDTHS, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const SPANISH_PLAN_STICKERS: Record<string, {
   name: { src: string; width: number; height: number; alt: string };
@@ -24,8 +24,9 @@ export const SPANISH_PLAN_STICKERS: Record<string, {
 
 export default function SpanishPlanSticker({ slug, kind }: { slug: string; kind: "name" | "offer" }) {
   const sticker = SPANISH_PLAN_STICKERS[slug][kind];
+  const sizes = kind === "offer" ? "232px" : "240px";
   return <picture>
-    <source type="image/avif" srcSet={imageSrcSet(sticker.src, [400], "avif")} sizes={kind === "offer" ? "232px" : "240px"} />
-    <img {...sticker} className={`plan-sticker plan-sticker--${kind}`} src={imageVariant(sticker.src, 400, "webp")} srcSet={imageSrcSet(sticker.src, [400])} sizes={kind === "offer" ? "232px" : "240px"} alt={sticker.alt} loading="lazy" decoding="async" />
+    <source type="image/avif" srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS, "avif")} sizes={sizes} />
+    <img {...sticker} className={`plan-sticker plan-sticker--${kind}`} src={imageVariant(sticker.src, 240, "webp")} srcSet={imageSrcSet(sticker.src, STICKER_IMAGE_WIDTHS)} sizes={sizes} alt={sticker.alt} loading="lazy" decoding="async" />
   </picture>;
 }
