@@ -52,11 +52,10 @@ function subscribeConsent(onStoreChange: () => void) {
 const COPY = {
   en: {
     title: "Cookies & measurement",
-    eyebrow: "Privacy choice",
     body: "Necessary cookies keep the site working. Analytics and ads load only if you allow them.",
-    accept: "Accept analytics & ads",
-    reject: "Reject non-essential",
-    manage: "Manage preferences",
+    accept: "Accept",
+    reject: "Reject",
+    manage: "Preferences",
     save: "Save preferences",
     back: "Back",
     analytics: "Analytics",
@@ -71,11 +70,10 @@ const COPY = {
   },
   es: {
     title: "Cookies y medición",
-    eyebrow: "Privacidad",
     body: "Las cookies necesarias hacen funcionar el sitio. Analítica y anuncios solo se cargan si las permites.",
-    accept: "Aceptar analítica y anuncios",
-    reject: "Rechazar no esenciales",
-    manage: "Gestionar preferencias",
+    accept: "Aceptar",
+    reject: "Rechazar",
+    manage: "Preferencias",
     save: "Guardar preferencias",
     back: "Volver",
     analytics: "Analítica",
@@ -154,11 +152,11 @@ export default function CookieConsent({
         aria-modal="true"
         aria-labelledby={titleId}
       >
-        <div className="consent-banner__glow" aria-hidden="true" />
         <div className="consent-banner__inner">
           <div className="consent-banner__copy">
-            <p className="consent-banner__eyebrow">{t.eyebrow}</p>
-            <p className="consent-banner__title" id={titleId}>{t.title}</p>
+            <p className={panel ? "consent-banner__title" : "sr-only"} id={titleId}>
+              {t.title}
+            </p>
             <p className="consent-banner__body">
               {t.body}{" "}
               <Link href={privacyHref} prefetch={false}>{t.privacy}</Link>
@@ -225,29 +223,31 @@ export default function CookieConsent({
               </>
             ) : (
               <>
+                <div className="consent-banner__choice">
+                  <button
+                    type="button"
+                    className="btn btn--ghost consent-banner__btn"
+                    onClick={() => {
+                      writeConsent(false, false);
+                      setForceOpen(false);
+                    }}
+                  >
+                    {t.reject}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn--ghost consent-banner__btn"
+                    onClick={() => {
+                      writeConsent(true, true);
+                      setForceOpen(false);
+                    }}
+                  >
+                    {t.accept}
+                  </button>
+                </div>
                 <button
                   type="button"
-                  className="btn btn--ghost consent-banner__btn"
-                  onClick={() => {
-                    writeConsent(true, true);
-                    setForceOpen(false);
-                  }}
-                >
-                  {t.accept}
-                </button>
-                <button
-                  type="button"
-                  className="btn btn--ghost consent-banner__btn"
-                  onClick={() => {
-                    writeConsent(false, false);
-                    setForceOpen(false);
-                  }}
-                >
-                  {t.reject}
-                </button>
-                <button
-                  type="button"
-                  className="btn btn--ghost consent-banner__btn"
+                  className="consent-banner__prefs-link"
                   onClick={() => {
                     setDraftAnalytics(consent.analytics);
                     setDraftAds(consent.ads);
