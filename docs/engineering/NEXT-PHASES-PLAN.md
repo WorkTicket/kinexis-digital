@@ -33,9 +33,9 @@
 | ID | Item | Phase | Owner gate? | Acceptance criteria (summary) | Status |
 |---|---|---|---|---|---|
 | N0 | This plan + SEO CONTENT-PLAN linked | Docs | No | Docs merged; no publish/delete/redirect | In progress |
-| N1a | Release gates: `test:e2e` before deploy | Eng P1 | No (CI add if reliable) | `deploy-production.mjs` runs e2e before `deploy:worker`; fails closed on e2e fail | Planned |
-| N1b | Release gates: `verify:prod` after deploy | Eng P1 | No | Post-deploy non-destructive `verify:prod` in deploy script | Planned |
-| N1c | CI: add `test:e2e` if reliable | Eng P1 | Soft | Green on PR; document skip/flake policy if not reliable | Planned |
+| N1a | Release gates: `test:e2e` before deploy | Eng P1 | No (CI add if reliable) | `deploy-production.mjs` runs e2e before `deploy:worker`; fails closed on e2e fail | In progress |
+| N1b | Release gates: `verify:prod` after deploy | Eng P1 | No | Post-deploy non-destructive `verify:prod` in deploy script | In progress |
+| N1c | CI: add `test:e2e` if reliable | Eng P1 | Soft | Green on PR; chromium-only in CI; full suite on deploy script | In progress |
 | N1d | Confirm D1 prod state in docs (no migrate) | Eng P1 | **Yes** if any migrate | Docs only unless owner approves new DBs | Planned (verify-only) |
 | N2 | Full Spanish `/es` homepage + pricing comparison + terms + checkout UI | Eng P1 | No pricing changes | Natural LATAM Spanish; **prices/figures unchanged**; no English comparison leftovers on `/es` and `/es/pricing`; checkout strings Spanish on `/es` path or documented bilingual pay page | Planned |
 | N3 | SEC-03 magic-byte attachment validation | Eng P2 | No | Magic bytes + extension/MIME agreement; reject mismatches; size/count limits kept; tests | Planned |

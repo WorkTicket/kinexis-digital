@@ -30,13 +30,16 @@
 - Worker name: `kinexis-digital` (see `wrangler.jsonc`)
 - Custom domains: `kinexisdigital.com` and `www.kinexisdigital.com` are configured in `wrangler.jsonc`; keep the zone attached to the deploying account
 - **Merging to `main` does not deploy.** Workers Builds is not connected for this Worker; production ships are manual via `npm run deploy` (`scripts/deploy-production.mjs`) from a logged-in wrangler session. Preview: `npm run deploy:preview`.
+- **Production deploy gates** (`scripts/deploy-production.mjs`): `check` → `test:e2e` (full Playwright projects) → `build:worker` → `deploy:worker` → `search:notify` → `verify:prod` (non-destructive live smoke / structured data / Lighthouse budget). Install browsers first: `npx playwright install`.
 - Secrets via `npx wrangler secret put <NAME>`. Local: `.env.local` (Next) or `.dev.vars` (Wrangler)
 - `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_META_PIXEL_ID` must be in the local env / `.env.local` when running `npm run deploy` (Next inlines `NEXT_PUBLIC_*` at build time). A runtime Worker secret alone leaves the tags empty.
 - Conferbot widget public flags live in committed `.env.production` (`NEXT_PUBLIC_CONFERBOT_ENABLED=1`, public bot id). CI forces the flag to `0` so checks/e2e stay off-by-default. Webhook/notify runtime flags stay off until Starter.
-- GitHub Actions runs checks and a Worker build for pull requests and `main`; it never deploys.
+- GitHub Actions runs checks, invoice-security, Worker build, and **Playwright e2e (chromium project only)** for pull requests and `main`; it never deploys. Full desktop+mobile e2e runs on the owner PC via `deploy-production.mjs`.
 
 ## Verification advice
 - Run targeted checks first (`npm run lint`, `npm run typecheck`) for changes.
+- Run `npm run test:e2e` (or `npx playwright test --project=chromium`) when changing routes, checkout, consent, or deploy gates.
 - Run full build only if changes justify it (deps/config/build scripts/routes affecting build).
 - Fix errors caused by your changes.
 - Report checks not run.
+- `npm run verify:prod` hits live www — use after a real deploy only (already wired into `deploy-production.mjs`).
