@@ -51,7 +51,8 @@
 3. Owner/other repos: BIMI Pages noindex; Connect robots/noindex (homepage OK).  
 
 ### Phase G — SEO content after Tech-0
-T6 → T7 → trade rewrite batches → GBP/local SEO expand.
+T6 → T7 → trade rewrite batches → GBP/local SEO expand.  
+Ownership map + cannibalization guard: `src/data/keyword-ownership.ts` + `npm run check:seo-ownership`.
 
 ---
 

@@ -30,8 +30,8 @@
 | P2 | 301 `/es-es/*` → `/es/*` | Redirect | **Tech-0** | `/es-es` | In code this PR (approved) |
 | P3 | painting + remodeling off `hold` | Landing | **Tech-0** | `/industries/painting`, `/remodeling` | In code this PR (approved) |
 | P4 | Connect homepage stays indexable (canonical) | Subdomain | **Tech-0** | connect `/` | Approved — implement in Connect repo |
-| T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Locked |
-| T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Locked |
+| T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Done — `src/data/keyword-ownership.ts` |
+| T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Done — `npm run check:seo-ownership` |
 | T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | After Tech-0 |
 | T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | After Tech-0 |
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
