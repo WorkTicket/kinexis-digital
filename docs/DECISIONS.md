@@ -21,8 +21,7 @@
 ## Content/claims
 - Do not invent claims/pricing - use repo as source of truth
 - Free homepage preview emphasized; plans as documented in pages
-- Spanish locales present (`/es`, `/es-es`)
-- **Currency:** EN + LatAm `/es` use USD. Spain `/es-es` shows the **same published numerals in euros** (`src/i18n/prices.ts` → `toSpainEuros` / `spanishPlans({ currency: "eur" })`). Not a separate FX price book.
+- Indexable Spanish is LatAm `/es` (USD). `/es-es` **301s to `/es`** (owner 2026-11-16) — Spain visitor locale is no longer a separate indexed tree. Euro display helpers in `src/i18n/prices.ts` remain in code but are not reached via public `/es-es` URLs.
 
 ## i18n maintainability (deferred epic)
 - EN pages live as per-route files under `src/app/(en)/`; Spanish is a catch-all + `SpanishSite.tsx` / `SpanishIndustry.tsx` monolith with a separate `PAGE_META` map.

@@ -22,7 +22,8 @@ export function englishPath(pathname: string): string {
 export function withLocale(locale: Locale, pathname: string): string {
   const en = englishPath(pathname);
   if (locale === "en") return en;
-  const prefix = locale === "es-ES" ? "/es-es" : "/es";
+  // Spain locale URLs 301 to LatAm `/es`; never emit fresh `/es-es` links.
+  const prefix = "/es";
   return en === "/" ? prefix : `${prefix}${en}`;
 }
 

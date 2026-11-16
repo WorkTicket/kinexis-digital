@@ -25,11 +25,11 @@
 | I3 | Homepage title leads with **Kinexis Digital** | Meta | **Tech-0** | `/` | In code this PR |
 | I4 | `/pricing` title/meta/H1 own **contractor website cost** | Meta | **Tech-0** | `/pricing` | In code this PR |
 | I5 | Retitle local SEO article for **local SEO checklist** | Meta | **Tech-0** | `/blog/local-seo-get-found-get-called` | In code this PR |
-| I6 | Connect portal: robots + noindex app routes | Subdomain | **Tech-0** | `connect.kinexisdigital.com` | **Not in this repo** — owner on Connect app |
-| P1 | Propose: noindex `bimi.kinexisdigital.com` | Proposal | Gate | bimi subdomain | Needs approval |
-| P2 | Propose: 301 `/es-es/*` → `/es/*` | Proposal | Gate | `/es-es` | Needs approval |
-| P3 | Propose: painting + remodeling off `hold` | Proposal | Gate | `/industries/painting`, `/remodeling` | Needs approval (= T10/T11) |
-| P4 | Propose: Connect homepage as search landing (canonical/sitemap) vs noindex | Proposal | Gate | connect `/` | Needs approval |
+| I6 | Connect portal: robots + noindex app routes | Subdomain | **Tech-0** | `connect.kinexisdigital.com` | **Separate repo** — see §13 |
+| P1 | noindex `bimi.kinexisdigital.com` | Infra | **Tech-0** | bimi subdomain | **Separate host** — see §13 (approved) |
+| P2 | 301 `/es-es/*` → `/es/*` | Redirect | **Tech-0** | `/es-es` | In code this PR (approved) |
+| P3 | painting + remodeling off `hold` | Landing | **Tech-0** | `/industries/painting`, `/remodeling` | In code this PR (approved) |
+| P4 | Connect homepage stays indexable (canonical) | Subdomain | **Tech-0** | connect `/` | Approved — implement in Connect repo |
 | T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Locked |
 | T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Locked |
 | T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | After Tech-0 |
@@ -39,9 +39,9 @@
 | T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | Planned |
 | T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |
 | T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Planned |
-| T10 | Industry: painting live | Landing | 3 | `/industries/painting` | **Blocked on P3** |
-| T11 | Industry: remodeling live | Landing | 3 | `/industries/remodeling` | **Blocked on P3** |
-| T12 | Portfolio / internal links painting + remodeling | Supporting | 3 | `/portfolio` | After T10/T11 |
+| T10 | Industry: painting live | Landing | 3 | `/industries/painting` | In code this PR |
+| T11 | Industry: remodeling live | Landing | 3 | `/industries/remodeling` | In code this PR |
+| T12 | Portfolio / internal links painting + remodeling | Supporting | 3 | `/portfolio` | Nav/index via `status: live`; dedicated paint template still optional |
 | T13 | Research backlog | Research | 4 | TBD | After Ahrefs upgrade / more GSC |
 | T14 | Data needed | Ops | 0 | — | GSC received; Ahrefs unpaid |
 | T15 | Writing standard + review checklist | Process | 0 | §11–12 | Locked |
@@ -51,10 +51,9 @@
 ## 2. Phased execution (**technical indexing first**)
 
 ### Phase Tech-0 — Indexing & on-page (before trade rewrites)
-1. **Owner (Cloudflare dashboard):** enable **Always Use HTTPS** (or HTTP→HTTPS 301 rule) so `http://kinexisdigital.com` and `http://www...` stop returning **500** at Pingora. Confirm with `curl -I http://…` → 301 to HTTPS www. Agents cannot change this from the Worker repo.  
-2. **Code (this PR):** 301 three dead case-study 404s (+ `/en/` via `localized`) to `/portfolio`; brand-led homepage title; pricing owns “contractor website cost” in title/meta/H1; local SEO article retitled for checklist intent.  
-3. **Connect app (separate repo):** add `robots.txt` Disallow for `/login`, `/signup`, dashboard; `noindex` those routes. **Do not** noindex the Connect marketing homepage without P4.  
-4. **Proposals only (P1–P4):** wait for owner before noindex BIMI, collapsing `/es-es` → `/es`, flipping painting/remodeling off hold, or treating Connect `/` as a search page.
+1. **Owner (Cloudflare dashboard):** enable **Always Use HTTPS** (HTTP→HTTPS). Agents do not change this.  
+2. **Code (this marketing PR):** dead case-study 301s; brand homepage title; pricing owns contractor website cost; local SEO checklist retitle; **`/es-es` → `/es`**; **painting + remodeling `live`**.  
+3. **Out of this repo (approved, owner/other deploys):** BIMI noindex on Pages project `kinexis-card`; Connect robots/noindex in `WorkTicket/kinexis-connect` (homepage may stay indexable). See §13.
 
 ### Phase 0 — Guardrails
 Ownership map (§3) + cannibalization (§4). No new generic contractor-cost article.
@@ -66,7 +65,7 @@ Ownership map (§3) + cannibalization (§4). No new generic contractor-cost arti
 Trade cost/pages rewrites; GBP + local SEO plumber expansions; light de-overlap on companion pillars.
 
 ### Phase 3 — Painting & remodeling landings
-Only after **P3** approval: flip `hold` → `live`, portfolio links.
+**Done in Tech-0** after owner approval: `status: "live"`, sitemap, nav, Spanish mirrors.
 
 ### Phase 4 — Research
 After paid Ahrefs (or Keyword Planner) + fresh GSC: landscaping leads research; speed benchmark. No new generic Maps article.
@@ -83,8 +82,8 @@ One primary URL per commercial intent. Secondaries support; they do not get a se
 | plumber website design / website design for plumbers | `/industries/plumbing` | Hub |
 | landscaping website design | `/industries/landscaping` | Hub |
 | HVAC / electrician / roofing / garage door / pressure washing / … design | `/industries/{trade}` | Matching live hub |
-| painting website design / website design for painters | `/industries/painting` | **Phase 3** (today `hold`) |
-| remodeling contractor website design | `/industries/remodeling` | **Phase 3** (today `hold`) |
+| painting website design / website design for painters | `/industries/painting` | **Live** (this PR) |
+| remodeling contractor website design | `/industries/remodeling` | **Live** (this PR) |
 | contractor website cost / how much does a contractor website cost | **`/pricing`** | **Do not create a blog cost article for this** |
 | plumber website cost | `/blog/plumber-website-cost` | Trade cost series |
 | landscaping / HVAC / … website cost | `/blog/{trade}-website-cost` | Same series |
@@ -321,22 +320,27 @@ Still useful after Tech-0 ships: Coverage “404 / robots / alternate canonical�
 
 ---
 
-## 13. Owner-approval proposals (do **not** implement until approved)
+## 13. Out-of-repo hosts (approved — not this Worker)
 
-| ID | Proposal | Why |
-|---|---|---|
-| P1 | `noindex` + real `robots.txt` on `bimi.kinexisdigital.com` (or host BIMI SVG without HTML card) | 6 imps; HTML “business card,” not a BIMI asset; robots returns HTML |
-| P2 | One-hop 301 `/es-es` and `/es-es/*` → matching `/es` URLs (including legacy maps) | `/es-es` is intentional noindex; leftover equity currently loops inside noindex |
-| P3 | Flip `/industries/painting` and `/industries/remodeling` from `hold` → `live` | Cost/pages posts already indexable; landers exist but noindex. Leave pool-care / window-cleaning / yard-care on hold |
-| P4 | Decide Connect homepage: search landing (canonical + sitemap) **or** noindex/301 to www | App routes should still be blocked; homepage needs an explicit decision |
-| — | Cloudflare **Always Use HTTPS** | Not a code change — owner applies in Cloudflare dashboard (I1) |
+### BIMI — `bimi.kinexisdigital.com`
+**Not in this repo.** Cloudflare Pages project **`kinexis-card`** (`kinexis-card.pages.dev`), custom domain `bimi.kinexisdigital.com`. DNS CNAME → that Pages project. BIMI TXT: `default._bimi` → `l=https://bimi.kinexisdigital.com/bimi/logo.svg` (keep `/bimi/` crawlable).  
+**Owner apply on next Pages deploy:** HTML `<meta name="robots" content="noindex, follow">` + `X-Robots-Tag: noindex, follow` on HTML; `robots.txt`:
+```
+User-agent: *
+Allow: /bimi/
+Disallow: /
+```
 
-Retargeting high-impression “dump to `/blog`” legacy redirects (quality-score, etc.) also needs approval before changing destinations (GSC A9).
+### Connect — `connect.kinexisdigital.com`
+**Not in this repo.** GitHub **`WorkTicket/kinexis-connect`**, Cloudflare Worker **`kinexis-connect`** (custom domain). Marketing homepage may stay indexable with canonical; noindex `/login`, `/signup`, `/app/*` (dashboard), plus `robots.txt` Disallow those paths. Owner deploys that app separately.
+
+### Cloudflare Always Use HTTPS
+Dashboard only (I1) — owner applies; not code.
 
 ## 14. Out of scope without a separate ticket
 
 - Deleting live indexable content.  
 - Inventing search volumes or difficulty.  
 - Noindexing utilities (`/pay`, `/terms`, …) or `/es` itself.  
-- Changing Connect or BIMI from **this** marketing repo (separate hosts).  
-- Spanish drafts for new EN posts (see `docs/seo/drafts-es-native-3.md` for separate ES work).
+- Deploying Connect / BIMI / www from agents.  
+- Spanish drafts for new EN posts (see `docs/seo/drafts-es-native-3.md`).

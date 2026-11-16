@@ -14,6 +14,8 @@ function tradeNoun(industry: Industry) {
   if (industry.slug === "electrical") return "electrician";
   if (industry.slug === "garage-doors") return "garage door";
   if (industry.slug === "pressure-washing") return "pressure washing";
+  if (industry.slug === "painting") return "painting";
+  if (industry.slug === "remodeling") return "remodeling";
   return industry.name.toLowerCase();
 }
 
@@ -59,40 +61,42 @@ export default function IndustrySeoDepth({
 
   return (
     <>
-      <section className="industry-seo-depth">
-        <div className="section-head">
-          <p className="eyebrow">{titles.examplesEyebrow}</p>
-          <h2 className="center"><HL text={titles.examples} mark={titles.examplesMark} /></h2>
-        </div>
-        <div className="industry-seo-depth__examples">
-          {depth.examples.slice(0, 1).map((example) => (
-            <article className="industry-seo-depth__card" key={example.name}>
-              <div className="industry-seo-depth__shot">
-                <DeferredImg
-                  src={example.image}
-                  sizes="(max-width: 860px) 90vw, 420px"
-                  alt={`${example.name} website`}
-                  width={example.width}
-                  height={example.height}
-                  className="industry-seo-depth__img"
-                />
-              </div>
-              <div className="industry-seo-depth__copy">
-                <h3>
-                  {example.name}
-                  {example.demo ? <span className="industry-seo-depth__demo"> {titles.demo}</span> : null}
-                </h3>
-                <p>{example.annotation}</p>
-                {example.url.startsWith("http") ? (
-                  <a className="text-link" href={example.url} target="_blank" rel="noopener noreferrer">{titles.visit}</a>
-                ) : (
-                  <Link className="text-link" href={example.url} prefetch={false}>{titles.visit}</Link>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      {depth.examples.length > 0 ? (
+        <section className="industry-seo-depth">
+          <div className="section-head">
+            <p className="eyebrow">{titles.examplesEyebrow}</p>
+            <h2 className="center"><HL text={titles.examples} mark={titles.examplesMark} /></h2>
+          </div>
+          <div className="industry-seo-depth__examples">
+            {depth.examples.slice(0, 1).map((example) => (
+              <article className="industry-seo-depth__card" key={example.name}>
+                <div className="industry-seo-depth__shot">
+                  <DeferredImg
+                    src={example.image}
+                    sizes="(max-width: 860px) 90vw, 420px"
+                    alt={`${example.name} website`}
+                    width={example.width}
+                    height={example.height}
+                    className="industry-seo-depth__img"
+                  />
+                </div>
+                <div className="industry-seo-depth__copy">
+                  <h3>
+                    {example.name}
+                    {example.demo ? <span className="industry-seo-depth__demo"> {titles.demo}</span> : null}
+                  </h3>
+                  <p>{example.annotation}</p>
+                  {example.url.startsWith("http") ? (
+                    <a className="text-link" href={example.url} target="_blank" rel="noopener noreferrer">{titles.visit}</a>
+                  ) : (
+                    <Link className="text-link" href={example.url} prefetch={false}>{titles.visit}</Link>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="industry-seo-depth industry-seo-depth--pages">
         <div className="section-head">

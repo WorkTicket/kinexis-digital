@@ -181,9 +181,9 @@ const ES: Record<string, Copy> = {
   painting: {
     name: "Pintura",
     card: "Interior, exterior y gabinetes",
-    metaTitle: "Sitios web para pintores en EE. UU.",
-    metaDescription: "Sitios para pintores en Estados Unidos. Interior, exterior y gabinetes, con un camino claro de estimado y pedidos de reseñas.",
-    h1: "Sitios de pintura que ganan el estimado",
+    metaTitle: "Página web para pintores desde $97/mes",
+    metaDescription: "Diseño de página web para pintores en EE. UU. desde $97/mes, $0 de entrada. Interior, exterior y gabinetes con un camino claro de estimado. Vista previa gratis.",
+    h1: "Diseño de página web para pintores que gana el estimado",
     mark: "el estimado",
     sub: "La pintura se juzga por las fotos y por lo fácil que es agendar una visita. Un sitio que parece cupón de handyman te deja barato antes de la primera llamada.",
     intro: [
@@ -219,9 +219,9 @@ const ES: Record<string, Copy> = {
   remodeling: {
     name: "Remodelación",
     card: "Cocinas, baños y la cotización larga",
-    metaTitle: "Sitios de remodelación en EE. UU.",
-    metaDescription: "Sitios de remodelación para negocios en Estados Unidos. Galerías de cocinas y baños, con un camino de consulta para una venta más larga.",
-    h1: "Sitios de remodelación para cocinas y baños",
+    metaTitle: "Página web de remodelación desde $97/mes",
+    metaDescription: "Diseño de página web para remodeladores en EE. UU. desde $97/mes, $0 de entrada. Cocinas y baños con un camino de consulta. Vista previa gratis.",
+    h1: "Diseño de página web para remodeladores: cocinas y baños",
     mark: "cocinas y baños",
     sub: "Una remodelación es una venta larga. El sitio debe mostrar cuartos terminados y explicar cómo empieza el proyecto, sin gritar como un anuncio de drenaje.",
     intro: [

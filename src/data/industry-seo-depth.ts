@@ -202,6 +202,40 @@ export const INDUSTRY_SEO_DEPTH: Record<string, IndustrySeoDepth> = {
       ),
     ),
   },
+  painting: {
+    pagesList: [
+      "Interior Painting",
+      "Exterior Painting",
+      "Cabinet Finishes",
+      "Estimate / Walkthrough",
+      "Photo Gallery",
+      "Service Area",
+      "Reviews",
+      "About",
+      "Contact",
+    ],
+    // No dedicated painting portfolio template yet — pages/cost/process still ship.
+    examples: examples(),
+  },
+  remodeling: {
+    pagesList: [
+      "Kitchens",
+      "Bathrooms",
+      "Process / How a Project Starts",
+      "Detailed Estimates",
+      "Project Gallery",
+      "Service Area",
+      "Reviews",
+      "About",
+      "Contact",
+    ],
+    examples: examples(
+      demoExample(
+        "tileline-bath-tile",
+        "Demo bath and tile layout: finished rooms first, with a consult path instead of emergency-plumber language.",
+      ),
+    ),
+  },
 };
 
 export function industryProcessStepsEn(tradeNoun: string) {
