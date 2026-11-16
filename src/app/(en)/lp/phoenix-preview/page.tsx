@@ -15,7 +15,7 @@ import { CtaBand, Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui
 import { LIVE_SITES } from "@/data/liveSites";
 import { portfolioFile } from "@/data/portfolio";
 import { FAQS as SITE_FAQS, STEPS } from "@/lib/content";
-import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { FOOTER_LOGO_WIDTHS, IMAGE_SIZES, footerLogoSrc, footerLogoSrcSet, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { SITE, telHref } from "@/lib/site";
 import { contentMetadata } from "@/lib/seo";
 
@@ -444,10 +444,12 @@ export default async function PhoenixPreviewLp() {
         <div className="container lp-foot__inner">
           <Link className="lp-foot__logo" href="/" aria-label="Kinexis Digital home" prefetch={false}>
             <img
-              src="/assets/logos/footer-nav.webp"
+              src={footerLogoSrc(210)}
+              srcSet={footerLogoSrcSet()}
+              sizes="120px"
               alt="Kinexis Digital"
-              width={420}
-              height={420}
+              width={FOOTER_LOGO_WIDTHS[1]}
+              height={FOOTER_LOGO_WIDTHS[1]}
               loading="lazy"
               decoding="async"
             />

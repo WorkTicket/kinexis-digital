@@ -10,6 +10,7 @@ import type { Locale } from "@/lib/i18n";
 import { withLocale } from "@/lib/i18n";
 import { MIRROR_PATHS } from "@/lib/locale-path";
 import LanguageSwitch from "./LanguageSwitch";
+import { FOOTER_LOGO_WIDTHS, IMAGE_SIZES, footerLogoSrc, footerLogoSrcSet } from "@/lib/image-sources";
 import { SITE, telHref } from "@/lib/site";
 import { TRUSTPILOT_PROFILE_URL } from "@/lib/trustpilot";
 
@@ -99,10 +100,12 @@ export default function Footer({ locale }: { locale: Locale }) {
             <div className="footer-brand">
               <Link className="footer-logo flex w-fit" href={hrefFor("/")} aria-label={chrome.home} prefetch={false}>
                 <DeferredImg
-                  src="/assets/logos/footer-nav.webp"
+                  src={footerLogoSrc(210)}
+                  srcSet={footerLogoSrcSet()}
+                  sizes={IMAGE_SIZES.footerLogo}
                   alt="Kinexis Digital"
-                  width={420}
-                  height={420}
+                  width={FOOTER_LOGO_WIDTHS[1]}
+                  height={FOOTER_LOGO_WIDTHS[1]}
                   className="h-auto w-[120px] sm:w-[148px] lg:w-[168px]"
                 />
               </Link>

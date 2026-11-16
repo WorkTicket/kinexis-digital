@@ -60,9 +60,9 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning", "Events", "Specialty"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "34";
+export const PORTFOLIO_ASSET_VERSION = "35";
 
-export type PortfolioShotWidth = 320 | 640 | 1100 | "card";
+export type PortfolioShotWidth = 320 | 400 | 480 | 640 | 662 | 800 | 1100 | "card";
 
 export function portfolioFile(
   image: string,
@@ -73,15 +73,38 @@ export function portfolioFile(
   const ext = format === "avif" ? ".avif" : ".webp";
   const file = width === "card"
     ? `${stem}-card${ext}`
-    : width === 320 || width === 640
-      ? `${stem}-${width}${ext}`
+    : typeof width === "number"
+      ? width === 1100
+        ? `${stem}${ext}`
+        : `${stem}-${width}${ext}`
       : `${stem}${ext}`;
   return `${file}?v=${PORTFOLIO_ASSET_VERSION}`;
+}
+
+/** Listing card crop at a specific width (400 / 480). */
+export function portfolioCardFile(
+  image: string,
+  width: 400 | 480 = 400,
+  format: "webp" | "avif" = "webp",
+) {
+  const stem = image.replace(/\.webp$/, "");
+  const ext = format === "avif" ? ".avif" : ".webp";
+  return `${stem}-card-${width}${ext}?v=${PORTFOLIO_ASSET_VERSION}`;
+}
+
+/** Listing cards: CSS ~400×300 — 400w + 480w (avoid shipping 640 card masters). */
+export function portfolioCardSrcSet(image: string, format: "webp" | "avif" = "webp") {
+  return `${portfolioCardFile(image, 400, format)} 400w, ${portfolioCardFile(image, 480, format)} 480w`;
 }
 
 /** Hover-scroll frames: lab display ~280px / 46vw — prefer 320w, keep 640w for DPR. */
 export function portfolioShotSrcSet(image: string, format: "webp" | "avif" = "webp") {
   return `${portfolioFile(image, 320, format)} 320w, ${portfolioFile(image, 640, format)} 640w`;
+}
+
+/** Case-study full-page live screenshots — CSS ~662 display; 662/800 + master 1100. */
+export function portfolioCaseStudySrcSet(image: string, format: "webp" | "avif" = "webp") {
+  return `${portfolioFile(image, 662, format)} 662w, ${portfolioFile(image, 800, format)} 800w, ${portfolioFile(image, 1100, format)} 1100w`;
 }
 
 export function portfolioDeviceFile(image: string, width: 768 | 1536 = 1536) {
