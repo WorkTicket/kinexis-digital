@@ -22,6 +22,18 @@ const POSITIONER = () => {
   const CTA_EXTRA = 62;
   const PANEL_EXTRA = 58;
 
+  const clearInlineLift = (root) => {
+    if (!root) return;
+    root
+      .querySelectorAll(
+        "#open-chatbot.chatbot__icon, .chatbot__icon, .chatbot__icon__cta, #chat-cta, .live_chat__chat__screen",
+      )
+      .forEach((node) => {
+        node.style.removeProperty("bottom");
+        node.style.removeProperty("inset");
+      });
+  };
+
   const apply = () => {
     const host = document.querySelector(HOST_SEL);
     if (!host?.shadowRoot) return false;
@@ -32,6 +44,7 @@ const POSITIONER = () => {
       host.style.removeProperty("--kx-chat-bottom");
       host.style.removeProperty("--cb-o-m-bottom");
       host.shadowRoot.getElementById(STYLE_ID)?.remove();
+      clearInlineLift(host.shadowRoot);
       return true;
     }
     const html = document.documentElement;
@@ -66,20 +79,13 @@ const POSITIONER = () => {
       host.shadowRoot.appendChild(styleEl);
     }
     styleEl.textContent = `
+@media (max-width: 860px) {
 :host(.${HOST_CLASS}) .chatbot__icon{bottom:var(--kx-chat-bottom)!important}
 :host(.${HOST_CLASS}) .chatbot__icon__cta,:host(.${HOST_CLASS}) #chat-cta{bottom:calc(var(--kx-chat-bottom) + ${CTA_EXTRA}px)!important}
 :host(.${HOST_CLASS}) .live_chat__chat__screen.show__chat{bottom:calc(var(--kx-chat-bottom) + ${PANEL_EXTRA}px)!important}
+}
 `;
-    const icon = host.shadowRoot.querySelector(".chatbot__icon");
-    if (icon) icon.style.setProperty("bottom", bottom, "important");
-    const cta = host.shadowRoot.querySelector(".chatbot__icon__cta, #chat-cta");
-    if (cta) {
-      const ctaBottom = `${bottomPx + CTA_EXTRA}px`;
-      cta.style.setProperty("bottom", ctaBottom, "important");
-      if ((cta.getAttribute("style") || "").includes("inset")) {
-        cta.style.setProperty("inset", `auto 8px ${ctaBottom} auto`, "important");
-      }
-    }
+    clearInlineLift(host.shadowRoot);
     return { bottomPx, floatVisible: Boolean(floatVisible) };
   };
   return apply();
