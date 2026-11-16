@@ -38,7 +38,7 @@
 | N1c | CI: add `test:e2e` if reliable | Eng P1 | Soft | Green on PR; chromium-only in CI; full suite on deploy script | In progress |
 | N1d | Confirm D1 prod state in docs (no migrate) | Eng P1 | **Yes** if any migrate | Docs only unless owner approves new DBs | Planned (verify-only) |
 | N2 | Full Spanish `/es` homepage + pricing comparison + terms + checkout UI | Eng P1 | No pricing changes | Natural LATAM Spanish; **prices/figures unchanged**; no English comparison leftovers on `/es` and `/es/pricing`; checkout strings Spanish on `/es` path or documented bilingual pay page | In progress |
-| N3 | SEC-03 magic-byte attachment validation | Eng P2 | No | Magic bytes + extension/MIME agreement; reject mismatches; size/count limits kept; tests | Planned |
+| N3 | SEC-03 magic-byte attachment validation | Eng P2 | No | Magic bytes + extension/MIME agreement; reject mismatches; size/count limits kept; tests | In progress |
 | N4 | SEC-02 proper rate limiting + tests | Eng P2 | Soft (DO binding) | Sliding window / token bucket with atomic coordination; tests; fail-closed policy documented | Planned |
 | N5 | SEC-01 nonce-based CSP | Eng P2 | **Yes** if third parties break | Nonce CSP **only if** GTM, Meta Pixel, PayPal, Conferbot still work; else document blocker | Planned |
 | N6 | PayPal SANDBOX checkout + webhook evidence | Eng P1 | Soft (creds) | Sandbox run if creds present; else prepare steps and report missing creds — **no live charges** | Planned / blocked on creds |
