@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   experimental: {
     cpus: 4,
+    // Inline CSS into <style> on first HTML response so Lighthouse no longer
+    // waits on a ~49 KiB render-blocking stylesheet round-trip. Same rules as
+    // the external sheet (pixel-equivalent); do NOT revive async CSS defer in
+    // defer-chunks.mjs (FOUC / hydration failures). Production builds only.
+    inlineCss: true,
   },
   // Production builds drop debug noise from client bundles.
   compiler: {

@@ -32,4 +32,5 @@ for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
 if (built) {
   execSync("node scripts/defer-chunks.mjs", { stdio: "inherit" });
   execSync("node scripts/check-no-legacy-polyfills.mjs", { stdio: "inherit" });
+  execSync("node scripts/check-css-inlined.mjs", { stdio: "inherit" });
 }
