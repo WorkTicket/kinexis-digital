@@ -1,9 +1,7 @@
 # Current task
 
-**Done:** Conferbot lift #28; CONTENT-PLAN #29; master plan #30; release gates #31 → `889f774b`; Spanish #32 → `b6f6ed55`; SEC-03 #33 → `6f0f6bbc`; SEC-02 #34 → `967dcf7e`.
+**Done:** Conferbot #28; CONTENT-PLAN #29; master plan #30; release gates #31 → `889f774b`; Spanish #32 → `b6f6ed55`; SEC-03 #33 → `6f0f6bbc`; SEC-02 #34 → `967dcf7e`; SEC-01 blocker #35 → `a4f0abaa`; SEO T5 redesign checklist #36 → `7967dc3d`.
 
-**Done (N5):** SEC-01 blocker documented #35 → `a4f0abaa` (no CSP change).
+**In progress:** Docs refresh of `docs/engineering/NEXT-PHASES-PLAN.md` + `docs/seo/CONTENT-PLAN.md` (status vs `7967dc3d` + owner briefs). Next execution: SEO T6, then T7; optional GSC metadata T16.
 
-**In progress:** SEO T5 redesign checklist article (`cursor/seo-article-redesign-checklist-67c1`); then T6, T7, then trade rewrites in batches.
-
-**Hard rules:** Manual deploy only (owner PC). No prod DB migrations / secrets / paid upgrades without approval. No delete/noindex/redirect. No pricing/terms changes. Ready-to-deploy SHAs through `a4f0abaa` (includes gates, Spanish, SEC-03, SEC-02, SEC-01 blocker) — deploy when you choose.
+**Hard rules:** Manual deploy only (owner PC). No prod DB migrations / secrets / paid upgrades without approval. No delete/noindex/redirect. No pricing/terms changes. Ready-to-deploy SHAs through `7967dc3d` — deploy when you choose.
