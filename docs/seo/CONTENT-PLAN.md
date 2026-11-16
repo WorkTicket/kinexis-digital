@@ -1,6 +1,6 @@
 # SEO Content Plan (docs only — do not publish yet)
 
-**Status:** Plan only. No delete / noindex / redirect / publish in this PR.  
+**Status:** Plan landed (#29). Execution tracked under [`docs/engineering/NEXT-PHASES-PLAN.md`](../engineering/NEXT-PHASES-PLAN.md) (items S1–S7). No delete / noindex / redirect without a separate owner decision after GSC.  
 **Sources:** Owner SEO validation findings (2026-11); repo bodies in `src/data/cost-post-bodies.ts`, `src/data/pages-post-bodies.ts`, `src/data/industries.ts`, `docs/CONTENT.md`; existing `docs/seo/keyword_map_all.csv`.  
 **Pricing / terms:** Quote only published site numbers from `docs/CONTENT.md` / `/pricing` (Website **$97/mo**, Lead System **$197/mo**, Plus **$297/mo**, Own It **$1,497** one-time; monthly **$0 down**, month-to-month, cancel anytime; **30-day money-back** on every plan; **60-day lead guarantee** on Lead System/Plus; free homepage preview in **2 business days**, no card; extra Website page **$99**; Site Care **$39/mo** after Own It year one; text-back rules as on `/pricing`). **Never invent volumes, KD, or CPC.**
 
