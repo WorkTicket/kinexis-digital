@@ -1,5 +1,5 @@
 /** Bump when pre-encoded stills are replaced. /assets and /blog are cached for a year. */
-export const STILL_VERSION = "19";
+export const STILL_VERSION = "20";
 
 export function still(src: string) {
   return src.includes("?") ? src : `${src}?v=${STILL_VERSION}`;
@@ -42,8 +42,8 @@ export const IMAGE_SIZES = {
   mediaSplit: "(max-width: 860px) 240px, 420px",
   /** Default lazy Art when callers omit sizes. */
   art: "(max-width: 860px) 240px, 420px",
-  /** Industry photo hero — CSS full column ≤560–620. */
-  industryHero: "(max-width: 860px) 270px, 480px",
+  /** Industry photo hero — CSS full column ≤560–620; desktop sizes match slot so DPR2 picks 1120. */
+  industryHero: "(max-width: 860px) 270px, 560px",
   /** Homepage film poster — CSS ~full column mobile (~360) / ~560 desktop.
    *  Keep sizes aligned with the real slot so preload + <picture> pick the same
    *  candidate (PSI double-fetch / resource-load-delay). */

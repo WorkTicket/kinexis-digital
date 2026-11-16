@@ -9,8 +9,8 @@ export default function IndustryHeroArt({
   alt: string;
 }) {
   const heroFile = `/assets/industries/${slug}/hero.webp`;
-  // 480 → mobile lab DPR, 768 → tablet, 960 → desktop 2x.
-  const widths = [480, 768, 960] as const;
+  // 480 → mobile lab LCP, 768 → tablet, 960 → desktop 1.5x, 1120/1536 → desktop DPR2.
+  const widths = [480, 768, 960, 1120, 1536] as const;
   const sizes = IMAGE_SIZES.industryHero;
   const webpSrcSet = widths.map((width) => `${imageVariant(heroFile, width, "webp")} ${width}w`).join(", ");
   const avifSrcSet = widths.map((width) => `${imageVariant(heroFile, width, "avif")} ${width}w`).join(", ");
