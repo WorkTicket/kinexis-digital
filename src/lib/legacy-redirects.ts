@@ -137,6 +137,10 @@ export const LEGACY_REDIRECTS = [
   // Live trade proof pages beat the generic portfolio hub for these case URLs.
   ...localized("/case-studies/plumbing-company-growth", "/industries/plumbing"),
   ...localized("/case-studies/landscaping-company-growth", "/industries/landscaping"),
+  // Retired agency case studies still in Search Console → portfolio hub (incl. /en/).
+  ...localized("/case-studies/ecommerce-store-growth", "/portfolio"),
+  ...localized("/case-studies/saas-platform-growth", "/portfolio"),
+  ...localized("/case-studies/dental-practice-local-seo", "/portfolio"),
   // Spanish mirrors have no case-study pages yet — keep locale catch-alls.
   { source: "/es/case-studies/:path*", destination: "/es/portfolio", statusCode: 301 as const },
   { source: "/es-es/case-studies/:path*", destination: "/es-es/portfolio", statusCode: 301 as const },
