@@ -35,7 +35,7 @@
 | T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | After Tech-0 |
 | T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | After Tech-0 |
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
-| T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | Planned |
+| T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | In progress (code) |
 | T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | Planned |
 | T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |
 | T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Planned |

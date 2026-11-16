@@ -934,6 +934,80 @@ export const PILLAR_POSTS_MORE: Record<string, PillarPostBody> = {
     ],
   },
 
+  "how-to-choose-contractor-web-designer": {
+    lead: `Hiring a web designer for a contracting business is less about taste and more about risk. You are picking who controls the domain login, who can move the site if you leave, how leads reach a phone that actually gets answered, and whether you will see a real homepage before a large deposit clears. Freelancers, agencies, DIY builders, and monthly plans can all ship pixels. They diverge the first time a form breaks on a Saturday or you ask for the files. Use the fifteen questions below before you pay—then compare answers on paper, not vibes.`,
+    sections: [
+      {
+        h2: "What you are really buying",
+        html: `<p>A contractor site has one job: help a stranger decide to call or send details for an estimate. Pretty galleries help when they show your work. They do not replace a tap-to-call number, honest service pages, or a form that asks for a phone first. If a designer talks only about “brand elevation” and never about how a leak call reaches you after hours, keep interviewing.</p>
+<p>You also need an exit story. Who renews the domain? Who hosts the site? What happens if you cancel? Vague answers here turn into hostage situations later. The longer path on model choice is <a href="/blog/freelancer-vs-agency-vs-subscription-website">freelancer vs agency vs subscription</a> and <a href="/blog/monthly-website-vs-own-it">monthly vs Own It</a>. This article is the interview script.</p>
+<p>When numbers come up for Kinexis, they match published <a href="/pricing">pricing</a>: Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497 one-time. Monthly plans are $0 down and month-to-month. Every plan includes a 30-day money-back guarantee; Lead System and Plus also include a 60-day lead guarantee. Ask every other vendor for their written numbers the same way—do not invent “market averages.”</p>`,
+      },
+      {
+        h2: "Ownership: domain and files",
+        html: `<p><strong>1. Who owns the domain, and whose registrar account holds it?</strong> The domain should sit in an account you can open without asking permission. If the designer registered it under their login, get that transferred or documented before launch—not after a fight.</p>
+<p><strong>2. Who owns the site files if I leave?</strong> On many monthly arrangements, the host manages the site while you pay; a buyout or an ownership plan is how you leave with the files. With Kinexis Own It, the site files are yours from launch day. On monthly plans, a written one-time $1,497 buyout purchases those files. Ask every vendor the same question in writing: can I download or migrate the site, and what does that cost?</p>
+<p>If either answer is fuzzy, pause. A site you cannot move is a lease with a pretty theme.</p>`,
+      },
+      {
+        h2: "Money: monthly, one-time, exclusions, cancel",
+        html: `<p><strong>3. What is monthly versus one-time—line by line?</strong> Separate design fee, hosting, edits, review tools, ads management, and SEO retainers. A cheap build with expensive “maintenance” is still expensive.</p>
+<p><strong>4. What is excluded?</strong> Extra pages, photography, custom copy, translation, and ongoing SEO often sit outside the base quote. Kinexis publishes extras like a new Website page at $99 and Site Care at $39/mo after Own It’s first year. Your vendor should be that specific.</p>
+<p><strong>5. What are cancellation and buyout terms?</strong> Month-to-month with no cancellation fee is different from a twelve-month contract. Confirm how long the site stays live after you cancel, and whether a buyout exists. For Kinexis monthly plans: cancel anytime; the site stays through the paid period; then hosting ends unless you arrange the $1,497 buyout or move to Own It first.</p>`,
+      },
+      {
+        h2: "Scope: pages, copy, photos",
+        html: `<p><strong>6. Which service pages are included?</strong> Get a written list: homepage, which services, service area, about, contact. “We’ll figure it out” becomes change orders. Page-count ceilings on Kinexis plans (Website up to 5, Lead System up to 10, Plus up to 20 English + Spanish, Own It up to 10) are ceilings—not homework. Ship the pages that earn calls first. Trade architecture guides like <a href="/blog/plumbing-website-pages">plumbing website pages</a> show what “enough” looks like for a trade.</p>
+<p><strong>7. Who writes the copy and who shoots the photos?</strong> Stock hard hats train customers to expect someone else’s crew. If you are supplying job photos, say so. If they are quoting writing or photography, get that number before the deposit.</p>`,
+      },
+      {
+        h2: "SEO: launch vs ongoing",
+        html: `<p><strong>8. What SEO is included at launch, and what is ongoing work quoted separately?</strong> Clean titles, headings, fast pages, and a structure Google can read are table stakes. Monthly SEO retainers are a different product. On Kinexis, ongoing SEO is not bundled into the four website plans—it is quoted on <a href="/seo-services">SEO services</a>. If a designer says “SEO included” forever for free, ask what deliverables and reports that actually means.</p>
+<p>Nobody outside Google can promise rankings. Treat promises of first place as a reason to walk.</p>`,
+      },
+      {
+        h2: "Leads: forms, reviews, missed-call text",
+        html: `<p><strong>9. How do forms and calls reach me?</strong> Notifications should hit the phone or inbox that actually gets answered—not a designer’s Gmail. Ask for a test submit before you pay the balance.</p>
+<p><strong>10. Do you send Google review requests after jobs?</strong> If yes, how, and on which plan? Lead System and Plus include review requests after jobs; ask other vendors for the same clarity.</p>
+<p><strong>11. What are the missed-call text rules?</strong> Text-back needs a dedicated business line. Carrier approval usually takes 10–15 days and is not guaranteed. On Lead System or Plus, a second tracking number is $1/mo if used, plus carrier rates. On Website or Own It it is a $97/mo add-on. Get the same specificity from whoever you hire—do not assume texts survive a platform change.</p>`,
+      },
+      {
+        h2: "Proof: mobile examples and a homepage before deposit",
+        html: `<p><strong>12. Can I see a real contractor site on a phone?</strong> Not a Dribbble shot—an actual trade business with a tappable number. Walk <a href="/portfolio">portfolio</a> examples and live hubs under <a href="/web-design">web design</a> / industries when you want that proof.</p>
+<p><strong>13. Can I see a homepage for my business before a large deposit?</strong> Preview-first removes the “pay and hope” problem. With Kinexis, every plan starts with a free homepage preview in 2 business days—no card, no obligation. You review it, ask for changes, then choose a plan. Ask freelancers and agencies what their concept step costs and when you see it.</p>
+<p><strong>14. Who handles the Google Business Profile website field and hours sync at launch?</strong> A new site with a stale profile URL still loses map-pack clicks. The <a href="/blog/google-business-profile-checklist">GBP checklist</a> covers the field work; your designer should know the handoff.</p>
+<p><strong>15. What does the first 30 days of support look like?</strong> Edits, broken form triage, redirect fixes after a redesign—get response times in writing. A redesign without a redirect plan is covered separately in the <a href="/blog/contractor-website-redesign-checklist">redesign checklist</a>.</p>`,
+      },
+      {
+        h2: "How to use the answers",
+        html: `<p>Score each vendor on ownership, money clarity, scope, SEO honesty, lead delivery, and proof. A low price that fails ownership or lead delivery is expensive. DIY builders can work if you have evenings; compare that path in <a href="/blog/wix-vs-squarespace-vs-managed-website-contractors">Wix vs Squarespace vs managed</a> instead of forcing it into this interview.</p>
+<p>If you want to see a Kinexis direction first, <a href="/contact">request the free homepage preview</a>—2 business days, no card—then pick Website, Lead System, Plus, or Own It on <a href="/pricing">pricing</a> with the published terms. No reinvented guarantees on this page.</p>`,
+      },
+    ],
+    faqs: [
+      {
+        q: "What is the most important question to ask a web designer?",
+        a: "Who owns the domain and the files if you leave—and can you see that in writing before you pay a deposit.",
+      },
+      {
+        q: "Should SEO be included in a website quote?",
+        a: "Launch should include a clear structure Google can read. Ongoing SEO is usually separate work with its own scope and price. Ask what is included versus quoted later.",
+      },
+      {
+        q: "How do Kinexis plans compare when I am choosing a designer?",
+        a: "Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497 one-time, each starting with a free homepage preview in 2 business days. Full terms stay on /pricing.",
+      },
+      {
+        q: "Do I need an agency if I only need five clear pages?",
+        a: "Not always. Match the vendor to the work: clear service pages and a working phone path may not need a large agency process. Compare models on the freelancer vs agency guide.",
+      },
+      {
+        q: "What if a designer will not show a mobile example?",
+        a: "Treat that as a warning. Contractor leads happen on phones. Ask for a live URL you can open on cellular before you hire.",
+      },
+    ],
+  },
+
   "contractor-website-redesign-checklist": {
     lead: `A redesign should fix the reasons people bounce—wrong services, a buried phone number, a mobile layout that hides the call button—not give you a prettier way to lose the same jobs. The quiet risk is migration: you launch a clean site and orphan the URLs Google already sends people to, so the next “emergency plumber” click lands on a soft 404 while your competitor’s number still works. This checklist is for trade owners who need the new site without torching rankings, call tracking, or the Google Business Profile website field.`,
     sections: [
