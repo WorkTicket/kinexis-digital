@@ -8,13 +8,15 @@ const PLAN_STICKERS: Record<string, { file: string; width: number; height: numbe
   "own-it": { file: "plan-name-own-it-1497.webp", width: 753, height: 345 },
 };
 
-export default function MobilePlanComparison({ plans, sections, hint, popularLabel, hideStickers = false }: {
+export default function MobilePlanComparison({ plans, sections, hint, popularLabel, hideStickers = false, includedLabel = "Included" }: {
   plans: ComparisonPlan[];
   sections: ComparisonSection[];
   hint: string;
   popularLabel: string;
   /** Spain chrome: plan names without dollar sticker art. */
   hideStickers?: boolean;
+  /** Display string when a cell is Yes / Sí */
+  includedLabel?: string;
 }) {
   return (
     <div className="mobile-plan-compare">
@@ -48,7 +50,7 @@ export default function MobilePlanComparison({ plans, sections, hint, popularLab
                   {section.rows.map(([label, ...values]) => (
                     <div className="mobile-plan-compare__row" key={label}>
                       <dt>{label}</dt>
-                      <dd>{values[index] === "Yes" ? "Included" : values[index]}</dd>
+                      <dd>{values[index] === "Yes" || values[index] === "Sí" ? includedLabel : values[index]}</dd>
                     </div>
                   ))}
                 </dl>

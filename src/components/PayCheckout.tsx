@@ -6,6 +6,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { CHECKOUT_PLANS, money, type CheckoutKey, type CheckoutPlan } from "@/lib/pay";
 import { isSubscriptionId, OWN_IT_CHECKOUT, PAYPAL_PLANS, PAYPAL_SDK_SRC } from "@/lib/paypal";
 import { SITE, telHref } from "@/lib/site";
+import { ES_CHECKOUT_UI, spanishCheckoutPlans } from "@/i18n/spanish-plan-compare";
 
 type PayPalButtons = {
   render: (target: HTMLElement) => Promise<void>;
@@ -91,7 +92,10 @@ function PlanMark({ id }: { id: CheckoutKey }) {
   );
 }
 
-function termsFor(plan: CheckoutPlan) {
+function termsFor(plan: CheckoutPlan, es: boolean) {
+  if (es) {
+    return plan.monthly ? ES_CHECKOUT_UI.termsMonthly(Boolean(plan.guarantee)) : ES_CHECKOUT_UI.termsOwnIt;
+  }
   if (!plan.monthly) {
     return "One payment when you approve your preview · No monthly plan · 30-day money-back guarantee · Site files are yours from launch · Plus tax, if any";
   }
@@ -99,7 +103,16 @@ function termsFor(plan: CheckoutPlan) {
   return `Month-to-month · Cancel anytime · Price locked 24 months · Domain year 1 included · Later renewals at cost · 30-day money-back guarantee · First charge when you subscribe · Plus tax, if any${guarantee}`;
 }
 
-export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey }) {
+export default function PayCheckout({
+  initialPlan,
+  locale = "en",
+}: {
+  initialPlan: CheckoutKey;
+  /** `"es"` = Latin-American Spanish UI; prices unchanged. */
+  locale?: "en" | "es";
+}) {
+  const es = locale === "es";
+  const ui = ES_CHECKOUT_UI;
   const router = useRouter();
   const [selected, setSelected] = useState<CheckoutKey>(initialPlan);
   const [agreed, setAgreed] = useState(false);
@@ -107,7 +120,11 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
   const [sdk, setSdk] = useState<"idle" | "loading" | "ready" | "failed">("idle");
   const [retry, setRetry] = useState(0);
   const hostRef = useRef<HTMLDivElement>(null);
-  const plan = CHECKOUT_PLANS.find((item) => item.key === selected) ?? CHECKOUT_PLANS[1];
+  const plans = es ? spanishCheckoutPlans() : CHECKOUT_PLANS;
+  const plan = plans.find((item) => item.key === selected) ?? plans[1];
+  const termsHref = es ? "/es/terms" : "/terms";
+  const privacyHref = es ? "/es/privacy" : "/privacy";
+  const thanksBase = es ? "/es/pay/thanks" : "/pay/thanks";
 
   useEffect(() => {
     if (!agreed || plan.key === "ownIt") return;
@@ -117,7 +134,9 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
     if (!planId) {
       queueMicrotask(() => {
         setSdk("failed");
-        setNotice("Checkout is not configured for this plan yet. Text or email us and we’ll finish payment with you.");
+        setNotice(es
+          ? ui.notConfigured
+          : "Checkout is not configured for this plan yet. Text or email us and we’ll finish payment with you.");
       });
       return;
     }
@@ -137,13 +156,15 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
           onApprove: (data) => {
             const sid = data.subscriptionID ?? "";
             if (!isSubscriptionId(sid)) {
-              setNotice("PayPal confirmed something, but the subscription id didn't look right. Check your PayPal email, or text us.");
+              setNotice(es
+                ? ui.badSubscription
+                : "PayPal confirmed something, but the subscription id didn't look right. Check your PayPal email, or text us.");
               return;
             }
             window.dispatchEvent(new CustomEvent("kinexis:track", {
               detail: { name: "subscription_created", params: { plan: planKey } },
             }));
-            router.push(`/pay/thanks?plan=${planKey}&sid=${encodeURIComponent(sid)}`);
+            router.push(`${thanksBase}?plan=${planKey}&sid=${encodeURIComponent(sid)}`);
           },
           onClick: () => {
             window.dispatchEvent(new CustomEvent("kinexis:track", {
@@ -151,10 +172,10 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
             }));
           },
           onError: () => {
-            if (!dead) setNotice("Something went wrong with PayPal. Please try again or text us.");
+            if (!dead) setNotice(es ? ui.paypalError : "Something went wrong with PayPal. Please try again or text us.");
           },
           onCancel: () => {
-            if (!dead) setNotice("Checkout cancelled. You have not been charged.");
+            if (!dead) setNotice(es ? ui.cancelled : "Checkout cancelled. You have not been charged.");
           },
         });
         await buttons.render(slot);
@@ -173,21 +194,21 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
       buttons?.close().catch(() => {});
       slot.remove();
     };
-  }, [agreed, plan.key, retry, router]);
+  }, [agreed, plan.key, retry, router, es, thanksBase, ui.badSubscription, ui.cancelled, ui.notConfigured, ui.paypalError]);
 
   function requireTerms() {
-    setNotice("Please check the box to agree to the Terms first.");
+    setNotice(es ? ui.requireTerms : "Please check the box to agree to the Terms first.");
     document.getElementById("plan-terms")?.focus();
   }
 
   return (
-    <div className="pay-checkout" data-island="">
+    <div className="pay-checkout" data-island="" lang={es ? "es" : undefined}>
     <div className="pay-layout">
         <fieldset className="pay-plans">
-          <legend>Choose your plan</legend>
-          <p className="muted">Select a plan to see what’s included and update your total.</p>
+          <legend>{es ? ui.chooseLegend : "Choose your plan"}</legend>
+          <p className="muted">{es ? ui.chooseHint : "Select a plan to see what’s included and update your total."}</p>
           <div className="pay-options">
-            {CHECKOUT_PLANS.map((item) => (
+            {plans.map((item) => (
               <Fragment key={item.key}>
               <label className={`pay-option${selected === item.key ? " is-selected" : ""}`}>
                 <input
@@ -208,19 +229,19 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
                 <span className="pay-option__copy">
                   <span className="pay-option__name">
                     {item.name}
-                    {item.popular && <span className="pay-badge">Most popular</span>}
+                    {item.popular && <span className="pay-badge">{es ? ui.mostPopular : "Most popular"}</span>}
                   </span>
                   <span className="pay-option__desc">{item.description}</span>
                 </span>
                 <span className="pay-option__price">
                   ${money(item.price)}
-                  <small>{item.monthly ? "/mo" : " once"}</small>
+                  <small>{item.monthly ? (es ? ui.perMonth : "/mo") : (es ? ui.once : " once")}</small>
                 </span>
               </label>
               {selected === item.key && (
                 <div className="pay-included pay-included--selected" aria-live="polite">
                   <div className="pay-included__head">
-                    <h2>Included in {item.name}</h2>
+                    <h2>{es ? ui.includedIn(item.name) : `Included in ${item.name}`}</h2>
                   </div>
                   <ul className="ticks">
                     {item.features.map((feature) => <li key={feature}>{feature}</li>)}
@@ -234,13 +255,13 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
 
       <aside className="pay-summary" aria-labelledby="pay-checkout-heading">
         <header className="pay-summary__head">
-          <p className="pay-kicker">Checkout</p>
+          <p className="pay-kicker">{es ? ui.checkoutKicker : "Checkout"}</p>
           <div className="pay-summary__plan">
             <span className="pay-mark"><PlanMark id={plan.key} /></span>
             <div>
               <h2 id="pay-checkout-heading">
                 {plan.name}
-                {plan.key === "leadSystem" && <span className="pay-down">$0 down</span>}
+                {plan.key === "leadSystem" && <span className="pay-down">{es ? ui.zeroDown : "$0 down"}</span>}
               </h2>
               <p>{plan.description}</p>
             </div>
@@ -248,14 +269,14 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
         </header>
         <div className="pay-summary__body">
           <dl className="pay-breakdown">
-            <div><dt>Billing</dt><dd>{plan.monthly ? "Monthly · cancel anytime" : "One time"}</dd></div>
-            <div><dt>First charge</dt><dd>{plan.monthly ? "When you subscribe" : "When you pay"}</dd></div>
+            <div><dt>{es ? ui.billing : "Billing"}</dt><dd>{plan.monthly ? (es ? ui.billingMonthly : "Monthly · cancel anytime") : (es ? ui.billingOnce : "One time")}</dd></div>
+            <div><dt>{es ? ui.firstCharge : "First charge"}</dt><dd>{plan.monthly ? (es ? ui.firstChargeSub : "When you subscribe") : (es ? ui.firstChargePay : "When you pay")}</dd></div>
           </dl>
           <div className="pay-total">
-            <span>{plan.monthly ? "Monthly total" : "One-time total"}</span>
-            <p>${money(plan.price)}{plan.monthly && <small> /mo</small>}</p>
+            <span>{plan.monthly ? (es ? ui.monthlyTotal : "Monthly total") : (es ? ui.oneTimeTotal : "One-time total")}</span>
+            <p>${money(plan.price)}{plan.monthly && <small> {es ? ui.perMonth : "/mo"}</small>}</p>
           </div>
-          <p className="pay-tax">USD · Plus tax, if any</p>
+          <p className="pay-tax">{es ? ui.taxNote : "USD · Plus tax, if any"}</p>
 
           <label className="pay-agree" htmlFor="plan-terms">
             <input
@@ -265,7 +286,18 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
               onChange={(event) => { setAgreed(event.target.checked); setNotice(""); }}
             />
             <span>
-              I agree to the <Link className="trust-mark" href="/terms" prefetch={false}>Terms of Service</Link> and <Link className="trust-mark" href="/privacy" prefetch={false}>Privacy Policy</Link>.
+              {es ? (
+                <>
+                  {ui.agreePrefix}{" "}
+                  <Link className="trust-mark" href={termsHref} prefetch={false}>{ui.terms}</Link>{" "}
+                  {ui.and}{" "}
+                  <Link className="trust-mark" href={privacyHref} prefetch={false}>{ui.privacy}</Link>.
+                </>
+              ) : (
+                <>
+                  I agree to the <Link className="trust-mark" href="/terms" prefetch={false}>Terms of Service</Link> and <Link className="trust-mark" href="/privacy" prefetch={false}>Privacy Policy</Link>.
+                </>
+              )}
             </span>
           </label>
 
@@ -273,45 +305,58 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
             {plan.monthly ? (
               agreed ? (
                 <>
-                  {sdk === "loading" && <p className="pay-wait" role="status">Loading secure PayPal checkout…</p>}
+                  {sdk === "loading" && <p className="pay-wait" role="status">{es ? ui.loadingPaypal : "Loading secure PayPal checkout…"}</p>}
                   {sdk === "failed" && (
                     <p className="pay-alert" role="alert">
-                      PayPal didn’t load. Text us at <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a> and we’ll send a payment link.{" "}
-                      <button type="button" className="trust-mark" onClick={() => { setNotice(""); setRetry((n) => n + 1); }}>Try again</button>
+                      {es ? (
+                        <>
+                          {ui.paypalFailed} <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a> {ui.paypalFailedSuffix}{" "}
+                          <button type="button" className="trust-mark" onClick={() => { setNotice(""); setRetry((n) => n + 1); }}>{ui.tryAgain}</button>
+                        </>
+                      ) : (
+                        <>
+                          PayPal didn’t load. Text us at <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a> and we’ll send a payment link.{" "}
+                          <button type="button" className="trust-mark" onClick={() => { setNotice(""); setRetry((n) => n + 1); }}>Try again</button>
+                        </>
+                      )}
                     </p>
                   )}
                   <div ref={hostRef} className="pay-paypal" />
                 </>
               ) : (
                 <button type="button" className="btn btn--primary btn--lg pay-lock" onClick={requireTerms}>
-                  Agree to continue with PayPal
+                  {es ? ui.agreeContinue : "Agree to continue with PayPal"}
                 </button>
               )
             ) : agreed ? (
               <>
                 <a className="btn btn--primary btn--lg pay-lock" href={OWN_IT_CHECKOUT} target="_blank" rel="noopener noreferrer">
-                  Pay ${money(plan.price)} with PayPal
+                  {es ? ui.payWithPaypal(money(plan.price)) : `Pay $${money(plan.price)} with PayPal`}
                 </a>
-                <p className="pay-tax">Opens PayPal’s secure page in a new tab.</p>
+                <p className="pay-tax">{es ? ui.opensTab : "Opens PayPal’s secure page in a new tab."}</p>
               </>
             ) : (
               <button type="button" className="btn btn--primary btn--lg pay-lock" onClick={requireTerms}>
-                Agree to pay ${money(plan.price)}
+                {es ? ui.agreeToPay(money(plan.price)) : `Agree to pay $${money(plan.price)}`}
               </button>
             )}
           </div>
 
           <p className={`pay-ready${notice ? " is-alert" : ""}`} role={notice ? "alert" : undefined}>
-            {notice || (agreed ? "You’re ready to continue securely with PayPal." : "Accept the terms above to continue.")}
+            {notice || (agreed
+              ? (es ? ui.ready : "You’re ready to continue securely with PayPal.")
+              : (es ? ui.acceptTerms : "Accept the terms above to continue."))}
           </p>
         </div>
         <footer className="pay-summary__foot">
-          <p className="pay-secure">Secure checkout by PayPal. Pay with your PayPal account or a debit/credit card. We never see your full card number.</p>
+          <p className="pay-secure">{es ? ui.secure : "Secure checkout by PayPal. Pay with your PayPal account or a debit/credit card. We never see your full card number."}</p>
           <details className="pay-details">
-            <summary>Plan terms &amp; billing details</summary>
-            <p>{termsFor(plan)}</p>
+            <summary>{es ? ui.detailsSummary : "Plan terms & billing details"}</summary>
+            <p>{termsFor(plan, es)}</p>
           </details>
-          <a className="pay-help trust-mark" href={telHref(SITE.phone)}>Need a hand? Call or text {SITE.phone}</a>
+          <a className="pay-help trust-mark" href={telHref(SITE.phone)}>
+            {es ? ui.needHelp(SITE.phone) : `Need a hand? Call or text ${SITE.phone}`}
+          </a>
         </footer>
       </aside>
     </div>
@@ -327,8 +372,8 @@ export default function PayCheckout({ initialPlan }: { initialPlan: CheckoutKey 
           </svg>
         </span>
         <div>
-          <h3>Your preview first. Your launch next.</h3>
-          <p>Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe.</p>
+          <h3>{es ? ui.previewTitle : "Your preview first. Your launch next."}</h3>
+          <p>{es ? ui.previewBody : "Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe."}</p>
         </div>
       </div>
     </div>
