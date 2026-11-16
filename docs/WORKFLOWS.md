@@ -12,6 +12,7 @@
 - `npm run check:route-integration` - Contact + reviews + invoice-security handler suites
 - `npm run check:payment-reconciliation` - Offline invoice/payment_events consistency fixtures (also part of `check:invoice-security`)
 - `npm run reconcile:invoices` - Local empty-ledger smoke; owner remote: `RECONCILE_CONFIRM=YES npm run reconcile:invoices -- --remote` (SELECT-only; see `docs/engineering/PAYMENT-RECONCILIATION.md`)
+- `npm run backup:d1-invoice` - Dry-run prints wrangler export command; owner remote: `D1_BACKUP_CONFIRM=YES npm run backup:d1-invoice -- --remote` (see `docs/engineering/D1-BACKUP-RESTORE.md`)
 
 ## Build
 - `npm run build` - Runs `node scripts/build.mjs` (custom build script). Check script if build behavior differs from default Next build.

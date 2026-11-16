@@ -35,6 +35,7 @@
     "smoke": "node scripts/smoke-routes.mjs",
     "check:payment-reconciliation": "node scripts/check-payment-reconciliation.mjs",
     "reconcile:invoices": "node scripts/reconcile-invoice-ledger.mjs",
+    "backup:d1-invoice": "node scripts/d1-backup-invoice-ledger.mjs",
     "check:invoice-security": "node scripts/check-invoice-security.mjs && node scripts/check-payment-integrity.mjs && node scripts/check-paypal-order-service.mjs && node scripts/check-invoice-ledger.mjs && node scripts/check-invoice-routes.mjs && node scripts/check-invoice-import.mjs && node scripts/check-payment-reconciliation.mjs",
     "check:route-integration": "npm run check:contact && npm run check:reviews && npm run check:invoice-security && npm run check:conferbot",
     "check:structured-data": "node scripts/check-structured-data.mjs",
