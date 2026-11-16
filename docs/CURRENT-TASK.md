@@ -1,7 +1,7 @@
 # Current task
 
-**Done:** Conferbot launcher lift hardening merged (#28 → `25764f71`). Do not deploy from agents.
+**Done:** Conferbot launcher lift (#28 → `25764f71`); SEO CONTENT-PLAN (#29).
 
-**In progress:** SEO content plan docs-only (`docs/seo/CONTENT-PLAN.md`, branch `cursor/seo-content-plan-67c1`).
+**In progress:** Master next-phases plan PR #30 (`docs/engineering/NEXT-PHASES-PLAN.md`), then execute N1 release gates → Spanish → SEC-03 → SEC-02 → SEC-01 → SEO articles.
 
-See `docs/DECISIONS.md` (widget lift) and `docs/seo/CONTENT-PLAN.md`.
+**Hard rules:** Manual deploy only (owner PC). No prod DB migrations / secrets / paid upgrades without approval. No delete/noindex/redirect. No pricing/terms changes.
