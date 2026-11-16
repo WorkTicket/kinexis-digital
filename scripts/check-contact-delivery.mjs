@@ -32,7 +32,7 @@ try {
     for (const [key, value] of Object.entries(extra)) form.set(key, value);
     return POST(new Request("http://localhost/api/contact", { method: "POST", body: form }));
   };
-  assert.equal((await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt") })).status, 200);
+  assert.equal((await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt", { type: "text/plain" }) })).status, 200);
   assert.deepEqual(delivery.to, ["inbox@example.com", "owner@example.com"]);
   assert.equal(delivery.replyTo.address, "client@example.com");
   assert.match(delivery.subject, /Strategy call/);

@@ -42,7 +42,7 @@ function safeFilename(file: File, fallback: string) {
   return file.name.replace(/[\x00-\x1f\x7f\\/:*?"<>|]+/g, "-").trim().slice(0, 180) || fallback;
 }
 
-function collectAttachments(form: FormData): { files: File[]; error?: Response } {
+async function collectAttachments(form: FormData): Promise<{ files: File[]; error?: Response }> {
   const files: File[] = [];
   for (const value of form.values()) {
     if (!(value instanceof File) || value.size <= 0) continue;
@@ -55,7 +55,7 @@ function collectAttachments(form: FormData): { files: File[]; error?: Response }
     if (file.size > MAX_FILE) {
       return { files, error: visitorError("Each attachment must be 4 MB or smaller.", 400) };
     }
-    if (!attachmentAllowed(file)) {
+    if (!(await attachmentAllowed(file))) {
       return { files, error: visitorError("Attachments must be a PDF, Word document, text file, or image.", 400) };
     }
   }
@@ -104,7 +104,7 @@ export async function POST(request: Request) {
   // Phone-only leads must not Reply-To SITE.email (staff reply would bounce to ourselves).
   const replyTo = email || undefined;
 
-  const collected = collectAttachments(form);
+  const collected = await collectAttachments(form);
   if (collected.error) return collected.error;
 
   const lines: string[] = [];

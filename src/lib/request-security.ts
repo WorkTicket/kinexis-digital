@@ -91,13 +91,114 @@ const ATTACHMENT_EXTENSIONS = new Set([
   ".gif",
 ]);
 
-export function attachmentAllowed(file: File): boolean {
+/** MIME values allowed for a given extension (empty type is ok if magic matches). */
+const EXTENSION_MIME: Record<string, ReadonlySet<string>> = {
+  ".pdf": new Set(["application/pdf"]),
+  ".doc": new Set(["application/msword", "application/octet-stream"]),
+  ".docx": new Set([
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "application/zip",
+    "application/octet-stream",
+  ]),
+  ".txt": new Set(["text/plain", "application/octet-stream"]),
+  ".jpg": new Set(["image/jpeg"]),
+  ".jpeg": new Set(["image/jpeg"]),
+  ".png": new Set(["image/png"]),
+  ".webp": new Set(["image/webp"]),
+  ".gif": new Set(["image/gif"]),
+  ".heic": new Set(["image/heic", "image/heif", "application/octet-stream"]),
+  ".heif": new Set(["image/heif", "image/heic", "application/octet-stream"]),
+};
+
+function startsWith(bytes: Uint8Array, sig: number[], offset = 0) {
+  if (bytes.length < offset + sig.length) return false;
+  return sig.every((b, i) => bytes[offset + i] === b);
+}
+
+function asciiAt(bytes: Uint8Array, offset: number, text: string) {
+  if (bytes.length < offset + text.length) return false;
+  for (let i = 0; i < text.length; i++) {
+    if (bytes[offset + i] !== text.charCodeAt(i)) return false;
+  }
+  return true;
+}
+
+/** Detect content family from magic bytes. */
+export function detectAttachmentKind(bytes: Uint8Array):
+  | "pdf"
+  | "jpeg"
+  | "png"
+  | "gif"
+  | "webp"
+  | "heic"
+  | "docx"
+  | "doc"
+  | "txt"
+  | null {
+  if (startsWith(bytes, [0x25, 0x50, 0x44, 0x46])) return "pdf"; // %PDF
+  if (startsWith(bytes, [0xff, 0xd8, 0xff])) return "jpeg";
+  if (startsWith(bytes, [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) return "png";
+  if (startsWith(bytes, [0x47, 0x49, 0x46, 0x38, 0x37, 0x61]) || startsWith(bytes, [0x47, 0x49, 0x46, 0x38, 0x39, 0x61])) {
+    return "gif";
+  }
+  if (startsWith(bytes, [0x52, 0x49, 0x46, 0x46]) && asciiAt(bytes, 8, "WEBP")) return "webp";
+  // ISO BMFF (HEIC/HEIF): ....ftyp + brand
+  if (bytes.length >= 12 && asciiAt(bytes, 4, "ftyp")) {
+    const brand = String.fromCharCode(...bytes.slice(8, 12)).toLowerCase();
+    if (["heic", "heix", "hevc", "hevx", "mif1", "msf1", "heif"].includes(brand)) return "heic";
+  }
+  // ZIP container (DOCX)
+  if (startsWith(bytes, [0x50, 0x4b, 0x03, 0x04]) || startsWith(bytes, [0x50, 0x4b, 0x05, 0x06])) return "docx";
+  // OLE Compound File (legacy .doc)
+  if (startsWith(bytes, [0xd0, 0xcf, 0x11, 0xe0, 0xa1, 0xb1, 0x1a, 0xe1])) return "doc";
+  // Plain text: no NUL in the first chunk and mostly printable / whitespace
+  if (bytes.length > 0) {
+    let suspicious = 0;
+    for (let i = 0; i < bytes.length; i++) {
+      const b = bytes[i];
+      if (b === 0) return null;
+      const printable = b === 0x09 || b === 0x0a || b === 0x0d || (b >= 0x20 && b <= 0x7e) || b >= 0x80;
+      if (!printable) suspicious += 1;
+    }
+    if (suspicious / bytes.length <= 0.05) return "txt";
+  }
+  return null;
+}
+
+const KIND_EXTENSIONS: Record<NonNullable<ReturnType<typeof detectAttachmentKind>>, ReadonlySet<string>> = {
+  pdf: new Set([".pdf"]),
+  jpeg: new Set([".jpg", ".jpeg"]),
+  png: new Set([".png"]),
+  gif: new Set([".gif"]),
+  webp: new Set([".webp"]),
+  heic: new Set([".heic", ".heif"]),
+  docx: new Set([".docx"]),
+  doc: new Set([".doc"]),
+  txt: new Set([".txt"]),
+};
+
+/**
+ * Attachments must pass extension allowlist, magic-byte kind, and MIME agreement.
+ * MIME alone or extension alone is not enough (SEC-03).
+ */
+export async function attachmentAllowed(file: File): Promise<boolean> {
   const name = file.name.toLowerCase();
   const extension = name.includes(".") ? name.slice(name.lastIndexOf(".")) : "";
+  if (!extension || !ATTACHMENT_EXTENSIONS.has(extension)) return false;
+
   const type = (file.type || "").toLowerCase();
-  if (type && ATTACHMENT_TYPES.has(type)) return true;
-  if (extension && ATTACHMENT_EXTENSIONS.has(extension)) return true;
-  return false;
+  if (type) {
+    if (!ATTACHMENT_TYPES.has(type)) return false;
+    const allowedForExt = EXTENSION_MIME[extension];
+    if (!allowedForExt?.has(type)) return false;
+  }
+
+  const head = new Uint8Array(await file.slice(0, 64).arrayBuffer());
+  if (head.byteLength === 0) return false;
+  const kind = detectAttachmentKind(head);
+  if (!kind) return false;
+  if (!KIND_EXTENSIONS[kind].has(extension)) return false;
+  return true;
 }
 
 /** Digits-only length for phone fields; allows common punctuation in the raw value. */
