@@ -9,6 +9,8 @@ import Link from "next/link";
 import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const metadata = pageMetadata("blog");
+/** Keep the blog hub on the same long ISR window as home / article posts. */
+export const revalidate = 86400;
 
 export default function Page() {
   return (

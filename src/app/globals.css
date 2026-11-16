@@ -37,8 +37,9 @@
   src:url("/assets/fonts/poppins-latin-800.woff2") format("woff2");
   font-weight:800;
   font-style:normal;
-  /* block (not swap): with preload, H1s paint in ExtraBold without shifting page-hero art. */
-  font-display:block;
+  /* swap (not block): H1 LCP (esp. blog articles) paints on metric-matched fallback
+     immediately; FOUC size-adjust + page-hero art reservation keep CLS stable. */
+  font-display:swap;
 }
 
 /* Tailwind v4 theme: brand tokens become utilities (bg-accent, text-muted, rounded-brand, max-w-site ...) */
@@ -138,7 +139,7 @@ html:not(.no-float){--consent-fab-slot:52px}
   }
   html.no-float{--chat-lift:12px}
 }
-/* Heroes use real Poppins Display 800 (preloaded, font-display:block).
+/* Heroes use real Poppins Display 800 (preloaded, font-display:swap).
    Body/UI stay on size-matched fallback faces so Inter/Poppins files
    never contend with LCP and never swap mid-load. */
 html{
