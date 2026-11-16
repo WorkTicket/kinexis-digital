@@ -33,7 +33,7 @@
 | T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Done — `src/data/keyword-ownership.ts` |
 | T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Done — `npm run check:seo-ownership` |
 | T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | In progress (code) — avg pair similarity ~44.8% (was ~89.7%) |
-| T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | After Tech-0 |
+| T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | In progress (code) — avg pair similarity ~36.9% (was ~85.8%) |
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
 | T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | In progress (code) |
 | T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | In progress (code) |
