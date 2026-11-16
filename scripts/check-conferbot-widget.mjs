@@ -25,6 +25,7 @@ assert.match(shell, /NEXT_PUBLIC_CONFERBOT_ENABLED/);
 const widget = readFileSync(resolve("src/components/ConferbotWidget.tsx"), "utf8");
 assert.match(widget, /cdn\.conferbot\.com\/dist\/v1\/widget\.min\.js/);
 assert.match(widget, /IDLE_FALLBACK_MS/);
+assert.match(widget, /CONSENT_CHROME_WAIT_MS/);
 assert.match(widget, /requestIdleCallback/);
 assert.match(widget, /widgetBooted/);
 assert.match(widget, /kinexis-digital-site/);
@@ -37,6 +38,10 @@ assert.match(widget, /\.float-cta/);
 assert.match(widget, /liftArmed/);
 assert.match(widget, /#open-chatbot/);
 assert.match(widget, /setInterval\(schedule,\s*1000\)/);
+assert.match(widget, /consentDockOpen/);
+assert.match(widget, /consent-open/);
+assert.match(widget, /consent-fab/);
+assert.match(widget, /waitForConsentThenArm/);
 assert.doesNotMatch(
   widget,
   /clearShadowLift\(host\);\s*\n\s*\};\s*\n\s*\}, \[locale\]/,
@@ -60,6 +65,6 @@ assert.match(
 );
 
 console.log(
-  "Conferbot widget contract checks passed: flag off by default, consent-independent idle/input load, shadow launcher lift, consent-open host hide, no double-init, CSP hosts, DocumentShell mount.",
+  "Conferbot widget contract checks passed: flag off by default, defer past consent-open then idle/input (not analytics-gated), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, DocumentShell mount.",
 );
 
