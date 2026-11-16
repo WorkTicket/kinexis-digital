@@ -1,7 +1,8 @@
 # SEC-01 CSP nonce — blocker (do not ship yet)
 
 **Status:** Blocked. Keep production CSP as today (`script-src 'self' 'unsafe-inline'` + allowlisted hosts in `next.config.ts`).  
-**Owner gate:** `G-CSP` in [`NEXT-PHASES-PLAN.md`](./NEXT-PHASES-PLAN.md) — do not remove `unsafe-inline` until the verification matrix below is green on a Workers preview.
+**Owner gate:** `G-CSP` in [`NEXT-PHASES-PLAN.md`](./NEXT-PHASES-PLAN.md) — do not remove `unsafe-inline` until the verification matrix below is green on a Workers preview.  
+**Broader headers / Trusted Types context:** [`SECURITY-HEADERS-CSP-PROPOSAL.md`](./SECURITY-HEADERS-CSP-PROPOSAL.md) (KDS-69).
 
 ## Repo truth (verified)
 

@@ -48,6 +48,7 @@
 
 ## Security/headers
 - CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)
+- Live HSTS on proxied apex/www comes from Cloudflare zone `security_header` (`max-age=31536000; includeSubDomains`; preload off). Keep `next.config.ts` aligned. Proposal for CSP nonce / Trusted Types: `docs/engineering/SECURITY-HEADERS-CSP-PROPOSAL.md` (SEC-01 remains owner-gated).
 - Powered-by header disabled
 - Contact/checkout/reviews share KV rate limits (`src/lib/rate-limit.ts`): sliding window of timestamps per bucket+IP (not a single boolean cooldown). Missing KV fails open for local/tests; KV errors fail closed; empty IP fails closed for checkout/invoice-admin and fails open (logged) for contact/review. Durable Object coordination is an optional owner-gated upgrade.
 - On-site reviews are queued pending staff approval; moderation email links open a **confirm page** (GET), then mutate via **POST** with CSPRNG keys (`/api/reviews/moderate`) — avoids mail-scanner prefetch publishes

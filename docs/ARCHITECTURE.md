@@ -60,7 +60,7 @@ Indexable EN marketing routes live under `src/app/(en)/` and are listed in `src/
 ## Notes
 - Images: `next/image` uses `unoptimized: true` (Cloudflare Images not enabled). Stills in `public/` pre-encoded, with AVIF served first and WebP fallback where variants exist. Run `npm run images:heroes` after replacing page hero artwork.
 - SEO: `robots.ts`, `sitemap.ts` present. `next.config.ts` does many 301 redirects. Preview (`NEXT_PUBLIC_IS_PREVIEW=1`) is noindex / empty sitemap.
-- Security headers set in `next.config.ts` (CSP, HSTS, etc.), including Conferbot CDN/WDT hosts.
+- Security headers set in `next.config.ts` (CSP, HSTS, etc.), including Conferbot CDN/WDT hosts. Proxied HSTS is also set via Cloudflare zone `security_header` — see `docs/engineering/SECURITY-HEADERS-CSP-PROPOSAL.md`.
 - Contact forms/checkout use Mailgun/forwarding/Gmail SMTP/PayPal (see README). Invoice checkout may offer contact fallback if PayPal secret missing. Preview team mail uses `CONTACT_PREVIEW_TO` only.
 - `/reviews` shows on-site reviews (KV via `POST /api/reviews`), matched Trustpilot/Facebook review CTAs (evaluate + Facebook review URLs), optional Trustpilot API cards when `TRUSTPILOT_API_KEY` is set, and Facebook recommendations.
 - Payments: D1 `INVOICE_DB` ledger + PayPal webhook. Conferbot leads: separate `LEAD_DB` (omitted from `wrangler.jsonc` until owner creates real DBs; schema in `migrations-lead/`).
