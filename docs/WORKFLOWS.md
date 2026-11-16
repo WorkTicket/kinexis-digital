@@ -42,4 +42,5 @@
 - Run full build only if changes justify it (deps/config/build scripts/routes affecting build).
 - Fix errors caused by your changes.
 - Report checks not run.
-- `npm run verify:prod` hits live www — use after a real deploy only (already wired into `deploy-production.mjs`).
+- `npm run verify:prod` hits live www — use after a real deploy only (already wired into `deploy-production.mjs`). Includes **mobile + desktop** Lighthouse budgets (`scripts/lighthouse-budget.mjs --form-factor=both`).
+- GitHub Actions workflow `lighthouse-prod.yml` re-runs those budgets against www on `main` pushes and `workflow_dispatch` (read-only; not on pull requests).
