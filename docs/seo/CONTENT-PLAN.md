@@ -1,6 +1,6 @@
-# SEO Content Plan (docs only — do not publish yet)
+# SEO Content Plan
 
-**Status:** Plan landed (#29); GSC + Ahrefs findings folded in (2026-11-15). Execution under [`docs/engineering/NEXT-PHASES-PLAN.md`](../engineering/NEXT-PHASES-PLAN.md). **Technical indexing ahead of content rewrites.** No delete / noindex / redirect of live indexable content without owner approval.  
+**Status:** Plan landed (#29); GSC + Ahrefs folded in; Tech-0 executing in #37 (after docs refresh #41). Execution under [`docs/engineering/NEXT-PHASES-PLAN.md`](../engineering/NEXT-PHASES-PLAN.md). **Technical indexing ahead of content rewrites.** No delete / noindex / redirect of live indexable content without owner approval.  
 **Sources:** Owner SEO validation; GSC Performance export (sc-domain:kinexisdigital.com, Web, ~16 months / Chart 23 Jun–13 Nov 2026); Ahrefs Free (DR only); repo content files; `docs/CONTENT.md`.  
 **Pricing / terms:** Quote only published site numbers from `docs/CONTENT.md` / `/pricing` (Website **$97/mo**, Lead System **$197/mo**, Plus **$297/mo**, Own It **$1,497** one-time; monthly **$0 down**, month-to-month, cancel anytime; **30-day money-back** on every plan; **60-day lead guarantee** on Lead System/Plus; free homepage preview in **2 business days**, no card; extra Website page **$99**; Site Care **$39/mo** after Own It year one; text-back rules as on `/pricing`). **Never invent volumes, KD, or CPC.**
 
@@ -45,6 +45,7 @@
 | T13 | Research backlog | Research | 4 | TBD | After Ahrefs upgrade / more GSC |
 | T14 | Data needed | Ops | 0 | — | GSC received; Ahrefs unpaid |
 | T15 | Writing standard + review checklist | Process | 0 | §11–12 | Locked |
+| T16 | GSC metadata quick wins (titles/descriptions) | Metadata | Tech-0 | `/`, `/pricing`, local SEO post | In #37 (I3–I5) |
 
 ---
 
@@ -176,6 +177,8 @@ For each: keep URL; deepen `drivesCostHtml` / `payingForHtml`; add 2–3 trade F
 
 ### 6.1 T5 — Redesign checklist (+ migration)
 
+**Shipped in source:** PR #36 → `7967dc3d` (`src/lib/content.ts` + pillar body). Soft-publish / production deploy = owner.
+
 | Field | Spec |
 |---|---|
 | **URL** | `/blog/contractor-website-redesign-checklist` |
@@ -251,7 +254,9 @@ Add **plumber troubleshooting** subsection: pack presence vs website conversion 
 
 ## 8. Industry landings: painting & remodeling (Phase 3)
 
-Both already exist in `src/data/industries.ts` with **`status: "hold"`** and full copy shells. Execution = promote to **`live`**, verify routes, wire nav/`/industries` index, portfolio proof when ready. Match the live pattern (e.g. plumbing): `primaryKeyword`, meta, H1/mark/sub, intro, problems, services, serviceArea, features, FAQs with **exact** plan prices, related trades, optional `proof` block.
+**Repo note (vs older SEO validation wording):** both hubs already exist in `src/data/industries.ts` with **`status: "hold"`** (noindex / out of sitemap until flipped) and full copy shells — not missing files. Owner SEO findings correctly called out the **commercial gap** (no live landers); GSC shows **no painting/remodeling queries** in the 16‑month export yet. Cost + pages posts for both trades are already indexable.  
+
+Execution = promote to **`live`**, verify routes, wire nav/`/industries` index, portfolio proof when ready. Match the live pattern (e.g. plumbing): `primaryKeyword`, meta, H1/mark/sub, intro, problems, services, serviceArea, features, FAQs with **exact** plan prices, related trades, optional `proof` block.
 
 ### 8.1 `/industries/painting` (from hold → live)
 - **Primary keyword:** website design for painters / painting contractor website design.  
