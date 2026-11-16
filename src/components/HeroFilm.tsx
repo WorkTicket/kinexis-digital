@@ -1,7 +1,7 @@
 import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 export const HERO_POSTER = "/assets/video/kinexis-explainer-v5f-preview-poster.webp";
-/** Match CSS: ~270px mobile / ~560px desktop (+ DPR). Early head preload uses 280w AVIF. */
+/** Match CSS: ~360px mobile / ~560px desktop (+ DPR). Preload href uses 560w; imagesrcset covers 280/560/768. */
 export const HERO_POSTER_WIDTHS = [280, 560, 768] as const;
 export const HERO_POSTER_SRCSET = imageSrcSet(HERO_POSTER, HERO_POSTER_WIDTHS);
 export const HERO_POSTER_AVIF_SRCSET = imageSrcSet(HERO_POSTER, HERO_POSTER_WIDTHS, "avif");
@@ -9,8 +9,8 @@ export const HERO_POSTER_SIZES = IMAGE_SIZES.heroFilm;
 
 /** Homepage hero film. The poster paints first. The boot script attaches sources after that paint, or after the first input. */
 export default function HeroFilm() {
-  // LCP preload lives at the top of <head> in DocumentShell (before FOUC CSS)
-  // so discovery is not delayed by the large inlined stylesheet.
+  // LCP preload: react-dom preload(href) in DocumentShell (before precedence CSS).
+  // Keep srcset/sizes identical so the preloaded AVIF candidate is reused (no double-fetch).
   return (
     <>
       <div className="hero__media">
