@@ -124,7 +124,7 @@ export const PAGES = {
     pageType: "CollectionPage",
     indexable: true,
     priority: 0.9,
-    description: "Website design for plumbers, HVAC, electricians, roofers, garage door, landscaping, and pressure washing companies nationwide. Plans from $97/mo.",
+    description: "Website design for plumbers, HVAC, electricians, roofers, painters, remodelers, landscaping, and pressure washing companies nationwide. Plans from $97/mo.",
     ogImage: "/og/industries.webp",
   },
   reviews: {
