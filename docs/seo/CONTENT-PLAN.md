@@ -14,7 +14,7 @@
 | T2 | Cannibalization guard: no generic “contractor website cost” article | Guardrail | 0 | `/pricing` | Planned |
 | T3 | Audit + rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | Planned |
 | T4 | Audit + rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | Planned |
-| T5 | New: Contractor website redesign checklist (+ migration section) | New article | 1 | `/blog/contractor-website-redesign-checklist` | Planned |
+| T5 | New: Contractor website redesign checklist (+ migration section) | New article | 1 | `/blog/contractor-website-redesign-checklist` | In progress (code) |
 | T6 | New: How to choose a contractor web designer (15 questions) | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | Planned |
 | T7 | New: Contractor website quote form | New article | 1 | `/blog/contractor-website-quote-form` | Planned |
 | T8 | Expand GBP checklist (plumbing troubleshooting hooks) | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |

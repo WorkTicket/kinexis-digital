@@ -676,6 +676,19 @@ export const POSTS = [
     modified: "2026-11-13T16:00:00-05:00",
     readTime: "18 min read",
   },
+  {
+    slug: "contractor-website-redesign-checklist",
+    category: "Tips",
+    title: "Contractor Website Redesign Checklist: How to Protect Your Google Rankings and Leads",
+    seoTitle: "Contractor Website Redesign Checklist (Keep Rankings & Leads)",
+    excerpt: "A practical redesign checklist for contractors: URL mapping, 301 tests, Search Console checks, and a launch day list so you don’t lose calls when the new site goes live.",
+    image: "/blog/contractor-website-redesign-checklist.webp",
+    width: 1200,
+    height: 768,
+    date: "2026-11-16",
+    modified: "2026-11-16T12:00:00-05:00",
+    readTime: "16 min read",
+  },
 ];
 /** Curated client reviews for on-site display (Website). Facebook Graph is unreliable here — keep these as Website so they always show. Do not invent quotes — edit only with client OK. */
 export const REVIEWS: {
