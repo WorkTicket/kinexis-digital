@@ -182,7 +182,7 @@ const ES: Record<string, Copy> = {
     name: "Pintura",
     card: "Interior, exterior y gabinetes",
     metaTitle: "Página web para pintores desde $97/mes",
-    metaDescription: "Diseño de página web para pintores en EE. UU. desde $97/mes, $0 de entrada. Interior, exterior y gabinetes con un camino claro de estimado. Vista previa gratis.",
+    metaDescription: "Diseño web para pintores en EE. UU. desde $97/mes, $0 de entrada. Interior, exterior y gabinetes con camino claro de estimado. Vista previa gratis.",
     h1: "Diseño de página web para pintores que gana el estimado",
     mark: "el estimado",
     sub: "La pintura se juzga por las fotos y por lo fácil que es agendar una visita. Un sitio que parece cupón de handyman te deja barato antes de la primera llamada.",
