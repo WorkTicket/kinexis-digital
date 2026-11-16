@@ -1008,6 +1008,101 @@ export const PILLAR_POSTS_MORE: Record<string, PillarPostBody> = {
     ],
   },
 
+  "contractor-website-quote-form": {
+    lead: `A quote form on a contractor website is not a survey. It is a short handoff between a stranger with a problem and the phone that can schedule the truck. When the form asks for a novel—square footage essays, required email, “how did you hear about us” before a phone number—people bounce back to the map pack. This guide covers what to ask, what to cut, a plumbing field example, emergency versus planned paths, and how notifications and follow-up tools support the form without turning the page into a sales pitch.`,
+    sections: [
+      {
+        h2: "Why long forms lose emergency and after-work traffic",
+        html: `<p>Most trade traffic lands on a phone after work or during a mess. Thumbs are wet. Kids are yelling. The water heater is cold. A twelve-field form feels like homework. The visitor already typed the job into Google; they do not owe you their life story to earn a callback.</p>
+<p>Every required field is a filter. Some filters help (phone, job type, city). Others just shrink the lead pool. If your close rate on form leads is fine but volume is thin, look at field count before you buy more ads. Related conversion notes live in <a href="/blog/turn-clicks-into-calls">turning clicks into calls</a>.</p>`,
+      },
+      {
+        h2: "Default field set for most trades",
+        html: `<p>Start here and only add fields that change dispatch:</p>
+<ul>
+<li><strong>Name</strong> — so you know who to ask for</li>
+<li><strong>Phone</strong> — required; this is the lead</li>
+<li><strong>Job type</strong> — dropdown or short text (leak, tune-up, mow route, etc.)</li>
+<li><strong>City or ZIP</strong> — so you know if you can crew it</li>
+</ul>
+<p>Optional on the first pass: notes, photos, preferred window, gate code. Those can follow by text once you confirm the lead is real. Email can be optional; do not block submit on it unless you truly cannot call.</p>
+<p>Page architecture that holds this form belongs in trade guides such as <a href="/blog/plumbing-website-pages">plumbing website pages</a> and siblings for HVAC, roofing, and the rest—this article owns the form itself, not the full sitemap.</p>`,
+      },
+      {
+        h2: "Trade example: plumbing estimate form",
+        html: `<p>Plumbing is a clean worked example because urgency and planning sit on the same site.</p>
+<ul>
+<li><strong>Name</strong></li>
+<li><strong>Phone</strong> (required)</li>
+<li><strong>Service</strong> — leak / drain / water heater / other</li>
+<li><strong>City or ZIP</strong></li>
+<li><strong>Optional details</strong> — “second floor,” “no hot water since morning”</li>
+<li><strong>Optional photo</strong> — heater label or standing water, only if safe</li>
+</ul>
+<p>Emergency leak paths should lead with tap-to-call and treat the form as backup. Water-heater quotes can lead with the form if you are booked out—still keep the number one tap away. Do not force a leak caller through a photo upload before they can dial.</p>`,
+      },
+      {
+        h2: "What to remove",
+        html: `<p>Cut anything that does not change whether you can take the job:</p>
+<ul>
+<li>Novel-length property surveys on the first screen</li>
+<li>Required email when you plan to call anyway</li>
+<li>“How did you hear about us?” before the phone field</li>
+<li>Account creation or passwords for a one-time estimate</li>
+<li>CAPTCHA stacks that fail on older phones (use lighter bot protection if needed)</li>
+<li>Fake urgency countdowns and “only 2 slots left” widgets that do not match your calendar</li>
+</ul>
+<p>Marketing attribution can wait until after you book the job—or live in call tracking reports, not in the customer’s way.</p>`,
+      },
+      {
+        h2: "Emergency vs planned: phone-first vs form-first",
+        html: `<p>Match the next step to the search intent. Burst pipe, no-cool in July, door stuck open: phone first, large tap target, honest hours. Planned remodel consult, exterior paint estimate, landscaping design: short form is fine, still with a visible number.</p>
+<p>Do not copy emergency banner language onto a kitchen remodel page, and do not bury the phone on a drain page under a long brochure. If staffed hours are 7–6, say so near the button so overnight callers are not baited.</p>`,
+      },
+      {
+        h2: "After submit: honesty and notifications",
+        html: `<p>The thank-you state should say what happens next in plain language—“We call during staffed hours, usually within one business day”—and match that promise. “We’ll be in touch” with no timeframe trains people to call your competitor.</p>
+<p>Send the notification to the phone or inbox that actually gets answered. Test a submit from a personal phone before launch. If leads land in a designer’s inbox or a dead Slack channel, the form is theater.</p>`,
+      },
+      {
+        h2: "Tools that support the form (without a pitch tone)",
+        html: `<p>The form is the front door. A few tools help after the knock—describe them as operations, not magic:</p>
+<ul>
+<li><strong>Call tracking</strong> — so you know which pages earn dials when you use a tracking number</li>
+<li><strong>Review requests after jobs</strong> — on Lead System and Plus with Kinexis; ask any vendor how theirs works</li>
+<li><strong>Missed-call text-back</strong> — optional; needs a dedicated business line; carrier approval usually 10–15 days and is not guaranteed. On Lead System or Plus, a second tracking number is $1/mo if used plus carrier rates. On Website or Own It it is a $97/mo add-on. More on the delay: <a href="/blog/missed-call-text-delayed-10dlc">why missed-call texts are delayed</a>.</li>
+</ul>
+<p>Published plan prices stay on <a href="/pricing">pricing</a>: Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497 one-time. This page does not re-litigate the full plan matrix.</p>`,
+      },
+      {
+        h2: "Ship the form with the right pages",
+        html: `<p>A short form on a vague “services” blob still underperforms. Pair the form with clear service pages and an honest service area—see the trade pages series and <a href="/blog/web-design-for-contractors">contractor website checklist</a>. If you are replacing an old site, keep form endpoints and notification routes on the <a href="/blog/contractor-website-redesign-checklist">redesign migration checklist</a>.</p>
+<p>Want to see a homepage with a sane first-screen path before you commit? <a href="/contact">Request a free homepage preview</a>—ready in 2 business days, no card—then choose a plan on <a href="/pricing">pricing</a>.</p>`,
+      },
+    ],
+    faqs: [
+      {
+        q: "How many fields should a contractor quote form have?",
+        a: "Start with name, phone, job type, and city or ZIP. Add photos or notes only when they change dispatch, and keep them optional on the first pass.",
+      },
+      {
+        q: "Should every page use the same form?",
+        a: "Same core fields, yes. Emergency pages should still lead with tap-to-call. Planned-estimate pages can lead with the form if you are booked out.",
+      },
+      {
+        q: "Is email required?",
+        a: "Usually no. If you call leads, make email optional so a missing address does not block the phone number.",
+      },
+      {
+        q: "Where do form leads go on Kinexis plans?",
+        a: "Notifications should reach the phone or inbox you specify. Test a submit before launch. Lead tools and plan details live on /pricing.",
+      },
+      {
+        q: "Do missed-call texts replace a good form?",
+        a: "No. Texts help when someone calls and you miss it. The form still needs to be short and notify the right phone. Carrier approval for texting is not guaranteed.",
+      },
+    ],
+  },
   "contractor-website-redesign-checklist": {
     lead: `A redesign should fix the reasons people bounce—wrong services, a buried phone number, a mobile layout that hides the call button—not give you a prettier way to lose the same jobs. The quiet risk is migration: you launch a clean site and orphan the URLs Google already sends people to, so the next “emergency plumber” click lands on a soft 404 while your competitor’s number still works. This checklist is for trade owners who need the new site without torching rankings, call tracking, or the Google Business Profile website field.`,
     sections: [
