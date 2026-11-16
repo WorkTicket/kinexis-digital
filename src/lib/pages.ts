@@ -29,7 +29,7 @@ export const SITE_CONTENT_UPDATED = "2026-11-12";
 export const PAGES = {
   home: {
     path: "/",
-    title: "Website Plans From $97/mo for Local Businesses | Kinexis Digital",
+    title: "Kinexis Digital | Contractor Websites From $97/mo",
     absolute: true,
     indexable: true,
     priority: 1,
