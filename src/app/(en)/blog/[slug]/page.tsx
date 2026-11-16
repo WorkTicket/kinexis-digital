@@ -12,6 +12,9 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+/** Match home ISR so OpenNext KV can keep article HTML warm (edge HIT / TTFB). */
+export const revalidate = 86400;
+
 function getPost(slug: string) {
   return POSTS.find((p) => p.slug === slug);
 }

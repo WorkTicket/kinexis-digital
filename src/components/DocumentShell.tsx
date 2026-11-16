@@ -129,15 +129,17 @@ export default function DocumentShell({
             .dropdown__menu — design CSS lives in @layer components, so an
             unlayered display:none permanently beats .is-open and kills menus. */}
         <style>{`
-/* Metric-matched Arial fallback before inlined globals.css — avoids H1 reflow
-   that shifts page-hero__art (PSI CLS on /pricing + /portfolio). Values match
-   globals.css poppinsDisplay Fallback (Poppins 800 typo metrics). */
+/* Critical first-paint: bind Display 800 + metric-matched fallback BEFORE the
+   ~240KB inlined globals.css so H1 (blog LCP) can paint without waiting on
+   stylesheet parse / font-display:block. Values match globals.css. */
+@font-face{font-family:"poppinsDisplay";src:url("${DISPLAY_FONT_HREF}") format("woff2");font-weight:800;font-style:normal;font-display:swap}
 @font-face{font-family:"poppinsDisplay Fallback";src:local("Arial");ascent-override:88.85%;descent-override:29.62%;line-gap-override:8.46%;size-adjust:118.17%}
 html,body{background:#fff;color:#0a1230}
 body{margin:0;font-family:system-ui,sans-serif;line-height:1.6;font-weight:500;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,.btn,button{font-weight:700}
 .trust-hl,.trust-mark,.link-btn{font-weight:700}
 h1{font-family:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;font-weight:800}
+.page-hero--article h1{max-width:18ch;margin-inline:auto;text-wrap:balance}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 `}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />

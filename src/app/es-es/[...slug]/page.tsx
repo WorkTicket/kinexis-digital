@@ -1,6 +1,8 @@
 import { SpanishPage, spanishMetadata } from "@/i18n/SpanishSite";
 import { MIRROR_PATHS } from "@/lib/i18n";
 
+/** Long ISR for mirrored Spanish posts/pages (OpenNext edge HTML cache). */
+export const revalidate = 86400;
 export const dynamicParams = false;
 
 export function generateStaticParams() {
