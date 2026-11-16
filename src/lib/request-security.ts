@@ -8,6 +8,15 @@ export function privateJson(body: unknown, init: ResponseInit = {}) {
   return Response.json(body, { ...init, headers });
 }
 
+/**
+ * Same-site guard for first-party POSTs (contact, RUM, etc.).
+ *
+ * Prefer the browser Origin against both `request.url` and the `Host` header.
+ * Next may rewrite `request.url` to `localhost` while Chromium still sends
+ * `Origin: http://127.0.0.1:…` (and the reverse). That mismatch 403'd
+ * `sendBeacon(/api/rum)` and failed Lighthouse `errors-in-console` / BP ~0.96
+ * on ~20% sampled page views. `Sec-Fetch-Site: cross-site` stays a hard deny.
+ */
 export function rejectCrossSite(request: Request): Response | null {
   if (request.headers.get("sec-fetch-site") === "cross-site") {
     return privateJson({ error: "Cross-site requests are not allowed." }, { status: 403 });
@@ -16,7 +25,11 @@ export function rejectCrossSite(request: Request): Response | null {
   const origin = request.headers.get("origin");
   if (!origin) return null;
   try {
-    if (new URL(origin).origin === new URL(request.url).origin) return null;
+    const originUrl = new URL(origin);
+    if (originUrl.origin === new URL(request.url).origin) return null;
+    // Match Origin to the Host the client actually used (port included).
+    const host = request.headers.get("host")?.trim();
+    if (host && `${originUrl.protocol}//${host}` === originUrl.origin) return null;
   } catch {
     // Invalid origins are rejected below.
   }

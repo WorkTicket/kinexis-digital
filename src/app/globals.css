@@ -4434,11 +4434,18 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 
 /* Restore the taller homepage mockups without changing other portfolio previews. */
 .portfolio--home .shot.shot--hero{height:500px;aspect-ratio:auto}
+/* Skip layout/paint for offscreen home shots (hold-to-preview unchanged when visible). */
+.portfolio--home .shot{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 500px;
+}
 @media(max-width:1024px){
   .portfolio--home .shot.shot--hero{height:600px}
+  .portfolio--home .shot{contain-intrinsic-size:auto 600px}
 }
 @media(max-width:767px){
   .portfolio--home .shot.shot--hero{height:300px}
+  .portfolio--home .shot{contain-intrinsic-size:auto 300px}
 }
 
 /* Payment page: shared brand artwork, outlined cards and a clear checkout hierarchy. */

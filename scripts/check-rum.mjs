@@ -1,6 +1,13 @@
-/** Fixture checks for first-party RUM payload validation. */
+/** Fixture checks for first-party RUM payload validation + same-site beacon guard. */
 import assert from "node:assert/strict";
 import { build } from "esbuild";
+import { mkdtemp, writeFile, rm, readFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
+import { createRequire } from "node:module";
+
+const root = path.resolve(import.meta.dirname, "..");
+const require = createRequire(import.meta.url);
 
 const bundle = await build({
   entryPoints: ["src/lib/rum.ts"],
@@ -40,5 +47,70 @@ assert.equal(
   }),
   null,
 );
+
+// Host-aware Origin allow: 127.0.0.1 Origin vs localhost request.url must not 403
+// sendBeacon(/api/rum) (Lighthouse errors-in-console / intermittent BP 0.96).
+const dir = await mkdtemp(path.join(tmpdir(), "kinexis-rum-sec-"));
+try {
+  const secSrc = await readFile(path.join(root, "src/lib/request-security.ts"), "utf8");
+  await writeFile(path.join(dir, "request-security.ts"), secSrc.replace(/^import "server-only";\n?/m, ""), "utf8");
+  await writeFile(
+    path.join(dir, "entry.ts"),
+    `export { rejectCrossSite } from "./request-security.ts";\n`,
+    "utf8",
+  );
+  const outfile = path.join(dir, "check.cjs");
+  await build({
+    entryPoints: [path.join(dir, "entry.ts")],
+    outfile,
+    bundle: true,
+    platform: "node",
+    format: "cjs",
+    packages: "bundle",
+    logLevel: "silent",
+    absWorkingDir: dir,
+  });
+  const { rejectCrossSite } = require(outfile);
+
+  function req(url, headers) {
+    return new Request(url, { method: "POST", headers });
+  }
+
+  assert.equal(
+    rejectCrossSite(req("http://localhost:3000/api/rum", { Origin: "http://127.0.0.1:3000", Host: "127.0.0.1:3000" })),
+    null,
+    "127.0.0.1 Origin + matching Host must be allowed when request.url host differs",
+  );
+  assert.equal(
+    rejectCrossSite(req("http://127.0.0.1:3000/api/rum", { Origin: "http://localhost:3000", Host: "localhost:3000" })),
+    null,
+    "localhost Origin + matching Host must be allowed when request.url host differs",
+  );
+  assert.equal(
+    rejectCrossSite(req("http://localhost:3000/api/rum", { Origin: "http://localhost:3000" })),
+    null,
+    "matching Origin and request.url must be allowed",
+  );
+  assert.equal(
+    rejectCrossSite(req("http://localhost:3000/api/rum", { "Sec-Fetch-Site": "cross-site", Origin: "http://localhost:3000" }))?.status,
+    403,
+    "Sec-Fetch-Site cross-site stays denied",
+  );
+  assert.equal(
+    rejectCrossSite(req("http://localhost:3000/api/rum", { Origin: "https://attacker.example" }))?.status,
+    403,
+    "foreign Origin stays denied",
+  );
+  assert.equal(
+    rejectCrossSite(req("https://www.kinexisdigital.com/api/rum", {
+      Origin: "https://www.kinexisdigital.com",
+      Host: "www.kinexisdigital.com",
+    })),
+    null,
+    "production www Origin must be allowed",
+  );
+} finally {
+  await rm(dir, { recursive: true, force: true });
+}
 
 console.log("RUM payload validation checks passed.");
