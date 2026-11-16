@@ -10,6 +10,8 @@
 - `npm run check` - Lint, typecheck, mocked contact-delivery, reviews route handlers, and Spanish mirror
 - `npm run check:reviews` - Real `/api/reviews` and `/api/reviews/moderate` handlers with in-memory KV (no Cloudflare/SMTP)
 - `npm run check:route-integration` - Contact + reviews + invoice-security handler suites
+- `npm run check:payment-reconciliation` - Offline invoice/payment_events consistency fixtures (also part of `check:invoice-security`)
+- `npm run reconcile:invoices` - Local empty-ledger smoke; owner remote: `RECONCILE_CONFIRM=YES npm run reconcile:invoices -- --remote` (SELECT-only; see `docs/engineering/PAYMENT-RECONCILIATION.md`)
 
 ## Build
 - `npm run build` - Runs `node scripts/build.mjs` (custom build script). Check script if build behavior differs from default Next build.

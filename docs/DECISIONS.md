@@ -37,6 +37,9 @@
 - **Widget mobile lift (owner 2026-11-15):** launcher is `#open-chatbot.chatbot__icon` inside `<conferbot-widget>` open shadow DOM (not an iframe). Conferbot sets `bottom` via inline styles + `!important` media queries, so site `globals.css` never wins. `ConferbotWidget` measures `.float-cta`, then sets host `data-cb-own-m-bottom` / `--cb-o-m-bottom` and injects shadow `#kx-chat-lift` + `setProperty(..., "important")` so the bubble sits ~12px above the sticky bar (updates on resize / `no-float` / consent). Desktop (≤860px MQ false) clears the override.
 - **Widget lift hardening (owner 2026-11-16):** positioner is page-lifetime (`liftArmed` singleton — React remount cleanup must not clear the lift). Re-binds float + host/shadow observers, re-appends `#kx-chat-lift` last after Conferbot styles, permanent 1s sync (no 20s cutoff), floors measured bottom against `--float-bar-h` + gap, targets `#open-chatbot.chatbot__icon`.
 
+## Payments ops
+- Offline reconciliation lives in `src/lib/payment-reconciliation.ts` + `scripts/reconcile-invoice-ledger.mjs`. Remote D1 SELECTs require `RECONCILE_CONFIRM=YES`. Rejected PayPal captures log `kind: "payment_alert"` for Workers Observability; optional SMTP batch alerts are owner-PC only (`RECONCILE_ALERT_MAIL=1`). See `docs/engineering/PAYMENT-RECONCILIATION.md`.
+
 ## Security/headers
 - CSP, HSTS, X-Content-Type-Options, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CORP configured in `next.config.ts` (includes Conferbot CDN/WDT hosts for future widget)
 - Powered-by header disabled
