@@ -1,32 +1,32 @@
-import { preload } from "react-dom";
 import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
-const POSTER = "/assets/video/kinexis-explainer-v5f-preview-poster.webp";
-const POSTER_WIDTHS = [480, 640, 768, 960] as const;
-const POSTER_SRCSET = imageSrcSet(POSTER, POSTER_WIDTHS);
-const POSTER_AVIF_SRCSET = imageSrcSet(POSTER, POSTER_WIDTHS, "avif");
-const POSTER_SIZES = IMAGE_SIZES.heroFilm;
+export const HERO_POSTER = "/assets/video/kinexis-explainer-v5f-preview-poster.webp";
+/** Match CSS: ~270px mobile / ~560px desktop (+ DPR). Early head preload uses 280w AVIF. */
+export const HERO_POSTER_WIDTHS = [280, 560, 768] as const;
+export const HERO_POSTER_SRCSET = imageSrcSet(HERO_POSTER, HERO_POSTER_WIDTHS);
+export const HERO_POSTER_AVIF_SRCSET = imageSrcSet(HERO_POSTER, HERO_POSTER_WIDTHS, "avif");
+export const HERO_POSTER_SIZES = IMAGE_SIZES.heroFilm;
 
 /** Homepage hero film. The poster paints first. The boot script attaches sources after that paint, or after the first input. */
 export default function HeroFilm() {
-  preload(imageVariant(POSTER, 480, "avif"), { as: "image", imageSrcSet: POSTER_AVIF_SRCSET, imageSizes: POSTER_SIZES, type: "image/avif", fetchPriority: "high" });
-
+  // LCP preload lives at the top of <head> in DocumentShell (before FOUC CSS)
+  // so discovery is not delayed by the large inlined stylesheet.
   return (
     <>
       <div className="hero__media">
       <div className="hero__frame">
         <picture>
-          <source type="image/avif" srcSet={POSTER_AVIF_SRCSET} sizes={POSTER_SIZES} />
+          <source type="image/avif" srcSet={HERO_POSTER_AVIF_SRCSET} sizes={HERO_POSTER_SIZES} />
           <img
             className="hero__poster"
-            src={imageVariant(POSTER, 640, "webp")}
-            srcSet={POSTER_SRCSET}
-            sizes={POSTER_SIZES}
+            src={imageVariant(HERO_POSTER, 560, "webp")}
+            srcSet={HERO_POSTER_SRCSET}
+            sizes={HERO_POSTER_SIZES}
             alt=""
             width={960}
             height={540}
             fetchPriority="high"
-            // sync decode: poster is the LCP element and is already preloaded as AVIF.
+            // sync decode: poster is the LCP element and is preloaded as AVIF in <head>.
             decoding="sync"
           />
         </picture>
