@@ -76,6 +76,15 @@ See [`SCHEMA-VALIDATION.md`](./SCHEMA-VALIDATION.md), [`SEO-ISSUES.md`](./SEO-IS
 
 The local build crawl confirms the corrected blog page does not point to the two legacy redirects. The production crawl is not updated because this branch was not deployed.
 
+## Production versus local URL-count reconciliation
+
+The apparent three-row difference is fully explained:
+
+1. `/blog/pagina-web-para-plomeros` and `/blog/como-pedir-resenas-en-google` were discoverable links in the old production English blog hub and each redirected once. They were removed from the English cards/schema by the Phase 2 fix, so the local output no longer discovers those two requested URLs. Existing redirects and Spanish content remain.
+2. The production crawl recorded both `https://www.kinexisdigital.com` and `https://www.kinexisdigital.com/` as separate request strings, although both returned the homepage and canonicalized to `https://www.kinexisdigital.com`. The local crawl recorded the sitemap slash form only. This is one logical route, not missing content.
+
+Thus 208 production rows minus the two retired links and one duplicate homepage URL form equals 205 local rows. Counts are raw request rows, not unique canonical pages.
+
 ## Changed files
 
 - `scripts/crawl-seo.mjs`
