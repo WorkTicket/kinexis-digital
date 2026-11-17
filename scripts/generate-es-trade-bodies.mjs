@@ -20,6 +20,8 @@ const COST_SLUG_BY_INDUSTRY = {
   "pressure-washing": "pressure-washing-website-cost",
   "window-cleaning": "window-cleaning-website-cost",
   "yard-care": "lawn-care-website-cost",
+  "junk-removal": "junk-removal-website-cost",
+  "tree-care": "tree-service-website-cost",
 };
 
 const PAGES_SLUG_BY_INDUSTRY = {
@@ -35,6 +37,8 @@ const PAGES_SLUG_BY_INDUSTRY = {
   "pressure-washing": "pressure-washing-website-pages",
   "window-cleaning": "window-cleaning-website-pages",
   "yard-care": "lawn-care-website-pages",
+  "junk-removal": "junk-removal-website-pages",
+  "tree-care": "tree-service-website-pages",
 };
 
 const COST_SIBLING_LABELS = {
@@ -50,6 +54,8 @@ const COST_SIBLING_LABELS = {
   "pressure-washing": "costo de un sitio de lavado a presión",
   "window-cleaning": "costo de un sitio de limpieza de vidrios",
   "yard-care": "costo de un sitio de césped",
+  "junk-removal": "costo de un sitio de retiro de chatarra",
+  "tree-care": "costo de un sitio de servicio de árboles",
 };
 
 const PLAN_TABLE = `<p>Hablar de precios de sitios para oficios se vuelve ruido rápido: una cotización es una suscripción DIY, otra es un proyecto con freelancer, otra un retainer con anuncios. Esta página usa <strong>precios publicados de Kinexis</strong> para que compares manzanas con manzanas — y luego decidas si un plan mensual, Own It u otra ruta encaja con tu flujo de caja.</p><p>Estas son las cuatro opciones en vivo:</p><table><thead><tr><th>Plan</th><th>Precio</th><th>Para qué sirve</th></tr></thead><tbody><tr><td>Website</td><td>$97/mes</td><td>Sitio profesional con hosting, SSL y hasta dos cambios chicos al mes</td></tr><tr><td>Lead System</td><td>$197/mes</td><td>Texto opcional de llamada perdida ($1/mes por 2.º número si lo usas + tarifas del operador), pedidos de reseña en Google, seguimiento de llamadas y cambios chicos sin tope</td></tr><tr><td>Plus</td><td>$297/mes</td><td>Sitio y herramientas de seguimiento en inglés y español</td></tr><tr><td>Own It</td><td>$1,497 una vez</td><td>Archivos del sitio tuyos desde el lanzamiento, con 12 meses de hosting y cambios chicos incluidos</td></tr></tbody></table><p>Los planes mensuales son $0 de entrada, mes a mes, cancelas cuando quieras sin penalidad, con precio fijo 24 meses desde el lanzamiento. Todos incluyen garantía de devolución de 30 días (por escrito; se excluyen costos de terceros ya pagados). Lead System y Plus incluyen garantía de leads de 60 días. El detalle completo está en <a href="/pricing">/pricing</a>. Compara mensual vs Own It en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>.</p><p>Cada opción empieza con una <strong>vista previa gratis del inicio en 2 días hábiles</strong> — sin tarjeta y sin obligación — para que veas la dirección antes de pagar.</p>`;
@@ -188,6 +194,20 @@ const ES_COST_META = [
     excerpt:
       "Precios reales de Kinexis para un sitio de césped: $97, $197 o $297 al mes, u Own It por $1,497. Vista previa gratis del inicio, sin tarjeta.",
   },
+  {
+    slug: "junk-removal-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de retiro de chatarra en 2026?",
+    seoTitle: "Costo de un sitio web de retiro de chatarra | Kinexis Digital",
+    excerpt: "Precios reales para un sitio de retiro de chatarra: planes desde $97/mes o Own It por $1,497. Vista previa gratis, sin tarjeta.",
+  },
+  {
+    slug: "tree-service-website-cost",
+    category: "Consejos",
+    title: "¿Cuánto cuesta un sitio web de servicio de árboles en 2026?",
+    seoTitle: "Costo de un sitio web de servicio de árboles | Kinexis Digital",
+    excerpt: "Precios reales para un sitio de servicio de árboles: planes desde $97/mes o Own It por $1,497. Vista previa gratis, sin tarjeta.",
+  },
 ];
 
 const COST_TRADES = [
@@ -322,6 +342,24 @@ const COST_TRADES = [
     drivesCostHtml: `<p>Los sitios de césped necesitan caminos de alta a ruta vs limpieza puntual, y listas claras (corte, limpieza, desechos de mascotas). Código postal y frecuencia mantienen la planeación de ruta honesta.</p>`,
     payingForHtml:
       "<p>Pagas por páginas de rutas y limpiezas — no una plantilla genérica con tu nombre encima.</p>",
+  },
+  {
+    slug: "junk-removal",
+    faqNoun: "un sitio para una empresa de retiro de chatarra",
+    siteLabel: "retiro de chatarra",
+    designAnchor: "diseño web de retiro de chatarra",
+    sceneLead: "Un sofá en la banqueta necesita un teléfono y una ventana de servicio realista; una limpieza de cochera o herencia requiere volumen, acceso y una cotización más detallada.",
+    drivesCostHtml: `<p>El costo depende de separar el acarreo urgente de las limpiezas planeadas. Una carga junto a la banqueta necesita llamada fácil y una ventana que sí puedas cumplir. Una cochera o propiedad heredada requiere notas de volumen, escaleras, elevador o códigos de acceso y un formulario breve. Escribir ambos caminos y delimitar la zona según tu calendario de descarga influye en el trabajo, no un recargo misterioso por oficio.</p><p>Las estimaciones con fotos sirven cuando realmente las revisas; aclara si el precio final requiere ver la carga en persona. No prometas recoger cualquier cosa cualquier día. Las rutas recurrentes para caseros o asociaciones solo deben aparecer si de verdad las operas.</p>`,
+    payingForHtml: "<p>Pagas por separar acarreos de esta semana y limpiezas grandes, explicar con honestidad cuándo puedes llegar y pedir los datos útiles sobre volumen y acceso. No por un collage genérico con el teléfono escondido.</p>",
+  },
+  {
+    slug: "tree-care",
+    faqNoun: "un sitio para una empresa de servicio de árboles",
+    siteLabel: "servicio de árboles",
+    designAnchor: "diseño web de servicio de árboles",
+    sceneLead: "Una rama sobre el techo necesita un teléfono y una ventana de respuesta honesta. Quien planea una poda o tala busca fotos reales del equipo, señales de seguro y una consulta clara.",
+    drivesCostHtml: `<p>El costo refleja la diferencia entre emergencias por tormenta y trabajos planeados de copa. Quien llama por una rama caída necesita encontrar el teléfono y saber cuándo responderás. Para podas y talas, hacen falta fotos reales, información de seguro cerca de la llamada y una consulta que no parezca un servicio de grúa. El contenido debe separar esos caminos y limitar la zona a las cuadrillas que realmente puedes enviar.</p><p>Ofrece molienda de tocones solo si es un servicio real. Un distintivo de atención 24/7 genera desconfianza si nadie responde de madrugada. La información de seguridad y seguro junto al teléfono requiere trabajo editorial, no un supuesto “recargo de arborista”.</p>`,
+    payingForHtml: "<p>Pagas por páginas distintas para poda, tala y emergencias por tormenta, con señales de seguro cerca del teléfono y fotos reales de cuadrillas y equipo. Las ventanas de respuesta y los servicios se describen con honestidad.</p>",
   },
 ];
 
@@ -515,6 +553,20 @@ const ES_PAGES_META = [
     excerpt:
       "Páginas base y de servicio para un sitio de césped, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
   },
+  {
+    slug: "junk-removal-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio web de retiro de chatarra",
+    seoTitle: "Qué páginas necesita un sitio de retiro de chatarra | Kinexis Digital",
+    excerpt: "Páginas base y de servicio para separar acarreos rápidos, limpiezas grandes y cotizaciones sin páginas clonadas por ciudad.",
+  },
+  {
+    slug: "tree-service-website-pages",
+    category: "Consejos",
+    title: "Qué páginas necesita un sitio web de servicio de árboles",
+    seoTitle: "Qué páginas necesita un sitio de servicio de árboles | Kinexis Digital",
+    excerpt: "Estructura páginas para poda, tala y emergencias por tormenta, con información de seguro visible y sin páginas clonadas por ciudad.",
+  },
 ];
 
 const PAGES_TRADES = [
@@ -647,6 +699,24 @@ const PAGES_TRADES = [
     pagesFaqAnswer:
       "Inicio, servicios para rutas de corte y limpiezas, zona, nosotros, reseñas y contacto. Evita páginas puerta finas por ciudad.",
     servicesHtml: `<p>El trabajo de ruta vive y muere por zona honesta. Publica los barrios que sí alcanzas. Corte semanal y desechos de mascotas son ofertas distintas — página propia para mascotas solo si de verdad haces esa parada. Limpieza estacional puede compartir formulario corto con ZIP y frecuencia para que despacho no decodifique textos vagos toda la semana.</p>`,
+  },
+  {
+    industry: "junk-removal",
+    noun: "retiro de chatarra",
+    nounWithArticle: "una empresa de retiro de chatarra",
+    specificH2: "Páginas de servicio para retiro de chatarra",
+    leadFocus: "Separa el acarreo rápido de las limpiezas planeadas: cada trabajo necesita un siguiente paso distinto.",
+    pagesFaqAnswer: "Inicio; acarreo esta semana; limpiezas de cochera y propiedades heredadas; rutas recurrentes solo si existen; zona; nosotros; reseñas y contacto con teléfono y formulario breve. Evita páginas clonadas por ciudad.",
+    servicesHtml: `<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href="/industries/junk-removal">retiro de chatarra</a> para ver el enfoque del sitio.</p>`,
+  },
+  {
+    industry: "tree-care",
+    noun: "servicio de árboles",
+    nounWithArticle: "una empresa de servicio de árboles",
+    specificH2: "Páginas de servicio para árboles",
+    leadFocus: "Separa poda, tala y emergencias por tormenta, con el teléfono y las señales de seguro fáciles de encontrar.",
+    pagesFaqAnswer: "Inicio; poda; tala; atención de tormentas; seguro y seguridad cerca del teléfono; zona; nosotros; reseñas y contacto para consultas. Evita páginas clonadas por ciudad y promesas falsas de atención 24/7.",
+    servicesHtml: `<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href="/industries/tree-care">servicio de árboles</a> para ver el enfoque del sitio.</p>`,
   },
 ];
 
