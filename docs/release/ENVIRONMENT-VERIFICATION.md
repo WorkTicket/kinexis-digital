@@ -1,10 +1,10 @@
 # Environment verification
 
-**Status: BLOCKED — public build IDs are configured locally; provider/account configuration and runtime secrets still require owner access.** No live Worker setting was read or changed. Secret values were not printed.
+**Status: PARTIAL — public IDs deployed; provider/account configuration and runtime secret verification still require owner access.** Production deploy completed on 2026-11-17. No secret values were read or printed.
 
 ## Local source and deployment contract
 
-On 2026-11-17, `.env.production` contains the public Conferbot enable flag and public bot ID. Owner-supplied public values `NEXT_PUBLIC_GA_ID=G-Z8245BRX2L` and `NEXT_PUBLIC_META_PIXEL_ID=2080705549212381` are now in gitignored `.env.local` and the root `wrangler.jsonc` `vars` block. The strict production preflight now passes and confirms both IDs are inlined for a build. No live Worker setting was changed; the Wrangler file affects a future deploy only. `.dev.vars` is absent. No PayPal, webhook, mail-provider, invoice-signing, or Conferbot backend secret was added.
+On 2026-11-17, `.env.production` contains the public Conferbot enable flag and public bot ID. Owner-supplied public GA4/Meta IDs are in gitignored `.env.local` and root Wrangler `vars`; strict preflight passed and Worker deployment succeeded. Wrangler warned that those plain public vars replaced remote secrets with the same names. No secret values were read. No PayPal, mail, invoice-signing, or Conferbot backend secret was added by the agent.
 
 The strict production preflight was run after configuration: `node scripts/search-on-deploy.mjs --preflight --require-analytics` passes with both supplied IDs. `npm run check` includes regression tests proving missing/invalid values fail the strict gate, valid controlled test IDs pass, and the production preflight runs before tests/build/deploy. Runtime Wrangler vars are supplementary; Next must receive the values at build time. Do not run the deployment orchestrator to test this.
 
@@ -12,7 +12,7 @@ The strict production preflight was run after configuration: `node scripts/searc
 
 | Scope | Contract | Local/config evidence | Readiness / action |
 |---|---|---|---|
-| Production build-time analytics | `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | Owner-supplied IDs are set in `.env.local` (gitignored) and root Wrangler vars; strict preflight passes. Preview builds suppress both production trackers. | **PARTIAL.** Verify the GA4 ID belongs to property 542906196's intended web stream and the Meta ID is the correct campaign dataset; confirm Workers Builds uses the same values. Provider receipt/key-event settings remain unverified. |
+| Production build-time analytics | `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | Owner-supplied IDs are in `.env.local` and root Wrangler vars; strict preflight passed; production Worker deploy output lists the two public vars. Preview builds suppress both trackers. | **PARTIAL.** Verify IDs against GA4 property 542906196's intended stream and the campaign Meta dataset; provider receipt/key-event settings remain unverified. |
 | Site URL / preview | `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_IS_PREVIEW` | Production deploy script forces `https://www.kinexisdigital.com` and clears preview flag; preview deploy uses separate URL/flag. | Contract present; actual Cloudflare build configuration not inspected. |
 | Search verification / video | `NEXT_PUBLIC_GSC_VERIFICATION`, `NEXT_PUBLIC_VIDEO_URL` | Optional; code has fallback for site verification/video. | Owner verify Search Console method; no release blocker inferred solely from absent local values. |
 | Public PayPal client/plans | `NEXT_PUBLIC_PAYPAL_CLIENT_ID`, `NEXT_PUBLIC_PAYPAL_WEBSITE_PLAN_ID`, `NEXT_PUBLIC_PAYPAL_LEAD_SYSTEM_PLAN_ID`, `NEXT_PUBLIC_PAYPAL_PLUS_PLAN_ID` | Missing from local env files and shell. These values are public build-time identifiers, not secrets. | **BLOCKED.** Finance must confirm intended production merchant/environment and subscription plan IDs in the approved dashboard/channel. Set build-time values locally in ignored `.env.local`; never put credentials here. |
