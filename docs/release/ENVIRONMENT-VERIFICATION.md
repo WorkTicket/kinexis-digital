@@ -1,18 +1,18 @@
 # Environment verification
 
-**Status: BLOCKED — local contracts inventoried; provider/account configuration cannot be verified without owner access.** No production configuration was read or changed. Secret values were not printed.
+**Status: BLOCKED — public build IDs are configured locally; provider/account configuration and runtime secrets still require owner access.** No live Worker setting was read or changed. Secret values were not printed.
 
 ## Local source and deployment contract
 
-On 2026-11-17, `.env.production` exists and contains only the public Conferbot enable flag and public bot ID (names only inspected; values withheld). `.env.local` and `.dev.vars` are absent. Shell and local env-source checks found no configured GA4, Meta, PayPal, webhook, mail-provider, invoice-signing, or Conferbot backend credentials.
+On 2026-11-17, `.env.production` contains the public Conferbot enable flag and public bot ID. Owner-supplied public values `NEXT_PUBLIC_GA_ID=G-Z8245BRX2L` and `NEXT_PUBLIC_META_PIXEL_ID=2080705549212381` are now in gitignored `.env.local` and the root `wrangler.jsonc` `vars` block. The strict production preflight now passes and confirms both IDs are inlined for a build. No live Worker setting was changed; the Wrangler file affects a future deploy only. `.dev.vars` is absent. No PayPal, webhook, mail-provider, invoice-signing, or Conferbot backend secret was added.
 
-The strict production preflight was run: `node scripts/search-on-deploy.mjs --preflight --require-analytics` exited 1 because `NEXT_PUBLIC_GA_ID` and `NEXT_PUBLIC_META_PIXEL_ID` are missing/invalid. The script explicitly says runtime Worker secrets do not satisfy build-time inlining. `npm run check` includes regression tests proving missing/invalid values fail the strict gate, valid controlled test IDs pass, and the production preflight runs before tests/build/deploy. Do not run the deployment orchestrator to test this.
+The strict production preflight was run after configuration: `node scripts/search-on-deploy.mjs --preflight --require-analytics` passes with both supplied IDs. `npm run check` includes regression tests proving missing/invalid values fail the strict gate, valid controlled test IDs pass, and the production preflight runs before tests/build/deploy. Runtime Wrangler vars are supplementary; Next must receive the values at build time. Do not run the deployment orchestrator to test this.
 
 ## Environment inventory
 
 | Scope | Contract | Local/config evidence | Readiness / action |
 |---|---|---|---|
-| Production build-time analytics | `NEXT_PUBLIC_GA_ID` (`G-…`), `NEXT_PUBLIC_META_PIXEL_ID` (5–20 digits) | Missing from `.env.production`, `.env.local`, `.dev.vars`, and current shell. Historical matrix contains browser-transport IDs, not current account confirmation. | **BLOCKED.** Owner/Analytics must set the actual approved IDs in Cloudflare Workers Builds → build variables/secrets; verify GA4 property/stream and Meta campaign dataset first. Do not paste secrets in chat. |
+| Production build-time analytics | `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | Owner-supplied IDs are set in `.env.local` (gitignored) and root Wrangler vars; strict preflight passes. Preview builds suppress both production trackers. | **PARTIAL.** Verify the GA4 ID belongs to property 542906196's intended web stream and the Meta ID is the correct campaign dataset; confirm Workers Builds uses the same values. Provider receipt/key-event settings remain unverified. |
 | Site URL / preview | `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_IS_PREVIEW` | Production deploy script forces `https://www.kinexisdigital.com` and clears preview flag; preview deploy uses separate URL/flag. | Contract present; actual Cloudflare build configuration not inspected. |
 | Search verification / video | `NEXT_PUBLIC_GSC_VERIFICATION`, `NEXT_PUBLIC_VIDEO_URL` | Optional; code has fallback for site verification/video. | Owner verify Search Console method; no release blocker inferred solely from absent local values. |
 | Public PayPal client/plans | `NEXT_PUBLIC_PAYPAL_CLIENT_ID`, `NEXT_PUBLIC_PAYPAL_WEBSITE_PLAN_ID`, `NEXT_PUBLIC_PAYPAL_LEAD_SYSTEM_PLAN_ID`, `NEXT_PUBLIC_PAYPAL_PLUS_PLAN_ID` | Missing from local env files and shell. These values are public build-time identifiers, not secrets. | **BLOCKED.** Finance must confirm intended production merchant/environment and subscription plan IDs in the approved channel/dashboard. |
@@ -32,7 +32,7 @@ Scanned current `.next/static` client output for server-secret environment varia
 
 ## Exact owner actions
 
-1. In Cloudflare Workers Builds settings, configure the correct production GA4 measurement ID and Meta Pixel ID; verify those IDs against the owner's intended property/dataset first. Do not send values in chat.
+1. Verify the configured GA4 ID is the web stream for property 542906196 and the Meta ID is the dataset used by the intended campaign. Configure the same public build values in Workers Builds. The values are public; account correctness and event receipt remain unverified.
 2. In Cloudflare Worker settings, verify required secret *names and presence* (without revealing values) for PayPal production, invoice signing, mail, and webhook integrations. Confirm credentials belong to the intended production merchant and are not reused in preview.
 3. Provision separate preview Conferbot bot/webhook, `LEAD_DB`, migration, and notification sink; provide access through approved secret storage and read-only dashboard access. Keep production bindings untouched.
 4. Approve a test-only lead sink and add it to the preview send-email allowlist through the owner's controlled configuration process; do not use business/customer inboxes as test destinations.

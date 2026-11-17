@@ -10,8 +10,8 @@ import "@/app/globals.css";
 
 const PAGE_HERO_LCP_BOOT = pageHeroPreloadBootScript();
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
-const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+const gaId = isPreviewSite() ? "" : process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
+const metaPixelId = isPreviewSite() ? "" : process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
 const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim() || SITE.googleSiteVerification;
 const defaultTitle = "Website Plans From $97/mo for Local Businesses | Kinexis Digital";
 const defaultDescription = descriptionWithFallback(
