@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import { POSTS } from "@/lib/content";
+import { EN_REDIRECTED_BLOG_SLUGS } from "@/lib/i18n";
 import CostGuides from "@/components/CostGuides";
 import Filterable from "@/components/Filterable";
 import { DeferredImg } from "@/components/DeferredImg";
@@ -11,11 +12,12 @@ import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib
 export const metadata = pageMetadata("blog");
 /** Keep the blog hub on the same long ISR window as home / article posts. */
 export const revalidate = 86400;
+const ENGLISH_POSTS = POSTS.filter((post) => !EN_REDIRECTED_BLOG_SLUGS.has(post.slug));
 
 export default function Page() {
   return (
     <>
-      <PageSchema page="blog" items={POSTS.map((post) => ({ name: post.title, path: `/blog/${post.slug}` }))} />
+      <PageSchema page="blog" items={ENGLISH_POSTS.map((post) => ({ name: post.title, path: `/blog/${post.slug}` }))} />
       <PageHero h1="Digital Marketing Blog" mark="Blog" sub="SEO, web design, and marketing guides for service businesses across the United States." image="blog" imageAlt="Article cards for guides and resources" />
 
       <Section tint>
@@ -56,7 +58,7 @@ export default function Page() {
             <Filterable cats={["Tips", "SEO", "Design"]} />
           </div>
           <div className="grid grid--3 blog-index">
-            {POSTS.map((post) => (
+            {ENGLISH_POSTS.map((post) => (
               <article className="card post" key={post.slug} data-cat={post.category}>
                 <Link href={`/blog/${post.slug}`} className="post__link" prefetch={false}>
                   <div className="post__img">

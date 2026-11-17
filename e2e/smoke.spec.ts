@@ -54,6 +54,14 @@ test.describe("marketing journeys", () => {
     await expect(page.locator(".pricing-footnote--bullets li").first()).toBeVisible();
   });
 
+  test("English blog hub does not link to retired Spanish-slug redirects", async ({ page }) => {
+    await page.goto("/blog");
+    await expect(page.locator('a[href="/blog/pagina-web-para-plomeros"]')).toHaveCount(0);
+    await expect(page.locator('a[href="/blog/como-pedir-resenas-en-google"]')).toHaveCount(0);
+    await expect(page.locator('a[href="/industries/plumbing"]')).not.toHaveCount(0);
+    await expect(page.locator('a[href="/blog/how-to-ask-for-google-reviews-contractor"]')).not.toHaveCount(0);
+  });
+
   test("preview form shows required business fields", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator('input[name="business"]').first()).toBeVisible();
