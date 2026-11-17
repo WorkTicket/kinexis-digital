@@ -18,7 +18,11 @@
 ## Incomplete or blocked
 
 - Full local `crawl-seo.mjs` crashed on Windows with exit `3221226505`; exhaustive fresh local link/orphan/canonical/hreflang crawl is not claimed.
-- Live email lead delivery, Conferbot/D1, PayPal sandbox, GA4/Meta account settings/collection, production RUM retention and production field CWV remain unverified.
+- Live email lead delivery, Conferbot/D1, PayPal sandbox, GA4 account-side receipt/settings, Meta Events Manager/custom conversions, production RUM retention and production field CWV remain unverified.
+- Following separate user authorization, one labeled controlled preview submission was made to the owner-confirmed isolated test sink. Contact API returned 200. Browser observed GA4 `generate_lead` and `preview_form_submit` POSTed to measurement ID `G-Z8245BRX2L` with HTTP 204; account Realtime/DebugView was inaccessible pending Google sign-in.
+- The live browser also observed Meta Pixel `Lead` for Pixel `2080705549212381` return HTTP 200. This confirms browser endpoint delivery, not Events Manager attribution.
+- The same events reached pre-existing Google Ads destination `AW-18409243306`. Owner should review that destination and its conversion settings. No more live events/submissions or account setting changes are authorized.
+- Meta ad account `235075765` remains inaccessible to current inspection; do not use Natalia's session. Obtain access for owner's own profile and identify the actual campaign dataset (which may not be “Kinexis Reviews”).
 - Desktop performance fails all four budget routes; mobile home/pricing/portfolio miss 0.95.
 - Manual WCAG 2.2 AA, A1 genuine screenshot recapture, commercial owner decisions, and review/portfolio evidence are open.
 - Full dependency audit remains at 13 moderate advisories; production-only audit is clean. KV atomicity/missing-binding limitations remain.

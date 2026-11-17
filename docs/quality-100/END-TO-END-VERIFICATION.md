@@ -1,6 +1,6 @@
 # Phase 9 — End-to-end verification
 
-**Scope:** local build, mock fixtures, and local browser only. No push, merge, deployment, production configuration change, real lead, analytics event, PayPal charge, or production webhook.
+**Scope:** local build and mock fixtures, plus one separately authorized live controlled preview follow-up documented below. No push, merge, deployment, production configuration change, genuine prospect lead, PayPal charge, or production webhook.
 
 ## Full funnel and regression results
 
@@ -28,6 +28,19 @@ Covered browser behavior includes homepage/pricing, mobile navigation, preview a
 - **Tracking failure:** mocked throwing GA/Meta calls do not prevent the successful form UI from completing.
 
 No mocked route or provider fixture is evidence of actual inbox delivery, production attribution, GA4/Meta collection, Conferbot delivery or production CWV.
+
+### External analytics status supplied by owner
+
+The owner identifies KINEXIS GA4 property **542906196** and reported that `generate_lead` had not yet been observed there; `preview_form_submit` and `audit_request` were non-key events. Following a separate explicit authorization, exactly one clearly labeled preview form submission was sent with analytics and ads consent to the owner-confirmed isolated test sink. The contact API returned **HTTP 200** and the site displayed its normal successful-preview confirmation. The submitted fields were labeled as a QA test, not a prospect.
+
+Browser network evidence after that one submission:
+
+- GA4 measurement ID **G-Z8245BRX2L** received a POST to `analytics.google.com/g/collect` containing `en=generate_lead` and `en=preview_form_submit`; the request returned **HTTP 204**. This proves browser-to-collection-endpoint transport, not visibility in the owner's GA4 property.
+- Meta Pixel ID **2080705549212381** sent `Lead`; the browser observed **HTTP 200** from `facebook.com/tr/`. This proves endpoint response, not Events Manager attribution/custom-conversion setup.
+- The live page also sent `generate_lead` and `preview_form_submit` to Google Ads destination **AW-18409243306** (alongside page/form diagnostics). This extra configured destination should be reviewed by the owner; no account setting was changed and no further events will be sent.
+- A separate GA4 tab redirected to Google sign-in. The browser handoff relay was unavailable, so Realtime/DebugView could not be inspected. The event names should be checked after the owner signs into property 542906196. No key-event or Meta settings were changed.
+
+The owner reports that Meta ad account **235075765** could not be inspected because of access restrictions. Natalia's session is to remain untouched. Pixel installation is now evidenced by live configuration and a successful browser request, but account-side event attribution remains unverified. “Kinexis Reviews” may not be the campaign dataset; identify the advertising dataset before inspection. The reported account access limitation remains owner-provided, not independent account verification.
 
 ## Security and reliability
 
@@ -63,7 +76,7 @@ Screenshot/browser JSON evidence is intentionally ignored and not committed; the
 
 - Email/Mailgun/Gmail lead delivery and notification retention.
 - Conferbot account/widget lifecycle, webhook from the real provider, and D1 delivery.
-- GA4 key-event setting, Meta custom-conversion rules, consent behavior at provider accounts, live collection.
+- GA4 account-side receipt/key-event setting for property 542906196; Meta custom-conversion rules, correct campaign dataset and ad-account access for account 235075765; Google Ads destination configuration; provider-side consent behavior.
 - PayPal sandbox approval/capture/webhook and production merchant/webhook registration.
 - Cloudflare production binding availability and KV concurrency behavior.
 - Representative production RUM values/retention and Search Console field CWV.
