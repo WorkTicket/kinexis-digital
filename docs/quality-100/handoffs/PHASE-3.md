@@ -1,8 +1,9 @@
 # Phase 3 handoff
 
-**Branch:** `phase-1/conversion-handoff`  
-**Base HEAD:** `72219235d0040d4e23389ef1e703ff043cfed1a8`  
-**Status:** Phase 3 changes are implemented and locally verified; not yet committed.
+**Branch:** `phase-1/conversion-handoff`
+**Base HEAD:** `72219235d0040d4e23389ef1e703ff043cfed1a8`
+**Phase 3 implementation commit:** `f751e8e5d3f4b109b1d4b35a6d6ef6591c429f9f`
+**Status:** Phase 3 changes are implemented, locally verified, and committed.
 
 ## Completed
 
@@ -44,4 +45,4 @@
 
 ## Remaining action
 
-Verify the final generated CSV/reports and `git diff --check`, then commit the Phase 3 changes. Record the resulting commit SHA and ensure a clean worktree. Do not push, merge, deploy, or begin Phase 4 pending review.
+Confirm the final documentation-only follow-up commit and clean worktree. Do not push, merge, deploy, or begin Phase 4 pending review.
