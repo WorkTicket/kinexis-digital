@@ -9,6 +9,7 @@ import {
   PAGE_HERO_WIDTHS,
   pageHeroPreloadHref,
   pageHeroSrcSet,
+  pageHeroSizesForFile,
 } from "@/lib/page-hero-lcp";
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
@@ -99,13 +100,16 @@ export function Art({
   const src = still(`${base}-640.webp`);
   const srcSet = heroSet(base, "webp");
   const avifSrcSet = heroSet(base, "avif");
-  if (priority) return <HeroImage name={file} alt={alt} sizes={sizes} />;
+  const responsiveSizes = pageHeroSizesForFile(file) === PAGE_HERO_SIZES
+    ? sizes
+    : pageHeroSizesForFile(file);
+  if (priority) return <HeroImage name={file} alt={alt} sizes={responsiveSizes} />;
   return (
     <DeferredImg
       src={src}
       srcSet={srcSet}
       avifSrcSet={avifSrcSet}
-      sizes={sizes}
+      sizes={responsiveSizes}
       alt={alt}
       className={className}
       width={1254}

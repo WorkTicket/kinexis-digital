@@ -4,10 +4,17 @@
  * industry 480, case-study 400, card 400/480).
  *
  * Run: node scripts/optimize-desktop-sharpness.mjs
+ * Refresh external high-resolution masters with:
+ * KINEXIS_ARTWORK_DIR=... KINEXIS_PORTFOLIO_DIR=... node scripts/optimize-desktop-sharpness.mjs --refresh-masters
  */
 import { readdir, readFile, writeFile, stat } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
+
+if (process.argv.includes("--refresh-masters")) {
+  await import("./refresh-image-masters.mjs");
+  process.exit(0);
+}
 
 const kb = (n) => `${Math.round(n / 1024)}KB`;
 const WEBP_Q = 90;

@@ -1,5 +1,5 @@
 /** Bump when pre-encoded stills are replaced. /assets and /blog are cached for a year. */
-export const STILL_VERSION = "20";
+export const STILL_VERSION = "26";
 
 export function still(src: string) {
   return src.includes("?") ? src : `${src}?v=${STILL_VERSION}`;
@@ -39,7 +39,7 @@ export const IMAGE_SIZES = {
    *  ≤180px keeps lab DPR on the preloaded 480w 2× candidate (200px was selecting 640w). */
   pageHero: "(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px",
   /** MediaSplit / section Art — CSS ~380px mobile / ~0.45 container desktop. */
-  mediaSplit: "(max-width: 860px) 240px, 420px",
+  mediaSplit: "(max-width: 860px) 90vw, 520px",
   /** Default lazy Art when callers omit sizes. */
   art: "(max-width: 860px) 240px, 420px",
   /** Industry photo hero — CSS full column ≤560–620; desktop sizes match slot so DPR2 picks 1120. */

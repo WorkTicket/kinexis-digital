@@ -1052,9 +1052,12 @@ html.lp-route body{--announce-h:0px}
 /* Keep Prefer to talk? + Book a call + phone on one row under the trust strip. */
 .hero__call{
   display:flex;flex-wrap:nowrap;align-items:center;gap:2px 8px;
-  margin:10px 0 0;max-width:100%;
+  margin:10px 0 0;max-width:100%;font-family:var(--font-head);font-weight:700;
   white-space:nowrap;
 }
+.hero__call-prompt,.hero__call-sep{display:inline-flex;align-items:center;flex:0 0 auto}
+.hero__call .trust-mark{padding-bottom:0}
+.hero__call-sep{align-self:center;color:var(--muted);opacity:.72}
 @media (max-width:860px){
   .page-hero--split .industry-hero__trust{
     margin-inline:auto;text-align:center;
@@ -4176,6 +4179,8 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   gap:12px;
   align-items:stretch;
 }
+.cost-guides--home{max-width:none}
+.cost-guides--home .cost-guides__list{grid-template-columns:repeat(5,minmax(0,1fr))}
 .cost-guides__list > li{
   min-width:0;display:flex;margin:0;padding:0;border:0;background:transparent;
 }
@@ -4240,6 +4245,12 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 @media (max-width:900px){
   .cost-guides__list,
   .blog-hub__guides .cost-guides__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+}
+@media (max-width:1020px){
+  .cost-guides--home .cost-guides__list{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+}
+@media (max-width:640px){
+  .cost-guides--home .cost-guides__list{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 }
 .blog-hub{
   display:grid;
@@ -4941,7 +4952,7 @@ p,li,blockquote{ text-wrap:pretty }
   }
   /* Prefer to talk row stays one line; vertical padding grows the hit area without wrapping. */
   .hero__call{
-    flex-wrap:nowrap;white-space:nowrap;line-height:1.35;gap:2px 6px;
+    flex-wrap:nowrap;align-items:center;white-space:nowrap;line-height:1.35;gap:2px 6px;
     overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
   }
   .hero__call::-webkit-scrollbar{display:none}
