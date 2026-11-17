@@ -1,5 +1,40 @@
 import { expect, test } from "@playwright/test";
 
+async function installMockAnalytics(page: import("@playwright/test").Page) {
+  await page.addInitScript(() => {
+    type Config = Record<string, string>;
+    const target = window as unknown as { __KINEXIS_CFG__?: Config };
+    let config = target.__KINEXIS_CFG__;
+    Object.defineProperty(target, "__KINEXIS_CFG__", {
+      configurable: true,
+      get: () => config,
+      set: (next: Config) => {
+        config = { ...next, ga: "G-TEST12345", metaPixel: "" };
+      },
+    });
+    document.cookie = "kinexis_consent=v1%7Ca%3D1%7Cd%3D0; Path=/; SameSite=Lax";
+  });
+  await page.route("https://www.googletagmanager.com/**", (route) => route.abort());
+  await page.route("https://www.google-analytics.com/**", (route) => route.abort());
+}
+
+async function waitForBoot(page: import("@playwright/test").Page) {
+  await page.waitForFunction(() =>
+    [...document.scripts].some((script) => (script.src || "").includes("boot.min.js"))
+      && (window as Window & { __KINEXIS_CFG__?: { ga?: string } }).__KINEXIS_CFG__?.ga === "G-TEST12345",
+  );
+}
+
+async function gaEvents(page: import("@playwright/test").Page) {
+  return page.evaluate(() => {
+    const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
+    return dataLayer
+      .map((entry) => Array.from(entry as ArrayLike<unknown>))
+      .filter((args) => args[0] === "event")
+      .map((args) => ({ name: args[1], params: args[2] }));
+  });
+}
+
 test.describe("marketing journeys", () => {
   test("homepage loads and shows plan comparison", async ({ page }, testInfo) => {
     await page.goto("/");
@@ -24,6 +59,92 @@ test.describe("marketing journeys", () => {
     await expect(page.locator('input[name="business"]').first()).toBeVisible();
     await expect(page.locator('input[name="trade"]').first()).toBeVisible();
     await expect(page.locator('input[name="photos"][type="file"]').first()).toBeAttached();
+  });
+
+  test("free-preview conversion fires once and only after confirmed success", async ({ page }) => {
+    await installMockAnalytics(page);
+    let submissions = 0;
+    await page.route("**/api/contact", (route) => {
+      submissions += 1;
+      return route.fulfill({
+        status: submissions === 1 ? 502 : 200,
+        contentType: "application/json",
+        body: JSON.stringify(submissions === 1 ? { error: "Mock delivery failure" } : { ok: true }),
+      });
+    });
+    await page.goto("/");
+    await waitForBoot(page);
+    const form = page.locator('form[data-conversion="preview"]').first();
+    await form.locator('input[name="name"]').fill("Test Visitor");
+    await form.locator('input[name="email"]').fill("visitor@example.test");
+    await form.locator('input[name="business"]').fill("Test Business");
+    await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await form.locator('button[type="submit"]').click();
+    await expect(form.locator(".form__msg")).toContainText("Mock delivery failure");
+    expect((await gaEvents(page)).map((event) => event.name)).not.toContain("generate_lead");
+
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveClass(/is-done/);
+    const events = await gaEvents(page);
+    expect(events.filter((event) => event.name === "generate_lead")).toHaveLength(1);
+    expect(events.filter((event) => event.name === "preview_form_submit")).toHaveLength(1);
+    expect(JSON.stringify(events)).not.toContain("visitor@example.test");
+  });
+
+  test("website audit has a distinct confirmed conversion, not a preview conversion", async ({ page }) => {
+    await installMockAnalytics(page);
+    await page.route("**/api/contact", (route) => route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    }));
+    await page.goto("/audit");
+    await waitForBoot(page);
+    const form = page.locator('form[data-conversion="audit"]');
+    await form.locator('input[name="name"]').fill("Test Visitor");
+    await form.locator('input[name="email"]').fill("visitor@example.test");
+    await form.locator('input[name="url"]').fill("https://example.test");
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveClass(/is-done/);
+    const names = (await gaEvents(page)).map((event) => event.name);
+    expect(names.filter((name) => name === "audit_request")).toHaveLength(1);
+    expect(names).not.toContain("generate_lead");
+    expect(names).not.toContain("preview_form_submit");
+  });
+
+  test("client intake and update submissions do not count as new leads", async ({ page }) => {
+    await installMockAnalytics(page);
+    await page.route("**/api/contact", (route) => route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    }));
+    await page.goto("/update");
+    await waitForBoot(page);
+    const update = page.locator('form:has(textarea[name="request"])');
+    await update.locator('input[name="name"]').fill("Existing Client");
+    await update.locator('input[name="email"]').fill("client@example.test");
+    await update.locator('textarea[name="request"]').fill("Update the service page.");
+    await update.locator('button[type="submit"]').click();
+    await expect(update).toHaveClass(/is-done/);
+
+    await page.goto("/intake");
+    await waitForBoot(page);
+    const intake = page.locator("#website-intake");
+    await intake.locator('input[name="name"]').fill("Existing Client");
+    await intake.locator('input[name="phone"]').fill("3075551234");
+    await intake.locator('input[name="business"]').fill("Test Business");
+    await intake.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await intake.locator('input[name="service_area"]').fill("Boise");
+    await intake.locator('textarea[name="services"]').fill("Drain repair");
+    await intake.locator('button[type="submit"]').click();
+    await expect(intake).toHaveClass(/is-done/);
+
+    const names = (await gaEvents(page)).map((event) => event.name);
+    expect(names).not.toContain("generate_lead");
+    expect(names).not.toContain("preview_form_submit");
+    expect(names).not.toContain("preview_form_view");
+    expect(names).not.toContain("preview_form_start");
   });
 
   test("mobile nav opens", async ({ page }, testInfo) => {
@@ -253,4 +374,3 @@ test.describe("marketing journeys", () => {
     expect(loaded.srcHits).toBe(false);
   });
 });
-

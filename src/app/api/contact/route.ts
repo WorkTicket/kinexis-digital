@@ -128,6 +128,7 @@ export async function POST(request: Request) {
   const isUpdate = String(form.get("request") ?? "").trim().length > 0;
   const isCall = topic === "strategy-call";
   const isIntake = topic === "intake";
+  const isAudit = topic === "audit";
 
   try {
     const sent = await sendMail({
@@ -137,6 +138,7 @@ export async function POST(request: Request) {
       isUpdate,
       isCall,
       isIntake,
+      isAudit,
       files: collected.files,
     });
     if (sent === "sent") return privateJson({ ok: true });
@@ -151,7 +153,7 @@ export async function POST(request: Request) {
 }
 
 async function sendMail({
-  name, replyTo, text, isUpdate, isCall, isIntake, files,
+  name, replyTo, text, isUpdate, isCall, isIntake, isAudit, files,
 }: {
   name: string;
   replyTo?: string;
@@ -159,6 +161,7 @@ async function sendMail({
   isUpdate: boolean;
   isCall: boolean;
   isIntake: boolean;
+  isAudit: boolean;
   files: File[];
 }): Promise<"sent" | "unconfigured" | "failed"> {
   if (contactDeliveryBlocked()) {
@@ -169,6 +172,8 @@ async function sendMail({
   if (recipients.length === 0) return "unconfigured";
   const subject = isIntake
     ? `Website intake from ${name}`
+    : isAudit
+      ? `Website audit request from ${name}`
     : isCall
       ? `Strategy call request from ${name}`
       : isUpdate

@@ -9,11 +9,11 @@
 export const FUNNEL_EVENTS = {
   preview_form_view: {
     status: "live",
-    source: "boot.js IntersectionObserver on form[data-lead]",
+    source: "boot.js IntersectionObserver on form[data-conversion=preview]",
   },
   preview_form_start: {
     status: "live",
-    source: "boot.js focusin on form[data-lead]",
+    source: "boot.js focusin on form[data-conversion=preview]",
   },
   preview_form_submit: {
     status: "live",
@@ -22,6 +22,10 @@ export const FUNNEL_EVENTS = {
   generate_lead: {
     status: "live",
     source: "boot.js (legacy alias of successful preview submit)",
+  },
+  audit_request: {
+    status: "live",
+    source: "boot.js after successful website-audit form submission",
   },
   plan_selected: {
     status: "live",

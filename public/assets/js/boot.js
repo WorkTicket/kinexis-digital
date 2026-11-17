@@ -1163,12 +1163,24 @@ document.addEventListener("submit", async (event) => {
         landing_page: String(data.get("landing_page") || location.pathname),
       };
       const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
-      track("generate_lead", leadPayload);
-      track("preview_form_submit", { form_variant: formVariant, page_path: location.pathname });
-      trackMeta("Lead", {
-        content_name: "homepage_preview",
-        content_category: leadPayload.landing_page,
-      });
+      const conversion = form.getAttribute("data-conversion");
+      if (conversion === "preview") {
+        track("generate_lead", leadPayload);
+        track("preview_form_submit", { form_variant: formVariant, page_path: location.pathname });
+        trackMeta("Lead", {
+          content_name: "homepage_preview",
+          content_category: leadPayload.landing_page,
+        });
+      } else if (conversion === "audit") {
+        track("audit_request", {
+          form_id: form.getAttribute("name") || form.id || "audit",
+          page_path: location.pathname,
+        });
+        trackMeta("Lead", {
+          content_name: "website_audit",
+          content_category: location.pathname,
+        });
+      }
       return;
     }
     if (res.status === 503) {
@@ -1398,10 +1410,10 @@ addEventListener("kinexis:track", (event) => {
         track("preview_form_view", { form_variant: variant(form), page_path: location.pathname });
       }
     }, { threshold: 0.4 });
-    document.querySelectorAll("form[data-lead]").forEach((form) => io.observe(form));
+    document.querySelectorAll('form[data-conversion="preview"]').forEach((form) => io.observe(form));
   }
   document.addEventListener("focusin", (event) => {
-    const form = event.target instanceof Element ? event.target.closest("form[data-lead]") : null;
+    const form = event.target instanceof Element ? event.target.closest('form[data-conversion="preview"]') : null;
     if (!(form instanceof HTMLFormElement) || started.has(form)) return;
     started.add(form);
     track("preview_form_start", { form_variant: variant(form), page_path: location.pathname });
@@ -1477,6 +1489,4 @@ addEventListener("popstate", () => {
 new MutationObserver(syncChrome).observe(root, { attributes: true, attributeFilter: ["class"] });
 requestAnimationFrame(() => requestAnimationFrame(syncChrome));
 })();
-
-
 

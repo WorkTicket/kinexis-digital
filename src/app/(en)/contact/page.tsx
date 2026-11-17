@@ -19,6 +19,7 @@ export default function Page() {
             <p className="muted">Share what you do and where you work—we use that to prepare a free homepage preview. No card required.</p>
             <Form
               fields={LEAD_FIELDS}
+              conversion="preview"
               button="Show Me My Free Homepage"
               fast
               fastText="No card required. We reply fast."

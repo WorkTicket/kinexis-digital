@@ -40,6 +40,10 @@ try {
   assert.equal(delivery.disableFileAccess, true);
   assert.equal(delivery.disableUrlAccess, true);
   delivery = undefined;
+  assert.equal((await submit({ topic: "audit", url: "https://example.com", notes: "Check mobile form." })).status, 200);
+  assert.match(delivery.subject, /Website audit request/);
+  assert.match(delivery.text, /https:\/\/example\.com/);
+  delivery = undefined;
   const phoneOnly = new FormData();
   phoneOnly.set("name", "Client");
   phoneOnly.set("phone", "3075551234");
@@ -89,7 +93,7 @@ try {
   delete process.env.NEXT_PUBLIC_IS_PREVIEW;
   delete process.env.CONTACT_PREVIEW_TO;
 
-  console.log("Contact delivery checks passed: SMTP routing, attachment, validation, honeypot, failure, missing configuration, and preview email isolation.");
+  console.log("Contact delivery checks passed: SMTP routing, audit routing, attachment, validation, honeypot, failure, missing configuration, and preview email isolation.");
 } finally {
   mailer.createTransport = originalTransport;
   for (const key of keys) {

@@ -42,6 +42,7 @@ export default function Form({
   /** Slim preview bar uses ghost so it doesn’t compete with nav/hero primaries. */
   buttonClass,
   hiddenFields,
+  conversion,
 }: {
   fields: Field[];
   button: string;
@@ -51,6 +52,7 @@ export default function Form({
   slim?: boolean;
   buttonClass?: string;
   hiddenFields?: Record<string, string>;
+  conversion?: "preview" | "audit";
 }) {
   const submitClass = buttonClass
     ?? (slim ? "btn btn--ghost" : "btn btn--primary btn--lg");
@@ -60,6 +62,7 @@ export default function Form({
       noValidate
       data-lead=""
       data-contact-or=""
+      data-conversion={conversion}
       action="/api/contact"
       method="post"
       encType="multipart/form-data"
