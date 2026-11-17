@@ -2,17 +2,15 @@
 
 ## Implementation
 
-`public/assets/js/rum.js` is loaded through `Boot.tsx` with `lazyOnload`, sets a once-per-page guard, samples approximately 20% using `Math.random()`, and sends same-origin `/api/rum` beacons. Payload includes a truncated pathname (no query/hash), sampling fraction, metric name/value/short ID; it carries no user ID, cookie, user agent, device class, or viewport class. Visibility/pagehide flushes; batching timer can also flush while visible. The handler validates payload/path, rate-limits, and writes structured `rum_metric` logs. Code does not establish actual Cloudflare retention or collection.
+`src/components/Rum.tsx` dynamically imports the maintained `web-vitals` library after hydration, samples approximately 20%, and sends same-origin `/api/rum` beacons. Payload includes a sanitized pathname (no query/hash), sample fraction, metric name/value/unique ID/navigation type; it carries no user ID, cookie, user agent, device class, or viewport class. Library page-lifecycle reporting supplies final LCP, INP and CLS values and soft-navigation context. The component deduplicates by metric name/ID and batches up to eight values. The handler validates path and metric fields, rate-limits, and writes structured `rum_metric` logs. Actual Cloudflare retention/collection is not established.
 
 ## Metric correctness
 
-- LCP is queued for each observer entry; the event stream is not finalized/deduplicated to one page-level value.
-- INP is currently each event timing entry's `duration`; it does not implement interaction grouping, the INP percentile candidate, or page lifecycle finalization. It is not a valid INP measurement.
-- CLS queues individual layout-shift values rather than session-window aggregation; it is not page CLS.
-- TTFB and FCP are navigation/paint observer values but may be emitted more than once across flushes.
-- `pathOnly()` is evaluated at flush time, so a queued metric around soft navigation may be labeled with a later route. No explicit navigation type, device/viewport classification, or route-change lifecycle handling is present in the client script.
+- `onLCP`, `onINP`, and `onCLS` from `web-vitals` provide standards-based metric aggregation and page/soft-navigation lifecycle handling. INP/LCP use milliseconds; CLS is unitless.
+- FCP and TTFB remain supplementary diagnostics, not Core Web Vitals.
+- Metric route uses the library's bounded navigation URL and retains only its pathname; query/hash are never transmitted. Navigation type and metric ID are included for grouping/deduplication.
 
-Thus reported values must not be represented as standard field Core Web Vitals. This custom implementation is first-party real-user telemetry in intent, not verified production field results. Lab Lighthouse scores remain separate.
+The browser implementation reports library-calculated metric values in local regression fixtures. This is not evidence of production collection or representative field CWV. Lab Lighthouse scores remain separate.
 
 ## Privacy, endpoint, performance
 
@@ -20,4 +18,4 @@ Existing engineering policy treats RUM as consent-independent first-party perfor
 
 ## Implementation-ready follow-up
 
-Choose an approved Web Vitals implementation/algorithm or implement lifecycle-correct aggregation; pin route at observation/flush boundary, include bounded navigation context, and test supported/unsupported APIs, multiple shifts/interactions, soft navigation, hidden/pagehide, sample exclusion, and failed beacon. Add consent decision if policy requires it. Verify endpoint sink and retention with an isolated environment. Do not publish production CWV until representative field collection has been confirmed.
+Verify endpoint sink/retention and representative sampling in a controlled production-like environment. The existing policy sends first-party RUM without analytics/ads consent; obtain owner/privacy confirmation before release. Do not publish production CWV until representative field collection has been confirmed.

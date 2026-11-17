@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
-async function installMockAnalytics(page: import("@playwright/test").Page) {
-  await page.addInitScript(() => {
+async function installMockAnalytics(page: import("@playwright/test").Page, ads = false, meta = false) {
+  await page.addInitScript(({ adsEnabled, metaEnabled }) => {
     type Config = Record<string, string>;
     const target = window as unknown as { __KINEXIS_CFG__?: Config };
     let config = target.__KINEXIS_CFG__;
@@ -9,13 +9,28 @@ async function installMockAnalytics(page: import("@playwright/test").Page) {
       configurable: true,
       get: () => config,
       set: (next: Config) => {
-        config = { ...next, ga: "G-TEST12345", metaPixel: "" };
+        config = { ...next, ga: "G-TEST12345", metaPixel: metaEnabled ? "123456789012345" : "" };
       },
     });
-    document.cookie = "kinexis_consent=v1%7Ca%3D1%7Cd%3D0; Path=/; SameSite=Lax";
-  });
+    document.cookie = `kinexis_consent=v1%7Ca%3D1%7Cd%3D${adsEnabled ? 1 : 0}; Path=/; SameSite=Lax`;
+  }, { adsEnabled: ads, metaEnabled: meta });
   await page.route("https://www.googletagmanager.com/**", (route) => route.abort());
   await page.route("https://www.google-analytics.com/**", (route) => route.abort());
+  if (meta) await page.route("https://connect.facebook.net/**", (route) => route.abort());
+  await page.context().addCookies([{
+    name: "kinexis_consent",
+    value: `v1|a=1|d=${ads ? 1 : 0}`,
+    url: "http://localhost:3100",
+  }]);
+}
+
+async function setConsent(page: import("@playwright/test").Page, analytics: boolean, ads: boolean) {
+  await page.context().addCookies([{
+    name: "kinexis_consent",
+    value: `v1|a=${analytics ? 1 : 0}|d=${ads ? 1 : 0}`,
+    url: "http://localhost:3100",
+  }]);
+  await page.evaluate(() => window.dispatchEvent(new Event("kinexis:consent")));
 }
 
 async function waitForBoot(page: import("@playwright/test").Page) {
@@ -107,8 +122,9 @@ test.describe("marketing journeys", () => {
   test("free-preview conversion fires once and only after confirmed success", async ({ page }) => {
     await installMockAnalytics(page);
     let submissions = 0;
-    await page.route("**/api/contact", (route) => {
+    await page.route("**/api/contact", async (route) => {
       submissions += 1;
+      await new Promise((resolve) => setTimeout(resolve, submissions === 1 ? 250 : 0));
       return route.fulfill({
         status: submissions === 1 ? 502 : 200,
         contentType: "application/json",
@@ -123,19 +139,117 @@ test.describe("marketing journeys", () => {
     await form.locator('input[name="business"]').fill("Test Business");
     await form.locator('input[name="trade"]').fill("Plumbing in Boise");
     await form.locator('button[type="submit"]').click();
+    await form.evaluate((element) => element.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })));
     await expect(form.locator(".form__msg")).toContainText("Mock delivery failure");
+    expect(submissions).toBe(1);
     expect((await gaEvents(page)).map((event) => event.name)).not.toContain("generate_lead");
 
     await form.locator('button[type="submit"]').click();
     await expect(form).toHaveClass(/is-done/);
     const events = await gaEvents(page);
     expect(events.filter((event) => event.name === "generate_lead")).toHaveLength(1);
-    expect(events.filter((event) => event.name === "preview_form_submit")).toHaveLength(1);
+    expect(submissions).toBe(2);
+    const diagnostics = events.filter((event) => event.name === "preview_form_submit");
+    expect(diagnostics).toHaveLength(1);
+    expect((diagnostics[0].params as { event_role?: string }).event_role).toBe("diagnostic");
     expect(JSON.stringify(events)).not.toContain("visitor@example.test");
   });
 
+  test("preview primary conversion is singular across GA4 and Meta", async ({ page }) => {
+    await installMockAnalytics(page, true, true);
+    await page.route("**/api/contact", (route) => route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    }));
+    await page.goto("/");
+    await waitForBoot(page);
+    const form = page.locator('form[data-conversion="preview"]').first();
+    await form.locator('input[name="name"]').fill("Test Visitor");
+    await form.locator('input[name="email"]').fill("visitor@example.test");
+    await form.locator('input[name="business"]').fill("Test Business");
+    await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveClass(/is-done/);
+    const ga = await gaEvents(page);
+    expect(ga.filter((event) => event.name === "generate_lead")).toHaveLength(1);
+    expect(ga.filter((event) => event.name === "preview_form_submit")).toHaveLength(1);
+    const meta = await page.evaluate(() => (
+      (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
+    ).filter((args) => args[0] === "track" && args[1] === "Lead"));
+    expect(meta).toHaveLength(1);
+  });
+
+  test("first-touch attribution survives navigation and excludes ambiguous or unconsented IDs", async ({ page }) => {
+    await installMockAnalytics(page, false);
+    let submitted = "";
+    await page.route("**/api/contact", async (route) => {
+      submitted = route.request().postData() || "";
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+    });
+    await page.goto("/?utm_source=first_source&utm_campaign=first_campaign&utm_source=ambiguous&gclid=click-id&fbclid=fb-id");
+    await waitForBoot(page);
+    await page.goto("/contact");
+    await waitForBoot(page);
+    const form = page.locator('form[data-conversion="preview"]').first();
+    await form.locator('input[name="name"]').fill("Test Visitor");
+    await form.locator('input[name="email"]').fill("visitor@example.test");
+    await form.locator('input[name="business"]').fill("Test Business");
+    await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveClass(/is-done/);
+    expect(submitted).toContain('name="kx_attr_utm_campaign"');
+    expect(submitted).toContain("first_campaign");
+    expect(submitted).not.toContain("utm_source");
+    expect(submitted).not.toContain("click-id");
+    expect(submitted).not.toContain("fb-id");
+  });
+
+  test("GA4 and Meta exceptions cannot turn successful lead delivery into a form failure", async ({ page }) => {
+    await page.addInitScript(() => {
+      type Config = Record<string, string>;
+      const target = window as unknown as { __KINEXIS_CFG__?: Config };
+      let config = target.__KINEXIS_CFG__;
+      Object.defineProperty(target, "__KINEXIS_CFG__", {
+        configurable: true,
+        get: () => config,
+        set: (next: Config) => { config = { ...next, ga: "G-TEST12345", metaPixel: "123456789012345" }; },
+      });
+      document.cookie = "kinexis_consent=v1%7Ca%3D1%7Cd%3D1; Path=/; SameSite=Lax";
+    });
+    await page.route("https://www.googletagmanager.com/**", (route) => route.abort());
+    await page.route("https://connect.facebook.net/**", (route) => route.abort());
+    await page.context().addCookies([{
+      name: "kinexis_consent",
+      value: "v1|a=1|d=1",
+      url: "http://localhost:3100",
+    }]);
+    await page.route("**/api/contact", (route) => route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({ ok: true }),
+    }));
+    await page.goto("/");
+    await waitForBoot(page);
+    await page.waitForTimeout(300);
+    await page.dispatchEvent("body", "pointerdown");
+    await page.waitForFunction(() => Boolean((window as Window & { fbq?: unknown }).fbq));
+    await page.evaluate(() => {
+      (window as Window & { gtag?: (...args: unknown[]) => void }).gtag = () => { throw new Error("mock GA failure"); };
+      (window as Window & { fbq?: (...args: unknown[]) => void }).fbq = () => { throw new Error("mock Meta failure"); };
+    });
+    const form = page.locator('form[data-conversion="preview"]').first();
+    await form.locator('input[name="name"]').fill("Test Visitor");
+    await form.locator('input[name="email"]').fill("visitor@example.test");
+    await form.locator('input[name="business"]').fill("Test Business");
+    await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await form.locator('button[type="submit"]').click();
+    await expect(form).toHaveClass(/is-done/);
+    await expect(form.locator(".form__msg")).toContainText(/Thanks|Gracias/);
+  });
+
   test("website audit has a distinct confirmed conversion, not a preview conversion", async ({ page }) => {
-    await installMockAnalytics(page);
+    await installMockAnalytics(page, true, true);
     await page.route("**/api/contact", (route) => route.fulfill({
       status: 200,
       contentType: "application/json",
@@ -153,6 +267,11 @@ test.describe("marketing journeys", () => {
     expect(names.filter((name) => name === "audit_request")).toHaveLength(1);
     expect(names).not.toContain("generate_lead");
     expect(names).not.toContain("preview_form_submit");
+    const metaLead = await page.evaluate(() => (
+      (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
+    ).filter((args) => args[0] === "track" && args[1] === "Lead"));
+    expect(metaLead).toHaveLength(1);
+    expect(metaLead[0][2]).toMatchObject({ content_name: "website_audit" });
   });
 
   test("client intake and update submissions do not count as new leads", async ({ page }) => {
@@ -348,6 +467,129 @@ test.describe("marketing journeys", () => {
     });
     expect(metaHits, "ads rejected → Meta must not load").toEqual([]);
     if (ids.ga) await expect.poll(() => gaHits.length, { timeout: 15_000 }).toBeGreaterThan(0);
+  });
+
+  test("loaded trackers stop transmitting after withdrawal and resume once on reacceptance", async ({ page }) => {
+    const thirdPartyRequests: string[] = [];
+    page.on("request", (request) => {
+      if (/googletagmanager\.com|google-analytics\.com|connect\.facebook\.net|facebook\.com\/tr/.test(request.url())) {
+        thirdPartyRequests.push(request.url());
+      }
+    });
+    await page.addInitScript(() => {
+      type Config = Record<string, string>;
+      const target = window as unknown as { __KINEXIS_CFG__?: Config };
+      let config = target.__KINEXIS_CFG__;
+      Object.defineProperty(target, "__KINEXIS_CFG__", {
+        configurable: true,
+        get: () => config,
+        set: (next: Config) => { config = { ...next, ga: "G-TEST12345", metaPixel: "123456789012345" }; },
+      });
+    });
+    await page.route("https://www.googletagmanager.com/**", (route) => route.abort());
+    await page.route("https://www.google-analytics.com/**", (route) => route.abort());
+    await page.route("https://connect.facebook.net/**", (route) => route.abort());
+    await page.route("https://www.facebook.com/**", (route) => route.abort());
+    await setConsent(page, true, false);
+    await page.goto("/");
+    await waitForBoot(page);
+    await page.waitForTimeout(300);
+    await page.dispatchEvent("body", "pointerdown");
+    await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "page_view").length).toBe(1);
+
+    const firePhoneTap = () => page.evaluate(() => {
+      document.querySelector('a[href^="tel:"]')?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
+    });
+    await firePhoneTap();
+    await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "phone_tap").length).toBe(1);
+
+    await setConsent(page, true, true);
+    await firePhoneTap();
+    await expect.poll(() => page.evaluate(() => Boolean((window as Window & { fbq?: { queue?: unknown[] } }).fbq?.queue?.length))).toBe(true);
+
+    const beforeWithdraw = await page.evaluate(() => {
+      const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
+      const events = dataLayer.map((item) => Array.from(item as ArrayLike<unknown>) as unknown[]).filter((args) => args[0] === "event");
+      const fbq = (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq;
+      return {
+        gaEvents: events.length,
+        pageViews: events.filter((args) => args[1] === "page_view").length,
+        metaPageViews: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "PageView").length ?? 0,
+        metaInitializations: fbq?.queue?.filter((args) => args[0] === "init").length ?? 0,
+      };
+    });
+    expect(beforeWithdraw.metaPageViews).toBe(1);
+    expect(beforeWithdraw.metaInitializations).toBe(1);
+
+    await setConsent(page, true, false);
+    await firePhoneTap();
+    const adsWithdrawn = await page.evaluate(() => {
+      const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
+      const entries = dataLayer.map((item) => Array.from(item as ArrayLike<unknown>) as unknown[]);
+      const fbq = (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq;
+      return {
+        gaEvents: entries.filter((args) => args[0] === "event").length,
+        adStorage: (entries.filter((args) => args[0] === "consent" && args[1] === "update").at(-1)?.[2] as Record<string, string>)?.ad_storage,
+        contacts: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "Contact").length ?? 0,
+        revoked: fbq?.queue?.some((args) => args[0] === "consent" && args[1] === "revoke") ?? false,
+      };
+    });
+    expect(adsWithdrawn.gaEvents).toBe(beforeWithdraw.gaEvents + 1);
+    expect(adsWithdrawn.adStorage).toBe("denied");
+    expect(adsWithdrawn.contacts).toBe(1);
+    expect(adsWithdrawn.revoked).toBe(true);
+
+    await setConsent(page, true, true);
+    await setConsent(page, false, false);
+    await firePhoneTap();
+    await page.evaluate(() => window.dispatchEvent(new CustomEvent("kinexis:track", { detail: { name: "blocked_after_withdrawal" } })));
+    const denied = await page.evaluate(() => {
+      const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
+      const entries = dataLayer.map((item) => Array.from(item as ArrayLike<unknown>) as unknown[]);
+      const events = entries.filter((args) => args[0] === "event");
+      const updates = entries.filter((args) => args[0] === "consent" && args[1] === "update");
+      const fbq = (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq;
+      return {
+        gaEvents: events.length,
+        lastConsent: updates.at(-1)?.[2] as Record<string, string> | undefined,
+        meta: fbq?.queue ?? [],
+      };
+    });
+    expect(denied.gaEvents).toBe(adsWithdrawn.gaEvents);
+    expect(denied.lastConsent?.analytics_storage).toBe("denied");
+    expect(denied.meta.some((args) => args[0] === "consent" && args[1] === "revoke")).toBe(true);
+    expect(denied.meta.filter((args) => args[0] === "track" && args[1] === "PageView")).toHaveLength(1);
+    expect(denied.meta.filter((args) => args[0] === "track" && args[1] === "Contact")).toHaveLength(1);
+
+    await setConsent(page, true, true);
+    const reaccepted = await page.evaluate(() => {
+      const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
+      const entries = dataLayer.map((item) => Array.from(item as ArrayLike<unknown>) as unknown[]);
+      const events = entries.filter((args) => args[0] === "event");
+      const fbq = (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq;
+      return {
+        pageViews: events.filter((args) => args[1] === "page_view").length,
+        granted: entries.some((args) => args[0] === "consent" && args[1] === "update" && (args[2] as Record<string, string>)?.analytics_storage === "granted"),
+        metaPageViews: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "PageView").length ?? 0,
+        metaInitializations: fbq?.queue?.filter((args) => args[0] === "init").length ?? 0,
+        metaGrant: fbq?.queue?.some((args) => args[0] === "consent" && args[1] === "grant") ?? false,
+      };
+    });
+    expect(reaccepted).toEqual({
+      pageViews: 1,
+      granted: true,
+      metaPageViews: 1,
+      metaInitializations: 1,
+      metaGrant: true,
+    });
+    await setConsent(page, false, false);
+    await expect.poll(() => page.evaluate(() => document.cookie)).toContain("kinexis_consent=v1|a=0|d=0");
+    const requestsAtWithdrawal = thirdPartyRequests.length;
+    await page.reload();
+    await waitForBoot(page);
+    await page.dispatchEvent("body", "pointerdown");
+    await page.waitForTimeout(700);
+    expect(thirdPartyRequests.length, JSON.stringify(thirdPartyRequests)).toBe(requestsAtWithdrawal);
   });
 
   test("checkout page loads without taking payment", async ({ page }) => {

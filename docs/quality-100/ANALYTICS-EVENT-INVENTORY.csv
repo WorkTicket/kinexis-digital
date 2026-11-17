@@ -1,7 +1,8 @@
 event,destination,trigger,consent,verification,status
 PageView,Meta Pixel,initial boot and soft navigation,ads,code inspected only; provider not checked,implemented
-generate_lead,GA4,successful preview form response,analytics,code inspected; mocked/no live sink,implemented legacy alias
-preview_form_submit,GA4,successful preview form response,analytics,code inspected; mocked/no live sink,implemented canonical candidate
+page_view,GA4,initial tracker load and each soft route navigation,analytics,code inspected; mocked/no live sink,implemented with automatic page views disabled
+generate_lead,GA4,successful preview form response,analytics,automated local regression; no live sink,canonical primary conversion; owner must confirm GA4 key-event configuration
+preview_form_submit,GA4,successful preview form response,analytics,automated local regression; no live sink,diagnostic funnel event; must remain non-key in GA4
 Lead,Meta Pixel,successful preview or audit form response,ads,code inspected; provider not checked,implemented
 audit_request,GA4,successful audit form response,analytics,code inspected; mocked/no live sink,implemented
 preview_form_view,GA4,preview form intersects viewport at threshold,analytics,code inspected; browser/provider collection not verified,implemented
@@ -17,4 +18,4 @@ tool_generate,GA4,QR tool generation,analytics,component call inspected; consent
 tool_calculate,GA4,missed-call calculator calculation,analytics,component call inspected; consent dependent through gtag guard,implemented
 preview_delivered,none,placeholder for ops confirmation,not applicable,not emitted in repository,placeholder
 qualified_chatbot_lead,none,Conferbot D1 lead record; no analytics event found,not applicable,feature flag off/unbound in checked config,not implemented
-RUM metrics,first-party POST /api/rum,20% random sample + PerformanceObserver,consent-independent existing policy,handler/script inspected; production collection not verified,custom instrumentation
+RUM metrics,first-party POST /api/rum,20% sample + web-vitals LCP/INP/CLS/TTFB/FCP reporters,consent-independent existing policy,local browser regression + endpoint fixtures; production collection not verified,standards-based library reporting; field data unknown

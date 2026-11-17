@@ -57,4 +57,4 @@ The homepage LCP insight showed approximately 12 ms TTFB, 11 ms resource delay, 
 
 ## Field CWV status
 
-The site includes sampled first-party RUM for LCP, INP, CLS, TTFB, and FCP (`public/assets/js/rum.js` → `/api/rum` → Cloudflare Workers Observability). No production Observability logs or Search Console field CWV report were available in this worktree/session. Field CWV status is therefore **unknown**, not passing.
+The site includes sampled first-party RUM for LCP, INP, CLS, TTFB, and FCP (`src/components/Rum.tsx` using `web-vitals` → `/api/rum` → Cloudflare Workers Observability). No production Observability logs or Search Console field CWV report were available in this worktree/session. Field CWV status is therefore **unknown**, not passing.

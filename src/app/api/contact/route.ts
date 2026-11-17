@@ -21,6 +21,7 @@ import {
   rejectReadOversize,
 } from "@/lib/request-security";
 import nodemailer from "nodemailer";
+import { ATTRIBUTION_FIELDS, sanitizeMarketingAttribution } from "@/lib/marketing-attribution";
 
 const MAX_FILE = 4 * 1024 * 1024;
 const MAX_FILES = 9;
@@ -36,6 +37,20 @@ type MailAttachment = {
 
 function visitorError(message: string, status: number) {
   return privateJson({ error: message }, { status });
+}
+
+function consentAllowsAttribution(request: Request) {
+  const value = request.headers.get("cookie")?.match(/(?:^|;\s*)kinexis_consent=([^;]*)/)?.[1];
+  if (!value) return { analytics: false, ads: false };
+  try {
+    const consent = decodeURIComponent(value);
+    return {
+      analytics: consent.startsWith("v1|") && /(?:^|\|)a=1(?:\||$)/.test(consent),
+      ads: consent.startsWith("v1|") && /(?:^|\|)d=1(?:\||$)/.test(consent),
+    };
+  } catch {
+    return { analytics: false, ads: false };
+  }
 }
 
 function safeFilename(file: File, fallback: string) {
@@ -109,8 +124,31 @@ export async function POST(request: Request) {
 
   const lines: string[] = [];
   let textLength = 0;
+  const attributionInput: Record<string, unknown> = {};
+  for (const key of ATTRIBUTION_FIELDS) {
+    const values = form.getAll(`kx_attr_${key}`);
+    attributionInput[key] = values.length === 1 ? values[0] : null;
+  }
+  const consent = consentAllowsAttribution(request);
+  const conversionValues = form.getAll("kx_conversion");
+  const conversion = conversionValues.length === 1 ? conversionValues[0] : null;
+  const isMarketingConversion = conversion === "preview" || conversion === "audit";
+  const attribution = consent.analytics && isMarketingConversion
+    ? sanitizeMarketingAttribution(attributionInput)
+    : {};
+  if (!consent.ads) {
+    delete attribution.fbclid;
+    delete attribution.gclid;
+  }
+  if (attribution.referrer) {
+    try {
+      if (new URL(attribution.referrer).origin === new URL(SITE.url).origin) delete attribution.referrer;
+    } catch {
+      delete attribution.referrer;
+    }
+  }
   for (const [key, value] of form.entries()) {
-    if (key === "_gotcha" || value instanceof File) continue;
+    if (key === "_gotcha" || key === "kx_conversion" || key.startsWith("kx_attr_") || value instanceof File) continue;
     const label = key.replace(/[^a-z0-9 _-]/gi, "").slice(0, 50);
     const raw = String(value);
     if (raw.length > 5_000) return visitorError("That message is too long.", 400);
@@ -118,6 +156,9 @@ export async function POST(request: Request) {
     textLength += label.length + entry.length;
     if (textLength > MAX_TEXT) return visitorError("That message is too long.", 400);
     if (label && entry) lines.push(`${label}: ${entry}`);
+  }
+  for (const [key, value] of Object.entries(attribution)) {
+    lines.push(`Attribution ${key}: ${value}`);
   }
   if (collected.files.length) {
     lines.push(`attachments: ${collected.files.map((file) => file.name).join(", ")}`);

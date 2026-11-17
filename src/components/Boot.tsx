@@ -62,11 +62,9 @@ export default function Boot({
           fire without consent. */}
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}
-      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=59" strategy="lazyOnload" />
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=60" strategy="lazyOnload" />
       {/* Separate file so Conferbot lift/load is not one long task with boot. */}
       <Script id="kinexis-conferbot" src="/assets/js/conferbot.min.js?v=1" strategy="lazyOnload" />
-      {/* First-party RUM (sampled). Not analytics-gated — path + vitals only. */}
-      <Script id="kinexis-rum" src="/assets/js/rum.js?v=1" strategy="lazyOnload" />
     </>
   );
 }

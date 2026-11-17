@@ -17,11 +17,11 @@ export const FUNNEL_EVENTS = {
   },
   preview_form_submit: {
     status: "live",
-    source: "boot.js after successful /api/contact",
+    source: "boot.js after successful /api/contact; diagnostic funnel event, not a primary conversion",
   },
   generate_lead: {
     status: "live",
-    source: "boot.js (legacy alias of successful preview submit)",
+    source: "boot.js; canonical GA4 primary conversion after successful preview submit",
   },
   audit_request: {
     status: "live",

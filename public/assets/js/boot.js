@@ -731,6 +731,7 @@ function onNavigate() {
   requestAnimationFrame(measureFloat);
   // Soft navigations need a fresh PageView for Meta Events Manager.
   trackMeta("PageView");
+  track("page_view", { page_path: location.pathname });
 }
 
 const bar = document.querySelector(".float-cta");
@@ -1078,10 +1079,12 @@ function formCopy() {
   };
 }
 
+const leadFormsInFlight = new WeakSet();
 document.addEventListener("submit", async (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement) || !form.hasAttribute("data-lead")) return;
   event.preventDefault();
+  if (leadFormsInFlight.has(form)) return;
   const copy = formCopy();
   let firstBad = null;
   let contactMsg = "";
@@ -1137,9 +1140,15 @@ document.addEventListener("submit", async (event) => {
   }
   const data = new FormData(form);
   if (data.get("_gotcha")) return;
+  const conversion = form.getAttribute("data-conversion");
+  if (conversion === "preview" || conversion === "audit") {
+    data.set("kx_conversion", conversion);
+    appendAttribution(data);
+  }
   const button = form.querySelector("button[type=submit]");
   button?.classList.add("is-loading");
   if (button) button.disabled = true;
+  leadFormsInFlight.add(form);
   try {
     const res = await fetch("/api/contact", { method: "POST", headers: { Accept: "application/json" }, body: data });
     const body = await res.json().catch(() => ({}));
@@ -1163,10 +1172,14 @@ document.addEventListener("submit", async (event) => {
         landing_page: String(data.get("landing_page") || location.pathname),
       };
       const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
-      const conversion = form.getAttribute("data-conversion");
       if (conversion === "preview") {
+        // Canonical GA4 key event; retain the funnel event as diagnostic/non-key.
         track("generate_lead", leadPayload);
-        track("preview_form_submit", { form_variant: formVariant, page_path: location.pathname });
+        track("preview_form_submit", {
+          form_variant: formVariant,
+          page_path: location.pathname,
+          event_role: "diagnostic",
+        });
         trackMeta("Lead", {
           content_name: "homepage_preview",
           content_category: leadPayload.landing_page,
@@ -1200,6 +1213,7 @@ document.addEventListener("submit", async (event) => {
   } catch {
     if (msg) msg.textContent = copy.network;
   } finally {
+    leadFormsInFlight.delete(form);
     button?.classList.remove("is-loading");
     if (button) button.disabled = false;
   }
@@ -1262,17 +1276,107 @@ function consentAllowsAds() {
   return c.decided && c.ads;
 }
 
+const ATTRIBUTION_KEY = "kinexis_first_touch_v1";
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+function attributionValue(value, max, pattern) {
+  const text = String(value || "").trim();
+  return text.length > 0 && text.length <= max && pattern.test(text) ? text : "";
+}
+function currentFirstTouch() {
+  const values = {};
+  const params = new URLSearchParams(location.search);
+  for (const key of UTM_KEYS) {
+    const all = params.getAll(key);
+    if (all.length === 1) values[key] = attributionValue(all[0], 100, /^[\p{L}\p{N} ._~:+-]+$/u);
+  }
+  for (const key of ["fbclid", "gclid"]) {
+    const all = params.getAll(key);
+    if (all.length === 1) values[key] = attributionValue(all[0], 256, /^[A-Za-z0-9._~-]+$/);
+  }
+  try {
+    const ref = document.referrer ? new URL(document.referrer) : null;
+    if (ref && /^https?:$/.test(ref.protocol) && ref.origin !== location.origin) {
+      values.referrer = (ref.origin + ref.pathname).slice(0, 300);
+    }
+  } catch {
+    /* Malformed referrers are omitted. */
+  }
+  return values;
+}
+function readFirstTouch() {
+  try {
+    const raw = sessionStorage.getItem(ATTRIBUTION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+function captureFirstTouch() {
+  if (!consentAllowsAnalytics()) {
+    try { sessionStorage.removeItem(ATTRIBUTION_KEY); } catch { /* storage may be disabled */ }
+    return;
+  }
+  try {
+    const existing = readFirstTouch() || {};
+    const current = currentFirstTouch();
+    const keys = consentAllowsAds()
+      ? UTM_KEYS.concat(["fbclid", "gclid", "referrer"])
+      : UTM_KEYS.concat(["referrer"]);
+    let changed = false;
+    for (const key of keys) {
+      if (!existing[key] && current[key]) {
+        existing[key] = current[key];
+        changed = true;
+      }
+    }
+    if (changed || sessionStorage.getItem(ATTRIBUTION_KEY) === null) {
+      sessionStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(existing));
+    }
+  } catch {
+    /* Storage may be disabled; current-page attribution is still attached below. */
+  }
+}
+function appendAttribution(data) {
+  if (!consentAllowsAnalytics()) return;
+  captureFirstTouch();
+  const values = readFirstTouch() || currentFirstTouch();
+  for (const key of UTM_KEYS) {
+    const clean = attributionValue(values[key], 100, /^[\p{L}\p{N} ._~:+-]+$/u);
+    if (clean) data.set("kx_attr_" + key, clean);
+  }
+  if (consentAllowsAds()) {
+    for (const key of ["fbclid", "gclid"]) {
+      const clean = attributionValue(values[key], 256, /^[A-Za-z0-9._~-]+$/);
+      if (clean) data.set("kx_attr_" + key, clean);
+    }
+  }
+  if (typeof values.referrer === "string" && values.referrer.length <= 300) {
+    try {
+      const ref = new URL(values.referrer);
+      if (/^https?:$/.test(ref.protocol) && ref.origin !== location.origin) {
+        data.set("kx_attr_referrer", ref.origin + ref.pathname);
+      }
+    } catch {
+      /* Invalid referrer omitted. */
+    }
+  }
+}
+
 function track(name, params) {
   if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
-  // Ensure the gtag stub exists so events queue before/after script load.
-  loadGa();
-  if (typeof window.gtag === "function") {
-    window.gtag("event", name, params || {});
-    return;
+  try {
+    // Ensure the gtag stub exists so events queue before/after script load.
+    loadGa();
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, params || {});
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(["event", name, params || {}]);
+  } catch {
+    /* Analytics failure must never interrupt lead delivery/UI. */
   }
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(["event", name, params || {}]);
 }
 
 let metaBooted = false;
@@ -1288,7 +1392,10 @@ function clearMetaArm() {
 function ensureMeta() {
   if (!consentAllowsAds()) return;
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  if (metaBooted) return;
+  if (metaBooted) {
+    try { window.fbq("consent", "grant"); } catch { /* unavailable */ }
+    return;
+  }
   metaBooted = true;
   clearMetaArm();
   if (!window.fbq) {
@@ -1310,6 +1417,7 @@ function ensureMeta() {
   }
   try {
     window.fbq("init", cfg.metaPixel);
+    window.fbq("consent", "grant");
     window.fbq("track", "PageView");
   } catch {
     /* Pixel blocked or unavailable — ignore. */
@@ -1368,11 +1476,24 @@ function loadGa() {
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag("js", new Date());
-  gtag("config", cfg.ga);
+  gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  gtag("consent", "update", {
+    analytics_storage: "granted",
+    ad_storage: consentAllowsAds() ? "granted" : "denied",
+    ad_user_data: consentAllowsAds() ? "granted" : "denied",
+    ad_personalization: consentAllowsAds() ? "granted" : "denied",
+  });
+  gtag("config", cfg.ga, { send_page_view: false });
   const script = document.createElement("script");
   script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
   script.async = true;
   document.head.appendChild(script);
+  track("page_view", { page_path: location.pathname });
 }
 const gaStarted = performance.now();
 function onGaScroll() { if (performance.now() - gaStarted >= 2500) loadGa(); }
@@ -1391,6 +1512,22 @@ function armGa() {
 }
 
 function armTrackersFromConsent() {
+  const analyticsAllowed = consentAllowsAnalytics();
+  const adsAllowed = consentAllowsAds();
+  if (gaLoaded && typeof window.gtag === "function") {
+    window.gtag("consent", "update", {
+      analytics_storage: analyticsAllowed ? "granted" : "denied",
+      ad_storage: analyticsAllowed && adsAllowed ? "granted" : "denied",
+      ad_user_data: analyticsAllowed && adsAllowed ? "granted" : "denied",
+      ad_personalization: analyticsAllowed && adsAllowed ? "granted" : "denied",
+    });
+  }
+  if (metaBooted && typeof window.fbq === "function") {
+    try {
+      window.fbq("consent", adsAllowed ? "grant" : "revoke");
+    } catch { /* unavailable */ }
+  }
+  captureFirstTouch();
   armGa();
   armMeta();
 }

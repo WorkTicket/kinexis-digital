@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import Boot from "@/components/Boot";
+import Rum from "@/components/Rum";
 import {
   HERO_POSTER,
   HERO_POSTER_AVIF_SRCSET,
@@ -178,6 +179,7 @@ if(/FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\\//i.test(ua))r.cl
           video={SITE.videoUrl}
           locale={locale}
         />
+        <Rum />
         {/* Conferbot: vanilla public/assets/js/conferbot.min.js via Boot (flag + consent-open defer). */}
       </body>
     </html>
