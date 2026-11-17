@@ -92,4 +92,4 @@ The local build crawl confirms the corrected blog page does not point to the two
 
 Phase 2 code-level exit criteria are met: crawl is reproducible, the critical/high count is zero, the demonstrated internal redirect links are fixed and regression-tested, existing SEO checks and full E2E pass, and unresolved policy changes are not needed. **Phase 2 is ready for review; Phase 3 has not started.** Production SEO improvements remain unverified until an approved deployment and post-deployment crawl. Desktop Lighthouse remains a separate open performance item.
 
-**Commit:** this report is included in the Phase 2 commit on `phase-1/conversion-handoff`; see repository history for its SHA.
+**Phase 2 implementation commit:** `91b5a57689e4560e9251717de4b401e3c72dfde7` on `phase-1/conversion-handoff`.

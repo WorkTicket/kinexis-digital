@@ -35,4 +35,4 @@ Phase 2 changes are committed on this branch; final commit SHA is recorded below
 - Desktop Lighthouse remains below its budget as a separate performance workstream; no performance scope was changed.
 - No approval-requiring SEO policy changes were identified. Do not start Phase 3 until this report is reviewed.
 
-**Phase 2 commit:** this handoff is included in the commit on `phase-1/conversion-handoff`; see repository history for its SHA.
+**Phase 2 implementation commit:** `91b5a57689e4560e9251717de4b401e3c72dfde7`
