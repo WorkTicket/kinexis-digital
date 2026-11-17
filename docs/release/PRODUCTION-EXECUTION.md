@@ -24,6 +24,6 @@
 
 ## Current stopping point
 
-Preparation checkpoint: local work committed through `3ca73d7f8504c1a1be5212d6f76ab1000dd7866d`; worktree was clean. This SHA is not a frozen release candidate. First unfinished step: obtain missing provider/account access and owner approvals, then complete authorized isolated acceptance and the final regression/deployment-readiness stages. Performance exception is recorded; it applies only to lab Lighthouse scores. External acceptance is blocked on the owner actions listed in the acceptance records. No production action has been taken.
+Preparation checkpoint: `b3e8986c235c923b83b5394386fbee827d1f13a9` on `phase-1/conversion-handoff`; worktree was clean after commit. This SHA is not a frozen release candidate. The production analytics preflight now passes locally, and owner has set Conferbot scope to free widget-only. First unfinished step: obtain remaining read-only provider/account and Cloudflare Operations verification, resolve/track unpatched picomatch, and complete human accessibility/privacy/commercial approvals before final release-candidate regression. Performance exception applies only to lab Lighthouse scores. No production action has been taken.
 
 The other records in this directory are gate-specific checklists, not evidence of acceptance. `BLOCKED` means the required external verification has not happened.
