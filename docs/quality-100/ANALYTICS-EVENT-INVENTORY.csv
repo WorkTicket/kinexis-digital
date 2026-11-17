@@ -1,0 +1,20 @@
+event,destination,trigger,consent,verification,status
+PageView,Meta Pixel,initial boot and soft navigation,ads,code inspected only; provider not checked,implemented
+generate_lead,GA4,successful preview form response,analytics,code inspected; mocked/no live sink,implemented legacy alias
+preview_form_submit,GA4,successful preview form response,analytics,code inspected; mocked/no live sink,implemented canonical candidate
+Lead,Meta Pixel,successful preview or audit form response,ads,code inspected; provider not checked,implemented
+audit_request,GA4,successful audit form response,analytics,code inspected; mocked/no live sink,implemented
+preview_form_view,GA4,preview form intersects viewport at threshold,analytics,code inspected; browser/provider collection not verified,implemented
+preview_form_start,GA4,first focus in preview form,analytics,code inspected; browser/provider collection not verified,implemented
+phone_tap,GA4 and Meta,telephone link click,analytics or ads respectively,code inspected; provider not checked,implemented
+strategy_call_click,GA4,internal strategy-call link click,analytics,code inspected only,implemented
+pricing_click,GA4,internal pricing link click,analytics,code inspected only,implemented
+plan_selected,GA4,checkout plan radio change,analytics,registry inspected; no live checkout,implemented
+checkout_started,GA4,PayPal checkout click,analytics,registry inspected; no live checkout,implemented
+subscription_created,GA4,PayPal onApprove callback,analytics,registry inspected; no sandbox run,implemented callback not payment proof
+purchase,GA4,invoice-paid thank-you tracking,analytics,registry inspected; no live payment,implemented callback not live verification
+tool_generate,GA4,QR tool generation,analytics,component call inspected; consent dependent through gtag guard,implemented
+tool_calculate,GA4,missed-call calculator calculation,analytics,component call inspected; consent dependent through gtag guard,implemented
+preview_delivered,none,placeholder for ops confirmation,not applicable,not emitted in repository,placeholder
+qualified_chatbot_lead,none,Conferbot D1 lead record; no analytics event found,not applicable,feature flag off/unbound in checked config,not implemented
+RUM metrics,first-party POST /api/rum,20% random sample + PerformanceObserver,consent-independent existing policy,handler/script inspected; production collection not verified,custom instrumentation
