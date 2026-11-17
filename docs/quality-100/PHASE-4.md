@@ -2,7 +2,7 @@
 
 **Branch:** `phase-1/conversion-handoff`
 **Base commit:** `9b78e94868691c20812d5952a356178d1560044c`
-**Status:** implemented, locally verified, and committed as `ed2f4d43`; desktop performance budget remains unresolved. No push, merge, deployment, or production configuration changes.
+**Status:** Phase 4 implementation committed as `b56648e2`; review follow-up identified and fixed the Conferbot test fixture host-scope bug. Desktop performance budget remains unresolved. No push, merge, deployment, or production configuration changes.
 
 ## Route-count reconciliation
 
@@ -28,7 +28,8 @@ The Phase 3 CSV has 123 nonempty English-URL rows, but this is not 123 English `
 - `npm run check` — passed; 28 lint warnings, no errors; typecheck and configured checks passed.
 - `npm run check:invoice-security` — passed; PayPal HTTP calls were mocked and sandbox testing was not run.
 - `npm run build` — passed; 297 static pages generated, with existing inline-CSS build guards passed.
-- `npm run test:e2e` against the dedicated Phase 4 server — 53 passed, 6 skipped, one existing Conferbot resize/consent test failed. Focused Chromium rerun reproduced that failure; the new responsive screenshot test passed on Chromium and mobile.
+- Initial dedicated-port `npm run test:e2e` — 53 passed, 6 skipped, one Conferbot resize/consent test failed. Investigation found the fixture hard-coded cookie domain `localhost` while the test server was `127.0.0.1`; the consent cookie was therefore not sent and the banner correctly stayed open. The fixture now scopes the cookie to the actual page origin. Focused resize tests pass 2/2 after the correction.
+- Full E2E rerun after the fixture correction — passed: 54 passed, 6 skipped, 0 failed.
 - Desktop DPR 1 selected the new 800w source at 325 KB; DPR 2.625 selected 960w at 394 KB; DPR 3 selected the original 1600w source. Image height remained stable after decode.
 - Post-change mobile Lighthouse budget run passed at 0.93–0.95. Complete desktop rerun scored `/` 0.76, `/pricing` 0.76, `/portfolio` 0.75, and `/contact` 0.80; all remain below the existing 0.85 budget. Other categories were 1.00.
 
@@ -37,7 +38,8 @@ The Phase 3 CSV has 123 nonempty English-URL rows, but this is not 123 English `
 - Desktop Lighthouse budget remains unresolved across all four budget routes; do not claim Phase 4 performance completion until reviewed.
 - Current field CWV data unavailable.
 - A1 Property Services live screenshot recapture awaits a genuine capture.
-- One existing Conferbot resize E2E test fails reproducibly while waiting for consent to close; it is unrelated to the screenshot code but remains unresolved.
-- Phase 5 remains pending review.
+- No production Conferbot integration was enabled; the test continues to use a mock widget and a local consent cookie.
+- Desktop performance remains an open release-quality gate. Phase 5 accessibility audit can proceed; no deployment/release acceptance is implied.
 
-**Commit:** `ed2f4d43` (`perf: correct portfolio screenshot delivery audit`). Local commit only; not pushed, merged, or deployed.
+**Phase 4 implementation commit:** `b56648e2fdafcb99aac10615d5af62c4fc8383e6` (`perf: correct portfolio screenshot delivery audit`).
+The review follow-up (`test: scope consent fixture to active origin`) is local only; no push, merge, or deployment.

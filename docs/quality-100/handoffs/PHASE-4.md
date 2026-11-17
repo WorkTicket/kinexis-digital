@@ -2,7 +2,7 @@
 
 **Branch:** `phase-1/conversion-handoff`
 **Base HEAD:** `9b78e94868691c20812d5952a356178d1560044c`
-**Status:** Phase 4 committed locally as `ed2f4d43`; desktop performance budget and documented follow-ups remain open.
+**Status:** Phase 4 committed at `b56648e2fdafcb99aac10615d5af62c4fc8383e6`; review found and corrected a test-fixture host-scope bug. Desktop performance remains an open release-quality issue.
 
 ## Completed
 
@@ -19,14 +19,16 @@
 - `npm run check`: passed; 28 lint warnings, no errors.
 - `npm run check:invoice-security`: passed; PayPal sandbox not run.
 - `npm run build`: passed; 297 static pages generated.
-- Dedicated-port E2E: responsive test passed on Chromium and mobile. Full suite had 53 passed, 6 skipped, and one Conferbot resize/consent failure; a focused Chromium rerun reproduced it.
-- Post-change mobile Lighthouse: 0.93–0.95. Desktop Lighthouse: `/` 0.76, `/pricing` 0.76, `/portfolio` 0.75, `/contact` 0.80; all fail the unchanged 0.85 budget.
+- Initial dedicated-port E2E: 53 passed, 6 skipped, and one Conferbot consent timeout. Cause: fixture cookie was scoped to `localhost` while the run used `127.0.0.1`; the browser correctly omitted it, so the consent banner remained open. This was a test-fixture/environment host mismatch, not an application defect.
+- Correction: seed the consent cookie using the actual page origin. Focused Conferbot launcher-resize suite passes 2/2; full Playwright suite passes 54 tests with 6 expected skips and 0 failures.
+- Post-change mobile Lighthouse: 0.93–0.95. Desktop Lighthouse: `/` 0.76, `/pricing` 0.76, `/portfolio` 0.75, `/contact` 0.80; all fail the unchanged 0.85 budget. A local desktop homepage trace shows LCP 3.1 s, FCP 1.6 s, TBT 40 ms, CLS 0; LCP resource loading is fast and element render delay dominates the recorded LCP phases. Lighthouse flags about 59.7 KB/300 ms of unused JavaScript as a possible opportunity. This needs code/trace attribution before changes.
 - Image selection: desktop DPR 1 uses 800w (325 KB); mobile DPR 2.625 uses 960w (394 KB); DPR 3 uses 1600w original. Decode geometry is stable.
 
-## Final actions
+## Remaining blockers and readiness
 
-1. Review/resolve the open desktop Lighthouse budget gap; do not lower thresholds.
-2. Arrange a genuine A1 screenshot recapture and triage the unrelated Conferbot resize test failure.
-3. Leave Phase 5 pending review. Do not push, merge, deploy, or alter the old main checkout.
+1. Desktop Lighthouse remains a release-quality blocker; do not lower the threshold. Investigate render delay and unused-JS attribution with representative desktop traces.
+2. Arrange genuine A1 screenshot recapture. Current CWV field data is unavailable.
+3. **Phase 5 readiness: recommended to proceed** now that the Conferbot regression is resolved as a test-fixture host-scope issue and the full E2E suite passes. Keep desktop Lighthouse explicitly open as a separate release-quality gate. Do not push, merge, deploy, or alter the old main checkout.
 
-**Commit:** `ed2f4d43` (`perf: correct portfolio screenshot delivery audit`).
+**Phase 4 implementation commit:** `b56648e2fdafcb99aac10615d5af62c4fc8383e6`.
+Review follow-up: `test: scope consent fixture to active origin`; local only, not pushed, merged, or deployed.

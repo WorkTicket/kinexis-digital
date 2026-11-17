@@ -49,6 +49,12 @@ The committed Phase 1 `performance-runs.json` contains two desktop Lighthouse ru
 
 Those production readings are historical evidence, not a current live-site measurement or field CWV report. They are kept separate from this local baseline.
 
+## Post-change desktop diagnosis
+
+After the portfolio-source correction, a separate dedicated-port run used the same desktop budget emulation on all four budget routes. Scores were `/` 0.76, `/pricing` 0.76, `/portfolio` 0.75, and `/contact` 0.80; all still fail 0.85. Non-performance categories were 1.00. Per-route LCP/FCP/TBT/CLS and opportunity details are in `PERFORMANCE-RESULTS.md`.
+
+The homepage LCP insight showed approximately 12 ms TTFB, 11 ms resource delay, 8 ms resource duration, and 292 ms element-render phase, while overall LCP was 3.1 s. The four routes had similarly short LCP resource phases (about 8–14 ms each) and zero CLS. Lighthouse flagged approximately 59.7 KB of unused JavaScript, estimating 300–450 ms savings depending on route. These opportunities are diagnostic estimates; identify the specific scripts and rendering work in a trace before changing behavior. The prior portfolio image fix did not materially improve global desktop budget scores.
+
 ## Field CWV status
 
 The site includes sampled first-party RUM for LCP, INP, CLS, TTFB, and FCP (`public/assets/js/rum.js` → `/api/rum` → Cloudflare Workers Observability). No production Observability logs or Search Console field CWV report were available in this worktree/session. Field CWV status is therefore **unknown**, not passing.

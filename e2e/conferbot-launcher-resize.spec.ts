@@ -10,13 +10,15 @@ import { expect, test, type Page } from "@playwright/test";
 const MOBILE = { width: 390, height: 844 };
 const DESKTOP = { width: 1280, height: 800 };
 
-async function seedConsentRejected(context: import("@playwright/test").BrowserContext) {
+async function seedConsentRejected(
+  context: import("@playwright/test").BrowserContext,
+  page: Page,
+) {
   await context.addCookies([
     {
       name: "kinexis_consent",
       value: "v1|a=0|d=0",
-      domain: "localhost",
-      path: "/",
+      url: new URL(page.url()).origin,
     },
   ]);
 }
@@ -157,9 +159,10 @@ test.describe("Conferbot launcher sticky lift across resize", () => {
     context,
   }) => {
     await context.clearCookies();
-    await seedConsentRejected(context);
     await page.setViewportSize(MOBILE);
     await page.goto("/", { waitUntil: "domcontentloaded" });
+    await seedConsentRejected(context, page);
+    await page.reload({ waitUntil: "domcontentloaded" });
     await ensureConsentClosed(page);
 
     expect(await mountMockConferbot(page)).toBe(true);
