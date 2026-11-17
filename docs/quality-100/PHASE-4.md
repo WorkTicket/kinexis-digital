@@ -42,4 +42,5 @@ The Phase 3 CSV has 123 nonempty English-URL rows, but this is not 123 English `
 - Desktop performance remains an open release-quality gate. Phase 5 accessibility audit can proceed; no deployment/release acceptance is implied.
 
 **Phase 4 implementation commit:** `b56648e2fdafcb99aac10615d5af62c4fc8383e6` (`perf: correct portfolio screenshot delivery audit`).
-The review follow-up (`test: scope consent fixture to active origin`) is local only; no push, merge, or deployment.
+**Conferbot fixture correction:** `744c11aa37aa7ec96840e2e0661fb84ff33aeef4` (`test: scope consent fixture to active origin`).
+Both commits are local only; no push, merge, or deployment.

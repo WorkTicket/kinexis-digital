@@ -31,4 +31,4 @@
 3. **Phase 5 readiness: recommended to proceed** now that the Conferbot regression is resolved as a test-fixture host-scope issue and the full E2E suite passes. Keep desktop Lighthouse explicitly open as a separate release-quality gate. Do not push, merge, deploy, or alter the old main checkout.
 
 **Phase 4 implementation commit:** `b56648e2fdafcb99aac10615d5af62c4fc8383e6`.
-Review follow-up: `test: scope consent fixture to active origin`; local only, not pushed, merged, or deployed.
+**Conferbot fixture correction:** `744c11aa37aa7ec96840e2e0661fb84ff33aeef4` (`test: scope consent fixture to active origin`); local only, not pushed, merged, or deployed.
