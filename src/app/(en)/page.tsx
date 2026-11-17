@@ -85,9 +85,9 @@ export default async function Home() {
           <div className="hero__reassure">
             <TrustStrip className="hero__trust" />
             <p className="hero__call muted small">
-              Prefer to talk?{" "}
+              <span className="hero__call-prompt">Prefer to talk?</span>
               <Link className="trust-mark" href="/strategy-call" prefetch={false}>Book a call</Link>
-              <span className="trust-fineprint__sep" aria-hidden="true">·</span>
+              <span className="hero__call-sep" aria-hidden="true">·</span>
               <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a>
             </p>
           </div>
@@ -163,7 +163,7 @@ export default async function Home() {
           moreMeta="Any local business — if customers call you, we can help."
           moreLayout="cell"
         />
-        <CostGuides />
+        <CostGuides className="cost-guides--home" />
       </Section>
 
       {/* 6. Plans offer, then comparison detail (one flow — no duplicate recommended card) */}

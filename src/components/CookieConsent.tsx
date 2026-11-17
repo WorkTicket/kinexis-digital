@@ -66,7 +66,7 @@ export default function CookieConsent({
 
   return (
     <div id="kx-consent" data-consent-root="" data-privacy={privacyHref} data-lang={lang} hidden={false}>
-      <div className="consent-dock" data-consent-dock="" role="presentation">
+      <div className="consent-dock" data-consent-dock="" role="presentation" suppressHydrationWarning>
         <div
           className="consent-banner"
           data-consent-banner=""
@@ -133,7 +133,7 @@ export default function CookieConsent({
           </div>
         </div>
       </div>
-      <button type="button" className="consent-fab" data-consent-fab="" aria-label={t.prefs} hidden>
+      <button type="button" className="consent-fab" data-consent-fab="" aria-label={t.prefs} hidden suppressHydrationWarning>
         <span className="consent-fab__icon" aria-hidden="true">
           {COOKIE_SVG}
         </span>

@@ -5,6 +5,14 @@ export const PAGE_HERO_WIDTHS = [480, 640, 960, 1254] as const;
 
 /** Shared with PageHero / HeroImage priority art. */
 export const PAGE_HERO_SIZES = IMAGE_SIZES.pageHero;
+export const HIGH_DETAIL_HERO_FILES = ["01-homepage", "05-reviews", "07-web-design"] as const;
+export const HIGH_DETAIL_HERO_SIZES = "(max-width: 520px) 90vw, (max-width: 860px) 640px, 700px";
+
+export function pageHeroSizesForFile(file: string) {
+  return (HIGH_DETAIL_HERO_FILES as readonly string[]).includes(file)
+    ? HIGH_DETAIL_HERO_SIZES
+    : PAGE_HERO_SIZES;
+}
 
 /**
  * Exact EN pathname → hero file stem under `/assets/heroes/`.
@@ -60,6 +68,8 @@ export function pageHeroPreloadBootScript() {
     .map(([path, file]) => `${JSON.stringify(path)}:${JSON.stringify(file)}`)
     .join(",");
   const sizes = JSON.stringify(PAGE_HERO_SIZES);
+  const highDetailFiles = JSON.stringify(HIGH_DETAIL_HERO_FILES);
+  const highDetailSizes = JSON.stringify(HIGH_DETAIL_HERO_SIZES);
   const widths = PAGE_HERO_WIDTHS.join(",");
   const version = JSON.stringify(STILL_VERSION);
   return `(function(){
@@ -71,7 +81,8 @@ if(p==="/")return;
 var map={${entries}};
 var file=p.indexOf("/case-studies/")===0?"02-portfolio":map[p];
 if(!file)return;
-var v=${version},sizes=${sizes},widths=[${widths}];
+var v=${version},sizes=${sizes},highDetailFiles=${highDetailFiles},highDetailSizes=${highDetailSizes},widths=[${widths}];
+if(highDetailFiles.indexOf(file)>=0)sizes=highDetailSizes;
 var href="/assets/heroes/"+file+"-480.avif?v="+v;
 var srcset=widths.map(function(w){return "/assets/heroes/"+file+"-"+w+".avif?v="+v+" "+w+"w"}).join(", ");
 var l=document.createElement("link");
