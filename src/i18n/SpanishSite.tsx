@@ -1171,11 +1171,11 @@ function Privacy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   return (
     <>
       <ContentSchema path={href("/privacy")} title={tx(PAGE_META["/privacy"].title)} description={tx(PAGE_META["/privacy"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Privacidad"), path: href("/privacy") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 21 de octubre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
+      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 17 de noviembre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("Qué recogemos")}</h2>
         <p>{tx("Si envías un formulario, recogemos lo que escribes: nombre, correo, teléfono, negocio o sitio, la página que quieres cambiar, tu mensaje y cualquier archivo. Si llamas o escribes, guardamos esa correspondencia para responder y hacer el trabajo.")}</p>
-        <p>{tx("El sitio está en Cloudflare. Los registros del servidor pueden incluir tu IP, el navegador y las páginas que pides. Si la analítica está activa, puede registrar páginas visitadas, una ubicación general y el tipo de dispositivo. Puedes bloquear la analítica en el navegador.")}</p>
+        <p>{tx("El sitio está alojado en Cloudflare. Los registros del servidor pueden incluir tu dirección IP, navegador y las páginas que solicitas. La analítica (GA4) y la medición publicitaria (Meta Pixel) no son esenciales. Solo se cargan después de que las aceptes en el aviso de cookies o las actives en las preferencias de cookies. Si rechazas las cookies no esenciales o aún no has elegido, esos scripts no se cargan, incluidos los cargadores diferidos. Puedes cambiar tu elección más tarde desde el control de preferencias de cookies. La cookie de consentimiento se conserva durante 180 días.")}</p>
         <h2>{tx("Cómo lo usamos")}</h2>
         <p>{tx("Usamos esta información para contestarte, preparar una vista previa, prestar el plan que compras y enviarte mensajes de ese trabajo. No vendemos información personal.")}</p>
         <h2>{tx("Con quién la compartimos")}</h2>
