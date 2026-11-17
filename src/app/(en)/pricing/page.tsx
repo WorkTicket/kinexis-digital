@@ -191,7 +191,7 @@ export default function Page() {
           hint="Tap a plan to see everything included. Open two to compare."
           popularLabel="Most Popular"
         />
-        <div className="table-scroll pricing-comparison-table">
+        <div className="table-scroll pricing-comparison-table" role="region" aria-label="Plan feature comparison" tabIndex={0}>
           <table className="plan-table">
             <thead>
               <tr>

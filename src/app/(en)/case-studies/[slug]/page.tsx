@@ -93,8 +93,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <figure className="case-study__shot">
             <DeferredImg
               src={portfolioFile(study.image, 400)}
-              srcSet={portfolioCaseStudySrcSet(study.image)}
-              avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif")}
+              srcSet={portfolioCaseStudySrcSet(study.image, "webp", study.width)}
+              avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif", study.width)}
               sizes={IMAGE_SIZES.caseStudyShot}
               alt={`${study.title} homepage screenshot`}
               width={400}

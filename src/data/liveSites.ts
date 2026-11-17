@@ -34,7 +34,7 @@ export const LIVE_SITES: LiveSite[] = [
     trade: "Landscaping · Cedar Falls, Iowa",
     url: "https://a1pslandscape.com/",
     image: "/portfolio/live-a1-landscaping.webp",
-    width: 1100,
-    height: 8113,
+    width: 1041,
+    height: 10018,
   },
 ];

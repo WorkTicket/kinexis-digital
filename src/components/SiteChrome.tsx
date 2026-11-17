@@ -25,7 +25,7 @@ export default function SiteChrome({
       <SiteSchema locale={locale} />
       <a className="skip" href="#content">{chrome.skip}</a>
       {SITE.announce && (
-        <div className="announce">
+        <div className="announce" role="region" aria-label={chrome.announce}>
           <Link href={withLocale(locale, SITE.announce.href)} prefetch={false}>
             {chrome.announce}
           </Link>

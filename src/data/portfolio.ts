@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning", "Events", "Specialty"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "39";
+export const PORTFOLIO_ASSET_VERSION = "40";
 
 export type PortfolioShotWidth = 320 | 400 | 480 | 640 | 662 | 800 | 960 | 1100 | 1600 | "card";
 
@@ -102,10 +102,13 @@ export function portfolioShotSrcSet(image: string, format: "webp" | "avif" = "we
   return `${portfolioFile(image, 320, format)} 320w, ${portfolioFile(image, 640, format)} 640w`;
 }
 
-/** Case-study full-page live screenshots — CSS ~378 mobile / ~662–800 desktop.
- *  400w is the mobile candidate (with understated sizes); 662/800/1100 for larger viewports. */
-export function portfolioCaseStudySrcSet(image: string, format: "webp" | "avif" = "webp") {
-  return `${portfolioFile(image, 400, format)} 400w, ${portfolioFile(image, 662, format)} 662w, ${portfolioFile(image, 800, format)} 800w, ${portfolioFile(image, 1100, format)} 1100w`;
+/** Case-study full-page live screenshots — the final master candidate uses its actual intrinsic width. */
+export function portfolioCaseStudySrcSet(
+  image: string,
+  format: "webp" | "avif" = "webp",
+  sourceWidth = 1100,
+) {
+  return `${portfolioFile(image, 400, format)} 400w, ${portfolioFile(image, 662, format)} 662w, ${portfolioFile(image, 800, format)} 800w, ${portfolioFile(image, 1100, format)} ${sourceWidth}w`;
 }
 
 export function portfolioDeviceFile(image: string, width: 768 | 1536 = 1536) {

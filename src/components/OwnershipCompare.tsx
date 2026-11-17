@@ -45,7 +45,7 @@ export default function OwnershipCompare({
         ))}
       </div>
 
-      <div className="table-scroll own-path-table">
+      <div className="table-scroll own-path-table" role="region" aria-label={labels.aria} tabIndex={0}>
         <table className="plan-table plan-compare__own-table">
           <thead>
             <tr>

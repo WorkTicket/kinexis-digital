@@ -25,6 +25,7 @@ type Labels = {
   popularLabel?: string;
   notesAria?: string;
   textbackLabel?: string;
+  comparisonAria?: string;
   /** @deprecated Featured Lead System card removed; kept for call-site compat. */
   heading?: string;
   mark?: string;
@@ -86,7 +87,12 @@ export default function PlanCompare({
         hideStickers={hideStickers}
       />
 
-      <div className="table-scroll plan-compare__table-wrap pricing-comparison-table">
+      <div
+        className="table-scroll plan-compare__table-wrap pricing-comparison-table"
+        role="region"
+        aria-label={labels.comparisonAria ?? "Plan feature comparison"}
+        tabIndex={0}
+      >
         <table className="plan-table plan-compare__table">
           <thead>
             <tr>

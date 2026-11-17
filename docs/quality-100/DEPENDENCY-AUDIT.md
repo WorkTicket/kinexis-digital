@@ -4,6 +4,8 @@
 
 Audit executed Tue Nov 17, 2026 with the lockfile present:
 
+Phase 9.1 re-ran both audit commands on the same lockfile: production dependencies still report zero vulnerabilities; the full graph still reports 13 moderate and zero high/critical. No dependency or lockfile changes were made.
+
 | Command | Result |
 |---|---|
 | `npm audit --omit=dev --json` | 0 vulnerabilities across 55 production dependencies; 0 low/moderate/high/critical |

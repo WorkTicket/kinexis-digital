@@ -46,3 +46,16 @@ The cookie consent panel had modal ARIA but no keyboard focus management. It now
 - Payment-provider and live chatbot interfaces were not tested against external providers.
 
 **Conclusion:** automated and targeted checks found no critical remaining keyboard/label defect in the sampled first-party flows after the consent fix. WCAG 2.2 AA conformance is not certified; manual testing remains a release follow-up.
+
+## Phase 9.1 follow-up — 2026-11-17
+
+An axe-core 4.14.0 browser scan was run on `/`, `/pricing`, `/portfolio`, and `/contact` after waiting for page-entry animations to finish. The initial scan identified three first-party issues: the site announcement was outside a landmark, and horizontally scrollable plan/ownership tables were not keyboard focusable. These were corrected with a named announcement region and named, focusable table regions. A final scan found **0 axe violations** on all four pages (49–60 rules passed per page). Color-contrast checks remain partly “incomplete” where axe cannot resolve rendered/background combinations, so this is not a manual contrast certification.
+
+Additional targeted checks on the rebuilt local site:
+
+- With consent already decided (no analytics or advertising consent), the first Tab focuses the skip link, which targets `#content`. The separate consent-dialog focus trap remains covered by the Playwright regression test.
+- Emulated `prefers-reduced-motion: reduce` matched; no running animations were observed on the sampled homepage.
+- 640px and 320px CSS viewport checks found no horizontal document overflow on the homepage. These are reflow proxies, not direct 200%/400% browser-zoom or text-only resizing tests.
+- Lighthouse accessibility remained 1.00 on all four budget routes in both runs.
+
+Manual contrast/non-text contrast, actual browser zoom, full focus appearance, screen-reader announcements, and WCAG 2.2 AA criterion-by-criterion review remain open. The updates reduce detected issues but do not certify conformance.

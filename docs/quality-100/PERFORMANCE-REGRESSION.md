@@ -26,3 +26,18 @@ Accessibility, Best Practices and SEO scored 1.00 on all eight routes per run. T
 No low-risk optimization with measured, attributable gain was established. We made no code or budget change. Desktop remains a release blocker on all four target routes; mobile remains below 0.95 on homepage, pricing and portfolio in both runs. The next useful investigation is a controlled trace identifying the specific render/hydration work behind the LCP element-render and unused-JS opportunities, followed by one scoped A/B change under the same runner. Do not defer required functionality, reduce image quality, remove features or lower the budgets to pass.
 
 Lab Lighthouse scores are not production field CWV. No production RUM, Search Console field data or Cloudflare retention was accessed.
+
+## Phase 9.1 rebuilt-site confirmation — 2026-11-17
+
+After the genuine A1 screenshot and the small accessibility semantics update, the production build was rebuilt and the unchanged budget script was run twice against a fresh local `next start` server. Lighthouse remained 13.6.0; existing viewports, throttling and budgets were preserved. Chromium was 159.0.8154.6.
+
+| Route | Mobile run 1 | Mobile run 2 | Target | Desktop run 1 | Desktop run 2 | Target |
+|---|---:|---:|---|---:|---:|---|
+| `/` | 0.93 | 0.94 | 0.95 | 0.77 | 0.76 | 0.85 |
+| `/pricing` | 0.93 | 0.93 | 0.95 | 0.76 | 0.77 | 0.85 |
+| `/portfolio` | 0.92 | 0.92 | 0.95 | 0.76 | 0.76 | 0.85 |
+| `/contact` | 0.95 | 0.95 | 0.95 | 0.80 | 0.80 | 0.85 |
+
+Accessibility, Best Practices and SEO each remained 1.00 on all routes in both runs. Desktop still fails all four targets; mobile still fails the home, pricing and portfolio targets. No performance budget or functionality was relaxed.
+
+A separate single diagnostic pass on this build measured FCP 1.23–1.56s, LCP 2.94–3.40s, TBT 12–78ms, CLS 0, and TTFB 6–12ms; Lighthouse found no render-blocking resources and estimated about 59.7KB unused JavaScript in two shared chunks. Style & Layout was the largest main-thread category on most sampled routes. These are diagnostic leads, not attribution or proof of a safe optimization. No performance code change was justified; desktop/mobile performance remain release blockers. Raw output is retained under ignored `.audit/phase91/`.

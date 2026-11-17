@@ -268,6 +268,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             popularLabel: tx("El más elegido"),
             notesAria: tx("Guía de planes y detalles del texto si no contestas"),
             textbackLabel: tx("Texto si no contestas"),
+            comparisonAria: tx("Comparación de características de planes"),
           }}
           comparison={ES_PLAN_COMPARISON}
           ownership={ES_OWNERSHIP}
@@ -671,7 +672,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
           popularLabel={tx("El más elegido")}
           hideStickers={spainChrome}
         />
-        <div className="table-scroll pricing-comparison-table"><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
+        <div className="table-scroll pricing-comparison-table" role="region" aria-label={tx("Comparación de planes")} tabIndex={0}><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
           {table.map((section) => <tbody key={section.group}><tr className="plan-table__group"><th colSpan={5}><span>{section.group}</span></th></tr>{section.rows.map(([label, ...values]) => <tr key={label}><th scope="row">{label}</th>{values.map((value, i) => <td className={i === 1 ? "is-pop" : undefined} key={`${label}-${i}`}>{value}</td>)}</tr>)}</tbody>)}
         </table></div>
         <OwnershipCompare
