@@ -190,7 +190,7 @@ const token = await accessToken();
 assert.ok(token, "oauth token");
 console.log(`OK  PayPal OAuth against ${apiBase}`);
 
-if (!isSandbox) {
+if (apiBase !== "https://api-m.sandbox.paypal.com") {
   console.log("SKIP order create/capture — non-sandbox API.");
   process.exit(0);
 }

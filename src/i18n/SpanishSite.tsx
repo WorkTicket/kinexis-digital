@@ -329,7 +329,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <Stepper steps={steps} />
       </Section>
       <Section tint>
-        <h2 className="center"><HL text={tx("Garantía de clientes en 60 días")} mark={tx("60 días")} /></h2>
+        <h2 className="center"><HL text={tx("Garantía de leads rastreados en 60 días")} mark={tx("60 días")} /></h2>
         <p className="center muted">{tx("Lead System y Plus incluyen una garantía por escrito. Si no hay leads rastreados en los primeros 60 días en línea, condonamos el tercer y cuarto cargo.")}</p>
         <p className="center btn-row spaced"><OpenDialog id="guarantee" className="btn btn--ghost">{tx("Leer la garantía")}</OpenDialog><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link></p>
         <TrustStrip
@@ -1153,7 +1153,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("7. Cancelación y acceso")}</h2>
         <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El cobro se detiene al final del período que ya pagaste y el sitio sigue en línea hasta entonces.")}</p>
         <p>{tx("Como en los planes mensuales Kinexis hospeda y administra el sitio, cuando termina el período pagado el hosting y la administración se detienen y el sitio sale de línea, salvo que lo conserves de otra forma.")}</p>
-        <p><b>{tx("Compra:")}</b> {tx("un pago único por escrito de los archivos del sitio para moverlos a un hosting que tú controles. Pide las condiciones por escrito antes de cancelar si ese es el camino que quieres.")}</p>
+        <p><b>{tx("Compra:")}</b> {tx("un pago único de $1,497 por escrito de los archivos del sitio para moverlos a un hosting que tú controles. Pide las condiciones por escrito antes de cancelar si ese es el camino que quieres.")}</p>
         <p><b>{tx("Pasar a Own It:")}</b> {tx("cambia de un plan mensual al pago único de Own It antes de que termine el período pagado. Los términos de Own It (archivos, hosting incluido y Cuidado del sitio) están en la sección 6.")}</p>
         <p>{tx("Si no arreglas una compra ni pasas a Own It antes de que termine el período pagado, el sitio sale de línea cuando se detienen el hosting y la administración.")}</p>
         <h2>{tx("8. Impuestos y terceros")}</h2>

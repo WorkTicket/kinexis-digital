@@ -250,16 +250,16 @@ export function CtaBand({
   const trust =
     locale === "es-ES"
       ? {
-          leadLabel: "Garantía de clientes en 60 días",
+          leadLabel: "Garantía de leads rastreados en 60 días",
           refundLabel: "Garantía de devolución en 30 días",
-          downLabel: "Sin enganche",
+          downLabel: "Sin pago inicial",
           previewLabel: "Vista previa gratis en 2 días hábiles",
         }
       : locale === "es-419"
         ? {
-            leadLabel: "Garantía de clientes en 60 días",
+            leadLabel: "Garantía de leads rastreados en 60 días",
             refundLabel: "Garantía de devolución en 30 días",
-            downLabel: "$0 de enganche",
+            downLabel: "$0 de entrada",
             previewLabel: "Vista previa gratis en 2 días hábiles",
           }
         : undefined;

@@ -1,7 +1,7 @@
 # Analytics acceptance
 
-**Status: BLOCKED — provider/account acceptance is incomplete.**
+**Status: PARTIAL — owner confirmed both IDs are live and received the authorized test; GA4 key-event verification is pending.**
 
-Owner-supplied public GA4 and Meta IDs are now set in gitignored `.env.local` and root Wrangler vars; the strict production build preflight passes. Preview builds suppress both production trackers. Historical browser transport evidence and limitations are preserved in [`RELEASE-GATE-MATRIX.csv`](../quality-100/RELEASE-GATE-MATRIX.csv), rows 14–18; neither supplied IDs nor prior transport responses prove correct account mapping, receipt, attribution, key-event configuration, consent compliance, or production readiness.
+Owner reports that GA4 `G-Z8245BRX2L` and Meta Pixel `2080705549212381` are live and received the previously authorized test. This is owner-reported provider evidence, not an independent account inspection by the agent. GA4 `generate_lead` key-event status is expected to be checked/configured by the owner on 2026-11-18. Preview builds suppress both production trackers. Historical browser transport evidence and limitations are preserved in [`RELEASE-GATE-MATRIX.csv`](../quality-100/RELEASE-GATE-MATRIX.csv), rows 14–18.
 
-**Owner actions:** provide approved read-only access to GA4 property 542906196 and the correct Meta business/ad account and campaign dataset; verify configured IDs match the intended stream/dataset; inspect Realtime/DebugView and Events Manager; approve `generate_lead` key-event intent; review consent, attribution, deduplication, and test-event exclusion. Do not send additional live-account events until a labeled test-event procedure is approved.
+**Remaining:** owner to confirm GA4 `generate_lead` key-event status on 2026-11-18; complete read-only review of consent, attribution, deduplication, and test-event exclusion. Do not send additional live-account events unless a labeled test-event procedure is approved.
