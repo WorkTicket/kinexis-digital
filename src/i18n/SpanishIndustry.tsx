@@ -18,7 +18,7 @@ import IndustryHeroArt from "@/components/IndustryHeroArt";
 import { ShotFrame } from "@/components/ShotFrame";
 import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, Icon, PageHero, Section } from "@/components/ui";
-import { withLocale, type Locale } from "@/lib/i18n";
+import { localeHref, withLocale, type Locale } from "@/lib/i18n";
 import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 
 function LeadArt({ alt }: { alt: string }) {
@@ -59,7 +59,7 @@ export default function SpanishIndustry({
   const industry = localizeIndustry(base, locale);
   const project = industry.projectSlug ? getProject(industry.projectSlug) : undefined;
   const path = withLocale(locale, `/industries/${industry.slug}`);
-  const href = (item: string) => withLocale(locale, item);
+  const href = (item: string) => localeHref(locale, item);
   const related = relatedIndustries(base).map((item) => localizeIndustry(item, locale));
   const features = localizedIndustryFeatures(tx);
   const depth = INDUSTRY_SEO_DEPTH[industry.slug];

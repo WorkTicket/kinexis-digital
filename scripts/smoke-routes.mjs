@@ -35,30 +35,28 @@ function parseSitemapUrls(xml) {
 }
 
 const sitemapUrl = `${base}/sitemap.xml`;
+const baseOrigin = new URL(base).origin;
 let targets = [];
-let sitemapHostMismatch = false;
 
 try {
   const { res, text } = await fetchText(sitemapUrl);
   if (!res.ok) throw new Error(`sitemap ${res.status}`);
   const locs = parseSitemapUrls(text);
   if (locs.length === 0) throw new Error("empty sitemap");
-  const origin = new URL(base).origin;
   for (const loc of locs) {
     try {
       const u = new URL(loc);
-      if (u.hostname !== new URL(base).hostname) sitemapHostMismatch = true;
-      targets.push(u.toString());
+      // Production builds can emit canonical production URLs even when the
+      // smoke run targets localhost or a preview deployment. Keep each path,
+      // but send the request to the explicitly selected base.
+      targets.push(new URL(`${u.pathname}${u.search}`, baseOrigin).toString());
     } catch {
       /* skip bad loc */
     }
   }
   console.log(`Sitemap: ${targets.length} unique URLs from ${sitemapUrl}`);
-  if (sitemapHostMismatch) {
-    console.log(`Note: sitemap host differs from probe base (${base}); requesting sitemap absolute URLs.`);
-  }
   // Always include robots + sitemap itself.
-  targets.push(`${origin}/robots.txt`, sitemapUrl);
+  targets.push(`${baseOrigin}/robots.txt`, sitemapUrl);
   targets = [...new Set(targets)];
 } catch (error) {
   console.log(`Sitemap unavailable (${error instanceof Error ? error.message : "error"}); using fallback paths.`);

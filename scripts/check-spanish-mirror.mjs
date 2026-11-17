@@ -19,6 +19,7 @@ import { MIRROR_PATHS } from "@/lib/locale-path";
 import { SPANISH_STATIC_META_PATH_SET } from "@/i18n/spanish-static-paths";
 import { getIndustry } from "@/data/industries";
 import { esPost } from "@/i18n/posts-es";
+import { localeHref } from "@/lib/locale-path";
 
 const missing = [];
 for (const route of MIRROR_PATHS) {
@@ -41,6 +42,41 @@ if (missing.length) {
   console.error("Spanish mirror coverage gaps:");
   for (const item of missing) console.error(" -", item);
   process.exit(1);
+}
+
+for (const [path, expected] of [
+  ["/blog/junk-removal-website-cost", "/es/blog/junk-removal-website-cost"],
+  ["/blog/junk-removal-website-pages", "/es/blog/junk-removal-website-pages"],
+  ["/blog/tree-service-website-cost", "/es/blog/tree-service-website-cost"],
+  ["/blog/tree-service-website-pages", "/es/blog/tree-service-website-pages"],
+  ["/industries/junk-removal", "/es/industries/junk-removal"],
+  ["/industries/tree-care", "/es/industries/tree-care"],
+]) {
+  const actual = localeHref("es-419", path);
+  if (actual !== expected) {
+    console.error("Unexpected Spanish navigation target:", path, "→", actual, "(expected", expected + ")");
+    process.exit(1);
+  }
+}
+
+for (const slug of [
+  "junk-removal-website-cost",
+  "junk-removal-website-pages",
+  "tree-service-website-cost",
+  "tree-service-website-pages",
+]) {
+  const post = esPost(slug);
+  const words = post
+    ? [post.lead, ...post.sections.map((section) => section.html)]
+        .join(" ")
+        .replace(/<[^>]+>/g, " ")
+        .split(/\\s+/)
+        .filter(Boolean).length
+    : 0;
+  if (!post || post.sections.length < 9 || words < 900) {
+    console.error("Spanish article is missing or looks incomplete:", slug, "(" + words + " words)");
+    process.exit(1);
+  }
 }
 console.log("Spanish mirror coverage OK (" + MIRROR_PATHS.length + " paths).");
 `;
