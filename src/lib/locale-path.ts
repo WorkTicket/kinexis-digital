@@ -54,6 +54,13 @@ export function isMirrored(pathname: string): boolean {
   return MIRROR.has(englishPath(pathname));
 }
 
+/** Keep Spanish navigation on English URLs when a page has no Spanish copy. */
+export function localeHref(locale: Locale, pathname: string): string {
+  const en = englishPath(pathname);
+  if (locale === "en" || UNMIRRORED.has(en) || !MIRROR.has(en)) return en;
+  return withLocale(locale, en);
+}
+
 /**
  * Rewrite root-absolute internal hrefs in Spanish HTML bodies so they stay on
  * the current locale (and avoid EN 301s for Spanish-only blog slugs).

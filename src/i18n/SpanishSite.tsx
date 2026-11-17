@@ -14,7 +14,7 @@ import SpanishIndustry from "@/i18n/SpanishIndustry";
 import { p } from "@/i18n/prices";
 import { spanishHomeFaqs, spanishPlans } from "@/i18n/spanish-plans";
 import { SPANISH_STATIC_META_PATH_SET, type SpanishStaticPath } from "@/i18n/spanish-static-paths";
-import { contentLanguage, localizeHtmlHrefs, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
+import { contentLanguage, localizeHtmlHrefs, localeHref, pathFromSlug, spainize, spainizeData, withLocale, type Locale } from "@/lib/i18n";
 import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { contentMetadata } from "@/lib/seo";
 import { SITE, telHref } from "@/lib/site";
@@ -156,7 +156,7 @@ function metaFor(en: string, locale: Locale): Meta | undefined {
 }
 
 function L(locale: Locale, path: string) {
-  return withLocale(locale, path);
+  return localeHref(locale, path);
 }
 
 export async function SpanishPage({ locale, slug }: { locale: Exclude<Locale, "en">; slug?: string[] }) {

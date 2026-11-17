@@ -1,5 +1,5 @@
 /** Regenera con: node scripts/generate-es-trade-bodies.mjs */
-import type { EsPost } from "@/i18n/es-post-type";
+import type { EsPost } from "@/i18n/posts-es";
 
 export type EsPagesPostBody = {
   lead: string;
@@ -956,6 +956,164 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
         "a": "Arregla la primera pantalla del inicio, luego tus tres páginas de servicio principales, luego la página de zona. Agrega extras solo cuando esas conviertan."
       }
     ]
+  },
+  "junk-removal-website-pages": {
+    "lead": "La mayoría de quienes llegan al sitio de una empresa de retiro de chatarra ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa el acarreo rápido de las limpiezas planeadas: cada trabajo necesita un siguiente paso distinto.",
+    "sections": [
+      {
+        "h2": "Empieza por la llamada, no por el mapa del sitio",
+        "html": "<p>Olvida el organigrama perfecto un minuto. Imagina a alguien en el celular en la entrada. Buscó un trabajo, tocó un resultado y ahora tiene unos cinco segundos de paciencia. Si tu página habla alrededor del trabajo — o esconde el número — se va. Ese es el argumento entero por páginas claras.</p><p>Sí necesitas estructura sensata. Inicio, servicios, zona, nosotros, reseñas, contacto. Pero el punto de esa estructura son llamadas y formularios calificados, no impresionar a otro diseñador. Recorre ejemplos en vivo en el <a href=\"/industries/junk-removal\">hub de retiro de chatarra</a> cuando quieras prueba de layout. Si lo que sigue es precio, usa <a href=\"/blog/junk-removal-website-cost\">cuánto cuesta un sitio de retiro de chatarra</a> — ese post es dueño de la pregunta de costo; este es dueño de la lista de páginas.</p>"
+      },
+      {
+        "h2": "Páginas base que todo sitio de servicios necesita",
+        "html": "<p>Piensa en la última llamada que casi no llegó: alguien encontró tu nombre, abrió el sitio en el estacionamiento y en diez segundos decidió si marcar o volver a la lista de Google. Esas páginas base no son adorno — son lo que contesta en el pulgar.</p><p>Todo sitio de oficio comparte un esqueleto aburrido pero esencial. Si falta una pieza, el visitante inventa su propia historia — casi siempre la incorrecta.</p><p><strong>Inicio</strong> tiene que funcionar en el celular con un pulgar: nombra el trabajo, muestra el número y deja obvio el siguiente paso. <strong>Páginas de servicio</strong> deben separar los trabajos que de verdad vendes, no volcar todo bajo “lo que hacemos”. <strong>Zona de servicio</strong> lista los pueblos que tu cuadrilla sí cubre este mes — no un radio de fantasía. <strong>Nosotros</strong> cubre licencia, seguro y quién llega, corto; la prueba también va cerca del teléfono. <strong>Reseñas</strong> deben sentirse reales. <strong>Contacto</strong> es formulario más llamada con un toque, no un número atrapado en el pie de página.</p><p>Ese es el piso. Las páginas específicas del oficio abajo hacen que alguien piense “hacen <em>mi</em> trabajo” en lugar de “folleto bonito”.</p><p>Si planeas contra un plan Kinexis, los conteos son un tope — no tarea infinita: Website hasta 5, Lead System hasta 10, Plus hasta 20 (inglés + español), Own It hasta 10. Publica primero las páginas que ganan llamadas.</p>"
+      },
+      {
+        "h2": "Wireframe del inicio (mobile first)",
+        "html": "<p>Abre tu sitio en el celular como lo vería un desconocido. Sin bajar, ¿se entiende qué arreglas, dónde trabajas y cómo llaman? Si no, el resto del sitio pelea cuesta arriba.</p><p>Una primera pantalla práctica suele ir así: titular que nombra el trabajo (no “calidad desde siempre”), número con toque para llamar, ciudades que cubres, una acción principal clara y una franja fina de confianza — licencia, seguro o una línea de reseña real. Declaraciones de misión, galerías largas y ensayos de financiamiento pueden esperar. Alguien con agua en el piso no lee tu origen.</p><p>Google indexa con enfoque <a href=\"https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing\" rel=\"noopener noreferrer\" target=\"_blank\">mobile-first</a>: diseña primero el celular y amplía en escritorio. La velocidad cuenta. Un héroe bonito que tarda en cargar igual pierde la llamada. Si la página se siente pesada en datos, pásala por <a href=\"https://pagespeed.web.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">PageSpeed Insights</a> y corrige lo que bloquee el número y el titular.</p>"
+      },
+      {
+        "h2": "Páginas de servicio para retiro de chatarra",
+        "html": "<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href=\"/industries/junk-removal\">retiro de chatarra</a> para ver el enfoque del sitio.</p><p>Más ejemplos y notas de proceso viven en el <a href=\"/industries/junk-removal\">hub de retiro de chatarra</a>.</p>"
+      },
+      {
+        "h2": "Anatomía de una página de servicio",
+        "html": "<p>Piensa como quien contesta el teléfono. Antes de pedir el nombre, necesita saber de qué va la página. Una página de servicio fuerte responde en el primer aliento: qué se rompió o qué quieren hacer, si es “llama ya” o “agenda visita”, y qué prueba te hace creíble.</p><p>Escribe títulos como busca el cliente. “Cambio de calentador” gana a “soluciones residenciales”. “Resorte de puerta roto” gana a “sistemas de puerta”. Pon ese lenguaje en el H1 y en el párrafo de apertura.</p><p>El primer formulario corto: nombre, teléfono, tipo de trabajo, ciudad. Fotos y seriales pueden ir después por mensaje cuando el lead es real. Páginas de emergencia ponen el teléfono sobre el formulario. Proyectos planeados pueden liderar con formulario si vas lleno, pero el número sigue a un toque.</p><p>FAQs solo cuando quitan una objeción real: horarios, zona, permisos, lo que no haces. Relleno por contar palabras no ayuda a nadie. La guía de Google sobre <a href=\"https://developers.google.com/search/docs/fundamentals/creating-helpful-content\" rel=\"noopener noreferrer\" target=\"_blank\">contenido útil</a> es básicamente eso: escribe para personas primero.</p>"
+      },
+      {
+        "h2": "Mantén NAP y el perfil consistentes",
+        "html": "<p>Nombre, teléfono, horario y zona deben coincidir entre tu sitio y tu <a href=\"https://support.google.com/business/\" rel=\"noopener noreferrer\" target=\"_blank\">Perfil de Negocio de Google</a>. Un perfil que dice 24/7 mientras el sitio cierra a las seis genera llamadas enojadas de madrugada y reseñas que no necesitabas.</p><p>Una página honesta de zona — no una pila de clones por ciudad. Las políticas de spam de Google señalan <a href=\"https://developers.google.com/search/docs/essentials/spam-policies#doorway-pages\" rel=\"noopener noreferrer\" target=\"_blank\">páginas puerta</a> hechas sobre todo para rankear por nombres de lugar. Lista los pueblos que sí puedes cubrir, nota límites duros si los hay, y enlaza esa página desde pie y contacto.</p><p>Cuando cambian horarios por festivo, actualiza perfil y sitio el mismo día. Lead System y Plus incluyen ajuste del perfil al lanzar; Plus agrega dos publicaciones al mes. SEO continuo después de esa base se cotiza aparte.</p>"
+      },
+      {
+        "h2": "Fotos y prueba que pertenecen al sitio",
+        "html": "<p>Fotos de stock de cascos y extraños entrenan al siguiente cliente a esperar otra cuadrilla. Mejor:</p><ul><li>Tu camión y camisas con marca</li><li>Antes/después de trabajos que sí terminaste</li><li>Primeros planos que muestren oficio (juntas, paneles, bordes de pintura) cuando ayuden a vender</li><li>Leyenda simple con ciudad o barrio cuando sea real</li></ul><p>Comprime imágenes para que el teléfono siga apareciendo rápido. La guía de <a href=\"https://developers.google.com/search/docs/appearance/page-experience\" rel=\"noopener noreferrer\" target=\"_blank\">experiencia de página</a> de Google recuerda que media lenta duele búsqueda y conversión. Licencia y seguro cerca del botón de llamada cuando apliquen en tu estado — no solo en Nosotros enterrado.</p>"
+      },
+      {
+        "h2": "Formularios y llamadas: el siguiente paso según la intención",
+        "html": "<p>Los formularios fallan cuando piden una novela. Para la mayoría de oficios, empieza con:</p><ul><li>Nombre</li><li>Teléfono (obligatorio)</li><li>Tipo de trabajo (lista o texto corto)</li><li>Ciudad o ZIP</li></ul><p>Después opcional: fotos, códigos, ventanas preferidas. Páginas de emergencia deben liderar con llamada y tratar el formulario como respaldo. Páginas de estimado planeado pueden liderar con formulario si vas lleno — el número sigue visible.</p><p>Tras enviar, di qué pasa después (“Llamamos en horario de atención”) y cumple la promesa. Una página de gracias que dice “en contacto” sin plazo entrena a la gente a llamar a tu competencia.</p>"
+      },
+      {
+        "h2": "Cómo priorizar páginas (IA sin jerga)",
+        "html": "<p>La arquitectura de información no es concurso de mapa del sitio. Ordena páginas por si ganan llamada o formulario calificado:</p><ol><li>Inicio</li><li>Servicios principales o de emergencia</li><li>Zona de servicio</li><li>Contacto</li><li>Reseñas / prueba</li><li>Nosotros</li><li>Servicios secundarios y ofertas estacionales</li></ol><p>Entradas de blog y recursos apoyan esas páginas de dinero — no deben reemplazar una página de servicio clara para un trabajo principal. Enlaces internos obvios: del inicio a servicios, de servicios a zona y contacto, de guías del blog de vuelta al hub de industria y al post de costo hermano cuando la pregunta es precio.</p>"
+      },
+      {
+        "h2": "Inicio anotado cuando hay prueba",
+        "html": "<p>Cuando exista un sitio de cliente en vivo para este oficio, anotamos el inicio en el hub de la industria — héroe, franja de confianza, rutas de servicio y dónde va el teléfono. Mientras tanto, usa la lista de servicio de arriba y pide una vista previa gratis del inicio para tu oferta y ve el camino de la primera pantalla antes de pagar.</p>"
+      },
+      {
+        "h2": "Evita spam de ciudades puerta",
+        "html": "<p>No publiques páginas casi idénticas que solo cambian el nombre del pueblo. Ese patrón desperdicia rastreo, confunde a quien vive fuera de tu radio real y no ayuda a decidir si marcan.</p><p>Una página clara de zona más páginas de servicio fuertes es el enfoque honesto. Si luego entras de verdad a una ciudad nueva, actualiza la página de zona y el perfil — no subas veinte clones finos de la noche a la mañana.</p><p>Lectura relacionada: <a href=\"/blog/local-seo-get-found-get-called\">SEO local que conecta búsquedas con llamadas</a>, <a href=\"/blog/web-design-for-contractors\">lista para sitio de contratista</a> y <a href=\"/blog/google-business-profile-vs-website\">Perfil de Google vs sitio web</a>.</p>"
+      },
+      {
+        "h2": "Orden de publicación si empiezas con poco",
+        "html": "<p>No tienes que publicar veinte URLs el día uno para “verse profesional”. Los dueños que más llamadas reportan suelen tener menos páginas, pero cada una con un siguiente paso que coincide con lo que la persona buscó.</p><p>Si reconstruyes desde un folleto, publica en este orden:</p><ol><li>Arregla la primera pantalla del inicio (trabajo, zona, teléfono)</li><li>Publica las tres páginas de servicio que más coinciden con búsquedas reales</li><li>Agrega la página honesta de zona</li><li>Alinea el Perfil de Google con el sitio</li><li>Solo después páginas secundarias, galerías o entradas de blog</li></ol><p>Un sitio de cinco páginas que genera llamadas gana a uno de veinte que solo sirve en monitor de escritorio. Con la estructura clara, compara modelos de flujo en <a href=\"/blog/monthly-website-vs-own-it\">plan mensual u Own It</a> y precios en <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "Qué medir después de publicar",
+        "html": "<p>Un sitio nuevo no se arregla solo el viernes de lanzamiento. La primera semana suele mostrar la verdad: qué páginas traen clics sin llamadas, qué formularios se abandonan a mitad, si el perfil de Google todavía dice horario viejo. Anota eso en una hoja simple — no hace falta un tablero enterprise para dueños de negocio de servicios.</p><p>Después del lanzamiento, mide lo que importa:</p><ul><li>Llamadas desde el sitio (número de seguimiento si usas uno)</li><li>Formularios que se volvieron trabajos reales</li><li>Consultas y páginas con impresiones en Search Console</li><li>Qué páginas de servicio tienen visitas y cero llamadas (arréglalas primero)</li></ul><p><a href=\"https://support.google.com/webmasters/answer/4559176\" rel=\"noopener noreferrer\" target=\"_blank\">Google Search Console</a> muestra descubrimiento; tu teléfono y CRM muestran dinero. Arreglos técnicos pueden moverse en semanas; crecimiento local más amplio suele tardar meses y depende de competencia. Nadie fuera de Google promete posición — mira la <a href=\"https://developers.google.com/search/docs/fundamentals/seo-starter-guide\" rel=\"noopener noreferrer\" target=\"_blank\">guía inicial de SEO</a> de Google para bases y <a href=\"/seo-services\">servicios SEO</a> cuando quieras trabajo continuo cotizado aparte de los cuatro planes de sitio.</p><p><a href=\"/contact\">Pide una vista previa gratis del inicio</a> o compara planes en <a href=\"/pricing\">/pricing</a>. Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497 una vez — cada opción empieza con vista previa gratis en 2 días hábiles, sin tarjeta.</p>"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Qué páginas debe tener el sitio de una empresa de retiro de chatarra?",
+        "a": "Inicio; acarreo esta semana; limpiezas de cochera y propiedades heredadas; rutas recurrentes solo si existen; zona; nosotros; reseñas y contacto con teléfono y formulario breve. Evita páginas clonadas por ciudad."
+      },
+      {
+        "q": "¿Necesito una página por cada ciudad?",
+        "a": "No. Una página honesta de zona gana a docenas de páginas casi iguales que solo cambian el pueblo."
+      },
+      {
+        "q": "¿Emergencia y estimado deben compartir una página?",
+        "a": "Casi nunca. Da a trabajos urgentes un camino con teléfono y a trabajos planeados un formulario corto para que el siguiente paso coincida con la intención de búsqueda."
+      },
+      {
+        "q": "¿Cómo se relacionan los planes Kinexis con el conteo de páginas?",
+        "a": "Website incluye hasta 5 páginas, Lead System hasta 10, Plus hasta 20 (inglés + español), Own It hasta 10. Empieza con vista previa gratis del inicio — sin tarjeta."
+      },
+      {
+        "q": "¿Por dónde empiezo si mi sitio hoy es un desastre?",
+        "a": "Arregla la primera pantalla del inicio, luego tus tres páginas de servicio principales, luego la página de zona. Agrega extras solo cuando esas conviertan."
+      }
+    ]
+  },
+  "tree-service-website-pages": {
+    "lead": "La mayoría de quienes llegan al sitio de una empresa de servicio de árboles ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa poda, tala y emergencias por tormenta, con el teléfono y las señales de seguro fáciles de encontrar.",
+    "sections": [
+      {
+        "h2": "Empieza por la llamada, no por el mapa del sitio",
+        "html": "<p>Olvida el organigrama perfecto un minuto. Imagina a alguien en el celular en la entrada. Buscó un trabajo, tocó un resultado y ahora tiene unos cinco segundos de paciencia. Si tu página habla alrededor del trabajo — o esconde el número — se va. Ese es el argumento entero por páginas claras.</p><p>Sí necesitas estructura sensata. Inicio, servicios, zona, nosotros, reseñas, contacto. Pero el punto de esa estructura son llamadas y formularios calificados, no impresionar a otro diseñador. Recorre ejemplos en vivo en el <a href=\"/industries/tree-care\">hub de servicio de árboles</a> cuando quieras prueba de layout. Si lo que sigue es precio, usa <a href=\"/blog/tree-service-website-cost\">cuánto cuesta un sitio de servicio de árboles</a> — ese post es dueño de la pregunta de costo; este es dueño de la lista de páginas.</p>"
+      },
+      {
+        "h2": "Páginas base que todo sitio de servicios necesita",
+        "html": "<p>Piensa en la última llamada que casi no llegó: alguien encontró tu nombre, abrió el sitio en el estacionamiento y en diez segundos decidió si marcar o volver a la lista de Google. Esas páginas base no son adorno — son lo que contesta en el pulgar.</p><p>Todo sitio de oficio comparte un esqueleto aburrido pero esencial. Si falta una pieza, el visitante inventa su propia historia — casi siempre la incorrecta.</p><p><strong>Inicio</strong> tiene que funcionar en el celular con un pulgar: nombra el trabajo, muestra el número y deja obvio el siguiente paso. <strong>Páginas de servicio</strong> deben separar los trabajos que de verdad vendes, no volcar todo bajo “lo que hacemos”. <strong>Zona de servicio</strong> lista los pueblos que tu cuadrilla sí cubre este mes — no un radio de fantasía. <strong>Nosotros</strong> cubre licencia, seguro y quién llega, corto; la prueba también va cerca del teléfono. <strong>Reseñas</strong> deben sentirse reales. <strong>Contacto</strong> es formulario más llamada con un toque, no un número atrapado en el pie de página.</p><p>Ese es el piso. Las páginas específicas del oficio abajo hacen que alguien piense “hacen <em>mi</em> trabajo” en lugar de “folleto bonito”.</p><p>Si planeas contra un plan Kinexis, los conteos son un tope — no tarea infinita: Website hasta 5, Lead System hasta 10, Plus hasta 20 (inglés + español), Own It hasta 10. Publica primero las páginas que ganan llamadas.</p>"
+      },
+      {
+        "h2": "Wireframe del inicio (mobile first)",
+        "html": "<p>Abre tu sitio en el celular como lo vería un desconocido. Sin bajar, ¿se entiende qué arreglas, dónde trabajas y cómo llaman? Si no, el resto del sitio pelea cuesta arriba.</p><p>Una primera pantalla práctica suele ir así: titular que nombra el trabajo (no “calidad desde siempre”), número con toque para llamar, ciudades que cubres, una acción principal clara y una franja fina de confianza — licencia, seguro o una línea de reseña real. Declaraciones de misión, galerías largas y ensayos de financiamiento pueden esperar. Alguien con agua en el piso no lee tu origen.</p><p>Google indexa con enfoque <a href=\"https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing\" rel=\"noopener noreferrer\" target=\"_blank\">mobile-first</a>: diseña primero el celular y amplía en escritorio. La velocidad cuenta. Un héroe bonito que tarda en cargar igual pierde la llamada. Si la página se siente pesada en datos, pásala por <a href=\"https://pagespeed.web.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">PageSpeed Insights</a> y corrige lo que bloquee el número y el titular.</p>"
+      },
+      {
+        "h2": "Páginas de servicio para árboles",
+        "html": "<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href=\"/industries/tree-care\">servicio de árboles</a> para ver el enfoque del sitio.</p><p>Más ejemplos y notas de proceso viven en el <a href=\"/industries/tree-care\">hub de servicio de árboles</a>.</p>"
+      },
+      {
+        "h2": "Anatomía de una página de servicio",
+        "html": "<p>Piensa como quien contesta el teléfono. Antes de pedir el nombre, necesita saber de qué va la página. Una página de servicio fuerte responde en el primer aliento: qué se rompió o qué quieren hacer, si es “llama ya” o “agenda visita”, y qué prueba te hace creíble.</p><p>Escribe títulos como busca el cliente. “Cambio de calentador” gana a “soluciones residenciales”. “Resorte de puerta roto” gana a “sistemas de puerta”. Pon ese lenguaje en el H1 y en el párrafo de apertura.</p><p>El primer formulario corto: nombre, teléfono, tipo de trabajo, ciudad. Fotos y seriales pueden ir después por mensaje cuando el lead es real. Páginas de emergencia ponen el teléfono sobre el formulario. Proyectos planeados pueden liderar con formulario si vas lleno, pero el número sigue a un toque.</p><p>FAQs solo cuando quitan una objeción real: horarios, zona, permisos, lo que no haces. Relleno por contar palabras no ayuda a nadie. La guía de Google sobre <a href=\"https://developers.google.com/search/docs/fundamentals/creating-helpful-content\" rel=\"noopener noreferrer\" target=\"_blank\">contenido útil</a> es básicamente eso: escribe para personas primero.</p>"
+      },
+      {
+        "h2": "Mantén NAP y el perfil consistentes",
+        "html": "<p>Nombre, teléfono, horario y zona deben coincidir entre tu sitio y tu <a href=\"https://support.google.com/business/\" rel=\"noopener noreferrer\" target=\"_blank\">Perfil de Negocio de Google</a>. Un perfil que dice 24/7 mientras el sitio cierra a las seis genera llamadas enojadas de madrugada y reseñas que no necesitabas.</p><p>Una página honesta de zona — no una pila de clones por ciudad. Las políticas de spam de Google señalan <a href=\"https://developers.google.com/search/docs/essentials/spam-policies#doorway-pages\" rel=\"noopener noreferrer\" target=\"_blank\">páginas puerta</a> hechas sobre todo para rankear por nombres de lugar. Lista los pueblos que sí puedes cubrir, nota límites duros si los hay, y enlaza esa página desde pie y contacto.</p><p>Cuando cambian horarios por festivo, actualiza perfil y sitio el mismo día. Lead System y Plus incluyen ajuste del perfil al lanzar; Plus agrega dos publicaciones al mes. SEO continuo después de esa base se cotiza aparte.</p>"
+      },
+      {
+        "h2": "Fotos y prueba que pertenecen al sitio",
+        "html": "<p>Fotos de stock de cascos y extraños entrenan al siguiente cliente a esperar otra cuadrilla. Mejor:</p><ul><li>Tu camión y camisas con marca</li><li>Antes/después de trabajos que sí terminaste</li><li>Primeros planos que muestren oficio (juntas, paneles, bordes de pintura) cuando ayuden a vender</li><li>Leyenda simple con ciudad o barrio cuando sea real</li></ul><p>Comprime imágenes para que el teléfono siga apareciendo rápido. La guía de <a href=\"https://developers.google.com/search/docs/appearance/page-experience\" rel=\"noopener noreferrer\" target=\"_blank\">experiencia de página</a> de Google recuerda que media lenta duele búsqueda y conversión. Licencia y seguro cerca del botón de llamada cuando apliquen en tu estado — no solo en Nosotros enterrado.</p>"
+      },
+      {
+        "h2": "Formularios y llamadas: el siguiente paso según la intención",
+        "html": "<p>Los formularios fallan cuando piden una novela. Para la mayoría de oficios, empieza con:</p><ul><li>Nombre</li><li>Teléfono (obligatorio)</li><li>Tipo de trabajo (lista o texto corto)</li><li>Ciudad o ZIP</li></ul><p>Después opcional: fotos, códigos, ventanas preferidas. Páginas de emergencia deben liderar con llamada y tratar el formulario como respaldo. Páginas de estimado planeado pueden liderar con formulario si vas lleno — el número sigue visible.</p><p>Tras enviar, di qué pasa después (“Llamamos en horario de atención”) y cumple la promesa. Una página de gracias que dice “en contacto” sin plazo entrena a la gente a llamar a tu competencia.</p>"
+      },
+      {
+        "h2": "Cómo priorizar páginas (IA sin jerga)",
+        "html": "<p>La arquitectura de información no es concurso de mapa del sitio. Ordena páginas por si ganan llamada o formulario calificado:</p><ol><li>Inicio</li><li>Servicios principales o de emergencia</li><li>Zona de servicio</li><li>Contacto</li><li>Reseñas / prueba</li><li>Nosotros</li><li>Servicios secundarios y ofertas estacionales</li></ol><p>Entradas de blog y recursos apoyan esas páginas de dinero — no deben reemplazar una página de servicio clara para un trabajo principal. Enlaces internos obvios: del inicio a servicios, de servicios a zona y contacto, de guías del blog de vuelta al hub de industria y al post de costo hermano cuando la pregunta es precio.</p>"
+      },
+      {
+        "h2": "Inicio anotado cuando hay prueba",
+        "html": "<p>Cuando exista un sitio de cliente en vivo para este oficio, anotamos el inicio en el hub de la industria — héroe, franja de confianza, rutas de servicio y dónde va el teléfono. Mientras tanto, usa la lista de servicio de arriba y pide una vista previa gratis del inicio para tu oferta y ve el camino de la primera pantalla antes de pagar.</p>"
+      },
+      {
+        "h2": "Evita spam de ciudades puerta",
+        "html": "<p>No publiques páginas casi idénticas que solo cambian el nombre del pueblo. Ese patrón desperdicia rastreo, confunde a quien vive fuera de tu radio real y no ayuda a decidir si marcan.</p><p>Una página clara de zona más páginas de servicio fuertes es el enfoque honesto. Si luego entras de verdad a una ciudad nueva, actualiza la página de zona y el perfil — no subas veinte clones finos de la noche a la mañana.</p><p>Lectura relacionada: <a href=\"/blog/local-seo-get-found-get-called\">SEO local que conecta búsquedas con llamadas</a>, <a href=\"/blog/web-design-for-contractors\">lista para sitio de contratista</a> y <a href=\"/blog/google-business-profile-vs-website\">Perfil de Google vs sitio web</a>.</p>"
+      },
+      {
+        "h2": "Orden de publicación si empiezas con poco",
+        "html": "<p>No tienes que publicar veinte URLs el día uno para “verse profesional”. Los dueños que más llamadas reportan suelen tener menos páginas, pero cada una con un siguiente paso que coincide con lo que la persona buscó.</p><p>Si reconstruyes desde un folleto, publica en este orden:</p><ol><li>Arregla la primera pantalla del inicio (trabajo, zona, teléfono)</li><li>Publica las tres páginas de servicio que más coinciden con búsquedas reales</li><li>Agrega la página honesta de zona</li><li>Alinea el Perfil de Google con el sitio</li><li>Solo después páginas secundarias, galerías o entradas de blog</li></ol><p>Un sitio de cinco páginas que genera llamadas gana a uno de veinte que solo sirve en monitor de escritorio. Con la estructura clara, compara modelos de flujo en <a href=\"/blog/monthly-website-vs-own-it\">plan mensual u Own It</a> y precios en <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "Qué medir después de publicar",
+        "html": "<p>Un sitio nuevo no se arregla solo el viernes de lanzamiento. La primera semana suele mostrar la verdad: qué páginas traen clics sin llamadas, qué formularios se abandonan a mitad, si el perfil de Google todavía dice horario viejo. Anota eso en una hoja simple — no hace falta un tablero enterprise para dueños de negocio de servicios.</p><p>Después del lanzamiento, mide lo que importa:</p><ul><li>Llamadas desde el sitio (número de seguimiento si usas uno)</li><li>Formularios que se volvieron trabajos reales</li><li>Consultas y páginas con impresiones en Search Console</li><li>Qué páginas de servicio tienen visitas y cero llamadas (arréglalas primero)</li></ul><p><a href=\"https://support.google.com/webmasters/answer/4559176\" rel=\"noopener noreferrer\" target=\"_blank\">Google Search Console</a> muestra descubrimiento; tu teléfono y CRM muestran dinero. Arreglos técnicos pueden moverse en semanas; crecimiento local más amplio suele tardar meses y depende de competencia. Nadie fuera de Google promete posición — mira la <a href=\"https://developers.google.com/search/docs/fundamentals/seo-starter-guide\" rel=\"noopener noreferrer\" target=\"_blank\">guía inicial de SEO</a> de Google para bases y <a href=\"/seo-services\">servicios SEO</a> cuando quieras trabajo continuo cotizado aparte de los cuatro planes de sitio.</p><p><a href=\"/contact\">Pide una vista previa gratis del inicio</a> o compara planes en <a href=\"/pricing\">/pricing</a>. Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497 una vez — cada opción empieza con vista previa gratis en 2 días hábiles, sin tarjeta.</p>"
+      }
+    ],
+    "faqs": [
+      {
+        "q": "¿Qué páginas debe tener el sitio de una empresa de servicio de árboles?",
+        "a": "Inicio; poda; tala; atención de tormentas; seguro y seguridad cerca del teléfono; zona; nosotros; reseñas y contacto para consultas. Evita páginas clonadas por ciudad y promesas falsas de atención 24/7."
+      },
+      {
+        "q": "¿Necesito una página por cada ciudad?",
+        "a": "No. Una página honesta de zona gana a docenas de páginas casi iguales que solo cambian el pueblo."
+      },
+      {
+        "q": "¿Emergencia y estimado deben compartir una página?",
+        "a": "Casi nunca. Da a trabajos urgentes un camino con teléfono y a trabajos planeados un formulario corto para que el siguiente paso coincida con la intención de búsqueda."
+      },
+      {
+        "q": "¿Cómo se relacionan los planes Kinexis con el conteo de páginas?",
+        "a": "Website incluye hasta 5 páginas, Lead System hasta 10, Plus hasta 20 (inglés + español), Own It hasta 10. Empieza con vista previa gratis del inicio — sin tarjeta."
+      },
+      {
+        "q": "¿Por dónde empiezo si mi sitio hoy es un desastre?",
+        "a": "Arregla la primera pantalla del inicio, luego tus tres páginas de servicio principales, luego la página de zona. Agrega extras solo cuando esas conviertan."
+      }
+    ]
   },};
 
 /** Full EsPost objects ready to spread into ES_POSTS. */
@@ -964,7 +1122,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "plumbing-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de plomería",
-    "seoTitle": "Qué páginas necesita un sitio de plomería",
+    "seoTitle": "Qué páginas necesita un sitio de plomería | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de plomería, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un plomero ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa fugas, drenajes y calentadores para que el tráfico de emergencia y de cotización no se mezcle.",
     "sections": [
@@ -1026,7 +1184,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "hvac-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de HVAC",
-    "seoTitle": "Qué páginas necesita un sitio de HVAC",
+    "seoTitle": "Qué páginas necesita un sitio de HVAC | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de HVAC, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de HVAC ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Mantén reparación, cambio de equipo y mantenimiento en caminos separados para que el trabajo de temporada baja siga visible.",
     "sections": [
@@ -1088,7 +1246,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "electrician-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de electricidad",
-    "seoTitle": "Qué páginas necesita un sitio de electricidad",
+    "seoTitle": "Qué páginas necesita un sitio de electricidad | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de electricidad, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un electricista ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Muestra confianza de licencia temprano y da a cargadores EV su propia página cuando ese trabajo es real.",
     "sections": [
@@ -1150,7 +1308,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "roofing-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de techos",
-    "seoTitle": "Qué páginas necesita un sitio de techos",
+    "seoTitle": "Qué páginas necesita un sitio de techos | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de techos, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de techos ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa reparación y cambio completo, y describe proceso de seguro sin prometer resultados de reclamación.",
     "sections": [
@@ -1212,7 +1370,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "garage-door-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de puertas de garaje",
-    "seoTitle": "Páginas para un sitio de puertas de garaje",
+    "seoTitle": "Qué páginas necesita un sitio de puertas de garaje | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de puertas de garaje, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de puertas de garaje ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Rutas de resorte/motor de emergencia deben liderar con teléfono; páginas de puerta nueva pueden usar formulario corto de medidas.",
     "sections": [
@@ -1274,7 +1432,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "painting-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de pintura",
-    "seoTitle": "Qué páginas necesita un sitio de pintura",
+    "seoTitle": "Qué páginas necesita un sitio de pintura | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de pintura, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un contratista de pintura ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa interior, exterior y gabinetes, y mantén el formulario de estimado corto.",
     "sections": [
@@ -1336,7 +1494,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "remodeling-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de remodelación",
-    "seoTitle": "Qué páginas necesita un sitio de remodelación",
+    "seoTitle": "Qué páginas necesita un sitio de remodelación | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de remodelación, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un contratista de remodelación ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Lidera con cuartos terminados y camino de consulta en lugar de lenguaje de llamada de emergencia.",
     "sections": [
@@ -1398,7 +1556,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "landscaping-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de paisajismo",
-    "seoTitle": "Qué páginas necesita un sitio de paisajismo",
+    "seoTitle": "Qué páginas necesita un sitio de paisajismo | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de paisajismo, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de paisajismo ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa mantenimiento semanal de diseño-obra para no empujar leads de corte a consulta de patio.",
     "sections": [
@@ -1460,7 +1618,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "pool-service-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de albercas",
-    "seoTitle": "Qué páginas necesita un sitio de albercas",
+    "seoTitle": "Qué páginas necesita un sitio de albercas | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de albercas, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un servicio de albercas ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Da a alberca verde y reparaciones de equipo un camino con teléfono que no quede enterrado bajo copy de membresía.",
     "sections": [
@@ -1522,7 +1680,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "pressure-washing-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de lavado a presión",
-    "seoTitle": "Páginas para un sitio de lavado a presión",
+    "seoTitle": "Qué páginas necesita un sitio de lavado a presión | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de lavado a presión, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de lavado a presión ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa superficies y deja espacio para antes/después que prueben el resultado.",
     "sections": [
@@ -1584,7 +1742,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "window-cleaning-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de limpieza de vidrios",
-    "seoTitle": "Páginas para sitio de limpieza de vidrios",
+    "seoTitle": "Qué páginas necesita un sitio de limpieza de vidrios | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de limpieza de vidrios, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de limpieza de vidrios ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa vidrio residencial y comercial, y ofrece limpiezas recurrentes como siguiente paso normal.",
     "sections": [
@@ -1646,7 +1804,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "slug": "lawn-care-website-pages",
     "category": "Consejos",
     "title": "Qué páginas necesita un sitio de césped",
-    "seoTitle": "Qué páginas necesita un sitio de césped",
+    "seoTitle": "Qué páginas necesita un sitio de césped | Kinexis Digital",
     "excerpt": "Páginas base y de servicio para un sitio de césped, sin spam de ciudades clonadas. Estructura clara para llamadas y cotizaciones.",
     "lead": "La mayoría de quienes llegan al sitio de un negocio de cuidado de césped ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Publica una zona honesta y da a desechos de mascotas su propia página solo cuando esa oferta es real.",
     "sections": [
@@ -1704,6 +1862,130 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       }
     ]
   },
+  "junk-removal-website-pages": {
+    "slug": "junk-removal-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio web de retiro de chatarra",
+    "seoTitle": "Qué páginas necesita un sitio de retiro de chatarra | Kinexis Digital",
+    "excerpt": "Páginas base y de servicio para separar acarreos rápidos, limpiezas grandes y cotizaciones sin páginas clonadas por ciudad.",
+    "lead": "La mayoría de quienes llegan al sitio de una empresa de retiro de chatarra ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa el acarreo rápido de las limpiezas planeadas: cada trabajo necesita un siguiente paso distinto.",
+    "sections": [
+      {
+        "h2": "Empieza por la llamada, no por el mapa del sitio",
+        "html": "<p>Olvida el organigrama perfecto un minuto. Imagina a alguien en el celular en la entrada. Buscó un trabajo, tocó un resultado y ahora tiene unos cinco segundos de paciencia. Si tu página habla alrededor del trabajo — o esconde el número — se va. Ese es el argumento entero por páginas claras.</p><p>Sí necesitas estructura sensata. Inicio, servicios, zona, nosotros, reseñas, contacto. Pero el punto de esa estructura son llamadas y formularios calificados, no impresionar a otro diseñador. Recorre ejemplos en vivo en el <a href=\"/industries/junk-removal\">hub de retiro de chatarra</a> cuando quieras prueba de layout. Si lo que sigue es precio, usa <a href=\"/blog/junk-removal-website-cost\">cuánto cuesta un sitio de retiro de chatarra</a> — ese post es dueño de la pregunta de costo; este es dueño de la lista de páginas.</p>"
+      },
+      {
+        "h2": "Páginas base que todo sitio de servicios necesita",
+        "html": "<p>Piensa en la última llamada que casi no llegó: alguien encontró tu nombre, abrió el sitio en el estacionamiento y en diez segundos decidió si marcar o volver a la lista de Google. Esas páginas base no son adorno — son lo que contesta en el pulgar.</p><p>Todo sitio de oficio comparte un esqueleto aburrido pero esencial. Si falta una pieza, el visitante inventa su propia historia — casi siempre la incorrecta.</p><p><strong>Inicio</strong> tiene que funcionar en el celular con un pulgar: nombra el trabajo, muestra el número y deja obvio el siguiente paso. <strong>Páginas de servicio</strong> deben separar los trabajos que de verdad vendes, no volcar todo bajo “lo que hacemos”. <strong>Zona de servicio</strong> lista los pueblos que tu cuadrilla sí cubre este mes — no un radio de fantasía. <strong>Nosotros</strong> cubre licencia, seguro y quién llega, corto; la prueba también va cerca del teléfono. <strong>Reseñas</strong> deben sentirse reales. <strong>Contacto</strong> es formulario más llamada con un toque, no un número atrapado en el pie de página.</p><p>Ese es el piso. Las páginas específicas del oficio abajo hacen que alguien piense “hacen <em>mi</em> trabajo” en lugar de “folleto bonito”.</p><p>Si planeas contra un plan Kinexis, los conteos son un tope — no tarea infinita: Website hasta 5, Lead System hasta 10, Plus hasta 20 (inglés + español), Own It hasta 10. Publica primero las páginas que ganan llamadas.</p>"
+      },
+      {
+        "h2": "Wireframe del inicio (mobile first)",
+        "html": "<p>Abre tu sitio en el celular como lo vería un desconocido. Sin bajar, ¿se entiende qué arreglas, dónde trabajas y cómo llaman? Si no, el resto del sitio pelea cuesta arriba.</p><p>Una primera pantalla práctica suele ir así: titular que nombra el trabajo (no “calidad desde siempre”), número con toque para llamar, ciudades que cubres, una acción principal clara y una franja fina de confianza — licencia, seguro o una línea de reseña real. Declaraciones de misión, galerías largas y ensayos de financiamiento pueden esperar. Alguien con agua en el piso no lee tu origen.</p><p>Google indexa con enfoque <a href=\"https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing\" rel=\"noopener noreferrer\" target=\"_blank\">mobile-first</a>: diseña primero el celular y amplía en escritorio. La velocidad cuenta. Un héroe bonito que tarda en cargar igual pierde la llamada. Si la página se siente pesada en datos, pásala por <a href=\"https://pagespeed.web.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">PageSpeed Insights</a> y corrige lo que bloquee el número y el titular.</p>"
+      },
+      {
+        "h2": "Páginas de servicio para retiro de chatarra",
+        "html": "<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href=\"/industries/junk-removal\">retiro de chatarra</a> para ver el enfoque del sitio.</p><p>Más ejemplos y notas de proceso viven en el <a href=\"/industries/junk-removal\">hub de retiro de chatarra</a>.</p>"
+      },
+      {
+        "h2": "Anatomía de una página de servicio",
+        "html": "<p>Piensa como quien contesta el teléfono. Antes de pedir el nombre, necesita saber de qué va la página. Una página de servicio fuerte responde en el primer aliento: qué se rompió o qué quieren hacer, si es “llama ya” o “agenda visita”, y qué prueba te hace creíble.</p><p>Escribe títulos como busca el cliente. “Cambio de calentador” gana a “soluciones residenciales”. “Resorte de puerta roto” gana a “sistemas de puerta”. Pon ese lenguaje en el H1 y en el párrafo de apertura.</p><p>El primer formulario corto: nombre, teléfono, tipo de trabajo, ciudad. Fotos y seriales pueden ir después por mensaje cuando el lead es real. Páginas de emergencia ponen el teléfono sobre el formulario. Proyectos planeados pueden liderar con formulario si vas lleno, pero el número sigue a un toque.</p><p>FAQs solo cuando quitan una objeción real: horarios, zona, permisos, lo que no haces. Relleno por contar palabras no ayuda a nadie. La guía de Google sobre <a href=\"https://developers.google.com/search/docs/fundamentals/creating-helpful-content\" rel=\"noopener noreferrer\" target=\"_blank\">contenido útil</a> es básicamente eso: escribe para personas primero.</p>"
+      },
+      {
+        "h2": "Mantén NAP y el perfil consistentes",
+        "html": "<p>Nombre, teléfono, horario y zona deben coincidir entre tu sitio y tu <a href=\"https://support.google.com/business/\" rel=\"noopener noreferrer\" target=\"_blank\">Perfil de Negocio de Google</a>. Un perfil que dice 24/7 mientras el sitio cierra a las seis genera llamadas enojadas de madrugada y reseñas que no necesitabas.</p><p>Una página honesta de zona — no una pila de clones por ciudad. Las políticas de spam de Google señalan <a href=\"https://developers.google.com/search/docs/essentials/spam-policies#doorway-pages\" rel=\"noopener noreferrer\" target=\"_blank\">páginas puerta</a> hechas sobre todo para rankear por nombres de lugar. Lista los pueblos que sí puedes cubrir, nota límites duros si los hay, y enlaza esa página desde pie y contacto.</p><p>Cuando cambian horarios por festivo, actualiza perfil y sitio el mismo día. Lead System y Plus incluyen ajuste del perfil al lanzar; Plus agrega dos publicaciones al mes. SEO continuo después de esa base se cotiza aparte.</p>"
+      },
+      {
+        "h2": "Fotos y prueba que pertenecen al sitio",
+        "html": "<p>Fotos de stock de cascos y extraños entrenan al siguiente cliente a esperar otra cuadrilla. Mejor:</p><ul><li>Tu camión y camisas con marca</li><li>Antes/después de trabajos que sí terminaste</li><li>Primeros planos que muestren oficio (juntas, paneles, bordes de pintura) cuando ayuden a vender</li><li>Leyenda simple con ciudad o barrio cuando sea real</li></ul><p>Comprime imágenes para que el teléfono siga apareciendo rápido. La guía de <a href=\"https://developers.google.com/search/docs/appearance/page-experience\" rel=\"noopener noreferrer\" target=\"_blank\">experiencia de página</a> de Google recuerda que media lenta duele búsqueda y conversión. Licencia y seguro cerca del botón de llamada cuando apliquen en tu estado — no solo en Nosotros enterrado.</p>"
+      },
+      {
+        "h2": "Formularios y llamadas: el siguiente paso según la intención",
+        "html": "<p>Los formularios fallan cuando piden una novela. Para la mayoría de oficios, empieza con:</p><ul><li>Nombre</li><li>Teléfono (obligatorio)</li><li>Tipo de trabajo (lista o texto corto)</li><li>Ciudad o ZIP</li></ul><p>Después opcional: fotos, códigos, ventanas preferidas. Páginas de emergencia deben liderar con llamada y tratar el formulario como respaldo. Páginas de estimado planeado pueden liderar con formulario si vas lleno — el número sigue visible.</p><p>Tras enviar, di qué pasa después (“Llamamos en horario de atención”) y cumple la promesa. Una página de gracias que dice “en contacto” sin plazo entrena a la gente a llamar a tu competencia.</p>"
+      },
+      {
+        "h2": "Cómo priorizar páginas (IA sin jerga)",
+        "html": "<p>La arquitectura de información no es concurso de mapa del sitio. Ordena páginas por si ganan llamada o formulario calificado:</p><ol><li>Inicio</li><li>Servicios principales o de emergencia</li><li>Zona de servicio</li><li>Contacto</li><li>Reseñas / prueba</li><li>Nosotros</li><li>Servicios secundarios y ofertas estacionales</li></ol><p>Entradas de blog y recursos apoyan esas páginas de dinero — no deben reemplazar una página de servicio clara para un trabajo principal. Enlaces internos obvios: del inicio a servicios, de servicios a zona y contacto, de guías del blog de vuelta al hub de industria y al post de costo hermano cuando la pregunta es precio.</p>"
+      },
+      {
+        "h2": "Inicio anotado cuando hay prueba",
+        "html": "<p>Cuando exista un sitio de cliente en vivo para este oficio, anotamos el inicio en el hub de la industria — héroe, franja de confianza, rutas de servicio y dónde va el teléfono. Mientras tanto, usa la lista de servicio de arriba y pide una vista previa gratis del inicio para tu oferta y ve el camino de la primera pantalla antes de pagar.</p>"
+      },
+      {
+        "h2": "Evita spam de ciudades puerta",
+        "html": "<p>No publiques páginas casi idénticas que solo cambian el nombre del pueblo. Ese patrón desperdicia rastreo, confunde a quien vive fuera de tu radio real y no ayuda a decidir si marcan.</p><p>Una página clara de zona más páginas de servicio fuertes es el enfoque honesto. Si luego entras de verdad a una ciudad nueva, actualiza la página de zona y el perfil — no subas veinte clones finos de la noche a la mañana.</p><p>Lectura relacionada: <a href=\"/blog/local-seo-get-found-get-called\">SEO local que conecta búsquedas con llamadas</a>, <a href=\"/blog/web-design-for-contractors\">lista para sitio de contratista</a> y <a href=\"/blog/google-business-profile-vs-website\">Perfil de Google vs sitio web</a>.</p>"
+      },
+      {
+        "h2": "Orden de publicación si empiezas con poco",
+        "html": "<p>No tienes que publicar veinte URLs el día uno para “verse profesional”. Los dueños que más llamadas reportan suelen tener menos páginas, pero cada una con un siguiente paso que coincide con lo que la persona buscó.</p><p>Si reconstruyes desde un folleto, publica en este orden:</p><ol><li>Arregla la primera pantalla del inicio (trabajo, zona, teléfono)</li><li>Publica las tres páginas de servicio que más coinciden con búsquedas reales</li><li>Agrega la página honesta de zona</li><li>Alinea el Perfil de Google con el sitio</li><li>Solo después páginas secundarias, galerías o entradas de blog</li></ol><p>Un sitio de cinco páginas que genera llamadas gana a uno de veinte que solo sirve en monitor de escritorio. Con la estructura clara, compara modelos de flujo en <a href=\"/blog/monthly-website-vs-own-it\">plan mensual u Own It</a> y precios en <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "Qué medir después de publicar",
+        "html": "<p>Un sitio nuevo no se arregla solo el viernes de lanzamiento. La primera semana suele mostrar la verdad: qué páginas traen clics sin llamadas, qué formularios se abandonan a mitad, si el perfil de Google todavía dice horario viejo. Anota eso en una hoja simple — no hace falta un tablero enterprise para dueños de negocio de servicios.</p><p>Después del lanzamiento, mide lo que importa:</p><ul><li>Llamadas desde el sitio (número de seguimiento si usas uno)</li><li>Formularios que se volvieron trabajos reales</li><li>Consultas y páginas con impresiones en Search Console</li><li>Qué páginas de servicio tienen visitas y cero llamadas (arréglalas primero)</li></ul><p><a href=\"https://support.google.com/webmasters/answer/4559176\" rel=\"noopener noreferrer\" target=\"_blank\">Google Search Console</a> muestra descubrimiento; tu teléfono y CRM muestran dinero. Arreglos técnicos pueden moverse en semanas; crecimiento local más amplio suele tardar meses y depende de competencia. Nadie fuera de Google promete posición — mira la <a href=\"https://developers.google.com/search/docs/fundamentals/seo-starter-guide\" rel=\"noopener noreferrer\" target=\"_blank\">guía inicial de SEO</a> de Google para bases y <a href=\"/seo-services\">servicios SEO</a> cuando quieras trabajo continuo cotizado aparte de los cuatro planes de sitio.</p><p><a href=\"/contact\">Pide una vista previa gratis del inicio</a> o compara planes en <a href=\"/pricing\">/pricing</a>. Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497 una vez — cada opción empieza con vista previa gratis en 2 días hábiles, sin tarjeta.</p>"
+      }
+    ]
+  },
+  "tree-service-website-pages": {
+    "slug": "tree-service-website-pages",
+    "category": "Consejos",
+    "title": "Qué páginas necesita un sitio web de servicio de árboles",
+    "seoTitle": "Qué páginas necesita un sitio de servicio de árboles | Kinexis Digital",
+    "excerpt": "Estructura páginas para poda, tala y emergencias por tormenta, con información de seguro visible y sin páginas clonadas por ciudad.",
+    "lead": "La mayoría de quienes llegan al sitio de una empresa de servicio de árboles ya saben qué falló en la casa. No están navegando por gusto. Necesitan ver que haces ese trabajo, que cubres su zona y cómo te contactan — rápido. Separa poda, tala y emergencias por tormenta, con el teléfono y las señales de seguro fáciles de encontrar.",
+    "sections": [
+      {
+        "h2": "Empieza por la llamada, no por el mapa del sitio",
+        "html": "<p>Olvida el organigrama perfecto un minuto. Imagina a alguien en el celular en la entrada. Buscó un trabajo, tocó un resultado y ahora tiene unos cinco segundos de paciencia. Si tu página habla alrededor del trabajo — o esconde el número — se va. Ese es el argumento entero por páginas claras.</p><p>Sí necesitas estructura sensata. Inicio, servicios, zona, nosotros, reseñas, contacto. Pero el punto de esa estructura son llamadas y formularios calificados, no impresionar a otro diseñador. Recorre ejemplos en vivo en el <a href=\"/industries/tree-care\">hub de servicio de árboles</a> cuando quieras prueba de layout. Si lo que sigue es precio, usa <a href=\"/blog/tree-service-website-cost\">cuánto cuesta un sitio de servicio de árboles</a> — ese post es dueño de la pregunta de costo; este es dueño de la lista de páginas.</p>"
+      },
+      {
+        "h2": "Páginas base que todo sitio de servicios necesita",
+        "html": "<p>Piensa en la última llamada que casi no llegó: alguien encontró tu nombre, abrió el sitio en el estacionamiento y en diez segundos decidió si marcar o volver a la lista de Google. Esas páginas base no son adorno — son lo que contesta en el pulgar.</p><p>Todo sitio de oficio comparte un esqueleto aburrido pero esencial. Si falta una pieza, el visitante inventa su propia historia — casi siempre la incorrecta.</p><p><strong>Inicio</strong> tiene que funcionar en el celular con un pulgar: nombra el trabajo, muestra el número y deja obvio el siguiente paso. <strong>Páginas de servicio</strong> deben separar los trabajos que de verdad vendes, no volcar todo bajo “lo que hacemos”. <strong>Zona de servicio</strong> lista los pueblos que tu cuadrilla sí cubre este mes — no un radio de fantasía. <strong>Nosotros</strong> cubre licencia, seguro y quién llega, corto; la prueba también va cerca del teléfono. <strong>Reseñas</strong> deben sentirse reales. <strong>Contacto</strong> es formulario más llamada con un toque, no un número atrapado en el pie de página.</p><p>Ese es el piso. Las páginas específicas del oficio abajo hacen que alguien piense “hacen <em>mi</em> trabajo” en lugar de “folleto bonito”.</p><p>Si planeas contra un plan Kinexis, los conteos son un tope — no tarea infinita: Website hasta 5, Lead System hasta 10, Plus hasta 20 (inglés + español), Own It hasta 10. Publica primero las páginas que ganan llamadas.</p>"
+      },
+      {
+        "h2": "Wireframe del inicio (mobile first)",
+        "html": "<p>Abre tu sitio en el celular como lo vería un desconocido. Sin bajar, ¿se entiende qué arreglas, dónde trabajas y cómo llaman? Si no, el resto del sitio pelea cuesta arriba.</p><p>Una primera pantalla práctica suele ir así: titular que nombra el trabajo (no “calidad desde siempre”), número con toque para llamar, ciudades que cubres, una acción principal clara y una franja fina de confianza — licencia, seguro o una línea de reseña real. Declaraciones de misión, galerías largas y ensayos de financiamiento pueden esperar. Alguien con agua en el piso no lee tu origen.</p><p>Google indexa con enfoque <a href=\"https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing\" rel=\"noopener noreferrer\" target=\"_blank\">mobile-first</a>: diseña primero el celular y amplía en escritorio. La velocidad cuenta. Un héroe bonito que tarda en cargar igual pierde la llamada. Si la página se siente pesada en datos, pásala por <a href=\"https://pagespeed.web.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">PageSpeed Insights</a> y corrige lo que bloquee el número y el titular.</p>"
+      },
+      {
+        "h2": "Páginas de servicio para árboles",
+        "html": "<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href=\"/industries/tree-care\">servicio de árboles</a> para ver el enfoque del sitio.</p><p>Más ejemplos y notas de proceso viven en el <a href=\"/industries/tree-care\">hub de servicio de árboles</a>.</p>"
+      },
+      {
+        "h2": "Anatomía de una página de servicio",
+        "html": "<p>Piensa como quien contesta el teléfono. Antes de pedir el nombre, necesita saber de qué va la página. Una página de servicio fuerte responde en el primer aliento: qué se rompió o qué quieren hacer, si es “llama ya” o “agenda visita”, y qué prueba te hace creíble.</p><p>Escribe títulos como busca el cliente. “Cambio de calentador” gana a “soluciones residenciales”. “Resorte de puerta roto” gana a “sistemas de puerta”. Pon ese lenguaje en el H1 y en el párrafo de apertura.</p><p>El primer formulario corto: nombre, teléfono, tipo de trabajo, ciudad. Fotos y seriales pueden ir después por mensaje cuando el lead es real. Páginas de emergencia ponen el teléfono sobre el formulario. Proyectos planeados pueden liderar con formulario si vas lleno, pero el número sigue a un toque.</p><p>FAQs solo cuando quitan una objeción real: horarios, zona, permisos, lo que no haces. Relleno por contar palabras no ayuda a nadie. La guía de Google sobre <a href=\"https://developers.google.com/search/docs/fundamentals/creating-helpful-content\" rel=\"noopener noreferrer\" target=\"_blank\">contenido útil</a> es básicamente eso: escribe para personas primero.</p>"
+      },
+      {
+        "h2": "Mantén NAP y el perfil consistentes",
+        "html": "<p>Nombre, teléfono, horario y zona deben coincidir entre tu sitio y tu <a href=\"https://support.google.com/business/\" rel=\"noopener noreferrer\" target=\"_blank\">Perfil de Negocio de Google</a>. Un perfil que dice 24/7 mientras el sitio cierra a las seis genera llamadas enojadas de madrugada y reseñas que no necesitabas.</p><p>Una página honesta de zona — no una pila de clones por ciudad. Las políticas de spam de Google señalan <a href=\"https://developers.google.com/search/docs/essentials/spam-policies#doorway-pages\" rel=\"noopener noreferrer\" target=\"_blank\">páginas puerta</a> hechas sobre todo para rankear por nombres de lugar. Lista los pueblos que sí puedes cubrir, nota límites duros si los hay, y enlaza esa página desde pie y contacto.</p><p>Cuando cambian horarios por festivo, actualiza perfil y sitio el mismo día. Lead System y Plus incluyen ajuste del perfil al lanzar; Plus agrega dos publicaciones al mes. SEO continuo después de esa base se cotiza aparte.</p>"
+      },
+      {
+        "h2": "Fotos y prueba que pertenecen al sitio",
+        "html": "<p>Fotos de stock de cascos y extraños entrenan al siguiente cliente a esperar otra cuadrilla. Mejor:</p><ul><li>Tu camión y camisas con marca</li><li>Antes/después de trabajos que sí terminaste</li><li>Primeros planos que muestren oficio (juntas, paneles, bordes de pintura) cuando ayuden a vender</li><li>Leyenda simple con ciudad o barrio cuando sea real</li></ul><p>Comprime imágenes para que el teléfono siga apareciendo rápido. La guía de <a href=\"https://developers.google.com/search/docs/appearance/page-experience\" rel=\"noopener noreferrer\" target=\"_blank\">experiencia de página</a> de Google recuerda que media lenta duele búsqueda y conversión. Licencia y seguro cerca del botón de llamada cuando apliquen en tu estado — no solo en Nosotros enterrado.</p>"
+      },
+      {
+        "h2": "Formularios y llamadas: el siguiente paso según la intención",
+        "html": "<p>Los formularios fallan cuando piden una novela. Para la mayoría de oficios, empieza con:</p><ul><li>Nombre</li><li>Teléfono (obligatorio)</li><li>Tipo de trabajo (lista o texto corto)</li><li>Ciudad o ZIP</li></ul><p>Después opcional: fotos, códigos, ventanas preferidas. Páginas de emergencia deben liderar con llamada y tratar el formulario como respaldo. Páginas de estimado planeado pueden liderar con formulario si vas lleno — el número sigue visible.</p><p>Tras enviar, di qué pasa después (“Llamamos en horario de atención”) y cumple la promesa. Una página de gracias que dice “en contacto” sin plazo entrena a la gente a llamar a tu competencia.</p>"
+      },
+      {
+        "h2": "Cómo priorizar páginas (IA sin jerga)",
+        "html": "<p>La arquitectura de información no es concurso de mapa del sitio. Ordena páginas por si ganan llamada o formulario calificado:</p><ol><li>Inicio</li><li>Servicios principales o de emergencia</li><li>Zona de servicio</li><li>Contacto</li><li>Reseñas / prueba</li><li>Nosotros</li><li>Servicios secundarios y ofertas estacionales</li></ol><p>Entradas de blog y recursos apoyan esas páginas de dinero — no deben reemplazar una página de servicio clara para un trabajo principal. Enlaces internos obvios: del inicio a servicios, de servicios a zona y contacto, de guías del blog de vuelta al hub de industria y al post de costo hermano cuando la pregunta es precio.</p>"
+      },
+      {
+        "h2": "Inicio anotado cuando hay prueba",
+        "html": "<p>Cuando exista un sitio de cliente en vivo para este oficio, anotamos el inicio en el hub de la industria — héroe, franja de confianza, rutas de servicio y dónde va el teléfono. Mientras tanto, usa la lista de servicio de arriba y pide una vista previa gratis del inicio para tu oferta y ve el camino de la primera pantalla antes de pagar.</p>"
+      },
+      {
+        "h2": "Evita spam de ciudades puerta",
+        "html": "<p>No publiques páginas casi idénticas que solo cambian el nombre del pueblo. Ese patrón desperdicia rastreo, confunde a quien vive fuera de tu radio real y no ayuda a decidir si marcan.</p><p>Una página clara de zona más páginas de servicio fuertes es el enfoque honesto. Si luego entras de verdad a una ciudad nueva, actualiza la página de zona y el perfil — no subas veinte clones finos de la noche a la mañana.</p><p>Lectura relacionada: <a href=\"/blog/local-seo-get-found-get-called\">SEO local que conecta búsquedas con llamadas</a>, <a href=\"/blog/web-design-for-contractors\">lista para sitio de contratista</a> y <a href=\"/blog/google-business-profile-vs-website\">Perfil de Google vs sitio web</a>.</p>"
+      },
+      {
+        "h2": "Orden de publicación si empiezas con poco",
+        "html": "<p>No tienes que publicar veinte URLs el día uno para “verse profesional”. Los dueños que más llamadas reportan suelen tener menos páginas, pero cada una con un siguiente paso que coincide con lo que la persona buscó.</p><p>Si reconstruyes desde un folleto, publica en este orden:</p><ol><li>Arregla la primera pantalla del inicio (trabajo, zona, teléfono)</li><li>Publica las tres páginas de servicio que más coinciden con búsquedas reales</li><li>Agrega la página honesta de zona</li><li>Alinea el Perfil de Google con el sitio</li><li>Solo después páginas secundarias, galerías o entradas de blog</li></ol><p>Un sitio de cinco páginas que genera llamadas gana a uno de veinte que solo sirve en monitor de escritorio. Con la estructura clara, compara modelos de flujo en <a href=\"/blog/monthly-website-vs-own-it\">plan mensual u Own It</a> y precios en <a href=\"/pricing\">/pricing</a>.</p>"
+      },
+      {
+        "h2": "Qué medir después de publicar",
+        "html": "<p>Un sitio nuevo no se arregla solo el viernes de lanzamiento. La primera semana suele mostrar la verdad: qué páginas traen clics sin llamadas, qué formularios se abandonan a mitad, si el perfil de Google todavía dice horario viejo. Anota eso en una hoja simple — no hace falta un tablero enterprise para dueños de negocio de servicios.</p><p>Después del lanzamiento, mide lo que importa:</p><ul><li>Llamadas desde el sitio (número de seguimiento si usas uno)</li><li>Formularios que se volvieron trabajos reales</li><li>Consultas y páginas con impresiones en Search Console</li><li>Qué páginas de servicio tienen visitas y cero llamadas (arréglalas primero)</li></ul><p><a href=\"https://support.google.com/webmasters/answer/4559176\" rel=\"noopener noreferrer\" target=\"_blank\">Google Search Console</a> muestra descubrimiento; tu teléfono y CRM muestran dinero. Arreglos técnicos pueden moverse en semanas; crecimiento local más amplio suele tardar meses y depende de competencia. Nadie fuera de Google promete posición — mira la <a href=\"https://developers.google.com/search/docs/fundamentals/seo-starter-guide\" rel=\"noopener noreferrer\" target=\"_blank\">guía inicial de SEO</a> de Google para bases y <a href=\"/seo-services\">servicios SEO</a> cuando quieras trabajo continuo cotizado aparte de los cuatro planes de sitio.</p><p><a href=\"/contact\">Pide una vista previa gratis del inicio</a> o compara planes en <a href=\"/pricing\">/pricing</a>. Website $97/mes, Lead System $197/mes, Plus $297/mes, Own It $1,497 una vez — cada opción empieza con vista previa gratis en 2 días hábiles, sin tarjeta.</p>"
+      }
+    ]
+  },
 };
 
-export const ES_PAGES_POST_SLUGS = ["plumbing-website-pages","hvac-website-pages","electrician-website-pages","roofing-website-pages","garage-door-website-pages","painting-website-pages","remodeling-website-pages","landscaping-website-pages","pool-service-website-pages","pressure-washing-website-pages","window-cleaning-website-pages","lawn-care-website-pages"] as const;
+export const ES_PAGES_POST_SLUGS = ["plumbing-website-pages","hvac-website-pages","electrician-website-pages","roofing-website-pages","garage-door-website-pages","painting-website-pages","remodeling-website-pages","landscaping-website-pages","pool-service-website-pages","pressure-washing-website-pages","window-cleaning-website-pages","lawn-care-website-pages","junk-removal-website-pages","tree-service-website-pages"] as const;

@@ -85,6 +85,7 @@ const nextConfig: NextConfig = {
       .filter((page) => page.path !== "/");
     return [
       ...LEGACY_REDIRECTS,
+      { source: "/lp/phoenixpreview", destination: "/lp/phoenix-preview", statusCode: 301 },
       { source: "/index.html", destination: "/", statusCode: 301 },
       { source: "/process", destination: "/about", statusCode: 301 },
       { source: "/process.html", destination: "/about", statusCode: 301 },
