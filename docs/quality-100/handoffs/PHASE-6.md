@@ -34,6 +34,6 @@ Phase 5 performance shortfalls (desktop and sampled mobile), manual WCAG 2.2 AA 
 
 ## Commit and next action
 
-- Commit SHA: **pending**
+- Audit deliverables commit: `c712dea9c0fd74b9bb193136157c8c147f095009`.
 - Phase 7 readiness: **wait for Phase 6 review/owner decisions**. Do not deploy or begin Phase 7 before review.
 - Exact next action: investigate the persistent E2E failures, obtain owner decisions on billing/guarantee/review evidence, then request Phase 6 review before Phase 7. No deployment is authorized.

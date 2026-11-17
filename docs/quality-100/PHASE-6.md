@@ -31,6 +31,6 @@ Reviewed canonical catalog and commercial assertions; English homepage, pricing,
 - Relevant SEO/Spanish checks passed within `npm run check`.
 - No test, layout, analytics, SEO, or localization code changed.
 - Files added: `PHASE-6.md`, `COMMERCIAL-CONSISTENCY.md`, `TRUST-CLAIMS.csv`, `CONTENT-ISSUES.md`, `handoffs/PHASE-6.md`.
-- Commit SHA: recorded in the handoff after local commit.
+- Documentation commit: `c712dea9c0fd74b9bb193136157c8c147f095009` (handoff SHA-record update follows).
 - Release blockers carried forward: performance budgets (desktop and sampled mobile), manual WCAG 2.2 AA verification, A1 portfolio screenshot recapture, live provider testing, and Phase 6 owner decisions above.
 - **Phase 7 readiness:** content audit deliverables complete; do not begin Phase 7 until Phase 6 owner review. Existing performance/accessibility/provider blockers remain separate and do not imply release authorization.
