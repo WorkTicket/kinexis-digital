@@ -34,3 +34,12 @@ Reviewed canonical catalog and commercial assertions; English homepage, pricing,
 - Documentation commit: `c712dea9c0fd74b9bb193136157c8c147f095009` (handoff SHA-record update follows).
 - Release blockers carried forward: performance budgets (desktop and sampled mobile), manual WCAG 2.2 AA verification, A1 portfolio screenshot recapture, live provider testing, and Phase 6 owner decisions above.
 - **Phase 7 readiness:** content audit deliverables complete; do not begin Phase 7 until Phase 6 owner review. Existing performance/accessibility/provider blockers remain separate and do not imply release authorization.
+
+## Phase 6.1 regression follow-up
+
+The previously reported E2E failures were verification-environment mismatches, not application regressions. Playwright had reused a stale `next start` server on port 3000 (started 06:28, while current `.next/BUILD_ID` was regenerated 09:30). Fresh-server full runs passed. The Playwright default now uses port 3100 to avoid the known long-lived server. Details and owner register: `PHASE-6-REGRESSION-REVIEW.md`, `PLAYWRIGHT-FAILURE-ANALYSIS.md`, and `OWNER-DECISIONS.md`.
+
+- Two explicit fresh-dev full runs and two corrected-default full runs: each **60 passed, 6 skipped, 0 failed** at four workers.
+- `npm run check`: passed (28 warnings, 0 errors); `npm run check:invoice-security`: passed (mocked PayPal; sandbox not run); `npm run build`: passed (297 pages).
+- No responsive, consent, conversion, or screenshot assertion was weakened. Phase 5 fixes remain intact.
+- Phase 7 remains **on hold** for owner decisions and outstanding release gates: desktop/mobile performance, A1 genuine screenshot recapture, manual WCAG 2.2 AA, production Core Web Vitals, and live payment/lead/analytics/Conferbot verification.

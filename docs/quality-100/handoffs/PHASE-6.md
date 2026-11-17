@@ -37,3 +37,13 @@ Phase 5 performance shortfalls (desktop and sampled mobile), manual WCAG 2.2 AA 
 - Audit deliverables commit: `c712dea9c0fd74b9bb193136157c8c147f095009`.
 - Phase 7 readiness: **wait for Phase 6 review/owner decisions**. Do not deploy or begin Phase 7 before review.
 - Exact next action: investigate the persistent E2E failures, obtain owner decisions on billing/guarantee/review evidence, then request Phase 6 review before Phase 7. No deployment is authorized.
+
+## Phase 6.1 regression investigation
+
+- Root cause: `reuseExistingServer: true` on port 3000 reused a `next start` process started at 06:28, while build output had been regenerated at 09:30. The old process served stale markup/styles/image metadata. Phase 5 implementation `02d50f9a` is an ancestor of verified starting HEAD.
+- All eight repeat failures were environment mismatches: portfolio overflow at 320px (reported body width 434), Phoenix 320px clipping (336px), absent consent-ready marker, and old portfolio image metadata (1100×5371 vs expected 1600×8754), each across Chromium and mobile. Four additional failures in the 10-worker run (PayPal/analytics readiness) did not reproduce on fresh server.
+- Corrected Playwright default from port 3000 to 3100. No application changes, weakened assertions, arbitrary waits, or test skips added.
+- Four fresh-server complete E2E runs (two explicit 3001, two configured 3100): each **60 passed, 6 skipped, 0 failed** with 4 workers.
+- `npm run check`: passed (28 warnings); `npm run check:invoice-security`: passed, mocked PayPal; `npm run build`: passed, 297 pages.
+- Added `PHASE-6-REGRESSION-REVIEW.md`, `PLAYWRIGHT-FAILURE-ANALYSIS.md`, and `OWNER-DECISIONS.md`. Original failure contexts are preserved locally under ignored `.audit/phase6.1/reported-test-results/`.
+- Phase 7 remains on hold: Phase 6 owner decisions and performance, A1 screenshot, manual WCAG, production Core Web Vitals, and live provider blockers remain open.
