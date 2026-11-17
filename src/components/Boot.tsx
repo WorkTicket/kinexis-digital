@@ -13,6 +13,8 @@ declare global {
       conferbotLocale: string;
     };
     __KINEXIS_MIRRORS__?: readonly string[];
+    __KINEXIS_ENGLISH_FALLBACKS__?: Readonly<Record<string, string>>;
+    __KINEXIS_SPANISH_UTILITY_PATHS__?: readonly string[];
     fbq?: ((...args: unknown[]) => void) & { callMethod?: (...args: unknown[]) => void; queue?: unknown[]; loaded?: boolean; version?: string };
     _fbq?: Window["fbq"];
   }

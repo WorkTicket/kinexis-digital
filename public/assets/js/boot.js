@@ -1233,12 +1233,21 @@ function readConsent() {
 function syncLangSwitch() {
   const mirrors = window.__KINEXIS_MIRRORS__;
   if (!Array.isArray(mirrors)) return;
+  const englishFallbacks = window.__KINEXIS_ENGLISH_FALLBACKS__ || {};
+  const spanishUtilityPaths = window.__KINEXIS_SPANISH_UTILITY_PATHS__ || [];
   const path = location.pathname;
   document.querySelectorAll("[data-lang-switch] a[data-lang-locale]").forEach((a) => {
     const loc = a.getAttribute("data-lang-locale");
     if (!loc) return;
     const en = englishPath(path);
-    const target = mirrors.includes(en) ? en : "/";
+    const target =
+      loc === "en" && englishFallbacks[en]
+        ? englishFallbacks[en]
+        : spanishUtilityPaths.includes(en)
+          ? en
+        : mirrors.includes(en)
+          ? en
+          : "/";
     const href =
       loc === "en" ? target : target === "/" ? "/es" : `/es${target}`;
     a.setAttribute("href", href);
@@ -1489,4 +1498,3 @@ addEventListener("popstate", () => {
 new MutationObserver(syncChrome).observe(root, { attributes: true, attributeFilter: ["class"] });
 requestAnimationFrame(() => requestAnimationFrame(syncChrome));
 })();
-

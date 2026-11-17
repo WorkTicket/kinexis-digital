@@ -4,6 +4,8 @@ import { esPost } from "@/i18n/posts-es";
 import { PAGES, type PageMeta } from "@/lib/pages";
 import {
   type Locale,
+  ENGLISH_FALLBACK_PATHS,
+  SPANISH_UTILITY_PATHS,
   englishPath,
   isLocale,
   localeFromPath,
@@ -14,6 +16,8 @@ import {
 
 export type { Locale };
 export {
+  ENGLISH_FALLBACK_PATHS,
+  SPANISH_UTILITY_PATHS,
   englishPath,
   isLocale,
   localeFromPath,
@@ -28,8 +32,7 @@ const UNMIRRORED = new Set(["/pay", "/tools/missed-call-calculator", "/tools/goo
  * indexable, but do not advertise the retired English URL in hreflang/sitemap.
  */
 export const EN_REDIRECTED_BLOG_SLUGS = new Set([
-  "pagina-web-para-plomeros",
-  "como-pedir-resenas-en-google",
+  ...Object.keys(ENGLISH_FALLBACK_PATHS).map((path) => path.slice("/blog/".length)),
 ]);
 
 /**

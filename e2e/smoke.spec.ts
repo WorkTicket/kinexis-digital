@@ -62,6 +62,41 @@ test.describe("marketing journeys", () => {
     await expect(page.locator('a[href="/blog/how-to-ask-for-google-reviews-contractor"]')).not.toHaveCount(0);
   });
 
+  test("Spanish-only legacy articles switch directly to their current English equivalent", async ({ page }) => {
+    const equivalents = [
+      ["/es/blog/pagina-web-para-plomeros", "/industries/plumbing"],
+      ["/es/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"],
+    ] as const;
+    for (const [spanishPath, englishPath] of equivalents) {
+      await page.goto(spanishPath);
+      const englishLink = page.locator('[data-lang-locale="en"]');
+      await expect(englishLink).toHaveAttribute("href", englishPath);
+      const response = await page.request.get(englishPath, { maxRedirects: 0 });
+      expect(response.status()).toBe(200);
+    }
+  });
+
+  test("translated checkout utility switches between Spanish and English routes", async ({ page }) => {
+    for (const [spanishPath, englishPath] of [["/es/pay", "/pay"], ["/es/pay/thanks", "/pay/thanks"]] as const) {
+      await page.goto(spanishPath);
+      await expect(page.locator('[data-lang-locale="en"]')).toHaveAttribute("href", englishPath);
+      await expect(page.locator("html")).toHaveAttribute("lang", "es");
+      await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+    }
+  });
+
+  test("representative Spanish pages render in Spanish without horizontal overflow", async ({ page }) => {
+    for (const path of ["/es", "/es/pricing", "/es/contact", "/es/industries/plumbing", "/es/blog"]) {
+      await page.goto(path);
+      await expect(page.locator("html")).toHaveAttribute("lang", "es");
+      const dimensions = await page.evaluate(() => ({
+        viewport: document.documentElement.clientWidth,
+        content: document.documentElement.scrollWidth,
+      }));
+      expect(dimensions.content, `${path} overflows at ${dimensions.viewport}px`).toBeLessThanOrEqual(dimensions.viewport + 1);
+    }
+  });
+
   test("preview form shows required business fields", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator('input[name="business"]').first()).toBeVisible();
