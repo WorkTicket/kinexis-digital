@@ -2,6 +2,6 @@
 
 **Status: BLOCKED — operational rollback readiness has not been verified.**
 
-Do not deploy until Cloudflare Operations confirms access and a tested rollback path. Before release, record the prior Worker deployment/version, approved candidate, migration compatibility and recovery procedure, configuration recovery, D1 backup/restore availability, monitoring thresholds, decision owner, and exact rollback commands from the repository's established workflow.
+The established Worker rollback command documented by this repo is `npx wrangler rollback` (see `docs/engineering/production-hardening/PHASE1-PRODUCTION-SETUP.md`). Do not execute it from this preparation session. Cloudflare Operations must first identify the currently deployed Worker and confirm the desired previous version in the account; historical version IDs in older reports may be stale.
 
-Worker rollback alone must not be assumed to reverse D1 changes. Rehearse only in an isolated environment. No production rollback or migration was performed.
+Before release, record the prior Worker version, approved candidate, migration compatibility/recovery procedure, configuration recovery, D1 backup/restore availability, monitoring thresholds, decision owner and exact command. `npm run backup:d1-invoice` was run only in dry-run mode; it performed no network operation. Owner-run remote backup requires `D1_BACKUP_CONFIRM=YES` and `--remote`; do not execute without separate approval. Worker rollback does not reverse D1 changes. Rehearse only in an isolated environment. No production rollback or migration was performed.

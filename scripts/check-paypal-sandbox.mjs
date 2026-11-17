@@ -45,6 +45,16 @@ loadEnvFiles();
 function isSubscriptionId(value) {
   return /^I-[A-Z0-9]{6,}$/.test(value);
 }
+
+function parseSandboxCallback(value, expectedPath) {
+  const url = new URL(value);
+  assert.equal(url.protocol, "https:", "sandbox callback must use HTTPS");
+  assert.equal(url.hostname, "preview.kinexisdigital.com", "sandbox callback must use the isolated preview host");
+  assert.equal(url.pathname, expectedPath, "sandbox callback path must match the expected preview endpoint");
+  assert.equal(url.username, "", "sandbox callback must not include credentials");
+  assert.equal(url.password, "", "sandbox callback must not include credentials");
+  return url.toString();
+}
 assert.equal(isSubscriptionId("I-1AB2CD3EF4GH"), true);
 assert.equal(isSubscriptionId("SUB-1"), false);
 console.log("OK  subscription id shape checks");
@@ -114,19 +124,49 @@ await runMockedProviderContract();
 const clientId = (process.env.PAYPAL_CLIENT_ID || process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "").trim();
 const secret = (process.env.PAYPAL_CLIENT_SECRET || "").trim();
 const apiBase = (process.env.PAYPAL_API_BASE || "https://api-m.paypal.com").replace(/\/$/, "");
-const isSandbox = apiBase.includes("sandbox.paypal.com");
+const returnUrlValue = (process.env.PAYPAL_SANDBOX_RETURN_URL || "").trim();
+const cancelUrlValue = (process.env.PAYPAL_SANDBOX_CANCEL_URL || "").trim();
 
-if (!clientId || !secret || process.env.PAYPAL_SANDBOX_CONFIRM !== "1") {
+assert.throws(
+  () => parseSandboxCallback("https://www.kinexisdigital.com/api/checkout/capture", "/api/checkout/capture"),
+  /isolated preview host/,
+);
+assert.throws(
+  () => parseSandboxCallback("http://preview.kinexisdigital.com/api/checkout/capture", "/api/checkout/capture"),
+  /must use HTTPS/,
+);
+assert.throws(
+  () => parseSandboxCallback("https://preview.kinexisdigital.com/pay", "/api/checkout/capture"),
+  /expected preview endpoint/,
+);
+assert.equal(
+  parseSandboxCallback("https://preview.kinexisdigital.com/api/checkout/capture", "/api/checkout/capture"),
+  "https://preview.kinexisdigital.com/api/checkout/capture",
+);
+assert.equal(
+  parseSandboxCallback("https://preview.kinexisdigital.com/pay?invoice=cancelled", "/pay"),
+  "https://preview.kinexisdigital.com/pay?invoice=cancelled",
+);
+
+if (!clientId || !secret || process.env.PAYPAL_SANDBOX_CONFIRM !== "1" || !returnUrlValue || !cancelUrlValue) {
   console.log("SANDBOX EVIDENCE: NOT RUN");
-  console.log("    Set sandbox PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PAYPAL_API_BASE=https://api-m.sandbox.paypal.com, and PAYPAL_SANDBOX_CONFIRM=1.");
+  console.log("    Configure sandbox-only credentials in the approved secret store, PAYPAL_API_BASE=https://api-m.sandbox.paypal.com, PAYPAL_SANDBOX_CONFIRM=1,");
+  console.log("    PAYPAL_SANDBOX_RETURN_URL=https://preview.kinexisdigital.com/api/checkout/capture, and PAYPAL_SANDBOX_CANCEL_URL=https://preview.kinexisdigital.com/pay?invoice=cancelled.");
+  console.log("    Configure and authorize those preview callback routes before running the script; production callback URLs are rejected.");
   console.log("    Mocked results above are not sandbox evidence.");
   process.exit(0);
 }
 
-if (!isSandbox) {
-  console.log(`WARN API base is ${apiBase} (not sandbox). Refusing create/capture against live API.`);
-  console.log("    Set PAYPAL_API_BASE=https://api-m.sandbox.paypal.com for safe order tests.");
-  // Still verify OAuth against the configured API so misconfig is visible.
+const returnUrl = parseSandboxCallback(returnUrlValue, "/api/checkout/capture");
+const cancelUrl = parseSandboxCallback(cancelUrlValue, "/pay");
+if (new URL(cancelUrl).searchParams.get("invoice") !== "cancelled") {
+  throw new Error("PAYPAL_SANDBOX_CANCEL_URL must include invoice=cancelled.");
+}
+
+if (apiBase !== "https://api-m.sandbox.paypal.com") {
+  console.log("SANDBOX EVIDENCE: NOT RUN");
+  console.log("    Refusing OAuth or order requests unless PAYPAL_API_BASE is exactly https://api-m.sandbox.paypal.com.");
+  process.exit(0);
 }
 
 async function accessToken() {
@@ -173,8 +213,8 @@ const createRes = await fetch(`${apiBase}/v2/checkout/orders`, {
       brand_name: "Kinexis Digital",
       shipping_preference: "NO_SHIPPING",
       user_action: "PAY_NOW",
-      return_url: "https://www.kinexisdigital.com/api/checkout/capture",
-      cancel_url: "https://www.kinexisdigital.com/pay?invoice=cancelled",
+      return_url: returnUrl,
+      cancel_url: cancelUrl,
     },
   }),
   signal: AbortSignal.timeout(15_000),

@@ -1,4 +1,4 @@
-import { IMAGE_SIZES, STILL_VERSION, imageSrcSet, still } from "@/lib/image-sources";
+import { IMAGE_SIZES, STILL_VERSION, still } from "@/lib/image-sources";
 import {
   HERO_POSTER,
   HERO_POSTER_AVIF_SRCSET,
