@@ -51,7 +51,12 @@ const strictGate = deployScript.indexOf(
 const testGate = deployScript.indexOf('{ cmd: "npm", args: ["run", "check"], kind: "gate" }');
 assert.notEqual(strictGate, -1, "production deploy must wire the strict analytics preflight");
 assert.ok(testGate > strictGate, "strict preflight must run before tests/build/deploy");
+assert.match(
+  deployScript,
+  /args: \["run", "test:e2e", "--", "--workers=4"\]/,
+  "production deploy must use the tested full-suite worker count",
+);
 
 console.log(
-  "Search preflight checks passed: CI may omit analytics IDs; production deploy fails closed without valid build-time IDs.",
+  "Search preflight checks passed: CI may omit analytics IDs; production deploy fails closed without valid build-time IDs and uses the tested E2E worker count.",
 );
