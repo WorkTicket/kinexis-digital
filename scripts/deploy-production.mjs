@@ -124,6 +124,13 @@ function assertConferbotBotIdInBuild() {
 }
 
 const steps = [
+  // Build-time analytics IDs are optional for CI builds but required for a
+  // production deploy. Validate them before running tests/build/deploy steps.
+  {
+    cmd: "node",
+    args: ["scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"],
+    kind: "gate",
+  },
   { cmd: "npm", args: ["run", "check"], kind: "gate" },
   { cmd: "npm", args: ["run", "test:e2e"], kind: "gate" },
   { cmd: "npm", args: ["run", "build:worker"], kind: "build" },
