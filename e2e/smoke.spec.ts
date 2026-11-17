@@ -396,6 +396,27 @@ test.describe("marketing journeys", () => {
     await expect(page.getByText(/verified project details|Live site|callpreferredplumbing/i).first()).toBeVisible();
   });
 
+  test("portfolio template screenshot uses its real dimensions and responsive source", async ({ page }) => {
+    const res = await page.goto("/portfolio/tileline-bath-tile");
+    expect(res?.ok()).toBeTruthy();
+    const screenshot = page.locator(".project-shot-section img").first();
+    await expect(screenshot).toHaveAttribute("width", "1600");
+    await expect(screenshot).toHaveAttribute("height", "8754");
+    await expect(screenshot).toHaveAttribute("srcset", /800w.*960w.*1600w/);
+
+    await screenshot.scrollIntoViewIfNeeded();
+    await screenshot.evaluate((image: HTMLImageElement) => image.decode());
+    const current = await screenshot.evaluate((image: HTMLImageElement) => ({
+      source: image.currentSrc,
+      pixelRatio: window.devicePixelRatio,
+      width: image.naturalWidth,
+      height: image.naturalHeight,
+    }));
+    expect(current.width).toBeGreaterThan(0);
+    expect(current.height).toBeGreaterThan(0);
+    expect(current.source).toContain(current.pixelRatio > 2 ? "-960.webp" : "-800.webp");
+  });
+
   test("Conferbot widget stays unloaded while public flag is off", async ({ page }) => {
     // Playwright webServer is `npm run dev`, which does not load `.env.production`.
     // Production builds may enable the widget via that file; this suite asserts the

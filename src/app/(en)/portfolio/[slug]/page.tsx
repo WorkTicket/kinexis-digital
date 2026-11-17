@@ -117,7 +117,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
           <SafeImage
             src={portfolioFile(project.image)}
-            srcSet={`${portfolioFile(project.image, 640)} 640w, ${portfolioFile(project.image)} 1100w`}
+            srcSet={`${portfolioFile(project.image, 640)} 640w, ${portfolioFile(project.image, 800)} 800w, ${portfolioFile(project.image, 960)} 960w, ${portfolioFile(project.image, 1600)} 1600w`}
             alt={`${project.name} website design`}
             width={project.width}
             height={project.height}
