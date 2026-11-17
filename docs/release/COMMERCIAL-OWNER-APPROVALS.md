@@ -2,6 +2,8 @@
 
 **Status: BLOCKED — exact owner decisions/reviewer permissions below are still required.** The local `npm run check:commercial` consistency test passed, but does not certify owner intent, legal sufficiency, permission, or account configuration. No copy was changed.
 
+**Owner update (2026-11-17):** owner reports that the content owner approved the content. The approval artifact, reviewer identity/date, and item-by-item scope were not provided in this session, so this report does not treat that statement as clearance for billing/cancellation/guarantee terms, testimonial/logo/client-evidence permissions, legal/privacy review, or native Spanish commercial review. Record the approval and its exact scope here when available.
+
 ## Owner approval sheet
 
 Please approve or provide corrected exact wording for each item. “Approve current language” is an explicit choice; silence is not approval.
