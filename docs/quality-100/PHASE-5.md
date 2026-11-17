@@ -38,4 +38,4 @@ Lighthouse accessibility was **1.00** on `/`, `/pricing`, `/contact`, `/portfoli
 
 No assistive-technology/user testing was performed. Color contrast, screen-reader announcements, 200%/400% zoom, orientation changes, all form success/server-error combinations, full payment-provider interaction, and all route families remain incompletely manually verified. Some third-party payment/chat UI may require provider credentials or external services; external-provider tests were not run. This phase does **not** certify WCAG 2.2 AA. Phase 6 should wait for review of these findings and the open release gates.
 
-**Commit:** pending.
+**Phase 5 implementation commit:** `02d50f9a`.

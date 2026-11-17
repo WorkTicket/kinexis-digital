@@ -2,7 +2,7 @@
 
 **Branch:** `phase-1/conversion-handoff`
 **Base HEAD:** `7cfad411c3cc6ca2f38abca0936dea0d467a0d71`
-**Status:** Audit, implementation, and verification complete; local commit pending. No push, merge, deploy, or production configuration changes.
+**Status:** Audit, implementation, and verification complete; committed locally. No push, merge, deploy, or production configuration changes.
 
 ## Completed
 
@@ -31,4 +31,6 @@
 - Preserve Phase 4 desktop Lighthouse failure (75–80 vs 85 budget) and A1 screenshot recapture as open release issues.
 - Do not begin Phase 6 until Phase 5 findings and handoff are reviewed.
 
-**Exact next action:** commit the reviewed Phase 5 changes locally only and record the resulting SHA.
+**Phase 5 implementation commit:** `02d50f9a`.
+
+**Exact next action:** review the findings and open release gates before authorizing Phase 6.
