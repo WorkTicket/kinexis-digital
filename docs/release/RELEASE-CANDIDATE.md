@@ -2,7 +2,7 @@
 
 **Status: BLOCKED — no production release candidate frozen.**
 
-Starting revision was `766c0be76b2539297f8748c0210be658955cb2ca`; current working base was `4f8bf523b53342d63157bd5d5faa9c907ce710d3` on `phase-1/conversion-handoff`. The current code/documentation changes are still being validated and must be committed before a candidate exists. Production deployment is not authorized.
+Starting revision was `766c0be76b2539297f8748c0210be658955cb2ca`; continuation began from `4f8bf523b53342d63157bd5d5faa9c907ce710d3` on `phase-1/conversion-handoff`. Local preparation changes are committed through checkpoint `3ca73d7f8504c1a1be5212d6f76ab1000dd7866d`, with a clean worktree at that checkpoint. This is not a frozen or approved release candidate: provider acceptance, build-time configuration, human approvals, and operational verification remain blocked. Production deployment is not authorized.
 
 Known gate decision: performance has a narrow owner-approved exception recorded in [`PERFORMANCE-RELEASE-DECISION.md`](PERFORMANCE-RELEASE-DECISION.md); it does not waive other gates. Build-time GA4/Meta IDs are currently absent locally, preview lead destination is not configured, `LEAD_DB` is omitted, and external provider/account acceptance remains blocked. The production analytics preflight therefore fails closed.
 
