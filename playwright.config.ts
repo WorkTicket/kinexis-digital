@@ -24,7 +24,9 @@ export default defineConfig({
     : {
         command: "npm run dev -- --port 3100",
         url: baseURL,
-        reuseExistingServer: !process.env.CI,
+        // The test process must own the server it probes. Reusing a listener on
+        // this port can silently test a stale next start/dev instance.
+        reuseExistingServer: false,
         timeout: 120_000,
       },
 });

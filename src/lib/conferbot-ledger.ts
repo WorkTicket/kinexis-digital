@@ -125,7 +125,7 @@ WHERE provider = 'conferbot' AND provider_event_key = ?1
 export async function recordWebhookEvent(
   db: ConferbotDatabase,
   input: WebhookEventRecord,
-): Promise<LedgerWrite & { eventId?: string }> {
+): Promise<LedgerWrite & { eventId?: string; processingStatus?: WebhookEventRecord["processingStatus"] }> {
   try {
     const results = await runBatch(db, [
       {
@@ -148,11 +148,33 @@ export async function recordWebhookEvent(
     const inserted = results[0]?.changes ?? 0;
     const row = results[1]?.rows[0];
     const eventId = typeof row?.id === "string" ? row.id : input.id;
-    if (inserted === 1) return { ok: true, idempotent: false, eventId };
-    if (inserted === 0 && row) return { ok: true, idempotent: true, eventId };
+    const processingStatus = row?.processing_status;
+    if (
+      processingStatus !== "received" &&
+      processingStatus !== "processed" &&
+      processingStatus !== "ignored" &&
+      processingStatus !== "failed"
+    ) return { ok: false, reason: "storage" };
+    if (inserted === 1) return { ok: true, idempotent: false, eventId, processingStatus };
+    if (inserted === 0 && row) return { ok: true, idempotent: true, eventId, processingStatus };
     return { ok: false, reason: "conflict" };
   } catch (error) {
     return isConstraintError(error) ? { ok: false, reason: "conflict" } : { ok: false, reason: "storage" };
+  }
+}
+
+export async function markWebhookEventProcessed(db: ConferbotDatabase, eventId: string, processedAt: string): Promise<LedgerWrite> {
+  try {
+    const results = await runBatch(db, [{
+      sql: `UPDATE webhook_events
+            SET processing_status = 'processed', processed_at = ?2, last_error = NULL
+            WHERE id = ?1 AND processing_status = 'received'`,
+      params: [eventId, processedAt],
+    }]);
+    if (!results) return { ok: false, reason: "storage" };
+    return { ok: true, idempotent: (results[0]?.changes ?? 0) === 0 };
+  } catch {
+    return { ok: false, reason: "storage" };
   }
 }
 
