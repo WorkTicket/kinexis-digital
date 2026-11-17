@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning", "Events", "Specialty"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "40";
+export const PORTFOLIO_ASSET_VERSION = "41";
 
 export type PortfolioShotWidth = 320 | 400 | 480 | 640 | 662 | 800 | 960 | 1100 | 1600 | "card";
 
@@ -69,7 +69,7 @@ export function portfolioFile(
   width: PortfolioShotWidth = 1100,
   format: "webp" | "avif" = "webp",
 ) {
-  const stem = image.replace(/\.webp$/, "");
+  const stem = image.replace(/\.(?:webp|jpe?g|avif)$/i, "");
   const ext = format === "avif" ? ".avif" : ".webp";
   const file = width === "card"
     ? `${stem}-card${ext}`
@@ -87,7 +87,7 @@ export function portfolioCardFile(
   width: 400 | 480 | 800 = 400,
   format: "webp" | "avif" = "webp",
 ) {
-  const stem = image.replace(/\.webp$/, "");
+  const stem = image.replace(/\.(?:webp|jpe?g|avif)$/i, "");
   const ext = format === "avif" ? ".avif" : ".webp";
   return `${stem}-card-${width}${ext}?v=${PORTFOLIO_ASSET_VERSION}`;
 }
@@ -108,7 +108,14 @@ export function portfolioCaseStudySrcSet(
   format: "webp" | "avif" = "webp",
   sourceWidth = 1100,
 ) {
-  return `${portfolioFile(image, 400, format)} 400w, ${portfolioFile(image, 662, format)} 662w, ${portfolioFile(image, 800, format)} 800w, ${portfolioFile(image, 1100, format)} ${sourceWidth}w`;
+  const responsive = `${portfolioFile(image, 400, format)} 400w, ${portfolioFile(image, 662, format)} 662w, ${portfolioFile(image, 800, format)} 800w`;
+  if (sourceWidth > 1600) {
+    const stem = image.replace(/\.(?:webp|jpe?g|avif)$/i, "");
+    return format === "avif"
+      ? `${responsive}, ${stem}-1600.avif 1600w`
+      : `${responsive}, ${image} ${sourceWidth}w`;
+  }
+  return `${responsive}, ${portfolioFile(image, 1100, format)} ${sourceWidth}w`;
 }
 
 export function portfolioDeviceFile(image: string, width: 768 | 1536 = 1536) {

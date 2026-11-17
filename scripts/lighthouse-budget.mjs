@@ -36,6 +36,17 @@ function optionsFor(formFactor, port) {
         deviceScaleFactor: 1,
         disabled: false,
       },
+      // Lighthouse otherwise inherits its mobile-simulation defaults for this
+      // desktop-form-factor run (150ms RTT, ~1.6Mbps, 4x CPU slowdown).
+      // Keep desktop scoring on an explicit desktop profile.
+      throttling: {
+        rttMs: 40,
+        throughputKbps: 10240,
+        cpuSlowdownMultiplier: 1,
+        requestLatencyMs: 0,
+        downloadThroughputKbps: 0,
+        uploadThroughputKbps: 0,
+      },
       throttlingMethod: "simulate",
     };
   }
