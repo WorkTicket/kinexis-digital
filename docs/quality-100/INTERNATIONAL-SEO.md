@@ -2,7 +2,7 @@
 
 ## Scope and URL policy
 
-Audit date: 2026-11-17. Public English URLs remain unprefixed. LatAm/US Spanish remains under `/es`; `/es-es` is an approved permanent redirect alias to `/es`, not a separate indexable locale. English and `/es` pages use self-canonicals. `/es` uses HTML `lang="es"`; English uses `lang="en"`.
+Audit date: 2026-11-17. Public English URLs remain unprefixed. LatAm/US Spanish remains under `/es`; `/es-es` is an approved permanent redirect alias to `/es`, not a separate indexable locale. Indexable English and `/es` content pages use self-canonicals. `/es` uses HTML `lang="es"`; English uses `lang="en"`.
 
 The generated `LANGUAGE-EQUIVALENCE.csv` contains 123 English route definitions, 81 Spanish route definitions (79 exact language pairs plus two Spanish-only blog pages), and an `/es-es` policy row. Of the 79 exact pairs, 77 are content pairs (70 indexable and seven noindex legal/client utility or unpublished industry routes) and two are translated checkout utilities. There are 42 intentionally unmirrored English paths.
 
@@ -15,7 +15,7 @@ The generated `LANGUAGE-EQUIVALENCE.csv` contains 123 English route definitions,
 - Three former Spanish case-study detail URLs redirect to `/es/portfolio`, which is a general portfolio hub rather than an equivalent case study. This is an intentional fallback, not a Spanish case-study translation. The English case-study pages remain distinct.
 - The remaining 39 Spanish candidate paths for intentionally unmirrored English routes return 404. Language switching falls back to the Spanish home rather than linking into these absent routes.
 
-No broken destinations were found for the 79 active pairs; all return HTTP 200 and have matching canonical/locale signals. The legacy and portfolio fallbacks above are recorded separately rather than counted as equivalent pairs.
+No broken destinations were found for the 79 active pairs; all return HTTP 200 and use the expected document language. Indexable pairs have matching canonical/alternate signals; noindex utility pairs correctly omit canonicals and hreflang. The legacy and portfolio fallbacks above are recorded separately rather than counted as equivalent pairs.
 
 ## Switching and indexability
 
