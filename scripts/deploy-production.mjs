@@ -128,7 +128,7 @@ const steps = [
   // production deploy. Validate them before running tests/build/deploy steps.
   {
     cmd: "node",
-    args: ["scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"],
+    args: ["--env-file=.env.production", "scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"],
     kind: "gate",
   },
   { cmd: "npm", args: ["run", "check"], kind: "gate" },
@@ -136,7 +136,7 @@ const steps = [
   // Windows dev servers; the default worker count intermittently corrupts a
   // Next dev route-data response under concurrent pre-render requests.
   { cmd: "npm", args: ["run", "test:e2e", "--", "--workers=4"], kind: "gate" },
-  { cmd: "npm", args: ["run", "build:worker"], kind: "build" },
+  { cmd: "npm", args: ["run", "build:worker:production"], kind: "build" },
   { cmd: "npm", args: ["run", "deploy:worker"], kind: "post" },
   { cmd: "npm", args: ["run", "search:notify"], kind: "post" },
   { cmd: "npm", args: ["run", "verify:prod"], kind: "post" },

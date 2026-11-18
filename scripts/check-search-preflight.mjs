@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const script = fileURLToPath(new URL("./search-on-deploy.mjs", import.meta.url));
 const deployScript = readFileSync(new URL("./deploy-production.mjs", import.meta.url), "utf8");
+const packageJson = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const common = {
   ...process.env,
   NEXT_PUBLIC_SITE_URL: "https://www.kinexisdigital.com",
@@ -45,12 +46,34 @@ assert.equal(validIds.status, 0, validIds.stderr || validIds.stdout);
 assert.match(validIds.stdout, /NEXT_PUBLIC_GA_ID is set for build-time inlining/);
 assert.match(validIds.stdout, /NEXT_PUBLIC_META_PIXEL_ID is set for build-time inlining/);
 
+const productionEnvPreflight = spawnSync(
+  process.execPath,
+  ["--env-file=.env.production", script, "--preflight", "--require-analytics"],
+  { cwd: process.cwd(), encoding: "utf8", env: common },
+);
+assert.equal(
+  productionEnvPreflight.status,
+  0,
+  productionEnvPreflight.stderr || productionEnvPreflight.stdout,
+);
+assert.match(productionEnvPreflight.stdout, /NEXT_PUBLIC_GA_ID is set for build-time inlining \(G-Z8245BRX2L\)/);
+
 const strictGate = deployScript.indexOf(
-  'args: ["scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"]',
+  'args: ["--env-file=.env.production", "scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"]',
 );
 const testGate = deployScript.indexOf('{ cmd: "npm", args: ["run", "check"], kind: "gate" }');
 assert.notEqual(strictGate, -1, "production deploy must wire the strict analytics preflight");
 assert.ok(testGate > strictGate, "strict preflight must run before tests/build/deploy");
+assert.equal(
+  packageJson.scripts["build:worker:production"],
+  "node --env-file=.env.production scripts/build-worker-production.mjs",
+  "production Worker build must load production env before the strict analytics gate",
+);
+assert.match(
+  deployScript,
+  /\{ cmd: "npm", args: \["run", "build:worker:production"\], kind: "build" \}/,
+  "production deploy must use the strict production Worker build",
+);
 assert.match(
   deployScript,
   /args: \["run", "test:e2e", "--", "--workers=4"\]/,

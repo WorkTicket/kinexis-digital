@@ -55,6 +55,7 @@
     "verify": "npm run check && npm run check:invoice-security && npm run check:paypal-sandbox && npm run test:e2e",
     "verify:prod": "node scripts/smoke-routes.mjs https://www.kinexisdigital.com && node scripts/check-structured-data.mjs https://www.kinexisdigital.com && node scripts/lighthouse-budget.mjs https://www.kinexisdigital.com --form-factor=both",
     "build:worker": "node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build && node scripts/defer-chunks.mjs --opennext-cache",
+    "build:worker:production": "node --env-file=.env.production scripts/build-worker-production.mjs",
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
     "deploy:worker": "opennextjs-cloudflare deploy",
     "deploy:preview": "node scripts/deploy-preview.mjs",
