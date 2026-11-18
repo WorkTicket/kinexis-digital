@@ -1,0 +1,19 @@
+name = "kinexis-intelligence-api"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+
+[ai]
+binding = "AI"
+
+[vars]
+# Local: set to your Next.js origin (e.g. http://localhost:3000). Production: https://www.kinexisdigital.com
+ALLOWED_ORIGIN = "http://localhost:3000"
+AI_MODEL = "@cf/meta/llama-3.1-8b-instruct-fast"
+# Secrets via wrangler secret put / .dev.vars:
+# SUPABASE_URL, SUPABASE_SECRET_KEY, ADMIN_API_KEY
+# Optional: RESEND_API_KEY, ALERT_EMAIL, EMAIL_FROM
+
+[[kv_namespaces]]
+binding = "RATE_LIMIT"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+preview_id = "REPLACE_WITH_KV_PREVIEW_ID"

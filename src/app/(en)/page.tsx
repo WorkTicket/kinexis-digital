@@ -85,16 +85,14 @@ export default async function Home() {
           <div className="hero__reassure">
             <TrustStrip className="hero__trust" />
             <p className="hero__call muted small">
-              <span className="hero__call-label">Prefer to talk?</span>
-              <span className="hero__call-links">
-                <Link className="trust-mark" href="/strategy-call" prefetch={false}>Book a call</Link>
-                <span className="trust-fineprint__sep" aria-hidden="true">·</span>
-                <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a>
-              </span>
+              Prefer to talk?{" "}
+              <Link className="trust-mark" href="/strategy-call" prefetch={false}>Book a call</Link>
+              <span className="trust-fineprint__sep" aria-hidden="true">·</span>
+              <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a>
             </p>
           </div>
         </div>
-        <HeroFilm />
+        <HeroFilm preloadPoster />
       </div></section>
       <PreviewBar />
 

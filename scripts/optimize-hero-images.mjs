@@ -10,13 +10,16 @@ const heroes = (await readdir(directory)).filter((file) => /-1254\.webp$/.test(f
 for (const file of heroes) {
   const master = path.join(directory, file);
   const base = master.replace(/-1254\.webp$/, "");
-  for (const width of [480, 640, 960]) {
+  const widths = /^(01-homepage|07-web-design)-1254\.webp$/.test(file)
+    ? [480, 640, 720, 960]
+    : [480, 640, 960];
+  for (const width of widths) {
     await rebuildFromMaster(master, `${base}-${width}.webp`);
     // Never let the LCP AVIF grow past what already scores 100 in lab.
     await rebuildFromMaster(master, `${base}-${width}.avif`, {
       format: "avif",
       // Keep mobile LCP AVIFs lean; 480w is the common lab pick for page-hero art.
-      maxBytes: width <= 480 ? 22 * 1024 : width <= 640 ? 28 * 1024 : 90 * 1024,
+        maxBytes: width <= 480 ? 22 * 1024 : width <= 640 ? 28 * 1024 : width <= 720 ? 72 * 1024 : 90 * 1024,
     });
   }
   await rebuildFromMaster(master, `${base}-1254.avif`, { format: "avif" });

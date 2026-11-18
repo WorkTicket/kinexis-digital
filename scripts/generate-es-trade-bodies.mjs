@@ -747,10 +747,6 @@ const pagesCounts = pagesBuilt.map((p) => ({
 console.log("Cost word counts:", costCounts);
 console.log("Pages word counts:", pagesCounts);
 
-function tsString(s) {
-  return JSON.stringify(s);
-}
-
 function writeCostTs() {
   const out = path.join(ROOT, "src/i18n/es-cost-bodies.ts");
   const header = `/** Regenera con: node scripts/generate-es-trade-bodies.mjs */

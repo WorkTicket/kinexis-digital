@@ -1,11 +1,16 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("marketing journeys", () => {
-  test("homepage loads and shows plan comparison", async ({ page }) => {
+  test("homepage loads and shows plan comparison", async ({ page }, testInfo) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
     await expect(page.getByRole("heading", { name: /Website Plans and Pricing|A Website That Brings In More Calls/i }).first()).toBeVisible();
-    await expect(page.getByRole("columnheader", { name: "Lead System" })).toBeVisible();
+    // Desktop uses the comparison table; mobile uses the sticker/card compare.
+    if (testInfo.project.name === "mobile") {
+      await expect(page.getByText("Lead System").first()).toBeVisible();
+    } else {
+      await expect(page.getByRole("columnheader", { name: "Lead System" })).toBeVisible();
+    }
   });
 
   test("pricing page shows ownership comparison and text-back add-on", async ({ page }) => {

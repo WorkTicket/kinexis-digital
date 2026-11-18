@@ -219,7 +219,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             previewLabel={tx("Vista previa en 2 días hábiles")}
           />
         </div>
-        <HeroFilm />
+        <HeroFilm preloadPoster />
       </div></section>
       <PreviewBar locale={locale} />
       <ReviewsSection

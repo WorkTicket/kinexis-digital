@@ -1,0 +1,8 @@
+# Local wrangler secrets only. Copy to .dev.vars (gitignored). Never commit real keys.
+SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+SUPABASE_SECRET_KEY=PASTE_SERVICE_ROLE_KEY_HERE
+ADMIN_API_KEY=generate-a-long-random-hex-string
+# Optional email alerts (Resend)
+# RESEND_API_KEY=
+# ALERT_EMAIL=hello@kinexisdigital.com
+# EMAIL_FROM=KINEXIS Intelligence <alerts@your-verified-domain.com>

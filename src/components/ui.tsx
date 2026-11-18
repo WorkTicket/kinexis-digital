@@ -44,9 +44,15 @@ type HeroImageProps = {
 };
 
 const HERO_WIDTHS = [480, 640, 960, 1254] as const;
+const HERO_INTERMEDIATE_WIDTHS: Record<string, readonly number[]> = {
+  "01-homepage": [480, 640, 720, 960, 1254],
+  "07-web-design": [480, 640, 720, 960, 1254],
+};
 
 function heroSet(base: string, format: "avif" | "webp") {
-  return HERO_WIDTHS.map((width) => `${still(`${base}-${width}.${format}`)} ${width}w`).join(", ");
+  const name = base.slice(base.lastIndexOf("/") + 1);
+  const widths = HERO_INTERMEDIATE_WIDTHS[name] ?? HERO_WIDTHS;
+  return widths.map((width) => `${still(`${base}-${width}.${format}`)} ${width}w`).join(", ");
 }
 
 /** Primary hero artwork. AVIF is served first, with pre-sized WebP as the fallback. */
@@ -184,8 +190,8 @@ export function PageHero({
           <div className="page-hero__art">
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-              {/* sizes 200px on small screens keeps DPR≤2.6 on the 480w LCP AVIF (~22KB), not 640w. */}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes="(max-width: 860px) 200px, (max-width: 1279px) 50vw, 627px" /> : null)}
+              {/* Match the measured 260px mobile / 563px desktop LCP artwork slots. */}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes="(max-width: 860px) 260px, 563px" /> : null)}
             </div>
           </div>
         </div>
@@ -206,7 +212,16 @@ export function MediaSplit({
       <div className="media-split__art">
         <div className="art-wrap">
           {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-          <Art name={image} alt={alt} className="hero-art" sizes="(max-width: 860px) 380px, 540px" />
+          <Art
+            name={image}
+            alt={alt}
+            className="hero-art"
+            sizes={image === "homepage"
+              ? "(max-width: 860px) 380px, 534px"
+              : image === "web-design"
+                ? "(max-width: 860px) 380px, 652px"
+                : "(max-width: 860px) 380px, 540px"}
+          />
         </div>
       </div>
       <div className="media-split__copy">{children}</div>

@@ -1,4 +1,4 @@
-export default {
+const localSeoPost = {
   slug: "local-seo-get-found-get-called",
   lead: `Son las 7:40 de un martes. Un dueño de casa está en la entrada con el celular en una mano y una llave de paso que no cierra en la otra. Busca «plomero cerca de mí», toca el primer nombre que parece activo y llama. Si tu número en ese listado es el del taller viejo, o si el sitio dice que no llegas a ese lado de la ciudad, el trabajo se fue antes de que colgaras la llamada que ya tenías en curso. El SEO local es el trabajo poco glamoroso de hacer que ese momento aterrice en ti: la categoría correcta, una zona honesta, una página que coincide con el trabajo que buscaron y un teléfono que de verdad suena. No es una pila de páginas de pueblo con el nombre cambiado, y no es una promesa de que vas a quedar en el primer lugar.`,
   sections: [
@@ -126,3 +126,5 @@ export default {
     },
   ],
 };
+
+export default localSeoPost;

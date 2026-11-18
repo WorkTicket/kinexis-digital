@@ -29,6 +29,11 @@ export default function Page() {
             </div>
           </div>
           <aside className="contact-info">
+            <div className="contact-info__intro">
+              <span className="eyebrow">Here to help</span>
+              <h2>Let’s make your next step clear.</h2>
+              <p>Tell us a little about your business. We’ll use it to prepare your free homepage preview.</p>
+            </div>
             <div className="card">
               <h2 className="card-title">Call</h2>
               <p><a href={telHref(SITE.phone)}>{SITE.phone}</a></p>
@@ -41,11 +46,7 @@ export default function Page() {
               <h2 className="card-title">Service area</h2>
               <p>Service businesses across the United States. English and Spanish on the Plus plan.</p>
             </div>
-            <div className="card">
-              <h2 className="card-title">Book a call</h2>
-              <p className="muted">Prefer to talk it through? Book a short strategy call.</p>
-              <p className="spaced"><Link className="btn btn--ghost" href="/strategy-call" prefetch={false}>Book a call</Link></p>
-            </div>
+            <p className="contact-info__callout"><span aria-hidden="true">✓</span> No card required <span aria-hidden="true">·</span> Free preview in 2 business days</p>
           </aside>
         </div>
       </Section>
