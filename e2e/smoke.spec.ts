@@ -36,7 +36,11 @@ async function setConsent(page: import("@playwright/test").Page, analytics: bool
 async function waitForBoot(page: import("@playwright/test").Page) {
   await page.waitForFunction(() =>
     [...document.scripts].some((script) => (script.src || "").includes("boot.min.js"))
-      && (window as Window & { __KINEXIS_CFG__?: { ga?: string } }).__KINEXIS_CFG__?.ga === "G-TEST12345",
+      && (window as Window & {
+        __KINEXIS_CFG__?: { ga?: string };
+        __KINEXIS_TRACK_META_LEAD__?: unknown;
+      }).__KINEXIS_CFG__?.ga === "G-TEST12345"
+      && typeof (window as Window & { __KINEXIS_TRACK_META_LEAD__?: unknown }).__KINEXIS_TRACK_META_LEAD__ === "function",
   );
 }
 
@@ -200,6 +204,7 @@ test.describe("marketing journeys", () => {
     await form.locator("label.sticker-check").filter({ hasText: "I’d like a free homepage preview" }).click();
     await form.locator('input[name="service_area"]').fill("Boise and nearby towns");
     await form.locator('textarea[name="services"]').fill("Drain cleaning, leak repair, water heaters");
+    await form.locator("[data-preview-asset-consent]").check({ force: true });
     await form.locator('button[type="submit"]').click();
     await expect(form).toHaveClass(/is-done/);
     expect(submitted).toContain('name="kx_attr_utm_campaign"');
@@ -311,6 +316,9 @@ test.describe("marketing journeys", () => {
         await page.locator(".booking-cal__slots button").first().click();
       }
       const form = page.locator(item.selector);
+      if (item.path === "/contact" || item.path === "/es/contact") {
+        await form.locator('input[name="inquiry"][value="plans"]').check({ force: true });
+      }
       if (item.kind === "audit") {
         await form.locator('input[name="name"]').fill("Test Visitor");
         await form.locator('input[name="email"]').fill("visitor@example.test");
