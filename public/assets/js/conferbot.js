@@ -177,6 +177,10 @@
       host.shadowRoot.appendChild(styleEl);
       styleEl.textContent = `
 @media (max-width: 860px) {
+:host(.${HOST_CLASS}) .chatbot__icon__cta,
+:host(.${HOST_CLASS}) #chat-cta{
+  display:none!important;
+}
 :host(.${HOST_CLASS}) #open-chatbot.chatbot__icon,
 :host(.${HOST_CLASS}) .chatbot__icon{
   bottom:var(--kx-chat-bottom)!important;

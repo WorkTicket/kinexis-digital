@@ -303,7 +303,7 @@ function closeDialogs() {
 }
 
 function armMarks() {
-  const nodes = [...document.querySelectorAll("main .hl")].filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
+  const nodes = [...document.querySelectorAll(".hl")].filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
   if (reduce() || !("IntersectionObserver" in window)) {
     nodes.forEach((el) => el.classList.add("is-marked"));
     return;
