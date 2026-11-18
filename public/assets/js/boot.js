@@ -1141,9 +1141,19 @@ document.addEventListener("submit", async (event) => {
   const data = new FormData(form);
   if (data.get("_gotcha")) return;
   const conversion = form.getAttribute("data-conversion");
+  data.set("kx_form_path", location.pathname);
   if (conversion === "preview" || conversion === "audit") {
     data.set("kx_conversion", conversion);
     appendAttribution(data);
+  }
+  const isMetaLead = data.get("topic") !== "intake" && !String(data.get("request") || "").trim();
+  let metaEventId = "";
+  if (isMetaLead && consentAllowsAds()) {
+    try { metaEventId = crypto.randomUUID(); } catch { /* unavailable */ }
+    if (metaEventId) {
+      data.set("kx_event_id", metaEventId);
+      data.set("kx_form_path", location.pathname);
+    }
   }
   const button = form.querySelector("button[type=submit]");
   button?.classList.add("is-loading");
@@ -1180,19 +1190,17 @@ document.addEventListener("submit", async (event) => {
           page_path: location.pathname,
           event_role: "diagnostic",
         });
-        trackMeta("Lead", {
-          content_name: "homepage_preview",
-          content_category: leadPayload.landing_page,
-        });
       } else if (conversion === "audit") {
         track("audit_request", {
           form_id: form.getAttribute("name") || form.id || "audit",
           page_path: location.pathname,
         });
+      }
+      if (metaEventId) {
         trackMeta("Lead", {
-          content_name: "website_audit",
-          content_category: location.pathname,
-        });
+          content_name: location.pathname,
+          lang: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
+        }, { eventID: metaEventId });
       }
       return;
     }
@@ -1390,11 +1398,11 @@ function clearMetaArm() {
   metaArmed = false;
 }
 function ensureMeta() {
-  if (!consentAllowsAds()) return;
-  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
+  if (!consentAllowsAds()) return false;
+  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return false;
   if (metaBooted) {
     try { window.fbq("consent", "grant"); } catch { /* unavailable */ }
-    return;
+    return false;
   }
   metaBooted = true;
   clearMetaArm();
@@ -1422,6 +1430,7 @@ function ensureMeta() {
   } catch {
     /* Pixel blocked or unavailable — ignore. */
   }
+  return true;
 }
 function armMeta() {
   if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) {
@@ -1436,13 +1445,15 @@ function armMeta() {
   metaTimer = setTimeout(ensureMeta, 45000);
 }
 
-function trackMeta(name, params) {
+function trackMeta(name, params, options) {
   if (!consentAllowsAds()) return;
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  ensureMeta();
+  const justBooted = ensureMeta();
+  if (name === "PageView" && justBooted) return;
   if (typeof window.fbq !== "function") return;
   try {
-    window.fbq("track", name, params || {});
+    if (options) window.fbq("track", name, params || {}, options);
+    else window.fbq("track", name, params || {});
   } catch {
     /* Pixel blocked or unavailable — ignore. */
   }

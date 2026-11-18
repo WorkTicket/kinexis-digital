@@ -1,7 +1,19 @@
 # Lead delivery acceptance
 
-**Status: BLOCKED — customer-facing delivery is not end-to-end accepted.**
+**Status: PARTIAL — owner confirmed receipt of nine uniquely labeled preview emails; browser form validation and all-provider lifecycle checks remain separate.**
 
-Fresh `npm run check` passed mocked contact validation, routing, attachment, honeypot, failure and preview-isolation tests. The UI routes homepage preview, contact, audit, campaign/landing, Spanish mirror, and booking/calendar submissions through `/api/contact`; `IntakeForm` also uses that endpoint for existing-client updates. Conferbot's free widget is enabled, but owner chose to defer its webhook/site-D1/notification integration; it is not a site-side lead-delivery path for this launch. These code paths are not live delivery evidence. Historical evidence in [`RELEASE-GATE-MATRIX.csv`](../quality-100/RELEASE-GATE-MATRIX.csv) includes one separately authorized labeled preview submission, but its test-sink receipt/routing was not independently inspected. No new submission was made.
+The owner confirmed that each of the nine preview test messages arrived once, outside spam, from `hello@kinexisdigital.com`, with its fields intact. They were sent to the isolated preview Worker and recipient; no production form or pixel event was used. Tests exercised `/api/contact` with these source paths and IDs:
 
-**Owner action:** inspect the provider log/isolated recipient for that existing correlation and confirm delivery/no customer destination. The agent attempted read-only Gmail access, but the connected browser redirected to the Gmail product page and exposed no mailbox; no email was read and receipt remains unverified. Preview config currently has empty `CONTACT_PREVIEW_TO` and therefore fail-closes email; Wrangler's preview send-email allowlist also has no approved test sink. Select a test-only destination and update preview-only allowed-destination/configuration through the owner's Cloudflare process. Then, with isolated test identities, authorize a uniquely labeled test per enabled path; verify frontend validation, API acceptance, storage when applicable, actual receipt, duplicate behavior, failure recovery, and exactly-once analytics. Record redacted correlation IDs and timestamps only. Do not contact customers or submit new data to a production inbox.
+- `/` — `KDTEST-home-preview-1794951378517-1`
+- `/contact` — `KDTEST-contact-1794951378517-2`
+- `/audit` — `KDTEST-audit-1794951378517-3`
+- `/lp/get-a-website` — `KDTEST-landing-main-1794951378517-4`
+- `/lp/phoenix-preview` — `KDTEST-landing-phoenix-1794951378517-5`
+- `/es/contact` — `KDTEST-spanish-1794951796257-1`
+- `/strategy-call` — `KDTEST-booking-1794951796257-2`
+- `/intake` — `KDTEST-intake-1794951796257-3`
+- `/update` — `KDTEST-site-update-1794951796257-4`
+
+The preview API returned 200 for all nine. Cloudflare Email provider message IDs were captured in server logs for the last four only; the first five succeeded but their IDs were not logged. A sixth attempt was correctly rate-limited (429) and was not sent. Preview mail routing has since been restored to empty `CONTACT_PREVIEW_TO` and fail-closed; the test recipient was not committed. A future change now records Cloudflare Email acceptance and its provider message ID without logging lead PII.
+
+The UI routes homepage preview, contact, audit, campaign/landing, Spanish mirror, and booking/calendar submissions through `/api/contact`; `IntakeForm` also uses that endpoint for existing-client updates. Conferbot's free widget remains widget-only; its webhook/site-D1/notification integration is deferred. Mocked checks cover validation, routing, attachments, honeypot, failure and preview isolation; browser form validation, duplicate/failure recovery, and full lifecycle acceptance remain. Do not submit to production or send analytics events without separate authorization.

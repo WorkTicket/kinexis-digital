@@ -1,5 +1,7 @@
-import { SITE } from "@/lib/site";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { isPreviewSite, SITE } from "@/lib/site";
 import { clientIp } from "@/lib/client-ip";
+import { sendMetaLeadCapi } from "@/lib/meta-capi";
 import {
   EMAIL_PATTERN,
   contactDeliveryBlocked,
@@ -27,6 +29,7 @@ const MAX_FILE = 4 * 1024 * 1024;
 const MAX_FILES = 9;
 const MAX_REQUEST = 22 * 1024 * 1024;
 const MAX_TEXT = 20_000;
+const META_EVENT_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 type MailAttachment = {
   filename: string;
@@ -50,6 +53,68 @@ function consentAllowsAttribution(request: Request) {
     };
   } catch {
     return { analytics: false, ads: false };
+  }
+}
+
+function cookieValue(request: Request, name: string) {
+  const prefix = `${name}=`;
+  const part = (request.headers.get("cookie") || "").split(";").map((item) => item.trim()).find((item) => item.startsWith(prefix));
+  if (!part) return undefined;
+  try {
+    return decodeURIComponent(part.slice(prefix.length));
+  } catch {
+    return undefined;
+  }
+}
+
+function queueMetaLeadCapi(request: Request, input: {
+  eventId: string;
+  formPath: string;
+  language: "en" | "es";
+  email?: string;
+  phone?: string;
+}) {
+  if (isPreviewSite()) return;
+
+  let context: ReturnType<typeof getCloudflareContext>;
+  try {
+    context = getCloudflareContext();
+  } catch {
+    return;
+  }
+  const env = context.env as CloudflareEnv & {
+    META_CAPI_TOKEN?: string;
+    NEXT_PUBLIC_META_PIXEL_ID?: string;
+  };
+  const token = env.META_CAPI_TOKEN?.trim();
+  const pixelId = env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
+  if (!token || !pixelId) return;
+
+  const eventSourceUrl = new URL(input.formPath, SITE.url).toString();
+  const task = sendMetaLeadCapi({
+    ...input,
+    eventSourceUrl,
+    clientIp: clientIp(request) || undefined,
+    clientUserAgent: request.headers.get("user-agent") || undefined,
+    fbp: cookieValue(request, "_fbp"),
+    fbc: cookieValue(request, "_fbc"),
+    consent: true,
+  }, pixelId, token).then((result) => {
+    if (!result.accepted) {
+      console.warn("Meta CAPI lead was not accepted", {
+        eventIdPrefix: input.eventId.slice(0, 8),
+        ...(result.status ? { status: result.status } : {}),
+      });
+    }
+  }).catch(() => {
+    console.warn("Meta CAPI lead request failed", { eventIdPrefix: input.eventId.slice(0, 8) });
+  });
+
+  try {
+    (context.ctx as { waitUntil(promise: Promise<unknown>): void }).waitUntil(task);
+  } catch {
+    // Local runtimes may not expose an execution context; don't affect lead delivery.
+    void task;
   }
 }
 
@@ -148,7 +213,14 @@ export async function POST(request: Request) {
     }
   }
   for (const [key, value] of form.entries()) {
-    if (key === "_gotcha" || key === "kx_conversion" || key.startsWith("kx_attr_") || value instanceof File) continue;
+    if (
+      key === "_gotcha" ||
+      key === "kx_conversion" ||
+      key === "kx_event_id" ||
+      key === "kx_form_path" ||
+      key.startsWith("kx_attr_") ||
+      value instanceof File
+    ) continue;
     const label = key.replace(/[^a-z0-9 _-]/gi, "").slice(0, 50);
     const raw = String(value);
     if (raw.length > 5_000) return visitorError("That message is too long.", 400);
@@ -170,6 +242,8 @@ export async function POST(request: Request) {
   const isCall = topic === "strategy-call";
   const isIntake = topic === "intake";
   const isAudit = topic === "audit";
+  const metaEventId = String(form.get("kx_event_id") ?? "").trim();
+  const metaFormPath = String(form.get("kx_form_path") ?? "").trim();
 
   try {
     const sent = await sendMail({
@@ -180,9 +254,32 @@ export async function POST(request: Request) {
       isCall,
       isIntake,
       isAudit,
+      formPath: metaFormPath,
       files: collected.files,
     });
-    if (sent === "sent") return privateJson({ ok: true });
+    if (sent === "sent") {
+      if (
+        consent.ads &&
+        !isIntake &&
+        !isUpdate &&
+        META_EVENT_ID_PATTERN.test(metaEventId) &&
+        /^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,240}$/.test(metaFormPath) &&
+        !metaFormPath.includes("..")
+      ) {
+        const language = metaFormPath === "/es" || metaFormPath.startsWith("/es/") ||
+          metaFormPath === "/es-es" || metaFormPath.startsWith("/es-es/")
+          ? "es"
+          : "en";
+        queueMetaLeadCapi(request, {
+          eventId: metaEventId,
+          formPath: metaFormPath,
+          language,
+          email: email || undefined,
+          phone: phone || undefined,
+        });
+      }
+      return privateJson({ ok: true });
+    }
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);
     }
@@ -194,7 +291,7 @@ export async function POST(request: Request) {
 }
 
 async function sendMail({
-  name, replyTo, text, isUpdate, isCall, isIntake, isAudit, files,
+  name, replyTo, text, isUpdate, isCall, isIntake, isAudit, formPath, files,
 }: {
   name: string;
   replyTo?: string;
@@ -203,6 +300,7 @@ async function sendMail({
   isCall: boolean;
   isIntake: boolean;
   isAudit: boolean;
+  formPath: string;
   files: File[];
 }): Promise<"sent" | "unconfigured" | "failed"> {
   if (contactDeliveryBlocked()) {
@@ -211,15 +309,43 @@ async function sendMail({
   }
   const recipients = contactRecipients();
   if (recipients.length === 0) return "unconfigured";
+  const safeFormPath = /^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,240}$/.test(formPath) && !formPath.includes("..")
+    ? formPath
+    : "";
+  const spanish = /^\/es(?:-es)?(?:\/|$)/.test(safeFormPath);
+  const pageLabels: Record<string, string> = spanish
+    ? {
+        "/es": "Inicio",
+        "/es/contact": "Contacto",
+        "/es/audit": "Auditoría web",
+        "/es/strategy-call": "Llamada estratégica",
+        "/es/intake": "Datos del sitio",
+        "/es/update": "Cambios del sitio",
+      }
+    : {
+        "/": "Home",
+        "/contact": "Contact",
+        "/audit": "Website audit",
+        "/strategy-call": "Strategy call",
+        "/intake": "Website intake",
+        "/update": "Site update",
+        "/lp/get-a-website": "Get-a-website landing page",
+        "/lp/phoenix-preview": "Phoenix preview landing page",
+      };
+  const pageLabel = pageLabels[safeFormPath] ||
+    (safeFormPath ? safeFormPath : "");
+  const source = pageLabel ? ` · ${pageLabel}` : "";
   const subject = isIntake
-    ? `Website intake from ${name}`
+    ? `${spanish ? "[ES] " : ""}Website intake${source} from ${name}`
     : isAudit
-      ? `Website audit request from ${name}`
+      ? `${spanish ? "[ES] " : ""}Website audit request${source} from ${name}`
     : isCall
-      ? `Strategy call request from ${name}`
-      : isUpdate
-        ? `Site update from ${name}`
-        : `New message from ${name}`;
+      ? `${spanish ? "[ES] " : ""}Strategy call request${source} from ${name}`
+    : isUpdate
+      ? `${spanish ? "[ES] " : ""}Site update${source} from ${name}`
+      : spanish
+        ? `[ES] Mensaje nuevo${source} — ${name}`
+        : `New message${source} — ${name}`;
 
   const attachments: MailAttachment[] = [];
   for (const [index, file] of files.entries()) {
@@ -234,7 +360,7 @@ async function sendMail({
   const cloudflareEmail = contactEmailBinding();
   if (cloudflareEmail) {
     try {
-      await cloudflareEmail.send({
+      const providerResult = await cloudflareEmail.send({
         from: { email: SITE.email, name: SITE.name },
         to: recipients,
         ...(replyTo ? { replyTo: { email: replyTo, name } } : {}),
@@ -246,6 +372,16 @@ async function sendMail({
           type,
           disposition: "attachment" as const,
         })),
+      });
+      const messageId =
+        providerResult && typeof providerResult === "object" && "messageId" in providerResult &&
+        typeof providerResult.messageId === "string"
+          ? providerResult.messageId
+          : undefined;
+      console.warn("Contact delivery accepted", {
+        provider: "Cloudflare Email",
+        ...(safeFormPath ? { sourcePath: safeFormPath } : {}),
+        ...(messageId ? { messageId } : {}),
       });
       return "sent";
     } catch (error) {

@@ -49,5 +49,8 @@ assert.match(boot, /consentAllowsAnalytics\(\).*?return;\s*if \(!cfg\.ga/s);
 assert.match(boot, /consent",\s*"update"/);
 assert.match(boot, /window\.fbq\("consent",\s*adsAllowed \? "grant" : "revoke"\)/);
 assert.match(boot, /const leadFormsInFlight = new WeakSet\(\)/);
+assert.match(boot, /data\.set\("kx_event_id", metaEventId\)/);
+assert.match(boot, /trackMeta\("Lead",[\s\S]*?\{ eventID: metaEventId \}\)/);
+assert.match(boot, /if \(name === "PageView" && justBooted\) return/);
 
 console.log("Analytics correction contract checks passed: attribution sanitization, canonical lead event, consent gates, and in-flight form deduplication.");
