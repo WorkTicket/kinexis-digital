@@ -191,11 +191,14 @@ test.describe("marketing journeys", () => {
     await waitForBoot(page);
     await page.goto("/contact");
     await waitForBoot(page);
-    const form = page.locator('form[data-conversion="preview"]').first();
+    const form = page.locator("form[data-contact-inquiry]").first();
     await form.locator('input[name="name"]').fill("Test Visitor");
     await form.locator('input[name="email"]').fill("visitor@example.test");
     await form.locator('input[name="business"]').fill("Test Business");
     await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+    await form.locator("label.sticker-check").filter({ hasText: "I’d like a free homepage preview" }).click();
+    await form.locator('input[name="service_area"]').fill("Boise and nearby towns");
+    await form.locator('textarea[name="services"]').fill("Drain cleaning, leak repair, water heaters");
     await form.locator('button[type="submit"]').click();
     await expect(form).toHaveClass(/is-done/);
     expect(submitted).toContain('name="kx_attr_utm_campaign"');

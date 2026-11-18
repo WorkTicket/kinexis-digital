@@ -29,7 +29,7 @@ const MAX_FILE = 4 * 1024 * 1024;
 const MAX_FILES = 9;
 const MAX_REQUEST = 22 * 1024 * 1024;
 const MAX_TEXT = 20_000;
-const META_EVENT_ID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const META_EVENT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,99}$/;
 
 type MailAttachment = {
   filename: string;
@@ -70,12 +70,11 @@ function cookieValue(request: Request, name: string) {
 function queueMetaLeadCapi(request: Request, input: {
   eventId: string;
   formPath: string;
+  contentName?: string;
   language: "en" | "es";
   email?: string;
   phone?: string;
 }) {
-  if (isPreviewSite()) return;
-
   let context: ReturnType<typeof getCloudflareContext>;
   try {
     context = getCloudflareContext();
@@ -84,11 +83,13 @@ function queueMetaLeadCapi(request: Request, input: {
   }
   const env = context.env as CloudflareEnv & {
     META_CAPI_TOKEN?: string;
+    META_TEST_EVENT_CODE?: string;
     NEXT_PUBLIC_META_PIXEL_ID?: string;
   };
   const token = env.META_CAPI_TOKEN?.trim();
   const pixelId = env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
-  if (!token || !pixelId) return;
+  const testEventCode = env.META_TEST_EVENT_CODE?.trim();
+  if (!token || !pixelId || (isPreviewSite() && !testEventCode)) return;
 
   const eventSourceUrl = new URL(input.formPath, SITE.url).toString();
   const task = sendMetaLeadCapi({
@@ -99,15 +100,34 @@ function queueMetaLeadCapi(request: Request, input: {
     fbp: cookieValue(request, "_fbp"),
     fbc: cookieValue(request, "_fbc"),
     consent: true,
-  }, pixelId, token).then((result) => {
-    if (!result.accepted) {
+  }, pixelId, token, fetch, testEventCode).then((result) => {
+    if (testEventCode) {
+      console.info("Meta CAPI test event response", {
+        endpointPath: `/v21.0/${pixelId}/events`,
+        eventId: input.eventId,
+        ...(result.status !== undefined ? { status: result.status } : {}),
+        ...(result.eventsReceived !== undefined ? { events_received: result.eventsReceived } : {}),
+        ...(result.messages ? { messages: result.messages } : {}),
+        ...(result.fbtraceId ? { fbtrace_id: result.fbtraceId } : {}),
+        ...(result.errorMessage ? { error: result.errorMessage } : {}),
+        ...(result.networkError ? { networkError: true } : {}),
+      });
+    } else if (!result.accepted) {
       console.warn("Meta CAPI lead was not accepted", {
         eventIdPrefix: input.eventId.slice(0, 8),
         ...(result.status ? { status: result.status } : {}),
       });
     }
   }).catch(() => {
-    console.warn("Meta CAPI lead request failed", { eventIdPrefix: input.eventId.slice(0, 8) });
+    if (testEventCode) {
+      console.warn("Meta CAPI test event request failed", {
+        endpointPath: `/v21.0/${pixelId}/events`,
+        eventId: input.eventId,
+        networkError: true,
+      });
+    } else {
+      console.warn("Meta CAPI lead request failed", { eventIdPrefix: input.eventId.slice(0, 8) });
+    }
   });
 
   try {
@@ -273,6 +293,7 @@ export async function POST(request: Request) {
         queueMetaLeadCapi(request, {
           eventId: metaEventId,
           formPath: metaFormPath,
+          contentName: conversion === "audit" ? "website_audit" : metaFormPath,
           language,
           email: email || undefined,
           phone: phone || undefined,

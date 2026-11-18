@@ -20,9 +20,9 @@ export default defineConfig([
     ".wrangler/**",
     "out/**",
     "build/**",
+    // Generated minified copies of public/assets/js source files
+    "public/assets/js/*.min.js",
     "next-env.d.ts",
     "cloudflare-env.d.ts",
-    // Generated minify of public/assets/js/boot.js
-    "public/assets/js/boot.min.js",
   ]),
 ]);

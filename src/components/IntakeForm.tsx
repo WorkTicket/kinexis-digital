@@ -89,7 +89,11 @@ function StickerCheck({ name, label }: { name: string; label: string }) {
   return (
     <label className="sticker-check">
       <input type="checkbox" name={name} value="yes" />
-      <span className="sticker-check__box" aria-hidden="true" />
+      <span className="sticker-check__box" aria-hidden="true">
+        <svg viewBox="0 0 20 20" focusable="false">
+          <path d="m4 10 4 4 8-9" />
+        </svg>
+      </span>
       <span className="sticker-check__label">{label}</span>
     </label>
   );

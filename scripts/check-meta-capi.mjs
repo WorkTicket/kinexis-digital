@@ -15,7 +15,7 @@ const source = bundle.outputFiles[0]?.contents;
 assert.ok(source);
 const meta = await import(`data:text/javascript;base64,${Buffer.from(source).toString("base64")}`);
 
-const eventId = "d85c1d12-6e9a-4af3-9d56-8abff1c6b008";
+const eventId = "KDTEST-capi-1800000000";
 const input = {
   eventId,
   eventSourceUrl: "https://www.kinexisdigital.com/es/contact",
@@ -43,6 +43,15 @@ assert.equal(payload.event_time, input.eventTime);
 assert.equal(payload.action_source, "website");
 assert.equal(payload.event_source_url, input.eventSourceUrl);
 assert.deepEqual(payload.custom_data, { content_name: input.formPath, lang: "es" });
+const auditPayload = await meta.buildMetaLeadPayload({
+  ...input,
+  eventSourceUrl: "https://www.kinexisdigital.com/audit",
+  formPath: "/audit",
+  contentName: "website_audit",
+  language: "en",
+});
+assert.ok(auditPayload);
+assert.deepEqual(auditPayload.custom_data, { content_name: "website_audit", lang: "en" });
 assert.deepEqual(payload.user_data.em, [expectedHash("test+lead@example.com")]);
 assert.deepEqual(payload.user_data.ph, [expectedHash("13075553371")]);
 assert.equal(payload.user_data.client_ip_address, input.clientIp);
@@ -66,12 +75,25 @@ assert.deepEqual(denied, { accepted: false });
 assert.equal(calls, 0, "no CAPI request is made without advertising consent");
 
 const accepted = await meta.sendMetaLeadCapi(input, "1577328887491986", "unit-test-token", fetcher);
-assert.deepEqual(accepted, { accepted: true, status: 200 });
+assert.deepEqual(accepted, { accepted: true, status: 200, eventsReceived: 1 });
 assert.equal(calls, 1);
 assert.equal(sentUrl, "https://graph.facebook.com/v21.0/1577328887491986/events");
 assert.equal(sentBody.access_token, "unit-test-token");
 assert.equal(sentBody.data[0].event_id, eventId, "CAPI retains the browser event ID for deduplication");
 assert.equal(sentBody.data[0].event_name, "Lead");
+assert.equal("test_event_code" in sentBody, false, "test_event_code is omitted when unset");
+
+const testCodeResult = await meta.sendMetaLeadCapi(
+  input,
+  "1577328887491986",
+  "unit-test-token",
+  fetcher,
+  "TEST41928",
+);
+assert.deepEqual(testCodeResult, { accepted: true, status: 200, eventsReceived: 1 });
+assert.equal(calls, 2);
+assert.equal(sentBody.test_event_code, "TEST41928", "test_event_code is included when explicitly configured");
+assert.equal(sentBody.data[0].event_id, eventId);
 
 const failed = await meta.sendMetaLeadCapi(input, "1577328887491986", "unit-test-token", async () => new Response("no", { status: 503 }));
 assert.deepEqual(failed, { accepted: false, status: 503 });
@@ -87,5 +109,6 @@ const route = await (await import("node:fs/promises")).readFile(path.join(root, 
 assert.ok(/consent\.ads[\s\S]*?META_EVENT_ID_PATTERN\.test\(metaEventId\)[\s\S]*?queueMetaLeadCapi/.test(route), "the handler gates CAPI on advertising consent and the matching event ID");
 assert.ok(route.includes("waitUntil(task)"), "the CAPI request is scheduled without blocking lead acceptance");
 assert.ok(route.includes("META_CAPI_TOKEN"), "the CAPI token comes from the Worker secret");
+assert.ok(route.includes("META_TEST_EVENT_CODE"), "the test code is read from the local Worker environment");
 
 console.log("Meta CAPI checks passed: consent gate, dedup ID, SHA-256 normalization, payload fields, soft navigation, and non-blocking scheduling. Fetch was mocked; no Meta request was sent.");
