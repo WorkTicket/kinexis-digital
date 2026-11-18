@@ -1,6 +1,26 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("narrow viewport regressions", () => {
+  test("mobile header shows the preview CTA and visible Menu label instead of the phone number", async ({ page }) => {
+    for (const width of [320, 375, 390]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto("/");
+
+      await expect(page.locator(".header__cta--site")).toBeVisible();
+      await expect(page.locator(".header__cta--site")).toContainText("Get My Free Preview");
+      await expect(page.locator(".header__phone--mobile")).toBeHidden();
+      await expect(page.locator(".burger__word--open")).toBeVisible();
+
+      const dimensions = await page.evaluate(() => ({
+        width: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+        ctaRight: document.querySelector(".header__cta--site")?.getBoundingClientRect().right ?? 0,
+      }));
+      expect(dimensions.scrollWidth, `header overflows at ${width}px`).toBeLessThanOrEqual(width);
+      expect(dimensions.ctaRight, `preview CTA exceeds ${width}px`).toBeLessThanOrEqual(width);
+    }
+  });
+
   test("portfolio live-site cards stay within the viewport", async ({ page }) => {
     for (const width of [320, 375, 390]) {
       await page.setViewportSize({ width, height: 900 });

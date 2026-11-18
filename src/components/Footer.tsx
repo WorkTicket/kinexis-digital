@@ -62,9 +62,9 @@ export default function Footer({ locale }: { locale: Locale }) {
   const fields = locale === "en" ? LEAD_FIELDS : LEAD_FIELDS_ES;
   const support = [
     ...chrome.supportLinks,
-    [SITE.clientPortalUrl, locale === "en" ? "Client Portal" : "Portal de clientes"],
     [SITE.missedCallPortalUrl, locale === "en" ? "Missed-Call Text-Back" : "Texto para llamadas perdidas"],
-    ["/pay", locale === "en" ? "Pay" : "Planes y pago"],
+    [SITE.clientPortalUrl, locale === "en" ? "Client Portal" : "Portal de clientes"],
+    ["/pay", locale === "en" ? "Payments" : "Pagos"],
   ] as [string, string][];
 
   return (

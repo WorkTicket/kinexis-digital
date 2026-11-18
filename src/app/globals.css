@@ -759,22 +759,21 @@ p{margin:0 0 1em}
 .lp-route .nav,.lp-route .burger,.lp-route .site-foot,.lp-route footer,.lp-route [data-site-audit],.lp-route .announce{display:none!important}
 html.lp-route body{--announce-h:0px}
 .lp-route .header__tools{margin-left:auto;gap:10px;flex-shrink:0}
-/* Nav/burger are gone on /lp — phone + Free Preview stay in the bar at every width. */
+/* Nav/burger are gone on /lp — keep phone + preview CTA on wide screens. */
 .lp-route .header__phone--mobile{
   display:inline-flex!important;align-items:center;justify-content:center;
   min-height:40px;padding:0 6px;line-height:1.1;font-size:.88rem;white-space:nowrap;
 }
 .lp-route .header__cta--site{display:none!important}
 .lp-route .header__cta--lp{display:inline-flex!important;padding:.55em .95rem;font-size:.84rem;flex-shrink:0}
+.header__cta-label--lp-mobile{display:none}
 @media (max-width:520px){
   .lp-route .header__tools{gap:6px}
-  .lp-route .header__phone--mobile{font-size:.72rem;padding:0 2px;letter-spacing:-.02em}
   .lp-route .header__cta--lp{padding:.5em .7rem;font-size:.76rem}
 }
 @media (max-width:360px){
   .lp-route .header__inner{gap:8px}
   .lp-route .logo__img{height:40px}
-  .lp-route .header__phone--mobile{font-size:.62rem;padding:0;min-width:0}
   .lp-route .header__cta--lp{padding:.4em .5rem;font-size:.68rem}
 }
 .lp-page{overflow:hidden;background:#fff;color:var(--text)}
@@ -1545,10 +1544,10 @@ html.lp-route body{--announce-h:0px}
 .consent-banner__prefs-link{
   appearance:none;background:none;border:0;padding:2px 0;margin:0 auto;
   font:inherit;font-size:.78rem;font-weight:700;line-height:1.2;
-  color:var(--accent-dark);text-decoration:underline;text-underline-offset:2px;
+  color:var(--brand-cobalt);text-decoration:underline;text-underline-offset:2px;
   cursor:pointer;order:2;
 }
-.consent-banner__prefs-link:hover{color:var(--brand-navy)}
+.consent-banner__prefs-link:hover{color:var(--accent-dark)}
 .consent-banner__prefs-link:focus-visible{
   outline:3px solid var(--accent);outline-offset:2px;border-radius:4px;
 }
@@ -1630,37 +1629,71 @@ html.no-float{--consent-fab-slot:0px}
   /* Same bottom band as the sticky bar — never stacked above it. */
   bottom:var(--sticky-stack);
   display:inline-flex;align-items:center;justify-content:center;gap:0;
-  width:42px;height:42px;padding:0;border-radius:999px;
-  border:1px solid rgba(3,27,78,.18);
-  background:rgba(255,255,255,.48);
-  backdrop-filter:blur(10px) saturate(1.15);
-  -webkit-backdrop-filter:blur(10px) saturate(1.15);
-  box-shadow:0 4px 14px rgba(3,27,78,.1);
-  cursor:pointer;color:rgba(3,27,78,.78);
+  width:48px;height:48px;padding:0;border-radius:50%;
+  border:2px solid var(--brand-navy);background:var(--brand-cobalt);
+  box-shadow:3px 3px 0 var(--brand-navy);
+  cursor:pointer;color:#fff;
   transition:bottom .2s ease,background .18s ease,color .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
 .consent-fab:hover{
-  background:rgba(255,255,255,.72);
-  color:var(--brand-navy);
-  border-color:rgba(3,27,78,.28);
-  box-shadow:0 6px 18px rgba(3,27,78,.14);
+  background:var(--brand-cobalt);
+  color:#fff;
+  filter:brightness(1.08);
+  box-shadow:4px 4px 0 var(--brand-navy);
 }
-.consent-fab:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.consent-fab:focus-visible{outline:3px solid var(--brand-cobalt);outline-offset:3px;filter:brightness(1.08)}
 .consent-fab__icon{
-  display:grid;place-items:center;width:22px;height:22px;color:inherit;
+  display:grid;place-items:center;width:100%;height:100%;color:inherit;
 }
-.consent-fab__icon svg{width:22px;height:22px;display:block}
+.consent-fab__icon svg{width:100%;height:100%;display:block}
 .consent-fab__label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-/* No float on page: slightly larger labeled chip is fine. */
-html.no-float .consent-fab{
-  width:auto;height:auto;padding:8px 14px 8px 10px;gap:8px;border-radius:999px;
+/* Preview-request follow-up and conditional contact detail fields. */
+.contact-inquiry__error:empty{display:none}
+.contact-inquiry__error:not(:empty){margin:2px 0 0;color:#9f1239;text-align:left;font-size:.9rem}
+.contact-preview-details:not([hidden]){
+  padding:18px;border:1px solid var(--border);border-radius:14px;
+  background:var(--bg-tint);
 }
-html.no-float .consent-fab__icon{width:20px;height:20px}
-html.no-float .consent-fab__icon svg{width:20px;height:20px}
-html.no-float .consent-fab__label{
-  position:static;width:auto;height:auto;overflow:visible;clip:auto;
-  white-space:nowrap;font-size:.78rem;font-weight:700;font-family:var(--font-head);
-  letter-spacing:.01em;color:inherit;
+.contact-preview-details__lead{margin:0}
+.contact-preview-uploads{
+  display:grid;gap:12px;padding:14px;
+  border:1px solid var(--border);border-radius:12px;background:#fff;
+}
+.contact-preview-uploads__copy h3{
+  margin:0;font-family:var(--font-head);font-size:1rem;line-height:1.3;color:var(--brand-navy);
+}
+.contact-preview-uploads__copy p{margin:4px 0 0;line-height:1.45}
+.contact-preview-uploads__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.contact-preview-uploads .field--file{
+  min-width:0;margin:0;padding:11px 12px;
+  border:1px solid var(--border);border-radius:10px;background:var(--bg-tint);
+}
+.contact-preview-uploads .field--file span{
+  position:static;display:block;margin:0 0 7px;
+  width:100%;min-width:0;overflow-wrap:anywhere;
+  color:var(--brand-navy);font-size:.85rem;font-weight:700;line-height:1.35;
+}
+.contact-preview-uploads .field--file input{
+  display:block;width:100%;min-width:0;padding:7px;
+  border:1px solid #d5dced;border-radius:8px;background:#fff;font-size:.78rem;
+}
+.contact-preview-asset-consent{
+  width:100%;box-sizing:border-box;padding:14px;
+  border-color:#b9c8ed;background:#f7f9ff;
+}
+.contact-preview-asset-consent .sticker-check__label{
+  max-width:38rem;font-size:.88rem;line-height:1.45;
+}
+.contact-preview-asset-consent:has(input[aria-invalid="true"]){
+  border-color:var(--danger);
+}
+.contact-preview-asset-error:empty{display:none}
+.contact-preview-asset-error:not(:empty){
+  margin:0;color:var(--danger);font-size:.86rem;font-weight:600;line-height:1.4;
+}
+.form.is-done[data-contact-inquiry]>:not(.form__msg){display:none}
+.form.is-done[data-contact-inquiry] .form__msg{
+  display:grid;gap:16px;justify-items:center;padding:24px 0;
 }
 .plan-compare{margin-top:8px}
 /* When offer + compare share one section, separate with a light rule. */
@@ -1928,12 +1961,11 @@ button.chatbot__icon__cta{
   .trade-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:1320px){
-  .header__cta{display:none!important}
-  /* Match the burger mark height so phone + MENU share one optical row */
-  .header__phone--mobile{
-    display:inline-flex;align-items:center;justify-content:center;
-    min-height:40px;padding:0 6px;line-height:1.1;
-  }
+  .header__cta--site{display:inline-flex!important}
+  .header__phone--mobile{display:none!important}
+  .lp-route .header__cta-label--lp-desktop{display:none}
+  .lp-route .header__cta-label--lp-mobile{display:block}
+  .lp-route .header__phone--mobile{display:none!important}
   .header__tools{align-items:center;gap:8px;flex:0 1 auto;min-width:0}
   .burger{align-items:center;min-height:40px;padding:0 2px}
   .nav__extra .header__phone{display:none}
@@ -2441,7 +2473,7 @@ html.no-audit [data-site-audit]{display:none!important}
 .fb-chooser.is-open>button{background:#fff!important;color:#1877F2!important}
 .fb-chooser.is-open .fb-menu{visibility:visible!important;opacity:1!important}
 
-/* Desktop-only header CTA — mobile/tablet tools stay phone + hamburger.
+/* Header CTA stays available with the mobile/tablet menu.
    boot.js triggers the one-shot nudge on a random ~3–8s gap.
    `.header__cta--lp` stays hidden off LP routes; `.lp-route` swaps via CSS. */
 .header__cta{
@@ -2598,7 +2630,6 @@ html.no-audit [data-site-audit]{display:none!important}
   #footer-cta{padding-left:18px;padding-right:18px}
   .footer-cta-bridge{padding-left:16px;padding-right:22px;padding-bottom:14px}
   .header__tools{gap:8px;min-width:0;max-width:100%}
-  .header__phone--mobile{font-size:.84rem;letter-spacing:-.01em;min-height:40px}
   .burger{gap:8px;padding:0;min-height:40px}
   .burger__label{min-width:0;font-size:.72rem;letter-spacing:.1em;line-height:1}
 }
@@ -2654,53 +2685,64 @@ html.no-audit [data-site-audit]{display:none!important}
   .intake-grid .field--wide{grid-column:1/-1}
 }
 .sticker-check{
-  position:relative;display:flex;align-items:flex-start;gap:14px;
+  position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
   cursor:pointer;user-select:none;min-height:1.5em;padding:10px 12px;
   border:1px solid var(--border);border-radius:14px;background:#fff;
-  box-shadow:var(--shadow);transition:transform .15s ease,box-shadow .15s ease;
+  box-shadow:0 3px 10px rgba(3,27,78,.06);
+  transition:transform .18s ease,border-color .18s ease,background-color .18s ease,box-shadow .18s ease;
 }
-.sticker-check:hover{transform:translate(-1px,-1px);box-shadow:var(--shadow)}
-.sticker-check:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--brand-navy)}
+.form .sticker-check{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.sticker-check:has(input:checked){border-color:var(--accent);background:#f7f9ff}
+.sticker-check:active{transform:scale(.99);box-shadow:0 1px 4px rgba(3,27,78,.08)}
 .sticker-check input{
   position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none;
 }
 .sticker-check__box{
-  position:relative;flex:0 0 auto;width:1.5em;height:1.5em;margin-top:.1em;
-  background:#fdfcf0;border:1px solid var(--border);
-  border-radius:8% 92% 12% 88% / 87% 11% 89% 13%;
-  box-shadow:var(--shadow);
-  transition:transform .2s cubic-bezier(.175,.885,.32,1.275),background-color .2s,border-radius .2s,box-shadow .2s;
+  position:relative;display:grid;place-items:center;flex:0 0 auto;width:30px;height:30px;
+  background:#fff;border:2px solid #b9c8ed;border-radius:9px;
+  box-shadow:3px 3px 0 rgba(3,27,78,.16);
+  transition:transform .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease;
 }
-.sticker-check:hover .sticker-check__box{transform:scale(1.05) rotate(2deg)}
+@media(hover:hover) and (pointer:fine){
+  .sticker-check:hover{
+    transform:translateY(-2px);border-color:var(--accent);
+    box-shadow:0 9px 20px rgba(3,27,78,.11);
+  }
+  .sticker-check:hover .sticker-check__box{
+    background:var(--accent-soft);border-color:var(--accent);
+    transform:scale(1.04);box-shadow:3px 3px 0 rgba(3,27,78,.18);
+  }
+}
 .sticker-check input:checked ~ .sticker-check__box{
-  background:var(--warm);
-  border-radius:92% 8% 88% 12% / 11% 87% 13% 89%;
-  transform:scale(1.08) rotate(-2deg);
+  background:var(--brand-cobalt);border-color:var(--brand-navy);
+  box-shadow:4px 4px 0 rgba(3,27,78,.22);
+  transform:scale(1.04);
 }
-.sticker-check__box::after{
-  content:"";position:absolute;display:none;
-  left:.36em;top:.09em;width:.3em;height:.7em;
-  border:solid var(--brand-navy);border-width:0 .22em .22em 0;border-radius:2px;
-  transform:rotate(40deg);
+.sticker-check__box svg{
+  width:18px;height:18px;overflow:visible;color:#fff;
+  transform:scale(0) rotate(-45deg);
+  transition:transform .18s ease-out;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.2));
 }
-.sticker-check input:checked ~ .sticker-check__box::after{
-  display:block;animation:stickerSplash .3s forwards;
+.sticker-check__box path{
+  fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+}
+.sticker-check input:checked ~ .sticker-check__box svg{
+  transform:scale(1) rotate(0deg);
 }
 .sticker-check:active .sticker-check__box{
-  transform:scale(.92) translateY(3px);box-shadow:0 0 0 var(--brand-navy);
+  transform:translate(1px,1px);box-shadow:2px 2px 0 rgba(3,27,78,.16);
 }
-.sticker-check__label{font-size:.95rem;font-weight:600;color:var(--brand-navy);line-height:1.35;padding-top:.15em}
+.sticker-check__label{
+  display:block;width:100%;font-size:.95rem;font-weight:600;
+  color:var(--brand-navy);line-height:1.35;text-align:center;
+}
 .sticker-check:has(input:focus-visible){
   outline:3px solid var(--brand-cobalt);outline-offset:3px;
 }
-@keyframes stickerSplash{
-  0%{transform:scale(0) rotate(40deg);opacity:0}
-  70%{transform:scale(1.2) rotate(40deg)}
-  100%{transform:scale(1) rotate(40deg);opacity:1}
-}
 @media (prefers-reduced-motion:reduce){
   .sticker-check,.sticker-check__box{transition:none}
-  .sticker-check input:checked ~ .sticker-check__box::after{animation:none}
+  .sticker-check__box svg{transition:none}
 }
 .check{width:76px;height:76px;background:var(--check-sticker) center/contain no-repeat;color:transparent;font-size:0;display:block;animation:pop .5s cubic-bezier(.2,.9,.3,1.4)}
 @keyframes pop{from{transform:scale(0)}to{transform:scale(1)}}
@@ -3875,32 +3917,39 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .burger__word--close{opacity:0;transform:translateY(8px)}
 .burger.is-open .burger__word--open{opacity:0;transform:translateY(-8px)}
 .burger.is-open .burger__word--close{opacity:1;transform:none}
-/* Keep these after the base .burger__label rule so they win on small screens.
-   Visually hide (don't display:none) so the Menu/Close words stay the accessible name. */
+/* Keep the Menu/Close label visible beside the hamburger at mobile widths. */
 @media (max-width:520px){
   .burger__label{
-    position:absolute;
-    width:1px;height:1px;
-    padding:0;margin:-1px;
-    overflow:hidden;
-    clip:rect(0,0,0,0);
+    position:static;
+    width:auto;height:auto;
+    padding:0;margin:0;
+    overflow:visible;
+    clip:auto;
     white-space:nowrap;
     border:0;
-    display:block;
+    display:grid;
     min-width:0;
+    font-size:.62rem;
+    letter-spacing:.06em;
   }
-  .burger{gap:0;padding:0;margin-left:2px}
-  .header__phone--mobile{font-size:.78rem;padding:0 4px;letter-spacing:-.02em}
+  .burger{gap:4px;padding:0;margin-left:2px}
   .header__tools{gap:6px}
+  .header__cta--site{min-height:38px;padding:.42em .55rem;font-size:.68rem}
+  .header__cta-label{white-space:nowrap}
+  .logo__img{height:38px;max-width:130px}
 }
 @media (max-width:380px){
-  .header__phone--mobile{display:none}
   .nav .nav__extra .header__phone{
     display:flex;align-items:center;justify-content:center;min-height:44px;
     padding:.65rem .9rem;border:1px solid var(--border);border-radius:12px;
     background:#fff;color:var(--brand-navy);font-family:var(--font-head);font-weight:700;
     font-size:.95rem;text-decoration:none;
   }
+  .header__inner{gap:8px}
+  .logo__img{height:32px;max-width:108px}
+  .burger__label{font-size:.58rem;letter-spacing:.03em}
+  .burger{gap:3px}
+  .header__cta--site{min-height:36px;padding:.35em .42rem;font-size:.6rem}
 }
 @media (max-width:1320px){
   .burger{display:inline-flex}
@@ -5053,10 +5102,6 @@ p,li,blockquote{ text-wrap:pretty }
     width:44px;height:44px;
     /* Prefer tap target size on phones without colliding with the float bar. */
   }
-  html.no-float .consent-fab{
-    max-width:calc(100vw - 24px - var(--sal) - var(--sar));
-  }
-
   .chips{gap:8px;margin-bottom:24px;justify-content:flex-start}
   .chip{padding:.55em 1em;font-size:.9rem}
 
@@ -5091,5 +5136,118 @@ p,li,blockquote{ text-wrap:pretty }
   .compare__head>div{font-size:clamp(.58rem,2.8vw,.68rem)}
   .hero.hero--fit h1{font-size:1.55rem}
   .page-hero h1{font-size:clamp(1.7rem,8vw,2.1rem)}
-  .logo__img{height:42px;max-width:200px}
+  .logo__img{height:32px;max-width:86px}
+}
+
+/* Contact page: compact two-column form with a clear direct-contact rail. */
+.contact-grid--split{
+  max-width:1080px;
+  grid-template-columns:minmax(0,1fr) minmax(260px,320px);
+  gap:clamp(24px,4vw,48px);
+  align-items:stretch;
+}
+.contact-form-shell{padding:clamp(22px,3vw,34px)}
+.contact-form-heading{max-width:46rem;margin:0 auto 22px}
+.contact-form-heading .eyebrow{margin:0 0 8px}
+.contact-form-heading .card-title{font-size:clamp(1.45rem,2.4vw,1.9rem);line-height:1.2}
+.contact-form-heading>.muted{margin:8px 0 0;line-height:1.55}
+.contact-grid--split .form[data-contact-inquiry] .field>span{white-space:nowrap}
+.contact-form-shell .form[data-contact-inquiry]{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.contact-form-shell .form[data-contact-inquiry]>.intake-block,
+.contact-form-shell .form[data-contact-inquiry]>.field--wide,
+.contact-form-shell .form[data-contact-inquiry]>button,
+.contact-form-shell .form[data-contact-inquiry]>.form__fast,
+.contact-form-shell .form[data-contact-inquiry]>.form__msg,
+.contact-form-shell .form[data-contact-inquiry]>.small{
+  grid-column:1/-1;
+}
+.contact-form-shell .contact-inquiry__choices{justify-items:center}
+.contact-form-shell .contact-inquiry__choices legend{
+  width:100%;text-align:center;font-size:1rem;line-height:1.35;
+}
+.contact-form-shell .contact-inquiry__choices .sticker-check-grid{
+  width:min(100%,620px);
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-inline:auto;
+}
+.contact-form-shell .contact-inquiry__choices .sticker-check{
+  min-height:92px;align-items:center;gap:8px;padding:12px 14px;
+  border:1.5px solid #d5dced;border-radius:12px;
+  box-shadow:0 3px 0 rgba(3,27,78,.1);
+}
+@media(hover:hover) and (pointer:fine){
+  .contact-form-shell .contact-inquiry__choices .sticker-check:hover{
+    transform:translateY(-2px);border-color:var(--accent);
+    box-shadow:0 9px 20px rgba(3,27,78,.11);
+  }
+}
+.contact-form-shell .contact-inquiry__choices .sticker-check__label{
+  font-size:.9rem;line-height:1.3;
+}
+.contact-form-shell .form[data-contact-inquiry]>button{width:100%;margin-top:2px}
+.contact-aside{
+  position:relative;overflow:hidden;align-self:stretch;
+  display:flex;flex-direction:column;align-items:flex-start;gap:14px;
+  padding:clamp(22px,3vw,30px);
+  border:2px solid var(--brand-navy);border-radius:20px;
+  background:linear-gradient(155deg,#f4f7ff 0%,#fff 75%);
+  box-shadow:var(--shadow-sticker);
+}
+.contact-aside::before{
+  content:"";position:absolute;inset:0 0 auto;height:6px;
+  background:linear-gradient(90deg,var(--brand-cobalt) 0 62%,var(--brand-orange) 62%);
+}
+.contact-aside .eyebrow{margin:2px 0 -8px;color:var(--accent-dark)}
+.contact-aside h2{
+  margin:0;font-family:var(--font-head);font-size:clamp(1.45rem,2.4vw,1.85rem);
+  line-height:1.18;letter-spacing:-.025em;color:var(--brand-navy);
+}
+.contact-aside__intro{margin:0;color:var(--copy);line-height:1.5}
+.contact-aside__link{
+  display:grid;gap:3px;width:100%;padding:12px 14px;
+  border:1px solid var(--border);border-radius:12px;background:#fff;
+  color:var(--brand-navy);text-decoration:none;overflow-wrap:anywhere;
+  transition:border-color .15s ease,transform .15s ease,box-shadow .15s ease;
+}
+.contact-aside__link span,.contact-aside__area>span{
+  color:var(--muted);font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+}
+.contact-aside__link strong{font-family:var(--font-head);font-size:1rem}
+.contact-aside__link:hover{
+  border-color:var(--accent);transform:translateY(-1px);box-shadow:0 5px 14px rgba(10,18,48,.08);
+}
+.contact-aside__link:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.contact-aside__area{
+  width:100%;padding-top:4px;border-top:1px solid var(--border);
+}
+.contact-aside__area p{margin:5px 0 0;color:var(--copy);font-size:.9rem;line-height:1.5}
+.contact-aside__cta{width:100%;justify-content:center;margin-top:auto;text-align:center}
+@media(max-width:859px){
+  .contact-grid--split{grid-template-columns:minmax(0,1fr);max-width:680px}
+  .contact-aside{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+  .contact-aside .eyebrow,.contact-aside h2,.contact-aside__intro,
+  .contact-aside__area,.contact-aside__cta{grid-column:1/-1}
+  .contact-aside__cta{margin-top:0}
+}
+@media(max-width:600px){
+  .contact-form-shell{padding:22px 16px}
+  .contact-form-heading{margin-bottom:18px}
+  .contact-form-shell .form[data-contact-inquiry]{grid-template-columns:minmax(0,1fr);gap:13px}
+  .contact-form-shell .form[data-contact-inquiry]>.intake-block,
+  .contact-form-shell .form[data-contact-inquiry]>.field--wide,
+  .contact-form-shell .form[data-contact-inquiry]>button,
+  .contact-form-shell .form[data-contact-inquiry]>.form__fast,
+  .contact-form-shell .form[data-contact-inquiry]>.form__msg,
+  .contact-form-shell .form[data-contact-inquiry]>.small{grid-column:1}
+  .contact-form-shell .contact-inquiry__choices .sticker-check-grid{grid-template-columns:minmax(0,1fr)}
+  .contact-aside{grid-template-columns:minmax(0,1fr);gap:12px}
+  .contact-aside .eyebrow,.contact-aside h2,.contact-aside__intro,
+  .contact-aside__area,.contact-aside__cta{grid-column:1}
+}
+@media(max-width:560px){
+  .contact-preview-uploads__grid{grid-template-columns:minmax(0,1fr)}
 }

@@ -42,6 +42,19 @@ type MetaLeadPayload = {
   };
 };
 
+export type MetaCapiResult = {
+  accepted: boolean;
+  status?: number;
+  eventsReceived?: number;
+  messages?: unknown[];
+  fbtraceId?: string;
+  errorMessage?: string;
+  networkError?: boolean;
+};
+
+const META_EVENT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,99}$/;
+const META_TEST_EVENT_CODE_PATTERN = /^[A-Za-z0-9_-]{1,64}$/;
+
 export function normalizeMetaEmail(value: string) {
   return value.trim().toLowerCase();
 }
@@ -58,7 +71,7 @@ export async function sha256Hex(value: string) {
 }
 
 function validEventInput(input: MetaLeadEventInput) {
-  if (!input.consent || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.eventId)) {
+  if (!input.consent || !META_EVENT_ID_PATTERN.test(input.eventId)) {
     return false;
   }
   if (!Object.prototype.hasOwnProperty.call(META_CONTENT_NAME_BY_FORM, input.metaForm)) return false;
@@ -108,28 +121,47 @@ export async function sendMetaLeadCapi(
   pixelId: string,
   token: string,
   fetcher: typeof fetch = fetch,
-): Promise<{ accepted: boolean; status?: number }> {
+  testEventCode?: string,
+): Promise<MetaCapiResult> {
   if (!input.consent || !/^\d{5,20}$/.test(pixelId) || !token.trim()) {
     return { accepted: false };
   }
 
   const event = await buildMetaLeadPayload(input);
   if (!event) return { accepted: false };
+  const safeTestEventCode = testEventCode?.trim();
+  const hasValidTestEventCode = !!safeTestEventCode && META_TEST_EVENT_CODE_PATTERN.test(safeTestEventCode);
 
   try {
     const response = await fetcher(`https://graph.facebook.com/v21.0/${pixelId}/events`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ data: [event], access_token: token }),
+      body: JSON.stringify({
+        data: [event],
+        access_token: token,
+        ...(hasValidTestEventCode ? { test_event_code: safeTestEventCode } : {}),
+      }),
       signal: AbortSignal.timeout(4_000),
     });
-    if (!response.ok) return { accepted: false, status: response.status };
-    const result = await response.json() as { events_received?: unknown };
+    const result = await response.json().catch(() => ({})) as {
+      events_received?: unknown;
+      messages?: unknown;
+      fbtrace_id?: unknown;
+      error?: { message?: unknown };
+    };
+    const eventsReceived = typeof result.events_received === "number" ? result.events_received : undefined;
+    const messages = Array.isArray(result.messages) ? result.messages : undefined;
+    const fbtraceId = typeof result.fbtrace_id === "string" ? result.fbtrace_id : undefined;
+    const errorMessage = typeof result.error?.message === "string" ? result.error.message : undefined;
     return {
-      accepted: typeof result.events_received === "number" && result.events_received > 0,
+      accepted: response.ok && typeof eventsReceived === "number" && eventsReceived > 0,
       status: response.status,
+      ...(eventsReceived !== undefined ? { eventsReceived } : {}),
+      ...(messages ? { messages } : {}),
+      ...(fbtraceId ? { fbtraceId } : {}),
+      ...(errorMessage ? { errorMessage } : {}),
     };
   } catch {
-    return { accepted: false };
+    return { accepted: false, networkError: true };
   }
 }

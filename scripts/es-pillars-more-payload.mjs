@@ -6,9 +6,6 @@ const sec = (h2, ps) => ({
   html: ps.map((p) => `<p>${p}</p>`).join(""),
 });
 
-/** @param {string} h2 @param {string} html */
-const secHtml = (h2, html) => ({ h2, html });
-
 /** @param {{ sections: Section[] }} post @param {Section[]} extra */
 const withSections = (post, extra) => ({
   ...post,
@@ -1261,5 +1258,4 @@ export const POSTS = {
   "pagina-web-para-plomeros": withSections(plomeros, EXTRA.plomeros),
   "como-pedir-resenas-en-google": withSections(resenas, EXTRA.resenas),
 };
-
 

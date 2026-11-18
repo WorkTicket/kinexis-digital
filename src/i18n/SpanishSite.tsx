@@ -754,8 +754,15 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <Section><div className="contact-grid contact-grid--split">
         <div className="form-shell">
           <h2 className="card-title"><HL text={tx("Cuéntanos sobre tu negocio")} mark={tx("tu negocio")} /></h2>
-          <p className="muted">{tx("Comparte qué haces y dónde trabajas: lo usamos para preparar una vista previa gratis. Sin tarjeta.")}</p>
-          <Form metaForm="contact" fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} fast fastText={tx("Sin tarjeta. Respondemos rápido.")} />
+          <p className="muted">{tx("Elige qué necesitas. Si pides una vista previa gratis de tu página, te preguntaremos algunos detalles más para que sea útil para tu negocio.")}</p>
+          <Form
+            metaForm="contact"
+            fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]}
+            contactInquiry={{ locale: "es", followupHref: href("/intake") }}
+            button={tx("Enviar mi consulta")}
+            fast
+            fastText={tx("Sin tarjeta. Respondemos rápido.")}
+          />
           <div className="inline-action center">
             <p>{tx("¿Prefieres hablarlo?")}</p>
             <Link className="btn btn--ghost" href={href("/strategy-call")} prefetch={false}>{tx("Agendar")}</Link>

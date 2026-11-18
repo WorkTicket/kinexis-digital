@@ -1080,12 +1080,73 @@ function formCopy() {
 }
 
 const leadFormsInFlight = new WeakSet();
+document.addEventListener("change", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  const form = target.closest("form[data-contact-inquiry]");
+  if (!(form instanceof HTMLFormElement)) return;
+  const assetError = form.querySelector("[data-preview-asset-error]");
+  if (target.matches("[data-preview-upload], [data-preview-asset-consent]")) {
+    if (assetError) assetError.textContent = "";
+    form.querySelector("[data-preview-asset-consent]")?.removeAttribute("aria-invalid");
+  }
+  if (target.name !== "inquiry") return;
+
+  const previewRequested = !!form.querySelector('input[name="inquiry"][value="free-preview"]:checked');
+  const details = form.querySelector("[data-preview-details]");
+  if (details instanceof HTMLFieldSetElement) {
+    details.hidden = !previewRequested;
+    if (!previewRequested) {
+      details.querySelectorAll('input[type="file"][data-preview-upload]').forEach((input) => {
+        if (input instanceof HTMLInputElement) input.value = "";
+      });
+      const assetConsent = details.querySelector("[data-preview-asset-consent]");
+      if (assetConsent instanceof HTMLInputElement) {
+        assetConsent.checked = false;
+        assetConsent.removeAttribute("aria-invalid");
+      }
+      if (assetError) assetError.textContent = "";
+    }
+    details.querySelectorAll("[data-preview-required]").forEach((field) => {
+      if (!(field instanceof HTMLInputElement) && !(field instanceof HTMLTextAreaElement)) return;
+      field.required = previewRequested;
+      if (!previewRequested) {
+        field.classList.remove("invalid");
+        field.removeAttribute("aria-invalid");
+      }
+    });
+  }
+  const button = form.querySelector('button[type="submit"]');
+  if (button instanceof HTMLButtonElement) {
+    button.textContent = previewRequested
+      ? button.getAttribute("data-preview-button") || button.textContent
+      : button.getAttribute("data-default-button") || button.textContent;
+  }
+  const error = form.querySelector("[data-inquiry-error]");
+  if (error) error.textContent = "";
+});
+
 document.addEventListener("submit", async (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement) || !form.hasAttribute("data-lead")) return;
   event.preventDefault();
   if (leadFormsInFlight.has(form)) return;
   const copy = formCopy();
+  const isContactInquiry = form.hasAttribute("data-contact-inquiry");
+  const inquiryChecks = isContactInquiry
+    ? Array.from(form.querySelectorAll('input[name="inquiry"]'))
+    : [];
+  const previewRequested = isContactInquiry
+    && !!form.querySelector('input[name="inquiry"][value="free-preview"]:checked');
+  const inquiryError = form.querySelector("[data-inquiry-error]");
+  if (isContactInquiry && !inquiryChecks.some((input) => input.checked)) {
+    if (inquiryError) inquiryError.textContent = form.getAttribute("data-inquiry-error-copy") || "Choose an option.";
+    inquiryChecks[0]?.focus();
+    return;
+  }
+  if (inquiryError) inquiryError.textContent = "";
+  const assetError = form.querySelector("[data-preview-asset-error]");
+  if (assetError) assetError.textContent = "";
   let firstBad = null;
   let contactMsg = "";
   form.querySelectorAll("[required]").forEach((el) => {
@@ -1138,9 +1199,26 @@ document.addEventListener("submit", async (event) => {
       }
     }
   }
+  if (previewRequested) {
+    const logo = form.querySelector('input[name="logo"]');
+    const photos = form.querySelector('input[name="photos"]');
+    const assetConsent = form.querySelector("[data-preview-asset-consent]");
+    const hasLogo = logo instanceof HTMLInputElement && !!logo.files?.length;
+    const hasPhotos = photos instanceof HTMLInputElement && !!photos.files?.length;
+    const canUseFallback = assetConsent instanceof HTMLInputElement && assetConsent.checked;
+    if ((!hasLogo || !hasPhotos) && !canUseFallback) {
+      if (assetError) assetError.textContent = form.getAttribute("data-preview-asset-error-copy") || "Upload a logo and job photos, or allow replacement assets for anything missing.";
+      if (assetConsent instanceof HTMLInputElement) {
+        assetConsent.setAttribute("aria-invalid", "true");
+        assetConsent.focus();
+      }
+      return;
+    }
+  }
   const data = new FormData(form);
   if (data.get("_gotcha")) return;
-  const conversion = form.getAttribute("data-conversion");
+  let conversion = form.getAttribute("data-conversion");
+  if (isContactInquiry) conversion = previewRequested ? "preview" : null;
   const metaForm = form.getAttribute("data-meta-form") || "";
   const metaContentName = Object.prototype.hasOwnProperty.call(cfg.metaContentNameByForm || {}, metaForm)
     ? cfg.metaContentNameByForm[metaForm]
@@ -1177,8 +1255,20 @@ document.addEventListener("submit", async (event) => {
         check.setAttribute("aria-hidden", "true");
         check.textContent = "✓";
         const strong = document.createElement("b");
-        strong.textContent = form.getAttribute("data-thanks") || copy.thanks;
+        strong.textContent = (previewRequested && form.getAttribute("data-preview-thanks"))
+          || form.getAttribute("data-thanks")
+          || copy.thanks;
         msg.append(check, strong);
+        if (previewRequested) {
+          const href = form.getAttribute("data-preview-href");
+          if (href) {
+            const followup = document.createElement("a");
+            followup.className = "btn btn--primary";
+            followup.href = href;
+            followup.textContent = form.getAttribute("data-followup-label") || "Add details and photos";
+            msg.append(followup);
+          }
+        }
       }
       const leadPayload = {
         form_id: form.getAttribute("name") || form.id || "lead",

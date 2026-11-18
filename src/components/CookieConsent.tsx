@@ -44,13 +44,17 @@ const COPY = {
 } as const;
 
 const COOKIE_SVG = (
-  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
-    <circle cx="12" cy="12" r="8.25" fill="currentColor" fillOpacity=".18" stroke="currentColor" strokeWidth="1.6" />
-    <path d="M12 3.75c.2 1.55 1.35 2.7 2.9 2.9.55.07 1.05.35 1.35.8.95.2 1.7.9 1.95 1.85.55.2 1 .65 1.15 1.2" stroke="currentColor" strokeWidth="1.35" strokeLinecap="round" opacity=".55" />
-    <circle cx="9.1" cy="10.2" r="1.35" fill="currentColor" />
-    <circle cx="14.6" cy="8.9" r="1.05" fill="currentColor" />
-    <circle cx="15.2" cy="14.1" r="1.45" fill="currentColor" />
-    <circle cx="10.4" cy="15.3" r="1.1" fill="currentColor" />
+  <svg viewBox="0 0 48 48" width="46" height="46" aria-hidden="true">
+    <circle cx="24" cy="24" r="21.5" fill="#0b3dff" stroke="#061d79" strokeWidth="2.5" />
+    <path d="M8 16c2.7-6.1 8.3-10.2 15-11.2M9 32c3.8 6 9.8 9.3 16.5 9.6" fill="none" stroke="#7c9aff" strokeWidth="2" strokeLinecap="round" opacity=".9" />
+    <circle cx="15.2" cy="15.4" r="2.5" fill="#061d79" />
+    <circle cx="29.8" cy="11.8" r="2.2" fill="#061d79" />
+    <circle cx="35.1" cy="24.1" r="2.7" fill="#061d79" />
+    <circle cx="23.2" cy="31.9" r="2.8" fill="#061d79" />
+    <circle cx="12.9" cy="29" r="1.8" fill="#061d79" />
+    <circle cx="25.3" cy="19.5" r="1.7" fill="#061d79" />
+    <circle cx="17.8" cy="23.3" r=".9" fill="#7c9aff" />
+    <circle cx="30.5" cy="35" r="1.1" fill="#7c9aff" />
   </svg>
 );
 
