@@ -10,6 +10,7 @@
   const IDLE_FALLBACK_MS = 2500;
   const CONSENT_CHROME_WAIT_MS = 8000;
   const MOBILE_MQ = "(max-width: 860px)";
+  const HIDE_CTA_STYLE_ID = "kx-hide-chat-cta";
   const HOST_SEL = "conferbot-widget";
   const STYLE_ID = "kx-chat-lift";
   const HOST_CLASS = "kx-chat-lift";
@@ -122,10 +123,19 @@
       });
     };
 
+    const hideProactiveBubbles = (root) => {
+      if (root.getElementById(HIDE_CTA_STYLE_ID)) return;
+      const el = document.createElement("style");
+      el.id = HIDE_CTA_STYLE_ID;
+      el.textContent = ".chatbot__icon__cta,#chat-cta{display:none!important;}";
+      root.appendChild(el);
+    };
+
     const apply = () => {
       const host = document.querySelector(HOST_SEL);
       if (!host?.shadowRoot) return;
       bindHost(host);
+      hideProactiveBubbles(host.shadowRoot);
       if (!mobileMq.matches) {
         clearShadowLift(host);
         return;
