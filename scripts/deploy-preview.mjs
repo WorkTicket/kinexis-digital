@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * Preview-only Worker deploy. Never touches production routes / IndexNow.
- * Usage: node scripts/deploy-preview.mjs
+ * Usage: npm run deploy:preview
  */
 import { spawnSync } from "node:child_process";
 
