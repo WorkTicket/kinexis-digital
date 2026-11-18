@@ -178,6 +178,7 @@ test.describe("marketing journeys", () => {
       (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
     ).filter((args) => args[0] === "track" && args[1] === "Lead"));
     expect(meta).toHaveLength(1);
+    expect(meta[0][2]).toMatchObject({ content_name: "homepage_preview", form_path: "/" });
   });
 
   test("first-touch attribution survives navigation and excludes ambiguous or unconsented IDs", async ({ page }) => {
@@ -271,16 +272,94 @@ test.describe("marketing journeys", () => {
       (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
     ).filter((args) => args[0] === "track" && args[1] === "Lead"));
     expect(metaLead).toHaveLength(1);
-    expect(metaLead[0][2]).toMatchObject({ content_name: "website_audit" });
+    expect(metaLead[0][2]).toMatchObject({ content_name: "website_audit", form_path: "/audit" });
   });
 
-  test("client intake and update submissions do not count as new leads", async ({ page }) => {
-    await installMockAnalytics(page);
-    await page.route("**/api/contact", (route) => route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify({ ok: true }),
-    }));
+  test("mapped lead forms send matching fixed Meta names on Pixel and CAPI", async ({ page }) => {
+    await installMockAnalytics(page, true, true);
+    const submissions: string[] = [];
+    await page.route("**/api/contact", async (route) => {
+      submissions.push(route.request().postDataBuffer()?.toString("latin1") || "");
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true }),
+      });
+    });
+    const forms = [
+      { path: "/", selector: 'form[data-meta-form="home"]', key: "home", name: "homepage_preview", kind: "standard" },
+      { path: "/contact", selector: 'form[data-meta-form="contact"]', key: "contact", name: "contact_form", kind: "standard" },
+      { path: "/es/contact", selector: 'form[data-meta-form="contact"]', key: "contact", name: "contact_form", kind: "standard" },
+      { path: "/audit", selector: 'form[data-meta-form="audit"]', key: "audit", name: "website_audit", kind: "audit" },
+      { path: "/es/audit", selector: 'form[data-meta-form="audit"]', key: "audit", name: "website_audit", kind: "audit" },
+      { path: "/lp/get-a-website", selector: 'form[data-meta-form="lp-get-a-website"]', key: "lp-get-a-website", name: "lp_get_a_website", kind: "standard" },
+      { path: "/lp/phoenix-preview", selector: 'form[data-meta-form="lp-phoenix-preview"]', key: "lp-phoenix-preview", name: "lp_phoenix_preview", kind: "standard" },
+      { path: "/strategy-call", selector: 'form[data-meta-form="strategy-call"]', key: "strategy-call", name: "strategy_call", kind: "booking" },
+      { path: "/intake", selector: 'form[data-meta-form="intake"]', key: "intake", name: "intake_form", kind: "intake" },
+      { path: "/about", selector: 'form[data-meta-form="footer"]', key: "footer", name: "footer_form", kind: "standard" },
+      { path: "/tools/google-review-link-qr", selector: 'form[data-meta-form="review-qr-tool"]', key: "review-qr-tool", name: "review_qr_tool_preview", kind: "standard" },
+    ] as const;
+
+    for (const item of forms) {
+      await page.goto(item.path);
+      await waitForBoot(page);
+      if (item.kind === "booking") {
+        await page.locator(".booking-cal__day:not([disabled])").first().click();
+        await page.locator(".booking-cal__slots button").first().click();
+      }
+      const form = page.locator(item.selector);
+      if (item.kind === "audit") {
+        await form.locator('input[name="name"]').fill("Test Visitor");
+        await form.locator('input[name="email"]').fill("visitor@example.test");
+        await form.locator('input[name="url"]').fill("https://example.test");
+      } else if (item.kind === "intake") {
+        await form.locator('input[name="name"]').fill("Test Visitor");
+        await form.locator('input[name="email"]').fill("visitor@example.test");
+        await form.locator('input[name="business"]').fill("Test Business");
+        await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+        await form.locator('input[name="service_area"]').fill("Boise");
+        await form.locator('textarea[name="services"]').fill("Drain repair");
+      } else {
+        await form.locator('input[name="name"]').fill("Test Visitor");
+        await form.locator('input[name="email"]').fill("visitor@example.test");
+        if (item.kind === "booking") {
+          await form.locator('input[name="business"]').fill("Test Business");
+        } else {
+          await form.locator('input[name="business"]').fill("Test Business");
+          await form.locator('input[name="trade"]').fill("Plumbing in Boise");
+        }
+      }
+      if (item.kind === "booking") {
+        await form.locator('button[type="submit"]').click();
+        await expect(page.locator(".booking-cal--done")).toBeVisible();
+      } else {
+        await form.locator('button[type="submit"]').click();
+        await expect(form).toHaveClass(/is-done/);
+      }
+
+      const submitted = submissions.at(-1) || "";
+      expect(submitted).toMatch(new RegExp(`name="kx_meta_form"\\r?\\n\\r?\\n${item.key}\\r?\\n`));
+      await page.waitForFunction(({ contentName, formPath }) => {
+        const queue = (window as Window & { fbq?: { queue?: unknown[] } }).fbq?.queue ?? [];
+        return queue.some((rawArgs: unknown) => {
+          const args = rawArgs as unknown[];
+          const params = args[2] as { content_name?: string; form_path?: string } | undefined;
+          return args[0] === "track"
+            && args[1] === "Lead"
+            && params?.content_name === contentName
+            && params.form_path === formPath;
+        });
+      }, { contentName: item.name, formPath: item.path });
+    }
+  });
+
+  test("client intake sends a lead while update submissions send none", async ({ page }) => {
+    await installMockAnalytics(page, true, true);
+    let updateSubmission = "";
+    await page.route("**/api/contact", async (route) => {
+      updateSubmission = route.request().postDataBuffer()?.toString("latin1") || "";
+      await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+    });
     await page.goto("/update");
     await waitForBoot(page);
     const update = page.locator('form:has(textarea[name="request"])');
@@ -289,6 +368,10 @@ test.describe("marketing journeys", () => {
     await update.locator('textarea[name="request"]').fill("Update the service page.");
     await update.locator('button[type="submit"]').click();
     await expect(update).toHaveClass(/is-done/);
+    expect(updateSubmission).not.toContain('name="kx_meta_form"');
+    expect(await page.evaluate(() => (
+      (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
+    ).filter((args) => args[0] === "track" && args[1] === "Lead"))).toHaveLength(0);
 
     await page.goto("/intake");
     await waitForBoot(page);
@@ -307,6 +390,11 @@ test.describe("marketing journeys", () => {
     expect(names).not.toContain("preview_form_submit");
     expect(names).not.toContain("preview_form_view");
     expect(names).not.toContain("preview_form_start");
+    const intakeMetaLead = await page.evaluate(() => (
+      (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
+    ).filter((args) => args[0] === "track" && args[1] === "Lead"));
+    expect(intakeMetaLead).toHaveLength(1);
+    expect(intakeMetaLead[0][2]).toMatchObject({ content_name: "intake_form", form_path: "/intake" });
   });
 
   test("mobile nav opens", async ({ page }, testInfo) => {

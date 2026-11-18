@@ -1141,16 +1141,21 @@ document.addEventListener("submit", async (event) => {
   const data = new FormData(form);
   if (data.get("_gotcha")) return;
   const conversion = form.getAttribute("data-conversion");
+  const metaForm = form.getAttribute("data-meta-form") || "";
+  const metaContentName = Object.prototype.hasOwnProperty.call(cfg.metaContentNameByForm || {}, metaForm)
+    ? cfg.metaContentNameByForm[metaForm]
+    : "";
   data.set("kx_form_path", location.pathname);
   if (conversion === "preview" || conversion === "audit") {
     data.set("kx_conversion", conversion);
     appendAttribution(data);
   }
-  const isMetaLead = data.get("topic") !== "intake" && !String(data.get("request") || "").trim();
+  const isMetaLead = Boolean(metaContentName) && !String(data.get("request") || "").trim();
   let metaEventId = "";
   if (isMetaLead && consentAllowsAds()) {
     try { metaEventId = crypto.randomUUID(); } catch { /* unavailable */ }
     if (metaEventId) {
+      data.set("kx_meta_form", metaForm);
       data.set("kx_event_id", metaEventId);
       data.set("kx_form_path", location.pathname);
     }
@@ -1197,10 +1202,12 @@ document.addEventListener("submit", async (event) => {
         });
       }
       if (metaEventId) {
-        trackMeta("Lead", {
-          content_name: location.pathname,
-          lang: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
-        }, { eventID: metaEventId });
+        const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
+        if (window.__KINEXIS_TRACK_META_LEAD__) {
+          window.__KINEXIS_TRACK_META_LEAD__(pendingMetaLead.form, pendingMetaLead.path, pendingMetaLead.eventId);
+        } else {
+          (window.__KINEXIS_PENDING_META_LEADS__ ||= []).push(pendingMetaLead);
+        }
       }
       return;
     }
@@ -1458,6 +1465,18 @@ function trackMeta(name, params, options) {
     /* Pixel blocked or unavailable — ignore. */
   }
 }
+window.__KINEXIS_TRACK_META_LEAD__ = (form, formPath, eventId) => {
+  if (!Object.prototype.hasOwnProperty.call(cfg.metaContentNameByForm || {}, form)) return;
+  trackMeta("Lead", {
+    content_name: cfg.metaContentNameByForm[form],
+    form_path: formPath,
+    lang: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
+  }, { eventID: eventId });
+};
+for (const pending of window.__KINEXIS_PENDING_META_LEADS__ || []) {
+  window.__KINEXIS_TRACK_META_LEAD__(pending.form, pending.path, pending.eventId);
+}
+delete window.__KINEXIS_PENDING_META_LEADS__;
 
 function englishPath(pathname) {
   if (pathname === "/es" || pathname === "/es-es") return "/";

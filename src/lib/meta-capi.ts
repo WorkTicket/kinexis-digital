@@ -1,7 +1,22 @@
+export const META_CONTENT_NAME_BY_FORM = {
+  home: "homepage_preview",
+  contact: "contact_form",
+  audit: "website_audit",
+  "lp-get-a-website": "lp_get_a_website",
+  "lp-phoenix-preview": "lp_phoenix_preview",
+  "strategy-call": "strategy_call",
+  intake: "intake_form",
+  footer: "footer_form",
+  "review-qr-tool": "review_qr_tool_preview",
+} as const;
+
+export type MetaLeadForm = keyof typeof META_CONTENT_NAME_BY_FORM;
+
 export type MetaLeadEventInput = {
   eventId: string;
   eventSourceUrl: string;
   formPath: string;
+  metaForm: MetaLeadForm;
   language: "en" | "es";
   email?: string;
   phone?: string;
@@ -22,6 +37,7 @@ type MetaLeadPayload = {
   user_data: Record<string, string | string[]>;
   custom_data: {
     content_name: string;
+    form_path: string;
     lang: "en" | "es";
   };
 };
@@ -45,6 +61,7 @@ function validEventInput(input: MetaLeadEventInput) {
   if (!input.consent || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(input.eventId)) {
     return false;
   }
+  if (!Object.prototype.hasOwnProperty.call(META_CONTENT_NAME_BY_FORM, input.metaForm)) return false;
   if (!/^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,240}$/.test(input.formPath) || input.formPath.includes("..")) {
     return false;
   }
@@ -79,7 +96,8 @@ export async function buildMetaLeadPayload(input: MetaLeadEventInput): Promise<M
     event_source_url: input.eventSourceUrl,
     user_data: userData,
     custom_data: {
-      content_name: input.formPath,
+      content_name: META_CONTENT_NAME_BY_FORM[input.metaForm],
+      form_path: input.formPath,
       lang: input.language,
     },
   };

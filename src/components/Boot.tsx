@@ -1,6 +1,9 @@
 import Script from "next/script";
 import { PUBLIC_CONFERBOT_BOT_ID } from "@/lib/conferbot-config";
 import type { Locale } from "@/lib/i18n";
+import { META_CONTENT_NAME_BY_FORM, type MetaLeadForm } from "@/lib/meta-capi";
+
+type PendingMetaLead = { form: string; path: string; eventId: string };
 
 declare global {
   interface Window {
@@ -9,9 +12,12 @@ declare global {
       ga: string;
       metaPixel: string;
       video: string;
+      metaContentNameByForm: Readonly<Record<MetaLeadForm, string>>;
       conferbotBotId: string;
       conferbotLocale: string;
     };
+    __KINEXIS_TRACK_META_LEAD__?: (form: string, path: string, eventId: string) => void;
+    __KINEXIS_PENDING_META_LEADS__?: PendingMetaLead[];
     __KINEXIS_MIRRORS__?: readonly string[];
     __KINEXIS_ENGLISH_FALLBACKS__?: Readonly<Record<string, string>>;
     __KINEXIS_SPANISH_UTILITY_PATHS__?: readonly string[];
@@ -47,6 +53,7 @@ export default function Boot({
     ga,
     metaPixel,
     video,
+    metaContentNameByForm: META_CONTENT_NAME_BY_FORM,
     conferbotBotId,
     conferbotLocale: conferbotLocale(locale),
   }).replace(/</g, "\\u003c");
@@ -62,7 +69,7 @@ export default function Boot({
           fire without consent. */}
       {/* lazyOnload avoids a head preload that contends with LCP; boot still
           wires menus, forms, marks, and film after the window load event. */}
-      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=60" strategy="lazyOnload" />
+      <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=62" strategy="lazyOnload" />
       {/* Separate file so Conferbot lift/load is not one long task with boot. */}
       <Script id="kinexis-conferbot" src="/assets/js/conferbot.min.js?v=1" strategy="lazyOnload" />
     </>

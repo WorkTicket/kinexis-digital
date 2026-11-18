@@ -85,7 +85,7 @@ export default function Footer({ locale }: { locale: Locale }) {
               </p>
             </div>
             <div className="cta-form">
-              <Form fields={fields} button={chrome.footerButton} fast fastText={chrome.footerFast} />
+              <Form fields={fields} button={chrome.footerButton} fast fastText={chrome.footerFast} metaForm="footer" />
             </div>
           </section>
         </div>

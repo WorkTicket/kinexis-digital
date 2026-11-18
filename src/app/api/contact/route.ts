@@ -1,7 +1,7 @@
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { isPreviewSite, SITE } from "@/lib/site";
 import { clientIp } from "@/lib/client-ip";
-import { sendMetaLeadCapi } from "@/lib/meta-capi";
+import { META_CONTENT_NAME_BY_FORM, sendMetaLeadCapi, type MetaLeadForm } from "@/lib/meta-capi";
 import {
   EMAIL_PATTERN,
   contactDeliveryBlocked,
@@ -70,6 +70,7 @@ function cookieValue(request: Request, name: string) {
 function queueMetaLeadCapi(request: Request, input: {
   eventId: string;
   formPath: string;
+  metaForm: MetaLeadForm;
   language: "en" | "es";
   email?: string;
   phone?: string;
@@ -216,6 +217,7 @@ export async function POST(request: Request) {
     if (
       key === "_gotcha" ||
       key === "kx_conversion" ||
+      key === "kx_meta_form" ||
       key === "kx_event_id" ||
       key === "kx_form_path" ||
       key.startsWith("kx_attr_") ||
@@ -244,6 +246,11 @@ export async function POST(request: Request) {
   const isAudit = topic === "audit";
   const metaEventId = String(form.get("kx_event_id") ?? "").trim();
   const metaFormPath = String(form.get("kx_form_path") ?? "").trim();
+  const metaFormValues = form.getAll("kx_meta_form");
+  const metaFormValue = metaFormValues.length === 1 ? String(metaFormValues[0]).trim() : "";
+  const metaForm = Object.prototype.hasOwnProperty.call(META_CONTENT_NAME_BY_FORM, metaFormValue)
+    ? metaFormValue as MetaLeadForm
+    : null;
 
   try {
     const sent = await sendMail({
@@ -260,7 +267,8 @@ export async function POST(request: Request) {
     if (sent === "sent") {
       if (
         consent.ads &&
-        !isIntake &&
+        metaForm &&
+        (metaForm !== "audit" || isAudit) &&
         !isUpdate &&
         META_EVENT_ID_PATTERN.test(metaEventId) &&
         /^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,240}$/.test(metaFormPath) &&
@@ -273,6 +281,7 @@ export async function POST(request: Request) {
         queueMetaLeadCapi(request, {
           eventId: metaEventId,
           formPath: metaFormPath,
+          metaForm,
           language,
           email: email || undefined,
           phone: phone || undefined,

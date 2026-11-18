@@ -4,16 +4,24 @@
 
 | Form | GA4 primary | GA4 diagnostic | Meta | Success only |
 |---|---|---|---|---|
-| Free preview | `generate_lead` (sole key-event candidate) | `preview_form_submit` (`event_role=diagnostic`, non-key) | one `Lead`, `content_name=homepage_preview` | yes |
+| Homepage / shared preview bar | `generate_lead` (sole key-event candidate) | `preview_form_submit` (`event_role=diagnostic`, non-key) | one `Lead`, `content_name=homepage_preview` | yes |
+| Contact (`/contact`, `/es/contact`) | existing form behavior | — | one `Lead`, `content_name=contact_form` | yes |
 | Website audit | `audit_request` | — | one `Lead`, `content_name=website_audit` | yes |
-| Contact / strategy call | none | existing click events only | existing telephone contact only | not counted as form conversion |
-| Client intake / update | none | none | none | excluded |
+| Get-a-website landing page | existing preview form behavior | — | one `Lead`, `content_name=lp_get_a_website` | yes |
+| Phoenix preview landing page | existing preview form behavior | — | one `Lead`, `content_name=lp_phoenix_preview` | yes |
+| Strategy call booking | none | — | one `Lead`, `content_name=strategy_call` | yes |
+| Client intake | none | — | one `Lead`, `content_name=intake_form` | yes |
+| Shared footer inquiry | existing form behavior | — | one `Lead`, `content_name=footer_form` | yes |
+| Google review QR preview | existing preview form behavior | — | one `Lead`, `content_name=review_qr_tool_preview` | yes |
+| Client site update (`/update`) | none | none | none | excluded |
 
 `generate_lead` and the diagnostic event keep their established names for compatibility; only one is intended as the primary preview conversion. The browser suppresses concurrent submission events while the request is in flight. It cannot deduplicate distinct submissions or recover whether an ambiguous network/mail retry was already delivered.
 
-Tracking dispatch and provider exceptions are isolated from successful form UI/delivery. Local Playwright mocks verify one primary conversion after success, zero after failure, retry behavior, and independent GA4/Meta semantics.
+The Meta `content_name` is selected from the fixed form map in `src/lib/meta-capi.ts`, never from the current URL. Both Pixel and CAPI use that same map; the URL is carried separately as `form_path`. The API only queues CAPI after successful delivery and with advertising consent. `/update` has no map entry and is excluded.
 
-**Owner action:** in GA4 Admin, mark `generate_lead` as the sole primary/key preview conversion and ensure `preview_form_submit` is not key. Review existing Meta custom conversions for rules that might count duplicate events. No live analytics account was accessed.
+Tracking dispatch and provider exceptions are isolated from successful form UI/delivery. Local Playwright mocks verify one primary conversion after success, zero after failure, retry behavior, and independent GA4/Meta semantics. CAPI requests are mocked in tests; no Meta request is sent.
+
+**Owner action:** in GA4 Admin, mark `generate_lead` as the sole primary/key preview conversion and ensure `preview_form_submit` is not key. Owner verified Events Manager currently has zero custom conversions; no custom conversion rule depends on these names.
 
 ## Attribution contract
 

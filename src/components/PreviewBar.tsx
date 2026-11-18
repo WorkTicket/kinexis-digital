@@ -50,6 +50,7 @@ export default function PreviewBar({ locale = "en" }: { locale?: Locale }) {
           slim
           fields={fields}
           conversion="preview"
+          metaForm="home"
           button={chrome.chat}
           buttonClass="btn btn--primary"
           fast

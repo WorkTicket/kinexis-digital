@@ -1,3 +1,5 @@
+import type { MetaLeadForm } from "@/lib/meta-capi";
+
 export type Field = {
   label: string;
   name: string;
@@ -43,6 +45,7 @@ export default function Form({
   buttonClass,
   hiddenFields,
   conversion,
+  metaForm,
 }: {
   fields: Field[];
   button: string;
@@ -53,6 +56,7 @@ export default function Form({
   buttonClass?: string;
   hiddenFields?: Record<string, string>;
   conversion?: "preview" | "audit";
+  metaForm?: MetaLeadForm;
 }) {
   const submitClass = buttonClass
     ?? (slim ? "btn btn--ghost" : "btn btn--primary btn--lg");
@@ -63,6 +67,7 @@ export default function Form({
       data-lead=""
       data-contact-or=""
       data-conversion={conversion}
+      data-meta-form={metaForm}
       action="/api/contact"
       method="post"
       encType="multipart/form-data"

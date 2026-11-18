@@ -755,7 +755,7 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         <div className="form-shell">
           <h2 className="card-title"><HL text={tx("Cuéntanos sobre tu negocio")} mark={tx("tu negocio")} /></h2>
           <p className="muted">{tx("Comparte qué haces y dónde trabajas: lo usamos para preparar una vista previa gratis. Sin tarjeta.")}</p>
-          <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} fast fastText={tx("Sin tarjeta. Respondemos rápido.")} />
+          <Form metaForm="contact" fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} fast fastText={tx("Sin tarjeta. Respondemos rápido.")} />
           <div className="inline-action center">
             <p>{tx("¿Prefieres hablarlo?")}</p>
             <Link className="btn btn--ghost" href={href("/strategy-call")} prefetch={false}>{tx("Agendar")}</Link>
@@ -784,7 +784,7 @@ function Audit({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <div className="form-shell">
           <h2 className="card-title"><HL text={tx("Pide tu auditoría gratis")} mark={tx("auditoría gratis")} /></h2>
           <p className="muted">{tx("Comparte la URL y te enviamos una lista clara de prioridades. Sin tarjeta.")}</p>
-          <Form button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
+          <Form metaForm="audit" conversion="audit" hiddenFields={{ topic: "audit" }} button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
         </div>
         <aside className="contact-info">{aside.map(([h, t, icon]) => <div className="card" key={icon}><Icon name={icon} alt={h} size={64} /><h2 className="card-title">{h}</h2><p className="muted">{t}</p></div>)}</aside>
       </div></Section>
