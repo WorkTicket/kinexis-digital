@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const script = fileURLToPath(new URL("./search-on-deploy.mjs", import.meta.url));
 const deployScript = readFileSync(new URL("./deploy-production.mjs", import.meta.url), "utf8");
+const productionBuildScript = readFileSync(new URL("./build-worker-production.mjs", import.meta.url), "utf8");
 const packageJson = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
 const common = {
   ...process.env,
@@ -69,6 +70,8 @@ assert.equal(
   "node --env-file=.env.production scripts/build-worker-production.mjs",
   "production Worker build must load production env before the strict analytics gate",
 );
+assert.match(productionBuildScript, /run\(\[npmCli,\s*"run",\s*"build:worker"\]\)/);
+assert.doesNotMatch(productionBuildScript, /shell:\s*true/);
 assert.match(
   deployScript,
   /\{ cmd: "npm", args: \["run", "build:worker:production"\], kind: "build" \}/,

@@ -14,6 +14,13 @@ async function enableAdsOnly(page: Page) {
   await page.locator("[data-consent-save]").click();
 }
 
+async function waitForBoot(page: Page) {
+  await page.waitForFunction(() =>
+    typeof window.__KINEXIS_TRACK_META_LEAD__ === "function"
+      && Boolean(window.__KINEXIS_CFG__?.metaContentNameByForm?.home),
+  );
+}
+
 async function enterLead(page: Page) {
   const form = page.locator('form[data-conversion="preview"]');
   await form.locator('input[name="name"]').fill("Meta consent test");
@@ -31,7 +38,19 @@ async function leadCalls(page: Page) {
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    const w = window as Window & { __metaCalls: unknown[][]; __metaFbq?: Window["fbq"] };
+    const w = window as Window & {
+      __metaCalls: unknown[][];
+      __metaFbq?: Window["fbq"];
+      __KINEXIS_CFG__?: Record<string, unknown>;
+    };
+    let config = w.__KINEXIS_CFG__;
+    Object.defineProperty(w, "__KINEXIS_CFG__", {
+      configurable: true,
+      get: () => config,
+      set: (next: Record<string, unknown>) => {
+        config = { ...next, metaPixel: "123456789012345" } as Window["__KINEXIS_CFG__"];
+      },
+    });
     w.__metaCalls = [];
     Object.defineProperty(w, "fbq", {
       configurable: true,
@@ -76,6 +95,7 @@ test("fires one Lead only after server success and matches the submitted event I
   });
 
   await page.goto("/");
+  await waitForBoot(page);
   await enableAdsOnly(page);
   const form = await enterLead(page);
   await form.locator('input[name="name"]').click();
@@ -94,7 +114,8 @@ test("fires one Lead only after server success and matches the submitted event I
   await expect.poll(async () => (await leadCalls(page)).length).toBe(1);
   const call = (await leadCalls(page))[0];
   expect(call[2]).toEqual({
-    content_name: "/",
+    content_name: "homepage_preview",
+    form_path: "/",
     lang: "en",
   });
   expect(call[3]).toEqual({ eventID: eventId });
@@ -105,6 +126,7 @@ test("does not send Lead when the server rejects the form", async ({ page }) => 
     route.fulfill({ status: 502, contentType: "application/json", body: '{"error":"temporarily unavailable"}' }),
   );
   await page.goto("/");
+  await waitForBoot(page);
   await enableAdsOnly(page);
   const form = await enterLead(page);
   await form.locator('button[type="submit"]').click();
@@ -117,6 +139,7 @@ test("revokes Meta consent and stops later Lead events after ads consent is with
     route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }),
   );
   await page.goto("/");
+  await waitForBoot(page);
   await enableAdsOnly(page);
   const form = await enterLead(page);
   await form.locator('input[name="name"]').click();
