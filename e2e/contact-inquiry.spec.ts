@@ -187,6 +187,9 @@ test("cookie preferences button uses the cobalt cookie icon without translucency
   await page.goto("/");
 
   const fab = page.locator("[data-consent-fab]");
+  await expect(fab).toHaveCSS("visibility", "hidden");
+  await expect(fab).toHaveCSS("opacity", "0");
+  await page.evaluate(() => document.documentElement.classList.add("sticky-chrome-in"));
   await expect(fab).toBeVisible();
   const sizes = await fab.evaluate((button) => {
     const buttonRect = button.getBoundingClientRect();

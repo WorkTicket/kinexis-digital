@@ -1247,7 +1247,7 @@ html.lp-route body{--announce-h:0px}
 .review-rail__mark{
   --num:28px;
   position:relative;z-index:1;width:var(--mark);height:var(--mark);
-  margin:14px auto 18px;overflow:visible;
+  margin:14px auto 34px;overflow:visible;
 }
 .review-rail__icon{
   position:absolute;inset:0;z-index:0;
@@ -1258,9 +1258,10 @@ html.lp-route body{--announce-h:0px}
 .review-rail__mark img.icon,
 .review-rail__icon .icon,
 .review-rail__icon img{
-  position:relative;z-index:1;
-  width:calc(var(--mark) * 1.14);height:calc(var(--mark) * 1.14);
+  position:absolute;left:50%;top:50%;z-index:1;
+  width:100%;height:100%;
   max-width:none;object-fit:contain;display:block;margin:0;
+  transform:translate(-50%,-50%) scale(1.4);
 }
 .review-rail__num{
   position:absolute;left:0;top:0;z-index:2;
@@ -1387,13 +1388,13 @@ html.lp-route body{--announce-h:0px}
 @media (max-width:860px){
   .review-rail{grid-template-columns:1fr;padding:6px 0}
   .review-rail__step{
-    display:grid;grid-template-columns:72px minmax(0,1fr);column-gap:14px;row-gap:2px;
+    display:grid;grid-template-columns:100px minmax(0,1fr);column-gap:14px;row-gap:2px;
     align-items:center;text-align:left;padding:18px 18px 16px;
     overflow:visible;
   }
   .review-rail__step + .review-rail__step{box-shadow:none;border-top:1px solid var(--border)}
   .review-rail__mark{
-    --mark:72px;--num:24px;width:72px;height:72px;margin:6px 0 0;
+    --mark:72px;--num:24px;width:72px;height:72px;margin:6px auto 0;
     grid-column:1;grid-row:1 / span 2;align-self:center;
   }
   .review-rail__step h3{grid-column:2;grid-row:1;align-self:end;margin:0}
@@ -1634,12 +1635,13 @@ html.no-float{--consent-fab-slot:0px}
   width:48px;height:48px;padding:0;border-radius:50%;
   border:0;background:transparent;box-shadow:none;
   cursor:pointer;color:#fff;
-  opacity:.82;visibility:visible;pointer-events:auto;
-  transform:translate3d(0,0,0);
-  transition:bottom .2s ease,opacity .45s ease,transform .7s cubic-bezier(.16,1,.3,1);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translate3d(0,12px,0) scale(.94);
+  transition:bottom .2s ease,opacity .5s ease,transform .7s cubic-bezier(.16,1,.3,1),visibility 0s linear .7s;
 }
 html.sticky-chrome-in .consent-fab:not([hidden]){
   opacity:.82;visibility:visible;pointer-events:auto;transform:translate3d(0,0,0);
+  transition:bottom .2s ease,opacity .5s ease,transform .7s cubic-bezier(.16,1,.3,1),visibility 0s linear 0s;
 }
 .consent-fab:hover{opacity:1}
 .consent-fab:focus-visible{outline:3px solid var(--brand-cobalt);outline-offset:3px}
@@ -1910,6 +1912,16 @@ html.sticky-chrome-in .consent-fab:not([hidden]){
    While the cookie banner is open (`html.consent-open`), hide the host entirely
    (launcher + any proactive CTA). Proactive mobile greeting itself is turned off
    in the Conferbot dashboard — not via site CSS/JS. */
+/* Launcher gate: Conferbot inserts <conferbot-widget> after <body>, attaches
+   its shadow root ~1s later and paints the launcher at full opacity in that
+   first render, before conferbot.js can install #kx-chat-visibility. Keep the
+   whole host transparent and inert until conferbot.js adds
+   .kx-chat-visibility-ready (it also lifts this if the shadow never opens), so
+   the launcher starts hidden and only enters with the sticky CTA. */
+conferbot-widget:not(.kx-chat-visibility-ready){
+  opacity:0!important;
+  pointer-events:none!important;
+}
 html.consent-open conferbot-widget{
   display:none!important;
   visibility:hidden!important;

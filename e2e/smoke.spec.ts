@@ -798,4 +798,33 @@ test.describe("marketing journeys", () => {
     expect(loaded.script).toBe(false);
     expect(loaded.srcHits).toBe(false);
   });
+
+  test("blog cover art loads in listing cards and article heroes at mobile and desktop widths", async ({ page }) => {
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: 1000 });
+      await page.goto("/blog");
+
+      const cards = page.locator(".blog-hub .post__img img");
+      await expect(cards.first()).toBeVisible();
+      for (const slug of ["plumber-website-cost", "plumbing-website-pages", "hvac-website-cost", "hvac-website-pages", "electrician-website-cost", "electrician-website-pages"]) {
+        const card = page.locator(`a[href="/blog/${slug}"] img`);
+        await card.scrollIntoViewIfNeeded();
+        await expect(card).toBeVisible();
+        await expect.poll(() => card.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+      }
+
+      for (const slug of ["plumber-website-cost", "plumbing-website-pages", "hvac-website-cost", "hvac-website-pages", "electrician-website-cost", "electrician-website-pages"]) {
+        await page.goto(`/blog/${slug}`);
+        const hero = page.locator(".blog-post__hero img").first();
+        await hero.scrollIntoViewIfNeeded();
+        await expect(hero).toBeVisible();
+        await expect.poll(() => hero.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+      }
+
+      await page.goto("/es/blog");
+      const localizedCard = page.locator(".blog-hub .post__img img").first();
+      await localizedCard.scrollIntoViewIfNeeded();
+      await expect.poll(() => localizedCard.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+    }
+  });
 });

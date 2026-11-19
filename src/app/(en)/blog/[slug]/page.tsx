@@ -6,7 +6,7 @@ import { contentMetadata } from "@/lib/seo";
 import { ArticleSchema } from "@/components/JsonLd";
 import { PageHero, Section, CtaBand, Faq } from "@/components/ui";
 import { EN_POST_CONTENT } from "@/data/posts-en";
-import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant, still } from "@/lib/image-sources";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path: `/blog/${post.slug}`,
     title: "seoTitle" in post && post.seoTitle ? post.seoTitle : post.title,
     description: post.excerpt,
-    image: post.image,
+    image: still(post.image),
     imageAlt: post.title,
     ogType: "article",
     publishedTime: post.date,
@@ -64,7 +64,7 @@ export default async function BlogPostPage({ params }: Props) {
         title={post.title}
         description={post.excerpt}
         path={`/blog/${post.slug}`}
-        image={post.image}
+        image={still(post.image)}
         date={post.date}
         modified={post.modified}
         section={post.category}

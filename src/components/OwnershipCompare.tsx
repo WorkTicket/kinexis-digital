@@ -6,7 +6,7 @@ import { EN_OWNERSHIP, type OwnershipCompareData } from "@/i18n/spanish-plan-com
  */
 export default function OwnershipCompare({
   heading,
-  mark = "monthly managed plans",
+  mark = "vs",
   data = EN_OWNERSHIP,
 }: {
   heading?: string;

@@ -70,6 +70,43 @@ test.describe("narrow viewport regressions", () => {
     expect(await track.evaluate((el) => getComputedStyle(el).transform)).toBe(before);
   });
 
+  test("Lead System step illustrations are centered, larger than their circles, and keep the VS highlight", async ({ page }) => {
+    for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
+      await page.setViewportSize(viewport);
+      await page.goto("/");
+
+      const geometry = await page
+        .locator(".review-rail:not(.review-rail--numbers) .review-rail__mark")
+        .evaluateAll(
+          (marks, viewportWidth) =>
+            marks.map((mark) => {
+              const circle = mark.querySelector(".review-rail__icon")!.getBoundingClientRect();
+              const image = mark.querySelector("img.icon")!.getBoundingClientRect();
+              const title = mark.parentElement!.querySelector("h3")!.getBoundingClientRect();
+              return {
+                scale: image.width / circle.width,
+                centerX: Math.abs((image.left + image.width / 2) - (circle.left + circle.width / 2)),
+                centerY: Math.abs((image.top + image.height / 2) - (circle.top + circle.height / 2)),
+                noTitleOverlap: viewportWidth > 860 || image.right <= title.left,
+              };
+            }),
+          viewport.width,
+        );
+
+      expect(geometry).toHaveLength(3);
+      for (const icon of geometry) {
+        expect(icon.scale).toBeGreaterThanOrEqual(1.39);
+        expect(icon.centerX).toBeLessThan(1);
+        expect(icon.centerY).toBeLessThan(1);
+        expect(icon.noTitleOverlap).toBe(true);
+      }
+    }
+
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/pricing");
+    await expect(page.locator(".plan-compare__ownership h2 .hl")).toHaveText("vs");
+  });
+
   test("Phoenix preview header CTA stays within a 320px viewport", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 900 });
     await page.goto("/lp/phoenix-preview");
@@ -98,7 +135,7 @@ test.describe("narrow viewport regressions", () => {
     await page.keyboard.press("Escape");
 
     await expect(dialog).toBeHidden();
-    await expect(page.locator(".consent-fab")).toBeFocused();
+    await expect(page.locator("#content")).toBeFocused();
     await expect.poll(() => page.evaluate(() => document.cookie)).toContain("kinexis_consent=");
   });
 });

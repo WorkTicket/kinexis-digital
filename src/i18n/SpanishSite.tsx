@@ -677,7 +677,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         </table></div>
         <OwnershipCompare
           heading={tx(ES_OWNERSHIP.headline)}
-          mark={tx("planes mensuales administrados")}
+          mark="frente a"
           data={ES_OWNERSHIP}
         />
       </Section>
