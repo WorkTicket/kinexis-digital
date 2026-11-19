@@ -51,6 +51,7 @@ for (const [path, expected] of [
   ["/blog/tree-service-website-pages", "/es/blog/tree-service-website-pages"],
   ["/industries/junk-removal", "/es/industries/junk-removal"],
   ["/industries/tree-care", "/es/industries/tree-care"],
+  ["/pricing#lead-system", "/es/pricing#lead-system"],
 ]) {
   const actual = localeHref("es-419", path);
   if (actual !== expected) {

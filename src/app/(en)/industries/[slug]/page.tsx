@@ -163,6 +163,15 @@ export default async function IndustryPage({ params }: Props) {
       {industry.proof ? (
         <Section>
           <IndustryProof industry={industry} />
+          {industry.slug === "plumbing" ? (
+            <p className="center spaced">
+              <Link href="/case-studies/preferred-plumbing" prefetch={false}>See the Preferred Plumbing website project</Link>
+            </p>
+          ) : industry.slug === "landscaping" ? (
+            <p className="center spaced">
+              <Link href="/case-studies/a1-property-services" prefetch={false}>See the A1 Property Services website project</Link>
+            </p>
+          ) : null}
         </Section>
       ) : null}
 

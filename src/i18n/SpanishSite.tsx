@@ -563,7 +563,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         </div>
         <div className="plans">
           {plans.map((plan) => (
-            <article className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
+            <article id={plan.slug === "lead-system" ? "lead-system" : undefined} className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
               {plan.popular && <span className="plan__badge">{tx("El más elegido")}</span>}
               <div className="plan__intro">
                 <h2 className="plan-title">{plan.name}</h2>

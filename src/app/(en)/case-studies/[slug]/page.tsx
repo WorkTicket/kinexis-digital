@@ -35,6 +35,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const study = caseStudyBySlug(slug);
   if (!study) notFound();
+  const industryPage =
+    study.slug === "preferred-plumbing"
+      ? { href: "/industries/plumbing", label: "Website design for plumbers" }
+      : study.slug === "a1-property-services"
+        ? { href: "/industries/landscaping", label: "Website design for landscaping companies" }
+        : null;
 
   return (
     <>
@@ -81,6 +87,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <p className="eyebrow spaced">Outcome</p>
           <p>{study.outcome}</p>
+          {industryPage ? (
+            <p className="spaced">
+              <Link href={industryPage.href} prefetch={false}>{industryPage.label}</Link>
+            </p>
+          ) : null}
           <p className="btn-row spaced">
             <a className="btn btn--primary" href={study.url} rel="noopener noreferrer" target="_blank">
               View live site
