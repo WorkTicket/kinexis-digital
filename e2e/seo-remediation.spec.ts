@@ -78,6 +78,32 @@ test.describe("KX-SEO-002 Release 1", () => {
     }
   });
 
+  test("payment timing and third-party disclosures are explicit in English and Spanish", async ({ page }) => {
+    await page.goto("/pay");
+    await expect(page.locator(".pay-hero")).toContainText(
+      /Monthly plans start on your launch day.*Own It is a one-time payment due when you approve the free preview/i,
+    );
+    await expect(page.locator(".pay-after")).toContainText(
+      /Own It is a one-time payment due when you approve the free preview/i,
+    );
+
+    await page.goto("/es/pay");
+    await expect(page.locator(".pay-hero")).toContainText(
+      /Los planes mensuales empiezan el día del lanzamiento.*Own It es un pago único que vence al aprobar la vista previa gratis/i,
+    );
+    await expect(page.locator(".pay-after")).toContainText(
+      /Own It es un pago único que vence al aprobar la vista previa gratis/i,
+    );
+
+    for (const route of ["/privacy", "/es/privacy"]) {
+      await page.goto(route);
+      await expect(page.locator(".prose")).toContainText("PayPal");
+      const chatDisclosure = page.locator(".prose p").filter({ hasText: "Conferbot" });
+      await expect(chatDisclosure).toBeVisible();
+      await expect(chatDisclosure).not.toContainText(/database|inbox|base de datos|correo/i);
+    }
+  });
+
   test("the four priority case-study links are present in rendered page HTML", async ({ page, baseURL }) => {
     await page.context().addCookies([{
       name: "kinexis_consent",

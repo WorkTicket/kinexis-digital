@@ -373,7 +373,7 @@ export default function PayCheckout({
         </span>
         <div>
           <h3>{es ? ui.previewTitle : "Your preview first. Your launch next."}</h3>
-          <p>{es ? ui.previewBody : "Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe."}</p>
+          <p>{es ? ui.previewBody : "Monthly plans start on your launch day after you approve your site, and the first charge happens then. Own It is a one-time payment due when you approve the free preview."}</p>
         </div>
       </div>
     </div>

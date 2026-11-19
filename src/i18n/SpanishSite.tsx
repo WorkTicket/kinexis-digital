@@ -1219,7 +1219,7 @@ function Privacy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         <h2>{tx("Cómo lo usamos")}</h2>
         <p>{tx("Usamos esta información para contestarte, preparar una vista previa, prestar el plan que compras y enviarte mensajes de ese trabajo. No vendemos información personal.")}</p>
         <h2>{tx("Con quién la compartimos")}</h2>
-        <p>{tx("Los proveedores de hosting, correo y formularios procesan los mensajes para que nos lleguen. Compartimos información cuando la ley lo exige. No vendemos ni rentamos listas de contacto.")}</p>
+        <p>{tx("Los proveedores de hosting, correo y formularios procesan los mensajes para que nos lleguen. Si eliges pagar con PayPal, PayPal procesa el pago y maneja los datos de pago; Kinexis recibe la confirmación y los identificadores o estados de la transacción o suscripción necesarios para administrar el cobro. También se aplican las prácticas de privacidad propias de PayPal. Compartimos información cuando la ley lo exige. No vendemos ni rentamos listas de contacto.")}</p>
         <h2>{tx("Cuánto la guardamos")}</h2>
         <p>{tx("Guardamos los datos de una consulta el tiempo necesario para responder y para tener registro del trabajo que pediste. Puedes escribir a")} {SITE.email} {tx("y pedir que borremos una consulta que no forme parte de un plan activo.")}</p>
         <h2>{tx("Contacto")}</h2>

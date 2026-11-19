@@ -178,7 +178,7 @@ export const ES_CHECKOUT_UI = {
   detailsSummary: "Términos del plan y detalles de cobro",
   needHelp: (phone: string) => `¿Necesitas ayuda? Llama o escribe al ${phone}`,
   previewTitle: "Primero la vista previa. Luego el lanzamiento.",
-  previewBody: "Suscríbete el día del lanzamiento, después de aprobar tu sitio. El primer cargo ocurre cuando te suscribes.",
+  previewBody: "Los planes mensuales empiezan el día del lanzamiento, después de que apruebes tu sitio, y el primer cargo se hace entonces. Own It es un pago único que vence al aprobar la vista previa gratis.",
   notConfigured: "Este plan aún no está configurado para pagar en línea. Escríbenos o envíanos un texto y terminamos el pago contigo.",
   badSubscription: "PayPal confirmó algo, pero el id de la suscripción no se ve bien. Revisa tu correo de PayPal o escríbenos.",
   paypalError: "Algo falló con PayPal. Inténtalo de nuevo o escríbenos.",
@@ -189,7 +189,7 @@ export const ES_CHECKOUT_UI = {
   heroEyebrow: "Planes y pago",
   heroH1: "Tu sitio nuevo empieza aquí.",
   heroMark: "empieza aquí",
-  heroSub: "Suscríbete el día del lanzamiento, después de aprobar tu sitio. El primer cargo ocurre cuando te suscribes.",
+  heroSub: "Los planes mensuales empiezan el día del lanzamiento, después de que apruebes tu sitio, y el primer cargo se hace entonces. Own It es un pago único que vence al aprobar la vista previa gratis.",
   heroPreview: "¿Aún no viste tu vista previa gratis?",
   heroPreviewCta: "Pide tu vista previa gratis",
   heroInvoice: "Pagar una factura existente",
@@ -287,7 +287,7 @@ export const ES_PAY_FAQS = [
   },
   {
     q: "¿Cuándo me cobran?",
-    a: "Suscríbete el día del lanzamiento, después de aprobar tu sitio. El primer cargo ocurre cuando te suscribes. Los cargos siguientes siguen el calendario de PayPal. Own It se cobra cuando pagas.",
+    a: "Los planes mensuales empiezan el día del lanzamiento, después de que apruebes tu sitio, y el primer cargo se hace entonces. Los cargos mensuales siguientes siguen el calendario de PayPal. Own It es un pago único que vence al aprobar la vista previa gratis.",
   },
   {
     q: "¿Hay contrato?",
