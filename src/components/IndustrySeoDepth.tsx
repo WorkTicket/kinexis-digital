@@ -57,7 +57,14 @@ export default function IndustrySeoDepth({
         examplesEyebrow: "Real example",
       };
 
-  const process = industryProcessStepsEn(noun);
+  const process = es
+    ? [
+        { title: "Comparte tu logo y fotos", text: "Envía lo que tengas: logo, fotos de la camioneta y de tus trabajos. Podemos empezar la vista previa aunque te falten materiales." },
+        { title: "Vista previa gratis de inicio", text: "En 2 días hábiles verás un concepto de página de inicio para tu oficio. Sin tarjeta y sin obligación." },
+        { title: "Elige un plan", text: "Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It por $1,497 una sola vez. Los planes mensuales son $0 de entrada." },
+        { title: "Lanzamiento", text: "Terminamos las páginas de servicios y publicamos el sitio. El lanzamiento suele ser unos 5 días hábiles después de la aprobación y de recibir el contenido." },
+      ]
+    : industryProcessStepsEn(noun);
 
   return (
     <>

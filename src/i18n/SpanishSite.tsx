@@ -587,7 +587,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             <GuaranteeBadge alt={tx("Garantía de leads rastreados de 60 días")} />
             <div>
               <h3><HL text={tx("¿Cero leads rastreados en 60 días? Condonamos dos cargos.")} mark={tx("dos cargos")} /></h3>
-              <p>{tx("Si Lead System o Plus no produce leads rastreados en los primeros 60 días en vivo, se condonan el tercer y cuarto cargo. Un lead rastreado es una llamada de 30 segundos o más, una respuesta al texto, o un formulario real. Una garantía por negocio.")}</p>
+              <p>{tx("Solo Lead System y Plus: si no recibes leads rastreados durante tus primeros 60 días en vivo, se condonan los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al texto si no contestas o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. Una garantía por negocio, con la cuenta al corriente. No aplica si un cambio tuyo impide el seguimiento o si pausas o cancelas antes del día 60. Own It no está incluido.")}</p>
               <OpenDialog id="guarantee" className="trust-mark">{tx("Leer la garantía")}</OpenDialog>
             </div>
           </div>
@@ -670,6 +670,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
           sections={table}
           hint={tx("Toca un plan para ver qué incluye. Abre dos para comparar.")}
           popularLabel={tx("El más elegido")}
+          includedLabel={tx("Incluido")}
           hideStickers={spainChrome}
         />
         <div className="table-scroll pricing-comparison-table" role="region" aria-label={tx("Comparación de planes")} tabIndex={0}><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
@@ -756,6 +757,7 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
           <h2 className="card-title"><HL text={tx("Cuéntanos sobre tu negocio")} mark={tx("tu negocio")} /></h2>
           <p className="muted">{tx("Elige qué necesitas. Si pides una vista previa gratis de tu página, te preguntaremos algunos detalles más para que sea útil para tu negocio.")}</p>
           <Form
+            locale="es"
             metaForm="contact"
             fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]}
             contactInquiry={{ locale: "es", followupHref: href("/intake") }}
@@ -791,7 +793,7 @@ function Audit({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <div className="form-shell">
           <h2 className="card-title"><HL text={tx("Pide tu auditoría gratis")} mark={tx("auditoría gratis")} /></h2>
           <p className="muted">{tx("Comparte la URL y te enviamos una lista clara de prioridades. Sin tarjeta.")}</p>
-          <Form metaForm="audit" conversion="audit" hiddenFields={{ topic: "audit" }} button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
+          <Form locale="es" metaForm="audit" conversion="audit" hiddenFields={{ topic: "audit" }} button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
         </div>
         <aside className="contact-info">{aside.map(([h, t, icon]) => <div className="card" key={icon}><Icon name={icon} alt={h} size={64} /><h2 className="card-title">{h}</h2><p className="muted">{t}</p></div>)}</aside>
       </div></Section>
@@ -861,7 +863,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
 }
 
 function Faqs({ locale, tx, href, lang, band }: PageBits) {
-  const faqs = [{ q: tx("¿Qué tan rápido recibo mi vista previa gratis?"), a: tx("Su vista previa gratis de la página principal está lista en 2 días hábiles después de recibir la información de su negocio, sin tarjeta.") }, ...homeFaqs(tx, locale === "es-ES")];
+  const faqs = [{ q: tx("¿Qué tan rápido recibo mi vista previa gratis?"), a: tx("Tu vista previa gratis de la página principal está lista en 2 días hábiles después de recibir la información de tu negocio, sin tarjeta.") }, ...homeFaqs(tx, locale === "es-ES")];
   return (
     <>
       <ContentSchema path={href("/faqs")} title={tx(PAGE_META["/faqs"].title)} description={tx(PAGE_META["/faqs"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Preguntas"), path: href("/faqs") }]} faqs={faqs} inLanguage={lang} />
@@ -1059,6 +1061,7 @@ async function Reviews({ locale, tx, href, lang, band }: PageBits) {
             tooLong: tx("La reseña no puede pasar de 280 caracteres."),
             error: tx("Algo salió mal. Inténtalo de nuevo."),
             network: tx("Error de red. Inténtalo de nuevo."),
+            gotcha: tx("Déjalo en blanco"),
           }} />
         </div>
       </Section>
@@ -1175,15 +1178,15 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
       <PageHero locale={locale} h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 7 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("1. Vista previa gratis")}</h2>
-        <p>{tx("Cada plan empieza con una vista previa de la página de inicio. Las vistas previas gratis de la página principal se entregan dentro de 2 días hábiles después de recibir los datos de su negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu negocio. Puedes aprobarlo, pedir cambios o irte sin pagar.")}</p>
+        <p>{tx("Cada plan empieza con una vista previa de la página de inicio. La vista previa gratis se entrega en un plazo de 2 días hábiles después de recibir los datos de tu negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu negocio. Puedes aprobarlo, pedir cambios o irte sin pagar. Después de la aprobación y de recibir el contenido, el lanzamiento suele tomar unos 5 días hábiles; confirmamos el plazo por escrito.")}</p>
         <h2>{tx("2. Planes mensuales")}</h2>
         <p>{tx(`Website es ${p("websiteMo", currency)} al mes. Lead System es ${p("leadMo", currency)} al mes. Plus (bilingüe) es ${p("plusMo", currency)} al mes. Los tres son ${p("zeroDown", currency)} de entrada y empiezan el día del lanzamiento. Son mes a mes, sin contrato largo y sin cargo por cancelar. Puedes cancelar cuando quieras por texto, correo o Messenger. El precio queda fijo 24 meses. Después avisamos al menos 30 días antes de un cambio.`)}</p>
         <h2>{tx("3. Qué incluye")}</h2>
-        <p>{tx(`Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta ${p("newPage", currency)}. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. El dominio del año 1 va incluido en todos los planes mensuales y en Own It, a tu nombre; las renovaciones posteriores se cobran al costo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es ${p("siteCareMo", currency)} al mes.`)}</p>
+        <p>{tx(`Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta ${p("newPage", currency)}. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. En Website, los cambios chicos se hacen en 2 días hábiles; en Lead System, en 1 día hábil; y en Plus, el mismo día hábil si lo pides antes del mediodía, hora del Centro. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. El dominio del año 1 va incluido en todos los planes mensuales y en Own It, a tu nombre; las renovaciones posteriores se cobran al costo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es ${p("siteCareMo", currency)} al mes.`)}</p>
         <h2>{tx("4. Textos y el operador")}</h2>
-        <p>{tx(`El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes. Pueden aplicar tarifas del operador. El texto si no contestas y los pedidos de reseña se envían por mensaje. La activación depende de la aprobación del operador. Los textos suelen empezar 10 a 15 días después de la aprobación. Esa aprobación no está garantizada.`)}</p>
+        <p>{tx(`El texto si no contestas es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. El texto si no contestas y los pedidos de reseña se envían por mensaje. La activación depende de la aprobación del operador. Los textos suelen empezar entre 10 y 15 días después de la aprobación. Esa aprobación no está garantizada.`)}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
-        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados en los primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Una garantía por negocio, con la cuenta al corriente. Un lead rastreado es una llamada de 30 segundos o más, alguien que responde al texto, o un formulario real. No cuentan spam, números equivocados, solicitantes, proveedores ni clientes actuales. No aplica si el seguimiento falla por un cambio que haces tú, o si pausas o cancelas antes del día 60. Own It no incluye esta garantía.")}</p>
+        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al texto si no contestas, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>
         <p>{tx(`Own It es un pago de ${p("ownIt", currency)}, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es ${p("siteCareMo", currency)} al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. En Own It, el texto si no contestas se puede agregar por ${p("textBackAddonMo", currency)} al mes. En Lead System o Plus, un segundo número cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más tarifas del operador.`)}</p>
         <h2>{tx("7. Cancelación y acceso")}</h2>
@@ -1212,6 +1215,7 @@ function Privacy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         <h2>{tx("Qué recogemos")}</h2>
         <p>{tx("Si envías un formulario, recogemos lo que escribes: nombre, correo, teléfono, negocio o sitio, la página que quieres cambiar, tu mensaje y cualquier archivo. Si llamas o escribes, guardamos esa correspondencia para responder y hacer el trabajo.")}</p>
         <p>{tx("El sitio está alojado en Cloudflare. Los registros del servidor pueden incluir tu dirección IP, navegador y las páginas que solicitas. La analítica (GA4) y la medición publicitaria (Meta Pixel y la API de conversiones de Meta) no son esenciales. El Pixel solo se carga después de que aceptes la medición publicitaria en el aviso de cookies o la actives en las preferencias de cookies. Solo enviamos a Meta un evento de lead desde el servidor después de que el servidor acepta un formulario y mientras el consentimiento de publicidad esté activo. Ese evento puede incluir la ruta de la página, tu dirección IP, el navegador, las cookies de Meta para navegador/clic (_fbp y _fbc) y hashes SHA-256 del correo o teléfono que envíes. Si rechazas la medición publicitaria o aún no has elegido, el Pixel no se carga y no enviamos eventos de leads desde el servidor. Tu elección de cookies se guarda durante 180 días. Puedes cambiarla más tarde desde el control de preferencias de cookies.")}</p>
+        <p>{tx("El chat en vivo lo ofrece Conferbot, un servicio externo. Su widget y conexión no se cargan a menos que aceptes tanto las cookies de analítica como las de publicidad. Si usas el chat, Conferbot procesa la información que decidas enviar para prestar la conversación.")}</p>
         <h2>{tx("Cómo lo usamos")}</h2>
         <p>{tx("Usamos esta información para contestarte, preparar una vista previa, prestar el plan que compras y enviarte mensajes de ese trabajo. No vendemos información personal.")}</p>
         <h2>{tx("Con quién la compartimos")}</h2>
@@ -1230,7 +1234,7 @@ function Update({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =>
     <>
       <ContentSchema path={href("/update")} title={tx(PAGE_META["/update"].title)} description={tx(PAGE_META["/update"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Cambios"), path: href("/update") }]} inLanguage={lang} />
       <PageHero locale={locale} h1={tx("Pide un cambio en el sitio")} mark={tx("cambio")} sub={tx("Dinos la página y el cambio. Los cambios chicos se hacen uno a la vez, dentro del tiempo de tu plan.")} />
-      <Section narrow><Form button={tx("Enviar solicitud")} note={tx("Website: dos días hábiles. Lead System: un día hábil. Plus: el mismo día hábil si lo pides antes del mediodía, hora del Centro.")} fields={[{ label: tx("Tu nombre"), name: "name", required: true, auto: "name" }, { label: tx("Correo"), name: "email", kind: "email", required: true, auto: "email" }, { label: tx("URL de la página"), name: "page", kind: "url" }, { label: tx("¿Qué debemos cambiar?"), name: "request", kind: "textarea", required: true }, { label: tx("Adjuntar un archivo (opcional)"), name: "file", kind: "file" }]} /></Section>
+      <Section narrow><Form locale="es" button={tx("Enviar solicitud")} note={tx("Website: dos días hábiles. Lead System: un día hábil. Plus: el mismo día hábil si lo pides antes del mediodía, hora del Centro.")} fields={[{ label: tx("Tu nombre"), name: "name", required: true, auto: "name" }, { label: tx("Correo"), name: "email", kind: "email", required: true, auto: "email" }, { label: tx("URL de la página"), name: "page", kind: "url" }, { label: tx("¿Qué debemos cambiar?"), name: "request", kind: "textarea", required: true }, { label: tx("Adjuntar un archivo (opcional)"), name: "file", kind: "file" }]} /></Section>
     </>
   );
 }

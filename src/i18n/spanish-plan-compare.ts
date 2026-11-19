@@ -271,7 +271,7 @@ export const ES_PAY_FAQS = [
   },
   {
     q: "¿Cómo funciona la garantía de leads de 60 días?",
-    a: "Lead System y Plus: cero leads rastreados en tus primeros 60 días en vivo significa que se condonan el 3.º y 4.º cargo mensual. Una vez por negocio. Ver sección 5 de los Términos.",
+    a: "Solo Lead System y Plus: cero leads rastreados durante tus primeros 60 días en vivo condona los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al texto si no contestas o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. La cuenta debe estar al corriente. No aplica si un cambio tuyo impide el seguimiento, o si pausas o cancelas antes del día 60. Una vez por negocio; Own It está excluido. Ver sección 5 de los Términos.",
   },
   {
     q: "¿Cómo funciona la devolución en 30 días?",

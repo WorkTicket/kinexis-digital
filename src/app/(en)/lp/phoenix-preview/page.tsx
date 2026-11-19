@@ -81,7 +81,7 @@ const FAQS = [
   },
   {
     q: "What is the 60-day tracked-lead guarantee?",
-    a: "On Lead System and Plus: if you receive zero tracked leads in your first 60 days live, we waive your 3rd and 4th monthly charges. Limited to one guarantee per business.",
+    a: "Lead System and Plus only: zero tracked leads in your first 60 days live waives your 3rd and 4th charges. A tracked lead is a 30+ second call, a missed caller who replies to text-back, or a real quote form; spam, wrong numbers, job applicants, vendors, and existing customers do not count. The account must be in good standing. Not valid if your changes prevent tracking or you pause/cancel before day 60. One per business; Own It is excluded.",
   },
   {
     q: "What is the 30-day money-back guarantee?",
@@ -411,8 +411,11 @@ export default async function PhoenixPreviewLp() {
           <HL text="60-Day Lead Guarantee" mark="Lead Guarantee" />
         </h2>
         <p className="center muted">
-          Lead System and Plus include a written lead guarantee. If you get zero tracked leads in your first 60 days
-          live, we waive the 3rd and 4th monthly charges.
+          Lead System and Plus only: zero tracked leads in your first 60 days live waives the 3rd and 4th
+          charges. A tracked lead is a 30+ second call, a missed caller who replies to text-back, or a real
+          quote form; spam, wrong numbers, applicants, vendors, and existing customers do not count. The
+          account must be in good standing. Not valid if your changes prevent tracking or you pause/cancel
+          before day 60. One per business; Own It is excluded.
         </p>
         <p className="center btn-row spaced">
           <OpenDialog id="guarantee" className="btn btn--ghost">

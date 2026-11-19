@@ -269,7 +269,7 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
           <label className="field"><input name="business" placeholder=" " /><span>{copy.business}</span></label>
           <div hidden>
             <label>
-              Leave blank
+              {copy.dateLocale.startsWith("es") ? "Déjalo en blanco" : "Leave blank"}
               <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
             </label>
           </div>

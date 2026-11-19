@@ -62,6 +62,22 @@ test.describe("KX-SEO-002 Release 1", () => {
     })).toBeLessThan(260);
   });
 
+  test("Spanish legacy case studies and portfolio template links resolve without losing portfolio navigation", async ({ page }) => {
+    for (const slug of ["preferred-plumbing", "a1-property-services", "retired-example"]) {
+      const response = await page.request.get(`/es/case-studies/${slug}`);
+      expect(response.status()).toBe(200);
+      expect(new URL(response.url()).pathname).toBe("/es/portfolio");
+    }
+
+    await page.goto("/es/portfolio");
+    const templateLinks = page.locator('.portfolio--main a[href^="/portfolio/"]');
+    expect(await templateLinks.count()).toBeGreaterThan(0);
+    for (const href of await templateLinks.evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).pathname))) {
+      const response = await page.request.get(href);
+      expect(response.status(), `${href} should resolve to an existing English template`).toBe(200);
+    }
+  });
+
   test("the four priority case-study links are present in rendered page HTML", async ({ page, baseURL }) => {
     await page.context().addCookies([{
       name: "kinexis_consent",

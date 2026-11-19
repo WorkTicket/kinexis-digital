@@ -72,7 +72,7 @@ export default function Boot({
       <Script id="kinexis-boot" src="/assets/js/boot.min.js?v=63" strategy="lazyOnload" />
       {/* Separate file so Conferbot lift/load is not one long task with boot.
           /assets is served immutable for a year: bump ?v= whenever conferbot.js changes. */}
-      <Script id="kinexis-conferbot" src="/assets/js/conferbot.min.js?v=2" strategy="lazyOnload" />
+      <Script id="kinexis-conferbot" src="/assets/js/conferbot.min.js?v=3" strategy="lazyOnload" />
     </>
   );
 }

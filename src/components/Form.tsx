@@ -47,6 +47,7 @@ export default function Form({
   conversion,
   metaForm,
   contactInquiry,
+  locale,
 }: {
   fields: Field[];
   button: string;
@@ -58,6 +59,7 @@ export default function Form({
   hiddenFields?: Record<string, string>;
   conversion?: "preview" | "audit";
   metaForm?: MetaLeadForm;
+  locale?: "en" | "es";
   contactInquiry?: {
     locale: "en" | "es";
     followupHref: string;
@@ -249,7 +251,7 @@ export default function Form({
       ) : null}
       <div hidden>
         <label>
-          Leave blank
+          {locale === "es" || contactInquiry?.locale === "es" ? "Déjalo en blanco" : "Leave blank"}
           <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
         </label>
         {hiddenFields

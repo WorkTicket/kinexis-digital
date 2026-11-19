@@ -217,7 +217,7 @@ export default async function Home() {
       {/* 11. Guarantee — final offer block above FAQs */}
       <Section>
         <h2 className="center"><HL text="60-Day Lead Guarantee" mark="Lead Guarantee" /></h2>
-        <p className="center muted">Lead System and Plus include a written lead guarantee. If you get zero tracked leads in your first 60 days live, we waive the 3rd and 4th monthly charges.</p>
+        <p className="center muted">Lead System and Plus only: zero tracked leads in the first 60 days live waives the 3rd and 4th charges. A tracked lead is a 30+ second call, a missed caller who replies to text-back, or a real quote form; spam, wrong numbers, applicants, vendors, and existing customers do not count. The account must be in good standing. No coverage if your changes prevent tracking or you pause/cancel before day 60. One per business; Own It is excluded.</p>
         <p className="center btn-row spaced">
           <OpenDialog id="guarantee" className="btn btn--ghost">Read the guarantee details</OpenDialog>
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>

@@ -432,15 +432,27 @@
   function consentDockOpen() {
     return document.documentElement.classList.contains("consent-open");
   }
+  function consentAllowsConferbot() {
+    const match = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
+    if (!match) return false;
+    try {
+      const value = decodeURIComponent(match[1]);
+      return value.startsWith("v1|") &&
+        /(?:^|\|)a=1(?:\||$)/.test(value) &&
+        /(?:^|\|)d=1(?:\||$)/.test(value);
+    } catch {
+      return false;
+    }
+  }
   function readyToArm() {
-    if (consentDockOpen()) return false;
+    if (consentDockOpen() || !consentAllowsConferbot()) return false;
     return consentChromePresent() || chromeWaitExpired;
   }
 
   function load() {
     if (cleaned || widgetBooted) return;
     if (window.location.pathname.startsWith("/admin")) return;
-    if (consentDockOpen()) {
+    if (consentDockOpen() || !consentAllowsConferbot()) {
       waitForConsentThenArm();
       return;
     }
