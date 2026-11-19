@@ -8,6 +8,14 @@ import { spawnSync } from "node:child_process";
 process.env.NEXT_PUBLIC_SITE_URL = "https://preview.kinexisdigital.com";
 process.env.NEXT_PUBLIC_IS_PREVIEW = "1";
 process.env.SEARCH_NOTIFY = "0";
+for (const name of [
+  "NEXT_PUBLIC_PAYPAL_CLIENT_ID",
+  "NEXT_PUBLIC_PAYPAL_WEBSITE_PLAN_ID",
+  "NEXT_PUBLIC_PAYPAL_LEAD_SYSTEM_PLAN_ID",
+  "NEXT_PUBLIC_PAYPAL_PLUS_PLAN_ID",
+]) {
+  process.env[name] = "";
+}
 
 const npmCli = process.env.npm_execpath;
 if (!npmCli) {
@@ -25,4 +33,9 @@ function run(args) {
 
 run(["scripts/search-on-deploy.mjs", "--preflight"]);
 run([npmCli, "run", "build:worker"]);
+run(["scripts/check-paypal-build.mjs", "--preview"]);
+if (process.argv.includes("--build-only")) {
+  console.log("[deploy-preview] Build verified; --build-only requested, skipping deploy.");
+  process.exit(0);
+}
 run([npmCli, "run", "deploy:worker", "--", "--env", "preview"]);

@@ -24,6 +24,22 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
+const gitStatus = execFileSync("git", ["status", "--porcelain"], { encoding: "utf8" }).trim();
+if (gitStatus) {
+  console.error("[deploy-production] Working tree must be clean before deployment.");
+  process.exit(1);
+}
+const approvedSha = process.env.APPROVED_SHA;
+if (!approvedSha) {
+  console.error("[deploy-production] APPROVED_SHA is required; refusing to deploy.");
+  process.exit(1);
+}
+const fullHeadSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+if (approvedSha !== fullHeadSha) {
+  console.error("[deploy-production] HEAD does not match APPROVED_SHA; refusing to deploy.");
+  process.exit(1);
+}
+
 const PRODUCTION_SITE_URL = "https://www.kinexisdigital.com";
 /** Public bot id from .env.production — must appear in the Worker build output. */
 const CONFERBOT_BOT_ID = "6afa0edabbad567d637ee189";
@@ -150,11 +166,15 @@ for (const step of steps) {
     // so the Worker version metadata identifies the exact source being shipped.
     const fullSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
     const shortSha = execFileSync("git", ["rev-parse", "--short", "HEAD"], { encoding: "utf8" }).trim();
+    if (!/^[0-9a-f]{40}$/.test(fullSha)) {
+      console.error(`[deploy-production] Invalid full Git SHA: ${fullSha}`);
+      process.exit(1);
+    }
     args = [
       ...args,
       "--",
       "--message",
-      `"release/1 ${fullSha} (Release 1)"`,
+      `release-1@${fullSha}`,
       "--tag",
       shortSha,
     ];
