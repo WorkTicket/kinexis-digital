@@ -1082,6 +1082,7 @@ document.addEventListener("submit", async (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement) || !form.hasAttribute("data-lead")) return;
   event.preventDefault();
+  if (form.dataset.submitting === "true") return;
   const copy = formCopy();
   let firstBad = null;
   let contactMsg = "";
@@ -1138,6 +1139,7 @@ document.addEventListener("submit", async (event) => {
   const data = new FormData(form);
   if (data.get("_gotcha")) return;
   const button = form.querySelector("button[type=submit]");
+  form.dataset.submitting = "true";
   button?.classList.add("is-loading");
   if (button) button.disabled = true;
   try {
@@ -1188,6 +1190,7 @@ document.addEventListener("submit", async (event) => {
   } catch {
     if (msg) msg.textContent = copy.network;
   } finally {
+    delete form.dataset.submitting;
     button?.classList.remove("is-loading");
     if (button) button.disabled = false;
   }
@@ -1477,6 +1480,5 @@ addEventListener("popstate", () => {
 new MutationObserver(syncChrome).observe(root, { attributes: true, attributeFilter: ["class"] });
 requestAnimationFrame(() => requestAnimationFrame(syncChrome));
 })();
-
 
 

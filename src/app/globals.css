@@ -4566,6 +4566,7 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 .pay-page .pay-after__faqs{box-shadow:none;border-radius:16px;border-color:var(--brand-navy)}
 .pay-page .pay-after__faqs .faq summary{padding:22px 24px}
 .pay-page .pay-invoice-section{border-top:1px solid var(--border);scroll-margin-top:110px}
+#lead-system{scroll-margin-top:calc(var(--header-h) + var(--announce-h) + var(--chrome-top) + 24px)}
 .pay-page .pay-invoice-section>.container>h2{font-size:clamp(1.8rem,3vw,2.6rem)}
 .pay-page .pay-invoice-lead{margin:12px auto 36px}
 .pay-page .pay-sheet{border:1.5px solid var(--brand-navy);box-shadow:var(--shadow);border-radius:20px;padding:32px}
