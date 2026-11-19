@@ -53,7 +53,10 @@ export default async function BlogPostPage({ params }: Props) {
     day: "numeric",
   });
 
-  const related = POSTS.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
+  const related = POSTS
+    .filter((p) => p.slug !== post.slug && p.category === post.category)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 3);
 
   return (
     <>

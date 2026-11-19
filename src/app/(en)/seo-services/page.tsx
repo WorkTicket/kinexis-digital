@@ -22,7 +22,7 @@ export default function Page() {
         </div>
       </Section>
       <Section tint>
-        <MediaSplit image="local-seo" alt="Local search panel and map pins for service businesses">
+        <MediaSplit image="website-audit" alt="Website audit dashboard with a search and performance checklist">
           <h2><HL text="How The Work Is Prioritized" mark="Prioritized" /></h2>
           <p>We start with the foundation: a fast site that search engines can crawl, clear page titles and descriptions, an organized structure, and useful information for each service. Once that is sound, we can add content and continue improving the pages that matter most.</p>
           <p>Progress is measured through impressions, clicks, and leads. SEO takes time, and no honest provider can promise a particular ranking.</p>

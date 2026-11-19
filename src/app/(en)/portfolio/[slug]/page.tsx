@@ -44,6 +44,7 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProject(slug);
   if (!project || project.placeholder) notFound();
   const detail = getProjectDetail(slug);
+  const fullShotWidth: 1280 | 1600 = project.width > 1280 ? 1600 : 1280;
   const currentIndex = PROJECTS.findIndex((item) => item.slug === project.slug);
   const related = Array.from(
     { length: Math.min(4, PROJECTS.length - 1) },
@@ -117,7 +118,7 @@ export default async function ProjectPage({ params }: Props) {
           </div>
           <SafeImage
             src={portfolioFile(project.image)}
-            srcSet={`${portfolioFile(project.image, 640)} 640w, ${portfolioFile(project.image, 800)} 800w, ${portfolioFile(project.image, 960)} 960w, ${portfolioFile(project.image, 1600)} 1600w`}
+            srcSet={`${portfolioFile(project.image, 640)} 640w, ${portfolioFile(project.image, 800)} 800w, ${portfolioFile(project.image, 960)} 960w, ${portfolioFile(project.image, fullShotWidth)} ${fullShotWidth}w`}
             alt={`${project.name} website design`}
             width={project.width}
             height={project.height}

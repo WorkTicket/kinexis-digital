@@ -14,6 +14,9 @@
   const HOST_SEL = "conferbot-widget";
   const STYLE_ID = "kx-chat-lift";
   const HOST_CLASS = "kx-chat-lift";
+  const CHAT_VISIBLE_STYLE_ID = "kx-chat-visibility";
+  const CHAT_VISIBLE_CLASS = "kx-sticky-chat-visible";
+  const CHAT_READY_CLASS = "kx-chat-visibility-ready";
   const GAP_ABOVE_BAR_PX = 12;
   const CTA_ABOVE_LAUNCHER_PX = 62;
   const PANEL_ABOVE_LAUNCHER_PX = 58;
@@ -131,31 +134,71 @@
       root.appendChild(el);
     };
 
+    const installChatVisibilityStyle = (root) => {
+      if (root.getElementById(CHAT_VISIBLE_STYLE_ID)) return;
+      const el = document.createElement("style");
+      el.id = CHAT_VISIBLE_STYLE_ID;
+      el.textContent = `
+:host #open-chatbot.chatbot__icon,
+:host .chatbot__icon{
+  opacity:0!important;
+  visibility:hidden!important;
+  transform:translateY(18px)!important;
+  pointer-events:none!important;
+}
+:host(.${CHAT_READY_CLASS}) #open-chatbot.chatbot__icon,
+:host(.${CHAT_READY_CLASS}) .chatbot__icon{
+  transition:opacity .45s ease,transform .7s cubic-bezier(.16,1,.3,1),visibility 0s linear .45s;
+}
+:host(.${CHAT_VISIBLE_CLASS}) #open-chatbot.chatbot__icon,
+:host(.${CHAT_VISIBLE_CLASS}) .chatbot__icon{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:translateY(0)!important;
+  pointer-events:auto!important;
+}
+@media (prefers-reduced-motion:reduce){
+:host #open-chatbot.chatbot__icon,
+:host .chatbot__icon{
+  transition:none!important;
+}
+}
+`.trim();
+      root.appendChild(el);
+    };
+
     const apply = () => {
       const host = document.querySelector(HOST_SEL);
       if (!host?.shadowRoot) return;
       bindHost(host);
       hideProactiveBubbles(host.shadowRoot);
+      installChatVisibilityStyle(host.shadowRoot);
+      const html = document.documentElement;
+      const float = document.querySelector(".float-cta");
+      const fr = float?.getBoundingClientRect();
+      const floatCs = float ? getComputedStyle(float) : null;
+      const stickyShown =
+        Boolean(float) &&
+        html.classList.contains("sticky-chrome-in") &&
+        !html.classList.contains("consent-open") &&
+        Boolean(float?.classList.contains("is-in")) &&
+        Boolean(fr && fr.height > 1 && fr.top < viewportHeight() && fr.bottom > 0) &&
+        floatCs?.display !== "none" &&
+        floatCs?.visibility !== "hidden";
+      host.classList.toggle(CHAT_VISIBLE_CLASS, stickyShown);
+      if (!host.classList.contains(CHAT_READY_CLASS)) {
+        const launcher = host.shadowRoot.querySelector("#open-chatbot.chatbot__icon, .chatbot__icon");
+        if (launcher) launcher.getBoundingClientRect();
+        host.classList.add(CHAT_READY_CLASS);
+      }
       if (!mobileMq.matches) {
         clearShadowLift(host);
         return;
       }
-      const html = document.documentElement;
       const htmlStyles = getComputedStyle(html);
-      const floatHidden =
-        html.classList.contains("no-float") || html.classList.contains("consent-open");
-      const float = document.querySelector(".float-cta");
       bindFloat(float);
-      const fr = float?.getBoundingClientRect();
-      const floatCs = float ? getComputedStyle(float) : null;
       const floatVisible =
-        Boolean(float) &&
-        !floatHidden &&
-        Boolean(float?.classList.contains("is-in")) &&
-        Boolean(fr && fr.height > 1 && fr.top < viewportHeight() && fr.bottom > 0) &&
-        floatCs?.display !== "none" &&
-        floatCs?.visibility !== "hidden" &&
-        Number.parseFloat(floatCs?.opacity || "0") > 0.5;
+        stickyShown && Number.parseFloat(floatCs?.opacity || "0") > 0.5;
 
       const stackFloor =
         cssPx(htmlStyles, "--float-gap", 16) +

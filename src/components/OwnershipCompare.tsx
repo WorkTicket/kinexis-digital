@@ -18,9 +18,9 @@ export default function OwnershipCompare({
 
   return (
     <div className="plan-compare__ownership">
-      <h3 className="center">
+      <h2 className="center">
         <HL text={title} mark={mark} />
-      </h3>
+      </h2>
       <p className="center muted">{data.intro}</p>
 
       <div className="own-path-cards" aria-label={labels.aria}>

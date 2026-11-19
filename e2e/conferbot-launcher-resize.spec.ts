@@ -52,7 +52,7 @@ async function mountMockConferbot(page: Page) {
     )
     .toBe(true);
 
-  return page.evaluate(() => {
+  const mounted = await page.evaluate(() => {
     document.querySelectorAll("conferbot-widget").forEach((el) => el.remove());
     const host = document.createElement("conferbot-widget");
     const shadow = host.attachShadow({ mode: "open" });
@@ -73,6 +73,23 @@ async function mountMockConferbot(page: Page) {
     window.dispatchEvent(new Event("resize"));
     return Boolean(host.shadowRoot?.querySelector("#open-chatbot"));
   });
+  await expect
+    .poll(
+      () =>
+        page.evaluate(() =>
+          Boolean(
+            document
+              .querySelector("conferbot-widget")
+              ?.shadowRoot?.getElementById("kx-chat-visibility") &&
+              document
+                .querySelector("conferbot-widget")
+                ?.classList.contains("kx-chat-visibility-ready"),
+          ),
+        ),
+      { timeout: 10_000 },
+    )
+    .toBe(true);
+  return mounted;
 }
 
 async function showStickyBar(page: Page) {
@@ -116,6 +133,10 @@ type LiftSnapshot = {
   gap: number | null;
   consentOpen: boolean;
   hostDisplayed: boolean;
+  stickyChromeIn: boolean;
+  cookieOpacity: number;
+  launcherOpacity: number | null;
+  launcherVisible: boolean;
 };
 
 function liftSnapshot(page: Page): Promise<LiftSnapshot> {
@@ -125,9 +146,11 @@ function liftSnapshot(page: Page): Promise<LiftSnapshot> {
       "#open-chatbot.chatbot__icon, .chatbot__icon",
     ) as HTMLElement | null;
     const float = document.querySelector(".float-cta") as HTMLElement | null;
+    const cookie = document.querySelector(".consent-fab") as HTMLElement | null;
     const ir = icon?.getBoundingClientRect();
     const fr = float?.getBoundingClientRect();
     const hostCs = host ? getComputedStyle(host) : null;
+    const iconCs = icon ? getComputedStyle(icon) : null;
     return {
       width: window.innerWidth,
       mobileMq: window.matchMedia("(max-width: 860px)").matches,
@@ -143,6 +166,14 @@ function liftSnapshot(page: Page): Promise<LiftSnapshot> {
         hostCs &&
           hostCs.display !== "none" &&
           hostCs.visibility !== "hidden",
+      ),
+      stickyChromeIn: document.documentElement.classList.contains("sticky-chrome-in"),
+      cookieOpacity: cookie ? Number.parseFloat(getComputedStyle(cookie).opacity) : 0,
+      launcherOpacity: iconCs ? Number.parseFloat(iconCs.opacity) : null,
+      launcherVisible: Boolean(
+        iconCs &&
+          iconCs.visibility !== "hidden" &&
+          Number.parseFloat(iconCs.opacity) > 0.5,
       ),
     };
   });
@@ -166,6 +197,10 @@ test.describe("Conferbot launcher sticky lift across resize", () => {
     await ensureConsentClosed(page);
 
     expect(await mountMockConferbot(page)).toBe(true);
+    const chromeBeforeSticky = await liftSnapshot(page);
+    expect(chromeBeforeSticky.stickyChromeIn).toBe(false);
+    expect(chromeBeforeSticky.cookieOpacity).toBe(0.82);
+    expect(chromeBeforeSticky.launcherVisible).toBe(false);
     await showStickyBar(page);
 
     await expect
@@ -175,6 +210,10 @@ test.describe("Conferbot launcher sticky lift across resize", () => {
         lifted: true,
         consentOpen: false,
         hostDisplayed: true,
+        stickyChromeIn: true,
+        cookieOpacity: 0.82,
+        launcherOpacity: 1,
+        launcherVisible: true,
       });
 
     const mobileRaised = await liftSnapshot(page);
@@ -222,6 +261,15 @@ test.describe("Conferbot launcher sticky lift across resize", () => {
     const mobileAgain = await liftSnapshot(page);
     expect(Number.parseFloat(mobileAgain.cssBottom)).toBeGreaterThan(80);
     expect(mobileAgain.iconInlineBottom).toBe("");
+
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await expect
+      .poll(async () => liftSnapshot(page), { timeout: 10_000 })
+      .toMatchObject({
+        stickyChromeIn: false,
+        cookieOpacity: 0.82,
+        launcherVisible: false,
+      });
   });
 
   test("consent-open still hides host on desktop and mobile widths", async ({

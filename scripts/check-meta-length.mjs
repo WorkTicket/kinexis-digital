@@ -7,6 +7,7 @@ import fs from "node:fs";
 
 const MIN = 120;
 const MAX = 155;
+const MAX_TITLE = 70;
 
 const files = [
   "src/lib/pages.ts",
@@ -42,6 +43,15 @@ for (const file of files) {
     const value = match[1];
     const count = (value.match(/Kinexis/g) || []).length;
     if (count > 1) failures.push(`${file}: Kinexis×${count} → ${value}`);
+  }
+  if (file === "src/lib/content.ts" || file === "src/i18n/es-pillars.ts") {
+    for (const match of text.matchAll(/seoTitle["']?\s*:\s*"((?:\\.|[^"\\])*)"/g)) {
+      const value = match[1];
+      const fullTitle = /Kinexis/i.test(value) ? value : `${value} | Kinexis Digital`;
+      if (fullTitle.length > MAX_TITLE) {
+        failures.push(`${file}: SEO title length ${fullTitle.length} (max ${MAX_TITLE}) → ${fullTitle}`);
+      }
+    }
   }
 }
 

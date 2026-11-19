@@ -38,6 +38,38 @@ test.describe("narrow viewport regressions", () => {
     }
   });
 
+  test("portfolio project previews do not scroll on mobile touch or hover", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/portfolio");
+
+    const shot = page.locator(".portfolio--main .shot").first();
+    await expect(shot).toHaveClass(/shot--static/);
+    const track = shot.locator(".shot__track");
+    const before = await track.evaluate((el) => getComputedStyle(el).transform);
+    const box = await shot.boundingBox();
+    expect(box).not.toBeNull();
+    await shot.dispatchEvent("pointerdown", {
+      pointerId: 7,
+      pointerType: "touch",
+      isPrimary: true,
+      button: 0,
+      clientX: box!.x + box!.width / 2,
+      clientY: box!.y + box!.height / 2,
+    });
+    await page.waitForTimeout(220);
+    await shot.dispatchEvent("pointerup", {
+      pointerId: 7,
+      pointerType: "touch",
+      isPrimary: true,
+      button: 0,
+      clientX: box!.x + box!.width / 2,
+      clientY: box!.y + box!.height / 2,
+    });
+
+    await expect(shot).not.toHaveClass(/is-holding/);
+    expect(await track.evaluate((el) => getComputedStyle(el).transform)).toBe(before);
+  });
+
   test("Phoenix preview header CTA stays within a 320px viewport", async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 900 });
     await page.goto("/lp/phoenix-preview");

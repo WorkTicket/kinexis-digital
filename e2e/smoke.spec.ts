@@ -66,6 +66,26 @@ test.describe("marketing journeys", () => {
     }
   });
 
+  test("featured H1 and H2 highlights stay visible across routes", async ({ page }) => {
+    const headings = [
+      ["/contact", "Your Homepage"],
+      ["/", "to Launch"],
+      ["/", "Lead Guarantee"],
+      ["/", "Questions"],
+      ["/pricing", "monthly managed plans"],
+    ] as const;
+
+    for (const [path, text] of headings) {
+      await page.goto(path);
+      const marker = page.locator(".hl").filter({ hasText: text }).first();
+      await expect(marker).toBeVisible();
+      await marker.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
+      if (path !== "/contact") await expect(marker).toHaveClass(/is-marked/);
+      await expect.poll(() => marker.evaluate((el) => getComputedStyle(el).backgroundSize))
+        .not.toMatch(/^0(px|%)/);
+    }
+  });
+
   test("pricing page shows ownership comparison and text-back add-on", async ({ page }) => {
     await page.goto("/pricing");
     await expect(page.getByText("Own It vs monthly managed plans")).toBeVisible();

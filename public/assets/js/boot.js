@@ -305,13 +305,17 @@ function closeDialogs() {
 function armMarks() {
   const nodes = [...document.querySelectorAll(".hl")].filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
   if (reduce() || !("IntersectionObserver" in window)) {
-    nodes.forEach((el) => el.classList.add("is-marked"));
+    nodes.forEach((el) => {
+      el.classList.remove("is-pending");
+      el.classList.add("is-marked");
+    });
     return;
   }
   if (!markIo) {
     const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       io.unobserve(entry.target);
+      entry.target.classList.remove("is-pending");
       entry.target.classList.add("is-marked");
     }), { threshold: 0.7, rootMargin: "0px 0px -6% 0px" });
     markIo = io;
@@ -319,6 +323,12 @@ function armMarks() {
   nodes.forEach((el) => {
     if (marked.has(el)) return;
     marked.add(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < innerHeight) {
+      el.classList.add("is-marked");
+      return;
+    }
+    el.classList.add("is-pending");
     markIo.observe(el);
   });
 }
@@ -711,6 +721,7 @@ function resetFloat() {
   const bar = document.querySelector(".float-cta");
   bar?.classList.remove("is-in");
   bar?.setAttribute("inert", "");
+  root.classList.remove("sticky-chrome-in");
 }
 function onNavigate() {
   heroStop();
@@ -747,6 +758,7 @@ if (bar) {
     if (root.classList.contains("no-float")) {
       bar.classList.remove("is-in");
       bar.setAttribute("inert", "");
+      root.classList.remove("sticky-chrome-in");
       return;
     }
     const sentinel = document.querySelector(".hero__btns, .page-hero");
@@ -763,6 +775,7 @@ if (bar) {
     const roomy = room >= vh * MIN_ROOM_SCREENS;
     const shown = past && roomy && !covered;
     bar.classList.toggle("is-in", shown);
+    root.classList.toggle("sticky-chrome-in", shown);
     if (shown) bar.removeAttribute("inert");
     else bar.setAttribute("inert", "");
   };

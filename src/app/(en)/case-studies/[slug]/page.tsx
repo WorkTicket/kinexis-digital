@@ -104,6 +104,23 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </figure>
         </div>
       </Section>
+      {CASE_STUDIES.length > 1 ? (
+        <Section tint>
+          <div className="container container--narrow">
+            <h2><HL text="More real client projects" mark="client projects" /></h2>
+            <ul className="blog-related__list">
+              {CASE_STUDIES.filter((item) => item.slug !== study.slug).map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/case-studies/${item.slug}`} prefetch={false}>
+                    <span className="blog-related__title">{item.title}</span>
+                    <span className="blog-related__meta">{item.trade} case study</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ) : null}
     </>
   );
 }

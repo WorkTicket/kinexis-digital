@@ -130,7 +130,7 @@ export const ES_PILLAR_POSTS: Record<string, EsPost> = {
     "slug": "how-to-ask-for-google-reviews-contractor",
     "category": "Consejos",
     "title": "Cómo pedir reseñas de Google después de un trabajo",
-    "seoTitle": "Cómo pedir reseñas de Google (guiones para contratistas)",
+    "seoTitle": "Pedir reseñas de Google: guiones",
     "excerpt": "Guiones cortos para la obra, el texto y el correo. Pide reseñas reales con un enlace directo, sin inventar opiniones ni poner a nadie en un aprieto.",
     "lead": "El calentador ya está instalado. El viejo va en el diablo. El cliente está en la cocina, aliviado, pensando en la cena. Este es el momento en que una reseña es fácil de pedir y fácil de olvidar. Tres semanas después recuerdas en la camioneta, mandas un texto rígido y se siente a cobrar un favor. El pedido no se volvió difícil porque la gente odia las reseñas. Se volvió difícil porque el trabajo dejó de estar vivo. Un buen hábito de reseñas es sobre todo tiempo, un enlace que abre la página correcta y una frase que puedes decir sin hacer una mueca.",
     "sections": [
@@ -188,7 +188,7 @@ export const ES_PILLAR_POSTS: Record<string, EsPost> = {
     "slug": "google-business-profile-checklist",
     "category": "SEO",
     "title": "Lista del Perfil de Negocio de Google para oficios",
-    "seoTitle": "Lista del Perfil de Negocio de Google para plomeros y oficios",
+    "seoTitle": "Perfil de Google: checklist para oficios",
     "excerpt": "Reclama el perfil, corrige horario y zona, sube fotos reales y arma el enlace de reseña — luego decide cuándo el sitio todavía ayuda.",
     "lead": "Abre Google en el celular y busca tu empresa como un desconocido: el oficio, luego «cerca de mí». Si tu tarjeta no aparece, el nombre está mal, o el horario dice cerrado mientras estás en el taller con el teléfono en la mano, nada de lo demás que hagas este mes importa tanto como arreglar esa tarjeta. Un Perfil de Negocio de Google no es una red social que alimentas cuando te inspira. Es el registro público de si estás abierto, qué arreglas y qué número suena. Esta es la pasada para que ese registro sea verdadero. Los rankings no están en la lista, porque no los controlas, y fingir lo contrario desperdicia la tarde.",
     "sections": [

@@ -522,7 +522,7 @@ function Seo({ locale, tx, href, lang, band }: PageBits) {
         </div>
       </Section>
       <Section tint>
-        <MediaSplit image="local-seo" alt={tx("Pines de mapa y un panel de búsqueda")}>
+        <MediaSplit image="website-audit" alt={tx("Panel de auditoría del sitio con una lista de búsqueda y rendimiento")}>
           <h2><HL text={tx("Cómo priorizamos el trabajo")} mark={tx("priorizamos")} /></h2>
           <p>{locale === "es-ES"
             ? tx("Trabajamos con negocios de servicios locales, cubras una ciudad o una zona más amplia. Primero va la base: un sitio rápido, rastreable, con títulos claros y contenido útil. Nadie puede garantizar posiciones.")
@@ -929,6 +929,16 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   const post = locale === "es-ES" ? spainizeData(raw) : raw;
   const href = (path: string) => L(locale, path);
   const tx = (text: string) => (locale === "es-ES" ? spainize(text) : text);
+  const related = POSTS
+    .filter((candidate) => candidate.slug !== slug && candidate.category === source.category)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .flatMap((candidate) => {
+      const translated = locale === "es-ES" || locale === "es-419"
+        ? esPostForLocale(candidate.slug, locale)
+        : esPost(candidate.slug);
+      return translated ? [{ candidate, translated }] : [];
+    })
+    .slice(0, 3);
   const formattedDate = new Date(source.date).toLocaleDateString(locale === "es-ES" ? "es-ES" : "es-US", {
     year: "numeric",
     month: "long",
@@ -976,6 +986,25 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
           </article>
         </div>
       </Section>
+      {related.length > 0 ? (
+        <Section>
+          <div className="container container--narrow">
+            <aside className="blog-related" aria-labelledby="es-blog-related-heading">
+              <h2 id="es-blog-related-heading">{tx("Más guías relacionadas")}</h2>
+              <ul className="blog-related__list">
+                {related.map(({ candidate, translated }) => (
+                  <li key={candidate.slug}>
+                    <Link href={href(`/blog/${candidate.slug}`)} prefetch={false}>
+                      <span className="blog-related__title">{translated.title}</span>
+                      <span className="blog-related__meta">{candidate.readTime}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </Section>
+      ) : null}
       <CtaBand h={tx("¿Quieres esto en tu sitio?")} mark={tx("tu sitio")} sub={tx("La revisión es gratis. La vista previa también, antes de pagar.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} locale={locale} />
     </>
   );
