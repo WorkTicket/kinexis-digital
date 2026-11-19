@@ -20,7 +20,7 @@
  * Usage: node scripts/deploy-production.mjs
  * Requires: wrangler logged in; Playwright browsers installed (`npx playwright install`).
  */
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
@@ -137,13 +137,28 @@ const steps = [
   // Next dev route-data response under concurrent pre-render requests.
   { cmd: "npm", args: ["run", "test:e2e", "--", "--workers=4"], kind: "gate" },
   { cmd: "npm", args: ["run", "build:worker:production"], kind: "build" },
-  { cmd: "npm", args: ["run", "deploy:worker"], kind: "post" },
+  { cmd: "npm", args: ["run", "deploy:worker"], kind: "post", includeGitVersion: true },
   { cmd: "npm", args: ["run", "search:notify"], kind: "post" },
   { cmd: "npm", args: ["run", "verify:prod"], kind: "post" },
 ];
 
 for (const step of steps) {
-  const { cmd, args, kind } = step;
+  const { cmd, kind } = step;
+  let args = step.args;
+  if (step.includeGitVersion) {
+    // Resolve the revision at the moment of deployment, after all gates/builds,
+    // so the Worker version metadata identifies the exact source being shipped.
+    const fullSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    const shortSha = execFileSync("git", ["rev-parse", "--short", "HEAD"], { encoding: "utf8" }).trim();
+    args = [
+      ...args,
+      "--",
+      "--message",
+      `"release/1 ${fullSha} (Release 1)"`,
+      "--tag",
+      shortSha,
+    ];
+  }
   console.log(`\n[deploy-production] → ${cmd} ${args.join(" ")}`);
   if (kind === "gate") {
     console.log("[deploy-production]   (NEXT_PUBLIC_CONFERBOT_ENABLED=0 for this gate)");
