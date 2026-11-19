@@ -64,7 +64,7 @@ export default function Footer({ locale }: { locale: Locale }) {
     ...chrome.supportLinks,
     [SITE.clientPortalUrl, locale === "en" ? "Client Portal" : "Portal de clientes"],
     [SITE.missedCallPortalUrl, locale === "en" ? "Missed-Call Text-Back" : "Texto para llamadas perdidas"],
-    ["/pay", locale === "en" ? "Pay" : "Planes y pago"],
+    ["/pay", locale === "en" ? "Payments" : "Pagos"],
   ] as [string, string][];
 
   return (
@@ -85,7 +85,7 @@ export default function Footer({ locale }: { locale: Locale }) {
               </p>
             </div>
             <div className="cta-form">
-              <Form fields={fields} button={chrome.footerButton} fast fastText={chrome.footerFast} />
+              <Form fields={fields} button={chrome.footerButton} fast fastText={chrome.footerFast} metaForm="footer" />
             </div>
           </section>
         </div>

@@ -25,7 +25,7 @@ export default function DialogHost({ locale }: { locale: Locale }) {
       <dialog id="dlg-guarantee" className="dlg">
         <CloseDialog label={close} />
         <div className="dlg__sheet">
-          <h3>{es ? "Garantía de clientes en 60 días" : "60-Day Lead Guarantee"}</h3>
+          <h3>{es ? "Garantía de leads rastreados en 60 días" : "60-Day Lead Guarantee"}</h3>
           {es ? (
             <>
               <p>{t("Si Lead System o Plus produce")} <b>{t("cero clientes rastreados en los primeros 60 días en línea")}</b>, {t("condonamos el")} <b>{t("tercer y cuarto cargo mensual")}</b>.</p>

@@ -11,7 +11,6 @@ import sharp from "sharp";
 
 const kb = (n) => `${Math.round(n / 1024)}KB`;
 const WEBP_Q = 85;
-const HERO_WEBP_Q = 82;
 const AVIF_DETAIL_Q = 62;
 const AVIF_PHOTO_Q = 65;
 

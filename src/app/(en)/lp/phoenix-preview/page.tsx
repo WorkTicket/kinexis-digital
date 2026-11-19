@@ -190,6 +190,8 @@ export default async function PhoenixPreviewLp() {
             <p className="lp-form-card__sub">A few details is all we need to get started.</p>
             <Form
               fields={LEAD_FIELDS}
+              conversion="preview"
+              metaForm="lp-phoenix-preview"
               button="Show Me My Free Homepage"
               note={
                 <>

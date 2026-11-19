@@ -1,0 +1,60 @@
+# Phase 9 — Performance regression investigation
+
+## Controlled current runs
+
+Current source was built with `npm run build` and served by a fresh `next start` process on `127.0.0.1:3113`. The repository `scripts/lighthouse-budget.mjs` was run twice sequentially against that same unchanged optimized build and server. Settings remained unchanged: Lighthouse **13.6.0**, mobile 412×915 at DPR 2.625 with Lighthouse mobile simulation; desktop 1350×940 at DPR 1 with desktop simulation; budgets retained at performance 0.85 and accessibility/best-practices/SEO 0.90. Chromium reported by Playwright was **159.0.8154.6**.
+
+| Route | Mobile run 1 | Mobile run 2 | Target 0.95 | Desktop run 1 | Desktop run 2 | Target 0.85 |
+|---|---:|---:|---|---:|---:|---|
+| `/` | 0.94 | 0.94 | FAIL | 0.77 | 0.77 | FAIL |
+| `/pricing` | 0.93 | 0.93 | FAIL | 0.76 | 0.77 | FAIL |
+| `/portfolio` | 0.92 | 0.92 | FAIL | 0.76 | 0.76 | FAIL |
+| `/contact` | 0.97 | 0.95 | PASS | 0.80 | 0.80 | FAIL |
+
+Accessibility, Best Practices and SEO scored 1.00 on all eight routes per run. The budget script exits 1 in both runs because all desktop scores remain below 0.85; this is an expected gate failure, not a test harness failure. Current raw command output is retained locally under ignored `.audit/phase9/lighthouse-run-{1,2}.txt`.
+
+## Comparison and interpretation
+
+- Compared with Phase 4’s same-script post-change desktop results (`/` 0.76, `/pricing` 0.76, `/portfolio` 0.75, `/contact` 0.80), current scores are within 0.00–0.01; this does not demonstrate a regression or a material improvement.
+- Compared with early Phase 1 production runs (desktop 0.80–0.84), these current local optimized-build runs are 0.03–0.08 lower. This is not a controlled environment-to-environment comparison: those were historical production requests with different server/network conditions. The project’s later repeated local runs (0.75–0.80) reproduce the present band, so the change in score cannot be attributed to the Phase 8.1 `web-vitals` bundle or a specific commit from these numbers alone.
+- The previous Phase 4 trace found the LCP element promptly discovered/high-priority with very short resource delay and transfer; element-render delay was the largest LCP subphase (approximately 105–292ms across four budget routes), TBT was 20–80ms in that run, CLS was 0, and Lighthouse estimated ~59.7KB unused JavaScript / 300–450ms opportunity. These are trace leads, not proof of a removable script or safe optimization.
+- Phase 4’s expanded Lighthouse trace found local homepage LCP phases of about 14ms TTFB, 12ms resource delay, 21ms transfer and 110ms element-render delay; this used a different runner/configuration and is not merged into the budget table.
+- Consent-gated analytics/ads were not initialized in the local budget runs; chat remains deferred. No new blocking script or CSS change was made in Phase 9.
+
+## Disposition
+
+No low-risk optimization with measured, attributable gain was established. We made no code or budget change. Desktop remains a release blocker on all four target routes; mobile remains below 0.95 on homepage, pricing and portfolio in both runs. The next useful investigation is a controlled trace identifying the specific render/hydration work behind the LCP element-render and unused-JS opportunities, followed by one scoped A/B change under the same runner. Do not defer required functionality, reduce image quality, remove features or lower the budgets to pass.
+
+Lab Lighthouse scores are not production field CWV. No production RUM, Search Console field data or Cloudflare retention was accessed.
+
+## Phase 9.1 rebuilt-site confirmation — 2026-11-17
+
+After the genuine A1 screenshot and the small accessibility semantics update, the production build was rebuilt and the unchanged budget script was run twice against a fresh local `next start` server. Lighthouse remained 13.6.0; existing viewports, throttling and budgets were preserved. Chromium was 159.0.8154.6.
+
+| Route | Mobile run 1 | Mobile run 2 | Target | Desktop run 1 | Desktop run 2 | Target |
+|---|---:|---:|---|---:|---:|---|
+| `/` | 0.93 | 0.94 | 0.95 | 0.77 | 0.76 | 0.85 |
+| `/pricing` | 0.93 | 0.93 | 0.95 | 0.76 | 0.77 | 0.85 |
+| `/portfolio` | 0.92 | 0.92 | 0.95 | 0.76 | 0.76 | 0.85 |
+| `/contact` | 0.95 | 0.95 | 0.95 | 0.80 | 0.80 | 0.85 |
+
+Accessibility, Best Practices and SEO each remained 1.00 on all routes in both runs. Desktop still fails all four targets; mobile still fails the home, pricing and portfolio targets. No performance budget or functionality was relaxed.
+
+A separate single diagnostic pass on this build measured FCP 1.23–1.56s, LCP 2.94–3.40s, TBT 12–78ms, CLS 0, and TTFB 6–12ms; Lighthouse found no render-blocking resources and estimated about 59.7KB unused JavaScript in two shared chunks. Style & Layout was the largest main-thread category on most sampled routes. These are diagnostic leads, not attribution or proof of a safe optimization. No performance code change was justified; desktop/mobile performance remain release blockers. Raw output is retained under ignored `.audit/phase91/`.
+
+## Phase 9.2 — desktop throttle correction and mobile gate
+
+**Desktop configuration finding:** the old budget runner selected `formFactor: "desktop"` and desktop viewport but did not provide desktop throttling values. Lighthouse 13.6.0 therefore inherited mobile simulation defaults, confirmed in the LHRs: 150ms RTT, ~1.6Mbps, 4× CPU slowdown, and an Android mobile user agent. This explains the historical 0.75–0.80 desktop score band; those scores were not desktop-condition measurements.
+
+The budget runner now explicitly sets the existing project desktop diagnostic profile: 40ms RTT, 10Mbps throughput, 1× CPU, 1350×940 at DPR 1. The **.85 desktop performance threshold is unchanged**. Two runs on the same final build/server scored **1.00** on `/`, `/pricing`, `/portfolio`, and `/contact` each time. The old results remain above as historical evidence and are not compared as an application before/after gain.
+
+| Route | Mobile run 1 | Mobile run 2 | Mobile release target | Corrected desktop run 1 | Corrected desktop run 2 | Desktop target |
+|---|---:|---:|---:|---:|---:|---:|
+| `/` | .94 | .94 | .95 | 1.00 | 1.00 | .85 |
+| `/pricing` | .93 | .93 | .95 | 1.00 | 1.00 | .85 |
+| `/portfolio` | .92 | .92 | .95 | 1.00 | 1.00 | .85 |
+| `/contact` | .95 | .95 | .95 | 1.00 | 1.00 | .85 |
+
+The mobile profile was not altered. Home, pricing and portfolio remain below the stricter .95 mobile release gate; contact meets it. The script's built-in performance floor remains .85 for both factors, so the separate mobile .95 release target is enforced by the release matrix rather than by changing the script budget.
+
+Full trace captures for all route/factor pairs show local observed paint around 100–204ms, while mobile Lighthouse simulated LCP remains roughly 2.6–3.3s. The mobile gate remains open for measured investigation; no site optimization, feature removal, image degradation, or threshold change was made. Details: `PERFORMANCE-ROOT-CAUSE.md`, `.audit/phase92/mobile-corrected-run-1.txt`, `.audit/phase92/mobile-corrected-run-2.txt`, and `.audit/phase92/desktop-corrected-run-{1,2}.txt` (ignored local evidence).

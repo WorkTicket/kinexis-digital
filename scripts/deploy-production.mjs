@@ -5,7 +5,7 @@
  *
  * Gate order:
  *   1. npm run check
- *   2. npm run test:e2e          (local Playwright; fails closed)
+ *   2. npm run test:e2e -- --workers=4 (local Playwright; fails closed)
  *   3. npm run build:worker
  *   4. assert Conferbot bot id in .open-next (fails closed)
  *   5. npm run deploy:worker
@@ -124,9 +124,19 @@ function assertConferbotBotIdInBuild() {
 }
 
 const steps = [
+  // Build-time analytics IDs are optional for CI builds but required for a
+  // production deploy. Validate them before running tests/build/deploy steps.
+  {
+    cmd: "node",
+    args: ["--env-file=.env.production", "scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"],
+    kind: "gate",
+  },
   { cmd: "npm", args: ["run", "check"], kind: "gate" },
-  { cmd: "npm", args: ["run", "test:e2e"], kind: "gate" },
-  { cmd: "npm", args: ["run", "build:worker"], kind: "build" },
+  // Four workers completed the full desktop+mobile suite reliably on fresh
+  // Windows dev servers; the default worker count intermittently corrupts a
+  // Next dev route-data response under concurrent pre-render requests.
+  { cmd: "npm", args: ["run", "test:e2e", "--", "--workers=4"], kind: "gate" },
+  { cmd: "npm", args: ["run", "build:worker:production"], kind: "build" },
   { cmd: "npm", args: ["run", "deploy:worker"], kind: "post" },
   { cmd: "npm", args: ["run", "search:notify"], kind: "post" },
   { cmd: "npm", args: ["run", "verify:prod"], kind: "post" },

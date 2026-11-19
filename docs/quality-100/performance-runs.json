@@ -1,0 +1,818 @@
+[
+  {
+    "path": "/",
+    "factor": "mobile",
+    "score": 0.97,
+    "fcp": 1239.538,
+    "lcp": 2201.538,
+    "tbt": 156,
+    "cls": 0,
+    "ttfb": 368.693,
+    "lcpParts": {
+      "timeToFirstByte": 369,
+      "resourceLoadDelay": 13,
+      "resourceLoadDuration": 39,
+      "elementRenderDelay": 193
+    },
+    "lcpSelector": "div.hero__media > div.hero__frame > picture > img.hero__poster",
+    "lcpNode": "<img class=\"hero__poster\" src=\"https://www.kinexisdigital.com/assets/video/kinexis-explainer-v5f-preview-…\" srcset=\"/assets/video/kinexis-explainer-v5f-preview-poster-280.webp?v=26 280w, /as…\" sizes=\"(max-width: 720px) 360px, 560px\" alt=\"\" width=\"960\" height=\"540\" fetchpriority=\"high\" decoding=\"sync\">",
+    "jsBootTotal": 846,
+    "jsEvaluation": 181,
+    "mainThread": 899.3560000000002,
+    "requests": 21,
+    "totalTransfer": 307866,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/",
+        "bytes": 103964,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66570,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66268,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/video/kinexis-explainer-v5f-preview-poster-768.avif?v=26",
+        "bytes": 14067,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11343,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/logos/header-nav-360.webp?v=26",
+        "bytes": 10685,
+        "type": "Image",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/pricing",
+    "factor": "mobile",
+    "score": 0.98,
+    "fcp": 1358.9511,
+    "lcp": 2226.9511,
+    "tbt": 79,
+    "cls": 0,
+    "ttfb": 428.60600000047685,
+    "lcpParts": {
+      "timeToFirstByte": 429,
+      "resourceLoadDelay": 17,
+      "resourceLoadDuration": 39,
+      "elementRenderDelay": 104
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/06-pricing-480.avif?v=26\" srcset=\"/assets/heroes/06-pricing-480.webp?v=26 480w, /assets/heroes/06-pricing-64…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Pricing artwork with a payment card and checkmarks\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 847,
+    "jsEvaluation": 163,
+    "mainThread": 897.656000000001,
+    "requests": 22,
+    "totalTransfer": 337705,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/pricing",
+        "bytes": 99036,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66578,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66276,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/06-pricing-480.avif?v=26",
+        "bytes": 20026,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/kinexis/stickers/zero-down-website-97-400.avif?v=26",
+        "bytes": 14764,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/video/kinexis-explainer-v5f-preview-poster-768.avif?v=26",
+        "bytes": 14069,
+        "type": "Image",
+        "priority": "High"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/portfolio",
+    "factor": "mobile",
+    "score": 0.98,
+    "fcp": 1308.4868000000001,
+    "lcp": 1991.4868000000001,
+    "tbt": 108.5,
+    "cls": 0,
+    "ttfb": 296.921,
+    "lcpParts": {
+      "timeToFirstByte": 297,
+      "resourceLoadDelay": 17,
+      "resourceLoadDuration": 44,
+      "elementRenderDelay": 87
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/02-portfolio-480.avif?v=26\" srcset=\"/assets/heroes/02-portfolio-480.webp?v=26 480w, /assets/heroes/02-portfoli…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Service business websites shown on desktop and phone screens\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 813,
+    "jsEvaluation": 181,
+    "mainThread": 861.1840000000007,
+    "requests": 20,
+    "totalTransfer": 352576,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/portfolio",
+        "bytes": 99071,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66565,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66272,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/02-portfolio-480.avif?v=26",
+        "bytes": 34652,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/portfolio/live-manos-creativas-card-480.avif?v=39",
+        "bytes": 15020,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/video/kinexis-explainer-v5f-preview-poster-768.avif?v=26",
+        "bytes": 14069,
+        "type": "Image",
+        "priority": "High"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/contact",
+    "factor": "mobile",
+    "score": 0.98,
+    "fcp": 1288.70765,
+    "lcp": 2236.7076500000003,
+    "tbt": 102,
+    "cls": 0,
+    "ttfb": 244.34000000047683,
+    "lcpParts": {
+      "timeToFirstByte": 244,
+      "resourceLoadDelay": 15,
+      "resourceLoadDuration": 42,
+      "elementRenderDelay": 54
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/13-contact-480.avif?v=26\" srcset=\"/assets/heroes/13-contact-480.webp?v=26 480w, /assets/heroes/13-contact-64…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Phone, envelope, and chat bubbles\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 655,
+    "jsEvaluation": 172,
+    "mainThread": 699.0999999999996,
+    "requests": 19,
+    "totalTransfer": 308980,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/contact",
+        "bytes": 85113,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66568,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66273,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/13-contact-480.avif?v=26",
+        "bytes": 20030,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/video/kinexis-explainer-v5f-preview-poster-768.avif?v=26",
+        "bytes": 14066,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11279,
+        "type": "Script",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/",
+    "factor": "desktop",
+    "score": 0.81,
+    "fcp": 1331.6439,
+    "lcp": 2167.6439,
+    "tbt": 167,
+    "cls": 0,
+    "ttfb": 82.665,
+    "lcpParts": {
+      "timeToFirstByte": 83,
+      "resourceLoadDelay": 14,
+      "resourceLoadDuration": 83,
+      "elementRenderDelay": 117
+    },
+    "lcpSelector": "div.hero__media > div.hero__frame > picture > img.hero__poster",
+    "lcpNode": "<img class=\"hero__poster\" src=\"https://www.kinexisdigital.com/assets/video/kinexis-explainer-v5f-preview-…\" srcset=\"/assets/video/kinexis-explainer-v5f-preview-poster-280.webp?v=26 280w, /as…\" sizes=\"(max-width: 720px) 360px, 560px\" alt=\"\" width=\"960\" height=\"540\" fetchpriority=\"high\" decoding=\"sync\">",
+    "jsBootTotal": 1246,
+    "jsEvaluation": 185,
+    "mainThread": 1299.1520000000014,
+    "requests": 22,
+    "totalTransfer": 466249,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/assets/heroes/01-homepage-960.avif?v=26",
+        "bytes": 162433,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/",
+        "bytes": 103644,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66495,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66270,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11288,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/logos/header-nav-360.webp?v=26",
+        "bytes": 10688,
+        "type": "Image",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/pricing",
+    "factor": "desktop",
+    "score": 0.83,
+    "fcp": 1368.5062,
+    "lcp": 2289.5062,
+    "tbt": 71,
+    "cls": 0,
+    "ttfb": 80.04500000047683,
+    "lcpParts": {
+      "timeToFirstByte": 80,
+      "resourceLoadDelay": 13,
+      "resourceLoadDuration": 38,
+      "elementRenderDelay": 122
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/06-pricing-640.avif?v=26\" srcset=\"/assets/heroes/06-pricing-480.webp?v=26 480w, /assets/heroes/06-pricing-64…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Pricing artwork with a payment card and checkmarks\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 1197,
+    "jsEvaluation": 182,
+    "mainThread": 1255.9080000000026,
+    "requests": 23,
+    "totalTransfer": 346463,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/pricing",
+        "bytes": 99013,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66562,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66275,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/06-pricing-640.avif?v=26",
+        "bytes": 29677,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11284,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/logos/header-nav-360.webp?v=26",
+        "bytes": 10686,
+        "type": "Image",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/portfolio",
+    "factor": "desktop",
+    "score": 0.8,
+    "fcp": 1318.44685,
+    "lcp": 2387.4468500000003,
+    "tbt": 140,
+    "cls": 0,
+    "ttfb": 79.86,
+    "lcpParts": {
+      "timeToFirstByte": 80,
+      "resourceLoadDelay": 13,
+      "resourceLoadDuration": 42,
+      "elementRenderDelay": 106
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/02-portfolio-640.avif?v=26\" srcset=\"/assets/heroes/02-portfolio-480.webp?v=26 480w, /assets/heroes/02-portfoli…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Service business websites shown on desktop and phone screens\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 1194,
+    "jsEvaluation": 180,
+    "mainThread": 1255.5640000000012,
+    "requests": 22,
+    "totalTransfer": 371351,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/portfolio",
+        "bytes": 99103,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66576,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66266,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/02-portfolio-640.avif?v=26",
+        "bytes": 32327,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/portfolio/live-a1-landscaping-card-400.avif?v=39",
+        "bytes": 15643,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/portfolio/live-manos-creativas-card-400.avif?v=39",
+        "bytes": 12108,
+        "type": "Image",
+        "priority": "High"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/contact",
+    "factor": "desktop",
+    "score": 0.84,
+    "fcp": 1274.8001,
+    "lcp": 2240.8001,
+    "tbt": 109,
+    "cls": 0,
+    "ttfb": 70.34100000047684,
+    "lcpParts": {
+      "timeToFirstByte": 70,
+      "resourceLoadDelay": 13,
+      "resourceLoadDuration": 49,
+      "elementRenderDelay": 67
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/13-contact-640.avif?v=26\" srcset=\"/assets/heroes/13-contact-480.webp?v=26 480w, /assets/heroes/13-contact-64…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Phone, envelope, and chat bubbles\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 953,
+    "jsEvaluation": 166,
+    "mainThread": 1004.364000000001,
+    "requests": 20,
+    "totalTransfer": 324059,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/contact",
+        "bytes": 84888,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66575,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66268,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/13-contact-640.avif?v=26",
+        "bytes": 27602,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/logos/footer-nav-210.webp?v=26",
+        "bytes": 11315,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11285,
+        "type": "Script",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/",
+    "factor": "desktop",
+    "score": 0.82,
+    "fcp": 1304.8171,
+    "lcp": 2232.8171,
+    "tbt": 129,
+    "cls": 0,
+    "ttfb": 86.63,
+    "lcpParts": {
+      "timeToFirstByte": 87,
+      "resourceLoadDelay": 13,
+      "resourceLoadDuration": 35,
+      "elementRenderDelay": 122
+    },
+    "lcpSelector": "div.hero__media > div.hero__frame > picture > img.hero__poster",
+    "lcpNode": "<img class=\"hero__poster\" src=\"https://www.kinexisdigital.com/assets/video/kinexis-explainer-v5f-preview-…\" srcset=\"/assets/video/kinexis-explainer-v5f-preview-poster-280.webp?v=26 280w, /as…\" sizes=\"(max-width: 720px) 360px, 560px\" alt=\"\" width=\"960\" height=\"540\" fetchpriority=\"high\" decoding=\"sync\">",
+    "jsBootTotal": 1115,
+    "jsEvaluation": 174,
+    "mainThread": 1171.596000000002,
+    "requests": 22,
+    "totalTransfer": 466604,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/assets/heroes/01-homepage-960.avif?v=26",
+        "bytes": 162432,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/",
+        "bytes": 103939,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66576,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66276,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11279,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/logos/header-nav-360.webp?v=26",
+        "bytes": 10685,
+        "type": "Image",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/pricing",
+    "factor": "desktop",
+    "score": 0.83,
+    "fcp": 1369.33185,
+    "lcp": 2288.33185,
+    "tbt": 69.5,
+    "cls": 0,
+    "ttfb": 364.303,
+    "lcpParts": {
+      "timeToFirstByte": 364,
+      "resourceLoadDelay": 14,
+      "resourceLoadDuration": 38,
+      "elementRenderDelay": 124
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/06-pricing-640.avif?v=26\" srcset=\"/assets/heroes/06-pricing-480.webp?v=26 480w, /assets/heroes/06-pricing-64…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Pricing artwork with a payment card and checkmarks\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 1164,
+    "jsEvaluation": 178,
+    "mainThread": 1211.0960000000027,
+    "requests": 23,
+    "totalTransfer": 346920,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/pricing",
+        "bytes": 99300,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66658,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66334,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/06-pricing-640.avif?v=26",
+        "bytes": 29673,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11283,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/logos/header-nav-360.webp?v=26",
+        "bytes": 10683,
+        "type": "Image",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/portfolio",
+    "factor": "desktop",
+    "score": 0.81,
+    "fcp": 1323.4632000000001,
+    "lcp": 2388.4632,
+    "tbt": 121,
+    "cls": 0,
+    "ttfb": 286.704,
+    "lcpParts": {
+      "timeToFirstByte": 287,
+      "resourceLoadDelay": 14,
+      "resourceLoadDuration": 58,
+      "elementRenderDelay": 86
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/02-portfolio-640.avif?v=26\" srcset=\"/assets/heroes/02-portfolio-480.webp?v=26 480w, /assets/heroes/02-portfoli…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Service business websites shown on desktop and phone screens\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 1113,
+    "jsEvaluation": 178,
+    "mainThread": 1166.2720000000015,
+    "requests": 22,
+    "totalTransfer": 371321,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/portfolio",
+        "bytes": 99140,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66573,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66278,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/02-portfolio-640.avif?v=26",
+        "bytes": 32334,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/portfolio/live-a1-landscaping-card-400.avif?v=39",
+        "bytes": 15645,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/portfolio/live-manos-creativas-card-400.avif?v=39",
+        "bytes": 12101,
+        "type": "Image",
+        "priority": "High"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  },
+  {
+    "path": "/contact",
+    "factor": "desktop",
+    "score": 0.84,
+    "fcp": 1284.26245,
+    "lcp": 2236.26245,
+    "tbt": 83,
+    "cls": 0,
+    "ttfb": 258.102,
+    "lcpParts": {
+      "timeToFirstByte": 258,
+      "resourceLoadDelay": 12,
+      "resourceLoadDuration": 65,
+      "elementRenderDelay": 36
+    },
+    "lcpSelector": "div.page-hero__art > div.art-wrap > picture > img.hero-art",
+    "lcpNode": "<img src=\"https://www.kinexisdigital.com/assets/heroes/13-contact-640.avif?v=26\" srcset=\"/assets/heroes/13-contact-480.webp?v=26 480w, /assets/heroes/13-contact-64…\" sizes=\"(max-width: 860px) 180px, (max-width: 1279px) 50vw, 627px\" width=\"1254\" height=\"1254\" alt=\"Phone, envelope, and chat bubbles\" decoding=\"sync\" loading=\"eager\" fetchpriority=\"high\" class=\"hero-art mx-auto block h-auto w-full max-w-[627px]\">",
+    "jsBootTotal": 840,
+    "jsEvaluation": 154,
+    "mainThread": 883.2800000000008,
+    "requests": 20,
+    "totalTransfer": 324265,
+    "thirdParty": [
+      {
+        "domain": "null",
+        "bytes": 0
+      }
+    ],
+    "topResources": [
+      {
+        "url": "/contact",
+        "bytes": 85144,
+        "type": "Document",
+        "priority": "VeryHigh"
+      },
+      {
+        "url": "/_next/static/chunks/3794-3ec17d04f75eb881.js",
+        "bytes": 66571,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/_next/static/chunks/4bd1b696-e199e788e58acf79.js",
+        "bytes": 66266,
+        "type": "Script",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/heroes/13-contact-640.avif?v=26",
+        "bytes": 27601,
+        "type": "Image",
+        "priority": "High"
+      },
+      {
+        "url": "/assets/logos/footer-nav-210.webp?v=26",
+        "bytes": 11311,
+        "type": "Image",
+        "priority": "Low"
+      },
+      {
+        "url": "/assets/js/boot.min.js?v=59",
+        "bytes": 11282,
+        "type": "Script",
+        "priority": "Low"
+      }
+    ],
+    "lighthouseVersion": "13.6.0"
+  }
+]

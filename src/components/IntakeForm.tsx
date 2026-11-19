@@ -89,7 +89,11 @@ function StickerCheck({ name, label }: { name: string; label: string }) {
   return (
     <label className="sticker-check">
       <input type="checkbox" name={name} value="yes" />
-      <span className="sticker-check__box" aria-hidden="true" />
+      <span className="sticker-check__box" aria-hidden="true">
+        <svg viewBox="0 0 20 20" focusable="false">
+          <path d="m4 10 4 4 8-9" />
+        </svg>
+      </span>
       <span className="sticker-check__label">{label}</span>
     </label>
   );
@@ -135,6 +139,7 @@ export default function IntakeForm({ locale = "en" }: { locale?: IntakeLocale })
       noValidate
       data-lead=""
       data-contact-or=""
+      data-meta-form="intake"
       data-thanks={c.thanks}
       data-max-files="9"
       data-max-file-mb="4"

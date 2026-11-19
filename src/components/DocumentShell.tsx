@@ -1,13 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { preload } from "react-dom";
 import Boot from "@/components/Boot";
-import {
-  HERO_POSTER,
-  HERO_POSTER_AVIF_SRCSET,
-  HERO_POSTER_SIZES,
-} from "@/components/HeroFilm";
+import Rum from "@/components/Rum";
 import { htmlLang, localeBootScript, type Locale } from "@/lib/i18n";
-import { imageVariant } from "@/lib/image-sources";
 import { pageHeroPreloadBootScript } from "@/lib/page-hero-lcp";
 import { descriptionWithFallback, ogImage } from "@/lib/seo";
 import { isPreviewSite, SITE } from "@/lib/site";
@@ -15,8 +10,8 @@ import "@/app/globals.css";
 
 const PAGE_HERO_LCP_BOOT = pageHeroPreloadBootScript();
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
-const metaPixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
+const gaId = isPreviewSite() ? "" : process.env.NEXT_PUBLIC_GA_ID?.trim() ?? "";
+const metaPixelId = isPreviewSite() ? "" : process.env.NEXT_PUBLIC_META_PIXEL_ID?.trim() ?? "";
 const gsc = process.env.NEXT_PUBLIC_GSC_VERIFICATION?.trim() || SITE.googleSiteVerification;
 const defaultTitle = "Website Plans From $97/mo for Local Businesses | Kinexis Digital";
 const defaultDescription = descriptionWithFallback(
@@ -26,11 +21,6 @@ const defaultDescription = descriptionWithFallback(
 
 /** Stable public URL so preload and @font-face share one cacheable file. */
 const DISPLAY_FONT_HREF = "/assets/fonts/poppins-latin-800.woff2";
-/** Home LCP poster href — 560w matches desktop sizes; mobile (360×~1.75 DPR) selects 768w via imagesrcset.
- *  Must go through react-dom preload() so Next emits an early hint WITH href before
- *  precedence-inlined CSS (plain <link> in DocumentShell lands after the ~240KB stylesheet). */
-const HERO_POSTER_PRELOAD_HREF = imageVariant(HERO_POSTER, 560, "avif");
-
 export const documentMetadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: { default: defaultTitle, template: `%s | ${SITE.name}` },
@@ -92,38 +82,15 @@ export default function DocumentShell({
   // Same URL as @font-face. Without this, Display 800 is discovered late via CSS and
   // swapping it in shifts page-hero art (CLS ~0.15 on about/portfolio).
   preload(DISPLAY_FONT_HREF, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
-  // Home poster: react-dom preload(href, …) is what lands before <style data-precedence>
-  // with a real href. A head <link> alone is reordered after the inlined CSS (~240KB),
-  // which is the resource-load-delay seen on `/` and `/es` in PSI.
-  preload(HERO_POSTER_PRELOAD_HREF, {
-    as: "image",
-    imageSrcSet: HERO_POSTER_AVIF_SRCSET,
-    imageSizes: HERO_POSTER_SIZES,
-    type: "image/avif",
-    fetchPriority: "high",
-  });
-
   return (
     <html lang={htmlLang(locale)} data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
-        {/* Resource hints: react-dom preload() above emits the early font + poster hints
-            (with href) before <style data-precedence>. These explicit <link>s stay as
-            document-order fallbacks (Next may place them after inlined CSS).
-            Home poster is unconditional: path gating via headers() needs an async shell,
-            which drops experimental.inlineCss and fails check-css-inlined.
-            Interior page-hero art uses a sync pathname boot for the same constraint. */}
+        {/* The font preload above lands before precedence-inlined CSS. Route-specific
+            image preloads are inserted synchronously by the boot script below, keeping
+            the homepage poster off routes whose LCP is their page-hero artwork. */}
         <link rel="preload" as="font" href={DISPLAY_FONT_HREF} type="font/woff2" crossOrigin="anonymous" />
-        <link
-          rel="preload"
-          as="image"
-          href={HERO_POSTER_PRELOAD_HREF}
-          imageSrcSet={HERO_POSTER_AVIF_SRCSET}
-          imageSizes={HERO_POSTER_SIZES}
-          type="image/avif"
-          fetchPriority="high"
-        />
         <script id="page-hero-lcp" dangerouslySetInnerHTML={{ __html: PAGE_HERO_LCP_BOOT }} />
         {/* First-paint guards only. Do NOT unlayer-hide .mega__panel /
             .dropdown__menu — design CSS lives in @layer components, so an
@@ -178,6 +145,7 @@ if(/FBAN|FBAV|FB_IAB|FB4A|FBIOS|Instagram|IGTV|Messenger|Line\\//i.test(ua))r.cl
           video={SITE.videoUrl}
           locale={locale}
         />
+        <Rum />
         {/* Conferbot: vanilla public/assets/js/conferbot.min.js via Boot (flag + consent-open defer). */}
       </body>
     </html>

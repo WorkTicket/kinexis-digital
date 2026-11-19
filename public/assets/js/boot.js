@@ -303,15 +303,19 @@ function closeDialogs() {
 }
 
 function armMarks() {
-  const nodes = [...document.querySelectorAll("main .hl")].filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
+  const nodes = [...document.querySelectorAll(".hl")].filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
   if (reduce() || !("IntersectionObserver" in window)) {
-    nodes.forEach((el) => el.classList.add("is-marked"));
+    nodes.forEach((el) => {
+      el.classList.remove("is-pending");
+      el.classList.add("is-marked");
+    });
     return;
   }
   if (!markIo) {
     const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       io.unobserve(entry.target);
+      entry.target.classList.remove("is-pending");
       entry.target.classList.add("is-marked");
     }), { threshold: 0.7, rootMargin: "0px 0px -6% 0px" });
     markIo = io;
@@ -319,6 +323,12 @@ function armMarks() {
   nodes.forEach((el) => {
     if (marked.has(el)) return;
     marked.add(el);
+    const rect = el.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < innerHeight) {
+      el.classList.add("is-marked");
+      return;
+    }
+    el.classList.add("is-pending");
     markIo.observe(el);
   });
 }
@@ -711,6 +721,7 @@ function resetFloat() {
   const bar = document.querySelector(".float-cta");
   bar?.classList.remove("is-in");
   bar?.setAttribute("inert", "");
+  root.classList.remove("sticky-chrome-in");
 }
 function onNavigate() {
   heroStop();
@@ -731,6 +742,7 @@ function onNavigate() {
   requestAnimationFrame(measureFloat);
   // Soft navigations need a fresh PageView for Meta Events Manager.
   trackMeta("PageView");
+  track("page_view", { page_path: location.pathname });
 }
 
 const bar = document.querySelector(".float-cta");
@@ -746,6 +758,7 @@ if (bar) {
     if (root.classList.contains("no-float")) {
       bar.classList.remove("is-in");
       bar.setAttribute("inert", "");
+      root.classList.remove("sticky-chrome-in");
       return;
     }
     const sentinel = document.querySelector(".hero__btns, .page-hero");
@@ -762,6 +775,7 @@ if (bar) {
     const roomy = room >= vh * MIN_ROOM_SCREENS;
     const shown = past && roomy && !covered;
     bar.classList.toggle("is-in", shown);
+    root.classList.toggle("sticky-chrome-in", shown);
     if (shown) bar.removeAttribute("inert");
     else bar.setAttribute("inert", "");
   };
@@ -1078,11 +1092,74 @@ function formCopy() {
   };
 }
 
+const leadFormsInFlight = new WeakSet();
+document.addEventListener("change", (event) => {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  const form = target.closest("form[data-contact-inquiry]");
+  if (!(form instanceof HTMLFormElement)) return;
+  const assetError = form.querySelector("[data-preview-asset-error]");
+  if (target.matches("[data-preview-upload], [data-preview-asset-consent]")) {
+    if (assetError) assetError.textContent = "";
+    form.querySelector("[data-preview-asset-consent]")?.removeAttribute("aria-invalid");
+  }
+  if (target.name !== "inquiry") return;
+
+  const previewRequested = !!form.querySelector('input[name="inquiry"][value="free-preview"]:checked');
+  const details = form.querySelector("[data-preview-details]");
+  if (details instanceof HTMLFieldSetElement) {
+    details.hidden = !previewRequested;
+    if (!previewRequested) {
+      details.querySelectorAll('input[type="file"][data-preview-upload]').forEach((input) => {
+        if (input instanceof HTMLInputElement) input.value = "";
+      });
+      const assetConsent = details.querySelector("[data-preview-asset-consent]");
+      if (assetConsent instanceof HTMLInputElement) {
+        assetConsent.checked = false;
+        assetConsent.removeAttribute("aria-invalid");
+      }
+      if (assetError) assetError.textContent = "";
+    }
+    details.querySelectorAll("[data-preview-required]").forEach((field) => {
+      if (!(field instanceof HTMLInputElement) && !(field instanceof HTMLTextAreaElement)) return;
+      field.required = previewRequested;
+      if (!previewRequested) {
+        field.classList.remove("invalid");
+        field.removeAttribute("aria-invalid");
+      }
+    });
+  }
+  const button = form.querySelector('button[type="submit"]');
+  if (button instanceof HTMLButtonElement) {
+    button.textContent = previewRequested
+      ? button.getAttribute("data-preview-button") || button.textContent
+      : button.getAttribute("data-default-button") || button.textContent;
+  }
+  const error = form.querySelector("[data-inquiry-error]");
+  if (error) error.textContent = "";
+});
+
 document.addEventListener("submit", async (event) => {
   const form = event.target;
   if (!(form instanceof HTMLFormElement) || !form.hasAttribute("data-lead")) return;
   event.preventDefault();
+  if (leadFormsInFlight.has(form)) return;
   const copy = formCopy();
+  const isContactInquiry = form.hasAttribute("data-contact-inquiry");
+  const inquiryChecks = isContactInquiry
+    ? Array.from(form.querySelectorAll('input[name="inquiry"]'))
+    : [];
+  const previewRequested = isContactInquiry
+    && !!form.querySelector('input[name="inquiry"][value="free-preview"]:checked');
+  const inquiryError = form.querySelector("[data-inquiry-error]");
+  if (isContactInquiry && !inquiryChecks.some((input) => input.checked)) {
+    if (inquiryError) inquiryError.textContent = form.getAttribute("data-inquiry-error-copy") || "Choose an option.";
+    inquiryChecks[0]?.focus();
+    return;
+  }
+  if (inquiryError) inquiryError.textContent = "";
+  const assetError = form.querySelector("[data-preview-asset-error]");
+  if (assetError) assetError.textContent = "";
   let firstBad = null;
   let contactMsg = "";
   form.querySelectorAll("[required]").forEach((el) => {
@@ -1135,11 +1212,49 @@ document.addEventListener("submit", async (event) => {
       }
     }
   }
+  if (previewRequested) {
+    const logo = form.querySelector('input[name="logo"]');
+    const photos = form.querySelector('input[name="photos"]');
+    const assetConsent = form.querySelector("[data-preview-asset-consent]");
+    const hasLogo = logo instanceof HTMLInputElement && !!logo.files?.length;
+    const hasPhotos = photos instanceof HTMLInputElement && !!photos.files?.length;
+    const canUseFallback = assetConsent instanceof HTMLInputElement && assetConsent.checked;
+    if ((!hasLogo || !hasPhotos) && !canUseFallback) {
+      if (assetError) assetError.textContent = form.getAttribute("data-preview-asset-error-copy") || "Upload a logo and job photos, or allow replacement assets for anything missing.";
+      if (assetConsent instanceof HTMLInputElement) {
+        assetConsent.setAttribute("aria-invalid", "true");
+        assetConsent.focus();
+      }
+      return;
+    }
+  }
   const data = new FormData(form);
   if (data.get("_gotcha")) return;
+  let conversion = form.getAttribute("data-conversion");
+  if (isContactInquiry) conversion = previewRequested ? "preview" : null;
+  const metaForm = form.getAttribute("data-meta-form") || "";
+  const metaContentName = Object.prototype.hasOwnProperty.call(cfg.metaContentNameByForm || {}, metaForm)
+    ? cfg.metaContentNameByForm[metaForm]
+    : "";
+  data.set("kx_form_path", location.pathname);
+  if (conversion === "preview" || conversion === "audit") {
+    data.set("kx_conversion", conversion);
+    appendAttribution(data);
+  }
+  const isMetaLead = Boolean(metaContentName) && !String(data.get("request") || "").trim();
+  let metaEventId = "";
+  if (isMetaLead && consentAllowsAds()) {
+    try { metaEventId = crypto.randomUUID(); } catch { /* unavailable */ }
+    if (metaEventId) {
+      data.set("kx_meta_form", metaForm);
+      data.set("kx_event_id", metaEventId);
+      data.set("kx_form_path", location.pathname);
+    }
+  }
   const button = form.querySelector("button[type=submit]");
   button?.classList.add("is-loading");
   if (button) button.disabled = true;
+  leadFormsInFlight.add(form);
   try {
     const res = await fetch("/api/contact", { method: "POST", headers: { Accept: "application/json" }, body: data });
     const body = await res.json().catch(() => ({}));
@@ -1153,8 +1268,20 @@ document.addEventListener("submit", async (event) => {
         check.setAttribute("aria-hidden", "true");
         check.textContent = "✓";
         const strong = document.createElement("b");
-        strong.textContent = form.getAttribute("data-thanks") || copy.thanks;
+        strong.textContent = (previewRequested && form.getAttribute("data-preview-thanks"))
+          || form.getAttribute("data-thanks")
+          || copy.thanks;
         msg.append(check, strong);
+        if (previewRequested) {
+          const href = form.getAttribute("data-preview-href");
+          if (href) {
+            const followup = document.createElement("a");
+            followup.className = "btn btn--primary";
+            followup.href = href;
+            followup.textContent = form.getAttribute("data-followup-label") || "Add details and photos";
+            msg.append(followup);
+          }
+        }
       }
       const leadPayload = {
         form_id: form.getAttribute("name") || form.id || "lead",
@@ -1163,12 +1290,28 @@ document.addEventListener("submit", async (event) => {
         landing_page: String(data.get("landing_page") || location.pathname),
       };
       const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
-      track("generate_lead", leadPayload);
-      track("preview_form_submit", { form_variant: formVariant, page_path: location.pathname });
-      trackMeta("Lead", {
-        content_name: "homepage_preview",
-        content_category: leadPayload.landing_page,
-      });
+      if (conversion === "preview") {
+        // Canonical GA4 key event; retain the funnel event as diagnostic/non-key.
+        track("generate_lead", leadPayload);
+        track("preview_form_submit", {
+          form_variant: formVariant,
+          page_path: location.pathname,
+          event_role: "diagnostic",
+        });
+      } else if (conversion === "audit") {
+        track("audit_request", {
+          form_id: form.getAttribute("name") || form.id || "audit",
+          page_path: location.pathname,
+        });
+      }
+      if (metaEventId) {
+        const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
+        if (window.__KINEXIS_TRACK_META_LEAD__) {
+          window.__KINEXIS_TRACK_META_LEAD__(pendingMetaLead.form, pendingMetaLead.path, pendingMetaLead.eventId);
+        } else {
+          (window.__KINEXIS_PENDING_META_LEADS__ ||= []).push(pendingMetaLead);
+        }
+      }
       return;
     }
     if (res.status === 503) {
@@ -1188,6 +1331,7 @@ document.addEventListener("submit", async (event) => {
   } catch {
     if (msg) msg.textContent = copy.network;
   } finally {
+    leadFormsInFlight.delete(form);
     button?.classList.remove("is-loading");
     if (button) button.disabled = false;
   }
@@ -1221,12 +1365,21 @@ function readConsent() {
 function syncLangSwitch() {
   const mirrors = window.__KINEXIS_MIRRORS__;
   if (!Array.isArray(mirrors)) return;
+  const englishFallbacks = window.__KINEXIS_ENGLISH_FALLBACKS__ || {};
+  const spanishUtilityPaths = window.__KINEXIS_SPANISH_UTILITY_PATHS__ || [];
   const path = location.pathname;
   document.querySelectorAll("[data-lang-switch] a[data-lang-locale]").forEach((a) => {
     const loc = a.getAttribute("data-lang-locale");
     if (!loc) return;
     const en = englishPath(path);
-    const target = mirrors.includes(en) ? en : "/";
+    const target =
+      loc === "en" && englishFallbacks[en]
+        ? englishFallbacks[en]
+        : spanishUtilityPaths.includes(en)
+          ? en
+        : mirrors.includes(en)
+          ? en
+          : "/";
     const href =
       loc === "en" ? target : target === "/" ? "/es" : `/es${target}`;
     a.setAttribute("href", href);
@@ -1241,17 +1394,107 @@ function consentAllowsAds() {
   return c.decided && c.ads;
 }
 
+const ATTRIBUTION_KEY = "kinexis_first_touch_v1";
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"];
+function attributionValue(value, max, pattern) {
+  const text = String(value || "").trim();
+  return text.length > 0 && text.length <= max && pattern.test(text) ? text : "";
+}
+function currentFirstTouch() {
+  const values = {};
+  const params = new URLSearchParams(location.search);
+  for (const key of UTM_KEYS) {
+    const all = params.getAll(key);
+    if (all.length === 1) values[key] = attributionValue(all[0], 100, /^[\p{L}\p{N} ._~:+-]+$/u);
+  }
+  for (const key of ["fbclid", "gclid"]) {
+    const all = params.getAll(key);
+    if (all.length === 1) values[key] = attributionValue(all[0], 256, /^[A-Za-z0-9._~-]+$/);
+  }
+  try {
+    const ref = document.referrer ? new URL(document.referrer) : null;
+    if (ref && /^https?:$/.test(ref.protocol) && ref.origin !== location.origin) {
+      values.referrer = (ref.origin + ref.pathname).slice(0, 300);
+    }
+  } catch {
+    /* Malformed referrers are omitted. */
+  }
+  return values;
+}
+function readFirstTouch() {
+  try {
+    const raw = sessionStorage.getItem(ATTRIBUTION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+function captureFirstTouch() {
+  if (!consentAllowsAnalytics()) {
+    try { sessionStorage.removeItem(ATTRIBUTION_KEY); } catch { /* storage may be disabled */ }
+    return;
+  }
+  try {
+    const existing = readFirstTouch() || {};
+    const current = currentFirstTouch();
+    const keys = consentAllowsAds()
+      ? UTM_KEYS.concat(["fbclid", "gclid", "referrer"])
+      : UTM_KEYS.concat(["referrer"]);
+    let changed = false;
+    for (const key of keys) {
+      if (!existing[key] && current[key]) {
+        existing[key] = current[key];
+        changed = true;
+      }
+    }
+    if (changed || sessionStorage.getItem(ATTRIBUTION_KEY) === null) {
+      sessionStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(existing));
+    }
+  } catch {
+    /* Storage may be disabled; current-page attribution is still attached below. */
+  }
+}
+function appendAttribution(data) {
+  if (!consentAllowsAnalytics()) return;
+  captureFirstTouch();
+  const values = readFirstTouch() || currentFirstTouch();
+  for (const key of UTM_KEYS) {
+    const clean = attributionValue(values[key], 100, /^[\p{L}\p{N} ._~:+-]+$/u);
+    if (clean) data.set("kx_attr_" + key, clean);
+  }
+  if (consentAllowsAds()) {
+    for (const key of ["fbclid", "gclid"]) {
+      const clean = attributionValue(values[key], 256, /^[A-Za-z0-9._~-]+$/);
+      if (clean) data.set("kx_attr_" + key, clean);
+    }
+  }
+  if (typeof values.referrer === "string" && values.referrer.length <= 300) {
+    try {
+      const ref = new URL(values.referrer);
+      if (/^https?:$/.test(ref.protocol) && ref.origin !== location.origin) {
+        data.set("kx_attr_referrer", ref.origin + ref.pathname);
+      }
+    } catch {
+      /* Invalid referrer omitted. */
+    }
+  }
+}
+
 function track(name, params) {
   if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
-  // Ensure the gtag stub exists so events queue before/after script load.
-  loadGa();
-  if (typeof window.gtag === "function") {
-    window.gtag("event", name, params || {});
-    return;
+  try {
+    // Ensure the gtag stub exists so events queue before/after script load.
+    loadGa();
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, params || {});
+      return;
+    }
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(["event", name, params || {}]);
+  } catch {
+    /* Analytics failure must never interrupt lead delivery/UI. */
   }
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push(["event", name, params || {}]);
 }
 
 let metaBooted = false;
@@ -1265,9 +1508,12 @@ function clearMetaArm() {
   metaArmed = false;
 }
 function ensureMeta() {
-  if (!consentAllowsAds()) return;
-  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  if (metaBooted) return;
+  if (!consentAllowsAds()) return false;
+  if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return false;
+  if (metaBooted) {
+    try { window.fbq("consent", "grant"); } catch { /* unavailable */ }
+    return false;
+  }
   metaBooted = true;
   clearMetaArm();
   if (!window.fbq) {
@@ -1289,10 +1535,12 @@ function ensureMeta() {
   }
   try {
     window.fbq("init", cfg.metaPixel);
+    window.fbq("consent", "grant");
     window.fbq("track", "PageView");
   } catch {
     /* Pixel blocked or unavailable — ignore. */
   }
+  return true;
 }
 function armMeta() {
   if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) {
@@ -1307,17 +1555,31 @@ function armMeta() {
   metaTimer = setTimeout(ensureMeta, 45000);
 }
 
-function trackMeta(name, params) {
+function trackMeta(name, params, options) {
   if (!consentAllowsAds()) return;
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
-  ensureMeta();
+  const justBooted = ensureMeta();
+  if (name === "PageView" && justBooted) return;
   if (typeof window.fbq !== "function") return;
   try {
-    window.fbq("track", name, params || {});
+    if (options) window.fbq("track", name, params || {}, options);
+    else window.fbq("track", name, params || {});
   } catch {
     /* Pixel blocked or unavailable — ignore. */
   }
 }
+window.__KINEXIS_TRACK_META_LEAD__ = (form, formPath, eventId) => {
+  if (!Object.prototype.hasOwnProperty.call(cfg.metaContentNameByForm || {}, form)) return;
+  trackMeta("Lead", {
+    content_name: cfg.metaContentNameByForm[form],
+    form_path: formPath,
+    lang: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
+  }, { eventID: eventId });
+};
+for (const pending of window.__KINEXIS_PENDING_META_LEADS__ || []) {
+  window.__KINEXIS_TRACK_META_LEAD__(pending.form, pending.path, pending.eventId);
+}
+delete window.__KINEXIS_PENDING_META_LEADS__;
 
 function englishPath(pathname) {
   if (pathname === "/es" || pathname === "/es-es") return "/";
@@ -1347,11 +1609,24 @@ function loadGa() {
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag("js", new Date());
-  gtag("config", cfg.ga);
+  gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  gtag("consent", "update", {
+    analytics_storage: "granted",
+    ad_storage: consentAllowsAds() ? "granted" : "denied",
+    ad_user_data: consentAllowsAds() ? "granted" : "denied",
+    ad_personalization: consentAllowsAds() ? "granted" : "denied",
+  });
+  gtag("config", cfg.ga, { send_page_view: false });
   const script = document.createElement("script");
   script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
   script.async = true;
   document.head.appendChild(script);
+  track("page_view", { page_path: location.pathname });
 }
 const gaStarted = performance.now();
 function onGaScroll() { if (performance.now() - gaStarted >= 2500) loadGa(); }
@@ -1370,6 +1645,22 @@ function armGa() {
 }
 
 function armTrackersFromConsent() {
+  const analyticsAllowed = consentAllowsAnalytics();
+  const adsAllowed = consentAllowsAds();
+  if (gaLoaded && typeof window.gtag === "function") {
+    window.gtag("consent", "update", {
+      analytics_storage: analyticsAllowed ? "granted" : "denied",
+      ad_storage: analyticsAllowed && adsAllowed ? "granted" : "denied",
+      ad_user_data: analyticsAllowed && adsAllowed ? "granted" : "denied",
+      ad_personalization: analyticsAllowed && adsAllowed ? "granted" : "denied",
+    });
+  }
+  if (metaBooted && typeof window.fbq === "function") {
+    try {
+      window.fbq("consent", adsAllowed ? "grant" : "revoke");
+    } catch { /* unavailable */ }
+  }
+  captureFirstTouch();
   armGa();
   armMeta();
 }
@@ -1398,10 +1689,10 @@ addEventListener("kinexis:track", (event) => {
         track("preview_form_view", { form_variant: variant(form), page_path: location.pathname });
       }
     }, { threshold: 0.4 });
-    document.querySelectorAll("form[data-lead]").forEach((form) => io.observe(form));
+    document.querySelectorAll('form[data-conversion="preview"]').forEach((form) => io.observe(form));
   }
   document.addEventListener("focusin", (event) => {
-    const form = event.target instanceof Element ? event.target.closest("form[data-lead]") : null;
+    const form = event.target instanceof Element ? event.target.closest('form[data-conversion="preview"]') : null;
     if (!(form instanceof HTMLFormElement) || started.has(form)) return;
     started.add(form);
     track("preview_form_start", { form_variant: variant(form), page_path: location.pathname });
@@ -1477,6 +1768,3 @@ addEventListener("popstate", () => {
 new MutationObserver(syncChrome).observe(root, { attributes: true, attributeFilter: ["class"] });
 requestAnimationFrame(() => requestAnimationFrame(syncChrome));
 })();
-
-
-

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { LIVE_SITES } from "@/data/liveSites";
 import { REVIEWS } from "@/lib/content";
 import type { Industry } from "@/data/industries";
+import { imageSrcSet } from "@/lib/image-sources";
 import { DeferredImg } from "./DeferredImg";
 import { HL } from "./ui";
 
@@ -62,6 +63,8 @@ export default function IndustryProof({
             <div className="shot__track">
               <DeferredImg
                 src={site.image}
+                srcSet={imageSrcSet(site.image, [320, 400, 480, 640, 800])}
+                avifSrcSet={imageSrcSet(site.image, [320, 400, 480, 640, 800], "avif")}
                 sizes="(max-width: 860px) 90vw, 480px"
                 alt={`${site.name} homepage`}
                 width={640}

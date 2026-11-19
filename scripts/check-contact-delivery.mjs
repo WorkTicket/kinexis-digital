@@ -25,12 +25,15 @@ try {
     return { sendMail: async message => { delivery = message; return { accepted: ["inbox@example.com"] }; } };
   };
   const { POST } = require(path.join(temporary, "route.cjs"));
-  const submit = (extra = {}) => {
+  const submit = (extra = {}, headers = {}) => {
     const form = new FormData();
     form.set("name", "Client");
     form.set("email", "client@example.com");
-    for (const [key, value] of Object.entries(extra)) form.set(key, value);
-    return POST(new Request("http://localhost/api/contact", { method: "POST", body: form }));
+    for (const [key, value] of Object.entries(extra)) {
+      if (Array.isArray(value)) value.forEach(item => form.append(key, item));
+      else form.set(key, value);
+    }
+    return POST(new Request("http://localhost/api/contact", { method: "POST", headers, body: form }));
   };
   assert.equal((await submit({ topic: "strategy-call", file: new File(["drawing"], "brief.txt", { type: "text/plain" }) })).status, 200);
   assert.deepEqual(delivery.to, ["inbox@example.com", "owner@example.com"]);
@@ -39,6 +42,59 @@ try {
   assert.equal(delivery.attachments[0].content.toString(), "drawing");
   assert.equal(delivery.disableFileAccess, true);
   assert.equal(delivery.disableUrlAccess, true);
+  delivery = undefined;
+  assert.equal((await submit({ topic: "audit", url: "https://example.com", notes: "Check mobile form." })).status, 200);
+  assert.match(delivery.subject, /Website audit request/);
+  assert.match(delivery.text, /https:\/\/example\.com/);
+  delivery = undefined;
+  assert.equal((await submit({
+    kx_conversion: "preview",
+    kx_attr_utm_source: "newsletter",
+    kx_attr_utm_campaign: "spring_launch",
+    kx_attr_utm_content: "hero",
+    kx_attr_utm_term: "local+web",
+    kx_attr_gclid: "GCLID123",
+    kx_attr_fbclid: "FBCLID123",
+    kx_attr_referrer: "https://search.example/find?private=1",
+    kx_attr_untrusted: "drop-me",
+  }, { Cookie: "kinexis_consent=v1%7Ca%3D1%7Cd%3D1" })).status, 200);
+  assert.match(delivery.text, /Attribution utm_source: newsletter/);
+  assert.match(delivery.text, /Attribution utm_content: hero/);
+  assert.match(delivery.text, /Attribution utm_term: local\+web/);
+  assert.match(delivery.text, /Attribution gclid: GCLID123/);
+  assert.match(delivery.text, /Attribution fbclid: FBCLID123/);
+  assert.match(delivery.text, /Attribution referrer: https:\/\/search\.example\/find/);
+  assert.doesNotMatch(delivery.text, /private=1|drop-me/);
+  delivery = undefined;
+  assert.equal((await submit({
+    kx_conversion: "preview",
+    kx_attr_utm_source: ["first", "conflicting"],
+  }, { Cookie: "kinexis_consent=v1%7Ca%3D1%7Cd%3D0" })).status, 200);
+  assert.doesNotMatch(delivery.text, /Attribution utm_source:/);
+  delivery = undefined;
+  assert.equal((await submit({
+    kx_conversion: "audit",
+    kx_attr_utm_source: "newsletter",
+    kx_attr_gclid: "GCLID123",
+    kx_attr_fbclid: "FBCLID123",
+  }, { Cookie: "kinexis_consent=v1%7Ca%3D1%7Cd%3D0" })).status, 200);
+  assert.match(delivery.text, /Attribution utm_source: newsletter/);
+  assert.doesNotMatch(delivery.text, /GCLID123|FBCLID123/);
+  delivery = undefined;
+  assert.equal((await submit({
+    kx_conversion: "preview",
+    kx_attr_utm_source: "spoofed",
+    kx_attr_fbclid: "FBCLID123",
+  })).status, 200);
+  assert.doesNotMatch(delivery.text, /Attribution/);
+  delivery = undefined;
+  assert.equal((await submit({
+    kx_conversion: "preview",
+    kx_attr_utm_source: "bad\r\nBcc: attacker@example.test",
+    kx_attr_gclid: "bad value",
+    kx_attr_referrer: "javascript:alert(1)",
+  }, { Cookie: "kinexis_consent=v1%7Ca%3D1%7Cd%3D1" })).status, 200);
+  assert.doesNotMatch(delivery.text, /Attribution/);
   delivery = undefined;
   const phoneOnly = new FormData();
   phoneOnly.set("name", "Client");
@@ -89,7 +145,7 @@ try {
   delete process.env.NEXT_PUBLIC_IS_PREVIEW;
   delete process.env.CONTACT_PREVIEW_TO;
 
-  console.log("Contact delivery checks passed: SMTP routing, attachment, validation, honeypot, failure, missing configuration, and preview email isolation.");
+  console.log("Contact delivery checks passed: SMTP routing, audit routing, attachment, validation, honeypot, failure, missing configuration, and preview email isolation.");
 } finally {
   mailer.createTransport = originalTransport;
   for (const key of keys) {

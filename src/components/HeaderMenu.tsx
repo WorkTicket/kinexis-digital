@@ -77,9 +77,9 @@ function IndustriesMenu({ chrome, industries, industriesHref }: { chrome: Chrome
 
 function ServicesMenu({ chrome, hrefFor }: { chrome: Chrome; hrefFor: (path: string) => string }) {
   const links: [string, string][] = [
-    ["/web-design", chrome.webDesign],
     ["/seo-services", chrome.seo],
     ["/upgrades", chrome.addons],
+    ["/web-design", chrome.webDesign],
   ];
 
   return (

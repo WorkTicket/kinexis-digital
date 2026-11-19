@@ -123,7 +123,8 @@ test.describe("Conferbot + cookie consent (mobile)", () => {
 
     await page.locator(".consent-banner").getByRole("button", { name: /^Reject$/i }).click();
     await expect(page.locator(".consent-banner")).toHaveCount(0, { timeout: 15_000 });
-    await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible();
+    // Cookie chip and chat launcher both wait for the sticky CTA band.
+    await expect(page.locator("[data-consent-fab]")).toHaveCSS("visibility", "hidden");
     await expect
       .poll(async () => page.evaluate(() => document.documentElement.classList.contains("consent-open")), {
         timeout: 10_000,
@@ -132,6 +133,21 @@ test.describe("Conferbot + cookie consent (mobile)", () => {
 
     // Dashboard turns mobile proactive greeting off — expected host has launcher only.
     expect(await mountMockConferbot(page, { withGreeting: false })).toBe(true);
+    await expect
+      .poll(async () => widgetVisibility(page), { timeout: 10_000 })
+      .toMatchObject({
+        hostPresent: true,
+        consentOpen: false,
+        hostDisplayed: true,
+        launcherVisible: false,
+        greetingPresent: false,
+        greetingVisible: false,
+      });
+
+    // Mid-page: boot.js brings the sticky CTA in, and the launcher with it.
+    await page.evaluate(() => window.scrollTo({ top: 2500, behavior: "instant" }));
+    await expect(page.locator("html")).toHaveClass(/sticky-chrome-in/, { timeout: 15_000 });
+    await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible();
     await expect
       .poll(async () => widgetVisibility(page), { timeout: 10_000 })
       .toMatchObject({

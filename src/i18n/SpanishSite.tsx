@@ -268,6 +268,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             popularLabel: tx("El más elegido"),
             notesAria: tx("Guía de planes y detalles del texto si no contestas"),
             textbackLabel: tx("Texto si no contestas"),
+            comparisonAria: tx("Comparación de características de planes"),
           }}
           comparison={ES_PLAN_COMPARISON}
           ownership={ES_OWNERSHIP}
@@ -328,7 +329,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <Stepper steps={steps} />
       </Section>
       <Section tint>
-        <h2 className="center"><HL text={tx("Garantía de clientes en 60 días")} mark={tx("60 días")} /></h2>
+        <h2 className="center"><HL text={tx("Garantía de leads rastreados en 60 días")} mark={tx("60 días")} /></h2>
         <p className="center muted">{tx("Lead System y Plus incluyen una garantía por escrito. Si no hay leads rastreados en los primeros 60 días en línea, condonamos el tercer y cuarto cargo.")}</p>
         <p className="center btn-row spaced"><OpenDialog id="guarantee" className="btn btn--ghost">{tx("Leer la garantía")}</OpenDialog><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link></p>
         <TrustStrip
@@ -521,7 +522,7 @@ function Seo({ locale, tx, href, lang, band }: PageBits) {
         </div>
       </Section>
       <Section tint>
-        <MediaSplit image="local-seo" alt={tx("Pines de mapa y un panel de búsqueda")}>
+        <MediaSplit image="website-audit" alt={tx("Panel de auditoría del sitio con una lista de búsqueda y rendimiento")}>
           <h2><HL text={tx("Cómo priorizamos el trabajo")} mark={tx("priorizamos")} /></h2>
           <p>{locale === "es-ES"
             ? tx("Trabajamos con negocios de servicios locales, cubras una ciudad o una zona más amplia. Primero va la base: un sitio rápido, rastreable, con títulos claros y contenido útil. Nadie puede garantizar posiciones.")
@@ -562,7 +563,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
         </div>
         <div className="plans">
           {plans.map((plan) => (
-            <article className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
+            <article id={plan.slug === "lead-system" ? "lead-system" : undefined} className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
               {plan.popular && <span className="plan__badge">{tx("El más elegido")}</span>}
               <div className="plan__intro">
                 <h2 className="plan-title">{plan.name}</h2>
@@ -671,12 +672,12 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
           popularLabel={tx("El más elegido")}
           hideStickers={spainChrome}
         />
-        <div className="table-scroll pricing-comparison-table"><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
+        <div className="table-scroll pricing-comparison-table" role="region" aria-label={tx("Comparación de planes")} tabIndex={0}><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
           {table.map((section) => <tbody key={section.group}><tr className="plan-table__group"><th colSpan={5}><span>{section.group}</span></th></tr>{section.rows.map(([label, ...values]) => <tr key={label}><th scope="row">{label}</th>{values.map((value, i) => <td className={i === 1 ? "is-pop" : undefined} key={`${label}-${i}`}>{value}</td>)}</tr>)}</tbody>)}
         </table></div>
         <OwnershipCompare
           heading={tx(ES_OWNERSHIP.headline)}
-          mark={tx("planes mensuales administrados")}
+          mark="frente a"
           data={ES_OWNERSHIP}
         />
       </Section>
@@ -753,8 +754,15 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <Section><div className="contact-grid contact-grid--split">
         <div className="form-shell">
           <h2 className="card-title"><HL text={tx("Cuéntanos sobre tu negocio")} mark={tx("tu negocio")} /></h2>
-          <p className="muted">{tx("Comparte qué haces y dónde trabajas: lo usamos para preparar una vista previa gratis. Sin tarjeta.")}</p>
-          <Form fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]} button={tx("Muéstrame mi página de inicio")} fast fastText={tx("Sin tarjeta. Respondemos rápido.")} />
+          <p className="muted">{tx("Elige qué necesitas. Si pides una vista previa gratis de tu página, te preguntaremos algunos detalles más para que sea útil para tu negocio.")}</p>
+          <Form
+            metaForm="contact"
+            fields={[{ label: tx("Nombre"), name: "name", required: true, auto: "given-name" }, { label: tx("Correo"), name: "email", kind: "email", auto: "email" }, { label: tx("Teléfono"), name: "phone", kind: "tel", auto: "tel" }, { label: tx("Nombre del negocio"), name: "business", required: true, auto: "organization" }, { label: tx("Tipo de negocio y ciudad (ej. HVAC en Phoenix)"), name: "trade", required: true }, { label: tx("Sitio web actual (opcional)"), name: "website", auto: "url" }]}
+            contactInquiry={{ locale: "es", followupHref: href("/intake") }}
+            button={tx("Enviar mi consulta")}
+            fast
+            fastText={tx("Sin tarjeta. Respondemos rápido.")}
+          />
           <div className="inline-action center">
             <p>{tx("¿Prefieres hablarlo?")}</p>
             <Link className="btn btn--ghost" href={href("/strategy-call")} prefetch={false}>{tx("Agendar")}</Link>
@@ -783,7 +791,7 @@ function Audit({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <div className="form-shell">
           <h2 className="card-title"><HL text={tx("Pide tu auditoría gratis")} mark={tx("auditoría gratis")} /></h2>
           <p className="muted">{tx("Comparte la URL y te enviamos una lista clara de prioridades. Sin tarjeta.")}</p>
-          <Form button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
+          <Form metaForm="audit" conversion="audit" hiddenFields={{ topic: "audit" }} button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
         </div>
         <aside className="contact-info">{aside.map(([h, t, icon]) => <div className="card" key={icon}><Icon name={icon} alt={h} size={64} /><h2 className="card-title">{h}</h2><p className="muted">{t}</p></div>)}</aside>
       </div></Section>
@@ -921,6 +929,16 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   const post = locale === "es-ES" ? spainizeData(raw) : raw;
   const href = (path: string) => L(locale, path);
   const tx = (text: string) => (locale === "es-ES" ? spainize(text) : text);
+  const related = POSTS
+    .filter((candidate) => candidate.slug !== slug && candidate.category === source.category)
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .flatMap((candidate) => {
+      const translated = locale === "es-ES" || locale === "es-419"
+        ? esPostForLocale(candidate.slug, locale)
+        : esPost(candidate.slug);
+      return translated ? [{ candidate, translated }] : [];
+    })
+    .slice(0, 3);
   const formattedDate = new Date(source.date).toLocaleDateString(locale === "es-ES" ? "es-ES" : "es-US", {
     year: "numeric",
     month: "long",
@@ -968,6 +986,25 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
           </article>
         </div>
       </Section>
+      {related.length > 0 ? (
+        <Section>
+          <div className="container container--narrow">
+            <aside className="blog-related" aria-labelledby="es-blog-related-heading">
+              <h2 id="es-blog-related-heading">{tx("Más guías relacionadas")}</h2>
+              <ul className="blog-related__list">
+                {related.map(({ candidate, translated }) => (
+                  <li key={candidate.slug}>
+                    <Link href={href(`/blog/${candidate.slug}`)} prefetch={false}>
+                      <span className="blog-related__title">{translated.title}</span>
+                      <span className="blog-related__meta">{candidate.readTime}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </Section>
+      ) : null}
       <CtaBand h={tx("¿Quieres esto en tu sitio?")} mark={tx("tu sitio")} sub={tx("La revisión es gratis. La vista previa también, antes de pagar.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} locale={locale} />
     </>
   );
@@ -1152,7 +1189,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("7. Cancelación y acceso")}</h2>
         <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El cobro se detiene al final del período que ya pagaste y el sitio sigue en línea hasta entonces.")}</p>
         <p>{tx("Como en los planes mensuales Kinexis hospeda y administra el sitio, cuando termina el período pagado el hosting y la administración se detienen y el sitio sale de línea, salvo que lo conserves de otra forma.")}</p>
-        <p><b>{tx("Compra:")}</b> {tx("un pago único por escrito de los archivos del sitio para moverlos a un hosting que tú controles. Pide las condiciones por escrito antes de cancelar si ese es el camino que quieres.")}</p>
+        <p><b>{tx("Compra:")}</b> {tx("un pago único de $1,497 por escrito de los archivos del sitio para moverlos a un hosting que tú controles. Pide las condiciones por escrito antes de cancelar si ese es el camino que quieres.")}</p>
         <p><b>{tx("Pasar a Own It:")}</b> {tx("cambia de un plan mensual al pago único de Own It antes de que termine el período pagado. Los términos de Own It (archivos, hosting incluido y Cuidado del sitio) están en la sección 6.")}</p>
         <p>{tx("Si no arreglas una compra ni pasas a Own It antes de que termine el período pagado, el sitio sale de línea cuando se detienen el hosting y la administración.")}</p>
         <h2>{tx("8. Impuestos y terceros")}</h2>
@@ -1170,11 +1207,11 @@ function Privacy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   return (
     <>
       <ContentSchema path={href("/privacy")} title={tx(PAGE_META["/privacy"].title)} description={tx(PAGE_META["/privacy"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Privacidad"), path: href("/privacy") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 21 de octubre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
+      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 17 de noviembre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("Qué recogemos")}</h2>
         <p>{tx("Si envías un formulario, recogemos lo que escribes: nombre, correo, teléfono, negocio o sitio, la página que quieres cambiar, tu mensaje y cualquier archivo. Si llamas o escribes, guardamos esa correspondencia para responder y hacer el trabajo.")}</p>
-        <p>{tx("El sitio está en Cloudflare. Los registros del servidor pueden incluir tu IP, el navegador y las páginas que pides. Si la analítica está activa, puede registrar páginas visitadas, una ubicación general y el tipo de dispositivo. Puedes bloquear la analítica en el navegador.")}</p>
+        <p>{tx("El sitio está alojado en Cloudflare. Los registros del servidor pueden incluir tu dirección IP, navegador y las páginas que solicitas. La analítica (GA4) y la medición publicitaria (Meta Pixel y la API de conversiones de Meta) no son esenciales. El Pixel solo se carga después de que aceptes la medición publicitaria en el aviso de cookies o la actives en las preferencias de cookies. Solo enviamos a Meta un evento de lead desde el servidor después de que el servidor acepta un formulario y mientras el consentimiento de publicidad esté activo. Ese evento puede incluir la ruta de la página, tu dirección IP, el navegador, las cookies de Meta para navegador/clic (_fbp y _fbc) y hashes SHA-256 del correo o teléfono que envíes. Si rechazas la medición publicitaria o aún no has elegido, el Pixel no se carga y no enviamos eventos de leads desde el servidor. Tu elección de cookies se guarda durante 180 días. Puedes cambiarla más tarde desde el control de preferencias de cookies.")}</p>
         <h2>{tx("Cómo lo usamos")}</h2>
         <p>{tx("Usamos esta información para contestarte, preparar una vista previa, prestar el plan que compras y enviarte mensajes de ese trabajo. No vendemos información personal.")}</p>
         <h2>{tx("Con quién la compartimos")}</h2>

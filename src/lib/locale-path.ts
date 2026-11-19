@@ -4,6 +4,8 @@ import { esPost } from "@/i18n/posts-es";
 import { PAGES, type PageMeta } from "@/lib/pages";
 import {
   type Locale,
+  ENGLISH_FALLBACK_PATHS,
+  SPANISH_UTILITY_PATHS,
   englishPath,
   isLocale,
   localeFromPath,
@@ -14,6 +16,8 @@ import {
 
 export type { Locale };
 export {
+  ENGLISH_FALLBACK_PATHS,
+  SPANISH_UTILITY_PATHS,
   englishPath,
   isLocale,
   localeFromPath,
@@ -28,8 +32,7 @@ const UNMIRRORED = new Set(["/pay", "/tools/missed-call-calculator", "/tools/goo
  * indexable, but do not advertise the retired English URL in hreflang/sitemap.
  */
 export const EN_REDIRECTED_BLOG_SLUGS = new Set([
-  "pagina-web-para-plomeros",
-  "como-pedir-resenas-en-google",
+  ...Object.keys(ENGLISH_FALLBACK_PATHS).map((path) => path.slice("/blog/".length)),
 ]);
 
 /**
@@ -56,9 +59,12 @@ export function isMirrored(pathname: string): boolean {
 
 /** Keep Spanish navigation on English URLs when a page has no Spanish copy. */
 export function localeHref(locale: Locale, pathname: string): string {
-  const en = englishPath(pathname);
-  if (locale === "en" || UNMIRRORED.has(en) || !MIRROR.has(en)) return en;
-  return withLocale(locale, en);
+  const suffixAt = pathname.search(/[?#]/);
+  const path = suffixAt === -1 ? pathname : pathname.slice(0, suffixAt);
+  const suffix = suffixAt === -1 ? "" : pathname.slice(suffixAt);
+  const en = englishPath(path);
+  if (locale === "en" || UNMIRRORED.has(en) || !MIRROR.has(en)) return `${en}${suffix}`;
+  return `${withLocale(locale, en)}${suffix}`;
 }
 
 /**

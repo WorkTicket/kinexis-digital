@@ -51,6 +51,37 @@ export function isPreviewHost(host: string | null | undefined) {
   return h.includes("kinexis-digital-preview") && h.endsWith(".workers.dev");
 }
 
+function normalizedHostname(host: string | null | undefined) {
+  let value = (host ?? "").trim().toLowerCase();
+  const bracketedIpv6 = value.match(/^\[([^\]]+)\](?::\d+)?$/);
+  if (bracketedIpv6) return bracketedIpv6[1];
+  if (value.includes(":") && !value.includes("::")) value = value.slice(0, value.lastIndexOf(":"));
+  return value;
+}
+
+/** Hosts used only by local and Workers preview runs must never canonicalize to production. */
+export function isLocalOrPreviewHost(host: string | null | undefined) {
+  const hostname = normalizedHostname(host);
+  return hostname === "localhost"
+    || hostname === "127.0.0.1"
+    || hostname === "::1"
+    || hostname === "preview.kinexisdigital.com"
+    || hostname === "workers.dev"
+    || hostname.endsWith(".workers.dev");
+}
+
+/** Preserve the production apex/www redirects, but trust local/preview host context first. */
+export function shouldRedirectCanonicalHost(
+  hostHeader: string | null | undefined,
+  requestHostname: string | null | undefined,
+  forwardedProtocol: string | null | undefined,
+) {
+  const hosts = [hostHeader, requestHostname].map(normalizedHostname).filter(Boolean);
+  if (hosts.some(isLocalOrPreviewHost)) return false;
+  return hosts.some((host) => host === "kinexisdigital.com"
+    || (host === "www.kinexisdigital.com" && forwardedProtocol === "http"));
+}
+
 /** Bump when industry, audit, shared kit, or custom icons are replaced. /assets/* is cached for a year. */
 export const KIT_ASSET_VERSION = "4";
 

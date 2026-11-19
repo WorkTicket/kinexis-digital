@@ -11,7 +11,8 @@ export default function HeaderCta({ href, label }: { href: string; label: string
         <span className="header__cta-label">{label}</span>
       </Link>
       <Link className="btn btn--primary header__cta header__cta--lp" href="#start" prefetch={false}>
-        <span className="header__cta-label">Free Preview</span>
+        <span className="header__cta-label header__cta-label--lp-desktop">Free Preview</span>
+        <span className="header__cta-label header__cta-label--lp-mobile">{label}</span>
       </Link>
     </>
   );

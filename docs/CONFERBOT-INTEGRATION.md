@@ -1,6 +1,6 @@
 # Conferbot integration contract (Kinexis Digital)
 
-Backend-only contract for the Phase 5 webhook. The React widget is separate and stays flag-off until release approval.
+Backend-only contract for the Phase 5 webhook. The free-plan React widget is a separate feature and is currently enabled through the production public flags. Owner decision (2026-11-17): launch with the current free widget only; do not purchase Starter or enable webhook/D1 persistence/notifications for this launch. This defers the backend contract below and does not imply that chat leads reach the site database or business notification inbox.
 
 ## Endpoint
 

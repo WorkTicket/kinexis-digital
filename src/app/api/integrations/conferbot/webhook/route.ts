@@ -15,6 +15,7 @@ import {
   conferbotDatabase,
   insertMessage,
   newEntityId,
+  markWebhookEventProcessed,
   recordWebhookEvent,
   upsertConversation,
 } from "@/lib/conferbot-ledger";
@@ -131,17 +132,17 @@ async function handleWebhook(request: Request) {
     providerEventKey,
     providerSessionId: session,
     payloadJson: JSON.stringify(redacted),
-    processingStatus: "processed",
+    processingStatus: "received",
     receivedAt: now,
-    processedAt: now,
   });
   if (!stored.ok && stored.reason === "storage") return json({ error: "unavailable" }, 503);
   if (!stored.ok) return json({ error: "unavailable" }, 503);
 
   // Duplicate delivery — already persisted.
-  if (stored.idempotent) {
+  if (stored.idempotent && stored.processingStatus === "processed") {
     return json({ ok: true, status: "duplicate" }, 200);
   }
+  if (!stored.eventId) return json({ error: "unavailable" }, 503);
 
   let conversationId: string | undefined;
   if (session) {
@@ -169,7 +170,7 @@ async function handleWebhook(request: Request) {
       createdAt: now,
       updatedAt: now,
     });
-    if (!conversation.ok && conversation.reason === "storage") return json({ error: "unavailable" }, 503);
+    if (!conversation.ok) return json({ error: "unavailable" }, 503);
     conversationId = conversation.conversationId;
 
     if (typedEvent === "message.created" && conversationId) {
@@ -180,7 +181,7 @@ async function handleWebhook(request: Request) {
       if (messageId) {
         const sequenceRaw = nested(redacted, "message", "sequence") ?? nested(redacted, "sequence");
         const sender = asSender(nested(redacted, "message", "sender") ?? nested(redacted, "sender"));
-        await insertMessage(db, {
+        const inserted = await insertMessage(db, {
           id: newEntityId(),
           conversationId,
           providerMessageId: messageId,
@@ -192,6 +193,7 @@ async function handleWebhook(request: Request) {
           sentAt: text(nested(redacted, "message", "sentAt")) || text(nested(redacted, "timestamp")),
           createdAt: now,
         });
+        if (!inserted.ok) return json({ error: "unavailable" }, 503);
       }
     }
   }
@@ -202,6 +204,7 @@ async function handleWebhook(request: Request) {
     providerSessionId: session,
     nowIso: now,
   }, db);
+  if (lead.failed) return json({ error: "unavailable" }, 503);
 
   if (lead.leadId && lead.temperature && typeof lead.score === "number") {
     const fields = extractLeadFields(redacted);
@@ -219,6 +222,9 @@ async function handleWebhook(request: Request) {
       },
     }, db);
   }
+
+  const completed = await markWebhookEventProcessed(db, stored.eventId, new Date().toISOString());
+  if (!completed.ok) return json({ error: "unavailable" }, 503);
 
   return json({ ok: true }, 200);
 }

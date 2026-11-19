@@ -12,13 +12,13 @@ export default function Page() {
       <PageHero
         h1="Privacy Policy"
         mark="Privacy"
-        sub="Last updated October 21, 2026. This explains what this website collects and how Kinexis Digital uses it."
+        sub="Last updated November 17, 2026. This explains what this website collects and how Kinexis Digital uses it."
       />
       <section className="section">
         <div className="container container--narrow prose">
           <h2>What we collect</h2>
           <p>If you send a form, we collect the details you type: your name, email, phone, business or website name, the page you want changed, your message, and any file you attach. If you call or email us, we keep that correspondence so we can reply and do the work.</p>
-          <p {...fallbackTrack("-0.02em")}>The site is hosted on Cloudflare. Server logs may include your IP address, browser, and the pages you request. Analytics (GA4) and advertising measurement (Meta Pixel) are non-essential. They load only after you accept them in the cookie banner, or after you enable them under cookie preferences. If you reject non-essential cookies or have not chosen yet, those scripts do not load—including delayed loaders. You can change your choice later with the cookie preferences control.</p>
+          <p {...fallbackTrack("-0.02em")}>The site is hosted on Cloudflare. Server logs may include your IP address, browser, and the pages you request. Analytics (GA4) and advertising measurement (Meta Pixel and Meta Conversions API) are non-essential. The Pixel loads only after you accept advertising measurement in the cookie banner, or enable it under cookie preferences. A server-side lead event is sent to Meta only after the server accepts a lead form and only while advertising consent is on. That event may include the page path, IP address, browser user-agent, Meta browser/click cookies (_fbp and _fbc), and SHA-256 hashes of the email address or phone number you submit. If you reject advertising measurement or have not chosen yet, the Pixel does not load and server-side lead events are not sent. Your cookie choice is stored for 180 days. You can change your choice later with the cookie preferences control.</p>
 
           <h2>How we use it</h2>
           <p>We use this information to answer you, prepare a homepage preview, provide the plan you buy, and send messages about that work. We do not sell personal information.</p>

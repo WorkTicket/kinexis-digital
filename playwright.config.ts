@@ -1,7 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
 // Prefer localhost so Next.js 16 allowedDevOrigins + hydration match the Host header.
-const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3000";
+const baseURL = process.env.PLAYWRIGHT_BASE_URL || "http://localhost:3100";
 
 export default defineConfig({
   testDir: "e2e",
@@ -22,9 +22,11 @@ export default defineConfig({
   webServer: process.env.PLAYWRIGHT_BASE_URL
     ? undefined
     : {
-        command: "npm run dev",
+        command: "npm run dev -- --port 3100",
         url: baseURL,
-        reuseExistingServer: !process.env.CI,
+        // The test process must own the server it probes. Reusing a listener on
+        // this port can silently test a stale next start/dev instance.
+        reuseExistingServer: false,
         timeout: 120_000,
       },
 });

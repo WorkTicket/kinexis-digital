@@ -1,5 +1,7 @@
-import { SITE } from "@/lib/site";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { isPreviewSite, SITE } from "@/lib/site";
 import { clientIp } from "@/lib/client-ip";
+import { META_CONTENT_NAME_BY_FORM, sendMetaLeadCapi, type MetaLeadForm } from "@/lib/meta-capi";
 import {
   EMAIL_PATTERN,
   contactDeliveryBlocked,
@@ -21,11 +23,13 @@ import {
   rejectReadOversize,
 } from "@/lib/request-security";
 import nodemailer from "nodemailer";
+import { ATTRIBUTION_FIELDS, sanitizeMarketingAttribution } from "@/lib/marketing-attribution";
 
 const MAX_FILE = 4 * 1024 * 1024;
 const MAX_FILES = 9;
 const MAX_REQUEST = 22 * 1024 * 1024;
 const MAX_TEXT = 20_000;
+const META_EVENT_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,99}$/;
 
 type MailAttachment = {
   filename: string;
@@ -36,6 +40,102 @@ type MailAttachment = {
 
 function visitorError(message: string, status: number) {
   return privateJson({ error: message }, { status });
+}
+
+function consentAllowsAttribution(request: Request) {
+  const value = request.headers.get("cookie")?.match(/(?:^|;\s*)kinexis_consent=([^;]*)/)?.[1];
+  if (!value) return { analytics: false, ads: false };
+  try {
+    const consent = decodeURIComponent(value);
+    return {
+      analytics: consent.startsWith("v1|") && /(?:^|\|)a=1(?:\||$)/.test(consent),
+      ads: consent.startsWith("v1|") && /(?:^|\|)d=1(?:\||$)/.test(consent),
+    };
+  } catch {
+    return { analytics: false, ads: false };
+  }
+}
+
+function cookieValue(request: Request, name: string) {
+  const prefix = `${name}=`;
+  const part = (request.headers.get("cookie") || "").split(";").map((item) => item.trim()).find((item) => item.startsWith(prefix));
+  if (!part) return undefined;
+  try {
+    return decodeURIComponent(part.slice(prefix.length));
+  } catch {
+    return undefined;
+  }
+}
+
+function queueMetaLeadCapi(request: Request, input: {
+  eventId: string;
+  formPath: string;
+  metaForm: MetaLeadForm;
+  language: "en" | "es";
+  email?: string;
+  phone?: string;
+}) {
+  let context: ReturnType<typeof getCloudflareContext>;
+  try {
+    context = getCloudflareContext();
+  } catch {
+    return;
+  }
+  const env = context.env as CloudflareEnv & {
+    META_CAPI_TOKEN?: string;
+    META_TEST_EVENT_CODE?: string;
+    NEXT_PUBLIC_META_PIXEL_ID?: string;
+  };
+  const token = env.META_CAPI_TOKEN?.trim();
+  const pixelId = env.NEXT_PUBLIC_META_PIXEL_ID?.trim();
+  const testEventCode = env.META_TEST_EVENT_CODE?.trim();
+  if (!token || !pixelId || (isPreviewSite() && !testEventCode)) return;
+
+  const eventSourceUrl = new URL(input.formPath, SITE.url).toString();
+  const task = sendMetaLeadCapi({
+    ...input,
+    eventSourceUrl,
+    clientIp: clientIp(request) || undefined,
+    clientUserAgent: request.headers.get("user-agent") || undefined,
+    fbp: cookieValue(request, "_fbp"),
+    fbc: cookieValue(request, "_fbc"),
+    consent: true,
+  }, pixelId, token, fetch, testEventCode).then((result) => {
+    if (testEventCode) {
+      console.info("Meta CAPI test event response", {
+        endpointPath: `/v21.0/${pixelId}/events`,
+        eventId: input.eventId,
+        ...(result.status !== undefined ? { status: result.status } : {}),
+        ...(result.eventsReceived !== undefined ? { events_received: result.eventsReceived } : {}),
+        ...(result.messages ? { messages: result.messages } : {}),
+        ...(result.fbtraceId ? { fbtrace_id: result.fbtraceId } : {}),
+        ...(result.errorMessage ? { error: result.errorMessage } : {}),
+        ...(result.networkError ? { networkError: true } : {}),
+      });
+    } else if (!result.accepted) {
+      console.warn("Meta CAPI lead was not accepted", {
+        eventIdPrefix: input.eventId.slice(0, 8),
+        ...(result.status ? { status: result.status } : {}),
+      });
+    }
+  }).catch(() => {
+    if (testEventCode) {
+      console.warn("Meta CAPI test event request failed", {
+        endpointPath: `/v21.0/${pixelId}/events`,
+        eventId: input.eventId,
+        networkError: true,
+      });
+    } else {
+      console.warn("Meta CAPI lead request failed", { eventIdPrefix: input.eventId.slice(0, 8) });
+    }
+  });
+
+  try {
+    (context.ctx as { waitUntil(promise: Promise<unknown>): void }).waitUntil(task);
+  } catch {
+    // Local runtimes may not expose an execution context; don't affect lead delivery.
+    void task;
+  }
 }
 
 function safeFilename(file: File, fallback: string) {
@@ -109,8 +209,39 @@ export async function POST(request: Request) {
 
   const lines: string[] = [];
   let textLength = 0;
+  const attributionInput: Record<string, unknown> = {};
+  for (const key of ATTRIBUTION_FIELDS) {
+    const values = form.getAll(`kx_attr_${key}`);
+    attributionInput[key] = values.length === 1 ? values[0] : null;
+  }
+  const consent = consentAllowsAttribution(request);
+  const conversionValues = form.getAll("kx_conversion");
+  const conversion = conversionValues.length === 1 ? conversionValues[0] : null;
+  const isMarketingConversion = conversion === "preview" || conversion === "audit";
+  const attribution = consent.analytics && isMarketingConversion
+    ? sanitizeMarketingAttribution(attributionInput)
+    : {};
+  if (!consent.ads) {
+    delete attribution.fbclid;
+    delete attribution.gclid;
+  }
+  if (attribution.referrer) {
+    try {
+      if (new URL(attribution.referrer).origin === new URL(SITE.url).origin) delete attribution.referrer;
+    } catch {
+      delete attribution.referrer;
+    }
+  }
   for (const [key, value] of form.entries()) {
-    if (key === "_gotcha" || value instanceof File) continue;
+    if (
+      key === "_gotcha" ||
+      key === "kx_conversion" ||
+      key === "kx_meta_form" ||
+      key === "kx_event_id" ||
+      key === "kx_form_path" ||
+      key.startsWith("kx_attr_") ||
+      value instanceof File
+    ) continue;
     const label = key.replace(/[^a-z0-9 _-]/gi, "").slice(0, 50);
     const raw = String(value);
     if (raw.length > 5_000) return visitorError("That message is too long.", 400);
@@ -118,6 +249,9 @@ export async function POST(request: Request) {
     textLength += label.length + entry.length;
     if (textLength > MAX_TEXT) return visitorError("That message is too long.", 400);
     if (label && entry) lines.push(`${label}: ${entry}`);
+  }
+  for (const [key, value] of Object.entries(attribution)) {
+    lines.push(`Attribution ${key}: ${value}`);
   }
   if (collected.files.length) {
     lines.push(`attachments: ${collected.files.map((file) => file.name).join(", ")}`);
@@ -128,6 +262,14 @@ export async function POST(request: Request) {
   const isUpdate = String(form.get("request") ?? "").trim().length > 0;
   const isCall = topic === "strategy-call";
   const isIntake = topic === "intake";
+  const isAudit = topic === "audit";
+  const metaEventId = String(form.get("kx_event_id") ?? "").trim();
+  const metaFormPath = String(form.get("kx_form_path") ?? "").trim();
+  const metaFormValues = form.getAll("kx_meta_form");
+  const metaFormValue = metaFormValues.length === 1 ? String(metaFormValues[0]).trim() : "";
+  const metaForm = Object.prototype.hasOwnProperty.call(META_CONTENT_NAME_BY_FORM, metaFormValue)
+    ? metaFormValue as MetaLeadForm
+    : null;
 
   try {
     const sent = await sendMail({
@@ -137,9 +279,35 @@ export async function POST(request: Request) {
       isUpdate,
       isCall,
       isIntake,
+      isAudit,
+      formPath: metaFormPath,
       files: collected.files,
     });
-    if (sent === "sent") return privateJson({ ok: true });
+    if (sent === "sent") {
+      if (
+        consent.ads &&
+        metaForm &&
+        (metaForm !== "audit" || isAudit) &&
+        !isUpdate &&
+        META_EVENT_ID_PATTERN.test(metaEventId) &&
+        /^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,240}$/.test(metaFormPath) &&
+        !metaFormPath.includes("..")
+      ) {
+        const language = metaFormPath === "/es" || metaFormPath.startsWith("/es/") ||
+          metaFormPath === "/es-es" || metaFormPath.startsWith("/es-es/")
+          ? "es"
+          : "en";
+        queueMetaLeadCapi(request, {
+          eventId: metaEventId,
+          formPath: metaFormPath,
+          metaForm,
+          language,
+          email: email || undefined,
+          phone: phone || undefined,
+        });
+      }
+      return privateJson({ ok: true });
+    }
     if (sent === "unconfigured") {
       return visitorError(`We could not send that from the site. Call ${SITE.phone} or email ${SITE.email}.`, 503);
     }
@@ -151,7 +319,7 @@ export async function POST(request: Request) {
 }
 
 async function sendMail({
-  name, replyTo, text, isUpdate, isCall, isIntake, files,
+  name, replyTo, text, isUpdate, isCall, isIntake, isAudit, formPath, files,
 }: {
   name: string;
   replyTo?: string;
@@ -159,6 +327,8 @@ async function sendMail({
   isUpdate: boolean;
   isCall: boolean;
   isIntake: boolean;
+  isAudit: boolean;
+  formPath: string;
   files: File[];
 }): Promise<"sent" | "unconfigured" | "failed"> {
   if (contactDeliveryBlocked()) {
@@ -167,13 +337,43 @@ async function sendMail({
   }
   const recipients = contactRecipients();
   if (recipients.length === 0) return "unconfigured";
+  const safeFormPath = /^\/(?!\/)[A-Za-z0-9/_~.%\-]{0,240}$/.test(formPath) && !formPath.includes("..")
+    ? formPath
+    : "";
+  const spanish = /^\/es(?:-es)?(?:\/|$)/.test(safeFormPath);
+  const pageLabels: Record<string, string> = spanish
+    ? {
+        "/es": "Inicio",
+        "/es/contact": "Contacto",
+        "/es/audit": "Auditoría web",
+        "/es/strategy-call": "Llamada estratégica",
+        "/es/intake": "Datos del sitio",
+        "/es/update": "Cambios del sitio",
+      }
+    : {
+        "/": "Home",
+        "/contact": "Contact",
+        "/audit": "Website audit",
+        "/strategy-call": "Strategy call",
+        "/intake": "Website intake",
+        "/update": "Site update",
+        "/lp/get-a-website": "Get-a-website landing page",
+        "/lp/phoenix-preview": "Phoenix preview landing page",
+      };
+  const pageLabel = pageLabels[safeFormPath] ||
+    (safeFormPath ? safeFormPath : "");
+  const source = pageLabel ? ` · ${pageLabel}` : "";
   const subject = isIntake
-    ? `Website intake from ${name}`
+    ? `${spanish ? "[ES] " : ""}Website intake${source} from ${name}`
+    : isAudit
+      ? `${spanish ? "[ES] " : ""}Website audit request${source} from ${name}`
     : isCall
-      ? `Strategy call request from ${name}`
-      : isUpdate
-        ? `Site update from ${name}`
-        : `New message from ${name}`;
+      ? `${spanish ? "[ES] " : ""}Strategy call request${source} from ${name}`
+    : isUpdate
+      ? `${spanish ? "[ES] " : ""}Site update${source} from ${name}`
+      : spanish
+        ? `[ES] Mensaje nuevo${source} — ${name}`
+        : `New message${source} — ${name}`;
 
   const attachments: MailAttachment[] = [];
   for (const [index, file] of files.entries()) {
@@ -188,7 +388,7 @@ async function sendMail({
   const cloudflareEmail = contactEmailBinding();
   if (cloudflareEmail) {
     try {
-      await cloudflareEmail.send({
+      const providerResult = await cloudflareEmail.send({
         from: { email: SITE.email, name: SITE.name },
         to: recipients,
         ...(replyTo ? { replyTo: { email: replyTo, name } } : {}),
@@ -200,6 +400,16 @@ async function sendMail({
           type,
           disposition: "attachment" as const,
         })),
+      });
+      const messageId =
+        providerResult && typeof providerResult === "object" && "messageId" in providerResult &&
+        typeof providerResult.messageId === "string"
+          ? providerResult.messageId
+          : undefined;
+      console.warn("Contact delivery accepted", {
+        provider: "Cloudflare Email",
+        ...(safeFormPath ? { sourcePath: safeFormPath } : {}),
+        ...(messageId ? { messageId } : {}),
       });
       return "sent";
     } catch (error) {

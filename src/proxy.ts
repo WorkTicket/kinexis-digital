@@ -1,9 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { contentLanguage, isMirrored, localeFromPath, LOCALE_HEADER, PATH_HEADER } from "@/lib/i18n";
-import { isPreviewHost } from "@/lib/site";
+import { isPreviewHost, shouldRedirectCanonicalHost } from "@/lib/site";
 
-const APEX = "kinexisdigital.com";
 const CANONICAL_HOST = "www.kinexisdigital.com";
 
 // These are the legacy paths most likely to be requested with the retired
@@ -35,8 +34,11 @@ function immutableAsset(path: string) {
 
 /** Canonicalize host and retired English URLs before handing the request on. */
 export function proxy(request: NextRequest) {
-  const host = request.headers.get("host")?.split(":")[0]?.toLowerCase();
+  const hostHeader = request.headers.get("host");
+  const requestHostname = request.nextUrl.hostname;
+  const host = (hostHeader?.split(":")[0] || requestHostname).toLowerCase();
   const forwardedProtocol = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim().toLowerCase();
+  const productionHostRedirect = shouldRedirectCanonicalHost(hostHeader, requestHostname, forwardedProtocol);
   const originalPath = request.nextUrl.pathname;
   const withoutEnglishPrefix = originalPath === "/en" || originalPath === "/en/"
     ? "/"
@@ -49,13 +51,9 @@ export function proxy(request: NextRequest) {
   const canonicalPath = normalizeEnglishPath
     ? (DIRECT_LEGACY_PATHS[pathWithoutTrailingSlash] ?? pathWithoutTrailingSlash)
     : pathWithoutTrailingSlash;
-  // Do not force local HTTP dev requests onto the production domain. The
-  // forwarded protocol is commonly `http` in local preview environments.
-  const isProductionHost = host === APEX || host === CANONICAL_HOST;
-  const needsHttps = isProductionHost && forwardedProtocol === "http";
-  if (host === APEX || needsHttps || canonicalPath !== originalPath) {
+  if (productionHostRedirect || canonicalPath !== originalPath) {
     const query = request.nextUrl.search;
-    if (isProductionHost || needsHttps) {
+    if (productionHostRedirect) {
       return NextResponse.redirect(`https://${CANONICAL_HOST}${canonicalPath}${query}`, 301);
     }
     const localHost = request.headers.get("host") ?? request.nextUrl.host;
