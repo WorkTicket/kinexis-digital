@@ -44,6 +44,23 @@ async function waitForBoot(page: import("@playwright/test").Page) {
   );
 }
 
+async function scrollToStickyChrome(page: import("@playwright/test").Page) {
+  await page.waitForFunction(() =>
+    performance.getEntriesByType("resource").some((entry) => entry.name.includes("/assets/js/boot.min.js")),
+  );
+  await page.evaluate(() => new Promise<void>((resolve) => {
+    requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+  }));
+  await page.evaluate(() => {
+    const hero = document.querySelector(".hero__btns, .page-hero");
+    const heroBottom = hero ? hero.getBoundingClientRect().bottom + window.scrollY : 0;
+    window.scrollTo({ top: Math.max(400, heroBottom + 40), behavior: "instant" });
+  });
+  await expect.poll(() => page.evaluate(() =>
+    document.documentElement.classList.contains("sticky-chrome-in"),
+  )).toBe(true);
+}
+
 async function gaEvents(page: import("@playwright/test").Page) {
   return page.evaluate(() => {
     const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
@@ -66,21 +83,20 @@ test.describe("marketing journeys", () => {
     }
   });
 
-  test("featured H1 and H2 highlights stay visible across routes", async ({ page }) => {
-    const headings = [
-      ["/contact", "Your Homepage"],
-      ["/", "to Launch"],
-      ["/", "Lead Guarantee"],
-      ["/", "Questions"],
-      ["/pricing", "monthly managed plans"],
-    ] as const;
-
-    for (const [path, text] of headings) {
+  test("highlight sweeps animate H1/H2 only", async ({ page }) => {
+    await installMockAnalytics(page);
+    for (const path of ["/contact", "/", "/pricing"]) {
       await page.goto(path);
-      const marker = page.locator(".hl").filter({ hasText: text }).first();
-      await expect(marker).toBeVisible();
+      await waitForBoot(page);
+      const headings = page.locator("main h1 .hl, main h2 .hl");
+      await expect(headings.first()).toBeVisible();
+      const marker = headings.last();
       await marker.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
-      if (path !== "/contact") await expect(marker).toHaveClass(/is-marked/);
+      await expect(marker).toHaveClass(/is-marked/);
+      const onlyHeadingMarkersAnimate = await page.locator(".hl.is-pending, .hl.is-marked").evaluateAll((nodes) =>
+        nodes.every((node) => Boolean(node.closest("h1, h2"))),
+      );
+      expect(onlyHeadingMarkersAnimate).toBe(true);
       await expect.poll(() => marker.evaluate((el) => getComputedStyle(el).backgroundSize))
         .not.toMatch(/^0(px|%)/);
     }
@@ -428,8 +444,8 @@ test.describe("marketing journeys", () => {
     expect(intakeMetaLead[0][2]).toMatchObject({ content_name: "intake_form", form_path: "/intake" });
   });
 
-  test("mobile nav opens", async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== "mobile", "mobile project only");
+  test("mobile nav opens", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
     await page.waitForLoadState("load");
     // boot.min.js is lazyOnload — wait until its document click handler is live.
@@ -476,6 +492,7 @@ test.describe("marketing journeys", () => {
       const m = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
       return m ? decodeURIComponent(m[1]) : "";
     }), { timeout: 10_000 }).toMatch(/v1\|a=0\|d=0/);
+    await scrollToStickyChrome(page);
     await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible();
 
     trackerHits.length = 0;
@@ -487,7 +504,7 @@ test.describe("marketing journeys", () => {
       path: "/",
     }]);
     await page.reload({ waitUntil: "domcontentloaded" });
-    await page.mouse.click(20, 20);
+    await scrollToStickyChrome(page);
     await page.waitForTimeout(2000);
     expect(trackerHits, "reject cookie must not load GA/Meta").toEqual([]);
     await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible();

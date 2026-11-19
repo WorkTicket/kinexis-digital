@@ -35,6 +35,13 @@ async function fillLeadForm(page: Page) {
   await form.locator('input[name="email"]').fill("qa@example.invalid");
   await form.locator('input[name="business"]').fill("QA Example Business");
   await form.locator('input[name="trade"]').fill("Plumbing in Denver");
+  const previewInquiry = form.locator("label.sticker-check").filter({ hasText: "I’d like a free homepage preview" });
+  if (await previewInquiry.count()) {
+    await previewInquiry.click();
+    await form.locator('input[name="service_area"]').fill("Denver");
+    await form.locator('textarea[name="services"]').fill("Plumbing");
+    await form.locator("[data-preview-asset-consent]").check({ force: true });
+  }
   return form;
 }
 
@@ -55,7 +62,12 @@ test.describe("KX-SEO-002 Release 1", () => {
     })).toBeLessThan(260);
   });
 
-  test("the four priority case-study links are present in rendered page HTML", async ({ page }) => {
+  test("the four priority case-study links are present in rendered page HTML", async ({ page, baseURL }) => {
+    await page.context().addCookies([{
+      name: "kinexis_consent",
+      value: "v1|a=0|d=0",
+      url: baseURL || "http://localhost:3100",
+    }]);
     const checks = [
       ["/industries/plumbing", "/case-studies/preferred-plumbing", "See the Preferred Plumbing website project"],
       ["/case-studies/preferred-plumbing", "/industries/plumbing", "Website design for plumbers"],

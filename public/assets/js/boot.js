@@ -303,7 +303,8 @@ function closeDialogs() {
 }
 
 function armMarks() {
-  const nodes = [...document.querySelectorAll(".hl")].filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
+  const nodes = [...document.querySelectorAll("main h1 .hl, main h2 .hl")]
+    .filter((el) => !el.closest(".hero, .page-hero, [data-island]"));
   if (reduce() || !("IntersectionObserver" in window)) {
     nodes.forEach((el) => {
       el.classList.remove("is-pending");

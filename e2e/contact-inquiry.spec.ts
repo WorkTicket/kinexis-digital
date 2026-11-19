@@ -37,7 +37,9 @@ test("preview choice expands the form and confirmation links to intake", async (
   const details = form.locator("[data-preview-details]");
   await expect(details).toBeHidden();
   await fillBaseContact(form);
-  await form.locator("label.sticker-check").filter({ hasText: "I’d like a free homepage preview" }).click();
+  await form.locator("label.sticker-check")
+    .filter({ hasText: "I’d like a free homepage preview" })
+    .click();
   await expect(details).toBeVisible();
   await expect(form.locator('input[name="service_area"]')).toHaveAttribute("required", "");
   await expect(form.locator('textarea[name="services"]')).toHaveAttribute("required", "");
@@ -160,6 +162,7 @@ test("Spanish preview confirmation points to the localized intake page", async (
     route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' }),
   );
   await page.goto("/es/contact");
+  await waitForBoot(page);
 
   const form = page.locator("form[data-contact-inquiry]");
   await form.locator('input[name="name"]').fill("Prueba");

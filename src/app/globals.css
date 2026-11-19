@@ -3075,7 +3075,9 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .portfolio{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:32px 0}
 .portfolio:not(.portfolio--main):not(.portfolio--related){gap:30px}
 .portfolio .shot{height:500px;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;background:#fff;position:relative;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;touch-action:pan-y}
-.portfolio .shot:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
+@media (hover:hover) and (pointer:fine){
+  .portfolio .shot:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
+}
 .portfolio .shot__page{height:100%;overflow:hidden;background:#f4f7ff}
 .portfolio .shot__img{display:block;width:100%;height:auto;max-width:none}
 @media (max-width:1024px){
@@ -3092,7 +3094,9 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .portfolio--live .live-site-wrap,.portfolio--main .work-card{content-visibility:auto;contain-intrinsic-size:auto 420px}
 .portfolio--main{display:grid;grid-template-columns:repeat(2,1fr);gap:32px;margin:32px 0;align-items:start}
 .portfolio--main .shot.shot--hero{height:auto;aspect-ratio:4/3;border-radius:var(--radius);border:1px solid var(--border);box-shadow:var(--shadow);overflow:hidden;background:#fff;position:relative;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease}
-.portfolio--main .shot:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
+@media (hover:hover) and (pointer:fine){
+  .portfolio--main .shot:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
+}
 .portfolio--main .shot__page{height:100%;overflow:hidden;background:#f4f7ff}
 .portfolio--main .shot__img,.portfolio--live .shot__img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;max-width:none}
 @media (max-width:560px){
@@ -3108,15 +3112,20 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
   box-shadow:var(--shadow);overflow:hidden;
   transition:transform .18s ease,box-shadow .18s ease;
 }
-.live-site:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
 .live-site:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+@media (hover:hover) and (pointer:fine){
+  .live-site:hover{transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
+}
 /* Static top-of-page crop — no hover/hold scroll on live client cards. */
 .portfolio--live .shot{height:auto;aspect-ratio:4/3;border:0;border-radius:0;box-shadow:none}
 .portfolio--live .shot .shot__page{position:absolute;inset:0;height:auto;overflow:hidden}
 .portfolio--live .shot:hover{transform:none;box-shadow:none}
 .portfolio--live .shot.shot--static .shot__track{transform:none!important}
 /* Match template “View This Project”: navy on card hover, orange only on button hover. */
-.live-site:hover .shot__cta-overlay,.live-site:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
+.live-site:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
+@media (hover:hover) and (pointer:fine){
+  .live-site:hover .shot__cta-overlay{opacity:1;pointer-events:auto}
+}
 .live-site__copy{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px 18px;padding:16px 20px;border-top:1px solid var(--border)}
 .live-site__status{display:inline-flex;align-items:center;gap:6px;width:max-content;padding:3px 8px 3px 7px;border-radius:999px;background:var(--brand-orange);color:var(--brand-navy);font-family:var(--font-head);font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.2}
 .live-site__dot{width:6px;height:6px;border-radius:50%;background:var(--brand-navy);box-shadow:none}
@@ -3168,7 +3177,16 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
    Card/shot hover reveals the navy face; orange wipe only on .btn:hover. */
 .shot__cta-overlay{position:absolute;left:50%;top:50%;z-index:2;translate:-50% -50%;
   opacity:0;pointer-events:none;transition:opacity .2s ease,color .3s ease-in-out,box-shadow .2s ease}
-.shot:hover .shot__cta-overlay,.shot:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
+.shot:focus-visible .shot__cta-overlay{opacity:1;pointer-events:auto}
+@media (hover:hover) and (pointer:fine){
+  .shot:hover .shot__cta-overlay{opacity:1;pointer-events:auto}
+}
+/* Touch users already have the visible CTA below each portfolio card; a tap
+   must not leave the hover-only overlay stuck over the screenshot. */
+@media (hover:none), (pointer:coarse){
+  .portfolio--main .shot:hover .shot__cta-overlay,
+  .portfolio--main .shot:focus-visible .shot__cta-overlay{opacity:0!important;pointer-events:none!important;transition:none}
+}
 .shot__cta-overlay:hover,.shot__cta-overlay:active{transform:none}
 .portfolio--related .shot__cta-overlay{padding:.5rem .85rem;font-size:.8rem}
 
@@ -3184,7 +3202,9 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 .shot__hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:3;white-space:nowrap;
   background:rgba(10,18,48,.82);color:#fff;font-size:.76rem;font-weight:600;letter-spacing:.02em;
   padding:7px 14px;border-radius:999px;pointer-events:none;transition:opacity .2s ease}
-.shot--click:hover .shot__hint{opacity:0}
+@media (hover:hover) and (pointer:fine){
+  .shot--click:hover .shot__hint{opacity:0}
+}
 .shot--detail{height:min(78vh,780px);max-width:100%;margin:0 auto}
 .shot-caption{margin:14px 0 24px}
 

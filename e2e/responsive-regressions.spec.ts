@@ -70,6 +70,26 @@ test.describe("narrow viewport regressions", () => {
     expect(await track.evaluate((el) => getComputedStyle(el).transform)).toBe(before);
   });
 
+  test("portfolio project cards do not keep a hover pose after a mobile tap", async ({ page }, testInfo) => {
+    test.skip(testInfo.project.name !== "mobile", "requires a real coarse-pointer touch context");
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/portfolio");
+
+    const shot = page.locator(".portfolio--main .shot").first();
+    await shot.scrollIntoViewIfNeeded();
+    await expect(shot).toHaveClass(/shot--static/);
+    const box = await shot.boundingBox();
+    expect(box).not.toBeNull();
+    await shot.evaluate((element) => {
+      element.addEventListener("click", (event) => event.preventDefault(), { capture: true, once: true });
+    });
+    await page.touchscreen.tap(box!.x + box!.width / 2, box!.y + box!.height / 2);
+
+    await expect(shot).toHaveCSS("transform", "none");
+    await expect(shot).toHaveCSS("box-shadow", "rgba(10, 18, 48, 0.08) 0px 6px 24px 0px");
+    await expect(shot.locator(".shot__cta-overlay")).toHaveCSS("opacity", "0");
+  });
+
   test("Lead System step illustrations are centered, larger than their circles, and keep the VS highlight", async ({ page }) => {
     for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
       await page.setViewportSize(viewport);

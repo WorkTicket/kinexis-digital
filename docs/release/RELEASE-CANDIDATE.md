@@ -1,9 +1,29 @@
 # Release candidate
 
-**Status: DEPLOYED — production received the owner-authorized revision; formal candidate record remains incomplete.**
+**Status: SOURCE CANDIDATE — not deployed.** This branch is for preparing the combined SEO/conversion Release 1 with the already-approved cosmetic work. No production deployment is authorized by this record.
 
-Starting revision was `766c0be76b2539297f8748c0210be658955cb2ca`; continuation began from `4f8bf523b53342d63157bd5d5faa9c907ce710d3` on `phase-1/conversion-handoff`. Owner authorized and deployed source SHA `2b3bf93c6158ff7bbc8570739f6ac332c3221f3d`; Cloudflare Worker version is `40abc15c-3663-4656-b2e0-52cb15613de3`. No push or merge occurred. This deployment was not preceded by clearance of all documented gates; provider/account verification, the unpatched tooling advisory, human approvals, backup/rollback and other operational checks remain open.
+## Candidate identity
 
-Known gate decisions remain: performance has a narrow owner-approved exception; it does not waive other gates. GA4/Meta IDs were deployed as public Worker vars, but account mapping/receipt remains unverified. Owner chose free-plan Conferbot widget-only scope; webhook/site-D1/notification path is deferred, and live widget/privacy settings remain unverified. Preview lead destination is not configured. Production-only dependency audit is clean, but full-tree audit remains blocked by the unpatched picomatch advisory; Cloudflare backup/binding/rollback, accessibility, privacy/legal and other provider acceptance remain open.
+- Branch: `release/1`
+- Base: `499174f1fe90af46faeaccf60e8d057f57de4e0b`
+- The base contains the KX-SEO-002 remediation and prior approved cosmetic merge.
+- This candidate adds the H1/H2 highlight behavior correction and mobile portfolio tap/hover fix, with focused regression coverage.
+- Record the full commit SHA after the scoped changes are committed. It is not yet a frozen candidate.
 
-Before treating this as a fully cleared release candidate: resolve mandatory provider/security/privacy/accessibility/lead gates; verify production variable types and account ownership; record lockfile hash, build environment and artifact identity; verify migration compatibility; obtain confirmed backup/restore and currently valid Worker rollback version. Current repository has invoice migration `migrations/0001_invoice_payment_ledger.sql` (Wrangler comments say applied); lead migration `migrations-lead/0001_conferbot_lead_intel.sql` is not bound/applied. No production migration was performed.
+## Included scope
+
+- Preserve the SEO and conversion remediation already in the base commit, including the requested internal links, Spanish paths/content/redirect behavior, metadata/schema, and lead-tracking work.
+- Preserve the approved cosmetic changes already in the base and include the heading-highlight correction.
+- On touch/coarse-pointer devices, portfolio screenshot taps must not leave hover-only CTA overlays or card-lift styling stuck. Keep hover presentation for mouse/trackpad users.
+- Include the related SEO, conversion-form, visual, and responsive regression tests.
+- Exclude separate PayPal credential/configuration work, preview inbox/configuration changes, Release 2 performance experiments, Release 3 multi-host cleanup, and unrelated test-runner changes.
+
+## Verification before candidate freeze
+
+The last dirty-tree run reported `npm run check`, `npm run check:invoice-security`, `npm audit`, `npm audit --omit=dev`, and `git diff --check` passed. The full Playwright run reported passed with 124 tests scheduled; this was not run on the frozen candidate SHA. The mobile portfolio touch regression was included. Treat all of these as preliminary working-tree evidence and rerun the requested checks after the final scoped diff is assembled.
+
+## Gates remaining before deployment
+
+The release-gate matrix tracks open and blocked items. In particular, the exact-SHA full test/build and independent QA, human content/legal/privacy/accessibility approvals, provider acceptance, and recoverable off-device backup/rollback remain required before production deployment. These gates do not prevent committing the scoped candidate; they do prevent deployment.
+
+Production deployment requires a separate explicit approval naming the exact final SHA and target, after the recovery path and deployment checklist are confirmed. No production source deployment, push, or merge is authorized by this document.
