@@ -37,7 +37,10 @@ async function mountMockConferbot(
         "position:fixed;bottom:84px;right:20px;z-index:50;padding:10px 12px;background:#fff";
       shadow.appendChild(cta);
     }
-    document.body.appendChild(host);
+    // Conferbot inserts its custom element after <body>; keeping the fixture
+    // outside React's hydrated subtree prevents consent rerenders from
+    // reconciling away the externally mounted widget.
+    document.body.insertAdjacentElement("afterend", host);
     return Boolean(host.shadowRoot?.querySelector("#open-chatbot"));
   }, opts.withGreeting);
 }
@@ -92,6 +95,20 @@ function widgetVisibility(page: Page) {
   });
 }
 
+async function waitForConferbotClient(page: Page) {
+  await expect
+    .poll(
+      () =>
+        page.evaluate(
+          () =>
+            typeof (window as Window & { __kxStartLauncherPositioner?: () => void })
+              .__kxStartLauncherPositioner === "function",
+        ),
+      { timeout: 20_000 },
+    )
+    .toBe(true);
+}
+
 test.describe("Conferbot + cookie consent (mobile)", () => {
   test.beforeEach(async ({}, testInfo) => {
     test.skip(testInfo.project.name !== "mobile", "mobile project only");
@@ -110,6 +127,9 @@ test.describe("Conferbot + cookie consent (mobile)", () => {
       })
       .toBe(true);
 
+    // Wait for deferred client code/hydration before inserting an external
+    // widget host, so React cannot replace the test fixture during consent.
+    await waitForConferbotClient(page);
     expect(await mountMockConferbot(page, { withGreeting: true })).toBe(true);
     await expect
       .poll(async () => widgetVisibility(page), { timeout: 10_000 })

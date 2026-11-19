@@ -328,17 +328,7 @@ test.describe("Conferbot launcher sticky lift across resize", () => {
  * at opacity 1 before page JS can style it. This mock mirrors that sequence.
  */
 async function mountLateConferbot(page: Page, shadowDelayMs = 250) {
-  await expect
-    .poll(
-      () =>
-        page.evaluate(
-          () =>
-            typeof (window as Window & { __kxStartLauncherPositioner?: () => void })
-              .__kxStartLauncherPositioner === "function",
-        ),
-      { timeout: 20_000 },
-    )
-    .toBe(true);
+  await waitForLauncherPositioner(page);
   const firstPaint = await page.evaluate(async (delay) => {
     document.querySelectorAll("conferbot-widget").forEach((el) => el.remove());
     const host = document.createElement("conferbot-widget");
@@ -380,6 +370,20 @@ async function mountLateConferbot(page: Page, shadowDelayMs = 250) {
     )
     .toBe(true);
   return firstPaint;
+}
+
+async function waitForLauncherPositioner(page: Page) {
+  await expect
+    .poll(
+      () =>
+        page.evaluate(
+          () =>
+            typeof (window as Window & { __kxStartLauncherPositioner?: () => void })
+              .__kxStartLauncherPositioner === "function",
+        ),
+      { timeout: 20_000 },
+    )
+    .toBe(true);
 }
 
 type LauncherFrame = {
@@ -507,11 +511,15 @@ function expectAnimatedWithCta(rec: LauncherRecording, dir: "in" | "out") {
  * check, which hides the bar again.
  */
 async function revealStickyCta(page: Page) {
-  await page.evaluate(() => window.scrollTo({ top: 2500, behavior: "instant" }));
   await expect
     .poll(
       () =>
         page.evaluate(() => {
+          // Re-trigger the page's own geometry check while waiting for its
+          // deferred boot listener, rather than assuming the first scroll
+          // event arrived after that listener was installed.
+          window.scrollTo({ top: 2500, behavior: "instant" });
+          window.dispatchEvent(new Event("scroll"));
           const float = document.querySelector(".float-cta");
           return Boolean(
             document.documentElement.classList.contains("sticky-chrome-in") &&
@@ -608,6 +616,9 @@ test.describe("Conferbot launcher enters and leaves with the sticky CTA", () => 
     await page.evaluate(() => {
       document.querySelectorAll("conferbot-widget").forEach((el) => el.remove());
     });
+    // Keep the recorder's finite capture window focused on widget insertion;
+    // waiting for the deferred positioner hook can otherwise consume it.
+    await waitForLauncherPositioner(page);
     const recorder = page.evaluate(() => {
       const frames: { op: number; host: number; vis: string; ty: number }[] = [];
       return new Promise<typeof frames>((resolve) => {
