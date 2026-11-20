@@ -306,7 +306,7 @@ const ES: Record<string, Copy> = {
       { title: "Reparaciones sin camino", text: "Bombas, calentadores y agua verde son urgentes. Necesitan página y teléfono, no una nota bajo “servicio completo”.", icon: "repair-call-path" },
       { title: "Barrios que no recorres", text: "La densidad importa. La zona debe coincidir con los días que ya corres.", icon: "route-coverage" },
     ],
-    heroAlt: "Técnico de alberca revisando el equipo de mantenimiento",
+    heroAlt: "Técnico limpiando hojas de una alberca residencial",
     servicesTitle: "Páginas que una empresa de albercas debe tener",
     servicesMark: "albercas",
     services: [
@@ -377,7 +377,7 @@ const ES: Record<string, Copy> = {
       { title: "Sin decir qué incluye", text: "Mosquiteros, repisas y vidrio interior son por lo que se pelean las cotizaciones. Di qué cubre la visita.", icon: "visit-inclusions" },
       { title: "Sin camino a la limpieza recurrente", text: "El primer trabajo es el anuncio. La ruta es el negocio. El sitio debe ofrecer los dos.", icon: "recurring-cleaning-path" },
     ],
-    heroAlt: "Limpiador de ventanas trabajando en el vidrio de una tienda",
+    heroAlt: "Limpiador de ventanas usando una escobilla en una casa",
     servicesTitle: "Lo que publicamos para limpiadores de vidrios",
     servicesMark: "vidrios",
     services: [
@@ -414,7 +414,7 @@ const ES: Record<string, Copy> = {
       { title: "Las mascotas como un agregado", text: "Si lo vendes, es su propia búsqueda y su propia página. Si no, déjalo fuera.", icon: "extra-page" },
       { title: "Sin explicar la visita", text: "Corte, orilla, soplado, retiro de desechos: la gente quiere la lista antes de darte el código del portón.", icon: "visit-inclusions" },
     ],
-    heroAlt: "Dueño de un negocio de jardinería con una podadora en el césped",
+    heroAlt: "Trabajador de jardinería cortando el césped de una casa",
     servicesTitle: "Páginas que necesita una ruta de jardín",
     servicesMark: "jardín",
     services: [

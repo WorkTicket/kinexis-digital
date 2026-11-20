@@ -40,6 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     image: [
       "plumbing", "hvac", "electrical", "roofing", "garage-doors", "painting",
       "remodeling", "landscaping", "pressure-washing", "junk-removal", "tree-care",
+      "pool-care", "window-cleaning", "yard-care",
     ].includes(industry.slug)
       ? `/assets/industries/${industry.slug}/${industry.slug}-social.jpg`
       : `/assets/industries/${industry.slug}/hero-960.webp`,

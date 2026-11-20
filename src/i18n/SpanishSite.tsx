@@ -58,6 +58,7 @@ const BookingCalendar = dynamic(() => import("@/components/BookingCalendar"));
 const SiteReviewForm = dynamic(() => import("@/components/SiteReviewForm"));
 
 type Meta = { title: string; description: string; absolute?: boolean; image?: string; article?: boolean; date?: string; section?: string; hold?: boolean };
+const SPANISH_INDUSTRY_SOCIAL_HEROES = new Set(["pool-care", "window-cleaning", "yard-care"]);
 
 const PAGE_META: Record<SpanishStaticPath, Meta> = {
   "/": { title: "Sitios web para contratistas desde $97/mes | Kinexis Digital", absolute: true, description: "Sitios web para contratistas desde $97/mes, $0 de entrada. Reseñas de Google, texto opcional y vista previa gratis del inicio." },
@@ -155,7 +156,14 @@ function metaFor(en: string, locale: Locale): Meta | undefined {
     const industry = getIndustry(en.split("/")[2] ?? "");
     if (!industry) return undefined;
     const copy = localizeIndustry(industry, locale);
-    return { title: copy.metaTitle, description: copy.metaDescription, hold: industry.status === "hold" };
+    return {
+      title: copy.metaTitle,
+      description: copy.metaDescription,
+      hold: industry.status === "hold",
+      image: SPANISH_INDUSTRY_SOCIAL_HEROES.has(industry.slug)
+        ? `/assets/industries/${industry.slug}/${industry.slug}-social.jpg`
+        : undefined,
+    };
   }
   if (en.startsWith("/blog/") && en !== "/blog") {
     const slug = en.split("/")[2] ?? "";

@@ -3,6 +3,7 @@ import { imageVariant, still } from "@/lib/image-sources";
 const SUPPLIED_INDUSTRY_HEROES = new Set([
   "plumbing", "hvac", "electrical", "roofing", "garage-doors", "painting",
   "remodeling", "landscaping", "pressure-washing", "junk-removal", "tree-care",
+  "pool-care", "window-cleaning", "yard-care",
 ]);
 
 /** Per-industry desktop/mobile hero artwork supplied as optimized AVIF/WebP. */

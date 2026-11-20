@@ -210,6 +210,26 @@ test.describe("marketing journeys", () => {
     }
   });
 
+  test("pool, window-cleaning, and yard-care pages use the supplied localized hero artwork", async ({ page }) => {
+    const cases = [
+      ["pool-care", "Pool technician skimming leaves from a residential pool", "Técnico limpiando hojas de una alberca residencial"],
+      ["window-cleaning", "Window cleaner using a squeegee on a home's exterior window", "Limpiador de ventanas usando una escobilla en una casa"],
+      ["yard-care", "Lawn-care worker mowing a residential lawn", "Trabajador de jardinería cortando el césped de una casa"],
+    ] as const;
+
+    for (const [slug, englishAlt, spanishAlt] of cases) {
+      await page.goto(`/industries/${slug}`);
+      await expect(page.locator('.industry-hero source[media="(max-width: 860px)"]')).toHaveAttribute("srcset", new RegExp(`${slug}-mobile\\.webp\\?v=28`));
+      await expect(page.locator(".industry-hero source[type=\"image/avif\"]")).toHaveAttribute("srcset", new RegExp(`${slug}-desktop\\.avif\\?v=28`));
+      await expect(page.locator(".industry-hero__img")).toHaveAttribute("alt", englishAlt);
+      await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", new RegExp(`${slug}-social\\.jpg`));
+
+      await page.goto(`/es/industries/${slug}`);
+      await expect(page.locator(".industry-hero__img")).toHaveAttribute("alt", spanishAlt);
+      await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", new RegExp(`${slug}-social\\.jpg`));
+    }
+  });
+
   test("preview form shows required business fields", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator('input[name="business"]').first()).toBeVisible();

@@ -425,7 +425,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Repairs with no path", text: "Pumps, heaters and green pools are urgent. They need a page and a phone, not a footnote under “full service.”", icon: "repair-call-path" },
       { title: "Neighborhoods you do not drive", text: "Route density matters. The service area should match the days you already run.", icon: "route-coverage" },
     ],
-    heroAlt: "Pool technician, pool equipment, water and website tablet",
+    heroAlt: "Pool technician skimming leaves from a residential pool",
     servicesTitle: "Pages a pool company should have",
     servicesMark: "pool company",
     services: [
@@ -510,7 +510,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No word on what is included", text: "Screens, sills and interior glass are why quotes get disputed. Say what the visit covers.", icon: "visit-inclusions" },
       { title: "No path back to a recurring clean", text: "The first job is the ad. The route is the business. The site should offer both.", icon: "recurring-cleaning-path" },
     ],
-    heroAlt: "Window cleaner, storefront glass, squeegee and website screens",
+    heroAlt: "Window cleaner using a squeegee on a home's exterior window",
     servicesTitle: "What we publish for window cleaners",
     servicesMark: "window cleaners",
     services: [
@@ -553,7 +553,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Pet waste treated as an afterthought", text: "If you sell it, it is its own search and its own page. If you do not, leave it off.", icon: "extra-page" },
       { title: "No explanation of the visit", text: "Mow, edge, blow, waste removal: people want the list before they hand you a gate code.", icon: "visit-inclusions" },
     ],
-    heroAlt: "Lawn-care owner, mower, dog, waste station and tablet",
+    heroAlt: "Lawn-care worker mowing a residential lawn",
     servicesTitle: "Pages a yard-care route needs",
     servicesMark: "yard-care route",
     services: [
