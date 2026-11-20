@@ -20,8 +20,12 @@ import TrustStrip from "@/components/TrustStrip";
 import { CtaBand, Faq, HL, Icon, PageHero, Section } from "@/components/ui";
 import { localeHref, withLocale, type Locale } from "@/lib/i18n";
 import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { SPANISH_PLAN_STICKERS } from "@/components/SpanishPlanSticker";
 
-function LeadArt({ alt }: { alt: string }) {
+function LeadArt({ alt, locale }: { alt: string; locale: Locale }) {
+  if (locale !== "en") {
+    return <div className="home-section-art home-section-art--reviews home-section-art--text-free" role="img" aria-label={alt}><Icon name="after-every-job" alt="" size={220} /></div>;
+  }
   const src = "/assets/home/google-reviews-handled.webp";
   const widths = [640, 768, 1120] as const;
   const sizes = IMAGE_SIZES.homeSection;
@@ -180,7 +184,7 @@ export default function SpanishIndustry({
               <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
             </p>
           </div>
-          <LeadArt alt={tx("Un trabajo terminado que lleva a un mensaje y una reseña en Google")} />
+          <LeadArt locale={locale} alt={tx("Un trabajo terminado que lleva a un mensaje y una reseña en Google")} />
         </div>
         <ReviewRail
           steps={[
@@ -217,7 +221,7 @@ export default function SpanishIndustry({
         </Section>
       )}
       <Section id="plans">
-        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${spainChrome ? "0 €" : "$0"} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { currency: spainChrome ? "eur" : "usd" })} showStickers={!spainChrome} />
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${spainChrome ? "0 €" : "$0"} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { currency: spainChrome ? "eur" : "usd" })} stickers={spainChrome ? undefined : { website: SPANISH_PLAN_STICKERS.website.offer, "lead-system": SPANISH_PLAN_STICKERS["lead-system"].offer, plus: SPANISH_PLAN_STICKERS.plus.offer }} showStickers={!spainChrome} />
         <CostGuides
           label={tx(`Guías para dueños de ${industry.name}`)}
           ariaLabel={tx(`Guías para ${industry.name}`)}

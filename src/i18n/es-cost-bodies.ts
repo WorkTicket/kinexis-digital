@@ -566,7 +566,7 @@ export const GENERATED_ES_COST_BODIES: Record<string, EsCostPostBody> = {
       },
       {
         "h2": "Qué influye en el costo de un sitio de albercas",
-        "html": "<p>Los sitios de albercas necesitan claridad ruta vs reparación, páginas de química/planes y ofertas de apertura/cierre. Los dueños quieren una forma simple de empezar servicio sin folleto largo.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> y la <a href=\"/blog/pool-service-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
+        "html": "<p>Los sitios de albercas necesitan claridad ruta vs reparación, páginas de química/planes y ofertas de apertura/cierre. Los dueños quieren una forma simple de empezar servicio sin folleto largo.</p><p>Consulta la página de albercas y la <a href=\"/blog/pool-service-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
       },
       {
         "h2": "Define el alcance antes de comparar precios",
@@ -700,7 +700,7 @@ export const GENERATED_ES_COST_BODIES: Record<string, EsCostPostBody> = {
       },
       {
         "h2": "Qué influye en el costo de un sitio de limpieza de vidrios",
-        "html": "<p>Los sitios de limpieza de vidrios cuestan más cuando residencial, aparadores y rutas recurrentes tienen páginas honestas. Campos de paneles y frecuencia en el formulario evitan adivinar por teléfono.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> y la <a href=\"/blog/window-cleaning-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
+        "html": "<p>Los sitios de limpieza de vidrios cuestan más cuando residencial, aparadores y rutas recurrentes tienen páginas honestas. Campos de paneles y frecuencia en el formulario evitan adivinar por teléfono.</p><p>Consulta la página de limpieza de vidrios y la <a href=\"/blog/window-cleaning-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
       },
       {
         "h2": "Define el alcance antes de comparar precios",
@@ -767,7 +767,7 @@ export const GENERATED_ES_COST_BODIES: Record<string, EsCostPostBody> = {
       },
       {
         "h2": "Qué influye en el costo de un sitio de césped",
-        "html": "<p>Los sitios de césped necesitan caminos de alta a ruta vs limpieza puntual, y listas claras (corte, limpieza, desechos de mascotas). Código postal y frecuencia mantienen la planeación de ruta honesta.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> y la <a href=\"/blog/lawn-care-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
+        "html": "<p>Los sitios de césped necesitan caminos de alta a ruta vs limpieza puntual, y listas claras (corte, limpieza, desechos de mascotas). Código postal y frecuencia mantienen la planeación de ruta honesta.</p><p>Consulta la página de césped y la <a href=\"/blog/lawn-care-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
       },
       {
         "h2": "Define el alcance antes de comparar precios",
@@ -1344,7 +1344,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Qué influye en el costo de un sitio de albercas",
-        "html": "<p>Los sitios de albercas necesitan claridad ruta vs reparación, páginas de química/planes y ofertas de apertura/cierre. Los dueños quieren una forma simple de empezar servicio sin folleto largo.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> y la <a href=\"/blog/pool-service-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
+        "html": "<p>Los sitios de albercas necesitan claridad ruta vs reparación, páginas de química/planes y ofertas de apertura/cierre. Los dueños quieren una forma simple de empezar servicio sin folleto largo.</p><p>Consulta la página de albercas y la <a href=\"/blog/pool-service-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
       },
       {
         "h2": "Define el alcance antes de comparar precios",
@@ -1436,7 +1436,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Qué influye en el costo de un sitio de limpieza de vidrios",
-        "html": "<p>Los sitios de limpieza de vidrios cuestan más cuando residencial, aparadores y rutas recurrentes tienen páginas honestas. Campos de paneles y frecuencia en el formulario evitan adivinar por teléfono.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> y la <a href=\"/blog/window-cleaning-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
+        "html": "<p>Los sitios de limpieza de vidrios cuestan más cuando residencial, aparadores y rutas recurrentes tienen páginas honestas. Campos de paneles y frecuencia en el formulario evitan adivinar por teléfono.</p><p>Consulta la página de limpieza de vidrios y la <a href=\"/blog/window-cleaning-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
       },
       {
         "h2": "Define el alcance antes de comparar precios",
@@ -1482,7 +1482,7 @@ export const GENERATED_ES_COST_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Qué influye en el costo de un sitio de césped",
-        "html": "<p>Los sitios de césped necesitan caminos de alta a ruta vs limpieza puntual, y listas claras (corte, limpieza, desechos de mascotas). Código postal y frecuencia mantienen la planeación de ruta honesta.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> y la <a href=\"/blog/lawn-care-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
+        "html": "<p>Los sitios de césped necesitan caminos de alta a ruta vs limpieza puntual, y listas claras (corte, limpieza, desechos de mascotas). Código postal y frecuencia mantienen la planeación de ruta honesta.</p><p>Consulta la página de césped y la <a href=\"/blog/lawn-care-website-pages\">guía de páginas</a> para ver ejemplos de alcance.</p>"
       },
       {
         "h2": "Define el alcance antes de comparar precios",

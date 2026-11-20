@@ -1180,8 +1180,8 @@ html.lp-route body{--announce-h:0px}
 .section--decor-dark{background-image:url("/assets/kinexis/decorative/section-background-on-dark.svg"),linear-gradient(135deg,var(--text) 0%,var(--accent-dark) 70%,var(--accent) 100%);color:#fff}
 .section--decor-light>.container,.section--decor-dark>.container{position:relative;z-index:1}
 .grid{display:grid;gap:24px}
-.grid--2{grid-template-columns:repeat(2,1fr)}
-.grid--3{grid-template-columns:repeat(3,1fr)}
+.grid--2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid--3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .grid--4{grid-template-columns:repeat(4,1fr)}
 .trade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
 .trade-card{
@@ -3464,7 +3464,9 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 
 .blog-post{
   display:grid;
+  grid-template-columns:minmax(0,1fr);
   gap:28px;
+  min-width:0;
   color:var(--copy);
 }
 
@@ -5307,4 +5309,8 @@ p,li,blockquote{ text-wrap:pretty }
 }
 @media(max-width:560px){
   .contact-preview-uploads__grid{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:520px){
+  .btn{white-space:normal}
+  .grid--2,.grid--3{min-width:0}
 }

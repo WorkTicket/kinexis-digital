@@ -12,10 +12,10 @@ function StarIcon({ filled }: { filled: boolean }) {
   );
 }
 
-function Stars({ value }: { value: number }) {
+function Stars({ value, locale = "en" }: { value: number; locale?: "en" | "es" }) {
   const safe = Math.min(5, Math.max(0, Math.round(value)));
   return (
-    <div className="review-card__stars" role="img" aria-label={`${safe} out of 5 stars`}>
+    <div className="review-card__stars" role="img" aria-label={locale === "es" ? `${safe} de 5 estrellas` : `${safe} out of 5 stars`}>
       {[1, 2, 3, 4, 5].map((n) => (
         <StarIcon key={n} filled={n <= safe} />
       ))}
@@ -40,9 +40,11 @@ function detailLine(review: DisplayReview) {
 export function UnifiedReviewCard({
   review,
   sourceLabels,
+  locale = "en",
 }: {
   review: DisplayReview;
   sourceLabels?: Partial<Record<ReviewSource, string>>;
+  locale?: "en" | "es";
 }) {
   const source = sourceLabels?.[review.source] ?? REVIEW_SOURCE_LABEL[review.source];
   const quote = clipReviewQuote(review.quote);
@@ -52,7 +54,7 @@ export function UnifiedReviewCard({
   return (
     <figure className="review-card">
       <header className="review-card__top">
-        <Stars value={review.stars} />
+        <Stars value={review.stars} locale={locale} />
         <span className={`review-card__source review-card__source--${review.source}`}>{source}</span>
       </header>
 

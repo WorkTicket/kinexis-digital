@@ -3,9 +3,7 @@ import type { ReactNode } from "react";
 import { still } from "@/lib/image-sources";
 import { Icon } from "./artwork";
 import { HL } from "./mark";
-
-const AUDIT_DESKTOP = still("/assets/kinexis/page-art/website-audit-desktop.avif");
-const AUDIT_MOBILE = still("/assets/kinexis/page-art/website-audit-mobile.webp");
+import type { Locale } from "@/lib/i18n";
 
 const CHECKS = [
   {
@@ -44,6 +42,7 @@ export default function IndustryAudit({
   href = "/audit",
   alt = "Laptop, phone, magnifying glass and an audit card",
   checks = CHECKS,
+  locale = "en",
 }: {
   eyebrow?: string;
   heading?: string;
@@ -53,7 +52,11 @@ export default function IndustryAudit({
   href?: string;
   alt?: string;
   checks?: readonly { title: string; titleDisplay?: ReactNode; text: ReactNode; icon: string }[];
+  locale?: Locale;
 } = {}) {
+  const suffix = locale === "en" ? "" : "-es";
+  const auditDesktop = still(`/assets/kinexis/page-art/website-audit-desktop${suffix}.avif`);
+  const auditMobile = still(`/assets/kinexis/page-art/website-audit-mobile${suffix}.webp`);
   return (
     <section className="industry-audit" aria-labelledby="industry-audit-heading">
       <div className="container">
@@ -70,11 +73,11 @@ export default function IndustryAudit({
           </div>
           <div className="industry-audit__art">
             <picture>
-               <source media="(max-width: 860px)" type="image/webp" srcSet={AUDIT_MOBILE} />
-               <source type="image/avif" srcSet={AUDIT_DESKTOP} />
+               <source media="(max-width: 860px)" type="image/webp" srcSet={auditMobile} />
+               <source type="image/avif" srcSet={auditDesktop} />
                <img
                 className="industry-audit__img"
-                  src={AUDIT_MOBILE}
+                 src={auditMobile}
                 alt={alt}
                  width={2400}
                  height={1350}

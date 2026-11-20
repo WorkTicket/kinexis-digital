@@ -114,6 +114,10 @@ export function Art({
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string; locale?: Locale }) {
   const file = HERO_FILES[name];
   const campaignName = CAMPAIGN_HERO[name];
+  if (locale !== "en" && ["process", "maintenance", "faqs", "industries"].includes(name)) {
+    const icon = name === "process" ? "better-pricing" : name === "maintenance" ? "hosting" : "reporting";
+    return <div className={`campaign-page-art campaign-page-art--text-free ${className}`.trim()} role="img" aria-label={alt}><Icon name={icon} alt="" size={240} /></div>;
+  }
   if (campaignName) {
     return (
       <CampaignHeroArtwork

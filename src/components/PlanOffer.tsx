@@ -62,6 +62,7 @@ export default function PlanOffer({
   plans = PLANS,
   // Priced stickers bake USD into the art — hide them on Spain chrome.
   showStickers = true,
+  stickers,
 }: {
   heading?: string;
   mark?: string;
@@ -77,6 +78,8 @@ export default function PlanOffer({
   trust?: TrustLabels;
   plans?: typeof PLANS;
   showStickers?: boolean;
+  /** Optional per-plan artwork, including plans intentionally left text-only. */
+  stickers?: Partial<Record<string, Sticker>>;
 }) {
   return (
     <div className="offer">
@@ -96,7 +99,7 @@ export default function PlanOffer({
               prefetch={false}
             >
               {plan.popular ? <span className="offer__badge">{badge}</span> : null}
-              {showStickers ? <PlanSticker sticker={PLAN_NAME_STICKERS[plan.slug]} /> : null}
+              {stickers ? (stickers[plan.slug] ? <PlanSticker sticker={stickers[plan.slug]!} /> : null) : showStickers ? <PlanSticker sticker={PLAN_NAME_STICKERS[plan.slug]} /> : null}
               <h3 className="offer__line">{plan.name}</h3>
               <span className="offer__tagline">{plan.tagline}</span>
               <span className="offer__plan-cta">{planCta}</span>

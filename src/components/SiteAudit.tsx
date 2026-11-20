@@ -39,7 +39,7 @@ const ES = {
  */
 export default function SiteAudit({ locale }: { locale: Locale }) {
   const href = withLocale(locale, "/audit");
-  if (locale === "en") return <IndustryAudit href={href} />;
+  if (locale === "en") return <IndustryAudit href={href} locale={locale} />;
   const copy = locale === "es-ES" ? spainizeData(ES) : ES;
-  return <IndustryAudit href={href} {...copy} />;
+  return <IndustryAudit href={href} locale={locale} {...copy} />;
 }

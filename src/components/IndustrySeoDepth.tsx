@@ -29,7 +29,7 @@ export default function IndustrySeoDepth({
   const depth = INDUSTRY_SEO_DEPTH[industry.slug];
   if (!depth) return null;
 
-  const links = industryDepthLinks(industry.slug, industry.name);
+  const links = industryDepthLinks(industry.slug, industry.name, locale === "es");
   const noun = tradeNoun(industry);
   const es = locale === "es";
 
@@ -81,7 +81,7 @@ export default function IndustrySeoDepth({
                   <DeferredImg
                     src={example.image}
                     sizes="(max-width: 860px) 90vw, 420px"
-                    alt={`${example.name} website`}
+                    alt={es ? `Vista del sitio de ${industry.name}` : `${example.name} website`}
                     width={example.width}
                     height={example.height}
                     className="industry-seo-depth__img"
@@ -92,11 +92,11 @@ export default function IndustrySeoDepth({
                     {example.name}
                     {example.demo ? <span className="industry-seo-depth__demo"> {titles.demo}</span> : null}
                   </h3>
-                  <p>{example.annotation}</p>
+                  <p>{es ? `Este ejemplo muestra cómo organizar las páginas de servicio, la navegación y las opciones de contacto para un negocio de ${industry.name.toLowerCase()}.` : example.annotation}</p>
                   {example.url.startsWith("http") ? (
                     <a className="text-link" href={example.url} target="_blank" rel="noopener noreferrer">{titles.visit}</a>
                   ) : (
-                    <Link className="text-link" href={example.url} prefetch={false}>{titles.visit}</Link>
+                    <Link className="text-link" href={es ? `/es${example.url}` : example.url} prefetch={false}>{titles.visit}</Link>
                   )}
                 </div>
               </article>
@@ -111,12 +111,15 @@ export default function IndustrySeoDepth({
           <h2 className="center"><HL text={titles.pages} mark={es ? "Páginas" : "Pages"} /></h2>
         </div>
         <ul className="industry-seo-depth__list">
-          {depth.pagesList.map((page) => (
+          {(es
+            ? ["Inicio", `Servicios de ${industry.name.toLowerCase()}`, "Zona de servicio", "Acerca del negocio", "Reseñas", "Contacto"]
+            : depth.pagesList
+          ).map((page) => (
             <li key={page}>{page}</li>
           ))}
         </ul>
         <p className="center">
-          <Link className="btn btn--ghost" href={links.pagesHref} prefetch={false}>{links.pagesLabel}</Link>
+          <Link className="btn btn--ghost" href={es ? `/es${links.pagesHref}` : links.pagesHref} prefetch={false}>{links.pagesLabel}</Link>
         </p>
       </section>
 
@@ -135,7 +138,7 @@ export default function IndustrySeoDepth({
               </tr>
             </thead>
             <tbody>
-              {industryCostRows().map((row) => (
+              {industryCostRows(es).map((row) => (
                 <tr key={row.plan}>
                   <td>{row.plan}</td>
                   <td>{row.price}</td>
@@ -147,7 +150,7 @@ export default function IndustrySeoDepth({
         </div>
         <p className="center muted">{titles.down}</p>
         <p className="center">
-          <Link className="btn btn--ghost" href={links.costHref} prefetch={false}>{links.costLabel}</Link>
+          <Link className="btn btn--ghost" href={es ? `/es${links.costHref}` : links.costHref} prefetch={false}>{links.costLabel}</Link>
         </p>
       </section>
 

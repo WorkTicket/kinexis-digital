@@ -291,7 +291,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           reverse
         >
           <h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2>
-          <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Mantén pulsado para ver el recorrido y abre el sitio completo en inglés.")}</p>
+          <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Explora el recorrido y abre el sitio completo en inglés.")}</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center btn-row spaced">
@@ -304,7 +304,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         </p>
       </Section>
       <Section id="plans">
-        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} />
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} stickers={spainChrome ? undefined : { website: SPANISH_PLAN_STICKERS.website.offer, "lead-system": SPANISH_PLAN_STICKERS["lead-system"].offer, plus: SPANISH_PLAN_STICKERS.plus.offer }} showStickers={!spainChrome} />
         <PlanCompare
           labels={{
             feature: tx("Función"),
@@ -312,7 +312,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             ownershipMark: tx("planes mensuales administrados"),
             mobileHint: tx("Toca un plan para ver qué incluye. Abre dos para comparar."),
             popularLabel: tx("El más elegido"),
-            notesAria: tx("Guía de planes y detalles del texto si no contestas"),
+            notesAria: tx("Guía de planes y detalles del mensaje tras una llamada perdida"),
             textbackLabel: tx("Texto si no contestas"),
             comparisonAria: tx("Comparación de características de planes"),
           }}
@@ -322,7 +322,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           textbackItems={ES_TEXTBACK_FOOTNOTE_ITEMS}
           plans={spanishCatalogPlansForCompare(tx)}
           includedLabel={tx("Incluido")}
-          hideStickers={spainChrome}
+          hideStickers
         />
       </Section>
       <Section band="lead">
@@ -629,7 +629,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
               <div className="plan__intro">
                 <h2 className="plan-title">{plan.name}</h2>
                 <p className="plan__tagline">{plan.tagline}</p>
-                {!spainChrome && <SpanishPlanSticker slug={plan.slug} kind="offer" />}
+                {!spainChrome && plan.slug !== "own-it" && <SpanishPlanSticker slug={plan.slug} />}
                 <p className="plan__note">{plan.note}</p>
                 {plan.guarantee && <p className="plan__guarantee">{tx("Incluye la garantía de 60 días")}</p>}
                 <p className="plan__guarantee plan__guarantee--refund">{tx("Garantía de devolución en 30 días")}</p>
@@ -642,13 +642,13 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             </article>
           ))}
         </div>
-        <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link className="trust-mark" href={href("/pay")} prefetch={false}>{tx("Seguir al pago")}</Link>.</p>
+        <p className="pay-bridge">{tx("¿Ya aprobaste la vista previa?")} <Link className="trust-mark" href={withLocale(locale, "/pay")} prefetch={false}>{tx("Seguir al pago")}</Link>.</p>
         <div className="guarantee-stack">
           <div className="guarantee-band">
             <GuaranteeBadge alt={tx("Garantía de leads rastreados de 60 días")} />
             <div>
               <h3><HL text={tx("¿Cero leads rastreados en 60 días? Condonamos dos cargos.")} mark={tx("dos cargos")} /></h3>
-              <p>{tx("Solo Lead System y Plus: si no recibes leads rastreados durante tus primeros 60 días en vivo, se condonan los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al texto si no contestas o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. Una garantía por negocio, con la cuenta al corriente. No aplica si un cambio tuyo impide el seguimiento o si pausas o cancelas antes del día 60. Own It no está incluido.")}</p>
+              <p>{tx("Solo Lead System y Plus: si no recibes leads rastreados durante tus primeros 60 días en vivo, se condonan los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al mensaje tras una llamada perdida o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. Una garantía por negocio, con la cuenta al corriente. No aplica si un cambio tuyo impide el seguimiento o si pausas o cancelas antes del día 60. Own It no está incluido.")}</p>
               <OpenDialog id="guarantee" className="trust-mark">{tx("Leer la garantía")}</OpenDialog>
             </div>
           </div>
@@ -684,10 +684,10 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             <section className="pricing-terms__group">
               <h3>{tx("Texto si no contestas")}</h3>
               <ul>
-                <li>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa.")}</li>
+                <li>{tx("El mensaje tras una llamada perdida es un extra opcional. Se necesita una línea dedicada de la empresa.")}</li>
                 <li>{tx(`En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes, más tarifas del operador.`)}</li>
                 <li>{tx("La aprobación del operador suele tardar 10 a 15 días y no está garantizada.")}</li>
-                <li>{tx(`En Website u Own It, puedes agregar el texto si no contestas por ${p("textBackAddonMo", currency)} al mes (mismas reglas de línea dedicada y operador).`)}</li>
+                <li>{tx(`En Website u Own It, puedes agregar el mensaje tras una llamada perdida por ${p("textBackAddonMo", currency)} al mes (mismas reglas de línea dedicada y operador).`)}</li>
               </ul>
             </section>
             <section className="pricing-terms__group">
@@ -709,11 +709,11 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
             </section>
           </div>
           <div className="pricing-terms__foot">
-            <div className="plan-notes plan-notes--compact" aria-label={tx("Detalles del texto si no contestas")}>
+            <div className="plan-notes plan-notes--compact" aria-label={tx("Detalles del mensaje tras una llamada perdida")}>
               <p className="plan-notes__label">{tx("Texto si no contestas")}</p>
               <div className="pricing-footnote pricing-footnote--bullets plan-notes__footnote">
                 <ul>
-                  <li>{tx("El texto si no contestas es un extra opcional. Se necesita una línea dedicada de la empresa.")}</li>
+                  <li>{tx("El mensaje tras una llamada perdida es un extra opcional. Se necesita una línea dedicada de la empresa.")}</li>
                   <li>{tx(`En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas.`)}</li>
                   <li>{tx("Pueden aplicar tarifas del operador.")}</li>
                   <li>{tx("La aprobación del operador suele tardar 10 a 15 días y no está garantizada.")}</li>
@@ -727,14 +727,14 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <Section tint>
         <h2 className="center"><HL text={tx("Mira qué cubre cada plan")} mark={tx("cada plan")} /></h2>
         <MobilePlanComparison
-          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1], sticker: spainChrome ? undefined : SPANISH_PLAN_STICKERS[plan.slug].name }))}
+          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1] }))}
           sections={table}
           hint={tx("Toca un plan para ver qué incluye. Abre dos para comparar.")}
           popularLabel={tx("El más elegido")}
           includedLabel={tx("Incluido")}
-          hideStickers={spainChrome}
+          hideStickers
         />
-        <div className="table-scroll pricing-comparison-table" role="region" aria-label={tx("Comparación de planes")} tabIndex={0}><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}>{spainChrome ? <span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span> : <SpanishPlanSticker slug={plan.slug} kind="name" />}</th>)}</tr></thead>
+        <div className="table-scroll pricing-comparison-table" role="region" aria-label={tx("Comparación de planes")} tabIndex={0}><table className="plan-table"><thead><tr><th scope="col">{tx("Qué recibes")}</th>{plans.map((plan, planIndex) => <th scope="col" className={plan.popular ? "is-pop" : undefined} key={plan.slug}><span className="plan-table__name">{plan.name}<br /><small>{table[2].rows[5][planIndex + 1]}</small></span></th>)}</tr></thead>
           {table.map((section) => <tbody key={section.group}><tr className="plan-table__group"><th colSpan={5}><span>{section.group}</span></th></tr>{section.rows.map(([label, ...values]) => <tr key={label}><th scope="row">{label}</th>{values.map((value, i) => <td className={i === 1 ? "is-pop" : undefined} key={`${label}-${i}`}>{value}</td>)}</tr>)}</tbody>)}
         </table></div>
         <OwnershipCompare
@@ -903,7 +903,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
             <p>{locale === "es-ES"
               ? tx(`La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a ${p("websiteMo", "eur")} al mes, Lead System a ${p("leadMo", "eur")}, Plus a ${p("plusMo", "eur")}, u Own It por ${p("ownIt", "eur")}.`)
               : tx(`La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a ${p("websiteMo", "usd")} al mes, Lead System a ${p("leadMo", "usd")}, Plus a ${p("plusMo", "usd")}, u Own It por ${p("ownIt", "usd")}.`)}</p>
-            <p>{tx("Lead System y Plus incluyen solicitudes de reseña en Google. El texto si no contestas es un extra opcional en esos planes. El SEO continuo se cotiza aparte.")}</p>
+            <p>{tx("Lead System y Plus incluyen solicitudes de reseña en Google. El mensaje tras una llamada perdida es un extra opcional en esos planes. El SEO continuo se cotiza aparte.")}</p>
           </div>
           <p className="center btn-row">
             <Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Comparar planes")}</Link>
@@ -971,7 +971,7 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
                   <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link>
                   <p className="post__excerpt muted">{post.excerpt}</p>
                   <div className="post__meta">
-                    <span>{post.readTime}</span>
+                    <span>{post.readTime.replace(" min read", " min de lectura")}</span>
                     <Link href={href(`/blog/${post.slug}`)} className="btn btn--ghost btn--sm" aria-label={tx(`Leer ${post.title}`)} prefetch={false}>{tx("Leer la guía")}</Link>
                   </div>
                 </div>
@@ -1022,7 +1022,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
             <span aria-hidden="true">·</span>
             <time dateTime={source.date}>{formattedDate}</time>
             <span aria-hidden="true">·</span>
-            <span>{source.readTime}</span>
+            <span>{source.readTime.replace(" min read", " min de lectura")}</span>
           </span>
         }
       />
@@ -1072,7 +1072,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
                   <li key={candidate.slug}>
                     <Link href={href(`/blog/${candidate.slug}`)} prefetch={false}>
                       <span className="blog-related__title">{translated.title}</span>
-                      <span className="blog-related__meta">{candidate.readTime}</span>
+                      <span className="blog-related__meta">{candidate.readTime.replace(" min read", " min de lectura")}</span>
                     </Link>
                   </li>
                 ))}
@@ -1152,7 +1152,7 @@ async function Reviews({ locale, tx, href, lang, band }: PageBits) {
         </p>
         {reviews.length > 0 ? (
           <div className="review-cards">
-            {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} sourceLabels={sourceLabels} />)}
+            {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} sourceLabels={sourceLabels} locale="es" />)}
           </div>
         ) : null}
       </Section>
@@ -1264,9 +1264,9 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("4. Textos y el operador")}</h2>
         <p>{tx(`Las solicitudes de reseña en Google se envían por mensaje de texto después de los trabajos en Lead System y Plus. El mensaje opcional para llamadas perdidas es una función aparte y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. El envío de mensajes de texto de ambas funciones depende de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.`)}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
-        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al texto si no contestas, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
+        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al mensaje tras una llamada perdida, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>
-        <p>{tx(`Own It es un pago de ${p("ownIt", currency)}, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es ${p("siteCareMo", currency)} al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. En Own It, el texto si no contestas se puede agregar por ${p("textBackAddonMo", currency)} al mes. En Lead System o Plus, un segundo número cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más tarifas del operador.`)}</p>
+        <p>{tx(`Own It es un pago de ${p("ownIt", currency)}, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es ${p("siteCareMo", currency)} al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. En Own It, el mensaje tras una llamada perdida se puede agregar por ${p("textBackAddonMo", currency)} al mes. En Lead System o Plus, un segundo número cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más tarifas del operador.`)}</p>
         <h2>{tx("7. Cancelación y acceso")}</h2>
         <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El cobro se detiene al final del período que ya pagaste y el sitio sigue en línea hasta entonces.")}</p>
         <p>{tx("Como en los planes mensuales Kinexis hospeda y administra el sitio, cuando termina el período pagado el hosting y la administración se detienen y el sitio sale de línea, salvo que lo conserves de otra forma.")}</p>
@@ -1288,11 +1288,11 @@ function Privacy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   return (
     <>
       <ContentSchema path={href("/privacy")} title={tx(PAGE_META["/privacy"].title)} description={tx(PAGE_META["/privacy"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Privacidad"), path: href("/privacy") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 17 de noviembre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
+      <PageHero locale={locale} h1={tx("Política de privacidad")} mark={tx("privacidad")} sub={tx("Actualizada el 20 de noviembre de 2026. Explica qué recoge este sitio y cómo lo usa Kinexis Digital.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("Qué recogemos")}</h2>
         <p>{tx("Si envías un formulario, recogemos lo que escribes: nombre, correo, teléfono, negocio o sitio, la página que quieres cambiar, tu mensaje y cualquier archivo. Si llamas o escribes, guardamos esa correspondencia para responder y hacer el trabajo.")}</p>
-        <p>{tx("El sitio está alojado en Cloudflare. Los registros del servidor pueden incluir tu dirección IP, navegador y las páginas que solicitas. También recopilamos mediciones propias de velocidad del sitio, como carga e interacción, en una muestra aleatoria de aproximadamente el 20 % de las visitas para mejorar su rendimiento. Se envían a nuestro propio endpoint sin cookies, ID de usuario ni cadenas de consulta, y no se usan para publicidad. La analítica (GA4) y la medición publicitaria (Meta Pixel y la API de conversiones de Meta) no son esenciales. El Pixel solo se carga después de que aceptes la medición publicitaria en el aviso de cookies o la actives en las preferencias de cookies. Solo enviamos a Meta un evento de lead desde el servidor después de que el servidor acepta un formulario y mientras el consentimiento de publicidad esté activo. Ese evento puede incluir la ruta de la página, tu dirección IP, el navegador, las cookies de Meta para navegador/clic (_fbp y _fbc) y hashes SHA-256 del correo o teléfono que envíes. Si rechazas la medición publicitaria o aún no has elegido, el Pixel no se carga y no enviamos eventos de leads desde el servidor. Tu elección de cookies se guarda durante 180 días. Puedes cambiarla más tarde desde el control de preferencias de cookies.")}</p>
+        <p>{tx("El sitio está alojado en Cloudflare. Los registros del servidor pueden incluir tu dirección IP, navegador y las páginas que solicitas. También recopilamos mediciones propias de velocidad del sitio (tiempos de carga e interacción) en una muestra aleatoria de aproximadamente el 20 % de las páginas vistas para mejorar su rendimiento. Cada medición contiene solo la ruta de la página, los tiempos y un identificador aleatorio por página; no crea ni lee cookies, no usa un ID de usuario ni incluye cadenas de consulta, y no se usa para publicidad. Tu dirección IP se usa durante aproximadamente un minuto para limitar el abuso de este endpoint. La analítica (GA4) y la medición publicitaria (Meta Pixel y la API de conversiones de Meta) no son esenciales. El Pixel solo se carga después de que aceptes la medición publicitaria en el aviso de cookies o la actives en las preferencias de cookies. Solo enviamos a Meta un evento de lead desde el servidor después de que el servidor acepta un formulario y mientras el consentimiento de publicidad esté activo. Ese evento puede incluir la ruta de la página, tu dirección IP, el navegador, las cookies de Meta para navegador/clic (_fbp y _fbc) y hashes SHA-256 del correo o teléfono que envíes. Si rechazas la medición publicitaria o aún no has elegido, el Pixel no se carga y no enviamos eventos de leads desde el servidor. Tu elección de cookies se guarda durante 180 días. Puedes cambiarla más tarde desde el control de preferencias de cookies.")}</p>
         <p>{tx("El chat en vivo lo ofrece Conferbot, un servicio externo. Su widget y conexión no se cargan a menos que aceptes tanto las cookies de analítica como las de publicidad. Si usas el chat, Conferbot procesa la información que decidas enviar para prestar la conversación.")}</p>
         <h2>{tx("Cómo lo usamos")}</h2>
         <p>{tx("Usamos esta información para contestarte, preparar una vista previa, prestar el plan que compras y enviarte mensajes de ese trabajo. No vendemos información personal.")}</p>

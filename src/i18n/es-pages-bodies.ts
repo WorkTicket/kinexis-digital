@@ -614,7 +614,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la página de albercas para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -626,7 +626,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de albercas",
-        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la página de albercas para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -764,7 +764,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la página de limpieza de vidrios para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -776,7 +776,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de limpieza de vidrios",
-        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver más ejemplos.</p>"
+        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la página de limpieza de vidrios para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -839,7 +839,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la página de césped para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -851,7 +851,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de césped",
-        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver más ejemplos.</p>"
+        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la página de césped para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1536,7 +1536,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la página de albercas para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1548,7 +1548,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de albercas",
-        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la página de albercas para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1652,7 +1652,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la página de limpieza de vidrios para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1664,7 +1664,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de limpieza de vidrios",
-        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver más ejemplos.</p>"
+        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la página de limpieza de vidrios para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1710,7 +1710,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la página de césped para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1722,7 +1722,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de césped",
-        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver más ejemplos.</p>"
+        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la página de césped para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",

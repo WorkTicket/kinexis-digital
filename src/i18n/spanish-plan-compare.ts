@@ -126,7 +126,7 @@ export const ES_PLAN_CHOOSER_BLURB =
   "¿No sabes cuál te conviene? Empieza con Website si necesitas presencia profesional en línea. Elige Lead System si quieres herramientas para captar y dar seguimiento a más oportunidades. Elige Plus si atiendes clientes en inglés y en español. Elige Own It si prefieres un pago único por el sitio.";
 
 export const ES_TEXTBACK_FOOTNOTE_ITEMS = [
-  "El texto si no contestas es opcional y necesita una línea dedicada de la empresa.",
+  "El mensaje tras una llamada perdida es opcional y necesita una línea dedicada de la empresa.",
   "Un segundo número de seguimiento cuesta $1 al mes si lo usas.",
   "Pueden aplicar tarifas del operador.",
   "La aprobación del operador suele tardar 10 a 15 días y no está garantizada.",
@@ -198,7 +198,7 @@ export const ES_CHECKOUT_UI = {
   routePaypal: "Continúa con PayPal",
   beforePayEyebrow: "Cobro",
   beforePayH1: "Antes de pagar",
-  beforePaySub: "La versión corta de cancelar, ambas garantías, el texto si no contestas y cuándo cae el primer cargo.",
+  beforePaySub: "La versión corta de cancelar, ambas garantías, el mensaje tras una llamada perdida y cuándo cae el primer cargo.",
   jumpInvoice: "Pagar una factura existente →",
   perMonth: "/mes",
   once: " una vez",
@@ -271,14 +271,14 @@ export const ES_PAY_FAQS = [
   },
   {
     q: "¿Cómo funciona la garantía de leads de 60 días?",
-    a: "Solo Lead System y Plus: cero leads rastreados durante tus primeros 60 días en vivo condona los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al texto si no contestas o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. La cuenta debe estar al corriente. No aplica si un cambio tuyo impide el seguimiento, o si pausas o cancelas antes del día 60. Una vez por negocio; Own It está excluido. Ver sección 5 de los Términos.",
+    a: "Solo Lead System y Plus: cero leads rastreados durante tus primeros 60 días en vivo condona los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al mensaje tras una llamada perdida o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. La cuenta debe estar al corriente. No aplica si un cambio tuyo impide el seguimiento, o si pausas o cancelas antes del día 60. Una vez por negocio; Own It está excluido. Ver sección 5 de los Términos.",
   },
   {
     q: "¿Cómo funciona la devolución en 30 días?",
     a: "Todos los planes la incluyen. Si no quedas satisfecho en los 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo si lo pides por escrito. Los costos de terceros ya pagados no se reembolsan. Ver sección 10 de los Términos.",
   },
   {
-    q: "¿Qué necesito para el texto si no contestas?",
+    q: "¿Qué necesito para el mensaje tras una llamada perdida?",
     a: "Es un extra opcional. Se necesita una línea dedicada de la empresa. Un segundo número de seguimiento cuesta $1/mes y pueden aplicar tarifas del operador. La activación depende de la aprobación del operador, normalmente en 10–15 días. Ver sección 4 de los Términos.",
   },
   {

@@ -286,7 +286,15 @@ export function industryProcessStepsEn(tradeNoun: string) {
   );
 }
 
-export function industryCostRows() {
+export function industryCostRows(es = false) {
+  if (es) {
+    return [
+      { plan: "Website", price: "$97/mes", note: "Hasta 5 páginas · hosting · 2 cambios chicos/mes" },
+      { plan: "Lead System", price: "$197/mes", note: "Reseñas · texto opcional · garantía de leads de 60 días" },
+      { plan: "Plus (Bilingüe)", price: "$297/mes", note: "Inglés y español · hasta 20 páginas" },
+      { plan: "Own It", price: "$1,497, un pago", note: "Archivos del sitio tuyos · 12 meses de hosting incluidos" },
+    ];
+  }
   return [
     { plan: "Website", price: "$97/mo", note: "Up to 5 pages · hosting · 2 small edits/mo" },
     { plan: "Lead System", price: "$197/mo", note: "Reviews · optional text-back · 60-day lead guarantee" },
@@ -295,11 +303,18 @@ export function industryCostRows() {
   ];
 }
 
-export function industryDepthLinks(slug: string, name: string) {
+export function industryDepthLinks(slug: string, name: string, es = false) {
+  const trade = slug === "electrical" ? "electrician"
+    : slug === "hvac" ? "HVAC"
+      : slug === "garage-doors" ? "garage door"
+        : slug === "pool-care" ? "pool service"
+          : slug === "window-cleaning" ? "window cleaning"
+            : slug === "yard-care" ? "lawn care"
+              : name.toLowerCase();
   return {
     costHref: industryCostPostPath(slug),
-    costLabel: `${name} website cost, explained`,
+    costLabel: es ? `Costo de un sitio web de ${name}, explicado` : `${trade} website cost, explained`,
     pagesHref: industryPagesPostPath(slug),
-    pagesLabel: `Full checklist: what pages a ${name.toLowerCase()} website needs`,
+    pagesLabel: es ? `Lista completa: páginas que necesita un sitio de ${name}` : `Full checklist: pages every ${trade} website needs`,
   };
 }

@@ -1,6 +1,7 @@
 import { preload } from "react-dom";
 import type { Locale } from "@/lib/i18n";
 import { still } from "@/lib/image-sources";
+import { Icon } from "@/components/artwork";
 
 const PAGE_ART = "/assets/kinexis/page-art";
 const HOME_ART = "/assets/home";
@@ -33,6 +34,14 @@ export function CampaignHeroArtwork({
   priority?: boolean;
   locale?: Locale;
 }) {
+  if (locale !== "en" && ["website-audit", "web-design", "all-services", "upgrades", "industries", "about", "contact"].includes(name)) {
+    const icon = name === "website-audit" ? "audit-speed"
+      : name === "web-design" ? "better-pricing"
+        : name === "industries" || name === "contact" ? "reporting"
+            : name === "upgrades" ? "updates"
+              : "reporting";
+    return <div className="campaign-page-art campaign-page-art--text-free" role="img" aria-label={alt}><Icon name={icon} alt="" size={240} /></div>;
+  }
   const suffix = locale === "en" ? "" : "-es";
   const desktop = still(`${PAGE_ART}/${name}-desktop${suffix}.avif`);
   const mobile = still(`${PAGE_ART}/${name}-mobile${suffix}.webp`);

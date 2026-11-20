@@ -26,7 +26,7 @@ export default function MobilePlanComparison({ plans, sections, hint, popularLab
           <summary>
             {plan.popular && <span className="mobile-plan-compare__badge"><span aria-hidden="true">★</span>{popularLabel}<span aria-hidden="true">★</span></span>}
             <span className="mobile-plan-compare__title">
-              {hideStickers ? (
+              {hideStickers || !plan.sticker && plan.name === "Own It" ? (
                 <span className="mobile-plan-compare__name">{plan.name}<span className="mobile-plan-compare__price">{plan.price}</span></span>
               ) : (
                 <img

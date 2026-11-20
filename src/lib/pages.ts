@@ -245,6 +245,7 @@ export const PAGES = {
   },
   privacy: {
     path: "/privacy",
+    updatedAt: "2026-11-20",
     title: "How Kinexis Handles Your Information",
     crumb: "Privacy",
     indexable: false,

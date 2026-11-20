@@ -80,7 +80,7 @@ export default function Form({
     serviceArea: "Ciudades o zonas donde trabajas",
     services: "Servicios principales que quieres destacar",
     servicesHint: "Por ejemplo: reparación de fugas, limpieza de drenajes o instalación de calentadores.",
-    notes: "¿Qué deberían saber tus clientes? (opcional)",
+    notes: "¿Qué deberíamos saber sobre tu negocio? (opcional)",
     message: "Mensaje (opcional)",
     uploadsTitle: "Imágenes para la vista previa",
     uploadsLead: "Sube tu logo y hasta 5 fotos del antes y después o del trabajo terminado. Aceptamos JPG, PNG, WebP, GIF o HEIC, hasta 4 MB por archivo.",
