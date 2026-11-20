@@ -80,7 +80,7 @@ export default function Page() {
 
         <div className="plans">
           {PLANS.map((plan) => (
-            <article className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
+            <article id={plan.slug === "lead-system" ? "lead-system" : undefined} className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
               {plan.popular && <span className="plan__badge">Most Popular</span>}
               <div className="plan__intro">
                 <h2 className="plan-title">{plan.name}</h2>
@@ -191,7 +191,7 @@ export default function Page() {
           hint="Tap a plan to see everything included. Open two to compare."
           popularLabel="Most Popular"
         />
-        <div className="table-scroll pricing-comparison-table">
+        <div className="table-scroll pricing-comparison-table" role="region" aria-label="Plan feature comparison" tabIndex={0}>
           <table className="plan-table">
             <thead>
               <tr>
@@ -246,7 +246,7 @@ export default function Page() {
       </Section>
 
       <Section id="faq" narrow>
-        <h2 className="center"><HL text="Questions About Plans And Billing" mark="Plans And Billing" /></h2>
+        <h2 className="center">Questions About Plans And Billing</h2>
         <Faq items={FAQS} />
       </Section>
     </>

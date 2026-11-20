@@ -1,5 +1,5 @@
 import Script from "next/script";
-import { switchHref, type Locale } from "@/lib/locale-core";
+import { ENGLISH_FALLBACK_PATHS, SPANISH_UTILITY_PATHS, switchHref, type Locale } from "@/lib/locale-core";
 
 const LANGS = [
   { locale: "en" as const, hrefLang: "en-US", name: "English" },
@@ -26,6 +26,8 @@ export default function LanguageSwitch({
   // Build-time / no-JS fallback: locale homes.
   const fallbackPath = locale === "en" ? "/" : "/es";
   const mirrorJson = JSON.stringify(mirroredPaths);
+  const fallbackJson = JSON.stringify(ENGLISH_FALLBACK_PATHS);
+  const utilityJson = JSON.stringify(SPANISH_UTILITY_PATHS);
   return (
     <>
       <details className={className ?? "footer-language"} data-lang-switch="">
@@ -60,7 +62,7 @@ export default function LanguageSwitch({
         id="kinexis-language-mirrors"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: `window.__KINEXIS_MIRRORS__=${mirrorJson.replace(/</g, "\\u003c")}`,
+          __html: `window.__KINEXIS_MIRRORS__=${mirrorJson.replace(/</g, "\\u003c")};window.__KINEXIS_ENGLISH_FALLBACKS__=${fallbackJson.replace(/</g, "\\u003c")};window.__KINEXIS_SPANISH_UTILITY_PATHS__=${utilityJson.replace(/</g, "\\u003c")}`,
         }}
       />
     </>

@@ -14,6 +14,7 @@ import {
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
+import { CampaignHeroArtwork, type CampaignPageArt } from "./CampaignArtwork";
 import { HL, Phrase } from "./mark";
 import { ShotFrame } from "./ShotFrame";
 import PreviewBar from "./PreviewBar";
@@ -25,7 +26,7 @@ export { Icon, Illustration, HL, Phrase };
 export type ArtName =
   | "homepage" | "portfolio" | "about" | "process" | "reviews" | "pricing"
   | "web-design" | "local-seo" | "website-audit" | "maintenance" | "faqs"
-  | "blog" | "contact" | "upgrades";
+  | "blog" | "contact" | "upgrades" | "industries" | "all-services";
 
 const HERO_FILES: Record<ArtName, string> = {
   homepage: "01-homepage",
@@ -42,6 +43,23 @@ const HERO_FILES: Record<ArtName, string> = {
   blog: "12-blog",
   contact: "13-contact",
   upgrades: "14-upgrades",
+  industries: "11-faqs",
+  "all-services": "01-homepage",
+};
+
+const CAMPAIGN_HERO: Partial<Record<ArtName, CampaignPageArt>> = {
+  about: "about",
+  portfolio: "portfolio",
+  industries: "industries",
+  pricing: "pricing",
+  reviews: "client-reviews",
+  blog: "blog",
+  contact: "contact",
+  "all-services": "all-services",
+  "web-design": "web-design",
+  "local-seo": "local-seo",
+  "website-audit": "website-audit",
+  upgrades: "upgrades",
 };
 
 type HeroImageProps = {
@@ -92,9 +110,21 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
 
 /** Responsive hero artwork. Source files are pre-sized WebP/AVIF, so the intrinsic ratio stays 1:1. */
 export function Art({
-  name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art,
-}: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string }) {
+  name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art, locale = "en",
+}: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string; locale?: Locale }) {
   const file = HERO_FILES[name];
+  const campaignName = CAMPAIGN_HERO[name];
+  if (campaignName) {
+    return (
+      <CampaignHeroArtwork
+        name={campaignName}
+        alt={alt}
+        fallback={still(`/assets/heroes/${file}-640.webp`)}
+        priority={priority}
+        locale={locale}
+      />
+    );
+  }
   const base = `/assets/heroes/${file}`;
   // Lazy art falls back to 640w so a missing srcset pick never downloads the 1254 master.
   const src = still(`${base}-640.webp`);
@@ -159,7 +189,7 @@ export function PageHero({
   previewBar?: boolean;
   children?: ReactNode;
 }) {
-  const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} /> : h1;
+  const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} phrase /> : h1;
   const tracked = fallbackTrack(track?.mobile, track?.desktop);
   const leadTracked = fallbackTrack(track?.leadMobile, track?.leadDesktop);
   const leadClass = ["muted", "lead", leadTracked?.className].filter(Boolean).join(" ");
@@ -192,7 +222,7 @@ export function PageHero({
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
               {/* PAGE_HERO_SIZES understates the ~260px slot so mobile picks 480w LCP AVIF. */}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={PAGE_HERO_SIZES} /> : null)}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={PAGE_HERO_SIZES} locale={locale} /> : null)}
             </div>
           </div>
         </div>
@@ -204,16 +234,16 @@ export function PageHero({
 
 /** Image + copy section used for service introductions and story blocks. */
 export function MediaSplit({
-  image, alt = "", decor, reverse, className = "", id, children,
+  image, art, alt = "", decor, reverse, className = "", id, locale = "en", children,
 }: {
-  image: ArtName; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; children: ReactNode;
+  image?: ArtName; art?: ReactNode; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; locale?: Locale; children: ReactNode;
 }) {
   return (
     <div id={id} className={`media-split${reverse ? " media-split--reverse" : ""}${className ? ` ${className}` : ""}`}>
       <div className="media-split__art">
         <div className="art-wrap">
           {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-          <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} />
+          {art ?? (image ? <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} locale={locale} /> : null)}
         </div>
       </div>
       <div className="media-split__copy">{children}</div>
@@ -250,16 +280,16 @@ export function CtaBand({
   const trust =
     locale === "es-ES"
       ? {
-          leadLabel: "Garantía de clientes en 60 días",
+          leadLabel: "Garantía de leads rastreados en 60 días",
           refundLabel: "Garantía de devolución en 30 días",
-          downLabel: "Sin enganche",
+          downLabel: "Sin pago inicial",
           previewLabel: "Vista previa gratis en 2 días hábiles",
         }
       : locale === "es-419"
         ? {
-            leadLabel: "Garantía de clientes en 60 días",
+            leadLabel: "Garantía de leads rastreados en 60 días",
             refundLabel: "Garantía de devolución en 30 días",
-            downLabel: "$0 de enganche",
+            downLabel: "$0 de entrada",
             previewLabel: "Vista previa gratis en 2 días hábiles",
           }
         : undefined;

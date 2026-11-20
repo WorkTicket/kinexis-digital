@@ -23,9 +23,9 @@ export function spanishHomeFaqs(tx: (s: string) => string, opts?: SpanishPlanOpt
         ? tx(`Los planes mensuales empiezan con ${p("zeroDown", "eur")} de entrada y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.`)
         : tx(`Los planes mensuales tienen ${p("zeroDown", "usd")} de entrada y son mes a mes desde el lanzamiento, con el precio fijo durante 24 meses. Cancela cuando quieras por texto, correo o Messenger, sin cargo por cancelar. Own It es un solo pago, sin plan mensual.`),
     },
-    { q: tx("¿Qué pasa si cancelo?"), a: tx("Cancela cuando quieras por texto, correo o Messenger—no hay cargo por cancelar. Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Si quieres quedarte con el sitio, pide una compra (un pago único por escrito de los archivos para hospedarlos tú) o pasa a Own It antes de que termine el período pagado.") },
-    { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. Una compra es un pago único por escrito de esos archivos para mover el sitio a tu hosting. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.") },
-    { q: tx("¿Qué cubre la garantía de 60 días?"), a: tx("Lead System y Plus incluyen la garantía de 60 días. Si recibes cero leads rastreados durante los primeros 60 días en vivo, condonamos el tercer y cuarto cargo. Se limita a una garantía por negocio y Own It no está incluido.") },
+    { q: tx("¿Qué pasa si cancelo?"), a: tx("Cancela cuando quieras por texto, correo o Messenger—no hay cargo por cancelar. Tu sitio sigue en línea hasta el final del período que ya pagaste. Cuando ese período termina, el hosting y la administración se detienen y el sitio sale de línea. Si quieres quedarte con el sitio, pide una compra de $1,497 (un pago único por escrito de los archivos para hospedarlos tú) o pasa a Own It antes de que termine el período pagado.") },
+    { q: tx("¿Quién es dueño del sitio?"), a: tx("Con Own It, los archivos son tuyos desde el día del lanzamiento. En los planes mensuales, Kinexis hospeda y administra el sitio mientras el plan esté activo. La compra de los archivos cuesta $1,497 en un solo pago por escrito para moverlos a tu hosting. Pide las condiciones por escrito antes de cancelar si quieres quedarte con el sitio.") },
+    { q: tx("¿Qué cubre la garantía de 60 días?"), a: tx("Solo Lead System y Plus: si recibes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo. Cuenta una llamada de 30 segundos o más, una respuesta al texto si no contestas o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. La cuenta debe estar al corriente. No aplica si un cambio tuyo impide el seguimiento, o si pausas o cancelas antes del día 60. Una garantía por negocio; Own It está excluido. Consulta la sección 5 de los Términos.") },
     { q: tx("¿Qué cubre la garantía de devolución en 30 días?"), a: tx("Todos los planes incluyen una garantía de devolución de 30 días. Si no quedas satisfecho con tu sitio en los primeros 30 días desde el lanzamiento, te devolvemos tu pago más reciente completo. Debes pedirlo por escrito. No cubre costos de terceros que ya hayamos pagado.") },
     { q: tx("¿Cuándo estará en línea mi sitio?"), a: tx("Empezamos con la vista previa gratis (lista en 2 días hábiles). Cuando la apruebas y recibimos el contenido necesario, el sitio completo suele lanzarse en 5 días hábiles — confirmamos esa fecha por escrito. El texto opcional si no contestas empieza tras la aprobación del operador, que suele tardar de 10 a 15 días.") },
     { q: tx("¿Google podrá encontrar mi sitio?"), a: tx("Cada sitio tiene una estructura limpia, páginas rápidas y la configuración básica que Google necesita para leerlo. El SEO continuo no está incluido en los cuatro planes, pero podemos cotizarlo aparte.") },
@@ -53,25 +53,27 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
   };
   const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
     website: {
-      tagline: tx("Una casa profesional para tu negocio."),
+      tagline: tx("Para tener un sitio profesional, con hosting y cambios de rutina a cargo nuestro."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
         [tx("Sitio para celular"), tx("Hasta 5 páginas")],
         [tx("Hosting + SSL"), tx("Seguridad y respaldos")],
         [tx("Cambios chicos*"), tx("Hasta 2 al mes, en 2 días hábiles")],
+        [tx("Dominio"), tx("El primer año incluido · a tu nombre")],
         [tx("Leads de formulario"), tx("Sabes cuándo llega una cotización")],
         [tx("Páginas nuevas"), tx(`${p("newPage", currency)} cada una`)],
       ],
     },
     "lead-system": {
-      tagline: tx("Tu sitio y las herramientas que traen llamadas."),
+      tagline: tx("Para negocios que quieren seguimiento de llamadas y solicitudes de reseña en Google junto con su sitio web."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
         [tx("Sitio para celular"), tx("Hasta 10 páginas, hosting y respaldos")],
         [tx("Texto si no contestas"), tx(`Opcional · ${p("secondNumberMo", currency)}/mes 2.º número + operador`)],
         [tx("Reseñas de Google"), tx("Después de cada trabajo")],
+        [tx("Dominio"), tx("El primer año incluido · a tu nombre")],
         [tx("Ajuste del perfil"), tx("En el lanzamiento")],
         [tx("Llamadas y reporte"), tx("Un reporte al mes")],
         [tx("Cambios chicos sin tope*"), tx("En 1 día hábil")],
@@ -79,13 +81,14 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       ],
     },
     plus: {
-      tagline: tx("Llega a clientes en inglés y en español."),
+      tagline: tx("Para negocios que atienden a clientes en inglés y en español."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
         [tx("Sitio bilingüe"), tx("Hasta 20 páginas, inglés y español")],
         [tx("Texto si no contestas"), tx(`Opcional · EN/ES · ${p("secondNumberMo", currency)}/mes 2.º número + operador`)],
         [tx("Reseñas de Google"), tx("Inglés y español")],
+        [tx("Dominio"), tx("El primer año incluido · a tu nombre")],
         [tx("Ajuste del perfil"), tx("+ 2 publicaciones al mes")],
         [tx("Llamadas y reporte"), tx("Un reporte al mes")],
         [tx("Cambios chicos sin tope*"), tx("El mismo día hábil si pides antes del mediodía CT")],
@@ -93,7 +96,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       ],
     },
     "own-it": {
-      tagline: tx("Un pago. Un sitio que es tuyo."),
+      tagline: tx("Para comprar el sitio en un solo pago y tener los archivos desde el lanzamiento."),
       kicker: tx("Un pago"),
       note: tx("Se paga al aprobar la vista previa · sin plan mensual · sin garantía de leads"),
       features: [
@@ -119,7 +122,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
     ...copy[plan.slug],
     price: priceBySlug[plan.slug],
     name: names[plan.slug],
-    cta: names[plan.slug],
+    cta: tx("Solicitar vista previa gratis"),
     suffix: plan.suffix === "/mo" ? tx("/mes") : plan.suffix === "one-time" ? tx("una vez") : plan.suffix,
   }));
 }

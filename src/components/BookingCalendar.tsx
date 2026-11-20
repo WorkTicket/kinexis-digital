@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { parseConsentCookie } from "@/lib/consent-cookie";
 import { SITE } from "@/lib/site";
 
 const TZ = "America/Chicago";
@@ -161,11 +162,31 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
     data.set("topic", "strategy-call");
     data.set("date", labelDay(day, copy.dateLocale));
     data.set("time", `${labelTime(time)} Central`);
+    const metaForm = form.dataset.metaForm || "";
+    const consentCookie = document.cookie.split(";").map((part) => part.trim())
+      .find((part) => part.startsWith("kinexis_consent="))?.slice("kinexis_consent=".length);
+    let metaEventId = "";
+    if (metaForm && parseConsentCookie(consentCookie).ads) {
+      try {
+        metaEventId = crypto.randomUUID();
+        data.set("kx_meta_form", metaForm);
+        data.set("kx_event_id", metaEventId);
+        data.set("kx_form_path", location.pathname);
+      } catch {
+        // Continue booking normally if a secure random event ID is unavailable.
+      }
+    }
     setBusy(true);
     try {
       const res = await fetch("/api/contact", { method: "POST", headers: { Accept: "application/json" }, body: data });
       const body = await res.json().catch(() => ({})) as { error?: string };
       if (res.ok) {
+        if (metaEventId) {
+          const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
+          const trackMetaLead = window.__KINEXIS_TRACK_META_LEAD__;
+          if (trackMetaLead) trackMetaLead(pendingMetaLead.form, pendingMetaLead.path, pendingMetaLead.eventId);
+          else (window.__KINEXIS_PENDING_META_LEADS__ ??= []).push(pendingMetaLead);
+        }
         setDone(true);
         setMsg("");
         return;
@@ -240,7 +261,7 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
         </div>
       )}
       {day && time && (
-        <form className="form booking-cal__form" noValidate onSubmit={submit} onInput={(event) => (event.target as HTMLElement).classList.remove("invalid")}>
+        <form className="form booking-cal__form" data-meta-form="strategy-call" noValidate onSubmit={submit} onInput={(event) => (event.target as HTMLElement).classList.remove("invalid")}>
           <p className="booking-cal__picked">{labelDay(day, copy.dateLocale)} {copy.at} {labelTime(time)} Central</p>
           <label className="field"><input name="name" placeholder=" " autoComplete="given-name" required /><span>{copy.firstName}</span></label>
           <label className="field"><input type="email" name="email" placeholder=" " autoComplete="email" required /><span>{copy.email}</span></label>
@@ -248,7 +269,7 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
           <label className="field"><input name="business" placeholder=" " /><span>{copy.business}</span></label>
           <div hidden>
             <label>
-              Leave blank
+              {copy.dateLocale.startsWith("es") ? "Déjalo en blanco" : "Leave blank"}
               <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
             </label>
           </div>

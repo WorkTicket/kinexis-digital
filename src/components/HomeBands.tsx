@@ -55,13 +55,15 @@ type Reason = { title: string; text: string; icon: (typeof REASONS)[number]["ico
 export function ReviewRail({
   steps = REVIEW_STEPS,
   numbersOnly = false,
+  className = "",
 }: {
   steps?: readonly ReviewStep[];
   /** Big step numbers, no icons (unused; homepage keeps icons + badge). */
   numbersOnly?: boolean;
+  className?: string;
 }) {
   return (
-    <ol className={`review-rail${numbersOnly ? " review-rail--numbers" : ""}`}>
+    <ol className={`review-rail${numbersOnly ? " review-rail--numbers" : ""}${className ? ` ${className}` : ""}`}>
       {steps.map((step) => (
         <li key={step.title} className="review-rail__step">
           {numbersOnly ? (

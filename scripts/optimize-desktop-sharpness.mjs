@@ -1,7 +1,7 @@
 /**
  * Desktop / high-DPI sharpness — larger candidates + high-q re-encodes.
  * Leaves mobile LCP files byte-identical (page-hero 480/640, poster 280/560/768,
- * industry 480, case-study 400, card 400/480).
+ * case-study 400, card 400/480).
  *
  * Run: node scripts/optimize-desktop-sharpness.mjs
  * Refresh external high-resolution masters with:
@@ -107,38 +107,6 @@ console.log("=== page-hero 960/1254 (WebP q90 / AVIF q80–86 4:4:4) — skip 48
         quality: 86,
       }),
     );
-  }
-  await mapPool(tasks, CONCURRENCY, (t) => t());
-}
-
-console.log("=== industry hero 960/1120/1536 (keep 480 + 768 mobile picks) ===");
-{
-  const industryDirectory = "public/assets/industries";
-  const industries = (await readdir(industryDirectory, { withFileTypes: true }))
-    .filter((e) => e.isDirectory())
-    .map((e) => e.name)
-    .sort();
-  const tasks = [];
-  for (const name of industries) {
-    const master = path.join(industryDirectory, name, "hero.webp");
-    // 768 is the lab mobile pick at sizes 270×2.625 — leave tip bytes alone.
-    for (const width of [960, 1120, 1536]) {
-      tasks.push(() =>
-        job(`${name}/hero-${width}.webp`, master, path.join(industryDirectory, name, `hero-${width}.webp`), {
-          width,
-          format: "webp",
-          quality: WEBP_Q,
-        }),
-      );
-      tasks.push(() =>
-        job(`${name}/hero-${width}.avif`, master, path.join(industryDirectory, name, `hero-${width}.avif`), {
-          width,
-          format: "avif",
-          quality: AVIF_Q,
-          photo: true,
-        }),
-      );
-    }
   }
   await mapPool(tasks, CONCURRENCY, (t) => t());
 }

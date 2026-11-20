@@ -55,8 +55,28 @@ for (const name of files) {
   await writeFile(path.join(DIR, `${stem}-640.avif`), avif640);
   written += 1;
 
+  // The 800w detail-page candidate must come from the 1600w master, not the
+  // 640w derivative, so desktop DPR 1 gets a suitably sharp image without
+  // downloading the full master. DPR 2 continues to use the genuine master.
+  const master = await readFile(path.join(DIR, `${stem}.webp`));
+  const detailVariants = [];
+  for (const width of [800, 960]) {
+    let webpDetail;
+    let quality = 88;
+    for (; quality >= 72; quality -= 4) {
+      webpDetail = await sharp(master)
+        .resize({ width, withoutEnlargement: true, kernel: "lanczos3" })
+        .webp({ quality, effort: 5, smartSubsample: true, alphaQuality: 100 })
+        .toBuffer();
+      if (webpDetail.length <= 600 * 1024) break;
+    }
+    await writeFile(path.join(DIR, `${stem}-${width}.webp`), webpDetail);
+    detailVariants.push(`${width}.webp ${Math.round(webpDetail.length / 1024)}k`);
+    written += 1;
+  }
+
   console.log(
-    `OK  ${stem}: 320.webp ${Math.round(webp.length / 1024)}k / 320.avif ${Math.round(avif320.length / 1024)}k / 640.avif ${Math.round(avif640.length / 1024)}k`,
+    `OK  ${stem}: 320.webp ${Math.round(webp.length / 1024)}k / 320.avif ${Math.round(avif320.length / 1024)}k / 640.avif ${Math.round(avif640.length / 1024)}k / ${detailVariants.join(" / ")}`,
   );
 }
 

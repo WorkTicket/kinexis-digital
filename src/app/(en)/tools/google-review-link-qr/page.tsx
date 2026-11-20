@@ -69,6 +69,8 @@ export default function GoogleReviewLinkQrPage() {
         </p>
         <Form
           fields={LEAD_FIELDS}
+          conversion="preview"
+          metaForm="review-qr-tool"
           button="Get My Free Preview"
           fast
           hiddenFields={{

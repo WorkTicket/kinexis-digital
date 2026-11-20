@@ -1,7 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import { FAQS } from "@/lib/content";
 import { PageSchema } from "@/components/JsonLd";
-import { CtaBand, Faq, HL, PageHero, Section } from "@/components/ui";
+import { CtaBand, Faq, PageHero, Section } from "@/components/ui";
 
 export const metadata = pageMetadata("faqs");
 
@@ -19,7 +19,7 @@ export default function Page() {
       <PageSchema page="faqs" faqs={FAQ_ITEMS} />
       <PageHero h1="Questions Business Owners Ask Us" mark="Ask Us" sub="Read the details on plans, ownership, the 60-day lead guarantee, and cancellation. If your question isn’t here, send it to us." image="faqs" imageAlt="Question marks for frequently asked questions" />
       <Section tint narrow decor="light">
-        <h2 className="center"><HL text="Answers Before You Commit" mark="Before You Commit" /></h2>
+        <h2 className="center">Answers Before You Commit</h2>
         <p className="center muted">Plans, ownership, guarantees, and cancellation — in plain language.</p>
         <Faq items={FAQ_ITEMS} />
       </Section>

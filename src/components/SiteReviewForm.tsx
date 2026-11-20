@@ -18,6 +18,7 @@ type Copy = {
   tooLong: string;
   error: string;
   network: string;
+  gotcha: string;
 };
 
 const EN: Copy = {
@@ -34,6 +35,7 @@ const EN: Copy = {
   tooLong: `Please keep your review to ${REVIEW_QUOTE_MAX} characters or fewer.`,
   error: "Something went wrong. Please try again.",
   network: "Network error. Please try again.",
+  gotcha: "Leave blank",
 };
 
 export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) {
@@ -195,7 +197,7 @@ export default function SiteReviewForm({ copy = EN }: { copy?: Partial<Copy> }) 
 
       <div hidden>
         <label>
-          Leave blank
+          {text.gotcha}
           <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" />
         </label>
       </div>

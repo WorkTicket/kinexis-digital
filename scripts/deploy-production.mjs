@@ -5,7 +5,7 @@
  *
  * Gate order:
  *   1. npm run check
- *   2. npm run test:e2e          (local Playwright; fails closed)
+ *   2. npm run test:e2e -- --workers=4 (local Playwright; fails closed)
  *   3. npm run build:worker
  *   4. assert Conferbot bot id in .open-next (fails closed)
  *   5. npm run deploy:worker
@@ -20,9 +20,25 @@
  * Usage: node scripts/deploy-production.mjs
  * Requires: wrangler logged in; Playwright browsers installed (`npx playwright install`).
  */
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
+
+const gitStatus = execFileSync("git", ["status", "--porcelain"], { encoding: "utf8" }).trim();
+if (gitStatus) {
+  console.error("[deploy-production] Working tree must be clean before deployment.");
+  process.exit(1);
+}
+const approvedSha = process.env.APPROVED_SHA;
+if (!approvedSha) {
+  console.error("[deploy-production] APPROVED_SHA is required; refusing to deploy.");
+  process.exit(1);
+}
+const fullHeadSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+if (approvedSha !== fullHeadSha) {
+  console.error("[deploy-production] HEAD does not match APPROVED_SHA; refusing to deploy.");
+  process.exit(1);
+}
 
 const PRODUCTION_SITE_URL = "https://www.kinexisdigital.com";
 /** Public bot id from .env.production — must appear in the Worker build output. */
@@ -124,16 +140,45 @@ function assertConferbotBotIdInBuild() {
 }
 
 const steps = [
+  // Build-time analytics IDs are optional for CI builds but required for a
+  // production deploy. Validate them before running tests/build/deploy steps.
+  {
+    cmd: "node",
+    args: ["--env-file=.env.production", "scripts/search-on-deploy.mjs", "--preflight", "--require-analytics"],
+    kind: "gate",
+  },
   { cmd: "npm", args: ["run", "check"], kind: "gate" },
-  { cmd: "npm", args: ["run", "test:e2e"], kind: "gate" },
-  { cmd: "npm", args: ["run", "build:worker"], kind: "build" },
-  { cmd: "npm", args: ["run", "deploy:worker"], kind: "post" },
+  // Four workers completed the full desktop+mobile suite reliably on fresh
+  // Windows dev servers; the default worker count intermittently corrupts a
+  // Next dev route-data response under concurrent pre-render requests.
+  { cmd: "npm", args: ["run", "test:e2e", "--", "--workers=4"], kind: "gate" },
+  { cmd: "npm", args: ["run", "build:worker:production"], kind: "build" },
+  { cmd: "npm", args: ["run", "deploy:worker"], kind: "post", includeGitVersion: true },
   { cmd: "npm", args: ["run", "search:notify"], kind: "post" },
   { cmd: "npm", args: ["run", "verify:prod"], kind: "post" },
 ];
 
 for (const step of steps) {
-  const { cmd, args, kind } = step;
+  const { cmd, kind } = step;
+  let args = step.args;
+  if (step.includeGitVersion) {
+    // Resolve the revision at the moment of deployment, after all gates/builds,
+    // so the Worker version metadata identifies the exact source being shipped.
+    const fullSha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+    const shortSha = execFileSync("git", ["rev-parse", "--short", "HEAD"], { encoding: "utf8" }).trim();
+    if (!/^[0-9a-f]{40}$/.test(fullSha)) {
+      console.error(`[deploy-production] Invalid full Git SHA: ${fullSha}`);
+      process.exit(1);
+    }
+    args = [
+      ...args,
+      "--",
+      "--message",
+      `release-1@${fullSha}`,
+      "--tag",
+      shortSha,
+    ];
+  }
   console.log(`\n[deploy-production] → ${cmd} ${args.join(" ")}`);
   if (kind === "gate") {
     console.log("[deploy-production]   (NEXT_PUBLIC_CONFERBOT_ENABLED=0 for this gate)");

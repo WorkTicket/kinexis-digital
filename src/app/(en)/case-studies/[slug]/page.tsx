@@ -35,6 +35,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const { slug } = await params;
   const study = caseStudyBySlug(slug);
   if (!study) notFound();
+  const industryPage =
+    study.slug === "preferred-plumbing"
+      ? { href: "/industries/plumbing", label: "Website design for plumbers" }
+      : study.slug === "a1-property-services"
+        ? { href: "/industries/landscaping", label: "Website design for landscaping companies" }
+        : null;
 
   return (
     <>
@@ -81,6 +87,11 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <p className="eyebrow spaced">Outcome</p>
           <p>{study.outcome}</p>
+          {industryPage ? (
+            <p className="spaced">
+              <Link href={industryPage.href} prefetch={false}>{industryPage.label}</Link>
+            </p>
+          ) : null}
           <p className="btn-row spaced">
             <a className="btn btn--primary" href={study.url} rel="noopener noreferrer" target="_blank">
               View live site
@@ -93,8 +104,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           <figure className="case-study__shot">
             <DeferredImg
               src={portfolioFile(study.image, 400)}
-              srcSet={portfolioCaseStudySrcSet(study.image)}
-              avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif")}
+              srcSet={portfolioCaseStudySrcSet(study.image, "webp", study.width)}
+              avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif", study.width)}
               sizes={IMAGE_SIZES.caseStudyShot}
               alt={`${study.title} homepage screenshot`}
               width={400}
@@ -104,6 +115,23 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </figure>
         </div>
       </Section>
+      {CASE_STUDIES.length > 1 ? (
+        <Section tint>
+          <div className="container container--narrow">
+            <h2><HL text="More real client projects" mark="client projects" /></h2>
+            <ul className="blog-related__list">
+              {CASE_STUDIES.filter((item) => item.slug !== study.slug).map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/case-studies/${item.slug}`} prefetch={false}>
+                    <span className="blog-related__title">{item.title}</span>
+                    <span className="blog-related__meta">{item.trade} case study</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
+      ) : null}
     </>
   );
 }

@@ -15,6 +15,7 @@ export const metadata = contentMetadata({
   description: "Elige Website, Lead System, Plus u Own It y paga de forma segura con PayPal. Precios en USD: $97, $197, $297 o $1,497.",
   absolute: true,
   locale: "es-419",
+  index: false,
 });
 
 function PaymentIcon({ kind }: { kind: "plan" | "receipt" | "card" }) {

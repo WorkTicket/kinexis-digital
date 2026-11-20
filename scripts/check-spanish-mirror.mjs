@@ -51,6 +51,7 @@ for (const [path, expected] of [
   ["/blog/tree-service-website-pages", "/es/blog/tree-service-website-pages"],
   ["/industries/junk-removal", "/es/industries/junk-removal"],
   ["/industries/tree-care", "/es/industries/tree-care"],
+  ["/pricing#lead-system", "/es/pricing#lead-system"],
 ]) {
   const actual = localeHref("es-419", path);
   if (actual !== expected) {
@@ -77,6 +78,50 @@ for (const slug of [
     console.error("Spanish article is missing or looks incomplete:", slug, "(" + words + " words)");
     process.exit(1);
   }
+}
+
+const liveGuideWordCounts = {
+  "website-mistakes-that-cost-you-calls": 3368,
+  "turn-clicks-into-calls": 2718,
+  "small-business-marketing-budget": 2746,
+  "make-your-website-mobile-ready": 2705,
+  "local-seo-get-found-get-called": 4649,
+  "build-trust-with-reviews": 2716,
+  "monthly-website-vs-own-it": 2727,
+  "how-to-ask-for-google-reviews-contractor": 3101,
+  "google-business-profile-checklist": 3094,
+  "missed-call-text-back-templates": 1489,
+};
+for (const [slug, liveWords] of Object.entries(liveGuideWordCounts)) {
+  const post = esPost(slug);
+  const words = post
+    ? [post.lead, ...post.sections.map((section) => section.html)]
+        .join(" ")
+        .replace(/<[^>]+>/g, " ")
+        .split(/\\s+/)
+        .filter(Boolean).length
+    : 0;
+  const minimumWords = Math.ceil(liveWords * 0.7);
+  if (words < minimumWords) {
+    console.error(
+      "Spanish long-form guide is shorter than its approved baseline:",
+      slug,
+      "(" + words + " words; expected at least " + minimumWords + ")",
+    );
+    process.exit(1);
+  }
+}
+const contractorGuide = esPost("web-design-for-contractors");
+const contractorWords = contractorGuide
+  ? [contractorGuide.lead, ...contractorGuide.sections.map((section) => section.html)]
+      .join(" ")
+      .replace(/<[^>]+>/g, " ")
+      .split(/\\s+/)
+      .filter(Boolean).length
+  : 0;
+if (contractorWords < 1000) {
+  console.error("Spanish contractor checklist must stay above 1,000 words:", contractorWords);
+  process.exit(1);
 }
 console.log("Spanish mirror coverage OK (" + MIRROR_PATHS.length + " paths).");
 `;

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import { FAQS, STEPS } from "@/lib/content";
-import { SITE, telHref } from "@/lib/site";
 import { OpenDialog } from "@/components/OpenDialog";
 import Stepper from "@/components/Stepper";
 import { PageSchema } from "@/components/JsonLd";
@@ -15,36 +14,12 @@ import TrustStrip from "@/components/TrustStrip";
 import PlanCompare from "@/components/PlanCompare";
 import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
-import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 
 export const metadata = pageMetadata("home");
 // Homepage is curated (no live review APIs). Keep a long ISR window so the
 // OpenNext KV cache can serve HTML without rebooting Next on every hit.
 export const revalidate = 86400;
-
-function SectionGraphic({ name, alt, className }: { name: string; alt: string; className: string }) {
-  const base = `/assets/home/${name}`;
-  const src = `${base}.webp`;
-  const widths = [640, 768, 1120, 1280] as const;
-  const sizes = IMAGE_SIZES.homeSection;
-
-  return (
-    <picture className={`home-section-art ${className}`}>
-      <source type="image/avif" srcSet={imageSrcSet(src, widths, "avif")} sizes={sizes} />
-      <img
-        src={imageVariant(src, 640, "webp")}
-        srcSet={imageSrcSet(src, widths)}
-        sizes={sizes}
-        alt={alt}
-        width={1536}
-        height={1024}
-        loading="lazy"
-        decoding="async"
-        fetchPriority="low"
-      />
-    </picture>
-  );
-}
 
 export default async function Home() {
   return (
@@ -54,28 +29,29 @@ export default async function Home() {
       {/* 1. Hero — poster is the first paint; the film fades in once it is playing. */}
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
-          <p className="eyebrow">Website plans for local businesses</p>
-          <h1><HL text="A Website That Brings In More Calls" mark="More Calls" /></h1>
+          <p className="eyebrow">Websites for contractors and home service businesses</p>
+          <h1><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" phrase /></h1>
+          <p className="hero__sub">Send us your business details and get a free homepage preview in 2 business days. No card needed.</p>
           <ul className="ticks">
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>See your homepage free</b> – no card</span>
-                <span>and no obligation before you pay</span>
+                <span><b>Free preview</b></span>
+                <span>No card and no obligation before choosing a plan</span>
               </span>
             </li>
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Catch the calls you miss</b> – optional</span>
-                <span>text-back and follow-up after every job</span>
+                <span><b>Optional text-back</b></span>
+                <span>On Lead System and Plus, or as a $97/mo add-on</span>
               </span>
             </li>
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Build your Google reputation</b> – review</span>
-                <span>requests sent for you, not left to chance</span>
+                <span><b>Google reviews</b></span>
+                <span>Requests included with Lead System and Plus after jobs</span>
               </span>
             </li>
           </ul>
@@ -84,12 +60,6 @@ export default async function Home() {
           </div>
           <div className="hero__reassure">
             <TrustStrip className="hero__trust" />
-            <p className="hero__call muted small">
-              <span className="hero__call-prompt">Prefer to talk?</span>
-              <Link className="trust-mark" href="/strategy-call" prefetch={false}>Book a call</Link>
-              <span className="hero__call-sep" aria-hidden="true">·</span>
-              <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a>
-            </p>
           </div>
         </div>
         <HeroFilm />
@@ -109,33 +79,36 @@ export default async function Home() {
 
       {/* 3. What you get */}
       <Section tint>
-        <MediaSplit image="homepage" alt="Contractor showing a business website on a laptop and phone">
+        <MediaSplit
+          art={<CampaignHeroArtwork name="homepage-hero" alt="A contractor viewing a website plan on a laptop and phone" fallback="/assets/heroes/01-homepage-640.webp" />}
+        >
           <h2><HL text="What You Get With a Kinexis Website Plan" mark="Website Plan" /></h2>
           <p>A website plan built for local service businesses: a fast site, practical SEO structure, and follow-up that keeps working when you are on a job. Plans start at $97/mo.</p>
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>A Website That<br />Brings In More<br />Calls</>} iconAlt="A Website That Brings In More Calls" text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details." icon="better-design" />
-          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="On Lead System and Plus, text-back and review requests keep running while you’re on a job, and every lead is tracked." icon="better-follow-up" />
+          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="Lead System and Plus include call and form tracking and Google review requests after jobs. Optional missed-call text-back gives callers a way to reach you while you’re working." icon="better-follow-up" />
           <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
         </div>
-        <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-          <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
-        </p>
+        <p className="center btn-row spaced"><Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link></p>
+        <p className="center"><Link href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link></p>
       </Section>
 
       {/* 4. Portfolio */}
       <Section>
-        <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
+        <MediaSplit
+          art={<HomeSectionArtwork name="homepage-website-showcase" alt="Website design previews for local service businesses" className="home-section-art--showcase" />}
+          reverse
+        >
           <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
           <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hold to preview, then open the full site.</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center muted">Design concepts above. Live client websites and case studies are separate.</p>
         <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href="/case-studies/preferred-plumbing" prefetch={false}>Preferred Plumbing case study</Link>
-          <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Live sites &amp; portfolio</Link>
+          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
         </p>
+        <p className="center"><Link href="/case-studies/preferred-plumbing" prefetch={false}>See the Preferred Plumbing case study</Link>{" · "}<Link href="/portfolio" prefetch={false}>Browse live sites and portfolio</Link></p>
       </Section>
 
       {/* 5. Trades — qualification before differentiation and pricing */}
@@ -143,13 +116,11 @@ export default async function Home() {
         <div className="trades-feature">
           <div className="trades-feature__copy">
             <h2><HL text="Built for Local Service Businesses" mark="Local Service Businesses" /></h2>
-            <p className="muted">Plumbing, HVAC, roofing, and more — if customers search for what you do and call when they need help, we have you covered. Don’t see your business? You’re still included.</p>
-            <p className="btn-row">
-              <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
-            </p>
+            <p className="muted">Plumbing, HVAC, roofing, and more—if customers search for your services and call when they need help, we can help you make the next step clear. Don’t see your industry? Tell us what you do; we also work with other local service businesses.</p>
+            <p><Link href="/industries" prefetch={false}>Browse industry websites</Link></p>
           </div>
-          <SectionGraphic
-            name="built-for-your-trade"
+          <HomeSectionArtwork
+            name="homepage-built-for-your-trade"
             alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
             className="home-section-art--trades"
           />
@@ -177,15 +148,15 @@ export default async function Home() {
         <div className="lead-feature">
           <div className="lead-feature__copy">
             <p className="eyebrow">Available on Lead System and Plus</p>
-            <h2><HL text="Missed-Call Text-Back and Google Review Requests" mark="Google Review Requests" /></h2>
-            <p>When you miss a call, text-back keeps the lead warm. After the job, a Google review request goes out with a direct link to your profile.</p>
+            <h2><HL text="Google Review Requests and Optional Missed-Call Text-Back" mark="Google Review Requests" /></h2>
+            <p>Lead System and Plus include Google review requests after completed jobs. Missed-call text-back is optional and, once carrier-approved, gives a caller a way to reply while you’re working.</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-              <Link className="btn btn--light" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
             </p>
+            <p><Link href="/pricing#lead-system" prefetch={false}>See the Lead System</Link></p>
           </div>
-          <SectionGraphic
-            name="google-reviews-handled"
+          <HomeSectionArtwork
+            name="review-follow-up"
             alt="A completed job leading to a text message and a Google review"
             className="home-section-art--reviews"
           />
@@ -206,30 +177,30 @@ export default async function Home() {
       {/* 10. Process */}
       <Section tint>
         <h2 className="center"><HL text="From Free Preview to Launch" mark="to Launch" /></h2>
-        <p className="center muted">See the homepage first. If it feels right, choose a plan and we’ll map out the launch in writing.</p>
+        <p className="center muted">Review the homepage first. If the design works for you, choose a plan and we’ll confirm the launch details in writing.</p>
         <Stepper steps={STEPS} />
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-          <Link className="btn btn--ghost" href="/about" prefetch={false}>See our full process</Link>
         </p>
+        <p className="center"><Link href="/about" prefetch={false}>See our full process</Link></p>
       </Section>
 
       {/* 11. Guarantee — final offer block above FAQs */}
       <Section>
         <h2 className="center"><HL text="60-Day Lead Guarantee" mark="Lead Guarantee" /></h2>
-        <p className="center muted">Lead System and Plus include a written lead guarantee. If you get zero tracked leads in your first 60 days live, we waive the 3rd and 4th monthly charges.</p>
+        <p className="center muted">Lead System and Plus only: zero tracked leads in the first 60 days live waives the 3rd and 4th charges. A tracked lead is a 30+ second call, a missed caller who replies to text-back, or a real quote form; spam, wrong numbers, applicants, vendors, and existing customers do not count. The account must be in good standing. No coverage if your changes prevent tracking or you pause/cancel before day 60. One per business; Own It is excluded.</p>
         <p className="center btn-row spaced">
-          <OpenDialog id="guarantee" className="btn btn--ghost">Read the guarantee details</OpenDialog>
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
         </p>
+        <p className="center"><OpenDialog id="guarantee" className="link-btn trust-mark">Read the guarantee details</OpenDialog></p>
         <TrustStrip className="center" />
       </Section>
 
       {/* 12. FAQ — global SiteAudit band follows after main */}
       <Section narrow>
-        <h2 className="center"><HL text="Frequently Asked Questions" mark="Questions" /></h2>
+        <h2 className="center">Frequently Asked Questions</h2>
         <Faq items={FAQS} />
-        <p className="center"><Link className="btn btn--ghost" href="/faqs" prefetch={false}>More website and pricing FAQs</Link></p>
+        <p className="center"><Link href="/faqs" prefetch={false}>More website and pricing FAQs</Link></p>
       </Section>
     </>
   );

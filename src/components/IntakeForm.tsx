@@ -12,9 +12,9 @@ const COPY = {
     trade: "Business type and city (e.g. HVAC in Phoenix)",
     displayPhone: "Phone number to show on the website",
     serviceArea: "Cities / service area",
-    serviceAreaHint: "List the cities or counties you actually serve.",
+    serviceAreaHint: "List the cities or counties you serve.",
     services: "Main services to feature",
-    servicesHint: "The 3–6 jobs you want leading on the site.",
+    servicesHint: "For example: drain cleaning, leak repairs, or water heater installation.",
     hours: "Business hours (optional)",
     website: "Current website (optional)",
     brand: "Brand & direction",
@@ -24,7 +24,7 @@ const COPY = {
     designNotesHint: "Portfolio examples or screenshots of sites you like help most.",
     notes: "Anything else we should know? (optional)",
     sending: "What are you sending?",
-    sendingLead: "Check what you have ready. Photos of your own work beat stock every time.",
+    sendingLead: "Check what you have ready. Photos of your work help us make the preview specific to your business.",
     checks: [
       { name: "has_logo", label: "Logo file" },
       { name: "has_job_photos", label: "Job / project photos" },
@@ -34,7 +34,7 @@ const COPY = {
       { name: "use_placeholders", label: "No photos yet — start with placeholders" },
     ],
     uploads: "Uploads",
-    uploadsLead: "Images only (JPG, PNG, WebP, HEIC). Up to 4 MB each, 9 files total including logo.",
+    uploadsLead: "Images only (JPG, PNG, WebP, HEIC, or HEIF). Up to 4 MB each, 9 files total including your logo.",
     logo: "Logo (optional)",
     photos: "Job, truck, team, or shop photos",
     gotcha: "Leave blank",
@@ -53,9 +53,9 @@ const COPY = {
     trade: "Tipo de negocio y ciudad (ej. HVAC en Phoenix)",
     displayPhone: "Teléfono para mostrar en el sitio",
     serviceArea: "Ciudades / zona de servicio",
-    serviceAreaHint: "Lista las ciudades o condados que sí atiendes.",
+    serviceAreaHint: "Escribe las ciudades o condados donde trabajas.",
     services: "Servicios principales a destacar",
-    servicesHint: "Los 3–6 trabajos que quieres al frente del sitio.",
+    servicesHint: "Por ejemplo: limpieza de drenajes, reparación de fugas o instalación de calentadores.",
     hours: "Horario (opcional)",
     website: "Sitio web actual (opcional)",
     brand: "Marca y dirección",
@@ -65,21 +65,21 @@ const COPY = {
     designNotesHint: "Ejemplos del portafolio o capturas de sitios que te gusten ayudan más.",
     notes: "¿Algo más que debamos saber? (opcional)",
     sending: "¿Qué vas a enviar?",
-    sendingLead: "Marca lo que ya tienes listo. Las fotos de tu trabajo valen más que el stock.",
+    sendingLead: "Marca lo que ya tienes listo. Las fotos de tus trabajos ayudan a que la vista previa refleje tu negocio.",
     checks: [
       { name: "has_logo", label: "Archivo de logo" },
       { name: "has_job_photos", label: "Fotos de trabajos / proyectos" },
-      { name: "has_truck_photos", label: "Fotos de camioneta, van o taller" },
+      { name: "has_truck_photos", label: "Fotos de camioneta o taller" },
       { name: "has_team_photos", label: "Fotos del equipo o del dueño" },
       { name: "has_docs", label: "Licencia o seguro" },
-      { name: "use_placeholders", label: "Aún no hay fotos — empezar con marcadores" },
+      { name: "use_placeholders", label: "Aún no tengo fotos; empezar con imágenes de muestra" },
     ],
     uploads: "Archivos",
-    uploadsLead: "Solo imágenes (JPG, PNG, WebP, HEIC). Hasta 4 MB cada una, 9 archivos en total incluyendo el logo.",
+    uploadsLead: "Solo imágenes (JPG, PNG, WebP, HEIC o HEIF). Hasta 4 MB por archivo y 9 archivos en total, incluido el logo.",
     logo: "Logo (opcional)",
     photos: "Fotos de trabajos, camioneta, equipo o taller",
     gotcha: "Déjalo en blanco",
-    button: "Enviar el contenido de mi sitio",
+    button: "Enviar información para mi sitio web",
     note: "Lo usamos para tu vista previa y el sitio completo. Sin tarjeta.",
     fast: "Vista previa gratis en 2 días hábiles cuando tengamos lo necesario.",
   },
@@ -89,7 +89,11 @@ function StickerCheck({ name, label }: { name: string; label: string }) {
   return (
     <label className="sticker-check">
       <input type="checkbox" name={name} value="yes" />
-      <span className="sticker-check__box" aria-hidden="true" />
+      <span className="sticker-check__box" aria-hidden="true">
+        <svg viewBox="0 0 20 20" focusable="false">
+          <path d="m4 10 4 4 8-9" />
+        </svg>
+      </span>
       <span className="sticker-check__label">{label}</span>
     </label>
   );
@@ -135,6 +139,7 @@ export default function IntakeForm({ locale = "en" }: { locale?: IntakeLocale })
       noValidate
       data-lead=""
       data-contact-or=""
+      data-meta-form="intake"
       data-thanks={c.thanks}
       data-max-files="9"
       data-max-file-mb="4"

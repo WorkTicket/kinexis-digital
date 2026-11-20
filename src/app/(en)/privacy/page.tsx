@@ -12,19 +12,20 @@ export default function Page() {
       <PageHero
         h1="Privacy Policy"
         mark="Privacy"
-        sub="Last updated October 21, 2026. This explains what this website collects and how Kinexis Digital uses it."
+        sub="Last updated November 17, 2026. This explains what this website collects and how Kinexis Digital uses it."
       />
       <section className="section">
         <div className="container container--narrow prose">
           <h2>What we collect</h2>
           <p>If you send a form, we collect the details you type: your name, email, phone, business or website name, the page you want changed, your message, and any file you attach. If you call or email us, we keep that correspondence so we can reply and do the work.</p>
-          <p {...fallbackTrack("-0.02em")}>The site is hosted on Cloudflare. Server logs may include your IP address, browser, and the pages you request. Analytics (GA4) and advertising measurement (Meta Pixel) are non-essential. They load only after you accept them in the cookie banner, or after you enable them under cookie preferences. If you reject non-essential cookies or have not chosen yet, those scripts do not load—including delayed loaders. You can change your choice later with the cookie preferences control.</p>
+          <p {...fallbackTrack("-0.02em")}>The site is hosted on Cloudflare. Server logs may include your IP address, browser, and the pages you request. Analytics (GA4) and advertising measurement (Meta Pixel and Meta Conversions API) are non-essential. The Pixel loads only after you accept advertising measurement in the cookie banner, or enable it under cookie preferences. A server-side lead event is sent to Meta only after the server accepts a lead form and only while advertising consent is on. That event may include the page path, IP address, browser user-agent, Meta browser/click cookies (_fbp and _fbc), and SHA-256 hashes of the email address or phone number you submit. If you reject advertising measurement or have not chosen yet, the Pixel does not load and server-side lead events are not sent. Your cookie choice is stored for 180 days. You can change your choice later with the cookie preferences control.</p>
+          <p>Live chat is provided by Conferbot, a third-party service. Its widget and chat connection are not loaded unless you accept both analytics and advertising cookies. If you use live chat, the information you choose to send is processed by Conferbot to provide the conversation.</p>
 
           <h2>How we use it</h2>
           <p>We use this information to answer you, prepare a homepage preview, provide the plan you buy, and send messages about that work. We do not sell personal information.</p>
 
           <h2>Who we share it with</h2>
-          <p>Hosting, email, and form delivery providers process messages so they reach us. We share information when the law requires it. We do not sell or rent contact lists.</p>
+          <p>Hosting, email, and form delivery providers process messages so they reach us. PayPal processes payments when you choose PayPal checkout and handles the payment details; Kinexis receives payment confirmations and transaction or subscription identifiers and status needed to administer billing. PayPal’s own privacy practices also apply. We share information when the law requires it. We do not sell or rent contact lists.</p>
 
           <h2>How long we keep it</h2>
           <p>We keep inquiry details long enough to respond and to keep a record of work you asked us to do. You can email {SITE.email} and ask us to delete an inquiry that is not part of an active plan.</p>

@@ -17,17 +17,17 @@ const ES: Record<string, Copy> = {
     mark: "la llamada",
     sub: "Un sitio de plomería tiene que funcionar mientras alguien está parado en un charco. Una fuga, un drenaje lento y un calentador son tres trabajos distintos.",
     intro: [
-      "Casi todas esas búsquedas ocurren en el celular, a veces fuera de horario. La persona ya está comparando a los dos primeros que contestan. Si el número está escondido, el trabajo se va con el siguiente.",
-      "Armamos el sitio alrededor del trabajo que sí haces acá: fugas, drenajes, calentadores, tubería y los accesorios que pueden esperar. Ves la página de inicio antes de pagar.",
+      "Muchas de estas búsquedas se hacen desde el celular, a veces fuera del horario habitual. Si el número no aparece con claridad, la persona puede llamar a otro plomero.",
+      "Organizamos el sitio según los servicios que ofreces: fugas, drenajes, calentadores, tuberías y otros trabajos. Puedes revisar la página de inicio antes de elegir un plan.",
     ],
     problemsTitle: "Por qué un sitio de plomería pierde el trabajo",
     problemsMark: "pierde el trabajo",
     problems: [
       { title: "Una sola página para todo", text: "Una tubería reventada y un baño nuevo no tienen el mismo cliente. Juntarlos en una página dificulta las dos búsquedas.", icon: "separate-service-pages" },
       { title: "El número escondido", text: "Si hay que bajar una foto y un párrafo para llamar, quien tiene la emergencia ya se fue.", icon: "visible-phone-number" },
-      { title: "La llamada perdida se queda perdida", text: "Estás bajo el lavabo. El siguiente no deja mensaje. El texto de vuelta es lo que todavía te alcanza esa persona.", icon: "missed-call-follow-up" },
+      { title: "No hay seguimiento tras una llamada perdida", text: "Si estás trabajando y no puedes contestar, el mensaje opcional para llamadas perdidas permite que la persona te escriba para explicar qué necesita.", icon: "missed-call-follow-up" },
     ],
-    heroAlt: "Plomero revisando tubería, una computadora y un celular",
+    heroAlt: "Plomero trabajando bajo un fregadero con tuberías expuestas",
     servicesTitle: "Páginas que un sitio de plomería necesita",
     servicesMark: "plomería",
     services: [
@@ -39,7 +39,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿Anuncio 24 horas si el taller cierra a las seis?", a: "Solo si alguien contesta. Escribimos el horario que cumples. Prometer un técnico de noche que no tienes genera llamadas enojadas, no trabajo." },
       { q: "¿Los planes incluyen SEO mensual?", a: "Cada sitio sale rápido, con páginas claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No viene dentro de los cuatro planes." },
-      { q: "¿Se pueden pedir reseñas después de un trabajo?", a: "En Lead System y Plus sale un texto con el enlace directo a tu perfil de Google. No las persigues desde la camioneta." },
+      { q: "¿Se pueden pedir reseñas después de un trabajo?", a: "Lead System y Plus pueden enviar un mensaje con un enlace directo a tu perfil de Google después del trabajo." },
     ],
   },
   hvac: {
@@ -61,7 +61,7 @@ const ES: Record<string, Copy> = {
       { title: "La instalación tratada como emergencia", text: "Quien cambia el equipo compara cotizaciones, eficiencia y garantía. Un botón gigante de “llama ya” no cierra esa venta.", icon: "replacement-quote-path" },
       { title: "Sin plan para los meses suaves", text: "Los mantenimientos y las membresías mantienen las camionetas ocupadas. Necesitan su página.", icon: "seasonal-maintenance" },
     ],
-    heroAlt: "Técnico de HVAC, condensador y una computadora",
+    heroAlt: "Técnico de HVAC revisando una unidad condensadora exterior",
     servicesTitle: "Lo que ponemos en un sitio de HVAC",
     servicesMark: "HVAC",
     services: [
@@ -73,7 +73,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio va a empujar un reemplazo si la persona necesita una reparación?", a: "No. Reparación y reemplazo tienen páginas y llamados a la acción distintos." },
       { q: "¿Se puede mencionar financiamiento?", a: "Sí, en el camino de instalación, y solo el financiamiento que sí ofreces. No inventamos plazos." },
-      { q: "¿Qué pasa si nadie contesta en una ola de calor?", a: "En Lead System y Plus, el texto opcional si no contestas puede responder en tu número de seguimiento, después de la aprobación del operador. Ese es el seguimiento cuando la agenda está llena." },
+      { q: "¿Qué pasa si nadie contesta en una ola de calor?", a: "El mensaje para llamadas perdidas es opcional. En Lead System y Plus, requiere un segundo número de seguimiento ($1 al mes si se usa, más las tarifas del operador) y la aprobación del operador, que suele tardar entre 10 y 15 días." },
     ],
   },
   electrical: {
@@ -83,7 +83,7 @@ const ES: Record<string, Copy> = {
     metaDescription: "Página web para electricistas en EE. UU. desde $97/mes, $0 de entrada. Paneles, cargadores EV y reparaciones con llamada directa. Vista previa gratis.",
     h1: "Página web para electricistas en la que la gente confía para llamar",
     mark: "confía para llamar",
-    sub: "El trabajo eléctrico se vende con confianza. El sitio tiene que mostrar la licencia, el tipo de trabajos que tomas y una forma de contactarte que no parezca una fábrica de leads.",
+    sub: "La confianza es clave para contratar a un electricista. El sitio debe mostrar tus licencias, los trabajos que realizas y una forma clara de contactarte.",
     intro: [
       "Quien busca un tablero nuevo o un cargador está nervioso por a quién deja entrar. Una plantilla que podría ser de cualquier contratista no responde eso.",
       "Armamos páginas para el trabajo que paga: diagnóstico, tableros, cargadores, iluminación y las reparaciones chicas. Ves la vista previa en la computadora o en el celular antes de comprar.",
@@ -93,9 +93,9 @@ const ES: Record<string, Copy> = {
     problems: [
       { title: "Sin prueba de licencia", text: "La licencia, el seguro y el trabajo que no tocas tienen que estar donde se vean.", icon: "license-proof" },
       { title: "El cargador metido en “servicios”", text: "Instalar un cargador es una visita de investigación. Necesita su página, no una viñeta bajo “cambiar un contacto”.", icon: "extra-page" },
-      { title: "Comercial y casa mezclados", text: "Un administrador y una casa sin luz no son el mismo lead. Sepáralos si vendes los dos.", icon: "separate-buyer-paths" },
+      { title: "Servicios comerciales y residenciales mezclados", text: "Quien administra un negocio y quien necesita reparar la instalación eléctrica de su casa buscan información distinta. Separa ambas opciones si ofreces los dos servicios.", icon: "separate-buyer-paths" },
     ],
-    heroAlt: "Electricista, tablero, cargador y pantallas del sitio",
+    heroAlt: "Electricista revisando un tablero eléctrico abierto",
     servicesTitle: "Páginas que coinciden con la búsqueda",
     servicesMark: "la búsqueda",
     services: [
@@ -107,7 +107,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿Pueden mostrar mi número de licencia?", a: "Sí. Mándanos el número y el estado. Lo ponemos donde la gente mira, no en un pie de página que nadie abre." },
       { q: "Solo hago casas. ¿El sitio va a hablar de comercial?", a: "No. Escribimos el trabajo que quieres. Anunciar lo que no atiendes solo crea llamadas que tienes que rechazar." },
-      { q: "¿Cómo encajan las reseñas?", a: "Después de un trabajo terminado, Lead System y Plus envían un texto con tu enlace de Google. Esas reseñas ayudan a que la siguiente cotización te tome en serio." },
+      { q: "¿Cómo funcionan las solicitudes de reseñas?", a: "Lead System y Plus pueden enviar un mensaje con un enlace directo a tu perfil de Google después de un trabajo." },
     ],
   },
   roofing: {
@@ -115,9 +115,9 @@ const ES: Record<string, Copy> = {
     card: "Reparaciones, cambios y tormentas",
     metaTitle: "Página web para techos desde $97/mes",
     metaDescription: "Página web para compañías de techos (roofing) desde $97/mes, $0 de entrada. Reparación, reemplazo e inspecciones. Vista previa gratis del inicio.",
-    h1: "Página web para compañías de techos que consigue inspecciones",
-    mark: "inspecciones de verdad",
-    sub: "Después de una tormenta, todos los techeros suenan igual. El sitio debe decir qué reparas, qué cambias y cómo funciona la inspección.",
+    h1: "Página web para empresas de techado que genera solicitudes de inspección",
+    mark: "solicitudes de inspección",
+    sub: "Después de una tormenta, muchas empresas de techado ofrecen servicios parecidos. Tu sitio debe explicar qué reparas, qué reemplazas y cómo es el proceso de inspección.",
     intro: [
       "Las búsquedas se parten en dos: una gotera de esta semana y un cambio que el dueño viene posponiendo. En una tormenta aparece un tercero: gente a la que ya llamaron tres vendedores de puerta.",
       "Escribimos la diferencia. La reparación pide la visita. El reemplazo explica materiales, qué cubre la inspección y cómo tratas el seguro sin prometer el resultado del reclamo. Apruebas el inicio antes de que se cobre algo.",
@@ -129,7 +129,7 @@ const ES: Record<string, Copy> = {
       { title: "Reparación y cambio en una página", text: "Una teja suelta y un techo completo son cotizaciones distintas. Cada una necesita su página.", icon: "repair-replacement-pages" },
       { title: "Fotos que no son tus techos", text: "Una casa de catálogo no convence a quien está en su entrada. El sitio queda listo para tus fotos, o cotizamos una sesión aparte.", icon: "real-project-photos" },
     ],
-    heroAlt: "Techero, techo de teja y pantallas del sitio",
+    heroAlt: "Techador revisando las tejas de un techo residencial",
     servicesTitle: "Lo que va en un sitio de techos",
     servicesMark: "techos",
     services: [
@@ -141,7 +141,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿Van a escribir textos de reclamos de seguro?", a: "Explicamos cómo documentas el techo y qué debe preguntarle el dueño a su aseguradora. No prometemos que aprueben el reclamo." },
       { q: "Todavía no tengo fotos. ¿Pueden armar el sitio?", a: "Sí. La vista previa usa un texto realista para que juzgues el diseño. Tus fotos reemplazan los espacios antes del lanzamiento. No hacemos pasar trabajos de archivo como tuyos." },
-      { q: "¿Los techeros usan los mismos cuatro planes?", a: "Sí. Website, Lead System, Plus u Own It. Lead System y Plus incluyen una reseña después del trabajo. El texto si no contestas es un extra opcional." },
+      { q: "¿Las empresas de techado pueden elegir entre los mismos cuatro planes?", a: "Sí: Website, Lead System, Plus u Own It. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador." },
     ],
   },
   "garage-doors": {
@@ -163,7 +163,7 @@ const ES: Record<string, Copy> = {
       { title: "Estilos sin contexto de precio", text: "No tienes que publicar un menú. Sí tienes que decir qué cambia el precio: tamaño, aislamiento, motor, retiro.", icon: "quote-price-context" },
       { title: "Sin seguimiento después de la medida", text: "Las cotizaciones se enfrían. Una llamada perdida durante la instalación de al lado igual debe recibir un texto.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Técnico de puertas de garaje, control y computadora",
+    heroAlt: "Técnico trabajando en una puerta de garaje residencial abierta",
     servicesTitle: "Páginas que necesita una empresa de puertas",
     servicesMark: "puertas",
     services: [
@@ -183,8 +183,8 @@ const ES: Record<string, Copy> = {
     card: "Interior, exterior y gabinetes",
     metaTitle: "Página web para pintores desde $97/mes",
     metaDescription: "Diseño web para pintores en EE. UU. desde $97/mes, $0 de entrada. Interior, exterior y gabinetes con camino claro de estimado. Vista previa gratis.",
-    h1: "Diseño de página web para pintores que gana el estimado",
-    mark: "el estimado",
+    h1: "Diseño de páginas web para pintores que facilita solicitar una cotización",
+    mark: "solicitar una cotización",
     sub: "La pintura se juzga por las fotos y por lo fácil que es agendar una visita. Un sitio que parece cupón de handyman te deja barato antes de la primera llamada.",
     intro: [
       "Quien contrata un pintor ya sabe que necesita pintura. Decide quién prepara, quién llega y quién no deja cinta en el vidrio.",
@@ -195,9 +195,9 @@ const ES: Record<string, Copy> = {
     problems: [
       { title: "Interior y exterior como un solo trabajo", text: "Una recámara y una fachada de dos pisos son cuadrillas, temporadas y precios distintos. Separa las páginas.", icon: "interior-exterior-pages" },
       { title: "Sin fotos del trabajo terminado", text: "La pintura se ve. El diseño deja espacio para tus cuartos, no para una sala de catálogo.", icon: "finished-work-gallery" },
-      { title: "Un formulario que pide demasiado", text: "Cuartos, fotos y el barrio alcanzan para saber si el lead es real. Una novela es por lo que llaman al siguiente pintor.", icon: "short-estimate-form" },
+      { title: "Un formulario demasiado largo", text: "Pide solo los datos necesarios para empezar: qué espacio quieren pintar, dónde está y cómo contactar a la persona. Los detalles pueden hablarse después.", icon: "short-estimate-form" },
     ],
-    heroAlt: "Pintor, rodillo, muestras y pantallas del sitio",
+    heroAlt: "Pintor aplicando pintura en una pared interior",
     servicesTitle: "Lo que un sitio de pintura debe explicar",
     servicesMark: "pintura",
     services: [
@@ -208,7 +208,7 @@ const ES: Record<string, Copy> = {
     serviceArea: "Los barrios a los que manejas para una visita. Una página, no una ciudad clonada por cada código postal.",
     featureText: { "quote-requests": "Fotos, visita y cuándo deben esperar un número. Una página, en lenguaje claro." },
     faqs: [
-      { q: "¿El cliente puede pedir un estimado desde el sitio?", a: "Sí. El formulario pide el tipo de trabajo, cómo contactarlo y fotos si las tiene. Te llega como un lead de formulario." },
+      { q: "¿El cliente puede pedir una cotización desde el sitio?", a: "Sí. El formulario puede pedir el tipo de trabajo, los datos de contacto y fotos si la persona las tiene. La solicitud te llega por correo." },
       { q: "Pinto en inglés y en español. ¿Hay un plan para eso?", a: "Plus es el plan bilingüe: el sitio y las reseñas en inglés y en español. El texto opcional si no contestas también está en ambos idiomas." },
       { q: "¿Ustedes escriben el texto?", a: "Podemos usar el texto que ya tienes, o cotizar la redacción aparte. La vista previa usa un texto realista del negocio para que juzgues el diseño." },
       { q: "¿Cuánto cuesta un sitio de pintura con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
@@ -225,17 +225,17 @@ const ES: Record<string, Copy> = {
     mark: "cocinas y baños",
     sub: "Una remodelación es una venta larga. El sitio debe mostrar cuartos terminados y explicar cómo empieza el proyecto, sin gritar como un anuncio de drenaje.",
     intro: [
-      "Un lead de cocina no se cierra en la primera visita como una casa sin calefacción. La gente mira fotos, confirma si sacas permisos y después pide una consulta.",
+      "Una persona interesada en remodelar una cocina suele comparar fotos, preguntar por permisos y después solicitar una consulta. Es una decisión distinta a una reparación urgente.",
       "Empezamos por los cuartos, el proceso y lo que necesitas de ellos antes de que exista un número. Las páginas se quedan específicas: cocinas, baños y las otras remodelaciones que sí quieres.",
     ],
     problemsTitle: "Sitios que espantan la consulta",
     problemsMark: "espantan",
     problems: [
       { title: "Sin fotos en la primera pantalla", text: "La primera pantalla es el portafolio. Si es una cocina de catálogo, las fotos reales nunca se ven.", icon: "first-screen-portfolio" },
-      { title: "Un precio de salida inventado", text: "“Cocinas desde $9,999” atrae al lead equivocado. Explica qué mueve el presupuesto en lugar de inventar un piso.", icon: "payment" },
+      { title: "Un precio inicial inventado", text: "Un precio genérico puede atraer solicitudes que no corresponden al alcance real del proyecto. Explica qué factores influyen en el presupuesto, sin inventar una cifra.", icon: "payment" },
       { title: "Lenguaje de emergencia en un proyecto de diseño", text: "“Llama ya” sirve para una fuga. Una remodelación necesita consulta, tiempos y una persona que conteste.", icon: "consultation-path" },
     ],
-    heroAlt: "Cocina, muestras, planos y una computadora",
+    heroAlt: "Contratista de remodelación revisando una cocina renovada",
     servicesTitle: "Páginas que un remodelador debe publicar",
     servicesMark: "remodelador",
     services: [
@@ -247,7 +247,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio va a prometer un precio de proyecto?", a: "Solo si nos das un rango que estés dispuesto a decir en público. Si no, explicamos qué cubre la consulta y cómo se arma la cotización." },
       { q: "¿Puedo empezar con pocas fotos?", a: "Sí. El diseño está hecho para cuartos reales. Unos proyectos buenos ganan a una cuadrícula de imágenes ajenas." },
-      { q: "¿Una remodelación cabe en los planes mensuales?", a: "Sí. Son los mismos cuatro planes. Lead System y Plus siguen ayudando: una reseña cuando el proyecto termina, y el texto opcional si no contestas mientras estás en la obra." },
+      { q: "¿Una empresa de remodelación puede elegir entre los mismos planes?", a: "Sí. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador." },
       { q: "¿Cuánto cuesta un sitio de remodelación con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
       { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
       { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
@@ -260,9 +260,9 @@ const ES: Record<string, Copy> = {
     metaDescription: "Página web para paisajismo y jardinería (landscaping) desde $97/mes, $0 de entrada. Mantenimiento y proyectos por separado. Vista previa gratis.",
     h1: "Página web para paisajismo: rutas y proyectos",
     mark: "rutas y proyectos",
-    sub: "Una ruta de corte y un patio nuevo son negocios distintos que a veces comparten camioneta. El sitio no debe fingir que son el mismo lead.",
+    sub: "El mantenimiento regular del césped y un proyecto de diseño de jardín son servicios distintos. El sitio debe explicar cada uno con claridad.",
     intro: [
-      "Quien quiere un corte semanal compara precio, constancia y si atiendes su barrio. Quien quiere un patio mira fotos y si diseñas o solo instalas. Una página de “servicios de paisajismo” les falla a los dos.",
+      "Quien busca mantenimiento semanal compara precios, frecuencia y zona de servicio. Quien planea un jardín quiere ver proyectos y saber si ofreces diseño, instalación o ambos. Una página genérica no responde bien a ninguna de estas consultas.",
       "Separamos mantenimiento y proyectos, nombramos la zona que tu cuadrilla sí cubre y dejamos clara la temporada. Ves el inicio antes de elegir plan.",
     ],
     problemsTitle: "Sitios que atraen el trabajo equivocado",
@@ -272,7 +272,7 @@ const ES: Record<string, Copy> = {
       { title: "Proyectos sin proceso", text: "Diseño y obra necesitan un camino: visita, concepto, instalación. Un teléfono solo no es un proceso.", icon: "consultation-path" },
       { title: "Una zona que no puedes cubrir", text: "Listar toda la ciudad con dos cuadrillas crea cotizaciones que no puedes agendar.", icon: "realistic-service-area" },
     ],
-    heroAlt: "Diseño de jardín, plano y una computadora",
+    heroAlt: "Paisajista plantando arbustos en un jardín terminado",
     servicesTitle: "Cómo armamos un sitio de paisajismo",
     servicesMark: "paisajismo",
     services: [
@@ -282,9 +282,9 @@ const ES: Record<string, Copy> = {
     ],
     serviceArea: "Barrios y pueblos de la ruta. Concretos, y lo bastante cortos para ser verdad.",
     faqs: [
-      { q: "¿El corte semanal y el hardscape van en el mismo sitio?", a: "Mismo sitio, páginas distintas. Los llamados a la acción se quedan distintos para que un corte no pida una consulta de diseño." },
+      { q: "¿El corte semanal y los proyectos de paisajismo van en el mismo sitio?", a: "Sí. Pueden estar en el mismo sitio, pero en páginas distintas y con llamadas a la acción adecuadas para cada servicio." },
       { q: "¿El sitio puede hablar de temporadas?", a: "Sí. Escribimos lo que vendes en primavera, verano y otoño, y no dejamos una oferta de invierno como si fuera julio." },
-      { q: "¿Cómo funcionan las reseñas en una ruta?", a: "Lead System y Plus envían un texto después de un trabajo. En cuentas semanales tú eliges cuándo, para no escribirle al mismo jardín cada martes." },
+      { q: "¿Cómo funcionan las solicitudes de reseñas en un servicio recurrente?", a: "Lead System y Plus pueden enviar un mensaje con un enlace a tu perfil de Google. Puedes elegir cuándo pedir la reseña para no contactar al mismo cliente después de cada visita." },
     ],
   },
   "pool-care": {
@@ -296,7 +296,7 @@ const ES: Record<string, Copy> = {
     mark: "rutas y reparaciones",
     sub: "Las rutas semanales se ganan con constancia y el mapa que cubres. Una alberca verde o una bomba muerta es otra llamada, y no debe esperar detrás de una membresía.",
     intro: [
-      "Las empresas pierden leads en dos direcciones. El cliente de ruta no sabe si atiendes su barrio. El de reparación no encuentra el número porque el inicio es una galería de albercas de hotel que no construiste.",
+      "Las empresas pierden oportunidades de trabajo por dos motivos: quienes buscan servicio semanal no saben si cubres su zona, y quienes necesitan una reparación no encuentran el teléfono entre fotos de albercas que no construiste.",
       "Dejamos el servicio semanal obvio, damos páginas propias a reparaciones y equipo, y decimos la zona que tus técnicos ya recorren. La vista previa es un inicio con esa forma.",
     ],
     problemsTitle: "Sitios que no coinciden con la ruta",
@@ -306,7 +306,7 @@ const ES: Record<string, Copy> = {
       { title: "Reparaciones sin camino", text: "Bombas, calentadores y agua verde son urgentes. Necesitan página y teléfono, no una nota bajo “servicio completo”.", icon: "repair-call-path" },
       { title: "Barrios que no recorres", text: "La densidad importa. La zona debe coincidir con los días que ya corres.", icon: "route-coverage" },
     ],
-    heroAlt: "Técnico de alberca, equipo y una tableta",
+    heroAlt: "Técnico limpiando hojas de una alberca residencial",
     servicesTitle: "Páginas que una empresa de albercas debe tener",
     servicesMark: "albercas",
     services: [
@@ -343,7 +343,7 @@ const ES: Record<string, Copy> = {
       { title: "Sin antes y después", text: "La prueba es el par de fotos. La plantilla debe esperarlo, no tratar las imágenes como adorno.", icon: "before-after-proof" },
       { title: "Cotizaciones que empiezan de cero", text: "Pide la superficie y una foto. Adivinar metros con un nombre y un correo desperdicia la visita.", icon: "photo-based-quotes" },
     ],
-    heroAlt: "Equipo de lavado, entrada limpia y una computadora",
+    heroAlt: "Trabajador lavando a presión la entrada de una casa",
     servicesTitle: "Páginas que coinciden con cómo busca la gente",
     servicesMark: "busca la gente",
     services: [
@@ -377,7 +377,7 @@ const ES: Record<string, Copy> = {
       { title: "Sin decir qué incluye", text: "Mosquiteros, repisas y vidrio interior son por lo que se pelean las cotizaciones. Di qué cubre la visita.", icon: "visit-inclusions" },
       { title: "Sin camino a la limpieza recurrente", text: "El primer trabajo es el anuncio. La ruta es el negocio. El sitio debe ofrecer los dos.", icon: "recurring-cleaning-path" },
     ],
-    heroAlt: "Limpiador de vidrios, aparador y pantallas del sitio",
+    heroAlt: "Limpiador de ventanas usando una escobilla en una casa",
     servicesTitle: "Lo que publicamos para limpiadores de vidrios",
     servicesMark: "vidrios",
     services: [
@@ -389,7 +389,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio puede ofrecer limpieza de una vez y recurrente?", a: "Sí. La primera visita y la ruta están en el sitio, y la ruta se presenta como lo que la mayoría debería tener." },
       { q: "También lavo canaletas o hago un lavado ligero. ¿Va en este sitio?", a: "Si es un servicio real con su precio, tiene su página. Si es un extra que casi no quieres, lo dejamos fuera." },
-      { q: "¿Cómo consigo reseñas sin pedirlas en la puerta?", a: "Lead System y Plus envían un enlace de Google después del trabajo. Tú eliges el momento, para que la primera limpieza pueda ganar la reseña antes de vender la ruta." },
+      { q: "¿Cómo puedo solicitar reseñas sin pedirlas en persona?", a: "Lead System y Plus pueden enviar un mensaje con un enlace directo a tu perfil de Google después del trabajo. En un servicio recurrente, puedes elegir cuándo enviarlo." },
       { q: "¿Cuánto cuesta un sitio de limpieza de vidrios con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
       { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
       { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
@@ -404,7 +404,7 @@ const ES: Record<string, Copy> = {
     mark: "rutas recurrentes",
     sub: "El cuidado del jardín se gana calle por calle. El sitio debe decir qué incluye la visita, qué barrios recorres y cómo entra alguien a la ruta.",
     intro: [
-      "Las rutas de césped, la limpieza y el servicio de mascotas viven de la densidad. Un sitio que promete toda la ciudad y no describe la visita atrae leads que la cuadrilla no puede absorber.",
+      "Los servicios recurrentes de jardinería y limpieza de patios para mascotas dependen de una zona de servicio manejable. Un sitio que promete cubrir toda la ciudad sin explicar qué incluye cada visita puede atraer solicitudes que no puedes atender.",
       "Escribimos los servicios que repites cada semana, nombramos las zonas que ya manejas y dejamos la inscripción en un formulario corto. El servicio de mascotas tiene su página cuando es una oferta real.",
     ],
     problemsTitle: "Sitios que pelean contra la ruta",
@@ -414,7 +414,7 @@ const ES: Record<string, Copy> = {
       { title: "Las mascotas como un agregado", text: "Si lo vendes, es su propia búsqueda y su propia página. Si no, déjalo fuera.", icon: "extra-page" },
       { title: "Sin explicar la visita", text: "Corte, orilla, soplado, retiro de desechos: la gente quiere la lista antes de darte el código del portón.", icon: "visit-inclusions" },
     ],
-    heroAlt: "Dueño de jardinería, podadora y una tableta",
+    heroAlt: "Trabajador de jardinería cortando el césped de una casa",
     servicesTitle: "Páginas que necesita una ruta de jardín",
     servicesMark: "jardín",
     services: [
@@ -426,7 +426,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿Debo tener una página por cada barrio?", a: "No. Una página honesta de zona le gana a veinte páginas delgadas que solo cambian el nombre del pueblo. Esas páginas hacen que el sitio se ignore, no que posicione." },
       { q: "¿Un cliente de mascotas puede inscribirse sin llamar?", a: "Sí. Basta un formulario corto: nombre, dirección, cada cuánto y cómo contactarlo." },
-      { q: "¿Qué plan le queda a una ruta?", a: "Website si solo necesitas el sitio. Lead System si también quieres reseñas, un reporte mensual y el texto opcional si no contestas. Plus agrega español." },
+      { q: "¿Qué plan puede convenirle a un servicio por rutas?", a: "Website cubre las necesidades del sitio. Lead System agrega solicitudes de reseña y un reporte mensual. El mensaje para llamadas perdidas es opcional. Plus agrega contenido en español." },
       { q: "¿Cuánto cuesta un sitio de césped con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
       { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
       { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
@@ -444,26 +444,26 @@ const ES: Record<string, Copy> = {
       "La mayoría de esas búsquedas ocurren en el celular cuando algo tiene que salir hoy — o cuando un casero cotiza la limpieza de una unidad. Si el número está escondido detrás de fotos de stock, la carga se va con quien conteste primero.",
       "Separamos el acarreo de esta semana de las limpiezas planeadas, facilitamos el tamaño de la carga y las notas de acceso, y dejamos la zona honesta a las rutas que ya manejas. Ves la página de inicio antes de pagar.",
     ],
-    problemsTitle: "Por qué un sitio de chatarra pierde la carga",
-    problemsMark: "pierde la carga",
+    problemsTitle: "Por qué un sitio de retiro de chatarra pierde solicitudes",
+    problemsMark: "pierde solicitudes",
     problems: [
       { title: "Un solo formulario para todo", text: "Un colchón en la banqueta y una limpieza de cochera son cotizaciones distintas. Juntarlos en una página dificulta las dos.", icon: "separate-buyer-paths" },
       { title: "El número bajo las fotos", text: "Quien está junto al basurero quiere tocar para llamar. Si el teléfono está debajo de la historia de la marca, marca al siguiente.", icon: "emergency-phone-path" },
-      { title: "Cotizaciones que se enfrían", text: "Estás en un acarreo. El siguiente cuelga. El texto opcional si no contestas es cómo todavía te alcanza ese lead.", icon: "quote-follow-up" },
+      { title: "Llamadas perdidas sin seguimiento", text: "Si estás trabajando y no puedes contestar, el mensaje opcional para llamadas perdidas permite que la persona te escriba para explicar qué necesita.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Cuadrilla de retiro de chatarra, camión y una tableta",
+    heroAlt: "Equipo de retiro de muebles cargando un remolque",
     servicesTitle: "Páginas que un sitio de chatarra necesita",
     servicesMark: "chatarra",
     services: [
       { title: "Acarreo esta semana", text: "Muebles, electrodomésticos y pilas en la banqueta, con camino de teléfono para cargas que no esperan.", icon: "tools" },
-      { title: "Limpiezas de cochera y herencias", text: "Un camino más quieto para trabajos grandes — volumen, acceso y un formulario corto.", icon: "equipment" },
+      { title: "Limpiezas de cochera y propiedades", text: "Una opción para trabajos grandes, con espacio para indicar el volumen, el acceso y los detalles necesarios.", icon: "equipment" },
       { title: "Rutas de propiedades", text: "Caseros y HOA cuando sí las corres, aparte de las pilas de una sola vez.", icon: "calendar" },
     ],
     serviceArea: "Una página para las ciudades que cubres. No una pila de páginas de ciudad que dicen lo mismo.",
     faqs: [
       { q: "¿Anuncio mismo día si no siempre llego?", a: "Solo donde puedes cumplirlo. Escribimos las ventanas que sí cubres. Prometer mismo día fuera de tu ruta genera ausencias y malas reseñas." },
       { q: "¿Los planes incluyen SEO mensual?", a: "Cada sitio sale rápido, con páginas claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No viene dentro de los cuatro planes." },
-      { q: "¿Se pueden pedir reseñas después de un acarreo?", a: "En Lead System y Plus sale un texto con el enlace directo a tu perfil de Google. No las persigues desde el camión." },
+      { q: "¿Se pueden pedir reseñas después de un acarreo?", a: "Lead System y Plus pueden enviar un mensaje con un enlace directo a tu perfil de Google después del trabajo." },
       { q: "¿Cuánto cuesta un sitio de retiro de chatarra con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
       { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
       { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },
@@ -478,17 +478,17 @@ const ES: Record<string, Copy> = {
     mark: "la llamada",
     sub: "Una rama colgando después de una tormenta no es una poda de copa. El sitio debe mandar cada trabajo por su camino, con seguro y seguridad donde el dueño nervioso los vea.",
     intro: [
-      "Las llamadas de tormenta quieren un teléfono y una ventana honesta. La poda y la tala planeadas quieren fotos reales, señales de seguro y una consulta que no se sienta como centro de llamadas.",
-      "Separamos el trabajo de emergencia de la poda y la tala completa, dejamos espacio para fotos de tu cuadrilla y la chipper, y atamos la zona a donde ya manejas. Ves la página de inicio antes de pagar.",
+      "Después de una tormenta, las personas necesitan saber cómo contactarte y cuándo podrías atenderlas. Para la poda y la tala, ayuda mostrar fotos reales, información sobre seguros y cómo solicitar una evaluación.",
+      "Separamos los servicios de emergencia de la poda y la tala, dejamos espacio para fotos de tu equipo e indicamos las zonas que cubres. Puedes revisar la página de inicio antes de elegir un plan.",
     ],
     problemsTitle: "Por qué un sitio de árboles pierde el trabajo",
     problemsMark: "pierde el trabajo",
     problems: [
-      { title: "Tormenta y poda en una página", text: "Una rama en el techo y una poda de invierno son compradores distintos. Un volcado vago de “servicios” dificulta las dos.", icon: "consultation-path" },
-      { title: "Sin prueba de seguro", text: "Quien compara cotizaciones busca seguro y seguridad cerca del teléfono — no tres pantallas bajo una foto de stock.", icon: "insurance-process" },
+      { title: "Emergencias y poda en una sola página", text: "Quien necesita retirar una rama caída busca una solución distinta a quien planea podar sus árboles. Una lista genérica de servicios no explica ninguna de las dos opciones.", icon: "consultation-path" },
+      { title: "La información del seguro no está a la vista", text: "Quien compara cotizaciones quiere encontrar fácilmente la información sobre seguros y seguridad, no buscarla entre varias pantallas.", icon: "insurance-process" },
       { title: "Una zona que no puedes cubrir", text: "Listar todo el metro con dos camiones genera cotizaciones que no agendas. Publica los pueblos que sí quieres.", icon: "route-service-area" },
     ],
-    heroAlt: "Cuadrilla de árboles, camión chipper y una tableta",
+    heroAlt: "Arborista inspeccionando un árbol en un jardín residencial",
     servicesTitle: "Páginas que un sitio de árboles necesita",
     servicesMark: "árboles",
     services: [
@@ -500,7 +500,7 @@ const ES: Record<string, Copy> = {
     faqs: [
       { q: "¿El sitio promete respuesta 24 horas en tormenta?", a: "Solo si alguien contesta. Escribimos las ventanas que sí cubres después del clima. Prometer una cuadrilla de noche que no tienes genera llamadas enojadas, no trabajo." },
       { q: "¿Los planes incluyen SEO mensual?", a: "Cada sitio sale rápido, con páginas claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No viene dentro de los cuatro planes." },
-      { q: "¿Se pueden pedir reseñas después de una tala?", a: "En Lead System y Plus sale un texto con el enlace directo a tu perfil de Google. No las persigues desde el camión." },
+      { q: "¿Se pueden pedir reseñas después de una tala?", a: "Lead System y Plus pueden enviar un mensaje con un enlace directo a tu perfil de Google después del trabajo." },
       { q: "¿Cuánto cuesta un sitio de servicio de árboles con Kinexis?", a: "Website es $97/mes, Lead System $197/mes, Plus $297/mes y Own It es un pago único de $1,497. Cada opción empieza con una vista previa gratis del inicio — sin tarjeta y sin obligación." },
       { q: "¿Qué pasa si cancelo un plan mensual?", a: "Cancelas cuando quieras por texto, correo o Messenger — no hay cargo de cancelación. El sitio sigue en línea en el período ya pagado. Después, el hosting termina salvo una compra por escrito de los archivos ($1,497) o pasar a Own It antes de que termine ese período." },
       { q: "¿Los planes de sitio incluyen SEO mensual?", a: "Cada sitio sale con páginas de servicio claras y una estructura que Google puede leer. El SEO continuo se cotiza aparte. No va incluido en los cuatro planes." },

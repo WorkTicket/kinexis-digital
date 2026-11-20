@@ -15,6 +15,7 @@ import { fileURLToPath } from "node:url";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dryRun = process.argv.includes("--dry-run");
 const preflight = process.argv.includes("--preflight");
+const requireAnalytics = process.argv.includes("--require-analytics");
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 const USER_AGENT = "Mozilla/5.0 (compatible; KinexisSearchDeploy/1.0; +https://www.kinexisdigital.com)";
 const CLOUDFLARE_ASSET_LIMIT = 25 * 1024 * 1024;
@@ -632,7 +633,8 @@ async function run() {
     if (/^G-[A-Z0-9]+$/.test(gaId)) {
       pass(`NEXT_PUBLIC_GA_ID is set for build-time inlining (${gaId})`);
     } else {
-      fail(
+      const report = requireAnalytics ? fail : warn;
+      report(
         "NEXT_PUBLIC_GA_ID is missing or invalid. Set it in Workers Builds → Build variables and secrets (and in .env.local for local deploys). A runtime Worker secret alone ships an empty GA tag.",
       );
     }
@@ -640,10 +642,12 @@ async function run() {
     if (/^\d{5,20}$/.test(metaPixelId)) {
       pass(`NEXT_PUBLIC_META_PIXEL_ID is set for build-time inlining (${metaPixelId})`);
     } else {
-      fail(
+      const report = requireAnalytics ? fail : warn;
+      report(
         "NEXT_PUBLIC_META_PIXEL_ID is missing or invalid. Set it in Workers Builds → Build variables and secrets (and in .env.local for local deploys). A runtime Worker secret alone ships an empty Meta Pixel.",
       );
     }
+    if (requireAnalytics && failures.length > 0) process.exitCode = 1;
     return;
   }
   if (process.env.SEARCH_NOTIFY === "0") {

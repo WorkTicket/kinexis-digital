@@ -2,6 +2,8 @@ import { cache } from "react";
 import { headers } from "next/headers";
 import {
   type Locale,
+  ENGLISH_FALLBACK_PATHS,
+  SPANISH_UTILITY_PATHS,
   EN_REDIRECTED_BLOG_SLUGS,
   MIRROR_PATHS,
   englishPath,
@@ -108,6 +110,8 @@ export function localeBootScript(): string {
   return `(function(){
 var COOKIE="${LANG_COOKIE}";
 var M=${paths};
+var F=${JSON.stringify(ENGLISH_FALLBACK_PATHS)};
+var U=${JSON.stringify(SPANISH_UTILITY_PATHS)};
 function read(){var m=document.cookie.match(/(?:^|; )${LANG_COOKIE}=([^;]*)/);return m?decodeURIComponent(m[1]):""}
 function write(v){document.cookie=COOKIE+"="+encodeURIComponent(v)+"; Path=/; Max-Age=31536000; SameSite=Lax"}
 document.addEventListener("click",function(e){
@@ -152,6 +156,8 @@ function enPath(pathname){
 function mirrored(en){return M.indexOf(en)!==-1}
 function target(pathname,locale){
   var en=enPath(pathname);
+  if(locale==="en"&&F[en])return F[en];
+  if(U.indexOf(en)!==-1)return locale==="en"?en:"/es"+en;
   if(!mirrored(en))return "";
   if(locale==="en")return en;
   // Spain and LatAm both land on indexable /es (Spain URLs 301 there).

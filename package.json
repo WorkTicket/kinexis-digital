@@ -19,8 +19,10 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "check": "npm run lint && npm run typecheck && npm run check:contact && npm run check:attachment-security && npm run check:rate-limit && npm run check:reviews && npm run check:spanish-mirror && npm run check:industry-icons && npm run check:commercial && npm run check:seo-ownership && npm run check:meta-length && npm run check:conferbot && npm run check:rum",
+    "check": "npm run lint && npm run typecheck && npm run check:contact && npm run check:analytics && npm run check:meta-capi && npm run check:proxy-host && npm run check:attachment-security && npm run check:rate-limit && npm run check:reviews && npm run check:spanish-mirror && npm run check:industry-icons && npm run check:commercial && npm run check:seo-ownership && npm run check:meta-length && npm run check:blog-images && npm run check:conferbot && npm run check:rum && npm run check:search-preflight",
+    "check:search-preflight": "node scripts/check-search-preflight.mjs",
     "images:optimize": "node scripts/optimize-content-images.mjs",
+    "images:audit": "node scripts/optimize-audit-images.mjs",
     "images:heroes": "node scripts/optimize-hero-images.mjs",
     "images:og": "node scripts/generate-og-images.mjs",
     "images:portfolio-cards": "node scripts/generate-portfolio-cards.mjs",
@@ -35,12 +37,16 @@
     "check:commercial": "node scripts/check-commercial-consistency.mjs",
     "check:seo-ownership": "node scripts/check-seo-ownership.mjs",
     "check:meta-length": "node scripts/check-meta-length.mjs",
+    "check:blog-images": "node scripts/check-blog-images.mjs",
     "check:conferbot": "node scripts/check-conferbot-webhook.mjs && node scripts/check-conferbot-widget.mjs",
     "smoke": "node scripts/smoke-routes.mjs",
     "check:payment-reconciliation": "node scripts/check-payment-reconciliation.mjs",
     "reconcile:invoices": "node scripts/reconcile-invoice-ledger.mjs",
     "backup:d1-invoice": "node scripts/d1-backup-invoice-ledger.mjs",
     "check:rum": "node scripts/check-rum.mjs",
+    "check:analytics": "node scripts/check-analytics-corrections.mjs",
+    "check:meta-capi": "node scripts/check-meta-capi.mjs",
+    "check:proxy-host": "node scripts/check-proxy-host.mjs",
     "check:invoice-security": "node scripts/check-invoice-security.mjs && node scripts/check-payment-integrity.mjs && node scripts/check-paypal-order-service.mjs && node scripts/check-invoice-ledger.mjs && node scripts/check-invoice-routes.mjs && node scripts/check-invoice-import.mjs && node scripts/check-payment-reconciliation.mjs",
     "check:route-integration": "npm run check:contact && npm run check:reviews && npm run check:invoice-security && npm run check:conferbot",
     "check:structured-data": "node scripts/check-structured-data.mjs",
@@ -52,6 +58,7 @@
     "verify": "npm run check && npm run check:invoice-security && npm run check:paypal-sandbox && npm run test:e2e",
     "verify:prod": "node scripts/smoke-routes.mjs https://www.kinexisdigital.com && node scripts/check-structured-data.mjs https://www.kinexisdigital.com && node scripts/lighthouse-budget.mjs https://www.kinexisdigital.com --form-factor=both",
     "build:worker": "node scripts/search-on-deploy.mjs --preflight && opennextjs-cloudflare build && node scripts/defer-chunks.mjs --opennext-cache",
+    "build:worker:production": "node --env-file=.env.production scripts/build-worker-production.mjs",
     "preview": "npm run build:worker && opennextjs-cloudflare preview",
     "deploy:worker": "opennextjs-cloudflare deploy",
     "deploy:preview": "node scripts/deploy-preview.mjs",
@@ -67,7 +74,8 @@
     "qrcode": "^1.5.4",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "web-vitals": "^6.2.3"
   },
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.20.13",
@@ -90,8 +98,6 @@
     "wrangler": "^4.154.0"
   },
   "overrides": {
-    "@node-minify/core": {
-      "glob": "^10.5.0"
-    }
+    "glob": "^14.0.6"
   }
 }

@@ -245,6 +245,42 @@ async function signedRequest(bodyObj, headers = {}) {
   console.log("idempotency + persist checks passed");
 }
 
+// --- Durable event receipt remains retryable after a partial write failure ---
+{
+  const retryFixture = fixture({
+    chatSessionId: "session-retry-001",
+    message: { ...fixture().message, id: "msg-retry-001" },
+  });
+  let failConversationWrite = true;
+  routes.setConferbotTestDatabase({
+    async batch(statements) {
+      if (failConversationWrite && statements.some(({ sql }) => sql.includes("INSERT INTO conversations"))) {
+        failConversationWrite = false;
+        throw new Error("injected conversation storage failure");
+      }
+      return ledger.batch(statements);
+    },
+  });
+
+  const failed = await routes.webhookPost(await signedRequest(retryFixture));
+  assert.equal(failed.status, 503, "partial persistence failure asks provider to retry");
+  const statusAfterFailure = await ledger.batch([{
+    sql: "SELECT processing_status FROM webhook_events WHERE provider_event_key = ?1",
+    params: ["message:msg-retry-001"],
+  }]);
+  assert.equal(statusAfterFailure[0].rows[0]?.processing_status, "received");
+
+  const retried = await routes.webhookPost(await signedRequest(retryFixture));
+  assert.equal(retried.status, 200, "retry completes previously partial event");
+  const statusAfterRetry = await ledger.batch([{
+    sql: "SELECT processing_status FROM webhook_events WHERE provider_event_key = ?1",
+    params: ["message:msg-retry-001"],
+  }]);
+  assert.equal(statusAfterRetry[0].rows[0]?.processing_status, "processed");
+  routes.setConferbotTestDatabase(ledger);
+  console.log("partial-write retry recovery checks passed");
+}
+
 // --- Oversize → 413 ---
 {
   const response = await routes.webhookPost(new Request(`${origin}/api/integrations/conferbot/webhook`, {

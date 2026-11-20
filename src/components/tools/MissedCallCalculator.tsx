@@ -52,7 +52,7 @@ export default function MissedCallCalculator({ initialTrade = "plumbing" }: { in
           <input inputMode="decimal" value={callsWeek} onChange={(e) => setCallsWeek(e.target.value)} placeholder="e.g. 40" />
         </label>
         <label>
-          Percent missed
+          Calls missed (%)
           <input inputMode="decimal" value={missPct} onChange={(e) => setMissPct(e.target.value)} placeholder="e.g. 25" />
         </label>
         <label>
@@ -66,7 +66,7 @@ export default function MissedCallCalculator({ initialTrade = "plumbing" }: { in
       </div>
 
       <p className="missed-call-calc__formula">
-        Planning math (not a guarantee): missed/mo = calls/week × (miss%/100) × 4.345; at risk = missed/mo × job value; illustrative recover = at risk × (close%/100).
+        Estimate only—not a promise of recovered jobs: missed calls/month = calls per week × (missed-call rate ÷ 100) × 4.345. Revenue at risk = missed calls/month × average job value. Estimated revenue from recovered jobs = revenue at risk × (close rate ÷ 100).
       </p>
 
       <p className="btn-row">
@@ -77,9 +77,9 @@ export default function MissedCallCalculator({ initialTrade = "plumbing" }: { in
 
       {result ? (
         <div className="missed-call-calc__results" aria-live="polite">
-          <p><strong>Missed calls / month:</strong> {result.missedPerMonth.toFixed(1)}</p>
+          <p><strong>Estimated missed calls per month:</strong> {result.missedPerMonth.toFixed(1)}</p>
           <p><strong>Revenue at risk / month:</strong> ${result.atRisk.toFixed(0)}</p>
-          <p><strong>Illustrative recover / month:</strong> ${result.recover.toFixed(0)}</p>
+          <p><strong>Estimated revenue from recovered jobs / month:</strong> ${result.recover.toFixed(0)}</p>
           <p className="muted small">These numbers use only the inputs you entered. They are planning math, not a promise of recovered jobs.</p>
         </div>
       ) : (

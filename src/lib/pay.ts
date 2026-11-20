@@ -50,7 +50,7 @@ export const PAY_FAQS: QA[] = [
   },
   {
     q: "When am I charged?",
-    a: "Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe. Later charges follow your PayPal billing schedule. Own It is charged when you pay.",
+    a: "Monthly plans start on your launch day after you approve your site, and the first charge happens then. Later monthly charges follow your PayPal billing schedule. Own It is a one-time payment due when you approve the free preview.",
   },
   {
     q: "Is there a contract?",

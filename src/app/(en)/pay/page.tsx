@@ -84,7 +84,7 @@ export default async function Page({
         mark="starts here"
         image="pricing"
         imageAlt="Payment card and checkmarks in Kinexis brand colors"
-        sub="Subscribe on your launch day, after you approve your site. Your first charge happens when you subscribe."
+        sub="Monthly plans start on your launch day after you approve your site, and the first charge happens then. Own It is a one-time payment due when you approve the free preview."
       >
         <p className="pay-hero-links">
           Haven’t seen your free preview yet? <Link className="trust-mark" href="/contact" prefetch={false}>Get your free preview</Link> first.{" "}

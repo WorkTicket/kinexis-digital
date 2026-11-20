@@ -140,7 +140,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
     sections: [
       {
         h2: "Lo que dice el sitio hoy",
-        html: `<p>Esta guía explica ese retraso con el lenguaje que Kinexis publica en el sitio — no con promesas de software.</p><p>En los planes de Kinexis, el texto de llamada perdida es un <strong>extra opcional</strong>. Se necesita una <strong>línea dedicada de la empresa</strong>. Hay un segundo número de seguimiento por <strong>$1/mes</strong>. Pueden aplicar tarifas estándar del operador.</p><p><strong>La activación depende de la aprobación del operador (normalmente 10 a 15 días). Esa aprobación no está garantizada.</strong> Los textos suelen empezar <strong>10 a 15 días después de la aprobación</strong>.</p><p>Ese matiz importa. La función no es “enciéndela hoy y escribe mañana” para todos los números.</p>`,
+        html: `<p>Esta guía explica ese retraso con los términos que Kinexis publica, sin prometer una fecha de activación.</p><p>En los planes de Kinexis, el texto de llamada perdida es un <strong>extra opcional</strong> y requiere una <strong>línea dedicada de la empresa</strong>. Si usas un segundo número de seguimiento, cuesta <strong>$1/mes</strong>; también pueden aplicarse tarifas del operador.</p><p><strong>La activación depende de la aprobación del operador, que suele tardar de 10 a 15 días. No está garantizada.</strong> El tiempo para empezar a enviar mensajes después de la aprobación puede variar.</p><p>Por eso no conviene prometer que la función estará activa al día siguiente de solicitarla.</p>`,
       },
       {
         h2: "Por qué les importa a los operadores",
@@ -204,7 +204,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Agencia",
-        html: `<p><strong>Suele encajar cuando:</strong> necesitas un build grande a medida, muchas sedes o un retainer amplio de marketing.</p><p><strong>Pide por escrito:</strong> qué incluye el retainer mensual, plazo mínimo e informes.</p><p><strong>Cuidado con:</strong> pagar por un equipo que aún no necesitas; contratos difíciles de salir; promesas de SEO de una posición concreta (nadie controla los resultados de Google).</p>`,
+        html: `<p><strong>Suele encajar cuando:</strong> necesitas un build grande a medida, muchas sedes o un contrato amplio de marketing mensual.</p><p><strong>Pide por escrito:</strong> qué incluye el servicio mensual, plazo mínimo e informes.</p><p><strong>Cuidado con:</strong> pagar por un equipo que aún no necesitas; contratos difíciles de salir; promesas de SEO de una posición concreta (nadie controla los resultados de Google).</p>`,
       },
       {
         h2: "Plan de sitio estructurado (ejemplo: Kinexis)",
@@ -264,7 +264,7 @@ export const ES_CLUSTER_POSTS: EsPost[] = [
       },
       {
         h2: "Para qué sirve un plan administrado",
-        html: `<p>Una opción administrada encaja cuando prefieres estar en el trabajo antes que dentro del editor. Usando Kinexis como ejemplo concreto (no el único proveedor del mercado):</p><ul><li>Vista previa gratis del inicio en <strong>2 días hábiles</strong>, sin tarjeta, sin obligación</li><li>Website <strong>$97/mes</strong>, Lead System <strong>$197/mes</strong>, Plus <strong>$297/mes</strong> u Own It <strong>$1,497</strong> de una vez</li><li>Hosting, SSL y cambios chicos en los planes mensuales</li><li>Lead System / Plus pueden sumar pedidos de reseña y texto opcional de llamada perdida (aprobación del operador normalmente <strong>10 a 15 días</strong>; no garantizada)</li><li>Cancelación mes a mes en planes mensuales; Own It entrega los archivos desde el lanzamiento</li></ul><p>El SEO continuo se cotiza aparte de esos cuatro planes. Sin promesas de posición.</p>`,
+        html: `<p>Una opción administrada encaja cuando prefieres estar en el trabajo antes que dentro del editor. Usando Kinexis como ejemplo concreto (no el único proveedor del mercado):</p><ul><li>Vista previa gratis del inicio en <strong>2 días hábiles</strong>, sin tarjeta, sin obligación</li><li>Website <strong>$97/mes</strong>, Lead System <strong>$197/mes</strong>, Plus <strong>$297/mes</strong> u Own It <strong>$1,497</strong> de una vez</li><li>Hosting, SSL y cambios chicos en los planes mensuales</li><li>Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas requiere aprobación del operador, que suele tardar entre <strong>10 y 15 días</strong> y no está garantizada.</li><li>Cancelación mes a mes en planes mensuales; Own It entrega los archivos desde el lanzamiento</li></ul><p>El SEO continuo se cotiza aparte de esos cuatro planes. Sin promesas de posición.</p>`,
       },
       {
         h2: "Lista para decidir",
@@ -380,7 +380,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
     sections: [
       {
         h2: "Lo que dice el sitio hoy",
-        html: `<p>El texto de llamada perdida es un <strong>extra opcional</strong>. Se necesita una <strong>línea dedicada de la empresa</strong>. Puede haber un segundo número de seguimiento y tarifas del operador.</p><p><strong>La activación depende de la aprobación del operador (normalmente 10 a 15 días). Esa aprobación no está garantizada.</strong> Los textos suelen empezar <strong>10 a 15 días después de la aprobación</strong>.</p>`,
+        html: `<p>El texto de llamada perdida es un <strong>extra opcional</strong> y requiere una <strong>línea dedicada de la empresa</strong>. Si usas un segundo número de seguimiento, cuesta <strong>$1/mes</strong>; también pueden aplicarse tarifas del operador.</p><p><strong>La activación depende de la aprobación del operador, que suele tardar de 10 a 15 días. No está garantizada.</strong> El tiempo para empezar a enviar mensajes después de la aprobación puede variar.</p>`,
       },
       {
         h2: "Por qué les importa a los operadores",
@@ -432,7 +432,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
       },
       {
         h2: "Agencia",
-        html: `<p><strong>Suele encajar cuando</strong> necesitas un build grande o un retainer amplio. Pide por escrito qué incluye el retainer, plazo e informes. Nadie puede prometer una posición concreta en Google.</p>`,
+        html: `<p><strong>Suele encajar cuando</strong> necesitas un build grande o un contrato mensual amplio. Pide por escrito qué incluye el retainer, plazo e informes. Nadie puede prometer una posición concreta en Google.</p>`,
       },
       {
         h2: "Plan de sitio estructurado (ejemplo: Kinexis)",
@@ -456,7 +456,7 @@ export const ES_CLUSTER_ES_ES_OVERRIDES: Partial<Record<string, Partial<EsPost>>
       },
       {
         h2: "Para qué sirve un plan administrado",
-        html: `<p>Encaja cuando prefieres estar en el trabajo antes que en el editor. Ejemplo Kinexis: vista previa gratis en 2 días hábiles; cuatro planes (Website, Lead System, Plus u Own It); hosting y cambios en planes mensuales; reseñas y texto opcional en Lead System/Plus (aprobación del operador normalmente 10 a 15 días; no garantizada).</p>`,
+        html: `<p>Encaja cuando prefieres estar en el trabajo antes que en el editor. Ejemplo Kinexis: vista previa gratis en 2 días hábiles; cuatro planes (Website, Lead System, Plus u Own It); hosting y cambios en planes mensuales; solicitudes de reseña después del trabajo en Lead System/Plus. El mensaje opcional para llamadas perdidas requiere aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.</p>`,
       },
       {
         h2: "Lista para decidir",

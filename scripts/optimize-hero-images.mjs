@@ -1,4 +1,4 @@
-// Rebuilds page and industry hero derivatives from the largest WebP master.
+// Rebuilds page hero derivatives from the largest WebP master.
 // Run with: npm run images:heroes
 import { readdir } from "node:fs/promises";
 import path from "node:path";
@@ -21,34 +21,4 @@ for (const file of heroes) {
     });
   }
   await rebuildFromMaster(master, `${base}-1254.avif`, { format: "avif" });
-}
-
-const industryDirectory = "public/assets/industries";
-const industries = (await readdir(industryDirectory, { withFileTypes: true }))
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
-  .sort();
-
-for (const name of industries) {
-  const master = path.join(industryDirectory, name, "hero.webp");
-  // Pages never reference the master WebP (often 300–700KB). Serve capped
-  // derivatives: 480 mobile LCP, 768 tablet, 960/1120/1536 desktop DPR.
-  for (const width of [480, 768, 960, 1120, 1536]) {
-    await rebuildFromMaster(master, path.join(industryDirectory, name, `hero-${width}.webp`), {
-      width,
-      webpQuality: width <= 480 ? 80 : 82,
-    });
-    await rebuildFromMaster(master, path.join(industryDirectory, name, `hero-${width}.avif`), {
-      format: "avif",
-      width,
-      photo: true,
-      maxBytes:
-        width <= 480 ? 45 * 1024 : width <= 768 ? 85 * 1024 : width <= 960 ? 140 * 1024 : width <= 1120 ? 200 * 1024 : 280 * 1024,
-    });
-  }
-  await rebuildFromMaster(master, path.join(industryDirectory, name, "hero.avif"), {
-    format: "avif",
-    photo: true,
-    maxBytes: 220 * 1024,
-  });
 }

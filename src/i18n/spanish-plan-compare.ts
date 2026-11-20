@@ -178,7 +178,7 @@ export const ES_CHECKOUT_UI = {
   detailsSummary: "Términos del plan y detalles de cobro",
   needHelp: (phone: string) => `¿Necesitas ayuda? Llama o escribe al ${phone}`,
   previewTitle: "Primero la vista previa. Luego el lanzamiento.",
-  previewBody: "Suscríbete el día del lanzamiento, después de aprobar tu sitio. El primer cargo ocurre cuando te suscribes.",
+  previewBody: "Los planes mensuales empiezan el día del lanzamiento, después de que apruebes tu sitio, y el primer cargo se hace entonces. Own It es un pago único que vence al aprobar la vista previa gratis.",
   notConfigured: "Este plan aún no está configurado para pagar en línea. Escríbenos o envíanos un texto y terminamos el pago contigo.",
   badSubscription: "PayPal confirmó algo, pero el id de la suscripción no se ve bien. Revisa tu correo de PayPal o escríbenos.",
   paypalError: "Algo falló con PayPal. Inténtalo de nuevo o escríbenos.",
@@ -189,7 +189,7 @@ export const ES_CHECKOUT_UI = {
   heroEyebrow: "Planes y pago",
   heroH1: "Tu sitio nuevo empieza aquí.",
   heroMark: "empieza aquí",
-  heroSub: "Suscríbete el día del lanzamiento, después de aprobar tu sitio. El primer cargo ocurre cuando te suscribes.",
+  heroSub: "Los planes mensuales empiezan el día del lanzamiento, después de que apruebes tu sitio, y el primer cargo se hace entonces. Own It es un pago único que vence al aprobar la vista previa gratis.",
   heroPreview: "¿Aún no viste tu vista previa gratis?",
   heroPreviewCta: "Pide tu vista previa gratis",
   heroInvoice: "Pagar una factura existente",
@@ -271,7 +271,7 @@ export const ES_PAY_FAQS = [
   },
   {
     q: "¿Cómo funciona la garantía de leads de 60 días?",
-    a: "Lead System y Plus: cero leads rastreados en tus primeros 60 días en vivo significa que se condonan el 3.º y 4.º cargo mensual. Una vez por negocio. Ver sección 5 de los Términos.",
+    a: "Solo Lead System y Plus: cero leads rastreados durante tus primeros 60 días en vivo condona los cargos tercero y cuarto. Cuenta una llamada de 30 segundos o más, una respuesta al texto si no contestas o un formulario real de cotización; no cuentan spam, números equivocados, solicitudes de empleo, proveedores ni clientes actuales. La cuenta debe estar al corriente. No aplica si un cambio tuyo impide el seguimiento, o si pausas o cancelas antes del día 60. Una vez por negocio; Own It está excluido. Ver sección 5 de los Términos.",
   },
   {
     q: "¿Cómo funciona la devolución en 30 días?",
@@ -287,7 +287,7 @@ export const ES_PAY_FAQS = [
   },
   {
     q: "¿Cuándo me cobran?",
-    a: "Suscríbete el día del lanzamiento, después de aprobar tu sitio. El primer cargo ocurre cuando te suscribes. Los cargos siguientes siguen el calendario de PayPal. Own It se cobra cuando pagas.",
+    a: "Los planes mensuales empiezan el día del lanzamiento, después de que apruebes tu sitio, y el primer cargo se hace entonces. Los cargos mensuales siguientes siguen el calendario de PayPal. Own It es un pago único que vence al aprobar la vista previa gratis.",
   },
   {
     q: "¿Hay contrato?",

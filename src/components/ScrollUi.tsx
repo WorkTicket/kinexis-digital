@@ -13,7 +13,7 @@ export default function ScrollUi({ locale }: { locale: Locale }) {
       </span>
       <a className="btn btn--ghost float-cta__call" href={telHref(SITE.phone)}>{es ? "Llamar" : "Call"}</a>
       <Link className="btn btn--primary float-cta__preview" href={withLocale(locale, "/contact")} prefetch={false}>
-        <span className="float-cta__preview-full">{es ? "Ver mi vista previa gratis" : "Get My Free Preview"}</span>
+        <span className="float-cta__preview-full">{es ? "Solicitar mi vista previa gratis" : "Get My Free Preview"}</span>
         <span className="float-cta__preview-short">{es ? "Vista previa" : "Free Preview"}</span>
       </Link>
     </div>

@@ -32,6 +32,46 @@ const ok = rum.parseRumPayload({
 });
 assert.equal(ok?.path, "/");
 assert.equal(ok?.metrics[0].name, "LCP");
+const vitals = await import("web-vitals");
+for (const name of ["onLCP", "onINP", "onCLS", "onTTFB", "onFCP"]) {
+  assert.equal(typeof vitals[name], "function", `web-vitals must expose ${name}`);
+}
+const rumClient = await readFile(path.join(root, "src/components/Rum.tsx"), "utf8");
+assert.match(rumClient, /onCLS\(record, opts\)/);
+assert.match(rumClient, /onINP\(record, opts\)/);
+assert.match(rumClient, /onLCP\(record, opts\)/);
+assert.match(rumClient, /reportSoftNavs:\s*true/);
+
+const reportBundle = await build({
+  entryPoints: ["src/lib/rum-report.ts"],
+  bundle: true,
+  format: "esm",
+  platform: "node",
+  write: false,
+});
+const reportSource = reportBundle.outputFiles[0]?.contents;
+assert.ok(reportSource);
+const reportModule = await import(`data:text/javascript;base64,${Buffer.from(reportSource).toString("base64")}`);
+const fixture = (name, value, navigationURL) => ({
+  name,
+  value,
+  id: `${name}-fixture`,
+  navigationType: "soft-navigation",
+  navigationURL,
+});
+assert.deepEqual(
+  reportModule.toRumMetricRecord(fixture("INP", 347, "https://www.kinexisdigital.com/es/contact?private=1#form"), "/", "https://www.kinexisdigital.com"),
+  { name: "INP", value: 347, id: "INP-fixture", navigationType: "soft-navigation", path: "/es/contact" },
+);
+assert.deepEqual(
+  reportModule.toRumMetricRecord(fixture("CLS", 0.12, "https://other.example/private"), "/pricing", "https://www.kinexisdigital.com")?.path,
+  "/pricing",
+  "external navigation URLs must not override the local route",
+);
+assert.equal(
+  reportModule.toRumMetricRecord(fixture("LCP", -1, "https://www.kinexisdigital.com/"), "/", "https://www.kinexisdigital.com"),
+  null,
+);
 
 assert.equal(
   rum.parseRumPayload({

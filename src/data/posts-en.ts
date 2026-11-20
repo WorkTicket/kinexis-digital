@@ -20,7 +20,7 @@ export const EN_POST_CONTENT: Record<string, EnglishPostBody> = {
     faqs: [
           {
                 "q": "How long before missed-call texts start?",
-                "a": "Activation is subject to carrier approval. Texting typically begins 10–15 days after approval; approval is not guaranteed."
+                "a": "Carrier approval usually takes 10–15 days and is not guaranteed. The time to begin texting after approval can vary."
           },
           {
                 "q": "Is text-back included in every plan?",

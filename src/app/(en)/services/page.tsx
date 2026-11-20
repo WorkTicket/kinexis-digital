@@ -8,14 +8,14 @@ export const metadata = pageMetadata("services");
 const offerings = [
   {
     title: "Website Design",
-    text: "A clear site for the work you want, with tap-to-call, short quote forms, and a homepage preview before you pay.",
+    text: "A clear website for the work you want, with one-tap calling, short quote forms, and a homepage preview before you pay.",
     href: "/web-design",
     cta: "See Website Design",
     icon: "well-designed",
   },
   {
     title: "SEO Services",
-    text: "Technical cleanup, useful page titles, and content that helps the right customers find you through Google search.",
+    text: "Technical cleanup, useful page titles, and content that helps potential customers find your business in Google search.",
     href: "/seo-services",
     cta: "SEO services for business websites",
     icon: "search-optimized",
@@ -47,13 +47,13 @@ export default function Page() {
         eyebrow="Services"
         h1="Website Help For Service Businesses Nationwide"
         mark="Service Businesses"
-        sub="We work with service businesses in every state. You get a site that is easy to call from and a clean search setup Google can understand."
-        image="homepage"
-        imageAlt="Contractor showing a business website on a laptop and phone"
+        sub="We work with service businesses across the United States. We build websites that make it easy to call or request a quote, with clear pages search engines can understand."
+        image="all-services"
+        imageAlt="Website, SEO, and management services for local businesses"
       />
       <Section>
         <h2 className="center"><HL text="Ways We Can Help" mark="We Can Help" /></h2>
-        <p className="center muted">Choose website design, SEO, ongoing site care, or a free audit of what you already have.</p>
+        <p className="center muted">Choose a new website, help improving search visibility, ongoing site care, or a free audit of your current website.</p>
         <div className="grid grid--2">
           {offerings.map((item) => (
             <ServiceCard key={item.href} {...item} />

@@ -1,4 +1,10 @@
 import { IMAGE_SIZES, STILL_VERSION, still } from "@/lib/image-sources";
+import {
+  HERO_POSTER,
+  HERO_POSTER_AVIF_SRCSET,
+  HERO_POSTER_SIZES,
+  HERO_POSTER_WIDTHS,
+} from "@/components/HeroFilm";
 
 /** Same widths as `HeroImage` in ui.tsx — keep in lockstep to avoid double-fetch. */
 export const PAGE_HERO_WIDTHS = [480, 640, 960, 1254] as const;
@@ -20,21 +26,10 @@ export function pageHeroSizesForFile(file: string) {
  * Prefix rules (case-studies) live in `pageHeroFileForPath`.
  */
 export const PAGE_HERO_BY_PATH: Record<string, string> = {
-  "/services": "01-homepage",
-  "/portfolio": "02-portfolio",
-  "/about": "03-about",
-  "/reviews": "05-reviews",
-  "/pricing": "06-pricing",
   "/pay": "06-pricing",
-  "/web-design": "07-web-design",
-  "/seo-services": "08-local-seo",
-  "/audit": "09-website-audit",
   "/website-management": "10-maintenance",
   "/faqs": "11-faqs",
-  "/blog": "12-blog",
-  "/contact": "13-contact",
   "/strategy-call": "13-contact",
-  "/upgrades": "14-upgrades",
 };
 
 export function pageHeroFileForPath(pathname: string): string | null {
@@ -61,7 +56,7 @@ export function pageHeroPreloadHref(file: string) {
 /**
  * Sync early-head boot: insert page-hero LCP preload before FOUC CSS.
  * DocumentShell must stay sync (headers()/async drops experimental.inlineCss).
- * Home `/` is skipped — poster preload is the static link in DocumentShell.
+ * The homepage gets its poster preload here; other routes preload only their hero.
  */
 export function pageHeroPreloadBootScript() {
   const entries = Object.entries(PAGE_HERO_BY_PATH)
@@ -72,12 +67,23 @@ export function pageHeroPreloadBootScript() {
   const highDetailSizes = JSON.stringify(HIGH_DETAIL_HERO_SIZES);
   const widths = PAGE_HERO_WIDTHS.join(",");
   const version = JSON.stringify(STILL_VERSION);
+  const posterSrcSet = JSON.stringify(HERO_POSTER_AVIF_SRCSET);
+  const posterSizes = JSON.stringify(HERO_POSTER_SIZES);
+  const posterHref = JSON.stringify(still(HERO_POSTER.replace(/\.webp$/i, `-${HERO_POSTER_WIDTHS[1]}.avif`)));
   return `(function(){
 var p=location.pathname||"/";
 if(p==="/es"||p.indexOf("/es/")===0){p=p==="/es"?"/":p.slice(3)}
 else if(p==="/es-es"||p.indexOf("/es-es/")===0){p=p==="/es-es"?"/":p.slice(6)}
 if(p.length>1&&p.charAt(p.length-1)==="/")p=p.slice(0,-1);
-if(p==="/")return;
+ if(p==="/"){
+ var poster=document.createElement("link");
+ poster.rel="preload";poster.as="image";poster.href=${posterHref};
+ poster.type="image/avif";poster.setAttribute("imagesrcset",${posterSrcSet});
+ poster.setAttribute("imagesizes",${posterSizes});poster.setAttribute("fetchpriority","high");
+ var current=document.currentScript;
+ (current&&current.parentNode?current.parentNode:document.head).insertBefore(poster,current||document.head.firstChild);
+ return;
+ }
 var map={${entries}};
 var file=p.indexOf("/case-studies/")===0?"02-portfolio":map[p];
 if(!file)return;

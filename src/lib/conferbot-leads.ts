@@ -217,6 +217,7 @@ export function scoreLead(fields: ExtractedLeadFields): ScoreResult {
 
 export type LeadSyncResult = {
   skipped: boolean;
+  failed?: boolean;
   leadId?: string;
   temperature?: LeadTemperature;
   score?: number;
@@ -268,9 +269,9 @@ export async function syncLeadFromPayload(
     updatedAt: now,
   });
 
-  if (!written.ok || !written.leadId) return { skipped: true };
+  if (!written.ok || !written.leadId) return { skipped: true, failed: true };
 
-  await recordLeadActivity(db, {
+  const activity = await recordLeadActivity(db, {
     id: newEntityId(),
     leadId: written.leadId,
     activityType: "score_updated",
@@ -279,15 +280,17 @@ export async function syncLeadFromPayload(
     actorId: "conferbot-webhook",
     createdAt: now,
   });
+  if (!activity.ok) return { skipped: true, failed: true };
 
   if (options.providerSessionId) {
-    await upsertConversation(db, {
+    const conversation = await upsertConversation(db, {
       id: options.conversationId ?? newEntityId(),
       providerSessionId: options.providerSessionId,
       leadId: written.leadId,
       createdAt: now,
       updatedAt: now,
     });
+    if (!conversation.ok) return { skipped: true, failed: true };
   }
 
   return {

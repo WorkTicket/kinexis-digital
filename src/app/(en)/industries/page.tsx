@@ -4,37 +4,17 @@ import { pageMetadata } from "@/lib/seo";
 import { CtaBand, HL, PageHero, Section } from "@/components/ui";
 import { PageSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
-import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { HomeSectionArtwork } from "@/components/CampaignArtwork";
 
 export const metadata = pageMetadata("industries");
-
-function TradesArt() {
-  const src = "/assets/home/built-for-your-trade.webp";
-  const widths = [640, 768, 1120] as const;
-  const sizes = IMAGE_SIZES.homeSection;
-  return (
-    <picture className="home-section-art home-section-art--trades">
-      <source type="image/avif" srcSet={imageSrcSet(src, widths, "avif")} sizes={sizes} />
-      <img
-        src={imageVariant(src, 640, "webp")}
-        srcSet={imageSrcSet(src, widths)}
-        sizes={sizes}
-        alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
-        width={1536}
-        height={1024}
-        loading="lazy"
-        decoding="async"
-        fetchPriority="low"
-      />
-    </picture>
-  );
-}
 
 export default function Page() {
   return (
     <>
       <PageSchema page="industries" items={INDUSTRIES.filter((industry) => industry.status === "live").map((industry) => ({ name: industry.name, path: `/industries/${industry.slug}` }))} />
       <PageHero
+        image="industries"
+        imageAlt="Websites designed for a range of local service industries"
         eyebrow="Industries"
         h1="A Website That Fits Your Business"
         mark="Your Business"
@@ -52,7 +32,11 @@ export default function Page() {
             <h2><HL text="Find The Work You Do" mark="Work You Do" /></h2>
             <p className="muted">The four plans stay the same. The pages and wording change to match the calls your kind of business actually receives.</p>
           </div>
-          <TradesArt />
+          <HomeSectionArtwork
+            name="homepage-built-for-your-trade"
+            alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
+            className="home-section-art--trades"
+          />
         </div>
         <IndustryGrid
           layout="index"

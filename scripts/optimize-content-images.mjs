@@ -52,6 +52,15 @@ const BLOG = [
   "public/blog/google-business-profile-vs-website.webp",
   "public/blog/freelancer-vs-agency-vs-subscription-website.webp",
   "public/blog/wix-vs-squarespace-vs-managed-website-contractors.webp",
+  "public/blog/contractor-website-quote-form.webp",
+  "public/blog/contractor-website-redesign-checklist.webp",
+  "public/blog/how-to-choose-contractor-web-designer.webp",
+  "public/blog/junk-removal-website-cost.webp",
+  "public/blog/tree-service-website-cost.webp",
+  "public/blog/contractor-website-checklist.webp",
+  "public/blog/plumber-website-pages-es.webp",
+  "public/blog/contractor-google-reviews-es.webp",
+  "public/blog/google-business-profile-checklist.webp",
 ];
 const BLOG_WIDTHS = [640, 768, 960];
 

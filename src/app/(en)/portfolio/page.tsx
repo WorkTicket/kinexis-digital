@@ -45,12 +45,12 @@ export default function Page() {
         eyebrow="Websites for local service businesses"
         h1="Explore Our Design Work"
         mark="Design Work"
-        sub="Live client websites are listed first. Browse our work further down and we’ll customize a direction for your business, from the first screen to the quote path."
+        sub="Live client websites are listed first. Browse the examples, then tell us what you like. We’ll use that direction to shape a preview for your business and make it easy for customers to call or request a quote."
         image="portfolio"
         imageAlt="Service business websites shown on desktop and phone screens"
       >
         <div className="btn-row spaced">
-          <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>See My Homepage First</Link>
+          <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Get My Free Preview</Link>
           <Link className="btn btn--ghost btn--lg" href="/pricing" prefetch={false}>View The Four Plans</Link>
         </div>
         <p className="muted small trust">Designs for garage doors, roofing, electrical, cleaning, and other local services.</p>
@@ -115,9 +115,9 @@ export default function Page() {
           <div>
             <p className="eyebrow">Template sites</p>
             <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
-            <p className="muted">Choose a look you like and we’ll tailor the design, content, services, and calls to action for your business.</p>
+            <p className="muted">Choose a design direction you like. We’ll tailor the pages, wording, and next steps to your services and service area.</p>
           </div>
-          <Link className="trust-mark" href="/contact" prefetch={false}>Reach out to see more</Link>
+          <Link className="trust-mark" href="/contact" prefetch={false}>Ask us about a design</Link>
         </div>
         <div className="portfolio portfolio--main">
           {PROJECTS.map((project) => (
@@ -143,8 +143,8 @@ export default function Page() {
       <ReviewsSection
         limit={3}
         eyebrow="Client reviews"
-        title="Reviews From Our Awesome Clients"
-        mark="Awesome Clients"
+        title="What Our Clients Say"
+        mark="Our Clients Say"
         sub="Real feedback from owners who launched with a Kinexis website plan."
       />
 
@@ -153,11 +153,11 @@ export default function Page() {
       </Section>
 
       <Section narrow>
-        <h2 className="center"><HL text="Frequently Asked Design Questions" mark="Design Questions" /></h2>
+        <h2 className="center">Frequently Asked Design Questions</h2>
         <Faq items={[...PORTFOLIO_FAQS]} />
       </Section>
 
-      <CtaBand h="Want To See A Direction For Your Site?" mark="Your Site" sub="Tell us about your business and we’ll prepare a free homepage preview for your business." btn="Get My Free Preview" />
+      <CtaBand h="See What Your Website Could Look Like" mark="Your Website" sub="Tell us about your business and we’ll prepare a free homepage preview." btn="Get My Free Preview" />
     </>
   );
 }

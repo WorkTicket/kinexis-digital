@@ -154,13 +154,17 @@ export const LEGACY_REDIRECTS = [
   { source: "/es-es/resources/:path*", destination: "/es/blog", statusCode: 301 as const },
   ...localizedWildcard("/blog/category/:slug", "/blog"),
   ...Object.entries(BLOG).flatMap(([slug, destination]) => localized(`/blog/${slug}`, destination)),
-  // English-locale Spanish slugs: keep /es copies live, retire EN duplicates.
-  ...go("/blog/pagina-web-para-plomeros", "/industries/plumbing"),
-  ...go("/en/blog/pagina-web-para-plomeros", "/industries/plumbing"),
+  // Preserve this Spanish checklist article's language and content intent.
+  ...go("/blog/pagina-web-para-plomeros", "/es/blog/pagina-web-para-plomeros"),
+  ...go("/en/blog/pagina-web-para-plomeros", "/es/blog/pagina-web-para-plomeros"),
   ...go("/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
   ...go("/en/blog/como-pedir-resenas-en-google", "/blog/how-to-ask-for-google-reviews-contractor"),
+  // No standalone video-review pages exist; retire their URLs directly to
+  // reviews in each locale before the broad /es-es locale collapse below.
+  ...localized("/video-reviews", "/reviews"),
   ...go("/en", "/"),
   // Collapse the entire Spain locale onto indexable LatAm `/es` (one hop; no /es-es tree).
+  { source: "/es-es/process", destination: "/es/about", statusCode: 301 as const },
   { source: "/es-es", destination: "/es", statusCode: 301 as const },
   { source: "/es-es/:path*", destination: "/es/:path*", statusCode: 301 as const },
 ];

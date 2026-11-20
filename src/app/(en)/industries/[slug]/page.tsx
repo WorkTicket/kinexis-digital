@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: industry.metaTitle,
     description: industry.metaDescription,
     index: industry.status !== "hold",
-    image: `/assets/industries/${industry.slug}/hero-960.webp`,
+    image: `/assets/industries/${industry.slug}/${industry.slug}-social.jpg`,
     imageAlt: `${industry.name} website design`,
   });
 }
@@ -140,6 +140,7 @@ export default async function IndustryPage({ params }: Props) {
           <p className="center muted industry-section-lead">These are the searches and jobs {industry.name.toLowerCase()} owners need the site to handle clearly.</p>
         </div>
         <ReviewRail
+          className={industry.slug === "hvac" ? "review-rail--hvac-services" : ""}
           steps={industry.services.map((point) => ({
             title: point.title,
             text: point.text,
@@ -163,6 +164,15 @@ export default async function IndustryPage({ params }: Props) {
       {industry.proof ? (
         <Section>
           <IndustryProof industry={industry} />
+          {industry.slug === "plumbing" ? (
+            <p className="center spaced">
+              <Link href="/case-studies/preferred-plumbing" prefetch={false}>See the Preferred Plumbing website project</Link>
+            </p>
+          ) : industry.slug === "landscaping" ? (
+            <p className="center spaced">
+              <Link href="/case-studies/a1-property-services" prefetch={false}>See the A1 Property Services website project</Link>
+            </p>
+          ) : null}
         </Section>
       ) : null}
 
@@ -264,7 +274,7 @@ export default async function IndustryPage({ params }: Props) {
       <Section tint narrow>
         <div className="section-head">
           <p className="eyebrow">Straight answers</p>
-          <h2 className="center"><HL text={faqTitle} mark="Owners" /></h2>
+          <h2 className="center">{faqTitle}</h2>
         </div>
         <Faq items={[...industry.faqs]} />
       </Section>

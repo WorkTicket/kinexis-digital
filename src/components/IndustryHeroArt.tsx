@@ -1,6 +1,6 @@
-import { IMAGE_SIZES, imageVariant } from "@/lib/image-sources";
+import { still } from "@/lib/image-sources";
 
-/** Responsive industry LCP art. Never points at the multi-hundred-KB master WebP. */
+/** Per-industry desktop/mobile hero artwork supplied as optimized AVIF/WebP. */
 export default function IndustryHeroArt({
   slug,
   alt,
@@ -8,25 +8,19 @@ export default function IndustryHeroArt({
   slug: string;
   alt: string;
 }) {
-  const heroFile = `/assets/industries/${slug}/hero.webp`;
-  // 480 → mobile lab LCP, 768 → tablet, 960 → desktop 1.5x, 1120/1536 → desktop DPR2.
-  const widths = [480, 768, 960, 1120, 1536] as const;
-  const sizes = IMAGE_SIZES.industryHero;
-  const webpSrcSet = widths.map((width) => `${imageVariant(heroFile, width, "webp")} ${width}w`).join(", ");
-  const avifSrcSet = widths.map((width) => `${imageVariant(heroFile, width, "avif")} ${width}w`).join(", ");
-  const fallback = imageVariant(heroFile, 768, "webp");
+  const desktop = still(`/assets/industries/${slug}/${slug}-desktop.avif`);
+  const mobile = still(`/assets/industries/${slug}/${slug}-mobile.webp`);
 
   return (
     <picture>
-      <source type="image/avif" srcSet={avifSrcSet} sizes={sizes} />
+      <source media="(max-width: 860px)" type="image/webp" srcSet={mobile} />
+      <source type="image/avif" srcSet={desktop} />
       <img
         className="hero-art industry-hero__img"
-        src={fallback}
-        srcSet={webpSrcSet}
-        sizes={sizes}
+        src={mobile}
         alt={alt}
-        width={1536}
-        height={1024}
+        width={2400}
+        height={1350}
         loading="eager"
         decoding="sync"
         fetchPriority="high"

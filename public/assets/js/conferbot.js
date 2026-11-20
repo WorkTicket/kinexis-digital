@@ -10,13 +10,25 @@
   const IDLE_FALLBACK_MS = 2500;
   const CONSENT_CHROME_WAIT_MS = 8000;
   const MOBILE_MQ = "(max-width: 860px)";
+  const HIDE_CTA_STYLE_ID = "kx-hide-chat-cta";
   const HOST_SEL = "conferbot-widget";
   const STYLE_ID = "kx-chat-lift";
   const HOST_CLASS = "kx-chat-lift";
+  const CHAT_VISIBLE_STYLE_ID = "kx-chat-visibility";
+  const CHAT_VISIBLE_CLASS = "kx-sticky-chat-visible";
+  const CHAT_READY_CLASS = "kx-chat-visibility-ready";
+  const CHAT_PRIMING_CLASS = "kx-chat-priming";
   const GAP_ABOVE_BAR_PX = 12;
   const CTA_ABOVE_LAUNCHER_PX = 62;
   const PANEL_ABOVE_LAUNCHER_PX = 58;
   const PUBLIC_BOT_ID = "6afa0edabbad567d637ee189";
+  // Conferbot inserts <conferbot-widget> after <body>, then attaches its open
+  // shadow root and paints the launcher ~1s later. Poll per frame for that
+  // long before falling back to the 1s interval (and lifting the CSS gate).
+  const SHADOW_WAIT_MS = 6000;
+  // Matches the launcher's (and CTA's) .7s exit transform: stay lifted while
+  // fading out instead of dropping ~100px at the start of the exit.
+  const LIFT_HOLD_MS = 750;
 
   let widgetBooted = false;
   let liftArmed = false;
@@ -73,13 +85,49 @@
     let resizeObs = null;
     let watchingHost = null;
     let watchingFloat = null;
+    let hostSeenAt = 0;
+    // True once the launcher's hidden resting style has been computed while the
+    // host is rendered. Showing before that snaps instead of transitioning.
+    let primed = false;
+    let lastShown = false;
+    let liftedPx = 0;
+    let liftHoldUntil = 0;
+    let liftHoldTimer = 0;
     const mobileMq = window.matchMedia(MOBILE_MQ);
 
+    // Only write when the value changes: every write is a mutation record that
+    // re-schedules apply(), and Conferbot re-styles itself on host attr changes.
+    const setClass = (el, cls, on) => {
+      if (el.classList.contains(cls) !== on) el.classList.toggle(cls, on);
+    };
+    const setVar = (el, name, value) => {
+      if (el.style.getPropertyValue(name) !== value) el.style.setProperty(name, value);
+    };
+    const clearVar = (el, name) => {
+      if (el.style.getPropertyValue(name)) el.style.removeProperty(name);
+    };
+
+    // Keep our <style> after Conferbot's own sheets so equal-specificity
+    // !important ties resolve our way. Re-appending on every pass (the old
+    // behaviour) fed the shadow MutationObserver and looped apply() each frame.
+    const ensureLast = (root, el) => {
+      if (el.parentNode !== root) {
+        root.appendChild(el);
+        return;
+      }
+      for (let n = el.nextElementSibling; n; n = n.nextElementSibling) {
+        if ((n.tagName === "STYLE" || n.tagName === "LINK") && !String(n.id).startsWith("kx-")) {
+          root.appendChild(el);
+          return;
+        }
+      }
+    };
+
     const clearShadowLift = (host) => {
-      host.classList.remove(HOST_CLASS);
-      host.removeAttribute("data-cb-own-m-bottom");
-      host.style.removeProperty("--kx-chat-bottom");
-      host.style.removeProperty("--cb-o-m-bottom");
+      setClass(host, HOST_CLASS, false);
+      if (host.hasAttribute("data-cb-own-m-bottom")) host.removeAttribute("data-cb-own-m-bottom");
+      clearVar(host, "--kx-chat-bottom");
+      clearVar(host, "--cb-o-m-bottom");
       host.shadowRoot?.getElementById(STYLE_ID)?.remove();
       clearInlineLift(host.shadowRoot);
     };
@@ -90,7 +138,7 @@
       resizeObs?.disconnect();
       watchingFloat = float;
       if (!float) return;
-      floatObserver = new MutationObserver(schedule);
+      floatObserver = new MutationObserver(applyNow);
       floatObserver.observe(float, {
         attributes: true,
         attributeFilter: ["class", "style", "inert", "hidden"],
@@ -107,7 +155,18 @@
       shadowObserver?.disconnect();
       hostAttrObserver?.disconnect();
       if (host.shadowRoot) {
-        shadowObserver = new MutationObserver(schedule);
+        // Conferbot re-writes the (hidden) proactive bubble's inline position
+        // every animation frame; reacting to that ran apply() + forced layout
+        // 60x/s. Ignore those writes, keep everything else.
+        shadowObserver = new MutationObserver((records) => {
+          const relevant = records.some(
+            (m) =>
+              m.type !== "attributes" ||
+              m.attributeName !== "style" ||
+              !m.target.closest?.("#chat-cta, .chatbot__icon__cta"),
+          );
+          if (relevant) schedule();
+        });
         shadowObserver.observe(host.shadowRoot, {
           childList: true,
           subtree: true,
@@ -122,61 +181,175 @@
       });
     };
 
+    const hideProactiveBubbles = (root) => {
+      if (root.getElementById(HIDE_CTA_STYLE_ID)) return;
+      const el = document.createElement("style");
+      el.id = HIDE_CTA_STYLE_ID;
+      el.textContent = ".chatbot__icon__cta,#chat-cta{display:none!important;}";
+      root.appendChild(el);
+    };
+
+    const installChatVisibilityStyle = (root) => {
+      const existing = root.getElementById(CHAT_VISIBLE_STYLE_ID);
+      if (existing) {
+        ensureLast(root, existing);
+        return;
+      }
+      const el = document.createElement("style");
+      el.id = CHAT_VISIBLE_STYLE_ID;
+      el.textContent = `
+:host #open-chatbot.chatbot__icon,
+:host .chatbot__icon{
+  opacity:0!important;
+  visibility:hidden!important;
+  transform:translateY(18px)!important;
+  pointer-events:none!important;
+}
+:host(.${CHAT_READY_CLASS}) #open-chatbot.chatbot__icon,
+:host(.${CHAT_READY_CLASS}) .chatbot__icon{
+  transition:opacity .5s ease,transform .7s cubic-bezier(.16,1,.3,1),visibility 0s linear .7s;
+}
+:host(.${CHAT_VISIBLE_CLASS}) #open-chatbot.chatbot__icon,
+:host(.${CHAT_VISIBLE_CLASS}) .chatbot__icon{
+  opacity:1!important;
+  visibility:visible!important;
+  transform:translateY(0)!important;
+  pointer-events:auto!important;
+  transition:opacity .5s ease,transform .7s cubic-bezier(.16,1,.3,1),visibility 0s linear 0s;
+}
+:host(.${CHAT_PRIMING_CLASS}) #open-chatbot.chatbot__icon,
+:host(.${CHAT_PRIMING_CLASS}) .chatbot__icon{
+  transition:none!important;
+}
+@media (prefers-reduced-motion:reduce){
+:host #open-chatbot.chatbot__icon,
+:host .chatbot__icon{
+  transition:none!important;
+}
+}
+`.trim();
+      root.appendChild(el);
+    };
+
     const apply = () => {
       const host = document.querySelector(HOST_SEL);
-      if (!host?.shadowRoot) return;
+      if (!host) {
+        hostSeenAt = 0;
+        primed = false;
+        return;
+      }
+      if (!hostSeenAt) hostSeenAt = performance.now();
+      const waiting = performance.now() - hostSeenAt < SHADOW_WAIT_MS;
+      if (!host.shadowRoot) {
+        // attachShadow() fires no mutation; poll per frame while Conferbot boots.
+        // If the shadow never opens, lift the globals.css gate so chat still works.
+        if (waiting) schedule();
+        else setClass(host, CHAT_READY_CLASS, true);
+        return;
+      }
       bindHost(host);
+      hideProactiveBubbles(host.shadowRoot);
+      installChatVisibilityStyle(host.shadowRoot);
+      const html = document.documentElement;
+      const float = document.querySelector(".float-cta");
+      const floatCs = float ? getComputedStyle(float) : null;
+      // Decide from the CTA's target (resting) box, not its in-flight rect: at
+      // the moment .is-in flips the bar is still translated below the fold, so
+      // a getBoundingClientRect() check would hold the launcher back a frame or
+      // more and lift it to the wrong height mid-transition. The enter/exit
+      // transform is vertical-only, so layout bottom + height give the rest top.
+      const floatH = float ? float.offsetHeight : 0;
+      const floatRestTop = float
+        ? viewportHeight() - (Number.parseFloat(floatCs.bottom) || 0) - floatH
+        : 0;
+      const stickyShown =
+        Boolean(float) &&
+        html.classList.contains("sticky-chrome-in") &&
+        !html.classList.contains("consent-open") &&
+        Boolean(float?.classList.contains("is-in")) &&
+        floatH > 1 &&
+        floatRestTop < viewportHeight() &&
+        floatRestTop + floatH > 0 &&
+        floatCs?.display !== "none" &&
+        floatCs?.visibility !== "hidden";
+      if (lastShown && !stickyShown) liftHoldUntil = performance.now() + LIFT_HOLD_MS;
+      if (stickyShown) liftHoldUntil = 0;
+      lastShown = stickyShown;
+      const launcher = host.shadowRoot.querySelector("#open-chatbot.chatbot__icon, .chatbot__icon");
+      const hostRendered = getComputedStyle(host).display !== "none";
+      if (!launcher || !hostRendered) {
+        // consent-open (display:none) or a re-render drops the computed style.
+        primed = false;
+        setClass(host, CHAT_VISIBLE_CLASS, false);
+        if (!launcher && waiting) schedule();
+        if (!launcher) return;
+      }
+      // Lift the globals.css gate only now that the hidden launcher style is in
+      // the shadow root, so Conferbot's first-paint launcher never flashes.
+      setClass(host, CHAT_READY_CLASS, true);
+      if (hostRendered && !primed) {
+        // Commit the hidden resting style first (forced style flush) so the
+        // first show transitions in with the CTA instead of snapping. This
+        // covers the widget loading after the CTA is already in (first-input
+        // scroll), and consent-open closing while scrolled.
+        // Snap (no transition) from Conferbot's first-paint launcher to hidden.
+        setClass(host, CHAT_VISIBLE_CLASS, false);
+        setClass(host, CHAT_PRIMING_CLASS, true);
+        void getComputedStyle(launcher).opacity;
+        setClass(host, CHAT_PRIMING_CLASS, false);
+        primed = true;
+      }
+      setClass(host, CHAT_VISIBLE_CLASS, stickyShown && primed);
       if (!mobileMq.matches) {
         clearShadowLift(host);
         return;
       }
-      const html = document.documentElement;
       const htmlStyles = getComputedStyle(html);
-      const floatHidden =
-        html.classList.contains("no-float") || html.classList.contains("consent-open");
-      const float = document.querySelector(".float-cta");
       bindFloat(float);
-      const fr = float?.getBoundingClientRect();
-      const floatCs = float ? getComputedStyle(float) : null;
-      const floatVisible =
-        Boolean(float) &&
-        !floatHidden &&
-        Boolean(float?.classList.contains("is-in")) &&
-        Boolean(fr && fr.height > 1 && fr.top < viewportHeight() && fr.bottom > 0) &&
-        floatCs?.display !== "none" &&
-        floatCs?.visibility !== "hidden" &&
-        Number.parseFloat(floatCs?.opacity || "0") > 0.5;
-
       const stackFloor =
         cssPx(htmlStyles, "--float-gap", 16) +
         cssPx(htmlStyles, "--float-bar-h", 96) +
         GAP_ABOVE_BAR_PX;
 
       let bottomPx;
-      if (floatVisible && fr) {
+      const holdLeft = liftHoldUntil - performance.now();
+      if (stickyShown) {
         bottomPx = Math.max(
           GAP_ABOVE_BAR_PX,
-          Math.round(viewportHeight() - fr.top + GAP_ABOVE_BAR_PX),
+          Math.round(viewportHeight() - floatRestTop + GAP_ABOVE_BAR_PX),
         );
         bottomPx = Math.max(bottomPx, Math.round(stackFloor));
+        liftedPx = bottomPx;
+      } else if (liftedPx && holdLeft > 0 && !html.classList.contains("consent-open")) {
+        bottomPx = liftedPx;
+        if (!liftHoldTimer) {
+          liftHoldTimer = window.setTimeout(() => {
+            liftHoldTimer = 0;
+            schedule();
+          }, holdLeft + 20);
+        }
       } else {
+        liftedPx = 0;
         const sab = cssPx(htmlStyles, "--sab", 0);
         const stackGap = cssPx(htmlStyles, "--float-gap", 16);
         bottomPx = Math.round(Math.max(stackGap, sab) + GAP_ABOVE_BAR_PX);
       }
       const bottom = `${bottomPx}px`;
-      host.classList.add(HOST_CLASS);
-      host.style.setProperty("--kx-chat-bottom", bottom);
-      host.setAttribute("data-cb-own-m-bottom", "");
-      host.style.setProperty("--cb-o-m-bottom", bottom);
+      setClass(host, HOST_CLASS, true);
+      setVar(host, "--kx-chat-bottom", bottom);
+      if (!host.hasAttribute("data-cb-own-m-bottom")) host.setAttribute("data-cb-own-m-bottom", "");
+      setVar(host, "--cb-o-m-bottom", bottom);
       let styleEl = host.shadowRoot.getElementById(STYLE_ID);
       if (!styleEl) {
         styleEl = document.createElement("style");
         styleEl.id = STYLE_ID;
       }
-      host.shadowRoot.appendChild(styleEl);
-      styleEl.textContent = `
+      const liftCss = `
 @media (max-width: 860px) {
+:host(.${HOST_CLASS}) .chatbot__icon__cta,
+:host(.${HOST_CLASS}) #chat-cta{
+  display:none!important;
+}
 :host(.${HOST_CLASS}) #open-chatbot.chatbot__icon,
 :host(.${HOST_CLASS}) .chatbot__icon{
   bottom:var(--kx-chat-bottom)!important;
@@ -190,19 +363,37 @@
 }
 }
 `.trim();
+      if (styleEl.textContent !== liftCss) styleEl.textContent = liftCss;
+      ensureLast(host.shadowRoot, styleEl);
       clearInlineLift(host.shadowRoot);
     };
 
-    const schedule = () => {
-      cancelAnimationFrame(raf);
+    // CTA enter/leave (.float-cta.is-in, html.sticky-chrome-in) starts its CSS
+    // transition in the same frame as the class flip. MutationObserver callbacks
+    // run before that frame renders, so toggling here keeps the launcher in
+    // lockstep with the CTA instead of a frame (or two) behind.
+    function applyNow() {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+      apply();
+    }
+
+    // One frame (not two): the CTA's .is-in / sticky-chrome-in class flips start
+    // its transition immediately, so the launcher must toggle in the same frame
+    // to move in sync. Coalesce instead of cancel so steady mutations can't starve it.
+    function schedule() {
+      if (raf) return;
       raf = requestAnimationFrame(() => {
-        requestAnimationFrame(apply);
+        raf = 0;
+        apply();
       });
-    };
+    }
 
     hostObserver = new MutationObserver(schedule);
     hostObserver.observe(document.documentElement, { childList: true, subtree: true });
-    classObserver = new MutationObserver(schedule);
+    classObserver = new MutationObserver(applyNow);
     classObserver.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["class", "style"],
@@ -241,15 +432,27 @@
   function consentDockOpen() {
     return document.documentElement.classList.contains("consent-open");
   }
+  function consentAllowsConferbot() {
+    const match = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
+    if (!match) return false;
+    try {
+      const value = decodeURIComponent(match[1]);
+      return value.startsWith("v1|") &&
+        /(?:^|\|)a=1(?:\||$)/.test(value) &&
+        /(?:^|\|)d=1(?:\||$)/.test(value);
+    } catch {
+      return false;
+    }
+  }
   function readyToArm() {
-    if (consentDockOpen()) return false;
+    if (consentDockOpen() || !consentAllowsConferbot()) return false;
     return consentChromePresent() || chromeWaitExpired;
   }
 
   function load() {
     if (cleaned || widgetBooted) return;
     if (window.location.pathname.startsWith("/admin")) return;
-    if (consentDockOpen()) {
+    if (consentDockOpen() || !consentAllowsConferbot()) {
       waitForConsentThenArm();
       return;
     }

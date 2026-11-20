@@ -73,9 +73,9 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "One page for every job", text: "A burst pipe and a bathroom remodel do not share a buyer. Mashing them into one services page makes both harder to find.", icon: "separate-service-pages" },
       { title: "The number is a scavenger hunt", text: "If click-to-call is below a stock photo and a paragraph about family values, the emergency caller is already gone.", icon: "visible-phone-number" },
-      { title: "Missed calls stay missed", text: "You are under a sink. The next caller does not leave a voicemail. Text-back is how that lead still reaches you.", icon: "missed-call-follow-up" },
+      { title: "No follow-up after a missed call", text: "If you are working and cannot answer, optional missed-call text-back gives the caller a way to tell you what they need.", icon: "missed-call-follow-up" },
     ],
-    heroAlt: "Plumber inspecting sink pipework, copper fitting, laptop and phone",
+    heroAlt: "Plumber working beneath a kitchen sink on exposed pipes",
     servicesTitle: "Pages a plumbing site should have",
     servicesMark: "plumbing site",
     services: [
@@ -119,7 +119,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Install treated like an emergency", text: "A replacement buyer is comparing quotes, efficiency and warranties. A giant “call now” banner is the wrong close.", icon: "replacement-quote-path" },
       { title: "No plan for the mild months", text: "Tune-ups and memberships are how trucks stay busy in April. They need a page, not a coupon taped to the repair menu.", icon: "seasonal-maintenance" },
     ],
-    heroAlt: "HVAC technician, condenser, diagnostic gauges and website tablet",
+    heroAlt: "HVAC technician inspecting an outdoor condenser unit",
     servicesTitle: "What we put on an HVAC site",
     servicesMark: "HVAC site",
     services: [
@@ -132,7 +132,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Will the site push replacement when the caller needs a repair?", a: "No. Repair and replacement get separate pages and separate calls to action. Mixing them trains the wrong person to fill out the wrong form." },
       { q: "Can the site mention financing?", a: "Yes, on the install path, and only for financing you really offer. We do not invent terms." },
-      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "On Lead System and Plus, optional missed-call text-back can reply on your tracking number after carrier approval. That is the follow-up while the board is full." },
+      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "On Lead System and Plus, optional missed-call text-back can reply on your tracking number after carrier approval. Approval usually takes 10–15 days and is not guaranteed, so it is not an instant fallback when the board is full." },
       { q: "Can you write my repair and replacement pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
       { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
       { q: "Can my HVAC site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
@@ -149,7 +149,7 @@ export const INDUSTRIES: Industry[] = [
     metaDescription: "Electrician website design from $97/mo. Panel upgrades, EV chargers, and troubleshooting, with Google review requests and optional missed-call text-back.",
     h1: "Website Design for Electricians That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
-    sub: "Electrical work is a trust sale. The site has to show the license, the kind of jobs you take, and a way to reach you that does not feel like a lead mill.",
+    sub: "Hiring an electrician depends on trust. Your site should show your license, the work you take on, and a clear way to contact you.",
     intro: [
       "Kinexis builds electrician websites for shops across the United States, from solo electricians to multi-crew companies. Homeowners searching for a panel upgrade or an EV charger are nervous about who they let in the house. A template that could belong to any contractor, with no mention of licensing or the actual work, does not answer that.",
       "We build pages for the jobs that pay: troubleshooting, panels, EV chargers, lighting and the small repairs that fill a day. The copy stays specific to electrical work, and the preview lets you judge it before you buy.",
@@ -159,9 +159,9 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "No proof you are licensed", text: "License, insurance and the kind of work you will not touch belong where a nervous homeowner can see them.", icon: "license-proof" },
       { title: "EV chargers stuffed under “services”", text: "Charger installs are a research visit. They need their own page, not a bullet under outlet repair.", icon: "extra-page" },
-      { title: "Commercial and residential mixed", text: "A property manager and a homeowner with a dead outlet are not the same lead. Split them if you sell both.", icon: "separate-buyer-paths" },
+      { title: "Commercial and residential services mixed together", text: "A property manager and a homeowner with a dead outlet need different information. Separate those services if you offer both.", icon: "separate-buyer-paths" },
     ],
-    heroAlt: "Electrician, electrical panel, EV charger and website screens",
+    heroAlt: "Electrician inspecting an open electrical panel",
     servicesTitle: "Pages that match electrical search",
     servicesMark: "electrical search",
     services: [
@@ -174,7 +174,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Can you show my license number on the site?", a: "Yes. Send the number and the state. We put it where people look, not in a footer nobody opens." },
       { q: "I do residential only. Will the site still talk about commercial?", a: "No. We write the work you want. Advertising jobs you do not staff just creates calls you have to turn down." },
-      { q: "How do reviews fit an electrical business?", a: "After a finished job, Lead System and Plus send a text with your Google review link. New reviews are how the next panel quote decides you are real." },
+      { q: "How do review requests work for an electrical business?", a: "Lead System and Plus can send a text with a direct link to your Google profile after a job." },
       { q: "Can you write my panel and EV charger pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
       { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
       { q: "Can my electrical site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
@@ -203,7 +203,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Repair and replacement on one page", text: "A shingle leak and a full tear-off are different quotes. Give each its own page and its own next step.", icon: "repair-replacement-pages" },
       { title: "Photos that are not your roofs", text: "Stock houses do not convince someone standing in their own driveway. We lay the site out for your photos, or quote a shoot separately.", icon: "real-project-photos" },
     ],
-    heroAlt: "Roofer, shingle roof, construction detail and website screens",
+    heroAlt: "Roofer inspecting shingles on a residential roof",
     servicesTitle: "What belongs on a roofing site",
     servicesMark: "roofing site",
     services: [
@@ -245,7 +245,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Styles with no prices context", text: "You do not have to publish a menu. You do have to say what changes the price: size, insulation, opener, haul-away.", icon: "quote-price-context" },
       { title: "No follow-up after the measure", text: "Replacement quotes go cold. A missed call during the install next door should still get a text.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Garage-door technician, modern garage, opener remote and laptop",
+    heroAlt: "Garage-door technician working on an open residential garage door",
     servicesTitle: "Pages a garage door company needs",
     servicesMark: "garage door",
     services: [
@@ -284,9 +284,9 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "Interior and exterior treated as one job", text: "A single room and a two-story exterior are different crews, seasons and prices. Split the pages.", icon: "interior-exterior-pages" },
       { title: "No finished-work photos", text: "Painting is visual. The layout leaves room for your rooms, not a stock living room with the tags still on the pillows.", icon: "finished-work-gallery" },
-      { title: "A form that asks for too much", text: "Room count, photos and a neighborhood are enough to know if the lead is real. A novel is why they call the next painter.", icon: "short-estimate-form" },
+      { title: "A form that asks for too much", text: "Start with the project type, location, and contact details. You can ask for photos and other details when you follow up.", icon: "short-estimate-form" },
     ],
-    heroAlt: "Painter, roller, paint samples, cabinet detail and website screens",
+    heroAlt: "Painter applying paint to an interior wall",
     servicesTitle: "What a painting site should explain",
     servicesMark: "painting site",
     services: [
@@ -320,17 +320,17 @@ export const INDUSTRIES: Industry[] = [
     mark: "Booked Jobs",
     sub: "A remodel is a long sale. The site should show finished rooms, explain how a project starts, and not shout like a drain-cleaning ad.",
     intro: [
-      "Kitchen and bath leads do not convert on the first visit the way a no-heat call does. People look at photos, check that you pull permits if that is your work, and then request a consult. A site built like an emergency plumber throws that lead away.",
-      "We lead with the rooms, the process and what you need from them before a number exists. Service pages stay specific: kitchens, baths, and the other remodels you want, not a junk drawer of every service you have ever touched.",
+      "Kitchen and bath projects involve a different decision from an urgent heating repair. People look at photos, ask about permits if relevant, and then request a consultation. The website should guide them through that process.",
+      "We explain the project types, your process, and what you need to prepare an estimate. Service pages stay focused on kitchens, baths, and the other remodeling work you want to take on.",
     ],
     problemsTitle: "Remodeling sites that scare off the consult",
     problemsMark: "scare off",
     problems: [
       { title: "No project photos above the fold", text: "The first screen is the portfolio. If it is a stock kitchen, the real photos three scrolls down never get seen.", icon: "first-screen-portfolio" },
-      { title: "A fake starting price", text: "“Kitchens from $9,999” trains the wrong lead. Describe what changes the budget instead of inventing a floor.", icon: "payment" },
+      { title: "A made-up starting price", text: "A generic price can attract requests that do not match the actual scope. Explain what affects the budget instead of inventing a starting figure.", icon: "payment" },
       { title: "Emergency language on a design project", text: "“Call now” is right for a leak. A remodel needs a consult, a timeline and a person who answers.", icon: "consultation-path" },
     ],
-    heroAlt: "Kitchen, material samples, plans, contractor and laptop",
+    heroAlt: "Remodeling contractor reviewing details in a finished kitchen",
     servicesTitle: "Pages a remodeler should publish",
     servicesMark: "remodeler",
     services: [
@@ -381,7 +381,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Projects with no process", text: "Design-build needs a consult path: site visit, concept, install. A phone number alone is not a process.", icon: "consultation-path" },
       { title: "A service area you cannot staff", text: "Listing the whole metro when you run two crews creates quotes you cannot schedule.", icon: "realistic-service-area" },
     ],
-    heroAlt: "Landscape designer, planting plan, finished garden and laptop",
+    heroAlt: "Landscaper planting shrubs in a finished garden",
     servicesTitle: "How we structure a landscaping site",
     servicesMark: "landscaping site",
     services: [
@@ -425,7 +425,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Repairs with no path", text: "Pumps, heaters and green pools are urgent. They need a page and a phone, not a footnote under “full service.”", icon: "repair-call-path" },
       { title: "Neighborhoods you do not drive", text: "Route density matters. The service area should match the days you already run.", icon: "route-coverage" },
     ],
-    heroAlt: "Pool technician, pool equipment, water and website tablet",
+    heroAlt: "Pool technician skimming leaves from a residential pool",
     servicesTitle: "Pages a pool company should have",
     servicesMark: "pool company",
     services: [
@@ -468,7 +468,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No before-and-after", text: "The proof is the photo pair. The template should expect it, not treat images as decoration.", icon: "before-after-proof" },
       { title: "Quotes that start from nothing", text: "Ask for the surface and a photo. Guessing square footage from a name and email wastes the visit.", icon: "photo-based-quotes" },
     ],
-    heroAlt: "Surface-cleaning equipment, driveway cleaning and laptop",
+    heroAlt: "Worker pressure-washing a residential driveway",
     servicesTitle: "Pages that match how people search",
     servicesMark: "people search",
     services: [
@@ -510,7 +510,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No word on what is included", text: "Screens, sills and interior glass are why quotes get disputed. Say what the visit covers.", icon: "visit-inclusions" },
       { title: "No path back to a recurring clean", text: "The first job is the ad. The route is the business. The site should offer both.", icon: "recurring-cleaning-path" },
     ],
-    heroAlt: "Window cleaner, storefront glass, squeegee and website screens",
+    heroAlt: "Window cleaner using a squeegee on a home's exterior window",
     servicesTitle: "What we publish for window cleaners",
     servicesMark: "window cleaners",
     services: [
@@ -553,7 +553,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Pet waste treated as an afterthought", text: "If you sell it, it is its own search and its own page. If you do not, leave it off.", icon: "extra-page" },
       { title: "No explanation of the visit", text: "Mow, edge, blow, waste removal: people want the list before they hand you a gate code.", icon: "visit-inclusions" },
     ],
-    heroAlt: "Lawn-care owner, mower, dog, waste station and tablet",
+    heroAlt: "Lawn-care worker mowing a residential lawn",
     servicesTitle: "Pages a yard-care route needs",
     servicesMark: "yard-care route",
     services: [
@@ -594,9 +594,9 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "One form for every pile", text: "A mattress on the curb and a garage cleanout are different quotes. Mashing them into one “services” page makes both harder to book.", icon: "separate-buyer-paths" },
       { title: "The number buried under photos", text: "Someone standing next to a dumpster wants tap-to-call. If the phone is below a long brand story, they dial the next listing.", icon: "emergency-phone-path" },
-      { title: "Quotes that go cold after the measure", text: "You are on a haul. The next caller hangs up. Optional missed-call text-back is how that lead still reaches you.", icon: "quote-follow-up" },
+      { title: "Missed calls without follow-up", text: "If you are on a job and cannot answer, optional missed-call text-back gives the caller a way to tell you what they need.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Junk removal crew, box truck, driveway haul and website tablet",
+    heroAlt: "Junk-removal crew loading furniture onto a trailer",
     servicesTitle: "Pages a junk removal site should have",
     servicesMark: "junk removal site",
     services: [
@@ -642,7 +642,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No insurance or safety proof", text: "Homeowners comparing bids look for insurance and crew safety near the phone — not three scrolls under a stock oak photo.", icon: "insurance-process" },
       { title: "A service area you cannot crew", text: "Listing the whole metro when you run two trucks creates quotes you cannot schedule. Publish the towns you want.", icon: "route-service-area" },
     ],
-    heroAlt: "Tree care crew, chipper truck, residential tree and website tablet",
+    heroAlt: "Arborist inspecting a mature tree in a residential yard",
     servicesTitle: "Pages a tree care site should have",
     servicesMark: "tree care site",
     services: [

@@ -4,8 +4,8 @@
  * Production ships via committed `.env.production` (and CI overrides that flag
  * to 0 so this assert and e2e stay meaningful).
  *
- * Load contract: functional chat (not analytics-gated); idle/input after page
- * load; defer past consent-open; no double-init; no PII in customData.
+ * Load contract: require affirmative consent; idle/input after page load; no
+ * double-init; no PII in customData.
  * Vanilla `public/assets/js/conferbot.js` owns the runtime (no React island).
  */
 import assert from "node:assert/strict";
@@ -45,13 +45,15 @@ assert.match(widget, /liftArmed/);
 assert.match(widget, /#open-chatbot/);
 assert.match(widget, /setInterval\(schedule,\s*1000\)/);
 assert.match(widget, /consentDockOpen/);
+assert.match(widget, /consentAllowsConferbot/);
+assert.match(widget, /kinexis_consent/);
+assert.match(widget, /a=1/);
+assert.match(widget, /d=1/);
 assert.match(widget, /consent-open/);
 assert.match(widget, /consent-fab/);
 assert.match(widget, /waitForConsentThenArm/);
 assert.match(widget, /__kxStartLauncherPositioner/);
 assert.doesNotMatch(widget, /analyticsAllowed/);
-assert.doesNotMatch(widget, /parseConsentCookie/);
-assert.doesNotMatch(widget, /kinexis:consent/);
 assert.doesNotMatch(widget, /user:\s*\{/);
 
 const csp = readFileSync(resolve("next.config.ts"), "utf8");
@@ -67,5 +69,5 @@ assert.match(
 );
 
 console.log(
-  "Conferbot widget contract checks passed: flag off by default, vanilla conferbot.js (defer past consent-open then idle/input, not analytics-gated), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, Boot mount.",
+  "Conferbot widget contract checks passed: flag off by default, vanilla conferbot.js (requires affirmative analytics + ads consent before idle/input loading), shadow launcher lift, consent-open host hide, no double-init, CSP hosts, Boot mount.",
 );

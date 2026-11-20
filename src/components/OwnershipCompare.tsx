@@ -6,7 +6,7 @@ import { EN_OWNERSHIP, type OwnershipCompareData } from "@/i18n/spanish-plan-com
  */
 export default function OwnershipCompare({
   heading,
-  mark = "monthly managed plans",
+  mark = "vs",
   data = EN_OWNERSHIP,
 }: {
   heading?: string;
@@ -18,9 +18,9 @@ export default function OwnershipCompare({
 
   return (
     <div className="plan-compare__ownership">
-      <h3 className="center">
+      <h2 className="center">
         <HL text={title} mark={mark} />
-      </h3>
+      </h2>
       <p className="center muted">{data.intro}</p>
 
       <div className="own-path-cards" aria-label={labels.aria}>
@@ -45,7 +45,7 @@ export default function OwnershipCompare({
         ))}
       </div>
 
-      <div className="table-scroll own-path-table">
+      <div className="table-scroll own-path-table" role="region" aria-label={labels.aria} tabIndex={0}>
         <table className="plan-table plan-compare__own-table">
           <thead>
             <tr>
