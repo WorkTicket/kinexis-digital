@@ -1,4 +1,5 @@
 import { preload } from "react-dom";
+import type { Locale } from "@/lib/i18n";
 import { still } from "@/lib/image-sources";
 
 const PAGE_ART = "/assets/kinexis/page-art";
@@ -24,14 +25,17 @@ export function CampaignHeroArtwork({
   alt,
   fallback,
   priority = false,
+  locale = "en",
 }: {
   name: CampaignPageArt;
   alt: string;
   fallback: string;
   priority?: boolean;
+  locale?: Locale;
 }) {
-  const desktop = still(`${PAGE_ART}/${name}-desktop.avif`);
-  const mobile = still(`${PAGE_ART}/${name}-mobile.webp`);
+  const suffix = locale === "en" ? "" : "-es";
+  const desktop = still(`${PAGE_ART}/${name}-desktop${suffix}.avif`);
+  const mobile = still(`${PAGE_ART}/${name}-mobile${suffix}.webp`);
   if (priority) {
     preload(desktop, {
       as: "image",
@@ -83,14 +87,17 @@ export function HomeSectionArtwork({
   name,
   alt,
   className = "",
+  locale = "en",
 }: {
   name: HomeSectionArt;
   alt: string;
   className?: string;
+  locale?: Locale;
 }) {
-  const narrow = still(`${HOME_ART}/${name}-800w.webp`);
+  const suffix = locale === "en" ? "" : "-es";
+  const narrow = still(`${HOME_ART}/${name}-800w${suffix}.webp`);
   const wideFormat = name === "review-follow-up" ? "webp" : "avif";
-  const wide = still(`${HOME_ART}/${name}-1200w.${wideFormat}`);
+  const wide = still(`${HOME_ART}/${name}-1200w${suffix}.${wideFormat}`);
   const { width, height } = HOME_ART_DIMENSIONS[name];
 
   return (

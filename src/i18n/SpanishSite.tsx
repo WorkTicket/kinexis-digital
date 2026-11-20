@@ -112,6 +112,22 @@ const PAGE_META_ES_ES: Partial<Record<string, Meta>> = {
   },
 };
 
+const SPANISH_SOCIAL_ART: Record<string, string> = {
+  "/": "homepage-hero",
+  "/about": "about",
+  "/audit": "website-audit",
+  "/blog": "blog",
+  "/contact": "contact",
+  "/industries": "industries",
+  "/seo-services": "local-seo",
+  "/portfolio": "portfolio",
+  "/pricing": "pricing",
+  "/reviews": "client-reviews",
+  "/services": "all-services",
+  "/upgrades": "upgrades",
+  "/web-design": "web-design",
+};
+
 export function spanishMetadata(locale: Locale, slug?: string[]) {
   const en = pathFromSlug(slug);
   const localized = metaFor(en, locale);
@@ -124,7 +140,9 @@ export function spanishMetadata(locale: Locale, slug?: string[]) {
     description: localized.description,
     absolute: localized.absolute,
     locale,
-    image: localized.image ?? (page && "ogImage" in page ? page.ogImage : undefined),
+    image: localized.image ?? (SPANISH_SOCIAL_ART[en]
+      ? `/assets/kinexis/page-art/${SPANISH_SOCIAL_ART[en]}-social-es.jpg`
+      : (page && "ogImage" in page ? page.ogImage : undefined)),
     ogType: localized.article ? "article" : "website",
     publishedTime: localized.date,
     section: localized.section,
@@ -245,7 +263,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       />
       <Section tint>
         <MediaSplit
-          art={<CampaignHeroArtwork name="homepage-hero" alt={tx("Un negocio mostrando un plan de sitio en una computadora y un celular")} fallback="/assets/heroes/01-homepage-640.webp" />}
+          art={<CampaignHeroArtwork name="homepage-hero" alt={tx("Un negocio mostrando un plan de sitio en una computadora y un celular")} fallback="/assets/heroes/01-homepage-640.webp" locale={locale} />}
         >
           <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
           <p>{tx(`Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde ${p("websiteMo", currency)} al mes.`)}</p>
@@ -258,7 +276,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       </Section>
       <Section>
         <MediaSplit
-          art={<HomeSectionArtwork name="homepage-website-showcase" alt={tx("Diseños de sitios web para negocios de servicios locales")} className="home-section-art--showcase" />}
+          art={<HomeSectionArtwork name="homepage-website-showcase" alt={tx("Diseños de sitios web para negocios de servicios locales")} className="home-section-art--showcase" locale={locale} />}
           reverse
         >
           <h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2>
@@ -304,6 +322,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             name="review-follow-up"
             alt={tx("Una solicitud de reseña enviada después de terminar un trabajo")}
             className="home-section-art--reviews"
+            locale={locale}
           />
         </div>
         <ReviewRail steps={[
@@ -330,6 +349,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             name="homepage-built-for-your-trade"
             alt={tx("Un sitio web rodeado de herramientas de varios negocios de servicios")}
             className="home-section-art--trades"
+            locale={locale}
           />
         </div>
         <IndustryGrid
@@ -542,7 +562,7 @@ function Seo({ locale, tx, href, lang, band }: PageBits) {
         </div>
       </Section>
       <Section tint>
-        <MediaSplit image="website-audit" alt={tx("Panel de auditoría del sitio con una lista de búsqueda y rendimiento")}>
+        <MediaSplit image="website-audit" alt={tx("Panel de auditoría del sitio con una lista de búsqueda y rendimiento")} locale={locale}>
           <h2><HL text={tx("Cómo priorizamos el trabajo")} mark={tx("priorizamos")} /></h2>
           <p>{locale === "es-ES"
             ? tx("Trabajamos con negocios de servicios locales, cubras una ciudad o una zona más amplia. Primero va la base: un sitio rápido, rastreable, con títulos claros y contenido útil. Nadie puede garantizar posiciones.")
@@ -840,6 +860,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
             name="homepage-built-for-your-trade"
             alt={tx("Un sitio web rodeado de herramientas de varios negocios de servicios")}
             className="home-section-art--trades"
+            locale={locale}
           />
         </div>
         <IndustryGrid

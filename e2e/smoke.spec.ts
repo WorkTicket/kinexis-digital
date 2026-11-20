@@ -150,6 +150,16 @@ test.describe("marketing journeys", () => {
     }
   });
 
+  test("Spanish campaign artwork and social previews use localized image variants", async ({ page }) => {
+    await page.goto("/es");
+    await expect(page.locator('picture.campaign-page-art source[type="image/avif"]')).toHaveAttribute("srcset", /homepage-hero-desktop-es\.avif/);
+    await expect(page.locator('picture.home-section-art--showcase source[type="image/avif"]')).toHaveAttribute("srcset", /homepage-website-showcase-1200w-es\.avif/);
+
+    await page.goto("/es/pricing");
+    await expect(page.locator('picture.campaign-page-art source[type="image/avif"]')).toHaveAttribute("srcset", /pricing-desktop-es\.avif/);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /pricing-social-es\.jpg/);
+  });
+
   test("preview form shows required business fields", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator('input[name="business"]').first()).toBeVisible();

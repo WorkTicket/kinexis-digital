@@ -110,8 +110,8 @@ export function HeroImage({ name, alt, sizes }: HeroImageProps) {
 
 /** Responsive hero artwork. Source files are pre-sized WebP/AVIF, so the intrinsic ratio stays 1:1. */
 export function Art({
-  name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art,
-}: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string }) {
+  name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art, locale = "en",
+}: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string; locale?: Locale }) {
   const file = HERO_FILES[name];
   const campaignName = CAMPAIGN_HERO[name];
   if (campaignName) {
@@ -121,6 +121,7 @@ export function Art({
         alt={alt}
         fallback={still(`/assets/heroes/${file}-640.webp`)}
         priority={priority}
+        locale={locale}
       />
     );
   }
@@ -221,7 +222,7 @@ export function PageHero({
             <div className="art-wrap">
               {decor?.map((name) => <ArtDecor key={name} name={name} />)}
               {/* PAGE_HERO_SIZES understates the ~260px slot so mobile picks 480w LCP AVIF. */}
-              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={PAGE_HERO_SIZES} /> : null)}
+              {art ?? (image ? <Art name={image} alt={imageAlt} className="hero-art" priority sizes={PAGE_HERO_SIZES} locale={locale} /> : null)}
             </div>
           </div>
         </div>
@@ -233,16 +234,16 @@ export function PageHero({
 
 /** Image + copy section used for service introductions and story blocks. */
 export function MediaSplit({
-  image, art, alt = "", decor, reverse, className = "", id, children,
+  image, art, alt = "", decor, reverse, className = "", id, locale = "en", children,
 }: {
-  image?: ArtName; art?: ReactNode; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; children: ReactNode;
+  image?: ArtName; art?: ReactNode; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; locale?: Locale; children: ReactNode;
 }) {
   return (
     <div id={id} className={`media-split${reverse ? " media-split--reverse" : ""}${className ? ` ${className}` : ""}`}>
       <div className="media-split__art">
         <div className="art-wrap">
           {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-          {art ?? (image ? <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} /> : null)}
+          {art ?? (image ? <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} locale={locale} /> : null)}
         </div>
       </div>
       <div className="media-split__copy">{children}</div>
