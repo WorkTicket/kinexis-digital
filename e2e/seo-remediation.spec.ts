@@ -140,6 +140,28 @@ test.describe("KX-SEO-002 Release 1", () => {
     expect(new URL(destination.url()).pathname).toBe("/es/blog/pagina-web-para-plomeros");
   });
 
+  test("retired video-review URLs redirect directly to the live reviews pages in each locale", async ({ page }) => {
+    const checks = [
+      ["/video-reviews", "/reviews"],
+      ["/video-reviews.html", "/reviews"],
+      ["/es/video-reviews", "/es/reviews"],
+      ["/es-es/video-reviews", "/es/reviews"],
+    ] as const;
+
+    for (const [source, destinationPath] of checks) {
+      const rule = LEGACY_REDIRECTS.find((item) => item.source === source);
+      expect(rule).toMatchObject({ destination: destinationPath, statusCode: 301 });
+
+      const redirect = await page.request.get(source, { maxRedirects: 0 });
+      expect(redirect.status(), `${source} should redirect once`).toBe(301);
+      expect(new URL(redirect.headers().location, "http://localhost:3100").pathname).toBe(destinationPath);
+
+      const destination = await page.request.get(destinationPath);
+      expect(destination.status(), `${destinationPath} should be live`).toBe(200);
+      expect(new URL(destination.url()).pathname).toBe(destinationPath);
+    }
+  });
+
   for (const route of ["/industries/plumbing", "/contact", "/es/industries/plumbing"]) {
     test(`accepted lead on ${route} emits one sanitized generate_lead`, async ({ page, baseURL }) => {
       await enableMockLeadTracking(page, baseURL);
