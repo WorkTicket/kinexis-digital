@@ -26,21 +26,10 @@ export function pageHeroSizesForFile(file: string) {
  * Prefix rules (case-studies) live in `pageHeroFileForPath`.
  */
 export const PAGE_HERO_BY_PATH: Record<string, string> = {
-  "/services": "01-homepage",
-  "/portfolio": "02-portfolio",
-  "/about": "03-about",
-  "/reviews": "05-reviews",
-  "/pricing": "06-pricing",
   "/pay": "06-pricing",
-  "/web-design": "07-web-design",
-  "/seo-services": "08-local-seo",
-  "/audit": "09-website-audit",
   "/website-management": "10-maintenance",
   "/faqs": "11-faqs",
-  "/blog": "12-blog",
-  "/contact": "13-contact",
   "/strategy-call": "13-contact",
-  "/upgrades": "14-upgrades",
 };
 
 export function pageHeroFileForPath(pathname: string): string | null {

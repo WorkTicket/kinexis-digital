@@ -233,7 +233,7 @@ export default function SpanishIndustry({
       <Section tint narrow>
         <div className="section-head">
           <p className="eyebrow">{tx("Respuestas claras")}</p>
-          <h2 className="center"><HL text={tx(`Preguntas para dueños de ${industry.name}`)} mark={tx("dueños")} /></h2>
+          <h2 className="center">{tx(`Preguntas para dueños de ${industry.name}`)}</h2>
         </div>
         <Faq items={[...industry.faqs]} />
       </Section>

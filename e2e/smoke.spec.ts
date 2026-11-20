@@ -83,22 +83,20 @@ test.describe("marketing journeys", () => {
     }
   });
 
-  test("highlight sweeps animate H1/H2 only", async ({ page }) => {
+  test("H1 marker sweeps remain while other heading emphasis is typographic", async ({ page }) => {
     await installMockAnalytics(page);
     for (const path of ["/contact", "/", "/pricing"]) {
       await page.goto(path);
       await waitForBoot(page);
-      const headings = page.locator("main h1 .hl, main h2 .hl");
-      await expect(headings.first()).toBeVisible();
-      const marker = headings.last();
-      await marker.evaluate((el) => el.scrollIntoView({ block: "center", behavior: "instant" }));
-      await expect(marker).toHaveClass(/is-marked/);
+      const marker = page.locator("main h1 .hl").first();
+      await expect(marker).toBeVisible();
+      await expect.poll(() => marker.evaluate((el) => getComputedStyle(el).backgroundSize))
+        .not.toMatch(/^0(px|%)/);
+      await expect(page.locator("main h2 .hl")).toHaveCount(0);
       const onlyHeadingMarkersAnimate = await page.locator(".hl.is-pending, .hl.is-marked").evaluateAll((nodes) =>
         nodes.every((node) => Boolean(node.closest("h1, h2"))),
       );
       expect(onlyHeadingMarkersAnimate).toBe(true);
-      await expect.poll(() => marker.evaluate((el) => getComputedStyle(el).backgroundSize))
-        .not.toMatch(/^0(px|%)/);
     }
   });
 
@@ -447,23 +445,19 @@ test.describe("marketing journeys", () => {
   test("mobile nav opens", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
-    await page.waitForLoadState("load");
-    // boot.min.js is lazyOnload — wait until its document click handler is live.
-    await page.waitForFunction(() => {
-      const scripts = [...document.scripts].some((s) => (s.src || "").includes("boot.min.js"));
-      return scripts && Boolean(window.__KINEXIS_CFG__);
-    }, null, { timeout: 30_000 });
-    await page.waitForTimeout(400);
     // Clear consent overlay so it cannot steal the tap target.
     await page.evaluate(() => {
       document.cookie = `kinexis_consent=${encodeURIComponent("v1|a=0|d=0")}; Path=/; Max-Age=86400; SameSite=Lax`;
       window.dispatchEvent(new Event("kinexis:consent"));
     });
-    await page.waitForTimeout(200);
-    await page.locator("button.burger[aria-controls='nav']").click();
-    await expect.poll(async () => page.evaluate(() => (
-      document.documentElement.classList.contains("nav-open") || Boolean(document.querySelector("#nav.is-open"))
-    )), { timeout: 10_000 }).toBe(true);
+    const burger = page.locator("button.burger[aria-controls='nav']");
+    const isOpen = () => page.evaluate(() =>
+      document.documentElement.classList.contains("nav-open") || Boolean(document.querySelector("#nav.is-open")));
+    // boot.min.js is lazyOnload; retry the tap until its click handler is live.
+    await expect(async () => {
+      if (!(await isOpen())) await burger.click();
+      expect(await isOpen()).toBe(true);
+    }).toPass({ timeout: 15_000, intervals: [250, 500, 1000] });
   });
 
   test("cookie consent: undecided and reject block trackers", async ({ page, context, baseURL }) => {

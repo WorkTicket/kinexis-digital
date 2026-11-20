@@ -14,6 +14,7 @@ import {
 import { PROJECTS } from "@/lib/projects";
 import { Icon, Illustration } from "./artwork";
 import { DeferredImg } from "./DeferredImg";
+import { CampaignHeroArtwork, type CampaignPageArt } from "./CampaignArtwork";
 import { HL, Phrase } from "./mark";
 import { ShotFrame } from "./ShotFrame";
 import PreviewBar from "./PreviewBar";
@@ -25,7 +26,7 @@ export { Icon, Illustration, HL, Phrase };
 export type ArtName =
   | "homepage" | "portfolio" | "about" | "process" | "reviews" | "pricing"
   | "web-design" | "local-seo" | "website-audit" | "maintenance" | "faqs"
-  | "blog" | "contact" | "upgrades";
+  | "blog" | "contact" | "upgrades" | "industries" | "all-services";
 
 const HERO_FILES: Record<ArtName, string> = {
   homepage: "01-homepage",
@@ -42,6 +43,23 @@ const HERO_FILES: Record<ArtName, string> = {
   blog: "12-blog",
   contact: "13-contact",
   upgrades: "14-upgrades",
+  industries: "11-faqs",
+  "all-services": "01-homepage",
+};
+
+const CAMPAIGN_HERO: Partial<Record<ArtName, CampaignPageArt>> = {
+  about: "about",
+  portfolio: "portfolio",
+  industries: "industries",
+  pricing: "pricing",
+  reviews: "client-reviews",
+  blog: "blog",
+  contact: "contact",
+  "all-services": "all-services",
+  "web-design": "web-design",
+  "local-seo": "local-seo",
+  "website-audit": "website-audit",
+  upgrades: "upgrades",
 };
 
 type HeroImageProps = {
@@ -95,6 +113,17 @@ export function Art({
   name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art,
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string }) {
   const file = HERO_FILES[name];
+  const campaignName = CAMPAIGN_HERO[name];
+  if (campaignName) {
+    return (
+      <CampaignHeroArtwork
+        name={campaignName}
+        alt={alt}
+        fallback={still(`/assets/heroes/${file}-640.webp`)}
+        priority={priority}
+      />
+    );
+  }
   const base = `/assets/heroes/${file}`;
   // Lazy art falls back to 640w so a missing srcset pick never downloads the 1254 master.
   const src = still(`${base}-640.webp`);
@@ -159,7 +188,7 @@ export function PageHero({
   previewBar?: boolean;
   children?: ReactNode;
 }) {
-  const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} /> : h1;
+  const title = typeof h1 === "string" && mark ? <HL text={h1} mark={mark} phrase /> : h1;
   const tracked = fallbackTrack(track?.mobile, track?.desktop);
   const leadTracked = fallbackTrack(track?.leadMobile, track?.leadDesktop);
   const leadClass = ["muted", "lead", leadTracked?.className].filter(Boolean).join(" ");
@@ -204,16 +233,16 @@ export function PageHero({
 
 /** Image + copy section used for service introductions and story blocks. */
 export function MediaSplit({
-  image, alt = "", decor, reverse, className = "", id, children,
+  image, art, alt = "", decor, reverse, className = "", id, children,
 }: {
-  image: ArtName; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; children: ReactNode;
+  image?: ArtName; art?: ReactNode; alt?: string; decor?: DecorName[]; reverse?: boolean; className?: string; id?: string; children: ReactNode;
 }) {
   return (
     <div id={id} className={`media-split${reverse ? " media-split--reverse" : ""}${className ? ` ${className}` : ""}`}>
       <div className="media-split__art">
         <div className="art-wrap">
           {decor?.map((name) => <ArtDecor key={name} name={name} />)}
-          <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} />
+          {art ?? (image ? <Art name={image} alt={alt} className="hero-art" sizes={IMAGE_SIZES.mediaSplit} /> : null)}
         </div>
       </div>
       <div className="media-split__copy">{children}</div>

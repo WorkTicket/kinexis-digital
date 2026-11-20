@@ -430,7 +430,7 @@ export default async function PhoenixPreviewLp() {
 
       <Section narrow>
         <h2 className="center">
-          <HL text="Frequently Asked Questions" mark="Questions" />
+          Frequently Asked Questions
         </h2>
         <Faq items={FAQS} />
       </Section>

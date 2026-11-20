@@ -153,7 +153,7 @@ export default function Page() {
       </Section>
 
       <Section narrow>
-        <h2 className="center"><HL text="Frequently Asked Design Questions" mark="Design Questions" /></h2>
+        <h2 className="center">Frequently Asked Design Questions</h2>
         <Faq items={[...PORTFOLIO_FAQS]} />
       </Section>
 

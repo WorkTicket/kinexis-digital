@@ -246,7 +246,7 @@ export default function Page() {
       </Section>
 
       <Section id="faq" narrow>
-        <h2 className="center"><HL text="Questions About Plans And Billing" mark="Plans And Billing" /></h2>
+        <h2 className="center">Questions About Plans And Billing</h2>
         <Faq items={FAQS} />
       </Section>
     </>

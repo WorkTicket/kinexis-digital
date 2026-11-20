@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { still } from "@/lib/image-sources";
 import { Icon } from "./artwork";
 import { HL } from "./mark";
 
-/** Must match AUDIT_WIDTHS in scripts/optimize-content-images.mjs (no 640 variant). */
-const AUDIT_WIDTHS = [480, 768, 960] as const;
+const AUDIT_DESKTOP = still("/assets/kinexis/page-art/website-audit-desktop.avif");
+const AUDIT_MOBILE = still("/assets/kinexis/page-art/website-audit-mobile.webp");
 
 const CHECKS = [
   {
@@ -70,16 +70,14 @@ export default function IndustryAudit({
           </div>
           <div className="industry-audit__art">
             <picture>
-               <source type="image/avif" srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS, "avif")} sizes={IMAGE_SIZES.industryAudit} />
-               <source srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)} sizes={IMAGE_SIZES.industryAudit} />
+               <source media="(max-width: 860px)" type="image/webp" srcSet={AUDIT_MOBILE} />
+               <source type="image/avif" srcSet={AUDIT_DESKTOP} />
                <img
                 className="industry-audit__img"
-                 src={imageVariant("/assets/audit/hero.webp", 768, "webp")}
-                 srcSet={imageSrcSet("/assets/audit/hero.webp", AUDIT_WIDTHS)}
-                 sizes={IMAGE_SIZES.industryAudit}
+                  src={AUDIT_MOBILE}
                 alt={alt}
-                width={1536}
-                height={1024}
+                 width={2400}
+                 height={1350}
                 loading="lazy"
                 decoding="async"
                 fetchPriority="low"

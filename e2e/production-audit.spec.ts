@@ -63,10 +63,16 @@ test.describe("measurement delivery", () => {
       expect(ids.ga || ids.meta, "production must ship GA and/or Meta IDs").toBeTruthy();
     }
 
-    await page.evaluate(() => window.dispatchEvent(new Event("kinexis:consent")));
-    await page.locator("main").click({ position: { x: 24, y: 24 }, force: true }).catch(() => {});
-    await page.dispatchEvent("body", "pointerdown");
-    await page.dispatchEvent("body", "touchstart");
+    await expect(async () => {
+      await page.evaluate(() => window.dispatchEvent(new Event("kinexis:consent")));
+      await page.locator("main").click({ position: { x: 24, y: 24 }, force: true }).catch(() => {});
+      await page.dispatchEvent("body", "pointerdown");
+      await page.dispatchEvent("body", "touchstart");
+      expect(
+        (!ids.ga || scriptHits.some((url) => url.includes("googletagmanager.com"))) &&
+        (!ids.meta || scriptHits.some((url) => url.includes("fbevents.js"))),
+      ).toBe(true);
+    }).toPass({ timeout: 15_000, intervals: [250, 500, 1000] });
 
     if (ids.ga) {
       await expect.poll(() => scriptHits.some((u) => u.includes("googletagmanager.com")), { timeout: 25_000 }).toBe(true);

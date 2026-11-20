@@ -1,6 +1,6 @@
 import { pageMetadata } from "@/lib/seo";
 import Form from "@/components/Form";
-import { HL, Icon, PageHero, Section } from "@/components/ui";
+import { Icon, PageHero, Section } from "@/components/ui";
 import { PageSchema } from "@/components/JsonLd";
 
 export const metadata = pageMetadata("audit");
@@ -19,7 +19,7 @@ export default function Page() {
       <Section>
         <div className="contact-grid contact-grid--split">
           <div className="form-shell">
-            <h2 className="card-title"><HL text="Request Your Free Audit" mark="Free Audit" /></h2>
+            <h2 className="card-title">Request Your Free Audit</h2>
             <p className="muted">Share the URL and we’ll send a clear priority list — no card required.</p>
             <Form button="Request My Audit" conversion="audit" metaForm="audit" hiddenFields={{ topic: "audit" }} fields={[
               { label: "Your Name", name: "name", required: true }, { label: "Email", name: "email", kind: "email", required: true },

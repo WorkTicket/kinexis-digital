@@ -15,37 +15,13 @@ import TrustStrip from "@/components/TrustStrip";
 import PlanCompare from "@/components/PlanCompare";
 import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
-import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
 import { LIVE_SITES } from "@/data/liveSites";
+import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 
 export const metadata = pageMetadata("home");
 // Homepage is curated (no live review APIs). Keep a long ISR window so the
 // OpenNext KV cache can serve HTML without rebooting Next on every hit.
 export const revalidate = 86400;
-
-function SectionGraphic({ name, alt, className }: { name: string; alt: string; className: string }) {
-  const base = `/assets/home/${name}`;
-  const src = `${base}.webp`;
-  const widths = [640, 768, 1120, 1280] as const;
-  const sizes = IMAGE_SIZES.homeSection;
-
-  return (
-    <picture className={`home-section-art ${className}`}>
-      <source type="image/avif" srcSet={imageSrcSet(src, widths, "avif")} sizes={sizes} />
-      <img
-        src={imageVariant(src, 640, "webp")}
-        srcSet={imageSrcSet(src, widths)}
-        sizes={sizes}
-        alt={alt}
-        width={1536}
-        height={1024}
-        loading="lazy"
-        decoding="async"
-        fetchPriority="low"
-      />
-    </picture>
-  );
-}
 
 export default async function Home() {
   const preferredPlumbing = LIVE_SITES.find((site) => site.slug === "preferred-plumbing");
@@ -57,7 +33,7 @@ export default async function Home() {
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">Websites for contractors and home service businesses</p>
-          <h1><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" /></h1>
+          <h1><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" phrase /></h1>
           <p className="hero__sub">Send us your business details and get a free homepage preview in 2 business days. No card needed.</p>
           <ul className="ticks">
             <li>
@@ -113,7 +89,9 @@ export default async function Home() {
 
       {/* 3. What you get */}
       <Section tint>
-        <MediaSplit image="homepage" alt="Contractor showing a business website on a laptop and phone">
+        <MediaSplit
+          art={<CampaignHeroArtwork name="homepage-hero" alt="A contractor viewing a website plan on a laptop and phone" fallback="/assets/heroes/01-homepage-640.webp" />}
+        >
           <h2><HL text="What You Get With a Kinexis Website Plan" mark="Website Plan" /></h2>
           <p>A website plan built for local service businesses: a fast site, practical SEO structure, and follow-up that keeps working when you are on a job. Plans start at $97/mo.</p>
         </MediaSplit>
@@ -130,7 +108,10 @@ export default async function Home() {
 
       {/* 4. Portfolio */}
       <Section>
-        <MediaSplit image="web-design" reverse alt="Website design on a desktop monitor and a phone">
+        <MediaSplit
+          art={<HomeSectionArtwork name="homepage-website-showcase" alt="Website design previews for local service businesses" className="home-section-art--showcase" />}
+          reverse
+        >
           <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
           <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hold to preview, then open the full site.</p>
         </MediaSplit>
@@ -152,8 +133,8 @@ export default async function Home() {
               <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
             </p>
           </div>
-          <SectionGraphic
-            name="built-for-your-trade"
+          <HomeSectionArtwork
+            name="homepage-built-for-your-trade"
             alt="A contractor website surrounded by tools and materials from multiple home-service businesses"
             className="home-section-art--trades"
           />
@@ -188,8 +169,8 @@ export default async function Home() {
               <Link className="btn btn--light" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
             </p>
           </div>
-          <SectionGraphic
-            name="google-reviews-handled"
+          <HomeSectionArtwork
+            name="review-follow-up"
             alt="A completed job leading to a text message and a Google review"
             className="home-section-art--reviews"
           />
@@ -231,7 +212,7 @@ export default async function Home() {
 
       {/* 12. FAQ — global SiteAudit band follows after main */}
       <Section narrow>
-        <h2 className="center"><HL text="Frequently Asked Questions" mark="Questions" /></h2>
+        <h2 className="center">Frequently Asked Questions</h2>
         <Faq items={FAQS} />
         <p className="center"><Link className="btn btn--ghost" href="/faqs" prefetch={false}>More website and pricing FAQs</Link></p>
       </Section>

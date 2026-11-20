@@ -35,7 +35,7 @@ export const PAGES = {
     priority: 1,
     changeFrequency: "weekly",
     description: "Kinexis Digital builds contractor websites from $97/mo, $0 down—with Google review requests, optional missed-call text-back, and a free homepage preview.",
-    ogImage: "/og/home.webp",
+    ogImage: "/assets/kinexis/page-art/homepage-hero-social.jpg",
   },
   services: {
     path: "/services",
@@ -45,7 +45,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Explore professional web design, SEO, website management, and free website audits for businesses across the United States.",
-    ogImage: "/og/services.webp",
+    ogImage: "/assets/kinexis/page-art/all-services-social.jpg",
   },
   "web-design": {
     path: "/web-design",
@@ -55,7 +55,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Contractor website design from $97/mo, $0 down. See a free homepage preview in 2 business days, no card required, before you choose a plan.",
-    ogImage: "/og/web-design.webp",
+    ogImage: "/assets/kinexis/page-art/web-design-social.jpg",
   },
   "seo-services": {
     path: "/seo-services",
@@ -75,7 +75,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Get a free website audit covering SEO, speed, mobile usability, indexing, and conversion paths, with a clear list of recommended improvements.",
-    ogImage: "/og/audit.webp",
+    ogImage: "/assets/kinexis/page-art/website-audit-social.jpg",
   },
   contact: {
     path: "/contact",
@@ -85,7 +85,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.8,
     description: "Contact Kinexis Digital to discuss a new website, redesign, SEO, or ongoing website management for your business. Get a clear next step.",
-    ogImage: "/og/contact.webp",
+    ogImage: "/assets/kinexis/page-art/contact-social.jpg",
   },
   "website-management": {
     path: "/website-management",
@@ -105,7 +105,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.7,
     description: "Learn how Kinexis Digital plans, designs, launches, and supports professional business websites across the United States.",
-    ogImage: "/og/about.webp",
+    ogImage: "/assets/kinexis/page-art/about-social.jpg",
   },
   portfolio: {
     path: "/portfolio",
@@ -115,7 +115,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.8,
     description: "Explore live Kinexis client sites and design work for local service businesses to find the right direction for your website.",
-    ogImage: "/og/portfolio.webp",
+    ogImage: "/assets/kinexis/page-art/portfolio-social.jpg",
   },
   industries: {
     path: "/industries",
@@ -125,7 +125,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Website design for plumbers, HVAC, electricians, roofers, garage door, landscaping, and pressure washing companies nationwide. Plans from $97/mo.",
-    ogImage: "/og/industries.webp",
+    ogImage: "/assets/kinexis/page-art/industries-social.jpg",
   },
   reviews: {
     path: "/reviews",
@@ -134,7 +134,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.6,
     description: "Read client reviews for Kinexis Digital on this site, Trustpilot, and Facebook — and leave your own review in a few clicks.",
-    ogImage: "/og/reviews.webp",
+    ogImage: "/assets/kinexis/page-art/client-reviews-social.jpg",
   },
   upgrades: {
     path: "/upgrades",
@@ -143,7 +143,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.5,
     description: "Expand your website with extra pages and ongoing site care as your business grows. See available add-ons, pricing, and turnaround times.",
-    ogImage: "/og/upgrades.webp",
+    ogImage: "/assets/kinexis/page-art/upgrades-social.jpg",
   },
   pricing: {
     path: "/pricing",
@@ -153,7 +153,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.9,
     description: "Contractor website cost: Website $97/mo, Lead System $197/mo, Plus $297/mo, or Own It $1,497. Free homepage preview in 2 business days—no card required.",
-    ogImage: "/og/pricing.webp",
+    ogImage: "/assets/kinexis/page-art/pricing-social.jpg",
   },
   pay: {
     path: "/pay",
@@ -173,7 +173,7 @@ export const PAGES = {
     priority: 0.7,
     changeFrequency: "weekly",
     description: "Read practical guides on web design, SEO, website performance, online reviews, and digital marketing for growing businesses.",
-    ogImage: "/og/blog.webp",
+    ogImage: "/assets/kinexis/page-art/blog-social.jpg",
   },
   "missed-call-calculator": {
     path: "/tools/missed-call-calculator",

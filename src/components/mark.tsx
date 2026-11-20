@@ -1,9 +1,18 @@
 const TRAILING_PUNCT = /^[.!?,;:…'"“”‘’)\]]+/;
 
-/** Phrase highlight markup. Intersection marking is handled by boot.js. */
-export function HL({ text, mark }: { text: string; mark: string }) {
+/** H1s retain the marker phrase; other uses emphasize the marked text typographically. */
+export function HL({ text, mark, phrase = false }: { text: string; mark: string; phrase?: boolean }) {
   const i = text.indexOf(mark);
   if (i < 0) return <>{text}</>;
+  if (!phrase) {
+    return (
+      <>
+        {text.slice(0, i)}
+        <strong className="hl-emphasis">{mark}</strong>
+        {text.slice(i + mark.length)}
+      </>
+    );
+  }
   let end = i + mark.length;
   const trail = text.slice(end).match(TRAILING_PUNCT);
   if (trail) end += trail[0].length;

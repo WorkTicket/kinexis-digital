@@ -11,13 +11,13 @@ export default function Page() {
   return (
     <>
       <PageSchema page="contact" />
-      <PageHero previewBar={false} h1={<HL text="Ready To See Your Homepage?" mark="Your Homepage" />} sub="Tell us about your business, and we’ll help you decide whether one of our plans makes sense." image="contact" imageAlt="Phone, envelope, and chat bubbles" />
+      <PageHero previewBar={false} h1={<HL text="Ready To See Your Homepage?" mark="Your Homepage" phrase />} sub="Tell us about your business, and we’ll help you decide whether one of our plans makes sense." image="contact" imageAlt="Phone, envelope, and chat bubbles" />
       <Section>
         <div className="contact-grid contact-grid--split">
           <div className="form-shell contact-form-shell">
             <div className="contact-form-heading">
               <p className="eyebrow">Start a conversation</p>
-              <h2 className="card-title"><HL text="Tell Us About Your Business" mark="Your Business" /></h2>
+              <h2 className="card-title">Tell Us About Your Business</h2>
               <p className="muted">Choose what you need. If you request a free homepage preview, we’ll ask for a little more detail so we can make it useful for your business.</p>
             </div>
             <Form

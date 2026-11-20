@@ -48,8 +48,8 @@ export default function Page() {
         h1="Website Help For Service Businesses Nationwide"
         mark="Service Businesses"
         sub="We work with service businesses across the United States. We build websites that make it easy to call or request a quote, with clear pages search engines can understand."
-        image="homepage"
-        imageAlt="Contractor showing a business website on a laptop and phone"
+        image="all-services"
+        imageAlt="Website, SEO, and management services for local businesses"
       />
       <Section>
         <h2 className="center"><HL text="Ways We Can Help" mark="We Can Help" /></h2>

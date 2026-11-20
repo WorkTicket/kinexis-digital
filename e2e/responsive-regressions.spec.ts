@@ -90,7 +90,7 @@ test.describe("narrow viewport regressions", () => {
     await expect(shot.locator(".shot__cta-overlay")).toHaveCSS("opacity", "0");
   });
 
-  test("Lead System step illustrations are centered, larger than their circles, and keep the VS highlight", async ({ page }) => {
+  test("Lead System step illustrations are centered, larger than their circles, and keep VS emphasis", async ({ page }) => {
     for (const viewport of [{ width: 1280, height: 900 }, { width: 390, height: 844 }]) {
       await page.setViewportSize(viewport);
       await page.goto("/");
@@ -124,7 +124,7 @@ test.describe("narrow viewport regressions", () => {
 
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/pricing");
-    await expect(page.locator(".plan-compare__ownership h2 .hl")).toHaveText("vs");
+    await expect(page.locator(".plan-compare__ownership h2 .hl-emphasis")).toHaveText("vs");
   });
 
   test("Phoenix preview header CTA stays within a 320px viewport", async ({ page }) => {

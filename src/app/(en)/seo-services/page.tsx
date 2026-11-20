@@ -29,7 +29,7 @@ export default function Page() {
         </MediaSplit>
       </Section>
       <Section narrow>
-        <h2 className="center"><HL text="Common SEO Questions" mark="SEO Questions" /></h2>
+          <h2 className="center">Common SEO Questions</h2>
         <Faq items={SEO_FAQS} />
       </Section>
       <CtaBand h="Want A Site Built To Get Found?" mark="Built To Get Found" sub="Start with a free homepage preview built for search and local calls." btn="Get My Free Preview" href="/contact" />

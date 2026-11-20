@@ -82,7 +82,7 @@ export default function Page() {
       </Section>
 
       <Section narrow>
-        <h2 className="center"><HL text="Questions About Your Website" mark="Your Website" /></h2>
+        <h2 className="center">Questions About Your Website</h2>
         <Faq items={WEB_FAQS} />
       </Section>
 

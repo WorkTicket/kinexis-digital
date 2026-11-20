@@ -24,6 +24,29 @@ async function waitForBoot(page: import("@playwright/test").Page) {
   );
 }
 
+/**
+ * boot.min.js loads with next/script `lazyOnload`, so on a busy dev server the
+ * contact form can be visible before boot's delegated change/submit listeners
+ * exist. A synthetic (untrusted) submit event never submits the form natively;
+ * once boot's listener is attached it calls preventDefault(), which is a
+ * precise "form is interactive" signal. Call before any option is checked.
+ */
+async function waitForContactFormReady(page: import("@playwright/test").Page) {
+  await waitForBoot(page);
+  await page.waitForFunction(() => {
+    const form = document.querySelector("form[data-contact-inquiry]");
+    if (!(form instanceof HTMLFormElement)) return false;
+    if (form.querySelector('input[name="inquiry"]:checked')) {
+      throw new Error("waitForContactFormReady must run before an inquiry option is checked");
+    }
+    const probe = new Event("submit", { bubbles: true, cancelable: true });
+    form.dispatchEvent(probe);
+    const error = form.querySelector("[data-inquiry-error]");
+    if (error) error.textContent = "";
+    return probe.defaultPrevented;
+  }, null, { timeout: 30_000 });
+}
+
 test("preview choice expands the form and confirmation links to intake", async ({ page }) => {
   await useNecessaryOnlyConsent(page);
   let submitted = "";
@@ -32,6 +55,7 @@ test("preview choice expands the form and confirmation links to intake", async (
     await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
   });
   await page.goto("/contact");
+  await waitForContactFormReady(page);
 
   const form = page.locator("form[data-contact-inquiry]");
   const details = form.locator("[data-preview-details]");
@@ -141,6 +165,7 @@ test("other contact reasons do not require preview details or show the intake fo
     await route.fulfill({ status: 200, contentType: "application/json", body: '{"ok":true}' });
   });
   await page.goto("/contact");
+  await waitForContactFormReady(page);
 
   const form = page.locator("form[data-contact-inquiry]");
   await fillBaseContact(form);

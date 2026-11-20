@@ -50,7 +50,7 @@ export default function Page() {
         <ProcessFlow steps={STEPS} />
       </Section>
       <Section tint narrow>
-        <h2 className="center"><HL text="Questions Before You Begin" mark="Before You Begin" /></h2>
+        <h2 className="center">Questions Before You Begin</h2>
         <Faq items={[FAQS[5], FAQS[3], FAQS[4]]} />
       </Section>
       <CtaBand

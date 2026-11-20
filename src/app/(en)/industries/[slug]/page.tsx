@@ -37,7 +37,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: industry.metaTitle,
     description: industry.metaDescription,
     index: industry.status !== "hold",
-    image: `/assets/industries/${industry.slug}/hero-960.webp`,
+    image: [
+      "plumbing", "hvac", "electrical", "roofing", "garage-doors", "painting",
+      "remodeling", "landscaping", "pressure-washing", "junk-removal", "tree-care",
+    ].includes(industry.slug)
+      ? `/assets/industries/${industry.slug}/${industry.slug}-social.jpg`
+      : `/assets/industries/${industry.slug}/hero-960.webp`,
     imageAlt: `${industry.name} website design`,
   });
 }
@@ -273,7 +278,7 @@ export default async function IndustryPage({ params }: Props) {
       <Section tint narrow>
         <div className="section-head">
           <p className="eyebrow">Straight answers</p>
-          <h2 className="center"><HL text={faqTitle} mark="Owners" /></h2>
+          <h2 className="center">{faqTitle}</h2>
         </div>
         <Faq items={[...industry.faqs]} />
       </Section>

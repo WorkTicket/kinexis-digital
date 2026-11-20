@@ -50,6 +50,7 @@ import {
   spanishCatalogPlansForCompare,
 } from "@/i18n/spanish-plan-compare";
 import { CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard, Shots } from "@/components/ui";
+import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 import HeroFilm from "@/components/HeroFilm";
 
 // Keep calendar / review-form client JS off every Spanish route's critical path.
@@ -211,7 +212,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">{tx("Páginas web para contratistas y negocios de servicios")}</p>
-          <h1><HL text={tx("Mira cómo quedaría la página web de tu negocio")} mark={tx("tu negocio")} /></h1>
+          <h1><HL text={tx("Mira cómo quedaría la página web de tu negocio")} mark={tx("tu negocio")} phrase /></h1>
           <p className="hero__sub">{tx("Envíanos los datos de tu negocio y recibe una vista previa gratis de tu página de inicio en 2 días hábiles. Sin tarjeta.")}</p>
           <ul className="ticks">
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Ves tu inicio gratis")}</b> – {tx("sin tarjeta")}</span><span>{tx("y sin obligación antes de pagar")}</span></span></li>
@@ -243,7 +244,9 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         ctaHref={href("/reviews")}
       />
       <Section tint>
-        <MediaSplit image="homepage" alt={tx("Un negocio mostrando su sitio en una computadora y un celular")}>
+        <MediaSplit
+          art={<CampaignHeroArtwork name="homepage-hero" alt={tx("Un negocio mostrando un plan de sitio en una computadora y un celular")} fallback="/assets/heroes/01-homepage-640.webp" />}
+        >
           <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
           <p>{tx(`Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde ${p("websiteMo", currency)} al mes.`)}</p>
         </MediaSplit>
@@ -254,8 +257,13 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         </div>
       </Section>
       <Section>
-        <h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2>
-        <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Mantén pulsado para ver el recorrido y abre el sitio completo en inglés.")}</p>
+        <MediaSplit
+          art={<HomeSectionArtwork name="homepage-website-showcase" alt={tx("Diseños de sitios web para negocios de servicios locales")} className="home-section-art--showcase" />}
+          reverse
+        >
+          <h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2>
+          <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Mantén pulsado para ver el recorrido y abre el sitio completo en inglés.")}</p>
+        </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
       </Section>
@@ -292,6 +300,11 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
               <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
             </p>
           </div>
+          <HomeSectionArtwork
+            name="review-follow-up"
+            alt={tx("Una solicitud de reseña enviada después de terminar un trabajo")}
+            className="home-section-art--reviews"
+          />
         </div>
         <ReviewRail steps={[
           { n: "1", title: tx("Mensaje opcional tras una llamada perdida"), titleDisplay: <>{tx("Llamada perdida,")}<br />{tx("mensaje opcional")}</>, text: <>{tx("Con la aprobación del operador,")}<br />{tx("la persona puede escribirte")}<br />{tx("si no puedes contestar.")}</>, icon: "missed-call-text-back" },
@@ -313,6 +326,11 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             <h2><HL text={tx("Hecho para negocios de servicios locales")} mark={tx("servicios locales")} /></h2>
             <p className="muted">{tx("Plomería, HVAC, techos y más. Si tus clientes buscan tus servicios y te llaman cuando necesitan ayuda, podemos ayudarte. ¿No ves tu negocio? También trabajamos con otros negocios locales.")}</p>
           </div>
+          <HomeSectionArtwork
+            name="homepage-built-for-your-trade"
+            alt={tx("Un sitio web rodeado de herramientas de varios negocios de servicios")}
+            className="home-section-art--trades"
+          />
         </div>
         <IndustryGrid
           layout="index"
@@ -343,7 +361,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         />
       </Section>
       <Section narrow>
-        <h2 className="center"><HL text={tx("Preguntas frecuentes")} mark={tx("Preguntas")} /></h2>
+        <h2 className="center">{tx("Preguntas frecuentes")}</h2>
         <Faq items={faqs} />
       </Section>
     </>
@@ -364,7 +382,7 @@ function Services({ locale, tx, href, lang, band }: PageBits) {
   return (
     <>
       <ContentSchema path={href("/services")} title={tx(PAGE_META["/services"].title)} description={tx(PAGE_META["/services"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Servicios"), path: href("/services") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Ayuda web para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Elige diseño web, SEO, cuidado continuo o una revisión gratis del sitio que ya tienes.")} image="homepage" imageAlt={tx("Sitio de un negocio en una computadora y un celular")} />
+      <PageHero locale={locale} h1={tx("Ayuda web para negocios de servicios")} mark={tx("negocios de servicios")} sub={tx("Elige diseño web, SEO, cuidado continuo o una revisión gratis del sitio que ya tienes.")} image="all-services" imageAlt={tx("Servicios de sitio web, SEO y mantenimiento para negocios locales")} />
       <Section><div className="grid grid--2">{items.map(([title, text, path, cta, icon]) => <ServiceCard key={path} title={title} text={text} href={href(path)} cta={cta} icon={icon} />)}</div></Section>
       <CtaBand h={tx("¿No sabes por dónde empezar?")} mark={tx("por dónde empezar")} sub={tx("Podemos revisar tu sitio actual o hablar del que quieres construir.")} btn={tx("Escríbenos")} href={href("/contact")} {...band} />
     </>
@@ -486,7 +504,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
         />
       </Section>
       <Section narrow>
-        <h2 className="center"><HL text={tx("Preguntas sobre tu sitio")} mark={tx("tu sitio")} /></h2>
+        <h2 className="center">{tx("Preguntas sobre tu sitio")}</h2>
         <Faq items={faqs} />
       </Section>
       <CtaBand
@@ -753,10 +771,10 @@ function Contact({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   return (
     <>
       <ContentSchema path={href("/contact")} title={tx(PAGE_META["/contact"].title)} description={tx(PAGE_META["/contact"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Contacto"), path: href("/contact") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
+      <PageHero locale={locale} h1={<HL text={tx("¿Quieres ver tu página de inicio?")} mark={tx("página de inicio")} phrase />} sub={tx("Cuéntanos sobre tu negocio y te ayudamos a decidir si uno de los planes te conviene.")} image="contact" imageAlt={tx("Teléfono, sobre y burbujas de chat")} />
       <Section><div className="contact-grid contact-grid--split">
         <div className="form-shell">
-          <h2 className="card-title"><HL text={tx("Cuéntanos sobre tu negocio")} mark={tx("tu negocio")} /></h2>
+          <h2 className="card-title">{tx("Cuéntanos sobre tu negocio")}</h2>
           <p className="muted">{tx("Elige qué necesitas. Si pides una vista previa gratis de tu página, te preguntaremos algunos detalles más para que sea útil para tu negocio.")}</p>
           <Form
             locale="es"
@@ -793,7 +811,7 @@ function Audit({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
       <PageHero locale={locale} h1={tx("Recibe una lista clara de cambios")} mark={tx("lista clara")} sub={tx("Mándanos el enlace. Lo revisamos y te decimos qué cambios merecen atención primero.")} image="website-audit" imageAlt={tx("Tablero de auditoría con una lupa")} />
       <Section><div className="contact-grid contact-grid--split">
         <div className="form-shell">
-          <h2 className="card-title"><HL text={tx("Pide tu auditoría gratis")} mark={tx("auditoría gratis")} /></h2>
+          <h2 className="card-title">{tx("Pide tu auditoría gratis")}</h2>
           <p className="muted">{tx("Comparte la URL y te enviamos una lista clara de prioridades. Sin tarjeta.")}</p>
           <Form locale="es" metaForm="audit" conversion="audit" hiddenFields={{ topic: "audit" }} button={tx("Pedir mi auditoría")} fields={[{ label: tx("Tu nombre"), name: "name", required: true }, { label: tx("Correo"), name: "email", kind: "email", required: true }, { label: tx("URL del sitio"), name: "url", kind: "url", required: true }, { label: tx("¿Qué debemos ver primero?"), name: "notes", kind: "textarea" }]} />
         </div>
@@ -808,7 +826,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
   return (
     <>
       <ContentSchema path={href("/industries")} title={tx(PAGE_META["/industries"].title)} description={tx(PAGE_META["/industries"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }]} inLanguage={lang} />
-      <PageHero locale={locale} eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu negocio")} mark={tx("tu negocio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")}>
+      <PageHero locale={locale} eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu negocio")} mark={tx("tu negocio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")} image="industries" imageAlt={tx("Sitios web para distintos negocios de servicios locales")}>
         <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
       </PageHero>
       <Section tint>
@@ -818,20 +836,11 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
             <h2><HL text={tx("Encuentra el trabajo que haces")} mark={tx("trabajo que haces")} /></h2>
             <p className="muted">{tx("Los cuatro planes son los mismos. Cambian las páginas y el texto para las llamadas que sí recibe tu negocio.")}</p>
           </div>
-          <picture className="home-section-art home-section-art--trades">
-            <source type="image/avif" srcSet={imageSrcSet("/assets/home/built-for-your-trade.webp", [640, 768, 1120], "avif")} sizes={IMAGE_SIZES.homeSection} />
-              <img
-              src={imageVariant("/assets/home/built-for-your-trade.webp", 640, "webp")}
-              srcSet={imageSrcSet("/assets/home/built-for-your-trade.webp", [640, 768, 1120])}
-              sizes={IMAGE_SIZES.homeSection}
-              alt={tx("Un sitio de contratista rodeado de herramientas de varios oficios")}
-              width={1536}
-              height={1024}
-              loading="lazy"
-              decoding="async"
-              fetchPriority="low"
-            />
-          </picture>
+          <HomeSectionArtwork
+            name="homepage-built-for-your-trade"
+            alt={tx("Un sitio web rodeado de herramientas de varios negocios de servicios")}
+            className="home-section-art--trades"
+          />
         </div>
         <IndustryGrid
           layout="index"
@@ -871,7 +880,7 @@ function Faqs({ locale, tx, href, lang, band }: PageBits) {
       <ContentSchema path={href("/faqs")} title={tx(PAGE_META["/faqs"].title)} description={tx(PAGE_META["/faqs"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Preguntas"), path: href("/faqs") }]} faqs={faqs} inLanguage={lang} />
       <PageHero locale={locale} h1={tx("Preguntas que nos hacen los negocios")} mark={tx("nos hacen")} sub={tx("Consulta los detalles de planes, propiedad, garantía de 60 días y cancelación. Si falta tu duda, escríbenos.")} image="faqs" imageAlt={tx("Signos de interrogación")} />
       <Section tint narrow decor="light">
-        <h2 className="center"><HL text={tx("Respuestas antes de comprometerte")} mark={tx("comprometerte")} /></h2>
+        <h2 className="center">{tx("Respuestas antes de comprometerte")}</h2>
         <p className="center muted">{tx("Planes, propiedad, garantías y cancelación — en lenguaje claro.")}</p>
         <Faq items={faqs} />
       </Section>
