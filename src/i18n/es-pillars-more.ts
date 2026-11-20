@@ -424,7 +424,7 @@ export const ES_PILLAR_POSTS_MORE: Record<string, EsPost> = {
       },
       {
         "h2": "Qué plan lo cobra cómo",
-        "html": "<p>Website $97 y Own It $1,497 no incluyen texto; extra $97/mes misma regla. Lead System $197 y Plus $297: segundo número $1/mes si se usa, tarifas operador. Plus puede inglés y español.</p><p>Pedidos de reseña van aparte en Lead System/Plus.</p><p>Garantía 60 días leads en Lead System/Plus no exige texto activo: llamada 30+ seg, respuesta al texto, o formulario real. Own It no incluye garantía.</p><p>Detalle en <a href=\"/upgrades\">mejoras</a>, <a href=\"/faqs\">preguntas</a>, <a href=\"/pricing\">precios</a>, vista previa <a href=\"/contact\">contacto</a>.</p>"
+        "html": "<p>Website $97 y Own It $1,497 no incluyen texto; extra $97/mes misma regla. Lead System $197 y Plus $297: segundo número $1/mes si se usa, tarifas operador. Plus puede inglés y español.</p><p>Las solicitudes de reseña de Google después de cada trabajo vienen incluidas en Lead System y Plus.</p><p>Garantía 60 días leads en Lead System/Plus no exige texto activo: llamada 30+ seg, respuesta al texto, o formulario real. Own It no incluye garantía.</p><p>Detalle en <a href=\"/upgrades\">mejoras</a>, <a href=\"/faqs\">preguntas</a>, <a href=\"/pricing\">precios</a>, vista previa <a href=\"/contact\">contacto</a>.</p>"
       },
       {
         "h2": "Qué escribir en Google mientras esperas",

@@ -9,15 +9,27 @@ test.describe("narrow viewport regressions", () => {
     await expect(buttons.first()).toHaveAttribute("href", "/contact");
   });
 
-  test("mobile footer contact buttons stay compact", async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    await page.goto("/");
-    const contacts = page.locator(".footer-contact__link");
-    await expect(contacts).toHaveCount(2);
-    const heights = await contacts.evaluateAll((links) =>
-      links.map((link) => link.getBoundingClientRect().height),
-    );
-    expect(heights).toEqual([42, 42]);
+  test("Spanish homepage uses the primary preview CTA and text links for secondary actions", async ({ page }) => {
+    await page.goto("/es");
+    const buttons = page.locator(".hero__btns .btn");
+    await expect(buttons).toHaveCount(1);
+    await expect(buttons.first()).toHaveClass(/btn--primary/);
+    await expect(buttons.first()).toHaveAttribute("href", "/es/contact");
+    await expect(page.getByRole("link", { name: "Ver un sitio de cliente publicado" })).not.toHaveClass(/btn/);
+    await expect(page.getByRole("link", { name: "Ver Lead System" })).not.toHaveClass(/btn/);
+  });
+
+  test("mobile footer contact links meet the 48px minimum tap target", async ({ page }) => {
+    for (const width of [320, 375, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto("/");
+      const contacts = page.locator(".footer-contact__link");
+      await expect(contacts).toHaveCount(2);
+      const heights = await contacts.evaluateAll((links) =>
+        links.map((link) => link.getBoundingClientRect().height),
+      );
+      expect(heights, `footer contact targets at ${width}px`).toEqual([48, 48]);
+    }
   });
 
   test("mobile header shows the preview CTA and visible Menu label instead of the phone number", async ({ page }) => {

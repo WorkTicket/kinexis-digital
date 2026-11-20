@@ -62,7 +62,7 @@ export const ES_PLAN_COMPARISON: ComparisonSection[] = [
     group: "Seguimiento de leads",
     rows: [
       ["Texto si no contestas", "Extra $97/mes", "Opcional · $1/mes 2.º número + operador", "Opcional · EN/ES · $1/mes 2.º número + operador", "Extra $97/mes"],
-      ["Pedidos de reseña en Google", "—", "Sí", "Sí", "—"],
+      ["Solicitudes de reseña de Google", "—", "Sí", "Sí", "—"],
       ["Ajuste del Perfil de Negocio de Google", "—", "Sí", "Sí", "—"],
       ["Llamadas y reporte mensual", "—", "Sí", "Sí", "—"],
       ["Sitio en inglés y español", "—", "—", "Sí", "—"],
@@ -220,7 +220,7 @@ const ES_CHECKOUT_FEATURES: Record<CheckoutPlan["key"], string[]> = {
     "1 página nueva al mes",
     "Dominio año 1 incluido, a tu nombre",
     "Texto si no contestas opcional",
-    "Pedidos de reseña en Google a cada cliente",
+    "Solicitudes de reseña de Google después de cada trabajo",
     "Ajuste del Perfil de Negocio de Google",
     "Llamadas y reporte mensual",
     "Garantía de leads rastreados de 60 días",

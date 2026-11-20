@@ -687,7 +687,7 @@ p{margin:0 0 1em}
     overflow:hidden;
   }
   .footer-contact__link{
-    min-height:42px;width:100%;padding:8px 12px;gap:9px;
+    min-height:48px;width:100%;padding:8px 12px;gap:9px;
     font-size:.84rem;font-weight:600;
   }
   .footer-contact__link + .footer-contact__link{
@@ -751,7 +751,7 @@ p{margin:0 0 1em}
 /* Small phones — tighten measure without collapsing tap targets */
 @media(max-width:379px){
   .footer-blurb{font-size:.86rem;max-width:none}
-  .footer-contact__link{font-size:.8rem;padding:8px 10px}
+  .footer-contact__link{min-height:48px;font-size:.8rem;padding:8px 10px}
   .footer-column a,.footer-link{font-size:.9rem}
 }
 

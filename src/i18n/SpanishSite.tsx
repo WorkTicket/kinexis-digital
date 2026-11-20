@@ -251,7 +251,6 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
-            <a className="btn btn--ghost" href={LIVE_SITES.find((site) => site.slug === "preferred-plumbing")?.url ?? "/es/portfolio"} target="_blank" rel="noopener noreferrer">{tx("Ver un sitio de cliente publicado")}</a>
           </div>
           <TrustStrip
             className="hero__trust"
@@ -295,7 +294,14 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Mantén pulsado para ver el recorrido y abre el sitio completo en inglés.")}</p>
         </MediaSplit>
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
-        <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
+        <p className="center btn-row spaced">
+          <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
+        </p>
+        <p className="center">
+          <a href={LIVE_SITES.find((site) => site.slug === "preferred-plumbing")?.url ?? href("/portfolio")} target="_blank" rel="noopener noreferrer">{tx("Ver un sitio de cliente publicado")}</a>
+          {" · "}
+          <Link href={href("/portfolio")} prefetch={false}>{tx("Ver más sitios en el portafolio")}</Link>
+        </p>
       </Section>
       <Section id="plans">
         <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} />
@@ -327,8 +333,8 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
             <p>{tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje para llamadas perdidas es opcional y, una vez aprobado por el operador, permite que la persona te escriba si no puedes contestar.")}</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
-              <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
             </p>
+            <p><Link href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link></p>
           </div>
           <HomeSectionArtwork
             name="review-follow-up"
@@ -383,7 +389,10 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       <Section tint>
         <h2 className="center"><HL text={tx("Garantía de leads rastreados en 60 días")} mark={tx("60 días")} /></h2>
         <p className="center muted">{tx("Lead System y Plus incluyen una garantía por escrito. Si no hay leads rastreados en los primeros 60 días en línea, condonamos el tercer y cuarto cargo.")}</p>
-        <p className="center btn-row spaced"><OpenDialog id="guarantee" className="btn btn--ghost">{tx("Leer la garantía")}</OpenDialog><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link></p>
+        <p className="center btn-row spaced">
+          <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
+        </p>
+        <p className="center"><OpenDialog id="guarantee" className="link-btn trust-mark">{tx("Leer los detalles de la garantía")}</OpenDialog></p>
         <TrustStrip
           className="center"
           leadLabel={tx("Garantía de 60 días")}
