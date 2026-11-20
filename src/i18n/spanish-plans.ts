@@ -46,10 +46,10 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
   const currency = resolvePriceLocale(opts);
   const monthlyKicker = tx(`${p("zeroDown", currency)} de entrada, luego`);
   const names: Record<string, string> = {
-    website: "Website",
-    "lead-system": "Lead System",
-    plus: "Plus",
-    "own-it": "Own It",
+    website: "Sitio web",
+    "lead-system": "Sistema de clientes",
+    plus: "Plus (Bilingüe)",
+    "own-it": "Hazlo tuyo",
   };
   const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
     website: {
@@ -66,7 +66,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       ],
     },
     "lead-system": {
-      tagline: tx("Para negocios que quieren registrar llamadas y pedir reseñas en Google desde su sitio."),
+      tagline: tx("Para negocios que quieren seguimiento de llamadas y solicitudes de reseña en Google junto con su sitio web."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [

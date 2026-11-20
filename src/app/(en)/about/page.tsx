@@ -46,7 +46,7 @@ export default function Page() {
       </Section>
       <Section tint>
         <h2 className="center"><HL text="How Your Site Gets Launched" mark="Gets Launched" /></h2>
-        <p className="center muted">Missed-call text-back requires carrier approval and typically takes 10–15 days to activate. Lead System and Plus also include Google review requests after completed jobs.</p>
+        <p className="center muted">Lead System and Plus include Google review requests after completed jobs. Review requests and optional missed-call text-back are sent by text and start after carrier approval, which usually takes 10–15 days and is not guaranteed.</p>
         <ProcessFlow steps={STEPS} />
       </Section>
       <Section tint narrow>

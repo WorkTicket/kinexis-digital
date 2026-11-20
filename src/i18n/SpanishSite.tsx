@@ -202,7 +202,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
     { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu negocio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Escoge el plan que te sirve"), text: tx("Elige Website, Lead System, Plus u Own It. Dejamos por escrito lo que incluye y la fecha de lanzamiento — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("Terminamos el sitio completo"), text: tx("Sumamos tus servicios, zona, fotos y texto, conectamos el dominio y te enviamos todo para aprobarlo.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea, normalmente en 5 días hábiles tras la aprobación y el envío del contenido. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas requiere aprobación del operador, que suele tardar entre 10 y 15 días.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea, normalmente en 5 días hábiles tras la aprobación y el envío del contenido. Lead System y Plus incluyen solicitudes de reseña después del trabajo. Las solicitudes de reseña y el mensaje opcional para llamadas perdidas se envían por texto y empiezan después de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y Lead System y Plus incluyen solicitudes de reseña después de los trabajos.") },
   ];
   return (
@@ -215,12 +215,12 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <p className="hero__sub">{tx("Envíanos los datos de tu negocio y recibe una vista previa gratis de tu página de inicio en 2 días hábiles. Sin tarjeta.")}</p>
           <ul className="ticks">
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Ves tu inicio gratis")}</b> – {tx("sin tarjeta")}</span><span>{tx("y sin obligación antes de pagar")}</span></span></li>
-            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("El mensaje para llamadas perdidas es opcional")}</b></span><span>{tx("disponible en Lead System y Plus")}</span></span></li>
-            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Pedidos de reseña en Google")}</b></span><span>{tx("incluidos con Lead System y Plus después del trabajo")}</span></span></li>
+            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Mensaje opcional para llamadas perdidas")}</b></span><span>{tx(`en Lead System y Plus, o como extra de ${p("textBackAddonMo", currency)} al mes`)}</span></span></li>
+            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Solicitudes de reseña en Google")}</b></span><span>{tx("incluidas con Lead System y Plus después del trabajo")}</span></span></li>
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
-            <a className="btn btn--ghost" href={LIVE_SITES.find((site) => site.slug === "preferred-plumbing")?.url ?? "/es/portfolio"} target="_blank" rel="noopener noreferrer">{tx("Ver el sitio publicado")}</a>
+            <a className="btn btn--ghost" href={LIVE_SITES.find((site) => site.slug === "preferred-plumbing")?.url ?? "/es/portfolio"} target="_blank" rel="noopener noreferrer">{tx("Ver un sitio de cliente publicado")}</a>
           </div>
           <TrustStrip
             className="hero__trust"
@@ -715,7 +715,7 @@ function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
     { tab: "Preview", label: tx("Vista previa"), title: tx("Lo ves primero"), text: tx("La vista previa es el punto de partida. La apruebas, pides cambios o te vas.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Queda por escrito"), text: tx("Qué incluye el plan y la fecha de lanzamiento se confirman por escrito — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("El sitio completo"), text: tx("Servicios, zona, fotos y el dominio, con tu aprobación antes de publicar.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio suele publicarse en 5 días hábiles. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas requiere aprobación del operador.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio suele publicarse en 5 días hábiles. Lead System y Plus incluyen solicitudes de reseña después del trabajo. Las solicitudes de reseña y el mensaje opcional para llamadas perdidas se envían por texto y empiezan después de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Se mantiene"), text: tx("Cambios, llamadas y reseñas en Lead System y Plus, para que veas los leads en un reporte.") },
   ];
   return (
@@ -1177,7 +1177,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
   return (
     <>
       <ContentSchema path={href("/terms")} title={tx(PAGE_META["/terms"].title)} description={tx(PAGE_META["/terms"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Términos"), path: href("/terms") }]} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 7 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
+      <PageHero locale={locale} h1={tx("Términos de planes y cobro")} mark={tx("cobro")} sub={tx("Actualizado el 20 de noviembre de 2026. Estos son los términos de los cuatro planes. El acuerdo que apruebas al pagar manda si algo difiere.")} />
       <section className="section"><div className="container container--narrow prose">
         <h2>{tx("1. Vista previa gratis")}</h2>
         <p>{tx("Cada plan empieza con una vista previa de la página de inicio. La vista previa gratis se entrega en un plazo de 2 días hábiles después de recibir los datos de tu negocio. Sin tarjeta y sin obligación. Te mostramos un concepto para tu negocio. Puedes aprobarlo, pedir cambios o irte sin pagar. Después de la aprobación y de recibir el contenido, el lanzamiento suele tomar unos 5 días hábiles; confirmamos el plazo por escrito.")}</p>
@@ -1186,7 +1186,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("3. Qué incluye")}</h2>
         <p>{tx(`Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta ${p("newPage", currency)}. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Website incluye hasta dos cambios chicos al mes, hechos en 2 días hábiles; Lead System incluye cambios chicos ilimitados en 1 día hábil; y Plus incluye cambios chicos ilimitados el mismo día hábil si los pides antes del mediodía, hora del Centro. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. El dominio del año 1 va incluido en todos los planes mensuales y en Own It, a tu nombre; las renovaciones posteriores se cobran al costo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es ${p("siteCareMo", currency)} al mes.`)}</p>
         <h2>{tx("4. Textos y el operador")}</h2>
-        <p>{tx(`Las solicitudes de reseña en Google se envían después de los trabajos en Lead System y Plus. El mensaje opcional para llamadas perdidas es una función aparte y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. La activación de este mensaje depende de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.`)}</p>
+        <p>{tx(`Las solicitudes de reseña en Google se envían por mensaje de texto después de los trabajos en Lead System y Plus. El mensaje opcional para llamadas perdidas es una función aparte y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. El envío de mensajes de texto de ambas funciones depende de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.`)}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
         <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al texto si no contestas, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>

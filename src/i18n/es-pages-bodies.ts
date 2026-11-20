@@ -14,7 +14,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/plumbing\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/plumber-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/plumbing\">página de plomería</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/plumber-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -26,7 +26,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de plomería",
-        "html": "<p>Las búsquedas de plomería se parten entre pánico y planeación. Una tubería rota quiere un número grande y horario honesto. Una cotización de calentador quiere un formulario corto y marcas que sí instalas. Si esos caminos comparten una página vaga, los dos visitantes dudan — y a Google le cuesta emparejar la consulta correcta.</p><p>Dale a fugas, drenajes y calentadores su propia página. Rutas de emergencia lideran con llamada. Páginas de estimado respiran con fotos de prueba y un formulario de nombre, teléfono, tipo de trabajo y ciudad — nada más en el primer paso.</p><p>Consulta la <a href=\"/industries/plumbing\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Las búsquedas de plomería se parten entre pánico y planeación. Una tubería rota quiere un número grande y horario honesto. Una cotización de calentador quiere un formulario corto y marcas que sí instalas. Si esos caminos comparten una página vaga, los dos visitantes dudan — y a Google le cuesta emparejar la consulta correcta.</p><p>Dale a fugas, drenajes y calentadores su propia página. Rutas de emergencia lideran con llamada. Páginas de estimado respiran con fotos de prueba y un formulario de nombre, teléfono, tipo de trabajo y ciudad — nada más en el primer paso.</p><p>Consulta la <a href=\"/industries/plumbing\">página de plomería</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -89,7 +89,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/hvac\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/hvac-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/hvac\">página de HVAC</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/hvac-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -101,7 +101,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de HVAC",
-        "html": "<p>En temporada de calor, quien se quedó sin aire necesita encontrar cómo pedir una reparación. En los meses más tranquilos, una página de mantenimiento o reemplazo puede ayudar a generar consultas. Mantén esos servicios separados. Incluye información de financiamiento solo si realmente lo ofreces y explica con claridad cualquier precio «desde».</p><p>Consulta la <a href=\"/industries/hvac\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>En temporada de calor, quien se quedó sin aire necesita encontrar cómo pedir una reparación. En los meses más tranquilos, una página de mantenimiento o reemplazo puede ayudar a generar consultas. Mantén esos servicios separados. Incluye información de financiamiento solo si realmente lo ofreces y explica con claridad cualquier precio «desde».</p><p>Consulta la <a href=\"/industries/hvac\">página de HVAC</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -164,7 +164,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/electrical\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/electrician-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/electrical\">página de electricidad</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/electrician-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -176,7 +176,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de electricidad",
-        "html": "<p>Quien compra electricidad compara confianza tanto como precio. Muestra licencia temprano — cerca del teléfono, no tres scrolls abajo. Tableros, diagnóstico y cargadores EV son trabajos distintos con urgencia distinta. Si instalas cargadores, esa página merece camino de revisión en sitio. Si huele a quemado, la página debe gritar llamar — no invitar a leer folleto largo.</p><p>Consulta la <a href=\"/industries/electrical\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien compra electricidad compara confianza tanto como precio. Muestra licencia temprano — cerca del teléfono, no tres scrolls abajo. Tableros, diagnóstico y cargadores EV son trabajos distintos con urgencia distinta. Si instalas cargadores, esa página merece camino de revisión en sitio. Si huele a quemado, la página debe gritar llamar — no invitar a leer folleto largo.</p><p>Consulta la <a href=\"/industries/electrical\">página de electricidad</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -239,7 +239,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/roofing\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/roofing-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/roofing\">página de techos</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/roofing-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -251,7 +251,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de techos",
-        "html": "<p>Tras el granizo, el dueño quiere ventana de inspección — no novela de marcas de teja. Separa reparación de cambio completo. Puedes explicar cómo documentas daño para seguro sin prometer resultados que no controlas. Formulario corto de inspección: nombre, teléfono, zona de dirección y fotos si es seguro. Fugas activas siguen mereciendo el teléfono sobre todo.</p><p>Consulta la <a href=\"/industries/roofing\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Tras el granizo, el dueño quiere ventana de inspección — no novela de marcas de teja. Separa reparación de cambio completo. Puedes explicar cómo documentas daño para seguro sin prometer resultados que no controlas. Formulario corto de inspección: nombre, teléfono, zona de dirección y fotos si es seguro. Fugas activas siguen mereciendo el teléfono sobre todo.</p><p>Consulta la <a href=\"/industries/roofing\">página de techos</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -314,7 +314,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/garage-door-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de puertas de garaje</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/garage-door-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -326,7 +326,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de puertas de garaje",
-        "html": "<p>Una puerta atascada a las 7 a.m. no es el mismo comprador que alguien cotizando doble nuevo para remodelar el garaje. Resortes y motores necesitan ruta de reparación con teléfono. Puertas nuevas pueden usar formulario corto (sencilla/doble, material si se sabe, ciudad). Una página vaga de “servicios de garaje” hace trabajar demasiado a los dos.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Una puerta atascada a las 7 a.m. no es el mismo comprador que alguien cotizando doble nuevo para remodelar el garaje. Resortes y motores necesitan ruta de reparación con teléfono. Puertas nuevas pueden usar formulario corto (sencilla/doble, material si se sabe, ciudad). Una página vaga de “servicios de garaje” hace trabajar demasiado a los dos.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de puertas de garaje</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -389,7 +389,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/painting\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/painting-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/painting\">página de pintura</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/painting-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -401,7 +401,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de pintura",
-        "html": "<p>Interior, exterior y gabinetes se venden distinto. Exterior quiere historias y notas de revestimiento; gabinetes quieren fotos de cajones; interior quiere conteo de cuartos sin formulario de veinte campos. Separa páginas, mantén la petición de estimado corta y deja fotos para después por mensaje cuando confirmes encaje.</p><p>Consulta la <a href=\"/industries/painting\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Interior, exterior y gabinetes se venden distinto. Exterior quiere historias y notas de revestimiento; gabinetes quieren fotos de cajones; interior quiere conteo de cuartos sin formulario de veinte campos. Separa páginas, mantén la petición de estimado corta y deja fotos para después por mensaje cuando confirmes encaje.</p><p>Consulta la <a href=\"/industries/painting\">página de pintura</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -464,7 +464,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/remodeling\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/remodeling-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/remodeling\">página de remodelación</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/remodeling-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -476,7 +476,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de remodelación",
-        "html": "<p>La remodelación rara vez es llamada de la misma hora. Lidera con cuartos que sí construiste y camino de consulta — no banner de emergencia copiado de plantilla de plomero. Cocinas y baños merecen páginas propias. Una nota corta de proceso (recorrido → alcance → calendario) calma compradores más que un “LLAMA YA” que no coincide con cómo vendes.</p><p>Consulta la <a href=\"/industries/remodeling\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>La remodelación rara vez es llamada de la misma hora. Lidera con cuartos que sí construiste y camino de consulta — no banner de emergencia copiado de plantilla de plomero. Cocinas y baños merecen páginas propias. Una nota corta de proceso (recorrido → alcance → calendario) calma compradores más que un “LLAMA YA” que no coincide con cómo vendes.</p><p>Consulta la <a href=\"/industries/remodeling\">página de remodelación</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -539,7 +539,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/landscaping\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/landscaping-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/landscaping\">página de paisajismo</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/landscaping-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -551,7 +551,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de paisajismo",
-        "html": "<p>Quien busca mantenimiento semanal necesita saber si su casa está dentro de la ruta. Quien planea un patio quiere ver proyectos terminados y solicitar una consulta. Separa esas opciones. Para las limpiezas de temporada, pregunta por la ciudad y la semana que prefiere el cliente; usa fotos de jardines que tu equipo haya trabajado.</p><p>Consulta la <a href=\"/industries/landscaping\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien busca mantenimiento semanal necesita saber si su casa está dentro de la ruta. Quien planea un patio quiere ver proyectos terminados y solicitar una consulta. Separa esas opciones. Para las limpiezas de temporada, pregunta por la ciudad y la semana que prefiere el cliente; usa fotos de jardines que tu equipo haya trabajado.</p><p>Consulta la <a href=\"/industries/landscaping\">página de paisajismo</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -614,7 +614,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pool-care\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -626,7 +626,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de albercas",
-        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la <a href=\"/industries/pool-care\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -689,7 +689,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pressure-washing-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de lavado a presión</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pressure-washing-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -701,7 +701,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de lavado a presión",
-        "html": "<p>El lavado de casas, concreto y techos puede requerir métodos distintos. Separa esos servicios y muestra fotos reales del antes y después. Si usas lavado suave en ciertas superficies, explícalo para que el cliente sepa qué esperar.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>El lavado de casas, concreto y techos puede requerir métodos distintos. Separa esos servicios y muestra fotos reales del antes y después. Si usas lavado suave en ciertas superficies, explícalo para que el cliente sepa qué esperar.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de lavado a presión</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -764,7 +764,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -776,7 +776,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de limpieza de vidrios",
-        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -839,7 +839,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/yard-care\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -851,7 +851,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio de césped",
-        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la <a href=\"/industries/yard-care\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -914,7 +914,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/junk-removal-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de retiro de chatarra</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/junk-removal-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -926,7 +926,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio para retiro de chatarra",
-        "html": "<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href=\"/industries/junk-removal\">retiro de chatarra</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href=\"/industries/junk-removal\">retiro de chatarra</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de retiro de chatarra</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -989,7 +989,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/tree-care\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/tree-service-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/tree-care\">página de servicio de árboles</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/tree-service-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1001,7 +1001,7 @@ export const GENERATED_ES_PAGES_BODIES: Record<string, EsPagesPostBody> = {
       },
       {
         "h2": "Páginas de servicio para árboles",
-        "html": "<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href=\"/industries/tree-care\">servicio de árboles</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/tree-care\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href=\"/industries/tree-care\">servicio de árboles</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/tree-care\">página de servicio de árboles</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1072,7 +1072,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/plumbing\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/plumber-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/plumbing\">página de plomería</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/plumber-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1084,7 +1084,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de plomería",
-        "html": "<p>Las búsquedas de plomería se parten entre pánico y planeación. Una tubería rota quiere un número grande y horario honesto. Una cotización de calentador quiere un formulario corto y marcas que sí instalas. Si esos caminos comparten una página vaga, los dos visitantes dudan — y a Google le cuesta emparejar la consulta correcta.</p><p>Dale a fugas, drenajes y calentadores su propia página. Rutas de emergencia lideran con llamada. Páginas de estimado respiran con fotos de prueba y un formulario de nombre, teléfono, tipo de trabajo y ciudad — nada más en el primer paso.</p><p>Consulta la <a href=\"/industries/plumbing\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Las búsquedas de plomería se parten entre pánico y planeación. Una tubería rota quiere un número grande y horario honesto. Una cotización de calentador quiere un formulario corto y marcas que sí instalas. Si esos caminos comparten una página vaga, los dos visitantes dudan — y a Google le cuesta emparejar la consulta correcta.</p><p>Dale a fugas, drenajes y calentadores su propia página. Rutas de emergencia lideran con llamada. Páginas de estimado respiran con fotos de prueba y un formulario de nombre, teléfono, tipo de trabajo y ciudad — nada más en el primer paso.</p><p>Consulta la <a href=\"/industries/plumbing\">página de plomería</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1130,7 +1130,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/hvac\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/hvac-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/hvac\">página de HVAC</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/hvac-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1142,7 +1142,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de HVAC",
-        "html": "<p>En temporada de calor, quien se quedó sin aire necesita encontrar cómo pedir una reparación. En los meses más tranquilos, una página de mantenimiento o reemplazo puede ayudar a generar consultas. Mantén esos servicios separados. Incluye información de financiamiento solo si realmente lo ofreces y explica con claridad cualquier precio «desde».</p><p>Consulta la <a href=\"/industries/hvac\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>En temporada de calor, quien se quedó sin aire necesita encontrar cómo pedir una reparación. En los meses más tranquilos, una página de mantenimiento o reemplazo puede ayudar a generar consultas. Mantén esos servicios separados. Incluye información de financiamiento solo si realmente lo ofreces y explica con claridad cualquier precio «desde».</p><p>Consulta la <a href=\"/industries/hvac\">página de HVAC</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1188,7 +1188,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/electrical\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/electrician-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/electrical\">página de electricidad</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/electrician-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1200,7 +1200,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de electricidad",
-        "html": "<p>Quien compra electricidad compara confianza tanto como precio. Muestra licencia temprano — cerca del teléfono, no tres scrolls abajo. Tableros, diagnóstico y cargadores EV son trabajos distintos con urgencia distinta. Si instalas cargadores, esa página merece camino de revisión en sitio. Si huele a quemado, la página debe gritar llamar — no invitar a leer folleto largo.</p><p>Consulta la <a href=\"/industries/electrical\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien compra electricidad compara confianza tanto como precio. Muestra licencia temprano — cerca del teléfono, no tres scrolls abajo. Tableros, diagnóstico y cargadores EV son trabajos distintos con urgencia distinta. Si instalas cargadores, esa página merece camino de revisión en sitio. Si huele a quemado, la página debe gritar llamar — no invitar a leer folleto largo.</p><p>Consulta la <a href=\"/industries/electrical\">página de electricidad</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1246,7 +1246,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/roofing\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/roofing-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/roofing\">página de techos</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/roofing-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1258,7 +1258,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de techos",
-        "html": "<p>Tras el granizo, el dueño quiere ventana de inspección — no novela de marcas de teja. Separa reparación de cambio completo. Puedes explicar cómo documentas daño para seguro sin prometer resultados que no controlas. Formulario corto de inspección: nombre, teléfono, zona de dirección y fotos si es seguro. Fugas activas siguen mereciendo el teléfono sobre todo.</p><p>Consulta la <a href=\"/industries/roofing\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Tras el granizo, el dueño quiere ventana de inspección — no novela de marcas de teja. Separa reparación de cambio completo. Puedes explicar cómo documentas daño para seguro sin prometer resultados que no controlas. Formulario corto de inspección: nombre, teléfono, zona de dirección y fotos si es seguro. Fugas activas siguen mereciendo el teléfono sobre todo.</p><p>Consulta la <a href=\"/industries/roofing\">página de techos</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1304,7 +1304,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/garage-door-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de puertas de garaje</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/garage-door-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1316,7 +1316,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de puertas de garaje",
-        "html": "<p>Una puerta atascada a las 7 a.m. no es el mismo comprador que alguien cotizando doble nuevo para remodelar el garaje. Resortes y motores necesitan ruta de reparación con teléfono. Puertas nuevas pueden usar formulario corto (sencilla/doble, material si se sabe, ciudad). Una página vaga de “servicios de garaje” hace trabajar demasiado a los dos.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Una puerta atascada a las 7 a.m. no es el mismo comprador que alguien cotizando doble nuevo para remodelar el garaje. Resortes y motores necesitan ruta de reparación con teléfono. Puertas nuevas pueden usar formulario corto (sencilla/doble, material si se sabe, ciudad). Una página vaga de “servicios de garaje” hace trabajar demasiado a los dos.</p><p>Consulta la <a href=\"/industries/garage-doors\">página de puertas de garaje</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1362,7 +1362,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/painting\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/painting-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/painting\">página de pintura</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/painting-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1374,7 +1374,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de pintura",
-        "html": "<p>Interior, exterior y gabinetes se venden distinto. Exterior quiere historias y notas de revestimiento; gabinetes quieren fotos de cajones; interior quiere conteo de cuartos sin formulario de veinte campos. Separa páginas, mantén la petición de estimado corta y deja fotos para después por mensaje cuando confirmes encaje.</p><p>Consulta la <a href=\"/industries/painting\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Interior, exterior y gabinetes se venden distinto. Exterior quiere historias y notas de revestimiento; gabinetes quieren fotos de cajones; interior quiere conteo de cuartos sin formulario de veinte campos. Separa páginas, mantén la petición de estimado corta y deja fotos para después por mensaje cuando confirmes encaje.</p><p>Consulta la <a href=\"/industries/painting\">página de pintura</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1420,7 +1420,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/remodeling\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/remodeling-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/remodeling\">página de remodelación</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/remodeling-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1432,7 +1432,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de remodelación",
-        "html": "<p>La remodelación rara vez es llamada de la misma hora. Lidera con cuartos que sí construiste y camino de consulta — no banner de emergencia copiado de plantilla de plomero. Cocinas y baños merecen páginas propias. Una nota corta de proceso (recorrido → alcance → calendario) calma compradores más que un “LLAMA YA” que no coincide con cómo vendes.</p><p>Consulta la <a href=\"/industries/remodeling\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>La remodelación rara vez es llamada de la misma hora. Lidera con cuartos que sí construiste y camino de consulta — no banner de emergencia copiado de plantilla de plomero. Cocinas y baños merecen páginas propias. Una nota corta de proceso (recorrido → alcance → calendario) calma compradores más que un “LLAMA YA” que no coincide con cómo vendes.</p><p>Consulta la <a href=\"/industries/remodeling\">página de remodelación</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1478,7 +1478,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/landscaping\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/landscaping-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/landscaping\">página de paisajismo</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/landscaping-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1490,7 +1490,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de paisajismo",
-        "html": "<p>Quien busca mantenimiento semanal necesita saber si su casa está dentro de la ruta. Quien planea un patio quiere ver proyectos terminados y solicitar una consulta. Separa esas opciones. Para las limpiezas de temporada, pregunta por la ciudad y la semana que prefiere el cliente; usa fotos de jardines que tu equipo haya trabajado.</p><p>Consulta la <a href=\"/industries/landscaping\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien busca mantenimiento semanal necesita saber si su casa está dentro de la ruta. Quien planea un patio quiere ver proyectos terminados y solicitar una consulta. Separa esas opciones. Para las limpiezas de temporada, pregunta por la ciudad y la semana que prefiere el cliente; usa fotos de jardines que tu equipo haya trabajado.</p><p>Consulta la <a href=\"/industries/landscaping\">página de paisajismo</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1536,7 +1536,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pool-care\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pool-service-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1548,7 +1548,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de albercas",
-        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la <a href=\"/industries/pool-care\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Quien tiene una alberca verde necesita encontrar el teléfono y saber cuándo responderás. Para las rutas semanales, usa un formulario breve que pregunte el código postal, el día preferido y si la alberca ya se puede usar. Mantén las reparaciones separadas de las membresías.</p><p>Consulta la <a href=\"/industries/pool-care\">página de albercas</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1594,7 +1594,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pressure-washing-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de lavado a presión</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/pressure-washing-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1606,7 +1606,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de lavado a presión",
-        "html": "<p>El lavado de casas, concreto y techos puede requerir métodos distintos. Separa esos servicios y muestra fotos reales del antes y después. Si usas lavado suave en ciertas superficies, explícalo para que el cliente sepa qué esperar.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>El lavado de casas, concreto y techos puede requerir métodos distintos. Separa esos servicios y muestra fotos reales del antes y después. Si usas lavado suave en ciertas superficies, explícalo para que el cliente sepa qué esperar.</p><p>Consulta la <a href=\"/industries/pressure-washing\">página de lavado a presión</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1652,7 +1652,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/window-cleaning-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1664,7 +1664,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de limpieza de vidrios",
-        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Los clientes residenciales pueden buscar limpiezas recurrentes; los negocios quizá necesiten coordinar el servicio antes de abrir. Explica cada opción por separado. En el formulario, pregunta el número aproximado de ventanas y la frecuencia para preparar una cotización.</p><p>Consulta la <a href=\"/industries/window-cleaning\">página de limpieza de vidrios</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1710,7 +1710,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/yard-care\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/lawn-care-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1722,7 +1722,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio de césped",
-        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la <a href=\"/industries/yard-care\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>El trabajo por rutas depende de una zona de servicio precisa. Indica los barrios que realmente atiendes. El corte semanal y la recolección de desechos de mascotas son servicios distintos; crea una página para este último solo si lo ofreces. En el formulario de limpieza estacional, pregunta por el código postal y la frecuencia para que el equipo pueda confirmar la cobertura.</p><p>Consulta la <a href=\"/industries/yard-care\">página de césped</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1768,7 +1768,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/junk-removal-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de retiro de chatarra</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/junk-removal-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1780,7 +1780,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio para retiro de chatarra",
-        "html": "<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href=\"/industries/junk-removal\">retiro de chatarra</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>El sitio falla cuando cada carga termina en una sola página de “retiramos de todo”. Un colchón en la banqueta necesita llamar y conocer una ventana realista. Una cochera o propiedad heredada requiere estimar volumen, acceso y quizá enviar fotos. Si ofreces ambos servicios, sepáralos. Las cargas recurrentes para caseros o asociaciones solo merecen una página si realmente manejas esas rutas.</p><p>Explica cuándo una foto basta para orientar y cuándo necesitas visitar para dar el precio final. No prometas servicio el mismo día fuera de tu zona o de tu horario. Consulta la página de <a href=\"/industries/junk-removal\">retiro de chatarra</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/junk-removal\">página de retiro de chatarra</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",
@@ -1826,7 +1826,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
     "sections": [
       {
         "h2": "Empieza por lo que busca el cliente",
-        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/tree-care\">página de undefined</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/tree-service-website-cost\">guía de precios</a>.</p>"
+        "html": "<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href=\"/industries/tree-care\">página de servicio de árboles</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href=\"/blog/tree-service-website-cost\">guía de precios</a>.</p>"
       },
       {
         "h2": "Páginas base que todo sitio de servicios necesita",
@@ -1838,7 +1838,7 @@ export const GENERATED_ES_PAGES_POSTS: Record<string, EsPost> = {
       },
       {
         "h2": "Páginas de servicio para árboles",
-        "html": "<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href=\"/industries/tree-care\">servicio de árboles</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/tree-care\">página de undefined</a> para ver más ejemplos.</p>"
+        "html": "<p>Un sitio de servicio de árboles se vuelve confuso cuando emergencias, podas y talas comparten un bloque genérico. Quien tiene una rama sobre el techo necesita llamar y saber cuándo responderás. Para un trabajo planeado, la persona quiere fotos reales de la cuadrilla, información de seguro y una consulta.</p><p>Dedica páginas a poda, tala y emergencias cuando sean servicios que ofreces. Incluye molienda de tocones solo si forma parte de tu trabajo. Muestra seguro y seguridad cerca del teléfono; limita la zona a donde realmente puedes enviar una cuadrilla. Consulta la página de <a href=\"/industries/tree-care\">servicio de árboles</a> para ver el enfoque del sitio.</p><p>Consulta la <a href=\"/industries/tree-care\">página de servicio de árboles</a> para ver más ejemplos.</p>"
       },
       {
         "h2": "Mantén tus datos actualizados",

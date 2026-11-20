@@ -71,7 +71,7 @@ export default async function Home() {
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
                 <span><b>Missed-call text-back is optional</b></span>
-                <span>available with Lead System and Plus</span>
+                <span>on Lead System and Plus, or as a $97/mo add-on</span>
               </span>
             </li>
             <li>
@@ -84,7 +84,7 @@ export default async function Home() {
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Get My Free Preview</Link>
-            {preferredPlumbing && <a className="btn btn--ghost" href={preferredPlumbing.url} target="_blank" rel="noopener noreferrer">See the live website</a>}
+            {preferredPlumbing && <a className="btn btn--ghost" href={preferredPlumbing.url} target="_blank" rel="noopener noreferrer">See a live client website</a>}
           </div>
           <div className="hero__reassure">
             <TrustStrip className="hero__trust" />

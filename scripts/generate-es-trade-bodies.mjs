@@ -691,19 +691,21 @@ function buildPagesBody(trade, meta) {
   const industry = industryPath(trade.industry);
   const costPath = costBlogPath(trade.industry);
   const proof = trade.proofHtml ?? DEFAULT_PROOF;
+  const siteLabel = COST_TRADES.find((item) => item.slug === trade.industry)?.siteLabel;
+  if (!siteLabel) throw new Error(`missing siteLabel for ${trade.industry}`);
 
   const lead = `Quien visita el sitio de ${trade.nounWithArticle} necesita saber qué servicios ofreces, si atiendes su zona y cómo contactarte. La página debe responder esas preguntas sin rodeos. ${trade.leadFocus}`;
 
   const sections = [
     {
       h2: "Empieza por lo que busca el cliente",
-      html: `<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href="${industry}">página de ${trade.siteLabel}</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href="${costPath}">guía de precios</a>.</p>`,
+       html: `<p>Alguien que llega desde el celular debe encontrar pronto el servicio que necesita y una forma de contactarte. Organiza el sitio alrededor de esas preguntas, no de la estructura interna de tu empresa.</p><p>Consulta la <a href="${industry}">página de ${siteLabel}</a> para ver ejemplos. Si quieres comparar precios, lee nuestra <a href="${costPath}">guía de precios</a>.</p>`,
     },
     { h2: "Páginas base que todo sitio de servicios necesita", html: CORE_PAGES },
       { h2: "Revisa la página en el celular", html: HOMEPAGE_WIREFRAME },
     {
       h2: trade.specificH2,
-      html: `${trade.servicesHtml}<p>Consulta la <a href="${industry}">página de ${trade.siteLabel}</a> para ver más ejemplos.</p>`,
+      html: `${trade.servicesHtml}<p>Consulta la <a href="${industry}">página de ${siteLabel}</a> para ver más ejemplos.</p>`,
     },
     { h2: "Mantén tus datos actualizados", html: NAP_CONSISTENCY },
     { h2: "Fotos y prueba que pertenecen al sitio", html: PHOTOS_PROOF },
@@ -822,7 +824,11 @@ ${posts}
 export const ES_COST_POST_SLUGS = ${JSON.stringify(costBuilt.map((p) => p.slug))} as const;
 `;
 
-  fs.writeFileSync(out, header + entries + footer, "utf8");
+  const generated = header + entries + footer;
+  if (generated.includes("undefined")) {
+    throw new Error("Generated Spanish cost bodies contain `undefined`.");
+  }
+  fs.writeFileSync(out, generated, "utf8");
   console.log("Wrote", out);
 }
 
@@ -864,7 +870,11 @@ ${postEntries}
 export const ES_PAGES_POST_SLUGS = ${JSON.stringify(pagesBuilt.map((p) => p.slug))} as const;
 `;
 
-  fs.writeFileSync(out, header + bodyEntries + footer, "utf8");
+  const generated = header + bodyEntries + footer;
+  if (generated.includes("undefined")) {
+    throw new Error("Generated Spanish pages bodies contain `undefined`.");
+  }
+  fs.writeFileSync(out, generated, "utf8");
   console.log("Wrote", out);
 }
 
