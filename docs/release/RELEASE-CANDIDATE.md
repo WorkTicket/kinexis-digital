@@ -6,9 +6,10 @@
 
 - Base candidate: `76475c3a28dc0e043033fe1bf6883a378202c40d` (`release/1`)
 - Follow-up branch: `release/1-deploy-fixes`, based on the exact base candidate above.
+- Follow-up source commit: `f1becd2c5e838131cd58fa6e5156c9afa3d774f5`.
 - The base contains the KX-SEO-002 remediation and approved cosmetic merge, including the H1/H2 highlight behavior correction and mobile portfolio tap/hover fix.
 - Follow-up scope: align Spanish homepage CTA hierarchy with English, restore 48px mobile footer contact targets, and replace the stale “Pedidos de reseña” wording.
-- Record the full follow-up commit SHA after scoped changes are committed. The follow-up is not yet a frozen candidate.
+- This is a locally verified source candidate, not deployed.
 
 ## Included scope
 
@@ -21,7 +22,7 @@
 
 ## Verification before candidate freeze
 
-**2026-11-20 follow-up working-tree run:** `npm run check`, `npm run build`, and `git diff --check` passed. The first full Playwright run overlapped the check suite/build and ended with 145 passed, 9 skipped, and 4 timeouts. An isolated `npx playwright test --workers=4` rerun passed with 149 passed and 9 skipped (158 scheduled). The Spanish-home CTA and 48px footer regressions passed in Chromium and mobile. This verification applies to the follow-up source tree, not yet to a frozen commit SHA. The earlier Release 1 verification below remains historical; rerun applicable exact-SHA checks after commit.
+**2026-11-20 follow-up verification:** `npm run check` and `npm run build` passed after source commit `f1becd2c5e838131cd58fa6e5156c9afa3d774f5`. The full Playwright suite passed against the same tracked source tree immediately before commit using `npx playwright test --workers=4`: 149 passed, 9 skipped (158 scheduled). The Spanish-home CTA and 48px footer regressions passed in Chromium and mobile. An earlier full run overlapped check/build and had 4 timeouts; those did not recur in the isolated run. The earlier Release 1 verification below remains historical.
 
 ## Gates remaining before deployment
 
