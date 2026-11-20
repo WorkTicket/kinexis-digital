@@ -163,7 +163,7 @@ function metaFor(en: string, locale: Locale): Meta | undefined {
     const source = POSTS.find((item) => item.slug === post?.slug);
     if (!post || !source) return undefined;
     const text = locale === "es-ES" ? spainizeData(post) : post;
-    return { title: text.seoTitle, description: text.excerpt, article: true, image: source.image, date: source.date, section: text.category };
+    return { title: text.seoTitle, description: text.excerpt, article: true, image: spanishBlogImage(post.slug), date: source.date, section: text.category };
   }
   if (!SPANISH_STATIC_META_PATH_SET.has(en)) return undefined;
   const page = PAGE_META[en as SpanishStaticPath];
@@ -915,7 +915,7 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
   const posts = POSTS.filter((post) => esPost(post.slug)).map((post) => {
     const es = locale === "es-ES" || locale === "es-419" ? esPostForLocale(post.slug, locale)! : esPost(post.slug)!;
     const text = locale === "es-ES" ? spainizeData(es) : es;
-    return { ...post, title: text.title, excerpt: text.excerpt, category: text.category };
+    return { ...post, title: text.title, excerpt: text.excerpt, category: text.category, image: spanishBlogImage(post.slug) };
   });
   const blogSub = locale === "es-ES"
     ? tx("Guías de SEO, diseño y marketing para negocios de servicios locales.")
@@ -937,7 +937,7 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
           <div className="grid grid--3 blog-index">
             {posts.map((post) => (
               <article className="card post" key={post.slug} data-cat={post.category}>
-                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} avifSrcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS, "avif")} alt={post.title} width={post.width} height={post.height} sizes={IMAGE_SIZES.blogCard} /></div></Link>
+                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} alt={post.title} width={post.width} height={post.height} sizes={IMAGE_SIZES.blogCard} /></div></Link>
                 <div className="post__body">
                   <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link>
                   <p className="post__excerpt muted">{post.excerpt}</p>
@@ -961,6 +961,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   const source = POSTS.find((post) => post.slug === slug);
   if (!raw || !source) notFound();
   const post = locale === "es-ES" ? spainizeData(raw) : raw;
+  const coverImage = spanishBlogImage(post.slug);
   const href = (path: string) => L(locale, path);
   const tx = (text: string) => (locale === "es-ES" ? spainize(text) : text);
   const related = POSTS
@@ -980,7 +981,7 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
   });
   return (
     <>
-      <ArticleSchema title={post.seoTitle} description={post.excerpt} path={href(`/blog/${post.slug}`)} image={source.image} date={source.date} modified={source.modified} section={post.category} inLanguage={lang} />
+      <ArticleSchema title={post.seoTitle} description={post.excerpt} path={href(`/blog/${post.slug}`)} image={coverImage} date={source.date} modified={source.modified} section={post.category} inLanguage={lang} />
       <PageHero
         locale={locale}
         className="page-hero--article"
@@ -1004,6 +1005,18 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
               <span aria-hidden="true">/</span>
               <span>{post.category}</span>
             </nav>
+            <figure className="blog-post__hero">
+              <img
+                src={imageVariant(coverImage, 960, "webp")}
+                srcSet={imageSrcSet(coverImage, BLOG_IMAGE_WIDTHS)}
+                sizes={IMAGE_SIZES.blogArticle}
+                alt={post.title}
+                width={1200}
+                height={675}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
             <div className="blog-post__content prose">
               <p className="blog-post__lead">{post.lead}</p>
               {post.sections.map((section) => (
@@ -1042,6 +1055,10 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
       <CtaBand h={tx("¿Quieres esto en tu sitio?")} mark={tx("tu sitio")} sub={tx("La revisión es gratis. La vista previa también, antes de pagar.")} btn={tx("Revisar mi sitio")} href={href("/audit")} secondary={tx("Hablar de tus opciones")} secondaryHref={href("/strategy-call")} locale={locale} />
     </>
   );
+}
+
+function spanishBlogImage(slug: string) {
+  return `/blog/${slug}-es.webp`;
 }
 
 function Care({ locale, tx, href, lang, band }: PageBits) {

@@ -160,6 +160,21 @@ test.describe("marketing journeys", () => {
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /pricing-social-es\.jpg/);
   });
 
+  test("Spanish blog covers use Spanish artwork on cards and article pages", async ({ page }) => {
+    await page.goto("/es/blog");
+    const spanishCardCover = page.locator('article.post a[href="/es/blog/google-business-profile-vs-website"] img');
+    await expect(spanishCardCover).toHaveAttribute("src", /google-business-profile-vs-website-es-640\.webp/);
+    await expect(spanishCardCover).toHaveCSS("object-fit", "contain");
+    await spanishCardCover.scrollIntoViewIfNeeded();
+    await expect.poll(() => spanishCardCover.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+
+    await page.goto("/es/blog/google-business-profile-vs-website");
+    await expect(page.locator(".blog-post__hero img")).toHaveAttribute("src", /google-business-profile-vs-website-es-960\.webp/);
+
+    await page.goto("/blog/google-business-profile-vs-website");
+    await expect(page.locator('.blog-post__hero source[type="image/avif"]')).toHaveAttribute("srcset", /google-business-profile-vs-website-960\.avif\?v=28/);
+  });
+
   test("preview form shows required business fields", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator('input[name="business"]').first()).toBeVisible();
