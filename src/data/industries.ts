@@ -75,7 +75,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "The number is a scavenger hunt", text: "If click-to-call is below a stock photo and a paragraph about family values, the emergency caller is already gone.", icon: "visible-phone-number" },
       { title: "No follow-up after a missed call", text: "If you are working and cannot answer, optional missed-call text-back gives the caller a way to tell you what they need.", icon: "missed-call-follow-up" },
     ],
-    heroAlt: "Plumber inspecting sink pipework, copper fitting, laptop and phone",
+    heroAlt: "Plumber working beneath a kitchen sink on exposed pipes",
     servicesTitle: "Pages a plumbing site should have",
     servicesMark: "plumbing site",
     services: [
@@ -119,7 +119,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Install treated like an emergency", text: "A replacement buyer is comparing quotes, efficiency and warranties. A giant “call now” banner is the wrong close.", icon: "replacement-quote-path" },
       { title: "No plan for the mild months", text: "Tune-ups and memberships are how trucks stay busy in April. They need a page, not a coupon taped to the repair menu.", icon: "seasonal-maintenance" },
     ],
-    heroAlt: "HVAC technician, condenser, diagnostic gauges and website tablet",
+    heroAlt: "HVAC technician inspecting an outdoor condenser unit",
     servicesTitle: "What we put on an HVAC site",
     servicesMark: "HVAC site",
     services: [
@@ -161,7 +161,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "EV chargers stuffed under “services”", text: "Charger installs are a research visit. They need their own page, not a bullet under outlet repair.", icon: "extra-page" },
       { title: "Commercial and residential services mixed together", text: "A property manager and a homeowner with a dead outlet need different information. Separate those services if you offer both.", icon: "separate-buyer-paths" },
     ],
-    heroAlt: "Electrician, electrical panel, EV charger and website screens",
+    heroAlt: "Electrician inspecting an open electrical panel",
     servicesTitle: "Pages that match electrical search",
     servicesMark: "electrical search",
     services: [
@@ -203,7 +203,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Repair and replacement on one page", text: "A shingle leak and a full tear-off are different quotes. Give each its own page and its own next step.", icon: "repair-replacement-pages" },
       { title: "Photos that are not your roofs", text: "Stock houses do not convince someone standing in their own driveway. We lay the site out for your photos, or quote a shoot separately.", icon: "real-project-photos" },
     ],
-    heroAlt: "Roofer, shingle roof, construction detail and website screens",
+    heroAlt: "Roofer inspecting shingles on a residential roof",
     servicesTitle: "What belongs on a roofing site",
     servicesMark: "roofing site",
     services: [
@@ -245,7 +245,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Styles with no prices context", text: "You do not have to publish a menu. You do have to say what changes the price: size, insulation, opener, haul-away.", icon: "quote-price-context" },
       { title: "No follow-up after the measure", text: "Replacement quotes go cold. A missed call during the install next door should still get a text.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Garage-door technician, modern garage, opener remote and laptop",
+    heroAlt: "Garage-door technician working on an open residential garage door",
     servicesTitle: "Pages a garage door company needs",
     servicesMark: "garage door",
     services: [
@@ -286,7 +286,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No finished-work photos", text: "Painting is visual. The layout leaves room for your rooms, not a stock living room with the tags still on the pillows.", icon: "finished-work-gallery" },
       { title: "A form that asks for too much", text: "Start with the project type, location, and contact details. You can ask for photos and other details when you follow up.", icon: "short-estimate-form" },
     ],
-    heroAlt: "Painter, roller, paint samples, cabinet detail and website screens",
+    heroAlt: "Painter applying paint to an interior wall",
     servicesTitle: "What a painting site should explain",
     servicesMark: "painting site",
     services: [
@@ -330,7 +330,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "A made-up starting price", text: "A generic price can attract requests that do not match the actual scope. Explain what affects the budget instead of inventing a starting figure.", icon: "payment" },
       { title: "Emergency language on a design project", text: "“Call now” is right for a leak. A remodel needs a consult, a timeline and a person who answers.", icon: "consultation-path" },
     ],
-    heroAlt: "Kitchen, material samples, plans, contractor and laptop",
+    heroAlt: "Remodeling contractor reviewing details in a finished kitchen",
     servicesTitle: "Pages a remodeler should publish",
     servicesMark: "remodeler",
     services: [
@@ -381,7 +381,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "Projects with no process", text: "Design-build needs a consult path: site visit, concept, install. A phone number alone is not a process.", icon: "consultation-path" },
       { title: "A service area you cannot staff", text: "Listing the whole metro when you run two crews creates quotes you cannot schedule.", icon: "realistic-service-area" },
     ],
-    heroAlt: "Landscape designer, planting plan, finished garden and laptop",
+    heroAlt: "Landscaper planting shrubs in a finished garden",
     servicesTitle: "How we structure a landscaping site",
     servicesMark: "landscaping site",
     services: [
@@ -468,7 +468,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No before-and-after", text: "The proof is the photo pair. The template should expect it, not treat images as decoration.", icon: "before-after-proof" },
       { title: "Quotes that start from nothing", text: "Ask for the surface and a photo. Guessing square footage from a name and email wastes the visit.", icon: "photo-based-quotes" },
     ],
-    heroAlt: "Surface-cleaning equipment, driveway cleaning and laptop",
+    heroAlt: "Worker pressure-washing a residential driveway",
     servicesTitle: "Pages that match how people search",
     servicesMark: "people search",
     services: [
@@ -596,7 +596,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "The number buried under photos", text: "Someone standing next to a dumpster wants tap-to-call. If the phone is below a long brand story, they dial the next listing.", icon: "emergency-phone-path" },
       { title: "Missed calls without follow-up", text: "If you are on a job and cannot answer, optional missed-call text-back gives the caller a way to tell you what they need.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Junk removal crew, box truck, driveway haul and website tablet",
+    heroAlt: "Junk-removal crew loading furniture onto a trailer",
     servicesTitle: "Pages a junk removal site should have",
     servicesMark: "junk removal site",
     services: [
@@ -642,7 +642,7 @@ export const INDUSTRIES: Industry[] = [
       { title: "No insurance or safety proof", text: "Homeowners comparing bids look for insurance and crew safety near the phone — not three scrolls under a stock oak photo.", icon: "insurance-process" },
       { title: "A service area you cannot crew", text: "Listing the whole metro when you run two trucks creates quotes you cannot schedule. Publish the towns you want.", icon: "route-service-area" },
     ],
-    heroAlt: "Tree care crew, chipper truck, residential tree and website tablet",
+    heroAlt: "Arborist inspecting a mature tree in a residential yard",
     servicesTitle: "Pages a tree care site should have",
     servicesMark: "tree care site",
     services: [

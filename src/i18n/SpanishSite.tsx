@@ -915,7 +915,15 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
   const posts = POSTS.filter((post) => esPost(post.slug)).map((post) => {
     const es = locale === "es-ES" || locale === "es-419" ? esPostForLocale(post.slug, locale)! : esPost(post.slug)!;
     const text = locale === "es-ES" ? spainizeData(es) : es;
-    return { ...post, title: text.title, excerpt: text.excerpt, category: text.category, image: spanishBlogImage(post.slug) };
+    return {
+      ...post,
+      title: text.title,
+      excerpt: text.excerpt,
+      category: text.category,
+      image: spanishBlogImage(post.slug),
+      width: 1200,
+      height: 675,
+    };
   });
   const blogSub = locale === "es-ES"
     ? tx("Guías de SEO, diseño y marketing para negocios de servicios locales.")
@@ -937,7 +945,7 @@ function Blog({ locale, tx, href, lang, band }: PageBits) {
           <div className="grid grid--3 blog-index">
             {posts.map((post) => (
               <article className="card post" key={post.slug} data-cat={post.category}>
-                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img"><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} alt={post.title} width={post.width} height={post.height} sizes={IMAGE_SIZES.blogCard} /></div></Link>
+                <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><div className="post__img" style={{ aspectRatio: `${post.width} / ${post.height}` }}><DeferredImg src={imageVariant(post.image, 640, "webp")} srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)} alt={post.title} width={post.width} height={post.height} sizes={IMAGE_SIZES.blogCard} /></div></Link>
                 <div className="post__body">
                   <Link href={href(`/blog/${post.slug}`)} className="post__link" prefetch={false}><p className="eyebrow">{post.category}</p><h2 className="card-title">{post.title}</h2></Link>
                   <p className="post__excerpt muted">{post.excerpt}</p>
@@ -1011,8 +1019,8 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
                 srcSet={imageSrcSet(coverImage, BLOG_IMAGE_WIDTHS)}
                 sizes={IMAGE_SIZES.blogArticle}
                 alt={post.title}
-                width={1200}
-                height={675}
+                width={locale === "en" ? source.width : 1200}
+                height={locale === "en" ? source.height : 675}
                 loading="lazy"
                 decoding="async"
               />

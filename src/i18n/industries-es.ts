@@ -27,7 +27,7 @@ const ES: Record<string, Copy> = {
       { title: "El número escondido", text: "Si hay que bajar una foto y un párrafo para llamar, quien tiene la emergencia ya se fue.", icon: "visible-phone-number" },
       { title: "No hay seguimiento tras una llamada perdida", text: "Si estás trabajando y no puedes contestar, el mensaje opcional para llamadas perdidas permite que la persona te escriba para explicar qué necesita.", icon: "missed-call-follow-up" },
     ],
-    heroAlt: "Plomero revisando tubería, una computadora y un celular",
+    heroAlt: "Plomero trabajando bajo un fregadero con tuberías expuestas",
     servicesTitle: "Páginas que un sitio de plomería necesita",
     servicesMark: "plomería",
     services: [
@@ -61,7 +61,7 @@ const ES: Record<string, Copy> = {
       { title: "La instalación tratada como emergencia", text: "Quien cambia el equipo compara cotizaciones, eficiencia y garantía. Un botón gigante de “llama ya” no cierra esa venta.", icon: "replacement-quote-path" },
       { title: "Sin plan para los meses suaves", text: "Los mantenimientos y las membresías mantienen las camionetas ocupadas. Necesitan su página.", icon: "seasonal-maintenance" },
     ],
-    heroAlt: "Técnico de HVAC, condensador y una computadora",
+    heroAlt: "Técnico de HVAC revisando una unidad condensadora exterior",
     servicesTitle: "Lo que ponemos en un sitio de HVAC",
     servicesMark: "HVAC",
     services: [
@@ -95,7 +95,7 @@ const ES: Record<string, Copy> = {
       { title: "El cargador metido en “servicios”", text: "Instalar un cargador es una visita de investigación. Necesita su página, no una viñeta bajo “cambiar un contacto”.", icon: "extra-page" },
       { title: "Servicios comerciales y residenciales mezclados", text: "Quien administra un negocio y quien necesita reparar la instalación eléctrica de su casa buscan información distinta. Separa ambas opciones si ofreces los dos servicios.", icon: "separate-buyer-paths" },
     ],
-    heroAlt: "Electricista, tablero, cargador y pantallas del sitio",
+    heroAlt: "Electricista revisando un tablero eléctrico abierto",
     servicesTitle: "Páginas que coinciden con la búsqueda",
     servicesMark: "la búsqueda",
     services: [
@@ -129,7 +129,7 @@ const ES: Record<string, Copy> = {
       { title: "Reparación y cambio en una página", text: "Una teja suelta y un techo completo son cotizaciones distintas. Cada una necesita su página.", icon: "repair-replacement-pages" },
       { title: "Fotos que no son tus techos", text: "Una casa de catálogo no convence a quien está en su entrada. El sitio queda listo para tus fotos, o cotizamos una sesión aparte.", icon: "real-project-photos" },
     ],
-    heroAlt: "Techero, techo de teja y pantallas del sitio",
+    heroAlt: "Techador revisando las tejas de un techo residencial",
     servicesTitle: "Lo que va en un sitio de techos",
     servicesMark: "techos",
     services: [
@@ -163,7 +163,7 @@ const ES: Record<string, Copy> = {
       { title: "Estilos sin contexto de precio", text: "No tienes que publicar un menú. Sí tienes que decir qué cambia el precio: tamaño, aislamiento, motor, retiro.", icon: "quote-price-context" },
       { title: "Sin seguimiento después de la medida", text: "Las cotizaciones se enfrían. Una llamada perdida durante la instalación de al lado igual debe recibir un texto.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Técnico de puertas de garaje, control y computadora",
+    heroAlt: "Técnico trabajando en una puerta de garaje residencial abierta",
     servicesTitle: "Páginas que necesita una empresa de puertas",
     servicesMark: "puertas",
     services: [
@@ -197,7 +197,7 @@ const ES: Record<string, Copy> = {
       { title: "Sin fotos del trabajo terminado", text: "La pintura se ve. El diseño deja espacio para tus cuartos, no para una sala de catálogo.", icon: "finished-work-gallery" },
       { title: "Un formulario demasiado largo", text: "Pide solo los datos necesarios para empezar: qué espacio quieren pintar, dónde está y cómo contactar a la persona. Los detalles pueden hablarse después.", icon: "short-estimate-form" },
     ],
-    heroAlt: "Pintor, rodillo, muestras y pantallas del sitio",
+    heroAlt: "Pintor aplicando pintura en una pared interior",
     servicesTitle: "Lo que un sitio de pintura debe explicar",
     servicesMark: "pintura",
     services: [
@@ -235,7 +235,7 @@ const ES: Record<string, Copy> = {
       { title: "Un precio inicial inventado", text: "Un precio genérico puede atraer solicitudes que no corresponden al alcance real del proyecto. Explica qué factores influyen en el presupuesto, sin inventar una cifra.", icon: "payment" },
       { title: "Lenguaje de emergencia en un proyecto de diseño", text: "“Llama ya” sirve para una fuga. Una remodelación necesita consulta, tiempos y una persona que conteste.", icon: "consultation-path" },
     ],
-    heroAlt: "Cocina, muestras, planos y una computadora",
+    heroAlt: "Contratista de remodelación revisando una cocina renovada",
     servicesTitle: "Páginas que un remodelador debe publicar",
     servicesMark: "remodelador",
     services: [
@@ -272,7 +272,7 @@ const ES: Record<string, Copy> = {
       { title: "Proyectos sin proceso", text: "Diseño y obra necesitan un camino: visita, concepto, instalación. Un teléfono solo no es un proceso.", icon: "consultation-path" },
       { title: "Una zona que no puedes cubrir", text: "Listar toda la ciudad con dos cuadrillas crea cotizaciones que no puedes agendar.", icon: "realistic-service-area" },
     ],
-    heroAlt: "Diseño de jardín, plano y una computadora",
+    heroAlt: "Paisajista plantando arbustos en un jardín terminado",
     servicesTitle: "Cómo armamos un sitio de paisajismo",
     servicesMark: "paisajismo",
     services: [
@@ -306,7 +306,7 @@ const ES: Record<string, Copy> = {
       { title: "Reparaciones sin camino", text: "Bombas, calentadores y agua verde son urgentes. Necesitan página y teléfono, no una nota bajo “servicio completo”.", icon: "repair-call-path" },
       { title: "Barrios que no recorres", text: "La densidad importa. La zona debe coincidir con los días que ya corres.", icon: "route-coverage" },
     ],
-    heroAlt: "Técnico de alberca, equipo y una tableta",
+    heroAlt: "Técnico de alberca revisando el equipo de mantenimiento",
     servicesTitle: "Páginas que una empresa de albercas debe tener",
     servicesMark: "albercas",
     services: [
@@ -343,7 +343,7 @@ const ES: Record<string, Copy> = {
       { title: "Sin antes y después", text: "La prueba es el par de fotos. La plantilla debe esperarlo, no tratar las imágenes como adorno.", icon: "before-after-proof" },
       { title: "Cotizaciones que empiezan de cero", text: "Pide la superficie y una foto. Adivinar metros con un nombre y un correo desperdicia la visita.", icon: "photo-based-quotes" },
     ],
-    heroAlt: "Equipo de lavado, entrada limpia y una computadora",
+    heroAlt: "Trabajador lavando a presión la entrada de una casa",
     servicesTitle: "Páginas que coinciden con cómo busca la gente",
     servicesMark: "busca la gente",
     services: [
@@ -377,7 +377,7 @@ const ES: Record<string, Copy> = {
       { title: "Sin decir qué incluye", text: "Mosquiteros, repisas y vidrio interior son por lo que se pelean las cotizaciones. Di qué cubre la visita.", icon: "visit-inclusions" },
       { title: "Sin camino a la limpieza recurrente", text: "El primer trabajo es el anuncio. La ruta es el negocio. El sitio debe ofrecer los dos.", icon: "recurring-cleaning-path" },
     ],
-    heroAlt: "Limpiador de vidrios, aparador y pantallas del sitio",
+    heroAlt: "Limpiador de ventanas trabajando en el vidrio de una tienda",
     servicesTitle: "Lo que publicamos para limpiadores de vidrios",
     servicesMark: "vidrios",
     services: [
@@ -414,7 +414,7 @@ const ES: Record<string, Copy> = {
       { title: "Las mascotas como un agregado", text: "Si lo vendes, es su propia búsqueda y su propia página. Si no, déjalo fuera.", icon: "extra-page" },
       { title: "Sin explicar la visita", text: "Corte, orilla, soplado, retiro de desechos: la gente quiere la lista antes de darte el código del portón.", icon: "visit-inclusions" },
     ],
-    heroAlt: "Dueño de jardinería, podadora y una tableta",
+    heroAlt: "Dueño de un negocio de jardinería con una podadora en el césped",
     servicesTitle: "Páginas que necesita una ruta de jardín",
     servicesMark: "jardín",
     services: [
@@ -451,7 +451,7 @@ const ES: Record<string, Copy> = {
       { title: "El número bajo las fotos", text: "Quien está junto al basurero quiere tocar para llamar. Si el teléfono está debajo de la historia de la marca, marca al siguiente.", icon: "emergency-phone-path" },
       { title: "Llamadas perdidas sin seguimiento", text: "Si estás trabajando y no puedes contestar, el mensaje opcional para llamadas perdidas permite que la persona te escriba para explicar qué necesita.", icon: "quote-follow-up" },
     ],
-    heroAlt: "Cuadrilla de retiro de chatarra, camión y una tableta",
+    heroAlt: "Equipo de retiro de muebles cargando un remolque",
     servicesTitle: "Páginas que un sitio de chatarra necesita",
     servicesMark: "chatarra",
     services: [
@@ -488,7 +488,7 @@ const ES: Record<string, Copy> = {
       { title: "La información del seguro no está a la vista", text: "Quien compara cotizaciones quiere encontrar fácilmente la información sobre seguros y seguridad, no buscarla entre varias pantallas.", icon: "insurance-process" },
       { title: "Una zona que no puedes cubrir", text: "Listar todo el metro con dos camiones genera cotizaciones que no agendas. Publica los pueblos que sí quieres.", icon: "route-service-area" },
     ],
-    heroAlt: "Cuadrilla de arboristas, astilladora y una tableta",
+    heroAlt: "Arborista inspeccionando un árbol en un jardín residencial",
     servicesTitle: "Páginas que un sitio de árboles necesita",
     servicesMark: "árboles",
     services: [

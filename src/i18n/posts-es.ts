@@ -3,6 +3,7 @@ import { GENERATED_ES_PAGES_POSTS } from "@/i18n/es-pages-bodies";
 import type { EsPost } from "@/i18n/es-post-type";
 import { ES_PILLAR_POSTS } from "@/i18n/es-pillars";
 import { ES_PILLAR_POSTS_MORE } from "@/i18n/es-pillars-more";
+import { ES_ARTWORK_POSTS } from "@/i18n/posts-es-artwork";
 import { ES_GUIDE_STUBS } from "@/i18n/posts-es-guides";
 import { ES_CLUSTER_ES_ES_OVERRIDES, ES_CLUSTER_POSTS } from "@/i18n/posts-es-cluster";
 import { localizeMoneyFields } from "@/i18n/prices";
@@ -22,6 +23,7 @@ function mergeBySlug(...groups: EsPost[][]): EsPost[] {
 export const ES_POSTS: EsPost[] = mergeBySlug(
   ES_GUIDE_STUBS,
   ES_CLUSTER_POSTS,
+  ES_ARTWORK_POSTS,
   Object.values(GENERATED_ES_COST_POSTS),
   Object.values(GENERATED_ES_PAGES_POSTS),
   Object.values(ES_PILLAR_POSTS),

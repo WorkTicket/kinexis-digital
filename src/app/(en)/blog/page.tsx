@@ -61,7 +61,7 @@ export default function Page() {
             {ENGLISH_POSTS.map((post) => (
               <article className="card post" key={post.slug} data-cat={post.category}>
                 <Link href={`/blog/${post.slug}`} className="post__link" prefetch={false}>
-                  <div className="post__img">
+                  <div className="post__img" style={{ aspectRatio: `${post.width} / ${post.height}` }}>
                     <DeferredImg
                       src={imageVariant(post.image, 640, "webp")}
                       srcSet={imageSrcSet(post.image, BLOG_IMAGE_WIDTHS)}

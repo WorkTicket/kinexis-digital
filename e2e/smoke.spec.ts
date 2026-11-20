@@ -161,6 +161,10 @@ test.describe("marketing journeys", () => {
   });
 
   test("Spanish blog covers use Spanish artwork on cards and article pages", async ({ page }) => {
+    await page.goto("/blog");
+    const wideEnglishCoverFrame = page.locator('article.post a[href="/blog/website-mistakes-that-cost-you-calls"] .post__img');
+    await expect(wideEnglishCoverFrame).toHaveAttribute("style", /aspect-ratio:1200 \/ 768/);
+
     await page.goto("/es/blog");
     const spanishCardCover = page.locator('article.post a[href="/es/blog/google-business-profile-vs-website"] img');
     await expect(spanishCardCover).toHaveAttribute("src", /google-business-profile-vs-website-es-640\.webp/);
@@ -173,6 +177,37 @@ test.describe("marketing journeys", () => {
 
     await page.goto("/blog/google-business-profile-vs-website");
     await expect(page.locator('.blog-post__hero source[type="image/avif"]')).toHaveAttribute("srcset", /google-business-profile-vs-website-960\.avif\?v=28/);
+
+    for (const slug of [
+      "contractor-website-quote-form",
+      "contractor-website-redesign-checklist",
+      "how-to-choose-contractor-web-designer",
+    ]) {
+      await page.goto(`/es/blog/${slug}`);
+      await expect(page.locator(".blog-post__content .blog-post__lead")).toBeVisible();
+      await expect(page.locator(".blog-post__hero img")).toHaveAttribute("src", new RegExp(`${slug}-es-960\\.webp`));
+    }
+  });
+
+  test("Spanish industry hero descriptions match the supplied trade artwork", async ({ page }) => {
+    const cases = [
+      ["/es/industries/plumbing", "Plomero trabajando bajo un fregadero con tuberías expuestas"],
+      ["/es/industries/hvac", "Técnico de HVAC revisando una unidad condensadora exterior"],
+      ["/es/industries/electrical", "Electricista revisando un tablero eléctrico abierto"],
+      ["/es/industries/roofing", "Techador revisando las tejas de un techo residencial"],
+      ["/es/industries/garage-doors", "Técnico trabajando en una puerta de garaje residencial abierta"],
+      ["/es/industries/painting", "Pintor aplicando pintura en una pared interior"],
+      ["/es/industries/remodeling", "Contratista de remodelación revisando una cocina renovada"],
+      ["/es/industries/landscaping", "Paisajista plantando arbustos en un jardín terminado"],
+      ["/es/industries/pressure-washing", "Trabajador lavando a presión la entrada de una casa"],
+      ["/es/industries/junk-removal", "Equipo de retiro de muebles cargando un remolque"],
+      ["/es/industries/tree-care", "Arborista inspeccionando un árbol en un jardín residencial"],
+    ] as const;
+
+    for (const [path, description] of cases) {
+      await page.goto(path);
+      await expect(page.locator(".industry-hero__img")).toHaveAttribute("alt", description);
+    }
   });
 
   test("preview form shows required business fields", async ({ page }) => {
