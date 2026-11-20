@@ -16,6 +16,7 @@ import PlanCompare from "@/components/PlanCompare";
 import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 import { IMAGE_SIZES, imageSrcSet, imageVariant } from "@/lib/image-sources";
+import { LIVE_SITES } from "@/data/liveSites";
 
 export const metadata = pageMetadata("home");
 // Homepage is curated (no live review APIs). Keep a long ISR window so the
@@ -47,6 +48,7 @@ function SectionGraphic({ name, alt, className }: { name: string; alt: string; c
 }
 
 export default async function Home() {
+  const preferredPlumbing = LIVE_SITES.find((site) => site.slug === "preferred-plumbing");
   return (
     <>
       <PageSchema page="home" faqs={FAQS} />
@@ -54,33 +56,35 @@ export default async function Home() {
       {/* 1. Hero — poster is the first paint; the film fades in once it is playing. */}
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
-          <p className="eyebrow">Website plans for local businesses</p>
-          <h1><HL text="A Website That Brings In More Calls" mark="More Calls" /></h1>
+          <p className="eyebrow">Websites for contractors and home service businesses</p>
+          <h1><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" /></h1>
+          <p className="hero__sub">Send us your business details and get a free homepage preview in 2 business days. No card needed.</p>
           <ul className="ticks">
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
                 <span><b>See your homepage free</b> – no card</span>
-                <span>and no obligation before you pay</span>
+                <span>and no obligation before choosing a plan</span>
               </span>
             </li>
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Catch the calls you miss</b> – optional</span>
-                <span>text-back and follow-up after every job</span>
+                <span><b>Missed-call text-back is optional</b></span>
+                <span>available with Lead System and Plus</span>
               </span>
             </li>
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Build your Google reputation</b> – review</span>
-                <span>requests sent for you, not left to chance</span>
+                <span><b>Google review requests</b></span>
+                <span>included with Lead System and Plus after jobs</span>
               </span>
             </li>
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Get My Free Preview</Link>
+            {preferredPlumbing && <a className="btn btn--ghost" href={preferredPlumbing.url} target="_blank" rel="noopener noreferrer">See the live website</a>}
           </div>
           <div className="hero__reassure">
             <TrustStrip className="hero__trust" />
@@ -115,7 +119,7 @@ export default async function Home() {
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>A Website That<br />Brings In More<br />Calls</>} iconAlt="A Website That Brings In More Calls" text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details." icon="better-design" />
-          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="On Lead System and Plus, text-back and review requests keep running while you’re on a job, and every lead is tracked." icon="better-follow-up" />
+          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="Lead System and Plus include call and form tracking and Google review requests after jobs. Optional missed-call text-back gives callers a way to reach you while you’re working." icon="better-follow-up" />
           <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
         </div>
         <p className="center btn-row spaced">
@@ -143,7 +147,7 @@ export default async function Home() {
         <div className="trades-feature">
           <div className="trades-feature__copy">
             <h2><HL text="Built for Local Service Businesses" mark="Local Service Businesses" /></h2>
-            <p className="muted">Plumbing, HVAC, roofing, and more — if customers search for what you do and call when they need help, we have you covered. Don’t see your business? You’re still included.</p>
+            <p className="muted">Plumbing, HVAC, roofing, and more—if customers search for your services and call when they need help, we can help you make the next step clear. Don’t see your industry? Tell us what you do; we also work with other local service businesses.</p>
             <p className="btn-row">
               <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
             </p>
@@ -177,8 +181,8 @@ export default async function Home() {
         <div className="lead-feature">
           <div className="lead-feature__copy">
             <p className="eyebrow">Available on Lead System and Plus</p>
-            <h2><HL text="Missed-Call Text-Back and Google Review Requests" mark="Google Review Requests" /></h2>
-            <p>When you miss a call, text-back keeps the lead warm. After the job, a Google review request goes out with a direct link to your profile.</p>
+            <h2><HL text="Google Review Requests and Optional Missed-Call Text-Back" mark="Google Review Requests" /></h2>
+            <p>Lead System and Plus include Google review requests after completed jobs. Missed-call text-back is optional and, once carrier-approved, gives a caller a way to reply while you’re working.</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
               <Link className="btn btn--light" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
@@ -206,7 +210,7 @@ export default async function Home() {
       {/* 10. Process */}
       <Section tint>
         <h2 className="center"><HL text="From Free Preview to Launch" mark="to Launch" /></h2>
-        <p className="center muted">See the homepage first. If it feels right, choose a plan and we’ll map out the launch in writing.</p>
+        <p className="center muted">Review the homepage first. If the design works for you, choose a plan and we’ll confirm the launch details in writing.</p>
         <Stepper steps={STEPS} />
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>

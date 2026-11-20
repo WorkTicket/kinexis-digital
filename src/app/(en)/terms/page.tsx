@@ -31,7 +31,7 @@ export default function Page() {
 
           <h2>4. Texting and carrier approval</h2>
           <p>Missed-call text-back is <b>optional</b> and needs a dedicated business phone line. On <b>Lead System or Plus</b>, a second tracking number is <b>$1/mo</b> if you use one, plus carrier text rates. On <b>Website or Own It</b>, text-back can be added for <b>$97/mo</b>.</p>
-          <p>Missed-call text-back and Google review requests are sent by text. <b>Activation is subject to carrier approval.</b> Texting typically begins 10–15 days after approval. Carrier approval is not guaranteed, and messaging rates or carrier requirements may change.</p>
+          <p>Google review requests are sent after completed jobs on Lead System and Plus. Missed-call text-back is a separate optional feature; its activation is subject to carrier approval, which typically takes 10–15 days and is not guaranteed. Messaging rates or carrier requirements may change.</p>
 
           <h2>5. 60-day lead guarantee</h2>
           <p><b>Lead System and Plus only.</b> If you have zero tracked leads in your first 60 days live, we waive your 3rd and 4th monthly charges. One guarantee per business, and the account must be in good standing.</p>

@@ -46,14 +46,14 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
   const currency = resolvePriceLocale(opts);
   const monthlyKicker = tx(`${p("zeroDown", currency)} de entrada, luego`);
   const names: Record<string, string> = {
-    website: "Sitio web",
-    "lead-system": "Sistema de clientes",
-    plus: "Plus (Bilingüe)",
-    "own-it": "Hazlo tuyo",
+    website: "Website",
+    "lead-system": "Lead System",
+    plus: "Plus",
+    "own-it": "Own It",
   };
   const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
     website: {
-      tagline: tx("Una casa profesional para tu negocio."),
+      tagline: tx("Para tener un sitio profesional, con hosting y cambios de rutina a cargo nuestro."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
@@ -66,7 +66,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       ],
     },
     "lead-system": {
-      tagline: tx("Tu sitio y las herramientas que traen llamadas."),
+      tagline: tx("Para negocios que quieren registrar llamadas y pedir reseñas en Google desde su sitio."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
@@ -81,7 +81,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       ],
     },
     plus: {
-      tagline: tx("Llega a clientes en inglés y en español."),
+      tagline: tx("Para negocios que atienden a clientes en inglés y en español."),
       kicker: monthlyKicker,
       note: tx("Mes a mes · cancela cuando quieras"),
       features: [
@@ -96,7 +96,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
       ],
     },
     "own-it": {
-      tagline: tx("Un pago. Un sitio que es tuyo."),
+      tagline: tx("Para comprar el sitio en un solo pago y tener los archivos desde el lanzamiento."),
       kicker: tx("Un pago"),
       note: tx("Se paga al aprobar la vista previa · sin plan mensual · sin garantía de leads"),
       features: [
@@ -122,7 +122,7 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
     ...copy[plan.slug],
     price: priceBySlug[plan.slug],
     name: names[plan.slug],
-    cta: names[plan.slug],
+    cta: tx("Solicitar vista previa gratis"),
     suffix: plan.suffix === "/mo" ? tx("/mes") : plan.suffix === "one-time" ? tx("una vez") : plan.suffix,
   }));
 }

@@ -63,8 +63,8 @@ test("preview choice expands the form and confirmation links to intake", async (
   await form.locator('button[type="submit"]').click();
 
   await expect(form).toHaveClass(/is-done/);
-  await expect(form.locator(".form__msg")).toContainText("we received your preview request");
-  await expect(form.locator(".form__msg").getByRole("link", { name: "Add details and photos" }))
+  await expect(form.locator(".form__msg")).toContainText("received your homepage preview request");
+  await expect(form.locator(".form__msg").getByRole("link", { name: "Add business details and photos" }))
     .toHaveAttribute("href", "/intake");
   expect(submitted).toContain('name="inquiry"');
   expect(submitted).toContain("free-preview");
@@ -117,18 +117,18 @@ test("preview requires uploaded assets or explicit permission for stock fallback
   await form.locator('input[name="service_area"]').fill("Boise and nearby towns");
   await form.locator('textarea[name="services"]').fill("Drain cleaning and leak repair");
   await form.locator('button[type="submit"]').click();
-  await expect(form.locator("[data-preview-asset-error]")).toContainText("Upload a logo and job photos");
+  await expect(form.locator("[data-preview-asset-error]")).toContainText("Add your logo and at least one job photo");
   expect(submissionCount).toBe(0);
 
   const fallbackConsent = form.locator("label.contact-preview-asset-consent");
-  await expect(fallbackConsent).toContainText("Kinexis will provide a simple text-based logo and relevant stock photos");
+  await expect(fallbackConsent).toContainText("Please use sample images");
   await fallbackConsent.click();
   await expect(form.locator("[data-preview-asset-error]")).toBeEmpty();
   await form.locator('button[type="submit"]').click();
   await expect(form).toHaveClass(/is-done/);
   expect(submissionCount).toBe(1);
   expect(submitted).toContain('name="preview_asset_fallback"');
-  expect(submitted).toContain("Kinexis will provide a simple text-based logo and relevant stock photos");
+  expect(submitted).toContain("Please use sample images");
 });
 
 test("other contact reasons do not require preview details or show the intake follow-up", async ({ page }) => {
@@ -151,7 +151,7 @@ test("other contact reasons do not require preview details or show the intake fo
   await expect(form.locator("[data-preview-details]")).toBeHidden();
   await form.locator('button[type="submit"]').click();
   await expect(form).toHaveClass(/is-done/);
-  await expect(form.locator(".form__msg")).toContainText("your message is on its way");
+  await expect(form.locator(".form__msg")).toContainText("We’ve received your message.");
   await expect(form.locator(".form__msg a")).toHaveCount(0);
   expect(submitted).not.toContain('name="kx_conversion"');
 });
@@ -176,7 +176,7 @@ test("Spanish preview confirmation points to the localized intake page", async (
   await form.locator('button[type="submit"]').click();
 
   await expect(form).toHaveClass(/is-done/);
-  await expect(form.locator(".form__msg").getByRole("link", { name: "Añadir detalles y fotos" }))
+  await expect(form.locator(".form__msg").getByRole("link", { name: "Agregar datos y fotos" }))
     .toHaveAttribute("href", "/es/intake");
 });
 

@@ -140,6 +140,12 @@ test.describe("KX-SEO-002 Release 1", () => {
     expect(new URL(destination.url()).pathname).toBe("/es/blog/pagina-web-para-plomeros");
   });
 
+  test("legacy Spain process URL redirects to the Spanish about page", async ({ page }) => {
+    const response = await page.request.get("/es-es/process", { maxRedirects: 0 });
+    expect(response.status()).toBe(301);
+    expect(response.headers().location).toBe("/es/about");
+  });
+
   test("retired video-review URLs redirect directly to the live reviews pages in each locale", async ({ page }) => {
     const checks = [
       ["/video-reviews", "/reviews"],

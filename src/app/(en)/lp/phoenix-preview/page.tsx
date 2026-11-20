@@ -77,7 +77,7 @@ const FAQS = [
   },
   {
     q: "What does it cost after the preview?",
-    a: "Website is $0 down, then $97/mo. Lead System is $0 down, then $197/mo. Plus is $297/mo, or Own It for a one-time $1,497. Every option is month-to-month with no long-term contract.",
+    a: "Website is $0 down, then $97/mo. Lead System is $0 down, then $197/mo. Plus is $0 down, then $297/mo. The three monthly plans are month-to-month with no long-term contract. Own It is a one-time $1,497 purchase.",
   },
   {
     q: "What is the 60-day tracked-lead guarantee?",
@@ -314,7 +314,7 @@ export default async function PhoenixPreviewLp() {
               </>
             }
             iconAlt="Follow-Up That Works While You’re On The Job"
-            text="On Lead System and Plus, text-back and review requests keep running while you’re on a job, and every lead is tracked."
+            text="Lead System and Plus include call and form tracking and Google review requests after completed jobs. Missed-call text-back is optional and subject to carrier approval."
             icon="better-follow-up"
           />
           <IconCard
@@ -397,7 +397,7 @@ export default async function PhoenixPreviewLp() {
         <h2 className="center">
           <HL text="From Free Preview to Launch" mark="to Launch" />
         </h2>
-        <p className="center muted">See the homepage first. If it feels right, choose a plan and we’ll map out the launch in writing.</p>
+        <p className="center muted">Review the homepage first. If the design works for you, choose a plan and we’ll confirm the launch details in writing.</p>
         <Stepper steps={STEPS} />
         <p className="center btn-row spaced">
           <a className="btn btn--primary" href="#start">

@@ -29,18 +29,17 @@ export default function Page() {
 
       <Section tint>
         <h2 className="center"><HL text="What Every Contractor Website Needs" mark="Website Needs" /></h2>
-        <p className="center muted">These are the patterns that get the phone to ring—written for trades, not generic small-business templates.</p>
+        <p className="center muted">These details help customers understand your services and get in touch—without relying on a generic small-business template.</p>
         <div className="grid grid--3">
-          <IconCard title="Phone on the first screen" text="Name the work, the service area, and a tap-to-call number above the fold on mobile. Callers should not hunt the footer." icon="visible-phone-number" />
+          <IconCard title="Make it easy to call" text="Show the work you do, where you work, and a phone number customers can tap near the top of the mobile page." icon="visible-phone-number" />
           <IconCard title="One page per job" text="Leak repair is not a remodel. Repair is not replacement. Separate pages keep searchers and callers on the right path." icon="separate-service-pages" />
           <IconCard title="Honest service area" text="List the cities you actually crew. Skip doorway pages that only swap the town name." icon="location" />
           <IconCard title="Real photos" text="Truck, crew, and finished jobs beat stock tradespeople. If photos are still coming, the preview can start without them." icon="gallery" />
           <IconCard title="Reviews you can trust" text="Show proof from real jobs, and on Lead System or Plus send a Google review request after the work is done." icon="after-every-job" />
-          <IconCard title="Short form" text="Name, phone, and job type are enough for a first quote request. Long forms lose driveway callers." icon="short-estimate-form" />
+          <IconCard title="A short quote form" text="Ask for the details needed to start a conversation. A customer can share the rest when you follow up." icon="short-estimate-form" />
         </div>
         <p className="center spaced">
-          Full walkthrough:{" "}
-          <Link href="/blog/web-design-for-contractors" prefetch={false}>contractor website checklist</Link>.
+          <Link href="/blog/web-design-for-contractors" prefetch={false}>Read the contractor website checklist</Link>.
         </p>
       </Section>
 
@@ -58,7 +57,7 @@ export default function Page() {
         <MediaSplit image="process" alt="Design process preview for a service business website">
           <h2><HL text="Review The Homepage First" mark="Homepage First" /></h2>
           <p>We prepare a homepage concept for your business so you can judge the layout, wording, and call-to-action before paying.</p>
-          <p>Request changes until it feels right. When you’re ready, choose Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for $1,497—and we finish the full site.</p>
+          <p>Tell us what you’d like to change. When you’re ready, choose Website at $97/mo, Lead System at $197/mo, Plus at $297/mo, or Own It for $1,497, and we’ll finish the full site.</p>
           <p className="btn-row spaced">
             <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
             <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>View the Portfolio</Link>

@@ -20,12 +20,14 @@ function mergeBySlug(...groups: EsPost[][]): EsPost[] {
 
 /** LatAm Spanish blog bodies. Later spreads win on slug collisions. */
 export const ES_POSTS: EsPost[] = mergeBySlug(
-  ES_GUIDE_STUBS,
   ES_CLUSTER_POSTS,
   Object.values(GENERATED_ES_COST_POSTS),
   Object.values(GENERATED_ES_PAGES_POSTS),
   Object.values(ES_PILLAR_POSTS),
   Object.values(ES_PILLAR_POSTS_MORE),
+  // These concise, section-aligned guides intentionally replace older pillar
+  // drafts with mixed-topic paragraphs for the same slugs.
+  ES_GUIDE_STUBS,
 );
 
 /** Kept for optional Spain-only copy; prices now via toSpainEuros. */

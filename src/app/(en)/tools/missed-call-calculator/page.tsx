@@ -36,7 +36,7 @@ export default function MissedCallCalculatorPage() {
         </p>
       </Section>
       <CtaBand
-        h="Want Text-Back on Your Tracking Number?"
+        h="See whether missed-call text-back fits your plan"
         mark="Text-Back"
         sub="Start with a free homepage preview. No card, no obligation."
         btn="Get My Free Preview"

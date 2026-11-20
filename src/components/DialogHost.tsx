@@ -52,7 +52,7 @@ export default function DialogHost({ locale }: { locale: Locale }) {
               <p>{t("Si no quedas satisfecho con tu sitio en los")} <b>{t("primeros 30 días desde el lanzamiento")}</b>, {t("te devolvemos")} <b>{t("tu pago más reciente completo")}</b>.</p>
               <p>{t("Aplica a los planes mensuales y a Own It. Debes pedirlo por escrito por texto, correo o Messenger dentro de esos 30 días. No cubre costos de terceros que ya hayamos pagado (renovación de dominio, fotos de stock, publicidad u otros servicios de terceros).")}</p>
               <p className="dlg__terms"><Link className="trust-mark" href={withLocale(locale, "/terms")} prefetch={false}>{t("Leer los términos del plan")}</Link></p>
-              <Link className="btn btn--primary" href={withLocale(locale, "/contact")} prefetch={false} data-dialog-close="">{t("Ver mi vista previa gratis")}</Link>
+              <Link className="btn btn--primary" href={withLocale(locale, "/contact")} prefetch={false} data-dialog-close="">{t("Solicitar mi vista previa gratis")}</Link>
             </>
           ) : (
             <>

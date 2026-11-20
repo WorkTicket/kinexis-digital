@@ -24,7 +24,7 @@ export default function Page() {
             <h2><HL text="Built for businesses that depend on the phone" mark="depend on the phone" /></h2>
             <p>Kinexis works with plumbers, HVAC companies, electricians, roofers, landscapers, and other service businesses across the United States. Your customers search when they need help, so the website and follow-up are designed around clear, useful next steps.</p>
             <p>We begin with a homepage concept for your business in 2 business days. You can review it without a card or obligation. If you approve it and send the content we need, the full site typically launches in 5 business days — confirmed in writing with your plan details.</p>
-            <Link className="btn btn--primary" href="/contact" prefetch={false}>Work With Us</Link>
+            <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
           </div>
           <div>
             <h2><HL text="What stays straightforward" mark="straightforward" /></h2>
@@ -46,7 +46,7 @@ export default function Page() {
       </Section>
       <Section tint>
         <h2 className="center"><HL text="How Your Site Gets Launched" mark="Gets Launched" /></h2>
-        <p className="center muted">Optional text-back and review requests begin after carrier approval, which typically takes 10–15 days.</p>
+        <p className="center muted">Missed-call text-back requires carrier approval and typically takes 10–15 days to activate. Lead System and Plus also include Google review requests after completed jobs.</p>
         <ProcessFlow steps={STEPS} />
       </Section>
       <Section tint narrow>

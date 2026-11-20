@@ -32,8 +32,8 @@ export const ES_GUIDE_STUBS: EsPost[] = [
     "category": "Consejos",
     "title": "Convierte las visitas en llamadas",
     "seoTitle": "Cómo convertir visitas del sitio en llamadas",
-    "excerpt": "El tráfico no reserva el trabajo. La página tiene que darle a la persona una forma obvia de llamarte o pedir una cotización.",
-    "lead": "Que te encuentren es la mitad. La otra mitad es que, ya en la página, sepan qué tocar. En un negocio, ese toque casi siempre es el teléfono.",
+    "excerpt": "Las visitas por sí solas no generan trabajo. La página debe facilitar que las personas te llamen o pidan una cotización.",
+    "lead": "Aparecer en los resultados es solo el comienzo. Una vez en el sitio, la persona debe saber cómo llamar o solicitar una cotización.",
     "sections": [
       {
         "h2": "Un siguiente paso, no cinco",
@@ -41,15 +41,15 @@ export const ES_GUIDE_STUBS: EsPost[] = [
       },
       {
         "h2": "El formulario pide poco",
-        "html": "<p>Nombre, teléfono y el trabajo alcanzan para saber si el lead es real. Pedir la historia de la casa antes del primer contacto es por lo que llaman a otro.</p><p>Las fotos pueden llegar después, por texto. No hace falta un cargador pesado en la primera pantalla.</p>"
+        "html": "<p>Para empezar, pide el nombre, el teléfono y una breve descripción del trabajo. No hace falta pedir todos los detalles antes del primer contacto.</p><p>Las fotos pueden enviarse después. Evita que un formulario con demasiados campos o archivos obligatorios dificulte el primer contacto desde el celular.</p>"
       },
       {
         "h2": "La llamada que no contestas",
-        "html": "<p>Estás en el trabajo. El siguiente cliente no deja buzón. Un texto de vuelta, en los planes que lo incluyen, le escribe a quien llamó a tu número de seguimiento.</p><p>Eso no reemplaza contestar. Evita que una llamada perdida desaparezca mientras tienes las manos ocupadas.</p>"
+        "html": "<p>Si no puedes contestar, el mensaje opcional para llamadas perdidas permite que la persona te escriba. La función requiere una línea telefónica dedicada y la aprobación del operador.</p><p>El mensaje no sustituye devolver la llamada; ofrece otra forma de contacto mientras estás trabajando.</p>"
       },
       {
         "h2": "Mide llamadas, no vanidad",
-        "html": "<p>Las visitas solas no pagan la nómina. Revisa impresiones, clics y leads: llamadas de más de 30 segundos, respuestas al texto y formularios reales.</p><p>Si una página trae tráfico y cero llamadas, el problema suele estar en el titular, el número o el siguiente paso, no en “hacer más SEO” a ciegas.</p>"
+        "html": "<p>Las visitas por sí solas no pagan la nómina. Revisa las impresiones, los clics y las consultas recibidas por teléfono o formulario.</p><p>Si una página recibe visitas pero no genera llamadas, revisa primero el titular, el número y el siguiente paso antes de invertir más en SEO.</p>"
       }
     ]
   },
@@ -67,15 +67,15 @@ export const ES_GUIDE_STUBS: EsPost[] = [
       },
       {
         "h2": "El seguimiento vale más que otro logo",
-        "html": "<p>Lead System agrega texto cuando no contestas, pedido de reseña después del trabajo y un reporte mensual. Eso atiende el hueco entre la visita y la llamada.</p><p>Plus hace ese seguimiento en inglés y en español, y el sitio también. Own It es un pago, sin plan mensual y sin la garantía de leads.</p>"
+        "html": "<p>Lead System incluye seguimiento de llamadas y formularios, solicitudes de reseña después del trabajo y un reporte mensual. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador.</p><p>Plus ofrece esas funciones y el sitio en inglés y español. Own It es un pago único, sin plan mensual ni garantía de leads.</p>"
       },
       {
         "h2": "El SEO no es un interruptor",
-        "html": "<p>Un sitio limpio, rápido y con títulos claros es la base. El trabajo mensual de SEO se cotiza aparte. No viene escondido dentro de los planes del sitio.</p><p>Prometer el primer lugar no es un plan. Se informa impresiones, clics y leads, y se dice con claridad que nadie controla los resultados de Google.</p>"
+        "html": "<p>Un sitio claro y rápido es una buena base. El trabajo continuo de SEO se cotiza por separado; no está incluido en los planes del sitio.</p><p>Nadie puede controlar los resultados de Google ni garantizar el primer lugar. Los informes pueden mostrar impresiones, clics y consultas recibidas.</p>"
       },
       {
         "h2": "Qué dejar para después",
-        "html": "<p>Páginas extra, cuidado del sitio después del primer año en Own It y texto de vuelta se pueden agregar cuando el negocio ya los necesita. Los precios de esos extras están en la página de mejoras.</p><p>Gastar primero en anuncios, con un sitio que esconde el teléfono, es pagar para que la gente se vaya.</p>"
+        "html": "<p>Puedes agregar páginas, mantenimiento para Own It después del primer año o el servicio opcional de mensajes después de llamadas perdidas cuando el negocio los necesite. Consulta los precios en la página de mejoras.</p><p>Invertir primero en anuncios, cuando el sitio esconde el teléfono, es pagar para que las personas no puedan contactarte fácilmente.</p>"
       }
     ]
   },
@@ -89,7 +89,7 @@ export const ES_GUIDE_STUBS: EsPost[] = [
     "sections": [
       {
         "h2": "El número cabe en la pantalla",
-        "html": "<p>Nada de pellizcar para leer el teléfono. El botón de llamar queda visible sin bajar tres pantallas. El texto del botón dice la acción, no “haz clic aquí”.</p><p>Los formularios usan campos grandes. Un teclado que tapa el botón de enviar es un lead perdido.</p>"
+        "html": "<p>El número debe poder leerse sin ampliar la pantalla, y el botón para llamar debe estar a mano. Su texto debe indicar la acción, no decir simplemente «haz clic aquí».</p><p>Los formularios deben ser fáciles de completar en una pantalla pequeña, sin que el teclado oculte el botón de envío.</p>"
       },
       {
         "h2": "La velocidad es parte del diseño",
@@ -123,29 +123,29 @@ export const ES_GUIDE_STUBS: EsPost[] = [
       },
       {
         "h2": "El perfil de Google y el sitio dicen lo mismo",
-        "html": "<p>Nombre, teléfono, horario y zona tienen que coincidir. Un perfil que promete 24 horas y un sitio que cierra a las seis crea la llamada enojada.</p><p>Lead System y Plus incluyen un ajuste del perfil. Plus agrega dos publicaciones al mes. Eso no reemplaza el trabajo de SEO continuo, que se cotiza aparte.</p>"
+        "html": "<p>El nombre, el teléfono, el horario y la zona de servicio deben coincidir. Si el perfil indica que atiendes las 24 horas, pero el sitio dice que cierras a las seis, puedes confundir a quienes buscan tus servicios.</p><p>Lead System y Plus incluyen un ajuste del perfil al inicio. Plus agrega dos publicaciones al mes. Ninguna de estas funciones sustituye el trabajo continuo de SEO, que se cotiza por separado.</p>"
       },
       {
         "h2": "Cómo se sabe si avanza",
-        "html": "<p>Impresiones, clics y leads. No una posición prometida. Search Console muestra si las páginas se están viendo. El reporte muestra si eso se volvió llamada o formulario.</p><p>Los arreglos técnicos pueden notarse en semanas. El crecimiento de fondo suele tomar meses, según la competencia y el punto de partida.</p>"
+        "html": "<p>Los informes muestran impresiones, clics y consultas recibidas por teléfono o formulario, no una posición garantizada. Search Console indica si las páginas aparecen en los resultados; el reporte ayuda a ver si las visitas se convierten en contactos.</p><p>Algunos cambios técnicos pueden reflejarse en unas semanas. Mejorar la visibilidad suele tomar meses, según la competencia y el punto de partida.</p>"
       }
     ]
   },
   {
     "slug": "build-trust-with-reviews",
     "category": "Consejos",
-    "title": "Consigue reseñas sin perseguir a la gente",
-    "seoTitle": "Cómo conseguir más reseñas de Google",
-    "excerpt": "La reseña se pide cuando el trabajo salió bien, con un enlace directo. No depende de que te acuerdes de pedirla desde la camioneta.",
-    "lead": "La siguiente cotización mira las reseñas antes de llamar. Pedirlas en la puerta funciona a veces. Un texto con el enlace, enviado cuando tú eliges, funciona aunque ya estés en el siguiente trabajo.",
+    "title": "Cómo pedir reseñas de Google a tus clientes",
+    "seoTitle": "Cómo pedir reseñas de Google a tus clientes",
+    "excerpt": "Pide reseñas a clientes reales después del trabajo y comparte un enlace directo a tu perfil de Google.",
+    "lead": "Muchas personas consultan las reseñas antes de llamar. Después de terminar un trabajo, puedes pedir una reseña con un mensaje breve y un enlace directo a tu perfil de Google.",
     "sections": [
       {
         "h2": "Pide en el momento correcto",
-        "html": "<p>Después de un trabajo terminado, no una semana después cuando el cliente ya olvidó el nombre de la empresa. El mensaje lleva el enlace al perfil de Google, para que no tenga que buscarlo.</p><p>En una ruta semanal no escribas cada martes. Elige el momento, para no cansar a la misma casa.</p>"
+        "html": "<p>Pide la reseña poco después de terminar el trabajo, mientras el cliente aún lo tiene presente. Incluye un enlace directo a tu perfil de Google para que no tenga que buscarlo.</p><p>Si ofreces un servicio semanal, elige cuándo enviar la solicitud para no escribirle al mismo cliente después de cada visita.</p>"
       },
       {
         "h2": "El enlace tiene que ser directo",
-        "html": "<p>“Búscanos en Google y déjanos una reseña” pierde gente. Un enlace que abre el perfil, en el celular, toma unos segundos.</p><p>Lead System envía ese pedido después de cada trabajo. Plus lo envía en inglés y en español.</p>"
+        "html": "<p>En lugar de pedirle a la persona que busque tu negocio en Google, comparte un enlace directo que abra tu perfil desde el celular.</p><p>Lead System y Plus pueden enviar solicitudes de reseña después del trabajo. Plus permite hacerlo en inglés y español.</p>"
       },
       {
         "h2": "No compres reseñas ni las inventes",
@@ -153,7 +153,7 @@ export const ES_GUIDE_STUBS: EsPost[] = [
       },
       {
         "h2": "Responde desde tu cuenta",
-        "html": "<p>Una respuesta breve en las reseñas nuevas muestra que hay una persona detrás del negocio. Se contesta desde la cuenta de Google del negocio.</p><p>Eso no está en todos los planes como un servicio de redacción. El pedido automático sí está en Lead System y Plus. Own It no incluye la garantía de leads ni ese seguimiento, salvo que se agregue el texto de vuelta.</p>"
+        "html": "<p>Una respuesta breve a una reseña muestra que hay una persona detrás del negocio. Puedes responder desde la cuenta de Google de la empresa.</p><p>Lead System y Plus incluyen solicitudes automáticas de reseña después del trabajo. Own It no incluye esa función ni la garantía de leads de 60 días.</p>"
       }
     ]
   },
@@ -171,7 +171,7 @@ export const ES_GUIDE_STUBS: EsPost[] = [
       },
       {
         "h2": "Comparación",
-        "html": "<p>Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Detalle en <a href=\"/pricing\">/pricing</a>.</p>"
+        "html": "<p>Website cuesta $97 al mes, Lead System $197 al mes, Plus $297 al mes y Own It $1,497 en un solo pago. Consulta todos los detalles en la <a href=\"/pricing\">página de precios</a>.</p>"
       },
       {
         "h2": "Quién se queda con el sitio si cancelas",
@@ -180,6 +180,100 @@ export const ES_GUIDE_STUBS: EsPost[] = [
       {
         "h2": "Own It desde el día uno",
         "html": "<p>Un pago, archivos tuyos, 12 meses de hosting y cambios chicos. Luego Site Care opcional a $39/mes.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "web-design-for-contractors",
+    "category": "Diseño",
+    "title": "Diseño web para contratistas: lista práctica",
+    "seoTitle": "Diseño web para contratistas | Lista práctica",
+    "excerpt": "Una guía breve para organizar los servicios, mostrar tu zona y facilitar que los clientes llamen o pidan una cotización.",
+    "lead": "Alguien que llega a tu sitio desde el celular quiere saber qué trabajos haces, si atiendes su zona y cómo contactarte. Esta lista te ayuda a responder esas preguntas antes de dedicar tiempo a los detalles visuales.",
+    "sections": [
+      {
+        "h2": "Haz clara la primera pantalla",
+        "html": "<p>Nombra el servicio principal, indica las zonas que realmente atiendes y muestra un número que se pueda tocar para llamar. El siguiente paso debe ser fácil de encontrar, incluso en una pantalla pequeña.</p><p>Revisa el sitio con datos móviles, no solo desde una computadora conectada al Wi-Fi de la oficina.</p>"
+      },
+      {
+        "h2": "Separa los servicios que vendes",
+        "html": "<p>Una reparación urgente y una remodelación planeada necesitan información y formas de contacto distintas. Crea páginas para los trabajos principales que ofreces y explica en cada una qué incluye el servicio y cómo pedir ayuda.</p><p>No necesitas crear una página casi idéntica para cada ciudad. Indica tu zona de servicio con claridad y añade páginas locales solo cuando tengas información propia que aportar.</p>"
+      },
+      {
+        "h2": "Muestra pruebas reales",
+        "html": "<p>Usa fotos de tu equipo y de trabajos que hayas realizado. Incluye licencias o información del seguro cuando corresponda a tu actividad y estado. Comparte reseñas auténticas y no las edites para ocultar comentarios que no te favorecen.</p><p>Asegúrate de que el horario y el teléfono coincidan con los de tu Perfil de Negocio de Google.</p>"
+      },
+      {
+        "h2": "Facilita las llamadas y cotizaciones",
+        "html": "<p>Para trabajos urgentes, coloca el teléfono antes que el formulario. Para una cotización planeada, pide solo los datos necesarios para responder, como el nombre, el teléfono, el tipo de trabajo y la ciudad.</p><p>Explica qué ocurre después de enviar el formulario y cuándo responderás. No anuncies atención 24/7 si nadie puede contestar fuera del horario habitual.</p>"
+      },
+      {
+        "h2": "Mantén el sitio rápido y legible",
+        "html": "<p>Comprueba que los textos se puedan leer sin ampliar y que los botones sean fáciles de tocar. Comprime las fotos para que no retrasen la carga. Revisa que un menú, una ventana emergente o el chat no cubran el número de teléfono.</p>"
+      },
+      {
+        "h2": "Revisa la lista antes de publicar",
+        "html": "<ul><li>El servicio principal se entiende en la primera pantalla.</li><li>El teléfono funciona y alguien puede responder o devolver la llamada.</li><li>Las zonas y los horarios son correctos.</li><li>Las fotos y reseñas representan trabajos y clientes reales.</li><li>El formulario es breve y llega a una bandeja que alguien revisa.</li></ul><p>Consulta <a href=\"/web-design\">diseño web</a> y las <a href=\"/industries\">páginas por industria</a> para ver más ejemplos. Si buscas ayuda, empieza con una <a href=\"/contact\">vista previa gratis de la página de inicio</a>; compara los planes en <a href=\"/pricing\">precios</a>.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "how-to-ask-for-google-reviews-contractor",
+    "category": "Consejos",
+    "title": "Cómo pedir reseñas de Google después de un trabajo",
+    "seoTitle": "Pedir reseñas de Google: guía para negocios de servicios",
+    "excerpt": "Pide opiniones honestas a clientes reales con un enlace directo y un proceso sencillo para todo el equipo.",
+    "lead": "El mejor momento para pedir una reseña es cuando el trabajo terminó y el cliente ya pudo ver el resultado. Hazlo con naturalidad, comparte el enlace correcto y deja que la persona escriba con sus propias palabras.",
+    "sections": [
+      {
+        "h2": "Pide después de terminar el trabajo",
+        "html": "<p>Confirma primero que el cliente quedó atendido. Después, una petición breve y sin presión es suficiente: «Gracias por confiar en nosotros. Si quieres compartir cómo te fue, aquí está el enlace a nuestra ficha de Google».</p><p>Para visitas recurrentes, acuerda una frecuencia razonable. No hace falta enviar una solicitud después de cada servicio.</p>"
+      },
+      {
+        "h2": "Comparte el enlace correcto",
+        "html": "<p>Abre tu Perfil de Negocio de Google y copia el enlace para solicitar reseñas. Pruébalo desde un celular antes de compartirlo; debe llevar directamente a tu ficha.</p><p>Lead System y Plus incluyen solicitudes de reseña después del trabajo. Plus permite gestionar esa comunicación en inglés y español; úsalo solo si tu equipo puede atender al cliente en el idioma elegido.</p>"
+      },
+      {
+        "h2": "Deja que cada cliente hable por sí mismo",
+        "html": "<p>Pide opiniones a tus clientes sin filtrar por si esperas una calificación positiva. No ofrezcas descuentos o regalos a cambio de una reseña ni redactes el texto por la persona.</p><p>Si el cliente tiene una preocupación pendiente, atiéndela primero. Una solicitud de reseña no debe sustituir la conversación necesaria para resolver el problema.</p>"
+      },
+      {
+        "h2": "Responde y mantén el hábito sencillo",
+        "html": "<p>Agradece los comentarios y responde con calma cuando alguien señale un problema. No compartas datos privados del cliente en una respuesta pública.</p><p>Elige quién del equipo envía la solicitud, cuándo la envía y cómo confirma que el enlace funciona. Un proceso constante y respetuoso funciona mejor que una campaña de mensajes repetidos.</p>"
+      }
+    ]
+  },
+  {
+    "slug": "google-business-profile-checklist",
+    "category": "SEO",
+    "title": "Lista del Perfil de Negocio de Google para negocios de servicios",
+    "seoTitle": "Perfil de Negocio de Google: lista de verificación",
+    "excerpt": "Revisa el nombre, la categoría, el horario, la zona y el teléfono para que tu perfil refleje cómo opera realmente tu negocio.",
+    "lead": "Busca tu empresa en Google desde el celular y revisa la ficha como lo haría un cliente nuevo. ¿Reconoce el negocio, entiende qué servicios ofreces y puede llamarte? Corrige esos datos antes de preocuparte por publicar más.",
+    "sections": [
+      {
+        "h2": "Reclama la ficha y usa el nombre real",
+        "html": "<p>Confirma que puedes administrar el Perfil de Negocio de Google. Usa el nombre con el que tu empresa se presenta a sus clientes; no le agregues servicios, ciudades ni frases promocionales solo para aparecer en más búsquedas.</p><p>Elige la categoría principal que mejor describa tu actividad y agrega otras únicamente cuando correspondan a servicios que realmente ofreces.</p>"
+      },
+      {
+        "h2": "Comprueba el teléfono y el horario",
+        "html": "<p>Prueba el botón de llamada desde el celular y confirma que llega a la línea que alguien atiende. Revisa los horarios habituales y actualiza los días festivos o cierres temporales.</p><p>Si el sitio muestra otro número u horario, corrige la diferencia. No anuncies atención de urgencia o disponibilidad 24/7 a menos que puedas cumplirla.</p>"
+      },
+      {
+        "h2": "Define una zona que sí puedas cubrir",
+        "html": "<p>Si trabajas en las instalaciones del cliente, configura una zona de servicio que refleje los lugares a los que tu equipo realmente se desplaza. No uses una dirección residencial como local abierto al público si no recibes clientes allí.</p><p>En el sitio, menciona con claridad las ciudades o barrios que atiendes. Evita crear páginas casi idénticas para lugares donde no tienes una presencia real.</p>"
+      },
+      {
+        "h2": "Muestra servicios e imágenes actuales",
+        "html": "<p>Describe los trabajos con palabras que tus clientes reconocerían: por ejemplo, reparación de fugas o instalación de puertas de garaje. Mantén la descripción informativa y evita repetir términos para intentar manipular posiciones.</p><p>Sube fotos propias y recientes cuando sea posible. No presentes imágenes de archivo como si fueran trabajos de tu equipo.</p>"
+      },
+      {
+        "h2": "Solicita reseñas sin presionar",
+        "html": "<p>Comparte un enlace directo después de un trabajo terminado y permite que cada cliente escriba una opinión honesta. No compres reseñas, no ofrezcas incentivos y no pidas únicamente a clientes satisfechos que publiquen.</p><p>Responde con respeto y sin revelar información privada. Una respuesta breve y concreta ayuda a que otros entiendan cómo atiendes a tus clientes.</p>"
+      },
+      {
+        "h2": "Haz una revisión mensual",
+        "html": "<p>Una vez al mes, revisa el perfil desde el celular: llama al número, confirma el horario y la zona, y comprueba que los servicios y las fotos sigan vigentes.</p><p>Un perfil completo ayuda a las personas a entender tu negocio, pero no garantiza una posición determinada en Google. Mide las llamadas y consultas reales, además de las vistas.</p>"
       }
     ]
   },

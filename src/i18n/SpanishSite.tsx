@@ -202,23 +202,25 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
     { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu negocio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Escoge el plan que te sirve"), text: tx("Elige Website, Lead System, Plus u Own It. Dejamos por escrito lo que incluye y la fecha de lanzamiento — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("Terminamos el sitio completo"), text: tx("Sumamos tus servicios, zona, fotos y texto, conectamos el dominio y te enviamos todo para aprobarlo.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea, normalmente en 5 días hábiles tras la aprobación y el contenido. En Lead System y Plus, las reseñas y el texto opcional empiezan tras la aprobación del operador, normalmente en 10 a 15 días.") },
-    { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y en Lead System y Plus enviamos la solicitud de reseña después de cada trabajo.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea, normalmente en 5 días hábiles tras la aprobación y el envío del contenido. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas requiere aprobación del operador, que suele tardar entre 10 y 15 días.") },
+    { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y Lead System y Plus incluyen solicitudes de reseña después de los trabajos.") },
   ];
   return (
     <>
       <ContentSchema path={href("/")} title={homeMeta.title} description={homeMeta.description} crumbs={[{ name: tx("Inicio"), path: href("/") }]} faqs={faqs} inLanguage={lang} />
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
-          <p className="eyebrow">{tx("Planes de sitios web para negocios locales")}</p>
-          <h1><HL text={tx("Un plan de sitio pensado para conseguir más trabajos")} mark={tx("conseguir más trabajos")} /></h1>
+          <p className="eyebrow">{tx("Páginas web para contratistas y negocios de servicios")}</p>
+          <h1><HL text={tx("Mira cómo quedaría la página web de tu negocio")} mark={tx("tu negocio")} /></h1>
+          <p className="hero__sub">{tx("Envíanos los datos de tu negocio y recibe una vista previa gratis de tu página de inicio en 2 días hábiles. Sin tarjeta.")}</p>
           <ul className="ticks">
             <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Ves tu inicio gratis")}</b> – {tx("sin tarjeta")}</span><span>{tx("y sin obligación antes de pagar")}</span></span></li>
-            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Atrapas las llamadas que pierdes")}</b></span><span>{tx("texto opcional y seguimiento después del trabajo")}</span></span></li>
-            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Tu reputación en Google")}</b></span><span>{tx("pedidos de reseña enviados por ti, no dejados al azar")}</span></span></li>
+            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("El mensaje para llamadas perdidas es opcional")}</b></span><span>{tx("disponible en Lead System y Plus")}</span></span></li>
+            <li><span className="tick__mark" aria-hidden="true">✓</span><span className="tick__copy"><span><b>{tx("Pedidos de reseña en Google")}</b></span><span>{tx("incluidos con Lead System y Plus después del trabajo")}</span></span></li>
           </ul>
           <div className="hero__btns">
-            <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
+            <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
+            <a className="btn btn--ghost" href={LIVE_SITES.find((site) => site.slug === "preferred-plumbing")?.url ?? "/es/portfolio"} target="_blank" rel="noopener noreferrer">{tx("Ver el sitio publicado")}</a>
           </div>
           <TrustStrip
             className="hero__trust"
@@ -247,7 +249,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         </MediaSplit>
         <div className="grid grid--3">
           <IconCard title={<>{tx("Un sitio que")}<br />{tx("facilita recibir")}<br />{tx("llamadas")}</>} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
-          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("En Lead System y Plus, el texto opcional puede alcanzar a quien no contestaste, salen los pedidos de reseña y cada lead queda registrado.")} icon="better-follow-up" />
+          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo y seguimiento de llamadas y formularios. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador.")} icon="better-follow-up" />
           <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx(`Elige entre cuatro planes desde ${p("websiteMo", currency)} al mes, con vista previa gratis, ${p("zeroDown", currency)} de entrada y cobro mes a mes.`)} icon="better-pricing" />
         </div>
       </Section>
@@ -258,7 +260,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <p className="center"><Link className="btn btn--primary" href={href("/portfolio")} prefetch={false}>{tx("Ver nuestro trabajo")}</Link></p>
       </Section>
       <Section id="plans">
-        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} />
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} showStickers={!spainChrome} />
         <PlanCompare
           labels={{
             feature: tx("Función"),
@@ -283,17 +285,17 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <div className="lead-feature">
           <div className="lead-feature__copy">
             <p className="eyebrow">{tx("Disponible en Lead System y Plus")}</p>
-            <h2><HL text={tx("Respuesta a llamadas perdidas y pedidos de reseña en Google")} mark={tx("pedidos de reseña en Google")} /></h2>
-            <p>{tx("Si no contestas, el texto opcional mantiene el lead. Después del trabajo sale el pedido de reseña con el enlace a tu perfil de Google.")}</p>
+            <h2><HL text={tx("Solicitudes de reseña y mensajes opcionales para llamadas perdidas")} mark={tx("Solicitudes de reseña")} /></h2>
+            <p>{tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje para llamadas perdidas es opcional y, una vez aprobado por el operador, permite que la persona te escriba si no puedes contestar.")}</p>
             <p className="btn-row">
-              <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
+              <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
               <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
             </p>
           </div>
         </div>
         <ReviewRail steps={[
-          { n: "1", title: tx("Llamada perdida, texto automático"), titleDisplay: <>{tx("Llamada perdida,")}<br />{tx("texto automático")}</>, text: <>{tx("Si no puedes contestar, sale un texto")}<br />{tx("en tu número de seguimiento para")}<br />{tx("que el lead no se enfríe.")}</>, icon: "missed-call-text-back" },
-          { n: "2", title: tx("Después de cada trabajo"), titleDisplay: <>{tx("Después de")}<br />{tx("cada trabajo")}</>, text: <>{tx("El cliente recibe un texto con el")}<br />{tx("enlace directo a tu reseña en Google.")}<br />{tx("No tienes que pedirlo en persona.")}</>, icon: "after-every-job" },
+          { n: "1", title: tx("Mensaje opcional tras una llamada perdida"), titleDisplay: <>{tx("Llamada perdida,")}<br />{tx("mensaje opcional")}</>, text: <>{tx("Con la aprobación del operador,")}<br />{tx("la persona puede escribirte")}<br />{tx("si no puedes contestar.")}</>, icon: "missed-call-text-back" },
+          { n: "2", title: tx("Después del trabajo"), titleDisplay: <>{tx("Después del")}<br />{tx("trabajo")}</>, text: <>{tx("El cliente recibe una solicitud con el")}<br />{tx("enlace directo a tu perfil de Google.")}<br />{tx("No tienes que pedirla en persona.")}</>, icon: "after-every-job" },
           { n: "3", title: tx("Directo a tu perfil"), titleDisplay: <>{tx("Directo a")}<br />{tx("tu perfil")}</>, text: <>{tx("El enlace abre tu perfil de Google.")}<br />{tx("Las reseñas llegan listas para")}<br />{tx("que puedas responderlas.")}</>, icon: "one-tap-to-google" },
         ]} />
       </Section>
@@ -309,7 +311,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <div className="trades-feature">
           <div className="trades-feature__copy">
             <h2><HL text={tx("Hecho para negocios de servicios locales")} mark={tx("servicios locales")} /></h2>
-            <p className="muted">{tx("Plomería, HVAC, techos y más: si tus clientes buscan lo que haces y llaman cuando te necesitan, te tenemos cubierto. ¿No ves tu negocio? Igual puedes empezar.")}</p>
+            <p className="muted">{tx("Plomería, HVAC, techos y más. Si tus clientes buscan tus servicios y te llaman cuando necesitan ayuda, podemos ayudarte. ¿No ves tu negocio? También trabajamos con otros negocios locales.")}</p>
           </div>
         </div>
         <IndustryGrid
@@ -331,7 +333,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       <Section tint>
         <h2 className="center"><HL text={tx("Garantía de leads rastreados en 60 días")} mark={tx("60 días")} /></h2>
         <p className="center muted">{tx("Lead System y Plus incluyen una garantía por escrito. Si no hay leads rastreados en los primeros 60 días en línea, condonamos el tercer y cuarto cargo.")}</p>
-        <p className="center btn-row spaced"><OpenDialog id="guarantee" className="btn btn--ghost">{tx("Leer la garantía")}</OpenDialog><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link></p>
+        <p className="center btn-row spaced"><OpenDialog id="guarantee" className="btn btn--ghost">{tx("Leer la garantía")}</OpenDialog><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link></p>
         <TrustStrip
           className="center"
           leadLabel={tx("Garantía de 60 días")}
@@ -713,7 +715,7 @@ function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
     { tab: "Preview", label: tx("Vista previa"), title: tx("Lo ves primero"), text: tx("La vista previa es el punto de partida. La apruebas, pides cambios o te vas.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Queda por escrito"), text: tx("Qué incluye el plan y la fecha de lanzamiento se confirman por escrito — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("El sitio completo"), text: tx("Servicios, zona, fotos y el dominio, con tu aprobación antes de publicar.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio sale, normalmente en 5 días hábiles. En Lead System y Plus, las reseñas y el texto opcional esperan la aprobación del operador.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio suele publicarse en 5 días hábiles. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas requiere aprobación del operador.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Se mantiene"), text: tx("Cambios, llamadas y reseñas en Lead System y Plus, para que veas los leads en un reporte.") },
   ];
   return (
@@ -807,7 +809,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
     <>
       <ContentSchema path={href("/industries")} title={tx(PAGE_META["/industries"].title)} description={tx(PAGE_META["/industries"].description)} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Industrias"), path: href("/industries") }]} inLanguage={lang} />
       <PageHero locale={locale} eyebrow={tx("Industrias")} h1={tx("Un sitio que encaja con tu negocio")} mark={tx("tu negocio")} sub={tx("Elige el tipo de trabajo para ver sus servicios comunes, las páginas útiles y el seguimiento del día a día.")}>
-        <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
+        <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver precios")}</Link></p>
       </PageHero>
       <Section tint>
         <div className="trades-feature">
@@ -857,7 +859,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
           </p>
         </div>
       </Section>
-      <CtaBand h={tx("Mira cómo podría verse tu negocio")} mark={tx("tu negocio")} sub={tx("Preparamos la página de inicio antes de que pagues, sin tarjeta ni obligación.")} btn={tx("Ver mi vista previa gratis")} href={href("/contact")} {...band} />
+      <CtaBand h={tx("Mira cómo podría verse tu negocio")} mark={tx("tu negocio")} sub={tx("Preparamos la página de inicio antes de que pagues, sin tarjeta ni obligación.")} btn={tx("Solicitar mi vista previa gratis")} href={href("/contact")} {...band} />
     </>
   );
 }
@@ -1160,7 +1162,7 @@ function Strategy({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) 
         h={tx("¿Prefieres una vista previa escrita primero?")}
         mark={tx("vista previa escrita")}
         sub={tx("Cuéntanos sobre tu negocio y preparamos un concepto gratis de la página de inicio. Sin tarjeta.")}
-        btn={tx("Ver mi vista previa gratis")}
+        btn={tx("Solicitar mi vista previa gratis")}
         href={href("/contact")}
         secondary={tx("Ver planes y precios")}
         secondaryHref={href("/pricing")}
@@ -1184,7 +1186,7 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("3. Qué incluye")}</h2>
         <p>{tx(`Las páginas y el trabajo incluido están en la página de precios. Una página extra en Website cuesta ${p("newPage", currency)}. Lead System incluye una página nueva al mes y Plus incluye dos. Lo que no usas no se acumula. Un cambio chico toma 30 minutos o menos y se hace uno a la vez. Website incluye hasta dos cambios chicos al mes, hechos en 2 días hábiles; Lead System incluye cambios chicos ilimitados en 1 día hábil; y Plus incluye cambios chicos ilimitados el mismo día hábil si los pides antes del mediodía, hora del Centro. Hosting, SSL, seguridad y respaldos van incluidos mientras el plan mensual está activo. El dominio del año 1 va incluido en todos los planes mensuales y en Own It, a tu nombre; las renovaciones posteriores se cobran al costo. En Own It, hosting y SSL van los primeros 12 meses; después el cuidado opcional es ${p("siteCareMo", currency)} al mes.`)}</p>
         <h2>{tx("4. Textos y el operador")}</h2>
-        <p>{tx(`El texto si no contestas es opcional y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. El texto si no contestas y los pedidos de reseña se envían por mensaje. La activación depende de la aprobación del operador. Los textos suelen empezar entre 10 y 15 días después de la aprobación. Esa aprobación no está garantizada.`)}</p>
+        <p>{tx(`Las solicitudes de reseña en Google se envían después de los trabajos en Lead System y Plus. El mensaje opcional para llamadas perdidas es una función aparte y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. La activación de este mensaje depende de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.`)}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
         <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al texto si no contestas, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>

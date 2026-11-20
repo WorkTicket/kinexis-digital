@@ -87,7 +87,7 @@ export default function SpanishIndustry({
           .map((example) => ({ name: example.name, url: example.url }))}
       />
       <PageHero locale={locale} eyebrow={tx("Industrias")} h1={industry.h1} mark={industry.mark} sub={industry.sub} className={`industry-hero industry-hero--${industry.slug}`} art={<IndustryHeroArt slug={industry.slug} alt={industry.heroAlt} />}>
-        <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link></p>
+        <p className="btn-row"><Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link><Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Ver planes y precios")}</Link></p>
         <TrustStrip className="industry-hero__trust" {...trust} />
       </PageHero>
       <Section tint>
@@ -103,7 +103,7 @@ export default function SpanishIndustry({
           <p className="industry-lead__bridge">
             {tx("¿Buscas")}{" "}
             <Link href={href("/web-design")} prefetch={false}>{tx("diseño web para contratistas")}</Link>
-            {tx("? Empieza ahí y vuelve a esta página de oficio.")}
+            {tx("? Empieza por ahí y vuelve a esta página para ver los detalles de este tipo de negocio.")}
           </p>
         </aside>
         <div className="section-head">
@@ -145,7 +145,7 @@ export default function SpanishIndustry({
           <div className="media-split industry-screens">
             <div className="media-split__copy">
               <h3>{tx("Funciona en cada pantalla")}</h3>
-              <p>{tx("El sitio está pensado para el celular en la entrada y la computadora en el escritorio. El número, el formulario y la zona se usan sin pellizcar.")}</p>
+              <p>{tx("El sitio está pensado para usarse desde el celular o la computadora. El número, el formulario y la zona de servicio se entienden y se usan con facilidad.")}</p>
             </div>
             <div className="screen-art">
               <img className="screen-art__img" src={portfolioFile(`/portfolio/${project.slug}-devices-sm.webp`)} alt={tx(`${project.name} en monitor, laptop, tableta y celular`)} width={1536} height={1024} loading="lazy" decoding="async" />
@@ -154,7 +154,7 @@ export default function SpanishIndustry({
         ) : (
           <div className="industry-screens-lead">
             <h3>{tx("Funciona en cada pantalla")}</h3>
-            <p>{tx("El sitio está pensado para el celular en la entrada y la computadora en el escritorio. El número, el formulario y la zona se usan sin pellizcar.")}</p>
+            <p>{tx("El sitio está pensado para usarse desde el celular o la computadora. El número, el formulario y la zona de servicio se entienden y se usan con facilidad.")}</p>
           </div>
         )}
         <IndustryIncludes
@@ -173,9 +173,9 @@ export default function SpanishIndustry({
           <div className="lead-feature__copy">
             <p className="eyebrow">{tx("En Lead System y Plus")}</p>
             <h2><HL text={tx(`Respuesta a llamadas perdidas para ${industry.name}`)} mark={tx("llamadas perdidas")} /></h2>
-            <p>{tx("Si tu equipo está en un trabajo y no contesta, el texto opcional en Lead System y Plus puede responder en tu número de seguimiento. Después del trabajo, sale el pedido de reseña en Google.")}</p>
+            <p>{tx("Lead System y Plus incluyen solicitudes de reseña en Google después del trabajo. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador antes de activarse.")}</p>
             <p className="btn-row">
-              <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Ver mi vista previa gratis")}</Link>
+              <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
               <Link className="btn btn--light" href={href("/pricing#lead-system")} prefetch={false}>{tx("Ver Lead System")}</Link>
             </p>
           </div>
@@ -185,20 +185,20 @@ export default function SpanishIndustry({
           steps={[
             {
               n: "1",
-              title: tx("Llamada perdida, texto automático"),
-              text: tx("Si no puedes contestar, sale un texto en tu número de seguimiento para que el lead no se enfríe."),
+              title: tx("Mensaje después de una llamada perdida"),
+              text: tx("Si no puedes contestar, la persona puede escribirte para explicar qué necesita."),
               icon: "missed-call-text-back",
             },
             {
               n: "2",
               title: tx("Después del trabajo"),
-              text: tx("Tu cliente recibe un texto con el enlace directo a reseñar en Google. No tienes que pedirlo en persona."),
+              text: tx("Tu cliente recibe un mensaje con un enlace directo para dejar una reseña en Google. No tienes que pedírsela en persona."),
               icon: "after-every-job",
             },
             {
               n: "3",
               title: tx("Directo a tu perfil"),
-              text: tx("El enlace abre tu Perfil de Negocio de Google. Las reseñas nuevas llegan listas para que respondas."),
+              text: tx("El enlace abre tu Perfil de Negocio de Google. Cuando llegue una reseña, podrás responder desde allí."),
               icon: "one-tap-to-google",
             },
           ]}
@@ -216,7 +216,7 @@ export default function SpanishIndustry({
         </Section>
       )}
       <Section id="plans">
-        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${spainChrome ? "0 €" : "$0"} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Ver mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { currency: spainChrome ? "eur" : "usd" })} showStickers={!spainChrome} />
+        <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${spainChrome ? "0 €" : "$0"} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={trust} plans={spanishPlans(tx, { currency: spainChrome ? "eur" : "usd" })} showStickers={!spainChrome} />
         <CostGuides
           label={tx(`Guías para dueños de ${industry.name}`)}
           ariaLabel={tx(`Guías para ${industry.name}`)}
@@ -245,7 +245,7 @@ export default function SpanishIndustry({
         <IndustryGrid industries={related} base={href("/industries")} layout="index" limit={3} columns={3} />
         <p className="center btn-row spaced"><Link className="btn btn--ghost" href={href("/industries")} prefetch={false}>{tx("Todas las industrias")}</Link></p>
       </Section>
-      <CtaBand h={tx("Consigue tu vista previa gratis")} mark={tx("vista previa gratis")} sub={tx("Vista previa gratis, sin tarjeta. Luego eliges Website, Lead System, Plus u Own It.")} btn={tx("Ver mi vista previa gratis")} href={href("/contact")} secondary={tx("Ver planes y precios")} secondaryHref={href("/pricing")} locale={locale} />
+      <CtaBand h={tx("Conoce cómo podría verse tu sitio")} mark={tx("tu sitio")} sub={tx("Solicita una vista previa gratis, sin tarjeta. Después podrás elegir entre Website, Lead System, Plus u Own It.")} btn={tx("Solicitar mi vista previa gratis")} href={href("/contact")} secondary={tx("Ver planes y precios")} secondaryHref={href("/pricing")} locale={locale} />
     </>
   );
 }

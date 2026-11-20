@@ -75,7 +75,7 @@ test.describe("marketing journeys", () => {
   test("homepage loads and shows plan comparison", async ({ page }, testInfo) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /Website Plans and Pricing|A Website That Brings In More Calls/i }).first()).toBeVisible();
+    await expect(page.getByRole("heading", { name: /Website Plans and Pricing|See Your New Contractor Website Before You Pay/i }).first()).toBeVisible();
     if (testInfo.project.name === "mobile") {
       await expect(page.locator(".mobile-plan-compare").getByRole("img", { name: /Lead System/i })).toBeVisible();
     } else {

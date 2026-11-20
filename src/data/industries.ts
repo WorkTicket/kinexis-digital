@@ -73,7 +73,7 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "One page for every job", text: "A burst pipe and a bathroom remodel do not share a buyer. Mashing them into one services page makes both harder to find.", icon: "separate-service-pages" },
       { title: "The number is a scavenger hunt", text: "If click-to-call is below a stock photo and a paragraph about family values, the emergency caller is already gone.", icon: "visible-phone-number" },
-      { title: "Missed calls stay missed", text: "You are under a sink. The next caller does not leave a voicemail. Text-back is how that lead still reaches you.", icon: "missed-call-follow-up" },
+      { title: "No follow-up after a missed call", text: "If you are working and cannot answer, optional missed-call text-back gives the caller a way to tell you what they need.", icon: "missed-call-follow-up" },
     ],
     heroAlt: "Plumber inspecting sink pipework, copper fitting, laptop and phone",
     servicesTitle: "Pages a plumbing site should have",
@@ -132,7 +132,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Will the site push replacement when the caller needs a repair?", a: "No. Repair and replacement get separate pages and separate calls to action. Mixing them trains the wrong person to fill out the wrong form." },
       { q: "Can the site mention financing?", a: "Yes, on the install path, and only for financing you really offer. We do not invent terms." },
-      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "On Lead System and Plus, optional missed-call text-back can reply on your tracking number after carrier approval. That is the follow-up while the board is full." },
+      { q: "What happens when a call comes in during a heat wave and nobody answers?", a: "On Lead System and Plus, optional missed-call text-back can reply on your tracking number after carrier approval. Approval usually takes 10–15 days and is not guaranteed, so it is not an instant fallback when the board is full." },
       { q: "Can you write my repair and replacement pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
       { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
       { q: "Can my HVAC site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
@@ -149,7 +149,7 @@ export const INDUSTRIES: Industry[] = [
     metaDescription: "Electrician website design from $97/mo. Panel upgrades, EV chargers, and troubleshooting, with Google review requests and optional missed-call text-back.",
     h1: "Website Design for Electricians That Turns Searches Into Booked Jobs",
     mark: "Booked Jobs",
-    sub: "Electrical work is a trust sale. The site has to show the license, the kind of jobs you take, and a way to reach you that does not feel like a lead mill.",
+    sub: "Hiring an electrician depends on trust. Your site should show your license, the work you take on, and a clear way to contact you.",
     intro: [
       "Kinexis builds electrician websites for shops across the United States, from solo electricians to multi-crew companies. Homeowners searching for a panel upgrade or an EV charger are nervous about who they let in the house. A template that could belong to any contractor, with no mention of licensing or the actual work, does not answer that.",
       "We build pages for the jobs that pay: troubleshooting, panels, EV chargers, lighting and the small repairs that fill a day. The copy stays specific to electrical work, and the preview lets you judge it before you buy.",
@@ -159,7 +159,7 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "No proof you are licensed", text: "License, insurance and the kind of work you will not touch belong where a nervous homeowner can see them.", icon: "license-proof" },
       { title: "EV chargers stuffed under “services”", text: "Charger installs are a research visit. They need their own page, not a bullet under outlet repair.", icon: "extra-page" },
-      { title: "Commercial and residential mixed", text: "A property manager and a homeowner with a dead outlet are not the same lead. Split them if you sell both.", icon: "separate-buyer-paths" },
+      { title: "Commercial and residential services mixed together", text: "A property manager and a homeowner with a dead outlet need different information. Separate those services if you offer both.", icon: "separate-buyer-paths" },
     ],
     heroAlt: "Electrician, electrical panel, EV charger and website screens",
     servicesTitle: "Pages that match electrical search",
@@ -174,7 +174,7 @@ export const INDUSTRIES: Industry[] = [
     faqs: [
       { q: "Can you show my license number on the site?", a: "Yes. Send the number and the state. We put it where people look, not in a footer nobody opens." },
       { q: "I do residential only. Will the site still talk about commercial?", a: "No. We write the work you want. Advertising jobs you do not staff just creates calls you have to turn down." },
-      { q: "How do reviews fit an electrical business?", a: "After a finished job, Lead System and Plus send a text with your Google review link. New reviews are how the next panel quote decides you are real." },
+      { q: "How do review requests work for an electrical business?", a: "Lead System and Plus can send a text with a direct link to your Google profile after a job." },
       { q: "Can you write my panel and EV charger pages?", a: "We can work with copy you already have, or quote writing separately. The free homepage preview uses realistic trade copy so you can judge the design first." },
       { q: "Do you build a page for each city?", a: "No. One honest service-area page beats dozens of near-identical city pages that only swap the town name." },
       { q: "Can my electrical site be in Spanish too?", a: "Yes. Plus (Bilingual) is $297/mo for English + Spanish, up to 20 pages, with bilingual follow-up tools on that plan." }],
@@ -284,7 +284,7 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "Interior and exterior treated as one job", text: "A single room and a two-story exterior are different crews, seasons and prices. Split the pages.", icon: "interior-exterior-pages" },
       { title: "No finished-work photos", text: "Painting is visual. The layout leaves room for your rooms, not a stock living room with the tags still on the pillows.", icon: "finished-work-gallery" },
-      { title: "A form that asks for too much", text: "Room count, photos and a neighborhood are enough to know if the lead is real. A novel is why they call the next painter.", icon: "short-estimate-form" },
+      { title: "A form that asks for too much", text: "Start with the project type, location, and contact details. You can ask for photos and other details when you follow up.", icon: "short-estimate-form" },
     ],
     heroAlt: "Painter, roller, paint samples, cabinet detail and website screens",
     servicesTitle: "What a painting site should explain",
@@ -320,14 +320,14 @@ export const INDUSTRIES: Industry[] = [
     mark: "Booked Jobs",
     sub: "A remodel is a long sale. The site should show finished rooms, explain how a project starts, and not shout like a drain-cleaning ad.",
     intro: [
-      "Kitchen and bath leads do not convert on the first visit the way a no-heat call does. People look at photos, check that you pull permits if that is your work, and then request a consult. A site built like an emergency plumber throws that lead away.",
-      "We lead with the rooms, the process and what you need from them before a number exists. Service pages stay specific: kitchens, baths, and the other remodels you want, not a junk drawer of every service you have ever touched.",
+      "Kitchen and bath projects involve a different decision from an urgent heating repair. People look at photos, ask about permits if relevant, and then request a consultation. The website should guide them through that process.",
+      "We explain the project types, your process, and what you need to prepare an estimate. Service pages stay focused on kitchens, baths, and the other remodeling work you want to take on.",
     ],
     problemsTitle: "Remodeling sites that scare off the consult",
     problemsMark: "scare off",
     problems: [
       { title: "No project photos above the fold", text: "The first screen is the portfolio. If it is a stock kitchen, the real photos three scrolls down never get seen.", icon: "first-screen-portfolio" },
-      { title: "A fake starting price", text: "“Kitchens from $9,999” trains the wrong lead. Describe what changes the budget instead of inventing a floor.", icon: "payment" },
+      { title: "A made-up starting price", text: "A generic price can attract requests that do not match the actual scope. Explain what affects the budget instead of inventing a starting figure.", icon: "payment" },
       { title: "Emergency language on a design project", text: "“Call now” is right for a leak. A remodel needs a consult, a timeline and a person who answers.", icon: "consultation-path" },
     ],
     heroAlt: "Kitchen, material samples, plans, contractor and laptop",
@@ -594,7 +594,7 @@ export const INDUSTRIES: Industry[] = [
     problems: [
       { title: "One form for every pile", text: "A mattress on the curb and a garage cleanout are different quotes. Mashing them into one “services” page makes both harder to book.", icon: "separate-buyer-paths" },
       { title: "The number buried under photos", text: "Someone standing next to a dumpster wants tap-to-call. If the phone is below a long brand story, they dial the next listing.", icon: "emergency-phone-path" },
-      { title: "Quotes that go cold after the measure", text: "You are on a haul. The next caller hangs up. Optional missed-call text-back is how that lead still reaches you.", icon: "quote-follow-up" },
+      { title: "Missed calls without follow-up", text: "If you are on a job and cannot answer, optional missed-call text-back gives the caller a way to tell you what they need.", icon: "quote-follow-up" },
     ],
     heroAlt: "Junk removal crew, box truck, driveway haul and website tablet",
     servicesTitle: "Pages a junk removal site should have",

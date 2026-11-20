@@ -164,6 +164,7 @@ export const LEGACY_REDIRECTS = [
   ...localized("/video-reviews", "/reviews"),
   ...go("/en", "/"),
   // Collapse the entire Spain locale onto indexable LatAm `/es` (one hop; no /es-es tree).
+  { source: "/es-es/process", destination: "/es/about", statusCode: 301 as const },
   { source: "/es-es", destination: "/es", statusCode: 301 as const },
   { source: "/es-es/:path*", destination: "/es/:path*", statusCode: 301 as const },
 ];

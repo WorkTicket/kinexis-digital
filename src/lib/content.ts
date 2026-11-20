@@ -43,7 +43,7 @@ export const STEPS = [
   { tab: "Preview", title: "Start with a free preview", text: "We put together a homepage concept for your business. You can review it before paying, with no card and no obligation." },
   { tab: "Plan", title: "Pick the plan that fits", text: "Choose Website, Lead System, Plus, or Own It. We’ll confirm what’s included and put your launch date in writing — typically 5 business days after you approve the preview and send the content we need." },
   { tab: "Build", title: "We finish the full site", text: "We add your services, service area, photos, and copy, connect the domain, and send everything to you for approval." },
-  { tab: "Launch", title: "Your site goes live", text: "We publish the site, typically within 5 business days of approval and content. On Lead System and Plus, review requests and optional text-back begin after carrier approval, typically within 10–15 days." },
+  { tab: "Launch", title: "Your site goes live", text: "We publish the site, typically within 5 business days after you approve the preview and send the content we need; we’ll confirm the date in writing. Lead System and Plus include Google review requests after jobs. Optional missed-call text-back starts only after carrier approval, which usually takes 10–15 days and is not guaranteed." },
   { tab: "Grow", title: "We keep things current", text: "We make edits, track calls and forms, and on Lead System and Plus send review requests after each job. Your leads are shown in one report." },
 ];
 export const UPGRADES = [
