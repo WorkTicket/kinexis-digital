@@ -5,7 +5,7 @@
  * - /blog/{slug} → Spanish post body exists
  */
 import * as esbuild from "esbuild";
-import { mkdtemp, writeFile, rm } from "node:fs/promises";
+import { mkdtemp, writeFile, rm, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -13,6 +13,20 @@ import { createRequire } from "node:module";
 const root = path.resolve(import.meta.dirname, "..");
 const require = createRequire(import.meta.url);
 const toPosix = (value) => value.split(path.sep).join("/");
+const badReviewRequestAgreement =
+  /\b(?:el|un|los|unos)\s+solicitud(?:es)?\b|\bsolicitud\b[^.!?]{0,80}\b(?:va|está|queda|viene)\s+incluido\b|\bsolicitudes\b[^.!?]{0,80}\b(?:van|están|quedan|vienen)\s+incluidos\b/i;
+const legacyReviewWording = /\bpedidos? de reseñas?\b/i;
+const reviewCopySources = [
+  "src/i18n/SpanishSite.tsx",
+  "src/i18n/es-pillars.ts",
+  "src/i18n/es-pillars-more.ts",
+  "src/i18n/posts-es-cluster.ts",
+  "scripts/es-pillars-payload.mjs",
+  "scripts/es-pillars-more-payload.mjs",
+  "scripts/es-pillars-core/bundled.mjs",
+  "scripts/es-pillars-core/local-seo.mjs",
+  "scripts/es-pillars-core/prose-blocks.mjs",
+];
 
 const entrySource = `
 import { MIRROR_PATHS } from "@/lib/locale-path";
@@ -23,7 +37,8 @@ import { esPost } from "@/i18n/posts-es";
 import { localeHref } from "@/lib/locale-path";
 
 const missing = [];
-const reviewRequestWording = /pedidos? de reseñas?/i;
+const badReviewRequestAgreement = /\\b(?:el|un|los|unos)\\s+solicitud(?:es)?\\b|\\bsolicitud\\b[^.!?]{0,80}\\b(?:va|está|queda|viene)\\s+incluido\\b|\\bsolicitudes\\b[^.!?]{0,80}\\b(?:van|están|quedan|vienen)\\s+incluidos\\b/i;
+const legacyReviewWording = /\\bpedidos? de reseñas?\\b/i;
 for (const route of MIRROR_PATHS) {
   if (route.startsWith("/industries/") && route !== "/industries") {
     const slug = route.slice("/industries/".length);
@@ -68,8 +83,12 @@ const spanishCopy = [
     .filter((route) => route.startsWith("/blog/"))
     .map((route) => JSON.stringify(esPost(route.slice("/blog/".length)))),
 ];
-if (spanishCopy.some((copy) => reviewRequestWording.test(copy))) {
-  console.error("Spanish industry or article copy still uses “pedido(s) de reseña(s)”.");
+if (
+  spanishCopy.some((copy) =>
+    badReviewRequestAgreement.test(copy) || legacyReviewWording.test(copy),
+  )
+) {
+  console.error("Spanish industry or article copy has review-request wording errors.");
   process.exit(1);
 }
 
@@ -144,6 +163,12 @@ const entryFile = path.join(dir, "entry.ts");
 const outfile = path.join(dir, "check.cjs");
 
 try {
+  for (const file of reviewCopySources) {
+    const copy = await readFile(path.join(root, file), "utf8");
+    if (badReviewRequestAgreement.test(copy) || legacyReviewWording.test(copy)) {
+      throw new Error(`Spanish review-request wording error in ${file}`);
+    }
+  }
   await writeFile(entryFile, entrySource, "utf8");
   await esbuild.build({
     entryPoints: [entryFile],

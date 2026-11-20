@@ -121,8 +121,8 @@ export const ES_CORE = {
         "paragraphs": [
           "Ser encontrado se desperdicia si el siguiente paso se cae al piso. Estás bajo el lavabo. Suena el teléfono. No puedes tomarlo. Quien llama, aún con el problema en la mano, toca el siguiente resultado. El texto opcional de llamada perdida existe para ese hueco. No contesta por ti. Manda un texto para que la persona responda mientras tus manos están ocupadas. Necesita línea dedicada de negocio. En Lead System y Plus el texto es opcional: segundo número de seguimiento $1/mes si lo usas, más tarifas del operador. En Website u Own It es extra de $97/mes con las mismas reglas. La aprobación del operador suele tardar 10–15 días y no está garantizada. Lee <a href=\"/blog/missed-call-text-delayed-10dlc\">por qué esos textos se retrasan</a> antes de prometer un texto que aún no puedes enviar.",
           "La guía de la <a href=\"https://www.fcc.gov/consumers/guides/stop-unwanted-robocalls-and-texts\" rel=\"noopener noreferrer\" target=\"_blank\">FCC sobre llamadas y textos no deseados</a> marca un límite útil. Le escribes a alguien que acaba de llamarte, en una línea preparada para eso, no a una lista comprada. Mensaje corto, empresa identificada, fácil de parar. Plantillas por oficio en <a href=\"/blog/missed-call-text-back-templates\">plantillas de texto por llamada perdida</a>. Sentido bruto del costo de llamadas sin contestar: <a href=\"/tools/missed-call-calculator\">calculadora de llamada perdida</a> — servilleta, no auditoría.",
-          "El seguimiento es parte de ser localizable porque quien te encontró sigue decidiendo. Una devolución de llamada el mismo día gana a un sitio más bonito. Un solicitud de reseña después del trabajo alimenta la decisión del siguiente desconocido. El SEO local es un ciclo: datos públicos claros, página que coincide con el trabajo, conversación, prueba que queda para la siguiente entrada. Rompe el ciclo en cualquier punto y el argumento del ranking deja de importar.",
-          "No tienes que cerrar todo el ciclo en un fin de semana. Arregla la mentira primero — horario, número, zona. Luego la página del trabajo que te paga. Luego el solicitud de reseña real. Luego el hábito de devolver llamadas. Esa secuencia es más lenta que un eslogan y mucho más probable que suene el teléfono."
+          "El seguimiento es parte de ser localizable porque quien te encontró sigue decidiendo. Una devolución de llamada el mismo día gana a un sitio más bonito. una solicitud de reseña después del trabajo alimenta la decisión del siguiente desconocido. El SEO local es un ciclo: datos públicos claros, página que coincide con el trabajo, conversación, prueba que queda para la siguiente entrada. Rompe el ciclo en cualquier punto y el argumento del ranking deja de importar.",
+          "No tienes que cerrar todo el ciclo en un fin de semana. Arregla la mentira primero — horario, número, zona. Luego la página del trabajo que te paga. Luego la solicitud de reseña real. Luego el hábito de devolver llamadas. Esa secuencia es más lenta que un eslogan y mucho más probable que suene el teléfono."
         ]
       }
     ]
@@ -134,7 +134,7 @@ export const ES_CORE = {
         "h2": "Pagas por el botón atrás, no por una charla",
         "paragraphs": [
           "La escena habitual: alguien busca con el problema encima y decide en segundos si tú eres la empresa correcta.",
-          "El solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
+          "la solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
           "Own It encaja cuando tienes $1,497, quieres archivos desde el día uno y aceptas manejar seguimiento manual o extras aparte. El plan mensual encaja cuando prefieres $0 de entrada, cancelación mes a mes y que alguien más mantenga hosting y cambios chicos dentro del alcance publicado.",
           "Un formulario que pide la biografía completa de la casa antes del primer contacto es una forma educada de perder el lead. Nombre, teléfono y qué falla alcanzan para saber si vale la pena llamar. Las fotos pueden llegar después, en la conversación, cuando ya hay confianza.",
           "Fuentes y lectura relacionada: <a href=\"https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-sites-mobile-first-indexing\" rel=\"noopener noreferrer\" target=\"_blank\">mobile-first indexing</a>."
@@ -238,7 +238,7 @@ export const ES_CORE = {
         "h2": "Horario, feriados y el buzón que discute contigo",
         "paragraphs": [
           "El texto por llamada perdida es opcional en Lead System y Plus: segundo número $1/mes si lo usas, más tarifas del operador; aprobación del operador suele tardar 10–15 días y no está garantizada. En Website u Own It el extra de texto suele ser $97/mes con las mismas reglas de línea dedicada.",
-          "En Plus, el sitio y el solicitud de reseña pueden ir en inglés y español. Solo tiene sentido si contestas en el idioma que usaste al pedir. Un botón en español con callback solo en inglés es un desajuste que se escucha en la primera llamada.",
+          "En Plus, el sitio y la solicitud de reseña pueden ir en inglés y español. Solo tiene sentido si contestas en el idioma que usaste al pedir. Un botón en español con callback solo en inglés es un desajuste que se escucha en la primera llamada.",
           "En la camioneta, entre una llamada y otra, el marketing real no es un color nuevo: es que la persona que busca a las 8 de la noche vea el mismo teléfono que tú contestas a las 8 de la mañana. Si el sitio, el perfil y la factura no coinciden, el cliente no investiga quién se equivocó. Marca al siguiente. La arregladora silenciosa es alinear nombre, horario y zona antes de gastar en anuncios.",
           "Después de horario, la página sigue hablando. Si cierras a las seis, dilo junto al botón. Si hay rotación real de urgencias, nómbrala igual en perfil y buzón. Una insignia 24/7 sin humano es una reseña que te regalas solo."
         ]
@@ -290,7 +290,7 @@ export const ES_CORE = {
         "paragraphs": [
           "Los planes publicados de Kinexis — Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497 — incluyen vista previa gratis del inicio en 2 días hábiles, sin tarjeta. El SEO continuo no va en los cuatro planes; se cotiza aparte.",
           "Al comparar mensual vs Own It, haz la matemática de 24 meses con tus números publicados, no con un porcentaje mágico de foro. Tiempo en el calendario también es costo aunque no salga en el recibo del hosting.",
-          "En Plus, el sitio y el solicitud de reseña pueden ir en inglés y español. Solo tiene sentido si contestas en el idioma que usaste al pedir. Un botón en español con callback solo en inglés es un desajuste que se escucha en la primera llamada.",
+          "En Plus, el sitio y la solicitud de reseña pueden ir en inglés y español. Solo tiene sentido si contestas en el idioma que usaste al pedir. Un botón en español con callback solo en inglés es un desajuste que se escucha en la primera llamada.",
           "La compra de archivos a $1,497 es la puerta de salida con archivos si dejas un plan mensual. Hazlo por escrito mientras el sitio sigue en línea en el período pagado. Un «sí, te los paso» en un hilo amable no es un formato de archivo."
         ]
       },
@@ -354,7 +354,7 @@ export const ES_CORE = {
         "paragraphs": [
           "No hace falta un glosario de marketing. Hace falta que la persona entienda el trabajo, la zona y cómo marcarte sin investigar.",
           "Responder reseñas en dos frases — mencionando el trabajo, no «gracias por sus amables palabras» — enseña al extraño del estacionamiento cómo hablas cuando algo sale mal. El silencio en una reseña negativa también enseña, pero en la dirección equivocada.",
-          "En Plus, el sitio y el solicitud de reseña pueden ir en inglés y español. Solo tiene sentido si contestas en el idioma que usaste al pedir. Un botón en español con callback solo en inglés es un desajuste que se escucha en la primera llamada.",
+          "En Plus, el sitio y la solicitud de reseña pueden ir en inglés y español. Solo tiene sentido si contestas en el idioma que usaste al pedir. Un botón en español con callback solo en inglés es un desajuste que se escucha en la primera llamada.",
           "Las reseñas no reemplazan una página delgada ni una zona mentirosa. Ayudan a elegirte cuando ya estás en pantalla. Pedirlas con enlace directo después de un trabajo visible es hábito operativo, no campaña de ranking. Comprarlas o filtrar solo clientes felices en público huele a mentira, y el siguiente dueño de casa lo nota."
         ]
       },
@@ -395,7 +395,7 @@ export const ES_CORE = {
         "h2": "El nombre es el de la camioneta",
         "paragraphs": [
           "No hace falta un glosario de marketing. Hace falta que la persona entienda el trabajo, la zona y cómo marcarte sin investigar.",
-          "El solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
+          "la solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
           "Cancelar un plan mensual sin penalidad no borra tu reputación, pero sí corta el hosting al final del período pagado. Si quieres los archivos, la compra por escrito es $1,497. Own It ya es tuyo desde el lanzamiento, con 12 meses de hosting y cambios chicos incluidos; después Site Care opcional a $39/mes.",
           "El presupuesto de marketing para una camioneta no empieza en porcentajes de internet. Empieza en el registro de llamadas: cuántas se perdieron porque nadie contestó, cuántas llegaron a una página confusa, cuántas citas rechazaste por zona mal publicada. Financia el cuello de botella antes del anuncio.",
           "Fuentes y lectura relacionada: <a href=\"https://support.google.com/business/answer/2911778\" rel=\"noopener noreferrer\" target=\"_blank\">guidelines for representing your business</a>."
@@ -638,7 +638,7 @@ export const ES_CORE = {
         "h2": "La velocidad es si aparece el número",
         "paragraphs": [
           "Los planes publicados de Kinexis — Website $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497 — incluyen vista previa gratis del inicio en 2 días hábiles, sin tarjeta. El SEO continuo no va en los cuatro planes; se cotiza aparte.",
-          "El solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
+          "la solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
           "Las citas en directorios importan cuando son exactas y revisadas. No importan como compra de 200 listados abandonados. Empieza donde Google y el cliente ya miran: sitio, perfil, quizá Apple Maps. Arregla el número ahí antes de pagar por volumen de menciones.",
           "La compra de archivos a $1,497 es la puerta de salida con archivos si dejas un plan mensual. Hazlo por escrito mientras el sitio sigue en línea en el período pagado. Un «sí, te los paso» en un hilo amable no es un formato de archivo.",
           "Fuentes y lectura relacionada: <a href=\"https://developers.google.com/search/docs/appearance/page-experience\" rel=\"noopener noreferrer\" target=\"_blank\">page experience</a> <a href=\"https://pagespeed.web.dev/\" rel=\"noopener noreferrer\" target=\"_blank\">PageSpeed Insights</a>."
@@ -764,7 +764,7 @@ export const ES_CORE = {
         "h2": "Lo que no debes construir",
         "paragraphs": [
           "La escena habitual: alguien busca con el problema encima y decide en segundos si tú eres la empresa correcta.",
-          "El solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
+          "la solicitud de reseña por texto debe identificar la empresa en la primera línea. Un número desconocido sin contexto se ignora. Un recordatorio corto días después está bien si prometieron hacerlo; un tercer mensaje ya parece cobranza.",
           "Después de horario, la página sigue hablando. Si cierras a las seis, dilo junto al botón. Si hay rotación real de urgencias, nómbrala igual en perfil y buzón. Una insignia 24/7 sin humano es una reseña que te regalas solo.",
           "En la camioneta, entre una llamada y otra, el marketing real no es un color nuevo: es que la persona que busca a las 8 de la noche vea el mismo teléfono que tú contestas a las 8 de la mañana. Si el sitio, el perfil y la factura no coinciden, el cliente no investiga quién se equivocó. Marca al siguiente. La arregladora silenciosa es alinear nombre, horario y zona antes de gastar en anuncios.",
           "Fuentes y lectura relacionada: <a href=\"https://www.ftc.gov/business-guidance/resources/consumer-reviews-testimonials-rule-questions-answers\" rel=\"noopener noreferrer\" target=\"_blank\">consumer reviews rule</a>."
