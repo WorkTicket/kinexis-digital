@@ -86,14 +86,14 @@ const freelancerVs = {
     sec("Empieza por la hora que no tienes", [
       `A un negocio de una camioneta no le sobra un departamento de marketing. Estás tú, tal vez tu pareja cuando puede contestar, y un teléfono que suena mientras tienes las manos mojadas. Cualquier camino que suponga que tú escribes el copy, persigues al freelancer, aprendes el editor y además atiendes llamadas es un segundo empleo. Ponle precio a ese empleo antes de comparar facturas.`,
       `Escribe lo que necesitas de verdad en los próximos 90 días. Una página que nombre el trabajo, un número que se pueda tocar, una zona de servicio que coincida con la camioneta y una forma de cambiar el horario de feriado sin abrir un ticket que duerme dos semanas. Si también pierdes llamadas en obra, dilo. Si la mitad de tus clientes hablan español, dilo. Esos datos eligen la opción. Un «sentirse más profesional» no.`,
-      `Hazles a los tres caminos las mismas preguntas incómodas. ¿Quién responde si el formulario falla un sábado? ¿Qué te queda si dejas de pagar? ¿Cuántos cambios incluye y en cuánto tiempo? ¿El pedido de reseñas va incluido o es otro contrato? Si la respuesta es un encogimiento de hombros, otra vez eres el departamento de marketing.`,
+      `Hazles a los tres caminos las mismas preguntas incómodas. ¿Quién responde si el formulario falla un sábado? ¿Qué te queda si dejas de pagar? ¿Cuántos cambios incluye y en cuánto tiempo? ¿El solicitud de reseñas va incluido o es otro contrato? Si la respuesta es un encogimiento de hombros, otra vez eres el departamento de marketing.`,
       `Kinexis es una de las opciones mensuales, así que los precios de aquí son los nuestros, no una encuesta del mercado. Website es $97 al mes, Lead System $197, Plus $297, Own It $1,497 de una vez. No vamos a inventar la «típica» tarifa de freelancer ni el «típico» retainer de agencia; esos números se mueven. Pide por escrito el alcance a la persona que tienes enfrente.`,
     ]),
     sec("Lo que un freelancer realmente vende", [
       `Un buen freelancer vende foco. Una persona diseña, escribe lo justo para lanzar y sabe cómo se llama tu negocio. No eres una línea en un despacho de cuarenta personas. Los cambios pueden ser rápidos cuando tiene tiempo, e imposibles cuando está lleno de otros lanzamientos. El riesgo es concentración: si se enferma, agarra un cliente más grande o desaparece, tu sitio queda quieto.`,
       `Pregunta qué significa «terminado». Portada y formulario de contacto está terminado para un folleto. No está terminado si vendes cuatro trabajos distintos y la única página dice «servicios». Pregunta quién hospeda, en qué cuenta está el dominio y si puedes llevarte los archivos sin negociar. Que quede por escrito antes del anticipo, no cuando ya estés molesto.`,
       `Pregunta qué pasa en el mes cuatro. Muchos sitios de freelancer son proyecto, no relación. El lanzamiento se ve bien. Luego el horario de diciembre está mal, el formulario cae en spam y pagas por hora cada frase. Puede ser un trato justo si te gusta el mantenimiento y la tarifa por hora es una que sí vas a usar. Es mal trato si querías que el sitio dejara de ser tu problema.`,
-      `Los freelancers casi nunca están listos para correr texto por llamada perdida, pedidos de reseña y un reporte mensual como un solo sistema. Algunos pegan herramientas. Muchos te mandan a software y buena suerte. Si el seguimiento es por lo que compras, dilo en el primer correo. No lo descubras después de pagar el diseño.`,
+      `Los freelancers casi nunca están listos para correr texto por llamada perdida, solicitudes de reseña y un reporte mensual como un solo sistema. Algunos pegan herramientas. Muchos te mandan a software y buena suerte. Si el seguimiento es por lo que compras, dilo en el primer correo. No lo descubras después de pagar el diseño.`,
     ]),
     sec("Lo que suma una agencia, y qué cuesta en tiempo", [
       `Una agencia vende banca: diseñador, redactor, alguien que habla de búsqueda, alguien que manda la factura. Esa banca vale cuando necesitas marca, varias ubicaciones o trabajo más grande que un sitio de servicios. También puede significar kickoff, documento de estrategia y un sitio sin número visible en el encabezado porque nadie en el hilo maneja una camioneta.`,
@@ -103,13 +103,13 @@ const freelancerVs = {
     ]),
     sec("Para qué sirve un plan mensual", [
       `Un sitio por suscripción es apostar que prefieres pagar una cifra conocida y que otro mantenga hosting y cambios a ser dueño de un proyecto. En Kinexis los planes mensuales son $0 de entrada y mes a mes. Cancelas cuando quieras por texto, correo o Messenger. El sitio sigue en línea en el período ya pagado; después el hosting termina salvo que arregles una compra de archivos o pases a Own It antes de que cierre ese período. Sin cargo por cancelar.`,
-      `Website a $97 al mes es la versión sencilla: hasta 5 páginas, hosting y SSL, hasta dos cambios pequeños al mes en dos días hábiles, seguimiento de leads por formulario. Páginas nuevas cuestan $99. No incluye pedidos de reseña ni texto por llamada perdida. El texto se puede agregar por $97 al mes si tienes línea dedicada. La aprobación del operador suele tardar 10–15 días y no está garantizada.`,
-      `Lead System a $197 agrega lo que muchas camionetas necesitan en obra: texto opcional por llamada perdida (un segundo número de seguimiento cuesta $1 al mes si lo usas, más tarifas del operador), pedido de reseña en Google después del trabajo, ajuste del perfil al lanzar, seguimiento de llamadas con reporte mensual, cambios pequeños ilimitados en un día hábil y una página nueva al mes incluida. Hasta 10 páginas. Plus a $297 es la versión bilingüe: hasta 20 páginas en inglés y español, pedidos y texto opcional en ambos idiomas, dos publicaciones al mes en el perfil, cambios el mismo día hábil si entran antes del mediodía hora Centro.`,
+      `Website a $97 al mes es la versión sencilla: hasta 5 páginas, hosting y SSL, hasta dos cambios pequeños al mes en dos días hábiles, seguimiento de leads por formulario. Páginas nuevas cuestan $99. No incluye solicitudes de reseña ni texto por llamada perdida. El texto se puede agregar por $97 al mes si tienes línea dedicada. La aprobación del operador suele tardar 10–15 días y no está garantizada.`,
+      `Lead System a $197 agrega lo que muchas camionetas necesitan en obra: texto opcional por llamada perdida (un segundo número de seguimiento cuesta $1 al mes si lo usas, más tarifas del operador), solicitud de reseña en Google después del trabajo, ajuste del perfil al lanzar, seguimiento de llamadas con reporte mensual, cambios pequeños ilimitados en un día hábil y una página nueva al mes incluida. Hasta 10 páginas. Plus a $297 es la versión bilingüe: hasta 20 páginas en inglés y español, pedidos y texto opcional en ambos idiomas, dos publicaciones al mes en el perfil, cambios el mismo día hábil si entran antes del mediodía hora Centro.`,
       `Todo empieza con vista previa gratis de la página de inicio en dos días hábiles. Sin tarjeta. Ves la primera pantalla antes de pagar. Tras aprobar y enviar lo que necesitamos, el lanzamiento suele ser cinco días hábiles, confirmado por escrito. La cuadrícula completa está en <a href="/pricing">precios</a>. Este artículo es la comparación, no una segunda lista de precios.`,
     ]),
     sec("Own It es un cuarto camino, no un eslogan", [
       `Own It son $1,497 de una vez, pagados al aprobar la vista previa. Los archivos del sitio son tuyos desde el día del lanzamiento. Hosting, SSL y cambios pequeños (hasta 30 minutos al mes, en dos días hábiles) van incluidos 12 meses. El primer año del dominio también. No hay plan mensual ni garantía de leads de 60 días. Después de 12 meses, Site Care opcional cuesta $39 al mes por hosting y hasta 30 minutos de cambios. Los minutos no usados no se acumulan. Páginas nuevas se cotizan por escrito.`,
-      `Ese es el resultado parecido al freelancer con precio publicado: pagas una vez, tienes los archivos, tú respondes por lo que sigue salvo que compres Site Care o contrates a otro. Encaja si quieres una línea de meta. Encaja mal si querías que alguien siga mandando pedidos de reseña y un reporte de llamadas cada mes. Eso vive en Lead System y Plus, no en Own It.`,
+      `Ese es el resultado parecido al freelancer con precio publicado: pagas una vez, tienes los archivos, tú respondes por lo que sigue salvo que compres Site Care o contrates a otro. Encaja si quieres una línea de meta. Encaja mal si querías que alguien siga mandando solicitudes de reseña y un reporte de llamadas cada mes. Eso vive en Lead System y Plus, no en Own It.`,
       `La compra de archivos en un plan mensual es la otra puerta hacia la propiedad. Si cancelas y quieres quedarte el sitio, una compra única por escrito de $1,497 de los archivos te deja hospedarlos en otro lado. Pide los términos por escrito antes de cancelar. No asumas que el plan mensual te entregó los archivos el día uno. Kinexis hospeda y administra mientras el plan está activo. Own It es el plan donde los archivos son tuyos desde el lanzamiento.`,
       `Un recorrido más largo sobre cancelar, compra y Site Care está en <a href="/blog/monthly-website-vs-own-it">plan mensual u Own It</a>. Úsalo cuando solo te quedan esas dos opciones y la charla con el freelancer ya terminó.`,
     ]),
@@ -121,7 +121,7 @@ const freelancerVs = {
     ]),
     sec("El seguimiento no es una decisión de diseño", [
       `El diseño es lo que el cliente ve antes de llamar. El seguimiento es lo que pasa cuando no puedes contestar y lo que pasa después del trabajo para que el siguiente desconocido lea una reseña. Son productos distintos. Un sitio bonito sin plan para llamadas perdidas sigue perdiendo el trabajo que físicamente no pudiste atender.`,
-      `Lead System y Plus están pensados para ese hueco: texto opcional en línea dedicada, pedidos de reseña, ajuste del perfil, reporte mensual. El texto es opcional a propósito. No viene «gratis incluido» y no existe hasta que un operador lo aprueba. Dile la verdad al cliente mientras tanto: devuelves la llamada. No prometas un texto que aún no puedes enviar. El retraso se explica en <a href="/blog/missed-call-text-delayed-10dlc">por qué esperan los textos de llamada perdida</a>.`,
+      `Lead System y Plus están pensados para ese hueco: texto opcional en línea dedicada, solicitudes de reseña, ajuste del perfil, reporte mensual. El texto es opcional a propósito. No viene «gratis incluido» y no existe hasta que un operador lo aprueba. Dile la verdad al cliente mientras tanto: devuelves la llamada. No prometas un texto que aún no puedes enviar. El retraso se explica en <a href="/blog/missed-call-text-delayed-10dlc">por qué esperan los textos de llamada perdida</a>.`,
       `Un freelancer puede diseñar una página donde llamar sea obvio. Eso vale, y no es lo mismo que correr el texto, el enlace de reseña y el reporte. Una agencia puede vender todo como una pila de herramientas con tres accesos. Si no vas a entrar, es teatro. Prefiere la opción cuyo seguimiento ocurra sin que tú seas el operador.`,
       `Si solo necesitas la página, no compres el seguimiento porque suena serio. Website u Own It pueden ser la opción honesta. Si ya sabes que pierdes llamadas cada semana, no compres la página más barata y esperes disciplina. En julio, cuando estás más ocupado, no alcanza.`,
     ]),
@@ -142,8 +142,8 @@ const freelancerVs = {
       `Si quieres ver una primera pantalla antes de elegir, pide la vista previa. Dos días hábiles, sin tarjeta, sin obligación de que te encante. <a href="/contact">Contacto</a> es el formulario. Si prefieres leer garantías y reglas de cambios en un solo lugar, quédate en <a href="/pricing">precios</a> hasta que la hoja en tu cabeza esté tranquila. A la camioneta no le importa qué logo construyó el sitio. Le importa que el próximo cliente pueda llamar y que cambiar el horario del sábado no requiera comité.`,
     ]),
     sec("La tabla comparativa es una ayuda de planeación", [
-      `La tabla de la página de inicio no es un censo de cada freelancer y agencia. Alinea vista previa gratis antes de pagar, textos por llamada perdida y pedidos de reseña, hosting y actualizaciones, precio fijo 24 meses y sitios en inglés y español. Kinexis aparece marcado en esas filas porque los planes lo incluyen. Freelancers sin marcar; agencias marcadas solo donde hosting o sitio bilingüe es lo común que vemos. Un freelancer cuidadoso puede hospedar, entregar archivos y contestar en español. Una agencia puede no hacer nada de eso. La tabla es nuestra oferta junto a un hueco típico, no afirmación de que todos fallan o todos cumplen.`,
-      `Pregunta a quien tienes enfrente y anota la respuesta. Quién hospeda. Quién tiene el dominio. Qué cuesta un cambio después del mes tres. Si los pedidos de reseña van incluidos o son un login que no abrirás. De nuestro lado la conversación es concreta: vista previa antes de pagar, precio mensual fijo 24 meses desde el lanzamiento y al menos 30 días de aviso antes de un cambio después. Del otro lado, lo que diga la propuesta. La propuesta gana a la tabla. Si la propuesta se encoge de hombros, otra vez eres el departamento de marketing, que es justo lo que esta elección debía evitar.`,
+      `La tabla de la página de inicio no es un censo de cada freelancer y agencia. Alinea vista previa gratis antes de pagar, textos por llamada perdida y solicitudes de reseña, hosting y actualizaciones, precio fijo 24 meses y sitios en inglés y español. Kinexis aparece marcado en esas filas porque los planes lo incluyen. Freelancers sin marcar; agencias marcadas solo donde hosting o sitio bilingüe es lo común que vemos. Un freelancer cuidadoso puede hospedar, entregar archivos y contestar en español. Una agencia puede no hacer nada de eso. La tabla es nuestra oferta junto a un hueco típico, no afirmación de que todos fallan o todos cumplen.`,
+      `Pregunta a quien tienes enfrente y anota la respuesta. Quién hospeda. Quién tiene el dominio. Qué cuesta un cambio después del mes tres. Si los solicitudes de reseña van incluidos o son un login que no abrirás. De nuestro lado la conversación es concreta: vista previa antes de pagar, precio mensual fijo 24 meses desde el lanzamiento y al menos 30 días de aviso antes de un cambio después. Del otro lado, lo que diga la propuesta. La propuesta gana a la tabla. Si la propuesta se encoge de hombros, otra vez eres el departamento de marketing, que es justo lo que esta elección debía evitar.`,
       `Haz la tabla en tu cuaderno si eso te ayuda a dormir, pero no dejes que sustituya una conversación. Escribe el nombre de quien hospeda, el correo de quien hace cambios y qué pasa si no pagas el mes diecinueve. Esas tres líneas valen más que comparar logos. Al final del día, el cliente en la entrada solo ve si puede llamar y si alguien contesta.`,
     ]),
   ],
@@ -210,7 +210,7 @@ const wixVs = {
       "Hay dueños que disfrutan el control y lo cumplen. Si ese no eres tú, la suscripción barata se convierte en sitio viejo y anuncios que mandan a una página que da vergüenza. El cliente no sabe que «casi» lo terminaste.",
     ]),
     sec("Constructores y seguimiento en el mundo real", [
-      "Una suscripción de plantilla rara vez incluye pedido de reseña después del trabajo, ajuste del perfil de Google y reporte de llamadas. Puedes comprar widgets, pero cada widget es otro acceso y otro contrato mental que quizá no abras en temporada de lluvias.",
+      "Una suscripción de plantilla rara vez incluye solicitud de reseña después del trabajo, ajuste del perfil de Google y reporte de llamadas. Puedes comprar widgets, pero cada widget es otro acceso y otro contrato mental que quizá no abras en temporada de lluvias.",
       "En Lead System ($197/mes) y Plus ($297/mes) esas piezas pueden vivir con el sitio. El texto por llamada perdida sigue siendo opcional, con línea dedicada y aprobación del operador 10–15 días, no garantizada. No prometas texto en la portada del constructor si todavía estás armando la lista de plugins.",
       "Website ($97/mes) y Own It ($1,497) sirven cuando el folleto es lo urgente y el seguimiento puede esperar o hacerse a mano. Own It entrega archivos día uno; después Site Care opcional $39/mes. La compra de archivos al cancelar un mensual es $1,497 por escrito.",
       "Si comparas constructores solo por precio de vitrina, incluye en la misma hoja lo que cobraría un freelancer por hora de cambios en noviembre. A veces el administrado es más barato cuando el precio que importa es «¿quién cambia el horario de Acción de Gracias?»",
@@ -229,7 +229,7 @@ const wixVs = {
     ]),
     sec("Cuando el administrado es honestamente más barato", [
       "Suma en una hoja: suscripción anual del constructor, apps de formulario, recordatorio de dominio, y quince horas tuyas valoradas a lo que te pagarías por hora extra de trabajo facturable. Ese total frecuentemente supera Website a $97/mes con cambios pequeños incluidos.",
-      "Lead System a $197/mes entra cuando ya sabes que pierdes llamadas y no mandas pedidos de reseña. El texto sigue siendo opcional con reglas del operador; no asumas que llega el día uno.",
+      "Lead System a $197/mes entra cuando ya sabes que pierdes llamadas y no mandas solicitudes de reseña. El texto sigue siendo opcional con reglas del operador; no asumas que llega el día uno.",
       "Own It a $1,497 de una vez encaja si quieres archivos desde lanzamiento y aceptas que reseñas automáticas y garantía de leads no van en esa compra. Site Care $39/mes después del año uno es opcional.",
       "La vista previa gratis en dos días hábiles, sin tarjeta, existe para que compares tu borrador DIY contra una primera pantalla con tu nombre encima sin comprometerte al plan mensual todavía.",
     ]),
@@ -404,7 +404,7 @@ const googleVs = {
       "Un vecino manda tu nombre por texto. Esa persona no siempre abre el mapa; busca tu empresa. Si solo encuentra ficha delgada sin sitio, algunos llaman y otros no.",
       "Anuncios pagados casi siempre necesitan landing con la misma promesa del anuncio. Llevar a ficha genérica funciona en pocos casos; la mayoría necesita página del trabajo.",
       "Mantén la promesa alineada: si el anuncio dice instalación de calentador, la página debe decirlo arriba con teléfono, no «bienvenido a nuestra familia desde 1998».",
-      "Plus ($297/mes) sirve cuando contestas en inglés y español y quieres sitio y pedidos de reseña en ambos. No compres idioma decorativo.",
+      "Plus ($297/mes) sirve cuando contestas en inglés y español y quieres sitio y solicitudes de reseña en ambos. No compres idioma decorativo.",
     ]),
     sec("SEO local sin prometer el paquete de mapas", [
       "Perfil fuerte y sitio claro se refuerzan, pero el SEO continuo no viene en Website, Lead System, Plus ni Own It. Cotiza aparte en <a href=\"/seo-services\">SEO</a>.",
@@ -427,7 +427,7 @@ const googleVs = {
     sec("Decisión de este trimestre", [
       "Si el mapa llena agenda y el sitio actual da vergüenza, prioriza arreglar enlace del perfil o lanzar portada mínima honesta antes de comprar más publicaciones.",
       "Si el mapa está flojo pero el sitio es claro, invierte hora en categoría, horas, fotos y reseñas reales antes de nueva página.",
-      "Si necesitas ambos idiomas en serio, Plus con páginas y pedidos de reseña bilingües tiene sentido solo con operación bilingüe.",
+      "Si necesitas ambos idiomas en serio, Plus con páginas y solicitudes de reseña bilingües tiene sentido solo con operación bilingüe.",
       "Vista previa en <a href=\"/contact\">contacto</a> y planes en <a href=\"/pricing\">precios</a> cuando ya sabes que necesitas sitio además de ficha.",
     ]),
   ],
@@ -456,7 +456,7 @@ const delayed10 = {
     ]),
     sec("Sigue siendo un texto", [
       "Identificación y forma de bajar importan. Guía de la FCC sobre robocalls y textos es orientación, no abogado.",
-      "Textas a quien te llamó, no a lista comprada. No mezcles con pedido de reseña o cobro.",
+      "Textas a quien te llamó, no a lista comprada. No mezcles con solicitud de reseña o cobro.",
       "Plantillas por oficio son borradores, no permiso. Responde cuando contesten.",
     ]),
     sec("Qué decir antes de lanzar el sitio", [
@@ -475,11 +475,11 @@ const delayed10 = {
       "Si no está vivo el texto, díganlo. La portada no lo afirme. Llamada perdida sigue con devolución humana el mismo día.",
       "Una persona vigilando el trámite como permisos. Quita «texto instantáneo» de imanes y descripción de Google.",
       "Lee el primer texto como cliente. Acorta si suena a banco.",
-      "No apiles pedido de reseña en el mismo hilo.",
+      "No apiles solicitud de reseña en el mismo hilo.",
     ]),
     sec("Qué plan lo cobra cómo", [
       "Website $97 y Own It $1,497 no incluyen texto; extra $97/mes misma regla. Lead System $197 y Plus $297: segundo número $1/mes si se usa, tarifas operador. Plus puede inglés y español.",
-      "Pedidos de reseña van aparte en Lead System/Plus.",
+      "solicitudes de reseña van aparte en Lead System/Plus.",
       "Garantía 60 días leads en Lead System/Plus no exige texto activo: llamada 30+ seg, respuesta al texto, o formulario real. Own It no incluye garantía.",
       "Detalle en <a href=\"/upgrades\">mejoras</a>, <a href=\"/faqs\">preguntas</a>, <a href=\"/pricing\">precios</a>, vista previa <a href=\"/contact\">contacto</a>.",
     ]),
@@ -540,7 +540,7 @@ const templates = {
     sec("Qué plan lleva el texto y cuánto cuesta", [
       "Website ($97/mes) y Own It ($1,497) no incluyen texto automático; el extra es $97/mes con las mismas reglas de línea dedicada y operador.",
       "Lead System ($197/mes) y Plus ($297/mes) no cobran el texto a $97/mes; usan segundo número de seguimiento a $1/mes si lo activas, más tarifas del operador. Plus puede correr mensajes en inglés y español si contestas en ambos.",
-      "No confundas esto con pedidos de reseña después del trabajo: van en Lead System y Plus, pero en otro flujo. Mezclarlos entrena al cliente a ignorar los dos.",
+      "No confundas esto con solicitudes de reseña después del trabajo: van en Lead System y Plus, pero en otro flujo. Mezclarlos entrena al cliente a ignorar los dos.",
       "Estima llamadas en riesgo con la <a href=\"/tools/missed-call-calculator\">calculadora de llamada perdida</a>. Más contexto del retraso en <a href=\"/blog/missed-call-text-delayed-10dlc\">por qué esperan los textos</a>.",
     ]),
     sec("Cómo adaptar {Business} y las palabras clave", [
@@ -697,7 +697,7 @@ const resenas = {
     sec("Automatización sin mezclar textos", [
       "Lead System ($197/mes) y Plus ($297/mes) pueden enviar pedido tras cerrar trabajo con tu enlace directo. Plus puede español si ya comunicas así.",
       "Eso no es lo mismo que texto por llamada perdida: opcional, línea dedicada, segundo número $1/mes en Lead System/Plus, aprobación 10–15 días no garantizada. Extra $97/mes en Website/Own It.",
-      "No mandes pedido de reseña en el hilo de llamada perdida. Un hilo, un propósito.",
+      "No mandes solicitud de reseña en el hilo de llamada perdida. Un hilo, un propósito.",
       "Website ($97/mes) y Own It ($1,497) siguen siendo válidos si pedirás a mano y solo necesitas sitio que muestre prueba y teléfono.",
     ]),
     sec("Entrena a la cuadrilla en dos frases", [
@@ -714,7 +714,7 @@ const resenas = {
     ]),
     sec("Hogares que prefieren español", [
       "Si la cuadrilla sirve en español, el guión corto en puerta puede ir en español con la misma estructura: gracias, por qué importa, ¿mando enlace?",
-      "Plus puede enviar pedido de reseña en español cuando tu operación ya comunica así. No pegues script en español si la oficina solo devuelve llamadas en inglés.",
+      "Plus puede enviar solicitud de reseña en español cuando tu operación ya comunica así. No pegues script en español si la oficina solo devuelve llamadas en inglés.",
       "Un enlace directo funciona igual; lo que cambia es el mensaje que lo acompaña.",
       "Coherencia importa más que cantidad de idiomas en el pie de página.",
     ]),
@@ -988,9 +988,9 @@ const EXTRA = {
       "Prueba mensual simulada desde celular personal evita sorpresa en temporada pico.",
       "Texto es ayuda, no excusa para dejar de contestar cuando puedes.",
     ]),
-    sec("Relación con pedidos de reseña", [
+    sec("Relación con solicitudes de reseña", [
       "Cliente frustrado porque prometiste texto que no llegó no está en humor para reseña cinco estrellas.",
-      "Arregla expectativa de llamada antes de automatizar pedidos de reseña en Lead System/Plus.",
+      "Arregla expectativa de llamada antes de automatizar solicitudes de reseña en Lead System/Plus.",
       "Dos flujos SMS distintos: uno «perdimos tu llamada», otro «gracias por el trabajo». Nunca el mismo hilo.",
       "Website y Own It pueden tener sitio sin ninguno de los dos automatismos; sigue siendo oferta válida.",
       "Claridad en uno mejora el otro.",
@@ -1095,7 +1095,7 @@ const EXTRA = {
     ]),
     sec("Vecino hispanohablante y la misma tubería", [
       "En muchos barrios la llamada llega en español aunque el sitio esté solo en inglés.",
-      "Plus existe para sitio y pedidos de reseña en inglés y español cuando contestas en ambos.",
+      "Plus existe para sitio y solicitudes de reseña en inglés y español cuando contestas en ambos.",
       "Poner español solo en pie de página sin operación es promesa vacía.",
       "Si hoy solo atiendes en inglés, sitio honesto en inglés gana a mezcla confusa.",
       "Idioma es decisión de operación primero, diseño después.",
@@ -1224,7 +1224,7 @@ const EXTRA = {
       "Empieza con el próximo trabajo bien terminado y un enlace que ya probaste en tu propio celular.",
     ]),
     sec("Recordatorio de planes", [
-      "Website $97/mes y Own It $1,497 no incluyen envío automático de pedido de reseña.",
+      "Website $97/mes y Own It $1,497 no incluyen envío automático de solicitud de reseña.",
       "Lead System $197/mes y Plus $297/mes sí pueden enviarlo tras el trabajo con tu enlace.",
       "Plus puede pedir en español e inglés cuando tu operación responde en ambos.",
       "Ningún plan reemplaza políticas de Google ni revisiones legales de SMS.",

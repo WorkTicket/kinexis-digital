@@ -903,7 +903,7 @@ function Industries({ locale, tx, href, lang, band }: PageBits & { locale: Local
             <p>{locale === "es-ES"
               ? tx(`La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a ${p("websiteMo", "eur")} al mes, Lead System a ${p("leadMo", "eur")}, Plus a ${p("plusMo", "eur")}, u Own It por ${p("ownIt", "eur")}.`)
               : tx(`La vista previa va primero, sin tarjeta. Después el sitio es uno de cuatro planes: Website a ${p("websiteMo", "usd")} al mes, Lead System a ${p("leadMo", "usd")}, Plus a ${p("plusMo", "usd")}, u Own It por ${p("ownIt", "usd")}.`)}</p>
-            <p>{tx("Lead System y Plus incluyen pedidos de reseña en Google. El texto si no contestas es un extra opcional en esos planes. El SEO continuo se cotiza aparte.")}</p>
+            <p>{tx("Lead System y Plus incluyen solicitudes de reseña en Google. El texto si no contestas es un extra opcional en esos planes. El SEO continuo se cotiza aparte.")}</p>
           </div>
           <p className="center btn-row">
             <Link className="btn btn--ghost" href={href("/pricing")} prefetch={false}>{tx("Comparar planes")}</Link>

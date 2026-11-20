@@ -18,10 +18,12 @@ const entrySource = `
 import { MIRROR_PATHS } from "@/lib/locale-path";
 import { SPANISH_STATIC_META_PATH_SET } from "@/i18n/spanish-static-paths";
 import { getIndustry } from "@/data/industries";
+import { localizedIndustries } from "@/i18n/industries-es";
 import { esPost } from "@/i18n/posts-es";
 import { localeHref } from "@/lib/locale-path";
 
 const missing = [];
+const reviewRequestWording = /pedidos? de reseñas?/i;
 for (const route of MIRROR_PATHS) {
   if (route.startsWith("/industries/") && route !== "/industries") {
     const slug = route.slice("/industries/".length);
@@ -58,6 +60,17 @@ for (const [path, expected] of [
     console.error("Unexpected Spanish navigation target:", path, "→", actual, "(expected", expected + ")");
     process.exit(1);
   }
+}
+
+const spanishCopy = [
+  JSON.stringify(localizedIndustries("es-419")),
+  ...MIRROR_PATHS
+    .filter((route) => route.startsWith("/blog/"))
+    .map((route) => JSON.stringify(esPost(route.slice("/blog/".length)))),
+];
+if (spanishCopy.some((copy) => reviewRequestWording.test(copy))) {
+  console.error("Spanish industry or article copy still uses “pedido(s) de reseña(s)”.");
+  process.exit(1);
 }
 
 for (const slug of [
