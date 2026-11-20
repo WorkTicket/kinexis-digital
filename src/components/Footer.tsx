@@ -58,7 +58,7 @@ function PhoneIcon() {
 
 export default function Footer({ locale }: { locale: Locale }) {
   const chrome = chromeFor(locale);
-  const hrefFor = (href: string) => (href === "/pay" || /^https?:\/\//.test(href) ? href : withLocale(locale, href));
+  const hrefFor = (href: string) => (/^https?:\/\//.test(href) ? href : withLocale(locale, href));
   const fields = locale === "en" ? LEAD_FIELDS : LEAD_FIELDS_ES;
   const support = [
     ...chrome.supportLinks,

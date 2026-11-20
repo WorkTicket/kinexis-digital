@@ -46,10 +46,10 @@ export function spanishPlans(tx: (s: string) => string, opts?: SpanishPlanOpts) 
   const currency = resolvePriceLocale(opts);
   const monthlyKicker = tx(`${p("zeroDown", currency)} de entrada, luego`);
   const names: Record<string, string> = {
-    website: "Sitio web",
-    "lead-system": "Sistema de clientes",
+    website: "Website",
+    "lead-system": "Lead System",
     plus: "Plus (Bilingüe)",
-    "own-it": "Hazlo tuyo",
+    "own-it": "Own It",
   };
   const copy: Record<string, { tagline: string; kicker: string; note: string; features: [string, string][] }> = {
     website: {
