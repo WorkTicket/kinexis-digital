@@ -37,13 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: industry.metaTitle,
     description: industry.metaDescription,
     index: industry.status !== "hold",
-    image: [
-      "plumbing", "hvac", "electrical", "roofing", "garage-doors", "painting",
-      "remodeling", "landscaping", "pressure-washing", "junk-removal", "tree-care",
-      "pool-care", "window-cleaning", "yard-care",
-    ].includes(industry.slug)
-      ? `/assets/industries/${industry.slug}/${industry.slug}-social.jpg`
-      : `/assets/industries/${industry.slug}/hero-960.webp`,
+    image: `/assets/industries/${industry.slug}/${industry.slug}-social.jpg`,
     imageAlt: `${industry.name} website design`,
   });
 }
@@ -146,6 +140,7 @@ export default async function IndustryPage({ params }: Props) {
           <p className="center muted industry-section-lead">These are the searches and jobs {industry.name.toLowerCase()} owners need the site to handle clearly.</p>
         </div>
         <ReviewRail
+          className={industry.slug === "hvac" ? "review-rail--hvac-services" : ""}
           steps={industry.services.map((point) => ({
             title: point.title,
             text: point.text,

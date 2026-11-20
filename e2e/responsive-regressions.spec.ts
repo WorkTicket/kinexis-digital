@@ -1,6 +1,25 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("narrow viewport regressions", () => {
+  test("homepage hero presents only the primary free-preview CTA", async ({ page }) => {
+    await page.goto("/");
+    const buttons = page.locator(".hero__btns .btn");
+    await expect(buttons).toHaveCount(1);
+    await expect(buttons.first()).toHaveClass(/btn--primary/);
+    await expect(buttons.first()).toHaveAttribute("href", "/contact");
+  });
+
+  test("mobile footer contact buttons stay compact", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const contacts = page.locator(".footer-contact__link");
+    await expect(contacts).toHaveCount(2);
+    const heights = await contacts.evaluateAll((links) =>
+      links.map((link) => link.getBoundingClientRect().height),
+    );
+    expect(heights).toEqual([42, 42]);
+  });
+
   test("mobile header shows the preview CTA and visible Menu label instead of the phone number", async ({ page }) => {
     for (const width of [320, 375, 390]) {
       await page.setViewportSize({ width, height: 900 });
@@ -125,6 +144,48 @@ test.describe("narrow viewport regressions", () => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/pricing");
     await expect(page.locator(".plan-compare__ownership h2 .hl-emphasis")).toHaveText("vs");
+  });
+
+  test("HVAC service and problem icons are equal-size and unframed", async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto("/industries/hvac");
+
+    const services = page.locator(".review-rail--hvac-services .review-rail__icon");
+    const problems = page.locator(".industry-problems__icon");
+    await expect(services).toHaveCount(3);
+    await expect(problems).toHaveCount(3);
+    for (const icons of [services, problems]) {
+      const boxes = await icons.evaluateAll((elements) =>
+        elements.map((element) => {
+          const rect = element.getBoundingClientRect();
+          const style = getComputedStyle(element);
+          return { width: rect.width, height: rect.height, background: style.backgroundColor };
+        }),
+      );
+      for (const box of boxes) {
+        expect(box.width).toBe(72);
+        expect(box.height).toBe(72);
+        expect(box.background).toBe("rgba(0, 0, 0, 0)");
+      }
+    }
+  });
+
+  test("mobile portfolio images do not animate or enter press-and-hold preview", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const shot = page.locator(".portfolio--home .shot:not(.shot--static)").first();
+    await shot.scrollIntoViewIfNeeded();
+    await shot.dispatchEvent("pointerdown", {
+      pointerId: 1,
+      pointerType: "touch",
+      button: 0,
+      clientX: 100,
+      clientY: 100,
+    });
+    await page.waitForTimeout(220);
+    await expect(shot).not.toHaveClass(/is-holding/);
+    await expect(shot).toHaveCSS("transform", "none");
+    await shot.dispatchEvent("pointerup", { pointerId: 1, pointerType: "touch" });
   });
 
   test("Phoenix preview header CTA stays within a 320px viewport", async ({ page }) => {

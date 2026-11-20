@@ -687,13 +687,13 @@ p{margin:0 0 1em}
     overflow:hidden;
   }
   .footer-contact__link{
-    min-height:48px;width:100%;padding:12px 14px;gap:10px;
-    font-size:.92rem;font-weight:600;
+    min-height:42px;width:100%;padding:8px 12px;gap:9px;
+    font-size:.84rem;font-weight:600;
   }
   .footer-contact__link + .footer-contact__link{
     border-top:1px solid rgba(255,255,255,.12);
   }
-  .footer-contact__link svg{opacity:.9;width:1.15rem;height:1.15rem}
+  .footer-contact__link svg{opacity:.9;width:1rem;height:1rem}
   .footer-social{
     grid-template-columns:repeat(3,44px);gap:10px;width:fit-content;
   }
@@ -751,7 +751,7 @@ p{margin:0 0 1em}
 /* Small phones — tighten measure without collapsing tap targets */
 @media(max-width:379px){
   .footer-blurb{font-size:.86rem;max-width:none}
-  .footer-contact__link{font-size:.86rem;padding:12px 12px}
+  .footer-contact__link{font-size:.8rem;padding:8px 10px}
   .footer-column a,.footer-link{font-size:.9rem}
 }
 
@@ -1275,6 +1275,19 @@ html.lp-route body{--announce-h:0px}
 }
 .review-rail__step h3{margin:0 0 .3em;font-size:1.15rem;text-wrap:balance;color:var(--text)}
 .review-rail__step p{margin:0 auto;max-width:32ch;color:var(--muted);font-size:.98rem}
+.review-rail--hvac-services{--mark:72px}
+.review-rail--hvac-services .review-rail__mark{
+  width:72px;height:72px;margin:14px auto 34px;
+}
+.review-rail--hvac-services .review-rail__icon{
+  position:relative;inset:auto;width:72px;height:72px;border-radius:0;background:transparent;
+}
+.review-rail--hvac-services .review-rail__mark img.icon,
+.review-rail--hvac-services .review-rail__icon .icon,
+.review-rail--hvac-services .review-rail__icon img{
+  width:72px;height:72px;transform:translate(-50%,-50%);
+}
+.review-rail--hvac-services .review-rail__num{display:none}
 .review-rail--numbers{padding:22px 8px 10px}
 .review-rail--numbers .review-rail__index{
   display:grid;place-items:center;margin:0 auto 16px;
@@ -1458,6 +1471,11 @@ html.lp-route body{--announce-h:0px}
 .shot:not(.shot--static):hover .shot__track,.shot:not(.shot--static):focus-within .shot__track,.shot--click .shot__track,.shot.is-holding .shot__track{will-change:transform}
 .shot.is-holding{touch-action:none;transform:translateY(-3px);box-shadow:0 16px 34px -16px rgba(10,18,48,.35)}
 @media(max-width:1024px){.shot:not(.shot--static):hover .shot__track{will-change:auto}.shot{touch-action:pan-y pinch-zoom}.shot.is-holding{touch-action:none}}
+@media(hover:none),(pointer:coarse){
+  .portfolio--home .shot:hover,.portfolio--home .shot.is-holding{
+    transform:none;box-shadow:var(--shadow);touch-action:pan-y pinch-zoom;
+  }
+}
 .shot__img{display:block;width:100%;height:auto;max-width:none}
 
 /* Comparison */

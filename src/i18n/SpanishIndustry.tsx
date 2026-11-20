@@ -112,6 +112,7 @@ export default function SpanishIndustry({
           <p className="center muted industry-section-lead">{tx("Estas son las búsquedas y trabajos que el sitio debe dejar claros.")}</p>
         </div>
         <ReviewRail
+          className={industry.slug === "hvac" ? "review-rail--hvac-services" : ""}
           steps={industry.services.map((point) => ({
             title: point.title,
             text: point.text,

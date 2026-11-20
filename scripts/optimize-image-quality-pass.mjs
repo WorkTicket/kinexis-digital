@@ -174,28 +174,4 @@ console.log("=== page-hero 480/640 AVIF at q68 (keep LCP preload widths) ===");
   }
 }
 
-console.log("=== industry hero 480 AVIF at q65 photo ===");
-{
-  const industryDirectory = "public/assets/industries";
-  const industries = (await readdir(industryDirectory, { withFileTypes: true }))
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort();
-  for (const name of industries) {
-    const master = path.join(industryDirectory, name, "hero.webp");
-    const avif = await encodeFixed(master, path.join(industryDirectory, name, "hero-480.avif"), {
-      width: 480,
-      format: "avif",
-      quality: AVIF_PHOTO_Q,
-      photo: true,
-    });
-    const webp = await encodeFixed(master, path.join(industryDirectory, name, "hero-480.webp"), {
-      width: 480,
-      format: "webp",
-      quality: WEBP_Q,
-    });
-    console.log(`  ${name} 480w  webp ${kb(webp)} / avif ${kb(avif)}`);
-  }
-}
-
 console.log("done");

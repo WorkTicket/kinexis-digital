@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import { FAQS, STEPS } from "@/lib/content";
-import { SITE, telHref } from "@/lib/site";
 import { OpenDialog } from "@/components/OpenDialog";
 import Stepper from "@/components/Stepper";
 import { PageSchema } from "@/components/JsonLd";
@@ -15,7 +14,6 @@ import TrustStrip from "@/components/TrustStrip";
 import PlanCompare from "@/components/PlanCompare";
 import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
-import { LIVE_SITES } from "@/data/liveSites";
 import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 
 export const metadata = pageMetadata("home");
@@ -24,7 +22,6 @@ export const metadata = pageMetadata("home");
 export const revalidate = 86400;
 
 export default async function Home() {
-  const preferredPlumbing = LIVE_SITES.find((site) => site.slug === "preferred-plumbing");
   return (
     <>
       <PageSchema page="home" faqs={FAQS} />
@@ -39,37 +36,30 @@ export default async function Home() {
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>See your homepage free</b> – no card</span>
-                <span>and no obligation before choosing a plan</span>
+                <span><b>Free preview</b></span>
+                <span>No card and no obligation before choosing a plan</span>
               </span>
             </li>
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Missed-call text-back is optional</b></span>
-                <span>on Lead System and Plus, or as a $97/mo add-on</span>
+                <span><b>Optional text-back</b></span>
+                <span>On Lead System and Plus, or as a $97/mo add-on</span>
               </span>
             </li>
             <li>
               <span className="tick__mark" aria-hidden="true">✓</span>
               <span className="tick__copy">
-                <span><b>Google review requests</b></span>
-                <span>included with Lead System and Plus after jobs</span>
+                <span><b>Google reviews</b></span>
+                <span>Requests included with Lead System and Plus after jobs</span>
               </span>
             </li>
           </ul>
           <div className="hero__btns">
             <Link className="btn btn--primary btn--lg" href="/contact" prefetch={false}>Get My Free Preview</Link>
-            {preferredPlumbing && <a className="btn btn--ghost" href={preferredPlumbing.url} target="_blank" rel="noopener noreferrer">See a live client website</a>}
           </div>
           <div className="hero__reassure">
             <TrustStrip className="hero__trust" />
-            <p className="hero__call muted small">
-              <span className="hero__call-prompt">Prefer to talk?</span>
-              <Link className="trust-mark" href="/strategy-call" prefetch={false}>Book a call</Link>
-              <span className="hero__call-sep" aria-hidden="true">·</span>
-              <a className="trust-mark" href={telHref(SITE.phone)}>{SITE.phone}</a>
-            </p>
           </div>
         </div>
         <HeroFilm />
@@ -100,10 +90,8 @@ export default async function Home() {
           <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="Lead System and Plus include call and form tracking and Google review requests after jobs. Optional missed-call text-back gives callers a way to reach you while you’re working." icon="better-follow-up" />
           <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
         </div>
-        <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-          <Link className="btn btn--ghost" href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link>
-        </p>
+        <p className="center btn-row spaced"><Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link></p>
+        <p className="center"><Link href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link></p>
       </Section>
 
       {/* 4. Portfolio */}
@@ -118,9 +106,9 @@ export default async function Home() {
         <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
         <p className="center muted">Design concepts above. Live client websites and case studies are separate.</p>
         <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href="/case-studies/preferred-plumbing" prefetch={false}>Preferred Plumbing case study</Link>
-          <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>Live sites &amp; portfolio</Link>
+          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
         </p>
+        <p className="center"><Link href="/case-studies/preferred-plumbing" prefetch={false}>See the Preferred Plumbing case study</Link>{" · "}<Link href="/portfolio" prefetch={false}>Browse live sites and portfolio</Link></p>
       </Section>
 
       {/* 5. Trades — qualification before differentiation and pricing */}
@@ -129,9 +117,7 @@ export default async function Home() {
           <div className="trades-feature__copy">
             <h2><HL text="Built for Local Service Businesses" mark="Local Service Businesses" /></h2>
             <p className="muted">Plumbing, HVAC, roofing, and more—if customers search for your services and call when they need help, we can help you make the next step clear. Don’t see your industry? Tell us what you do; we also work with other local service businesses.</p>
-            <p className="btn-row">
-              <Link className="btn btn--ghost" href="/industries" prefetch={false}>Browse industry websites</Link>
-            </p>
+            <p><Link href="/industries" prefetch={false}>Browse industry websites</Link></p>
           </div>
           <HomeSectionArtwork
             name="homepage-built-for-your-trade"
@@ -166,8 +152,8 @@ export default async function Home() {
             <p>Lead System and Plus include Google review requests after completed jobs. Missed-call text-back is optional and, once carrier-approved, gives a caller a way to reply while you’re working.</p>
             <p className="btn-row">
               <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-              <Link className="btn btn--light" href="/pricing#lead-system" prefetch={false}>See the Lead System</Link>
             </p>
+            <p><Link href="/pricing#lead-system" prefetch={false}>See the Lead System</Link></p>
           </div>
           <HomeSectionArtwork
             name="review-follow-up"
@@ -195,8 +181,8 @@ export default async function Home() {
         <Stepper steps={STEPS} />
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-          <Link className="btn btn--ghost" href="/about" prefetch={false}>See our full process</Link>
         </p>
+        <p className="center"><Link href="/about" prefetch={false}>See our full process</Link></p>
       </Section>
 
       {/* 11. Guarantee — final offer block above FAQs */}
@@ -204,9 +190,9 @@ export default async function Home() {
         <h2 className="center"><HL text="60-Day Lead Guarantee" mark="Lead Guarantee" /></h2>
         <p className="center muted">Lead System and Plus only: zero tracked leads in the first 60 days live waives the 3rd and 4th charges. A tracked lead is a 30+ second call, a missed caller who replies to text-back, or a real quote form; spam, wrong numbers, applicants, vendors, and existing customers do not count. The account must be in good standing. No coverage if your changes prevent tracking or you pause/cancel before day 60. One per business; Own It is excluded.</p>
         <p className="center btn-row spaced">
-          <OpenDialog id="guarantee" className="btn btn--ghost">Read the guarantee details</OpenDialog>
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
         </p>
+        <p className="center"><OpenDialog id="guarantee" className="link-btn trust-mark">Read the guarantee details</OpenDialog></p>
         <TrustStrip className="center" />
       </Section>
 
@@ -214,7 +200,7 @@ export default async function Home() {
       <Section narrow>
         <h2 className="center">Frequently Asked Questions</h2>
         <Faq items={FAQS} />
-        <p className="center"><Link className="btn btn--ghost" href="/faqs" prefetch={false}>More website and pricing FAQs</Link></p>
+        <p className="center"><Link href="/faqs" prefetch={false}>More website and pricing FAQs</Link></p>
       </Section>
     </>
   );

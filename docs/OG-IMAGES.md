@@ -27,11 +27,11 @@ npm run images:og
 | `/services` | `/og/services.webp` |
 | `/strategy-call` | `/og/strategy-call.webp` |
 | `/tools/*` | `/og/tools.webp` |
-| Industry pages | Trade hero `hero-960.webp` (page-specific) |
+| Industry pages | Trade-specific `*-social.jpg` artwork |
 | Case studies | Live site screenshots |
 | Blog posts | Article images |
 
-Spanish mirrors inherit the English page `ogImage` via `spanishMetadata`.
+Spanish mirrors use localized social artwork for page-art and industry pages; blog mirrors use localized article covers.
 
 ## Design notes
 

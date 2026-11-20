@@ -1023,6 +1023,8 @@ if (canHoverScroll()) {
     if (reduce() || event.button > 0) return;
     const shot = shotOf(event);
     if (!shot || shot.classList.contains("shot--static")) return;
+    // Compact homepage previews should not activate their hold-scroll animation.
+    if (shot.closest(".portfolio--home") && matchMedia("(max-width: 720px)").matches) return;
     clearHold(false);
     holdShot = shot;
     holdPointerId = event.pointerId;

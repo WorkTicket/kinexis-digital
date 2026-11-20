@@ -1,10 +1,4 @@
-import { imageVariant, still } from "@/lib/image-sources";
-
-const SUPPLIED_INDUSTRY_HEROES = new Set([
-  "plumbing", "hvac", "electrical", "roofing", "garage-doors", "painting",
-  "remodeling", "landscaping", "pressure-washing", "junk-removal", "tree-care",
-  "pool-care", "window-cleaning", "yard-care",
-]);
+import { still } from "@/lib/image-sources";
 
 /** Per-industry desktop/mobile hero artwork supplied as optimized AVIF/WebP. */
 export default function IndustryHeroArt({
@@ -14,25 +8,13 @@ export default function IndustryHeroArt({
   slug: string;
   alt: string;
 }) {
-  const hasSuppliedHero = SUPPLIED_INDUSTRY_HEROES.has(slug);
   const desktop = still(`/assets/industries/${slug}/${slug}-desktop.avif`);
-  const mobile = hasSuppliedHero
-    ? still(`/assets/industries/${slug}/${slug}-mobile.webp`)
-    : imageVariant(`/assets/industries/${slug}/hero.webp`, 768, "webp");
-  const oldDesktopSrcSet = [480, 768, 960, 1120, 1536]
-    .map((width) => `${imageVariant(`/assets/industries/${slug}/hero.webp`, width, "avif")} ${width}w`)
-    .join(", ");
+  const mobile = still(`/assets/industries/${slug}/${slug}-mobile.webp`);
 
   return (
     <picture>
-      {hasSuppliedHero ? (
-        <>
-          <source media="(max-width: 860px)" type="image/webp" srcSet={mobile} />
-          <source type="image/avif" srcSet={desktop} />
-        </>
-      ) : (
-        <source type="image/avif" srcSet={oldDesktopSrcSet} />
-      )}
+      <source media="(max-width: 860px)" type="image/webp" srcSet={mobile} />
+      <source type="image/avif" srcSet={desktop} />
       <img
         className="hero-art industry-hero__img"
         src={mobile}
