@@ -61,6 +61,12 @@ const CAMPAIGN_HERO: Partial<Record<ArtName, CampaignPageArt>> = {
   "website-audit": "website-audit",
   upgrades: "upgrades",
 };
+const SPANISH_ART: Partial<Record<ArtName, CampaignPageArt>> = {
+  process: "web-design",
+  maintenance: "upgrades",
+  faqs: "contact",
+  industries: "industries",
+};
 
 type HeroImageProps = {
   name: string;
@@ -113,11 +119,8 @@ export function Art({
   name, alt = "", className = "", priority = false, sizes = IMAGE_SIZES.art, locale = "en",
 }: { name: ArtName; alt?: string; className?: string; priority?: boolean; sizes?: string; locale?: Locale }) {
   const file = HERO_FILES[name];
-  const campaignName = CAMPAIGN_HERO[name];
-  if (locale !== "en" && ["process", "maintenance", "faqs", "industries"].includes(name)) {
-    const icon = name === "process" ? "better-pricing" : name === "maintenance" ? "hosting" : "reporting";
-    return <div className={`campaign-page-art campaign-page-art--text-free ${className}`.trim()} role="img" aria-label={alt}><Icon name={icon} alt="" size={240} /></div>;
-  }
+  const localeCampaignName = locale === "en" ? undefined : SPANISH_ART[name];
+  const campaignName = localeCampaignName ?? CAMPAIGN_HERO[name];
   if (campaignName) {
     return (
       <CampaignHeroArtwork

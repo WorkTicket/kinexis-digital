@@ -99,7 +99,9 @@ export default function PlanOffer({
               prefetch={false}
             >
               {plan.popular ? <span className="offer__badge">{badge}</span> : null}
-              {stickers ? (stickers[plan.slug] ? <PlanSticker sticker={stickers[plan.slug]!} /> : null) : showStickers ? <PlanSticker sticker={PLAN_NAME_STICKERS[plan.slug]} /> : null}
+              {stickers?.[plan.slug] || (!stickers && showStickers && PLAN_NAME_STICKERS[plan.slug])
+                ? <PlanSticker sticker={(stickers?.[plan.slug] ?? PLAN_NAME_STICKERS[plan.slug])!} />
+                : <span className="offer__price"><strong>{plan.price}</strong>{plan.suffix ? <small>{plan.suffix}</small> : null}</span>}
               <h3 className="offer__line">{plan.name}</h3>
               <span className="offer__tagline">{plan.tagline}</span>
               <span className="offer__plan-cta">{planCta}</span>

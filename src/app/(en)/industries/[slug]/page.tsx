@@ -46,8 +46,22 @@ function featureText(industry: Industry, key: FeatureKey) {
   return industryFeatureBody(industry, key, INDUSTRY_FEATURES_EN[key].text);
 }
 
-function articleFor(name: string) {
-  return /^(hvac|electrical)$/i.test(name) ? "an" : "a";
+function articleFor(slug: string) {
+  return /^(hvac|electrical)$/i.test(slug) ? "an" : "a";
+}
+
+function industryNoun(industry: Industry) {
+  if (industry.slug === "electrical") return "electrician";
+  if (industry.slug === "hvac") return "HVAC";
+  if (industry.slug === "garage-doors") return "garage door";
+  return industry.name.toLowerCase();
+}
+
+function industryOwners(industry: Industry) {
+  if (industry.slug === "electrical") return "electricians";
+  if (industry.slug === "hvac") return "HVAC businesses";
+  if (industry.slug === "garage-doors") return "garage door businesses";
+  return `${industry.name.toLowerCase()} businesses`;
 }
 
 function LeadArt() {
@@ -84,6 +98,8 @@ export default async function IndustryPage({ params }: Props) {
   const includesTitle = `What Your ${industry.name} Website Includes`;
   const textBackTitle = `Missed-Call Text-Back for ${industry.name}`;
   const faqTitle = `FAQs for ${industry.name} Owners`;
+  const tradeName = industryNoun(industry);
+  const tradeOwners = industryOwners(industry);
 
   return (
     <>
@@ -137,7 +153,7 @@ export default async function IndustryPage({ params }: Props) {
         <div className="section-head">
           <p className="eyebrow">Jobs this site must handle</p>
           <h2 className="center"><HL text={callsTitle} mark={industry.name} /></h2>
-          <p className="center muted industry-section-lead">These are the searches and jobs {industry.name.toLowerCase()} owners need the site to handle clearly.</p>
+          <p className="center muted industry-section-lead">These are the searches and jobs {tradeOwners} need the site to handle clearly.</p>
         </div>
         <ReviewRail
           className={industry.slug === "hvac" ? "review-rail--hvac-services" : ""}
@@ -224,7 +240,7 @@ export default async function IndustryPage({ params }: Props) {
             <p className="eyebrow">Available on Lead System and Plus</p>
             <h2><HL text={textBackTitle} mark="Text-Back" /></h2>
             <p>
-              When a {industry.name.toLowerCase()} crew is on a job and misses a call, optional missed-call text-back on Lead System and Plus can reply on your tracking number. After the work is done, a Google review request goes out with a direct link to your profile.
+              When {articleFor(industry.slug)} {tradeName} crew is on a job and misses a call, optional missed-call text-back on Lead System and Plus can reply on your tracking number. After the work is done, a Google review request goes out with a direct link to your profile.
             </p>
             <p className="btn-row">
               <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
@@ -259,7 +275,7 @@ export default async function IndustryPage({ params }: Props) {
       <Section id="plans">
         <PlanOffer />
         <CostGuides
-          label={`Guides for ${industry.name.toLowerCase()} owners`}
+          label={`Guides for ${tradeOwners}`}
           ariaLabel={`${industry.name} guides`}
           featured={null}
           guides={[
@@ -291,7 +307,7 @@ export default async function IndustryPage({ params }: Props) {
       <CtaBand
         h="Get Your Free Preview"
         mark="Free Preview"
-        sub={`See ${articleFor(industry.name)} ${industry.name.toLowerCase()} homepage before you pay. Free preview, no card, and no obligation.`}
+        sub={`See ${articleFor(industry.slug)} ${tradeName} homepage before you pay. Free preview, no card, and no obligation.`}
         btn="Get My Free Preview"
         href="/contact"
         secondary="See Plans & Pricing"

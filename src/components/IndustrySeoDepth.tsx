@@ -13,6 +13,9 @@ function tradeNoun(industry: Industry) {
   if (industry.slug === "hvac") return "HVAC";
   if (industry.slug === "electrical") return "electrician";
   if (industry.slug === "garage-doors") return "garage door";
+  if (industry.slug === "pool-care") return "pool service";
+  if (industry.slug === "window-cleaning") return "window cleaning";
+  if (industry.slug === "yard-care") return "lawn care";
   if (industry.slug === "pressure-washing") return "pressure washing";
   if (industry.slug === "painting") return "painting";
   if (industry.slug === "remodeling") return "remodeling";
@@ -29,18 +32,21 @@ export default function IndustrySeoDepth({
   const depth = INDUSTRY_SEO_DEPTH[industry.slug];
   if (!depth) return null;
 
-  const links = industryDepthLinks(industry.slug, industry.name, locale === "es");
   const noun = tradeNoun(industry);
   const es = locale === "es";
+  const displayName = es
+    ? industry.slug === "hvac" ? "HVAC" : industry.name.toLocaleLowerCase()
+    : industry.name;
+  const links = industryDepthLinks(industry.slug, displayName, es);
 
   const titles = es
     ? {
-        examples: `Ejemplo de sitio de ${industry.name}`,
-        pages: `Páginas que armamos para un sitio de ${industry.name}`,
-        cost: `Cuánto cuesta un sitio de ${industry.name} con Kinexis`,
+        examples: `Ejemplo de sitio de ${displayName}`,
+        pages: `Páginas que armamos para un sitio de ${displayName}`,
+        cost: `Cuánto cuesta un sitio de ${displayName} con Kinexis`,
         process: "De la vista previa gratis al lanzamiento",
         demo: "Plantilla demo",
-        visit: "Ver sitio",
+        visit: "Ver sitio (en inglés)",
         down: "$0 de entrada, mes a mes, cancela cuando quieras.",
         examplesMark: "Ejemplo",
         examplesEyebrow: "Ejemplo real",
@@ -81,7 +87,7 @@ export default function IndustrySeoDepth({
                   <DeferredImg
                     src={example.image}
                     sizes="(max-width: 860px) 90vw, 420px"
-                    alt={es ? `Vista del sitio de ${industry.name}` : `${example.name} website`}
+                    alt={es ? `Vista del sitio de ${displayName}` : `${example.name} website`}
                     width={example.width}
                     height={example.height}
                     className="industry-seo-depth__img"
@@ -92,11 +98,11 @@ export default function IndustrySeoDepth({
                     {example.name}
                     {example.demo ? <span className="industry-seo-depth__demo"> {titles.demo}</span> : null}
                   </h3>
-                  <p>{es ? `Este ejemplo muestra cómo organizar las páginas de servicio, la navegación y las opciones de contacto para un negocio de ${industry.name.toLowerCase()}.` : example.annotation}</p>
+                  <p>{es ? `Este ejemplo muestra cómo organizar las páginas de servicio, la navegación y las opciones de contacto para un negocio de ${displayName}.` : example.annotation}</p>
                   {example.url.startsWith("http") ? (
                     <a className="text-link" href={example.url} target="_blank" rel="noopener noreferrer">{titles.visit}</a>
                   ) : (
-                    <Link className="text-link" href={es ? `/es${example.url}` : example.url} prefetch={false}>{titles.visit}</Link>
+                    <Link className="text-link" href={example.url} hrefLang={es ? "en" : undefined} prefetch={false}>{titles.visit}</Link>
                   )}
                 </div>
               </article>
@@ -112,7 +118,7 @@ export default function IndustrySeoDepth({
         </div>
         <ul className="industry-seo-depth__list">
           {(es
-            ? ["Inicio", `Servicios de ${industry.name.toLowerCase()}`, "Zona de servicio", "Acerca del negocio", "Reseñas", "Contacto"]
+            ? ["Inicio", `Servicios de ${displayName}`, "Zona de servicio", "Acerca del negocio", "Reseñas", "Contacto"]
             : depth.pagesList
           ).map((page) => (
             <li key={page}>{page}</li>

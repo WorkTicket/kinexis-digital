@@ -132,13 +132,14 @@ export const ES_TEXTBACK_FOOTNOTE_ITEMS = [
   "La aprobación del operador suele tardar 10 a 15 días y no está garantizada.",
 ] as const;
 
-export function spanishCatalogPlansForCompare(tx: (s: string) => string = (s) => s): Pick<CatalogPlan, "slug" | "name" | "priceLabel" | "suffix" | "popular">[] {
+export function spanishCatalogPlansForCompare(tx: (s: string) => string = (s) => s): (Pick<CatalogPlan, "slug" | "name" | "priceLabel" | "suffix" | "popular"> & { sticker?: null })[] {
   return spanishPlans(tx, { currency: "usd" }).map((plan) => ({
     slug: plan.slug as CatalogPlan["slug"],
     name: plan.name,
     priceLabel: plan.price,
     suffix: plan.slug === "own-it" ? "" : " / mes",
     popular: plan.popular,
+    sticker: plan.slug === "own-it" ? null : undefined,
   }));
 }
 

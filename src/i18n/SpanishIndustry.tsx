@@ -68,6 +68,7 @@ export default function SpanishIndustry({
   const features = localizedIndustryFeatures(tx);
   const depth = INDUSTRY_SEO_DEPTH[industry.slug];
   const spainChrome = locale === "es-ES";
+  const industryName = industry.slug === "hvac" ? "HVAC" : industry.name.toLocaleLowerCase();
   const trust = {
     leadLabel: tx("Garantía de 60 días"),
     refundLabel: tx("Devolución en 30 días"),
@@ -85,7 +86,7 @@ export default function SpanishIndustry({
         faqs={[...industry.faqs]}
         serviceType={tx(`Diseño web de ${industry.name}`)}
         inLanguage={lang}
-        audienceType={tx(`Empresas de ${industry.name.toLowerCase()}`)}
+        audienceType={tx(`Empresas de ${industryName}`)}
         exampleItems={depth?.examples
           .filter((example) => !example.demo)
           .map((example) => ({ name: example.name, url: example.url }))}
@@ -112,7 +113,7 @@ export default function SpanishIndustry({
         </aside>
         <div className="section-head">
           <p className="eyebrow">{tx("Trabajos que el sitio debe cubrir")}</p>
-          <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industry.name.toLowerCase()}`)} mark={industry.name} /></h2>
+          <h2 className="center"><HL text={tx(`Las llamadas que reciben negocios de ${industryName}`)} mark={industry.name} /></h2>
           <p className="center muted industry-section-lead">{tx("Estas son las búsquedas y trabajos que el sitio debe dejar claros.")}</p>
         </div>
         <ReviewRail

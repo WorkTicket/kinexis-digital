@@ -16,6 +16,7 @@ const toPosix = (value) => value.split(path.sep).join("/");
 const badReviewRequestAgreement =
   /\b(?:el|un|los|unos)\s+solicitud(?:es)?\b|\bsolicitud\b[^.!?]{0,80}\b(?:va|está|queda|viene)\s+incluido\b|\bsolicitudes\b[^.!?]{0,80}\b(?:van|están|quedan|vienen)\s+incluidos\b/i;
 const legacyReviewWording = /\bpedidos? de reseñas?\b/i;
+const lowercaseSentenceStart = /(?:¿|[.!?]\s)la solicitud|[.!?]\suna solicitud|(?:^|[\r\n])\s*["'`]?la solicitud|>\s*la solicitud/;
 const reviewCopySources = [
   "src/i18n/SpanishSite.tsx",
   "src/i18n/es-pillars.ts",
@@ -24,6 +25,9 @@ const reviewCopySources = [
   "scripts/es-pillars-payload.mjs",
   "scripts/es-pillars-more-payload.mjs",
   "scripts/es-pillars-core/bundled.mjs",
+  "scripts/es-pillars-core/generate-all.mjs",
+  "scripts/es-pillars-core/h2-es.mjs",
+  "scripts/es-pillars-core/leads-es.mjs",
   "scripts/es-pillars-core/local-seo.mjs",
   "scripts/es-pillars-core/prose-blocks.mjs",
 ];
@@ -167,6 +171,9 @@ try {
     const copy = await readFile(path.join(root, file), "utf8");
     if (badReviewRequestAgreement.test(copy) || legacyReviewWording.test(copy)) {
       throw new Error(`Spanish review-request wording error in ${file}`);
+    }
+    if (lowercaseSentenceStart.test(copy)) {
+      throw new Error(`Spanish sentence starts with a lowercase review-request phrase in ${file}`);
     }
   }
   await writeFile(entryFile, entrySource, "utf8");

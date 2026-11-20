@@ -313,7 +313,7 @@ export function industryDepthLinks(slug: string, name: string, es = false) {
               : name.toLowerCase();
   return {
     costHref: industryCostPostPath(slug),
-    costLabel: es ? `Costo de un sitio web de ${name}, explicado` : `${trade} website cost, explained`,
+    costLabel: es ? `Costo de un sitio web de ${name}, explicado` : `${trade[0]?.toUpperCase()}${trade.slice(1)} website cost, explained`,
     pagesHref: industryPagesPostPath(slug),
     pagesLabel: es ? `Lista completa: páginas que necesita un sitio de ${name}` : `Full checklist: pages every ${trade} website needs`,
   };

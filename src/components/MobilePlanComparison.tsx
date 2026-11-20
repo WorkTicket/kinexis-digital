@@ -1,5 +1,5 @@
 type ComparisonSection = { group: string; rows: readonly (readonly string[])[] };
-type ComparisonPlan = { slug: string; name: string; price: string; popular?: boolean; sticker?: { src: string; width: number; height: number; alt: string } };
+type ComparisonPlan = { slug: string; name: string; price: string; popular?: boolean; sticker?: { src: string; width: number; height: number; alt: string } | null };
 
 const PLAN_STICKERS: Record<string, { file: string; width: number; height: number }> = {
   website: { file: "plan-name-website-97.webp", width: 676, height: 349 },
@@ -26,7 +26,7 @@ export default function MobilePlanComparison({ plans, sections, hint, popularLab
           <summary>
             {plan.popular && <span className="mobile-plan-compare__badge"><span aria-hidden="true">★</span>{popularLabel}<span aria-hidden="true">★</span></span>}
             <span className="mobile-plan-compare__title">
-              {hideStickers || !plan.sticker && plan.name === "Own It" ? (
+              {hideStickers || plan.sticker === null ? (
                 <span className="mobile-plan-compare__name">{plan.name}<span className="mobile-plan-compare__price">{plan.price}</span></span>
               ) : (
                 <img

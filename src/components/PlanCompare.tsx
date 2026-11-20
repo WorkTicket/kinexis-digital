@@ -34,7 +34,7 @@ type Labels = {
   pricingCta?: string;
 };
 
-type PlanCol = { slug: string; name: string; priceLabel: string; suffix: string; popular?: boolean };
+type PlanCol = { slug: string; name: string; priceLabel: string; suffix: string; popular?: boolean; sticker?: { src: string; width: number; height: number; alt: string } | null };
 
 /**
  * Four-plan comparison detail — follows PlanOffer; no duplicate “recommended” card.
@@ -62,12 +62,13 @@ export default function PlanCompare({
   hideStickers?: boolean;
 }) {
   const feature = labels.feature ?? "Feature";
-  const cols = plans ?? CATALOG_PLANS.map((plan) => ({
+  const cols: PlanCol[] = plans ?? CATALOG_PLANS.map((plan) => ({
     slug: plan.slug,
     name: plan.name,
     priceLabel: plan.priceLabel,
     suffix: plan.suffix,
     popular: plan.popular,
+    sticker: undefined,
   }));
   const priceRow = comparison.find((s) => /deal|acuerdo/i.test(s.group))?.rows.find((r) => /price|precio/i.test(r[0]));
 
@@ -79,6 +80,7 @@ export default function PlanCompare({
           name: plan.name,
           price: priceRow?.[index + 1] ?? `${plan.priceLabel}${plan.suffix}`,
           popular: plan.popular,
+          sticker: plan.sticker,
         }))}
         sections={comparison}
         hint={labels.mobileHint ?? "Tap a plan to see everything included. Open two to compare."}

@@ -2,21 +2,24 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
-const [css, audit, siteAudit, proof, depth, depthData, artwork, ui, plans, stickers, site, privacy, esPrivacy, pages, footer, form, reviews, esPillars, costEn, pagesEn, costEs, pagesEs, costBuilder, pagesBuilder] = await Promise.all([
+const [css, audit, siteAudit, proof, depth, depthData, artwork, ui, plans, stickers, site, privacy, esPrivacy, pages, footer, form, reviews, esPillars, esPillarsMore, costEn, pagesEn, costEs, pagesEs, costBuilder, pagesBuilder, mobileCompare, planCompare, industryPage, spanishIndustry, mirrorCheck] = await Promise.all([
   "src/app/globals.css", "src/components/IndustryAudit.tsx", "src/components/SiteAudit.tsx",
   "src/components/IndustryProof.tsx", "src/components/IndustrySeoDepth.tsx", "src/data/industry-seo-depth.ts",
   "src/components/CampaignArtwork.tsx", "src/components/ui.tsx", "src/components/PlanOffer.tsx",
   "src/components/SpanishPlanSticker.tsx", "src/i18n/SpanishSite.tsx",
   "src/app/(en)/privacy/page.tsx", "src/i18n/SpanishSite.tsx", "src/lib/pages.ts",
   "src/components/Footer.tsx", "src/components/Form.tsx", "src/components/UnifiedReviewCard.tsx",
-  "src/i18n/es-pillars.ts", "src/data/cost-post-bodies.ts", "src/data/pages-post-bodies.ts",
+  "src/i18n/es-pillars.ts", "src/i18n/es-pillars-more.ts",
+  "src/data/cost-post-bodies.ts", "src/data/pages-post-bodies.ts",
   "src/i18n/es-cost-bodies.ts", "src/i18n/es-pages-bodies.ts",
   "src/data/cost-post-bodies.ts", "src/data/pages-post-bodies.ts",
+  "src/components/MobilePlanComparison.tsx", "src/components/PlanCompare.tsx",
+  "src/app/(en)/industries/[slug]/page.tsx", "src/i18n/SpanishIndustry.tsx",
+  "scripts/check-spanish-mirror.mjs",
 ].map(read));
 
 // M1: blog post grid tracks must be allowed to shrink below long content width.
-assert.match(css, /\.blog-post\s*\{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\)/s);
-assert.match(css, /\.blog-post\s*\{[^}]*min-width:\s*0/s);
+assert.match(css, /\.blog-post>\*\{min-width:0\}/);
 
 // M2: do not request missing 480px portfolio crops in the live proof block.
 assert.doesNotMatch(proof, /imageSrcSet\(site\.image,\s*\[[^\]]*\b480\b/);
@@ -36,19 +39,36 @@ assert.match(proof, /quote && locale === "en"/);
 
 // M5/M9: Spanish depth data is localized; English template nouns are grammatical.
 assert.match(depth, /industryCostRows\(es\)/);
-assert.match(depth, /industryDepthLinks\(industry\.slug,\s*industry\.name,\s*locale === "es"\)/);
+assert.match(depth, /industryDepthLinks\(industry\.slug,\s*displayName,\s*es\)/);
 assert.match(depth, /`\/es\$\{links\.(?:pages|cost)Href\}`/);
 assert.match(depthData, /Plus \(Bilingüe\)/);
 assert.match(depthData, /Full checklist: pages every \$\{trade\} website needs/);
+assert.match(depthData, /\$\{trade\[0\]\?\.toUpperCase\(\)\}/);
 assert.doesNotMatch(depthData, /what pages a \$\{name\.toLowerCase\(\)\}/);
+assert.match(depth, /href=\{example\.url\} hrefLang=\{es \? "en" : undefined\}/);
+assert.match(depth, /visit: "Ver sitio \(en inglés\)"/);
 
 // M6/NEW-4: Spanish page art avoids English overlays and Spanish offers replace English stickers.
-assert.match(artwork, /campaign-page-art--text-free/);
-assert.match(ui, /campaign-page-art--text-free/);
+assert.match(artwork, /const suffix = locale === "en" \? "" : "-es"/);
+assert.doesNotMatch(artwork, /campaign-page-art--text-free/);
+assert.match(ui, /process: "web-design"/);
+assert.match(ui, /maintenance: "upgrades"/);
+assert.match(ui, /faqs: "contact"/);
+assert.match(site, /MediaSplit image="process" locale=\{locale\}/);
 assert.match(site, /SPANISH_PLAN_STICKERS\.website\.offer/);
-assert.match(plans, /stickers\[plan\.slug\] \?/);
+assert.match(plans, /stickers\?\.\[plan\.slug\]/);
+assert.match(plans, /className="offer__price"/);
+assert.match(site, /className="plan__price"><strong>\$1,497<\/strong>/);
+assert.match(mobileCompare, /hideStickers \|\| plan\.sticker === null/);
+assert.match(mobileCompare, /mobile-plan-compare__name/);
+assert.match(mobileCompare, /mobile-plan-compare__price/);
+assert.match(planCompare, /sticker: plan\.sticker/);
+assert.match(site, /sticker: plan\.slug === "own-it" \? null : undefined/);
 assert.doesNotMatch(stickers, /planes-(?:sitio-web|sistema-clientes|hazlo-tuyo)/);
 assert.doesNotMatch(site, /SPANISH_PLAN_STICKERS\[plan\.slug\]\.name/);
+assert.match(industryPage, /industryOwners\(industry\)/);
+assert.match(industryPage, /industryNoun\(industry\)/);
+assert.match(spanishIndustry, /industry\.slug === "hvac" \? "HVAC"/);
 
 // M7: content grids and narrow buttons may wrap without increasing viewport width.
 assert.match(css, /\.grid--2\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)\}/);
@@ -57,6 +77,8 @@ assert.match(css, /@media\s*\(max-width:\s*520px\)[\s\S]*?\.btn\{[^}]*white-spac
 
 // M8: catch known lower-case sentence starts in the Spanish guide source.
 assert.doesNotMatch(esPillars, /\. una solicitud|<p>la solicitud/);
+assert.doesNotMatch(esPillarsMore, /¿la solicitud/);
+assert.match(mirrorCheck, /lowercaseSentenceStart/);
 
 // S15/NEW-5/S17: hidden routes are unlinked from posts; privacy copy/date and localized pay path stay accurate.
 for (const source of [costEn, pagesEn, costEs, pagesEs]) {

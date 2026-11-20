@@ -494,7 +494,7 @@ function WebDesign({ locale, tx, href, lang, band }: PageBits & { locale: Locale
         </div>
       </Section>
       <Section>
-        <MediaSplit image="process" alt={tx("Vista previa del proceso de diseño para un sitio de servicios")}>
+        <MediaSplit image="process" locale={locale} alt={tx("Vista previa del proceso de diseño para un sitio de servicios")}>
           <h2><HL text={tx("Revisa el inicio primero")} mark={tx("primero")} /></h2>
           <p>{tx("Preparamos un concepto de inicio para tu negocio para que juzgues el diseño, el texto y la llamada a la acción antes de pagar.")}</p>
           <p>{spainChrome
@@ -630,6 +630,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
                 <h2 className="plan-title">{plan.name}</h2>
                 <p className="plan__tagline">{plan.tagline}</p>
                 {!spainChrome && plan.slug !== "own-it" && <SpanishPlanSticker slug={plan.slug} />}
+                {!spainChrome && plan.slug === "own-it" && <p className="plan__price"><strong>$1,497</strong> <small>un solo pago</small></p>}
                 <p className="plan__note">{plan.note}</p>
                 {plan.guarantee && <p className="plan__guarantee">{tx("Incluye la garantía de 60 días")}</p>}
                 <p className="plan__guarantee plan__guarantee--refund">{tx("Garantía de devolución en 30 días")}</p>
@@ -727,7 +728,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
       <Section tint>
         <h2 className="center"><HL text={tx("Mira qué cubre cada plan")} mark={tx("cada plan")} /></h2>
         <MobilePlanComparison
-          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1] }))}
+          plans={plans.map((plan, index) => ({ ...plan, price: table[2].rows[5][index + 1], sticker: plan.slug === "own-it" ? null : undefined }))}
           sections={table}
           hint={tx("Toca un plan para ver qué incluye. Abre dos para comparar.")}
           popularLabel={tx("El más elegido")}
@@ -1264,9 +1265,9 @@ function Terms({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
         <h2>{tx("4. Textos y el operador")}</h2>
         <p>{tx(`Las solicitudes de reseña en Google se envían por mensaje de texto después de los trabajos en Lead System y Plus. El mensaje opcional para llamadas perdidas es una función aparte y requiere una línea dedicada de la empresa. En Lead System o Plus, un segundo número de seguimiento cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más las tarifas del operador. En Website u Own It, se puede agregar por ${p("textBackAddonMo", currency)} al mes. El envío de mensajes de texto de ambas funciones depende de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.`)}</p>
         <h2>{tx("5. Garantía de 60 días")}</h2>
-        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al mensaje tras una llamada perdida, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
+        <p>{tx("Solo Lead System y Plus. Si tienes cero leads rastreados durante tus primeros 60 días en vivo, condonamos el tercer y cuarto cargo mensual. Se aplica una vez por negocio y la cuenta debe estar al corriente. Un lead rastreado es una llamada de 30 segundos o más, una persona que responde al texto si no contestas, o un formulario real de cotización. No cuentan el spam, los números equivocados, las solicitudes de empleo, los proveedores ni los clientes actuales. La garantía no aplica si un cambio que haces impide el seguimiento, o si pausas o cancelas el plan antes del día 60. Own It no incluye esta garantía.")}</p>
         <h2>{tx("6. Own It")}</h2>
-        <p>{tx(`Own It es un pago de ${p("ownIt", currency)}, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es ${p("siteCareMo", currency)} al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. En Own It, el mensaje tras una llamada perdida se puede agregar por ${p("textBackAddonMo", currency)} al mes. En Lead System o Plus, un segundo número cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más tarifas del operador.`)}</p>
+        <p>{tx(`Own It es un pago de ${p("ownIt", currency)}, al aprobar la vista previa. No hay plan mensual. Los archivos son tuyos desde el lanzamiento. Hosting y SSL van 12 meses, el dominio el primer año, y los cambios chicos 12 meses hasta 30 minutos al mes. El tiempo no usado no se acumula. Después, el cuidado opcional es ${p("siteCareMo", currency)} al mes. Las renovaciones de dominio se cobran al costo. Las páginas nuevas se cotizan por escrito. En Own It, el texto si no contestas se puede agregar por ${p("textBackAddonMo", currency)} al mes. En Lead System o Plus, un segundo número cuesta ${p("secondNumberMo", currency)} al mes si lo usas, más tarifas del operador.`)}</p>
         <h2>{tx("7. Cancelación y acceso")}</h2>
         <p>{tx("Cancela un plan mensual cuando quieras por texto, correo o Messenger. No hay cargo por cancelar. El cobro se detiene al final del período que ya pagaste y el sitio sigue en línea hasta entonces.")}</p>
         <p>{tx("Como en los planes mensuales Kinexis hospeda y administra el sitio, cuando termina el período pagado el hosting y la administración se detienen y el sitio sale de línea, salvo que lo conserves de otra forma.")}</p>
