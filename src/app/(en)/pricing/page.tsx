@@ -80,7 +80,7 @@ export default function Page() {
 
         <div className="plans">
           {PLANS.map((plan) => (
-            <article id={plan.slug === "lead-system" ? "lead-system" : undefined} className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
+            <article id={plan.slug} className={`plan${plan.popular ? " plan--pop" : ""}`} key={plan.slug}>
               {plan.popular && <span className="plan__badge">Most Popular</span>}
               <div className="plan__intro">
                 <h2 className="plan-title">{plan.name}</h2>

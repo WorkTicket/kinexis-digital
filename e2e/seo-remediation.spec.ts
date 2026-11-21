@@ -46,6 +46,77 @@ async function fillLeadForm(page: Page) {
 }
 
 test.describe("KX-SEO-002 Release 1", () => {
+  test("English homepage-preview plan links land on their matching pricing cards", async ({ page, baseURL }) => {
+    test.setTimeout(120_000);
+    await enableMockLeadTracking(page, baseURL);
+    const slugs = ["website", "lead-system", "plus", "own-it"];
+    const headings: Record<string, RegExp> = {
+      website: /^Website$/,
+      "lead-system": /^Lead System$/,
+      plus: /^Plus/,
+      "own-it": /^Own It$/,
+    };
+    const viewports = [
+      { width: 390, height: 844 },
+      { width: 1280, height: 900 },
+    ];
+
+    async function expectPlanClearOfHeader(slug: string) {
+      const plan = page.locator(`.plans > article#${slug}`);
+      await expect(plan).toHaveCount(1);
+      await expect(plan.locator(".plan-title")).toHaveText(headings[slug]);
+      await expect(plan.locator(".plan-title")).toBeVisible();
+      await expect.poll(() => plan.evaluate((element) => element.getBoundingClientRect().top))
+        .toBeLessThan(await page.evaluate(() => window.innerHeight));
+      await expect.poll(() => page.evaluate((id) => {
+        const target = document.getElementById(id);
+        const header = document.querySelector(".header");
+        if (!target || !header) return Number.NEGATIVE_INFINITY;
+        return target.getBoundingClientRect().top - header.getBoundingClientRect().bottom;
+      }, slug)).toBeGreaterThanOrEqual(8);
+      await expect(plan.locator(".plan__cta")).toHaveAttribute("href", `/contact?plan=${slug}`);
+    }
+
+    for (const viewport of viewports) {
+      await page.setViewportSize(viewport);
+      for (const slug of slugs) {
+        await page.goto("/lp/get-a-website");
+        const link = page.locator(`.lp-plans a[href="/pricing#${slug}"]`);
+        await expect(link).toHaveCount(1);
+        if (slug === "website" && viewport.width === 390) {
+          await page.evaluate(() => {
+            if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+          });
+          for (let tab = 0; tab < 60; tab += 1) {
+            await page.keyboard.press("Tab");
+            if (await link.evaluate((element) => element === document.activeElement)) break;
+          }
+          await expect(link).toBeFocused();
+          expect(await link.evaluate((element) => element.matches(":focus-visible"))).toBe(true);
+          expect(await link.evaluate((element) => getComputedStyle(element).outlineStyle)).not.toBe("none");
+          await page.keyboard.press("Enter");
+        } else {
+          await link.click();
+        }
+        await expect(page).toHaveURL(new RegExp(`/pricing#${slug}$`));
+        await expectPlanClearOfHeader(slug);
+
+        if (slug === "website" && viewport.width === 390) {
+          await page.goBack();
+          await expect(page).toHaveURL(/\/lp\/get-a-website$/);
+          await page.goForward();
+          await expect(page).toHaveURL(/\/pricing#website$/);
+          await expectPlanClearOfHeader(slug);
+        }
+
+        await page.goto("/lp/get-a-website");
+        await page.goto(`/pricing#${slug}`);
+        await expect(page).toHaveURL(new RegExp(`/pricing#${slug}$`));
+        await expectPlanClearOfHeader(slug);
+      }
+    }
+  });
+
   test("Spanish pricing plan links preserve locale and resolve to one visible target", async ({ page }) => {
     for (const route of ["/es", "/es/industries/plumbing", "/es/industries/landscaping"]) {
       await page.goto(route);
