@@ -854,6 +854,7 @@ test.describe("marketing journeys", () => {
 
       await expect(page.getByRole("heading", { name: "The challenge" })).toBeVisible();
       await expect(page.getByRole("heading", { name: "Designed around the customer" })).toBeVisible();
+      await expect(page.locator(".case-study__section-heading .eyebrow").filter({ hasText: /^\d{2}\s*\/|^0[1-4]$/ })).toHaveCount(0);
       const overview = page.locator(".case-study__overview img");
       await expect(overview).toHaveAttribute("src", new RegExp(`/case-studies/${study.asset}/overview-1200w\\.webp\\?v=1$`));
       await expect(overview).toHaveAttribute("srcset", new RegExp(`/case-studies/${study.asset}/overview-640w\\.webp\\?v=1 640w.*overview-2160w\\.webp\\?v=1 2160w`));

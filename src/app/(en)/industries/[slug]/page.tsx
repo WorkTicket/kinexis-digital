@@ -164,9 +164,8 @@ export default async function IndustryPage({ params }: Props) {
         />
         <p className="center muted industry-problems-label">{industry.problemsTitle}</p>
         <div className="industry-problems">
-          {industry.problems.map((point, index) => (
+          {industry.problems.map((point) => (
             <article className="industry-problems__item" key={point.title}>
-              <span className="industry-problems__index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               <div className="industry-problems__icon" aria-hidden="true">
                 <Icon name={point.icon} alt="" size={72} className="icon--bare" />
               </div>

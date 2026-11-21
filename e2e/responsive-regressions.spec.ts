@@ -160,28 +160,33 @@ test.describe("narrow viewport regressions", () => {
     await expect(page.locator(".own-path-cards h4.own-path-card__title")).toHaveCount(0);
   });
 
-  test("HVAC service and problem icons use matching frames and sizes", async ({ page }) => {
+  test("industry service and problem icons are centered and unboxed", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/industries/hvac");
 
-    const services = page.locator(".industry-page .review-rail").first().locator(".review-rail__icon");
+    const services = page.locator(".industry-page .review-rail__icon");
     const problems = page.locator(".industry-problems__icon");
-    await expect(services).toHaveCount(3);
+    await expect(services).toHaveCount(6);
     await expect(problems).toHaveCount(3);
+    await expect(page.locator(".industry-problems__index")).toHaveCount(0);
     for (const icons of [services, problems]) {
-      const boxes = await icons.evaluateAll((elements) =>
+      const styles = await icons.evaluateAll((elements) =>
         elements.map((element) => {
-          const rect = element.getBoundingClientRect();
           const style = getComputedStyle(element);
-          return { width: rect.width, height: rect.height, background: style.backgroundColor, radius: style.borderRadius };
+          return { background: style.backgroundColor, border: style.borderWidth };
         }),
       );
-      for (const box of boxes) {
-        expect(box.width).toBe(72);
-        expect(box.height).toBe(72);
-        expect(box.background).not.toBe("rgba(0, 0, 0, 0)");
-        expect(box.radius).toBe("16px");
+      for (const style of styles) {
+        expect(style.background).toBe("rgba(0, 0, 0, 0)");
+        expect(style.border).toBe("0px");
       }
+    }
+    for (const headings of [
+      page.locator(".industry-page .review-rail__step h3"),
+      page.locator(".industry-problems__item h3"),
+    ]) {
+      const alignments = await headings.evaluateAll((elements) => elements.map((element) => getComputedStyle(element).textAlign));
+      expect(new Set(alignments)).toEqual(new Set(["center"]));
     }
     for (const glyphs of [
       page.locator(".industry-page .review-rail__icon img.icon"),

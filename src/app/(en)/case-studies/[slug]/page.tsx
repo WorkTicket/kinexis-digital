@@ -96,7 +96,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <section className="case-study__section" aria-labelledby="case-study-challenge">
             <div className="case-study__section-heading">
-              <p className="eyebrow">01 / The brief</p>
+              <p className="eyebrow">The brief</p>
               <h2 id="case-study-challenge"><HL text="The challenge" mark="challenge" /></h2>
             </div>
             <div className="case-study__section-copy"><p>{study.problem}</p></div>
@@ -104,7 +104,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <section className="case-study__section" aria-labelledby="case-study-approach">
             <div className="case-study__section-heading">
-              <p className="eyebrow">02 / The approach</p>
+              <p className="eyebrow">The approach</p>
               <h2 id="case-study-approach"><HL text="Designed around the customer" mark="customer" /></h2>
             </div>
             <div className="case-study__section-copy">
@@ -117,7 +117,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <section className="case-study__section" aria-labelledby="case-study-delivered">
             <div className="case-study__section-heading">
-              <p className="eyebrow">03 / The delivery</p>
+              <p className="eyebrow">The delivery</p>
               <h2 id="case-study-delivered"><HL text="A polished, practical website" mark="practical" /></h2>
             </div>
             <div className="case-study__section-copy">
