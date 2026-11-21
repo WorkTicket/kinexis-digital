@@ -131,8 +131,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
           <div className="case-study__closing">
             <p>Want a website designed around your business?</p>
-            <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
-            <Link className="case-study__back" href="/portfolio" prefetch={false}>Back to all projects</Link>
+            <div className="case-study__closing-actions">
+              <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
+              <Link className="case-study__back" href="/portfolio" prefetch={false}>Back to all projects</Link>
+            </div>
           </div>
         </article>
       </Section>

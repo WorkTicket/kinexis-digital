@@ -1155,6 +1155,49 @@ html.lp-route body{--announce-h:0px}
 .home-page .section--lead h2,
 .home-page .section--lead h2 .hl-emphasis{color:#fff}
 .card h3{color:var(--text);font-weight:600!important;text-wrap:balance}
+.home-case-studies__heading{margin-bottom:clamp(24px,3vw,36px)}
+.home-case-studies__heading .eyebrow{margin:0 0 8px}
+.home-case-studies__heading h2{max-width:760px;margin:0;text-align:left;font-weight:700}
+.home-case-studies__heading .muted{max-width:660px;margin:12px 0 0;line-height:1.55}
+.home-case-studies{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(18px,2.5vw,32px)}
+.home-case-study{
+  min-width:0;overflow:hidden;border:1px solid var(--border);border-radius:18px;
+  background:#fff;box-shadow:var(--shadow);padding:clamp(12px,1.6vw,20px);
+}
+.home-case-study__images{
+  display:grid;place-items:center;min-width:0;overflow:hidden;
+  border-radius:12px;background:radial-gradient(ellipse at 50% 68%,#dce5fa 0%,#edf2fc 50%,#f7f9ff 100%);
+}
+.home-case-study__mockup{
+  display:block;width:100%;height:auto;aspect-ratio:1200/821;object-fit:contain;
+  filter:drop-shadow(0 7px 9px rgba(3,27,78,.12));
+  transition:transform .25s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  .home-case-study:hover .home-case-study__mockup{transform:translateY(-3px)}
+}
+.home-case-study__copy{padding:18px 3px 2px}
+.home-case-study__trade{
+  margin:0 0 5px;color:var(--accent);font-size:.78rem;font-weight:700;letter-spacing:.035em;
+}
+.home-case-study__copy h3{
+  margin:0;color:var(--text);font-family:var(--font-head);font-size:clamp(1.15rem,1.6vw,1.45rem);
+  font-weight:650;line-height:1.2;letter-spacing:-.02em;text-wrap:balance;
+}
+.home-case-study__detail{margin:8px 0 13px;color:var(--muted);font-size:.94rem;line-height:1.5}
+.home-case-study__link,.home-case-studies__footer a{
+  color:var(--accent-dark);font-weight:700;text-decoration:underline;text-underline-offset:4px;
+}
+.home-case-study__link:focus-visible,.home-case-studies__footer a:focus-visible{
+  outline:3px solid var(--accent);outline-offset:4px;border-radius:2px;
+}
+.home-case-studies__footer{margin:28px 0 0;text-align:center}
+.home-case-studies__footer a{font-size:1.02rem}
+@media(max-width:640px){
+  .home-case-studies{grid-template-columns:1fr;gap:18px}
+  .home-case-study{padding:12px}
+  .home-case-study__copy{padding-top:14px}
+}
 /* Each promise is exactly two lines — check sits centered on the whole block. */
 .hero.hero--fit .ticks{display:grid;gap:clamp(12px,1.35svh,18px);margin:0 0 clamp(14px,1.8svh,24px)}
 .hero.hero--fit .ticks li{
@@ -1310,7 +1353,7 @@ html.lp-route body{--announce-h:0px}
 .reason-sheet__mark img.icon{width:96px;height:96px;margin:0;display:block}
 .reason-sheet__copy{display:flex;flex-direction:column;justify-content:center;min-width:0;text-align:left}
 .reason-sheet__copy h3{
-  margin:0 0 6px;font-size:1.28rem;font-weight:700;line-height:1.15;
+  margin:0 0 6px;font-size:1.28rem;font-weight:650;line-height:1.15;
   letter-spacing:-.02em;text-wrap:balance;
 }
 .reason-sheet__copy p{margin:0;max-width:38ch;color:var(--copy);font-size:1.02rem;line-height:1.5;text-wrap:pretty}
@@ -1503,10 +1546,15 @@ html.lp-route body{--announce-h:0px}
 .case-study__deliverables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
 .case-study__deliverables li{display:flex;align-items:flex-start;gap:10px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg-tint);font-weight:700;line-height:1.5}
 .case-study__deliverables li span{color:var(--ok);font-size:1.1rem}
-.case-study__closing{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:42px;padding:26px;border-radius:16px;background:var(--brand-navy);box-shadow:var(--shadow-sticker)}
-.case-study__closing>p{flex:1 1 100%;margin:0;color:#fff;font-size:1.25rem;font-weight:800}
-.case-study__closing .btn{color:var(--text)}
-.case-study__back{color:#fff;font-weight:700;text-underline-offset:3px}
+.case-study__closing{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px 24px;
+  margin-top:24px;padding:18px 22px;border:1px solid #dbe4f5;border-left:5px solid var(--accent);
+  border-radius:12px;background:var(--bg-tint);
+}
+.case-study__closing>p{margin:0;color:var(--brand-navy);font-size:1.12rem;font-weight:700;line-height:1.35}
+.case-study__closing-actions{display:flex;align-items:center;flex-wrap:wrap;gap:16px}
+.case-study__closing .btn{color:#fff}
+.case-study__back{color:var(--accent-dark);font-weight:700;text-underline-offset:3px;white-space:nowrap}
 @media(max-width:800px){
   .case-study__hero{grid-template-columns:1fr;gap:28px;padding-bottom:38px}
   .case-study__overview{max-width:600px}
@@ -1516,7 +1564,8 @@ html.lp-route body{--announce-h:0px}
   .case-study__breadcrumb{margin-bottom:22px}
   .case-study__facts{grid-template-columns:1fr 1fr;row-gap:16px}
   .case-study__deliverables{grid-template-columns:1fr}
-  .case-study__closing{align-items:flex-start;flex-direction:column}
+  .case-study__closing{align-items:flex-start;flex-direction:column;gap:12px;padding:16px}
+  .case-study__closing-actions{width:100%;align-items:flex-start;flex-direction:column;gap:14px}
 }
 .live-site-wrap{display:grid;gap:8px}
 .live-site__case{display:inline-block;font-size:.9rem}
@@ -2635,6 +2684,14 @@ html.no-audit [data-site-audit]{display:none!important}
   background-repeat:no-repeat;
 }
 .hl-emphasis{font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit}
+/* Heading levels carry the hierarchy; marked words inside them are not a second
+   display style. Hero payoff phrases use cobalt without the marker stroke. */
+:is(h2,h3) .hl-emphasis{font-family:inherit;font-size:inherit;font-weight:inherit!important;color:inherit!important}
+.hero h1 .hl,.page-hero h1 .hl{
+  margin:0;padding:0;border-radius:0;color:var(--accent);font-weight:inherit;
+  background-image:none!important;background-size:auto!important;background-position:initial;
+  -webkit-box-decoration-break:slice;box-decoration-break:slice;
+}
 /* Keep highlights visible without JS. Only offscreen marks opt into the wipe. */
 @media (scripting:enabled){
   .hl.is-pending{
@@ -3116,7 +3173,7 @@ body.is-leaving{opacity:0;transition:opacity .2s ease}
 /* Portfolio work cards (trade label under shot, 180sites-style) */
 .work-card{display:flex;flex-direction:column;gap:14px;min-width:0}
 .work-card__meta{display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:4px 2px 2px;position:relative;z-index:1}
-.work-card__meta h3{margin:0;font-family:var(--font-head);font-size:1.15rem;font-weight:700;line-height:1.25;letter-spacing:-.015em;color:var(--text)}
+.work-card__meta h3{margin:0;font-family:var(--font-head);font-size:1.15rem;font-weight:650;line-height:1.25;letter-spacing:-.015em;color:var(--text);text-wrap:balance}
 .work-card__meta .btn{margin-top:2px}
 /* LH target-size: `.btn--sm{min-height:0}` can leave ~18px after neighbor overlap.
    Keep the painted face; expand the hit box with an absolute layer (no layout shift). */
@@ -4668,6 +4725,8 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   .industry-audit{padding:56px 0}
   .industry-audit__top{grid-template-columns:1fr;grid-template-areas:"copy" "art" "cta";justify-items:center;text-align:center}
   .industry-audit__copy p{margin-inline:auto}
+  .industry-audit__art{width:min(100%,460px);aspect-ratio:4/5;margin-inline:auto}
+  .industry-audit__img{width:100%;max-width:none;height:100%;aspect-ratio:4/5;object-fit:contain}
 }
 @media (max-width:560px){
   .feature-grid,.industry-audit__checks{grid-template-columns:1fr}
@@ -4837,7 +4896,7 @@ p,li,blockquote{ text-wrap:pretty }
   padding:clamp(24px,3vw,36px);border-radius:18px;background:#fff;
   border:2px solid var(--brand-navy);box-shadow:4px 4px 0 var(--brand-navy);
 }
-.stepper .panel h3{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.4em}
+.stepper .panel h3{font-size:1.35rem;font-weight:650;letter-spacing:-.02em;margin-bottom:.4em;text-wrap:balance}
 .stepper .panel p{max-width:48ch;margin:0;color:var(--copy);line-height:1.65}
 
 /* Closing copy becomes a deliberate next step instead of a long linked sentence. */

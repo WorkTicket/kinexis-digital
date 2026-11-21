@@ -83,16 +83,69 @@ test.describe("marketing journeys", () => {
     }
   });
 
+  test("homepage case-study showcase leads with Preferred Plumbing and A1", async ({ page, isMobile }) => {
+    for (const [path, expectedHeading] of [
+      ["/", "Websites We’ve Built for Contractors"],
+      ["/es", "Sitios web que hemos creado para contratistas"],
+    ]) {
+      await page.goto(path);
+      const showcase = page.locator(".home-case-studies");
+      await expect(page.getByRole("heading", { name: expectedHeading })).toBeVisible();
+      await expect(showcase.locator(".home-case-study h3")).toHaveText([
+        "Preferred Plumbing Solutions",
+        "A1 Property Services",
+      ]);
+      await expect(showcase.getByRole("link", { name: /case study|caso de estudio/i })).toHaveCount(2);
+      await expect(showcase.locator(".home-case-study__mockup")).toHaveCount(2);
+      await expect(showcase.locator(".home-case-study__mockup").first()).toHaveAttribute("src", /homepage-preferred-plumbing-devices-hd-1200w/);
+      await expect(showcase.locator(".home-case-study__mockup").nth(1)).toHaveAttribute("src", /homepage-a1-property-services-devices-hd-1200w/);
+      await expect(page.locator(".home-case-studies__footer a")).toHaveCount(1);
+      const columns = await showcase.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(" ").length);
+      expect(columns).toBe(isMobile ? 1 : 2);
+    }
+
+    await page.goto("/portfolio");
+    const headings = page.locator("main h2");
+    await expect(headings.filter({ hasText: "Client Websites" })).toHaveCount(1);
+    await expect(headings.filter({ hasText: "Design Concepts by Trade" })).toHaveCount(1);
+    await expect(page.locator(".portfolio--live .live-site__name").first()).toHaveText("Preferred Plumbing Solutions");
+  });
+
+  test("case-study closing CTA is compact and contrasts with its button", async ({ page }) => {
+    await page.goto("/case-studies/preferred-plumbing");
+    const closing = page.locator(".case-study__closing");
+    await expect(closing.getByText("Want a website designed around your business?")).toBeVisible();
+    await expect(closing.getByRole("link", { name: "Get My Free Preview" })).toBeVisible();
+    await expect(closing.getByRole("link", { name: "Back to all projects" })).toBeVisible();
+    const [panelColor, buttonColor] = await closing.evaluate((element) => [
+      getComputedStyle(element).backgroundColor,
+      getComputedStyle(element.querySelector(".btn")!).backgroundColor,
+    ]);
+    expect(panelColor).not.toBe(buttonColor);
+  });
+
   test("homepage heading hierarchy is typographic and mobile text wraps without overflow", async ({ page }, testInfo) => {
     await installMockAnalytics(page);
-    for (const path of ["/contact", "/pricing"]) {
+    for (const path of ["/contact", "/pricing", "/es/contact"]) {
       await page.goto(path);
       await waitForBoot(page);
       const marker = page.locator("main h1 .hl").first();
       await expect(marker).toBeVisible();
-      await expect.poll(() => marker.evaluate((el) => getComputedStyle(el).backgroundSize))
-        .not.toMatch(/^0(px|%)/);
+      await expect(marker).toHaveCSS("color", "rgb(11, 61, 255)");
+      await expect(marker).toHaveCSS("background-image", "none");
+      await expect(marker).toHaveCSS("font-weight", "800");
       await expect(page.locator("main h2 .hl")).toHaveCount(0);
+      for (const heading of await page.locator("main h2:not(.card-title):not(.plan-title)").all()) {
+        await expect(heading).toHaveCSS("font-weight", "700");
+        for (const emphasis of await heading.locator(".hl-emphasis").all()) {
+          await expect(emphasis).toHaveCSS("font-weight", "700");
+          const [emphasisColor, headingColor] = await emphasis.evaluate((element) => [
+            getComputedStyle(element).color,
+            getComputedStyle(element.parentElement!).color,
+          ]);
+          expect(emphasisColor).toBe(headingColor);
+        }
+      }
       const onlyHeadingMarkersAnimate = await page.locator(".hl.is-pending, .hl.is-marked").evaluateAll((nodes) =>
         nodes.every((node) => Boolean(node.closest("h1, h2"))),
       );
@@ -223,10 +276,11 @@ test.describe("marketing journeys", () => {
     }
   });
 
-  test("Spanish campaign artwork and social previews use localized image variants", async ({ page }) => {
+  test("Spanish campaign artwork and pricing social preview use localized assets", async ({ page }) => {
     await page.goto("/es");
     await expect(page.locator('picture.campaign-page-art source[type="image/avif"]')).toHaveAttribute("srcset", /homepage-hero-desktop-es\.avif/);
-    await expect(page.locator('picture.home-section-art--showcase source[type="image/avif"]')).toHaveAttribute("srcset", /homepage-website-showcase-1200w-es\.avif/);
+    await expect(page.locator(".home-case-study__mockup")).toHaveCount(2);
+    await expect(page.locator(".home-case-study__copy h3")).toHaveText(["Preferred Plumbing Solutions", "A1 Property Services"]);
 
     await page.goto("/es/pricing");
     await expect(page.locator('picture.campaign-page-art source[type="image/avif"]')).toHaveAttribute("srcset", /pricing-desktop-es\.avif/);
@@ -944,7 +998,7 @@ test.describe("marketing journeys", () => {
     expect(res?.ok()).toBeTruthy();
     const cards = page.locator(".portfolio--live .live-site");
     await expect(cards).toHaveCount(3);
-    for (const [index, asset] of ["bynmwcreative", "preferred-plumbing", "a1-property-services"].entries()) {
+    for (const [index, asset] of ["preferred-plumbing", "a1-property-services", "bynmwcreative"].entries()) {
       const image = cards.nth(index).locator(".shot__img");
       await expect(image).toHaveAttribute("srcset", new RegExp(`/case-studies/${asset}/screenshots/after-hero-640w\\.webp\\?v=1 640w.*after-hero-1322w\\.webp\\?v=1 1322w`));
       await expect(image).toHaveAttribute("width", "1322");

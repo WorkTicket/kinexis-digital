@@ -12,7 +12,8 @@ import PreviewBar from "@/components/PreviewBar";
 import ReviewsSection from "@/components/ReviewsSection";
 import TrustStrip from "@/components/TrustStrip";
 import PlanCompare from "@/components/PlanCompare";
-import { Faq, HL, IconCard, MediaSplit, Section, Shots } from "@/components/ui";
+import { HomeCaseStudyShowcase } from "@/components/HomeCaseStudyShowcase";
+import { Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 
@@ -96,20 +97,16 @@ export default async function Home() {
       </Section>
 
       {/* 4. Portfolio */}
-      <Section>
-        <MediaSplit
-          art={<HomeSectionArtwork name="homepage-website-showcase" alt="Website design previews for local service businesses" className="home-section-art--showcase" />}
-          reverse
-        >
-          <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
-          <p className="muted">Pick a design that fits the work you do. We’ll customize it for your business, services, and service area. Hold to preview, then open the full site.</p>
-        </MediaSplit>
-        <div className="portfolio portfolio--home"><Shots n={8} mode="link" /></div>
-        <p className="center muted">Design concepts above. Live client websites and case studies are separate.</p>
-        <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
+      <Section tint>
+        <div className="home-case-studies__heading">
+          <p className="eyebrow">Selected Work</p>
+          <h2>Websites We’ve Built for Contractors</h2>
+          <p className="muted">Explore two live client websites created for local service businesses.</p>
+        </div>
+        <HomeCaseStudyShowcase />
+        <p className="home-case-studies__footer">
+          <Link href="/portfolio" prefetch={false}>View Full Portfolio <span aria-hidden="true">→</span></Link>
         </p>
-        <p className="center"><Link href="/case-studies/preferred-plumbing" prefetch={false}>See the Preferred Plumbing case study</Link>{" · "}<Link href="/portfolio" prefetch={false}>Browse live sites and portfolio</Link></p>
       </Section>
 
       {/* 5. Trades — qualification before differentiation and pricing */}

@@ -112,6 +112,16 @@ test("M3: Spanish audit module selects Spanish art", async ({ page }) => {
   await page.goto("/es/industries/plumbing");
   const source = page.locator(".industry-audit picture source[type='image/avif']");
   await expect(source).toHaveAttribute("srcset", /website-audit-desktop-es\.avif/);
+  const mobileLayout = await page.locator(".industry-audit__art").evaluate((art) => ({
+    viewport: window.innerWidth,
+    artWidth: art.getBoundingClientRect().width,
+    artHeight: art.getBoundingClientRect().height,
+    imageHeight: art.querySelector("img")!.getBoundingClientRect().height,
+  }));
+  if (mobileLayout.viewport <= 860) {
+    expect(mobileLayout.artWidth).toBeGreaterThan(300);
+    expect(Math.abs(mobileLayout.imageHeight - mobileLayout.artHeight)).toBeLessThan(2);
+  }
 });
 
 test("M4: Spanish industry proof uses Spanish copy", async ({ page }) => {

@@ -114,8 +114,8 @@ export default function Page() {
 
         <div className="showcase__head showcase__head--follow">
           <div>
-            <p className="eyebrow">Template sites</p>
-            <h2><HL text="Websites Made for Your Business" mark="Your Business" /></h2>
+            <p className="eyebrow">Design Concepts</p>
+            <h2>Design Concepts by Trade</h2>
             <p className="muted">Choose a design direction you like. We’ll tailor the pages, wording, and next steps to your services and service area.</p>
           </div>
           <Link className="trust-mark" href="/contact" prefetch={false}>Ask us about a design</Link>

@@ -15,8 +15,10 @@ test.describe("narrow viewport regressions", () => {
     await expect(buttons).toHaveCount(1);
     await expect(buttons.first()).toHaveClass(/btn--primary/);
     await expect(buttons.first()).toHaveAttribute("href", "/es/contact");
-    await expect(page.getByRole("link", { name: "Ver un sitio de cliente publicado" })).not.toHaveClass(/btn/);
-    await expect(page.getByRole("link", { name: "Ver Lead System" })).not.toHaveClass(/btn/);
+    const portfolioLink = page.locator(".home-case-studies__footer a");
+    await expect(portfolioLink).toHaveText(/Ver el portafolio completo/);
+    await expect(portfolioLink).toHaveAttribute("href", "/es/portfolio");
+    await expect(portfolioLink).not.toHaveClass(/btn/);
   });
 
   test("mobile footer contact links meet the 48px minimum tap target", async ({ page }) => {
@@ -208,12 +210,12 @@ test.describe("narrow viewport regressions", () => {
     expect(new Set(alignment)).toEqual(new Set(["center"]));
   });
 
-  test("mobile portfolio images do not animate or enter press-and-hold preview", async ({ page }) => {
+  test("mobile homepage case-study mockups do not animate or enter press-and-hold preview", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto("/");
-    const shot = page.locator(".portfolio--home .shot:not(.shot--static)").first();
-    await shot.scrollIntoViewIfNeeded();
-    await shot.dispatchEvent("pointerdown", {
+    const mockup = page.locator(".home-case-study__mockup").first();
+    await mockup.scrollIntoViewIfNeeded();
+    await mockup.dispatchEvent("pointerdown", {
       pointerId: 1,
       pointerType: "touch",
       button: 0,
@@ -221,9 +223,9 @@ test.describe("narrow viewport regressions", () => {
       clientY: 100,
     });
     await page.waitForTimeout(220);
-    await expect(shot).not.toHaveClass(/is-holding/);
-    await expect(shot).toHaveCSS("transform", "none");
-    await shot.dispatchEvent("pointerup", { pointerId: 1, pointerType: "touch" });
+    await expect(mockup).not.toHaveClass(/is-holding/);
+    await expect(mockup).toHaveCSS("transform", "none");
+    await mockup.dispatchEvent("pointerup", { pointerId: 1, pointerType: "touch" });
   });
 
   test("Phoenix preview header CTA stays within a 320px viewport", async ({ page }) => {

@@ -49,7 +49,8 @@ import {
   ES_TEXTBACK_FOOTNOTE_ITEMS,
   spanishCatalogPlansForCompare,
 } from "@/i18n/spanish-plan-compare";
-import { CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard, Shots } from "@/components/ui";
+import { HomeCaseStudyShowcase } from "@/components/HomeCaseStudyShowcase";
+import { CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard } from "@/components/ui";
 import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 import HeroFilm from "@/components/HeroFilm";
 
@@ -286,22 +287,15 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <IconCard title={tx("Precios claros desde el principio")} iconAlt={tx("Precios claros desde el principio")} text={tx(`Elige entre cuatro planes desde ${p("websiteMo", currency)} al mes, con vista previa gratis, ${p("zeroDown", currency)} de entrada y cobro mes a mes.`)} icon="better-pricing" />
         </div>
       </Section>
-      <Section>
-        <MediaSplit
-          art={<HomeSectionArtwork name="homepage-website-showcase" alt={tx("Diseños de sitios web para negocios de servicios locales")} className="home-section-art--showcase" locale={locale} />}
-          reverse
-        >
-          <h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2>
-          <p className="muted">{tx("Elige un diseño que encaje con el trabajo que haces. Lo personalizamos para tu negocio, servicios y zona. Explora el recorrido y abre el sitio completo en inglés.")}</p>
-        </MediaSplit>
-        <div className="portfolio portfolio--home"><Shots n={8} mode="link" hrefLang="en-US" labelFor={(name) => tx(`Ver ${name}`)} /></div>
-        <p className="center btn-row spaced">
-          <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
-        </p>
-        <p className="center">
-          <a href={LIVE_SITES.find((site) => site.slug === "preferred-plumbing")?.url ?? href("/portfolio")} target="_blank" rel="noopener noreferrer">{tx("Ver un sitio de cliente publicado")}</a>
-          {" · "}
-          <Link href={href("/portfolio")} prefetch={false}>{tx("Ver más sitios en el portafolio")}</Link>
+      <Section tint>
+        <div className="home-case-studies__heading">
+          <p className="eyebrow">{tx("Proyectos seleccionados")}</p>
+          <h2>{tx("Sitios web que hemos creado para contratistas")}</h2>
+          <p className="muted">{tx("Explora dos sitios publicados para negocios locales de servicios.")}</p>
+        </div>
+        <HomeCaseStudyShowcase locale="es" hrefFor={href} />
+        <p className="home-case-studies__footer">
+          <Link href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio completo")} <span aria-hidden="true">→</span></Link>
         </p>
       </Section>
       <Section id="plans">
