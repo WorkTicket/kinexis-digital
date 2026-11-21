@@ -840,11 +840,11 @@ test.describe("marketing journeys", () => {
     expect([401, 503]).toContain(res.status());
   });
 
-  test("case studies use the approved current full-page screenshots", async ({ page }) => {
+  test("case studies use the supplied responsive overviews and live homepage screenshots", async ({ page }) => {
     const studies = [
-      { slug: "manos-creativas", name: "Manos Creativas Bynmw", asset: "live-manos-creativas", width: 1100 },
-      { slug: "preferred-plumbing", name: "Preferred Plumbing Solutions", asset: "live-preferred-plumbing", width: 1100 },
-      { slug: "a1-property-services", name: "A1 Property Services", asset: "live-a1-landscaping", width: 1322 },
+      { slug: "manos-creativas", name: "Manos Creativas Bynmw", asset: "bynmwcreative", fullHeight: 7729 },
+      { slug: "preferred-plumbing", name: "Preferred Plumbing Solutions", asset: "preferred-plumbing", fullHeight: 7660 },
+      { slug: "a1-property-services", name: "A1 Property Services", asset: "a1-property-services", fullHeight: 10059 },
     ];
 
     for (const study of studies) {
@@ -852,10 +852,50 @@ test.describe("marketing journeys", () => {
       expect(res?.ok()).toBeTruthy();
       await expect(page.getByRole("heading", { level: 1, name: study.name })).toBeVisible();
 
-      const screenshot = page.locator(".case-study__shot img");
-      await expect(screenshot).toHaveAttribute("src", new RegExp(`${study.asset}-400\\.webp\\?v=43$`));
-      await expect(screenshot).toHaveAttribute("srcset", new RegExp(`${study.asset}\\.webp\\?v=43 ${study.width}w`));
-      await expect(screenshot).toHaveAttribute("width", "400");
+      await expect(page.getByRole("heading", { name: "The challenge" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Designed around the customer" })).toBeVisible();
+      const overview = page.locator(".case-study__overview img");
+      await expect(overview).toHaveAttribute("src", new RegExp(`/case-studies/${study.asset}/overview-1200w\\.webp\\?v=1$`));
+      await expect(overview).toHaveAttribute("srcset", new RegExp(`/case-studies/${study.asset}/overview-640w\\.webp\\?v=1 640w.*overview-2160w\\.webp\\?v=1 2160w`));
+      await expect(overview).toHaveAttribute("width", "1200");
+      await expect(overview).toHaveAttribute("height", "1069");
+
+      const fullPage = page.locator(".case-study__full-page img");
+      await expect(fullPage).toHaveAttribute("src", new RegExp(`/case-studies/${study.asset}/screenshots/after-full-homepage-1322w\\.webp\\?v=1$`));
+      await expect(fullPage).toHaveAttribute("height", String(study.fullHeight));
+      await expect(page.locator("img[src*='before-']")).toHaveCount(0);
+    }
+  });
+
+  test("live-site cards use the supplied high-resolution homepage crops", async ({ page }) => {
+    const res = await page.goto("/portfolio");
+    expect(res?.ok()).toBeTruthy();
+    const cards = page.locator(".portfolio--live .live-site");
+    await expect(cards).toHaveCount(3);
+    for (const [index, asset] of ["bynmwcreative", "preferred-plumbing", "a1-property-services"].entries()) {
+      const image = cards.nth(index).locator(".shot__img");
+      await expect(image).toHaveAttribute("srcset", new RegExp(`/case-studies/${asset}/screenshots/after-hero-640w\\.webp\\?v=1 640w.*after-hero-1322w\\.webp\\?v=1 1322w`));
+      await expect(image).toHaveAttribute("width", "1322");
+      await expect(image).toHaveAttribute("height", "952");
+    }
+  });
+
+  test("industry service and issue icons use consistent frames", async ({ page }) => {
+    for (const slug of ["hvac", "plumbing"]) {
+      const res = await page.goto(`/industries/${slug}`);
+      expect(res?.ok()).toBeTruthy();
+      await expect(page.locator(".industry-page")).toBeVisible();
+      for (const selector of [".review-rail__icon img", ".industry-problems__icon img"]) {
+        const sizes = await page.locator(selector).evaluateAll((images) =>
+          images.map((image) => {
+            const rect = image.getBoundingClientRect();
+            return [rect.width, rect.height];
+          }),
+        );
+        expect(sizes.length).toBeGreaterThan(0);
+        expect(new Set(sizes.map(([width, height]) => `${width}x${height}`)).size).toBe(1);
+        expect(sizes[0]).toEqual([56, 56]);
+      }
     }
   });
 

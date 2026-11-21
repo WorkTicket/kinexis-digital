@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LIVE_SITES } from "@/data/liveSites";
+import { CASE_STUDIES } from "@/data/caseStudies";
 import { REVIEWS } from "@/lib/content";
 import type { Industry } from "@/data/industries";
 import { imageSrcSet } from "@/lib/image-sources";
@@ -16,6 +17,7 @@ export default function IndustryProof({
   if (!industry.proof) return null;
   const site = LIVE_SITES.find((item) => item.slug === industry.proof!.liveSiteSlug);
   if (!site) return null;
+  const caseStudy = CASE_STUDIES.find((item) => item.liveSiteSlug === site.slug);
   const quote = industry.proof.quoteId
     ? REVIEWS.find((review) => review.id === industry.proof!.quoteId)
     : undefined;
@@ -77,13 +79,15 @@ export default function IndustryProof({
           <div className="shot__page">
             <div className="shot__track">
               <DeferredImg
-                src={site.image}
-                srcSet={imageSrcSet(site.image, [320, 400, 640, 800])}
-                avifSrcSet={imageSrcSet(site.image, [320, 400, 640, 800], "avif")}
+                src={caseStudy ? `${caseStudy.heroImage.replace("1322w", "640w")}?v=1` : site.image}
+                srcSet={caseStudy
+                  ? `${caseStudy.heroImage.replace("1322w", "640w")}?v=1 640w, ${caseStudy.heroImage}?v=1 ${caseStudy.heroWidth}w`
+                  : imageSrcSet(site.image, [320, 400, 640, 800])}
+                avifSrcSet={caseStudy ? undefined : imageSrcSet(site.image, [320, 400, 640, 800], "avif")}
                 sizes="(max-width: 860px) 90vw, 480px"
                 alt={locale === "es" ? `Página de inicio de ${site.name}` : `${site.name} homepage`}
-                width={640}
-                height={Math.round((site.height * 640) / site.width)}
+                width={caseStudy?.heroWidth ?? 640}
+                height={caseStudy?.heroHeight ?? Math.round((site.height * 640) / site.width)}
                 className="shot__img"
               />
             </div>

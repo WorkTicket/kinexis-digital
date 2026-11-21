@@ -94,7 +94,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: day(SITE_CONTENT_UPDATED),
     changeFrequency: "monthly" as const,
     priority: 0.7,
-    images: [`${SITE.url}${study.image}`],
+    images: [`${SITE.url}${study.overviewImage}`],
   }));
 
   return [...pages, ...industries, ...posts, ...projects, ...caseStudies];

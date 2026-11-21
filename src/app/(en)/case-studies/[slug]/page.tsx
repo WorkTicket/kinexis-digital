@@ -1,11 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CASE_STUDIES, caseStudyBySlug } from "@/data/caseStudies";
-import { portfolioCaseStudySrcSet, portfolioFile } from "@/data/portfolio";
 import { contentMetadata } from "@/lib/seo";
 import { SITE_CONTENT_UPDATED } from "@/lib/pages";
-import { IMAGE_SIZES } from "@/lib/image-sources";
-import { PageHero, Section, HL } from "@/components/ui";
+import { Section, HL } from "@/components/ui";
 import { DeferredImg } from "@/components/DeferredImg";
 import { ArticleSchema } from "@/components/JsonLd";
 
@@ -17,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const study = caseStudyBySlug(slug);
   if (!study) return {};
-  const description = `${study.problem} See the live site and what we changed—verified details only, no invented metrics.`.replace(
+  const description = `${study.summary} See the project approach and live website.`.replace(
     /\s+/g,
     " ",
   );
@@ -25,7 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/case-studies/${study.slug}`,
     title: `${study.title} Case Study`,
     description: description.length > 155 ? `${description.slice(0, 152).trimEnd()}…` : description,
-    image: study.image,
+    image: study.overviewImage,
     imageAlt: `${study.title} website screenshot`,
     ogType: "article",
   });
@@ -48,7 +46,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         title={`${study.title} Case Study`}
         description={study.problem}
         path={`/case-studies/${study.slug}`}
-        image={study.image}
+        image={study.overviewImage}
         date={SITE_CONTENT_UPDATED}
         section={study.trade}
         articleType="Article"
@@ -58,62 +56,101 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           { name: study.title, path: `/case-studies/${study.slug}` },
         ]}
       />
-      <PageHero
-        h1={study.title}
-        mark={study.title}
-        sub={`${study.trade}. Real client project — verified details only.`}
-        image="portfolio"
-        imageAlt={`${study.title} case study`}
-      />
       <Section>
-        <div className="case-study">
-          <p className="eyebrow">The problem</p>
-          <h2><HL text="What they needed" mark="needed" /></h2>
-          <p>{study.problem}</p>
+        <article className="case-study">
+          <header className="case-study__hero">
+            <div className="case-study__intro">
+              <nav className="case-study__breadcrumb" aria-label="Breadcrumb">
+                <Link href="/portfolio" prefetch={false}>Portfolio</Link><span aria-hidden="true">/</span><span>Client case study</span>
+              </nav>
+              <p className="eyebrow">Client case study <span aria-hidden="true">·</span> {study.trade}</p>
+              <h1>{study.title}</h1>
+              <p className="case-study__summary">{study.summary}</p>
+              <div className="case-study__actions">
+                <a className="btn btn--primary" href={study.url} rel="noopener noreferrer" target="_blank">
+                  Visit the live website
+                </a>
+                {industryPage ? <Link href={industryPage.href} prefetch={false}>{industryPage.label}</Link> : null}
+              </div>
+              <dl className="case-study__facts">
+                <div><dt>Industry</dt><dd>{study.trade.split(" · ")[0]}</dd></div>
+                <div><dt>Project</dt><dd>Website design</dd></div>
+                <div><dt>Website</dt><dd><a href={study.url} rel="noopener noreferrer" target="_blank">{new URL(study.url).hostname.replace(/^www\./, "")}</a></dd></div>
+              </dl>
+            </div>
+            <figure className="case-study__overview">
+              <a href={`${study.overviewImage.replace("-1200w", "-2160w")}?v=1`} target="_blank" rel="noopener noreferrer" aria-label={`Open the ${study.title} project overview at full size`}>
+                <DeferredImg
+                  src={`${study.overviewImage}?v=1`}
+                  srcSet={`${study.overviewImage.replace("-1200w", "-640w")}?v=1 640w, ${study.overviewImage}?v=1 1200w, ${study.overviewImage.replace("-1200w", "-2160w")}?v=1 2160w`}
+                  sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1120px) 46vw, 520px"
+                  alt={`${study.title} website redesign project overview`}
+                  width={study.overviewWidth}
+                  height={study.overviewHeight}
+                  eager
+                />
+              </a>
+              <figcaption>Project overview · Select the image to view it at full size.</figcaption>
+            </figure>
+          </header>
 
-          <p className="eyebrow spaced">What we changed</p>
-          <ul className="ticks">
-            {study.changes.map((item) => (
-              <li key={item}><span>{item}</span></li>
-            ))}
-          </ul>
+          <section className="case-study__section" aria-labelledby="case-study-challenge">
+            <div className="case-study__section-heading">
+              <p className="eyebrow">01 / The brief</p>
+              <h2 id="case-study-challenge"><HL text="The challenge" mark="challenge" /></h2>
+            </div>
+            <div className="case-study__section-copy"><p>{study.problem}</p></div>
+          </section>
 
-          <p className="eyebrow spaced">Features delivered</p>
-          <ul className="ticks">
-            {study.features.map((item) => (
-              <li key={item}><b>{item}</b></li>
-            ))}
-          </ul>
+          <section className="case-study__section" aria-labelledby="case-study-approach">
+            <div className="case-study__section-heading">
+              <p className="eyebrow">02 / The approach</p>
+              <h2 id="case-study-approach"><HL text="Designed around the customer" mark="customer" /></h2>
+            </div>
+            <div className="case-study__section-copy">
+              <p>We shaped the site around the information visitors need, with a clear visual hierarchy and a straightforward path to the next step.</p>
+              <ul className="case-study__list">
+                {study.changes.map((item) => <li key={item}>{item}</li>)}
+              </ul>
+            </div>
+          </section>
 
-          <p className="eyebrow spaced">Outcome</p>
-          <p>{study.outcome}</p>
-          {industryPage ? (
-            <p className="spaced">
-              <Link href={industryPage.href} prefetch={false}>{industryPage.label}</Link>
-            </p>
-          ) : null}
-          <p className="btn-row spaced">
-            <a className="btn btn--primary" href={study.url} rel="noopener noreferrer" target="_blank">
-              View live site
+          <section className="case-study__section" aria-labelledby="case-study-delivered">
+            <div className="case-study__section-heading">
+              <p className="eyebrow">03 / The delivery</p>
+              <h2 id="case-study-delivered"><HL text="A polished, practical website" mark="practical" /></h2>
+            </div>
+            <div className="case-study__section-copy">
+              <ul className="case-study__deliverables">
+                {study.features.map((item) => <li key={item}><span aria-hidden="true">✓</span>{item}</li>)}
+              </ul>
+              <h3>Project outcome</h3>
+              <p>{study.outcome}</p>
+            </div>
+          </section>
+
+          <figure className="case-study__full-page">
+            <figcaption>
+              <span className="eyebrow">The finished experience</span>
+              <h2><HL text="A closer look at the live homepage" mark="live homepage" /></h2>
+              <p>Full-page capture of the live website. No speculative “before” design is presented as client work.</p>
+            </figcaption>
+            <a href={`${study.fullPageImage}?v=1`} target="_blank" rel="noopener noreferrer" aria-label={`Open the full-page ${study.title} homepage screenshot`}>
+              <DeferredImg
+                src={`${study.fullPageImage}?v=1`}
+                alt={`${study.title} live homepage, full-page screenshot`}
+                width={study.fullPageWidth}
+                height={study.fullPageHeight}
+              />
             </a>
-            <Link className="btn btn--ghost" href="/portfolio" prefetch={false}>
-              Back to portfolio
-            </Link>
-          </p>
-
-          <figure className="case-study__shot">
-            <DeferredImg
-              src={portfolioFile(study.image, 400)}
-              srcSet={portfolioCaseStudySrcSet(study.image, "webp", study.width)}
-              avifSrcSet={portfolioCaseStudySrcSet(study.image, "avif", study.width)}
-              sizes={IMAGE_SIZES.caseStudyShot}
-              alt={`${study.title} homepage screenshot`}
-              width={400}
-              height={Math.round((study.height * 400) / study.width)}
-            />
-            <figcaption>Live homepage screenshot. Mobile and desktop views use the same production page.</figcaption>
           </figure>
-        </div>
+
+          <div className="case-study__closing">
+            <p>Want a website designed around your business?</p>
+            <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
+            <Link className="case-study__back" href="/portfolio" prefetch={false}>Back to all projects</Link>
+          </div>
+        </article>
       </Section>
       {CASE_STUDIES.length > 1 ? (
         <Section tint>

@@ -160,11 +160,11 @@ test.describe("narrow viewport regressions", () => {
     await expect(page.locator(".own-path-cards h4.own-path-card__title")).toHaveCount(0);
   });
 
-  test("HVAC service and problem icons are equal-size and unframed", async ({ page }) => {
+  test("HVAC service and problem icons use matching frames and sizes", async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/industries/hvac");
 
-    const services = page.locator(".review-rail--hvac-services .review-rail__icon");
+    const services = page.locator(".industry-page .review-rail").first().locator(".review-rail__icon");
     const problems = page.locator(".industry-problems__icon");
     await expect(services).toHaveCount(3);
     await expect(problems).toHaveCount(3);
@@ -173,14 +173,23 @@ test.describe("narrow viewport regressions", () => {
         elements.map((element) => {
           const rect = element.getBoundingClientRect();
           const style = getComputedStyle(element);
-          return { width: rect.width, height: rect.height, background: style.backgroundColor };
+          return { width: rect.width, height: rect.height, background: style.backgroundColor, radius: style.borderRadius };
         }),
       );
       for (const box of boxes) {
         expect(box.width).toBe(72);
         expect(box.height).toBe(72);
-        expect(box.background).toBe("rgba(0, 0, 0, 0)");
+        expect(box.background).not.toBe("rgba(0, 0, 0, 0)");
+        expect(box.radius).toBe("16px");
       }
+    }
+    for (const glyphs of [
+      page.locator(".industry-page .review-rail__icon img.icon"),
+      page.locator(".industry-page .industry-problems__icon img.icon"),
+    ]) {
+      const widths = await glyphs.evaluateAll((images) => images.map((image) => getComputedStyle(image).width));
+      expect(widths.length).toBeGreaterThan(0);
+      expect(new Set(widths)).toEqual(new Set(["56px"]));
     }
   });
 
