@@ -129,22 +129,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
             </div>
           </section>
 
-          <figure className="case-study__full-page">
-            <figcaption>
-              <span className="eyebrow">The finished experience</span>
-              <h2><HL text="A closer look at the live homepage" mark="live homepage" /></h2>
-              <p>Full-page capture of the live website. No speculative “before” design is presented as client work.</p>
-            </figcaption>
-            <a href={`${study.fullPageImage}?v=1`} target="_blank" rel="noopener noreferrer" aria-label={`Open the full-page ${study.title} homepage screenshot`}>
-              <DeferredImg
-                src={`${study.fullPageImage}?v=1`}
-                alt={`${study.title} live homepage, full-page screenshot`}
-                width={study.fullPageWidth}
-                height={study.fullPageHeight}
-              />
-            </a>
-          </figure>
-
           <div className="case-study__closing">
             <p>Want a website designed around your business?</p>
             <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>

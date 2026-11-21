@@ -196,6 +196,16 @@ test.describe("narrow viewport regressions", () => {
       expect(widths.length).toBeGreaterThan(0);
       expect(new Set(widths)).toEqual(new Set(["56px"]));
     }
+
+    await page.goto("/industries/electrical");
+    const panelUpgrade = page.getByRole("heading", { name: "Panel Upgrades", exact: true });
+    await expect(panelUpgrade).toBeVisible();
+    await expect(panelUpgrade).toHaveCSS("text-align", "center");
+    const industryHeadings = page.locator(".industry-page .review-rail__step h3");
+    const alignment = await industryHeadings.evaluateAll((elements) =>
+      elements.map((element) => getComputedStyle(element).textAlign),
+    );
+    expect(new Set(alignment)).toEqual(new Set(["center"]));
   });
 
   test("mobile portfolio images do not animate or enter press-and-hold preview", async ({ page }) => {

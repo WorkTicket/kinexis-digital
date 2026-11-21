@@ -842,9 +842,9 @@ test.describe("marketing journeys", () => {
 
   test("case studies use the supplied responsive overviews and live homepage screenshots", async ({ page }) => {
     const studies = [
-      { slug: "manos-creativas", name: "Manos Creativas Bynmw", asset: "bynmwcreative", fullHeight: 7729 },
-      { slug: "preferred-plumbing", name: "Preferred Plumbing Solutions", asset: "preferred-plumbing", fullHeight: 7660 },
-      { slug: "a1-property-services", name: "A1 Property Services", asset: "a1-property-services", fullHeight: 10059 },
+      { slug: "manos-creativas", name: "Manos Creativas Bynmw", asset: "bynmwcreative" },
+      { slug: "preferred-plumbing", name: "Preferred Plumbing Solutions", asset: "preferred-plumbing" },
+      { slug: "a1-property-services", name: "A1 Property Services", asset: "a1-property-services" },
     ];
 
     for (const study of studies) {
@@ -855,15 +855,13 @@ test.describe("marketing journeys", () => {
       await expect(page.getByRole("heading", { name: "The challenge" })).toBeVisible();
       await expect(page.getByRole("heading", { name: "Designed around the customer" })).toBeVisible();
       await expect(page.locator(".case-study__section-heading .eyebrow").filter({ hasText: /^\d{2}\s*\/|^0[1-4]$/ })).toHaveCount(0);
+      await expect(page.locator(".case-study__full-page")).toHaveCount(0);
       const overview = page.locator(".case-study__overview img");
       await expect(overview).toHaveAttribute("src", new RegExp(`/case-studies/${study.asset}/overview-1200w\\.webp\\?v=1$`));
       await expect(overview).toHaveAttribute("srcset", new RegExp(`/case-studies/${study.asset}/overview-640w\\.webp\\?v=1 640w.*overview-2160w\\.webp\\?v=1 2160w`));
       await expect(overview).toHaveAttribute("width", "1200");
       await expect(overview).toHaveAttribute("height", "1069");
 
-      const fullPage = page.locator(".case-study__full-page img");
-      await expect(fullPage).toHaveAttribute("src", new RegExp(`/case-studies/${study.asset}/screenshots/after-full-homepage-1322w\\.webp\\?v=1$`));
-      await expect(fullPage).toHaveAttribute("height", String(study.fullHeight));
       await expect(page.locator("img[src*='before-']")).toHaveCount(0);
     }
   });

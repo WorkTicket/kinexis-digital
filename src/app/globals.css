@@ -1480,12 +1480,12 @@ html.lp-route body{--announce-h:0px}
 .case-study__facts dd{margin:0;color:var(--text);font-size:.9rem;font-weight:700;overflow-wrap:anywhere}
 .case-study__facts a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
 .case-study__overview{margin:0;padding:12px;background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sticker)}
-.case-study__overview a,.case-study__full-page>a{display:block}
+.case-study__overview a{display:block}
 .case-study__overview img{display:block;width:100%;height:auto;border-radius:10px}
 .case-study__overview figcaption{padding:10px 4px 1px;color:var(--muted);font-size:.82rem}
 .case-study__section{display:grid;grid-template-columns:minmax(210px,.72fr) minmax(0,1.28fr);gap:clamp(24px,6vw,90px);padding:38px 0;border-top:1px solid var(--border)}
 .case-study__section-heading .eyebrow{margin:0 0 12px;color:var(--accent-dark);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.case-study__section h2,.case-study__full-page h2{margin:0;color:var(--brand-navy);font-size:clamp(1.55rem,3vw,2.15rem);line-height:1.2;letter-spacing:-.025em}
+.case-study__section h2{margin:0;color:var(--brand-navy);font-size:clamp(1.55rem,3vw,2.15rem);line-height:1.2;letter-spacing:-.025em}
 .case-study__section-copy{color:var(--copy);font-size:1.02rem;line-height:1.75}
 .case-study__section-copy>p:first-child{margin-top:0}
 .case-study__list{display:grid;gap:12px;margin:22px 0 0;padding-left:1.25rem}
@@ -1494,12 +1494,6 @@ html.lp-route body{--announce-h:0px}
 .case-study__deliverables{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:0;padding:0;list-style:none}
 .case-study__deliverables li{display:flex;align-items:flex-start;gap:10px;padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--bg-tint);font-weight:700;line-height:1.5}
 .case-study__deliverables li span{color:var(--ok);font-size:1.1rem}
-.case-study__full-page{margin:30px 0 0;padding:clamp(18px,3vw,34px);border:1px solid var(--border);border-radius:18px;background:var(--bg-tint)}
-.case-study__full-page figcaption{max-width:720px;margin-bottom:22px}
-.case-study__full-page .eyebrow{margin:0 0 10px;color:var(--accent-dark);font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.case-study__full-page figcaption>p:last-child{margin:12px 0 0;color:var(--muted);line-height:1.65}
-.case-study__full-page>a{max-height:860px;overflow:auto;border:1px solid var(--border);border-radius:12px;background:white;box-shadow:var(--shadow);scrollbar-color:var(--accent) var(--bg-tint)}
-.case-study__full-page img{display:block;width:100%;height:auto}
 .case-study__closing{display:flex;align-items:center;flex-wrap:wrap;gap:18px;margin-top:42px;padding:26px;border-radius:16px;background:var(--brand-navy);box-shadow:var(--shadow-sticker)}
 .case-study__closing>p{flex:1 1 100%;margin:0;color:#fff;font-size:1.25rem;font-weight:800}
 .case-study__closing .btn{color:var(--text)}
@@ -4561,8 +4555,8 @@ html.nav-open .mega__panel::-webkit-scrollbar,
   padding:0;background:transparent;border:0;box-shadow:none;overflow:visible;
 }
 .industry-page .review-rail__step{
-  display:flex;min-width:0;flex-direction:column;align-items:flex-start;
-  padding:22px 22px 24px;text-align:left;overflow:visible;
+  display:flex;min-width:0;flex-direction:column;align-items:center;
+  padding:22px 22px 24px;text-align:center;overflow:visible;
   background:#fff;border:1px solid var(--border);border-radius:16px;
   box-shadow:0 4px 14px rgba(10,18,48,.055);
 }
