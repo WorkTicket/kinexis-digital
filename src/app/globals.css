@@ -1146,6 +1146,15 @@ html.lp-route body{--announce-h:0px}
 .hero.hero--fit>.container{width:100%}
 .hero.hero--fit .hero__inner{gap:clamp(20px,3vw,44px)}
 .hero.hero--fit h1{font-size:clamp(1.85rem,4.15vw,3.7rem);line-height:1.08;margin-bottom:.36em}
+.home-page h1{color:var(--text);font-weight:800}
+.home-page .hero--fit h1 .hl{
+  margin:0;padding:0;border-radius:0;color:var(--accent);
+  background-image:none;background-size:auto;box-decoration-break:slice;
+}
+.home-page h2{color:var(--text);font-weight:700}
+.home-page .section--lead h2,
+.home-page .section--lead h2 .hl-emphasis{color:#fff}
+.card h3{color:var(--text);font-weight:600!important;text-wrap:balance}
 /* Each promise is exactly two lines — check sits centered on the whole block. */
 .hero.hero--fit .ticks{display:grid;gap:clamp(12px,1.35svh,18px);margin:0 0 clamp(14px,1.8svh,24px)}
 .hero.hero--fit .ticks li{
@@ -2625,7 +2634,7 @@ html.no-audit [data-site-audit]{display:none!important}
   background-size:100% .72em;
   background-repeat:no-repeat;
 }
-.hl-emphasis{font-family:var(--font-poppins-display,var(--font-head));font-size:1.04em;font-weight:800}
+.hl-emphasis{font-family:inherit;font-size:inherit;font-weight:inherit;color:inherit}
 /* Keep highlights visible without JS. Only offscreen marks opt into the wipe. */
 @media (scripting:enabled){
   .hl.is-pending{

@@ -83,9 +83,9 @@ test.describe("marketing journeys", () => {
     }
   });
 
-  test("H1 marker sweeps remain while other heading emphasis is typographic", async ({ page }) => {
+  test("homepage heading hierarchy is typographic and mobile text wraps without overflow", async ({ page }, testInfo) => {
     await installMockAnalytics(page);
-    for (const path of ["/contact", "/", "/pricing"]) {
+    for (const path of ["/contact", "/pricing"]) {
       await page.goto(path);
       await waitForBoot(page);
       const marker = page.locator("main h1 .hl").first();
@@ -97,6 +97,79 @@ test.describe("marketing journeys", () => {
         nodes.every((node) => Boolean(node.closest("h1, h2"))),
       );
       expect(onlyHeadingMarkersAnimate).toBe(true);
+    }
+
+    await page.goto("/");
+    const headline = page.locator(".home-page .hero--fit h1");
+    const markedPhrase = headline.locator(".hl");
+    await expect(headline).toBeVisible();
+    await expect(markedPhrase).toHaveText("Before You Pay");
+    await expect(headline).toHaveCSS("color", "rgb(10, 18, 48)");
+    await expect(headline).toHaveCSS("font-weight", "800");
+    await expect(markedPhrase).toHaveCSS("color", "rgb(11, 61, 255)");
+    await expect(markedPhrase).toHaveCSS("background-image", "none");
+    for (const heading of await page.locator(".home-page h2 .hl-emphasis").all()) {
+      await expect(heading).toHaveCSS("font-weight", "700");
+      const [headingColor, parentColor] = await heading.evaluate((element) => [
+        getComputedStyle(element).color,
+        getComputedStyle(element.parentElement!).color,
+      ]);
+      expect(headingColor).toBe(parentColor);
+    }
+    for (const heading of await page.locator(".home-page .card h3").all()) {
+      await expect(heading).toHaveCSS("font-weight", "600");
+      await expect(heading).toHaveCSS("color", "rgb(10, 18, 48)");
+      await expect(heading).toHaveCSS("text-wrap", "balance");
+    }
+    if (testInfo.project.name === "mobile") {
+      const dimensions = await headline.evaluate((element) => ({
+        width: element.clientWidth,
+        scrollWidth: element.scrollWidth,
+        pageWidth: document.documentElement.scrollWidth,
+        viewportWidth: window.innerWidth,
+        phraseRects: Array.from(element.querySelector(".hl")!.getClientRects()).map((rect) => ({
+          left: rect.left,
+          right: rect.right,
+          top: rect.top,
+          bottom: rect.bottom,
+        })),
+      }));
+      expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.width);
+      expect(dimensions.pageWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
+      expect(dimensions.phraseRects.length).toBeGreaterThan(0);
+      expect(dimensions.phraseRects.every((rect) => rect.left >= 0 && rect.right <= dimensions.viewportWidth)).toBe(true);
+    }
+
+    await page.goto("/es");
+    const spanishHeadline = page.locator(".home-page .hero--fit h1");
+    const spanishPhrase = spanishHeadline.locator(".hl");
+    await expect(spanishPhrase).toHaveText("tu negocio");
+    await expect(spanishHeadline).toHaveCSS("color", "rgb(10, 18, 48)");
+    await expect(spanishHeadline).toHaveCSS("font-weight", "800");
+    await expect(spanishPhrase).toHaveCSS("color", "rgb(11, 61, 255)");
+    await expect(spanishPhrase).toHaveCSS("background-image", "none");
+    for (const heading of await page.locator(".home-page h2 .hl-emphasis").all()) {
+      await expect(heading).toHaveCSS("font-weight", "700");
+      const [headingColor, parentColor] = await heading.evaluate((element) => [
+        getComputedStyle(element).color,
+        getComputedStyle(element.parentElement!).color,
+      ]);
+      expect(headingColor).toBe(parentColor);
+    }
+    for (const heading of await page.locator(".home-page .card h3").all()) {
+      await expect(heading).toHaveCSS("font-weight", "600");
+      await expect(heading).toHaveCSS("color", "rgb(10, 18, 48)");
+      await expect(heading).toHaveCSS("text-wrap", "balance");
+    }
+    if (testInfo.project.name === "mobile") {
+      const dimensions = await spanishHeadline.evaluate((element) => ({
+        width: element.clientWidth,
+        scrollWidth: element.scrollWidth,
+        pageWidth: document.documentElement.scrollWidth,
+        viewportWidth: window.innerWidth,
+      }));
+      expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.width);
+      expect(dimensions.pageWidth).toBeLessThanOrEqual(dimensions.viewportWidth);
     }
   });
 

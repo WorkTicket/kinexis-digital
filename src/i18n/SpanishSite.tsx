@@ -239,6 +239,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
   return (
     <>
       <ContentSchema path={href("/")} title={homeMeta.title} description={homeMeta.description} crumbs={[{ name: tx("Inicio"), path: href("/") }]} faqs={faqs} inLanguage={lang} />
+      <div className="home-page">
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">{tx("Páginas web para contratistas y negocios de servicios")}</p>
@@ -280,9 +281,9 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <p>{tx(`Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde ${p("websiteMo", currency)} al mes.`)}</p>
         </MediaSplit>
         <div className="grid grid--3">
-          <IconCard title={<>{tx("Un sitio que")}<br />{tx("facilita recibir")}<br />{tx("llamadas")}</>} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
-          <IconCard title={<>{tx("Seguimiento que")}<br />{tx("funciona mientras")}<br />{tx("estás trabajando")}</>} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo y seguimiento de llamadas y formularios. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador.")} icon="better-follow-up" />
-          <IconCard title={<>{tx("Precios claros")}<br />{tx("desde el")}<br />{tx("principio")}</>} iconAlt={tx("Precios claros desde el principio")} text={tx(`Elige entre cuatro planes desde ${p("websiteMo", currency)} al mes, con vista previa gratis, ${p("zeroDown", currency)} de entrada y cobro mes a mes.`)} icon="better-pricing" />
+          <IconCard title={tx("Un sitio que facilita recibir llamadas")} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
+          <IconCard title={tx("Seguimiento que funciona mientras estás trabajando")} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo y seguimiento de llamadas y formularios. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador.")} icon="better-follow-up" />
+          <IconCard title={tx("Precios claros desde el principio")} iconAlt={tx("Precios claros desde el principio")} text={tx(`Elige entre cuatro planes desde ${p("websiteMo", currency)} al mes, con vista previa gratis, ${p("zeroDown", currency)} de entrada y cobro mes a mes.`)} icon="better-pricing" />
         </div>
       </Section>
       <Section>
@@ -405,6 +406,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <h2 className="center">{tx("Preguntas frecuentes")}</h2>
         <Faq items={faqs} />
       </Section>
+      </div>
     </>
   );
 }

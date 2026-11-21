@@ -26,11 +26,12 @@ export default async function Home() {
     <>
       <PageSchema page="home" faqs={FAQS} />
 
-      {/* 1. Hero — poster is the first paint; the film fades in once it is playing. */}
+      <div className="home-page">
+        {/* 1. Hero — poster is the first paint; the film fades in once it is playing. */}
       <section className="hero hero--fit"><div className="container hero__inner">
         <div className="hero__text">
           <p className="eyebrow">Websites for contractors and home service businesses</p>
-          <h1><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" phrase /></h1>
+          <h1 className="home-hero__title"><HL text="See Your New Contractor Website Before You Pay" mark="Before You Pay" phrase /></h1>
           <p className="hero__sub">Send us your business details and get a free homepage preview in 2 business days. No card needed.</p>
           <ul className="ticks">
             <li>
@@ -86,9 +87,9 @@ export default async function Home() {
           <p>A website plan built for local service businesses: a fast site, practical SEO structure, and follow-up that keeps working when you are on a job. Plans start at $97/mo.</p>
         </MediaSplit>
         <div className="grid grid--3">
-          <IconCard title={<>A Website That<br />Brings In More<br />Calls</>} iconAlt="A Website That Brings In More Calls" text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details." icon="better-design" />
-          <IconCard title={<>Follow-Up That<br />Works While You’re<br />On The Job</>} iconAlt="Follow-Up That Works While You’re On The Job" text="Lead System and Plus include call and form tracking and Google review requests after jobs. Optional missed-call text-back gives callers a way to reach you while you’re working." icon="better-follow-up" />
-          <IconCard title={<>Simple Pricing<br />With Everything<br />Up Front</>} iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
+          <IconCard title="A Website That Brings In More Calls" iconAlt="A Website That Brings In More Calls" text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details." icon="better-design" />
+          <IconCard title="Follow-Up That Works While You’re On The Job" iconAlt="Follow-Up That Works While You’re On The Job" text="Lead System and Plus include call and form tracking and Google review requests after jobs. Optional missed-call text-back gives callers a way to reach you while you’re working." icon="better-follow-up" />
+          <IconCard title="Simple Pricing With Everything Up Front" iconAlt="Simple Pricing With Everything Up Front" text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing." icon="better-pricing" />
         </div>
         <p className="center btn-row spaced"><Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link></p>
         <p className="center"><Link href="/pricing" prefetch={false}>See Plans &amp; Pricing</Link></p>
@@ -202,6 +203,7 @@ export default async function Home() {
         <Faq items={FAQS} />
         <p className="center"><Link href="/faqs" prefetch={false}>More website and pricing FAQs</Link></p>
       </Section>
+      </div>
     </>
   );
 }
