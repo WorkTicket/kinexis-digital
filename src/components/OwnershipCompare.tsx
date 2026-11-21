@@ -26,7 +26,7 @@ export default function OwnershipCompare({
       <div className="own-path-cards" aria-label={labels.aria}>
         {data.rows.map((row) => (
           <article className="own-path-card" key={row.path}>
-            <h4 className="own-path-card__title">{row.path}</h4>
+            <h3 className="own-path-card__title">{row.path}</h3>
             <dl className="own-path-card__list">
               <div className="own-path-card__row">
                 <dt>{labels.cost24}</dt>

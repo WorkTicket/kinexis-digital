@@ -156,6 +156,8 @@ test.describe("narrow viewport regressions", () => {
     await page.setViewportSize({ width: 1280, height: 900 });
     await page.goto("/pricing");
     await expect(page.locator(".plan-compare__ownership h2 .hl-emphasis")).toHaveText("vs");
+    await expect(page.locator(".own-path-cards h3.own-path-card__title")).toHaveCount(4);
+    await expect(page.locator(".own-path-cards h4.own-path-card__title")).toHaveCount(0);
   });
 
   test("HVAC service and problem icons are equal-size and unframed", async ({ page }) => {
