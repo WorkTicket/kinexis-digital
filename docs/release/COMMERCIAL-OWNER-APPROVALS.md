@@ -4,6 +4,8 @@
 
 **Owner update (2026-11-17):** owner reports that the content owner approved the content. The approval artifact, reviewer identity/date, and item-by-item scope were not provided in this session, so this report does not treat that statement as clearance for billing/cancellation/guarantee terms, testimonial/logo/client-evidence permissions, legal/privacy review, or native Spanish commercial review. Record the approval and its exact scope here when available.
 
+**Case-study screenshot approval (2026-11-21):** The owner explicitly approved public-website publication of the replacement “after” screenshots supplied in `KINEXIS-Website-Redesign-Case-Studies (2).pdf` under the displayed project names: Manos Creativas Bynmw, Preferred Plumbing Solutions, and A1 Property Services. Approval scope is these screenshots on the Kinexis Digital website only; no “before” concept mockups, performance metrics, testimonials, or other channels are included.
+
 ## Owner approval sheet
 
 Please approve or provide corrected exact wording for each item. “Approve current language” is an explicit choice; silence is not approval.

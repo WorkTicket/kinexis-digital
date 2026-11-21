@@ -17,7 +17,7 @@ export const LIVE_SITES: LiveSite[] = [
     url: "https://bynmwcreative.com/",
     image: "/portfolio/live-manos-creativas.webp",
     width: 1100,
-    height: 6557,
+    height: 6431,
   },
   {
     slug: "preferred-plumbing",
@@ -26,7 +26,7 @@ export const LIVE_SITES: LiveSite[] = [
     url: "https://www.callpreferredplumbing.com/",
     image: "/portfolio/live-preferred-plumbing.webp",
     width: 1100,
-    height: 6583,
+    height: 6374,
   },
   {
     slug: "a1-landscaping",
@@ -34,7 +34,7 @@ export const LIVE_SITES: LiveSite[] = [
     trade: "Landscaping · Cedar Falls, Iowa",
     url: "https://a1pslandscape.com/",
     image: "/portfolio/live-a1-landscaping.jpg",
-    width: 1280,
-    height: 10223,
+    width: 1322,
+    height: 10059,
   },
 ];

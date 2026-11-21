@@ -4,7 +4,7 @@ This is a plan only. Phase 9.1 did not sign into provider accounts, change setti
 
 ## Owner decisions and client evidence
 
-- **A1 portfolio permission:** confirm current permission to display the client name, live-site link, genuine 2026-11-17 screenshot, and case-study text. The recapture is complete; publication permission is not implied.
+- **Case-study screenshot permission:** on 2026-11-21, the owner explicitly approved the supplied PDF's “after” screenshots for public Kinexis Digital website use under the displayed project names: Manos Creativas Bynmw, Preferred Plumbing Solutions, and A1 Property Services. This does not approve “before” concept mockups, performance claims, other channels, testimonials, or unreviewed case-study copy. See `docs/release/COMMERCIAL-OWNER-APPROVALS.md`.
 - **Reviews and other client examples:** retain written authorization for every quotation, attribution, rating, portfolio asset, and description; verify provider facts are current. See `OWNER-DECISIONS.md` and `TRUST-CLAIMS.csv`.
 - **Billing start and guarantee summary:** decide the actual first-charge timing and whether the short checkout guarantee summary adequately exposes the controlling terms. Approve wording before edits.
 - **Operational claims and translations:** confirm preview/launch/text activation timing remains achievable; obtain native Spanish editorial review of localized commercial/legal terms.

@@ -840,12 +840,23 @@ test.describe("marketing journeys", () => {
     expect([401, 503]).toContain(res.status());
   });
 
-  test("case study uses live screenshot only", async ({ page }) => {
-    const res = await page.goto("/case-studies/preferred-plumbing");
-    expect(res?.ok()).toBeTruthy();
-    await expect(page.getByText(/Preferred Plumbing Solutions/i).first()).toBeVisible();
-    await expect(page.locator(".case-study__shot, figure").first()).toBeVisible();
-    await expect(page.getByText(/verified project details|Live site|callpreferredplumbing/i).first()).toBeVisible();
+  test("case studies use the approved current full-page screenshots", async ({ page }) => {
+    const studies = [
+      { slug: "manos-creativas", name: "Manos Creativas Bynmw", asset: "live-manos-creativas", width: 1100 },
+      { slug: "preferred-plumbing", name: "Preferred Plumbing Solutions", asset: "live-preferred-plumbing", width: 1100 },
+      { slug: "a1-property-services", name: "A1 Property Services", asset: "live-a1-landscaping", width: 1322 },
+    ];
+
+    for (const study of studies) {
+      const res = await page.goto(`/case-studies/${study.slug}`);
+      expect(res?.ok()).toBeTruthy();
+      await expect(page.getByRole("heading", { level: 1, name: study.name })).toBeVisible();
+
+      const screenshot = page.locator(".case-study__shot img");
+      await expect(screenshot).toHaveAttribute("src", new RegExp(`${study.asset}-400\\.webp\\?v=43$`));
+      await expect(screenshot).toHaveAttribute("srcset", new RegExp(`${study.asset}\\.webp\\?v=43 ${study.width}w`));
+      await expect(screenshot).toHaveAttribute("width", "400");
+    }
   });
 
   test("portfolio template screenshot uses its real dimensions and responsive source", async ({ page }) => {
