@@ -840,12 +840,62 @@ test.describe("marketing journeys", () => {
     expect([401, 503]).toContain(res.status());
   });
 
-  test("case study uses live screenshot only", async ({ page }) => {
-    const res = await page.goto("/case-studies/preferred-plumbing");
+  test("case studies use the supplied responsive overviews and live homepage screenshots", async ({ page }) => {
+    const studies = [
+      { slug: "manos-creativas", name: "Manos Creativas Bynmw", asset: "bynmwcreative" },
+      { slug: "preferred-plumbing", name: "Preferred Plumbing Solutions", asset: "preferred-plumbing" },
+      { slug: "a1-property-services", name: "A1 Property Services", asset: "a1-property-services" },
+    ];
+
+    for (const study of studies) {
+      const res = await page.goto(`/case-studies/${study.slug}`);
+      expect(res?.ok()).toBeTruthy();
+      await expect(page.getByRole("heading", { level: 1, name: study.name })).toBeVisible();
+
+      await expect(page.getByRole("heading", { name: "The challenge" })).toBeVisible();
+      await expect(page.getByRole("heading", { name: "Designed around the customer" })).toBeVisible();
+      await expect(page.locator(".case-study__section-heading .eyebrow").filter({ hasText: /^\d{2}\s*\/|^0[1-4]$/ })).toHaveCount(0);
+      await expect(page.locator(".case-study__full-page")).toHaveCount(0);
+      const overview = page.locator(".case-study__overview img");
+      await expect(overview).toHaveAttribute("src", new RegExp(`/case-studies/${study.asset}/overview-1200w\\.webp\\?v=1$`));
+      await expect(overview).toHaveAttribute("srcset", new RegExp(`/case-studies/${study.asset}/overview-640w\\.webp\\?v=1 640w.*overview-2160w\\.webp\\?v=1 2160w`));
+      await expect(overview).toHaveAttribute("width", "1200");
+      await expect(overview).toHaveAttribute("height", "1069");
+
+      await expect(page.locator("img[src*='before-']")).toHaveCount(0);
+    }
+  });
+
+  test("live-site cards use the supplied high-resolution homepage crops", async ({ page }) => {
+    const res = await page.goto("/portfolio");
     expect(res?.ok()).toBeTruthy();
-    await expect(page.getByText(/Preferred Plumbing Solutions/i).first()).toBeVisible();
-    await expect(page.locator(".case-study__shot, figure").first()).toBeVisible();
-    await expect(page.getByText(/verified project details|Live site|callpreferredplumbing/i).first()).toBeVisible();
+    const cards = page.locator(".portfolio--live .live-site");
+    await expect(cards).toHaveCount(3);
+    for (const [index, asset] of ["bynmwcreative", "preferred-plumbing", "a1-property-services"].entries()) {
+      const image = cards.nth(index).locator(".shot__img");
+      await expect(image).toHaveAttribute("srcset", new RegExp(`/case-studies/${asset}/screenshots/after-hero-640w\\.webp\\?v=1 640w.*after-hero-1322w\\.webp\\?v=1 1322w`));
+      await expect(image).toHaveAttribute("width", "1322");
+      await expect(image).toHaveAttribute("height", "952");
+    }
+  });
+
+  test("industry service and issue icons use consistent frames", async ({ page }) => {
+    for (const slug of ["hvac", "plumbing"]) {
+      const res = await page.goto(`/industries/${slug}`);
+      expect(res?.ok()).toBeTruthy();
+      await expect(page.locator(".industry-page")).toBeVisible();
+      for (const selector of [".review-rail__icon img", ".industry-problems__icon img"]) {
+        const sizes = await page.locator(selector).evaluateAll((images) =>
+          images.map((image) => {
+            const rect = image.getBoundingClientRect();
+            return [rect.width, rect.height];
+          }),
+        );
+        expect(sizes.length).toBeGreaterThan(0);
+        expect(new Set(sizes.map(([width, height]) => `${width}x${height}`)).size).toBe(1);
+        expect(sizes[0]).toEqual([56, 56]);
+      }
+    }
   });
 
   test("portfolio template screenshot uses its real dimensions and responsive source", async ({ page }) => {

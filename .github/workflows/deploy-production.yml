@@ -1,0 +1,82 @@
+name: Deploy production
+
+on:
+  workflow_dispatch:
+    inputs:
+      approved_sha:
+        description: Exact full commit SHA to deploy (must match the selected branch tip)
+        required: true
+        type: string
+      deploy_confirm:
+        description: Type DEPLOY_PRODUCTION followed by the exact full SHA
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    # Dispatch only from the reviewed release branch. The production GitHub
+    # Environment must also require a human reviewer before secrets are exposed.
+    if: github.ref == 'refs/heads/release/2-performance-html'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    environment: production
+    env:
+      APPROVED_SHA: ${{ inputs.approved_sha }}
+      DEPLOY_CONFIRM: ${{ inputs.deploy_confirm }}
+    steps:
+      - name: Check out the selected release-branch tip
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - name: Verify explicit SHA and confirmation
+        shell: bash
+        run: |
+          test "$APPROVED_SHA" = "$GITHUB_SHA" || {
+            echo "::error::Approved SHA must equal the selected release branch tip."
+            exit 1
+          }
+          test "$DEPLOY_CONFIRM" = "DEPLOY_PRODUCTION $GITHUB_SHA" || {
+            echo "::error::Confirmation must be DEPLOY_PRODUCTION followed by the exact full SHA."
+            exit 1
+          }
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Check protected Cloudflare credentials
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN" || {
+            echo "::error::Configure CLOUDFLARE_API_TOKEN in the protected production environment."
+            exit 1
+          }
+          test -n "$CLOUDFLARE_ACCOUNT_ID" || {
+            echo "::error::Configure CLOUDFLARE_ACCOUNT_ID in the protected production environment."
+            exit 1
+          }
+
+      - name: Run production deploy gates and deploy
+        run: npm run deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}

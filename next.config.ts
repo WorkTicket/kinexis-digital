@@ -38,11 +38,11 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   experimental: {
     cpus: 4,
-    // Inline CSS into <style> on first HTML response so Lighthouse no longer
-    // waits on a ~49 KiB render-blocking stylesheet round-trip. Same rules as
-    // the external sheet (pixel-equivalent); do NOT revive async CSS defer in
-    // defer-chunks.mjs (FOUC / hydration failures). Production builds only.
-    inlineCss: true,
+    // Keep the shared site stylesheet in its hashed, independently cacheable
+    // asset. The full production sheet is ~250 KiB; inlining it duplicates that
+    // payload in every HTML response and in the RSC stream. Keep it blocking:
+    // async CSS caused FOUC/hydration failures (see defer-chunks.mjs).
+    inlineCss: false,
   },
   // Production builds drop debug noise from client bundles.
   compiler: {
@@ -120,6 +120,12 @@ const nextConfig: NextConfig = {
       { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
     ];
     return [
+      // Next's content-hashed production CSS can be cached separately from
+      // HTML for a year. Do not apply this override to dev/HMR stylesheet URLs.
+      ...(!isDev ? [{
+        source: "/_next/static/css/:path*",
+        headers: yearCache,
+      }] : []),
       {
         // Public assets are versioned by filename (or query string) and can
         // safely stay at the edge and in browser caches for a year.

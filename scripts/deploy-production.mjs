@@ -39,6 +39,13 @@ if (approvedSha !== fullHeadSha) {
   console.error("[deploy-production] HEAD does not match APPROVED_SHA; refusing to deploy.");
   process.exit(1);
 }
+const expectedConfirmation = `DEPLOY_PRODUCTION ${fullHeadSha}`;
+if (process.env.DEPLOY_CONFIRM !== expectedConfirmation) {
+  console.error(
+    `[deploy-production] DEPLOY_CONFIRM must exactly match "${expectedConfirmation}"; refusing to deploy.`,
+  );
+  process.exit(1);
+}
 
 const PRODUCTION_SITE_URL = "https://www.kinexisdigital.com";
 /** Public bot id from .env.production — must appear in the Worker build output. */
@@ -70,7 +77,7 @@ if (leakedPreview) {
 
 console.log(`Production deploy: NEXT_PUBLIC_SITE_URL=${process.env.NEXT_PUBLIC_SITE_URL}`);
 
-/** @param {"gate" | "build" | "post"} kind */
+/** @param {"gate" | "build" | "deploy" | "post"} kind */
 function envFor(kind) {
   const env = { ...process.env };
   if (kind === "gate") {
@@ -79,6 +86,12 @@ function envFor(kind) {
     // Drop any shell leftover so Next loads NEXT_PUBLIC_CONFERBOT_ENABLED=1
     // from committed .env.production.
     delete env.NEXT_PUBLIC_CONFERBOT_ENABLED;
+  }
+  // Keep Cloudflare credentials out of dependency install, checks, browser tests,
+  // build, and post-deploy probes. Only Wrangler's deploy child receives them.
+  if (kind !== "deploy") {
+    delete env.CLOUDFLARE_API_TOKEN;
+    delete env.CLOUDFLARE_ACCOUNT_ID;
   }
   return env;
 }
@@ -153,7 +166,7 @@ const steps = [
   // Next dev route-data response under concurrent pre-render requests.
   { cmd: "npm", args: ["run", "test:e2e", "--", "--workers=4"], kind: "gate" },
   { cmd: "npm", args: ["run", "build:worker:production"], kind: "build" },
-  { cmd: "npm", args: ["run", "deploy:worker"], kind: "post", includeGitVersion: true },
+  { cmd: "npm", args: ["run", "deploy:worker"], kind: "deploy", includeGitVersion: true },
   { cmd: "npm", args: ["run", "search:notify"], kind: "post" },
   { cmd: "npm", args: ["run", "verify:prod"], kind: "post" },
 ];
@@ -186,6 +199,8 @@ for (const step of steps) {
     console.log(
       "[deploy-production]   (NEXT_PUBLIC_CONFERBOT_ENABLED unset → .env.production)",
     );
+  } else if (kind === "deploy") {
+    console.log("[deploy-production]   (Cloudflare credentials passed only to Wrangler deploy)");
   }
   const result = spawnSync(cmd, args, {
     stdio: "inherit",

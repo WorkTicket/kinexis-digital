@@ -14,10 +14,17 @@ export type CaseStudy = {
   features: string[];
   /** Qualitative only — never invent metrics */
   outcome: string;
+  summary: string;
   url: string;
-  image: string;
-  width: number;
-  height: number;
+  heroImage: string;
+  heroWidth: number;
+  heroHeight: number;
+  overviewImage: string;
+  fullPageImage: string;
+  overviewWidth: number;
+  overviewHeight: number;
+  fullPageWidth: number;
+  fullPageHeight: number;
 };
 
 function live(slug: string) {
@@ -46,10 +53,18 @@ export const CASE_STUDIES: CaseStudy[] = [
     features: ["Custom design", "Mobile layout", "Service presentation", "Live production site"],
     outcome:
       "The live website is public at callpreferredplumbing.com. Performance numbers and client quotes are shared only when the customer approves them in writing.",
+    summary:
+      "A straightforward service-business website built to help local homeowners understand the plumbing services and find a clear way to get in touch.",
     url: preferred.url,
-    image: preferred.image,
-    width: preferred.width,
-    height: preferred.height,
+    heroImage: "/case-studies/preferred-plumbing/screenshots/after-hero-1322w.webp",
+    heroWidth: 1322,
+    heroHeight: 952,
+    overviewImage: "/case-studies/preferred-plumbing/overview-1200w.webp",
+    fullPageImage: "/case-studies/preferred-plumbing/screenshots/after-full-homepage-1322w.webp",
+    overviewWidth: 1200,
+    overviewHeight: 1069,
+    fullPageWidth: 1322,
+    fullPageHeight: 7660,
   },
   {
     slug: "a1-property-services",
@@ -66,10 +81,18 @@ export const CASE_STUDIES: CaseStudy[] = [
     features: ["Custom design", "Project gallery structure", "Service pages", "Live production site"],
     outcome:
       "The live website is public at a1pslandscape.com. Lead or revenue figures are omitted here until verified with the client.",
+    summary:
+      "A professional online presence for a local property-services company, with service information and project imagery brought into one cohesive experience.",
     url: a1.url,
-    image: a1.image,
-    width: a1.width,
-    height: a1.height,
+    heroImage: "/case-studies/a1-property-services/screenshots/after-hero-1322w.webp",
+    heroWidth: 1322,
+    heroHeight: 952,
+    overviewImage: "/case-studies/a1-property-services/overview-1200w.webp",
+    fullPageImage: "/case-studies/a1-property-services/screenshots/after-full-homepage-1322w.webp",
+    overviewWidth: 1200,
+    overviewHeight: 1069,
+    fullPageWidth: 1322,
+    fullPageHeight: 10059,
   },
   {
     slug: "manos-creativas",
@@ -86,10 +109,18 @@ export const CASE_STUDIES: CaseStudy[] = [
     features: ["Custom design", "Product presentation", "Live production site"],
     outcome:
       "The live website is public at bynmwcreative.com. Purchase or conversion metrics are not claimed without verified store data.",
+    summary:
+      "A product-led storefront for digital crochet patterns, organized to help shoppers explore designs, compare collections and find purchase support.",
     url: manos.url,
-    image: manos.image,
-    width: manos.width,
-    height: manos.height,
+    heroImage: "/case-studies/bynmwcreative/screenshots/after-hero-1322w.webp",
+    heroWidth: 1322,
+    heroHeight: 952,
+    overviewImage: "/case-studies/bynmwcreative/overview-1200w.webp",
+    fullPageImage: "/case-studies/bynmwcreative/screenshots/after-full-homepage-1322w.webp",
+    overviewWidth: 1200,
+    overviewHeight: 1069,
+    fullPageWidth: 1322,
+    fullPageHeight: 7729,
   },
 ];
 

@@ -102,7 +102,7 @@ export default async function IndustryPage({ params }: Props) {
   const tradeOwners = industryOwners(industry);
 
   return (
-    <>
+    <div className={`industry-page industry-page--${industry.slug}`}>
       <ContentSchema
         path={path}
         title={industry.metaTitle}
@@ -156,7 +156,6 @@ export default async function IndustryPage({ params }: Props) {
           <p className="center muted industry-section-lead">These are the searches and jobs {tradeOwners} need the site to handle clearly.</p>
         </div>
         <ReviewRail
-          className={industry.slug === "hvac" ? "review-rail--hvac-services" : ""}
           steps={industry.services.map((point) => ({
             title: point.title,
             text: point.text,
@@ -313,6 +312,6 @@ export default async function IndustryPage({ params }: Props) {
         secondary="See Plans & Pricing"
         secondaryHref="/pricing"
       />
-    </>
+    </div>
   );
 }

@@ -60,7 +60,7 @@ export const PROJECTS: Project[] = [
 export const PROJECT_GROUPS = ["Home Services", "Outdoor Living", "Design & Build", "Cleaning", "Events", "Specialty"];
 
 /** Screenshot files keep their paths. This query changes when those files are replaced, because they are cached for a year. */
-export const PORTFOLIO_ASSET_VERSION = "42";
+export const PORTFOLIO_ASSET_VERSION = "43";
 
 export type PortfolioShotWidth = 320 | 400 | 480 | 640 | 662 | 800 | 960 | 1100 | 1280 | 1600 | "card";
 

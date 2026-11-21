@@ -12,4 +12,4 @@
 
 **Next after #37 merge:** T6 → T7 → trade rewrite batches. (Parallel open PRs #44/#45/#47/#49 should defer to #37 for overlapping Tech-0 work.)
 
-**Hard rules:** Manual deploy only. No secrets / prod migrations / agent deploys. Ready-to-deploy SHAs through `7967dc3d` until #37 merges.
+**Hard rules:** Manual, exact-SHA production deploys only. No secrets in Git/config and no production migrations without separate approval. An agent may initiate a deploy only after explicit owner approval for the exact SHA, through the protected `production` GitHub Environment or locally authenticated deploy script; never bypass tests, SHA/confirmation checks, or Cloudflare recovery gates.

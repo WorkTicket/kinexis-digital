@@ -87,18 +87,18 @@ export default function DocumentShell({
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
-        {/* The font preload above lands before precedence-inlined CSS. Route-specific
-            image preloads are inserted synchronously by the boot script below, keeping
-            the homepage poster off routes whose LCP is their page-hero artwork. */}
+        {/* The font and route-specific image preloads land before the shared
+            cacheable stylesheet. Keep the homepage poster off routes whose LCP
+            is their page-hero artwork. */}
         <link rel="preload" as="font" href={DISPLAY_FONT_HREF} type="font/woff2" crossOrigin="anonymous" />
         <script id="page-hero-lcp" dangerouslySetInnerHTML={{ __html: PAGE_HERO_LCP_BOOT }} />
         {/* First-paint guards only. Do NOT unlayer-hide .mega__panel /
             .dropdown__menu — design CSS lives in @layer components, so an
             unlayered display:none permanently beats .is-open and kills menus. */}
         <style>{`
-/* Critical first-paint: bind Display 800 + metric-matched fallback BEFORE the
-   ~240KB inlined globals.css so H1 (blog LCP) can paint without waiting on
-   stylesheet parse / font-display:block. Values match globals.css. */
+/* Critical first-paint: bind Display 800 + metric-matched fallback so H1
+   (blog LCP) can paint without waiting on stylesheet parse / font-display:block.
+   Values match globals.css. */
 @font-face{font-family:"poppinsDisplay";src:url("${DISPLAY_FONT_HREF}") format("woff2");font-weight:800;font-style:normal;font-display:swap}
 @font-face{font-family:"poppinsDisplay Fallback";src:local("Arial");ascent-override:88.85%;descent-override:29.62%;line-gap-override:8.46%;size-adjust:118.17%}
 html,body{background:#fff;color:#0a1230}

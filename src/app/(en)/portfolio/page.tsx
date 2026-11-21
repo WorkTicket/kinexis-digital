@@ -75,13 +75,14 @@ export default function Page() {
                     <div className="shot__page">
                       <div className="shot__track">
                         <DeferredImg
-                          src={portfolioCardFile(site.image, 400)}
-                          srcSet={portfolioCardSrcSet(site.image)}
-                          avifSrcSet={portfolioCardSrcSet(site.image, "avif")}
+                          src={study ? study.heroImage.replace("1322w", "640w") + "?v=1" : portfolioCardFile(site.image, 400)}
+                          srcSet={study
+                            ? `${study.heroImage.replace("1322w", "640w")}?v=1 640w, ${study.heroImage}?v=1 ${study.heroWidth}w`
+                            : portfolioCardSrcSet(site.image)}
                           sizes={IMAGE_SIZES.portfolioCard}
                           alt=""
-                          width={400}
-                          height={300}
+                          width={study?.heroWidth ?? 400}
+                          height={study?.heroHeight ?? 300}
                           className="shot__img"
                           eager={index === 0}
                         />
