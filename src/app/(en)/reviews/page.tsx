@@ -5,7 +5,6 @@ import { LeaveTrustpilotReview } from "@/components/TrustpilotReviews";
 import { UnifiedReviewCard } from "@/components/UnifiedReviewCard";
 import { PageSchema } from "@/components/JsonLd";
 import { CtaBand, HL, PageHero, Section } from "@/components/ui";
-import { HomeSectionArtwork } from "@/components/CampaignArtwork";
 
 const SiteReviewForm = dynamic(() => import("@/components/SiteReviewForm"));
 
@@ -44,11 +43,6 @@ export default async function Page() {
             ? "Reviews from this site, Trustpilot, and Facebook — same format, newest first."
             : "No reviews yet. Be the first to share your experience."}
         </p>
-        <HomeSectionArtwork
-          name="review-follow-up"
-          alt="A sample review request card sent after a completed service job"
-          className="reviews-follow-up-art"
-        />
         {reviews.length > 0 ? (
           <div className="review-cards">
             {reviews.map((review) => <UnifiedReviewCard key={review.id} review={review} />)}

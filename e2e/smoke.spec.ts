@@ -233,6 +233,16 @@ test.describe("marketing journeys", () => {
     await expect(page.locator(".pricing-footnote--bullets li").first()).toBeVisible();
   });
 
+  test("reviews page keeps its hero without homepage-only phone artwork", async ({ page }) => {
+    await page.goto("/reviews");
+    await expect(page.getByRole("heading", { name: "Client Reviews", level: 1 })).toBeVisible();
+    await expect(page.locator(".campaign-page-art")).toBeVisible();
+    await expect(page.locator(".reviews-follow-up-art")).toHaveCount(0);
+
+    await page.goto("/");
+    await expect(page.locator(".home-section-art--reviews")).toBeVisible();
+  });
+
   test("English blog hub does not link to retired Spanish-slug redirects", async ({ page }) => {
     await page.goto("/blog");
     await expect(page.locator('a[href="/blog/pagina-web-para-plomeros"]')).toHaveCount(0);
