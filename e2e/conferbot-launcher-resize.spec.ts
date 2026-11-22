@@ -95,11 +95,17 @@ async function mountMockConferbot(page: Page) {
 async function showStickyBar(page: Page) {
   await page.evaluate(() => {
     const float = document.querySelector(".float-cta");
+    const sentinel = document.querySelector(".hero__btns, .page-hero");
     if (float) {
       float.classList.add("is-in");
       float.removeAttribute("inert");
     }
-    window.scrollTo(0, document.body.scrollHeight);
+    // Scroll just past the hero trigger, not to the document bottom where the
+    // footer correctly hides the CTA. This is stable with instant scroll behavior.
+    const triggerY = sentinel
+      ? sentinel.getBoundingClientRect().bottom + window.scrollY + 4
+      : 324;
+    window.scrollTo(0, triggerY);
   });
   await expect
     .poll(

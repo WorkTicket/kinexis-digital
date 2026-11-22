@@ -789,8 +789,10 @@ test.describe("marketing journeys", () => {
     }]);
     await page.goto("/", { waitUntil: "load" });
     await page.waitForFunction(() => {
-      const scripts = [...document.scripts].some((s) => (s.src || "").includes("boot.min.js"));
-      return scripts && Boolean(window.__KINEXIS_CFG__);
+      const bootLoaded = performance
+        .getEntriesByType("resource")
+        .some((entry) => entry.name.includes("/assets/js/boot.min.js"));
+      return bootLoaded && Boolean(window.__KINEXIS_CFG__);
     }, null, { timeout: 30_000 });
     await page.waitForTimeout(400);
     await page.evaluate(() => window.dispatchEvent(new Event("kinexis:consent")));
