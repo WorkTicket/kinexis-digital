@@ -18,22 +18,29 @@ let revealStop = () => {};
 const fbTimers = new WeakMap();
 
 /** Keep fixed chrome clear of the soft keyboard and Meta/IG bottom bars. */
+let visualViewportFrame = 0;
 function syncVisualViewport() {
   const vv = window.visualViewport;
-  if (!vv) {
-    root.style.setProperty("--vv-bottom", "0px");
-    return;
+  const inset = vv ? Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop)) : 0;
+  const value = inset + "px";
+  if (root.style.getPropertyValue("--vv-bottom") !== value) {
+    root.style.setProperty("--vv-bottom", value);
   }
-  const inset = Math.max(0, Math.round(window.innerHeight - vv.height - vv.offsetTop));
-  root.style.setProperty("--vv-bottom", inset + "px");
+}
+function scheduleVisualViewportSync() {
+  if (visualViewportFrame) return;
+  visualViewportFrame = requestAnimationFrame(() => {
+    visualViewportFrame = 0;
+    syncVisualViewport();
+  });
 }
 syncVisualViewport();
 if (window.visualViewport) {
-  visualViewport.addEventListener("resize", syncVisualViewport, { passive: true });
-  visualViewport.addEventListener("scroll", syncVisualViewport, { passive: true });
+  visualViewport.addEventListener("resize", scheduleVisualViewportSync, { passive: true });
+  visualViewport.addEventListener("scroll", scheduleVisualViewportSync, { passive: true });
 }
-addEventListener("resize", syncVisualViewport, { passive: true });
-addEventListener("orientationchange", () => setTimeout(syncVisualViewport, 120));
+addEventListener("resize", scheduleVisualViewportSync, { passive: true });
+addEventListener("orientationchange", () => setTimeout(scheduleVisualViewportSync, 120));
 
 function syncChrome() {
   // Match DocumentShell route-chrome: strip locale, then toggle every chrome
@@ -243,7 +250,15 @@ function unlockScroll() {
   document.body.style.left = "";
   document.body.style.right = "";
   document.body.style.width = "";
-  window.scrollTo(0, scrollY);
+  const root = document.documentElement;
+  const previousScrollBehavior = root.style.scrollBehavior;
+  root.style.scrollBehavior = "auto";
+  const restore = () => window.scrollTo(0, scrollY);
+  restore();
+  requestAnimationFrame(() => {
+    restore();
+    root.style.scrollBehavior = previousScrollBehavior;
+  });
 }
 function openDialog(id, src) {
   const dlgId = id === "video" ? "dlg-video" : id === "refund" ? "dlg-refund" : "dlg-guarantee";
@@ -765,11 +780,13 @@ if (bar) {
     const sentinel = document.querySelector(".hero__btns, .page-hero");
     const footer = document.querySelector("footer");
     const vh = innerHeight;
-    const sentinelBottom = sentinel ? sentinel.getBoundingClientRect().bottom : 0;
-    const footerTop = (footer ? footer.getBoundingClientRect().top : document.documentElement.scrollHeight) + scrollY;
-    const heroBottom = sentinelBottom + scrollY;
-    const past = sentinel ? sentinelBottom <= 1 : scrollY > 320;
-    const covered = !!footer && footer.getBoundingClientRect().top < vh - 80;
+    const sentinelBottom = sentinel?.getBoundingClientRect().bottom ?? 0;
+    const footerRect = footer?.getBoundingClientRect();
+    const pageY = window.scrollY;
+    const footerTop = (footerRect?.top ?? document.documentElement.scrollHeight) + pageY;
+    const heroBottom = sentinelBottom + pageY;
+    const past = sentinel ? sentinelBottom <= 1 : pageY > 320;
+    const covered = !!footerRect && footerRect.top < vh - 80;
     // Scroll distance available while the bar is on screen, before the footer
     // takes over the bottom of the viewport.
     const room = footerTop - heroBottom - vh + 80;
@@ -788,7 +805,14 @@ if (bar) {
   measure();
 }
 
-addEventListener("scroll", stuck, { passive: true });
+let stuckFrame = 0;
+addEventListener("scroll", () => {
+  if (stuckFrame) return;
+  stuckFrame = requestAnimationFrame(() => {
+    stuckFrame = 0;
+    stuck();
+  });
+}, { passive: true });
 stuck();
 document.addEventListener("click", (event) => {
   const target = event.target;

@@ -65,6 +65,7 @@ test("preview choice expands the form and confirmation links to intake", async (
     .filter({ hasText: "I’d like a free homepage preview" })
     .click();
   await expect(details).toBeVisible();
+  await expect(details.getByRole("heading", { name: "Tell us a little more about your business" })).toBeVisible();
   await expect(form.locator('input[name="service_area"]')).toHaveAttribute("required", "");
   await expect(form.locator('textarea[name="services"]')).toHaveAttribute("required", "");
   await expect(form.locator('button[type="submit"]')).toContainText("Request My Free Homepage Preview");

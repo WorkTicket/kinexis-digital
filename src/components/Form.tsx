@@ -163,7 +163,8 @@ export default function Form({
             <p className="contact-inquiry__error" id="contact-inquiry-error" data-inquiry-error="" role="status" aria-live="polite" />
           </fieldset>
           <fieldset className="intake-block contact-preview-details" data-preview-details="" hidden aria-describedby="contact-preview-help contact-preview-asset-error">
-            <legend>{inquiryCopy.previewTitle}</legend>
+            <legend className="sr-only">{inquiryCopy.previewTitle}</legend>
+            <h3 className="contact-preview-details__title">{inquiryCopy.previewTitle}</h3>
             <p className="muted small contact-preview-details__lead" id="contact-preview-help">{inquiryCopy.previewLead}</p>
             <label className="field field--wide">
               <input type="text" name="service_area" placeholder=" " data-preview-required="" />

@@ -7,7 +7,7 @@ export { OpenDialog } from "./OpenDialog";
 
 function CloseDialog({ label }: { label: string }) {
   return (
-    <button className="dlg__close" type="button" aria-label={label} data-dialog-close="">
+    <button className="dlg__close btn btn--ghost" type="button" aria-label={label} data-dialog-close="">
       <svg viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true" focusable="false">
         <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
       </svg>

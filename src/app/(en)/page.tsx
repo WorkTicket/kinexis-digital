@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { pageMetadata } from "@/lib/seo";
 import { FAQS, STEPS } from "@/lib/content";
-import { OpenDialog } from "@/components/OpenDialog";
 import Stepper from "@/components/Stepper";
 import { PageSchema } from "@/components/JsonLd";
 import IndustryGrid from "@/components/IndustryGrid";
@@ -190,7 +189,6 @@ export default async function Home() {
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href="/contact" prefetch={false}>Get My Free Preview</Link>
         </p>
-        <p className="center"><OpenDialog id="guarantee" className="link-btn trust-mark">Read the guarantee details</OpenDialog></p>
         <TrustStrip className="center" />
       </Section>
 

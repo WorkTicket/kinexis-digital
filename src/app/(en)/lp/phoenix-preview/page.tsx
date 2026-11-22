@@ -418,9 +418,6 @@ export default async function PhoenixPreviewLp() {
           before day 60. One per business; Own It is excluded.
         </p>
         <p className="center btn-row spaced">
-          <OpenDialog id="guarantee" className="btn btn--ghost">
-            Read the guarantee details
-          </OpenDialog>
           <a className="btn btn--primary" href="#start">
             Get My Free Preview
           </a>

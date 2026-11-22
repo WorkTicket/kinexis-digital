@@ -374,6 +374,43 @@ test.describe("marketing journeys", () => {
     await expect(page.locator('input[name="photos"][type="file"]').first()).toBeAttached();
   });
 
+  test("guarantee dialogs close back to their opening scroll position", async ({ page }) => {
+    await page.goto("/");
+    await expect(page.getByText("Read the guarantee details", { exact: true })).toHaveCount(0);
+    await page.goto("/lp/phoenix-preview");
+    await expect(page.getByText("Read the guarantee details", { exact: true })).toHaveCount(0);
+    await page.goto("/");
+
+    const trigger = page.locator(".trust-fineprint__guarantees").last()
+      .getByRole("button", { name: "60-Day Lead Guarantee" });
+    await trigger.scrollIntoViewIfNeeded();
+    await trigger.click();
+    const dialog = page.locator("#dlg-guarantee");
+    await expect(dialog).toBeVisible();
+    const openingScrollY = await page.evaluate(() => Math.abs(Number.parseInt(document.body.style.top, 10) || 0));
+    const close = dialog.getByRole("button", { name: "Close" });
+    await expect(close).toHaveClass(/btn--ghost/);
+    await close.click();
+    await expect(dialog).toBeHidden();
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBe(openingScrollY);
+  });
+
+  test("in-page CTAs jump directly to their fragment target", async ({ page }) => {
+    await page.goto("/lp/phoenix-preview");
+    const scrollBehavior = await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior);
+    expect(scrollBehavior).toBe("auto");
+    const expectedY = await page.evaluate(() => {
+      const target = document.getElementById("start");
+      if (!target) throw new Error("Preview form target is missing");
+      const padding = Number.parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 0;
+      return Math.round(target.getBoundingClientRect().top + window.scrollY - padding);
+    });
+
+    await page.locator('a[href="#start"]').first().click();
+    await expect.poll(() => page.evaluate(() => location.hash)).toBe("#start");
+    await expect.poll(() => page.evaluate(() => Math.round(window.scrollY))).toBe(expectedY);
+  });
+
   test("free-preview conversion fires once and only after confirmed success", async ({ page }) => {
     await installMockAnalytics(page);
     let submissions = 0;
