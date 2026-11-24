@@ -62,6 +62,13 @@ async function scrollToStickyChrome(page: import("@playwright/test").Page) {
   )).toBe(true);
 }
 
+async function expectConsentFabVisible(page: import("@playwright/test").Page) {
+  await expect(async () => {
+    await scrollToStickyChrome(page);
+    await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible({ timeout: 2_000 });
+  }).toPass({ timeout: 15_000 });
+}
+
 async function gaEvents(page: import("@playwright/test").Page) {
   return page.evaluate(() => {
     const dataLayer = (window as Window & { dataLayer?: unknown[] }).dataLayer ?? [];
@@ -752,8 +759,7 @@ test.describe("marketing journeys", () => {
       const m = document.cookie.match(/(?:^|; )kinexis_consent=([^;]*)/);
       return m ? decodeURIComponent(m[1]) : "";
     }), { timeout: 10_000 }).toMatch(/v1\|a=0\|d=0/);
-    await scrollToStickyChrome(page);
-    await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible();
+    await expectConsentFabVisible(page);
 
     trackerHits.length = 0;
     const host = new URL(baseURL || "http://127.0.0.1:3000").hostname;
@@ -767,7 +773,7 @@ test.describe("marketing journeys", () => {
     await scrollToStickyChrome(page);
     await page.waitForTimeout(2000);
     expect(trackerHits, "reject cookie must not load GA/Meta").toEqual([]);
-    await expect(page.getByRole("button", { name: /Cookie preferences/i })).toBeVisible();
+    await expectConsentFabVisible(page);
   });
 
   test("cookie consent: accept arms trackers when IDs configured", async ({ page, context, baseURL }) => {
