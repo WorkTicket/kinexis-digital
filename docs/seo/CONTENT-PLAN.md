@@ -9,10 +9,12 @@
 ## 0. Real data snapshot (do not invent beyond this)
 
 ### Google Search Console (official totals)
-**6 clicks · 6,705 impressions · 0.1% CTR · avg position 64.5.** Coverage UI: **114 indexed / 812 not indexed** (redirect 456, discovered-not-indexed 84, crawled-not-indexed 77, robots 71, 404 67, noindex 29, …). Sitemap: 131 live URLs, all 200. Most historical impressions sit on **already-301ing** `/en/...` and legacy `/es` agency paths; **current live 200 URLs ≈ 1 click / 302 impressions** in this export (`/es` is the strongest live page). Brand query `kinexis`: **63 imps, 0 clicks, pos 16.3**. `/pricing`: **12 imps, pos 3.25**. `local seo checklist`: **141 imps, pos 70.59** (historically on `/en/blog/local-seo-checklist` → live `/blog/local-seo-get-found-get-called`).
+**Fresh pull 2026-11-24 (last 28 days):** **1 click · 601 impressions · 0.2% CTR · avg position 43.4.** Overview: **121 indexed / ~793 not indexed**. Top queries: `kinexis` 57 imps @ **17.1**; `roofing website cost` 20 @ 50.2; `* website design pricing` cluster (roofing/HVAC/plumbing/electrical/garage/tree); ES `pagina web para techos sin deposito` 8 @ **20.5**; Cedar Falls local queries @ pos **6–9**. Top pages: `/blog/roofing-website-cost` 48; legacy `/es-es/blog/small-business-marketing-budget` 47 (301→`/es/…` live); `/` 27; `/industries/plumbing` 22; `/locations/cedar-falls` 21. Snapshots: `docs/seo/GSC-PERFORMANCE-2026-11-24.md`, `docs/seo/GSC-QUERIES-28D-2026-11-24.csv`. Path to ~20 clicks/day: Phase A CTR titles shipping; B climb commercial; C links + paid Ahrefs.
+
+**Prior 16‑mo export (kept for history):** **6 clicks · 6,705 impressions · 0.1% CTR · avg position 64.5.** Coverage UI then: **114 indexed / 812 not indexed** (redirect 456, discovered-not-indexed 84, crawled-not-indexed 77, …).
 
 ### Ahrefs (Free plan)
-**Only DR 9.0** (`public-domain-rating-free` for apex and www). Site Explorer, Keywords Explorer, Site Audit, organic keywords, backlinks, competitors: **Insufficient plan**. Volume / KD / CPC remain unavailable — leave blank until a paid Ahrefs plan (owner gate).
+**Only DR 9.0** (`public-domain-rating-free` for apex and www). Site Explorer, Keywords Explorer, Site Audit, organic keywords, backlinks, competitors: **Insufficient plan**. Volume / KD / CPC remain unavailable — leave blank until a paid Ahrefs plan (owner gate). Free Authority Checker blocked by Cloudflare captcha in-agent (2026-11-24); use prior DR 9.0.
 
 ---
 
@@ -35,8 +37,9 @@
 | T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | **Done** — avg pair similarity **35.1%** (was ~89.7%); `node scripts/measure-trade-post-similarity.mjs` |
 | T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | **Done** — avg pair similarity **22.1%** (was ~85.8%); same script |
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
-| T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | In progress (code) |
-| T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | In progress (code) |
+| T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | **Done** (live; GSC seeing imps) |
+| T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | **Done** (live; GSC seeing imps) |
+| T17 | GSC CTR pass: cost + hub titles match “pricing” queries | Metadata | Tech-0+ | cost posts + industry hubs + ES roofing | **In progress** (2026-11-24) |
 | T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Done |
 | T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Done |
 | T10 | Industry: painting live | Landing | 3 | `/industries/painting` | In code this PR |

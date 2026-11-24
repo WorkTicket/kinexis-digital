@@ -113,8 +113,8 @@ const ES: Record<string, Copy> = {
   roofing: {
     name: "Techos",
     card: "Reparaciones, cambios y tormentas",
-    metaTitle: "Página web para techos desde $97/mes",
-    metaDescription: "Página web para compañías de techos (roofing) desde $97/mes, $0 de entrada. Reparación, reemplazo e inspecciones. Vista previa gratis del inicio.",
+    metaTitle: "Página web para techos sin depósito | $97/mes",
+    metaDescription: "Página web para techos sin depósito: desde $97/mes, $0 de entrada. Reparación, reemplazo e inspecciones. Vista previa gratis del inicio en 2 días.",
     h1: "Página web para empresas de techado que genera solicitudes de inspección",
     mark: "solicitudes de inspección",
     sub: "Después de una tormenta, muchas empresas de techado ofrecen servicios parecidos. Tu sitio debe explicar qué reparas, qué reemplazas y cómo es el proceso de inspección.",
