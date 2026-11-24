@@ -81,24 +81,24 @@ export default function DocumentShell({
 }) {
   // Same URL as @font-face. Without this, Display 800 is discovered late via CSS and
   // swapping it in shifts page-hero art (CLS ~0.15 on about/portfolio).
+  // Single preload only — a duplicate <link> raced the homepage LCP poster.
   preload(DISPLAY_FONT_HREF, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
   return (
     <html lang={htmlLang(locale)} data-scroll-behavior="smooth" suppressHydrationWarning>
       {/* Custom document head for FOUC CSS and locale boot (same pattern as the former root layout). */}
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
-        {/* The font and route-specific image preloads land before the shared
-            cacheable stylesheet. Keep the homepage poster off routes whose LCP
-            is their page-hero artwork. */}
-        <link rel="preload" as="font" href={DISPLAY_FONT_HREF} type="font/woff2" crossOrigin="anonymous" />
+        {/* LCP image preload first (homepage poster / page-hero art), then font.
+            Keep the homepage poster off routes whose LCP is their page-hero artwork. */}
         <script id="page-hero-lcp" dangerouslySetInnerHTML={{ __html: PAGE_HERO_LCP_BOOT }} />
         {/* First-paint guards only. Do NOT unlayer-hide .mega__panel /
             .dropdown__menu — design CSS lives in @layer components, so an
-            unlayered display:none permanently beats .is-open and kills menus. */}
+            unlayered display:none permanently beats .is-open and kills menus.
+            Hero media rules match globals.css so the LCP poster can paint before
+            the ~57 KiB shared stylesheet arrives (cuts element-render delay). */}
         <style>{`
-/* Critical first-paint: bind Display 800 + metric-matched fallback so H1
-   (blog LCP) can paint without waiting on stylesheet parse / font-display:block.
-   Values match globals.css. */
+/* Critical first-paint: Display 800 + metric-matched fallback + homepage LCP shell.
+   Values match globals.css (tokens inlined as hex — vars load with the full sheet). */
 @font-face{font-family:"poppinsDisplay";src:url("${DISPLAY_FONT_HREF}") format("woff2");font-weight:800;font-style:normal;font-display:swap}
 @font-face{font-family:"poppinsDisplay Fallback";src:local("Arial");ascent-override:88.85%;descent-override:29.62%;line-gap-override:8.46%;size-adjust:118.17%}
 html,body{background:#fff;color:#0a1230}
@@ -107,6 +107,20 @@ h1,h2,h3,h4,.btn,button{font-weight:700}
 .trust-hl,.trust-mark,.link-btn{font-weight:700}
 h1{font-family:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;font-weight:800}
 .page-hero--article h1{max-width:18ch;margin-inline:auto;text-wrap:balance}
+.container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
+.hero{position:relative;overflow:visible;padding:76px 0 88px;color:#0a1230;background:#fff}
+.hero .container{position:relative;z-index:2}
+.hero__inner{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.hero__media{position:relative;width:100%;padding:12px;background:#fff;border:3px solid #031b4e;border-radius:22px;box-shadow:8px 8px 0 #031b4e;line-height:0}
+.hero__frame{position:relative;border-radius:14px;overflow:hidden;border:3px solid #031b4e;background:#0a1230}
+.hero__poster,.hero__film{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;background:#0a1230}
+.hero__film{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none}
+.page-hero{position:relative;overflow:visible;padding:72px 0 56px;background:linear-gradient(180deg,#f4f7ff,#fff);border-bottom:1px solid #e1e6f2}
+.page-hero__grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4vw,64px);align-items:center;text-align:left}
+.page-hero__art{min-width:0}.art-wrap{position:relative}.page-hero__art .art-wrap{aspect-ratio:1/1;width:100%;max-width:100%}
+.campaign-page-art{display:block;width:100%}.hero-art,.campaign-page-art__img{display:block;width:100%;height:auto;object-fit:contain}
+@media(max-width:720px){.hero__inner{grid-template-columns:1fr;gap:clamp(12px,1.8svh,16px)}.hero.hero--fit{min-height:0;padding:28px 0 36px}.hero__media{padding:8px;box-shadow:5px 5px 0 #031b4e}}
+@media(max-width:860px){.page-hero__grid{grid-template-columns:1fr}.page-hero__art .art-wrap{max-width:260px;margin-inline:auto}}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
 `}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />

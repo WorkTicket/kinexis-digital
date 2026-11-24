@@ -32,6 +32,25 @@ export const PAGE_HERO_BY_PATH: Record<string, string> = {
   "/strategy-call": "13-contact",
 };
 
+/**
+ * Routes whose LCP is CampaignHeroArtwork mobile AVIF (not `/assets/heroes/*`).
+ * Early-head preload must match `CampaignHeroArtwork` mobile candidate.
+ */
+export const CAMPAIGN_LCP_BY_PATH: Record<string, string> = {
+  "/pricing": "pricing",
+  "/portfolio": "portfolio",
+  "/contact": "contact",
+  "/about": "about",
+  "/reviews": "client-reviews",
+  "/blog": "blog",
+  "/services": "all-services",
+  "/web-design": "web-design",
+  "/seo-services": "local-seo",
+  "/audit": "website-audit",
+  "/upgrades": "upgrades",
+  "/industries": "industries",
+};
+
 export function pageHeroFileForPath(pathname: string): string | null {
   let path = pathname || "/";
   if (path === "/es" || path.startsWith("/es/")) {
@@ -62,6 +81,9 @@ export function pageHeroPreloadBootScript() {
   const entries = Object.entries(PAGE_HERO_BY_PATH)
     .map(([path, file]) => `${JSON.stringify(path)}:${JSON.stringify(file)}`)
     .join(",");
+  const campaignEntries = Object.entries(CAMPAIGN_LCP_BY_PATH)
+    .map(([path, file]) => `${JSON.stringify(path)}:${JSON.stringify(file)}`)
+    .join(",");
   const sizes = JSON.stringify(PAGE_HERO_SIZES);
   const highDetailFiles = JSON.stringify(HIGH_DETAIL_HERO_FILES);
   const highDetailSizes = JSON.stringify(HIGH_DETAIL_HERO_SIZES);
@@ -71,19 +93,31 @@ export function pageHeroPreloadBootScript() {
   const posterSizes = JSON.stringify(HERO_POSTER_SIZES);
   const posterHref = JSON.stringify(still(HERO_POSTER.replace(/\.webp$/i, `-${HERO_POSTER_WIDTHS[1]}.avif`)));
   return `(function(){
-var p=location.pathname||"/";
-if(p==="/es"||p.indexOf("/es/")===0){p=p==="/es"?"/":p.slice(3)}
-else if(p==="/es-es"||p.indexOf("/es-es/")===0){p=p==="/es-es"?"/":p.slice(6)}
+var raw=location.pathname||"/",p=raw,esSuffix="";
+if(p==="/es"||p.indexOf("/es/")===0){esSuffix="-es";p=p==="/es"?"/":p.slice(3)}
+else if(p==="/es-es"||p.indexOf("/es-es/")===0){esSuffix="-es";p=p==="/es-es"?"/":p.slice(6)}
 if(p.length>1&&p.charAt(p.length-1)==="/")p=p.slice(0,-1);
+var head=document.currentScript&&document.currentScript.parentNode?document.currentScript.parentNode:document.head;
+var before=document.currentScript||head.firstChild;
+function insertPreload(href,type){
+ var l=document.createElement("link");
+ l.rel="preload";l.as="image";l.href=href;if(type)l.type=type;
+ l.setAttribute("fetchpriority","high");
+ head.insertBefore(l,before);
+ return l;
+}
  if(p==="/"){
- var poster=document.createElement("link");
- poster.rel="preload";poster.as="image";poster.href=${posterHref};
- poster.type="image/avif";poster.setAttribute("imagesrcset",${posterSrcSet});
- poster.setAttribute("imagesizes",${posterSizes});poster.setAttribute("fetchpriority","high");
- var current=document.currentScript;
- (current&&current.parentNode?current.parentNode:document.head).insertBefore(poster,current||document.head.firstChild);
+ var poster=insertPreload(${posterHref},"image/avif");
+ poster.setAttribute("imagesrcset",${posterSrcSet});
+ poster.setAttribute("imagesizes",${posterSizes});
  return;
  }
+var campaign={${campaignEntries}};
+var campaignFile=campaign[p];
+if(campaignFile){
+ insertPreload("/assets/kinexis/page-art/"+campaignFile+"-mobile"+esSuffix+".avif?v="+${version},"image/avif");
+ return;
+}
 var map={${entries}};
 var file=p.indexOf("/case-studies/")===0?"02-portfolio":map[p];
 if(!file)return;
@@ -91,12 +125,8 @@ var v=${version},sizes=${sizes},highDetailFiles=${highDetailFiles},highDetailSiz
 if(highDetailFiles.indexOf(file)>=0)sizes=highDetailSizes;
 var href="/assets/heroes/"+file+"-480.avif?v="+v;
 var srcset=widths.map(function(w){return "/assets/heroes/"+file+"-"+w+".avif?v="+v+" "+w+"w"}).join(", ");
-var l=document.createElement("link");
-l.rel="preload";l.as="image";l.href=href;l.type="image/avif";
+var l=insertPreload(href,"image/avif");
 l.setAttribute("imagesrcset",srcset);
 l.setAttribute("imagesizes",sizes);
-l.setAttribute("fetchpriority","high");
-var s=document.currentScript;
-(s&&s.parentNode?s.parentNode:document.head).insertBefore(l,s||document.head.firstChild);
 })();`;
 }

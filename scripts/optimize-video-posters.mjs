@@ -3,7 +3,7 @@
 import { rebuildFromMaster } from "./still-encode.mjs";
 
 const base = "public/assets/video/kinexis-explainer-v5f-preview-poster.webp";
-// 280/560 match IMAGE_SIZES.heroFilm (270 mobile / 560 desktop); 768 covers 2× DPR.
+// 280/560 match IMAGE_SIZES.heroFilm (understated mobile → 560w at lab DPR / 560 desktop); 768 covers true 2×.
 const widths = [280, 560, 768];
 
 for (const width of widths) {

@@ -45,9 +45,9 @@ export const IMAGE_SIZES = {
   /** Industry photo hero — CSS full column ≤560–620; desktop sizes match slot so DPR2 picks 1120. */
   industryHero: "(max-width: 860px) 270px, 560px",
   /** Homepage film poster — CSS ~full column mobile (~360) / ~560 desktop.
-   *  Keep sizes aligned with the real slot so preload + <picture> pick the same
-   *  candidate (PSI double-fetch / resource-load-delay). */
-  heroFilm: "(max-width: 720px) 360px, 560px",
+   *  Understate mobile so lab DPR (~2.625) keeps the preloaded 560w AVIF
+   *  (360px×2.625 was selecting 768w and delaying LCP). Layout width is unchanged. */
+  heroFilm: "(max-width: 720px) 213px, 560px",
   /** Home section stickers (trades/reviews) — CSS ≤420–480; variants start at 640w. */
   homeSection: "(max-width: 720px) 300px, 360px",
   /** Blog index cards — CSS ~full column mobile / ~380 desktop. */

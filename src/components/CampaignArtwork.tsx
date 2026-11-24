@@ -64,7 +64,8 @@ export function CampaignHeroArtwork({
         width={960}
         height={540}
         loading={priority ? "eager" : "lazy"}
-        decoding="async"
+        // sync when priority: campaign art is the LCP element on pricing/portfolio/etc.
+        decoding={priority ? "sync" : "async"}
         fetchPriority={priority ? "high" : "low"}
         className="hero-art campaign-page-art__img"
       />
