@@ -188,7 +188,7 @@ export const ES_GUIDE_STUBS: EsPost[] = [
     "category": "Diseño",
     "title": "Diseño web para contratistas: lista práctica",
     "seoTitle": "Diseño web para contratistas | Lista práctica",
-    "excerpt": "Organiza tus servicios, zona, pruebas y formas de contacto con esta guía práctica para el sitio web de tu negocio.",
+    "excerpt": "Organiza servicios, zona, pruebas reales y formas de contacto con esta guía práctica para el sitio web de un contratista que sí recibe llamadas.",
     "lead": "Un sitio para un negocio de servicios debe ayudar a una persona a reconocer el trabajo que necesita, confirmar que atiendes su zona y decidir cómo comunicarse contigo. Antes de elegir colores o animaciones, revisa el contenido y el recorrido que tendrá un cliente desde el celular.",
     "sections": [
       {

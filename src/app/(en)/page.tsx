@@ -12,7 +12,7 @@ import ReviewsSection from "@/components/ReviewsSection";
 import TrustStrip from "@/components/TrustStrip";
 import PlanCompare from "@/components/PlanCompare";
 import { HomeCaseStudyShowcase } from "@/components/HomeCaseStudyShowcase";
-import { Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui";
+import { Compare, Faq, HL, IconCard, MediaSplit, Section } from "@/components/ui";
 import HeroFilm from "@/components/HeroFilm";
 import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 
@@ -100,7 +100,7 @@ export default async function Home() {
         <div className="home-case-studies__heading">
           <p className="eyebrow">Selected Work</p>
           <h2>Websites We’ve Built for Contractors</h2>
-          <p className="muted">Explore two live client websites created for local service businesses.</p>
+          <p className="muted">Explore two live client websites. Design concepts by trade live in the full portfolio.</p>
         </div>
         <HomeCaseStudyShowcase />
         <p className="home-case-studies__footer">
@@ -132,6 +132,16 @@ export default async function Home() {
           moreLayout="cell"
         />
         <CostGuides className="cost-guides--home" />
+      </Section>
+
+      {/* 5b. Positioning vs freelancers and agencies */}
+      <Section>
+        <div className="section-head">
+          <h2 className="center"><HL text="Why Business Owners Choose Kinexis" mark="Choose Kinexis" /></h2>
+          <p className="center muted">What you get with us that most freelancers and agencies do not package the same way.</p>
+        </div>
+        <Compare />
+        <p className="center muted small">Typical offerings; individual providers vary.</p>
       </Section>
 
       {/* 6. Plans offer, then comparison detail (one flow — no duplicate recommended card) */}

@@ -51,7 +51,7 @@ import {
   spanishCatalogPlansForCompare,
 } from "@/i18n/spanish-plan-compare";
 import { HomeCaseStudyShowcase } from "@/components/HomeCaseStudyShowcase";
-import { CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard } from "@/components/ui";
+import { Compare, CtaBand, Faq, HL, Icon, IconCard, MediaSplit, PageHero, Section, ServiceCard } from "@/components/ui";
 import { CampaignHeroArtwork, HomeSectionArtwork } from "@/components/CampaignArtwork";
 import HeroFilm from "@/components/HeroFilm";
 
@@ -68,23 +68,23 @@ const SPANISH_INDUSTRY_SOCIAL_HEROES = new Set([
 
 const PAGE_META: Record<SpanishStaticPath, Meta> = {
   "/": { title: "Sitios web para contratistas desde $97/mes | Kinexis Digital", absolute: true, description: "Sitios web para contratistas desde $97/mes, $0 de entrada. Reseñas de Google, texto opcional y vista previa gratis del inicio." },
-  "/services": { title: "Diseño web, SEO y mantenimiento", description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios en Estados Unidos, con apoyo claro en cada paso." },
+  "/services": { title: "Diseño web, SEO y mantenimiento", description: "Diseño web para contratistas, SEO local, cuidado del sitio y revisiones gratis—con un siguiente paso claro desde la vista previa hasta el lanzamiento." },
   "/web-design": { title: "Diseño web para contratistas en EE. UU.", description: "Diseño web para contratistas en EE. UU. desde $97/mes, $0 de entrada. Vista previa gratis de tu página de inicio en 2 días hábiles, sin tarjeta." },
-  "/seo-services": { title: "SEO para sitios web de negocios", description: "Mejora la visibilidad de tu sitio con SEO técnico, optimización de páginas, contenido útil e informes claros pensados para atraer más clientes." },
+  "/seo-services": { title: "SEO local para contratistas", description: "SEO local para contratistas: arreglos técnicos, páginas de servicio claras, contenido útil e informes sencillos para atraer a los clientes correctos." },
   "/audit": { title: "Auditoría web gratis de SEO y UX", description: "Recibe una auditoría web gratuita de SEO, velocidad, uso en celular, indexación y conversión, con una lista clara de mejoras recomendadas." },
   "/contact": { title: "Hablemos de tu proyecto web", description: "Contacta a Kinexis Digital para hablar de un sitio nuevo, rediseño, SEO o mantenimiento web para tu negocio y recibe una orientación clara." },
   "/website-management": { title: "Administración y mantenimiento web", description: "Mantén tu sitio seguro, actualizado y respaldado con hosting administrado, copias de seguridad, cambios pequeños y soporte directo del equipo." },
-  "/about": { title: "Conoce nuestra agencia de diseño web", description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios en Estados Unidos." },
-  "/portfolio": { title: "Portafolio y sitios de clientes", description: "Explora sitios reales de clientes de Kinexis y diseños para negocios de servicios locales, y elige la dirección visual adecuada para tu sitio." },
+  "/about": { title: "Cómo trabaja Kinexis Digital", description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios en Estados Unidos." },
+  "/portfolio": { title: "Portafolio y sitios de clientes", description: "Explora sitios de clientes publicados y diseños conceptuales por oficio para elegir la dirección visual adecuada para tu sitio web." },
   "/industries": { title: "Sitios web para contratistas, por oficio", description: "Diseño web para plomeros, HVAC, electricistas, techos, puertas de garaje, paisajismo y lavado a presión en todo EE. UU. Planes desde $97/mes." },
   "/reviews": { title: "Lo que cuentan los clientes de Kinexis", description: "Lee reseñas de clientes de Kinexis Digital en este sitio, Trustpilot y Facebook, y deja la tuya en unos clics cuando quieras." },
   "/upgrades": { title: "Extras y mejoras para sitios web", description: "Agrega páginas, mantenimiento continuo u otras mejoras cuando tu sitio web y tu negocio las necesiten, sin complicar tu operación diaria." },
-  "/pricing": { title: "Costo de un sitio web para negocios", description: "Planes desde $97/mes, Lead System $197/mes, Plus $297/mes u Own It $1,497. Vista previa gratis en 2 días hábiles. Sin tarjeta." },
+  "/pricing": { title: "Costo de un sitio web para contratistas | Desde $97/mes", description: "Costo de sitio web para contratistas: $97, $197 o $297/mes, u Own It $1,497. Vista previa gratis del inicio en 2 días hábiles—sin tarjeta." },
   "/pay": { title: "Paga tu plan de sitio web | Kinexis Digital", absolute: true, description: "Elige Website, Lead System, Plus u Own It y paga de forma segura con PayPal. Precios en USD sin cambios: $97, $197, $297 o $1,497." },
-  "/blog": { title: "Recursos de diseño web y SEO", description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento en Estados Unidos." },
+  "/blog": { title: "Recursos de diseño web y SEO", description: "Guías prácticas para contratistas sobre diseño web, SEO local, reseñas, seguimiento de llamadas perdidas y planes que ayudan a conseguir más llamadas." },
   "/faqs": { title: "Preguntas frecuentes de diseño web", description: "Respuestas claras sobre precios, cobro, propiedad del sitio, lanzamiento, SEO, fotos, redacción y mantenimiento web antes de empezar." },
   "/update": { title: "Solicita una actualización del sitio", description: "Indica qué página necesita un cambio y adjunta cualquier archivo útil. Atendemos cada solicitud según el alcance y los tiempos de tu plan." },
-  "/intake": { title: "Entrega de contenido del sitio", description: "Envía datos del negocio, servicios, logo y fotos de trabajos para que Kinexis arme tu vista previa y el sitio completo." },
+  "/intake": { title: "Entrega de contenido del sitio", description: "Envía datos del negocio, servicios, logo y fotos de trabajos reales para que Kinexis arme tu vista previa gratis y el sitio completo." },
   "/strategy-call": { title: "Agenda una llamada de estrategia web", description: "Elige un horario para revisar tu sitio actual, tus objetivos y el plan de diseño web que mejor se adapte a tu negocio, con una recomendación clara." },
   "/terms": { title: "Términos de planes y cobro de Kinexis", description: "Consulta los términos actuales de planes, cobro, cancelación, propiedad, mensajes de texto y la garantía de leads de 60 días antes de empezar." },
   "/privacy": { title: "Cómo cuida Kinexis tu información", description: "Lee qué recoge Kinexis de formularios, llamadas, correo, registros del servidor y analítica, además de cómo usa y comparte esa información." },
@@ -98,24 +98,24 @@ const PAGE_META_ES_ES: Partial<Record<string, Meta>> = {
     description: "Web profesional para negocios de servicios locales en España, con vista previa gratis de la página de inicio. Sin tarjeta.",
   },
   "/pricing": {
-    title: "Planes de sitios web locales | Kinexis Digital",
-    description: "Website desde 97 €/mes, Lead System 197 €/mes, Plus 297 €/mes u Own It 1.497 €. Vista previa gratis en 2 días hábiles. Sin tarjeta.",
+    title: "Costo de un sitio web para contratistas | Desde 97 €/mes",
+    description: "Costo de sitio web para contratistas: 97 €, 197 € o 297 €/mes, u Own It 1.497 €. Vista previa gratis del inicio en 2 días hábiles—sin tarjeta.",
   },
   "/web-design": {
     title: "Diseño web para contratistas",
     description: "Diseño web para contratistas desde 97 €/mes, 0 € de entrada. Vista previa gratis de tu página de inicio en 2 días hábiles, sin tarjeta.",
   },
   "/about": {
-    title: "Conoce nuestra agencia de diseño web",
-    description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios locales.",
+    title: "Cómo trabaja Kinexis Digital",
+    description: "Conoce cómo Kinexis Digital planifica, diseña, lanza y mantiene sitios web profesionales para negocios de servicios locales en España.",
   },
   "/services": {
     title: "Diseño web, SEO y mantenimiento",
-    description: "Explora diseño web profesional, SEO, mantenimiento del sitio y auditorías gratuitas para negocios locales, con apoyo claro en cada paso.",
+    description: "Diseño web para contratistas, SEO local, cuidado del sitio y revisiones gratis—con un siguiente paso claro desde la vista previa hasta el lanzamiento.",
   },
   "/blog": {
     title: "Recursos de diseño web y SEO",
-    description: "Lee guías prácticas sobre diseño web, SEO, rendimiento, reseñas y marketing digital para negocios en crecimiento.",
+    description: "Guías prácticas para contratistas sobre diseño web, SEO local, reseñas, seguimiento de llamadas perdidas y planes que ayudan a conseguir más llamadas.",
   },
 };
 
@@ -292,12 +292,33 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
         <div className="home-case-studies__heading">
           <p className="eyebrow">{tx("Proyectos seleccionados")}</p>
           <h2>{tx("Sitios web que hemos creado para contratistas")}</h2>
-          <p className="muted">{tx("Explora dos sitios publicados para negocios locales de servicios.")}</p>
+          <p className="muted">{tx("Explora dos sitios de clientes publicados. Los diseños conceptuales por oficio están en el portafolio completo.")}</p>
         </div>
         <HomeCaseStudyShowcase locale="es" hrefFor={href} />
         <p className="home-case-studies__footer">
           <Link href={href("/portfolio")} prefetch={false}>{tx("Ver el portafolio completo")} <span aria-hidden="true">→</span></Link>
         </p>
+      </Section>
+      <Section>
+        <div className="section-head">
+          <h2 className="center"><HL text={tx("Por qué los negocios eligen Kinexis")} mark={tx("eligen Kinexis")} /></h2>
+          <p className="center muted">{tx("Lo que recibes con nosotros y que freelancers y agencias no suelen empaquetar igual.")}</p>
+        </div>
+        <Compare
+          freelancers={tx("Freelancers")}
+          agencies={tx("Agencias")}
+          label={tx("Comparación")}
+          feature={tx("Función")}
+          yesLabel={tx("Sí")}
+          rows={[
+            [tx("Vista previa gratis del inicio antes de pagar"), false, false],
+            [tx("Textos por llamada perdida y solicitudes de reseña"), false, false],
+            [tx("Hosting y actualizaciones a cargo nuestro"), false, true],
+            [tx("Precio fijo por 24 meses"), false, false],
+            [tx("Sitios en inglés y español"), false, true],
+          ]}
+        />
+        <p className="center muted small">{tx("Ofertas típicas; cada proveedor puede variar.")}</p>
       </Section>
       <Section id="plans">
         <PlanOffer heading={tx("Planes y precios de sitios web")} mark={tx("Planes y precios")} href={href("/contact")} pricingHref={href("/pricing")} eyebrow={tx("Cuatro planes · Una vista previa gratis")} chip={tx(`${p("zeroDown", currency)} de entrada`)} note={tx("Cada plan empieza con una vista previa gratis en 2 días hábiles, sin tarjeta y sin obligación. Mes a mes, cancela cuando quieras.")} badge={tx("El más elegido")} cta={tx("Solicitar mi vista previa gratis")} planCta={tx("Empieza con una vista previa gratis")} secondary={tx("Ver planes y precios")} trust={{ leadLabel: tx("Garantía de 60 días"), refundLabel: tx("Devolución en 30 días"), downLabel: tx(`${p("zeroDown", currency)} de entrada`), previewLabel: tx("Vista previa en 2 días hábiles") }} plans={plans} stickers={spainChrome ? undefined : { website: SPANISH_PLAN_STICKERS.website.offer, "lead-system": SPANISH_PLAN_STICKERS["lead-system"].offer, plus: SPANISH_PLAN_STICKERS.plus.offer }} showStickers={!spainChrome} />
@@ -384,7 +405,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       </Section>
       <Section tint>
         <h2 className="center"><HL text={tx("Garantía de leads rastreados en 60 días")} mark={tx("60 días")} /></h2>
-        <p className="center muted">{tx("Lead System y Plus incluyen una garantía por escrito. Si no hay leads rastreados en los primeros 60 días en línea, condonamos el tercer y cuarto cargo.")}</p>
+        <p className="center muted">{tx("Solo Lead System y Plus: si en los primeros 60 días en vivo no hay leads rastreados, condonamos el tercer y cuarto cargo. Cuenta como lead una llamada de 30+ segundos, un que responde al texto por llamada perdida o un formulario de cotización real; no cuentan spam, números equivocados, candidatos, proveedores ni clientes actuales. La cuenta debe estar al día. No aplica si tus cambios impiden el seguimiento o pausas/cancelas antes del día 60. Una por negocio; Own It queda fuera.")}</p>
         <p className="center btn-row spaced">
           <Link className="btn btn--primary" href={href("/contact")} prefetch={false}>{tx("Solicitar mi vista previa gratis")}</Link>
         </p>
@@ -607,7 +628,7 @@ function Pricing({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) =
   return (
     <>
       <ContentSchema path={href("/pricing")} title={pricingMeta.title} description={pricingMeta.description} crumbs={[{ name: tx("Inicio"), path: href("/") }, { name: tx("Precios"), path: href("/pricing") }]} faqs={faqs} serviceType={tx("Diseño web")} products={plans} inLanguage={lang} />
-      <PageHero locale={locale} h1={tx("Elige el plan de sitio que te conviene")} mark={tx("te conviene")} sub={tx("Empieza con el sitio que necesita tu negocio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
+      <PageHero locale={locale} h1={tx("Costo de un sitio web para contratistas: planes que se adaptan al trabajo")} mark={tx("planes que se adaptan al trabajo")} sub={tx("Empieza con el sitio que necesita tu negocio y agrega el seguimiento que quieras. Todos los planes comienzan con una vista previa gratis.")} image="pricing" imageAlt={tx("Precios con una tarjeta y palomas")} />
       <Section>
         <div className="free-preview">
           <div className="free-preview__copy">
@@ -1364,7 +1385,7 @@ function Portfolio({ locale, tx, href, lang, band }: PageBits) {
               </a>
             );
           })}</div>
-          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Elige tu diseño inicial")}</p><h2><HL text={tx("Sitios hechos para tu negocio")} mark={tx("tu negocio")} /></h2><p className="muted">{tx("Elige un diseño que te guste y personalizamos el contenido, los servicios y las llamadas a la acción para tu negocio. Pasa el cursor o mantén pulsado para ver el recorrido; el sitio completo está en inglés.")}</p></div></div>
+          <div className="showcase__head showcase__head--follow"><div><p className="eyebrow">{tx("Diseños conceptuales")}</p><h2><HL text={tx("Diseños conceptuales por oficio")} mark={tx("por oficio")} /></h2><p className="muted">{tx("Elige un diseño conceptual que te guste. Adaptamos páginas, textos y siguientes pasos a tus servicios y zona. El sitio completo de ejemplo está en inglés.")}</p></div></div>
           <div className="portfolio portfolio--main">{PROJECTS.map((project) => (
             <article key={project.slug} className="work-card">
               <ProjectCard project={project} href={project.placeholder ? undefined : `/portfolio/${project.slug}`} hrefLang="en-US" label={tx(`Ver ${project.name}`)} ctaLabel={tx("Ver este proyecto")} scrollOnHover={false} />

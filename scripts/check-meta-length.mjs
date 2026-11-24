@@ -14,6 +14,7 @@ const files = [
   "src/data/industries.ts",
   "src/lib/content.ts",
   "src/i18n/industries-es.ts",
+  "src/i18n/SpanishSite.tsx",
 ];
 
 const failures = [];
@@ -25,10 +26,19 @@ for (const file of files) {
     const value = match[1].replace(/\\"/g, '"');
     // Skip short card/excerpt noise under 80 chars in industries cards etc. by requiring metaDescription or pages description keys nearby
     if (match[0].startsWith("excerpt:") && value.length < 100) continue;
-    if (match[0].startsWith("description:") && !file.includes("pages.ts") && !file.includes("industries")) continue;
+    if (
+      match[0].startsWith("description:")
+      && !file.includes("pages.ts")
+      && !file.includes("industries")
+      && !file.includes("SpanishSite.tsx")
+    ) continue;
     if (value.length > 0 && (value.length < MIN || value.length > MAX)) {
       // Allow intentionally short page crumbs/service blurbs in pages.ts non-description fields — already filtered
-      if (match[0].includes("metaDescription") || (file.includes("pages.ts") && match[0].startsWith("description:"))) {
+      if (
+        match[0].includes("metaDescription")
+        || (file.includes("pages.ts") && match[0].startsWith("description:"))
+        || (file.includes("SpanishSite.tsx") && match[0].startsWith("description:"))
+      ) {
         failures.push(`${file}: length ${value.length} (need ${MIN}–${MAX}) → ${value}`);
       }
       if (match[0].startsWith("excerpt:") && value.length > MAX) {

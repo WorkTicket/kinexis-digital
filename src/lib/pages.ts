@@ -44,7 +44,7 @@ export const PAGES = {
     pageType: "CollectionPage",
     indexable: true,
     priority: 0.9,
-    description: "Explore professional web design, SEO, website management, and free website audits for businesses across the United States.",
+    description: "Contractor web design, local SEO, website care, and free site reviews for home-service businesses—clear next steps from preview to launch.",
     ogImage: "/assets/kinexis/page-art/all-services-social.jpg",
   },
   "web-design": {
@@ -64,7 +64,7 @@ export const PAGES = {
     service: "Search engine optimization",
     indexable: true,
     priority: 0.9,
-    description: "Improve your website’s search visibility with technical SEO, page optimization, useful content, and straightforward reporting.",
+    description: "Local SEO for contractors: technical fixes, clear service pages, useful content, and plain reporting that helps the right customers find you.",
     ogImage: "/og/seo-services.webp",
   },
   audit: {
@@ -99,12 +99,12 @@ export const PAGES = {
   },
   about: {
     path: "/about",
-    title: "About Our Web Design Agency",
+    title: "How Kinexis Builds Contractor Websites",
     crumb: "About",
     pageType: "AboutPage",
     indexable: true,
     priority: 0.7,
-    description: "Learn how Kinexis Digital plans, designs, launches, and supports professional business websites across the United States.",
+    description: "See how Kinexis plans, designs, launches, and supports contractor websites—from a free homepage preview to hosting, edits, and follow-up.",
     ogImage: "/assets/kinexis/page-art/about-social.jpg",
   },
   portfolio: {
@@ -172,7 +172,7 @@ export const PAGES = {
     indexable: true,
     priority: 0.7,
     changeFrequency: "weekly",
-    description: "Read practical guides on web design, SEO, website performance, online reviews, and digital marketing for growing businesses.",
+    description: "Practical guides for contractors on website design, local SEO, reviews, missed-call follow-up, and plan choices that bring in more calls.",
     ogImage: "/assets/kinexis/page-art/blog-social.jpg",
   },
   "missed-call-calculator": {
