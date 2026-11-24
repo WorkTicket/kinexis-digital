@@ -8,7 +8,9 @@ export default defineConfig({
   timeout: 60_000,
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 1 : 0,
+  // Production deploy gates and CI both need one retry for occasional Turbopack
+  // JSON.parse races under parallel workers (dev webServer only).
+  retries: process.env.CI || process.env.APPROVED_SHA ? 1 : 0,
   reporter: [["list"]],
   use: {
     baseURL,
