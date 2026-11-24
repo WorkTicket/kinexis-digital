@@ -300,7 +300,7 @@ export default async function PhoenixPreviewLp() {
               </>
             }
             iconAlt="A Website That Brings In More Calls"
-            text="Your site loads quickly, explains your services, and gives people a quick way to call or send job details."
+            text="Your site loads quickly, explains your services clearly, and gives people a fast way to call or send the job details you need."
             icon="better-design"
           />
           <IconCard
@@ -314,7 +314,7 @@ export default async function PhoenixPreviewLp() {
               </>
             }
             iconAlt="Follow-Up That Works While You’re On The Job"
-            text="Lead System and Plus include call and form tracking and Google review requests after completed jobs. Missed-call text-back is optional and subject to carrier approval."
+            text="Lead System and Plus track calls and forms, send Google review requests after jobs, and offer optional missed-call text-back."
             icon="better-follow-up"
           />
           <IconCard
@@ -328,7 +328,7 @@ export default async function PhoenixPreviewLp() {
               </>
             }
             iconAlt="Simple Pricing With Everything Up Front"
-            text="Choose from four plans starting at $97/mo, with a free homepage preview, $0 down, and month-to-month billing."
+            text="Four plans from $97/mo with a free homepage preview, $0 down, month-to-month billing, and clear terms listed before you start."
             icon="better-pricing"
           />
         </div>

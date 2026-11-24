@@ -5,6 +5,7 @@ import { POSTS } from "@/lib/content";
 import { contentMetadata } from "@/lib/seo";
 import { ArticleSchema } from "@/components/JsonLd";
 import { PageHero, Section, CtaBand, Faq } from "@/components/ui";
+import { BlogFigureList } from "@/components/BlogFigures";
 import { EN_POST_CONTENT } from "@/data/posts-en";
 import { BLOG_IMAGE_WIDTHS, IMAGE_SIZES, imageSrcSet, imageVariant, still } from "@/lib/image-sources";
 
@@ -128,6 +129,7 @@ export default async function BlogPostPage({ params }: Props) {
                 <section key={idx} className="blog-section">
                   <h2>{section.h2}</h2>
                   <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: section.html }} />
+                  <BlogFigureList slug={slug} index={idx} sectionCount={content.sections.length} />
                 </section>
               ))}
 

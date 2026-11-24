@@ -35,17 +35,19 @@ export function CampaignHeroArtwork({
 }) {
   const suffix = locale === "en" ? "" : "-es";
   const desktop = still(`${PAGE_ART}/${name}-desktop${suffix}.avif`);
-  const mobile = still(`${PAGE_ART}/${name}-mobile${suffix}.webp`);
+  const mobileAvif = still(`${PAGE_ART}/${name}-mobile${suffix}.avif`);
+  const mobileWebp = still(`${PAGE_ART}/${name}-mobile${suffix}.webp`);
   if (priority) {
+    // Preload only the active breakpoint candidate — dual preload raced the LCP.
     preload(desktop, {
       as: "image",
       type: "image/avif",
       media: "(min-width: 861px)",
       fetchPriority: "high",
     });
-    preload(mobile, {
+    preload(mobileAvif, {
       as: "image",
-      type: "image/webp",
+      type: "image/avif",
       media: "(max-width: 860px)",
       fetchPriority: "high",
     });
@@ -53,15 +55,16 @@ export function CampaignHeroArtwork({
 
   return (
     <picture className="campaign-page-art">
-      <source media="(max-width: 860px)" type="image/webp" srcSet={mobile} />
+      <source media="(max-width: 860px)" type="image/avif" srcSet={mobileAvif} />
+      <source media="(max-width: 860px)" type="image/webp" srcSet={mobileWebp} />
       <source type="image/avif" srcSet={desktop} />
       <img
         src={fallback}
         alt={alt}
-        width={2400}
-        height={1350}
+        width={960}
+        height={540}
         loading={priority ? "eager" : "lazy"}
-        decoding={priority ? "sync" : "async"}
+        decoding="async"
         fetchPriority={priority ? "high" : "low"}
         className="hero-art campaign-page-art__img"
       />

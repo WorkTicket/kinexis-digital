@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" role="img" aria-label="Qué preguntar y qué cortar"><defs><linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f4f7ff"/></linearGradient><linearGradient id="barTrack" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#eef2ff"/><stop offset="100%" stop-color="#f7f9ff"/></linearGradient></defs><rect width="960" height="430" fill="#ffffff"/><rect x="0" y="0" width="8" height="430" fill="#0b3dff"/>
+<rect x="28" y="24" width="52" height="6" rx="3" fill="#ff6a00"/>
+<text x="28" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="#0a1230">Qué preguntar y qué cortar</text>
+<text x="28" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#53607e">Un primer formulario largo pierde la emergencia y la visita después del</text>
+<text x="28" y="110" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#53607e">trabajo.</text>
+<rect x="28" y="144" width="436" height="214" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="144" width="436" height="8" rx="4" fill="#0b3dff"/>
+<rect x="50" y="168" width="66.0" height="28" rx="14" fill="#e9eeff"/>
+<text x="66" y="187" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#0b3dff">Dejar</text>
+<rect x="50" y="210" width="16" height="16" rx="4" fill="#0b3dff"/>
+<path d="M54.5 218 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="222" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Nombre y teléfono</text>
+<rect x="50" y="238" width="16" height="16" rx="4" fill="#0b3dff"/>
+<path d="M54.5 246 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">El trabajo, en sus palabras</text>
+<rect x="50" y="266" width="16" height="16" rx="4" fill="#0b3dff"/>
+<path d="M54.5 274 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="76" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Ciudad o código postal</text>
+<rect x="496" y="144" width="436" height="214" rx="18" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="496" y="144" width="436" height="8" rx="4" fill="#ff6a00"/>
+<rect x="518" y="168" width="267.6" height="28" rx="14" fill="#fff1e6"/>
+<text x="534" y="187" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#ff6a00">Cortar de la primera pantalla</text>
+<rect x="518" y="210" width="16" height="16" rx="4" fill="#ff6a00"/>
+<path d="M522.5 218 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="544" y="222" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Inventarios cuarto por cuarto</text>
+<rect x="518" y="238" width="16" height="16" rx="4" fill="#ff6a00"/>
+<path d="M522.5 246 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="544" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Un presupuesto obligatorio</text>
+<rect x="518" y="266" width="16" height="16" rx="4" fill="#ff6a00"/>
+<path d="M522.5 274 l3 3 5.5 -6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="544" y="278" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" fill="#0a1230">Archivos antes de poder enviar</text>
+<line x1="28" y1="386" x2="932" y2="386" stroke="#e1e6f2" stroke-width="1"/>
+<text x="28" y="404" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#53607e">Di qué pasa después de enviar, y cumple esa promesa.</text>
+</svg>

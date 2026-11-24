@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="470" viewBox="0 0 960 470" role="img" aria-label="What missed-call text-back costs here"><defs><linearGradient id="panel" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f4f7ff"/></linearGradient><linearGradient id="barTrack" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#eef2ff"/><stop offset="100%" stop-color="#f7f9ff"/></linearGradient></defs><rect width="960" height="470" fill="#ffffff"/><rect x="0" y="0" width="8" height="470" fill="#0b3dff"/>
+<rect x="28" y="24" width="52" height="6" rx="3" fill="#ff6a00"/>
+<text x="28" y="68" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="-0.02em" fill="#0a1230">What missed-call text-back costs here</text>
+<text x="28" y="88" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#53607e">Optional. It is not included free on every plan.</text>
+<rect x="28" y="122" width="904" height="56" rx="14" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="122" width="6" height="56" rx="3" fill="#0b3dff"/>
+<text x="48" y="156" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#0a1230">Website add-on</text>
+<rect x="244" y="137" width="520" height="26" rx="13" fill="url(#barTrack)"/>
+<rect x="244" y="137" width="520" height="26" rx="13" fill="#0b3dff"/>
+<text x="750" y="155" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#ffffff">$97/mo</text>
+<rect x="28" y="190" width="904" height="56" rx="14" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="190" width="6" height="56" rx="3" fill="#031b4e"/>
+<text x="48" y="224" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#0a1230">Lead System, 2nd number</text>
+<rect x="244" y="205" width="520" height="26" rx="13" fill="url(#barTrack)"/>
+<rect x="244" y="205" width="22" height="26" rx="13" fill="#031b4e"/>
+<text x="278" y="223" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#0a1230">$1/mo</text>
+<rect x="28" y="258" width="904" height="56" rx="14" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="258" width="6" height="56" rx="3" fill="#ff6a00"/>
+<text x="48" y="292" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#0a1230">Plus, 2nd number</text>
+<rect x="244" y="273" width="520" height="26" rx="13" fill="url(#barTrack)"/>
+<rect x="244" y="273" width="22" height="26" rx="13" fill="#ff6a00"/>
+<text x="278" y="291" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#0a1230">$1/mo</text>
+<rect x="28" y="326" width="904" height="56" rx="14" fill="url(#panel)" stroke="#e1e6f2"/>
+<rect x="28" y="326" width="6" height="56" rx="3" fill="#5c6b8a"/>
+<text x="48" y="360" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#0a1230">Own It add-on</text>
+<rect x="244" y="341" width="520" height="26" rx="13" fill="url(#barTrack)"/>
+<rect x="244" y="341" width="520" height="26" rx="13" fill="#5c6b8a"/>
+<text x="750" y="359" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="800" fill="#ffffff">$97/mo</text>
+<line x1="28" y1="409" x2="932" y2="409" stroke="#e1e6f2" stroke-width="1"/>
+<text x="28" y="427" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#53607e">Lead System and Plus: $1/mo only if you use a second tracking number, plus carrier rates. Carrier</text>
+<text x="28" y="444" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#53607e">approval usually takes 10–15 days and is not guaranteed.</text>
+</svg>

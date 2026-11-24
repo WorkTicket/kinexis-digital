@@ -20,6 +20,7 @@ import { contentMetadata } from "@/lib/seo";
 import { SITE, telHref } from "@/lib/site";
 import dynamic from "next/dynamic";
 import AuditCta from "@/components/AuditCta";
+import { BlogFigureList } from "@/components/BlogFigures";
 import type { BookingCopy } from "@/components/BookingCalendar";
 import { DeferredImg } from "@/components/DeferredImg";
 import { OpenDialog } from "@/components/OpenDialog";
@@ -234,7 +235,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
     { tab: "Preview", label: tx("Vista previa"), title: tx("Empieza con una vista previa"), text: tx("Preparamos un concepto de inicio para tu negocio. Lo revisas antes de pagar, sin tarjeta y sin obligación.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Escoge el plan que te sirve"), text: tx("Elige Website, Lead System, Plus u Own It. Dejamos por escrito lo que incluye y la fecha de lanzamiento — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("Terminamos el sitio completo"), text: tx("Sumamos tus servicios, zona, fotos y texto, conectamos el dominio y te enviamos todo para aprobarlo.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("El sitio queda en línea, normalmente en 5 días hábiles tras la aprobación y el envío del contenido. Lead System y Plus incluyen solicitudes de reseña después del trabajo. Las solicitudes de reseña y el mensaje opcional para llamadas perdidas se envían por texto y empiezan después de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("Publicamos tu sitio"), text: tx("Publicamos en la fecha que confirmamos por escrito. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas empieza tras la aprobación del operador.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Lo mantenemos vigente"), text: tx("Hacemos cambios, registramos llamadas y formularios, y Lead System y Plus incluyen solicitudes de reseña después de los trabajos.") },
   ];
   return (
@@ -282,9 +283,9 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <p>{tx(`Un sitio rápido, SEO práctico y seguimiento que sigue trabajando cuando tú estás ocupado. Hay planes desde ${p("websiteMo", currency)} al mes.`)}</p>
         </MediaSplit>
         <div className="grid grid--3">
-          <IconCard title={tx("Un sitio que facilita recibir llamadas")} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Carga rápido, explica tus servicios y facilita que cada visita llame o pida una cotización.")} icon="better-design" />
-          <IconCard title={tx("Seguimiento que funciona mientras estás trabajando")} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Lead System y Plus incluyen solicitudes de reseña después del trabajo y seguimiento de llamadas y formularios. El mensaje para llamadas perdidas es opcional y requiere aprobación del operador.")} icon="better-follow-up" />
-          <IconCard title={tx("Precios claros desde el principio")} iconAlt={tx("Precios claros desde el principio")} text={tx(`Elige entre cuatro planes desde ${p("websiteMo", currency)} al mes, con vista previa gratis, ${p("zeroDown", currency)} de entrada y cobro mes a mes.`)} icon="better-pricing" />
+          <IconCard title={tx("Un sitio que facilita recibir llamadas")} iconAlt={tx("Un sitio que facilita recibir llamadas")} text={tx("Tu sitio carga rápido, explica tus servicios con claridad y da una forma rápida de llamar o enviar los detalles del trabajo.")} icon="better-design" />
+          <IconCard title={tx("Seguimiento que funciona mientras estás trabajando")} iconAlt={tx("Seguimiento que funciona mientras estás trabajando")} text={tx("Lead System y Plus registran llamadas y formularios, envían solicitudes de reseña en Google después del trabajo y ofrecen texto opcional por llamada perdida.")} icon="better-follow-up" />
+          <IconCard title={tx("Precios claros desde el principio")} iconAlt={tx("Precios claros desde el principio")} text={tx(`Cuatro planes desde ${p("websiteMo", currency)} al mes, con vista previa gratis, ${p("zeroDown", currency)} de entrada, cobro mes a mes y términos claros antes de empezar.`)} icon="better-pricing" />
         </div>
       </Section>
       <Section tint>
@@ -339,9 +340,9 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           />
         </div>
         <ReviewRail steps={[
-          { n: "1", title: tx("Mensaje opcional tras una llamada perdida"), titleDisplay: <>{tx("Llamada perdida,")}<br />{tx("mensaje opcional")}</>, text: <>{tx("Con la aprobación del operador,")}<br />{tx("la persona puede escribirte")}<br />{tx("si no puedes contestar.")}</>, icon: "missed-call-text-back" },
-          { n: "2", title: tx("Después del trabajo"), titleDisplay: <>{tx("Después del")}<br />{tx("trabajo")}</>, text: <>{tx("El cliente recibe una solicitud con el")}<br />{tx("enlace directo a tu perfil de Google.")}<br />{tx("No tienes que pedirla en persona.")}</>, icon: "after-every-job" },
-          { n: "3", title: tx("Directo a tu perfil"), titleDisplay: <>{tx("Directo a")}<br />{tx("tu perfil")}</>, text: <>{tx("El enlace abre tu perfil de Google.")}<br />{tx("Las reseñas llegan listas para")}<br />{tx("que puedas responderlas.")}</>, icon: "one-tap-to-google" },
+          { n: "1", title: tx("Llamada perdida, mensaje opcional"), text: tx("Con la aprobación del operador, la persona puede escribirte si no puedes contestar."), icon: "missed-call-text-back" },
+          { n: "2", title: tx("Después del trabajo"), text: tx("El cliente recibe una solicitud con el enlace directo a tu perfil de Google. No tienes que pedirla en persona."), icon: "after-every-job" },
+          { n: "3", title: tx("Directo a tu perfil"), text: tx("El enlace abre tu perfil de Google. Las reseñas llegan listas para que puedas responderlas."), icon: "one-tap-to-google" },
         ]} />
       </Section>
       <Section tint>
@@ -771,7 +772,7 @@ function About({ locale, tx, href, lang }: { locale: Locale; tx: (s: string) => 
     { tab: "Preview", label: tx("Vista previa"), title: tx("Lo ves primero"), text: tx("La vista previa es el punto de partida. La apruebas, pides cambios o te vas.") },
     { tab: "Plan", label: tx("Plan"), title: tx("Queda por escrito"), text: tx("Qué incluye el plan y la fecha de lanzamiento se confirman por escrito — normalmente 5 días hábiles después de aprobar la vista previa y enviarnos el contenido.") },
     { tab: "Build", label: tx("Construcción"), title: tx("El sitio completo"), text: tx("Servicios, zona, fotos y el dominio, con tu aprobación antes de publicar.") },
-    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("El sitio suele publicarse en 5 días hábiles. Lead System y Plus incluyen solicitudes de reseña después del trabajo. Las solicitudes de reseña y el mensaje opcional para llamadas perdidas se envían por texto y empiezan después de la aprobación del operador, que suele tardar entre 10 y 15 días y no está garantizada.") },
+    { tab: "Launch", label: tx("Lanzamiento"), title: tx("En vivo"), text: tx("Publicamos en la fecha que confirmamos por escrito. Lead System y Plus incluyen solicitudes de reseña después del trabajo. El mensaje opcional para llamadas perdidas empieza tras la aprobación del operador.") },
     { tab: "Grow", label: tx("Crecer"), title: tx("Se mantiene"), text: tx("Cambios, llamadas y reseñas en Lead System y Plus, para que veas los leads en un reporte.") },
   ];
   return (
@@ -1045,10 +1046,11 @@ function PostView({ locale, slug, lang }: { locale: Locale; slug: string; lang: 
             </figure>
             <div className="blog-post__content prose">
               <p className="blog-post__lead">{post.lead}</p>
-              {post.sections.map((section) => (
+              {post.sections.map((section, idx) => (
                 <section key={section.h2} className="blog-section">
                   <h2>{section.h2}</h2>
                   <div className="blog-section__body" dangerouslySetInnerHTML={{ __html: localizeHtmlHrefs(section.html, locale) }} />
+                  <BlogFigureList slug={slug} index={idx} sectionCount={post.sections.length} locale={locale === "es-ES" ? "es-ES" : "es-419"} />
                 </section>
               ))}
             </div>

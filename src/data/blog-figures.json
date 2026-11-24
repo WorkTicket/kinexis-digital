@@ -1,0 +1,1622 @@
+{
+  "website-mistakes-that-cost-you-calls": [
+    {
+      "kind": "diagram",
+      "after": 3,
+      "src": "/blog/figures/fix-order.svg",
+      "srcEs": "/blog/figures/fix-order-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Four-step diagram: phone, one page per job, proof, then service area.",
+      "altEs": "Diagrama de cuatro pasos: teléfono, una página por trabajo, prueba y zona.",
+      "caption": "The buried number is step one. The other mistakes matter after someone can still call.",
+      "captionEs": "El número escondido es el paso uno. Los otros errores importan después de que alguien todavía puede llamar."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/plan-pages.svg",
+      "srcEs": "/blog/figures/plan-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of pages included on each Kinexis plan.",
+      "altEs": "Gráfica de páginas incluidas en cada plan de Kinexis.",
+      "caption": "Give the main job its own page inside this ceiling. A blog that outshouts that page is the mistake, not a content strategy.",
+      "captionEs": "Dale al trabajo principal su propia página dentro de este límite. Un blog que tapa esa página es el error, no una estrategia de contenido."
+    }
+  ],
+  "turn-clicks-into-calls": [
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/two-doors.svg",
+      "srcEs": "/blog/figures/two-doors-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram splitting call-now pages from estimate pages.",
+      "altEs": "Diagrama que separa las páginas de llamar ahora y las de estimado.",
+      "caption": "Count conversations, not sessions. These are the two conversations worth designing.",
+      "captionEs": "Cuenta conversaciones, no sesiones. Estas son las dos conversaciones que vale la pena diseñar."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/plan-pages.svg",
+      "srcEs": "/blog/figures/plan-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of how many pages each plan includes.",
+      "altEs": "Gráfica de cuántas páginas incluye cada plan.",
+      "caption": "A shorter form on the right door is worth more than another page from this chart.",
+      "captionEs": "Un formulario más corto en la puerta de la derecha vale más que otra página de esta gráfica."
+    }
+  ],
+  "small-business-marketing-budget": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/spend-order.svg",
+      "srcEs": "/blog/figures/spend-order-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sequence diagram: site, follow-up, profile, then ads or SEO.",
+      "altEs": "Diagrama de secuencia: sitio, seguimiento, perfil y luego anuncios o SEO.",
+      "caption": "This is the order the article defends. Skip a step and the next bill is harder to explain.",
+      "captionEs": "Este es el orden que defiende el artículo. Si te saltas un paso, la siguiente factura es más difícil de explicar."
+    },
+    {
+      "kind": "chart",
+      "after": 7,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of the published 24-month website totals.",
+      "altEs": "Gráfica de los totales publicados del sitio a 24 meses.",
+      "caption": "This is the website line you can name for a year. It is not an ad budget.",
+      "captionEs": "Esta es la partida del sitio que puedes nombrar por un año. No es un presupuesto de anuncios."
+    },
+    {
+      "kind": "screenshot",
+      "after": 1,
+      "src": "/blog/figures/shot-a1-hero.webp",
+      "srcEs": "/blog/figures/shot-a1-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the A1 Property Services homepage in Cedar Falls, Iowa.",
+      "altEs": "Captura de la página de inicio de A1 Property Services en Cedar Falls, Iowa.",
+      "caption": "Live client. The city, the county, the phone, and the quote button are visible together. A service-area sentence does more than a list of cloned town pages.",
+      "captionEs": "Cliente real. La ciudad, el condado, el teléfono y el botón de cotización se ven juntos. Una frase de zona de servicio hace más que una lista de pueblos clonados."
+    }
+  ],
+  "make-your-website-mobile-ready": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/mobile-check.svg",
+      "srcEs": "/blog/figures/mobile-check-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Four-step phone check: number, job, form, and speed.",
+      "altEs": "Revisión del teléfono en cuatro pasos: número, trabajo, formulario y velocidad.",
+      "caption": "Walk this list on your own phone before you pay for another page.",
+      "captionEs": "Recorre esta lista en tu propio teléfono antes de pagar por otra página."
+    },
+    {
+      "kind": "chart",
+      "after": 10,
+      "src": "/blog/figures/plan-pages.svg",
+      "srcEs": "/blog/figures/plan-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages by plan.",
+      "altEs": "Gráfica de páginas incluidas por plan.",
+      "caption": "Another page does not fix a number the thumb cannot hit.",
+      "captionEs": "Otra página no arregla un número que el pulgar no puede tocar."
+    }
+  ],
+  "local-seo-get-found-get-called": [
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/profile-and-site.svg",
+      "srcEs": "/blog/figures/profile-and-site-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing a Google Business Profile with a website.",
+      "altEs": "Diagrama que compara un Perfil de Google Business con un sitio web.",
+      "caption": "The map pack can show hours and reviews. The job still needs its own page on the site.",
+      "captionEs": "El mapa puede mostrar horario y reseñas. El trabajo todavía necesita su propia página en el sitio."
+    },
+    {
+      "kind": "chart",
+      "after": 5,
+      "src": "/blog/figures/plan-pages.svg",
+      "srcEs": "/blog/figures/plan-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of page ceilings by plan.",
+      "altEs": "Gráfica de límites de páginas por plan.",
+      "caption": "One real service-area page plus a page per job fits inside this. A pile of town clones does not, and it is the thing to avoid.",
+      "captionEs": "Una página real de zona más una página por trabajo cabe aquí. Una pila de clones por pueblo no, y es lo que hay que evitar."
+    },
+    {
+      "kind": "screenshot",
+      "after": 4,
+      "src": "/blog/figures/shot-a1-hero.webp",
+      "srcEs": "/blog/figures/shot-a1-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the A1 Property Services homepage in Cedar Falls, Iowa.",
+      "altEs": "Captura de la página de inicio de A1 Property Services en Cedar Falls, Iowa.",
+      "caption": "Live client. The city, the county, the phone, and the quote button are visible together. A service-area sentence does more than a list of cloned town pages.",
+      "captionEs": "Cliente real. La ciudad, el condado, el teléfono y el botón de cotización se ven juntos. Una frase de zona de servicio hace más que una lista de pueblos clonados."
+    }
+  ],
+  "build-trust-with-reviews": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/review-ask.svg",
+      "srcEs": "/blog/figures/review-ask-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Diagram of when and how to ask for a review.",
+      "altEs": "Diagrama de cuándo y cómo pedir una reseña.",
+      "caption": "Specific and soon beats a perfect speech a month later.",
+      "captionEs": "Lo específico y pronto gana a un discurso perfecto un mes después."
+    },
+    {
+      "kind": "chart",
+      "after": 10,
+      "src": "/blog/figures/textback-price.svg",
+      "srcEs": "/blog/figures/textback-price-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of optional text-back pricing by plan.",
+      "altEs": "Gráfica del precio opcional del texto por llamada perdida, por plan.",
+      "caption": "Review requests are included on Lead System and Plus. Text-back is the separate optional line on this chart.",
+      "captionEs": "Las solicitudes de reseña están incluidas en Lead System y Plus. El texto por llamada perdida es la línea opcional aparte en esta gráfica."
+    },
+    {
+      "kind": "screenshot",
+      "after": 2,
+      "src": "/blog/figures/shot-a1-proof.webp",
+      "srcEs": "/blog/figures/shot-a1-proof.webp",
+      "width": 1100,
+      "height": 820,
+      "alt": "Screenshot of before-and-after project photos on the A1 Property Services site.",
+      "altEs": "Captura de fotos de antes y después en el sitio de A1 Property Services.",
+      "caption": "Live client. The proof is a real job with a town on it, not a stock yard. Reviews work better when this kind of evidence is already on the page.",
+      "captionEs": "Cliente real. La prueba es un trabajo real con su pueblo, no un jardín de catálogo. Las reseñas funcionan mejor cuando esta evidencia ya está en la página."
+    }
+  ],
+  "monthly-website-vs-own-it": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/who-holds-files.svg",
+      "srcEs": "/blog/figures/who-holds-files-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of monthly plans versus Own It file ownership.",
+      "altEs": "Diagrama de los planes mensuales frente a la propiedad de archivos de Own It.",
+      "caption": "Pick the column that matches how you buy equipment, then stop shopping the label.",
+      "captionEs": "Elige la columna que coincide con cómo compras equipo, y deja de comparar el nombre."
+    },
+    {
+      "kind": "chart",
+      "after": 1,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart comparing 24-month plan totals with the one-time Own It price.",
+      "altEs": "Gráfica que compara los totales a 24 meses con el precio único de Own It.",
+      "caption": "These are the figures in the article. The Own It bar is one payment, not a cheaper monthly rate.",
+      "captionEs": "Estas son las cifras del artículo. La barra de Own It es un solo pago, no una mensualidad más barata."
+    },
+    {
+      "kind": "screenshot",
+      "after": 2,
+      "src": "/blog/figures/shot-plumb-hero.webp",
+      "srcEs": "/blog/figures/shot-plumb-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the Preferred Plumbing Solutions homepage in Spirit Lake, Idaho.",
+      "altEs": "Captura de la página de inicio de Preferred Plumbing Solutions en Spirit Lake, Idaho.",
+      "caption": "Live client. Hours, phone, city, and the estimate button are on the first screen. That is the homepage the price is paying for.",
+      "captionEs": "Cliente real. Horario, teléfono, ciudad y el botón de estimado están en la primera pantalla. Esa es la página que el precio está pagando."
+    }
+  ],
+  "missed-call-text-back-templates": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/carrier-wait.svg",
+      "srcEs": "/blog/figures/carrier-wait-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Timeline from requesting text-back to carrier approval.",
+      "altEs": "Línea de tiempo desde pedir el texto hasta la aprobación del operador.",
+      "caption": "Read this before you copy a template. The text does not send on the day you approve the site.",
+      "captionEs": "Lee esto antes de copiar una plantilla. El texto no se envía el día que apruebas el sitio."
+    },
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/sms-draft.svg",
+      "srcEs": "/blog/figures/sms-draft-es.svg",
+      "width": 960,
+      "height": 520,
+      "alt": "Phone wireframe of a missed-call text draft.",
+      "altEs": "Esquema de teléfono con un borrador de texto por llamada perdida.",
+      "caption": "Swap in the job words from the trade section below. Keep the business name and a way to reply.",
+      "captionEs": "Cambia las palabras del trabajo en la sección del oficio de abajo. Conserva el nombre del negocio y una forma de responder."
+    },
+    {
+      "kind": "chart",
+      "after": 13,
+      "src": "/blog/figures/textback-price.svg",
+      "srcEs": "/blog/figures/textback-price-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of missed-call text-back pricing.",
+      "altEs": "Gráfica del precio del texto por llamada perdida.",
+      "caption": "The templates are free to read. Turning the feature on is the price on this chart, plus carrier rates.",
+      "captionEs": "Las plantillas se pueden leer gratis. Activar la función cuesta lo que muestra esta gráfica, más las tarifas del operador."
+    }
+  ],
+  "plumber-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/plumbing-paths.svg",
+      "srcEs": "/blog/figures/plumbing-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two plumbing customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de plomería.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/plumbing-24mo.svg",
+      "srcEs": "/blog/figures/plumbing-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A plumbing site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de plomería usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    },
+    {
+      "kind": "screenshot",
+      "after": 4,
+      "src": "/blog/figures/shot-plumb-hero.webp",
+      "srcEs": "/blog/figures/shot-plumb-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the Preferred Plumbing Solutions homepage in Spirit Lake, Idaho.",
+      "altEs": "Captura de la página de inicio de Preferred Plumbing Solutions en Spirit Lake, Idaho.",
+      "caption": "Live client. Hours, phone, city, and the estimate button are on the first screen. That is the homepage the price is paying for.",
+      "captionEs": "Cliente real. Horario, teléfono, ciudad y el botón de estimado están en la primera pantalla. Esa es la página que el precio está pagando."
+    }
+  ],
+  "plumbing-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/plumbing-sitemap.svg",
+      "srcEs": "/blog/figures/plumbing-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first plumbing pages to publish.",
+      "altEs": "Mapa de las primeras páginas de plomería que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/plumbing-paths.svg",
+      "srcEs": "/blog/figures/plumbing-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two plumbing journeys.",
+      "altEs": "Diagrama de los dos recorridos de plomería.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/plumbing-pages.svg",
+      "srcEs": "/blog/figures/plumbing-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    },
+    {
+      "kind": "screenshot",
+      "after": 5,
+      "src": "/blog/figures/shot-plumb-services.webp",
+      "srcEs": "/blog/figures/shot-plumb-services.webp",
+      "width": 1100,
+      "height": 800,
+      "alt": "Screenshot of service cards on the Preferred Plumbing Solutions homepage.",
+      "altEs": "Captura de las tarjetas de servicio en la página de Preferred Plumbing Solutions.",
+      "caption": "Same live site, just below the hero. Repairs, radiant, and tankless are separate cards. Leaks, drains, and heaters on your site should be that easy to tell apart.",
+      "captionEs": "El mismo sitio real, justo debajo del héroe. Reparaciones, radiante y tankless son tarjetas distintas. Fugas, drenajes y calentadores en tu sitio deberían distinguirse así."
+    }
+  ],
+  "hvac-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/hvac-paths.svg",
+      "srcEs": "/blog/figures/hvac-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two HVAC customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de HVAC.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/hvac-24mo.svg",
+      "srcEs": "/blog/figures/hvac-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A HVAC site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de HVAC usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "hvac-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/hvac-sitemap.svg",
+      "srcEs": "/blog/figures/hvac-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first HVAC pages to publish.",
+      "altEs": "Mapa de las primeras páginas de HVAC que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/hvac-paths.svg",
+      "srcEs": "/blog/figures/hvac-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two HVAC journeys.",
+      "altEs": "Diagrama de los dos recorridos de HVAC.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/hvac-pages.svg",
+      "srcEs": "/blog/figures/hvac-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "electrician-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/electrical-paths.svg",
+      "srcEs": "/blog/figures/electrical-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two electrician customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de electricista.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/electrical-24mo.svg",
+      "srcEs": "/blog/figures/electrical-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A electrician site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de electricista usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "electrician-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/electrical-sitemap.svg",
+      "srcEs": "/blog/figures/electrical-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first electrician pages to publish.",
+      "altEs": "Mapa de las primeras páginas de electricista que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/electrical-paths.svg",
+      "srcEs": "/blog/figures/electrical-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two electrician journeys.",
+      "altEs": "Diagrama de los dos recorridos de electricista.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/electrical-pages.svg",
+      "srcEs": "/blog/figures/electrical-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "roofing-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/roofing-paths.svg",
+      "srcEs": "/blog/figures/roofing-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two roofing customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de techos.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/roofing-24mo.svg",
+      "srcEs": "/blog/figures/roofing-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A roofing site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de techos usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "roofing-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/roofing-sitemap.svg",
+      "srcEs": "/blog/figures/roofing-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first roofing pages to publish.",
+      "altEs": "Mapa de las primeras páginas de techos que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/roofing-paths.svg",
+      "srcEs": "/blog/figures/roofing-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two roofing journeys.",
+      "altEs": "Diagrama de los dos recorridos de techos.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/roofing-pages.svg",
+      "srcEs": "/blog/figures/roofing-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "garage-door-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/garage-paths.svg",
+      "srcEs": "/blog/figures/garage-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two garage door customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de puertas de garaje.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/garage-24mo.svg",
+      "srcEs": "/blog/figures/garage-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A garage door site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de puertas de garaje usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "garage-door-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/garage-sitemap.svg",
+      "srcEs": "/blog/figures/garage-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first garage door pages to publish.",
+      "altEs": "Mapa de las primeras páginas de puertas de garaje que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/garage-paths.svg",
+      "srcEs": "/blog/figures/garage-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two garage door journeys.",
+      "altEs": "Diagrama de los dos recorridos de puertas de garaje.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/garage-pages.svg",
+      "srcEs": "/blog/figures/garage-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "painting-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/painting-paths.svg",
+      "srcEs": "/blog/figures/painting-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two painting customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de pintura.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/painting-24mo.svg",
+      "srcEs": "/blog/figures/painting-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A painting site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de pintura usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "painting-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/painting-sitemap.svg",
+      "srcEs": "/blog/figures/painting-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first painting pages to publish.",
+      "altEs": "Mapa de las primeras páginas de pintura que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/painting-paths.svg",
+      "srcEs": "/blog/figures/painting-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two painting journeys.",
+      "altEs": "Diagrama de los dos recorridos de pintura.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/painting-pages.svg",
+      "srcEs": "/blog/figures/painting-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "remodeling-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/remodeling-paths.svg",
+      "srcEs": "/blog/figures/remodeling-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two remodeling customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de remodelación.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/remodeling-24mo.svg",
+      "srcEs": "/blog/figures/remodeling-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A remodeling site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de remodelación usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "remodeling-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/remodeling-sitemap.svg",
+      "srcEs": "/blog/figures/remodeling-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first remodeling pages to publish.",
+      "altEs": "Mapa de las primeras páginas de remodelación que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/remodeling-paths.svg",
+      "srcEs": "/blog/figures/remodeling-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two remodeling journeys.",
+      "altEs": "Diagrama de los dos recorridos de remodelación.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/remodeling-pages.svg",
+      "srcEs": "/blog/figures/remodeling-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "landscaping-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/landscaping-paths.svg",
+      "srcEs": "/blog/figures/landscaping-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two landscaping customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de jardinería.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/landscaping-24mo.svg",
+      "srcEs": "/blog/figures/landscaping-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A landscaping site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de jardinería usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    },
+    {
+      "kind": "screenshot",
+      "after": 4,
+      "src": "/blog/figures/shot-a1-hero.webp",
+      "srcEs": "/blog/figures/shot-a1-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the A1 Property Services homepage in Cedar Falls, Iowa.",
+      "altEs": "Captura de la página de inicio de A1 Property Services en Cedar Falls, Iowa.",
+      "caption": "Live client. The city, the county, the phone, and the quote button are visible together. A service-area sentence does more than a list of cloned town pages.",
+      "captionEs": "Cliente real. La ciudad, el condado, el teléfono y el botón de cotización se ven juntos. Una frase de zona de servicio hace más que una lista de pueblos clonados."
+    }
+  ],
+  "landscaping-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/landscaping-sitemap.svg",
+      "srcEs": "/blog/figures/landscaping-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first landscaping pages to publish.",
+      "altEs": "Mapa de las primeras páginas de jardinería que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/landscaping-paths.svg",
+      "srcEs": "/blog/figures/landscaping-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two landscaping journeys.",
+      "altEs": "Diagrama de los dos recorridos de jardinería.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/landscaping-pages.svg",
+      "srcEs": "/blog/figures/landscaping-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    },
+    {
+      "kind": "screenshot",
+      "after": 5,
+      "src": "/blog/figures/shot-a1-services.webp",
+      "srcEs": "/blog/figures/shot-a1-services.webp",
+      "width": 1100,
+      "height": 820,
+      "alt": "Screenshot of separate hardscape service cards on the A1 Property Services site.",
+      "altEs": "Captura de tarjetas de hardscape separadas en el sitio de A1 Property Services.",
+      "caption": "Live client. Walls, patios, driveways, and water features each link to their own page. Maintenance and design-build should stay that distinct.",
+      "captionEs": "Cliente real. Muros, patios, entradas y fuentes enlazan a su propia página. El mantenimiento y el diseño-obra deberían quedar igual de separados."
+    }
+  ],
+  "pool-service-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/pool-paths.svg",
+      "srcEs": "/blog/figures/pool-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two pool service customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de servicio de albercas.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/pool-24mo.svg",
+      "srcEs": "/blog/figures/pool-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A pool service site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de servicio de albercas usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "pool-service-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/pool-sitemap.svg",
+      "srcEs": "/blog/figures/pool-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first pool service pages to publish.",
+      "altEs": "Mapa de las primeras páginas de servicio de albercas que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/pool-paths.svg",
+      "srcEs": "/blog/figures/pool-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two pool service journeys.",
+      "altEs": "Diagrama de los dos recorridos de servicio de albercas.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/pool-pages.svg",
+      "srcEs": "/blog/figures/pool-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "pressure-washing-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/pressure-paths.svg",
+      "srcEs": "/blog/figures/pressure-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two pressure washing customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de lavado a presión.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/pressure-24mo.svg",
+      "srcEs": "/blog/figures/pressure-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A pressure washing site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de lavado a presión usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "pressure-washing-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/pressure-sitemap.svg",
+      "srcEs": "/blog/figures/pressure-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first pressure washing pages to publish.",
+      "altEs": "Mapa de las primeras páginas de lavado a presión que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/pressure-paths.svg",
+      "srcEs": "/blog/figures/pressure-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two pressure washing journeys.",
+      "altEs": "Diagrama de los dos recorridos de lavado a presión.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/pressure-pages.svg",
+      "srcEs": "/blog/figures/pressure-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "window-cleaning-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/windows-paths.svg",
+      "srcEs": "/blog/figures/windows-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two window cleaning customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de limpieza de ventanas.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/windows-24mo.svg",
+      "srcEs": "/blog/figures/windows-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A window cleaning site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de limpieza de ventanas usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "window-cleaning-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/windows-sitemap.svg",
+      "srcEs": "/blog/figures/windows-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first window cleaning pages to publish.",
+      "altEs": "Mapa de las primeras páginas de limpieza de ventanas que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/windows-paths.svg",
+      "srcEs": "/blog/figures/windows-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two window cleaning journeys.",
+      "altEs": "Diagrama de los dos recorridos de limpieza de ventanas.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/windows-pages.svg",
+      "srcEs": "/blog/figures/windows-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "lawn-care-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/lawn-paths.svg",
+      "srcEs": "/blog/figures/lawn-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two lawn care customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de cuidado de césped.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/lawn-24mo.svg",
+      "srcEs": "/blog/figures/lawn-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A lawn care site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de cuidado de césped usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "lawn-care-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/lawn-sitemap.svg",
+      "srcEs": "/blog/figures/lawn-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first lawn care pages to publish.",
+      "altEs": "Mapa de las primeras páginas de cuidado de césped que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/lawn-paths.svg",
+      "srcEs": "/blog/figures/lawn-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two lawn care journeys.",
+      "altEs": "Diagrama de los dos recorridos de cuidado de césped.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/lawn-pages.svg",
+      "srcEs": "/blog/figures/lawn-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "junk-removal-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/junk-paths.svg",
+      "srcEs": "/blog/figures/junk-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two junk removal customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de retiro de cachivaches.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/junk-24mo.svg",
+      "srcEs": "/blog/figures/junk-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A junk removal site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de retiro de cachivaches usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "junk-removal-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/junk-sitemap.svg",
+      "srcEs": "/blog/figures/junk-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first junk removal pages to publish.",
+      "altEs": "Mapa de las primeras páginas de retiro de cachivaches que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/junk-paths.svg",
+      "srcEs": "/blog/figures/junk-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two junk removal journeys.",
+      "altEs": "Diagrama de los dos recorridos de retiro de cachivaches.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/junk-pages.svg",
+      "srcEs": "/blog/figures/junk-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "tree-service-website-cost": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/tree-paths.svg",
+      "srcEs": "/blog/figures/tree-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing two tree service customer paths.",
+      "altEs": "Diagrama que compara dos caminos de clientes de servicio de árboles.",
+      "caption": "Read the homepage against this split before you compare quotes. Mixed paths are what make the site feel expensive to fix later.",
+      "captionEs": "Compara tu página de inicio con esta división antes de cotizar. Mezclar los caminos es lo que encarece el arreglo después."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/tree-24mo.svg",
+      "srcEs": "/blog/figures/tree-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published 24-month totals: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "altEs": "Gráfica de totales publicados a 24 meses: Website $2,328, Lead System $4,728, Plus $7,128, Own It $1,497.",
+      "caption": "A tree service site uses these same four prices. What changes is the pages, the proof, and whether missed calls need follow-up.",
+      "captionEs": "Un sitio de servicio de árboles usa estos mismos cuatro precios. Cambian las páginas, las pruebas y si las llamadas perdidas necesitan seguimiento."
+    }
+  ],
+  "tree-service-website-pages": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/tree-sitemap.svg",
+      "srcEs": "/blog/figures/tree-sitemap-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Sitemap of the first tree service pages to publish.",
+      "altEs": "Mapa de las primeras páginas de servicio de árboles que conviene publicar.",
+      "caption": "These are the pages the article says to ship before galleries, blogs, or city doorway pages.",
+      "captionEs": "Estas son las páginas que el artículo dice publicar antes de galerías, blogs o páginas clonadas por ciudad."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/tree-paths.svg",
+      "srcEs": "/blog/figures/tree-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of the two tree service journeys.",
+      "altEs": "Diagrama de los dos recorridos de servicio de árboles.",
+      "caption": "Put this next to the service pages. If both visitors land on one blob, the sitemap above is still unfinished.",
+      "captionEs": "Pon esto junto a las páginas de servicio. Si las dos visitas caen en un solo bloque, el mapa de arriba sigue incompleto."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/tree-pages.svg",
+      "srcEs": "/blog/figures/tree-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of included pages: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "altEs": "Gráfica de páginas incluidas: Website 5, Lead System 10, Plus 20, Own It 10.",
+      "caption": "The ceiling is the plan, not the trade. Build the nodes in the sitemap before you spend the extra pages.",
+      "captionEs": "El límite lo pone el plan, no el oficio. Construye los nodos del mapa antes de gastar las páginas extra."
+    }
+  ],
+  "how-to-ask-for-google-reviews-contractor": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/review-ask.svg",
+      "srcEs": "/blog/figures/review-ask-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Diagram of driveway, text, and email review asks.",
+      "altEs": "Diagrama de cómo pedir la reseña en la entrada, por texto y por correo.",
+      "caption": "The link matters more than the speech. All three paths should use the same direct review link.",
+      "captionEs": "El enlace importa más que el discurso. Los tres caminos deben usar el mismo enlace directo."
+    },
+    {
+      "kind": "chart",
+      "after": 11,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of plan prices, for the plans that include review requests.",
+      "altEs": "Gráfica de precios de los planes, para ver cuáles incluyen solicitudes de reseña.",
+      "caption": "Lead System ($197/mo, $4,728 illustrated) and Plus include review requests. Website and Own It do not.",
+      "captionEs": "Lead System ($197/mes, $4,728 en la ilustración) y Plus incluyen solicitudes de reseña. Website y Own It no."
+    },
+    {
+      "kind": "screenshot",
+      "after": 1,
+      "src": "/blog/figures/shot-a1-proof.webp",
+      "srcEs": "/blog/figures/shot-a1-proof.webp",
+      "width": 1100,
+      "height": 820,
+      "alt": "Screenshot of before-and-after project photos on the A1 Property Services site.",
+      "altEs": "Captura de fotos de antes y después en el sitio de A1 Property Services.",
+      "caption": "Live client. The proof is a real job with a town on it, not a stock yard. Reviews work better when this kind of evidence is already on the page.",
+      "captionEs": "Cliente real. La prueba es un trabajo real con su pueblo, no un jardín de catálogo. Las reseñas funcionan mejor cuando esta evidencia ya está en la página."
+    }
+  ],
+  "missed-call-text-delayed-10dlc": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/carrier-wait.svg",
+      "srcEs": "/blog/figures/carrier-wait-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Timeline of carrier review for missed-call text-back.",
+      "altEs": "Línea de tiempo de la revisión del operador para el texto por llamada perdida.",
+      "caption": "The surprise is this calendar. Plan the crew’s Monday around it.",
+      "captionEs": "La sorpresa es este calendario. Planea el lunes del equipo alrededor de él."
+    },
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/sms-draft.svg",
+      "srcEs": "/blog/figures/sms-draft-es.svg",
+      "width": 960,
+      "height": 520,
+      "alt": "Example of the text a caller eventually receives.",
+      "altEs": "Ejemplo del texto que la persona finalmente recibe.",
+      "caption": "It is still a text from the business. Say that out loud before you promise instant replies.",
+      "captionEs": "Sigue siendo un texto del negocio. Dilo en voz alta antes de prometer respuestas instantáneas."
+    },
+    {
+      "kind": "chart",
+      "after": 6,
+      "src": "/blog/figures/textback-price.svg",
+      "srcEs": "/blog/figures/textback-price-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart showing how each plan prices text-back.",
+      "altEs": "Gráfica de cómo cada plan cobra el texto.",
+      "caption": "This is the “which plan prices it which way” section, in one picture.",
+      "captionEs": "Esta es la sección de cómo lo cobra cada plan, en una sola imagen."
+    }
+  ],
+  "google-business-profile-vs-website": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/profile-and-site.svg",
+      "srcEs": "/blog/figures/profile-and-site-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Two-column diagram of profile jobs versus website jobs.",
+      "altEs": "Diagrama de dos columnas: trabajo del perfil y trabajo del sitio.",
+      "caption": "They show up in the same search and then do different work. Match the name, hours, and number.",
+      "captionEs": "Aparecen en la misma búsqueda y luego hacen un trabajo distinto. Haz coincidir el nombre, el horario y el número."
+    },
+    {
+      "kind": "chart",
+      "after": 4,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of website plan prices beside a free profile.",
+      "altEs": "Gráfica de precios del sitio junto a un perfil gratis.",
+      "caption": "The profile is free to claim. The site is this separate line. You need the site when a job needs its own page.",
+      "captionEs": "El perfil se reclama gratis. El sitio es esta partida aparte. Necesitas el sitio cuando un trabajo requiere su propia página."
+    },
+    {
+      "kind": "screenshot",
+      "after": 2,
+      "src": "/blog/figures/shot-plumb-services.webp",
+      "srcEs": "/blog/figures/shot-plumb-services.webp",
+      "width": 1100,
+      "height": 800,
+      "alt": "Screenshot of service cards on the Preferred Plumbing Solutions homepage.",
+      "altEs": "Captura de las tarjetas de servicio en la página de Preferred Plumbing Solutions.",
+      "caption": "Same live site, just below the hero. Repairs, radiant, and tankless are separate cards. Leaks, drains, and heaters on your site should be that easy to tell apart.",
+      "captionEs": "El mismo sitio real, justo debajo del héroe. Reparaciones, radiante y tankless son tarjetas distintas. Fugas, drenajes y calentadores en tu sitio deberían distinguirse así."
+    }
+  ],
+  "freelancer-vs-agency-vs-subscription-website": [
+    {
+      "kind": "diagram",
+      "after": 3,
+      "src": "/blog/figures/who-holds-files.svg",
+      "srcEs": "/blog/figures/who-holds-files-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of monthly website plans versus owning the files.",
+      "altEs": "Diagrama de planes mensuales frente a ser dueño de los archivos.",
+      "caption": "A freelancer sells time. An agency adds meetings. This is the plan side of that choice, including the exit.",
+      "captionEs": "Un freelancer vende tiempo. Una agencia suma reuniones. Este es el lado del plan en esa decisión, incluida la salida."
+    },
+    {
+      "kind": "chart",
+      "after": 9,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of published plan totals. Other quotes are not estimated.",
+      "altEs": "Gráfica de totales publicados. Las otras cotizaciones no se estiman.",
+      "caption": "Put freelancer and agency numbers in the blank columns yourself. These bars are the only prices this site will state.",
+      "captionEs": "Anota tú los números del freelancer y de la agencia en las columnas vacías. Estas barras son los únicos precios que este sitio afirma."
+    },
+    {
+      "kind": "screenshot",
+      "after": 4,
+      "src": "/blog/figures/shot-plumb-hero.webp",
+      "srcEs": "/blog/figures/shot-plumb-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the Preferred Plumbing Solutions homepage in Spirit Lake, Idaho.",
+      "altEs": "Captura de la página de inicio de Preferred Plumbing Solutions en Spirit Lake, Idaho.",
+      "caption": "Live client. Hours, phone, city, and the estimate button are on the first screen. That is the homepage the price is paying for.",
+      "captionEs": "Cliente real. Horario, teléfono, ciudad y el botón de estimado están en la primera pantalla. Esa es la página que el precio está pagando."
+    }
+  ],
+  "wix-vs-squarespace-vs-managed-website-contractors": [
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/diy-or-managed.svg",
+      "srcEs": "/blog/figures/diy-or-managed-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram comparing a DIY builder with a managed website plan.",
+      "altEs": "Diagrama que compara un constructor DIY con un plan de sitio administrado.",
+      "caption": "Line up the bill you can see, then the evenings. Do not invent a DIY total here.",
+      "captionEs": "Alinea la factura que sí ves, y luego las noches. No inventes aquí un total de DIY."
+    },
+    {
+      "kind": "chart",
+      "after": 3,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of the managed-plan totals.",
+      "altEs": "Gráfica de los totales del plan administrado.",
+      "caption": "Wix and Squarespace prices change on their sites. Compare those live numbers with this chart, not with a guessed average.",
+      "captionEs": "Los precios de Wix y Squarespace cambian en sus sitios. Compara esos números en vivo con esta gráfica, no con un promedio adivinado."
+    }
+  ],
+  "web-design-for-contractors": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/mobile-check.svg",
+      "srcEs": "/blog/figures/mobile-check-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Checklist diagram for the first phone screen.",
+      "altEs": "Diagrama de revisión de la primera pantalla del teléfono.",
+      "caption": "Start here, in the driveway. The rest of the checklist hangs off a screen that already names the work.",
+      "captionEs": "Empieza aquí, en la entrada. El resto de la lista cuelga de una pantalla que ya nombra el trabajo."
+    },
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/two-doors.svg",
+      "srcEs": "/blog/figures/two-doors-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of one page per job and two next steps.",
+      "altEs": "Diagrama de una página por trabajo y dos siguientes pasos.",
+      "caption": "One page for the job, not a pile of towns. Two next steps, and only those.",
+      "captionEs": "Una página para el trabajo, no una pila de pueblos. Dos siguientes pasos, y solo esos."
+    }
+  ],
+  "pagina-web-para-plomeros": [
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/plumb-call-paths.svg",
+      "srcEs": "/blog/figures/plumb-call-paths-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of a plumber leak path versus a heater quote.",
+      "altEs": "Diagrama del camino de una fuga y el de una cotización de calentador.",
+      "caption": "The first screen has to serve the leak. The heater page can be calmer.",
+      "captionEs": "La primera pantalla tiene que servir a la fuga. La página del calentador puede ser más calmada."
+    },
+    {
+      "kind": "chart",
+      "after": 7,
+      "src": "/blog/figures/plumb-plans-legacy.svg",
+      "srcEs": "/blog/figures/plumb-plans-legacy-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of the four published website prices.",
+      "altEs": "Gráfica de los cuatro precios publicados del sitio.",
+      "caption": "The four plans are the same prices as every other trade. This page is about the call, not a plumbing surcharge.",
+      "captionEs": "Los cuatro planes cuestan lo mismo que en cualquier oficio. Esta página es sobre la llamada, no un recargo de plomería."
+    },
+    {
+      "kind": "screenshot",
+      "after": 1,
+      "src": "/blog/figures/shot-plumb-hero.webp",
+      "srcEs": "/blog/figures/shot-plumb-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the Preferred Plumbing Solutions homepage in Spirit Lake, Idaho.",
+      "altEs": "Captura de la página de inicio de Preferred Plumbing Solutions en Spirit Lake, Idaho.",
+      "caption": "Live client. Hours, phone, city, and the estimate button are on the first screen. That is the homepage the price is paying for.",
+      "captionEs": "Cliente real. Horario, teléfono, ciudad y el botón de estimado están en la primera pantalla. Esa es la página que el precio está pagando."
+    }
+  ],
+  "como-pedir-resenas-en-google": [
+    {
+      "kind": "diagram",
+      "after": 3,
+      "src": "/blog/figures/review-ask.svg",
+      "srcEs": "/blog/figures/review-ask-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Diagram of the timing and the direct review link.",
+      "altEs": "Diagrama del momento y del enlace directo de reseña.",
+      "caption": "The direct link beats “find us on Google.” Send it when the job is done.",
+      "captionEs": "El enlace directo gana a “búscanos en Google”. Envíalo cuando el trabajo terminó."
+    },
+    {
+      "kind": "chart",
+      "after": 9,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart marking which plans include review requests.",
+      "altEs": "Gráfica que marca qué planes incluyen solicitudes de reseña.",
+      "caption": "Optional automation, when you want it, is Lead System or Plus. The ask itself is still yours to make.",
+      "captionEs": "La automatización opcional, si la quieres, es Lead System o Plus. Pedir la reseña sigue siendo tuyo."
+    },
+    {
+      "kind": "screenshot",
+      "after": 4,
+      "src": "/blog/figures/shot-a1-proof.webp",
+      "srcEs": "/blog/figures/shot-a1-proof.webp",
+      "width": 1100,
+      "height": 820,
+      "alt": "Screenshot of before-and-after project photos on the A1 Property Services site.",
+      "altEs": "Captura de fotos de antes y después en el sitio de A1 Property Services.",
+      "caption": "Live client. The proof is a real job with a town on it, not a stock yard. Reviews work better when this kind of evidence is already on the page.",
+      "captionEs": "Cliente real. La prueba es un trabajo real con su pueblo, no un jardín de catálogo. Las reseñas funcionan mejor cuando esta evidencia ya está en la página."
+    }
+  ],
+  "google-business-profile-checklist": [
+    {
+      "kind": "diagram",
+      "after": 0,
+      "src": "/blog/figures/gbp-steps.svg",
+      "srcEs": "/blog/figures/gbp-steps-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Four-step Google Business Profile checklist.",
+      "altEs": "Lista de cuatro pasos para el Perfil de Google Business.",
+      "caption": "Claim, hours, real photos, then decide if a website still has a job to do.",
+      "captionEs": "Reclama, horario, fotos reales, y luego decide si el sitio todavía tiene un trabajo."
+    },
+    {
+      "kind": "diagram",
+      "after": 7,
+      "src": "/blog/figures/profile-and-site.svg",
+      "srcEs": "/blog/figures/profile-and-site-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of what the profile will not replace.",
+      "altEs": "Diagrama de lo que el perfil no reemplaza.",
+      "caption": "The profile will not hold a full service page. That is the limit to remember before you skip the site.",
+      "captionEs": "El perfil no va a contener una página de servicio completa. Ese es el límite que hay que recordar antes de saltarte el sitio."
+    },
+    {
+      "kind": "screenshot",
+      "after": 5,
+      "src": "/blog/figures/shot-a1-hero.webp",
+      "srcEs": "/blog/figures/shot-a1-hero.webp",
+      "width": 1100,
+      "height": 780,
+      "alt": "Screenshot of the A1 Property Services homepage in Cedar Falls, Iowa.",
+      "altEs": "Captura de la página de inicio de A1 Property Services en Cedar Falls, Iowa.",
+      "caption": "Live client. The city, the county, the phone, and the quote button are visible together. A service-area sentence does more than a list of cloned town pages.",
+      "captionEs": "Cliente real. La ciudad, el condado, el teléfono y el botón de cotización se ven juntos. Una frase de zona de servicio hace más que una lista de pueblos clonados."
+    }
+  ],
+  "contractor-website-redesign-checklist": [
+    {
+      "kind": "diagram",
+      "after": 2,
+      "src": "/blog/figures/redirect-order.svg",
+      "srcEs": "/blog/figures/redirect-order-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Diagram of URL inventory, mapping, 301 tests, and Search Console.",
+      "altEs": "Diagrama de inventario de URLs, mapa, pruebas 301 y Search Console.",
+      "caption": "Write the map before launch day. The example in the article is this sequence.",
+      "captionEs": "Escribe el mapa antes del día de lanzamiento. El ejemplo del artículo es esta secuencia."
+    },
+    {
+      "kind": "chart",
+      "after": 6,
+      "src": "/blog/figures/plan-pages.svg",
+      "srcEs": "/blog/figures/plan-pages-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of how many new pages each plan includes.",
+      "altEs": "Gráfica de cuántas páginas nuevas incluye cada plan.",
+      "caption": "Do not add pages on launch day until the old URLs answer. The ceiling can wait.",
+      "captionEs": "No agregues páginas el día del lanzamiento hasta que las URLs viejas respondan. El límite puede esperar."
+    }
+  ],
+  "how-to-choose-contractor-web-designer": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/designer-questions.svg",
+      "srcEs": "/blog/figures/designer-questions-es.svg",
+      "width": 960,
+      "height": 390,
+      "alt": "Diagram grouping designer questions into ownership, money, scope, and leads.",
+      "altEs": "Diagrama que agrupa las preguntas al diseñador en propiedad, dinero, alcance y clientes.",
+      "caption": "Get the answers in writing before a deposit. A nice mockup is not one of the four checks.",
+      "captionEs": "Pide las respuestas por escrito antes de un anticipo. Un mockup bonito no es una de las cuatro revisiones."
+    },
+    {
+      "kind": "chart",
+      "after": 2,
+      "src": "/blog/figures/plans-24mo.svg",
+      "srcEs": "/blog/figures/plans-24mo-es.svg",
+      "width": 960,
+      "height": 470,
+      "alt": "Bar chart of Kinexis plan prices to compare with any other quote.",
+      "altEs": "Gráfica de precios de Kinexis para comparar con cualquier otra cotización.",
+      "caption": "Ask every designer for the same columns: monthly or once, what cancel does, and who keeps the files. These bars are one published answer.",
+      "captionEs": "Pide a cada diseñador las mismas columnas: mensual o una vez, qué pasa si cancelas y quién se queda los archivos. Estas barras son una respuesta publicada."
+    }
+  ],
+  "contractor-website-quote-form": [
+    {
+      "kind": "diagram",
+      "after": 1,
+      "src": "/blog/figures/short-form.svg",
+      "srcEs": "/blog/figures/short-form-es.svg",
+      "width": 960,
+      "height": 520,
+      "alt": "Phone wireframe of a four-field contractor quote form.",
+      "altEs": "Esquema de teléfono de un formulario de cotización de cuatro campos.",
+      "caption": "This is the default set: name, phone, job, city. The plumbing example below only changes the job words.",
+      "captionEs": "Este es el conjunto base: nombre, teléfono, trabajo, ciudad. El ejemplo de plomería de abajo solo cambia las palabras del trabajo."
+    },
+    {
+      "kind": "diagram",
+      "after": 3,
+      "src": "/blog/figures/form-keep-cut.svg",
+      "srcEs": "/blog/figures/form-keep-cut-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of form fields to keep and fields to remove.",
+      "altEs": "Diagrama de campos que se quedan y campos que se quitan.",
+      "caption": "Cut the inventory off the first screen. Emergency traffic and after-work traffic both quit on it.",
+      "captionEs": "Quita el inventario de la primera pantalla. El tráfico de emergencia y el de después del trabajo lo abandonan."
+    },
+    {
+      "kind": "diagram",
+      "after": 4,
+      "src": "/blog/figures/two-doors.svg",
+      "srcEs": "/blog/figures/two-doors-es.svg",
+      "width": 960,
+      "height": 430,
+      "alt": "Diagram of a phone-first emergency page versus a form-first estimate page.",
+      "altEs": "Diagrama de una página de emergencia con teléfono primero y una de estimado con formulario primero.",
+      "caption": "The form is not the only door. A leak page should still lead with the phone.",
+      "captionEs": "El formulario no es la única puerta. Una página de fugas debería seguir abriendo con el teléfono."
+    }
+  ]
+}

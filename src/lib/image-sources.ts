@@ -1,5 +1,5 @@
 /** Bump when pre-encoded stills are replaced. /assets and /blog are cached for a year. */
-export const STILL_VERSION = "28";
+export const STILL_VERSION = "33";
 
 export function still(src: string) {
   return src.includes("?") ? src : `${src}?v=${STILL_VERSION}`;

@@ -5,25 +5,67 @@ const REVIEW_STEPS = [
   {
     n: "1",
     title: "Missed call, automatic text",
-    titleDisplay: <>Missed call,<br />automatic text</>,
-    text: <>When you cannot pick up, a text goes<br />out on your tracking number so the<br />lead does not go cold.</>,
+    titleDisplay: (
+      <>
+        Missed call,
+        <br />
+        automatic text
+      </>
+    ),
+    text: (
+      <>
+        When you cannot pick up, a text goes
+        <br />
+        out on your tracking number so the
+        <br />
+        lead does not go cold.
+      </>
+    ),
     icon: "missed-call-text-back",
   },
   {
     n: "2",
     title: "After the job is done",
-    titleDisplay: <>After the job<br />is done</>,
-    text: <>Your customer gets a text with a<br />direct Google review link. You do<br />not have to ask in person.</>,
+    titleDisplay: (
+      <>
+        After the job
+        <br />
+        is done
+      </>
+    ),
+    text: (
+      <>
+        Your customer gets a text with a
+        <br />
+        direct Google review link. You do
+        <br />
+        not have to ask in person.
+      </>
+    ),
     icon: "after-every-job",
   },
   {
     n: "3",
     title: "Straight to your profile",
-    titleDisplay: <>Straight to<br />your profile</>,
-    text: <>The link opens your Google Business<br />Profile. New reviews land ready<br />for you to reply to them.</>,
+    titleDisplay: (
+      <>
+        Straight to
+        <br />
+        your profile
+      </>
+    ),
+    text: (
+      <>
+        The link opens your Google Business
+        <br />
+        Profile. New reviews land ready
+        <br />
+        for you to reply to them.
+      </>
+    ),
     icon: "one-tap-to-google",
   },
-] as const;
+];
 
 const REASONS = [
   {
@@ -33,7 +75,7 @@ const REASONS = [
   },
   {
     title: "Designed To Bring In Calls",
-    text: "Every page makes the next step clear, whether someone wants to call now or request a quote online.",
+    text: "Every page makes the next step clear, whether someone wants to call right now or request a quote online.",
     icon: "sales-focused",
   },
   {

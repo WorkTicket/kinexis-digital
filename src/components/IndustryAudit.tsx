@@ -79,8 +79,8 @@ export default function IndustryAudit({
                 className="industry-audit__img"
                  src={auditMobile}
                 alt={alt}
-                 width={2400}
-                 height={1350}
+                 width={1044}
+                 height={576}
                 loading="lazy"
                 decoding="async"
                 fetchPriority="low"
