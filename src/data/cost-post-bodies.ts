@@ -30,24 +30,24 @@ export type CostTradeSpec = {
 };
 
 /** Shared plan facts — keep short so trade-unique copy dominates similarity. */
-const PLAN_TABLE = `<p>Start with numbers you can verify. Kinexis publishes four options on <a href="/pricing">/pricing</a>:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>Professional site, hosting, SSL, up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day; 12 months hosting and small edits included</td></tr></tbody></table><p>Monthly plans are $0 down, month-to-month, cancel anytime, price locked 24 months from launch. Every plan includes a 30-day money-back guarantee (written request; third-party costs already paid excluded). Lead System and Plus also include a 60-day lead guarantee. Every option starts with a <strong>free homepage preview in 2 business days</strong>—no card. Longer monthly vs ownership path: <a href="/blog/monthly-website-vs-own-it">Monthly Website vs Own It</a>.</p>`;
+const PLAN_TABLE = `<p>Verified Kinexis options on <a href="/pricing">/pricing</a>:</p><table><thead><tr><th>Plan</th><th>Price</th><th>Best for</th></tr></thead><tbody><tr><td>Website</td><td>$97/mo</td><td>Professional site, hosting, SSL, up to two small edits a month</td></tr><tr><td>Lead System</td><td>$197/mo</td><td>Optional text-back ($1/mo second number if used + carrier rates), Google review requests, call tracking, unlimited small edits</td></tr><tr><td>Plus</td><td>$297/mo</td><td>English + Spanish site and follow-up tools</td></tr><tr><td>Own It</td><td>$1,497 one-time</td><td>Site files yours from launch day; 12 months hosting and small edits included</td></tr></tbody></table><p>Monthly: $0 down, month-to-month, cancel anytime, price locked 24 months from launch. 30-day money-back on every plan; 60-day lead guarantee on Lead System and Plus. <strong>Free homepage preview in 2 business days</strong>—no card. <a href="/blog/monthly-website-vs-own-it">Monthly vs Own It</a>.</p>`;
 
-const TWENTY_FOUR_MONTH = `<p>Simple multiplication of published rates (not a third-party average survey):</p><table><thead><tr><th>Plan</th><th>Year 1</th><th>24 months</th><th>Notes</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 down, price locked 24 months</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Includes 60-day lead guarantee</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>English + Spanish</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + optional Site Care $39/mo in months 13–24 ($468) = $1,965</td><td>Domain renewal billed at cost</td></tr></tbody></table><p><em>Excludes tax if any. Text-back carrier rates and optional $1/mo second number are extra.</em></p>`;
+const TWENTY_FOUR_MONTH = `<p>Published rates × time (not forum averages):</p><table><thead><tr><th>Plan</th><th>Year 1</th><th>24 months</th><th>Notes</th></tr></thead><tbody><tr><td>Website</td><td>$1,164</td><td>$2,328</td><td>$0 down, price locked 24 months</td></tr><tr><td>Lead System</td><td>$2,364</td><td>$4,728</td><td>Includes 60-day lead guarantee</td></tr><tr><td>Plus</td><td>$3,564</td><td>$7,128</td><td>English + Spanish</td></tr><tr><td>Own It</td><td>$1,497</td><td>$1,497 + optional Site Care $39/mo in months 13–24 ($468) = $1,965</td><td>Domain renewal billed at cost</td></tr></tbody></table><p><em>Excludes tax if any. Text-back carrier rates and optional $1/mo second number are extra.</em></p>`;
 
 function diySection(noun: string) {
-  return `<p>For ${noun} work, the quote gap is rarely a secret industry multiplier. It is page count, who writes trade-specific copy, who shoots real job photos, who hosts, who edits after hours, and whether follow-up tools are included. DIY builders can look cheap on day one—then you add evenings in the editor. Freelancers vary by skill and booking. Agencies often quote project fees that bundle strategy and revisions.</p><p>A monthly managed plan packages site, hosting, and edits under one published price. Compare live tiers on <a href="https://www.wix.com/plans" rel="noopener noreferrer" target="_blank">Wix</a> or <a href="https://www.squarespace.com/pricing" rel="noopener noreferrer" target="_blank">Squarespace</a> only after you price your own calendar. Longer path: <a href="/blog/wix-vs-squarespace-vs-managed-website-contractors">Wix vs Squarespace vs managed</a>.</p>`;
+  return `<p>A ${noun} quote should match how many real service pages and photos you need—not a generic five-page theme.</p><p>Page count, copy, photos, hosting, edits, and follow-up tools drive the gap—not a secret trade surcharge. Compare <a href="/pricing">/pricing</a> and <a href="/blog/wix-vs-squarespace-vs-managed-website-contractors">Wix vs Squarespace vs managed</a>.</p>`;
 }
 
-const HIDDEN = `<p>Ongoing SEO is separate—sites launch with clear structure, but monthly SEO is quoted on its own (<a href="/seo-services">SEO services</a>). Photos and custom copy may be quoted. Missed-call text-back needs a dedicated business line; carrier approval usually 10–15 days and is not guaranteed. On Lead System or Plus, a second tracking number is $1/mo if used plus carrier rates. More: <a href="/blog/missed-call-text-delayed-10dlc">why missed-call texts are delayed</a>.</p>`;
+const HIDDEN = `<p>Not bundled in the four plans: ongoing <a href="/seo-services">SEO services</a>; optional custom copy or shoots; missed-call text-back (dedicated line; carrier approval ~10–15 days, not guaranteed). Lead System or Plus: second tracking number $1/mo if used + carrier rates. <a href="/blog/missed-call-text-delayed-10dlc">10DLC delays</a>.</p>`;
 
 function compareQuotes(noun: string) {
-  return `<p>When you compare DIY, freelancer, agency, and managed quotes for a ${noun} site, line up the same columns: pages included and who writes them; hosting/SSL/domain; edit process; review or missed-call tools; file exit terms; whether you see a design before you pay.</p><p>Ask for a one-page scope. Vague “we’ll figure it out” answers become change orders. Also see <a href="/blog/freelancer-vs-agency-vs-subscription-website">freelancer vs agency vs plan</a>.</p>`;
+  return `<p>Line up DIY, freelancer, agency, and managed quotes for a ${noun} site on the same columns: pages, hosting/SSL, edits, review/missed-call tools, file exit, and whether you see design before payment. <a href="/blog/freelancer-vs-agency-vs-subscription-website">Freelancer vs agency vs plan</a>.</p>`;
 }
 
-const PREVIEW_PROCESS = `<p>Every Kinexis plan starts with a free homepage preview in <strong>2 business days</strong>—no card. After you approve and send needed content, the full site typically launches in <strong>5 business days</strong> (confirmed in writing). That is a build timeline, not a ranking promise.</p>`;
+const PREVIEW_PROCESS = `<p>Free homepage preview in <strong>2 business days</strong>—no card. Full site typically <strong>5 business days</strong> after approval and content (written timeline—not a ranking promise).</p>`;
 
 function whoFits(noun: string) {
-  return `<p><strong>Website ($97/mo)</strong> fits a ${noun} shop that needs a professional site and light edits, and already catches most calls.</p><p><strong>Lead System ($197/mo)</strong> fits when missed calls and reviews matter—optional text-back, Google review requests, call tracking, 60-day lead guarantee.</p><p><strong>Plus ($297/mo)</strong> fits when you need English and Spanish pages with the same lead-guarantee class.</p><p><strong>Own It ($1,497 once)</strong> fits when you want files from launch day and will skip the monthly plan and lead guarantee (12 months hosting/edits included; optional Site Care $39/mo afterward).</p><p>None of the four website plans bundle ongoing SEO—that is quoted on <a href="/seo-services">SEO services</a>.</p>`;
+  return `<p>Typical ${noun} fit: <strong>Website ($97/mo)</strong> if calls are caught; <strong>Lead System ($197/mo)</strong> for missed calls, reviews, tracking; <strong>Plus ($297/mo)</strong> for English+Spanish; <strong>Own It ($1,497)</strong> for file ownership (12 mo hosting/edits; optional Site Care $39/mo after). SEO quoted on <a href="/seo-services">SEO services</a>.</p>`;
 }
 
 const LIVE_COST_SLUGS = [
@@ -73,7 +73,7 @@ function otherTradesHtml(currentSlug: string) {
   const links = LIVE_COST_SLUGS.filter((slug) => slug !== currentSlug)
     .map((slug) => `<li><a href="${industryCostPostPath(slug)}">${labels[slug]}</a></li>`)
     .join("");
-  return `<p>Same four published plans apply across trades. Differences show up in which service pages and proof you need:</p><ul>${links}</ul>`;
+  return `<p>Same four plans; trade differences are pages and proof:</p><ul>${links}</ul>`;
 }
 
 function withArticle(article: CostTradeSpec["article"], noun: string) {
@@ -84,15 +84,15 @@ function withArticle(article: CostTradeSpec["article"], noun: string) {
 const SHARED_FAQS = [
   {
     q: "Is there a setup fee?",
-    a: "No surprise setup fees. Monthly plans are $0 down. Own It is a written one-time $1,497. Every option starts with a free homepage preview — no card and no obligation.",
+    a: "No. Monthly plans are $0 down; Own It is $1,497 one-time. Free homepage preview—no card.",
   },
   {
     q: "Do I own the site on a monthly plan?",
-    a: "On monthly plans, hosting and management continue while you subscribe. A buyout is a written one-time $1,497 purchase of the site files. Own It includes ownership from launch day.",
+    a: "Hosting continues while you subscribe. Buyout is a written $1,497 file purchase. Own It includes ownership at launch.",
   },
   {
     q: "Is SEO included in those prices?",
-    a: "Each site ships with clear structure and service pages. Ongoing SEO is quoted separately and is not bundled into the four plans.",
+    a: "Sites ship with clear structure; ongoing SEO is quoted separately—not in the four plans.",
   },
 ];
 
@@ -131,7 +131,7 @@ export function buildCostPostBody(spec: CostTradeSpec): CostPostBody {
       },
       {
         h2: `What You’re Paying For on ${spec.siteLabel} Site`,
-        html: `${spec.payingForHtml}<p>See ${hiddenIndustryRoute ? spec.designAnchor : `<a href="${industryPath}">${spec.designAnchor}</a>`} and <a href="${pagesPath}">the pages checklist</a>. Thin doorways and vague service dumps waste money even when the quote looks low.</p><p><a href="/contact">Get a free homepage preview</a> before you choose a plan—2 business days, no card, no obligation.</p>`,
+        html: `${spec.payingForHtml}<p>${hiddenIndustryRoute ? spec.designAnchor : `<a href="${industryPath}">${spec.designAnchor}</a>`}; <a href="${pagesPath}">pages checklist</a>. <a href="/contact">Free homepage preview</a>—2 business days, no card.</p>`,
       },
       {
         h2: "Which Plan Fits Which Situation",
@@ -155,7 +155,7 @@ export function buildCostPostBody(spec: CostTradeSpec): CostPostBody {
       },
       {
         h2: "Website Cost for Other Trades",
-        html: `${otherTradesHtml(spec.slug)}<p>Trade differences show up in service pages and copy specificity—not a secret industry tax.</p>`,
+        html: otherTradesHtml(spec.slug),
       },
     ],
   };

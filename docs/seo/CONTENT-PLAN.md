@@ -32,13 +32,13 @@
 | P4 | Connect homepage stays indexable (canonical) | Subdomain | **Tech-0** | connect `/` | Approved — implement in Connect repo |
 | T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Done — `src/data/keyword-ownership.ts` |
 | T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Done — `npm run check:seo-ownership` |
-| T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | In progress (code) — avg pair similarity ~44.8% (was ~89.7%) |
-| T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | In progress (code) — avg pair similarity ~36.9% (was ~85.8%) |
+| T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | **Done** — avg pair similarity **35.1%** (was ~89.7%); `node scripts/measure-trade-post-similarity.mjs` |
+| T4 | Rewrite briefs: 12 trade **pages** articles | Rewrite | 2 | `/blog/*-website-pages` | **Done** — avg pair similarity **22.1%** (was ~85.8%); same script |
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
 | T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | In progress (code) |
 | T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | In progress (code) |
-| T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Planned |
-| T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Planned |
+| T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Done |
+| T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Done |
 | T10 | Industry: painting live | Landing | 3 | `/industries/painting` | In code this PR |
 | T11 | Industry: remodeling live | Landing | 3 | `/industries/remodeling` | In code this PR |
 | T12 | Portfolio / internal links painting + remodeling | Supporting | 3 | `/portfolio` | Nav/index via `status: live`; dedicated paint template still optional |
@@ -118,14 +118,16 @@ One primary URL per commercial intent. Secondaries support; they do not get a se
 
 ### 5.1 Similarity method (repo, reproducible)
 
-Computed from generated English bodies via `buildCostPostBody` / `buildPagesPostBody` (lead + section H2/HTML + FAQs), HTML stripped, **5-word shingle Jaccard**, ×100 for percent.
+Computed from generated English bodies via `buildCostPostBody` / `buildPagesPostBody` (lead + section H2/HTML + FAQs), HTML stripped, **5-word shingle Jaccard**, ×100 for percent. Re-run: `node scripts/measure-trade-post-similarity.mjs`.
 
 | Series | N | Avg pair similarity | Min | Max | Highest pairs (sample) |
 |---|---:|---:|---:|---:|---|
-| Cost (`*-website-cost`) | 12 | **89.7%** | 85.8% | **92.2%** | painting↔remodeling 92.2; painting↔lawn-care 92.1; painting↔window-cleaning 92.0 |
-| Pages (`*-website-pages`) | 12 | **85.8%** | 79.5% | **89.2%** | painting↔pressure-washing 89.2; painting↔pool / window 88.8 |
+| Cost (`*-website-cost`) | 12 | **35.1%** | 30.2% | **39.6%** | painting↔window-cleaning 39.6; lawn-care↔window 39.4; landscaping↔window 38.8 |
+| Pages (`*-website-pages`) | 12 | **22.1%** | 16.2% | **25.5%** | lawn-care↔window-cleaning 25.5; pressure-washing↔window 25.0; garage-door↔lawn-care 24.7 |
+| Cost (incl. junk + tree) | 14 | 35.7% | 30.2% | 40.7% | — |
+| Pages (incl. junk + tree) | 14 | 22.9% | 16.2% | 30.5% | — |
 
-Owner sample cited ~87–95% (cost) and ~81–90% (pages). Repo math lands in the same band: **shared template sections dominate**; trade-only `drivesCostHtml` / `servicesHtml` / leadFocus are a thin unique layer. That is scaled-template risk under Google’s scaled-content guidance — fix by **substantial rewrite**, not by mass noindex in this plan.
+**Pre-rewrite baseline (2026 audit):** cost ~89.7% avg; pages ~85.8% avg — shared template sections dominated. **Post T3/T4:** trade-unique H2s, journeys, forms, and FAQs dominate; shared blocks are shortened facts/tables. N=12 rows exclude junk-removal and tree-service for continuity with the original 24-article scope; the repo ships 14+14 posts.
 
 ### 5.2 Shared template debt (what to keep vs cut)
 
@@ -318,7 +320,7 @@ Still useful after Tech-0 ships: Coverage “404 / robots / alternate canonical�
 - [ ] Trade article includes unique FAQs / examples not reusable on another trade unchanged.  
 - [ ] No new doorway city clones; service area stays honest.  
 - [ ] Mobile: phone and form tested in the draft preview.  
-- [ ] Similarity re-check for rewritten cost/pages pairs (same 5-shingle method) documented.  
+- [x] Similarity re-check for rewritten cost/pages pairs (same 5-shingle method) documented — `scripts/measure-trade-post-similarity.mjs`, §5.1.  
 - [ ] GSC/KW data referenced only when real exports exist.  
 - [ ] Owner sign-off: no delete/noindex/redirect without separate ticket.
 

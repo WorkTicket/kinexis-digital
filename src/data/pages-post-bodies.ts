@@ -42,39 +42,39 @@ function withArticle(article: PagesTradeSpec["article"], noun: string) {
   return `${article} ${noun}`;
 }
 
-const CORE_PAGES = `<p>Every trade site still needs a boring skeleton: <strong>Home</strong> (work, area, phone on a phone-sized first screen), <strong>service pages</strong> for jobs you sell, <strong>service area</strong> that tells the truth, short <strong>About</strong>, real <strong>Reviews</strong>, and <strong>Contact</strong> with tap-to-call plus a short form. That is the floor—the trade sections below are what make someone think you do <em>their</em> job.</p><p>Kinexis page ceilings: Website up to 5, Lead System up to 10, Plus up to 20 (English + Spanish), Own It up to 10. Ship money pages first.</p>`;
+const CORE_PAGES = `<p>Floor: Home (work, area, phone), service pages you sell, honest service area, About, Reviews, Contact (tap-to-call + short form). Kinexis ceilings: Website 5, Lead System 10, Plus 20 (EN+ES), Own It 10—ship money pages first.</p>`;
 
-const HOMEPAGE_WIREFRAME = `<p>Open the site on your phone the way a stranger would. Without scrolling, can you tell what you fix, where you work, and how to call? Headline that names the work, tap-to-call, cities you cover, one primary action, thin trust strip. Mission statements can wait. Google uses a <a href="https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-first-indexing" rel="noopener noreferrer" target="_blank">mobile-first approach</a>; slow heroes still lose the call—check <a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank">PageSpeed Insights</a> when the number feels sticky on cellular.</p>`;
+const HOMEPAGE_WIREFRAME = `<p>On a phone, first screen: what you fix, where, how to call. <a href="https://developers.google.com/search/docs/crawling-indexing/mobile/mobile-first-indexing" rel="noopener noreferrer" target="_blank">Mobile-first</a>—if the hero is slow, test <a href="https://pagespeed.web.dev/" rel="noopener noreferrer" target="_blank">PageSpeed</a>.</p>`;
 
-const SERVICE_ANATOMY = `<p>A strong service page answers in the first breath: what broke or what they want done, whether this is call-now or book-a-visit, and what proof makes you believable. Titles should match how customers search—“water heater replacement” beats “residential solutions.” Keep the first form short unless the trade section below says otherwise. Google’s <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener noreferrer" target="_blank">helpful content</a> guidance is the baseline: write for people first.</p>`;
+const SERVICE_ANATOMY = `<p>First breath: job, call-now vs book, proof. Titles match searches. Short first form unless your trade section says otherwise. <a href="https://developers.google.com/search/docs/fundamentals/creating-helpful-content" rel="noopener noreferrer" target="_blank">Helpful content</a> baseline.</p>`;
 
-const NAP_CONSISTENCY = `<p>Name, phone, hours, and service area should match your website and <a href="https://support.google.com/business/" rel="noopener noreferrer" target="_blank">Google Business Profile</a>. One honest service-area page beats thin city clones—Google’s spam policies call out <a href="https://developers.google.com/search/docs/essentials/spam-policies#doorway-pages" rel="noopener noreferrer" target="_blank">doorway pages</a>. Update hours on both places the same day.</p>`;
+const NAP_CONSISTENCY = `<p>NAP and hours match the site and <a href="https://support.google.com/business/" rel="noopener noreferrer" target="_blank">Google Business Profile</a>. One service-area page—not <a href="https://developers.google.com/search/docs/essentials/spam-policies#doorway-pages" rel="noopener noreferrer" target="_blank">doorways</a>.</p>`;
 
 const DEFAULT_PROOF =
-  "<p>When a live client site exists for this trade, we annotate the homepage on the industry hub. Until then, use the service list above and a free homepage preview built for your offer so you can see the first-screen path before you pay.</p>";
+  "<p>Live trade clients are annotated on the industry hub; otherwise use the service list above and a free homepage preview.</p>";
 
-const SKIP_DOORWAY = `<p>Do not publish near-identical pages that only change the city name. One clear service-area page plus strong service pages is the honest approach. Related: <a href="/blog/local-seo-get-found-get-called">local SEO</a>, <a href="/blog/web-design-for-contractors">contractor website checklist</a>.</p>`;
+const SKIP_DOORWAY = `<p>Skip city-name clones. One area page + strong services. <a href="/blog/local-seo-get-found-get-called">Local SEO</a>; <a href="/blog/web-design-for-contractors">checklist</a>.</p>`;
 
-const BUILD_ORDER = `<p>If you are rebuilding thin: (1) homepage first screen, (2) top three service pages, (3) honest service area, (4) align Google Business Profile, (5) only then galleries or blog. Compare cash-flow models on <a href="/blog/monthly-website-vs-own-it">Monthly Website vs Own It</a> and live prices on <a href="/pricing">/pricing</a>.</p>`;
+const BUILD_ORDER = `<p>Thin rebuild order: homepage → top 3 services → service area → GBP → then gallery/blog. <a href="/blog/monthly-website-vs-own-it">Monthly vs Own It</a>; <a href="/pricing">/pricing</a>.</p>`;
 
-const PHOTOS_PROOF = `<p>Prefer your truck, before/after of jobs you finished, and craft close-ups when they help the sale. Compress images so the phone number still appears quickly. License and insurance marks belong near the call button when they apply—not only on a buried About page.</p>`;
+const PHOTOS_PROOF = `<p>Your truck, real before/after, license near the call button when it applies. Compress so the number loads fast.</p>`;
 
-const IA_PRIORITIES = `<p>Rank pages by whether they earn a phone call or qualified form: homepage → top revenue or emergency services → service area → contact → reviews → about → secondary offers. Blog posts support money pages; they should not replace a clear service page for a head-term job.</p>`;
+const IA_PRIORITIES = `<p>Prioritize by calls/forms: home → emergency/top revenue → area → contact → reviews → about → extras. Blog supports money pages.</p>`;
 
-const MEASURE_ITERATE = `<p>After launch measure calls, form submits that became jobs, Search Console queries/pages, and service pages with visits but zero calls. <a href="https://support.google.com/webmasters/answer/4559176" rel="noopener noreferrer" target="_blank">Search Console</a> shows discovery; your phone shows money. Technical fixes can move in weeks; broader local growth often takes months. Nobody outside Google can promise a position.</p>`;
+const MEASURE_ITERATE = `<p>Track calls, qualified forms, <a href="https://support.google.com/webmasters/answer/4559176" rel="noopener noreferrer" target="_blank">Search Console</a> pages/queries. No one promises rankings.</p>`;
 
 const SHARED_FAQS = [
   {
     q: "Do I need a page for every city?",
-    a: "No. One honest service-area page beats dozens of near-identical city pages that swap the town name.",
+    a: "No—one honest service-area page beats city clones.",
   },
   {
     q: "How do Kinexis plans relate to page count?",
-    a: "Website includes up to 5 pages, Lead System up to 10, Plus up to 20 (English + Spanish), Own It up to 10. Start with a free homepage preview—no card.",
+    a: "Website 5, Lead System 10, Plus 20 (EN+ES), Own It 10. Free homepage preview—no card.",
   },
   {
     q: "Where should I start if my site is a mess today?",
-    a: "Fix the homepage first screen, then your top three service pages, then the service-area page. Add extras only after those convert.",
+    a: "Homepage first screen, then top three service pages, then service area.",
   },
 ];
 
@@ -100,11 +100,11 @@ export function buildPagesPostBody(spec: PagesTradeSpec): PagesPostBody {
     sections: [
       {
         h2: "Start With the Call, Not the Sitemap",
-        html: `<p>Picture someone on a phone in a driveway. They typed a job, tapped a result, and now they have about five seconds of patience. If your page talks around the work—or hides the number—they leave. Home, services, area, about, reviews, contact still matter—but the point is calls and qualified forms.</p><p>Walk the live examples on the ${industryHub(`${spec.noun} industry hub`)} when you want proof of layout. If you are weighing price next, use <a href="${costPath}">${spec.noun} website cost</a>—that post owns the cost question; this one owns the page list.</p>`,
+        html: `<p>Callers on a phone skim for the job, area, and number. ${industryHub(`${spec.noun} hub`)} for layout; <a href="${costPath}">${spec.noun} website cost</a> for plans—this post is the page list.</p>`,
       },
       {
         h2: spec.specificH2,
-        html: `${spec.servicesHtml}<p>More process notes live on the ${industryHub("industry hub")}.</p>`,
+        html: `${spec.servicesHtml}<p>${industryHub("Industry hub")}.</p>`,
       },
       {
         h2: spec.journeyH2,
@@ -152,7 +152,7 @@ export function buildPagesPostBody(spec: PagesTradeSpec): PagesPostBody {
       },
       {
         h2: "What to Measure After You Publish",
-        html: `${MEASURE_ITERATE}<p><a href="/contact">Request a free homepage preview</a> or compare plans on <a href="/pricing">/pricing</a>. Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497 once—every option starts with a free preview in 2 business days, no card.</p>`,
+        html: `${MEASURE_ITERATE}<p><a href="/contact">Free homepage preview</a> · <a href="/pricing">/pricing</a> (Website $97/mo, Lead System $197/mo, Plus $297/mo, Own It $1,497).</p>`,
       },
     ],
   };
