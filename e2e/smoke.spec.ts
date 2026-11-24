@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { STILL_VERSION } from "../src/lib/image-sources";
 
 async function installMockAnalytics(page: import("@playwright/test").Page, ads = false, meta = false) {
   await page.addInitScript(({ adsEnabled, metaEnabled }) => {
@@ -290,12 +291,12 @@ test.describe("marketing journeys", () => {
 
   test("Spanish campaign artwork and pricing social preview use localized assets", async ({ page }) => {
     await page.goto("/es");
-    await expect(page.locator('picture.campaign-page-art source[type="image/avif"]')).toHaveAttribute("srcset", /homepage-hero-desktop-es\.avif/);
+    await expect(page.locator('picture.campaign-page-art source[type="image/avif"]:not([media])')).toHaveAttribute("srcset", /homepage-hero-desktop-es\.avif/);
     await expect(page.locator(".home-case-study__mockup")).toHaveCount(2);
     await expect(page.locator(".home-case-study__copy h3")).toHaveText(["Preferred Plumbing Solutions", "A1 Property Services"]);
 
     await page.goto("/es/pricing");
-    await expect(page.locator('picture.campaign-page-art source[type="image/avif"]')).toHaveAttribute("srcset", /pricing-desktop-es\.avif/);
+    await expect(page.locator('picture.campaign-page-art source[type="image/avif"]:not([media])')).toHaveAttribute("srcset", /pricing-desktop-es\.avif/);
     await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /pricing-social-es\.jpg/);
   });
 
@@ -315,7 +316,10 @@ test.describe("marketing journeys", () => {
     await expect(page.locator(".blog-post__hero img")).toHaveAttribute("src", /google-business-profile-vs-website-es-960\.webp/);
 
     await page.goto("/blog/google-business-profile-vs-website");
-    await expect(page.locator('.blog-post__hero source[type="image/avif"]')).toHaveAttribute("srcset", /google-business-profile-vs-website-960\.avif\?v=28/);
+    await expect(page.locator('.blog-post__hero source[type="image/avif"]')).toHaveAttribute(
+      "srcset",
+      new RegExp(`google-business-profile-vs-website-960\\.avif\\?v=${STILL_VERSION}`),
+    );
 
     for (const slug of [
       "contractor-website-quote-form",
@@ -358,8 +362,14 @@ test.describe("marketing journeys", () => {
 
     for (const [slug, englishAlt, spanishAlt] of cases) {
       await page.goto(`/industries/${slug}`);
-      await expect(page.locator('.industry-hero source[media="(max-width: 860px)"]')).toHaveAttribute("srcset", new RegExp(`${slug}-mobile\\.webp\\?v=28`));
-      await expect(page.locator(".industry-hero source[type=\"image/avif\"]")).toHaveAttribute("srcset", new RegExp(`${slug}-desktop\\.avif\\?v=28`));
+      await expect(page.locator(`.industry-hero source[type="image/webp"][media="(max-width: 860px)"]`)).toHaveAttribute(
+        "srcset",
+        new RegExp(`${slug}-mobile\\.webp\\?v=${STILL_VERSION}`),
+      );
+      await expect(page.locator('.industry-hero source[type="image/avif"]:not([media])')).toHaveAttribute(
+        "srcset",
+        new RegExp(`${slug}-desktop\\.avif\\?v=${STILL_VERSION}`),
+      );
       await expect(page.locator(".industry-hero__img")).toHaveAttribute("alt", englishAlt);
       await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", new RegExp(`${slug}-social\\.jpg`));
 
@@ -1062,7 +1072,10 @@ test.describe("marketing journeys", () => {
       const res = await page.goto(`/industries/${slug}`);
       expect(res?.ok()).toBeTruthy();
       await expect(page.locator(".industry-page")).toBeVisible();
-      for (const selector of [".review-rail__icon img", ".industry-problems__icon img"]) {
+      for (const [selector, size] of [
+        [".review-rail__icon img", [64, 64]],
+        [".industry-problems__icon img", [56, 56]],
+      ] as const) {
         const sizes = await page.locator(selector).evaluateAll((images) =>
           images.map((image) => {
             const rect = image.getBoundingClientRect();
@@ -1071,7 +1084,7 @@ test.describe("marketing journeys", () => {
         );
         expect(sizes.length).toBeGreaterThan(0);
         expect(new Set(sizes.map(([width, height]) => `${width}x${height}`)).size).toBe(1);
-        expect(sizes[0]).toEqual([56, 56]);
+        expect(sizes[0]).toEqual([...size]);
       }
     }
   });

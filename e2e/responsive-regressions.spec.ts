@@ -190,13 +190,13 @@ test.describe("narrow viewport regressions", () => {
       const alignments = await headings.evaluateAll((elements) => elements.map((element) => getComputedStyle(element).textAlign));
       expect(new Set(alignments)).toEqual(new Set(["center"]));
     }
-    for (const glyphs of [
-      page.locator(".industry-page .review-rail__icon img.icon"),
-      page.locator(".industry-page .industry-problems__icon img.icon"),
-    ]) {
+    for (const [glyphs, expected] of [
+      [page.locator(".industry-page .review-rail__icon img.icon"), "64px"],
+      [page.locator(".industry-page .industry-problems__icon img.icon"), "56px"],
+    ] as const) {
       const widths = await glyphs.evaluateAll((images) => images.map((image) => getComputedStyle(image).width));
       expect(widths.length).toBeGreaterThan(0);
-      expect(new Set(widths)).toEqual(new Set(["56px"]));
+      expect(new Set(widths)).toEqual(new Set([expected]));
     }
 
     await page.goto("/industries/electrical");

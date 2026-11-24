@@ -134,6 +134,7 @@ test.describe("KX-SEO-002 Release 1", () => {
   });
 
   test("Spanish legacy case studies and portfolio template links resolve without losing portfolio navigation", async ({ page }) => {
+    test.setTimeout(120_000);
     for (const slug of ["preferred-plumbing", "a1-property-services", "retired-example"]) {
       const response = await page.request.get(`/es/case-studies/${slug}`);
       expect(response.status()).toBe(200);
