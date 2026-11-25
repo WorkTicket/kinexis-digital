@@ -15,26 +15,35 @@ const KNOWN: Record<string, CheckoutKey> = {
   ownIt: "ownIt",
 };
 
+function purchaseValue(raw: string | string[] | undefined): number | null {
+  if (typeof raw !== "string") return null;
+  if (!/^\d{1,7}(?:\.\d{1,2})?$/.test(raw)) return null;
+  const value = Number(raw);
+  return Number.isFinite(value) && value > 0 ? value : null;
+}
+
 function resolveThanks(query: {
   plan?: string | string[];
   sid?: string | string[];
   kind?: string | string[];
   status?: string | string[];
-}): { kind: ThanksKind; plan: CheckoutKey | null; sid: string } {
+  value?: string | string[];
+}): { kind: ThanksKind; plan: CheckoutKey | null; sid: string; value: number | null } {
   const planRaw = typeof query.plan === "string" ? query.plan : "";
   const sid = typeof query.sid === "string" ? query.sid : "";
   const kind = typeof query.kind === "string" ? query.kind : "";
   const status = typeof query.status === "string" ? query.status : "";
-  if (kind === "invoice" && status === "paid") return { kind: "invoice", plan: null, sid: "" };
+  const value = purchaseValue(query.value);
+  if (kind === "invoice" && status === "paid") return { kind: "invoice", plan: null, sid: "", value };
   const plan = KNOWN[planRaw] ?? null;
-  if (plan && isSubscriptionId(sid)) return { kind: "sub", plan, sid };
-  return { kind: "none", plan: null, sid: "" };
+  if (plan && isSubscriptionId(sid)) return { kind: "sub", plan, sid, value: null };
+  return { kind: "none", plan: null, sid: "", value: null };
 }
 
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string | string[]; sid?: string | string[]; kind?: string | string[]; status?: string | string[] }>;
+  searchParams: Promise<{ plan?: string | string[]; sid?: string | string[]; kind?: string | string[]; status?: string | string[]; value?: string | string[] }>;
 }) {
   const { kind } = resolveThanks(await searchParams);
   const title =
@@ -54,15 +63,22 @@ export async function generateMetadata({
 export default async function Page({
   searchParams,
 }: {
-  searchParams: Promise<{ plan?: string | string[]; sid?: string | string[]; kind?: string | string[]; status?: string | string[] }>;
+  searchParams: Promise<{ plan?: string | string[]; sid?: string | string[]; kind?: string | string[]; status?: string | string[]; value?: string | string[] }>;
 }) {
-  const { kind, plan, sid } = resolveThanks(await searchParams);
+  const { kind, plan, sid, value } = resolveThanks(await searchParams);
   const selected = plan ? CHECKOUT_PLANS.find((item) => item.key === plan) : null;
 
   if (kind === "invoice") {
     return (
       <div className="thanks-view">
-        <CheckoutTrack name="purchase" params={{ kind: "invoice", currency: "USD" }} />
+        <CheckoutTrack
+          name="purchase"
+          params={{
+            kind: "invoice",
+            currency: "USD",
+            ...(value != null ? { value } : {}),
+          }}
+        />
         <PageHero
           eyebrow="Checkout"
           h1="Payment received"
@@ -88,7 +104,15 @@ export default async function Page({
   if (kind === "sub" && selected) {
     return (
       <div className="thanks-view">
-        <CheckoutTrack name="purchase" params={{ kind: "subscription", plan: selected.slug, currency: "USD" }} />
+        <CheckoutTrack
+          name="purchase"
+          params={{
+            kind: "subscription",
+            plan: selected.slug,
+            currency: "USD",
+            value: selected.price,
+          }}
+        />
         <PageHero
           eyebrow="Checkout"
           h1="You’re subscribed"

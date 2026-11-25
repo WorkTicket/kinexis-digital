@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { parseConsentCookie } from "@/lib/consent-cookie";
 import { SITE } from "@/lib/site";
 
 const TZ = "America/Chicago";
@@ -163,10 +162,8 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
     data.set("date", labelDay(day, copy.dateLocale));
     data.set("time", `${labelTime(time)} Central`);
     const metaForm = form.dataset.metaForm || "";
-    const consentCookie = document.cookie.split(";").map((part) => part.trim())
-      .find((part) => part.startsWith("kinexis_consent="))?.slice("kinexis_consent=".length);
     let metaEventId = "";
-    if (metaForm && parseConsentCookie(consentCookie).ads) {
+    if (metaForm) {
       try {
         metaEventId = crypto.randomUUID();
         data.set("kx_meta_form", metaForm);
@@ -181,6 +178,16 @@ export default function BookingCalendar({ copy = BOOKING_EN }: { copy?: BookingC
       const res = await fetch("/api/contact", { method: "POST", headers: { Accept: "application/json" }, body: data });
       const body = await res.json().catch(() => ({})) as { error?: string };
       if (res.ok) {
+        window.dispatchEvent(new CustomEvent("kinexis:track", {
+          detail: {
+            name: "generate_lead",
+            params: {
+              form_id: metaForm || "strategy-call",
+              form_name: "strategy_call",
+              page_path: location.pathname,
+            },
+          },
+        }));
         if (metaEventId) {
           const pendingMetaLead = { form: metaForm, path: location.pathname, eventId: metaEventId };
           const trackMetaLead = window.__KINEXIS_TRACK_META_LEAD__;

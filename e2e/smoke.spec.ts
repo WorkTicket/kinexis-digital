@@ -580,8 +580,8 @@ test.describe("marketing journeys", () => {
     await form.locator('button[type="submit"]').click();
     await expect(form).toHaveClass(/is-done/);
     const names = (await gaEvents(page)).map((event) => event.name);
+    expect(names.filter((name) => name === "generate_lead")).toHaveLength(1);
     expect(names.filter((name) => name === "audit_request")).toHaveLength(1);
-    expect(names).not.toContain("generate_lead");
     expect(names).not.toContain("preview_form_submit");
     const metaLead = await page.evaluate(() => (
       (window as unknown as { fbq?: { queue?: unknown[][] } }).fbq?.queue ?? []
@@ -704,7 +704,7 @@ test.describe("marketing journeys", () => {
     await expect(intake).toHaveClass(/is-done/);
 
     const names = (await gaEvents(page)).map((event) => event.name);
-    expect(names).not.toContain("generate_lead");
+    expect(names.filter((name) => name === "generate_lead")).toHaveLength(1);
     expect(names).not.toContain("preview_form_submit");
     expect(names).not.toContain("preview_form_view");
     expect(names).not.toContain("preview_form_start");
@@ -898,13 +898,13 @@ test.describe("marketing journeys", () => {
     await page.goto("/");
     await waitForBoot(page);
     await page.waitForTimeout(300);
-    await page.dispatchEvent("body", "pointerdown");
     await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "page_view").length).toBe(1);
 
     const firePhoneTap = () => page.evaluate(() => {
       document.querySelector('a[href^="tel:"]')?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
     });
     await firePhoneTap();
+    await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "generate_lead").length).toBe(1);
     await expect.poll(async () => (await gaEvents(page)).filter((event) => event.name === "phone_tap").length).toBe(1);
 
     await setConsent(page, true, true);
@@ -920,10 +920,12 @@ test.describe("marketing journeys", () => {
         pageViews: events.filter((args) => args[1] === "page_view").length,
         metaPageViews: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "PageView").length ?? 0,
         metaInitializations: fbq?.queue?.filter((args) => args[0] === "init").length ?? 0,
+        metaLeads: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "Lead").length ?? 0,
       };
     });
     expect(beforeWithdraw.metaPageViews).toBe(1);
     expect(beforeWithdraw.metaInitializations).toBe(1);
+    expect(beforeWithdraw.metaLeads).toBeGreaterThanOrEqual(1);
 
     await setConsent(page, true, false);
     await firePhoneTap();
@@ -934,13 +936,14 @@ test.describe("marketing journeys", () => {
       return {
         gaEvents: entries.filter((args) => args[0] === "event").length,
         adStorage: (entries.filter((args) => args[0] === "consent" && args[1] === "update").at(-1)?.[2] as Record<string, string>)?.ad_storage,
-        contacts: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "Contact").length ?? 0,
+        leads: fbq?.queue?.filter((args) => args[0] === "track" && args[1] === "Lead").length ?? 0,
         revoked: fbq?.queue?.some((args) => args[0] === "consent" && args[1] === "revoke") ?? false,
       };
     });
-    expect(adsWithdrawn.gaEvents).toBe(beforeWithdraw.gaEvents + 1);
+    // generate_lead + phone_tap still record in GA after ads withdrawal; Meta Lead does not.
+    expect(adsWithdrawn.gaEvents).toBe(beforeWithdraw.gaEvents + 2);
     expect(adsWithdrawn.adStorage).toBe("denied");
-    expect(adsWithdrawn.contacts).toBe(1);
+    expect(adsWithdrawn.leads).toBe(beforeWithdraw.metaLeads);
     expect(adsWithdrawn.revoked).toBe(true);
 
     await setConsent(page, true, true);
@@ -963,7 +966,8 @@ test.describe("marketing journeys", () => {
     expect(denied.lastConsent?.analytics_storage).toBe("denied");
     expect(denied.meta.some((args) => args[0] === "consent" && args[1] === "revoke")).toBe(true);
     expect(denied.meta.filter((args) => args[0] === "track" && args[1] === "PageView")).toHaveLength(1);
-    expect(denied.meta.filter((args) => args[0] === "track" && args[1] === "Contact")).toHaveLength(1);
+    // Re-accepting ads flushes the Lead queued while ads were withdrawn.
+    expect(denied.meta.filter((args) => args[0] === "track" && args[1] === "Lead").length).toBe(beforeWithdraw.metaLeads + 1);
 
     await setConsent(page, true, true);
     const reaccepted = await page.evaluate(() => {

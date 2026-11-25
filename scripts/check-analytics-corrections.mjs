@@ -45,7 +45,10 @@ assert.deepEqual(attribution.sanitizeMarketingAttribution({
 const boot = await readFile(path.join(root, "public/assets/js/boot.js"), "utf8");
 assert.match(boot, /track\("generate_lead",\s*leadPayload\)/);
 assert.match(boot, /event_role:\s*"diagnostic"/);
-assert.match(boot, /consentAllowsAnalytics\(\).*?return;\s*if \(!cfg\.ga/s);
+assert.match(boot, /QUEUEABLE_GA/);
+assert.match(boot, /flushPendingTrack/);
+assert.match(boot, /function armGa\(\)[\s\S]*?loadGa\(\)/);
+assert.match(boot, /function armMeta\(\)[\s\S]*?ensureMeta\(\)/);
 assert.match(boot, /consent",\s*"update"/);
 assert.match(boot, /window\.fbq\("consent",\s*adsAllowed \? "grant" : "revoke"\)/);
 assert.match(boot, /const leadFormsInFlight = new WeakSet\(\)/);
@@ -53,5 +56,7 @@ assert.match(boot, /data\.set\("kx_event_id", metaEventId\)/);
 assert.match(boot, /window\.__KINEXIS_TRACK_META_LEAD__\s*=/);
 assert.match(boot, /content_name: cfg\.metaContentNameByForm\[form\],[\s\S]*?form_path: formPath/);
 assert.match(boot, /if \(name === "PageView" && justBooted\) return/);
+assert.match(boot, /lastGaPageViewPath/);
+assert.match(boot, /trackMeta\("Lead"/);
 
-console.log("Analytics correction contract checks passed: attribution sanitization, canonical lead event, consent gates, and in-flight form deduplication.");
+console.log("Analytics correction contract checks passed: attribution sanitization, canonical lead event, consent gates, pending flush, and in-flight form deduplication.");

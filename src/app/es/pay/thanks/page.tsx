@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CheckoutTrack from "@/components/CheckoutTrack";
 import { contentMetadata } from "@/lib/seo";
 import { CHECKOUT_PLANS, money } from "@/lib/pay";
 import { isSubscriptionId } from "@/lib/paypal";
@@ -27,6 +28,17 @@ export default async function Page({
 
   return (
     <div className="pay-page" lang="es">
+      {ok && plan ? (
+        <CheckoutTrack
+          name="purchase"
+          params={{
+            kind: "subscription",
+            plan: plan.slug,
+            currency: "USD",
+            value: plan.price,
+          }}
+        />
+      ) : null}
       <PageHero
         locale="es-419"
         eyebrow="Pago"

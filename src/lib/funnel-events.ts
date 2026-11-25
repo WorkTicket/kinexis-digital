@@ -21,11 +21,11 @@ export const FUNNEL_EVENTS = {
   },
   generate_lead: {
     status: "live",
-    source: "boot.js; canonical GA4 primary conversion after successful preview submit",
+    source: "boot.js; canonical GA4 primary conversion for mapped lead forms, strategy-call bookings, and phone taps",
   },
   audit_request: {
     status: "live",
-    source: "boot.js after successful website-audit form submission",
+    source: "boot.js after successful website-audit form submission (diagnostic; generate_lead is primary)",
   },
   plan_selected: {
     status: "live",

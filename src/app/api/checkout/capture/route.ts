@@ -39,7 +39,8 @@ export async function GET(request: Request) {
         });
         return destination(request, "/pay?invoice=error#invoice");
       }
-      return destination(request, "/pay/thanks?kind=invoice&status=paid");
+      const value = encodeURIComponent(invoice.amount);
+      return destination(request, `/pay/thanks?kind=invoice&status=paid&value=${value}`);
     }
     console.error("PayPal invoice capture unfinished", {
       tokenPrefix: token.slice(0, 8),

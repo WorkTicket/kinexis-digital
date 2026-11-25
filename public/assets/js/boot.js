@@ -777,8 +777,7 @@ function onNavigate() {
   paintNew();
   requestAnimationFrame(measureFloat);
   // Soft navigations need a fresh PageView for Meta Events Manager.
-  trackMeta("PageView");
-  track("page_view", { page_path: location.pathname });
+  trackPageView();
 }
 
 const bar = document.querySelector(".float-cta");
@@ -1288,9 +1287,9 @@ document.addEventListener("submit", async (event) => {
     data.set("kx_conversion", conversion);
     appendAttribution(data);
   }
-  const isMetaLead = Boolean(metaContentName) && !String(data.get("request") || "").trim();
+  const isCountedLead = Boolean(metaContentName) && !String(data.get("request") || "").trim();
   let metaEventId = "";
-  if (isMetaLead && consentAllowsAds()) {
+  if (isCountedLead) {
     try { metaEventId = crypto.randomUUID(); } catch { /* unavailable */ }
     if (metaEventId) {
       data.set("kx_meta_form", metaForm);
@@ -1331,15 +1330,18 @@ document.addEventListener("submit", async (event) => {
         }
       }
       const leadPayload = {
-        form_id: form.getAttribute("name") || form.id || "lead",
+        form_id: form.getAttribute("name") || form.id || metaForm || "lead",
+        form_name: metaContentName || metaForm || "lead",
         page_path: location.pathname,
         source: String(data.get("source") || ""),
         landing_page: String(data.get("landing_page") || location.pathname),
       };
       const formVariant = form.classList.contains("form--slim") ? "slim" : "full";
-      if (conversion === "preview") {
-        // Canonical GA4 key event; retain the funnel event as diagnostic/non-key.
+      if (isCountedLead) {
+        // Canonical GA4 key event for every mapped lead form.
         track("generate_lead", leadPayload);
+      }
+      if (conversion === "preview") {
         track("preview_form_submit", {
           form_variant: formVariant,
           page_path: location.pathname,
@@ -1349,6 +1351,7 @@ document.addEventListener("submit", async (event) => {
         track("audit_request", {
           form_id: form.getAttribute("name") || form.id || "audit",
           page_path: location.pathname,
+          event_role: "diagnostic",
         });
       }
       if (metaEventId) {
@@ -1527,8 +1530,70 @@ function appendAttribution(data) {
   }
 }
 
-function track(name, params) {
-  if (!consentAllowsAnalytics()) return;
+const PENDING_TRACK_KEY = "kinexis_pending_track_v1";
+const QUEUEABLE_GA = new Set(["generate_lead", "purchase", "subscription_created"]);
+const QUEUEABLE_META = new Set(["Lead", "Purchase"]);
+let lastGaPageViewPath = "";
+let lastMetaPageViewPath = "";
+
+function readPendingTrack() {
+  try {
+    const raw = sessionStorage.getItem(PENDING_TRACK_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+function writePendingTrack(items) {
+  try {
+    if (!items.length) sessionStorage.removeItem(PENDING_TRACK_KEY);
+    else sessionStorage.setItem(PENDING_TRACK_KEY, JSON.stringify(items.slice(-20)));
+  } catch {
+    /* Storage may be disabled. */
+  }
+}
+function queuePendingTrack(channel, name, params, options) {
+  const items = readPendingTrack();
+  items.push({
+    channel,
+    name,
+    params: params || {},
+    options: options || null,
+    at: Date.now(),
+  });
+  writePendingTrack(items);
+}
+function flushPendingTrack() {
+  const items = readPendingTrack();
+  if (!items.length) return;
+  const kept = [];
+  for (const item of items) {
+    if (!item || typeof item.name !== "string") continue;
+    if (item.channel === "ga") {
+      if (!consentAllowsAnalytics()) {
+        kept.push(item);
+        continue;
+      }
+      track(item.name, item.params || {}, { skipQueue: true });
+      continue;
+    }
+    if (item.channel === "meta") {
+      if (!consentAllowsAds()) {
+        kept.push(item);
+        continue;
+      }
+      trackMeta(item.name, item.params || {}, item.options || undefined, { skipQueue: true });
+    }
+  }
+  writePendingTrack(kept);
+}
+
+function track(name, params, options) {
+  if (!consentAllowsAnalytics()) {
+    if (!options?.skipQueue && QUEUEABLE_GA.has(name)) queuePendingTrack("ga", name, params);
+    return;
+  }
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
   try {
     // Ensure the gtag stub exists so events queue before/after script load.
@@ -1544,16 +1609,19 @@ function track(name, params) {
   }
 }
 
-let metaBooted = false;
-let metaTimer = 0;
-let metaArmed = false;
-function clearMetaArm() {
-  removeEventListener("pointerdown", ensureMeta);
-  removeEventListener("keydown", ensureMeta);
-  removeEventListener("touchstart", ensureMeta);
-  clearTimeout(metaTimer);
-  metaArmed = false;
+function trackPageView() {
+  const pagePath = location.pathname;
+  if (consentAllowsAnalytics() && lastGaPageViewPath !== pagePath) {
+    lastGaPageViewPath = pagePath;
+    track("page_view", { page_path: pagePath });
+  }
+  if (consentAllowsAds() && lastMetaPageViewPath !== pagePath) {
+    lastMetaPageViewPath = pagePath;
+    trackMeta("PageView");
+  }
 }
+
+let metaBooted = false;
 function ensureMeta() {
   if (!consentAllowsAds()) return false;
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return false;
@@ -1562,7 +1630,6 @@ function ensureMeta() {
     return false;
   }
   metaBooted = true;
-  clearMetaArm();
   if (!window.fbq) {
     const fbq = function (...args) {
       if (fbq.callMethod) fbq.callMethod(...args);
@@ -1583,6 +1650,7 @@ function ensureMeta() {
   try {
     window.fbq("init", cfg.metaPixel);
     window.fbq("consent", "grant");
+    lastMetaPageViewPath = location.pathname;
     window.fbq("track", "PageView");
   } catch {
     /* Pixel blocked or unavailable — ignore. */
@@ -1590,20 +1658,17 @@ function ensureMeta() {
   return true;
 }
 function armMeta() {
-  if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) {
-    clearMetaArm();
-    return;
-  }
-  if (metaBooted || metaArmed) return;
-  metaArmed = true;
-  addEventListener("pointerdown", ensureMeta, { once: true, passive: true });
-  addEventListener("keydown", ensureMeta, { once: true });
-  addEventListener("touchstart", ensureMeta, { once: true, passive: true });
-  metaTimer = setTimeout(ensureMeta, 45000);
+  if (!consentAllowsAds() || !cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
+  ensureMeta();
 }
 
-function trackMeta(name, params, options) {
-  if (!consentAllowsAds()) return;
+function trackMeta(name, params, options, trackOptions) {
+  if (!consentAllowsAds()) {
+    if (!trackOptions?.skipQueue && QUEUEABLE_META.has(name)) {
+      queuePendingTrack("meta", name, params, options);
+    }
+    return;
+  }
   if (!cfg.metaPixel || !/^\d{5,20}$/.test(cfg.metaPixel)) return;
   const justBooted = ensureMeta();
   if (name === "PageView" && justBooted) return;
@@ -1621,7 +1686,7 @@ window.__KINEXIS_TRACK_META_LEAD__ = (form, formPath, eventId) => {
     content_name: cfg.metaContentNameByForm[form],
     form_path: formPath,
     lang: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
-  }, { eventID: eventId });
+  }, eventId ? { eventID: eventId } : undefined);
 };
 for (const pending of window.__KINEXIS_PENDING_META_LEADS__ || []) {
   window.__KINEXIS_TRACK_META_LEAD__(pending.form, pending.path, pending.eventId);
@@ -1636,22 +1701,11 @@ function englishPath(pathname) {
 }
 
 let gaLoaded = false;
-let gaTimer = 0;
-let gaArmed = false;
-function clearGaArm() {
-  removeEventListener("pointerdown", loadGa);
-  removeEventListener("keydown", loadGa);
-  removeEventListener("touchstart", loadGa);
-  removeEventListener("scroll", onGaScroll);
-  clearTimeout(gaTimer);
-  gaArmed = false;
-}
 function loadGa() {
   if (!consentAllowsAnalytics()) return;
   if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
   if (gaLoaded) return;
   gaLoaded = true;
-  clearGaArm();
   window.dataLayer = window.dataLayer || [];
   function gtag(){ window.dataLayer.push(arguments); }
   window.gtag = gtag;
@@ -1673,22 +1727,14 @@ function loadGa() {
   script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(cfg.ga);
   script.async = true;
   document.head.appendChild(script);
-  track("page_view", { page_path: location.pathname });
-}
-const gaStarted = performance.now();
-function onGaScroll() { if (performance.now() - gaStarted >= 2500) loadGa(); }
-function armGa() {
-  if (!consentAllowsAnalytics() || !cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) {
-    clearGaArm();
-    return;
+  if (lastGaPageViewPath !== location.pathname) {
+    lastGaPageViewPath = location.pathname;
+    track("page_view", { page_path: location.pathname });
   }
-  if (gaLoaded || gaArmed) return;
-  gaArmed = true;
-  addEventListener("pointerdown", loadGa, { once: true, passive: true });
-  addEventListener("keydown", loadGa, { once: true });
-  addEventListener("touchstart", loadGa, { once: true, passive: true });
-  addEventListener("scroll", onGaScroll, { passive: true });
-  gaTimer = setTimeout(loadGa, 45000);
+}
+function armGa() {
+  if (!consentAllowsAnalytics() || !cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
+  loadGa();
 }
 
 function armTrackersFromConsent() {
@@ -1710,6 +1756,7 @@ function armTrackersFromConsent() {
   captureFirstTouch();
   armGa();
   armMeta();
+  flushPendingTrack();
 }
 armTrackersFromConsent();
 addEventListener("kinexis:consent", armTrackersFromConsent);
@@ -1717,6 +1764,11 @@ addEventListener("kinexis:track", (event) => {
   const detail = event instanceof CustomEvent ? event.detail : null;
   if (!detail || typeof detail.name !== "string") return;
   track(detail.name, detail.params || {});
+});
+addEventListener("kinexis:track-meta", (event) => {
+  const detail = event instanceof CustomEvent ? event.detail : null;
+  if (!detail || typeof detail.name !== "string") return;
+  trackMeta(detail.name, detail.params || {}, detail.options);
 });
 
 /* Preview funnel (PII-free). Fires only when analytics consent allows tracking. */
@@ -1746,40 +1798,41 @@ addEventListener("kinexis:track", (event) => {
   });
 })();
 
-if (cfg.ga && /^G-[A-Z0-9]+$/.test(cfg.ga)) {
-  document.addEventListener("click", (event) => {
-    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
-    if (!(link instanceof HTMLAnchorElement)) return;
-    const href = link.getAttribute("href") || "";
-    if (href.startsWith("tel:")) {
-      loadGa();
-      track("phone_tap", { link_url: href, page_path: location.pathname });
-      return;
-    }
-    let path = "";
-    try { path = new URL(link.href, location.origin).pathname; } catch { return; }
-    const en = englishPath(path);
-    if (en === "/strategy-call" || en.startsWith("/strategy-call/")) {
-      loadGa();
-      track("strategy_call_click", { link_url: path, page_path: location.pathname });
-      return;
-    }
-    if (en === "/pricing" || en.startsWith("/pricing")) {
-      loadGa();
-      track("pricing_click", { link_url: path, page_path: location.pathname });
-    }
-  });
-}
-
-if (cfg.metaPixel && /^\d{5,20}$/.test(cfg.metaPixel)) {
-  document.addEventListener("click", (event) => {
-    const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
-    if (!(link instanceof HTMLAnchorElement)) return;
-    const href = link.getAttribute("href") || "";
-    if (!href.startsWith("tel:")) return;
-    trackMeta("Contact", { content_name: "phone_tap", content_category: location.pathname });
-  });
-}
+document.addEventListener("click", (event) => {
+  const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
+  if (!(link instanceof HTMLAnchorElement)) return;
+  const href = link.getAttribute("href") || "";
+  if (href.startsWith("tel:")) {
+    const leadPayload = {
+      form_id: "phone_tap",
+      form_name: "phone_tap",
+      page_path: location.pathname,
+      link_url: href,
+    };
+    track("generate_lead", leadPayload);
+    track("phone_tap", { link_url: href, page_path: location.pathname, event_role: "diagnostic" });
+    let phoneEventId = "";
+    try { phoneEventId = crypto.randomUUID(); } catch { /* unavailable */ }
+    trackMeta("Lead", {
+      content_name: "phone_tap",
+      form_path: location.pathname,
+      content_category: location.pathname,
+      lang: document.documentElement.lang.toLowerCase().startsWith("es") ? "es" : "en",
+    }, phoneEventId ? { eventID: phoneEventId } : undefined);
+    return;
+  }
+  if (!cfg.ga || !/^G-[A-Z0-9]+$/.test(cfg.ga)) return;
+  let clickPath = "";
+  try { clickPath = new URL(link.href, location.origin).pathname; } catch { return; }
+  const en = englishPath(clickPath);
+  if (en === "/strategy-call" || en.startsWith("/strategy-call/")) {
+    track("strategy_call_click", { link_url: clickPath, page_path: location.pathname });
+    return;
+  }
+  if (en === "/pricing" || en.startsWith("/pricing")) {
+    track("pricing_click", { link_url: clickPath, page_path: location.pathname });
+  }
+});
 
 syncChrome();
 syncLangSwitch();
