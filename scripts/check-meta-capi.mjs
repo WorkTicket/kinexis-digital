@@ -130,7 +130,8 @@ assert.match(boot, /cfg\.metaContentNameByForm/);
 assert.match(boot, /window\.__KINEXIS_TRACK_META_LEAD__\s*=/);
 assert.match(boot, /content_name: cfg\.metaContentNameByForm\[form\],[\s\S]*?form_path: formPath/);
 assert.match(bootComponent, /metaContentNameByForm:\s*META_CONTENT_NAME_BY_FORM/);
-assert.match(boot, /if \(name === "PageView" && justBooted\) return/);
+assert.match(boot, /setTimeout\(ensureMeta,\s*45000\)/);
+assert.match(boot, /lastMetaPageViewPath/);
 assert.match(boot, /window\.fbq\("consent",\s*adsAllowed \? "grant" : "revoke"\)/);
 
 const route = await (await import("node:fs/promises")).readFile(path.join(root, "src/app/api/contact/route.ts"), "utf8");
