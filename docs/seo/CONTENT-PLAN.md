@@ -22,16 +22,16 @@
 
 | ID | Item | Type | Phase | Primary URL(s) | Status |
 |---|---|---|---|---|---|
-| I1 | Cloudflare Always Use HTTPS (HTTP→HTTPS 301; stop Pingora 500s) | Infra | **Tech-0** | `http://` apex/www | **Owner dashboard** — see §2 |
+| I1 | Cloudflare Always Use HTTPS (HTTP→HTTPS 301; stop Pingora 500s) | Infra | **Tech-0** | `http://` apex/www | **Done** (2026-11-25) — `http://` apex/www → `https://www…` 301 |
 | I2 | 301 dead case studies → `/portfolio` | Redirect (404 repair) | **Tech-0** | 3 retired slugs + `/en/` | In code this PR |
 | I3 | Homepage title leads with **Kinexis Digital** | Meta | **Tech-0** | `/` | In code this PR |
 | I4 | `/pricing` title/meta/H1 own **contractor website cost** | Meta | **Tech-0** | `/pricing` | In code this PR |
 | I5 | Retitle local SEO article for **local SEO checklist** | Meta | **Tech-0** | `/blog/local-seo-get-found-get-called` | In code this PR |
-| I6 | Connect portal: robots + noindex app routes | Subdomain | **Tech-0** | `connect.kinexisdigital.com` | **Separate repo** — see §13 |
-| P1 | noindex `bimi.kinexisdigital.com` | Infra | **Tech-0** | bimi subdomain | **Separate host** — see §13 (approved) |
+| I6 | Connect portal: robots + noindex app routes | Subdomain | **Tech-0** | `connect.kinexisdigital.com` | **Done** (2026-11-25 live) — robots Disallow + login/signup `X-Robots-Tag: noindex` |
+| P1 | noindex `bimi.kinexisdigital.com` | Infra | **Tech-0** | bimi subdomain | **Done** (2026-11-25) — `X-Robots-Tag: noindex` + `robots.txt` Allow `/bimi/` |
 | P2 | 301 `/es-es/*` → `/es/*` | Redirect | **Tech-0** | `/es-es` | In code this PR (approved) |
 | P3 | painting + remodeling off `hold` | Landing | **Tech-0** | `/industries/painting`, `/remodeling` | In code this PR (approved) |
-| P4 | Connect homepage stays indexable (canonical) | Subdomain | **Tech-0** | connect `/` | Approved — implement in Connect repo |
+| P4 | Connect homepage stays indexable (canonical) | Subdomain | **Tech-0** | connect `/` | **Done** (2026-11-25 live) — indexable + canonical on `/` |
 | T1 | Keyword → URL ownership map | Guardrail | 0 | See §3 | Done — `src/data/keyword-ownership.ts` |
 | T2 | Cannibalization guard: no generic contractor-cost article | Guardrail | 0 | `/pricing` | Done — `npm run check:seo-ownership` |
 | T3 | Rewrite briefs: 12 trade **cost** articles | Rewrite | 2 | `/blog/*-website-cost` | **Done** — avg pair similarity **35.1%** (was ~89.7%); `node scripts/measure-trade-post-similarity.mjs` |
@@ -39,7 +39,7 @@
 | T5 | New: redesign checklist | New article | 1 | `/blog/contractor-website-redesign-checklist` | Done (#36) |
 | T6 | New: choose contractor web designer | New article | 1 | `/blog/how-to-choose-contractor-web-designer` | **Done** (live; GSC seeing imps) |
 | T7 | New: contractor quote form | New article | 1 | `/blog/contractor-website-quote-form` | **Done** (live; GSC seeing imps) |
-| T17 | GSC CTR pass: cost + hub titles match “pricing” queries | Metadata | Tech-0+ | cost posts + industry hubs + ES roofing | **In progress** (2026-11-24) |
+| T17 | GSC CTR pass: cost + hub titles match “pricing” queries | Metadata | Tech-0+ | cost posts + industry hubs + ES roofing | **Done** (2026-11-25 live recheck) — hubs “Website Design Pricing”; cost “Cost & Pricing ($97/mo)”; ES techos title live |
 | T8 | Expand GBP checklist | Expand | 2 | `/blog/google-business-profile-checklist` | Done |
 | T9 | Expand local SEO (plumber troubleshooting) | Expand | 2 | `/blog/local-seo-get-found-get-called` | Done |
 | T10 | Industry: painting live | Landing | 3 | `/industries/painting` | In code this PR |
@@ -54,9 +54,9 @@
 ## 2. Phased execution (**technical indexing first**)
 
 ### Phase Tech-0 — Indexing & on-page (before trade rewrites)
-1. **Owner (Cloudflare dashboard):** enable **Always Use HTTPS** (HTTP→HTTPS). Agents do not change this.  
+1. **Always Use HTTPS (I1):** **Done** — apex/www `http://` 301 to `https://www.kinexisdigital.com/` (verified 2026-11-25).  
 2. **Code (this marketing PR):** dead case-study 301s; brand homepage title; pricing owns contractor website cost; local SEO checklist retitle; **`/es-es` → `/es`**; **painting + remodeling `live`**.  
-3. **Out of this repo (approved, owner/other deploys):** BIMI noindex on Pages project `kinexis-card`; Connect robots/noindex in `WorkTicket/kinexis-connect` (homepage may stay indexable). See §13.
+3. **Out-of-repo hosts:** BIMI noindex + Connect robots/noindex — **Done** on live (2026-11-25). See §13.
 
 ### Phase 0 — Guardrails
 Ownership map (§3) + cannibalization (§4). No new generic contractor-cost article.
@@ -333,18 +333,14 @@ Still useful after Tech-0 ships: Coverage “404 / robots / alternate canonical�
 
 ### BIMI — `bimi.kinexisdigital.com`
 **Not in this repo.** Cloudflare Pages project **`kinexis-card`** (`kinexis-card.pages.dev`), custom domain `bimi.kinexisdigital.com`. DNS CNAME → that Pages project. BIMI TXT: `default._bimi` → `l=https://bimi.kinexisdigital.com/bimi/logo.svg` (keep `/bimi/` crawlable).  
-**Owner apply on next Pages deploy:** HTML `<meta name="robots" content="noindex, follow">` + `X-Robots-Tag: noindex, follow` on HTML; `robots.txt`:
-```
-User-agent: *
-Allow: /bimi/
-Disallow: /
-```
+**Live (2026-11-25):** HTML responses send `X-Robots-Tag: noindex, nofollow`; `/bimi/logo.svg` stays crawlable; `robots.txt` is `Allow: /bimi/` + `Disallow: /` on production Pages.
 
 ### Connect — `connect.kinexisdigital.com`
-**Not in this repo.** GitHub **`WorkTicket/kinexis-connect`**, Cloudflare Worker **`kinexis-connect`** (custom domain). Marketing homepage may stay indexable with canonical; noindex `/login`, `/signup`, `/app/*` (dashboard), plus `robots.txt` Disallow those paths. Owner deploys that app separately.
+**Not in this repo.** GitHub **`WorkTicket/kinexis-connect`**, Cloudflare Worker **`kinexis-connect`** (custom domain).  
+**Live (2026-11-25):** `/` indexable with canonical; `robots.txt` Disallows `/app`, `/login`, `/signup`, `/admin`, `/onboarding`, `/auth/`, billing/API; login/signup send `X-Robots-Tag: noindex, nofollow`; `/app` → `/login`.
 
 ### Cloudflare Always Use HTTPS
-Dashboard only (I1) — owner applies; not code.
+**Done (2026-11-25):** `http://kinexisdigital.com/` and `http://www.kinexisdigital.com/` both 301 to `https://www.kinexisdigital.com/`.
 
 ## 14. Out of scope without a separate ticket
 

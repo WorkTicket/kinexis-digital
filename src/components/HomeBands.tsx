@@ -86,7 +86,7 @@ const REASONS = [
   {
     title: "Hosting And Updates Stay With Us",
     text: "We manage hosting, routine changes, backups, and security instead of handing that work back to you.",
-    icon: "hassle-free",
+    icon: "site-care",
   },
 ] as const;
 

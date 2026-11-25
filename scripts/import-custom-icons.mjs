@@ -147,8 +147,18 @@ const keys = Object.keys(MAP);
 for (const key of keys) {
   const src = path.join(pngDir, `${MAP[key]}.png`);
   await access(src);
+  /* Keep ~7% transparent margin so soft edges/shadows are not flush to the canvas. */
+  const inner = Math.round(SIZE * 0.86);
+  const pad = Math.floor((SIZE - inner) / 2);
   const webp = await sharp(src)
-    .resize({ width: SIZE, height: SIZE, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize({ width: inner, height: inner, fit: "contain", background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .extend({
+      top: pad,
+      bottom: SIZE - inner - pad,
+      left: pad,
+      right: SIZE - inner - pad,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    })
     .webp({ quality: 90, alphaQuality: 95, effort: 4 })
     .toBuffer();
   await writeFile(path.join(outDir, `${key}.webp`), webp);

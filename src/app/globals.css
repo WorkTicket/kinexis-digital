@@ -347,7 +347,9 @@ p{margin:0 0 1em}
 }
 .preview-bar__inner{
   display:grid;gap:14px;
-  padding:16px 20px 18px;
+  /* Vertical padding also set unlayered (below @layer close + DocumentShell) so
+     critical .container{padding:0 20px} cannot collapse the band to flush borders. */
+  padding:22px 20px 26px;
 }
 .preview-bar__label{
   display:flex;align-items:flex-start;margin:0;min-width:0;
@@ -431,7 +433,7 @@ p{margin:0 0 1em}
   .preview-bar__inner{
     grid-template-columns:minmax(12rem,18rem) minmax(0,1fr);
     align-items:center;gap:22px 28px;
-    padding:20px 24px;
+    padding:24px 24px 28px;
   }
   .preview-bar__label b{font-size:1.2rem}
   .preview-bar__hint{font-size:.88rem}
@@ -452,16 +454,14 @@ p{margin:0 0 1em}
   }
 }
 @media (max-width:560px){
-  .preview-bar__inner{padding:14px}
+  .preview-bar__inner{padding:20px 16px 24px}
 }
 .header__tools{display:flex;align-items:center;gap:10px;margin-left:auto}
 /* ---------- Site footer ---------- */
 /* One continuous navy field across CTA bridge + footer (lighter than form border navy). */
 .site-foot{
-  background:
-    radial-gradient(ellipse 55% 42% at 0% 18%,rgba(0,194,255,.16),transparent 58%),
-    radial-gradient(ellipse 45% 36% at 100% 12%,rgba(255,106,0,.08),transparent 52%),
-    linear-gradient(180deg,#0a36e8 0%,#0b2fc4 32%,#0828a8 68%,#06228a 100%);
+  /* No edge-anchored radials — they read as cutoff circles on the footer field. */
+  background:linear-gradient(180deg,#0a36e8 0%,#0b2fc4 32%,#0828a8 68%,#06228a 100%);
 }
 .site-footer{
   position:relative;overflow:hidden;color:#fff;
@@ -477,7 +477,7 @@ p{margin:0 0 1em}
   content:"";position:absolute;left:0;right:0;top:0;
   height:720px;max-height:100%;
   background:
-    url("/assets/kinexis/decorative/section-background-footer.svg") top center / 100% auto no-repeat;
+    url("/assets/kinexis/decorative/section-background-footer.svg?v=3") top center / 100% auto no-repeat;
   opacity:.95;
 }
 .site-footer__motif{position:absolute;display:block}
@@ -1364,16 +1364,22 @@ html.lp-route body{--announce-h:0px}
   list-style:none;margin:8px 0 0;padding:0;
   display:grid;grid-template-columns:1fr 1fr;gap:1px;
   background:var(--border);border:1px solid var(--border);border-radius:20px;
-  overflow:hidden;box-shadow:var(--shadow);
+  /* visible so soft icon edges are not shaved by the sheet clip */
+  overflow:visible;box-shadow:var(--shadow);
 }
+.reason-sheet__item:nth-child(1){border-top-left-radius:19px}
+.reason-sheet__item:nth-child(2){border-top-right-radius:19px}
+.reason-sheet__item:nth-child(3){border-bottom-left-radius:19px}
+.reason-sheet__item:nth-child(4){border-bottom-right-radius:19px}
 .reason-sheet__item{
   display:grid;grid-template-columns:96px minmax(0,1fr);column-gap:20px;align-items:center;
   min-width:0;background:#fff;padding:28px 28px 30px;
 }
-.reason-sheet__mark{display:grid;place-items:center;width:96px;height:96px}
+.reason-sheet__mark{display:grid;place-items:center;width:96px;height:96px;overflow:visible}
 .reason-sheet__mark img.icon{
-  width:96px;height:96px;margin:0;display:block;
-  object-fit:contain;border-radius:0;background:transparent;
+  width:96px;height:96px;max-width:96px;margin:0;display:block;
+  object-fit:contain;object-position:center;border-radius:0;background:transparent;
+  overflow:visible;
 }
 .reason-sheet__copy{display:flex;flex-direction:column;justify-content:center;min-width:0;text-align:left}
 .reason-sheet__copy h3{
@@ -1517,7 +1523,7 @@ html.lp-route body{--announce-h:0px}
 @media (max-width:720px){
   .reason-sheet{grid-template-columns:1fr}
   .reason-sheet__item{grid-template-columns:80px minmax(0,1fr);column-gap:14px;padding:18px 16px 20px}
-  .reason-sheet__mark,.reason-sheet__mark img.icon{width:80px;height:80px}
+  .reason-sheet__mark,.reason-sheet__mark img.icon{width:80px;height:80px;max-width:80px}
   .reason-sheet__copy h3{font-size:1.15rem}
   .reason-sheet__copy p{font-size:1rem}
 }
@@ -2402,10 +2408,15 @@ button.chatbot__icon__cta{
 .fb-track{letter-spacing:var(--fb-m,normal)}
 @media (min-width:861px){.fb-track{letter-spacing:var(--fb-d,var(--fb-m,normal))}}
 .page-hero.seo-hero .page-hero__copy{min-height:270px}
-.media-split{display:grid;grid-template-columns:minmax(0,1.22fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center;margin-bottom:40px}
+.media-split{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,1fr);gap:clamp(28px,4vw,56px);align-items:center;margin-bottom:40px}
 .media-split--reverse .media-split__art{order:2}
 .media-split__copy h2,.media-split__copy p,.media-split__copy .muted{text-align:left;margin-left:0;margin-right:0}
 .media-split:last-child{margin-bottom:0}
+/* Homepage plan band: keep campaign art crisp — mobile was full-bleed (too big + soft),
+   desktop needed a bit more presence against the copy column. */
+.media-split--plan .media-split__art{min-width:0}
+.media-split--plan .campaign-page-art,
+.media-split--plan .campaign-page-art__img{width:100%;max-width:100%;height:auto}
 /* /web-design process journey: numbered path, you share → we deliver */
 .design-process{
   --rail:40px;
@@ -2489,6 +2500,10 @@ button.chatbot__icon__cta{
   }
   .media-split--reverse .media-split__art{order:0}
   .media-split__copy,.media-split__copy h2,.media-split__copy p,.media-split__copy .muted{text-align:center}
+  /* Cap plan-band art so 960w mobile candidates stay sharp at phone DPR. */
+  .media-split--plan .media-split__art{
+    width:min(100%,300px);margin-inline:auto;
+  }
   .design-process{
     --rail:36px;
     margin-top:22px;padding:12px 12px 10px;
@@ -2757,6 +2772,11 @@ html.no-audit [data-site-audit]{display:none!important}
   .header__cta,.header__cta::after{animation:none!important}
   .header__cta::after{opacity:0}
   .header__cta:hover:not(:focus-visible){color:#fff;--btn-fill:0}
+}
+/* Tablet/hamburger header — no tilt nudge (too tight next to Menu). */
+@media (max-width:1320px){
+  .header__cta[data-cta-nudge],.header__cta[data-cta-nudge]::after{animation:none!important}
+  .header__cta[data-cta-nudge]::after{opacity:0}
 }
 .float-cta .btn{padding:.55em 1.05em;font-size:.95rem}
 @media (max-width:860px){
@@ -4391,8 +4411,16 @@ html.nav-open .mega__panel::-webkit-scrollbar,
 
 }
 
-
-
+/* Unlayered overrides — beat DocumentShell / other unlayered .container padding:0. */
+.preview-bar > .container.preview-bar__inner{
+  padding:22px 20px 26px;
+}
+@media (max-width:560px){
+  .preview-bar > .container.preview-bar__inner{padding:20px 16px 24px}
+}
+@media (min-width:980px){
+  .preview-bar > .container.preview-bar__inner{padding:24px 24px 28px}
+}
 
 /* Industry kit: heroes, service icons, audit band, and the shared feature artwork. */
 .icon.icon--kit{width:72px;height:72px;border-radius:0;background:transparent;object-fit:contain}
@@ -5411,7 +5439,7 @@ p,li,blockquote{ text-wrap:pretty }
 
   .review-rail__step{padding:14px 14px}
   .reason-sheet__item{padding:16px 14px 18px;column-gap:12px}
-  .reason-sheet__mark,.reason-sheet__mark img.icon{width:68px;height:68px}
+  .reason-sheet__mark,.reason-sheet__mark img.icon{width:68px;height:68px;max-width:68px}
 
   .float-cta{
     padding:8px 10px 10px;

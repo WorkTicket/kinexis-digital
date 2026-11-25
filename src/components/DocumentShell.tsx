@@ -108,6 +108,9 @@ h1,h2,h3,h4,.btn,button{font-weight:700}
 h1{font-family:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;font-weight:800}
 .page-hero--article h1{max-width:18ch;margin-inline:auto;text-wrap:balance}
 .container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
+/* Unlayered .container{padding:0 20px} above beats @layer preview-bar__inner — restore vertical inset. */
+.preview-bar>.container.preview-bar__inner{padding:22px 20px 26px}
+@media(max-width:560px){.preview-bar>.container.preview-bar__inner{padding:20px 16px 24px}}
 .hero{position:relative;overflow:visible;padding:76px 0 88px;color:#0a1230;background:#fff}
 .hero .container{position:relative;z-index:2}
 .hero__inner{display:grid;grid-template-columns:minmax(0,1.38fr) minmax(0,1fr);gap:48px;align-items:center}
@@ -122,6 +125,16 @@ h1{font-family:"poppinsDisplay","poppinsDisplay Fallback",Arial,sans-serif;font-
 @media(max-width:720px){.hero__inner{grid-template-columns:1fr;gap:clamp(12px,1.8svh,16px)}.hero.hero--fit{min-height:0;padding:28px 0 36px}.hero__media{padding:8px;box-shadow:5px 5px 0 #031b4e}}
 @media(max-width:860px){.page-hero__grid{grid-template-columns:1fr}.page-hero__art .art-wrap{max-width:260px;margin-inline:auto}}
 @media(max-width:1320px){.nav:not(.is-open){display:none}}
+/* Unlayered: keep reason-sheet icon box size; sheet overflow visible so soft edges are not shaved. */
+.reason-sheet{overflow:visible}
+.reason-sheet__item:nth-child(1){border-top-left-radius:19px}
+.reason-sheet__item:nth-child(2){border-top-right-radius:19px}
+.reason-sheet__item:nth-child(3){border-bottom-left-radius:19px}
+.reason-sheet__item:nth-child(4){border-bottom-right-radius:19px}
+.reason-sheet__mark{overflow:visible}
+.reason-sheet__mark img.icon{width:96px!important;height:96px!important;max-width:96px!important;object-fit:contain!important;overflow:visible}
+@media(max-width:900px){.reason-sheet__mark img.icon{width:80px!important;height:80px!important;max-width:80px!important}}
+@media(max-width:560px){.reason-sheet__mark img.icon{width:68px!important;height:68px!important;max-width:68px!important}}
 `}</style>
         <script id="locale-choice" dangerouslySetInnerHTML={{ __html: localeBootScript() }} />
         {/* Inline before paint: App Router forbids next/script beforeInteractive outside pages/_document.

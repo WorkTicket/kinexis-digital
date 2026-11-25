@@ -61,8 +61,8 @@ export function CampaignHeroArtwork({
       <img
         src={fallback}
         alt={alt}
-        width={960}
-        height={540}
+        width={1440}
+        height={810}
         loading={priority ? "eager" : "lazy"}
         // sync when priority: campaign art is the LCP element on pricing/portfolio/etc.
         decoding={priority ? "sync" : "async"}

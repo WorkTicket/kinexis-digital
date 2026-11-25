@@ -277,6 +277,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
       />
       <Section tint>
         <MediaSplit
+          className="media-split--plan"
           art={<CampaignHeroArtwork name="homepage-hero" alt={tx("Un negocio mostrando un plan de sitio en una computadora y un celular")} fallback="/assets/heroes/01-homepage-640.webp" locale={locale} />}
         >
           <h2><HL text={tx("Lo que recibes con un plan de sitio de Kinexis")} mark={tx("plan de sitio de Kinexis")} /></h2>
@@ -372,7 +373,7 @@ async function Home({ locale, tx, href, lang }: { locale: Locale; tx: (s: string
           <h2 className="center"><HL text={tx("Lo que incluye cada sitio de Kinexis")} mark={tx("sitio de Kinexis")} /></h2>
           <p className="center muted">{tx("Lo esencial para verse serio, aparecer en búsquedas y convertir visitas en llamadas, con el hosting y los cambios a cargo nuestro.")}</p>
         </div>
-        <ReasonBoard reasons={[{ title: tx("Se ve bien en cada pantalla"), text: tx("Un diseño moderno y adaptable presenta bien tu negocio en celulares, tabletas y computadoras."), icon: "well-designed" }, { title: tx("Pensado para recibir llamadas"), text: tx("Cada página deja claro si el siguiente paso es llamar ahora o enviar los datos del trabajo."), icon: "sales-focused" }, { title: tx("Fácil de leer para Google"), text: tx("Una estructura limpia, títulos útiles y páginas rápidas ayudan a que el buscador entienda el sitio."), icon: "search-optimized" }, { title: tx("El hosting y los cambios son nuestros"), text: tx("Administramos hosting, cambios de rutina, respaldos y seguridad sin devolverte ese trabajo."), icon: "hassle-free" }]} />
+        <ReasonBoard reasons={[{ title: tx("Se ve bien en cada pantalla"), text: tx("Un diseño moderno y adaptable presenta bien tu negocio en celulares, tabletas y computadoras."), icon: "well-designed" }, { title: tx("Pensado para recibir llamadas"), text: tx("Cada página deja claro si el siguiente paso es llamar ahora o enviar los datos del trabajo."), icon: "sales-focused" }, { title: tx("Fácil de leer para Google"), text: tx("Una estructura limpia, títulos útiles y páginas rápidas ayudan a que el buscador entienda el sitio."), icon: "search-optimized" }, { title: tx("El hosting y los cambios son nuestros"), text: tx("Administramos hosting, cambios de rutina, respaldos y seguridad sin devolverte ese trabajo."), icon: "site-care" }]} />
       </Section>
       <Section>
         <div className="trades-feature">

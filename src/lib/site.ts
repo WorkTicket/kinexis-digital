@@ -83,7 +83,7 @@ export function shouldRedirectCanonicalHost(
 }
 
 /** Bump when industry, audit, shared kit, or custom icons are replaced. /assets/* is cached for a year. */
-export const KIT_ASSET_VERSION = "4";
+export const KIT_ASSET_VERSION = "7";
 
 export function kitSrc(path: string) {
   return `${path}?v=${KIT_ASSET_VERSION}`;

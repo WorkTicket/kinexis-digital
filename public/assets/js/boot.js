@@ -366,9 +366,8 @@ function armHero() {
   if (!el || heroArmed.has(el)) return;
   heroArmed.add(el);
   if (reduce()) return;
-  // The loop is decorative. Mobile devices keep the lightweight poster;
-  // visitors can still open the full video explicitly with the play button.
-  if (!matchMedia("(min-width: 861px) and (hover: hover) and (pointer: fine)").matches) return;
+  // Muted preview loop on all viewports (save-data / 2G keep the poster).
+  // Full-sound playback still goes through the play button → dialog.
   const conn = navigator.connection;
   if (conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || ""))) return;
   const events = ["pointerdown", "keydown", "scroll"];
@@ -395,10 +394,9 @@ function armHero() {
   };
   const arm = () => {
     for (const name of events) addEventListener(name, go, { once: true, passive: true });
-    // A video frame can replace the poster as LCP. Let visitors see the poster
-    // first, then begin the same loop once the page is settled (or immediately
-    // on their first interaction).
-    timer = setTimeout(go, 5000);
+    // Poster paints as LCP first; start the muted loop almost immediately after
+    // so the hero does not sit on a static frame for seconds.
+    timer = setTimeout(go, 400);
   };
   const poster = el.parentElement?.querySelector("img");
   if (poster instanceof HTMLImageElement && !poster.complete) poster.addEventListener("load", arm, { once: true });
@@ -673,10 +671,14 @@ function syncFooterColumns() {
 
 /** Desktop header CTA nudge — same timing as the former HeaderCta effect. */
 (function armHeaderCtaNudge() {
-  const PLAY_MS = 1500;
-  const GAP_MIN_MS = 3200;
-  const GAP_MAX_MS = 7800;
-  const FIRST_DELAY_MS = 1800;
+  // Match cta-nudge keyframe length; leave a beat before the next gap timer.
+  const PLAY_MS = 1600;
+  const GAP_MIN_MS = 6000;
+  const GAP_MAX_MS = 11000;
+  const FIRST_DELAY_MS = 2800;
+  // Desktop inline nav only (≥1321). Tablet header CTA is too tight — the
+  // tilt/sheen reads as a broken fast loop next to Menu.
+  const desktopMq = matchMedia("(min-width: 1321px) and (hover: hover) and (pointer: fine)");
   function nextGap() {
     return GAP_MIN_MS + Math.floor(Math.random() * (GAP_MAX_MS - GAP_MIN_MS + 1));
   }
@@ -688,10 +690,11 @@ function syncFooterColumns() {
   }
   function start() {
     if (reduce()) return;
-    if (matchMedia("(hover: none)").matches) return;
+    if (!desktopMq.matches) return;
     let gapTimer = 0;
     let clearTimer = 0;
     let stopped = false;
+    let playing = false;
     const clearNudge = (el) => {
       el?.removeAttribute("data-cta-nudge");
     };
@@ -700,7 +703,7 @@ function syncFooterColumns() {
       gapTimer = window.setTimeout(play, delay);
     };
     const play = () => {
-      if (stopped || document.hidden) return;
+      if (stopped || document.hidden || playing || !desktopMq.matches) return;
       window.clearTimeout(clearTimer);
       const el = visibleCta();
       if (!el) {
@@ -711,11 +714,13 @@ function syncFooterColumns() {
         schedule(nextGap());
         return;
       }
+      playing = true;
       clearNudge(el);
       void el.offsetWidth;
       el.dataset.ctaNudge = "1";
       clearTimer = window.setTimeout(() => {
         clearNudge(el);
+        playing = false;
         schedule(nextGap());
       }, PLAY_MS);
     };
@@ -723,12 +728,25 @@ function syncFooterColumns() {
       if (document.hidden) {
         window.clearTimeout(gapTimer);
         window.clearTimeout(clearTimer);
+        playing = false;
         clearNudge(visibleCta());
-      } else if (!stopped) {
+      } else if (!stopped && desktopMq.matches) {
         schedule(nextGap());
       }
     };
+    const onDesktopChange = () => {
+      if (!desktopMq.matches) {
+        window.clearTimeout(gapTimer);
+        window.clearTimeout(clearTimer);
+        playing = false;
+        clearNudge(visibleCta());
+      } else if (!stopped && !document.hidden) {
+        schedule(FIRST_DELAY_MS);
+      }
+    };
     document.addEventListener("visibilitychange", onVisibility);
+    if (typeof desktopMq.addEventListener === "function") desktopMq.addEventListener("change", onDesktopChange);
+    else desktopMq.addListener(onDesktopChange);
     schedule(FIRST_DELAY_MS);
   }
   if (document.readyState === "complete") start();

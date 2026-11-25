@@ -81,6 +81,7 @@ export default async function Home() {
       {/* 3. What you get */}
       <Section tint>
         <MediaSplit
+          className="media-split--plan"
           art={<CampaignHeroArtwork name="homepage-hero" alt="A contractor viewing a website plan on a laptop and phone" fallback="/assets/heroes/01-homepage-640.webp" />}
         >
           <h2><HL text="What You Get With a Kinexis Website Plan" mark="Website Plan" /></h2>
